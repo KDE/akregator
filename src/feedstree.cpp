@@ -215,12 +215,16 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
 
 void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
 {
+    if (selectedItem() == afterme)
+        return;
+    
     if (parent)
     {    
         FeedGroup* parentNode = (static_cast<FeedGroupItem*> (parent))->node();
-        TreeNode* afterMeNode = 0;
+
+        TreeNode* afterMeNode = 0; 
         TreeNode* current = selectedNode();
-        
+
         if (afterme)
             afterMeNode = (static_cast<TreeNodeItem*> (afterme))->node();
         
