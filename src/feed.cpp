@@ -167,7 +167,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     
     // get archive size limit, -1 if unlimited
     
-    uint limit = -1;
+    int limit = -1;
     if (m_archiveMode == disableArchiving)
         limit = 0;
     else
@@ -498,6 +498,18 @@ void Feed::setImage(const QPixmap &p)
     QString u = m_xmlUrl;
     m_image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
     emit(imageLoaded(this));
+}
+
+Feed::ArchiveMode Feed::archiveMode() const
+{
+    return m_archiveMode;
+}
+
+void Feed::setArchiveMode(ArchiveMode archiveMode)
+{
+    m_archiveMode = archiveMode;
+    if ( isMerged() )
+        Archive::save(this);
 }
 
 void Feed::setUnread(int unread)

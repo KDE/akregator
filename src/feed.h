@@ -60,9 +60,9 @@ namespace Akregator
             @param interval interval in minutes, -1 for disabling auto fetching */
             void setFetchInterval(int interval) { m_fetchInterval = interval; }
 
-            ArchiveMode archiveMode() const { return m_archiveMode; }
-            void setArchiveMode(ArchiveMode archiveMode) { m_archiveMode = archiveMode; }  
-//             
+            ArchiveMode archiveMode() const;
+            void setArchiveMode(ArchiveMode archiveMode);
+             
             int maxArticleAge() const { return m_maxArticleAge; } 
             void setMaxArticleAge(int maxArticleAge)
             { m_maxArticleAge = maxArticleAge; }
@@ -132,7 +132,7 @@ namespace Akregator
             
             bool m_autoFetch;
             int m_fetchInterval;
-	    ArchiveMode m_archiveMode; 
+	        ArchiveMode m_archiveMode; 
             int m_maxArticleAge; 
             int m_maxArticleNumber;
             Document m_document;            
