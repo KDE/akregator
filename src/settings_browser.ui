@@ -143,7 +143,18 @@
                 </widget>
             </vbox>
         </widget>
-        <spacer row="2" column="0">
+        <widget class="QCheckBox" row="2" column="0">
+            <property name="name">
+                <cstring>kcfg_BackgroundTabForArticles</cstring>
+            </property>
+            <property name="text">
+                <string>Open new articles in background tabs</string>
+            </property>
+            <property name="checked">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <spacer row="3" column="0">
             <property name="name">
                 <cstring>spacer1</cstring>
             </property>

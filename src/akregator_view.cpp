@@ -261,7 +261,7 @@ void aKregatorView::saveSettings(bool /*quit*/)
     Settings::writeConfig();
 }
 
-void aKregatorView::slotOpenTab(const KURL& url, bool background=false)
+void aKregatorView::slotOpenTab(const KURL& url, bool background)
 {
     PageViewer* page = new PageViewer(this, "page");
     
@@ -1132,7 +1132,7 @@ if (!feed || feed->isGroup())
 if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
     displayInExternalBrowser(feed->htmlUrl());
 else
-    slotOpenTab(feed->htmlUrl());
+    slotOpenTab(feed->htmlUrl(), Settings::backgroundTabForArticles());
 }
 
 void aKregatorView::setTotalUnread()
@@ -1267,7 +1267,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     m_mainFrame->setProgress(p);
 }
 
-void aKregatorView::slotFeedFetchError(Feed */*feed*/)
+void aKregatorView::slotFeedFetchError(Feed* /*feed*/)
 {
     int p = int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
     m_mainFrame->setProgress(p);
@@ -1332,7 +1332,7 @@ void aKregatorView::slotOpenArticleExternal(QListViewItem* i, const QPoint&, int
 }   
 
 
-void aKregatorView::slotOpenCurrentArticleForegroundTab()
+void aKregatorView::slotOpenCurrentArticle()
 {
     ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
     if (!item)
@@ -1347,7 +1347,7 @@ void aKregatorView::slotOpenCurrentArticleForegroundTab()
             link = article.link().url();
         else
             link = article.guid();
-        slotOpenTab(link, false);
+        slotOpenTab(link, Settings::backgroundTabForArticles());
     }
 }
 

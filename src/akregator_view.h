@@ -160,7 +160,7 @@ namespace Akregator
             void slotOpenArticleExternal(QListViewItem* item, const QPoint&, int);
             void slotOpenCurrentArticleExternal();
             void slotOpenCurrentArticleBackgroundTab();
-            void slotOpenCurrentArticleForegroundTab();
+            void slotOpenCurrentArticle();
 
             /** prints the content of the article viewer */
             void slotPrint();
@@ -192,7 +192,7 @@ namespace Akregator
 
             void slotMouseOverInfo(const KFileItem *kifi);
 
-            void slotOpenTab(const KURL& url, bool background);
+            void slotOpenTab(const KURL& url, bool background = false);
             void slotRemoveFrame();
             void slotFrameChanged(Frame *f);
 

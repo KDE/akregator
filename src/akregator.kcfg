@@ -130,6 +130,11 @@
    <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
    <default>mozilla '%u'</default>
   </entry>
+  <entry key="Background Tab For Articles" type="Bool" >
+   <label>Open new articles in background tabs</label>
+   <whatsthis>Articles will be opened in background tabs instead of foreground tabs.</whatsthis>
+   <default>false</default>
+  </entry>
   <entry key="MMB Behaviour" type="Enum" >
    <whatsthis>What the click with middle mouse button should do.</whatsthis>
    <default>OpenInExternalBrowser</default>

@@ -455,13 +455,13 @@ void ArticleViewer::openPage(const KURL&url, const KParts::URLArgs& args, const 
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
    if( !(Viewer::slotOpenURLRequest(url, args)) )
-       emit urlClicked(url);
+       emit urlClicked(url, Settings::backgroundTabForArticles());
 }
 
 void ArticleViewer::slotOpenLinkInternal()
 {
     if(!m_url.isEmpty())
-    	emit urlClicked(m_url);
+    	emit urlClicked(m_url, Settings::backgroundTabForArticles());
 }
 
 void ArticleViewer::keyPressEvent(QKeyEvent* e)

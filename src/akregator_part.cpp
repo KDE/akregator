@@ -143,7 +143,7 @@ void aKregatorPart::setupActions()
     // article viewer
     new KAction( i18n("&Scroll Up"), QString::null, "Up", m_view, SLOT(slotScrollViewerUp()), actionCollection(), "scroll_viewer_up" );
     new KAction( i18n("&Scroll Down"), QString::null, "Down", m_view, SLOT(slotScrollViewerDown()), actionCollection(), "scroll_viewer_down" );
-    new KAction( i18n("Open Article in Foreground Tab"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticleForegroundTab()), actionCollection(), "article_open_foreground_tab" );
+    new KAction( i18n("Open Article"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
     new KAction( i18n("Open Article in Background Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
     new KAction( i18n("Open Article in External Browser"), QString::null, "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
 }
