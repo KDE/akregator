@@ -31,7 +31,6 @@
 #include "treenode.h"
 #include "treenodeitem.h"
 #include "notificationmanager.h"
-#include "viewer.h" // replace by aboutpageviewer.h
 
 #include <kaction.h>
 #include <kapplication.h>
@@ -814,7 +813,8 @@ void View::slotNodeSelected(TreeNode* node)
     {
         if (m_viewMode != CombinedView)
             m_articles->show();
-        m_searchBar->show();
+        if (Settings::showQuickFilter())
+            m_searchBar->show();
         m_displayingAboutPage = false;
     }
     
@@ -1405,7 +1405,8 @@ void View::slotToggleShowQuickFilter()
     else
     {
         Settings::setShowQuickFilter(true);
-        m_searchBar->show();
+        if (!m_displayingAboutPage)
+            m_searchBar->show();
     }
     
 }
