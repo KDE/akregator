@@ -4,8 +4,8 @@ TODO-list for aKregator
 Yes, this is (mostly) a roadmap of new features
 and bug fixes, not small ones.
 
-Feel free to add items, there is a ideas section
-in the end.
+Feel free to add items, there is an ideas section
+at the end.
 
 short term (~beta3)
 -------------------
@@ -33,11 +33,12 @@ long term
 
 ideas
 -----
-- webblog editor
+- webblog editor (see krsseditor?)
 - search folders like kmail
 - client side archiving
   -> smt: doable in <30 lines of code but do we want to do it?
-- an small button that appears in konqueror's statusbar
+  -> berkus: yes, i would love to keep an archive of all read feeds in akregator
+- a small button that appears in konqueror's statusbar
   if a page appears to have a rss feed.. automatically
   adds page to akregator
   -> smt: will have to research the feasibility..
