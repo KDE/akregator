@@ -54,7 +54,9 @@ if include_kontact
 KONTACT_SUBDIR = kontact_plugin
 endif
 
+if include_konqplugin
 KONQPLUGIN_SUBDIR = konq_plugin
+endif
 
 SUBDIRS = librss $(KONTACT_SUBDIR) $(KONQPLUGIN_SUBDIR)
 

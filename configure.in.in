@@ -7,3 +7,11 @@ KDE_CHECK_HEADER(kontact/core.h,
 
 AM_CONDITIONAL(include_kontact, test "$kontact_available" = "yes")
 
+konq_available=no
+KDE_CHECK_HEADER(konq_popupmenu.h,
+[
+  konq_available=yes
+],
+[])
+
+AM_CONDITIONAL(include_konqplugin, test "$konq_available" = "yes")
