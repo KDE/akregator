@@ -145,9 +145,10 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     mainTabLayout->addLayout(searchLayout);
 
     m_searchCombo->insertItem(i18n("All Articles"));
-    m_searchCombo->insertItem(i18n("Unread"));
-    m_searchCombo->insertItem(i18n("New"));
     m_searchCombo->insertItem(i18n("New & Unread"));
+    m_searchCombo->insertItem(i18n("New"));
+    m_searchCombo->insertItem(i18n("Unread"));
+      
 
     QToolTip::add( clearButton, i18n( "Clear filter" ) );
     QToolTip::add( m_searchLine, i18n( "Enter space-separated terms to filter article list" ) );
@@ -1364,24 +1365,25 @@ void aKregatorView::updateSearch(const QString &s)
     {
         switch (m_searchCombo->currentItem())
         {
-            case 1:
+	    case 1:
             {
-                Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::Unread);
-                statusCriteria << crit;
+                Criterion crit1( Criterion::Status, Criterion::Equals, MyArticle::New);
+                Criterion crit2( Criterion::Status, Criterion::Equals, MyArticle::Unread);
+                statusCriteria << crit1;
+                statusCriteria << crit2;
                 break;
-            }
+            }	
             case 2:
             {
                 Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::New);
                 statusCriteria << crit;
                 break;
             }
-            case 3:
+            
+	    case 3:
             {
-                Criterion crit1( Criterion::Status, Criterion::Equals, MyArticle::New);
-                Criterion crit2( Criterion::Status, Criterion::Equals, MyArticle::Unread);
-                statusCriteria << crit1;
-                statusCriteria << crit2;
+                Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::Unread);
+                statusCriteria << crit;
                 break;
             }
             default:
