@@ -5,12 +5,10 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
-#include "akregatorconfig.h"
-#include "archive.h"
-#include "feed.h"
-#include "feedgroup.h"
-#include "fetchtransaction.h"
-#include "progressmanager.h" //libkdepim
+#include <qtimer.h>
+#include <qdatetime.h>
+#include <qlistview.h>
+#include <qdom.h>
 
 #include <kurl.h>
 #include <kcharsets.h>
@@ -20,10 +18,14 @@
 #include <kapplication.h>
 #include <klocale.h>
 
-#include <qtimer.h>
-#include <qdatetime.h>
-#include <qlistview.h>
-#include <qdom.h>
+#include <libkdepim/progressmanager.h>
+
+#include "akregatorconfig.h"
+#include "archive.h"
+#include "feed.h"
+#include "feedgroup.h"
+#include "fetchtransaction.h"
+
 
 using namespace Akregator;
 using namespace RSS;

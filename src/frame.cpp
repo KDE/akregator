@@ -5,14 +5,14 @@
  *     Licensed under GPL.                                                 *
  ***************************************************************************/
 
-#include "frame.h"
-#include "progressmanager.h"
-
 #include <kactioncollection.h>
 #include <kdebug.h>
 #include <kparts/browserextension.h>
 #include <klocale.h>
 
+#include <libkdepim/progressmanager.h>
+
+#include "frame.h"
 
 using namespace Akregator;
 
