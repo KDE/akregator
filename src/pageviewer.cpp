@@ -133,11 +133,11 @@ void PageViewer::slotBackAboutToShow()
     {
         if ( it == m_history.begin() )
         {
-            popup->insertItem( (*it).url.url(), (*it).id );
+            popup->insertItem( (*it).title, (*it).id );
             return;
         }
         
-        popup->insertItem( (*it).url.url(), (*it).id );
+        popup->insertItem( (*it).title, (*it).id );
         ++i;
         --it;
     }
@@ -159,11 +159,11 @@ void PageViewer::slotForwardAboutToShow()
     {
         if ( it == m_history.fromLast() )
         {
-            popup->insertItem( (*it).url.url(), (*it).id );
+            popup->insertItem( (*it).title, (*it).id );
             return;
         }
         
-        popup->insertItem( (*it).url.url(), (*it).id );
+        popup->insertItem( (*it).title, (*it).id );
         ++i;
         ++it;
     }
@@ -229,8 +229,8 @@ void PageViewer::addHistoryEntry()
     {
         m_history.erase( ++it, m_history.end() );
     }
-    PageViewerHistoryEntry newEntry( url() );
-        
+    PageViewerHistoryEntry newEntry( url(), url().url() );
+    
     // Only save the new entry if it is different from the last
     if ( newEntry.url != (*m_current).url )
     {
@@ -260,6 +260,7 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
 
 void PageViewer::slotSetCaption(const QString& cap) {
     m_caption = cap;
+    (*m_current).title = cap;
 }
 
 

@@ -12,6 +12,7 @@
 using std::abs;
 
 #include <qdatetime.h>
+#include <qstring.h>
 
 #include "viewer.h"
 
@@ -27,10 +28,11 @@ namespace Akregator
     struct PageViewerHistoryEntry
     {
         KURL url;
+        QString title;
         int id;
     
         PageViewerHistoryEntry() {}
-        PageViewerHistoryEntry( const KURL& u ): url( u )
+        PageViewerHistoryEntry(const KURL& u, const QString& t=QString::null): url(u), title(t)
         {
             id = abs( QTime::currentTime().msecsTo( QTime() ) );    // nasty, but should provide a reasonably unique number
         }
