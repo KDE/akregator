@@ -49,9 +49,16 @@ void FeedsTreeItem::setUnread(int u)
         return;
     
     m_unread=u;
+    updateParentsRecursive();
+}
+
+void FeedsTreeItem::updateParentsRecursive()
+{
     repaint();
     if (parent())
-        parent()->repaint();
+    {
+        static_cast<FeedsTreeItem*>(parent())->updateParentsRecursive();
+    }
 }
 
 // TODO: reverse for reverse layout

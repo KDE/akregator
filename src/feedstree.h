@@ -30,6 +30,7 @@ namespace Akregator
         
         private:
             int countUnreadRecursive();
+            void updateParentsRecursive();
             int m_unread;
     };
               
