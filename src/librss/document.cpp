@@ -146,8 +146,14 @@ Document::Document(const QDomDocument &doc) : d(new Private)
     if (d->version == v0_90 || d->version == v1_0 || d->format == AtomFeed)
         parentNode = rootNode;
     else
-        parentNode = channelNode;
-
+    {
+	// following is a HACK for broken 0.91 feeds like xanga.com's
+	if (!rootNode.namedItem(QString::fromLatin1("item")).isNull())
+	    parentNode = rootNode;
+	else
+            parentNode = channelNode;
+    }
+    
     // image and textinput aren't supported by Atom.. handle in case feed provides
     QDomNode n = parentNode.namedItem(QString::fromLatin1("image"));
     if (!n.isNull())

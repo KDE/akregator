@@ -245,8 +245,6 @@ void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
         else
             elt = new KListViewItem( m_tree, m_tree->lastItem(), e.attribute("text") );
 
-	kdDebug() << "*********************text="<<e.attribute("text")<<endl;
-	
         if (e.hasAttribute("xmlUrl"))
         {
             addFeed_Internal( elt,
