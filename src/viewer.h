@@ -37,12 +37,22 @@ namespace Akregator
            /**
             * Opens link in internal viewer.
             */
-           void slotOpenLinkInternal();
+           virtual void slotOpenLinkInternal();
 
            /**
             * Opens link in external viewer, eg. Konqueror
             */
            void slotOpenLinkExternal();
+
+           /**
+            * This changes cursor to wait cursor
+            */
+           void slotStarted(KIO::Job *);
+
+           /**
+            * This reverts cursor back to normal one
+            */
+           void slotCompleted();
     };
 }
 

@@ -28,6 +28,12 @@ Viewer::Viewer(QWidget *parent, const char *name)
     setAutoloadImages(true);
     setStatusMessagesEnabled(true);
 
+    // change the cursor when loading stuff...
+    connect( this, SIGNAL(started(KIO::Job *)),
+             this, SLOT(slotStarted(KIO::Job *)));
+    connect( this, SIGNAL(completed()),
+             this, SLOT(slotCompleted()));
+
     connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
 
     connect( browserExtension(), SIGNAL(popupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)) );
@@ -42,12 +48,12 @@ void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs&)
 
 void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& url, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
-   if(url.isEmpty()) return;
+   if(this->url() == url) return;
    m_url = url;
    KPopupMenu popup;
-   popup.insertItem(i18n("Open Link"), this, SLOT(slotOpenLinkInternal()));
-   popup.insertItem(i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
-   popup.insertItem(i18n("Copy Link Location"), this, SLOT(slotCopyToClipboard()));
+   popup.insertItem(i18n("Open link"), this, SLOT(slotOpenLinkInternal()));
+   popup.insertItem(i18n("Open link in external browser"), this, SLOT(slotOpenLinkExternal()));
+   popup.insertItem(i18n("Copy link location"), this, SLOT(slotCopyToClipboard()));
    popup.exec(p);
 }
 
@@ -61,13 +67,23 @@ void Viewer::slotCopyToClipboard()
 void Viewer::slotOpenLinkInternal()
 {
    if(m_url.isEmpty()) return;
-   emit urlClicked(m_url);
+   openURL(m_url);
 }
 
 void Viewer::slotOpenLinkExternal()
 {
    if(m_url.isEmpty()) return;
    KRun::runURL(m_url, "text/html", false, false);
+}
+
+void Viewer::slotStarted(KIO::Job *)
+{
+   widget()->setCursor( waitCursor );
+}
+
+void Viewer::slotCompleted()
+{
+   widget()->unsetCursor();
 }
 
 #include "viewer.moc"
