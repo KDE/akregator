@@ -146,7 +146,10 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 void aKregatorView::slotOpenTab(const KURL& url)
 {
     PageViewer *page = new PageViewer(this, "page");
+    connect( page, SIGNAL(setWindowCaption (const QString &)),
+            this, SLOT(slotTabCaption (const QString &)) );
     page->openURL(url);
+    
     m_tabs->addTab(page->widget(), "Untitled");
     m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1)
@@ -423,6 +426,15 @@ void aKregatorView::slotTabChanged(QWidget *w)
     else
         p=(static_cast<KHTMLView *>(w))->part();
     m_part->changePart(p);
+}
+
+void aKregatorView::slotTabCaption(const QString &capt)
+{
+    if (!capt.isEmpty())
+    {
+        PageViewer *pv=(PageViewer *)sender();
+        m_tabs->setTabLabel(pv->widget(), capt);
+    }
 }
 
 void aKregatorView::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)

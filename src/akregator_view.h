@@ -128,6 +128,7 @@ namespace Akregator
             void slotOpenTab(const KURL& url);
             void slotRemoveTab();
             void slotTabChanged(QWidget *w);
+            void slotTabCaption(const QString &capt);
             
         private:
             /**
