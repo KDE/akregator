@@ -202,10 +202,10 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     if ( isTrayIconEnabled() )
     {
         m_trayIcon->show();
-        NotificationManager::self()->setWidget(m_trayIcon);
+        NotificationManager::self()->setWidget(m_trayIcon, instance());
     }
     else
-        NotificationManager::self()->setWidget(getMainWindow());
+        NotificationManager::self()->setWidget(getMainWindow(), instance());
 
     connect( m_trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
@@ -240,7 +240,7 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_trayIcon : getMainWindow());
+    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_trayIcon : getMainWindow(), instance());
 
     RSS::FileRetriever::setUseCache(Settings::useHTMLCache());
     

@@ -44,6 +44,7 @@ NotificationManager::NotificationManager() : QObject()
     m_addedInLastInterval = false;
     m_maxArticles = 20;
     m_widget = NULL;
+    m_instance = NULL;
 }
 
 NotificationManager::~NotificationManager()
@@ -51,9 +52,10 @@ NotificationManager::~NotificationManager()
     m_self = 0;
 }
 
-void NotificationManager::setWidget(QWidget* widget)
+void NotificationManager::setWidget(QWidget* widget, KInstance* inst)
 {
     m_widget = widget;
+    m_instance = inst != NULL ? inst : KGlobal::instance();
 }
 
 void NotificationManager::slotNotifyArticle(const MyArticle& article)
@@ -73,6 +75,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
 {
     if (feeds.count() == 1)
     {
+        KNotifyClient::Instance inst(m_instance);
         KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feed added:\n %1").arg(feeds[0]));
     }
     else if (feeds.count() > 1)
@@ -80,6 +83,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
         QString message;
         for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
             message += *it + "\n";
+        KNotifyClient::Instance inst(m_instance);
         KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feeds added:\n %1").arg(message));
     }
 }
@@ -100,6 +104,7 @@ void NotificationManager::doNotify()
         message += (*it).title() + "<br>";
     }
     message += "</body></html>";
+    KNotifyClient::Instance inst(m_instance);
     KNotifyClient::event(m_widget->winId(), "new_articles", message);
 
     m_articles.clear();
