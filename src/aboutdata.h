@@ -19,10 +19,6 @@ class AboutData : public KAboutData
 public:
     AboutData();
     ~AboutData();
-    /**
-    @return version string
-    */
-    static QString version();
 };
 
 }

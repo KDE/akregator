@@ -11,8 +11,6 @@
 
 namespace Akregator {
 
-const char version[] = "1.0-beta8";
-
 AboutData::AboutData()
     : KAboutData("akregator", I18N_NOOP("aKregator"), "1.0-beta8", I18N_NOOP("A KDE Feed Aggregator"),
                  License_GPL, I18N_NOOP("(C) 2004 aKregator developers"), 0,
@@ -32,12 +30,6 @@ AboutData::AboutData()
 
 AboutData::~AboutData()
 {
-}
-
-QString AboutData::version()
-{
-    /*QString test;
-    return test; //QString::fromLatin1(version);*/
 }
 
 }
