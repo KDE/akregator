@@ -55,8 +55,10 @@ namespace Akregator
                                        int cx, int cy, int cw, int ch );
             virtual void contentsDragMoveEvent(QDragMoveEvent* event);
             virtual bool acceptDrag(QDropEvent *event) const;
+            virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
 
         public slots:
+           
             /** handle dropped urls */
             void slotDropped(QDropEvent *e, QListViewItem *after);
             /** Shows only first-level feeds */

@@ -205,6 +205,7 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * )
     QListViewItem *afterme;
     QListViewItem *parent;
     findDrop( e->pos(), parent, afterme );
+        
     if (!parent)
     {
         e->ignore();
@@ -230,6 +231,12 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * )
     }
 }
 
+void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
+{
+    if (parent)
+        KListView::movableDropEvent(parent, afterme);
+}
+
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
 {
     // if we are dragging over All feeds, enable
@@ -245,6 +252,7 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
     QListViewItem *afterme;
     QListViewItem *parent;
     findDrop( event->pos(), parent, afterme );
+    
     if (!parent)
     {
         event->ignore();
