@@ -241,9 +241,8 @@ void aKregator::fileNew()
         aKregator *w=new aKregator();
 	w->loadPart();
 	w->show();
-    };
+        }
 }
-
 
 void aKregator::optionsShowToolbar()
 {
@@ -311,8 +310,7 @@ void aKregator::applyNewToolbarConfig()
 
 void aKregator::fileOpen()
 {
-    KURL url =
-        KFileDialog::getOpenURL( QString::null, QString::null, this );
+    KURL url = KFileDialog::getOpenURL( QString::null, QString::null, this );
 
     if (url.isEmpty() == false)
     {
@@ -356,8 +354,8 @@ bool aKregator::queryExit()
     if( Settings::markAllFeedsReadOnExit() )
         emit markAllFeedsRead();
 
+    static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
 
-    Settings::writeConfig();
     return KParts::MainWindow::queryExit();
 }
 
@@ -405,16 +403,18 @@ bool aKregator::queryClose()
         QMimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
         KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.<p><p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
         hide();
-    }
     return false;
-
+    }
 }
 void aKregator::quitProgram()
 {
-     static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
      m_quit = true;
-     close();
-     m_quit = false;
+     kapp->quit();
+     // what's this mess in here and is it needed for some reason? this change anyways fixes #90671 -tpr
+     //m_quit = true;
+     //close();
+     //m_quit = false;
+     //static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
 }
 
 // from KonqFrameStatusBar

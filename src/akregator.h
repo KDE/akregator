@@ -65,6 +65,7 @@ public:
      
     bool loadPart();
 
+    /** Loads standard feed file */
     void loadStandardFile();
 
     /**
@@ -88,7 +89,7 @@ public:
     void addFeedToGroup(const QString& url, const QString& group);
     
     virtual void fontChange(const QFont &);
-	virtual void setCaption(const QString &);
+    virtual void setCaption(const QString &);
 
     void updateUnread(int);
     void newArticle(const QString&, const QPixmap&, const QString&);

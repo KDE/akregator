@@ -15,6 +15,9 @@ Changes:
        christof(at)freenet.de) -fo
        - added "Export Feeds" function to export the standard feed list -fo
        - Expiry support added -fo 
+      
+Bug fixes:
+#90671 - Shutdown properly hopefully fixes #89172 too -tpr
          
 Changes after 1.0b5:
 -----------------------------
