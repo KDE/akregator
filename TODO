@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000043 being the highest available (take this one for your next bug and increase here)
+          #000044 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -27,6 +27,8 @@ ADD new feature
 #000031 ADD [ ] Autosave: Remember feeds list in "current" file
                 Elaborate: when user saves file, remember as current and restore from it,
                 if file is unsaved, store it to data/current.opml.
+#000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that local images and css can be referenced from article preview   --> smt
+#000043 ADD [ ] download feed image specified for RSS (for #000036) --> smt
 #000021 ADD [ ] store fetched articles to Article Archive
 #000027 CHG [ ] when changing current feed, change article in m_html also
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
@@ -43,7 +45,6 @@ ADD new feature
 #000011 ADD [ ] draw appropriate app icons
 #000020 ADD [ ] announce on the <kde-announce@kde.org> mailing list
 #000022 ADD [ ] configure.in.in magic to detect librss presence
-#000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that local images and css can be referenced from article preview
 
 == LONG-TERM ==
 
