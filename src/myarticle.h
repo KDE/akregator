@@ -31,6 +31,11 @@ namespace Akregator
             bool operator!=(const MyArticle &other) const { return !operator==(other); }
             virtual ~MyArticle();
 
+            /**
+             * @return true if this article is the same as other, based on guid or link.
+             */
+            bool isTheSameAs(const MyArticle &other);
+
             QString title() const;
             const KURL &link() const;
             QString description() const;

@@ -8,27 +8,45 @@
 #define AKREGATORPROPDIALOG_H
 
 #include "propertieswidgetbase.h"
+#include "feed.h"
+
 #include <kdialogbase.h>
 
 namespace Akregator
 {
-    class FeedPropertiesWidget : public FeedPropertiesWidgetBase
-    {
-        Q_OBJECT
-        public:
-            FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
-            ~FeedPropertiesWidget();
-    };
+   class FeedPropertiesWidget : public FeedPropertiesWidgetBase
+   {
+      Q_OBJECT
+      public:
+         FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
+         ~FeedPropertiesWidget();
 
-    class FeedPropertiesDialog : public KDialogBase
-    {
-        Q_OBJECT
-        public:
-            FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
-            ~FeedPropertiesDialog();
-            void setUrlForLjUserName(const QString &userName);
-            FeedPropertiesWidget *widget;
-    };
-};
+      private slots:
+         void setUrlForLjUserName(const QString&);
+   };
+
+   class FeedPropertiesDialog : public KDialogBase
+   {
+      Q_OBJECT
+      public:
+         FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
+         ~FeedPropertiesDialog();
+
+         const QString feedName() const;
+         const QString url() const;
+         Feed::LJAuthMode authMode() const;
+         const QString ljLogin() const;
+         const QString ljPassword() const;
+
+         void setFeedName(const QString& title);
+         void setUrl(const QString& url);
+         void setAuthMode(Feed::LJAuthMode authMode);
+         void setLjLogin(const QString& ljLogin);
+         void setLjPassword(const QString& ljPassword);
+
+      private:
+         FeedPropertiesWidget *widget;
+   };
+}
 
 #endif

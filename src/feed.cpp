@@ -119,15 +119,12 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
     description = m_document.description();
     htmlUrl = m_document.link().url();
 
-    articles.clear();
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = m_document.articles().end();
     for (it = m_document.articles().begin(); it != en; ++it)
     {
         articles.append( MyArticle( (*it) ) );
     }
-
-    // TODO: more document attributes to fetch?
 
     emit fetched(this);
 }
@@ -159,14 +156,36 @@ void Feed::imageChanged(const QPixmap &p)
 
 // = ArticleSequence ===================================================== //
 
-ArticleSequence::ArticleSequence() : MyArticle::List()
+struct ArticleSequence::Private
+{
+   int dummy;
+//   bool doSort :1;
+};
+
+ArticleSequence::ArticleSequence()
+   : MyArticle::List()
+   , d(new Private)
 {
 }
 
-ArticleSequence::ArticleSequence(const ArticleSequence &other) : MyArticle::List(other)
+ArticleSequence::ArticleSequence(const ArticleSequence &other)
+   : MyArticle::List(other)
+   , d(new Private)
 {
 }
 
+ArticleSequence::~ArticleSequence()
+{
+   delete d;
+}
+
+/*
+    The reason to include insert/append/prepend code here is to:
+    a) check if there's another record with the exactly same pubDate() present,
+    b) if so, adjust this inserted item's clock off by one second to keep sorting sane,
+    c) re-sort added items (if enabled).
+    d) use MyArticle::fetchDate for sorting! ( defined by MyArticle::operator <() )
+ */
 ArticleSequence::iterator ArticleSequence::insert( iterator it, const MyArticle &x )
 {
     return MyArticle::List::insert( it, x );
@@ -187,14 +206,17 @@ ArticleSequence::iterator ArticleSequence::prepend( const MyArticle &x )
     return MyArticle::List::prepend( x );
 }
 
-
+/*
 void ArticleSequence::doNotSort()
 {
+    d->doSort = false;
 }
 
 void ArticleSequence::sort()
 {
+    d->doSort = true;
+//    qHeapSort( *this );
 }
-
+*/
 
 #include "feed.moc"

@@ -29,14 +29,19 @@ namespace Akregator
         public:
             ArticleSequence();
             ArticleSequence(const ArticleSequence &other);
+            virtual ~ArticleSequence();
 
             iterator insert( iterator it, const MyArticle &x );
             void insert( iterator it, size_type n, const MyArticle &x );
             iterator append( const MyArticle &x );
             iterator prepend( const MyArticle &x );
-
+/*
             void doNotSort(); ///< Disables internal item sorting (useful for massive insert operations).
             void sort();      ///< Enables internal sorting and sorts items.
+*/
+        private:
+            struct Private;
+            Private *d;
     };
 
     class Feed : public FeedGroup

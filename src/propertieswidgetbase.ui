@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>FeedPropertiesWidgetBase</class>
 <widget class="QWidget">
     <property name="name">
@@ -76,7 +76,7 @@
         </widget>
         <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>layout25</cstring>
+                <cstring>layout17</cstring>
             </property>
             <hbox>
                 <property name="name">
@@ -249,23 +249,6 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer2_2</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Fixed</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>40</width>
-                            <height>20</height>
-                        </size>
-                    </property>
-                </spacer>
                 <widget class="QCheckBox">
                     <property name="name">
                         <cstring>upChkbox</cstring>
@@ -320,19 +303,23 @@
         </spacer>
     </vbox>
 </widget>
-<customwidgets>
-</customwidgets>
 <connections>
     <connection>
-        <sender>ljUserChkbox</sender>
+        <sender>localAuthRadio</sender>
         <signal>toggled(bool)</signal>
-        <receiver>ljUserEdit</receiver>
+        <receiver>loginEdit</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
     <connection>
         <sender>localAuthRadio</sender>
         <signal>toggled(bool)</signal>
-        <receiver>loginEdit</receiver>
+        <receiver>passwordEdit</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>ljUserChkbox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>ljUserEdit</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
     <connection>
@@ -342,20 +329,17 @@
         <slot>setShown(bool)</slot>
     </connection>
     <connection>
-        <sender>localAuthRadio</sender>
+        <sender>ljUserChkbox</sender>
         <signal>toggled(bool)</signal>
-        <receiver>passwordEdit</receiver>
-        <slot>setEnabled(bool)</slot>
+        <receiver>urlEdit</receiver>
+        <slot>setDisabled(bool)</slot>
     </connection>
 </connections>
 <includes>
+    <include location="local" impldecl="in implementation">propertieswidgetbase.ui.h</include>
 </includes>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+</functions>
 <layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>klineedit.h</includehint>
-    <includehint>klineedit.h</includehint>
-    <includehint>klineedit.h</includehint>
-    <includehint>klineedit.h</includehint>
-    <includehint>knuminput.h</includehint>
-</includehints>
 </UI>

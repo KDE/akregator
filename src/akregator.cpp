@@ -158,7 +158,7 @@ void aKregator::optionsShowStatusbar()
 
 void aKregator::optionsConfigureKeys()
 {
-    KKeyDialog::configureKeys(actionCollection(), "akregator_shell.rc");
+    KKeyDialog::configure(actionCollection()/*, "akregator_shell.rc"*/);
 }
 
 void aKregator::optionsConfigureToolbars()
@@ -232,7 +232,8 @@ void aKregator::quitProgram()
 
 void aKregator::closeEvent(QCloseEvent* e)
 {
-    if (!m_quit) {
+    if (!m_quit)
+    {
         KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
         hide();
         e->ignore();

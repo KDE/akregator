@@ -16,29 +16,34 @@ using namespace RSS;
 
 namespace Akregator
 {
-    class AddFeedWidget : public AddFeedWidgetBase
-    {
-        Q_OBJECT
-        public:
-            AddFeedWidget(QWidget *parent = 0, const char *name = 0);
-            ~AddFeedWidget();
-    };
+   class AddFeedWidget : public AddFeedWidgetBase
+   {
+      Q_OBJECT
+      public:
+         AddFeedWidget(QWidget *parent = 0, const char *name = 0);
+         ~AddFeedWidget();
 
-    class AddFeedDialog : public KDialogBase
-    {
-        Q_OBJECT
-        public:
-            AddFeedDialog(QWidget *parent = 0, const char *name = 0);
-            ~AddFeedDialog();
-
-            AddFeedWidget *widget;
-            QString feedTitle;
-            QString feedURL; 
-            
-        public slots:
-            void slotOk( );
-            void fetchCompleted(Loader*, Document, Status);
+      private slots:
+         void setUrlForLjUserName(const QString&);
    };
-};
+
+   class AddFeedDialog : public KDialogBase
+   {
+      Q_OBJECT
+      public:
+         AddFeedDialog(QWidget *parent = 0, const char *name = 0);
+         ~AddFeedDialog();
+
+         QString feedTitle;
+         QString feedURL;
+
+      public slots:
+         void slotOk( );
+         void fetchCompleted(Loader*, Document, Status);
+
+      private:
+         AddFeedWidget *widget;
+   };
+}
 
 #endif

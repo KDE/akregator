@@ -8,6 +8,7 @@
 #include "myarticle.h"
 #include "librss/tools_p.h"
 #include <qdatetime.h>
+#include <kurl.h>
 
 using namespace Akregator;
 using namespace RSS;
@@ -24,10 +25,8 @@ MyArticle::MyArticle() : d(new Private)
 
 MyArticle::MyArticle(Article article) : d(new Private)
 {
-    static int sequence = 0;
     d->article = article;
-    d->fetchDate = QDateTime::currentDateTime().addSecs( -sequence++ ); // add negative adjustment, since feeds are in reverse order in rss
-    // FIXME sequence should be unique to a Feed, not static in article
+    d->fetchDate = QDateTime::currentDateTime();
 }
 
 MyArticle::MyArticle(const MyArticle &other) : d(new Private)
@@ -54,8 +53,23 @@ MyArticle &MyArticle::operator=(const MyArticle &other)
 
 bool MyArticle::operator==(const MyArticle &other) const
 {
-    return d->article == other.d->article
-        && d->fetchDate == other.d->fetchDate;
+   // play tricky here
+   // we return true if guids match, even if texts differ => helps ArticleSequence
+   // we return true if links match, ditto
+   // otherwise we check for complete equivalence
+
+   if (!d->article.guid().isEmpty() && (d->article.guid() == other.d->article.guid()))
+      return true;
+
+   if (d->article.link().isValid() && (d->article.link() == other.d->article.link()))
+      return true;
+
+   if (pubDate().isValid() && (pubDate() == other.pubDate()))
+      return true;
+
+   // FIXME it shouldn't be _that_ strict checking, should it?
+   return d->article   == other.d->article
+       && d->fetchDate == other.d->fetchDate;
 }
 
 QString MyArticle::title() const

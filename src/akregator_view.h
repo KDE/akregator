@@ -40,7 +40,7 @@ namespace Akregator
     {
         Q_OBJECT
         public:
-    
+
          /**
              * Default constructor.
              */
@@ -80,7 +80,7 @@ namespace Akregator
             void slotNormalView();
             void slotWidescreenView();
             void slotCombinedView();
-        
+
             /**
              * Shows requested popup menu
              */
@@ -101,7 +101,7 @@ namespace Akregator
              */
             void slotArticleSelected(QListViewItem *);
             void slotArticleDoubleClicked(QListViewItem *, const QPoint &, int);
-        
+
             /**
              * This slot is called when user renames a feed in feeds tree.
              */
@@ -111,19 +111,18 @@ namespace Akregator
             void slotFeedAddGroup();
             void slotFeedRemove();
             void slotFeedModify();
-            void slotFeedCopy();
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();
 
             void slotMouseOverInfo(const KFileItem *kifi);
-        
+
         private:
             /**
              * Reset to default values, removing all existing data.
              * @internal
              */
             void reset();
-        
+
             /**
              * Add feed to feeds tree, given the existing list view item and alot of
              * feed parameters. FIXME: parameters better be bundled to FeedData?

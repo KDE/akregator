@@ -56,16 +56,16 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     KConfig *c = new KConfig( "akregatorrc");
     c->setGroup("View");
     m_viewMode=(ViewMode)c->readNumEntry("ViewMode", (int)NormalView);
-		
+
     QVBoxLayout *lt = new QVBoxLayout( this );
-    
+
     m_panner1Sep << 1 << 1;
     m_panner2Sep << 1 << 1;
 
     m_panner1 = new QSplitter(QSplitter::Horizontal, this, "panner1");
     m_panner1->setOpaqueResize( true );
     lt->addWidget(m_panner1);
-    
+
     m_tree = new FeedsTree( m_panner1, "FeedsTree" );
 
     connect(m_tree, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
@@ -74,7 +74,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
               this, SLOT(slotItemChanged(QListViewItem*)));
     connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
               this, SLOT(slotItemRenamed(QListViewItem *)));
-			  
+
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
     //hmm?? FIXME make it a object field
@@ -99,11 +99,11 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     if (m_viewMode==CombinedView)
     {
-        m_articles->hide(); 
+        m_articles->hide();
     }
-    
+
     connect (m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
-		    this, SLOT(slotMouseOverInfo(const KFileItem *)));
+            this, SLOT(slotMouseOverInfo(const KFileItem *)));
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
@@ -118,7 +118,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_articleViewer->openDefault();
 
     delete c;
-	
+
 }
 
 // clears everything out, even removes DEFAULT INIT
@@ -178,7 +178,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, KListViewItem *parent)
         {
             QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
             QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
-            
+
             addFeed_Internal( elt,
                               title,
                               xmlurl,
@@ -253,7 +253,7 @@ Feed *aKregatorView::addFeed_Internal(QListViewItem *elt,
 void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document)
 {
   if (!item)
-		item=m_tree->firstChild();
+        item=m_tree->firstChild();
     for (QListViewItem *it = item; it; it = it->nextSibling())
     {
         FeedGroup *g = m_feeds.find(it);
@@ -286,10 +286,10 @@ void aKregatorView::slotNormalView()
 {
     if (m_viewMode==NormalView)
        return;
-    
+
     else if (m_viewMode==CombinedView)
     {
-        m_articles->show(); 
+        m_articles->show();
         // tell articleview to redisplay+reformat
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
         if (item)
@@ -299,10 +299,10 @@ void aKregatorView::slotNormalView()
                 m_articleViewer->show( feed, item->article() );
         }
     }
-    
+
     m_panner2->setOrientation(QSplitter::Vertical);
     m_viewMode=NormalView;
-    
+
     KConfig *c = new KConfig( "akregatorrc");
     c->setGroup("View");
     c->writeEntry("ViewMode", (int)m_viewMode);
@@ -348,7 +348,7 @@ void aKregatorView::slotCombinedView()
     Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
     if (feed)
         m_articleViewer->show(feed);
-    
+
     KConfig *c = new KConfig( "akregatorrc");
     c->setGroup("View");
     c->writeEntry("ViewMode", (int)m_viewMode);
@@ -420,7 +420,7 @@ void aKregatorView::slotFeedAdd()
         return;
     }
 
-    
+
     KListViewItem *elt;
     AddFeedDialog *afd = new AddFeedDialog( this, "add_feed" );
     if (afd->exec() != QDialog::Accepted) return;
@@ -429,9 +429,9 @@ void aKregatorView::slotFeedAdd()
 
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
 
-    dlg->widget->feedNameEdit->setText(text);
-    dlg->widget->urlEdit->setText(afd->feedURL);
-    dlg->widget->urlEdit->hide();
+    dlg->setFeedName(text);
+    dlg->setUrl(afd->feedURL);
+//    dlg->widget->urlEdit->hide();
 
     if (dlg->exec() != QDialog::Accepted) return;
 
@@ -447,17 +447,14 @@ void aKregatorView::slotFeedAdd()
 
     addFeed_Internal( elt,
                       text,
-                      dlg->widget->urlEdit->text(),
+                      dlg->url(),
                       "",
                       "",
-                      dlg->widget->ljUserChkbox->isChecked(),
-                      dlg->widget->ljUserEdit->text(),
-                      dlg->widget->ljAuthMode->selectedId() == 0 ? Feed::AuthNone
-                    : dlg->widget->ljAuthMode->selectedId() == 1 ? Feed::AuthGlobal
-                    : dlg->widget->ljAuthMode->selectedId() == 2 ? Feed::AuthLocal
-                    : Feed::AuthNone,
-                      dlg->widget->loginEdit->text(),
-                      dlg->widget->passwordEdit->text(),
+                      false, //dlg->widget->ljUserChkbox->isChecked(),
+                      QString::null, //dlg->widget->ljUserEdit->text(),
+                      dlg->authMode(),
+                      dlg->ljLogin(),
+                      dlg->ljPassword(),
                       false
                     );
 
@@ -537,37 +534,23 @@ void aKregatorView::slotFeedModify()
 
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
 
-    dlg->widget->feedNameEdit->setText( feed->title() );
-    dlg->widget->urlEdit->setText( feed->xmlUrl );
-    dlg->widget->ljUserChkbox->setChecked( feed->isLiveJournal );
-    dlg->widget->ljUserEdit->setText( feed->ljUserName );
-    dlg->widget->ljAuthMode->setButton( feed->ljAuthMode == Feed::AuthNone   ? 0
-                              : feed->ljAuthMode == Feed::AuthGlobal ? 1
-                              : feed->ljAuthMode == Feed::AuthLocal  ? 2
-                              : 0 );
-    dlg->widget->loginEdit->setText( feed->ljLogin );
-    dlg->widget->passwordEdit->setText( feed->ljPassword );
+    dlg->setFeedName( feed->title() );
+    dlg->setUrl( feed->xmlUrl );
+    dlg->setAuthMode( feed->ljAuthMode );
+    dlg->setLjLogin( feed->ljLogin );
+    dlg->setLjPassword( feed->ljPassword );
 
     if (dlg->exec() != QDialog::Accepted) return;
 
-    feed->setTitle( dlg->widget->feedNameEdit->text() );
-    feed->xmlUrl         = dlg->widget->urlEdit->text();
-    feed->isLiveJournal  = dlg->widget->ljUserChkbox->isChecked();
-    feed->ljUserName     = dlg->widget->ljUserEdit->text();
-    feed->ljAuthMode     = dlg->widget->ljAuthMode->selectedId() == 0 ? Feed::AuthNone
-                         : dlg->widget->ljAuthMode->selectedId() == 1 ? Feed::AuthGlobal
-                         : dlg->widget->ljAuthMode->selectedId() == 2 ? Feed::AuthLocal
-                         : Feed::AuthNone;
-    feed->ljLogin        = dlg->widget->loginEdit->text();
-    feed->ljPassword     = dlg->widget->passwordEdit->text();
+    feed->setTitle( dlg->feedName() );
+    feed->xmlUrl         = dlg->url();
+    feed->ljAuthMode     = dlg->authMode();
+    feed->ljLogin        = dlg->ljLogin();
+    feed->ljPassword     = dlg->ljPassword();
 
     m_part->setModified(true);
 
     kdDebug() << k_funcinfo << "END" << endl;
-}
-
-void aKregatorView::slotFeedCopy()
-{
 }
 
 void aKregatorView::slotFetchCurrentFeed()
@@ -635,7 +618,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 void aKregatorView::slotArticleSelected(QListViewItem *i)
 {
     if (m_viewMode==CombinedView) return; // shouldn't ever happen
-    
+
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
     if (!item) return;
     Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
@@ -650,7 +633,7 @@ void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, i
     if (!item->article().link().isValid()) return;
     // TODO : make this configurable....
     KRun::runURL(item->article().link(), "text/html", false, false);
-	    
+
 }
 
 
@@ -679,7 +662,7 @@ void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
     }
     else
     {
-	m_part->setStatusBar(QString::null);
+    m_part->setStatusBar(QString::null);
     }
 }
 
