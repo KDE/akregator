@@ -40,10 +40,13 @@ Viewer::Viewer(QWidget *parent, const char *name)
 
 }
 
-void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs&)
+void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "Viewer: Open url request: " << url << endl;
-   openURL(url);
+   if(args.frameName == "_blank")
+      KRun::runURL(url, "text/html", false, false);
+   else
+      openURL(url);
 }
 
 void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& url, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)

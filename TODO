@@ -14,7 +14,7 @@ short term (~beta2)
           to work properly. We have to find a way
 	  to let the shell tell the part to fetch feeds
 	  though. Tricky. The other way is easy; however
-	  a interval tracker on the shell side should 
+	  a interval tracker on the shell side should
 	  not know about Feed objects, just urls. The
 	  part should alert the interval tracker, either
 	  through slots or through the BrowserInterface,
@@ -29,14 +29,15 @@ short term (~beta2)
 
 medium term (~beta3?)
 -----------
-- rewrite combined 
+- rewrite combined
 - config dialog
   -> smt: if someone wants to do it in b2, go ahead :)
+  -> changing middle mouse button action to config dialog
 - kontact part
- 
+
 long term
 ---------
-- move out of kdenonbeta 
+- move out of kdenonbeta
 - ship as part of kde 4.0?
 
 ideas
@@ -49,4 +50,4 @@ ideas
   if a page appears to have a rss feed.. automatically
   adds page to akregator
   -> smt: will have to research the feasibility..
-  
+

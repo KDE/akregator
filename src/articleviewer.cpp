@@ -15,6 +15,7 @@
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
 #include <khtmlview.h>
+#include <krun.h>
 
 #include <qdatetime.h>
 #include <qvaluelist.h>
@@ -122,7 +123,7 @@ void ArticleViewer::generateCSS()
     "  padding: 3px;\n"
     "  padding-right: 6px;}\n\n"
     "#titleanchor {\n"
-    "  color: %2 !important;}\n\n" 
+    "  color: %2 !important;}\n\n"
     "</style>\n")
     .arg(cg.background().light(108).name())
     .arg(cg.text().name());
@@ -205,7 +206,7 @@ void ArticleViewer::show(Feed *f, bool writeHeaders)
         begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
         write(m_htmlHead);
     }
-    
+
     ArticleSequence::iterator it;
     for ( it = f->articles.begin(); it != f->articles.end(); ++it )
     {
@@ -238,10 +239,13 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     end();
 }
 
-void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs&)
+void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-   emit urlClicked(url);
+   if(args.frameName == "_blank")
+      KRun::runURL(url, "text/html", false, false);
+   else
+      emit urlClicked(url);
 }
 
 

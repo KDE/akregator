@@ -22,6 +22,7 @@ New Features:
 #82084 - Middle click in article list opens article link in tab
 #82095 - Show homepage in feed list context menu
 #82189 - Option to fetch all at startup
+       - Middleclick on viewer opens now an external browser
 
 Bug Fixes:
 
