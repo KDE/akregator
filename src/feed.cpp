@@ -357,17 +357,8 @@ void Feed::slotAbortFetch()
 
 void Feed::abortFetch()
 {
-    if(m_progressItem) {
-        m_progressItem->setStatus("Fetch aborted");
-        m_progressItem->setComplete();
-        m_progressItem = 0;
-    }
     if (m_loader)
-    {
         m_loader->abort();
-        m_loader = 0;
-        emit fetchAborted(this);
-    }
 }
 
 void Feed::tryFetch()
@@ -384,45 +375,66 @@ void Feed::tryFetch()
 
 void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
-    // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
-    // You don't need to do that anyway since Loader instances delete themselves.
-
+    // Note that loader instances delete themselves
+    m_loader = 0;
+    
+    // fetching wasn't successful:
     if (status != Success)
     {
-        if(m_progressItem) {
-            if(status == RetrieveError) m_progressItem->setStatus(i18n("Feed File is Not Available"));
-            else if(status == ParseError) m_progressItem->setStatus(i18n("Parsing of Feed File Failed"));
+        if(m_progressItem)
+        {
+            switch (status)
+            {
+                case RetrieveError:
+                    m_progressItem->setStatus(i18n("Feed file is not available"));
+                    break;
+                case ParseError:
+                    m_progressItem->setStatus(i18n("Parsing of feed file failed"));
+                    break;
+                case Aborted:
+                    m_progressItem->setStatus(i18n("Fetch aborted"));
+                    break;
+                default:
+                    break;    
+            }
+            
             m_progressItem->setComplete();
             m_progressItem = 0;
         }
+
+        m_transaction = 0;
         
-        if (m_followDiscovery && (status == ParseError) && (m_fetchTries < 3) && (l->discoveredFeedURL().isValid()))
+        if (status == Aborted)
+        {
+            m_fetchError = false;
+            emit fetchAborted(this);
+        }
+        else if (m_followDiscovery && (status == ParseError) && (m_fetchTries < 3) && (l->discoveredFeedURL().isValid()))
         {
             m_fetchTries++;
             m_xmlUrl = l->discoveredFeedURL().url();
             emit fetchDiscovery(this);
             tryFetch();
-            return;
         }
         else
         {
             m_fetchError = true;
             emit fetchError(this);
-            return;
         }
+        return;
     }
-
+    
+    // if successful:
+    
     // Restore favicon.
     if (m_favicon.isNull())
         loadFavicon();
-//    else
-  //      item()->setPixmap(0, m_favicon);
 
-    m_fetchError=false;
-    m_document=doc;
+    m_fetchError = false;
+    m_document = doc;
     //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
-    if(m_progressItem)
+    if (m_progressItem)
     {
         m_progressItem->setComplete();
         m_progressItem = 0;
@@ -434,13 +446,12 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
         m_image=QPixmap(imageFileName, "PNG");
 
-        // if we aint got teh image
-        // and the feed provides one, get it....
+        // if we aint got teh image and the feed provides one, get it....
         if (m_image.isNull() && m_document.image() && m_transaction)
             m_transaction->loadImage(this, m_document.image());
     }
     
-    if ( title().isEmpty() ) 
+    if (title().isEmpty())
         setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(m_document.title())) );
 
     Archive::load(this); // make sure archive is merged 
@@ -448,12 +459,10 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     m_description = m_document.description();
     m_htmlUrl = m_document.link().url();
     
-    //kdDebug() << "ismerged reprots:::"<<isMerged()<<endl;
-
     appendArticles(m_document);
 
-    m_loader=0;
-    m_transaction=0;
+    m_transaction = 0;
+    
     emit fetched(this);
 }
 

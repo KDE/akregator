@@ -73,7 +73,8 @@ void FetchTransaction::addFeed(Feed *f)
 {
     
     connect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    connect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedError(Feed*)));
+    connect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
+    connect (f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
 
     m_fetchList.append(f);
 }
@@ -98,7 +99,7 @@ void FetchTransaction::slotFeedFetched(Feed *f)
     feedDone(f);
 }
 
-void FetchTransaction::slotFeedError(Feed *f)
+void FetchTransaction::slotFetchError(Feed *f)
 {
     if (!m_running)
         return;
@@ -108,14 +109,27 @@ void FetchTransaction::slotFeedError(Feed *f)
     feedDone(f);
 }
 
+void FetchTransaction::slotFetchAborted(Feed *f)
+{
+    if (!m_running)
+        return;
+
+    m_fetchesDone++;
+    emit fetched(f); // FIXME: better use a signal like signalAborted(Feed*)
+    feedDone(f);
+}
+
+
 void FetchTransaction::feedDone(Feed *f)
 {
     //kdDebug() << "feed done: "<<f->title()<<endl;
     disconnect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    disconnect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedError(Feed*)));
-
+    disconnect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
+    disconnect (f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
+    
     m_currentFetches.remove(f);
-
+    m_fetchList.remove(f);
+    
     if (m_fetchList.isEmpty() && m_currentFetches.isEmpty())
     {
         startFetchImages();

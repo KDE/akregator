@@ -45,7 +45,8 @@ namespace Akregator {
 
         private slots:
             void slotFeedFetched(Feed *);
-            void slotFeedError(Feed *);
+            void slotFetchError(Feed *);
+            void slotFetchAborted(Feed *);
 
             void slotFaviconFetched(const QString &, const QPixmap &);
             void slotImageFetched(const QPixmap &);

@@ -44,7 +44,9 @@ namespace RSS
 						* Nothing went wrong so far, but you still have to check
 						* what values are returned by the classes since it's not
 						* guaranteed that the retrieved RSS markup actually
-						* complies to one of the RSS DTDs.*/	   
+						* complies to one of the RSS DTDs.*/
+        Aborted,        /** the loader was aborted manually
+                         */
 		RetrieveError, /**
 						* Something went wrong while retrieving the RSS data,
 						* this could be a problem while resolving the host name

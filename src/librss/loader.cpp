@@ -14,6 +14,7 @@
 #include <kio/job.h>
 #include <kprocess.h>
 #include <kurl.h>
+#include <kdebug.h>
 
 #include <qdom.h>
 #include <qbuffer.h>
@@ -244,7 +245,7 @@ Loader::Loader() : d(new Private)
 
 Loader::~Loader()
 {
-   delete d;
+    delete d;
 }
 
 void Loader::loadFrom(const KURL &url, DataRetriever *retriever)
@@ -273,6 +274,7 @@ void Loader::abort()
 		d->retriever->abort();
 		d->retriever=NULL;
 	}
+    emit loadingComplete(this, QDomDocument(), Aborted);
     delete this;
 }
 
