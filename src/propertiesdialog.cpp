@@ -28,6 +28,24 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
 FeedPropertiesWidget::~FeedPropertiesWidget()
 {}
 
+void FeedPropertiesWidget::slotUpdateComboBoxActivated( int index )
+{
+    if ( index == 3 ) // "never"
+        updateSpinBox->setEnabled(false);
+    else
+        updateSpinBox->setEnabled(true);
+}
+
+
+void FeedPropertiesWidget::slotUpdateCheckBoxToggled( bool enabled )
+{
+    if (enabled && updateComboBox->currentItem() != 3 ) // "never"
+        updateSpinBox->setEnabled(true);
+    else
+        updateSpinBox->setEnabled(false);
+}
+
+
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
         : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Feed Properties"), KDialogBase::Ok|KDialogBase::Cancel)
 {

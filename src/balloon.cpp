@@ -27,6 +27,8 @@
 
 #include "balloon.h"
 
+using namespace Akregator;
+
 Balloon::Balloon(const QString &text)
 : QWidget(0L, "Balloon", WStyle_StaysOnTop | WStyle_Customize |
 	WStyle_NoBorder | WStyle_Tool  | WX11BypassWM)

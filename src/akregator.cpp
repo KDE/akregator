@@ -43,7 +43,7 @@
 
 using namespace Akregator;
 
-BrowserInterface::BrowserInterface( AkregatorMainWindow *shell, const char *name )
+BrowserInterface::BrowserInterface( MainWindow *shell, const char *name )
     : KParts::BrowserInterface( shell, name )
 {
     m_shell = shell;
@@ -54,7 +54,7 @@ bool BrowserInterface::haveWindowLoaded() const
     return akreapp->haveWindowLoaded();
 }
 
-AkregatorMainWindow::AkregatorMainWindow()
+MainWindow::MainWindow()
     : KParts::MainWindow( 0L, "akregator_mainwindow" )
 {
     // set the shell's ui resource file
@@ -89,7 +89,7 @@ AkregatorMainWindow::AkregatorMainWindow()
     if(action) action->setEnabled(false);
 }
 
-bool AkregatorMainWindow::loadPart()
+bool MainWindow::loadPart()
 {
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
@@ -128,7 +128,7 @@ bool AkregatorMainWindow::loadPart()
 
 }
 
-void AkregatorMainWindow::setupProgressWidgets()
+void MainWindow::setupProgressWidgets()
 {
     KPIM::ProgressDialog *progressDialog = new KPIM::ProgressDialog( statusBar(), this );
     progressDialog->raise();
@@ -138,7 +138,7 @@ void AkregatorMainWindow::setupProgressWidgets()
     statusBar()->addWidget( m_progressBar, 0, true );
 }
 
-void AkregatorMainWindow::loadStandardFile()
+void MainWindow::loadStandardFile()
 {
     //show();
     QString file = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
@@ -148,30 +148,30 @@ void AkregatorMainWindow::loadStandardFile()
     m_part->openStandardFeedList();
 }
 
-AkregatorMainWindow::~AkregatorMainWindow()
+MainWindow::~MainWindow()
 {}
 
-void AkregatorMainWindow::setCaption(const QString &a)
+void MainWindow::setCaption(const QString &a)
 {
     if (sender() && (sender() == m_part) )
         KParts::MainWindow::setCaption(a);
 }
 /*
-void AkregatorMainWindow::partChanged(KParts::ReadOnlyPart *p)
+void MainWindow::partChanged(KParts::ReadOnlyPart *p)
 {
     //m_activePart=p;
     //createGUI(p);
 }*/
 
 
-void AkregatorMainWindow::addFeedToGroup(const QString& url, const QString& group)
+void MainWindow::addFeedToGroup(const QString& url, const QString& group)
 {
     if (!m_part)
         loadPart();
     (static_cast<Akregator::Part*>(m_part))->addFeedsToGroup( url, group );
 }
 
-void AkregatorMainWindow::setupActions()
+void MainWindow::setupActions()
 {
     connectActionCollection(actionCollection());
 
@@ -184,7 +184,7 @@ void AkregatorMainWindow::setupActions()
     KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
 }
 
-void AkregatorMainWindow::saveProperties(KConfig* config)
+void MainWindow::saveProperties(KConfig* config)
 {
     if (!m_part)
         loadPart();
@@ -195,7 +195,7 @@ void AkregatorMainWindow::saveProperties(KConfig* config)
     //delete m_part;
 }
 
-void AkregatorMainWindow::readProperties(KConfig* config)
+void MainWindow::readProperties(KConfig* config)
 {
     if (!m_part)
         loadPart();
@@ -207,7 +207,7 @@ void AkregatorMainWindow::readProperties(KConfig* config)
     }
 }
 
-void AkregatorMainWindow::fileNew()
+void MainWindow::fileNew()
 {
     // this slot is called whenever the File->New menu is selected,
     // the New shortcut is pressed (usually CTRL+N) or the New toolbar
@@ -227,7 +227,7 @@ void AkregatorMainWindow::fileNew()
  //   }
 }
 
-void AkregatorMainWindow::optionsConfigureKeys()
+void MainWindow::optionsConfigureKeys()
 {
     KKeyDialog dlg( true, this );
 
@@ -238,7 +238,7 @@ void AkregatorMainWindow::optionsConfigureKeys()
     dlg.configure();
 }
 
-void AkregatorMainWindow::optionsConfigureToolbars()
+void MainWindow::optionsConfigureToolbars()
 {
     saveMainWindowSettings(KGlobal::config(), autoSaveGroup());
 
@@ -251,32 +251,32 @@ void AkregatorMainWindow::optionsConfigureToolbars()
 
 
 
-void AkregatorMainWindow::applyNewToolbarConfig()
+void MainWindow::applyNewToolbarConfig()
 {
     applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
 }
 
-void AkregatorMainWindow::fileOpen()
+void MainWindow::fileOpen()
 {
 //    KURL url =
 //        KFileDialog::getOpenURL( QString::null, QString::null, this );
     //
 //    if (url.isEmpty() == false)
 //    {
-//        AkregatorMainWindow* newWin = new AkregatorMainWindow();
+//        MainWindow* newWin = new MainWindow();
 //        newWin->load( url );
 //        newWin->show();
 //    }
 }
 
-KParts::BrowserExtension *AkregatorMainWindow::browserExtension(KParts::ReadOnlyPart *p)
+KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 {
     return KParts::BrowserExtension::childObject( p );
 }
 
 
 // from konqmainwindow
-void AkregatorMainWindow::connectActionCollection( KActionCollection *coll )
+void MainWindow::connectActionCollection( KActionCollection *coll )
 {
     if (!coll) return;
     connect( coll, SIGNAL( actionStatusText( const QString & ) ),
@@ -285,7 +285,7 @@ void AkregatorMainWindow::connectActionCollection( KActionCollection *coll )
              this, SLOT( slotClearStatusText() ) );
 }
 
-void AkregatorMainWindow::disconnectActionCollection( KActionCollection *coll )
+void MainWindow::disconnectActionCollection( KActionCollection *coll )
 {
     if (!coll) return;
     disconnect( coll, SIGNAL( actionStatusText( const QString & ) ),
@@ -295,14 +295,14 @@ void AkregatorMainWindow::disconnectActionCollection( KActionCollection *coll )
 }
 
 
-bool AkregatorMainWindow::queryExit()
+bool MainWindow::queryExit()
 {
     if ( !kapp->sessionSaving() )
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
     return KParts::MainWindow::queryExit();
 }
 
-bool AkregatorMainWindow::queryClose()
+bool MainWindow::queryClose()
 {
     if ( kapp->sessionSaving() || !m_part->isTrayIconEnabled() )
          return true;
@@ -318,7 +318,7 @@ bool AkregatorMainWindow::queryClose()
     }
 }
 
-/*void AkregatorMainWindow::loadingProgress(int percent)
+/*void MainWindow::loadingProgress(int percent)
 {
     if ( percent > -1 && percent < 100 )
     {
@@ -331,24 +331,24 @@ bool AkregatorMainWindow::queryClose()
     m_progressBar->setValue( percent );
 }*/
 
-void AkregatorMainWindow::slotSetStatusBarText(const QString & s)
+void MainWindow::slotSetStatusBarText(const QString & s)
 {
     m_permStatusText=s;
     m_statusLabel->setText(s);
 }
 
-void AkregatorMainWindow::slotActionStatusText(const QString &s)
+void MainWindow::slotActionStatusText(const QString &s)
 {
     m_statusLabel->setText(s);
 }
 
-void AkregatorMainWindow::slotClearStatusText()
+void MainWindow::slotClearStatusText()
 {
     m_statusLabel->setText(m_permStatusText);
 }
 
 // yanked from kdelibs
-void AkregatorMainWindow::callObjectSlot( QObject *obj, const char *name, const QVariant &argument )
+void MainWindow::callObjectSlot( QObject *obj, const char *name, const QVariant &argument )
 {
     if (!obj)
 	    return;

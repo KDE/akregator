@@ -19,6 +19,9 @@ namespace Akregator
       public:
          FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
          ~FeedPropertiesWidget();
+         virtual void slotUpdateComboBoxActivated(int index);
+         virtual void slotUpdateCheckBoxToggled(bool enabled);
+
    };
 
    class FeedPropertiesDialog : public KDialogBase

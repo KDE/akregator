@@ -1,9 +1,9 @@
 <!DOCTYPE UI><UI version="3.2" stdsetdef="1">
-<class>settings_archive</class>
+<class>Akregator::SettingsArchive</class>
 <author>Frank Osterfeld</author>
 <widget class="QWidget">
     <property name="name">
-        <cstring>Archive</cstring>
+        <cstring>SettingsArchive</cstring>
     </property>
     <property name="geometry">
         <rect>

@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     Akregator::AboutData about;
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( akregator_options );
-    aKregatorApp app;
+    Akregator::Application app;
 
     // see if we are starting with session management
     if (app.isRestored())
@@ -32,16 +32,16 @@ int main(int argc, char **argv)
         (new type)->restore(n, false);\
             n++;}}
 
-        RESTORE(AkregatorMainWindow);
+        RESTORE(Akregator::MainWindow);
     }
     else
     {
         // no session.. just start up normally
-        AkregatorMainWindow *widget = 0;
+        Akregator::MainWindow *widget = 0;
         
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        widget = new AkregatorMainWindow();
+        widget = new Akregator::MainWindow();
 
         if(!widget->loadPart())
             return 1;

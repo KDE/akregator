@@ -7,22 +7,23 @@
 
 #include "app.h"
 
+using namespace Akregator;
 
-aKregatorApp::aKregatorApp(): KUniqueApplication(), m_haveWindowLoaded(false)
+Application::Application(): KUniqueApplication(), m_haveWindowLoaded(false)
 {
 }
 
-aKregatorApp::~aKregatorApp()
+Application::~Application()
 {
 
 }
 
-void aKregatorApp::setHaveWindowLoaded(bool b)
+void Application::setHaveWindowLoaded(bool b)
 {
     m_haveWindowLoaded=b;
 }
 
-bool aKregatorApp::haveWindowLoaded()
+bool Application::haveWindowLoaded()
 {
     return m_haveWindowLoaded;
 }

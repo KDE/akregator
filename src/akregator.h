@@ -25,8 +25,6 @@ class KProgress;
 class KParts::BrowserExtension;
 class KParts::PartManager;
 
-class AkregatorMainWindow;
-
 namespace KPIM
 {
     class StatusbarProgressWidget;
@@ -34,10 +32,10 @@ namespace KPIM
 
 namespace Akregator
 {
-    class Part;
-    class TrayIcon;
-    
-}
+
+class Part;
+class TrayIcon;
+class MainWindow;    
 
 class BrowserInterface : public KParts::BrowserInterface
 {
@@ -45,11 +43,11 @@ class BrowserInterface : public KParts::BrowserInterface
     Q_PROPERTY( bool haveWindowLoaded READ haveWindowLoaded )
     
 public:
-        BrowserInterface( AkregatorMainWindow *shell, const char *name );
-        bool haveWindowLoaded() const;
+    BrowserInterface(Akregator::MainWindow *shell, const char *name );
+    bool haveWindowLoaded() const;
 
 private:
-        AkregatorMainWindow *m_shell;
+    Akregator::MainWindow *m_shell;
 };
 
 
@@ -59,14 +57,14 @@ private:
  *
  * @short Application Shell
  */
-class AkregatorMainWindow : public KParts::MainWindow
+class MainWindow : public KParts::MainWindow
 {
     Q_OBJECT
 public:
     /**
      * Default Constructor
      */
-    AkregatorMainWindow();
+    MainWindow();
     
     /**
      * Loads the part
@@ -88,7 +86,7 @@ public:
     /**
      * Default Destructor
      */
-    virtual ~AkregatorMainWindow();
+    virtual ~MainWindow();
 
     /**
      * Use this method to load whatever file/URL you have.
@@ -166,5 +164,7 @@ private:
     KSqueezedTextLabel *m_statusLabel;
     QString m_permStatusText;
 };
+
+} // namespace Akregator
 
 #endif // _AKREGATOR_H_

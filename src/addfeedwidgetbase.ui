@@ -1,5 +1,5 @@
 <!DOCTYPE UI><UI version="3.2" stdsetdef="1">
-<class>AddFeedWidgetBase</class>
+<class>Akregator::AddFeedWidgetBase</class>
 <widget class="QWidget">
     <property name="name">
         <cstring>AddFeedWidget</cstring>
@@ -138,4 +138,8 @@
     </vbox>
 </widget>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>klineedit.h</includehint>
+    <includehint>ksqueezedtextlabel.h</includehint>
+</includehints>
 </UI>

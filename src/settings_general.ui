@@ -1,9 +1,9 @@
 <!DOCTYPE UI><UI version="3.2" stdsetdef="1">
-<class>settings_general</class>
+<class>Akregator::SettingsGeneral</class>
 <author>Teemu Rytilahti</author>
 <widget class="QWidget">
     <property name="name">
-        <cstring>General</cstring>
+        <cstring>SettingsGeneral</cstring>
     </property>
     <property name="geometry">
         <rect>

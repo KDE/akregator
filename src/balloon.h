@@ -14,6 +14,8 @@
 
 class QListView;
 
+namespace Akregator {
+
 class Balloon : public QWidget
 {
     Q_OBJECT
@@ -35,6 +37,7 @@ class Balloon : public QWidget
         QListView *m_articleList;
 };
 
+} // namespace Akregator
 #endif
 
 // vim: set noet ts=4 sts=4 sw=4:

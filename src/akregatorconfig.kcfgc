@@ -1,6 +1,7 @@
 # Code generation options for kconfig_compiler
 File=akregator.kcfg
 ClassName=Settings
+NameSpace=Akregator
 Singleton=true
 Mutators=true
 Visibility=KDE_EXPORT

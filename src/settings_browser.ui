@@ -1,9 +1,9 @@
 <!DOCTYPE UI><UI version="3.2" stdsetdef="1">
-<class>settings_browser</class>
+<class>Akregator::SettingsBrowser</class>
 <author>Gary Cramblitt</author>
 <widget class="QWidget">
     <property name="name">
-        <cstring>ExternalBrowser</cstring>
+        <cstring>SettingsBrowser</cstring>
     </property>
     <property name="geometry">
         <rect>

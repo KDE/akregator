@@ -711,9 +711,9 @@ void Part::showOptions()
         return;
 
     KConfigDialog *dialog = new KConfigDialog( m_view, "settings", Settings::self() );
-    dialog->addPage(new settings_general(0, "General"), i18n("General"), "package_settings");
-    dialog->addPage(new settings_archive(0, "Archive"), i18n("Archive"), "package_settings");
-    dialog->addPage(new settings_browser(0, "Browser"), i18n("Browser"), "package_network");
+    dialog->addPage(new SettingsGeneral(0, "General"), i18n("General"), "package_settings");
+    dialog->addPage(new SettingsArchive(0, "Archive"), i18n("Archive"), "package_settings");
+    dialog->addPage(new SettingsBrowser(0, "Browser"), i18n("Browser"), "package_network");
     connect( dialog, SIGNAL(settingsChanged()),
              this, SLOT(saveSettings()) );
     connect( dialog, SIGNAL(settingsChanged()),

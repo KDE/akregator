@@ -1,5 +1,5 @@
 <!DOCTYPE UI><UI version="3.2" stdsetdef="1">
-<class>FeedPropertiesWidgetBase</class>
+<class>Akregator::FeedPropertiesWidgetBase</class>
 <widget class="QWidget">
     <property name="name">
         <cstring>FeedPropertiesWidget</cstring>
@@ -430,8 +430,8 @@
     <include location="local" impldecl="in implementation">propertieswidgetbase.ui.h</include>
 </includes>
 <slots>
-    <slot access="protected">slotUpdateComboBoxActivated( int index )</slot>
-    <slot>slotUpdateCheckBoxToggled( bool enabled )</slot>
+    <slot access="protected" specifier="pure virtual">slotUpdateComboBoxActivated( int )</slot>
+    <slot access="protected" specifier="pure virtual">slotUpdateCheckBoxToggled( bool )</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>

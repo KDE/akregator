@@ -10,19 +10,22 @@
 
 #include <kuniqueapplication.h>
 
-#define akreapp (static_cast<aKregatorApp*>(kapp))
+#define akreapp (static_cast<Akregator::Application*>(kapp))
 
-class aKregatorApp : public KUniqueApplication {
+namespace Akregator
+{
+
+class Application : public KUniqueApplication {
     Q_OBJECT
     public:
-        aKregatorApp();
-        ~aKregatorApp();
+        Application();
+        ~Application();
         void setHaveWindowLoaded(bool b);
         bool haveWindowLoaded();
     private:
         bool m_haveWindowLoaded;
 };
 
-
+};
 #endif
 

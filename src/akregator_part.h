@@ -14,8 +14,6 @@
 
 #include "config.h"
 
-typedef KParts::ReadOnlyPart MyBasePart;
-
 #include "akregator_partiface.h"
 
 class QTimer;
@@ -26,6 +24,8 @@ class KParts::BrowserExtension;
 
 namespace Akregator
 {
+    typedef KParts::ReadOnlyPart MyBasePart;
+    
     class View;
     class Part;
     class Feed;
