@@ -4,6 +4,7 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000037 ADD [x] add favicon support to the FeedsTree -->smt
         FIX [x] Fixed nasty bug with feed editing.
         FIX [x] aKregatorPart code cleanup.
         FIX [x] Zack Rusin: Fixes to Makefiles, code cleanup.

@@ -7,6 +7,8 @@
 #include "articlelist.h"
 #include "feed.h"
 
+#include <kdebug.h>
+
 #include <klocale.h>
 #include <kcharsets.h>
 
@@ -35,14 +37,20 @@ ArticleListItem::ArticleListItem( QListView *parent, Article a, Feed *feed )
 int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
 {
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
+	if (!item) return -1;
 
-    if ( i && item->d->article.pubDate().isValid() && d->article.pubDate().isValid() )
+	kdDebug() << "[cmp] " << this << "(1) & " << item << "(2): " << endl;
+
+    if ( item->d->article.pubDate().isValid() && d->article.pubDate().isValid() )
     {
         int diff = d->article.pubDate().secsTo( item->d->article.pubDate() );
+		kdDebug() << "[cmp] both dates valid, result " << diff << " for " << d->article.title() << " & " << item->d->article.title() << endl;
         return ascending ? diff : -diff;
     }
 
-    return 0;
+	kdDebug() << "[cmp] there were no dates, return -1" << endl;
+
+    return -1;
 }
 
 Article ArticleListItem::article()
