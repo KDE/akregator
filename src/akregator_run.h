@@ -19,15 +19,14 @@ namespace Akregator
 {
 	Q_OBJECT
     public:
-        BrowserRun(Viewer *, QWidget *, KParts::ReadOnlyPart *, const KURL & , const KParts::URLArgs &, bool);
+        BrowserRun(Viewer *, QWidget *, KParts::ReadOnlyPart *, const KURL & , const KParts::URLArgs &);
         virtual ~BrowserRun();
     
     protected:
 	    virtual void foundMimeType( const QString & _type );
 
     private:
-        bool m_shouldEmbed;
-        Viewer *m_viewer; 
+        Viewer *m_viewer;
 };
 
 }

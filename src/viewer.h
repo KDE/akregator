@@ -26,9 +26,9 @@ namespace Akregator
             Viewer(QWidget* parent, const char* name);
             virtual bool closeURL();
             virtual bool openURL(const KURL &);
-            void open(const KURL &);
-
-            //    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype) = 0;
+            
+            /** used by the BrowserRun object to call KHTMLPart::openURL() */
+            void openPage(const KURL& url) { KHTMLPart::openURL(url);}
 
         public slots:
             
@@ -41,16 +41,14 @@ namespace Akregator
             void setSafeMode();
 
         signals:
-            /**
-             * This gets emited when url gets clicked
-             */
+            /** This gets emitted when url gets clicked */
             void urlClicked(const KURL& url, bool background=false);
 
         protected:
             KURL m_url;
 
         protected slots:
-            virtual bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
             virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
             /** Copies current link to clipboard. */
@@ -59,12 +57,18 @@ namespace Akregator
             /** Copies currently selected text to clipboard */
             virtual void slotCopy();
             
-            /** Opens link in internal viewer. */
+            /** Opens @c m_url inside this viewer */
             virtual void slotOpenLinkInternal();
 
-            /** Opens link in external viewer, eg. Konqueror */
-            void slotOpenLinkExternal();
+            /** Opens @c m_url in external viewer, eg. Konqueror */
+            virtual void slotOpenLinkInBrowser();
 
+            /** Opens @c m_url in foreground tab */
+            virtual void slotOpenLinkInForegroundTab();
+
+            /** Opens @c m_url in background tab */
+            virtual void slotOpenLinkInBackgroundTab();
+            
             /** This changes cursor to wait cursor */
             void slotStarted(KIO::Job *);
 

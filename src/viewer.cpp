@@ -67,42 +67,29 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
 
 bool Viewer::openURL(const KURL &url)
 {
-    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, KParts::URLArgs()/*args*/, true);
+    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, KParts::URLArgs()/*args*/);
     emit started(0);
     return true;
 }
 
 
-void Viewer::open(const KURL &url)
-{
-    KHTMLPart::openURL(url);
-}
-
-
 bool Viewer::closeURL()
 {
-    kdDebug() << "Viewer::closeURL(): emit browserExtension->loadingProgress" << endl;
-   emit browserExtension()->loadingProgress(-1);
-   kdDebug() << "Viewer::closeURL(): emit canceled" << endl;
-   emit canceled(QString::null);
-   kdDebug() << "return KHTMLPart::closeURL()" << endl;
-   return KHTMLPart::closeURL();
+    emit browserExtension()->loadingProgress(-1);
+    emit canceled(QString::null);
+    return KHTMLPart::closeURL();
 }
 
 
-/**
- * Display article in external browser.
- */
 void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
 {
    if (!url.isValid()) return;
    if (Settings::externalBrowserUseKdeDefault())
    {
-       if (mimetype.isEmpty()) {
+       if (mimetype.isEmpty()) 
            kapp->invokeBrowser(url.url(), "0");
-       } else {
+       else
            KRun::runURL(url, mimetype, false, false);
-       }
    }
    else
    {
@@ -118,23 +105,39 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
 }
 
 
-bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-   kdDebug() << "Viewer: slotOpenURLReq url=="<<url.url()<<endl;
-    
-   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-   {
-       displayInExternalBrowser(url, QString::null);
-       return true;
-   }
-   
-   if( args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground )
-   {
-       emit urlClicked(url,true);
-       return true;
-   }
-
-   return false;
+    m_url = url;
+    if (args.frameName == "_blank") // apparently this indicates that the MMB was pressed...
+    {
+        switch (Settings::mMBBehaviour())
+        {
+            case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+                slotOpenLinkInBrowser();
+                break;
+            case Settings::EnumMMBBehaviour::OpenInBackground:
+                slotOpenLinkInBackgroundTab();
+                break;
+            default:
+                slotOpenLinkInForegroundTab();
+                break;
+        }
+    }
+    else // LMB:
+    {
+        switch (Settings::lMBBehaviour())
+        {
+            case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
+                slotOpenLinkInBrowser();
+                break;
+            case Settings::EnumLMBBehaviour::OpenInBackground:
+                slotOpenLinkInBackgroundTab();
+                break;
+            default:
+                slotOpenLinkInForegroundTab();
+                break;
+        }
+    }
 }
 
 void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
@@ -146,8 +149,8 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    
    if (!url.isEmpty())
    {
-        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInternal()));
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
+        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
         action("copylinkaddress")->plug(&popup);
    }
    else
@@ -185,24 +188,25 @@ void Viewer::slotSelectionChanged()
 {
     action("viewer_copy")->setEnabled(!selectedText().isEmpty());
 }
-/*
-void Viewer::openLink(const KURL&url, const KParts::URLArgs args)
-{
-   aKregatorRun *run= new aKregatorRun((QWidget*)parent(), this, url, args);
-
-   connect(run, SIGNAL(canEmbed(const KURL&, const KParts::URLArgs&, const QString &)), this, SLOT(slotOpenPage(const KURL &, const KParts::URLArgs &, const QString &)));
-}*/
 
 void Viewer::slotOpenLinkInternal()
 {
-   if(m_url.isEmpty()) return;
    openURL(m_url);
 }
 
-void Viewer::slotOpenLinkExternal()
+void Viewer::slotOpenLinkInForegroundTab()
 {
-   if (m_url.isEmpty()) return;
-   displayInExternalBrowser(m_url, QString::null);
+    emit urlClicked(m_url, false);
+}
+
+void Viewer::slotOpenLinkInBackgroundTab()
+{
+    emit urlClicked(m_url, true);
+}
+
+void Viewer::slotOpenLinkInBrowser()
+{
+    displayInExternalBrowser(m_url, QString::null);
 }
 
 void Viewer::slotStarted(KIO::Job *)

@@ -307,13 +307,13 @@ void View::slotOpenTab(const KURL& url, bool background)
     connectFrame(frame);
     m_tabs->addFrame(frame);
 
-    if(!background) {
+    if(!background)
         m_tabs->showPage(page->widget());
-    } else {
+    else
         setFocus();
-    }
-    if (m_tabs->count() > 1 && m_tabs->currentPageIndex() != 0)
-        m_tabsClose->setEnabled(true);
+    
+    //if (m_tabs->count() > 1 && m_tabs->currentPageIndex() != 0)
+//        m_tabsClose->setEnabled(true);
     page->openURL(url);
 }
 
@@ -1013,15 +1013,22 @@ void View::slotMarkAllRead()
 
 void View::slotOpenHomepage()
 {
-Feed* feed = static_cast<Feed *>(m_tree->selectedNode());
+    Feed* feed = static_cast<Feed *>(m_tree->selectedNode());
 
-if (!feed || feed->isGroup())
-    return;
+    if (!feed || feed->isGroup())
+        return;
 
-if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-    displayInExternalBrowser(feed->htmlUrl());
-else
-    slotOpenTab(feed->htmlUrl(), Settings::backgroundTabForArticles());
+    switch (Settings::lMBBehaviour())
+    {
+        case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
+            displayInExternalBrowser(feed->htmlUrl());
+            break;
+        case Settings::EnumLMBBehaviour::OpenInBackground:
+            slotOpenTab(feed->htmlUrl(), true);
+            break;
+        default:
+            slotOpenTab(feed->htmlUrl(), false);
+    }
 }
 
 void View::slotSetTotalUnread()
@@ -1164,17 +1171,21 @@ void View::slotFeedFetchError(Feed* /*feed*/)
 
 void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
 {
-    if (item && button==Qt::MidButton)
+    ArticleListItem *i = static_cast<ArticleListItem *>(item);
+    if (!i)
+        return;
+    
+    if (button == Qt::MidButton)
     {
-        ArticleListItem *i = static_cast<ArticleListItem *>(item);
-        if (!i) return;
-        if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-            displayInExternalBrowser(i->article().link());
-        else
+        switch (Settings::mMBBehaviour())
         {
-            if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground)
+            case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+                displayInExternalBrowser(i->article().link());
+                break;
+            case Settings::EnumMMBBehaviour::OpenInBackground:
                 slotOpenTab(i->article().link(),true);
-            else
+                break;
+            default:
                 slotOpenTab(i->article().link());
         }
     }

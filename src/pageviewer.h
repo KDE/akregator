@@ -85,10 +85,7 @@ namespace Akregator
             bool m_restoring;
             QString m_caption;
             
-        private slots:
-            bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
-            void slotOpenLinkInNewTab();
-            
+
     };
 }
 

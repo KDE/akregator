@@ -67,10 +67,9 @@ namespace Akregator
 	    
             void slotShowSummary(TreeNode *node);
 
-            void slotPaletteOrFontChanged();    
+            void slotPaletteOrFontChanged();
+            
         protected:
-            /** nobody uses this right now. Do we need it? -fo */
-            virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);
             
             virtual void keyPressEvent(QKeyEvent* e);
 
@@ -99,8 +98,6 @@ namespace Akregator
             /** generates the CSS settings used for rendering */
             void generateCSS();   
             
-            void slotOpenLinkInternal();
-
             void connectToNode(TreeNode* node);
             void disconnectFromNode(TreeNode* node);
                                   
@@ -114,10 +111,6 @@ namespace Akregator
             ArticleFilter m_statusFilter;
             enum ViewMode { NormalView, CombinedView, SummaryView };
             ViewMode m_viewMode;
-        
-        private slots:
-            bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
-            
    };
 }
 

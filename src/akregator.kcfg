@@ -159,8 +159,8 @@
    <whatsthis>Articles will be opened in background tabs instead of foreground tabs.</whatsthis>
    <default>false</default>
   </entry>
-  <entry key="MMB Behaviour" type="Enum" >
-   <whatsthis>What the click with middle mouse button should do.</whatsthis>
+  <entry key="LMB Behaviour" type="Enum" >
+   <whatsthis>What the click with left mouse button should do.</whatsthis>
    <default>OpenInInternalBrowser</default>
    <choices>
     <choice name="OpenInInternalBrowser" />
@@ -168,7 +168,16 @@
     <choice name="OpenInExternalBrowser" />
    </choices>
   </entry>
- </group>
+  <entry key="MMB Behaviour" type="Enum" >
+   <whatsthis>What the click with middle mouse button should do.</whatsthis>
+   <default>OpenInExternalBrowser</default>
+   <choices>
+    <choice name="OpenInInternalBrowser" />
+    <choice name="OpenInBackground" />
+    <choice name="OpenInExternalBrowser" />
+   </choices>
+  </entry>
+  </group>
  <group name="Viewer Columns" >
   <entry key="Title Width" type="Int" >
    <default>-1</default>

@@ -77,22 +77,6 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     //loadPlugins( partObject(), this, instance() );
 }
 
-bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
-{
-    /* what's this? -tpr 20040825
-    kdDebug() << "args: frame=="<< args.frameName << endl;
-    new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
-    return true;*/
-    kdDebug() << "PageViewer: Open url request: " << url << endl;
-    if(Viewer::slotOpenURLRequest(url, args)) return true;
-    if(openURL(url)) return true;
-    return false;
-}
-
-void PageViewer::slotOpenLinkInNewTab()
-{
-    emit urlClicked(m_url, true);
-}
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotBack()
 {
@@ -183,19 +167,11 @@ void PageViewer::slotStop()
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 bool PageViewer::openURL(const KURL &url)
 {
-    //QString path = resolveEnvVarsInURL(url.url());
-    //KURL newUrl(path);
-  
     bool retval = Viewer::openURL(url);
-    if ( retval )
-    {
-        //emit fileNameChanged(this);
-        if ( !m_restoring )
-        {
-            addHistoryEntry();
-        }
-    }
-  
+
+    if ( retval && !m_restoring )
+        addHistoryEntry();
+    
     m_backAction->setEnabled( m_current != m_history.begin() );
     m_forwardAction->setEnabled( m_current != m_history.fromLast() );
   
@@ -295,9 +271,9 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     int idNewWindow = -2;
     if (isLink)
     {
-        idNewWindow = popup.insertItem(SmallIcon("window_new"),i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInNewTab()));
+        idNewWindow = popup.insertItem(SmallIcon("window_new"),i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.setWhatsThis(idNewWindow, i18n("<b>Open Link in New Tab</b><p>Opens current link in a new tab."));
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
                 
         popup.insertSeparator();
         
@@ -334,7 +310,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
             popup.insertSeparator();
         }
     
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkExternal()));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
     
         action("viewer_print")->plug(&popup);
         popup.insertSeparator();

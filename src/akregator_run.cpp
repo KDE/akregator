@@ -13,28 +13,23 @@
 using namespace Akregator;
 
 
-BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *part, const KURL & url, const KParts::URLArgs &args, bool shouldEmbed)
+BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *part, const KURL & url, const KParts::URLArgs &args)
     : KParts::BrowserRun(url, args, part, parent, false, true)
 {
     m_viewer=viewer;
-    m_shouldEmbed=shouldEmbed;
 }
 
 BrowserRun::~BrowserRun()
 {
+    kdDebug() << "BrowserRun::~BrowserRun()" << endl;
 }
 
 void BrowserRun::foundMimeType( const QString & type )
 {
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml"  )
-    {
-        if (m_shouldEmbed)
-        {
-            m_viewer->open(url());//Page(url(), m_args, type);
-            return;
-        }
-    }
-    KParts::BrowserRun::foundMimeType( type );
+        m_viewer->openPage(url());
+    else
+        KParts::BrowserRun::foundMimeType( type );
 }
 
 #include "akregator_run.moc"
