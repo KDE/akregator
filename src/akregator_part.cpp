@@ -76,7 +76,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     new KAction(i18n("Fe&tch All"), "bottom", "Ctrl+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
     new KAction(i18n("Go to Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "feed_prev_unread_article");
     new KAction(i18n("Go to Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "feed_next_unread_article");
-    new KAction(i18n("Go to &Previous Feed"), "", "P", m_view, SLOT(slotNextFeed()),actionCollection(), "feed_prev_feed");
+    new KAction(i18n("Go to &Previous Feed"), "", "P", m_view, SLOT(slotPrevFeed()),actionCollection(), "feed_prev_feed");
     new KAction(i18n("Go to &Next Feed"), "", "N", m_view, SLOT(slotNextFeed()),actionCollection(), "feed_next_feed");
     
     new KAction(i18n("&Go to Next Unread Feed"), "", "Ctrl+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "feed_next_unread_feed");

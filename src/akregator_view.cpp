@@ -1110,7 +1110,7 @@ void aKregatorView::slotNextUnreadArticle()
 void aKregatorView::slotPrevFeed()        
 {
     for (QListViewItemIterator it( m_tree->selectedItem()); it.current(); --it )
-        if ( (*it)->isSelected() && !(*it)->isExpandable() )
+        if ( !(*it)->isSelected() && !(*it)->isExpandable() )
     {
         m_tree->setSelected(*it, true);
         m_tree->ensureItemVisible(*it);
