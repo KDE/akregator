@@ -194,6 +194,9 @@ void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
 
 void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * )
 {
+    if (!acceptDrag(e))
+        return;
+
     if (e->source() != viewport())
     {
         if (KURLDrag::canDecode( e ))
