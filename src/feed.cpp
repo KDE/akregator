@@ -10,14 +10,14 @@
 #include "feedscollection.h"
 #include "fetchtransaction.h"
 
-
-#include <kurl.h>
+#include <kapplication.h>
+#include <kcharsets.h>
 #include <kdebug.h>
 #include <kglobal.h>
-#include <kstandarddirs.h>
 #include <kiconloader.h>
 #include <kiconeffect.h>
-#include <kapplication.h>
+#include <kstandarddirs.h>
+#include <kurl.h>
 
 #include <qtimer.h>
 #include <qdatetime.h>
@@ -377,8 +377,11 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     }
 
     if (title().isEmpty()) 
-        setTitle( m_document.title() );
+        setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(m_document.title())) );
 
+    if (item())
+        item()->setText(0, title()); // this is necessary for adding feeds via konq plugin
+    
     m_description = m_document.description();
     m_htmlUrl = m_document.link().url();
     
