@@ -1473,7 +1473,7 @@ void aKregatorView::readProperties(KConfig* config) // this is called when sessi
     // read the position of the selected feed
 
     QString selectedFeed = config->readEntry("selectedFeed");
-    if ( selectedFeed != QString::null )
+    if ( selectedFeed.isNull() )
     {
         QStringList pos = QStringList::split(' ', selectedFeed);
         QListViewItem* current = m_tree->firstChild();
@@ -1492,7 +1492,7 @@ void aKregatorView::readProperties(KConfig* config) // this is called when sessi
         if ( m_viewMode != CombinedView )
         {
             QString selectedArticleEntry = config->readEntry("selectedArticle");
-            if ( selectedArticleEntry != QString::null )
+            if ( selectedArticleEntry.isNull() )
             {
                 QListViewItem* selectedArticle = m_articles->findItem(selectedArticleEntry, 0);
                 if ( selectedArticle )

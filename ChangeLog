@@ -15,6 +15,7 @@ Changes:
        - make search bar optional -fo
 
 Bug fixes:
+       - Use isNull() instead of comparing to QString::null -tpr
        - Make kontact plugin work with Kontact from CVS HEAD -fo
        - Don't load kontact plugin when akregator is already running -fo
        - Fix expiry by age (global setting was ignored) -fo      
