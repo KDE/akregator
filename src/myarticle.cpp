@@ -9,6 +9,7 @@
 #include "librss/tools_p.h"
 #include <qdatetime.h>
 #include <kurl.h>
+#include <qregexp.h>
 
 using namespace Akregator;
 using namespace RSS;
@@ -17,6 +18,7 @@ struct MyArticle::Private : public RSS::Shared
 {
     Article article;
     QDateTime fetchDate;
+    QString title;
 };
 
 MyArticle::MyArticle() : d(new Private)
@@ -27,6 +29,10 @@ MyArticle::MyArticle(Article article) : d(new Private)
 {
     d->article = article;
     d->fetchDate = QDateTime::currentDateTime();
+    if (article.title().isEmpty())
+        d->title=buildTitle();
+    else
+        d->title=article.title();
 }
 
 MyArticle::MyArticle(const MyArticle &other) : d(new Private)
@@ -74,7 +80,7 @@ bool MyArticle::operator==(const MyArticle &other) const
 
 QString MyArticle::title() const
 {
-    return d->article.title();
+    return d->title;
 }
 
 const KURL &MyArticle::link() const
@@ -108,3 +114,29 @@ KURLLabel *MyArticle::widget(QWidget *parent, const char *name) const
     return d->article.widget(parent, name);
 }
 
+QString MyArticle::buildTitle()
+{
+    QString s=d->article.description();
+    int i=s.find('>',500); /*avoid processing too much */
+    if (i != -1)
+        s=s.left(i+1);
+    QRegExp rx("(<([^\\s>]*)(?:[^>]*)>)[^<]*", false);
+    QString tagName, toReplace, replaceWith;
+    while (rx.search(s) != -1 )
+    {
+        tagName=rx.cap(2);
+        if (tagName=="SCRIPT"||tagName=="script")
+            toReplace=rx.cap(0); // strip tag AND tag contents
+        else if (tagName.startsWith("br") || tagName.startsWith("BR"))
+        {
+            toReplace=rx.cap(1);
+            replaceWith=" ";
+        }
+        else
+            toReplace=rx.cap(1);  // strip just tag
+        s=s.replace(s.find(toReplace),toReplace.length(),replaceWith); // do the deed
+    }
+    if (s.length()> 90)
+        s=s.left(90)+"...";
+    return s.simplifyWhiteSpace();
+}

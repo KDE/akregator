@@ -47,6 +47,7 @@ namespace Akregator
         private:
             struct Private;
             Private *d;
+            QString buildTitle();
     };
 };
 
