@@ -799,37 +799,35 @@ void aKregatorView::markAllRead(QListViewItem *item)
     }
 }
 
-void aKregatorView::slotFetchCurrentFeed()
-{
-    if (m_tree->currentItem())
-    {
-        Feed *f = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-        if (f && !f->isGroup())
-        {
-            kdDebug() << "Fetching item " << f->title() << endl;
-            f->fetch();
-        }
-        else // its a feed group, need to fetch from all its children, recursively
-        {
-            FeedGroup *g = m_feeds.find(m_tree->currentItem());
-            if (!g) {
-                KMessageBox::error( this, i18n( "Internal error, feeds tree inconsistent." ) );
-                return;
-            }
 
-            for (QListViewItem *it = m_tree->currentItem()->firstChild(); it; it = it->nextSibling())
-            {
-                kdDebug() << "Fetching subitem " << it->text(0) << endl;
-                Feed *f = static_cast<Feed *>(m_feeds.find(it));
-                if (f && !f->isGroup())
-                    f->fetch();
-            }
+void aKregatorView::fetchItem(QListViewItem *item)
+{
+    if (item)
+    {
+        FeedGroup *fg = m_feeds.find(item);
+        if (fg && fg->isGroup())
+        {
+            kdDebug() << "Fetching folder " << fg->title() << endl;
+            for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
+	    	fetchItem(it);
+        }
+        else
+        {
+            Feed *f = static_cast<Feed *>(fg);
+            if (f)
+	    	f->fetch();
         }
     }
 }
 
+void aKregatorView::slotFetchCurrentFeed()
+{
+    fetchItem(m_tree->currentItem());
+}
+
 void aKregatorView::slotFetchAllFeeds()
 {
+    // this iterator iterates through ALL child items
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
     {
         kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;

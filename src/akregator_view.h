@@ -176,6 +176,8 @@ namespace Akregator
              */
             void markAllRead(QListViewItem *item);
 
+            void fetchItem(QListViewItem *item);
+
             void updateSearch(const QString &s=QString::null);
             void checkItem(QListViewItem *i);
             bool itemMatches (ArticleListItem *item);
