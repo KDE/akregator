@@ -1,3 +1,10 @@
+/***************************************************************************
+ *   Copyright (C) 2004 by Stanislav Karchebny                             *
+ *   Stanislav.Karchebny@kdemail.net                                       *
+ *                                                                         *
+ *   Licensed under GPL.                                                   *
+ ***************************************************************************/
+ 
 #include "articlesequence.h"
 
 using namespace Akregator;
