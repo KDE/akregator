@@ -277,8 +277,11 @@ void aKregatorView::slotOpenTab(const KURL& url, bool background)
     connectFrame(frame);
     m_tabs->addFrame(frame);
 
-    if(!background)
+    if(!background) {
         m_tabs->showPage(page->widget());
+    } else {
+        setFocus();
+    }
     if (m_tabs->count() > 1 && m_tabs->currentPageIndex() != 0)
         m_tabsClose->setEnabled(true);
     QString favicon = FeedIconManager::self()->iconLocation(url);
