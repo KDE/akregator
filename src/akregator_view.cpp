@@ -716,13 +716,14 @@ void aKregatorView::addFeedToGroup(const QString& url, const QString& group)
 
 void aKregatorView::slotNormalView()
 {
-    if (m_viewMode==NormalView)
+    if ( m_viewMode == NormalView )
        return;
 
-    if (m_viewMode==CombinedView)
+    if (m_viewMode == CombinedView)
     {
+        m_articles->slotShowNode( m_feeds.find(m_tree->currentItem()) );
         m_articles->show();
-
+       
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
         if (item)
             m_articleViewer->slotShowArticle(item->article());
@@ -731,17 +732,19 @@ void aKregatorView::slotNormalView()
     }
 
     m_articleSplitter->setOrientation(QSplitter::Vertical);
-    m_viewMode=NormalView;
+    m_viewMode = NormalView;
 
     Settings::setViewMode( m_viewMode );
 }
 
 void aKregatorView::slotWidescreenView()
 {
-    if (m_viewMode==WidescreenView)
+    if ( m_viewMode == WidescreenView )
        return;
-    else if (m_viewMode==CombinedView)
+    
+    if ( m_viewMode == CombinedView )
     {
+        m_articles->slotShowNode( m_feeds.find(m_tree->currentItem()) );
         m_articles->show();
         // tell articleview to redisplay+reformat
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
@@ -752,7 +755,7 @@ void aKregatorView::slotWidescreenView()
     }
 
     m_articleSplitter->setOrientation(QSplitter::Horizontal);
-    m_viewMode=WidescreenView;
+    m_viewMode = WidescreenView;
 
     Settings::setViewMode( m_viewMode );
 }
