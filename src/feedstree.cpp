@@ -238,9 +238,9 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
         return;
     }
 
-    if (!i || event->pos().x() > header()->cellPos(header()->mapToActual(0)) +
+    if (!i || event->pos().x() > header()->cellPos(header()->mapToIndex(0)) +
             treeStepSize() * (i->depth() + 1) + itemMargin() ||
-            event->pos().x() < header()->cellPos(header()->mapToActual(0)))
+            event->pos().x() < header()->cellPos(header()->mapToIndex(0)))
     {}
     else if (i && i->childCount() && !i->isOpen())
             i->setOpen(true); // open folders under drag
