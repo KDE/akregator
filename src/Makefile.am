@@ -1,5 +1,5 @@
 # set the include path for X, qt and KDE
-INCLUDES = $(all_includes)
+INCLUDES = -I$(top_srcdir)/akregator/src/librss $(all_includes)
 
 # these are the headers for your project
 noinst_HEADERS = akregator.h akregator_part.h feedstree.h feedscollection.h feed.h articlelist.h feedgroup.h
@@ -50,4 +50,4 @@ partdesktop_DATA = akregator_part.desktop
 # this is where the part's XML-GUI resource file goes
 partrcdir = $(kde_datadir)/akregatorpart
 partrc_DATA = akregator_part.rc welcome.html
-SUBDIRS =  librss
+SUBDIRS = librss
