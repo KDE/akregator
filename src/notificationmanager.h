@@ -43,7 +43,7 @@ class NotificationManager : public QObject
         ~NotificationManager();
 
         /** the widget used for notification, normally either the mainwindow or the tray icon */
-        void setWidget(QWidget* widget);
+        void setWidget(QWidget* widget, KInstance* inst=0);
         
     public slots:
 
@@ -73,7 +73,8 @@ class NotificationManager : public QObject
         bool m_running;
         bool m_addedInLastInterval;
         QWidget* m_widget;
-        
+        KInstance* m_instance;
+
         QValueList<MyArticle> m_articles;
 
         static NotificationManager* m_self;
