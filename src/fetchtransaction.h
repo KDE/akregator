@@ -47,8 +47,7 @@ class FetchTransaction : public QObject
     protected: // methods
 
         void feedDone(Feed *f);
-        void doFetchIcon(int c);
-        void doFetchImage(int c);
+        
         void connectToFeed(Feed* feed);
         void disconnectFromFeed(Feed* feed);
 
@@ -58,7 +57,9 @@ class FetchTransaction : public QObject
         void slotFeedFetched(Feed *);
         void slotFetchError(Feed *);
         void slotFetchAborted(Feed *);
-        void slotFetchNext();
+        void slotFetchNextFeed();
+        void slotFetchNextIcon();
+        void slotFetchNextImage();
 
         void slotFaviconFetched(const QString &, const QPixmap &);
         void slotImageFetched(const QPixmap &);

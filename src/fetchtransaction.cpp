@@ -47,7 +47,7 @@ void FetchTransaction::start()
     m_fetchesDone=0;
     
     for (int i = 0; i < m_concurrentFetches; ++i)
-        QTimer::singleShot(0, this, SLOT(slotFetchNext()));
+        QTimer::singleShot(0, this, SLOT(slotFetchNextFeed()));
 }
 
 void FetchTransaction::stop()
@@ -77,7 +77,7 @@ void FetchTransaction::addFeed(Feed *f)
     m_fetchList.append(f);
 }
 
-void FetchTransaction::slotFetchNext()
+void FetchTransaction::slotFetchNextFeed()
 {
     Feed *f = m_fetchList.at(0);
     if (!f)
@@ -135,7 +135,7 @@ void FetchTransaction::feedDone(Feed *f)
         return;
     }
 
-    QTimer::singleShot(0, this, SLOT(slotFetchNext()));
+    QTimer::singleShot(0, this, SLOT(slotFetchNextFeed()));
 }
 
 void FetchTransaction::loadIcon(Feed *f)
@@ -150,26 +150,24 @@ void FetchTransaction::loadIcon(Feed *f)
     m_iconFetchDict.insert(h, f);
 }
 
-void FetchTransaction::doFetchIcon(int c)
+void FetchTransaction::slotFetchNextIcon()
 {
-    Feed *f=m_iconFetchList.at(c);
-    if (!f) return;
+    Feed *f = m_iconFetchList.at(0);
+    if (!f)
+        return;
+    
     KURL u(f->xmlUrl());
-    QString h=u.host();
-    m_iconFetchList.remove(c);
+    QString h = u.host();
+    m_iconFetchList.remove((uint)0);
     FeedIconManager::self()->loadIcon("http://"+h+"/");
 }
 
 void FetchTransaction::startFetchIcons()
 {
-    int i=0;
-    m_running=true;
-
-    while (i < m_concurrentFetches)
-    {
-        doFetchIcon(0);
-        i++;
-    }
+    m_running = true;
+    
+    for (int i = 0; i < m_concurrentFetches; ++i)
+        QTimer::singleShot(0, this, SLOT(slotFetchNextIcon()));
 }
 
 void FetchTransaction::slotFaviconFetched(const QString &host, const QPixmap &p)
@@ -185,7 +183,7 @@ void FetchTransaction::slotFaviconFetched(const QString &host, const QPixmap &p)
         f=m_iconFetchDict[h];
     }
 
-    doFetchIcon(0);
+    QTimer::singleShot(0, this, SLOT(slotFetchNextIcon()));
 }
 
 void FetchTransaction::loadImage(Feed *f, Image *i)
@@ -199,26 +197,22 @@ void FetchTransaction::loadImage(Feed *f, Image *i)
              this, SLOT(slotImageFetched(const QPixmap &)));
 }
 
-void FetchTransaction::doFetchImage(int c)
+void FetchTransaction::slotFetchNextImage()
 {
-    Image *i=m_imageFetchList.at(c);
+    Image *i=m_imageFetchList.at(0);
     if (!i) return;
 
     m_currentImageFetches.append(i);
     i->getPixmap();
-    m_imageFetchList.remove(c);
+    m_imageFetchList.remove((uint)0);
 }
 
 void FetchTransaction::startFetchImages()
 {
-    int i=0;
-    m_running=true;
+    m_running = true;
 
-    while (i < m_concurrentFetches)
-    {
-        doFetchImage(0);
-        i++;
-    }
+    for (int i = 0; i < m_concurrentFetches; ++i)
+        QTimer::singleShot(0, this, SLOT(slotFetchNextImage()));
 }
 
 void FetchTransaction::slotImageFetched(const QPixmap &p)
@@ -234,7 +228,8 @@ void FetchTransaction::slotImageFetched(const QPixmap &p)
         f=m_imageFetchDict[(Image*)i];
     }
     m_currentImageFetches.remove((Image*)i);
-    doFetchImage(0);
+    
+    QTimer::singleShot(0, this, SLOT(slotFetchNextImage()));
 }
 
 void FetchTransaction::connectToFeed(Feed* feed)
@@ -259,10 +254,11 @@ void FetchTransaction::slotNodeDestroyed(TreeNode* node)
 
     if (!feed)
         return;
-    
+
     m_fetchList.remove(feed);
     m_iconFetchList.remove(feed);
     m_imageFetchDict.remove(feed);
+    
     disconnectFromFeed(feed);
 }
 
