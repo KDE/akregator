@@ -36,7 +36,7 @@
                         <cstring>rb_KeepAllArticles</cstring>
                     </property>
                     <property name="text">
-                        <string>Keep All Articles</string>
+                        <string>Keep all articles</string>
                     </property>
                 </widget>
                 <widget class="QLayoutWidget" row="2" column="0">
@@ -52,7 +52,7 @@
                                 <cstring>rb_LimitArticleAge</cstring>
                             </property>
                             <property name="text">
-                                <string>Delete Articles Older than</string>
+                                <string>Delete articles older than: </string>
                             </property>
                         </widget>
                         <widget class="KIntSpinBox">
@@ -93,7 +93,7 @@
                                 <cstring>rb_LimitArticleNumber</cstring>
                             </property>
                             <property name="text">
-                                <string>Limit Feed Archive Size to</string>
+                                <string>Limit feed archive size to:</string>
                             </property>
                         </widget>
                         <widget class="KIntSpinBox">
@@ -129,7 +129,7 @@
                         <cstring>rb_DisableArchiving</cstring>
                     </property>
                     <property name="text">
-                        <string>Disable Archiving</string>
+                        <string>Disable archiving</string>
                     </property>
                 </widget>
             </grid>

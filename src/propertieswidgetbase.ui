@@ -214,7 +214,7 @@
                                             <cstring>rb_limitArticleAge</cstring>
                                         </property>
                                         <property name="text">
-                                            <string>Delete articles older than</string>
+                                            <string>Delete articles older than:</string>
                                         </property>
                                     </widget>
                                     <widget class="KIntSpinBox">
@@ -280,7 +280,7 @@
                                             <cstring>rb_limitArticleNumber</cstring>
                                         </property>
                                         <property name="text">
-                                            <string>Limit archive to</string>
+                                            <string>Limit archive to:</string>
                                         </property>
                                     </widget>
                                     <widget class="KIntSpinBox">
