@@ -437,6 +437,7 @@ void aKregatorView::slotFeedAdd()
 
     dlg->setFeedName(text);
     dlg->setUrl(afd->feedURL);
+    dlg->selectFeedName();
 //    dlg->widget->urlEdit->hide();
 
     if (dlg->exec() != QDialog::Accepted) return;

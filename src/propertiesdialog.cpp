@@ -97,4 +97,9 @@ void FeedPropertiesDialog::setLjPassword(const QString& ljPassword)
    widget->passwordEdit->setText(ljPassword);
 }
 
+void FeedPropertiesDialog::selectFeedName()
+{
+   widget->feedNameEdit->selectAll();
+}
+
 #include "propertiesdialog.moc"

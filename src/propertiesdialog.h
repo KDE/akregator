@@ -44,6 +44,7 @@ namespace Akregator
          void setLjLogin(const QString& ljLogin);
          void setLjPassword(const QString& ljPassword);
 
+         void selectFeedName();
       private:
          FeedPropertiesWidget *widget;
    };
