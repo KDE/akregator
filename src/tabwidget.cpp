@@ -178,7 +178,8 @@ void TabWidget::slotDetachTab()
    if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
    else return;
    kapp->invokeBrowser(url.url(), "0");
-   removePage(currentItem);
+   if (m_frames.find(currentItem) != NULL)
+       removeFrame(m_frames.find(currentItem));
    delete currentItem;
    currentItem = 0;
 }
@@ -196,7 +197,8 @@ void TabWidget::slotCopyLinkAddress()
 void TabWidget::slotCloseTab()
 {
    if(!currentItem) return;
-   removePage(currentItem);
+   if (m_frames.find(currentItem) != NULL)
+       removeFrame(m_frames.find(currentItem));
    delete currentItem;
    currentItem = 0;
 }
