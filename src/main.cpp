@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 {
     Akregator::AboutData about;
     KCmdLineArgs::init(argc, argv, &about);
-    KCmdLineArgs::addCmdLineOptions( akregator_options );
+    KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options );
     Akregator::Application app;
 
     // see if we are starting with session management

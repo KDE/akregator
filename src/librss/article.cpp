@@ -21,8 +21,10 @@
 #include <qdom.h>
 
 using namespace RSS;
-
-KMD5 md5Machine;
+namespace RSS
+{
+    KMD5 md5Machine;
+}
 
 struct Article::Private : public Shared
 {

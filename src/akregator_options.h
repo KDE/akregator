@@ -4,6 +4,8 @@
 #include <kcmdlineargs.h>
 #include <klocale.h>
 
+namespace Akregator {
+
 static KCmdLineOptions akregator_options[] =
 {
 	{ "a", 0, 0 },
@@ -12,5 +14,7 @@ static KCmdLineOptions akregator_options[] =
 	{ "group <groupname>", I18N_NOOP( "When adding feeds, place them in this group" ), I18N_NOOP("Imported") },
 	KCmdLineLastOption
 };
+
+}
 
 #endif
