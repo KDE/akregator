@@ -99,7 +99,7 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& url, con
    KPopupMenu popup;
    popup.insertItem(SmallIcon("tab_new"), i18n("Open Link"), this, SLOT(slotOpenLinkInternal()));
    popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
-   popup.insertItem(i18n("Copy Link Location"), this, SLOT(slotCopyToClipboard()));
+   popup.insertItem(i18n("Copy Link Address"), this, SLOT(slotCopyToClipboard()));
    popup.exec(p);
 }
 
