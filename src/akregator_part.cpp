@@ -112,7 +112,7 @@ void Part::setupActions()
     sqf->setChecked( Settings::showQuickFilter() );
     KStdAction::configureNotifications(this,SLOT(showKNotifyOptions()), actionCollection()); // options_configure_notifications
 
-    new KAction( i18n("Configure &aKregator..."), "configure", "", this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
+    new KAction( i18n("Configure &Akregator..."), "configure", "", this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
     //KStdAction::preferences( this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
 
     // feed tree navigation

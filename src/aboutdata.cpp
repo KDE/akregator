@@ -12,8 +12,8 @@
 namespace Akregator {
 
 AboutData::AboutData()
-    : KAboutData("akregator", I18N_NOOP("aKregator"), "1.0", I18N_NOOP("A KDE Feed Aggregator"),
-                 License_GPL, I18N_NOOP("(C) 2004 aKregator developers"), 0,
+    : KAboutData("akregator", I18N_NOOP("Akregator"), "1.0", I18N_NOOP("A KDE Feed Aggregator"),
+                 License_GPL, I18N_NOOP("(C) 2004, 2005 Akregator developers"), 0,
                      "http://akregator.sourceforge.net/")
 {
     addAuthor( "Frank Osterfeld", I18N_NOOP("Maintainer"), "frank.osterfeld@kdemail.net" );

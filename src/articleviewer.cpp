@@ -76,7 +76,7 @@ void ArticleViewer::openDefault()
                     "<li><b>%4</b>%5</li>\n"
                     "<li><b>%6</b>%7</li>\n"
                     "<li><b>%8</b>%9</li>")
-                    .arg(i18n("Welcome to aKregator"))
+                    .arg(i18n("Welcome to Akregator"))
                     .arg(i18n("Use the tree to manage your feeds."))
                     .arg(i18n("Right click a folder, such as \"All Feeds\", and choose:"))
                     .arg(i18n("Add Feed..."))

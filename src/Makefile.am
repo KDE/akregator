@@ -111,7 +111,7 @@ partdesktop_DATA = akregator_part.desktop
 
 # this is where the part's XML-GUI resource file goes
 partrcdir = $(kde_datadir)/akregator
-partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc welcome.html eventsrc
+partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc eventsrc
 
 # this is where the icons go
 iconsdir = $(kde_datadir)/akregator/pics

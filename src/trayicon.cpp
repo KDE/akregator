@@ -35,7 +35,7 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
     m_lightIconImage=m_unreadIcon.convertToImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
-    QToolTip::add(this, i18n("aKregator"));
+    QToolTip::add(this, i18n("Akregator"));
     contextMenu()->insertItem(SmallIcon("bottom"),i18n("Fetch All Feeds"), this, SLOT(fetchAllFeeds()));
 }
 	
@@ -101,7 +101,7 @@ void TrayIcon::slotSetUnread(int unread)
     m_unread=unread;
     
     QToolTip::remove(this);
-    QToolTip::add(this, i18n("aKregator - 1 unread article", "aKregator - %n unread articles", unread));
+    QToolTip::add(this, i18n("Akregator - 1 unread article", "Akregator - %n unread articles", unread));
     
     if (unread == 0)
     {    
