@@ -376,6 +376,10 @@ void ArticleList::slotPreviousUnreadArticle()
         it = static_cast<ArticleListItem*>(lastChild());
 
         for ( ; it.current(); --it )
+        {
+            ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
+            if (!ali)
+                break;
             if ((ali->article().status()==MyArticle::Unread) ||
                 (ali->article().status()==MyArticle::New))
             {
@@ -383,6 +387,7 @@ void ArticleList::slotPreviousUnreadArticle()
                 ensureItemVisible(ali);
                 return;
             }
+        }
     }
 }
 
