@@ -31,6 +31,11 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool s
 
 	QString result = node.toElement().text();
 	if (simplifyWhiteSpace) {
+		// MC : this line assumes that a feed containing no < has no html tags
+		// and then have no formattig, so we should convert \n into <br> to make it readable
+		// Mon, 23 Aug 2004 15:22:06 +0200
+		if(!result.contains("<")) result=result.replace(QChar('\n'),"<br />");
+
 		result=result.simplifyWhiteSpace();
 	}
 	if (result.isEmpty())
