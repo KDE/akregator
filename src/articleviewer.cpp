@@ -15,32 +15,36 @@
 using namespace Akregator;
 
 // from kmail::headerstyle.cpp
-static inline QString directionOf( const QString & str ) {
+static inline QString directionOf(const QString &str)
+{
     return str.isRightToLeft() ? "rtl" : "ltr" ;
 }
 
-int pointsToPixel( const QPaintDeviceMetrics & metrics, int pointSize ) {
+int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
+{
     return ( pointSize * metrics.logicalDpiY() + 36 ) / 72 ;
 }
 
-ArticleViewer::ArticleViewer(QWidget* parent, const char* name)
-  : KHTMLPart(parent, name), m_metrics(widget())
+ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
+    : KHTMLPart(parent, name), m_metrics(widget())
 {
     m_bodyFont = KGlobalSettings::generalFont();
 }
 
 void ArticleViewer::openDefault()
 {
-    openURL(::locate( "data", "akregatorpart/welcome.html" ) );
+    openURL( ::locate( "data", "akregatorpart/welcome.html" ) );
 }
 
-QString ArticleViewer::htmlHead() const {
+QString ArticleViewer::htmlHead() const
+{
     return
         "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
         "<html><head><title></title></head><body>";
 }
 
-QString ArticleViewer::cssDefinitions() const {
+QString ArticleViewer::cssDefinitions() const
+{
     const QColorGroup & cg = QApplication::palette().active();
     return QString (
     "<style type=\"text/css\">"
@@ -109,7 +113,8 @@ void ArticleViewer::show(Article a)
     text += "</div>\n"; // end headerbox
 
     text += a.description();
-    if (!a.link().isValid()){
+    if (a.link().isValid())
+    {
         text += "<p><a href=\"";
         text += a.link().url();
         text += "\">Full Story</a></p>";
