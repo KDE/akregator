@@ -64,7 +64,7 @@ Akregator::Balloon::Balloon(const QString &text)
 	if (f.pointSize() > 12)
 		f.setPointSize(f.pointSize()-4);
         else 
-            f.setPointSize(8);
+            f.setPointSize(9);
 	
 	m_articleList->setFont(f);
 
