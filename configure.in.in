@@ -1,0 +1,4 @@
+#MIN_CONFIG(3.2)
+
+KDE_FIND_PATH(kconfig_compiler, KCONFIG_COMPILER,
+[$kde_default_bindirs],[KDE_MISSING_PROG_ERROR(kconfig_compiler)])
