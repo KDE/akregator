@@ -16,7 +16,8 @@ namespace Akregator
     class Feed;
     class FeedGroup;
     class MyArticle;
-
+    class TreeNode;
+    
     class ArticleListItem : public KListViewItem
     {
         public:
@@ -39,13 +40,13 @@ namespace Akregator
             ArticleList(QWidget *parent = 0, const char *name = 0);
             ~ArticleList();
         public slots:
-            void slotShowNode(FeedGroup* node);
+            void slotShowNode(TreeNode* node);
             void slotClear();
             void slotUpdate();
             void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
                                         
         private:
-            FeedGroup* m_node;
+            TreeNode* m_node;
             ArticleFilter m_textFilter;
             ArticleFilter m_statusFilter;
             enum ColumnMode { groupMode, feedMode };

@@ -15,16 +15,17 @@ namespace Akregator
 {
     class Feed;
     class FeedGroup;
-
-    class FeedsCollection : public QPtrDict<FeedGroup>
+    class TreeNode;
+    
+    class FeedsCollection : public QPtrDict<TreeNode>
     {
         public:
             FeedsCollection();
             ~FeedsCollection();
 
             void addFeed(Feed *f);
-            Feed *addFeed(QListViewItem *item);
-            FeedGroup *addFeedGroup(QListViewItem *item);
+            Feed* addFeed(QListViewItem *item);
+            FeedGroup* addFeedGroup(QListViewItem *item);
 
             void removeFeed(QListViewItem *item);
             bool changeFeed(QListViewItem *item);

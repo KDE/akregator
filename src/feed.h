@@ -13,7 +13,7 @@
 #include <kurl.h>
 
 #include "articlesequence.h"
-#include "feedgroup.h"
+#include "treenode.h"
 #include "librss/librss.h" /* <rss/librss> ! */
 
 using namespace RSS;
@@ -23,7 +23,7 @@ namespace Akregator
     class FeedsCollection;
     class FetchTransaction;
 
-    class Feed : public FeedGroup
+    class Feed : public TreeNode
     {
         Q_OBJECT
         public:
@@ -35,7 +35,7 @@ namespace Akregator
             Feed(QListViewItem *i, FeedsCollection *coll);
             ~Feed();
 
-            virtual QDomElement toXml( QDomElement parent, QDomDocument document ) const;
+            virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
             void dumpXmlData( QDomElement parent, QDomDocument document );
 
             virtual bool isGroup() const { return false; }
@@ -59,7 +59,7 @@ namespace Akregator
             bool isMerged() const { return m_merged; }
             void setMerged(bool m){ m_merged = m;}
 
-            int unread() const { return m_unread; }
+            virtual int unread() const { return m_unread; }
             void setUnread(int i) { m_unread = i; }
             
             const QPixmap& favicon() const { return m_favicon; }
@@ -77,9 +77,8 @@ namespace Akregator
             QString description() const { return m_description; }
             void setDescription(const QString& s) { m_description = s; }
           
-            virtual ArticleSequence articles() const;
-            void markAllRead();
-
+            virtual ArticleSequence articles();
+            
             void appendArticles(const Document &d, bool findDups=false);
 
             void abortFetch();
@@ -89,7 +88,8 @@ namespace Akregator
         public slots:
             void fetch(bool follow=false, FetchTransaction *f=0);
             void loadFavicon();
-            virtual void deleteExpiredArticles();
+            virtual void slotDeleteExpiredArticles();
+            virtual void slotMarkAllArticlesAsRead();
 
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching

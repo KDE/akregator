@@ -7,6 +7,7 @@
 #include "feedscollection.h"
 #include "feedgroup.h"
 #include "feed.h"
+#include "treenode.h"
 
 #include <klocale.h>
 #include <kglobal.h>
@@ -18,7 +19,7 @@
 using namespace Akregator;
 
 FeedsCollection::FeedsCollection()
-    : QPtrDict<FeedGroup>()
+    : QPtrDict<TreeNode>()
     , modified(false)
 {
 }
@@ -40,7 +41,7 @@ Feed *FeedsCollection::addFeed(QListViewItem *item)
     return feed;
 }
 
-FeedGroup *FeedsCollection::addFeedGroup(QListViewItem *item)
+FeedGroup* FeedsCollection::addFeedGroup(QListViewItem *item)
 {
     FeedGroup *feedGroup = new FeedGroup(item, this);
     insert(item, feedGroup);
@@ -51,15 +52,15 @@ FeedGroup *FeedsCollection::addFeedGroup(QListViewItem *item)
 
 void FeedsCollection::removeFeed(QListViewItem *item)
 {
-    FeedGroup *feed = find(item);
-    if (!feed)
+    TreeNode *node = find(item);
+    if (!node)
     {
         KMessageBox::error( 0, i18n("Internal error while removing note.") );
         return;
     }
 
     for (QListViewItemIterator it(item); it.current() && (it.current() == item || it.current()->depth() > item->depth()); ++it)
-        find(it.current())->destroy();
+        delete find(it.current());
     delete item;
     modified = true;
 }

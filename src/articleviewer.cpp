@@ -10,6 +10,7 @@
 #include "feed.h"
 #include "feedgroup.h"
 #include "myarticle.h"
+#include "treenode.h"
 #include "akregatorconfig.h"
 #include "akregator_run.h"
 
@@ -328,7 +329,7 @@ void ArticleViewer::slotClear()
     end();
 }
             
-void ArticleViewer::slotShowNode(FeedGroup* node)
+void ArticleViewer::slotShowNode(TreeNode* node)
 {
     m_viewMode = combinedView;
     

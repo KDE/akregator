@@ -8,6 +8,7 @@
 #include "articlelist.h"
 #include "feed.h"
 #include "myarticle.h"
+#include "treenode.h"
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -124,7 +125,7 @@ void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFi
     }
 }
 
-void ArticleList::slotShowNode(FeedGroup* node)
+void ArticleList::slotShowNode(TreeNode* node)
 {
     kdDebug() << "slotShowNode entered" << endl;
      if (!node)

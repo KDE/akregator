@@ -48,7 +48,7 @@ QString Feed::archiveModeToString(ArchiveMode mode)
    return "globalDefault";
 }
 
-ArticleSequence Feed::articles() const
+ArticleSequence Feed::articles()
 { 
     return m_articles; 
 }
@@ -71,7 +71,7 @@ Feed::ArchiveMode Feed::stringToArchiveMode(QString str)
 
 
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
-    : FeedGroup(i, coll)
+    : TreeNode(i, coll)
     , m_archiveMode(globalDefault) 
     , m_maxArticleAge(60) 
     , m_maxArticleNumber(1000) 
@@ -88,7 +88,7 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
 Feed::~Feed()
 {}
 
-QDomElement Feed::toXml( QDomElement parent, QDomDocument document ) const
+QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
 {
     QDomElement el = document.createElement( "outline" );
     el.setAttribute( "text", title() );
@@ -166,7 +166,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
         }
 }
 
-void Feed::markAllRead()
+void Feed::slotMarkAllArticlesAsRead()
 {
     ArticleSequence::Iterator it;
     ArticleSequence::Iterator en=m_articles.end();
@@ -399,7 +399,7 @@ void Feed::loadFavicon()
     m_transaction->loadIcon(this);
 }
 
-void Feed::deleteExpiredArticles()
+void Feed::slotDeleteExpiredArticles()
 {
     bool changed = false;
     if ( (m_archiveMode == globalDefault && Settings::EnumArchiveMode::limitArticleAge) || m_archiveMode == limitArticleAge )

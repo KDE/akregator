@@ -20,6 +20,7 @@
 #include "viewer.h"
 #include "archive.h"
 #include "feed.h"
+#include "feedgroup.h"
 #include "akregatorconfig.h"
 #include "pageviewer.h"
 #include "articlefilter.h"
@@ -446,9 +447,9 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
 
 void aKregatorView::slotDeleteExpiredArticles()
 {
-    FeedGroup* rootNode = static_cast<FeedGroup *>(m_feeds.find( m_tree->firstChild() ));
+    TreeNode* rootNode = static_cast<TreeNode*>(m_feeds.find( m_tree->firstChild() ));
     if (rootNode)
-        rootNode->deleteExpiredArticles();
+        rootNode->slotDeleteExpiredArticles();
 }
 
 void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
@@ -493,12 +494,12 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
         else
         {
             m_feeds.addFeedGroup(elt);
-            FeedGroup *g = m_feeds.find(elt);
+            TreeNode* node = static_cast<TreeNode*> (m_feeds.find(elt));
 
             elt->setPixmap(0, m_folderTreePixmap);
 
-            if (g)
-                g->setTitle(title);
+            if (node)
+                node->setTitle(title);
 
             elt->setExpandable(true);
             elt->setOpen( e.attribute("isOpen", "true") == "true" ? true : false );
@@ -576,18 +577,18 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
 
     for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
     {
-        FeedGroup *g = m_feeds.find(it);
-        if (g)
+        TreeNode* tn = static_cast<TreeNode*> (m_feeds.find(it));
+        if (tn)
         {
-            if (g->isGroup())
+            if (tn->isGroup())
             {
-                QDomElement base = g->toXml( node, document );
+                QDomElement base = tn->toOPML( node, document );
                 base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
 
                 if (it->firstChild()) // BR#40
                    writeChildNodes( it, base, document );
             } else {
-                g->toXml( node, document );
+                tn->toOPML( node, document );
             }
         }
     }
@@ -625,11 +626,11 @@ void aKregatorView::addFeedToGroup(const QString& url, const QString& group)
             elt = new FeedsTreeItem(true, allFeedsFolder, group);
 
         m_feeds.addFeedGroup(elt);
-        FeedGroup *g = m_feeds.find(elt);
-        if (g)
-            g->setTitle( group );
+        TreeNode* node = m_feeds.find(elt);
+        if (node)
+            node->setTitle( group );
 
-        item = g->item();
+        item = node->item();
     }
     // Locate last feed (or folder) in the group.
     lastChild = item->firstChild();
@@ -650,10 +651,9 @@ void aKregatorView::slotNormalView()
     if (m_viewMode==CombinedView)
     {
         m_articles->show();
-        // tell articleview to redisplay+reformat
+ 
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
         if (item)
-             //     if (!feed->isGroup()) // What's that if good for? -fo
             m_articleViewer->slotShowArticle(item->article());
         else 
             m_articleViewer->slotClear();
@@ -675,9 +675,7 @@ void aKregatorView::slotWidescreenView()
         // tell articleview to redisplay+reformat
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
         if (item)
-        
-           // if (!feed->isGroup()) // what's that if good for? -fo
-                m_articleViewer->slotShowArticle(item->article());
+            m_articleViewer->slotShowArticle(item->article());
         else
             m_articleViewer->slotClear();
     }
@@ -780,15 +778,15 @@ void aKregatorView::slotTabCaption(const QString &capt)
 
 void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoint& p)
 {
-   FeedGroup *feed = static_cast<FeedGroup *>(m_feeds.find(item));
+   TreeNode* node = m_feeds.find(item);
 
-   if (!feed)
+   if (!node)
        return;
 
    m_tabs->showPage(m_mainTab);
 
    QWidget *w;
-   if (feed->isGroup())
+   if (node->isGroup())
       w = m_part->factory()->container("feedgroup_popup", m_part);
    else
       w = m_part->factory()->container("feeds_popup", m_part);
@@ -798,7 +796,7 @@ void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoin
 
 void aKregatorView::slotItemChanged(QListViewItem *item)
 {
-    FeedGroup* node = m_feeds.find(item);
+    TreeNode* node = static_cast<TreeNode*> (m_feeds.find(item));
     
     m_tabs->showPage(m_mainTab);
     
@@ -906,7 +904,8 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
 
 void aKregatorView::slotFeedAddGroup()
 {
-    if (!m_tree->currentItem() || m_feeds.find(m_tree->currentItem())->isGroup() == false)
+    TreeNode* node = static_cast<TreeNode*> (m_feeds.find(m_tree->currentItem()));
+    if (!m_tree->currentItem() || node->isGroup() == false)
     {
         KMessageBox::error(this, i18n("You have to choose a folder before adding a subfolder."));
         return;
@@ -932,9 +931,9 @@ void aKregatorView::slotFeedAddGroup()
     elt->setOpen(true);
 
     m_feeds.addFeedGroup(elt);
-    FeedGroup *g = m_feeds.find(elt);
-    if (g)
-        g->setTitle( text );
+    node = m_feeds.find(elt);
+    if (node)
+        node->setTitle( text );
 
     m_tree->ensureItemVisible(elt);
 
@@ -972,16 +971,17 @@ void aKregatorView::slotFeedModify()
 {
     kdDebug() << k_funcinfo << "BEGIN" << endl;
 
-    FeedGroup *g = m_feeds.find(m_tree->currentItem());
-    if (g->isGroup())
+    TreeNode* node = static_cast<TreeNode*> (m_feeds.find(m_tree->currentItem()));
+    if (node->isGroup())
     {
         m_tree->currentItem()->setRenameEnabled(0, true);
         m_tree->currentItem()->startRename(0);
         return;
     }
 
-    Feed *feed = static_cast<Feed *>(g);
-    if (!feed) return;
+    Feed *feed = static_cast<Feed *>(node);
+    if (!feed) 
+        return;
 
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
 
@@ -1059,7 +1059,7 @@ void aKregatorView::markAllRead(QListViewItem *item)
         if (!f->isGroup())
         {
             //kdDebug() << k_funcinfo << "item " << f->title() << endl;
-            f->markAllRead();
+            f->slotMarkAllArticlesAsRead();
             FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(item);
             if (fti)
                 fti->setUnread(0);
@@ -1069,8 +1069,8 @@ void aKregatorView::markAllRead(QListViewItem *item)
         }
         else
         {
-            FeedGroup *g = m_feeds.find(item);
-            if (!g)
+            TreeNode* node = m_feeds.find(item);
+            if (!node)
                 return;
             //kdDebug() << k_funcinfo << "group " << g->title() << endl;
             for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
@@ -1095,15 +1095,15 @@ void aKregatorView::fetchItem(QListViewItem *item)
     kdDebug() << "enter fetchItem" << endl;
     if (item)
     {
-        FeedGroup *fg = m_feeds.find(item);
-        if (fg && fg->isGroup())
+        TreeNode* node = static_cast<TreeNode*> (m_feeds.find(item));
+        if (node && node->isGroup())
         {
             for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
                 fetchItem(it);
         }
         else
         {
-            Feed *f = static_cast<Feed *>(fg);
+            Feed *f = static_cast<Feed *>(node);
             if (f)
                 m_transaction->fetch(f);
         }
@@ -1420,9 +1420,7 @@ void aKregatorView::stopLoading()
 
 void aKregatorView::readProperties(KConfig* config)
 {
-    // delete expired articles
     slotDeleteExpiredArticles();
-        
     // read filter settings 
     
     m_searchLine->setText(config->readEntry("searchLine"));

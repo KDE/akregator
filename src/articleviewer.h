@@ -23,6 +23,7 @@ namespace Akregator
     class Feed;
     class FeedGroup;
     class MyArticle;
+    class TreeNode;
     
     class ArticleViewer : public Viewer
     {
@@ -41,7 +42,7 @@ namespace Akregator
             /** show single article (normal view) **/
             void slotShowArticle(const MyArticle& article);
             /** show all articles of node (combined view **/
-            void slotShowNode(FeedGroup* node);
+            void slotShowNode(TreeNode* node);
             /** set filters for combined view **/    
             void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
             /** update view if combined view set. For node and filter changes **/ 
@@ -64,7 +65,7 @@ namespace Akregator
             QPaintDeviceMetrics m_metrics;
             QString m_currentText;
             QString m_imageDir;
-            FeedGroup* m_node;
+            TreeNode* m_node;
             ArticleFilter m_textFilter; // these could be more general, so it could be used for search folders
             ArticleFilter m_statusFilter;
             enum ViewMode { normalView, combinedView };

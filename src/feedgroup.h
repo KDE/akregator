@@ -7,7 +7,9 @@
 #ifndef AKREGATORFEEDGROUP_H
 #define AKREGATORFEEDGROUP_H
 
-#include <qobject.h>
+#include "treenode.h"
+
+#include "qptrdict.h"
 
 class QListViewItem;
 class QDomDocument;
@@ -15,50 +17,37 @@ class QDomElement;
 
 namespace Akregator
 {
+    
     class ArticleSequence;
     class FeedsCollection;
     
     /**
-     * This is a dummy feed used to represent feed groups.
+     * This represents feed groups
      */
-    class FeedGroup : public QObject
+    class FeedGroup : public TreeNode
     {
         Q_OBJECT
         public:
             FeedGroup(QListViewItem *i, FeedsCollection *coll);
             ~FeedGroup();
 
-            void destroy();
-
+            virtual ArticleSequence articles();
+            virtual int unread() const;
+                       
+            /** helps the rest of the app to decide if node should be handled as group or not. Use only where necessary, use polymorphism where possible **/
             virtual bool isGroup() const { return true; }
-
-            virtual QDomElement toXml( QDomElement parent, QDomDocument document ) const;
-
-            QString title() const { return m_title; }
-            void setTitle(const QString &title);
-
-            QListViewItem *item() { return m_item; }
-            void setItem(QListViewItem *i);
             
-            FeedsCollection *collection() { return m_collection;}
-            void setCollection(FeedsCollection *);
-     
-            virtual ArticleSequence articles() const;
-            
-            signals:       
-                
-            void signalDestroyed();    
-            void signalChanged();
+            virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
 
         public slots:
             
-            virtual void deleteExpiredArticles();                
-        private:
-            QString           m_title;        ///< Feed/Group title
-
-            QListViewItem    *m_item;         ///< Corresponding list view item.
-            FeedsCollection  *m_collection;   ///< Parent collection.
-     
+            virtual void slotDeleteExpiredArticles();                
+            virtual void slotMarkAllArticlesAsRead();
+            //virtual void slotFetch(int timeout);    
+            //virtual void slotAbortFetch();
+    
+        protected:
+            QPtrDict<TreeNode> m_children;
     };
 };
 

@@ -15,10 +15,7 @@
 using namespace Akregator;
 
 FeedGroup::FeedGroup(QListViewItem *i, FeedsCollection *coll)
-    : QObject(0, "some_random_name")
-    , m_title()
-    , m_item(i)
-    , m_collection(coll)
+    : TreeNode(i, coll)
 {
 }
 
@@ -27,57 +24,57 @@ FeedGroup::~FeedGroup()
     emit signalDestroyed();
 }
 
-void FeedGroup::destroy()
-{
-   if (m_collection)
-    m_collection->remove(m_item);
-   delete this;
-}
-
-
-void FeedGroup::setTitle(const QString &title)
-{
-    m_title = title;
-    if (m_item)
-        m_item->setText(0, title);
-}
-
-ArticleSequence FeedGroup::articles() const
+ArticleSequence FeedGroup::articles()
 {
     ArticleSequence seq;
     for (QListViewItem* i = m_item->firstChild(); i; i = i->nextSibling() )
     {
-        FeedGroup* fg = static_cast<FeedGroup*> (m_collection->find(i));
-        seq += fg->articles();
+        TreeNode* child = static_cast<TreeNode*> (m_collection->find(i));
+        seq += child->articles();
     }    
      return seq;
+     // iterate through m_children later
 }
 
-void FeedGroup::setItem(QListViewItem *i)
-{
-    m_item=i;
-}
-    
-void FeedGroup::setCollection(FeedsCollection *c)
-{
-    m_collection=c;
-}
-
-QDomElement FeedGroup::toXml( QDomElement parent, QDomDocument document ) const
+QDomElement FeedGroup::toOPML( QDomElement parent, QDomDocument document ) const
 {
     QDomElement el = document.createElement( "outline" );
     el.setAttribute( "text", title() );
     parent.appendChild( el );
     return el;
+    
+    // iterate through m_children later
 }
 
-void FeedGroup::deleteExpiredArticles()
+int FeedGroup::unread() const
+{
+    int unread = 0;
+    for (QListViewItem* i = m_item->firstChild(); i; i = i->nextSibling() )
+    {
+        TreeNode* child = static_cast<TreeNode*> (m_collection->find(i));
+        unread += child->unread();
+    }
+    return unread;
+}
+
+void FeedGroup::slotMarkAllArticlesAsRead() 
 {
     for (QListViewItem* i = m_item->firstChild(); i; i = i->nextSibling() )
     {
-        FeedGroup* fg = static_cast<FeedGroup*> (m_collection->find(i));
-        fg->deleteExpiredArticles();
-    }    
+        TreeNode* child = static_cast<TreeNode*> (m_collection->find(i));
+        child->slotMarkAllArticlesAsRead();
+    }
+}    
+
+void FeedGroup::slotDeleteExpiredArticles()
+{
+    for (QListViewItem* i = m_item->firstChild(); i; i = i->nextSibling() )
+    {
+        TreeNode* child = static_cast<TreeNode*> (m_collection->find(i));
+        child->slotDeleteExpiredArticles();
+    }
+    
+    // iterate through m_children later    
 }
 
 #include "feedgroup.moc"
