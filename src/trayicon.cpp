@@ -25,6 +25,7 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
 {
     m_defaultIcon=KSystemTray::loadIcon("akregator");
     m_lightIconImage=m_defaultIcon.convertToImage();
+    KIconEffect::toGamma(m_lightIconImage, 0.95);
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
     QToolTip::add(this, i18n("aKregator"));
@@ -91,13 +92,13 @@ void TrayIcon::updateUnread(int unread)
         float pointSize=f.pointSizeFloat();
         QFontMetrics fm(f);
         int w=fm.width(uStr);
-        if( w > (oldW-3) )
+        if( w > (oldW) )
         {
-            pointSize *= float(oldW-3) / float(w);
+            pointSize *= float(oldW) / float(w);
             f.setPointSizeFloat(pointSize);
         }
 
-        /*QPixmap pix(oldW, oldH);
+        QPixmap pix(oldW, oldH);
         pix.fill(Qt::white);
         QPainter p(&pix);
         p.setFont(f);
@@ -109,19 +110,10 @@ void TrayIcon::updateUnread(int unread)
 
         // overlay
         QImage overlayImg=m_lightIconImage.copy();
-        KIconEffect::overlay(overlayImg, img);*/
+        KIconEffect::overlay(overlayImg, img);
 
-        /*QPixmap icon;
-        icon.convertFromImage(overlayImg);
-        setPixmap(icon);*/
-
-        QImage overlayImg=m_lightIconImage.copy();
         QPixmap icon;
         icon.convertFromImage(overlayImg);
-        QPainter p( &icon );
-        p.setFont( f );
-        p.setPen( Qt::blue );
-        p.drawText( icon.rect(), Qt::AlignCenter, uStr );
         setPixmap(icon);
     }
 
