@@ -46,7 +46,7 @@ void BrowserRun::foundMimeType( const QString & type )
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml"  )
         m_viewer->openPage(url());
     else
-        KParts::BrowserRun::foundMimeType( type );
+        KParts::BrowserRun::handleNonEmbeddable( type );
 }
 
 #include "akregator_run.moc"

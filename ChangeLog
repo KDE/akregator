@@ -6,6 +6,7 @@ Changes after 1.0
 -----------------------------
 
 Bug fixes:
+        - show open|save|cancel dialog for non-html links (101274)
 	- make forms work again (regression) #94964 -fo
 
 Changes after 1.0b9:
