@@ -105,7 +105,7 @@ void Feed::markAllRead()
 
 void Feed::appendArticles(const Document &d, bool findDups)
 {
-//    kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
+    //kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
     findDups=true;
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
@@ -127,9 +127,9 @@ void Feed::appendArticles(const Document &d, bool findDups)
                 }
                 appendArticle(mya);
             }
-            /*else{
-            kdDebug() << "got dup!!"<<mya.title()<<endl;
-            }*/
+            //else{
+            //kdDebug() << "got dup!!"<<mya.title()<<endl;
+            //}
         }
         else
         {

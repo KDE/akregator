@@ -15,7 +15,10 @@
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
 
+#include "akregator_part.h"
+
 class KToggleAction;
+class KProgress;
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -47,6 +50,7 @@ public:
      */
     virtual void closeEvent(QCloseEvent* e);
 
+    virtual void fontChange(const QFont &);
 protected:
     /**
      * This method is called when it is time for the app to save its
@@ -73,17 +77,19 @@ private slots:
 
     void quitProgram();
     void partChanged(KParts::Part *p);
-
+    void loadingProgress ( int percent );
+    
 private:
     void setupAccel();
     void setupActions();
 
 private:
-    KParts::ReadWritePart *m_part;
+    Akregator::aKregatorPart *m_part;
 
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
-
+    KProgress *m_progressBar;
+    
     bool m_quit;
 };
 

@@ -20,6 +20,7 @@
 #include "pageviewer.h"
 #include "tabwidget.h"
 
+#include <kapplication.h>
 #include <kfiledialog.h>
 #include <kfileitem.h>
 #include <kinputdialog.h>
@@ -52,7 +53,6 @@
 #include <qvaluevector.h>
 #include <qgrid.h>
 #include <qtooltip.h>
-
 
 using namespace Akregator;
 
@@ -201,11 +201,16 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         reset();
         parent = m_tree->firstChild();
     }
-
+    
+    int numNodes=body.childNodes().count();
+    int curNodes=0;
+    
     QDomNode n = body.firstChild();
     while( !n.isNull() )
     {
         parseChildNodes(n, parent);
+        curNodes++;
+        m_part->setProgress((int)100*((double)curNodes/(double)numNodes));
         n = n.nextSibling();
     }
 
@@ -251,7 +256,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 
             elt->setOpen( e.attribute("isOpen", "true") == "true" ? true : false );
         }
-
+    
+        kapp->processEvents();
+        
         if (e.hasChildNodes())
         {
             QDomNode child = e.firstChild();
@@ -764,10 +771,10 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 {
     // Feed finished fetching
     // If its a currenly selected feed, update view
-    kdDebug() << k_funcinfo << "BEGIN" << endl;
+    //kdDebug() << k_funcinfo << "BEGIN" << endl;
     if (feed->item() == m_tree->currentItem())
     {
-        kdDebug() << k_funcinfo << "Updating article list" << endl;
+        //kdDebug() << k_funcinfo << "Updating article list" << endl;
         slotUpdateArticleList(feed, false, true);
     }
 
@@ -783,7 +790,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 
 //    m_part->setModified(true); // FIXME reenable when article storage is implemented
 
-    kdDebug() << k_funcinfo << "END" << endl;
+    //kdDebug() << k_funcinfo << "END" << endl;
 }
 
 void aKregatorView::slotArticleSelected(QListViewItem *i)

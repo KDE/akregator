@@ -9,6 +9,7 @@
 #define _AKREGATORPART_H_
 
 #include <kparts/part.h>
+#include <kparts/browserextension.h>
 #include <kaboutdata.h>
 #include <kaction.h>
 
@@ -16,6 +17,7 @@ namespace Akregator
 {
     class aKregatorView;
 }
+
 
 namespace Akregator
 {
@@ -61,7 +63,12 @@ namespace Akregator
             void changePart(KParts::Part *p);
 
             void setStatusBar(const QString &text);
-
+            void setProgress(int percent);
+                
+            virtual bool openURL(const KURL& url);
+            
+            KParts::BrowserExtension *extension;
+            
         protected:
             /**
              * This must be implemented by each part
@@ -72,8 +79,6 @@ namespace Akregator
              * This must be implemented by each read-write part
              */
             virtual bool saveFile();
-
-            virtual bool openURL(const KURL& url);
 
             void importFile(QString file_name);
 

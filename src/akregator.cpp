@@ -11,8 +11,10 @@
 
 #include <kkeydialog.h>
 #include <kfiledialog.h>
+#include <kprogress.h>
 #include <kconfig.h>
 #include <kurl.h>
+#include <kparts/browserextension.h>
 
 #include <kedittoolbar.h>
 
@@ -23,6 +25,7 @@
 #include <kmessagebox.h>
 #include <kstatusbar.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 using namespace Akregator;
 
@@ -39,6 +42,11 @@ aKregator::aKregator()
     // and a status bar
     statusBar()->show();
 
+    m_progressBar = new KProgress( this );
+    m_progressBar->setMaximumHeight(fontMetrics().height());
+    m_progressBar->hide();
+    statusBar()->addWidget( m_progressBar, 0, true);
+
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
@@ -47,7 +55,7 @@ aKregator::aKregator()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadWritePart *>(factory->create(this,
+        m_part = static_cast<aKregatorPart*>(factory->create(this,
                                 "akregator_part", "KParts::ReadWritePart" ));
 
         if (m_part)
@@ -56,6 +64,8 @@ aKregator::aKregator()
             setCentralWidget(m_part->widget());
 
             connect (m_part, SIGNAL(partChanged(KParts::Part *)), this, SLOT(partChanged(KParts::Part *)));
+            connect( m_part->extension, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
 
@@ -95,6 +105,9 @@ void aKregator::partChanged(KParts::Part *p)
 {
     createGUI(p);
 }
+
+
+
 
 void aKregator::load(const KURL& url)
 {
@@ -239,6 +252,28 @@ void aKregator::quitProgram()
     // will call queryClose()
     m_quit = true;
     close();
+}
+
+// from KonqFrameStatusBar
+void aKregator::fontChange(const QFont & /* oldFont */)
+{
+    int h = fontMetrics().height();
+    if ( h < 13 ) h = 13;
+    m_progressBar->setFixedHeight( h + 2 );
+
+}
+
+void aKregator::loadingProgress(int percent) 
+{
+    if ( percent != -1 && percent != 100 ) // hide on 100 too
+    {
+        if ( !m_progressBar->isVisible() )
+            m_progressBar->show();
+    }
+    else
+        m_progressBar->hide();
+
+    m_progressBar->setValue( percent );
 }
 
 void aKregator::closeEvent(QCloseEvent* e)

@@ -10,6 +10,7 @@
 #include "akregatorconfig.h"
 
 #include <kparts/genericfactory.h>
+#include <kapplication.h>
 #include <kinstance.h>
 #include <kaction.h>
 #include <kactionclasses.h>
@@ -33,7 +34,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setInstance( aKregatorFactory::instance() );
 
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
-
+    extension=new KParts::BrowserExtension(this, "ak_extension");
+    
     // notify the part that this is our internal widget
     setWidget(m_view);
 
@@ -122,6 +124,10 @@ void aKregatorPart::setStatusBar(const QString &text)
    emit setStatusBarText(text);
 }
 
+void aKregatorPart::setProgress(int percent)
+{
+    emit extension->loadingProgress(percent); 
+}
 
 /*************************************************************************************************/
 /* LOAD                                                                                          */
@@ -140,6 +146,9 @@ bool aKregatorPart::openFile()
     if (file.open(IO_ReadOnly) == false)
         return false;
 
+    setProgress(0);
+    kapp->processEvents();
+    
     // Read OPML feeds list and build QDom tree.
     QTextStream stream(&file);
     stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
