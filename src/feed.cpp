@@ -86,24 +86,26 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
 
 void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
 {
+    QDomElement channode = doc.createElement( "channel" );
+    parent.appendChild(channode);
     QDomElement tnode = doc.createElement( "title" );
     QDomText t=doc.createTextNode( title() );
     tnode.appendChild(t);
-    parent.appendChild(tnode);
+    channode.appendChild(tnode);
+    
     if (!htmlUrl.isEmpty())
     {
         QDomElement lnode = doc.createElement( "link" );
-        lnode.setAttribute("rel","alternate");
-        lnode.setAttribute("type","text/html");
-        lnode.setAttribute("href",htmlUrl);
-        parent.appendChild(lnode);
+        QDomText ht=doc.createTextNode( htmlUrl );
+        lnode.appendChild(ht);
+        channode.appendChild(lnode);
     }
 
     ArticleSequence::ConstIterator it;
     ArticleSequence::ConstIterator en=articles.end();
     for (it = articles.begin(); it != en; ++it)
     {
-        QDomElement enode = doc.createElement( "entry" );
+        QDomElement enode = doc.createElement( "item" );
         (*it).dumpXmlData(enode, doc);
         parent.appendChild(enode);
     }

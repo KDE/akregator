@@ -7,9 +7,12 @@
 
 #include "myarticle.h"
 #include "librss/tools_p.h"
+
 #include <qdatetime.h>
-#include <kurl.h>
 #include <qregexp.h>
+
+#include <krfcdate.h>
+#include <kurl.h>
 
 using namespace Akregator;
 using namespace RSS;
@@ -121,22 +124,28 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
     tnode.appendChild(t);
     parent.appendChild(tnode);
 
-    if (!link().isValid())
+    if (link().isValid())
     {
         QDomElement lnode = doc.createElement( "link" );
-        lnode.setAttribute("rel","alternate");
-        lnode.setAttribute("type","text/html");
-        lnode.setAttribute("href",link().url());
+        QDomText ht=doc.createTextNode(link().url());
+        lnode.appendChild(ht);
         parent.appendChild(lnode);
     }
 
     if (!description().isEmpty())
     {
-        QDomElement snode = doc.createElement( "summary" );
-        snode.setAttribute("type","text/plain");
-        QDomText dt=doc.createTextNode( description() );
+        QDomElement snode = doc.createElement( "description" );
+        QDomCDATASection dt=doc.createCDATASection( description() );
         snode.appendChild(dt);
         parent.appendChild(snode);
+    }
+    
+    if (pubDate().isValid())
+    {
+        QDomElement pnode = doc.createElement( "pubDate" );
+        QDomText dat=doc.createTextNode(KRFCDate::rfc2822DateString(pubDate().toTime_t()));
+        pnode.appendChild(dat);
+        parent.appendChild(pnode);
     }
 }
 

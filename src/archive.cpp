@@ -81,9 +81,8 @@ void Archive::save(Feed *f)
     QTextStream stream( &file );
     
     QDomDocument doc;
-    QDomElement root = doc.createElement( "feed" );
-    root.setAttribute("version","0.3");
-    root.setAttribute("xmlns","http://purl.org/atom/ns#");
+    QDomElement root = doc.createElement( "rss" );
+    root.setAttribute("version","2.0");
     doc.appendChild( root );
     f->dumpXmlData( root, doc);
     
