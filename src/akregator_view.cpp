@@ -1143,7 +1143,7 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
 {
     if (!url.isValid()) return;
     if (Settings::externalBrowserUseKdeDefault())
-        KRun::runURL(url, "text/html", false, false);
+        kapp->invokeBrowser(url.url(), "0");
     else
     {
         QString cmd = Settings::externalBrowserCustomCommand();

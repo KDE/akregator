@@ -90,7 +90,13 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
 {
    if (!url.isValid()) return;
    if (Settings::externalBrowserUseKdeDefault())
-       KRun::runURL(url, mimetype, false, false);
+   {
+       if (mimetype.isEmpty()) {
+           kapp->invokeBrowser(url.url(), "0");
+       } else {
+           KRun::runURL(url, mimetype, false, false);
+       }
+   }
    else
    {
        QString cmd = Settings::externalBrowserCustomCommand();
@@ -111,7 +117,7 @@ bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
     
    if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
    {
-       displayInExternalBrowser(url, "text/html");
+       displayInExternalBrowser(url, QString::null);
        return true;
    }
    
@@ -172,7 +178,7 @@ void Viewer::slotOpenLinkInternal()
 void Viewer::slotOpenLinkExternal()
 {
    if (m_url.isEmpty()) return;
-   displayInExternalBrowser(m_url, "text/html");
+   displayInExternalBrowser(m_url, QString::null);
 }
 
 void Viewer::slotStarted(KIO::Job *)
