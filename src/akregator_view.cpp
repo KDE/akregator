@@ -718,6 +718,7 @@ void aKregatorView::slotTabCaption(const QString &capt)
     {
         PageViewer *pv=(PageViewer *)sender();
         m_tabs->setTitle(capt, pv->widget());
+        pv->slotSetCaption(capt);
     }
 }
 

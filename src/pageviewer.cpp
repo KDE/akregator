@@ -11,6 +11,8 @@
 
 #include <kaction.h>
 #include <kapplication.h>
+#include <kbookmark.h>
+#include <kbookmarkmanager.h>
 #include <kglobalsettings.h>
 #include <khtmlview.h>
 #include <kiconloader.h>
@@ -255,6 +257,21 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
     m_stopAction->setEnabled(false);
 }
 
+
+void PageViewer::slotSetCaption(const QString& cap) {
+    m_caption = cap;
+}
+
+
+void PageViewer::slotGlobalBookmarkArticle()
+{
+    KBookmarkManager *mgr = KBookmarkManager::userBookmarksManager();
+    KBookmarkGroup grp = mgr->root();
+    grp.addBookmark(mgr, m_caption, toplevelURL());
+    mgr->save();
+}
+
+
 void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
     m_url = kurl;
@@ -319,6 +336,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         KAction *ac = action("setEncoding");
         if (ac)
             ac->plug(&popup);
+        popup.insertItem(SmallIcon("bookmark_add"),i18n("Add to Konqueror Bookmarks"), this, SLOT(slotGlobalBookmarkArticle()));
     }
     
     int r = popup.exec(p);

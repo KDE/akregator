@@ -50,6 +50,7 @@ namespace Akregator
             void slotForward();
             void slotReload();
             void slotStop();
+	    void slotSetCaption(const QString& cap);
 
         protected:
 
@@ -65,6 +66,7 @@ namespace Akregator
             virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
             void slotCopy();
             void slotSelectionChanged();
+	    void slotGlobalBookmarkArticle();
             
         private:
             QValueList<PageViewerHistoryEntry> m_history;
@@ -78,6 +80,7 @@ namespace Akregator
             KAction* m_copyAction;
 
             bool m_restoring;
+	    QString m_caption;
             
         private slots:
             bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
