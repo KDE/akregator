@@ -218,14 +218,18 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
     if (root.tagName().lower() != "opml")
         return false;
 
-    // we ignore <head> and only parse <body> part
-    QDomNodeList list = root.elementsByTagName("body");
-    if (list.count() != 1)
-        return false;
+    QDomNode bodyNode = root.firstChild();
+    while (!bodyNode.isNull() &&
+           bodyNode.toElement().tagName().lower() != "body") {
+        bodyNode = bodyNode.nextSibling();
+    }
 
-    QDomElement body = list.item(0).toElement();
-    if (body.isNull())
+    if (bodyNode.isNull()) {
+        kdDebug() << "Failed to acquire body node, markup broken?" << endl;
         return false;
+    }
+
+    QDomElement body = bodyNode.toElement();
 
     if (!parent)
     {
@@ -246,6 +250,7 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         n = n.nextSibling();
     }
     m_tree->setUpdatesEnabled(true);
+    m_tree->triggerUpdate();
 
     return true;
 }
