@@ -10,20 +10,21 @@
 
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
-#include <kaboutdata.h>
-#include <kaction.h>
 #include <kurl.h>
 
 #include "akregator_partiface.h"
-#include "myarticle.h"
 
 class KParts::BrowserExtension;
+class KAboutData;
+class KConfig;
+class KRecentFilesAction;
 
 namespace Akregator
 {
     class aKregatorView;
     class aKregatorPart;
     class Feed;
+    class MyArticle;
 
     class BrowserExtension : public KParts::BrowserExtension
     {

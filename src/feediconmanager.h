@@ -8,13 +8,14 @@
 #ifndef FEEDICONMGR_H
 #define FEEDICONMGR_H
 
-#include <qobject.h>
-#include <qpixmap.h>
-
 #include <dcopobject.h>
-#include <kurl.h>
+
+#include <qobject.h>
+
+class QPixmap;
 
 class DCOPClient;
+class KURL;
 
 
 namespace Akregator

@@ -15,12 +15,13 @@
 #include <qpaintdevicemetrics.h>
 
 #include "viewer.h"
-#include "myarticle.h"
+
 
 namespace Akregator
 {
     class Feed;
-
+    class MyArticle;
+    
     class ArticleViewer : public Viewer
     {
         Q_OBJECT

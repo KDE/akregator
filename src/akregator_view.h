@@ -15,19 +15,18 @@
 #include <qwidget.h>
 #include <qpixmap.h>
 #include <kurl.h>
-#include <qtimer.h>
-
 
 class QSplitter;
 class QDomDocument;
 class QDomElement;
 class QToolButton;
 class QListViewItem;
-class KListViewItem;
-class KListView;
-class KFileItem;
 class KComboBox;
+class KConfig;
+class KFileItem;
 class KLineEdit;
+class KListView;
+class KListViewItem;
 
 namespace Akregator
 {
@@ -41,10 +40,7 @@ namespace Akregator
     class ArticleFilter;
     class TabWidget;
     class Frame;
-}
 
-namespace Akregator
-{
     /**
      * This is a RSS Aggregator "Part". It does all the real work.
      * It is also embeddable into other applications (e.g. for use in Kontact).

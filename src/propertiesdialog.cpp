@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "feed.h"
 #include "propertiesdialog.h"
 
 #include <kcombobox.h>

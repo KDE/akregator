@@ -8,6 +8,7 @@
 #ifndef AKREGATORARCHIVE_H
 #define AKREGATORARCHIVE_H
 
+#include "akregatorconfig.h"
 namespace Akregator
 {
     class Feed;

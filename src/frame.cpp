@@ -6,9 +6,11 @@
  ***************************************************************************/
 
 #include "frame.h"
+
+#include <kactioncollection.h>
 #include <kdebug.h>
 #include <kparts/browserextension.h>
-#include <kactioncollection.h>
+
 
 using namespace Akregator;
 

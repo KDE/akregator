@@ -8,11 +8,11 @@
 #ifndef AKREGATORMYARTICLE_H
 #define AKREGATORMYARTICLE_H
 
-#include <qdom.h>
-
 #include "librss/article.h" /* <rss/article.h> */
 
 class KURLLabel;
+class QDomDocument;
+class QDomElement;
 class QWidget;
 
 using namespace RSS;

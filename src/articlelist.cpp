@@ -7,6 +7,7 @@
 
 #include "articlelist.h"
 #include "feed.h"
+#include "myarticle.h"
 
 #include <kdebug.h>
 #include <kglobal.h>

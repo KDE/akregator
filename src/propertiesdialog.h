@@ -8,7 +8,6 @@
 #define AKREGATORPROPDIALOG_H
 
 #include "propertieswidgetbase.h"
-#include "feed.h"
 
 #include <kdialogbase.h>
 

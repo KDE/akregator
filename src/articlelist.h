@@ -7,13 +7,13 @@
 #ifndef AKREGATORARTICLELIST_H
 #define AKREGATORARTICLELIST_H
 
-#include "myarticle.h"
 #include <klistview.h>
 
 namespace Akregator
 {
     class Feed;
-
+    class MyArticle;
+    
     class ArticleListItem : public KListViewItem
     {
         public:

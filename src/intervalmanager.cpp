@@ -11,6 +11,7 @@
 #include <qdatetime.h>
 #include <qfile.h>
 #include <qtextstream.h>
+#include <qtimer.h>
 
 #include <kdebug.h>
 #include <kstandarddirs.h>

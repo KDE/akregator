@@ -13,8 +13,8 @@
 #include <qimage.h>
 #include <qpixmap.h>
 
-#include "balloon.h"
-
+class Balloon;
+    
 namespace Akregator
 {
     class TrayIcon : public KSystemTray

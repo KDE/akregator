@@ -5,9 +5,11 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "akregatorconfig.h"
 #include "feed.h"
-#include "fetchtransaction.h"
 #include "feedscollection.h"
+#include "fetchtransaction.h"
+
 
 #include <kurl.h>
 #include <kdebug.h>

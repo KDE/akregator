@@ -8,8 +8,9 @@
 #ifndef FRAME_H
 #define FRAME_H
 
-#include <qobject.h>
 #include <kparts/part.h>
+
+#include <qobject.h>
 
 namespace Akregator
 {

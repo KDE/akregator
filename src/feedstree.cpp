@@ -6,15 +6,15 @@
  ***************************************************************************/
 #include "feedstree.h"
 
-#include <kurldrag.h>
-#include <klocale.h>
 #include <kdebug.h>
+#include <klocale.h>
 #include <kstringhandler.h>
+#include <kurldrag.h>
 
-#include <qwhatsthis.h>
-#include <qpainter.h>
 #include <qfont.h>
 #include <qheader.h>
+#include <qpainter.h>
+#include <qwhatsthis.h>
 
 using namespace Akregator;
 

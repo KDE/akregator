@@ -5,8 +5,9 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
-#include "trayicon.h"
 #include "akregatorconfig.h"
+#include "balloon.h"
+#include "trayicon.h"
 
 #include <kwin.h>
 #include <kiconeffect.h>
@@ -18,6 +19,7 @@
 #include <qpainter.h>
 #include <qfont.h>
 #include <qtooltip.h>
+
 
 using namespace Akregator;
 

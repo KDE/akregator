@@ -9,12 +9,12 @@
 #define AKREGATORFEED_H
 
 #include <qpixmap.h>
+#include <qstring.h>
 #include <kurl.h>
 
 #include "feedgroup.h"
 #include "librss/librss.h" /* <rss/librss> ! */
 #include "myarticle.h"
-#include "akregatorconfig.h"
 
 using namespace RSS;
 

@@ -8,11 +8,13 @@
 #include "feediconmanager.h"
 
 #include <dcopclient.h>
-
-#include <kdebug.h>
 #include <kapplication.h>
+#include <kdebug.h>
 #include <kstandarddirs.h>
+#include <kurl.h>
+
 #include <qpixmap.h>
+
 
 using namespace Akregator;
 

@@ -8,10 +8,11 @@
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 
+#include "frame.h"
+
 #include <ktabwidget.h>
 
 #include <qptrdict.h>
-#include "frame.h"
 
 namespace Akregator
 {

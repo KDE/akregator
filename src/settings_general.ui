@@ -31,7 +31,7 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QLayoutWidget" row="1" column="0">
+                <widget class="QLayoutWidget" row="3" column="0">
                     <property name="name">
                         <cstring>layout4</cstring>
                     </property>
@@ -74,6 +74,14 @@
                 </widget>
                 <widget class="QCheckBox" row="2" column="0">
                     <property name="name">
+                        <cstring>kcfg_UseIntervalFetch</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Use interval fetching</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="1" column="0">
+                    <property name="name">
                         <cstring>kcfg_UseNotifications</cstring>
                     </property>
                     <property name="text">
@@ -86,20 +94,12 @@
                         <string>Select this if you want to get notified when there are new articles.</string>
                     </property>
                 </widget>
-                <widget class="QCheckBox" row="3" column="0">
+                <widget class="QCheckBox" row="0" column="0">
                     <property name="name">
                         <cstring>kcfg_ShowTrayIcon</cstring>
                     </property>
                     <property name="text">
                         <string>Show tray icon</string>
-                    </property>
-                </widget>
-                <widget class="QCheckBox" row="0" column="0">
-                    <property name="name">
-                        <cstring>kcfg_UseIntervalFetch</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Use interval fetching</string>
                     </property>
                 </widget>
             </grid>

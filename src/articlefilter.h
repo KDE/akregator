@@ -12,18 +12,14 @@
 #ifndef ARTICLEFILTER_H
 #define ARTICLEFILTER_H
 
-#include <qstring.h>
-#include <qvariant.h>
 #include <qvaluelist.h>
-
-#include "myarticle.h"
+#include <qvariant.h>
 
 class KConfig;
 
 namespace Akregator
 {
-
-
+class MyArticle;
            
 class Criterion
 {

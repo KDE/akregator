@@ -8,6 +8,7 @@
 #include "articleviewer.h"
 #include "viewer.h"
 #include "feed.h"
+#include "myarticle.h"
 #include "akregatorconfig.h"
 #include "akregator_run.h"
 

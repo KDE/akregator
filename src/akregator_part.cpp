@@ -9,20 +9,23 @@
 #include "akregator_view.h"
 #include "akregatorconfig.h"
 #include "fetchtransaction.h"
+#include "myarticle.h"
 
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
+#include <kaboutdata.h>
 #include <kapplication.h>
 #include <kinstance.h>
 #include <kaction.h>
 #include <kactionclasses.h>
-
+#include <kconfig.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 
 #include <qfile.h>
+#include <qtimer.h>
 #include <private/qucomextra_p.h>
 
 using namespace Akregator;

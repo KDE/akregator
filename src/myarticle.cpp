@@ -9,6 +9,7 @@
 #include "librss/tools_p.h"
 
 #include <qdatetime.h>
+#include <qdom.h>
 #include <qregexp.h>
 
 #include <krfcdate.h>

@@ -12,6 +12,7 @@
 #include <kiconloader.h>
 #include <kprocess.h>
 #include <kshell.h>
+#include <kurl.h>
 
 #include <qclipboard.h>
 

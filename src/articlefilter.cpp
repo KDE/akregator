@@ -8,6 +8,7 @@
  */
 
 #include "articlefilter.h"
+#include "myarticle.h"
 
 #include <kconfig.h>
 #include <kdebug.h>

@@ -8,8 +8,9 @@
 #ifndef VIEWER_H
 #define VIEWER_H
 
-#include <kurl.h>
 #include <khtml_part.h>
+
+class KURL;
 
 namespace Akregator
 {

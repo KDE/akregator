@@ -9,12 +9,13 @@
 #define INTERVALMGR_H
 
 #include <qobject.h>
-#include <qtimer.h>
 #include <qmap.h>
+
+class QTimer;
 
 namespace Akregator
 {
-    class IntervalManager:public QObject
+    class IntervalManager : public QObject
     {
         Q_OBJECT
         
