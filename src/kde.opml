@@ -1,0 +1,15 @@
+<opml version="1.0" >
+ <head>
+  <text>aKregator Feeds</text>
+ </head>
+ <body>
+  <outline isOpen="true" text="KDE" >
+   <outline htmlUrl="" title="KDE Dot News" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://www.kde.org/dotkdeorg.rdf" text="KDE Dot News" description="" />
+   <outline htmlUrl="" title="KDE-Apps.org Content" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://www.kde.org/dot/kde-apps-content.rdf" text="KDE-Apps.org Content" description="" />
+   <outline htmlUrl="" title="KDE-Look.org Content" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://www.kde.org/kde-look-content.rdf" text="KDE-Look.org Content" description="" />
+   <outline htmlUrl="" title="KDE-Look.org News" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://www.kde.org/kde-look-news.rdf" text="KDE-Look.org News" description="" />
+   <outline htmlUrl="" title="KDE CVS Commits" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://cia.navi.cx/stats/project/kde/.rss" text="KDE CVS Commits" description="" />
+   <outline htmlUrl="" title="KDE Developer's Journals" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://www.kdedevelopers.org/blod/feed" text="KDE Developer's Journals" description="" />
+  </outline>
+ </body>
+</opml>

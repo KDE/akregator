@@ -28,7 +28,7 @@ shelldesktop_DATA = akregator.desktop
 
 # this is where the shell's XML-GUI resource file goes
 shellrcdir = $(kde_datadir)/akregator
-shellrc_DATA = akregator_shell.rc
+shellrc_DATA = akregator_shell.rc kde.opml
 
 #########################################################################
 # KPART SECTION
