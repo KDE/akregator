@@ -58,11 +58,12 @@ namespace Akregator
 
             // -- ATTRIBUTES
             //inherited      title();       ///< Feed title
-            QString          xmlUrl;        ///< URL of RSS feed itself
-            QString          htmlUrl;       ///< URL of HTML page for this feed
+            QString          xmlUrl;        ///< URL of RSS feed itself.
+            QString          htmlUrl;       ///< URL of HTML page for this feed.
             QString          description;   ///< Verbose feed description.
             bool             updateTitle;   ///< Whether to update feed title based on fetched rss.
-            ArticleSequence  articles;      ///< List of all feed articles
+            int              updateInterval;///< Update after updateInterval minutes have passed.
+            ArticleSequence  articles;      ///< List of all feed articles.
 
             QPixmap        image;
             QPixmap        favicon;
@@ -87,7 +88,7 @@ namespace Akregator
             void fetch(bool follow=false);                 ///< Start fetching rss
             void loadFavicon();
             void faviconChanged(const QString &url, const QPixmap &p);
-            
+
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
             void fetchError(Feed *);
