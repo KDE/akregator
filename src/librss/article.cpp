@@ -68,8 +68,12 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 
 	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"))).isNull())
 		d->description = elemText;
-	if (!(elemText = extractNode(node, QString::fromLatin1("pubDate"))).isNull()) {
-		time_t _time = KRFCDate::parseDate(elemText);
+	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull()) {
+		time_t _time;
+		if (format==AtomFeed)
+		   _time = KRFCDate::parseDateISO8601(elemText); 
+		else
+		   _time = KRFCDate::parseDate(elemText);
 		/* \bug This isn't really the right way since it will set the date to
 		 * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
 		 * we cannot distinguish between that date, and invalid values. :-/
