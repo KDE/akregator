@@ -1,0 +1,14 @@
+debian/tmp/usr/bin/akregator
+debian/tmp/usr/lib/kde3/libakregatorpart.*
+debian/tmp/usr/share/applnk/Internet/akregator.desktop
+debian/tmp/usr/share/apps/akregator/akregator_shell.rc
+debian/tmp/usr/share/apps/akregator/kde.opml
+debian/tmp/usr/share/apps/akregatorpart/akregator_part.rc
+debian/tmp/usr/share/apps/akregatorpart/welcome.html
+debian/tmp/usr/share/config.kcfg
+debian/tmp/usr/share/config.kcfg/akregator.kcfg
+debian/tmp/usr/share/doc/kde/HTML/en/akregator/common
+debian/tmp/usr/share/doc/kde/HTML/en/akregator/index.cache.bz2
+debian/tmp/usr/share/doc/kde/HTML/en/akregator/index.docbook
+debian/tmp/usr/share/icons/hicolor/*/apps/akregator.png
+debian/tmp/usr/share/services/akregator_part.desktop

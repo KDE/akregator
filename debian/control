@@ -8,6 +8,16 @@ Standards-Version: 3.6.1
 Package: akregator
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: a KDE RSS Aggregator
- aKregator is KDE RSS aggregator with great look and feel.
+Description: RSS feed aggregator for KDE
+ aKregator is a KDE RSS aggregator. It supports the best known metaphors from
+ existing aggregators. It also facilitates good integration with KDE by
+ maintaining an interface similar to Konqueror and KMail.
+
+Package: akregator-kontact-plugin
+Architecture: any
+Depends: akregator (= ${Source-Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: kontact plugin for aKregator
+ aKregator is a KDE RSS aggregator. It supports the best known metaphors from
+ existing aggregators. It also facilitates good integration with KDE by
+ maintaining an interface similar to Konqueror and KMail.
 
