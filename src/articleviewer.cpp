@@ -48,7 +48,38 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
 
 void ArticleViewer::openDefault()
 {
-    openURL( ::locate( "data", "akregatorpart/welcome.html" ) );
+    QString text= QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
+                        "<html><head><title></title></head><body>\n");
+
+    text += QString("<h1>%1</h1>\n"
+                    "<p>%2</p><ul>\n"
+                    "<li>%3</li><ul>\n"
+                    "<li><b>%4</b>%5</li>\n"
+                    "<li><b>%6</b>%7</li>\n"
+                    "<li><b>%8</b>%9</li>")
+                    .arg(i18n("Welcome to aKregator"))
+                    .arg(i18n("Use the tree to manage your feeds."))
+                    .arg(i18n("Right click a folder, such as \"All Feeds\", and choose:"))
+                    .arg(i18n("Add..."))
+                    .arg(i18n(" to add a new feed to your feed list."))
+                    .arg(i18n("New Folder..."))
+                    .arg(i18n(" to add a new folder to your list."))
+                    .arg(i18n("Edit"))
+                    .arg(i18n(" to edit an existing feed or folder."));
+   
+    text += QString("<li><b>%1</b>%2</li>\n"
+                    "<li><b>%3</b>%4</li></ul></ul>\n"
+                    "<p>%5</p></body></html>")
+                    .arg(i18n("Delete"))
+                    .arg(i18n(" to remove an existing feed or folder."))
+                    .arg(i18n("Fetch"))
+                    .arg(i18n(" to update a feed or folder."))
+                    .arg(i18n("Click \"Fetch All\" to update all feeds."));
+
+    begin();
+    write(text);
+    end();
+
 }
 
 void ArticleViewer::generateCSS()
@@ -264,3 +295,4 @@ void ArticleViewer::slotOpenLinkInternal()
 }
 
 #include "articleviewer.moc"
+// vim: set et ts=4 sts=4 sw=4:
