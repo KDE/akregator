@@ -87,6 +87,10 @@ bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args
     return false;
 }
 
+void PageViewer::slotOpenLinkInNewTab()
+{
+    emit urlClicked(m_url, true);
+}
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotBack()
 {
@@ -266,8 +270,8 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     int idNewWindow = -2;
     if (isLink)
     {
-        idNewWindow = popup.insertItem(SmallIcon("window_new"),i18n("Open in New Tab"));
-        popup.setWhatsThis(idNewWindow, i18n("<b>Open in New Tab</b><p>Opens current link in a new tab."));
+        idNewWindow = popup.insertItem(SmallIcon("window_new"),i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInNewTab()));
+        popup.setWhatsThis(idNewWindow, i18n("<b>Open Link in New Tab</b><p>Opens current link in a new tab."));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
                 
         popup.insertSeparator();
@@ -286,17 +290,18 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     }
     else // we are not on a link
     {
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkExternal()));
-        popup.insertSeparator();
-        
+
         m_backAction->plug( &popup );
         m_forwardAction->plug( &popup );
         m_reloadAction->plug(&popup);
-    //  stopAction->plug(&popup);
+        m_stopAction->plug(&popup);
+
         popup.insertSeparator();
     
         m_copyAction->plug( &popup );
         popup.insertSeparator();
+
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkExternal()));
     
         m_printAction->plug(&popup);
         popup.insertSeparator();

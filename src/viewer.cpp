@@ -107,12 +107,18 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
 
 bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-    kdDebug() << "Viewer: slotOpenURLReq url=="<<url.url()<<endl;
-   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser) {
-       displayInExternalBrowser(url, "text/html"); return true;
+   kdDebug() << "Viewer: slotOpenURLReq url=="<<url.url()<<endl;
+    
+   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
+   {
+       displayInExternalBrowser(url, "text/html");
+       return true;
    }
-   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground) {
-       emit urlClicked(url,true); return true;
+   
+   if( args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground )
+   {
+       emit urlClicked(url,true);
+       return true;
    }
 
    return false;
@@ -127,7 +133,7 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    
    if (!url.isEmpty())
    {
-        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link"), this, SLOT(slotOpenLinkInternal()));
+        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInternal()));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
         popup.insertItem(i18n("Copy Link Address"), this, SLOT(slotCopyToClipboard()));
    }

@@ -81,6 +81,7 @@ namespace Akregator
             
         private slots:
             bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            void slotOpenLinkInNewTab();
             
     };
 }
