@@ -145,52 +145,54 @@ class QSomething;
 
 namespace Akregator {
 
-class Test
+class Test : public QObject
 {
+    Q_OBJECT
+
     public:
-	typedef QValueList<Test> list;
-	
-	Test();
-	Test(QString someString);
-	explicit Test(int i = 0);
-	
-	virtual ~Test();
-	
-	void someFunc();
-	void someFunc2(QSomething *foo);
-	
-	static Test *instance();
-	
+        typedef QValueList<Test> list;
+
+        Test();
+        Test(QString someString);
+        explicit Test(int i = 0);
+
+        virtual ~Test();
+
+        void someFunc();
+        void someFunc2(QSomething *foo);
+
+        static Test *instance();
+
     public slots:
-	void receive(QSomething &);
+        void receive(QSomething &);
 
     signals:
-	void send(QSomething &);
+        void send(QSomething &);
 
     protected:
-	void someProtectedFunc();
-	
-	static void someProtectedStaticFunc();
-	
+        void someProtectedFunc();
+
+        static void someProtectedStaticFunc();
+
     protected slots:
-	void protectedSlot();
-	
+        void protectedSlot();
+
     protected:
-	int protectedVar;
-	
+        int protectedVar;
+
     private:
-	int privateMethod();
-	
-	static int staticPrivateMethod();
-	
+        int privateMethod();
+
+        static int staticPrivateMethod();
+
     private slots:
-	void privateSlotIndeed(int youWonder);
-	
+        void privateSlotIndeed(int youWonder);
+
     private:
-	int privateVar;
-	QSomething *tastyThing;
-	
-	static Test *theInstance;
+        int privateVar;
+        QSomething *tastyThing;
+
+        static Test *theInstance;
 };
 
 } // no ; after namespace (borks on gcc 3.4+)
@@ -198,6 +200,47 @@ class Test
 #endif
 
 test.cpp:
+#include "test.h"
+#include "localinclude.h"
+#include "anotherlocalinclude.h"
+#include <kdeinclude1.h>
+#include <kdeinclude2.h>
+#include <qtinclude1.h>
+#include <qtinclude2.h>
+#include <qsomething.h>
+
+namespace Akregator {
+
+Test::Test()
+    : QObject()
+    , protectedVar(0)
+    , privateVar(0)
+    , tastyThing(0)
+    , theInstance(0)
+{
+}
+
+Test::Test(QString someString)
+    : QObject()
+    , protectedVar(0)
+    , privateVar(0)
+    , tastyThing(someString)
+    , theInstance(0)
+{
+}
+
+Test::Test(int i);
+    : QObject()
+    , protectedVar(0)
+    , privateVar(0)
+    , tastyThing(i)
+    , theInstance(0)
+{
+    if(i == 0)
+        kdDebug() << "Zero initializer" << endl;
+}
+
+} // no ; after namespace (borks on gcc 3.4+)
 
 ================================================================================
 
