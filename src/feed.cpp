@@ -27,13 +27,13 @@ using namespace RSS;
 
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
-    , m_articles()
-    , m_loader(0)
-    , m_transaction(0)
     , m_fetchError(false)
     , m_fetchTries(0)
+    , m_loader(0)
     , m_merged(false)
+    , m_transaction(0)
     , m_unread(0)
+    , m_articles()
 {
 }
 

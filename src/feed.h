@@ -124,12 +124,12 @@ namespace Akregator
             int m_fetchInterval;
             bool m_expiryEnabled; 
             int m_expiryAge; 
+            Document m_document;            
+            bool m_fetchError;
             int m_fetchTries;
             bool m_followDiscovery;
-            bool m_fetchError;
-            Document m_document;            
+            Loader* m_loader;
             bool m_merged;
-	    Loader* m_loader;
 	    FetchTransaction* m_transaction;
             int m_unread;
             
