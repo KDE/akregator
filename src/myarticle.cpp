@@ -75,8 +75,8 @@ bool MyArticle::operator==(const MyArticle &other) const
    if (d->article.link().isValid() && (d->article.link() == other.d->article.link()))
       return true;
 
-   if (d->article.pubDate().isValid() && (d->article.pubDate() == other.d->article.pubDate()))
-           return true;
+   //if (d->article.pubDate().isValid() && (d->article.pubDate() == other.d->article.pubDate()))
+   //        return true;
    //if (pubDate().isValid() && (pubDate() == other.pubDate()))
    //   return true;
 

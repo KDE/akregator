@@ -404,6 +404,11 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
     {
         m_part->actionCollection()->action("feed_add")->setEnabled(true);
         m_part->actionCollection()->action("feed_add_group")->setEnabled(true);
+
+        m_articles->clear();
+        m_articles->setColumnText(0, feed->title());
+        
+        slotUpdateArticleList(feed, false);
     }
     else
     {
@@ -422,10 +427,34 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
 }
 
-void aKregatorView::slotUpdateArticleList(Feed *source, bool onlyUpdateNew)
+// TODO: when we have filtering, change onlyUpdateNew to something else
+void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
+{
+    // XXX: rest of code doesn't work, disable for now..
+    return;
+    kdDebug() << "slotual"<<src->title()<<endl;
+    if (!src->isGroup())
+    {
+        slotUpdateArticleList(static_cast<Feed *>(src), false, onlyUpdateNew);
+    }
+    else
+    {
+        if (src->collection())
+        {
+            QPtrDictIterator<FeedGroup> it(*(src->collection()));
+            for( ; it.current(); ++it ) {
+                slotUpdateArticleList(it.current(), onlyUpdateNew);
+            }
+        }
+    }
+}
+
+
+// TODO: when we have filtering, change onlyUpdateNew to something else
+void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpdateNew)
 {
     m_articles->setUpdatesEnabled(false);
-    if (!onlyUpdateNew)
+    if (clear)
     {
         m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
         m_articles->setColumnText(0, source->title());
@@ -553,6 +582,7 @@ void aKregatorView::slotFeedRemove()
         i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
     if (KMessageBox::warningContinueCancel(0, msg.arg(elt->text(0)),i18n("Delete Feed"),KGuiItem(i18n("&Delete"),"editdelete")) == KMessageBox::Continue)
     {
+        m_articles->clear();
         m_feeds.removeFeed(elt);
         // FIXME: kill children? (otoh - auto kill)
 /*        if (!Notes.count())
@@ -651,7 +681,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     if (feed->item() == m_tree->currentItem())
     {
         kdDebug() << k_funcinfo << "Updating article list" << endl;
-        slotUpdateArticleList(feed, true);
+        slotUpdateArticleList(feed, false, true);
     }
 
     // TODO: perhaps schedule save?

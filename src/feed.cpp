@@ -120,7 +120,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
 
 void Feed::appendArticles(const Document &d, bool findDups)
 {
-    kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
+//    kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
     findDups=true;
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
@@ -138,7 +138,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
                 else
                 {
                     if (mya.status()==MyArticle::New)
-                        mya.setStatus(MyArticle::Read);
+                        mya.setStatus(MyArticle::Unread);
                 }
                 appendArticle(mya);
             }
@@ -152,7 +152,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
             if (!m_merged)
             {
                 if (mya.status()==MyArticle::New)
-                    mya.setStatus(MyArticle::Read);
+                    mya.setStatus(MyArticle::Unread);
             }
             appendArticle(mya);
         }
