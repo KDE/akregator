@@ -33,7 +33,6 @@ MyArticle::MyArticle() : d(new Private)
 
 MyArticle::MyArticle(Article article) : d(new Private)
 {
-    d->keep = false;
     d->article = article;
     d->fetchDate = QDateTime::currentDateTime();
     
@@ -42,6 +41,11 @@ MyArticle::MyArticle(Article article) : d(new Private)
     else
         d->title=article.title();
     d->status=d->article.meta("status").toInt();
+    
+    d->keep = article.meta("keep") == "true" ? true : false;
+    
+    if (d->keep)
+        kdDebug() << "KEEP" << d->title << endl;
 }
 
 MyArticle::MyArticle(const MyArticle &other) : d(new Private)
@@ -214,10 +218,17 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
 
     QDomElement metanode = doc.createElement( "metaInfo:meta" );
     metanode.setAttribute("type","status");
-    
     QDomText stat=doc.createTextNode(QString::number(d->status));
     metanode.appendChild(stat);
     parent.appendChild(metanode);
+    
+    if ( d->keep )
+    {
+        metanode = doc.createElement( "metaInfo:meta" );
+        metanode.setAttribute("type", "keep");
+        metanode.appendChild(doc.createTextNode( d-> keep ? "true" : "false"));
+        parent.appendChild(metanode);
+    }
 }
 
 
