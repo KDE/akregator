@@ -93,7 +93,7 @@ MyArticle::MyArticle(Article article) : d(new Private)
 
 void MyArticle::setDeleted()
 {
-    d->status = Private::Deleted;
+    d->status = Private::Deleted | Private::Read;
 }
 
 bool MyArticle::isDeleted() const
