@@ -9,7 +9,6 @@
 #include <qevent.h>
 #include <qpaintdevicemetrics.h>
 #include <qscrollview.h>
-#include <qstylesheet.h>
 #include <qvaluelist.h>
 
 #include <kaction.h>
@@ -199,7 +198,7 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
         text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(stripTags(article.title())));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
-        text += QStyleSheet::escape(article.title()); // TODO: better leave things escaped in the parser
+        text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
         if (article.link().isValid())
             text += "</a>";
         text += "</div>\n";
