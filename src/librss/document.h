@@ -60,6 +60,11 @@ namespace RSS
 			~Document();
 
 			/**
+			 * @return If document is valid
+			 */
+			bool isValid() const;
+			
+			/**
 			 * @return The version of this document (one of the values of the
 			 * enum RSS::Version). This value can be used to determine which
 			 * features this RSS document provides.
@@ -72,7 +77,7 @@ namespace RSS
 			 * is returned.
 			 * @return A QString representing the verbose version of the
 			 * document.
-             * @see version()
+			 * @see version()
 			 */
 			QString verbVersion() const;
 

@@ -268,7 +268,14 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
       tmpData.setRawData(charData, len);
 
       if (doc.setContent(tmpData))
+      {
          rssDoc = Document(doc);
+         if (!rssDoc.isValid())
+         {
+            discoverFeeds(tmpData);
+            status = ParseError;
+         }
+      }
       else
       {
          discoverFeeds(tmpData);
@@ -289,7 +296,7 @@ void Loader::discoverFeeds(const QByteArray &data)
     QString str, s2;
     QTextStream ts( &str, IO_WriteOnly );
     ts << data.data();
-    QRegExp rx( "(?:rel|REL)[^=]*=[^sAa]*(?:service.feed|alternate|ALTERNATE)(?:[^>]*)(?:HREF|href)[^=]*=[^a-zA-Z0-9-_~,./$]*([^'\">\\s]*)", false);
+    QRegExp rx( "(?:REL)[^=]*=[^sAa]*(?:service.feed|ALTERNATE)[\\s]*[^s][^s](?:[^>]*)(?:HREF)[^=]*=[^A-Z0-9-_~,./$]*([^'\">\\s]*)", false);
     if (rx.search(str)!=-1)
         s2=rx.cap(1);
     else{
@@ -297,7 +304,7 @@ void Loader::discoverFeeds(const QByteArray &data)
         int pos=0;
         QStringList feeds;
         QString host=d->url.host();
-        rx.setPattern("(?:<A |<a )[^hH]*(?:HREF|href)[^=]*=[^a-zA-Z0-9-_~,./]*([^'\">\\s]*)");
+        rx.setPattern("(?:<A )[^H]*(?:HREF)[^=]*=[^A-Z0-9-_~,./]*([^'\">\\s]*)");
         while ( pos >= 0 ) {
             pos = rx.search( str, pos );
             s2=rx.cap(1);
@@ -307,7 +314,6 @@ void Loader::discoverFeeds(const QByteArray &data)
                 pos += rx.matchedLength();
             }
         }
-
 
         s2=feeds.first();
         KURL testURL;
@@ -321,6 +327,7 @@ void Loader::discoverFeeds(const QByteArray &data)
             }
         }
     }
+    
     if (s2.isNull())
         return;
 
@@ -330,6 +337,11 @@ void Loader::discoverFeeds(const QByteArray &data)
         {
             s2=s2.prepend(d->url.protocol()+":");
             d->discoveredFeedURL=s2;
+        }
+        else if (s2.startsWith("/"))
+        {
+            d->discoveredFeedURL=d->url;
+            d->discoveredFeedURL.setPath(s2);
         }
         else
         {

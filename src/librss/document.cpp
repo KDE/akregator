@@ -29,6 +29,7 @@ struct Document::Private : public Shared
     Private() : version(v0_90), image(NULL), textInput(NULL), language(en)
     {
         format=UnknownFormat;
+        valid=false;
     }
 
     ~Private()
@@ -55,6 +56,7 @@ struct Document::Private : public Shared
     QString webMaster;
     HourList skipHours;
     DayList skipDays;
+    bool valid;
 };
 
 Document::Document() : d(new Private)
@@ -74,6 +76,12 @@ Document::Document(const QDomDocument &doc) : d(new Private)
     // Determine the version of the present RSS markup.
     QString attr;
 
+    // we should probably check that it ISN'T feed or rss, rather than check if it is xhtml
+    if (rootNode.toElement().tagName()==QString::fromLatin1("html"))
+        d->valid=false;
+    else
+        d->valid=true;
+    
     attr = rootNode.toElement().attribute(QString::fromLatin1("version"), QString::null);
     if (!attr.isNull()) {
         if (rootNode.toElement().tagName()=="feed")
@@ -467,6 +475,11 @@ Document::~Document()
 {
     if (d->deref())
         delete d;
+}
+
+bool Document::isValid() const
+{
+    return d->valid;
 }
 
 Version Document::version() const
