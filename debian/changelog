@@ -1,8 +1,9 @@
-akregator (1.0-beta5-3) unstable; urgency=low
+akregator (1.0-beta6-1) unstable; urgency=low
 
   * Add debian/watch file.
+  * New upstream, feeds are now autosaved (closes: #262144).
 
- -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 30 Jul 2004 11:14:36 +0200
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Wed, 25 Aug 2004 19:15:27 +0200
 
 akregator (1.0-beta5-2) unstable; urgency=low
 
