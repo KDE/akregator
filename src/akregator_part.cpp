@@ -35,11 +35,11 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setInstance( aKregatorFactory::instance() );
 
     m_totalUnread=0;
-    
+
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
     m_extension=new KParts::BrowserExtension(this, "ak_extension");
     //connect (m_extension, SIGNAL(saveSettings()), SLOT(saveSettings()));
-    
+
     // notify the part that this is our internal widget
     setWidget(m_view);
 
@@ -84,7 +84,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     // we are not modified since we haven't done anything yet
     setModified(false);
-    
+
     connect(parent, SIGNAL(markAllFeedsRead()), m_view, SLOT(slotMarkAllFeedsRead()));
 }
 

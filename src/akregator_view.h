@@ -14,6 +14,7 @@
 
 #include <qwidget.h>
 #include <kurl.h>
+#include <qtimer.h>
 
 
 class QSplitter;
@@ -189,7 +190,7 @@ namespace Akregator
 
             void showFetchStatus(QListViewItem *firstItem);
             void findNumFetches(QListViewItem *item);
-            
+
             /**
              * Display article in external browser.
              */
@@ -237,6 +238,7 @@ namespace Akregator
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;
             ViewMode m_viewMode;
+            QTimer *intervalFetchTimer;
     };
 }
 

@@ -190,6 +190,11 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_searchCombo->setCurrentItem(Settings::quickFilter());
     slotSearchComboChanged(Settings::quickFilter());
+
+    intervalFetchTimer = new QTimer;
+    connect( intervalFetchTimer, SIGNAL(timeout()), this, SLOT(slotFetchAllFeeds()));
+    if(Settings::useIntervalFetch())
+       intervalFetchTimer->start( Settings::autoFetchInterval()*60*1000 );
 }
 
 void aKregatorView::saveSettings(bool /*quit*/)
@@ -198,6 +203,10 @@ void aKregatorView::saveSettings(bool /*quit*/)
    Settings::setSplitter2Sizes( m_panner2->sizes() );
    Settings::setViewMode( m_viewMode );
    Settings::writeConfig();
+   if(Settings::useIntervalFetch())
+      intervalFetchTimer->changeInterval( Settings::autoFetchInterval()*60*1000 );
+   else
+      intervalFetchTimer->stop();
 }
 
 void aKregatorView::slotOpenTab(const KURL& url)

@@ -11,6 +11,7 @@ New Features:
        - Ability to mark all entries as read on exit -tpr
        - Ability to change middle mouse button behaviour in browser -tpr
        - Ability to specify external browser (KDE default or custom command) - PhantomsDad
+       - Fetch all feeds every <num> minutes -tpr
 
 Bug Fixes:
 

@@ -45,6 +45,16 @@
         <default>false</default>
         <whatsthis>Mark all feeds as read on exit.</whatsthis>
      </entry>
+    <entry name="UseIntervalFetch" key="Use Interval Fetch" type="Bool">
+        <label>Use interval fetching</label>
+        <default>false</default>
+        <whatsthis>Fetch all feeds every %1 minutes.</whatsthis>
+    </entry>
+    <entry name="AutoFetchInterval" key="Auto Fetch Interval" type="Int">
+        <label>Interval for autofetching</label>
+        <default>30</default>
+        <whatsthis>Interval for autofetching in minutes.</whatsthis>
+    </entry>
   </group>
   <group name="Browser">
      <entry name="ExternalBrowserUseKdeDefault" key="External Browser Use Kde Default" type="Bool">
@@ -72,5 +82,5 @@
         <whatsthis>What the click with middle mouse button should do.</whatsthis>
      </entry>
   </group>
-  
+
 </kcfg>
