@@ -78,7 +78,7 @@ void NotificationManager::doNotify()
         if (feedTitle != (*it).feed()->title())
         {
             feedTitle = (*it).feed()->title();
-            message += i18n("<p><b>%1:</b></p>").arg(feedTitle);
+            message += QString("<p><b>%1:</b></p>").arg(feedTitle);
         }
         message += (*it).title() + "<br>";
     }
