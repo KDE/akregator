@@ -4,35 +4,18 @@
  *                                                                         *
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
+
 #ifndef AKREGATORFEED_H
 #define AKREGATORFEED_H
 
 #include "feedgroup.h"
-
-#include "librss.h"
+#include "librss.h" /* <rss/librss> ! */
 
 using namespace RSS;
 
 namespace Akregator
 {
     class FeedsCollection;
-
-    // use opml attributes:
-    // -STANDARD
-    // type="akrss" // since it is extension of "rss"
-    // version="RSS"
-    // text="titleOfFeed"
-    // xmlUrl="urlOfRSSFeed"
-    // -ADDITIONAL
-    // htmlUrl="urlOfWebPageForThisFeed(AbilonCompatible)" // probably fetched from RSS document
-    // description="verboseDescriptionOfTheFeed" ??
-    // -SUPPLEMENTAL (aKregator-specific)
-    // isLiveJournal="true|false"
-    // ljUserName="madfire"
-    // ljAuthMode="none|local|global"
-    // ljLogin="login"
-    // ljPassword="password? or hpassword?"
-    // updateTitle="[x] Use feed name from RSS", when true causes feed to update text attribute
 
     class Feed : public FeedGroup
     {
@@ -74,7 +57,7 @@ namespace Akregator
         private:
             // TODO
             //Archived articles
-            //QValueList<Article> m_archive;
+            //QValueList<Article> m_archive; // use articles instead
             //void saveArchive(QTextStream &ts);
     };
 }

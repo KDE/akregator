@@ -6,6 +6,7 @@
  ***************************************************************************/
 #include "addfeeddialog.h"
 #include <klineedit.h>
+#include <qcheckbox.h>
 
 using namespace Akregator;
 
@@ -21,7 +22,8 @@ AddFeedDialog::~AddFeedDialog()
 
 void AddFeedDialog::setUrlForLjUserName(const QString &userName)
 {
-    urlEdit->setText( "http://www.livejournal.com/~" + userName + "/data/rss" );
+    if (ljUserChkbox->isChecked())
+        urlEdit->setText( "http://www.livejournal.com/~" + userName + "/data/rss" );
 }
 
 #include "addfeeddialog.moc"

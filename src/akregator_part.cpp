@@ -147,18 +147,6 @@ aKregatorPart::~aKregatorPart()
 
 void aKregatorPart::setReadWrite(bool rw)
 {
-    // notify your internal widget of the read-write state
-/*    m_tree->setReadOnly(!rw);
-
-    if (rw)
-        connect(m_widget, SIGNAL(textChanged()),
-                this,     SLOT(setModified()));
-    else
-    {
-        disconnect(m_widget, SIGNAL(textChanged()),
-                   this,     SLOT(setModified()));
-    }*/
-
     ReadWritePart::setReadWrite(rw);
 }
 
@@ -179,6 +167,10 @@ void aKregatorPart::setModified(bool modified)
     // in any event, we want our parent to do it's thing
     ReadWritePart::setModified(modified);
 }
+
+/*************************************************************************************************/
+/* LOAD                                                                                          */
+/*************************************************************************************************/
 
 bool aKregatorPart::openFile()
 {
@@ -203,36 +195,38 @@ bool aKregatorPart::openFile()
     if (!loadFeeds(doc)) // will take care of building feeds tree and loading archive
         return false;
 
-    m_tree->slotExpandAll(); // FIXME use some setting?
-
     // just for fun, set the status bar
     emit setStatusBarText( m_url.prettyURL() );
 
     return true;
 }
 
-// oh ugly as hell (move to one of feed ctors? how to connect signal then, pass a KPart *?)
-Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt, QString title, QString xmlUrl, QString htmlUrl, QString description, bool isLiveJournal, QString ljUserName, Feed::LJAuthMode ljAuthMode, QString ljLogin, QString ljPassword, bool updateTitle)
+bool aKregatorPart::loadFeeds(const QDomDocument& doc)
 {
-    m_feeds.addFeed(elt);
+    // this should be OPML document
+    QDomElement root = doc.documentElement();
+    if (root.tagName().lower() != "opml")
+        return false;
 
-    Feed *feed = static_cast<Feed *>(m_feeds.find(elt));
+    // we ignore <head> and only parse <body> part
+    QDomNodeList list = root.elementsByTagName("body");
+    if (list.count() != 1)
+        return false;
 
-    feed->setTitle( title );
-    feed->xmlUrl         = xmlUrl;
-    feed->htmlUrl        = htmlUrl;
-    feed->description    = description;
-    feed->isLiveJournal  = isLiveJournal;
-    feed->ljUserName     = ljUserName;
-    feed->ljAuthMode     = ljAuthMode;
-    feed->ljLogin        = ljLogin;
-    feed->ljPassword     = ljPassword;
-    feed->updateTitle    = updateTitle;
+    QDomElement body = list.item(0).toElement();
+    if (body.isNull())
+        return false;
 
-    connect( feed, SIGNAL(fetched(Feed* )),
-             this, SLOT(slotFeedFetched(Feed *)) );
+    reset();
 
-    return feed;
+    QDomNode n = body.firstChild();
+    while( !n.isNull() )
+    {
+        parseChildNodes(n);
+        n = n.nextSibling();
+    }
+
+    return true;
 }
 
 void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
@@ -287,33 +281,37 @@ void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
     }
 }
 
-bool aKregatorPart::loadFeeds(const QDomDocument& doc)
+// oh ugly as hell (pass Feed parameters in a FeedData?)
+Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt,
+                                      QString title, QString xmlUrl, QString htmlUrl,
+                                      QString description, bool isLiveJournal, QString ljUserName,
+                                      Feed::LJAuthMode ljAuthMode, QString ljLogin, QString ljPassword,
+                                      bool updateTitle)
 {
-    // this should be OPML document
-    QDomElement root = doc.documentElement();
-    if (root.tagName().lower() != "opml")
-        return false;
+    m_feeds.addFeed(elt);
 
-    // we ignore <head> and only parse <body> part
-    QDomNodeList list = root.elementsByTagName("body");
-    if (list.count() != 1)
-        return false;
+    Feed *feed = static_cast<Feed *>(m_feeds.find(elt));
 
-    QDomElement body = list.item(0).toElement();
-    if (body.isNull())
-        return false;
+    feed->setTitle( title );
+    feed->xmlUrl         = xmlUrl;
+    feed->htmlUrl        = htmlUrl;
+    feed->description    = description;
+    feed->isLiveJournal  = isLiveJournal;
+    feed->ljUserName     = ljUserName;
+    feed->ljAuthMode     = ljAuthMode;
+    feed->ljLogin        = ljLogin;
+    feed->ljPassword     = ljPassword;
+    feed->updateTitle    = updateTitle;
 
-    reset();
+    connect( feed, SIGNAL(fetched(Feed* )),
+             this, SLOT(slotFeedFetched(Feed *)) );
 
-    QDomNode n = body.firstChild();
-    while( !n.isNull() )
-    {
-        parseChildNodes(n);
-        n = n.nextSibling();
-    }
-
-    return true;
+    return feed;
 }
+
+/*************************************************************************************************/
+/* SAVE                                                                                          */
+/*************************************************************************************************/
 
 bool aKregatorPart::saveFile()
 {
@@ -381,6 +379,10 @@ void aKregatorPart::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
     }
 }
 
+/*************************************************************************************************/
+/* SLOTS                                                                                         */
+/*************************************************************************************************/
+
 void aKregatorPart::fileOpen()
 {
     // this slot is called whenever the File->Open menu is selected,
@@ -403,10 +405,6 @@ void aKregatorPart::fileSaveAs()
     if (file_name.isEmpty() == false)
         saveAs(file_name);
 }
-
-/*************************************************************************************************/
-/* SLOTS                                                                                         */
-/*************************************************************************************************/
 
 void aKregatorPart::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)
 {

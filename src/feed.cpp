@@ -4,6 +4,7 @@
  *                                                                         *
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
+
 #include "feed.h"
 #include "feedscollection.h"
 
@@ -18,18 +19,11 @@ using namespace RSS;
 
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
-    , xmlUrl()
-    , htmlUrl()
-    , description()
     , isLiveJournal(false)
-    , ljUserName()
     , ljAuthMode(AuthNone)
-    , ljLogin()
-    , ljPassword()
     , updateTitle(false)
     , articles()
 {
-//    updateView();
 }
 
 Feed::~Feed()
@@ -101,7 +95,7 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
     description = doc.description();
     htmlUrl = doc.link().url();
     articles = doc.articles();
-    // TODO: more attributes to fetch?
+    // TODO: more document attributes to fetch?
 
     emit fetched(this);
 }

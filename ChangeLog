@@ -4,6 +4,7 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+        FIX [x] Fixed nasty bug with feed editing.
         FIX [x] aKregatorPart code cleanup.
         FIX [x] Zack Rusin: Fixes to Makefiles, code cleanup.
 #000029 CHG [x] "Modify" should enable in-line edit for feed group items, standard dialog for feeds
