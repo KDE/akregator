@@ -211,7 +211,8 @@ void ArticleViewer::show(Feed *f, bool writeHeaders)
     }
 
     ArticleSequence::iterator it;
-    for ( it = f->articles.begin(); it != f->articles.end(); ++it )
+    ArticleSequence::iterator en(f->articles.end());
+    for ( it = f->articles.begin(); it != en; ++it )
     {
         // we set f to 0 to not show feed image
         art="<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";

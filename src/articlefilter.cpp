@@ -166,9 +166,10 @@ void ArticleFilter::writeConfig( KConfig *cfg, const QString &name ) const
     cfg->writeEntry( "Association", m_association );
     cfg->writeEntry( "Criteria", m_criteria.count() );
 
-    QValueList<Criterion>::ConstIterator it = m_criteria.begin();
+    QValueList<Criterion>::ConstIterator it;
+    QValueList<Criterion>::ConstIterator en( m_criteria.end() );
     unsigned int count = 0;
-    for ( ; it != m_criteria.end(); ++it, ++count ) {
+    for (it = m_criteria.begin(); it != en; ++it, ++count ) {
         QStringList components;
         components << QString::number( ( *it ).subject() )
                    << QString::number( ( *it ).predicate() )
