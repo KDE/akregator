@@ -134,11 +134,13 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 
 	if(d->guid.isEmpty()) {
 		d->guidIsPermaLink = false;
+        
 		md5Machine.reset();
 		QDomNode n(node);
 		md5Machine.update(d->title.utf8());
 		md5Machine.update(d->description.utf8());
 		d->guid = QString(md5Machine.hexDigest().data());
+        d->meta[QString::fromLatin1("guidIsHash")] = QString::fromLatin1("true");
 	}
 
     for (QDomNode i = node.firstChild(); !i.isNull(); i = i.nextSibling())

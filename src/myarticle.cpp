@@ -34,7 +34,9 @@ struct MyArticle::Private : public RSS::Shared
 
     enum Status {Deleted=0x01, Trash=0x02, New=0x04, Read=0x08, Keep=0x10};
     int status;
-    
+
+    bool guidIsHash;
+    uint hash;
     Article article;
     QDateTime fetchDate;
     QString title;
@@ -44,12 +46,15 @@ struct MyArticle::Private : public RSS::Shared
 
 MyArticle::MyArticle() : d(new Private)
 {
+    d->hash = 0;
     d->status = 0; 
     d->feed = 0;
+    d->guidIsHash = false;
 }
 
 MyArticle::MyArticle(Article article) : d(new Private)
 {
+    d->hash = 0;
     d->status = 0;
     d->article = article;
     d->feed = 0;
@@ -65,9 +70,25 @@ MyArticle::MyArticle(Article article) : d(new Private)
     if (!status.isEmpty())
         setStatus(status.toInt());
 
-    setKeep((article.meta("keep") == "true") ? true : false);
+    setKeep((article.meta("keep") == "true"));
     if (article.meta("deleted") == "true")
         setDeleted();
+    d->guidIsHash = (article.meta("guidIsHash") == "true");
+
+    if (!d->guidIsHash)
+    {
+        QString hashStr = article.meta("hash");
+    
+        bool parsedOk = false;
+        uint parsed = hashStr.toUInt(&parsedOk, 16);
+        if (!parsedOk)
+        {
+            d->hash = calcHash(title() + description() + link().url() + commentsLink().url()
+                    + QString::number(comments()) );
+        }
+        else
+            d->hash = parsed;
+    }    
 }
 
 void MyArticle::setDeleted()
@@ -196,6 +217,30 @@ bool MyArticle::guidIsPermaLink() const
     return d->article.guidIsPermaLink();
 }
 
+/* taken from some website... -fo
+* djb2
+* This algorithm was first reported by Dan Bernstein
+* many years ago in comp.lang.c
+*/
+uint MyArticle::calcHash(const QString& str)
+{
+    const char* s = str.ascii();
+    uint hash = 5381;
+    int c;
+    while (c = *s++) hash = ((hash << 5) + hash) + c; // hash*33 + c
+    return hash;
+}
+
+bool MyArticle::guidIsHash() const
+{
+    return d->guidIsHash;
+}
+
+uint MyArticle::hash() const
+{
+    return d->hash;
+}
+        
 bool MyArticle::keep() const
 {
     return (d->status & Private::Keep) != 0;
@@ -299,7 +344,23 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
         QDomText stat=doc.createTextNode( QString::number(status()) );
         metanode.appendChild(stat);
         parent.appendChild(metanode);
-    
+
+
+        if (guidIsHash())
+        {        
+            metanode = doc.createElement( "metaInfo:meta" );
+            metanode.setAttribute("type", "guidIsHash");
+            metanode.appendChild(doc.createTextNode("true"));
+            parent.appendChild(metanode);
+        }
+        else
+        {
+            metanode = doc.createElement( "metaInfo:meta" );
+            metanode.setAttribute("type", "hash");
+            metanode.appendChild(doc.createTextNode(QString::number(hash(), 16)));
+            parent.appendChild(metanode);
+        }
+        
         if (keep())
         {
             metanode = doc.createElement( "metaInfo:meta" );

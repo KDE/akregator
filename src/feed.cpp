@@ -264,13 +264,27 @@ void Feed::appendArticles(const Document &d)
         }
         else
         {
-            if ( m_articles.find(mya) == m_articles.end() )
+            ArticleSequence::Iterator old = m_articles.find(mya);
+            
+            if ( old == m_articles.end() ) // article not in list
             {
                 mya.setStatus(MyArticle::New);
                 mya.offsetFetchTime(nudge);
                 nudge--;
                 appendArticle(mya);
                 changed = true;
+            }
+            // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
+            else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !mya.isDeleted())
+            {
+                    mya.setKeep((*old).keep());
+                    // reset status to New
+                    mya.setStatus(MyArticle::New);
+                    if ((*old).status() != MyArticle::Read)
+                        m_unread--;
+                    m_articles.remove(old);
+                    appendArticle(mya);
+                    changed = true;
             }
         }
     }

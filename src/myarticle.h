@@ -54,7 +54,18 @@ namespace Akregator
             void setFeed(Feed* feed);
             bool isDeleted() const;
             void setDeleted();
+            
+
             Feed* feed() const;
+
+            /** returns a hash value used to detect changes in articles with non-hash GUIDs. If the guid is a hash itself, it returns @c 0 */
+            
+            uint hash() const;
+
+            /** returns if the guid is a hash or an ID taken from the source */
+            
+            bool guidIsHash() const;
+            
             bool guidIsPermaLink() const;
             const QDateTime &pubDate() const;
             KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
@@ -67,7 +78,9 @@ namespace Akregator
             bool operator<=(const MyArticle &other) const;
             bool operator>(const MyArticle &other) const;
             bool operator>=(const MyArticle &other) const;
+            
         private:
+            static uint calcHash(const QString& str);
             struct Private;
             Private *d;
             QString buildTitle();
