@@ -9,6 +9,7 @@
 #include <krun.h>
 #include <kpopupmenu.h>
 #include <klocale.h>
+#include <kiconloader.h>
 
 #include <qclipboard.h>
 
@@ -54,8 +55,8 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& url, con
    if(this->url() == url) return;
    m_url = url;
    KPopupMenu popup;
-   popup.insertItem(i18n("Open Link"), this, SLOT(slotOpenLinkInternal()));
-   popup.insertItem(i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
+   popup.insertItem(SmallIcon("tab_new"), i18n("Open Link"), this, SLOT(slotOpenLinkInternal()));
+   popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
    popup.insertItem(i18n("Copy Link Location"), this, SLOT(slotCopyToClipboard()));
    popup.exec(p);
 }
