@@ -164,7 +164,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_currentStatusFilter=0;
     m_queuedSearches=0;
     m_fetchTimer=0;
-    
+
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
     m_articles = new ArticleList( m_articleSplitter, "articles" );
@@ -190,7 +190,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
     connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
-    
+
     // -- DEFAULT INIT
     reset();
     m_articleViewer->openDefault();
@@ -213,13 +213,13 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     // delete expired articles once per hour
     m_expiryTimer = new QTimer(this);
-    connect(m_expiryTimer, SIGNAL(timeout()), this, 
+    connect(m_expiryTimer, SIGNAL(timeout()), this,
     SLOT(slotDeleteExpiredArticles()) );
     m_expiryTimer->start(3600000);
-    
+
     // Change default view mode
     int viewMode = Settings::viewMode();
-    
+
     if (viewMode==CombinedView)        slotCombinedView();
     else if (viewMode==WidescreenView) slotWidescreenView();
     else                               slotNormalView();
@@ -433,11 +433,11 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         m_mainFrame->setProgress(int(100*((double)curNodes/(double)numNodes)));
         n = n.nextSibling();
     }
- 
-    // delete expired articles 
- 
+
+    // delete expired articles
+
     slotDeleteExpiredArticles();
-    
+
     setTotalUnread();
     m_tree->setUpdatesEnabled(true);
     m_tree->triggerUpdate();
@@ -548,7 +548,7 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     feed->setArchiveMode(archiveMode);
     feed->setMaxArticleAge(maxArticleAge);
     feed->setMaxArticleNumber(maxArticleNumber);
-    
+
     Archive::load(feed);
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
@@ -570,7 +570,7 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
     if (!item) // omit "All Feeds" from saving (BR #43)
     {
         item = m_tree->firstChild(); // All Feeds
-        if (!item) 
+        if (!item)
             return;
         writeChildNodes(item, node, document);
         return;
@@ -641,11 +641,11 @@ void aKregatorView::slotNormalView()
     if (m_viewMode==CombinedView)
     {
         m_articles->show();
- 
+
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
         if (item)
             m_articleViewer->slotShowArticle(item->article());
-        else 
+        else
             m_articleViewer->slotClear();
     }
 
@@ -683,9 +683,9 @@ void aKregatorView::slotCombinedView()
 
     m_articles->hide();
     m_viewMode = CombinedView;
-    
+
     slotItemChanged(m_tree->currentItem());
-    
+
     Settings::setViewMode( m_viewMode );
 }
 
@@ -787,21 +787,21 @@ void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoin
 void aKregatorView::slotItemChanged(QListViewItem *item)
 {
     TreeNode* node = static_cast<TreeNode*> (m_feeds.find(item));
-    
+
     m_tabs->showPage(m_mainTab);
-    
+
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
-    else   
+    else
         m_articles->slotShowNode(node);
-    
+
     if (item && m_part->actionCollection()->action("feed_remove") )
     {
         if (item->parent())
             m_part->actionCollection()->action("feed_remove")->setEnabled(true);
         else
             m_part->actionCollection()->action("feed_remove")->setEnabled(false);
-    }    
+    }
 }
 
 
@@ -811,8 +811,8 @@ void aKregatorView::slotFeedAdd()
     if (!i)
         i=static_cast<FeedsTreeItem*>(m_tree->firstChild()); // all feeds
 
-    QListViewItem *lastChild; 
-    if (i->isFolder())        
+    QListViewItem *lastChild;
+    if (i->isFolder())
     {
         lastChild= i->firstChild();
         while (lastChild && lastChild->nextSibling())
@@ -846,7 +846,11 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     }
     else
     {
-        if (afd->exec() != QDialog::Accepted) return;
+        if (afd->exec() != QDialog::Accepted)
+        {
+            delete afd;
+            return;
+        }
         text=afd->feedTitle;
         feed=afd->feed;
     }
@@ -858,8 +862,11 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     dlg->selectFeedName();
 
     if (!autoExec)
-        if (dlg->exec() != QDialog::Accepted) return;
-
+        if (dlg->exec() != QDialog::Accepted)
+        {
+            delete dlg;
+            return;
+        }
     if (!parent)
         parent=m_tree->firstChild();
 
@@ -871,7 +878,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
 
     elt->setPixmap(0, m_feedTreePixmap);
     feed->setItem(elt);
- 
+
     addFeed_Internal( feed, elt,
                       dlg->feedName(),
                       dlg->url(),
@@ -970,7 +977,7 @@ void aKregatorView::slotFeedModify()
     }
 
     Feed *feed = static_cast<Feed *>(node);
-    if (!feed) 
+    if (!feed)
         return;
 
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
@@ -982,19 +989,19 @@ void aKregatorView::slotFeedModify()
     dlg->setArchiveMode(feed->archiveMode());
     dlg->setMaxArticleAge(feed->maxArticleAge());
     dlg->setMaxArticleNumber(feed->maxArticleNumber());
-    
-    if (dlg->exec() != QDialog::Accepted) return;
 
-    feed->setTitle( dlg->feedName() );
-    feed->setXmlUrl( dlg->url() );
-    feed->setAutoFetch(dlg->autoFetch());
-    feed->setFetchInterval(dlg->fetchInterval());
-    feed->setArchiveMode(dlg->archiveMode());
-    feed->setMaxArticleAge(dlg->maxArticleAge());
-    feed->setMaxArticleNumber(dlg->maxArticleNumber());
-    
-    m_part->setModified(true);
+    if (dlg->exec() == QDialog::Accepted)
+    {
+        feed->setTitle( dlg->feedName() );
+        feed->setXmlUrl( dlg->url() );
+        feed->setAutoFetch(dlg->autoFetch());
+        feed->setFetchInterval(dlg->fetchInterval());
+        feed->setArchiveMode(dlg->archiveMode());
+        feed->setMaxArticleAge(dlg->maxArticleAge());
+        feed->setMaxArticleNumber(dlg->maxArticleNumber());
 
+        m_part->setModified(true);
+    }
     delete dlg;
     kdDebug() << k_funcinfo << "END" << endl;
 }
@@ -1194,7 +1201,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {
-        ArticleSequence articles = feed->articles(); 
+        ArticleSequence articles = feed->articles();
         ArticleSequence::ConstIterator it;
         ArticleSequence::ConstIterator end = articles.end();
         for (it = articles.begin(); it != end; ++it)
@@ -1385,7 +1392,7 @@ void aKregatorView::updateSearch(const QString &s)
     m_currentTextFilter = new ArticleFilter(textCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
     m_currentStatusFilter = new ArticleFilter(statusCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
 
-    
+
     m_articleViewer->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter)
     ;m_articles->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
 }
@@ -1411,14 +1418,14 @@ void aKregatorView::stopLoading()
 void aKregatorView::readProperties(KConfig* config)
 {
     slotDeleteExpiredArticles();
-    // read filter settings 
-    
+    // read filter settings
+
     m_searchLine->setText(config->readEntry("searchLine"));
-    m_searchCombo->setCurrentItem(config->readEntry("searchCombo").toInt()); 
-    slotSearchComboChanged(config->readEntry("searchCombo").toInt());  
+    m_searchCombo->setCurrentItem(config->readEntry("searchCombo").toInt());
+    slotSearchComboChanged(config->readEntry("searchCombo").toInt());
 
     // read the position of the selected feed
-        
+
     QString selectedFeed = config->readEntry("selectedFeed");
     if ( selectedFeed != QString::null )
     {
@@ -1432,39 +1439,39 @@ void aKregatorView::readProperties(KConfig* config)
                 for (int j = 0; j < childPos; j++)
                     if ( current->nextSibling() )
                         current = current->nextSibling();
-        }    
+        }
         m_tree->setSelected(current, true);
-       
+
         // read the selected article title (not in Combined View)
-        
+
         if ( m_viewMode != CombinedView )
         {
             QString selectedArticleEntry = config->readEntry("selectedArticle");
             if ( selectedArticleEntry != QString::null )
-            {        
+            {
                 QListViewItem* selectedArticle = m_articles->findItem(selectedArticleEntry, 0);
                 if ( selectedArticle )
                     m_articles->setSelected(selectedArticle, true);
-            } 
+            }
         } // if viewMode != combinedView
    } // if selectedFeed is set
 }
 
 void aKregatorView::saveProperties(KConfig* config)
-{   
+{
     // save filter settings
     config->writeEntry("searchLine", m_searchLine->text());
     config->writeEntry("searchCombo", m_searchCombo->currentItem());
-    
+
     // write the position of the currently selected feed
     // format is a string, e.g. "3 2 1" means
-    // 2nd child of the 3rd child of the 4th child of the root node (All Feeds) 
-    if ( m_tree->selectedItem() ) 
+    // 2nd child of the 3rd child of the 4th child of the root node (All Feeds)
+    if ( m_tree->selectedItem() )
     {
         QListViewItem* item = m_tree->selectedItem();
         QListViewItem* parent = item->parent();
         QString pos;
-        
+
         while (parent)
         {
             int n = 0;
@@ -1474,18 +1481,18 @@ void aKregatorView::saveProperties(KConfig* config)
                 i = i->nextSibling();
                 n++;
             }
-            pos = QString::number(n) + " " + pos; 
+            pos = QString::number(n) + " " + pos;
             item = item->parent();
-            parent = item->parent(); 
+            parent = item->parent();
         }
         pos = pos.stripWhiteSpace();
-        config->writeEntry("selectedFeed", pos); 
+        config->writeEntry("selectedFeed", pos);
     }
-    
-    // if not in CombinedView, save currently selected article 
-    // atm the item's text() is saved, which is ambigous. 
-    
-    if ( m_viewMode != CombinedView )         
+
+    // if not in CombinedView, save currently selected article
+    // atm the item's text() is saved, which is ambigous.
+
+    if ( m_viewMode != CombinedView )
     {
         if ( m_articles->selectedItem() )
             config->writeEntry("selectedArticle", m_articles->selectedItem()->text(0));
