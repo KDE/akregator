@@ -12,6 +12,21 @@
 
 namespace Akregator
 {
+
+    class FeedsTreeItem : public KListViewItem
+    {
+        public:
+            FeedsTreeItem( QListView *parent, QString label=QString::null);
+            FeedsTreeItem( QListViewItem *parent, QString label=QString::null);
+            FeedsTreeItem( QListView *parent, QListViewItem *after, QString
+        label=QString::null);
+            FeedsTreeItem(QListViewItem *parent, QListViewItem *after,
+                       QString label=QString::null);
+            virtual void paintCell( QPainter * p, const QColorGroup & cg,
+                            int column, int width, int align );
+    };
+              
+    
     class FeedsTree : public KListView
     {
         Q_OBJECT

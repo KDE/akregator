@@ -29,6 +29,7 @@ namespace Akregator
 {
     class aKregatorPart;
     class FeedsTree;
+    class FeedsTreeViewItem;
     class ArticleList;
     class ArticleViewer;
 }
@@ -62,7 +63,7 @@ namespace Akregator
              * @param node Current node to parse.
              * @param parent Parent listview item for newly created listview items.
              */
-            void parseChildNodes(QDomNode &node, KListViewItem *parent = 0);
+            void parseChildNodes(QDomNode &node, QListViewItem *parent = 0);
 
 
             /**

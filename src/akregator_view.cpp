@@ -111,7 +111,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     // -- DEFAULT INIT
     // Root item (will be reset when loading from file)
-    KListViewItem *elt = new KListViewItem( m_tree, QString::null );
+    FeedsTreeItem *elt = new FeedsTreeItem( m_tree, QString::null );
     m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
     elt->setOpen(true);
 
@@ -170,22 +170,22 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc)
     return true;
 }
 
-void aKregatorView::parseChildNodes(QDomNode &node, KListViewItem *parent)
+void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 {
     QDomElement e = node.toElement(); // try to convert the node to an element.
     if( !e.isNull() )
     {
-        KListViewItem *elt;
+        FeedsTreeItem *elt;
         QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute
             ("title");
         if (parent)
         {
             QListViewItem *lastChild = parent->firstChild();
             while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
-            elt = new KListViewItem( parent, lastChild, KCharsets::resolveEntities(title) );
+            elt = new FeedsTreeItem( parent, lastChild, KCharsets::resolveEntities(title) );
         }
         else
-            elt = new KListViewItem( m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
+            elt = new FeedsTreeItem( m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
 
         if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
         {
@@ -448,7 +448,7 @@ void aKregatorView::slotFeedAdd()
 
 void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* parent)
 {
-    KListViewItem *elt;
+    FeedsTreeItem *elt;
     Feed *feed;
     AddFeedDialog *afd = new AddFeedDialog( this, "add_feed" );
 
@@ -472,9 +472,9 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
         parent=m_tree->firstChild();
 
     if (after)
-        elt = new KListViewItem(parent, after, text);
+        elt = new FeedsTreeItem(parent, after, text);
     else
-        elt = new KListViewItem(parent, text);
+        elt = new FeedsTreeItem(parent, text);
 
     feed->setItem(elt);
     
@@ -503,7 +503,7 @@ void aKregatorView::slotFeedAddGroup()
     }
 
     bool Ok;
-    KListViewItem *elt;
+    FeedsTreeItem *elt;
 
     QString text = KInputDialog::getText(i18n("Add Folder"), i18n("Folder name:"), "", &Ok);
     if (!Ok) return;
@@ -513,9 +513,9 @@ void aKregatorView::slotFeedAddGroup()
         lastChild = lastChild->nextSibling();
 
     if (lastChild)
-        elt = new KListViewItem(m_tree->currentItem(), lastChild, text);
+        elt = new FeedsTreeItem(m_tree->currentItem(), lastChild, text);
     else
-        elt = new KListViewItem(m_tree->currentItem(), text);
+        elt = new FeedsTreeItem(m_tree->currentItem(), text);
 
     m_feeds.addFeedGroup(elt);
     FeedGroup *g = m_feeds.find(elt);

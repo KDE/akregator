@@ -15,6 +15,39 @@
 
 using namespace Akregator;
 
+FeedsTreeItem::FeedsTreeItem( QListView *parent, QString label)
+    : KListViewItem( parent, label )
+{
+
+}
+
+FeedsTreeItem::FeedsTreeItem( QListViewItem *parent, QString label)
+    : KListViewItem( parent, label )
+
+{
+
+}
+
+FeedsTreeItem::FeedsTreeItem(QListView *parent, QListViewItem *after, QString label)
+    : KListViewItem( parent, after, label )
+{
+
+}
+
+FeedsTreeItem::FeedsTreeItem(QListViewItem *parent, QListViewItem *after, QString label)
+    : KListViewItem( parent, after, label )
+{
+
+}
+
+
+void FeedsTreeItem::paintCell( QPainter * p, const QColorGroup & cg,
+                                    int column, int width, int align )
+
+{
+    KListViewItem::paintCell(p,cg,column,width,align);
+}
+
 FeedsTree::FeedsTree( QWidget *parent, const char *name)
         : KListView(parent, name)
 {
