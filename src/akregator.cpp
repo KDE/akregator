@@ -155,6 +155,12 @@ void aKregator::loadStandardFile()
 aKregator::~aKregator()
 {}
 
+void aKregator::setCaption(const QString &a)
+{
+    if (sender() && (sender() == m_part) )
+        KParts::MainWindow::setCaption(a);
+}
+
 void aKregator::partChanged(KParts::ReadOnlyPart *p)
 {
     m_activePart=p;

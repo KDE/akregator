@@ -85,6 +85,7 @@ public:
     void addFeedToGroup(const QString& url, const QString& group);
     
     virtual void fontChange(const QFont &);
+	virtual void setCaption(const QString &);
 
     void updateUnread(int);
     

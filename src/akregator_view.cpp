@@ -187,7 +187,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
     connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
-
+    
     // -- DEFAULT INIT
     reset();
     m_articleViewer->openDefault();
