@@ -16,6 +16,7 @@
 #include <kdebug.h>
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
+#include <kmimetype.h>
 #include <khtmlview.h>
 #include <krun.h>
 #include <kprocess.h>
@@ -275,6 +276,17 @@ void ArticleViewer::show(Feed *f, MyArticle a)
 
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
+    // special case the fast case
+    QString type=url.url();
+    kdError() << "type==="<<type<<endl;
+    if (type.right(5)==".html" ||type.right(4)==".php" || type.right(4)==".htm"
+            || type.right(4)==".xml")
+    {
+        openPage(url, args, type);    
+        return true;
+    }
+
+    // else check mimetype
     new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
     return true;
 }
