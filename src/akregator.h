@@ -152,9 +152,6 @@ private:
     Akregator::aKregatorPart *m_part;
     KParts::PartManager* m_manager;
     //KParts::ReadOnlyPart *m_activePart;
-    KToggleAction *m_fetchStartupAction;
-    KToggleAction *m_toolbarAction;
-    KToggleAction *m_statusbarAction;
     KProgress *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
     QString m_permStatusText;
