@@ -1272,6 +1272,10 @@ void aKregatorView::slotArticleSelected(MyArticle article)
     if (!feed) 
         return;
 
+    KToggleAction* ka = static_cast<KToggleAction*> (m_part->actionCollection()->action("article_toggle_keep"));
+    if (ka)
+        ka->setChecked( article.keep() );
+    
     if (article.status() != MyArticle::Read)
     {
         article.setStatus(MyArticle::Read);
