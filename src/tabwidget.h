@@ -37,6 +37,7 @@ namespace Akregator
                 QWidget *currentItem;
             private slots:
                 void slotDetachTab();
+                void slotCopyLinkAddress();
                 void slotCloseTab();
                 void contextMenu (int item, const QPoint &p);
                 void slotTabChanged(QWidget *w);

@@ -10,6 +10,7 @@
 #include <qstyle.h>
 #include <qapplication.h>
 #include <qiconset.h>
+#include <qclipboard.h>
 
 #include <kdebug.h>
 #include <ktabwidget.h>
@@ -20,6 +21,7 @@
 #include <khtmlview.h>
 #include <khtml_part.h>
 #include <kiconloader.h>
+#include <kurl.h>
 
 using namespace Akregator;
 
@@ -118,7 +120,7 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     newTitle.replace( '&', "&&" );
     if ( tabLabel( sender ) != newTitle )
         changeTab( sender, newTitle );
-    
+
     if( newMaxLength != m_CurrentMaxLength )
     {
         for( int i = 0; i < count(); ++i)
@@ -146,11 +148,13 @@ void TabWidget::contextMenu(int i, const QPoint &p)
    KPopupMenu popup;
    //popup.insertTitle(tabLabel(currentItem));
    int detachTab = popup.insertItem( SmallIcon("tab_breakoff"), i18n("Detach Tab"), this, SLOT( slotDetachTab() ) );
+   int copyLink = popup.insertItem( i18n("Copy Link Address"), this, SLOT( slotCopyLinkAddress() ) );
    //popup.insertSeparator();
    int closeTab = popup.insertItem( SmallIcon("tab_remove"), i18n("Close Tab"), this, SLOT( slotCloseTab() ) );
    if(indexOf(currentItem) == 0) { // you can't detach or close articles tab..
       popup.setItemEnabled(detachTab, false);
       popup.setItemEnabled(closeTab, false);
+      popup.setItemEnabled(copyLink, false);
    }
    popup.exec(p);
 }
@@ -163,6 +167,16 @@ void TabWidget::slotDetachTab()
    else return;
    KRun::runURL(url.prettyURL(),"text/html", false, false);
    removePage(currentItem);
+}
+
+void TabWidget::slotCopyLinkAddress()
+{
+    if(!currentItem) return;
+    KURL url;
+    if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
+    else return;
+    QClipboard *cb = QApplication::clipboard();
+    if(cb) cb->setText(url.prettyURL());
 }
 
 void TabWidget::slotCloseTab()
