@@ -219,7 +219,6 @@ void aKregatorView::slotOpenTab(const KURL& url)
     PageViewer *page = new PageViewer(this, "page");
     connect( page, SIGNAL(setWindowCaption (const QString &)),
             this, SLOT(slotTabCaption (const QString &)) );
-    page->openURL(url);
 
     Frame *frame=new Frame(this, page, page->widget(), i18n("Untitled"));
     connectFrame(frame);
@@ -228,6 +227,7 @@ void aKregatorView::slotOpenTab(const KURL& url)
     m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1)
         m_tabsClose->setEnabled(true);
+    page->openURL(url);
 }
 
 void aKregatorView::connectFrame(Frame *f)

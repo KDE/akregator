@@ -18,7 +18,8 @@ namespace Akregator
         Q_OBJECT
         public:
             Viewer(QWidget* parent, const char* name);
-
+	    bool closeURL();
+	
         signals:
            void urlClicked(const KURL& url);
 
