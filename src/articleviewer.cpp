@@ -93,6 +93,11 @@ void ArticleViewer::generateCSS()
     "clear: none;\n"
     "overflow: auto;\n"
     "}\n\n"
+    "#article {\n"
+    "overflow: hidden;\n"
+    "border:1px dashed #000;\n"
+    "padding: 3px;\n"
+    "padding-right: 6px;}\n\n"
     "</style>\n")
     .arg(KGlobalSettings::generalFont().family()).
     arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px").
@@ -161,7 +166,8 @@ void ArticleViewer::show(Feed *f)
     ArticleSequence::iterator it;
     for ( it = f->articles.begin(); it != f->articles.end(); ++it )
     {
-        art=formatArticle(0, *it); // we set f to 0 to not show feed image
+        // we set f to 0 to not show feed image
+        art="<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>"; 
         text += art;
         write(art);
     }
