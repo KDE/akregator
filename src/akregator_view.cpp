@@ -422,20 +422,23 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
 }
 
-void aKregatorView::slotUpdateArticleList(Feed *source)
+void aKregatorView::slotUpdateArticleList(Feed *source, bool onlyUpdateNew)
 {
     m_articles->setUpdatesEnabled(false);
-    m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
-
-    m_articles->setColumnText(0, source->title());
-
+    if (!onlyUpdateNew)
+    {
+        m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
+        m_articles->setColumnText(0, source->title());
+    }
+    
     if (source->articles.count() > 0)
     {
         MyArticle::List::ConstIterator it;
         MyArticle::List::ConstIterator end = source->articles.end();
         for (it = source->articles.begin(); it != end; ++it)
         {
-            new ArticleListItem( m_articles, (*it), source );
+            if (!onlyUpdateNew || (*it).status()==MyArticle::New)
+                new ArticleListItem( m_articles, (*it), source );
         }
     }
     m_articles->setUpdatesEnabled(true);
@@ -648,7 +651,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     if (feed->item() == m_tree->currentItem())
     {
         kdDebug() << k_funcinfo << "Updating article list" << endl;
-        slotUpdateArticleList(feed);
+        slotUpdateArticleList(feed, true);
     }
 
     // TODO: perhaps schedule save?

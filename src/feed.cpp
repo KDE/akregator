@@ -120,7 +120,8 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
 
 void Feed::appendArticles(const Document &d, bool findDups)
 {
-    //kdDebug() << "appendArticles findDups=="<<findDups<<endl;
+    kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
+    findDups=true;
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
     //kdDebug() << "m_unread before appending articles=="<<m_unread<<endl;
