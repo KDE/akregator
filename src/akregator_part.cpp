@@ -215,6 +215,8 @@ void Part::slotOnShutdown()
 void Part::slotSettingsChanged()
 {
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_trayIcon : getMainWindow());
+
+    RSS::FileRetriever::setUseCache(Settings::useHTMLCache());
     
     QStringList fonts;
     fonts.append(Settings::standardFont());

@@ -90,6 +90,11 @@
    <whatsthis>Number of concurrent fetches</whatsthis>
    <default>6</default>
   </entry>
+  <entry key="Use HTML Cache" type="Bool" >
+   <label>Use HTML Cache</label>
+   <whatsthis>Use the KDE-wide HTML cache settings when downloading feeds, to avoid unnecessary traffic. Disable only when necessary!</whatsthis>
+   <default>true</default>
+  </entry>
  </group>
  <group name="General" >
   <entry key="Fetch On Startup" type="Bool" >

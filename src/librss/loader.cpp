@@ -60,6 +60,13 @@ FileRetriever::~FileRetriever()
    delete d;
 }
 
+bool FileRetriever::m_useCache = true;
+
+void FileRetriever::setUseCache(bool enabled)
+{
+    m_useCache = enabled;
+}
+
 void FileRetriever::retrieveData(const KURL &url)
 {
    if (d->buffer)
@@ -73,7 +80,7 @@ void FileRetriever::retrieveData(const KURL &url)
    if (u.protocol()=="feed")
        u.setProtocol("http");
 
-   d->job = KIO::get(u, true, false);
+   d->job = KIO::get(u, !m_useCache, false);
 
    
    QTimer::singleShot(1000*90, this, SLOT(slotTimeout()));

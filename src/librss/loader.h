@@ -118,7 +118,9 @@ namespace RSS
 			virtual int errorCode() const;
 
 			virtual void abort();
-			
+
+            static void setUseCache(bool enabled);
+            
 		signals:
 			/**
 			 * Signals a permanent redirection. The redirection itself is
@@ -139,6 +141,8 @@ namespace RSS
 			                                             const KURL &toUrl);
 
 		private:
+            static bool m_useCache;
+            
 			FileRetriever(const FileRetriever &other);
 			FileRetriever &operator=(const FileRetriever &other);
 
