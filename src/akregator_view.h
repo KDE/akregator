@@ -59,6 +59,9 @@ namespace Akregator
             @param name the name of the widget (@ref QWidget )
             */
             View(Akregator::Part *part, QWidget *parent, const char* name);
+
+            /** destructor.  Note that cleanups should be done in
+            slotOnShutDown(), so we don't risk accessing self-deleting objects after deletion. */
             ~View();
 
             /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
@@ -263,6 +266,8 @@ namespace Akregator
             /** this is called by the ctor, does init steps which need a properly created view and part */
             
             void delayedInit();
+
+            void slotOnShutDown();
             
             void slotActivateSearch();
                     

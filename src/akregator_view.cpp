@@ -77,21 +77,23 @@ using namespace Akregator;
 
 View::~View()
 {
-    m_shuttingDown = true; // prevents slotFrameChanged from crashing
-    // close all pageviewers in a controlled way
-    // fixes bug 91660, at least when no part loading data
-    m_tabs->setCurrentPage(m_tabs->count()-1); // select last page
-    while (m_tabs->count() > 1) // remove frames until only the main frame remains
-        slotRemoveFrame();
+    // if m_shuttingDown is false, slotOnShutDown was not called. That
+     // means that not the whole app is shutdown, only the part. So it
+    // should be no risk to do the cleanups now
+    if (!m_shuttingDown)
+    {
+        kdDebug() << "View::~View(): slotOnShutDown() wasn't called. Calling it now." << endl;
+        slotOnShutDown();
+    }
+    kdDebug() << "View::~View(): leaving" << endl;
     
-    delete m_mainTab;
-    delete m_mainFrame;
-    delete m_feedList;
 }
 
 View::View( Part *part, QWidget *parent, const char *name)
  : QWidget(parent, name), m_viewMode(NormalView)
 {
+    connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutDown()));
+    
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part = part;
     m_feedList = new FeedList();
@@ -261,6 +263,24 @@ void View::delayedInit()
     // it works. This is kind of creative, but a dirty hack nevertheless.
     if ( !m_part->mergePart(m_articleViewer) )
         QTimer::singleShot(500, this, SLOT(delayedInit()));
+}
+
+void View::slotOnShutDown()
+{
+    kdDebug() << "entering View::slotOnShutDown()" << endl;
+    m_shuttingDown = true; // prevents slotFrameChanged from crashing
+
+    m_transaction->stop();
+    delete m_feedList;
+    
+    // close all pageviewers in a controlled way
+    // fixes bug 91660, at least when no part loading data
+    m_tabs->setCurrentPage(m_tabs->count()-1); // select last page
+    while (m_tabs->count() > 1) // remove frames until only the main frame remains
+        slotRemoveFrame();
+    
+    delete m_mainTab;
+    delete m_mainFrame;
 }
 
 void View::saveSettings()
