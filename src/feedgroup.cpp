@@ -157,6 +157,18 @@ int FeedGroup::unread() const
     return m_unread;
 }
 
+int FeedGroup::totalCount() const
+{
+    int totalCount = 0;
+  
+    QPtrList<TreeNode> children = m_children;
+    
+    for (TreeNode* i = children.first(); i; i = children.next() )
+        totalCount += i->totalCount();
+    
+    return totalCount;
+}
+
 void FeedGroup::updateUnreadCount()
 {
     int unread = 0;

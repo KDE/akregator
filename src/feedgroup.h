@@ -17,7 +17,6 @@ class QDomElement;
 
 namespace Akregator
 {
-    
     class ArticleSequence;
     class FetchTransaction;
         
@@ -52,7 +51,11 @@ namespace Akregator
             /** returns the number of unread articles in all children    
             @return number of unread articles */
             virtual int unread() const;
-                       
+            
+            /** returns the number of articles in all children
+            @return number of articles */
+            virtual int totalCount() const;
+            
             /** Helps the rest of the app to decide if node should be handled as group or not. Use only where necessary, use polymorphism where possible. */
             virtual bool isGroup() const { return true; }
             

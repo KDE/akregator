@@ -492,6 +492,10 @@ void Feed::setUnread(int unread)
         modified();
     }    
 }
+int Feed::totalCount() const
+{
+    return m_articles.count();
+}
 
 TreeNode* Feed::next()
 {

@@ -44,6 +44,12 @@ public:
 
     virtual int unread() const = 0;
     
+
+    /** returns the number of total articles in the node (for groups: the accumulated count of the subtree)
+    @return number of articles */
+    
+    virtual int totalCount() const = 0;
+
     
     /** Get title of node.
     @return the title of the node */

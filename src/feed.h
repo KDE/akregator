@@ -149,7 +149,12 @@ namespace Akregator
 
             /** returns the unread count for this feed */
             virtual int unread() const { return m_unread; }
-            
+
+            /** returns the number of total articles in this feed
+            @return number of articles */
+    
+            virtual int totalCount() const;
+
             /** sets the unread count for this feed */
             void setUnread(int unread);
 
