@@ -1,11 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=aKregatorPart
-Name[pt_BR]=Componente do aKregator
 Name[sv]=aKregator-delprogram
-Name[xx]=xxaKregatorPartxx
-MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
-ServiceTypes=KParts/ReadOnlyPart,KParts/ReadWritePart
+ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libakregatorpart
 Type=Service
 Icon=akregator
