@@ -175,7 +175,8 @@ namespace Akregator
             void slotStop() {closeURL(); };
 
         private:
-            static void readKonquerorSettings();
+            /** fills the font settings with system fonts, if fonts are not set */
+            void initFonts();
             
             bool populateStandardFeeds();
             void setupActions();

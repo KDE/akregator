@@ -20,14 +20,6 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QCheckBox" row="0" column="0">
-            <property name="name">
-                <cstring>kcfg_UseKonqHTMLSettings</cstring>
-            </property>
-            <property name="text">
-                <string>Use appearance settings from Konqueror</string>
-            </property>
-        </widget>
         <widget class="QGroupBox" row="2" column="0">
             <property name="name">
                 <cstring>kcfg_Fonts</cstring>
@@ -303,24 +295,6 @@
         <signal>valueChanged(int)</signal>
         <receiver>slider_mediumFontSize</receiver>
         <slot>setValue(int)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseKonqHTMLSettings</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_Fonts</receiver>
-        <slot>setDisabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseKonqHTMLSettings</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>groupBox3</receiver>
-        <slot>setDisabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseKonqHTMLSettings</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_UnderlineLinks</receiver>
-        <slot>setDisabled(bool)</slot>
     </connection>
     <connection>
         <sender>slider_mediumFontSize</sender>

@@ -167,9 +167,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_standardListLoaded = false;
     m_loading = false;
 
-    if (Settings::useKonqHTMLSettings())
-        readKonquerorSettings();
-    
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
     m_extension = new BrowserExtension(this, "ak_extension");
 
@@ -196,25 +193,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
     setupActions();
-
-    QStringList fonts = Settings::fonts();
-    if (fonts.isEmpty())
-    {
-        fonts.append(KGlobalSettings::generalFont().family());
-        fonts.append(KGlobalSettings::fixedFont().family());
-        fonts.append(KGlobalSettings::generalFont().family());
-        fonts.append(KGlobalSettings::generalFont().family());
-        fonts.append("0");
-    }
-    Settings::setFonts(fonts);
-    if (Settings::standardFont().isEmpty())
-        Settings::setStandardFont(fonts[0]);
-    if (Settings::fixedFont().isEmpty())
-        Settings::setFixedFont(fonts[1]);
-    if (Settings::sansSerifFont().isEmpty())
-        Settings::setSansSerifFont(fonts[2]);
-    if (Settings::serifFont().isEmpty())
-        Settings::setSerifFont(fonts[3]);
+    initFonts();
 }
 
 void Part::slotOnShutdown()
@@ -228,20 +207,16 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-    if (Settings::useKonqHTMLSettings())
-        readKonquerorSettings();
-    else
-    {
-        QStringList fonts;
-        fonts.append(Settings::standardFont());
-        fonts.append(Settings::fixedFont());
-        fonts.append(Settings::sansSerifFont());
-        fonts.append(Settings::serifFont());
-        fonts.append(Settings::standardFont());
-        fonts.append(Settings::standardFont());
-        fonts.append("0");
-        Settings::setFonts(fonts);
-    }
+    QStringList fonts;
+    fonts.append(Settings::standardFont());
+    fonts.append(Settings::fixedFont());
+    fonts.append(Settings::sansSerifFont());
+    fonts.append(Settings::serifFont());
+    fonts.append(Settings::standardFont());
+    fonts.append(Settings::standardFont());
+    fonts.append("0");
+    Settings::setFonts(fonts);
+
     if (Settings::minimumFontSize() > Settings::mediumFontSize())
         Settings::setMediumFontSize(Settings::minimumFontSize());
     saveSettings();
@@ -804,50 +779,26 @@ KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
     }
 }
 
-void Part::readKonquerorSettings()
+void Part::initFonts()
 {
-    KConfig konq(locate("config", "konquerorrc"), true);
-    konq.setGroup("HTML Settings");
-    
-    Settings::setAutomaticDetectionLanguage(konq.readEntry("AutomaticDetectionLanguage"));
-    Settings::setDefaultEncoding(konq.readEntry("DefaultEncoding", QString::null));
-    Settings::setShowAnimations(konq.readEntry("ShowAnimations"));
-    Settings::setAutoDelayedActions(konq.readBoolEntry("AutoDelayedActions", true));
-    //Settings::setAutoLoadImages(konq.readBoolEntry("AutoLoadImages"));
-    Settings::setChangeCursor(konq.readBoolEntry("ChangeCursor", KDE_DEFAULT_CHANGECURSOR));
-    Settings::setFormCompletion(konq.readBoolEntry("FormCompletion", true));
-    Settings::setMaxFormCompletionItems(konq.readNumEntry("MaxFormCompletionItems", 10));
-    Settings::setHoverLinks(konq.readBoolEntry("HoverLinks", true));
-    int minFontSize = konq.readNumEntry("MinimumFontSize", HTML_DEFAULT_MIN_FONT_SIZE);
-    int medFontSize = konq.readNumEntry("MediumFontSize", 12);
-    if (medFontSize < minFontSize)
-        medFontSize = minFontSize;
-    Settings::setMinimumFontSize(minFontSize);
-    Settings::setMediumFontSize(medFontSize);
-    Settings::setUnderlineLinks(konq.readBoolEntry("UnderlineLinks", true));
-    Settings::setUserStyleSheetEnabled(konq.readBoolEntry("UserStyleSheetEnabled"));
-    QStringList fonts = konq.readListEntry("Fonts");
-    if (!fonts.isEmpty())
-    {
-        Settings::setFonts(fonts);
-        Settings::setStandardFont(fonts[0]);
-        Settings::setFixedFont(fonts[1]);
-        Settings::setSansSerifFont(fonts[2]);
-        Settings::setSerifFont(fonts[3]);
-    }
-    else
+    QStringList fonts = Settings::fonts();
+    if (fonts.isEmpty())
     {
         fonts.append(KGlobalSettings::generalFont().family());
         fonts.append(KGlobalSettings::fixedFont().family());
         fonts.append(KGlobalSettings::generalFont().family());
         fonts.append(KGlobalSettings::generalFont().family());
-        Settings::setFonts(fonts);
-        Settings::setStandardFont(fonts[0]);
-        Settings::setFixedFont(fonts[1]);
-        Settings::setSansSerifFont(fonts[2]);
-        Settings::setSerifFont(fonts[3]);
+        fonts.append("0");
     }
-    Settings::writeConfig();
+    Settings::setFonts(fonts);
+    if (Settings::standardFont().isEmpty())
+        Settings::setStandardFont(fonts[0]);
+    if (Settings::fixedFont().isEmpty())
+        Settings::setFixedFont(fonts[1]);
+    if (Settings::sansSerifFont().isEmpty())
+        Settings::setSansSerifFont(fonts[2]);
+    if (Settings::serifFont().isEmpty())
+        Settings::setSerifFont(fonts[3]);
 }
 
 } // namespace Akregator
