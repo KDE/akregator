@@ -134,6 +134,7 @@ bool aKregator::loadPart()
 
 void aKregator::loadLastOpenFile()
 {
+   show();
    load( Settings::lastOpenFile() );
 }
 

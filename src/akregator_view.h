@@ -13,6 +13,7 @@
 #include "feedscollection.h"
 
 #include <qwidget.h>
+#include <qpixmap.h>
 #include <kurl.h>
 #include <qtimer.h>
 
@@ -31,6 +32,7 @@ class KLineEdit;
 namespace Akregator
 {
     class aKregatorPart;
+    class FetchTransaction;
     class FeedsTree;
     class FeedsTreeViewItem;
     class ArticleList;
@@ -100,6 +102,7 @@ namespace Akregator
              */
             void slotContextMenu(KListView*, QListViewItem*, const QPoint&);
 
+	    void slotFetchesCompleted();
             /**
              * Feed has been fetched, populate article view if needed and update counters.
              */
@@ -188,8 +191,7 @@ namespace Akregator
             bool itemMatches (ArticleListItem *item);
             void itemAdded(ArticleListItem *item);
 
-            void showFetchStatus(QListViewItem *firstItem);
-            void findNumFetches(QListViewItem *item);
+            void showFetchStatus();
 
             /**
              * Display article in external browser.
@@ -229,16 +231,19 @@ namespace Akregator
             KLineEdit *m_searchLine;
             int m_queuedSearches;
             QString m_queuedSearch;
-
-            int m_fetches;
-            int m_fetchesDone;
-
+            
+	    FetchTransaction *m_transaction;
+	    
             QSplitter *m_panner1, *m_panner2;
             aKregatorPart *m_part;
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;
             ViewMode m_viewMode;
             QTimer *intervalFetchTimer;
+
+            QPixmap m_feedTreePixmap;
+            QPixmap m_folderTreePixmap;
+	    QPixmap m_errorTreePixmap;
     };
 }
 

@@ -34,6 +34,13 @@
         <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
      </entry>
   </group>
+  <group name="Network">
+     <entry name="ConcurrentFetches" key="Concurrent Fetches" type="Int">
+	<label>Concurrent Fetches</label>
+        <default>6</default>
+	<whatsthis>Number of concurrent fetches</whatsthis>
+     </entry>
+  </group>
   <group name="General">
      <entry name="FetchOnStartup" key="Fetch On Startup" type="Bool">
         <label>Fetch on startup</label>

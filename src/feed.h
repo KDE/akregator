@@ -20,6 +20,7 @@ using namespace RSS;
 namespace Akregator
 {
     class FeedsCollection;
+    class FetchTransaction;
 
     /** This is article list supporting sorting added articles by pubDate
      *  and properly emulating pubDate for articles with invalid pubDates.
@@ -84,10 +85,13 @@ namespace Akregator
             void appendArticles(const Document &d, bool findDups=false);
             void appendArticle(const MyArticle &a);
 
+            void abortFetch();
+	    void setFavicon(const QPixmap &p);
+            void setImage(const QPixmap &p);
+	    
         public slots:
-            void fetch(bool follow=false);                 ///< Start fetching rss
+            void fetch(bool follow=false, FetchTransaction *f=0);
             void loadFavicon();
-            void faviconChanged(const QString &url, const QPixmap &p);
 
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
@@ -99,10 +103,11 @@ namespace Akregator
 
         private slots:
             void fetchCompleted(Loader *loader, Document doc, Status status);
-            void imageChanged(const QPixmap &p);
 
         private:
             void tryFetch();
+	    Loader *m_loader;
+	    FetchTransaction *m_transaction;
             bool m_fetchError;
             bool m_followDiscovery;
             int m_fetchTries;

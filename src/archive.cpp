@@ -36,7 +36,7 @@ void Archive::load(Feed *f)
     
     QString iconFile=FeedIconManager::self()->iconLocation(f->xmlUrl);
     if (!iconFile.isNull())
-        f->faviconChanged(f->xmlUrl, QPixmap(KGlobal::dirs()->findResource("cache", iconFile+".png")));
+        f->setFavicon(QPixmap(KGlobal::dirs()->findResource("cache", iconFile+".png")));
 
     // images are cache, articles is data.. good I think.
     QString u=f->xmlUrl;

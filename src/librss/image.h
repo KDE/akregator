@@ -147,6 +147,7 @@ namespace RSS
           * gotPixmap() first and then call getPixmap().
           */
          void getPixmap();
+		 void abort();
 
       signals:
          /**

@@ -22,7 +22,7 @@ using namespace RSS;
 
 struct Image::Private : public Shared
 {
-	Private() : height(31), width(88), pixmapBuffer(NULL)
+	Private() : height(31), width(88), pixmapBuffer(NULL), job(NULL)
 		{ }
 
 	QString title;
@@ -32,6 +32,7 @@ struct Image::Private : public Shared
 	unsigned int height;
 	unsigned int width;
 	QBuffer *pixmapBuffer;
+	KIO::Job *job;
 };
 
 Image::Image() : QObject(), d(new Private)
@@ -110,10 +111,10 @@ void Image::getPixmap()
 	d->pixmapBuffer = new QBuffer;
 	d->pixmapBuffer->open(IO_WriteOnly);
 
-	KIO::Job *job = KIO::get(d->url, false, false);
-	connect(job, SIGNAL(data(KIO::Job *, const QByteArray &)),
+	d->job = KIO::get(d->url, false, false);
+	connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
 	        this, SLOT(slotData(KIO::Job *, const QByteArray &)));
-	connect(job, SIGNAL(result(KIO::Job *)), this, SLOT(slotResult(KIO::Job *)));
+	connect(d->job, SIGNAL(result(KIO::Job *)), this, SLOT(slotResult(KIO::Job *)));
 }
 
 void Image::slotData(KIO::Job *, const QByteArray &data)
@@ -130,6 +131,15 @@ void Image::slotResult(KIO::Job *job)
 
 	delete d->pixmapBuffer;
 	d->pixmapBuffer = NULL;
+}
+
+void Image::abort()
+{
+	if (d->job)
+	{
+		d->job->kill(true);
+		d->job = NULL;
+	}
 }
 
 Image &Image::operator=(const Image &other)

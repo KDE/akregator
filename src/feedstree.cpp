@@ -21,26 +21,22 @@ using namespace Akregator;
 FeedsTreeItem::FeedsTreeItem( bool isF, QListView *parent, QString label)
     : KListViewItem( parent, label ), m_unread(0), m_folder(isF)
 {
-
 }
 
 FeedsTreeItem::FeedsTreeItem( bool isF, QListViewItem *parent, QString label)
     : KListViewItem( parent, label ), m_unread(0), m_folder(isF)
 
 {
-
 }
 
 FeedsTreeItem::FeedsTreeItem(bool isF, QListView *parent, QListViewItem *after, QString label)
     : KListViewItem( parent, after, label ), m_unread(0), m_folder(isF)
 {
-
 }
 
 FeedsTreeItem::FeedsTreeItem(bool isF, QListViewItem *parent, QListViewItem *after, QString label)
     : KListViewItem( parent, after, label ), m_unread(0), m_folder(isF)
 {
-
 }
 
 void FeedsTreeItem::setUnread(int u)

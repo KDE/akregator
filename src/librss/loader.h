@@ -62,6 +62,7 @@ namespace RSS
 			 */
 			virtual int errorCode() const = 0;
 
+			virtual void abort() = 0;
 		signals:
 			/**
 			 * Emit this signal to tell the Loader class that the retrieval
@@ -116,6 +117,8 @@ namespace RSS
 			 */
 			virtual int errorCode() const;
 
+			virtual void abort();
+			
 		signals:
 			/**
 			 * Signals a permanent redirection. The redirection itself is
@@ -176,6 +179,8 @@ namespace RSS
 			 */
 			virtual int errorCode() const;
 
+			virtual void abort() {}
+			
 		private slots:
 			void slotOutput(KProcess *process, char *data, int length);
 			void slotExited(KProcess *process);
@@ -286,6 +291,8 @@ namespace RSS
             
             const KURL &discoveredFeedURL() const;
 
+			void abort();
+			
 		signals:
 			/**
 			 * This signal gets emitted when the loading process triggered by

@@ -34,7 +34,7 @@ struct FileRetriever::Private
 {
    Private()
       : buffer(NULL),
-        lastError(0)
+        lastError(0), job(NULL)
    {
    }
 
@@ -45,6 +45,7 @@ struct FileRetriever::Private
 
    QBuffer *buffer;
    int lastError;
+   KIO::Job *job;
 };
 
 FileRetriever::FileRetriever()
@@ -65,11 +66,11 @@ void FileRetriever::retrieveData(const KURL &url)
    d->buffer = new QBuffer;
    d->buffer->open(IO_WriteOnly);
 
-   KIO::Job *job = KIO::get(url, false, false);
-   connect(job, SIGNAL(data(KIO::Job *, const QByteArray &)),
+   d->job = KIO::get(url, false, false);
+   connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
                 SLOT(slotData(KIO::Job *, const QByteArray &)));
-   connect(job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));
-   connect(job, SIGNAL(permanentRedirection(KIO::Job *, const KURL &, const KURL &)),
+   connect(d->job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));
+   connect(d->job, SIGNAL(permanentRedirection(KIO::Job *, const KURL &, const KURL &)),
                 SLOT(slotPermanentRedirection(KIO::Job *, const KURL &, const KURL &)));
 }
 
@@ -98,6 +99,15 @@ void FileRetriever::slotResult(KIO::Job *job)
 void FileRetriever::slotPermanentRedirection(KIO::Job *, const KURL &, const KURL &newUrl)
 {
    emit permanentRedirection(newUrl);
+}
+
+void FileRetriever::abort()
+{
+	if (d->job)
+	{
+		d->job->kill(true);
+		d->job = NULL;
+	}
 }
 
 struct OutputRetriever::Private
@@ -231,6 +241,15 @@ void Loader::loadFrom(const KURL &url, DataRetriever *retriever)
 int Loader::errorCode() const
 {
    return d->lastError;
+}
+
+void Loader::abort()
+{
+	if (d->retriever)
+	{
+		d->retriever->abort();
+		d->retriever=NULL;
+	}
 }
 
 const KURL &Loader::discoveredFeedURL() const

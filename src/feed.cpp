@@ -6,7 +6,7 @@
  ***************************************************************************/
 
 #include "feed.h"
-#include "feediconmanager.h"
+#include "fetchtransaction.h"
 #include "feedscollection.h"
 
 #include <kurl.h>
@@ -28,6 +28,8 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
     , updateTitle(false)
     , articles()
+    , m_loader(0)
+    , m_transaction(0)
     , m_fetchError(false)
     , m_fetchTries(0)
     , m_merged(false)
@@ -160,9 +162,10 @@ void Feed::appendArticle(const MyArticle &a)
 }
 
 
-void Feed::fetch(bool followDiscovery)
+void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
 {
-	m_followDiscovery=followDiscovery;
+    m_followDiscovery=followDiscovery;
+    m_transaction=trans;
     m_fetchTries=0;
 
     // mark all new as unread
@@ -187,6 +190,11 @@ void Feed::fetch(bool followDiscovery)
     tryFetch();
 }
 
+void Feed::abortFetch()
+{
+    if (m_loader)
+        m_loader->abort();
+}
 
 void Feed::tryFetch()
 {
@@ -195,11 +203,8 @@ void Feed::tryFetch()
 
     m_fetchError=false;
 
-    Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
-    loader->loadFrom( xmlUrl, new FileRetriever );
-    // TODO: note that we probably don't want to load the favicon here enventually..
-    QTimer::singleShot( 1000, this, SLOT(loadFavicon()) );
-    //loadFavicon();
+    m_loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
+    m_loader->loadFrom( xmlUrl, new FileRetriever );
 }
 
 void Feed::fetchCompleted(Loader *l, Document doc, Status status)
@@ -219,7 +224,6 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
         else
         {
-            faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("error", KIcon::Small));
             m_fetchError=true;
             emit fetchError(this);
             return;
@@ -227,7 +231,14 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     }
 
     // Restore favicon.
-    if (!favicon.isNull()) item()->setPixmap(0, favicon);
+    if (!favicon.isNull())
+    {
+	item()->setPixmap(0, favicon);
+    }
+    else
+    {
+	loadFavicon();
+    }
 
     m_fetchError=false;
     m_document=doc;
@@ -245,10 +256,9 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
             if (m_document.image()) // if we aint got teh image
                                     // and the feed provides one, get it....
             {
-                connect (m_document.image(), SIGNAL(gotPixmap(const QPixmap &)),
-                                   this, SLOT(imageChanged(const QPixmap &)));
-                m_document.image()->getPixmap();
-            }
+		if (m_transaction)
+            	    m_transaction->loadImage(this, m_document.image());
+	    }
         }
     }
 
@@ -262,27 +272,27 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     bool findDups=isMerged();
     appendArticles(m_document, findDups);
 
+    m_loader=0;
+    m_transaction=0;
     emit fetched(this);
 }
 
 void Feed::loadFavicon()
 {
-    FeedIconManager::self()->loadIcon(xmlUrl);
-    connect (FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)),
-                                this, SLOT(faviconChanged(const QString &, const QPixmap &)));
+    if (!m_transaction)
+	return;
+
+    m_transaction->loadIcon(this);
 }
 
-void Feed::faviconChanged(const QString &url, const QPixmap &p)
+void Feed::setFavicon(const QPixmap &p)
 {
-    if (xmlUrl==url && !m_fetchError)
-    {
-        if (item())
+    if (!m_fetchError && item())
             item()->setPixmap(0, p);
-        favicon=p;
-    }
+    favicon=p;
 }
 
-void Feed::imageChanged(const QPixmap &p)
+void Feed::setImage(const QPixmap &p)
 {
     image=p;
     QString u=xmlUrl;

@@ -10,6 +10,7 @@
 #include "akregator_view.h"
 #include "addfeeddialog.h"
 #include "propertiesdialog.h"
+#include "fetchtransaction.h"
 #include "feediconmanager.h"
 #include "feedstree.h"
 #include "articlelist.h"
@@ -62,17 +63,27 @@
 
 using namespace Akregator;
 
-
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
     : QWidget(parent, wName), m_feeds()
 {
     m_part=part;
 
+    setFocusPolicy(QWidget::StrongFocus);
+    
+    m_feedTreePixmap=KGlobal::iconLoader()->loadIcon("txt", KIcon::Small);
+    m_folderTreePixmap=KGlobal::iconLoader()->loadIcon("folder", KIcon::Small);
+    m_errorTreePixmap=KGlobal::iconLoader()->loadIcon("error", KIcon::Small);
+    
     QVBoxLayout *lt = new QVBoxLayout( this );
 
     m_panner1 = new QSplitter(QSplitter::Horizontal, this, "panner1");
     m_panner1->setOpaqueResize( true );
     lt->addWidget(m_panner1);
+
+    m_transaction= new FetchTransaction(this);
+    connect (m_transaction, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
+    connect (m_transaction, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
+    connect (m_transaction, SIGNAL(completed()), this, SLOT(slotFetchesCompleted()));     
 
     m_tree = new FeedsTree( m_panner1, "FeedsTree" );
 
@@ -138,10 +149,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_articles = new ArticleList( m_panner2, "articles" );
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
-    /*
-    connect( m_articles, SIGNAL(clicked(QListViewItem *)),
-                   this, SLOT( slotArticleSelected(QListViewItem *)) );
-    */
+    
     // use selectionChanged instead of clicked
     connect( m_articles, SIGNAL(selectionChanged(QListViewItem *)),
                    this, SLOT( slotArticleSelected(QListViewItem *)) );
@@ -220,6 +228,7 @@ void aKregatorView::reset()
 
     // Root item
     FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree, QString::null );
+    elt->setPixmap(0, m_folderTreePixmap );
     m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
     elt->setExpandable(true);
     elt->setOpen(true);
@@ -233,6 +242,7 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     if (!Ok) return false;
 
     FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree->firstChild(), QString::null );
+    elt->setPixmap(0, m_folderTreePixmap);
     m_feeds.addFeedGroup(elt)->setTitle(text);
     elt->setExpandable(true);
     elt->setOpen(true);
@@ -298,6 +308,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
             QListViewItem *lastChild = parent->firstChild();
             while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
             elt = new FeedsTreeItem( true, parent, lastChild, KCharsets::resolveEntities(title) );
+            
         }
         else
             elt = new FeedsTreeItem( true, m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
@@ -306,7 +317,8 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
         {
             elt->setFolder(false);
             QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
-
+             
+            elt->setPixmap(0, m_feedTreePixmap);
             addFeed_Internal( 0, elt,
                               title,
                               xmlurl,
@@ -316,12 +328,14 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
                               e.attribute("autoFetch") == "true" ? true : false,
                               e.attribute("fetchInterval").toUInt()
                             );
-
         }
         else
         {
             m_feeds.addFeedGroup(elt);
             FeedGroup *g = m_feeds.find(elt);
+            
+            elt->setPixmap(0, m_folderTreePixmap);
+            
             if (g)
                 g->setTitle(title);
 
@@ -367,12 +381,6 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     feed->updateTitle    = updateTitle;
     feed->setAutoFetch(autoFetch);
     feed->setFetchInterval(fetchInterval);
-
-    connect( feed, SIGNAL(fetched(Feed* )),
-             this, SLOT(slotFeedFetched(Feed *)) );
-
-    connect( feed, SIGNAL(fetchError(Feed* )),
-             this, SLOT(slotFeedFetchError(Feed *)) );
 
     Archive::load(feed);
 
@@ -672,6 +680,8 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     else
         elt = new FeedsTreeItem(false, parent, text);
 
+    
+    elt->setPixmap(0, m_feedTreePixmap);
     feed->setItem(elt);
 
     addFeed_Internal( feed, elt,
@@ -684,6 +694,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
                       dlg->fetchInterval()
                     );
 
+    m_tree->ensureItemVisible(elt);
     setTotalUnread();
 
     m_part->setModified(true);
@@ -718,6 +729,8 @@ void aKregatorView::slotFeedAddGroup()
     FeedGroup *g = m_feeds.find(elt);
     if (g)
         g->setTitle( text );
+
+    m_tree->ensureItemVisible(elt);
 
     m_part->setModified(true);
 }
@@ -865,21 +878,6 @@ void aKregatorView::setTotalUnread()
     m_part->setTotalUnread(totalUnread);
 }
 
-void aKregatorView::findNumFetches(QListViewItem *item)
-{
-    if (item)
-    {
-        FeedGroup *fg = m_feeds.find(item);
-        if (fg && fg->isGroup()){
-            for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
-                findNumFetches(it);
-        }
-        else{
-            m_fetches++;
-        }
-    }
-}
-
 void aKregatorView::fetchItem(QListViewItem *item)
 {
     if (item)
@@ -887,25 +885,21 @@ void aKregatorView::fetchItem(QListViewItem *item)
         FeedGroup *fg = m_feeds.find(item);
         if (fg && fg->isGroup())
         {
-            kdDebug() << "Fetching folder " << fg->title() << endl;
             for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
-	    	fetchItem(it);
+                fetchItem(it);
         }
         else
         {
             Feed *f = static_cast<Feed *>(fg);
             if (f)
-	    	f->fetch();
+                m_transaction->fetch(f);
         }
     }
 }
 
-void aKregatorView::showFetchStatus(QListViewItem *firstItem)
+void aKregatorView::showFetchStatus()
 {
-    m_fetchesDone=0;
-    m_fetches=0;
-    findNumFetches(firstItem);
-    if (m_fetches)
+    if (m_transaction->totalFetches())
     {
         m_part->setStatusBar(i18n("Fetching Feeds..."));
         m_part->setProgress(0);
@@ -938,68 +932,63 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
 
 void aKregatorView::slotFetchCurrentFeed()
 {
-    showFetchStatus(m_tree->currentItem());
+    showFetchStatus();
     fetchItem(m_tree->currentItem());
+    m_transaction->start();
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(false);
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
 }
 
 void aKregatorView::slotFetchAllFeeds()
 {
     // this iterator iterates through ALL child items
-    showFetchStatus(m_tree->firstChild());
+    showFetchStatus();
 
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
     {
         //kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
         Feed *f = static_cast<Feed *>(m_feeds.find(*it));
         if (f && !f->isGroup())
-            f->fetch();
+            m_transaction->fetch(f);
     }
+    m_transaction->start();
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(false);
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
 }
 
+void aKregatorView::slotFetchesCompleted()
+{
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
+    setTotalUnread();
+    m_part->setStatusBar(QString::null);
+}
 
 void aKregatorView::slotFeedFetched(Feed *feed)
 {
-    // Feed finished fetching
     // If its a currenly selected feed, update view
-    //kdDebug() << k_funcinfo << "BEGIN" << endl;
     if (feed->item() == m_tree->currentItem())
-    {
-        //kdDebug() << k_funcinfo << "Updating article list" << endl;
         slotUpdateArticleList(feed, false, true);
-    }
 
-    // TODO: perhaps schedule save?
+    // TODO: move to slotFetchesCompleted
     Archive::save(feed);
-
+    
     // Also, update unread counts
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());
     if (fti)
         fti->setUnread(feed->unread());
 
-    m_fetchesDone++;
-    int p=int(100*((double)m_fetchesDone/(double)m_fetches));
-    if (p>=100)
-    {
-        setTotalUnread(); // used for systray usually, which is slow..
-                          // only update once after all feeds fetched.
-        m_part->setStatusBar(QString::null);
-    }
+    int p=int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
     m_part->setProgress(p);
-    //kdDebug() << k_funcinfo << "END" << endl;
 }
 
-void aKregatorView::slotFeedFetchError(Feed *)
+void aKregatorView::slotFeedFetchError(Feed *feed)
 {
-    m_fetchesDone++;
-    int p=int(100*((double)m_fetchesDone/(double)m_fetches));
-    if (p>=100)
-    {
-        setTotalUnread(); // used for systray usually, which is slow..
-                          // only update once after all feeds fetched.
-        m_part->setStatusBar(QString::null);
-    }
+    int p=int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
     m_part->setProgress(p);
+    if (feed && feed->item())
+        feed->item()->setPixmap(0, m_errorTreePixmap);
 }
 
 void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
@@ -1014,7 +1003,6 @@ void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, con
             slotOpenTab(i->article().link());
     }
 }
-
 
 void aKregatorView::slotArticleSelected(QListViewItem *i)
 {
@@ -1203,8 +1191,10 @@ void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
     }
     else
     {
-    m_part->setStatusBar(QString::null);
+        m_part->setStatusBar(QString::null);
     }
 }
 
 #include "akregator_view.moc"
+
+// vim: set et ts=4 sts=4 sw=4:
