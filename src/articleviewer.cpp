@@ -7,6 +7,7 @@
 
 #include "articleviewer.h"
 #include "feed.h"
+
 #include <kapplication.h>
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
@@ -29,7 +30,7 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : KHTMLPart(parent, name), m_metrics(widget())
 {
-    m_bodyFont = KGlobalSettings::generalFont();
+    generateCSS();
     // to be on a safe side
     setJScriptEnabled(false);
     setJavaEnabled(false);
@@ -44,20 +45,16 @@ void ArticleViewer::openDefault()
     openURL( ::locate( "data", "akregatorpart/welcome.html" ) );
 }
 
-QString ArticleViewer::htmlHead() const
-{
-    return
-        "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
-        "<html><head><title></title></head><body>";
-}
-
-QString ArticleViewer::cssDefinitions() const
+void ArticleViewer::generateCSS()
 {
     const QColorGroup & cg = QApplication::palette().active();
-    return QString (
+	m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
+						"<html><head><title></title></head><body>");
+    m_htmlHead += QString (
     "<style type=\"text/css\">"
     "body {\n"
     "  font-family: \"%1\" ! important;\n"
+// from kmail::headerstyle.cpp
     "  font-size: %2 ! important;\n"
     "  color: %3 ! important;\n"
     "  background: %4 ! important;\n"
@@ -94,8 +91,8 @@ QString ArticleViewer::cssDefinitions() const
     "overflow: auto;\n"
     "}\n\n"
     "</style>\n")
-    .arg(m_bodyFont.family()).
-    arg(QString::number( pointsToPixel( m_metrics, m_bodyFont.pointSize()))+"px").
+    .arg(KGlobalSettings::generalFont().family()).
+    arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px").
     arg(cg.text().name()).
     arg(cg.base().name()).
     arg(cg.link().name()).
@@ -105,6 +102,13 @@ QString ArticleViewer::cssDefinitions() const
     arg(cg.highlightedText().name());
 }
 
+void ArticleViewer::reload()
+{
+    generateCSS();
+    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+    write(m_htmlHead + m_currentText);
+    end();
+}
 
 void ArticleViewer::show(Feed *f, MyArticle a)
 {
@@ -114,9 +118,8 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
 
     QString text;
-    text += htmlHead()+cssDefinitions();
 
-    text += QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
+    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
 
     if (!a.title().isEmpty())
     {
@@ -147,7 +150,9 @@ void ArticleViewer::show(Feed *f, MyArticle a)
             text += "<p>\n";
     }
     text += "</div></body></html>";
-    write(text);
+    m_currentText=text;
+
+    write(m_htmlHead + text);
     end();
 }
 

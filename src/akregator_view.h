@@ -67,6 +67,8 @@ namespace Akregator
              */
             void writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document );
 
+	    bool event(QEvent *e);
+
         public slots:
             /**
              * Current item has changed.
@@ -113,7 +115,7 @@ namespace Akregator
              * @internal
              */
             void reset();
-
+	    
             /**
              * Add feed to feeds tree, given the existing list view item and alot of
              * feed parameters. FIXME: parameters better be bundled to FeedData?

@@ -242,7 +242,6 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
             if (g->isGroup())
             {
                 QDomElement base = g->toXml( node, document );
-
                 base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
 
                 writeChildNodes( it->firstChild(), base, document );
@@ -251,6 +250,16 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
             }
         }
     }
+}
+
+bool aKregatorView::event(QEvent *e)
+{
+    if (e->type() == QEvent::ApplicationPaletteChange)
+    {
+        m_articleViewer->reload();
+        return true;
+    }
+    return QWidget::event(e);
 }
 
 

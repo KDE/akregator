@@ -26,11 +26,12 @@ namespace Akregator
             ArticleViewer(QWidget* parent, const char* name);
             void openDefault();
             void show(Feed *f, MyArticle);
+	    void generateCSS();
+	    void reload();	
         private:
-            QString htmlHead() const;
-            QString cssDefinitions() const;
-            QFont m_bodyFont;
+	    QString m_htmlHead;
             QPaintDeviceMetrics m_metrics;
+            QString m_currentText;
     };
 }
 
