@@ -20,5 +20,4 @@ notifications:
 - use standard kpassive popup in knotifications instead of balloons
 
 kontact:
-- show systray icon in kontact 
 - show akregator if akregator is running and kontact feed icon is selected
