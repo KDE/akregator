@@ -111,6 +111,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
 {
     //kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
     findDups=true;
+    articles.enableSorting(false);
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
     //kdDebug() << "m_unread before appending articles=="<<m_unread<<endl;
@@ -146,6 +147,8 @@ void Feed::appendArticles(const Document &d, bool findDups)
             appendArticle(mya);
         }
     }
+    articles.enableSorting(true);
+    articles.sort();
     //kdDebug() << "m_unread after appending articles=="<<m_unread<<endl;
 }
 
@@ -173,7 +176,7 @@ void Feed::fetch(bool followDiscovery)
         }
     }
 
-    // Disable icon to show it is fetching.
+   // Disable icon to show it is fetching.
     if (!favicon.isNull())
     {
         KIconEffect iconEffect;
@@ -312,7 +315,7 @@ void Feed::setFetchInterval(int i)
 struct ArticleSequence::Private
 {
    int dummy;
-//   bool doSort :1;
+   bool doSort :1;
 };
 
 ArticleSequence::ArticleSequence()
@@ -359,17 +362,19 @@ ArticleSequence::iterator ArticleSequence::prepend( const MyArticle &x )
     return MyArticle::List::prepend( x );
 }
 
-/*
-void ArticleSequence::doNotSort()
+
+void ArticleSequence::enableSorting(bool b)
 {
-    d->doSort = false;
+    d->doSort = b;
 }
 
 void ArticleSequence::sort()
 {
-    d->doSort = true;
-//    qHeapSort( *this );
+    if (d->doSort)
+    {
+        qHeapSort( *this );
+    }
 }
-*/
+
 
 #include "feed.moc"

@@ -35,10 +35,10 @@ namespace Akregator
             void insert( iterator it, size_type n, const MyArticle &x );
             iterator append( const MyArticle &x );
             iterator prepend( const MyArticle &x );
-/*
-            void doNotSort(); ///< Disables internal item sorting (useful for massive insert operations).
-            void sort();      ///< Enables internal sorting and sorts items.
-*/
+
+            void enableSorting(bool b);
+            void sort();
+        
         private:
             struct Private;
             Private *d;
