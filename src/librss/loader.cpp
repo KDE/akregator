@@ -131,7 +131,6 @@ void FileRetriever::abort()
 		d->job->kill(true);
 		d->job = NULL;
 	}
-    delete this;
 }
 
 struct OutputRetriever::Private
@@ -272,6 +271,7 @@ void Loader::abort()
 	if (d && d->retriever)
 	{
 		d->retriever->abort();
+        delete d->retriever;
 		d->retriever=NULL;
 	}
     emit loadingComplete(this, QDomDocument(), Aborted);
