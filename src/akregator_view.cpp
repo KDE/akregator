@@ -508,6 +508,10 @@ void aKregatorView::slotTabCaption(const QString &capt)
 void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoint& p)
 {
    FeedGroup *feed = static_cast<FeedGroup *>(m_feeds.find(item));
+
+   if (!feed)
+       return;
+   
    m_tabs->showPage(m_mainTab);
 
    QWidget *w;
