@@ -139,7 +139,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
 
 		mya.offsetFetchTime(nudge);
                 appendArticle(mya);
-		nudge++;
+		nudge--;
             }
             //else{
             //kdDebug() << "got dup!!"<<mya.title()<<endl;
