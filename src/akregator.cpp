@@ -151,7 +151,8 @@ void aKregator::loadLastOpenFile()
 
 aKregator::~aKregator()
 {
-   Settings::setLastOpenFile( m_part->url().url() );
+   if (m_part)
+       Settings::setLastOpenFile( m_part->url().url() );
    Settings::writeConfig();
 }
 
