@@ -91,6 +91,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_tabs = new TabWidget(m_panner1);
     m_tabsClose = new QToolButton( m_tabs );
+    m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
     connect( m_tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveTab() ) );
 
@@ -867,7 +868,7 @@ void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, con
     if (item && button==Qt::MidButton)
     {
         ArticleListItem *i = static_cast<ArticleListItem *>(item);
-        KRun::runURL(i->article().link(), "text/html", false, false); 
+        KRun::runURL(i->article().link(), "text/html", false, false);
     }
 }
 
