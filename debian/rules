@@ -12,3 +12,5 @@ DEB_INSTALL_CHANGELOGS_ALL := ChangeLog
 
 DEB_INSTALL_MANPAGES_akregator := debian/akregator.1
 
+clean::
+	rm -f debian/compat
