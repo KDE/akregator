@@ -30,7 +30,7 @@ int main(int argc, char **argv)
                      "http://akregator.upnet.ru/");
     about.addAuthor( "Stanislav Karchebny", I18N_NOOP("Author, Developer, Maintainer"), "Stanislav.Karchebny@kdemail.net" );
     about.addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "smt@vfemail.net" );
-    about.addAuthor( "Teemu Rytilahti", I18N_NOOP("Contributor"), "teemu.rytilahti @kde-fi.org" );
+    about.addAuthor( "Teemu Rytilahti", I18N_NOOP("Contributor"), "teemu.rytilahti@kde-fi.org" );
     about.addAuthor( "Stephan Binner", I18N_NOOP("Contributor"), "binner@kde.org" );
     about.addAuthor( "Frank Osterfeld", I18N_NOOP("Contributor"), "f_osterf@informatik.uni-kl.de" );
     about.addAuthor( "Gary Cramblitt", I18N_NOOP("Contributor"), "garycramblitt@comcast.net");
