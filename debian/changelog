@@ -1,3 +1,10 @@
+akregator (1.0-beta4-3) unstable; urgency=low
+    
+  * fixed copyright file
+  * added homepage to control
+
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 01 Jul 2004 13:49:50 +0200
+
 akregator (1.0-beta4-2) unstable; urgency=low
 
   * First upload to debian (ITP closes: #251871)

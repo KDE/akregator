@@ -1,11 +1,21 @@
 This package was debianized by Pierre Habouzit <pierre.habouzit@m4x.org> on
 Tue, 25 May 2004 11:00:03 +0200.
 
-It was downloaded from http://akregator.upnet.ru/
+It was downloaded from http://akregator.sourceforge.net/
 
 Upstream Author: Stanislav Karchebny <stanislav.karchebny@kdemail.net>
 
 Copyright: GNU GPL Version 2
+
+Copyright (c) 2001-2003 Frerich Raabe <raabe@kde.org>
+Copyright (c) 2001-2004 Frerich Raabe <raabe@kde.org>
+Copyright (c) 2003 Frerich Raabe <raabe@kde.org>
+Copyright (c) 2003 Georg Robbers <Georg.Robbers@urz.uni-hd.de>
+Copyright (c) 2004 Frerich Raabe <raabe@kde.org>
+Copyright (c) 2004 Gary Cramblitt <garycramblitt@comcast.net>
+Copyright (c) 2004 Sashmit Bhaduri <smt@vfemail.net>
+Copyright (c) 2004 Stanislav Karchebny
+Copyright (c) 2004 Teemu Rytilahti
 
 On Debian GNU/Linux systems, the complete text of the GNU General Public
 License may be found in `/usr/share/common-licenses/GPL'.
