@@ -233,6 +233,7 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         parent = m_tree->firstChild();
     }
     
+    m_tree->setUpdatesEnabled(false);
     int numNodes=body.childNodes().count();
     int curNodes=0;
     
@@ -244,6 +245,7 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         m_part->setProgress((int)100*((double)curNodes/(double)numNodes));
         n = n.nextSibling();
     }
+    m_tree->setUpdatesEnabled(true);
 
     return true;
 }
