@@ -77,7 +77,7 @@ aKregator::aKregator()
 
             connect (m_part, SIGNAL(partChanged(KParts::Part *)), this, SLOT(partChanged(KParts::Part *)));
             connect( browserExtension(), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-            
+
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
             browserExtension()->setBrowserInterface(m_browserIface);
@@ -136,7 +136,7 @@ void aKregator::setupActions()
 
     // TODO: move to config dialog when it arrives
     m_fetchStartupAction = new KToggleAction(i18n("&Fetch Feeds on Startup"), "", "", this, SLOT(optionsFetchOnStartup()), actionCollection(), "fetch_on_startup");
-    
+
     KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
     KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
 
@@ -170,6 +170,7 @@ void aKregator::fileNew()
     // in its initial state.  This is what we do here..
     if ( ! m_part->url().isEmpty() || m_part->isModified() )
     {
+        m_part->save();
         (new aKregator)->show();
     };
 }

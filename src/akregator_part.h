@@ -37,7 +37,10 @@ namespace Akregator
             aKregatorPart(QWidget *parentWidget, const char *widgetName,
                           QObject *parent, const char *name, const QStringList&);
 
-            /**
+
+            bool save();
+
+	    /**
              * Destructor.
              */
             virtual ~aKregatorPart();
@@ -64,9 +67,9 @@ namespace Akregator
 
             void setStatusBar(const QString &text);
             void setProgress(int percent);
-                
+
             virtual bool openURL(const KURL& url);
-            
+
         protected:
             /**
              * This must be implemented by each part
