@@ -380,7 +380,9 @@ void aKregatorPart::fileOpen()
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
-    QString file_name = KFileDialog::getOpenFileName();
+    QString file_name = KFileDialog::getOpenFileName( QString::null,
+                        "*.opml|" + i18n("OPML Outlines (*.opml)") + "\n"
+                        "*|" + i18n("All Files") );
 
     if (file_name.isEmpty() == false)
         openURL(file_name);
@@ -389,7 +391,9 @@ void aKregatorPart::fileOpen()
 void aKregatorPart::fileSaveAs()
 {
     // this slot is called whenever the File->Save As menu is selected,
-    QString file_name = KFileDialog::getSaveFileName();
+    QString file_name = KFileDialog::getSaveFileName( QString::null,
+                        "*.opml|" + i18n("OPML Outlines (*.opml)") + "\n"
+                        "*|" + i18n("All Files") );
     if (file_name.isEmpty() == false)
         saveAs(file_name);
 }
@@ -436,7 +440,7 @@ void aKregatorPart::slotUpdateArticleList(Feed *source)
         Article::List::const_iterator end = source->articles.end();
         for (it = source->articles.begin(); it != end; ++it)
         {
-            new ArticleListItem( m_articles, (*it) );
+            new ArticleListItem( m_articles, (*it), source );
         }
     }
     m_articles->setUpdatesEnabled(true);

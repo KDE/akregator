@@ -4,6 +4,8 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+        CHG [x] add file filters to open/save dialogs
+#000013 FIX [x] list generated files in .cvsignore files
 #000006 ADD [x] system tray
 #000038 ADD [x] add isOpen=<bool> to feed group outline opml -->berkus
 #000039 FIX [x] make real use of LiveJournal checkboxes in AddFeedDialog

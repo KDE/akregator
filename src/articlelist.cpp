@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 #include "articlelist.h"
+#include "feed.h"
 
 #include <klocale.h>
 #include <kcharsets.h>
@@ -15,10 +16,19 @@
 using namespace Akregator;
 using namespace RSS;
 
-ArticleListItem::ArticleListItem( QListView *parent, Article a )
+struct ArticleListItem::Private
+{
+    Article article;
+    Feed *feed;
+};
+
+ArticleListItem::ArticleListItem( QListView *parent, Article a, Feed *feed )
     : KListViewItem( parent, parent->lastItem(), KCharsets::resolveEntities(a.title()) )
     /* FIXME lastItem() is not needed because we will sort after adding */
 {
+    d = new Private;
+    d->article = a;
+    d->feed = feed;
 }
 
 int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
@@ -31,7 +41,7 @@ int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
 ArticleList::ArticleList(QWidget *parent, const char *name)
         : KListView(parent, name)
 {
-	setMinimumSize(250, 150);
+    setMinimumSize(250, 150);
     addColumn(i18n("Articles"));
     addColumn(i18n("P"), 16);
     setRootIsDecorated(false);
@@ -40,7 +50,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     setAllColumnsShowFocus(true);
     setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
-	setFullWidth(false);
+    setFullWidth(false);
     setSorting(-1);
     setDragAutoScroll(true);
     setDropHighlighter(false);

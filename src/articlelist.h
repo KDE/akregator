@@ -12,13 +12,19 @@
 
 namespace Akregator
 {
+    class Feed;
+
     class ArticleListItem : public KListViewItem
     {
         public:
-            ArticleListItem( QListView *parent, RSS::Article a );
+            ArticleListItem( QListView *parent, RSS::Article a, Feed *parent );
 
             /** Override compare() to compare by pubDate */
             int compare( QListViewItem *i, int col, bool ascending ) const;
+
+        private:
+            struct Private;
+            Private *d;
     };
 
     class ArticleList : public KListView
