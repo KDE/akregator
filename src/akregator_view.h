@@ -105,6 +105,10 @@ namespace Akregator
 
 	    FetchTransaction* transaction(){return m_transaction;}
 
+            /** session management **/
+            virtual void readProperties(KConfig* config);
+            virtual void saveProperties(KConfig* config);
+            
         public slots:
             /**
              * Current item has changed.

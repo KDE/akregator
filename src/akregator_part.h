@@ -107,6 +107,10 @@ namespace Akregator
              */
             virtual void addFeedToGroup(const QString& url, const QString& group);
             
+            /** session management **/
+            virtual void readProperties(KConfig* config);
+            virtual void saveProperties(KConfig* config);
+            
         protected:
             /**
              * This must be implemented by each part

@@ -191,6 +191,21 @@ void aKregatorPart::newArticle(Feed *src, const MyArticle &a)
     }
 }
 
+void aKregatorPart::readProperties(KConfig* config)
+{
+    KURL u=config->readEntry("URL");
+    if (u.isValid())
+    {
+        openURL(u);
+        m_view->readProperties(config);
+    }   
+}
+
+void aKregatorPart::saveProperties(KConfig* config)
+{
+    config->writeEntry("URL",url().url());
+    m_view->saveProperties(config);
+}
 
 /*************************************************************************************************/
 /* LOAD                                                                                          */

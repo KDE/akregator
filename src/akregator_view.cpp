@@ -1520,6 +1520,89 @@ void aKregatorView::stopLoading()
     m_stopLoading=true;
 }
 
+void aKregatorView::readProperties(KConfig* config)
+{
+    // read filter settings 
+    
+    m_searchLine->setText(config->readEntry("searchLine"));
+    m_searchCombo->setCurrentItem(config->readEntry("searchCombo").toInt()); 
+    slotSearchComboChanged(config->readEntry("searchCombo").toInt());  
+
+    // read the position of the selected feed
+        
+    QString selectedFeed = config->readEntry("selectedFeed");
+    if ( selectedFeed != QString::null )
+    {
+        QStringList pos = QStringList::split(' ', selectedFeed);
+        QListViewItem* current = m_tree->firstChild();
+        for ( int i = 0; current && i < pos.count(); i++ )
+        {
+            int childPos = selectedFeed.section(' ', i, i).toInt();
+            current = current->firstChild();
+            if (current)
+                for (int j = 0; j < childPos; j++)
+                    if ( current->nextSibling() )
+                        current = current->nextSibling();
+        }    
+        m_tree->setSelected(current, true);
+       
+        // read the selected article title (not in Combined View)
+        
+        if ( m_viewMode != CombinedView )
+        {
+            QString selectedArticleEntry = config->readEntry("selectedArticle");
+            if ( selectedArticleEntry != QString::null )
+            {        
+                QListViewItem* selectedArticle = m_articles->findItem(selectedArticleEntry, 0);
+                if ( selectedArticle )
+                    m_articles->setSelected(selectedArticle, true);
+            } 
+        } // if viewMode != combinedView
+   } // if selectedFeed is set
+}
+
+void aKregatorView::saveProperties(KConfig* config)
+{   
+    // save filter settings
+    config->writeEntry("searchLine", m_searchLine->text());
+    config->writeEntry("searchCombo", m_searchCombo->currentItem());
+    
+    // write the position of the currently selected feed
+    // format is a string, e.g. "3 2 1" means
+    // 2nd child of the 3rd child of the 4th child of the root node (All Feeds) 
+    if ( m_tree->selectedItem() ) 
+    {
+        QListViewItem* item = m_tree->selectedItem();
+        QListViewItem* parent = item->parent();
+        QString pos;
+        
+        while (parent)
+        {
+            int n = 0;
+            QListViewItem* i = parent->firstChild();
+            while (i && i != item)
+            {
+                i = i->nextSibling();
+                n++;
+            }
+            pos = QString::number(n) + " " + pos; 
+            item = item->parent();
+            parent = item->parent(); 
+        }
+        pos = pos.stripWhiteSpace();
+        config->writeEntry("selectedFeed", pos); 
+    }
+    
+    // if not in CombinedView, save currently selected article 
+    // atm the item's text() is saved, which is ambigous. 
+    
+    if ( m_viewMode != CombinedView )         
+    {
+        if ( m_articles->selectedItem() )
+            config->writeEntry("selectedArticle", m_articles->selectedItem()->text(0));
+    }
+}
+
 #include "akregator_view.moc"
 
 // vim: set et ts=4 sts=4 sw=4:

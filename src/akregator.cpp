@@ -207,16 +207,15 @@ void aKregator::saveProperties(KConfig* config)
 {
     if (!m_part)
         loadPart();
-    config->writeEntry("URL",m_part->url().url());
+    
+    static_cast<Akregator::aKregatorPart*>(m_part)->saveProperties(config);
 }
 
 void aKregator::readProperties(KConfig* config)
 {
-    KURL u=config->readEntry("URL");
     if (!m_part) // if blank url, load part anyways
         loadPart();
-    if (u.isValid())
-        load(u);
+    static_cast<Akregator::aKregatorPart*>(m_part)->readProperties(config);
 }
 
 void aKregator::fileNew()
@@ -345,10 +344,16 @@ void aKregator::disconnectActionCollection( KActionCollection *coll )
 
 bool aKregator::queryExit()
 {
-    if(!m_part) return KParts::MainWindow::queryExit();
-    if( Settings::markAllFeedsReadOnExit() )
-        emit markAllFeedsRead();
-    
+    if(!m_part) 
+        return KParts::MainWindow::queryExit();
+   
+    if (!kapp->sessionSaving())
+    {    
+        // normal exit     
+        if( Settings::markAllFeedsReadOnExit() )
+            emit markAllFeedsRead();
+    }
+     
     Settings::writeConfig();  
     return KParts::MainWindow::queryExit();
 }
