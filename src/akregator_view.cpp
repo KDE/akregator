@@ -774,6 +774,13 @@ void aKregatorView::slotMarkAllRead()
    markAllRead(m_tree->currentItem());
 }
 
+void aKregatorView::slotOpenHomepage()
+{
+   QListViewItem *item=m_tree->currentItem();
+   Feed *f = static_cast<Feed *>(m_feeds.find(item));
+   slotOpenTab(f->htmlUrl);
+}
+
 void aKregatorView::markAllRead(QListViewItem *item)
 {
     if (item)

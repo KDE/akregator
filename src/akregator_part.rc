@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="7">
+<kpartgui name="akregator_part" version="8">
 <MenuBar>
   <Menu name="file">
     <Action name="file_open"/>
@@ -51,6 +51,8 @@
 </Menu>
 
 <Menu name="feeds_popup">
+  <Action name="feed_homepage"/>
+  <Separator/>
   <Action name="feed_modify"/>
   <Action name="feed_remove"/>
   <Separator/>

@@ -59,6 +59,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     new KAction(i18n("Fe&tch All"), "bottom", "Shift+Ctrl+R", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
     new KAction(i18n("Go to &Next Unread"), "", "N", m_view, SLOT(slotNextUnread()),actionCollection(), "feed_next_unread");
     new KAction(i18n("&Mark All as Read"), "", "Ctrl+M", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
+    new KAction(i18n("&Open Homepage"), "", "", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
 
     KRadioAction *ra=new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Shift+Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
     ra->setExclusiveGroup( "ViewMode" );

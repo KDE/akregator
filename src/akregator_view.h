@@ -113,7 +113,7 @@ namespace Akregator
             /**
              * Display article contents in ArticleViewer.
              */
-            
+
             void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);
             void slotArticleSelected(QListViewItem *);
             void slotArticleDoubleClicked(QListViewItem *, const QPoint &, int);
@@ -132,6 +132,7 @@ namespace Akregator
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();
             void slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent);
+            void slotOpenHomepage();
 
             void slotSearchComboChanged(int index);
             void slotSearchTextChanged(const QString &search);
