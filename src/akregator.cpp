@@ -23,7 +23,7 @@
 #include <kprogress.h>
 #include <kconfig.h>
 #include <kurl.h>
-#include <kconfigdialog.h> 
+#include <kconfigdialog.h>
 
 #include <kedittoolbar.h>
 
@@ -39,6 +39,8 @@
 #include <kdebug.h>
 
 #include <qmetaobject.h>
+#include <qpen.h>
+#include <qpainter.h>
 #include <private/qucomextra_p.h>
 #include <akregator_part.h>
 
@@ -81,10 +83,10 @@ aKregator::aKregator()
     setupActions();
 
     m_icon = new TrayIcon(this);
-    
+
     if ( Settings::showTrayIcon() )
         m_icon->show();
-        
+
     connect(m_icon, SIGNAL(quitSelected()),
             this, SLOT(quitProgram()));
 
@@ -210,7 +212,7 @@ void aKregator::saveProperties(KConfig* config)
 {
     if (!m_part)
         loadPart();
-    
+
     static_cast<Akregator::aKregatorPart*>(m_part)->saveProperties(config);
 }
 
@@ -234,7 +236,7 @@ void aKregator::fileNew()
     if ( ! m_part->url().isEmpty() || m_part->isModified() )
     {
 	callObjectSlot( browserExtension(m_part), "saveSettings()", QVariant());
-	
+
         aKregator *w=new aKregator();
 	w->loadPart();
 	w->show();
@@ -286,18 +288,18 @@ void aKregator::optionsConfigureToolbars()
 
 void aKregator::showOptions()
 {
-    if ( KConfigDialog::showDialog( "settings" ) ) 
-        return; 
- 
-    KConfigDialog *dialog = new KConfigDialog( this, "settings", Settings::self() ); 
+    if ( KConfigDialog::showDialog( "settings" ) )
+        return;
+
+    KConfigDialog *dialog = new KConfigDialog( this, "settings", Settings::self() );
     dialog->addPage(new settings_general(0, "General"), i18n("General"), "package_settings");
     dialog->addPage(new settings_browser(0, "Browser"), i18n("Browser"), "package_network");
- 
-    connect( dialog, SIGNAL(settingsChanged()), 
+
+    connect( dialog, SIGNAL(settingsChanged()),
              m_part, SLOT(saveSettings()) );
     connect( dialog, SIGNAL(settingsChanged()),
              m_icon, SLOT(settingsChanged()) );
- 
+
     dialog->show();
 }
 
@@ -347,14 +349,14 @@ void aKregator::disconnectActionCollection( KActionCollection *coll )
 
 bool aKregator::queryExit()
 {
-    if(!m_part) 
+    if(!m_part)
         return KParts::MainWindow::queryExit();
-   
+
     if( Settings::markAllFeedsReadOnExit() )
         emit markAllFeedsRead();
-    
-     
-    Settings::writeConfig();  
+
+
+    Settings::writeConfig();
     return KParts::MainWindow::queryExit();
 }
 
@@ -364,7 +366,35 @@ bool aKregator::queryClose()
         return m_part->queryClose();
     else
     {
-        KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
+        // Compute size and position of the pixmap to be grabbed:
+        QPoint g = m_icon->mapToGlobal(m_icon->pos());
+        int desktopWidth  = kapp->desktop()->width();
+        int desktopHeight = kapp->desktop()->height();
+        int tw = m_icon->width();
+        int th = m_icon->height();
+        int w = desktopWidth / 4;
+        int h = desktopHeight / 9;
+        int x = g.x() + tw/2 - w/2; // Center the rectange in the systray icon
+        int y = g.y() + th/2 - h/2;
+        if (x < 0)                 x = 0; // Move the rectangle to stay in the desktop limits
+        if (y < 0)                 y = 0;
+        if (x + w > desktopWidth)  x = desktopWidth - w;
+        if (y + h > desktopHeight) y = desktopHeight - h;
+
+        // Grab the desktop and draw a circle arround the icon:
+        QPixmap shot = QPixmap::grabWindow(qt_xrootwin(), x, y, w, h);
+        QPainter painter(&shot);
+        const int MARGINS = 6;
+        const int WIDTH   = 3;
+        int ax = g.x() - x - MARGINS -1;
+        int ay = g.y() - y - MARGINS -1;
+        painter.setPen( QPen(Qt::red/*KApplication::palette().active().highlight()*/, WIDTH) );
+        painter.drawArc(ax, ay, tw + 2*MARGINS, th + 2*MARGINS, 0, 16*360);
+        painter.end();
+
+        // Associate source to image and show the dialog:
+        QMimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
+        KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.<p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
         hide();
     }
     return false;
@@ -473,17 +503,17 @@ void aKregator::callObjectSlot( QObject *obj, const char *name, const QVariant &
 
 void aKregator::slotStarted(KIO::Job *)
 {
-    m_stopAction->setEnabled(true);    
+    m_stopAction->setEnabled(true);
 }
 
 void aKregator::slotCanceled(const QString &)
 {
-    m_stopAction->setEnabled(false);    
+    m_stopAction->setEnabled(false);
 }
 
 void aKregator::slotCompleted()
 {
-    m_stopAction->setEnabled(false);    
+    m_stopAction->setEnabled(false);
 }
 
 #include "akregator.moc"
