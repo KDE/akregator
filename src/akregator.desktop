@@ -6,6 +6,7 @@ Exec=akregator %i %m -caption "%c"
 Icon=akregator
 Type=Application
 DocPath=akregator/akregator.html
+GenericName=RSS News Aggregator
 Comment=A KDE RSS Aggregator
 Comment[da]=En KDE RSS-aggregator
 Comment[et]=KDE RSS rakendus
