@@ -138,7 +138,7 @@ void MyArticle::setStatus(int status)
 
 QString MyArticle::title() const
 {
-    return d->title;
+    return d->title.remove("\\");
 }
 
 const KURL &MyArticle::link() const
