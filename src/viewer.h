@@ -31,6 +31,7 @@ namespace Akregator
             //    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype) = 0;
 
         public slots:
+            
             void slotScrollUp(); 
             void slotScrollDown();
             void slotZoomIn();

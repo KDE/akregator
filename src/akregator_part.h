@@ -142,6 +142,7 @@ namespace Akregator
             
         signals:
             void showPart();
+            
 
         protected:
             /** This must be implemented by each part */
@@ -160,6 +161,7 @@ namespace Akregator
 
         protected slots:
             void slotOnShutdown();
+            void slotSettingsChanged();
             void fileOpen();
             void fileImport();
             void fileExport();
@@ -172,7 +174,8 @@ namespace Akregator
             void slotStop() {closeURL(); };
 
         private:
-
+            static void readKonquerorSettings();
+            
             bool populateStandardFeeds();
             void setupActions();
 

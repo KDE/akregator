@@ -13,15 +13,17 @@
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kfiledialog.h>
+#include <kglobalsettings.h>
+#include <khtmldefaults.h>
 #include <kinstance.h>
 #include <kmainwindow.h>
 #include <kmessagebox.h>
+#include <kpassivepopup.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
 #include <kparts/partmanager.h>
-#include <kpassivepopup.h>
 
 #include <qfile.h>
 #include <qobjectlist.h>
@@ -38,6 +40,7 @@
 #include "fetchtransaction.h"
 #include "frame.h"
 #include "myarticle.h"
+#include "pageviewer.h"
 #include "settings_archive.h"
 #include "settings_browser.h"
 #include "settings_general.h"
@@ -164,6 +167,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_standardListLoaded = false;
     m_loading = false;
 
+    if (Settings::useKonqHTMLSettings())
+        readKonquerorSettings();
+    
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
     m_extension = new BrowserExtension(this, "ak_extension");
 
@@ -201,6 +207,12 @@ void Part::slotOnShutdown()
     m_view->slotOnShutdown();
 }
 
+void Part::slotSettingsChanged()
+{
+    if (Settings::useKonqHTMLSettings())
+        readKonquerorSettings();
+    saveSettings();
+}
 void Part::saveSettings()
 {
     m_view->saveSettings();
@@ -715,7 +727,7 @@ void Part::showOptions()
     dialog->addPage(new SettingsArchive(0, "Archive"), i18n("Archive"), "package_settings");
     dialog->addPage(new SettingsBrowser(0, "Browser"), i18n("Browser"), "package_network");
     connect( dialog, SIGNAL(settingsChanged()),
-             this, SLOT(saveSettings()) );
+             this, SLOT(slotSettingsChanged()) );
     connect( dialog, SIGNAL(settingsChanged()),
              m_trayIcon, SLOT(settingsChanged()) );
 
@@ -754,6 +766,32 @@ KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
     } else {
         return MyBasePart::hitTest(widget, globalPos);
     }
+}
+
+void Part::readKonquerorSettings()
+{
+    KConfig konq(locate("config", "konquerorrc"), true);
+    konq.setGroup("HTML Settings");
+    
+    Settings::setAutomaticDetectionLanguage(konq.readEntry("AutomaticDetectionLanguage"));
+    Settings::setDefaultEncoding(konq.readEntry("DefaultEncoding", QString::null));
+    Settings::setShowAnimations(konq.readEntry("ShowAnimations"));
+    Settings::setAutoDelayedActions(konq.readBoolEntry("AutoDelayedActions", true));
+    //Settings::setAutoLoadImages(konq.readBoolEntry("AutoLoadImages"));
+    Settings::setChangeCursor(konq.readBoolEntry("ChangeCursor", KDE_DEFAULT_CHANGECURSOR));
+    Settings::setFonts(konq.readListEntry("Fonts"));
+    Settings::setFormCompletion(konq.readBoolEntry("FormCompletion", true));
+    Settings::setMaxFormCompletionItems(konq.readNumEntry("MaxFormCompletionItems", 10));
+    Settings::setHoverLinks(konq.readBoolEntry("HoverLinks", true));
+    int minFontSize = konq.readNumEntry("MinimumFontSize", HTML_DEFAULT_MIN_FONT_SIZE);
+    int medFontSize = konq.readNumEntry("MediumFontSize", 12);
+    if (medFontSize < minFontSize)
+        medFontSize = minFontSize;
+    Settings::setMinimumFontSize(minFontSize);
+    Settings::setMediumFontSize(medFontSize);
+    Settings::setUnderlineLinks(konq.readBoolEntry("UnderlineLinks", true));
+    Settings::setUserStyleSheetEnabled(konq.readBoolEntry("UserStyleSheetEnabled"));
+    Settings::writeConfig();
 }
 
 } // namespace Akregator

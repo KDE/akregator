@@ -30,6 +30,29 @@
    <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
    <default>50,350</default>
   </entry>
+ </group> 
+ <group name="HTML Settings" >
+  <entry key="AutomaticDetectionLanguage" type="String" />
+  <entry key="DefaultEncoding" type="String" />
+  <entry key="ShowAnimations" type="String" />
+  <entry key="AutoDelayedActions" type="Bool" />
+  <!-- <entry key="AutoLoadImages" type="Bool" /> -->
+  <entry key="ChangeCursor" type="Bool" />
+  <entry key="Fonts" type="StringList" />
+  <entry key="FormCompletion" type="Bool" />
+  <entry key="HoverLinks" type="Bool" />
+  <entry key="MaxFormCompletionItems" type="Int" />
+  <entry key="MediumFontSize" type="Int" />
+  <entry key="MinimumFontSize" type="Int" />
+  <entry key="UnderlineLinks" type="Bool" />
+  <entry key="UserStyleSheetEnabled" type="Bool" />
+ </group>
+ <group name="Appearance">
+    <entry key="Use Konq HTML Settings" type="Bool">
+     <label>Use Konqueror settings</label>
+     <whatsthis>Enable this if you want akregator to use the appearance settings (e.g. fonts)</whatsthis>
+     <default>true</default>
+   </entry>
  </group>
  <group name="Archive">
    <entry key="ArchiveMode" type="Enum">

@@ -213,6 +213,7 @@ void Viewer::slotCompleted()
 {
    widget()->unsetCursor();
 }
+
 void Viewer::slotScrollUp()
 { 
     view()->scrollBy(0,-10); 
