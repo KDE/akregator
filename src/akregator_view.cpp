@@ -79,16 +79,16 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QVBoxLayout *lt = new QVBoxLayout( this );
 
-    m_panner1 = new QSplitter(QSplitter::Horizontal, this, "panner1");
-    m_panner1->setOpaqueResize( true );
-    lt->addWidget(m_panner1);
+    m_feedSplitter = new QSplitter(QSplitter::Horizontal, this, "panner1");
+    m_feedSplitter->setOpaqueResize( true );
+    lt->addWidget(m_feedSplitter);
 
     m_transaction= new FetchTransaction(this);
     connect (m_transaction, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     connect (m_transaction, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
     connect (m_transaction, SIGNAL(completed()), this, SLOT(slotFetchesCompleted()));
 
-    m_tree = new FeedsTree( m_panner1, "FeedsTree" );
+    m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
 
     connect(m_tree, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
               this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
@@ -103,9 +103,9 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_tree, SIGNAL(moved()),
               this, SLOT(slotItemMoved()));
 
-    m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
+    m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
-    m_tabs = new TabWidget(m_panner1);
+    m_tabs = new TabWidget(m_feedSplitter);
 
     m_tabsClose = new QToolButton( m_tabs );
     m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
@@ -163,9 +163,9 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_queuedSearches=0;
     m_fetchTimer=0;
     
-    m_panner2 = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
+    m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
-    m_articles = new ArticleList( m_panner2, "articles" );
+    m_articles = new ArticleList( m_articleSplitter, "articles" );
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
@@ -174,7 +174,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
                    this, SLOT( slotArticleDoubleClicked(QListViewItem *, const QPoint &, int)) );
 
-    m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
+    m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
                         this, SLOT(slotOpenTab(const KURL&, bool)) );
@@ -183,7 +183,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
-    mainTabLayout->addWidget( m_panner2 );
+    mainTabLayout->addWidget( m_articleSplitter );
 
     m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
     connectFrame(m_mainFrame);
@@ -201,8 +201,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     else if (viewMode==WidescreenView) slotWidescreenView();
     else                               slotNormalView();
 
-    m_panner1->setSizes( Settings::splitter1Sizes() );
-    m_panner2->setSizes( Settings::splitter2Sizes() );
+    m_feedSplitter->setSizes( Settings::splitter1Sizes() );
+    m_articleSplitter->setSizes( Settings::splitter2Sizes() );
 
     m_searchCombo->setCurrentItem(Settings::quickFilter());
     slotSearchComboChanged(Settings::quickFilter());
@@ -220,8 +220,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
 void aKregatorView::saveSettings(bool /*quit*/)
 {
-   Settings::setSplitter1Sizes( m_panner1->sizes() );
-   Settings::setSplitter2Sizes( m_panner2->sizes() );
+   Settings::setSplitter1Sizes( m_feedSplitter->sizes() );
+   Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
    Settings::setViewMode( m_viewMode );
    Settings::writeConfig();
    if(Settings::useIntervalFetch())
@@ -647,7 +647,7 @@ void aKregatorView::slotNormalView()
         }
     }
 
-    m_panner2->setOrientation(QSplitter::Vertical);
+    m_articleSplitter->setOrientation(QSplitter::Vertical);
     m_viewMode=NormalView;
 
     Settings::setViewMode( m_viewMode );
@@ -670,7 +670,7 @@ void aKregatorView::slotWidescreenView()
         }
     }
 
-    m_panner2->setOrientation(QSplitter::Horizontal);
+    m_articleSplitter->setOrientation(QSplitter::Horizontal);
     m_viewMode=WidescreenView;
 
     Settings::setViewMode( m_viewMode );

@@ -275,7 +275,7 @@ namespace Akregator
             QString m_queuedSearch;
             FetchTransaction *m_transaction;
             
-            QSplitter *m_panner1, *m_panner2;
+            QSplitter *m_feedSplitter, *m_articleSplitter;
             aKregatorPart *m_part;
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;
