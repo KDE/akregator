@@ -96,7 +96,7 @@
                                 <bool>false</bool>
                             </property>
                             <property name="suffix">
-                                <string>minutes</string>
+                                <string> minutes</string>
                             </property>
                             <property name="specialValueText">
                                 <string>1 minute</string>
