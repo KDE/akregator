@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000040 being the highest available (take this one for your next bug and increase here)
+          #000041 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -15,14 +15,18 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
+#000040 ADD [ ] finally, add some configuration options
+                [ ] default LiveJournal username and password (use KWallet)
+                [ ] last open opml file
 #000037 ADD [ ] add favicon support to the FeedsTree -->smt
 #000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
 #000031 ADD [ ] Autosave: Remember feeds list in "current" file
-#000029 CHG [ ] "Modify" should enable in-line edit for feed group items, standard dialog for feeds
+                Elaborate: when user saves file, remember as current and restore from it,
+                if file is unsaved, store it to data/current.opml.
 #000021 ADD [ ] store fetched articles to Article Archive
 #000027 CHG [ ] when changing current feed, change article in m_html also
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
-#000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?)
+#000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?) (correction: might not be necessary now that we have ArticleListItem)
 #000007 ADD [ ] DCOP (q: should KPart implement DCOP or shell app only?)
 #000008 ADD [ ] install mime-type handlers for .opml feed lists
 #000019 ADD [ ] implement tooltips and What's This? help
@@ -35,7 +39,7 @@ ADD new feature
 #000011 ADD [ ] draw appropriate app icons
 #000020 ADD [ ] announce on the <kde-announce@kde.org> mailing list
 #000022 ADD [ ] configure.in.in magic to detect librss presence
-#000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that images and css can be embedded in article preview
+#000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that local images and css can be referenced from article preview
 
 == LONG-TERM ==
 

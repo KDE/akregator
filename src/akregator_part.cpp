@@ -12,6 +12,7 @@
 #include "articleviewer.h"
 #include "feed.h"
 
+#include <kparts/genericfactory.h>
 #include <ktrader.h>
 #include <kinstance.h>
 #include <kaction.h>
@@ -39,15 +40,18 @@
 #include <qtabwidget.h>//??
 #include <qgrid.h>//??
 
+typedef KParts::GenericFactory< aKregatorPart > aKregatorFactory;
+K_EXPORT_COMPONENT_FACTORY( libakregatorpart, aKregatorFactory )
+
 using namespace Akregator;
 
 aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
-                                  QObject *parent, const char *name )
+                                  QObject *parent, const char *name, const QStringList& )
     : KParts::ReadWritePart(parent, name)
     , m_feeds()
 {
     // we need an instance
-    setInstance( aKregatorPartFactory::instance() );
+    setInstance( aKregatorFactory::instance() );
 
     m_panner1Sep << 1 << 1;
     m_panner2Sep << 1 << 1;
@@ -531,6 +535,7 @@ void aKregatorPart::slotFeedRemove()
     if (KMessageBox::questionYesNo(0, msg.arg(elt->text(0))) == KMessageBox::Yes)
     {
         m_feeds.removeFeed(elt);
+        // FIXME: kill children? (otoh - auto kill)
 /*        if (!Notes.count())
             slotActionUpdate();
         if (!parent)
@@ -544,14 +549,16 @@ void aKregatorPart::slotFeedModify()
 {
     kdDebug() << k_funcinfo << "BEGIN" << endl;
 
-    Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-    if (!feed) return;
-    if (feed->isGroup())
+    FeedGroup *g = m_feeds.find(m_tree->currentItem());
+    if (g->isGroup())
     {
-        kdDebug() << k_funcinfo << m_tree->currentItem()->renameEnabled(0) << endl;
-        m_tree->currentItem()->startRename(0); //FIXME
+        m_tree->currentItem()->setRenameEnabled(0, true);
+        m_tree->currentItem()->startRename(0);
         return;
     }
+
+    Feed *feed = static_cast<Feed *>(g);
+    if (!feed) return;
 
     AddFeedDialog *dlg = new AddFeedDialog( this->widget(), "edit_feed" );
 
@@ -668,65 +675,21 @@ void aKregatorPart::slotItemRenamed( QListViewItem *item ) //, const QString &te
     }
 }
 
+KAboutData* aKregatorPart::s_about = 0L;
 
-//==================================================================================================
-// aKregatorPartFactory
-//==================================================================================================
-
-
-// It's usually safe to leave the factory code alone.. with the
-// notable exception of the KAboutData data
-#include <kaboutdata.h>
-#include <klocale.h>
-
-KInstance*  aKregatorPartFactory::s_instance = 0L;
-KAboutData* aKregatorPartFactory::s_about = 0L;
-
-aKregatorPartFactory::aKregatorPartFactory()
-    : KParts::Factory()
+KAboutData *aKregatorPart::createAboutData()
 {
-}
-
-aKregatorPartFactory::~aKregatorPartFactory()
-{
-    delete s_instance;
-    delete s_about;
-
-    s_instance = 0L;
-}
-
-KParts::Part* aKregatorPartFactory::createPartObject( QWidget *parentWidget, const char *widgetName,
-                                                        QObject *parent, const char *name,
-                                                        const char *classname, const QStringList &/*args*/ )
-{
-    // Create an instance of our Part
-    aKregatorPart* obj = new aKregatorPart( parentWidget, widgetName, parent, name );
-
-    // See if we are to be read-write or not
-    if (QCString(classname) == "KParts::ReadOnlyPart")
-        obj->setReadWrite(false);
-
-    return obj;
-}
-
-KInstance* aKregatorPartFactory::instance()
-{
-    if( !s_instance )
-    {
-        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "0.9", I18N_NOOP("This is a KPart for RSS aggregator"), KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0, "http://berk.upnet.ru/projects/kde/akregator", "Stanislav.Karchebny@kdemail.net");
-        s_about->addAuthor("Stanislav Karchebny", "Author, Developer, Maintainer", "Stanislav.Karchebny@kdemail.net");
+    if ( !s_about ) {
+        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "0.9",
+                                 I18N_NOOP("This is a KPart for RSS aggregator"),
+                                 KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0,
+                                 "http://berk.upnet.ru/projects/kde/akregator",
+                                 "Stanislav.Karchebny@kdemail.net");
+        s_about->addAuthor("Stanislav Karchebny", "Author, Developer, Maintainer",
+                           "Stanislav.Karchebny@kdemail.net");
         s_about->addAuthor("Sashmit Bhaduri", "Developer", "smt@vfemail.net");
-        s_instance = new KInstance(s_about);
     }
-    return s_instance;
+    return s_about;
 }
-
-extern "C"
-{
-    void* init_libakregatorpart()
-    {
-        return new aKregatorPartFactory;
-    }
-};
 
 #include "akregator_part.moc"

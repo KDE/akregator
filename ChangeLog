@@ -4,6 +4,8 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+        FIX [x] Zack Rusin: Fixes to Makefiles, code cleanup.
+#000029 CHG [x] "Modify" should enable in-line edit for feed group items, standard dialog for feeds
 #000003 ADD [x] sort ArticleList by Article::pubDate -->berkus
         CHG [x] add file filters to open/save dialogs
 #000013 FIX [x] list generated files in .cvsignore files

@@ -47,7 +47,7 @@ public:
      * Default constructor
      */
     aKregatorPart(QWidget *parentWidget, const char *widgetName,
-                    QObject *parent, const char *name);
+                    QObject *parent, const char *name, const QStringList&);
 
     /**
      * Destructor
@@ -67,6 +67,8 @@ public:
     virtual void setModified(bool modified);
 
     void reset();
+
+    static KAboutData *createAboutData();
 
 protected:
     /**
@@ -119,7 +121,13 @@ protected slots:
     void slotItemRenamed( QListViewItem * item ); //, const QString & text, int col
 
 private:
-    Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt, QString title, QString xmlUrl, QString htmlUrl, QString description, bool isLiveJournal, QString ljUserName, Feed::LJAuthMode ljAuthMode, QString ljLogin, QString ljPassword, bool updateTitle);
+    Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt, QString title,
+                                          QString xmlUrl, QString htmlUrl,
+                                          QString description, bool isLiveJournal,
+                                          QString ljUserName,
+                                          Feed::LJAuthMode ljAuthMode,
+                                          QString ljLogin, QString ljPassword,
+                                          bool updateTitle);
 
 
     /**
@@ -144,24 +152,6 @@ private:
 
     QSplitter *m_panner1, *m_panner2;
     QValueList<int> m_panner1Sep, m_panner2Sep;
-};
-
-class KInstance;
-class KAboutData;
-
-class aKregatorPartFactory : public KParts::Factory
-{
-    Q_OBJECT
-public:
-    aKregatorPartFactory();
-    virtual ~aKregatorPartFactory();
-    virtual KParts::Part* createPartObject( QWidget *parentWidget, const char *widgetName,
-                                            QObject *parent, const char *name,
-                                            const char *classname, const QStringList &args );
-    static KInstance* instance();
-
-private:
-    static KInstance* s_instance;
     static KAboutData* s_about;
 };
 
