@@ -10,6 +10,7 @@
 #include "feedstree.h"
 #include "articlelist.h"
 #include "articleviewer.h"
+#include "archive.h"
 #include "feed.h"
 
 #include <kparts/genericfactory.h>
@@ -37,8 +38,9 @@
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
 #include <qvaluevector.h>
-#include <qtabwidget.h>//??
-#include <qgrid.h>//??
+//#include <qheader.h>
+#include <qtabwidget.h>
+#include <qgrid.h>
 
 using namespace Akregator;
 
@@ -306,6 +308,9 @@ Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt,
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
+    // Read feed archive, if present
+    Archive::load(feed);
+
     // enable when we need to update favicons, on for example systray
     //connect( feed, SIGNAL(faviconLoaded()),
     //         this, SLOT(slotFaviconLoaded()));
@@ -445,6 +450,8 @@ void aKregatorPart::slotUpdateArticleList(Feed *source)
 {
     m_articles->setUpdatesEnabled(false);
     m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
+
+    m_articles->setColumnText(0, source->title());
 
     if (source->articles.count() > 0)
     {
@@ -663,6 +670,9 @@ void aKregatorPart::slotFeedFetched(Feed *feed)
     }
 
     // Also, update unread counts
+
+    // Store archive
+    Archive::save(feed);
 
 //    setModified(true); // FIXME reenable when article storage is implemented
 
