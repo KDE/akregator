@@ -9,8 +9,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>364</width>
-            <height>160</height>
+            <width>373</width>
+            <height>184</height>
         </rect>
     </property>
     <property name="caption">
@@ -37,14 +37,6 @@
                     </property>
                     <property name="text">
                         <string>Keep All Articles</string>
-                    </property>
-                </widget>
-                <widget class="QRadioButton" row="3" column="0">
-                    <property name="name">
-                        <cstring>rb_DisableArchiving</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Disable Archiving</string>
                     </property>
                 </widget>
                 <widget class="QLayoutWidget" row="2" column="0">
@@ -90,7 +82,7 @@
                 </widget>
                 <widget class="QLayoutWidget" row="1" column="0">
                     <property name="name">
-                        <cstring>layout4</cstring>
+                        <cstring>layout3</cstring>
                     </property>
                     <hbox>
                         <property name="name">
@@ -101,7 +93,7 @@
                                 <cstring>rb_LimitArticleNumber</cstring>
                             </property>
                             <property name="text">
-                                <string>Limit Archive Size to</string>
+                                <string>Limit Feed Archive Size to</string>
                             </property>
                         </widget>
                         <widget class="KIntSpinBox">
@@ -131,6 +123,14 @@
                             </property>
                         </widget>
                     </hbox>
+                </widget>
+                <widget class="QRadioButton" row="3" column="0">
+                    <property name="name">
+                        <cstring>rb_DisableArchiving</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Disable Archiving</string>
+                    </property>
                 </widget>
             </grid>
         </widget>
