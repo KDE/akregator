@@ -18,6 +18,8 @@ typedef KPIM::Part MyBasePart;
 
 #include "akregator_partiface.h"
 
+class QTimer;
+
 class KAboutData;
 class KConfig;
 class KParts::BrowserExtension;
@@ -120,11 +122,6 @@ namespace Akregator
              Calls AkregatorView's readProperties. */
             virtual void saveProperties(KConfig* config);
 
-            /**
-             Saves the feed list.
-             @return Whether the feed list was successfully saved */
-            bool saveFeedList();
-
             /** @return Whether the tray icon is enabled or not */
             virtual bool isTrayIconEnabled() const;
             
@@ -140,6 +137,9 @@ namespace Akregator
             /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
             virtual void saveSettings();
 
+            /** Saves the standard feed list to it's default location */
+            void slotSaveFeedList();
+            
         signals:
             void showPart();
 
@@ -187,6 +187,9 @@ namespace Akregator
             QWidget *m_parentWidget;
             View* m_view;
             TrayIcon* m_trayIcon;
+            QTimer* m_autosaveTimer;
+            /** did we backup the feed list already? */
+            bool m_backedUpList; 
             
             
     };

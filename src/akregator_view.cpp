@@ -1566,7 +1566,7 @@ void View::readProperties(KConfig* config) // this is called when session is bei
 void View::saveProperties(KConfig* config)
 {   
     // save the feedlist, fixes #84528, at least partially -tpr 20041025
-    m_part->saveFeedList();
+    m_part->slotSaveFeedList();
     // save filter settings
     config->writeEntry("searchLine", m_searchLine->text());
     config->writeEntry("searchCombo", m_searchCombo->currentItem());

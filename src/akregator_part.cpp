@@ -154,6 +154,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     : DCOPObject("AkregatorIface"), MyBasePart(parent, name), m_shuttingDown(false), m_parentWidget(parentWidget)
 {
     m_mergedPart = 0;
+    m_backedUpList = false;
     // we need an instance
     setInstance( AkregatorFactory::instance() );
 
@@ -179,6 +180,10 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
     
     connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutdown()));
+
+    m_autosaveTimer = new QTimer(this);
+    connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
+    m_autosaveTimer->start(5*60*1000); // 5 minutes
     
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
@@ -188,8 +193,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 void Part::slotOnShutdown()
 {
     m_shuttingDown = true;
+    m_autosaveTimer->stop();
     saveSettings();
-    saveFeedList();
+    slotSaveFeedList();
     m_view->slotOnShutdown();
 }
 
@@ -252,6 +258,7 @@ void Part::newArticle(Feed *src, const MyArticle &a)
 
 void Part::readProperties(KConfig* config)
 {
+    m_backedUpList = false;
     if(m_view)
         m_view->readProperties(config);
 }
@@ -450,18 +457,42 @@ bool Part::closeURL()
 }
 
 
-bool Part::saveFeedList()
+void Part::slotSaveFeedList()
 {
     // don't save to the standard feed list, when it wasn't completely loaded before
     if (!m_standardListLoaded)
-        return false;
+        return;
+    
     // m_file is always local, so we use QFile
     QFile file(m_file);
+
+    // the first time we overwrite the feed list, we create a backup
+    if (!m_backedUpList)
+    {
+        if (file.open(IO_ReadOnly))
+        {
+            QFile backup(m_file + "~");
+            if (backup.open(IO_WriteOnly))
+            {
+                // since the feed list is a text file, this should be ok
+                QTextStream in(&file);
+                QTextStream out(&backup);
+                while (!in.atEnd())
+                    out << in.readLine();
+
+                backup.close();
+                m_backedUpList = true;
+            }
+            
+            file.close();
+        }
+    }
+    
     if (file.open(IO_WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
         KMessageBox::error(m_view, i18n("Access denied: cannot save feed list (%1)").arg(m_file), i18n("Write error") );
-        return false;
+        return;
     }
 
     // use QTextStream to dump the text to the file
@@ -471,13 +502,9 @@ bool Part::saveFeedList()
     // Write OPML data file.
     // Archive data files are saved elsewhere.
 
-    QDomDocument doc = m_view->feedListToOPML();
-
-    stream << doc.toString();
+    stream << m_view->feedListToOPML().toString();
 
     file.close();
-
-    return true;
 }
 
 bool Part::isTrayIconEnabled() const
