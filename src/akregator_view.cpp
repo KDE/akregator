@@ -899,6 +899,34 @@ void aKregatorView::showFetchStatus(QListViewItem *firstItem)
     }
 }
 
+/**
+ * Display article in external browser.
+ */
+void aKregatorView::displayInExternalBrowser(const KURL &url)
+{
+    if (!url.isValid()) return;
+    if (Settings::externalBrowserUseKdeDefault())
+        KRun::runURL(url, "text/html", false, false);
+    else
+    {
+        QString cmd = Settings::externalBrowserCustomCommand();
+        QString urlStr = url.url();
+        cmd.replace(QRegExp("%u"), urlStr);
+        KProcess *proc = new KProcess;
+#if KDE_IS_VERSION(3,1,94)
+        QStringList cmdAndArgs = KShell::splitArgs(cmd);
+#else
+        QStringList cmdAndArgs = QStringList::split(' ',cmd);
+#endif
+        *proc << cmdAndArgs;
+//        This code will also work, but starts an extra shell process.
+//        *proc << cmd;
+//        proc->setUseShell(true);
+          proc->start(KProcess::DontCare);
+        delete proc;
+    }        
+}
+
 void aKregatorView::slotFetchCurrentFeed()
 {
     showFetchStatus(m_tree->currentItem());
@@ -966,8 +994,9 @@ void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, con
     if (item && button==Qt::MidButton)
     {
         ArticleListItem *i = static_cast<ArticleListItem *>(item);
+        if (!i) return;
         if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-            KRun::runURL(i->article().link(), "text/html", false, false);
+            displayInExternalBrowser(i->article().link());
         else
             slotOpenTab(i->article().link());
     }
@@ -1007,29 +1036,8 @@ void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, i
 {
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
     if (!item) return;
-    if (!item->article().link().isValid()) return;
     // TODO : make this configurable....
-    if (Settings::externalBrowserUseKdeDefault())
-        KRun::runURL(item->article().link(), "text/html", false, false);
-    else
-    {
-      QString cmd = Settings::externalBrowserCustomCommand();
-      QString url = item->article().link().url();
-      cmd.replace(QRegExp("%u"), url);
-      KProcess *proc = new KProcess;
-#if KDE_IS_VERSION(3,1,94)
-      QStringList cmdAndArgs = KShell::splitArgs(cmd);
-#else
-      QStringList cmdAndArgs = QStringList::split(' ',cmd);
-#endif
-      *proc << cmdAndArgs;
-//      This code will also work, but starts an extra shell process.
-//      *proc << cmd;
-//      proc->setUseShell(true);
-      proc->start(KProcess::DontCare);
-      delete proc;
-    }        
-
+    displayInExternalBrowser(item->article().link());
 }
 
 void aKregatorView::slotFeedURLDropped(KURL::List &urls, QListViewItem *after, QListViewItem *parent)

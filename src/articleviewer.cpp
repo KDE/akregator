@@ -17,6 +17,19 @@
 #include <kstandarddirs.h>
 #include <khtmlview.h>
 #include <krun.h>
+#include <kprocess.h>
+
+#ifndef KDE_MAKE_VERSION
+#define KDE_MAKE_VERSION( a,b,c ) (((a) << 16) | ((b) << 8) | (c))
+#endif
+
+#ifndef KDE_IS_VERSION
+#define KDE_IS_VERSION(a,b,c) ( KDE_VERSION >= KDE_MAKE_VERSION(a,b,c) )
+#endif
+
+#if KDE_IS_VERSION(3,1,94)
+#include <kshell.h>
+#endif
 
 #include <qdatetime.h>
 #include <qvaluelist.h>
@@ -231,13 +244,41 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     end();
 }
 
+/**
+ * Display article in external browser.
+ */
+void ArticleViewer::displayInExternalBrowser(const KURL& url)
+{
+    if (!url.isValid()) return;
+    if (Settings::externalBrowserUseKdeDefault())
+        KRun::runURL(url, "text/html", false, false);
+    else
+    {
+        QString cmd = Settings::externalBrowserCustomCommand();
+        QString urlStr = url.url();
+        cmd.replace(QRegExp("%u"), urlStr);
+        KProcess *proc = new KProcess;
+#if KDE_IS_VERSION(3,1,94)
+        QStringList cmdAndArgs = KShell::splitArgs(cmd);
+#else
+        QStringList cmdAndArgs = QStringList::split(' ',cmd);
+#endif
+        *proc << cmdAndArgs;
+//        This code will also work, but starts an extra shell process.
+//        *proc << cmd;
+//        proc->setUseShell(true);
+          proc->start(KProcess::DontCare);
+        delete proc;
+    }        
+}
+
 void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
    if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-      KRun::runURL(url, "text/html", false, false);
+       displayInExternalBrowser(url);
    else
-      emit urlClicked(url);
+       emit urlClicked(url);
 }
 
 void ArticleViewer::slotOpenLinkInternal()

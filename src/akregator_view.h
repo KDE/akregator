@@ -187,6 +187,11 @@ namespace Akregator
 
             void showFetchStatus(QListViewItem *firstItem);
             void findNumFetches(QListViewItem *item);
+            
+            /**
+             * Display article in external browser.
+             */
+            void displayInExternalBrowser(const KURL &url);
 
             /**
              * A tree of all feeds (Columns, Subscriptions).
