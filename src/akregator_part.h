@@ -79,11 +79,6 @@ namespace Akregator
             void setCanceled(const QString &s);
             
             /**
-             * Updates trayicon's unread count
-             * @param unread Count of unread articles
-             */
-            void setTotalUnread(int unread);
-            /**
              * Informs trayicon about new articles
              * @param src Feed which has new articles
              * @param a An article
