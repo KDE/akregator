@@ -31,35 +31,35 @@ class KListViewItem;
 
 namespace Akregator
 {
-    class aKregatorPart;
-    class FetchTransaction;
-    class FeedsTree;
-    class FeedGroup;
-    class FeedGroupItem;
-    class FeedList;
+    class ArticleFilter;
     class ArticleList;
     class ArticleListItem;
     class ArticleViewer;
-    class ArticleFilter;
+    class FeedGroup;
+    class FeedGroupItem;
+    class FeedList;
+    class FeedsTree;
+    class FetchTransaction;
+    class Frame;
+    class Part;
     class TabWidget;
     class TreeNodeItem;
-    class Frame;
 
     /**
      * This is the main widget of the view, containing tree view, article list, viewer etc.
      */
-    class aKregatorView : public QWidget
+    class View : public QWidget
     {
         Q_OBJECT
         public:
 
             /** constructor
-            @param part the aKregatorPart which contains this widget
+            @param part the Akregator::Part which contains this widget
             @param parent parent widget
             @param name the name of the widget (@ref QWidget )
             */
-            aKregatorView(aKregatorPart *part, QWidget *parent, const char* name);
-            ~aKregatorView();
+            View(Akregator::Part *part, QWidget *parent, const char* name);
+            ~View();
 
             /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
             void saveSettings();
@@ -324,7 +324,7 @@ namespace Akregator
             FetchTransaction *m_transaction;
             
             QSplitter *m_feedSplitter, *m_articleSplitter;
-            aKregatorPart *m_part;
+            Akregator::Part *m_part;
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;
             ViewMode m_viewMode;

@@ -196,7 +196,7 @@ void TrayIcon::settingsChanged()
 
 void TrayIcon::fetchAllFeeds()
 {
-    DCOPRef("akregator","aKregatorIface").send("fetchAllFeeds");
+    DCOPRef("akregator","AkregatorIface").send("fetchAllFeeds");
 }
 
 #include "trayicon.moc"

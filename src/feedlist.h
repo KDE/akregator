@@ -74,8 +74,8 @@ private:
     static void parseChildNodes(QDomNode &node, FeedGroup* parent);
     
     // never call these
-    FeedList(const FeedList& b) : QObject() {}
-    FeedList& operator=(const FeedList& f) { return *this; }
+    FeedList(const FeedList&) : QObject() {}
+    FeedList& operator=(const FeedList&) { return *this; }
     
 //    uint m_idCounter;
 //    QMap<uint, TreeNode*> m_idMap;

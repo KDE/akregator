@@ -34,7 +34,7 @@ namespace KPIM
 
 namespace Akregator
 {
-    class aKregatorPart;
+    class Part;
     class TrayIcon;
     
 }
@@ -159,7 +159,7 @@ private:
     /**
      * Our part
      */
-    Akregator::aKregatorPart *m_part;
+    Akregator::Part *m_part;
     KParts::PartManager* m_manager;
     //KParts::ReadOnlyPart *m_activePart;
     KPIM::StatusbarProgressWidget *m_progressBar;

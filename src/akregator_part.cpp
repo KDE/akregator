@@ -41,12 +41,12 @@
 #include "settings_general.h"
 #include "trayicon.h"
 
-using namespace Akregator;
+namespace Akregator {
 
-typedef KParts::GenericFactory< aKregatorPart > aKregatorFactory;
-K_EXPORT_COMPONENT_FACTORY( libakregatorpart, aKregatorFactory )
+typedef KParts::GenericFactory<Part> AkregatorFactory;
+K_EXPORT_COMPONENT_FACTORY( libakregatorpart, AkregatorFactory )
 
-BrowserExtension::BrowserExtension( aKregatorPart *p, const char *name )
+BrowserExtension::BrowserExtension(Part *p, const char *name)
 	    : KParts::BrowserExtension( p, name )
 {
     m_part=p;
@@ -57,7 +57,7 @@ void BrowserExtension::saveSettings()
     m_part->saveSettings();
 }
 
-void aKregatorPart::setupActions()
+void Part::setupActions()
 {
     // file menu
 
@@ -149,19 +149,19 @@ void aKregatorPart::setupActions()
     new KAction( i18n("Open Article in External Browser"), QString::null, "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
 }
 
-aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
+Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
-    : DCOPObject("aKregatorIface"), MyBasePart(parent, name), m_parentWidget(parentWidget)
+    : DCOPObject("AkregatorIface"), MyBasePart(parent, name), m_parentWidget(parentWidget)
 {
     m_mergedPart = 0;
     // we need an instance
-    setInstance( aKregatorFactory::instance() );
+    setInstance( AkregatorFactory::instance() );
 
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
     m_standardListLoaded = false;
     m_loading = false;
 
-    m_view = new aKregatorView(this, parentWidget, "akregator_view");
+    m_view = new Akregator::View(this, parentWidget, "akregator_view");
     m_extension = new BrowserExtension(this, "ak_extension");
 
     // notify the part that this is our internal widget
@@ -188,61 +188,61 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 }
 
 
-void aKregatorPart::saveSettings()
+void Part::saveSettings()
 {
     m_view->saveSettings();
 }
 
-aKregatorPart::~aKregatorPart()
+Part::~Part()
 {
     saveSettings();
     saveFeedList();
 }
 
-void aKregatorPart::setCaption(const QString &text)
+void Part::setCaption(const QString &text)
 {
     emit setWindowCaption(text);
 }
 
-void aKregatorPart::setStatusBar(const QString &text)
+void Part::setStatusBar(const QString &text)
 {
     emit setStatusBarText(text);
 }
 
-void aKregatorPart::setProgress(int percent)
+void Part::setProgress(int percent)
 {
     emit m_extension->loadingProgress(percent);
 }
 
-void aKregatorPart::setStarted()
+void Part::setStarted()
 {
     emit started(0);
 }
 
-void aKregatorPart::setCompleted()
+void Part::setCompleted()
 {
     emit completed(0);
 }
 
-void aKregatorPart::setCanceled(const QString &s)
+void Part::setCanceled(const QString &s)
 {
     emit canceled(s);
 }
 
 // will do systray notification
-void aKregatorPart::newArticle(Feed *src, const MyArticle &a)
+void Part::newArticle(Feed *src, const MyArticle &a)
 {
     if ( isTrayIconEnabled() )
         m_trayIcon->newArticle(src->title(), src->favicon(), a.title());
 }
 
-void aKregatorPart::readProperties(KConfig* config)
+void Part::readProperties(KConfig* config)
 {
     if(m_view)
         m_view->readProperties(config);
 }
 
-void aKregatorPart::saveProperties(KConfig* config)
+void Part::saveProperties(KConfig* config)
 {
     if(m_view)
         m_view->saveProperties(config);
@@ -252,7 +252,7 @@ void aKregatorPart::saveProperties(KConfig* config)
 /* LOAD                                                                     */
 /****************************************************************************/
 
-bool aKregatorPart::openURL(const KURL& url)
+bool Part::openURL(const KURL& url)
 {
     // stop whatever we're doing before opening a new feed list
     if (m_loading)
@@ -278,19 +278,19 @@ bool aKregatorPart::openURL(const KURL& url)
     }
 }
 
-void aKregatorPart::openURLDelayed()
+void Part::openURLDelayed()
 {
     m_file = m_delayURL.path();
     openFile();
 }
 
-void aKregatorPart::openStandardFeedList()
+void Part::openStandardFeedList()
 {
     if ( openURL(m_standardFeedList) )
         m_standardListLoaded = true;
 }
 
-bool aKregatorPart::populateStandardFeeds()
+bool Part::populateStandardFeeds()
 {
     QFile file(m_standardFeedList);
 
@@ -352,7 +352,7 @@ bool aKregatorPart::populateStandardFeeds()
     return true;
 }
 
-bool aKregatorPart::openFile()
+bool Part::openFile()
 {
     // m_file is always local so we can use QFile on it
     QFile file(m_file);
@@ -414,7 +414,7 @@ bool aKregatorPart::openFile()
     return true;
 }
 
-bool aKregatorPart::closeURL()
+bool Part::closeURL()
 {
     m_view->endOperation();
     setStatusBar(QString::null);
@@ -435,11 +435,8 @@ bool aKregatorPart::closeURL()
    return MyBasePart::closeURL();
 }
 
-/****************************************************************************/
-/* SAVE                                                                     */
-/****************************************************************************/
 
-bool aKregatorPart::saveFeedList()
+bool Part::saveFeedList()
 {
     // don't save to the standard feed list, when it wasn't completely loaded before
     if (!m_standardListLoaded)
@@ -469,23 +466,23 @@ bool aKregatorPart::saveFeedList()
     return true;
 }
 
-bool aKregatorPart::isTrayIconEnabled() const
+bool Part::isTrayIconEnabled() const
 {
     return Settings::showTrayIcon();
 }
 
-QPixmap aKregatorPart::takeTrayIconScreenshot() const
+QPixmap Part::takeTrayIconScreenshot() const
 {
     return m_trayIcon->takeScreenshot();
 }
 
-bool aKregatorPart::mergePart(KParts::Part* part)
+bool Part::mergePart(KParts::Part* part)
 {
     if (part != m_mergedPart)
     {
         if (!factory())
         {
-            kdDebug() << "aKregatorPart::mergePart(): factory() returns NULL" << endl;
+            kdDebug() << "Akregator::Part::mergePart(): factory() returns NULL" << endl;
             return false;
         }
         if (m_mergedPart)
@@ -498,7 +495,7 @@ bool aKregatorPart::mergePart(KParts::Part* part)
     return true;
 }
 
-QWidget* aKregatorPart::getMainWindow()
+QWidget* Part::getMainWindow()
 {
         // this is a dirty fix to get the main window used for the tray icon
 
@@ -526,7 +523,7 @@ QWidget* aKregatorPart::getMainWindow()
 }
 
 
-void aKregatorPart::importFile(const QString& fileName)
+void Part::importFile(const QString& fileName)
 {
     QFile file(fileName);
     if (file.open(IO_ReadOnly) == false)
@@ -542,7 +539,7 @@ void aKregatorPart::importFile(const QString& fileName)
     m_view->importFeeds(doc);
 }
 
-void aKregatorPart::exportFile(const QString& fileName)
+void Part::exportFile(const QString& fileName)
 {
    // TODO we could KIO here instead of QFile
     QFile file(fileName);
@@ -575,7 +572,7 @@ void aKregatorPart::exportFile(const QString& fileName)
 /* SLOTS                                                                    */
 /****************************************************************************/
 
-void aKregatorPart::fileOpen()
+void Part::fileOpen()
 {
     // this slot is called whenever the File->Open menu is selected,
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
@@ -588,7 +585,7 @@ void aKregatorPart::fileOpen()
         openURL(file_name);
 }
 /*
-bool aKregatorPart::fileSaveAs()
+bool Akregator::Part::fileSaveAs()
 {
     // this slot is called whenever the File->Save As menu is selected,
     QString file_name = KFileDialog::getSaveFileName( QString::null,
@@ -604,7 +601,7 @@ bool aKregatorPart::fileSaveAs()
 }
 */
 
-void aKregatorPart::fileImport()
+void Part::fileImport()
 {
     QString file_name = KFileDialog::getOpenFileName( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
@@ -614,7 +611,7 @@ void aKregatorPart::fileImport()
         importFile(file_name);
 }
 
-void aKregatorPart::fileExport()
+void Part::fileExport()
 {
     QString file_name = KFileDialog::getSaveFileName( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
@@ -624,35 +621,35 @@ void aKregatorPart::fileExport()
         exportFile(file_name);
 }
 
-void aKregatorPart::fetchAllFeeds()
+void Part::fetchAllFeeds()
 {
     m_view->slotFetchAllFeeds();
 }
 
-void aKregatorPart::fetchFeedUrl(const QString&s)
+void Part::fetchFeedUrl(const QString&s)
 {
     kdDebug() << "fetchFeedURL==" << s << endl;
 }
 
-void aKregatorPart::addFeedToGroup(const QString& url, const QString& group)
+void Part::addFeedToGroup(const QString& url, const QString& group)
 {
-    kdDebug() << "aKregatorPart::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
+    kdDebug() << "Akregator::Part::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
     m_view->addFeedToGroup(url, group);
     //setModified(true);
 }
 
 
-void aKregatorPart::slotStarted(KIO::Job *)
+void Part::slotStarted(KIO::Job *)
 {
     actionCollection()->action("feed_stop")->setEnabled(true);
 }
 
-void aKregatorPart::slotCanceled(const QString &)
+void Part::slotCanceled(const QString &)
 {
     actionCollection()->action("feed_stop")->setEnabled(false);
 }
 
-void aKregatorPart::slotCompleted()
+void Part::slotCompleted()
 {
     actionCollection()->action("feed_stop")->setEnabled(false);
 }
@@ -662,12 +659,12 @@ void aKregatorPart::slotCompleted()
 /* STATIC METHODS                                                           */
 /****************************************************************************/
 
-KAboutData *aKregatorPart::createAboutData()
+KAboutData *Part::createAboutData()
 {
     return new Akregator::AboutData;
 }
 
-void aKregatorPart::showOptions()
+void Part::showOptions()
 {
     if ( KConfigDialog::showDialog( "settings" ) )
         return;
@@ -684,7 +681,7 @@ void aKregatorPart::showOptions()
     dialog->show();
 }
 
-void aKregatorPart::partActivateEvent(KParts::PartActivateEvent* event)
+void Part::partActivateEvent(KParts::PartActivateEvent* event)
 {
     if (factory() && m_mergedPart)
     {
@@ -697,7 +694,7 @@ void aKregatorPart::partActivateEvent(KParts::PartActivateEvent* event)
     KPIM::Part::partActivateEvent(event);
 }
 
-KParts::Part *aKregatorPart::hitTest(QWidget *widget, const QPoint &globalPos)
+KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
 {
     bool child = false;
     QWidget *me = this->widget();
@@ -718,6 +715,7 @@ KParts::Part *aKregatorPart::hitTest(QWidget *widget, const QPoint &globalPos)
     }
 }
 
+} // namespace Akregator
 #include "akregator_part.moc"
 
 // vim: set et ts=4 sts=4 sw=4:

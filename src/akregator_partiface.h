@@ -12,7 +12,7 @@
 
 namespace Akregator {
 
-    class aKregatorPartIface : virtual public DCOPObject
+    class AkregatorPartIface : virtual public DCOPObject
     {
         K_DCOP
         k_dcop:

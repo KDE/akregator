@@ -99,7 +99,7 @@ bool AkregatorMainWindow::loadPart()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<aKregatorPart*>(factory->create(this, "akregator_part", "KParts::ReadOnlyPart" ));
+        m_part = static_cast<Akregator::Part*>(factory->create(this, "akregator_part", "KParts::ReadOnlyPart" ));
 
         if (m_part)
         {
@@ -168,7 +168,7 @@ void AkregatorMainWindow::addFeedToGroup(const QString& url, const QString& grou
 {
     if (!m_part)
         loadPart();
-    (static_cast<aKregatorPart*>(m_part))->addFeedToGroup( url, group );
+    (static_cast<Akregator::Part*>(m_part))->addFeedToGroup( url, group );
 }
 
 void AkregatorMainWindow::setupActions()
@@ -189,7 +189,7 @@ void AkregatorMainWindow::saveProperties(KConfig* config)
     if (!m_part)
         loadPart();
 
-    static_cast<Akregator::aKregatorPart*>(m_part)->saveProperties(config);
+    static_cast<Akregator::Part*>(m_part)->saveProperties(config);
     config->writeEntry("docked", isHidden());
 
     //delete m_part;
@@ -199,7 +199,7 @@ void AkregatorMainWindow::readProperties(KConfig* config)
 {
     if (!m_part)
         loadPart();
-    static_cast<Akregator::aKregatorPart*>(m_part)->readProperties(config);
+    static_cast<Akregator::Part*>(m_part)->readProperties(config);
     if (Settings::showTrayIcon() && config->readBoolEntry("docked", false)) {
         hide();
     } else {
