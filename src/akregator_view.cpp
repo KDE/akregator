@@ -82,22 +82,22 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_tree, SIGNAL(dropped (KURL::List &, QListViewItem *, QListViewItem *)),
               this, SLOT(slotFeedURLDropped (KURL::List &, QListViewItem *, QListViewItem *)));
 
-    
+
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_panner1);
     m_tabsClose = new QToolButton( m_tabs );
     connect( m_tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveTab() ) );
-    
+
     m_tabsClose->setIconSet( SmallIcon( "tab_remove" ) );
     m_tabsClose->adjustSize();
     QToolTip::add(m_tabsClose, i18n("Close the current tab"));
     m_tabs->setCornerWidget( m_tabsClose, TopRight );
-    
+
     connect( m_tabs, SIGNAL( currentChanged(QWidget *) ), this,
             SLOT( slotTabChanged(QWidget *) ) );
-    
+
     QWhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QGrid(1, this);
@@ -150,7 +150,7 @@ void aKregatorView::slotOpenTab(const KURL& url)
     connect( page, SIGNAL(setWindowCaption (const QString &)),
             this, SLOT(slotTabCaption (const QString &)) );
     page->openURL(url);
-    
+
     m_tabs->addTab(page->widget(), "Untitled");
     m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1)
@@ -168,7 +168,7 @@ void aKregatorView::reset()
 void aKregatorView::importFeeds(const QDomDocument& doc)
 {
     bool Ok;
-    
+
     QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), i18n("Imported folder"), &Ok);
     if (!Ok) return;
 
@@ -299,7 +299,7 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
              this, SLOT(slotFeedFetched(Feed *)) );
 
     Archive::load(static_cast<Feed *>(m_feeds.find(elt)));
-    
+
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
     if (fti)
         fti->setUnread(feed->unread());
@@ -332,8 +332,8 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
                 QDomElement base = g->toXml( node, document );
                 base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
 
-		if (it->firstChild()) // BR#40
-            	    writeChildNodes( it->firstChild(), base, document );
+                if (it->firstChild()) // BR#40
+                   writeChildNodes( it->firstChild(), base, document );
             } else {
                 g->toXml( node, document );
             }
@@ -433,7 +433,7 @@ void aKregatorView::slotTabChanged(QWidget *w)
         m_tabsClose->setEnabled(false);
     else
         m_tabsClose->setEnabled(true);
-    
+
     KParts::Part *p;
     if (w==m_mainTab)
         p=m_part;
@@ -462,7 +462,7 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 {
     FeedGroup *feed = static_cast<FeedGroup *>(m_feeds.find(item));
     m_tabs->showPage(m_mainTab);
-    
+
     if (feed->isGroup())
     {
         m_part->actionCollection()->action("feed_add")->setEnabled(true);
@@ -470,7 +470,7 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
         m_articles->clear();
         m_articles->setColumnText(0, feed->title());
-        
+
         slotUpdateArticleList(feed, false);
     }
     else
@@ -495,7 +495,7 @@ void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
 {
     // XXX: rest of code doesn't work, disable for now..
     return;
-    kdDebug() << "slotual"<<src->title()<<endl;
+    kdDebug() << k_funcinfo << src->title() << endl;
     if (!src->isGroup())
     {
         slotUpdateArticleList(static_cast<Feed *>(src), false, onlyUpdateNew);
@@ -522,7 +522,7 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
         m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
         m_articles->setColumnText(0, source->title());
     }
-    
+
     if (source->articles.count() > 0)
     {
         MyArticle::List::ConstIterator it;
@@ -561,12 +561,12 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     AddFeedDialog *afd = new AddFeedDialog( this, "add_feed" );
 
     afd->setURL(url);
-    
+
     if (afd->exec() != QDialog::Accepted) return;
 
     QString text=afd->feedTitle;
     feed=afd->feed;
-    
+
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
 
     dlg->setFeedName(text);
@@ -575,7 +575,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
 //    dlg->widget->urlEdit->hide();
 
     if (dlg->exec() != QDialog::Accepted) return;
-    
+
     if (!parent)
         parent=m_tree->firstChild();
 
@@ -585,7 +585,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
         elt = new FeedsTreeItem(parent, text);
 
     feed->setItem(elt);
-    
+
     addFeed_Internal( feed, elt,
                       text,
                       dlg->url(),
@@ -697,36 +697,35 @@ void aKregatorView::slotFeedModify()
 
 void aKregatorView::slotMarkAllRead()
 {
-    if (m_tree->currentItem())
+   markAllRead(m_tree->currentItem());
+}
+
+void aKregatorView::markAllRead(QListViewItem *item)
+{
+    if (item)
     {
-        Feed *f = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-        if (f && !f->isGroup())
+        Feed *f = static_cast<Feed *>(m_feeds.find(item));
+        if (!f) return;
+        if (!f->isGroup())
         {
+            //kdDebug() << k_funcinfo << "item " << f->title() << endl;
             f->markAllRead();
-            FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
+            FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(item);
             if (fti)
                 fti->setUnread(0);
             m_articles->triggerUpdate();
-            // TODO: schedule this save?
+            // TODO: schedule this save
             Archive::save(f);
         }
         else
         {
-            FeedGroup *g = m_feeds.find(m_tree->currentItem());
+            FeedGroup *g = m_feeds.find(item);
             if (!g)
                 return;
-            for (QListViewItemIterator it(m_tree->currentItem()); it.current(); ++it)
+            //kdDebug() << k_funcinfo << "group " << g->title() << endl;
+            for (QListViewItemIterator it(item->firstChild()); it.current(); ++it)
             {
-                Feed *f = static_cast<Feed *>(m_feeds.find(*it));
-                if (f && !f->isGroup())
-                {
-                    f->markAllRead();
-                    FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
-                    if (fti)
-                        fti->setUnread(0);
-                }
-                //TODO: schedule this save?
-                Archive::save(f);
+               markAllRead(*it);
             }
         }
     }
@@ -786,14 +785,14 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 
     // TODO: perhaps schedule save?
     Archive::save(feed);
-    
+
     // Also, update unread counts
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());
     if (fti)
         fti->setUnread(feed->unread());
 
-    
+
 //    m_part->setModified(true); // FIXME reenable when article storage is implemented
 
     kdDebug() << k_funcinfo << "END" << endl;
@@ -813,15 +812,15 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
         int unread=feed->unread();
         unread--;
         feed->setUnread(unread);
-        
+
         FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
         if (fti)
             fti->setUnread(unread);
-        
+
         item->article().setStatus(MyArticle::Read);
     }
     m_articleViewer->show( feed, item->article() );
-    
+
     // TODO: schedule this save.. don't want to save a huge file for one change
     Archive::save(feed);
 }
@@ -844,7 +843,7 @@ void aKregatorView::slotFeedURLDropped (KURL::List &urls, QListViewItem *after, 
         addFeed((*it).prettyURL(), after, parent);
     }
 }
-    
+
 void aKregatorView::slotItemRenamed( QListViewItem *item )
 {
     QString text = item->text(0);

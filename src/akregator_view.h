@@ -124,14 +124,14 @@ namespace Akregator
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();
             void slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent);
-            
+
             void slotMouseOverInfo(const KFileItem *kifi);
-            
+
             void slotOpenTab(const KURL& url);
             void slotRemoveTab();
             void slotTabChanged(QWidget *w);
             void slotTabCaption(const QString &capt);
-            
+
         private:
             /**
              * Reset to default values, removing all existing data.
@@ -154,6 +154,11 @@ namespace Akregator
                                                 QString ljLogin, QString ljPassword,
                                                 bool updateTitle);
 
+            /**
+             * Mark all items in item and optionally subitems as read.
+             * @param item Item to start marking at.
+             */
+            void markAllRead(QListViewItem *item);
 
             /**
              * A tree of all feeds (Columns, Subscriptions).
@@ -181,7 +186,7 @@ namespace Akregator
             TabWidget *m_tabs;
             QToolButton *m_tabsClose;
             QGrid *m_mainTab;
-            
+
             QSplitter *m_panner1, *m_panner2;
             QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;
