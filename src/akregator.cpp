@@ -59,7 +59,7 @@ aKregator::aKregator()
 
     // then, setup our actions
     setupActions();
-    
+
     m_icon = new TrayIcon(this);
     m_icon->show();
     connect(m_icon, SIGNAL(quitSelected()),

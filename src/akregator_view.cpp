@@ -726,6 +726,7 @@ void aKregatorView::slotFeedRemove()
         slotNoteChanged(parent);*/
 
         m_part->setModified(true);
+        setTotalUnread();
     }
 }
 
@@ -925,7 +926,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     int p=int(100*((double)m_fetchesDone/(double)m_fetches));
     if (p>=100)
     {
-        setTotalUnread(); // used for systray usually, which is slow.. 
+        setTotalUnread(); // used for systray usually, which is slow..
                           // only update once after all feeds fetched.
         m_part->setStatusBar(QString::null);
     }

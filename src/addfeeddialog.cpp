@@ -62,7 +62,7 @@ void AddFeedDialog::slotOk( )
     f->xmlUrl=feedURL;
 
     widget->statusLabel->setText( i18n("Downloading %1").arg(feedURL) );
-    
+
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(fetchCompleted(Feed *)) );
     connect( feed, SIGNAL(fetchError(Feed* )),
