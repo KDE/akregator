@@ -49,6 +49,8 @@ ADD new feature
                 [-] put unparsed <item> children into QMap and add const QString& attribute(const QString &tagName) (almost any other rss, the only problem is that there are many <tag attrib1="x" attrib2="y"> in feeds..); (reason: does not fit frerich's orthogonality principle)
                 [ ] add Document::timeToLive() in minutes - time to cache (RSS 2.0).
                 [ ] add content:encoded support (see http://weblog.delacour.net/archives/000770.html)
+                [ ] add RSS feed autodiscovery -->smt
+
 #000014 ADD [ ] provide .spec file for RPM packaging (or at least let packagers know about it)
 #000015 ADD [ ] provide debian directory and configuration files for Debian packaging (or at least let packagers know about it)
 
