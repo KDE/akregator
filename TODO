@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000035 being the highest available (take this one for your next bug and increase here)
+          #000037 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -32,6 +32,8 @@ ADD new feature
 #000008 ADD [ ] install mime-type handlers for .opml feed lists
 #000012 FIX [ ] refine aboutbox
 #000019 ADD [ ] implement tooltips and What's This? help
+#000035 ADD [ ] write CSS to the KHTMLPart in viewing articles
+#000036 ADD [ ] add favicon support to the ArticleList
 
 == MID-TERM ==
 
