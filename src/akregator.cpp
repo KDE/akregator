@@ -331,10 +331,9 @@ void aKregator::quitProgram()
 {
     // will call queryClose()
     m_quit = true;
-    if( Settings::markAllReadOnExit() )
+    if( Settings::markAllFeedsReadOnExit() )
     {
-        kdDebug() << "marking all as read.." << endl;
-        emit markAllRead();
+        emit markAllFeedsRead();
     }
     close();
 }

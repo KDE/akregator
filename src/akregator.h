@@ -84,7 +84,7 @@ public slots:
     void slotSetStatusBarText(const QString & s);
 
 signals:
-    void markAllRead();
+    void markAllFeedsRead();
 
 protected:
     /**

@@ -798,10 +798,16 @@ void aKregatorView::slotNextUnread()
     }
 }
 
-void aKregatorView::slotMarkAllRead()
+void aKregatorView::slotMarkAllFeedsRead()
 {
     markAllRead(m_tree->firstChild());
 }
+
+void aKregatorView::slotMarkAllRead()
+{
+    markAllRead(m_tree->currentItem());
+}
+
 
 void aKregatorView::slotOpenHomepage()
 {

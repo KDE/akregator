@@ -40,10 +40,10 @@
         <default>false</default>
         <whatsthis>Fetch feedlist on startup.</whatsthis>
      </entry>
-     <entry name="MarkAllReadOnExit" key="Mark All Read On Exit" type="Bool">
-        <label>Mark all as read on exit</label>
+     <entry name="MarkAllFeedsReadOnExit" key="Mark All Feeds Read On Exit" type="Bool">
+        <label>Mark all feeds as read on exit</label>
         <default>false</default>
-        <whatsthis>Mark all entries as read on exit</whatsthis>
+        <whatsthis>Mark all feeds as read on exit.</whatsthis>
      </entry>
   </group>
   <group name="Browser">
@@ -69,7 +69,7 @@
         </choices>
         <label></label>
         <default>OpenInExternalBrowser</default>
-        <whatsthis>What the click with middle mouse button should do</whatsthis>
+        <whatsthis>What the click with middle mouse button should do.</whatsthis>
      </entry>
   </group>
   

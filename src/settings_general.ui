@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>settings_general</class>
 <author>Teemu Rytilahti</author>
 <widget class="QWidget">
@@ -41,10 +41,10 @@
                 </widget>
                 <widget class="QCheckBox">
                     <property name="name">
-                        <cstring>kcfg_MarkAllReadOnExit</cstring>
+                        <cstring>kcfg_MarkAllFeedsReadOnExit</cstring>
                     </property>
                     <property name="text">
-                        <string>Mark all entries as read on exit</string>
+                        <string>Mark all feeds as read on exit</string>
                     </property>
                 </widget>
             </vbox>
