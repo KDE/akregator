@@ -2,6 +2,8 @@ akregator (1.0-beta4-2) unstable; urgency=low
 
   * First upload to debian (ITP closes: #251871)
   * Fixed upstream (new upstream, but same version)
+ 
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 01 Jul 2004 10:13:09 +0200
 
 akregator (1.0-beta4-1) unstable; urgency=low
 
