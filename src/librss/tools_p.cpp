@@ -23,21 +23,21 @@ time_t RSS::parseISO8601Date(const QString &s)
 }
 
 
-QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool simplifyWhiteSpace)
+QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool isInlined)
 {
 	QDomNode node = parent.namedItem(elemName);
 	if (node.isNull())
 		return QString::null;
 
 	QString result = node.toElement().text();
-	if (simplifyWhiteSpace) {
-		// MC : this line assumes that a feed containing no < has no html tags
-		// and then have no formattig, so we should convert \n into <br> to make it readable
-		// Mon, 23 Aug 2004 15:22:06 +0200
-		if(!result.contains("<")) result=result.replace(QChar('\n'),"<br />");
 
-		result=result.simplifyWhiteSpace();
-	}
+	bool hasPre = result.contains("<pre>",false);
+	bool hasHtml = hasPre || result.contains("<");	// FIXME: test if we have html, should be more clever -> regexp
+	if(!isInlined && !hasHtml)						// perform nl2br if not a inline elt or if has no html elts
+		result = result = result.replace(QChar('\n'), "<br />");
+	if(!hasPre)										// strip white spaces if no <pre>
+		result = result.simplifyWhiteSpace();
+
 	if (result.isEmpty())
 		return QString::null;
 
