@@ -1475,7 +1475,10 @@ void aKregatorView::slotArticleToggleKeepFlag()
         ali->setPixmap(0, m_keepFlagIcon);
     else
         ali->setPixmap(0, QPixmap() );
-
+    KToggleAction* ka = static_cast<KToggleAction*>    (m_part->actionCollection()->action("article_toggle_keep"));
+    if (ka)
+        ka->setChecked( keep );
+    
     ali->article().setKeep(keep);
     Archive::save( ali->article().feed() );
 }
