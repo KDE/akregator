@@ -121,8 +121,9 @@ namespace Akregator
              * This must be implemented by each read-write part
              */
             virtual bool saveFile();
-
-            void importFile(QString file_name);
+            
+            void importFile(QString fileName);
+            void exportFile(QString fileName);
 
         signals:
             void partChanged(KParts::ReadOnlyPart *p);
@@ -134,6 +135,7 @@ namespace Akregator
             void fileOpen();
             bool fileSaveAs();
             void fileImport();
+            void fileExport();
             void openURLDelayed();
 
         private:

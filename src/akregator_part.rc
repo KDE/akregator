@@ -6,6 +6,7 @@
     <Action name="file_open_recent"/>
     <Separator/>
     <Action name="file_import"/>
+    <Action name="file_export"/>
   </Menu>
   <Menu name="edit">
     <text>F&amp;eed</text>

@@ -63,7 +63,8 @@ namespace Akregator
             void saveSettings(bool quit);
 
             bool importFeeds(const QDomDocument& doc);
-
+            
+                      
             /**
              * Parse OPML presentation of feeds and read in articles archive, if present.
              * @param doc QDomDocument generated from OPML by openFile().
@@ -127,7 +128,7 @@ namespace Akregator
 
 	    void slotFetchesCompleted();
             /**
-             * Feed has been fetched, populate article view if needed and update counters.
+//              * Feed has been fetched, populate article view if needed and update counters.
              */
             void slotFeedFetched(Feed *);
             void slotFeedFetchError(Feed *feed);

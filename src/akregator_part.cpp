@@ -20,6 +20,7 @@
 #include <kstandarddirs.h>
 #include <kstdaction.h>
 #include <kfiledialog.h>
+#include <kmessagebox.h>
 
 #include <qfile.h>
 #include <private/qucomextra_p.h>
@@ -59,9 +60,9 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // create our actions
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
     recentFilesAction = KStdAction::openRecent( this, SLOT(openURL(const KURL&)), actionCollection(), "file_open_recent" );
-
+ 
     new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
-    new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_export");
+    new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileExport()), actionCollection(), "file_export");
 
     /* -- ACTIONS */
 
@@ -440,16 +441,16 @@ bool aKregatorPart::saveFile()
     return true;
 }
 
-void aKregatorPart::importFile(QString file_name)
+void aKregatorPart::importFile(QString fileName)
 {
-    QFile file(file_name);
+    QFile file(fileName);
     if (file.open(IO_ReadOnly) == false)
         return;
 
     // Read OPML feeds list and build QDom tree.
     QDomDocument doc;
     if (!doc.setContent(file.readAll())) {
-        kdDebug() << "Failed to build DOM tree, is " << file_name << " valid XML?" << endl;
+        kdDebug() << "Failed to build DOM tree, is " << fileName << " valid XML?" << endl;
         return;
     }
 
@@ -457,6 +458,54 @@ void aKregatorPart::importFile(QString file_name)
         setModified(true);
 }
 
+void aKregatorPart::exportFile(QString fileName)
+{
+   // we could KIO here instead of QFile
+    QFile file(fileName);
+    if ( file.exists() )
+    
+        if ( KMessageBox::questionYesNo(m_view,
+          i18n("The file %1 already exists. Do you want to overwrite?").arg(fileName),
+        i18n("Export"),   
+        i18n("Overwrite"),
+        i18n("Cancel")) == KMessageBox::No )
+            return;
+    if ( !file.open(IO_WriteOnly) )
+    {
+        KMessageBox::error(m_view, i18n("Access denied: Can't write to file %1").arg(fileName), i18n("Write error") ); 
+        return;
+    }
+    
+    // use QTextStream to dump the text to the file
+    QTextStream stream(&file);
+    stream.setEncoding(QTextStream::UnicodeUTF8);
+
+    // Write OPML data file.
+    // Archive data files are saved elsewhere.
+
+    QDomDocument newdoc;
+    QDomElement root = newdoc.createElement( "opml" );
+    root.setAttribute( "version", "1.0" );
+    newdoc.appendChild( root );
+
+    QDomElement head = newdoc.createElement( "head" );
+    root.appendChild( head );
+
+    QDomElement title = newdoc.createElement( "text" );
+    head.appendChild( title );
+
+    QDomText t = newdoc.createTextNode( "aKregator Feeds" );
+    title.appendChild( t );
+
+    QDomElement body = newdoc.createElement( "body" );
+    root.appendChild( body );
+
+    m_view->storeTree( body, newdoc);
+
+    stream << newdoc.toString();
+
+    file.close();
+}
 
 /*************************************************************************************************/
 /* SLOTS                                                                                         */
@@ -497,6 +546,16 @@ void aKregatorPart::fileImport()
 
     if (file_name.isEmpty() == false)
         importFile(file_name);
+}
+
+void aKregatorPart::fileExport()
+{
+    QString file_name = KFileDialog::getSaveFileName( QString::null,
+                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
+                        +"\n*|" + i18n("All Files") );
+                        
+    if ( !file_name.isEmpty() )
+        exportFile(file_name);
 }
 
 void aKregatorPart::fetchFeedUrl(const QString&s)
