@@ -278,10 +278,11 @@ void View::delayedInit()
 
 void View::slotOnShutdown()
 {
-    kdDebug() << "entering View::slotOnShutdown()" << endl;
+    kdDebug() << "View::slotOnShutdown(): enter" << endl;
     m_shuttingDown = true; // prevents slotFrameChanged from crashing
 
     m_transaction->stop();
+    kdDebug() << "View::slotOnShutdown(): delete feed list" << endl;
     delete m_feedList;
     
     // close all pageviewers in a controlled way
@@ -609,13 +610,12 @@ void View::slotRemoveFrame()
     Frame *f = m_tabs->currentFrame();
     if (f == m_mainFrame)
         return;
-    
-    m_tabs->removeFrame(f);
-    
+
     if (f->part() != m_part)
         delete f->part();
+        
+    m_tabs->removeFrame(f);
     
-    delete f;
     if (m_tabs->count() <= 1)
         m_tabsClose->setEnabled(false);
 }

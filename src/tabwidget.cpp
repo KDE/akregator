@@ -72,6 +72,7 @@ void TabWidget::removeFrame(Frame *f)
     f->setCompleted();
     m_frames.remove(f->widget());
     removePage(f->widget());
+    delete f;
     setTitle( currentFrame()->title(), currentPage() );
 }
 
