@@ -5,6 +5,7 @@ aKregator ChangeLog
 Changes after 1.0b8:
 -----------------------------
 Changes:
+       - Use KDEPIM's progressbar -tpr
        - Update unread count when stopping fetching before it's finished -tpr
 Bug fixes:
        - Disable dnd in feed tree until the feed list is loaded (prevents crash) -fo 
