@@ -65,7 +65,6 @@ namespace Akregator
             /** Clears the canvas and disconnects from the currently observed node (if in combined view mode). */
             void slotClear();
 	    
-
             void slotShowSummary(TreeNode *node);
 	    
         protected:

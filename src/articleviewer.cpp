@@ -214,13 +214,17 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
         text += QString("<a href=\""+feed->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
 
-    text += "<div id=\"body\">";
+    
 
     if (!article.description().isEmpty())
     {
+        text += QString("<div id=\"body\" dir=\"%1\">").arg(directionOf(article.description()) );
         text += "<span id=\"content\">"+article.description()+"</span>";
+        text += "</div>";
     }
-
+    
+    text += "<div id=\"body\">";
+    
     if (article.commentsLink().isValid())
     {
         text += "<a class=\"contentlink\" href=\"";
