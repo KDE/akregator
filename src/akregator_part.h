@@ -28,7 +28,7 @@ class KHTMLPart;
 namespace Akregator {
     class FeedsTree;
     class ArticleList;
-	class ArticleViewer;
+    class ArticleViewer;
 }
 
 using namespace Akregator;

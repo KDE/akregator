@@ -11,19 +11,19 @@ using namespace RSS;
 
 namespace Akregator
 {
-	class ArticleViewer : public KHTMLPart
-	{
-		Q_OBJECT
-		public:
-			ArticleViewer(QWidget* parent, const char* name);
-			void openDefault();
-			void show(Article);
-		private:
-			QString htmlHead() const;
-			QString cssDefinitions() const;
-			QFont m_bodyFont;
-			QPaintDeviceMetrics m_metrics; 
-	};
+    class ArticleViewer : public KHTMLPart
+    {
+        Q_OBJECT
+        public:
+            ArticleViewer(QWidget* parent, const char* name);
+            void openDefault();
+            void show(Article);
+        private:
+            QString htmlHead() const;
+            QString cssDefinitions() const;
+            QFont m_bodyFont;
+            QPaintDeviceMetrics m_metrics; 
+    };
 }
 
 #endif // ARTICLEVIEWER_H

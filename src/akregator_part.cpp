@@ -83,7 +83,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     m_panner1->setSizes( m_panner1Sep );
     m_panner2->setSizes( m_panner2Sep );
 
-	m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
+    m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
@@ -650,7 +650,7 @@ void aKregatorPart::slotArticleSelected(QListViewItem *item)
     if (index < 0 || static_cast<Article::List::size_type>(index) > feed->articles.size())
         return;
 
-	m_articleViewer->show(feed->articles[index]);
+    m_articleViewer->show(feed->articles[index]);
 
     kdDebug() << k_funcinfo << "END" << endl;
 }
