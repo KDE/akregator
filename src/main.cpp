@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     about.addAuthor( "Gary Cramblitt", I18N_NOOP("Contributor"), "garycramblitt@comcast.net");
     about.addCredit( "Pierre Habouzit", I18N_NOOP("Debian Packages"), "pierre.habouzit@m4x.org" );
     about.addCredit( "Philipp Droessler", I18N_NOOP("Gentoo Ebuild"), "kingmob@albert-unser.net");
-    about.addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "frerich@kde.org" );
+    about.addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "raabe@kde.org" );
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( options );
     aKregatorApp app;
