@@ -9,18 +9,16 @@ at the end.
 
 short term (~beta3)
 -------------------
-- smarter feed caching
-- interval polling
-- passive popups
-  -> smt: needs interval polling?
+- add smarter feed caching (in librss), using If-Modified-Since http header
+- interval polling (will be in shell)
+- passive popups (will be in shell)
 - add back/forward/reload buttons to pageviewer
-- allow searching in combined view
-- show read/unread/new as different colors
-  in combined view.
-- rewrite combined
-- config dialog
+- rewrite combined view.. planning to use khtml/dom directly
+  -> show read/unread/new as different colors in combined view
+  -> allow searching in combined view
+- add a config dialog
   -> changing middle mouse button action to config dialog
-- kontact part
+- add a kontact part
 
 
 medium term ()
