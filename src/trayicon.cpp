@@ -23,8 +23,9 @@ using namespace Akregator;
 TrayIcon::TrayIcon(QWidget *parent, const char *name)
         : KSystemTray(parent, name), m_unread(0)
 {
-    m_defaultIcon=KSystemTray::loadIcon("akregator_empty");
-    m_lightIconImage=m_defaultIcon.convertToImage();
+    m_defaultIcon=KSystemTray::loadIcon("akregator");
+    QPixmap m_unreadIcon=KSystemTray::loadIcon("akregator_empty");
+    m_lightIconImage=m_unreadIcon.convertToImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
     QToolTip::add(this, i18n("aKregator"));
