@@ -17,6 +17,7 @@
 #include <kparts/browserinterface.h>
 #include <kparts/browserextension.h>
 
+class KActionCollection;
 class KToggleAction;
 class KSqueezedTextLabel;
 class KProgress;
@@ -117,8 +118,9 @@ private slots:
 private:
     void setupAccel();
     void setupActions();
+    void connectActionCollection(KActionCollection *coll);
+    void disconnectActionCollection(KActionCollection *coll);
 
-private:
     KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
     BrowserInterface *m_browserIface;
     KParts::ReadWritePart *m_part;

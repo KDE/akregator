@@ -28,6 +28,6 @@
 <ToolBar noMerge="1" name="mainToolBar"><text>Main Toolbar</text>
   <Action name="file_new"/>
   <Merge/>
-  <Action name="help"/>
+  <Action name="stop"/>
 </ToolBar>
 </kpartgui>

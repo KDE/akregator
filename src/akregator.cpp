@@ -119,7 +119,8 @@ bool aKregator::loadPart()
             connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
             m_activePart=m_part;
             // and integrate the part's GUI with the shell's
-            createGUI(m_part);
+            connectActionCollection(m_part->actionCollection());
+	    createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
         }
         return true;
@@ -147,16 +148,24 @@ aKregator::~aKregator()
 void aKregator::partChanged(KParts::ReadOnlyPart *p)
 {
     KParts::BrowserExtension *ext;
+    
     loadingProgress(-1);
+    
     if (m_activePart)
     {
         ext=browserExtension(m_activePart);
         if (ext)
             disconnect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+    	
+        disconnectActionCollection(m_activePart->actionCollection());
     }
+
     ext=browserExtension(p);
     if (ext)
         connect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+    
+    connectActionCollection(p->actionCollection());
+
     m_activePart=p;
     createGUI(p);
 }
@@ -168,6 +177,9 @@ void aKregator::load(const KURL& url)
 
 void aKregator::setupActions()
 {
+
+    connectActionCollection(actionCollection());
+
     KStdAction::openNew(this, SLOT(fileNew()), actionCollection());
 //    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
 
@@ -325,6 +337,26 @@ void aKregator::fileOpen()
 KParts::BrowserExtension *aKregator::browserExtension(KParts::ReadOnlyPart *p)
 {
     return KParts::BrowserExtension::childObject( p );
+}
+
+
+// from konqmainwindow
+void aKregator::connectActionCollection( KActionCollection *coll )
+{
+    if (!coll) return;
+    connect( coll, SIGNAL( actionStatusText( const QString & ) ),
+             this, SLOT( slotActionStatusText( const QString & ) ) );
+    connect( coll, SIGNAL( clearStatusText() ),
+             this, SLOT( slotClearStatusText() ) );
+}
+
+void aKregator::disconnectActionCollection( KActionCollection *coll )
+{
+    if (!coll) return;
+    disconnect( coll, SIGNAL( actionStatusText( const QString & ) ),
+                this, SLOT( slotActionStatusText( const QString & ) ) );
+    disconnect( coll, SIGNAL( clearStatusText() ),
+                this, SLOT( slotClearStatusText() ) );
 }
 
 
