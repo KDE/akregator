@@ -61,7 +61,7 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
-    new KAction(i18n("Copy Link Address"), "", 0,
+    new KAction(i18n("Copy &Link Address"), "", 0,
                                  this, SLOT(slotCopyLinkAddress()),
                                  actionCollection(), "copylinkaddress");
 }
@@ -150,8 +150,8 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    
    if (!url.isEmpty())
    {
-        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
         action("copylinkaddress")->plug(&popup);
    }
    else

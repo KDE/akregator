@@ -279,9 +279,9 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     int idNewWindow = -2;
     if (isLink)
     {
-        idNewWindow = popup.insertItem(SmallIcon("window_new"),i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
+        idNewWindow = popup.insertItem(SmallIcon("tab_new"),i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.setWhatsThis(idNewWindow, i18n("<b>Open Link in New Tab</b><p>Opens current link in a new tab."));
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
                 
         popup.insertSeparator();
         

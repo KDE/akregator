@@ -98,8 +98,8 @@ void Part::setupActions()
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
     new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "feed_stop");
 
-    new KAction(i18n("&Mark All as Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
-    new KAction(i18n("Ma&rk All Feeds as Read"), "", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
+    new KAction(i18n("&Mark All as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
+    new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
     // "Go" menu
 
@@ -131,8 +131,8 @@ void Part::setupActions()
 
     // article list
     new KAction( i18n("Open Article in Tab"), "tab_new", "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
-    new KAction( i18n("Open Article in Background Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
-    new KAction( i18n("Open Article in External Browser"), QString::null, "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
+    new KAction( i18n("Open Article in Background Tab"), QString::null, "tab_new", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
+    new KAction( i18n("Open Article in External Browser"), "window_new", "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
     new KAction( i18n("&Previous Article"), QString::null, "Left", m_view, SLOT(slotPreviousArticle()), actionCollection(), "go_previous_article" );
     new KAction( i18n("&Next Article"), QString::null, "Right", m_view, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
     new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
