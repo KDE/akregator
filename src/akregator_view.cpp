@@ -812,7 +812,7 @@ void View::slotNodeSelected(TreeNode* node)
 {
     if (m_displayingAboutPage)
     {
-        m_tabs->setTitle("Articles", m_mainTab);
+        m_tabs->setTitle(i18n("Articles"), m_mainTab);
         if (m_viewMode != CombinedView)
             m_articles->show();
         if (Settings::showQuickFilter())
