@@ -23,8 +23,6 @@ using namespace Akregator;
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
         : FeedPropertiesWidgetBase(parent, name)
 {
-   connect(      upChkbox, SIGNAL(toggled(bool)),
-            updateSpinBox, SLOT(setEnabled(bool)) );
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
