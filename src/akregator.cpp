@@ -172,9 +172,6 @@ void AkregatorMainWindow::setupActions()
 
     KStdAction::quit(kapp, SLOT(quit()), actionCollection());
 
-/*    m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
-    m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
-*/
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
@@ -215,26 +212,6 @@ void AkregatorMainWindow::fileNew()
  //	w->loadPart();
  //	w->show();
  //   }
-}
-
-void AkregatorMainWindow::optionsShowToolbar()
-{
-    // this is all very cut and paste code for showing/hiding the
-    // toolbar
-    if (m_toolbarAction->isChecked())
-        toolBar()->show();
-    else
-        toolBar()->hide();
-}
-
-void AkregatorMainWindow::optionsShowStatusbar()
-{
-    // this is all very cut and paste code for showing/hiding the
-    // statusbar
-    if (m_statusbarAction->isChecked())
-        statusBar()->show();
-    else
-        statusBar()->hide();
 }
 
 void AkregatorMainWindow::optionsConfigureKeys()

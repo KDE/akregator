@@ -129,8 +129,6 @@ protected:
 private slots:
     void fileNew();
     void fileOpen();
-    void optionsShowToolbar();
-    void optionsShowStatusbar();
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
     
