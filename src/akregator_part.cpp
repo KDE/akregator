@@ -57,11 +57,10 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     // create our actions
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-    KStdAction::saveAs(this, SLOT(fileSaveAs()), actionCollection());
-    KStdAction::save(this, SLOT(save()), actionCollection());
     recentFilesAction = KStdAction::openRecent( this, SLOT(openURL(const KURL&)), actionCollection(), "file_open_recent" );
 
     new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
+    new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
 
     /* -- ACTIONS */
 
@@ -95,7 +94,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setReadWrite(true);
 
     // we are not modified since we haven't done anything yet
-    setModified(false);
+//    setModified(false);
 
     connect(parent, SIGNAL(markAllFeedsRead()), m_view, SLOT(slotMarkAllFeedsRead()));
 }
@@ -125,20 +124,9 @@ void aKregatorPart::setReadWrite(bool rw)
 
 void aKregatorPart::setModified(bool modified)
 {
-    // get a handle on our Save action and make sure it is valid
-    KAction *save = actionCollection()->action(KStdAction::stdName(KStdAction::Save));
-    if (!save)
-        return;
-
-    // if so, we either enable or disable it based on the current
-    // state
-    if (modified)
-        save->setEnabled(true);
-    else
-        save->setEnabled(false);
-
-    // in any event, we want our parent to do it's thing
-    ReadWritePart::setModified(modified);
+    // autosave
+    if (url().isValid() && modified)
+        saveFile();
 }
 
 void aKregatorPart::changePart(KParts::ReadOnlyPart *p)

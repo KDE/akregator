@@ -317,7 +317,6 @@ void aKregatorView::reset()
 {
     m_feeds.clearFeeds();
     m_tree->clear();
-    m_part->setModified(false);
 
     // Root item
     FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree, QString::null );
@@ -603,7 +602,6 @@ void aKregatorView::addFeedToGroup(const QString& url, const QString& group)
         if (g)
             g->setTitle( group );
 
-        m_part->setModified(true);
         item = g->item();
     }
     // Locate last feed (or folder) in the group.

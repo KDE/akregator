@@ -177,7 +177,6 @@ void aKregator::setupActions()
 
     connectActionCollection(actionCollection());
 
-    KStdAction::openNew(this, SLOT(fileNew()), actionCollection());
     KStdAction::quit(this, SLOT(quitProgram()), actionCollection());
 
     m_stopAction = new KAction( i18n( "&Stop" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "stop" );
