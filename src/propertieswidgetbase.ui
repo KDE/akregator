@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>FeedPropertiesWidgetBase</class>
 <widget class="QWidget">
     <property name="name">
@@ -224,6 +224,9 @@
                     </property>
                     <property name="suffix">
                         <string> minutes</string>
+                    </property>
+                    <property name="maxValue">
+                        <number>1000000</number>
                     </property>
                 </widget>
             </hbox>
