@@ -21,14 +21,14 @@ class Foo
     // stuff
 };
 
-if(foo == bar)
+if (foo == bar)
 {
     // stuff
 }
 
-while(foo == bar &&
-      baz == quux &&
-      flop == pop)
+while (foo == bar &&
+       baz == quux &&
+       flop == pop)
 {
     // stuff
 }
@@ -50,13 +50,13 @@ public:
 Also conditionals / loops that only contiain one line in their body (but where
 the conditional statement fits onto one line) should omit braces:
 
-if(foo == bar)
+if (foo == bar)
     baz();
 
 But:
 
-if(baz == quux &&
-   ralf == spot)
+if (baz == quux &&
+    ralf == spot)
 {
     bar();
 }
@@ -65,16 +65,16 @@ if(baz == quux &&
 Spaces
 ================================================================================
 
-Spaces should not be used between the conditional / loop type and the
-conditional statement.  They should also not be used after parenthesis.  However
+Spaces should be used between the conditional / loop type and the
+conditional statement.  They should not be used after parenthesis.  However
 the should be to mark of mathematical or comparative operators.
 
 if ( foo == bar )
-  ^ ^          ^
+    ^          ^
 
 The marked spaces should be ommitted to produce:
 
-if(foo == bar)
+if (foo == bar)
 
 ================================================================================
 Header Organization
