@@ -15,6 +15,7 @@
 #include <kinstance.h>
 #include <kaction.h>
 #include <kstdaction.h>
+#include <kcharsets.h>
 #include <kfiledialog.h>
 #include <kinputdialog.h>
 #include <klocale.h>
@@ -460,7 +461,7 @@ void aKregatorPart::slotUpdateArticleList(Feed *source)
         for (it = source->articles.begin(); it != end; ++it)
         {
             kdDebug() << "[adding] Article entitled " << (*it).title() << " with contents " << (*it).description() << endl;
-            new KListViewItem( m_articles, m_articles->lastItem(), (*it).title() );
+            new KListViewItem( m_articles, m_articles->lastItem(), KCharsets::resolveEntities((*it).title()) );
         }
     }
     m_articles->setUpdatesEnabled(true);

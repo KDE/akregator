@@ -10,9 +10,6 @@
  */
 #include "tools_p.h"
 
-#include <kcharsets.h>
-#include <kglobal.h>
-
 #include <qdom.h>
 
 QString RSS::extractNode(const QDomNode &parent, const QString &elemName)

@@ -11,8 +11,6 @@
 #ifndef LIBRSS_TOOLS_P_H
 #define LIBRSS_TOOLS_P_H
 
-#include "global.h"
-
 class QDomNode;
 class QString;
 

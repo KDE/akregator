@@ -11,6 +11,7 @@
 #ifndef LIBRSS_ARTICLE_H
 #define LIBRSS_ARTICLE_H
 
+class QDateTime;
 class QDomNode;
 template <class>
 class QValueList;
@@ -18,7 +19,6 @@ class QString;
 class QWidget;
 class KURL;
 class KURLLabel;
-class QDateTime;
 
 namespace RSS
 {

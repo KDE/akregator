@@ -129,7 +129,10 @@ Article &Article::operator=(const Article &other)
 bool Article::operator==(const Article &other) const
 {
     return d->title == other.title() &&
-           d->description == other.description() &&
            d->link == other.link();
+           d->description == other.description() &&
+           d->pubDate == other.pubDate() &&
+           d->guid == other.guid() &&
+           d->guidIsPermaLink == other.guidIsPermaLink();
 }
 // vim:noet:ts=4
