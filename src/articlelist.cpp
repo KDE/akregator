@@ -12,10 +12,12 @@
 
 #include <kdebug.h>
 #include <kglobal.h>
+#include <kiconloader.h>
 #include <klocale.h>
 #include <kcharsets.h>
 
 #include <qdatetime.h>
+#include <qpixmap.h>
 #include <qwhatsthis.h>
 #include <qheader.h>
 
@@ -34,6 +36,8 @@ ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const
 {
     d->article = a;
     d->feed = feed;
+    if (a.keep())
+        setPixmap(0, UserIcon("akregator_flag"));
     if (parent->columns() > 2)
     {
         setText(2, text(1));

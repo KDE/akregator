@@ -300,6 +300,8 @@ namespace Akregator
 
             bool m_stopLoading;
             bool m_shuttingDown;
+
+            QPixmap m_keepFlagIcon;
     };
 }
 

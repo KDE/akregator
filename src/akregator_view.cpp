@@ -89,7 +89,7 @@ aKregatorView::~aKregatorView()
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
 : QWidget(parent, wName), m_viewMode(NormalView)
 {
-    
+    m_keepFlagIcon = UserIcon("akregator_flag");
     m_part=part;
     m_stopLoading=false;
     m_shuttingDown = false;
@@ -1468,7 +1468,15 @@ void aKregatorView::slotArticleToggleKeepFlag()
 
     if (!ali)
         return;
-    ali->article().setKeep(!ali->article().keep());
+
+    bool keep = !ali->article().keep();
+    
+    if (keep)
+        ali->setPixmap(0, m_keepFlagIcon);
+    else
+        ali->setPixmap(0, QPixmap() );
+
+    ali->article().setKeep(keep);
     Archive::save( ali->article().feed() );
 }
 

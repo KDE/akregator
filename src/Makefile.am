@@ -64,6 +64,10 @@ partdesktop_DATA = akregator_part.desktop
 partrcdir = $(kde_datadir)/akregator
 partrc_DATA = pageviewer.rc akregator_part.rc welcome.html
 
+# this is where the icons go
+iconsdir = $(kde_datadir)/akregator/pics
+icons_DATA = akregator_flag.png
+
 if include_kontact
 KONTACT_SUBDIR = kontact_plugin
 endif
