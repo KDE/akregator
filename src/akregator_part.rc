@@ -1,9 +1,10 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="27">
+<kpartgui name="akregator_part" version="28">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
     <Action name="file_export"/>
+    <Separator/> 
   </Menu>
 
   <Menu name="edit">

@@ -9,16 +9,18 @@ New features:
 #85532 - Add feed summary -tpr
 
 Changes:
+       - Remove dots ("...") from the welcome page actions -tpr
+       - Add pageviewer actions into Go menu and print to file menu when in pageviewer mode -tpr
+       - make search bar optional -fo
        - Do not allow user to stop feedlist loading to avoid data loss -tpr
        - Do not show feedlist url in title -tpr
        - Clear the statusbar when pressing Stop button -tpr
-       - make search bar optional -fo
 
 Bug fixes:
        - Use isNull() instead of comparing to QString::null -tpr
        - Make kontact plugin work with Kontact from CVS HEAD -fo
        - Don't load kontact plugin when akregator is already running -fo
-       - Fix expiry by age (global setting was ignored) -fo      
+       - Fix expiry by age (global setting was ignored) -fo
        - Make trayicon and configure dialog available in kontact -fo
        - Save and restore open/closed state of feed groups -fo
        - Fix interval fetching (Exclude feeds with custom settings from global fetch) -fo
@@ -41,12 +43,12 @@ Changes:
        - make systray icon optional (Patch by Christof Musik,
        christof(at)freenet.de) -fo
        - added "Export Feeds" function to export the standard feed list -fo
-       - Expiry support added -fo 
-      
+       - Expiry support added -fo
+
 Bug fixes:
 #85409 - Resolve entities in feed titles -fo
 #90671 - Shutdown properly hopefully fixes #89172 too -tpr
-       - Update combined view after fetching new articles (doesn't work in group view yet)         
+       - Update combined view after fetching new articles (doesn't work in group view yet)
 Changes after 1.0b5:
 -----------------------------
 Changes:
@@ -65,13 +67,13 @@ Bug Fixes:
        - Make i18n work in konqueror plugin -tpr
        - Fixed problems with whitespace handling -ph
        - Make MMB work again in pageviewer -tpr
-#83995 - Don't crash when exiting KDE -fo 
+#83995 - Don't crash when exiting KDE -fo
 #82791 - Save the toolbar position -tpr
        - Don't crash when there is no part available -tpr
        - Make tabs wider when there is free space available -tpr
        - Make feedlist saving work in kontact -smt
 	   - Remove all leading space between article text and headers -smt
-#86633 - Make tabs appear immediatly on slow sites -smt 
+#86633 - Make tabs appear immediatly on slow sites -smt
 #85748 - Make filtering in combined mode work -smt
 #86917 - Make searching in combined mode work -smt
 #85451 - Open feed list properly in kontact
@@ -104,13 +106,13 @@ New Features:
        - Konqueror plugin for adding feeds to aKregator from context menu -PhantomsDad
        - Command line options for adding feeds -PhantomsDad
        - In case the feed doesn't provide an article <link> element, fall back to the <guid> permaLink -sg
-       
+
 Bug Fixes:
        - Update interval spinbox should be disabled if the checkbox isn't checked -tpr
        - "aKregator - 0 unread" -> "aKregator - No unread articles" -tpr
        - Scroll up when changing the article in article viewer -tpr
        - Various frame-switching bug fixes -smt
-       - Fix favicon loading crash (#82682) -smt 
+       - Fix favicon loading crash (#82682) -smt
        - Various stop-button related bug fixes -smt
        - Changed "Copy Link Location" to "Copy Link Address" because of the new naming standard of KDE -tpr
        - Fix archiving of article <guid> elements -sg

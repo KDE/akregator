@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="pageviewer" version="3">
+<kpartgui name="pageviewer" version="6">
 <ToolBar name="mainToolBar">
   <Action name="pageviewer_back" group="pageviewer_operations"/>
   <Action name="pageviewer_forward" group="pageviewer_operations"/>
@@ -7,4 +7,19 @@
   <Action name="pageviewer_stop" group="pageviewer_operations"/>
   <Action name="pageviewer_print" group="pageviewer_operations"/>
 </ToolBar>
+<MenuBar>
+<Menu noMerge="1" name="file">
+  <Action name="pageviewer_print" group="pageviewer_operations"/>
+  <Separator/> 
+  <Merge/>
+</Menu> 
+<Menu noMerge="1" name="go">
+  <text>&amp;Go</text>
+  <Action name="pageviewer_back" group="pageviewer_operations"/>
+  <Action name="pageviewer_forward" group="pageviewer_operations"/>
+  <Separator/>
+  <Action name="pageviewer_reload" group="pageviewer_operations"/>
+  <Action name="pageviewer_stop" group="pageviewer_operations"/>
+</Menu>
+</MenuBar>
 </kpartgui>

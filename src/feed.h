@@ -51,6 +51,7 @@ namespace Akregator
             
             void setAutoFetch(bool enable) { m_autoFetch = enable; }
 
+            // FIXME is it -1 or 0 to disable interval fetching?
             /** Returns custom auto fetch interval of this feed.
             @return custom fetch interval in minutes, 0 if disabled */
             int fetchInterval() const { return m_fetchInterval; }
