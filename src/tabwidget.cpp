@@ -58,10 +58,10 @@ void TabWidget::removeFrame(Frame *f)
 {
     m_frames.remove(f->widget());
     removePage(f->widget());
+    setTitle( currentFrame()->title(), currentPage() );
 }
 
 // copied wholesale from KonqFrameTabs
-
 unsigned int TabWidget::tabBarWidthForMaxChars( uint maxLength )
 {
     int hframe, overlap;
@@ -118,7 +118,7 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     newTitle.replace( '&', "&&" );
     if ( tabLabel( sender ) != newTitle )
         changeTab( sender, newTitle );
-
+    
     if( newMaxLength != m_CurrentMaxLength )
     {
         for( int i = 0; i < count(); ++i)
