@@ -180,7 +180,8 @@ void aKregatorPart::setTotalUnread(int unread)
 {
     if (m_totalUnread != unread)
     {
-        m_extension->browserInterface()->callMethod( "updateUnread(int)", unread );
+        if (m_extension->browserInterface())
+            m_extension->browserInterface()->callMethod( "updateUnread(int)", unread );
         m_totalUnread=unread;
     }
 }
@@ -193,6 +194,11 @@ bool aKregatorPart::openURL(const KURL& url)
 {
    recentFilesAction->addURL(url);
    return inherited::openURL(url);
+}
+
+void aKregatorPart::openLastFeedList()
+{
+    openURL(Settings::lastOpenFile());
 }
 
 bool aKregatorPart::openFile()
@@ -235,7 +241,7 @@ bool aKregatorPart::openFile()
     m_view->endOperation();
     setStatusBar( QString::null );
 
-    if (Settings::fetchOnStartup())
+    if (Settings::fetchOnStartup() && m_extension->browserInterface())
     {
         kdDebug() << "fetching on startup.." << endl;
         // has the shell loaded up a window already? then its not starting up

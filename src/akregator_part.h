@@ -87,6 +87,8 @@ namespace Akregator
             
             virtual bool openURL(const KURL& url);
             virtual bool closeURL();
+            virtual void openLastFeedList();
+
             bool loading (){return m_loading;}
             
             virtual void fetchFeedUrl(const QString&);
