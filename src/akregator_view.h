@@ -136,8 +136,8 @@ namespace Akregator
             /**
              * Populate article view with articles from selected feed.
              */
-            void slotUpdateArticleList(FeedGroup *);
-            void slotUpdateArticleList(Feed *);
+            void slotUpdateArticleList(FeedGroup *, bool);
+            void slotUpdateArticleList(Feed *, bool);
 
             /**
              * Display article contents in ArticleViewer.

@@ -818,7 +818,7 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 	        m_articles->setColumnWidthMode(0, QListView::Manual);
 	    }
 
-        slotUpdateArticleList(feed);
+        slotUpdateArticleList(feed, false);
     }
     else
     {
@@ -832,7 +832,7 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
             m_articles->setColumnWidth(0, oldw); // resize title col to old title col + feed col width
         }
 
-      slotUpdateArticleList( static_cast<Feed *>(feed) );
+      slotUpdateArticleList( static_cast<Feed *>(feed), false );
     }
 
     if (m_viewMode==CombinedView)
@@ -845,31 +845,32 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
 }
 
-void aKregatorView::slotUpdateArticleList(FeedGroup *src)
+void aKregatorView::slotUpdateArticleList(FeedGroup* source, bool appendOnly)
 {
-    //kdDebug() << k_funcinfo << src->title() << endl;
-    if (!src->isGroup())
+//  kdDebug() << k_funcinfo << src->title() << endl;
+    if (!source->isGroup())
     {
-        slotUpdateArticleList(static_cast<Feed *>(src));
+        slotUpdateArticleList(static_cast<Feed *>(source), appendOnly);
     }
     else
     {
-        if (!src->item())
+        if (!source->item())
             return;
-            for ( QListViewItem *i = src->item()->firstChild()
+            for ( QListViewItem *i = source->item()->firstChild()
                 ; i ; i = i->nextSibling() )
         {
             FeedGroup *g = m_feeds.find(i);
             if (g)
-                slotUpdateArticleList(g);
+                slotUpdateArticleList(g, true);
         }
     }
 }
 
-void aKregatorView::slotUpdateArticleList(Feed *source)
+void aKregatorView::slotUpdateArticleList(Feed* source, bool appendOnly)
 {
-    m_articles->setUpdatesEnabled(false);
-    m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
+    m_articles->setUpdatesEnabled(false); 
+    if (!appendOnly)
+        m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
     
     if (source->articles().count() > 0)
     {
@@ -1263,7 +1264,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 {
     // If its a currenly selected feed, update view
     if (feed->item() == m_tree->currentItem())
-        slotUpdateArticleList(feed);
+        slotUpdateArticleList(feed, false);
 
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
