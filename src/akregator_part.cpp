@@ -105,13 +105,13 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     /* -- ACTIONS */
 
     /* --- Feed popup menu */
-    new KAction(i18n("&Add"), "", "Alt+Insert", this, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
-    new KAction(i18n("Add feed &group"), "", "Alt+Shift+Insert", this, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
+    new KAction(i18n("&Add..."), "", "Alt+Insert", this, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
+    new KAction(i18n("Add Feed &Group..."), "", "Alt+Shift+Insert", this, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
     new KAction(i18n("&Delete"), "", "Shift+Delete", this, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Modify"), "", "F2", this, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
     new KAction(i18n("&Copy"), "", "Alt+Ctrl+C", this, SLOT(slotFeedCopy()), actionCollection(), "feed_copy");
     new KAction(i18n("&Fetch"), "down", "Alt+Ctrl+F", this, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
-    new KAction(i18n("Fe&tch all"), "bottom", "Alt+Ctrl+A", this, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
+    new KAction(i18n("Fe&tch All"), "bottom", "Alt+Ctrl+A", this, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
 
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc");
@@ -509,7 +509,7 @@ void aKregatorPart::slotFeedAddGroup()
     bool Ok;
     KListViewItem *elt;
 
-    QString text = KInputDialog::getText(i18n("Add feed group"), i18n("Feed group title:"), "", &Ok);
+    QString text = KInputDialog::getText(i18n("Add Feed Group"), i18n("Feed group title:"), "", &Ok);
     if (!Ok) return;
 
     QListViewItem *lastChild = m_tree->currentItem()->firstChild();
@@ -539,7 +539,7 @@ void aKregatorPart::slotFeedRemove()
     QString msg = elt->childCount() ?
         i18n("<qt>Are you sure you want to delete group<br><b>%1</b><br> and its subgroups and feeds?</qt>") :
         i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
-    if (KMessageBox::questionYesNo(0, msg.arg(elt->text(0))) == KMessageBox::Yes)
+    if (KMessageBox::warningContinueCancel(0, msg.arg(elt->text(0)),i18n("Delete Feed"),KGuiItem(i18n("&Delete"),"editdelete")) == KMessageBox::Continue)
     {
         m_feeds.removeFeed(elt);
         // FIXME: kill children? (otoh - auto kill)
@@ -620,7 +620,7 @@ void aKregatorPart::slotFetchCurrentFeed()
         {
             FeedGroup *g = m_feeds.find(m_tree->currentItem());
             if (!g) {
-                KMessageBox::error( widget(), i18n( "Internal error, feeds tree inconsistent!" ) );
+                KMessageBox::error( widget(), i18n( "Internal error, feeds tree inconsistent." ) );
                 return;
             }
 

@@ -49,7 +49,7 @@ void FeedsCollection::removeFeed(QListViewItem *item)
     FeedGroup *feed = find(item);
     if (!feed)
     {
-        KMessageBox::error( 0, i18n("Internal error while removing note") );
+        KMessageBox::error( 0, i18n("Internal error while removing note.") );
         return;
     }
 
