@@ -69,15 +69,8 @@ void Viewer::displayInExternalBrowser(const KURL &url)
        QString urlStr = url.url();
        cmd.replace(QRegExp("%u"), urlStr);
        KProcess *proc = new KProcess;
-#if KDE_IS_VERSION(3,1,94)
        QStringList cmdAndArgs = KShell::splitArgs(cmd);
-#else
-       QStringList cmdAndArgs = QStringList::split(' ',cmd);
-#endif
        *proc << cmdAndArgs;
-//       This code will also work, but starts an extra shell process.
-//       *proc << cmd;
-//       proc->setUseShell(true);
        proc->start(KProcess::DontCare);
        delete proc;
    }        
