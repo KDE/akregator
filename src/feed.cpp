@@ -257,7 +257,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     description = m_document.description();
     htmlUrl = m_document.link().url();
-
+    
     //kdDebug() << "ismerged reprots:::"<<isMerged()<<endl;
 
     bool findDups=isMerged();

@@ -564,7 +564,7 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
 void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
 {
-    kdDebug() << k_funcinfo << src->title() << endl;
+    //kdDebug() << k_funcinfo << src->title() << endl;
     if (!src->isGroup())
     {
         if (m_viewMode==CombinedView)
@@ -660,8 +660,8 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     addFeed_Internal( feed, elt,
                       dlg->feedName(),
                       dlg->url(),
-                      "",
-                      "",
+                      feed->htmlUrl,
+                      feed->description,
                       false
                     );
 
