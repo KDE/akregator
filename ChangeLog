@@ -11,6 +11,7 @@ Changes:
        - Implement session mangement (#82868) - smt
 
 Bug Fixes:
+#84095 - akregator article view doesn't display <pre> passages correctly -berkus
 #82820 - Kontact crashes when fetching - smt
 #84272 - aKregator doesn't restore feed list after logout with running application
 #81995 - Don't crash when changing from/to combined view when folder selected -tpr
