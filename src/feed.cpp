@@ -352,7 +352,8 @@ void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
 
 void Feed::slotSetProgress(unsigned long percent)
 {
-    m_progressItem->setProgress((unsigned int) percent);
+    if (m_progressItem)
+        m_progressItem->setProgress((unsigned int) percent);
 }
 
 void Feed::slotAbortFetch()
@@ -423,9 +424,15 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
         return;
     }
-    
+
     // if successful:
     
+    if (m_progressItem)
+    {
+        m_progressItem->setComplete();
+        m_progressItem = 0;
+    }
+
     // Restore favicon.
     if (m_favicon.isNull())
         loadFavicon();
@@ -434,12 +441,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     m_document = doc;
     //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
-    if (m_progressItem)
-    {
-        m_progressItem->setComplete();
-        m_progressItem = 0;
-    }
-
+    
     if (m_image.isNull())
     {
         QString u = m_xmlUrl;
