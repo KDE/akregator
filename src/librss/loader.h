@@ -129,6 +129,9 @@ namespace RSS
 			 */
 			void permanentRedirection(const KURL &url);
 
+        protected slots:
+            void slotTimeout();
+                
 		private slots:
 			void slotData(KIO::Job *job, const QByteArray &data);
 			void slotResult(KIO::Job *job);

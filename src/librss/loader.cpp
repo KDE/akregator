@@ -19,6 +19,7 @@
 #include <qbuffer.h>
 #include <qregexp.h>
 #include <qstringlist.h>
+#include <qtimer.h>
 
 using namespace RSS;
 
@@ -72,11 +73,27 @@ void FileRetriever::retrieveData(const KURL &url)
        u.setProtocol("http");
 
    d->job = KIO::get(u, true, false);
+
+   
+   QTimer::singleShot(1000*90, this, SLOT(slotTimeout()));
+   
    connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
                 SLOT(slotData(KIO::Job *, const QByteArray &)));
    connect(d->job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));
    connect(d->job, SIGNAL(permanentRedirection(KIO::Job *, const KURL &, const KURL &)),
                 SLOT(slotPermanentRedirection(KIO::Job *, const KURL &, const KURL &)));
+}
+
+void FileRetriever::slotTimeout()
+{
+    abort();
+
+    delete d->buffer;
+    d->buffer = NULL;
+
+    d->lastError = KIO::ERR_SERVER_TIMEOUT;
+    
+    emit dataRetrieved(QByteArray(), false);
 }
 
 int FileRetriever::errorCode() const
