@@ -186,7 +186,7 @@ bool PageViewer::openURL(const KURL &url)
     //QString path = resolveEnvVarsInURL(url.url());
     //KURL newUrl(path);
   
-    bool retval = KHTMLPart::openURL(url);
+    bool retval = Viewer::openURL(url);
     if ( retval )
     {
         //emit fileNameChanged(this);
