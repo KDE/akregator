@@ -10,7 +10,7 @@
     <Separator/>
     <Action name="file_import"/>
   </Menu>
-  <Menu name="feed">
+  <Menu name="edit">
     <text>&amp;Feed</text>
     <Action name="feed_add"/>
     <Action name="feed_add_group"/>
