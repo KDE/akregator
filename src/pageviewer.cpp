@@ -25,14 +25,17 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     : Viewer(parent, name)
 {
 }
-
 bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-	kdDebug() << "args: frame=="<< args.frameName << endl;
+    /* what's this? -tpr 20040825
+    kdDebug() << "args: frame=="<< args.frameName << endl;
     new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
-    return true;
+    return true;*/
+    kdDebug() << "PageViewer: Open url request: " << url << endl;
+    if(Viewer::slotOpenURLRequest(url, args)) return true;
+    openURL(url);
 }
-
+// and is this used in somewhere -tpr 20040825
 void PageViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &)
 {
     kdDebug() << "PageViewer: Open url request: " << url << endl;

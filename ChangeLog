@@ -9,6 +9,7 @@ Changes:
        - Make it possible to switch notifications off -tpr
 
 Bug Fixes:
+       - Make MMB work again in pageviewer -tpr
 #83995 - Don't crash when exiting KDE -fo 
 #82791 - Save the toolbar position -tpr
        - Don't crash when there is no part available -tpr
