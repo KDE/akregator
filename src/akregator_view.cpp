@@ -1421,13 +1421,8 @@ void aKregatorView::stopLoading()
 void aKregatorView::readProperties(KConfig* config)
 {
     // delete expired articles
-    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
-    {
-        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
-        if (f && !f->isGroup())
-            f->deleteExpiredArticles();
-    }
-    
+    slotDeleteExpiredArticles();
+        
     // read filter settings 
     
     m_searchLine->setText(config->readEntry("searchLine"));
