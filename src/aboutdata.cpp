@@ -26,6 +26,7 @@ AboutData::AboutData()
     addAuthor( "Christof Musik", I18N_NOOP("Contributor"), "christof@freenet.de" );
     addCredit( "Philipp Droessler", I18N_NOOP("Gentoo Ebuild"), "kingmob@albert-unser.net");
     addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "raabe@kde.org" );
+    addCredit( "George Staikos", I18N_NOOP("Insomnia"), "staikos@kde.org" );
 }
 
 AboutData::~AboutData()
