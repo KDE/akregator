@@ -13,7 +13,9 @@
 #define ARTICLEFILTER_H
 
 #include <qstring.h>
+#include <qvariant.h>
 #include <qvaluelist.h>
+
 #include "myarticle.h"
 
 class KConfig;
@@ -38,29 +40,20 @@ class Criterion
             Negation = 0x80
         };
 
-        enum Type
-        {
-            String = 1,
-            Int
-        };
-
 
         Criterion();
-        Criterion( Subject subject, Predicate predicate, const QString &object );
-        Criterion( Subject subject, Predicate predicate, int object );
+        Criterion( Subject subject, Predicate predicate, const QVariant &object );
         
         bool satisfiedBy( const MyArticle &article ) const;
 
         Subject subject() const;
         Predicate predicate() const;
-        QString object() const;
+        QVariant object() const;
 
     private:
         Subject m_subject;
         Predicate m_predicate;
-        QString m_object;
-        int m_intObject;
-        Type m_type;
+        QVariant m_object;
 };
 
 class ArticleFilter
@@ -78,9 +71,6 @@ class ArticleFilter
         ArticleFilter( const QValueList<Criterion> &criteria, Association assoc, Action action );
 
         bool matches( const MyArticle &article ) const;
-
-        void readConfig( KConfig *cfg, const QString &name );
-        void writeConfig( KConfig *cfg, const QString &name ) const;
 
         Action action() const;
 

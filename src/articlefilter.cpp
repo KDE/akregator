@@ -21,40 +21,30 @@ Criterion::Criterion()
 {
 }
 
-Criterion::Criterion( Subject subject, Predicate predicate, const QString &object )
+Criterion::Criterion( Subject subject, Predicate predicate, const QVariant &object )
     : m_subject( subject )
     , m_predicate( predicate )
     , m_object( object )
 {
-    m_type=String;
-}
-
-Criterion::Criterion( Subject subject, Predicate predicate, int object )
-    : m_subject( subject )
-    , m_predicate( predicate )
-    , m_intObject( object )
-{
-    m_type=Int;
 }
 
 bool Criterion::satisfiedBy( const MyArticle &article ) const
 {
-    QString concreteSubject;
-    int intSubj=0;
+    QVariant concreteSubject;
 
     switch ( m_subject ) {
         case Title:
-            concreteSubject = article.title();
+            concreteSubject = QVariant(article.title());
             break;
         case Description:
-            concreteSubject = article.description();
+            concreteSubject = QVariant(article.description());
             break;
         case Link:
             // ### Maybe use prettyURL here?
-            concreteSubject = article.link().url();
+            concreteSubject = QVariant(article.link().url());
             break;
         case Status:
-            intSubj= article.status();
+            concreteSubject = QVariant(article.status());
             break;
         default:
             break;
@@ -63,19 +53,20 @@ bool Criterion::satisfiedBy( const MyArticle &article ) const
     bool satisfied = false;
 
     const Predicate predicateType = static_cast<Predicate>( m_predicate & ~Negation );
+	QString subjectType=concreteSubject.typeName();
+
     switch ( predicateType ) {
         case Contains:
-            satisfied = concreteSubject.find( m_object, 0, false ) != -1;
+            satisfied = concreteSubject.toString().find( m_object.toString(), 0, false ) != -1;
             break;
         case Equals:
-	    /// FIXME: use qvariant instead of this hack - smt
-            if (m_type==Int)
-                satisfied = intSubj == m_intObject;
+            if (subjectType=="int")
+                satisfied = concreteSubject.toInt() == m_object.toInt();
             else
-                satisfied = concreteSubject == m_object;
+                satisfied = concreteSubject.toString() == m_object.toString();
             break;
         case Matches:
-            satisfied = QRegExp( m_object ).search( concreteSubject ) != -1;
+            satisfied = QRegExp( m_object.toString() ).search( concreteSubject.toString() ) != -1;
             break;
         default:
             kdDebug() << "Internal inconsistency; predicateType should never be Negation" << endl;
@@ -99,7 +90,7 @@ Criterion::Predicate Criterion::predicate() const
     return m_predicate;
 }
 
-QString Criterion::object() const
+QVariant Criterion::object() const
 {
     return m_object;
 }
@@ -157,43 +148,5 @@ bool ArticleFilter::allCriteriaMatch( const MyArticle &a ) const
         }
     }
     return true;
-}
-
-void ArticleFilter::writeConfig( KConfig *cfg, const QString &name ) const
-{
-    KConfigGroupSaver group( cfg, name );
-
-    cfg->writeEntry( "Action", m_action );
-    cfg->writeEntry( "Association", m_association );
-    cfg->writeEntry( "Criteria", m_criteria.count() );
-
-    QValueList<Criterion>::ConstIterator it;
-    QValueList<Criterion>::ConstIterator en( m_criteria.end() );
-    unsigned int count = 0;
-    for (it = m_criteria.begin(); it != en; ++it, ++count ) {
-        QStringList components;
-        components << QString::number( ( *it ).subject() )
-                   << QString::number( ( *it ).predicate() )
-                   << ( *it ).object();
-        cfg->writeEntry( QString( "Criterion_%1" ).arg( count ), components );
-    }
-
-    cfg->sync();
-}
-
-void ArticleFilter::readConfig( KConfig *cfg, const QString &name )
-{
-    KConfigGroupSaver group( cfg, name );
-
-    m_action = static_cast<Action>( cfg->readUnsignedNumEntry( "Action" ) );
-    m_association = static_cast<Association>( cfg->readUnsignedNumEntry( "Association" ) );
-
-    const unsigned int criteria = cfg->readUnsignedNumEntry( "Criteria" );
-    for ( unsigned int i = 0; i < criteria; ++i ) {
-        const QStringList components =  cfg->readListEntry( QString( "Criterion_%1" ).arg( i ) );
-        Criterion::Subject subject = static_cast<Criterion::Subject>( components[ 0 ].toUInt() );
-        Criterion::Predicate predicate = static_cast<Criterion::Predicate>( components[ 1 ].toUInt() );
-        m_criteria += Criterion( subject, predicate, components[ 2 ] );
-    }
 }
 
