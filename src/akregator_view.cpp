@@ -1023,6 +1023,11 @@ void aKregatorView::slotFeedRemove()
     {
         delete selectedNode;
         setTotalUnread(); 
+        if (m_tree->currentItem()) {
+            m_tree->currentItem()->setSelected(true);
+            slotNodeSelected(m_tree->selectedNode());
+        }
+        m_tree->setFocus();
         //m_part->setModified(true);
     }
 }

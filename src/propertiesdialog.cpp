@@ -33,6 +33,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
 {
     widget=new FeedPropertiesWidget(this);
     setMainWidget(widget);
+    widget->feedNameEdit->setFocus();
 }
 
 FeedPropertiesDialog::~FeedPropertiesDialog()
@@ -188,3 +189,4 @@ void FeedPropertiesDialog::selectFeedName()
 }
 
 #include "propertiesdialog.moc"
+// vim: ts=4 sw=4 et

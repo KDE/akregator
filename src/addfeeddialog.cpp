@@ -74,7 +74,7 @@ void AddFeedDialog::slotOk( )
 
 void AddFeedDialog::fetchCompleted(Feed *f)
 {
-   KDialogBase::slotOk();
+    KDialogBase::slotOk();
 }
 
 void AddFeedDialog::fetchError(Feed *)
@@ -85,8 +85,9 @@ void AddFeedDialog::fetchError(Feed *)
 
 void AddFeedDialog::fetchDiscovery(Feed *f)
 {
-	widget->statusLabel->setText( i18n("Feed found, downloading...") );
+    widget->statusLabel->setText( i18n("Feed found, downloading...") );
     feedURL=f->xmlUrl();
 }
 
 #include "addfeeddialog.moc"
+// vim: ts=4 sw=4 et
