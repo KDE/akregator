@@ -6,11 +6,13 @@
  ***************************************************************************/
 
 #include "feed.h"
+#include "feediconmanager.h"
 #include "feedscollection.h"
 
 #include <kurl.h>
 #include <kdebug.h>
 
+#include <qtimer.h>
 #include <qlistview.h>
 #include <qdom.h>
 
@@ -79,6 +81,10 @@ void Feed::fetch()
 {
     Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     loader->loadFrom( xmlUrl, new FileRetriever );
+
+    // TODO: note that we probably don't want to load the favicon here enventually..
+    QTimer::singleShot( 2000, this, SLOT(loadFavicon()) );
+    loadFavicon();
 }
 
 void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
@@ -99,5 +105,23 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
 
     emit fetched(this);
 }
+
+void Feed::loadFavicon()
+{
+    FeedIconManager::self()->loadIcon(xmlUrl);
+    connect (FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)),
+            this, SLOT(faviconChanged(const QString &, const QPixmap &)));
+}
+
+void Feed::faviconChanged(const QString &url, const QPixmap &p)
+{
+    if (xmlUrl==url)
+    {
+        item()->setPixmap(0, p);
+        emit(faviconLoaded(p)); // emit so that other sources can be updated.. not used right now
+    }
+}
+
+
 
 #include "feed.moc"

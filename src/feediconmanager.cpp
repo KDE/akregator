@@ -57,7 +57,7 @@ void FeedIconManager::loadIcon(const QString & url)
     } else {
         emit iconChanged(url,
                          QPixmap(KGlobal::dirs()->
-                                 findResource("cache", iconFile)));
+                                 findResource("cache", iconFile+".png")));
     }
 }
 
@@ -87,7 +87,7 @@ void FeedIconManager::slotIconChanged(bool isHost, QString hostOrURL,
 {
     emit iconChanged(hostOrURL,
                      QPixmap(KGlobal::dirs()->
-                             findResource("cache", iconName)));
+                             findResource("cache", iconName+".png")));
 }
 
 

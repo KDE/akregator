@@ -46,13 +46,19 @@ namespace Akregator
             bool           updateTitle;   ///< Whether to update feed title based on fetched rss.
             Article::List  articles;      ///< List of just fetched feed articles (will be merged with archive?)
 
+        public slots:
             void fetch();                 ///< Start fetching rss
+            void loadFavicon();
+                    
 
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
+            void faviconLoaded(const QPixmap &p);
+            
 
         private slots:
             void fetchCompleted(Loader *loader, Document doc, Status status);
+            void faviconChanged(const QString &url, const QPixmap &p);
 
         private:
             // TODO
