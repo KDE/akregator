@@ -25,7 +25,7 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
 {
     m_defaultIcon=KSystemTray::loadIcon("akregator");
     m_lightIconImage=m_defaultIcon.convertToImage();
-    KIconEffect::deSaturate(m_lightIconImage, 0.86);
+    KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
     QToolTip::add(this, i18n("aKregator"));
 }
