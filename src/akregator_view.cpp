@@ -896,28 +896,35 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
 
 void View::slotFeedAddGroup()
 {
-TreeNode* node = m_tree->selectedNode();
+    TreeNode* node = m_tree->selectedNode();
+    TreeNode* after = 0;
+    
+    if (!node)
+        node = m_tree->rootNode();
 
-    if (!node || !node->isGroup())
+    // if a feed is selected, add group next to it
+    if (!node->isGroup())
     {
-        KMessageBox::error(this, i18n("You have to choose a folder before adding a subfolder."));
-        return;
+        after = node;
+        node = node->parent();
     }
 
     FeedGroup* currentGroup = static_cast<FeedGroup*> (node);
     
-    bool Ok;    
+    bool Ok;
+    
     QString text = KInputDialog::getText(i18n("Add Folder"), i18n("Folder name:"), "", &Ok);
     
-    if (!Ok) 
-        return;
-
-    FeedGroup* newGroup = new FeedGroup(text);
-    currentGroup->appendChild(newGroup);
-    
-    //m_tree->ensureItemVisible(elt); // FIXME
-
-    //m_part->setModified(true);
+    if (Ok)
+    {        
+        FeedGroup* newGroup = new FeedGroup(text);
+        if (!after)
+            currentGroup->appendChild(newGroup);
+        else
+            currentGroup->insertChild(newGroup, after);
+        
+        m_tree->ensureNodeVisible(newGroup);
+    }
 }
 
 void View::slotFeedRemove()
