@@ -1028,6 +1028,15 @@ void View::slotNextFeed()
 {
     m_tree->slotNextFeed();
 }
+void View::slotNextTab()
+{
+    m_tabs->slotNextTab();
+}
+
+void View::slotPreviousTab()
+{
+    m_tabs->slotPreviousTab();
+}
 
 void View::slotNextUnreadArticle()
 {

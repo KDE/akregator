@@ -63,7 +63,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     
     setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
     
-    m_backAction = new KToolBarPopupAction(i18n("Back"), "back", 0, this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
+    m_backAction = new KToolBarPopupAction(i18n("Back"), "back", "Ctrl+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(m_backAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotBackAboutToShow()));
@@ -71,7 +71,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
             this, SLOT(slotPopupActivated(int)));
 
     
-    m_forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", 0, this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
+    m_forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", "Ctrl+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
 
     connect(m_forwardAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotForwardAboutToShow()));

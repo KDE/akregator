@@ -51,6 +51,9 @@ class TabWidget:public KTabWidget
     public slots:
 
         void slotSettingsChanged();
+        void slotNextTab();
+        void slotPreviousTab();
+
     signals:
         
         void currentFrameChanged(Frame *);

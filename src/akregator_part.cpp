@@ -156,6 +156,10 @@ void Part::setupActions()
     new KAction( i18n("&Next Article"), QString::null, "Right", m_view, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
     new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
     new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
+
+    new KAction(i18n("Select Next Tab"), "", "Ctrl+Period", m_view, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
+    new KAction(i18n("Select Previous Tab"), "", "Ctrl+Comma", m_view, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
+
     KToggleAction* tkf = new KToggleAction(i18n("&Keep Article"), "flag", "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
     tkf->setChecked(false);
 

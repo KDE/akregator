@@ -65,6 +65,19 @@ void TabWidget::slotSettingsChanged()
         setHoverCloseButton(Settings::closeButtonOnTabs());
 }
 
+void TabWidget::slotNextTab()
+{
+    setCurrentPage((currentPageIndex()+1) % count());
+}
+
+void TabWidget::slotPreviousTab()
+{
+    if (currentPageIndex() == 0)
+        setCurrentPage(count()-1);
+    else
+        setCurrentPage(currentPageIndex()-1);
+}
+
 void TabWidget::addFrame(Frame *f)
 {
     if (!f || !f->widget()) return;

@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="47">
+<kpartgui name="akregator_part" version="48">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -98,6 +98,8 @@
 <Action name="article_open_external"/>
 <Action name="article_open_background_tab"/>
 <Action name="article_open"/>
+<Action name="select_previous_tab"/>
+<Action name="select_next_tab"/>
 </Menu>
 
 <Menu name="feeds_popup">

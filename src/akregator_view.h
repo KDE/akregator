@@ -262,6 +262,9 @@ namespace Akregator
             /** selects the next (pre-order) feed in the tree view */
             void slotNextFeed();
 
+            void slotNextTab();
+            void slotPreviousTab();
+
             void slotFeedsTreeUp();
             void slotFeedsTreeDown();
             void slotFeedsTreeLeft();
