@@ -20,7 +20,7 @@ using namespace Akregator;
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
         : FeedPropertiesWidgetBase(parent, name)
 {
-   connect(      upChkbox, SIGNAL(setChecked(bool)),
+   connect(      upChkbox, SIGNAL(toggled(bool)),
             updateSpinBox, SLOT(setEnabled(bool)) );
 }
 
@@ -70,6 +70,7 @@ void FeedPropertiesDialog::setUrl(const QString& url)
 void FeedPropertiesDialog::setAutoFetch(bool w)
 {
    widget->upChkbox->setChecked(w);
+   widget->updateSpinBox->setEnabled(w);
 }
 
 void FeedPropertiesDialog::setFetchInterval(int i)
