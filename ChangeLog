@@ -6,7 +6,10 @@ Changes after 1.0
 -----------------------------
 
 Bug fixes:
-        - show open|save|cancel dialog for non-html links (101274)
+	- make BrowserRun delete itself when the Viewer gets destroyed (#101413) -tpr
+        - tolerate leading and trailing whitespace in the Add Feed Dialog (#101988) -fo
+        - fixed confusion of "disable archiving" and expiry by age (#101907) -fo
+        - show open|save|cancel dialog for non-html links (101274) -fo
 	- make forms work again (regression) #94964 -fo
 	- fix notification when running as kontact plugin -fo
 
