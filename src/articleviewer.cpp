@@ -58,7 +58,8 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
 
     connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
-    m_imageDir="file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/");
+    
+    m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
     m_htmlFooter = "</body></html>";
 }
 
@@ -217,7 +218,10 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
     if (feed && !feed->image().isNull())
     {
         QString url=feed->xmlUrl();
-        text += QString("<a href=\""+feed->htmlUrl()+"\"><img class=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        QString file = url.replace("/", "_").replace(":", "_");
+        KURL u(m_imageDir);
+        u.setFileName(file);
+        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
 
     
@@ -348,7 +352,10 @@ void ArticleViewer::showSummary(Feed *f)
     {
         text += QString("<div class=\"body\">");
         QString url=f->xmlUrl();
-        text += QString("<a href=\""+f->htmlUrl()+"\"><img class=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        QString file = url.replace("/", "_").replace(":", "_");
+        KURL u(m_imageDir);
+        u.setFileName(file);
+        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(f->htmlUrl()).arg(u.url());
     }
     else text += "<div class=\"body\">";
 
@@ -369,7 +376,7 @@ void ArticleViewer::showSummary(Feed *f)
     
     //text += i18n("<b>Unread articles:</b> %1").arg(f->unread());
     text += "</div>"; // /body
-    
+
     renderContent(text);
 }
 
