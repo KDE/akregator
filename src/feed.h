@@ -80,6 +80,9 @@ namespace Akregator
             bool isMerged(){return m_merged;}
             void setMerged(bool m){m_merged=m;}
            
+            int unread(){return m_unread;}
+            void setUnread(int i){m_unread=i;}
+            
             void appendArticles(const Document &d, bool findDups=false);
             void appendArticle(const MyArticle &a);
                 
@@ -109,6 +112,7 @@ namespace Akregator
             int m_fetchTries;
             bool m_merged;
             Document m_document;
+            int m_unread;
     };
 }
 

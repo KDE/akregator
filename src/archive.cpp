@@ -25,12 +25,14 @@ void Archive::load(Feed *f)
 
     QString filePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + url.prettyURL(-1).replace("/", "_").replace(":", "_") + ".xml";
 
-    kdDebug() << "Will read feed from " << filePath << endl;
+    //kdDebug() << "Will read feed from " << filePath << endl;
     //kdDebug() << "merged :"<<f->isMerged()<<endl;
 
     if (f->isMerged())
         return;
 
+    f->setMerged(true); // so it is merged even if we error
+    
     QFile file(filePath);
     
     if ( !file.open( IO_ReadOnly ) ) {
@@ -70,7 +72,7 @@ void Archive::save(Feed *f)
 
     QString filePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + url.prettyURL(-1).replace("/", "_").replace(":", "_") + ".xml";
 
-    kdDebug() << "Will save feed to " << filePath << endl;
+    //kdDebug() << "Will save feed to " << filePath << endl;
 
     QFile file(filePath);
     

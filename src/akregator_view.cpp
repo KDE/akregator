@@ -262,6 +262,15 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
 
     Archive::load(static_cast<Feed *>(m_feeds.find(elt)));
     
+    FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
+    if (fti)
+    {
+        fti->setUnread(feed->unread());
+        fti->repaint();
+        if (fti->parent())
+            fti->parent()->repaint();
+    }
+
     QString iconFile=FeedIconManager::self()->iconLocation(xmlUrl);
     if (!iconFile.isNull())
     {
@@ -638,6 +647,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
         slotUpdateArticleList(feed);
     }
 
+    // TODO: perhaps schedule save?
     Archive::save(feed);
     
     // Also, update unread counts
@@ -656,9 +666,26 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
     Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
     if (!feed) return;
 
-    item->article().setStatus(MyArticle::Read);
+    if (item->article().status() != MyArticle::Read)
+    {
+        int unread=feed->unread();
+        unread--;
+        feed->setUnread(unread);
+        
+        FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
+        if (fti)
+        {
+            fti->setUnread(unread);
+            fti->repaint();
+            if (fti->parent())
+                fti->parent()->repaint();
+        }
+        item->article().setStatus(MyArticle::Read);
+    }
     m_articleViewer->show( feed, item->article() );
     
+    // TODO: schedule this save.. don't want to save a huge file for one change
+    Archive::save(feed);
 }
 
 void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, int)

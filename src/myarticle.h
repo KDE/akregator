@@ -34,7 +34,7 @@ namespace Akregator
             bool operator!=(const MyArticle &other) const { return !operator==(other); }
             virtual ~MyArticle();
 
-            int status();
+            int status() const;
             void setStatus(int s);
             
             /**

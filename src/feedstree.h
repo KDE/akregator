@@ -22,8 +22,15 @@ namespace Akregator
         label=QString::null);
             FeedsTreeItem(QListViewItem *parent, QListViewItem *after,
                        QString label=QString::null);
-            virtual void paintCell( QPainter * p, const QColorGroup & cg,
+        virtual void paintCell( QPainter * p, const QColorGroup & cg,
                             int column, int width, int align );
+   
+        int unread(){return m_unread;}
+        void setUnread(int i){m_unread=i;}
+                                
+        private:
+            int countUnreadRecursive();
+            int m_unread;
     };
               
     
@@ -38,6 +45,8 @@ namespace Akregator
             void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
 
         protected:
+            virtual void drawContentsOffset( QPainter * p, int ox, int oy,
+                                       int cx, int cy, int cw, int ch );
             virtual void contentsDragEnterEvent (QDragEnterEvent *e);
             virtual void contentsDropEvent( QDropEvent *e );
             virtual void contentsDragMoveEvent(QDragMoveEvent* event);

@@ -85,7 +85,7 @@ bool MyArticle::operator==(const MyArticle &other) const
        && d->fetchDate == other.d->fetchDate;
 }
 
-int MyArticle::status()
+int MyArticle::status() const
 {
     return d->status;
 }

@@ -29,9 +29,9 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     , updateTitle(false)
     , articles()
     , m_fetchError(false)
-	, m_fetchTries(0)
-    , m_followDiscovery(false)
+    , m_fetchTries(0)
     , m_merged(false)
+    , m_unread(0)
 {
 }
 
@@ -123,17 +123,22 @@ void Feed::appendArticles(const Document &d, bool findDups)
     //kdDebug() << "appendArticles findDups=="<<findDups<<endl;
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
+    //kdDebug() << "m_unread before appending articles=="<<m_unread<<endl;
     for (it = d.articles().begin(); it != en; ++it)
     {
         MyArticle mya(*it);
         if (findDups)
         {
             ArticleSequence::ConstIterator oo=articles.find(mya);
-            // no idea if any better way to do this..
             if (oo == articles.end() )
             {
                 if (m_merged)
                     mya.setStatus(MyArticle::New);
+                else
+                {
+                    if (mya.status()==MyArticle::New)
+                        mya.setStatus(MyArticle::Read);
+                }
                 appendArticle(mya);
             }
             /*else{
@@ -143,15 +148,21 @@ void Feed::appendArticles(const Document &d, bool findDups)
         else
         {
             MyArticle mya(*it);
-            if (m_merged)
-                mya.setStatus(MyArticle::New);
+            if (!m_merged)
+            {
+                if (mya.status()==MyArticle::New)
+                    mya.setStatus(MyArticle::Read);
+            }
             appendArticle(mya);
         }
     }
+    //kdDebug() << "m_unread after appending articles=="<<m_unread<<endl;
 }
 
 void Feed::appendArticle(const MyArticle &a)
 {
+    if (a.status()!=MyArticle::Read)
+        m_unread++;
     articles.append(a);
 }
 
