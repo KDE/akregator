@@ -16,6 +16,7 @@
 #include "feed.h"
 
 #include <kfiledialog.h>
+#include <kfileitem.h>
 #include <kinputdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -27,6 +28,7 @@
 #include <klistview.h>
 #include <khtml_part.h>
 #include <kdebug.h>
+#include <kurl.h>
 
 #include <qfile.h>
 #include <qtextstream.h>
@@ -69,7 +71,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
               this, SLOT(slotItemRenamed(QListViewItem *)));
 			  
-			  
+    
 
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
@@ -90,6 +92,9 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_panner2->setSizes( m_panner2Sep );
 
     m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
+
+    connect (m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
+		    this, SLOT(slotMouseOverInfo(const KFileItem *)));
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
@@ -549,6 +554,19 @@ void aKregatorView::slotItemRenamed( QListViewItem *item )
             feed->updateTitle = false; // if user edited title by hand, do not update it automagically
 
         m_part->setModified(true);
+    }
+}
+
+void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
+{
+    if (kifi)
+    {
+        KFileItem *k=(KFileItem*)kifi;
+        m_part->setStatusBar(k->url().prettyURL());//getStatusBarInfo());
+    }
+    else
+    {
+	m_part->setStatusBar(QString::null);
     }
 }
 

@@ -56,6 +56,7 @@ aKregator::aKregator()
 
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
+
         }
     }
     else
@@ -220,6 +221,7 @@ void aKregator::fileOpen()
         }
     }
 }
+
 
 void aKregator::quitProgram()
 {

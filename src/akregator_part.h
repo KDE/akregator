@@ -55,6 +55,7 @@ namespace Akregator
              */
             static KAboutData *createAboutData();
 
+	    void setStatusBar(const QString &text);
         protected:
             /**
              * This must be implemented by each part

@@ -90,6 +90,12 @@ void aKregatorPart::setModified(bool modified)
     ReadWritePart::setModified(modified);
 }
 
+void aKregatorPart::setStatusBar(const QString &text)
+{
+   emit setStatusBarText(text);
+}
+
+
 /*************************************************************************************************/
 /* LOAD                                                                                          */
 /*************************************************************************************************/
@@ -118,11 +124,10 @@ bool aKregatorPart::openFile()
         return false;
 
     // just for fun, set the status bar
-    emit setStatusBarText( m_url.prettyURL() );
+    setStatusBar( m_url.prettyURL() );
 
     return true;
 }
-
 
 /*************************************************************************************************/
 /* SAVE                                                                                          */

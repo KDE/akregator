@@ -20,6 +20,7 @@ class QDomElement;
 class QListViewItem;
 class KListViewItem;
 class KListView;
+class KFileItem;
 
 namespace Akregator
 {
@@ -108,7 +109,8 @@ namespace Akregator
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();
 
-
+            void slotMouseOverInfo(const KFileItem *kifi);
+	    
         private:
             /**
              * Reset to default values, removing all existing data.
