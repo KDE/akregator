@@ -48,12 +48,14 @@ int main(int argc, char **argv)
     }
     else
     {
+        aKregator *widget;
         // no session.. just start up normally
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
         if ( args->count() == 0 )
         {
-            aKregator *widget = new aKregator;
+            widget = new aKregator;
+            if(!widget->loadPart()) return 0;
             widget->loadLastOpenFile();
             app.setHaveWindowLoaded(true);
             widget->show();
@@ -63,7 +65,8 @@ int main(int argc, char **argv)
             int i = 0;
             for (; i < args->count(); i++ )
             {
-                aKregator *widget = new aKregator;
+                widget = new aKregator;
+                if(!widget->loadPart()) return 0;
                 app.setHaveWindowLoaded(true);
                 widget->show();
                 widget->load( args->url( i ) );

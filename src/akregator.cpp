@@ -87,6 +87,14 @@ aKregator::aKregator()
     m_progressBar->hide();
     statusBar()->addWidget( m_progressBar, 0, true);
 
+    // apply the saved mainwindow settings, if any, and ask the mainwindow
+    // to automatically save settings if changed: window size, toolbar
+    // position, icon size, etc.
+    setAutoSaveSettings();
+}
+
+bool aKregator::loadPart()
+{
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
@@ -109,22 +117,14 @@ aKregator::aKregator()
             createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
         }
+        return 1;
     }
     else
     {
-        // if we couldn't find our Part, we exit since the Shell by
-        // itself can't do anything useful
         KMessageBox::error(this, i18n("Could not find our part."));
-        kapp->quit();
-        // we return here, cause kapp->quit() only means "exit the
-        // next time we enter the event loop...
-        return;
-    }
-
-    // apply the saved mainwindow settings, if any, and ask the mainwindow
-    // to automatically save settings if changed: window size, toolbar
-    // position, icon size, etc.
-    setAutoSaveSettings();
+        return 0;
+    }   
+    
 }
 
 void aKregator::loadLastOpenFile()

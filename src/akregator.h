@@ -57,6 +57,8 @@ public:
      * Default Constructor
      */
     aKregator();
+     
+    bool loadPart();
 
     void loadLastOpenFile();
 
