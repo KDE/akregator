@@ -240,12 +240,6 @@
     <connection>
         <sender>expChkbox</sender>
         <signal>toggled(bool)</signal>
-        <receiver>expirySpinBox</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>expChkbox</sender>
-        <signal>toggled(bool)</signal>
         <receiver>expiryComboBox</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
