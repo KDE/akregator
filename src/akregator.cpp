@@ -8,35 +8,35 @@
 #include "app.h"
 #include "akregator.h"
 #include "akregator_part.h"
+#include "akregatorconfig.h"
 
 //settings
 
 #include <dcopclient.h>
 
-#include <ksqueezedtextlabel.h>
-#include <kkeydialog.h>
-#include <kfiledialog.h>
-#include <kprogress.h>
-#include <kconfig.h>
-#include <kurl.h>
-#include <kedittoolbar.h>
-
 #include <kaction.h>
-#include <kstdaction.h>
-
-#include <klibloader.h>
-#include <kmessagebox.h>
+#include <kconfig.h>
+#include <kdebug.h>
+#include <kedittoolbar.h>
+#include <kfiledialog.h>
 #include <kglobal.h>
+#include <kkeydialog.h>
+#include <klibloader.h>
+#include <klocale.h>
+#include <kmessagebox.h>
+#include <kparts/partmanager.h>
+#include <kprogress.h>
+#include <ksqueezedtextlabel.h>
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <kparts/partmanager.h>
+#include <kstdaction.h>
+#include <kurl.h>
 
 #include <qmetaobject.h>
 #include <qpen.h>
 #include <qpainter.h>
 #include <private/qucomextra_p.h>
+#include <qtimer.h>
 
 
 using namespace Akregator;
@@ -131,7 +131,7 @@ bool AkregatorMainWindow::loadPart()
 
 void AkregatorMainWindow::loadStandardFile()
 {
-    show();
+    //show();
     QString file = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
     
     if (!m_part)
@@ -181,7 +181,9 @@ void AkregatorMainWindow::saveProperties(KConfig* config)
         loadPart();
 
     static_cast<Akregator::aKregatorPart*>(m_part)->saveProperties(config);
-    delete m_part;
+    config->writeEntry("docked", isHidden());
+
+    //delete m_part;
 }
 
 void AkregatorMainWindow::readProperties(KConfig* config)
@@ -189,6 +191,11 @@ void AkregatorMainWindow::readProperties(KConfig* config)
     if (!m_part)
         loadPart();
     static_cast<Akregator::aKregatorPart*>(m_part)->readProperties(config);
+    if (Settings::showTrayIcon() && config->readBoolEntry("docked", false)) {
+        hide();
+    } else {
+        show();
+    }
 }
 
 void AkregatorMainWindow::fileNew()

@@ -1633,6 +1633,7 @@ void aKregatorView::readProperties(KConfig* config) // this is called when sessi
         } // if viewMode != combinedView
     } // if selectedFeed is set
 }
+
 // this is called when using session management and session is going to close
 void aKregatorView::saveProperties(KConfig* config)
 {   

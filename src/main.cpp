@@ -26,6 +26,12 @@ int main(int argc, char **argv)
     // see if we are starting with session management
     if (app.isRestored())
     {
+#undef RESTORE
+#define RESTORE(type) { int n = 1;\
+    while (KMainWindow::canBeRestored(n)){\
+        (new type)->restore(n, false);\
+            n++;}}
+
         RESTORE(AkregatorMainWindow);
     }
     else

@@ -187,7 +187,7 @@ void TrayIcon::settingsChanged()
         delete m_balloon;
         m_balloon = 0;    
     }
-    
+
     if ( Settings::showTrayIcon() )
         show();
     else
