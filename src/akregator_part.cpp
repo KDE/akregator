@@ -465,14 +465,14 @@ void aKregatorPart::exportFile(QString fileName)
     if ( file.exists() )
     
         if ( KMessageBox::questionYesNo(m_view,
-          i18n("The file %1 already exists. Do you want to overwrite?").arg(fileName),
+          i18n("The file %1 already exists; do you want to overwrite it?").arg(fileName),
         i18n("Export"),   
         i18n("Overwrite"),
         i18n("Cancel")) == KMessageBox::No )
             return;
     if ( !file.open(IO_WriteOnly) )
     {
-        KMessageBox::error(m_view, i18n("Access denied: Can't write to file %1").arg(fileName), i18n("Write error") ); 
+        KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(fileName), i18n("Write error") ); 
         return;
     }
     
