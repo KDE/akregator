@@ -34,41 +34,6 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
 TrayIcon::~TrayIcon()
 {}
 
-#if 0
-// yes, a number of things wrong with the following code
-// disable for now
-
-// returns a mask in which all pixels that have the same color
-// as the top left pixel are set transparent
-void makeMask(QPixmap p)
-{
-    QImage d=p.convertToImage();
-    QImage m(p.width(), p.height(), 1, 2, QImage::LittleEndian);
-    m.setColor( 0, 0xffffff );
-    m.setColor( 1, 0 );
-    m.fill( 0 );
-
-    uchar matchVal=*(d.scanLine(0));
-    uchar *pLine, *mLine;
-    for(int y=0; y < d.height(); ++y)
-    {
-        pLine=d.scanLine(y);
-        mLine=m.scanLine(y);
-        for(int x=0; x < d.width(); ++x)
-        {
-            if (pLine[x] == matchVal )
-            {
-                mLine[x]=0xff;
-            }
-        }
-    }
-    QBitmap bit;
-    bit.convertFromImage(m);
-    p.setMask(bit);
-}
-
-#endif
-
 void TrayIcon::updateUnread(int unread)
 {
     if (unread==m_unread)
