@@ -17,10 +17,10 @@ namespace Akregator
         Q_OBJECT
         public:
             PageViewer(QWidget* parent, const char* name);
-	    
-	    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);
+
+        virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);
         
-	private slots:
+        private slots:
             bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
     };
 }

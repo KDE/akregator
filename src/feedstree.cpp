@@ -152,7 +152,7 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     setRootIsDecorated(false);
     setItemsRenameable(true);
     setItemMargin(2);
-	setDragEnabled(true);
+    setDragEnabled(true);
     setAcceptDrops(true);
     setFullWidth(true);
     setSorting(-1);
