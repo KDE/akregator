@@ -1,44 +1,27 @@
-TODO-list for aKregator
-=======================
+stuff to do before akregator 1.0
 
-Yes, this is (mostly) a roadmap of new features
-and bug fixes, not small ones.
+general:
+- being able to share feeds through kmystuff
+- customize colors, generally
 
-Feel free to add items, there is an ideas section
-at the end.
+page viewer:
+- tab color highlights, like konqui
+- back/forward button in pageviewer
+- customize fonts used in viewers
 
-short term (~beta5)
--------------------
-- passive popups (will be in shell)
-- systray icon menu (showing unread feeds/items)
-- add back/forward/reload buttons to pageviewer
-- combined view fixen
-  -> show read/unread/new as different colors in combined view
-  -> allow searching in combined view
-- add color configurability
+article list:
+- articlelist context menu
+- being able to delete articles from cache
 
-medium term ()
----------
-- use knewstuff to get new feedlists from the homepage (country specific? or maybe <put your word here> specific, linux e.x.)
+feed list:
+- being able to keep X articles per feed, or disable keeping any in archive 
+- search folders 'v-folders'
 
-long term
----------
-- move out of kdenonbeta
-- ship as part of kde 4.0?
+notifications:
+- make notifications only appear in background
+- use standard kpassive popup in knotifications instead of balloons
 
-ideas
------
-- webblog editor (see krsseditor?)
-- search folders like kmail
-- client side archiving
-  -> smt: doable in <30 lines of code but do we want to do it?
-  -> berkus: yes, i would love to keep an archive of all read feeds in akregator
-- a small button that appears in konqueror's statusbar
-  if a page appears to have a rss feed.. automatically
-  adds page to akregator
-  -> smt: will have to research the feasibility..
+kontact:
+- show systray icon in kontact 
+- show akregator if akregator is running and kontact feed icon is selected
 
-other
------
-- need to ask on kmail/kde-core-devel mailinglist about the new welcome page and the graphics for it (KMail/Konqueror one rocks, but we need aKregator pictures for it)
-- new texts for the welcome page
