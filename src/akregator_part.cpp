@@ -28,6 +28,7 @@ using namespace Akregator;
 typedef KParts::GenericFactory< aKregatorPart > aKregatorFactory;
 K_EXPORT_COMPONENT_FACTORY( libakregatorpart, aKregatorFactory )
 
+#ifdef HAVE_FRAME
 BrowserExtension::BrowserExtension( aKregatorPart *p, const char *name )
 	    : KParts::BrowserExtension( p, name )
 {
@@ -38,19 +39,33 @@ void BrowserExtension::saveSettings()
 {
     m_part->saveSettings();
 }
+#endif
 
+#ifdef HAVE_FRAME
 aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
     : DCOPObject("aKregatorIface"), KParts::ReadWritePart(parent, name)
+#else
+aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
+                              QObject *parent, const char *name, const QStringList& )
+     : DCOPObject(QString("aKregatorPart#%1").arg((uint)parent).latin1()),
+    KParts::ReadWritePart(parent, name)
+#endif
 {
     // we need an instance
     setInstance( aKregatorFactory::instance() );
 
     m_totalUnread=0;
+#ifdef HAVE_FRAME
     m_loading=false;
+#endif
 
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
+#ifdef HAVE_FRAME
     m_extension=new BrowserExtension(this, "ak_extension");
+#else
+    m_extension=new KParts::BrowserExtension(this, "ak_extension");
+#endif
 
     // notify the part that this is our internal widget
     setWidget(m_view);
@@ -146,10 +161,12 @@ void aKregatorPart::changePart(KParts::ReadOnlyPart *p)
     emit partChanged(p);
 }
 
+#ifdef HAVE_FRAME
 void aKregatorPart::setCaption(const QString &text)
 {
    emit setWindowCaption(text);
 }
+#endif
 
 void aKregatorPart::setStatusBar(const QString &text)
 {
@@ -189,9 +206,14 @@ bool aKregatorPart::openFile()
         return false;
     }
 
+#ifdef HAVE_FRAME
     m_loading=true;
     startOperation();
+#endif
     setStatusBar( i18n("Opening Feed List...") );
+#ifndef HAVE_FRAME
+    setProgress(0);
+#endif
     kapp->processEvents();
 
     // Read OPML feeds list and build QDom tree.
@@ -206,19 +228,29 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
     {
+#ifdef HAVE_FRAME
         operationError(i18n("Invalid Feed List"));
+#else
+        setProgress(-1);
+#endif
         return false;
     }
 
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
     {
+#ifdef HAVE_FRAME
         operationError(i18n("Invalid Feed List"));
+#else
+        setProgress(-1);
+#endif
         return false;
     }
 
+#ifdef HAVE_FRAME
     m_loading=false;
     endOperation();
     setStatusBar( QString::null );
+#endif
 
     if (Settings::fetchOnStartup())
     {
@@ -228,10 +260,13 @@ bool aKregatorPart::openFile()
        if (!shellHaveWindowLoaded.toBool())
             m_view->slotFetchAllFeeds();
     }
-
+#ifndef HAVE_FRAME
+    setStatusBar( QString::null );
+#endif
     return true;
 }
 
+#ifdef HAVE_FRAME
 bool aKregatorPart::closeURL()
 {
     endOperation();
@@ -247,7 +282,8 @@ bool aKregatorPart::closeURL()
     }
     
    return KParts::ReadWritePart::closeURL(); 
-} 
+}
+#endif
 
 /*************************************************************************************************/
 /* SAVE                                                                                          */
@@ -367,6 +403,7 @@ void aKregatorPart::addFeedToGroup(const QString& url, const QString& group)
     m_view->addFeedToGroup(url, group);
 }
 
+#ifdef HAVE_FRAME
 void aKregatorPart::startOperation()
 {
     emit started(0);
@@ -392,6 +429,7 @@ void aKregatorPart::operationError(const QString &msg)
     actionCollection()->action("feed_fetch_all")->setEnabled(true);
     setProgress(-1);
 }
+#endif
 
 /*************************************************************************************************/
 /* STATIC METHODS                                                                                */

@@ -10,7 +10,11 @@
 #include "akregator_view.h"
 #include "addfeeddialog.h"
 #include "propertiesdialog.h"
+
+#ifdef HAVE_FRAME
 #include "frame.h"
+#endif
+
 #include "fetchtransaction.h"
 #include "feediconmanager.h"
 #include "feedstree.h"
@@ -68,7 +72,9 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     : QWidget(parent, wName), m_feeds()
 {
     m_part=part;
+#ifdef HAVE_FRAME
     m_stopLoading=false;
+#endif
 
     setFocusPolicy(QWidget::StrongFocus);
     
@@ -108,16 +114,26 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_tabsClose = new QToolButton( m_tabs );
     m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
+#ifdef HAVE_FRAME
     connect( m_tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveFrame() ) );
+#else
+    connect( m_tabsClose, SIGNAL( clicked() ), this,
+            SLOT( slotRemoveTab() ) );
+#endif
 
     m_tabsClose->setIconSet( SmallIcon( "tab_remove" ) );
     m_tabsClose->adjustSize();
     QToolTip::add(m_tabsClose, i18n("Close the current tab"));
     m_tabs->setCornerWidget( m_tabsClose, TopRight );
 
+#ifdef HAVE_FRAME
     connect( m_tabs, SIGNAL( currentFrameChanged(Frame *) ), this,
             SLOT( slotFrameChanged(Frame *) ) );
+#else
+    connect( m_tabs, SIGNAL( currentChanged(QWidget *) ), this,
+        SLOT( slotTabChanged(QWidget *) ) );
+#endif
 
     QWhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
 
@@ -170,8 +186,13 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     mainTabLayout->addWidget( m_panner2 );
 
    
+#ifdef HAVE_FRAME
     m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles")); 
     m_tabs->addFrame(m_mainFrame);
+#else
+    m_tabs->addTab(m_mainTab, i18n( "Articles" ));
+    m_tabs->setTitle(i18n( "Articles" ), m_mainTab);
+#endif
 
     // -- DEFAULT INIT
     reset();
@@ -216,8 +237,13 @@ void aKregatorView::slotOpenTab(const KURL& url)
             this, SLOT(slotTabCaption (const QString &)) );
     page->openURL(url);
 
+#ifdef HAVE_FRAME
     Frame *frame=new Frame(this, page, page->widget(), i18n("Untitled"));
     m_tabs->addFrame(frame);
+#else
+    m_tabs->addTab(page->widget(), i18n("Untitled"));
+#endif
+
     m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1)
         m_tabsClose->setEnabled(true);
@@ -249,13 +275,17 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     m_feeds.addFeedGroup(elt)->setTitle(text);
     elt->setExpandable(true);
     elt->setOpen(true);
+#ifdef HAVE_FRAME
     m_part->startOperation();
     if (!loadFeeds(doc, elt))
         m_part->operationError(i18n("Invalid Feed List"));
         return false;
 
     m_part->endOperation();
-    return true;    
+    return true;
+#else
+    return loadFeeds(doc, elt);
+#endif
 }
 
 bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
@@ -263,7 +293,9 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
     // this should be OPML document
     QDomElement root = doc.documentElement();
 
+#ifdef HAVE_FRAME
     m_stopLoading=false;
+#endif
     kdDebug() << "loading OPML feed "<<root.tagName().lower()<<endl;
     if (root.tagName().lower() != "opml")
         return false;
@@ -554,6 +586,7 @@ void aKregatorView::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
+#ifdef HAVE_FRAME
 void aKregatorView::slotRemoveFrame()
 {
     Frame *f = m_tabs->currentFrame();
@@ -564,7 +597,19 @@ void aKregatorView::slotRemoveFrame()
     if (m_tabs->count() <= 1)
         m_tabsClose->setEnabled(false);
 }
+#else
+void aKregatorView::slotRemoveTab()
+{
+    QWidget *w = m_tabs->currentPage ();
+    if (w==m_mainTab)
+        return;
+    m_tabs->removePage(w);
+    if (m_tabs->count() <= 1)
+        m_tabsClose->setEnabled(false);
+}
+#endif
 
+#ifdef HAVE_FRAME
 void aKregatorView::slotFrameChanged(Frame *f)
 {
     if (f==m_mainFrame)
@@ -576,6 +621,21 @@ void aKregatorView::slotFrameChanged(Frame *f)
     m_part->changePart(p);
     m_part->setCaption(f->caption());
 }
+#else
+void aKregatorView::slotTabChanged(QWidget *w)
+{
+    if (w==m_mainTab)
+        m_tabsClose->setEnabled(false);
+    else
+        m_tabsClose->setEnabled(true);
+    KParts::ReadOnlyPart *p;
+    if (w==m_mainTab)
+        p=m_part;
+    else
+        p=(static_cast<KHTMLView *>(w))->part();
+    m_part->changePart(p);
+}
+#endif
 
 void aKregatorView::slotTabCaption(const QString &capt)
 {
@@ -951,6 +1011,9 @@ void aKregatorView::showFetchStatus()
     if (m_transaction->totalFetches())
     {
         m_part->setStatusBar(i18n("Fetching Feeds..."));
+#ifndef HAVE_FRAME
+        m_part->setProgress(0);
+#endif
     }
 }
 
@@ -979,8 +1042,14 @@ void aKregatorView::slotFetchCurrentFeed()
 {
     showFetchStatus();
     fetchItem(m_tree->currentItem());
+#ifdef HAVE_FRAME
     m_part->startOperation();
     m_transaction->start();
+#else
+    m_transaction->start();
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(false); 	 
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false); 	 
+#endif
 }
 
 void aKregatorView::slotFetchAllFeeds()
@@ -995,13 +1064,24 @@ void aKregatorView::slotFetchAllFeeds()
         if (f && !f->isGroup())
             m_transaction->fetch(f);
     }
+#ifdef HAVE_FRAME
     m_part->startOperation();
     m_transaction->start();
+#else
+    m_transaction->start();
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(false); 	 
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
+#endif
 }
 
 void aKregatorView::slotFetchesCompleted()
 {
+#ifdef HAVE_FRAME
     m_part->endOperation();
+#else
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
+#endif
     setTotalUnread();
     m_part->setStatusBar(QString::null);
 }
@@ -1237,10 +1317,12 @@ void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
     }
 }
 
+#ifdef HAVE_FRAME
 void aKregatorView::stopLoading()
 {
     m_stopLoading=true;
 }
+#endif
 
 #include "akregator_view.moc"
 

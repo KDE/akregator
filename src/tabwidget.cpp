@@ -27,14 +27,17 @@ TabWidget::TabWidget(QWidget * parent, const char *name)
         :KTabWidget(parent, name), m_CurrentMaxLength(30)
 {
     setTabReorderingEnabled(true);
+#ifdef HAVE_FRAME
     connect( this, SIGNAL( currentChanged(QWidget *) ), this,
             SLOT( slotTabChanged(QWidget *) ) );
+#endif
 }
 
 TabWidget::~TabWidget()
 {
 }
 
+#ifdef HAVE_FRAME
 void TabWidget::addFrame(Frame *f)
 {
     if (!f || !f->widget()) return;
@@ -59,6 +62,7 @@ void TabWidget::removeFrame(Frame *f)
     m_frames.remove(f->widget());
     removePage(f->widget());
 }
+#endif
 
 // copied wholesale from KonqFrameTabs
 
@@ -71,8 +75,21 @@ unsigned int TabWidget::tabBarWidthForMaxChars( uint maxLength )
     QFontMetrics fm = tabBar()->fontMetrics();
     int x = 0;
     for( int i=0; i < count(); ++i ) {
+#ifdef HAVE_FRAME        
         Frame *f=m_frames[page(i)];
         QString newTitle=f->title();
+#else
+        QString newTitle;
+        QDictIterator<QWidget> it( m_titleDict );
+        for( ; it.current(); ++it ) 	 
+         { 
+             if (it.current()==page(i)) 	 
+             {
+                 newTitle=it.currentKey(); 	 
+                 break;
+             }
+         }
+#endif
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
 
@@ -91,9 +108,13 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
 {
     removeTabToolTip( sender );
 
+#ifdef HAVE_FRAME    
     Frame *f=m_frames[sender];
     if (f)
         f->setTitle(title);
+#else
+    m_titleDict.insert( title, sender);
+#endif
 
     uint lcw=0, rcw=0;
     int tabBarHeight = tabBar()->sizeHint().height();
@@ -123,9 +144,20 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     {
         for( int i = 0; i < count(); ++i)
         {
+#ifdef HAVE_FRAME
             Frame *f=m_frames[page(i)];
             newTitle=f->title();
-
+#else
+            QDictIterator<QWidget> it( m_titleDict );
+            for( ; it.current(); ++it )
+            {
+                 if (it.current()==page(i)) 	 
+                 {
+                     newTitle=it.currentKey(); 	 
+                     break;
+                 }
+             }
+#endif
             removeTabToolTip( page( i ) );
             if ( newTitle.length() > newMaxLength )
             {

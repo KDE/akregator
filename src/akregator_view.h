@@ -40,7 +40,9 @@ namespace Akregator
     class ArticleViewer;
     class ArticleFilter;
     class TabWidget;
-    class Frame;
+#ifdef HAVE_FRAME
+//    class Frame;
+#endif
 }
 
 namespace Akregator
@@ -96,8 +98,10 @@ namespace Akregator
              * of the group.
              */
             void addFeedToGroup(const QString& url, const QString& group);
-	    
-            void stopLoading();
+
+#ifdef HAVE_FRAME	    
+//            void stopLoading();
+#endif
 
 	    FetchTransaction* transaction(){return m_transaction;}
 
@@ -163,8 +167,13 @@ namespace Akregator
             void slotMouseOverInfo(const KFileItem *kifi);
 
             void slotOpenTab(const KURL& url);
-            void slotRemoveFrame();
-            void slotFrameChanged(Frame *f);
+#ifdef HAVE_FRAME            
+//            void slotRemoveFrame();
+//            void slotFrameChanged(Frame *f);
+#else
+            void slotRemoveTab();
+            void slotTabChanged(QWidget *w);
+#endif
             void slotTabCaption(const QString &capt);
 
         private:
@@ -239,7 +248,9 @@ namespace Akregator
             TabWidget *m_tabs;
             QToolButton *m_tabsClose;
             QWidget *m_mainTab;
-	    Frame *m_mainFrame;
+#ifdef HAVE_FRAME
+//            Frame *m_mainFrame;
+#endif
 	    
             void setTotalUnread();
 
@@ -257,7 +268,9 @@ namespace Akregator
             ViewMode m_viewMode;
             QTimer *intervalFetchTimer;
 
-	    bool m_stopLoading;
+#ifdef HAVE_FRAME
+//            bool m_stopLoading;
+#endif
 	    
             QPixmap m_feedTreePixmap;
             QPixmap m_folderTreePixmap;
