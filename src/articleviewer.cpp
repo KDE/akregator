@@ -80,6 +80,10 @@ void ArticleViewer::generateCSS()
     "  margin-bottom: 10pt;\n"
     "  width: 100%;\n"
     "}\n\n"
+    "#headertitle a:link { color: %9  ! important; }\n"
+    "#headertitle a:visited { color: %9 ! important; }\n"
+    "#headertitle a:hover{ color: %9 ! important; }\n"
+    "#headertitle a:active { color: %9 ! important; }\n",
     "#headertitle {\n"
     "  background: %8 ! important;\n"
     "  padding:2px;\n"
