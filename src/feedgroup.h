@@ -25,13 +25,23 @@ namespace Akregator
             FeedGroup(QListViewItem *i, FeedsCollection *coll);
             ~FeedGroup();
 
-            void updateView() {}
-            void destroy()    {} //?
+            void destroy();
 
             virtual bool isGroup() { return true; }
 
             //virtual void open(QTextStream &ts) {} //?
-            virtual void save(QTextStream &ts, int depth = 0) {}
+            virtual void save(QTextStream &/*ts*/, int /*depth*/ = 0) {}
+
+            QString title();
+            void setTitle(const QString &title);
+
+            QListViewItem *item() { return m_item; }
+
+        private:
+            QString           m_title;        ///< Feed/Group title
+
+            QListViewItem    *m_item;         ///< Corresponding list view item.
+            FeedsCollection  *m_collection;   ///< Parent collection.
     };
 };
 

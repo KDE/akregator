@@ -17,7 +17,6 @@ using namespace RSS;
 
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
-    , title()
     , xmlUrl()
     , htmlUrl()
     , description()
@@ -28,23 +27,11 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     , ljPassword()
     , updateTitle(false)
     , articles()
-    , m_item(i)
-    , m_collection(coll)
 {
-    updateView();
+//    updateView();
 }
 
 Feed::~Feed()
-{
-}
-
-void Feed::destroy()
-{
-   m_collection->remove(m_item);
-   delete this;
-}
-
-void Feed::updateView()
 {
 }
 
@@ -74,17 +61,17 @@ QString Feed::ljAuthModeStr()
 
 void Feed::save(QTextStream &ts, int /*depth*/)
 {
-    ts << "<outline text=\"" << title << "\" "
-                  "title=\"" << title << "\" "
+    ts << "<outline text=\"" << title() << "\" "
+                  "title=\"" << title() << "\" "
                  "xmlUrl=\"" << xmlUrl << "\" "
                 "htmlUrl=\"" << htmlUrl << "\" "
             "description=\"" << description << "\" "
-          "isLiveJournal=\"" << isLiveJournal << "\" "
+          "isLiveJournal=\"" << (isLiveJournal ? "true" : "false") << "\" "
              "ljUserName=\"" << ljUserName << "\" "
              "ljAuthMode=\"" << ljAuthModeStr() << "\" "
                 "ljLogin=\"" << ljLogin << "\" "
              "ljPassword=\"" << ljPassword << "\" "
-            "updateTitle=\"" << updateTitle << "\" "
+            "updateTitle=\"" << (updateTitle ? "true" : "false") << "\" "
                    "type=\"akrss\" "
                 "version=\"RSS\"/>" << endl;
 }
@@ -105,10 +92,11 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
 
     kdDebug() << "Feed fetched successfully [" << doc.title() << "]" << endl;
 
-    if (updateTitle || title.isEmpty()) title = doc.title();
+    if (updateTitle || title().isEmpty()) setTitle( doc.title() );
     description = doc.description();
     htmlUrl = doc.link().url();
     articles = doc.articles();
+    // TODO: more attributes to fetch?
 
     emit fetched(this);
 }

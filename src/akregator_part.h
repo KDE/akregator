@@ -109,6 +109,11 @@ protected slots:
     void slotFetchCurrentFeed();
     void slotFetchAllFeeds();
 
+    /**
+     * This slot is called when user renames a feed in feeds tree.
+     */
+    void slotItemRenamed( QListViewItem * item ); //, const QString & text, int col
+
 private:
     Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt, QString title, QString xmlUrl, QString htmlUrl, QString description, bool isLiveJournal, QString ljUserName, Feed::LJAuthMode ljAuthMode, QString ljLogin, QString ljPassword, bool updateTitle);
 

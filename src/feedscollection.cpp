@@ -31,7 +31,7 @@ void FeedsCollection::addFeed(QListViewItem *item)
     insert(item, new Feed(item, this));
     item->setPixmap(0, KGlobal::iconLoader()->loadIcon("txt", KIcon::Small) );
     QListViewItem *parent = item->parent();
-    if(parent) find(parent)->updateView();
+//    if(parent) find(parent)->updateView();
     modified = true;
 }
 
@@ -40,7 +40,7 @@ void FeedsCollection::addFeedGroup(QListViewItem *item)
     insert(item, new FeedGroup(item, this));
     item->setPixmap(0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     QListViewItem *parent = item->parent();
-    if(parent) find(parent)->updateView();
+//    if(parent) find(parent)->updateView();
     modified = true;
 }
 
@@ -57,11 +57,11 @@ void FeedsCollection::removeFeed(QListViewItem *item)
     for (QListViewItemIterator it(item); it.current() && (it.current() == item || it.current()->depth() > item->depth()); ++it)
         find(it.current())->destroy();
     delete item;
-    if (parent) find(parent)->updateView();
+//    if (parent) find(parent)->updateView();
     modified = true;
 }
 
-bool FeedsCollection::changeFeed(QListViewItem *item)
+bool FeedsCollection::changeFeed(QListViewItem */*item*/)
 {
     return false;
 }

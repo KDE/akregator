@@ -22,6 +22,7 @@
 #include <kxmlguifactory.h>
 #include <kstandarddirs.h>
 #include <klineedit.h>
+#include <kpassdlg.h>
 #include <klistview.h>
 #include <khtml_part.h>
 #include <kdebug.h>
@@ -62,6 +63,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
             this, SLOT(slotItemChanged(QListViewItem*)));
     connect(m_tree, SIGNAL(selectionChanged(QListViewItem*)),
             this, SLOT(slotItemChanged(QListViewItem*)));
+    connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),  //,const QString &,int
+            this, SLOT(slotItemRenamed(QListViewItem *))); //,const QString &,int
 
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
@@ -234,7 +237,7 @@ Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt, QString title, QString
 
     Feed *feed = static_cast<Feed *>(m_feeds.find(elt));
 
-    feed->title          = title;
+    feed->setTitle( title );
     feed->xmlUrl         = xmlUrl;
     feed->htmlUrl        = htmlUrl;
     feed->description    = description;
@@ -277,7 +280,12 @@ void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
                             );
         }
         else
+        {
             m_feeds.addFeedGroup(elt);
+            FeedGroup *g = m_feeds.find(elt);
+            if (g)
+                g->setTitle( e.attribute("text") );
+        }
 
         if (e.hasChildNodes())
         {
@@ -359,12 +367,12 @@ bool aKregatorPart::saveFile() // TODO: rewrite using QDom* classes
                 // only open outline, will be closed later
                 closeDepths.push_back( (*it)->depth() );
 
-                stream << "<outline text=\"" << (*it)->text(0) << "\">" << endl;
+                stream << "<outline text=\"" << feed->title() << "\">" << endl;
             }
             else
             {
                 // empty outline, write at once
-                stream << "<outline text=\"" << (*it)->text(0) << "\"></outline>" << endl;
+                stream << "<outline text=\"" << feed->title() << "\"></outline>" << endl;
             }
         }
         else
@@ -531,6 +539,9 @@ void aKregatorPart::slotFeedAddGroup()
         elt = new KListViewItem(m_tree->currentItem(), text);
 
     m_feeds.addFeedGroup(elt);
+    FeedGroup *g = m_feeds.find(elt);
+    if (g)
+        g->setTitle( text );
 }
 
 void aKregatorPart::slotFeedRemove()
@@ -557,25 +568,26 @@ void aKregatorPart::slotFeedRemove()
 
 void aKregatorPart::slotFeedModify()
 {
-/*
-    AddFeedDialog *dlg = new AddFeedDialog( this->widget(), "edit_feed" );
-    Feed *feed = static_cast<Feed *>(m_feeds.find(elt));
+    Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+    if (!feed || feed->isGroup()) return;
 
-    feed->title          = dlg->feedNameEdit->text();
-    feed->xmlUrl         = dlg->urlEdit->text();
-    feed->isLiveJournal  = dlg->ljUserChkbox->isChecked();
-    feed->ljUserName     = dlg->ljUserEdit->text();
-    feed->ljAuthMode     = dlg->ljAuthMode->selectedId() == 0 ? Feed::AuthNone
-                         : dlg->ljAuthMode->selectedId() == 1 ? Feed::AuthGlobal
-                         : dlg->ljAuthMode->selectedId() == 2 ? Feed::AuthLocal
-                         : Feed::AuthNone;
-    feed->ljLogin        = dlg->loginEdit->text();
-    feed->ljPassword     = dlg->passwordEdit->text();
-    feed->updateTitle    = dlg->nameFromRssChkbox->isChecked();
+    AddFeedDialog *dlg = new AddFeedDialog( this->widget(), "edit_feed" );
+
+    dlg->feedNameEdit->setText( feed->title() );
+    dlg->urlEdit->setText( feed->xmlUrl );
+    dlg->ljUserChkbox->setChecked( feed->isLiveJournal );
+    dlg->ljUserEdit->setText( feed->ljUserName );
+    dlg->ljAuthMode->setButton( feed->ljAuthMode == Feed::AuthNone   ? 0
+                              : feed->ljAuthMode == Feed::AuthGlobal ? 1
+                              : feed->ljAuthMode == Feed::AuthLocal  ? 2
+                              : 0 );
+    dlg->loginEdit->setText( feed->ljLogin );
+    dlg->passwordEdit->setText( feed->ljPassword );
+    dlg->nameFromRssChkbox->setChecked( feed->updateTitle );
 
     if (dlg->exec() != QDialog::Accepted) return;
 
-    feed->title          = dlg->feedNameEdit->text();
+    feed->setTitle( dlg->feedNameEdit->text() );
     feed->xmlUrl         = dlg->urlEdit->text();
     feed->isLiveJournal  = dlg->ljUserChkbox->isChecked();
     feed->ljUserName     = dlg->ljUserEdit->text();
@@ -586,7 +598,6 @@ void aKregatorPart::slotFeedModify()
     feed->ljLogin        = dlg->loginEdit->text();
     feed->ljPassword     = dlg->passwordEdit->text();
     feed->updateTitle    = dlg->nameFromRssChkbox->isChecked();
-*/
 }
 
 void aKregatorPart::slotFeedCopy()
@@ -600,7 +611,7 @@ void aKregatorPart::slotFetchCurrentFeed()
         Feed *f = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
         if (f && !f->isGroup())
         {
-            kdDebug() << "Fetching item " << f->title << endl;
+            kdDebug() << "Fetching item " << f->title() << endl;
             f->fetch();
         }
         else // its a feed group, need to fetch from all its children, recursively
@@ -671,6 +682,25 @@ void aKregatorPart::slotArticleSelected(QListViewItem *item)
 
     kdDebug() << k_funcinfo << "END" << endl;
 }
+
+void aKregatorPart::slotItemRenamed( QListViewItem *item ) //, const QString &text, int /*col*/
+{
+    QString text = item->text(0);
+    kdDebug() << "Item renamed to " << text << endl;
+
+    Feed *feed = static_cast<Feed *>(m_feeds.find(item));
+    if (feed)
+    {
+        feed->setTitle( text );
+        if (!feed->isGroup())
+            feed->updateTitle = false; // if user edited title by hand, do not update it automagically
+    }
+}
+
+
+//==================================================================================================
+// aKregatorPartFactory
+//==================================================================================================
 
 
 // It's usually safe to leave the factory code alone.. with the

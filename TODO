@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000027 being the highest available (take this one for your next bug and increase here)
+          #000031 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -15,8 +15,10 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
-#000001 ADD [ ] allow inline editing of feeds to alter Feed[Group]::title and resetting updateTitle to false (slotItemRenamed)
-#000003 ADD [ ] sort ArticleList by Article::pubDate
+#000030 FIX [x] boolean vars are stored and retrieved improperly in opml
+#000029 CHG [ ] "Modify" should enable in-line edit for feed group items, standard dialog for feeds
+#000027 CHG [ ] when changing current feed, change article in m_html also
+#000003 ADD [ ] sort ArticleList by Article::pubDate (NOT in current librss!)
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
 #000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?)
 #000006 ADD [ ] system tray
@@ -32,7 +34,7 @@ ADD new feature
 
 == MID-TERM ==
 
-#000013 FIX [ ] list generated files in .cvsignore files
+#000013 FIX [ ] list generated files in .cvsignore files -- add addfeeddialog.{cpp,h}
 #000022 ADD [ ] configure.in.in magic to detect librss presence
 #000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that images and css can be embedded in article preview
 

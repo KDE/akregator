@@ -41,9 +41,6 @@ namespace Akregator
             Feed(QListViewItem *i, FeedsCollection *coll);
             ~Feed();
 
-            void updateView();
-            void destroy();
-
             //virtual void open(QTextStream &ts);?
             virtual void save(QTextStream &ts, int depth = 0);
 
@@ -55,7 +52,7 @@ namespace Akregator
             static LJAuthMode authModeFromString(const QString &mode);
 
             // -- ATTRIBUTES
-            QString        title;         ///< Feed title
+            //inherited    title();       ///< Feed title
             QString        xmlUrl;        ///< URL of RSS feed itself
             QString        htmlUrl;       ///< URL of HTML page for this feed
             QString        description;   ///< Verbose feed description.
@@ -69,8 +66,6 @@ namespace Akregator
 
             void fetch();                 ///< Start fetching rss
 
-            QListViewItem *item() { return m_item; }
-
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
 
@@ -78,9 +73,6 @@ namespace Akregator
             void fetchCompleted(Loader *loader, Document doc, Status status);
 
         private:
-            QListViewItem *m_item;         ///< Corresponding list view item.
-            FeedsCollection *m_collection; ///< Parent collection.
-
             // TODO
             //Archived articles
             //QValueList<Article> m_archive;
