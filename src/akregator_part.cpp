@@ -5,7 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
-#include <kaboutdata.h> 
+#include <kaboutdata.h>
 #include <kaction.h>
 #include <kactionclasses.h>
 #include <kactioncollection.h> 
@@ -682,6 +682,19 @@ void aKregatorPart::showOptions()
              m_trayIcon, SLOT(settingsChanged()) );
 
     dialog->show();
+}
+
+void aKregatorPart::partActivateEvent(KParts::PartActivateEvent* event)
+{
+    if (factory() && m_mergedPart)
+    {
+        if (event->activated())
+            factory()->addClient(m_mergedPart);
+        else
+            factory()->removeClient(m_mergedPart);
+    }
+
+    KPIM::Part::partActivateEvent(event);
 }
 
 KParts::Part *aKregatorPart::hitTest(QWidget *widget, const QPoint &globalPos)

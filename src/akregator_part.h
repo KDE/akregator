@@ -166,6 +166,8 @@ namespace Akregator
 
             virtual KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
+            /** reimplemented to load/unload the merged parts on selection/deselection */ 
+            virtual void partActivateEvent(KParts::PartActivateEvent* event);
         public slots:
             /**
              * Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings.
