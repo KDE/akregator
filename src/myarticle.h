@@ -52,6 +52,8 @@ namespace Akregator
             bool keep() const;
             void setKeep(bool keep);
             void setFeed(Feed* feed);
+            bool isDeleted() const;
+            void setDeleted();
             Feed* feed() const;
             bool guidIsPermaLink() const;
             const QDateTime &pubDate() const;

@@ -27,6 +27,7 @@ struct MyArticle::Private : public RSS::Shared
     QString title;
     int status;
     bool keep;
+    bool deleted;
     Feed* feed;
 };
 
@@ -43,11 +44,23 @@ MyArticle::MyArticle(Article article) : d(new Private)
         d->title=buildTitle();
     else
         d->title=article.title();
-    d->status=d->article.meta("status").toInt();
+    d->status = d->article.meta("status").toInt();
 
     d->keep = (article.meta("keep") == "true") ? true : false;
+    d->deleted = (article.meta("deleted") == "true") ? true : false;
     
     d->feed = 0;
+}
+
+void MyArticle::setDeleted()
+{
+    d->deleted = true;
+    d->keep = false;
+}
+
+bool MyArticle::isDeleted() const
+{
+    return d->deleted;
 }
 
 MyArticle::MyArticle(const MyArticle &other) : d(new Private)
@@ -169,27 +182,7 @@ KURLLabel *MyArticle::widget(QWidget *parent, const char *name) const
 
 void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
 {
-    QDomElement tnode = doc.createElement( "title" );
-    QDomText t=doc.createTextNode( title() );
-    tnode.appendChild(t);
-    parent.appendChild(tnode);
 
-    if (link().isValid())
-    {
-        QDomElement lnode = doc.createElement( "link" );
-        QDomText ht=doc.createTextNode(link().url());
-        lnode.appendChild(ht);
-        parent.appendChild(lnode);
-    }
-
-    if (!description().isEmpty())
-    {
-        QDomElement snode = doc.createElement( "description" );
-        QDomCDATASection dt=doc.createCDATASection( description() );
-        snode.appendChild(dt);
-        parent.appendChild(snode);
-    }
-    
     if (!guid().isEmpty())
     {
         QDomElement gnode = doc.createElement( "guid" );
@@ -198,7 +191,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
         gnode.appendChild(gt);
         parent.appendChild(gnode);
     }
-    
+
     if (pubDate().isValid())
     {
         QDomElement pnode = doc.createElement( "pubDate" );
@@ -207,38 +200,70 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
         parent.appendChild(pnode);
     }
 
-    if (commentsLink().isValid())
-    {
-        QDomElement lnode = doc.createElement( "wfw:comment" );
-        QDomText ht=doc.createTextNode(commentsLink().url());
-        lnode.appendChild(ht);
-        parent.appendChild(lnode);
-    }
-
-    if (comments())
-    {
-        QDomElement lnode = doc.createElement( "slash:comments" );
-        QDomText ht=doc.createTextNode(QString::number(comments()));
-        lnode.appendChild(ht);
-        parent.appendChild(lnode);
-    }
-
-
-
     QDomElement metanode = doc.createElement( "metaInfo:meta" );
     metanode.setAttribute("type","status");
     QDomText stat=doc.createTextNode(QString::number(d->status));
     metanode.appendChild(stat);
     parent.appendChild(metanode);
-    
-    if ( d->keep )
+
+    if ( isDeleted() )
     {
-        metanode = doc.createElement( "metaInfo:meta" );
-        metanode.setAttribute("type", "keep");
-        metanode.appendChild(doc.createTextNode( d->keep ? "true" : "false"));
+        QDomElement metanode = doc.createElement( "metaInfo:meta" );
+        metanode.setAttribute("type","deleted");
+        QDomText stat=doc.createTextNode( "true" );
+        metanode.appendChild(stat);
         parent.appendChild(metanode);
     }
-
+    else
+    {
+        if ( !title().isEmpty() )
+        {
+            QDomElement tnode = doc.createElement( "title" );
+            QDomText t = doc.createTextNode( title() );
+            tnode.appendChild(t);
+            parent.appendChild(tnode);
+        }
+ 
+        if (link().isValid())
+        {
+            QDomElement lnode = doc.createElement( "link" );
+            QDomText ht=doc.createTextNode(link().url());
+            lnode.appendChild(ht);
+            parent.appendChild(lnode);
+        }
+    
+        if (!description().isEmpty())
+        {
+            QDomElement snode = doc.createElement( "description" );
+            QDomCDATASection dt=doc.createCDATASection( description() );
+            snode.appendChild(dt);
+            parent.appendChild(snode);
+        }
+        
+        if (commentsLink().isValid())
+        {
+            QDomElement lnode = doc.createElement( "wfw:comment" );
+            QDomText ht=doc.createTextNode(commentsLink().url());
+            lnode.appendChild(ht);
+            parent.appendChild(lnode);
+        }
+    
+        if (comments())
+        {
+            QDomElement lnode = doc.createElement( "slash:comments" );
+            QDomText ht=doc.createTextNode(QString::number(comments()));
+            lnode.appendChild(ht);
+            parent.appendChild(lnode);
+        }
+    
+        if ( d->keep )
+        {
+            metanode = doc.createElement( "metaInfo:meta" );
+            metanode.setAttribute("type", "keep");
+            metanode.appendChild(doc.createTextNode( d->keep ? "true" : "false"));
+            parent.appendChild(metanode);
+        }
+    } // if not deleted
     
 }
 

@@ -226,6 +226,7 @@ void ArticleList::slotUpdate()
     ArticleSequence::ConstIterator it = articles.begin();
     
     for ( ; it != end; ++it)
+        if ( !(*it).isDeleted() )
          new ArticleListItem(this, lastChild(), *it, (*it).feed() );
 
     applyFilters();        
