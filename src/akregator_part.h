@@ -73,6 +73,8 @@ namespace Akregator
             void setStarted();
             void setCompleted();
             void setCanceled(const QString &s);
+
+            void reMerge();
             
             /**
              * Informs trayicon about new articles

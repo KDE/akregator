@@ -679,6 +679,7 @@ void aKregatorView::slotFrameChanged(Frame *f)
     m_part->setCaption(f->caption());
     m_part->setProgress(f->progress());
     m_part->setStatusBar(f->statusText());
+    m_part->reMerge();
 
     switch (f->state())
     {

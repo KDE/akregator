@@ -501,6 +501,14 @@ QPixmap aKregatorPart::takeTrayIconScreenshot() const
     return m_trayIcon->takeScreenshot();
 }
 
+void aKregatorPart::reMerge()
+{
+    KParts::MainWindow *mw = dynamic_cast<KParts::MainWindow*>(getMainWindow());
+    if (mw) {
+        mw->guiFactory()->addClient(this);
+    }
+}
+
 QWidget* aKregatorPart::getMainWindow()
 {
         // this is a dirty fix to get the main window used for the tray icon
