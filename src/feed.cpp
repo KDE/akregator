@@ -480,8 +480,6 @@ Feed::ArchiveMode Feed::archiveMode() const
 void Feed::setArchiveMode(ArchiveMode archiveMode)
 {
     m_archiveMode = archiveMode;
-    if ( isMerged() )
-        Archive::save(this);
 }
 
 void Feed::setUnread(int unread)

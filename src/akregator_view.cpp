@@ -942,7 +942,9 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
     dlg->setFeedName(text);
     dlg->setUrl(afd->feedURL);
     dlg->selectFeedName();
-
+    dlg->setMaxArticleAge(60);
+    dlg->setMaxArticleNumber(1000);
+    dlg->setFetchInterval(30);
     if (!autoExec)
         if (dlg->exec() != QDialog::Accepted) 
         {
@@ -1057,6 +1059,9 @@ void aKregatorView::slotFeedModify()
         feed->setMaxArticleNumber(dlg->maxArticleNumber());
         feed->setNotificationMode(true, true);
         //m_part->setModified(true);
+        if ( feed->isMerged() )
+            Archive::save(feed);
+
     }
     delete dlg;
 }
