@@ -64,9 +64,9 @@ namespace Akregator
 
             void setStatusBar(const QString &text);
             void setProgress(int percent);
-            void setStarted();
-            void setCompleted();
-            void setCanceled(const QString &s);
+            void setStarted(KParts::Part* part);
+            void setCompleted(KParts::Part* part);
+            void setCanceled(KParts::Part* part, const QString &s);
 
             /** Informs trayicon about new articles
              @param src Feed which has new articles
@@ -169,15 +169,6 @@ namespace Akregator
             
         private slots:
             void slotStop() {closeURL(); };
-
-            /** Enables stop button. Called when fetching starts. */
-            void slotStarted(KIO::Job *);
-            
-            /** Disables stop button when fetching is canceled. */
-            void slotCanceled(const QString &);
-            
-            /** Disables stop button when fetching is completed. */
-            void slotCompleted();
 
         private:
 

@@ -176,11 +176,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect( m_trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
 
-    connect(this, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
-    connect(this, SIGNAL(completed()), this, SLOT(slotCompleted()));
-    connect(this, SIGNAL(canceled(const QString&)), this, SLOT(slotCanceled(const QString &)));
-    connect(this, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
-
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
@@ -214,18 +209,27 @@ void Part::setProgress(int percent)
     emit m_extension->loadingProgress(percent);
 }
 
-void Part::setStarted()
+void Part::setStarted(KParts::Part* part)
 {
+    if (part == this)
+        actionCollection()->action("feed_stop")->setEnabled(true);
+    
     emit started(0);
 }
 
-void Part::setCompleted()
+void Part::setCompleted(KParts::Part* part)
 {
+    if (part == this)
+        actionCollection()->action("feed_stop")->setEnabled(false);
+    
     emit completed(0);
 }
 
-void Part::setCanceled(const QString &s)
+void Part::setCanceled(KParts::Part* part, const QString &s)
 {
+    if (part == this)
+        actionCollection()->action("feed_stop")->setEnabled(false);
+    
     emit canceled(s);
 }
 
@@ -636,22 +640,6 @@ void Part::addFeedToGroup(const QString& url, const QString& group)
     kdDebug() << "Akregator::Part::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
     m_view->addFeedToGroup(url, group);
     //setModified(true);
-}
-
-
-void Part::slotStarted(KIO::Job *)
-{
-    actionCollection()->action("feed_stop")->setEnabled(true);
-}
-
-void Part::slotCanceled(const QString &)
-{
-    actionCollection()->action("feed_stop")->setEnabled(false);
-}
-
-void Part::slotCompleted()
-{
-    actionCollection()->action("feed_stop")->setEnabled(false);
 }
 
 

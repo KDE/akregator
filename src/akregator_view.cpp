@@ -339,7 +339,7 @@ void View::slotStarted()
     if (!f) return;
     if (m_currentFrame != f) return;
 
-    m_part->setStarted();
+    m_part->setStarted(f->part());
 }
 
 void View::slotCanceled(const QString &s)
@@ -348,7 +348,7 @@ void View::slotCanceled(const QString &s)
     if (!f) return;
     if (m_currentFrame != f) return;
 
-    m_part->setCanceled(s);
+    m_part->setCanceled(f->part(), s);
 }
 
 void View::slotCompleted()
@@ -357,7 +357,7 @@ void View::slotCompleted()
     if (!f) return;
     if (m_currentFrame != f) return;
 
-    m_part->setCompleted();
+    m_part->setCompleted(f->part());
 }
 
 void View::slotLoadingProgress(int percent)
@@ -614,15 +614,15 @@ void View::slotFrameChanged(Frame *f)
     switch (f->state())
     {
         case Frame::Started:
-            m_part->setStarted();
+            m_part->setStarted(f->part());
             break;
         case Frame::Canceled:
-            m_part->setCanceled(QString::null);
+            m_part->setCanceled(f->part(), QString::null);
             break;
         case Frame::Idle:
         case Frame::Completed:
         default:
-            m_part->setCompleted();
+            m_part->setCompleted(f->part());
     }
 }
 
