@@ -74,17 +74,17 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
     // prefer content/content:encoded over summary/description for feeds that provide it
     QString tagName=(format==AtomFeed)? QString::fromLatin1("content"): QString::fromLatin1("content:encoded");
     
-    if (!(elemText = extractNode(node, tagName, false)).isNull())
+    if (!(elemText = extractNode(node, tagName, true)).isNull())
         d->description = elemText;
     
     if (d->description.isEmpty())
     {
-		if (!(elemText = extractNode(node, QString::fromLatin1("body"), false)).isNull())
+		if (!(elemText = extractNode(node, QString::fromLatin1("body"), true)).isNull())
 	    	d->description = elemText;
     
 		if (d->description.isEmpty())  // 3rd try: see http://www.intertwingly.net/blog/1299.html
 		{
-			if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"), false)).isNull())
+			if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"), true)).isNull())
 				d->description = elemText;
 		}
     }
