@@ -16,7 +16,6 @@ short term (~beta3)
 - rewrite combined view.. planning to use khtml/dom directly
   -> show read/unread/new as different colors in combined view
   -> allow searching in combined view
-- add a kontact part
 
 
 medium term ()
