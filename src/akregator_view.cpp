@@ -866,7 +866,7 @@ void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, con
     if (item && button==Qt::MidButton)
     {
         ArticleListItem *i = static_cast<ArticleListItem *>(item);
-        KRun::runURL(i->article().link(), "text/html", false, false);
+        slotOpenTab(i->article().link());
     }
 }
 
