@@ -41,6 +41,7 @@
 #include "frame.h"
 #include "myarticle.h"
 #include "pageviewer.h"
+#include "settings_appearance.h"
 #include "settings_archive.h"
 #include "settings_browser.h"
 #include "settings_general.h"
@@ -195,6 +196,25 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
     setupActions();
+
+    QStringList fonts = Settings::fonts();
+    if (fonts.isEmpty())
+    {
+        fonts.append(KGlobalSettings::generalFont().family());
+        fonts.append(KGlobalSettings::fixedFont().family());
+        fonts.append(KGlobalSettings::generalFont().family());
+        fonts.append(KGlobalSettings::generalFont().family());
+        fonts.append("0");
+    }
+    Settings::setFonts(fonts);
+    if (Settings::standardFont().isEmpty())
+        Settings::setStandardFont(fonts[0]);
+    if (Settings::fixedFont().isEmpty())
+        Settings::setFixedFont(fonts[1]);
+    if (Settings::sansSerifFont().isEmpty())
+        Settings::setSansSerifFont(fonts[2]);
+    if (Settings::serifFont().isEmpty())
+        Settings::setSerifFont(fonts[3]);
 }
 
 void Part::slotOnShutdown()
@@ -210,7 +230,23 @@ void Part::slotSettingsChanged()
 {
     if (Settings::useKonqHTMLSettings())
         readKonquerorSettings();
+    else
+    {
+        QStringList fonts;
+        fonts.append(Settings::standardFont());
+        fonts.append(Settings::fixedFont());
+        fonts.append(Settings::sansSerifFont());
+        fonts.append(Settings::serifFont());
+        fonts.append(Settings::standardFont());
+        fonts.append(Settings::standardFont());
+        fonts.append("0");
+        Settings::setFonts(fonts);
+    }
+    if (Settings::minimumFontSize() > Settings::mediumFontSize())
+        Settings::setMediumFontSize(Settings::minimumFontSize());
     saveSettings();
+    emit signalHTMLSettingsChanged();
+ 
 }
 void Part::saveSettings()
 {
@@ -724,6 +760,7 @@ void Part::showOptions()
     KConfigDialog *dialog = new KConfigDialog( m_view, "settings", Settings::self() );
     dialog->addPage(new SettingsGeneral(0, "General"), i18n("General"), "package_settings");
     dialog->addPage(new SettingsArchive(0, "Archive"), i18n("Archive"), "package_settings");
+    dialog->addPage(new SettingsAppearance(0, "Appearance"), i18n("Appearance"), "fonts");
     dialog->addPage(new SettingsBrowser(0, "Browser"), i18n("Browser"), "package_network");
     connect( dialog, SIGNAL(settingsChanged()),
              this, SLOT(slotSettingsChanged()) );
@@ -778,7 +815,6 @@ void Part::readKonquerorSettings()
     Settings::setAutoDelayedActions(konq.readBoolEntry("AutoDelayedActions", true));
     //Settings::setAutoLoadImages(konq.readBoolEntry("AutoLoadImages"));
     Settings::setChangeCursor(konq.readBoolEntry("ChangeCursor", KDE_DEFAULT_CHANGECURSOR));
-    Settings::setFonts(konq.readListEntry("Fonts"));
     Settings::setFormCompletion(konq.readBoolEntry("FormCompletion", true));
     Settings::setMaxFormCompletionItems(konq.readNumEntry("MaxFormCompletionItems", 10));
     Settings::setHoverLinks(konq.readBoolEntry("HoverLinks", true));
@@ -790,6 +826,27 @@ void Part::readKonquerorSettings()
     Settings::setMediumFontSize(medFontSize);
     Settings::setUnderlineLinks(konq.readBoolEntry("UnderlineLinks", true));
     Settings::setUserStyleSheetEnabled(konq.readBoolEntry("UserStyleSheetEnabled"));
+    QStringList fonts = konq.readListEntry("Fonts");
+    if (!fonts.isEmpty())
+    {
+        Settings::setFonts(fonts);
+        Settings::setStandardFont(fonts[0]);
+        Settings::setFixedFont(fonts[1]);
+        Settings::setSansSerifFont(fonts[2]);
+        Settings::setSerifFont(fonts[3]);
+    }
+    else
+    {
+        fonts.append(KGlobalSettings::generalFont().family());
+        fonts.append(KGlobalSettings::fixedFont().family());
+        fonts.append(KGlobalSettings::generalFont().family());
+        fonts.append(KGlobalSettings::generalFont().family());
+        Settings::setFonts(fonts);
+        Settings::setStandardFont(fonts[0]);
+        Settings::setFixedFont(fonts[1]);
+        Settings::setSansSerifFont(fonts[2]);
+        Settings::setSerifFont(fonts[3]);
+    }
     Settings::writeConfig();
 }
 

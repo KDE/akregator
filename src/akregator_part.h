@@ -142,6 +142,7 @@ namespace Akregator
             
         signals:
             void showPart();
+            void signalHTMLSettingsChanged();
             
 
         protected:

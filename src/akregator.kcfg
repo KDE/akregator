@@ -31,6 +31,17 @@
    <default>50,350</default>
   </entry>
  </group> 
+ <group name="Appearance">
+   <entry key="Standard Font" type="String" />
+   <entry key="Fixed Font" type="String" />
+   <entry key="Serif Font" type="String" />
+   <entry key="Sans Serif Font" type="String" />
+   <entry key="Use Konq HTML Settings" type="Bool">
+     <label>Use Konqueror settings</label>
+     <whatsthis>Enable this if you want akregator to use the appearance settings (e.g. fonts)</whatsthis>
+     <default>true</default>
+   </entry>
+ </group>
  <group name="HTML Settings" >
   <entry key="AutomaticDetectionLanguage" type="String" />
   <entry key="DefaultEncoding" type="String" />
@@ -42,19 +53,18 @@
   <entry key="FormCompletion" type="Bool" />
   <entry key="HoverLinks" type="Bool" />
   <entry key="MaxFormCompletionItems" type="Int" />
-  <entry key="MediumFontSize" type="Int" />
-  <entry key="MinimumFontSize" type="Int" />
-  <entry key="UnderlineLinks" type="Bool" />
+  <entry key="MediumFontSize" type="Int">
+    <default>12</default>
+  </entry>
+  <entry key="MinimumFontSize" type="Int">
+    <default>8</default>
+  </entry>
+  <entry key="UnderlineLinks" type="Bool"> 
+    <default>false</default>
+  </entry>
   <entry key="UserStyleSheetEnabled" type="Bool" />
  </group>
- <group name="Appearance">
-    <entry key="Use Konq HTML Settings" type="Bool">
-     <label>Use Konqueror settings</label>
-     <whatsthis>Enable this if you want akregator to use the appearance settings (e.g. fonts)</whatsthis>
-     <default>true</default>
-   </entry>
- </group>
- <group name="Archive">
+  <group name="Archive">
    <entry key="ArchiveMode" type="Enum">
      <label>Archive Mode</label>
      <default>keepAllArticles</default>

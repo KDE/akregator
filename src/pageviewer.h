@@ -69,7 +69,7 @@ namespace Akregator
             
             void slotGlobalBookmarkArticle();
             void formClicked(const KURL& url, const KParts::URLArgs& args);
-            
+
         signals:
             void setTabIcon(const QPixmap&);
 

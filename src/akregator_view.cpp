@@ -211,7 +211,8 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
-    
+
+    connect( m_part, SIGNAL(signalHTMLSettingsChanged()), m_articleViewer, SLOT(slotPaletteOrFontChanged()));
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 

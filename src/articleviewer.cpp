@@ -105,6 +105,7 @@ void ArticleViewer::generateCSS()
     const QColorGroup & cg = QApplication::palette().active();
     m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
                         "<html><head><title></title></head><body>");
+    /*
     m_htmlHead += QString (
     "<style type=\"text/css\">\n"
     "body {\n"
@@ -116,20 +117,33 @@ void ArticleViewer::generateCSS()
             "}\n\n").arg(KGlobalSettings::generalFont().family())
             .arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px")
             .arg(cg.text().name())
+    .arg(cg.base().name());*/
+    m_htmlHead += QString (
+            "<style type=\"text/css\">\n"
+            "body {\n"
+            "  font-family: \"%1\" ! important;\n"
+// from kmail::headerstyle.cpp
+            "  font-size: %2 ! important;\n"
+            "  color: %3 ! important;\n"
+            "  background: %4 ! important;\n"
+            "}\n\n").arg(Settings::standardFont())
+            .arg(QString::number(Settings::mediumFontSize())+"px")
+            .arg(cg.text().name())
             .arg(cg.base().name());
-    m_htmlHead += QString(
+    m_htmlHead += (
     "a {\n"
-    "  color: %1 ! important;\n"
-    "  text-decoration: none ! important;\n"
-            "}\n\n"
-    "#headerbox {\n"
-    "  background: %2 ! important;\n"
-    "  color: %3 ! important;\n"
-    "  border:1px solid #000;\n"
-    "  margin-bottom: 10pt;\n"
-    "  width: 100%;\n"
-            "}\n\n").arg(cg.link().name()).arg(cg.background().name())
+    + QString("  color: %1 ! important;\n")
+    + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
+    +       "}\n\n"
+    +"#headerbox {\n"
+    +"  background: %2 ! important;\n"
+    +"  color: %3 ! important;\n"
+    +"  border:1px solid #000;\n"
+    +"  margin-bottom: 10pt;\n"
+    +"  width: 100%;\n"
+    +        "}\n\n").arg(cg.link().name()).arg(cg.background().name())
             .arg(cg.text().name());
+
     m_htmlHead += QString("#headertitle a:link { color: %1  ! important; }\n"
     "#headertitle a:visited { color: %2 ! important; }\n"
     "#headertitle a:hover{ color: %3 ! important; }\n"
@@ -177,6 +191,9 @@ void ArticleViewer::generateCSS()
    // "  border:1px solid #000;\n"
     m_htmlHead += QString (
     "#article {\n"
+    "  font-size: %5 ! important;\n"
+    "  font-family: %6 ! important;\n"
+    "  background: %4 ! important;\n"
     "  overflow: hidden;\n"
     "  background: %1;\n"
     " border:1px solid %2;\n"
@@ -186,7 +203,12 @@ void ArticleViewer::generateCSS()
     "  color: %3 !important;}\n\n"
     "</style>\n")
     .arg(cg.background().light(108).name())
-            .arg(cg.text().name()).arg(cg.text().name());
+            .arg(cg.text().name())
+            .arg(cg.text().name())
+            .arg(cg.background().light(108).name())
+            .arg(QString::number(Settings::mediumFontSize())+"px")
+            .arg(Settings::standardFont());
+    //kdDebug() << m_htmlHead << endl;
 
 }
 
@@ -265,6 +287,7 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
         text += "\">" + i18n( "Complete Story" ) + "</a>";
     }
     text += "</div>";
+    //kdDebug() << text << endl;
     return text;
 
 }
@@ -481,6 +504,7 @@ void ArticleViewer::keyPressEvent(QKeyEvent* e)
 
 void ArticleViewer::slotPaletteOrFontChanged()
 {
+    kdDebug() << "enter ArticleViewer::slotPaletteOrFontChanged() " << Settings::mediumFontSize() << endl;
     generateCSS();
     reload();
 }

@@ -66,7 +66,8 @@ namespace Akregator
             void slotClear();
 	    
             void slotShowSummary(TreeNode *node);
-	    
+
+            void slotPaletteOrFontChanged();    
         protected:
             /** nobody uses this right now. Do we need it? -fo */
             virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);
@@ -117,11 +118,7 @@ namespace Akregator
         private slots:
             bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
             
-            void slotPaletteOrFontChanged();
-
-            
-            
-    };
+   };
 }
 
 #endif // ARTICLEVIEWER_H

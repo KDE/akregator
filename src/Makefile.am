@@ -91,6 +91,7 @@ libakregatorpart_la_SOURCES = \
 	feedgroupitem.cpp \
 	feeditem.cpp \
 	feedlist.cpp \
+	settings_appearance.ui \
 	settings_general.ui \
 	settings_archive.ui \
 	settings_browser.ui \
