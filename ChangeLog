@@ -11,6 +11,7 @@ Changes:
        - New message notification added -smt
        - Only allow one akregator instance (KUniqueApplication) -smt
        - Autosave: Feeds are autosaved on every change now - save actions removed -smt
+
 Bug Fixes:
        - Fixed problems with whitespace handling -ph
        - Make MMB work again in pageviewer -tpr
