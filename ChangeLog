@@ -4,12 +4,30 @@ aKregator ChangeLog
 
 Changes after 1.0b8:
 -----------------------------
+New features:
+       - Make fonts configurable, added zoom in/out actions -fo
+       - Use KNotify for notification -fo
+       - Make caching configurable -fo
+       - Forms work in the internal browser -gs
+       - Enable sorting in article list -gs
+       - Add possibility to delete article -fo
+       - Allow bookmarking articles in global bookmarks -gs
+
 Changes:
        - Use KDEPIM's progressbar -tpr
        - Update unread count when stopping fetching before it's finished -tpr
+       - Added "Keep flag set" to the search combobox -fo
+       - Added optional close buttons on browser tabs -fo
+       - Prevent unreachable feeds from blocking the fetching process (timeout) -fo
+
 Bug fixes:
        - Disable dnd in feed tree until the feed list is loaded (prevents crash) -fo 
        - Decode the url before adding new feed, makes feed urls with special characters (?, =, &) to work -tpr
+       - Don't crash when deleting feeds which are currently fetching -fo
+       - Don't ignore updates in article which have a GUID -fo
+       - Don't set non-parsable dates to 1970/01/01 -fo
+       - added <xml> processing instruction to exported OPML -sk
+       
 
 Changes after 1.0b7:
 -----------------------------
