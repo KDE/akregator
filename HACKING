@@ -43,11 +43,11 @@ value.  However multiple statements should not ever be combined onto one line:
 
 class Foo
 {
-public:
-    String value() const { return m_value; }
+    public:
+        String value() const { return m_value; }
 };
 
-Also conditionals / loops that only contiain one line in their body (but where
+Also conditionals / loops that only contain one line in their body (but where
 the conditional statement fits onto one line) should omit braces:
 
 if (foo == bar)
@@ -161,7 +161,7 @@ class Test : public QObject
         void someFunc();
         void someFunc2(QSomething *foo);
 
-        static Test *instance();
+        static Test *instance() { return m_instance; }
 
     public slots:
         void receive(QSomething &);
@@ -178,7 +178,7 @@ class Test : public QObject
         void protectedSlot();
 
     protected:
-        int protectedVar;
+        int m_protectedVar;
 
     private:
         int privateMethod();
@@ -189,10 +189,10 @@ class Test : public QObject
         void privateSlotIndeed(int youWonder);
 
     private:
-        int privateVar;
-        QSomething *tastyThing;
+        int m_privateVar;
+        QSomething *m_tastyThing;
 
-        static Test *theInstance;
+        static Test *m_instance;
 };
 
 } // no ; after namespace (borks on gcc 3.4+)
@@ -213,28 +213,28 @@ namespace Akregator {
 
 Test::Test()
     : QObject()
-    , protectedVar(0)
-    , privateVar(0)
-    , tastyThing(0)
-    , theInstance(0)
+    , m_protectedVar(0)
+    , m_privateVar(0)
+    , m_tastyThing(0)
+    , m_instance(0)
 {
 }
 
 Test::Test(QString someString)
     : QObject()
-    , protectedVar(0)
-    , privateVar(0)
-    , tastyThing(someString)
-    , theInstance(0)
+    , m_protectedVar(0)
+    , m_privateVar(0)
+    , m_tastyThing(someString)
+    , m_instance(0)
 {
 }
 
 Test::Test(int i);
     : QObject()
-    , protectedVar(0)
-    , privateVar(0)
-    , tastyThing(i)
-    , theInstance(0)
+    , m_protectedVar(0)
+    , m_privateVar(0)
+    , m_tastyThing(i)
+    , m_instance(0)
 {
     if(i == 0)
         kdDebug() << "Zero initializer" << endl;
