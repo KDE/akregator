@@ -9,6 +9,7 @@ Changes:
        - Show regular akregator icon in tray if there are no unread articles. Based on patch from cartman. -berkus
 
 Bug Fixes:
+#84272 - aKregator doesn't restore feed list after logout with running application
 #81995 - Don't crash when changing from/to combined view when folder selected -tpr
 #82024 - Fix drag&drop regression which made it possible have multiple top level folders -sg
 
