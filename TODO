@@ -1,60 +1,37 @@
 TODO-list for aKregator
 =======================
-<nick>  = reported by
--->nick = assigned to
-#x      = sequential bug number,
-          #000050 being the highest available (take this one for your next bug and increase here)
-Legend  =
-[ ] pending
-[-] unfixed (with reason)
-[+] partially fixed
-[x] completely fixed
-CHG look/feel change
-FIX bug fixed
-ADD new feature
+
+The bugs list has moved to http://berk.upnet.ru/projects/bugs
+
+The bug numbers map is left here for convenience (it will be removed soon).
 
 == SHORT-TERM (URGENT) ==
 
-#000048 ADD [ ] Document default LiveJournal authorization using KCookieJar (just login in konqueror and have working LJ auth)
-#000047 FIX [ ] Remember feeds' favicons between runs -->smt
-#000042 FIX [ ] "File | Save" without previously selected filename doesn't work (doesn't call "Save As...") -->berkus
-#000040 ADD [ ] finally, add some configuration options
-                [ ] default LiveJournal username and password (use KWallet)
-                [ ] remember last open opml file
-#000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
-                [ ] handle palette changes (color changes in kcontrol)
-#000031 ADD [ ] Autosave: Remember feeds list in "current" file
-                Elaborate: when user saves file, remember as current and restore from it,
-                if file is unsaved, store it to data/current.opml.
-#000021 ADD [ ] store fetched articles to Article Archive -->berkus
-#000027 CHG [ ] when changing current feed, change article in m_html also (arguable: mornfall suggested this to be an option!)
-#000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
-#000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?) (correction: might not be necessary now that we have ArticleListItem)
-#000045 CHG [ ] link the feed image to the URL of the feed (not XML URL, but site URL) -->smt
-                <berkus> use guid if guidIsPermalink, otherwise use article <comments> otherwise use Feed htmlUrl
-#000046 CHG [ ] show link addresses in statusbar -->smt
+#000048 (BT #000020)
+#000047 (BT #000021)
+#000042 (BT #000022)
+#000040 (BT #000023)
+#000036 (BT #000024)
+#000031 (BT #000025)
+#000021 (BT #000011)
+#000027 (BT #000012)
+#000004 (BT #000001)
+#000045 (BT #000013)
+#000046 (BT #000014)
 
 == MID-TERM ==
 
-#000007 ADD [ ] DCOP
-#000008 ADD [ ] install mime-type handlers for .opml feed lists
-#000033 ADD [ ] quicksearch bar a-la kmail
-#000009 ADD [ ] write user documentation
-#000010 ADD [ ] code doxymentation
-#000011 ADD [ ] draw appropriate app icons
-#000020 ADD [ ] announce on the <kde-announce@kde.org> mailing list
-#000022 ADD [ ] configure.in.in magic to detect librss presence
+#000007 (BT #000002)
+#000008 (BT #000003)
+#000033 (BT #000018)
+#000009 (BT #000004)
+#000010 (BT #000005)
+#000011 (BT #000006)
+#000020 (BT #000009)
+#000022 (BT #000010)
 
 == LONG-TERM ==
 
-#000032 ADD [+] proposals for librss:
-                [+] add complete RSS 2.0 support to Article, namely add Article::pubDate, const QString& Article::guid() and bool Article::guidIsPermalink();
-                [-] put unparsed <item> children into QMap and add const QString& attribute(const QString &tagName) (almost any other rss, the only problem is that there are many <tag attrib1="x" attrib2="y"> in feeds..); (reason: does not fit frerich's orthogonality principle)
-                [ ] add Document::timeToLive() in minutes - time to cache (RSS 2.0).
-                [ ] add content:encoded support (see http://weblog.delacour.net/archives/000770.html)
-                [ ] add RSS feed autodiscovery -->smt
-
-#000014 ADD [ ] provide .spec file for RPM packaging (or at least let packagers know about it)
-#000015 ADD [ ] provide debian directory and configuration files for Debian packaging (or at least let packagers know about it)
-
-== IDEAS ==
+#000032 (BT #000015)(BT #000017)
+#000014 (BT #000007)
+#000015 (BT #000008)
