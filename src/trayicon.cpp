@@ -23,7 +23,7 @@ using namespace Akregator;
 TrayIcon::TrayIcon(QWidget *parent, const char *name)
         : KSystemTray(parent, name), m_unread(0)
 {
-    m_defaultIcon=KSystemTray::loadIcon("akregator");
+    m_defaultIcon=KSystemTray::loadIcon("akregator_empty");
     m_lightIconImage=m_defaultIcon.convertToImage();
     KIconEffect::toGamma(m_lightIconImage, 0.95);
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
