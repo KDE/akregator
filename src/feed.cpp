@@ -157,5 +157,44 @@ void Feed::imageChanged(const QPixmap &p)
     emit(imageLoaded(this));
 }
 
+// = ArticleSequence ===================================================== //
+
+ArticleSequence::ArticleSequence() : MyArticle::List()
+{
+}
+
+ArticleSequence::ArticleSequence(const ArticleSequence &other) : MyArticle::List(other)
+{
+}
+
+ArticleSequence::iterator ArticleSequence::insert( iterator it, const MyArticle &x )
+{
+    return MyArticle::List::insert( it, x );
+}
+
+void ArticleSequence::insert( iterator it, size_type n, const MyArticle &x )
+{
+    MyArticle::List::insert( it, n, x );
+}
+
+ArticleSequence::iterator ArticleSequence::append( const MyArticle &x )
+{
+    return MyArticle::List::append( x );
+}
+
+ArticleSequence::iterator ArticleSequence::prepend( const MyArticle &x )
+{
+    return MyArticle::List::prepend( x );
+}
+
+
+void ArticleSequence::doNotSort()
+{
+}
+
+void ArticleSequence::sort()
+{
+}
+
 
 #include "feed.moc"

@@ -120,7 +120,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // -- DEFAULT INIT
     // Root item (will be reset when loading from file)
     KListViewItem *elt = new KListViewItem( m_tree, i18n("All Feeds") );
-    m_feeds.addFeedGroup(elt);
+    m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
     elt->setOpen(true);
 
     m_articleViewer->openDefault();

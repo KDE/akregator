@@ -4,6 +4,7 @@
  *                                                                         *
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
+
 #include "articlelist.h"
 #include "feed.h"
 
@@ -27,13 +28,13 @@ struct ArticleListItem::Private
 
 ArticleListItem::ArticleListItem( QListView *parent, MyArticle a, Feed *feed )
     : KListViewItem( parent, parent->lastItem(), KCharsets::resolveEntities(a.title()) )
-    /* FIXME lastItem() is not needed because we will sort after adding */
     , d(new Private)
 {
     d->article = a;
     d->feed = feed;
 }
 
+/*
 int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
 {
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
@@ -46,7 +47,7 @@ int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
     }
 
     return 0;
-}
+}*/
 
 MyArticle ArticleListItem::article()
 {
@@ -60,7 +61,6 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
 {
     setMinimumSize(250, 150);
     addColumn(i18n("Articles"));
-    addColumn(i18n("P"), 16);
     setRootIsDecorated(false);
     setItemsRenameable(false);
     setItemsMovable(false);
@@ -68,7 +68,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
     setFullWidth(false);
-    setSorting(0, false); // sort by date, descending
+    setSorting(-1); // do not sort in the listview, Feed will take care of sorting
     setDragAutoScroll(true);
     setDropHighlighter(false);
 

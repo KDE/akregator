@@ -19,9 +19,6 @@ namespace Akregator
         public:
             ArticleListItem( QListView *parent, MyArticle a, Feed *parent );
 
-            /** Override compare() to compare by pubDate */
-            int compare( QListViewItem *i, int col, bool ascending ) const;
-
             MyArticle article();
 
         private:

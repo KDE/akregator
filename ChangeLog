@@ -4,6 +4,7 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000049 FIX [x] Saving a freshly created feeds list erases "All Feeds" root entry text.
         CHG [x] show current feed's title in the article list heading
 #000041 FIX [x] order for dateless items (right now they show in random order) -->berkus
                 order should be: ordered for items with dates, order same as in rss for items without dates.

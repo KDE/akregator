@@ -21,6 +21,24 @@ namespace Akregator
 {
     class FeedsCollection;
 
+    /** This is article list supporting sorting added articles by pubDate
+     *  and properly emulating pubDate for articles with invalid pubDates.
+     */
+    class ArticleSequence : public MyArticle::List
+    {
+        public:
+            ArticleSequence();
+            ArticleSequence(const ArticleSequence &other);
+
+            iterator insert( iterator it, const MyArticle &x );
+            void insert( iterator it, size_type n, const MyArticle &x );
+            iterator append( const MyArticle &x );
+            iterator prepend( const MyArticle &x );
+
+            void doNotSort(); ///< Disables internal item sorting (useful for massive insert operations).
+            void sort();      ///< Enables internal sorting and sorts items.
+    };
+
     class Feed : public FeedGroup
     {
         Q_OBJECT
@@ -38,17 +56,17 @@ namespace Akregator
             static LJAuthMode authModeFromString(const QString &mode);
 
             // -- ATTRIBUTES
-            //inherited    title();       ///< Feed title
-            QString        xmlUrl;        ///< URL of RSS feed itself
-            QString        htmlUrl;       ///< URL of HTML page for this feed
-            QString        description;   ///< Verbose feed description.
-            bool           isLiveJournal; ///< Is this a LiveJournal feed?
-            QString        ljUserName;    ///< Name of LJ user whose feed we are fetching.
-            LJAuthMode     ljAuthMode;
-            QString        ljLogin;       ///< LiveJournal username
-            QString        ljPassword;    ///< LiveJournal password md5 digest
-            bool           updateTitle;   ///< Whether to update feed title based on fetched rss.
-            MyArticle::List  articles;      ///< List of just fetched feed articles (will be merged with archive?)
+            //inherited      title();       ///< Feed title
+            QString          xmlUrl;        ///< URL of RSS feed itself
+            QString          htmlUrl;       ///< URL of HTML page for this feed
+            QString          description;   ///< Verbose feed description.
+            bool             isLiveJournal; ///< Is this a LiveJournal feed?
+            QString          ljUserName;    ///< Name of LJ user whose feed we are fetching.
+            LJAuthMode       ljAuthMode;
+            QString          ljLogin;       ///< LiveJournal username
+            QString          ljPassword;    ///< LiveJournal password md5 digest
+            bool             updateTitle;   ///< Whether to update feed title based on fetched rss.
+            ArticleSequence  articles;      ///< List of all feed articles
 
             QPixmap        image;
             QPixmap        favicon;
@@ -71,10 +89,6 @@ namespace Akregator
         private:
             bool m_fetchError;
             Document m_document;
-            // TODO
-            //Archived articles
-            //QValueList<Article> m_archive; // use articles instead
-            //void saveArchive(QTextStream &ts);
     };
 }
 
