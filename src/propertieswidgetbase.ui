@@ -145,22 +145,22 @@
                             <widget class="QComboBox">
                                 <item>
                                     <property name="text">
-                                        <string>minutes</string>
+                                        <string>Minutes</string>
                                     </property>
                                 </item>
                                 <item>
                                     <property name="text">
-                                        <string>hours</string>
+                                        <string>Hours</string>
                                     </property>
                                 </item>
                                 <item>
                                     <property name="text">
-                                        <string>days</string>
+                                        <string>Days</string>
                                     </property>
                                 </item>
                                 <item>
                                     <property name="text">
-                                        <string>never</string>
+                                        <string>Never</string>
                                     </property>
                                 </item>
                                 <property name="name">

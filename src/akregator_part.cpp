@@ -414,7 +414,7 @@ bool Part::openFile()
         }
         else
         {
-            KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read error") );
+            KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read Error") );
             return false;
         }
 
@@ -428,7 +428,7 @@ bool Part::openFile()
 
             copyFile(backup);
 
-            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML parsing error") );
+            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
 
             doc = createDefaultFeedList();
         }
@@ -438,7 +438,7 @@ bool Part::openFile()
             QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
             copyFile(backup);
 
-            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML parsing error") );
+            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
             m_view->loadFeeds(createDefaultFeedList());
         }
         
