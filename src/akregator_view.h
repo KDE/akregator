@@ -120,18 +120,27 @@ namespace Akregator
              */
             void slotNodeSelected(TreeNode* node);
             void slotItemMoved();
-
+            
             void slotNormalView();
             void slotWidescreenView();
             void slotCombinedView();
             void slotToggleShowQuickFilter();
-            
-            /**
-             * Shows requested popup menu
-             */
-            void slotContextMenu(KListView*, QListViewItem*, const QPoint&);
 
-	    void slotFetchesCompleted();
+            /** toggles the keep flag of the currently selected article */
+            void slotArticleToggleKeepFlag();
+                    
+                     
+            /**
+             * Shows requested popup menu for feed tree
+             */
+            void slotFeedTreeContextMenu(KListView*, QListViewItem*, const QPoint&);
+
+            /**
+             * Shows requested popup menu for article list
+             */
+            void slotArticleListContextMenu(KListView*, QListViewItem* item, const QPoint& p);
+
+	       void slotFetchesCompleted();
             /**
 //              * Feed has been fetched, populate article view if needed and update counters.
              */
@@ -210,7 +219,8 @@ namespace Akregator
             void slotFeedsTreePageDown();
             void slotFeedsTreeHome();
             void slotFeedsTreeEnd();
-            
+
+   
         private:
             /**
              * Reset to default values, removing all existing data.

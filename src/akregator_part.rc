@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="28">
+<kpartgui name="akregator_part" version="29">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -101,6 +101,10 @@
   <Action name="feed_fetch"/>
   <Separator/>
   <Action name="feed_mark_all_as_read"/>
+</Menu>
+
+<Menu name="article_popup">
+  <Action name="article_toggle_keep"/>
 </Menu>
 
 </kpartgui>

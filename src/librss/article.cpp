@@ -11,6 +11,7 @@
 #include "article.h"
 #include "tools_p.h"
 
+#include <kdebug.h>
 #include <krfcdate.h>
 #include <kurl.h>
 #include <kurllabel.h>
@@ -140,13 +141,14 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		d->guid = QString(md5Machine.hexDigest().data());
 	}
 
-    // TODO: iterate among all meta nodes..
-    n = node.namedItem(QString::fromLatin1("metaInfo:meta"));
-    if (!n.isNull()) {
-        QString type=n.toElement().attribute(QString::fromLatin1("type"));
-        if (!(elemText = extractNode(node, QString::fromLatin1("metaInfo:meta"))).isNull())
-            d->meta[type]=elemText;
-    } 
+    for (QDomNode i = node.firstChild(); !i.isNull(); i = i.nextSibling())
+    {
+        if (i.isElement() && i.toElement().tagName() == QString::fromLatin1("metaInfo:meta"))
+        {
+            QString type = i.toElement().attribute(QString::fromLatin1("type"));
+            d->meta[type] = i.toElement().text();
+        }
+    }
 }
 
 Article::~Article()

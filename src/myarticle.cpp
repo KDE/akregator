@@ -44,11 +44,9 @@ MyArticle::MyArticle(Article article) : d(new Private)
     else
         d->title=article.title();
     d->status=d->article.meta("status").toInt();
+
+    d->keep = (article.meta("keep") == "true") ? true : false;
     
-    d->keep = article.meta("keep") == "true" ? true : false;
-    
-    if (d->keep)
-        kdDebug() << "KEEP" << d->title << endl;
     d->feed = 0;
 }
 
@@ -235,11 +233,13 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
     
     if ( d->keep )
     {
-//        metanode = doc.createElement( "metaInfo:meta" );
+        metanode = doc.createElement( "metaInfo:meta" );
         metanode.setAttribute("type", "keep");
         metanode.appendChild(doc.createTextNode( d->keep ? "true" : "false"));
         parent.appendChild(metanode);
     }
+
+    
 }
 
 

@@ -109,7 +109,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
 
     connect(m_tree, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
-            this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
+            this, SLOT(slotFeedTreeContextMenu(KListView*, QListViewItem*, const QPoint&)));
     
     connect(m_tree, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
     
@@ -196,6 +196,9 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_articles, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),
                 this, SLOT( slotOpenArticleExternal(QListViewItem*, const QPoint&, int)) );
 
+    connect(m_articles, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
+            this, SLOT(slotArticleListContextMenu(KListView*, QListViewItem*, const QPoint&)));
+    
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
@@ -710,7 +713,7 @@ void aKregatorView::slotTabCaption(const QString &capt)
     }
 }
 
-void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoint& p)
+void aKregatorView::slotFeedTreeContextMenu(KListView*, QListViewItem* item, const QPoint& p)
 {
     TreeNodeItem* ti = static_cast<TreeNodeItem*>(item); 
     TreeNode* node = ti ? ti->node() : 0;
@@ -725,6 +728,19 @@ void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoin
         w = m_part->factory()->container("feedgroup_popup", m_part);
     else
         w = m_part->factory()->container("feeds_popup", m_part);
+    if (w)
+        static_cast<QPopupMenu *>(w)->exec(p);
+}
+
+void aKregatorView::slotArticleListContextMenu(KListView*, QListViewItem* item, const QPoint& p)
+{
+    ArticleListItem* ali = static_cast<ArticleListItem*> (item);
+    if (!ali)
+        return;
+    KToggleAction* ka = static_cast<KToggleAction*> (m_part->actionCollection()->action("article_toggle_keep"));
+    if (ka)
+        ka->setChecked( ali->article().keep() );
+    QWidget* w = m_part->factory()->container("article_popup", m_part);
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
 }
@@ -1435,6 +1451,16 @@ void aKregatorView::slotToggleShowQuickFilter()
         m_searchBar->show();
     }
     
+}
+
+void aKregatorView::slotArticleToggleKeepFlag()
+{
+    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+
+    if (!ali)
+        return;
+    ali->article().setKeep(!ali->article().keep());
+    Archive::save( ali->article().feed() );
 }
 
 void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)

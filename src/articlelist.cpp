@@ -61,7 +61,7 @@ int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
     return 0;
 }*/
 
-const MyArticle& ArticleListItem::article()
+MyArticle& ArticleListItem::article()
 {
     return d->article;
 }
