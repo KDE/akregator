@@ -53,6 +53,12 @@ namespace Akregator
             * This reverts cursor back to normal one
             */
            void slotCompleted();
+           
+        private:
+            /**
+             * Display article in external browser.
+             */
+            void displayInExternalBrowser(const KURL &url);
     };
 }
 
