@@ -78,7 +78,7 @@ void FeedGroup::insertChild(TreeNode* node, TreeNode* after)
     int pos = m_children.find(after);
     
     if (pos == -1)
-        appendChild(node);
+        prependChild(node);
     else 
         insertChild(pos+1, node);
 }
