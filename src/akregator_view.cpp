@@ -1148,6 +1148,8 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
 
 void aKregatorView::slotDoIntervalFetches()
 {
+    if (m_transaction->isRunning() || m_part->loading())
+        return;
     kdDebug() << "doIntervalFetches"<<endl;
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
     {
