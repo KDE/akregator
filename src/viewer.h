@@ -23,65 +23,62 @@ namespace Akregator
     {
         Q_OBJECT
         public:
-            
-        Viewer(QWidget* parent, const char* name);
-	    virtual bool closeURL();
-		virtual bool openURL(const KURL &);
-		void open(const KURL &);
-	
-	//    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype) = 0;
-        
-	public slots:
+            Viewer(QWidget* parent, const char* name);
+            virtual bool closeURL();
+            virtual bool openURL(const KURL &);
+            void open(const KURL &);
 
+            //    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype) = 0;
+
+        public slots:
             void slotScrollUp(); 
             void slotScrollDown();
             void slotZoomIn();
             void slotZoomOut();
             void slotSetZoomFactor(int percent);
             void slotPrint();
-	       void setSafeMode();
-           
-        
+            void setSafeMode();
+
         signals:
-           /**
-            * This gets emited when url gets clicked
-            */
-           void urlClicked(const KURL& url, bool background=false);
+            /**
+             * This gets emited when url gets clicked
+             */
+            void urlClicked(const KURL& url, bool background=false);
 
         protected:
-           KURL m_url;
+            KURL m_url;
 
         protected slots:
-           virtual bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
-           virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+            virtual bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
-	              /**
-            * Copies current link to clipboard.
-            */
-           void slotCopyToClipboard();
+            /**
+             * Copies current link to clipboard.
+             */
+            void slotCopyToClipboard();
 
-           /**
-            * Opens link in internal viewer.
-            */
-           virtual void slotOpenLinkInternal();
+            /**
+             * Opens link in internal viewer.
+             */
+            virtual void slotOpenLinkInternal();
 
-           /**
-            * Opens link in external viewer, eg. Konqueror
-            */
-           void slotOpenLinkExternal();
+            /**
+             * Opens link in external viewer, eg. Konqueror
+             */
+            void slotOpenLinkExternal();
 
-           /**
-            * This changes cursor to wait cursor
-            */
-           void slotStarted(KIO::Job *);
+            /**
+             * This changes cursor to wait cursor
+             */
+            void slotStarted(KIO::Job *);
 
-           /**
-            * This reverts cursor back to normal one
-            */
-           void slotCompleted();
+            /**
+             * This reverts cursor back to normal one
+             */
+            void slotCompleted();
 
-           //void slotSaveLinkAs();
-           
+            //void slotSaveLinkAs();
+
         private:
             /**
              * Display article in external browser.
@@ -91,3 +88,4 @@ namespace Akregator
 }
 
 #endif // VIEWER_H
+// vim: ts=4 sw=4 et
