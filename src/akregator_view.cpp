@@ -153,6 +153,7 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     m_searchBar = new QHBox(m_mainTab);
     m_searchBar->setMargin(2);
+    m_searchBar->setSpacing(5);
     m_searchBar->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     QToolButton *clearButton = new QToolButton( m_searchBar );
     clearButton->setIconSet( SmallIconSet( QApplication::reverseLayout() ? "clear_left" : "locationbar_erase" ) );
@@ -165,6 +166,9 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_searchLine = new KLineEdit(m_searchBar, "searchline");
     searchLabel->setBuddy(m_searchLine);
 
+    QLabel* statusLabel = new QLabel(m_searchBar);
+    statusLabel->setText( i18n("Status:") );
+    
     m_searchCombo = new KComboBox(m_searchBar, "searchcombo");
     mainTabLayout->add(m_searchBar);
     
