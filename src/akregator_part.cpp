@@ -155,7 +155,8 @@ bool aKregatorPart::openFile()
     if (file.open(IO_ReadOnly) == false)
         return false;
 
-        setProgress(0);
+    setStatusBar( i18n("Opening Feed List...") );
+    setProgress(0);
     kapp->processEvents();
 
     // Read OPML feeds list and build QDom tree.
@@ -188,8 +189,7 @@ bool aKregatorPart::openFile()
             m_view->slotFetchAllFeeds();
     }
 
-    // just for fun, set the status bar
-    setStatusBar( m_url.prettyURL() );
+    setStatusBar( QString::null );
 
     return true;
 }
