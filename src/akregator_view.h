@@ -191,7 +191,7 @@ namespace Akregator
              */
             void writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document );
 
-            void addFeed(QString url, QListViewItem *after, QListViewItem* parent);
+            void addFeed(QString url, QListViewItem *after, QListViewItem* parent, bool autoExec = false);
             /**
              * Add feed to feeds tree, given the existing list view item and alot of
              * feed parameters. FIXME: parameters better be bundled to FeedData?

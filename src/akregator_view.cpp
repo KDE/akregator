@@ -516,8 +516,8 @@ void aKregatorView::addFeedToGroup(const QString& url, const QString& group)
         m_tree->ensureItemVisible(lastChild);
     else
         m_tree->ensureItemVisible(item);
-    // Display Add Feed dialog with url filled in.
-    addFeed(url, lastChild, item);
+    // Invoke the Add Feed dialog with url filled in.
+    addFeed(url, lastChild, item, true);
 }
 
 void aKregatorView::slotNormalView()
@@ -760,7 +760,7 @@ void aKregatorView::slotFeedAdd()
 
 }
 
-void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* parent)
+void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* parent, bool autoExec /*= false*/)
 {
     FeedsTreeItem *elt;
     Feed *feed;
@@ -768,19 +768,29 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
 
     afd->setURL(url);
 
-    if (afd->exec() != QDialog::Accepted) return;
-
-    QString text=afd->feedTitle;
-    feed=afd->feed;
+    QString text;
+    if (autoExec)
+    {
+        afd->slotOk();
+        feed=afd->feed;
+        text=feed->title();
+    }
+    else
+    {
+        if (afd->exec() != QDialog::Accepted) return;
+        text=afd->feedTitle;
+        feed=afd->feed;
+    }
 
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
 
     dlg->setFeedName(text);
     dlg->setUrl(afd->feedURL);
     dlg->selectFeedName();
-
-    if (dlg->exec() != QDialog::Accepted) return;
-
+    
+    if (!autoExec)
+        if (dlg->exec() != QDialog::Accepted) return;
+    
     if (!parent)
         parent=m_tree->firstChild();
 
