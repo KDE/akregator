@@ -787,28 +787,36 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
     if (feed->isGroup())
     {
-        m_part->actionCollection()->action("feed_add")->setEnabled(true);
-        m_part->actionCollection()->action("feed_add_group")->setEnabled(true);
         m_articles->clear();
 
         if (m_articles->columns() < 3)
         {
             m_articles->addColumn(i18n("Date"));
             m_articles->setColumnText(1,i18n("Feed"));
-        }
+            
+            /*if (m_articles->firstChild())
+            {
+                QFontMetrics fm( m_articles->font() );
+                m_articles->setColumnWidth(0, m_articles->width()-
+                                fm.width(m_articles->firstChild()->text(0))
+                                -fm.width(m_articles->firstChild()->text(1)));
+            }*/
+            m_articles->setColumnWidthMode(2, QListView::Maximum);
+	        m_articles->setColumnWidthMode(1, QListView::Manual);
+	        m_articles->setColumnWidthMode(0, QListView::Manual);
+	    }
 
         slotUpdateArticleList(feed, false);
     }
     else
     {
-        m_part->actionCollection()->action("feed_add")->setEnabled(false);
-        m_part->actionCollection()->action("feed_add_group")->setEnabled(false);
-
         if (m_articles->columns() > 2)
         {
             m_articles->setColumnText(1,i18n("Date"));
             int oldw=m_articles->columnWidth(0)+m_articles->columnWidth(1);
             m_articles->removeColumn(2);
+            m_articles->setColumnWidthMode(1, QListView::Maximum);
+	        m_articles->setColumnWidthMode(0, QListView::Manual);
             m_articles->setColumnWidth(0, oldw); // resize title col to old title col + feed col width
         }
 
@@ -830,8 +838,6 @@ void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
     //kdDebug() << k_funcinfo << src->title() << endl;
     if (!src->isGroup())
     {
-        /*if (m_viewMode==CombinedView)
-            m_articleViewer->show(static_cast<Feed *>(src), false);*/
         slotUpdateArticleList(static_cast<Feed *>(src), false, onlyUpdateNew);
     }
     else
@@ -865,8 +871,10 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
             if (!onlyUpdateNew || (*it).status()==MyArticle::New)
             {
                 if (itemAdded(new ArticleListItem( m_articles, (onlyUpdateNew ? (0): (m_articles->lastChild())), (*it), source )))
+                {
                     if (m_viewMode==CombinedView)
                         m_articleViewer->show(source, *it, false);     
+                }
             }
         }
     }
@@ -874,20 +882,27 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
     m_articles->triggerUpdate();
 }
 
-// NOTE: feed can only be added to a feed group as a child
 void aKregatorView::slotFeedAdd()
 {
-    if (!m_tree->currentItem() || m_feeds.find(m_tree->currentItem())->isGroup() == false)
+    FeedsTreeItem *i=static_cast<FeedsTreeItem*>(m_tree->currentItem());
+    if (!i)
+        i=static_cast<FeedsTreeItem*>(m_tree->firstChild()); // all feeds
+
+    QListViewItem *lastChild; 
+    if (i->isFolder())        
     {
-        KMessageBox::error(this, i18n("You have to choose feed group before adding feed."));
-        return;
+        lastChild= i->firstChild();
+        while (lastChild && lastChild->nextSibling())
+            lastChild = lastChild->nextSibling();
+    }
+    else
+    {
+        // if it's not a folder, add the feed AFTER the selected feed
+        lastChild=i;
+        i=static_cast<FeedsTreeItem*>(i->parent());
     }
 
-    QListViewItem *lastChild = m_tree->currentItem()->firstChild();
-    while (lastChild && lastChild->nextSibling())
-        lastChild = lastChild->nextSibling();
-
-    addFeed(QString::null, lastChild, m_tree->currentItem());
+    addFeed(QString::null, lastChild, i);
 
 }
 
@@ -1240,6 +1255,20 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     // If its a currenly selected feed, update view
     if (feed->item() == m_tree->currentItem())
         slotUpdateArticleList(feed, false, true);
+
+    // iterate through the articles (once again) to do notifications properly
+    if (feed->articles.count() > 0)
+    {
+        MyArticle::List::ConstIterator it;
+        MyArticle::List::ConstIterator end = feed->articles.end();
+        for (it = feed->articles.begin(); it != end; ++it)
+        {
+            if ((*it).status()==MyArticle::New)
+            {
+                m_part->newArticle(feed, *it);     // will do systray notification
+            }
+        }
+    }
 
     // TODO: move to slotFetchesCompleted
     Archive::save(feed);

@@ -5,9 +5,9 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
-
 #include "trayicon.h"
 
+#include <kwin.h>
 #include <kiconeffect.h>
 #include <kdebug.h>
 #include <klocale.h>
@@ -21,7 +21,7 @@
 using namespace Akregator;
 
 TrayIcon::TrayIcon(QWidget *parent, const char *name)
-        : KSystemTray(parent, name), m_unread(0)
+        : KSystemTray(parent, name), m_unread(0), m_balloon(0)
 {
     m_defaultIcon=KSystemTray::loadIcon("akregator");
     QPixmap m_unreadIcon=KSystemTray::loadIcon("akregator_empty");
@@ -34,9 +34,26 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
 TrayIcon::~TrayIcon()
 {}
 
+
+void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art)
+{
+	if (!m_balloon)
+	{
+		m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
+		m_balloon->setAnchor(mapToGlobal(pos()));
+		m_balloon->setFixedWidth(m_balloon->width()+10);
+        m_balloon->show();
+
+        KWin::setOnAllDesktops(m_balloon->winId(), true);
+	}
+	
+	m_balloon->addArticle(feed, p, art);
+}
+
+
 void TrayIcon::updateUnread(int unread)
 {
-    if (unread==m_unread)
+	if (unread==m_unread)
         return;
     
     m_unread=unread;

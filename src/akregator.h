@@ -38,8 +38,11 @@ class BrowserInterface : public KParts::BrowserInterface
 public:
         BrowserInterface( aKregator *shell, const char *name );
         bool haveWindowLoaded() const;
+
 public slots:
         void updateUnread( int );
+		void newArticle(const QString&, const QPixmap&, const QString&);
+
 private:
         aKregator *m_shell;
 };
@@ -88,7 +91,8 @@ public:
 	virtual void setCaption(const QString &);
 
     void updateUnread(int);
-    
+    void newArticle(const QString&, const QPixmap&, const QString&);
+
 public slots:
     void slotSetStatusBarText(const QString & s);
     void slotActionStatusText(const QString &s);

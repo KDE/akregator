@@ -60,6 +60,12 @@ bool BrowserInterface::haveWindowLoaded() const
     return akreapp->haveWindowLoaded();
 }
 
+void BrowserInterface::newArticle(const QString& feed, const QPixmap&p, const QString& article)
+{
+    m_shell->newArticle(feed, p, article);
+
+}
+
 aKregator::aKregator()
     : KParts::MainWindow( 0L, "aKregator" ),
     m_quit(false)
@@ -380,6 +386,11 @@ void aKregator::fontChange(const QFont & /* oldFont */)
 void aKregator::updateUnread(int unread)
 {
     m_icon->updateUnread(unread);
+}
+
+void aKregator::newArticle(const QString& feed, const QPixmap&p, const QString& article)
+{
+    m_icon->newArticle(feed, p, article);
 }
 
 void aKregator::loadingProgress(int percent)

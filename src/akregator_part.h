@@ -15,6 +15,7 @@
 #include <kurl.h>
 
 #include "akregator_partiface.h"
+#include "myarticle.h"
 
 class KParts::BrowserExtension;
 
@@ -22,6 +23,7 @@ namespace Akregator
 {
     class aKregatorView;
     class aKregatorPart;
+    class Feed;
 
     class BrowserExtension : public KParts::BrowserExtension
     {
@@ -83,6 +85,7 @@ namespace Akregator
             void setCanceled(const QString &s);
             
             void setTotalUnread(int unread);
+            void newArticle(Feed *src, const MyArticle &a);
 
             void setCaption(const QString &text);
             

@@ -22,6 +22,7 @@
 #include <kfiledialog.h>
 
 #include <qfile.h>
+#include <private/qucomextra_p.h>
 
 using namespace Akregator;
 
@@ -173,6 +174,25 @@ void aKregatorPart::setTotalUnread(int unread)
         m_totalUnread=unread;
     }
 }
+
+
+// will do systray notification
+void aKregatorPart::newArticle(Feed *src, const MyArticle &a)
+{
+    // HACK Because m_extension->browserInterface()->callMethod isn't flexible enough for us.
+
+    if (m_extension->browserInterface())
+    {
+        int slot = m_extension->browserInterface()->metaObject()->findSlot( "newArticle(const QString&,const QPixmap&,const QString&)" );
+        
+        QUObject o[ 4 ];
+        static_QUType_QString.set( o + 1, src->title() );
+        static_QUType_ptr.set( o + 2, &(src->favicon) );
+        static_QUType_QString.set( o + 3, a.title() );
+        m_extension->browserInterface()->qt_invoke( slot, o );
+    }
+}
+
 
 /*************************************************************************************************/
 /* LOAD                                                                                          */
