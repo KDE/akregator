@@ -29,8 +29,6 @@ class FeedItem : public TreeNodeItem
     FeedItem(KListView* parent, Feed* node);
     ~FeedItem();
     virtual Feed* node();
-    virtual bool isFolder() { return false; }
-
     virtual void nodeChanged();
     
     static QPixmap errorPixmap();

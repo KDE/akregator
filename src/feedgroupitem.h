@@ -19,8 +19,6 @@ namespace Akregator
 
 class FeedGroup;
 
-/**
-*/
 class FeedGroupItem : public TreeNodeItem
 {
 
@@ -29,9 +27,9 @@ public:
     FeedGroupItem(FeedGroupItem* parent, TreeNodeItem* after, FeedGroup* node);
     FeedGroupItem(KListView* parent, FeedGroup* node);
     ~FeedGroupItem();
+    
     virtual FeedGroup* node();
     
-    virtual bool isFolder() { return true; }
     virtual void setOpen(bool open);
 };
 
