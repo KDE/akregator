@@ -5,6 +5,8 @@ aKregator ChangeLog
 Changes after 1.0b6:
 -----------------------------
 Changes:
+       - make systray icon optional (Patch by Christof Musik,
+       christof(at)freenet.de) -fo
        - added "Export Feeds" function to export the standard feed list -fo
        - Expiry support added -fo 
          

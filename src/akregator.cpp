@@ -81,7 +81,10 @@ aKregator::aKregator()
     setupActions();
 
     m_icon = new TrayIcon(this);
-    m_icon->show();
+    
+    if ( Settings::showTrayIcon() )
+        m_icon->show();
+        
     connect(m_icon, SIGNAL(quitSelected()),
             this, SLOT(quitProgram()));
 
@@ -357,7 +360,7 @@ bool aKregator::queryExit()
 
 bool aKregator::queryClose()
 {
-    if (kapp->sessionSaving() || m_quit)
+    if ( kapp->sessionSaving() || m_quit || !Settings::showTrayIcon() )
         return m_part->queryClose();
     else
     {

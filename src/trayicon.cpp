@@ -117,16 +117,21 @@ void TrayIcon::viewButtonClicked()
 
 void TrayIcon::settingsChanged()
 {
-    if(!m_balloon && Settings::useNotifications()) {
+    if (!m_balloon && Settings::useNotifications()) {
         m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
         connect(m_balloon, SIGNAL(signalButtonClicked()), this, SLOT(viewButtonClicked()));
 
         m_balloon->hide();
     }
-    if(m_balloon && !Settings::useNotifications()) {
+    if (m_balloon && !Settings::useNotifications()) {
         delete m_balloon;
         m_balloon = 0;    
     }
+    
+    if ( Settings::showTrayIcon() )
+        show();
+    else
+        hide();
 }
 
 #include "trayicon.moc"

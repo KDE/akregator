@@ -66,6 +66,11 @@
    <whatsthis>Specifies if the balloon notifications are used or not.</whatsthis>
    <default>false</default>
   </entry>
+  <entry key="Show Tray Icon" type="Bool" >
+   <label>Show tray icon</label>
+   <whatsthis>Specifies if the tray icon is shown or not.</whatsthis>
+   <default>true</default>
+  </entry>
  </group>
  <group name="Browser" >
   <entry key="External Browser Use Kde Default" type="Bool" >

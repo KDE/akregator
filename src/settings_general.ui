@@ -10,7 +10,7 @@
             <x>0</x>
             <y>0</y>
             <width>364</width>
-            <height>372</height>
+            <height>436</height>
         </rect>
     </property>
     <property name="caption">
@@ -31,58 +31,7 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>kcfg_UseIntervalFetch</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Use interval fetching</string>
-                    </property>
-                </widget>
-                <widget class="QLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>layout4</cstring>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QLabel">
-                            <property name="name">
-                                <cstring>textLabel1</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Fetch all feeds every</string>
-                            </property>
-                        </widget>
-                        <widget class="QSpinBox">
-                            <property name="name">
-                                <cstring>kcfg_AutoFetchInterval</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="maxValue">
-                                <number>3600</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                            <property name="lineStep">
-                                <number>10</number>
-                            </property>
-                        </widget>
-                        <widget class="QLabel">
-                            <property name="name">
-                                <cstring>textLabel2</cstring>
-                            </property>
-                            <property name="text">
-                                <string>minute(s)</string>
-                            </property>
-                        </widget>
-                    </hbox>
-                </widget>
-                <widget class="QLayoutWidget" row="6" column="0" rowspan="1" colspan="2">
+                <widget class="QLayoutWidget" row="5" column="0">
                     <property name="name">
                         <cstring>layout2</cstring>
                     </property>
@@ -123,7 +72,48 @@
                         </widget>
                     </hbox>
                 </widget>
-                <widget class="QCheckBox" row="5" column="0" rowspan="1" colspan="2">
+                <widget class="QLayoutWidget" row="1" column="0">
+                    <property name="name">
+                        <cstring>layout4</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Fetch all feeds every</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox">
+                            <property name="name">
+                                <cstring>kcfg_AutoFetchInterval</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="suffix">
+                                <string>minutes</string>
+                            </property>
+                            <property name="specialValueText">
+                                <string>1 minute</string>
+                            </property>
+                            <property name="maxValue">
+                                <number>3600</number>
+                            </property>
+                            <property name="minValue">
+                                <number>1</number>
+                            </property>
+                            <property name="lineStep">
+                                <number>10</number>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QCheckBox" row="4" column="0">
                     <property name="name">
                         <cstring>kcfg_UseExpiry</cstring>
                     </property>
@@ -131,7 +121,7 @@
                         <string>Delete expired articles</string>
                     </property>
                 </widget>
-                <widget class="QCheckBox" row="3" column="0" rowspan="1" colspan="2">
+                <widget class="QCheckBox" row="2" column="0">
                     <property name="name">
                         <cstring>kcfg_UseNotifications</cstring>
                     </property>
@@ -140,6 +130,22 @@
                     </property>
                     <property name="whatsThis" stdset="0">
                         <string>This setting selects if aKregator will use balloon notifications for new feeds or not.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="3" column="0">
+                    <property name="name">
+                        <cstring>kcfg_ShowTrayIcon</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Show tray icon</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="0" column="0">
+                    <property name="name">
+                        <cstring>kcfg_UseIntervalFetch</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Use interval fetching</string>
                     </property>
                 </widget>
             </grid>

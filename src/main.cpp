@@ -41,6 +41,7 @@ int main(int argc, char **argv)
     about.addAuthor( "Frank Osterfeld", I18N_NOOP("Developer"), "f_osterf@informatik.uni-kl.de" );
     about.addAuthor( "Gary Cramblitt", I18N_NOOP("Contributor"), "garycramblitt@comcast.net");
     about.addAuthor( "Stephan Binner", I18N_NOOP("Contributor"), "binner@kde.org" );
+    about.addAuthor( "Christof Musik", I18N_NOOP("Contributor"), "christof@freenet.de" );
     about.addCredit( "Philipp Droessler", I18N_NOOP("Gentoo Ebuild"), "kingmob@albert-unser.net");
     about.addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "raabe@kde.org" );
     KCmdLineArgs::init(argc, argv, &about);
