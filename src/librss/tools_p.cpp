@@ -23,13 +23,16 @@ time_t RSS::parseISO8601Date(const QString &s)
 }
 
 
-QString RSS::extractNode(const QDomNode &parent, const QString &elemName)
+QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool simplifyWhiteSpace)
 {
 	QDomNode node = parent.namedItem(elemName);
 	if (node.isNull())
 		return QString::null;
 
-	QString result = node.toElement().text().simplifyWhiteSpace();
+	QString result = node.toElement().text();
+	if (simplifyWhiteSpace) {
+		result=result.simplifyWhiteSpace();
+	}
 	if (result.isEmpty())
 		return QString::null;
 

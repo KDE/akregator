@@ -285,24 +285,9 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
          ++charData;
       }
 
-      QByteArray tmpData;//CString
+      QByteArray tmpData;
       tmpData.setRawData(charData, len);
       
-      // hack: support formatting inside <pre> tags
-/*      QRegExp pres("&lt;pre&gt;(.+)&lt;/pre&gt;", false);
-      pres.setMinimal(TRUE);
-      int pos = 0;
-      while( (pos = pres.search(tmpData, pos)) != -1 )
-      {
-	int len = pres.matchedLength();
-	
-	QCString str = tmpData.mid(pos, len);
-	str.replace("\n", "&lt;br/&gt;");
-	
-	tmpData.replace(pos, len, str);
-	pos += len;
-      }*/
-
       if (doc.setContent(tmpData))
       {
          rssDoc = Document(doc);

@@ -26,7 +26,7 @@ namespace RSS
 		unsigned int count;
 	};
 
-	QString extractNode(const QDomNode &parent, const QString &elemName);
+	QString extractNode(const QDomNode &parent, const QString &elemName, bool simplifyWhiteSpace=true);
 	time_t parseISO8601Date(const QString &s);
 }
 
