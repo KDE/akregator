@@ -923,7 +923,7 @@ void View::slotFeedRemove()
             i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
         msg = msg.arg(selectedNode->title());
     }
-    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KGuiItem(i18n("&Delete"), "editdelete")) == KMessageBox::Continue)
+    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
         delete selectedNode;
         m_tree->setFocus();
@@ -1388,9 +1388,9 @@ void View::slotArticleDelete()
     if (!ali)
         return;
 
-    QString msg = QString(i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>")).arg(QStyleSheet::escape(ali->article().title()));
+    QString msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(ali->article().title()));
                 
-    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KGuiItem(i18n("&Delete"), "articledelete")) == KMessageBox::Continue)
+    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
         MyArticle article = ali->article();
         article.setDeleted();
