@@ -20,7 +20,8 @@ bin_PROGRAMS = akregator
 # the application source, library search path, and link libraries
 akregator_SOURCES = main.cpp app.cpp akregator.cpp 
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
+akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la
+#akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
 
 # this is where the desktop file will go
 shelldesktopdir = $(kde_appsdir)/Internet
@@ -39,9 +40,25 @@ kdelnkdir = $(kde_servicesdir)
 
 # this is a lib shared by both the KPart and the main application
 lib_LTLIBRARIES = libakregatorprivate.la
-libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc aboutdata.cpp
-libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined
-libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KHTML)
+libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
+				 aboutdata.cpp \
+				 myarticle.cpp \
+				 feed.cpp \
+				 treenode.cpp \
+				 feedgroup.cpp \
+				 feedlist.cpp \
+			         fetchtransaction.cpp \
+			  	 articlesequence.cpp \
+				feediconmanager.cpp \
+				feediconmanager.skel \
+                                plugin.cpp \
+ 				pluginmanager.cpp \
+				storagefactoryregistry.cpp \
+				storage.cpp
+				
+libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined 
+libakregatorprivate_la_LIBADD =	$(top_builddir)/libkdepim/libkdepim.la \
+	$(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KHTML)
 
 #########################################################################
 # KPART SECTION
@@ -50,7 +67,6 @@ libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal
 kde_kcfg_DATA = akregator.kcfg
 kde_module_LTLIBRARIES = libakregatorpart.la
 
-archive.lo: akregatorconfig.h
 akregator.lo: akregatorconfig.h
 akregator_part.lo: akregatorconfig.h
 akregator_view.lo: akregatorconfig.h
@@ -65,45 +81,36 @@ viewer.lo: akregatorconfig.h
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = \
 	akregator_run.cpp \
-	articlesequence.cpp \
-	intervalmanager.cpp \
-	feedstree.cpp \
-	feed.cpp \
-	fetchtransaction.cpp \
 	articlelist.cpp \
 	frame.cpp \
-	feediconmanager.cpp \
 	viewer.cpp \
 	articleviewer.cpp \
-	feedgroup.cpp \
 	exportwidgetbase.ui \
 	addfeeddialog.cpp \
 	addfeedwidgetbase.ui \
 	propertiesdialog.cpp \
 	propertieswidgetbase.ui \
-	myarticle.cpp \
 	articlefilter.cpp \
-	archive.cpp \
 	pageviewer.cpp \
 	tabwidget.cpp \
-	treenode.cpp \
+	feedstree.cpp \
 	treenodeitem.cpp \
 	feedgroupitem.cpp \
 	feeditem.cpp \
-	feedlist.cpp \
 	settings_appearance.ui \
 	settings_general.ui \
 	settings_archive.ui \
 	settings_browser.ui \
+	settings_advancedbase.ui \
+	settings_advanced.cpp \
 	trayicon.cpp \
-	feediconmanager.skel \
 	akregator_partiface.skel \
 	akregator_part.cpp \
 	akregator_view.cpp \
         notificationmanager.cpp
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -avoid-version -no-undefined $(all_libraries)
-libakregatorpart_la_LIBADD = libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
+libakregatorpart_la_LIBADD = libakregatorprivate.la 
 
 # this is where the desktop file will go
 partdesktopdir = $(kde_servicesdir)
@@ -117,6 +124,9 @@ partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc eventsrc
 iconsdir = $(kde_datadir)/akregator/pics
 icons_DATA = akregator_flag.png
 
-SUBDIRS = librss about
+kde_servicetypes_DATA = akregator_plugin.desktop
 
-noinst_HEADERS = archive.h
+
+SUBDIRS = librss about . mk4storage 
+
+

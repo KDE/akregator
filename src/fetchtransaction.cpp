@@ -36,6 +36,7 @@ FetchTransaction::FetchTransaction(QObject *parent): QObject(parent, "transactio
     m_fetchList(), m_currentFetches(), m_iconFetchList(), m_iconFetchDict(),
     m_imageFetchList(), m_currentImageFetches(), m_imageFetchDict(), m_totalFetches(0), m_running(false)
 {
+    m_imageFetchList.setAutoDelete(true); // as we create Image objects only used locally
     m_concurrentFetches=Settings::concurrentFetches();
 
     connect (FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)), this, SLOT(slotFaviconFetched(const QString &, const QPixmap &)));
@@ -225,13 +226,14 @@ void FetchTransaction::slotFaviconFetched(const QString &host, const QPixmap &p)
 
 void FetchTransaction::addImage(Feed *f, Image *i)
 {
-    if (!m_imageFetchDict.find(i))
-        m_imageFetchList.append(i);
-
-    m_imageFetchDict.insert(i, f);
+    // create a copy, don't use the pointer directly!
+    RSS::Image* imgCopy = new RSS::Image(*i);
+    m_imageFetchList.append(imgCopy);
+    m_imageFetchDict.insert(imgCopy, f);
+    
     connectToFeed(f);
     
-    connect (i, SIGNAL(gotPixmap(const QPixmap &)),
+    connect (imgCopy, SIGNAL(gotPixmap(const QPixmap &)),
              this, SLOT(slotImageFetched(const QPixmap &)));
 }
 

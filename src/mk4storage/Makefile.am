@@ -10,7 +10,7 @@ INCLUDES = \
 libakregator_mk4storage_plugin_la_LIBADD = \
     $(top_builddir)/akregator/src/mk4storage/metakit/src/libmetakitlocal.la \
     $(top_builddir)/akregator/src/librss/librsslocal.la \
-    $(top_builddir)/akregator/src/libakregatorprivate.la \
+    ../libakregatorprivate.la \
     $(LIB_KFILE) \
     $(LIB_KDECORE)
 
@@ -18,7 +18,12 @@ libakregator_mk4storage_plugin_la_LDFLAGS = \
     $(KDE_PLUGIN) \
     $(all_libraries)
 
-libakregator_mk4storage_plugin_la_SOURCES = feedstoragemk4impl.cpp storagemk4impl.cpp storagefactorymk4impl.cpp mk4confwidgetbase.ui mk4plugin.cpp mk4config.kcfgc
+libakregator_mk4storage_plugin_la_SOURCES = feedstoragemk4impl.cpp \
+                                            storagemk4impl.cpp \
+                                            storagefactorymk4impl.cpp \
+                                            mk4confwidgetbase.ui \
+                                            mk4plugin.cpp \
+                                            mk4config.kcfgc
 
 METASOURCES = AUTO
 

@@ -38,11 +38,12 @@
 #include <libkdepim/progressmanager.h>
 
 #include "akregatorconfig.h"
-#include "archive.h"
 #include "feed.h"
 #include "feedgroup.h"
 #include "fetchtransaction.h"
 
+#include "feedstorage.h"
+#include "storage.h"
 
 using namespace Akregator;
 using namespace RSS;
@@ -59,28 +60,28 @@ QString Feed::archiveModeToString(ArchiveMode mode)
             return "limitArticleNumber";
         case limitArticleAge:
             return "limitArticleAge";
-        default:    
+        default:
             return "globalDefault";
    }
 
    // in a perfect world, this is never reached
-   
+
    return "globalDefault";
 }
 
 Feed* Feed::fromOPML(QDomElement e)
 {
-    
+
     Feed* feed = 0;
-    
-    if( e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl") ) 
+
+    if( e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl") )
     {
         QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
-        
+
         QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
-        bool useCustomFetchInterval = e.attribute("autoFetch") == "true";
-        
+        bool useCustomFetchInterval = e.attribute("y") == "true";
+
         QString htmlUrl = e.attribute("htmlUrl");
         QString description = e.attribute("description");
         int fetchInterval = e.attribute("fetchInterval").toUInt();
@@ -90,7 +91,7 @@ Feed* Feed::fromOPML(QDomElement e)
         bool markImmediatelyAsRead = e.attribute("markImmediatelyAsRead") == "true";
         bool useNotification = e.attribute("useNotification") == "true";
         uint id = e.attribute("id").toUInt();
-        
+
         feed = new Feed();
         feed->setTitle(title);
         feed->setXmlUrl(xmlUrl);
@@ -103,15 +104,40 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setMaxArticleAge(maxArticleAge);
         feed->setMaxArticleNumber(maxArticleNumber);
         feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
-        feed->setUseNotification(useNotification);
-    }   
-    
+    }
+
+    feed->loadArticles(); // TODO: make me fly: make this delayed
     return feed;
-}            
+}
 
 ArticleSequence Feed::articles()
-{ 
-    return m_articles; 
+{
+    if (!m_articlesLoaded)
+        loadArticles();
+    return m_articles;
+}
+
+void Feed::loadArticles()
+{
+    if (m_articlesLoaded)
+        return;
+
+    if (!m_archive)
+        m_archive = Backend::Storage::getInstance()->archiveFor(xmlUrl());
+
+    m_articles.enableSorting(false);
+    QStringList list = m_archive->articles();
+    for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it)
+    {
+        MyArticle mya(*it, this);
+        m_articles.append(mya);
+        if (mya.isDeleted())
+            m_deletedArticles.append(mya);
+    }
+    m_articles.enableSorting(true);
+    m_articles.sort();
+    m_articlesLoaded = true;
+    enforceLimitArticleNumber();
 }
 
 Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
@@ -119,35 +145,34 @@ Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
     if (str == "globalDefault")
         return globalDefault;
     if (str == "keepAllArticles")
-        return keepAllArticles;          
+        return keepAllArticles;
     if (str == "disableArchiving")
         return disableArchiving;
     if (str == "limitArticleNumber")
         return limitArticleNumber;
     if (str == "limitArticleAge")
         return limitArticleAge;
-        
-    return globalDefault;    
-}
 
+    return globalDefault;
+}
 
 Feed::Feed()
     : TreeNode()
-        , m_autoFetch(false)
-        , m_fetchInterval(30)
-        , m_archiveMode(globalDefault)
-        , m_maxArticleAge(60) 
-        , m_maxArticleNumber(1000)
-        , m_markImmediatelyAsRead(false)
-        , m_useNotification(false)
-        , m_transaction(0)
-        , m_fetchError(false)
-        , m_fetchTries(0)
-        , m_loader(0)
-        , m_merged(false)
-        , m_unread(0)
-        , m_articles()
-        , m_progressItem(0)
+    , m_autoFetch(false)
+    , m_fetchInterval(30)
+    , m_archiveMode(globalDefault)
+    , m_maxArticleAge(60)
+    , m_maxArticleNumber(1000)
+    , m_markImmediatelyAsRead(false)
+    , m_useNotification(false)
+    , m_transaction(0)
+    , m_fetchError(false)
+    , m_fetchTries(0)
+    , m_loader(0)
+    , m_articlesLoaded(false)
+    , m_archive(0)
+    , m_articles()
+    , m_progressItem(0)
 {
 }
 
@@ -183,82 +208,17 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     return el;
 }
 
-void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
-{
-    QDomElement channode = doc.createElement( "channel" );
-    parent.appendChild(channode);
-    QDomElement tnode = doc.createElement( "title" );
-    QDomText t=doc.createTextNode( title() );
-    tnode.appendChild(t);
-    channode.appendChild(tnode);
-
-    if (!m_htmlUrl.isEmpty())
-    {
-        QDomElement lnode = doc.createElement( "link" );
-        QDomText ht=doc.createTextNode( m_htmlUrl );
-        lnode.appendChild(ht);
-        channode.appendChild(lnode);
-    }
-
-    // rss 2.0 requires channel description
-    QDomElement dnode = doc.createElement( "description" );
-    QDomText dt=doc.createTextNode( m_htmlUrl );
-    dnode.appendChild(dt);
-    channode.appendChild(dnode);
-
-    
-    // get archive size limit, -1 if unlimited
-    
-    int limit = -1;
-    if (m_archiveMode == disableArchiving)
-        limit = 0;
-    else
-    if (m_archiveMode == limitArticleNumber)
-        limit = m_maxArticleNumber;
-    else if (m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleNumber)
-        limit = Settings::maxArticleNumber();
-    else if (m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::disableArchiving)
-         limit = 0;
-        
-    ArticleSequence::ConstIterator it;
-    ArticleSequence::ConstIterator en=m_articles.end();
-
-    // if a limit exists, only dump "limit" number of articles plus articles with keep flag set
-      
-    if (limit != -1)
-    {
-        int count = 0; 
-        for (it = m_articles.begin(); it != en; ++it)
-            if ( count < limit || (*it).keep() )
-            {
-                 QDomElement enode = doc.createElement( "item" );
-                 (*it).dumpXmlData(enode, doc);
-                 channode.appendChild(enode);
-                 if ( !(*it).keep() )
-                    ++count;
-            }
-    }
-    else // save everything, like we did before
-        for (it = m_articles.begin(); it != en; ++it)
-        {
-            QDomElement enode = doc.createElement( "item" );
-            (*it).dumpXmlData(enode, doc);
-            channode.appendChild(enode);
-        }
-}
-
 void Feed::slotMarkAllArticlesAsRead()
 {
-    if (m_unread > 0)
+    if (unread() > 0)
     {
+        ArticleSequence tarticles = articles();
         ArticleSequence::Iterator it;
-        ArticleSequence::Iterator en = m_articles.end();
-        
-        for (it = m_articles.begin(); it != en; ++it)
+        ArticleSequence::Iterator en = tarticles.end();
+
+        for (it = tarticles.begin(); it != en; ++it)
             (*it).setStatus(MyArticle::Read);
-                
-        m_unread = 0;
-        Archive::save(this);
+
         modified();
     }
 }
@@ -271,56 +231,60 @@ void Feed::slotAddToFetchTransaction(FetchTransaction* transaction)
 void Feed::appendArticles(const Document &d)
 {
     bool changed = false;
-    
+
     m_articles.enableSorting(false);
     Article::List d_articles = d.articles();
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d_articles.end();
-    
+
     int nudge=0;
 
+    ArticleSequence deletedArticles = m_deletedArticles;
+    
     for (it = d_articles.begin(); it != en; ++it)
     {
-        MyArticle mya(*it);
+        MyArticle mya(*it, this);
 
-        // if archive isn't loaded, append. Otherwise check for dupes.
-        if (!m_merged)
+        ArticleSequence::Iterator old = m_articles.find(mya);
+
+        if ( old == m_articles.end() ) // article not in list
         {
-            if (mya.status() == MyArticle::New)
-                mya.setStatus(MyArticle::Unread);
-  
+            if (!markImmediatelyAsRead())
+                mya.setStatus(MyArticle::New);
+            else
+                mya.setStatus(MyArticle::Read);
+
+            mya.offsetFetchTime(nudge);
+            nudge--;
             appendArticle(mya);
             changed = true;
         }
-        else
+        // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
+        else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !mya.isDeleted())
         {
-            ArticleSequence::Iterator old = m_articles.find(mya);
-            
-            if ( old == m_articles.end() ) // article not in list
-            {
-                if (!markImmediatelyAsRead())
-                    mya.setStatus(MyArticle::New);
-                else
-                    mya.setStatus(MyArticle::Read);
-                
-                mya.offsetFetchTime(nudge);
-                nudge--;
-                appendArticle(mya);
-                changed = true;
-            }
-            // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
-            else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !mya.isDeleted())
-            {
-                    mya.setKeep((*old).keep());
-                    // reset status to New
-                    mya.setStatus(MyArticle::New);
-                    if ((*old).status() != MyArticle::Read)
-                        m_unread--;
-                    m_articles.remove(old);
-                    appendArticle(mya);
-                    changed = true;
-            }
+            mya.setKeep((*old).keep());
+            // reset status to New
+            mya.setStatus(MyArticle::New);
+            m_articles.remove(old);
+            appendArticle(mya);
+            changed = true;
         }
+        else if (mya.isDeleted())
+            deletedArticles.remove(mya);
+    }
+
+    ArticleSequence::ConstIterator dit = deletedArticles.begin();
+    ArticleSequence::ConstIterator dtmp;
+    ArticleSequence::ConstIterator den = deletedArticles.end();
+
+    // delete articles with delete flag set completely from archive, which aren't in the current feed source anymore
+    while (dit != den)
+    {
+        dtmp = dit;
+        ++dit;
+        m_articles.remove(*dtmp);
+        m_archive->deleteArticle((*dtmp).guid());
+        m_deletedArticles.remove(*dtmp);
     }
     
     m_articles.enableSorting(true);
@@ -346,35 +310,19 @@ bool Feed::isExpired(const MyArticle& a) const
             expiryAge = m_maxArticleAge *24*3600;
 
     return ( expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge);
-    
-
 }
 
 void Feed::appendArticle(const MyArticle& a)
 {
-    
     if ( a.keep() || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
     {
         if (a.status() != MyArticle::Read)
-            m_unread++;
-            
-        ArticleSequence::Iterator it;
-        ArticleSequence::Iterator end = m_articles.end();
-        bool inserted = false;    
-        it = m_articles.begin();
-        
-        while ( !inserted && it != end )
-            if ( a >= (*it) )
-                ++it;       
-            else
-                inserted = true;
-        MyArticle a2(a);    
-        a2.setFeed(this);    
-        if ( inserted )
-            m_articles.insert(it, a2);
-        else
-            m_articles.append(a2);    
-    }    
+        {
+            setUnread(unread()+1);
+        }
+        if (!m_articles.contains(a))
+            m_articles.append(a);
+    }
 }
 
 
@@ -394,7 +342,7 @@ void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
             (*it).setStatus(MyArticle::Unread);
         }
     }
-    
+
     emit fetchStarted(this);
 
     tryFetch();
@@ -415,10 +363,10 @@ void Feed::slotAbortFetch()
 void Feed::tryFetch()
 {
     m_fetchError = false;
-    
+
     m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title(), QString::null, false);
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
-    
+
     m_loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     //connect(m_loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
     m_loader->loadFrom( m_xmlUrl, new FileRetriever );
@@ -428,7 +376,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
     // Note that loader instances delete themselves
     m_loader = 0;
-    
+
     // fetching wasn't successful:
     if (status != Success)
     {
@@ -446,15 +394,15 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
                     m_progressItem->setStatus(i18n("Fetch aborted"));
                     break;
                 default:
-                    break;    
+                    break;
             }
-            
+
             m_progressItem->setComplete();
             m_progressItem = 0;
         }
 
         m_transaction = 0;
-        
+
         if (status == Aborted)
         {
             m_fetchError = false;
@@ -475,8 +423,8 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         return;
     }
 
-    // if successful:
-    
+    loadArticles(); // TODO: make me fly: make this delayed
+
     if (m_progressItem)
     {
         m_progressItem->setComplete();
@@ -488,9 +436,6 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         loadFavicon();
 
     m_fetchError = false;
-    m_document = doc;
-    //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
-
     
     if (m_image.isNull())
     {
@@ -499,29 +444,27 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         m_image=QPixmap(imageFileName, "PNG");
 
         // if we aint got teh image and the feed provides one, get it....
-        if (m_image.isNull() && m_document.image() && m_transaction)
-            m_transaction->addImage(this, m_document.image());
+        if (m_image.isNull() && doc.image() && m_transaction)
+            m_transaction->addImage(this, doc.image());
     }
-    
-    if (title().isEmpty())
-        setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(m_document.title())) );
 
-    Archive::load(this); // make sure archive is merged 
-    
-    m_description = m_document.description();
-    m_htmlUrl = m_document.link().url();
-    
-    appendArticles(m_document);
+    if (title().isEmpty())
+        setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(doc.title())) );
+
+    m_description = doc.description();
+    m_htmlUrl = doc.link().url();
+
+    appendArticles(doc);
 
     m_transaction = 0;
-    
+    m_archive->setLastFetch( QDateTime::currentDateTime().toTime_t());
     emit fetched(this);
 }
 
 void Feed::loadFavicon()
 {
     if (!m_transaction)
-	   return;
+       return;
     m_transaction->addIcon(this);
 }
 
@@ -545,6 +488,7 @@ void Feed::slotDeleteExpiredArticles()
             if ( isExpired(*it) )
             {
                 tmp = it;
+                m_archive->deleteArticle((*tmp).guid());
                 m_articles.remove(*tmp);
                 changed = true;
             }
@@ -559,7 +503,7 @@ void Feed::slotDeleteExpiredArticles()
 void Feed::setFavicon(const QPixmap &p)
 {
     if (p.isNull())
-	   return;
+       return;
     m_favicon = p;
  //   if (!m_fetchError && item())
  //           item()->setPixmap(0, p);
@@ -586,14 +530,20 @@ void Feed::setArchiveMode(ArchiveMode archiveMode)
     m_archiveMode = archiveMode;
 }
 
-void Feed::setUnread(int unread)
-{ 
-    if (unread != m_unread)
-    {    
-        m_unread = unread;
-        modified();
-    }    
+int Feed::unread() const
+{
+    return m_archive ? m_archive->unread() : 0;
 }
+
+void Feed::setUnread(int unread)
+{
+    if (m_archive && unread != m_archive->unread())
+    {
+        m_archive->setUnread(unread);
+        modified();
+    }
+}
+
 int Feed::totalCount() const
 {
     return m_articles.count();
@@ -603,7 +553,7 @@ TreeNode* Feed::next()
 {
     if ( nextSibling() )
         return nextSibling();
-    
+
     FeedGroup* p = parent();
     while (p)
     {
@@ -613,6 +563,53 @@ TreeNode* Feed::next()
             p = p->parent();
     }
     return 0;
+}
+
+void Feed::enforceLimitArticleNumber()
+{
+    int limit = -1;
+    if (m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleNumber)
+        limit = Settings::maxArticleNumber();
+    else if (m_archiveMode == limitArticleNumber)
+        limit = maxArticleNumber();
+        
+    if (limit == -1 || limit >= m_articles.count() - m_deletedArticles.count())
+        return;
+        
+    bool changed = false;
+
+    ArticleSequence::Iterator it = m_articles.begin();
+    ArticleSequence::Iterator tmp;
+    ArticleSequence::Iterator en = m_articles.end();
+
+    int c = 0;
+    while (it != en)
+    {
+        tmp = it;
+        ++it;
+        if (c < limit)
+        {
+            if (!(*tmp).isDeleted() && !(*tmp).keep())
+               c++;
+        }
+        else
+        {
+            if (!(*tmp).keep())
+            {
+                (*tmp).setDeleted();
+                changed = true;
+            }
+        }
+    }
+    
+    if (changed)
+        modified();
+}
+
+void Feed::setArticleDeleted(const MyArticle& mya)
+{
+    if (!m_deletedArticles.contains(mya))
+        m_deletedArticles.append(mya);
 }
 
 #include "feed.moc"

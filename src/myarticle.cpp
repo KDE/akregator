@@ -24,6 +24,8 @@
 
 #include "myarticle.h"
 #include "feed.h"
+#include "feedstorage.h"
+#include "storage.h"
 #include "librss/tools_p.h"
 
 #include <qdatetime.h>
@@ -34,8 +36,8 @@
 #include <kdebug.h>
 #include <kurl.h>
 
-using namespace Akregator;
-using namespace RSS;
+
+namespace Akregator {
 
 struct MyArticle::Private : public RSS::Shared
 {
@@ -50,14 +52,13 @@ struct MyArticle::Private : public RSS::Shared
      */
 
     enum Status {Deleted=0x01, Trash=0x02, New=0x04, Read=0x08, Keep=0x10};
+
     int status;
-
-    bool guidIsHash;
+    QString guid;
     uint hash;
-    Article article;
+    Backend::FeedStorage* archive;
+    QDateTime pubDate;
     QDateTime fetchDate;
-    QString title;
-
     Feed* feed;
 };
 
@@ -66,51 +67,95 @@ MyArticle::MyArticle() : d(new Private)
     d->hash = 0;
     d->status = 0;
     d->feed = 0;
-    d->guidIsHash = false;
+    d->archive = 0;
 }
 
-MyArticle::MyArticle(Article article) : d(new Private)
+MyArticle::MyArticle(const QString& guid, Feed* feed) : d(new Private)
 {
-    d->hash = 0;
-    d->status = 0;
-    d->article = article;
-    d->feed = 0;
+    d->feed = feed;
+    d->guid = guid;
+    d->archive = Backend::Storage::getInstance()->archiveFor(feed->xmlUrl());
+    d->status = d->archive->status(d->guid);
+    d->pubDate = d->archive->pubDate(d->guid);
+    d->hash = d->archive->hash(d->guid);
+}
+
+void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
+{
+    d->archive = archive;
     d->fetchDate = QDateTime::currentDateTime();
+    d->status = Private::New;
+    d->hash = calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() + QString::number(article.comments()) );
 
-    if (article.title().isEmpty())
-        d->title=buildTitle();
-    else
-        d->title=article.title();
-
-    QString status = d->article.meta("status");
-
-    if (!status.isEmpty())
-        setStatus(status.toInt());
-
-    setKeep((article.meta("keep") == "true"));
-    if (article.meta("deleted") == "true")
-        setDeleted();
-    d->guidIsHash = (article.meta("guidIsHash") == "true");
-
-    if (!d->guidIsHash)
+    d->guid = article.guid();
+    
+    if (!d->archive->contains(d->guid))
     {
-        QString hashStr = article.meta("hash");
+        d->archive->addEntry(d->guid);
 
-        bool parsedOk = false;
-        uint parsed = hashStr.toUInt(&parsedOk, 16);
-        if (!parsedOk)
-        {
-            d->hash = calcHash(title() + description() + link().url() + commentsLink().url()
-                    + QString::number(comments()) );
+        if (article.meta("deleted") == "true") 
+        { // if article is in deleted state, we just add the status and omit the rest
+            d->status = Private::Deleted;
+            d->archive->setStatus(d->guid, d->status);
         }
         else
-            d->hash = parsed;
+        { // article is not deleted, let's add it to the archive
+        
+            d->archive->setHash(d->guid, d->hash);
+            QString title = article.title().isEmpty() ? buildTitle() :  article.title();
+            d->archive->setTitle(d->guid, title);
+            d->archive->setLink(d->guid, article.link().url());
+            d->archive->setDescription(d->guid, article.description());
+            d->archive->setComments(d->guid, article.comments());
+            d->archive->setCommentsLink(d->guid, article.commentsLink().url());
+            d->archive->setGuidIsPermaLink(d->guid, article.guidIsPermaLink());
+            d->archive->setGuidIsHash(d->guid, article.meta("guidIsHash") == "true");
+            d->pubDate = article.pubDate();
+            d->archive->setPubDate(d->guid, d->pubDate);
+            QString status = article.meta("status");
+            
+            if (!status.isEmpty())
+            {
+                int statusInt = status.toInt();
+                if (statusInt == New)
+                    statusInt = Unread;
+                setStatus(statusInt);
+            }
+            setKeep(article.meta("keep") == "true");   
+        }
+    }
+    else if (d->hash != d->archive->hash(d->guid)) //article is in archive, was it modified?
+    { // if yes, update
+        d->archive->setHash(d->guid, d->hash);
+        QString title = article.title().isEmpty() ? buildTitle() :  article.title();
+        d->archive->setTitle(d->guid, title);
+        d->archive->setLink(d->guid, article.link().url());
+        d->archive->setDescription(d->guid, article.description());
+        d->archive->setComments(d->guid, article.comments());
+        d->archive->setCommentsLink(d->guid, article.commentsLink().url());
     }
 }
 
+MyArticle::MyArticle(RSS::Article article, Feed* feed) : d(new Private)
+{
+    //assert(feed)
+    d->feed = feed;
+    initialize(article, Backend::Storage::getInstance()->archiveFor(feed->xmlUrl()));
+}
+
+MyArticle::MyArticle(RSS::Article article, Backend::FeedStorage* archive) : d(new Private)
+{
+    d->feed = 0;
+    initialize(article, archive);
+}
 void MyArticle::setDeleted()
 {
+    if (status() != Read)
+        d->archive->setUnread(d->archive->unread()-1);
     d->status = Private::Deleted | Private::Read;
+    d->archive->setStatus(d->guid, d->status);
+    d->archive->setDeleted(d->guid);
+    d->feed->setArticleDeleted(*this);
 }
 
 bool MyArticle::isDeleted() const
@@ -167,7 +212,7 @@ bool MyArticle::operator>=(const MyArticle &other) const
 
 bool MyArticle::operator==(const MyArticle &other) const
 {
-    return (d->article.guid() == other.d->article.guid());
+    return (d->guid == other.guid());
 }
 
 int MyArticle::status() const
@@ -181,9 +226,16 @@ int MyArticle::status() const
         return Unread;
 }
 
-void MyArticle::setStatus(int status)
+void MyArticle::setStatus(int stat)
 {
-    switch (status)
+    if (d->feed)
+    {
+        if (stat == Read && status() != Read)
+            d->feed->setUnread(d->feed->unread()-1);
+        else if  (stat != Read && status() == Read)
+	    d->feed->setUnread(d->feed->unread()+1);
+    }    
+    switch (stat)
     {
         case Read:
             d->status = (d->status | Private::Read) & ~Private::New;
@@ -195,43 +247,45 @@ void MyArticle::setStatus(int status)
             d->status = (d->status | Private::New) & ~Private::Read;
             break;
     }
+    d->archive->setStatus(d->guid, d->status);
 }
 
 QString MyArticle::title() const
 {
-    return d->title.remove("\\");
+    return d->archive->title(d->guid).remove("\\");
 }
 
-const KURL &MyArticle::link() const
+KURL MyArticle::link() const
 {
-    return d->article.link();
+    return d->archive->link(d->guid);
 }
 
 QString MyArticle::description() const
 {
-    return d->article.description();
+    return d->archive->description(d->guid);
 }
 
 QString MyArticle::guid() const
 {
-    return d->article.guid();
+    return d->guid;
 }
 
-const KURL &MyArticle::commentsLink() const
+KURL MyArticle::commentsLink() const
 {
-    return d->article.commentsLink();
+    return d->archive->commentsLink(d->guid);
 }
 
 
 int MyArticle::comments() const
 {
-    return d->article.comments();
+    
+    return d->archive->comments(d->guid);
 }
 
 
 bool MyArticle::guidIsPermaLink() const
 {
-    return d->article.guidIsPermaLink();
+    return d->archive->guidIsPermaLink(d->guid);
 }
 
 /* taken from some website... -fo
@@ -250,7 +304,7 @@ uint MyArticle::calcHash(const QString& str)
 
 bool MyArticle::guidIsHash() const
 {
-    return d->guidIsHash;
+    return d->archive->guidIsHash(d->guid);
 }
 
 uint MyArticle::hash() const
@@ -266,133 +320,21 @@ bool MyArticle::keep() const
 void MyArticle::setKeep(bool keep)
 {
     d->status = keep ? (d->status | Private::Keep) : (d->status & ~Private::Keep);
+    d->archive->setStatus(d->guid, d->status);
 }
 
-void MyArticle::setFeed(Feed* feed)
-{
-    d->feed = feed;
-}
 Feed* MyArticle::feed() const
 { return d->feed; }
 
-const QDateTime &MyArticle::pubDate() const
+const QDateTime& MyArticle::pubDate() const
 {
-    return d->article.pubDate().isValid() ? d->article.pubDate()
-                                          : d->fetchDate;
-}
-
-KURLLabel *MyArticle::widget(QWidget *parent, const char *name) const
-{
-    return d->article.widget(parent, name);
-}
-
-void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
-{
-
-    if (!guid().isEmpty())
-    {
-        QDomElement gnode = doc.createElement( "guid" );
-        gnode.setAttribute("isPermaLink",guidIsPermaLink()?"true":"false");
-        QDomText gt=doc.createTextNode(guid());
-        gnode.appendChild(gt);
-        parent.appendChild(gnode);
-    }
-
-    if (pubDate().isValid())
-    {
-        QDomElement pnode = doc.createElement( "pubDate" );
-        QDomText dat=doc.createTextNode(KRFCDate::rfc2822DateString(pubDate().toTime_t()));
-        pnode.appendChild(dat);
-        parent.appendChild(pnode);
-    }
-
-    if ( isDeleted() )
-    {
-        QDomElement metanode = doc.createElement( "metaInfo:meta" );
-        metanode.setAttribute("type","deleted");
-        QDomText stat=doc.createTextNode( "true" );
-        metanode.appendChild(stat);
-        parent.appendChild(metanode);
-    }
-    else
-    {
-        if ( !title().isEmpty() )
-        {
-            QDomElement tnode = doc.createElement( "title" );
-            QDomText t = doc.createTextNode( title() );
-            tnode.appendChild(t);
-            parent.appendChild(tnode);
-        }
-
-        if (link().isValid())
-        {
-            QDomElement lnode = doc.createElement( "link" );
-            QDomText ht=doc.createTextNode(link().url());
-            lnode.appendChild(ht);
-            parent.appendChild(lnode);
-        }
-
-        if (!description().isEmpty())
-        {
-            QDomElement snode = doc.createElement( "description" );
-            QDomCDATASection dt=doc.createCDATASection( description() );
-            snode.appendChild(dt);
-            parent.appendChild(snode);
-        }
-
-        if (commentsLink().isValid())
-        {
-            QDomElement lnode = doc.createElement( "wfw:comment" );
-            QDomText ht=doc.createTextNode(commentsLink().url());
-            lnode.appendChild(ht);
-            parent.appendChild(lnode);
-        }
-
-        if (comments())
-        {
-            QDomElement lnode = doc.createElement( "slash:comments" );
-            QDomText ht=doc.createTextNode(QString::number(comments()));
-            lnode.appendChild(ht);
-            parent.appendChild(lnode);
-        }
-
-        QDomElement metanode = doc.createElement( "metaInfo:meta" );
-        metanode.setAttribute("type","status");
-        QDomText stat=doc.createTextNode( QString::number(status()) );
-        metanode.appendChild(stat);
-        parent.appendChild(metanode);
-
-
-        if (guidIsHash())
-        {
-            metanode = doc.createElement( "metaInfo:meta" );
-            metanode.setAttribute("type", "guidIsHash");
-            metanode.appendChild(doc.createTextNode("true"));
-            parent.appendChild(metanode);
-        }
-        else
-        {
-            metanode = doc.createElement( "metaInfo:meta" );
-            metanode.setAttribute("type", "hash");
-            metanode.appendChild(doc.createTextNode(QString::number(hash(), 16)));
-            parent.appendChild(metanode);
-        }
-
-        if (keep())
-        {
-            metanode = doc.createElement( "metaInfo:meta" );
-            metanode.setAttribute("type", "keep");
-            metanode.appendChild(doc.createTextNode("true"));
-            parent.appendChild(metanode);
-        }
-    } // if not deleted
-
+    return d->pubDate;
 }
 
 
 QString MyArticle::buildTitle()
 {
-    QString s=d->article.description();
+    QString s = d->archive->description(d->guid);
     int i=s.find('>',500); /*avoid processing too much */
     if (i != -1)
         s=s.left(i+1);
@@ -416,3 +358,4 @@ QString MyArticle::buildTitle()
         s=s.left(90)+"...";
     return s.simplifyWhiteSpace();
 }
+} // namespace Akregator

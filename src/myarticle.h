@@ -25,17 +25,24 @@
 #ifndef AKREGATORMYARTICLE_H
 #define AKREGATORMYARTICLE_H
 
-#include "librss/article.h" /* <rss/article.h> */
+#include "librss/article.h"
 
 class KURLLabel;
 class QDomDocument;
 class QDomElement;
 class QWidget;
 
-using namespace RSS;
+namespace RSS
+{
+    class Article;
+}
 
 namespace Akregator
 {
+    namespace Backend
+    {
+        class FeedStorage;
+    }
     class Feed;
     /** A proxy class for RSS::Article with some additional methods to assist sorting. */
     class MyArticle
@@ -45,7 +52,16 @@ namespace Akregator
             typedef QValueList<MyArticle> List;
 
             MyArticle();
-            MyArticle(Article article);
+            /** creates am article object for an existing article.
+             The constructor accesses the archive to load it's data
+             */
+            MyArticle(const QString& guid, Feed* feed);
+            /** creates an article object from a parsed librss Article
+               the article is added to the archive if not yet stored, or updated if stored but modified
+            */
+            MyArticle(RSS::Article article, Feed* feed);
+            
+            MyArticle(RSS::Article article, Backend::FeedStorage* archive);
             MyArticle(const MyArticle &other);
             MyArticle &operator=(const MyArticle &other);
             bool operator==(const MyArticle &other) const;
@@ -54,7 +70,7 @@ namespace Akregator
 
             int status() const;
             void setStatus(int s);
-            
+
             /**
              * @return true if this article is the same as other, based on guid or link.
              */
@@ -62,13 +78,12 @@ namespace Akregator
             void offsetFetchTime(int secs);
 
             QString title() const;
-            const KURL &link() const;
+            KURL link() const;
             QString description() const;
             QString guid() const;
             /** if true, the article should be kept even when expired **/
             bool keep() const;
             void setKeep(bool keep);
-            void setFeed(Feed* feed);
             bool isDeleted() const;
             void setDeleted();
             
@@ -84,12 +99,9 @@ namespace Akregator
             bool guidIsHash() const;
             
             bool guidIsPermaLink() const;
-            const QDateTime &pubDate() const;
-            KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
-            const KURL &commentsLink() const;
+            const QDateTime& pubDate() const;
+            KURL commentsLink() const;
             int comments() const;
-            
-            void dumpXmlData( QDomElement parent, QDomDocument doc ) const;
             
             bool operator<(const MyArticle &other) const;
             bool operator<=(const MyArticle &other) const;
@@ -97,6 +109,7 @@ namespace Akregator
             bool operator>=(const MyArticle &other) const;
             
         private:
+            void initialize(RSS::Article article, Backend::FeedStorage* archive);
             static uint calcHash(const QString& str);
             struct Private;
             Private *d;

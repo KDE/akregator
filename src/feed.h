@@ -45,7 +45,11 @@ namespace Akregator
 {
     class FetchTransaction;
     class FeedGroup;
-    
+
+    namespace Backend
+    {
+        class FeedStorage;
+    }
     /**
         represents a feed
      */
@@ -78,12 +82,9 @@ namespace Akregator
             Feed();
 
             virtual ~Feed();
-            
+
             /** exports the feed settings to OPML */
             virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
-
-            /** exports the articles of this feed as XML (for the archive) */
-            void dumpXmlData( QDomElement parent, QDomDocument document );
 
             /**
               returns whether this feed uses its own fetch interval or the global setting
@@ -108,7 +109,7 @@ namespace Akregator
 
             /** returns the archiving mode which is used for this feed */
             ArchiveMode archiveMode() const;
-            
+
             /** sets the archiving mode for this feed */
             void setArchiveMode(ArchiveMode archiveMode);
 
@@ -123,7 +124,7 @@ namespace Akregator
 
             /** returns the article count limit used in @c limitArticleNumber archive mode **/
             int maxArticleNumber() const { return m_maxArticleNumber; }
-            
+
             /** sets the article count limit used in @c limitArticleNumber archive mode **/
             void setMaxArticleNumber(int maxArticleNumber) { m_maxArticleNumber = maxArticleNumber; }
 
@@ -141,23 +142,23 @@ namespace Akregator
             {
                 m_useNotification = enabled;
             }
-            
+
             bool useNotification() const
             {
                 return m_useNotification;
             }
-            
+
             /** returns the favicon */
             const QPixmap& favicon() const { return m_favicon; }
-            
+
             /** sets the favicon (used in the tree view) */
             void setFavicon(const QPixmap& p);
 
             /** returns the feed image */
             const QPixmap& image() const { return m_image; }
-            
+
             /** sets the feed image */
-            void setImage(const QPixmap &p); 
+            void setImage(const QPixmap &p);
 
             /** returns the url of the actual feed source (rss/rdf/atom file) */
             const QString& xmlUrl() const { return m_xmlUrl; }
@@ -171,39 +172,34 @@ namespace Akregator
 
             /** returns the description of this feed */
             const QString& description() const { return m_description; }
-            
+
             /** sets the description of this feed */
             void setDescription(const QString& s) { m_description = s; }
 
-            /** returns the feed's articles, sorted by date */
             virtual ArticleSequence articles();
-
-            /** appends the articles in @c document to the feed's article list
+            
+             /** appends the articles in @c document to the feed's article list
              */
-            void appendArticles(const Document &d);
 
             /** returns whether a fetch error has occured */
             bool fetchErrorOccurred() { return m_fetchError; }
 
 
             /** returns the unread count for this feed */
-            virtual int unread() const { return m_unread; }
+            virtual int unread() const;
 
             /** sets the unread count for this feed */
             void setUnread(int unread);
 
             /** returns the number of total articles in this feed
             @return number of articles */
-    
+
             virtual int totalCount() const;
 
             /** returns if the article archive of this feed is loaded */
-            bool isMerged() const { return m_merged; }
+            bool isArticlesLoaded() const { return m_articlesLoaded; }
 
-            /** set this to true when after the article archive is loaded (for use in @ref Archive::load())*/
-            void setMerged(bool m) { m_merged = m; }
-
-            /** returns if this node is a feed group (@c false here) */
+           /** returns if this node is a feed group (@c false here) */
             virtual bool isGroup() const { return false; }
 
             /** returns the next node in the tree.
@@ -211,12 +207,16 @@ namespace Akregator
             */
             virtual TreeNode* next();
 
+            /** notifies that article @c mya was set to "deleted".
+                Only for use in MyArticle::setDeleted()  */
+            void setArticleDeleted(const MyArticle& mya);
+
         public slots:
             /** starts fetching */
             void fetch(bool followDiscovery=false, FetchTransaction *f = 0);
-            
+
             void slotSetProgress(unsigned long);
-            
+
             void slotAbortFetch();
 
             /** deletes expired articles */
@@ -224,7 +224,7 @@ namespace Akregator
 
             /** mark all articles in this feed as read */
             virtual void slotMarkAllArticlesAsRead();
-            
+
             /** add this feed to the fetch transaction @c transaction */
             virtual void slotAddToFetchTransaction(FetchTransaction* transaction);
 
@@ -242,50 +242,55 @@ namespace Akregator
             /** emitted when the feed image is loaded */
             void imageLoaded(Feed*);
 
-
-        private slots:
+        protected:
+            /** loads articles from archive **/
+            void loadArticles();
             
+        private slots:
+
             void fetchCompleted(Loader *loader, Document doc, Status status);
 
             /** downloads the favicon */
             void loadFavicon();
 
         private:
+            
+            void enforceLimitArticleNumber();
+
+            void appendArticles(const Document &d);
             /** appends article @c a to the article list */
             void appendArticle(const MyArticle& a);
 
             /** checks whether article @c a is expired (considering custom and global archive mode settings) */
             bool isExpired(const MyArticle& a) const;
-            
+
             /** returns @c true if either this article uses @c limitArticleAge as custom setting or uses the global default, which is @c limitArticleAge */
             bool usesExpiryByAge() const;
 
             /** executes the actual fetch action
              */
             void tryFetch();
-            
+
             // attributes:
-            
+
             bool m_autoFetch;
             int m_fetchInterval;
-            ArchiveMode m_archiveMode; 
-            int m_maxArticleAge; 
+            ArchiveMode m_archiveMode;
+            int m_maxArticleAge;
             int m_maxArticleNumber;
             bool m_markImmediatelyAsRead;
             bool m_useNotification;
-            
-            Document m_document;            
+            int m_lastFetched;
+
             FetchTransaction* m_transaction;
-            
+
             bool m_fetchError;
             int m_fetchTries;
             bool m_followDiscovery;
             Loader* m_loader;
-            bool m_merged;
+            bool m_articlesLoaded;
+            Backend::FeedStorage* m_archive;
             
-            /** caches the unread count of the feed's articles */
-            int m_unread;
-
             /** URL of RSS feed itself */
             QString m_xmlUrl;
 
@@ -293,11 +298,14 @@ namespace Akregator
             QString m_htmlUrl;
 
             /** Verbose feed description. */
-            QString m_description;   
+            QString m_description;
 
-            /** list of feed articles, sorted by date */
-            ArticleSequence m_articles;     
-
+            /** list of feed articles */
+            ArticleSequence m_articles;
+            
+            /** list of deleted articles **/
+            ArticleSequence m_deletedArticles;
+            
             QPixmap m_image;
             QPixmap m_favicon;
             KPIM::ProgressItem *m_progressItem;

@@ -42,6 +42,11 @@ class KParts::BrowserExtension;
 
 namespace Akregator
 {
+    namespace Backend
+    {
+        class Storage;
+    }
+    
     typedef KParts::ReadOnlyPart MyBasePart;
     
     class View;
@@ -159,6 +164,10 @@ namespace Akregator
             
 
         protected:
+
+            /** loads all Akregator plugins */
+            void loadPlugins();
+            
             /** This must be implemented by each part */
             virtual bool openFile();
 
@@ -214,7 +223,8 @@ namespace Akregator
             TrayIcon* m_trayIcon;
             QTimer* m_autosaveTimer;
             /** did we backup the feed list already? */
-            bool m_backedUpList; 
+            bool m_backedUpList;
+            Backend::Storage* m_storage;
             
             
     };

@@ -37,8 +37,10 @@
 #include <kmessagebox.h>
 #include <knotifydialog.h>
 #include <kpopupmenu.h>
+#include <kservice.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
+#include <ktrader.h>
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
 #include <kparts/partmanager.h>
@@ -61,10 +63,16 @@
 #include "myarticle.h"
 #include "notificationmanager.h"
 #include "pageviewer.h"
+#include "plugin.h"
+#include "pluginmanager.h"
+#include "settings_advanced.h"
 #include "settings_appearance.h"
 #include "settings_archive.h"
 #include "settings_browser.h"
 #include "settings_general.h"
+#include "storage.h"
+#include "storagefactory.h"
+#include "storagefactoryregistry.h"
 #include "trayicon.h"
 
 namespace Akregator {
@@ -182,7 +190,7 @@ void Part::setupActions()
 
 Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
-    : DCOPObject("AkregatorIface"), MyBasePart(parent, name), m_shuttingDown(false), m_parentWidget(parentWidget)
+    : DCOPObject("AkregatorIface"), MyBasePart(parent, name), m_shuttingDown(false), m_parentWidget(parentWidget), m_storage(0)
 {
     m_mergedPart = 0;
     m_backedUpList = false;
@@ -197,6 +205,17 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_standardListLoaded = false;
     m_loading = false;
 
+    loadPlugins(); // FIXME: also unload them!
+
+    m_storage = Backend::StorageFactoryRegistry::self()->getFactory("metakit")->createStorage(QStringList());
+    
+    if (!m_storage) // Houston, we have a problem
+    {
+         KMessageBox::error(m_view, i18n("Unable to load storage backend plugin."), i18n("Plugin error") );
+         // FIXME: prevent part from loading (exit is not a good idea, it could be used in kontact)
+    }     
+    Backend::Storage::setInstance(m_storage);
+    
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
     m_extension = new BrowserExtension(this, "ak_extension");
 
@@ -238,6 +257,19 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     initFonts();
 }
 
+void Part::loadPlugins()
+{
+    // "[X-KDE-akregator-plugintype] == 'storage'"
+    KTrader::OfferList offers = PluginManager::query();
+        
+    for( KTrader::OfferList::ConstIterator it = offers.begin(), end = offers.end(); it != end; ++it )
+    {
+        Akregator::Plugin* plugin = PluginManager::createFromService(*it);
+        if (plugin)
+            plugin->init();
+    }
+}
+
 void Part::slotOnShutdown()
 {
     m_shuttingDown = true;
@@ -245,6 +277,7 @@ void Part::slotOnShutdown()
     saveSettings();
     slotSaveFeedList();
     m_view->slotOnShutdown();
+    delete m_storage;
 }
 
 void Part::slotSettingsChanged()
@@ -758,6 +791,7 @@ void Part::showOptions()
     dialog->addPage(new SettingsArchive(0, "Archive"), i18n("Archive"), "package_settings");
     dialog->addPage(new SettingsAppearance(0, "Appearance"), i18n("Appearance"), "fonts");
     dialog->addPage(new SettingsBrowser(0, "Browser"), i18n("Browser"), "package_network");
+    dialog->addPage(new SettingsAdvanced(0, "Advanced"), i18n("Advanced"), "package_network");
     connect( dialog, SIGNAL(settingsChanged()),
              this, SLOT(slotSettingsChanged()) );
     connect( dialog, SIGNAL(settingsChanged()),

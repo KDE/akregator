@@ -35,7 +35,6 @@
 #include "articlelist.h"
 #include "articleviewer.h"
 #include "viewer.h"
-#include "archive.h"
 #include "feed.h"
 #include "feeditem.h"
 #include "feedgroup.h"
@@ -44,6 +43,7 @@
 #include "akregatorconfig.h"
 #include "pageviewer.h"
 #include "articlefilter.h"
+#include "storage.h"
 #include "tabwidget.h"
 #include "treenode.h"
 #include "treenodeitem.h"
@@ -77,6 +77,7 @@
 
 #include <qbuttongroup.h>
 #include <qcheckbox.h>
+#include <qdatetime.h> // for startup time measure
 #include <qfile.h>
 #include <qhbox.h>
 #include <qlabel.h>
@@ -278,7 +279,8 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect(m_expiryTimer, SIGNAL(timeout()), this,
             SLOT(slotDeleteExpiredArticles()) );
     m_expiryTimer->start(3600*1000);
-
+    QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
+    
     QTimer::singleShot(0, this, SLOT(delayedInit()));
 }
 
@@ -920,7 +922,6 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
             return;
         }    
 
-    Archive::load(feed);
     if (!parent)
         parent = m_feedList->rootNode();
     
@@ -1011,11 +1012,8 @@ void View::slotFeedModify()
 
     dlg->setFeed(feed);
 
-    if (dlg->exec() == QDialog::Accepted) 
-    {   
-        if ( feed->isMerged() )
-            Archive::save(feed);
-    }
+    dlg->exec();
+
     delete dlg;
 }
 
@@ -1154,7 +1152,7 @@ void View::slotDoIntervalFetches()
                 if ( Settings::useIntervalFetch() )
                     interval = Settings::autoFetchInterval() * 60;
 
-            uint lastFetch = IntervalManager::self()->lastFetchTime(f->xmlUrl());
+            uint lastFetch = Backend::Storage::getInstance()->lastFetchFor(f->xmlUrl());
             
             uint now = QDateTime::currentDateTime().toTime_t();
             
@@ -1220,11 +1218,6 @@ void View::slotFeedFetched(Feed *feed)
         }
     }
 
-    // TODO: move to slotFetchesCompleted
-    Archive::save(feed);
-
-    IntervalManager::self()->feedFetched(feed->xmlUrl());
-
     int p=int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
     m_mainFrame->setProgress(p);
 }
@@ -1270,20 +1263,14 @@ void View::slotArticleSelected(MyArticle article)
     KToggleAction* ka = static_cast<KToggleAction*> (m_part->actionCollection()->action("article_toggle_keep"));
     if (ka)
         ka->setChecked( article.keep() );
-    
+
     if (article.status() != MyArticle::Read)
     {
+        m_articles->setReceiveUpdates(false, false);
         article.setStatus(MyArticle::Read);
-        //item->repaint();
-        int unread = feed->unread();
-        unread--;
-        m_articles->setReceiveUpdates(false);
-        feed->setUnread(unread);
         m_articles->setReceiveUpdates(true, false);
-        
-        // TODO: schedule this save.. don't want to save a huge file for one change
-        Archive::save(feed);
     }
+
     m_articleViewer->slotShowArticle( article );
 }
 
@@ -1489,7 +1476,6 @@ void View::slotArticleDelete()
             m_articleViewer->slotClear();
         }
         m_articles->slotUpdate();
-        Archive::save(article.feed());
     }
 }
 
@@ -1512,7 +1498,6 @@ void View::slotArticleToggleKeepFlag()
         ka->setChecked( keep );
     
     ali->article().setKeep(keep);
-    Archive::save( ali->article().feed() );
 }
 
 void View::slotSetSelectedArticleUnread()
@@ -1524,19 +1509,12 @@ void View::slotSetSelectedArticleUnread()
 
     MyArticle article = ali->article();
     Feed* feed = article.feed();
-    if (article.status() != MyArticle::Unread)
+    if (article.status() != MyArticle::Read)
     {
+        m_articles->setReceiveUpdates(false, false);
         article.setStatus(MyArticle::Unread);
-        int unread = feed->unread();
-        unread++;
-        m_articles->setReceiveUpdates(false);
-        feed->setUnread(unread);
         m_articles->setReceiveUpdates(true, false);
-        
-        // TODO: schedule this save.. don't want to save a huge file for one change
-        Archive::save(feed);
     }
-
 }
 
 void View::slotSetSelectedArticleNew()
@@ -1548,19 +1526,12 @@ void View::slotSetSelectedArticleNew()
 
     MyArticle article = ali->article();
     Feed* feed = article.feed();
-    if (article.status() != MyArticle::New)
+        if (article.status() != MyArticle::Read)
     {
+        m_articles->setReceiveUpdates(false, false);
         article.setStatus(MyArticle::New);
-        int unread = feed->unread();
-        unread++;
-        m_articles->setReceiveUpdates(false);
-        feed->setUnread(unread);
         m_articles->setReceiveUpdates(true, false);
-        
-        // TODO: schedule this save.. don't want to save a huge file for one change
-        Archive::save(feed);
     }
-
 }
 
 void View::slotMouseOverInfo(const KFileItem *kifi)

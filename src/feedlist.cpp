@@ -23,6 +23,7 @@
 */
 #include "feedlist.h"
 
+#include <qdatetime.h>
 #include <qdom.h>
 #include <qmap.h>
 #include <qptrlist.h>
@@ -31,7 +32,6 @@
 #include <kdebug.h>
 #include <klocale.h>
 
-#include "archive.h"
 #include "feed.h"
 #include "feedgroup.h"
 
@@ -61,7 +61,6 @@ void FeedList::parseChildNodes(QDomNode &node, FeedGroup* parent)
         {
             Feed* feed = Feed::fromOPML(e);
             parent->appendChild(feed);
-            Archive::load(feed);
         }
         else
         {
@@ -88,6 +87,10 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     QDomElement root = doc.documentElement();
 
     kdDebug() << "loading OPML feed " << root.tagName().lower() << endl;
+
+    kdDebug() << "measuring startup time: START" << endl;
+    QTime spent;
+    spent.start();
     
     if (root.tagName().lower() != "opml")
     {
@@ -131,7 +134,9 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
             uint id = list->m_idCounter++;
             i->setId(id);
             list->m_idMap[id] = i;
-    }          
+    }
+
+    kdDebug() << "measuring startup time: STOP, " << spent.elapsed() << "ms" << endl;
     return list;
 }
 

@@ -22,7 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "archive.h"
 #include "feed.h"
 #include "addfeeddialog.h"
 
