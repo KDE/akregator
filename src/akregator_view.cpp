@@ -718,9 +718,9 @@ void aKregatorView::markAllRead(QListViewItem *item)
             if (!g)
                 return;
             //kdDebug() << k_funcinfo << "group " << g->title() << endl;
-            for (QListViewItemIterator it(item->firstChild()); it.current(); ++it)
+            for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
             {
-               markAllRead(*it);
+               markAllRead(it);
             }
         }
     }
@@ -744,10 +744,10 @@ void aKregatorView::slotFetchCurrentFeed()
                 return;
             }
 
-            for (QListViewItemIterator it(m_tree->currentItem()); it.current(); ++it)
+            for (QListViewItem *it = m_tree->currentItem()->firstChild(); it; it = it->nextSibling())
             {
-                kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
-                Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+                kdDebug() << "Fetching subitem " << it->text(0) << endl;
+                Feed *f = static_cast<Feed *>(m_feeds.find(it));
                 if (f && !f->isGroup())
                     f->fetch();
             }
