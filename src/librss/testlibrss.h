@@ -16,7 +16,7 @@ class Tester : public QObject
 {
 	Q_OBJECT
 	public:
-		void test();
+		void test( const QString &url );
 
 	private slots:
 		void slotLoadingComplete( Loader *loader, Document doc, Status status );

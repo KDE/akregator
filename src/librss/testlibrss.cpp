@@ -7,19 +7,26 @@
 
 using namespace RSS;
 
-void Tester::test()
+static const KCmdLineOptions options[] =
+{
+  { "+url", I18N_NOOP("URL of Feed"), 0 },
+  KCmdLineLastOption
+};
+
+
+void Tester::test( const QString &url )
 {
 	Loader *loader = Loader::create();
 	connect( loader, SIGNAL( loadingComplete( Loader *, Document, Status ) ),
 	         this, SLOT( slotLoadingComplete( Loader *, Document, Status ) ) );
-	loader->loadFrom( "http://www.livejournal.com/users/madfire/data/rss", new FileRetriever );
+	loader->loadFrom( url, new FileRetriever );
 }
 
 void Tester::slotLoadingComplete( Loader *loader, Document doc, Status status )
 {
 	if ( status == Success )
 	{
-		kdDebug() << "Successfully retrieverd '" << doc.title() << "'" << endl;
+		kdDebug() << "Successfully retrieved '" << doc.title() << "'" << endl;
 		kdDebug() << doc.description() << endl;
 		
 		kdDebug() << "Articles:" << endl;
@@ -44,10 +51,14 @@ int main( int argc, char **argv )
 {
 	KAboutData aboutData( "testlibrss", "testlibrss", "0.1" );
 	KCmdLineArgs::init( argc, argv, &aboutData );
+        KCmdLineArgs::addCmdLineOptions( options );
 	KApplication app;
 
+        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+        if ( args->count() != 1 ) args->usage();
+
 	Tester tester;
-	tester.test();
+	tester.test( args->arg( 0 ) );
 
 	return app.exec();
 }

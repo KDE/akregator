@@ -16,4 +16,4 @@ librsslocal_la_METASOURCES = AUTO
 check_PROGRAMS = testlibrss
 testlibrss_SOURCES = testlibrss.cpp
 testlibrss_LDFLAGS = $(all_libraries)
-testlibrss_LDADD = $(LIB_KIO) librsslocal.la
+testlibrss_LDADD =  librsslocal.la $(LIB_KIO)
