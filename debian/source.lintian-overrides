@@ -1,4 +1,3 @@
 akregator: postinst-has-useless-call-to-ldconfig
 akregator: postrm-has-useless-call-to-ldconfig
-akregator: native-package-with-dash-version
 akregator: menu-item-contains-unknown-tag kderemove /usr/lib/menu/akregator:7
