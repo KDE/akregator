@@ -219,7 +219,7 @@ void FeedList::slotNodeDestroyed(TreeNode* node)
     m_flatList.remove(node);
 }
 
-void FeedList::slotNodeRemoved(FeedGroup* parent, TreeNode* node)
+void FeedList::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
 {
     if ( !node || !m_flatList.contains(node) )
         return;

@@ -72,7 +72,7 @@ void AddFeedDialog::slotOk( )
     f->fetch(true);
 }
 
-void AddFeedDialog::fetchCompleted(Feed *f)
+void AddFeedDialog::fetchCompleted(Feed */*f*/)
 {
     KDialogBase::slotOk();
 }
