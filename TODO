@@ -1,37 +1,52 @@
 TODO-list for aKregator
 =======================
 
-The bugs list has moved to http://berk.upnet.ru/projects/bugs
+Yes, this is (mostly) a roadmap of new features
+and bug fixes, not small ones.
 
-The bug numbers map is left here for convenience (it will be removed soon).
+Feel free to add items, there is a ideas section
+in the end.
 
-== SHORT-TERM (URGENT) ==
+short term (~beta2)
+-------------------
+- interval polling
+  -> smt: this will have to be implemented in the shell
+          to work properly. We have to find a way
+	  to let the shell tell the part to fetch feeds
+	  though. Tricky. The other way is easy; however
+	  a interval tracker on the shell side should 
+	  not know about Feed objects, just urls. The
+	  part should alert the interval tracker, either
+	  through slots or through the BrowserInterface,
+	  when a url has been fetched. That part is easy.
+- passive popups
+  -> smt: needs interval polling?
+- add back/forward/reload buttons to pageviewer
+- add detach to tabs
+- allow searching in combined view
+- show read/unread/new as different colors
+  in combined view.
 
-#000048 (BT #000020)
-#000047 (BT #000021)
-#000042 (BT #000022)
-#000040 (BT #000023)
-#000036 (BT #000024)
-#000031 (BT #000025)
-#000021 (BT #000011)
-#000027 (BT #000012)
-#000004 (BT #000001)
-#000045 (BT #000013)
-#000046 (BT #000014)
+medium term (~beta3?)
+-----------
+- rewrite combined 
+- config dialog
+  -> smt: if someone wants to do it in b2, go ahead :)
+- kontact part
+ 
+long term
+---------
+- move out of kdenonbeta 
+- ship as part of kde 4.0?
 
-== MID-TERM ==
-
-#000007 (BT #000002)
-#000008 (BT #000003)
-#000033 (BT #000018)
-#000009 (BT #000004)
-#000010 (BT #000005)
-#000011 (BT #000006)
-#000020 (BT #000009)
-#000022 (BT #000010)
-
-== LONG-TERM ==
-
-#000032 (BT #000015)(BT #000017)
-#000014 (BT #000007)
-#000015 (BT #000008)
+ideas
+-----
+- webblog editor
+- search folders like kmail
+- client side archiving
+  -> smt: doable in <30 lines of code but do we want to do it?
+- an small button that appears in konqueror's statusbar
+  if a page appears to have a rss feed.. automatically
+  adds page to akregator
+  -> smt: will have to research the feasibility..
+  
