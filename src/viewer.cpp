@@ -199,6 +199,41 @@ void Viewer::slotScrollDown()
     view()->scrollBy(0,10); 
 }
 
+void Viewer::slotZoomIn()
+{
+    int zf = zoomFactor();
+    if (zf < 100)
+    {
+        zf = zf - (zf % 20) + 20;
+        setZoomFactor(zf);
+    }
+    else
+    {
+        zf = zf - (zf % 50) + 50;
+        setZoomFactor(zf < 300 ? zf : 300);
+    }
+}
+
+void Viewer::slotZoomOut()
+{
+    int zf = zoomFactor();
+    if (zf <= 100)
+    {
+        zf = zf - (zf % 20) - 20;
+        setZoomFactor(zf > 20 ? zf : 20);
+    }
+    else
+    {
+        zf = zf - (zf % 50) - 50;
+        setZoomFactor(zf);
+    }
+}
+
+void Viewer::slotSetZoomFactor(int percent)
+{
+    setZoomFactor(percent);
+}
+
 // some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void Viewer::slotPrint( )
 {

@@ -35,8 +35,12 @@ namespace Akregator
 
             void slotScrollUp(); 
             void slotScrollDown();
+            void slotZoomIn();
+            void slotZoomOut();
+            void slotSetZoomFactor(int percent);
             void slotPrint();
-	    void setSafeMode();
+	       void setSafeMode();
+           
         
         signals:
            /**

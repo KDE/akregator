@@ -32,6 +32,10 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     : Viewer(parent, name)
 {
     setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
+
+    new KAction( i18n("Zoom &In"), "viewmag+", "", this, SLOT(slotZoomIn()), actionCollection(), "pageviewer_zoom_in" );
+    new KAction( i18n("Zoom &Out"), "viewmag-", "", this, SLOT(slotZoomOut()), actionCollection(), "pageviewer_zoom_out" );
+    
     m_backAction = new KToolBarPopupAction(i18n("Back"), "back", 0,
                             this, SLOT(slotBack()),
                             actionCollection(), "pageviewer_back");
