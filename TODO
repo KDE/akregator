@@ -1,0 +1,40 @@
+TODO-list for aKregator
+=======================
+<nick>  = reported by
+-->nick = assigned to
+#x      = sequential bug number,
+          #000023 being the highest available (take this one for your next bug and increase here)
+
+== SHORT-TERM (URGENT) ==
+
+#000001 ADD [ ] allow inline editing of feeds to alter Feed[Group]::title and resetting updateTitle to false (slotItemRenamed)
+#000002 FIX [ ] update ArticleList when selecting another feed
+#000003 ADD [ ] sort ArticleList by Article::pubDate
+#000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
+#000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?)
+#000006 ADD [ ] system tray
+#000007 ADD [ ] DCOP (q: should KPart implement DCOP or shell app only?)
+#000008 ADD [ ] install mime-type handlers for .opml feeds
+#000009 ADD [ ] write user documentation
+#000010 ADD [ ] code doxymentation
+#000011 ADD [ ] draw appropriate app icons
+#000012 FIX [ ] refine aboutbox
+#000019 ADD [ ] implement tooltips and What's This? help
+#000020 ADD [ ] announce on the <kde-announce@kde.org> mailing list
+#000021 ADD [ ] store fetched articles to Article Archive
+
+== MID-TERM ==
+
+#000013 FIX [ ] list generated files in .cvsignore files
+#000022 ADD [ ] configure.in.in magic to detect librss presence
+
+== LONG-TERM ==
+
+#000014 ADD [ ] provide .spec file for RPM packaging (or at least let packagers know about it)
+#000015 ADD [ ] provide debian directory and configuration files for Debian packaging (or at least let packagers know about it)
+
+== DONE ==
+
+#000016 ADD [x] provide standard AUTHORS, ChangeLog, README, and TODO files
+#000017 ADD [x] provide .lsm file
+#000018 ADD [x] provide .desktop file
