@@ -12,5 +12,3 @@ DEB_INSTALL_CHANGELOGS_ALL := ChangeLog
 
 DEB_INSTALL_MANPAGES_akregator := debian/akregator.1
 
-pre-build::
-	ln -sf `pwd`/$(DEB_BUILDDIR) $(DEB_BUILDDIR)/akregator
