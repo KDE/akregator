@@ -257,6 +257,8 @@ const KURL &Loader::discoveredFeedURL() const
    return d->discoveredFeedURL;
 }
 
+#include <kdebug.h>
+
 void Loader::slotRetrieverDone(const QByteArray &data, bool success)
 {
    d->lastError = d->retriever->errorCode();
@@ -283,8 +285,22 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
          ++charData;
       }
 
-      QByteArray tmpData;
-      tmpData.setRawData(charData, len);
+      QCString tmpData(charData, len);
+      
+      // hack: support formatting inside <pre> tags
+      QRegExp pres("&lt;pre&gt;(.+)&lt;/pre&gt;", false);
+      pres.setMinimal(TRUE);
+      int pos = 0;
+      while( (pos = pres.search(tmpData, pos)) != -1 )
+      {
+	int len = pres.matchedLength();
+	
+	QCString str = tmpData.mid(pos, len);
+	str.replace("\n", "&lt;br/&gt;");
+	
+	tmpData.replace(pos, len, str);
+	pos += len;
+      }
 
       if (doc.setContent(tmpData))
       {
@@ -301,7 +317,6 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
          status = ParseError;
       }
       
-      tmpData.resetRawData(charData, len);
    } else
       status = RetrieveError;
 
