@@ -235,7 +235,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
     
     if ( d->keep )
     {
-        metanode = doc.createElement( "metaInfo:meta" );
+//        metanode = doc.createElement( "metaInfo:meta" );
         metanode.setAttribute("type", "keep");
         metanode.appendChild(doc.createTextNode( d->keep ? "true" : "false"));
         parent.appendChild(metanode);

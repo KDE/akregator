@@ -7,7 +7,9 @@
 
 #include "archive.h"
 #include "feed.h"
+#include "feedgroup.h"
 #include "feediconmanager.h"
+#include "treenode.h"
 
 #include <kurl.h>
 #include <kdebug.h>
@@ -16,12 +18,65 @@
 #include <kiconloader.h>
 
 #include <qdom.h>
-#include <qpixmap.h>
 #include <qfile.h>
+#include <qpixmap.h>
+#include <qptrlist.h>
 
 using namespace Akregator;
 
-void Archive::load(Feed *f)
+
+
+void Archive::load(TreeNode* node)
+{
+    if (!node)
+        return;
+    
+    if (node->isGroup())
+    {
+        FeedGroup* fg = static_cast<FeedGroup*>(node);
+        load_p(fg);
+    }
+    else
+    {
+        Feed* f = static_cast<Feed*>(node);
+        load_p(f);
+    }
+}
+
+void Archive::save(TreeNode* node)
+{
+    if (!node)
+        return;
+    
+    if (node->isGroup())
+    {
+        FeedGroup* fg = static_cast<FeedGroup*>(node);
+        save_p(fg);
+    }
+    else
+    {
+        Feed* f = static_cast<Feed*>(node);
+        save_p(f);
+    }
+
+}
+
+void Archive::load_p(FeedGroup* fg)
+{
+    QPtrList<TreeNode> children = fg->children();
+    for (TreeNode* i = children.first(); i; i = children.next() )
+        load(i);
+}
+
+void Archive::save_p(FeedGroup* fg)
+{
+    QPtrList<TreeNode> children = fg->children();
+    for (TreeNode* i = children.first(); i; i = children.next() )
+        save(i);
+}
+
+
+void Archive::load_p(Feed *f)
 {
     if (!f)
         return;
@@ -86,7 +141,7 @@ void Archive::load(Feed *f)
     f->setMerged(true);
 }
 
-void Archive::save(Feed *f)
+void Archive::save_p(Feed *f)
 {
     if (!f)
         return;

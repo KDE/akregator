@@ -6,6 +6,7 @@
  ***************************************************************************/
 
 #include "akregatorconfig.h"
+#include "archive.h"
 #include "feed.h"
 #include "feedgroup.h"
 #include "fetchtransaction.h"
@@ -210,8 +211,9 @@ void Feed::slotMarkAllArticlesAsRead()
             (*it).setStatus(MyArticle::Read);
                 
         m_unread = 0;
+        Archive::save(this);
         modified();
-    }     
+    }
 }
 void Feed::slotAddToFetchTransaction(FetchTransaction* transaction)
 {

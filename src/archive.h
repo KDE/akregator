@@ -12,12 +12,20 @@
 namespace Akregator
 {
     class Feed;
-
+    class FeedGroup;
+    class TreeNode;
+    
     class Archive
     {
         public:
-            static void load(Feed *f);
-            static void save(Feed *f);
+            static void load(TreeNode* node);
+            static void save(TreeNode* node);
+            
+        protected:
+            static void load_p(Feed* f);
+            static void save_p(Feed* f);
+            static void load_p(FeedGroup* fg);
+            static void save_p(FeedGroup* fg);
     };
 }
 
