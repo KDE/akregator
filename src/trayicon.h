@@ -26,11 +26,14 @@ namespace Akregator
             void updateUnread(int unread);
             void newArticle(const QString&, const QPixmap&, const QString&);
             QPixmap takeScreenshot() const;
-
+            virtual void mousePressEvent(QMouseEvent *);
         public slots:
             void settingsChanged();
             void viewButtonClicked();
             void fetchAllFeeds();
+
+        signals:
+            void showPart();
 
         private:
             QPixmap m_defaultIcon;

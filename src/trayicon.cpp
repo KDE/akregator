@@ -48,9 +48,18 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
 	
 TrayIcon::~TrayIcon()
 {
-    if (m_balloon)
-        delete m_balloon;
+	delete m_balloon;
 }
+
+
+void TrayIcon::mousePressEvent(QMouseEvent *e) {
+    if (e->button() == LeftButton) {
+        emit showPart();
+    }
+
+    KSystemTray::mousePressEvent(e);
+}
+
 
 QPixmap TrayIcon::takeScreenshot() const
 {

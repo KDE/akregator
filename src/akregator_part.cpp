@@ -167,6 +167,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setWidget(m_view);
 
     m_trayIcon = new TrayIcon( getMainWindow() );
+    connect(m_trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
 
     if ( isTrayIconEnabled() )
         m_trayIcon->show();

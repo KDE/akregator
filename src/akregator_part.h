@@ -201,6 +201,9 @@ namespace Akregator
              */
             void slotCompleted();
 
+        signals:
+            void showPart();
+
         private:
             bool populateStandardFeeds();
             void setupActions();
