@@ -161,6 +161,9 @@ void FeedList::append(FeedList* list, FeedGroup* parent, TreeNode* after)
 QDomDocument FeedList::toOPML() const
 {
     QDomDocument doc;
+    QDomProcessingInstruction pi = doc.createProcessingInstruction( "xml", "version=\"1.0\" encoding=\"UTF-8\"" );
+    doc.appendChild( pi );
+
     QDomElement root = doc.createElement( "opml" );
     root.setAttribute( "version", "1.0" );
     doc.appendChild( root );
