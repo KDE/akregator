@@ -324,15 +324,28 @@ void ArticleList::slotNextUnreadArticle()
     ArticleListItem *it= static_cast<ArticleListItem*>(selectedItem());
     if (!it)
         it = static_cast<ArticleListItem*>(firstChild());
-    
+
     for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
     {
-        if ((it->article().status()==MyArticle::Unread) ||
-             (it->article().status()==MyArticle::New) )
+        if (it->article().status() != MyArticle::Read)
         {
             setSelected(it, true);
             ensureItemVisible(it);
             return;
+        }
+    }
+    // only reached when there is no unread article after the selected one
+    if (m_node->unread() > 0)
+    {
+        it = static_cast<ArticleListItem*>(firstChild());
+        for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
+        {
+            if (it->article().status() != MyArticle::Read)
+            {
+                setSelected(it, true);
+                ensureItemVisible(it);
+                return;
+            }
         }
     }
 }
@@ -355,6 +368,22 @@ void ArticleList::slotPreviousUnreadArticle()
             setSelected(ali, true);
             ensureItemVisible(ali);
             return;
+        }
+    }
+    // only reached when there is no unread article before the selected one
+    if (m_node->unread() > 0)
+    {
+        it = static_cast<ArticleListItem*>(lastChild());
+
+        for ( ; it.current(); --it )
+        {
+            ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
+            if ((ali->article().status() != MyArticle::Read))
+            {
+                setSelected(ali, true);
+                ensureItemVisible(ali);
+                return;
+            }
         }
     }
 }

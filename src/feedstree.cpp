@@ -473,6 +473,8 @@ void FeedsTree::slotNextFeed()
 
 void FeedsTree::slotPrevUnreadFeed()
 {
+    if (!firstChild() || !firstChild()->firstChild())
+        return;
     if ( !selectedItem() )
         slotNextUnreadFeed(); 
 
@@ -490,6 +492,29 @@ void FeedsTree::slotPrevUnreadFeed()
             return;
         }
     }
+    // reached when there is no unread feed above the selected one
+    // => cycle: go to end of list...
+    if (rootNode()->unread() > 0)
+    {
+
+        it = QListViewItemIterator(lastItem());
+    
+        for ( ; it.current(); --it)
+        {
+
+            TreeNodeItem* tni = static_cast<TreeNodeItem*> (it.current());
+
+            if (!tni)
+                break;
+
+            if (!tni->isSelected() && !tni->isExpandable() && tni->node()->unread() > 0)
+            {
+                setSelected(tni, true);
+                ensureItemVisible(tni);
+                return;
+            }
+        }
+    }
 }
 
 void FeedsTree::slotNextUnreadFeed()
@@ -504,7 +529,6 @@ void FeedsTree::slotNextUnreadFeed()
         else 
             it = QListViewItemIterator( firstChild()->firstChild());
     }
-    
     else
         it = QListViewItemIterator( selectedItem() );
     
@@ -519,6 +543,12 @@ void FeedsTree::slotNextUnreadFeed()
             ensureItemVisible(tni);
             return;
         }
+    }
+    // if reached, we are at the end of the list++
+    if (rootNode()->unread() > 0)
+    {
+        clearSelection();
+        slotNextUnreadFeed();
     }
 }
 
