@@ -157,35 +157,6 @@ aKregator::~aKregator()
 
 void aKregator::partChanged(KParts::ReadOnlyPart *p)
 {
-    KParts::BrowserExtension *ext;
-    
-    loadingProgress(-1);
-   
-    if (m_activePart)
-    {
-        ext=browserExtension(m_activePart);
-        if (ext)
-            disconnect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-        
-        disconnect(m_activePart, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
-        disconnect(m_activePart, SIGNAL(completed()), this, SLOT(slotCompleted()));
-        disconnect(m_activePart, SIGNAL(canceled(const QString &)), this, SLOT(slotCanceled(const QString&)));
-        disconnect(m_activePart, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
-    
-        disconnectActionCollection(m_activePart->actionCollection());
-    }
-
-    ext=browserExtension(p);
-    if (ext)
-        connect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-     
-    connect(p, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
-    connect(p, SIGNAL(completed()), this, SLOT(slotCompleted()));
-    connect(p, SIGNAL(canceled(const QString &)), this, SLOT(slotCanceled(const QString&)));
-    connect(p, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
- 
-    connectActionCollection(p->actionCollection());
-
     m_activePart=p;
     createGUI(p);
 }
@@ -193,7 +164,7 @@ void aKregator::partChanged(KParts::ReadOnlyPart *p)
 void aKregator::load(const KURL& url)
 {
     if (!m_part)
-	loadPart();
+	    loadPart();
     m_part->openURL( url );
 }
 
@@ -210,8 +181,6 @@ void aKregator::setupActions()
     connectActionCollection(actionCollection());
 
     KStdAction::openNew(this, SLOT(fileNew()), actionCollection());
-//    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-
     KStdAction::quit(this, SLOT(quitProgram()), actionCollection());
 
     m_stopAction = new KAction( i18n( "&Stop" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "stop" );
@@ -294,15 +263,7 @@ void aKregator::optionsConfigureKeys()
 
 void aKregator::optionsConfigureToolbars()
 {
-#if defined(KDE_MAKE_VERSION)
-# if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
     saveMainWindowSettings(KGlobal::config(), autoSaveGroup());
-# else
-    saveMainWindowSettings(KGlobal::config() );
-# endif
-#else
-    saveMainWindowSettings(KGlobal::config() );
-#endif
 
     // use the standard toolbar editor
     KEditToolbar dlg(factory());
@@ -469,7 +430,7 @@ void aKregator::slotStop()
 void aKregator::callObjectSlot( QObject *obj, const char *name, const QVariant &argument )
 {
     if (!obj)
-	return;
+	    return;
 
     int slot = obj->metaObject()->findSlot( name );
 

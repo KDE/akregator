@@ -40,9 +40,7 @@ namespace Akregator
     class ArticleViewer;
     class ArticleFilter;
     class TabWidget;
-#ifdef HAVE_FRAME
-//    class Frame;
-#endif
+    class Frame;
 }
 
 namespace Akregator
@@ -99,9 +97,11 @@ namespace Akregator
              */
             void addFeedToGroup(const QString& url, const QString& group);
 
-#ifdef HAVE_FRAME	    
-//            void stopLoading();
-#endif
+	    void startOperation();
+            void endOperation();
+            void operationError(const QString &msg);
+
+            void stopLoading();
 
 	    FetchTransaction* transaction(){return m_transaction;}
 
@@ -167,14 +167,17 @@ namespace Akregator
             void slotMouseOverInfo(const KFileItem *kifi);
 
             void slotOpenTab(const KURL& url);
-#ifdef HAVE_FRAME            
-//            void slotRemoveFrame();
-//            void slotFrameChanged(Frame *f);
-#else
-            void slotRemoveTab();
-            void slotTabChanged(QWidget *w);
-#endif
-            void slotTabCaption(const QString &capt);
+            void slotRemoveFrame();
+            void slotFrameChanged(Frame *f);
+
+	    void slotStatusText(const QString &);
+            void slotCaptionChanged(const QString &);
+            void slotStarted();
+            void slotCanceled(const QString &);
+            void slotCompleted();
+            void slotLoadingProgress(int);
+	    
+	    void slotTabCaption(const QString &capt);
 
         private:
             /**
@@ -182,6 +185,8 @@ namespace Akregator
              * @internal
              */
             void reset();
+
+	    void connectFrame(Frame *);
 
             /**
              * Write child items of item to node using QDom document document.
@@ -248,10 +253,9 @@ namespace Akregator
             TabWidget *m_tabs;
             QToolButton *m_tabsClose;
             QWidget *m_mainTab;
-#ifdef HAVE_FRAME
-//            Frame *m_mainFrame;
-#endif
-	    
+            Frame *m_mainFrame;
+	    Frame *m_currentFrame;
+
             void setTotalUnread();
 
             KComboBox *m_searchCombo;
@@ -268,10 +272,8 @@ namespace Akregator
             ViewMode m_viewMode;
             QTimer *intervalFetchTimer;
 
-#ifdef HAVE_FRAME
-//            bool m_stopLoading;
-#endif
-	    
+            bool m_stopLoading;
+
             QPixmap m_feedTreePixmap;
             QPixmap m_folderTreePixmap;
 	    QPixmap m_errorTreePixmap;

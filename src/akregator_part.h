@@ -20,8 +20,6 @@ class KParts::BrowserExtension;
 namespace Akregator
 {
     class aKregatorView;
-#ifdef HAVE_FRAME
-/*
     class aKregatorPart;
 
     class BrowserExtension : public KParts::BrowserExtension
@@ -35,8 +33,6 @@ namespace Akregator
         private:
             aKregatorPart *m_part;
     };
-*/
-#endif
     
     /**
      * This is a RSS Aggregator "Part". It does all the real work.
@@ -81,21 +77,20 @@ namespace Akregator
 
             void setStatusBar(const QString &text);
             void setProgress(int percent);
+            void setStarted();
+            void setCompleted();
+            void setCanceled(const QString &s);
+            
             void setTotalUnread(int unread);
-#ifdef HAVE_FRAME
-/*
+
             void setCaption(const QString &text);
             
             void startOperation();
             void endOperation();
             void operationError(const QString &msg);
-*/
-#endif
 
             virtual bool openURL(const KURL& url);
-#ifdef HAVE_FRAME
-//            virtual bool closeURL();
-#endif
+            virtual bool closeURL();
                 
             virtual void fetchFeedUrl(const QString&);
             
@@ -137,9 +132,7 @@ namespace Akregator
         private:
             void readRecentFileEntries();
 
-#ifdef HAVE_FRAME
-//            bool m_loading;
-#endif
+            bool m_loading;
             
             int m_totalUnread;
             KParts::BrowserExtension *m_extension;
