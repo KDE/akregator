@@ -212,16 +212,16 @@ void FeedGroup::slotAddToFetchTransaction(FetchTransaction* transaction)
 
 TreeNode* FeedGroup::next()
 {
-    if (firstChild())
+    if ( firstChild() )
         return firstChild();
 
-    if (nextSibling())
+    if ( nextSibling() )
         return nextSibling();
     
     FeedGroup* p = parent();
     while (p)
     {
-        if (p->nextSibling())
+        if ( p->nextSibling() )
             return p->nextSibling();
         else
             p = p->parent();

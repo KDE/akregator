@@ -11,9 +11,6 @@
 #include <qobject.h>
 #include <qstring.h>
 
-// These will be removed when TreeNodeItem is ready
-#include <qlistview.h>
-
 class QDomDocument;
 class QDomElement;
 
@@ -32,18 +29,19 @@ class FetchTransaction;
 class TreeNode : public QObject
 {
 Q_OBJECT
+
 public:
-     /** Standard constructor */
-     TreeNode();
-     
-     
-     /** Standard destructor */
-     ~TreeNode();
-     
-     
-     /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree) 
-     @return number of new/unread articles */
-    
+        
+    /** Standard constructor */
+    TreeNode();
+
+    /** Standard destructor */
+    virtual ~TreeNode();
+
+
+    /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree)
+    @return number of new/unread articles */
+
     virtual int unread() const = 0;
     
     
@@ -112,6 +110,7 @@ public:
         Calling next() unless it returns 0 iterates through the tree in pre-order
      */ 
     virtual TreeNode* next() = 0; 
+
 public slots:
     
     /** Deletes all expired articles in the node (depending on the expiry settings).
@@ -126,6 +125,7 @@ public slots:
     virtual void slotMarkAllArticlesAsRead() = 0;
 
     /** adds node to a fetch transaction */
+    
     virtual void slotAddToFetchTransaction(FetchTransaction* transaction) = 0;
     //virtual void slotFetch(int timeout) = 0;    
     //virtual void slotAbortFetch() = 0;
@@ -160,7 +160,7 @@ signals:
     
 protected:    
     
-    /** call this if you modified the object. Will do notification and handles m_doNotify and m_changeOccured. */
+    /** call this if you modified the object. Will do notification immediately or cache it, depending on @c m_doNotify. */
     virtual void modified();
     
     /** If set to true, signalChanged is emitted when the node was modified */

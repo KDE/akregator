@@ -953,7 +953,7 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
     feed->setMaxArticleAge(dlg->maxArticleAge());
     feed->setMaxArticleNumber(dlg->maxArticleNumber());
     feed->setNotificationMode(true, true);    
-    feed->setAutoFetch(dlg->autoFetch());
+    feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
 
     Archive::load(feed);
@@ -1035,7 +1035,7 @@ void aKregatorView::slotFeedModify()
 
     dlg->setFeedName( feed->title() );
     dlg->setUrl( feed->xmlUrl() );
-    dlg->setAutoFetch(feed->autoFetch());
+    dlg->setAutoFetch(feed->useCustomFetchInterval());
     dlg->setFetchInterval(feed->fetchInterval());
     dlg->setArchiveMode(feed->archiveMode());
     dlg->setMaxArticleAge(feed->maxArticleAge());
@@ -1046,7 +1046,7 @@ void aKregatorView::slotFeedModify()
         feed->setNotificationMode(false);
         feed->setTitle( dlg->feedName() );
         feed->setXmlUrl( dlg->url() );
-        feed->setAutoFetch(dlg->autoFetch());
+        feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
         feed->setFetchInterval(dlg->fetchInterval());
         feed->setArchiveMode(dlg->archiveMode());
         feed->setMaxArticleAge(dlg->maxArticleAge());
@@ -1150,35 +1150,41 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
 
 void aKregatorView::slotDoIntervalFetches()
 {
-    kdDebug() << "enter slotDoIntervalFetches" << endl;
-    if (m_transaction->isRunning() || m_part->isLoading())
+    if ( m_transaction->isRunning() || m_part->isLoading() )
         return;
-    kdDebug() << "doIntervalFetches" << endl;
+
     bool fetch = false;
-    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
+    TreeNode* i = m_tree->rootNode()->firstChild();
+
+    while ( i && i != m_tree->rootNode() )
     {
-        TreeNodeItem* item = static_cast<TreeNodeItem*> (*it);
-        Feed *f = static_cast<Feed*> (item->node());
-        if ( f && !f->isGroup() )
+        if ( !i->isGroup() )
         {
-            uint lastFetch = IntervalManager::self()->lastFetchTime(f->xmlUrl());
-            uint now = QDateTime::currentDateTime().toTime_t();
+            Feed* f = static_cast<Feed*> (i);
 
-            uint interval = 0;
+            int interval = -1;
 
-            if ( f->autoFetch() )
-                interval = uint(f->fetchInterval()*60);
+            if ( f->useCustomFetchInterval() )
+                interval = f->fetchInterval() * 60;
             else
                 if ( Settings::useIntervalFetch() )
-                    interval = uint(Settings::autoFetchInterval()*60);
-            if ( interval != 0 && now - lastFetch >= interval )
+                    interval = Settings::autoFetchInterval() * 60;
+
+            uint lastFetch = IntervalManager::self()->lastFetchTime(f->xmlUrl());
+            
+            uint now = QDateTime::currentDateTime().toTime_t();
+            
+            if ( interval > 0 && now - lastFetch >= (uint)interval )
             {
-                kdDebug() << "interval fetch " << f->title() << endl;
+                kdDebug() << "AkregatorView::slotDoIntervalFetches: interval fetch " << f->title() << endl;
                 m_transaction->addFeed(f);
                 fetch = true;
             }
         }
+
+        i = i->next();
     }
+    
     if (fetch)
     {
         startOperation();

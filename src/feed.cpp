@@ -58,7 +58,7 @@ Feed* Feed::fromOPML(QDomElement e)
         
         QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
-        bool autoFetch = e.attribute("autoFetch") == "true" ? true : false;
+        bool useCustomFetchInterval = e.attribute("y") == "true" ? true : false;
         
         QString htmlUrl = e.attribute("htmlUrl");
         QString description = e.attribute("description");
@@ -70,7 +70,7 @@ Feed* Feed::fromOPML(QDomElement e)
         feed = new Feed();
         feed->setTitle(title);
         feed->setXmlUrl(xmlUrl);
-        feed->setAutoFetch(autoFetch);
+        feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
         feed->setHtmlUrl(htmlUrl);
         feed->setDescription(description);
         feed->setArchiveMode(archiveMode);
@@ -112,8 +112,8 @@ Feed::Feed()
         , m_fetchError(false)
         , m_fetchTries(0)
         , m_loader(0)
-        , m_merged(false)
         , m_transaction(0)
+        , m_merged(false)
         , m_unread(0)
         , m_articles()
 {
@@ -130,7 +130,7 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "xmlUrl", m_xmlUrl );
     el.setAttribute( "htmlUrl", m_htmlUrl );
     el.setAttribute( "description", m_description );
-    el.setAttribute( "autoFetch", (autoFetch() ? "true" : "false") );
+    el.setAttribute( "autoFetch", (useCustomFetchInterval() ? "true" : "false") );
     el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
     el.setAttribute( "archiveMode", archiveModeToString(m_archiveMode) );
     el.setAttribute( "maxArticleAge", m_maxArticleAge );
@@ -226,60 +226,39 @@ void Feed::slotAddToFetchTransaction(FetchTransaction* transaction)
 }
 
 
-void Feed::appendArticles(const Document &d, bool findDups)
+void Feed::appendArticles(const Document &d)
 {
-    //kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
     bool changed = false;
-    findDups=true;
+    
     m_articles.enableSorting(false);
     Article::List d_articles = d.articles();
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d_articles.end();
-    //kdDebug() << "m_unread before appending articles=="<<m_unread<<endl;
     
     int nudge=0;
 
     for (it = d_articles.begin(); it != en; ++it)
     {
         MyArticle mya(*it);
-        
-	if (findDups)
-        {
-            ArticleSequence::ConstIterator oo=m_articles.find(mya);
-            if (oo == m_articles.end() )
-            {
-                if (m_merged)
-                    mya.setStatus(MyArticle::New);
-                else
-                {
-                    if (mya.status() == MyArticle::New)
-                        mya.setStatus(MyArticle::Unread);
-                }
 
-		mya.offsetFetchTime(nudge);
-                appendArticle(mya);
-                changed = true;
-		nudge--;
-            }
-            //else{
-            //kdDebug() << "got dup!!"<<mya.title()<<endl;
-            //}
-        }
-        else
+        // if archive isn't loaded, append. Otherwise check for dupes.
+        if (!m_merged || m_articles.find(mya) == m_articles.end() )
         {
-            MyArticle mya(*it);
-            if (!m_merged)
+            if ( m_merged )
+                mya.setStatus(MyArticle::New);
+            else
             {
-                if (mya.status()==MyArticle::New)
+                if (mya.status() == MyArticle::New)
                     mya.setStatus(MyArticle::Unread);
             }
-	
+
             mya.offsetFetchTime(nudge);
             appendArticle(mya);
             changed = true;
-            nudge++;
+            nudge--;
         }
     }
+    
     m_articles.enableSorting(true);
     m_articles.sort();
     if (changed)
@@ -337,16 +316,16 @@ void Feed::appendArticle(const MyArticle& a)
 
 void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
 {
-    m_followDiscovery=followDiscovery;
-    m_transaction=trans;
-    m_fetchTries=0;
+    m_followDiscovery = followDiscovery;
+    m_transaction = trans;
+    m_fetchTries = 0;
 
     // mark all new as unread
     ArticleSequence::Iterator it;
-    ArticleSequence::Iterator en=m_articles.end();
+    ArticleSequence::Iterator en = m_articles.end();
     for (it = m_articles.begin(); it != en; ++it)
     {
-        if ((*it).status()==MyArticle::New)
+        if ((*it).status() == MyArticle::New)
         {
             (*it).setStatus(MyArticle::Unread);
         }
@@ -368,8 +347,7 @@ void Feed::abortFetch()
 
 void Feed::tryFetch()
 {
-
-    m_fetchError=false;
+    m_fetchError = false;
 
     m_loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     m_loader->loadFrom( m_xmlUrl, new FileRetriever );
@@ -382,17 +360,17 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     if (status!= Success)
     {
-        if (m_followDiscovery && (status==ParseError) && (m_fetchTries < 3) && 			(l->discoveredFeedURL().isValid()))
+        if (m_followDiscovery && (status == ParseError) && (m_fetchTries < 3) && 			(l->discoveredFeedURL().isValid()))
         {
             m_fetchTries++;
-            m_xmlUrl=l->discoveredFeedURL().url();
+            m_xmlUrl = l->discoveredFeedURL().url();
             emit fetchDiscovery(this);
             tryFetch();
             return;
         }
         else
         {
-            m_fetchError=true;
+            m_fetchError = true;
             emit fetchError(this);
             return;
         }
@@ -415,17 +393,12 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
         m_image=QPixmap(imageFileName, "PNG");
 
-        if (m_image.isNull())
-        {
-            if (m_document.image()) // if we aint got teh image
-                                    // and the feed provides one, get it....
-            {
-		if (m_transaction)
-            	    m_transaction->loadImage(this, m_document.image());
-	    }
-        }
+        // if we aint got teh image
+        // and the feed provides one, get it....
+        if (m_image.isNull() && m_document.image() && m_transaction)
+            m_transaction->loadImage(this, m_document.image());
     }
-
+    
     if ( title().isEmpty() ) 
         setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(m_document.title())) );
 
@@ -434,8 +407,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     
     //kdDebug() << "ismerged reprots:::"<<isMerged()<<endl;
 
-    bool findDups=isMerged();
-    appendArticles(m_document, findDups);
+    appendArticles(m_document);
 
     m_loader=0;
     m_transaction=0;
@@ -445,7 +417,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 void Feed::loadFavicon()
 {
     if (!m_transaction)
-	return;
+	   return;
     m_transaction->loadIcon(this);
 }
 
@@ -523,12 +495,13 @@ void Feed::setUnread(int unread)
 
 TreeNode* Feed::next()
 {
-    if (nextSibling())
+    if ( nextSibling() )
         return nextSibling();
+    
     FeedGroup* p = parent();
     while (p)
     {
-        if (p->nextSibling())
+        if ( p->nextSibling() )
             return p->nextSibling();
         else
             p = p->parent();
