@@ -184,8 +184,8 @@ bool aKregatorPart::saveFile()
     // m_file is always local, so we use QFile
     QFile file(m_file);
     if (file.open(IO_WriteOnly) == false)
-        return false;
-
+        return fileSaveAs();
+        
     // use QTextStream to dump the text to the file
     QTextStream stream(&file);
     stream.setEncoding(QTextStream::UnicodeUTF8);
@@ -259,14 +259,18 @@ void aKregatorPart::fileOpen()
         openURL(file_name);
 }
 
-void aKregatorPart::fileSaveAs()
+bool aKregatorPart::fileSaveAs()
 {
     // this slot is called whenever the File->Save As menu is selected,
     QString file_name = KFileDialog::getSaveFileName( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
     if (file_name.isEmpty() == false)
+    {
         saveAs(file_name);
+        return true;
+    }
+    return false;
 }
 
 void aKregatorPart::fileImport()

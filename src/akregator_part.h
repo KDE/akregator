@@ -87,7 +87,7 @@ namespace Akregator
 
         protected slots:
             void fileOpen();
-            void fileSaveAs();
+            bool fileSaveAs();
             void fileImport();
 
         private:
