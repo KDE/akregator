@@ -245,10 +245,12 @@ void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
         else
             elt = new KListViewItem( m_tree, m_tree->lastItem(), e.attribute("text") );
 
+	kdDebug() << "*********************text="<<e.attribute("text")<<endl;
+	
         if (e.hasAttribute("xmlUrl"))
         {
             addFeed_Internal( elt,
-                              e.attribute("title"),
+                              e.attribute("text"),
                               e.attribute("xmlUrl"),
                               e.attribute("htmlUrl"),
                               e.attribute("description"),
@@ -347,7 +349,7 @@ bool aKregatorPart::saveFile()
     QDomElement head = newdoc.createElement( "head" );
     root.appendChild( head );
 
-    QDomElement title = newdoc.createElement( "title" );
+    QDomElement title = newdoc.createElement( "text" );
     head.appendChild( title );
 
     QDomText t = newdoc.createTextNode( "aKregator Feeds" );
