@@ -45,7 +45,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     /* --- Feed popup menu */
     new KAction(i18n("&Add..."), "add", "Alt+Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
-    new KAction(i18n("Add Feed &Group..."), "add", "Alt+Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
+    new KAction(i18n("Add &Folder..."), "add", "Alt+Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
     new KAction(i18n("&Delete"), "delete", "Shift+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Modify"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
     new KAction(i18n("&Fetch"), "down", "Alt+Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");

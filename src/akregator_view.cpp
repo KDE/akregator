@@ -469,7 +469,7 @@ void aKregatorView::slotFeedAddGroup()
     bool Ok;
     KListViewItem *elt;
 
-    QString text = KInputDialog::getText(i18n("Add Feed Group"), i18n("Feed group title:"), "", &Ok);
+    QString text = KInputDialog::getText(i18n("Add Folder"), i18n("Folder name:"), "", &Ok);
     if (!Ok) return;
 
     QListViewItem *lastChild = m_tree->currentItem()->firstChild();
