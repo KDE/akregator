@@ -93,25 +93,27 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		}
     }
     
-	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull()) {
+	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull())
+    {
 		time_t _time;
 		if (format==AtomFeed)
 		   _time = parseISO8601Date(elemText); 
 		else
 		   _time = KRFCDate::parseDate(elemText);
-		/* \bug This isn't really the right way since it will set the date to
-		 * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
-		 * we cannot distinguish between that date, and invalid values. :-/
-		 */
-		d->pubDate.setTime_t(_time);
+
+        // 0 means invalid, not epoch (it returns epoch+1 when it parsed epoch, see the KRFCDate::parseDate() docs)
+        kdDebug() << "parsed: " << _time << endl;
+        if (_time != 0)
+		  d->pubDate.setTime_t(_time);
 	}
-	if (!(elemText = extractNode(node, QString::fromLatin1("dc:date"))).isNull()) {
+	if (!(elemText = extractNode(node, QString::fromLatin1("dc:date"))).isNull())
+    {
 		time_t _time = parseISO8601Date(elemText);
-		/* \bug This isn't really the right way since it will set the date to
-		 * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
-		 * we cannot distinguish between that date, and invalid values. :-/
-		 */
-		d->pubDate.setTime_t(_time);
+
+        // 0 means invalid, not epoch (it returns epoch+1 when it parsed epoch, see the KRFCDate::parseDate() docs)
+        kdDebug() << "parsed: " << _time << endl;
+        if (_time != 0)
+		  d->pubDate.setTime_t(_time);
 	}
 
 	if (!(elemText = extractNode(node, QString::fromLatin1("wfw:comment"))).isNull()) {

@@ -15,11 +15,15 @@
 
 time_t RSS::parseISO8601Date(const QString &s)
 {
+    // do some sanity check: 26-12-2004T00:00+00:00 is parsed to epoch+1 in the KRFCDate, which is wrong. So let's check if the date begins with YYYY -fo
+    if (s.stripWhiteSpace().left(4).toInt() < 1000)
+        return 0; // error
+
+    // FIXME: imho this is done in KRFCDate::parseDateISO8601() automatically, so we could omit it? -fo
 	if (s.find('T') != -1)
 		return KRFCDate::parseDateISO8601(s);
-	QString time=s;
-	time += "T12:00:00";
-	return KRFCDate::parseDateISO8601(time);
+    else
+        return KRFCDate::parseDateISO8601(s + "T12:00:00");
 }
 
 
