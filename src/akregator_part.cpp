@@ -35,6 +35,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // we need an instance
     setInstance( aKregatorFactory::instance() );
 
+    m_totalUnread=0;
+    
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
     m_extension=new aKregatorExtension(this, "ak_extension");
     connect (m_extension, SIGNAL(saveSettings()), SLOT(saveSettings()));
@@ -137,6 +139,15 @@ void aKregatorPart::setStatusBar(const QString &text)
 void aKregatorPart::setProgress(int percent)
 {
     emit m_extension->loadingProgress(percent);
+}
+
+void aKregatorPart::setTotalUnread(int unread)
+{
+    if (m_totalUnread != unread)
+    {
+        m_extension->browserInterface()->callMethod( "updateUnread(int)", unread );
+        m_totalUnread=unread;
+    }
 }
 
 /*************************************************************************************************/

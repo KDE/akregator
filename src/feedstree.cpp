@@ -138,7 +138,7 @@ int FeedsTreeItem::countUnreadRecursive()
             item ; item = item->nextSibling() ) {
         count += static_cast<FeedsTreeItem*>(item)->countUnreadRecursive();
     }
-
+    
     return count;
 }
 

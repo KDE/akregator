@@ -64,7 +64,8 @@ namespace Akregator
 
             void setStatusBar(const QString &text);
             void setProgress(int percent);
-
+            void setTotalUnread(int unread);
+            
             virtual bool openURL(const KURL& url);
 
         protected:
@@ -92,6 +93,7 @@ namespace Akregator
         private:
             void readRecentFileEntries();
 
+            int m_totalUnread;
             aKregatorExtension *m_extension;
             KRecentFilesAction *recentFilesAction;
             static KAboutData* s_about;

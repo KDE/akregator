@@ -30,9 +30,9 @@ namespace Akregator
         
         bool isFolder();
         void setFolder(bool f);
-
+        int countUnreadRecursive();
+        
         private:
-            int countUnreadRecursive();
             void updateParentsRecursive();
             int m_unread;
             bool m_folder;

@@ -215,6 +215,8 @@ namespace Akregator
             QToolButton *m_tabsClose;
             QWidget *m_mainTab;
 
+            void setTotalUnread();
+
             KComboBox *m_searchCombo;
             KLineEdit *m_searchLine;
             int m_queuedSearches;

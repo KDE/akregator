@@ -10,6 +10,9 @@
 
 #include <ksystemtray.h>
 
+#include <qimage.h>
+#include <qpixmap.h>
+
 namespace Akregator
 {
     class TrayIcon : public KSystemTray
@@ -18,6 +21,11 @@ namespace Akregator
         public:
             TrayIcon(QWidget *parent = 0, const char *name = 0);
             ~TrayIcon();
+            void updateUnread(int unread);
+        private:
+            QPixmap m_defaultIcon;
+            QImage m_lightIconImage;
+            int m_unread;
     };
 }
 

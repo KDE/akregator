@@ -259,6 +259,7 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         m_part->setProgress(int(100*((double)curNodes/(double)numNodes)));
         n = n.nextSibling();
     }
+    setTotalUnread();
     m_tree->setUpdatesEnabled(true);
     m_tree->triggerUpdate();
 
@@ -664,6 +665,8 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
                       false
                     );
 
+    setTotalUnread();
+
     m_part->setModified(true);
     delete afd;
     delete dlg;
@@ -790,7 +793,9 @@ void aKregatorView::slotOpenHomepage()
 
 void aKregatorView::markAllRead(QListViewItem *item)
 {
-    if (item)
+    if (!item)
+        return;
+    else
     {
         Feed *f = static_cast<Feed *>(m_feeds.find(item));
         if (!f) return;
@@ -817,6 +822,15 @@ void aKregatorView::markAllRead(QListViewItem *item)
             }
         }
     }
+
+    setTotalUnread();
+}
+
+void aKregatorView::setTotalUnread()
+{
+    FeedsTreeItem *allFeedsItem = static_cast<FeedsTreeItem *>(m_tree->firstChild());
+    int totalUnread=totalUnread=allFeedsItem->countUnreadRecursive();
+    m_part->setTotalUnread(totalUnread);
 }
 
 void aKregatorView::findNumFetches(QListViewItem *item)
@@ -910,7 +924,11 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     m_fetchesDone++;
     int p=int(100*((double)m_fetchesDone/(double)m_fetches));
     if (p>=100)
+    {
+        setTotalUnread(); // used for systray usually, which is slow.. 
+                          // only update once after all feeds fetched.
         m_part->setStatusBar(QString::null);
+    }
     m_part->setProgress(p);
     //kdDebug() << k_funcinfo << "END" << endl;
 }
@@ -953,6 +971,8 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
         FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());
         if (fti)
             fti->setUnread(unread);
+
+        setTotalUnread();
 
         item->article().setStatus(MyArticle::Read);
 

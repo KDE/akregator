@@ -24,18 +24,21 @@ class aKregator;
 namespace Akregator
 {
     class aKregatorExtension;
+    class TrayIcon;
 }
 
 class BrowserInterface : public KParts::BrowserInterface
 {
     Q_OBJECT
     Q_PROPERTY( bool haveWindowLoaded READ haveWindowLoaded )
+    
 public:
-    BrowserInterface( aKregator *shell, const char *name );
-    bool haveWindowLoaded() const;
-
+        BrowserInterface( aKregator *shell, const char *name );
+        bool haveWindowLoaded() const;
+public slots:
+        void updateUnread( int );
 private:
-    aKregator *m_shell;
+        aKregator *m_shell;
 };
 
 
@@ -72,6 +75,8 @@ public:
     virtual void closeEvent(QCloseEvent* e);
 
     virtual void fontChange(const QFont &);
+
+    void updateUnread(int);
 public slots:
     void slotSetStatusBarText(const QString & s);
 
@@ -117,6 +122,7 @@ private:
     KToggleAction *m_statusbarAction;
     KProgress *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
+    Akregator::TrayIcon *m_icon;
     bool m_quit;
 };
 

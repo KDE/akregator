@@ -37,6 +37,11 @@ BrowserInterface::BrowserInterface( aKregator *shell, const char *name )
     m_shell = shell;
 }
 
+void BrowserInterface::updateUnread(int unread)
+{
+    m_shell->updateUnread(unread);
+}
+
 bool BrowserInterface::haveWindowLoaded() const
 {
     return akreapp->haveWindowLoaded();
@@ -54,6 +59,12 @@ aKregator::aKregator()
 
     // then, setup our actions
     setupActions();
+    
+    m_icon = new TrayIcon(this);
+    m_icon->show();
+    connect(m_icon, SIGNAL(quitSelected()),
+            this, SLOT(quitProgram()));
+
 
     // and a status bar
     statusBar()->show();
@@ -106,11 +117,6 @@ aKregator::aKregator()
         // next time we enter the event loop...
         return;
     }
-
-    TrayIcon *icon = new TrayIcon(this);
-    icon->show();
-    connect(icon, SIGNAL(quitSelected()),
-            this, SLOT(quitProgram()));
 
     // apply the saved mainwindow settings, if any, and ask the mainwindow
     // to automatically save settings if changed: window size, toolbar
@@ -321,6 +327,11 @@ void aKregator::fontChange(const QFont & /* oldFont */)
     if ( h < 13 ) h = 13;
     m_progressBar->setFixedHeight( h + 2 );
 
+}
+
+void aKregator::updateUnread(int unread)
+{
+    m_icon->updateUnread(unread);
 }
 
 void aKregator::loadingProgress(int percent)
