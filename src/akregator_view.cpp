@@ -18,6 +18,7 @@
 #include "feed.h"
 #include "akregatorconfig.h"
 #include "pageviewer.h"
+#include "articlefilter.h"
 #include "tabwidget.h"
 
 #include <kapplication.h>
@@ -37,8 +38,10 @@
 #include <klistview.h>
 #include <khtml_part.h>
 #include <khtmlview.h>
+#include <kcombobox.h>
 #include <kdebug.h>
 #include <krun.h>
+#include <kdialog.h>
 #include <kurl.h>
 
 #include <qfile.h>
@@ -51,8 +54,8 @@
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
 #include <qvaluevector.h>
-#include <qgrid.h>
 #include <qtooltip.h>
+#include <qlayout.h> 
 
 using namespace Akregator;
 
@@ -101,8 +104,30 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QWhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
 
-    m_mainTab = new QGrid(1, this);
+    m_mainTab = new QWidget(this, "Article Tab");
+    QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab, 0, 2, "mainTabLayout");
+    
     QWhatsThis::add(m_mainTab, i18n("Articles list."));
+    
+    QHBoxLayout *searchLayout = new QHBoxLayout( 0, 0, KDialog::spacingHint(), "searchLayout");
+    m_searchLine = new KLineEdit(m_mainTab, "searchline");
+    searchLayout->addWidget(m_searchLine);
+    m_searchCombo = new KComboBox(m_mainTab, "searchcombo");
+    searchLayout->addWidget(m_searchCombo);
+    mainTabLayout->addLayout(searchLayout);
+   
+    m_searchCombo->insertItem(i18n("All Articles"));
+    m_searchCombo->insertItem(i18n("Unread"));
+    m_searchCombo->insertItem(i18n("New"));
+    m_searchCombo->insertItem(i18n("New and Unread"));
+    
+    connect(m_searchCombo, SIGNAL(activated(int)),
+                          this, SLOT(slotSearchComboChanged(int)));
+    connect(m_searchLine, SIGNAL(textChanged(const QString &)),
+                        this, SLOT(slotSearchTextChanged(const QString &)));
+    
+    m_currentFilter=0;
+    m_queuedSearches=0;
 
     m_panner2 = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
@@ -124,7 +149,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
-
+    mainTabLayout->addWidget( m_panner2 );
+    
     m_tabs->addTab(m_mainTab, i18n( "Articles" ));
     m_tabs->setTitle(i18n( "Articles" ), m_mainTab);
 
@@ -139,6 +165,9 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     if (viewMode==CombinedView)        slotCombinedView();
     else if (viewMode==WidescreenView) slotWidescreenView();
     else                               slotNormalView();
+
+    m_searchCombo->setCurrentItem(Settings::quickFilter());
+    slotSearchComboChanged(Settings::quickFilter());
 }
 
 void aKregatorView::slotOpenTab(const KURL& url)
@@ -498,7 +527,6 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
 }
 
-// TODO: when we have filtering, change onlyUpdateNew to something else
 void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
 {
     kdDebug() << k_funcinfo << src->title() << endl;
@@ -520,8 +548,6 @@ void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
     }
 }
 
-
-// TODO: when we have filtering, change onlyUpdateNew to something else
 void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpdateNew)
 {
     m_articles->setUpdatesEnabled(false);
@@ -538,7 +564,7 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
         for (it = source->articles.begin(); it != end; ++it)
         {
             if (!onlyUpdateNew || (*it).status()==MyArticle::New)
-                new ArticleListItem( m_articles, (*it), source );
+                itemAdded(new ArticleListItem( m_articles, (*it), source ));
         }
     }
     m_articles->setUpdatesEnabled(true);
@@ -833,7 +859,7 @@ void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, i
 
 }
 
-void aKregatorView::slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent)
+void aKregatorView::slotFeedURLDropped(KURL::List &urls, QListViewItem *after, QListViewItem *parent)
 {
     KURL::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )
@@ -861,6 +887,111 @@ void aKregatorView::slotItemRenamed( QListViewItem *item )
 void aKregatorView::slotItemMoved()
 {
     m_part->setModified(true);
+}
+
+void aKregatorView::slotSearchComboChanged(int index)
+{
+    Settings::setQuickFilter( index );
+    updateSearch();
+}
+
+// from klistviewsearchline
+void aKregatorView::slotSearchTextChanged(const QString &search)
+{
+    m_queuedSearches++;
+    m_queuedSearch = search;
+    QTimer::singleShot(200, this, SLOT(activateSearch()));
+}
+
+void aKregatorView::activateSearch()
+{
+    m_queuedSearches--;
+
+    if(m_queuedSearches == 0)
+        updateSearch(m_queuedSearch);
+}
+
+void aKregatorView::updateSearch(const QString &s)
+{
+    delete m_currentFilter;
+
+    QValueList<Criterion> criteria;
+    QString textSearch=s.isNull() ? m_searchLine->text() : s;
+    
+    if (!textSearch.isEmpty())
+    {
+        Criterion subjCrit( Criterion::Title, Criterion::Contains, textSearch );
+        criteria << subjCrit;
+        Criterion crit1( Criterion::Description, Criterion::Contains, textSearch );
+        criteria << crit1;
+    }
+    
+    if (m_searchCombo->currentItem())
+    {
+        switch (m_searchCombo->currentItem())
+        {
+            case 1:
+            {
+                Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::Unread);
+                criteria << crit;
+                break;
+            }
+            case 2:
+            {
+                Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::New);
+                criteria << crit;
+                break;
+            }
+            case 3:
+            {
+                Criterion crit1( Criterion::Status, Criterion::Equals, MyArticle::New);
+                Criterion crit2( Criterion::Status, Criterion::Equals, MyArticle::Unread);
+                criteria << crit1;
+                criteria << crit2;
+                break;
+            }
+            default:
+                break;
+        }
+    }
+    
+    m_currentFilter = new ArticleFilter(criteria, ArticleFilter::LogicalAnd, ArticleFilter::Notify);
+    QListViewItem *currentItem = m_articles->selectedItem();
+
+    checkItem(m_articles->firstChild());
+
+    if(currentItem)
+        m_articles->ensureItemVisible(currentItem);
+}
+
+void aKregatorView::checkItem(QListViewItem *i)
+{
+    ArticleListItem *item = static_cast<ArticleListItem *>(i);
+    if (!item)
+        return;
+
+    while(item)
+    {
+        if(itemMatches(item)) {
+            item->setVisible(true);
+        }
+        else
+            item->setVisible(false);
+        item = static_cast<ArticleListItem *>(item->nextSibling());
+    }
+}
+
+bool aKregatorView::itemMatches (ArticleListItem *item)
+{
+    if (!m_currentFilter)
+        return true;
+
+    return m_currentFilter->matches( item->article() );
+}
+
+void aKregatorView::itemAdded(ArticleListItem *item)
+{
+    item->setVisible(itemMatches(item));
 }
 
 void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)

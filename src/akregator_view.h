@@ -17,7 +17,6 @@
 
 
 class QSplitter;
-class QGrid;
 class QDomDocument;
 class QDomElement;
 class QToolButton;
@@ -25,6 +24,8 @@ class QListViewItem;
 class KListViewItem;
 class KListView;
 class KFileItem;
+class KComboBox;
+class KLineEdit;
 
 namespace Akregator
 {
@@ -32,7 +33,9 @@ namespace Akregator
     class FeedsTree;
     class FeedsTreeViewItem;
     class ArticleList;
+    class ArticleListItem;
     class ArticleViewer;
+    class ArticleFilter;
     class TabWidget;
 }
 
@@ -125,6 +128,10 @@ namespace Akregator
             void slotFetchAllFeeds();
             void slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent);
 
+            void slotSearchComboChanged(int index);
+            void slotSearchTextChanged(const QString &search);
+            void activateSearch();
+            
             void slotMouseOverInfo(const KFileItem *kifi);
 
             void slotOpenTab(const KURL& url);
@@ -159,10 +166,15 @@ namespace Akregator
                                                 bool updateTitle);
 
             /**
-             * Mark all items in item and optionally subitems as read.
+             * Mark all items in item and subitems as read.
              * @param item Item to start marking at.
              */
             void markAllRead(QListViewItem *item);
+
+            void updateSearch(const QString &s=QString::null);
+            void checkItem(QListViewItem *i);
+            bool itemMatches (ArticleListItem *item);
+            void itemAdded(ArticleListItem *item);
 
             /**
              * A tree of all feeds (Columns, Subscriptions).
@@ -189,11 +201,17 @@ namespace Akregator
              */
             TabWidget *m_tabs;
             QToolButton *m_tabsClose;
-            QGrid *m_mainTab;
+            QWidget *m_mainTab;
 
+            KComboBox *m_searchCombo;
+            KLineEdit *m_searchLine;
+            int m_queuedSearches;
+            QString m_queuedSearch;
+            
             QSplitter *m_panner1, *m_panner2;
             QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;
+            ArticleFilter *m_currentFilter;
             ViewMode m_viewMode;
     };
 }

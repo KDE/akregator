@@ -6,13 +6,18 @@
 
   <group name="Files">
      <entry key="Last Open File" type="Path">
-        <label>Last Open opml File</label>
+        <label>Last Open File</label>
         <default></default>
-        <whatsthis>A pathname of last open opml file</whatsthis>
+        <whatsthis>A pathname of last open file</whatsthis>
      </entry>
   </group>
 
   <group name="View">
+     <entry key="Quick Filter" type="Int">
+        <label>Quick Filter</label>
+        <default>0</default>
+        <whatsthis>Which Quick Filter to use.</whatsthis>
+     </entry>
      <entry key="View Mode" type="Int">
         <label>View Mode</label>
         <default>0</default>
