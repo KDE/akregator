@@ -395,7 +395,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
         time_t _time;
 
         if (d->format == AtomFeed)
-            _time=KRFCDate::parseDateISO8601(elemText);
+            _time=parseISO8601Date(elemText);
         else
             _time=KRFCDate::parseDate(elemText);
         /* \bug This isn't really the right way since it will set the date to
@@ -406,7 +406,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
     }
 
     if (!(elemText = extractNode(channelNode, QString::fromLatin1("dc:date"))).isNull()) {
-        time_t _time = KRFCDate::parseDateISO8601(elemText);
+        time_t _time = parseISO8601Date(elemText);
         /* \bug This isn't really the right way since it will set the date to
          * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
          * we cannot distinguish between that date, and invalid values. :-/
@@ -421,7 +421,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
     if (!(elemText = extractNode(channelNode, tagName)).isNull()) {
         time_t _time;
         if (d->format == AtomFeed)
-            _time = KRFCDate::parseDateISO8601(elemText);
+            _time = parseISO8601Date(elemText);
         else
             _time = KRFCDate::parseDate(elemText);
         d->lastBuildDate.setTime_t(_time);

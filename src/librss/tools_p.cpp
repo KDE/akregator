@@ -10,7 +10,18 @@
  */
 #include "tools_p.h"
 
+#include <krfcdate.h>
 #include <qdom.h>
+
+time_t RSS::parseISO8601Date(const QString &s)
+{
+	if (s.find('T') != -1)
+		return KRFCDate::parseDateISO8601(s);
+	QString time=s;
+	time += "T12:00:00";
+	return KRFCDate::parseDateISO8601(time);
+}
+
 
 QString RSS::extractNode(const QDomNode &parent, const QString &elemName)
 {
