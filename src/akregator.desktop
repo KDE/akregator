@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=aKregator
+Name[br]=Kregator
 Name[ta]=aKரிகடார்
 Name[xx]=xxaKregatorxx
 Exec=akregator %i %m -caption "%c"
