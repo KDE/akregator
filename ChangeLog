@@ -4,7 +4,11 @@ aKregator ChangeLog
 
 Changes after 1.0b5:
 -----------------------------
+Changes:
+       - Make it possible to switch notifications off -tpr
+
 Bug Fixes:
+#82791 - Save the toolbar position -tpr
        - Don't crash when there is no part available -tpr
        - Make tabs wider when there is free space available -tpr
 

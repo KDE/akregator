@@ -103,11 +103,6 @@ aKregator::aKregator()
     m_progressBar->setFixedHeight(statH);
     m_progressBar->hide();
     statusBar()->addWidget( m_progressBar, 0, true);
-
-    // apply the saved mainwindow settings, if any, and ask the mainwindow
-    // to automatically save settings if changed: window size, toolbar
-    // position, icon size, etc.
-    setAutoSaveSettings();
 }
 
 bool aKregator::loadPart()
@@ -138,8 +133,9 @@ bool aKregator::loadPart()
             m_activePart=m_part;
             // and integrate the part's GUI with the shell's
             connectActionCollection(m_part->actionCollection());
-	        createGUI(m_part);
+            createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
+            setAutoSaveSettings();
         }
         return true;
     }
