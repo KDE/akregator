@@ -10,7 +10,7 @@
    <outline htmlUrl="" title="KDE-Look.org News" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://www.kde.org/kde-look-news.rdf" text="KDE-Look.org News" description="" />
    <outline htmlUrl="" title="KDE CVS Commits" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://cia.navi.cx/stats/project/kde/.rss" text="KDE CVS Commits" description="" />
    <outline htmlUrl="" title="KDE Developer's Journals" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://www.kdedevelopers.org/blog/feed" text="KDE Developer's Journals" description="" />
-   <outline htmlUrl="" title="KDE Wiki Changes" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://kde.ground.cz/tiki-wiki_rss.php" text="KDE Wiki Changes" description="" />
+   <outline htmlUrl="" title="KDE Wiki Changes" ljLogin="" isLiveJournal="false" ljAuthMode="none" ljUserName="" version="RSS" type="rss" updateTitle="false" ljPassword="" xmlUrl="http://wiki.kde.org/tiki-wiki_rss.php" text="KDE Wiki Changes" description="" />
   </outline>
  </body>
 </opml>
