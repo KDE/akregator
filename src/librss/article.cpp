@@ -102,7 +102,6 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		   _time = KRFCDate::parseDate(elemText);
 
         // 0 means invalid, not epoch (it returns epoch+1 when it parsed epoch, see the KRFCDate::parseDate() docs)
-        kdDebug() << "parsed: " << _time << endl;
         if (_time != 0)
 		  d->pubDate.setTime_t(_time);
 	}
@@ -111,7 +110,6 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		time_t _time = parseISO8601Date(elemText);
 
         // 0 means invalid, not epoch (it returns epoch+1 when it parsed epoch, see the KRFCDate::parseDate() docs)
-        kdDebug() << "parsed: " << _time << endl;
         if (_time != 0)
 		  d->pubDate.setTime_t(_time);
 	}
