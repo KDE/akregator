@@ -330,7 +330,7 @@ void ArticleViewer::showSummary(Feed *f)
     if (!f->image().isNull()) // image
     {
   //      text += QString("<div id=\"body\" style=\"height:%1px\">").arg(f->image().height()+10);
-          text += QString("<div id=\"body\">").arg(f->image().height()+10);
+          text += QString("<div id=\"body\">");
         QString url=f->xmlUrl();
         text += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
