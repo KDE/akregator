@@ -149,7 +149,12 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_articles = new ArticleList( m_panner2, "articles" );
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
+    /*
     connect( m_articles, SIGNAL(clicked(QListViewItem *)),
+                   this, SLOT( slotArticleSelected(QListViewItem *)) );
+    */
+    // use selectionChanged instead of clicked
+    connect( m_articles, SIGNAL(selectionChanged(QListViewItem *)),
                    this, SLOT( slotArticleSelected(QListViewItem *)) );
     connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
                    this, SLOT( slotArticleDoubleClicked(QListViewItem *, const QPoint &, int)) );
