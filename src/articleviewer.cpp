@@ -29,6 +29,11 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : KHTMLPart(parent, name), m_metrics(widget())
 {
     m_bodyFont = KGlobalSettings::generalFont();
+    // to be on a safe side
+    setJScriptEnabled(false);
+    setJavaEnabled(false);
+    setMetaRefreshEnabled(false);
+    setPluginsEnabled(false);
 }
 
 void ArticleViewer::openDefault()
