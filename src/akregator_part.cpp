@@ -160,11 +160,17 @@ bool aKregatorPart::openFile()
     file.close();
 
     if (!doc.setContent(str))
+    {
+        emit extension->loadingProgress(-1);
         return false;
-
+    }
+    
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
+    {
+        emit extension->loadingProgress(-1);
         return false;
-
+    }
+    
     // just for fun, set the status bar
     setStatusBar( m_url.prettyURL() );
 
