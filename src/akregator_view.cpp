@@ -348,7 +348,7 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
 
     connect( feed, SIGNAL(fetchError(Feed* )),
              this, SLOT(slotFeedFetchError(Feed *)) );
-    
+
     Archive::load(feed);
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
@@ -876,7 +876,7 @@ void aKregatorView::slotFetchAllFeeds()
 {
     // this iterator iterates through ALL child items
     showFetchStatus(m_tree->firstChild());
-    
+
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
     {
         kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
@@ -915,7 +915,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     //kdDebug() << k_funcinfo << "END" << endl;
 }
 
-void aKregatorView::slotFeedFetchError(Feed *feed)
+void aKregatorView::slotFeedFetchError(Feed *)
 {
     m_fetchesDone++;
     int p=int(100*((double)m_fetchesDone/(double)m_fetches));
@@ -989,11 +989,12 @@ void aKregatorView::slotItemRenamed( QListViewItem *item )
     Feed *feed = static_cast<Feed *>(m_feeds.find(item));
     if (feed)
     {
+        if (feed->title()!=text)
+            m_part->setModified(true);
+
         feed->setTitle( text );
         if (!feed->isGroup())
             feed->updateTitle = false; // if user edited title by hand, do not update it automagically
-
-        m_part->setModified(true);
     }
 }
 
