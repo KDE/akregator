@@ -116,10 +116,6 @@ aKregator::aKregator()
     // to automatically save settings if changed: window size, toolbar
     // position, icon size, etc.
     setAutoSaveSettings();
-
-    load( Settings::lastOpenFile() );
-
-    akreapp->setHaveWindowLoaded(true);
 }
 
 void aKregator::loadLastOpenFile()
