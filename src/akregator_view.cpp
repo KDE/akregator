@@ -1087,11 +1087,13 @@ void aKregatorView::slotFeedModify()
     kdDebug() << k_funcinfo << "END" << endl;
 }
 
-void aKregatorView::slotNextUnread()
+void aKregatorView::slotNextUnreadArticle()
 {
     ArticleListItem *it= static_cast<ArticleListItem*>(m_articles->selectedItem());
+    
     if (!it)
         it=static_cast<ArticleListItem*>(m_articles->firstChild());
+    
     for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
     {
         if ((it->article().status()==MyArticle::Unread) ||
@@ -1105,6 +1107,109 @@ void aKregatorView::slotNextUnread()
     }
 }
 
+void aKregatorView::slotPrevFeed()        
+{
+    for (QListViewItemIterator it( m_tree->selectedItem()); it.current(); --it )
+        if ( (*it)->isSelected() && !(*it)->isExpandable() )
+    {
+        m_tree->setSelected(*it, true);
+        m_tree->ensureItemVisible(*it);
+        slotItemChanged(*it);
+        return;
+    }     
+}
+    
+void aKregatorView::slotNextFeed()
+{
+    for (QListViewItemIterator it( m_tree->selectedItem()); it.current(); ++it )
+        if ( !(*it)->isSelected() && !(*it)->isExpandable() )
+    {
+        m_tree->setSelected(*it, true);
+        m_tree->ensureItemVisible(*it);
+        slotItemChanged(*it);
+        return;
+    }     
+}
+
+void aKregatorView::slotPrevUnreadArticle()
+{
+    
+    if ( !m_articles->selectedItem() )
+        slotNextUnreadArticle(); 
+
+    QListViewItemIterator it( m_articles->selectedItem() );
+    
+    for ( ; it.current(); --it )
+    {
+        ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
+        if (!ali)
+            break;
+        if ((ali->article().status()==MyArticle::Unread) ||
+             (ali->article().status()==MyArticle::New))
+        {
+            m_articles->setSelected(ali, true);
+            m_articles->ensureItemVisible(ali);
+            slotArticleSelected(ali);
+            return;
+        }
+    }
+}
+
+void aKregatorView::slotPrevUnreadFeed()
+{
+    if ( !m_tree->selectedItem() )
+        slotNextUnreadFeed(); 
+
+    QListViewItemIterator it( m_tree->selectedItem() );
+    
+    for ( ; it.current(); --it )
+    {
+        FeedsTreeItem* fti = static_cast<FeedsTreeItem*> (it.current());
+        if (!fti)
+            break;
+        if ( !fti->isSelected() && !fti->isExpandable() && fti->unread() > 0)
+        {
+            m_tree->setSelected(fti, true);
+            m_tree->ensureItemVisible(fti);
+            slotItemChanged(fti);
+            return;
+        }
+    }
+}
+
+void aKregatorView::slotNextUnreadFeed()
+{
+    QListViewItemIterator it;
+    
+    if ( !m_tree->selectedItem() )
+    {
+        // if all feeds doesnt exists or is empty, return
+        if (!m_tree->firstChild() || !m_tree->firstChild()->firstChild())
+            return;    
+        else 
+            it = QListViewItemIterator( m_tree->firstChild()->firstChild());
+    }
+    
+    else
+        it = QListViewItemIterator( m_tree->selectedItem() );
+    
+    for ( ; it.current(); ++it )
+    {
+        FeedsTreeItem* fti = static_cast<FeedsTreeItem*> (it.current());
+        if (!fti)
+            break;
+        if ( !fti->isSelected() && !fti->isExpandable() && fti->unread() > 0)
+        {
+            m_tree->setSelected(fti, true);
+            m_tree->ensureItemVisible(fti);
+            slotItemChanged(fti);
+            return;
+        }
+    }
+}
+
+
+        
 void aKregatorView::slotMarkAllFeedsRead()
 {
     markAllRead(m_tree->firstChild());

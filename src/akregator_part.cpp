@@ -74,7 +74,14 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     new KAction(i18n("&Edit"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
     new KAction(i18n("&Fetch"), "down", "Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Ctrl+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-    new KAction(i18n("Go to &Next Unread"), "", Key_Plus, m_view, SLOT(slotNextUnread()),actionCollection(), "feed_next_unread");
+    new KAction(i18n("Go to Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "feed_prev_unread_article");
+    new KAction(i18n("Go to Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "feed_next_unread_article");
+    new KAction(i18n("Go to &Previous Feed"), "", "P", m_view, SLOT(slotNextFeed()),actionCollection(), "feed_prev_feed");
+    new KAction(i18n("Go to &Next Feed"), "", "N", m_view, SLOT(slotNextFeed()),actionCollection(), "feed_next_feed");
+    
+    new KAction(i18n("&Go to Next Unread Feed"), "", "Ctrl+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "feed_next_unread_feed");
+    new KAction(i18n("Go to Prev&ious Unread Feed"), "", "Ctrl+Minus", m_view, SLOT(slotPrevUnreadFeed()),actionCollection(), "feed_prev_unread_feed");
+    
     new KAction(i18n("&Mark All as Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
     new KAction(i18n("&Open Homepage"), "", "", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
