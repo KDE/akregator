@@ -38,10 +38,6 @@ namespace Akregator
 
         private:
             QString formatArticle(Feed *f, MyArticle a);
-            /**
-             * Display article in external browser.
-             */
-            void displayInExternalBrowser(const KURL& url);
             
             QString m_htmlHead;
             QPaintDeviceMetrics m_metrics;

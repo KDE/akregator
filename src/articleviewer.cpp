@@ -242,30 +242,6 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     end();
 }
 
-/**
- * Display article in external browser.
- */
-void ArticleViewer::displayInExternalBrowser(const KURL& url)
-{
-    if (!url.isValid()) return;
-    if (Settings::externalBrowserUseKdeDefault())
-        KRun::runURL(url, "text/html", false, false);
-    else
-    {
-        QString cmd = Settings::externalBrowserCustomCommand();
-        QString urlStr = url.url();
-        cmd.replace(QRegExp("%u"), urlStr);
-        KProcess *proc = new KProcess;
-        QStringList cmdAndArgs = KShell::splitArgs(cmd);
-        *proc << cmdAndArgs;
-//        This code will also work, but starts an extra shell process.
-//        *proc << cmd;
-//        proc->setUseShell(true);
-          proc->start(KProcess::DontCare);
-        delete proc;
-    }
-}
-
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;

@@ -21,6 +21,9 @@ namespace Akregator
 	    bool closeURL();
 	
         signals:
+           /**
+            * This gets emited when url gets clicked
+            */
            void urlClicked(const KURL& url, bool background=false);
 
         protected:
