@@ -39,6 +39,8 @@ using namespace Akregator;
 PageViewer::PageViewer(QWidget *parent, const char *name)
     : Viewer(parent, name)
 {
+    // this hack is necessary since the part looks for []HTML Settings] in
+    // KGlobal::config() by default, which is wrong when running in Kontact
     KHTMLSettings* s = const_cast<KHTMLSettings*> (settings());
     s->init(Settings::self()->config());
     
@@ -280,6 +282,9 @@ void PageViewer::slotPaletteOrFontChanged()
 
     obj->qt_invoke(id, o);
     
+    // this hack is necessary since the part looks for []HTML Settings] in
+    // KGlobal::config() by default, which is wrong when running in Kontact
+    // NOTE: when running in Kontact, immediate updating doesn't work
     KHTMLSettings* s = const_cast<KHTMLSettings*> (settings());
     s->init(Settings::self()->config());
 }
