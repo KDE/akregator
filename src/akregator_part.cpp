@@ -83,11 +83,13 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     // we are not modified since we haven't done anything yet
     setModified(false);
+    
+    connect(parent, SIGNAL(markAllRead()), m_view, SLOT(slotMarkAllRead()));
 }
 
 void aKregatorPart::saveSettings()
 {
-    kdDebug() << "savesettings called"<<endl;
+   kdDebug() << "savesettings called"<<endl;
    m_view->saveSettings(true);
 }
 
@@ -195,6 +197,7 @@ bool aKregatorPart::openFile()
 
     if (Settings::fetchOnStartup())
     {
+        kdDebug() << "fetching on startup.." << endl;
         // has the shell loaded up a window already? then its not starting up
        QVariant shellHaveWindowLoaded = m_extension->browserInterface()->property( "haveWindowLoaded" );
        if (!shellHaveWindowLoaded.toBool())

@@ -1,0 +1,41 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>settings_general</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>General</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>219</width>
+            <height>66</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>kcfg_FetchOnStartup</cstring>
+            </property>
+            <property name="text">
+                <string>Fetch all feeds on startup</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>kcfg_MarkAllReadOnExit</cstring>
+            </property>
+            <property name="text">
+                <string>Mark all entries as read on exit</string>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

@@ -83,6 +83,9 @@ public:
 public slots:
     void slotSetStatusBarText(const QString & s);
 
+signals:
+    void markAllRead();
+
 protected:
     /**
      * This method is called when it is time for the app to save its
@@ -104,7 +107,7 @@ private slots:
     void optionsShowStatusbar();
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
-    void optionsFetchOnStartup();
+    void showOptions();
 
     void applyNewToolbarConfig();
 

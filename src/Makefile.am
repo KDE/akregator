@@ -18,7 +18,7 @@ KDE_ICON = akregator
 bin_PROGRAMS = akregator
 
 # the application source, library search path, and link libraries
-akregator_SOURCES = main.cpp app.cpp akregator.cpp trayicon.cpp akregatorconfig.kcfgc
+akregator_SOURCES = main.cpp app.cpp akregator.cpp trayicon.cpp akregatorconfig.kcfgc settings_general.ui
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 akregator_LDADD = $(LIB_KPARTS)
 
@@ -51,4 +51,4 @@ partrcdir = $(kde_datadir)/akregatorpart
 partrc_DATA = akregator_part.rc welcome.html
 SUBDIRS = librss
 
-noinst_HEADERS =  archive.h
+noinst_HEADERS = archive.h

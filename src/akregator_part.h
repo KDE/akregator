@@ -70,6 +70,7 @@ namespace Akregator
 
             virtual void fetchFeedUrl(const QString&);
             virtual void saveSettings();
+            
         protected:
             /**
              * This must be implemented by each part

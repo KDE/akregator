@@ -5,7 +5,7 @@
   <kcfgfile name="akregatorrc"/>
 
   <group name="Files">
-     <entry key="Last Open File" type="Path">
+     <entry name="LastOpenFile" key="Last Open File" type="Path">
         <label>Last Open File</label>
         <default></default>
         <whatsthis>A pathname of last open file</whatsthis>
@@ -13,27 +13,32 @@
   </group>
 
   <group name="View">
-     <entry key="Fetch On Startup" type="Bool">
+     <entry name="FetchOnStartup" key="Fetch On Startup" type="Bool">
         <label>Fetch on startup</label>
         <default>false</default>
         <whatsthis>Fetch feedlist on startup.</whatsthis>
      </entry>
-     <entry key="Quick Filter" type="Int">
+     <entry name="MarkAllReadOnExit" key="Mark All Read On Exit" type="Bool">
+        <label>Mark all as read on exit</label>
+        <default>false</default>
+        <whatsthis>Mark all entries as read on exit</whatsthis>
+     </entry>
+     <entry name="QuickFilter" key="Quick Filter" type="Int">
         <label>Quick Filter</label>
         <default>0</default>
         <whatsthis>Which Quick Filter to use.</whatsthis>
      </entry>
-     <entry key="View Mode" type="Int">
+     <entry name="ViewMode" key="View Mode" type="Int">
         <label>View Mode</label>
         <default>0</default>
         <whatsthis>Article display mode.</whatsthis>
      </entry>
-     <entry key="Splitter 1 Sizes" type="IntList">
+     <entry name="Splitter1Sizes" key="Splitter 1 Sizes" type="IntList">
         <label>Sizes for first splitter</label>
         <default>50,550</default>
         <whatsthis>First (usually vertical) splitter widget sizes.</whatsthis>
      </entry>
-     <entry key="Splitter 2 Sizes" type="IntList">
+     <entry name="Splitter2Sizes" key="Splitter 2 Sizes" type="IntList">
         <label>Sizes for second splitter</label>
         <default>50,350</default>
         <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>

@@ -10,6 +10,9 @@
 #include "trayicon.h"
 #include "akregatorconfig.h"
 
+//settings
+#include "settings_general.h"
+
 #include <dcopclient.h>
 #include <dcopobject.h>
 #include <dcopref.h>
@@ -20,6 +23,7 @@
 #include <kprogress.h>
 #include <kconfig.h>
 #include <kurl.h>
+#include <kconfigdialog.h> 
 
 #include <kedittoolbar.h>
 
@@ -170,13 +174,9 @@ void aKregator::setupActions()
     m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
     m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
 
-    // TODO: move to config dialog when it arrives
-    m_fetchStartupAction = new KToggleAction(i18n("&Fetch Feeds on Startup"), "", "", this, SLOT(optionsFetchOnStartup()), actionCollection(), "fetch_on_startup");
-
     KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
     KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
-
-    m_fetchStartupAction->setChecked(Settings::fetchOnStartup());
+    KStdAction::preferences(this, SLOT(showOptions()), actionCollection());
 }
 
 void aKregator::saveProperties(KConfig* /*config*/)
@@ -263,6 +263,20 @@ void aKregator::optionsConfigureToolbars()
     dlg.exec();
 }
 
+void aKregator::showOptions()
+{
+    if ( KConfigDialog::showDialog( "settings" ) ) 
+        return; 
+ 
+    KConfigDialog *dialog = new KConfigDialog( this, "settings", Settings::self() ); 
+    dialog->addPage(new settings_general(0, "General"), i18n("General"), "settings_general");
+ 
+    /*connect( dialog, SIGNAL(settingsChanged()), 
+    this, SLOT(updateConfiguration()) ); */
+ 
+    dialog->show();
+}
+
 void aKregator::applyNewToolbarConfig()
 {
 #if defined(KDE_MAKE_VERSION)
@@ -274,12 +288,6 @@ void aKregator::applyNewToolbarConfig()
 #else
     applyMainWindowSettings(KGlobal::config());
 #endif
-}
-
-void aKregator::optionsFetchOnStartup()
-{
-   Settings::setFetchOnStartup(m_fetchStartupAction->isChecked());
-   Settings::writeConfig();
 }
 
 void aKregator::fileOpen()
@@ -321,6 +329,11 @@ void aKregator::quitProgram()
 {
     // will call queryClose()
     m_quit = true;
+    if( Settings::markAllReadOnExit() )
+    {
+        kdDebug() << "marking all as read.." << endl;
+        emit markAllRead();
+    }
     close();
 }
 

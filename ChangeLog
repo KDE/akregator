@@ -7,6 +7,8 @@ Changes after 1.0b2:
 
 New Features:
 
+	 Configuration dialog added -tpr
+	 Ability to mark all entries as read on exit -tpr
 
 Bug Fixes:
 
