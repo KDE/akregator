@@ -10,7 +10,7 @@
             <x>0</x>
             <y>0</y>
             <width>373</width>
-            <height>184</height>
+            <height>259</height>
         </rect>
     </property>
     <property name="caption">
@@ -83,7 +83,7 @@
                         </widget>
                     </hbox>
                 </widget>
-		<widget class="QLayoutWidget" row="2" column="0">
+                <widget class="QLayoutWidget" row="2" column="0">
                     <property name="name">
                         <cstring>layout3</cstring>
                     </property>
@@ -124,7 +124,6 @@
                         </widget>
                     </hbox>
                 </widget>
-                
                 <widget class="QRadioButton" row="3" column="0">
                     <property name="name">
                         <cstring>rb_DisableArchiving</cstring>
@@ -135,6 +134,23 @@
                 </widget>
             </grid>
         </widget>
+        <spacer row="1" column="0">
+            <property name="name">
+                <cstring>spacer1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>61</height>
+                </size>
+            </property>
+        </spacer>
     </grid>
 </widget>
 <connections>

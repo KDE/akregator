@@ -16,11 +16,11 @@
     <property name="caption">
         <string>General</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QGroupBox">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
                 <cstring>groupBox3_2</cstring>
             </property>
@@ -104,7 +104,24 @@
                 </widget>
             </grid>
         </widget>
-        <widget class="QGroupBox">
+        <spacer row="2" column="0">
+            <property name="name">
+                <cstring>spacer1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>51</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QGroupBox" row="1" column="0">
             <property name="name">
                 <cstring>groupBox3</cstring>
             </property>
@@ -133,7 +150,7 @@
                 </widget>
             </vbox>
         </widget>
-    </vbox>
+    </grid>
 </widget>
 <connections>
     <connection>
