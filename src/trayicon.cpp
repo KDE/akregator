@@ -123,16 +123,16 @@ void TrayIcon::slotSetUnread(int unread)
         return;
     
     m_unread=unread;
-	QToolTip::remove(this);
+    
+    QToolTip::remove(this);
+    QToolTip::add(this, i18n("aKregator - 1 unread article", "aKregator - %n unread articles", unread));
+    
     if (unread == 0)
-    {
-        QToolTip::add(this, i18n("aKregator - No unread articles"));
+    {    
         setPixmap(m_defaultIcon);
     }
     else
-    {           
-        QToolTip::add(this, i18n("aKregator - %1 unread").arg(unread));
-        
+    {               
         // from KMSystemTray
         int oldW = pixmap()->size().width();
         int oldH = pixmap()->size().height();
