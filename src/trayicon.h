@@ -34,9 +34,9 @@ namespace Akregator
             Balloon *m_balloon;
 
         public slots:
-            void settingsChanged();       
-			void viewButtonClicked();
-
+            void settingsChanged();
+            void viewButtonClicked();
+            void fetchAllFeeds();
     };
 }
 

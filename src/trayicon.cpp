@@ -14,6 +14,10 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
+#include <dcopclient.h>
+#include <dcopref.h>
+#include <kpopupmenu.h>
+#include <kiconloader.h>
 
 #include <qbitmap.h>
 #include <qpainter.h>
@@ -38,10 +42,13 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
 			this, SLOT(viewButtonClicked()));
         m_balloon->hide();
     }
+    contextMenu()->insertItem(SmallIcon("bottom"),i18n("Fetch All Feeds"), this, SLOT(fetchAllFeeds()));
 }
 	
 TrayIcon::~TrayIcon()
-{}
+{
+    if(m_balloon) delete m_balloon;
+}
 
 
 void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art)
@@ -134,6 +141,11 @@ void TrayIcon::settingsChanged()
         show();
     else
         hide();
+}
+
+void TrayIcon::fetchAllFeeds()
+{
+    DCOPRef("akregator","aKregatorIface").send("fetchAllFeeds");
 }
 
 #include "trayicon.moc"

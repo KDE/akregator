@@ -4,6 +4,9 @@ aKregator ChangeLog
 
 Changes after 1.0b6:
 -----------------------------
+New features:
+       - Add "Fetch All Feeds" into context menu of trayicon -tpr
+
 Changes:
        - Advanced archive options: Limit article number, disable archive -fo
        - Show position of the tray icon with image in dialog when pressing the close button -tpr
