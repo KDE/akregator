@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>Akregator::SettingsAppearance</class>
 <author>Frank Osterfeld</author>
 <widget class="QWidget">
@@ -10,7 +10,7 @@
             <x>0</x>
             <y>0</y>
             <width>611</width>
-            <height>524</height>
+            <height>573</height>
         </rect>
     </property>
     <property name="caption">
@@ -26,17 +26,6 @@
             </property>
             <property name="text">
                 <string>Use appearance settings from Konqueror</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox" row="3" column="0">
-            <property name="name">
-                <cstring>kcfg_UnderlineLinks</cstring>
-            </property>
-            <property name="text">
-                <string>&amp;Underline links</string>
-            </property>
-            <property name="accel">
-                <string>Alt+U</string>
             </property>
         </widget>
         <widget class="QGroupBox" row="2" column="0">
@@ -275,6 +264,34 @@
                 </widget>
             </grid>
         </widget>
+        <widget class="QCheckBox" row="3" column="0">
+            <property name="name">
+                <cstring>kcfg_UnderlineLinks</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Underline links</string>
+            </property>
+            <property name="accel">
+                <string>Alt+U</string>
+            </property>
+        </widget>
+        <spacer row="4" column="0">
+            <property name="name">
+                <cstring>spacer1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>41</height>
+                </size>
+            </property>
+        </spacer>
     </grid>
 </widget>
 <connections>
