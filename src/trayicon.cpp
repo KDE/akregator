@@ -29,23 +29,23 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
     QToolTip::add(this, i18n("aKregator"));
+	m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
+	m_balloon->hide();
 }
-
+	
 TrayIcon::~TrayIcon()
 {}
 
 
 void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art)
 {
-	if (!m_balloon)
+	if (!m_balloon->isVisible())
 	{
-		m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
 		m_balloon->setAnchor(mapToGlobal(pos()));
 		m_balloon->setFixedWidth(m_balloon->width()+10);
-        m_balloon->show();
-
-        KWin::setOnAllDesktops(m_balloon->winId(), true);
-	}
+		m_balloon->show();
+		KWin::setOnAllDesktops(m_balloon->winId(), true);
+    }
 	
 	m_balloon->addArticle(feed, p, art);
 }

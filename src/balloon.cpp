@@ -89,15 +89,15 @@ Balloon::Balloon(const QString &text)
 	connect(mViewButton, SIGNAL(clicked()),
 		this, SIGNAL(signalButtonClicked()));
 	connect(mViewButton, SIGNAL(clicked()),
-		this, SLOT(deleteLater()));
+		this, SLOT(hide()));
 	connect(mIgnoreButton, SIGNAL(clicked()),
 		this, SIGNAL(signalIgnoreButtonClicked()));
 	connect(mIgnoreButton, SIGNAL(clicked()),
-		this, SLOT(deleteLater()));
+		this, SLOT(hide()));
 	connect(mCaption, SIGNAL(linkClicked(const QString &)),
 		this, SIGNAL(signalIgnoreButtonClicked()));
 	connect(mCaption, SIGNAL(linkClicked(const QString &)),
-		this, SLOT(deleteLater()));
+		this, SLOT(hide()));
 }
 
 void Balloon::setAnchor(const QPoint &anchor)
