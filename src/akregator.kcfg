@@ -30,11 +30,11 @@
      <choices>
        <choice name="keepAllArticles">
          <label>Keep All Articles</label>
-         <whatsthis>Save an unlimited amount of articles.</whatsthis>
+         <whatsthis>Save an unlimited number of articles.</whatsthis>
        </choice>
        <choice name="disableArchiving"> 
          <label>Disable Archiving</label>
-         <whatsthis>Don't save any articles</whatsthis>
+         <whatsthis>Do not save any articles</whatsthis>
        </choice>
        <choice name="limitArticleNumber">
          <label>Limit Number of Articles</label>
