@@ -62,6 +62,9 @@
                             <property name="name">
                                 <cstring>kcfg_ExternalBrowserCustomCommand</cstring>
                             </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
                             <property name="text">
                                 <string>mozilla '%u'</string>
                             </property>
