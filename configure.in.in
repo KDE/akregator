@@ -2,3 +2,13 @@
 
 KDE_FIND_PATH(kconfig_compiler, KCONFIG_COMPILER,
 [$kde_default_bindirs],[KDE_MISSING_PROG_ERROR(kconfig_compiler)])
+
+kontact_available=no
+KDE_CHECK_HEADER(kontact/core.h,
+[
+  kontact_available=yes
+],
+[])
+
+AM_CONDITIONAL(include_kontact, test "$kontact_available" = "yes")
+

@@ -1,0 +1,8 @@
+if test "x$kontact_available" != "xyes"; then
+  echo ""
+  echo "You're missing the Kontact header files, therefore"
+  echo "the aKregator Kontact plugin cannot be compiled."
+  echo "If you want it, you should install kdepim first."
+  echo ""
+  all_tests=bad
+fi
