@@ -35,7 +35,6 @@ namespace Akregator
          AddFeedDialog(QWidget *parent = 0, const char *name = 0);
          ~AddFeedDialog();
 
-         QString feedTitle;
          QString feedURL;
          Feed *feed;
          

@@ -37,12 +37,7 @@ public:
     virtual TreeNodeItem* firstChild() const; 
     virtual TreeNodeItem* nextSibling() const;
     virtual FeedGroupItem* parent() const;
-    /*
-    virtual bool isFolder() = 0; //FIXME: remove
-    int countUnreadRecursive(); //FIXME: remove
-    int unread(){return m_unread;} //FIXME: remove
-    void setUnread(int u); //FIXME: remove
-    */              
+
     protected:
     
     TreeNode* m_node;

@@ -36,8 +36,6 @@ AddFeedWidget::~AddFeedWidget()
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
    : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Add Feed"), KDialogBase::Ok|KDialogBase::Cancel)
 {
-    feedTitle = i18n("New Feed");
-
     widget = new AddFeedWidget(this);
     setMainWidget(widget);
 }
@@ -76,8 +74,6 @@ void AddFeedDialog::slotOk( )
 
 void AddFeedDialog::fetchCompleted(Feed *f)
 {
-   feedTitle=f->title();
-   Archive::save(f);
    KDialogBase::slotOk();
 }
 

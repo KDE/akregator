@@ -74,25 +74,7 @@ FeedGroupItem* TreeNodeItem::parent() const
     return static_cast<FeedGroupItem*>(KListViewItem::parent()); 
 } 
     
-/*
-void TreeNodeItem::setUnread(int u)
-{
-    if (m_unread==u)
-        return;
 
-    m_unread=u;
-    updateParentsRecursive();
-}
-
-void TreeNodeItem::updateParentsRecursive()
-{
-    repaint();
-    if (parent())
-    {
-        static_cast<TreeNodeItem*>(parent())->updateParentsRecursive();
-    }
-}
-*/
 // TODO: reverse for reverse layout
 void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
                                int column, int width, int align )
@@ -151,16 +133,4 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
 
 
 }
-/*
-int TreeNodeItem::countUnreadRecursive()
-{
-    int count = (m_unread > 0) ? m_unread : 0;
 
-    for ( QListViewItem *item = firstChild() ;
-          item ; item = item->nextSibling() ) {
-              count += static_cast<TreeNodeItem*>(item)->countUnreadRecursive();
-          }
-
-          return count;
-}
-*/

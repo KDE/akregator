@@ -494,21 +494,15 @@ void aKregatorView::parseChildNodes(QDomNode &node, FeedGroup* parent)
             
         if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
         {
-   //         kdDebug() << "parseChildNodes: feed detected" << endl;
-            Feed* feed = Feed::fromOPML(e);
-     //       kdDebug() << "parseChildNodes: feed name: "<< (feed ? feed->title() : "null") << endl;
-            
-       //     kdDebug() << "parseChildNodes: feed name: "<< (feed ? feed->title() : "null") << " archive loaded" << endl;
-            parent->appendChild(feed);
-            Archive::load(feed);
+             Feed* feed = Feed::fromOPML(e);
+             parent->appendChild(feed);
+             Archive::load(feed);
         }
         else
         {
-   //         kdDebug() << "parseChildNodes: feed group detected" << endl;
-            FeedGroup* fg = FeedGroup::fromOPML(e);
- //           kdDebug() << "parseChildNodes: feed group name: "<< (fg ? fg->title() : "null") << endl;     
-            parent->appendChild(fg);
-            kapp->processEvents();
+             FeedGroup* fg = FeedGroup::fromOPML(e);
+             parent->appendChild(fg);
+             kapp->processEvents();
     
             if (e.hasChildNodes())
             {
@@ -924,13 +918,8 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
     
     afd->setURL(KURL::decode_string(url));
 
-    QString text;
     if (autoExec)
-    {
         afd->slotOk();
-        feed = afd->feed;
-        text = feed->title();
-    }
     else
     {
         if (afd->exec() != QDialog::Accepted) 
@@ -938,14 +927,12 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
             delete afd;  
             return;
         }    
-
-        text=afd->feedTitle;
-        feed=afd->feed;
     }
-
+    
+    feed = afd->feed;
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
-
-    dlg->setFeedName(text);
+    
+    dlg->setFeedName( feed->title() );
     dlg->setUrl(afd->feedURL);
     dlg->selectFeedName();
     dlg->setMaxArticleAge(60);
@@ -968,8 +955,7 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
     feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
 
-    //Archive::load(feed);
-    
+    Archive::load(feed);
     if (!parent)
         parent = m_tree->rootNode();
     

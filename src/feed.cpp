@@ -402,6 +402,8 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     if ( title().isEmpty() ) 
         setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(m_document.title())) );
 
+    Archive::load(this); // make sure archive is merged 
+    
     m_description = m_document.description();
     m_htmlUrl = m_document.link().url();
     
