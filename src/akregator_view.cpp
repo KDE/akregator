@@ -448,6 +448,46 @@ bool aKregatorView::event(QEvent *e)
     return QWidget::event(e);
 }
 
+void aKregatorView::addFeedToGroup(const QString& url, const QString& group)
+{
+    QListViewItem *lastChild;
+    // Locate the group.
+    QListViewItem *item = m_tree->findItem(group, 0, 0);
+    // If group does not exist, create as last in tree.
+    if (!item)
+    {
+        // Get "All Feeds" folder.
+        QListViewItem *allFeedsFolder = m_tree->firstChild();
+        // Get last child of "All Feeds".
+        lastChild = allFeedsFolder->firstChild();
+        while (lastChild && lastChild->nextSibling())
+            lastChild = lastChild->nextSibling();
+    
+        FeedsTreeItem *elt;
+        if (lastChild)
+            elt = new FeedsTreeItem(true, allFeedsFolder, lastChild, group);
+        else
+            elt = new FeedsTreeItem(true, allFeedsFolder, group);
+    
+        m_feeds.addFeedGroup(elt);
+        FeedGroup *g = m_feeds.find(elt);
+        if (g)
+            g->setTitle( group );
+    
+        m_part->setModified(true);
+        item = g->item();
+    }
+    // Locate last feed (or folder) in the group.
+    lastChild = item->firstChild();
+    while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
+    if (lastChild)
+        m_tree->ensureItemVisible(lastChild);
+    else
+        m_tree->ensureItemVisible(item);
+    // Display Add Feed dialog with url filled in.
+    addFeed(url, lastChild, item);
+}
+
 void aKregatorView::slotNormalView()
 {
     if (m_viewMode==NormalView)

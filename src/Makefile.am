@@ -54,6 +54,8 @@ if include_kontact
 KONTACT_SUBDIR = kontact_plugin
 endif
 
-SUBDIRS = librss $(KONTACT_SUBDIR)
+KONQPLUGIN_SUBDIR = konq_plugin
+
+SUBDIRS = librss $(KONTACT_SUBDIR) $(KONQPLUGIN_SUBDIR)
 
 noinst_HEADERS = archive.h

@@ -361,6 +361,12 @@ void aKregatorPart::fetchFeedUrl(const QString&s)
     kdDebug() << "fetchFeedURL=="<<s<<endl;
 }
 
+void aKregatorPart::addFeedToGroup(const QString& url, const QString& group)
+{
+    kdDebug() << "aKregatorPart::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
+    m_view->addFeedToGroup(url, group);
+}
+
 void aKregatorPart::startOperation()
 {
     emit started(0);

@@ -90,6 +90,8 @@ namespace Akregator
                 
             virtual void fetchFeedUrl(const QString&);
             
+            virtual void addFeedToGroup(const QString& url, const QString& group);
+            
             
         protected:
             /**

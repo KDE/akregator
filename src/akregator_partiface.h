@@ -18,6 +18,7 @@ namespace Akregator {
         k_dcop:
             virtual void fetchFeedUrl(const QString&) = 0;
             virtual void saveSettings() = 0;
+            virtual void addFeedToGroup(const QString&, const QString&) = 0;
     };
 
 }
