@@ -127,6 +127,7 @@ namespace Akregator
             void slotFeedAddGroup();
             void slotFeedRemove();
             void slotFeedModify();
+            void slotNextUnread();
             void slotMarkAllRead();
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();

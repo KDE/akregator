@@ -20,6 +20,7 @@
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
     <Separator/>
+    <Action name="feed_next_unread"/>
     <Action name="feed_mark_all_as_read"/>
   </Menu>
   <Menu name="settings">

@@ -744,6 +744,24 @@ void aKregatorView::slotFeedModify()
     kdDebug() << k_funcinfo << "END" << endl;
 }
 
+void aKregatorView::slotNextUnread()
+{
+    ArticleListItem *it= static_cast<ArticleListItem*>(m_articles->selectedItem());
+    if (!it)
+        it=static_cast<ArticleListItem*>(m_articles->firstChild());
+    for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
+    {
+        if ((it->article().status()==MyArticle::Unread) ||
+                (it->article().status()==MyArticle::New))
+        {
+            m_articles->setSelected(it, true);
+            m_articles->ensureItemVisible(it);
+            slotArticleSelected(it);
+            return;
+        }
+    }
+}
+
 void aKregatorView::slotMarkAllRead()
 {
    markAllRead(m_tree->currentItem());
