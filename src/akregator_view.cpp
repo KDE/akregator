@@ -191,7 +191,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, KListViewItem *parent)
         {
             QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
-            addFeed_Internal( elt,
+            addFeed_Internal( 0, elt,
                               title,
                               xmlurl,
                               e.attribute("htmlUrl"),
@@ -227,15 +227,23 @@ void aKregatorView::parseChildNodes(QDomNode &node, KListViewItem *parent)
 }
 
 // oh ugly as hell (pass Feed parameters in a FeedData?)
-Feed *aKregatorView::addFeed_Internal(QListViewItem *elt,
+Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
                                       QString title, QString xmlUrl, QString htmlUrl,
                                       QString description, bool isLiveJournal, QString ljUserName,
                                       Feed::LJAuthMode ljAuthMode, QString ljLogin, QString ljPassword,
                                       bool updateTitle)
 {
-    m_feeds.addFeed(elt);
-
-    Feed *feed = static_cast<Feed *>(m_feeds.find(elt));
+    Feed *feed;
+    if (ef)
+    {
+        m_feeds.addFeed(ef);
+        feed=ef;
+    }
+    else
+    {
+        m_feeds.addFeed(elt);
+        feed = static_cast<Feed *>(m_feeds.find(elt));
+    }
 
     feed->setTitle( title );
     feed->xmlUrl         = xmlUrl;
@@ -251,15 +259,13 @@ Feed *aKregatorView::addFeed_Internal(QListViewItem *elt,
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
+
+    
     QString iconFile=FeedIconManager::self()->iconLocation(xmlUrl);
     if (!iconFile.isNull())
     {
         elt->setPixmap(0, KGlobal::dirs()->findResource("cache", iconFile+".png"));
     }
-
-    
-    // Read feed archive, if present
-    Archive::load(feed);
 
     // enable when we need to update favicons, on for example systray
     //connect( feed, SIGNAL(faviconLoaded()),
@@ -442,6 +448,7 @@ void aKregatorView::slotFeedAdd()
 void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* parent)
 {
     KListViewItem *elt;
+    Feed *feed;
     AddFeedDialog *afd = new AddFeedDialog( this, "add_feed" );
 
     afd->setURL(url);
@@ -449,6 +456,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     if (afd->exec() != QDialog::Accepted) return;
 
     QString text=afd->feedTitle;
+    feed=afd->feed;
     
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
 
@@ -467,7 +475,9 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     else
         elt = new KListViewItem(parent, text);
 
-    addFeed_Internal( elt,
+    feed->setItem(elt);
+    
+    addFeed_Internal( feed, elt,
                       text,
                       dlg->url(),
                       "",
@@ -628,9 +638,6 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     }
 
     // Also, update unread counts
-
-    // Store archive
-    Archive::save(feed);
 
 //    m_part->setModified(true); // FIXME reenable when article storage is implemented
 

@@ -77,11 +77,14 @@ namespace Akregator
             QPixmap        favicon;
 
         public slots:
-            void fetch();                 ///< Start fetching rss
+            void fetch(bool follow=false);                 ///< Start fetching rss
             void loadFavicon();
 
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
+            void fetchError(Feed *);
+            void fetchDiscovery(Feed *);
+            
             void faviconLoaded(Feed*);
             void imageLoaded(Feed*);
 
@@ -92,7 +95,10 @@ namespace Akregator
             void imageChanged(const QPixmap &p);
 
         private:
+            void tryFetch();
             bool m_fetchError;
+            bool m_followDiscovery;
+            int m_fetchTries;
             Document m_document;
     };
 }

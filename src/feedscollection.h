@@ -22,6 +22,7 @@ namespace Akregator
             FeedsCollection();
             ~FeedsCollection();
 
+            void addFeed(Feed *f);
             Feed *addFeed(QListViewItem *item);
             FeedGroup *addFeedGroup(QListViewItem *item);
 

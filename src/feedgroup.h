@@ -37,7 +37,11 @@ namespace Akregator
             void setTitle(const QString &title);
 
             QListViewItem *item() { return m_item; }
-
+            void setItem(QListViewItem *i);
+            
+            FeedsCollection *collection() { return m_collection;}
+            void setCollection(FeedsCollection *);
+            
         private:
             QString           m_title;        ///< Feed/Group title
 

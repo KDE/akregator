@@ -29,6 +29,8 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     , updateTitle(false)
     , articles()
     , m_fetchError(false)
+	, m_fetchTries(0)
+    , m_followDiscovery(false)
 {
 }
 
@@ -81,28 +83,47 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
     return el;
 }
 
-void Feed::fetch()
+void Feed::fetch(bool followDiscovery)
 {
     m_fetchError=false;
+	m_followDiscovery=followDiscovery;
+    m_fetchTries=0;  
+    tryFetch();
+}
+    
+
+void Feed::tryFetch()
+{
     Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     loader->loadFrom( xmlUrl, new FileRetriever );
 
     // TODO: note that we probably don't want to load the favicon here enventually..
-    QTimer::singleShot( 2000, this, SLOT(loadFavicon()) );
-    loadFavicon();
+    //QTimer::singleShot( 2000, this, SLOT(loadFavicon()) );
+    //loadFavicon();
 }
 
-void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
+void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
     // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
     // You don't need to do that anyway since Loader instances delete themselves.
 
-    if (status != Success)
+    if (status!= Success)
     {
-        faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("cancel", KIcon::Small));
-        m_fetchError=true;
-
-        return;
+        if (m_followDiscovery && (status==ParseError) && (m_fetchTries < 3) && 			(l->discoveredFeedURL().isValid()))
+        {
+            m_fetchTries++;
+            xmlUrl=l->discoveredFeedURL().url();
+            emit fetchDiscovery(this);
+            tryFetch();
+            return;
+        }
+        else
+        {
+            faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("cancel", KIcon::Small));
+            m_fetchError=true;
+            emit fetchError(this);
+            return;
+        }
     }
 
     m_document=doc;
@@ -116,6 +137,7 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
     }
 
     if (updateTitle || title().isEmpty()) setTitle( m_document.title() );
+    
     description = m_document.description();
     htmlUrl = m_document.link().url();
 
@@ -140,7 +162,8 @@ void Feed::faviconChanged(const QString &url, const QPixmap &p)
 {
     if (xmlUrl==url && !m_fetchError)
     {
-        item()->setPixmap(0, p);
+        if (item())
+            item()->setPixmap(0, p);
         favicon=p;
         emit(faviconLoaded(this)); // emit so that other sources can be updated.. not used right now
     }

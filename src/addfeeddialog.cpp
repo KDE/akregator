@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "feed.h"
 #include "addfeeddialog.h"
 
 #include <qcheckbox.h>
@@ -63,36 +64,36 @@ void AddFeedDialog::slotOk( )
     feedURL = widget->urlEdit->text();
     widget->statusLabel->setText( i18n("Downloading %1").arg(feedURL) );
 
-    Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
-    loader->loadFrom( feedURL, new FileRetriever );
+    Feed *f=new Feed(NULL, NULL);
+
+    feed=f;
+    f->xmlUrl=feedURL;
+
+    connect( feed, SIGNAL(fetched(Feed* )),
+             this, SLOT(fetchCompleted(Feed *)) );
+    connect( feed, SIGNAL(fetchError(Feed* )),
+             this, SLOT(fetchError(Feed *)) );
+    connect( feed, SIGNAL(fetchDiscovery(Feed* )),
+             this, SLOT(fetchDiscovery(Feed *)) );
+
+    f->fetch(true);
 }
 
-void AddFeedDialog::fetchCompleted(Loader *l, Document doc, Status status)
+void AddFeedDialog::fetchCompleted(Feed *f)
 {
+   feedTitle=f->title();
+   KDialogBase::slotOk();
+}
 
-    kdDebug() << "fetchcompleted: reterr="<<((status==RetrieveError)?1:0)<<" parserror"<<((status==ParseError)?1: 0)<<"success"<<((status==Success)?1:0)<<endl;
-    if (status==RetrieveError)
-    {
-        KDialogBase::slotOk();
-    }
-    else if (status==ParseError)
-    {
-        if (l->discoveredFeedURL().isValid())
-        {
-            widget->statusLabel->setText( i18n("Feed found, downloading...") );
-            feedURL=l->discoveredFeedURL().url();
+void AddFeedDialog::fetchError(Feed *f)
+{
+    KDialogBase::slotOk();
+}
 
-            Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
-            loader->loadFrom( l->discoveredFeedURL(), new FileRetriever );
-        }
-        else
-            KDialogBase::slotOk();
-    }
-    else
-    {
-        feedTitle=doc.title();
-        KDialogBase::slotOk();
-    }
+void AddFeedDialog::fetchDiscovery(Feed *f)
+{
+	widget->statusLabel->setText( i18n("Feed found, downloading...") );
+    feedURL=f->xmlUrl;
 }
 
 #include "addfeeddialog.moc"

@@ -8,14 +8,18 @@
 #define AKREGATORADDFEEDDIALOG_H
 
 #include "addfeedwidgetbase.h"
-#include "librss/librss.h"
 
 #include <kdialogbase.h>
 
 using namespace RSS;
 
+
+
 namespace Akregator
 {
+
+   class Feed;
+
    class AddFeedWidget : public AddFeedWidgetBase
    {
       Q_OBJECT
@@ -36,12 +40,15 @@ namespace Akregator
 
          QString feedTitle;
          QString feedURL;
+         Feed *feed;
          
          void setURL(const QString& t);
 
       public slots:
          void slotOk( );
-         void fetchCompleted(Loader*, Document, Status);
+         void fetchCompleted(Feed *);
+         void fetchDiscovery(Feed *);
+         void fetchError(Feed *);
 
       private:
          AddFeedWidget *widget;

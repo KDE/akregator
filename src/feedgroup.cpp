@@ -26,7 +26,8 @@ FeedGroup::~FeedGroup()
 
 void FeedGroup::destroy()
 {
-   m_collection->remove(m_item);
+   if (m_collection)
+    m_collection->remove(m_item);
    delete this;
 }
 
@@ -43,8 +44,21 @@ QString FeedGroup::title()
 void FeedGroup::setTitle(const QString &title)
 {
     m_title = title;
-    m_item->setText(0, title);
+    if (m_item)
+        m_item->setText(0, title);
 }
+
+void FeedGroup::setItem(QListViewItem *i)
+{
+    m_item=i;
+}
+    
+void FeedGroup::setCollection(FeedsCollection *c)
+{
+    m_collection=c;
+}
+                                    
+
 
 QDomElement FeedGroup::toXml( QDomElement parent, QDomDocument document )
 {

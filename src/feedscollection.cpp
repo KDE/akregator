@@ -26,6 +26,13 @@ FeedsCollection::FeedsCollection()
 FeedsCollection::~FeedsCollection()
 {}
 
+void FeedsCollection::addFeed(Feed *f)
+{
+    insert(f->item(), f);
+    f->item()->setPixmap(0, KGlobal::iconLoader()->loadIcon("txt", KIcon::Small) );
+    modified = true;
+}
+
 Feed *FeedsCollection::addFeed(QListViewItem *item)
 {
     Feed *feed = new Feed(item, this);

@@ -137,7 +137,7 @@ namespace Akregator
              * feed parameters. FIXME: parameters better be bundled to FeedData?
              * @return Newly created feed.
              */
-            Feed *aKregatorView::addFeed_Internal(QListViewItem *elt, QString title,
+            Feed *aKregatorView::addFeed_Internal(Feed *f, QListViewItem *elt, QString title,
                                                 QString xmlUrl, QString htmlUrl,
                                                 QString description, bool isLiveJournal,
                                                 QString ljUserName,
