@@ -160,7 +160,6 @@ private:
     KProgress *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
     Akregator::TrayIcon *m_icon;
-    bool m_quit;
     QString m_permStatusText;
 };
 
