@@ -167,10 +167,10 @@ void PageViewer::slotStop()
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 bool PageViewer::openURL(const KURL &url)
 {
-    bool retval = Viewer::openURL(url);
-
-    if ( retval && !m_restoring )
-        addHistoryEntry();
+    Viewer::openURL(url);
+    
+    if (!m_restoring)
+        addHistoryEntry(url);
     
     m_backAction->setEnabled( m_current != m_history.begin() );
     m_forwardAction->setEnabled( m_current != m_history.fromLast() );
@@ -181,8 +181,15 @@ bool PageViewer::openURL(const KURL &url)
     else
         emit setTabIcon(SmallIcon("html"));
     
+    return true;
+}
 
-    return retval;
+void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+{
+    if (args.frameName == "_blank") // apparently this indicates that the MMB was pressed...
+        Viewer::slotOpenURLRequest(url, args);
+    else
+        openURL(url);
 }
 
 void PageViewer::slotPopupActivated( int id )
@@ -203,7 +210,7 @@ void PageViewer::slotPopupActivated( int id )
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-void PageViewer::addHistoryEntry()
+void PageViewer::addHistoryEntry(const KURL& url)
 {
     QValueList<PageViewerHistoryEntry>::Iterator it = m_current;
     
@@ -212,7 +219,8 @@ void PageViewer::addHistoryEntry()
     {
         m_history.erase( ++it, m_history.end() );
     }
-    PageViewerHistoryEntry newEntry( url(), url().url() );
+    PageViewerHistoryEntry newEntry( url, url.url() );
+    kdDebug() << "PageViewer::addHistoryEntry() " << url.url() << endl;
     
     // Only save the new entry if it is different from the last
     if ( newEntry.url != (*m_current).url )

@@ -56,7 +56,7 @@ namespace Akregator
 
         protected:
 
-            void addHistoryEntry();
+            void addHistoryEntry(const KURL& url);
             
         protected slots:
             void slotStarted(KIO::Job *);
@@ -70,6 +70,8 @@ namespace Akregator
             void slotGlobalBookmarkArticle();
             void formClicked(const KURL& url, const KParts::URLArgs& args);
 
+            virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            
         signals:
             void setTabIcon(const QPixmap&);
 
