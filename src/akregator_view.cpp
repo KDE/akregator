@@ -505,10 +505,16 @@ void aKregatorView::slotTabCaption(const QString &capt)
     }
 }
 
-void aKregatorView::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)
+void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoint& p)
 {
+   FeedGroup *feed = static_cast<FeedGroup *>(m_feeds.find(item));
    m_tabs->showPage(m_mainTab);
-   QWidget *w = m_part->factory()->container("feeds_popup", m_part);
+
+   QWidget *w;
+   if (feed->isGroup())
+      w = m_part->factory()->container("feedgroup_popup", m_part);
+   else
+      w = m_part->factory()->container("feeds_popup", m_part);
    if (w)
       static_cast<QPopupMenu *>(w)->exec(p);
 }
@@ -861,7 +867,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     //kdDebug() << k_funcinfo << "END" << endl;
 }
 
-void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c)
+void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
 {
     if (item && button==Qt::MidButton)
     {

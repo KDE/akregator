@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="6">
+<kpartgui name="akregator_part" version="7">
 <MenuBar>
   <Menu name="file">
     <Action name="file_open"/>
@@ -39,10 +39,18 @@
   <Action name="feed_fetch_all"/>
 </ToolBar>
 
-<Menu name="feeds_popup">
-  <text>&amp;Feeds</text>
+<Menu name="feedgroup_popup">
   <Action name="feed_add"/>
   <Action name="feed_add_group"/>
+  <Action name="feed_modify"/>
+  <Action name="feed_remove"/>
+  <Separator/>
+  <Action name="feed_fetch"/>
+  <Separator/>
+  <Action name="feed_mark_all_as_read"/>
+</Menu>
+
+<Menu name="feeds_popup">
   <Action name="feed_modify"/>
   <Action name="feed_remove"/>
   <Separator/>
