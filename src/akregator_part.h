@@ -63,7 +63,7 @@ namespace Akregator
              */
             static KAboutData *createAboutData();
 
-            void changePart(KParts::Part *p);
+            void changePart(KParts::ReadOnlyPart *p);
 
             void setStatusBar(const QString &text);
             void setProgress(int percent);
@@ -84,7 +84,7 @@ namespace Akregator
             void importFile(QString file_name);
 
         signals:
-            void partChanged(KParts::Part *p);
+            void partChanged(KParts::ReadOnlyPart *p);
 
         protected slots:
             void fileOpen();

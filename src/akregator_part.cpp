@@ -123,7 +123,7 @@ void aKregatorPart::setModified(bool modified)
     ReadWritePart::setModified(modified);
 }
 
-void aKregatorPart::changePart(KParts::Part *p)
+void aKregatorPart::changePart(KParts::ReadOnlyPart *p)
 {
     emit partChanged(p);
 }

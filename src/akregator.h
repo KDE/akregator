@@ -94,17 +94,17 @@ private slots:
     void applyNewToolbarConfig();
 
     void quitProgram();
-    void partChanged(KParts::Part *p);
+    void partChanged(KParts::ReadOnlyPart *p);
     void loadingProgress(int percent);
 private:
     void setupAccel();
     void setupActions();
 
 private:
-    KParts::BrowserExtension *browserExtension() const;
+    KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
     BrowserInterface *m_browserIface;
     KParts::ReadWritePart *m_part;
-
+    KParts::ReadOnlyPart *m_activePart;
     KToggleAction *m_fetchStartupAction;
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;

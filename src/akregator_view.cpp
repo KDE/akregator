@@ -488,7 +488,7 @@ void aKregatorView::slotTabChanged(QWidget *w)
     else
         m_tabsClose->setEnabled(true);
 
-    KParts::Part *p;
+    KParts::ReadOnlyPart *p;
     if (w==m_mainTab)
         p=m_part;
     else

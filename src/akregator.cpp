@@ -48,6 +48,7 @@ aKregator::aKregator()
     setXMLFile("akregator_shell.rc");
 
     m_browserIface=new BrowserInterface(this, "browser_interface");
+    m_activePart=0;
 
     // then, setup our actions
     setupActions();
@@ -75,12 +76,12 @@ aKregator::aKregator()
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
-            connect (m_part, SIGNAL(partChanged(KParts::Part *)), this, SLOT(partChanged(KParts::Part *)));
-            connect( browserExtension(), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-
+            connect (m_part, SIGNAL(partChanged(KParts::ReadOnlyPart *)), this, SLOT(partChanged(KParts::ReadOnlyPart *)));
+            connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+            m_activePart=m_part;
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
-            browserExtension()->setBrowserInterface(m_browserIface);
+            browserExtension(m_part)->setBrowserInterface(m_browserIface);
         }
     }
     else
@@ -118,8 +119,20 @@ aKregator::~aKregator()
    Settings::writeConfig();
 }
 
-void aKregator::partChanged(KParts::Part *p)
+void aKregator::partChanged(KParts::ReadOnlyPart *p)
 {
+    KParts::BrowserExtension *ext;
+    loadingProgress(-1);
+    if (m_activePart)
+    {
+        ext=browserExtension(m_activePart);
+        if (ext)
+            disconnect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+    }
+    ext=browserExtension(p);
+    if (ext)
+        connect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+    m_activePart=p;
     createGUI(p);
 }
 
@@ -278,9 +291,9 @@ void aKregator::fileOpen()
     }
 }
 
-KParts::BrowserExtension *aKregator::browserExtension() const
+KParts::BrowserExtension *aKregator::browserExtension(KParts::ReadOnlyPart *p)
 {
-    return KParts::BrowserExtension::childObject( m_part );
+    return KParts::BrowserExtension::childObject( p );
 }
 
 
