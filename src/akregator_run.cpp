@@ -34,6 +34,7 @@ BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *pa
     : KParts::BrowserRun(url, args, part, parent, false, true)
 {
     m_viewer=viewer;
+    connect(m_viewer, SIGNAL(destroyed()), this, SLOT(killMyself()));
 }
 
 BrowserRun::~BrowserRun()
@@ -47,6 +48,12 @@ void BrowserRun::foundMimeType( const QString & type )
         m_viewer->openPage(url());
     else
         handleNonEmbeddable(type);
+}
+
+void BrowserRun::killMyself()
+{
+    kdDebug() << "BrowserRun::killMyself()" << endl;
+    delete this;
 }
 
 #include "akregator_run.moc"

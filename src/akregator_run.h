@@ -42,6 +42,9 @@ namespace Akregator
     protected:
 	    virtual void foundMimeType( const QString & _type );
 
+    private slots:
+        void killMyself();
+
     private:
         Viewer *m_viewer;
 };
