@@ -259,15 +259,6 @@ void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
     }    
 }
 
-void FeedsTree::keyPressEvent(QKeyEvent* e)
-{
-    // handle return in in-place renaming, otherwise ignore events
-    if (isRenaming() && e->key() == Qt::Key_Enter)
-        KListView::keyPressEvent(e);
-    else
-        e->ignore();
-}
-
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
 {
     // if we are dragging over All feeds, enable

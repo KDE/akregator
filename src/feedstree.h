@@ -152,8 +152,7 @@ namespace Akregator
             virtual void contentsDragMoveEvent(QDragMoveEvent* event);
             virtual bool acceptDrag(QDropEvent *event) const;
             virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
-            virtual void keyPressEvent(QKeyEvent* e);
-            
+   
             void takeNode(QListViewItem* item);
             void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
 
