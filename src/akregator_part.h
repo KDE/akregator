@@ -28,6 +28,7 @@ class KHTMLPart;
 namespace Akregator {
     class FeedsTree;
     class ArticleList;
+	class ArticleViewer;
 }
 
 using namespace Akregator;
@@ -139,7 +140,7 @@ private:
     /**
      * Currently selected document renderer.
      */
-    KHTMLPart *m_html;
+    ArticleViewer *m_articleViewer;
 
     QSplitter *m_panner1, *m_panner2;
     QValueList<int> m_panner1Sep, m_panner2Sep;

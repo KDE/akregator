@@ -31,7 +31,7 @@ int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
 ArticleList::ArticleList(QWidget *parent, const char *name)
         : KListView(parent, name)
 {
-    setMinimumSize(250, 150);
+	setMinimumSize(250, 150);
     addColumn(i18n("Articles"));
     addColumn(i18n("P"), 16);
     setRootIsDecorated(false);
@@ -40,7 +40,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     setAllColumnsShowFocus(true);
     setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
-    setFullWidth(false);
+	setFullWidth(false);
     setSorting(-1);
     setDragAutoScroll(true);
     setDropHighlighter(false);

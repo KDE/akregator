@@ -9,6 +9,7 @@
 #include "addfeeddialog.h"
 #include "feedstree.h"
 #include "articlelist.h"
+#include "articleviewer.h"
 #include "feed.h"
 
 #include <ktrader.h>
@@ -40,11 +41,10 @@
 
 using namespace Akregator;
 
-aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
+aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
                                   QObject *parent, const char *name )
     : KParts::ReadWritePart(parent, name)
     , m_feeds()
-    , m_html(0)
 {
     // we need an instance
     setInstance( aKregatorPartFactory::instance() );
@@ -83,38 +83,9 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
     m_panner1->setSizes( m_panner1Sep );
     m_panner2->setSizes( m_panner2Sep );
 
-    // We require KHTMLPart here because of begin()/write()/end() later, as I don't know if there are
-    // any text/html parts that implement this interface. If anyone complains, I'll think about fixing it.
-    KTrader::OfferList offers = KTrader::self()->query("text/html", "'KParts/ReadOnlyPart' in ServiceTypes");
+	m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
 
-    KLibFactory *factory = 0;
-    // in theory, we only care about the first one.. but let's try all
-    // offers just in case the first can't be loaded for some reason
-    KTrader::OfferList::Iterator it(offers.begin());
-    for( ; it != offers.end(); ++it)
-    {
-        KService::Ptr ptr = (*it);
-
-        // we now know that our offer can handle HTML and is a part.
-        // since it is a part, it must also have a library... let's try to
-        // load that now
-        factory = KLibLoader::self()->factory( ptr->library() );
-        if (factory)
-        {
-            m_html = static_cast<KHTMLPart *>(factory->create(m_panner2, ptr->name(), "KParts::ReadOnlyPart"));
-            if (!m_html) continue; // its not KHTMLPart, keep looking
-            break;
-        }
-    }
-
-    if (!m_html)
-    {
-        KMessageBox::error(parentWidget, i18n("Could not find a suitable HTML component"));
-        ::exit(-1);
-    }
-    //end KHTML part
-
-    QWhatsThis::add(m_html->widget(), i18n("Browsing area."));
+    QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
     tabs->addTab(w1, "Articles");
 
@@ -145,7 +116,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
     KListViewItem *elt = new KListViewItem( m_tree, i18n("All Feeds") );
     m_feeds.addFeedGroup(elt);
 
-    m_html->openURL( ::locate( "data", "akregatorpart/welcome.html" ) );
+    m_articleViewer->openDefault();
+
     // -- /DEFAULT INIT
 
     // we are read-write by default
@@ -678,18 +650,7 @@ void aKregatorPart::slotArticleSelected(QListViewItem *item)
     if (index < 0 || static_cast<Article::List::size_type>(index) > feed->articles.size())
         return;
 
-    m_html->begin( KURL( "file:/tmp/something.html" ) );
-
-    QString header;
-    header += "<div style=\"background-color: #EAE9E8; color: black; border: 1px solid black; padding: 0\">";
-    header += "<div style=\"font-weight: bold; padding: 4px; margin: 0\">";
-    header += feed->articles[index].title();
-    header += "</div>";
-    header += "</div>\n";
-    m_html->write( header );
-
-    m_html->write( feed->articles[index].description() );
-    m_html->end();
+	m_articleViewer->show(feed->articles[index]);
 
     kdDebug() << k_funcinfo << "END" << endl;
 }
