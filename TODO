@@ -6,11 +6,9 @@ general:
 
 page viewer:
 - tab color highlights, like konqui
-- back/forward button in pageviewer
 - customize fonts used in viewers
 
 article list:
-- articlelist context menu
 - being able to delete articles from cache
 
 feed list:
@@ -24,4 +22,3 @@ notifications:
 kontact:
 - show systray icon in kontact 
 - show akregator if akregator is running and kontact feed icon is selected
-
