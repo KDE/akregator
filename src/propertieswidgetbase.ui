@@ -247,14 +247,14 @@
         <sender>expiryComboBox</sender>
         <signal>activated(int)</signal>
         <receiver>FeedPropertiesWidget</receiver>
-        <slot>slotComboBoxActivated(int)</slot>
+        <slot>slotExpiryComboBoxActivated(int)</slot>
     </connection>
 </connections>
 <includes>
     <include location="local" impldecl="in implementation">propertieswidgetbase.ui.h</include>
 </includes>
 <slots>
-    <slot>slotComboBoxActivated( int index )</slot>
+    <slot access="protected">slotExpiryComboBoxActivated( int index )</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
