@@ -492,8 +492,6 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 // TODO: when we have filtering, change onlyUpdateNew to something else
 void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
 {
-    // XXX: rest of code doesn't work, disable for now..
-    return;
     kdDebug() << k_funcinfo << src->title() << endl;
     if (!src->isGroup())
     {
@@ -501,12 +499,14 @@ void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
     }
     else
     {
-        if (src->collection())
+        if (!src->item())
+            return;
+        for ( QListViewItem *i = src->item()->firstChild()
+                ; i ; i = i->nextSibling() ) 
         {
-            QPtrDictIterator<FeedGroup> it(*(src->collection()));
-            for( ; it.current(); ++it ) {
-                slotUpdateArticleList(it.current(), onlyUpdateNew);
-            }
+            FeedGroup *g = m_feeds.find(i);
+            if (g)
+                slotUpdateArticleList(g, onlyUpdateNew);
         }
     }
 }
