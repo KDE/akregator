@@ -1,25 +1,32 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="pageviewer" version="6">
+<kpartgui name="pageviewer" version="8">
 <ToolBar name="mainToolBar">
-  <Action name="pageviewer_back" group="pageviewer_operations"/>
-  <Action name="pageviewer_forward" group="pageviewer_operations"/>
-  <Action name="pageviewer_reload" group="pageviewer_operations"/>
-  <Action name="pageviewer_stop" group="pageviewer_operations"/>
-  <Action name="pageviewer_print" group="pageviewer_operations"/>
+  <Separator/> 
+  <Action name="pageviewer_back"/>
+  <Action name="pageviewer_forward"/>
+  <Action name="pageviewer_reload"/>
+  <Action name="pageviewer_stop"/>
+  <Action name="pageviewer_print"/>
 </ToolBar>
 <MenuBar>
 <Menu noMerge="1" name="file">
-  <Action name="pageviewer_print" group="pageviewer_operations"/>
+  <Action name="viewer_print"/>
   <Separator/> 
   <Merge/>
 </Menu> 
 <Menu noMerge="1" name="go">
   <text>&amp;Go</text>
-  <Action name="pageviewer_back" group="pageviewer_operations"/>
-  <Action name="pageviewer_forward" group="pageviewer_operations"/>
+  <Action name="pageviewer_back"/>
+  <Action name="pageviewer_forward"/>
   <Separator/>
-  <Action name="pageviewer_reload" group="pageviewer_operations"/>
-  <Action name="pageviewer_stop" group="pageviewer_operations"/>
+  <Action name="pageviewer_reload"/>
+  <Action name="pageviewer_stop"/>
 </Menu>
 </MenuBar>
+
+<Menu name="pageviewer_various">
+  <Action name="viewer_scroll_up"/>
+  <Action name="viewer_scroll_down"/>
+</Menu>
+
 </kpartgui>

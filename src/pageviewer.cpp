@@ -37,9 +37,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     new KAction( i18n("Zoom &In"), "viewmag+", "", this, SLOT(slotZoomIn()), actionCollection(), "pageviewer_zoom_in" );
     new KAction( i18n("Zoom &Out"), "viewmag-", "", this, SLOT(slotZoomOut()), actionCollection(), "pageviewer_zoom_out" );
     
-    m_backAction = new KToolBarPopupAction(i18n("Back"), "back", 0,
-                            this, SLOT(slotBack()),
-                            actionCollection(), "pageviewer_back");
+    m_backAction = new KToolBarPopupAction(i18n("Back"), "back", 0, this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(m_backAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotBackAboutToShow()));
@@ -47,9 +45,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
             this, SLOT(slotPopupActivated(int)));
 
     
-    m_forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", 0,
-                            this, SLOT(slotForward()),
-                            actionCollection(), "pageviewer_forward");
+    m_forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", 0, this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
 
     connect(m_forwardAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotForwardAboutToShow()));
@@ -63,12 +59,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
                                  this, SLOT(slotStop()),
                                  actionCollection(), "pageviewer_stop");
 
-    m_printAction = KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "pageviewer_print");
-
-    m_copyAction = KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "pageviewer_copy");
-
     //connect( this, SIGNAL(popupMenu(const QString &, const QPoint &)), this, SLOT(slotPopupMenu(const QString &, const QPoint &)));
-    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
     m_backAction->setEnabled(false);
     m_forwardAction->setEnabled(false);
@@ -332,13 +323,12 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         m_stopAction->plug(&popup);
 
         popup.insertSeparator();
-    
-        m_copyAction->plug( &popup );
+        action("viewer_copy")->plug(&popup);
         popup.insertSeparator();
 
         popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkExternal()));
     
-        m_printAction->plug(&popup);
+        action("viewer_print")->plug(&popup);
         popup.insertSeparator();
         
         KAction * incFontAction = this->action("incFontSizes");
@@ -381,22 +371,6 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
 //      openURL( kurl );
     }
 }
-
-void PageViewer::slotCopy( )
-{
-    QString text = selectedText();
-    text.replace( QChar( 0xa0 ), ' ' );
-    QClipboard *cb = QApplication::clipboard();
-    disconnect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
-    cb->setText(text);
-    connect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
-}
-
-void PageViewer::slotSelectionChanged( )
-{
-    m_copyAction->setEnabled(!selectedText().isEmpty());
-}
-
 
 void PageViewer::formClicked(const KURL& url, const KParts::URLArgs& args)
 {

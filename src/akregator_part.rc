@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="39">
+<kpartgui name="akregator_part" version="40">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -85,8 +85,6 @@
 <Menu name="various">
 <Action name="go_previous_article"/>
 <Action name="go_next_article"/>
-<Action name="scroll_viewer_up"/>
-<Action name="scroll_viewer_down"/>
 <Action name="feedstree_up"/>
 <Action name="feedstree_down"/>
 <Action name="feedstree_left"/>

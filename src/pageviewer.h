@@ -66,8 +66,7 @@ namespace Akregator
             void slotForwardAboutToShow();
             void slotPopupActivated( int id );
             virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
-            void slotCopy();
-            void slotSelectionChanged();
+            
             void slotGlobalBookmarkArticle();
             void formClicked(const KURL& url, const KParts::URLArgs& args);
             
@@ -82,8 +81,6 @@ namespace Akregator
             KToolBarPopupAction* m_forwardAction;
             KAction* m_reloadAction;
             KAction* m_stopAction;
-            KAction* m_printAction;
-            KAction* m_copyAction;
 
             bool m_restoring;
             QString m_caption;

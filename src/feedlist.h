@@ -33,7 +33,7 @@ public:
         @return the parsed feed list, or 0 when a parsing error occured
     */
     static FeedList* fromOPML(const QDomDocument& doc);
-    
+
     FeedList(QObject *parent = 0, const char *name = 0);
 
     /** Destructor. Contained nodes are NOT deleted. Use @c delete @c rootNode() to delete the tree. FIXME: change that later */

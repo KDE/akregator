@@ -63,8 +63,7 @@ void aKregatorPart::setupActions()
 
     new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
     new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileExport()), actionCollection(), "file_export");
-    KStdAction::print(m_view, SLOT(slotPrint()), actionCollection(), "file_print");
-
+        
     /* --- Feed/Feed Group popup menu */
     new KAction(i18n("&Open Homepage"), "", "Ctrl+H", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
     new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
@@ -145,8 +144,6 @@ void aKregatorPart::setupActions()
 
 
     // article viewer
-    new KAction( i18n("&Scroll Up"), QString::null, "Up", m_view, SLOT(slotScrollViewerUp()), actionCollection(), "scroll_viewer_up" );
-    new KAction( i18n("&Scroll Down"), QString::null, "Down", m_view, SLOT(slotScrollViewerDown()), actionCollection(), "scroll_viewer_down" );
     new KAction( i18n("Open Article"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
     new KAction( i18n("Open Article in Background Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
     new KAction( i18n("Open Article in External Browser"), QString::null, "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
@@ -156,6 +153,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
                               QObject *parent, const char *name, const QStringList& )
     : DCOPObject("aKregatorIface"), MyBasePart(parent, name), m_parentWidget(parentWidget)
 {
+    m_mergedPart = 0;
     // we need an instance
     setInstance( aKregatorFactory::instance() );
 
@@ -164,7 +162,6 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     m_loading = false;
 
     m_view = new aKregatorView(this, parentWidget, "akregator_view");
-
     m_extension = new BrowserExtension(this, "ak_extension");
 
     // notify the part that this is our internal widget
@@ -187,7 +184,6 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
-
     setupActions();
 }
 
@@ -483,12 +479,23 @@ QPixmap aKregatorPart::takeTrayIconScreenshot() const
     return m_trayIcon->takeScreenshot();
 }
 
-void aKregatorPart::reMerge()
+bool aKregatorPart::mergePart(KParts::Part* part)
 {
-    KParts::MainWindow *mw = dynamic_cast<KParts::MainWindow*>(getMainWindow());
-    if (mw) {
-        mw->guiFactory()->addClient(this);
+    if (part != m_mergedPart)
+    {
+        if (!factory())
+        {
+            kdDebug() << "aKregatorPart::mergePart(): factory() returns NULL" << endl;
+            return false;
+        }
+        if (m_mergedPart)
+            factory()->removeClient(m_mergedPart);
+        if (part)
+            factory()->addClient(part);
+    
+        m_mergedPart = part;
     }
+    return true;
 }
 
 QWidget* aKregatorPart::getMainWindow()

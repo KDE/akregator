@@ -103,7 +103,7 @@ namespace Akregator
             virtual void readProperties(KConfig* config);
             virtual void saveProperties(KConfig* config);
 
-	    Frame* currentFrame() const { return m_currentFrame; }
+	         Frame* currentFrame() const { return m_currentFrame; }
              
         signals:
             /** emitted when the unread count of "All Feeds" was changed */
@@ -222,11 +222,6 @@ namespace Akregator
             /** toggles the visibility of the filter bar */
             void slotToggleShowQuickFilter();
 
-            /** scrolls the article viewer up*/
-            void slotScrollViewerUp();
-            /** scrolls the article viewer down */
-            void slotScrollViewerDown();
-
             /** selects the previous article in the article list */
             void slotPreviousArticle();
             /** selects the next article in the article list */
@@ -264,6 +259,10 @@ namespace Akregator
             void disconnectFromFeedList(FeedList* feedList);
             
         protected slots:
+
+            /** this is called by the ctor, does init steps which need a properly created view and part */
+            
+            void delayedInit();
             
             void slotActivateSearch();
                     

@@ -1,0 +1,16 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="articleviewer" version="2">
+<MenuBar>
+<Menu noMerge="1" name="file">
+  <Action name="viewer_print"/>
+  <Separator/> 
+  <Merge/>
+</Menu> 
+</MenuBar>
+<!-- this menu doesn't show up in the app, just groups the actions -->
+<Menu name="articleviewer_various">
+  <Action name="viewer_scroll_up"/>
+  <Action name="viewer_scroll_down"/>
+</Menu>
+
+</kpartgui>

@@ -74,8 +74,6 @@ namespace Akregator
             void setCompleted();
             void setCanceled(const QString &s);
 
-            void reMerge();
-            
             /**
              * Informs trayicon about new articles
              * @param src Feed which has new articles
@@ -150,6 +148,10 @@ namespace Akregator
              * @return Screenshot of the trayicon
              */
             virtual QPixmap takeTrayIconScreenshot() const;
+
+            /** merges a nested part's GUI into the gui of this part
+              @return true iff merging was successful, i.e. the GUI factory was not NULL */
+            virtual bool mergePart(KParts::Part*);
             
         protected:
             /**
@@ -209,7 +211,7 @@ namespace Akregator
 
             KURL m_delayURL;
             KParts::BrowserExtension *m_extension;
-            
+            KParts::Part* m_mergedPart;
             QWidget *m_parentWidget;
             aKregatorView* m_view;
             TrayIcon* m_trayIcon;

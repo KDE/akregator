@@ -52,8 +52,15 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
     KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const
     KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
 
+    KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "viewer_print");
+    KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "viewer_copy");
+
+    new KAction( i18n("&Scroll Up"), QString::null, "Up", this, SLOT(slotScrollUp()), actionCollection(), "viewer_scroll_up" );
+    new KAction( i18n("&Scroll Down"), QString::null, "Down", this, SLOT(slotScrollDown()), actionCollection(), "viewer_scroll_down" );
+    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
+
     new KAction(i18n("Copy Link Address"), "", 0,
-                                 this, SLOT(slotCopyToClipboard()),
+                                 this, SLOT(slotCopyLinkAddress()),
                                  actionCollection(), "copylinkaddress");
 }
 
@@ -140,19 +147,32 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    {
         popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New Tab"), this, SLOT(slotOpenLinkInternal()));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
-        popup.insertItem(i18n("Copy Link Address"), this, SLOT(slotCopyToClipboard()));
+        action("copylinkaddress")->plug(&popup);
    }
    else
    {
-       popup.insertItem(SmallIcon("fileprint"), i18n("Print..."), this, SLOT(slotPrint()));
-        KAction *ac = action("setEncoding");
-        if (ac)
+       action("viewer_copy")->plug(&popup);
+       popup.insertSeparator();
+       action("viewer_print")->plug(&popup);
+       KAction *ac = action("setEncoding");
+       if (ac)
             ac->plug(&popup);
    }
    popup.exec(p);
 }
 
-void Viewer::slotCopyToClipboard()
+// taken from KDevelop
+void Viewer::slotCopy()
+{
+    QString text = selectedText();
+    text.replace( QChar( 0xa0 ), ' ' );
+    QClipboard *cb = QApplication::clipboard();
+    disconnect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
+    cb->setText(text);
+    connect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
+}
+
+void Viewer::slotCopyLinkAddress()
 {
    if(m_url.isEmpty()) return;
    QClipboard *cb = QApplication::clipboard();
@@ -160,6 +180,10 @@ void Viewer::slotCopyToClipboard()
    cb->setText(m_url.prettyURL(), QClipboard::Selection);
 }
 
+void Viewer::slotSelectionChanged()
+{
+    action("viewer_copy")->setEnabled(!selectedText().isEmpty());
+}
 /*
 void Viewer::openLink(const KURL&url, const KParts::URLArgs args)
 {

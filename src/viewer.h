@@ -52,33 +52,26 @@ namespace Akregator
             virtual bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
             virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
-            /**
-             * Copies current link to clipboard.
-             */
-            void slotCopyToClipboard();
+            /** Copies current link to clipboard. */
+            void slotCopyLinkAddress();
 
-            /**
-             * Opens link in internal viewer.
-             */
+            /** Copies currently selected text to clipboard */
+            virtual void slotCopy();
+            
+            /** Opens link in internal viewer. */
             virtual void slotOpenLinkInternal();
 
-            /**
-             * Opens link in external viewer, eg. Konqueror
-             */
+            /** Opens link in external viewer, eg. Konqueror */
             void slotOpenLinkExternal();
 
-            /**
-             * This changes cursor to wait cursor
-             */
+            /** This changes cursor to wait cursor */
             void slotStarted(KIO::Job *);
 
-            /**
-             * This reverts cursor back to normal one
-             */
+            /** This reverts cursor back to normal one */
             void slotCompleted();
 
-            //void slotSaveLinkAs();
-
+            virtual void slotSelectionChanged();
+            
         private:
             /**
              * Display article in external browser.

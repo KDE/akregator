@@ -212,7 +212,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
     
-
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 
@@ -228,21 +227,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_searchCombo->setCurrentItem(Settings::quickFilter());
     slotSearchComboChanged(Settings::quickFilter());
 
-    m_fetchTimer=new QTimer(this);
-    connect( m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()) );
-    m_fetchTimer->start(1000*60);
-
-    // delete expired articles once per hour
-    m_expiryTimer = new QTimer(this);
-    connect(m_expiryTimer, SIGNAL(timeout()), this,
-    SLOT(slotDeleteExpiredArticles()) );
-    
-    m_expiryTimer->start(3600*1000);
-    
-    // Change default view mode
-    int viewMode = Settings::viewMode();
-
-    switch (viewMode)
+    switch (Settings::viewMode())
     {
         case CombinedView:
             slotCombinedView();
@@ -253,6 +238,29 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
         default:
             slotNormalView();
     }
+
+    m_fetchTimer=new QTimer(this);
+    connect( m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()) );
+    m_fetchTimer->start(1000*60);
+
+    // delete expired articles once per hour
+    m_expiryTimer = new QTimer(this);
+    connect(m_expiryTimer, SIGNAL(timeout()), this,
+            SLOT(slotDeleteExpiredArticles()) );
+    m_expiryTimer->start(3600*1000);
+
+    QTimer::singleShot(0, this, SLOT(delayedInit()));
+}
+
+void aKregatorView::delayedInit()
+{
+    // HACK, FIXME:
+    // for some reason, m_part->factory() is NULL at startup of kontact,
+    // and thus the article viewer GUI can't be merged when creating the view.
+    // Even the delayed init didn't help. Well, we retry every half a second until
+    // it works. This is kind of creative, but a dirty hack nevertheless.
+    if ( !m_part->mergePart(m_articleViewer) )
+        QTimer::singleShot(500, this, SLOT(delayedInit()));
 }
 
 void aKregatorView::saveSettings()
@@ -266,8 +274,6 @@ void aKregatorView::saveSettings()
 void aKregatorView::slotOpenTab(const KURL& url, bool background)
 {
     PageViewer* page = new PageViewer(this, "page");
-    
-    m_part->manager()->addPart(page);
     
     connect( page, SIGNAL(setTabIcon(const QPixmap&)),
             this, SLOT(setTabIcon(const QPixmap&)));
@@ -591,17 +597,20 @@ void aKregatorView::slotFrameChanged(Frame *f)
 
     m_tabsClose->setEnabled(f != m_mainFrame);
 
-    if (f == m_mainFrame) {
-        m_mainFrame->widget()->setFocus();
-    }
-
-    KParts::ReadOnlyPart* p = f->part();
-    m_part->manager()->setActivePart(p);
     m_part->setCaption(f->caption());
     m_part->setProgress(f->progress());
     m_part->setStatusBar(f->statusText());
-    m_part->reMerge();
 
+    m_part->mergePart(m_articleViewer);
+    
+    if (f == m_mainFrame)
+        m_mainFrame->widget()->setFocus();
+    
+    if (f->part() == m_part)
+        m_part->mergePart(m_articleViewer);
+    else
+        m_part->mergePart(f->part());
+    
     switch (f->state())
     {
         case Frame::Started:
@@ -669,15 +678,6 @@ void aKregatorView::slotNextArticle()
     m_articles->slotNextArticle(); 
 }
 
-void aKregatorView::slotScrollViewerUp()
-{
-    m_articleViewer->slotScrollUp();
-}
-
-void aKregatorView::slotScrollViewerDown()
-{
-    m_articleViewer->slotScrollDown();
-}
 void aKregatorView::slotFeedsTreeUp()
 {
     m_tree->slotItemUp();

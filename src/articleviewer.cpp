@@ -47,6 +47,7 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
+    setXMLFile(locate("data", "akregator/articleviewer.rc"), true);
     generateCSS();
     connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
