@@ -290,17 +290,11 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
-    Archive::load(static_cast<Feed *>(m_feeds.find(elt)));
+    Archive::load(feed);
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
     if (fti)
         fti->setUnread(feed->unread());
-
-    QString iconFile=FeedIconManager::self()->iconLocation(xmlUrl);
-    if (!iconFile.isNull())
-    {
-        elt->setPixmap(0, KGlobal::dirs()->findResource("cache", iconFile+".png"));
-    }
 
     // enable when we need to update favicons, on for example systray
     //connect( feed, SIGNAL(faviconLoaded()),

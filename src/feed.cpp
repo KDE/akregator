@@ -159,7 +159,6 @@ void Feed::fetch(bool followDiscovery)
 	m_followDiscovery=followDiscovery;
     m_fetchTries=0;
 
-
     // mark all new as unread
     ArticleSequence::Iterator it;
     ArticleSequence::Iterator en=articles.end();
@@ -172,7 +171,6 @@ void Feed::fetch(bool followDiscovery)
     }
 
     tryFetch();
-
 }
 
 
@@ -180,7 +178,6 @@ void Feed::tryFetch()
 {
     Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     loader->loadFrom( xmlUrl, new FileRetriever );
-
     // TODO: note that we probably don't want to load the favicon here enventually..
     QTimer::singleShot( 1000, this, SLOT(loadFavicon()) );
     //loadFavicon();
@@ -214,13 +211,25 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     m_document=doc;
     kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
-    if (m_document.image())
+    
+    if (image.isNull())
     {
-        connect (m_document.image(), SIGNAL(gotPixmap(const QPixmap &)),
-                               this, SLOT(imageChanged(const QPixmap &)));
-        m_document.image()->getPixmap();
+        QString u=xmlUrl;
+        QString imageFileName=KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
+        image=QPixmap(imageFileName, "PNG");
+   
+        if (image.isNull())
+        {
+            if (m_document.image()) // if we aint got teh image
+                                    // and the feed provides one, get it....
+            {
+                connect (m_document.image(), SIGNAL(gotPixmap(const QPixmap &)),
+                                   this, SLOT(imageChanged(const QPixmap &)));
+                m_document.image()->getPixmap();
+            }
+        }
     }
-
+    
     if (updateTitle || title().isEmpty()) setTitle( m_document.title() );
 
     description = m_document.description();
@@ -255,8 +264,8 @@ void Feed::faviconChanged(const QString &url, const QPixmap &p)
 void Feed::imageChanged(const QPixmap &p)
 {
     image=p;
-    // TODO check if present in data dir
-    image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+title()+".png","PNG");
+    QString u=xmlUrl;
+    image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
     emit(imageLoaded(this));
 }
 

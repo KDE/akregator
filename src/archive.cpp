@@ -7,11 +7,16 @@
 
 #include "archive.h"
 #include "feed.h"
+#include "feediconmanager.h"
 
-#include <kstandarddirs.h>
+#include <kurl.h>
 #include <kdebug.h>
+#include <kglobal.h>
+#include <kstandarddirs.h>
+#include <kiconloader.h>
 
 #include <qdom.h>
+#include <qpixmap.h>
 #include <qfile.h>
 
 using namespace Akregator;
@@ -21,17 +26,30 @@ void Archive::load(Feed *f)
     if (!f)
         return;
     
+    if (f->isMerged() || f->xmlUrl.isNull())
+        return;
+   
     KURL url( f->xmlUrl );
+    
+    if (!url.isValid())
+        return;
+    
+    QString iconFile=FeedIconManager::self()->iconLocation(f->xmlUrl);
+    if (!iconFile.isNull())
+        f->faviconChanged(f->xmlUrl, QPixmap(KGlobal::dirs()->findResource("cache", iconFile+".png")));
 
+    // images are cache, articles is data.. good I think.
+    QString u=f->xmlUrl;
+    
+    QString imageFileName=KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
+    f->image=QPixmap(imageFileName, "PNG"); 
+    
     QString filePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + url.prettyURL(-1).replace("/", "_").replace(":", "_") + ".xml";
 
     //kdDebug() << "Will read feed from " << filePath << endl;
     //kdDebug() << "merged :"<<f->isMerged()<<endl;
 
-    if (f->isMerged())
-        return;
-
-    f->setMerged(true); // so it is merged even if we error
+    f->setMerged(true); // so it is merged even if we error _from now on_
     
     QFile file(filePath);
     

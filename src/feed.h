@@ -77,11 +77,11 @@ namespace Akregator
             void appendArticles(const Document &d, bool findDups=false);
             void appendArticle(const MyArticle &a);
 
-
         public slots:
             void fetch(bool follow=false);                 ///< Start fetching rss
             void loadFavicon();
-
+            void faviconChanged(const QString &url, const QPixmap &p);
+            
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
             void fetchError(Feed *);
@@ -93,7 +93,6 @@ namespace Akregator
 
         private slots:
             void fetchCompleted(Loader *loader, Document doc, Status status);
-            void faviconChanged(const QString &url, const QPixmap &p);
             void imageChanged(const QPixmap &p);
 
         private:

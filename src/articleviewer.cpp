@@ -146,9 +146,12 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
         text += KGlobal::locale()->formatDateTime(a.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
     }
     text += "</div>\n"; // end headerbox
-
+    
     if (f && !f->image.isNull())
-        text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+f->title()+".png"+"\"></a>\n");
+    {
+        QString url=f->xmlUrl;
+        text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+    }
 
     text += "<div id=\"content\">"+a.description();
     if (a.link().isValid())
