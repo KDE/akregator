@@ -108,17 +108,14 @@ void Frame::setState(int a)
     switch (m_state)
     {
         case Frame::Started:
-            if(m_progressItem) m_progressItem->setStatus(i18n("Loading..."));
             emit started();
             break;
         case Frame::Canceled:
-            if(m_progressItem) m_progressItem->setStatus(i18n("Canceled"));
             emit canceled(QString::null);
             break;
         case Frame::Idle:
         case Frame::Completed:
         default:
-            if(m_progressItem) m_progressItem->setStatus(i18n("Loading completed"));
             emit completed();
     }}
 
@@ -142,8 +139,8 @@ const QString Frame::statusText() const
 void Frame::setStarted()
 {
     if(m_progressId.isNull() || m_progressId.isEmpty()) m_progressId = KPIM::ProgressManager::getUniqueID();
-    m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title());
-    m_progressItem->setUsesCrypto(false);
+    m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title(), QString::null, false);
+    m_progressItem->setStatus(i18n("Loading..."));
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state=Started;
     emit started();
@@ -151,6 +148,7 @@ void Frame::setStarted()
 
 void Frame::setCanceled(const QString &s)
 {
+    if(m_progressItem) m_progressItem->setStatus(i18n("Loading canceled"));
     m_state=Canceled;
     emit canceled(s);
 }
@@ -158,6 +156,7 @@ void Frame::setCanceled(const QString &s)
 void Frame::setCompleted()
 {
     if(m_progressItem) {
+        m_progressItem->setStatus(i18n("Loading completed"));
         m_progressItem->setComplete();
         m_progressItem = 0;
     }

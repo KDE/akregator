@@ -371,8 +371,7 @@ void Feed::tryFetch()
 {
     m_fetchError = false;
     
-    m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title());
-    m_progressItem->setUsesCrypto(false);
+    m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title(), QString::null, false);
     connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     
     m_loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
