@@ -8,9 +8,13 @@
 #ifndef PAGEVIEWER_H
 #define PAGEVIEWER_H
 
-#include "viewer.h"
+#include <cmath>
 
 #include <qdatetime.h>
+
+#include "viewer.h"
+
+
 class KAction;
 class KToolBarPopupAction;
 
