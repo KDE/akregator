@@ -4,6 +4,7 @@
  *                                                                         *
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
+
 #include "propertiesdialog.h"
 
 #include <klineedit.h>

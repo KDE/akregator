@@ -129,7 +129,7 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
         return false;
-
+        
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
         return false;
 

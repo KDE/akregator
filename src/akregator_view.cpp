@@ -134,6 +134,7 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc)
 {
     // this should be OPML document
     QDomElement root = doc.documentElement();
+    kdDebug() << "loading OPML feed "<<root.tagName().lower()<<endl;
     if (root.tagName().lower() != "opml")
         return false;
 
@@ -173,11 +174,14 @@ void aKregatorView::parseChildNodes(QDomNode &node, KListViewItem *parent)
         else
             elt = new KListViewItem( m_tree, m_tree->lastItem(), e.attribute("text") );
 
-        if (e.hasAttribute("xmlUrl"))
+        if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
         {
+            QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
+            QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
+            
             addFeed_Internal( elt,
-                              e.attribute("text"),
-                              e.attribute("xmlUrl"),
+                              title,
+                              xmlurl,
                               e.attribute("htmlUrl"),
                               e.attribute("description"),
                               e.attribute("isLiveJournal") == "true" ? true : false,
