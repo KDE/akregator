@@ -68,12 +68,14 @@ Feed* Feed::fromOPML(QDomElement e)
         ArchiveMode archiveMode = stringToArchiveMode(e.attribute("archiveMode"));
         int maxArticleAge = e.attribute("maxArticleAge").toUInt();
         int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
-      
+        uint id = e.attribute("id").toUInt();
+        
         feed = new Feed();
         feed->setTitle(title);
         feed->setXmlUrl(xmlUrl);
         feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
         feed->setHtmlUrl(htmlUrl);
+        feed->setId(id);
         feed->setDescription(description);
         feed->setArchiveMode(archiveMode);
         feed->setFetchInterval(fetchInterval);
@@ -134,6 +136,7 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "title", title() );
     el.setAttribute( "xmlUrl", m_xmlUrl );
     el.setAttribute( "htmlUrl", m_htmlUrl );
+    el.setAttribute( "id", QString::number(id()) );
     el.setAttribute( "description", m_description );
     el.setAttribute( "autoFetch", (useCustomFetchInterval() ? "true" : "false") );
     el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );

@@ -106,7 +106,6 @@ public:
     
     virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const = 0;
     
-    
     /** 
     @param doNotify notification on changes on/off flag
     @param notifyOccuredChanges notify changes occured while turn off when set to true again */
@@ -117,6 +116,15 @@ public:
      */ 
     virtual TreeNode* next() = 0; 
 
+    /** returns the ID of this node. IDs are managed by @ref FeedList objects and must be unique within the list. Some IDs have a special meaning:
+    @c 0 is the default value and indicates that no ID was set
+    @c 1 is reserved for the "All Feeds" root node */
+    
+    virtual uint id() const;
+
+    /** sets the ID */
+    virtual void setId(uint id);
+    
 public slots:
     
     /** Deletes all expired articles in the node (depending on the expiry settings).
@@ -180,6 +188,8 @@ protected:
     
     /** The node's parent */
     FeedGroup* m_parent;
+
+    uint m_id;
 };
 
 }

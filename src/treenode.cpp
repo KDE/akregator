@@ -13,7 +13,7 @@
 using namespace Akregator;
 
 TreeNode::TreeNode()
-    : QObject(0, 0), m_doNotify(true), m_changeOccured(false), m_title(""), m_parent(0)
+    : QObject(0, 0), m_doNotify(true), m_changeOccured(false), m_title(""), m_parent(0), m_id(0)
 {
 }
 
@@ -80,6 +80,16 @@ void TreeNode::setNotificationMode(bool doNotify, bool notifyOccuredChanges)
         m_changeOccured = false;
         m_doNotify = false;
     }
+}
+
+uint TreeNode::id() const
+{
+    return m_id;
+}
+
+void TreeNode::setId(uint id)
+{
+    m_id = id;
 }
 
 void TreeNode::modified()

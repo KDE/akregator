@@ -19,6 +19,7 @@ FeedGroup* FeedGroup::fromOPML(QDomElement e)
 {
     FeedGroup* fg = new FeedGroup(e.hasAttribute("text") ? e.attribute("text") : e.attribute("title"));
     fg->setOpen( e.attribute("isOpen") == "true" ? true : false );
+    fg->setId( e.attribute("id").toUInt() );
     return fg;
 }
 
@@ -49,7 +50,7 @@ QDomElement FeedGroup::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "text", title() );
     parent.appendChild( el );
     el.setAttribute("isOpen", m_open ? "true" : "false");
-    
+    el.setAttribute( "id", QString::number(id()) );
     // necessary because of const
     QPtrList<TreeNode> children = m_children;
     

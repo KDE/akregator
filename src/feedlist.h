@@ -40,10 +40,10 @@ public:
     /** Destructor. Contained nodes are deleted! */
     ~FeedList();
 
-    /** returns the root node "All Feeds". */
+    /** returns the root node ("All Feeds"). */
     FeedGroup* rootNode() const;
 
-    /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list (should be copied actually) */
+    /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
     
     void append(FeedList* list, FeedGroup* parent=0, TreeNode* after=0);
 
@@ -56,10 +56,11 @@ public:
     /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
     QDomDocument toOPML() const;
 
-//    TreeNode* findByID(uint id) const;
-//  void setIDCounter(uint idCounter);
-//  uint idCounter();
+    TreeNode* findByID(uint id) const;
 
+    /** returns whether the feed list is empty, root node is ignored */
+    bool isEmpty() const;
+    
 protected:
 
     /** connects a node's notification signals to the slots below. Used for Observer mechanism 
@@ -86,8 +87,8 @@ private:
     FeedList(const FeedList&) : QObject() {}
     FeedList& operator=(const FeedList&) { return *this; }
     
-//    uint m_idCounter;
-//    QMap<uint, TreeNode*> m_idMap;
+    uint m_idCounter;
+    QMap<uint, TreeNode*> m_idMap;
     QValueList<TreeNode*> m_flatList;
     FeedGroup* m_rootNode;
     QString m_title;

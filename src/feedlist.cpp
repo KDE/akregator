@@ -23,11 +23,11 @@
 using namespace Akregator;
 
 FeedList::FeedList(QObject *parent, const char *name)
-    : QObject(parent, name) //, m_idCounter(2)
+    : QObject(parent, name), m_idCounter(2)
 {
     m_rootNode = new FeedGroup(i18n("All Feeds"));
-//    m_rootNode->setID(1);
-//    m_idMap[1] = m_rootNode;
+    m_rootNode->setId(1);
+    m_idMap[1] = m_rootNode;
     m_flatList.append(m_rootNode);
     connectToNode(m_rootNode);
 }
@@ -93,14 +93,28 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     QDomElement body = bodyNode.toElement();
 
     QDomNode i = body.firstChild();
+
+    list->m_idCounter = 0;
+    
     while( !i.isNull() )
     {
         parseChildNodes(i, list->rootNode());
         i = i.nextSibling();
     }
 
-    // TODO: gives them IDs if they don't have ids and set idCounter accordingly
+    list->m_idCounter = 2;
     
+    for (TreeNode* i = list->rootNode()->firstChild(); i && i != list->rootNode(); i = i->next() )
+        if (i->id() >= list->m_idCounter)
+            list->m_idCounter = i->id() + 1;
+
+    for (TreeNode* i = list->rootNode()->firstChild(); i && i != list->rootNode(); i = i->next() )
+        if (i->id() == 0)
+    {
+            uint id = list->m_idCounter++;
+            i->setId(id);
+            list->m_idMap[id] = i;
+    }          
     return list;
 }
 
@@ -110,10 +124,15 @@ FeedList::~FeedList()
     m_rootNode = 0;
 }
 
-//TreeNode* FeedList::findByID(uint id) const
-//{
-//    return m_idMap.contains(id) ? m_idMap[id] : 0;
-//}
+TreeNode* FeedList::findByID(uint id) const
+{
+    return m_idMap.contains(id) ? m_idMap[id] : 0;
+}
+
+bool FeedList::isEmpty() const
+{
+    return m_rootNode->firstChild() == 0;
+}
 
 FeedGroup* FeedList::rootNode() const
 {
@@ -137,16 +156,6 @@ void FeedList::append(FeedList* list, FeedGroup* parent, TreeNode* after)
         after = i;
     }
 }
-
-//void FeedList::setIDCounter(uint idCounter)
-//{
-//    m_idCounter = idCounter;
-//}
-
-//uint FeedList::idCounter()
-//{
-//    return m_idCounter;
-//}
 
 QDomDocument FeedList::toOPML() const
 {
@@ -190,8 +199,13 @@ void FeedList::slotNodeAdded(TreeNode* node)
     if ( !node || !m_flatList.contains(parent) || m_flatList.contains(node) )
         return;
 
-//    node->setID(++m_idCounter);
-//    m_idMap[m_idCounter] = node;
+
+    if (m_idCounter != 0)
+    {
+        node->setId(m_idCounter++);
+        m_idMap[node->id()] = node;
+    }
+    
     m_flatList.append(node);
     connectToNode(node);
 
@@ -215,7 +229,7 @@ void FeedList::slotNodeDestroyed(TreeNode* node)
     if ( !node || !m_flatList.contains(node) )
         return;
     
-//    m_idMap.remove(node->id());
+    m_idMap.remove(node->id());
     m_flatList.remove(node);
 }
 
@@ -224,7 +238,7 @@ void FeedList::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
     if ( !node || !m_flatList.contains(node) )
         return;
     
-//  m_idMap.remove(node->id());
+    m_idMap.remove(node->id());
     disconnectFromNode(node);
     m_flatList.remove(node);
     
