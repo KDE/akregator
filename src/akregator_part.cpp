@@ -21,12 +21,14 @@
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
 #include <kparts/partmanager.h>
+#include <kpassivepopup.h>
 
 #include <qfile.h>
-#include <qtimer.h>
-#include <private/qucomextra_p.h>
 #include <qobjectlist.h>
+#include <qstringlist.h>
+#include <qtimer.h>
 #include <qwidgetlist.h>
+#include <private/qucomextra_p.h>
 
 #include "aboutdata.h"
 #include "akregator_part.h"
@@ -672,11 +674,25 @@ void Part::fetchFeedUrl(const QString&s)
     kdDebug() << "fetchFeedURL==" << s << endl;
 }
 
-void Part::addFeedToGroup(const QString& url, const QString& group)
+void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
 {
-    kdDebug() << "Akregator::Part::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
-    m_view->addFeedToGroup(url, group);
-    //setModified(true);
+    for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
+    {
+        kdDebug() << "Akregator::Part::addFeedToGroup adding feed with URL " << *it << " to group " << group << endl;
+        m_view->addFeedToGroup(*it, group);
+    }    
+    if (urls.count() == 1)
+    {
+        KPassivePopup::message(i18n("%1:").arg(urls[0]), i18n("Feed added to akregator."), m_trayIcon);
+    }
+    else if (urls.count() > 1)
+    {
+        QString message;
+        for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
+            message += *it + "\n";
+        KPassivePopup::message(i18n("Feeds added to akregator:"), message, m_trayIcon);
+    }
+
 }
 
 

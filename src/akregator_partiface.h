@@ -9,6 +9,7 @@
 #define AKREGATORPARTIFACE_H
 
 #include <dcopobject.h>
+#include <qstringlist.h>
 
 namespace Akregator {
 
@@ -20,7 +21,7 @@ namespace Akregator {
             virtual void fetchFeedUrl(const QString&) = 0;
             virtual void fetchAllFeeds() = 0;
             virtual void saveSettings() = 0;
-            virtual void addFeedToGroup(const QString&, const QString&) = 0;
+            virtual void addFeedsToGroup(const QStringList&, const QString&) = 0;
     };
 
 }

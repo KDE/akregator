@@ -260,6 +260,8 @@ namespace Akregator
 
         protected:
 
+            void addFeed(const QString& url, TreeNode* after, FeedGroup* parent, bool autoExec = true);
+            
             void connectToFeedList(FeedList* feedList);
             void disconnectFromFeedList(FeedList* feedList);
             
@@ -278,8 +280,6 @@ namespace Akregator
             QString getTitleNodeText(const QDomDocument &doc);
 
        	    void setTabIcon(const QPixmap&);
-
-            void addFeed(const QString& url, TreeNode* after, FeedGroup* parent, bool autoExec = true);
 
             void updateSearch(const QString &s=QString::null);
 

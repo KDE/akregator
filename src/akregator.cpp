@@ -168,7 +168,7 @@ void AkregatorMainWindow::addFeedToGroup(const QString& url, const QString& grou
 {
     if (!m_part)
         loadPart();
-    (static_cast<Akregator::Part*>(m_part))->addFeedToGroup( url, group );
+    (static_cast<Akregator::Part*>(m_part))->addFeedsToGroup( url, group );
 }
 
 void AkregatorMainWindow::setupActions()

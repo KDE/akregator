@@ -107,7 +107,7 @@ namespace Akregator
              If the group does not exist, it is created.  The feed is added as the last member
              of the group.
              */
-            virtual void addFeedToGroup(const QString& url, const QString& group);
+            virtual void addFeedsToGroup(const QStringList& urls, const QString& group);
             
             /**
              This method is called when this app is restored.  The KConfig
