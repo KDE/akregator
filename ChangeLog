@@ -25,6 +25,8 @@ Bug fixes:
        - Fix interval fetching (Exclude feeds with custom settings from global fetch) -fo
 #84528 - Make session management to save and load feedlist when appropriate -tpr
 #88437 - Show credits on Kontact's about dialog -tpr
+#91660 - Don't crash on exit when internal browser widgets are opened or the article viewer is loading -fo
+#93739 - Fix Alignment of text body for right-to-left scripts -fo
 
 
 Changes after 1.0b6:
