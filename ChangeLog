@@ -2,6 +2,16 @@ aKregator ChangeLog
 ===================
 (c) 2004 the aKregator authors.
 
+Changes after 1.0b2:
+-----------------------------
+
+New Features:
+
+
+Bug Fixes:
+
+#82618 - Don't crash if there's no kpart available -tpr
+
 Changes from 1.0b1 to 1.0b2:
 -----------------------------
 
