@@ -94,13 +94,13 @@ void aKregatorPart::setupActions()
     KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
     sqf->setChecked( Settings::showQuickFilter() );
     
-    KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
+    KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+Shift+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
     ra->setExclusiveGroup( "ViewMode" );
 
-    ra = new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
+    ra = new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+Shift+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
     ra->setExclusiveGroup( "ViewMode" );
 
-    ra = new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
+    ra = new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+Shift+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
     ra->setExclusiveGroup( "ViewMode" );
 
     new KAction( i18n("Configure &aKregator..."), "configure", "", this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
