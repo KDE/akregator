@@ -16,6 +16,7 @@
 #include <kparts/mainwindow.h>
 #include <kparts/browserinterface.h>
 #include <kparts/browserextension.h>
+#include <kio/job.h>
 
 class KActionCollection;
 class KToggleAction;
@@ -81,8 +82,11 @@ public:
     virtual void fontChange(const QFont &);
 
     void updateUnread(int);
+    
 public slots:
     void slotSetStatusBarText(const QString & s);
+    void slotActionStatusText(const QString &s);
+    void slotClearStatusText();
 
 signals:
     void markAllFeedsRead();
@@ -115,7 +119,14 @@ private slots:
     void quitProgram();
     void partChanged(KParts::ReadOnlyPart *p);
     void loadingProgress(int percent);
+    void slotStop();
+    void slotStarted(KIO::Job *);
+    void slotCanceled(const QString &);
+    void slotCompleted();
+
 private:
+    void callObjectSlot( QObject *obj, const char *name, const QVariant &argument );
+
     void setupAccel();
     void setupActions();
     void connectActionCollection(KActionCollection *coll);
@@ -128,10 +139,12 @@ private:
     KToggleAction *m_fetchStartupAction;
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
+    KAction *m_stopAction;
     KProgress *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
     Akregator::TrayIcon *m_icon;
     bool m_quit;
+    QString m_permStatusText;
 };
 
 #endif // _AKREGATOR_H_

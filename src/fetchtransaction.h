@@ -35,6 +35,8 @@ namespace Akregator {
            
             void loadImage(Feed *f, Image *i);
             void startFetchImages();
+
+            bool isRunning(){return m_running;}
             
         signals:
             void completed();

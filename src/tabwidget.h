@@ -9,7 +9,8 @@
 #define TABWIDGET_H
 
 #include <ktabwidget.h>
-#include <qdict.h>
+#include <qptrdict.h>
+#include "frame.h"
 
 namespace Akregator
 {
@@ -19,19 +20,26 @@ namespace Akregator
         Q_OBJECT public:
             TabWidget(QWidget * parent = 0, const char *name = 0);
             ~TabWidget();
+            void addFrame(Frame *f);
+            Frame *currentFrame();
+            void removeFrame(Frame *f);
+
 
             unsigned int tabBarWidthForMaxChars( uint maxLength );
             void setTitle( const QString &title , QWidget* sender);
-
+            
+            signals:
+                void currentFrameChanged(Frame *);
             private:
-                QDict <QWidget>m_titleDict;
+                QPtrDict <Frame>m_frames;
                 unsigned int m_CurrentMaxLength;
                 QWidget *currentItem;
             private slots:
                 void slotDetachTab();
                 void slotCloseTab();
                 void contextMenu (int item, const QPoint &p);
-    };
+                void slotTabChanged(QWidget *w);
+   };
 }
 
 #endif

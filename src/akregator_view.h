@@ -40,6 +40,7 @@ namespace Akregator
     class ArticleViewer;
     class ArticleFilter;
     class TabWidget;
+    class Frame;
 }
 
 namespace Akregator
@@ -62,7 +63,7 @@ namespace Akregator
             void saveSettings(bool quit);
 
             bool importFeeds(const QDomDocument& doc);
-
+	    
             /**
              * Parse OPML presentation of feeds and read in articles archive, if present.
              * @param doc QDomDocument generated from OPML by openFile().
@@ -85,6 +86,10 @@ namespace Akregator
             void storeTree( QDomElement &node, QDomDocument &document );
 
             bool event(QEvent *e);
+
+	    void stopLoading();
+
+	    FetchTransaction* transaction(){return m_transaction;}
 
         public slots:
             /**
@@ -148,8 +153,8 @@ namespace Akregator
             void slotMouseOverInfo(const KFileItem *kifi);
 
             void slotOpenTab(const KURL& url);
-            void slotRemoveTab();
-            void slotTabChanged(QWidget *w);
+            void slotRemoveFrame();
+            void slotFrameChanged(Frame *f);
             void slotTabCaption(const QString &capt);
 
         private:
@@ -224,7 +229,8 @@ namespace Akregator
             TabWidget *m_tabs;
             QToolButton *m_tabsClose;
             QWidget *m_mainTab;
-
+	    Frame *m_mainFrame;
+	    
             void setTotalUnread();
 
             KComboBox *m_searchCombo;
@@ -241,6 +247,8 @@ namespace Akregator
             ViewMode m_viewMode;
             QTimer *intervalFetchTimer;
 
+	    bool m_stopLoading;
+	    
             QPixmap m_feedTreePixmap;
             QPixmap m_folderTreePixmap;
 	    QPixmap m_errorTreePixmap;

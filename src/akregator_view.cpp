@@ -10,6 +10,7 @@
 #include "akregator_view.h"
 #include "addfeeddialog.h"
 #include "propertiesdialog.h"
+#include "frame.h"
 #include "fetchtransaction.h"
 #include "feediconmanager.h"
 #include "feedstree.h"
@@ -67,6 +68,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     : QWidget(parent, wName), m_feeds()
 {
     m_part=part;
+    m_stopLoading=false;
 
     setFocusPolicy(QWidget::StrongFocus);
     
@@ -107,15 +109,15 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_tabsClose = new QToolButton( m_tabs );
     m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
     connect( m_tabsClose, SIGNAL( clicked() ), this,
-            SLOT( slotRemoveTab() ) );
+            SLOT( slotRemoveFrame() ) );
 
     m_tabsClose->setIconSet( SmallIcon( "tab_remove" ) );
     m_tabsClose->adjustSize();
     QToolTip::add(m_tabsClose, i18n("Close the current tab"));
     m_tabs->setCornerWidget( m_tabsClose, TopRight );
 
-    connect( m_tabs, SIGNAL( currentChanged(QWidget *) ), this,
-            SLOT( slotTabChanged(QWidget *) ) );
+    connect( m_tabs, SIGNAL( currentFrameChanged(Frame *) ), this,
+            SLOT( slotFrameChanged(Frame *) ) );
 
     QWhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
 
@@ -167,8 +169,9 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_panner2 );
 
-    m_tabs->addTab(m_mainTab, i18n( "Articles" ));
-    m_tabs->setTitle(i18n( "Articles" ), m_mainTab);
+   
+    m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles")); 
+    m_tabs->addFrame(m_mainFrame);
 
     // -- DEFAULT INIT
     reset();
@@ -213,7 +216,8 @@ void aKregatorView::slotOpenTab(const KURL& url)
             this, SLOT(slotTabCaption (const QString &)) );
     page->openURL(url);
 
-    m_tabs->addTab(page->widget(), i18n("Untitled"));
+    Frame *frame=new Frame(this, page, page->widget(), i18n("Untitled"));
+    m_tabs->addFrame(frame);
     m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1)
         m_tabsClose->setEnabled(true);
@@ -237,7 +241,6 @@ void aKregatorView::reset()
 bool aKregatorView::importFeeds(const QDomDocument& doc)
 {
     bool Ok;
-
     QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), i18n("Imported Folder"), &Ok);
     if (!Ok) return false;
 
@@ -246,13 +249,21 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     m_feeds.addFeedGroup(elt)->setTitle(text);
     elt->setExpandable(true);
     elt->setOpen(true);
-    return loadFeeds(doc, elt);
+    m_part->startOperation();
+    if (!loadFeeds(doc, elt))
+        m_part->operationError(i18n("Invalid Feed List"));
+        return false;
+
+    m_part->endOperation();
+    return true;    
 }
 
 bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
 {
     // this should be OPML document
     QDomElement root = doc.documentElement();
+
+    m_stopLoading=false;
     kdDebug() << "loading OPML feed "<<root.tagName().lower()<<endl;
     if (root.tagName().lower() != "opml")
         return false;
@@ -503,29 +514,27 @@ void aKregatorView::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
-void aKregatorView::slotRemoveTab()
+void aKregatorView::slotRemoveFrame()
 {
-    QWidget *w = m_tabs->currentPage ();
-    if (w==m_mainTab)
+    Frame *f = m_tabs->currentFrame();
+    if (f==m_mainFrame)
         return;
-    m_tabs->removePage(w);
+    m_tabs->removeFrame(f);
+    delete f;
     if (m_tabs->count() <= 1)
         m_tabsClose->setEnabled(false);
 }
 
-void aKregatorView::slotTabChanged(QWidget *w)
+void aKregatorView::slotFrameChanged(Frame *f)
 {
-    if (w==m_mainTab)
+    if (f==m_mainFrame)
         m_tabsClose->setEnabled(false);
     else
         m_tabsClose->setEnabled(true);
 
-    KParts::ReadOnlyPart *p;
-    if (w==m_mainTab)
-        p=m_part;
-    else
-        p=(static_cast<KHTMLView *>(w))->part();
+    KParts::ReadOnlyPart *p=f->part();
     m_part->changePart(p);
+    m_part->setCaption(f->caption());
 }
 
 void aKregatorView::slotTabCaption(const QString &capt)
@@ -902,7 +911,6 @@ void aKregatorView::showFetchStatus()
     if (m_transaction->totalFetches())
     {
         m_part->setStatusBar(i18n("Fetching Feeds..."));
-        m_part->setProgress(0);
     }
 }
 
@@ -922,10 +930,7 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
         KProcess *proc = new KProcess;
         QStringList cmdAndArgs = KShell::splitArgs(cmd);
         *proc << cmdAndArgs;
-//        This code will also work, but starts an extra shell process.
-//        *proc << cmd;
-//        proc->setUseShell(true);
-          proc->start(KProcess::DontCare);
+        proc->start(KProcess::DontCare);
         delete proc;
     }
 }
@@ -934,9 +939,8 @@ void aKregatorView::slotFetchCurrentFeed()
 {
     showFetchStatus();
     fetchItem(m_tree->currentItem());
+    m_part->startOperation();
     m_transaction->start();
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(false);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
 }
 
 void aKregatorView::slotFetchAllFeeds()
@@ -951,15 +955,13 @@ void aKregatorView::slotFetchAllFeeds()
         if (f && !f->isGroup())
             m_transaction->fetch(f);
     }
+    m_part->startOperation();
     m_transaction->start();
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(false);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
 }
 
 void aKregatorView::slotFetchesCompleted()
 {
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
+    m_part->endOperation();
     setTotalUnread();
     m_part->setStatusBar(QString::null);
 }
@@ -1193,6 +1195,11 @@ void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
     {
         m_part->setStatusBar(QString::null);
     }
+}
+
+void aKregatorView::stopLoading()
+{
+    m_stopLoading=true;
 }
 
 #include "akregator_view.moc"

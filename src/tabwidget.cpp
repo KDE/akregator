@@ -27,10 +27,37 @@ TabWidget::TabWidget(QWidget * parent, const char *name)
         :KTabWidget(parent, name), m_CurrentMaxLength(30)
 {
     setTabReorderingEnabled(true);
+    connect( this, SIGNAL( currentChanged(QWidget *) ), this,
+            SLOT( slotTabChanged(QWidget *) ) );
 }
 
 TabWidget::~TabWidget()
 {
+}
+
+void TabWidget::addFrame(Frame *f)
+{
+    if (!f || !f->widget()) return;
+    m_frames.insert(f->widget(), f);
+    addTab(f->widget(), f->title());
+}
+
+Frame *TabWidget::currentFrame()
+{
+    QWidget *w=currentPage();
+    if (!w) return 0;
+    return m_frames[w];
+}
+
+void TabWidget::slotTabChanged(QWidget *w)
+{
+    emit currentFrameChanged(m_frames[w]);
+}
+
+void TabWidget::removeFrame(Frame *f)
+{
+    m_frames.remove(f->widget());
+    removePage(f->widget());
 }
 
 // copied wholesale from KonqFrameTabs
@@ -44,16 +71,8 @@ unsigned int TabWidget::tabBarWidthForMaxChars( uint maxLength )
     QFontMetrics fm = tabBar()->fontMetrics();
     int x = 0;
     for( int i=0; i < count(); ++i ) {
-        QString newTitle;
-        QDictIterator<QWidget> it( m_titleDict );
-        for( ; it.current(); ++it )
-        {
-            if (it.current()==page(i))
-            {
-                newTitle=it.currentKey();
-                break;
-            }
-        }
+        Frame *f=m_frames[page(i)];
+        QString newTitle=f->title();
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
 
@@ -72,7 +91,9 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
 {
     removeTabToolTip( sender );
 
-    m_titleDict.insert( title, sender);
+    Frame *f=m_frames[sender];
+    if (f)
+        f->setTitle(title);
 
     uint lcw=0, rcw=0;
     int tabBarHeight = tabBar()->sizeHint().height();
@@ -102,15 +123,9 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     {
         for( int i = 0; i < count(); ++i)
         {
-            QDictIterator<QWidget> it( m_titleDict );
-            for( ; it.current(); ++it )
-            {
-                if (it.current()==page(i))
-                {
-                    newTitle=it.currentKey();
-                    break;
-                }
-            }
+            Frame *f=m_frames[page(i)];
+            newTitle=f->title();
+
             removeTabToolTip( page( i ) );
             if ( newTitle.length() > newMaxLength )
             {
@@ -156,4 +171,8 @@ void TabWidget::slotCloseTab()
    if(!currentItem) return;
    removePage(currentItem);
 }
+
 #include "tabwidget.moc"
+
+
+// vim: set et ts=4 sts=4 sw=4:

@@ -16,7 +16,6 @@
 
 #include <dcopclient.h>
 #include <dcopobject.h>
-#include <dcopref.h>
 
 #include <ksqueezedtextlabel.h>
 #include <kkeydialog.h>
@@ -36,6 +35,10 @@
 #include <kstatusbar.h>
 #include <klocale.h>
 #include <kdebug.h>
+
+#include <qmetaobject.h>
+#include <private/qucomextra_p.h>
+
 
 using namespace Akregator;
 
@@ -64,6 +67,7 @@ aKregator::aKregator()
 
     m_browserIface=new BrowserInterface(this, "browser_interface");
     m_activePart=0;
+    m_part=0;
 
     // then, setup our actions
     setupActions();
@@ -115,12 +119,18 @@ bool aKregator::loadPart()
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
+    	    connect(m_part, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
+    	    connect(m_part, SIGNAL(completed()), this, SLOT(slotCompleted()));
+    	    connect(m_part, SIGNAL(canceled(const QString&)), this, SLOT(slotCanceled(const QString &)));
+    	    connect(m_part, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
+
+    	    connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
             connect (m_part, SIGNAL(partChanged(KParts::ReadOnlyPart *)), this, SLOT(partChanged(KParts::ReadOnlyPart *)));
             connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
             m_activePart=m_part;
             // and integrate the part's GUI with the shell's
             connectActionCollection(m_part->actionCollection());
-	    createGUI(m_part);
+	        createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
         }
         return true;
@@ -150,20 +160,30 @@ void aKregator::partChanged(KParts::ReadOnlyPart *p)
     KParts::BrowserExtension *ext;
     
     loadingProgress(-1);
-    
+   
     if (m_activePart)
     {
         ext=browserExtension(m_activePart);
         if (ext)
             disconnect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-    	
+        
+        disconnect(m_activePart, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
+        disconnect(m_activePart, SIGNAL(completed()), this, SLOT(slotCompleted()));
+        disconnect(m_activePart, SIGNAL(canceled(const QString &)), this, SLOT(slotCanceled(const QString&)));
+        disconnect(m_activePart, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
+    
         disconnectActionCollection(m_activePart->actionCollection());
     }
 
     ext=browserExtension(p);
     if (ext)
         connect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-    
+     
+    connect(p, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
+    connect(p, SIGNAL(completed()), this, SLOT(slotCompleted()));
+    connect(p, SIGNAL(canceled(const QString &)), this, SLOT(slotCanceled(const QString&)));
+    connect(p, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
+ 
     connectActionCollection(p->actionCollection());
 
     m_activePart=p;
@@ -172,6 +192,8 @@ void aKregator::partChanged(KParts::ReadOnlyPart *p)
 
 void aKregator::load(const KURL& url)
 {
+    if (!m_part)
+	loadPart();
     m_part->openURL( url );
 }
 
@@ -184,6 +206,9 @@ void aKregator::setupActions()
 //    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
 
     KStdAction::quit(this, SLOT(quitProgram()), actionCollection());
+
+    m_stopAction = new KAction( i18n( "&Stop" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "stop" );
+    m_stopAction->setEnabled(false);
 
     m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
     m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
@@ -220,9 +245,11 @@ void aKregator::fileNew()
     // in its initial state.  This is what we do here..
     if ( ! m_part->url().isEmpty() || m_part->isModified() )
     {
-        DCOPRef partref(akreapp->dcopClient()->appId(), QString("aKregatorPart#%1").arg((uint)this).latin1());
-        partref.call("saveSettings");
-        (new aKregator)->show();
+	callObjectSlot( browserExtension(m_part), "saveSettings()", QVariant());
+	
+        aKregator *w=new aKregator();
+	w->loadPart();
+	w->show();
     };
 }
 
@@ -294,15 +321,7 @@ void aKregator::showOptions()
 
 void aKregator::applyNewToolbarConfig()
 {
-#if defined(KDE_MAKE_VERSION)
-# if KDE_VERSION >= KDE_MAKE_VERSION(3,1,0)
     applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
-# else
-    applyMainWindowSettings(KGlobal::config());
-# endif
-#else
-    applyMainWindowSettings(KGlobal::config());
-#endif
 }
 
 void aKregator::fileOpen()
@@ -400,7 +419,19 @@ void aKregator::loadingProgress(int percent)
 
 void aKregator::slotSetStatusBarText(const QString & s)
 {
+    m_permStatusText=s;
     m_statusLabel->setText(s);
+}
+
+void aKregator::slotActionStatusText(const QString &s)
+{
+    kdError() << "action="<<s<<endl;
+    m_statusLabel->setText(s);
+}
+
+void aKregator::slotClearStatusText()
+{
+    m_statusLabel->setText(m_permStatusText);
 }
 
 void aKregator::closeEvent(QCloseEvent* e)
@@ -422,4 +453,66 @@ void aKregator::closeEvent(QCloseEvent* e)
     // m_quit = false;
 }
 
+void aKregator::slotStop()
+{
+    m_activePart->closeURL();
+}
+
+// yanked from kdelibs
+void aKregator::callObjectSlot( QObject *obj, const char *name, const QVariant &argument )
+{
+    if (!obj)
+	return;
+
+    int slot = obj->metaObject()->findSlot( name );
+
+    QUObject o[ 2 ];
+    QStringList strLst;
+    uint i;
+
+    switch ( argument.type() )
+    {
+        case QVariant::Invalid:
+            break;
+        case QVariant::String:
+            static_QUType_QString.set( o + 1, argument.toString() );
+            break;
+        case QVariant::StringList:
+            strLst = argument.toStringList();
+            static_QUType_ptr.set( o + 1, &strLst );
+            break;
+        case QVariant::Int:
+            static_QUType_int.set( o + 1, argument.toInt() );
+            break;
+        case QVariant::UInt:
+            i = argument.toUInt();
+            static_QUType_ptr.set( o + 1, &i );
+            break;
+        case QVariant::Bool:
+            static_QUType_bool.set( o + 1, argument.toBool() );
+            break;
+        default: return;
+    }
+
+    obj->qt_invoke( slot, o );
+}
+
+void aKregator::slotStarted(KIO::Job *)
+{
+    m_stopAction->setEnabled(true);    
+}
+
+void aKregator::slotCanceled(const QString &)
+{
+    m_stopAction->setEnabled(false);    
+}
+
+void aKregator::slotCompleted()
+{
+    m_stopAction->setEnabled(false);    
+}
+
 #include "akregator.moc"
+
+
+// vim: set et ts=4 sts=4 sw=4:

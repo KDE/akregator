@@ -8,6 +8,7 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "akregatorconfig.h"
+#include "fetchtransaction.h"
 
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
@@ -27,18 +28,29 @@ using namespace Akregator;
 typedef KParts::GenericFactory< aKregatorPart > aKregatorFactory;
 K_EXPORT_COMPONENT_FACTORY( libakregatorpart, aKregatorFactory )
 
+BrowserExtension::BrowserExtension( aKregatorPart *p, const char *name )
+	    : KParts::BrowserExtension( p, name )
+{
+    m_part=p;
+}
+
+void BrowserExtension::saveSettings()
+{
+    m_part->saveSettings();
+}
+
 aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
-    : DCOPObject(QString("aKregatorPart#%1").arg((uint)parent).latin1()), KParts::ReadWritePart(parent, name)
+    : DCOPObject("aKregatorIface"), KParts::ReadWritePart(parent, name)
 {
     // we need an instance
     setInstance( aKregatorFactory::instance() );
 
     m_totalUnread=0;
+    m_loading=false;
 
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
-    m_extension=new KParts::BrowserExtension(this, "ak_extension");
-    //connect (m_extension, SIGNAL(saveSettings()), SLOT(saveSettings()));
+    m_extension=new BrowserExtension(this, "ak_extension");
 
     // notify the part that this is our internal widget
     setWidget(m_view);
@@ -134,6 +146,11 @@ void aKregatorPart::changePart(KParts::ReadOnlyPart *p)
     emit partChanged(p);
 }
 
+void aKregatorPart::setCaption(const QString &text)
+{
+   emit setWindowCaption(text);
+}
+
 void aKregatorPart::setStatusBar(const QString &text)
 {
    emit setStatusBarText(text);
@@ -168,10 +185,13 @@ bool aKregatorPart::openFile()
     // m_file is always local so we can use QFile on it
     QFile file(m_file);
     if (file.open(IO_ReadOnly) == false)
+    {
         return false;
+    }
 
+    m_loading=true;
+    startOperation();
     setStatusBar( i18n("Opening Feed List...") );
-    setProgress(0);
     kapp->processEvents();
 
     // Read OPML feeds list and build QDom tree.
@@ -186,15 +206,19 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
     {
-        setProgress(-1);
+        operationError(i18n("Invalid Feed List"));
         return false;
     }
 
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
     {
-        setProgress(-1);
+        operationError(i18n("Invalid Feed List"));
         return false;
     }
+
+    m_loading=false;
+    endOperation();
+    setStatusBar( QString::null );
 
     if (Settings::fetchOnStartup())
     {
@@ -205,10 +229,25 @@ bool aKregatorPart::openFile()
             m_view->slotFetchAllFeeds();
     }
 
-    setStatusBar( QString::null );
-
     return true;
 }
+
+bool aKregatorPart::closeURL()
+{
+    endOperation();
+    if (m_loading)
+    {
+        m_view->stopLoading();
+        return true;
+    }
+    else if (m_view->transaction()->isRunning())
+    {
+        m_view->transaction()->stop();
+        return true;
+    }
+    
+   return KParts::ReadWritePart::closeURL(); 
+} 
 
 /*************************************************************************************************/
 /* SAVE                                                                                          */
@@ -322,6 +361,32 @@ void aKregatorPart::fetchFeedUrl(const QString&s)
     kdDebug() << "fetchFeedURL=="<<s<<endl;
 }
 
+void aKregatorPart::startOperation()
+{
+    emit started(0);
+    actionCollection()->action("feed_fetch")->setEnabled(false);
+    actionCollection()->action("feed_fetch_all")->setEnabled(false);
+    setProgress(0);
+
+}
+
+void aKregatorPart::endOperation()
+{
+    emit completed();
+    actionCollection()->action("feed_fetch")->setEnabled(true);
+    actionCollection()->action("feed_fetch_all")->setEnabled(true);
+    setProgress(100);
+}
+
+void aKregatorPart::operationError(const QString &msg)
+{
+    emit canceled(msg);
+    m_loading=false;
+    actionCollection()->action("feed_fetch")->setEnabled(true);
+    actionCollection()->action("feed_fetch_all")->setEnabled(true);
+    setProgress(-1);
+}
+
 /*************************************************************************************************/
 /* STATIC METHODS                                                                                */
 /*************************************************************************************************/
@@ -344,3 +409,5 @@ KAboutData *aKregatorPart::createAboutData()
 }
 
 #include "akregator_part.moc"
+
+// vim: set et ts=4 sts=4 sw=4:
