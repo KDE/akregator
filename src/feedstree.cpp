@@ -679,7 +679,7 @@ QDragObject *FeedsTree::dragObject()
         md->setPixmap(*(i->pixmap(0)));
         FeedItem *fi = dynamic_cast<FeedItem*>(i);
         if (fi) {
-            md->addDragObject(KURLDrag::newDrag(KURL(fi->node()->xmlUrl()), 0L));
+            md->addDragObject(new KURLDrag(KURL(fi->node()->xmlUrl()), 0L));
         }
     }
     return md;

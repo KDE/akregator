@@ -35,7 +35,7 @@ FeedDetectorEntryList FeedDetector::extractFromLinkTags(const QString& s)
 	
 	// get all <link> tags
 	QStringList linkTags;
-	int strlength = str.length();
+	//int strlength = str.length();
 	while ( matchpos != -1 )
 	{
 		matchpos = reLinkTag.search(str, pos);
@@ -87,7 +87,7 @@ QStringList FeedDetector::extractBruteForce(const QString& s)
     
     // get all <a href> tags and capture url
     QStringList list;
-    int strlength = str.length();
+    //int strlength = str.length();
     while ( matchpos != -1 )
     {
         matchpos = reAhrefTag.search(str, pos);
