@@ -13,16 +13,6 @@
   </group>
 
   <group name="View">
-     <entry name="FetchOnStartup" key="Fetch On Startup" type="Bool">
-        <label>Fetch on startup</label>
-        <default>false</default>
-        <whatsthis>Fetch feedlist on startup.</whatsthis>
-     </entry>
-     <entry name="MarkAllReadOnExit" key="Mark All Read On Exit" type="Bool">
-        <label>Mark all as read on exit</label>
-        <default>false</default>
-        <whatsthis>Mark all entries as read on exit</whatsthis>
-     </entry>
      <entry name="QuickFilter" key="Quick Filter" type="Int">
         <label>Quick Filter</label>
         <default>0</default>
@@ -44,17 +34,28 @@
         <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
      </entry>
   </group>
-  
+  <group name="General">
+     <entry name="FetchOnStartup" key="Fetch On Startup" type="Bool">
+        <label>Fetch on startup</label>
+        <default>false</default>
+        <whatsthis>Fetch feedlist on startup.</whatsthis>
+     </entry>
+     <entry name="MarkAllReadOnExit" key="Mark All Read On Exit" type="Bool">
+        <label>Mark all as read on exit</label>
+        <default>false</default>
+        <whatsthis>Mark all entries as read on exit</whatsthis>
+     </entry>
+  </group>
   <group name="ExternalBrowser">
      <entry name="ExternalBrowserUseKdeDefault" key="ExternalBrowserUseKdeDefault" type="Bool">
         <label>Use default KDE web browser</label>
         <default>true</default>
-        <whatsthis>Use KDE web browser when double-clicking an article.</whatsthis>
+        <whatsthis>Use KDE web browser when opening in external browser.</whatsthis>
      </entry>
      <entry name="ExternalBrowserUseCustomCommand" key="ExternalBrowserUseCustomCommand" type="Bool">
         <label>Use this command:</label>
         <default>false</default>
-        <whatsthis>Use the specified command when double-clicking an article.</whatsthis>
+        <whatsthis>Use the specified command when opening in external browser.</whatsthis>
      </entry>
      <entry name="ExternalBrowserCustomCommand" key="ExternalBrowserCustomCommand" type="String">
         <label></label>
