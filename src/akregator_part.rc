@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="45">
+<kpartgui name="akregator_part" version="46">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
