@@ -30,11 +30,17 @@ FetchTransaction::~FetchTransaction()
 
 void FetchTransaction::start()
 {
-    int i=0;
-    m_running=true;
+    if (m_fetchList.count() == 0)
+    {
+        m_running = false;
+        emit completed();
+    }
+    
+    int i = 0;
+    m_running = true;
     m_totalFetches=m_fetchList.count();
     m_fetchesDone=0;
-
+    
     while (i < m_concurrentFetches)
     {
         doFetch(0);
