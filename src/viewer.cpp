@@ -30,8 +30,7 @@ using namespace Akregator;
 Viewer::Viewer(QWidget *parent, const char *name)
     : KHTMLPart(parent, name), m_url(0)
 {
-    // to be on a safe side
-    setJScriptEnabled(false);
+    setJScriptEnabled(true);
     setJavaEnabled(true);
     setMetaRefreshEnabled(true);
     setPluginsEnabled(true);
@@ -204,6 +203,18 @@ void Viewer::slotScrollDown()
 void Viewer::slotPrint( )
 {
     view()->print();
+}
+
+
+void Viewer::setSafeMode()
+{
+    setJScriptEnabled(false);
+    setJavaEnabled(false);
+    setMetaRefreshEnabled(false);
+    setPluginsEnabled(false);
+    setDNDEnabled(true);
+    setAutoloadImages(true);
+    setStatusMessagesEnabled(false);
 }
 
 #include "viewer.moc"

@@ -201,6 +201,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
             this, SLOT(slotArticleListContextMenu(KListView*, QListViewItem*, const QPoint&)));
     
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
+    m_articleViewer->setSafeMode();  // disable JS, Java, etc...
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
                         this, SLOT(slotOpenTab(const KURL&, bool)) );
