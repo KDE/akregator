@@ -107,7 +107,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
                 d->version = v0_93;
             else if (attr == QString::fromLatin1("0.94"))
                 d->version = v0_94;
-            else if (attr.startsWith("2.0")) // http://www.breuls.org/rss puts 2.00 in version (BR #0000016)
+            else if (attr.startsWith("2.0") || attr == QString::fromLatin1("2")) // http://www.breuls.org/rss puts 2.00 in version (BR #0000016)
                 d->version = v2_0;
         }
     }
