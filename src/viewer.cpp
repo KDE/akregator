@@ -89,7 +89,7 @@ Viewer::~Viewer()
 
 bool Viewer::openURL(const KURL &url)
 {
-    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, KParts::URLArgs());
+    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
     emit started(0);
     return true;
 }
@@ -135,6 +135,7 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
 void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
     m_url = url;
+    browserExtension()->setURLArgs(args);
     if (args.frameName == "_blank") // apparently this indicates that the MMB was pressed...
     {
         switch (Settings::mMBBehaviour())

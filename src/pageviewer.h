@@ -86,8 +86,7 @@ namespace Akregator
             virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
             
             void slotGlobalBookmarkArticle();
-            void formClicked(const KURL& url, const KParts::URLArgs& args);
-
+            
             virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
             
         signals:
