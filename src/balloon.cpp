@@ -61,6 +61,9 @@ Balloon::Balloon(const QString &text)
 	QFont f = m_articleList->font();
 	if (f.pointSize() > 12)
 		f.setPointSize(f.pointSize()-4);
+	else 
+		f.setPointSize(8);
+
 	m_articleList->setFont(f);
 
 	/*m_articleList->setColumnWidthMode(0, QListView::Manual);
