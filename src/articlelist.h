@@ -7,10 +7,20 @@
 #ifndef AKREGATORARTICLELIST_H
 #define AKREGATORARTICLELIST_H
 
+#include <article.h>   /* rss/article.h ! */
 #include <klistview.h>
 
 namespace Akregator
 {
+    class ArticleListItem : public KListViewItem
+    {
+        public:
+            ArticleListItem( QListView *parent, RSS::Article a );
+
+            /** Override compare() to compare by pubDate */
+            int compare( QListViewItem *i, int col, bool ascending ) const;
+    };
+
     class ArticleList : public KListView
     {
         Q_OBJECT

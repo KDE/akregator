@@ -15,7 +15,6 @@
 #include <kinstance.h>
 #include <kaction.h>
 #include <kstdaction.h>
-#include <kcharsets.h>
 #include <kfiledialog.h>
 #include <kinputdialog.h>
 #include <klocale.h>
@@ -225,6 +224,8 @@ bool aKregatorPart::openFile()
 
     if (!loadFeeds(doc)) // will take care of building feeds tree and loading archive
         return false;
+
+    m_tree->slotExpandAll(); // FIXME use some setting?
 
     // just for fun, set the status bar
     emit setStatusBarText( m_url.prettyURL() );
@@ -452,16 +453,13 @@ void aKregatorPart::slotUpdateArticleList(Feed *source)
     m_articles->setUpdatesEnabled(false);
     m_articles->clear(); // FIXME could become rather slow if we store a lot of archive items?
 
-    kdDebug() << "Fetched " << source->articles.count() << " articles\n";
-
     if (source->articles.count() > 0)
     {
         Article::List::const_iterator it;
         Article::List::const_iterator end = source->articles.end();
         for (it = source->articles.begin(); it != end; ++it)
         {
-            kdDebug() << "[adding] Article entitled " << (*it).title() << " with contents " << (*it).description() << endl;
-            new KListViewItem( m_articles, m_articles->lastItem(), KCharsets::resolveEntities((*it).title()) );
+            new ArticleListItem( m_articles, (*it) );
         }
     }
     m_articles->setUpdatesEnabled(true);

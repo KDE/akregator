@@ -7,11 +7,26 @@
 #include "articlelist.h"
 
 #include <klocale.h>
+#include <kcharsets.h>
 
 #include <qwhatsthis.h>
 #include <qheader.h>
 
 using namespace Akregator;
+using namespace RSS;
+
+ArticleListItem::ArticleListItem( QListView *parent, Article a )
+    : KListViewItem( parent, parent->lastItem(), KCharsets::resolveEntities(a.title()) )
+    /* FIXME lastItem() is not needed because we will sort after adding */
+{
+}
+
+int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
+{
+    return 0;
+}
+
+/* ==================================================================================== */
 
 ArticleList::ArticleList(QWidget *parent, const char *name)
         : KListView(parent, name)

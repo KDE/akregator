@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000038 being the highest available (take this one for your next bug and increase here)
+          #000039 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -15,7 +15,9 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
-#000037 ADD [ ] add favicon support to the ArticleList
+#000003 ADD [ ] sort ArticleList by Article::pubDate
+#000038 ADD [ ] add isOpen=<bool> to feed group outline opml
+#000037 ADD [ ] add favicon support to the FeedsTree
 #000036 ADD [ ] write CSS to the KHTMLPart in viewing articles -->smt
 #000032 ADD [+] proposals for librss:
                 [+] add complete RSS 2.0 support to Article, namely add Article::pubDate, const QString& Article::guid() and bool Article::guidIsPermalink();
@@ -25,7 +27,6 @@ ADD new feature
 #000029 CHG [ ] "Modify" should enable in-line edit for feed group items, standard dialog for feeds
 #000021 ADD [ ] store fetched articles to Article Archive
 #000027 CHG [ ] when changing current feed, change article in m_html also
-#000003 ADD [ ] sort ArticleList by Article::pubDate
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
 #000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?)
 #000006 ADD [ ] system tray

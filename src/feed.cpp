@@ -75,7 +75,7 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
     el.setAttribute( "ljLogin", ljLogin );
     el.setAttribute( "ljPassword", ljPassword );
     el.setAttribute( "updateTitle", (updateTitle ? "true" : "false") );
-    el.setAttribute( "type", "akrss" );
+    el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );
     parent.appendChild( el );
     return el;
