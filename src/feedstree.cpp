@@ -42,6 +42,17 @@ FeedsTreeItem::FeedsTreeItem(QListViewItem *parent, QListViewItem *after, QStrin
 
 }
 
+void FeedsTreeItem::setUnread(int u)
+{
+    if (m_unread==u)
+        return;
+    
+    m_unread=u;
+    repaint();
+    if (parent())
+        parent()->repaint();
+}
+
 // TODO: reverse for reverse layout
 void FeedsTreeItem::paintCell( QPainter * p, const QColorGroup & cg,
                                     int column, int width, int align )

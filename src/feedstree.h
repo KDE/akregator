@@ -26,8 +26,8 @@ namespace Akregator
                             int column, int width, int align );
    
         int unread(){return m_unread;}
-        void setUnread(int i){m_unread=i;}
-                                
+        void setUnread(int u);
+        
         private:
             int countUnreadRecursive();
             int m_unread;

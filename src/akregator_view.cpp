@@ -267,12 +267,7 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
     if (fti)
-    {
         fti->setUnread(feed->unread());
-        fti->repaint();
-        if (fti->parent())
-            fti->parent()->repaint();
-    }
 
     QString iconFile=FeedIconManager::self()->iconLocation(xmlUrl);
     if (!iconFile.isNull())
@@ -689,6 +684,11 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     
     // Also, update unread counts
 
+    FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());
+    if (fti)
+        fti->setUnread(feed->unread());
+
+    
 //    m_part->setModified(true); // FIXME reenable when article storage is implemented
 
     kdDebug() << k_funcinfo << "END" << endl;
@@ -711,12 +711,8 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
         
         FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
         if (fti)
-        {
             fti->setUnread(unread);
-            fti->repaint();
-            if (fti->parent())
-                fti->parent()->repaint();
-        }
+        
         item->article().setStatus(MyArticle::Read);
     }
     m_articleViewer->show( feed, item->article() );
