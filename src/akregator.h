@@ -50,6 +50,8 @@ public:
      */
     aKregator();
 
+    void loadLastOpenFile();
+
     /**
      * Default Destructor
      */
@@ -88,7 +90,7 @@ private slots:
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
     void optionsFetchOnStartup();
-    
+
     void applyNewToolbarConfig();
 
     void quitProgram();
