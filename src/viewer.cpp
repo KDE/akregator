@@ -67,6 +67,9 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
                                  actionCollection(), "copylinkaddress");
 }
 
+Viewer::~Viewer()
+{}
+
 bool Viewer::openURL(const KURL &url)
 {
     new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, KParts::URLArgs());

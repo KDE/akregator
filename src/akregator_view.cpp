@@ -612,8 +612,8 @@ void View::slotRemoveFrame()
         return;
 
     if (f->part() != m_part)
-        delete f->part();
-        
+        f->part()->deleteLater();
+
     m_tabs->removeFrame(f);
     
     if (m_tabs->count() <= 1)
