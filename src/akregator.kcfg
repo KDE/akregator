@@ -40,13 +40,10 @@
  <group name="HTML Settings" >
   <entry key="Fonts" type="StringList" />
   <entry key="MediumFontSize" type="Int">
-    <default>12</default>
   </entry>
   <entry key="MinimumFontSize" type="Int">
-    <default>8</default>
   </entry>
   <entry key="UnderlineLinks" type="Bool"> 
-    <default>false</default>
   </entry>
  </group>
   <group name="Archive">

@@ -779,6 +779,45 @@ void Part::initFonts()
         Settings::setSansSerifFont(fonts[2]);
     if (Settings::serifFont().isEmpty())
         Settings::setSerifFont(fonts[3]);
+
+    KConfig* conf = Settings::self()->config();
+    conf->setGroup("HTML Settings");
+
+    KConfig konq("konquerorrc", true, false);
+    konq.setGroup("HTML Settings");
+            
+    if (!conf->hasKey("MinimumFontSize"))
+    {
+        int minfs;
+        if (konq.hasKey("MinimumFontSize"))
+            minfs = konq.readNumEntry("MinimumFontSize");
+        else
+            minfs = KGlobalSettings::generalFont().pointSize();
+        kdDebug() << "Part::initFonts(): set MinimumFontSize to " << minfs << endl;
+        Settings::setMinimumFontSize(minfs);
+    }
+
+    if (!conf->hasKey("MediumFontSize"))
+    {
+        int medfs;
+        if (konq.hasKey("MediumFontSize"))
+            medfs = konq.readNumEntry("MediumFontSize");
+        else
+            medfs = KGlobalSettings::generalFont().pointSize();
+        kdDebug() << "Part::initFonts(): set MediumFontSize to " << medfs << endl;
+        Settings::setMediumFontSize(medfs);
+    }
+    
+    if (!conf->hasKey("UnderlineLinks"))
+    {
+        bool underline = true;
+        if (konq.hasKey("UnderlineLinks"))
+            underline = konq.readBoolEntry("UnderlineLinks");
+
+        kdDebug() << "Part::initFonts(): set UnderlineLinks to " << underline << endl;
+        Settings::setUnderlineLinks(underline);
+    }
+    
 }
 
 bool Part::copyFile(const QString& backup)
