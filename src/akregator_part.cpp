@@ -723,7 +723,23 @@ void aKregatorPart::showOptions()
 
 KParts::Part *aKregatorPart::hitTest(QWidget *widget, const QPoint &globalPos)
 {
-    return m_view->currentFrame()->part();
+    bool child = false;
+    QWidget *me = this->widget();
+    while (widget) {
+        if (widget == me) {
+            child = true;
+            break;
+        }
+        if (!widget) {
+            break;
+        }
+        widget = widget->parentWidget();
+    }
+    if (m_view && m_view->currentFrame() && child) {
+        return m_view->currentFrame()->part();
+    } else {
+        return MyBasePart::hitTest(widget, globalPos);
+    }
 }
 
 #include "akregator_part.moc"
