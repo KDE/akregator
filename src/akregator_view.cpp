@@ -1328,8 +1328,8 @@ void aKregatorView::slotOpenCurrentArticleBackgroundTab()
 
 void aKregatorView::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupItem* parent)
 {
-    FeedGroup* pnode = parent->node();
-    TreeNode* afternode = after->node();
+    FeedGroup* pnode = parent ? parent->node() : 0;
+    TreeNode* afternode = after ? after->node() : 0;
     KURL::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )
     {
