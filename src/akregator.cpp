@@ -393,7 +393,6 @@ void aKregator::slotSetStatusBarText(const QString & s)
 
 void aKregator::slotActionStatusText(const QString &s)
 {
-    kdError() << "action="<<s<<endl;
     m_statusLabel->setText(s);
 }
 
