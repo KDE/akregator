@@ -53,6 +53,8 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
     el.setAttribute( "htmlUrl", htmlUrl );
     el.setAttribute( "description", description );
     el.setAttribute( "updateTitle", (updateTitle ? "true" : "false") );
+    el.setAttribute( "autoFetch", (autoFetch() ? "true" : "false") );
+    el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );
     parent.appendChild( el );
@@ -284,6 +286,26 @@ void Feed::imageChanged(const QPixmap &p)
     image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
     emit(imageLoaded(this));
 }
+
+bool Feed::autoFetch() const
+{
+    return m_autoFetch;
+}
+
+int Feed::fetchInterval() const
+{
+    return m_fetchInterval;
+}
+
+void Feed::setAutoFetch(bool b)
+{
+    m_autoFetch=b;
+}
+void Feed::setFetchInterval(int i)
+{
+    m_fetchInterval=i;
+}
+
 
 // = ArticleSequence ===================================================== //
 

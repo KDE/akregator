@@ -67,6 +67,12 @@ namespace Akregator
             QPixmap        image;
             QPixmap        favicon;
 
+            bool autoFetch() const;
+            int fetchInterval() const;
+         
+            void setAutoFetch(bool);
+            void setFetchInterval(int);
+            
             bool isMerged(){return m_merged;}
             void setMerged(bool m){m_merged=m;}
 
@@ -102,6 +108,8 @@ namespace Akregator
             bool m_merged;
             Document m_document;
             int m_unread;
+            bool m_autoFetch;
+            int m_fetchInterval;
     };
 }
 

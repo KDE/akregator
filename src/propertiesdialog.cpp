@@ -10,6 +10,7 @@
 #include <klineedit.h>
 #include <kpassdlg.h>
 #include <klocale.h>
+#include <knuminput.h>
 
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
@@ -19,10 +20,17 @@ using namespace Akregator;
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
         : FeedPropertiesWidgetBase(parent, name)
 {
+    connect(upChkbox, SIGNAL(toggled(bool)), this, SLOT(updateToggled(bool)) );
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
 {}
+
+void FeedPropertiesWidget::updateToggled(bool on)
+{
+    updateSpinBox->setEnabled(on);
+}
+
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
         : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Feed Properties"), KDialogBase::Ok|KDialogBase::Cancel)
@@ -44,6 +52,16 @@ const QString FeedPropertiesDialog::url() const
    return widget->urlEdit->text();
 }
 
+bool FeedPropertiesDialog::autoFetch() const
+{
+   return widget->upChkbox->isChecked();
+}
+
+int FeedPropertiesDialog::fetchInterval() const
+{
+   return widget->updateSpinBox->value();
+}
+
 void FeedPropertiesDialog::setFeedName(const QString& title)
 {
    widget->feedNameEdit->setText(title);
@@ -53,6 +71,17 @@ void FeedPropertiesDialog::setUrl(const QString& url)
 {
    widget->urlEdit->setText(url);
 }
+
+void FeedPropertiesDialog::setAutoFetch(bool w)
+{
+   widget->upChkbox->setChecked(w);
+}
+
+void FeedPropertiesDialog::setFetchInterval(int i)
+{
+   widget->updateSpinBox->setValue(i);
+}
+
 
 void FeedPropertiesDialog::selectFeedName()
 {

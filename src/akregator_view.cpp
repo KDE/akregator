@@ -293,7 +293,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
                               xmlurl,
                               e.attribute("htmlUrl"),
                               e.attribute("description"),
-                              e.attribute("updateTitle") == "true" ? true : false
+                              e.attribute("updateTitle") == "true" ? true : false, 
+                              e.attribute("autoFetch") == "true" ? true : false,
+                              e.attribute("fetchInterval").toUInt()
                             );
 
         }
@@ -324,7 +326,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 // oh ugly as hell (pass Feed parameters in a FeedData?)
 Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
                                       QString title, QString xmlUrl, QString htmlUrl,
-                                      QString description, bool updateTitle)
+                                      QString description, bool updateTitle, bool autoFetch, int fetchInterval)
 {
     Feed *feed;
     if (ef)
@@ -343,7 +345,9 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     feed->htmlUrl        = htmlUrl;
     feed->description    = description;
     feed->updateTitle    = updateTitle;
-
+    feed->setAutoFetch(autoFetch);
+    feed->setFetchInterval(fetchInterval);
+    
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
@@ -658,7 +662,9 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
                       dlg->url(),
                       feed->htmlUrl,
                       feed->description,
-                      false
+                      false, 
+                      dlg->autoFetch(),
+                      dlg->fetchInterval()
                     );
 
     setTotalUnread();
@@ -746,11 +752,15 @@ void aKregatorView::slotFeedModify()
 
     dlg->setFeedName( feed->title() );
     dlg->setUrl( feed->xmlUrl );
-
+    dlg->setAutoFetch(feed->autoFetch());
+    dlg->setFetchInterval(feed->fetchInterval());
+    
     if (dlg->exec() != QDialog::Accepted) return;
 
     feed->setTitle( dlg->feedName() );
     feed->xmlUrl         = dlg->url();
+    feed->setAutoFetch(dlg->autoFetch());
+    feed->setFetchInterval(dlg->fetchInterval());
 
     m_part->setModified(true);
 

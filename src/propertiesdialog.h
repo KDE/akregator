@@ -20,6 +20,8 @@ namespace Akregator
       public:
          FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
          ~FeedPropertiesWidget();
+      public slots:
+         void updateToggled(bool on);
    };
 
    class FeedPropertiesDialog : public KDialogBase
@@ -31,10 +33,14 @@ namespace Akregator
 
          const QString feedName() const;
          const QString url() const;
-
+         bool autoFetch() const;
+         int fetchInterval() const;
+         
          void setFeedName(const QString& title);
          void setUrl(const QString& url);
-
+         void setAutoFetch(bool);
+         void setFetchInterval(int);
+         
          void selectFeedName();
       private:
          FeedPropertiesWidget *widget;
