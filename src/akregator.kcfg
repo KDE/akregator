@@ -1,85 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
-<!-- Author: Stanislav Karchebny, berk@upnet.ru -->
 <kcfg>
-  <kcfgfile name="akregatorrc"/>
-  <group name="View">
-     <entry name="QuickFilter" key="Quick Filter" type="Int">
-        <label>Quick Filter</label>
-        <default>0</default>
-        <whatsthis>Which Quick Filter to use.</whatsthis>
-     </entry>
-     <entry name="ViewMode" key="View Mode" type="Int">
-        <label>View Mode</label>
-        <default>0</default>
-        <whatsthis>Article display mode.</whatsthis>
-     </entry>
-     <entry name="Splitter1Sizes" key="Splitter 1 Sizes" type="IntList">
-        <label>Sizes for first splitter</label>
-        <default>50,550</default>
-        <whatsthis>First (usually vertical) splitter widget sizes.</whatsthis>
-     </entry>
-     <entry name="Splitter2Sizes" key="Splitter 2 Sizes" type="IntList">
-        <label>Sizes for second splitter</label>
-        <default>50,350</default>
-        <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
-     </entry>
-  </group>
-  <group name="Network">
-     <entry name="ConcurrentFetches" key="Concurrent Fetches" type="Int">
-	<label>Concurrent Fetches</label>
-        <default>6</default>
-	<whatsthis>Number of concurrent fetches</whatsthis>
-     </entry>
-  </group>
-  <group name="General">
-     <entry name="FetchOnStartup" key="Fetch On Startup" type="Bool">
-        <label>Fetch on startup</label>
-        <default>false</default>
-        <whatsthis>Fetch feedlist on startup.</whatsthis>
-     </entry>
-     <entry name="MarkAllFeedsReadOnExit" key="Mark All Feeds Read On Exit" type="Bool">
-        <label>Mark all feeds as read on exit</label>
-        <default>false</default>
-        <whatsthis>Mark all feeds as read on exit.</whatsthis>
-     </entry>
-    <entry name="UseIntervalFetch" key="Use Interval Fetch" type="Bool">
-        <label>Use interval fetching</label>
-        <default>false</default>
-        <whatsthis>Fetch all feeds every %1 minutes.</whatsthis>
-    </entry>
-    <entry name="AutoFetchInterval" key="Auto Fetch Interval" type="Int">
-        <label>Interval for autofetching</label>
-        <default>30</default>
-        <whatsthis>Interval for autofetching in minutes.</whatsthis>
-    </entry>
-  </group>
-  <group name="Browser">
-     <entry name="ExternalBrowserUseKdeDefault" key="External Browser Use Kde Default" type="Bool">
-        <label>Use default KDE web browser</label>
-        <default>true</default>
-        <whatsthis>Use KDE web browser when opening in external browser.</whatsthis>
-     </entry>
-     <entry name="ExternalBrowserUseCustomCommand" key="External Browser Use Custom Command" type="Bool">
-        <label>Use this command:</label>
-        <default>false</default>
-        <whatsthis>Use the specified command when opening in external browser.</whatsthis>
-     </entry>
-     <entry name="ExternalBrowserCustomCommand" key="External Browser Custom Command" type="String">
-        <label></label>
-        <default>mozilla '%u'</default>
-        <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
-     </entry>
-     <entry name="MMBBehaviour" key="MMB Behaviour" type="Enum">
-        <choices>
-            <choice name="OpenInInternalBrowser"/>
-            <choice name="OpenInBackground"/>  
-            <choice name="OpenInExternalBrowser"/>
-        </choices>
-        <label></label>
-        <default>OpenInExternalBrowser</default>
-        <whatsthis>What the click with middle mouse button should do.</whatsthis>
-     </entry>
-  </group>
-
+ <kcfgfile name="akregatorrc" />
+ <group name="View" >
+  <entry key="Quick Filter" type="Int" >
+   <label>Quick Filter</label>
+   <whatsthis>Which Quick Filter to use.</whatsthis>
+   <default>0</default>
+  </entry>
+  <entry key="View Mode" type="Int" >
+   <label>View Mode</label>
+   <whatsthis>Article display mode.</whatsthis>
+   <default>0</default>
+  </entry>
+  <entry key="Splitter 1 Sizes" type="IntList" >
+   <label>Sizes for first splitter</label>
+   <whatsthis>First (usually vertical) splitter widget sizes.</whatsthis>
+   <default>50,550</default>
+  </entry>
+  <entry key="Splitter 2 Sizes" type="IntList" >
+   <label>Sizes for second splitter</label>
+   <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
+   <default>50,350</default>
+  </entry>
+ </group>
+ <group name="Network" >
+  <entry key="Concurrent Fetches" type="Int" >
+   <label>Concurrent Fetches</label>
+   <whatsthis>Number of concurrent fetches</whatsthis>
+   <default>6</default>
+  </entry>
+ </group>
+ <group name="General" >
+  <entry key="Fetch On Startup" type="Bool" >
+   <label>Fetch on startup</label>
+   <whatsthis>Fetch feedlist on startup.</whatsthis>
+   <default>false</default>
+  </entry>
+  <entry key="Mark All Feeds Read On Exit" type="Bool" >
+   <label>Mark all feeds as read on exit</label>
+   <whatsthis>Mark all feeds as read on exit.</whatsthis>
+   <default>false</default>
+  </entry>
+  <entry key="Use Interval Fetch" type="Bool" >
+   <label>Use interval fetching</label>
+   <whatsthis>Fetch all feeds every %1 minutes.</whatsthis>
+   <default>false</default>
+  </entry>
+  <entry key="Auto Fetch Interval" type="Int" >
+   <label>Interval for autofetching</label>
+   <whatsthis>Interval for autofetching in minutes.</whatsthis>
+   <default>30</default>
+  </entry>
+  <entry key="Use Notifications" type="Bool" >
+   <label>Use notifications</label>
+   <whatsthis>Specifies if the balloon notifications are used or not.</whatsthis>
+   <default>false</default>
+  </entry>
+ </group>
+ <group name="Browser" >
+  <entry key="External Browser Use Kde Default" type="Bool" >
+   <label>Use default KDE web browser</label>
+   <whatsthis>Use KDE web browser when opening in external browser.</whatsthis>
+   <default>true</default>
+  </entry>
+  <entry key="External Browser Use Custom Command" type="Bool" >
+   <label>Use this command:</label>
+   <whatsthis>Use the specified command when opening in external browser.</whatsthis>
+   <default>false</default>
+  </entry>
+  <entry key="External Browser Custom Command" type="String" >
+   <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
+   <default>mozilla '%u'</default>
+  </entry>
+  <entry key="MMB Behaviour" type="Enum" >
+   <whatsthis>What the click with middle mouse button should do.</whatsthis>
+   <default>OpenInExternalBrowser</default>
+   <choices>
+    <choice name="OpenInInternalBrowser" />
+    <choice name="OpenInBackground" />
+    <choice name="OpenInExternalBrowser" />
+   </choices>
+  </entry>
+ </group>
 </kcfg>
