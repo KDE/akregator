@@ -117,6 +117,8 @@ aKregator::aKregator()
     // position, icon size, etc.
     setAutoSaveSettings();
 
+    load( Settings::lastOpenFile() );
+
     akreapp->setHaveWindowLoaded(true);
 }
 

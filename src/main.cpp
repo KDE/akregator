@@ -47,7 +47,6 @@ int main(int argc, char **argv)
         if ( args->count() == 0 )
         {
         aKregator *widget = new aKregator;
-        widget->loadLastOpenFile();
         widget->show();
         }
         else

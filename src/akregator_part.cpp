@@ -185,8 +185,8 @@ bool aKregatorPart::openFile()
     if (Settings::fetchOnStartup())
     {
         // has the shell loaded up a window already? then its not starting up
-        QVariant shellHaveWindowLoaded = m_extension->browserInterface()->property( "haveWindowLoaded" );
-        if (!shellHaveWindowLoaded.toBool())
+       QVariant shellHaveWindowLoaded = m_extension->browserInterface()->property( "haveWindowLoaded" );
+       if (!shellHaveWindowLoaded.toBool())
             m_view->slotFetchAllFeeds();
     }
 
