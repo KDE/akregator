@@ -8,7 +8,6 @@
    <outline xmlUrl="http://www.kde.org/dot/kde-apps-content.rdf" text="KDE-Apps.org Content" />
    <outline xmlUrl="http://www.kde.org/kde-look-content.rdf" text="KDE-Look.org Content" />
    <outline xmlUrl="http://cia.navi.cx/stats/project/kde/.rss" text="KDE CVS Commits" />
-   <outline xmlUrl="http://www.kdedevelopers.org/blog/feed" text="KDE Developer's Journals" />
    <outline xmlUrl="http://wiki.kde.org/tiki-wiki_rss.php" text="KDE Wiki Changes" />
  </body>
 </opml>
