@@ -68,9 +68,10 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 	}
 
 
-    // prefer content:encoded over summary/description for feeds that provide it
+    // prefer content/content:encoded over summary/description for feeds that provide it
+    QString tagName=(format==AtomFeed)? QString::fromLatin1("content"): QString::fromLatin1("content:encoded");
     
-    if (!(elemText = extractNode(node, QString::fromLatin1("content:encoded"))).isNull())
+    if (!(elemText = extractNode(node, tagName)).isNull())
         d->description = elemText;
     
     if (d->description.isEmpty())
@@ -103,12 +104,14 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 
     // XXX: doesn't this check for the node twice? 
     //      perhaps after finding the node, we can make an extratData fcn
-	QDomNode n = node.namedItem(QString::fromLatin1("guid"));
+	
+    tagName=(format==AtomFeed)? QString::fromLatin1("id"): QString::fromLatin1("guid");
+    QDomNode n = node.namedItem(tagName);
 	if (!n.isNull()) {
-		d->guidIsPermaLink = true;
+		d->guidIsPermaLink = (format==AtomFeed)? false : true;
 		if (n.toElement().attribute(QString::fromLatin1("isPermaLink"), "true") == "false") d->guidIsPermaLink = false;
 
-		if (!(elemText = extractNode(node, QString::fromLatin1("guid"))).isNull())
+		if (!(elemText = extractNode(node, tagName)).isNull())
 			d->guid = elemText;
 	}
 
