@@ -40,7 +40,7 @@ kdelnkdir = $(kde_servicesdir)
 # this is a lib shared by both the KPart and the main application
 lib_LTLIBRARIES = libakregatorprivate.la
 libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc aboutdata.cpp
-libakregatorprivate_la_LDFLAGS = $(all_libraries) -version-info 0:0:0 -no-undefined
+libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined
 libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KHTML)
 
 #########################################################################
@@ -102,7 +102,7 @@ libakregatorpart_la_SOURCES = \
 	akregator_view.cpp \
         notificationmanager.cpp
 
-libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -no-undefined $(all_libraries)
+libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -avoid-version -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
 
 # this is where the desktop file will go
