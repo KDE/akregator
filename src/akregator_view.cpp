@@ -166,17 +166,17 @@ void aKregatorView::reset()
     elt->setOpen(true);
 }
 
-void aKregatorView::importFeeds(const QDomDocument& doc)
+bool aKregatorView::importFeeds(const QDomDocument& doc)
 {
     bool Ok;
 
     QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), i18n("Imported Folder"), &Ok);
-    if (!Ok) return;
+    if (!Ok) return false;
 
     FeedsTreeItem *elt = new FeedsTreeItem( m_tree->firstChild(), QString::null );
     m_feeds.addFeedGroup(elt)->setTitle(text);
     elt->setOpen(true);
-    loadFeeds(doc, elt);
+    return loadFeeds(doc, elt);
 }
 
 bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)

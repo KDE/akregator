@@ -228,7 +228,8 @@ void aKregatorPart::importFile(QString file_name)
     if (!doc.setContent(str))
         return;
 
-    m_view->importFeeds(doc);
+    if (m_view->importFeeds(doc))
+        setModified(true);
 }
 
 

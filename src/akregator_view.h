@@ -53,7 +53,7 @@ namespace Akregator
              */
             aKregatorView(aKregatorPart *part, QWidget *parent, const char *wName);
 
-            void importFeeds(const QDomDocument& doc);
+            bool importFeeds(const QDomDocument& doc);
 
             /**
              * Parse OPML presentation of feeds and read in articles archive, if present.
