@@ -385,7 +385,8 @@ void ArticleViewer::showSummary(Feed *f)
 void ArticleViewer::slotShowArticle(const MyArticle& article)
 {
     m_viewMode = NormalView;
-
+    disconnectFromNode(m_node);
+    m_node = 0;
     renderContent( formatArticle(article.feed(), article) );
 }
 
