@@ -118,6 +118,18 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     
 }
 
+void Feed::markAllRead()
+{
+    ArticleSequence::Iterator it;
+    ArticleSequence::Iterator en=articles.end();
+    for (it = articles.begin(); it != en; ++it)
+    {
+        (*it).setStatus(MyArticle::Read);
+    }
+    m_unread=0;
+}
+
+
 void Feed::appendArticles(const Document &d, bool findDups)
 {
 //    kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;

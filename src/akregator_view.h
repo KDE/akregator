@@ -120,6 +120,7 @@ namespace Akregator
             void slotFeedAddGroup();
             void slotFeedRemove();
             void slotFeedModify();
+            void slotMarkAllRead();
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();
             void slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent);

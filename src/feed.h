@@ -82,7 +82,8 @@ namespace Akregator
            
             int unread(){return m_unread;}
             void setUnread(int i){m_unread=i;}
-            
+            void markAllRead();
+
             void appendArticles(const Document &d, bool findDups=false);
             void appendArticle(const MyArticle &a);
                 

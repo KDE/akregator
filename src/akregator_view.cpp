@@ -695,6 +695,38 @@ void aKregatorView::slotFeedModify()
     kdDebug() << k_funcinfo << "END" << endl;
 }
 
+void aKregatorView::slotMarkAllRead()
+{
+    if (m_tree->currentItem())
+    {
+        Feed *f = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+        if (f && !f->isGroup())
+        {
+            f->markAllRead();
+            FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
+            if (fti)
+                fti->setUnread(0);
+        }
+        else
+        {
+            FeedGroup *g = m_feeds.find(m_tree->currentItem());
+            if (!g)
+                return;
+            for (QListViewItemIterator it(m_tree->currentItem()); it.current(); ++it)
+            {
+                Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+                if (f && !f->isGroup())
+                {
+                    f->markAllRead();
+                    FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
+                    if (fti)
+                        fti->setUnread(0);
+                }
+            }
+        }
+    }
+}
+
 void aKregatorView::slotFetchCurrentFeed()
 {
     if (m_tree->currentItem())

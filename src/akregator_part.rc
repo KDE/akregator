@@ -18,6 +18,8 @@
     <Separator/>
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
+    <Seperator/>
+    <Action name="feed_mark_all_as_read"/>
   </Menu>
   <Menu name="settings">
     <Action name="normal_view"/>
@@ -41,6 +43,7 @@
   <Action name="feed_add_group"/>
   <Action name="feed_remove"/>
   <Action name="feed_modify"/>
+  <Action name="feed_mark_all_as_read"/>
   <Separator/>
   <Action name="feed_fetch"/>
 </Menu>
