@@ -10,6 +10,7 @@
 
 #include <kparts/part.h>
 #include <kaboutdata.h>
+#include <kaction.h>
 
 namespace Akregator
 {
@@ -26,6 +27,8 @@ namespace Akregator
     {
         Q_OBJECT
         public:
+           typedef KParts::ReadWritePart inherited;
+
             /**
              * Default constructor.
              */
@@ -55,9 +58,10 @@ namespace Akregator
              */
             static KAboutData *createAboutData();
 
-        void changePart(KParts::Part *p);
-            
-	    void setStatusBar(const QString &text);
+            void changePart(KParts::Part *p);
+
+            void setStatusBar(const QString &text);
+
         protected:
             /**
              * This must be implemented by each part
@@ -69,17 +73,22 @@ namespace Akregator
              */
             virtual bool saveFile();
 
+            virtual bool openURL(const KURL& url);
+
             void importFile(QString file_name);
-            
+
         signals:
             void partChanged(KParts::Part *p);
-            
+
         protected slots:
             void fileOpen();
             void fileSaveAs();
             void fileImport();
 
         private:
+            void readRecentFileEntries();
+
+            KRecentFilesAction *recentFilesAction;
             static KAboutData* s_about;
             aKregatorView* m_view;
     };

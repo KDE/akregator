@@ -41,6 +41,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
     KStdAction::saveAs(this, SLOT(fileSaveAs()), actionCollection());
     KStdAction::save(this, SLOT(save()), actionCollection());
+    recentFilesAction = KStdAction::openRecent( this, SLOT(openURL(const KURL&)), actionCollection(), "file_open_recent" );
 
     new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
 
@@ -67,6 +68,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc");
 
+    readRecentFileEntries();
+
     // we are read-write by default
     setReadWrite(true);
 
@@ -74,11 +77,16 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setModified(false);
 }
 
-
-
 aKregatorPart::~aKregatorPart()
 {
    Settings::writeConfig();
+}
+
+void aKregatorPart::readRecentFileEntries()
+{
+   KConfig *config = new KConfig("akregatorrc"); // move to shell!
+   recentFilesAction->loadEntries(config,"Recent Files");
+   delete config;
 }
 
 void aKregatorPart::setReadWrite(bool rw)
@@ -118,6 +126,12 @@ void aKregatorPart::setStatusBar(const QString &text)
 /*************************************************************************************************/
 /* LOAD                                                                                          */
 /*************************************************************************************************/
+
+bool aKregatorPart::openURL(const KURL& url)
+{
+   recentFilesAction->addURL(url);
+   return inherited::openURL(url);
+}
 
 bool aKregatorPart::openFile()
 {
@@ -187,7 +201,7 @@ bool aKregatorPart::saveFile()
     QDomElement body = newdoc.createElement( "body" );
     root.appendChild( body );
 
-    m_view->writeChildNodes( 0, body, newdoc);
+    m_view->storeTree( body, newdoc);
 
     stream << newdoc.toString();
 

@@ -128,11 +128,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_tabs->setTitle(i18n( "Articles" ), m_mainTab);
 
     // -- DEFAULT INIT
-    // Root item (will be reset when loading from file)
-    FeedsTreeItem *elt = new FeedsTreeItem( m_tree, QString::null );
-    m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
-    elt->setOpen(true);
-
+    reset();
     m_articleViewer->openDefault();
     // -- /DEFAULT INIT
 
@@ -157,12 +153,17 @@ void aKregatorView::slotOpenTab(const KURL& url)
         m_tabsClose->setEnabled(true);
 }
 
-// clears everything out, even removes DEFAULT INIT
+// clears everything out
 void aKregatorView::reset()
 {
     m_feeds.clearFeeds();
     m_tree->clear();
     m_part->setModified(false);
+
+    // Root item
+    FeedsTreeItem *elt = new FeedsTreeItem( m_tree, QString::null );
+    m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
+    elt->setOpen(true);
 }
 
 void aKregatorView::importFeeds(const QDomDocument& doc)
@@ -196,7 +197,10 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         return false;
 
     if (!parent)
+    {
         reset();
+        parent = m_tree->firstChild();
+    }
 
     QDomNode n = body.firstChild();
     while( !n.isNull() )
@@ -317,12 +321,24 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     return feed;
 }
 
+void aKregatorView::storeTree( QDomElement &node, QDomDocument &document )
+{
+   writeChildNodes(0, node, document);
+}
 
+// writes children of given node
+// node NULL has special meaning - it saves whole tree
 void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document)
 {
-  if (!item)
-        item=m_tree->firstChild();
-    for (QListViewItem *it = item; it; it = it->nextSibling())
+    if (!item) // omit "All Feeds" from saving (BR #43)
+    {
+        item = m_tree->firstChild(); // All Feeds
+        if (!item) return;
+        writeChildNodes(item, node, document);
+        return;
+    }
+
+    for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
     {
         FeedGroup *g = m_feeds.find(it);
         if (g)
@@ -333,7 +349,7 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
                 base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
 
                 if (it->firstChild()) // BR#40
-                   writeChildNodes( it->firstChild(), base, document );
+                   writeChildNodes( it, base, document );
             } else {
                 g->toXml( node, document );
             }

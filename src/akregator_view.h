@@ -70,12 +70,11 @@ namespace Akregator
 
 
             /**
-             * Write child items of item to node using QDom document document.
-             * @param item Current feeds tree item which is being written.
-             * @param node Parent node to append to.
-             * @param document XML document used to create nodes.
+             * Store whole feeds tree to given node @c node of document @c document.
+             * @param node Node to save to.
+             * @param document Containing document.
              */
-            void writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document );
+            void storeTree( QDomElement &node, QDomDocument &document );
 
             bool event(QEvent *e);
 
@@ -139,6 +138,13 @@ namespace Akregator
              */
             void reset();
 
+            /**
+             * Write child items of item to node using QDom document document.
+             * @param item Current feeds tree item which is being written.
+             * @param node Parent node to append to.
+             * @param document XML document used to create nodes.
+             */
+            void writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document );
 
             void addFeed(QString url, QListViewItem *after, QListViewItem* parent);
             /**
