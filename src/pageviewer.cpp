@@ -87,6 +87,11 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     m_restoring = false;
     // uncomment this to load konq plugins (doesn't work properly and clutters the GUI)
     //loadPlugins( partObject(), this, instance() );
+    
+}
+
+PageViewer::~PageViewer()
+{
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)

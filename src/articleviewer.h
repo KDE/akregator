@@ -33,7 +33,7 @@ namespace Akregator
         public:
             /** Constructor */
             ArticleViewer(QWidget* parent, const char* name);
-
+            
             /** Repaints the view. */
             void reload();
 

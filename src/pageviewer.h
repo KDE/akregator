@@ -44,7 +44,7 @@ namespace Akregator
         Q_OBJECT
         public:
             PageViewer(QWidget* parent, const char* name);
-            
+            virtual ~PageViewer();
             virtual bool openURL(const KURL &url);
 
         public slots:

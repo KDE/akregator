@@ -24,6 +24,8 @@ namespace Akregator
         Q_OBJECT
         public:
             Viewer(QWidget* parent, const char* name);
+            virtual ~Viewer();
+
             virtual bool closeURL();
             virtual bool openURL(const KURL &);
             
