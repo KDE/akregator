@@ -11,18 +11,7 @@
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kprocess.h>
-
-#ifndef KDE_MAKE_VERSION
-#define KDE_MAKE_VERSION( a,b,c ) (((a) << 16) | ((b) << 8) | (c))
-#endif
-
-#ifndef KDE_IS_VERSION
-#define KDE_IS_VERSION(a,b,c) ( KDE_VERSION >= KDE_MAKE_VERSION(a,b,c) )
-#endif
-
-#if KDE_IS_VERSION(3,1,94)
 #include <kshell.h>
-#endif
 
 #include <qclipboard.h>
 
