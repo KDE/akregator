@@ -74,7 +74,6 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     
     if (root.tagName().lower() != "opml")
     {
-        delete list->rootNode();
         delete list;
         return 0;
     }
@@ -87,7 +86,6 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     if (bodyNode.isNull())
     {
         kdDebug() << "Failed to acquire body node, markup broken?" << endl;
-        delete list->rootNode();
         delete list;
         return 0;
     }
@@ -108,9 +106,8 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
 
 FeedList::~FeedList()
 {
-    // when activating deletion, append() should deep copy the appended list
-//    delete m_rootNode;
-//    m_rootNode = 0;
+    delete m_rootNode;
+    m_rootNode = 0;
 }
 
 //TreeNode* FeedList::findByID(uint id) const
@@ -135,6 +132,7 @@ void FeedList::append(FeedList* list, FeedGroup* parent, TreeNode* after)
     
     for (TreeNode* i = children.first(); i; i = children.next() )
     {
+        list->rootNode()->removeChild(i);
         parent->insertChild(i, after);
         after = i;
     }

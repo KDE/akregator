@@ -22,8 +22,7 @@ namespace Akregator
 class FeedGroup;
 class TreeNode;
 
-/** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored.
-FIXME: There should be a more sophisticated memory management @see ~FeedList() */
+/** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. */
 class FeedList : public QObject
 {
 Q_OBJECT
@@ -43,7 +42,7 @@ public:
     /** returns the root node "All Feeds". */
     FeedGroup* rootNode() const;
 
-    /** appends another feed list as sub tree. The root node of @c list is ignored */
+    /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list (should be copied actually) */
     
     void append(FeedList* list, FeedGroup* parent=0, TreeNode* after=0);
 

@@ -295,7 +295,7 @@ namespace Akregator
             /**
              * A tree of all feeds (Columns, Subscriptions).
              */
-            FeedsTree *m_tree;
+            FeedsTree* m_tree;
 
              /**
              * List of documents for currently selected feed.

@@ -86,7 +86,6 @@ aKregatorView::~aKregatorView()
     
     delete m_mainTab;
     delete m_mainFrame;
-    delete m_feedList->rootNode();
     delete m_feedList;
 }
 
@@ -411,7 +410,6 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
 
     if (!ok)
     {
-        delete m_feedList->rootNode();
         delete m_feedList;
         return false;
     }
@@ -436,8 +434,6 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
     {
         m_tree->setFeedList(feedList);
         disconnectFromFeedList(feedList);
-        if (m_feedList)
-            delete m_feedList->rootNode();
         delete m_feedList;
         m_feedList = feedList;
         connectToFeedList(feedList);

@@ -69,6 +69,7 @@ void FeedsTree::setFeedList(FeedList* feedList)
 {
     if (feedList == m_feedList)
          return;
+
     clear();
 
     m_feedList = feedList;
@@ -152,7 +153,7 @@ TreeNodeItem* FeedsTree::findNodeItem(TreeNode* node)
     return m_itemDict.find(node);
 }
 
-TreeNodeItem* FeedsTree::findItem (const QString& text, int column, ComparisonFlags compare) const 
+TreeNodeItem* FeedsTree::findItem (const QString& text, int column, ComparisonFlags compare) const
 { 
     return static_cast<TreeNodeItem*> (KListView::findItem(text, column, compare)); 
 }
@@ -432,7 +433,7 @@ void FeedsTree::slotItemRight()
     ensureItemVisible( selectedItem() );
 }
 
-void FeedsTree::slotPrevFeed()        
+void FeedsTree::slotPrevFeed()
 {
     for (QListViewItemIterator it( selectedItem()); it.current(); --it )
         if ( !(*it)->isSelected() && !(*it)->isExpandable() )
@@ -505,7 +506,7 @@ void FeedsTree::slotNextUnreadFeed()
     }
 }
 
-void FeedsTree::slotSelectionChanged(QListViewItem* item) 
+void FeedsTree::slotSelectionChanged(QListViewItem* item)
 {
  TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
     if (ni)
