@@ -216,8 +216,9 @@ namespace Akregator
                                                 QString xmlUrl, QString htmlUrl,
                                                 QString description,
                                                 bool autoFetch, int fetchIntervL,
-                                                bool expiryEnabled,
-                                                int expiryAge);
+         					Feed::ArchiveMode mode,
+                                                int maxArticleAge,
+                                                int maxArticleNumber);
 
             /**
              * Mark all items in item and subitems as read.

@@ -13,6 +13,7 @@
 //settings
 #include "settings_general.h"
 #include "settings_browser.h"
+#include "settings_archive.h"
 
 #include <dcopclient.h>
 #include <dcopobject.h>
@@ -293,8 +294,8 @@ void aKregator::showOptions()
 
     KConfigDialog *dialog = new KConfigDialog( this, "settings", Settings::self() );
     dialog->addPage(new settings_general(0, "General"), i18n("General"), "package_settings");
+    dialog->addPage(new settings_archive(0, "Archive"), i18n("Archive"), "package_settings");
     dialog->addPage(new settings_browser(0, "Browser"), i18n("Browser"), "package_network");
-
     connect( dialog, SIGNAL(settingsChanged()),
              m_part, SLOT(saveSettings()) );
     connect( dialog, SIGNAL(settingsChanged()),

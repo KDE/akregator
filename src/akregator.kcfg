@@ -23,6 +23,40 @@
    <default>50,350</default>
   </entry>
  </group>
+ <group name="Archive">
+   <entry key="ArchiveMode" type="Enum">
+     <label>Archive Mode</label>
+     <default>keepAllArticles</default>
+     <choices>
+       <choice name="keepAllArticles">
+         <label>Keep All Articles</label>
+         <whatsthis>Save an unlimited amount of articles.</whatsthis>
+       </choice>
+       <choice name="disableArchiving"> 
+         <label>Disable Archiving</label>
+         <whatsthis>Don't save any articles</whatsthis>
+       </choice>
+       <choice name="limitArticleNumber">
+         <label>Limit Number of Articles</label>
+         <whatsthis>Limit the number of articles in a feed</whatsthis>
+       </choice>
+       <choice name="limitArticleAge">
+         <label>Delete Expired Articles</label>
+         <whatsthis>Delete expired articles</whatsthis>
+       </choice> 
+     </choices>
+   </entry>
+  <entry key="Max Article Age" type="Int" >
+   <label>Expiry Age</label>
+   <whatsthis>Default expiry age for articles in days.</whatsthis>
+   <default>60</default>
+  </entry>
+  <entry key="Max Article Number" type="Int" >
+   <label>Article Limit</label>
+   <whatsthis>Number of articles to keep per feed.</whatsthis>
+   <default>1000</default>
+  </entry>
+ </group>
  <group name="Network" >
   <entry key="Concurrent Fetches" type="Int" >
    <label>Concurrent Fetches</label>

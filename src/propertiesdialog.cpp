@@ -15,6 +15,7 @@
 
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
+#include <qradiobutton.h>
 
 using namespace Akregator;
 
@@ -58,6 +59,60 @@ int FeedPropertiesDialog::fetchInterval() const
    return widget->updateSpinBox->value();
 }
 
+Feed::ArchiveMode FeedPropertiesDialog::archiveMode() const
+{
+    // i could check the button group's int, but order could change...
+    if ( widget->rb_globalDefault->isChecked() )
+        return Feed::globalDefault;
+   
+   if ( widget->rb_keepAllArticles->isChecked() )
+        return Feed::keepAllArticles;
+        
+   if ( widget->rb_limitArticleAge->isChecked() )
+        return Feed::limitArticleAge;
+        
+   if ( widget->rb_limitArticleNumber->isChecked() )
+        return Feed::limitArticleNumber;     
+   
+   if ( widget->rb_disableArchiving->isChecked() )
+        return Feed::disableArchiving;     
+    
+    // in a perfect world, this is never reached
+    
+    return Feed::globalDefault;
+}
+
+
+int FeedPropertiesDialog::maxArticleAge() const
+{
+    return widget->sb_maxArticleAge->value();
+}
+
+int FeedPropertiesDialog::maxArticleNumber() const
+{
+    return widget->sb_maxArticleNumber->value();
+}
+
+void FeedPropertiesDialog::setArchiveMode(Feed::ArchiveMode mode)
+ {
+    switch (mode)
+    {
+         case Feed::globalDefault:
+            widget->rb_globalDefault->setChecked(true);
+            break;
+         case Feed::keepAllArticles:
+            widget->rb_keepAllArticles->setChecked(true);
+            break;
+         case Feed::disableArchiving:   
+            widget->rb_disableArchiving->setChecked(true);
+            break;
+         case Feed::limitArticleAge:
+            widget->rb_limitArticleAge->setChecked(true);
+            break;
+         case Feed::limitArticleNumber:
+            widget->rb_limitArticleNumber->setChecked(true);
+    }
+}
 void FeedPropertiesDialog::setFeedName(const QString& title)
 {
    widget->feedNameEdit->setText(title);
@@ -79,49 +134,16 @@ void FeedPropertiesDialog::setFetchInterval(int i)
    widget->updateSpinBox->setValue(i);
 }
 
-bool FeedPropertiesDialog::useCustomExpiry() const
-{
-    return widget->expChkbox->isChecked();     
-}
+void FeedPropertiesDialog::setMaxArticleAge(int age)
+ {
+    widget->sb_maxArticleAge->setValue(age);    
+}    
 
-int FeedPropertiesDialog::expiryAge() const
+void FeedPropertiesDialog::setMaxArticleNumber(int number)
 {
-    if (widget->expiryComboBox->currentItem() == 0)
-        return 0;
-    else
-        return widget->expirySpinBox->value();
-}
+    widget->sb_maxArticleNumber->setValue(number);             
+}    
 
-void FeedPropertiesDialog::setUseCustomExpiry(bool enabled)
-{
-    widget->expChkbox->setChecked(enabled);
-    if (!enabled)
-    {
-        widget->expirySpinBox->setEnabled(false);
-        widget->expiryComboBox->setEnabled(false);
-        widget->expiryComboBox->setCurrentItem(0); // "never"
-    }
-    else
-    {
-        widget->expiryComboBox->setEnabled(true);
-    }   
-}
-
-void FeedPropertiesDialog::setExpiryAge(int days)
-{
-    if (days == 0)
-    {
-        widget->expiryComboBox->setCurrentItem(0); // "never"
-        widget->expirySpinBox->setEnabled(false);
-    }    
-    else
-    {
-        widget->expiryComboBox->setCurrentItem(1); // "days"
-        widget->expirySpinBox->setEnabled(true);
-    }    
-    widget->expirySpinBox->setValue(days);
-}
-         
 void FeedPropertiesDialog::selectFeedName()
 {
    widget->feedNameEdit->selectAll();

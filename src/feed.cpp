@@ -25,10 +25,49 @@
 using namespace Akregator;
 using namespace RSS;
 
+QString Feed::archiveModeToString(ArchiveMode mode)
+{
+    switch (mode)
+    {
+        case keepAllArticles:
+            return "keepAllArticles";
+        case disableArchiving:
+            return "disableArchiving";
+        case limitArticleNumber:
+            return "limitArticleNumber";
+        case limitArticleAge:
+            return "limitArticleAge";
+        default:    
+            return "globalDefault";
+   }
+
+   // in a perfect world, this is never reached
+   
+   return "globalDefault";
+}
+
+Feed::ArchiveMode Feed::stringToArchiveMode(QString str)
+{
+    if (str == "globalDefault")
+        return globalDefault;
+    if (str == "keepAllArticles")
+        return keepAllArticles;          
+    if (str == "disableArchiving")
+        return disableArchiving;
+    if (str == "limitArticleNumber")
+        return limitArticleNumber;
+    if (str == "limitArticleAge")
+        return limitArticleAge;
+        
+    return globalDefault;    
+}
+
+
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
-    , m_useCustomExpiry(false) 
-    , m_expiryAge(0) 
+    , m_archiveMode(globalDefault) 
+    , m_maxArticleAge(60) 
+    , m_maxArticleNumber(1000) 
     , m_fetchError(false)
     , m_fetchTries(0)
     , m_loader(0)
@@ -52,9 +91,9 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "description", m_description );
     el.setAttribute( "autoFetch", (autoFetch() ? "true" : "false") );
     el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
-    el.setAttribute( "useCustomExpiry", (useCustomExpiry() ? "true" : "false") );
-    el.setAttribute( "expiryAge", m_expiryAge );
-    
+    el.setAttribute( "archiveMode", archiveModeToString(m_archiveMode) );
+    el.setAttribute( "maxArticleAge", m_maxArticleAge );
+    el.setAttribute( "maxArticleNumber", m_maxArticleNumber );
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );
     parent.appendChild( el );
@@ -84,15 +123,40 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     dnode.appendChild(dt);
     channode.appendChild(dnode);
 
+    
+    // get archive size limit, 0 if unlimited
+    
+    uint limit = 0;
+    if (m_archiveMode == limitArticleNumber)
+        limit = m_maxArticleNumber;
+    if (m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleNumber)
+        limit = Settings::maxArticleNumber();
+        
     ArticleSequence::ConstIterator it;
     ArticleSequence::ConstIterator en=m_articles.end();
-    for (it = m_articles.begin(); it != en; ++it)
-    {
-        QDomElement enode = doc.createElement( "item" );
-        (*it).dumpXmlData(enode, doc);
-        channode.appendChild(enode);
-    }
 
+    // if a limit exists, only dump "limit" number of articles plus articles with keep flag set
+      
+    if (limit != 0)
+    {
+        uint count = 0; 
+        for (it = m_articles.begin(); it != en; ++it)
+            if ( count < limit || (*it).keep() )
+            {
+                 QDomElement enode = doc.createElement( "item" );
+                 (*it).dumpXmlData(enode, doc);
+                 channode.appendChild(enode);
+                 if ( !(*it).keep() )
+                    ++count;
+            }
+    }
+    else // save everything, like we did before
+        for (it = m_articles.begin(); it != en; ++it)
+        {
+            QDomElement enode = doc.createElement( "item" );
+            (*it).dumpXmlData(enode, doc);
+            channode.appendChild(enode);
+        }
 }
 
 void Feed::markAllRead()
@@ -104,20 +168,6 @@ void Feed::markAllRead()
         (*it).setStatus(MyArticle::Read);
     }
     m_unread=0;
-}
-
-int Feed::expiryAge() const
-{
-    if (useCustomExpiry())
-        return m_expiryAge;
-    else 
-    {
-        if (Settings::useExpiry())
-            return Settings::expiryAge();
-        else
-            return 0;
-    }                     
-    return 0; // never reached
 }
 
 void Feed::appendArticles(const Document &d, bool findDups)
@@ -178,7 +228,17 @@ void Feed::appendArticles(const Document &d, bool findDups)
 void Feed::appendArticle(const MyArticle &a)
 {
     QDateTime now = QDateTime::currentDateTime();
-    if (expiryAge() == 0 || a.pubDate().secsTo(now) <= expiryAge() * 3600 * 24) // if not expired
+
+    int expiryAge = -1; 
+    
+    // check whether the feed uses the global default and the default is limitArticleAge
+    if ( Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge && m_archiveMode == globalDefault)
+        expiryAge == Settings::maxArticleAge();
+    else // otherwise check if this feed has limitArticleAge set
+        if ( m_archiveMode == limitArticleAge)
+            expiryAge = m_maxArticleAge;
+    
+    if ( expiryAge == -1 || a.pubDate().secsTo(now) <= expiryAge * 3600 * 24) // if not expired
     {
         if (a.status()!=MyArticle::Read)
             m_unread++;
@@ -326,13 +386,14 @@ void Feed::loadFavicon()
 
 void Feed::deleteExpiredArticles()
 {
-    if (expiryAge() != 0)
+    if ( (m_archiveMode == globalDefault && Settings::EnumArchiveMode::limitArticleAge) || m_archiveMode == limitArticleAge )
     {
         long expiryInSec;
-        if (m_useCustomExpiry)
-            expiryInSec = m_expiryAge * 3600 * 24;
+	
+	if (m_archiveMode == limitArticleAge)
+           expiryInSec = m_maxArticleAge * 3600 * 24;
         else     
-            expiryInSec = Settings::expiryAge() * 3600 *24;
+            expiryInSec = Settings::maxArticleAge() * 3600 * 24;
             
         QDateTime now = QDateTime::currentDateTime();
         ArticleSequence::ConstIterator it;

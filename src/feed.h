@@ -29,6 +29,7 @@ namespace Akregator
     class ArticleSequence : public MyArticle::List
     {
         public:
+	
             ArticleSequence();
             ArticleSequence(const ArticleSequence &other);
             virtual ~ArticleSequence();
@@ -50,6 +51,11 @@ namespace Akregator
     {
         Q_OBJECT
         public:
+	
+            enum ArchiveMode { globalDefault, keepAllArticles, disableArchiving, limitArticleNumber, limitArticleAge };
+                        
+            static ArchiveMode stringToArchiveMode(QString str);
+            static QString archiveModeToString(ArchiveMode mode);
             Feed(QListViewItem *i, FeedsCollection *coll);
             ~Feed();
 
@@ -63,15 +69,16 @@ namespace Akregator
             
             int fetchInterval() const { return m_fetchInterval; }
             void setFetchInterval(int interval) { m_fetchInterval = interval; }
+
+            ArchiveMode archiveMode() const { return m_archiveMode; }
+            void setArchiveMode(ArchiveMode archiveMode) { m_archiveMode = archiveMode; }  
             
-            /** returns whether the feed has custom expiry settings **/
-            bool useCustomExpiry() const { return m_useCustomExpiry; }
-            void setUseCustomExpiry(bool useCustom) { m_useCustomExpiry = useCustom; }  
+            int maxArticleAge() { return m_maxArticleAge; } const
+            void setMaxArticleAge(int maxArticleAge)
+            { m_maxArticleAge = maxArticleAge; }
             
-            /** returns expiry age in days, 0 if disabled 
-                the custom setting is used if enabled, otherwise the global setting **/
-            int expiryAge() const;
-            void setExpiryAge(int age) { m_expiryAge = age; }     
+            int maxArticleNumber() { return m_maxArticleNumber; } const
+            void setMaxArticleNumber(int maxArticleNumber) { m_maxArticleNumber = maxArticleNumber; }
             
             bool isMerged() const { return m_merged; }
             void setMerged(bool m){ m_merged = m;}
@@ -127,8 +134,9 @@ namespace Akregator
             
             bool m_autoFetch;
             int m_fetchInterval;
-            bool m_useCustomExpiry; 
-            int m_expiryAge; 
+	    ArchiveMode m_archiveMode; 
+            int m_maxArticleAge; 
+            int m_maxArticleNumber;
             Document m_document;            
             bool m_fetchError;
             int m_fetchTries;

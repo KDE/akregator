@@ -487,8 +487,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
                               e.attribute("description"),
                               e.attribute("autoFetch") == "true" ? true : false,
                               e.attribute("fetchInterval").toUInt(),
-                              e.attribute("useCustomExpiry") == "true" ? true : false,
-                              e.attribute("expiryAge").toUInt()
+                              Feed::stringToArchiveMode(e.attribute("archiveMode")),
+                              e.attribute("maxArticleAge").toUInt(),
+                              e.attribute("maxArticleNumber").toUInt()
                             );
         }
         else
@@ -523,8 +524,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
                                       QString title, QString xmlUrl, QString htmlUrl,
                                       QString description, bool autoFetch, int fetchInterval,
-                                      bool useCustomExpiry,
-                                      int expiryAge )
+				      Feed::ArchiveMode archiveMode,
+                                      int maxArticleAge,
+                                      int maxArticleNumber)
 {
     Feed *feed;
     if (ef)
@@ -544,8 +546,9 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     feed->setDescription(description);
     feed->setAutoFetch(autoFetch);
     feed->setFetchInterval(fetchInterval);
-    feed->setUseCustomExpiry(useCustomExpiry);
-    feed->setExpiryAge(expiryAge);
+    feed->setArchiveMode(archiveMode);
+    feed->setMaxArticleAge(maxArticleAge);
+    feed->setMaxArticleNumber(maxArticleNumber);
     
     Archive::load(feed);
 
@@ -973,8 +976,9 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
                       feed->description(),
                       dlg->autoFetch(),
                       dlg->fetchInterval(),
-                      dlg->useCustomExpiry(),
-                      dlg->expiryAge()
+		      dlg->archiveMode(),
+                      dlg->maxArticleAge(),
+                      dlg->maxArticleNumber()
                     );
 
     m_tree->ensureItemVisible(elt);
@@ -1070,18 +1074,20 @@ void aKregatorView::slotFeedModify()
     dlg->setUrl( feed->xmlUrl() );
     dlg->setAutoFetch(feed->autoFetch());
     dlg->setFetchInterval(feed->fetchInterval());
-    dlg->setUseCustomExpiry(feed->useCustomExpiry());
-    dlg->setExpiryAge(feed->expiryAge());
-
+    dlg->setArchiveMode(feed->archiveMode());
+    dlg->setMaxArticleAge(feed->maxArticleAge());
+    dlg->setMaxArticleNumber(feed->maxArticleNumber());
+    
     if (dlg->exec() != QDialog::Accepted) return;
 
     feed->setTitle( dlg->feedName() );
     feed->setXmlUrl( dlg->url() );
     feed->setAutoFetch(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
-    feed->setUseCustomExpiry(dlg->useCustomExpiry());
-    feed->setExpiryAge(dlg->expiryAge());
-
+    feed->setArchiveMode(dlg->archiveMode());
+    feed->setMaxArticleAge(dlg->maxArticleAge());
+    feed->setMaxArticleNumber(dlg->maxArticleNumber());
+    
     m_part->setModified(true);
 
     delete dlg;

@@ -33,15 +33,17 @@ namespace Akregator
          const QString url() const;
          bool autoFetch() const;
          int fetchInterval() const;
-         bool useCustomExpiry() const;
-         int expiryAge() const;
-                 
+         Feed::ArchiveMode archiveMode() const;
+         int maxArticleAge() const;
+         int maxArticleNumber() const;
+               
          void setFeedName(const QString& title);
          void setUrl(const QString& url);
          void setAutoFetch(bool);
          void setFetchInterval(int);
-         void setUseCustomExpiry(bool);
-         void setExpiryAge(int days);
+         void setArchiveMode(Feed::ArchiveMode mode);
+         void setMaxArticleAge(int age);
+         void setMaxArticleNumber(int number);
          
          void selectFeedName();
       private:

@@ -18,7 +18,7 @@ KDE_ICON = AUTO
 bin_PROGRAMS = akregator
 
 # the application source, library search path, and link libraries
-akregator_SOURCES = main.cpp app.cpp akregator.cpp trayicon.cpp balloon.cpp akregatorconfig.kcfgc settings_general.ui settings_browser.ui
+akregator_SOURCES = main.cpp app.cpp akregator.cpp trayicon.cpp balloon.cpp akregatorconfig.kcfgc settings_general.ui settings_archive.ui settings_browser.ui
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 akregator_LDADD = $(LIB_KPARTS)
 

@@ -10,7 +10,7 @@
             <x>0</x>
             <y>0</y>
             <width>364</width>
-            <height>436</height>
+            <height>323</height>
         </rect>
     </property>
     <property name="caption">
@@ -31,47 +31,6 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QLayoutWidget" row="5" column="0">
-                    <property name="name">
-                        <cstring>layout2</cstring>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QLabel">
-                            <property name="name">
-                                <cstring>textLabel1_2</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Delete articles older than:</string>
-                            </property>
-                        </widget>
-                        <widget class="QSpinBox">
-                            <property name="name">
-                                <cstring>kcfg_ExpiryAge</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> days</string>
-                            </property>
-                            <property name="specialValueText">
-                                <string>1 day</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>1000000</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                            <property name="value">
-                                <number>30</number>
-                            </property>
-                        </widget>
-                    </hbox>
-                </widget>
                 <widget class="QLayoutWidget" row="1" column="0">
                     <property name="name">
                         <cstring>layout4</cstring>
@@ -113,20 +72,15 @@
                         </widget>
                     </hbox>
                 </widget>
-                <widget class="QCheckBox" row="4" column="0">
-                    <property name="name">
-                        <cstring>kcfg_UseExpiry</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Delete expired articles</string>
-                    </property>
-                </widget>
                 <widget class="QCheckBox" row="2" column="0">
                     <property name="name">
                         <cstring>kcfg_UseNotifications</cstring>
                     </property>
                     <property name="text">
                         <string>Use notifications</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string></string>
                     </property>
                     <property name="whatsThis" stdset="0">
                         <string>Select this if you want to get notified when there are new articles.</string>
@@ -182,12 +136,6 @@
     </vbox>
 </widget>
 <connections>
-    <connection>
-        <sender>kcfg_UseExpiry</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_ExpiryAge</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
     <connection>
         <sender>kcfg_UseIntervalFetch</sender>
         <signal>toggled(bool)</signal>
