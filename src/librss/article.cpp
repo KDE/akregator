@@ -11,14 +11,18 @@
 #include "article.h"
 #include "tools_p.h"
 
+#include <kdebug.h>
 #include <krfcdate.h>
 #include <kurl.h>
 #include <kurllabel.h>
+#include <kmdcodec.h> 
 
 #include <qdatetime.h>
 #include <qdom.h>
 
 using namespace RSS;
+
+KMD5 md5Machine;
 
 struct Article::Private : public Shared
 {
@@ -74,17 +78,17 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
     // prefer content/content:encoded over summary/description for feeds that provide it
     QString tagName=(format==AtomFeed)? QString::fromLatin1("content"): QString::fromLatin1("content:encoded");
     
-    if (!(elemText = extractNode(node, tagName, true)).isNull())
+    if (!(elemText = extractNode(node, tagName, false)).isNull())
         d->description = elemText;
     
     if (d->description.isEmpty())
     {
-		if (!(elemText = extractNode(node, QString::fromLatin1("body"), true)).isNull())
+		if (!(elemText = extractNode(node, QString::fromLatin1("body"), false)).isNull())
 	    	d->description = elemText;
     
 		if (d->description.isEmpty())  // 3rd try: see http://www.intertwingly.net/blog/1299.html
 		{
-			if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"), true)).isNull())
+			if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"), false)).isNull())
 				d->description = elemText;
 		}
     }
@@ -130,6 +134,16 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 
 		if (!(elemText = extractNode(node, tagName)).isNull())
 			d->guid = elemText;
+	}
+
+	if(d->guid.isEmpty()) {
+		d->guidIsPermaLink = false;
+		md5Machine.reset();
+		QDomNode n(node);
+		md5Machine.update(d->title.utf8());
+		md5Machine.update(d->description.utf8());
+		d->guid = QString(md5Machine.hexDigest().data());
+		kdDebug() << d->guid << endl;
 	}
 
     // TODO: iterate among all meta nodes..
@@ -216,12 +230,7 @@ Article &Article::operator=(const Article &other)
 
 bool Article::operator==(const Article &other) const
 {
-	return d->title == other.title() &&
-		d->link == other.link() &&
-		d->description == other.description() &&
-		d->pubDate == other.pubDate() &&
-		d->guid == other.guid() &&
-		d->guidIsPermaLink == other.guidIsPermaLink();
+	return d->guid == other.guid();
 }
 
 // vim:noet:ts=4

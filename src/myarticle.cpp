@@ -81,36 +81,7 @@ bool MyArticle::operator>(const MyArticle &other) const
 
 bool MyArticle::operator==(const MyArticle &other) const
 {
-   // play tricky here
-   // we return true if guids match, even if texts differ => helps ArticleSequence
-   // we return true if links match, ditto
-   // otherwise we check for complete equivalence
-    
-   //kdDebug() << "guid1= " << d->article.guid() << " guid2= "<<other.d->article.guid()<< endl;
-    //kdDebug() << "link1= " << d->article.link().prettyURL() <<" link2= "<< other.d->article.link().prettyURL()<<endl;
-    //kdDebug() << "title1= " << d->article.title() << " title2= "<<other.d->article.title()<<endl;
-    
-   if (!d->article.guid().isEmpty() && (d->article.guid() == other.d->article.guid()))
-      return true;
-
-   if (!d->article.title().isEmpty() && (d->article.title() == other.d->article.title()))
-   {
-       if (d->article.description() == other.d->article.description())
-         return true;
-   }
-
-   
-   //if (d->article.link().isValid() && (d->article.link() == other.d->article.link()))
-     // return true;
-
-   //if (d->article.pubDate().isValid() && (d->article.pubDate() == other.d->article.pubDate()))
-   //        return true;
-   //if (pubDate().isValid() && (pubDate() == other.pubDate()))
-   //   return true;
-
-   // FIXME it shouldn't be _that_ strict checking, should it?
-   return d->article   == other.d->article
-       && d->fetchDate == other.d->fetchDate;
+    return (d->article.guid() == other.d->article.guid());
 }
 
 int MyArticle::status() const
