@@ -84,11 +84,6 @@ public:
       */
     void addFeedToGroup(const QString& url, const QString& group);
     
-    /**
-     * Reimplemented from QWidget to prevent from closing when docked.
-     */
-    virtual void closeEvent(QCloseEvent* e);
-
     virtual void fontChange(const QFont &);
 
     void updateUnread(int);
@@ -114,7 +109,13 @@ protected:
      * with @ref saveProperties
      */
     void readProperties(KConfig *);
-
+    /** 
+     *  reimplemented to save settings 
+     */
+    virtual bool queryExit();
+      
+    virtual bool queryClose(); 
+     
 private slots:
     void fileNew();
     void fileOpen();

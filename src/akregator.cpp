@@ -59,8 +59,8 @@ bool BrowserInterface::haveWindowLoaded() const
 }
 
 aKregator::aKregator()
-    : KParts::MainWindow( 0L, "aKregator" )
-    , m_quit(false)
+    : KParts::MainWindow( 0L, "aKregator" ),
+    m_quit(false)
 {
     // set the shell's ui resource file
     setXMLFile("akregator_shell.rc");
@@ -150,11 +150,7 @@ void aKregator::loadLastOpenFile()
 }
 
 aKregator::~aKregator()
-{
-   if (m_part)
-       Settings::setLastOpenFile( m_part->url().url() );
-   Settings::writeConfig();
-}
+{}
 
 void aKregator::partChanged(KParts::ReadOnlyPart *p)
 {
@@ -348,15 +344,33 @@ void aKregator::disconnectActionCollection( KActionCollection *coll )
 }
 
 
+bool aKregator::queryExit()
+{
+    if( Settings::markAllFeedsReadOnExit() )
+        emit markAllFeedsRead();
+    
+    Settings::setLastOpenFile( m_part->url().url() );
+    Settings::writeConfig();  
+    return KParts::MainWindow::queryExit();
+}
+
+bool aKregator::queryClose()
+{
+    if (kapp->sessionSaving() || m_quit)
+        return m_part->queryClose();
+    else
+    {
+        KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
+        hide();
+    }
+    return false;
+
+}
 void aKregator::quitProgram()
 {
-    // will call queryClose()
-    m_quit = true;
-    if( Settings::markAllFeedsReadOnExit() )
-    {
-        emit markAllFeedsRead();
-    }
-    close();
+     m_quit = true;
+     close();
+     m_quit = false;
 }
 
 // from KonqFrameStatusBar
@@ -402,24 +416,6 @@ void aKregator::slotClearStatusText()
     m_statusLabel->setText(m_permStatusText);
 }
 
-void aKregator::closeEvent(QCloseEvent* e)
-{
-    if (!m_quit && !kapp->sessionSaving())
-    {
-        kdDebug() << "aKregator::closeEvent m_quit is false" << endl;
-        KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
-        hide();
-        e->ignore();
-    }
-    else
-    {
-        kdDebug() << "aKregator::closeEvent m_quit is true" << endl;
-        if (m_part->queryClose())
-            KMainWindow::closeEvent(e);
-    }
-    // Commenting this out fixes crash when quitting from system tray icon.  Why was it here? ..cramblitt
-    // m_quit = false;
-}
 
 void aKregator::slotStop()
 {
