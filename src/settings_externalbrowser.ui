@@ -25,7 +25,7 @@
                 <cstring>buttonGroup1</cstring>
             </property>
             <property name="title">
-                <string>When Article is Double-clicked</string>
+                <string>When Article is Double-Clicked</string>
             </property>
             <vbox>
                 <property name="name">
