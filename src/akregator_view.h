@@ -113,6 +113,8 @@ namespace Akregator
             /** session management **/
             virtual void readProperties(KConfig* config);
             virtual void saveProperties(KConfig* config);
+
+	    Frame *currentFrame() const { return m_currentFrame; }
             
         public slots:
             

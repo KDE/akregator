@@ -34,6 +34,7 @@
 #include "akregatorconfig.h"
 #include "akregator.h"
 #include "fetchtransaction.h"
+#include "frame.h"
 #include "myarticle.h"
 #include "settings_archive.h"
 #include "settings_browser.h"
@@ -718,6 +719,11 @@ void aKregatorPart::showOptions()
              m_trayIcon, SLOT(settingsChanged()) );
 
     dialog->show();
+}
+
+KParts::Part *aKregatorPart::hitTest(QWidget *widget, const QPoint &globalPos)
+{
+    return m_view->currentFrame()->part();
 }
 
 #include "akregator_part.moc"

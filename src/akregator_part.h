@@ -169,7 +169,8 @@ namespace Akregator
             /** FIXME: hack to get the tray icon working */
             QWidget* getMainWindow();
 
-            
+            virtual KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
+
         public slots:
             /**
              * Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings.
