@@ -128,7 +128,7 @@
   </entry>
   <entry key="External Browser Custom Command" type="String" >
    <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
-   <default>mozilla '%u'</default>
+   <default>mozilla -remote 'openURL(%u,new-tab)'</default>
   </entry>
   <entry key="Background Tab For Articles" type="Bool" >
    <label>Open new articles in background tabs</label>

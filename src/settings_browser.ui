@@ -136,7 +136,7 @@
                                 <bool>false</bool>
                             </property>
                             <property name="text">
-                                <string>mozilla '%u'</string>
+                                <string>mozilla -remote 'openURL(%u,new-tab)'</string>
                             </property>
                         </widget>
                     </hbox>
