@@ -82,7 +82,7 @@ QString FeedIconManager::iconLocation(const KURL & url) const
     return QString::null;
 }
 
-void FeedIconManager::slotIconChanged(bool isHost, QString hostOrURL,
+void FeedIconManager::slotIconChanged(bool /*isHost*/, QString hostOrURL,
                                   QString iconName)
 {
     emit iconChanged(hostOrURL,

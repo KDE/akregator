@@ -77,7 +77,7 @@ void AddFeedDialog::fetchCompleted(Feed *f)
    KDialogBase::slotOk();
 }
 
-void AddFeedDialog::fetchError(Feed *f)
+void AddFeedDialog::fetchError(Feed *)
 {
     KDialogBase::slotOk();
 }

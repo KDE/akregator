@@ -40,7 +40,7 @@ Criterion::Criterion( Subject subject, Predicate predicate, int object )
 bool Criterion::satisfiedBy( const MyArticle &article ) const
 {
     QString concreteSubject;
-    int intSubj;
+    int intSubj=0;
 
     switch ( m_subject ) {
         case Title:
