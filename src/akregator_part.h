@@ -96,6 +96,7 @@ namespace Akregator
             bool loading (){return m_loading;}
             
             virtual void fetchFeedUrl(const QString&);
+            virtual void fetchAllFeeds();
             
             /**
              * Add a feed to a group.

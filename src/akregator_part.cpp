@@ -558,6 +558,11 @@ void aKregatorPart::fileExport()
         exportFile(file_name);
 }
 
+void aKregatorPart::fetchAllFeeds()
+{
+    m_view->slotFetchAllFeeds();
+}
+
 void aKregatorPart::fetchFeedUrl(const QString&s)
 {
     kdDebug() << "fetchFeedURL=="<<s<<endl;
