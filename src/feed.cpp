@@ -18,6 +18,7 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kapplication.h>
+#include <klocale.h>
 
 #include <qtimer.h>
 #include <qdatetime.h>
@@ -356,10 +357,11 @@ void Feed::slotAbortFetch()
 
 void Feed::abortFetch()
 {
-    if(m_progressItem) {
+    /*if(m_progressItem) {
+        m_progressItem->setStatus(i18n("Fetch aborted"));
         m_progressItem->setComplete();
         m_progressItem = 0;
-    }
+    }*/
     if (m_loader)
     {
         m_loader->abort();
@@ -372,7 +374,7 @@ void Feed::tryFetch()
     m_fetchError = false;
     
     m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title(), QString::null, false);
-    connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
+    //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     
     m_loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     //connect(m_loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
@@ -383,14 +385,14 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
     // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
     // You don't need to do that anyway since Loader instances delete themselves.
-    if(m_progressItem) {
-        m_progressItem->setComplete();
-        m_progressItem = 0;
-    }
-    
-    if (status!= Success)
+
+    if (status != Success)
     {
-        if (m_followDiscovery && (status == ParseError) && (m_fetchTries < 3) && 			(l->discoveredFeedURL().isValid()))
+        if(status == RetrieveError) m_progressItem->setStatus(i18n("Feed File is Not Available"));
+        else if(status == ParseError) m_progressItem->setStatus(i18n("Parsing of Feed File Failed"));
+        m_progressItem->setComplete();
+        
+        if (m_followDiscovery && (status == ParseError) && (m_fetchTries < 3) && (l->discoveredFeedURL().isValid()))
         {
             m_fetchTries++;
             m_xmlUrl = l->discoveredFeedURL().url();
@@ -404,6 +406,11 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
             emit fetchError(this);
             return;
         }
+    }
+
+    if(m_progressItem) {
+        m_progressItem->setComplete();
+        m_progressItem = 0;
     }
 
     // Restore favicon.
