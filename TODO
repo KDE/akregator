@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000041 being the highest available (take this one for your next bug and increase here)
+          #000043 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -15,6 +15,9 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
+#000042 FIX [ ] "File | Save" without previously selected filename doesn't work (doesn't call "Save As...")
+#000041 FIX [ ] order for dateless items (right now they show in random order)
+                order should be: ordered for items with dates, order same as in rss for items without dates.
 #000040 ADD [ ] finally, add some configuration options
                 [ ] default LiveJournal username and password (use KWallet)
                 [ ] last open opml file
