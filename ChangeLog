@@ -5,10 +5,13 @@ aKregator ChangeLog
 Changes after 1.0b6:
 -----------------------------
 New features:
-       - Add "Fetch All Feeds" into context menu of trayicon -tpr
 
 Changes:
+
+#84133,
+#85691 - added KMail-like key bindings -fo
        - Advanced archive options: Limit article number, disable archive -fo
+       - Add "Fetch All Feeds" into context menu of trayicon -tpr
        - Show position of the tray icon with image in dialog when pressing the close button -tpr
        - Display proper error message when no feed found in add feed -tpr
        - make systray icon optional (Patch by Christof Musik,
@@ -17,6 +20,7 @@ Changes:
        - Expiry support added -fo 
       
 Bug fixes:
+#85409 - Resolve entities in feed titles -fo
 #90671 - Shutdown properly hopefully fixes #89172 too -tpr
          
 Changes after 1.0b5:
