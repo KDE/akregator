@@ -26,7 +26,8 @@ FeedDetectorEntryList FeedDetector::extractFromLinkTags(const QString& s)
 
     // extracts the URL (href="url")
     QRegExp reHref("HREF[\\s]?=[\\s]?\\\"([^\\\"]*)\\\"", false);
-
+    // extracts type attribute
+    QRegExp reType("TYPE[\\s]?=[\\s]?\\\"([^\\\"]*)\\\"", false);
     // extracts the title (title="title")
     QRegExp reTitle("TITLE[\\s]?=[\\s]?\\\"([^\\\"]*)\\\"", false);
 
@@ -50,15 +51,26 @@ FeedDetectorEntryList FeedDetector::extractFromLinkTags(const QString& s)
 
     for ( QStringList::Iterator it = linkTags.begin(); it != linkTags.end(); ++it )
     {
+        QString type;
+        int pos = reType.search(*it, 0);
+        if (pos != -1)
+            type = reHref.cap(1).lower();
+
+        // we accept only type attributes indicating a feed or omitted type attributes
+        if ( !type.isEmpty() && type != "application/rss+xml" && type != "application/rdf+xml"
+             && type != "application/atom+xml" )
+            break;
+                
         QString title;
-        int tpos = reTitle.search(*it, 0);
-        if (tpos != -1)
+        pos = reTitle.search(*it, 0);
+        if (pos != -1)
         title = reTitle.cap(1);
 
         QString url;
-        int upos = reHref.search(*it, 0);
-        if (upos != -1)
+        pos = reHref.search(*it, 0);
+        if (pos != -1)
             url = reHref.cap(1);
+
 
         // if feed has no title, use the url as preliminary title (until feed is parsed)
         if ( title.isEmpty() )
