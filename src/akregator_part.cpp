@@ -171,13 +171,13 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
     {
-        emit m_extension->loadingProgress(-1);
+        setProgress(-1);
         return false;
     }
 
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
     {
-        emit m_extension->loadingProgress(-1);
+        setProgress(-1);
         return false;
     }
 

@@ -326,7 +326,7 @@ void aKregator::fontChange(const QFont & /* oldFont */)
 
 void aKregator::loadingProgress(int percent)
 {
-    if ( percent != -1 && percent != 100 ) // hide on 100 too
+    if ( percent > -1 && percent < 100 )
     {
         if ( !m_progressBar->isVisible() )
             m_progressBar->show();

@@ -346,6 +346,9 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
+    connect( feed, SIGNAL(fetchError(Feed* )),
+             this, SLOT(slotFeedFetchError(Feed *)) );
+    
     Archive::load(feed);
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
@@ -816,6 +819,20 @@ void aKregatorView::markAllRead(QListViewItem *item)
     }
 }
 
+void aKregatorView::findNumFetches(QListViewItem *item)
+{
+    if (item)
+    {
+        FeedGroup *fg = m_feeds.find(item);
+        if (fg && fg->isGroup()){
+            for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
+                findNumFetches(it);
+        }
+        else{
+            m_fetches++;
+        }
+    }
+}
 
 void aKregatorView::fetchItem(QListViewItem *item)
 {
@@ -837,14 +854,29 @@ void aKregatorView::fetchItem(QListViewItem *item)
     }
 }
 
+void aKregatorView::showFetchStatus(QListViewItem *firstItem)
+{
+    m_fetchesDone=0;
+    m_fetches=0;
+    findNumFetches(firstItem);
+    if (m_fetches)
+    {
+        m_part->setStatusBar(i18n("Fetching Feeds..."));
+        m_part->setProgress(0);
+    }
+}
+
 void aKregatorView::slotFetchCurrentFeed()
 {
+    showFetchStatus(m_tree->currentItem());
     fetchItem(m_tree->currentItem());
 }
 
 void aKregatorView::slotFetchAllFeeds()
 {
     // this iterator iterates through ALL child items
+    showFetchStatus(m_tree->firstChild());
+    
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
     {
         kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
@@ -875,7 +907,21 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     if (fti)
         fti->setUnread(feed->unread());
 
+    m_fetchesDone++;
+    int p=int(100*((double)m_fetchesDone/(double)m_fetches));
+    if (p>=100)
+        m_part->setStatusBar(QString::null);
+    m_part->setProgress(p);
     //kdDebug() << k_funcinfo << "END" << endl;
+}
+
+void aKregatorView::slotFeedFetchError(Feed *feed)
+{
+    m_fetchesDone++;
+    int p=int(100*((double)m_fetchesDone/(double)m_fetches));
+    if (p>=100)
+        m_part->setStatusBar(QString::null);
+    m_part->setProgress(p);
 }
 
 void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)

@@ -103,7 +103,8 @@ namespace Akregator
              * Feed has been fetched, populate article view if needed and update counters.
              */
             void slotFeedFetched(Feed *);
-
+            void slotFeedFetchError(Feed *feed);
+            
             /**
              * Populate article view with articles from selected feed.
              */
@@ -184,6 +185,9 @@ namespace Akregator
             bool itemMatches (ArticleListItem *item);
             void itemAdded(ArticleListItem *item);
 
+            void showFetchStatus(QListViewItem *firstItem);
+            void findNumFetches(QListViewItem *item);
+            
             /**
              * A tree of all feeds (Columns, Subscriptions).
              */
@@ -216,6 +220,9 @@ namespace Akregator
             int m_queuedSearches;
             QString m_queuedSearch;
 
+            int m_fetches;
+            int m_fetchesDone;
+            
             QSplitter *m_panner1, *m_panner2;
             aKregatorPart *m_part;
             ArticleFilter *m_currentTextFilter;
