@@ -15,15 +15,15 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
-#000003 ADD [ ] sort ArticleList by Article::pubDate
-#000038 ADD [ ] add isOpen=<bool> to feed group outline opml
-#000037 ADD [ ] add favicon support to the FeedsTree
+#000003 ADD [ ] sort ArticleList by Article::pubDate -->berkus
+#000038 ADD [ ] add isOpen=<bool> to feed group outline opml -->berkus
+#000037 ADD [ ] add favicon support to the FeedsTree -->smt
 #000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
 #000032 ADD [+] proposals for librss:
                 [+] add complete RSS 2.0 support to Article, namely add Article::pubDate, const QString& Article::guid() and bool Article::guidIsPermalink();
                 [-] put unparsed <item> children into QMap and add const QString& attribute(const QString &tagName) (almost any other rss, the only problem is that there are many <tag attrib1="x" attrib2="y"> in feeds..);
                 [ ] add Document::timeToLive() in minutes - time to cache (RSS 2.0).
-				[ ] add content:encoded support (see http://weblog.delacour.net/archives/000770.html)
+                [ ] add content:encoded support (see http://weblog.delacour.net/archives/000770.html)
 #000031 ADD [ ] Autosave: Remember feeds list in "current" file
 #000029 CHG [ ] "Modify" should enable in-line edit for feed group items, standard dialog for feeds
 #000021 ADD [ ] store fetched articles to Article Archive
@@ -43,7 +43,7 @@ ADD new feature
 #000010 ADD [ ] code doxymentation
 #000011 ADD [ ] draw appropriate app icons
 #000020 ADD [ ] announce on the <kde-announce@kde.org> mailing list
-#000013 FIX [ ] list generated files in .cvsignore files -- add addfeeddialog.{cpp,h}
+#000013 FIX [x] list generated files in .cvsignore files
 #000022 ADD [ ] configure.in.in magic to detect librss presence
 #000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that images and css can be embedded in article preview
 
