@@ -151,7 +151,7 @@ void Part::setupActions()
 
 Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
-    : DCOPObject("AkregatorIface"), MyBasePart(parent, name), m_parentWidget(parentWidget)
+    : DCOPObject("AkregatorIface"), MyBasePart(parent, name), m_shuttingDown(false), m_parentWidget(parentWidget)
 {
     m_mergedPart = 0;
     // we need an instance
@@ -177,11 +177,21 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
             kapp, SLOT(quit())) ;
 
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
+    
+    connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutdown()));
+    
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
     setupActions();
 }
 
+void Part::slotOnShutdown()
+{
+    m_shuttingDown = true;
+    saveSettings();
+    saveFeedList();
+    m_view->slotOnShutdown();
+}
 
 void Part::saveSettings()
 {
@@ -190,8 +200,8 @@ void Part::saveSettings()
 
 Part::~Part()
 {
-    saveSettings();
-    saveFeedList();
+    if (!m_shuttingDown)
+        slotOnShutdown();
 }
 
 void Part::setCaption(const QString &text)

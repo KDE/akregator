@@ -159,6 +159,7 @@ namespace Akregator
             virtual void partActivateEvent(KParts::PartActivateEvent* event);
 
         protected slots:
+            void slotOnShutdown();
             void fileOpen();
             void fileImport();
             void fileExport();
@@ -178,6 +179,7 @@ namespace Akregator
             QString m_standardFeedList;
             bool m_standardListLoaded;
             bool m_loading;
+            bool m_shuttingDown;
 
             KURL m_delayURL;
             KParts::BrowserExtension *m_extension;

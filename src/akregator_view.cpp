@@ -77,13 +77,13 @@ using namespace Akregator;
 
 View::~View()
 {
-    // if m_shuttingDown is false, slotOnShutDown was not called. That
+    // if m_shuttingDown is false, slotOnShutdown was not called. That
      // means that not the whole app is shutdown, only the part. So it
     // should be no risk to do the cleanups now
     if (!m_shuttingDown)
     {
-        kdDebug() << "View::~View(): slotOnShutDown() wasn't called. Calling it now." << endl;
-        slotOnShutDown();
+        kdDebug() << "View::~View(): slotOnShutdown() wasn't called. Calling it now." << endl;
+        slotOnShutdown();
     }
     kdDebug() << "View::~View(): leaving" << endl;
     
@@ -92,9 +92,7 @@ View::~View()
 View::View( Part *part, QWidget *parent, const char *name)
  : QWidget(parent, name), m_viewMode(NormalView)
 {
-    connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutDown()));
-    
-    m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part = part;
     m_feedList = new FeedList();
     m_shuttingDown = false;
@@ -265,9 +263,9 @@ void View::delayedInit()
         QTimer::singleShot(500, this, SLOT(delayedInit()));
 }
 
-void View::slotOnShutDown()
+void View::slotOnShutdown()
 {
-    kdDebug() << "entering View::slotOnShutDown()" << endl;
+    kdDebug() << "entering View::slotOnShutdown()" << endl;
     m_shuttingDown = true; // prevents slotFrameChanged from crashing
 
     m_transaction->stop();
