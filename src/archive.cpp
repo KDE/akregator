@@ -54,11 +54,11 @@ void Archive::load(Feed *f)
     QFile file(filePath);
     
     if ( !file.open( IO_ReadOnly ) ) {
-        kdDebug() << "load error"<<endl;
         return;
     }
     
     QTextStream stream( &file );
+    stream.setEncoding(QTextStream::Unicode);
     QString data=stream.read();
     QDomDocument doc;
     
@@ -100,9 +100,11 @@ void Archive::save(Feed *f)
     }
     
     QTextStream stream( &file );
+    stream.setEncoding(QTextStream::Unicode);
     
     QDomDocument doc;
-    doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
+    QDomProcessingInstruction z = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
+    doc.appendChild( z );
     
     QDomElement root = doc.createElement( "rss" );
     root.setAttribute("version","2.0");
