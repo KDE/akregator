@@ -321,6 +321,14 @@ void ArticleViewer::showSummary(Feed *f)
     }
     else m_currentText += "<div id=\"body\">";
 
+    
+    if ( !f->htmlUrl().isEmpty() )
+    {
+        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->htmlUrl()));
+        m_currentText += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(f->htmlUrl()).arg(f->htmlUrl());
+        m_currentText += "</div>\n"; // / link
+    }
+    
     if(f->description() && !f->description().isEmpty()) {
         m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->description()));
         m_currentText += i18n("<b>Description:</b> %1").arg(f->description());
