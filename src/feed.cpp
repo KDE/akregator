@@ -281,12 +281,13 @@ void Feed::loadFavicon()
 {
     if (!m_transaction)
 	return;
-
     m_transaction->loadIcon(this);
 }
 
 void Feed::setFavicon(const QPixmap &p)
 {
+    if (p.isNull())
+	return;
     if (!m_fetchError && item())
             item()->setPixmap(0, p);
     favicon=p;
@@ -294,6 +295,8 @@ void Feed::setFavicon(const QPixmap &p)
 
 void Feed::setImage(const QPixmap &p)
 {
+    if (p.isNull())
+        return;
     image=p;
     QString u=xmlUrl;
     image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");

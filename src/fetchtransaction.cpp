@@ -19,6 +19,8 @@ FetchTransaction::FetchTransaction(QObject *parent): QObject(parent, "transactio
 {
     m_concurrentFetches=Settings::concurrentFetches();
     m_running=false;
+
+    connect (FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)), this, SLOT(slotFaviconFetched(const QString &, const QPixmap &)));
 }
 
 FetchTransaction::~FetchTransaction()
@@ -47,8 +49,6 @@ void FetchTransaction::stop()
     for (f=m_currentFetches.first(); f; f=m_currentFetches.next())
         f->abortFetch();
     
-    disconnect(FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)));
-
     Image *i;
     for (i=m_currentImageFetches.first(); i; i=m_currentImageFetches.next())
         i->abort();
@@ -68,7 +68,7 @@ void FetchTransaction::doFetch(int c)
     Feed *f=m_fetchList.at(c);
     if (!f) return;
     //kdDebug() << "starting fetch: "<<f->title()<<endl;
-    f->fetch();
+    f->fetch(false, this);
     m_currentFetches.append(f);
     m_fetchList.remove(c);
 }
@@ -122,9 +122,6 @@ void FetchTransaction::loadIcon(Feed *f)
         m_iconFetchList.append(f);
 
     m_iconFetchDict.insert(h, f);
-    connect (FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)
-), this, SLOT(slotFaviconFetched(const QString &, const QPixmap &)));
-
 }
 
 void FetchTransaction::doFetchIcon(int c)
@@ -133,7 +130,7 @@ void FetchTransaction::doFetchIcon(int c)
     if (!f) return;
     KURL u(f->xmlUrl);
     QString h=u.host();
-    FeedIconManager::self()->loadIcon(h);
+    FeedIconManager::self()->loadIcon("http://"+h);
     m_iconFetchList.remove(c);
 }
 
@@ -141,7 +138,7 @@ void FetchTransaction::startFetchIcons()
 {
     int i=0;
     m_running=true;
-    
+
     while (i < m_concurrentFetches)
     {
         doFetchIcon(0);
