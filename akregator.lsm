@@ -2,8 +2,8 @@ Begin3
 Title:          akregator
 Version:        1.0-beta3 "Teemu"
 Entered-date:   
-Description:    RSS Aggregation tool for KDE
-Keywords:       rss aggregation syndication feed articles KDE Qt
+Description:    Feed feader for KDE
+Keywords:       rss atom aggregation syndication feed articles KDE Qt
 Author:         Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
 Maintained-by:  Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
 Primary-site:   
