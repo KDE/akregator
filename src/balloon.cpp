@@ -29,7 +29,7 @@
 
 using namespace Akregator;
 
-Balloon::Balloon(const QString &text)
+Akregator::Balloon::Balloon(const QString &text)
 : QWidget(0L, "Balloon", WStyle_StaysOnTop | WStyle_Customize |
 	WStyle_NoBorder | WStyle_Tool  | WX11BypassWM)
 {
@@ -105,13 +105,13 @@ Balloon::Balloon(const QString &text)
 		this, SLOT(hide()));
 }
 
-void Balloon::setAnchor(const QPoint &anchor)
+void Akregator::Balloon::setAnchor(const QPoint &anchor)
 {
 	mAnchor = anchor;
 	updateMask();
 }
 
-void Balloon::updateMask()
+void Akregator::Balloon::updateMask()
 {
 	QRegion mask(10, 10, width() - 20, height() - 20);
 
@@ -158,7 +158,7 @@ void Balloon::updateMask()
 
 }
 
-void Balloon::addArticle(const QString&feed, const QPixmap&p, const QString&art)
+void Akregator::Balloon::addArticle(const QString&feed, const QPixmap&p, const QString&art)
 {
 	QString title=KStringHandler::rPixelSqueeze(feed, QFontMetrics(m_articleList->font()), m_articleList->width()/4);
 	title=title+art;
