@@ -179,9 +179,6 @@ void Feed::fetch(bool followDiscovery)
         item()->setPixmap(0, tempIcon);
     }
 
-    // change cursor to show it's fetching
-    KApplication::setOverrideCursor( waitCursor );
-
     tryFetch();
 }
 
@@ -204,9 +201,6 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
     // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
     // You don't need to do that anyway since Loader instances delete themselves.
-
-    // restore cursor
-    KApplication::restoreOverrideCursor();
 
     if (status!= Success)
     {
