@@ -129,7 +129,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveFrame() ) );
 
-    m_tabsClose->setIconSet( SmallIcon( "tab_remove" ) );
+    m_tabsClose->setIconSet( SmallIconSet( "tab_remove" ) );
     m_tabsClose->adjustSize();
     QToolTip::add(m_tabsClose, i18n("Close the current tab"));
     m_tabs->setCornerWidget( m_tabsClose, TopRight );
