@@ -51,20 +51,6 @@ ArticleListItem::~ArticleListItem()
     delete d;
 }
 
-/*
-int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
-{
-    ArticleListItem *item = static_cast<ArticleListItem *>(i);
-    if (!item) return 0;
-
-    if ( item->d->article.pubDate().isValid() && d->article.pubDate().isValid() )
-    {
-        int diff = d->article.pubDate().secsTo( item->d->article.pubDate() );
-        return ascending ? diff : -diff;
-    }
-
-    return 0;
-}*/
 
 MyArticle& ArticleListItem::article()
 {
@@ -92,6 +78,18 @@ void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int colu
 }
 
 
+int ArticleListItem::compare(QListViewItem *i, int col, bool ascending) const {
+    if (col == 1) {
+        ArticleListItem *item = dynamic_cast<ArticleListItem *>(i);
+        if (item && item->d->article.pubDate().isValid() && d->article.pubDate().isValid()) {
+            return ascending ?
+		    item->d->article.pubDate().secsTo(d->article.pubDate()) :
+		    -d->article.pubDate().secsTo(item->d->article.pubDate());
+        }
+    }
+    return KListViewItem::compare(i, col, ascending);
+}
+
 /* ==================================================================================== */
 
 ArticleList::ArticleList(QWidget *parent, const char *name)
@@ -107,7 +105,9 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
     setFullWidth(false);
-    setSorting(-1); // do not sort in the listview, Feed will take care of sorting
+    //setSorting(-1); // do not sort in the listview, Feed will take care of sorting
+    setSorting(1, false);
+    setShowSortIndicator(true);
     setDragAutoScroll(true);
     setDropHighlighter(false);
 

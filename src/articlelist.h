@@ -29,7 +29,7 @@ namespace Akregator
             MyArticle& article();
             Feed *feed();
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
-            
+            virtual int compare(QListViewItem *i, int col, bool ascending) const;
         private:
             struct Private;
             Private *d;
