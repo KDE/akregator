@@ -126,7 +126,10 @@ namespace RSS
           */
          const QDateTime &pubDate() const;
          
-         QString meta(const QString &key) const;
+		 const KURL &commentsLink() const;
+		 int comments() const;
+
+		 QString meta(const QString &key) const;
          
          /**
           * @param parent The parent widget for the KURLLabel.

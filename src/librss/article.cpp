@@ -29,6 +29,8 @@ struct Article::Private : public Shared
 	QString guid;
 	bool guidIsPermaLink;
     MetaInfoMap meta;
+	KURL commentsLink;
+	int numComments;
 };
 
 Article::Article() : d(new Private)
@@ -44,9 +46,10 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 {
 	QString elemText;
 
+	d->numComments=0;
+
 	if (!(elemText = extractNode(node, QString::fromLatin1("title"))).isNull())
 		d->title = elemText;
-   
    
 	if (format==AtomFeed)
 	{
@@ -107,6 +110,14 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		d->pubDate.setTime_t(_time);
 	}
 
+	if (!(elemText = extractNode(node, QString::fromLatin1("wfw:comment"))).isNull()) {
+		d->commentsLink = elemText;
+	}
+
+    if (!(elemText = extractNode(node, QString::fromLatin1("slash:comments"))).isNull()) {
+        d->numComments = elemText.toInt();
+    }
+
 
     // XXX: doesn't this check for the node twice? 
     //      perhaps after finding the node, we can make an extratData fcn
@@ -165,6 +176,17 @@ const QDateTime &Article::pubDate() const
 {
 	return d->pubDate;
 }
+
+const KURL &Article::commentsLink() const
+{
+	return d->commentsLink;
+}
+
+int Article::comments() const
+{
+	return d->numComments;
+}
+
 
 QString Article::meta(const QString &key) const
 {
