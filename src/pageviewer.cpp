@@ -33,7 +33,8 @@ bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args
     return true;*/
     kdDebug() << "PageViewer: Open url request: " << url << endl;
     if(Viewer::slotOpenURLRequest(url, args)) return true;
-    openURL(url);
+    if(openURL(url)) return true;
+    return false;
 }
 // and is this used in somewhere -tpr 20040825
 void PageViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &)
