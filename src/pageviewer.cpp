@@ -253,8 +253,9 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
 
 void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
-    QString url = kurl.url();
-
+    m_url = kurl;
+    QString url = kurl.url(); // maximal url confusion
+    
     // if true show popup menu for link. Maybe that doesn't work properly when using frames
     bool isLink = kurl != Viewer::url();
     
@@ -284,7 +285,10 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         }
     }
     else // we are not on a link
-    {    
+    {
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkExternal()));
+        popup.insertSeparator();
+        
         m_backAction->plug( &popup );
         m_forwardAction->plug( &popup );
         m_reloadAction->plug(&popup);

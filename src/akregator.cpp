@@ -282,8 +282,8 @@ bool AkregatorMainWindow::queryExit()
 {
     if(m_part)
         static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
-
-    delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
+    if ( !kapp->sessionSaving() )
+        delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
     return KParts::MainWindow::queryExit();
 }
 
