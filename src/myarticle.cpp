@@ -140,6 +140,14 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
         parent.appendChild(snode);
     }
     
+    if (!guid().isEmpty())
+    {
+        QDomElement gnode = doc.createElement( "guid" );
+        QDomText gt=doc.createTextNode(link().url());
+        gnode.appendChild(gt);
+        parent.appendChild(gnode);
+    }
+    
     if (pubDate().isValid())
     {
         QDomElement pnode = doc.createElement( "pubDate" );
