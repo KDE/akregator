@@ -10,6 +10,7 @@
 #include "feedstree.h"
 #include "feed.h"
 #include "feeditem.h"
+//#include "feedlist.h"
 #include "treenode.h"
 #include "treenodeitem.h"
 
@@ -63,6 +64,27 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
 
 FeedsTree::~FeedsTree()
 {}
+/*
+void FeedsTree::setFeedList(FeedList* feedList)
+{
+    if (feedList == m_feedList)
+         return;
+    clear();
+
+    m_feedList = feedList;
+
+    FeedGroup* rootNode = feedList->rootNode();
+    if (!rootNode)
+        return;
+    FeedGroupItem* ri = new FeedGroupItem(this, rootNode );
+    m_itemDict.insert(rootNode, ri);
+    connectToNode(rootNode);
+
+    // add items for children recursively
+    QPtrList<TreeNode> children = rootNode->children();
+     for (TreeNode* i = children.first(); i; i = children.next() )
+        slotNodeAdded(i);
+}*/
 
 void FeedsTree::takeNode(QListViewItem* item)
 {
@@ -103,7 +125,7 @@ TreeNode* FeedsTree::selectedNode()
 
 void FeedsTree::setSelectedNode(TreeNode* node)
 {
-    TreeNodeItem* item = m_itemDict.find(node);
+    TreeNodeItem* item = findNodeItem(node);
     if ( node && item )
         setSelected(item, true);
 }
@@ -138,13 +160,17 @@ void FeedsTree::ensureNodeVisible(TreeNode* node)
 }
 void FeedsTree::clear()
 {
-//    kdDebug() << "enter FeedsTree::clear()" << endl;
-    KListView::clear();
+    QPtrDictIterator<TreeNodeItem> it(m_itemDict);
+    for( ; it.current(); ++it )
+        disconnectFromNode( it.current()->node() );
     m_itemDict.clear();
-    FeedGroup* rootNode = new FeedGroup(i18n("All Feeds"));
-    FeedGroupItem *elt = new FeedGroupItem(this, rootNode );
-    m_itemDict.insert(rootNode, elt);
-    connectToNode(rootNode);
+    //m_feedList = 0;
+    
+    KListView::clear();
+    FeedGroup* r = new FeedGroup(i18n("All Feeds"));
+    FeedGroupItem* ri = new FeedGroupItem(this, r );
+    m_itemDict.insert(r, ri);
+    connectToNode(r);
 }
 
 void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
@@ -501,7 +527,7 @@ void FeedsTree::slotFeedFetchStarted(Feed* feed)
     // Disable icon to show it is fetching.
     if (!feed->favicon().isNull())
     {
-        TreeNodeItem* item = m_itemDict.find(feed);
+        TreeNodeItem* item = findNodeItem(feed);
         KIconEffect iconEffect;
         QPixmap tempIcon = iconEffect.apply(feed->favicon(), KIcon::Small, KIcon::DisabledState);
         item->setPixmap(0, tempIcon);
@@ -511,93 +537,86 @@ void FeedsTree::slotFeedFetchStarted(Feed* feed)
 
 void FeedsTree::slotFeedFetchAborted(Feed* feed)
 {
-    TreeNodeItem* item = m_itemDict.find(feed);
+    TreeNodeItem* item = findNodeItem(feed);
     if (item)
         item->nodeChanged();
 }
 
 void FeedsTree::slotFeedFetchError(Feed* feed)
 {
-    TreeNodeItem* item = m_itemDict.find(feed);
+    TreeNodeItem* item = findNodeItem(feed);
     if (item)
         item->nodeChanged();
 }
 
 void FeedsTree::slotFeedFetchCompleted(Feed* feed)
 {
-    TreeNodeItem* item = m_itemDict.find(feed);
+    TreeNodeItem* item = findNodeItem(feed);
     if (item)
         item->nodeChanged();
 }
       
-void FeedsTree::slotNodeAdded(FeedGroup* parent, TreeNode* node)
+void FeedsTree::slotNodeAdded(TreeNode* node)
 {
-//     kdDebug() << "enter FeedsTree::slotNodeAdded node: " << (node ? node->title() : 0) << endl;
-         
-    if (!node || !parent)
+    if (!node)
         return;
- 
+
+    FeedGroup* parent = node->parent();
+    FeedGroupItem* parentItem = static_cast<FeedGroupItem*>(findNodeItem(parent));
+        
+    // we aren't interested in nodes whose parents we don't know 
+    if (!parentItem)
+        return;
+
+    TreeNodeItem* item = findNodeItem(node);
+    
     QPtrList<TreeNode> children = parent->children();
     children.find(node);
     TreeNode* prev = children.prev();
-    TreeNodeItem* prevItem = m_itemDict.find(prev); 
-    FeedGroupItem* parentItem = static_cast<FeedGroupItem*>(findNodeItem(parent));
     
-    if (node->isGroup())
+    if (!item)
     {
-        FeedGroup* fg = static_cast<FeedGroup*>(node);  
-                       
-        FeedGroupItem* fgi = static_cast<FeedGroupItem*> (m_itemDict.find(node));
-        if (!fgi)
+        if (node->isGroup())
         {
-            if (prevItem)
-                fgi = new FeedGroupItem( parentItem, prevItem, fg);
+            FeedGroup* fg = static_cast<FeedGroup*>(node);
+            if (prev)
+                item = new FeedGroupItem( parentItem, findNodeItem(prev), fg);
             else
-                fgi = new FeedGroupItem( parentItem, fg);
-            
-            m_itemDict.insert(fg, fgi);
+                item = new FeedGroupItem( parentItem, fg);
+
+            QPtrList<TreeNode> children = fg->children();
+
+            // add children recursively. hope that works, not used yet
+            for (TreeNode* i = children.first(); i; i = children.next() )
+                slotNodeAdded(i);
         }
         else
         {
-            insertNode(parentItem, fgi, prevItem);    
-            if (!selectedItem())
-                setSelected(fgi, true);
+            Feed* f = static_cast<Feed*> (node);
+            if (prev)
+                item = new FeedItem( parentItem, findNodeItem(prev), f );
+            else
+                item = new FeedItem( parentItem, f );
         }
+        m_itemDict.insert(node, item);
     }
     else
     {
-        Feed* f = static_cast<Feed*> (node);
-        FeedGroupItem* parent = static_cast<FeedGroupItem*>(findNodeItem(node->parent()));
-        FeedItem* fi = static_cast<FeedItem*> (m_itemDict.find(f));
-        if (!fi)
-        {   
-            if (prevItem)        
-                fi = new FeedItem( parent, prevItem, f );
-            else
-                fi = new FeedItem( parent, f );
-                m_itemDict.insert(f, fi);
-        }
-        else
-        {
-            insertNode(parentItem, fi, prevItem);            
-            if (!selectedItem())
-                setSelected(fi, true);
-        }    
-     
+        insertNode(parentItem, item, findNodeItem(prev));
+        if (!selectedItem())
+            setSelected(item, true);
     }
+
     connectToNode(node);
-//     kdDebug() << "leave FeedsTree::slotNodeAdded node: " << node->title() << endl;
 }
 
 void FeedsTree::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
 {
-//     kdDebug() << "enter FeedsTree::slotNodeRemoved node: " << (node ? node->title() : "null") << endl;
     if (!node)
         return;
     
     disconnectFromNode(node);    
     takeNode(findNodeItem(node));
-//     kdDebug() << "leave FeedsTree::slotNodeRemoved node: " << (node ? node->title() : "null") << endl;
 }
 
 void FeedsTree::connectToNode(TreeNode* node)
@@ -606,8 +625,8 @@ void FeedsTree::connectToNode(TreeNode* node)
     {
         FeedGroup* fg = static_cast<FeedGroup*>(node);
                        
-        connect(fg, SIGNAL(signalChildAdded(FeedGroup*, TreeNode*)), this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*) ));
-        connect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*) ));
+        connect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
+        connect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeRemoved(FeedGroup*, TreeNode*) ));
         connect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
         connect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }
@@ -629,7 +648,7 @@ void FeedsTree::disconnectFromNode(TreeNode* node)
     if (node->isGroup())
     {
         FeedGroup* fg = static_cast<FeedGroup*> (node);
-        disconnect(fg, SIGNAL(signalChildAdded(FeedGroup*, TreeNode*)), this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*) ));
+        disconnect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
         disconnect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeRemoved(FeedGroup*, TreeNode*) ));
         
         disconnect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));

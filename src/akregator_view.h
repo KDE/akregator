@@ -36,6 +36,7 @@ namespace Akregator
     class FeedsTree;
     class FeedGroup;
     class FeedGroupItem;
+    //class FeedList;
     class ArticleList;
     class ArticleListItem;
     class ArticleViewer;
@@ -301,13 +302,15 @@ namespace Akregator
         private:
 
             enum ViewMode { NormalView=0, WidescreenView, CombinedView };  
-    
+
+            /** the model of the feed tree */
+            //FeedList* m_feedList;
             /**
              * A tree of all feeds (Columns, Subscriptions).
              */
             FeedsTree *m_tree;
 
-            /**
+             /**
              * List of documents for currently selected feed.
              */
             ArticleList *m_articles;

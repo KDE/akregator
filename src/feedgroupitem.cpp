@@ -52,6 +52,5 @@ void FeedGroupItem::setOpen(bool open)
 }
 
 FeedGroupItem::~FeedGroupItem()
-{
-}
+{}
 

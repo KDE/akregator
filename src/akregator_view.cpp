@@ -23,6 +23,7 @@
 #include "feeditem.h"
 #include "feedgroup.h"
 #include "feedgroupitem.h"
+//#include "feedlist.h"
 #include "akregatorconfig.h"
 #include "pageviewer.h"
 #include "articlefilter.h"
@@ -451,7 +452,7 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
         m_mainFrame->setProgress(int(100*((double)curNodes/(double)numNodes)));
         i = i.nextSibling();
     }
-    
+
     // these are disabled before to prevent crashes caused by dnd while loading the feed list:
     m_tree->setItemsMovable(true);
     m_tree->setDragEnabled(true);

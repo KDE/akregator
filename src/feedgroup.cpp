@@ -79,7 +79,7 @@ void FeedGroup::insertChild(uint index, TreeNode* node)
         connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
         updateUnreadCount();    
-        emit signalChildAdded(this, node);
+        emit signalChildAdded(node);
         modified();
     }   
 //    kdDebug() << "leave FeedGroup::insertChild(int, node) " << node->title() << endl; 
@@ -95,7 +95,7 @@ void FeedGroup::appendChild(TreeNode* node)
         connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
         updateUnreadCount();    
-        emit signalChildAdded(this, node);
+        emit signalChildAdded(node);
         modified();
     }    
 //    kdDebug() << "leave FeedGroup::appendChild() " << node->title() << endl;
@@ -111,7 +111,7 @@ void FeedGroup::prependChild(TreeNode* node)
         connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
         updateUnreadCount();    
-        emit signalChildAdded(this, node);
+        emit signalChildAdded(node);
         modified();
     }    
 //    kdDebug() << "leave FeedGroup::prependChild() " << node->title() << endl;

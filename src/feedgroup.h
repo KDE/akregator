@@ -108,12 +108,10 @@ namespace Akregator
             virtual void setOpen(bool open);
             
         signals:
-            /** emitted when a child was added
-            first param: this group, second param: the added child node*/
-            void signalChildAdded(FeedGroup*, TreeNode*);
+            /** emitted when a child was added */
+            void signalChildAdded(TreeNode*);
 
-            /** emitted when a child was removed
-            first param: this group, second param: the removed child node*/
+            /** emitted when a child was removed */
             void signalChildRemoved(FeedGroup*, TreeNode*);
                        
         public slots:

@@ -41,8 +41,7 @@ TreeNodeItem::TreeNodeItem(FeedGroupItem* parent, TreeNodeItem* after, TreeNode*
     
 
 TreeNodeItem::~TreeNodeItem()
-{
-}
+{}
 
 TreeNode* TreeNodeItem::node()
 { 

@@ -18,6 +18,7 @@ namespace Akregator
     class Feed;
     class FeedGroup;
     class FeedGroupItem;
+//    class FeedList;
     class TreeNode;
     class TreeNodeItem;
     
@@ -27,7 +28,10 @@ namespace Akregator
         public:
             FeedsTree( QWidget *parent = 0, const char *name = 0 );
             ~FeedsTree();
-
+            
+            /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
+//            void setFeedList(FeedList* feedList);
+            
             /** Returns root node ("All Feeds").
              * @return root node
              */
@@ -46,7 +50,8 @@ namespace Akregator
             /** Find item belonging to tree node @c node, @c null when node is not in tree
             @return item representing node  
             @param node a tree node
-             */            
+             */
+
             TreeNodeItem* findNodeItem(TreeNode* node);
             
             /** Find first node with title @c title
@@ -126,7 +131,7 @@ namespace Akregator
             void slotNextUnreadFeed();
             
             /** called when a node is added to the tree. If no item for the node exists, it will be created */
-            virtual void slotNodeAdded(FeedGroup* parent, TreeNode* node);
+            virtual void slotNodeAdded(TreeNode* node);
             
             /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
             
@@ -153,6 +158,7 @@ namespace Akregator
         private:
             /** used for finding the item belonging to a node */
             QPtrDict<TreeNodeItem> m_itemDict;
+       //     FeedList* m_feedList;
     };
 
 }
