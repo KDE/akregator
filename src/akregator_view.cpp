@@ -133,9 +133,10 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     clearButton->setAutoRaise(true);
     searchLayout->addWidget(clearButton);
     QLabel* searchLabel = new QLabel(m_mainTab);
-    searchLabel->setText( i18n("Search:") );
+    searchLabel->setText( i18n("S&earch:") );
     searchLayout->addWidget(searchLabel);
     m_searchLine = new KLineEdit(m_mainTab, "searchline");
+    searchLabel->setBuddy(m_searchLine);
     searchLayout->addWidget(m_searchLine);
     m_searchCombo = new KComboBox(m_mainTab, "searchcombo");
     searchLayout->addWidget(m_searchCombo);
