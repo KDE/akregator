@@ -22,7 +22,8 @@ Bug Fixes:
        - Mark all read marks everything as read -tpr
 #82752 - Mark all as read marks every entry in feed(group), mark all feeds as read marks every feed(group) as read -tpr
        - Make the feed tree drop visualizer work -sg
-
+       - Make "Copy Link Location" copy into the selection clipboard as well -sg
+ 
 Changes from 1.0b1 to 1.0b2:
 -----------------------------
 

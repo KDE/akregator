@@ -108,6 +108,7 @@ void Viewer::slotCopyToClipboard()
    if(m_url.isEmpty()) return;
    QClipboard *cb = QApplication::clipboard();
    cb->setText(m_url.prettyURL(), QClipboard::Clipboard);
+   cb->setText(m_url.prettyURL(), QClipboard::Selection);
 }
 
 void Viewer::slotOpenLinkInternal()
