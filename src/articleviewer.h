@@ -33,6 +33,7 @@ namespace Akregator
             void reload();
             void beginWriting();
             void endWriting();
+            void slotOpenLinkInternal();
                 
 
         private:

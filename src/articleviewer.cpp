@@ -40,15 +40,6 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : Viewer(parent, name), m_metrics(widget())
 {
     generateCSS();
-    // to be on a safe side
-    /*setJScriptEnabled(false);
-    setJavaEnabled(false);
-    setMetaRefreshEnabled(false);
-    setPluginsEnabled(false);
-    setDNDEnabled(false);
-    setAutoloadImages(true);
-    setStatusMessagesEnabled(true);
-*/
 }
 
 void ArticleViewer::openDefault()
@@ -246,6 +237,12 @@ void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& a
       KRun::runURL(url, "text/html", false, false);
    else
       emit urlClicked(url);
+}
+
+void ArticleViewer::slotOpenLinkInternal()
+{
+    if(m_url.isEmpty()) return;
+    emit urlClicked(m_url);   
 }
 
 

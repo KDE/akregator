@@ -23,17 +23,6 @@ using namespace Akregator;
 PageViewer::PageViewer(QWidget *parent, const char *name)
     : Viewer(parent, name)
 {
-    // to be on a safe side
-    /*setJScriptEnabled(false);
-    setJavaEnabled(true);
-    setMetaRefreshEnabled(true);
-    setPluginsEnabled(true);
-    setDNDEnabled(true);
-    setAutoloadImages(true);
-    setStatusMessagesEnabled(true);
-
-    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
-   */
 }
 
 #include "pageviewer.moc"
