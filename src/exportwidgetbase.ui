@@ -1,8 +1,8 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>AddFeedWidgetBase</class>
+<class>ExportFeedListWidgetBase</class>
 <widget class="QWidget">
     <property name="name">
-        <cstring>ExportFeedListWidget</cstring>
+        <cstring>ExportFeedListWidgetBase</cstring>
     </property>
     <property name="geometry">
         <rect>

@@ -149,9 +149,10 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
 {
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
-    setRootIsDecorated(true);
+    setRootIsDecorated(false);
     setItemsRenameable(true);
-    setDragEnabled(true);
+    setItemMargin(2);
+	setDragEnabled(true);
     setAcceptDrops(true);
     setFullWidth(true);
     setSorting(-1);

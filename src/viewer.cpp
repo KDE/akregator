@@ -45,6 +45,19 @@ Viewer::Viewer(QWidget *parent, const char *name)
 
 }
 
+bool Viewer::openURL(const KURL &url)
+{
+    new aKregatorRun(this, (QWidget*)parent(), this, url, KParts::URLArgs()/*args*/, true);
+    emit started(0);
+}
+
+
+void Viewer::open(const KURL &url)
+{
+    KHTMLPart::openURL(url);
+}
+
+
 bool Viewer::closeURL()
 {
    emit browserExtension()->loadingProgress(-1);
@@ -74,10 +87,10 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
    }
 }
 
-   //aKregatorRun *run= new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
 
 bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
+    kdDebug() << "Viewer: slotOpenURLReq url=="<<url.url()<<endl;
    if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser) {
        displayInExternalBrowser(url, "text/html"); return true;
    }

@@ -222,7 +222,7 @@ namespace Akregator
             void updateSearch(const QString &s=QString::null);
             void checkItem(QListViewItem *i);
             bool itemMatches (ArticleListItem *item);
-            void itemAdded(ArticleListItem *item);
+            bool itemAdded(ArticleListItem *item);
 
             void showFetchStatus();
 

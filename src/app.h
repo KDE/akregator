@@ -8,11 +8,11 @@
 #ifndef APP_H
 #define APP_H
 
-#include <kapplication.h>
+#include <kuniqueapplication.h>
 
 #define akreapp (static_cast<aKregatorApp*>(kapp))
 
-class aKregatorApp : public KApplication {
+class aKregatorApp : public KUniqueApplication {
     Q_OBJECT
     public:
         aKregatorApp();

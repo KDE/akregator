@@ -183,7 +183,6 @@ void aKregator::addFeedToGroup(const QString& url, const QString& group)
 
 void aKregator::setupActions()
 {
-
     connectActionCollection(actionCollection());
 
     KStdAction::quit(this, SLOT(quitProgram()), actionCollection());

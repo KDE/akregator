@@ -27,7 +27,8 @@ namespace Akregator
         public:
             ArticleViewer(QWidget* parent, const char* name);
             void openDefault();
-            void show(Feed *f, bool headers=true);
+			
+			void show(Feed *f, MyArticle a, bool writeHeaders);
             void show(Feed *f, MyArticle);
             void generateCSS();
             void reload();

@@ -8,7 +8,7 @@
 #include "app.h"
 
 
-aKregatorApp::aKregatorApp(): KApplication(), m_haveWindowLoaded(false)
+aKregatorApp::aKregatorApp(): KUniqueApplication(), m_haveWindowLoaded(false)
 {
 }
 

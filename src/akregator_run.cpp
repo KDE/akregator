@@ -30,7 +30,7 @@ void aKregatorRun::foundMimeType( const QString & type )
     {
         if (m_shouldEmbed)
         {
-            m_viewer->openPage(url(), m_args, type);
+            m_viewer->open(url());//Page(url(), m_args, type);
             return;
         }
     }

@@ -78,6 +78,9 @@ int main(int argc, char **argv)
                 widget->load( args->url( i ) );
             }
         }
+	
+		app.setMainWidget(widget);
+
         QString addFeedGroup = args->getOption("group");
         QCStringList addFeeds = args->getOptionList("addfeed");
         QCStringList::iterator addFeedsIt;

@@ -66,7 +66,12 @@ void FileRetriever::retrieveData(const KURL &url)
    d->buffer = new QBuffer;
    d->buffer->open(IO_WriteOnly);
 
-   d->job = KIO::get(url, false, false);
+   KURL u=url;
+
+   if (u.protocol()=="feed")
+       u.setProtocol("http");
+
+   d->job = KIO::get(u, false, false);
    connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
                 SLOT(slotData(KIO::Job *, const QByteArray &)));
    connect(d->job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));

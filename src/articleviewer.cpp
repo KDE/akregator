@@ -141,10 +141,10 @@ void ArticleViewer::generateCSS()
     .arg(cg.highlight().name())
     .arg(cg.highlightedText().name());
 
+   // "  border:1px solid #000;\n"
     m_htmlHead += QString (
     "#article {\n"
     "  overflow: hidden;\n"
-    "  border:1px solid #000;\n"
     "  background: %1;\n"
     "  padding: 3px;\n"
     "  padding-right: 6px;}\n\n"
@@ -232,24 +232,18 @@ void ArticleViewer::endWriting()
     end();
 }
 
-void ArticleViewer::show(Feed *f, bool writeHeaders)
+void ArticleViewer::show(Feed *, MyArticle a, bool writeHeaders)
 {
-    QString art, text;
+    QString text;
 
     if (writeHeaders)
     {
         beginWriting();
     }
 
-    ArticleSequence::iterator it;
-    ArticleSequence::iterator en(f->articles.end());
-    for ( it = f->articles.begin(); it != en; ++it )
-    {
-        // we set f to 0 to not show feed image
-        art="<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";
-        text += art;
-        write(art);
-    }
+    // we set f to 0 to not show feed image
+    text="<p><div id=\"article\">"+formatArticle(0, a)+"</div><p>";
+    write(text);
 
     if (writeHeaders)
     {
@@ -275,17 +269,7 @@ void ArticleViewer::show(Feed *f, MyArticle a)
 
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-    // special case the fast case
-    QString type=url.url();
-    if (type.right(5)==".html" ||type.right(4)==".php" || type.right(4)==".htm"
-            || type.right(4)==".xml")
-    {
-        openPage(url, args, type);    
-        return true;
-    }
-
-    // else check mimetype
-    new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
+    openPage(url, args, QString::null);    
     return true;
 }
 

@@ -19,6 +19,8 @@ namespace Akregator
         public:
             Viewer(QWidget* parent, const char* name);
 	    bool closeURL();
+		bool openURL(const KURL &);
+		void open(const KURL &);
 	
 	    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype) = 0;
 

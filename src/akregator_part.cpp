@@ -457,7 +457,7 @@ bool aKregatorPart::fileSaveAs()
 
 void aKregatorPart::fileImport()
 {
-    QString file_name = KFileDialog::getOpenFileName( locate( "appdata", "kde.opml" ),
+    QString file_name = KFileDialog::getOpenFileName( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
@@ -474,6 +474,7 @@ void aKregatorPart::addFeedToGroup(const QString& url, const QString& group)
 {
     kdDebug() << "aKregatorPart::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
     m_view->addFeedToGroup(url, group);
+    setModified(true);
 }
 
 /*************************************************************************************************/

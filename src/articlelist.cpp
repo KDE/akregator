@@ -26,12 +26,17 @@ struct ArticleListItem::Private
     Feed *feed;
 };
 
-ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after,MyArticle a, Feed *feed )
+ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after,MyArticle a, Feed *feed)
     : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
     , d(new Private)
 {
     d->article = a;
     d->feed = feed;
+	if (parent->columns() > 2)
+	{
+		setText(2, text(1));
+		setText(1,feed->title());
+	}
 }
 
 ArticleListItem::~ArticleListItem()
@@ -78,7 +83,6 @@ void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int colu
     KListViewItem::paintCell( p, cg2, column, width, align );
 
 }
-
 
 
 /* ==================================================================================== */
