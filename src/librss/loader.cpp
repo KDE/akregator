@@ -71,7 +71,7 @@ void FileRetriever::retrieveData(const KURL &url)
    if (u.protocol()=="feed")
        u.setProtocol("http");
 
-   d->job = KIO::get(u, false, false);
+   d->job = KIO::get(u, true, false);
    connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
                 SLOT(slotData(KIO::Job *, const QByteArray &)));
    connect(d->job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));
@@ -363,8 +363,10 @@ void Loader::discoverFeeds(const QByteArray &data)
         }
     }
     
-    if (s2.isNull())
+    if (s2.isNull()) {
+        kdDebug() << "No feed found for a site" << endl;
         return;
+    }
 
     if (KURL::isRelativeURL(s2))
     {
