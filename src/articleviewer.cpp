@@ -193,7 +193,7 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
         text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(article.title()));
         if (article.link().isValid())
             text += "<a id=\"titleanchor\" href=\""+article.link().url()+"\">";
-        text += article.title();
+        text += article.title().replace("<","&lt;").replace(">", "&gt;"); // TODO: better leave < and > escaped in the parser
         if (article.link().isValid())
             text += "</a>";
         text += "</div>\n";
