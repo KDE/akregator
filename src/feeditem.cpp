@@ -8,6 +8,7 @@
 #include "feed.h"
 #include "feeditem.h"
 
+#include <kdebug.h>
 #include <kiconloader.h>
 
 using namespace Akregator;
@@ -20,9 +21,9 @@ FeedItem::FeedItem(FeedGroupItem* parent, Feed* node) : TreeNodeItem(parent, nod
     {
         setText(0, node->title());
         if (!node->favicon().isNull())
-            setPixmap( 0, defaultPixmap() );
-        else
             setPixmap( 0, node->favicon() );
+        else
+            setPixmap( 0, defaultPixmap() );
     }
 }
 
@@ -34,10 +35,13 @@ FeedItem::FeedItem(KListView* parent, Feed* node) : TreeNodeItem(parent, node)
     {
         setText(0, node->title());
         if (!node->favicon().isNull())
-            setPixmap( 0, defaultPixmap() );
-        else
             setPixmap( 0, node->favicon() );
+        else
+            setPixmap( 0, defaultPixmap() );
+            
     }
+    else
+        kdDebug() << "FeedItem::FeedItem(): node is null!" << endl;
 }
 
 FeedItem::FeedItem(FeedGroupItem* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
@@ -47,9 +51,9 @@ FeedItem::FeedItem(FeedGroupItem* parent, TreeNodeItem* after, Feed* node) : Tre
     {
         setText(0, node->title());
         if (!node->favicon().isNull())
-            setPixmap( 0, defaultPixmap() );
-        else
             setPixmap( 0, node->favicon() );
+        else
+            setPixmap( 0, defaultPixmap() );
     }
 }
 
@@ -71,7 +75,7 @@ void FeedItem::nodeChanged()
         if (!node()->favicon().isNull())
              setPixmap(0, node()->favicon());
         else
-
+            setPixmap( 0, defaultPixmap() );
     }
     
     TreeNodeItem::nodeChanged();
