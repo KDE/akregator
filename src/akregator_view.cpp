@@ -1095,6 +1095,7 @@ void aKregatorView::slotMarkAllFeedsRead()
 
 void aKregatorView::slotMarkAllRead()
 {
+    if(!m_tree->selectedNode()) return;
     m_tree->selectedNode()->slotMarkAllArticlesAsRead();
     setTotalUnread();
 }
