@@ -81,14 +81,14 @@
 
 
 <Menu name="feedgroup_popup">
+  <Action name="feed_mark_all_as_read"/>
+  <Separator/>
+  <Action name="feed_fetch"/>
+  <Separator/>
   <Action name="feed_add"/>
   <Action name="feed_add_group"/>
   <Action name="feed_modify"/>
   <Action name="feed_remove"/>
-  <Separator/>
-  <Action name="feed_fetch"/>
-  <Separator/>
-  <Action name="feed_mark_all_as_read"/>
 </Menu>
 
 '
@@ -113,14 +113,14 @@
 </Menu>
 
 <Menu name="feeds_popup">
+  <Action name="feed_mark_all_as_read"/>
+  <Separator/>
+  <Action name="feed_fetch"/>
+  <Separator/>
   <Action name="feed_homepage"/>
   <Separator/>
   <Action name="feed_modify"/>
   <Action name="feed_remove"/>
-  <Separator/>
-  <Action name="feed_fetch"/>
-  <Separator/>
-  <Action name="feed_mark_all_as_read"/>
 </Menu>
 
 <Menu name="article_popup">
