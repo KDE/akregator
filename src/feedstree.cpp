@@ -155,7 +155,7 @@ void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
     setUpdatesEnabled(oldUpdatesEnabled);
 }
 
-void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * item )
+void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
 {
     if (!acceptDrag(e))
         return;
@@ -238,7 +238,7 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
     QListViewItem *qiafterme;
     findDrop( event->pos(), qiparent, qiafterme );
     FeedGroupItem* parent = static_cast<FeedGroupItem*> (qiparent);
-    TreeNodeItem* afterme = static_cast<TreeNodeItem*> (qiafterme);
+    //TreeNodeItem* afterme = static_cast<TreeNodeItem*> (qiafterme);
     
     // disable any drops where the result would be top level nodes 
      if (!parent )
@@ -581,7 +581,7 @@ void FeedsTree::slotNodeAdded(FeedGroup* parent, TreeNode* node)
 //     kdDebug() << "leave FeedsTree::slotNodeAdded node: " << node->title() << endl;
 }
 
-void FeedsTree::slotNodeRemoved(FeedGroup* parent, TreeNode* node)
+void FeedsTree::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
 {
 //     kdDebug() << "enter FeedsTree::slotNodeRemoved node: " << (node ? node->title() : "null") << endl;
     if (!node)

@@ -185,7 +185,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
       
     if (limit != -1)
     {
-        uint count = 0; 
+        int count = 0; 
         for (it = m_articles.begin(); it != en; ++it)
             if ( count < limit || (*it).keep() )
             {

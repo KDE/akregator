@@ -177,7 +177,7 @@ void FeedGroup::slotMarkAllArticlesAsRead()
     setNotificationMode(true, true);
 }
     
-void FeedGroup::slotChildChanged(TreeNode* node)
+void FeedGroup::slotChildChanged(TreeNode* /*node*/)
 {
 //    kdDebug() << "enter FeedGroup::slotChildChanged child" << node->title() << endl;
     int oldUnread = m_unread;

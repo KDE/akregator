@@ -1249,7 +1249,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     m_mainFrame->setProgress(p);
 }
 
-void aKregatorView::slotFeedFetchError(Feed *feed)
+void aKregatorView::slotFeedFetchError(Feed */*feed*/)
 {
     int p = int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
     m_mainFrame->setProgress(p);
