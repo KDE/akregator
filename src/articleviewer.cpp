@@ -35,6 +35,8 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     setJavaEnabled(false);
     setMetaRefreshEnabled(false);
     setPluginsEnabled(false);
+    setDNDEnabled(false);
+    setAutoloadImages(true);
 }
 
 void ArticleViewer::openDefault()
