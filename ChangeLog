@@ -2,6 +2,11 @@ aKregator ChangeLog
 ===================
 (c) 2004 the aKregator authors.
 
+Changes after 1.0b6:
+-----------------------------
+Changes:
+       - Expiry support added -fo 
+         
 Changes after 1.0b5:
 -----------------------------
 Changes:
