@@ -12,6 +12,8 @@
 #include <kparts/genericfactory.h>
 #include <kinstance.h>
 #include <kaction.h>
+#include <kactionclasses.h>
+
 #include <kstdaction.h>
 #include <kfiledialog.h>
 
@@ -49,7 +51,12 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     new KAction(i18n("&Copy"), "editcopy", "Alt+Ctrl+C", m_view, SLOT(slotFeedCopy()), actionCollection(), "feed_copy");
     new KAction(i18n("&Fetch"), "down", "Alt+Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Alt+Ctrl+A", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
+    KRadioAction *ra=new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Alt+Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
+    ra->setExclusiveGroup( "ViewMode" );
 
+    ra=new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Alt+Ctrl+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
+    ra->setExclusiveGroup( "ViewMode" );
+    
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc");
 

@@ -7,6 +7,10 @@
     <Action name="file_save"/>
     <Action name="file_save_as"/>
   </Menu>
+  <Menu name="settings">
+    <Action name="normal_view"/>
+    <Action name="widescreen_view"/>
+  </Menu>
 </MenuBar>
 <ToolBar name="mainToolBar">
   <Action name="file_open"/>
@@ -27,5 +31,6 @@
         <Separator/>
         <Action name="feed_fetch"/>
     </Menu>
+
 
 </kpartgui>

@@ -52,6 +52,10 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 {
     m_part=part;
 
+    KConfig *c = new KConfig( "akregatorrc");
+    c->setGroup("View");
+    m_viewMode=(ViewMode)c->readNumEntry("ViewMode", (int)NormalView);
+		
     QVBoxLayout *lt = new QVBoxLayout( this );
     
     m_panner1Sep << 1 << 1;
@@ -72,8 +76,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
               this, SLOT(slotItemRenamed(QListViewItem *)));
 			  
-    
-
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
     //hmm?? FIXME make it a object field
@@ -83,7 +85,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     QGrid *w1 = new QGrid(1, this);
     QWhatsThis::add(w1, i18n("Articles list."));
 
-    m_panner2 = new QSplitter(QSplitter::Vertical, w1, "panner2");
+    m_panner2 = new QSplitter((m_viewMode==NormalView)? QSplitter::Vertical : QSplitter::Horizontal, w1, "panner2");
 
     m_articles = new ArticleList( m_panner2, "articles" );
     connect( m_articles, SIGNAL(clicked(QListViewItem *)),
@@ -110,6 +112,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     elt->setOpen(true);
 
     m_articleViewer->openDefault();
+
+    delete c;
 	
 }
 
@@ -269,6 +273,41 @@ bool aKregatorView::event(QEvent *e)
     }
     return QWidget::event(e);
 }
+
+void aKregatorView::slotNormalView()
+{
+    if (m_viewMode==NormalView)
+       return;
+    else if (m_viewMode==WidescreenView)
+    {
+       m_panner2->setOrientation(QSplitter::Vertical);
+    }
+    m_viewMode=NormalView;
+    
+    KConfig *c = new KConfig( "akregatorrc");
+    c->setGroup("View");
+    c->writeEntry("ViewMode", (int)m_viewMode);
+    c->sync();
+    delete c;
+}
+
+void aKregatorView::slotWidescreenView()
+{
+    if (m_viewMode==WidescreenView)
+       return;
+    else if (m_viewMode==NormalView)
+    {
+       m_panner2->setOrientation(QSplitter::Horizontal);
+    }
+    m_viewMode=WidescreenView;
+
+    KConfig *c = new KConfig( "akregatorrc");
+    c->setGroup("View");
+    c->writeEntry("ViewMode", (int)m_viewMode);
+    c->sync();
+    delete c;
+}
+
 
 
 void aKregatorView::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)

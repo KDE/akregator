@@ -40,7 +40,8 @@ namespace Akregator
     {
         Q_OBJECT
         public:
-            /**
+    
+	     /**
              * Default constructor.
              */
             aKregatorView(aKregatorPart *part, QWidget *parent, const char *wName);
@@ -76,6 +77,9 @@ namespace Akregator
              */
             void slotItemChanged(QListViewItem*);
 
+            void slotNormalView();
+	    void slotWidescreenView();
+	    
             /**
              * Shows requested popup menu
              */
@@ -156,6 +160,8 @@ namespace Akregator
             QSplitter *m_panner1, *m_panner2;
             QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;
+	    enum ViewMode{NormalView=0, WidescreenView};
+	    ViewMode m_viewMode;
     };
 }
 

@@ -12,12 +12,12 @@
     <Action name="options_show_statusbar"/>
     <Merge name="show_merge"/>
     <Separator/>
+    <Merge/>
+    <Separator/>
     <Action name="options_configure_keybinding"/>
     <Action name="options_configure_toolbars"/>
     <Action name="options_configure"/>
     <Merge name="configure_merge"/>
-    <Separator/>
-    <Merge/>
   </Menu>
 </MenuBar>
 <ToolBar noMerge="1" name="mainToolBar"><text>Main Toolbar</text>
