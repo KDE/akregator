@@ -706,6 +706,9 @@ void aKregatorView::slotMarkAllRead()
             FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
             if (fti)
                 fti->setUnread(0);
+            m_articles->triggerUpdate();
+            // TODO: schedule this save?
+            Archive::save(f);
         }
         else
         {
@@ -722,6 +725,8 @@ void aKregatorView::slotMarkAllRead()
                     if (fti)
                         fti->setUnread(0);
                 }
+                //TODO: schedule this save?
+                Archive::save(f);
             }
         }
     }
