@@ -23,9 +23,9 @@ New Features:
 #82095 - Show homepage in feed list context menu
 #82189 - Option to fetch all at startup
        - Middleclick on viewer opens now an external browser
+#82138 - Add context menu to the tabs with close and detach entries
 
 Bug Fixes:
-
 
        - Favicon fetching works for sites that have never been viewed
        - Make opening large OPML lists much faster

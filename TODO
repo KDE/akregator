@@ -22,7 +22,6 @@ short term (~beta2)
 - passive popups
   -> smt: needs interval polling?
 - add back/forward/reload buttons to pageviewer
-- add detach to tabs
 - allow searching in combined view
 - show read/unread/new as different colors
   in combined view.
