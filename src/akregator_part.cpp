@@ -683,14 +683,14 @@ void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
     }    
     if (urls.count() == 1)
     {
-        KPassivePopup::message(i18n("%1:").arg(urls[0]), i18n("Feed added to akregator."), m_trayIcon);
+        KPassivePopup::message(i18n("%1:").arg(urls[0]), i18n("Feed added to akregator."), isTrayIconEnabled() ? m_trayIcon : getMainWindow() );
     }
     else if (urls.count() > 1)
     {
         QString message;
         for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
             message += *it + "\n";
-        KPassivePopup::message(i18n("Feeds added to akregator:"), message, m_trayIcon);
+        KPassivePopup::message(i18n("Feeds added to akregator:"), message, isTrayIconEnabled() ? m_trayIcon : getMainWindow() );
     }
 
 }
