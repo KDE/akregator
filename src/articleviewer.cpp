@@ -291,7 +291,11 @@ void ArticleViewer::showSummary(FeedGroup* group)
     
     m_currentText = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
     m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2").arg(directionOf(group->title())).arg(group->title());
-    m_currentText += i18n(" (1 unread article)", " (%n unread articles)", group->unread()) += QString("</div>\n");
+    if(group->unread() == 0)
+        m_currentText += i18n(" (no unread articles)");
+    else
+        m_currentText += i18n(" (1 unread article)", " (%n unread articles)", group->unread());
+    m_currentText += QString("</div>\n");
     m_currentText += "</div>\n"; // /headerbox
     
     for( TreeNode *it = group; it != 0; it = it->nextSibling() )
@@ -313,7 +317,10 @@ void ArticleViewer::showSummary(Feed *f)
 
     m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">").arg(directionOf(f->title()));
     m_currentText += f->title();
-    m_currentText += i18n(" (1 unread article)", " (%n unread articles)", f->unread());
+    if(f->unread() == 0)
+        m_currentText += i18n(" (no unread articles)");
+    else
+        m_currentText += i18n(" (1 unread article)", " (%n unread articles)", f->unread());
     m_currentText += "</div>\n"; // headertitle
     m_currentText += "</div>\n"; // /headerbox
     
