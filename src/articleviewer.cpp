@@ -127,6 +127,7 @@ void ArticleViewer::generateCSS()
     "}\n\n"
     "#headimage {\n"
     "  float: right;\n"
+    "  margin-left: 5px;\n"
     "}\n\n"
     "#body {\n"
     "  clear: none;\n"

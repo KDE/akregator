@@ -44,6 +44,7 @@ namespace Akregator
             QString m_htmlHead;
             QPaintDeviceMetrics m_metrics;
             QString m_currentText;
+			QString m_imageDir;
 
         private slots:
             bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
