@@ -347,12 +347,9 @@ bool aKregator::queryExit()
     if(!m_part) 
         return KParts::MainWindow::queryExit();
    
-    if (!kapp->sessionSaving())
-    {    
-        // normal exit     
-        if( Settings::markAllFeedsReadOnExit() )
-            emit markAllFeedsRead();
-    }
+    if( Settings::markAllFeedsReadOnExit() )
+        emit markAllFeedsRead();
+    
      
     Settings::writeConfig();  
     return KParts::MainWindow::queryExit();
