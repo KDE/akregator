@@ -264,7 +264,7 @@ void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
         else
             elt = new KListViewItem( m_tree, m_tree->lastItem(), e.attribute("text") );
 
-        if (e.hasAttribute("htmlUrl"))
+        if (e.hasAttribute("xmlUrl"))
         {
             addFeed_Internal( elt,
                               e.attribute("title"),
@@ -327,7 +327,27 @@ bool aKregatorPart::loadFeeds(const QDomDocument& doc)
     return true;
 }
 
-bool aKregatorPart::saveFile() // TODO: rewrite using QDom* classes
+void aKregatorPart::writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document )
+{
+    if (!item) return;
+    for (QListViewItem *it = item; it; it = it->nextSibling())
+    {
+        FeedGroup *g = m_feeds.find(it);
+        if (g)
+        {
+            if (g->isGroup())
+            {
+                QDomElement base = g->toXml( node, document );
+
+                writeChildNodes( it->firstChild(), base, document );
+            } else {
+                g->toXml( node, document );
+            }
+        }
+    }
+}
+
+bool aKregatorPart::saveFile()
 {
     // if we aren't read-write, return immediately
     if (isReadWrite() == false)
@@ -345,57 +365,26 @@ bool aKregatorPart::saveFile() // TODO: rewrite using QDom* classes
     // Write OPML data file.
     // Archive data files are saved elsewhere.
 
-    stream << "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" << endl
-           << "<opml version=\"1.0\">"                      << endl
-           << "<head>"                                      << endl
-           << "   <title>aKregator Feeds</title>"           << endl
-//           << "   <ownerName></ownerName>"                  << endl
-//           << "   <ownerEmail></ownerEmail>"                << endl
-           << "</head>"                                     << endl
-           << "<body>"                                      << endl;
+    QDomDocument newdoc;
+    QDomElement root = newdoc.createElement( "opml" );
+    root.setAttribute( "version", "1.0" );
+    newdoc.appendChild( root );
 
-    QValueVector<int> closeDepths; // at what depth we should close exterior outline
+    QDomElement head = newdoc.createElement( "head" );
+    root.appendChild( head );
 
-    for (QListViewItemIterator it(m_tree); it.current(); it++)
-    {
-        FeedGroup *feed = m_feeds.find(*it);
+    QDomElement title = newdoc.createElement( "title" );
+    head.appendChild( title );
 
-        if (feed->isGroup())
-        {
-            if ((*it)->childCount() > 0)
-            {
-                // only open outline, will be closed later
-                closeDepths.push_back( (*it)->depth() );
+    QDomText t = newdoc.createTextNode( "aKregator Feeds" );
+    title.appendChild( t );
 
-                stream << "<outline text=\"" << feed->title() << "\">" << endl;
-            }
-            else
-            {
-                // empty outline, write at once
-                stream << "<outline text=\"" << feed->title() << "\"></outline>" << endl;
-            }
-        }
-        else
-        {
-            // close outlines, if any, above current depth
-            if (!closeDepths.empty() && (*it)->depth() <= closeDepths.last())
-            {
-                closeDepths.pop_back();
-                stream << "</outline>" << endl;
-            }
+    QDomElement body = newdoc.createElement( "body" );
+    root.appendChild( body );
 
-            feed->save(stream, (*it)->depth());
-        }
-    }
+    writeChildNodes( m_tree->firstChild(), body, newdoc );
 
-    while( closeDepths.size() > 0 )
-    {
-        closeDepths.pop_back();
-        stream << "</outline>" << endl;
-    }
-
-    stream << "</body>"                                     << endl
-           << "</opml>"                                     << endl;
+    stream << newdoc.toString();
 
     file.close();
 
@@ -568,8 +557,16 @@ void aKregatorPart::slotFeedRemove()
 
 void aKregatorPart::slotFeedModify()
 {
+    kdDebug() << k_funcinfo << "BEGIN" << endl;
+
     Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-    if (!feed || feed->isGroup()) return;
+    if (!feed) return;
+    if (feed->isGroup())
+    {
+        kdDebug() << k_funcinfo << m_tree->currentItem()->renameEnabled(0) << endl;
+        m_tree->currentItem()->startRename(0); //FIXME
+        return;
+    }
 
     AddFeedDialog *dlg = new AddFeedDialog( this->widget(), "edit_feed" );
 
@@ -598,6 +595,8 @@ void aKregatorPart::slotFeedModify()
     feed->ljLogin        = dlg->loginEdit->text();
     feed->ljPassword     = dlg->passwordEdit->text();
     feed->updateTitle    = dlg->nameFromRssChkbox->isChecked();
+
+    kdDebug() << k_funcinfo << "END" << endl;
 }
 
 void aKregatorPart::slotFeedCopy()
@@ -676,7 +675,15 @@ void aKregatorPart::slotArticleSelected(QListViewItem *item)
         return;
 
     m_html->begin( KURL( "file:/tmp/something.html" ) );
-    // TODO add KMail-like article summary above the article.
+
+    QString header;
+    header += "<div style=\"background-color: #EAE9E8; color: black; border: 1px solid black; padding: 0\">";
+    header += "<div style=\"font-weight: bold; padding: 4px; margin: 0\">";
+    header += feed->articles[index].title();
+    header += "</div>";
+    header += "</div>\n";
+    m_html->write( header );
+
     m_html->write( feed->articles[index].description() );
     m_html->end();
 

@@ -41,10 +41,9 @@ namespace Akregator
             Feed(QListViewItem *i, FeedsCollection *coll);
             ~Feed();
 
-            //virtual void open(QTextStream &ts);?
-            virtual void save(QTextStream &ts, int depth = 0);
+            virtual QDomElement toXml( QDomElement parent, QDomDocument document );
 
-            virtual bool isGroup() { return false; }
+            virtual bool isGroup();
 
             enum LJAuthMode { AuthNone, AuthLocal, AuthGlobal };
 

@@ -41,7 +41,7 @@ kde_module_LTLIBRARIES = libakregatorpart.la
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = addfeeddialog.ui akregator_part.cpp feedstree.cpp feedscollection.cpp feed.cpp articlelist.cpp feedgroup.cpp
 libakregatorpart_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries)
-libakregatorpart_la_LIBADD = -lrss $(LIB_KPARTS) $(LIB_KFILE)
+libakregatorpart_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.a $(LIB_KPARTS) $(LIB_KFILE)
 
 # this is where the desktop file will go 
 partdesktopdir = $(kde_servicesdir)
@@ -50,3 +50,4 @@ partdesktop_DATA = akregator_part.desktop
 # this is where the part's XML-GUI resource file goes
 partrcdir = $(kde_datadir)/akregatorpart
 partrc_DATA = akregator_part.rc welcome.html
+SUBDIRS =  librss

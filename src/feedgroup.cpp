@@ -7,6 +7,7 @@
 #include "feedgroup.h"
 #include "feedscollection.h"
 #include <qlistview.h>
+#include <qdom.h>
 
 namespace Akregator {
 
@@ -29,6 +30,11 @@ void FeedGroup::destroy()
    delete this;
 }
 
+bool FeedGroup::isGroup()
+{
+    return true;
+}
+
 QString FeedGroup::title()
 {
     return m_title;
@@ -38,6 +44,14 @@ void FeedGroup::setTitle(const QString &title)
 {
     m_title = title;
     m_item->setText(0, title);
+}
+
+QDomElement FeedGroup::toXml( QDomElement parent, QDomDocument document )
+{
+    QDomElement el = document.createElement( "outline" );
+    el.setAttribute( "text", title() );
+    parent.appendChild( el );
+    return el;
 }
 
 };

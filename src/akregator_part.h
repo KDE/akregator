@@ -18,6 +18,7 @@ class QWidget;
 class QPainter;
 class QMultiLineEdit;
 class QDomDocument;
+class QDomElement;
 class QListViewItem;
 class KListViewItem;
 class KURL;
@@ -83,6 +84,8 @@ protected:
      */
     bool loadFeeds(const QDomDocument& doc);
     void parseChildNodes(QDomNode &node, KListViewItem *parent = 0);
+
+    void writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document );
 
 public slots:
 

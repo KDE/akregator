@@ -10,6 +10,8 @@
 #include <qobject.h>
 
 class QListViewItem;
+class QDomDocument;
+class QDomElement;
 
 namespace Akregator
 {
@@ -27,10 +29,9 @@ namespace Akregator
 
             void destroy();
 
-            virtual bool isGroup() { return true; }
+            virtual bool isGroup();
 
-            //virtual void open(QTextStream &ts) {} //?
-            virtual void save(QTextStream &/*ts*/, int /*depth*/ = 0) {}
+            virtual QDomElement toXml( QDomElement parent, QDomDocument document );
 
             QString title();
             void setTitle(const QString &title);

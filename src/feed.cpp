@@ -11,6 +11,7 @@
 #include <kdebug.h>
 
 #include <qlistview.h>
+#include <qdom.h>
 
 using namespace Akregator;
 using namespace RSS;
@@ -35,9 +36,10 @@ Feed::~Feed()
 {
 }
 
-/*void Feed::open(QTextStream &ts)
+bool Feed::isGroup()
 {
-}*/
+    return false;
+}
 
 QString Feed::ljAuthModeStr()
 {
@@ -59,21 +61,24 @@ QString Feed::ljAuthModeStr()
 }
 
 
-void Feed::save(QTextStream &ts, int /*depth*/)
+QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
 {
-    ts << "<outline text=\"" << title() << "\" "
-                  "title=\"" << title() << "\" "
-                 "xmlUrl=\"" << xmlUrl << "\" "
-                "htmlUrl=\"" << htmlUrl << "\" "
-            "description=\"" << description << "\" "
-          "isLiveJournal=\"" << (isLiveJournal ? "true" : "false") << "\" "
-             "ljUserName=\"" << ljUserName << "\" "
-             "ljAuthMode=\"" << ljAuthModeStr() << "\" "
-                "ljLogin=\"" << ljLogin << "\" "
-             "ljPassword=\"" << ljPassword << "\" "
-            "updateTitle=\"" << (updateTitle ? "true" : "false") << "\" "
-                   "type=\"akrss\" "
-                "version=\"RSS\"/>" << endl;
+    QDomElement el = document.createElement( "outline" );
+    el.setAttribute( "text", title() );
+    el.setAttribute( "title", title() );
+    el.setAttribute( "xmlUrl", xmlUrl );
+    el.setAttribute( "htmlUrl", htmlUrl );
+    el.setAttribute( "description", description );
+    el.setAttribute( "isLiveJournal", (isLiveJournal ? "true" : "false") );
+    el.setAttribute( "ljUserName", ljUserName );
+    el.setAttribute( "ljAuthMode", ljAuthModeStr() );
+    el.setAttribute( "ljLogin", ljLogin );
+    el.setAttribute( "ljPassword", ljPassword );
+    el.setAttribute( "updateTitle", (updateTitle ? "true" : "false") );
+    el.setAttribute( "type", "akrss" );
+    el.setAttribute( "version", "RSS" );
+    parent.appendChild( el );
+    return el;
 }
 
 void Feed::fetch()
