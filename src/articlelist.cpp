@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "akregatorconfig.h"
 #include "articlelist.h"
 #include "feed.h"
 #include "treenode.h"
@@ -95,10 +96,29 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
     setFullWidth(false);
-    setSorting(2, false);
     setShowSortIndicator(true);
     setDragAutoScroll(true);
     setDropHighlighter(false);
+
+    int c = Settings::sortColumn();
+    setSorting((c >= 0 && c <= 2) ? c : 2, Settings::sortAscending());
+
+    int w;
+    w = Settings::titleWidth();
+    if (w > 0) {
+        setColumnWidth(0, w);
+    }
+    
+    w = Settings::feedWidth();
+    if (w > 0) {
+        setColumnWidth(1, w);
+    }
+    
+    w = Settings::dateWidth();
+    if (w > 0) {
+        setColumnWidth(2, w);
+    }
+    
     m_feedWidth = columnWidth(1);
     hideColumn(1);
 
@@ -317,6 +337,13 @@ void ArticleList::slotSelectionChanged(QListViewItem* item)
 } 
 
 ArticleList::~ArticleList()
-{}
+{
+    Settings::setTitleWidth(columnWidth(0));
+    Settings::setFeedWidth(columnWidth(1) > 0 ? columnWidth(1) : m_feedWidth);
+    Settings::setSortColumn(sortColumn());
+    Settings::setSortAscending(sortOrder() == Ascending);
+    Settings::writeConfig();
+}
 
 #include "articlelist.moc"
+// vim: ts=4 sw=4 et

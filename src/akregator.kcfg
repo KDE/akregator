@@ -145,4 +145,21 @@
    </choices>
   </entry>
  </group>
+ <group name="Viewer Columns" >
+  <entry key="Title Width" type="Int" >
+   <default>-1</default>
+  </entry>
+  <entry key="Feed Width" type="Int" >
+   <default>-1</default>
+  </entry>
+  <entry key="Date Width" type="Int" >
+   <default>-1</default>
+  </entry>
+  <entry key="Sort Column" type="Int" >
+   <default>2</default>
+  </entry>
+  <entry key="Sort Ascending" type="Bool" >
+   <default>false</default>
+  </entry>
+ </group>
 </kcfg>
