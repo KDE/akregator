@@ -235,8 +235,8 @@ void aKregator::closeEvent(QCloseEvent* e)
         hide();
         e->ignore();
     }
-   else
-      KMainWindow::closeEvent(e);
+    else
+        KMainWindow::closeEvent(e);
 }
 
 #include "akregator.moc"
