@@ -321,7 +321,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
             m_feeds.addFeedGroup(elt);
             FeedGroup *g = m_feeds.find(elt);
             if (g)
-                g->setTitle( e.attribute("text") );
+                g->setTitle(title);
 
             elt->setOpen( e.attribute("isOpen", "true") == "true" ? true : false );
         }
