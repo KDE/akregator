@@ -27,6 +27,8 @@ using namespace RSS;
 
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
+    , m_useCustomExpiry(false) 
+    , m_expiryAge(0) 
     , m_fetchError(false)
     , m_fetchTries(0)
     , m_loader(0)
@@ -50,6 +52,9 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "description", m_description );
     el.setAttribute( "autoFetch", (autoFetch() ? "true" : "false") );
     el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
+    el.setAttribute( "useCustomExpiry", (useCustomExpiry() ? "true" : "false") );
+    el.setAttribute( "expiryAge", m_expiryAge );
+    
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );
     parent.appendChild( el );
@@ -101,6 +106,19 @@ void Feed::markAllRead()
     m_unread=0;
 }
 
+int Feed::expiryAge() const
+{
+    if (useCustomExpiry())
+        return m_expiryAge;
+    else 
+    {
+        if (Settings::useExpiry())
+            return Settings::expiryAge();
+        else
+            return 0;
+    }                     
+    return 0; // never reached
+}
 
 void Feed::appendArticles(const Document &d, bool findDups)
 {
@@ -116,6 +134,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
     for (it = d.articles().begin(); it != en; ++it)
     {
         MyArticle mya(*it);
+        
 	if (findDups)
         {
             ArticleSequence::ConstIterator oo=m_articles.find(mya);
@@ -157,9 +176,13 @@ void Feed::appendArticles(const Document &d, bool findDups)
 
 void Feed::appendArticle(const MyArticle &a)
 {
-    if (a.status()!=MyArticle::Read)
-        m_unread++;
-    m_articles.append(a);
+    QDateTime now = QDateTime::currentDateTime();
+    if (expiryAge() == 0 || a.pubDate().secsTo(now) <= expiryAge() * 3600 * 24) // if not expired
+    {
+        if (a.status()!=MyArticle::Read)
+            m_unread++;
+        m_articles.append(a);
+    }    
 }
 
 
@@ -284,6 +307,36 @@ void Feed::loadFavicon()
     if (!m_transaction)
 	return;
     m_transaction->loadIcon(this);
+}
+
+void Feed::deleteExpiredArticles()
+{
+    if (expiryAge() != 0)
+    {
+        long expiryInSec;
+        if (m_useCustomExpiry)
+            expiryInSec = m_expiryAge * 3600 * 24;
+        else     
+            expiryInSec = Settings::expiryAge() * 3600 *24;
+            
+        QDateTime now = QDateTime::currentDateTime();
+        ArticleSequence::ConstIterator it;
+        ArticleSequence::ConstIterator tmp;
+        ArticleSequence::ConstIterator en = m_articles.end();
+        kdDebug() << "blub" << endl;
+        it = m_articles.begin();
+        while ( it != en)
+        {
+            if ((*it).pubDate().secsTo(now) > expiryInSec)
+            {
+                tmp = it;
+                ++it;       
+                m_articles.remove(*tmp);
+         
+            }
+            else ++it;
+        }    
+    }    
 }
 
 void Feed::setFavicon(const QPixmap &p)

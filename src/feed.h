@@ -14,6 +14,7 @@
 #include "feedgroup.h"
 #include "librss/librss.h" /* <rss/librss> ! */
 #include "myarticle.h"
+#include "akregatorconfig.h"
 
 using namespace RSS;
 
@@ -63,10 +64,13 @@ namespace Akregator
             int fetchInterval() const { return m_fetchInterval; }
             void setFetchInterval(int interval) { m_fetchInterval = interval; }
             
-            bool expiryEnabled() const { return m_expiryEnabled; }
-            void setExpiryEnabled(bool enabled) { m_expiryEnabled = enabled; }  
+            /** returns whether the feed has custom expiry settings **/
+            bool useCustomExpiry() const { return m_useCustomExpiry; }
+            void setUseCustomExpiry(bool useCustom) { m_useCustomExpiry = useCustom; }  
             
-            int expiryAge() const { return m_expiryAge; }
+            /** returns expiry age in days, 0 if disabled 
+                the custom setting is used if enabled, otherwise the global setting **/
+            int expiryAge() const;
             void setExpiryAge(int age) { m_expiryAge = age; }     
             
             bool isMerged() const { return m_merged; }
@@ -103,6 +107,7 @@ namespace Akregator
         public slots:
             void fetch(bool follow=false, FetchTransaction *f=0);
             void loadFavicon();
+            void deleteExpiredArticles();
 
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
@@ -122,7 +127,7 @@ namespace Akregator
             
             bool m_autoFetch;
             int m_fetchInterval;
-            bool m_expiryEnabled; 
+            bool m_useCustomExpiry; 
             int m_expiryAge; 
             Document m_document;            
             bool m_fetchError;

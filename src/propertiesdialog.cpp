@@ -7,6 +7,7 @@
 
 #include "propertiesdialog.h"
 
+#include <kcombobox.h>
 #include <klineedit.h>
 #include <kpassdlg.h>
 #include <klocale.h>
@@ -78,6 +79,49 @@ void FeedPropertiesDialog::setFetchInterval(int i)
    widget->updateSpinBox->setValue(i);
 }
 
+bool FeedPropertiesDialog::useCustomExpiry() const
+{
+    return widget->expChkbox->isChecked();     
+}
+
+int FeedPropertiesDialog::expiryAge() const
+{
+    if (widget->expiryComboBox->currentItem() == 0)
+        return 0;
+    else
+        return widget->expirySpinBox->value();
+}
+
+void FeedPropertiesDialog::setUseCustomExpiry(bool enabled)
+{
+    widget->expChkbox->setChecked(enabled);
+    if (!enabled)
+    {
+        widget->expirySpinBox->setEnabled(false);
+        widget->expiryComboBox->setEnabled(false);
+        widget->expiryComboBox->setCurrentItem(0); // "never"
+    }
+    else
+    {
+        widget->expiryComboBox->setEnabled(true);
+    }   
+}
+
+void FeedPropertiesDialog::setExpiryAge(int days)
+{
+    if (days == 0)
+    {
+        widget->expiryComboBox->setCurrentItem(0); // "never"
+        widget->expirySpinBox->setEnabled(false);
+    }    
+    else
+    {
+        widget->expiryComboBox->setCurrentItem(1); // "days"
+        widget->expirySpinBox->setEnabled(true);
+    }    
+    widget->expirySpinBox->setValue(days);
+}
+         
 void FeedPropertiesDialog::selectFeedName()
 {
    widget->feedNameEdit->selectAll();

@@ -426,6 +426,14 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         m_mainFrame->setProgress(int(100*((double)curNodes/(double)numNodes)));
         n = n.nextSibling();
     }
+    // delete expired articles
+    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
+    {
+        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+        if (f && !f->isGroup())
+            f->deleteExpiredArticles();
+    }
+    
     setTotalUnread();
     m_tree->setUpdatesEnabled(true);
     m_tree->triggerUpdate();
@@ -466,7 +474,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
                               e.attribute("htmlUrl"),
                               e.attribute("description"),
                               e.attribute("autoFetch") == "true" ? true : false,
-                              e.attribute("fetchInterval").toUInt()
+                              e.attribute("fetchInterval").toUInt(),
+                              e.attribute("useCustomExpiry") == "true" ? true : false,
+                              e.attribute("expiryAge").toUInt()
                             );
         }
         else
@@ -500,7 +510,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 // oh ugly as hell (pass Feed parameters in a FeedData?)
 Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
                                       QString title, QString xmlUrl, QString htmlUrl,
-                                      QString description, bool autoFetch, int fetchInterval)
+                                      QString description, bool autoFetch, int fetchInterval,
+                                      bool useCustomExpiry,
+                                      int expiryAge )
 {
     Feed *feed;
     if (ef)
@@ -520,7 +532,9 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     feed->setDescription(description);
     feed->setAutoFetch(autoFetch);
     feed->setFetchInterval(fetchInterval);
-
+    feed->setUseCustomExpiry(useCustomExpiry);
+    feed->setExpiryAge(expiryAge);
+    
     Archive::load(feed);
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
@@ -946,14 +960,16 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
 
     elt->setPixmap(0, m_feedTreePixmap);
     feed->setItem(elt);
-
+ 
     addFeed_Internal( feed, elt,
                       dlg->feedName(),
                       dlg->url(),
                       feed->htmlUrl(),
                       feed->description(),
                       dlg->autoFetch(),
-                      dlg->fetchInterval()
+                      dlg->fetchInterval(),
+                      dlg->useCustomExpiry(),
+                      dlg->expiryAge()
                     );
 
     m_tree->ensureItemVisible(elt);
@@ -1049,6 +1065,8 @@ void aKregatorView::slotFeedModify()
     dlg->setUrl( feed->xmlUrl() );
     dlg->setAutoFetch(feed->autoFetch());
     dlg->setFetchInterval(feed->fetchInterval());
+    dlg->setUseCustomExpiry(feed->useCustomExpiry());
+    dlg->setExpiryAge(feed->expiryAge());
 
     if (dlg->exec() != QDialog::Accepted) return;
 
@@ -1056,6 +1074,8 @@ void aKregatorView::slotFeedModify()
     feed->setXmlUrl( dlg->url() );
     feed->setAutoFetch(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
+    feed->setUseCustomExpiry(dlg->useCustomExpiry());
+    feed->setExpiryAge(dlg->expiryAge());
 
     m_part->setModified(true);
 
@@ -1517,6 +1537,14 @@ void aKregatorView::stopLoading()
 
 void aKregatorView::readProperties(KConfig* config)
 {
+    // delete expired articles
+    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
+    {
+        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+        if (f && !f->isGroup())
+            f->deleteExpiredArticles();
+    }
+    
     // read filter settings 
     
     m_searchLine->setText(config->readEntry("searchLine"));

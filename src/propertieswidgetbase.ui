@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>548</width>
-            <height>136</height>
+            <width>488</width>
+            <height>213</height>
         </rect>
     </property>
     <property name="caption">
@@ -74,7 +74,42 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="QLayoutWidget" row="2" column="0">
+        <widget class="QLayoutWidget" row="3" column="0">
+            <property name="name">
+                <cstring>layout7</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>expChkbox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Use custom expiry settings</string>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer5_2_2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>120</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget" row="4" column="0">
             <property name="name">
                 <cstring>layout8</cstring>
             </property>
@@ -82,72 +117,86 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QLayoutWidget">
+                <widget class="QLabel">
                     <property name="name">
-                        <cstring>layout6</cstring>
+                        <cstring>textLabel1</cstring>
                     </property>
-                    <vbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QCheckBox">
-                            <property name="name">
-                                <cstring>upChkbox</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Update feed every:</string>
-                            </property>
-                        </widget>
-                        <widget class="QCheckBox">
-                            <property name="name">
-                                <cstring>expChkbox</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Delete articles older than:</string>
-                            </property>
-                        </widget>
-                    </vbox>
+                    <property name="text">
+                        <string>Delete articles older than:</string>
+                    </property>
                 </widget>
-                <widget class="QLayoutWidget">
+                <spacer>
                     <property name="name">
-                        <cstring>layout5</cstring>
+                        <cstring>spacer5_2</cstring>
                     </property>
-                    <vbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>120</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="KIntSpinBox">
+                    <property name="name">
+                        <cstring>expirySpinBox</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="suffix">
+                        <string></string>
+                    </property>
+                    <property name="maxValue">
+                        <number>1000000</number>
+                    </property>
+                    <property name="minValue">
+                        <number>0</number>
+                    </property>
+                    <property name="value">
+                        <number>0</number>
+                    </property>
+                </widget>
+                <widget class="KComboBox">
+                    <item>
+                        <property name="text">
+                            <string>never</string>
                         </property>
-                        <widget class="KIntSpinBox">
-                            <property name="name">
-                                <cstring>updateSpinBox</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> minutes</string>
-                            </property>
-                        </widget>
-                        <widget class="KIntSpinBox">
-                            <property name="name">
-                                <cstring>expirySpinBox</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> days</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>1000000</number>
-                            </property>
-                            <property name="minValue">
-                                <number>0</number>
-                            </property>
-                            <property name="value">
-                                <number>0</number>
-                            </property>
-                        </widget>
-                    </vbox>
+                    </item>
+                    <item>
+                        <property name="text">
+                            <string>days</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>expiryComboBox</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget" row="2" column="0">
+            <property name="name">
+                <cstring>layout9</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>upChkbox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Update feed every:</string>
+                    </property>
                 </widget>
                 <spacer>
                     <property name="name">
@@ -161,11 +210,22 @@
                     </property>
                     <property name="sizeHint">
                         <size>
-                            <width>288</width>
+                            <width>173</width>
                             <height>20</height>
                         </size>
                     </property>
                 </spacer>
+                <widget class="KIntSpinBox">
+                    <property name="name">
+                        <cstring>updateSpinBox</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="suffix">
+                        <string> minutes</string>
+                    </property>
+                </widget>
             </hbox>
         </widget>
     </grid>
@@ -183,15 +243,31 @@
         <receiver>expirySpinBox</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
+    <connection>
+        <sender>expChkbox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>expiryComboBox</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>expiryComboBox</sender>
+        <signal>activated(int)</signal>
+        <receiver>FeedPropertiesWidget</receiver>
+        <slot>slotComboBoxActivated(int)</slot>
+    </connection>
 </connections>
-<functions>
-    <function access="private" specifier="non virtual">init()</function>
-</functions>
+<includes>
+    <include location="local" impldecl="in implementation">propertieswidgetbase.ui.h</include>
+</includes>
+<slots>
+    <slot>slotComboBoxActivated( int index )</slot>
+</slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>klineedit.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>knuminput.h</includehint>
+    <includehint>kcombobox.h</includehint>
     <includehint>knuminput.h</includehint>
 </includehints>
 </UI>

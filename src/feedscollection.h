@@ -30,7 +30,6 @@ namespace Akregator
             bool changeFeed(QListViewItem *item);
 
             void clearFeeds();
-
             void updateFeedsView();
 
         private:
