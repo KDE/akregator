@@ -892,11 +892,11 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
             fti->setUnread(unread);
 
         item->article().setStatus(MyArticle::Read);
+
+        // TODO: schedule this save.. don't want to save a huge file for one change
+        Archive::save(feed);
     }
     m_articleViewer->show( feed, item->article() );
-
-    // TODO: schedule this save.. don't want to save a huge file for one change
-    Archive::save(feed);
 }
 
 void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, int)
