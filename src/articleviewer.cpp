@@ -181,66 +181,66 @@ void ArticleViewer::reload()
     end();
 }
 
-QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
+QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
 {
     QString text;
     text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
-    if (!a.title().isEmpty())
+    if (!article.title().isEmpty())
     {
-        text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(a.title()));
-        if (a.link().isValid())
-            text += "<a id=\"titleanchor\" href=\""+a.link().url()+"\">";
-        text += a.title();
-        if (a.link().isValid())
+        text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(article.title()));
+        if (article.link().isValid())
+            text += "<a id=\"titleanchor\" href=\""+article.link().url()+"\">";
+        text += article.title();
+        if (article.link().isValid())
             text += "</a>";
         text += "</div>\n";
     }
-    if (a.pubDate().isValid())
+    if (article.pubDate().isValid())
     {
         text += QString("<span id=\"header\" dir=\"%1\">").arg(directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span id=\"headertext\">";
-        text += KGlobal::locale()->formatDateTime(a.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
+        text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
     }
     text += "</div>\n"; // end headerbox
 
-    if (f && !f->image().isNull())
+    if (feed && !feed->image().isNull())
     {
-        QString url=f->xmlUrl();
-        text += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        QString url=feed->xmlUrl();
+        text += QString("<a href=\""+feed->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
 
     text += "<div id=\"body\">";
 
-    if (!a.description().isEmpty())
+    if (!article.description().isEmpty())
     {
-        text += "<span id=\"content\">"+a.description()+"</span>";
+        text += "<span id=\"content\">"+article.description()+"</span>";
     }
 
-    if (a.commentsLink().isValid())
+    if (article.commentsLink().isValid())
     {
         text += "<a class=\"contentlink\" href=\"";
-        text += a.commentsLink().url();
+        text += article.commentsLink().url();
         text += "\">" + i18n( "Comments");
-        if (a.comments())
+        if (article.comments())
         {
-            text += " ("+ QString::number(a.comments()) +")";
+            text += " ("+ QString::number(article.comments()) +")";
         }
         text += "</a>";
     }
 
-    if (a.link().isValid() || (a.guidIsPermaLink() && KURL(a.guid()).isValid()))
+    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
     {
         text += "<a class=\"contentlink\" href=\"";
         // in case link isn't valid, fall back to the guid permaLink.
-        if (a.link().isValid())
+        if (article.link().isValid())
         {
-            text += a.link().url();
+            text += article.link().url();
         }
         else
-        {
-            text += a.guid();
+         {
+            text += article.guid();
         }
         text += "\">" + i18n( "Complete Story" ) + "</a>";
     }
