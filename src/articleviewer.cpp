@@ -177,7 +177,7 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
         {
             text += a.guid();
         }
-        text += "\">" + i18n( "Full Story" ) + "</a>";
+        text += "\">" + i18n( "Complete Story" ) + "</a>";
         if (!a.description().isNull())
             text += "<p>\n";
     }
