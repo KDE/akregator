@@ -621,13 +621,12 @@ void View::slotFrameChanged(Frame *f)
 
     m_part->mergePart(m_articleViewer);
     
-    if (f == m_mainFrame)
-        m_mainFrame->widget()->setFocus();
-    
     if (f->part() == m_part)
         m_part->mergePart(m_articleViewer);
     else
         m_part->mergePart(f->part());
+
+    f->widget()->setFocus();
     
     switch (f->state())
     {

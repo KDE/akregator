@@ -55,8 +55,6 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
     KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "viewer_print");
     KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "viewer_copy");
 
-    new KAction( i18n("&Scroll Up"), QString::null, "Up", this, SLOT(slotScrollUp()), actionCollection(), "viewer_scroll_up" );
-    new KAction( i18n("&Scroll Down"), QString::null, "Down", this, SLOT(slotScrollDown()), actionCollection(), "viewer_scroll_down" );
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
     new KAction(i18n("Copy Link Address"), "", 0,

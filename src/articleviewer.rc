@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="articleviewer" version="2">
+<kpartgui name="articleviewer" version="3">
 <MenuBar>
 <Menu noMerge="1" name="file">
   <Action name="viewer_print"/>
@@ -9,8 +9,8 @@
 </MenuBar>
 <!-- this menu doesn't show up in the app, just groups the actions -->
 <Menu name="articleviewer_various">
-  <Action name="viewer_scroll_up"/>
-  <Action name="viewer_scroll_down"/>
+  <Action name="articleviewer_scroll_up"/>
+  <Action name="articleviewer_scroll_down"/>
 </Menu>
 
 </kpartgui>

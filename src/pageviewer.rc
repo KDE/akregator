@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="pageviewer" version="8">
+<kpartgui name="pageviewer" version="9">
 <ToolBar name="mainToolBar">
   <Separator/> 
   <Action name="pageviewer_back"/>
@@ -23,10 +23,5 @@
   <Action name="pageviewer_stop"/>
 </Menu>
 </MenuBar>
-
-<Menu name="pageviewer_various">
-  <Action name="viewer_scroll_up"/>
-  <Action name="viewer_scroll_down"/>
-</Menu>
 
 </kpartgui>

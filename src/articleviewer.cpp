@@ -14,6 +14,7 @@
 #include "akregatorconfig.h"
 #include "akregator_run.h"
 
+#include <kaction.h>
 #include <kapplication.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -54,6 +55,12 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
 {
     setXMLFile(locate("data", "akregator/articleviewer.rc"), true);
     generateCSS();
+    
+    new KAction( i18n("&Scroll Up"), QString::null, "Up", this, SLOT(slotScrollUp()), actionCollection(), "articleviewer_scroll_up" );
+    new KAction( i18n("&Scroll Down"), QString::null, "Down", this, SLOT(slotScrollDown()), actionCollection(), "articleviewer_scroll_down" );
+    
+    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
+
     connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     m_imageDir="file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/");
