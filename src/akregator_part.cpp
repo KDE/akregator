@@ -165,7 +165,8 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     // we need an instance
     setInstance( AkregatorFactory::instance() );
 
-    m_standardFeedList = locate("data", "akregator/data/feeds.opml");
+    m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
+
     m_standardListLoaded = false;
     m_loading = false;
 
@@ -397,46 +398,53 @@ bool Part::openFile()
     QString str;
     // m_file is always local so we can use QFile on it
     QFile file(m_file);
-    if (file.open(IO_ReadOnly))
+    if (!file.exists())
     {
-        // Read OPML feeds list and build QDom tree.
-        QTextStream stream(&file);
-        stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
-        str = stream.read();
-        file.close();
+        m_view->loadFeeds(createDefaultFeedList());
     }
     else
     {
-        KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read error") );
-        return false;
+        if (file.open(IO_ReadOnly))
+        {
+            // Read OPML feeds list and build QDom tree.
+            QTextStream stream(&file);
+            stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
+            str = stream.read();
+            file.close();
+        }
+        else
+        {
+            KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read error") );
+            return false;
+        }
+
+        setStatusBar( i18n("Opening Feed List...") );
+
+        QDomDocument doc;
+
+        if (!doc.setContent(str))
+        {
+            QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+
+            copyFile(backup);
+
+            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML parsing error") );
+
+            doc = createDefaultFeedList();
+        }
+
+        if (!m_view->loadFeeds(doc))
+        {
+            QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+            copyFile(backup);
+
+            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML parsing error") );
+            m_view->loadFeeds(createDefaultFeedList());
+        }
+        
+        setStatusBar(QString::null);
     }
-
-    setStatusBar( i18n("Opening Feed List...") );
-
-    QDomDocument doc;
     
-    if (!doc.setContent(str))
-    {
-        QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
-    
-        copyFile(backup);
-    
-        KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML parsing error") );
-    
-        doc = createDefaultFeedList();
-    }
-
-    if (!m_view->loadFeeds(doc))
-    {
-        QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
-        copyFile(backup);
- 
-        KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML parsing error") );
-        m_view->loadFeeds(createDefaultFeedList());
-   }
-
-    setStatusBar(QString::null);
-
     if( Settings::markAllFeedsReadOnStartup() )
         m_view->slotMarkAllFeedsRead();
 
