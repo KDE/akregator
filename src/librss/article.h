@@ -11,6 +11,8 @@
 #ifndef LIBRSS_ARTICLE_H
 #define LIBRSS_ARTICLE_H
 
+#include "global.h"
+
 class QDateTime;
 class QDomNode;
 template <class>
@@ -52,7 +54,7 @@ namespace RSS
           * @param node A QDomNode which references the DOM leaf to be used
           * for constructing the Article.
           */
-         Article(const QDomNode &node);
+         Article(const QDomNode &node, Format format);
 
          /**
           * Assignment operator.

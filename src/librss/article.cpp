@@ -39,15 +39,34 @@ Article::Article(const Article &other) : d(0)
 	*this = other;
 }
 
-Article::Article(const QDomNode &node) : d(new Private)
+Article::Article(const QDomNode &node, Format format) : d(new Private)
 {
 	QString elemText;
-	
+
 	if (!(elemText = extractNode(node, QString::fromLatin1("title"))).isNull())
 		d->title = elemText;
-	if (!(elemText = extractNode(node, QString::fromLatin1("link"))).isNull())
-		d->link = elemText;
-	if (!(elemText = extractNode(node, QString::fromLatin1("description"))).isNull())
+   
+   
+	if (format==AtomFeed)
+	{
+		QDomNode n;
+		for (n = node.firstChild(); !n.isNull(); n = n.nextSibling()) {
+			const QDomElement e = n.toElement();
+			if ( (e.tagName()==QString::fromLatin1("link")) &&
+				(e.attribute(QString::fromLatin1("rel"))==QString::fromLatin1("alternate")))
+				{   
+					d->link=n.toElement().attribute(QString::fromLatin1("href"));
+					break;
+				}
+		}
+	}
+	else
+	{
+		if (!(elemText = extractNode(node, QString::fromLatin1("link"))).isNull())
+			d->link = elemText;
+	}
+
+	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"))).isNull())
 		d->description = elemText;
 	if (!(elemText = extractNode(node, QString::fromLatin1("pubDate"))).isNull()) {
 		time_t _time = KRFCDate::parseDate(elemText);
@@ -58,13 +77,13 @@ Article::Article(const QDomNode &node) : d(new Private)
 		d->pubDate.setTime_t(_time);
 	}
 	if (!(elemText = extractNode(node, QString::fromLatin1("dc:date"))).isNull()) {
-        time_t _time = KRFCDate::parseDateISO8601(elemText);
-        /* \bug This isn't really the right way since it will set the date to
-         * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
-         * we cannot distinguish between that date, and invalid values. :-/
-         */
-        d->pubDate.setTime_t(_time);
-    }
+		time_t _time = KRFCDate::parseDateISO8601(elemText);
+		/* \bug This isn't really the right way since it will set the date to
+		 * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
+		 * we cannot distinguish between that date, and invalid values. :-/
+		 */
+		d->pubDate.setTime_t(_time);
+	}
 
 	QDomNode n = node.namedItem(QString::fromLatin1("guid"));
 	if (!n.isNull()) {

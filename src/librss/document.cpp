@@ -28,6 +28,7 @@ struct Document::Private : public Shared
 {
 	Private() : version(v0_90), image(NULL), textInput(NULL), language(en)
 	{
+		format=UnknownFormat;
 	}
 
 	~Private()
@@ -44,6 +45,7 @@ struct Document::Private : public Shared
 	TextInput *textInput;
 	Article::List articles;
 	Language language;
+	Format format;
 	QString copyright;
 	QDateTime pubDate;
 	QDateTime lastBuildDate;
@@ -70,24 +72,23 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 	QDomNode rootNode = doc.documentElement();
 
 	// Determine the version of the present RSS markup.
-	QString attr = rootNode.toElement().attribute(QString::fromLatin1("xmlns"), QString::null);
+	QString attr;
+	
+	attr = rootNode.toElement().attribute(QString::fromLatin1("version"), QString::null);
 	if (!attr.isNull()) {
-		/*
-		 * Hardcoding these URLs is actually a bad idea, since the DTD doesn't
-		 * dictate a specific namespace. Still, most RSS files seem to use
-		 * these two, so I'll go for them now. If it turns out that many
-		 * mirrors of this RSS namespace are in use, I'll probably have to
-		 * distinguish the RSS versions by analyzing the relationship between
-		 * the nodes.
-		 */
-		if (attr == QString::fromLatin1("http://my.netscape.com/rdf/simple/0.9/"))
-			d->version = v0_90;
-		else if (attr == QString::fromLatin1("http://purl.org/rss/1.0/")) {
-			d->version = v1_0;
+		if (rootNode.toElement().tagName()=="feed")
+		{
+			d->format=AtomFeed;
+			if (attr == QString::fromLatin1("0.3"))
+				d->version = vAtom_0_3;
+			else if (attr == QString::fromLatin1("0.2")) /* smt -> review */
+			   d->version = vAtom_0_2;
+			else if (attr == QString::fromLatin1("0.1")) /* smt -> review */
+			  d->version = vAtom_0_1;
 		}
-	} else {
-		attr = rootNode.toElement().attribute(QString::fromLatin1("version"), QString::null);
-		if (!attr.isNull()) {
+		else
+		{
+			d->format=RSS;
 			if (attr == QString::fromLatin1("0.91"))
 				d->version = v0_91;
 			else if (attr == QString::fromLatin1("0.92"))
@@ -97,10 +98,39 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 			else if (attr == QString::fromLatin1("0.94"))
 				d->version = v0_94;
 			else if (attr == QString::fromLatin1("2.0"))
-				d->version = v2_0;
+				d->version = v2_0;		
 		}
 	}
-	QDomNode channelNode = rootNode.namedItem(QString::fromLatin1("channel"));
+	
+	if (d->format==UnknownFormat)
+	{
+		attr = rootNode.toElement().attribute(QString::fromLatin1("xmlns"), QString::null);
+		if (!attr.isNull()) {
+		/*
+		 * Hardcoding these URLs is actually a bad idea, since the DTD doesn't
+		 * dictate a specific namespace. Still, most RSS files seem to use
+		 * these two, so I'll go for them now. If it turns out that many
+		 * mirrors of this RSS namespace are in use, I'll probably have to
+		 * distinguish the RSS versions by analyzing the relationship between
+		 * the nodes.
+		 */
+			if (attr == QString::fromLatin1("http://my.netscape.com/rdf/simple/0.9/")) {
+				d->format=RSS;
+				d->version = v0_90;
+			 }
+			else if (attr == QString::fromLatin1("http://purl.org/rss/1.0/")) {
+				d->format=RSS;
+				d->version = v1_0;
+			}
+		}
+	}
+	
+	QDomNode channelNode;
+   
+	if (d->format == AtomFeed)
+		channelNode=rootNode;
+	else
+		channelNode=rootNode.namedItem(QString::fromLatin1("channel"));
 
 	if (!(elemText = extractNode(channelNode, QString::fromLatin1("title"))).isNull())
 		d->title = elemText;
@@ -113,11 +143,12 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 	 * node for <image>, <textinput> and <item> than RSS 0.91-0.94 and RSS 2.0.
 	 */
 	QDomNode parentNode;
-	if (d->version == v0_90 || d->version == v1_0)
+	if (d->version == v0_90 || d->version == v1_0 || d->format == AtomFeed)
 		parentNode = rootNode;
 	else
 		parentNode = channelNode;
 
+	// image and textinput aren't supported by Atom.. handle in case feed provides
 	QDomNode n = parentNode.namedItem(QString::fromLatin1("image"));
 	if (!n.isNull())
 		d->image = new Image(n);
@@ -127,16 +158,27 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 		d->textInput = new TextInput(n);
 
 	// Our (hopefully faster) version of elementsByTagName()
+	QString tagName;
+	if (d->format == AtomFeed)
+		tagName=QString::fromLatin1("entry");
+	else
+		tagName=QString::fromLatin1("item");
+		
 	for (n = parentNode.firstChild(); !n.isNull(); n = n.nextSibling()) {
 		const QDomElement e = n.toElement();
-		if (e.tagName() == QString::fromLatin1("item"))
-			d->articles.append(Article(e));
+		if (e.tagName() == tagName)
+			d->articles.append(Article(e, d->format));
 	}
 
 	if (!(elemText = extractNode(channelNode, QString::fromLatin1("copyright"))).isNull())
 		d->copyright = elemText;
 
-	if (!(elemText = extractNode(channelNode, QString::fromLatin1("language"))).isNull()) {
+	if (d->format == AtomFeed)
+		elemText = rootNode.toElement().attribute(QString::fromLatin1("xml:lang"), QString::null);
+	else
+		elemText = extractNode(channelNode, QString::fromLatin1("language"));
+		
+	if (!elemText.isNull()){
 		if (elemText == QString::fromLatin1("af"))
 			d->language = af;
 		else if (elemText == QString::fromLatin1("sq"))
@@ -329,8 +371,19 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 			d->language = UndefinedLanguage;
 	}
 
-	if (!(elemText = extractNode(channelNode, QString::fromLatin1("pubDate"))).isNull()) {
-		time_t _time = KRFCDate::parseDate(elemText);
+	if (d->format == AtomFeed)
+		tagName=QString::fromLatin1("issued"); // atom doesn't specify this for feeds
+											   // but some broken feeds do this
+	else
+		tagName=QString::fromLatin1("pubDate");
+ 
+	if (!(elemText = extractNode(channelNode, tagName)).isNull()) {
+		time_t _time;
+		
+		if (d->format == AtomFeed)
+			_time=KRFCDate::parseDateISO8601(elemText);
+		else
+			_time=KRFCDate::parseDate(elemText);
 		/* \bug This isn't really the right way since it will set the date to
 		 * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
 		 * we cannot distinguish between that date, and invalid values. :-/
@@ -347,8 +400,16 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 		d->pubDate.setTime_t(_time);
 	}
 
-	if (!(elemText = extractNode(channelNode, QString::fromLatin1("lastBuildDate"))).isNull()) {
-		time_t _time = KRFCDate::parseDate(elemText);
+	if (d->format == AtomFeed)
+		tagName=QString::fromLatin1("modified");
+	else
+		tagName=QString::fromLatin1("lastBuildDate");
+	if (!(elemText = extractNode(channelNode, tagName)).isNull()) {
+		time_t _time;
+		if (d->format == AtomFeed)
+			_time = KRFCDate::parseDateISO8601(elemText);
+		else
+			_time = KRFCDate::parseDate(elemText);
 		d->lastBuildDate.setTime_t(_time);
 	}
 
@@ -356,7 +417,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 		d->rating = elemText;
 	if (!(elemText = extractNode(channelNode, QString::fromLatin1("docs"))).isNull())
 		d->docs = elemText;
-	if (!(elemText = extractNode(channelNode, QString::fromLatin1("managingEditor"))).isNull())
+	if (!(elemText = extractNode(channelNode, QString::fromLatin1((d->format == AtomFeed) ? "author" : "managingEditor"))).isNull())
 		d->managingEditor = elemText;
 	if (!(elemText = extractNode(channelNode, QString::fromLatin1("webMaster"))).isNull())
 		d->webMaster = elemText;
@@ -417,6 +478,9 @@ QString Document::verbVersion() const
 		case v0_94: return QString::fromLatin1("0.94");
 		case v1_0: return QString::fromLatin1("1.0");
 		case v2_0: return QString::fromLatin1("2.0");
+		case vAtom_0_3: return QString::fromLatin1("0.3");
+		case vAtom_0_2: return QString::fromLatin1("0.2");
+		case vAtom_0_1: return QString::fromLatin1("0.1");
 	}
 	return QString::null;
 }

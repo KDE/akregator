@@ -72,7 +72,7 @@ namespace RSS
 			 * is returned.
 			 * @return A QString representing the verbose version of the
 			 * document.
-			 * @see version()
+             * @see version()
 			 */
 			QString verbVersion() const;
 
