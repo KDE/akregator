@@ -11,7 +11,7 @@
 #ifndef LIBRSS_GLOBAL_H
 #define LIBRSS_GLOBAL_H
 
-#include <libkdepim/kdepimmacros.h>
+#include <kdepimmacros.h>
 
 template <class>
 class QValueList;
