@@ -44,6 +44,15 @@ Viewer::Viewer(QWidget *parent, const char *name)
 
 }
 
+bool Viewer::closeURL()
+{
+   emit browserExtension()->loadingProgress(-1);
+   emit canceled(QString::null);
+   emit setStatusBarText(QString::null);
+   return KHTMLPart::closeURL();
+}
+
+
 /**
  * Display article in external browser.
  */
