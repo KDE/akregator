@@ -290,7 +290,7 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
          ++charData;
       }
 
-	  if (len > 3 && QChar(*charData) == 0357) { // 0357 0273 0277 
+      if ( len > 3 && QChar(*charData) == QChar(0357) ) { // 0357 0273 0277 
 			  len -= 3;
 			  charData += 3;
 	  }
