@@ -75,6 +75,11 @@ namespace Akregator
             @return root node item
              */
             FeedGroupItem* rootNodeItem();
+
+            /** observe @c node: connect status change signals of @c node to slots */
+            virtual void connectToNode(TreeNode* node);
+            /** stop observing @c node: disconnect from status change signals of @c node */
+            virtual void disconnectFromNode(TreeNode* node);
             
             virtual void drawContentsOffset( QPainter * p, int ox, int oy,
                                        int cx, int cy, int cw, int ch );

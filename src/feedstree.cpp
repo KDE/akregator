@@ -136,14 +136,8 @@ void FeedsTree::clear()
     FeedGroup* rootNode = new FeedGroup(i18n("All Feeds"));
     FeedGroupItem *elt = new FeedGroupItem(this, rootNode );
     m_itemDict.insert(rootNode, elt);
-                
-    connect(rootNode, SIGNAL(signalChildAdded(FeedGroup*, TreeNode*)),
-            this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*)));
-    connect(rootNode, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeRemoved(FeedGroup*, TreeNode*)));
-    connect(rootNode, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-    connect(rootNode, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-    
-        
+
+    connectToNode(rootNode);            
 }
 
 void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
@@ -555,11 +549,6 @@ void FeedsTree::slotNodeAdded(FeedGroup* parent, TreeNode* node)
             if (!selectedItem())
                 setSelected(fgi, true);
         }
-            
-        connect(fg, SIGNAL(signalChildAdded(FeedGroup*, TreeNode*)), this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*) ));
-        connect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*) ));
-        connect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-        connect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }
     else
     {
@@ -580,13 +569,9 @@ void FeedsTree::slotNodeAdded(FeedGroup* parent, TreeNode* node)
             if (!selectedItem())
                 setSelected(fi, true);
         }    
-        connect(f, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-        connect(f, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-        connect(f, SIGNAL(fetchStarted(Feed*)), this, SLOT(slotFeedFetchStarted(Feed*)));
-        connect(f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFeedFetchAborted(Feed*)));
-        connect(f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
-        connect(f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetchCompleted(Feed*)));
-    }        
+     
+    }
+    connectToNode(node);
 //     kdDebug() << "leave FeedsTree::slotNodeAdded node: " << node->title() << endl;
 }
 
@@ -596,6 +581,37 @@ void FeedsTree::slotNodeRemoved(FeedGroup* parent, TreeNode* node)
     if (!node)
         return;
     
+    disconnectFromNode(node);    
+    takeNode(findNodeItem(node));
+//     kdDebug() << "leave FeedsTree::slotNodeRemoved node: " << (node ? node->title() : "null") << endl;
+}
+
+void FeedsTree::connectToNode(TreeNode* node)
+{
+    if (node->isGroup())
+    {
+        FeedGroup* fg = static_cast<FeedGroup*>(node);
+                       
+        connect(fg, SIGNAL(signalChildAdded(FeedGroup*, TreeNode*)), this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*) ));
+        connect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeAdded(FeedGroup*, TreeNode*) ));
+        connect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
+        connect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
+    }
+    else
+    {
+        Feed* f = static_cast<Feed*> (node);
+        
+        connect(f, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
+        connect(f, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
+        connect(f, SIGNAL(fetchStarted(Feed*)), this, SLOT(slotFeedFetchStarted(Feed*)));
+        connect(f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFeedFetchAborted(Feed*)));
+        connect(f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
+        connect(f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetchCompleted(Feed*)));
+    }        
+}
+            
+void FeedsTree::disconnectFromNode(TreeNode* node)
+{
     if (node->isGroup())
     {
         FeedGroup* fg = static_cast<FeedGroup*> (node);
@@ -615,11 +631,8 @@ void FeedsTree::slotNodeRemoved(FeedGroup* parent, TreeNode* node)
         disconnect(f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
         disconnect(f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetchCompleted(Feed*)));
     }
-    
-    takeNode(findNodeItem(node));
-//     kdDebug() << "leave FeedsTree::slotNodeRemoved node: " << (node ? node->title() : "null") << endl;
 }
-    
+
 void FeedsTree::slotNodeDestroyed(TreeNode* node)
 {
     delete findNodeItem(node);
