@@ -12,7 +12,7 @@
     <Merge/>
   </Menu>
   <Menu noMerge="1" name="settings"><text>&amp;Settings</text>
-    <Action name="options_show_toolbar"/>
+    <Merge name="StandardToolBarMenuHandler" />
     <Action name="options_show_statusbar"/>
     <Merge name="show_merge"/>
     <Separator/>

@@ -77,7 +77,7 @@ aKregator::aKregator()
     connect(m_icon, SIGNAL(quitSelected()),
             this, SLOT(quitProgram()));
 
-
+    toolBar()->show();
     // and a status bar
     statusBar()->show();
 
@@ -183,8 +183,11 @@ void aKregator::setupActions()
     m_stopAction = new KAction( i18n( "&Stop" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "stop" );
     m_stopAction->setEnabled(false);
 
-    m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
+/*    m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
     m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
+*/
+    setStandardToolBarMenuEnabled(true);
+    createStandardStatusBarAction();
 
     KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
     KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
