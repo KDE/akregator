@@ -20,17 +20,12 @@ using namespace Akregator;
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
         : FeedPropertiesWidgetBase(parent, name)
 {
-    connect(upChkbox, SIGNAL(toggled(bool)), this, SLOT(updateToggled(bool)) );
+   connect(      upChkbox, SIGNAL(setChecked(bool)),
+            updateSpinBox, SLOT(setEnabled(bool)) );
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
 {}
-
-void FeedPropertiesWidget::updateToggled(bool on)
-{
-    updateSpinBox->setEnabled(on);
-}
-
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
         : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Feed Properties"), KDialogBase::Ok|KDialogBase::Cancel)
@@ -81,7 +76,6 @@ void FeedPropertiesDialog::setFetchInterval(int i)
 {
    widget->updateSpinBox->setValue(i);
 }
-
 
 void FeedPropertiesDialog::selectFeedName()
 {

@@ -20,8 +20,6 @@ namespace Akregator
       public:
          FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
          ~FeedPropertiesWidget();
-      public slots:
-         void updateToggled(bool on);
    };
 
    class FeedPropertiesDialog : public KDialogBase
