@@ -2,7 +2,7 @@ akregator (1.0-beta3-3) unstable; urgency=low
 
   * fix some build dependency on kdepim-dev
 
- -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 18 Jun 2004 13:09:53 +0200
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Sun, 20 Jun 2004 21:05:09 +0200
 
 akregator (1.0-beta3-2) unstable; urgency=low
 
