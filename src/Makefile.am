@@ -7,7 +7,7 @@ METASOURCES = AUTO
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/akregator.pot
 
-KDE_ICON = akregator
+KDE_ICON = AUTO
 
 # this Makefile creates both a KPart application and a KPart
 #########################################################################
