@@ -448,7 +448,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
         // if we aint got teh image and the feed provides one, get it....
         if (m_image.isNull() && m_document.image() && m_transaction)
-            m_transaction->loadImage(this, m_document.image());
+            m_transaction->addImage(this, m_document.image());
     }
     
     if (title().isEmpty())
@@ -470,7 +470,7 @@ void Feed::loadFavicon()
 {
     if (!m_transaction)
 	   return;
-    m_transaction->loadIcon(this);
+    m_transaction->addIcon(this);
 }
 
 void Feed::slotDeleteExpiredArticles()

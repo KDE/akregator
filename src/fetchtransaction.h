@@ -26,31 +26,30 @@ class FetchTransaction : public QObject
         void start();
         void stop();
 
-        void addFeed(Feed *f);
-
         int fetchesDone() { return m_fetchesDone; }
         int totalFetches() { return m_totalFetches; }
 
-        void loadIcon(Feed *f);
-        void startFetchIcons();
-
-        void loadImage(Feed *f, RSS::Image *i);
-        void startFetchImages();
+        void addFeed(Feed *f);
+        void addIcon(Feed *f);
+        void addImage(Feed *f, RSS::Image *i);
 
         bool isRunning() { return m_running; }
 
     signals:
+        
         void completed();
         void fetched(Feed*);
         void fetchError(Feed*);
 
-    protected: // methods
+    protected: 
 
         void feedDone(Feed *f);
         
         void connectToFeed(Feed* feed);
         void disconnectFromFeed(Feed* feed);
-
+        void startFetchIcons();
+        void startFetchImages();
+        
     protected slots:
         
         void slotNodeDestroyed(TreeNode* node);
@@ -60,7 +59,7 @@ class FetchTransaction : public QObject
         void slotFetchNextFeed();
         void slotFetchNextIcon();
         void slotFetchNextImage();
-
+        
         void slotFaviconFetched(const QString &, const QPixmap &);
         void slotImageFetched(const QPixmap &);
 
