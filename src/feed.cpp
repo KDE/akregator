@@ -62,7 +62,7 @@ Feed* Feed::fromOPML(QDomElement e)
         
         QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
-        bool useCustomFetchInterval = e.attribute("y") == "true";
+        bool useCustomFetchInterval = e.attribute("autoFetch") == "true";
         
         QString htmlUrl = e.attribute("htmlUrl");
         QString description = e.attribute("description");
