@@ -644,7 +644,6 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     dlg->setFeedName(text);
     dlg->setUrl(afd->feedURL);
     dlg->selectFeedName();
-//    dlg->widget->urlEdit->hide();
 
     if (dlg->exec() != QDialog::Accepted) return;
 
@@ -748,8 +747,7 @@ void aKregatorView::slotFeedModify()
     Feed *feed = static_cast<Feed *>(g);
     if (!feed) return;
 
-    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0,
-    "edit_feed" );
+    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
 
     dlg->setFeedName( feed->title() );
     dlg->setUrl( feed->xmlUrl );
