@@ -643,6 +643,10 @@ void FeedsTree::disconnectFromNode(TreeNode* node)
 void FeedsTree::slotNodeDestroyed(TreeNode* node)
 {
     TreeNodeItem* item = findNodeItem(node);
+    
+    if (!node || !item)
+        return;
+    
     m_itemDict.remove(node);
 
     if ( item->isSelected() )
@@ -651,6 +655,8 @@ void FeedsTree::slotNodeDestroyed(TreeNode* node)
             item->itemBelow()->setSelected(true);
         else if (item->itemAbove())
             item->itemAbove()->setSelected(true);
+        else
+            item->setSelected(false);
     }
     delete item;
 }
