@@ -165,20 +165,25 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     channode.appendChild(dnode);
 
     
-    // get archive size limit, 0 if unlimited
+    // get archive size limit, -1 if unlimited
     
-    uint limit = 0;
+    uint limit = -1;
+    if (m_archiveMode == disableArchiving)
+        limit = 0;
+    else
     if (m_archiveMode == limitArticleNumber)
         limit = m_maxArticleNumber;
-    if (m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleNumber)
+    else if (m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleNumber)
         limit = Settings::maxArticleNumber();
+    else if (m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::disableArchiving)
+         limit = 0;
         
     ArticleSequence::ConstIterator it;
     ArticleSequence::ConstIterator en=m_articles.end();
 
     // if a limit exists, only dump "limit" number of articles plus articles with keep flag set
       
-    if (limit != 0)
+    if (limit != -1)
     {
         uint count = 0; 
         for (it = m_articles.begin(); it != en; ++it)

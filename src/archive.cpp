@@ -108,8 +108,8 @@ void Archive::load_p(Feed *f)
     f->setMerged(true); // so it is merged even if we error _from now on_
 
    // if archiving is disabled for this feed, don't load the archive    
-   if (  (f->archiveMode() == Feed::globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::disableArchiving) || f->archiveMode() == Feed::disableArchiving) 
-        return;           
+//   if (  (f->archiveMode() == Feed::globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::disableArchiving) || f->archiveMode() == Feed::disableArchiving) 
+//        return;           
             
     QFile file(filePath);
     
@@ -148,8 +148,8 @@ void Archive::save_p(Feed *f)
 
     // if archiving is disabled for this feed, don't save the archive
             
-    if (  (f->archiveMode() == Feed::globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::disableArchiving) || f->archiveMode() == Feed::disableArchiving) 
-        return;           
+//    if (  (f->archiveMode() == Feed::globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::disableArchiving) || f->archiveMode() == Feed::disableArchiving) 
+//        return;
         
 
     KURL url( f->xmlUrl() );
