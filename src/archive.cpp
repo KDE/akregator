@@ -58,7 +58,7 @@ void Archive::load(Feed *f)
     }
     
     QTextStream stream( &file );
-    stream.setEncoding(QTextStream::Unicode);
+    stream.setEncoding(QTextStream::UnicodeUTF8);
     QString data=stream.read();
     QDomDocument doc;
     
@@ -100,7 +100,7 @@ void Archive::save(Feed *f)
     }
     
     QTextStream stream( &file );
-    stream.setEncoding(QTextStream::Unicode);
+    stream.setEncoding(QTextStream::UnicodeUTF8);
     
     QDomDocument doc;
     QDomProcessingInstruction z = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
