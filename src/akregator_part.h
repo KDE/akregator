@@ -89,6 +89,7 @@ namespace Akregator
             
         public slots:
             virtual void saveSettings();
+
         protected slots:
             void fileOpen();
             bool fileSaveAs();
