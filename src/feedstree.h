@@ -18,7 +18,7 @@ namespace Akregator
     class Feed;
     class FeedGroup;
     class FeedGroupItem;
-//    class FeedList;
+    class FeedList;
     class TreeNode;
     class TreeNodeItem;
     
@@ -30,7 +30,7 @@ namespace Akregator
             ~FeedsTree();
             
             /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
-//            void setFeedList(FeedList* feedList);
+            void setFeedList(FeedList* feedList);
             
             /** Returns root node ("All Feeds").
              * @return root node
@@ -158,7 +158,7 @@ namespace Akregator
         private:
             /** used for finding the item belonging to a node */
             QPtrDict<TreeNodeItem> m_itemDict;
-       //     FeedList* m_feedList;
+            FeedList* m_feedList;
     };
 
 }

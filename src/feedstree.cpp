@@ -10,7 +10,7 @@
 #include "feedstree.h"
 #include "feed.h"
 #include "feeditem.h"
-//#include "feedlist.h"
+#include "feedlist.h"
 #include "treenode.h"
 #include "treenodeitem.h"
 
@@ -44,9 +44,9 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     setDropVisualizer(true);
 
      // these have to be enabled from outside after loading the feed list!
-    setDragEnabled(false);
-    setAcceptDrops(false);
-    setItemsMovable(false);
+    setDragEnabled(true);
+    setAcceptDrops(true);
+    setItemsMovable(true);
     
     connect( this, SIGNAL(dropped(QDropEvent*,QListViewItem*)), this, SLOT(slotDropped(QDropEvent*,QListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
@@ -64,7 +64,7 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
 
 FeedsTree::~FeedsTree()
 {}
-/*
+
 void FeedsTree::setFeedList(FeedList* feedList)
 {
     if (feedList == m_feedList)
@@ -72,6 +72,9 @@ void FeedsTree::setFeedList(FeedList* feedList)
     clear();
 
     m_feedList = feedList;
+    
+    if (!feedList)
+        return;
 
     FeedGroup* rootNode = feedList->rootNode();
     if (!rootNode)
@@ -82,9 +85,9 @@ void FeedsTree::setFeedList(FeedList* feedList)
 
     // add items for children recursively
     QPtrList<TreeNode> children = rootNode->children();
-     for (TreeNode* i = children.first(); i; i = children.next() )
+    for (TreeNode* i = children.first(); i; i = children.next() )
         slotNodeAdded(i);
-}*/
+}
 
 void FeedsTree::takeNode(QListViewItem* item)
 {
@@ -158,19 +161,16 @@ void FeedsTree::ensureNodeVisible(TreeNode* node)
 {
     ensureItemVisible(findNodeItem(node));
 }
+
 void FeedsTree::clear()
 {
     QPtrDictIterator<TreeNodeItem> it(m_itemDict);
     for( ; it.current(); ++it )
         disconnectFromNode( it.current()->node() );
     m_itemDict.clear();
-    //m_feedList = 0;
+    m_feedList = 0;
     
     KListView::clear();
-    FeedGroup* r = new FeedGroup(i18n("All Feeds"));
-    FeedGroupItem* ri = new FeedGroupItem(this, r );
-    m_itemDict.insert(r, ri);
-    connectToNode(r);
 }
 
 void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
@@ -584,9 +584,10 @@ void FeedsTree::slotNodeAdded(TreeNode* node)
             else
                 item = new FeedGroupItem( parentItem, fg);
 
+            m_itemDict.insert(node, item);
             QPtrList<TreeNode> children = fg->children();
 
-            // add children recursively. hope that works, not used yet
+            // add children recursively
             for (TreeNode* i = children.first(); i; i = children.next() )
                 slotNodeAdded(i);
         }
@@ -597,8 +598,8 @@ void FeedsTree::slotNodeAdded(TreeNode* node)
                 item = new FeedItem( parentItem, findNodeItem(prev), f );
             else
                 item = new FeedItem( parentItem, f );
+            m_itemDict.insert(node, item);
         }
-        m_itemDict.insert(node, item);
     }
     else
     {

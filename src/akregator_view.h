@@ -36,7 +36,7 @@ namespace Akregator
     class FeedsTree;
     class FeedGroup;
     class FeedGroupItem;
-    //class FeedList;
+    class FeedList;
     class ArticleList;
     class ArticleListItem;
     class ArticleViewer;
@@ -68,17 +68,16 @@ namespace Akregator
             @param doc the DOM tree (OPML) of the feeds to import */
             bool importFeeds(const QDomDocument& doc);
             
-            /** Parse OPML presentation of feeds and read in articles archive, if present.
+            /** Parse OPML presentation of feeds and read in articles archive, if present. If @c parent is @c NULL, the current
+            feed list is replaced by the parsed one
              @param doc QDomDocument generated from OPML
              @param parent The parent group the new nodes */
             bool loadFeeds(const QDomDocument& doc, FeedGroup* parent = 0);
 
             /**
-             Store whole feeds tree to given node @c node of document @c document.
-             @param node Node to save to.
-             @param document Containing document.
+             @return the displayed Feed List in OPML format
              */
-            void storeTree( QDomElement &node, QDomDocument &document );
+             QDomDocument feedListToOPML();
 
             /**
              Add a feed to a group.
@@ -261,13 +260,9 @@ namespace Akregator
 
         protected:
 
-            /**
-             Recursively parse child nodes of the opml document, building feeds tree.
-             @param node Current node to parse.
-             @param parent Parent listview item for newly created listview items.
-             */
-            void parseChildNodes(QDomNode &node, FeedGroup* parent = 0);
-
+            void connectToFeedList(FeedList* feedList);
+            void disconnectFromFeedList(FeedList* feedList);
+            
         protected slots:
             
             void slotActivateSearch();
@@ -278,15 +273,7 @@ namespace Akregator
             
             QString getTitleNodeText(const QDomDocument &doc);
 
-	    void setTabIcon(const QPixmap&);
-
-            /**
-             * Write child items of item to node using QDom document document.
-             * @param item Current feeds tree item which is being written.
-             * @param node Parent node to append to.
-             * @param document XML document used to create nodes.
-             */
-            void writeChildNodes( TreeNode* node, QDomElement& element, QDomDocument &document );
+       	    void setTabIcon(const QPixmap&);
 
             void addFeed(const QString& url, TreeNode* after, FeedGroup* parent, bool autoExec = true);
 
@@ -304,7 +291,7 @@ namespace Akregator
             enum ViewMode { NormalView=0, WidescreenView, CombinedView };  
 
             /** the model of the feed tree */
-            //FeedList* m_feedList;
+            FeedList* m_feedList;
             /**
              * A tree of all feeds (Columns, Subscriptions).
              */

@@ -23,7 +23,7 @@
 #include "feeditem.h"
 #include "feedgroup.h"
 #include "feedgroupitem.h"
-//#include "feedlist.h"
+#include "feedlist.h"
 #include "akregatorconfig.h"
 #include "pageviewer.h"
 #include "articlefilter.h"
@@ -86,13 +86,16 @@ aKregatorView::~aKregatorView()
     
     delete m_mainTab;
     delete m_mainFrame;
+    delete m_feedList->rootNode();
+    delete m_feedList;
 }
 
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *name)
  : QWidget(parent, name), m_viewMode(NormalView)
 {
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
-    m_part=part;
+    m_part = part;
+    m_feedList = new FeedList();
     m_shuttingDown = false;
     m_currentFrame = 0L;
     setFocusPolicy(QWidget::StrongFocus);
@@ -110,6 +113,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
 
+    m_tree->setFeedList(m_feedList);
+    
     connect(m_tree, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
             this, SLOT(slotFeedTreeContextMenu(KListView*, QListViewItem*, const QPoint&)));
     
@@ -119,8 +124,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
             this, SLOT(slotFeedURLDropped (KURL::List &,
                         TreeNodeItem*, FeedGroupItem*)));
 
-    connect(m_tree->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
-    
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
@@ -392,144 +395,72 @@ QString aKregatorView::getTitleNodeText(const QDomDocument &doc)
 
 bool aKregatorView::importFeeds(const QDomDocument& doc)
 {
-    QString text = getTitleNodeText(doc);
-    if (text.isNull())
-        text = i18n("Imported Folder");
-    bool Ok;
-    text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), text, &Ok);
+    FeedList* feedList = FeedList::fromOPML(doc);
 
-    if (!Ok)
+    // FIXME: parsing error, print some message
+    if (!feedList)
         return false;
-
-    FeedGroup* fg = new FeedGroup(text);
-    m_tree->rootNode()->appendChild(fg);
     
-    startOperation();
-    if (!loadFeeds(doc, fg))
+    QString title = feedList->title();
+
+    if (title.isEmpty())
+        title = i18n("Imported Folder");
+    
+    bool ok;
+    title = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), title, &ok);
+
+    if (!ok)
     {
-        operationError(/*i18n("Invalid Feed List")*/);
+        delete m_feedList->rootNode();
+        delete m_feedList;
         return false;
     }
+    FeedGroup* fg = new FeedGroup(title);
+    m_feedList->rootNode()->appendChild(fg);
+    m_feedList->append(feedList, fg);
 
-    endOperation();
     return true;
 }
 
 bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
 {
-    // this should be OPML document
-    QDomElement root = doc.documentElement();
+    FeedList* feedList = FeedList::fromOPML(doc);
 
-    kdDebug() << "loading OPML feed " << root.tagName().lower() << endl;
-    if (root.tagName().lower() != "opml")
+    // parsing went wrong
+    if (!feedList)
         return false;
-
-    QDomNode bodyNode = root.firstChild();
-    while (!bodyNode.isNull() &&
-        bodyNode.toElement().tagName().lower() != "body") {
-        bodyNode = bodyNode.nextSibling();
-    }
-
-    if (bodyNode.isNull()) {
-        kdDebug() << "Failed to acquire body node, markup broken?" << endl;
-        return false;
-    }
-    QDomElement body = bodyNode.toElement();
-
+    
+    m_tree->setUpdatesEnabled(false);
+    
     if (!parent)
-        parent = m_tree->rootNode();
-    
- //   m_tree->setUpdatesEnabled(false);
-    int numNodes = body.childNodes().count();
-    int curNodes = 0;
-
-    QDomNode i = body.firstChild();
-    while( !i.isNull() )
     {
-        parseChildNodes(i, parent);
-    
-        curNodes++;
-        m_mainFrame->setProgress(int(100*((double)curNodes/(double)numNodes)));
-        i = i.nextSibling();
+        m_tree->setFeedList(feedList);
+        disconnectFromFeedList(feedList);
+        if (m_feedList)
+            delete m_feedList->rootNode();
+        delete m_feedList;
+        m_feedList = feedList;
+        connectToFeedList(feedList);
     }
+    else
+        m_feedList->append(feedList, parent);     
 
-    // these are disabled before to prevent crashes caused by dnd while loading the feed list:
-    m_tree->setItemsMovable(true);
-    m_tree->setDragEnabled(true);
-    m_tree->setAcceptDrops(true);
-
+    m_tree->setUpdatesEnabled(true);
     m_tree->triggerUpdate();
     
-//     kdDebug() << "leave AkregatorView::loadFeeds()" << endl;
     return true;
 }
 
 void aKregatorView::slotDeleteExpiredArticles()
 {
-    TreeNode* rootNode = m_tree->rootNode();
+    TreeNode* rootNode = m_feedList->rootNode();
     if (rootNode)
         rootNode->slotDeleteExpiredArticles();
 }
 
-void aKregatorView::parseChildNodes(QDomNode &node, FeedGroup* parent)
+QDomDocument aKregatorView::feedListToOPML()
 {
-//    kdDebug() << "parseChildNodes, parent: " << (parent ? parent->title() : "null") << endl;
-    QDomElement e = node.toElement(); // try to convert the node to an element.
-
-    if (!parent)
-        parent = m_tree->rootNode();
-    
-    if( !e.isNull() )
-    {
-        QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute
-            ("title");
-        
-            
-        if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
-        {
-             Feed* feed = Feed::fromOPML(e);
-             parent->appendChild(feed);
-             Archive::load(feed);
-        }
-        else
-        {
-             FeedGroup* fg = FeedGroup::fromOPML(e);
-             parent->appendChild(fg);
-             kapp->processEvents();
-    
-            if (e.hasChildNodes())
-            {
-                QDomNode child = e.firstChild();
-                while(!child.isNull())
-                {
-                    parseChildNodes(child, fg);
-                    child = child.nextSibling();
-                }
-            }
-        }
-    }
-}
-
-void aKregatorView::storeTree( QDomElement &node, QDomDocument &document )
-{
-writeChildNodes(0, node, document);
-}
-
-// writes children of given node
-// node NULL has special meaning - it saves whole tree
-void aKregatorView::writeChildNodes( TreeNode* node, QDomElement& element, QDomDocument &document)
-{
-    if ( !node || node == m_tree->rootNode() )
-    {
-        if (m_tree->rootNode())
-        {
-            QPtrList<TreeNode> children = m_tree->rootNode()->children(); 
-            for (TreeNode* i = children.first(); i; i = children.next() )
-                element.appendChild( i->toOPML(element, document) );
-        }
-    }    
-    else 
-        element.appendChild( node->toOPML(element, document) );
+    return m_feedList->toOPML();
 }
 
 void aKregatorView::addFeedToGroup(const QString& url, const QString& groupName)
@@ -542,7 +473,7 @@ void aKregatorView::addFeedToGroup(const QString& url, const QString& groupName)
     if (!node || !node->isGroup())
     {
         FeedGroup* g = new FeedGroup( groupName );
-        m_tree->rootNode()->appendChild(g);
+        m_feedList->rootNode()->appendChild(g);
         group = g;
     }
     else
@@ -867,7 +798,7 @@ void aKregatorView::slotNodeSelected(TreeNode* node)
 
     if (m_part->actionCollection()->action("feed_remove") )
     {
-        if (node != m_tree->rootNode() )
+        if (node != m_feedList->rootNode() )
             m_part->actionCollection()->action("feed_remove")->setEnabled(true);
         else
             m_part->actionCollection()->action("feed_remove")->setEnabled(false);
@@ -879,7 +810,7 @@ void aKregatorView::slotFeedAdd()
 {
     FeedGroup* group = 0;
     if (!m_tree->selectedNode())
-        group = m_tree->rootNode(); // all feeds
+        group = m_feedList->rootNode(); // all feeds
     else
     {
         if ( m_tree->selectedNode()->isGroup())
@@ -940,7 +871,7 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
 
     Archive::load(feed);
     if (!parent)
-        parent = m_tree->rootNode();
+        parent = m_feedList->rootNode();
     
     parent->insertChild(feed, after);
         
@@ -981,7 +912,7 @@ void aKregatorView::slotFeedRemove()
     TreeNode* selectedNode = m_tree->selectedNode();
     
     // don't delete root element! (safety valve)
-    if (!selectedNode || selectedNode == m_tree->rootNode()) 
+    if (!selectedNode || selectedNode == m_feedList->rootNode())
         return;
     
     QString msg;
@@ -1079,7 +1010,7 @@ void aKregatorView::slotNextUnreadFeed()
 
 void aKregatorView::slotMarkAllFeedsRead()
 {
-    m_tree->rootNode()->slotMarkAllArticlesAsRead();
+    m_feedList->rootNode()->slotMarkAllArticlesAsRead();
 }
 
 void aKregatorView::slotMarkAllRead()
@@ -1103,7 +1034,7 @@ else
 
 void aKregatorView::slotSetTotalUnread()
 {
-    emit signalUnreadCountChanged( m_tree->rootNode()->unread() );
+    emit signalUnreadCountChanged( m_feedList->rootNode()->unread() );
 }
 
 void aKregatorView::showFetchStatus()
@@ -1142,9 +1073,9 @@ void aKregatorView::slotDoIntervalFetches()
         return;
 
     bool fetch = false;
-    TreeNode* i = m_tree->rootNode()->firstChild();
+    TreeNode* i = m_feedList->rootNode()->firstChild();
 
-    while ( i && i != m_tree->rootNode() )
+    while ( i && i != m_feedList->rootNode() )
     {
         if ( !i->isGroup() )
         {
@@ -1195,7 +1126,7 @@ void aKregatorView::slotFetchAllFeeds()
     // this iterator iterates through ALL child items
     showFetchStatus();
 
-    m_tree->rootNode()->slotAddToFetchTransaction(m_transaction);
+    m_feedList->rootNode()->slotAddToFetchTransaction(m_transaction);
     startOperation();
     m_transaction->start();
 }
@@ -1656,6 +1587,16 @@ void aKregatorView::saveProperties(KConfig* config)
     }
 }
 
+void aKregatorView::connectToFeedList(FeedList* feedList)
+{
+    connect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
+    slotSetTotalUnread();
+}
+
+void aKregatorView::disconnectFromFeedList(FeedList* feedList)
+{
+    disconnect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
+}
 #include "akregator_view.moc"
 
 // vim: set et ts=4 sts=4 sw=4:

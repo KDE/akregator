@@ -464,26 +464,9 @@ bool aKregatorPart::saveFeedList()
     // Write OPML data file.
     // Archive data files are saved elsewhere.
 
-    QDomDocument newdoc;
-    QDomElement root = newdoc.createElement( "opml" );
-    root.setAttribute( "version", "1.0" );
-    newdoc.appendChild( root );
+    QDomDocument doc = m_view->feedListToOPML();
 
-    QDomElement head = newdoc.createElement( "head" );
-    root.appendChild( head );
-
-    QDomElement title = newdoc.createElement( "text" );
-    head.appendChild( title );
-
-    QDomText t = newdoc.createTextNode( "aKregator Feeds" );
-    title.appendChild( t );
-
-    QDomElement body = newdoc.createElement( "body" );
-    root.appendChild( body );
-
-    m_view->storeTree( body, newdoc);
-
-    stream << newdoc.toString();
+    stream << doc.toString();
 
     file.close();
 
@@ -564,6 +547,7 @@ void aKregatorPart::exportFile(const QString& fileName)
         i18n("Overwrite"),
         i18n("Cancel")) == KMessageBox::No )
             return;
+
     if ( !file.open(IO_WriteOnly) )
     {
         KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(fileName), i18n("Write error") );
@@ -574,30 +558,9 @@ void aKregatorPart::exportFile(const QString& fileName)
     QTextStream stream(&file);
     stream.setEncoding(QTextStream::UnicodeUTF8);
 
-    // Write OPML data file.
-    // Archive data files are saved elsewhere.
-
-    QDomDocument newdoc;
-    QDomElement root = newdoc.createElement( "opml" );
-    root.setAttribute( "version", "1.0" );
-    newdoc.appendChild( root );
-
-    QDomElement head = newdoc.createElement( "head" );
-    root.appendChild( head );
-
-    QDomElement title = newdoc.createElement( "text" );
-    head.appendChild( title );
-
-    QDomText t = newdoc.createTextNode( "aKregator Feeds" );
-    title.appendChild( t );
-
-    QDomElement body = newdoc.createElement( "body" );
-    root.appendChild( body );
-
-    m_view->storeTree( body, newdoc);
-
-    stream << newdoc.toString();
-
+    QDomDocument doc = m_view->feedListToOPML();
+    
+    stream << doc.toString();
     file.close();
 }
 

@@ -120,7 +120,9 @@ Feed::Feed()
 }
 
 Feed::~Feed()
-{}
+{
+    abortFetch();
+}
 
 QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
 {
