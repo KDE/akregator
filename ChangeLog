@@ -5,9 +5,11 @@ aKregator ChangeLog
 Changes after 1.0b5:
 -----------------------------
 Changes:
+#82187 - Improved session management: save search settings, selected Feed and Article -fo
        - Make it possible to switch notifications off -tpr
 
 Bug Fixes:
+#83995 - Don't crash when exiting KDE -fo 
 #82791 - Save the toolbar position -tpr
        - Don't crash when there is no part available -tpr
        - Make tabs wider when there is free space available -tpr
