@@ -1021,12 +1021,20 @@ void View::slotNextFeed()
 
 void View::slotNextUnreadArticle()
 {
-    m_articles->slotNextUnreadArticle();
+    TreeNode* sel = m_tree->selectedNode();
+    if (sel && sel->unread() > 0)
+        m_articles->slotNextUnreadArticle();
+    else
+        slotNextUnreadFeed();
 }
 
 void View::slotPrevUnreadArticle()
 {
-    m_articles->slotPreviousUnreadArticle();
+    TreeNode* sel = m_tree->selectedNode();
+    if (sel && sel->unread() > 0)
+        m_articles->slotPreviousUnreadArticle();
+    else
+        slotPrevUnreadFeed();
 }
 
 void View::slotPrevUnreadFeed()

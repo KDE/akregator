@@ -42,14 +42,6 @@
                         <string>Keep all articles</string>
                     </property>
                 </widget>
-                <widget class="QRadioButton" row="3" column="0" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>rb_DisableArchiving</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Disable archiving</string>
-                    </property>
-                </widget>
                 <widget class="QRadioButton" row="1" column="0">
                     <property name="name">
                         <cstring>rb_LimitArticleNumber</cstring>
@@ -58,6 +50,22 @@
                         <string>Limit feed archive size to:</string>
                     </property>
                 </widget>
+		<widget class="QRadioButton" row="2" column="0">
+			<property name="name">
+				<cstring>rb_LimitArticleAge</cstring>
+			</property>
+			<property name="text">
+				<string>Delete articles older than: </string>
+			</property>
+		</widget>
+		<widget class="QRadioButton" row="3" column="0" rowspan="1" colspan="2">
+			<property name="name">
+				<cstring>rb_DisableArchiving</cstring>
+			</property>
+			<property name="text">
+				<string>Disable archiving</string>
+			</property>
+		</widget>
                 <widget class="KIntSpinBox" row="1" column="1">
                     <property name="name">
                         <cstring>kcfg_MaxArticleNumber</cstring>
@@ -82,14 +90,6 @@
                     </property>
                     <property name="value">
                         <number>1000</number>
-                    </property>
-                </widget>
-                <widget class="QRadioButton" row="2" column="0">
-                    <property name="name">
-                        <cstring>rb_LimitArticleAge</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Delete articles older than: </string>
                     </property>
                 </widget>
                 <widget class="KIntSpinBox" row="2" column="1">
