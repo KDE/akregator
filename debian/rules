@@ -10,11 +10,6 @@ DEB_INSTALL_CHANGELOGS_akregator := ChangeLog
 
 DEB_INSTALL_MANPAGES_akregator := debian/akregator.1
 
-DEB_DH_INSTALL_ARGS := --fail-missing
-
-install/akregator::
-	dh_install -pakregator debian/overrides/akregator usr/share/lintian/overrides/
-
 install/akregator-konq-plugin::
 	dh_link
 
