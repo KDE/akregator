@@ -834,6 +834,10 @@ void aKregatorView::slotFeedAddGroup()
     else
         elt = new FeedsTreeItem(true, m_tree->currentItem(), text);
 
+    // expandable, so we can use KListView's implementation to drop items into empty folders  
+    elt->setExpandable(true);
+    elt->setOpen(true); 
+
     m_feeds.addFeedGroup(elt);
     FeedGroup *g = m_feeds.find(elt);
     if (g)
