@@ -7,6 +7,7 @@
 
 #include "akregator.h"
 #include "trayicon.h"
+#include "akregatorconfig.h"
 
 #include <kkeydialog.h>
 #include <kfiledialog.h>
@@ -79,10 +80,14 @@ aKregator::aKregator()
     // to automatically save settings if changed: window size, toolbar
     // position, icon size, etc.
     setAutoSaveSettings();
+
+    load( Settings::lastOpenFile() );
 }
 
 aKregator::~aKregator()
 {
+   Settings::setLastOpenFile( m_part->url().url() );
+   Settings::writeConfig();
 }
 
 void aKregator::load(const KURL& url)
