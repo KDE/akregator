@@ -60,7 +60,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     recentFilesAction = KStdAction::openRecent( this, SLOT(openURL(const KURL&)), actionCollection(), "file_open_recent" );
 
     new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
-    new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
+    new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_export");
 
     /* -- ACTIONS */
 
