@@ -38,7 +38,6 @@
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
 #include <qvaluevector.h>
-//#include <qheader.h>
 #include <qtabwidget.h>
 #include <qgrid.h>
 
