@@ -169,7 +169,7 @@ void aKregatorView::importFeeds(const QDomDocument& doc)
 {
     bool Ok;
 
-    QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), i18n("Imported folder"), &Ok);
+    QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), i18n("Imported Folder"), &Ok);
     if (!Ok) return;
 
     FeedsTreeItem *elt = new FeedsTreeItem( m_tree, QString::null );

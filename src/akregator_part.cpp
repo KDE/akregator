@@ -42,19 +42,19 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     KStdAction::saveAs(this, SLOT(fileSaveAs()), actionCollection());
     KStdAction::save(this, SLOT(save()), actionCollection());
 
-    new KAction(i18n("&Import Feeds"), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
-    
+    new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
+
     /* -- ACTIONS */
 
     /* --- Feed popup menu */
-    new KAction(i18n("&Add..."), "add", "Alt+Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
-    new KAction(i18n("Add &Folder..."), "add", "Alt+Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
-    new KAction(i18n("&Delete"), "delete", "Shift+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
-    new KAction(i18n("&Modify"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
+    new KAction(i18n("&Add..."), "bookmark_add", "Alt+Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
+    new KAction(i18n("New &Folder..."), "folder_new", "Alt+Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
+    new KAction(i18n("&Delete"), "editdelete", "Shift+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
+    new KAction(i18n("&Edit"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
     new KAction(i18n("&Fetch"), "down", "Alt+Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Alt+Ctrl+A", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-    new KAction(i18n("Mark All As Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
-    
+    new KAction(i18n("Mark All as Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
+
     KRadioAction *ra=new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Alt+Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
     ra->setExclusiveGroup( "ViewMode" );
 

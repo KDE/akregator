@@ -13,8 +13,8 @@
     <text>&amp;Feed</text>
     <Action name="feed_add"/>
     <Action name="feed_add_group"/>
-    <Action name="feed_remove"/>
     <Action name="feed_modify"/>
+    <Action name="feed_remove"/>
     <Separator/>
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
