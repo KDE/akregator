@@ -29,8 +29,8 @@ ADD new feature
                 if file is unsaved, store it to data/current.opml.
 #000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that local images and css can be referenced from article preview   --> smt
 #000043 ADD [ ] download feed image specified for RSS (for #000036) --> smt
-#000021 ADD [ ] store fetched articles to Article Archive
-#000027 CHG [ ] when changing current feed, change article in m_html also
+#000021 ADD [ ] store fetched articles to Article Archive -->berkus
+#000027 CHG [ ] when changing current feed, change article in m_html also (arguable: mornfall suggested this to be an option!)
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
 #000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?) (correction: might not be necessary now that we have ArticleListItem)
 #000007 ADD [ ] DCOP (q: should KPart implement DCOP or shell app only?)
