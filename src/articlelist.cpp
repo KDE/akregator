@@ -217,7 +217,15 @@ void ArticleList::slotUpdate()
         return;    
     
     setUpdatesEnabled(false);
-    
+
+    MyArticle oldCurrentArticle;
+    ArticleListItem *li = dynamic_cast<ArticleListItem*>(currentItem());
+    bool haveOld = false;
+    if (li) {
+        oldCurrentArticle = li->article();
+        haveOld = true;
+    }
+
     clear();
     
     ArticleSequence articles = m_node->articles();
@@ -230,9 +238,16 @@ void ArticleList::slotUpdate()
     SortOrder order = sortOrder();
     setSorting(-1);
 
-    for ( ; it != end; ++it)
-        if ( !(*it).isDeleted() )
-         new ArticleListItem(this, lastChild(), *it, (*it).feed());
+    for (; it != end; ++it) {
+        if (!(*it).isDeleted()) {
+            ArticleListItem *ali = new ArticleListItem(this, lastChild(), *it, (*it).feed());
+            if (haveOld && *it == oldCurrentArticle) {
+                setCurrentItem(ali);
+                ali->setSelected(true);
+                haveOld = false;
+            }
+        }
+    }
 
     setSorting(col, order == Ascending);
     setShowSortIndicator(true);
