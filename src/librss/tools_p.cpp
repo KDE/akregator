@@ -33,7 +33,7 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
 
 	bool hasPre = result.contains("<pre>",false);
 	bool hasHtml = hasPre || result.contains("<");	// FIXME: test if we have html, should be more clever -> regexp
-	if(!isInlined || !hasHtml)						// perform nl2br if not a inline elt or if has no html elts
+	if(!isInlined && !hasHtml)						// perform nl2br if not a inline elt and it has no html elts
 		result = result = result.replace(QChar('\n'), "<br />");
 	if(!hasPre)										// strip white spaces if no <pre>
 		result = result.simplifyWhiteSpace();
