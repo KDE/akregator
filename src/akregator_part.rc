@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="38">
+<kpartgui name="akregator_part" version="39">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -30,6 +30,7 @@
   <text>&amp;Article</text>
   <Action name="article_set_status"/>
   <Action name="article_toggle_keep"/>
+  <Action name="article_delete"/>
   </Menu>
   
   <Menu name="go">
@@ -116,6 +117,7 @@
 <Menu name="article_popup">
   <Action name="article_set_status"/>
   <Action name="article_toggle_keep"/>
+  <Action name="article_delete"/>
 </Menu>
 
 </kpartgui>

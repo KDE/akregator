@@ -64,6 +64,7 @@
 #include <qlayout.h>
 #include <qmultilineedit.h>
 #include <qpopupmenu.h>
+#include <qstylesheet.h>
 #include <qtextstream.h>
 #include <qtimer.h>
 #include <qtoolbutton.h>
@@ -1492,6 +1493,29 @@ void aKregatorView::slotToggleShowQuickFilter()
     
 }
 
+void aKregatorView::slotArticleDelete()
+{
+
+    if ( m_viewMode == CombinedView )
+        return;
+    
+    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+
+    if (!ali)
+        return;
+
+    QString msg = QString(i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>")).arg(QStyleSheet::escape(ali->article().title()));
+                
+    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KGuiItem(i18n("&Delete"), "articledelete")) == KMessageBox::Continue)
+    {
+        ali->article().setDeleted();
+        m_articles->slotUpdate();
+        m_articleViewer->slotClear();
+        Archive::save(ali->article().feed());
+    }
+}
+
+    
 void aKregatorView::slotArticleToggleKeepFlag()
 {
     ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());

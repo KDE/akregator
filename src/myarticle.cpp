@@ -200,12 +200,6 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
         parent.appendChild(pnode);
     }
 
-    QDomElement metanode = doc.createElement( "metaInfo:meta" );
-    metanode.setAttribute("type","status");
-    QDomText stat=doc.createTextNode(QString::number(d->status));
-    metanode.appendChild(stat);
-    parent.appendChild(metanode);
-
     if ( isDeleted() )
     {
         QDomElement metanode = doc.createElement( "metaInfo:meta" );
@@ -255,6 +249,12 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
             lnode.appendChild(ht);
             parent.appendChild(lnode);
         }
+
+        QDomElement metanode = doc.createElement( "metaInfo:meta" );
+        metanode.setAttribute("type","status");
+        QDomText stat=doc.createTextNode(QString::number(d->status));
+        metanode.appendChild(stat);
+        parent.appendChild(metanode);
     
         if ( d->keep )
         {

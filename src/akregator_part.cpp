@@ -121,6 +121,9 @@ void aKregatorPart::setupActions()
     KToggleAction* tkf = new KToggleAction(i18n("&Keep Article"), QString::null, "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
     tkf->setChecked(false);
 
+    new KAction(i18n("&Delete Article"), QString::null, "Delete", m_view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
+    
+
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark Article" ),
                                     actionCollection(), "article_set_status" );
 

@@ -130,6 +130,9 @@ namespace Akregator
             /** toggles the keep flag of the currently selected article */
             void slotArticleToggleKeepFlag();
 
+            /** deletes the currently selected article */
+            void slotArticleDelete(); 
+            
             void slotSetSelectedArticleUnread();
             void slotSetSelectedArticleNew();
                      

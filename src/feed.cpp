@@ -289,7 +289,7 @@ bool Feed::isExpired(const MyArticle& a) const
 void Feed::appendArticle(const MyArticle& a)
 {
     
-    if ( a.keep() || (!(usesExpiryByAge() && isExpired(a))) ) // if not expired
+    if ( a.keep() || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
     {
         if (a.status() != MyArticle::Read)
             m_unread++;
