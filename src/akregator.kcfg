@@ -32,10 +32,6 @@
          <label>Keep All Articles</label>
          <whatsthis>Save an unlimited number of articles.</whatsthis>
        </choice>
-       <choice name="disableArchiving"> 
-         <label>Disable Archiving</label>
-         <whatsthis>Do not save any articles</whatsthis>
-       </choice>
        <choice name="limitArticleNumber">
          <label>Limit Number of Articles</label>
          <whatsthis>Limit the number of articles in a feed</whatsthis>
@@ -43,7 +39,12 @@
        <choice name="limitArticleAge">
          <label>Delete Expired Articles</label>
          <whatsthis>Delete expired articles</whatsthis>
-       </choice> 
+       </choice>
+       <choice name="disableArchiving"> 
+         <label>Disable Archiving</label>
+         <whatsthis>Do not save any articles</whatsthis>
+       </choice>
+ 
      </choices>
    </entry>
   <entry key="Max Article Age" type="Int" >
