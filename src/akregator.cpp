@@ -191,19 +191,20 @@ void aKregator::setupActions()
     KStdAction::preferences(this, SLOT(showOptions()), actionCollection());
 }
 
-void aKregator::saveProperties(KConfig* /*config*/)
+void aKregator::saveProperties(KConfig* config)
 {
-    // the 'config' object points to the session managed
-    // config file.  anything you write here will be available
-    // later when this app is restored
+    if (!m_part)
+        loadPart();
+    config->writeEntry("URL",m_part->url().url());
 }
 
-void aKregator::readProperties(KConfig* /*config*/)
+void aKregator::readProperties(KConfig* config)
 {
-    // the 'config' object points to the session managed
-    // config file.  this function is automatically called whenever
-    // the app is being restored.  read in here whatever you wrote
-    // in 'saveProperties'
+    KURL u=config->readEntry("URL");
+    if (!m_part) // if blank url, load part anyways
+        loadPart();
+    if (u.isValid())
+        load(u);
 }
 
 void aKregator::fileNew()
