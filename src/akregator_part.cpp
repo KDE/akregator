@@ -211,6 +211,7 @@ bool aKregatorPart::openFile()
 
     // Read OPML feeds list and build QDom tree.
     QTextStream stream(&file);
+    stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
     QDomDocument doc;
     QString str;
 
@@ -260,7 +261,11 @@ void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
     {
         KListViewItem *elt;
         if (parent)
-            elt = new KListViewItem( parent, m_tree->lastItem(), e.attribute("text") );
+        {
+            QListViewItem *lastChild = parent->firstChild();
+            while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
+            elt = new KListViewItem( parent, lastChild, e.attribute("text") );
+        }
         else
             elt = new KListViewItem( m_tree, m_tree->lastItem(), e.attribute("text") );
 

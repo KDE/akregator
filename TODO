@@ -15,7 +15,6 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
-#000035 FIX [ ] non-latin1 opml doesn't restore properly (encoding flag problem? QDom? seems like it reads as plain bytes)
 #000034 FIX [ ] parse html entities in article titles
 #000032 ADD [+] proposals for librss:
                 add complete RSS 2.0 support to Article, namely add Article::pubDate, const QString& Article::guid() and bool Article::guidIsPermalink();

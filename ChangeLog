@@ -4,6 +4,8 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000035 FIX [x] non-latin1 opml doesn't restore properly
+        CHG [x] feeds list now stored using QDom classes
 #000030 FIX [x] boolean vars are stored and retrieved improperly in opml
         CHG [x] use KPasswordEdit for ljPassword input
 #000001 ADD [x] allow inline editing of feeds to alter Feed[Group]::title and resetting updateTitle to false (slotItemRenamed)
