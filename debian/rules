@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
-# Sample debian/rules that uses debhelper.
-# GNU copyright 1997 to 1999 by Joey Hess.
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/kde.mk
@@ -13,14 +11,13 @@ DEB_INSTALL_CHANGELOGS_akregator := ChangeLog
 DEB_INSTALL_MANPAGES_akregator := debian/akregator.1
 
 install/akregator::
-	mkdir -p debian/akregator/usr/share/lintian/overrides/
-	cp debian/akregator.lintian debian/akregator/usr/share/lintian/overrides/akregator
+	dh_install -pakregator debian/overrides/akregator usr/share/lintian/overrides/
 
 install/akregator-konq-plugin::
-	dh_link -pakregator-konq-plugin usr/share/doc/akregator usr/share/doc/akregator-konq-plugin 
+	dh_link
 
 install/akregator-kontact-plugin::
-	dh_link -pakregator-kontact-plugin usr/share/doc/akregator usr/share/doc/akregator-kontact-plugin
+	dh_link
 
 clean::
 	rm -f debian/compat

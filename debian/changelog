@@ -1,8 +1,9 @@
 akregator (1.0-beta6-2) unstable; urgency=low
 
   * Rewrote a dependency wrt libkcal2-dev (closes: #271182)
+  * some debian/ changes for T&S.
 
- -- Pierre Habouzit <pierre.habouzit@m4x.org>  Sat, 11 Sep 2004 22:11:31 +0200
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Sun, 12 Sep 2004 19:23:06 +0200
 
 akregator (1.0-beta6-1) unstable; urgency=low
 
