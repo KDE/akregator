@@ -12,13 +12,27 @@ void Tester::test()
 	Loader *loader = Loader::create();
 	connect( loader, SIGNAL( loadingComplete( Loader *, Document, Status ) ),
 	         this, SLOT( slotLoadingComplete( Loader *, Document, Status ) ) );
-	loader->loadFrom( "http://sourceforge.net/export/rss2_projnews.php?group_id=29057&rss_fulltext=1", new FileRetriever );
+	loader->loadFrom( "http://www.livejournal.com/users/madfire/data/rss", new FileRetriever );
 }
 
 void Tester::slotLoadingComplete( Loader *loader, Document doc, Status status )
 {
 	if ( status == Success )
+	{
 		kdDebug() << "Successfully retrieverd '" << doc.title() << "'" << endl;
+		kdDebug() << doc.description() << endl;
+		
+		kdDebug() << "Articles:" << endl;
+
+		Article::List list = doc.articles();
+		Article::List::ConstIterator it;
+		Article::List::ConstIterator en=list.end();
+		for (it = list.begin(); it != en; ++it)
+		{
+		    kdDebug() << "\tTitle: " << (*it).title() << endl;
+		    kdDebug() << "\tText:  " << (*it).description() << endl;
+		}
+	}
 
 	if ( status != Success )
 		kdDebug() << "ERROR " << loader->errorCode() << endl;

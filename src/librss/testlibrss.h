@@ -5,6 +5,7 @@
 
 #include "loader.h"
 #include "document.h"
+#include "article.h"
 #include "global.h"
 
 using RSS::Loader;
