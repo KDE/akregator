@@ -100,7 +100,7 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
     // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
     // You don't need to do that anyway since Loader instances delete themselves.
 
-    if (status != RSS::Success)
+    if (status != Success)
         return;
 
     kdDebug() << "Feed fetched successfully [" << doc.title() << "]" << endl;
