@@ -22,26 +22,37 @@ using namespace RSS;
 
 struct MyArticle::Private : public RSS::Shared
 {
+    /** The status of the article is stored in an int, the bits having the
+        following meaning:
+    
+        0000 0001 Deleted
+        0000 0010 Trash
+        0000 0100 New
+        0000 1000 Read
+        0001 0000 Keep
+     */
+
+    enum Status {Deleted=0x01, Trash=0x02, New=0x04, Read=0x08, Keep=0x10};
+    int status;
+    
     Article article;
     QDateTime fetchDate;
     QString title;
-    int status;
-    bool keep;
-    bool deleted;
+    
     Feed* feed;
 };
 
 MyArticle::MyArticle() : d(new Private)
 {
-    d->keep = false;
-    d->deleted = false;
-    
+    d->status = 0; 
     d->feed = 0;
 }
 
 MyArticle::MyArticle(Article article) : d(new Private)
 {
+    d->status = 0;
     d->article = article;
+    d->feed = 0;
     d->fetchDate = QDateTime::currentDateTime();
     
     if (article.title().isEmpty())
@@ -52,26 +63,21 @@ MyArticle::MyArticle(Article article) : d(new Private)
     QString status = d->article.meta("status");
     
     if (!status.isEmpty())
-        d->status = status.toInt();
-    else
-        d->status = Read;
+        setStatus(status.toInt());
 
-    d->keep = (article.meta("keep") == "true") ? true : false;
-    d->deleted = (article.meta("deleted") == "true") ? true : false;
-    
-    d->feed = 0;
+    setKeep((article.meta("keep") == "true") ? true : false);
+    if (article.meta("deleted") == "true")
+        setDeleted();
 }
 
 void MyArticle::setDeleted()
 {
-    d->deleted = true;
-    d->status = Read;
-    d->keep = false;
+    d->status = Private::Deleted;
 }
 
 bool MyArticle::isDeleted() const
 {
-    return d->deleted;
+    return (d->status & Private::Deleted) != 0;
 }
 
 MyArticle::MyArticle(const MyArticle &other) : d(new Private)
@@ -128,12 +134,29 @@ bool MyArticle::operator==(const MyArticle &other) const
 
 int MyArticle::status() const
 {
-    return d->status;
+    if ((d->status & Private::Read) != 0)
+        return Read;
+    
+    if ((d->status & Private::New) != 0)
+        return New;
+    else
+        return Unread;
 }
 
 void MyArticle::setStatus(int status)
 {
-    d->status=status;
+    switch (status)
+    {
+        case Read:
+            d->status = (d->status | Private::Read) & ~Private::New;
+            break;
+        case Unread:
+            d->status = (d->status & ~Private::Read) & ~Private::New;
+            break;
+        case New:
+            d->status = (d->status | Private::New) & ~Private::Read;
+            break;
+    }
 }
 
 QString MyArticle::title() const
@@ -175,12 +198,12 @@ bool MyArticle::guidIsPermaLink() const
 
 bool MyArticle::keep() const
 {
-    return d->keep;
+    return (d->status & Private::Keep) != 0;
 }
 
 void MyArticle::setKeep(bool keep)
 {
-    d->keep = keep;
+    d->status = keep ? (d->status | Private::Keep) : (d->status & ~Private::Keep);
 }
 
 void MyArticle::setFeed(Feed* feed)
@@ -273,15 +296,15 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
 
         QDomElement metanode = doc.createElement( "metaInfo:meta" );
         metanode.setAttribute("type","status");
-        QDomText stat=doc.createTextNode(QString::number(d->status));
+        QDomText stat=doc.createTextNode( QString::number(status()) );
         metanode.appendChild(stat);
         parent.appendChild(metanode);
     
-        if ( d->keep )
+        if (keep())
         {
             metanode = doc.createElement( "metaInfo:meta" );
             metanode.setAttribute("type", "keep");
-            metanode.appendChild(doc.createTextNode( d->keep ? "true" : "false"));
+            metanode.appendChild(doc.createTextNode("true"));
             parent.appendChild(metanode);
         }
     } // if not deleted
