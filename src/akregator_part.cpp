@@ -290,7 +290,7 @@ bool aKregatorPart::populateStandardFeeds()
     QDomElement ak = doc.createElement( "outline" );
     ak.setAttribute("text",i18n("Akregator News"));
     ak.setAttribute("xmlUrl","http://akregator.sf.net/rss2.php");
-    mainFolder.appendChild(dot);
+    mainFolder.appendChild(ak);
 
     QDomElement dot = doc.createElement( "outline" );
     dot.setAttribute("text",i18n("KDE Dot News"));
