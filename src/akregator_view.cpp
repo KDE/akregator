@@ -1011,10 +1011,19 @@ void aKregatorView::slotFeedRemove()
     if (!selectedNode || selectedNode == m_tree->rootNode()) 
         return;
     
-    QString msg = selectedNode->isGroup() ?
-        i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>") :
-        i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
-    if (KMessageBox::warningContinueCancel(0, msg.arg(selectedNode->title()),i18n("Delete Feed"),KGuiItem(i18n("&Delete"),"editdelete")) == KMessageBox::Continue)
+    QString msg;
+   
+    if (selectedNode->title().isEmpty()) {
+        msg = selectedNode->isGroup() ?
+            i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>") :
+            i18n("<qt>Are you sure you want to delete this feed?</qt>");
+    } else {
+        msg = selectedNode->isGroup() ?
+            i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>") :
+            i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
+        msg = msg.arg(selectedNode->title());
+    }
+    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KGuiItem(i18n("&Delete"), "editdelete")) == KMessageBox::Continue)
     {
         delete selectedNode;
         setTotalUnread(); 
