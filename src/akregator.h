@@ -64,7 +64,7 @@ protected:
      * with @ref saveProperties
      */
     void readProperties(KConfig *);
-    
+
 private slots:
     void fileNew();
     void fileOpen();
@@ -89,7 +89,7 @@ private:
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
     KProgress *m_progressBar;
-    
+
     bool m_quit;
 };
 

@@ -6,17 +6,21 @@
  ***************************************************************************/
 
 #include "articleviewer.h"
+#include "viewer.h"
 #include "feed.h"
 
 #include <kapplication.h>
+#include <klocale.h>
+#include <kdebug.h>
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
-#include <klocale.h>
 #include <khtmlview.h>
 
 #include <qdatetime.h>
 #include <qvaluelist.h>
 #include <qscrollview.h>
+#include <qevent.h>
+
 
 using namespace Akregator;
 
@@ -32,20 +36,18 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-    : KHTMLPart(parent, name), m_metrics(widget())
+    : Viewer(parent, name), m_metrics(widget())
 {
     generateCSS();
     // to be on a safe side
-    setJScriptEnabled(false);
+    /*setJScriptEnabled(false);
     setJavaEnabled(false);
     setMetaRefreshEnabled(false);
     setPluginsEnabled(false);
     setDNDEnabled(false);
     setAutoloadImages(true);
     setStatusMessagesEnabled(true);
-
-    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)),
-                           this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
+*/
 }
 
 void ArticleViewer::openDefault()
@@ -146,7 +148,7 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
         text += KGlobal::locale()->formatDateTime(a.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
     }
     text += "</div>\n"; // end headerbox
-    
+
     if (f && !f->image.isNull())
     {
         QString url=f->xmlUrl;
@@ -224,11 +226,12 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     end();
 }
 
-void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs&)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-
    emit urlClicked(url);
 }
+
+
 
 #include "articleviewer.moc"

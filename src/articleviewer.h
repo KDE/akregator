@@ -8,17 +8,20 @@
 #ifndef ARTICLEVIEWER_H
 #define ARTICLEVIEWER_H
 
-#include <khtml_part.h>
+#include <klocale.h>
+
 #include <qcolor.h>
 #include <qfont.h>
 #include <qpaintdevicemetrics.h>
+
+#include "viewer.h"
 #include "myarticle.h"
 
 namespace Akregator
 {
     class Feed;
 
-    class ArticleViewer : public KHTMLPart
+    class ArticleViewer : public Viewer
     {
         Q_OBJECT
         public:
@@ -38,11 +41,8 @@ namespace Akregator
             QPaintDeviceMetrics m_metrics;
             QString m_currentText;
 
-        signals:
-           void urlClicked(const KURL& url);
-
         private slots:
-           void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
     };
 }
 

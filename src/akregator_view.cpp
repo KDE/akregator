@@ -14,6 +14,7 @@
 #include "feedstree.h"
 #include "articlelist.h"
 #include "articleviewer.h"
+#include "viewer.h"
 #include "archive.h"
 #include "feed.h"
 #include "akregatorconfig.h"
@@ -55,7 +56,7 @@
 #include <qbuttongroup.h>
 #include <qvaluevector.h>
 #include <qtooltip.h>
-#include <qlayout.h> 
+#include <qlayout.h>
 
 using namespace Akregator;
 
@@ -106,26 +107,26 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_mainTab = new QWidget(this, "Article Tab");
     QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab, 0, 2, "mainTabLayout");
-    
+
     QWhatsThis::add(m_mainTab, i18n("Articles list."));
-    
+
     QHBoxLayout *searchLayout = new QHBoxLayout( 0, 0, KDialog::spacingHint(), "searchLayout");
     m_searchLine = new KLineEdit(m_mainTab, "searchline");
     searchLayout->addWidget(m_searchLine);
     m_searchCombo = new KComboBox(m_mainTab, "searchcombo");
     searchLayout->addWidget(m_searchCombo);
     mainTabLayout->addLayout(searchLayout);
-   
+
     m_searchCombo->insertItem(i18n("All Articles"));
     m_searchCombo->insertItem(i18n("Unread"));
     m_searchCombo->insertItem(i18n("New"));
     m_searchCombo->insertItem(i18n("New and Unread"));
-    
+
     connect(m_searchCombo, SIGNAL(activated(int)),
                           this, SLOT(slotSearchComboChanged(int)));
     connect(m_searchLine, SIGNAL(textChanged(const QString &)),
                         this, SLOT(slotSearchTextChanged(const QString &)));
-    
+
     m_currentTextFilter=0;
     m_currentStatusFilter=0;
     m_queuedSearches=0;
@@ -151,7 +152,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_panner2 );
-    
+
     m_tabs->addTab(m_mainTab, i18n( "Articles" ));
     m_tabs->setTitle(i18n( "Articles" ), m_mainTab);
 
@@ -236,17 +237,17 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         reset();
         parent = m_tree->firstChild();
     }
-    
+
     m_tree->setUpdatesEnabled(false);
     int numNodes=body.childNodes().count();
     int curNodes=0;
-    
+
     QDomNode n = body.firstChild();
     while( !n.isNull() )
     {
         parseChildNodes(n, parent);
         curNodes++;
-        m_part->setProgress((int)100*((double)curNodes/(double)numNodes));
+        m_part->setProgress(int(100*((double)curNodes/(double)numNodes)));
         n = n.nextSibling();
     }
     m_tree->setUpdatesEnabled(true);
@@ -295,9 +296,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 
             elt->setOpen( e.attribute("isOpen", "true") == "true" ? true : false );
         }
-    
+
         kapp->processEvents();
-        
+
         if (e.hasChildNodes())
         {
             QDomNode child = e.firstChild();
@@ -552,7 +553,7 @@ void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
         if (!src->item())
             return;
         for ( QListViewItem *i = src->item()->firstChild()
-                ; i ; i = i->nextSibling() ) 
+                ; i ; i = i->nextSibling() )
         {
             FeedGroup *g = m_feeds.find(i);
             if (g)
@@ -718,7 +719,7 @@ void aKregatorView::slotFeedModify()
     Feed *feed = static_cast<Feed *>(g);
     if (!feed) return;
 
-    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, 
+    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0,
     "edit_feed" );
 
     dlg->setFeedName( feed->title() );
@@ -933,7 +934,7 @@ void aKregatorView::updateSearch(const QString &s)
     QValueList<Criterion> statusCriteria;
 
     QString textSearch=s.isNull() ? m_searchLine->text() : s;
-    
+
     if (!textSearch.isEmpty())
     {
         Criterion subjCrit( Criterion::Title, Criterion::Contains, textSearch );
@@ -941,7 +942,7 @@ void aKregatorView::updateSearch(const QString &s)
         Criterion crit1( Criterion::Description, Criterion::Contains, textSearch );
         textCriteria << crit1;
     }
-    
+
     if (m_searchCombo->currentItem())
     {
         switch (m_searchCombo->currentItem())
@@ -970,7 +971,7 @@ void aKregatorView::updateSearch(const QString &s)
                 break;
         }
     }
-    
+
     m_currentTextFilter = new ArticleFilter(textCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
     m_currentStatusFilter = new ArticleFilter(statusCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
 

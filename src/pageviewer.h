@@ -8,21 +8,15 @@
 #ifndef PAGEVIEWER_H
 #define PAGEVIEWER_H
 
-#include <khtml_part.h>
+#include "viewer.h"
 
 namespace Akregator
 {
-    class PageViewer : public KHTMLPart
+    class PageViewer : public Viewer
     {
         Q_OBJECT
         public:
             PageViewer(QWidget* parent, const char* name);
-
-        signals:
-           void urlClicked(const KURL& url);
-
-        private slots:
-           void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
     };
 }
 

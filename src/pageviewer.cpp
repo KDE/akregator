@@ -6,6 +6,7 @@
  ***************************************************************************/
 
 #include "pageviewer.h"
+#include "viewer.h"
 
 #include <kapplication.h>
 #include <kglobalsettings.h>
@@ -20,10 +21,10 @@
 using namespace Akregator;
 
 PageViewer::PageViewer(QWidget *parent, const char *name)
-    : KHTMLPart(parent, name)
+    : Viewer(parent, name)
 {
     // to be on a safe side
-    setJScriptEnabled(false);
+    /*setJScriptEnabled(false);
     setJavaEnabled(true);
     setMetaRefreshEnabled(true);
     setPluginsEnabled(true);
@@ -32,13 +33,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     setStatusMessagesEnabled(true);
 
     connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
-}
-
-void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
-{
-   kdDebug() << "PageViewer: Open url request: " << url << endl;
-   openURL(url);
-   //emit urlClicked(url);
+   */
 }
 
 #include "pageviewer.moc"

@@ -35,7 +35,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
     extension=new KParts::BrowserExtension(this, "ak_extension");
-    
+
     // notify the part that this is our internal widget
     setWidget(m_view);
 
@@ -126,7 +126,7 @@ void aKregatorPart::setStatusBar(const QString &text)
 
 void aKregatorPart::setProgress(int percent)
 {
-    emit extension->loadingProgress(percent); 
+    emit extension->loadingProgress(percent);
 }
 
 /*************************************************************************************************/
@@ -148,7 +148,7 @@ bool aKregatorPart::openFile()
 
     setProgress(0);
     kapp->processEvents();
-    
+
     // Read OPML feeds list and build QDom tree.
     QTextStream stream(&file);
     stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
@@ -164,13 +164,13 @@ bool aKregatorPart::openFile()
         emit extension->loadingProgress(-1);
         return false;
     }
-    
+
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
     {
         emit extension->loadingProgress(-1);
         return false;
     }
-    
+
     // just for fun, set the status bar
     setStatusBar( m_url.prettyURL() );
 
@@ -191,7 +191,7 @@ bool aKregatorPart::saveFile()
     QFile file(m_file);
     if (file.open(IO_WriteOnly) == false)
         return fileSaveAs();
-        
+
     // use QTextStream to dump the text to the file
     QTextStream stream(&file);
     stream.setEncoding(QTextStream::UnicodeUTF8);
