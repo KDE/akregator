@@ -8,6 +8,8 @@
 #ifndef AKREGATORMYARTICLE_H
 #define AKREGATORMYARTICLE_H
 
+#include <qdom.h>
+
 #include "librss/article.h" /* <rss/article.h> */
 
 class KURLLabel;
@@ -44,6 +46,8 @@ namespace Akregator
             const QDateTime &pubDate() const;
             KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
 
+            void dumpXmlData( QDomElement parent, QDomDocument doc ) const;
+            
         private:
             struct Private;
             Private *d;

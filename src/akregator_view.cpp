@@ -203,6 +203,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, KListViewItem *parent)
                               e.attribute("ljPassword"),
                               e.attribute("updateTitle") == "true" ? true : false
                             );
+
         }
         else
         {
@@ -259,7 +260,7 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
-
+    Archive::load(static_cast<Feed *>(m_feeds.find(elt)));
     
     QString iconFile=FeedIconManager::self()->iconLocation(xmlUrl);
     if (!iconFile.isNull())
@@ -637,6 +638,8 @@ void aKregatorView::slotFeedFetched(Feed *feed)
         slotUpdateArticleList(feed);
     }
 
+    Archive::save(feed);
+    
     // Also, update unread counts
 
 //    m_part->setModified(true); // FIXME reenable when article storage is implemented

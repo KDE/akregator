@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "archive.h"
 #include "feed.h"
 #include "addfeeddialog.h"
 
@@ -82,6 +83,7 @@ void AddFeedDialog::slotOk( )
 void AddFeedDialog::fetchCompleted(Feed *f)
 {
    feedTitle=f->title();
+   Archive::save(f);
    KDialogBase::slotOk();
 }
 

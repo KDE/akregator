@@ -52,7 +52,8 @@ namespace Akregator
             ~Feed();
 
             virtual QDomElement toXml( QDomElement parent, QDomDocument document );
-
+            void dumpXmlData( QDomElement parent, QDomDocument document );
+            
             virtual bool isGroup();
 
             enum LJAuthMode { AuthNone, AuthLocal, AuthGlobal };
@@ -76,6 +77,13 @@ namespace Akregator
             QPixmap        image;
             QPixmap        favicon;
 
+            bool isMerged(){return m_merged;}
+            void setMerged(bool m){m_merged=m;}
+           
+            void appendArticles(const Document &d);
+            void appendArticle(const Article &a);
+                
+            
         public slots:
             void fetch(bool follow=false);                 ///< Start fetching rss
             void loadFavicon();
@@ -99,6 +107,7 @@ namespace Akregator
             bool m_fetchError;
             bool m_followDiscovery;
             int m_fetchTries;
+            bool m_merged;
             Document m_document;
     };
 }

@@ -114,6 +114,33 @@ KURLLabel *MyArticle::widget(QWidget *parent, const char *name) const
     return d->article.widget(parent, name);
 }
 
+void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
+{
+    QDomElement tnode = doc.createElement( "title" );
+    QDomText t=doc.createTextNode( title() );
+    tnode.appendChild(t);
+    parent.appendChild(tnode);
+
+    if (!link().isValid())
+    {
+        QDomElement lnode = doc.createElement( "link" );
+        lnode.setAttribute("rel","alternate");
+        lnode.setAttribute("type","text/html");
+        lnode.setAttribute("href",link().url());
+        parent.appendChild(lnode);
+    }
+
+    if (!description().isEmpty())
+    {
+        QDomElement snode = doc.createElement( "summary" );
+        snode.setAttribute("type","text/plain");
+        QDomText dt=doc.createTextNode( description() );
+        snode.appendChild(dt);
+        parent.appendChild(snode);
+    }
+}
+
+
 QString MyArticle::buildTitle()
 {
     QString s=d->article.description();

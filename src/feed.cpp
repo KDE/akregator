@@ -31,6 +31,7 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     , m_fetchError(false)
 	, m_fetchTries(0)
     , m_followDiscovery(false)
+    , m_merged(false)
 {
 }
 
@@ -82,6 +83,48 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
     parent.appendChild( el );
     return el;
 }
+
+void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
+{
+    QDomElement tnode = doc.createElement( "title" );
+    QDomText t=doc.createTextNode( title() );
+    tnode.appendChild(t);
+    parent.appendChild(tnode);
+    if (!htmlUrl.isEmpty())
+    {
+        QDomElement lnode = doc.createElement( "link" );
+        lnode.setAttribute("rel","alternate");
+        lnode.setAttribute("type","text/html");
+        lnode.setAttribute("href",htmlUrl);
+        parent.appendChild(lnode);
+    }
+
+    ArticleSequence::ConstIterator it;
+    ArticleSequence::ConstIterator en=articles.end();
+    for (it = articles.begin(); it != en; ++it)
+    {
+        QDomElement enode = doc.createElement( "entry" );
+        (*it).dumpXmlData(enode, doc);
+        parent.appendChild(enode);
+    }
+    
+}
+
+void Feed::appendArticles(const Document &d)
+{
+    Article::List::ConstIterator it;
+    Article::List::ConstIterator en = d.articles().end();
+    for (it = d.articles().begin(); it != en; ++it)
+    {
+        appendArticle(*it);
+    }
+}
+
+void Feed::appendArticle(const Article &a)
+{
+    articles.append(MyArticle(a));
+}
+
 
 void Feed::fetch(bool followDiscovery)
 {
@@ -141,13 +184,8 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     description = m_document.description();
     htmlUrl = m_document.link().url();
 
-    Article::List::ConstIterator it;
-    Article::List::ConstIterator en = m_document.articles().end();
-    for (it = m_document.articles().begin(); it != en; ++it)
-    {
-        articles.append( MyArticle( (*it) ) );
-    }
-
+    appendArticles(m_document);
+    
     emit fetched(this);
 }
 
