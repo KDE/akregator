@@ -76,8 +76,14 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
     
     if (d->description.isEmpty())
     {
-        if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"), false)).isNull())
+		if (!(elemText = extractNode(node, QString::fromLatin1("body"), false)).isNull())
 	    	d->description = elemText;
+    
+		if (d->description.isEmpty())  // 3rd try: see http://www.intertwingly.net/blog/1299.html
+		{
+			if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"), false)).isNull())
+				d->description = elemText;
+		}
     }
     
 	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull()) {
