@@ -6,6 +6,7 @@ Changes after 1.0b7:
 -----------------------------
 
 New features:
+       - Add icon to konqueror to show if page has a feed -tpr
 #85532 - Add feed summary -tpr
 
 Changes:
