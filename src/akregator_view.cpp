@@ -280,6 +280,10 @@ void aKregatorView::slotOpenTab(const KURL& url, bool background=false)
         m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1 && m_tabs->currentPageIndex() != 0)
         m_tabsClose->setEnabled(true);
+    QString favicon = FeedIconManager::self()->iconLocation(url);
+    if (!favicon.isEmpty()) {
+        m_tabs->setTabIconSet(page->widget(), QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
+    }
     page->openURL(url);
 }
 
