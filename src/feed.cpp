@@ -98,13 +98,12 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
 
     if (status != Success)
     {
-        // smt: perhaps cancel would be better than connect_no?
-        faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("connect_no", KIcon::Small));
+        faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("cancel", KIcon::Small));
         m_fetchError=true;
-        
+
         return;
     }
-    
+
     kdDebug() << "Feed fetched successfully [" << doc.title() << "]" << endl;
 
     if (updateTitle || title().isEmpty()) setTitle( doc.title() );
