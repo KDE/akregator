@@ -33,8 +33,6 @@ shellrc_DATA = akregator_shell.rc
 kdelnk_DATA = feed.protocol
 kdelnkdir = $(kde_servicesdir)
 
-kde_module_LTLIBRARIES = libakregatorpart.la
-
 #########################################################################
 # PRIVATE SECTION
 #########################################################################
@@ -50,8 +48,9 @@ libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal
 #########################################################################
 
 kde_kcfg_DATA = akregator.kcfg
+kde_module_LTLIBRARIES = libakregatorpart.la
 
-libakregatorpart.la: libakregatorprivate.la
+akregator_run.lo: akregatorconfig.h
 
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = \
