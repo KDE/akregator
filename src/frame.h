@@ -48,7 +48,7 @@ namespace Akregator
             void started();
             void canceled(const QString &);
             void completed();
-            int loadingProgress(int);
+            void loadingProgress(int);
             void statusText(const QString &);
 
         private:
