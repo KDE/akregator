@@ -107,9 +107,7 @@ void aKregatorPart::saveSettings()
 }
 
 aKregatorPart::~aKregatorPart()
-{
-   saveSettings();
-}
+{}
 
 void aKregatorPart::readRecentFileEntries()
 {

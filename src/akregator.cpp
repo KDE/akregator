@@ -184,7 +184,7 @@ void aKregator::addFeedToGroup(const QString& url, const QString& group)
 {
     if (!m_part)
         loadPart();
-    static_cast<aKregatorPart*>(m_part)->addFeedToGroup( url, group );
+    (static_cast<aKregatorPart*>(m_part))->addFeedToGroup( url, group );
 }
 
 void aKregator::setupActions()
@@ -371,6 +371,7 @@ bool aKregator::queryClose()
 }
 void aKregator::quitProgram()
 {
+     static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
      m_quit = true;
      close();
      m_quit = false;
