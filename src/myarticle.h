@@ -41,6 +41,7 @@ namespace Akregator
              * @return true if this article is the same as other, based on guid or link.
              */
             bool isTheSameAs(const MyArticle &other);
+            void offsetFetchTime(int secs);
 
             QString title() const;
             const KURL &link() const;

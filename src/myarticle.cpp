@@ -32,13 +32,9 @@ MyArticle::MyArticle() : d(new Private)
 
 MyArticle::MyArticle(Article article) : d(new Private)
 {
-    static int padding=60;
-    padding--;
-    if (padding==1)
-        padding=60;
     d->article = article;
     d->fetchDate = QDateTime::currentDateTime();
-    d->fetchDate=d->fetchDate.addSecs(padding); // temp HACK..
+    
     if (article.title().isEmpty())
         d->title=buildTitle();
     else
@@ -66,6 +62,11 @@ MyArticle &MyArticle::operator=(const MyArticle &other)
         d = other.d;
     }
     return *this;
+}
+
+void MyArticle::offsetFetchTime(int secs)
+{
+    d->fetchDate=d->fetchDate.addSecs(secs);
 }
 
 bool MyArticle::operator<(const MyArticle &other) const

@@ -18,6 +18,7 @@
 #include <kapplication.h>
 
 #include <qtimer.h>
+#include <qdatetime.h>
 #include <qlistview.h>
 #include <qdom.h>
 
@@ -117,10 +118,13 @@ void Feed::appendArticles(const Document &d, bool findDups)
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
     //kdDebug() << "m_unread before appending articles=="<<m_unread<<endl;
+    
+    int nudge=0;
+
     for (it = d.articles().begin(); it != en; ++it)
     {
         MyArticle mya(*it);
-        if (findDups)
+	if (findDups)
         {
             ArticleSequence::ConstIterator oo=articles.find(mya);
             if (oo == articles.end() )
@@ -132,7 +136,10 @@ void Feed::appendArticles(const Document &d, bool findDups)
                     if (mya.status()==MyArticle::New)
                         mya.setStatus(MyArticle::Unread);
                 }
+
+		mya.offsetFetchTime(nudge);
                 appendArticle(mya);
+		nudge++;
             }
             //else{
             //kdDebug() << "got dup!!"<<mya.title()<<endl;
@@ -146,12 +153,14 @@ void Feed::appendArticles(const Document &d, bool findDups)
                 if (mya.status()==MyArticle::New)
                     mya.setStatus(MyArticle::Unread);
             }
+	
+            mya.offsetFetchTime(nudge);
             appendArticle(mya);
+            nudge++;
         }
     }
     articles.enableSorting(true);
     articles.sort();
-    //kdDebug() << "m_unread after appending articles=="<<m_unread<<endl;
 }
 
 void Feed::appendArticle(const MyArticle &a)
