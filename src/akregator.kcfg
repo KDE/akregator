@@ -52,7 +52,7 @@
    <default>30</default>
   </entry>
   <entry key="Use Expiry" type="Bool">
-   <label>Delete old articles</label>
+   <label>Delete expired articles</label>
    <whatsthis>Delete articles older than %1 days.</whatsthis>
    <default>false</default>
   </entry>

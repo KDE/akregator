@@ -129,7 +129,7 @@
                         <string>Use notifications</string>
                     </property>
                     <property name="whatsThis" stdset="0">
-                        <string>This setting selects if aKregator will use balloon notifications for new feeds or not.</string>
+                        <string>Select this if you want to get notified when there are new articles.</string>
                     </property>
                 </widget>
                 <widget class="QCheckBox" row="3" column="0">
