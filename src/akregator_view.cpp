@@ -1463,6 +1463,56 @@ void aKregatorView::slotArticleToggleKeepFlag()
     Archive::save( ali->article().feed() );
 }
 
+void aKregatorView::slotSetSelectedArticleUnread()
+{
+    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+
+    if (!ali)
+        return;
+
+    MyArticle article = ali->article();
+    Feed* feed = article.feed();
+    if (article.status() != MyArticle::Unread)
+    {
+        article.setStatus(MyArticle::Unread);
+        int unread = feed->unread();
+        unread++;
+        m_articles->setReceiveUpdates(false);
+        feed->setUnread(unread);
+        m_articles->setReceiveUpdates(true, false);
+        setTotalUnread();
+            
+        // TODO: schedule this save.. don't want to save a huge file for one change
+        Archive::save(feed);
+    }
+
+}
+
+void aKregatorView::slotSetSelectedArticleNew()
+{
+    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+
+    if (!ali)
+        return;
+
+    MyArticle article = ali->article();
+    Feed* feed = article.feed();
+    if (article.status() != MyArticle::New)
+    {
+        article.setStatus(MyArticle::New);
+        int unread = feed->unread();
+        unread++;
+        m_articles->setReceiveUpdates(false);
+        feed->setUnread(unread);
+        m_articles->setReceiveUpdates(true, false);
+        setTotalUnread();
+            
+        // TODO: schedule this save.. don't want to save a huge file for one change
+        Archive::save(feed);
+    }
+
+}
+
 void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
 {
     if (kifi)

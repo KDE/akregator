@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="29">
+<kpartgui name="akregator_part" version="31">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -7,6 +7,7 @@
     <Separator/> 
   </Menu>
 
+    
   <Menu name="edit">
     <text>F&amp;eed</text>
     <Action name="feed_add"/>
@@ -22,7 +23,13 @@
     <Action name="feed_mark_all_as_read"/>
     <Action name="feed_mark_all_feeds_as_read"/>
   </Menu>
-
+  
+  <Menu name ="article">
+  <text>&amp;Article</text>
+  <Action name="article_set_status"/>
+  <Action name="article_toggle_keep"/>
+  </Menu>
+  
   <Menu name="go">
   <text>&amp;Go</text>
     <Action name="go_previous_article"/>
@@ -35,6 +42,7 @@
     <Action name="go_next_feed"/>
     <Action name="go_next_unread_feed"/>
   </Menu>
+  
   
   <Menu name="settings">
     <Action name="show_quick_filter"/>
@@ -104,6 +112,7 @@
 </Menu>
 
 <Menu name="article_popup">
+  <Action name="article_set_status"/>
   <Action name="article_toggle_keep"/>
 </Menu>
 

@@ -128,7 +128,9 @@ namespace Akregator
 
             /** toggles the keep flag of the currently selected article */
             void slotArticleToggleKeepFlag();
-                    
+
+            void slotSetSelectedArticleUnread();
+            void slotSetSelectedArticleNew();
                      
             /**
              * Shows requested popup menu for feed tree

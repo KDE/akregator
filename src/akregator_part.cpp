@@ -90,9 +90,6 @@ void aKregatorPart::setupActions()
     new KAction(i18n("N&ext Unread Feed"), "", "Ctrl+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
     new KAction(i18n("Prev&ious Unread Feed"), "", "Ctrl+Minus", m_view, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
 
-    KToggleAction* tkf = new KToggleAction(i18n("Keep Article"), QString::null, 0, m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
-    tkf->setChecked(false);
-
     // Settings menu
     KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
     sqf->setChecked( Settings::showQuickFilter() );
@@ -120,6 +117,29 @@ void aKregatorPart::setupActions()
     new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", m_view, SLOT(slotMoveCurrentNodeDown()), actionCollection(), "feedstree_move_down" );
     new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", m_view, SLOT(slotMoveCurrentNodeLeft()), actionCollection(), "feedstree_move_left" );
     new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", m_view, SLOT(slotMoveCurrentNodeRight()), actionCollection(), "feedstree_move_right" );
+
+    // article list
+    KToggleAction* tkf = new KToggleAction(i18n("&Keep Article"), QString::null, "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
+    tkf->setChecked(false);
+
+    KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark Article" ),
+                                    actionCollection(), "article_set_status" );
+
+//    statusMenu->insert(new KAction(KGuiItem(i18n("Mark Article as &Read"), "",
+//                        i18n("Mark selected article as read")),
+//    0, m_view, SLOT(slotArticleSetStatusRead()),
+//    actionCollection(), "article_set_status_read"));
+
+    statusMenu->insert(new KAction(KGuiItem(i18n("Mark Article as &Unread"), "",
+                       i18n("Mark selected article as unread")),
+    "Ctrl+U", m_view, SLOT(slotSetSelectedArticleUnread()),
+    actionCollection(), "article_set_status_unread"));
+
+    statusMenu->insert(new KAction(KGuiItem(i18n("Mark Article as &New"), "",
+                        i18n("Mark selected article as new")),
+    "Ctrl+N", m_view, SLOT(slotSetSelectedArticleNew()),
+    actionCollection(), "article_set_status_new" ));
+
 
     // article viewer
     new KAction( i18n("&Scroll Up"), QString::null, "Up", m_view, SLOT(slotScrollViewerUp()), actionCollection(), "scroll_viewer_up" );
