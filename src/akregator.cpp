@@ -140,11 +140,7 @@ void AkregatorMainWindow::loadStandardFile()
 }
 
 AkregatorMainWindow::~AkregatorMainWindow()
-{
-    kdDebug() << "AkregatorMainWindow::~AkregatorMainWindow: delete part" << endl;
-    delete m_part;
-    kdDebug() << "AkregatorMainWindow::~AkregatorMainWindow: part deleted" << endl;
-}
+{}
 
 void AkregatorMainWindow::setCaption(const QString &a)
 {
@@ -286,7 +282,8 @@ bool AkregatorMainWindow::queryExit()
 {
     if(m_part)
         static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
-    
+
+    delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
     return KParts::MainWindow::queryExit();
 }
 
