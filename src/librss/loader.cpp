@@ -18,6 +18,7 @@
 #include <qdom.h>
 #include <qbuffer.h>
 #include <qregexp.h>
+#include <qstringlist.h>
 
 using namespace RSS;
 
@@ -188,6 +189,7 @@ struct Loader::Private
    DataRetriever *retriever;
    int lastError;
    KURL discoveredFeedURL;
+   KURL url;
 };
 
 Loader *Loader::create()
@@ -217,6 +219,7 @@ void Loader::loadFrom(const KURL &url, DataRetriever *retriever)
    if (d->retriever != NULL)
       return;
 
+   d->url=url;
    d->retriever = retriever;
 
    connect(d->retriever, SIGNAL(dataRetrieved(const QByteArray &, bool)),
@@ -281,16 +284,64 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
    delete this;
 }
 
-/* ~~~~ WARNING:!HACK! feed autodiscovery ~~~~~ */
 void Loader::discoverFeeds(const QByteArray &data)
 {
     QString str, s2;
     QTextStream ts( &str, IO_WriteOnly );
     ts << data.data();
-    QRegExp rx( "(rel|REL)[^=]*=[^aA]*(alternate|ALTERNATE)[^hH]*(href|HREF)[^hHwW]*([^'\">\\s]*)");
-    if (rx.search(str)==-1)
+    QRegExp rx( "(rel|REL)[^=]*=[^sAa]*(service.feed|alternate|ALTERNATE)([^>]*)(HREF|href)[^=]*=[^a-zA-Z0-9-_~,./$]*([^'\">\\s]*)", false);
+    if (rx.search(str)!=-1)
+        s2=rx.cap(5);
+    else{
+    // does not support Atom/RSS autodiscovery.. try finding feeds by brute force....
+        int pos=0;
+        QStringList feeds;
+        QString host=d->url.host();
+        rx.setPattern("(<A |<a )[^hH]*(HREF|href)[^=]*=[^a-zA-Z0-9-_~,./]*([^'\">\\s]*)");
+        while ( pos >= 0 ) {
+            pos = rx.search( str, pos );
+            s2=rx.cap(3);
+            if (s2.endsWith(".rdf")|s2.endsWith(".rss")|s2.endsWith(".xml"))
+                    feeds.append(s2);
+            if ( pos >= 0 ) {
+                pos += rx.matchedLength();
+            }
+        }
+
+
+        s2=feeds.first();
+        KURL testURL;
+        // loop through, prefer feeds on same host
+        for ( QStringList::Iterator it = feeds.begin(); it != feeds.end(); ++it ) {
+            testURL=*it;
+            if (testURL.host()==host)
+            {
+                s2=*it;
+                break;
+            }
+        }
+    }
+    if (s2.isNull())
         return;
-    d->discoveredFeedURL=rx.cap(4);
+
+    if (KURL::isRelativeURL(s2))
+    {
+        if (s2.startsWith("//"))
+        {
+            s2=s2.prepend(d->url.protocol()+":");
+            d->discoveredFeedURL=s2;
+        }
+        else
+        {
+            d->discoveredFeedURL=d->url;
+            d->discoveredFeedURL.addPath(s2);
+        }
+        d->discoveredFeedURL.cleanPath();
+    }
+    else
+        d->discoveredFeedURL=s2;
+    
+    d->discoveredFeedURL.cleanPath();
 }
     
 #include "loader.moc"
