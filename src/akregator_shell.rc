@@ -25,7 +25,6 @@
   </Menu>
 </MenuBar>
 <ToolBar noMerge="1" name="mainToolBar"><text>Main Toolbar</text>
-  <Action name="file_new"/>
   <Merge/>
   <Action name="stop"/>
 </ToolBar>
