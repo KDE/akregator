@@ -33,14 +33,14 @@ shellrc_DATA = akregator_shell.rc
 kdelnk_DATA = feed.protocol
 kdelnkdir = $(kde_servicesdir)
 
-kde_module_LTLIBRARIES = libakregatorprivate.la libakregatorpart.la
+kde_module_LTLIBRARIES = libakregatorpart.la
 
 #########################################################################
 # PRIVATE SECTION
 #########################################################################
 
 # this is a lib shared by both the KPart and the main application
-
+lib_LTLIBRARIES = libakregatorprivate.la
 libakregatorprivate_la_SOURCES = aboutdata.cpp
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -version-info 0:0:0 -no-undefined
 libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEPIM)
