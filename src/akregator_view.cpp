@@ -356,10 +356,6 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     if (fti)
         fti->setUnread(feed->unread());
 
-    // enable when we need to update favicons, on for example systray
-    //connect( feed, SIGNAL(faviconLoaded()),
-    //         this, SLOT(slotFaviconLoaded()));
-
     return feed;
 }
 
@@ -894,7 +890,7 @@ void aKregatorView::slotFetchAllFeeds()
 
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
     {
-        kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
+        //kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
         Feed *f = static_cast<Feed *>(m_feeds.find(*it));
         if (f && !f->isGroup())
             f->fetch();

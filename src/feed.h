@@ -87,7 +87,6 @@ namespace Akregator
             void fetchError(Feed *);
             void fetchDiscovery(Feed *);
 
-            void faviconLoaded(Feed*);
             void imageLoaded(Feed*);
 
 

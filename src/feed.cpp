@@ -274,7 +274,6 @@ void Feed::faviconChanged(const QString &url, const QPixmap &p)
         if (item())
             item()->setPixmap(0, p);
         favicon=p;
-        emit(faviconLoaded(this)); // emit so that other sources can be updated.. not used right now
     }
 }
 
