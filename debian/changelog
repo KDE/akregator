@@ -1,11 +1,11 @@
-akregator (1.0-beta4-0) unstable; urgency=low
+akregator (1.0-beta4-1) unstable; urgency=low
 
   * New uptstream.
   * Package now builds in pbuilder
   * First upload to debian (ITP closes: #251871)
   * package for the konqueror plugin
 
- -- Pierre Habouzit <pierre.habouzit@m4x.org>  Sun, 27 Jun 2004 18:49:19 +0200
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 01 Jul 2004 00:45:11 +0200
 
 akregator (1.0-beta3-3) unstable; urgency=low
 
