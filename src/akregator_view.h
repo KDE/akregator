@@ -95,7 +95,8 @@ namespace Akregator
              * Display article contents in ArticleViewer.
              */
             void slotArticleSelected(QListViewItem *);
-
+	    void slotArticleDoubleClicked(QListViewItem *, const QPoint &, int);
+	    
             /**
              * This slot is called when user renames a feed in feeds tree.
              */

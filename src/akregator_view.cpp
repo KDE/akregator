@@ -28,6 +28,7 @@
 #include <klistview.h>
 #include <khtml_part.h>
 #include <kdebug.h>
+#include <krun.h>
 #include <kurl.h>
 
 #include <qfile.h>
@@ -87,6 +88,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_articles = new ArticleList( m_panner2, "articles" );
     connect( m_articles, SIGNAL(clicked(QListViewItem *)),
                    this, SLOT( slotArticleSelected(QListViewItem *)) );
+    connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
+		   this, SLOT( slotArticleDoubleClicked(QListViewItem *, const QPoint &, int)) );
 
     m_panner1->setSizes( m_panner1Sep );
     m_panner2->setSizes( m_panner2Sep );
@@ -540,6 +543,17 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
     if (!feed) return;
     m_articleViewer->show( feed, item->article() );
 }
+
+void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, int)
+{
+    ArticleListItem *item = static_cast<ArticleListItem *>(i);
+    if (!item) return;
+    if (!item->article().link().isValid()) return;
+    // TODO : make this configurable....
+    KRun::runURL(item->article().link(), "text/html", false, false);
+	    
+}
+
 
 void aKregatorView::slotItemRenamed( QListViewItem *item )
 {
