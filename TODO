@@ -7,16 +7,16 @@ and bug fixes, not small ones.
 Feel free to add items, there is an ideas section
 at the end.
 
-short term (~beta3)
+short term (~beta5)
 -------------------
-- add smarter feed caching (in librss), using If-Modified-Since http header
-- interval polling (will be in shell)
 - passive popups (will be in shell)
+- systray icon menu (showing unread feeds/items)
 - add back/forward/reload buttons to pageviewer
-- rewrite combined view.. planning to use khtml/dom directly
+- combined view fixen
   -> show read/unread/new as different colors in combined view
   -> allow searching in combined view
-
+- add color configurability
+- add option to open tabs in background
 
 medium term ()
 ---------
