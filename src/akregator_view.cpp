@@ -791,9 +791,6 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     if (fti)
         fti->setUnread(feed->unread());
 
-
-//    m_part->setModified(true); // FIXME reenable when article storage is implemented
-
     //kdDebug() << k_funcinfo << "END" << endl;
 }
 

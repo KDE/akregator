@@ -285,7 +285,10 @@ void aKregator::closeEvent(QCloseEvent* e)
         e->ignore();
     }
     else
-        KMainWindow::closeEvent(e);
+    {
+        if (m_part->queryClose())
+            KMainWindow::closeEvent(e);
+    }
 }
 
 #include "akregator.moc"
