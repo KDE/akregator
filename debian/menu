@@ -3,4 +3,5 @@
     section="Apps/Net" \
     hints="KDE,aggregator"\
     title="aKregator" \
+    kderemove="y" \
     command="/usr/bin/akregator"

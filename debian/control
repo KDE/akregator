@@ -12,11 +12,6 @@ Description: RSS feed aggregator for KDE
  aKregator is a KDE RSS aggregator. It supports the best known metaphors from
  existing aggregators. It also facilitates good integration with KDE by
  maintaining an interface similar to Konqueror and KMail.
- .
- This package is currently beta
- .
- You can find more information about akregator at
- http://akregator.sourceforge.net/
 
 Package: akregator-kontact-plugin
 Architecture: any
@@ -26,10 +21,7 @@ Description: kontact plugin for aKregator
  existing aggregators. It also facilitates good integration with KDE by
  maintaining an interface similar to Konqueror and KMail.
  .
- This package is currently beta
- .
- You can find more information about akregator at
- http://akregator.sourceforge.net/
+ The kontact plugin allow you to embed aKregator kpart into Kontact
 
 Package: akregator-konq-plugin
 Architecture: any
@@ -39,8 +31,6 @@ Description: konqueror plugin for aKregator
  existing aggregators. It also facilitates good integration with KDE by
  maintaining an interface similar to Konqueror and KMail.
  .
- This package is currently beta
- .
- You can find more information about akregator at
- http://akregator.sourceforge.net/
+ The konqueror plugin integrates in the konqueror context menu the possibility
+ to directly add new feeds in akregator
 

@@ -1,34 +1,43 @@
+akregator (1.0-beta4-4) unstable; urgency=low
+    
+  * fixed menu for kde ( kderemove="y" ).
+  * modified descriptions in control.
+  * some vqrious fixes to changelog, control files (on Jean-Michel Kelbert
+    advices).
+  * First upload to debian (ITP closes: #251871).
+
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 09 Jul 2004 18:06:27 +0200
+
 akregator (1.0-beta4-3) unstable; urgency=low
     
-  * fixed copyright file
-  * added homepage to control
+  * fixed copyright file.
+  * added homepage to control.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 01 Jul 2004 13:49:50 +0200
 
 akregator (1.0-beta4-2) unstable; urgency=low
 
-  * First upload to debian (ITP closes: #251871)
-  * Fixed upstream (new upstream, but same version)
+  * Fixed upstream (new upstream, but same version).
  
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 01 Jul 2004 10:13:09 +0200
 
 akregator (1.0-beta4-1) unstable; urgency=low
 
   * New uptstream.
-  * Package now builds in pbuilder
-  * package for the konqueror plugin
+  * Package now builds in pbuilder.
+  * package for the konqueror plugin.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 01 Jul 2004 00:45:11 +0200
 
 akregator (1.0-beta3-3) unstable; urgency=low
 
-  * fix some build dependency on kdepim-dev
+  * fix some build dependency on kdepim-dev.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Sun, 20 Jun 2004 21:05:09 +0200
 
 akregator (1.0-beta3-2) unstable; urgency=low
 
-  * split package into akregator and akregator-kontact-plugin
+  * split package into akregator and akregator-kontact-plugin.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 18 Jun 2004 13:09:53 +0200
 
