@@ -61,6 +61,7 @@
 #include <qvaluevector.h>
 #include <qtooltip.h>
 #include <qlayout.h>
+#include <qlabel.h>
 
 using namespace Akregator;
 
@@ -129,7 +130,11 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     QHBoxLayout *searchLayout = new QHBoxLayout( 0, 0, KDialog::spacingHint(), "searchLayout" );
     QToolButton *clearButton = new QToolButton( m_mainTab );
     clearButton->setIconSet( SmallIconSet( QApplication::reverseLayout() ? "clear_left" : "locationbar_erase" ) );
+    clearButton->setAutoRaise(true);
     searchLayout->addWidget(clearButton);
+    QLabel* searchLabel = new QLabel(m_mainTab);
+    searchLabel->setText( i18n("Search:") );
+    searchLayout->addWidget(searchLabel);
     m_searchLine = new KLineEdit(m_mainTab, "searchline");
     searchLayout->addWidget(m_searchLine);
     m_searchCombo = new KComboBox(m_mainTab, "searchcombo");
