@@ -9,13 +9,13 @@
 #define _AKREGATORPART_H_
 
 #include <kparts/part.h>
-#include <kparts/browserextension.h>
 #include <kaboutdata.h>
 #include <kaction.h>
 
 namespace Akregator
 {
     class aKregatorView;
+    class aKregatorExtension;
 }
 
 
@@ -87,11 +87,12 @@ namespace Akregator
             void fileOpen();
             bool fileSaveAs();
             void fileImport();
+            void saveSettings();
 
         private:
             void readRecentFileEntries();
 
-            KParts::BrowserExtension *m_extension;
+            aKregatorExtension *m_extension;
             KRecentFilesAction *recentFilesAction;
             static KAboutData* s_about;
             aKregatorView* m_view;

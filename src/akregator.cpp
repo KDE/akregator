@@ -9,6 +9,7 @@
 #include "akregator.h"
 #include "trayicon.h"
 #include "akregatorconfig.h"
+#include "akregator_extension.h"
 
 #include <ksqueezedtextlabel.h>
 #include <kkeydialog.h>
@@ -88,11 +89,11 @@ aKregator::aKregator()
             setCentralWidget(m_part->widget());
 
             connect (m_part, SIGNAL(partChanged(KParts::ReadOnlyPart *)), this, SLOT(partChanged(KParts::ReadOnlyPart *)));
-            connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+            connect( aKregatorExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
             m_activePart=m_part;
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
-            browserExtension(m_part)->setBrowserInterface(m_browserIface);
+            aKregatorExtension(m_part)->setBrowserInterface(m_browserIface);
         }
     }
     else
@@ -132,15 +133,15 @@ aKregator::~aKregator()
 
 void aKregator::partChanged(KParts::ReadOnlyPart *p)
 {
-    KParts::BrowserExtension *ext;
+    Akregator::aKregatorExtension *ext;
     loadingProgress(-1);
     if (m_activePart)
     {
-        ext=browserExtension(m_activePart);
+        ext=aKregatorExtension(m_activePart);
         if (ext)
             disconnect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
     }
-    ext=browserExtension(p);
+    ext=aKregatorExtension(p);
     if (ext)
         connect( ext, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
     m_activePart=p;
@@ -198,6 +199,7 @@ void aKregator::fileNew()
     // in its initial state.  This is what we do here..
     if ( ! m_part->url().isEmpty() || m_part->isModified() )
     {
+        aKregatorExtension(m_part)->emitSaveSettings();
         (new aKregator)->show();
     };
 }
@@ -301,9 +303,9 @@ void aKregator::fileOpen()
     }
 }
 
-KParts::BrowserExtension *aKregator::browserExtension(KParts::ReadOnlyPart *p)
+aKregatorExtension *aKregator::aKregatorExtension(KParts::ReadOnlyPart *p)
 {
-    return KParts::BrowserExtension::childObject( p );
+    return static_cast<Akregator::aKregatorExtension*>(aKregatorExtension::childObject( p ));
 }
 
 

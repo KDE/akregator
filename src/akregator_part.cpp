@@ -8,6 +8,7 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "akregatorconfig.h"
+#include "akregator_extension.h"
 
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
@@ -35,8 +36,9 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setInstance( aKregatorFactory::instance() );
 
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
-    m_extension=new KParts::BrowserExtension(this, "ak_extension");
-
+    m_extension=new aKregatorExtension(this, "ak_extension");
+    connect (m_extension, SIGNAL(saveSettings()), SLOT(saveSettings()));
+    
     // notify the part that this is our internal widget
     setWidget(m_view);
 
@@ -82,9 +84,14 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setModified(false);
 }
 
-aKregatorPart::~aKregatorPart()
+void aKregatorPart::saveSettings()
 {
    m_view->saveSettings(true);
+}
+
+aKregatorPart::~aKregatorPart()
+{
+   saveSettings();
 }
 
 void aKregatorPart::readRecentFileEntries()
