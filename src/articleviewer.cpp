@@ -69,9 +69,7 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
 
 void ArticleViewer::openDefault()
 {
-    QString text= QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
-                        "<html><head><title></title></head><body>\n");
-
+    QString text;
     text += QString("<h1>%1</h1>\n"
                     "<p>%2</p><ul>\n"
                     "<li>%3</li><ul>\n"
@@ -90,7 +88,7 @@ void ArticleViewer::openDefault()
 
     text += QString("<li><b>%1</b>%2</li>\n"
                     "<li><b>%3</b>%4</li></ul></ul>\n"
-                    "<p>%5</p></body></html>")
+                    "<p>%5</p>")
                     .arg(i18n("Delete"))
                     .arg(i18n(" to remove an existing feed or folder."))
                     .arg(i18n("Fetch"))
@@ -103,8 +101,9 @@ void ArticleViewer::openDefault()
 void ArticleViewer::generateCSS()
 {
     const QColorGroup & cg = QApplication::palette().active();
+    
     m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
-                        "<html><head><title></title></head><body>");
+                        "<html><head><title>.</title>");
 
     // from kmail::headerstyle.cpp
     m_htmlHead += QString (
@@ -123,81 +122,64 @@ void ArticleViewer::generateCSS()
     + QString("  color: %1 ! important;\n")
     + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
     +       "}\n\n"
-    +"#headerbox {\n"
+    +".headerbox {\n"
     +"  background: %2 ! important;\n"
     +"  color: %3 ! important;\n"
     +"  border:1px solid #000;\n"
     +"  margin-bottom: 10pt;\n"
-    +"  width: 100%;\n"
-    +        "}\n\n").arg(cg.link().name()).arg(cg.background().name())
+//    +"  width: 99%;\n"
+    +        "}\n\n")
+            .arg(cg.link().name())
+            .arg(cg.background().name())
             .arg(cg.text().name());
 
-    m_htmlHead += QString("#headertitle a:link { color: %1  ! important; }\n"
-    "#headertitle a:visited { color: %2 ! important; }\n"
-    "#headertitle a:hover{ color: %3 ! important; }\n"
-            "#headertitle a:active { color: %4 ! important; }\n")
+    m_htmlHead += QString(".headertitle a:link { color: %1  ! important; }\n"
+    ".headertitle a:visited { color: %2 ! important; }\n"
+    ".headertitle a:hover{ color: %3 ! important; }\n"
+            ".headertitle a:active { color: %4 ! important; }\n")
             .arg(cg.highlightedText().name())
             .arg(cg.highlightedText().name())
             .arg(cg.highlightedText().name())
             .arg(cg.highlightedText().name());
     m_htmlHead += QString(
-    "#headertitle {\n"
+    ".headertitle {\n"
     "  background: %1 ! important;\n"
     "  padding:2px;\n"
     "  color: %2 ! important;\n"
     "  font-weight: bold;\n"
     "}\n\n"
-    "#header {\n"
+    ".header {\n"
     "  font-weight: bold;\n"
     "  padding:2px;\n"
     "  margin-right: 5px;\n"
     "}\n\n"
-    "#headertext {\n"
+    ".headertext {\n"
     "}\n\n"
-    "#headimage {\n"
+    ".headimage {\n"
     "  float: right;\n"
     "  margin-left: 5px;\n"
             "}\n\n").arg(cg.highlight().name())
             .arg(cg.highlightedText().name());
     
     m_htmlHead += QString(
-    "#body {\n"
+    "body {\n"
     "  clear: none;\n"
     "  overflow: auto;\n"
     "}\n\n"
-    "#content {\n"
+    ".content {\n"
     "  display: block;\n"
     "  margin-bottom: 6px;\n"
             "}\n\n"
     // these rules make sure that there is no leading space between the header and the first of the text
-    "#content > P:first-child {\n margin-top: 1px; }"
-    "#content > DIV:first-child {\n margin-top: 1px; }"
-    "#content > BR:first-child {\n display: none;  }"
+    ".content > P:first-child {\n margin-top: 1px; }"
+    ".content > DIV:first-child {\n margin-top: 1px; }"
+    ".content > BR:first-child {\n display: none;  }"
     ".contentlink {\n display: block; }"
     "\n\n");
      
-   // "  border:1px solid #000;\n"
-    m_htmlHead += QString (
-    "#article {\n"
-    "  font-size: %5 ! important;\n"
-    "  font-family: %6 ! important;\n"
-    "  background: %4 ! important;\n"
-    "  overflow: hidden;\n"
-    "  background: %1;\n"
-    " border:1px solid %2;\n"
-    "  padding: 3px;\n"
-    "  padding-right: 6px;}\n\n"
-    "#titleanchor {\n"
-    "  color: %3 !important;}\n\n"
-    "</style>\n")
-    .arg(cg.background().light(108).name())
-            .arg(cg.text().name())
-            .arg(cg.text().name())
-            .arg(cg.background().light(108).name())
-            .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
-            .arg(Settings::standardFont());
+   
+    m_htmlHead += "</style></head><body>";
     //kdDebug() << m_htmlHead << endl;
-
 }
 
 void ArticleViewer::reload()
@@ -210,13 +192,13 @@ void ArticleViewer::reload()
 QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
 {
     QString text;
-    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
     if (!article.title().isEmpty())
     {
-        text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(stripTags(article.title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(stripTags(article.title())));
         if (article.link().isValid())
-            text += "<a id=\"titleanchor\" href=\""+article.link().url()+"\">";
+            text += "<a href=\""+article.link().url()+"\">";
         text += QStyleSheet::escape(article.title()); // TODO: better leave things escaped in the parser
         if (article.link().isValid())
             text += "</a>";
@@ -224,9 +206,9 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
     }
     if (article.pubDate().isValid())
     {
-        text += QString("<span id=\"header\" dir=\"%1\">").arg(directionOf(i18n("Date")));
+        text += QString("<span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
-        text += "</span><span id=\"headertext\">";
+        text += "</span><span class=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
     }
     text += "</div>\n"; // end headerbox
@@ -234,19 +216,19 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
     if (feed && !feed->image().isNull())
     {
         QString url=feed->xmlUrl();
-        text += QString("<a href=\""+feed->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        text += QString("<a href=\""+feed->htmlUrl()+"\"><img class=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
 
     
 
     if (!article.description().isEmpty())
     {
-        text += QString("<div id=\"body\" dir=\"%1\">").arg(directionOf(stripTags(article.description())) );
-        text += "<span id=\"content\">"+article.description()+"</span>";
+        text += QString("<div dir=\"%1\">").arg(directionOf(stripTags(article.description())) );
+        text += "<span class=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }
     
-    text += "<div id=\"body\">";
+    text += "<div class=\"body\">";
     
     if (article.commentsLink().isValid())
     {
@@ -284,6 +266,7 @@ void ArticleViewer::renderContent(const QString& text)
 {
     m_currentText = text;
     beginWriting();
+    //kdDebug() << text << endl;
     write(text);
     endWriting();
 }
@@ -293,11 +276,13 @@ void ArticleViewer::beginWriting()
     view()->setContentsPos(0,0);
     begin();
     write(m_htmlHead);
+    //kdDebug() << m_htmlHead << endl;
 }
 
 void ArticleViewer::endWriting()
 {
     write(m_htmlFooter);
+    //kdDebug() << m_htmlFooter << endl;
     end();
 }
 
@@ -329,8 +314,8 @@ void ArticleViewer::showSummary(FeedGroup* group)
     if (!group)
         return;
     QString text;
-    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-    text += QString("<div id=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(group->title()))).arg(group->title());
+    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(group->title()))).arg(group->title());
     if(group->unread() == 0)
         text += i18n(" (no unread articles)");
     else
@@ -347,9 +332,9 @@ void ArticleViewer::showSummary(Feed *f)
         return;
 
     QString text;
-    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
-    text += QString("<div id=\"headertitle\" dir=\"%1\">").arg(directionOf(stripTags(f->title())));
+    text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(stripTags(f->title())));
     text += f->title();
     if(f->unread() == 0)
         text += i18n(" (no unread articles)");
@@ -360,12 +345,11 @@ void ArticleViewer::showSummary(Feed *f)
     
     if (!f->image().isNull()) // image
     {
-  //      text += QString("<div id=\"body\" style=\"height:%1px\">").arg(f->image().height()+10);
-          text += QString("<div id=\"body\">");
+        text += QString("<div class=\"body\">");
         QString url=f->xmlUrl();
-        text += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        text += QString("<a href=\""+f->htmlUrl()+"\"><img class=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
-    else text += "<div id=\"body\">";
+    else text += "<div class=\"body\">";
 
     
     if( !f->description().isEmpty() )
@@ -381,22 +365,7 @@ void ArticleViewer::showSummary(Feed *f)
         text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(f->htmlUrl()).arg(f->htmlUrl());
         text += "</div>\n"; // / link
     }   
-    /*if(f->language() && !f->language().isEmpty()) {
-        // language name code from kttsd
-        QString langName;
-        QString langFile = locate("locale", QString::fromLatin1("%1/entry.desktop").arg(f->language()));
-        if (!langFile.isNull() && !langFile.isEmpty()) {
-            KSimpleConfig entry(langFile);
-            entry.setGroup("KCM Locale");
-            langName = entry.readEntry("Name", QString::null);
-        }
-       // if(name.isEmpty()) langName = f->language();
-            
-        text += QString("<div dir=\"%1\">").arg(directionOf(f->language()));
-        text += i18n("<b>Language:</b> %1").arg((langName));
-        text += "</div>\n"; // /language
-    }*/
-
+    
     //text += i18n("<b>Unread articles:</b> %1").arg(f->unread());
     text += "</div>"; // /body
     
@@ -438,7 +407,7 @@ void ArticleViewer::slotUpdateCombinedView()
 
     for ( ; it != end; ++it)
         if ( !(*it).isDeleted() && m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
-            text += "<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";
+            text += "<p><div class=\"article\">"+formatArticle(0, *it)+"</div><p>";
 
     renderContent(text);
 }
