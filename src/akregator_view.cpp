@@ -564,7 +564,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
 {
     FeedsTreeItem *elt;
     Feed *feed;
-    AddFeedDialog *afd = new AddFeedDialog( this, "add_feed" );
+    AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
 
     afd->setURL(url);
 
@@ -573,7 +573,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     QString text=afd->feedTitle;
     feed=afd->feed;
 
-    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
+    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
 
     dlg->setFeedName(text);
     dlg->setUrl(afd->feedURL);
@@ -601,6 +601,8 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
                     );
 
     m_part->setModified(true);
+    delete afd;
+    delete dlg;
 }
 
 void aKregatorView::slotFeedAddGroup()
@@ -675,7 +677,8 @@ void aKregatorView::slotFeedModify()
     Feed *feed = static_cast<Feed *>(g);
     if (!feed) return;
 
-    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
+    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, 
+    "edit_feed" );
 
     dlg->setFeedName( feed->title() );
     dlg->setUrl( feed->xmlUrl );
@@ -687,6 +690,7 @@ void aKregatorView::slotFeedModify()
 
     m_part->setModified(true);
 
+    delete dlg;
     kdDebug() << k_funcinfo << "END" << endl;
 }
 
