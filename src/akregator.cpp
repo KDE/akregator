@@ -251,6 +251,10 @@ void MainWindow::slotClearStatusText()
 {
     m_statusLabel->setText(QString());
 }
+void MainWindow::slotSetStatusBarText( const QString & text )
+{
+    m_statusLabel->setText(text);
+}
 
 #include "akregator.moc"
 
