@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>Akregator::SettingsGeneral</class>
 <author>Teemu Rytilahti</author>
 <widget class="QWidget">
@@ -20,6 +20,9 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
         <widget class="QGroupBox" row="0" column="0">
             <property name="name">
                 <cstring>groupBox3_2</cstring>
@@ -31,48 +34,7 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QLayoutWidget" row="3" column="0">
-                    <property name="name">
-                        <cstring>layout4</cstring>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QLabel">
-                            <property name="name">
-                                <cstring>textLabel1</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Fetch feeds every:</string>
-                            </property>
-                        </widget>
-                        <widget class="QSpinBox">
-                            <property name="name">
-                                <cstring>kcfg_AutoFetchInterval</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> minutes</string>
-                            </property>
-                            <property name="specialValueText">
-                                <string>1 minute</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>3600</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                            <property name="lineStep">
-                                <number>10</number>
-                            </property>
-                        </widget>
-                    </hbox>
-                </widget>
-                <widget class="QCheckBox" row="2" column="0">
+                <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>kcfg_UseIntervalFetch</cstring>
                     </property>
@@ -80,7 +42,7 @@
                         <string>Use interval fetching</string>
                     </property>
                 </widget>
-                <widget class="QCheckBox" row="1" column="0">
+                <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>kcfg_UseNotifications</cstring>
                     </property>
@@ -94,12 +56,43 @@
                         <string>Select this if you want to get notified when there are new articles.</string>
                     </property>
                 </widget>
-                <widget class="QCheckBox" row="0" column="0">
+                <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>kcfg_ShowTrayIcon</cstring>
                     </property>
                     <property name="text">
                         <string>Show tray icon</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Fetch feeds every:</string>
+                    </property>
+                </widget>
+                <widget class="QSpinBox" row="3" column="1">
+                    <property name="name">
+                        <cstring>kcfg_AutoFetchInterval</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="suffix">
+                        <string> minutes</string>
+                    </property>
+                    <property name="specialValueText">
+                        <string>1 minute</string>
+                    </property>
+                    <property name="maxValue">
+                        <number>3600</number>
+                    </property>
+                    <property name="minValue">
+                        <number>1</number>
+                    </property>
+                    <property name="lineStep">
+                        <number>10</number>
                     </property>
                 </widget>
             </grid>
