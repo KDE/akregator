@@ -10,12 +10,14 @@ New features:
 
 Changes:
        - Add pageviewer actions into Go menu and print to file menu when in pageviewer mode -tpr
+       - improve tabbed browsing: added back/forward buttons, improved context menus - fo
        - make search bar optional -fo
        - Do not allow user to stop feedlist loading to avoid data loss -tpr
        - Do not show feedlist url in title -tpr
        - Clear the statusbar when pressing Stop button -tpr
 
 Bug fixes:
+       - save and restore open/close state of feed groups -fo
        - Use isNull() instead of comparing to QString::null -tpr
        - Make kontact plugin work with Kontact from CVS HEAD -fo
        - Don't load kontact plugin when akregator is already running -fo
