@@ -803,7 +803,7 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
 
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
     if (!item) return;
-    Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+    Feed *feed = item->feed();
     if (!feed) return;
 
     if (item->article().status() != MyArticle::Read)
@@ -812,7 +812,7 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
         unread--;
         feed->setUnread(unread);
 
-        FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(m_tree->currentItem());
+        FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());
         if (fti)
             fti->setUnread(unread);
 

@@ -54,6 +54,10 @@ MyArticle ArticleListItem::article()
     return d->article;
 }
 
+Feed *ArticleListItem::feed()
+{
+    return d->feed;
+}
 
 // paint ze peons
 void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
