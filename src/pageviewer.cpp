@@ -34,9 +34,6 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 {
     setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
 
-    new KAction( i18n("Zoom &In"), "viewmag+", "", this, SLOT(slotZoomIn()), actionCollection(), "pageviewer_zoom_in" );
-    new KAction( i18n("Zoom &Out"), "viewmag-", "", this, SLOT(slotZoomOut()), actionCollection(), "pageviewer_zoom_out" );
-    
     m_backAction = new KToolBarPopupAction(i18n("Back"), "back", 0, this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(m_backAction->popupMenu(), SIGNAL(aboutToShow()),
@@ -76,6 +73,8 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
     m_current = m_history.end();
     m_restoring = false;
+    // uncomment this to load konq plugins (doesn't work properly and clutters the GUI)
+    //loadPlugins( partObject(), this, instance() );
 }
 
 bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
@@ -326,13 +325,8 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         action("viewer_copy")->plug(&popup);
         popup.insertSeparator();
 
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkExternal()));
-    
-        action("viewer_print")->plug(&popup);
-        popup.insertSeparator();
-        
-        KAction * incFontAction = this->action("incFontSizes");
-        KAction * decFontAction = this->action("decFontSizes");
+        KAction* incFontAction = this->action("incFontSizes");
+        KAction* decFontAction = this->action("decFontSizes");
         if ( incFontAction && decFontAction )
         {
             incFontAction->plug( &popup );
@@ -340,7 +334,11 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
             popup.insertSeparator();
         }
     
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkExternal()));
     
+        action("viewer_print")->plug(&popup);
+        popup.insertSeparator();
+        
         KAction *ac = action("setEncoding");
         if (ac)
             ac->plug(&popup);

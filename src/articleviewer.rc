@@ -1,11 +1,25 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="articleviewer" version="3">
+<kpartgui name="articleviewer" version="7">
 <MenuBar>
 <Menu noMerge="1" name="file">
   <Action name="viewer_print"/>
   <Separator/> 
   <Merge/>
 </Menu> 
+
+<Menu noMerge="1" name="edit">
+  <Action name="viewer_copy"/>
+  <Action name="selectAll"/>
+  <Separator/> 
+  <Action name="find"/>
+  <Action name="findNext"/>
+</Menu> 
+<Menu noMerge="1" name="view">
+  <Separator/> 
+  <Action name="incFontSizes"/>
+  <Action name="decFontSizes"/>
+</Menu> 
+
 </MenuBar>
 <!-- this menu doesn't show up in the app, just groups the actions -->
 <Menu name="articleviewer_various">

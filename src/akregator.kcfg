@@ -160,7 +160,7 @@
   </entry>
   <entry key="MMB Behaviour" type="Enum" >
    <whatsthis>What the click with middle mouse button should do.</whatsthis>
-   <default>OpenInExternalBrowser</default>
+   <default>OpenInInternalBrowser</default>
    <choices>
     <choice name="OpenInInternalBrowser" />
     <choice name="OpenInBackground" />

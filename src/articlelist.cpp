@@ -33,7 +33,7 @@ ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const
     if (a.keep())
         setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
 }
-
+ 
 ArticleListItem::~ArticleListItem()
 {
 }

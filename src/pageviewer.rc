@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="pageviewer" version="9">
+<kpartgui name="pageviewer" version="16">
 <ToolBar name="mainToolBar">
   <Separator/> 
   <Action name="pageviewer_back"/>
@@ -9,16 +9,30 @@
   <Action name="pageviewer_print"/>
 </ToolBar>
 <MenuBar>
-<Menu noMerge="1" name="file">
+<Menu name="file">
   <Action name="viewer_print"/>
   <Separator/> 
+</Menu>
+<Menu noMerge="1" name="edit">
+  <Action name="viewer_copy"/>
+  <Action name="selectAll"/>
+  <Separator/>
+  <Action name="find"/>
+  <Action name="findNext"/>
   <Merge/>
-</Menu> 
-<Menu noMerge="1" name="go">
+</Menu>
+<Menu noMerge="1" name="view">
+  <Separator/>
+  <Action name="incFontSizes"/>
+  <Action name="decFontSizes"/>
+  <Action name="setEncoding"/>
+  <Merge/>
+</Menu>
+<Menu name="go">
   <text>&amp;Go</text>
+  <Separator/>
   <Action name="pageviewer_back"/>
   <Action name="pageviewer_forward"/>
-  <Separator/>
   <Action name="pageviewer_reload"/>
   <Action name="pageviewer_stop"/>
 </Menu>
