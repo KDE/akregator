@@ -8,7 +8,7 @@
 *****************************************************************************/
 
 
-void AddFeedDialog::init()
+void AddFeedDialogBase::init()
 {
     ljAuthMode->setShown( ljUserChkbox->isChecked() );
 }

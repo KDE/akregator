@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000039 being the highest available (take this one for your next bug and increase here)
+          #000040 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -15,6 +15,7 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
+#000039 FIX [x] make real use of LiveJournal checkboxes in AddFeedDialog
 #000003 ADD [ ] sort ArticleList by Article::pubDate -->berkus
 #000038 ADD [ ] add isOpen=<bool> to feed group outline opml -->berkus
 #000037 ADD [ ] add favicon support to the FeedsTree -->smt

@@ -1,5 +1,5 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>AddFeedDialog</class>
+<class>AddFeedDialogBase</class>
 <widget class="QDialog">
     <property name="name">
         <cstring>AddFeedDialog</cstring>

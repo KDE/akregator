@@ -25,6 +25,8 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     setFullWidth(true);
     setSorting(-1);
     setDragAutoScroll(true);
+    setDropVisualizer(true);//FIXME
+    setDropHighlighter(true);//FIXME
     QWhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
         "Here you can browse tree of feeds. "
         "You can also add feeds or feed groups (folders) "

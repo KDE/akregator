@@ -106,8 +106,12 @@ void ArticleViewer::show(Article a)
     QString text;
     text += htmlHead()+cssDefinitions();
     text += QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
-    text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(a.title()));
-    text += a.title()+"</div>\n";
+
+    if (!a.title().isEmpty())
+    {
+        text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(a.title()));
+        text += a.title()+"</div>\n";
+    }
     if (a.pubDate().isValid())
     {
         text += QString("<span id=\"header\" dir=\"%1\">").arg(directionOf(i18n("Date")));
