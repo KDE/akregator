@@ -382,10 +382,6 @@ bool aKregatorPart::closeURL()
 
 bool aKregatorPart::saveFile()
 {
-    // if we aren't read-write, return immediately
-    if (isReadWrite() == false)
-        return false;
-
     // m_file is always local, so we use QFile
     QFile file(m_file);
     if (file.open(IO_WriteOnly) == false)
