@@ -193,7 +193,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
 void aKregatorPart::saveSettings()
 {
-   m_view->saveSettings();
+    m_view->saveSettings();
 }
 
 aKregatorPart::~aKregatorPart()
@@ -204,12 +204,12 @@ aKregatorPart::~aKregatorPart()
 
 void aKregatorPart::setCaption(const QString &text)
 {
-   emit setWindowCaption(text);
+    emit setWindowCaption(text);
 }
 
 void aKregatorPart::setStatusBar(const QString &text)
 {
-   emit setStatusBarText(text);
+    emit setStatusBarText(text);
 }
 
 void aKregatorPart::setProgress(int percent)
@@ -251,9 +251,9 @@ void aKregatorPart::saveProperties(KConfig* config)
         m_view->saveProperties(config);
 }
 
-/*************************************************************************************************/
-/* LOAD                                                                                          */
-/*************************************************************************************************/
+/****************************************************************************/
+/* LOAD                                                                     */
+/****************************************************************************/
 
 bool aKregatorPart::openURL(const KURL& url)
 {
@@ -440,9 +440,9 @@ bool aKregatorPart::closeURL()
    return MyBasePart::closeURL();
 }
 
-/*************************************************************************************************/
-/* SAVE                                                                                          */
-/*************************************************************************************************/
+/****************************************************************************/
+/* SAVE                                                                     */
+/****************************************************************************/
 
 bool aKregatorPart::saveFeedList()
 {
@@ -594,9 +594,9 @@ void aKregatorPart::exportFile(const QString& fileName)
     file.close();
 }
 
-/*************************************************************************************************/
-/* SLOTS                                                                                         */
-/*************************************************************************************************/
+/****************************************************************************/
+/* SLOTS                                                                    */
+/****************************************************************************/
 
 void aKregatorPart::fileOpen()
 {
@@ -681,9 +681,9 @@ void aKregatorPart::slotCompleted()
 }
 
 
-/*************************************************************************************************/
-/* STATIC METHODS                                                                                */
-/*************************************************************************************************/
+/****************************************************************************/
+/* STATIC METHODS                                                           */
+/****************************************************************************/
 
 KAboutData *aKregatorPart::createAboutData()
 {

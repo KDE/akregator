@@ -58,12 +58,12 @@ int Frame::state() const
     return m_state;
 }
 
-KParts::ReadOnlyPart *Frame::part()
+KParts::ReadOnlyPart *Frame::part() const
 {
     return m_part;
 }
 
-QWidget *Frame::widget()
+QWidget *Frame::widget() const
 {
     return m_widget;
 }
