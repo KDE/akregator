@@ -9,7 +9,7 @@
 
 #include "feedgroup.h"
 
-#include <rss/librss.h>
+#include "librss.h"
 
 using namespace RSS;
 
