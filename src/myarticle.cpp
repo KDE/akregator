@@ -12,6 +12,7 @@
 #include <qregexp.h>
 
 #include <krfcdate.h>
+#include <kdebug.h>
 #include <kurl.h>
 
 using namespace Akregator;
@@ -68,12 +69,23 @@ bool MyArticle::operator==(const MyArticle &other) const
    // we return true if guids match, even if texts differ => helps ArticleSequence
    // we return true if links match, ditto
    // otherwise we check for complete equivalence
-
+    
+   //kdDebug() << "guid1= " << d->article.guid() << " guid2= "<<other.d->article.guid()<< endl;
+    //kdDebug() << "link1= " << d->article.link().prettyURL() <<" link2= "<< other.d->article.link().prettyURL()<<endl;
+    //kdDebug() << "title1= " << d->article.title() << " title2= "<<other.d->article.title()<<endl;
+    
    if (!d->article.guid().isEmpty() && (d->article.guid() == other.d->article.guid()))
       return true;
 
-   if (d->article.link().isValid() && (d->article.link() == other.d->article.link()))
-      return true;
+   if (!d->article.title().isEmpty() && (d->article.title() == other.d->article.title()))
+   {
+       if (d->article.description() == other.d->article.description())
+         return true;
+   }
+
+   
+   //if (d->article.link().isValid() && (d->article.link() == other.d->article.link()))
+     // return true;
 
    //if (d->article.pubDate().isValid() && (d->article.pubDate() == other.d->article.pubDate()))
    //        return true;
