@@ -45,7 +45,7 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-    : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(normalView)
+    : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
     generateCSS();
     connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
@@ -279,16 +279,25 @@ void ArticleViewer::endWriting()
 
 void ArticleViewer::slotShowSummary(TreeNode* node)
 {
+    m_viewMode = SummaryView;
+
     if (!node)
     {
         slotClear();
         return;
     }
 
+    if (node != m_node)
+    {
+        disconnectFromNode(m_node);
+        connectToNode(node);
+        m_node = node;
+    }
+    
     if (node->isGroup())
-        showSummary(static_cast<FeedGroup*>(node));
+        showSummary(static_cast<FeedGroup*>(m_node));
     else
-        showSummary(static_cast<Feed*>(node));
+        showSummary(static_cast<Feed*>(m_node));
 }
 
 void ArticleViewer::showSummary(FeedGroup* group)
@@ -315,7 +324,7 @@ void ArticleViewer::showSummary(Feed *f)
 {
     if(!f)
         return;
-    
+
     QString text;
     text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
@@ -375,7 +384,7 @@ void ArticleViewer::showSummary(Feed *f)
 
 void ArticleViewer::slotShowArticle(const MyArticle& article)
 {
-    m_viewMode = normalView;
+    m_viewMode = NormalView;
 
     renderContent( formatArticle(article.feed(), article) );
 }
@@ -393,7 +402,7 @@ void ArticleViewer::slotSetFilter(const ArticleFilter& textFilter, const Article
 
 void ArticleViewer::slotUpdateCombinedView()
 {
-    if (m_viewMode != combinedView)
+    if (m_viewMode != CombinedView)
         return;
 
     if (!m_node)
@@ -414,11 +423,7 @@ void ArticleViewer::slotUpdateCombinedView()
 
 void ArticleViewer::slotClear()
 {
-    if (m_node)
-    {
-        disconnect( m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-        disconnect( m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
-    }
+    disconnectFromNode(m_node);
     m_node = 0;
 
     renderContent(QString());
@@ -426,21 +431,15 @@ void ArticleViewer::slotClear()
 
 void ArticleViewer::slotShowNode(TreeNode* node)
 {
-    m_viewMode = combinedView;
+    m_viewMode = CombinedView;
 
-    if (m_node)
-    {
-        disconnect( m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-        disconnect( m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
-    }
+    if (node != m_node)
+        disconnectFromNode(m_node);
 
+    connectToNode(node);
+    
     m_node = node;
 
-    if (node)
-    {
-        connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView()) );
-        connect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    }
     slotUpdateCombinedView();
 }
 
@@ -474,5 +473,29 @@ void ArticleViewer::slotPaletteOrFontChanged()
     generateCSS();
     reload();
 }
+
+void ArticleViewer::connectToNode(TreeNode* node)
+{
+    if (node)
+    {
+        if (m_viewMode == CombinedView)
+            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+        if (m_viewMode == SummaryView)
+            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
+
+        connect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
+    }   
+}
+
+void ArticleViewer::disconnectFromNode(TreeNode* node)
+{
+    if (node)
+    {
+        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+        disconnect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
+        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
+    }
+}
+            
 #include "articleviewer.moc"
 // vim: set et ts=4 sts=4 sw=4:

@@ -126,8 +126,8 @@ namespace Akregator
             /** Shows requested popup menu for feed tree */
             void slotFeedTreeContextMenu(KListView*, QListViewItem*, const QPoint&);
 
-            /** emits @ref signalUnreadCountChanged(int) TODO: remove this) */
-            void setTotalUnread();
+            /** emits @ref signalUnreadCountChanged(int) */
+            void slotSetTotalUnread();
 
             /** special behaviour in article list view (TODO: move code there?) */
             void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);

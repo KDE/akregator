@@ -423,8 +423,6 @@ bool aKregatorPart::closeURL()
     m_view->endOperation();
     setStatusBar(QString::null);
 
-    m_view->setTotalUnread(); // we want to update unread count even if we stop the fetching before it's finished -tpr 20041127
-
     if (m_loading)
     {
         m_view->stopLoading();

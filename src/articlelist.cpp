@@ -219,7 +219,7 @@ void ArticleList::slotUpdate()
     setUpdatesEnabled(false);
 
     MyArticle oldCurrentArticle;
-    ArticleListItem *li = dynamic_cast<ArticleListItem*>(currentItem());
+    ArticleListItem *li = dynamic_cast<ArticleListItem*>(selectedItem());
     bool haveOld = false;
     if (li) {
         oldCurrentArticle = li->article();

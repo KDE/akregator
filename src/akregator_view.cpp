@@ -119,6 +119,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
             this, SLOT(slotFeedURLDropped (KURL::List &,
                         TreeNodeItem*, FeedGroupItem*)));
 
+    connect(m_tree->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
+    
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
@@ -455,9 +457,7 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
 
     m_tree->triggerUpdate();
     
-    setTotalUnread();
-        
-    kdDebug() << "leave AkregatorView::loadFeeds()" << endl;
+//     kdDebug() << "leave AkregatorView::loadFeeds()" << endl;
     return true;
 }
 
@@ -942,10 +942,8 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
     
     parent->insertChild(feed, after);
         
-    //m_tree->ensureItemVisible(elt);
-    setTotalUnread(); // FIXME: remove
-
-    //m_part->setModified(true); //FIXME: remove
+    m_tree->ensureNodeVisible(feed);
+    
     delete afd;
     delete dlg;
 }
@@ -999,7 +997,6 @@ void aKregatorView::slotFeedRemove()
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KGuiItem(i18n("&Delete"), "editdelete")) == KMessageBox::Continue)
     {
         delete selectedNode;
-        setTotalUnread(); 
         if (m_tree->currentItem()) {
             m_tree->currentItem()->setSelected(true);
             slotNodeSelected(m_tree->selectedNode());
@@ -1086,14 +1083,12 @@ void aKregatorView::slotNextUnreadFeed()
 void aKregatorView::slotMarkAllFeedsRead()
 {
     m_tree->rootNode()->slotMarkAllArticlesAsRead();
-    setTotalUnread();
 }
 
 void aKregatorView::slotMarkAllRead()
 {
     if(!m_tree->selectedNode()) return;
     m_tree->selectedNode()->slotMarkAllArticlesAsRead();
-    setTotalUnread();
 }
 
 void aKregatorView::slotOpenHomepage()
@@ -1109,7 +1104,7 @@ else
     slotOpenTab(feed->htmlUrl(), Settings::backgroundTabForArticles());
 }
 
-void aKregatorView::setTotalUnread()
+void aKregatorView::slotSetTotalUnread()
 {
     emit signalUnreadCountChanged( m_tree->rootNode()->unread() );
 }
@@ -1211,7 +1206,6 @@ void aKregatorView::slotFetchAllFeeds()
 void aKregatorView::slotFetchesCompleted()
 {
     endOperation();
-    setTotalUnread();
     m_mainFrame->setStatusText(QString::null);
 }
 
@@ -1288,8 +1282,7 @@ void aKregatorView::slotArticleSelected(MyArticle article)
         m_articles->setReceiveUpdates(false);
         feed->setUnread(unread);
         m_articles->setReceiveUpdates(true, false);
-        setTotalUnread();
-            
+        
         // TODO: schedule this save.. don't want to save a huge file for one change
         Archive::save(feed);
     }
@@ -1535,8 +1528,7 @@ void aKregatorView::slotSetSelectedArticleUnread()
         m_articles->setReceiveUpdates(false);
         feed->setUnread(unread);
         m_articles->setReceiveUpdates(true, false);
-        setTotalUnread();
-            
+        
         // TODO: schedule this save.. don't want to save a huge file for one change
         Archive::save(feed);
     }
@@ -1560,8 +1552,7 @@ void aKregatorView::slotSetSelectedArticleNew()
         m_articles->setReceiveUpdates(false);
         feed->setUnread(unread);
         m_articles->setReceiveUpdates(true, false);
-        setTotalUnread();
-            
+        
         // TODO: schedule this save.. don't want to save a huge file for one change
         Archive::save(feed);
     }

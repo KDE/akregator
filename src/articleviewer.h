@@ -98,8 +98,10 @@ namespace Akregator
             /** generates the CSS settings used for rendering */
             void generateCSS();   
             
-            
             void slotOpenLinkInternal();
+
+            void connectToNode(TreeNode* node);
+            void disconnectFromNode(TreeNode* node);
                                   
             QString m_htmlHead;
             QString m_htmlFooter;
@@ -109,13 +111,15 @@ namespace Akregator
             TreeNode* m_node;
             ArticleFilter m_textFilter; 
             ArticleFilter m_statusFilter;
-            enum ViewMode { normalView, combinedView };
+            enum ViewMode { NormalView, CombinedView, SummaryView };
             ViewMode m_viewMode;
         
         private slots:
             bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
             
             void slotPaletteOrFontChanged();
+
+            
             
     };
 }
