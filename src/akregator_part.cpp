@@ -55,14 +55,14 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     /* --- Feed popup menu */
     new KAction(i18n("&Add..."), "bookmark_add", "Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
-    new KAction(i18n("New &Folder..."), "folder_new", "Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
+    new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
     new KAction(i18n("&Delete"), "editdelete", "Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Edit"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
     new KAction(i18n("&Fetch"), "down", "Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Ctrl+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
     new KAction(i18n("Go to &Next Unread"), "", "N", m_view, SLOT(slotNextUnread()),actionCollection(), "feed_next_unread");
     new KAction(i18n("&Mark All as Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
-    new KAction(i18n("&Mark All Feeds as Read"), "", "Ctrl+Alt+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
+    new KAction(i18n("Ma&rk All Feeds as Read"), "", "Ctrl+Alt+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
     new KAction(i18n("&Open Homepage"), "", "", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
 
     KRadioAction *ra=new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
@@ -71,7 +71,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     ra=new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
     ra->setExclusiveGroup( "ViewMode" );
 
-    ra=new KRadioAction(i18n("&Combined View"), "view_text", "Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
+    ra=new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
     ra->setExclusiveGroup( "ViewMode" );
 
     // set our XML-UI resource file
