@@ -84,7 +84,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     m_stopAction = new KAction(i18n("Stop"), "stop", 0,
                                  this, SLOT(slotStop()),
                                  actionCollection(), "pageviewer_stop");
-
+ 
     //connect( this, SIGNAL(popupMenu(const QString &, const QPoint &)), this, SLOT(slotPopupMenu(const QString &, const QPoint &)));
 
     m_backAction->setEnabled(false);
@@ -95,11 +95,6 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     connect(this, SIGNAL(completed()), this, SLOT(slotCompleted()));
     connect(this, SIGNAL(canceled(const QString &)), this, SLOT(slotCancelled(const QString &)));
 
-    connect(browserExtension(),
-            SIGNAL(openURLRequest(const KURL&, const KParts::URLArgs&)),
-            this,
-            SLOT(formClicked(const KURL&, const KParts::URLArgs&)));
-    
     m_current = m_history.end();
     m_restoring = false;
     // uncomment this to load konq plugins (doesn't work properly and clutters the GUI)
@@ -220,10 +215,14 @@ bool PageViewer::openURL(const KURL &url)
 
 void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
+
     if (args.frameName == "_blank") // apparently this indicates that the MMB was pressed...
         Viewer::slotOpenURLRequest(url, args);
     else
+    {
+        browserExtension()->setURLArgs(args);
         openURL(url);
+    }
 }
 
 void PageViewer::slotPopupActivated( int id )
@@ -407,14 +406,6 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         if (kurl.isValid())
             ;//             slotOpenInNewWindow(kurl);
 //      openURL( kurl );
-    }
-}
-
-void PageViewer::formClicked(const KURL& url, const KParts::URLArgs& args)
-{
-    if (args.doPost()) {
-        browserExtension()->setURLArgs(args);
-        openURL(url);
     }
 }
 

@@ -2,6 +2,13 @@ Akregator ChangeLog
 ===================
 (c) 2004, 2005 the Akregator authors.
 
+Changes after 1.0:
+-----------------------------
+
+Bug fixes:
+
+       - fix regression: non-working forms #94634 -fo
+
 Changes after 1.0b9:
 -----------------------------
 
