@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "app.h"
 #include "akregator.h"
 #include "trayicon.h"
 #include "akregatorconfig.h"
@@ -28,16 +29,15 @@
 
 using namespace Akregator;
 
-
 BrowserInterface::BrowserInterface( aKregator *shell, const char *name )
     : KParts::BrowserInterface( shell, name )
 {
     m_shell = shell;
 }
 
-void BrowserInterface::test_foo(int foobar)
+bool BrowserInterface::haveWindowLoaded() const
 {
-    kdDebug() << "foobar=="<<foobar<<endl;
+    return akreapp->haveWindowLoaded();
 }
 
 aKregator::aKregator()
@@ -105,6 +105,7 @@ aKregator::aKregator()
     setAutoSaveSettings();
 
     load( Settings::lastOpenFile() );
+    akreapp->setHaveWindowLoaded(true);
 }
 
 aKregator::~aKregator()
@@ -133,8 +134,13 @@ void aKregator::setupActions()
     m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
     m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
 
+    // TODO: move to config dialog when it arrives
+    m_fetchStartupAction = new KToggleAction(i18n("&Fetch Feeds on Startup"), "", "", this, SLOT(optionsFetchOnStartup()), actionCollection(), "fetch_on_startup");
+    
     KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
     KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
+
+    m_fetchStartupAction->setChecked(Settings::fetchOnStartup());
 }
 
 void aKregator::saveProperties(KConfig* /*config*/)
@@ -230,6 +236,12 @@ void aKregator::applyNewToolbarConfig()
 #else
     applyMainWindowSettings(KGlobal::config());
 #endif
+}
+
+void aKregator::optionsFetchOnStartup()
+{
+   Settings::setFetchOnStartup(m_fetchStartupAction->isChecked());
+   Settings::writeConfig();
 }
 
 void aKregator::fileOpen()

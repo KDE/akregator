@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "app.h"
 #include "akregator.h"
 #include <kapplication.h>
 #include <kaboutdata.h>
@@ -31,7 +32,7 @@ int main(int argc, char **argv)
     about.addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "smt@vfemail.net" );
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( options );
-    KApplication app;
+    aKregatorApp app;
 
     // see if we are starting with session management
     if (app.isRestored())

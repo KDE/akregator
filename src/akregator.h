@@ -25,11 +25,10 @@ class aKregator;
 class BrowserInterface : public KParts::BrowserInterface
 {
     Q_OBJECT
+    Q_PROPERTY( bool haveWindowLoaded READ haveWindowLoaded )
 public:
     BrowserInterface( aKregator *shell, const char *name );
-
-public slots:
-    void test_foo( int );
+    bool haveWindowLoaded() const;
 
 private:
     aKregator *m_shell;
@@ -88,13 +87,13 @@ private slots:
     void optionsShowStatusbar();
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
-
+    void optionsFetchOnStartup();
+    
     void applyNewToolbarConfig();
 
     void quitProgram();
     void partChanged(KParts::Part *p);
     void loadingProgress(int percent);
-    
 private:
     void setupAccel();
     void setupActions();
@@ -104,6 +103,7 @@ private:
     BrowserInterface *m_browserIface;
     KParts::ReadWritePart *m_part;
 
+    KToggleAction *m_fetchStartupAction;
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
     KProgress *m_progressBar;

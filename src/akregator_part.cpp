@@ -148,9 +148,7 @@ bool aKregatorPart::openFile()
     if (file.open(IO_ReadOnly) == false)
         return false;
 
-    m_extension->browserInterface()->callMethod( "test_foo(int)", 55 );
-
-    setProgress(0);
+        setProgress(0);
     kapp->processEvents();
 
     // Read OPML feeds list and build QDom tree.
@@ -173,6 +171,14 @@ bool aKregatorPart::openFile()
     {
         emit m_extension->loadingProgress(-1);
         return false;
+    }
+
+    if (Settings::fetchOnStartup())
+    {
+        // has the shell loaded up a window already? then its not starting up
+        QVariant shellHaveWindowLoaded = m_extension->browserInterface()->property( "haveWindowLoaded" );
+        if (!shellHaveWindowLoaded.toBool())
+            m_view->slotFetchAllFeeds();
     }
 
     // just for fun, set the status bar

@@ -13,6 +13,11 @@
   </group>
 
   <group name="View">
+     <entry key="Fetch On Startup" type="Bool">
+        <label>Fetch on startup</label>
+        <default>false</default>
+        <whatsthis>Fetch feedlist on startup.</whatsthis>
+     </entry>
      <entry key="Quick Filter" type="Int">
         <label>Quick Filter</label>
         <default>0</default>

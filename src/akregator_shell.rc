@@ -16,6 +16,8 @@
     <Action name="options_show_statusbar"/>
     <Merge name="show_merge"/>
     <Separator/>
+    <Action name="fetch_on_startup"/>
+    <Seperator/>
     <Merge/>
     <Separator/>
     <Action name="options_configure_keybinding"/>
