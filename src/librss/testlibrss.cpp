@@ -1,5 +1,7 @@
 #include "testlibrss.h"
 
+#include "image.h"
+
 #include <kaboutdata.h>
 #include <kcmdlineargs.h>
 #include <kapplication.h>
@@ -28,6 +30,13 @@ void Tester::slotLoadingComplete( Loader *loader, Document doc, Status status )
 	{
 		kdDebug() << "Successfully retrieved '" << doc.title() << "'" << endl;
 		kdDebug() << doc.description() << endl;
+
+                if ( doc.image() ) {
+                      kdDebug() << "Image: ";
+                      kdDebug() << "  Title: " << doc.image()->title() << endl;
+                      kdDebug() << "  URL: " << doc.image()->url() << endl;
+                      kdDebug() << "  Link: " << doc.image()->link() << endl;
+                }
 		
 		kdDebug() << "Articles:" << endl;
 
