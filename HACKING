@@ -88,13 +88,14 @@ public typedefs:
 public ctors:
 public methods:
 public slots:
+signals:
 protected methods:
 protected slots:
 protected fields:
-signals:
 private methods:
 private slots:
 private fields:
+private ctors: // if you define ctors/dtor as private, put them at end
 
 If there are no private slots there is no need for two private sections, however
 private functions and private variables should be clearly separated.
@@ -122,6 +123,81 @@ Pointer and Reference Operators
 
 This one is pretty simple. Use "Foo *f" and "Foo &f" in function signatures
 and declarations. And also in signal/slot names.
+
+================================================================================
+Pointer and Reference Operators
+================================================================================
+
+An example object here:
+
+test.h:
+#ifndef AKREGATOR_TEST_H
+#define AKREGATOR_TEST_H
+
+#include "localinclude.h"
+#include "anotherlocalinclude.h"
+#include <kdeinclude1.h>
+#include <kdeinclude2.h>
+#include <qtinclude1.h>
+#include <qtinclude2.h>
+
+class QSomething;
+
+namespace Akregator {
+
+class Test
+{
+    public:
+	typedef QValueList<Test> list;
+	
+	Test();
+	Test(QString someString);
+	explicit Test(int i = 0);
+	
+	virtual ~Test();
+	
+	void someFunc();
+	void someFunc2(QSomething *foo);
+	
+	static Test *instance();
+	
+    public slots:
+	void receive(QSomething &);
+
+    signals:
+	void send(QSomething &);
+
+    protected:
+	void someProtectedFunc();
+	
+	static void someProtectedStaticFunc();
+	
+    protected slots:
+	void protectedSlot();
+	
+    protected:
+	int protectedVar;
+	
+    private:
+	int privateMethod();
+	
+	static int staticPrivateMethod();
+	
+    private slots:
+	void privateSlotIndeed(int youWonder);
+	
+    private:
+	int privateVar;
+	QSomething *tastyThing;
+	
+	static Test *theInstance;
+};
+
+} // no ; after namespace (borks on gcc 3.4+)
+
+#endif
+
+test.cpp:
 
 ================================================================================
 
