@@ -11,14 +11,14 @@
 #include "myarticle.h"
 
 namespace Akregator
-{    
+{
     /** This is article list supporting sorting added articles by pubDate
      *  and properly emulating pubDate for articles with invalid pubDates.
      */
     class ArticleSequence : public MyArticle::List
     {
-	public:
-	
+        public:
+
             ArticleSequence();
             ArticleSequence(const ArticleSequence &other);
             virtual ~ArticleSequence();

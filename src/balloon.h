@@ -16,24 +16,23 @@ class QListView;
 
 class Balloon : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
-public:
-	Balloon(const QString &text);
-//	Balloon();
+    public:
+        Balloon(const QString &text);
 
-	void setAnchor(const QPoint &anchor);
-	void updateMask();
-	void addArticle(const QString&feed, const QPixmap&p, const QString&art);
+        void setAnchor(const QPoint &anchor);
+        void updateMask();
+        void addArticle(const QString&feed, const QPixmap&p, const QString&art);
 
-signals:
-	void signalButtonClicked();
-	void signalIgnoreButtonClicked();
-	void signalBalloonClicked();
+    signals:
+        void signalButtonClicked();
+        void signalIgnoreButtonClicked();
+        void signalBalloonClicked();
 
-private:
-	QPoint mAnchor;
-	QListView *m_articleList;
+    private:
+        QPoint mAnchor;
+        QListView *m_articleList;
 };
 
 #endif

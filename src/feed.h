@@ -225,7 +225,7 @@ namespace Akregator
             
             bool m_autoFetch;
             int m_fetchInterval;
-	        ArchiveMode m_archiveMode; 
+            ArchiveMode m_archiveMode; 
             int m_maxArticleAge; 
             int m_maxArticleNumber;
             
@@ -239,7 +239,7 @@ namespace Akregator
             bool m_merged;
             
             /** caches the unread count of the feed's articles */
-	        int m_unread;
+            int m_unread;
 
             /** URL of RSS feed itself */
             QString m_xmlUrl;
@@ -255,7 +255,6 @@ namespace Akregator
 
             QPixmap m_image;
             QPixmap m_favicon;
- 
     };
 }
 
