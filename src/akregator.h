@@ -15,15 +15,16 @@
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
 #include <kparts/browserinterface.h>
+#include <kparts/browserextension.h>
 
 class KToggleAction;
 class KSqueezedTextLabel;
 class KProgress;
+class KParts::BrowserExtension;
 class aKregator;
 
 namespace Akregator
 {
-    class aKregatorExtension;
     class TrayIcon;
 }
 
@@ -113,7 +114,7 @@ private:
     void setupActions();
 
 private:
-    Akregator::aKregatorExtension *aKregatorExtension(KParts::ReadOnlyPart *p);
+    KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
     BrowserInterface *m_browserIface;
     KParts::ReadWritePart *m_part;
     KParts::ReadOnlyPart *m_activePart;

@@ -8,7 +8,6 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "akregatorconfig.h"
-#include "akregator_extension.h"
 
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
@@ -30,7 +29,7 @@ K_EXPORT_COMPONENT_FACTORY( libakregatorpart, aKregatorFactory )
 
 aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
-    : KParts::ReadWritePart(parent, name)
+    : DCOPObject(QString("aKregatorPart#%1").arg((uint)parent).latin1()), KParts::ReadWritePart(parent, name)
 {
     // we need an instance
     setInstance( aKregatorFactory::instance() );
@@ -38,8 +37,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     m_totalUnread=0;
     
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
-    m_extension=new aKregatorExtension(this, "ak_extension");
-    connect (m_extension, SIGNAL(saveSettings()), SLOT(saveSettings()));
+    m_extension=new KParts::BrowserExtension(this, "ak_extension");
+    //connect (m_extension, SIGNAL(saveSettings()), SLOT(saveSettings()));
     
     // notify the part that this is our internal widget
     setWidget(m_view);
@@ -88,6 +87,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
 void aKregatorPart::saveSettings()
 {
+    kdDebug() << "savesettings called"<<endl;
    m_view->saveSettings(true);
 }
 
@@ -313,6 +313,10 @@ void aKregatorPart::fileImport()
         importFile(file_name);
 }
 
+void aKregatorPart::fetchFeedUrl(const QString&s)
+{
+    kdDebug() << "fetchFeedURL=="<<s<<endl;
+}
 
 /*************************************************************************************************/
 /* STATIC METHODS                                                                                */

@@ -8,24 +8,24 @@
 #ifndef _AKREGATORPART_H_
 #define _AKREGATORPART_H_
 
+#include <kparts/browserextension.h>
 #include <kparts/part.h>
 #include <kaboutdata.h>
 #include <kaction.h>
 
+#include "akregator_partiface.h"
+
+class KParts::BrowserExtension;
+
 namespace Akregator
 {
     class aKregatorView;
-    class aKregatorExtension;
-}
-
-
-namespace Akregator
-{
+    
     /**
      * This is a RSS Aggregator "Part". It does all the real work.
      * It is also embeddable into other applications (e.g. for use in Kontact).
      */
-    class aKregatorPart : public KParts::ReadWritePart
+    class aKregatorPart : public KParts::ReadWritePart, virtual public aKregatorPartIface
     {
         Q_OBJECT
         public:
@@ -68,6 +68,8 @@ namespace Akregator
             
             virtual bool openURL(const KURL& url);
 
+            virtual void fetchFeedUrl(const QString&);
+            virtual void saveSettings();
         protected:
             /**
              * This must be implemented by each part
@@ -88,13 +90,12 @@ namespace Akregator
             void fileOpen();
             bool fileSaveAs();
             void fileImport();
-            void saveSettings();
 
         private:
             void readRecentFileEntries();
 
             int m_totalUnread;
-            aKregatorExtension *m_extension;
+            KParts::BrowserExtension *m_extension;
             KRecentFilesAction *recentFilesAction;
             static KAboutData* s_about;
             aKregatorView* m_view;
