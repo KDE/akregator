@@ -371,30 +371,37 @@ void FeedsTree::slotItemEnd()
 
 void FeedsTree::slotItemLeft()
 {
-    QListViewItem* cur = selectedItem();
-    if (!cur)
+    QListViewItem* sel = selectedItem();
+    if (!sel)
+    {
         setSelected( firstChild(), true );
-    if (cur->isOpen())
-        cur->setOpen(false);
+        sel = firstChild();
+    }
+    
+    if (sel->isOpen())
+        sel->setOpen(false);
     else
     {
-        if (cur->parent())    
-            setSelected( cur->parent(), true );
+        if (sel->parent())
+            setSelected( sel->parent(), true );
     }    
     ensureItemVisible( selectedItem() );
 }
 
 void FeedsTree::slotItemRight()
 {
-    QListViewItem* cur = selectedItem();
-    if (!cur)
+    QListViewItem* sel = selectedItem();
+    if (!sel)
+    {
         setSelected( firstChild(), true );
-    if (cur->isExpandable() && !cur->isOpen())
-        cur->setOpen(true);
+        sel = firstChild();
+    }
+    if (sel->isExpandable() && !sel->isOpen())
+        sel->setOpen(true);
     else
     {
-        if (cur->firstChild())    
-            setSelected( cur->firstChild(), true );
+        if (sel->firstChild())
+            setSelected( sel->firstChild(), true );
     }
     ensureItemVisible( selectedItem() );
 }
