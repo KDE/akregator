@@ -5,6 +5,7 @@ aKregator ChangeLog
 Changes after 1.0b6:
 -----------------------------
 Changes:
+       - added "Export Feeds" function to export the standard feed list -fo
        - Expiry support added -fo 
          
 Changes after 1.0b5:
