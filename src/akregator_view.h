@@ -18,7 +18,6 @@
 
 class QSplitter;
 class QGrid;
-class QTabWidget;
 class QDomDocument;
 class QDomElement;
 class QToolButton;
@@ -34,6 +33,7 @@ namespace Akregator
     class FeedsTreeViewItem;
     class ArticleList;
     class ArticleViewer;
+    class TabWidget;
 }
 
 namespace Akregator
@@ -177,7 +177,7 @@ namespace Akregator
             /**
              * A tab widget for multiple viewers.
              */
-            QTabWidget *m_tabs;
+            TabWidget *m_tabs;
             QToolButton *m_tabsClose;
             QGrid *m_mainTab;
             

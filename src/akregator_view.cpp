@@ -18,6 +18,7 @@
 #include "feed.h"
 #include "akregatorconfig.h"
 #include "pageviewer.h"
+#include "tabwidget.h"
 
 #include <kfiledialog.h>
 #include <kfileitem.h>
@@ -49,7 +50,6 @@
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
 #include <qvaluevector.h>
-#include <qtabwidget.h>
 #include <qgrid.h>
 #include <qtooltip.h>
 
@@ -85,7 +85,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
-    m_tabs = new QTabWidget(m_panner1);
+    m_tabs = new TabWidget(m_panner1);
     m_tabsClose = new QToolButton( m_tabs );
     connect( m_tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveTab() ) );
@@ -125,6 +125,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
     m_tabs->addTab(m_mainTab, i18n( "Articles" ));
+    m_tabs->setTitle(i18n( "Articles" ), m_mainTab);
 
     // -- DEFAULT INIT
     // Root item (will be reset when loading from file)
@@ -446,7 +447,7 @@ void aKregatorView::slotTabCaption(const QString &capt)
     if (!capt.isEmpty())
     {
         PageViewer *pv=(PageViewer *)sender();
-        m_tabs->setTabLabel(pv->widget(), capt);
+        m_tabs->setTitle(capt, pv->widget());
     }
 }
 
@@ -460,7 +461,8 @@ void aKregatorView::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)
 void aKregatorView::slotItemChanged(QListViewItem *item)
 {
     FeedGroup *feed = static_cast<FeedGroup *>(m_feeds.find(item));
-
+    m_tabs->showPage(m_mainTab);
+    
     if (feed->isGroup())
     {
         m_part->actionCollection()->action("feed_add")->setEnabled(true);
