@@ -565,7 +565,6 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
         m_part->actionCollection()->action("feed_add")->setEnabled(true);
         m_part->actionCollection()->action("feed_add_group")->setEnabled(true);
         m_articles->clear();
-        m_articles->setColumnText(0, feed->title());
 
         if (m_viewMode==CombinedView)
             m_articleViewer->beginWriting();
@@ -619,7 +618,6 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
     if (clear)
     {
         m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
-        m_articles->setColumnText(0, source->title());
     }
 
     if (source->articles.count() > 0)
@@ -629,7 +627,7 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
         for (it = source->articles.begin(); it != end; ++it)
         {
             if (!onlyUpdateNew || (*it).status()==MyArticle::New)
-                itemAdded(new ArticleListItem( m_articles, (onlyUpdateNew ? (m_articles->firstChild()): (m_articles->lastChild())), (*it), source ));
+                itemAdded(new ArticleListItem( m_articles, (onlyUpdateNew ? (0): (m_articles->lastChild())), (*it), source ));
         }
     }
     m_articles->setUpdatesEnabled(true);

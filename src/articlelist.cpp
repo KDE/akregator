@@ -9,7 +9,7 @@
 #include "feed.h"
 
 #include <kdebug.h>
-
+#include <kglobal.h>
 #include <klocale.h>
 #include <kcharsets.h>
 
@@ -27,7 +27,7 @@ struct ArticleListItem::Private
 };
 
 ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after,MyArticle a, Feed *feed )
-    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()) )
+    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
     , d(new Private)
 {
     d->article = a;
@@ -83,6 +83,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
 {
     setMinimumSize(250, 150);
     addColumn(i18n("Articles"));
+    addColumn(i18n("Date"));
     setRootIsDecorated(false);
     setItemsRenameable(false);
     setItemsMovable(false);
