@@ -357,11 +357,11 @@ void Feed::slotAbortFetch()
 
 void Feed::abortFetch()
 {
-    /*if(m_progressItem) {
-        m_progressItem->setStatus(i18n("Fetch aborted"));
+    if(m_progressItem) {
+        m_progressItem->setStatus("Fetch aborted");
         m_progressItem->setComplete();
         m_progressItem = 0;
-    }*/
+    }
     if (m_loader)
     {
         m_loader->abort();
@@ -388,9 +388,12 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     if (status != Success)
     {
-        if(status == RetrieveError) m_progressItem->setStatus(i18n("Feed File is Not Available"));
-        else if(status == ParseError) m_progressItem->setStatus(i18n("Parsing of Feed File Failed"));
-        m_progressItem->setComplete();
+        if(m_progressItem) {
+            if(status == RetrieveError) m_progressItem->setStatus(i18n("Feed File is Not Available"));
+            else if(status == ParseError) m_progressItem->setStatus(i18n("Parsing of Feed File Failed"));
+            m_progressItem->setComplete();
+            m_progressItem = 0;
+        }
         
         if (m_followDiscovery && (status == ParseError) && (m_fetchTries < 3) && (l->discoveredFeedURL().isValid()))
         {
@@ -408,11 +411,6 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
     }
 
-    if(m_progressItem) {
-        m_progressItem->setComplete();
-        m_progressItem = 0;
-    }
-
     // Restore favicon.
     if (m_favicon.isNull())
         loadFavicon();
@@ -423,6 +421,11 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     m_document=doc;
     //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
+    if(m_progressItem)
+    {
+        m_progressItem->setComplete();
+        m_progressItem = 0;
+    }
 
     if (m_image.isNull())
     {
