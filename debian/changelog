@@ -2,8 +2,9 @@ akregator (1.0-beta6-1) unstable; urgency=low
 
   * Add debian/watch file.
   * New upstream, feeds are now autosaved (closes: #262144).
+  * New build against kdepim 3.3 (closes: #268420).
 
- -- Pierre Habouzit <pierre.habouzit@m4x.org>  Wed, 25 Aug 2004 19:15:27 +0200
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 27 Aug 2004 23:11:50 +0200
 
 akregator (1.0-beta5-2) unstable; urgency=low
 
