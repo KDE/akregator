@@ -1535,9 +1535,9 @@ void aKregatorView::readProperties(KConfig* config)
     {
         QStringList pos = QStringList::split(' ', selectedFeed);
         QListViewItem* current = m_tree->firstChild();
-        for ( int i = 0; current && i < pos.count(); i++ )
+        for ( unsigned int i = 0; current && i < pos.count(); i++ )
         {
-            int childPos = pos[i].toInt();
+            int childPos = pos[i].toUInt();
             current = current->firstChild();
             if (current)
                 for (int j = 0; j < childPos; j++)
