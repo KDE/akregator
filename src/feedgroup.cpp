@@ -14,8 +14,14 @@
 
 using namespace Akregator;
 
-FeedGroup::FeedGroup(QListViewItem *i, FeedsCollection *coll)
-    : TreeNode(i, coll)
+FeedGroup::FeedGroup(FeedGroup* parent, QString title) : TreeNode(parent)
+{
+    setTitle(title);
+    //TODO: add as child to parent
+} 
+
+FeedGroup::FeedGroup(QListViewItem* item, FeedsCollection* collection)
+    : TreeNode(item, collection)
 {
 }
 
