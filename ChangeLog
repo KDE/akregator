@@ -8,9 +8,13 @@ Changes:
        - Improved dupe detection, using md5 now -ph
 #82187 - Improved session management: save search settings, selected Feed and Article -fo
        - Make it possible to switch notifications off -tpr
-       - New message notification added -smt
+	   - Switch to a standard feed system, like most aggregators -smt
+#82082 - New message notification added -smt
+       - Show comments URL for feeds, if available -smt
        - Only allow one akregator instance (KUniqueApplication) -smt
        - Autosave: Feeds are autosaved on every change now - save actions removed -smt
+       - Support feed protocol -smt
+#85265 - Add feed column when browsing through a folder -smt
 
 Bug Fixes:
        - Fixed problems with whitespace handling -ph
@@ -19,6 +23,12 @@ Bug Fixes:
 #82791 - Save the toolbar position -tpr
        - Don't crash when there is no part available -tpr
        - Make tabs wider when there is free space available -tpr
+       - Make feedlist saving work in kontact -smt
+	   - Remove all leading space between article text and headers -smt
+#86633 - Make tabs appear immediatly on slow sites -smt 
+#85748 - Make filtering in combined mode work -smt
+#86917 - Make searching in combined mode work -smt
+#85451 - Open feed list properly in kontact
 
 Changes after 1.0b4:
 -----------------------------
