@@ -44,6 +44,7 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
    : Viewer(parent, name), m_htmlHead(), m_metrics(widget()), m_currentText() 
 {
     generateCSS();
+    m_imageDir="file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/");
 }
 
 void ArticleViewer::openDefault()
@@ -167,7 +168,7 @@ void ArticleViewer::generateCSS()
 void ArticleViewer::reload()
 {
     generateCSS();
-    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+    begin();//KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
     write(m_htmlHead + m_currentText);
     end();
 }
@@ -199,7 +200,7 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
     if (f && !f->image.isNull())
     {
         QString url=f->xmlUrl;
-        text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
 
     text += "<div id=\"body\">";
@@ -243,7 +244,7 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
 void ArticleViewer::beginWriting()
 {
     view()->setContentsPos(0,0);
-    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+    begin();
     write(m_htmlHead);
 }
 
@@ -280,7 +281,7 @@ void ArticleViewer::show(Feed *, MyArticle a, bool writeHeaders)
 void ArticleViewer::show(Feed *f, MyArticle a)
 {
     view()->setContentsPos(0,0);
-    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+    begin();
 
     QString text=formatArticle(f, a) +"</body></html>";
     m_currentText=text;
