@@ -516,11 +516,11 @@ KAboutData *aKregatorPart::createAboutData()
 {
     if ( !s_about ) {
 	// this is semi-dummy about data, please see main.cpp for detailed one
-        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "1.0-beta5 \"Pierre\"",
-                                 I18N_NOOP("This is a KPart for RSS aggregator"),
-                                 KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0,
+        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "1.0-beta6 \"Bezerkus\"",
+                                 I18N_NOOP("This is a KPart for a feed aggregator"),
+                                 KAboutData::License_GPL, "(C) 2004 akregator developers", 0,
                                  "http://akregator.sourceforge.net",
-                                 "Stanislav.Karchebny@kdemail.net");
+                                 "akregator-devel@lists.sf.net");
     }
     return s_about;
 }

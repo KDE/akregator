@@ -15,9 +15,9 @@
 #include <kdebug.h>
 
 static const char description[] =
-    I18N_NOOP("A KDE RSS Aggregator");
+    I18N_NOOP("A KDE Feed Aggregator");
 
-static const char version[] = "1.0-beta5 \"Pierre\"";
+static const char version[] = "1.0-beta6 \"Bezerkus\"";
 
 static KCmdLineOptions options[] =
 {
@@ -32,15 +32,15 @@ static KCmdLineOptions options[] =
 int main(int argc, char **argv)
 {
     KAboutData about("akregator", I18N_NOOP("aKregator"), version, description,
-                     KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0,
+                     KAboutData::License_GPL, "(C) 2004 akregator developers", 0,
                      "http://akregator.sourceforge.net/");
-    about.addAuthor( "Stanislav Karchebny", I18N_NOOP("Author, Developer, Maintainer"), "Stanislav.Karchebny@kdemail.net" );
-    about.addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "smt@vfemail.net" );
-    about.addAuthor( "Teemu Rytilahti", I18N_NOOP("Contributor"), "teemu.rytilahti@kde-fi.org" );
-    about.addAuthor( "Stephan Binner", I18N_NOOP("Contributor"), "binner@kde.org" );
-    about.addAuthor( "Frank Osterfeld", I18N_NOOP("Contributor"), "f_osterf@informatik.uni-kl.de" );
+    about.addAuthor( "Stanislav Karchebny", I18N_NOOP("Maintainer, Lead Developer"), "Stanislav.Karchebny@kdemail.net" );
+    about.addCredit( "Pierre Habouzit", I18N_NOOP("Release Manager"), "pierre.habouzit@m4x.org" );
+    about.addAuthor( "Sashmit Bhaduri", I18N_NOOP("Lead Developer"), "sashmit@vfemail.net" );
+    about.addAuthor( "Teemu Rytilahti", I18N_NOOP("Developer"), "teemu.rytilahti@kde-fi.org" );
+    about.addAuthor( "Frank Osterfeld", I18N_NOOP("Developer"), "f_osterf@informatik.uni-kl.de" );
     about.addAuthor( "Gary Cramblitt", I18N_NOOP("Contributor"), "garycramblitt@comcast.net");
-    about.addCredit( "Pierre Habouzit", I18N_NOOP("Debian Packages"), "pierre.habouzit@m4x.org" );
+    about.addAuthor( "Stephan Binner", I18N_NOOP("Contributor"), "binner@kde.org" );
     about.addCredit( "Philipp Droessler", I18N_NOOP("Gentoo Ebuild"), "kingmob@albert-unser.net");
     about.addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "raabe@kde.org" );
     KCmdLineArgs::init(argc, argv, &about);
