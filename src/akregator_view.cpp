@@ -114,12 +114,12 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     m_tree->setFeedList(m_feedList);
     
-    connect(m_tree, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
-            this, SLOT(slotFeedTreeContextMenu(KListView*, QListViewItem*, const QPoint&)));
+    connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNodeItem*, const QPoint&)),
+            this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&)));
     
     connect(m_tree, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
     
-    connect(m_tree, SIGNAL(dropped (KURL::List &, TreeNodeItem*, FeedGroupItem*)),
+    connect(m_tree, SIGNAL(signalDropped (KURL::List &, TreeNodeItem*, FeedGroupItem*)),
             this, SLOT(slotFeedURLDropped (KURL::List &,
                         TreeNodeItem*, FeedGroupItem*)));
 
@@ -197,11 +197,11 @@ View::View( Part *part, QWidget *parent, const char *name)
     // use selectionChanged instead of clicked
     connect( m_articles, SIGNAL(signalArticleSelected(MyArticle)),
                 this, SLOT( slotArticleSelected(MyArticle)) );
-    connect( m_articles, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),
-                this, SLOT( slotOpenArticleExternal(QListViewItem*, const QPoint&, int)) );
+    connect( m_articles, SIGNAL(signalDoubleClicked(ArticleListItem*, const QPoint&, int)),
+                this, SLOT( slotOpenArticleExternal(ArticleListItem*, const QPoint&, int)) );
 
-    connect(m_articles, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
-            this, SLOT(slotArticleListContextMenu(KListView*, QListViewItem*, const QPoint&)));
+    connect(m_articles, SIGNAL(signalContextMenu(KListView*, ArticleListItem*, const QPoint&)),
+            this, SLOT(slotArticleListContextMenu(KListView*, ArticleListItem*, const QPoint&)));
     
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
@@ -514,7 +514,7 @@ void View::slotNormalView()
         m_articles->slotShowNode(m_tree->selectedNode());
         m_articles->show();
 
-        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->selectedItem());
+        ArticleListItem* item = m_articles->selectedItem();
 
         if (item)
             m_articleViewer->slotShowArticle(item->article());
@@ -539,7 +539,7 @@ void View::slotWidescreenView()
         m_articles->show();
         
         // tell articleview to redisplay+reformat
-        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->selectedItem());
+        ArticleListItem* item = m_articles->selectedItem();
         if (item)
             m_articleViewer->slotShowArticle(item->article());
         else
@@ -654,10 +654,9 @@ void View::slotTabCaption(const QString &caption)
     }
 }
 
-void View::slotFeedTreeContextMenu(KListView*, QListViewItem* item, const QPoint& p)
+void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint& p)
 {
-    TreeNodeItem* ti = static_cast<TreeNodeItem*>(item); 
-    TreeNode* node = ti ? ti->node() : 0;
+    TreeNode* node = item ? item->node() : 0;
 
     if (!node)
         return;
@@ -673,14 +672,13 @@ void View::slotFeedTreeContextMenu(KListView*, QListViewItem* item, const QPoint
         static_cast<QPopupMenu *>(w)->exec(p);
 }
 
-void View::slotArticleListContextMenu(KListView*, QListViewItem* item, const QPoint& p)
+void View::slotArticleListContextMenu(KListView*, ArticleListItem* item, const QPoint& p)
 {
-    ArticleListItem* ali = static_cast<ArticleListItem*> (item);
-    if (!ali)
+    if (!item)
         return;
     KToggleAction* ka = static_cast<KToggleAction*> (m_part->actionCollection()->action("article_toggle_keep"));
     if (ka)
-        ka->setChecked( ali->article().keep() );
+        ka->setChecked( item->article().keep() );
     QWidget* w = m_part->factory()->container("article_popup", m_part);
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
@@ -1237,10 +1235,9 @@ void View::slotArticleSelected(MyArticle article)
     m_articleViewer->slotShowArticle( article );
 }
 
-void View::slotOpenArticleExternal(QListViewItem* i, const QPoint&, int)
+void View::slotOpenArticleExternal(ArticleListItem* item, const QPoint&, int)
 {
-    ArticleListItem *item = static_cast<ArticleListItem *>(i);
-    if (!item) 
+    if (!item)
         return;
     // TODO : make this configurable....
     displayInExternalBrowser(item->article().link());
@@ -1249,7 +1246,7 @@ void View::slotOpenArticleExternal(QListViewItem* i, const QPoint&, int)
 
 void View::slotOpenCurrentArticle()
 {
-    ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+    ArticleListItem *item = m_articles->currentItem();
     if (!item)
         return;
     
@@ -1273,7 +1270,7 @@ void View::slotOpenCurrentArticleExternal()
 
 void View::slotOpenCurrentArticleBackgroundTab()
 {
-    ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+    ArticleListItem *item = m_articles->currentItem();
     if (!item)
         return;
 
@@ -1407,7 +1404,7 @@ void View::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
     
-    ArticleListItem* ali = dynamic_cast<ArticleListItem*>(m_articles->selectedItem());
+    ArticleListItem* ali = m_articles->selectedItem();
 
     if (!ali)
         return;
@@ -1419,9 +1416,9 @@ void View::slotArticleDelete()
         MyArticle article = ali->article();
         article.setDeleted();
         if ( ali->nextSibling() )
-            ali = dynamic_cast<ArticleListItem*>(ali->nextSibling());
+            ali = ali->nextSibling();
         else
-            ali = dynamic_cast<ArticleListItem*>(ali->itemAbove());
+            ali = ali->itemAbove();
 
         if (ali)
         {
@@ -1440,7 +1437,7 @@ void View::slotArticleDelete()
     
 void View::slotArticleToggleKeepFlag()
 {
-    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+    ArticleListItem* ali = m_articles->selectedItem();
 
     if (!ali)
         return;
@@ -1461,7 +1458,7 @@ void View::slotArticleToggleKeepFlag()
 
 void View::slotSetSelectedArticleUnread()
 {
-    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+    ArticleListItem* ali = m_articles->selectedItem();
 
     if (!ali)
         return;
@@ -1485,7 +1482,7 @@ void View::slotSetSelectedArticleUnread()
 
 void View::slotSetSelectedArticleNew()
 {
-    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+    ArticleListItem* ali = m_articles->selectedItem();
 
     if (!ali)
         return;

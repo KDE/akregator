@@ -46,14 +46,7 @@ namespace Akregator
              * @param node the node to select
              */
             void setSelectedNode(TreeNode* node);
-            
-            /** Find item belonging to tree node @c node, @c null when node is not in tree
-            @return item representing node  
-            @param node a tree node
-             */
 
-            TreeNodeItem* findNodeItem(TreeNode* node);
-            
             /** Find first node with title @c title
                 returns 0 if no node was found
             @param title
@@ -117,23 +110,20 @@ namespace Akregator
             virtual void slotFeedListDestroyed(FeedList*);
             
         signals:
-            void dropped (KURL::List &, TreeNodeItem*, FeedGroupItem*);
+            void signalDropped (KURL::List &, TreeNodeItem*, FeedGroupItem*);
             void signalNodeSelected(TreeNode*);
+            void signalContextMenu(KListView*, TreeNodeItem*, const QPoint&);
 
-            
         protected:
-             /** Returns item belonging to currently selected node. 
-            @return selected node item
-              */
-            TreeNodeItem* selectedNodeItem();
+            /** Find item belonging to tree node @c node, @c null when node is not in tree
+            @return item representing node
+            @param node a tree node */
 
-            /** Returns item belonging to root node.
-            @return root node item
-             */
-            FeedGroupItem* rootNodeItem();
+            TreeNodeItem* findNodeItem(TreeNode* node);
 
             /** observe @c node: connect status change signals of @c node to slots */
             virtual void connectToNode(TreeNode* node);
+            
             /** stop observing @c node: disconnect from status change signals of @c node */
             virtual void disconnectFromNode(TreeNode* node);
 
@@ -155,7 +145,8 @@ namespace Akregator
         
         protected slots:
             
-            virtual void slotSelectionChanged(QListViewItem* item); 
+            virtual void slotSelectionChanged(QListViewItem* item);
+            virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             virtual void slotItemRenamed(QListViewItem* item);
             virtual void slotFeedFetchStarted(Feed* feed);
             virtual void slotFeedFetchAborted(Feed* feed);

@@ -123,10 +123,10 @@ namespace Akregator
             void slotArticleSelected(MyArticle article);
             
             /** Shows requested popup menu for article list */
-            void slotArticleListContextMenu(KListView*, QListViewItem* item, const QPoint& p);
+            void slotArticleListContextMenu(KListView*, ArticleListItem* item, const QPoint& p);
             
             /** Shows requested popup menu for feed tree */
-            void slotFeedTreeContextMenu(KListView*, QListViewItem*, const QPoint&);
+            void slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&);
 
             /** emits @ref signalUnreadCountChanged(int) */
             void slotSetTotalUnread();
@@ -135,7 +135,7 @@ namespace Akregator
             void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);
 
             /** opens article of @c item in external browser */
-            void slotOpenArticleExternal(QListViewItem* item, const QPoint&, int);
+            void slotOpenArticleExternal(ArticleListItem* item, const QPoint&, int);
 
             /** opens the current article (currentItem) in external browser
             TODO: use selected instead of current? */

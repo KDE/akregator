@@ -51,7 +51,8 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     connect( this, SIGNAL(dropped(QDropEvent*,QListViewItem*)), this, SLOT(slotDropped(QDropEvent*,QListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*)), this, SLOT(slotItemRenamed(QListViewItem*)) );
-
+    connect( this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)) );
+    
     clear();
     
     QWhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
@@ -113,14 +114,7 @@ void FeedsTree::insertNode(QListViewItem* parent, QListViewItem* item, QListView
 
 FeedGroup* FeedsTree::rootNode()
 {
-    FeedGroupItem* item = static_cast<FeedGroupItem*> (firstChild());
-    
-    return ( item ? item->node() : 0);
-}
-
-FeedGroupItem* FeedsTree::rootNodeItem()
-{
-    return static_cast<FeedGroupItem*> (firstChild());
+    return m_feedList ? m_feedList->rootNode() : 0;
 }
 
 TreeNode* FeedsTree::selectedNode()
@@ -136,11 +130,6 @@ void FeedsTree::setSelectedNode(TreeNode* node)
     if ( node && item )
         setSelected(item, true);
 }
-
-TreeNodeItem* FeedsTree::selectedNodeItem()
-{
-    return static_cast<TreeNodeItem*> (selectedItem());
-}            
 
 TreeNode* FeedsTree::findNodeByTitle(const QString& title)
 {
@@ -213,7 +202,7 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
             KURL::List urls;
             KURLDrag::decode( e, urls );
             e->accept();
-            emit dropped( urls, afterme, parent);
+            emit signalDropped( urls, afterme, parent);
         }
         else
         {
@@ -403,7 +392,7 @@ void FeedsTree::slotItemLeft()
 {
     QListViewItem* sel = selectedItem();
     
-    if (!sel || sel == rootNodeItem())
+    if (!sel || sel == findNodeItem(rootNode()))
         return;
     
     if (sel->isOpen())
@@ -520,6 +509,11 @@ void FeedsTree::slotItemRenamed(QListViewItem* item)
     TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
     if ( ni && ni->node() )
         ni->node()->setTitle( item->text(0) );
+}
+
+void FeedsTree::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
+{
+    emit signalContextMenu(list, static_cast<TreeNodeItem*>(item), p);
 }
 
 void FeedsTree::slotFeedFetchStarted(Feed* feed)

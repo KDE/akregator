@@ -130,6 +130,9 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
     connect(this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
+    connect(this, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),  this, SLOT(slotDoubleClicked(QListViewItem*, const QPoint&, int)) );
+    connect(this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
+            this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
 }
 void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
 {
@@ -351,6 +354,16 @@ void ArticleList::slotSelectionChanged(QListViewItem* item)
         emit signalArticleSelected( ai->article() );
 } 
 
+void ArticleList::slotDoubleClicked(QListViewItem* item, const QPoint& p, int i)
+{
+    emit signalDoubleClicked(static_cast<ArticleListItem*>(item), p, i);
+}
+
+void ArticleList::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
+{
+    emit signalContextMenu(list, static_cast<ArticleListItem*>(item), p);
+}
+        
 ArticleList::~ArticleList()
 {
     Settings::setTitleWidth(columnWidth(0));

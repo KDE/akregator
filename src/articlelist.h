@@ -31,6 +31,11 @@ namespace Akregator
             Feed *feed();
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
+
+            virtual ArticleListItem* itemAbove() { return static_cast<ArticleListItem*>(KListViewItem::itemAbove()); }
+            
+            virtual ArticleListItem* nextSibling() { return static_cast<ArticleListItem*>(KListViewItem::nextSibling()); }
+            
         private:
             MyArticle m_article;
             Feed *m_feed;
@@ -51,6 +56,10 @@ namespace Akregator
             @param doReceive whether listen to notification signals or not
             @param remember if @c true: if an update request occured while receiving updates was disabled, the view is updated on re-enabling. You have to set this when reenabling, not when disabling! Ignored when @c doReceive is set to false.(Anyone got this?) */
             void setReceiveUpdates(bool doReceive, bool remember=true);
+
+            ArticleListItem* currentItem() const { return static_cast<ArticleListItem*>(KListView::currentItem()); }
+            
+            ArticleListItem* selectedItem() const { return static_cast<ArticleListItem*>(KListView::selectedItem()); }
             
         public slots:
 
@@ -81,6 +90,8 @@ namespace Akregator
              /** emitted when an article was selected
                  @param article the article selected*/
             void signalArticleSelected(MyArticle article);
+            void signalDoubleClicked(ArticleListItem*, const QPoint&, int);
+            void signalContextMenu(KListView*, ArticleListItem*, const QPoint&);
              
         protected:
             /** reimplemented for kmail-like behaviour */            
@@ -92,6 +103,8 @@ namespace Akregator
 
         protected slots:
             virtual void slotSelectionChanged(QListViewItem* item);
+            virtual void slotDoubleClicked(QListViewItem* item, const QPoint& p, int i);
+            virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             
         private:
             bool m_updated;
