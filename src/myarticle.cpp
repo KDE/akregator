@@ -24,7 +24,7 @@ struct MyArticle::Private : public RSS::Shared
 {
     /** The status of the article is stored in an int, the bits having the
         following meaning:
-    
+
         0000 0001 Deleted
         0000 0010 Trash
         0000 0100 New
@@ -40,14 +40,14 @@ struct MyArticle::Private : public RSS::Shared
     Article article;
     QDateTime fetchDate;
     QString title;
-    
+
     Feed* feed;
 };
 
 MyArticle::MyArticle() : d(new Private)
 {
     d->hash = 0;
-    d->status = 0; 
+    d->status = 0;
     d->feed = 0;
     d->guidIsHash = false;
 }
@@ -59,14 +59,14 @@ MyArticle::MyArticle(Article article) : d(new Private)
     d->article = article;
     d->feed = 0;
     d->fetchDate = QDateTime::currentDateTime();
-    
+
     if (article.title().isEmpty())
         d->title=buildTitle();
     else
         d->title=article.title();
-    
+
     QString status = d->article.meta("status");
-    
+
     if (!status.isEmpty())
         setStatus(status.toInt());
 
@@ -78,7 +78,7 @@ MyArticle::MyArticle(Article article) : d(new Private)
     if (!d->guidIsHash)
     {
         QString hashStr = article.meta("hash");
-    
+
         bool parsedOk = false;
         uint parsed = hashStr.toUInt(&parsedOk, 16);
         if (!parsedOk)
@@ -88,7 +88,7 @@ MyArticle::MyArticle(Article article) : d(new Private)
         }
         else
             d->hash = parsed;
-    }    
+    }
 }
 
 void MyArticle::setDeleted()
@@ -157,7 +157,7 @@ int MyArticle::status() const
 {
     if ((d->status & Private::Read) != 0)
         return Read;
-    
+
     if ((d->status & Private::New) != 0)
         return New;
     else
@@ -227,7 +227,7 @@ uint MyArticle::calcHash(const QString& str)
     const char* s = str.ascii();
     uint hash = 5381;
     int c;
-    while (c = *s++) hash = ((hash << 5) + hash) + c; // hash*33 + c
+    while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
     return hash;
 }
 
@@ -240,7 +240,7 @@ uint MyArticle::hash() const
 {
     return d->hash;
 }
-        
+
 bool MyArticle::keep() const
 {
     return (d->status & Private::Keep) != 0;
@@ -306,7 +306,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
             tnode.appendChild(t);
             parent.appendChild(tnode);
         }
- 
+
         if (link().isValid())
         {
             QDomElement lnode = doc.createElement( "link" );
@@ -314,7 +314,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
             lnode.appendChild(ht);
             parent.appendChild(lnode);
         }
-    
+
         if (!description().isEmpty())
         {
             QDomElement snode = doc.createElement( "description" );
@@ -322,7 +322,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
             snode.appendChild(dt);
             parent.appendChild(snode);
         }
-        
+
         if (commentsLink().isValid())
         {
             QDomElement lnode = doc.createElement( "wfw:comment" );
@@ -330,7 +330,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
             lnode.appendChild(ht);
             parent.appendChild(lnode);
         }
-    
+
         if (comments())
         {
             QDomElement lnode = doc.createElement( "slash:comments" );
@@ -347,7 +347,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
 
 
         if (guidIsHash())
-        {        
+        {
             metanode = doc.createElement( "metaInfo:meta" );
             metanode.setAttribute("type", "guidIsHash");
             metanode.appendChild(doc.createTextNode("true"));
@@ -360,7 +360,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
             metanode.appendChild(doc.createTextNode(QString::number(hash(), 16)));
             parent.appendChild(metanode);
         }
-        
+
         if (keep())
         {
             metanode = doc.createElement( "metaInfo:meta" );
@@ -369,7 +369,7 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
             parent.appendChild(metanode);
         }
     } // if not deleted
-    
+
 }
 
 
