@@ -400,8 +400,10 @@ void PageViewer::slotSelectionChanged( )
 
 void PageViewer::formClicked(const KURL& url, const KParts::URLArgs& args)
 {
-    browserExtension()->setURLArgs(args);
-    openURL(url);
+    if (args.doPost()) {
+        browserExtension()->setURLArgs(args);
+        openURL(url);
+    }
 }
 
 #include "pageviewer.moc"
