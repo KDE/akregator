@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>355</width>
+            <width>360</width>
             <height>366</height>
         </rect>
     </property>
@@ -18,6 +18,9 @@
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
         </property>
         <widget class="QTabWidget" row="0" column="0">
             <property name="name">
