@@ -12,6 +12,7 @@ New Features:
        - In case the feed doesn't provide an article <link> element, fall back to the <guid> permaLink -sg
        
 Bug Fixes:
+       - Scroll up when changing the article in article viewer -tpr
        - Various frame-switching bug fixes -smt
        - Fix favicon loading crash (#82682) -smt 
        - Various stop-button related bug fixes -smt

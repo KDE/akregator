@@ -22,23 +22,24 @@ namespace Akregator
         label=QString::null);
             FeedsTreeItem(bool f, QListViewItem *parent, QListViewItem *after,
                        QString label=QString::null);
+            ~FeedsTreeItem();
         virtual void paintCell( QPainter * p, const QColorGroup & cg,
                             int column, int width, int align );
-   
+
         int unread(){return m_unread;}
         void setUnread(int u);
-        
+
         bool isFolder();
         void setFolder(bool f);
         int countUnreadRecursive();
-        
+
         private:
             void updateParentsRecursive();
             int m_unread;
             bool m_folder;
     };
-              
-    
+
+
     class FeedsTree : public KListView
     {
         Q_OBJECT
@@ -57,7 +58,7 @@ namespace Akregator
 
         public slots:
             /** handle dropped urls */
-            void slotDropped(QDropEvent *e, QListViewItem *after); 
+            void slotDropped(QDropEvent *e, QListViewItem *after);
             /** Shows only first-level feeds */
             void slotCollapseAll();
             /** Shows only root of selected tree */

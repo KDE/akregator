@@ -17,49 +17,49 @@ namespace Akregator {
 
     class FetchTransaction : public QObject {
         Q_OBJECT
-        
+
         public:
             FetchTransaction(QObject *parent);
             ~FetchTransaction();
-            
+
             void start();
             void stop();
-        
+
             void fetch(Feed *f);
-       
+
             int fetchesDone(){return m_fetchesDone;}
             int totalFetches(){return m_totalFetches;}
 
             void loadIcon(Feed *f);
             void startFetchIcons();
-           
+
             void loadImage(Feed *f, Image *i);
             void startFetchImages();
 
             bool isRunning(){return m_running;}
-            
+
         signals:
             void completed();
             void fetched(Feed*);
             void fetchError(Feed*);
-            
+
         private slots:
             void slotFeedFetched(Feed *);
             void slotFeedError(Feed *);
-       
+
             void slotFaviconFetched(const QString &, const QPixmap &);
             void slotImageFetched(const QPixmap &);
-            
+
         private:
             void doFetch(int c);
             void feedDone(Feed *f);
 
             void doFetchIcon(int c);
             void doFetchImage(int c);
-            
+
             QPtrList<Feed> m_fetchList;
             QPtrList<Feed> m_currentFetches;
-           
+
             QPtrList<Feed> m_iconFetchList;
             QDict<Feed> m_iconFetchDict;
 
@@ -69,10 +69,10 @@ namespace Akregator {
 
             int m_totalFetches;
             int m_fetchesDone;
-            
+
             int m_concurrentFetches;
             bool m_running;
-            
+
     };
 }
 

@@ -63,7 +63,7 @@ namespace Akregator
             void saveSettings(bool quit);
 
             bool importFeeds(const QDomDocument& doc);
-	    
+
             /**
              * Parse OPML presentation of feeds and read in articles archive, if present.
              * @param doc QDomDocument generated from OPML by openFile().
@@ -176,11 +176,11 @@ namespace Akregator
             void slotCanceled(const QString &);
             void slotCompleted();
             void slotLoadingProgress(int);
-	    
+
 	    void slotTabCaption(const QString &capt);
 
             void slotDoIntervalFetches();
-	    
+
         private:
             /**
              * Reset to default values, removing all existing data.
@@ -191,7 +191,7 @@ namespace Akregator
 	    void connectFrame(Frame *);
 
 	    QString getTitleNodeText(const QDomDocument &doc);
-	    
+
             /**
              * Write child items of item to node using QDom document document.
              * @param item Current feeds tree item which is being written.
@@ -266,9 +266,9 @@ namespace Akregator
             KLineEdit *m_searchLine;
             int m_queuedSearches;
             QString m_queuedSearch;
-            
+
 	    FetchTransaction *m_transaction;
-	    
+
             QSplitter *m_panner1, *m_panner2;
             aKregatorPart *m_part;
             ArticleFilter *m_currentTextFilter;
@@ -276,9 +276,9 @@ namespace Akregator
             ViewMode m_viewMode;
             QTimer *m_globalFetchTimer;
             QTimer *m_fetchTimer;
-	    
+
             bool m_stopLoading;
-	    
+
             QPixmap m_feedTreePixmap;
             QPixmap m_folderTreePixmap;
 	    QPixmap m_errorTreePixmap;

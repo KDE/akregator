@@ -14,8 +14,8 @@
 using namespace Akregator;
 
 FetchTransaction::FetchTransaction(QObject *parent): QObject(parent, "transaction"),
-    m_fetchList(), m_currentFetches(), m_iconFetchList(), m_iconFetchDict(), 
-    m_imageFetchList(), m_currentImageFetches(), m_imageFetchDict()
+    m_fetchList(), m_currentFetches(), m_iconFetchList(), m_iconFetchDict(),
+    m_imageFetchList(), m_currentImageFetches(), m_imageFetchDict(), m_totalFetches(0)
 {
     m_concurrentFetches=Settings::concurrentFetches();
     m_running=false;
@@ -34,7 +34,7 @@ void FetchTransaction::start()
     m_running=true;
     m_totalFetches=m_fetchList.count();
     m_fetchesDone=0;
-    
+
     while (i < m_concurrentFetches)
     {
         doFetch(0);
@@ -48,18 +48,18 @@ void FetchTransaction::stop()
     Feed *f;
     for (f=m_currentFetches.first(); f; f=m_currentFetches.next())
         f->abortFetch();
-    
+
     Image *i;
     for (i=m_currentImageFetches.first(); i; i=m_currentImageFetches.next())
         i->abort();
-    
+
 }
 
 void FetchTransaction::fetch(Feed *f)
 {
     connect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     connect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedError(Feed*)));
-    
+
     m_fetchList.append(f);
 }
 
@@ -98,9 +98,9 @@ void FetchTransaction::feedDone(Feed *f)
     //kdDebug() << "feed done: "<<f->title()<<endl;
     disconnect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     disconnect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedError(Feed*)));
-    
+
     m_currentFetches.remove(f);
-    
+
     if (m_fetchList.isEmpty() && m_currentFetches.isEmpty())
     {
         startFetchImages();
@@ -108,7 +108,7 @@ void FetchTransaction::feedDone(Feed *f)
         emit completed();
         return;
     }
-    
+
     doFetch(0);
 }
 
@@ -187,7 +187,7 @@ void FetchTransaction::startFetchImages()
 {
     int i=0;
     m_running=true;
-    
+
     while (i < m_concurrentFetches)
     {
         doFetchImage(0);

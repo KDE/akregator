@@ -39,11 +39,15 @@ FeedsTreeItem::FeedsTreeItem(bool isF, QListViewItem *parent, QListViewItem *aft
 {
 }
 
+FeedsTreeItem::~FeedsTreeItem()
+{
+}
+
 void FeedsTreeItem::setUnread(int u)
 {
     if (m_unread==u)
         return;
-    
+
     m_unread=u;
     updateParentsRecursive();
 }
@@ -79,51 +83,51 @@ void FeedsTreeItem::paintCell( QPainter * p, const QColorGroup & cg,
         KListViewItem::paintCell(p,cg,column,width,align);
         return;
     }
-    
+
     // from kfoldertree
     QString oldText = text(column);
     setText( column, " " );
-    
+
     // draw bg
     KListViewItem::paintCell(p,cg,column,width,align);
 
     setText( column, oldText);
-    
+
     // draw fg
     QFont f = p->font();
     f.setWeight(QFont::Bold);
     p->setFont(f);
-    
+
     QFontMetrics fm( p->fontMetrics() );
     QListView *lv = listView();
     int x = lv ? lv->itemMargin() : 1;
     int m=x;
     const QPixmap *icon = pixmap( column );
     QRect br;
-    
+
     if (icon)
         x += icon->width() + m;
 
     QString txt = " (" + QString::number(u) + ")";
     int txtW=fm.width( txt );
-    
+
     if (fm.width( oldText ) + txtW + x > width)
         oldText=KStringHandler::rPixelSqueeze(oldText,fm, width - txtW - x);
-    
+
     p->drawText( x, 0, width-m-x, height(), align | AlignVCenter, oldText, -1, &br );
 
     if ( !isSelected() )
         p->setPen( Qt::blue ); // TODO: configurable
-    
+
     p->drawText( br.right(), 0, width-m-br.right(), height(),
                             align | AlignVCenter, txt );
-    
+
     /*if ( isSelected() )
         p->setPen( cg.highlightedText() );
     else
         p->setPen( cg.text() );*/
-    
-    
+
+
 }
 
 int FeedsTreeItem::countUnreadRecursive()
@@ -134,7 +138,7 @@ int FeedsTreeItem::countUnreadRecursive()
             item ; item = item->nextSibling() ) {
         count += static_cast<FeedsTreeItem*>(item)->countUnreadRecursive();
     }
-    
+
     return count;
 }
 

@@ -65,17 +65,17 @@
 using namespace Akregator;
 
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
-    : QWidget(parent, wName), m_feeds()
+   : QWidget(parent, wName), m_feeds(), m_viewMode(NormalView)
 {
     m_part=part;
     m_stopLoading=false;
 
     setFocusPolicy(QWidget::StrongFocus);
-    
+
     m_feedTreePixmap=KGlobal::iconLoader()->loadIcon("txt", KIcon::Small);
     m_folderTreePixmap=KGlobal::iconLoader()->loadIcon("folder", KIcon::Small);
     m_errorTreePixmap=KGlobal::iconLoader()->loadIcon("error", KIcon::Small);
-    
+
     QVBoxLayout *lt = new QVBoxLayout( this );
 
     m_panner1 = new QSplitter(QSplitter::Horizontal, this, "panner1");
@@ -85,7 +85,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_transaction= new FetchTransaction(this);
     connect (m_transaction, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     connect (m_transaction, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
-    connect (m_transaction, SIGNAL(completed()), this, SLOT(slotFetchesCompleted()));     
+    connect (m_transaction, SIGNAL(completed()), this, SLOT(slotFetchesCompleted()));
 
     m_tree = new FeedsTree( m_panner1, "FeedsTree" );
 
@@ -151,7 +151,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_articles = new ArticleList( m_panner2, "articles" );
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
-    
+
     // use selectionChanged instead of clicked
     connect( m_articles, SIGNAL(selectionChanged(QListViewItem *)),
                    this, SLOT( slotArticleSelected(QListViewItem *)) );
@@ -353,7 +353,7 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     m_feeds.addFeedGroup(elt)->setTitle(text);
     elt->setExpandable(true);
     elt->setOpen(true);
-    
+
     startOperation();
     if (!loadFeeds(doc, elt))
     {
@@ -418,7 +418,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
     if (m_stopLoading)
         return;
     QDomElement e = node.toElement(); // try to convert the node to an element.
-    
+
     if( !e.isNull() )
     {
         FeedsTreeItem *elt;
@@ -429,7 +429,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
             QListViewItem *lastChild = parent->firstChild();
             while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
             elt = new FeedsTreeItem( true, parent, lastChild, KCharsets::resolveEntities(title) );
-            
+
         }
         else
             elt = new FeedsTreeItem( true, m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
@@ -438,7 +438,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
         {
             elt->setFolder(false);
             QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
-             
+
             elt->setPixmap(0, m_feedTreePixmap);
             addFeed_Internal( 0, elt,
                               title,
@@ -454,9 +454,9 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
         {
             m_feeds.addFeedGroup(elt);
             FeedGroup *g = m_feeds.find(elt);
-            
+
             elt->setPixmap(0, m_folderTreePixmap);
-            
+
             if (g)
                 g->setTitle(title);
 
@@ -572,18 +572,18 @@ void aKregatorView::addFeedToGroup(const QString& url, const QString& group)
         lastChild = allFeedsFolder->firstChild();
         while (lastChild && lastChild->nextSibling())
             lastChild = lastChild->nextSibling();
-    
+
         FeedsTreeItem *elt;
         if (lastChild)
             elt = new FeedsTreeItem(true, allFeedsFolder, lastChild, group);
         else
             elt = new FeedsTreeItem(true, allFeedsFolder, group);
-    
+
         m_feeds.addFeedGroup(elt);
         FeedGroup *g = m_feeds.find(elt);
         if (g)
             g->setTitle( group );
-    
+
         m_part->setModified(true);
         item = g->item();
     }
@@ -715,10 +715,10 @@ void aKregatorView::slotFrameChanged(Frame *f)
     m_part->setCaption(f->caption());
     m_part->setProgress(f->progress());
     m_part->setStatusBar(f->statusText());
-    
+
     switch (f->state())
     {
-       
+
         case Frame::Started:
             m_part->setStarted();
             break;
@@ -883,10 +883,10 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     dlg->setFeedName(text);
     dlg->setUrl(afd->feedURL);
     dlg->selectFeedName();
-    
+
     if (!autoExec)
         if (dlg->exec() != QDialog::Accepted) return;
-    
+
     if (!parent)
         parent=m_tree->firstChild();
 
@@ -895,7 +895,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     else
         elt = new FeedsTreeItem(false, parent, text);
 
-    
+
     elt->setPixmap(0, m_feedTreePixmap);
     feed->setItem(elt);
 
@@ -940,9 +940,9 @@ void aKregatorView::slotFeedAddGroup()
     else
         elt = new FeedsTreeItem(true, m_tree->currentItem(), text);
 
-    // expandable, so we can use KListView's implementation to drop items into empty folders  
+    // expandable, so we can use KListView's implementation to drop items into empty folders
     elt->setExpandable(true);
-    elt->setOpen(true); 
+    elt->setOpen(true);
 
     m_feeds.addFeedGroup(elt);
     FeedGroup *g = m_feeds.find(elt);
@@ -1208,7 +1208,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 
     // TODO: move to slotFetchesCompleted
     Archive::save(feed);
-    
+
     IntervalManager::self()->feedFetched(feed->xmlUrl);
 
     // Also, update unread counts
