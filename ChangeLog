@@ -8,6 +8,7 @@ Changes:
        - Update unread count when stopping fetching before it's finished -tpr
 Bug fixes:
        - Disable dnd in feed tree until the feed list is loaded (prevents crash) -fo 
+       - Decode the url before adding new feed, makes feed urls with special characters (?, =, &) to work -tpr
 
 Changes after 1.0b7:
 -----------------------------

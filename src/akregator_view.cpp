@@ -916,7 +916,7 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
     Feed *feed;
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
     
-    afd->setURL(url);
+    afd->setURL(KURL::decode_string(url));
 
     QString text;
     if (autoExec)
