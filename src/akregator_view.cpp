@@ -1505,17 +1505,18 @@ void aKregatorView::slotArticleDelete()
     {
         MyArticle article = ali->article();
         article.setDeleted();
-        ali = dynamic_cast<ArticleListItem*>(ali->nextSibling());
-        if (!ali) {
-            ali = dynamic_cast<ArticleListItem*>(ali->itemAbove()); // slow
-        }
-        if (ali) {
+        if ( ali->nextSibling() )
+            ali = dynamic_cast<ArticleListItem*>(ali->nextSibling());
+        else
+            ali = dynamic_cast<ArticleListItem*>(ali->itemAbove());
+
+        if (ali)
+        {
             m_articles->setCurrentItem(ali);
-            ali->setSelected(true);
+            m_articles->setSelected(ali, true);
         }
-        if (ali) {
-            slotArticleSelected(ali->article());
-        } else {
+        else
+        {
             m_articleViewer->slotClear();
         }
         m_articles->slotUpdate();
