@@ -15,7 +15,6 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
-#000003 ADD [ ] sort ArticleList by Article::pubDate -->berkus
 #000037 ADD [ ] add favicon support to the FeedsTree -->smt
 #000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
 #000031 ADD [ ] Autosave: Remember feeds list in "current" file

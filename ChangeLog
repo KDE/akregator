@@ -4,6 +4,7 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000003 ADD [x] sort ArticleList by Article::pubDate -->berkus
         CHG [x] add file filters to open/save dialogs
 #000013 FIX [x] list generated files in .cvsignore files
 #000006 ADD [x] system tray

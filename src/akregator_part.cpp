@@ -647,21 +647,11 @@ void aKregatorPart::slotFeedFetched(Feed *feed)
 }
 
 
-void aKregatorPart::slotArticleSelected(QListViewItem *item)
+void aKregatorPart::slotArticleSelected(QListViewItem *i)
 {
-    kdDebug() << k_funcinfo << "BEGIN" << endl;
-    Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-    if (!feed) return;
-
-    int index = m_articles->itemIndex(item);
-    kdDebug() << k_funcinfo << "Selected item number " << index << endl;
-
-    if (index < 0 || static_cast<Article::List::size_type>(index) > feed->articles.size())
-        return;
-
-    m_articleViewer->show(feed->articles[index]);
-
-    kdDebug() << k_funcinfo << "END" << endl;
+    ArticleListItem *item = static_cast<ArticleListItem *>(i);
+    if (!item) return;
+    m_articleViewer->show( item->article() );
 }
 
 void aKregatorPart::slotItemRenamed( QListViewItem *item ) //, const QString &text, int /*col*/

@@ -10,6 +10,7 @@
 #include <klocale.h>
 #include <kcharsets.h>
 
+#include <qdatetime.h>
 #include <qwhatsthis.h>
 #include <qheader.h>
 
@@ -33,7 +34,20 @@ ArticleListItem::ArticleListItem( QListView *parent, Article a, Feed *feed )
 
 int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
 {
+    ArticleListItem *item = static_cast<ArticleListItem *>(i);
+
+    if ( i && item->d->article.pubDate().isValid() && d->article.pubDate().isValid() )
+    {
+        int diff = d->article.pubDate().secsTo( item->d->article.pubDate() );
+        return ascending ? diff : -diff;
+    }
+
     return 0;
+}
+
+Article ArticleListItem::article()
+{
+    return d->article;
 }
 
 /* ==================================================================================== */
@@ -51,7 +65,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
     setFullWidth(false);
-    setSorting(-1);
+    setSorting(0, false); // sort by date, descending
     setDragAutoScroll(true);
     setDropHighlighter(false);
 

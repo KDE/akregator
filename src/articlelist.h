@@ -22,6 +22,8 @@ namespace Akregator
             /** Override compare() to compare by pubDate */
             int compare( QListViewItem *i, int col, bool ascending ) const;
 
+            RSS::Article article();
+
         private:
             struct Private;
             Private *d;
