@@ -64,11 +64,11 @@ void ArticleViewer::openDefault()
                     .arg(i18n("Welcome to aKregator"))
                     .arg(i18n("Use the tree to manage your feeds."))
                     .arg(i18n("Right click a folder, such as \"All Feeds\", and choose:"))
-                    .arg(i18n("Add Feed"))
+                    .arg(i18n("Add Feed..."))
                     .arg(i18n(" to add a new feed to your feed list."))
-                    .arg(i18n("New Folder"))
+                    .arg(i18n("New Folder..."))
                     .arg(i18n(" to add a new folder to your list."))
-                    .arg(i18n("Edit"))
+                    .arg(i18n("Edit..."))
                     .arg(i18n(" to edit an existing feed or folder."));
 
     text += QString("<li><b>%1</b>%2</li>\n"

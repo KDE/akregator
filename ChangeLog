@@ -9,7 +9,6 @@ New features:
 #85532 - Add feed summary -tpr
 
 Changes:
-       - Remove dots ("...") from the welcome page actions -tpr
        - Add pageviewer actions into Go menu and print to file menu when in pageviewer mode -tpr
        - make search bar optional -fo
        - Do not allow user to stop feedlist loading to avoid data loss -tpr
