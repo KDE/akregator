@@ -9,257 +9,254 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>443</width>
-            <height>374</height>
+            <width>340</width>
+            <height>296</height>
         </rect>
     </property>
     <property name="caption">
         <string>ExternalBrowser</string>
     </property>
-    <widget class="QLayoutWidget">
+    <hbox>
         <property name="name">
-            <cstring>layout6</cstring>
+            <cstring>unnamed</cstring>
         </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>0</y>
-                <width>320</width>
-                <height>360</height>
-            </rect>
-        </property>
-        <vbox>
+        <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>unnamed</cstring>
+                <cstring>layout6</cstring>
             </property>
-            <widget class="QGroupBox">
+            <vbox>
                 <property name="name">
-                    <cstring>groupBox3</cstring>
+                    <cstring>unnamed</cstring>
                 </property>
-                <property name="title">
-                    <string>Left Mouse Click Behavior</string>
-                </property>
-                <hbox>
+                <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>unnamed</cstring>
+                        <cstring>groupBox3</cstring>
                     </property>
-                    <widget class="QLayoutWidget">
+                    <property name="title">
+                        <string>Left Mouse Click Behavior</string>
+                    </property>
+                    <hbox>
                         <property name="name">
-                            <cstring>layout13_3</cstring>
+                            <cstring>unnamed</cstring>
                         </property>
-                        <hbox>
+                        <widget class="QLayoutWidget">
                             <property name="name">
-                                <cstring>unnamed</cstring>
+                                <cstring>layout13_3</cstring>
                             </property>
-                            <widget class="QLabel">
+                            <hbox>
                                 <property name="name">
-                                    <cstring>textLabel1_3</cstring>
+                                    <cstring>unnamed</cstring>
                                 </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>1</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>Behavior:</string>
-                                </property>
-                            </widget>
-                            <widget class="QComboBox">
-                                <item>
-                                    <property name="text">
-                                        <string>Open in Tab</string>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>textLabel1_3</cstring>
                                     </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>Open in Background Tab</string>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>1</hsizetype>
+                                            <vsizetype>0</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
                                     </property>
-                                </item>
-                                <item>
                                     <property name="text">
-                                        <string>Open in External Browser</string>
+                                        <string>Behavior:</string>
                                     </property>
-                                </item>
-                                <property name="name">
-                                    <cstring>kcfg_LMBBehaviour</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>7</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                            </widget>
-                        </hbox>
-                    </widget>
-                </hbox>
-            </widget>
-            <widget class="QGroupBox">
-                <property name="name">
-                    <cstring>groupBox1</cstring>
-                </property>
-                <property name="title">
-                    <string>Middle Mouse Click Behavior</string>
-                </property>
-                <hbox>
+                                </widget>
+                                <widget class="QComboBox">
+                                    <item>
+                                        <property name="text">
+                                            <string>Open in Tab</string>
+                                        </property>
+                                    </item>
+                                    <item>
+                                        <property name="text">
+                                            <string>Open in Background Tab</string>
+                                        </property>
+                                    </item>
+                                    <item>
+                                        <property name="text">
+                                            <string>Open in External Browser</string>
+                                        </property>
+                                    </item>
+                                    <property name="name">
+                                        <cstring>kcfg_LMBBehaviour</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>0</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QGroupBox">
                     <property name="name">
-                        <cstring>unnamed</cstring>
+                        <cstring>groupBox1</cstring>
                     </property>
-                    <widget class="QLayoutWidget">
+                    <property name="title">
+                        <string>Middle Mouse Click Behavior</string>
+                    </property>
+                    <hbox>
                         <property name="name">
-                            <cstring>layout13</cstring>
+                            <cstring>unnamed</cstring>
                         </property>
-                        <hbox>
+                        <widget class="QLayoutWidget">
                             <property name="name">
-                                <cstring>unnamed</cstring>
+                                <cstring>layout13</cstring>
                             </property>
-                            <widget class="QLabel">
+                            <hbox>
                                 <property name="name">
-                                    <cstring>textLabel1</cstring>
+                                    <cstring>unnamed</cstring>
                                 </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>1</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>Behavior:</string>
-                                </property>
-                            </widget>
-                            <widget class="QComboBox">
-                                <item>
-                                    <property name="text">
-                                        <string>Open in Tab</string>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>textLabel1</cstring>
                                     </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>Open in Background Tab</string>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>1</hsizetype>
+                                            <vsizetype>0</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
                                     </property>
-                                </item>
-                                <item>
                                     <property name="text">
-                                        <string>Open in External Browser</string>
+                                        <string>Behavior:</string>
                                     </property>
-                                </item>
-                                <property name="name">
-                                    <cstring>kcfg_MMBBehaviour</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>7</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                            </widget>
-                        </hbox>
-                    </widget>
-                </hbox>
-            </widget>
-            <widget class="QButtonGroup">
-                <property name="name">
-                    <cstring>buttonGroup1</cstring>
-                </property>
-                <property name="title">
-                    <string>For External Browsing</string>
-                </property>
-                <property name="exclusive">
-                    <bool>false</bool>
-                </property>
-                <vbox>
+                                </widget>
+                                <widget class="QComboBox">
+                                    <item>
+                                        <property name="text">
+                                            <string>Open in Tab</string>
+                                        </property>
+                                    </item>
+                                    <item>
+                                        <property name="text">
+                                            <string>Open in Background Tab</string>
+                                        </property>
+                                    </item>
+                                    <item>
+                                        <property name="text">
+                                            <string>Open in External Browser</string>
+                                        </property>
+                                    </item>
+                                    <property name="name">
+                                        <cstring>kcfg_MMBBehaviour</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>0</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QButtonGroup">
                     <property name="name">
-                        <cstring>unnamed</cstring>
+                        <cstring>buttonGroup1</cstring>
                     </property>
-                    <widget class="QRadioButton">
+                    <property name="title">
+                        <string>For External Browsing</string>
+                    </property>
+                    <property name="exclusive">
+                        <bool>false</bool>
+                    </property>
+                    <vbox>
                         <property name="name">
-                            <cstring>kcfg_ExternalBrowserUseKdeDefault</cstring>
+                            <cstring>unnamed</cstring>
                         </property>
-                        <property name="text">
-                            <string>Use default KDE web browser</string>
-                        </property>
-                        <property name="checked">
-                            <bool>true</bool>
-                        </property>
-                    </widget>
-                    <widget class="QLayoutWidget">
-                        <property name="name">
-                            <cstring>layout9</cstring>
-                        </property>
-                        <hbox>
+                        <widget class="QRadioButton">
                             <property name="name">
-                                <cstring>unnamed</cstring>
+                                <cstring>kcfg_ExternalBrowserUseKdeDefault</cstring>
                             </property>
-                            <widget class="QRadioButton">
+                            <property name="text">
+                                <string>Use default KDE web browser</string>
+                            </property>
+                            <property name="checked">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QLayoutWidget">
+                            <property name="name">
+                                <cstring>layout9</cstring>
+                            </property>
+                            <hbox>
                                 <property name="name">
-                                    <cstring>kcfg_ExternalBrowserUseCustomCommand</cstring>
+                                    <cstring>unnamed</cstring>
                                 </property>
-                                <property name="text">
-                                    <string>Use this command:</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit">
-                                <property name="name">
-                                    <cstring>kcfg_ExternalBrowserCustomCommand</cstring>
-                                </property>
-                                <property name="enabled">
-                                    <bool>false</bool>
-                                </property>
-                                <property name="text">
-                                    <string>mozilla -remote 'openURL(%u,new-tab)'</string>
-                                </property>
-                            </widget>
-                        </hbox>
-                    </widget>
-                </vbox>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>kcfg_BackgroundTabForArticles</cstring>
-                </property>
-                <property name="text">
-                    <string>Open new articles in background tabs</string>
-                </property>
-                <property name="checked">
-                    <bool>false</bool>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>kcfg_CloseButtonOnTabs</cstring>
-                </property>
-                <property name="text">
-                    <string>Show tab close button on hover</string>
-                </property>
-            </widget>
-            <spacer>
-                <property name="name">
-                    <cstring>spacer1</cstring>
-                </property>
-                <property name="orientation">
-                    <enum>Vertical</enum>
-                </property>
-                <property name="sizeType">
-                    <enum>Expanding</enum>
-                </property>
-                <property name="sizeHint">
-                    <size>
-                        <width>31</width>
-                        <height>30</height>
-                    </size>
-                </property>
-            </spacer>
-        </vbox>
-    </widget>
+                                <widget class="QRadioButton">
+                                    <property name="name">
+                                        <cstring>kcfg_ExternalBrowserUseCustomCommand</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>Use this command:</string>
+                                    </property>
+                                </widget>
+                                <widget class="QLineEdit">
+                                    <property name="name">
+                                        <cstring>kcfg_ExternalBrowserCustomCommand</cstring>
+                                    </property>
+                                    <property name="enabled">
+                                        <bool>false</bool>
+                                    </property>
+                                    <property name="text">
+                                        <string>mozilla -remote 'openURL(%u,new-tab)'</string>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>kcfg_BackgroundTabForArticles</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Open new articles in background tabs</string>
+                    </property>
+                    <property name="checked">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>kcfg_CloseButtonOnTabs</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Show tab close button on hover</string>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>31</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                </spacer>
+            </vbox>
+        </widget>
+    </hbox>
 </widget>
 <connections>
     <connection>
