@@ -5,6 +5,7 @@ aKregator ChangeLog
 Changes after 1.0b5:
 -----------------------------
 Changes:
+       - Make i18n work in konqueror plugin -tpr
        - Improved dupe detection, using md5 now -ph
 #82187 - Improved session management: save search settings, selected Feed and Article -fo
        - Make it possible to switch notifications off -tpr
