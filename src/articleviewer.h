@@ -58,7 +58,7 @@ namespace Akregator
             @param statusFilter status filter */    
             void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
             
-            /** Update view if combined view mode is set. Has to be called when the displayed node or the filter settings change. */ 
+            /** Update view if combined view mode is set. Has to be called when the displayed node gets modified. */ 
             void slotUpdateCombinedView();
             
             /** Clears the canvas and disconnects from the currently observed node (if in combined view mode). */
