@@ -90,7 +90,7 @@ void aKregatorPart::setupActions()
     new KAction(i18n("N&ext Unread Feed"), "", "Ctrl+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
     new KAction(i18n("Prev&ious Unread Feed"), "", "Ctrl+Minus", m_view, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
 
-    KToggleAction* tkf = new KToggleAction(i18n("Toggle Keep Flag"), QString::null, 0, m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
+    KToggleAction* tkf = new KToggleAction(i18n("Keep Article"), QString::null, 0, m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
     tkf->setChecked(false);
 
     // Settings menu

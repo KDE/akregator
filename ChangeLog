@@ -9,6 +9,7 @@ New features:
 #85532 - Add feed summary -tpr
 
 Changes:
+       - Added basic "keep flag" support to prevent articles from expiring -fo
        - Add pageviewer actions into Go menu and print to file menu when in pageviewer mode -tpr
        - improve tabbed browsing: added back/forward buttons, improved context menus - fo
        - make search bar optional -fo
