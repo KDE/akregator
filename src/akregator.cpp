@@ -393,6 +393,14 @@ bool aKregator::queryClose()
         painter.drawArc(ax, ay, tw + 2*MARGINS, th + 2*MARGINS, 0, 16*360);
         painter.end();
 
+	// Paint the border
+        const int BORDER = 1;
+        QPixmap finalShot(w + 2*BORDER, h + 2*BORDER);
+        finalShot.fill(KApplication::palette().active().foreground());
+        painter.begin(&finalShot);
+        painter.drawPixmap(BORDER, BORDER, shot);
+        painter.end();
+
         // Associate source to image and show the dialog:
         QMimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
         KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.<p><p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
