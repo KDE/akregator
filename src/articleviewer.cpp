@@ -12,7 +12,9 @@
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
+
 #include <qdatetime.h>
+#include <qvaluelist.h>
 
 using namespace Akregator;
 
@@ -111,16 +113,10 @@ void ArticleViewer::reload()
     end();
 }
 
-void ArticleViewer::show(Feed *f, MyArticle a)
+QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
 {
-    QString dir = ( QApplication::reverseLayout() ? "rtl" : "ltr" );
-    QString headerBoxStr = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
-
-    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
-
     QString text;
-
-    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
+    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
     if (!a.title().isEmpty())
     {
@@ -136,7 +132,7 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     }
     text += "</div>\n"; // end headerbox
 
-    if (!f->image.isNull())
+    if (f && !f->image.isNull())
         text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+f->title()+".png"+"\"></a>\n");
 
     text += "<div id=\"content\">"+a.description();
@@ -150,7 +146,36 @@ void ArticleViewer::show(Feed *f, MyArticle a)
         if (!a.description().isNull()) 
             text += "<p>\n";
     }
-    text += "</div></body></html>";
+    text += "</div>";
+    return text;
+
+}
+
+void ArticleViewer::show(Feed *f)
+{
+    QString art, text;
+    
+    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+    write(m_htmlHead);
+  
+    ArticleSequence::iterator it;
+    for ( it = f->articles.begin(); it != f->articles.end(); ++it )
+    {
+        art=formatArticle(0, *it); // we set f to 0 to not show feed image
+        text += art;
+        write(art);
+    }
+    
+    m_currentText = text + "</body></html>";
+    write("</body></html>");
+    end();
+}
+
+void ArticleViewer::show(Feed *f, MyArticle a)
+{
+    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+
+    QString text=formatArticle(f, a) +"</body></html>";
     m_currentText=text;
 
     write(m_htmlHead + text);

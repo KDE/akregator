@@ -71,8 +71,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
               this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
     connect(m_tree, SIGNAL(selectionChanged(QListViewItem*)),
               this, SLOT(slotItemChanged(QListViewItem*)));
-    connect(m_tree, SIGNAL(selectionChanged(QListViewItem*)),
-              this, SLOT(slotItemChanged(QListViewItem*)));
     connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
               this, SLOT(slotItemRenamed(QListViewItem *)));
 			  
@@ -91,13 +89,18 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_articles, SIGNAL(clicked(QListViewItem *)),
                    this, SLOT( slotArticleSelected(QListViewItem *)) );
     connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
-		   this, SLOT( slotArticleDoubleClicked(QListViewItem *, const QPoint &, int)) );
+                   this, SLOT( slotArticleDoubleClicked(QListViewItem *, const QPoint &, int)) );
 
     m_panner1->setSizes( m_panner1Sep );
     m_panner2->setSizes( m_panner2Sep );
 
     m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
 
+    if (m_viewMode==CombinedView)
+    {
+        m_articles->hide(); 
+    }
+    
     connect (m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
 		    this, SLOT(slotMouseOverInfo(const KFileItem *)));
 
@@ -244,7 +247,7 @@ Feed *aKregatorView::addFeed_Internal(QListViewItem *elt,
 
 void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document)
 {
-    if (!item)
+  if (!item)
 		item=m_tree->firstChild();
     for (QListViewItem *it = item; it; it = it->nextSibling())
     {
@@ -278,10 +281,21 @@ void aKregatorView::slotNormalView()
 {
     if (m_viewMode==NormalView)
        return;
-    else if (m_viewMode==WidescreenView)
+    
+    else if (m_viewMode==CombinedView)
     {
-       m_panner2->setOrientation(QSplitter::Vertical);
+        m_articles->show(); 
+        // tell articleview to redisplay+reformat
+        ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+        if (item)
+        {
+            Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+            if (feed)
+                m_articleViewer->show( feed, item->article() );
+        }
     }
+    
+    m_panner2->setOrientation(QSplitter::Vertical);
     m_viewMode=NormalView;
     
     KConfig *c = new KConfig( "akregatorrc");
@@ -295,12 +309,41 @@ void aKregatorView::slotWidescreenView()
 {
     if (m_viewMode==WidescreenView)
        return;
-    else if (m_viewMode==NormalView)
+    else if (m_viewMode==CombinedView)
     {
-       m_panner2->setOrientation(QSplitter::Horizontal);
+        m_articles->show();
+        // tell articleview to redisplay+reformat
+        ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+        if (item)
+        {
+            Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+            if (feed)
+                m_articleViewer->show( feed, item->article() );
+        }
     }
+
+    m_panner2->setOrientation(QSplitter::Horizontal);
     m_viewMode=WidescreenView;
 
+    KConfig *c = new KConfig( "akregatorrc");
+    c->setGroup("View");
+    c->writeEntry("ViewMode", (int)m_viewMode);
+    c->sync();
+    delete c;
+}
+
+void aKregatorView::slotCombinedView()
+{
+    if (m_viewMode==CombinedView)
+       return;
+
+    m_articles->hide();
+    m_viewMode=CombinedView;
+
+    Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+    if (feed)
+        m_articleViewer->show(feed);
+    
     KConfig *c = new KConfig( "akregatorrc");
     c->setGroup("View");
     c->writeEntry("ViewMode", (int)m_viewMode);
@@ -332,6 +375,8 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
         m_part->actionCollection()->action("feed_add_group")->setEnabled(false);
 
         slotUpdateArticleList( static_cast<Feed *>(feed) );
+        if (m_viewMode==CombinedView)
+            m_articleViewer->show(static_cast<Feed *>(feed) );
     }
 
     if (item->parent())
@@ -576,6 +621,8 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 
 void aKregatorView::slotArticleSelected(QListViewItem *i)
 {
+    if (m_viewMode==CombinedView) return; // shouldn't ever happen
+    
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
     if (!item) return;
     Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));

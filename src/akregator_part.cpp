@@ -31,7 +31,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // we need an instance
     setInstance( aKregatorFactory::instance() );
 
-	m_view=new aKregatorView(this, parentWidget, "Akregator View");
+    m_view=new aKregatorView(this, parentWidget, "Akregator View");
 
     // notify the part that this is our internal widget
     setWidget(m_view);
@@ -55,6 +55,9 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     ra->setExclusiveGroup( "ViewMode" );
 
     ra=new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Alt+Ctrl+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
+    ra->setExclusiveGroup( "ViewMode" );
+    
+    ra=new KRadioAction(i18n("&Combined View"), "view_text", "Alt+Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
     ra->setExclusiveGroup( "ViewMode" );
     
     // set our XML-UI resource file

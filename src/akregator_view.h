@@ -41,7 +41,7 @@ namespace Akregator
         Q_OBJECT
         public:
     
-	     /**
+         /**
              * Default constructor.
              */
             aKregatorView(aKregatorPart *part, QWidget *parent, const char *wName);
@@ -69,7 +69,7 @@ namespace Akregator
              */
             void writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document );
 
-	    bool event(QEvent *e);
+            bool event(QEvent *e);
 
         public slots:
             /**
@@ -78,8 +78,9 @@ namespace Akregator
             void slotItemChanged(QListViewItem*);
 
             void slotNormalView();
-	    void slotWidescreenView();
-	    
+            void slotWidescreenView();
+            void slotCombinedView();
+        
             /**
              * Shows requested popup menu
              */
@@ -99,8 +100,8 @@ namespace Akregator
              * Display article contents in ArticleViewer.
              */
             void slotArticleSelected(QListViewItem *);
-	    void slotArticleDoubleClicked(QListViewItem *, const QPoint &, int);
-	    
+            void slotArticleDoubleClicked(QListViewItem *, const QPoint &, int);
+        
             /**
              * This slot is called when user renames a feed in feeds tree.
              */
@@ -115,14 +116,14 @@ namespace Akregator
             void slotFetchAllFeeds();
 
             void slotMouseOverInfo(const KFileItem *kifi);
-	    
+        
         private:
             /**
              * Reset to default values, removing all existing data.
              * @internal
              */
             void reset();
-	    
+        
             /**
              * Add feed to feeds tree, given the existing list view item and alot of
              * feed parameters. FIXME: parameters better be bundled to FeedData?
@@ -160,8 +161,8 @@ namespace Akregator
             QSplitter *m_panner1, *m_panner2;
             QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;
-	    enum ViewMode{NormalView=0, WidescreenView};
-	    ViewMode m_viewMode;
+            enum ViewMode{NormalView=0, WidescreenView, CombinedView};
+            ViewMode m_viewMode;
     };
 }
 

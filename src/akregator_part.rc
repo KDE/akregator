@@ -10,6 +10,8 @@
   <Menu name="settings">
     <Action name="normal_view"/>
     <Action name="widescreen_view"/>
+    <Action name="combined_view"/>
+    <Separator/>
   </Menu>
 </MenuBar>
 <ToolBar name="mainToolBar">
