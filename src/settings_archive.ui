@@ -39,47 +39,6 @@
                         <string>Keep all articles</string>
                     </property>
                 </widget>
-                <widget class="QLayoutWidget" row="2" column="0">
-                    <property name="name">
-                        <cstring>layout3</cstring>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QRadioButton">
-                            <property name="name">
-                                <cstring>rb_LimitArticleAge</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Delete articles older than: </string>
-                            </property>
-                        </widget>
-                        <widget class="KIntSpinBox">
-                            <property name="name">
-                                <cstring>kcfg_MaxArticleAge</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> days</string>
-                            </property>
-                            <property name="specialValueText">
-                                <string>1 day</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>1000000</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                            <property name="value">
-                                <number>30</number>
-                            </property>
-                        </widget>
-                    </hbox>
-                </widget>
                 <widget class="QLayoutWidget" row="1" column="0">
                     <property name="name">
                         <cstring>layout3</cstring>
@@ -124,6 +83,48 @@
                         </widget>
                     </hbox>
                 </widget>
+		<widget class="QLayoutWidget" row="2" column="0">
+                    <property name="name">
+                        <cstring>layout3</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QRadioButton">
+                            <property name="name">
+                                <cstring>rb_LimitArticleAge</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Delete articles older than: </string>
+                            </property>
+                        </widget>
+                        <widget class="KIntSpinBox">
+                            <property name="name">
+                                <cstring>kcfg_MaxArticleAge</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>false</bool>
+                            </property>
+                            <property name="suffix">
+                                <string> days</string>
+                            </property>
+                            <property name="specialValueText">
+                                <string>1 day</string>
+                            </property>
+                            <property name="maxValue">
+                                <number>1000000</number>
+                            </property>
+                            <property name="minValue">
+                                <number>1</number>
+                            </property>
+                            <property name="value">
+                                <number>30</number>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                
                 <widget class="QRadioButton" row="3" column="0">
                     <property name="name">
                         <cstring>rb_DisableArchiving</cstring>
