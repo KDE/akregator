@@ -1,46 +1,28 @@
-Since I tend to be one of the more pedantic people on coding style I'll provide
-a bit of a reference here.  Please take a few minutes to read this as it will
-save us both time when processing patches.
-
 ================================================================================
 Indentation
 ================================================================================
 
-The older files in JuK are indented using Qt-style.  The first level was 4
-spaces, the second one tab, the third one tab followed by 4 spaces.  I'm not
-particularly fond of this style anymore, but it used to be the Emacs default
-when using the KDE Emacs scripts.
+We use 4 spaces instead of tabs everywhere.
 
 static void foo()
 {
     if(bar()) // <-- 4 spaces
-        baz() // <-- 1 tab
-}
-
-Newer files simply use 4 spaces at all levels.  In most cases the style of the
-file currently being worked in should be followed.  So:
-
-static void foo()
-{
-    if(bar()) // <-- 4 spaces
-        baz() // <-- 1 tab
+        baz() // <-- 8 spaces
 }
 
 ================================================================================
 Braces
 ================================================================================
 
-Braces opening classes, structs, namespaces and functions should be on their own
-line.  Braces opening conditionals should be on the same line with one notable
-exception:  if the conditional is split up onto several lines then the opening
-brace should be on its own line.  i.e.
+Opening braces should always be on their own line.
 
 class Foo
 {
     // stuff
 };
 
-if(foo == bar) {
+if(foo == bar)
+{
     // stuff
 }
 
@@ -56,7 +38,7 @@ static void foo()
     // stuff
 }
 
-Other exceptions include inline functions that are just returning or setting a
+Exceptions include inline functions that are just returning or setting a
 value.  However multiple statements should not ever be combined onto one line:
 
 class Foo
@@ -98,18 +80,21 @@ if(foo == bar)
 Header Organization
 ================================================================================
 
-Member variables should always be private and prefixed with "m_".  Accessors may
-be inline in the headers.  The organization of the members in a class should be
-roughly as follows:
+Member variables should always be private or protected and prefixed with "m_".
+Accessors may be inline in the headers. The organization of the members in a
+class should be roughly as follows:
 
-public:
+public typedefs:
+public ctors:
+public methods:
 public slots:
-protected:
+protected methods:
 protected slots:
+protected fields:
 signals:
-private: // member funtions
+private methods:
 private slots:
-private: // member variables
+private fields:
 
 If there are no private slots there is no need for two private sections, however
 private functions and private variables should be clearly separated.
@@ -117,7 +102,7 @@ private functions and private variables should be clearly separated.
 The implementations files -- .cpp files -- should follow (when possible) the
 same order of function declarations as the header files.
 
-Virtual functions should always be marked as such even in derrived classes where
+Virtual functions should always be marked as such even in derived classes where
 it is not strictly necessary.
 
 ================================================================================
@@ -135,13 +120,13 @@ Also I tend to separate comments by blank lines on both sides.
 Pointer and Reference Operators
 ================================================================================
 
-This one is pretty simple.  I prefer "Foo *f" to "Foo* f" in function signatures
-and declarations.  The same goes for "Foo &f" over "Foo& f".
+This one is pretty simple. Use "Foo *f" and "Foo &f" in function signatures
+and declarations. And also in signal/slot names.
 
 ================================================================================
 
-There are likely things missing here and I'll try to add them over time as I
-notice things that are often missed.  Please let me know if specific points are
-ambiguous.
-
+Original document by
 Scott Wheeler <wheeler@kde.org>
+
+Amendments for aKregator needs by
+Stanislav Karchebny <stanislav.karchebny@kdemail.net>
