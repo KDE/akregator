@@ -1,6 +1,7 @@
+debian/tmp/usr/share/apps/libkdepim/
 debian/tmp/usr/bin/akregator
 debian/tmp/usr/lib/kde3/libakregatorpart.*
-debian/tmp/usr/lib/libakregatorprivate.so.*
+debian/tmp/usr/lib/libakregatorprivate.so*
 debian/tmp/usr/share/applnk/Internet/akregator.desktop
 debian/tmp/usr/share/apps/akregator/*
 debian/tmp/usr/share/apps/akregator/*/*

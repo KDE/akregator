@@ -5,7 +5,7 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/kde.mk
 
 DEB_INSTALL_DOCS_ALL :=
-DEB_INSTALL_DOCS_akregator := AUTHORS README NEWS
+DEB_INSTALL_DOCS_akregator := AUTHORS README
 DEB_INSTALL_CHANGELOGS_akregator := ChangeLog
 
 DEB_INSTALL_MANPAGES_akregator := debian/akregator.1
