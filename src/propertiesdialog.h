@@ -20,9 +20,6 @@ namespace Akregator
       public:
          FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
          ~FeedPropertiesWidget();
-
-      private slots:
-         void setUrlForLjUserName(const QString&);
    };
 
    class FeedPropertiesDialog : public KDialogBase
@@ -34,15 +31,9 @@ namespace Akregator
 
          const QString feedName() const;
          const QString url() const;
-         Feed::LJAuthMode authMode() const;
-         const QString ljLogin() const;
-         const QString ljPassword() const;
 
          void setFeedName(const QString& title);
          void setUrl(const QString& url);
-         void setAuthMode(Feed::LJAuthMode authMode);
-         void setLjLogin(const QString& ljLogin);
-         void setLjPassword(const QString& ljPassword);
 
          void selectFeedName();
       private:

@@ -154,10 +154,7 @@ namespace Akregator
              */
             Feed *aKregatorView::addFeed_Internal(Feed *f, QListViewItem *elt, QString title,
                                                 QString xmlUrl, QString htmlUrl,
-                                                QString description, bool isLiveJournal,
-                                                QString ljUserName,
-                                                Feed::LJAuthMode ljAuthMode,
-                                                QString ljLogin, QString ljPassword,
+                                                QString description,
                                                 bool updateTitle);
 
             /**

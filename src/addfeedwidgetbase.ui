@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>AddFeedWidgetBase</class>
 <widget class="QWidget">
     <property name="name">
@@ -106,25 +106,6 @@
                                 <cstring>urlEdit</cstring>
                             </property>
                         </widget>
-                        <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>ljUserChkbox</cstring>
-                            </property>
-                            <property name="text">
-                                <string>LiveJournal user:</string>
-                            </property>
-                        </widget>
-                        <widget class="KLineEdit" row="2" column="2">
-                            <property name="name">
-                                <cstring>ljUserEdit</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="toolTip" stdset="0">
-                                <string>LiveJournal user name</string>
-                            </property>
-                        </widget>
                     </grid>
                 </widget>
             </hbox>
@@ -156,19 +137,5 @@
         </spacer>
     </vbox>
 </widget>
-<connections>
-    <connection>
-        <sender>ljUserChkbox</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>ljUserEdit</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>ljUserChkbox</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>urlEdit</receiver>
-        <slot>setDisabled(bool)</slot>
-    </connection>
-</connections>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

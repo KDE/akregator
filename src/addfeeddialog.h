@@ -26,9 +26,6 @@ namespace Akregator
       public:
          AddFeedWidget(QWidget *parent = 0, const char *name = 0);
          ~AddFeedWidget();
-
-      private slots:
-         void setUrlForLjUserName(const QString&);
    };
 
    class AddFeedDialog : public KDialogBase

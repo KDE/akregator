@@ -27,20 +27,10 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
 {
     pixmapLabel1->setPixmap(kapp->iconLoader()->loadIcon( "package_network",KIcon::Desktop,KIcon::SizeHuge, KIcon::DefaultState, 0, true));
     statusLabel->setText(QString::null);
-
-    connect( ljUserEdit, SIGNAL(textChanged(const QString&)),
-                   this, SLOT(setUrlForLjUserName(const QString&)) );
 }
 
 AddFeedWidget::~AddFeedWidget()
 {}
-
-void AddFeedWidget::setUrlForLjUserName(const QString &userName)
-{
-    if (ljUserChkbox->isChecked())
-        urlEdit->setText( "http://www.livejournal.com/~" + userName + "/data/rss" );
-}
-
 
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
    : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Add Feed"), KDialogBase::Ok|KDialogBase::Cancel)

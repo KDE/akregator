@@ -53,24 +53,14 @@ namespace Akregator
 
             virtual QDomElement toXml( QDomElement parent, QDomDocument document );
             void dumpXmlData( QDomElement parent, QDomDocument document );
-            
+
             virtual bool isGroup();
-
-            enum LJAuthMode { AuthNone, AuthLocal, AuthGlobal };
-
-            QString ljAuthModeStr();
-            static LJAuthMode authModeFromString(const QString &mode);
 
             // -- ATTRIBUTES
             //inherited      title();       ///< Feed title
             QString          xmlUrl;        ///< URL of RSS feed itself
             QString          htmlUrl;       ///< URL of HTML page for this feed
             QString          description;   ///< Verbose feed description.
-            bool             isLiveJournal; ///< Is this a LiveJournal feed?
-            QString          ljUserName;    ///< Name of LJ user whose feed we are fetching.
-            LJAuthMode       ljAuthMode;
-            QString          ljLogin;       ///< LiveJournal username
-            QString          ljPassword;    ///< LiveJournal password md5 digest
             bool             updateTitle;   ///< Whether to update feed title based on fetched rss.
             ArticleSequence  articles;      ///< List of all feed articles
 
@@ -79,15 +69,15 @@ namespace Akregator
 
             bool isMerged(){return m_merged;}
             void setMerged(bool m){m_merged=m;}
-           
+
             int unread(){return m_unread;}
             void setUnread(int i){m_unread=i;}
             void markAllRead();
 
             void appendArticles(const Document &d, bool findDups=false);
             void appendArticle(const MyArticle &a);
-                
-            
+
+
         public slots:
             void fetch(bool follow=false);                 ///< Start fetching rss
             void loadFavicon();
@@ -96,7 +86,7 @@ namespace Akregator
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
             void fetchError(Feed *);
             void fetchDiscovery(Feed *);
-            
+
             void faviconLoaded(Feed*);
             void imageLoaded(Feed*);
 

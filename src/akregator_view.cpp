@@ -238,11 +238,6 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
                               xmlurl,
                               e.attribute("htmlUrl"),
                               e.attribute("description"),
-                              e.attribute("isLiveJournal") == "true" ? true : false,
-                              e.attribute("ljUserName"),
-                              Feed::authModeFromString( e.attribute("ljAuthMode", "none") ),
-                              e.attribute("ljLogin"),
-                              e.attribute("ljPassword"),
                               e.attribute("updateTitle") == "true" ? true : false
                             );
 
@@ -272,9 +267,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 // oh ugly as hell (pass Feed parameters in a FeedData?)
 Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
                                       QString title, QString xmlUrl, QString htmlUrl,
-                                      QString description, bool isLiveJournal, QString ljUserName,
-                                      Feed::LJAuthMode ljAuthMode, QString ljLogin, QString ljPassword,
-                                      bool updateTitle)
+                                      QString description, bool updateTitle)
 {
     Feed *feed;
     if (ef)
@@ -292,11 +285,6 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     feed->xmlUrl         = xmlUrl;
     feed->htmlUrl        = htmlUrl;
     feed->description    = description;
-    feed->isLiveJournal  = isLiveJournal;
-    feed->ljUserName     = ljUserName;
-    feed->ljAuthMode     = ljAuthMode;
-    feed->ljLogin        = ljLogin;
-    feed->ljPassword     = ljPassword;
     feed->updateTitle    = updateTitle;
 
     connect( feed, SIGNAL(fetched(Feed* )),
@@ -607,11 +595,6 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
                       dlg->url(),
                       "",
                       "",
-                      false, //dlg->widget->ljUserChkbox->isChecked(),
-                      QString::null, //dlg->widget->ljUserEdit->text(),
-                      dlg->authMode(),
-                      dlg->ljLogin(),
-                      dlg->ljPassword(),
                       false
                     );
 
@@ -694,17 +677,11 @@ void aKregatorView::slotFeedModify()
 
     dlg->setFeedName( feed->title() );
     dlg->setUrl( feed->xmlUrl );
-    dlg->setAuthMode( feed->ljAuthMode );
-    dlg->setLjLogin( feed->ljLogin );
-    dlg->setLjPassword( feed->ljPassword );
 
     if (dlg->exec() != QDialog::Accepted) return;
 
     feed->setTitle( dlg->feedName() );
     feed->xmlUrl         = dlg->url();
-    feed->ljAuthMode     = dlg->authMode();
-    feed->ljLogin        = dlg->ljLogin();
-    feed->ljPassword     = dlg->ljPassword();
 
     m_part->setModified(true);
 

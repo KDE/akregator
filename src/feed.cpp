@@ -24,8 +24,6 @@ using namespace RSS;
 
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
-    , isLiveJournal(false)
-    , ljAuthMode(AuthNone)
     , updateTitle(false)
     , articles()
     , m_fetchError(false)
@@ -44,26 +42,6 @@ bool Feed::isGroup()
     return false;
 }
 
-QString Feed::ljAuthModeStr()
-{
-    if (ljAuthMode == AuthLocal)
-        return "local";
-    if (ljAuthMode == AuthGlobal)
-        return "global";
-    return "none";
-}
-
-/*static*/ Feed::LJAuthMode Feed::authModeFromString(const QString &mode)
-{
-    QString m = mode.lower();
-    if (m == "local")
-        return AuthLocal;
-    if (m == "global")
-        return AuthGlobal;
-    return AuthNone;
-}
-
-
 QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
 {
     QDomElement el = document.createElement( "outline" );
@@ -72,11 +50,6 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
     el.setAttribute( "xmlUrl", xmlUrl );
     el.setAttribute( "htmlUrl", htmlUrl );
     el.setAttribute( "description", description );
-    el.setAttribute( "isLiveJournal", (isLiveJournal ? "true" : "false") );
-    el.setAttribute( "ljUserName", ljUserName );
-    el.setAttribute( "ljAuthMode", ljAuthModeStr() );
-    el.setAttribute( "ljLogin", ljLogin );
-    el.setAttribute( "ljPassword", ljPassword );
     el.setAttribute( "updateTitle", (updateTitle ? "true" : "false") );
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );
@@ -92,7 +65,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     QDomText t=doc.createTextNode( title() );
     tnode.appendChild(t);
     channode.appendChild(tnode);
-    
+
     if (!htmlUrl.isEmpty())
     {
         QDomElement lnode = doc.createElement( "link" );
@@ -106,7 +79,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     QDomText dt=doc.createTextNode( htmlUrl );
     dnode.appendChild(dt);
     channode.appendChild(dnode);
-    
+
     ArticleSequence::ConstIterator it;
     ArticleSequence::ConstIterator en=articles.end();
     for (it = articles.begin(); it != en; ++it)
@@ -115,7 +88,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
         (*it).dumpXmlData(enode, doc);
         channode.appendChild(enode);
     }
-    
+
 }
 
 void Feed::markAllRead()
@@ -184,8 +157,8 @@ void Feed::fetch(bool followDiscovery)
 {
     m_fetchError=false;
 	m_followDiscovery=followDiscovery;
-    m_fetchTries=0; 
-    
+    m_fetchTries=0;
+
 
     // mark all new as unread
     ArticleSequence::Iterator it;
@@ -200,7 +173,7 @@ void Feed::fetch(bool followDiscovery)
 
     tryFetch();
 }
-    
+
 
 void Feed::tryFetch()
 {
@@ -247,7 +220,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     }
 
     if (updateTitle || title().isEmpty()) setTitle( m_document.title() );
-    
+
     description = m_document.description();
     htmlUrl = m_document.link().url();
 
@@ -255,7 +228,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     bool findDups=isMerged();
     appendArticles(m_document, findDups);
-    
+
     emit fetched(this);
 }
 
