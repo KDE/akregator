@@ -184,7 +184,8 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
     if (!guid().isEmpty())
     {
         QDomElement gnode = doc.createElement( "guid" );
-        QDomText gt=doc.createTextNode(link().url());
+        gnode.setAttribute("isPermaLink",guidIsPermaLink()?"true":"false");
+        QDomText gt=doc.createTextNode(guid());
         gnode.appendChild(gt);
         parent.appendChild(gnode);
     }

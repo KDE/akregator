@@ -163,12 +163,20 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
     }
 
     text += "<div id=\"content\">"+a.description();
-    if (a.link().isValid())
+    if (a.link().isValid() || (a.guidIsPermaLink() && KURL(a.guid()).isValid()))
     {
         if (!a.description().isNull())
             text += "<p>\n";
         text += "<a href=\"";
-        text += a.link().url();
+        // in case link isn't valid, fall back to the guid permaLink.
+        if (a.link().isValid())
+        {
+            text += a.link().url();
+        }
+        else
+        {
+            text += a.guid();
+        }
         text += "\">" + i18n( "Full Story" ) + "</a>";
         if (!a.description().isNull())
             text += "<p>\n";
