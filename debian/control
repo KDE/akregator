@@ -15,7 +15,8 @@ Description: RSS feed aggregator for KDE
  .
  This package is currently beta
  .
- You can find more information about akregator at http://akregator.sourceforge.net/
+ You can find more information about akregator at
+ http://akregator.sourceforge.net/
 
 Package: akregator-kontact-plugin
 Architecture: any
@@ -27,7 +28,8 @@ Description: kontact plugin for aKregator
  .
  This package is currently beta
  .
- You can find more information about akregator at http://akregator.sourceforge.net/
+ You can find more information about akregator at
+ http://akregator.sourceforge.net/
 
 Package: akregator-konq-plugin
 Architecture: any
@@ -39,5 +41,6 @@ Description: konqueror plugin for aKregator
  .
  This package is currently beta
  .
- You can find more information about akregator at http://akregator.sourceforge.net/
+ You can find more information about akregator at
+ http://akregator.sourceforge.net/
 
