@@ -328,7 +328,7 @@ void aKregatorView::reset()
     m_tree->clear();
 
     // Root item
-    FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree, QString::null );
+    FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree, i18n("All Feeds") );
     elt->setPixmap(0, m_folderTreePixmap );
     m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
     elt->setExpandable(true);
