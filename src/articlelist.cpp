@@ -7,7 +7,6 @@
 
 #include "articlelist.h"
 #include "feed.h"
-#include "myarticle.h"
 #include "treenode.h"
 
 #include <kstandarddirs.h>
@@ -25,41 +24,28 @@
 using namespace Akregator;
 using namespace RSS;
 
-struct ArticleListItem::Private
-{
-    MyArticle article;
-    Feed *feed;
-};
-
 ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const MyArticle& a, Feed *feed)
-    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
-        , d(new Private)
+    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
 {
-    d->article = a;
-    d->feed = feed;
+    m_article = a;
+    m_feed = feed;
     if (a.keep())
         setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
-    if (parent->columns() > 2)
-    {
-        setText(2, text(1));
-        setText(1,feed->title());
-    }
 }
 
 ArticleListItem::~ArticleListItem()
 {
-    delete d;
 }
 
 
 MyArticle& ArticleListItem::article()
 {
-    return d->article;
+    return m_article;
 }
 
 Feed *ArticleListItem::feed()
 {
-    return d->feed;
+    return m_feed;
 }
 
 // paint ze peons
@@ -79,12 +65,12 @@ void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int colu
 
 
 int ArticleListItem::compare(QListViewItem *i, int col, bool ascending) const {
-    if (col == 1) {
-        ArticleListItem *item = dynamic_cast<ArticleListItem *>(i);
-        if (item && item->d->article.pubDate().isValid() && d->article.pubDate().isValid()) {
+    if (col == 2) {
+        ArticleListItem *item = static_cast<ArticleListItem*>(i);
+        if (item && item->m_article.pubDate().isValid() && m_article.pubDate().isValid()) {
             return ascending ?
-		    item->d->article.pubDate().secsTo(d->article.pubDate()) :
-		    -d->article.pubDate().secsTo(item->d->article.pubDate());
+		    item->m_article.pubDate().secsTo(m_article.pubDate()) :
+		    -m_article.pubDate().secsTo(item->m_article.pubDate());
         }
     }
     return KListViewItem::compare(i, col, ascending);
@@ -97,7 +83,11 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
 {
     setMinimumSize(250, 150);
     addColumn(i18n("Article"));
+    addColumn(i18n("Feed"));
     addColumn(i18n("Date"));
+    setColumnWidthMode(2, QListView::Maximum);
+    setColumnWidthMode(1, QListView::Manual);
+    setColumnWidthMode(0, QListView::Manual);
     setRootIsDecorated(false);
     setItemsRenameable(false);
     setItemsMovable(false);
@@ -105,11 +95,12 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
     setFullWidth(false);
-    //setSorting(-1); // do not sort in the listview, Feed will take care of sorting
-    setSorting(1, false);
+    setSorting(2, false);
     setShowSortIndicator(true);
     setDragAutoScroll(true);
     setDropHighlighter(false);
+    m_feedWidth = columnWidth(1);
+    hideColumn(1);
 
     header()->setStretchEnabled(true, 0);
 
@@ -168,25 +159,14 @@ void ArticleList::slotShowNode(TreeNode* node)
     
     if ( node->isGroup() && m_columnMode == feedMode )
     {
-        addColumn(i18n("Date"));
-        setColumnText(1,i18n("Feed"));
-        setColumnWidthMode(2, QListView::Maximum);
-        setColumnWidthMode(1, QListView::Manual);
-        setColumnWidthMode(0, QListView::Manual);
+        setColumnWidth(1, m_feedWidth);
         m_columnMode = groupMode;
     }
-    else
-    {
-        if ( !node->isGroup() && m_columnMode == groupMode)
-        {    
-            setColumnText(1,i18n("Date"));
-            int oldw=columnWidth(0)+columnWidth(1);
-            removeColumn(2);
-            setColumnWidthMode(1, QListView::Maximum);
-            setColumnWidthMode(0, QListView::Manual);
-            setColumnWidth(0, oldw); // resize title col to old title col + feed col width
-            m_columnMode = feedMode;
-        } 
+    else if ( !node->isGroup() && m_columnMode == groupMode)
+    {    
+        m_feedWidth = columnWidth(1);
+        hideColumn(1);
+        m_columnMode = feedMode;
     }
     m_node = node;
     
@@ -224,10 +204,18 @@ void ArticleList::slotUpdate()
     
     ArticleSequence::ConstIterator end = articles.end();
     ArticleSequence::ConstIterator it = articles.begin();
-    
+
+    setShowSortIndicator(false);
+    int col = sortColumn();
+    SortOrder order = sortOrder();
+    setSorting(-1);
+
     for ( ; it != end; ++it)
         if ( !(*it).isDeleted() )
-         new ArticleListItem(this, lastChild(), *it, (*it).feed() );
+         new ArticleListItem(this, lastChild(), *it, (*it).feed());
+
+    setSorting(col, order == Ascending);
+    setShowSortIndicator(true);
 
     applyFilters();        
     setUpdatesEnabled(true);

@@ -1244,6 +1244,7 @@ void aKregatorView::slotFetchesCompleted()
 
 void aKregatorView::slotFeedFetched(Feed *feed)
 {
+    kdDebug() << "FEED FETCHED " << feed->description() << endl;
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {

@@ -8,6 +8,7 @@
 #define AKREGATORARTICLELIST_H
 
 #include "articlefilter.h"
+#include "myarticle.h"
 
 #include <klistview.h>
 
@@ -31,8 +32,8 @@ namespace Akregator
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
         private:
-            struct Private;
-            Private *d;
+	    MyArticle m_article;
+	    Feed *m_feed;
     };
     
     
@@ -100,6 +101,7 @@ namespace Akregator
             ArticleFilter m_statusFilter;
             enum ColumnMode { groupMode, feedMode };
             ColumnMode m_columnMode;
+	    int m_feedWidth;
     };
 }
 
