@@ -102,7 +102,7 @@ namespace Akregator
             QString m_htmlHead;
             QString m_htmlFooter;
             QString m_currentText;
-            QString m_imageDir;
+            KURL m_imageDir;
             TreeNode* m_node;
             ArticleFilter m_textFilter; 
             ArticleFilter m_statusFilter;
