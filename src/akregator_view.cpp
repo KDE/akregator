@@ -968,7 +968,7 @@ void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* pare
     feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
 
-    Archive::load(feed);
+    //Archive::load(feed);
     
     if (!parent)
         parent = m_tree->rootNode();
