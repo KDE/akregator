@@ -59,7 +59,7 @@ Balloon::Balloon(const QString &text)
 	BalloonLayout->addWidget(m_articleList);
 
 	QFont f = m_articleList->font();
-	if (f.pointSize() > 8)
+	if (f.pointSize() > 12)
 		f.setPointSize(f.pointSize()-4);
 	m_articleList->setFont(f);
 
