@@ -72,6 +72,6 @@ namespace Akregator
             Private *d;
             QString buildTitle();
     };
-};
+}
 
 #endif

@@ -38,6 +38,6 @@ class FeedItem : public TreeNodeItem
     static QPixmap defaultPixmap();
 };
 
-};
+}
 
 #endif

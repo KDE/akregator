@@ -151,6 +151,6 @@ namespace Akregator
             /** update unread count cache */
             virtual void updateUnreadCount();
     };
-};
+}
 
 #endif

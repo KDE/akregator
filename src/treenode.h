@@ -182,6 +182,6 @@ protected:
     FeedGroup* m_parent;
 };
 
-};
+}
 
 #endif

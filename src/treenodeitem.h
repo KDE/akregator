@@ -42,6 +42,6 @@ public:
     virtual void paintCell( QPainter * p, const QColorGroup & cg, int column, int width, int align );
 };
 
-};
+}
 
 #endif

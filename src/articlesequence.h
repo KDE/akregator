@@ -35,6 +35,6 @@ namespace Akregator
             struct Private;
             Private *d;
     };
-};
+}
 
 #endif // AKREGATOR_ARTICLESEQUENCE_H
