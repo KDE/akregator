@@ -137,9 +137,12 @@ void ArticleViewer::generateCSS()
     "  display: block;\n"
     "  margin-bottom: 6px;\n"
     "}\n\n"
-    "#content > P {\n margin-top: 1px; }"
-    "#content > DIV {\n margin-top: 1px; }"
-    "#content > BR+BR+BR {\n display: none;  }"
+
+    // these rules make sure that there is no leading space between the header and the first of the text
+    "#content > P:first-child {\n margin-top: 1px; }"
+    "#content > DIV:first-child {\n margin-top: 1px; }"
+    "#content > BR:first-child {\n display: none;  }"
+
     ".contentlink {\n display: block; }"
     "\n\n")
     .arg(KGlobalSettings::generalFont().family())
