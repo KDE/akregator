@@ -98,7 +98,7 @@ void Part::setupActions()
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
     new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "feed_stop");
 
-    new KAction(i18n("&Mark All as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
+    new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
     // "Go" menu
