@@ -14,6 +14,7 @@
 #include <kaction.h>
 #include <kactionclasses.h>
 
+#include <kstandarddirs.h>
 #include <kstdaction.h>
 #include <kfiledialog.h>
 
@@ -246,7 +247,7 @@ void aKregatorPart::fileSaveAs()
 
 void aKregatorPart::fileImport()
 {
-    QString file_name = KFileDialog::getOpenFileName( QString::null,
+    QString file_name = KFileDialog::getOpenFileName( locate( "appdata", "kde.opml" ),
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
