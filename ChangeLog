@@ -15,6 +15,7 @@ New Features:
        - Make all shortcuts configurable
        - Gray out feed icons while fetching
        - Add context menus to the article and page readers
+       - Add unread count to try icon
 #81993 - Save splitter sizes on exit
 #82004 - Next Unread in feed menu
 #82005 - Link title in article viewer to article link
@@ -31,6 +32,7 @@ Bug Fixes:
        - Make opening large OPML lists much faster
        - Reset feed icon on fetch if it error-ed
        - Fix memory leak in adding feeds
+       - Update unread count after deleting a feed
        - Don't write article archive upon reading a read article
 #81965 - "When viewing story right clicking a feed crashes"
 #81966 - Fix the fact that sub-folder fetch fetched all siblings
@@ -41,6 +43,7 @@ Bug Fixes:
 #81998 - Crash when folder selected and clicking in list view
 #81999 - Dragging in feeds view doesn't active save action
 #82000 - Duplicates found in feeds when they should not be
+#82002 - Save auto fetch interval
 #82003 - "Initial feed properties are discarded"
 #82021 - Support archiving for feeds whose encoding wasn't utf8
 #82024 - Make sure that All Feeds isn't draggable
@@ -53,6 +56,7 @@ Bug Fixes:
 #82165 - "cannot delete feed via menu"
 #82172 -  "date is not fetched for some feeds"
 #82183 - Mark all as unread empties article list
+#82425 - add http:// to urls in add feed dialog if no protocol
 
 Changes from 0.9 to 1.0b1:
 

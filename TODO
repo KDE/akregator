@@ -7,32 +7,24 @@ and bug fixes, not small ones.
 Feel free to add items, there is a ideas section
 in the end.
 
-short term (~beta2)
+short term (~beta3)
 -------------------
+- smarter feed caching
 - interval polling
-  -> smt: this will have to be implemented in the shell
-          to work properly. We have to find a way
-	  to let the shell tell the part to fetch feeds
-	  though. Tricky. The other way is easy; however
-	  a interval tracker on the shell side should
-	  not know about Feed objects, just urls. The
-	  part should alert the interval tracker, either
-	  through slots or through the BrowserInterface,
-	  when a url has been fetched. That part is easy.
 - passive popups
   -> smt: needs interval polling?
 - add back/forward/reload buttons to pageviewer
 - allow searching in combined view
 - show read/unread/new as different colors
   in combined view.
-
-medium term (~beta3?)
------------
 - rewrite combined
 - config dialog
-  -> smt: if someone wants to do it in b2, go ahead :)
   -> changing middle mouse button action to config dialog
 - kontact part
+
+
+medium term ()
+---------
 
 long term
 ---------
