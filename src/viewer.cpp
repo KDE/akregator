@@ -5,14 +5,14 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include <kaction.h>
 #include <kapplication.h>
+#include <kfiledialog.h>
 #include <khtmlview.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <kmessagebox.h>
 #include <kpopupmenu.h>
-#include <klocale.h>
-#include <khtmlview.h>
-#include <kiconloader.h>
 #include <kprocess.h>
 #include <krun.h>
 #include <kshell.h>
@@ -47,7 +47,15 @@ Viewer::Viewer(QWidget *parent, const char *name)
 
     connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
 
-    connect( browserExtension(), SIGNAL(popupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)) );
+    connect( browserExtension(),
+
+SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
+    KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const
+    KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
+
+    new KAction(i18n("Copy Link Address"), "", 0,
+                                 this, SLOT(slotCopyToClipboard()),
+                                 actionCollection(), "copylinkaddress");
 }
 
 bool Viewer::openURL(const KURL &url)
@@ -107,14 +115,25 @@ bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
    return false;
 }
 
-void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& url, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
+void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
+   QString url = kurl.url();
    if(this->url() == url) return;
    m_url = url;
    KPopupMenu popup;
-   popup.insertItem(SmallIcon("tab_new"), i18n("Open Link"), this, SLOT(slotOpenLinkInternal()));
-   popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
-   popup.insertItem(i18n("Copy Link Address"), this, SLOT(slotCopyToClipboard()));
+   
+   if (!url.isEmpty())
+   {
+        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link"), this, SLOT(slotOpenLinkInternal()));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
+        popup.insertItem(i18n("Copy Link Address"), this, SLOT(slotCopyToClipboard()));
+   }
+   else
+   {
+        KAction *ac = action("setEncoding");
+        if (ac)
+            ac->plug(&popup);
+   }
    popup.exec(p);
 }
 

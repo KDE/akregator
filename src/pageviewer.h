@@ -64,7 +64,7 @@ namespace Akregator
             void slotBackAboutToShow();
             void slotForwardAboutToShow();
             void slotPopupActivated( int id );
-            void popup( const QString & url, const QPoint & p );
+            virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
             void slotCopy();
             void slotSelectionChanged();
             

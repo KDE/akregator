@@ -60,7 +60,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
     m_copyAction = KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "pageviewer_copy");
 
-    connect( this, SIGNAL(popupMenu(const QString &, const QPoint &)), this, SLOT(popup(const QString &, const QPoint &)));
+    //connect( this, SIGNAL(popupMenu(const QString &, const QPoint &)), this, SLOT(slotPopupMenu(const QString &, const QPoint &)));
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
     m_backAction->setEnabled(false);
@@ -73,8 +73,8 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
     m_current = m_history.end();
     m_restoring = false;
-
 }
+
 bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
     /* what's this? -tpr 20040825
@@ -251,75 +251,75 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
     m_stopAction->setEnabled(false);
 }
 
-// Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
+// some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotPrint( )
 {
     view()->print();
 }
 
-void PageViewer::popup( const QString & url, const QPoint & p )
+void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
+    QString url = kurl.url();
+
+    // if true show popup menu for link. Maybe that doesn't work properly when using frames
+    bool isLink = kurl != Viewer::url();
+    
 //  KPopupMenu popup( i18n( "Documentation Viewer" ), this->widget() );
     KPopupMenu popup(this->widget());
 
 //     bool needSep = false;
     int idNewWindow = -2;
-    if (!url.isEmpty())
+    if (isLink)
     {
         idNewWindow = popup.insertItem(SmallIcon("window_new"),i18n("Open in New Tab"));
-        popup.setWhatsThis(idNewWindow, i18n("<b>Open in new window</b><p>Opens current link in a new window."));
-//         needSep = true;
-    }
-//     if (m_options & CanDuplicate)
-//     {
-//         duplicateAction->plug(&popup);
-//         needSep = true;
-//     }
-//     if (needSep)
-//         popup.insertSeparator();
-    
-    m_backAction->plug( &popup );
-    m_forwardAction->plug( &popup );
-    m_reloadAction->plug(&popup);
-//  stopAction->plug(&popup);
-    popup.insertSeparator();
-
-    m_copyAction->plug( &popup );
-    popup.insertSeparator();
-  
-    m_printAction->plug(&popup);
-    popup.insertSeparator();
-    
-    KAction * incFontAction = this->action("incFontSizes");
-    KAction * decFontAction = this->action("decFontSizes");
-    if ( incFontAction && decFontAction )
-    {
-        incFontAction->plug( &popup );
-        decFontAction->plug( &popup );
+        popup.setWhatsThis(idNewWindow, i18n("<b>Open in New Tab</b><p>Opens current link in a new tab."));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External Browser"), this, SLOT(slotOpenLinkExternal()));
+                
         popup.insertSeparator();
+        
+        KAction *savelinkas = action("savelinkas");
+        
+        if (savelinkas)
+                savelinkas->plug( &popup);
+        
+        KAction* copylinkaddress = action("copylinkaddress");
+        if (copylinkaddress)
+        {
+            copylinkaddress->plug( &popup);
+            popup.insertSeparator();
+        }
     }
-
-
-   if (!url.isEmpty())
-    {
-    KAction *savelinkas = action("savelinkas");
-    if (savelinkas)
-        savelinkas->plug( &popup);
-    
-    KAction* copylinklocation = action("copylinklocation");
-    if (copylinklocation)
-    {
-        copylinklocation->plug( &popup);
+    else // we are not on a link
+    {    
+        m_backAction->plug( &popup );
+        m_forwardAction->plug( &popup );
+        m_reloadAction->plug(&popup);
+    //  stopAction->plug(&popup);
         popup.insertSeparator();
+    
+        m_copyAction->plug( &popup );
+        popup.insertSeparator();
+    
+        m_printAction->plug(&popup);
+        popup.insertSeparator();
+        
+        KAction * incFontAction = this->action("incFontSizes");
+        KAction * decFontAction = this->action("decFontSizes");
+        if ( incFontAction && decFontAction )
+        {
+            incFontAction->plug( &popup );
+            decFontAction->plug( &popup );
+            popup.insertSeparator();
+        }
+    
+    
+        KAction *ac = action("setEncoding");
+        if (ac)
+            ac->plug(&popup);
     }
-}
-
-    KAction *ac = action("setEncoding");
-    if (ac)
-        ac->plug(&popup);
-
+    
     int r = popup.exec(p);
-
+    
     if (r == idNewWindow)
     {
         KURL kurl;

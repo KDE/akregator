@@ -12,6 +12,11 @@
 
 class KURL;
 
+namespace KIO
+{
+    class MetaData;
+}
+
 namespace Akregator
 {
     class Viewer : public KHTMLPart
@@ -42,7 +47,7 @@ namespace Akregator
 
         protected slots:
            virtual bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
-           void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+           virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
 	              /**
             * Copies current link to clipboard.
@@ -68,6 +73,8 @@ namespace Akregator
             * This reverts cursor back to normal one
             */
            void slotCompleted();
+
+           void slotSaveLinkAs();
            
         private:
             /**
