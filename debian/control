@@ -2,12 +2,12 @@ Source: akregator
 Section: web
 Priority: optional
 Maintainer: Pierre Habouzit <pierre.habouzit@m4x.org>
-Build-Depends: cdbs, debhelper (>= 4.1.0), kdepim-dev (>= 3.2.0), kdelibs4-dev (>> 4:3.2.0)
+Build-Depends: cdbs, debhelper (>= 4.1.0), kdepim-dev (>= 3.2.0), kdelibs4-dev (>> 4:3.2.0), kdebase-dev (>> 4:3.2.0)
 Standards-Version: 3.6.1
 
 Package: akregator
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}
 Description: RSS feed aggregator for KDE
  aKregator is a KDE RSS aggregator. It supports the best known metaphors from
  existing aggregators. It also facilitates good integration with KDE by
@@ -15,8 +15,16 @@ Description: RSS feed aggregator for KDE
 
 Package: akregator-kontact-plugin
 Architecture: any
-Depends: akregator (= ${Source-Version}), ${shlibs:Depends}, ${misc:Depends}
+Depends: akregator (= ${Source-Version}), ${shlibs:Depends}
 Description: kontact plugin for aKregator
+ aKregator is a KDE RSS aggregator. It supports the best known metaphors from
+ existing aggregators. It also facilitates good integration with KDE by
+ maintaining an interface similar to Konqueror and KMail.
+
+Package: akregator-konq-plugin
+Architecture: any
+Depends: akregator (= ${Source-Version}), ${shlibs:Depends}
+Description: konqueror plugin for aKregator
  aKregator is a KDE RSS aggregator. It supports the best known metaphors from
  existing aggregators. It also facilitates good integration with KDE by
  maintaining an interface similar to Konqueror and KMail.
