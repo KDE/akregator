@@ -25,8 +25,9 @@ static KCmdLineOptions options[] =
 int main(int argc, char **argv)
 {
     KAboutData about("akregator", I18N_NOOP("aKregator"), version, description,
-                     KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0, 0, "Stanislav.Karchebny@kdemail.net");
-    about.addAuthor( "Stanislav Karchebny", 0, "Stanislav.Karchebny@kdemail.net" );
+                     KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0, "http://berk.upnet.ru/projects/kde/akregator", "Stanislav.Karchebny@kdemail.net");
+    about.addAuthor( "Stanislav Karchebny", "Author, Developer, Maintainer", "Stanislav.Karchebny@kdemail.net" );
+    about.addAuthor( "Sashmit Bhaduri", "Developer", "smt@vfemail.net" );
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( options );
     KApplication app;

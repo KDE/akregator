@@ -714,8 +714,9 @@ KInstance* aKregatorPartFactory::instance()
 {
     if( !s_instance )
     {
-        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "0.9");
-        s_about->addAuthor("Stanislav Karchebny", 0, "Stanislav.Karchebny@kdemail.net");
+        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "0.9", I18N_NOOP("This is a KPart for RSS aggregator"), KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0, "http://berk.upnet.ru/projects/kde/akregator", "Stanislav.Karchebny@kdemail.net");
+        s_about->addAuthor("Stanislav Karchebny", "Author, Developer, Maintainer", "Stanislav.Karchebny@kdemail.net");
+        s_about->addAuthor("Sashmit Bhaduri", "Developer", "smt@vfemail.net");
         s_instance = new KInstance(s_about);
     }
     return s_instance;
