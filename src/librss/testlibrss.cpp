@@ -11,7 +11,7 @@ using namespace RSS;
 
 static const KCmdLineOptions options[] =
 {
-  { "+url", I18N_NOOP("URL of Feed"), 0 },
+  { "+url", I18N_NOOP("URL of feed"), 0 },
   KCmdLineLastOption
 };
 
