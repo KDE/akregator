@@ -68,9 +68,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QVBoxLayout *lt = new QVBoxLayout( this );
 
-    m_panner1Sep << 1 << 1;
-    m_panner2Sep << 1 << 1;
-
     m_panner1 = new QSplitter(QSplitter::Horizontal, this, "panner1");
     m_panner1->setOpaqueResize( true );
     lt->addWidget(m_panner1);
@@ -141,9 +138,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
                    this, SLOT( slotArticleDoubleClicked(QListViewItem *, const QPoint &, int)) );
 
-    m_panner1->setSizes( m_panner1Sep );
-    m_panner2->setSizes( m_panner2Sep );
-
     m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&)),
@@ -170,8 +164,19 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     else if (viewMode==WidescreenView) slotWidescreenView();
     else                               slotNormalView();
 
+    m_panner1->setSizes( Settings::splitter1Sizes() );
+    m_panner2->setSizes( Settings::splitter2Sizes() );
+
     m_searchCombo->setCurrentItem(Settings::quickFilter());
     slotSearchComboChanged(Settings::quickFilter());
+}
+
+void aKregatorView::saveSettings(bool /*quit*/)
+{
+   Settings::setSplitter1Sizes( m_panner1->sizes() );
+   Settings::setSplitter2Sizes( m_panner2->sizes() );
+   Settings::setViewMode( m_viewMode );
+   Settings::writeConfig();
 }
 
 void aKregatorView::slotOpenTab(const KURL& url)

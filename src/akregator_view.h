@@ -56,6 +56,8 @@ namespace Akregator
              */
             aKregatorView(aKregatorPart *part, QWidget *parent, const char *wName);
 
+            void saveSettings(bool quit);
+
             bool importFeeds(const QDomDocument& doc);
 
             /**
@@ -87,7 +89,7 @@ namespace Akregator
              */
             void slotItemChanged(QListViewItem*);
             void slotItemMoved();
-        
+
             void slotNormalView();
             void slotWidescreenView();
             void slotCombinedView();
@@ -131,7 +133,7 @@ namespace Akregator
             void slotSearchComboChanged(int index);
             void slotSearchTextChanged(const QString &search);
             void activateSearch();
-            
+
             void slotMouseOverInfo(const KFileItem *kifi);
 
             void slotOpenTab(const KURL& url);
@@ -207,9 +209,8 @@ namespace Akregator
             KLineEdit *m_searchLine;
             int m_queuedSearches;
             QString m_queuedSearch;
-            
+
             QSplitter *m_panner1, *m_panner2;
-            QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;

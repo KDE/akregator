@@ -9,7 +9,7 @@
 #include "akregator_view.h"
 #include "akregatorconfig.h"
 
-#include <kparts/browserinterface.h> 
+#include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
 #include <kapplication.h>
 #include <kinstance.h>
@@ -33,7 +33,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 {
     // we need an instance
     setInstance( aKregatorFactory::instance() );
-    
+
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
     m_extension=new KParts::BrowserExtension(this, "ak_extension");
 
@@ -82,7 +82,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
 aKregatorPart::~aKregatorPart()
 {
-   Settings::writeConfig();
+   m_view->saveSettings(true);
 }
 
 void aKregatorPart::readRecentFileEntries()
@@ -148,7 +148,7 @@ bool aKregatorPart::openFile()
         return false;
 
     m_extension->browserInterface()->callMethod( "test_foo(int)", 55 );
-    
+
     setProgress(0);
     kapp->processEvents();
 
