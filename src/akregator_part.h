@@ -12,6 +12,7 @@
 #include <kparts/part.h>
 #include <kaboutdata.h>
 #include <kaction.h>
+#include <kurl.h>
 
 #include "akregator_partiface.h"
 
@@ -127,12 +128,14 @@ namespace Akregator
             void fileOpen();
             bool fileSaveAs();
             void fileImport();
+            void openURLDelayed();
 
         private:
             void readRecentFileEntries();
 
             bool m_loading;
-            
+
+            KURL m_delayURL;            
             int m_totalUnread;
             KParts::BrowserExtension *m_extension;
             KRecentFilesAction *recentFilesAction;

@@ -192,8 +192,32 @@ void aKregatorPart::setTotalUnread(int unread)
 
 bool aKregatorPart::openURL(const KURL& url)
 {
-   recentFilesAction->addURL(url);
+    recentFilesAction->addURL(url);
+    
+    // stop whatever we're doing before opening a new feed list
+    if (m_loading)
+    {
+        m_view->endOperation();
+        m_view->stopLoading();
+        m_delayURL=url;
+        QTimer::singleShot(1000, this, SLOT(openURLDelayed())); 
+        return true;
+    }
+    else if (m_view->transaction()->isRunning())
+    {
+        m_view->endOperation();
+        m_view->transaction()->stop();
+        m_delayURL=url;
+        QTimer::singleShot(1000, this, SLOT(openURLDelayed())); 
+        return true;
+    }
+
    return inherited::openURL(url);
+}
+
+void aKregatorPart::openURLDelayed()
+{
+    inherited::openURL(m_delayURL);
 }
 
 void aKregatorPart::openLastFeedList()

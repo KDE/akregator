@@ -413,6 +413,8 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
     QDomNode n = body.firstChild();
     while( !n.isNull() )
     {
+        if (m_stopLoading)
+           break;
         parseChildNodes(n, parent);
         curNodes++;
         m_mainFrame->setProgress(int(100*((double)curNodes/(double)numNodes)));
