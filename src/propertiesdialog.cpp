@@ -147,6 +147,13 @@ void FeedPropertiesDialog::setFetchInterval(int i)
         return;
     }
 
+    if (i == 0)
+    {
+        widget->updateSpinBox->setValue(0);
+        widget->updateComboBox->setCurrentItem(0); // minutes
+        return;
+    }
+ 
    if (i % (60*24) == 0)
    {
        widget->updateSpinBox->setValue(i / (60*24) );
