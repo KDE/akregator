@@ -2,6 +2,7 @@ akregator (1.0-beta4-4) unstable; urgency=low
     
   * fixed menu for kde ( kderemove="y" ).
   * modified descriptions in control.
+  * merged some lines in copyright.
   * some vqrious fixes to changelog, control files (on Jean-Michel Kelbert
     advices).
   * First upload to debian (ITP closes: #251871).
