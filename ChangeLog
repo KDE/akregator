@@ -4,6 +4,7 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+        CHG [x] show current feed's title in the article list heading
 #000041 FIX [x] order for dateless items (right now they show in random order) -->berkus
                 order should be: ordered for items with dates, order same as in rss for items without dates.
 #000025 FIX [x] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that local images and css can be referenced from article preview   --> smt

@@ -15,7 +15,7 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
-#000047 FIX [ ] Remembed feeds' favicons between runs -->smt
+#000047 FIX [ ] Remember feeds' favicons between runs -->smt
 #000042 FIX [ ] "File | Save" without previously selected filename doesn't work (doesn't call "Save As...") -->berkus
 #000040 ADD [ ] finally, add some configuration options
                 [ ] default LiveJournal username and password (use KWallet)
