@@ -127,7 +127,7 @@ void ArticleViewer::generateCSS()
             "  color: %3 ! important;\n"
             "  background: %4 ! important;\n"
             "}\n\n").arg(Settings::standardFont())
-            .arg(QString::number(Settings::mediumFontSize())+"px")
+            .arg(QString::number(pointsToPixel(m_metrics, Settings::mediumFontSize()))+"px")
             .arg(cg.text().name())
             .arg(cg.base().name());
     m_htmlHead += (
@@ -206,7 +206,7 @@ void ArticleViewer::generateCSS()
             .arg(cg.text().name())
             .arg(cg.text().name())
             .arg(cg.background().light(108).name())
-            .arg(QString::number(Settings::mediumFontSize())+"px")
+            .arg(QString::number(pointsToPixel(m_metrics, Settings::mediumFontSize()))+"px")
             .arg(Settings::standardFont());
     //kdDebug() << m_htmlHead << endl;
 
