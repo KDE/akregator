@@ -1,3 +1,9 @@
+akregator (1.0-beta8-2) unstable; urgency=low
+
+  * The « I feel stupid release » : add a build-dependency on automake1.7.
+
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Sat, 27 Nov 2004 21:03:33 +0100
+
 akregator (1.0-beta8-1) unstable; urgency=low
 
   * new upstream (closes: #270807, #278672, #276676).

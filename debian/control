@@ -2,7 +2,7 @@ Source: akregator
 Section: net
 Priority: optional
 Maintainer: Pierre Habouzit <pierre.habouzit@m4x.org>
-Build-Depends: cdbs, debhelper (>= 4.1.0), kdepim-dev (>= 3.3.0), kdelibs4-dev (>> 4:3.3.0), libkonq4-dev (>> 4:3.3.0), libkcal2-dev
+Build-Depends: cdbs, debhelper (>= 4.1.0), kdepim-dev (>= 3.3.0), kdelibs4-dev (>> 4:3.3.0), libkonq4-dev (>> 4:3.3.0), libkcal2-dev, automake1.7
 Standards-Version: 3.6.1
 
 Package: akregator
