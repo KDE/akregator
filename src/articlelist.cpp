@@ -82,7 +82,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
         : KListView(parent, name)
 {
     setMinimumSize(250, 150);
-    addColumn(i18n("Articles"));
+    addColumn(i18n("Article"));
     addColumn(i18n("Date"));
     setRootIsDecorated(false);
     setItemsRenameable(false);
@@ -97,7 +97,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
 
     header()->setStretchEnabled(true, 0);
 
-    QWhatsThis::add(this, i18n("<h2>Articles list</h2>"
+    QWhatsThis::add(this, i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
         "You can also mark feeds as persistent (P column) "
         "or open article in another tab or even external browser window "
