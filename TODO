@@ -16,7 +16,6 @@ short term (~beta5)
   -> show read/unread/new as different colors in combined view
   -> allow searching in combined view
 - add color configurability
-- add option to open tabs in background
 
 medium term ()
 ---------

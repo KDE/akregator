@@ -17,6 +17,8 @@ namespace Akregator
         Q_OBJECT
         public:
             PageViewer(QWidget* parent, const char* name);
+        private slots:
+            bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
     };
 }
 

@@ -21,13 +21,13 @@ namespace Akregator
 	    bool closeURL();
 	
         signals:
-           void urlClicked(const KURL& url);
+           void urlClicked(const KURL& url, bool background=false);
 
         protected:
            KURL m_url;
 
         protected slots:
-           virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+           virtual bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
            void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
            /**

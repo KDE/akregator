@@ -82,6 +82,7 @@
      <entry name="MMBBehaviour" key="MMB Behaviour" type="Enum">
         <choices>
             <choice name="OpenInInternalBrowser"/>
+            <choice name="OpenInBackground"/>  
             <choice name="OpenInExternalBrowser"/>
         </choices>
         <label></label>

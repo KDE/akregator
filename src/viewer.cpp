@@ -73,13 +73,16 @@ void Viewer::displayInExternalBrowser(const KURL &url)
    }        
 }
 
-void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "Viewer: Open url request: " << url << endl;
-   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-      displayInExternalBrowser(url);
-   else
-      openURL(url);
+   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser) {
+       displayInExternalBrowser(url); return true;
+   }
+   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground) {
+       emit urlClicked(url,true); return true; 
+   }
+   return false;
 }
 
 void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& url, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)

@@ -48,7 +48,7 @@ namespace Akregator
             QString m_currentText;
 
         private slots:
-            void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
     };
 }
 

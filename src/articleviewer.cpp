@@ -266,13 +266,12 @@ void ArticleViewer::displayInExternalBrowser(const KURL& url)
     }
 }
 
-void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-       displayInExternalBrowser(url);
-   else
-       emit urlClicked(url);
+   if(Viewer::slotOpenURLRequest(url, args)) return true;
+   emit urlClicked(url);
+   return true;
 }
 
 void ArticleViewer::slotOpenLinkInternal()
@@ -280,7 +279,5 @@ void ArticleViewer::slotOpenLinkInternal()
     if(m_url.isEmpty()) return;
     emit urlClicked(m_url);
 }
-
-
 
 #include "articleviewer.moc"

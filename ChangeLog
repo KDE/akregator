@@ -6,12 +6,15 @@ Changes after 1.0b3:
 -----------------------------
 
 New Features:
+#82023 - Added middle mouse button option to open tabs in background -tpr
+#83202 - "Clear" button for search string -berkus
        - Per feed interval fetching -smt
        - Konqueror plugin for adding feeds to aKregator from context menu -PhantomsDad
        - Command line options for adding feeds -PhantomsDad
        - In case the feed doesn't provide an article <link> element, fall back to the <guid> permaLink -sg
        
 Bug Fixes:
+       - "aKregator - 0 unread" -> "aKregator - No unread articles" -tpr
        - Scroll up when changing the article in article viewer -tpr
        - Various frame-switching bug fixes -smt
        - Fix favicon loading crash (#82682) -smt 

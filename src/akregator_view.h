@@ -166,7 +166,7 @@ namespace Akregator
 
             void slotMouseOverInfo(const KFileItem *kifi);
 
-            void slotOpenTab(const KURL& url);
+            void slotOpenTab(const KURL& url, bool background);
             void slotRemoveFrame();
             void slotFrameChanged(Frame *f);
 

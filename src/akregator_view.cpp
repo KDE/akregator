@@ -169,8 +169,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
 
-    connect( m_articleViewer, SIGNAL(urlClicked(const KURL&)),
-                        this, SLOT(slotOpenTab(const KURL&)) );
+    connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
+                        this, SLOT(slotOpenTab(const KURL&, bool)) );
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
@@ -223,17 +223,20 @@ void aKregatorView::saveSettings(bool /*quit*/)
       m_globalFetchTimer->stop();
 }
 
-void aKregatorView::slotOpenTab(const KURL& url)
+void aKregatorView::slotOpenTab(const KURL& url, bool background=false)
 {
     PageViewer *page = new PageViewer(this, "page");
     connect( page, SIGNAL(setWindowCaption (const QString &)),
             this, SLOT(slotTabCaption (const QString &)) );
-
+    connect( page, SIGNAL(urlClicked(const KURL &,bool)),
+             this, SLOT(slotOpenTab(const KURL &,bool)) );
+    
     Frame *frame=new Frame(this, page, page->widget(), i18n("Untitled"));
     connectFrame(frame);
     m_tabs->addFrame(frame);
 
-    m_tabs->showPage(page->widget());
+    if(!background)
+        m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1)
         m_tabsClose->setEnabled(true);
     page->openURL(url);
@@ -1247,7 +1250,12 @@ void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, con
         if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
             displayInExternalBrowser(i->article().link());
         else
-            slotOpenTab(i->article().link());
+        {
+            if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground)
+                slotOpenTab(i->article().link(),true);
+            else
+                slotOpenTab(i->article().link());
+        }
     }
 }
 

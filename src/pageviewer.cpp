@@ -25,4 +25,12 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 {
 }
 
+bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+{
+    kdDebug() << "PageViewer: Open url request: " << url << endl;
+    if(Viewer::slotOpenURLRequest(url, args)) return true;
+    openURL(url);
+    return true;
+}
+
 #include "pageviewer.moc"

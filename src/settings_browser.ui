@@ -13,11 +13,14 @@
             <height>183</height>
         </rect>
     </property>
+    <property name="caption">
+        <string>ExternalBrowser</string>
+    </property>
     <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-	        <widget class="QGroupBox">
+        <widget class="QGroupBox">
             <property name="name">
                 <cstring>groupBox1</cstring>
             </property>
@@ -55,7 +58,12 @@
                         <widget class="QComboBox">
                             <item>
                                 <property name="text">
-                                    <string>Open in Internal Browser</string>
+                                    <string>Open in Tab</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Open in Background Tab</string>
                                 </property>
                             </item>
                             <item>
