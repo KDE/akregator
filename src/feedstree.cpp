@@ -9,6 +9,7 @@
 #include <kurldrag.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include <kstringhandler.h>
 
 #include <qwhatsthis.h>
 #include <qpainter.h>
@@ -80,6 +81,7 @@ void FeedsTreeItem::paintCell( QPainter * p, const QColorGroup & cg,
     f.setWeight(QFont::Bold);
     p->setFont(f);
     
+    QFontMetrics fm( p->fontMetrics() );
     QListView *lv = listView();
     int x = lv ? lv->itemMargin() : 1;
     int m=x;
@@ -88,13 +90,18 @@ void FeedsTreeItem::paintCell( QPainter * p, const QColorGroup & cg,
     
     if (icon)
         x += icon->width() + m;
+
+    QString txt = " (" + QString::number(u) + ")";
+    int txtW=fm.width( txt );
+    
+    if (fm.width( oldText ) + txtW > width)
+        oldText=KStringHandler::rPixelSqueeze(oldText,fm, width - txtW - x);
     
     p->drawText( x, 0, width-m-x, height(), align | AlignVCenter, oldText, -1, &br );
 
     if ( !isSelected() )
         p->setPen( Qt::blue ); // TODO: configurable
     
-    QString txt = " (" + QString::number(u) + ")";
     p->drawText( br.right(), 0, width-m-br.right(), height(),
                             align | AlignVCenter, txt );
     
