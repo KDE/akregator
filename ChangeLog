@@ -2,6 +2,12 @@ aKregator ChangeLog
 ===================
 (c) 2004 the aKregator authors.
 
+Changes after 1.0b4:
+-----------------------------
+
+Bug Fixes:
+#82024 - Fix drag&drop regression which made it possible have multiple top level folders -sg
+
 Changes after 1.0b3:
 -----------------------------
 

@@ -201,6 +201,16 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * )
     if (!acceptDrag(e))
         return;
 
+    // disable any drops where the result would be top level nodes
+    QListViewItem *afterme;
+    QListViewItem *parent;
+    findDrop( e->pos(), parent, afterme );
+    if (!parent)
+    {
+        e->ignore();
+        return;
+    }
+
     if (e->source() != viewport())
     {
         if (KURLDrag::canDecode( e ))
