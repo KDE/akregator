@@ -21,7 +21,6 @@ ADD new feature
 #000040 ADD [ ] finally, add some configuration options
                 [ ] default LiveJournal username and password (use KWallet)
                 [ ] last open opml file
-#000037 ADD [ ] add favicon support to the FeedsTree -->smt
 #000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
                 [ ] if the channel image size is well-sized, show in headers -->smt
                 [ ] handle palette changes (color changes in kcontrol)
