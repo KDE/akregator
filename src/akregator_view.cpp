@@ -593,7 +593,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     feed->setItem(elt);
 
     addFeed_Internal( feed, elt,
-                      text,
+                      dlg->feedName(),
                       dlg->url(),
                       "",
                       "",
