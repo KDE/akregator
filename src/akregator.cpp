@@ -83,13 +83,7 @@ AkregatorMainWindow::AkregatorMainWindow()
     m_statusLabel->setMinimumWidth( 0 );
     m_statusLabel->setFixedHeight( statH );
     statusBar()->addWidget (m_statusLabel, 1, false);
-
-    KPIM::ProgressDialog *progressDialog = new KPIM::ProgressDialog( statusBar(), this );
-    progressDialog->hide();
-    m_progressBar = new KPIM::StatusbarProgressWidget( progressDialog, statusBar() );
-    m_progressBar->show();
-    statusBar()->addWidget( m_progressBar, 0, true );
-    // disable the action because we don't have a handbook yet, hope this createGUI doesn't broke anything
+   // disable the action because we don't have a handbook yet, hope this createGUI doesn't broke anything
     createGUI(0L);
     KAction *action = actionCollection()->action("help_contents");
     if(action) action->setEnabled(false);
@@ -132,6 +126,16 @@ bool AkregatorMainWindow::loadPart()
         return false;
     }
 
+}
+
+void AkregatorMainWindow::setupProgressWidgets()
+{
+    KPIM::ProgressDialog *progressDialog = new KPIM::ProgressDialog( statusBar(), this );
+    progressDialog->raise();
+    progressDialog->hide();
+    m_progressBar = new KPIM::StatusbarProgressWidget( progressDialog, statusBar() );
+    m_progressBar->show();
+    statusBar()->addWidget( m_progressBar, 0, true );
 }
 
 void AkregatorMainWindow::loadStandardFile()

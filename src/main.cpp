@@ -48,6 +48,7 @@ int main(int argc, char **argv)
         
         widget->loadStandardFile();
         app.setHaveWindowLoaded(true);
+        widget->setupProgressWidgets();
         widget->show();
 
         app.setMainWidget(widget);

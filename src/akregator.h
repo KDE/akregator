@@ -74,6 +74,12 @@ public:
      */
     bool loadPart();
 
+    /**
+     * Creates the progress widget in the status bar and the ProgressDialog
+     * and connects them. 
+     */
+    void setupProgressWidgets();
+
     /** 
      * Loads standard feed list
     */
@@ -100,6 +106,7 @@ public:
     void addFeedToGroup(const QString& url, const QString& group);
     
     virtual void setCaption(const QString &);
+
 
 public slots:
     void slotSetStatusBarText(const QString & s);
