@@ -23,12 +23,13 @@ namespace Akregator
         public:
             TrayIcon(QWidget *parent = 0, const char *name = 0);
             ~TrayIcon();
-            void updateUnread(int unread);
+            
             void newArticle(const QString&, const QPixmap&, const QString&);
             QPixmap takeScreenshot() const;
             virtual void mousePressEvent(QMouseEvent *);
         public slots:
             void settingsChanged();
+            void slotSetUnread(int unread);
             void viewButtonClicked();
             void fetchAllFeeds();
 

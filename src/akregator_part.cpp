@@ -160,7 +160,6 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setInstance( aKregatorFactory::instance() );
 
    
-    m_totalUnread = 0;
     m_loading = false;
 
     m_view = new aKregatorView(this, parentWidget, "akregator_view");
@@ -184,6 +183,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     connect(this, SIGNAL(canceled(const QString&)), this, SLOT(slotCanceled(const QString &)));
     connect(this, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
 
+    connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
 
@@ -193,7 +193,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
 void aKregatorPart::saveSettings()
 {
-   m_view->saveSettings(true);
+   m_view->saveSettings();
 }
 
 aKregatorPart::~aKregatorPart()
@@ -231,18 +231,6 @@ void aKregatorPart::setCanceled(const QString &s)
 {
     emit canceled(s);
 }
-
-void aKregatorPart::setTotalUnread(int unread)
-{
-    if (m_totalUnread != unread)
-    {
-        m_trayIcon->updateUnread(unread);
-//        if (m_extension->browserInterface())
-//            m_extension->browserInterface()->callMethod( "updateUnread(int)", unread );
-        m_totalUnread=unread;
-    }
-}
-
 
 // will do systray notification
 void aKregatorPart::newArticle(Feed *src, const MyArticle &a)
@@ -403,13 +391,13 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
     {
-        m_view->operationError(i18n("Invalid Feed List"));
+        m_view->operationError(/*i18n("Invalid Feed List")*/);
         return false;
     }
 
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
     {
-        m_view->operationError(i18n("Invalid Feed List"));
+        m_view->operationError(/*i18n("Invalid Feed List")*/);
         return false;
     }
     m_loading=false;

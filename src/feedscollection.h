@@ -4,6 +4,7 @@
  *                                                                         *
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
+/*
 #ifndef AKREGATORFEEDSCOLLECTION_H
 #define AKREGATORFEEDSCOLLECTION_H
 
@@ -38,4 +39,4 @@ namespace Akregator
     };
 }
 
-#endif
+#endif*/

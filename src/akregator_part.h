@@ -212,7 +212,6 @@ namespace Akregator
             bool m_loading;
 
             KURL m_delayURL;
-            int m_totalUnread;
             KParts::BrowserExtension *m_extension;
             
             QWidget *m_parentWidget;

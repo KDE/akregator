@@ -87,8 +87,8 @@ aKregatorView::~aKregatorView()
     delete m_mainFrame;
 }
 
-aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
-: QWidget(parent, wName), m_viewMode(NormalView)
+aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *name)
+ : QWidget(parent, name), m_viewMode(NormalView)
 {
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part=part;
@@ -118,10 +118,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_tree, SIGNAL(dropped (KURL::List &, TreeNodeItem*, FeedGroupItem*)),
             this, SLOT(slotFeedURLDropped (KURL::List &,
                         TreeNodeItem*, FeedGroupItem*)));
-    connect(m_tree, SIGNAL(moved()),
-            this, SLOT(slotItemMoved()));
 
-        
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
@@ -190,6 +187,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
     m_articles = new ArticleList( m_articleSplitter, "articles" );
+    
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
@@ -218,11 +216,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
 
-    // -- DEFAULT INIT
-    reset();
     m_articleViewer->openDefault();
-    // -- /DEFAULT INIT
-
+ 
     m_feedSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
 
@@ -256,7 +251,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     }
 }
 
-void aKregatorView::saveSettings(bool /*quit*/)
+void aKregatorView::saveSettings()
 {
     Settings::setSplitter1Sizes( m_feedSplitter->sizes() );
     Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
@@ -357,14 +352,6 @@ void aKregatorView::slotLoadingProgress(int percent)
     m_part->setProgress(percent);
 }
 
-
-// clears everything out
-void aKregatorView::reset()
-{
-    delete m_tree->rootNode();
-    m_tree->clear();
-}
-
 QString aKregatorView::getTitleNodeText(const QDomDocument &doc)
 {
     if (doc.documentElement().tagName().lower() != "opml")
@@ -411,7 +398,7 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     startOperation();
     if (!loadFeeds(doc, fg))
     {
-        operationError(i18n("Invalid Feed List"));
+        operationError(/*i18n("Invalid Feed List")*/);
         return false;
     }
 
@@ -544,17 +531,6 @@ void aKregatorView::writeChildNodes( TreeNode* node, QDomElement& element, QDomD
         element.appendChild( node->toOPML(element, document) );
 }
 
-bool aKregatorView::event(QEvent *e)
-{
-    if (e->type() == QEvent::ApplicationPaletteChange)
-    {
-        m_articleViewer->reload();
-        return true;
-    }
-    return QWidget::event(e);
-}
-
-
 void aKregatorView::addFeedToGroup(const QString& url, const QString& groupName)
 {
     
@@ -654,7 +630,7 @@ void aKregatorView::endOperation()
     m_mainFrame->setProgress(100);
 }
 
-void aKregatorView::operationError(const QString & /*msg*/)
+void aKregatorView::operationError(/*const QString& msg*/)
 {
     m_mainFrame->setState(Frame::Canceled);
     m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
@@ -712,13 +688,13 @@ void aKregatorView::slotFrameChanged(Frame *f)
     }
 }
 
-void aKregatorView::slotTabCaption(const QString &capt)
+void aKregatorView::slotTabCaption(const QString &caption)
 {
-    if (!capt.isEmpty())
+    if (!caption.isEmpty())
     {
         PageViewer *pv=(PageViewer *)sender();
-        m_tabs->setTitle(capt, pv->widget());
-        pv->slotSetCaption(capt);
+        m_tabs->setTitle(caption, pv->widget());
+        pv->slotSetCaption(caption);
     }
 }
 
@@ -1135,7 +1111,7 @@ else
 
 void aKregatorView::setTotalUnread()
 {
-    m_part->setTotalUnread(m_tree->rootNode()->unread());
+    emit signalUnreadCountChanged( m_tree->rootNode()->unread() );
 }
 
 void aKregatorView::showFetchStatus()
@@ -1389,11 +1365,6 @@ void aKregatorView::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, Fe
     }
 }
 
-void aKregatorView::slotItemMoved()
-{
-    //m_part->setModified(true);
-}
-
 void aKregatorView::slotSearchComboChanged(int index)
 {
     Settings::setQuickFilter( index );
@@ -1405,10 +1376,10 @@ void aKregatorView::slotSearchTextChanged(const QString &search)
 {
     m_queuedSearches++;
     m_queuedSearch = search;
-    QTimer::singleShot(200, this, SLOT(activateSearch()));
+    QTimer::singleShot(200, this, SLOT(slotActivateSearch()));
 }
 
-void aKregatorView::activateSearch()
+void aKregatorView::slotActivateSearch()
 {
     m_queuedSearches--;
 

@@ -70,3 +70,42 @@ FeedDetectorEntryList FeedDetector::extractFromLinkTags(const QString& s)
 	
 	return list;
 }
+
+QStringList FeedDetector::extractBruteForce(const QString& s)
+{
+    QString str = s.simplifyWhiteSpace();
+    
+    QRegExp reAhrefTag("<[\\s]?A[^>]?HREF=[\\s]?\\\"[^\\\"]*\\\"[^>]*>", false);
+    
+    // extracts the URL (href="url")
+    QRegExp reHref("HREF[\\s]?=[\\s]?\\\"([^\\\"]*)\\\"", false);
+
+    QRegExp rssrdfxml(".*(RSS|RDF|XML)", false);
+
+    int pos = 0;
+    int matchpos = 0;
+    
+    // get all <a href> tags and capture url
+    QStringList list;
+    int strlength = str.length();
+    while ( matchpos != -1 )
+    {
+        matchpos = reAhrefTag.search(str, pos);
+        if ( matchpos != -1 )
+        {
+            QString ahref = str.mid(matchpos, reAhrefTag.matchedLength());
+            int hrefpos = reHref.search(ahref, 0);
+            if ( hrefpos != -1 )
+            {
+                QString url = reHref.cap(1);
+                if ( rssrdfxml.exactMatch(url) )
+                    list.append(url);
+            }
+            
+            pos = matchpos + reAhrefTag.matchedLength();
+        }
+    }
+    
+    return list;
+    
+}

@@ -117,7 +117,7 @@ void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art
 }
 
 
-void TrayIcon::updateUnread(int unread)
+void TrayIcon::slotSetUnread(int unread)
 {
     if (unread==m_unread)
         return;

@@ -138,7 +138,7 @@ namespace Akregator
             
             /** update the item belonging to the node */
             virtual void slotNodeChanged(TreeNode* node);
-            
+
         protected slots:
             virtual void slotSelectionChanged(QListViewItem* item); 
             virtual void slotItemRenamed(QListViewItem* item);

@@ -37,7 +37,6 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     setItemsRenameable(true);
     setItemMargin(2);
     
-    
     setFullWidth(true);
     setSorting(-1);
     setDragAutoScroll(true);
@@ -52,6 +51,8 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*)), this, SLOT(slotItemRenamed(QListViewItem*)) );
 
+    clear();
+    
     QWhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
         "Here you can browse tree of feeds. "
         "You can also add feeds or feed groups (folders) "
@@ -143,8 +144,7 @@ void FeedsTree::clear()
     FeedGroup* rootNode = new FeedGroup(i18n("All Feeds"));
     FeedGroupItem *elt = new FeedGroupItem(this, rootNode );
     m_itemDict.insert(rootNode, elt);
-
-    connectToNode(rootNode);            
+    connectToNode(rootNode);
 }
 
 void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,

@@ -11,6 +11,8 @@
 #include <qstring.h>
 #include <qvaluelist.h>
 
+class QStringList;
+
 namespace Akregator
 {
 
@@ -44,15 +46,13 @@ namespace Akregator
 			static FeedDetectorEntryList extractFromLinkTags(const QString& s);
 			
 			/** \brief searches an HTML page for slightly feed-like looking links and catches everything not running away quickly enough. 
-			Extracts links from @c <a @c href> tags which contain @c xml, @c rss or @c rdf
+			Extracts links from @c <a @c href> tags which end with @c xml, @c rss or @c rdf
 			@param s the html source to scan (the actual source, no URI)
 			@return a list containing the detected feeds
 			*/
-			static FeedDetectorEntryList extractBruteForce(const QString& s) 
-			{ return FeedDetectorEntryList(); }
-						   
-			
-		private:
+            static QStringList extractBruteForce(const QString& s);
+		
+        private:
 			FeedDetector() {}
 	};
 }
