@@ -165,7 +165,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     // we need an instance
     setInstance( AkregatorFactory::instance() );
 
-    m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
+    m_standardFeedList = locate("data", "akregator/data/feeds.opml");
     m_standardListLoaded = false;
     m_loading = false;
 
@@ -336,7 +336,7 @@ void Part::openURLDelayed()
 
 void Part::openStandardFeedList()
 {
-    if ( openURL(m_standardFeedList) )
+    if ( !m_standardFeedList.isEmpty() && openURL(m_standardFeedList) )
         m_standardListLoaded = true;
 }
 
