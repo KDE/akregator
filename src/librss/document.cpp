@@ -30,6 +30,7 @@ struct Document::Private : public Shared
     {
         format=UnknownFormat;
         valid=false;
+		ttl=-1;
     }
 
     ~Private()
@@ -52,6 +53,7 @@ struct Document::Private : public Shared
     QDateTime lastBuildDate;
     QString rating;
     KURL docs;
+	int ttl;
     QString managingEditor;
     QString webMaster;
     HourList skipHours;
@@ -437,6 +439,9 @@ Document::Document(const QDomDocument &doc) : d(new Private)
     if (!(elemText = extractNode(channelNode, QString::fromLatin1("webMaster"))).isNull())
         d->webMaster = elemText;
 
+	if (!(elemText = extractNode(channelNode, QString::fromLatin1("ttl"))).isNull())
+        d->ttl = elemText.toUInt();
+
     n = channelNode.namedItem(QString::fromLatin1("skipHours"));
     if (!n.isNull())
         for (QDomElement e = n.firstChild().toElement(); !e.isNull(); e = e.nextSibling().toElement())
@@ -593,6 +598,11 @@ const HourList &Document::skipHours() const
 const DayList &Document::skipDays() const
 {
     return d->skipDays;
+}
+
+int Document::ttl() const
+{
+    return d->ttl;
 }
 
 Document &Document::operator=(const Document &other)

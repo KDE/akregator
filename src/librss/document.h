@@ -225,7 +225,8 @@ namespace RSS
 			 * @see skipHours(), DayList, Day
 			 */
 			const DayList &skipDays() const;
-
+			int ttl() const;
+		
 		private:
 			struct Private;
 			Private *d;

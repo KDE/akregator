@@ -12,6 +12,7 @@
 #include "propertiesdialog.h"
 #include "frame.h"
 #include "fetchtransaction.h"
+#include "intervalmanager.h"
 #include "feediconmanager.h"
 #include "feedstree.h"
 #include "articlelist.h"
@@ -33,7 +34,6 @@
 #include <kiconloader.h>
 #include <kxmlguifactory.h>
 #include <kaction.h>
-#include <kstandarddirs.h>
 #include <klineedit.h>
 #include <kpassdlg.h>
 #include <kcharsets.h>
@@ -191,10 +191,15 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_searchCombo->setCurrentItem(Settings::quickFilter());
     slotSearchComboChanged(Settings::quickFilter());
 
-    intervalFetchTimer = new QTimer;
-    connect( intervalFetchTimer, SIGNAL(timeout()), this, SLOT(slotFetchAllFeeds()));
+    m_globalFetchTimer = new QTimer;
+    connect( m_globalFetchTimer, SIGNAL(timeout()), this, SLOT(slotFetchAllFeeds()));
     if(Settings::useIntervalFetch())
-       intervalFetchTimer->start( Settings::autoFetchInterval()*60*1000 );
+       m_globalFetchTimer->start( Settings::autoFetchInterval()*60*1000 );
+
+    m_fetchTimer=new QTimer(this);
+    connect(m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()));
+    m_fetchTimer->start(1000*60, false);
+
 }
 
 void aKregatorView::saveSettings(bool /*quit*/)
@@ -204,9 +209,9 @@ void aKregatorView::saveSettings(bool /*quit*/)
    Settings::setViewMode( m_viewMode );
    Settings::writeConfig();
    if(Settings::useIntervalFetch())
-      intervalFetchTimer->changeInterval( Settings::autoFetchInterval()*60*1000 );
+      m_globalFetchTimer->changeInterval( Settings::autoFetchInterval()*60*1000 );
    else
-      intervalFetchTimer->stop();
+      m_globalFetchTimer->stop();
 }
 
 void aKregatorView::slotOpenTab(const KURL& url)
@@ -1141,6 +1146,27 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
     }
 }
 
+void aKregatorView::slotDoIntervalFetches()
+{
+    kdDebug() << "doIntervalFetches"<<endl;
+    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
+    {
+        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+        if (f && !f->isGroup() && f->autoFetch())
+        {
+            uint lastFetch=IntervalManager::self()->lastFetchTime(f->xmlUrl);
+            QDateTime dt=QDateTime::currentDateTime();
+            uint curTime=dt.toTime_t();
+            if (curTime-lastFetch >= uint(f->fetchInterval()*60))
+            {
+            kdDebug() << "interval fetching---"<< f->xmlUrl <<endl;
+                m_transaction->fetch(f);
+            }
+        }
+    }
+    m_transaction->start();
+}
+
 void aKregatorView::slotFetchCurrentFeed()
 {
     showFetchStatus();
@@ -1181,6 +1207,8 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     // TODO: move to slotFetchesCompleted
     Archive::save(feed);
     
+    IntervalManager::self()->feedFetched(feed->xmlUrl);
+
     // Also, update unread counts
 
     FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());

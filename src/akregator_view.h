@@ -179,6 +179,8 @@ namespace Akregator
 	    
 	    void slotTabCaption(const QString &capt);
 
+            void slotDoIntervalFetches();
+	    
         private:
             /**
              * Reset to default values, removing all existing data.
@@ -272,10 +274,11 @@ namespace Akregator
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;
             ViewMode m_viewMode;
-            QTimer *intervalFetchTimer;
-
+            QTimer *m_globalFetchTimer;
+            QTimer *m_fetchTimer;
+	    
             bool m_stopLoading;
-
+	    
             QPixmap m_feedTreePixmap;
             QPixmap m_folderTreePixmap;
 	    QPixmap m_errorTreePixmap;
