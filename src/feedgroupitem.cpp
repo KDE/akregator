@@ -45,18 +45,6 @@ FeedGroup* FeedGroupItem::node()
     return static_cast<FeedGroup*> (m_node); 
 }
 
-void FeedGroupItem::showContextMenu()
-{
-}
-
-void FeedGroupItem::showEditProperties()
-{
-}
-
-void FeedGroupItem::showAskDelete()
-{
-}
-
 void FeedGroupItem::setOpen(bool open)
 {
     node()->setOpen(open);

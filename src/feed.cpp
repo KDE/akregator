@@ -246,8 +246,7 @@ void Feed::appendArticles(const Document &d)
         {
             if (mya.status() == MyArticle::New)
                 mya.setStatus(MyArticle::Unread);
-        
-            
+  
             appendArticle(mya);
             changed = true;
         }

@@ -30,9 +30,7 @@ class FeedItem : public TreeNodeItem
     ~FeedItem();
     virtual Feed* node();
     virtual bool isFolder() { return false; }
-    virtual void showContextMenu(); 
-    virtual void showEditProperties();
-    virtual void showAskDelete();
+
     virtual void nodeChanged();
     
     static QPixmap errorPixmap();

@@ -29,9 +29,6 @@ public:
     ~TreeNodeItem();
     virtual TreeNode* node();
     
-    virtual void showContextMenu() = 0; 
-    virtual void showEditProperties() = 0;
-    virtual void showAskDelete() = 0;
     virtual void nodeChanged();
  
     virtual TreeNodeItem* firstChild() const; 
@@ -42,11 +39,7 @@ public:
     
     TreeNode* m_node;
     
-    virtual void paintCell( QPainter * p, const QColorGroup & cg,
-                            int column, int width, int align );
-
-    private:
-        void updateParentsRecursive(); //FIXME: remove
+    virtual void paintCell( QPainter * p, const QColorGroup & cg, int column, int width, int align );
 };
 
 };

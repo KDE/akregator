@@ -71,22 +71,10 @@ void FeedItem::nodeChanged()
         if (!node()->favicon().isNull())
              setPixmap(0, node()->favicon());
         else
-            setPixmap(0, defaultPixmap());
+
     }
     
     TreeNodeItem::nodeChanged();
-}
-
-void FeedItem::showContextMenu()
-{
-}
- 
-void FeedItem::showEditProperties()
-{
-}
-
-void FeedItem::showAskDelete()
-{
 }
 
 QPixmap FeedItem::errorPixmap()

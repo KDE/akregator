@@ -33,11 +33,6 @@ public:
     
     virtual bool isFolder() { return true; }
     virtual void setOpen(bool open);
-    
-    virtual void showContextMenu(); 
-    virtual void showEditProperties();
-    virtual void showAskDelete();
-    
 };
 
 };
