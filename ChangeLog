@@ -4,6 +4,7 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000019 ADD [x] implement tooltips and What's This? help -->berkus (enough of those for now)
 #000044 ADD [x] show an error favicon if feed could not be fetched -->smt
 #000037 ADD [x] add favicon support to the FeedsTree -->smt
         FIX [x] Fixed nasty bug with feed editing.
