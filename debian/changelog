@@ -6,6 +6,7 @@ akregator (1.0-beta4-4) unstable; urgency=low
   * some vqrious fixes to changelog, control files (on Jean-Michel Kelbert
     advices).
   * add some /usr/share/doc symlinks
+  * cleaning lintian overrides
   * First upload to debian (ITP closes: #251871).
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 09 Jul 2004 18:06:27 +0200
