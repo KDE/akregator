@@ -111,7 +111,7 @@ void FeedsTreeItem::paintCell( QPainter * p, const QColorGroup & cg,
     QString txt = " (" + QString::number(u) + ")";
     int txtW=fm.width( txt );
     
-    if (fm.width( oldText ) + txtW > width)
+    if (fm.width( oldText ) + txtW + x > width)
         oldText=KStringHandler::rPixelSqueeze(oldText,fm, width - txtW - x);
     
     p->drawText( x, 0, width-m-x, height(), align | AlignVCenter, oldText, -1, &br );
