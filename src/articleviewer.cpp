@@ -127,10 +127,18 @@ void ArticleViewer::generateCSS()
     "#headimage {\n"
     "  float: right;\n"
     "}\n\n"
-    "#content {\n"
+    "#body {\n"
     "  clear: none;\n"
     "  overflow: auto;\n"
-    "}\n\n")
+    "}\n\n"
+    "#content {\n"
+    "  display: block;\n"
+    "  margin-bottom: 6px;\n"
+    "}\n\n"
+    "#content > P {\n margin-top: 1px; }"
+    "#content > DIV {\n margin-top: 1px; }"
+    ".contentlink {\n display: block; }"
+    "\n\n")
     .arg(KGlobalSettings::generalFont().family())
     .arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px")
     .arg(cg.text().name())
@@ -194,12 +202,28 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
         text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
 
-    text += "<div id=\"content\">"+a.description();
+    text += "<div id=\"body\">";
+
+    if (!a.description().isEmpty())
+    {
+        text += "<span id=\"content\">"+a.description()+"</span>";
+    }
+
+    if (a.commentsLink().isValid())
+    {
+        text += "<a class=\"contentlink\" href=\"";
+        text += a.commentsLink().url();
+        text += "\">" + i18n( "Comments");
+        if (a.comments())
+        {
+            text += " ("+ QString::number(a.comments()) +")";
+        }
+        text += "</a>";
+    }
+
     if (a.link().isValid() || (a.guidIsPermaLink() && KURL(a.guid()).isValid()))
     {
-        if (!a.description().isNull())
-            text += "<p>\n";
-        text += "<a href=\"";
+        text += "<a class=\"contentlink\" href=\"";
         // in case link isn't valid, fall back to the guid permaLink.
         if (a.link().isValid())
         {
@@ -210,8 +234,6 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
             text += a.guid();
         }
         text += "\">" + i18n( "Complete Story" ) + "</a>";
-        if (!a.description().isNull())
-            text += "<p>\n";
     }
     text += "</div>";
     return text;

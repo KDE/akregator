@@ -143,6 +143,18 @@ QString MyArticle::guid() const
     return d->article.guid();
 }
 
+const KURL &MyArticle::commentsLink() const
+{
+    return d->article.commentsLink();
+}
+
+
+int MyArticle::comments() const
+{
+    return d->article.comments();
+}
+
+
 bool MyArticle::guidIsPermaLink() const
 {
     return d->article.guidIsPermaLink();
@@ -198,6 +210,24 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
         pnode.appendChild(dat);
         parent.appendChild(pnode);
     }
+
+    if (commentsLink().isValid())
+    {
+        QDomElement lnode = doc.createElement( "wfw:comment" );
+        QDomText ht=doc.createTextNode(commentsLink().url());
+        lnode.appendChild(ht);
+        parent.appendChild(lnode);
+    }
+
+    if (comments())
+    {
+        QDomElement lnode = doc.createElement( "slash:comments" );
+        QDomText ht=doc.createTextNode(QString::number(comments()));
+        lnode.appendChild(ht);
+        parent.appendChild(lnode);
+    }
+
+
 
     QDomElement metanode = doc.createElement( "metaInfo:meta" );
     metanode.setAttribute("type","status");

@@ -50,8 +50,10 @@ namespace Akregator
             bool guidIsPermaLink() const;
             const QDateTime &pubDate() const;
             KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
-
-            void dumpXmlData( QDomElement parent, QDomDocument doc ) const;
+            const KURL &commentsLink() const;
+			int comments() const;
+            
+			void dumpXmlData( QDomElement parent, QDomDocument doc ) const;
             
             bool operator<(const MyArticle &other) const;
             bool operator>(const MyArticle &other) const;
