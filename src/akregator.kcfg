@@ -23,7 +23,7 @@
   <entry key="Splitter 1 Sizes" type="IntList" >
    <label>Sizes for first splitter</label>
    <whatsthis>First (usually vertical) splitter widget sizes.</whatsthis>
-   <default>50,550</default>
+   <default>225,650</default>
   </entry>
   <entry key="Splitter 2 Sizes" type="IntList" >
    <label>Sizes for second splitter</label>
