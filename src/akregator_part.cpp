@@ -98,7 +98,7 @@ void Part::setupActions()
     new KAction(i18n("&Delete Feed"), "editdelete", "Alt+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Delete Folder"), "editdelete", "Alt+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "group_remove");
     new KAction(i18n("&Edit Feed..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
-    new KAction(i18n("&Edit Folder..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "group_modify");
+    new KAction(i18n("&Rename Folder..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "group_modify");
 
     KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "view_mode" );
     
