@@ -72,11 +72,15 @@ namespace Akregator
             virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);
             
             virtual void keyPressEvent(QKeyEvent* e);
-            
+
         private:
 
             void showSummary(FeedGroup* group);
             void showSummary(Feed *f);
+
+            /** renders @c body. Use this method whereever possible.
+            @param body html to render, without header and footer */
+            void renderContent(const QString& body);
             
             /** Takes an article and renders it as HTML            
             @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
@@ -87,7 +91,7 @@ namespace Akregator
             /** Resets the canvas and adds writes the HTML header to it.
              */
             void beginWriting();
-            
+
             /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
             void endWriting();
             
@@ -98,6 +102,7 @@ namespace Akregator
             void slotOpenLinkInternal();
                                   
             QString m_htmlHead;
+            QString m_htmlFooter;
             QPaintDeviceMetrics m_metrics;
             QString m_currentText;
             QString m_imageDir;
@@ -109,6 +114,9 @@ namespace Akregator
         
         private slots:
             bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            
+            void slotPaletteOrFontChanged();
+            
     };
 }
 

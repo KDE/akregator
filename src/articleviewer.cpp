@@ -44,10 +44,13 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-    : Viewer(parent, name), m_htmlHead(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(normalView)
+    : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(normalView)
 {
     generateCSS();
+    connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
+    connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     m_imageDir="file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/");
+    m_htmlFooter = "</body></html>";
 }
 
 void ArticleViewer::openDefault()
@@ -80,10 +83,7 @@ void ArticleViewer::openDefault()
                     .arg(i18n(" to update a feed or folder."))
                     .arg(i18n("Click \"Fetch All\" to update all feeds."));
 
-    begin();
-    write(text);
-    end();
-
+    renderContent(text);
 }
 
 void ArticleViewer::generateCSS()
@@ -178,10 +178,9 @@ void ArticleViewer::generateCSS()
 
 void ArticleViewer::reload()
 {
-    generateCSS();
-    begin();//KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
-    write(m_htmlHead + m_currentText);
-    end();
+    beginWriting();
+    write(m_currentText);
+    endWriting();
 }
 
 QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
@@ -256,6 +255,14 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
 
 }
 
+void ArticleViewer::renderContent(const QString& text)
+{
+    m_currentText = text;
+    beginWriting();
+    write(text);
+    endWriting();
+}
+
 void ArticleViewer::beginWriting()
 {
     view()->setContentsPos(0,0);
@@ -265,8 +272,7 @@ void ArticleViewer::beginWriting()
 
 void ArticleViewer::endWriting()
 {
-    m_currentText = m_currentText + "</body></html>";
-    write("</body></html>");
+    write(m_htmlFooter);
     end();
 }
 
@@ -288,64 +294,61 @@ void ArticleViewer::showSummary(FeedGroup* group)
 {
     if (!group)
         return;
-    
-    m_currentText = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2").arg(directionOf(group->title())).arg(group->title());
+    QString text;
+    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    text += QString("<div id=\"headertitle\" dir=\"%1\">%2").arg(directionOf(group->title())).arg(group->title());
     if(group->unread() == 0)
-        m_currentText += i18n(" (no unread articles)");
+        text += i18n(" (no unread articles)");
     else
-        m_currentText += i18n(" (1 unread article)", " (%n unread articles)", group->unread());
-    m_currentText += QString("</div>\n");
-    m_currentText += "</div>\n"; // /headerbox
+        text += i18n(" (1 unread article)", " (%n unread articles)", group->unread());
+    text += QString("</div>\n");
+    text += "</div>\n"; // /headerbox
     
     for( TreeNode *it = group; it != 0; it = it->nextSibling() )
         kdDebug() << "title: " << it->title() << endl;
-    //for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
 
-    m_currentText += "</body></html>";
-    //kdDebug() << m_htmlHead << m_currentText << endl;
-    begin();
-    write(m_htmlHead+m_currentText);
-    end();
+    renderContent(text);
 }
 
 void ArticleViewer::showSummary(Feed *f)
 {
-    if(!f) return;
+    if(!f)
+        return;
     
-    m_currentText = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    QString text;
+    text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
-    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">").arg(directionOf(f->title()));
-    m_currentText += f->title();
+    text += QString("<div id=\"headertitle\" dir=\"%1\">").arg(directionOf(f->title()));
+    text += f->title();
     if(f->unread() == 0)
-        m_currentText += i18n(" (no unread articles)");
+        text += i18n(" (no unread articles)");
     else
-        m_currentText += i18n(" (1 unread article)", " (%n unread articles)", f->unread());
-    m_currentText += "</div>\n"; // headertitle
-    m_currentText += "</div>\n"; // /headerbox
+        text += i18n(" (1 unread article)", " (%n unread articles)", f->unread());
+    text += "</div>\n"; // headertitle
+    text += "</div>\n"; // /headerbox
     
     if (!f->image().isNull()) // image
     {
-  //      m_currentText += QString("<div id=\"body\" style=\"height:%1px\">").arg(f->image().height()+10);
-          m_currentText += QString("<div id=\"body\">").arg(f->image().height()+10);
+  //      text += QString("<div id=\"body\" style=\"height:%1px\">").arg(f->image().height()+10);
+          text += QString("<div id=\"body\">").arg(f->image().height()+10);
         QString url=f->xmlUrl();
-        m_currentText += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        text += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
-    else m_currentText += "<div id=\"body\">";
+    else text += "<div id=\"body\">";
 
     
     if( !f->description().isEmpty() )
     {
-        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->description()));
-        m_currentText += i18n("<b>Description:</b> %1<br><br>").arg(f->description());
-        m_currentText += "</div>\n"; // /description
+        text += QString("<div dir=\"%1\">").arg(directionOf(f->description()));
+        text += i18n("<b>Description:</b> %1<br><br>").arg(f->description());
+        text += "</div>\n"; // /description
     }
 
     if ( !f->htmlUrl().isEmpty() )
     {
-        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->htmlUrl()));
-        m_currentText += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(f->htmlUrl()).arg(f->htmlUrl());
-        m_currentText += "</div>\n"; // / link
+        text += QString("<div dir=\"%1\">").arg(directionOf(f->htmlUrl()));
+        text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(f->htmlUrl()).arg(f->htmlUrl());
+        text += "</div>\n"; // / link
     }   
     /*if(f->language() && !f->language().isEmpty()) {
         // language name code from kttsd
@@ -358,34 +361,22 @@ void ArticleViewer::showSummary(Feed *f)
         }
        // if(name.isEmpty()) langName = f->language();
             
-        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->language()));
-        m_currentText += i18n("<b>Language:</b> %1").arg((langName));
-        m_currentText += "</div>\n"; // /language
+        text += QString("<div dir=\"%1\">").arg(directionOf(f->language()));
+        text += i18n("<b>Language:</b> %1").arg((langName));
+        text += "</div>\n"; // /language
     }*/
 
-    //m_currentText += i18n("<b>Unread articles:</b> %1").arg(f->unread());
-    m_currentText += "</div>"; // /body
+    //text += i18n("<b>Unread articles:</b> %1").arg(f->unread());
+    text += "</div>"; // /body
     
-    m_currentText += "</body></html>";
-    
-    begin();
-    write(m_htmlHead+m_currentText);
-    end();
+    renderContent(text);
 }
 
 void ArticleViewer::slotShowArticle(const MyArticle& article)
 {
     m_viewMode = normalView;
 
-    view()->setContentsPos(0,0);
-    begin();
-
-    QString text=formatArticle(article.feed(), article) +"</body></html>";
-    m_currentText=text;
-
-    write(m_htmlHead + text);
-
-    end();
+    renderContent( formatArticle(article.feed(), article) );
 }
 
 void ArticleViewer::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
@@ -411,16 +402,13 @@ void ArticleViewer::slotUpdateCombinedView()
     ArticleSequence::ConstIterator end = articles.end();
     ArticleSequence::ConstIterator it = articles.begin();
 
-    beginWriting();
-
     QString text;
 
     for ( ; it != end; ++it)
         if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
             text += "<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";
 
-    write(text);
-    endWriting();
+    renderContent(text);
 }
 
 void ArticleViewer::slotClear()
@@ -432,10 +420,7 @@ void ArticleViewer::slotClear()
     }
     m_node = 0;
 
-    // FIXME: is this the proper way of deleting the view content??
-    view()->setContentsPos(0,0);
-    begin();
-    end();
+    renderContent(QString());
 }
 
 void ArticleViewer::slotShowNode(TreeNode* node)
@@ -483,5 +468,10 @@ void ArticleViewer::keyPressEvent(QKeyEvent* e)
     e->ignore();
 }
 
+void ArticleViewer::slotPaletteOrFontChanged()
+{
+    generateCSS();
+    reload();
+}
 #include "articleviewer.moc"
 // vim: set et ts=4 sts=4 sw=4:
