@@ -70,7 +70,7 @@ void Viewer::displayInExternalBrowser(const KURL &url)
        *proc << cmdAndArgs;
        proc->start(KProcess::DontCare);
        delete proc;
-   }        
+   }
 }
 
 bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
@@ -80,7 +80,7 @@ bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
        displayInExternalBrowser(url); return true;
    }
    if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground) {
-       emit urlClicked(url,true); return true; 
+       emit urlClicked(url,true); return true;
    }
    return false;
 }

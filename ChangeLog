@@ -14,6 +14,7 @@ New Features:
        - In case the feed doesn't provide an article <link> element, fall back to the <guid> permaLink -sg
        
 Bug Fixes:
+       - Update interval spinbox should be disabled if the checkbox isn't checked -tpr
        - "aKregator - 0 unread" -> "aKregator - No unread articles" -tpr
        - Scroll up when changing the article in article viewer -tpr
        - Various frame-switching bug fixes -smt

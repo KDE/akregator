@@ -94,6 +94,9 @@
                     <property name="name">
                         <cstring>updateSpinBox</cstring>
                     </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
                     <property name="suffix">
                         <string> minutes</string>
                     </property>
@@ -136,11 +139,21 @@
         </spacer>
     </vbox>
 </widget>
-<includes>
-    <include location="local" impldecl="in implementation">propertieswidgetbase.ui.h</include>
-</includes>
+<connections>
+    <connection>
+        <sender>upChkbox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>updateSpinBox</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+</connections>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
 </functions>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>klineedit.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>knuminput.h</includehint>
+</includehints>
 </UI>
