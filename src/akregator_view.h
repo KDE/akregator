@@ -17,9 +17,11 @@
 
 
 class QSplitter;
+class QGrid;
 class QTabWidget;
 class QDomDocument;
 class QDomElement;
+class QToolButton;
 class QListViewItem;
 class KListViewItem;
 class KListView;
@@ -124,7 +126,9 @@ namespace Akregator
             void slotMouseOverInfo(const KFileItem *kifi);
             
             void slotOpenTab(const KURL& url);
-
+            void slotRemoveTab();
+            void slotTabChanged(QWidget *w);
+            
         private:
             /**
              * Reset to default values, removing all existing data.
@@ -172,7 +176,9 @@ namespace Akregator
              * A tab widget for multiple viewers.
              */
             QTabWidget *m_tabs;
-
+            QToolButton *m_tabsClose;
+            QGrid *m_mainTab;
+            
             QSplitter *m_panner1, *m_panner2;
             QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;

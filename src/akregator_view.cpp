@@ -24,6 +24,7 @@
 #include <kinputdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
+#include <kiconloader.h>
 #include <kxmlguifactory.h>
 #include <kaction.h>
 #include <kstandarddirs.h>
@@ -43,11 +44,13 @@
 #include <qlayout.h>
 #include <qwhatsthis.h>
 #include <qpopupmenu.h>
+#include <qtoolbutton.h>
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
 #include <qvaluevector.h>
 #include <qtabwidget.h>
 #include <qgrid.h>
+#include <qtooltip.h>
 
 
 using namespace Akregator;
@@ -82,12 +85,24 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new QTabWidget(m_panner1);
+    m_tabsClose = new QToolButton( m_tabs );
+    connect( m_tabsClose, SIGNAL( clicked() ), this,
+            SLOT( slotRemoveTab() ) );
+    
+    m_tabsClose->setIconSet( SmallIcon( "tab_remove" ) );
+    m_tabsClose->adjustSize();
+    QToolTip::add(m_tabsClose, i18n("Close the current tab"));
+    m_tabs->setCornerWidget( m_tabsClose, TopRight );
+    
+    connect( m_tabs, SIGNAL( currentChanged(QWidget *) ), this,
+            SLOT( slotTabChanged(QWidget *) ) );
+    
     QWhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
 
-    QGrid *w1 = new QGrid(1, this);
-    QWhatsThis::add(w1, i18n("Articles list."));
+    m_mainTab = new QGrid(1, this);
+    QWhatsThis::add(m_mainTab, i18n("Articles list."));
 
-    m_panner2 = new QSplitter(QSplitter::Vertical, w1, "panner2");
+    m_panner2 = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
     m_articles = new ArticleList( m_panner2, "articles" );
     connect( m_articles, SIGNAL(clicked(QListViewItem *)),
@@ -108,7 +123,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
-    m_tabs->addTab(w1, i18n( "Articles" ));
+    m_tabs->addTab(m_mainTab, i18n( "Articles" ));
 
     // -- DEFAULT INIT
     // Root item (will be reset when loading from file)
@@ -133,6 +148,8 @@ void aKregatorView::slotOpenTab(const KURL& url)
     page->openURL(url);
     m_tabs->addTab(page->widget(), "Untitled");
     m_tabs->showPage(page->widget());
+    if (m_tabs->count() > 1)
+        m_tabsClose->setEnabled(true);
 }
 
 // clears everything out, even removes DEFAULT INIT
@@ -382,7 +399,23 @@ void aKregatorView::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
+void aKregatorView::slotRemoveTab()
+{
+    QWidget *w = m_tabs->currentPage ();
+    if (w==m_mainTab)
+        return;
+    m_tabs->removePage(w);
+    if (m_tabs->count() <= 1)
+        m_tabsClose->setEnabled(false);
+}
 
+void aKregatorView::slotTabChanged(QWidget *w)
+{
+    if (w==m_mainTab)
+        m_tabsClose->setEnabled(false);
+    else
+        m_tabsClose->setEnabled(true);
+}
 
 void aKregatorView::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)
 {
