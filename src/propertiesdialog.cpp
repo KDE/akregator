@@ -63,8 +63,8 @@ int FeedPropertiesDialog::fetchInterval() const
             return widget->updateSpinBox->value()*60;
         case 2: // days
             return widget->updateSpinBox->value()*60*24;
-        case 3: // never
-            return -1;
+        default:
+            return -1; // never
     }
 }
 
