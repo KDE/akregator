@@ -68,7 +68,7 @@ void AddFeedDialog::setURL(const QString& t)
 void AddFeedDialog::slotOk( )
 {
     enableButtonOK(false);
-    feedURL = widget->urlEdit->text();
+    feedURL = widget->urlEdit->text().stripWhiteSpace();
 
     Feed *f=new Feed();
 
