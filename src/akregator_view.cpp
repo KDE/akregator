@@ -818,7 +818,7 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 	        m_articles->setColumnWidthMode(0, QListView::Manual);
 	    }
 
-        slotUpdateArticleList(feed, false);
+        slotUpdateArticleList(feed);
     }
     else
     {
@@ -845,12 +845,12 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
 }
 
-void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
+void aKregatorView::slotUpdateArticleList(FeedGroup *src)
 {
     //kdDebug() << k_funcinfo << src->title() << endl;
     if (!src->isGroup())
     {
-        slotUpdateArticleList(static_cast<Feed *>(src), false, onlyUpdateNew);
+        slotUpdateArticleList(static_cast<Feed *>(src));
     }
     else
     {
@@ -861,34 +861,26 @@ void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
         {
             FeedGroup *g = m_feeds.find(i);
             if (g)
-                slotUpdateArticleList(g, onlyUpdateNew);
+                slotUpdateArticleList(g);
         }
     }
 }
 
-void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpdateNew)
+void aKregatorView::slotUpdateArticleList(Feed *source)
 {
     m_articles->setUpdatesEnabled(false);
-    if (clear)
-    {
-        m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
-    }
-
+    m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
+    
     if (source->articles().count() > 0)
     {
         MyArticle::List::ConstIterator it;
         MyArticle::List::ConstIterator end = source->articles().end();
         for (it = source->articles().begin(); it != end; ++it)
-        {
-            if (!onlyUpdateNew || (*it).status()==MyArticle::New)
+            if ( itemAdded( new ArticleListItem( m_articles, m_articles->lastChild(), (*it), source ) ) )
             {
-                if (itemAdded(new ArticleListItem( m_articles, (onlyUpdateNew ? (0): (m_articles->lastChild())), (*it), source )))
-                {
-                    if (m_viewMode==CombinedView)
-                        m_articleViewer->show(source, *it, false);     
-                }
+                if (m_viewMode==CombinedView)
+                    m_articleViewer->show(source, *it, false);     
             }
-        }
     }
     m_articles->setUpdatesEnabled(true);
     m_articles->triggerUpdate();
@@ -1271,7 +1263,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 {
     // If its a currenly selected feed, update view
     if (feed->item() == m_tree->currentItem())
-        slotUpdateArticleList(feed, false, true);
+        slotUpdateArticleList(feed);
 
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
@@ -1506,7 +1498,7 @@ bool aKregatorView::itemMatches (ArticleListItem *item)
     if (!m_currentStatusFilter || !m_currentTextFilter)
         return true;
 
-    return m_currentTextFilter->matches( item->article() ) && m_currentStatusFilter->matches( item->article() );
+    return  m_currentStatusFilter->matches( item->article() ) && m_currentTextFilter->matches( item->article() );
 }
 
 bool aKregatorView::itemAdded(ArticleListItem *item)

@@ -40,13 +40,16 @@ namespace Akregator
             /**
              * @return true if this article is the same as other, based on guid or link.
              */
-            bool isTheSameAs(const MyArticle &other);
+       //     bool isTheSameAs(const MyArticle &other);
             void offsetFetchTime(int secs);
 
             QString title() const;
             const KURL &link() const;
             QString description() const;
             QString guid() const;
+            /** if true, the article is kept even when expired **/
+            bool keep() const;
+            void setKeep(bool keep);
             bool guidIsPermaLink() const;
             const QDateTime &pubDate() const;
             KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;

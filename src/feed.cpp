@@ -144,7 +144,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
                     mya.setStatus(MyArticle::New);
                 else
                 {
-                    if (mya.status()==MyArticle::New)
+                    if (mya.status() == MyArticle::New)
                         mya.setStatus(MyArticle::Unread);
                 }
 
@@ -172,6 +172,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
     }
     m_articles.enableSorting(true);
     m_articles.sort();
+    
 }
 
 void Feed::appendArticle(const MyArticle &a)
@@ -181,7 +182,21 @@ void Feed::appendArticle(const MyArticle &a)
     {
         if (a.status()!=MyArticle::Read)
             m_unread++;
-        m_articles.append(a);
+            
+        ArticleSequence::Iterator it;
+        ArticleSequence::Iterator end = m_articles.end();
+        bool inserted = false;    
+        it = m_articles.begin();
+        
+        while ( !inserted && it != end )
+            if ( a > (*it) )
+                ++it;       
+            else
+                inserted = true;
+        if ( inserted )
+            m_articles.insert(it, a);
+        else
+            m_articles.append(a);    
     }    
 }
 
@@ -322,10 +337,12 @@ void Feed::deleteExpiredArticles()
         QDateTime now = QDateTime::currentDateTime();
         ArticleSequence::ConstIterator it;
         ArticleSequence::ConstIterator tmp;
-        ArticleSequence::ConstIterator en = m_articles.end();
-        kdDebug() << "blub" << endl;
+        ArticleSequence::ConstIterator end = m_articles.end();
+        // when we found an article which is not yet expired, we can stop, since articles are sorted by date 
+        bool foundNotYetExpired = false;
+        
         it = m_articles.begin();
-        while ( it != en)
+        while ( !foundNotYetExpired && it != end )
         {
             if ((*it).pubDate().secsTo(now) > expiryInSec)
             {
@@ -334,7 +351,8 @@ void Feed::deleteExpiredArticles()
                 m_articles.remove(*tmp);
          
             }
-            else ++it;
+            else 
+                foundNotYetExpired = true;
         }    
     }    
 }
