@@ -49,6 +49,6 @@ partdesktop_DATA = akregator_part.desktop
 # this is where the part's XML-GUI resource file goes
 partrcdir = $(kde_datadir)/akregatorpart
 partrc_DATA = akregator_part.rc welcome.html
-SUBDIRS = librss
+SUBDIRS = librss kontact
 
 noinst_HEADERS = archive.h
