@@ -59,7 +59,7 @@ void AddFeedDialog::slotOk( )
     feed=f;
     if (feedURL.find(":/") == -1)
         feedURL.prepend("http://");
-    f->xmlUrl=feedURL;
+    f->setXmlUrl(feedURL);
 
     widget->statusLabel->setText( i18n("Downloading %1").arg(feedURL) );
 
@@ -88,7 +88,7 @@ void AddFeedDialog::fetchError(Feed *)
 void AddFeedDialog::fetchDiscovery(Feed *f)
 {
 	widget->statusLabel->setText( i18n("Feed found, downloading...") );
-    feedURL=f->xmlUrl;
+    feedURL=f->xmlUrl();
 }
 
 #include "addfeeddialog.moc"

@@ -114,7 +114,7 @@ void FetchTransaction::feedDone(Feed *f)
 
 void FetchTransaction::loadIcon(Feed *f)
 {
-    KURL u(f->xmlUrl);
+    KURL u(f->xmlUrl());
     if (u.protocol()!= "http")
         return;
     QString h="http://"+u.host();
@@ -128,7 +128,7 @@ void FetchTransaction::doFetchIcon(int c)
 {
     Feed *f=m_iconFetchList.at(c);
     if (!f) return;
-    KURL u(f->xmlUrl);
+    KURL u(f->xmlUrl());
     QString h=u.host();
     m_iconFetchList.remove(c);
     FeedIconManager::self()->loadIcon("http://"+h+"/");

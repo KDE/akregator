@@ -27,8 +27,7 @@ using namespace RSS;
 
 Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     : FeedGroup(i, coll)
-    , updateTitle(false)
-    , articles()
+    , m_articles()
     , m_loader(0)
     , m_transaction(0)
     , m_fetchError(false)
@@ -39,23 +38,16 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
 }
 
 Feed::~Feed()
-{
-}
+{}
 
-bool Feed::isGroup()
-{
-    return false;
-}
-
-QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
+QDomElement Feed::toXml( QDomElement parent, QDomDocument document ) const
 {
     QDomElement el = document.createElement( "outline" );
     el.setAttribute( "text", title() );
     el.setAttribute( "title", title() );
-    el.setAttribute( "xmlUrl", xmlUrl );
-    el.setAttribute( "htmlUrl", htmlUrl );
-    el.setAttribute( "description", description );
-    el.setAttribute( "updateTitle", (updateTitle ? "true" : "false") );
+    el.setAttribute( "xmlUrl", m_xmlUrl );
+    el.setAttribute( "htmlUrl", m_htmlUrl );
+    el.setAttribute( "description", m_description );
     el.setAttribute( "autoFetch", (autoFetch() ? "true" : "false") );
     el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
@@ -73,23 +65,23 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     tnode.appendChild(t);
     channode.appendChild(tnode);
 
-    if (!htmlUrl.isEmpty())
+    if (!m_htmlUrl.isEmpty())
     {
         QDomElement lnode = doc.createElement( "link" );
-        QDomText ht=doc.createTextNode( htmlUrl );
+        QDomText ht=doc.createTextNode( m_htmlUrl );
         lnode.appendChild(ht);
         channode.appendChild(lnode);
     }
 
     // rss 2.0 requires channel description
     QDomElement dnode = doc.createElement( "description" );
-    QDomText dt=doc.createTextNode( htmlUrl );
+    QDomText dt=doc.createTextNode( m_htmlUrl );
     dnode.appendChild(dt);
     channode.appendChild(dnode);
 
     ArticleSequence::ConstIterator it;
-    ArticleSequence::ConstIterator en=articles.end();
-    for (it = articles.begin(); it != en; ++it)
+    ArticleSequence::ConstIterator en=m_articles.end();
+    for (it = m_articles.begin(); it != en; ++it)
     {
         QDomElement enode = doc.createElement( "item" );
         (*it).dumpXmlData(enode, doc);
@@ -101,8 +93,8 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
 void Feed::markAllRead()
 {
     ArticleSequence::Iterator it;
-    ArticleSequence::Iterator en=articles.end();
-    for (it = articles.begin(); it != en; ++it)
+    ArticleSequence::Iterator en=m_articles.end();
+    for (it = m_articles.begin(); it != en; ++it)
     {
         (*it).setStatus(MyArticle::Read);
     }
@@ -114,7 +106,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
 {
     //kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
     findDups=true;
-    articles.enableSorting(false);
+    m_articles.enableSorting(false);
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
     //kdDebug() << "m_unread before appending articles=="<<m_unread<<endl;
@@ -126,8 +118,8 @@ void Feed::appendArticles(const Document &d, bool findDups)
         MyArticle mya(*it);
 	if (findDups)
         {
-            ArticleSequence::ConstIterator oo=articles.find(mya);
-            if (oo == articles.end() )
+            ArticleSequence::ConstIterator oo=m_articles.find(mya);
+            if (oo == m_articles.end() )
             {
                 if (m_merged)
                     mya.setStatus(MyArticle::New);
@@ -159,15 +151,15 @@ void Feed::appendArticles(const Document &d, bool findDups)
             nudge++;
         }
     }
-    articles.enableSorting(true);
-    articles.sort();
+    m_articles.enableSorting(true);
+    m_articles.sort();
 }
 
 void Feed::appendArticle(const MyArticle &a)
 {
     if (a.status()!=MyArticle::Read)
         m_unread++;
-    articles.append(a);
+    m_articles.append(a);
 }
 
 
@@ -179,8 +171,8 @@ void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
 
     // mark all new as unread
     ArticleSequence::Iterator it;
-    ArticleSequence::Iterator en=articles.end();
-    for (it = articles.begin(); it != en; ++it)
+    ArticleSequence::Iterator en=m_articles.end();
+    for (it = m_articles.begin(); it != en; ++it)
     {
         if ((*it).status()==MyArticle::New)
         {
@@ -189,10 +181,10 @@ void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
     }
 
    // Disable icon to show it is fetching.
-    if (!favicon.isNull())
+    if (!m_favicon.isNull())
     {
         KIconEffect iconEffect;
-        QPixmap tempIcon = iconEffect.apply(favicon, KIcon::Small, KIcon::DisabledState);
+        QPixmap tempIcon = iconEffect.apply(m_favicon, KIcon::Small, KIcon::DisabledState);
         item()->setPixmap(0, tempIcon);
     }
 
@@ -213,7 +205,7 @@ void Feed::tryFetch()
     m_fetchError=false;
 
     m_loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
-    m_loader->loadFrom( xmlUrl, new FileRetriever );
+    m_loader->loadFrom( m_xmlUrl, new FileRetriever );
 }
 
 void Feed::fetchCompleted(Loader *l, Document doc, Status status)
@@ -226,7 +218,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         if (m_followDiscovery && (status==ParseError) && (m_fetchTries < 3) && 			(l->discoveredFeedURL().isValid()))
         {
             m_fetchTries++;
-            xmlUrl=l->discoveredFeedURL().url();
+            m_xmlUrl=l->discoveredFeedURL().url();
             emit fetchDiscovery(this);
             tryFetch();
             return;
@@ -240,9 +232,9 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     }
 
     // Restore favicon.
-    if (!favicon.isNull())
+    if (!m_favicon.isNull())
     {
-	item()->setPixmap(0, favicon);
+	item()->setPixmap(0, m_favicon);
     }
     else
     {
@@ -254,13 +246,13 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
 
-    if (image.isNull())
+    if (m_image.isNull())
     {
-        QString u=xmlUrl;
+        QString u=m_xmlUrl;
         QString imageFileName=KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
-        image=QPixmap(imageFileName, "PNG");
+        m_image=QPixmap(imageFileName, "PNG");
 
-        if (image.isNull())
+        if (m_image.isNull())
         {
             if (m_document.image()) // if we aint got teh image
                                     // and the feed provides one, get it....
@@ -271,10 +263,11 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
     }
 
-    if (updateTitle || title().isEmpty()) setTitle( m_document.title() );
+    if (title().isEmpty()) 
+        setTitle( m_document.title() );
 
-    description = m_document.description();
-    htmlUrl = m_document.link().url();
+    m_description = m_document.description();
+    m_htmlUrl = m_document.link().url();
     
     //kdDebug() << "ismerged reprots:::"<<isMerged()<<endl;
 
@@ -299,36 +292,17 @@ void Feed::setFavicon(const QPixmap &p)
 	return;
     if (!m_fetchError && item())
             item()->setPixmap(0, p);
-    favicon=p;
+    m_favicon=p;
 }
 
 void Feed::setImage(const QPixmap &p)
 {
     if (p.isNull())
         return;
-    image=p;
-    QString u=xmlUrl;
-    image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
+    m_image=p;
+    QString u=m_xmlUrl;
+    m_image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
     emit(imageLoaded(this));
-}
-
-bool Feed::autoFetch() const
-{
-    return m_autoFetch;
-}
-
-int Feed::fetchInterval() const
-{
-    return m_fetchInterval;
-}
-
-void Feed::setAutoFetch(bool b)
-{
-    m_autoFetch=b;
-}
-void Feed::setFetchInterval(int i)
-{
-    m_fetchInterval=i;
 }
 
 

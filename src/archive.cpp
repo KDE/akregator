@@ -26,10 +26,10 @@ void Archive::load(Feed *f)
     if (!f)
         return;
     
-    if (f->isMerged() || f->xmlUrl.isNull())
+    if (f->isMerged() || f->xmlUrl().isNull())
         return;
    
-    KURL url( f->xmlUrl );
+    KURL url( f->xmlUrl() );
     
     if (!url.isValid())
         return;
@@ -39,10 +39,10 @@ void Archive::load(Feed *f)
         f->setFavicon(QPixmap(KGlobal::dirs()->findResource("cache", iconFile+".png")));
 
     // images are cache, articles is data.. good I think.
-    QString u=f->xmlUrl;
+    QString u=f->xmlUrl();
     
     QString imageFileName=KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
-    f->image=QPixmap(imageFileName, "PNG"); 
+    f->setImage(QPixmap(imageFileName, "PNG")); 
     
     QString filePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + url.prettyURL(-1).replace("/", "_").replace(":", "_") + ".xml";
 
@@ -86,7 +86,7 @@ void Archive::save(Feed *f)
     if (!f)
         return;
 
-    KURL url( f->xmlUrl );
+    KURL url( f->xmlUrl() );
 
     QString filePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + url.prettyURL(-1).replace("/", "_").replace(":", "_") + ".xml";
 

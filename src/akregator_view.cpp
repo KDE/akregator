@@ -465,7 +465,6 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
                               xmlurl,
                               e.attribute("htmlUrl"),
                               e.attribute("description"),
-                              e.attribute("updateTitle") == "true" ? true : false,
                               e.attribute("autoFetch") == "true" ? true : false,
                               e.attribute("fetchInterval").toUInt()
                             );
@@ -501,7 +500,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 // oh ugly as hell (pass Feed parameters in a FeedData?)
 Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
                                       QString title, QString xmlUrl, QString htmlUrl,
-                                      QString description, bool updateTitle, bool autoFetch, int fetchInterval)
+                                      QString description, bool autoFetch, int fetchInterval)
 {
     Feed *feed;
     if (ef)
@@ -516,10 +515,9 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     }
 
     feed->setTitle( title );
-    feed->xmlUrl         = xmlUrl;
-    feed->htmlUrl        = htmlUrl;
-    feed->description    = description;
-    feed->updateTitle    = updateTitle;
+    feed->setXmlUrl(xmlUrl);
+    feed->setHtmlUrl(htmlUrl);
+    feed->setDescription(description);
     feed->setAutoFetch(autoFetch);
     feed->setFetchInterval(fetchInterval);
 
@@ -862,11 +860,11 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
         m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
     }
 
-    if (source->articles.count() > 0)
+    if (source->articles().count() > 0)
     {
         MyArticle::List::ConstIterator it;
-        MyArticle::List::ConstIterator end = source->articles.end();
-        for (it = source->articles.begin(); it != end; ++it)
+        MyArticle::List::ConstIterator end = source->articles().end();
+        for (it = source->articles().begin(); it != end; ++it)
         {
             if (!onlyUpdateNew || (*it).status()==MyArticle::New)
             {
@@ -952,9 +950,8 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     addFeed_Internal( feed, elt,
                       dlg->feedName(),
                       dlg->url(),
-                      feed->htmlUrl,
-                      feed->description,
-                      false,
+                      feed->htmlUrl(),
+                      feed->description(),
                       dlg->autoFetch(),
                       dlg->fetchInterval()
                     );
@@ -1049,14 +1046,14 @@ void aKregatorView::slotFeedModify()
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
 
     dlg->setFeedName( feed->title() );
-    dlg->setUrl( feed->xmlUrl );
+    dlg->setUrl( feed->xmlUrl() );
     dlg->setAutoFetch(feed->autoFetch());
     dlg->setFetchInterval(feed->fetchInterval());
 
     if (dlg->exec() != QDialog::Accepted) return;
 
     feed->setTitle( dlg->feedName() );
-    feed->xmlUrl         = dlg->url();
+    feed->setXmlUrl( dlg->url() );
     feed->setAutoFetch(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
 
@@ -1100,9 +1097,9 @@ void aKregatorView::slotOpenHomepage()
    QListViewItem *item=m_tree->currentItem();
    Feed *f = static_cast<Feed *>(m_feeds.find(item));
    if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-       displayInExternalBrowser(f->htmlUrl);
+       displayInExternalBrowser(f->htmlUrl());
    else
-       slotOpenTab(f->htmlUrl);
+       slotOpenTab(f->htmlUrl());
 }
 
 void aKregatorView::markAllRead(QListViewItem *item)
@@ -1206,12 +1203,12 @@ void aKregatorView::slotDoIntervalFetches()
         Feed *f = static_cast<Feed *>(m_feeds.find(*it));
         if (f && !f->isGroup() && f->autoFetch())
         {
-            uint lastFetch=IntervalManager::self()->lastFetchTime(f->xmlUrl);
+            uint lastFetch=IntervalManager::self()->lastFetchTime(f->xmlUrl());
             QDateTime dt=QDateTime::currentDateTime();
             uint curTime=dt.toTime_t();
             if (curTime-lastFetch >= uint(f->fetchInterval()*60))
             {
-            kdDebug() << "interval fetching---"<< f->xmlUrl <<endl;
+            kdDebug() << "interval fetching---"<< f->xmlUrl() <<endl;
                 m_transaction->fetch(f);
             }
         }
@@ -1257,11 +1254,11 @@ void aKregatorView::slotFeedFetched(Feed *feed)
         slotUpdateArticleList(feed, false, true);
 
     // iterate through the articles (once again) to do notifications properly
-    if (feed->articles.count() > 0)
+    if (feed->articles().count() > 0)
     {
         MyArticle::List::ConstIterator it;
-        MyArticle::List::ConstIterator end = feed->articles.end();
-        for (it = feed->articles.begin(); it != end; ++it)
+        MyArticle::List::ConstIterator end = feed->articles().end();
+        for (it = feed->articles().begin(); it != end; ++it)
         {
             if ((*it).status()==MyArticle::New)
             {
@@ -1273,7 +1270,7 @@ void aKregatorView::slotFeedFetched(Feed *feed)
     // TODO: move to slotFetchesCompleted
     Archive::save(feed);
 
-    IntervalManager::self()->feedFetched(feed->xmlUrl);
+    IntervalManager::self()->feedFetched(feed->xmlUrl());
 
     // Also, update unread counts
 
@@ -1369,9 +1366,7 @@ void aKregatorView::slotItemRenamed( QListViewItem *item )
             m_part->setModified(true);
 
         feed->setTitle( text );
-        if (!feed->isGroup())
-            feed->updateTitle = false; // if user edited title by hand, do not update it automagically
-    }
+     }
 }
 
 void aKregatorView::slotItemMoved()

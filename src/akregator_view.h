@@ -213,7 +213,7 @@ namespace Akregator
             Feed *aKregatorView::addFeed_Internal(Feed *f, QListViewItem *elt, QString title,
                                                 QString xmlUrl, QString htmlUrl,
                                                 QString description,
-                                                bool updateTitle, bool autoFetch, int fetchIntervL);
+                                                bool autoFetch, int fetchIntervL);
 
             /**
              * Mark all items in item and subitems as read.

@@ -29,11 +29,11 @@ namespace Akregator
 
             void destroy();
 
-            virtual bool isGroup();
+            virtual bool isGroup() const { return true; }
 
-            virtual QDomElement toXml( QDomElement parent, QDomDocument document );
+            virtual QDomElement toXml( QDomElement parent, QDomDocument document ) const;
 
-            QString title();
+            QString title() const { return m_title; }
             void setTitle(const QString &title);
 
             QListViewItem *item() { return m_item; }

@@ -30,15 +30,6 @@ void FeedGroup::destroy()
    delete this;
 }
 
-bool FeedGroup::isGroup()
-{
-    return true;
-}
-
-QString FeedGroup::title()
-{
-    return m_title;
-}
 
 void FeedGroup::setTitle(const QString &title)
 {
@@ -57,7 +48,7 @@ void FeedGroup::setCollection(FeedsCollection *c)
     m_collection=c;
 }
 
-QDomElement FeedGroup::toXml( QDomElement parent, QDomDocument document )
+QDomElement FeedGroup::toXml( QDomElement parent, QDomDocument document ) const
 {
     QDomElement el = document.createElement( "outline" );
     el.setAttribute( "text", title() );

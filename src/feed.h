@@ -52,42 +52,53 @@ namespace Akregator
             Feed(QListViewItem *i, FeedsCollection *coll);
             ~Feed();
 
-            virtual QDomElement toXml( QDomElement parent, QDomDocument document );
+            virtual QDomElement toXml( QDomElement parent, QDomDocument document ) const;
             void dumpXmlData( QDomElement parent, QDomDocument document );
 
-            virtual bool isGroup();
-
-            // -- ATTRIBUTES
-            //inherited      title();       ///< Feed title
-            QString          xmlUrl;        ///< URL of RSS feed itself.
-            QString          htmlUrl;       ///< URL of HTML page for this feed.
-            QString          description;   ///< Verbose feed description.
-            bool             updateTitle;   ///< Whether to update feed title based on fetched rss.
-            int              updateInterval;///< Update after updateInterval minutes have passed.
-            ArticleSequence  articles;      ///< List of all feed articles.
-
-            QPixmap        image;
-            QPixmap        favicon;
-
-            bool autoFetch() const;
-            int fetchInterval() const;
-         
-            void setAutoFetch(bool);
-            void setFetchInterval(int);
+            virtual bool isGroup() const { return false; }
             
-            bool isMerged(){return m_merged;}
-            void setMerged(bool m){m_merged=m;}
+            bool autoFetch() const { return m_autoFetch; }
+            void setAutoFetch(bool enable) { m_autoFetch = enable; }
+            
+            int fetchInterval() const { return m_fetchInterval; }
+            void setFetchInterval(int interval) { m_fetchInterval = interval; }
+            
+            bool expiryEnabled() const { return m_expiryEnabled; }
+            void setExpiryEnabled(bool enabled) { m_expiryEnabled = enabled; }  
+            
+            int expiryAge() const { return m_expiryAge; }
+            void setExpiryAge(int age) { m_expiryAge = age; }     
+            
+            bool isMerged() const { return m_merged; }
+            void setMerged(bool m){ m_merged = m;}
 
-            int unread(){return m_unread;}
-            void setUnread(int i){m_unread=i;}
+            int unread() const { return m_unread; }
+            void setUnread(int i) { m_unread = i; }
+            
+            const QPixmap& favicon() const { return m_favicon; }
+            void setFavicon(const QPixmap& p);
+           
+            const QPixmap& image() const { return m_image; }
+            void setImage(const QPixmap &p); 
+            
+            QString xmlUrl() const { return m_xmlUrl; }
+            void setXmlUrl(const QString& s) { m_xmlUrl = s; }
+            
+            QString htmlUrl() const { return m_htmlUrl; }
+            void setHtmlUrl(const QString& s) { m_htmlUrl = s; }
+            
+            QString description() const { return m_description; }
+            void setDescription(const QString& s) { m_description = s; }
+          
+            const ArticleSequence& articles() const { return m_articles; }
             void markAllRead();
 
             void appendArticles(const Document &d, bool findDups=false);
             void appendArticle(const MyArticle &a);
 
             void abortFetch();
-	    void setFavicon(const QPixmap &p);
-            void setImage(const QPixmap &p);
+
+           
 	    
         public slots:
             void fetch(bool follow=false, FetchTransaction *f=0);
@@ -105,17 +116,32 @@ namespace Akregator
             void fetchCompleted(Loader *loader, Document doc, Status status);
 
         private:
+            
             void tryFetch();
-	    Loader *m_loader;
-	    FetchTransaction *m_transaction;
-            bool m_fetchError;
-            bool m_followDiscovery;
-            int m_fetchTries;
-            bool m_merged;
-            Document m_document;
-            int m_unread;
+            
+            
             bool m_autoFetch;
             int m_fetchInterval;
+            bool m_expiryEnabled; 
+            int m_expiryAge; 
+            int m_fetchTries;
+            bool m_followDiscovery;
+            bool m_fetchError;
+            Document m_document;            
+            bool m_merged;
+	    Loader* m_loader;
+	    FetchTransaction* m_transaction;
+            int m_unread;
+            
+            QString m_xmlUrl;        ///< URL of RSS feed itself.
+            QString m_htmlUrl;       ///< URL of HTML page for this feed.
+            QString m_description;   ///< Verbose feed description.
+           
+            ArticleSequence m_articles;      ///< List of all feed articles.
+
+            QPixmap m_image;
+            QPixmap m_favicon;
+ 
     };
 }
 

@@ -202,10 +202,10 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
     }
     text += "</div>\n"; // end headerbox
 
-    if (f && !f->image.isNull())
+    if (f && !f->image().isNull())
     {
-        QString url=f->xmlUrl;
-        text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+        QString url=f->xmlUrl();
+        text += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
 
     text += "<div id=\"body\">";

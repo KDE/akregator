@@ -185,7 +185,7 @@ void aKregatorPart::newArticle(Feed *src, const MyArticle &a)
         
         QUObject o[ 4 ];
         static_QUType_QString.set( o + 1, src->title() );
-        static_QUType_ptr.set( o + 2, &(src->favicon) );
+        static_QUType_ptr.set( o + 2, &(src->favicon()) );
         static_QUType_QString.set( o + 3, a.title() );
         m_extension->browserInterface()->qt_invoke( slot, o );
     }
