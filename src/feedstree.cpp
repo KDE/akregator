@@ -72,8 +72,11 @@ void FeedsTree::setFeedList(FeedList* feedList)
 
     clear();
 
+    disconnectFromFeedList(m_feedList);
+    connectToFeedList(feedList);
+        
     m_feedList = feedList;
-    
+
     if (!feedList)
         return;
 
@@ -643,7 +646,23 @@ void FeedsTree::connectToNode(TreeNode* node)
         connect(f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetchCompleted(Feed*)));
     }        
 }
-            
+
+void FeedsTree::connectToFeedList(FeedList* list)
+{
+    if (!list)
+        return;
+    
+    connect(list, SIGNAL(signalDestroyed(FeedList*)), this, SLOT(slotFeedListDestroyed(FeedList*)) );
+}
+
+void FeedsTree::disconnectFromFeedList(FeedList* list)
+{
+    if (!list)
+        return;
+    
+    disconnect(list, SIGNAL(signalDestroyed(FeedList*)), this, SLOT(slotFeedListDestroyed(FeedList*)) );
+}
+
 void FeedsTree::disconnectFromNode(TreeNode* node)
 {
     if (node->isGroup())
@@ -665,6 +684,14 @@ void FeedsTree::disconnectFromNode(TreeNode* node)
         disconnect(f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
         disconnect(f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetchCompleted(Feed*)));
     }
+}
+
+void FeedsTree::slotFeedListDestroyed(FeedList* list)
+{
+    if (list != m_feedList)
+        return;
+
+    setFeedList(0);
 }
 
 void FeedsTree::slotNodeDestroyed(TreeNode* node)

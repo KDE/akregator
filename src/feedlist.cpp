@@ -120,6 +120,7 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
 
 FeedList::~FeedList()
 {
+    emit signalDestroyed(this);
     delete m_rootNode;
     m_rootNode = 0;
 }

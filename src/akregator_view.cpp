@@ -785,7 +785,6 @@ void View::slotNodeSelected(TreeNode* node)
 
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
-    
     else
     {
         m_articles->slotShowNode(node);

@@ -70,36 +70,6 @@ namespace Akregator
             /** reimplemented: clears the view and creates the root node ("All Feeds") */
             virtual void clear();
 
-        protected:
-             /** Returns item belonging to currently selected node. 
-            @return selected node item
-              */
-            TreeNodeItem* selectedNodeItem();
-
-            /** Returns item belonging to root node.
-            @return root node item
-             */
-            FeedGroupItem* rootNodeItem();
-
-            /** observe @c node: connect status change signals of @c node to slots */
-            virtual void connectToNode(TreeNode* node);
-            /** stop observing @c node: disconnect from status change signals of @c node */
-            virtual void disconnectFromNode(TreeNode* node);
-            
-            virtual void drawContentsOffset( QPainter * p, int ox, int oy,
-                                       int cx, int cy, int cw, int ch );
-            virtual void contentsDragMoveEvent(QDragMoveEvent* event);
-            virtual bool acceptDrag(QDropEvent *event) const;
-            virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
-            virtual void keyPressEvent(QKeyEvent* e);
-            
-            void takeNode(QListViewItem* item);
-            void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
-            
-        signals:
-            void dropped (KURL::List &, TreeNodeItem*, FeedGroupItem*);
-            void signalNodeSelected(TreeNode*);
-        
         public slots:
            
             /** handle dropped urls */
@@ -144,7 +114,47 @@ namespace Akregator
             /** update the item belonging to the node */
             virtual void slotNodeChanged(TreeNode* node);
 
+            virtual void slotFeedListDestroyed(FeedList*);
+            
+        signals:
+            void dropped (KURL::List &, TreeNodeItem*, FeedGroupItem*);
+            void signalNodeSelected(TreeNode*);
+
+            
+        protected:
+             /** Returns item belonging to currently selected node. 
+            @return selected node item
+              */
+            TreeNodeItem* selectedNodeItem();
+
+            /** Returns item belonging to root node.
+            @return root node item
+             */
+            FeedGroupItem* rootNodeItem();
+
+            /** observe @c node: connect status change signals of @c node to slots */
+            virtual void connectToNode(TreeNode* node);
+            /** stop observing @c node: disconnect from status change signals of @c node */
+            virtual void disconnectFromNode(TreeNode* node);
+
+            virtual void connectToFeedList(FeedList* list);
+            virtual void disconnectFromFeedList(FeedList* list);
+            
+            virtual void drawContentsOffset( QPainter * p, int ox, int oy,
+                                             int cx, int cy, int cw, int ch );
+            virtual void contentsDragMoveEvent(QDragMoveEvent* event);
+            virtual bool acceptDrag(QDropEvent *event) const;
+            virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
+            virtual void keyPressEvent(QKeyEvent* e);
+            
+            void takeNode(QListViewItem* item);
+            void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
+
+            virtual QDragObject *dragObject();
+                    
+        
         protected slots:
+            
             virtual void slotSelectionChanged(QListViewItem* item); 
             virtual void slotItemRenamed(QListViewItem* item);
             virtual void slotFeedFetchStarted(Feed* feed);
@@ -152,8 +162,6 @@ namespace Akregator
             virtual void slotFeedFetchError(Feed* feed);
             virtual void slotFeedFetchCompleted(Feed* feed);
 
-        protected:
-            virtual QDragObject *dragObject();
 
         private:
             /** used for finding the item belonging to a node */

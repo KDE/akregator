@@ -60,6 +60,9 @@ public:
 
     /** returns whether the feed list is empty, root node is ignored */
     bool isEmpty() const;
+
+signals:
+    void signalDestroyed(FeedList*);
     
 protected:
 
