@@ -575,12 +575,12 @@ void aKregatorView::slotNormalView()
         m_articles->slotShowNode(m_tree->selectedNode());
         m_articles->show();
 
-        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->currentItem());
+        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->selectedItem());
 
         if (item)
             m_articleViewer->slotShowArticle(item->article());
         else
-            m_articleViewer->slotClear();
+            m_articleViewer->slotShowSummary(m_tree->selectedNode());
     }
 
     m_articleSplitter->setOrientation(QSplitter::Vertical);
@@ -600,11 +600,11 @@ void aKregatorView::slotWidescreenView()
         m_articles->show();
         
         // tell articleview to redisplay+reformat
-        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->currentItem());
+        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->selectedItem());
         if (item)
             m_articleViewer->slotShowArticle(item->article());
         else
-            m_articleViewer->slotClear();
+            m_articleViewer->slotShowSummary(m_tree->selectedNode());
     }
 
     m_articleSplitter->setOrientation(QSplitter::Horizontal);
@@ -856,15 +856,10 @@ void aKregatorView::slotNodeSelected(TreeNode* node)
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
     
-    else {
+    else
+    {
         m_articles->slotShowNode(node);
-        if(node->isGroup()) { kdDebug() << "group" << endl; 
-            m_articleViewer->slotShowSummary(node); }
-        else {
-            kdDebug() << "normal feed" << endl;
-            Feed *f = static_cast<Feed *>(node);
-            m_articleViewer->slotShowSummary(f);
-        }
+        m_articleViewer->slotShowSummary(node);
     }
 
     if (m_part->actionCollection()->action("feed_remove") )

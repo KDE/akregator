@@ -65,7 +65,7 @@ namespace Akregator
             /** Clears the canvas and disconnects from the currently observed node (if in combined view mode). */
             void slotClear();
 	    
-            void slotShowSummary(Feed *f);
+
             void slotShowSummary(TreeNode *node);
 	    
         protected:
@@ -75,6 +75,10 @@ namespace Akregator
             virtual void keyPressEvent(QKeyEvent* e);
             
         private:
+
+            void showSummary(FeedGroup* group);
+            void showSummary(Feed *f);
+            
             /** Takes an article and renders it as HTML            
             @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
             @param article The article to render

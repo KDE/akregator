@@ -264,16 +264,31 @@ void ArticleViewer::endWriting()
     end();
 }
 
-void ArticleViewer::slotShowSummary(TreeNode *node)
+void ArticleViewer::slotShowSummary(TreeNode* node)
 {
-    if(!node) return;
+    if (!node)
+    {
+        slotClear();
+        return;
+    }
+
+    if (node->isGroup())
+        showSummary(static_cast<FeedGroup*>(node));
+    else
+        showSummary(static_cast<Feed*>(node));
+}
+
+void ArticleViewer::showSummary(FeedGroup* group)
+{
+    if (!group)
+        return;
     
     m_currentText = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2 ").arg(directionOf(node->title())).arg(node->title());
-    m_currentText += i18n("(%1 unread articles)").arg(node->unread()) += QString("</div>\n");
+    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2 ").arg(directionOf(group->title())).arg(group->title());
+    m_currentText += i18n("(%1 unread articles)").arg(group->unread()) += QString("</div>\n");
     m_currentText += "</div>\n"; // /headerbox
     
-    for( TreeNode *it = node; it != 0; it = it->nextSibling() )
+    for( TreeNode *it = group; it != 0; it = it->nextSibling() )
         kdDebug() << "title: " << it->title() << endl;
     //for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
         
@@ -283,7 +298,7 @@ void ArticleViewer::slotShowSummary(TreeNode *node)
     end();
 }
 
-void ArticleViewer::slotShowSummary(Feed *f)
+void ArticleViewer::showSummary(Feed *f)
 {
     if(!f) return;
     
