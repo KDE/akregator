@@ -18,6 +18,7 @@ namespace Akregator
     {
         public:
             ArticleListItem( QListView *parent, QListViewItem *after, MyArticle a, Feed *parent );
+            ~ArticleListItem();
 
             MyArticle article();
             Feed *feed();

@@ -33,10 +33,10 @@ ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after,MyArti
     d->article = a;
     d->feed = feed;
 }
+
 ArticleListItem::~ArticleListItem()
 {
-    if (d)
-        delete d;
+    delete d;
 }
 
 /*
