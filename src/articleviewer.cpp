@@ -72,6 +72,7 @@ void ArticleViewer::generateCSS()
     // from kmail::headerstyle.cpp
     m_htmlHead += QString (
             "<style type=\"text/css\">\n"
+            "@media screen, print {"
             "body {\n"
             "  font-family: \"%1\" ! important;\n"
             "  font-size: %2 ! important;\n"
@@ -126,19 +127,18 @@ void ArticleViewer::generateCSS()
             .arg(cg.highlightedText().name());
     
     m_htmlHead += QString(
-    "body {\n"
-    "  clear: none;\n"
-    "  overflow: auto;\n"
-    "}\n\n"
+    "body { clear: none; }\n\n"
     ".content {\n"
     "  display: block;\n"
     "  margin-bottom: 6px;\n"
             "}\n\n"
     // these rules make sure that there is no leading space between the header and the first of the text
-    ".content > P:first-child {\n margin-top: 1px; }"
-    ".content > DIV:first-child {\n margin-top: 1px; }"
-    ".content > BR:first-child {\n display: none;  }"
-    ".contentlink {\n display: block; }"
+    ".content > P:first-child {\n margin-top: 1px; }\n"
+    ".content > DIV:first-child {\n margin-top: 1px; }\n"
+    ".content > BR:first-child {\n display: none;  }\n"
+    ".contentlink {\n display: block; }\n"
+    "}\n\n" // @media screen, print
+    "@media screen { body { overflow: auto; } }\n"
     "\n\n");
      
    
