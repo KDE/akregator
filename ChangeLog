@@ -2,6 +2,16 @@ aKregator ChangeLog
 ===================
 (c) 2004 the aKregator authors.
 
+Changes after 1.0b3:
+-----------------------------
+
+New Features:
+       - Konqueror plugin for adding feeds to aKregator from context menu -PhantomsDad
+       - Command line options for adding feeds -PhantomsDad
+       
+Bug Fixes:
+
+
 Changes after 1.0b2:
 -----------------------------
 
