@@ -126,7 +126,7 @@ void ArticleViewer::show(Article a)
     {
         text += "<p><a href=\"";
         text += a.link().url();
-        text += "\">Full Story</a></p>";
+        text += "\">" + i18n( "Full Story" ) + "</a></p>";
     }
     text += "</body></html>";
     write(text);

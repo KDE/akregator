@@ -92,7 +92,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
-    tabs->addTab(w1, "Articles");
+    tabs->addTab(w1, i18n( "Articles" ));
 
     // notify the part that this is our internal widget
     setWidget(m_panner1);
@@ -620,7 +620,7 @@ void aKregatorPart::slotFetchCurrentFeed()
         {
             FeedGroup *g = m_feeds.find(m_tree->currentItem());
             if (!g) {
-                KMessageBox::error( widget(), "Internal error, feeds tree inconsistent!" );
+                KMessageBox::error( widget(), i18n( "Internal error, feeds tree inconsistent!" ) );
                 return;
             }
 
@@ -703,9 +703,9 @@ KAboutData *aKregatorPart::createAboutData()
                                  KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0,
                                  "http://berk.upnet.ru/projects/kde/akregator",
                                  "Stanislav.Karchebny@kdemail.net");
-        s_about->addAuthor("Stanislav Karchebny", "Author, Developer, Maintainer",
+        s_about->addAuthor("Stanislav Karchebny", I18N_NOOP("Author, Developer, Maintainer"),
                            "Stanislav.Karchebny@kdemail.net");
-        s_about->addAuthor("Sashmit Bhaduri", "Developer", "smt@vfemail.net");
+        s_about->addAuthor("Sashmit Bhaduri", I18N_NOOP("Developer"), "smt@vfemail.net");
     }
     return s_about;
 }
