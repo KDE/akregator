@@ -28,17 +28,17 @@ struct ArticleListItem::Private
     Feed *feed;
 };
 
-ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after,MyArticle a, Feed *feed)
+ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const MyArticle& a, Feed *feed)
     : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
-    , d(new Private)
+        , d(new Private)
 {
     d->article = a;
     d->feed = feed;
-	if (parent->columns() > 2)
-	{
-		setText(2, text(1));
-		setText(1,feed->title());
-	}
+    if (parent->columns() > 2)
+    {
+        setText(2, text(1));
+        setText(1,feed->title());
+    }
 }
 
 ArticleListItem::~ArticleListItem()
@@ -61,7 +61,7 @@ int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
     return 0;
 }*/
 
-MyArticle ArticleListItem::article()
+const MyArticle& ArticleListItem::article()
 {
     return d->article;
 }
@@ -90,7 +90,7 @@ void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int colu
 /* ==================================================================================== */
 
 ArticleList::ArticleList(QWidget *parent, const char *name)
-    : KListView(parent, name), m_node(0), m_columnMode(feedMode)
+    : KListView(parent, name), m_updated(false), m_doReceive(true), m_node(0), m_columnMode(feedMode)
 {
     setMinimumSize(250, 150);
     addColumn(i18n("Article"));
@@ -113,6 +113,8 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
         "You can also mark feeds as persistent (P column) "
         "or open article in another tab or even external browser window "
         "using right-click menu."));
+
+    connect(this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
 }
 void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
 {
@@ -125,20 +127,37 @@ void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFi
     }
 }
 
+void ArticleList::setReceiveUpdates(bool doReceive, bool remember)
+{
+    if (m_doReceive && !doReceive)
+    {    
+        m_updated = false;  
+        m_doReceive = false;
+        return;
+    }
+    
+    if (!m_doReceive && doReceive)
+    {    
+        m_doReceive = true;
+        if (remember && m_updated)
+            slotUpdate();
+        m_updated = false;  
+    }   
+}
+
 void ArticleList::slotShowNode(TreeNode* node)
 {
-    kdDebug() << "slotShowNode entered" << endl;
-     if (!node)
+    if (!node)
         return slotClear();
      
     if (m_node)
     {
-        disconnect(m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdate()) );
-        disconnect(m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
+        disconnect(m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
+        disconnect(m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
     }
     
-    connect(node, SIGNAL(signalChanged()), this, SLOT(slotUpdate()) );
-    connect(node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
+    connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
+    connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
     
     clear();
     
@@ -167,29 +186,28 @@ void ArticleList::slotShowNode(TreeNode* node)
     m_node = node;
     
     slotUpdate();
-        
-    kdDebug() << "slotShowNode left" << endl;
 }
 
 void ArticleList::slotClear()
 {
-    kdDebug() << "slotClear entered" << endl;
     if (m_node)
     {
-        disconnect(m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdate()) );
-        disconnect(m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
+        disconnect(m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
+        disconnect(m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
     }
     m_node = 0;
     
     clear();
-    
-    kdDebug() << "slotClear left" << endl;
 }
 
 void ArticleList::slotUpdate()
 {
-    kdDebug() << "slotUpdate entered" << endl;
-
+    if (!m_doReceive)
+    {
+        m_updated = true;
+        return;
+    }
+        
     if (!m_node) 
         return;    
     
@@ -208,21 +226,19 @@ void ArticleList::slotUpdate()
          if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
              new ArticleListItem(this, lastChild(), *it, (*it).feed() );
     }        
-    if (firstChild())
-        setSelected(firstChild(), true);
     setUpdatesEnabled(true);
     triggerUpdate();
-
-    kdDebug() << "slotUpdate left" << endl;
 }
- 
-ArticleList::~ArticleList()
-{}
 
 void ArticleList::slotPreviousArticle()
 {
-    kdDebug() << "enter slotPreviousArticle" << endl;
-    QListViewItem *lvi = currentItem();
+    QListViewItem *lvi = selectedItem();
+    
+    if (!lvi && firstChild() )
+    {
+        setSelected(firstChild(), true);
+    }
+    
     if (lvi && lvi->itemAbove()) 
     {
         setSelected( lvi->itemAbove(), true );
@@ -232,7 +248,13 @@ void ArticleList::slotPreviousArticle()
 
 void ArticleList::slotNextArticle()
 {
-    QListViewItem *lvi = currentItem();
+    QListViewItem *lvi = selectedItem();
+    
+    if (!lvi && firstChild() )
+    {
+        setSelected(firstChild(), true);
+        return;
+    }
     if (lvi && lvi->itemBelow()) 
     {
         setSelected( lvi->itemBelow(), true );
@@ -240,8 +262,59 @@ void ArticleList::slotNextArticle()
     }
 }
 
+void ArticleList::slotNextUnreadArticle()
+{
+    ArticleListItem *it= static_cast<ArticleListItem*>(selectedItem());
+    if (!it)
+        it = static_cast<ArticleListItem*>(firstChild());
+    
+    for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
+    {
+        if ((it->article().status()==MyArticle::Unread) ||
+             (it->article().status()==MyArticle::New) )
+        {
+            setSelected(it, true);
+            ensureItemVisible(it);
+            return;
+        }
+    }
+}
+
+void ArticleList::slotPreviousUnreadArticle()
+{
+    if ( !selectedItem() )
+        slotNextUnreadArticle(); 
+
+    QListViewItemIterator it( selectedItem() );
+    
+    for ( ; it.current(); --it )
+    {
+        ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
+        if (!ali)
+            break;
+        if ((ali->article().status()==MyArticle::Unread) ||
+             (ali->article().status()==MyArticle::New))
+        {
+            setSelected(ali, true);
+            ensureItemVisible(ali);
+            return;
+        }
+    }
+}
+
 void ArticleList::keyPressEvent(QKeyEvent* e)
 {
     e->ignore();
-}   
+}
+
+void ArticleList::slotSelectionChanged(QListViewItem* item)
+{
+    ArticleListItem* ai = static_cast<ArticleListItem*> (item);
+    if (ai)
+        emit signalArticleSelected( ai->article() );
+} 
+
+ArticleList::~ArticleList()
+{}
+
 #include "articlelist.moc"

@@ -1,10 +1,10 @@
 /***************************************************************************
- *   Copyright (C) 2004 by Stanislav Karchebny, Sashmit Bhaduri            *
- *   Stanislav.Karchebny@kdemail.net                                       *
- *   smt@vfemail.net (Sashmit Bhaduri)                                     *
- *                                                                         *
- *   Licensed under GPL.                                                   *
- ***************************************************************************/
+*   Copyright (C) 2004 by Stanislav Karchebny, Sashmit Bhaduri            *
+*   Stanislav.Karchebny@kdemail.net                                       *
+*   smt@vfemail.net (Sashmit Bhaduri)                                     *
+*                                                                         *
+*   Licensed under GPL.                                                   *
+***************************************************************************/
 
 #include "akregator_part.h"
 #include "akregator_view.h"
@@ -20,11 +20,15 @@
 #include "viewer.h"
 #include "archive.h"
 #include "feed.h"
+#include "feeditem.h"
 #include "feedgroup.h"
+#include "feedgroupitem.h"
 #include "akregatorconfig.h"
 #include "pageviewer.h"
 #include "articlefilter.h"
 #include "tabwidget.h"
+#include "treenode.h"
+#include "treenodeitem.h"
 
 #include <kaction.h>
 #include <kapplication.h>
@@ -50,10 +54,12 @@
 #include <kstandarddirs.h>
 #include <kurl.h>
 #include <kxmlguifactory.h>
+#include <kparts/partmanager.h>
 
 #include <qbuttongroup.h>
 #include <qcheckbox.h>
 #include <qfile.h>
+#include <qhbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qmultilineedit.h>
@@ -68,17 +74,13 @@
 using namespace Akregator;
 
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
-   : QWidget(parent, wName), m_feeds(), m_viewMode(NormalView)
+: QWidget(parent, wName), m_viewMode(NormalView)
 {
     
     m_part=part;
     m_stopLoading=false;
 
     setFocusPolicy(QWidget::StrongFocus);
-
-    m_feedTreePixmap=KGlobal::iconLoader()->loadIcon("txt", KIcon::Small);
-    m_folderTreePixmap=KGlobal::iconLoader()->loadIcon("folder", KIcon::Small);
-    m_errorTreePixmap=KGlobal::iconLoader()->loadIcon("error", KIcon::Small);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
 
@@ -94,17 +96,15 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
 
     connect(m_tree, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
-              this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
-    connect(m_tree, SIGNAL(selectionChanged(QListViewItem*)),
-              this, SLOT(slotItemChanged(QListViewItem*)));
-    connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
-              this, SLOT(slotItemRenamed(QListViewItem *)));
-    connect(m_tree, SIGNAL(itemRenamed(QListViewItem *,int)),
-              this, SLOT(slotItemRenamed(QListViewItem *)));
-    connect(m_tree, SIGNAL(dropped (KURL::List &, QListViewItem *, QListViewItem *)),
-              this, SLOT(slotFeedURLDropped (KURL::List &, QListViewItem *, QListViewItem *)));
+            this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
+    
+    connect(m_tree, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
+    
+    connect(m_tree, SIGNAL(dropped (KURL::List &, TreeNodeItem*, FeedGroupItem*)),
+            this, SLOT(slotFeedURLDropped (KURL::List &,
+                        TreeNodeItem*, FeedGroupItem*)));
     connect(m_tree, SIGNAL(moved()),
-              this, SLOT(slotItemMoved()));
+            this, SLOT(slotItemMoved()));
 
         
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
@@ -131,35 +131,39 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QWhatsThis::add(m_mainTab, i18n("Articles list."));
 
-    QHBoxLayout *searchLayout = new QHBoxLayout( 0, 0, KDialog::spacingHint(), "searchLayout" );
-    QToolButton *clearButton = new QToolButton( m_mainTab );
+    m_searchBar = new QHBox(m_mainTab);
+    m_searchBar->setMargin(2);
+    m_searchBar->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
+    QToolButton *clearButton = new QToolButton( m_searchBar );
     clearButton->setIconSet( SmallIconSet( QApplication::reverseLayout() ? "clear_left" : "locationbar_erase" ) );
+    
     clearButton->setAutoRaise(true);
-    searchLayout->addWidget(clearButton);
-    QLabel* searchLabel = new QLabel(m_mainTab);
+    
+    QLabel* searchLabel = new QLabel(m_searchBar);
     searchLabel->setText( i18n("S&earch:") );
-    searchLayout->addWidget(searchLabel);
-    m_searchLine = new KLineEdit(m_mainTab, "searchline");
+    
+    m_searchLine = new KLineEdit(m_searchBar, "searchline");
     searchLabel->setBuddy(m_searchLine);
-    searchLayout->addWidget(m_searchLine);
-    m_searchCombo = new KComboBox(m_mainTab, "searchcombo");
-    searchLayout->addWidget(m_searchCombo);
-    mainTabLayout->addLayout(searchLayout);
 
+    m_searchCombo = new KComboBox(m_searchBar, "searchcombo");
+    mainTabLayout->add(m_searchBar);
+    
+    if ( !Settings::showQuickFilter() )    
+        m_searchBar->hide();
+    
     m_searchCombo->insertItem(i18n("All Articles"));
     m_searchCombo->insertItem(i18n("New & Unread"));
     m_searchCombo->insertItem(i18n("New"));
     m_searchCombo->insertItem(i18n("Unread"));
-      
 
     QToolTip::add( clearButton, i18n( "Clear filter" ) );
     QToolTip::add( m_searchLine, i18n( "Enter space-separated terms to filter article list" ) );
     QToolTip::add( m_searchCombo, i18n( "Choose what kind of articles to show in article list" ) );
 
     connect(clearButton, SIGNAL( clicked() ),
-                      m_searchLine, SLOT(clear()) );
+                    m_searchLine, SLOT(clear()) );
     connect(m_searchCombo, SIGNAL(activated(int)),
-                          this, SLOT(slotSearchComboChanged(int)));
+                        this, SLOT(slotSearchComboChanged(int)));
     connect(m_searchLine, SIGNAL(textChanged(const QString &)),
                         this, SLOT(slotSearchTextChanged(const QString &)));
 
@@ -174,11 +178,11 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
-    connect( m_articles, SIGNAL(selectionChanged(QListViewItem *)),
-                   this, SLOT( slotArticleSelected(QListViewItem *)) );
-    connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
-                   this, SLOT( slotOpenArticleExternal(QListViewItem*, const QPoint&, int)) );
-  
+    connect( m_articles, SIGNAL(signalArticleSelected(MyArticle)),
+                this, SLOT( slotArticleSelected(MyArticle)) );
+    connect( m_articles, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),
+                this, SLOT( slotOpenArticleExternal(QListViewItem*, const QPoint&, int)) );
+
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
@@ -206,48 +210,50 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_searchCombo->setCurrentItem(Settings::quickFilter());
     slotSearchComboChanged(Settings::quickFilter());
 
-    m_globalFetchTimer = new QTimer;
-    connect( m_globalFetchTimer, SIGNAL(timeout()), this, SLOT(slotFetchAllFeeds()));
-    if(Settings::useIntervalFetch())
-       m_globalFetchTimer->start( Settings::autoFetchInterval()*60*1000 );
-
     m_fetchTimer=new QTimer(this);
-    connect(m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()));
-    m_fetchTimer->start(1000*60, false);
+    connect( m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()) );
+    m_fetchTimer->start(1000*60);
 
     // delete expired articles once per hour
     m_expiryTimer = new QTimer(this);
     connect(m_expiryTimer, SIGNAL(timeout()), this,
     SLOT(slotDeleteExpiredArticles()) );
-    m_expiryTimer->start(3600000);
-
+    
+    m_expiryTimer->start(3600*1000);
+    
     // Change default view mode
     int viewMode = Settings::viewMode();
 
-    if (viewMode==CombinedView)        slotCombinedView();
-    else if (viewMode==WidescreenView) slotWidescreenView();
-    else                               slotNormalView();
+    switch (viewMode)
+    {
+        case CombinedView:
+            slotCombinedView();
+            break;
+        case WidescreenView:
+            slotWidescreenView();
+            break;
+        default:
+            slotNormalView();
+    }
 }
 
 void aKregatorView::saveSettings(bool /*quit*/)
 {
-   Settings::setSplitter1Sizes( m_feedSplitter->sizes() );
-   Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
-   Settings::setViewMode( m_viewMode );
-   Settings::writeConfig();
-   if(Settings::useIntervalFetch())
-      m_globalFetchTimer->changeInterval( Settings::autoFetchInterval()*60*1000 );
-   else
-      m_globalFetchTimer->stop();
+    Settings::setSplitter1Sizes( m_feedSplitter->sizes() );
+    Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
+    Settings::setViewMode( m_viewMode );
+    Settings::writeConfig();
 }
 
 void aKregatorView::slotOpenTab(const KURL& url, bool background=false)
 {
-    PageViewer *page = new PageViewer(this, "page");
+    PageViewer* page = new PageViewer(this, "page");
+    m_part->manager()->addPart(page);
+    
     connect( page, SIGNAL(setWindowCaption (const QString &)),
             this, SLOT(slotTabCaption (const QString &)) );
     connect( page, SIGNAL(urlClicked(const KURL &,bool)),
-             this, SLOT(slotOpenTab(const KURL &,bool)) );
+            this, SLOT(slotOpenTab(const KURL &,bool)) );
 
     Frame *frame=new Frame(this, page, page->widget(), i18n("Untitled"));
     connectFrame(frame);
@@ -328,15 +334,8 @@ void aKregatorView::slotLoadingProgress(int percent)
 // clears everything out
 void aKregatorView::reset()
 {
-    m_feeds.clearFeeds();
+    delete m_tree->rootNode();
     m_tree->clear();
-
-    // Root item
-    FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree, i18n("All Feeds") );
-    elt->setPixmap(0, m_folderTreePixmap );
-    m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
-    elt->setExpandable(true);
-    elt->setOpen(true);
 }
 
 QString aKregatorView::getTitleNodeText(const QDomDocument &doc)
@@ -346,7 +345,7 @@ QString aKregatorView::getTitleNodeText(const QDomDocument &doc)
 
     QDomNode headNode = doc.documentElement().firstChild();
     while (!headNode.isNull() &&
-           headNode.toElement().tagName().lower() != "head") {
+        headNode.toElement().tagName().lower() != "head") {
         headNode = headNode.nextSibling();
     }
 
@@ -370,21 +369,20 @@ QString aKregatorView::getTitleNodeText(const QDomDocument &doc)
 
 bool aKregatorView::importFeeds(const QDomDocument& doc)
 {
-    QString text=getTitleNodeText(doc);
+    QString text = getTitleNodeText(doc);
     if (text.isNull())
-        text=i18n("Imported Folder");
+        text = i18n("Imported Folder");
     bool Ok;
     text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), text, &Ok);
-    if (!Ok) return false;
 
-    FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree->firstChild(), QString::null );
-    elt->setPixmap(0, m_folderTreePixmap);
-    m_feeds.addFeedGroup(elt)->setTitle(text);
-    elt->setExpandable(true);
-    elt->setOpen(true);
+    if (!Ok)
+        return false;
 
+    FeedGroup* fg = new FeedGroup(text);
+    m_tree->rootNode()->appendChild(fg);
+    
     startOperation();
-    if (!loadFeeds(doc, elt))
+    if (!loadFeeds(doc, fg))
     {
         operationError(i18n("Invalid Feed List"));
         return false;
@@ -394,19 +392,19 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     return true;
 }
 
-bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
+bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
 {
     // this should be OPML document
     QDomElement root = doc.documentElement();
 
     m_stopLoading=false;
-    kdDebug() << "loading OPML feed "<<root.tagName().lower()<<endl;
+    kdDebug() << "loading OPML feed " << root.tagName().lower() << endl;
     if (root.tagName().lower() != "opml")
         return false;
 
     QDomNode bodyNode = root.firstChild();
     while (!bodyNode.isNull() &&
-           bodyNode.toElement().tagName().lower() != "body") {
+        bodyNode.toElement().tagName().lower() != "body") {
         bodyNode = bodyNode.nextSibling();
     }
 
@@ -414,46 +412,299 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         kdDebug() << "Failed to acquire body node, markup broken?" << endl;
         return false;
     }
-
     QDomElement body = bodyNode.toElement();
 
     if (!parent)
-    {
-        reset();
-        parent = m_tree->firstChild();
-    }
+        parent = m_tree->rootNode();
+    
+ //   m_tree->setUpdatesEnabled(false);
+    int numNodes = body.childNodes().count();
+    int curNodes = 0;
 
-    m_tree->setUpdatesEnabled(false);
-    int numNodes=body.childNodes().count();
-    int curNodes=0;
-
-    QDomNode n = body.firstChild();
-    while( !n.isNull() )
+    QDomNode i = body.firstChild();
+    while( !i.isNull() )
     {
         if (m_stopLoading)
-           break;
-        parseChildNodes(n, parent);
+        break;
+    
+        parseChildNodes(i, parent);
+    
         curNodes++;
         m_mainFrame->setProgress(int(100*((double)curNodes/(double)numNodes)));
-        n = n.nextSibling();
+        i = i.nextSibling();
     }
-
-    // delete expired articles
-
-    slotDeleteExpiredArticles();
-
-    setTotalUnread();
-    m_tree->setUpdatesEnabled(true);
+    
+    
     m_tree->triggerUpdate();
 
+    setTotalUnread();
+        
+    kdDebug() << "leave AkregatorView::loadFeeds()" << endl;
     return true;
 }
 
 void aKregatorView::slotDeleteExpiredArticles()
 {
-    TreeNode* rootNode = static_cast<TreeNode*>(m_feeds.find( m_tree->firstChild() ));
+    TreeNode* rootNode = m_tree->rootNode();
     if (rootNode)
         rootNode->slotDeleteExpiredArticles();
+}
+
+void aKregatorView::parseChildNodes(QDomNode &node, FeedGroup* parent)
+{
+//    kdDebug() << "parseChildNodes, parent: " << (parent ? parent->title() : "null") << endl;
+    if (m_stopLoading)
+        return;
+    QDomElement e = node.toElement(); // try to convert the node to an element.
+
+    if (!parent)
+        parent = m_tree->rootNode();
+    
+    if( !e.isNull() )
+    {
+        QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute
+            ("title");
+        
+            
+        if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
+        {
+   //         kdDebug() << "parseChildNodes: feed detected" << endl;
+            Feed* feed = Feed::fromOPML(e);
+     //       kdDebug() << "parseChildNodes: feed name: "<< (feed ? feed->title() : "null") << endl;
+            
+       //     kdDebug() << "parseChildNodes: feed name: "<< (feed ? feed->title() : "null") << " archive loaded" << endl;
+            parent->appendChild(feed);
+            Archive::load(feed);
+        }
+        else
+        {
+   //         kdDebug() << "parseChildNodes: feed group detected" << endl;
+            FeedGroup* fg = FeedGroup::fromOPML(e);
+ //           kdDebug() << "parseChildNodes: feed group name: "<< (fg ? fg->title() : "null") << endl;     
+            parent->appendChild(fg);
+            kapp->processEvents();
+    
+            if (e.hasChildNodes())
+            {
+                QDomNode child = e.firstChild();
+                while(!child.isNull())
+                {
+                    parseChildNodes(child, fg);
+                    child = child.nextSibling();
+                }
+            }
+        }
+    }
+}
+
+void aKregatorView::storeTree( QDomElement &node, QDomDocument &document )
+{
+writeChildNodes(0, node, document);
+}
+
+// writes children of given node
+// node NULL has special meaning - it saves whole tree
+void aKregatorView::writeChildNodes( TreeNode* node, QDomElement& element, QDomDocument &document)
+{
+    if ( !node || node == m_tree->rootNode() )
+    {
+        if (m_tree->rootNode())
+        {
+            QPtrList<TreeNode> children = m_tree->rootNode()->children(); 
+            for (TreeNode* i = children.first(); i; i = children.next() )
+                element.appendChild( i->toOPML(element, document) );
+        }
+    }    
+    else 
+        element.appendChild( node->toOPML(element, document) );
+}
+
+bool aKregatorView::event(QEvent *e)
+{
+    if (e->type() == QEvent::ApplicationPaletteChange)
+    {
+        m_articleViewer->reload();
+        return true;
+    }
+    return QWidget::event(e);
+}
+
+
+void aKregatorView::addFeedToGroup(const QString& url, const QString& groupName)
+{
+    
+    // Locate the group.
+    TreeNode* node = m_tree->findNodeByTitle(groupName);
+                    
+    FeedGroup* group = 0;
+    if (!node || !node->isGroup())
+    {
+        FeedGroup* g = new FeedGroup( groupName );
+        m_tree->rootNode()->appendChild(g);
+        group = g;
+    }
+    else
+        group = static_cast<FeedGroup*>(node);
+    
+    // Invoke the Add Feed dialog with url filled in.
+    if (group)
+        addFeed(url, 0, group, true);
+}
+
+void aKregatorView::slotNormalView()
+{
+    if (m_viewMode == NormalView)
+    return;
+
+    if (m_viewMode == CombinedView)
+    {
+        m_articles->slotShowNode(m_tree->selectedNode());
+        m_articles->show();
+
+        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->currentItem());
+
+        if (item)
+            m_articleViewer->slotShowArticle(item->article());
+        else
+            m_articleViewer->slotClear();
+    }
+
+    m_articleSplitter->setOrientation(QSplitter::Vertical);
+    m_viewMode = NormalView;
+
+    Settings::setViewMode( m_viewMode );
+}
+
+void aKregatorView::slotWidescreenView()
+{
+    if (m_viewMode == WidescreenView)
+    return;
+    
+    if (m_viewMode == CombinedView)
+    {
+        m_articles->slotShowNode(m_tree->selectedNode());
+        m_articles->show();
+        
+        // tell articleview to redisplay+reformat
+        ArticleListItem* item = static_cast<ArticleListItem *>(m_articles->currentItem());
+        if (item)
+            m_articleViewer->slotShowArticle(item->article());
+        else
+            m_articleViewer->slotClear();
+    }
+
+    m_articleSplitter->setOrientation(QSplitter::Horizontal);
+    m_viewMode = WidescreenView;
+
+    Settings::setViewMode( m_viewMode );
+}
+
+void aKregatorView::slotCombinedView()
+{
+    if (m_viewMode == CombinedView)
+        return;
+
+    m_articles->slotClear();
+    m_articles->hide();
+    m_viewMode = CombinedView;
+    
+    slotNodeSelected(m_tree->selectedNode());
+    Settings::setViewMode( m_viewMode );
+}
+
+
+void aKregatorView::startOperation()
+{
+    m_mainFrame->setState(Frame::Started);
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(false);
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
+    m_mainFrame->setProgress(0);
+}
+
+void aKregatorView::endOperation()
+{
+    m_mainFrame->setState(Frame::Completed);
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
+    m_mainFrame->setProgress(100);
+}
+
+void aKregatorView::operationError(const QString & /*msg*/)
+{
+    m_mainFrame->setState(Frame::Canceled);
+    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
+    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
+    m_mainFrame->setProgress(-1);
+}
+
+void aKregatorView::slotRemoveFrame()
+{
+    Frame *f = m_tabs->currentFrame();
+    if (f == m_mainFrame)
+        return;
+    m_tabs->removeFrame(f);
+    delete f;
+    if (m_tabs->count() <= 1)
+        m_tabsClose->setEnabled(false);
+}
+
+void aKregatorView::slotFrameChanged(Frame *f)
+{
+    m_currentFrame=f;
+
+    if (f == m_mainFrame)
+        m_tabsClose->setEnabled(false);
+    else
+        m_tabsClose->setEnabled(true);
+
+    KParts::ReadOnlyPart* p = f->part();
+    m_part->manager()->setActivePart(p);
+    m_part->setCaption(f->caption());
+    m_part->setProgress(f->progress());
+    m_part->setStatusBar(f->statusText());
+
+    switch (f->state())
+    {
+
+        case Frame::Started:
+            m_part->setStarted();
+            break;
+        case Frame::Canceled:
+            m_part->setCanceled(QString::null);
+            break;
+        case Frame::Idle:
+        case Frame::Completed:
+        default:
+            m_part->setCompleted();
+    }
+}
+
+void aKregatorView::slotTabCaption(const QString &capt)
+{
+    if (!capt.isEmpty())
+    {
+        PageViewer *pv=(PageViewer *)sender();
+        m_tabs->setTitle(capt, pv->widget());
+    }
+}
+
+void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoint& p)
+{
+    TreeNodeItem* ti = static_cast<TreeNodeItem*>(item); 
+    TreeNode* node = ti ? ti->node() : 0;
+
+    if (!node)
+        return;
+    
+    m_tabs->showPage(m_mainTab);
+    
+    QWidget *w;
+    if (node->isGroup())
+        w = m_part->factory()->container("feedgroup_popup", m_part);
+    else
+        w = m_part->factory()->container("feeds_popup", m_part);
+    if (w)
+        static_cast<QPopupMenu *>(w)->exec(p);
 }
 
 void aKregatorView::slotPreviousArticle() 
@@ -513,365 +764,71 @@ void aKregatorView::slotFeedsTreeEnd()
     m_tree->slotItemEnd();
 }
 
-void aKregatorView::slotFeedsTreeMoveUp()
-{
-    m_tree->slotMoveItemUp();
-}
 
-void aKregatorView::slotFeedsTreeMoveDown()
+void aKregatorView::slotMoveCurrentNodeUp()
 {
-    m_tree->slotMoveItemDown();
-}
-
-void aKregatorView::slotFeedsTreeMoveLeft()
-{
-    m_tree->slotMoveItemLeft();
-}
-
-void aKregatorView::slotFeedsTreeMoveRight()
-{
-    m_tree->slotMoveItemRight();
-}
-   
-void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
-{
-    if (m_stopLoading)
+    TreeNode* current = m_tree->selectedNode();
+    if (!current)
         return;
-    QDomElement e = node.toElement(); // try to convert the node to an element.
-
-    if( !e.isNull() )
-    {
-        FeedsTreeItem *elt;
-        QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute
-            ("title");
-        if (parent)
-        {
-            QListViewItem *lastChild = parent->firstChild();
-            while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
-            elt = new FeedsTreeItem( true, parent, lastChild, KCharsets::resolveEntities(title) );
-
-        }
-        else
-            elt = new FeedsTreeItem( true, m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
-
-        if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
-        {
-            elt->setFolder(false);
-            QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
-
-            elt->setPixmap(0, m_feedTreePixmap);
-            addFeed_Internal( 0, elt,
-                              title,
-                              xmlurl,
-                              e.attribute("htmlUrl"),
-                              e.attribute("description"),
-                              e.attribute("autoFetch") == "true" ? true : false,
-                              e.attribute("fetchInterval").toUInt(),
-                              Feed::stringToArchiveMode(e.attribute("archiveMode")),
-                              e.attribute("maxArticleAge").toUInt(),
-                              e.attribute("maxArticleNumber").toUInt()
-                            );
-        }
-        else
-        {
-            m_feeds.addFeedGroup(elt);
-            TreeNode* node = static_cast<TreeNode*> (m_feeds.find(elt));
-
-            elt->setPixmap(0, m_folderTreePixmap);
-
-            if (node)
-                node->setTitle(title);
-
-            elt->setExpandable(true);
-            elt->setOpen( e.attribute("isOpen", "true") == "true" ? true : false );
-        }
-
-        kapp->processEvents();
-
-        if (e.hasChildNodes())
-        {
-            QDomNode child = e.firstChild();
-            while(!child.isNull())
-            {
-                parseChildNodes(child, elt);
-                child = child.nextSibling();
-            }
-        }
-    }
-}
-
-// oh ugly as hell (pass Feed parameters in a FeedData?)
-Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
-                                      QString title, QString xmlUrl, QString htmlUrl,
-                                      QString description, bool autoFetch, int fetchInterval,
-				      Feed::ArchiveMode archiveMode,
-                                      int maxArticleAge,
-                                      int maxArticleNumber)
-{
-    Feed *feed;
-    if (ef)
-    {
-        m_feeds.addFeed(ef);
-        feed=ef;
-    }
-    else
-    {
-        m_feeds.addFeed(elt);
-        feed = static_cast<Feed *>(m_feeds.find(elt));
-    }
-
-    feed->setTitle( title );
-    feed->setXmlUrl(xmlUrl);
-    feed->setHtmlUrl(htmlUrl);
-    feed->setDescription(description);
-    feed->setAutoFetch(autoFetch);
-    feed->setFetchInterval(fetchInterval);
-    feed->setArchiveMode(archiveMode);
-    feed->setMaxArticleAge(maxArticleAge);
-    feed->setMaxArticleNumber(maxArticleNumber);
-
-    Archive::load(feed);
-
-    FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(elt);
-    if (fti)
-        fti->setUnread(feed->unread());
-
-    return feed;
-}
-
-void aKregatorView::storeTree( QDomElement &node, QDomDocument &document )
-{
-   writeChildNodes(0, node, document);
-}
-
-// writes children of given node
-// node NULL has special meaning - it saves whole tree
-void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document)
-{
-    if (!item) // omit "All Feeds" from saving (BR #43)
-    {
-        item = m_tree->firstChild(); // All Feeds
-        if (!item)
-            return;
-        writeChildNodes(item, node, document);
-        return;
-    }
-
-    for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
-    {
-        TreeNode* tn = static_cast<TreeNode*> (m_feeds.find(it));
-        if (tn)
-            tn->toOPML( node, document );
-    }
-}
-
-bool aKregatorView::event(QEvent *e)
-{
-    if (e->type() == QEvent::ApplicationPaletteChange)
-    {
-        m_articleViewer->reload();
-        return true;
-    }
-    return QWidget::event(e);
-}
-
-void aKregatorView::addFeedToGroup(const QString& url, const QString& group)
-{
-    QListViewItem *lastChild;
-    // Locate the group.
-    QListViewItem *item = m_tree->findItem(group, 0, 0);
-    // If group does not exist, create as last in tree.
-    if (!item)
-    {
-        // Get "All Feeds" folder.
-        QListViewItem *allFeedsFolder = m_tree->firstChild();
-        // Get last child of "All Feeds".
-        lastChild = allFeedsFolder->firstChild();
-        while (lastChild && lastChild->nextSibling())
-            lastChild = lastChild->nextSibling();
-
-        FeedsTreeItem *elt;
-        if (lastChild)
-            elt = new FeedsTreeItem(true, allFeedsFolder, lastChild, group);
-        else
-            elt = new FeedsTreeItem(true, allFeedsFolder, group);
-
-        m_feeds.addFeedGroup(elt);
-        TreeNode* node = m_feeds.find(elt);
-        if (node)
-            node->setTitle( group );
-
-        item = node->item();
-    }
-    // Locate last feed (or folder) in the group.
-    lastChild = item->firstChild();
-    while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
-    if (lastChild)
-        m_tree->ensureItemVisible(lastChild);
-    else
-        m_tree->ensureItemVisible(item);
-    // Invoke the Add Feed dialog with url filled in.
-    addFeed(url, lastChild, item, true);
-}
-
-void aKregatorView::slotNormalView()
-{
-    if ( m_viewMode == NormalView )
-       return;
-
-    if (m_viewMode == CombinedView)
-    {
-        m_articles->slotShowNode( m_feeds.find(m_tree->currentItem()) );
-        m_articles->show();
-       
-        ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
-        if (item)
-            m_articleViewer->slotShowArticle(item->article());
-        else
-            m_articleViewer->slotClear();
-    }
-
-    m_articleSplitter->setOrientation(QSplitter::Vertical);
-    m_viewMode = NormalView;
-
-    Settings::setViewMode( m_viewMode );
-}
-
-void aKregatorView::slotWidescreenView()
-{
-    if ( m_viewMode == WidescreenView )
-       return;
+    TreeNode* prev = current->prevSibling();
+    FeedGroup* parent = current->parent();
     
-    if ( m_viewMode == CombinedView )
-    {
-        m_articles->slotShowNode( m_feeds.find(m_tree->currentItem()) );
-        m_articles->show();
-        // tell articleview to redisplay+reformat
-        ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
-        if (item)
-            m_articleViewer->slotShowArticle(item->article());
-        else
-            m_articleViewer->slotClear();
-    }
-
-    m_articleSplitter->setOrientation(QSplitter::Horizontal);
-    m_viewMode = WidescreenView;
-
-    Settings::setViewMode( m_viewMode );
-}
-
-void aKregatorView::slotCombinedView()
-{
-    if (m_viewMode == CombinedView)
-       return;
-
-    m_articles->hide();
-    m_viewMode = CombinedView;
-
-    slotItemChanged(m_tree->currentItem());
-
-    Settings::setViewMode( m_viewMode );
-}
-
-
-void aKregatorView::startOperation()
-{
-    m_mainFrame->setState(Frame::Started);
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(false);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
-    m_mainFrame->setProgress(0);
-}
-
-void aKregatorView::endOperation()
-{
-    m_mainFrame->setState(Frame::Completed);
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
-    m_mainFrame->setProgress(100);
-}
-
-void aKregatorView::operationError(const QString & /*msg*/)
-{
-    m_mainFrame->setState(Frame::Canceled);
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
-    m_mainFrame->setProgress(-1);
-}
-
-void aKregatorView::slotRemoveFrame()
-{
-    Frame *f = m_tabs->currentFrame();
-    if (f==m_mainFrame)
+    if (!prev || !parent)
         return;
-    m_tabs->removeFrame(f);
-    delete f;
-    if (m_tabs->count() <= 1)
-        m_tabsClose->setEnabled(false);
+    
+    parent->removeChild(prev);
+    parent->insertChild(prev, current);
+    m_tree->ensureNodeVisible(current);
 }
 
-void aKregatorView::slotFrameChanged(Frame *f)
+void aKregatorView::slotMoveCurrentNodeDown()
 {
-    m_currentFrame=f;
+    TreeNode* current = m_tree->selectedNode();
+    if (!current)
+        return;
+    TreeNode* next = current->nextSibling();
+    FeedGroup* parent = current->parent();
+    
+    if (!next || !parent)
+        return;
+    
+    parent->removeChild(current);
+    parent->insertChild(current, next);
+    m_tree->ensureNodeVisible(current);
+}
 
-    if (f==m_mainFrame)
-        m_tabsClose->setEnabled(false);
-    else
-        m_tabsClose->setEnabled(true);
+void aKregatorView::slotMoveCurrentNodeLeft()
+{
+    TreeNode* current = m_tree->selectedNode();
+    if (!current || !current->parent() || !current->parent()->parent())
+        return;
+    
+    FeedGroup* parent = current->parent();
+    FeedGroup* grandparent = current->parent()->parent();
 
-    KParts::ReadOnlyPart *p=f->part();
-    m_part->changePart(p);
-    m_part->setCaption(f->caption());
-    m_part->setProgress(f->progress());
-    m_part->setStatusBar(f->statusText());
+    parent->removeChild(current);
+    grandparent->insertChild(current, parent);
+    m_tree->ensureNodeVisible(current);
+}
 
-    switch (f->state())
+void aKregatorView::slotMoveCurrentNodeRight()
+{
+    TreeNode* current = m_tree->selectedNode();
+    if (!current || !current->parent())
+        return;
+    TreeNode* prev = current->prevSibling();
+    
+    if ( prev && prev->isGroup() )
     {
-
-        case Frame::Started:
-            m_part->setStarted();
-            break;
-        case Frame::Canceled:
-            m_part->setCanceled(QString::null);
-            break;
-        case Frame::Idle:
-        case Frame::Completed:
-        default:
-            m_part->setCompleted();
-    }
-
+        FeedGroup* fg = static_cast<FeedGroup*>(prev);
+        current->parent()->removeChild(current);
+        fg->appendChild(current);
+        m_tree->ensureNodeVisible(current);
+    }    
 }
 
-void aKregatorView::slotTabCaption(const QString &capt)
+void aKregatorView::slotNodeSelected(TreeNode* node)
 {
-    if (!capt.isEmpty())
-    {
-        PageViewer *pv=(PageViewer *)sender();
-        m_tabs->setTitle(capt, pv->widget());
-    }
-}
-
-void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoint& p)
-{
-   TreeNode* node = m_feeds.find(item);
-
-   if (!node)
-       return;
-
-   m_tabs->showPage(m_mainTab);
-
-   QWidget *w;
-   if (node->isGroup())
-      w = m_part->factory()->container("feedgroup_popup", m_part);
-   else
-      w = m_part->factory()->container("feeds_popup", m_part);
-   if (w)
-      static_cast<QPopupMenu *>(w)->exec(p);
-}
-
-void aKregatorView::slotItemChanged(QListViewItem *item)
-{
-    TreeNode* node = static_cast<TreeNode*> (m_feeds.find(item));
-
     m_tabs->showPage(m_mainTab);
 
     if (m_viewMode == CombinedView)
@@ -879,9 +836,9 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
     else
         m_articles->slotShowNode(node);
 
-    if (item && m_part->actionCollection()->action("feed_remove") )
+    if (m_part->actionCollection()->action("feed_remove") )
     {
-        if (item->parent())
+        if (node != m_tree->rootNode() )
             m_part->actionCollection()->action("feed_remove")->setEnabled(true);
         else
             m_part->actionCollection()->action("feed_remove")->setEnabled(false);
@@ -891,50 +848,45 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
 
 void aKregatorView::slotFeedAdd()
 {
-    FeedsTreeItem *i=static_cast<FeedsTreeItem*>(m_tree->currentItem());
-    if (!i)
-        i=static_cast<FeedsTreeItem*>(m_tree->firstChild()); // all feeds
-
-    QListViewItem *lastChild;
-    if (i->isFolder())
-    {
-        lastChild= i->firstChild();
-        while (lastChild && lastChild->nextSibling())
-            lastChild = lastChild->nextSibling();
-    }
+    FeedGroup* group = 0;
+    if (!m_tree->selectedNode())
+        group = m_tree->rootNode(); // all feeds
     else
     {
-        // if it's not a folder, add the feed AFTER the selected feed
-        lastChild=i;
-        i=static_cast<FeedsTreeItem*>(i->parent());
+        if ( m_tree->selectedNode()->isGroup())
+            group = static_cast<FeedGroup*>(m_tree->selectedNode());
+        else 
+            group= m_tree->selectedNode()->parent(); 
+            
     }
 
-    addFeed(QString::null, lastChild, i);
-
+    TreeNode* lastChild = group->children().last();
+    
+    addFeed(QString::null, lastChild, group, false);
 }
 
-void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* parent, bool autoExec /*= false*/)
+void aKregatorView::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool autoExec)
 {
-    FeedsTreeItem *elt;
     Feed *feed;
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
-
+    
     afd->setURL(url);
 
     QString text;
     if (autoExec)
     {
         afd->slotOk();
-        feed=afd->feed;
-        text=feed->title();
+        feed = afd->feed;
+        text = feed->title();
     }
     else
     {
-        if (afd->exec() != QDialog::Accepted)
-        {
-            delete afd;
+        if (afd->exec() != QDialog::Accepted) 
+        {  
+            delete afd;  
             return;
-        }
+        }    
+
         text=afd->feedTitle;
         feed=afd->feed;
     }
@@ -946,115 +898,90 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
     dlg->selectFeedName();
 
     if (!autoExec)
-        if (dlg->exec() != QDialog::Accepted)
+        if (dlg->exec() != QDialog::Accepted) 
         {
-            delete dlg;
+            delete dlg;   
             return;
-        }
+        }    
+
+    feed->setNotificationMode(false);    
+    feed->setTitle(dlg->feedName());
+    feed->setXmlUrl(dlg->url());
+    feed->setArchiveMode(dlg->archiveMode());
+    feed->setMaxArticleAge(dlg->maxArticleAge());
+    feed->setMaxArticleNumber(dlg->maxArticleNumber());
+    feed->setNotificationMode(true, true);    
+    feed->setAutoFetch(dlg->autoFetch());
+    feed->setFetchInterval(dlg->fetchInterval());
+
+    Archive::load(feed);
+    
     if (!parent)
-        parent=m_tree->firstChild();
+        parent = m_tree->rootNode();
+    
+    parent->insertChild(feed, after);
+        
+    //m_tree->ensureItemVisible(elt);
+    setTotalUnread(); // FIXME: remove
 
-    if (after)
-        elt = new FeedsTreeItem(false, parent, after, text);
-    else
-        elt = new FeedsTreeItem(false, parent, text);
-
-
-    elt->setPixmap(0, m_feedTreePixmap);
-    feed->setItem(elt);
-
-    addFeed_Internal( feed, elt,
-                      dlg->feedName(),
-                      dlg->url(),
-                      feed->htmlUrl(),
-                      feed->description(),
-                      dlg->autoFetch(),
-                      dlg->fetchInterval(),
-		      dlg->archiveMode(),
-                      dlg->maxArticleAge(),
-                      dlg->maxArticleNumber()
-                    );
-
-    m_tree->ensureItemVisible(elt);
-    setTotalUnread();
-
-    m_part->setModified(true);
+    //m_part->setModified(true); //FIXME: remove
     delete afd;
     delete dlg;
 }
 
 void aKregatorView::slotFeedAddGroup()
 {
-    TreeNode* node = static_cast<TreeNode*> (m_feeds.find(m_tree->currentItem()));
-    if (!m_tree->currentItem() || node->isGroup() == false)
+TreeNode* node = m_tree->selectedNode();
+
+    if (!node || !node->isGroup())
     {
         KMessageBox::error(this, i18n("You have to choose a folder before adding a subfolder."));
         return;
     }
 
-    bool Ok;
-    FeedsTreeItem *elt;
-
+    FeedGroup* currentGroup = static_cast<FeedGroup*> (node);
+    
+    bool Ok;    
     QString text = KInputDialog::getText(i18n("Add Folder"), i18n("Folder name:"), "", &Ok);
-    if (!Ok) return;
+    
+    if (!Ok) 
+        return;
 
-    QListViewItem *lastChild = m_tree->currentItem()->firstChild();
-    while (lastChild && lastChild->nextSibling())
-        lastChild = lastChild->nextSibling();
+    FeedGroup* newGroup = new FeedGroup(text);
+    currentGroup->appendChild(newGroup);
+    
+    //m_tree->ensureItemVisible(elt); // FIXME
 
-    if (lastChild)
-        elt = new FeedsTreeItem(true, m_tree->currentItem(), lastChild, text);
-    else
-        elt = new FeedsTreeItem(true, m_tree->currentItem(), text);
-
-    // expandable, so we can use KListView's implementation to drop items into empty folders
-    elt->setExpandable(true);
-    elt->setOpen(true);
-
-    m_feeds.addFeedGroup(elt);
-    node = m_feeds.find(elt);
-    if (node)
-        node->setTitle( text );
-
-    m_tree->ensureItemVisible(elt);
-
-    m_part->setModified(true);
+    //m_part->setModified(true);
 }
 
 void aKregatorView::slotFeedRemove()
 {
-    QListViewItem *elt = m_tree->currentItem();
-    if (!elt) return;
-    QListViewItem *parent = elt->parent();
-    if (!parent) return; // don't delete root element! (safety valve)
-
-    QString msg = elt->childCount() ?
+    TreeNode* selectedNode = m_tree->selectedNode();
+    
+    // don't delete root element! (safety valve)
+    if (!selectedNode || selectedNode == m_tree->rootNode()) 
+        return;
+    
+    QString msg = selectedNode->isGroup() ?
         i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>") :
         i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
-    if (KMessageBox::warningContinueCancel(0, msg.arg(elt->text(0)),i18n("Delete Feed"),KGuiItem(i18n("&Delete"),"editdelete")) == KMessageBox::Continue)
+    if (KMessageBox::warningContinueCancel(0, msg.arg(selectedNode->title()),i18n("Delete Feed"),KGuiItem(i18n("&Delete"),"editdelete")) == KMessageBox::Continue)
     {
-        m_articles->clear();
-        m_feeds.removeFeed(elt);
-        // FIXME: kill children? (otoh - auto kill)
-/*        if (!Notes.count())
-            slotActionUpdate();
-        if (!parent)
-            parent = Items->firstChild();
-        Items->prevItem = 0;
-        slotNoteChanged(parent);*/
-
-        m_part->setModified(true);
-        setTotalUnread();
+        delete selectedNode;
+        setTotalUnread(); 
+        //m_part->setModified(true);
     }
 }
 
 void aKregatorView::slotFeedModify()
 {
-    TreeNode* node = static_cast<TreeNode*> (m_feeds.find(m_tree->currentItem()));
-    if (node->isGroup())
+    TreeNode* node = m_tree->selectedNode();
+    
+    if (node && node->isGroup())
     {
-        m_tree->currentItem()->setRenameEnabled(0, true);
-        m_tree->currentItem()->startRename(0);
+        m_tree->selectedItem()->setRenameEnabled(0, true);
+        m_tree->selectedItem()->startRename(0);
         return;
     }
 
@@ -1071,9 +998,10 @@ void aKregatorView::slotFeedModify()
     dlg->setArchiveMode(feed->archiveMode());
     dlg->setMaxArticleAge(feed->maxArticleAge());
     dlg->setMaxArticleNumber(feed->maxArticleNumber());
-
-    if (dlg->exec() == QDialog::Accepted)
-    {
+    
+    if (dlg->exec() == QDialog::Accepted) 
+    {   
+        feed->setNotificationMode(false);
         feed->setTitle( dlg->feedName() );
         feed->setXmlUrl( dlg->url() );
         feed->setAutoFetch(dlg->autoFetch());
@@ -1081,217 +1009,71 @@ void aKregatorView::slotFeedModify()
         feed->setArchiveMode(dlg->archiveMode());
         feed->setMaxArticleAge(dlg->maxArticleAge());
         feed->setMaxArticleNumber(dlg->maxArticleNumber());
-        feed->item()->setText(0, dlg->feedName());
-        m_part->setModified(true);
+        feed->setNotificationMode(true, true);
+        //m_part->setModified(true);
     }
     delete dlg;
 }
 
-void aKregatorView::slotNextUnreadArticle()
-{
-    ArticleListItem *it= static_cast<ArticleListItem*>(m_articles->selectedItem());
-    
-    if (!it)
-        it=static_cast<ArticleListItem*>(m_articles->firstChild());
-    
-    for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
-    {
-        if ((it->article().status()==MyArticle::Unread) ||
-                (it->article().status()==MyArticle::New))
-        {
-            m_articles->setSelected(it, true);
-            m_articles->ensureItemVisible(it);
-            slotArticleSelected(it);
-            return;
-        }
-    }
-}
-
 void aKregatorView::slotPrevFeed()        
 {
-    for (QListViewItemIterator it( m_tree->selectedItem()); it.current(); --it )
-        if ( !(*it)->isSelected() && !(*it)->isExpandable() )
-    {
-        m_tree->setSelected(*it, true);
-        m_tree->ensureItemVisible(*it);
-        slotItemChanged(*it);
-        return;
-    }     
+    m_tree->slotPrevFeed();
 }
     
 void aKregatorView::slotNextFeed()
 {
-    for (QListViewItemIterator it( m_tree->selectedItem()); it.current(); ++it )
-        if ( !(*it)->isSelected() && !(*it)->isExpandable() )
-    {
-        m_tree->setSelected(*it, true);
-        m_tree->ensureItemVisible(*it);
-        slotItemChanged(*it);
-        return;
-    }     
+    m_tree->slotNextFeed();
+}
+
+void aKregatorView::slotNextUnreadArticle()
+{
+    m_articles->slotNextUnreadArticle();
 }
 
 void aKregatorView::slotPrevUnreadArticle()
 {
-    
-    if ( !m_articles->selectedItem() )
-        slotNextUnreadArticle(); 
-
-    QListViewItemIterator it( m_articles->selectedItem() );
-    
-    for ( ; it.current(); --it )
-    {
-        ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
-        if (!ali)
-            break;
-        if ((ali->article().status()==MyArticle::Unread) ||
-             (ali->article().status()==MyArticle::New))
-        {
-            m_articles->setSelected(ali, true);
-            m_articles->ensureItemVisible(ali);
-            slotArticleSelected(ali);
-            return;
-        }
-    }
+    m_articles->slotPreviousUnreadArticle();
 }
 
 void aKregatorView::slotPrevUnreadFeed()
 {
-    if ( !m_tree->selectedItem() )
-        slotNextUnreadFeed(); 
-
-    QListViewItemIterator it( m_tree->selectedItem() );
-    
-    for ( ; it.current(); --it )
-    {
-        FeedsTreeItem* fti = static_cast<FeedsTreeItem*> (it.current());
-        if (!fti)
-            break;
-        if ( !fti->isSelected() && !fti->isExpandable() && fti->unread() > 0)
-        {
-            m_tree->setSelected(fti, true);
-            m_tree->ensureItemVisible(fti);
-            slotItemChanged(fti);
-            return;
-        }
-    }
+    m_tree->slotPrevUnreadFeed();
 }
 
 void aKregatorView::slotNextUnreadFeed()
 {
-    QListViewItemIterator it;
-    
-    if ( !m_tree->selectedItem() )
-    {
-        // if all feeds doesnt exists or is empty, return
-        if (!m_tree->firstChild() || !m_tree->firstChild()->firstChild())
-            return;    
-        else 
-            it = QListViewItemIterator( m_tree->firstChild()->firstChild());
-    }
-    
-    else
-        it = QListViewItemIterator( m_tree->selectedItem() );
-    
-    for ( ; it.current(); ++it )
-    {
-        FeedsTreeItem* fti = static_cast<FeedsTreeItem*> (it.current());
-        if (!fti)
-            break;
-        if ( !fti->isSelected() && !fti->isExpandable() && fti->unread() > 0)
-        {
-            m_tree->setSelected(fti, true);
-            m_tree->ensureItemVisible(fti);
-            slotItemChanged(fti);
-            return;
-        }
-    }
+    m_tree->slotNextUnreadFeed();
 }
 
-
-        
 void aKregatorView::slotMarkAllFeedsRead()
 {
-    markAllRead(m_tree->firstChild());
+    m_tree->rootNode()->slotMarkAllArticlesAsRead();
+    setTotalUnread();
 }
 
 void aKregatorView::slotMarkAllRead()
 {
-    markAllRead(m_tree->currentItem());
+    m_tree->selectedNode()->slotMarkAllArticlesAsRead();
+    setTotalUnread();
 }
 
 
 void aKregatorView::slotOpenHomepage()
 {
-   QListViewItem *item=m_tree->currentItem();
-   Feed *f = static_cast<Feed *>(m_feeds.find(item));
-   if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
-       displayInExternalBrowser(f->htmlUrl());
-   else
-       slotOpenTab(f->htmlUrl());
-}
+Feed* feed = static_cast<Feed *>(m_tree->selectedNode());
 
-void aKregatorView::markAllRead(QListViewItem *item)
-{
-    if (!item)
-        return;
-    else
-    {
-        Feed *f = static_cast<Feed *>(m_feeds.find(item));
-        if (!f) return;
-        if (!f->isGroup())
-        {
-            //kdDebug() << k_funcinfo << "item " << f->title() << endl;
-            f->slotMarkAllArticlesAsRead();
-            FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(item);
-            if (fti)
-                fti->setUnread(0);
-            m_articles->triggerUpdate();
-            // TODO: schedule this save
-            Archive::save(f);
-        }
-        else
-        {
-            TreeNode* node = m_feeds.find(item);
-            if (!node)
-                return;
-            //kdDebug() << k_funcinfo << "group " << g->title() << endl;
-            for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
-            {
-               markAllRead(it);
-            }
-        }
-    }
+if (!feed || feed->isGroup())
+    return;
 
-    setTotalUnread();
+if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
+    displayInExternalBrowser(feed->htmlUrl());
+else
+    slotOpenTab(feed->htmlUrl());
 }
 
 void aKregatorView::setTotalUnread()
 {
-    FeedsTreeItem *allFeedsItem = static_cast<FeedsTreeItem *>(m_tree->firstChild());
-    int totalUnread=totalUnread=allFeedsItem->countUnreadRecursive();
-    m_part->setTotalUnread(totalUnread);
-}
-
-void aKregatorView::fetchItem(QListViewItem *item)
-{
-    kdDebug() << "enter fetchItem" << endl;
-    if (item)
-    {
-        TreeNode* node = static_cast<TreeNode*> (m_feeds.find(item));
-        if (node && node->isGroup())
-        {
-            for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
-                fetchItem(it);
-        }
-        else
-        {
-            Feed *f = static_cast<Feed *>(node);
-            if (f)
-                m_transaction->fetch(f);
-        }
-    }
-    kdDebug() << "leave fetchItem" << endl;
+    m_part->setTotalUnread(m_tree->rootNode()->unread());
 }
 
 void aKregatorView::showFetchStatus()
@@ -1304,8 +1086,8 @@ void aKregatorView::showFetchStatus()
 }
 
 /**
- * Display article in external browser.
- */
+* Display article in external browser.
+*/
 void aKregatorView::displayInExternalBrowser(const KURL &url)
 {
     if (!url.isValid()) return;
@@ -1326,31 +1108,48 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
 
 void aKregatorView::slotDoIntervalFetches()
 {
+    kdDebug() << "enter slotDoIntervalFetches" << endl;
     if (m_transaction->isRunning() || m_part->loading())
         return;
-    kdDebug() << "doIntervalFetches"<<endl;
+    kdDebug() << "doIntervalFetches" << endl;
+    bool fetch = false;
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
     {
-        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
-        if (f && !f->isGroup() && f->autoFetch())
+        TreeNodeItem* item = static_cast<TreeNodeItem*> (*it);
+        Feed *f = static_cast<Feed*> (item->node());
+        if ( f && !f->isGroup() )
         {
-            uint lastFetch=IntervalManager::self()->lastFetchTime(f->xmlUrl());
-            QDateTime dt=QDateTime::currentDateTime();
-            uint curTime=dt.toTime_t();
-            if (curTime-lastFetch >= uint(f->fetchInterval()*60))
+            uint lastFetch = IntervalManager::self()->lastFetchTime(f->xmlUrl());
+            uint now = QDateTime::currentDateTime().toTime_t();
+
+            uint interval = 0;
+
+            if ( f->autoFetch() )
+                interval = uint(f->fetchInterval()*60);
+            else
+                if ( Settings::useIntervalFetch() )
+                    interval = uint(Settings::autoFetchInterval()*60);
+            if ( interval != 0 && now - lastFetch >= interval )
             {
-            kdDebug() << "interval fetching---"<< f->xmlUrl() <<endl;
-                m_transaction->fetch(f);
+                kdDebug() << "interval fetch " << f->title() << endl;
+                m_transaction->addFeed(f);
+                fetch = true;
             }
         }
     }
-    m_transaction->start();
+    if (fetch)
+    {
+        startOperation();
+        m_transaction->start();
+    }
 }
 
 void aKregatorView::slotFetchCurrentFeed()
 {
+    if ( !m_tree->selectedNodeItem() )
+        return;
     showFetchStatus();
-    fetchItem(m_tree->currentItem());
+    m_tree->selectedNode()->slotAddToFetchTransaction(m_transaction);
     startOperation();
     m_transaction->start();
 }
@@ -1360,13 +1159,7 @@ void aKregatorView::slotFetchAllFeeds()
     // this iterator iterates through ALL child items
     showFetchStatus();
 
-    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
-    {
-        //kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
-        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
-        if (f && !f->isGroup())
-            m_transaction->fetch(f);
-    }
+    m_tree->rootNode()->slotAddToFetchTransaction(m_transaction);
     startOperation();
     m_transaction->start();
 }
@@ -1380,10 +1173,6 @@ void aKregatorView::slotFetchesCompleted()
 
 void aKregatorView::slotFeedFetched(Feed *feed)
 {
-    // If its a currenly selected feed, update view
-//    if (feed->item() == m_tree->currentItem())
-  //      slotUpdateArticleList(feed, false);
-
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {
@@ -1404,22 +1193,14 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 
     IntervalManager::self()->feedFetched(feed->xmlUrl());
 
-    // Also, update unread counts
-
-    FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());
-    if (fti)
-        fti->setUnread(feed->unread());
-
     int p=int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
     m_mainFrame->setProgress(p);
 }
 
 void aKregatorView::slotFeedFetchError(Feed *feed)
 {
-    int p=int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
+    int p = int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
     m_mainFrame->setProgress(p);
-    if (feed && feed->item())
-        feed->item()->setPixmap(0, m_errorTreePixmap);
 }
 
 void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
@@ -1440,33 +1221,31 @@ void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, con
     }
 }
 
-void aKregatorView::slotArticleSelected(QListViewItem *i)
+void aKregatorView::slotArticleSelected(MyArticle article)
 {
-    if (m_viewMode==CombinedView) return; // shouldn't ever happen
+    
+    if (m_viewMode == CombinedView) 
+        return; 
 
-    ArticleListItem *item = static_cast<ArticleListItem *>(i);
-    if (!item) return;
-    Feed *feed = item->feed();
-    if (!feed) return;
+    Feed *feed = article.feed();
+    if (!feed) 
+        return;
 
-    if (item->article().status() != MyArticle::Read)
+    if (article.status() != MyArticle::Read)
     {
-        int unread=feed->unread();
+        article.setStatus(MyArticle::Read);
+        //item->repaint();
+        int unread = feed->unread();
         unread--;
+        m_articles->setReceiveUpdates(false);
         feed->setUnread(unread);
-
-        FeedsTreeItem *fti = static_cast<FeedsTreeItem *>(feed->item());
-        if (fti)
-            fti->setUnread(unread);
-
+        m_articles->setReceiveUpdates(true, false);
         setTotalUnread();
-
-        item->article().setStatus(MyArticle::Read);
-
+            
         // TODO: schedule this save.. don't want to save a huge file for one change
         Archive::save(feed);
     }
-    m_articleViewer->slotShowArticle( item->article() );
+    m_articleViewer->slotShowArticle( article );
 }
 
 void aKregatorView::slotOpenArticleExternal(QListViewItem* i, const QPoint&, int)
@@ -1478,31 +1257,6 @@ void aKregatorView::slotOpenArticleExternal(QListViewItem* i, const QPoint&, int
     displayInExternalBrowser(item->article().link());
 }   
 
-void aKregatorView::slotOpenCurrentArticleExternal()
-{
-    slotOpenArticleExternal(m_articles->currentItem(), QPoint(), 0);
-}         
-
-void aKregatorView::slotOpenCurrentArticleBackgroundTab()
-{
-    ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
-    if (!item)
-        return;
-    
-    MyArticle article = item->article();
-    QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
-    {
-        // in case link isn't valid, fall back to the guid permaLink.
-        if (article.link().isValid())
-            link = article.link().url();
-        else
-            link = article.guid();
-        slotOpenTab(link, true);
-    }
-
-    
-}
 
 void aKregatorView::slotOpenCurrentArticleForegroundTab()
 {
@@ -1523,33 +1277,44 @@ void aKregatorView::slotOpenCurrentArticleForegroundTab()
     }
 }
 
-void aKregatorView::slotFeedURLDropped(KURL::List &urls, QListViewItem *after, QListViewItem *parent)
+void aKregatorView::slotOpenCurrentArticleExternal()
 {
-    KURL::List::iterator it;
-    for ( it = urls.begin(); it != urls.end(); ++it )
+    slotOpenArticleExternal(m_articles->currentItem(), QPoint(), 0);
+}
+
+void aKregatorView::slotOpenCurrentArticleBackgroundTab()
+{
+    ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+    if (!item)
+        return;
+
+    MyArticle article = item->article();
+    QString link;
+    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
     {
-        addFeed((*it).prettyURL(), after, parent);
+        // in case link isn't valid, fall back to the guid permaLink.
+        if (article.link().isValid())
+            link = article.link().url();
+        else
+            link = article.guid();
+        slotOpenTab(link, true);
     }
 }
 
-void aKregatorView::slotItemRenamed( QListViewItem *item )
+void aKregatorView::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupItem* parent)
 {
-    QString text = item->text(0);
-    kdDebug() << "Item renamed to " << text << endl;
-
-    Feed *feed = static_cast<Feed *> (m_feeds.find(item));
-    if (feed)
+    FeedGroup* pnode = parent->node();
+    TreeNode* afternode = after->node();
+    KURL::List::iterator it;
+    for ( it = urls.begin(); it != urls.end(); ++it )
     {
-        if (feed->title()!=text)
-            m_part->setModified(true);
-
-        feed->setTitle( text );
+        addFeed((*it).prettyURL(), afternode, pnode, false);
     }
 }
 
 void aKregatorView::slotItemMoved()
 {
-    m_part->setModified(true);
+    //m_part->setModified(true);
 }
 
 void aKregatorView::slotSearchComboChanged(int index)
@@ -1596,22 +1361,21 @@ void aKregatorView::updateSearch(const QString &s)
     {
         switch (m_searchCombo->currentItem())
         {
-	    case 1:
+            case 1: // New & Unread
             {
                 Criterion crit1( Criterion::Status, Criterion::Equals, MyArticle::New);
                 Criterion crit2( Criterion::Status, Criterion::Equals, MyArticle::Unread);
                 statusCriteria << crit1;
                 statusCriteria << crit2;
                 break;
-            }	
-            case 2:
+            }
+            case 2: // New
             {
                 Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::New);
                 statusCriteria << crit;
                 break;
             }
-            
-	    case 3:
+            case 3: // Unread
             {
                 Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::Unread);
                 statusCriteria << crit;
@@ -1628,6 +1392,24 @@ void aKregatorView::updateSearch(const QString &s)
 
     m_articleViewer->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter)
     ;m_articles->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
+}
+
+void aKregatorView::slotToggleShowQuickFilter()
+{
+    if ( Settings::showQuickFilter() )
+    {
+        Settings::setShowQuickFilter(false);
+        m_searchBar->hide();
+        m_searchLine->clear();
+        m_searchCombo->setCurrentItem(0);
+        updateSearch();
+    }
+    else
+    {
+        Settings::setShowQuickFilter(true);
+        m_searchBar->show();
+    }
+    
 }
 
 void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
@@ -1648,11 +1430,12 @@ void aKregatorView::stopLoading()
     m_stopLoading=true;
 }
 
-void aKregatorView::readProperties(KConfig* config)
+void aKregatorView::readProperties(KConfig* config) // this is called when session is being restored
 {
-    slotDeleteExpiredArticles();
-    // read filter settings
-
+    // load the standard feedlist, fixes #84528, at least partially -tpr 20041025
+    m_part->openStandardFeedList();
+    
+    // read filter settings 
     m_searchLine->setText(config->readEntry("searchLine"));
     m_searchCombo->setCurrentItem(config->readEntry("searchCombo").toInt());
     slotSearchComboChanged(config->readEntry("searchCombo").toInt());
@@ -1674,7 +1457,6 @@ void aKregatorView::readProperties(KConfig* config)
                         current = current->nextSibling();
         }
         m_tree->setSelected(current, true);
-
         // read the selected article title (not in Combined View)
 
         if ( m_viewMode != CombinedView )
@@ -1687,11 +1469,13 @@ void aKregatorView::readProperties(KConfig* config)
                     m_articles->setSelected(selectedArticle, true);
             }
         } // if viewMode != combinedView
-   } // if selectedFeed is set
+    } // if selectedFeed is set
 }
-
+// this is called when using session management and session is going to close
 void aKregatorView::saveProperties(KConfig* config)
-{
+{   
+    // save the feedlist, fixes #84528, at least partially -tpr 20041025
+    m_part->saveFeedList();
     // save filter settings
     config->writeEntry("searchLine", m_searchLine->text());
     config->writeEntry("searchCombo", m_searchCombo->currentItem());

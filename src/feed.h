@@ -18,21 +18,28 @@
 
 using namespace RSS;
 
+class QDomElement;
+
 namespace Akregator
 {
-    class FeedsCollection;
     class FetchTransaction;
-
+    class FeedGroup;
+    
+    /**
+        represents a feed
+     */
     class Feed : public TreeNode
     {
         Q_OBJECT
         public:
 	
             enum ArchiveMode { globalDefault, keepAllArticles, disableArchiving, limitArticleNumber, limitArticleAge };
-                        
-            static ArchiveMode stringToArchiveMode(QString str);
+                                    
+            static ArchiveMode stringToArchiveMode(const QString& str);
             static QString archiveModeToString(ArchiveMode mode);
-            Feed(QListViewItem *i, FeedsCollection *coll);
+            static Feed* fromOPML(QDomElement e);
+            
+            Feed();
             ~Feed();
 
             virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
@@ -41,14 +48,20 @@ namespace Akregator
             virtual bool isGroup() const { return false; }
             
             bool autoFetch() const { return m_autoFetch; }
-            void setAutoFetch(bool enable) { m_autoFetch = enable; }
             
+            void setAutoFetch(bool enable) { m_autoFetch = enable; }
+
+            /** Returns custom auto fetch interval of this feed.
+            @return custom fetch interval in minutes, 0 if disabled */
             int fetchInterval() const { return m_fetchInterval; }
+
+            /** Sets custom auto fetch interval.
+            @param interval interval in minutes, -1 for disabling auto fetching */
             void setFetchInterval(int interval) { m_fetchInterval = interval; }
 
             ArchiveMode archiveMode() const { return m_archiveMode; }
             void setArchiveMode(ArchiveMode archiveMode) { m_archiveMode = archiveMode; }  
-            
+//             
             int maxArticleAge() const { return m_maxArticleAge; } 
             void setMaxArticleAge(int maxArticleAge)
             { m_maxArticleAge = maxArticleAge; }
@@ -60,7 +73,7 @@ namespace Akregator
             void setMerged(bool m){ m_merged = m;}
 
             virtual int unread() const { return m_unread; }
-            void setUnread(int i) { m_unread = i; }
+            void setUnread(int unread);
             
             const QPixmap& favicon() const { return m_favicon; }
             void setFavicon(const QPixmap& p);
@@ -68,13 +81,13 @@ namespace Akregator
             const QPixmap& image() const { return m_image; }
             void setImage(const QPixmap &p); 
             
-            QString xmlUrl() const { return m_xmlUrl; }
+            const QString& xmlUrl() const { return m_xmlUrl; }
             void setXmlUrl(const QString& s) { m_xmlUrl = s; }
             
-            QString htmlUrl() const { return m_htmlUrl; }
+            const QString& htmlUrl() const { return m_htmlUrl; }
             void setHtmlUrl(const QString& s) { m_htmlUrl = s; }
             
-            QString description() const { return m_description; }
+            const QString& description() const { return m_description; }
             void setDescription(const QString& s) { m_description = s; }
           
             virtual ArticleSequence articles();
@@ -83,6 +96,7 @@ namespace Akregator
 
             void abortFetch();
 
+            bool fetchErrorOccurred() { return m_fetchError; }
            
 	    
         public slots:
@@ -90,12 +104,14 @@ namespace Akregator
             void loadFavicon();
             virtual void slotDeleteExpiredArticles();
             virtual void slotMarkAllArticlesAsRead();
+            virtual void slotAddToFetchTransaction(FetchTransaction* transaction);
 
         signals:
+            void fetchStarted(Feed*);
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
             void fetchError(Feed *);
             void fetchDiscovery(Feed *);
-
+            void fetchAborted(Feed *);
             void imageLoaded(Feed*);
 
 
@@ -103,7 +119,9 @@ namespace Akregator
             void fetchCompleted(Loader *loader, Document doc, Status status);
 
         private:
-            void appendArticle(const MyArticle &a);            
+            void appendArticle(const MyArticle& a);
+            bool isExpired(const MyArticle& a) const;
+            bool usesExpiryByAge() const;
             void tryFetch();
             
             

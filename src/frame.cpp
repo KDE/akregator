@@ -14,7 +14,7 @@
 
 using namespace Akregator;
 
-Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, QString tit, bool watchSignals)
+Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, const QString& tit, bool watchSignals)
    :QObject(parent, "aKregatorFrame")
 {
     m_part=p;

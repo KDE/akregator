@@ -92,56 +92,7 @@
                             </widget>
                         </hbox>
                     </widget>
-                    <widget class="QLayoutWidget" row="2" column="0">
-                        <property name="name">
-                            <cstring>layout9</cstring>
-                        </property>
-                        <hbox>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QCheckBox">
-                                <property name="name">
-                                    <cstring>upChkbox</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Update feed every:</string>
-                                </property>
-                            </widget>
-                            <spacer>
-                                <property name="name">
-                                    <cstring>spacer5</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Horizontal</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>Expanding</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>173</width>
-                                        <height>20</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                            <widget class="KIntSpinBox">
-                                <property name="name">
-                                    <cstring>updateSpinBox</cstring>
-                                </property>
-                                <property name="enabled">
-                                    <bool>false</bool>
-                                </property>
-                                <property name="suffix">
-                                    <string> minutes</string>
-                                </property>
-                                <property name="maxValue">
-                                    <number>1000000</number>
-                                </property>
-                            </widget>
-                        </hbox>
-                    </widget>
-                    <spacer row="3" column="0">
+                    <spacer row="4" column="0">
                         <property name="name">
                             <cstring>spacer9</cstring>
                         </property>
@@ -154,10 +105,98 @@
                         <property name="sizeHint">
                             <size>
                                 <width>20</width>
-                                <height>290</height>
+                                <height>140</height>
                             </size>
                         </property>
                     </spacer>
+                    <widget class="QLayoutWidget" row="3" column="0">
+                        <property name="name">
+                            <cstring>layout7</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel1</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Update feed every:</string>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>spacer6</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>40</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="KIntSpinBox">
+                                <property name="name">
+                                    <cstring>updateSpinBox</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="suffix">
+                                    <string></string>
+                                </property>
+                                <property name="maxValue">
+                                    <number>100000000</number>
+                                </property>
+                                <property name="minValue">
+                                    <number>1</number>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox">
+                                <item>
+                                    <property name="text">
+                                        <string>minutes</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>hours</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>days</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>never</string>
+                                    </property>
+                                </item>
+                                <property name="name">
+                                    <cstring>updateComboBox</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QCheckBox" row="2" column="0">
+                        <property name="name">
+                            <cstring>upChkbox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Use custom update interval</string>
+                        </property>
+                    </widget>
                 </grid>
             </widget>
             <widget class="QWidget">
@@ -368,10 +407,32 @@
         <receiver>sb_maxArticleAge</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
+    <connection>
+        <sender>upChkbox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>updateComboBox</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>updateComboBox</sender>
+        <signal>activated(int)</signal>
+        <receiver>FeedPropertiesWidget</receiver>
+        <slot>slotUpdateComboBoxActivated(int)</slot>
+    </connection>
+    <connection>
+        <sender>upChkbox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>FeedPropertiesWidget</receiver>
+        <slot>slotUpdateCheckBoxToggled(bool)</slot>
+    </connection>
 </connections>
 <includes>
     <include location="local" impldecl="in implementation">propertieswidgetbase.ui.h</include>
 </includes>
+<slots>
+    <slot access="protected">slotUpdateComboBoxActivated( int index )</slot>
+    <slot>slotUpdateCheckBoxToggled( bool enabled )</slot>
+</slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>klineedit.h</includehint>

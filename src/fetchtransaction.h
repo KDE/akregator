@@ -25,7 +25,7 @@ namespace Akregator {
             void start();
             void stop();
 
-            void fetch(Feed *f);
+            void addFeed(Feed *f);
 
             int fetchesDone(){return m_fetchesDone;}
             int totalFetches(){return m_totalFetches;}

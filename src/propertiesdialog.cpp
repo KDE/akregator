@@ -55,7 +55,17 @@ bool FeedPropertiesDialog::autoFetch() const
 
 int FeedPropertiesDialog::fetchInterval() const
 {
-   return widget->updateSpinBox->value();
+    switch (widget->updateComboBox->currentItem() )
+    {
+        case 0: // minutes
+            return widget->updateSpinBox->value();
+        case 1: // hours
+            return widget->updateSpinBox->value()*60;
+        case 2: // days
+            return widget->updateSpinBox->value()*60*24;
+        case 3: // never
+            return -1;
+    }
 }
 
 Feed::ArchiveMode FeedPropertiesDialog::archiveMode() const
@@ -130,7 +140,29 @@ void FeedPropertiesDialog::setAutoFetch(bool w)
 
 void FeedPropertiesDialog::setFetchInterval(int i)
 {
+    if (i == -1)
+    {
+        widget->updateSpinBox->setValue(0);
+        widget->updateComboBox->setCurrentItem(3); // never
+        return;
+    }
+
+   if (i % (60*24) == 0)
+   {
+       widget->updateSpinBox->setValue(i / (60*24) );
+       widget->updateComboBox->setCurrentItem(2); // days
+       return;
+   }
+   
+   if (i % 60 == 0)
+   {
+       widget->updateSpinBox->setValue(i / 60 );
+       widget->updateComboBox->setCurrentItem(1); // hours
+       return;
+   }
+
    widget->updateSpinBox->setValue(i);
+   widget->updateComboBox->setCurrentItem(0); // minutes
 }
 
 void FeedPropertiesDialog::setMaxArticleAge(int age)

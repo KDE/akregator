@@ -44,7 +44,7 @@
                                 <cstring>textLabel1</cstring>
                             </property>
                             <property name="text">
-                                <string>Fetch all feeds every:</string>
+                                <string>Fetch feeds every:</string>
                             </property>
                         </widget>
                         <widget class="QSpinBox">
@@ -126,13 +126,21 @@
                 <cstring>groupBox3</cstring>
             </property>
             <property name="title">
-                <string>Startup &amp;&amp; Exit</string>
+                <string>Startup</string>
             </property>
-            <vbox>
+            <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QCheckBox">
+                <widget class="QCheckBox" row="0" column="0">
+                    <property name="name">
+                        <cstring>kcfg_MarkAllFeedsReadOnStartup</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Mark all feeds as read on startup</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="1" column="0">
                     <property name="name">
                         <cstring>kcfg_FetchOnStartup</cstring>
                     </property>
@@ -140,15 +148,7 @@
                         <string>Fetch all feeds on startup</string>
                     </property>
                 </widget>
-                <widget class="QCheckBox">
-                    <property name="name">
-                        <cstring>kcfg_MarkAllFeedsReadOnExit</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Mark all feeds as read on exit</string>
-                    </property>
-                </widget>
-            </vbox>
+            </grid>
         </widget>
     </grid>
 </widget>

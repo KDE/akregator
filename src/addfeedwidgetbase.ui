@@ -92,7 +92,7 @@
                                 </font>
                             </property>
                             <property name="text">
-                                <string>Add a new source:</string>
+                                <string>Add New Source</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="1" column="0">

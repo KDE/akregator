@@ -7,13 +7,9 @@
 
 #include "app.h"
 #include "akregator.h"
-#include "trayicon.h"
-#include "akregatorconfig.h"
+#include "akregator_part.h"
 
 //settings
-#include "settings_general.h"
-#include "settings_browser.h"
-#include "settings_archive.h"
 
 #include <dcopclient.h>
 #include <dcopobject.h>
@@ -24,8 +20,6 @@
 #include <kprogress.h>
 #include <kconfig.h>
 #include <kurl.h>
-#include <kconfigdialog.h>
-
 #include <kedittoolbar.h>
 
 #include <kaction.h>
@@ -38,24 +32,20 @@
 #include <kstatusbar.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include <kparts/partmanager.h>
 
 #include <qmetaobject.h>
 #include <qpen.h>
 #include <qpainter.h>
 #include <private/qucomextra_p.h>
-#include <akregator_part.h>
+
 
 using namespace Akregator;
 
-BrowserInterface::BrowserInterface( aKregator *shell, const char *name )
+BrowserInterface::BrowserInterface( AkregatorMainWindow *shell, const char *name )
     : KParts::BrowserInterface( shell, name )
 {
     m_shell = shell;
-}
-
-void BrowserInterface::updateUnread(int unread)
-{
-    m_shell->updateUnread(unread);
 }
 
 bool BrowserInterface::haveWindowLoaded() const
@@ -63,32 +53,23 @@ bool BrowserInterface::haveWindowLoaded() const
     return akreapp->haveWindowLoaded();
 }
 
-void BrowserInterface::newArticle(const QString& feed, const QPixmap&p, const QString& article)
-{
-    m_shell->newArticle(feed, p, article);
-
-}
-
-aKregator::aKregator()
-    : KParts::MainWindow( 0L, "aKregator" ) //,
+AkregatorMainWindow::AkregatorMainWindow()
+    : KParts::MainWindow( 0L, "akregator_mainwindow" )
 {
     // set the shell's ui resource file
     setXMLFile("akregator_shell.rc");
 
     m_browserIface=new BrowserInterface(this, "browser_interface");
-    m_activePart=0;
+    //m_activePart=0;
     m_part=0;
 
+    m_manager = new KParts::PartManager(this, "akregator_partmanager");
+    m_manager->setAllowNestedParts(true);
+    
+    connect(m_manager, SIGNAL(activePartChanged(KParts::Part*)), this, SLOT(createGUI(KParts::Part*)) );
+    
     // then, setup our actions
     setupActions();
-
-    m_icon = new TrayIcon(this);
-
-    if ( Settings::showTrayIcon() )
-        m_icon->show();
-
-    connect(m_icon, SIGNAL(quitSelected()),
-            this, SLOT(quitProgram()));
 
     toolBar()->show();
     // and a status bar
@@ -110,7 +91,7 @@ aKregator::aKregator()
     statusBar()->addWidget( m_progressBar, 0, true);
 }
 
-bool aKregator::loadPart()
+bool AkregatorMainWindow::loadPart()
 {
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
@@ -120,29 +101,26 @@ bool aKregator::loadPart()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<KParts::ReadWritePart*>(factory->create(this, "akregator_part", "KParts::ReadWritePart" ));
+        m_part = static_cast<aKregatorPart*>(factory->create(this, "akregator_part", "KParts::ReadOnlyPart" ));
 
         if (m_part)
         {
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
-    	    connect(m_part, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
-    	    connect(m_part, SIGNAL(completed()), this, SLOT(slotCompleted()));
-    	    connect(m_part, SIGNAL(canceled(const QString&)), this, SLOT(slotCanceled(const QString &)));
-    	    connect(m_part, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
-
-    	    connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
-            connect (m_part, SIGNAL(partChanged(KParts::ReadOnlyPart *)), this, SLOT(partChanged(KParts::ReadOnlyPart *)));
+            connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
+            //connect (m_part, SIGNAL(partChanged(KParts::ReadOnlyPart *)), this, SLOT(partChanged(KParts::ReadOnlyPart *)));
             connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-            m_activePart=m_part;
+            //m_activePart=m_part;
             // and integrate the part's GUI with the shell's
             connectActionCollection(m_part->actionCollection());
-            createGUI(m_part);
+            m_manager->addPart(m_part);
+            //createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
             setAutoSaveSettings();
+            return true;
         }
-        return true;
+        return false;
     }
     else
     {
@@ -152,50 +130,44 @@ bool aKregator::loadPart()
 
 }
 
-void aKregator::loadStandardFile()
+void AkregatorMainWindow::loadStandardFile()
 {
-   show();
-   QString file=KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
-   load(file);
+    show();
+    QString file = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
+    
+    if (!m_part)
+        loadPart();
+    m_part->openStandardFeedList();
 }
 
-aKregator::~aKregator()
+AkregatorMainWindow::~AkregatorMainWindow()
 {}
 
-void aKregator::setCaption(const QString &a)
+void AkregatorMainWindow::setCaption(const QString &a)
 {
     if (sender() && (sender() == m_part) )
         KParts::MainWindow::setCaption(a);
 }
-
-void aKregator::partChanged(KParts::ReadOnlyPart *p)
+/*
+void AkregatorMainWindow::partChanged(KParts::ReadOnlyPart *p)
 {
-    m_activePart=p;
-    createGUI(p);
-}
+    //m_activePart=p;
+    //createGUI(p);
+}*/
 
-void aKregator::load(const KURL& url)
-{
-    if (!m_part)
-	    loadPart();
-    m_part->openURL( url );
-}
 
-void aKregator::addFeedToGroup(const QString& url, const QString& group)
+void AkregatorMainWindow::addFeedToGroup(const QString& url, const QString& group)
 {
     if (!m_part)
         loadPart();
     (static_cast<aKregatorPart*>(m_part))->addFeedToGroup( url, group );
 }
 
-void aKregator::setupActions()
+void AkregatorMainWindow::setupActions()
 {
     connectActionCollection(actionCollection());
 
-    KStdAction::quit(this, SLOT(quitProgram()), actionCollection());
-
-    m_stopAction = new KAction( i18n( "&Stop" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "stop" );
-    m_stopAction->setEnabled(false);
+    KStdAction::quit(kapp, SLOT(quit()), actionCollection());
 
 /*    m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
     m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
@@ -205,10 +177,9 @@ void aKregator::setupActions()
 
     KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
     KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
-    KStdAction::preferences(this, SLOT(showOptions()), actionCollection());
 }
 
-void aKregator::saveProperties(KConfig* config)
+void AkregatorMainWindow::saveProperties(KConfig* config)
 {
     if (!m_part)
         loadPart();
@@ -216,14 +187,14 @@ void aKregator::saveProperties(KConfig* config)
     static_cast<Akregator::aKregatorPart*>(m_part)->saveProperties(config);
 }
 
-void aKregator::readProperties(KConfig* config)
+void AkregatorMainWindow::readProperties(KConfig* config)
 {
-    if (!m_part) // if blank url, load part anyways
+    if (!m_part)
         loadPart();
     static_cast<Akregator::aKregatorPart*>(m_part)->readProperties(config);
 }
 
-void aKregator::fileNew()
+void AkregatorMainWindow::fileNew()
 {
     // this slot is called whenever the File->New menu is selected,
     // the New shortcut is pressed (usually CTRL+N) or the New toolbar
@@ -233,17 +204,17 @@ void aKregator::fileNew()
     // http://developer.kde.org/documentation/standards/kde/style/basics/index.html )
     // says that it should open a new window if the document is _not_
     // in its initial state.  This is what we do here..
-    if ( ! m_part->url().isEmpty() || m_part->isModified() )
-    {
-	callObjectSlot( browserExtension(m_part), "saveSettings()", QVariant());
+//    if ( ! m_part->url().isEmpty() || m_part->isModified() )
+ //   {
+//	callObjectSlot( browserExtension(m_part), "saveSettings()", QVariant());
 
-        aKregator *w=new aKregator();
-	w->loadPart();
-	w->show();
-        }
+ //       aKregator *w=new aKregator();
+ //	w->loadPart();
+ //	w->show();
+ //   }
 }
 
-void aKregator::optionsShowToolbar()
+void AkregatorMainWindow::optionsShowToolbar()
 {
     // this is all very cut and paste code for showing/hiding the
     // toolbar
@@ -253,7 +224,7 @@ void aKregator::optionsShowToolbar()
         toolBar()->hide();
 }
 
-void aKregator::optionsShowStatusbar()
+void AkregatorMainWindow::optionsShowStatusbar()
 {
     // this is all very cut and paste code for showing/hiding the
     // statusbar
@@ -263,7 +234,7 @@ void aKregator::optionsShowStatusbar()
         statusBar()->hide();
 }
 
-void aKregator::optionsConfigureKeys()
+void AkregatorMainWindow::optionsConfigureKeys()
 {
     KKeyDialog dlg( true, this );
 
@@ -274,7 +245,7 @@ void aKregator::optionsConfigureKeys()
     dlg.configure();
 }
 
-void aKregator::optionsConfigureToolbars()
+void AkregatorMainWindow::optionsConfigureToolbars()
 {
     saveMainWindowSettings(KGlobal::config(), autoSaveGroup());
 
@@ -285,48 +256,34 @@ void aKregator::optionsConfigureToolbars()
     dlg.exec();
 }
 
-void aKregator::showOptions()
-{
-    if ( KConfigDialog::showDialog( "settings" ) )
-        return;
 
-    KConfigDialog *dialog = new KConfigDialog( this, "settings", Settings::self() );
-    dialog->addPage(new settings_general(0, "General"), i18n("General"), "package_settings");
-    dialog->addPage(new settings_archive(0, "Archive"), i18n("Archive"), "package_settings");
-    dialog->addPage(new settings_browser(0, "Browser"), i18n("Browser"), "package_network");
-    connect( dialog, SIGNAL(settingsChanged()),
-             m_part, SLOT(saveSettings()) );
-    connect( dialog, SIGNAL(settingsChanged()),
-             m_icon, SLOT(settingsChanged()) );
 
-    dialog->show();
-}
-
-void aKregator::applyNewToolbarConfig()
+void AkregatorMainWindow::applyNewToolbarConfig()
 {
     applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
 }
 
-void aKregator::fileOpen()
+void AkregatorMainWindow::fileOpen()
 {
-    KURL url = KFileDialog::getOpenURL( QString::null, QString::null, this );
-
-    if (url.isEmpty() == false)
-    {
-        aKregator* newWin = new aKregator;
-        newWin->load( url );
-        newWin->show();
-    }
+//    KURL url =
+//        KFileDialog::getOpenURL( QString::null, QString::null, this );
+    //
+//    if (url.isEmpty() == false)
+//    {
+//        AkregatorMainWindow* newWin = new AkregatorMainWindow();
+//        newWin->load( url );
+//        newWin->show();
+//    }
 }
 
-KParts::BrowserExtension *aKregator::browserExtension(KParts::ReadOnlyPart *p)
+KParts::BrowserExtension *AkregatorMainWindow::browserExtension(KParts::ReadOnlyPart *p)
 {
     return KParts::BrowserExtension::childObject( p );
 }
 
 
 // from konqmainwindow
-void aKregator::connectActionCollection( KActionCollection *coll )
+void AkregatorMainWindow::connectActionCollection( KActionCollection *coll )
 {
     if (!coll) return;
     connect( coll, SIGNAL( actionStatusText( const QString & ) ),
@@ -335,7 +292,7 @@ void aKregator::connectActionCollection( KActionCollection *coll )
              this, SLOT( slotClearStatusText() ) );
 }
 
-void aKregator::disconnectActionCollection( KActionCollection *coll )
+void AkregatorMainWindow::disconnectActionCollection( KActionCollection *coll )
 {
     if (!coll) return;
     disconnect( coll, SIGNAL( actionStatusText( const QString & ) ),
@@ -345,58 +302,21 @@ void aKregator::disconnectActionCollection( KActionCollection *coll )
 }
 
 
-bool aKregator::queryExit()
+bool AkregatorMainWindow::queryExit()
 {
-    if(!m_part)
-        return KParts::MainWindow::queryExit();
-
-    if( Settings::markAllFeedsReadOnExit() )
-        emit markAllFeedsRead();
-
-    static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
-
+    if(m_part)
+        static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
+    
     return KParts::MainWindow::queryExit();
 }
 
-bool aKregator::queryClose()
+bool AkregatorMainWindow::queryClose()
 {
-    if ( kapp->sessionSaving() || !Settings::showTrayIcon() )
-        return m_part->queryClose();
+    if ( kapp->sessionSaving() || !m_part->isTrayIconEnabled() )
+         return true;
     else
     {
-        // Compute size and position of the pixmap to be grabbed:
-        QPoint g = m_icon->mapToGlobal(m_icon->pos());
-        int desktopWidth  = kapp->desktop()->width();
-        int desktopHeight = kapp->desktop()->height();
-        int tw = m_icon->width();
-        int th = m_icon->height();
-        int w = desktopWidth / 4;
-        int h = desktopHeight / 9;
-        int x = g.x() + tw/2 - w/2; // Center the rectange in the systray icon
-        int y = g.y() + th/2 - h/2;
-        if (x < 0)                 x = 0; // Move the rectangle to stay in the desktop limits
-        if (y < 0)                 y = 0;
-        if (x + w > desktopWidth)  x = desktopWidth - w;
-        if (y + h > desktopHeight) y = desktopHeight - h;
-
-        // Grab the desktop and draw a circle arround the icon:
-        QPixmap shot = QPixmap::grabWindow(qt_xrootwin(), x, y, w, h);
-        QPainter painter(&shot);
-        const int MARGINS = 6;
-        const int WIDTH   = 3;
-        int ax = g.x() - x - MARGINS -1;
-        int ay = g.y() - y - MARGINS -1;
-        painter.setPen( QPen(Qt::red/*KApplication::palette().active().highlight()*/, WIDTH) );
-        painter.drawArc(ax, ay, tw + 2*MARGINS, th + 2*MARGINS, 0, 16*360);
-        painter.end();
-
-	// Paint the border
-        const int BORDER = 1;
-        QPixmap finalShot(w + 2*BORDER, h + 2*BORDER);
-        finalShot.fill(KApplication::palette().active().foreground());
-        painter.begin(&finalShot);
-        painter.drawPixmap(BORDER, BORDER, shot);
-        painter.end();
+        QPixmap shot = m_part->takeTrayIconScreenshot();
 
         // Associate source to image and show the dialog:
         QMimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
@@ -405,18 +325,9 @@ bool aKregator::queryClose()
     return false;
     }
 }
-void aKregator::quitProgram()
-{
-      kapp->quit();
-     // what's this mess in here and is it needed for some reason? this change anyways fixes #90671 -tpr
-     //m_quit = true;
-     //close();
-     //m_quit = false;
-     //static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
-}
 
 // from KonqFrameStatusBar
-void aKregator::fontChange(const QFont & /* oldFont */)
+void AkregatorMainWindow::fontChange(const QFont & /* oldFont */)
 {
     int h = fontMetrics().height();
     if ( h < 13 ) h = 13;
@@ -424,17 +335,7 @@ void aKregator::fontChange(const QFont & /* oldFont */)
 
 }
 
-void aKregator::updateUnread(int unread)
-{
-    m_icon->updateUnread(unread);
-}
-
-void aKregator::newArticle(const QString& feed, const QPixmap&p, const QString& article)
-{
-    m_icon->newArticle(feed, p, article);
-}
-
-void aKregator::loadingProgress(int percent)
+void AkregatorMainWindow::loadingProgress(int percent)
 {
     if ( percent > -1 && percent < 100 )
     {
@@ -447,30 +348,24 @@ void aKregator::loadingProgress(int percent)
     m_progressBar->setValue( percent );
 }
 
-void aKregator::slotSetStatusBarText(const QString & s)
+void AkregatorMainWindow::slotSetStatusBarText(const QString & s)
 {
     m_permStatusText=s;
     m_statusLabel->setText(s);
 }
 
-void aKregator::slotActionStatusText(const QString &s)
+void AkregatorMainWindow::slotActionStatusText(const QString &s)
 {
     m_statusLabel->setText(s);
 }
 
-void aKregator::slotClearStatusText()
+void AkregatorMainWindow::slotClearStatusText()
 {
     m_statusLabel->setText(m_permStatusText);
 }
 
-
-void aKregator::slotStop()
-{
-    m_activePart->closeURL();
-}
-
 // yanked from kdelibs
-void aKregator::callObjectSlot( QObject *obj, const char *name, const QVariant &argument )
+void AkregatorMainWindow::callObjectSlot( QObject *obj, const char *name, const QVariant &argument )
 {
     if (!obj)
 	    return;
@@ -506,21 +401,6 @@ void aKregator::callObjectSlot( QObject *obj, const char *name, const QVariant &
     }
 
     obj->qt_invoke( slot, o );
-}
-
-void aKregator::slotStarted(KIO::Job *)
-{
-    m_stopAction->setEnabled(true);
-}
-
-void aKregator::slotCanceled(const QString &)
-{
-    m_stopAction->setEnabled(false);
-}
-
-void aKregator::slotCompleted()
-{
-    m_stopAction->setEnabled(false);
 }
 
 #include "akregator.moc"

@@ -5,29 +5,42 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
-#include "akregator_part.h"
-#include "akregator_view.h"
-#include "akregatorconfig.h"
-#include "fetchtransaction.h"
-#include "myarticle.h"
-
-#include <kparts/browserinterface.h>
-#include <kparts/genericfactory.h>
-#include <kaboutdata.h>
-#include <kapplication.h>
-#include <kinstance.h>
+#include <kaboutdata.h> 
 #include <kaction.h>
 #include <kactionclasses.h>
-#include <kactioncollection.h>
+#include <kactioncollection.h> 
+#include <kapplication.h>
 #include <kconfig.h>
+#include <kconfigdialog.h>
+#include <kfiledialog.h>
+#include <kinstance.h>
+#include <kmainwindow.h>
+#include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
-#include <kfiledialog.h>
-#include <kmessagebox.h>
+#include <kparts/browserinterface.h>
+#include <kparts/genericfactory.h>
+#include <kparts/partmanager.h>
 
 #include <qfile.h>
 #include <qtimer.h>
 #include <private/qucomextra_p.h>
+#include <qobjectlist.h>
+#include <qwidgetlist.h>
+
+#include "aboutdata.h"
+#include "akregator_part.h"
+#include "akregator_view.h"
+#include "akregatorconfig.h"
+#include "akregator.h"
+#include "fetchtransaction.h"
+#include "myarticle.h"
+#include "settings_archive.h"
+#include "settings_browser.h"
+#include "settings_general.h"
+#include "trayicon.h"
+
+
 
 using namespace Akregator;
 
@@ -45,127 +58,120 @@ void BrowserExtension::saveSettings()
     m_part->saveSettings();
 }
 
-aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
-                              QObject *parent, const char *name, const QStringList& )
-    : DCOPObject("aKregatorIface"), KParts::ReadWritePart(parent, name)
+void aKregatorPart::setupActions()
 {
-    // we need an instance
-    setInstance( aKregatorFactory::instance() );
+    // file menu
 
-    m_totalUnread=0;
-    m_loading=false;
-
-    m_view=new aKregatorView(this, parentWidget, "Akregator View");
-    m_extension=new BrowserExtension(this, "ak_extension");
-
-    // create our actions
-    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
-    recentFilesAction = KStdAction::openRecent( this, SLOT(openURL(const KURL&)), actionCollection(), "file_open_recent" );
- 
     new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
     new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileExport()), actionCollection(), "file_export");
 
-    /* -- ACTIONS */
-
-    /* --- Feed popup menu */
-    new KAction(i18n("&Add..."), "bookmark_add", "Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
+    /* --- Feed/Feed Group popup menu */
+    new KAction(i18n("&Open Homepage"), "", "Ctrl+H", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
+    new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
     new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
     new KAction(i18n("&Delete"), "editdelete", "Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
-    new KAction(i18n("&Edit"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
+    new KAction(i18n("&Edit..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
+
+    // toolbar / feed menu
     new KAction(i18n("&Fetch"), "down", "Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Ctrl+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-    new KAction(i18n("Go to Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "feed_prev_unread_article");
-    new KAction(i18n("Go to Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "feed_next_unread_article");
-    new KAction(i18n("Go to &Previous Feed"), "", "P", m_view, SLOT(slotPrevFeed()),actionCollection(), "feed_prev_feed");
-    new KAction(i18n("Go to &Next Feed"), "", "N", m_view, SLOT(slotNextFeed()),actionCollection(), "feed_next_feed");
-    
-    new KAction(i18n("&Go to Next Unread Feed"), "", "Ctrl+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "feed_next_unread_feed");
-    new KAction(i18n("Go to Prev&ious Unread Feed"), "", "Ctrl+Minus", m_view, SLOT(slotPrevUnreadFeed()),actionCollection(), "feed_prev_unread_feed");
-    
+    new KAction(i18n( "&Stop" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "feed_stop");
+
     new KAction(i18n("&Mark All as Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
-    new KAction(i18n("&Open Homepage"), "", "", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
-
-    KRadioAction *ra=new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
-    ra->setExclusiveGroup( "ViewMode" );
-
-    ra=new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
-    ra->setExclusiveGroup( "ViewMode" );
-
-    ra=new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
-    ra->setExclusiveGroup( "ViewMode" );
-
     
+    // "Go" menu
     new KAction( i18n("&Previous Article"), QString::null, "Left", m_view, SLOT(slotPreviousArticle()), actionCollection(), "go_previous_article" );
-    
     new KAction( i18n("&Next Article"), QString::null, "Right", m_view, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
+    new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
+    new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
+    new KAction(i18n("&Previous Feed"), "", "P", m_view, SLOT(slotPrevFeed()),actionCollection(), "go_prev_feed");
+    new KAction(i18n("&Next Feed"), "", "N", m_view, SLOT(slotNextFeed()),actionCollection(), "go_next_feed");
+    new KAction(i18n("N&ext Unread Feed"), "", "Ctrl+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
+    new KAction(i18n("Prev&ious Unread Feed"), "", "Ctrl+Minus", m_view, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
+
+    // Settings menu
+    KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
+    sqf->setChecked( Settings::showQuickFilter() );
     
-    new KAction( i18n("&Scroll Up"), QString::null, "Up", m_view, SLOT(slotScrollViewerUp()), actionCollection(), "scroll_viewer_up" );
-    
-    new KAction( i18n("&Scroll Down"), QString::null, "Down", m_view, SLOT(slotScrollViewerDown()), actionCollection(), "scroll_viewer_down" );
-    
+    KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
+    ra->setExclusiveGroup( "ViewMode" );
+
+    ra = new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
+    ra->setExclusiveGroup( "ViewMode" );
+
+    ra = new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
+    ra->setExclusiveGroup( "ViewMode" );
+
+    new KAction( i18n("Configure &aKregator..."), "configure", "", this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
+    //KStdAction::preferences( this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
+
+    // feed tree navigation
     new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", m_view, SLOT(slotFeedsTreeUp()), actionCollection(), "feedstree_up" );
     new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", m_view, SLOT(slotFeedsTreeDown()), actionCollection(), "feedstree_down" );
     new KAction( i18n("Go Left in Tree"), QString::null, "Alt+Left", m_view, SLOT(slotFeedsTreeLeft()), actionCollection(), "feedstree_left" );
     new KAction( i18n("Go Right in Tree"), QString::null, "Alt+Right", m_view, SLOT(slotFeedsTreeRight()), actionCollection(), "feedstree_right" );
     new KAction( i18n("Go to Top of Tree"), QString::null, "Alt+Home", m_view, SLOT(slotFeedsTreeHome()), actionCollection(), "feedstree_home" );
     new KAction( i18n("Go to Bottom of Tree"), QString::null, "Alt+End", m_view, SLOT(slotFeedsTreeEnd()), actionCollection(), "feedstree_end" );
-    new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", m_view, SLOT(slotFeedsTreeMoveUp()), actionCollection(), "feedstree_move_up" );
-    new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", m_view, SLOT(slotFeedsTreeMoveDown()), actionCollection(), "feedstree_move_down" );
-    new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", m_view, SLOT(slotFeedsTreeMoveLeft()), actionCollection(), "feedstree_move_left" );
-    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", m_view, SLOT(slotFeedsTreeMoveRight()), actionCollection(), "feedstree_move_right" );
+    new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", m_view, SLOT(slotMoveCurrentNodeUp()), actionCollection(), "feedstree_move_up" );
+    new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", m_view, SLOT(slotMoveCurrentNodeDown()), actionCollection(), "feedstree_move_down" );
+    new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", m_view, SLOT(slotMoveCurrentNodeLeft()), actionCollection(), "feedstree_move_left" );
+    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", m_view, SLOT(slotMoveCurrentNodeRight()), actionCollection(), "feedstree_move_right" );
+
+    // article viewer
+    new KAction( i18n("&Scroll Up"), QString::null, "Up", m_view, SLOT(slotScrollViewerUp()), actionCollection(), "scroll_viewer_up" );
+    new KAction( i18n("&Scroll Down"), QString::null, "Down", m_view, SLOT(slotScrollViewerDown()), actionCollection(), "scroll_viewer_down" );
     new KAction( i18n("Open Article in Foreground Tab"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticleForegroundTab()), actionCollection(), "article_open_foreground_tab" );
     new KAction( i18n("Open Article in Background Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
     new KAction( i18n("Open Article in External Browser"), QString::null, "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
-    
+}
+
+aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
+                              QObject *parent, const char *name, const QStringList& )
+    : DCOPObject("aKregatorIface"), MyBasePart(parent, name), m_parentWidget(parentWidget)
+{
+    // we need an instance
+    setInstance( aKregatorFactory::instance() );
+
+   
+    m_totalUnread = 0;
+    m_loading = false;
+
+    m_view = new aKregatorView(this, parentWidget, "akregator_view");
+
+    m_extension = new BrowserExtension(this, "ak_extension");
+
     // notify the part that this is our internal widget
     setWidget(m_view);
-    
+
+    m_trayIcon = new TrayIcon( getMainWindow() );
+
+    if ( isTrayIconEnabled() )
+        m_trayIcon->show();
+
+    connect( m_trayIcon, SIGNAL(quitSelected()),
+            kapp, SLOT(quit())) ;
+
+    connect(this, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
+    connect(this, SIGNAL(completed()), this, SLOT(slotCompleted()));
+    connect(this, SIGNAL(canceled(const QString&)), this, SLOT(slotCanceled(const QString &)));
+    connect(this, SIGNAL(completed(bool)), this, SLOT(slotCompleted()));
+
     // set our XML-UI resource file
-    setXMLFile("akregator_part.rc");
+    setXMLFile("akregator_part.rc", true);
 
-    readRecentFileEntries();
-
-    // we are read-write by default
-    setReadWrite(true);
-
-    // we are not modified since we haven't done anything yet
-//    setModified(false);
-
-    connect(parent, SIGNAL(markAllFeedsRead()), m_view, SLOT(slotMarkAllFeedsRead()));
+    setupActions();
 }
+
 
 void aKregatorPart::saveSettings()
 {
-   kdDebug() << "savesettings called"<<endl;
    m_view->saveSettings(true);
 }
 
 aKregatorPart::~aKregatorPart()
-{}
-
-void aKregatorPart::readRecentFileEntries()
 {
-   KConfig *config = new KConfig("akregatorrc"); // move to shell!
-   recentFilesAction->loadEntries(config,"Recent Files");
-   delete config;
-}
-
-void aKregatorPart::setReadWrite(bool rw)
-{
-    ReadWritePart::setReadWrite(rw);
-}
-
-void aKregatorPart::setModified(bool modified)
-{
-    // autosave
-    if (url().isValid() && modified)
-        saveFile();
-}
-
-void aKregatorPart::changePart(KParts::ReadOnlyPart *p)
-{
-    emit partChanged(p);
+    saveFeedList();
 }
 
 void aKregatorPart::setCaption(const QString &text)
@@ -202,8 +208,9 @@ void aKregatorPart::setTotalUnread(int unread)
 {
     if (m_totalUnread != unread)
     {
-        if (m_extension->browserInterface())
-            m_extension->browserInterface()->callMethod( "updateUnread(int)", unread );
+        m_trayIcon->updateUnread(unread);
+//        if (m_extension->browserInterface())
+//            m_extension->browserInterface()->callMethod( "updateUnread(int)", unread );
         m_totalUnread=unread;
     }
 }
@@ -212,34 +219,20 @@ void aKregatorPart::setTotalUnread(int unread)
 // will do systray notification
 void aKregatorPart::newArticle(Feed *src, const MyArticle &a)
 {
-    // HACK Because m_extension->browserInterface()->callMethod isn't flexible enough for us.
-
-    if (m_extension->browserInterface())
-    {
-        int slot = m_extension->browserInterface()->metaObject()->findSlot( "newArticle(const QString&,const QPixmap&,const QString&)" );
-        
-        QUObject o[ 4 ];
-        static_QUType_QString.set( o + 1, src->title() );
-        static_QUType_ptr.set( o + 2, &(src->favicon()) );
-        static_QUType_QString.set( o + 3, a.title() );
-        m_extension->browserInterface()->qt_invoke( slot, o );
-    }
+    if ( isTrayIconEnabled() )
+        m_trayIcon->newArticle(src->title(), src->favicon(), a.title());
 }
 
 void aKregatorPart::readProperties(KConfig* config)
 {
-    KURL u=config->readEntry("URL");
-    if (u.isValid())
-    {
-        openURL(u);
+    if(m_view)
         m_view->readProperties(config);
-    }   
 }
 
 void aKregatorPart::saveProperties(KConfig* config)
 {
-    config->writeEntry("URL",url().url());
-    m_view->saveProperties(config);
+    if(m_view)
+        m_view->saveProperties(config);
 }
 
 /*************************************************************************************************/
@@ -248,15 +241,13 @@ void aKregatorPart::saveProperties(KConfig* config)
 
 bool aKregatorPart::openURL(const KURL& url)
 {
-    recentFilesAction->addURL(url);
-    
     // stop whatever we're doing before opening a new feed list
     if (m_loading)
     {
         m_view->endOperation();
         m_view->stopLoading();
         m_delayURL=url;
-        QTimer::singleShot(1000, this, SLOT(openURLDelayed())); 
+        QTimer::singleShot(1000, this, SLOT(openURLDelayed()));
         return true;
     }
     else if (m_view->transaction()->isRunning())
@@ -264,29 +255,26 @@ bool aKregatorPart::openURL(const KURL& url)
         m_view->endOperation();
         m_view->transaction()->stop();
         m_delayURL=url;
-        QTimer::singleShot(1000, this, SLOT(openURLDelayed())); 
+        QTimer::singleShot(1000, this, SLOT(openURLDelayed()));
         return true;
     }
-
-   return inherited::openURL(url);
+    else
+    {
+        m_file = url.path();
+        bool ret = openFile();
+        return ret;
+    }
 }
 
 void aKregatorPart::openURLDelayed()
 {
-    inherited::openURL(m_delayURL);
+    m_file = m_delayURL.path();
+    openFile();
 }
 
 void aKregatorPart::openStandardFeedList()
 {
     openURL(KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml");
-}
-
-bool aKregatorPart::isStandardFeedList()
-{
-    QString stdF="file:"+KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
-    if (url().url()==stdF)
-        return true;
-    return false;
 }
 
 bool aKregatorPart::populateStandardFeeds()
@@ -299,11 +287,11 @@ bool aKregatorPart::populateStandardFeeds()
     }
     QTextStream stream( &file );
     stream.setEncoding(QTextStream::UnicodeUTF8);
-    
+
     QDomDocument doc;
     QDomProcessingInstruction z = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
     doc.appendChild( z );
-    
+
     QDomElement root = doc.createElement( "opml" );
     root.setAttribute("version","1.0");
     doc.appendChild( root );
@@ -321,7 +309,7 @@ bool aKregatorPart::populateStandardFeeds()
     QDomElement mainFolder = doc.createElement( "outline" );
     mainFolder.setAttribute("text","KDE");
     body.appendChild(mainFolder);
-    
+
     QDomElement ak = doc.createElement( "outline" );
     ak.setAttribute("text",i18n("Akregator News"));
     ak.setAttribute("xmlUrl","http://akregator.sf.net/rss2.php");
@@ -358,14 +346,9 @@ bool aKregatorPart::openFile()
     QFile file(m_file);
     if (file.open(IO_ReadOnly) == false)
     {
-        if (isStandardFeedList())
+        if ( populateStandardFeeds() )
         {
-            if (populateStandardFeeds())
-            {
-                if (file.open(IO_ReadOnly) == false)
-                    return false;
-            }
-            else    
+            if (file.open(IO_ReadOnly) == false)
                 return false;
         }
         else
@@ -374,6 +357,9 @@ bool aKregatorPart::openFile()
 
     m_loading=true;
     m_view->startOperation();
+    // don't allow to stop loading of the feedlist, it'd only make you sad -tpr 20041024
+    actionCollection()->action("feed_stop")->setEnabled(false);
+
     setStatusBar( i18n("Opening Feed List...") );
     kapp->processEvents();
 
@@ -398,14 +384,16 @@ bool aKregatorPart::openFile()
         m_view->operationError(i18n("Invalid Feed List"));
         return false;
     }
-
     m_loading=false;
     m_view->endOperation();
     setStatusBar( QString::null );
 
+
+    if( Settings::markAllFeedsReadOnStartup() )
+        m_view->slotMarkAllFeedsRead();
+
     if (Settings::fetchOnStartup() && m_extension->browserInterface())
     {
-        kdDebug() << "fetching on startup.." << endl;
         // has the shell loaded up a window already? then its not starting up
        QVariant shellHaveWindowLoaded = m_extension->browserInterface()->property( "haveWindowLoaded" );
        if (!shellHaveWindowLoaded.toBool())
@@ -417,30 +405,37 @@ bool aKregatorPart::openFile()
 bool aKregatorPart::closeURL()
 {
     m_view->endOperation();
+    setStatusBar(QString::null);
     if (m_loading)
     {
         m_view->stopLoading();
+        m_loading = false;
+        kdDebug() << "closeURL: stop loading" << endl;
         return true;
     }
     else if (m_view->transaction()->isRunning())
     {
         m_view->transaction()->stop();
+        kdDebug() << "closeURL: stop transaction" << endl;
         return true;
     }
-    
-   return KParts::ReadWritePart::closeURL(); 
+
+   return MyBasePart::closeURL();
 }
 
 /*************************************************************************************************/
 /* SAVE                                                                                          */
 /*************************************************************************************************/
 
-bool aKregatorPart::saveFile()
+bool aKregatorPart::saveFeedList()
 {
     // m_file is always local, so we use QFile
     QFile file(m_file);
     if (file.open(IO_WriteOnly) == false)
-        return fileSaveAs();
+    {
+        KMessageBox::error(m_view, i18n("Access denied: cannot save feed list (%1)").arg(m_file), i18n("Write error") );
+        return false;
+    }
 
     // use QTextStream to dump the text to the file
     QTextStream stream(&file);
@@ -475,7 +470,45 @@ bool aKregatorPart::saveFile()
     return true;
 }
 
-void aKregatorPart::importFile(QString fileName)
+bool aKregatorPart::isTrayIconEnabled() const
+{
+    return Settings::showTrayIcon();
+}
+
+QPixmap aKregatorPart::takeTrayIconScreenshot() const
+{
+    return m_trayIcon->takeScreenshot();
+}
+
+QWidget* aKregatorPart::getMainWindow()
+{
+        // this is a dirty fix to get the main window used for the tray icon
+
+        QWidgetList *l = kapp->topLevelWidgets();
+        QWidgetListIt it( *l );
+        QWidget *wid;
+
+        // check if there is an akregator main window
+        while ( (wid = it.current()) != 0 )
+        {
+        ++it;
+        kdDebug() << "win name: " << wid->name() << endl;
+        if (QString(wid->name()) == "akregator_mainwindow")
+            return wid;
+        }
+        // if not, check for kontact main window
+        QWidgetListIt it2( *l );
+        while ( (wid = it2.current()) != 0 )
+        {
+            ++it2;
+            if (QString(wid->name()).startsWith("kontact-mainwindow"))
+                return wid;
+        }
+    return 0;
+}
+
+
+void aKregatorPart::importFile(const QString& fileName)
 {
     QFile file(fileName);
     if (file.open(IO_ReadOnly) == false)
@@ -488,28 +521,28 @@ void aKregatorPart::importFile(QString fileName)
         return;
     }
 
-    if (m_view->importFeeds(doc))
-        setModified(true);
+    //if (m_view->importFeeds(doc))
+    //    setModified(true);
 }
 
-void aKregatorPart::exportFile(QString fileName)
+void aKregatorPart::exportFile(const QString& fileName)
 {
-   // we could KIO here instead of QFile
+   // TODO we could KIO here instead of QFile
     QFile file(fileName);
     if ( file.exists() )
-    
+
         if ( KMessageBox::questionYesNo(m_view,
           i18n("The file %1 already exists; do you want to overwrite it?").arg(fileName),
-        i18n("Export"),   
+        i18n("Export"),
         i18n("Overwrite"),
         i18n("Cancel")) == KMessageBox::No )
             return;
     if ( !file.open(IO_WriteOnly) )
     {
-        KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(fileName), i18n("Write error") ); 
+        KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(fileName), i18n("Write error") );
         return;
     }
-    
+
     // use QTextStream to dump the text to the file
     QTextStream stream(&file);
     stream.setEncoding(QTextStream::UnicodeUTF8);
@@ -557,7 +590,7 @@ void aKregatorPart::fileOpen()
     if (file_name.isEmpty() == false)
         openURL(file_name);
 }
-
+/*
 bool aKregatorPart::fileSaveAs()
 {
     // this slot is called whenever the File->Save As menu is selected,
@@ -566,11 +599,13 @@ bool aKregatorPart::fileSaveAs()
                         +"\n*|" + i18n("All Files") );
     if (file_name.isEmpty() == false)
     {
-        saveAs(file_name);
+        kdDebug() << "SaveAs called! Shouldn't ever happen!" << endl;
+        //saveAs(file_name);
         return true;
     }
     return false;
 }
+*/
 
 void aKregatorPart::fileImport()
 {
@@ -587,7 +622,7 @@ void aKregatorPart::fileExport()
     QString file_name = KFileDialog::getSaveFileName( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
-                        
+
     if ( !file_name.isEmpty() )
         exportFile(file_name);
 }
@@ -599,33 +634,57 @@ void aKregatorPart::fetchAllFeeds()
 
 void aKregatorPart::fetchFeedUrl(const QString&s)
 {
-    kdDebug() << "fetchFeedURL=="<<s<<endl;
+    kdDebug() << "fetchFeedURL==" << s << endl;
 }
 
 void aKregatorPart::addFeedToGroup(const QString& url, const QString& group)
 {
     kdDebug() << "aKregatorPart::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
     m_view->addFeedToGroup(url, group);
-    setModified(true);
+    //setModified(true);
 }
+
+
+void aKregatorPart::slotStarted(KIO::Job *)
+{
+    actionCollection()->action("feed_stop")->setEnabled(true);
+}
+
+void aKregatorPart::slotCanceled(const QString &)
+{
+    actionCollection()->action("feed_stop")->setEnabled(false);
+}
+
+void aKregatorPart::slotCompleted()
+{
+    actionCollection()->action("feed_stop")->setEnabled(false);
+}
+
 
 /*************************************************************************************************/
 /* STATIC METHODS                                                                                */
 /*************************************************************************************************/
 
-KAboutData* aKregatorPart::s_about = 0L;
-
 KAboutData *aKregatorPart::createAboutData()
 {
-    if ( !s_about ) {
-	// this is semi-dummy about data, please see main.cpp for detailed one
-        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "1.0-beta6 \"Bezerkus\"",
-                                 I18N_NOOP("This is a KPart for a feed aggregator"),
-                                 KAboutData::License_GPL, "(C) 2004 akregator developers", 0,
-                                 "http://akregator.sourceforge.net",
-                                 "akregator-devel@lists.sf.net");
-    }
-    return s_about;
+    return new Akregator::AboutData;
+}
+
+void aKregatorPart::showOptions()
+{
+    if ( KConfigDialog::showDialog( "settings" ) )
+        return;
+
+    KConfigDialog *dialog = new KConfigDialog( m_view, "settings", Settings::self() );
+    dialog->addPage(new settings_general(0, "General"), i18n("General"), "package_settings");
+    dialog->addPage(new settings_archive(0, "Archive"), i18n("Archive"), "package_settings");
+    dialog->addPage(new settings_browser(0, "Browser"), i18n("Browser"), "package_network");
+    connect( dialog, SIGNAL(settingsChanged()),
+             this, SLOT(saveSettings()) );
+    connect( dialog, SIGNAL(settingsChanged()),
+             m_trayIcon, SLOT(settingsChanged()) );
+
+    dialog->show();
 }
 
 #include "akregator_part.moc"

@@ -44,6 +44,9 @@ void FetchTransaction::start()
 
 void FetchTransaction::stop()
 {
+    if (!m_running)
+        return;
+    
     m_running=false;
     Feed *f;
     for (f=m_currentFetches.first(); f; f=m_currentFetches.next())
@@ -52,10 +55,15 @@ void FetchTransaction::stop()
     Image *i;
     for (i=m_currentImageFetches.first(); i; i=m_currentImageFetches.next())
         i->abort();
-
+    
+    m_currentFetches.clear();
+    m_currentImageFetches.clear();
+    m_fetchList.clear();
+    m_fetchesDone = 0;
+    m_totalFetches = 0;
 }
 
-void FetchTransaction::fetch(Feed *f)
+void FetchTransaction::addFeed(Feed *f)
 {
     connect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     connect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedError(Feed*)));
@@ -105,6 +113,7 @@ void FetchTransaction::feedDone(Feed *f)
     {
         startFetchImages();
         startFetchIcons();
+        m_running = false;
         emit completed();
         return;
     }

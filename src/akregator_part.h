@@ -12,12 +12,19 @@
 #include <kparts/part.h>
 #include <kurl.h>
 
+#include "config.h"
+#ifdef HAVE_KPIMPART
+#include <libkdepim/part.h>
+typedef KPIM::Part MyBasePart;
+#else
+typedef KParts::ReadOnlyPart MyBasePart;
+#endif
+
 #include "akregator_partiface.h"
 
-class KParts::BrowserExtension;
 class KAboutData;
 class KConfig;
-class KRecentFilesAction;
+class KParts::BrowserExtension;
 
 namespace Akregator
 {
@@ -25,7 +32,8 @@ namespace Akregator
     class aKregatorPart;
     class Feed;
     class MyArticle;
-
+    class TrayIcon;
+    
     class BrowserExtension : public KParts::BrowserExtension
     {
         Q_OBJECT
@@ -42,11 +50,11 @@ namespace Akregator
      * This is a RSS Aggregator "Part". It does all the real work.
      * It is also embeddable into other applications (e.g. for use in Kontact).
      */
-    class aKregatorPart : public KParts::ReadWritePart, virtual public aKregatorPartIface
+    class aKregatorPart : public MyBasePart, virtual public aKregatorPartIface
     {
         Q_OBJECT
         public:
-           typedef KParts::ReadWritePart inherited;
+           typedef MyBasePart inherited;
 
             /**
              * Default constructor.
@@ -60,24 +68,9 @@ namespace Akregator
             virtual ~aKregatorPart();
 
             /**
-             * This is a virtual function inherited from KParts::ReadWritePart.
-             * A shell will use this to inform this Part if it should act
-             * read-only
-             */
-            virtual void setReadWrite(bool rw);
-
-            /**
-             * Reimplemented to disable and enable Save action
-             */
-            virtual void setModified(bool modified);
-
-
-            /**
              * Create KAboutData for this KPart.
              */
             static KAboutData *createAboutData();
-
-            void changePart(KParts::ReadOnlyPart *p);
 
             void setStatusBar(const QString &text);
             void setProgress(int percent);
@@ -85,18 +78,44 @@ namespace Akregator
             void setCompleted();
             void setCanceled(const QString &s);
             
+            /**
+             * Updates trayicon's unread count
+             * @param unread Count of unread articles
+             */
             void setTotalUnread(int unread);
+            /**
+             * Informs trayicon about new articles
+             * @param src Feed which has new articles
+             * @param a An article
+             */
             void newArticle(Feed *src, const MyArticle &a);
-
+            
+            /**
+             * Sets the caption of the mainwindow by emiting a signal. You shouldn't use this because there's only one feedlist
+             * @param text New caption
+             */
             void setCaption(const QString &text);
             
+            /**
+             * Opens feedlist
+             * @param url URL to feedlist
+             */
             virtual bool openURL(const KURL& url);
+            /**
+             * Stops the feed fetching
+             */
             virtual bool closeURL();
+            /**
+             * Opens standard feedlist
+             */
             virtual void openStandardFeedList();
 
             bool loading (){return m_loading;}
             
             virtual void fetchFeedUrl(const QString&);
+            /**
+             * Fetch all feeds
+             */
             virtual void fetchAllFeeds();
             
             /**
@@ -109,9 +128,35 @@ namespace Akregator
              */
             virtual void addFeedToGroup(const QString& url, const QString& group);
             
-            /** session management **/
+            /**
+             * This method is called when this app is restored.  The KConfig
+             * object points to the session management config file that was saved
+             * with @ref saveProperties
+             * Calls AkregatorView's saveProperties.
+             */
             virtual void readProperties(KConfig* config);
+            /**
+             * This method is called when it is time for the app to save its
+             * properties for session management purposes.
+             * Calls AkregatorView's readProperties.
+             */
             virtual void saveProperties(KConfig* config);
+
+            /**
+             * Saves the feed list.
+             * @return Whether the feed list was successfully saved
+             */
+            bool saveFeedList();
+
+            /**
+             * @return Whether the tray icon is enabled or not
+             */
+            virtual bool isTrayIconEnabled() const;
+            /**
+             * Takes a screenshot from the trayicon
+             * @return Screenshot of the trayicon
+             */
+            virtual QPixmap takeTrayIconScreenshot() const;
             
         protected:
             /**
@@ -119,40 +164,58 @@ namespace Akregator
              */
             virtual bool openFile();
 
-            /**
-             * This must be implemented by each read-write part
-             */
-            virtual bool saveFile();
-            
-            void importFile(QString fileName);
-            void exportFile(QString fileName);
+            void importFile(const QString& fileName);
+            void exportFile(const QString& fileName);
+            /** FIXME: hack to get the tray icon working */
+            QWidget* getMainWindow();
 
-        signals:
-            void partChanged(KParts::ReadOnlyPart *p);
             
         public slots:
+            /**
+             * Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings.
+             */
             virtual void saveSettings();
 
         protected slots:
             void fileOpen();
-            bool fileSaveAs();
             void fileImport();
             void fileExport();
             void openURLDelayed();
+            /**
+             * Show configuration dialog
+             */
+            void showOptions();
+            
+        private slots:
+            void slotStop() {closeURL(); };
+            /**
+             * Enables stop button. Called when fetching starts.
+             */
+            void slotStarted(KIO::Job *);
+            /**
+             * Disables stop button when fetching is canceled.
+             */
+            void slotCanceled(const QString &);
+            /**
+             * Disables stop button when fetching is completed.
+             */
+            void slotCompleted();
 
         private:
-            void readRecentFileEntries();
-            bool isStandardFeedList();
             bool populateStandardFeeds();
+            void setupActions();
 
             bool m_loading;
 
-            KURL m_delayURL;            
+            KURL m_delayURL;
             int m_totalUnread;
             KParts::BrowserExtension *m_extension;
-            KRecentFilesAction *recentFilesAction;
-            static KAboutData* s_about;
+            
+            QWidget *m_parentWidget;
             aKregatorView* m_view;
+            TrayIcon* m_trayIcon;
+            
+            
     };
 }
 

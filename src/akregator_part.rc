@@ -1,48 +1,80 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="11">
+<kpartgui name="akregator_part" version="26">
 <MenuBar>
   <Menu name="file">
-    <Action name="file_open"/>
-    <Action name="file_open_recent"/>
-    <Separator/>
     <Action name="file_import"/>
     <Action name="file_export"/>
   </Menu>
+
   <Menu name="edit">
     <text>F&amp;eed</text>
     <Action name="feed_add"/>
     <Action name="feed_add_group"/>
+    <Separator/> 
     <Action name="feed_modify"/>
     <Action name="feed_remove"/>
     <Separator/>
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
-    <Separator/>
-    <Action name="feed_prev_feed"/>
-    <Action name="feed_next_feed"/>
-    <Action name="feed_prev_unread_article"/>
-    <Action name="feed_next_unread_article"/>
-    <Action name="feed_prev_unread_feed"/>
-    <Action name="feed_next_unread_feed"/>
+    <Action name="feed_stop"/> 
     <Separator/>
     <Action name="feed_mark_all_as_read"/>
     <Action name="feed_mark_all_feeds_as_read"/>
   </Menu>
+
+  <Menu name="go">
+  <text>&amp;Go</text>
+    <Action name="go_previous_article"/>
+    <Action name="go_prev_unread_article"/>
+    <Action name="go_next_article"/>
+    <Action name="go_next_unread_article"/>
+    <Separator/>
+    <Action name="go_prev_feed"/>
+    <Action name="go_prev_unread_feed"/>
+    <Action name="go_next_feed"/>
+    <Action name="go_next_unread_feed"/>
+  </Menu>
+  
   <Menu name="settings">
+    <Action name="show_quick_filter"/>
+    <Separator/> 
     <Action name="normal_view"/>
     <Action name="widescreen_view"/>
     <Action name="combined_view"/>
     <Separator/>
+    <Action name="akregator_configure_akregator"/>
+  </Menu>
+  <Menu name="help">
   </Menu>
 </MenuBar>
+
 <ToolBar name="mainToolBar">
-  <Action name="file_open"/>
-  <Action name="file_save"/>
-  <Action name="file_print"/>
-  <Separator/>
   <Action name="feed_fetch"/>
   <Action name="feed_fetch_all"/>
+  <Action name="feed_stop"/>
+  <DefineGroup name="pageviewer_operations" />
+  <Merge/>
 </ToolBar>
+
+<!-- this menu doesn't show up in the app, just groups the actions -->
+<Menu name="various">
+<Action name="scroll_viewer_up"/>
+<Action name="scroll_viewer_down"/>
+<Action name="feedstree_up"/>
+<Action name="feedstree_down"/>
+<Action name="feedstree_left"/>
+<Action name="feedstree_right"/>
+<Action name="feedstree_home"/>
+<Action name="feedstree_end"/>
+<Action name="feedstree_move_up"/>
+<Action name="feedstree_move_down"/>
+<Action name="feedstree_move_left"/>
+<Action name="feedstree_move_right"/>
+<Action name="article_open_in_tab"/>
+<Action name="article_open_external"/>
+<Action name="article_open_background_tab"/>
+<Action name="article_open_foreground_tab"/>
+</Menu>
 
 <Menu name="feedgroup_popup">
   <Action name="feed_add"/>
@@ -87,4 +119,5 @@
   <Separator/>
   <Action name="feed_mark_all_as_read"/>
 </Menu>
+
 </kpartgui>

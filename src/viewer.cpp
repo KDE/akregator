@@ -10,6 +10,9 @@
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
+#include <klocale.h>
+#include <khtmlview.h>
+#include <kiconloader.h>
 #include <kprocess.h>
 #include <krun.h>
 #include <kshell.h>

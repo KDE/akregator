@@ -20,7 +20,7 @@ namespace Akregator
         Q_OBJECT
 	
 	    public:
-            Frame(QObject * parent, KParts::ReadOnlyPart *part, QWidget *w, QString tit, bool watch=true);
+            Frame(QObject * parent, KParts::ReadOnlyPart *part, QWidget *w, const QString& tit, bool watch=true);
             ~Frame();
 
             enum {Idle, Started, Completed, Canceled};

@@ -44,7 +44,7 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-    : Viewer(parent, name), m_htmlHead(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(normalView) 
+    : Viewer(parent, name), m_htmlHead(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(normalView)
 {
     generateCSS();
     m_imageDir="file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/");
@@ -64,13 +64,13 @@ void ArticleViewer::openDefault()
                     .arg(i18n("Welcome to aKregator"))
                     .arg(i18n("Use the tree to manage your feeds."))
                     .arg(i18n("Right click a folder, such as \"All Feeds\", and choose:"))
-                    .arg(i18n("Add..."))
+                    .arg(i18n("Add Feed..."))
                     .arg(i18n(" to add a new feed to your feed list."))
                     .arg(i18n("New Folder..."))
                     .arg(i18n(" to add a new folder to your list."))
                     .arg(i18n("Edit"))
                     .arg(i18n(" to edit an existing feed or folder."));
-   
+
     text += QString("<li><b>%1</b>%2</li>\n"
                     "<li><b>%3</b>%4</li></ul></ul>\n"
                     "<p>%5</p></body></html>")
@@ -163,6 +163,7 @@ void ArticleViewer::generateCSS()
     "#article {\n"
     "  overflow: hidden;\n"
     "  background: %1;\n"
+    " border:1px solid %2;\n"
     "  padding: 3px;\n"
     "  padding-right: 6px;}\n\n"
     "#titleanchor {\n"
@@ -266,7 +267,7 @@ void ArticleViewer::endWriting()
 void ArticleViewer::slotShowArticle(const MyArticle& article)
 {
     m_viewMode = normalView;
-    
+
     view()->setContentsPos(0,0);
     begin();
 
@@ -274,7 +275,7 @@ void ArticleViewer::slotShowArticle(const MyArticle& article)
     m_currentText=text;
 
     write(m_htmlHead + text);
-    
+
     end();
 }
 
@@ -282,90 +283,89 @@ void ArticleViewer::slotSetFilter(const ArticleFilter& textFilter, const Article
 {
     if (m_statusFilter == statusFilter && m_textFilter == textFilter)
         return;
-  
+
     m_textFilter = textFilter;
     m_statusFilter = statusFilter;
-    
-    slotUpdateCombinedView(); 
+
+    slotUpdateCombinedView();
 }
 
 void ArticleViewer::slotUpdateCombinedView()
 {
     if (m_viewMode != combinedView)
         return;
-    
+
     if (!m_node)
         return slotClear();
-    
+
     ArticleSequence articles = m_node->articles();
-    ArticleSequence::ConstIterator end = articles.end(); 
+    ArticleSequence::ConstIterator end = articles.end();
     ArticleSequence::ConstIterator it = articles.begin();
-    
+
     beginWriting();
-    
+
     QString text;
-    
+
     for ( ; it != end; ++it)
         if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
             text += "<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";
-     
+
     write(text);
-    endWriting();     
+    endWriting();
 }
 
 void ArticleViewer::slotClear()
 {
-    kdDebug() << "ArticleViewer::slotClear()" << endl;
     if (m_node)
-    {    
-        disconnect( m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdateCombinedView() ) );
-        disconnect( m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear() ) );
+    {
+        disconnect( m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+        disconnect( m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
     }
     m_node = 0;
 
-    // FIXME: is this the proper way of deleting the view content??    
+    // FIXME: is this the proper way of deleting the view content??
     view()->setContentsPos(0,0);
     begin();
     end();
 }
-            
+
 void ArticleViewer::slotShowNode(TreeNode* node)
 {
     m_viewMode = combinedView;
-    
+
     if (m_node)
-    {    
-        disconnect( m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdateCombinedView() ) );
-        disconnect( m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear() ) );
+    {
+        disconnect( m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+        disconnect( m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
     }
-    
+
     m_node = node;
-    
+
     if (node)
     {
-        connect( node, SIGNAL(signalChanged()), this, SLOT(slotUpdateCombinedView()) );
-        connect( node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
-    }    
+        connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView()) );
+        connect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
+    }
     slotUpdateCombinedView();
 }
 
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-    openPage(url, args, QString::null);    
-    return true; 
+    openPage(url, args, QString::null);
+    return true;
 }
 
 
 void ArticleViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-   if( !(Viewer::slotOpenURLRequest(url, args)) ) 
+   if( !(Viewer::slotOpenURLRequest(url, args)) )
        emit urlClicked(url);
 }
 
 void ArticleViewer::slotOpenLinkInternal()
 {
-    if(!m_url.isEmpty()) 
+    if(!m_url.isEmpty())
     	emit urlClicked(m_url);
 }
 

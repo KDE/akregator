@@ -23,11 +23,16 @@ class KToggleAction;
 class KSqueezedTextLabel;
 class KProgress;
 class KParts::BrowserExtension;
-class aKregator;
+class KParts::PartManager;
+
+class AkregatorMainWindow;
+
 
 namespace Akregator
 {
+    class aKregatorPart;
     class TrayIcon;
+    
 }
 
 class BrowserInterface : public KParts::BrowserInterface
@@ -36,15 +41,11 @@ class BrowserInterface : public KParts::BrowserInterface
     Q_PROPERTY( bool haveWindowLoaded READ haveWindowLoaded )
     
 public:
-        BrowserInterface( aKregator *shell, const char *name );
+        BrowserInterface( AkregatorMainWindow *shell, const char *name );
         bool haveWindowLoaded() const;
 
-public slots:
-        void updateUnread( int );
-		void newArticle(const QString&, const QPixmap&, const QString&);
-
 private:
-        aKregator *m_shell;
+        AkregatorMainWindow *m_shell;
 };
 
 
@@ -54,29 +55,35 @@ private:
  *
  * @short Application Shell
  */
-class aKregator : public KParts::MainWindow
+class AkregatorMainWindow : public KParts::MainWindow
 {
     Q_OBJECT
 public:
     /**
      * Default Constructor
      */
-    aKregator();
-     
+    AkregatorMainWindow();
+    
+    /**
+     * Loads the part
+     * @return Whether the part has been successfully created or not.
+     */
     bool loadPart();
 
-    /** Loads standard feed file */
+    /** 
+     * Loads standard feed list
+    */
     void loadStandardFile();
 
     /**
      * Default Destructor
      */
-    virtual ~aKregator();
+    virtual ~AkregatorMainWindow();
 
     /**
      * Use this method to load whatever file/URL you have.
      */
-    void load(const KURL& url);
+    //void load(const KURL& url);
 
     /**
       * Add a feed to a group.
@@ -91,16 +98,10 @@ public:
     virtual void fontChange(const QFont &);
     virtual void setCaption(const QString &);
 
-    void updateUnread(int);
-    void newArticle(const QString&, const QPixmap&, const QString&);
-
 public slots:
     void slotSetStatusBarText(const QString & s);
     void slotActionStatusText(const QString &s);
     void slotClearStatusText();
-
-signals:
-    void markAllFeedsRead();
 
 protected:
     /**
@@ -116,10 +117,13 @@ protected:
      */
     void readProperties(KConfig *);
     /** 
-     *  reimplemented to save settings 
+     *  Reimplemented to save settings
      */
     virtual bool queryExit();
       
+    /**
+     * Reimplemented to say if app will be running in system tray if necessary
+     */
     virtual bool queryClose(); 
      
 private slots:
@@ -129,37 +133,32 @@ private slots:
     void optionsShowStatusbar();
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
-    void showOptions();
-
+    
     void applyNewToolbarConfig();
 
-    void quitProgram();
-    void partChanged(KParts::ReadOnlyPart *p);
+    //void partChanged(KParts::ReadOnlyPart *p);
     void loadingProgress(int percent);
-    void slotStop();
-    void slotStarted(KIO::Job *);
-    void slotCanceled(const QString &);
-    void slotCompleted();
 
 private:
     void callObjectSlot( QObject *obj, const char *name, const QVariant &argument );
 
-    void setupAccel();
     void setupActions();
     void connectActionCollection(KActionCollection *coll);
     void disconnectActionCollection(KActionCollection *coll);
 
     KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
     BrowserInterface *m_browserIface;
-    KParts::ReadWritePart *m_part;
-    KParts::ReadOnlyPart *m_activePart;
+    /**
+     * Our part
+     */
+    Akregator::aKregatorPart *m_part;
+    KParts::PartManager* m_manager;
+    //KParts::ReadOnlyPart *m_activePart;
     KToggleAction *m_fetchStartupAction;
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
-    KAction *m_stopAction;
     KProgress *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
-    Akregator::TrayIcon *m_icon;
     QString m_permStatusText;
 };
 

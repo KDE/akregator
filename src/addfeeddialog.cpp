@@ -55,7 +55,7 @@ void AddFeedDialog::slotOk( )
     enableButtonOK(false);
     feedURL = widget->urlEdit->text();
 
-    Feed *f=new Feed(NULL, NULL);
+    Feed *f=new Feed();
 
     feed=f;
     if (feedURL.find(":/") == -1)

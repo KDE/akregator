@@ -1,4 +1,4 @@
-# set the include path for X, qt and KDE
+#set the include path for X, qt and KDE
 INCLUDES = -I$(top_srcdir)/akregator/src/librss $(all_includes)
 
 # let automoc handle all of the meta source files (moc).
@@ -18,9 +18,9 @@ KDE_ICON = AUTO
 bin_PROGRAMS = akregator
 
 # the application source, library search path, and link libraries
-akregator_SOURCES = main.cpp app.cpp akregator.cpp trayicon.cpp balloon.cpp akregatorconfig.kcfgc settings_general.ui settings_archive.ui settings_browser.ui
+akregator_SOURCES = main.cpp app.cpp akregator.cpp 
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-akregator_LDADD = $(LIB_KPARTS)
+akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la
 
 # this is where the desktop file will go
 shelldesktopdir = $(kde_appsdir)/Internet
@@ -33,15 +33,26 @@ shellrc_DATA = akregator_shell.rc
 kdelnk_DATA = feed.protocol
 kdelnkdir = $(kde_servicesdir)
 
+kde_module_LTLIBRARIES = libakregatorprivate.la libakregatorpart.la
+
+#########################################################################
+# PRIVATE SECTION
+#########################################################################
+
+# this is a lib shared by both the KPart and the main application
+
+libakregatorprivate_la_SOURCES = aboutdata.cpp
+libakregatorprivate_la_LDFLAGS = $(all_libraries) -version-info 0:0:0 -no-undefined
+libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEPIM)
+
 #########################################################################
 # KPART SECTION
 #########################################################################
-kde_module_LTLIBRARIES = libakregatorpart.la
 
 # the Part's source, library search path, and link libraries
-libakregatorpart_la_SOURCES = akregatorconfig.kcfgc akregator_part.cpp akregator_view.cpp akregator_run.cpp articlesequence.cpp intervalmanager.cpp feedstree.cpp feedscollection.cpp feed.cpp fetchtransaction.cpp articlelist.cpp frame.cpp feediconmanager.cpp feediconmanager.skel viewer.cpp articleviewer.cpp feedgroup.cpp exportwidgetbase.ui addfeeddialog.cpp addfeedwidgetbase.ui propertiesdialog.cpp propertieswidgetbase.ui myarticle.cpp articlefilter.cpp archive.cpp pageviewer.cpp tabwidget.cpp akregator_partiface.skel treenode.cpp
+libakregatorpart_la_SOURCES =  akregatorconfig.kcfgc akregator_run.cpp articlesequence.cpp intervalmanager.cpp feedstree.cpp feed.cpp fetchtransaction.cpp articlelist.cpp frame.cpp feediconmanager.cpp viewer.cpp articleviewer.cpp feedgroup.cpp exportwidgetbase.ui addfeeddialog.cpp addfeedwidgetbase.ui propertiesdialog.cpp propertieswidgetbase.ui myarticle.cpp articlefilter.cpp archive.cpp pageviewer.cpp tabwidget.cpp treenode.cpp treenodeitem.cpp feedgroupitem.cpp feeditem.cpp settings_general.ui settings_archive.ui settings_browser.ui trayicon.cpp balloon.cpp feediconmanager.skel akregator_partiface.skel  akregator_part.cpp akregator_view.cpp
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) -version-info 1:0 -no-undefined $(all_libraries)
-libakregatorpart_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML)
+libakregatorpart_la_LIBADD = libakregatorprivate.la
 
 kde_kcfg_DATA = akregator.kcfg
 
@@ -50,8 +61,8 @@ partdesktopdir = $(kde_servicesdir)
 partdesktop_DATA = akregator_part.desktop
 
 # this is where the part's XML-GUI resource file goes
-partrcdir = $(kde_datadir)/akregatorpart
-partrc_DATA = akregator_part.rc welcome.html
+partrcdir = $(kde_datadir)/akregator
+partrc_DATA = pageviewer.rc akregator_part.rc welcome.html
 
 if include_kontact
 KONTACT_SUBDIR = kontact_plugin

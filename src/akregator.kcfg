@@ -7,6 +7,11 @@
    <whatsthis>Which Quick Filter to use.</whatsthis>
    <default>0</default>
   </entry>
+  <entry key="Show Quick Filter" type="Bool" >
+    <label>Show Quick Filter</label>
+    <whatsthis>Show Quick Filter Bar</whatsthis>
+    <default>true</default>
+  </entry>
   <entry key="View Mode" type="Int" >
    <label>View Mode</label>
    <whatsthis>Article display mode.</whatsthis>
@@ -71,9 +76,9 @@
    <whatsthis>Fetch feedlist on startup.</whatsthis>
    <default>false</default>
   </entry>
-  <entry key="Mark All Feeds Read On Exit" type="Bool" >
-   <label>Mark all feeds as read on exit</label>
-   <whatsthis>Mark all feeds as read on exit.</whatsthis>
+  <entry key="Mark All Feeds Read On Startup" type="Bool" >
+   <label>Mark all feeds as read on startup</label>
+   <whatsthis>Mark all feeds as read on startup.</whatsthis>
    <default>false</default>
   </entry>
   <entry key="Use Interval Fetch" type="Bool" >

@@ -1,50 +1,95 @@
-//
-// C++ Implementation: %{MODULE}
-//
-// Description:
-//
-//
-// Author: %{AUTHOR} <%{EMAIL}>, (C) %{YEAR}
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/***************************************************************************
+ *   Copyright (C) 2004 by Frank Osterfeld                                 *
+ *   frank.osterfeld AT kdemail.net                                      *
+ *                                                                         *
+ *   Licensed under GPL.                                                   *
+ ***************************************************************************/
+
+#include "feedgroup.h"
 #include "treenode.h"
+
+#include "kdebug.h"
 
 using namespace Akregator;
 
-TreeNode::TreeNode(TreeNode* parent)
-    : QObject(0, 0), m_title("TreeNode"), m_parent(parent)
+TreeNode::TreeNode()
+    : QObject(0, 0), m_title(""), m_parent(0), m_doNotify(true), m_changeOccured(false)
 {
 }
 
 TreeNode::~TreeNode()
 {
-    if (m_collection)
-        m_collection->remove(m_item);
-
-    // tell the world that this item is destroyed
-    emit signalDestroyed();
+    // tell the world that this node is destroyed
+    emit signalDestroyed(this);
 }
 
-QString TreeNode::title() const
+const QString& TreeNode::title() const
 {
     return m_title;
 }
 
-void TreeNode::setTitle(QString title)
+void TreeNode::setTitle(const QString& title)
 {
-    m_title = title;
+    
+    if (m_title != title)
+    {
+        m_title = title;
+        modified(); 
+    }
 }
 
-TreeNode* TreeNode::parent() const
+TreeNode* TreeNode::nextSibling() const
+{
+    if (!m_parent) 
+        return 0;
+    QPtrList<TreeNode> children = m_parent->children();
+    children.find(this);
+    return children.next();
+}
+
+TreeNode* TreeNode::prevSibling() const
+{
+    if (!m_parent) 
+        return 0;
+    QPtrList<TreeNode> children = m_parent->children();
+    children.find(this);
+    return children.prev();
+}
+   
+FeedGroup* TreeNode::parent() const
 {
     return m_parent;
 }
     
-void TreeNode::setParent(TreeNode* parent)
+void TreeNode::setParent(FeedGroup* parent)
 {
     m_parent = parent;
 }    
 
+void TreeNode::setNotificationMode(bool doNotify, bool notifyOccuredChanges)
+{
+    if (doNotify && !m_doNotify) // turned on
+    {
+        m_doNotify = true;
+        if (m_changeOccured && notifyOccuredChanges)
+            emit signalChanged(this);
+        m_changeOccured = false; 
+    }    
+    if (!doNotify && m_doNotify) //turned off
+    {
+        m_changeOccured = false;
+        m_doNotify = false;
+    }
+}
+
+void TreeNode::modified()
+{
+//    kdDebug() << "enter TreeNode::modified" << title() << endl;
+    if (m_doNotify)
+        emit signalChanged(this);
+    else
+        m_changeOccured = true;
+//    kdDebug() << "leave TreeNode::modified" << title()<< endl;
+}
+    
 #include "treenode.moc"

@@ -1,0 +1,10 @@
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<kpartgui name="pageviewer" version="3">
+<ToolBar name="mainToolBar">
+  <Action name="pageviewer_back" group="pageviewer_operations"/>
+  <Action name="pageviewer_forward" group="pageviewer_operations"/>
+  <Action name="pageviewer_reload" group="pageviewer_operations"/>
+  <Action name="pageviewer_stop" group="pageviewer_operations"/>
+  <Action name="pageviewer_print" group="pageviewer_operations"/>
+</ToolBar>
+</kpartgui>

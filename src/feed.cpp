@@ -7,17 +7,15 @@
 
 #include "akregatorconfig.h"
 #include "feed.h"
-#include "feedscollection.h"
+#include "feedgroup.h"
 #include "fetchtransaction.h"
 
-#include <kapplication.h>
+#include <kurl.h>
 #include <kcharsets.h>
 #include <kdebug.h>
 #include <kglobal.h>
-#include <kiconloader.h>
-#include <kiconeffect.h>
 #include <kstandarddirs.h>
-#include <kurl.h>
+#include <kapplication.h>
 
 #include <qtimer.h>
 #include <qdatetime.h>
@@ -48,12 +46,47 @@ QString Feed::archiveModeToString(ArchiveMode mode)
    return "globalDefault";
 }
 
+Feed* Feed::fromOPML(QDomElement e)
+{
+    
+    Feed* feed = 0;
+    
+    if( e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl") ) 
+    {
+        QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
+        
+        QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
+
+        bool autoFetch = e.attribute("autoFetch") == "true" ? true : false;
+        
+        QString htmlUrl = e.attribute("htmlUrl");
+        QString description = e.attribute("description");
+        int fetchInterval = e.attribute("fetchInterval").toUInt();
+        ArchiveMode archiveMode = stringToArchiveMode(e.attribute("archiveMode"));
+        int maxArticleAge = e.attribute("maxArticleAge").toUInt();
+        int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
+      
+        feed = new Feed();
+        feed->setTitle(title);
+        feed->setXmlUrl(xmlUrl);
+        feed->setAutoFetch(autoFetch);
+        feed->setHtmlUrl(htmlUrl);
+        feed->setDescription(description);
+        feed->setArchiveMode(archiveMode);
+        feed->setFetchInterval(fetchInterval);
+        feed->setMaxArticleAge(maxArticleAge);
+        feed->setMaxArticleNumber(maxArticleNumber);  
+    }   
+    
+    return feed;
+}            
+
 ArticleSequence Feed::articles()
 { 
     return m_articles; 
 }
 
-Feed::ArchiveMode Feed::stringToArchiveMode(QString str)
+Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
 {
     if (str == "globalDefault")
         return globalDefault;
@@ -70,18 +103,18 @@ Feed::ArchiveMode Feed::stringToArchiveMode(QString str)
 }
 
 
-Feed::Feed(QListViewItem *i, FeedsCollection *coll)
-    : TreeNode(i, coll)
-    , m_archiveMode(globalDefault) 
-    , m_maxArticleAge(60) 
-    , m_maxArticleNumber(1000) 
-    , m_fetchError(false)
-    , m_fetchTries(0)
-    , m_loader(0)
-    , m_merged(false)
-    , m_transaction(0)
-    , m_unread(0)
-    , m_articles()
+Feed::Feed()
+    : TreeNode()
+        , m_archiveMode(globalDefault) 
+        , m_maxArticleAge(60) 
+        , m_maxArticleNumber(1000) 
+        , m_fetchError(false)
+        , m_fetchTries(0)
+        , m_loader(0)
+        , m_merged(false)
+        , m_transaction(0)
+        , m_unread(0)
+        , m_articles()
 {
 }
 
@@ -168,14 +201,23 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
 
 void Feed::slotMarkAllArticlesAsRead()
 {
-    ArticleSequence::Iterator it;
-    ArticleSequence::Iterator en=m_articles.end();
-    for (it = m_articles.begin(); it != en; ++it)
+    if (m_unread > 0)
     {
-        (*it).setStatus(MyArticle::Read);
-    }
-    m_unread=0;
+        ArticleSequence::Iterator it;
+        ArticleSequence::Iterator en = m_articles.end();
+        
+        for (it = m_articles.begin(); it != en; ++it)
+            (*it).setStatus(MyArticle::Read);
+                
+        m_unread = 0;
+        modified();
+    }     
 }
+void Feed::slotAddToFetchTransaction(FetchTransaction* transaction)
+{
+    transaction->addFeed(this);
+}
+
 
 void Feed::appendArticles(const Document &d, bool findDups)
 {
@@ -234,26 +276,36 @@ void Feed::appendArticles(const Document &d, bool findDups)
     m_articles.enableSorting(true);
     m_articles.sort();
     if (changed)
-        emit signalChanged();
+        modified();
+}
+
+bool Feed::usesExpiryByAge() const
+{
+    return ( m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge) || m_archiveMode == limitArticleAge;
+}
+
+bool Feed::isExpired(const MyArticle& a) const
+{
+    QDateTime now = QDateTime::currentDateTime();
+    int expiryAge = -1;
+// check whether the feed uses the global default and the default is limitArticleAge
+    if ( m_archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge)
+        expiryAge = Settings::maxArticleAge() *24*3600;
+    else // otherwise check if this feed has limitArticleAge set
+        if ( m_archiveMode == limitArticleAge)
+            expiryAge = m_maxArticleAge *24*3600;
+
+    return ( expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge);
+    
+
 }
 
 void Feed::appendArticle(const MyArticle& a)
 {
     
-    QDateTime now = QDateTime::currentDateTime();
-
-    int expiryAge = -1; 
-    
-    // check whether the feed uses the global default and the default is limitArticleAge
-    if ( Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge && m_archiveMode == globalDefault)
-        expiryAge == Settings::maxArticleAge();
-    else // otherwise check if this feed has limitArticleAge set
-        if ( m_archiveMode == limitArticleAge)
-            expiryAge = m_maxArticleAge;
-    
-    if ( expiryAge == -1 || a.pubDate().secsTo(now) <= expiryAge * 3600 * 24) // if not expired
+    if ( !(usesExpiryByAge() && isExpired(a)) ) // if not expired
     {
-        if (a.status()!=MyArticle::Read)
+        if (a.status() != MyArticle::Read)
             m_unread++;
             
         ArticleSequence::Iterator it;
@@ -272,7 +324,7 @@ void Feed::appendArticle(const MyArticle& a)
             m_articles.insert(it, a2);
         else
             m_articles.append(a2);    
-     }    
+    }    
 }
 
 
@@ -293,13 +345,7 @@ void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
         }
     }
 
-   // Disable icon to show it is fetching.
-    if (!m_favicon.isNull())
-    {
-        KIconEffect iconEffect;
-        QPixmap tempIcon = iconEffect.apply(m_favicon, KIcon::Small, KIcon::DisabledState);
-        item()->setPixmap(0, tempIcon);
-    }
+    emit fetchStarted(this);
 
     tryFetch();
 }
@@ -307,13 +353,14 @@ void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
 void Feed::abortFetch()
 {
     if (m_loader)
+    {
         m_loader->abort();
+        emit fetchAborted(this);
+    }
 }
 
 void Feed::tryFetch()
 {
-    if (item() && m_fetchError)
-        item()->setPixmap(0, KGlobal::iconLoader()->loadIcon("txt", KIcon::Small));
 
     m_fetchError=false;
 
@@ -345,14 +392,10 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     }
 
     // Restore favicon.
-    if (!m_favicon.isNull())
-    {
-	item()->setPixmap(0, m_favicon);
-    }
-    else
-    {
-	loadFavicon();
-    }
+    if (m_favicon.isNull())
+        loadFavicon();
+//    else
+  //      item()->setPixmap(0, m_favicon);
 
     m_fetchError=false;
     m_document=doc;
@@ -361,8 +404,8 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     if (m_image.isNull())
     {
-        QString u=m_xmlUrl;
-        QString imageFileName=KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
+        QString u = m_xmlUrl;
+        QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
         m_image=QPixmap(imageFileName, "PNG");
 
         if (m_image.isNull())
@@ -376,12 +419,9 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
     }
 
-    if (title().isEmpty()) 
+    if ( title().isEmpty() ) 
         setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(m_document.title())) );
 
-    if (item())
-        item()->setText(0, title()); // this is necessary for adding feeds via konq plugin
-    
     m_description = m_document.description();
     m_htmlUrl = m_document.link().url();
     
@@ -405,48 +445,42 @@ void Feed::loadFavicon()
 void Feed::slotDeleteExpiredArticles()
 {
     bool changed = false;
-    if ( (m_archiveMode == globalDefault && Settings::EnumArchiveMode::limitArticleAge) || m_archiveMode == limitArticleAge )
+    if ( !usesExpiryByAge() )
+        return;
+
+    ArticleSequence::ConstIterator it = m_articles.end();
+    ArticleSequence::ConstIterator tmp;
+    ArticleSequence::ConstIterator begin = m_articles.begin();
+    // when we found an article which is not yet expired, we can stop, since articles are sorted by date
+    bool foundNotYetExpired = false;
+
+    while ( !foundNotYetExpired && it != begin )
     {
-        long expiryInSec;
-	
-	if (m_archiveMode == limitArticleAge)
-           expiryInSec = m_maxArticleAge * 3600 * 24;
-        else     
-            expiryInSec = Settings::maxArticleAge() * 3600 * 24;
-            
-        QDateTime now = QDateTime::currentDateTime();
-        ArticleSequence::ConstIterator it;
-        ArticleSequence::ConstIterator tmp;
-        ArticleSequence::ConstIterator end = m_articles.end();
-        // when we found an article which is not yet expired, we can stop, since articles are sorted by date 
-        bool foundNotYetExpired = false;
-        
-        it = m_articles.begin();
-        while ( !foundNotYetExpired && it != end )
+        --it;
+        if (!(*it).keep())
         {
-            if ( !(*it).keep() && (*it).pubDate().secsTo(now) > expiryInSec)
+            if ( isExpired(*it) )
             {
                 tmp = it;
-                ++it;       
                 m_articles.remove(*tmp);
                 changed = true;
-         
             }
-            else 
+            else
                 foundNotYetExpired = true;
-        }    
-    }    
+        }
+    }
     if (changed)
-        emit signalChanged();
+        modified();
 }
 
 void Feed::setFavicon(const QPixmap &p)
 {
     if (p.isNull())
-	return;
-    if (!m_fetchError && item())
-            item()->setPixmap(0, p);
-    m_favicon=p;
+	   return;
+    m_favicon = p;
+ //   if (!m_fetchError && item())
+ //           item()->setPixmap(0, p);
+    modified();
 }
 
 void Feed::setImage(const QPixmap &p)
@@ -454,11 +488,18 @@ void Feed::setImage(const QPixmap &p)
     if (p.isNull())
         return;
     m_image=p;
-    QString u=m_xmlUrl;
+    QString u = m_xmlUrl;
     m_image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
     emit(imageLoaded(this));
 }
 
-
+void Feed::setUnread(int unread)
+{ 
+    if (unread != m_unread)
+    {    
+        m_unread = unread;
+        modified();
+    }    
+}
 
 #include "feed.moc"

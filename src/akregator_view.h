@@ -10,7 +10,6 @@
 #define _AKREGATORVIEW_H_
 
 #include "feed.h"
-#include "feedscollection.h"
 
 #include <qwidget.h>
 #include <qpixmap.h>
@@ -19,6 +18,7 @@
 class QSplitter;
 class QDomDocument;
 class QDomElement;
+class QHBox;
 class QToolButton;
 class QListViewItem;
 class KComboBox;
@@ -33,17 +33,18 @@ namespace Akregator
     class aKregatorPart;
     class FetchTransaction;
     class FeedsTree;
-    class FeedsTreeViewItem;
+    class FeedGroup;
+    class FeedGroupItem;
     class ArticleList;
     class ArticleListItem;
     class ArticleViewer;
     class ArticleFilter;
     class TabWidget;
+    class TreeNodeItem;
     class Frame;
 
     /**
-     * This is a RSS Aggregator "Part". It does all the real work.
-     * It is also embeddable into other applications (e.g. for use in Kontact).
+     * This is the main widget of the view, containing tree view, article list, viewer etc.
      */
     class aKregatorView : public QWidget
     {
@@ -65,14 +66,14 @@ namespace Akregator
              * Parse OPML presentation of feeds and read in articles archive, if present.
              * @param doc QDomDocument generated from OPML by openFile().
              */
-            bool loadFeeds(const QDomDocument& doc, QListViewItem *parent = 0);
+            bool loadFeeds(const QDomDocument& doc, FeedGroup* parent = 0);
 
             /**
              * Recursively parse child nodes of the opml document, building feeds tree.
              * @param node Current node to parse.
              * @param parent Parent listview item for newly created listview items.
              */
-            void parseChildNodes(QDomNode &node, QListViewItem *parent = 0);
+            void parseChildNodes(QDomNode &node, FeedGroup* parent = 0);
 
 
             /**
@@ -94,29 +95,37 @@ namespace Akregator
              */
             void addFeedToGroup(const QString& url, const QString& group);
 
-	    void startOperation();
+            /**
+             * Disables fetch actions and informs the frame to enable stop button
+             */
+            void startOperation();
+            /**
+             * Enables fetch actions and nforms the frame to disable stop button
+             */
             void endOperation();
             void operationError(const QString &msg);
 
             void stopLoading();
 
-	    FetchTransaction* transaction(){return m_transaction;}
+            FetchTransaction* transaction() { return m_transaction; }
 
             /** session management **/
             virtual void readProperties(KConfig* config);
             virtual void saveProperties(KConfig* config);
             
         public slots:
-            /**
+            
+             /**
              * Current item has changed.
              */
-            void slotItemChanged(QListViewItem*);
+            void slotNodeSelected(TreeNode* node);
             void slotItemMoved();
 
             void slotNormalView();
             void slotWidescreenView();
             void slotCombinedView();
-
+            void slotToggleShowQuickFilter();
+            
             /**
              * Shows requested popup menu
              */
@@ -134,16 +143,16 @@ namespace Akregator
              */
 
             void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);
-            void slotArticleSelected(QListViewItem *);
+            void slotArticleSelected(MyArticle article);
+            
             void slotOpenArticleExternal(QListViewItem* item, const QPoint&, int);
             void slotOpenCurrentArticleExternal();
             void slotOpenCurrentArticleBackgroundTab();
             void slotOpenCurrentArticleForegroundTab();
+
             /**
              * This slot is called when user renames a feed in feeds tree.
              */
-            void slotItemRenamed( QListViewItem * item ); //, const QString & text, int col
-
             void slotFeedAdd();
             void slotFeedAddGroup();
             void slotFeedRemove();
@@ -154,12 +163,13 @@ namespace Akregator
             void slotNextFeed();
             void slotPrevUnreadArticle();
             void slotNextUnreadArticle();
+     
             void slotMarkAllRead();
             void slotMarkAllFeedsRead();
 
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();
-            void slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent);
+            void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FeedGroupItem *parent);
             void slotOpenHomepage();
 
             void slotSearchComboChanged(int index);
@@ -192,14 +202,15 @@ namespace Akregator
             void slotFeedsTreeDown();
             void slotFeedsTreeLeft();
             void slotFeedsTreeRight();
-            void slotFeedsTreeMoveUp();
-            void slotFeedsTreeMoveDown();
-            void slotFeedsTreeMoveLeft();
-            void slotFeedsTreeMoveRight();
+            void slotMoveCurrentNodeUp();
+            void slotMoveCurrentNodeDown();
+            void slotMoveCurrentNodeLeft();
+            void slotMoveCurrentNodeRight();
             void slotFeedsTreePageUp();
             void slotFeedsTreePageDown();
             void slotFeedsTreeHome();
             void slotFeedsTreeEnd();
+            
         private:
             /**
              * Reset to default values, removing all existing data.
@@ -217,29 +228,9 @@ namespace Akregator
              * @param node Parent node to append to.
              * @param document XML document used to create nodes.
              */
-            void writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document );
+            void writeChildNodes( TreeNode* node, QDomElement& element, QDomDocument &document );
 
-            void addFeed(QString url, QListViewItem *after, QListViewItem* parent, bool autoExec = false);
-            /**
-             * Add feed to feeds tree, given the existing list view item and alot of
-             * feed parameters. FIXME: parameters better be bundled to FeedData?
-             * @return Newly created feed.
-             */
-            Feed *aKregatorView::addFeed_Internal(Feed *f, QListViewItem *elt, QString title,
-                                                QString xmlUrl, QString htmlUrl,
-                                                QString description,
-                                                bool autoFetch, int fetchIntervL,
-         					Feed::ArchiveMode mode,
-                                                int maxArticleAge,
-                                                int maxArticleNumber);
-
-            /**
-             * Mark all items in item and subitems as read.
-             * @param item Item to start marking at.
-             */
-            void markAllRead(QListViewItem *item);
-
-            void fetchItem(QListViewItem *item);
+            void addFeed(const QString& url, TreeNode* after, FeedGroup* parent, bool autoExec = true);
 
             void updateSearch(const QString &s=QString::null);
             
@@ -254,11 +245,6 @@ namespace Akregator
              * A tree of all feeds (Columns, Subscriptions).
              */
             FeedsTree *m_tree;
-
-            /**
-             * An internal collection of Feed items.
-             */
-            FeedsCollection m_feeds;
 
             /**
              * List of documents for currently selected feed.
@@ -283,6 +269,8 @@ namespace Akregator
 
             KComboBox *m_searchCombo;
             KLineEdit *m_searchLine;
+            QHBox* m_searchBar;
+            
             int m_queuedSearches;
             QString m_queuedSearch;
             FetchTransaction *m_transaction;
@@ -292,15 +280,11 @@ namespace Akregator
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;
             ViewMode m_viewMode;
-            QTimer *m_globalFetchTimer;
+            
             QTimer *m_fetchTimer;
             QTimer* m_expiryTimer;
 
             bool m_stopLoading;
-
-            QPixmap m_feedTreePixmap;
-            QPixmap m_folderTreePixmap;
-            QPixmap m_errorTreePixmap;
     };
 }
 

@@ -9,12 +9,13 @@
 
 #include <qptrdict.h>
 
-class QListViewItem;
+
 
 namespace Akregator
 {
     class Feed;
     class FeedGroup;
+    class TreeNodeItem;
     class TreeNode;
     
     class FeedsCollection : public QPtrDict<TreeNode>
@@ -24,11 +25,10 @@ namespace Akregator
             ~FeedsCollection();
 
             void addFeed(Feed *f);
-            Feed* addFeed(QListViewItem *item);
-            FeedGroup* addFeedGroup(QListViewItem *item);
-
-            void removeFeed(QListViewItem *item);
-            bool changeFeed(QListViewItem *item);
+            void addFeedGroup(FeedGroup* feedGroup);
+        
+            void removeFeed(TreeNodeItem *item);
+            bool changeFeed(TreeNodeItem *item);
 
             void clearFeeds();
             void updateFeedsView();

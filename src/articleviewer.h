@@ -17,6 +17,7 @@
 #include "articlefilter.h"
 #include "viewer.h"
 
+class QKeyEvent;
 
 namespace Akregator
 {
@@ -67,7 +68,9 @@ namespace Akregator
         protected:
             /** nobody uses this right now. Do we need it? -fo */
             virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);
-            virtual void keyPressEvent(QKeyEvent* e);            
+            
+            virtual void keyPressEvent(QKeyEvent* e);
+            
         private:
             /** Takes an article and renders it as HTML            
             @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo

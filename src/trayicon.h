@@ -14,7 +14,7 @@
 #include <qpixmap.h>
 
 class Balloon;
-    
+
 namespace Akregator
 {
     class TrayIcon : public KSystemTray
@@ -25,7 +25,12 @@ namespace Akregator
             ~TrayIcon();
             void updateUnread(int unread);
             void newArticle(const QString&, const QPixmap&, const QString&);
+            QPixmap takeScreenshot() const;
 
+        public slots:
+            void settingsChanged();
+            void viewButtonClicked();
+            void fetchAllFeeds();
 
         private:
             QPixmap m_defaultIcon;
@@ -33,10 +38,7 @@ namespace Akregator
             int m_unread;
             Balloon *m_balloon;
 
-        public slots:
-            void settingsChanged();
-            void viewButtonClicked();
-            void fetchAllFeeds();
+
     };
 }
 

@@ -8,13 +8,13 @@
 #include "feedgroup.h"
 #include "feed.h"
 #include "treenode.h"
+#include "treenodeitem.h"
 
 #include <klocale.h>
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kmessagebox.h>
 
-#include <qlistview.h>
 
 using namespace Akregator;
 
@@ -33,24 +33,13 @@ void FeedsCollection::addFeed(Feed *f)
     modified = true;
 }
 
-Feed *FeedsCollection::addFeed(QListViewItem *item)
+void FeedsCollection::addFeedGroup(FeedGroup* feedGroup)
 {
-    Feed *feed = new Feed(item, this);
-    insert(item, feed);
+    insert(feedGroup->item(), feedGroup);
     modified = true;
-    return feed;
 }
 
-FeedGroup* FeedsCollection::addFeedGroup(QListViewItem *item)
-{
-    FeedGroup *feedGroup = new FeedGroup(item, this);
-    insert(item, feedGroup);
-    item->setPixmap(0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
-    modified = true;
-    return feedGroup;
-}
-
-void FeedsCollection::removeFeed(QListViewItem *item)
+void FeedsCollection::removeFeed(TreeNodeItem *item)
 {
     TreeNode *node = find(item);
     if (!node)
@@ -65,7 +54,7 @@ void FeedsCollection::removeFeed(QListViewItem *item)
     modified = true;
 }
 
-bool FeedsCollection::changeFeed(QListViewItem */*item*/)
+bool FeedsCollection::changeFeed(TreeNodeItem */*item*/)
 {
     return false;
 }

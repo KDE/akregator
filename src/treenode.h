@@ -1,14 +1,10 @@
-//
-// C++ Interface: %{MODULE}
-//
-// Description: 
-//
-//
-// Author: Frank Osterfeld, f_osterf AT informatik.uni-kl.de, (C) 2004
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/***************************************************************************
+ *   Copyright (C) 2004 by Frank Osterfeld                                 *
+ *   frank.osterfeld AT kdemail.net                                        *
+ *                                                                         *
+ *   Licensed under GPL.                                                   *
+ ***************************************************************************/
+
 #ifndef AKREGATORTREENODE_H
 #define AKREGATORTREENODE_H
 
@@ -16,7 +12,6 @@
 #include <qstring.h>
 
 // These will be removed when TreeNodeItem is ready
-#include "feedscollection.h"
 #include <qlistview.h>
 
 class QDomDocument;
@@ -26,70 +21,156 @@ namespace Akregator
 {
 
 class ArticleSequence;
+class FeedGroup;
+class FetchTransaction;
 
 /**
-    abstract base class for feeds and feed groups 
-
+    \brief Abstract base class for all kind of elements in the feed tree, like feeds and feed groups (and search folders later).
+                   
+    TODO: detailed description goes here
 */
 class TreeNode : public QObject
 {
 Q_OBJECT
 public:
-     TreeNode(TreeNode* parent = 0);
+     /** Standard constructor */
+     TreeNode();
+     
+     
+     /** Standard destructor */
      ~TreeNode();
      
-     // This will be removed when TreeNodeItem is ready
-     TreeNode(QListViewItem *i, FeedsCollection *coll) : m_title(""), m_parent(0), m_item(i), m_collection(coll) {}
+     
+     /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree) 
+     @return number of new/unread articles */
+    
+     virtual int unread() const = 0;
     
     
-    virtual int unread() const = 0;
-    virtual QString title() const;
-    virtual void setTitle(QString title);
-    virtual TreeNode* parent() const;
-    virtual void setParent(TreeNode* parent);
-    virtual ArticleSequence articles() = 0; // insert a const version as well
+    /** Get title of node.
+    @return the title of the node */
     
-    /** helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible **/
+    virtual const QString& title() const;
+    
+    
+    /** Sets the title of the node.
+    @c title should not contain entities.
+    @param title the title string */
+    
+    virtual void setTitle(const QString& title);
+    
+    
+    /** Get the next sibling.
+    @return the next sibling, 0 if there is none */
+    
+    virtual TreeNode* nextSibling() const;
+    
+    
+    /** Get the previous sibling.
+    @return the previous sibling, 0 if there is none */
+    
+    virtual TreeNode* prevSibling() const;
+    
+    
+    /** Returns the parent node.
+    @return the parent feed group, 0 if there is none */
+    
+    virtual FeedGroup* parent() const;
+    
+    
+    /** Sets parent node; Don't call this directly, is done automatically by 
+    insertChild-methods in @ref FeedGroup. */
+    
+    virtual void setParent(FeedGroup* parent);
+    
+    
+    /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
+    @return sequence of articles */
+    
+    virtual ArticleSequence articles() = 0; // TODO: insert a const version as well
+    
+    
+    /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.
+    @return whether the node is a feed group or not */
     
     virtual bool isGroup() const = 0;
     
-    /** exports node and child nodes to OPML (with akregator settings) **/
+    
+    /** exports node and child nodes to OPML (with akregator settings) 
+        @param parent the dom element the child node will be attached to
+        @param document the opml document */
     
     virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const = 0;
-      
-    // These will be removed when TreeNodeItem is ready
     
-    QListViewItem* item() { return m_item; } const
-    void setItem(QListViewItem* i) { m_item = i; }
-    FeedsCollection* collection() { return m_collection;}
-    void setCollection(FeedsCollection* c) { m_collection = c; }
-
     
-    public slots:    
+    /** 
+    @param doNotify notification on changes on/off flag
+    @param notifyOccuredChanges notify changes occured while turn off when set to true again */
     
-    // move to PhysicalTreeNode later
+    virtual void setNotificationMode(bool doNotify, bool notifyOccuredChanges = true);  
+        
+public slots:
+    
+    /** Deletes all expired articles in the node (depending on the expiry settings).
+        Works recursively for feed groups. */
     
     virtual void slotDeleteExpiredArticles() = 0;
+    
+    
+    /** Marks all articles in this node as read.
+    Works recursively for feed groups. */
+    
     virtual void slotMarkAllArticlesAsRead() = 0;
+
+    /** adds node to a fetch transaction */
+    virtual void slotAddToFetchTransaction(FetchTransaction* transaction) = 0;
     //virtual void slotFetch(int timeout) = 0;    
     //virtual void slotAbortFetch() = 0;
       
 signals:
-        
-    void signalChanged();
-    void signalDestroyed();   
+    
+    /** Notification mechanism: emitted, when the node was modified and notification 
+    is enabled. */
+    
+    void signalChanged(TreeNode*);
+    
+    
+    /** Emitted when this object is deleted. */
+    
+    void signalDestroyed(TreeNode*);   
+    
+    
+    /** TODO: not used yet */
+    
     void signalFetched();
+    
+    
+    /** TODO: not used yet */
+    
     void signalFetchAborted();
+    
+    
+    /** TODO: not used yet */
+    
     void signalFetchTimeout();
 
+    
 protected:    
     
-    QString m_title;
-    TreeNode* m_parent;
+    /** call this if you modified the object. Will do notification and handles m_doNotify and m_changeOccured. */
+    virtual void modified();
     
-    // These will be removed when TreeNodeItem is ready
-    QListViewItem* m_item;
-    FeedsCollection* m_collection;
+    /** If set to true, signalChanged is emitted when the node was modified */
+    bool m_doNotify;
+   
+    /** If m_doNotify is set false, this flag caches occurred changes. */
+    bool m_changeOccured;
+    
+    /** title of the node */
+    QString m_title;
+    
+    /** The node's parent */
+    FeedGroup* m_parent;
 };
 
 };

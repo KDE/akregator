@@ -7,39 +7,20 @@
 #ifndef AKREGATORFEEDSTREE_H
 #define AKREGATORFEEDSTREE_H
 
+#include <qptrdict.h>
+
 #include <klistview.h>
 #include <kurl.h>
 
+
 namespace Akregator
 {
-
-    class FeedsTreeItem : public KListViewItem
-    {
-        public:
-            FeedsTreeItem( bool f, QListView *parent, QString label=QString::null);
-            FeedsTreeItem( bool f, QListViewItem *parent, QString label=QString::null);
-            FeedsTreeItem( bool f, QListView *parent, QListViewItem *after, QString
-        label=QString::null);
-            FeedsTreeItem(bool f, QListViewItem *parent, QListViewItem *after,
-                       QString label=QString::null);
-            ~FeedsTreeItem();
-        virtual void paintCell( QPainter * p, const QColorGroup & cg,
-                            int column, int width, int align );
-
-        int unread(){return m_unread;}
-        void setUnread(int u);
-
-        bool isFolder();
-        void setFolder(bool f);
-        int countUnreadRecursive();
-
-        private:
-            void updateParentsRecursive();
-            int m_unread;
-            bool m_folder;
-    };
-
-
+    class Feed;
+    class FeedGroup;
+    class FeedGroupItem;
+    class TreeNode;
+    class TreeNodeItem;
+    
     class FeedsTree : public KListView
     {
         Q_OBJECT
@@ -47,7 +28,53 @@ namespace Akregator
             FeedsTree( QWidget *parent = 0, const char *name = 0 );
             ~FeedsTree();
 
- 
+            /** Returns root node ("All Feeds").
+             * @return root node
+             */
+            FeedGroup* rootNode();
+            
+            /** Returns item belonging to root node. Use only when necessary.
+             @return root node item 
+             */
+            FeedGroupItem* rootNodeItem();
+            
+            /** Returns the currently selected node, @c null when no one is selected.
+             @return selected node
+             */
+            TreeNode* selectedNode();
+   
+            /** selects @c node, if it exists
+             * @param node the node to select
+             */
+            void setSelectedNode(TreeNode* node);
+            
+            /** Returns item belonging to currently selected node. Use only when necessary.
+            @return selected node item 
+            */
+            TreeNodeItem* selectedNodeItem(); 
+            
+            /** Find item belonging to tree node @c node, @c null when node is not in tree 
+            @return item representing node  
+            @param node a tree node
+             */            
+            TreeNodeItem* findNodeItem(TreeNode* node);
+            
+            /** Find first node with title @c title
+            FIXME: This should be somewhere else, in FeedGroup or whereever
+             returns 0 if no node was found
+            @param title
+            @return node
+             */ 
+            TreeNode* findNodeByTitle(const QString& title);
+
+            /** ensures that @c node is visible. */
+            void ensureNodeVisible(TreeNode* node);
+
+            /** reimplemented to return TreeNodeItem* */
+            virtual TreeNodeItem* findItem (const QString& text, int column, ComparisonFlags compare = ExactMatch | CaseSensitive ) const;
+                                
+            virtual void clear();
+
         protected:
             virtual void drawContentsOffset( QPainter * p, int ox, int oy,
                                        int cx, int cy, int cw, int ch );
@@ -55,10 +82,15 @@ namespace Akregator
             virtual bool acceptDrag(QDropEvent *event) const;
             virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
             virtual void keyPressEvent(QKeyEvent* e);
+            
             void takeNode(QListViewItem* item);
             void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
-
-         public slots:
+            
+        signals:
+            void dropped (KURL::List &, TreeNodeItem*, FeedGroupItem*);
+            void signalNodeSelected(TreeNode*);
+        
+        public slots:
            
             /** handle dropped urls */
             void slotDropped(QDropEvent *e, QListViewItem *after);
@@ -82,14 +114,36 @@ namespace Akregator
             void slotItemLeft();
             /** Move feed level down */
             void slotItemRight();
+      
+            void slotPrevFeed();
+            void slotNextFeed();
+            void slotPrevUnreadFeed();
+            void slotNextUnreadFeed();
             
-            void slotMoveItemUp();
-            void slotMoveItemDown();
-            void slotMoveItemLeft();
-            void slotMoveItemRight();
+            /** called when a node is added to the tree. If no item for the node exists, it will be created */
+            virtual void slotNodeAdded(FeedGroup* parent, TreeNode* node);
             
-        signals:
-            void dropped (KURL::List &, QListViewItem *, QListViewItem *);
+            /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
+            
+            Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
+            virtual void slotNodeRemoved(FeedGroup* parent, TreeNode* node);
+            
+            /** deletes the item belonging to the deleted node */
+            virtual void slotNodeDestroyed(TreeNode* node);
+            
+            /** update the item belonging to the node */
+            virtual void slotNodeChanged(TreeNode* node);
+            
+        protected slots:
+            virtual void slotSelectionChanged(QListViewItem* item); 
+            virtual void slotItemRenamed(QListViewItem* item);
+            virtual void slotFeedFetchStarted(Feed* feed);
+            virtual void slotFeedFetchAborted(Feed* feed);
+            virtual void slotFeedFetchError(Feed* feed);
+            virtual void slotFeedFetchCompleted(Feed* feed);
+        private:
+            /** used for finding the item belonging to a node */
+            QPtrDict<TreeNodeItem> m_itemDict;
     };
 
 }

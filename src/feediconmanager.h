@@ -31,7 +31,7 @@ namespace Akregator
             QString iconLocation(const KURL &) const;
             
         k_dcop:
-            void slotIconChanged(bool, QString, QString);
+            void slotIconChanged(bool, const QString&, const QString&);
 
         signals:
             void iconChanged(const QString &, const QPixmap &);

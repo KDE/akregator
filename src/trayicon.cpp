@@ -9,6 +9,7 @@
 #include "balloon.h"
 #include "trayicon.h"
 
+#include <kapplication.h>
 #include <kwin.h>
 #include <kiconeffect.h>
 #include <kdebug.h>
@@ -47,9 +48,50 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
 	
 TrayIcon::~TrayIcon()
 {
-    if(m_balloon) delete m_balloon;
+    if (m_balloon)
+        delete m_balloon;
 }
 
+QPixmap TrayIcon::takeScreenshot() const
+{
+    QPoint g = mapToGlobal(pos());
+    int desktopWidth  = kapp->desktop()->width();
+    int desktopHeight = kapp->desktop()->height();
+    int tw = width();
+    int th = height();
+    int w = desktopWidth / 4;
+    int h = desktopHeight / 9;
+    int x = g.x() + tw/2 - w/2; // Center the rectange in the systray icon
+    int y = g.y() + th/2 - h/2;
+    if (x < 0)
+        x = 0; // Move the rectangle to stay in the desktop limits
+    if (y < 0)
+        y = 0;
+    if (x + w > desktopWidth)
+        x = desktopWidth - w;
+    if (y + h > desktopHeight)
+        y = desktopHeight - h;
+
+        // Grab the desktop and draw a circle arround the icon:
+    QPixmap shot = QPixmap::grabWindow(qt_xrootwin(), x, y, w, h);
+    QPainter painter(&shot);
+    const int MARGINS = 6;
+    const int WIDTH   = 3;
+    int ax = g.x() - x - MARGINS -1;
+    int ay = g.y() - y - MARGINS -1;
+    painter.setPen( QPen(Qt::red/*KApplication::palette().active().highlight()*/, WIDTH) );
+    painter.drawArc(ax, ay, tw + 2*MARGINS, th + 2*MARGINS, 0, 16*360);
+    painter.end();
+
+    // Paint the border
+    const int BORDER = 1;
+    QPixmap finalShot(w + 2*BORDER, h + 2*BORDER);
+    finalShot.fill(KApplication::palette().active().foreground());
+    painter.begin(&finalShot);
+    painter.drawPixmap(BORDER, BORDER, shot);
+    painter.end();
+    return shot; // not finalShot?? -fo
+}
 
 void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art)
 {

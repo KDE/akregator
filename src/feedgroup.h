@@ -19,8 +19,8 @@ namespace Akregator
 {
     
     class ArticleSequence;
-    class FeedsCollection;
-    
+    class FetchTransaction;
+        
     /**
      * Represents a feed group (i.e. a folder containing feeds and/or other folders).
      */
@@ -28,20 +28,21 @@ namespace Akregator
     {
         Q_OBJECT
         public:
+            /** creates a feed group parsed from a XML dom element.
+            Child nodes are not inserted or parsed. 
+            @param e the element representing the feed group
+            @return a freshly created feed group */
+            static FeedGroup* fromOPML(QDomElement e);
+            
             /** The new constructor (DON'T USE YET). The idea: Just pass a parent and let parent do all the work,
             FeedsTree will be notified automatically and create an item
             etc.
             @param parent The parent node to attach to
             @param title The title of the feed group
              */          
-            FeedGroup(FeedGroup* parent, QString title); 
+            FeedGroup(const QString& title = QString::null); 
             
-            /** Old, deprecated constructor, will die (but has to be used now).
-            @param item The view item belonging to this node (will be handled by FeedsTree)
-            @param collection feed collection for item->node mapping */
-            FeedGroup(QListViewItem* item, FeedsCollection* collection);
-            
-            /** Destructor. emits signalDestroyed to inform the world of our tragic demise */
+             /** Destructor. emits signalDestroyed to inform the world of our tragic demise */
             ~FeedGroup();
 
             /** returns recursively concatenated articles of children  
@@ -55,7 +56,8 @@ namespace Akregator
             /** Helps the rest of the app to decide if node should be handled as group or not. Use only where necessary, use polymorphism where possible. */
             virtual bool isGroup() const { return true; }
             
-            /** converts the feed group into OPML format for save and export and appends it to node @c parent in document @document. 
+            /** converts the feed group into OPML format for save and export and appends it to node @c parent in document @document.
+            Children are processed and appended recursively.
             @param parent The parent element 
             @param document The DOM document 
             @return The newly created element representing this feed group */
@@ -65,7 +67,46 @@ namespace Akregator
             @return a list of pointers to the child nodes
              */
             virtual QPtrList<TreeNode> children() { return m_children; }
+
+            /** inserts @c node as child after child node @c after.
+            if @c after is not a child of this group, @c node will be inserted as first child
+            @param node the tree node to insert
+            @param after the node after which @c node will be inserted */
+            virtual void insertChild(TreeNode* node, TreeNode* after);
             
+            /** inserts @c node as child on position @c index
+            @param index the position where to insert
+            @param node the tree node to insert */
+            virtual void insertChild(uint index, TreeNode* node);
+
+            /** inserts @c node as first child
+            @param node the tree node to insert */
+            virtual void prependChild(TreeNode* node);
+
+            /** inserts @c node as last child
+            @param node the tree node to insert */
+            virtual void appendChild(TreeNode* node);
+
+            /** remove @c node from children. Note that @c node will not be deleted
+            @param node the child node to remove  */
+            virtual void removeChild(TreeNode* node);
+
+            /** returns whether the feed group is opened or not..
+            Use only in \ref FeedGroupItem. */
+            virtual bool isOpen() const;
+            
+            /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref FeedGroupItem. */
+            virtual void setOpen(bool open);
+            
+        signals:
+            /** emitted when a child was added
+            first param: this group, second param: the added child node*/
+            void signalChildAdded(FeedGroup*, TreeNode*);
+
+            /** emitted when a child was removed
+            first param: this group, second param: the removed child node*/
+            void signalChildRemoved(FeedGroup*, TreeNode*);
+                       
         public slots:
             
             /** Delete expired articles recursively. */
@@ -73,16 +114,30 @@ namespace Akregator
             
             /** Mark articles of children recursively as read. */
             virtual void slotMarkAllArticlesAsRead();
+ 
+            /** Called when a child was modified. 
+            @param node the child that was changed
+             */
+            virtual void slotChildChanged(TreeNode* node);
             
-            /** Called when a child was modified. */
-            virtual void slotChildChanged();
-            
+            /** Called when a child was destroyed. 
+            @param node the child that was destroyed
+            */
+            virtual void slotChildDestroyed(TreeNode* node);
+
+            virtual void slotAddToFetchTransaction(FetchTransaction* transaction);
             //virtual void slotFetch(int timeout);    
             //virtual void slotAbortFetch();
     
         protected:
             /** List of children */
             QPtrList<TreeNode> m_children;
+            /** caching unread count of children */
+            int m_unread;
+            /** whether or not the folder is expanded */
+            bool m_open;
+            /** update unread count cache */
+            virtual void updateUnreadCount();
     };
 };
 
