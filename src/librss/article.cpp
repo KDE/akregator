@@ -90,6 +90,9 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		d->pubDate.setTime_t(_time);
 	}
 
+
+    // XXX: doesn't this check for the node twice? 
+    //      perhaps after finding the node, we can make an extratData fcn
 	QDomNode n = node.namedItem(QString::fromLatin1("guid"));
 	if (!n.isNull()) {
 		d->guidIsPermaLink = true;
@@ -99,17 +102,13 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 			d->guid = elemText;
 	}
 
-    n = node.namedItem(QString::fromLatin1("meta"));
+    // TODO: iterate among all meta nodes..
+    n = node.namedItem(QString::fromLatin1("metaInfo:meta"));
     if (!n.isNull()) {
-        QDomNode c = n.firstChild();
-        while ( !c.isNull() ) {
-            if ( c.isElement() ) {
-                const QDomElement e = n.toElement();
-                d->meta[e.attribute("type")]=e.text();
-            }
-            c = c.nextSibling();
-        }
-    }
+        QString type=n.toElement().attribute(QString::fromLatin1("type"));
+        if (!(elemText = extractNode(node, QString::fromLatin1("metaInfo:meta"))).isNull())
+            d->meta[type]=elemText;
+    } 
 }
 
 Article::~Article()

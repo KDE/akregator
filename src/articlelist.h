@@ -20,7 +20,8 @@ namespace Akregator
             ArticleListItem( QListView *parent, MyArticle a, Feed *parent );
 
             MyArticle article();
-
+            void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
+            
         private:
             struct Private;
             Private *d;

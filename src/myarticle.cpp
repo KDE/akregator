@@ -85,6 +85,11 @@ bool MyArticle::operator==(const MyArticle &other) const
        && d->fetchDate == other.d->fetchDate;
 }
 
+int MyArticle::status()
+{
+    return d->status;
+}
+
 void MyArticle::setStatus(int status)
 {
     d->status=status;
@@ -166,13 +171,10 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
     }
 
     QDomElement metanode = doc.createElement( "metaInfo:meta" );
-    
-    QDomElement statnode = doc.createElement( "item" );
-    statnode.setAttribute("type","status");
+    metanode.setAttribute("type","status");
     
     QDomText stat=doc.createTextNode(QString::number(d->status));
-    statnode.appendChild(stat);
-    metanode.appendChild(statnode);
+    metanode.appendChild(stat);
     parent.appendChild(metanode);
 }
 

@@ -54,6 +54,24 @@ MyArticle ArticleListItem::article()
     return d->article;
 }
 
+
+// paint ze peons
+void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
+{
+    QColorGroup cg2(cg);
+    
+    // XXX: make configurable
+    if (article().status()==MyArticle::Unread)
+        cg2.setColor(QColorGroup::Text, Qt::blue);
+    else if (article().status()==MyArticle::New)
+        cg2.setColor(QColorGroup::Text, Qt::red);
+    
+    KListViewItem::paintCell( p, cg2, column, width, align );
+
+}
+
+
+
 /* ==================================================================================== */
 
 ArticleList::ArticleList(QWidget *parent, const char *name)

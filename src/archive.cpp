@@ -26,12 +26,10 @@ void Archive::load(Feed *f)
     QString filePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + url.prettyURL(-1).replace("/", "_").replace(":", "_") + ".xml";
 
     kdDebug() << "Will read feed from " << filePath << endl;
-    kdDebug() << "merged :"<<f->isMerged()<<endl;
+    //kdDebug() << "merged :"<<f->isMerged()<<endl;
 
     if (f->isMerged())
         return;
-    
-    f->setMerged(true);
 
     QFile file(filePath);
     
@@ -57,8 +55,9 @@ void Archive::load(Feed *f)
         return;
     }
 
+    f->setMerged(false);
     f->appendArticles(feedDoc);
-    kdDebug() << "setting merged=true"<<endl;
+    //kdDebug() << "setting merged=true"<<endl;
     f->setMerged(true);
 }
 

@@ -120,7 +120,7 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
 
 void Feed::appendArticles(const Document &d, bool findDups)
 {
-    kdDebug() << "appendArticles findDups=="<<findDups<<endl;
+    //kdDebug() << "appendArticles findDups=="<<findDups<<endl;
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
     for (it = d.articles().begin(); it != en; ++it)
@@ -132,6 +132,8 @@ void Feed::appendArticles(const Document &d, bool findDups)
             // no idea if any better way to do this..
             if (oo == articles.end() )
             {
+                if (m_merged)
+                    mya.setStatus(MyArticle::New);
                 appendArticle(mya);
             }
             /*else{
@@ -140,7 +142,10 @@ void Feed::appendArticles(const Document &d, bool findDups)
         }
         else
         {
-            appendArticle(*it);
+            MyArticle mya(*it);
+            if (m_merged)
+                mya.setStatus(MyArticle::New);
+            appendArticle(mya);
         }
     }
 }
@@ -155,7 +160,20 @@ void Feed::fetch(bool followDiscovery)
 {
     m_fetchError=false;
 	m_followDiscovery=followDiscovery;
-    m_fetchTries=0;  
+    m_fetchTries=0; 
+    
+
+    // mark all new as unread
+    ArticleSequence::Iterator it;
+    ArticleSequence::Iterator en=articles.end();
+    for (it = articles.begin(); it != en; ++it)
+    {
+        if ((*it).status()==MyArticle::New)
+        {
+            (*it).setStatus(MyArticle::Unread);
+        }
+    }
+
     tryFetch();
 }
     
@@ -209,7 +227,8 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     description = m_document.description();
     htmlUrl = m_document.link().url();
 
-    kdDebug() << "ismerged reprots:::"<<isMerged()<<endl;
+    //kdDebug() << "ismerged reprots:::"<<isMerged()<<endl;
+
     bool findDups=isMerged();
     appendArticles(m_document, findDups);
     
