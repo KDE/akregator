@@ -148,7 +148,11 @@ void Frame::setStarted()
 
 void Frame::setCanceled(const QString &s)
 {
-    if(m_progressItem) m_progressItem->setStatus(i18n("Loading canceled"));
+    if(m_progressItem) {
+        m_progressItem->setStatus(i18n("Loading canceled"));
+        m_progressItem->setComplete();
+        m_progressItem = 0;
+    }
     m_state=Canceled;
     emit canceled(s);
 }
