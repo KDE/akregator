@@ -65,6 +65,9 @@ namespace Akregator
             /** Clears the canvas and disconnects from the currently observed node (if in combined view mode). */
             void slotClear();
 	    
+            void slotShowSummary(Feed *f);
+            void slotShowSummary(TreeNode *node);
+	    
         protected:
             /** nobody uses this right now. Do we need it? -fo */
             virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);

@@ -5,11 +5,14 @@ aKregator ChangeLog
 Changes after 1.0b7:
 -----------------------------
 
+New features:
+#85532 - Add feed summary -tpr
+
 Changes:
-      - Do not allow user to stop feedlist loading to avoid data loss -tpr
-      - Do not show feedlist url in title -tpr
-      - Clear the statusbar when pressing Stop button -tpr
-      - make search bar optional -fo
+       - Do not allow user to stop feedlist loading to avoid data loss -tpr
+       - Do not show feedlist url in title -tpr
+       - Clear the statusbar when pressing Stop button -tpr
+       - make search bar optional -fo
 
 Bug fixes:
        - Make kontact plugin work with Kontact from CVS HEAD -fo

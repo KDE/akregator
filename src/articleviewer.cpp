@@ -264,6 +264,64 @@ void ArticleViewer::endWriting()
     end();
 }
 
+void ArticleViewer::slotShowSummary(TreeNode *item)
+{
+    //for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
+        
+    
+    /*begin();
+    write(m_htmlHead+text);
+    end();*/
+}
+
+void ArticleViewer::slotShowSummary(Feed *f)
+{
+    if(!f) return;
+    
+    m_currentText = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2</div>\n").arg(directionOf(f->title())).arg(f->title());
+    m_currentText += "</div>\n"; // /headerbox
+    
+    if (!f->image().isNull()) // image
+    {
+        m_currentText += QString("<div id=\"body\" style=\"height:%1px\">").arg(f->image().height()+10);
+        QString url=f->xmlUrl();
+        m_currentText += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
+    }
+    else m_currentText += "<div id=\"body\">";
+    
+    if(f->description() && !f->description().isEmpty()) {
+        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->description()));
+        m_currentText += i18n("<b>Description:</b> %1").arg(f->description());
+        m_currentText += "</div>\n"; // /description
+    }
+    
+    /*if(f->language() && !f->language().isEmpty()) {
+        // language name code from kttsd
+        QString langName;
+        QString langFile = locate("locale", QString::fromLatin1("%1/entry.desktop").arg(f->language()));
+        if (!langFile.isNull() && !langFile.isEmpty()) {
+            KSimpleConfig entry(langFile);
+            entry.setGroup("KCM Locale");
+            langName = entry.readEntry("Name", QString::null);
+        }
+       // if(name.isEmpty()) langName = f->language();
+            
+        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->language()));
+        m_currentText += i18n("<b>Language:</b> %1").arg((langName));
+        m_currentText += "</div>\n"; // /language
+    }*/
+
+    m_currentText += i18n("<b>Unread articles:</b> %1").arg(f->unread());
+    m_currentText += "</div>"; // /body
+    
+    m_currentText += "</body></html>";
+    
+    begin();
+    write(m_htmlHead+m_currentText);
+    end();
+}
+
 void ArticleViewer::slotShowArticle(const MyArticle& article)
 {
     m_viewMode = normalView;

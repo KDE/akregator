@@ -855,8 +855,16 @@ void aKregatorView::slotNodeSelected(TreeNode* node)
 
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
-    else
+    
+    else {
         m_articles->slotShowNode(node);
+        if(node->isGroup())
+            m_articleViewer->slotShowSummary(node);
+        else {
+            Feed *f = static_cast<Feed *>(node);
+            m_articleViewer->slotShowSummary(f);
+        }
+    }
 
     if (m_part->actionCollection()->action("feed_remove") )
     {
