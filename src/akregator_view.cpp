@@ -694,10 +694,20 @@ void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint&
     m_tabs->showPage(m_mainTab);
     
     QWidget *w;
-    if (node->isGroup())
+    if (node->isGroup()) {
         w = m_part->factory()->container("feedgroup_popup", m_part);
-    else
+        m_part->actionCollection()->action("feed_fetch")->setText("&Fetch Feeds");
+        m_part->actionCollection()->action("feed_remove")->setText("&Delete Folder");
+        m_part->actionCollection()->action("feed_modify")->setText("&Rename Folder");
+        m_part->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
+    }
+    else {
         w = m_part->factory()->container("feeds_popup", m_part);
+        m_part->actionCollection()->action("feed_fetch")->setText("&Fetch Feed");
+        m_part->actionCollection()->action("feed_remove")->setText("&Delete Feed");
+        m_part->actionCollection()->action("feed_modify")->setText("&Edit Feed...");
+        m_part->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
+    }
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
 }

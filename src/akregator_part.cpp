@@ -96,9 +96,7 @@ void Part::setupActions()
     new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
     new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
     new KAction(i18n("&Delete Feed"), "editdelete", "Alt+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
-    new KAction(i18n("&Delete Folder"), "editdelete", "Alt+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "group_remove");
     new KAction(i18n("&Edit Feed..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
-    new KAction(i18n("&Rename Folder..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "group_modify");
 
     KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "view_mode" );
     
@@ -116,12 +114,10 @@ void Part::setupActions()
 
     // toolbar / feed menu
     new KAction(i18n("&Fetch Feed"), "down", "Ctrl+L", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
-    new KAction(i18n("&Fetch Feeds"), "down", "Ctrl+L", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "group_fetch");
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
     new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "feed_stop");
 
     new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
-    new KAction(i18n("&Mark Feeds as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "group_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
     // "Go" menu

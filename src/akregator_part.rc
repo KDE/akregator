@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="46">
+<kpartgui name="akregator_part" version="47">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -112,14 +112,14 @@
 </Menu>
 
 <Menu name="feedgroup_popup">
-    <Action name="group_mark_all_as_read"/>
+    <Action name="feed_mark_all_as_read"/>
     <Separator/>
-    <Action name="group_fetch"/>
+    <Action name="feed_fetch"/>
     <Separator/>
     <Action name="feed_add"/>
     <Action name="feed_add_group"/>
-    <Action name="group_modify"/>
-    <Action name="group_remove"/>
+    <Action name="feed_modify"/>
+    <Action name="feed_remove"/>
 </Menu>
 
 <Menu name="article_popup">
