@@ -1,3 +1,11 @@
+akregator (1.0-beta5-2) unstable; urgency=low
+
+  * Changed section from web to net.
+  * Fix a problem with /usr/share/doc/... links for akregator-*-plugins.
+  * remove kderemove menu entry (obsolete).
+
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 29 Jul 2004 17:21:45 +0200
+
 akregator (1.0-beta5-1) unstable; urgency=low
 
   * new upstream.

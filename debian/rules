@@ -16,5 +16,11 @@ install/akregator::
 	mkdir -p debian/akregator/usr/share/lintian/overrides/
 	cp debian/akregator.lintian debian/akregator/usr/share/lintian/overrides/akregator
 
+install/akregator-konq-plugin::
+	dh_link -pakregator-konq-plugin usr/share/doc/akregator usr/share/doc/akregator-konq-plugin 
+
+install/akregator-kontact-plugin::
+	dh_link -pakregator-kontact-plugin usr/share/doc/akregator usr/share/doc/akregator-kontact-plugin
+
 clean::
 	rm -f debian/compat
