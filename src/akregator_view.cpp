@@ -1508,10 +1508,11 @@ void aKregatorView::slotArticleDelete()
                 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KGuiItem(i18n("&Delete"), "articledelete")) == KMessageBox::Continue)
     {
-        ali->article().setDeleted();
+        MyArticle article = ali->article();
+        article.setDeleted();
         m_articles->slotUpdate();
         m_articleViewer->slotClear();
-        Archive::save(ali->article().feed());
+        Archive::save(article.feed());
     }
 }
 

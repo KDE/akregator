@@ -33,6 +33,9 @@ struct MyArticle::Private : public RSS::Shared
 
 MyArticle::MyArticle() : d(new Private)
 {
+    d->keep = false;
+    d->deleted = false;
+    d->feed = 0;
 }
 
 MyArticle::MyArticle(Article article) : d(new Private)
@@ -55,6 +58,7 @@ MyArticle::MyArticle(Article article) : d(new Private)
 void MyArticle::setDeleted()
 {
     d->deleted = true;
+    d->status = Read;
     d->keep = false;
 }
 
