@@ -75,7 +75,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     header()->setStretchEnabled(true, 0);
 
     QWhatsThis::add(this, i18n("<h2>Articles list</h2>"
-        "Here you can browse articles from currently selected feed. "
+        "Here you can browse articles from the currently selected feed. "
         "You can also mark feeds as persistent (P column) "
         "or open article in another tab or even external browser window "
         "using right-click menu."));
