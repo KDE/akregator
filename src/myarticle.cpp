@@ -35,6 +35,7 @@ MyArticle::MyArticle() : d(new Private)
 {
     d->keep = false;
     d->deleted = false;
+    
     d->feed = 0;
 }
 
@@ -47,7 +48,13 @@ MyArticle::MyArticle(Article article) : d(new Private)
         d->title=buildTitle();
     else
         d->title=article.title();
-    d->status = d->article.meta("status").toInt();
+    
+    QString status = d->article.meta("status");
+    
+    if (!status.isEmpty())
+        d->status = status.toInt();
+    else
+        d->status = Read;
 
     d->keep = (article.meta("keep") == "true") ? true : false;
     d->deleted = (article.meta("deleted") == "true") ? true : false;
