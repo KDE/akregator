@@ -64,8 +64,9 @@ namespace Akregator
 			void dumpXmlData( QDomElement parent, QDomDocument doc ) const;
             
             bool operator<(const MyArticle &other) const;
+            bool operator<=(const MyArticle &other) const;
             bool operator>(const MyArticle &other) const;
-
+            bool operator>=(const MyArticle &other) const;
         private:
             struct Private;
             Private *d;

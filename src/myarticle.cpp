@@ -106,9 +106,19 @@ bool MyArticle::operator<(const MyArticle &other) const
     return pubDate() > other.pubDate();
 }
 
+bool MyArticle::operator<=(const MyArticle &other) const
+{
+    return pubDate() >= other.pubDate();
+}
+
 bool MyArticle::operator>(const MyArticle &other) const
 {
     return pubDate() < other.pubDate();
+}
+
+bool MyArticle::operator>=(const MyArticle &other) const
+{
+    return pubDate() <= other.pubDate();
 }
 
 bool MyArticle::operator==(const MyArticle &other) const

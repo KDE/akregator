@@ -300,7 +300,7 @@ void Feed::appendArticle(const MyArticle& a)
         it = m_articles.begin();
         
         while ( !inserted && it != end )
-            if ( a > (*it) )
+            if ( a >= (*it) )
                 ++it;       
             else
                 inserted = true;
