@@ -47,6 +47,8 @@ bool Criterion::satisfiedBy( const MyArticle &article ) const
         case Status:
             concreteSubject = QVariant(article.status());
             break;
+        case KeepFlag:
+            concreteSubject = QVariant(article.keep());   
         default:
             break;
     }

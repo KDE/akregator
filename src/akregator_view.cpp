@@ -172,6 +172,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_searchCombo->insertItem(i18n("New & Unread"));
     m_searchCombo->insertItem(i18n("New"));
     m_searchCombo->insertItem(i18n("Unread"));
+    m_searchCombo->insertItem(i18n("Keep Flag Set"));
 
     QToolTip::add( clearButton, i18n( "Clear filter" ) );
     QToolTip::add( m_searchLine, i18n( "Enter space-separated terms to filter article list" ) );
@@ -1339,6 +1340,12 @@ void View::updateSearch(const QString &s)
             case 3: // Unread
             {
                 Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::Unread);
+                statusCriteria << crit;
+                break;
+            }
+            case 4: // Keep flag set
+            {
+                Criterion crit( Criterion::KeepFlag, Criterion::Equals, true);
                 statusCriteria << crit;
                 break;
             }

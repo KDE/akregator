@@ -26,7 +26,7 @@ class Criterion
     public:
 
         enum Subject {
-            Title, Description, Link, Status
+            Title, Description, Link, Status, KeepFlag
         };
 
         enum Predicate {
