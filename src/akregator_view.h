@@ -185,6 +185,7 @@ namespace Akregator
 	    void slotTabCaption(const QString &capt);
 
             void slotDoIntervalFetches();
+            void slotDeleteExpiredArticles();
 
         private:
             /**
@@ -282,6 +283,7 @@ namespace Akregator
             ViewMode m_viewMode;
             QTimer *m_globalFetchTimer;
             QTimer *m_fetchTimer;
+            QTimer* m_expiryTimer;
 
             bool m_stopLoading;
 

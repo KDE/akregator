@@ -216,6 +216,11 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()));
     m_fetchTimer->start(1000*60, false);
 
+    // delete expired articles once per hour
+    m_expiryTimer = new QTimer(this);
+    connect(m_expiryTimer, SIGNAL(timeout()), this, 
+    SLOT(slotDeleteExpiredArticles()) );
+    m_expiryTimer->start(3600000);
 }
 
 void aKregatorView::saveSettings(bool /*quit*/)
@@ -426,19 +431,26 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
         m_mainFrame->setProgress(int(100*((double)curNodes/(double)numNodes)));
         n = n.nextSibling();
     }
-    // delete expired articles
-    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
-    {
-        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
-        if (f && !f->isGroup())
-            f->deleteExpiredArticles();
-    }
+ 
+    // delete expired articles 
+ 
+    slotDeleteExpiredArticles();
     
     setTotalUnread();
     m_tree->setUpdatesEnabled(true);
     m_tree->triggerUpdate();
 
     return true;
+}
+
+void aKregatorView::slotDeleteExpiredArticles()
+{
+    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
+    {
+        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+        if (f && !f->isGroup())
+            f->deleteExpiredArticles();
+    }
 }
 
 void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
