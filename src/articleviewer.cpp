@@ -1,20 +1,18 @@
 /***************************************************************************
- *   Copyright (C) 2004 by Sashmit Bhaduri                 *
- *   smt@vfemail.net                               *
- *                                     *
- *   Licensed under GPL.                           *
+ *   Copyright (C) 2004 by Sashmit Bhaduri                                 *
+ *   smt@vfemail.net                                                       *
+ *                                                                         *
+ *   Licensed under GPL.                                                   *
  ***************************************************************************/
-
 
 #include "articleviewer.h"
 #include <kapplication.h>
-#include <kglobalsettings.h> 
+#include <kglobalsettings.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <qdatetime.h>
 
 using namespace Akregator;
-
 
 // from kmail::headerstyle.cpp
 static inline QString directionOf( const QString & str ) {
@@ -43,7 +41,7 @@ QString ArticleViewer::htmlHead() const {
 }
 
 QString ArticleViewer::cssDefinitions() const {
-    const QColorGroup & cg = QApplication::palette().active();    
+    const QColorGroup & cg = QApplication::palette().active();
     return QString (
     "<style type=\"text/css\">"
     "body {\n"
@@ -51,7 +49,7 @@ QString ArticleViewer::cssDefinitions() const {
     "  font-size: %2 ! important;\n"
     "  color: %3 ! important;\n"
     "  background: %4 ! important;\n"
-    "}\n\n" 
+    "}\n\n"
     "a {\n"
     "  color: %5 ! important;\n"
     "  text-decoration: none ! important;"
@@ -81,7 +79,7 @@ QString ArticleViewer::cssDefinitions() const {
     arg(QString::number( pointsToPixel( m_metrics, m_bodyFont.pointSize()))+"px").
     arg(cg.text().name()).
     arg(cg.base().name()).
-    arg(cg.link().name()).    
+    arg(cg.link().name()).
     arg(cg.background().name()).
     arg(cg.text().name()).
     arg(cg.highlight().name()).
@@ -107,9 +105,9 @@ void ArticleViewer::show(Article a)
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span id=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(a.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
-    }    
+    }
     text += "</div>\n"; // end headerbox
-    
+
     text += a.description();
     if (!a.link().isValid()){
         text += "<p><a href=\"";
