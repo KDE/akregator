@@ -685,10 +685,11 @@ void aKregatorView::slotFrameChanged(Frame *f)
     
     m_currentFrame=f;
 
-    if (f == m_mainFrame)
-        m_tabsClose->setEnabled(false);
-    else
-        m_tabsClose->setEnabled(true);
+    m_tabsClose->setEnabled(f != m_mainFrame);
+
+    if (f == m_mainFrame) {
+        m_mainFrame->widget()->setFocus();
+    }
 
     KParts::ReadOnlyPart* p = f->part();
     m_part->manager()->setActivePart(p);
@@ -698,7 +699,6 @@ void aKregatorView::slotFrameChanged(Frame *f)
 
     switch (f->state())
     {
-
         case Frame::Started:
             m_part->setStarted();
             break;
