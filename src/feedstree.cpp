@@ -659,11 +659,11 @@ void FeedsTree::slotNodeDestroyed(TreeNode* node)
     if ( item->isSelected() )
     {
         if (item->itemBelow())
-            item->itemBelow()->setSelected(true);
+            setSelected(item->itemBelow(), true);
         else if (item->itemAbove())
-            item->itemAbove()->setSelected(true);
+            setSelected(item->itemAbove(), true);
         else
-            item->setSelected(false);
+            setSelected(item, false);
     }
     delete item;
 }

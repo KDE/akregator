@@ -244,7 +244,7 @@ void ArticleList::slotUpdate()
             ArticleListItem *ali = new ArticleListItem(this, lastChild(), *it, (*it).feed());
             if (haveOld && *it == oldCurrentArticle) {
                 setCurrentItem(ali);
-                ali->setSelected(true);
+                setSelected(ali, true);
                 haveOld = false;
             }
         }
