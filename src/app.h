@@ -26,6 +26,6 @@ class Application : public KUniqueApplication {
         bool m_haveWindowLoaded;
 };
 
-};
+}
 #endif
 
