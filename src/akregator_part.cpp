@@ -40,10 +40,10 @@
 #include <qtabwidget.h>//??
 #include <qgrid.h>//??
 
+using namespace Akregator;
+
 typedef KParts::GenericFactory< aKregatorPart > aKregatorFactory;
 K_EXPORT_COMPONENT_FACTORY( libakregatorpart, aKregatorFactory )
-
-using namespace Akregator;
 
 aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
                                   QObject *parent, const char *name, const QStringList& )
@@ -62,13 +62,13 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     m_tree = new FeedsTree( m_panner1, "FeedsTree" );
 
     connect(m_tree, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
-            this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
+              this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
     connect(m_tree, SIGNAL(selectionChanged(QListViewItem*)),
-            this, SLOT(slotItemChanged(QListViewItem*)));
+              this, SLOT(slotItemChanged(QListViewItem*)));
     connect(m_tree, SIGNAL(selectionChanged(QListViewItem*)),
-            this, SLOT(slotItemChanged(QListViewItem*)));
-    connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),  //,const QString &,int
-            this, SLOT(slotItemRenamed(QListViewItem *))); //,const QString &,int
+              this, SLOT(slotItemChanged(QListViewItem*)));
+    connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
+              this, SLOT(slotItemRenamed(QListViewItem *)));
 
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
@@ -82,7 +82,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     m_panner2 = new QSplitter(QSplitter::Vertical, w1, "panner2");
 
     m_articles = new ArticleList( m_panner2, "articles" );
-    connect( m_articles, SIGNAL(clicked(QListViewItem *)), this, SLOT( slotArticleSelected(QListViewItem *)) );
+    connect( m_articles, SIGNAL(clicked(QListViewItem *)),
+                   this, SLOT( slotArticleSelected(QListViewItem *)) );
 
     m_panner1->setSizes( m_panner1Sep );
     m_panner2->setSizes( m_panner2Sep );
@@ -228,7 +229,8 @@ Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt, QString title, QString
     feed->ljPassword     = ljPassword;
     feed->updateTitle    = updateTitle;
 
-    connect( feed, SIGNAL(fetched(Feed* )), this, SLOT(slotFeedFetched(Feed *)) );
+    connect( feed, SIGNAL(fetched(Feed* )),
+             this, SLOT(slotFeedFetched(Feed *)) );
 
     return feed;
 }
@@ -313,28 +315,6 @@ bool aKregatorPart::loadFeeds(const QDomDocument& doc)
     return true;
 }
 
-void aKregatorPart::writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document )
-{
-    if (!item) return;
-    for (QListViewItem *it = item; it; it = it->nextSibling())
-    {
-        FeedGroup *g = m_feeds.find(it);
-        if (g)
-        {
-            if (g->isGroup())
-            {
-                QDomElement base = g->toXml( node, document );
-
-                base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
-
-                writeChildNodes( it->firstChild(), base, document );
-            } else {
-                g->toXml( node, document );
-            }
-        }
-    }
-}
-
 bool aKregatorPart::saveFile()
 {
     // if we aren't read-write, return immediately
@@ -379,6 +359,28 @@ bool aKregatorPart::saveFile()
     return true;
 }
 
+void aKregatorPart::writeChildNodes( QListViewItem *item, QDomElement &node, QDomDocument &document )
+{
+    if (!item) return;
+    for (QListViewItem *it = item; it; it = it->nextSibling())
+    {
+        FeedGroup *g = m_feeds.find(it);
+        if (g)
+        {
+            if (g->isGroup())
+            {
+                QDomElement base = g->toXml( node, document );
+
+                base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
+
+                writeChildNodes( it->firstChild(), base, document );
+            } else {
+                g->toXml( node, document );
+            }
+        }
+    }
+}
+
 void aKregatorPart::fileOpen()
 {
     // this slot is called whenever the File->Open menu is selected,
@@ -401,6 +403,10 @@ void aKregatorPart::fileSaveAs()
     if (file_name.isEmpty() == false)
         saveAs(file_name);
 }
+
+/*************************************************************************************************/
+/* SLOTS                                                                                         */
+/*************************************************************************************************/
 
 void aKregatorPart::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)
 {
@@ -451,7 +457,6 @@ void aKregatorPart::slotUpdateArticleList(Feed *source)
     m_articles->triggerUpdate();
 }
 
-// code below "borrowed" from KnowIt
 // NOTE: feed can only be added to a feed group as a child
 void aKregatorPart::slotFeedAdd()
 {
@@ -491,6 +496,8 @@ void aKregatorPart::slotFeedAdd()
                       dlg->passwordEdit->text(),
                       dlg->nameFromRssChkbox->isChecked()
                     );
+
+    setModified(true);
 }
 
 void aKregatorPart::slotFeedAddGroup()
@@ -520,6 +527,8 @@ void aKregatorPart::slotFeedAddGroup()
     FeedGroup *g = m_feeds.find(elt);
     if (g)
         g->setTitle( text );
+
+    setModified(true);
 }
 
 void aKregatorPart::slotFeedRemove()
@@ -542,6 +551,8 @@ void aKregatorPart::slotFeedRemove()
             parent = Items->firstChild();
         Items->prevItem = 0;
         slotNoteChanged(parent);*/
+
+        setModified(true);
     }
 }
 
@@ -587,6 +598,8 @@ void aKregatorPart::slotFeedModify()
     feed->ljLogin        = dlg->loginEdit->text();
     feed->ljPassword     = dlg->passwordEdit->text();
     feed->updateTitle    = dlg->nameFromRssChkbox->isChecked();
+
+    setModified(true);
 
     kdDebug() << k_funcinfo << "END" << endl;
 }
@@ -649,6 +662,7 @@ void aKregatorPart::slotFeedFetched(Feed *feed)
 
     // Also, update unread counts
 
+//    setModified(true); // FIXME reenable when article storage is implemented
 
     kdDebug() << k_funcinfo << "END" << endl;
 }
@@ -661,7 +675,7 @@ void aKregatorPart::slotArticleSelected(QListViewItem *i)
     m_articleViewer->show( item->article() );
 }
 
-void aKregatorPart::slotItemRenamed( QListViewItem *item ) //, const QString &text, int /*col*/
+void aKregatorPart::slotItemRenamed( QListViewItem *item )
 {
     QString text = item->text(0);
     kdDebug() << "Item renamed to " << text << endl;
@@ -672,8 +686,14 @@ void aKregatorPart::slotItemRenamed( QListViewItem *item ) //, const QString &te
         feed->setTitle( text );
         if (!feed->isGroup())
             feed->updateTitle = false; // if user edited title by hand, do not update it automagically
+
+        setModified(true);
     }
 }
+
+/*************************************************************************************************/
+/* STATIC METHODS                                                                                */
+/*************************************************************************************************/
 
 KAboutData* aKregatorPart::s_about = 0L;
 
