@@ -242,20 +242,25 @@ void Feed::appendArticles(const Document &d)
         MyArticle mya(*it);
 
         // if archive isn't loaded, append. Otherwise check for dupes.
-        if (!m_merged || m_articles.find(mya) == m_articles.end() )
+        if (!m_merged)
         {
-            if ( m_merged )
-                mya.setStatus(MyArticle::New);
-            else
-            {
-                if (mya.status() == MyArticle::New)
-                    mya.setStatus(MyArticle::Unread);
-            }
-
-            mya.offsetFetchTime(nudge);
+            if (mya.status() == MyArticle::New)
+                mya.setStatus(MyArticle::Unread);
+        
+            
             appendArticle(mya);
             changed = true;
-            nudge--;
+        }
+        else
+        {
+            if ( m_articles.find(mya) == m_articles.end() )
+            {
+                mya.setStatus(MyArticle::New);
+                mya.offsetFetchTime(nudge);
+                nudge--;
+                appendArticle(mya);
+                changed = true;
+            }
         }
     }
     
