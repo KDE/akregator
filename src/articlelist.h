@@ -11,6 +11,8 @@
 
 #include <klistview.h>
 
+class QKeyEvent;
+
 namespace Akregator
 {
     class Feed;
@@ -39,12 +41,18 @@ namespace Akregator
         public:
             ArticleList(QWidget *parent = 0, const char *name = 0);
             ~ArticleList();
+            
         public slots:
             void slotShowNode(TreeNode* node);
             void slotClear();
             void slotUpdate();
             void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
-                                        
+            void slotPreviousArticle();
+            void slotNextArticle();                                        
+        
+        protected:
+            virtual void keyPressEvent(QKeyEvent* e);
+            
         private:
             TreeNode* m_node;
             ArticleFilter m_textFilter;

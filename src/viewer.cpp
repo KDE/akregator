@@ -6,14 +6,16 @@
  ***************************************************************************/
 
 #include <kapplication.h>
-#include <krun.h>
-#include <kpopupmenu.h>
-#include <klocale.h>
+#include <khtmlview.h>
 #include <kiconloader.h>
+#include <klocale.h>
+#include <kpopupmenu.h>
 #include <kprocess.h>
+#include <krun.h>
 #include <kshell.h>
 #include <kurl.h>
 
+#include <qaccel.h>
 #include <qclipboard.h>
 
 #include "viewer.h"
@@ -43,7 +45,6 @@ Viewer::Viewer(QWidget *parent, const char *name)
     connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
 
     connect( browserExtension(), SIGNAL(popupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)) );
-
 }
 
 bool Viewer::openURL(const KURL &url)
@@ -150,6 +151,15 @@ void Viewer::slotStarted(KIO::Job *)
 void Viewer::slotCompleted()
 {
    widget()->unsetCursor();
+}
+void Viewer::slotScrollUp()
+{ 
+    view()->scrollBy(0,-10); 
+}
+
+void Viewer::slotScrollDown()
+{ 
+    view()->scrollBy(0,10); 
 }
 
 #include "viewer.moc"

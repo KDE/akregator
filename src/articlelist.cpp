@@ -208,6 +208,8 @@ void ArticleList::slotUpdate()
          if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
              new ArticleListItem(this, lastChild(), *it, (*it).feed() );
     }        
+    if (firstChild())
+        setSelected(firstChild(), true);
     setUpdatesEnabled(true);
     triggerUpdate();
 
@@ -217,4 +219,29 @@ void ArticleList::slotUpdate()
 ArticleList::~ArticleList()
 {}
 
+void ArticleList::slotPreviousArticle()
+{
+    kdDebug() << "enter slotPreviousArticle" << endl;
+    QListViewItem *lvi = currentItem();
+    if (lvi && lvi->itemAbove()) 
+    {
+        setSelected( lvi->itemAbove(), true );
+        ensureItemVisible(lvi->itemAbove());
+    }
+}
+
+void ArticleList::slotNextArticle()
+{
+    QListViewItem *lvi = currentItem();
+    if (lvi && lvi->itemBelow()) 
+    {
+        setSelected( lvi->itemBelow(), true );
+        ensureItemVisible(lvi->itemBelow());
+    }
+}
+
+void ArticleList::keyPressEvent(QKeyEvent* e)
+{
+    e->ignore();
+}   
 #include "articlelist.moc"

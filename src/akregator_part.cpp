@@ -18,6 +18,7 @@
 #include <kinstance.h>
 #include <kaction.h>
 #include <kactionclasses.h>
+#include <kactioncollection.h>
 #include <kconfig.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
@@ -57,9 +58,6 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
     m_extension=new BrowserExtension(this, "ak_extension");
 
-    // notify the part that this is our internal widget
-    setWidget(m_view);
-
     // create our actions
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
     recentFilesAction = KStdAction::openRecent( this, SLOT(openURL(const KURL&)), actionCollection(), "file_open_recent" );
@@ -76,7 +74,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     new KAction(i18n("&Edit"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
     new KAction(i18n("&Fetch"), "down", "Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Ctrl+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-    new KAction(i18n("Go to &Next Unread"), "", "N", m_view, SLOT(slotNextUnread()),actionCollection(), "feed_next_unread");
+    new KAction(i18n("Go to &Next Unread"), "", Key_Plus, m_view, SLOT(slotNextUnread()),actionCollection(), "feed_next_unread");
     new KAction(i18n("&Mark All as Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
     new KAction(i18n("&Open Homepage"), "", "", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
@@ -90,6 +88,32 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     ra=new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
     ra->setExclusiveGroup( "ViewMode" );
 
+    
+    new KAction( i18n("&Previous Article"), QString::null, "Left", m_view, SLOT(slotPreviousArticle()), actionCollection(), "go_previous_article" );
+    
+    new KAction( i18n("&Next Article"), QString::null, "Right", m_view, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
+    
+    new KAction( i18n("&Scroll Up"), QString::null, "Up", m_view, SLOT(slotScrollViewerUp()), actionCollection(), "scroll_viewer_up" );
+    
+    new KAction( i18n("&Scroll Down"), QString::null, "Down", m_view, SLOT(slotScrollViewerDown()), actionCollection(), "scroll_viewer_down" );
+    
+    new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", m_view, SLOT(slotFeedsTreeUp()), actionCollection(), "feedstree_up" );
+    new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", m_view, SLOT(slotFeedsTreeDown()), actionCollection(), "feedstree_down" );
+    new KAction( i18n("Go Left in Tree"), QString::null, "Alt+Left", m_view, SLOT(slotFeedsTreeLeft()), actionCollection(), "feedstree_left" );
+    new KAction( i18n("Go Right in Tree"), QString::null, "Alt+Right", m_view, SLOT(slotFeedsTreeRight()), actionCollection(), "feedstree_right" );
+    new KAction( i18n("Go to Top of Tree"), QString::null, "Alt+Home", m_view, SLOT(slotFeedsTreeHome()), actionCollection(), "feedstree_home" );
+    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Alt+End", m_view, SLOT(slotFeedsTreeEnd()), actionCollection(), "feedstree_end" );
+    new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", m_view, SLOT(slotFeedsTreeMoveUp()), actionCollection(), "feedstree_move_up" );
+    new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", m_view, SLOT(slotFeedsTreeMoveDown()), actionCollection(), "feedstree_move_down" );
+    new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", m_view, SLOT(slotFeedsTreeMoveLeft()), actionCollection(), "feedstree_move_left" );
+    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", m_view, SLOT(slotFeedsTreeMoveRight()), actionCollection(), "feedstree_move_right" );
+    new KAction( i18n("Open Article in Foreground Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleForegroundTab()), actionCollection(), "article_open_foreground_tab" );
+    new KAction( i18n("Open Article in Background Tab"), QString::null, "Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
+    new KAction( i18n("Open Article in External Browser"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
+    
+    // notify the part that this is our internal widget
+    setWidget(m_view);
+    
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc");
 

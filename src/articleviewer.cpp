@@ -369,5 +369,10 @@ void ArticleViewer::slotOpenLinkInternal()
     	emit urlClicked(m_url);
 }
 
+void ArticleViewer::keyPressEvent(QKeyEvent* e)
+{
+    e->ignore();
+}
+
 #include "articleviewer.moc"
 // vim: set et ts=4 sts=4 sw=4:

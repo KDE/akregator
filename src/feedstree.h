@@ -47,17 +47,18 @@ namespace Akregator
             FeedsTree( QWidget *parent = 0, const char *name = 0 );
             ~FeedsTree();
 
-            void takeNode(QListViewItem* item);
-            void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
-
+ 
         protected:
             virtual void drawContentsOffset( QPainter * p, int ox, int oy,
                                        int cx, int cy, int cw, int ch );
             virtual void contentsDragMoveEvent(QDragMoveEvent* event);
             virtual bool acceptDrag(QDropEvent *event) const;
             virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
+            virtual void keyPressEvent(QKeyEvent* e);
+            void takeNode(QListViewItem* item);
+            void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
 
-        public slots:
+         public slots:
            
             /** handle dropped urls */
             void slotDropped(QDropEvent *e, QListViewItem *after);
@@ -81,6 +82,12 @@ namespace Akregator
             void slotItemLeft();
             /** Move feed level down */
             void slotItemRight();
+            
+            void slotMoveItemUp();
+            void slotMoveItemDown();
+            void slotMoveItemLeft();
+            void slotMoveItemRight();
+            
         signals:
             void dropped (KURL::List &, QListViewItem *, QListViewItem *);
     };

@@ -24,8 +24,12 @@ namespace Akregator
 		void open(const KURL &);
 	
 	    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype) = 0;
+        
+        public slots:
 
-
+            void slotScrollUp(); 
+            void slotScrollDown();
+            
         signals:
            /**
             * This gets emited when url gets clicked

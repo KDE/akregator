@@ -135,8 +135,10 @@ namespace Akregator
 
             void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);
             void slotArticleSelected(QListViewItem *);
-            void slotArticleDoubleClicked(QListViewItem *, const QPoint &, int);
-
+            void slotOpenArticleExternal(QListViewItem* item, const QPoint&, int);
+            void slotOpenCurrentArticleExternal();
+            void slotOpenCurrentArticleBackgroundTab();
+            void slotOpenCurrentArticleForegroundTab();
             /**
              * This slot is called when user renames a feed in feeds tree.
              */
@@ -177,6 +179,22 @@ namespace Akregator
             void slotDoIntervalFetches();
             void slotDeleteExpiredArticles();
 
+            void slotPreviousArticle();
+            void slotNextArticle();
+            void slotScrollViewerUp();
+            void slotScrollViewerDown();
+            void slotFeedsTreeUp();
+            void slotFeedsTreeDown();
+            void slotFeedsTreeLeft();
+            void slotFeedsTreeRight();
+            void slotFeedsTreeMoveUp();
+            void slotFeedsTreeMoveDown();
+            void slotFeedsTreeMoveLeft();
+            void slotFeedsTreeMoveRight();
+            void slotFeedsTreePageUp();
+            void slotFeedsTreePageDown();
+            void slotFeedsTreeHome();
+            void slotFeedsTreeEnd();
         private:
             /**
              * Reset to default values, removing all existing data.

@@ -70,6 +70,7 @@ using namespace Akregator;
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
    : QWidget(parent, wName), m_feeds(), m_viewMode(NormalView)
 {
+    
     m_part=part;
     m_stopLoading=false;
 
@@ -105,6 +106,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_tree, SIGNAL(moved()),
               this, SLOT(slotItemMoved()));
 
+        
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
@@ -175,8 +177,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect( m_articles, SIGNAL(selectionChanged(QListViewItem *)),
                    this, SLOT( slotArticleSelected(QListViewItem *)) );
     connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
-                   this, SLOT( slotArticleDoubleClicked(QListViewItem *, const QPoint &, int)) );
-
+                   this, SLOT( slotOpenArticleExternal(QListViewItem*, const QPoint&, int)) );
+  
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
@@ -184,6 +186,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
+    
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
@@ -453,6 +456,83 @@ void aKregatorView::slotDeleteExpiredArticles()
         rootNode->slotDeleteExpiredArticles();
 }
 
+void aKregatorView::slotPreviousArticle() 
+{
+    m_articles->slotPreviousArticle(); 
+}    
+
+void aKregatorView::slotNextArticle() 
+{ 
+    m_articles->slotNextArticle(); 
+}
+
+void aKregatorView::slotScrollViewerUp()
+{
+    m_articleViewer->slotScrollUp();
+}
+
+void aKregatorView::slotScrollViewerDown()
+{
+    m_articleViewer->slotScrollDown();
+}
+void aKregatorView::slotFeedsTreeUp()
+{
+    m_tree->slotItemUp();
+}
+
+void aKregatorView::slotFeedsTreeDown()
+{
+    m_tree->slotItemDown();
+}
+
+void aKregatorView::slotFeedsTreeLeft()
+{
+    m_tree->slotItemLeft();
+}
+
+void aKregatorView::slotFeedsTreeRight()
+{
+    m_tree->slotItemRight();
+}
+
+void aKregatorView::slotFeedsTreePageUp()
+{
+}
+
+void aKregatorView::slotFeedsTreePageDown()
+{
+}
+
+void aKregatorView::slotFeedsTreeHome()
+{
+    m_tree->slotItemBegin();
+}
+
+void aKregatorView::slotFeedsTreeEnd()
+{
+    m_tree->slotItemEnd();
+}
+
+void aKregatorView::slotFeedsTreeMoveUp()
+{
+    m_tree->slotMoveItemUp();
+}
+
+void aKregatorView::slotFeedsTreeMoveDown()
+{
+    m_tree->slotMoveItemDown();
+}
+
+void aKregatorView::slotFeedsTreeMoveLeft()
+{
+    m_tree->slotMoveItemLeft();
+}
+
+void aKregatorView::slotFeedsTreeMoveRight()
+{
+    m_tree->slotMoveItemRight();
+}
+   
 void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
 {
     if (m_stopLoading)
@@ -1284,12 +1364,58 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
     m_articleViewer->slotShowArticle( item->article() );
 }
 
-void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, int)
+void aKregatorView::slotOpenArticleExternal(QListViewItem* i, const QPoint&, int)
 {
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
-    if (!item) return;
+    if (!item) 
+        return;
     // TODO : make this configurable....
     displayInExternalBrowser(item->article().link());
+}   
+
+void aKregatorView::slotOpenCurrentArticleExternal()
+{
+    slotOpenArticleExternal(m_articles->currentItem(), QPoint(), 0);
+}         
+
+void aKregatorView::slotOpenCurrentArticleBackgroundTab()
+{
+    ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+    if (!item)
+        return;
+    
+    MyArticle article = item->article();
+    QString link;
+    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    {
+        // in case link isn't valid, fall back to the guid permaLink.
+        if (article.link().isValid())
+            link = article.link().url();
+        else
+            link = article.guid();
+        slotOpenTab(link, true);
+    }
+
+    
+}
+
+void aKregatorView::slotOpenCurrentArticleForegroundTab()
+{
+    ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+    if (!item)
+        return;
+    
+    MyArticle article = item->article();
+    QString link;
+    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    {
+        // in case link isn't valid, fall back to the guid permaLink.
+        if (article.link().isValid())
+            link = article.link().url();
+        else
+            link = article.guid();
+        slotOpenTab(link, false);
+    }
 }
 
 void aKregatorView::slotFeedURLDropped(KURL::List &urls, QListViewItem *after, QListViewItem *parent)

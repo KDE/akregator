@@ -238,6 +238,11 @@ void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
         KListView::movableDropEvent(parent, afterme);
 }
 
+void FeedsTree::keyPressEvent(QKeyEvent* e)
+{
+    e->ignore();    
+}
+
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
 {
     // if we are dragging over All feeds, enable
@@ -270,6 +275,27 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
     // the rest is handled by KListView.
     KListView::contentsDragMoveEvent(event);
 }
+/*
+void FeedsTree::keyPressEvent(QKeyEvent* e)
+{
+    switch(e->key())
+    {
+        case Key_Alt+Key_Up:
+        case Key_Alt+Key_Down:
+        case Key_Alt+Key_Left:    
+        case Key_Alt+Key_Right:
+            KListView::keyPressEvent(e);    
+            break;
+        case Key_Left:
+        case Key_Right:
+        case Key_Up:
+        case Key_Down:
+            e->ignore();
+            break;
+        default:
+            KListView::keyPressEvent(e);    
+     }
+}*/
 
 bool FeedsTree::acceptDrag(QDropEvent *e) const
 {
@@ -325,21 +351,25 @@ void FeedsTree::slotExpand()
         currentItem()->setOpen(true);
 }
 
+
 void FeedsTree::slotItemUp()
 {
     if (currentItem())
         setCurrentItem(currentItem()->itemAbove());
+    ensureItemVisible(currentItem());
 }
 
 void FeedsTree::slotItemDown()
 {
     if (currentItem())
         setCurrentItem(currentItem()->itemBelow());
+    ensureItemVisible(currentItem());
 }
 
 void FeedsTree::slotItemBegin()
 {
     setCurrentItem(firstChild());
+    ensureItemVisible(firstChild());
 }
 
 void FeedsTree::slotItemEnd()
@@ -349,18 +379,102 @@ void FeedsTree::slotItemEnd()
         while (elt->itemBelow())
             elt = elt->itemBelow();
     setCurrentItem(elt);
+    ensureItemVisible(elt);
 }
 
 void FeedsTree::slotItemLeft()
 {
-    if (currentItem())
-        setCurrentItem(currentItem()->parent());
+    QListViewItem* cur = currentItem();
+    if (!cur)
+        setCurrentItem(firstChild());
+    if (cur->isOpen())
+        cur->setOpen(false);
+    else
+    {
+        if (cur->parent())    
+            setCurrentItem(cur->parent());
+    }    
+    ensureItemVisible(currentItem());
 }
 
 void FeedsTree::slotItemRight()
 {
-    if (currentItem())
-        setCurrentItem(currentItem()->firstChild());
+    QListViewItem* cur = currentItem();
+    if (!cur)
+        setCurrentItem(firstChild());
+    if (cur->isExpandable() && !cur->isOpen())
+        cur->setOpen(true);
+    else
+    {
+        if (cur->firstChild())    
+            setCurrentItem(cur->firstChild());
+    }
+    ensureItemVisible(currentItem());
+}
+
+void FeedsTree::slotMoveItemUp()
+{
+    QListViewItem* elt = currentItem();
+
+    if (!elt || !elt->parent() || elt == elt->parent()->firstChild() )
+        return;
+    
+    QListViewItem* i = elt->parent()->firstChild();
+    
+    while(i->nextSibling() != elt)
+        i = i->nextSibling();
+    
+    i->moveItem(elt);
+    ensureItemVisible(elt); 
+}
+
+void FeedsTree::slotMoveItemDown()
+{
+    QListViewItem* elt = currentItem();
+    if (elt && elt->nextSibling()) 
+    {
+        elt->moveItem(elt->nextSibling());
+        ensureItemVisible(elt);
+    }    
+}
+
+void FeedsTree::slotMoveItemLeft()
+{
+    QListViewItem* elt = currentItem();
+    if (!elt)
+        return;
+    QListViewItem* parent = elt->parent();
+    if (elt && parent && parent->parent()) 
+    {
+        takeNode(elt);
+        insertNode(parent->parent(), elt, parent);
+        setCurrentItem(elt);
+    }
+}
+
+void FeedsTree::slotMoveItemRight()
+{
+    QListViewItem* elt = currentItem();
+    if ( !elt || !elt->parent() || elt == elt->parent()->firstChild() )
+        return;
+             
+    QListViewItem* i = elt->parent()->firstChild();
+    
+    while(i->nextSibling() != elt)
+        i = i->nextSibling();
+    
+    if ( i->isExpandable() )
+    { 
+        QListViewItem* lastChild = i->firstChild();
+        
+        while (lastChild && lastChild->nextSibling())     
+            lastChild = lastChild->nextSibling();
+        
+        takeNode(elt);
+        insertNode(i, elt, lastChild); 
+        setCurrentItem(elt);
+        ensureItemVisible(elt);
+    }    
 }
 
 #include "feedstree.moc"
