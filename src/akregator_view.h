@@ -258,7 +258,7 @@ namespace Akregator
             QToolButton *m_tabsClose;
             QWidget *m_mainTab;
             Frame *m_mainFrame;
-	    Frame *m_currentFrame;
+            Frame *m_currentFrame;
 
             void setTotalUnread();
 
@@ -266,9 +266,8 @@ namespace Akregator
             KLineEdit *m_searchLine;
             int m_queuedSearches;
             QString m_queuedSearch;
-
-	    FetchTransaction *m_transaction;
-
+            FetchTransaction *m_transaction;
+            
             QSplitter *m_panner1, *m_panner2;
             aKregatorPart *m_part;
             ArticleFilter *m_currentTextFilter;
@@ -281,7 +280,7 @@ namespace Akregator
 
             QPixmap m_feedTreePixmap;
             QPixmap m_folderTreePixmap;
-	    QPixmap m_errorTreePixmap;
+            QPixmap m_errorTreePixmap;
     };
 }
 
