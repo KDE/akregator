@@ -5,6 +5,9 @@ Akregator ChangeLog
 Changes after 1.0
 -----------------------------
 
+Changes:
+       - Changed prev/next unread article actions to cycle through all unread articles -fo	
+       
 Bug fixes:
 	- make BrowserRun delete itself when the Viewer gets destroyed (#101413) -tpr
         - tolerate leading and trailing whitespace in the Add Feed Dialog (#101988) -fo
