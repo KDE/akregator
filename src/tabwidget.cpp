@@ -24,6 +24,8 @@
 #include <kiconloader.h>
 #include <kurl.h>
 
+#include "akregatorconfig.h"
+
 using namespace Akregator;
 
 TabWidget::TabWidget(QWidget * parent, const char *name)
@@ -32,10 +34,18 @@ TabWidget::TabWidget(QWidget * parent, const char *name)
     setTabReorderingEnabled(false);
     connect( this, SIGNAL( currentChanged(QWidget *) ), this,
             SLOT( slotTabChanged(QWidget *) ) );
+    connect(this, SIGNAL(closeRequest(QWidget*)), this, SLOT(slotCloseRequest(QWidget*)));
+    setHoverCloseButton(Settings::closeButtonOnTabs());
 }
 
 TabWidget::~TabWidget()
 {
+}
+
+void TabWidget::slotSettingsChanged()
+{
+    if (hoverCloseButton() != Settings::closeButtonOnTabs())
+        setHoverCloseButton(Settings::closeButtonOnTabs());
 }
 
 void TabWidget::addFrame(Frame *f)
@@ -191,6 +201,11 @@ void TabWidget::slotCloseTab()
    currentItem = 0;
 }
 
+void TabWidget::slotCloseRequest(QWidget* widget)
+{
+    if (m_frames.find(widget) != NULL)
+        removeFrame(m_frames.find(widget));
+}
 #include "tabwidget.moc"
 
 

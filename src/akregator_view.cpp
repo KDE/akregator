@@ -127,7 +127,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
-
+    connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
     m_tabsClose = new QToolButton( m_tabs );
     m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
     connect( m_tabsClose, SIGNAL( clicked() ), this,
@@ -213,7 +213,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
-    connect( m_part, SIGNAL(signalHTMLSettingsChanged()), m_articleViewer, SLOT(slotPaletteOrFontChanged()));
+    connect( m_part, SIGNAL(signalSettingsChanged()), m_articleViewer, SLOT(slotPaletteOrFontChanged()));
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 

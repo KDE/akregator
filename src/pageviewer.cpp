@@ -200,11 +200,11 @@ bool PageViewer::openURL(const KURL &url)
     m_forwardAction->setEnabled( m_current != m_history.fromLast() );
   
     QString favicon = FeedIconManager::self()->iconLocation(url);
-    if (!favicon.isEmpty()) {
+    if (!favicon.isEmpty()) 
         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
-    } else {
-        emit setTabIcon(QPixmap());
-    }
+    else
+        emit setTabIcon(SmallIcon("html"));
+    
 
     return retval;
 }

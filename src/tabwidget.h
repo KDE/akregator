@@ -17,32 +17,45 @@
 namespace Akregator
 {
 
-    class TabWidget:public KTabWidget
-    {
-        Q_OBJECT public:
-            TabWidget(QWidget * parent = 0, const char *name = 0);
-            ~TabWidget();
-            void addFrame(Frame *f);
-            Frame *currentFrame();
-            void removeFrame(Frame *f);
+class TabWidget:public KTabWidget
+{
+    Q_OBJECT
 
+    public:
+        TabWidget(QWidget * parent = 0, const char *name = 0);
+        ~TabWidget();
+        void addFrame(Frame *f);
+        Frame *currentFrame();
+        void removeFrame(Frame *f);
+        
+        unsigned int tabBarWidthForMaxChars( uint maxLength );
+        void setTitle( const QString &title , QWidget* sender);
 
-            unsigned int tabBarWidthForMaxChars( uint maxLength );
-            void setTitle( const QString &title , QWidget* sender);
+    public slots:
 
-            signals:
-                void currentFrameChanged(Frame *);
-            private:
-                QPtrDict <Frame>m_frames;
-                unsigned int m_CurrentMaxLength;
-                QWidget *currentItem;
-            private slots:
-                void slotDetachTab();
-                void slotCopyLinkAddress();
-                void slotCloseTab();
-                void contextMenu (int item, const QPoint &p);
-                void slotTabChanged(QWidget *w);
-   };
+        void slotSettingsChanged();
+    signals:
+        
+        void currentFrameChanged(Frame *);
+        
+    private: // methods
+        
+    private slots:
+        
+        void slotDetachTab();
+        void slotCopyLinkAddress();
+        void slotCloseTab();
+        void slotCloseRequest(QWidget* widget);
+        void contextMenu (int item, const QPoint &p);
+        void slotTabChanged(QWidget *w);
+        
+   private: // attributes
+
+       QPtrDict<Frame> m_frames;
+       unsigned int m_CurrentMaxLength;
+       QWidget* currentItem;
+};
+
 }
 
 #endif

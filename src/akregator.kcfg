@@ -134,6 +134,12 @@
   </entry>
  </group>
  <group name="Browser" >
+   <entry key="Close Button On Tabs" type="Bool">
+     <label>Show close buttons on tabs</label>
+     <whatsthis>Show close buttons on tabs instead of icons</whatsthis>
+     <default>false</default>   
+   </entry>
+
   <entry key="External Browser Use Kde Default" type="Bool" >
    <label>Use default KDE web browser</label>
    <whatsthis>Use KDE web browser when opening in external browser.</whatsthis>

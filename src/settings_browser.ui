@@ -9,8 +9,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>296</width>
-            <height>225</height>
+            <width>443</width>
+            <height>374</height>
         </rect>
     </property>
     <property name="caption">
@@ -20,7 +20,7 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QGroupBox" row="0" column="0">
+        <widget class="QGroupBox" row="0" column="0" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>groupBox1</cstring>
             </property>
@@ -87,7 +87,7 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="QButtonGroup" row="1" column="0">
+        <widget class="QButtonGroup" row="1" column="0" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>buttonGroup1</cstring>
             </property>
@@ -143,7 +143,7 @@
                 </widget>
             </vbox>
         </widget>
-        <widget class="QCheckBox" row="2" column="0">
+        <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>kcfg_BackgroundTabForArticles</cstring>
             </property>
@@ -154,7 +154,7 @@
                 <bool>false</bool>
             </property>
         </widget>
-        <spacer row="3" column="0">
+        <spacer row="4" column="1">
             <property name="name">
                 <cstring>spacer1</cstring>
             </property>
@@ -171,6 +171,14 @@
                 </size>
             </property>
         </spacer>
+        <widget class="QCheckBox" row="3" column="0">
+            <property name="name">
+                <cstring>kcfg_CloseButtonOnTabs</cstring>
+            </property>
+            <property name="text">
+                <string>Show tab close button on hover</string>
+            </property>
+        </widget>
     </grid>
 </widget>
 <connections>

@@ -115,8 +115,8 @@ namespace Akregator
         public slots:
 
             void slotOnShutdown();
-            
-             /** selected tree node has changed */
+
+            /** selected tree node has changed */
             void slotNodeSelected(TreeNode* node);
 
             /** the article selection has changed */
