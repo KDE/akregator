@@ -375,16 +375,19 @@ void aKregator::closeEvent(QCloseEvent* e)
 {
     if (!m_quit && !kapp->sessionSaving())
     {
+        kdDebug() << "aKregator::closeEvent m_quit is false" << endl;
         KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
         hide();
         e->ignore();
     }
     else
     {
+        kdDebug() << "aKregator::closeEvent m_quit is true" << endl;
         if (m_part->queryClose())
             KMainWindow::closeEvent(e);
     }
-    m_quit = false;
+    // Commenting this out fixes crash when quitting from system tray icon.  Why was it here? ..cramblitt
+    // m_quit = false;
 }
 
 #include "akregator.moc"
