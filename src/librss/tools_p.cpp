@@ -17,13 +17,14 @@
 
 QString RSS::extractNode(const QDomNode &parent, const QString &elemName)
 {
-	QString result;
 	QDomNode node = parent.namedItem(elemName);
-	if (!node.isNull()) {
-		result = node.toElement().text().simplifyWhiteSpace();
-		if (result.isEmpty())
-			result = QString::null;
-	}
+	if (node.isNull())
+		return QString::null;
+
+	QString result = node.toElement().text().simplifyWhiteSpace();
+	if (result.isEmpty())
+		return QString::null;
+
 	return result;
 }
 
