@@ -130,6 +130,7 @@ void FileRetriever::abort()
 		d->job->kill(true);
 		d->job = NULL;
 	}
+    delete this;
 }
 
 struct OutputRetriever::Private
@@ -267,11 +268,12 @@ int Loader::errorCode() const
 
 void Loader::abort()
 {
-	if (d->retriever)
+	if (d && d->retriever)
 	{
 		d->retriever->abort();
 		d->retriever=NULL;
 	}
+    delete this;
 }
 
 const KURL &Loader::discoveredFeedURL() const

@@ -365,6 +365,7 @@ void Feed::abortFetch()
     if (m_loader)
     {
         m_loader->abort();
+        m_loader = 0;
         emit fetchAborted(this);
     }
 }
