@@ -19,7 +19,6 @@ FeedGroup::FeedGroup(QListViewItem *i, FeedsCollection *coll)
 {
 }
 
-
 FeedGroup::~FeedGroup()
 {
 }
@@ -57,8 +56,6 @@ void FeedGroup::setCollection(FeedsCollection *c)
 {
     m_collection=c;
 }
-                                    
-
 
 QDomElement FeedGroup::toXml( QDomElement parent, QDomDocument document )
 {
