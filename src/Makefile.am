@@ -1,5 +1,5 @@
 #set the include path for X, qt and KDE
-INCLUDES = -I$(top_srcdir)/akregator/src/librss -I$(top_srcdir) -I$(top_srcdir)/libkdepim $(all_includes)
+INCLUDES = -I$(top_srcdir)/akregator/src/librss -I$(top_srcdir) -I$(top_builddir)/libkdepim $(all_includes)
 
 # let automoc handle all of the meta source files (moc).
 METASOURCES = AUTO
