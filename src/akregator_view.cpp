@@ -1171,7 +1171,7 @@ void aKregatorView::slotDoIntervalFetches()
 
 void aKregatorView::slotFetchCurrentFeed()
 {
-    if ( !m_tree->selectedNodeItem() )
+    if ( !m_tree->selectedNode() )
         return;
     showFetchStatus();
     m_tree->selectedNode()->slotAddToFetchTransaction(m_transaction);

@@ -33,11 +33,6 @@ namespace Akregator
              */
             FeedGroup* rootNode();
             
-            /** Returns item belonging to root node. Use only when necessary.
-             @return root node item 
-             */
-            FeedGroupItem* rootNodeItem();
-            
             /** Returns the currently selected node, @c null when no one is selected.
              @return selected node
              */
@@ -48,20 +43,14 @@ namespace Akregator
              */
             void setSelectedNode(TreeNode* node);
             
-            /** Returns item belonging to currently selected node. Use only when necessary.
-            @return selected node item 
-            */
-            TreeNodeItem* selectedNodeItem(); 
-            
-            /** Find item belonging to tree node @c node, @c null when node is not in tree 
+            /** Find item belonging to tree node @c node, @c null when node is not in tree
             @return item representing node  
             @param node a tree node
              */            
             TreeNodeItem* findNodeItem(TreeNode* node);
             
             /** Find first node with title @c title
-            FIXME: This should be somewhere else, in FeedGroup or whereever
-             returns 0 if no node was found
+                returns 0 if no node was found
             @param title
             @return node
              */ 
@@ -72,10 +61,21 @@ namespace Akregator
 
             /** reimplemented to return TreeNodeItem* */
             virtual TreeNodeItem* findItem (const QString& text, int column, ComparisonFlags compare = ExactMatch | CaseSensitive ) const;
-                                
+
+            /** reimplemented: clears the view and creates the root node ("All Feeds") */
             virtual void clear();
 
         protected:
+             /** Returns item belonging to currently selected node. 
+            @return selected node item
+              */
+            TreeNodeItem* selectedNodeItem();
+
+            /** Returns item belonging to root node.
+            @return root node item
+             */
+            FeedGroupItem* rootNodeItem();
+            
             virtual void drawContentsOffset( QPainter * p, int ox, int oy,
                                        int cx, int cy, int cw, int ch );
             virtual void contentsDragMoveEvent(QDragMoveEvent* event);
