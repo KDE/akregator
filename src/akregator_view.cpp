@@ -1433,8 +1433,8 @@ void aKregatorView::updateSearch(const QString &s)
     m_currentStatusFilter = new ArticleFilter(statusCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
 
 
-    m_articleViewer->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter)
-    ;m_articles->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
+    m_articleViewer->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
+    m_articles->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
 }
 
 void aKregatorView::slotToggleShowQuickFilter()
