@@ -9,6 +9,7 @@
 #include <kdebug.h>
 #include <kparts/browserextension.h>
 #include <klocale.h>
+#include <qregexp.h>
 
 #include <libkdepim/progressmanager.h>
 
@@ -89,7 +90,8 @@ void Frame::setCaption(const QString &s)
 void Frame::setStatusText(const QString &s)
 {
     m_statusText=s;
-    emit statusText(s);
+    m_statusText.replace(QRegExp("<[^>]*>"), "");
+    emit statusText(m_statusText);
 }
 
 void Frame::setProgress(int a)
