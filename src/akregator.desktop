@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=aKregator
+Name[ta]=aKரிகடார்
 Name[xx]=xxaKregatorxx
 Exec=akregator %i %m -caption "%c"
 Icon=akregator
@@ -12,7 +13,9 @@ GenericName[et]=RSS uudistekoguja
 GenericName[nl]=RSS-nieuwslezer
 GenericName[pt]=Agregador de Notícias RSS
 GenericName[pt_BR]=Agregador de Notícias RSS
+GenericName[ru]=Программа для чтения новостей RSS
 GenericName[sv]=RSS-nyhetsinsamling
+GenericName[ta]=RSS செய்தி அக்ரிகேட்டர்
 GenericName[xx]=xxRSS News Aggregatorxx
 Comment=A KDE RSS Aggregator
 Comment[da]=En KDE RSS-aggregator
@@ -20,6 +23,8 @@ Comment[et]=KDE RSS rakendus
 Comment[nl]=een KDE RSS aggregator
 Comment[pt]=Um agregador RSS para o KDE
 Comment[pt_BR]=Um agregador RSS para o KDE
+Comment[ru]=Импорт новостей RSS
 Comment[sv]=En RSS-samlare för KDE
+Comment[ta]=A KDE RSS அக்ரிகேடர்
 Comment[xx]=xxA KDE RSS Aggregatorxx
 Terminal=0
