@@ -128,7 +128,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QHBoxLayout *searchLayout = new QHBoxLayout( 0, 0, KDialog::spacingHint(), "searchLayout" );
     QToolButton *clearButton = new QToolButton( m_mainTab );
-    clearButton->setIconSet( SmallIconSet( "locationbar_erase.png" ) );
+    clearButton->setIconSet( SmallIconSet( QApplication::reverseLayout() ? "clear_left" : "locationbar_erase" ) );
     searchLayout->addWidget(clearButton);
     m_searchLine = new KLineEdit(m_mainTab, "searchline");
     searchLayout->addWidget(m_searchLine);
@@ -230,7 +230,7 @@ void aKregatorView::slotOpenTab(const KURL& url, bool background=false)
             this, SLOT(slotTabCaption (const QString &)) );
     connect( page, SIGNAL(urlClicked(const KURL &,bool)),
              this, SLOT(slotOpenTab(const KURL &,bool)) );
-    
+
     Frame *frame=new Frame(this, page, page->widget(), i18n("Untitled"));
     connectFrame(frame);
     m_tabs->addFrame(frame);
