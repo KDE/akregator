@@ -38,15 +38,18 @@ void TrayIcon::updateUnread(int unread)
 {
     if (unread==m_unread)
         return;
+    
+    m_unread=unread;
 
-    QToolTip::add(this, i18n("aKregator - %1 unread").arg(unread));
-
-    if (!unread)
+    if (unread == 0)
     {
+        QToolTip::add(this, i18n("aKregator - No unread articles"));
         setPixmap(m_defaultIcon);
     }
     else
-    {
+    {           
+        QToolTip::add(this, i18n("aKregator - %1 unread").arg(unread));
+        
         // from KMSystemTray
         int oldW = pixmap()->size().width();
         int oldH = pixmap()->size().height();
@@ -81,8 +84,6 @@ void TrayIcon::updateUnread(int unread)
         icon.convertFromImage(overlayImg);
         setPixmap(icon);
     }
-
-    m_unread=unread;
 }
 
 #include "trayicon.moc"
