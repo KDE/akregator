@@ -10,7 +10,7 @@ New Features:
        - Command line options for adding feeds -PhantomsDad
        
 Bug Fixes:
-
+       - Changed "Copy Link Location" to "Copy Link Address" because of the new naming standard of KDE -tpr
 
 Changes after 1.0b2:
 -----------------------------
