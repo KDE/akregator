@@ -205,7 +205,7 @@ bool aKregatorPart::openFile()
     }
 
     m_loading=true;
-    startOperation();
+    m_view->startOperation();
     setStatusBar( i18n("Opening Feed List...") );
     kapp->processEvents();
 
@@ -221,18 +221,18 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
     {
-        operationError(i18n("Invalid Feed List"));
+        m_view->operationError(i18n("Invalid Feed List"));
         return false;
     }
 
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
     {
-        operationError(i18n("Invalid Feed List"));
+        m_view->operationError(i18n("Invalid Feed List"));
         return false;
     }
 
     m_loading=false;
-    endOperation();
+    m_view->endOperation();
     setStatusBar( QString::null );
 
     if (Settings::fetchOnStartup())
@@ -248,7 +248,7 @@ bool aKregatorPart::openFile()
 
 bool aKregatorPart::closeURL()
 {
-    endOperation();
+    m_view->endOperation();
     if (m_loading)
     {
         m_view->stopLoading();
@@ -379,32 +379,6 @@ void aKregatorPart::addFeedToGroup(const QString& url, const QString& group)
 {
     kdDebug() << "aKregatorPart::addFeedToGroup adding feed with URL " << url << " to group " << group << endl;
     m_view->addFeedToGroup(url, group);
-}
-
-void aKregatorPart::startOperation()
-{
-    emit started(0);
-    actionCollection()->action("feed_fetch")->setEnabled(false);
-    actionCollection()->action("feed_fetch_all")->setEnabled(false);
-    setProgress(0);
-
-}
-
-void aKregatorPart::endOperation()
-{
-    emit completed();
-    actionCollection()->action("feed_fetch")->setEnabled(true);
-    actionCollection()->action("feed_fetch_all")->setEnabled(true);
-    setProgress(100);
-}
-
-void aKregatorPart::operationError(const QString &msg)
-{
-    emit canceled(msg);
-    m_loading=false;
-    actionCollection()->action("feed_fetch")->setEnabled(true);
-    actionCollection()->action("feed_fetch_all")->setEnabled(true);
-    setProgress(-1);
 }
 
 /*************************************************************************************************/

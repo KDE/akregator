@@ -85,10 +85,6 @@ namespace Akregator
 
             void setCaption(const QString &text);
             
-            void startOperation();
-            void endOperation();
-            void operationError(const QString &msg);
-
             virtual bool openURL(const KURL& url);
             virtual bool closeURL();
                 

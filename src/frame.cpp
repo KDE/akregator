@@ -6,12 +6,13 @@
  ***************************************************************************/
 
 #include "frame.h"
+#include <kdebug.h>
 #include <kparts/browserextension.h>
 #include <kactioncollection.h>
 
 using namespace Akregator;
 
-Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, QString tit)
+Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, QString tit, bool watchSignals)
    :QObject(parent, "aKregatorFrame")
 {
     m_part=p;
@@ -20,7 +21,7 @@ Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, QStr
     m_state=Idle;
     m_progress=-1;
 
-    if (!p->inherits("aKregatorPart")) // e.g, articles tab has no part
+    if (watchSignals) // e.g, articles tab has no part
     {
         connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
         connect(m_part, SIGNAL(setStatusBarText (const QString &)), this, SLOT(setStatusText (const QString &)));

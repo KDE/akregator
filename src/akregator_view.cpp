@@ -169,7 +169,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_panner2 );
 
-    m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"));
+    m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
+    connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
 
     // -- DEFAULT INIT
@@ -285,7 +286,7 @@ void aKregatorView::slotLoadingProgress(int percent)
     if (!f) return;
     if (m_currentFrame != f) return;
 
-    m_mainFrame->setProgress(percent);
+    m_part->setProgress(percent);
 }
 
 
