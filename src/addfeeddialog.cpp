@@ -53,13 +53,16 @@ void AddFeedDialog::slotOk( )
 {
     enableButtonOK(false);
     feedURL = widget->urlEdit->text();
-    widget->statusLabel->setText( i18n("Downloading %1").arg(feedURL) );
 
     Feed *f=new Feed(NULL, NULL);
 
     feed=f;
+    if (feedURL.find(":/") == -1)
+        feedURL.prepend("http://");
     f->xmlUrl=feedURL;
 
+    widget->statusLabel->setText( i18n("Downloading %1").arg(feedURL) );
+    
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(fetchCompleted(Feed *)) );
     connect( feed, SIGNAL(fetchError(Feed* )),
