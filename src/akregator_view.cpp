@@ -302,7 +302,8 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
                 QDomElement base = g->toXml( node, document );
                 base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
 
-                writeChildNodes( it->firstChild(), base, document );
+		if (it->firstChild()) // BR#40
+            	    writeChildNodes( it->firstChild(), base, document );
             } else {
                 g->toXml( node, document );
             }
