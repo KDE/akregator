@@ -81,7 +81,7 @@
                 <cstring>groupBox1</cstring>
             </property>
             <property name="title">
-                <string>Middle Mouse Click Behaviour</string>
+                <string>Middle Mouse Click Behavior</string>
             </property>
             <hbox>
                 <property name="name">
@@ -108,7 +108,7 @@
                                 </sizepolicy>
                             </property>
                             <property name="text">
-                                <string>Behaviour:</string>
+                                <string>Behavior:</string>
                             </property>
                         </widget>
                         <widget class="QComboBox">
