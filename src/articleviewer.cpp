@@ -406,7 +406,7 @@ void ArticleViewer::slotUpdateCombinedView()
     QString text;
 
     for ( ; it != end; ++it)
-        if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
+        if ( !(*it).isDeleted() && m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
             text += "<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";
 
     renderContent(text);
