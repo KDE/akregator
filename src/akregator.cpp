@@ -117,7 +117,7 @@ void aKregator::load(const KURL& url)
 void aKregator::setupActions()
 {
     KStdAction::openNew(this, SLOT(fileNew()), actionCollection());
-    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
+//    KStdAction::open(this, SLOT(fileOpen()), actionCollection());
 
     KStdAction::quit(this, SLOT(quitProgram()), actionCollection());
 
@@ -182,7 +182,13 @@ void aKregator::optionsShowStatusbar()
 
 void aKregator::optionsConfigureKeys()
 {
-    KKeyDialog::configure(actionCollection()/*, "akregator_shell.rc"*/);
+    KKeyDialog dlg( true, this );
+
+    dlg.insert(actionCollection());
+    if (m_part)
+        dlg.insert(m_part->actionCollection());
+
+    dlg.configure();
 }
 
 void aKregator::optionsConfigureToolbars()
@@ -263,7 +269,7 @@ void aKregator::fontChange(const QFont & /* oldFont */)
 
 }
 
-void aKregator::loadingProgress(int percent) 
+void aKregator::loadingProgress(int percent)
 {
     if ( percent != -1 && percent != 100 ) // hide on 100 too
     {
