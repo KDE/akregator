@@ -188,6 +188,7 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
 
 void ArticleViewer::beginWriting()
 {
+    view()->setContentsPos(0,0);
     begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
     write(m_htmlHead);
 }
@@ -205,8 +206,7 @@ void ArticleViewer::show(Feed *f, bool writeHeaders)
 
     if (writeHeaders)
     {
-        begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
-        write(m_htmlHead);
+        beginWriting();
     }
 
     ArticleSequence::iterator it;
@@ -220,9 +220,7 @@ void ArticleViewer::show(Feed *f, bool writeHeaders)
 
     if (writeHeaders)
     {
-        m_currentText = text + "</body></html>";
-        write("</body></html>");
-        end();
+    	endWriting();
     }
     else
     {
