@@ -38,7 +38,7 @@
 
 #include <qmetaobject.h>
 #include <private/qucomextra_p.h>
-
+#include <akregator_part.h>
 
 using namespace Akregator;
 
@@ -195,6 +195,13 @@ void aKregator::load(const KURL& url)
     if (!m_part)
 	loadPart();
     m_part->openURL( url );
+}
+
+void aKregator::addFeedToGroup(const QString& url, const QString& group)
+{
+    if (!m_part)
+        loadPart();
+    static_cast<aKregatorPart*>(m_part)->addFeedToGroup( url, group );
 }
 
 void aKregator::setupActions()

@@ -99,6 +99,14 @@ namespace Akregator
                 
             virtual void fetchFeedUrl(const QString&);
             
+            /**
+             * Add a feed to a group.
+             * @param url The URL of the feed to add.
+             * @param group The name of the folder into which the feed is added.
+             *
+             * If the group does not exist, it is created.  The feed is added as the last member
+             * of the group.
+             */
             virtual void addFeedToGroup(const QString& url, const QString& group);
             
             

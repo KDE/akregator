@@ -12,6 +12,8 @@
 #include <kcmdlineargs.h>
 #include <klocale.h>
 
+#include <kdebug.h>
+
 static const char description[] =
     I18N_NOOP("A KDE RSS Aggregator");
 
@@ -19,7 +21,11 @@ static const char version[] = "1.0-beta3 \"Teemu\"";
 
 static KCmdLineOptions options[] =
 {
-    { "+[URL]", I18N_NOOP( "Document to open." ), 0 },
+    { "a", 0, 0 },
+    { "addfeed <url>", I18N_NOOP( "Add a feed with the given URL." ), 0},
+    { "g", 0, 0 },
+    { "group <groupname>", I18N_NOOP( "When adding feeds, place them in this group." ), "Imported" },
+    { "+[URL]", I18N_NOOP( "Document (feed list) to open." ), 0 },
     KCmdLineLastOption
 };
 
@@ -48,7 +54,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        aKregator *widget;
+        aKregator *widget = 0;
         // no session.. just start up normally
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
@@ -71,6 +77,14 @@ int main(int argc, char **argv)
                 widget->show();
                 widget->load( args->url( i ) );
             }
+        }
+        QString addFeedGroup = args->getOption("group");
+        QCStringList addFeeds = args->getOptionList("addfeed");
+        QCStringList::iterator addFeedsIt;
+        for (addFeedsIt = addFeeds.begin(); (addFeedsIt != addFeeds.end()) ; ++addFeedsIt )
+        {
+          kdDebug() << "--addfeed " << *addFeedsIt << "--group " << addFeedGroup << endl;
+          widget->addFeedToGroup(*addFeedsIt, addFeedGroup);
         }
         args->clear();
     }
