@@ -1,5 +1,5 @@
 #set the include path for X, qt and KDE
-INCLUDES = -I$(top_srcdir)/akregator/src/librss $(all_includes)
+INCLUDES = -I$(top_srcdir)/akregator/src/librss -I$(top_srcdir)/libkdepim $(all_includes)
 
 # let automoc handle all of the meta source files (moc).
 METASOURCES = AUTO
@@ -41,7 +41,7 @@ kdelnkdir = $(kde_servicesdir)
 lib_LTLIBRARIES = libakregatorprivate.la
 libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc aboutdata.cpp
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -version-info 0:0:0 -no-undefined
-libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML) $(LIB_KDEPIM)
+libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KHTML)
 
 #########################################################################
 # KPART SECTION
@@ -101,7 +101,7 @@ libakregatorpart_la_SOURCES = \
 	akregator_view.cpp
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) -version-info 1:0 -no-undefined $(all_libraries)
-libakregatorpart_la_LIBADD = libakregatorprivate.la
+libakregatorpart_la_LIBADD = libakregatorprivate.la ../../libkdepim/libkdepim.la
 
 # this is where the desktop file will go
 partdesktopdir = $(kde_servicesdir)

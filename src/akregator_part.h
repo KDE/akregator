@@ -13,12 +13,8 @@
 #include <kurl.h>
 
 #include "config.h"
-#ifdef HAVE_KPIMPART
 #include <libkdepim/part.h>
 typedef KPIM::Part MyBasePart;
-#else
-typedef KParts::ReadOnlyPart MyBasePart;
-#endif
 
 #include "akregator_partiface.h"
 
