@@ -48,7 +48,7 @@ void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art
     if (!m_balloon->isVisible())
     {
         m_balloon->setAnchor(mapToGlobal(pos()));
-        //m_balloon->setFixedWidth(m_balloon->width()-10);
+        m_balloon->setFixedWidth(m_balloon->width()-10);
         m_balloon->show();
         KWin::setOnAllDesktops(m_balloon->winId(), true);
     }
