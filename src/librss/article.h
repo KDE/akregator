@@ -31,7 +31,7 @@ namespace RSS
     * is via Document::articles().
     * @see Document::articles()
     */
-   class Article
+   class KDE_EXPORT Article
    {
       public:
          /**

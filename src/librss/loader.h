@@ -32,7 +32,7 @@ namespace RSS
 	 * a new retrieval algorithm which can then be plugged into the RSS loader.
 	 * @see Loader, FileRetriever, OutputRetriever
 	 */
-	class DataRetriever : public QObject
+	class KDE_EXPORT DataRetriever : public QObject
 	{
 		Q_OBJECT
 		public:
@@ -86,7 +86,7 @@ namespace RSS
 	 * Implements a file retriever, to be used with Loader::loadFrom().
 	 * @see DataRetriever, Loader::loadFrom()
 	 */
-	class FileRetriever : public DataRetriever
+	class KDE_EXPORT FileRetriever : public DataRetriever
 	{
 		Q_OBJECT
 		public:
@@ -245,7 +245,7 @@ namespace RSS
 	 * loadingComplete signal goes out of scope. This is e.g. the case if you
 	 * intend to call getPixmap() on Document::image()!
 	 */
-	class Loader : public QObject
+	class KDE_EXPORT Loader : public QObject
 	{
 		Q_OBJECT
 		friend class someClassWhichDoesNotExist;

@@ -3,4 +3,5 @@ File=akregator.kcfg
 ClassName=Settings
 Singleton=true
 Mutators=true
+Visibility=KDE_EXPORT
 MemberVariables=private

@@ -28,7 +28,7 @@ namespace RSS
 	 * but rather use Loader::loadFrom() to produce a Document object.
 	 * @see Loader::loadForm()
 	 */
-	class Document
+	class KDE_EXPORT Document
 	{
 		public:
 			/**

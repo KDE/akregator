@@ -9,12 +9,13 @@
 #define ABOUTDATA_H
 
 #include <kaboutdata.h>
+#include <kdepimmacros.h>
 
 namespace Akregator {
 /**
 @author Teemu Rytilahti
 */
-class AboutData : public KAboutData
+class KDE_EXPORT AboutData : public KAboutData
 {
 public:
     AboutData();

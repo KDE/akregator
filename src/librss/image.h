@@ -31,7 +31,7 @@ namespace RSS
     * is via Document::image().
     * @see Document::image()
     */
-   class Image : public QObject
+   class KDE_EXPORT Image : public QObject
    {
       Q_OBJECT
       public:
