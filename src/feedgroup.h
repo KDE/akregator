@@ -49,7 +49,10 @@ namespace Akregator
                 
             void signalDestroyed();    
             void signalChanged();
+
+        public slots:
             
+            virtual void deleteExpiredArticles();                
         private:
             QString           m_title;        ///< Feed/Group title
 

@@ -446,12 +446,9 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
 
 void aKregatorView::slotDeleteExpiredArticles()
 {
-    for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
-    {
-        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
-        if (f && !f->isGroup())
-            f->deleteExpiredArticles();
-    }
+    FeedGroup* rootNode = static_cast<FeedGroup *>(m_feeds.find( m_tree->firstChild() ));
+    if (rootNode)
+        rootNode->deleteExpiredArticles();
 }
 
 void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)

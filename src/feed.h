@@ -89,7 +89,7 @@ namespace Akregator
         public slots:
             void fetch(bool follow=false, FetchTransaction *f=0);
             void loadFavicon();
-            void deleteExpiredArticles();
+            virtual void deleteExpiredArticles();
 
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching

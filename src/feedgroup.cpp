@@ -12,7 +12,7 @@
 
 #include <kdebug.h>
 
-namespace Akregator {
+using namespace Akregator;
 
 FeedGroup::FeedGroup(QListViewItem *i, FeedsCollection *coll)
     : QObject(0, "some_random_name")
@@ -71,6 +71,13 @@ QDomElement FeedGroup::toXml( QDomElement parent, QDomDocument document ) const
     return el;
 }
 
-};
+void FeedGroup::deleteExpiredArticles()
+{
+    for (QListViewItem* i = m_item->firstChild(); i; i = i->nextSibling() )
+    {
+        FeedGroup* fg = static_cast<FeedGroup*> (m_collection->find(i));
+        fg->deleteExpiredArticles();
+    }    
+}
 
 #include "feedgroup.moc"
