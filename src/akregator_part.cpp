@@ -40,8 +40,6 @@
 #include "settings_general.h"
 #include "trayicon.h"
 
-
-
 using namespace Akregator;
 
 typedef KParts::GenericFactory< aKregatorPart > aKregatorFactory;
@@ -460,6 +458,7 @@ bool aKregatorPart::saveFeedList()
     QFile file(m_file);
     if (file.open(IO_WriteOnly) == false)
     {
+        //FIXME: allow to save the feedlist into different location -tpr 20041118
         KMessageBox::error(m_view, i18n("Access denied: cannot save feed list (%1)").arg(m_file), i18n("Write error") );
         return false;
     }
