@@ -18,7 +18,7 @@
     <Separator/>
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
-    <Seperator/>
+    <Separator/>
     <Action name="feed_mark_all_as_read"/>
   </Menu>
   <Menu name="settings">
@@ -41,10 +41,11 @@
   <text>&amp;Feeds</text>
   <Action name="feed_add"/>
   <Action name="feed_add_group"/>
-  <Action name="feed_remove"/>
   <Action name="feed_modify"/>
-  <Action name="feed_mark_all_as_read"/>
+  <Action name="feed_remove"/>
   <Separator/>
   <Action name="feed_fetch"/>
+  <Separator/>
+  <Action name="feed_mark_all_as_read"/>
 </Menu>
 </kpartgui>
