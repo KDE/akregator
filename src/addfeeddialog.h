@@ -36,6 +36,8 @@ namespace Akregator
 
          QString feedTitle;
          QString feedURL;
+         
+         void setURL(const QString& t);
 
       public slots:
          void slotOk( );

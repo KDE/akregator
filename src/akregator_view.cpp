@@ -74,7 +74,10 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
               this, SLOT(slotItemChanged(QListViewItem*)));
     connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
               this, SLOT(slotItemRenamed(QListViewItem *)));
+    connect(m_tree, SIGNAL(dropped (KURL::List &, QListViewItem *, QListViewItem *)),
+              this, SLOT(slotFeedURLDropped (KURL::List &, QListViewItem *, QListViewItem *)));
 
+    
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new QTabWidget(m_panner1);
@@ -428,13 +431,25 @@ void aKregatorView::slotFeedAdd()
         return;
     }
 
+    QListViewItem *lastChild = m_tree->currentItem()->firstChild();
+    while (lastChild && lastChild->nextSibling())
+        lastChild = lastChild->nextSibling();
 
+    addFeed(QString::null, lastChild, m_tree->currentItem());
+
+}
+
+void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* parent)
+{
     KListViewItem *elt;
     AddFeedDialog *afd = new AddFeedDialog( this, "add_feed" );
+
+    afd->setURL(url);
+    
     if (afd->exec() != QDialog::Accepted) return;
 
     QString text=afd->feedTitle;
-
+    
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
 
     dlg->setFeedName(text);
@@ -443,16 +458,14 @@ void aKregatorView::slotFeedAdd()
 //    dlg->widget->urlEdit->hide();
 
     if (dlg->exec() != QDialog::Accepted) return;
+    
+    if (!parent)
+        parent=m_tree->firstChild();
 
-
-    QListViewItem *lastChild = m_tree->currentItem()->firstChild();
-    while (lastChild && lastChild->nextSibling())
-        lastChild = lastChild->nextSibling();
-
-    if (lastChild)
-        elt = new KListViewItem(m_tree->currentItem(), lastChild, text);
+    if (after)
+        elt = new KListViewItem(parent, after, text);
     else
-        elt = new KListViewItem(m_tree->currentItem(), text);
+        elt = new KListViewItem(parent, text);
 
     addFeed_Internal( elt,
                       text,
@@ -645,7 +658,15 @@ void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, i
 
 }
 
-
+void aKregatorView::slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent)
+{
+    KURL::List::iterator it;
+    for ( it = urls.begin(); it != urls.end(); ++it )
+    {
+        addFeed((*it).prettyURL(), after, parent);
+    }
+}
+    
 void aKregatorView::slotItemRenamed( QListViewItem *item )
 {
     QString text = item->text(0);

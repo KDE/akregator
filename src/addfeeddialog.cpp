@@ -52,6 +52,11 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
 AddFeedDialog::~AddFeedDialog()
 {}
 
+void AddFeedDialog::setURL(const QString& t)
+{
+    widget->urlEdit->setText(t);
+}
+
 void AddFeedDialog::slotOk( )
 {
     enableButtonOK(false);
@@ -64,6 +69,8 @@ void AddFeedDialog::slotOk( )
 
 void AddFeedDialog::fetchCompleted(Loader *l, Document doc, Status status)
 {
+
+    kdDebug() << "fetchcompleted: reterr="<<((status==RetrieveError)?1:0)<<" parserror"<<((status==ParseError)?1: 0)<<"success"<<((status==Success)?1:0)<<endl;
     if (status==RetrieveError)
     {
         KDialogBase::slotOk();

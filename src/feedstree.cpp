@@ -6,7 +6,9 @@
  ***************************************************************************/
 #include "feedstree.h"
 
+#include <kurldrag.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include <qwhatsthis.h>
 #include <qheader.h>
@@ -53,6 +55,50 @@ void FeedsTree::insertNode(QListViewItem* parent, QListViewItem* item, QListView
         insertItem(item);
     if (after)
         item->moveItem(after);
+}
+
+void FeedsTree::contentsDragEnterEvent (QDragEnterEvent *e)
+{
+    if (e->source() != viewport())
+    {
+        if (KURLDrag::canDecode( e ))
+        {
+            e->acceptAction();
+        }
+        else
+        {
+            e->ignore();
+        }
+    }
+    else
+    {
+        KListView::contentsDragEnterEvent(e);
+    }
+}
+
+void FeedsTree::contentsDropEvent( QDropEvent *e )
+{
+    if (e->source() != viewport())
+    {
+        if (KURLDrag::canDecode( e ))
+        {
+            QListViewItem *afterme;
+            QListViewItem *parent;
+            findDrop( e->pos(), parent, afterme );
+            KURL::List urls;
+            KURLDrag::decode( e, urls );
+            e->acceptAction();
+            emit dropped( urls, afterme, parent);
+        }
+        else
+        {
+            e->ignore();
+        }
+    }
+    else
+    {
+        KListView::contentsDropEvent(e);
+    }
 }
 
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)

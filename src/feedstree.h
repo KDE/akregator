@@ -8,6 +8,7 @@
 #define AKREGATORFEEDSTREE_H
 
 #include <klistview.h>
+#include <kurl.h>
 
 namespace Akregator
 {
@@ -22,6 +23,8 @@ namespace Akregator
             void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
 
         protected:
+            virtual void contentsDragEnterEvent (QDragEnterEvent *e);
+            virtual void contentsDropEvent( QDropEvent *e );
             virtual void contentsDragMoveEvent(QDragMoveEvent* event);
 
         public slots:
@@ -45,6 +48,8 @@ namespace Akregator
             void slotItemLeft();
             /** Move feed level down */
             void slotItemRight();
+        signals:
+            void dropped (KURL::List &, QListViewItem *, QListViewItem *);
     };
 
 }

@@ -13,6 +13,8 @@
 #include "feedscollection.h"
 
 #include <qwidget.h>
+#include <kurl.h>
+
 
 class QSplitter;
 class QTabWidget;
@@ -115,9 +117,10 @@ namespace Akregator
             void slotFeedModify();
             void slotFetchCurrentFeed();
             void slotFetchAllFeeds();
-
+            void slotFeedURLDropped (KURL::List &urls, QListViewItem *after, QListViewItem *parent);
+            
             void slotMouseOverInfo(const KFileItem *kifi);
-
+            
             void slotOpenTab(const KURL& url);
 
         private:
@@ -127,6 +130,8 @@ namespace Akregator
              */
             void reset();
 
+
+            void addFeed(QString url, QListViewItem *after, QListViewItem* parent);
             /**
              * Add feed to feeds tree, given the existing list view item and alot of
              * feed parameters. FIXME: parameters better be bundled to FeedData?
