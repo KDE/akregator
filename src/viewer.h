@@ -74,7 +74,7 @@ namespace Akregator
             */
            void slotCompleted();
 
-           void slotSaveLinkAs();
+           //void slotSaveLinkAs();
            
         private:
             /**
