@@ -172,6 +172,7 @@ void Feed::fetch(bool followDiscovery)
     }
 
     tryFetch();
+
 }
 
 
@@ -181,7 +182,7 @@ void Feed::tryFetch()
     loader->loadFrom( xmlUrl, new FileRetriever );
 
     // TODO: note that we probably don't want to load the favicon here enventually..
-    //QTimer::singleShot( 2000, this, SLOT(loadFavicon()) );
+    QTimer::singleShot( 1000, this, SLOT(loadFavicon()) );
     //loadFavicon();
 }
 
@@ -209,6 +210,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
     }
 
+    m_fetchError=false;
     m_document=doc;
     kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
