@@ -31,6 +31,12 @@ namespace Akregator
          FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
          ~FeedPropertiesDialog();
 
+         void setFeed(Feed* feed);
+         
+         /** selects the text in the feed title lineedit */
+         void selectFeedName();
+         
+       protected:
          const QString feedName() const;
          const QString url() const;
          bool autoFetch() const;
@@ -50,10 +56,13 @@ namespace Akregator
          void setMaxArticleNumber(int number);
          void setMarkImmediatelyAsRead(bool enabled);
          void setUseNotification(bool enabled);
-         void selectFeedName();
-
+         
+       protected slots:
+           void slotOk();
+           
       private:
          FeedPropertiesWidget *widget;
+         Feed* m_feed;
    };
 }
 

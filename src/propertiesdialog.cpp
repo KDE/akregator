@@ -28,6 +28,7 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
 FeedPropertiesWidget::~FeedPropertiesWidget()
 {}
 
+
 void FeedPropertiesWidget::slotUpdateComboBoxActivated( int index )
 {
     if ( index == 3 ) // "never"
@@ -56,6 +57,41 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
 
 FeedPropertiesDialog::~FeedPropertiesDialog()
 {}
+
+void FeedPropertiesDialog::slotOk()
+{
+     m_feed->setNotificationMode(false);
+     m_feed->setTitle( feedName() );
+     m_feed->setXmlUrl( url() );
+     m_feed->setCustomFetchIntervalEnabled(autoFetch());
+     m_feed->setFetchInterval(fetchInterval());
+     m_feed->setArchiveMode(archiveMode());
+     m_feed->setMaxArticleAge(maxArticleAge());
+     m_feed->setMaxArticleNumber(maxArticleNumber());
+     m_feed->setMarkImmediatelyAsRead(markImmediatelyAsRead());
+     m_feed->setUseNotification(useNotification());
+     m_feed->setNotificationMode(true, true);
+     
+     KDialogBase::slotOk();
+}
+
+void FeedPropertiesDialog::setFeed(Feed* feed)
+{
+    m_feed = feed;
+    if (!feed)
+        return;
+    
+    setFeedName( feed->title() );
+    setUrl( feed->xmlUrl() );
+    setAutoFetch(feed->useCustomFetchInterval());
+    setFetchInterval(feed->fetchInterval());
+    setArchiveMode(feed->archiveMode());
+    setMaxArticleAge(feed->maxArticleAge());
+    setMaxArticleNumber(feed->maxArticleNumber());
+    setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
+    setUseNotification(feed->useNotification());
+}
+
 
 const QString FeedPropertiesDialog::feedName() const
 {

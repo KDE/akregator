@@ -839,7 +839,7 @@ void View::slotFeedAdd()
 
 void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool autoExec)
 {
-    Feed *feed;
+    
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
     
     afd->setURL(KURL::decode_string(url));
@@ -854,37 +854,23 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
             return;
         }    
     }
+
+    Feed* feed = afd->feed;
+    delete afd;
     
-    feed = afd->feed;
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
-    
-    dlg->setFeedName( feed->title() );
-    dlg->setUrl(afd->feedURL);
+    dlg->setFeed(feed);
+
     dlg->selectFeedName();
-    dlg->setMaxArticleAge(60);
-    dlg->setMaxArticleNumber(1000);
-    dlg->setMarkImmediatelyAsRead(false);
-    dlg->setUseNotification(false);
-    dlg->setFetchInterval(30);
+    
     if (!autoExec)
         if (dlg->exec() != QDialog::Accepted) 
         {
+            delete feed;
             delete dlg;   
             return;
         }    
 
-    feed->setNotificationMode(false);    
-    feed->setTitle(dlg->feedName());
-    feed->setXmlUrl(dlg->url());
-    feed->setArchiveMode(dlg->archiveMode());
-    feed->setMaxArticleAge(dlg->maxArticleAge());
-    feed->setMaxArticleNumber(dlg->maxArticleNumber());
-    feed->setMarkImmediatelyAsRead(dlg->markImmediatelyAsRead());
-    feed->setNotificationMode(true, true);    
-    feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
-    feed->setFetchInterval(dlg->fetchInterval());
-    feed->setUseNotification(dlg->useNotification());
-    
     Archive::load(feed);
     if (!parent)
         parent = m_feedList->rootNode();
@@ -893,7 +879,7 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
         
     m_tree->ensureNodeVisible(feed);
     
-    delete afd;
+
     delete dlg;
 }
 
@@ -974,33 +960,12 @@ void View::slotFeedModify()
 
     FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
 
-    dlg->setFeedName( feed->title() );
-    dlg->setUrl( feed->xmlUrl() );
-    dlg->setAutoFetch(feed->useCustomFetchInterval());
-    dlg->setFetchInterval(feed->fetchInterval());
-    dlg->setArchiveMode(feed->archiveMode());
-    dlg->setMaxArticleAge(feed->maxArticleAge());
-    dlg->setMaxArticleNumber(feed->maxArticleNumber());
-    dlg->setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
-    dlg->setUseNotification(feed->useNotification());
-    
+    dlg->setFeed(feed);
+
     if (dlg->exec() == QDialog::Accepted) 
     {   
-        feed->setNotificationMode(false);
-        feed->setTitle( dlg->feedName() );
-        feed->setXmlUrl( dlg->url() );
-        feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
-        feed->setFetchInterval(dlg->fetchInterval());
-        feed->setArchiveMode(dlg->archiveMode());
-        feed->setMaxArticleAge(dlg->maxArticleAge());
-        feed->setMaxArticleNumber(dlg->maxArticleNumber());
-        feed->setMarkImmediatelyAsRead(dlg->markImmediatelyAsRead());
-        feed->setUseNotification(dlg->useNotification());
-        feed->setNotificationMode(true, true);
-        //m_part->setModified(true);
         if ( feed->isMerged() )
             Archive::save(feed);
-
     }
     delete dlg;
 }

@@ -35,11 +35,9 @@ namespace Akregator
          AddFeedDialog(QWidget *parent = 0, const char *name = 0);
          ~AddFeedDialog();
 
-         QString feedURL;
+         void setURL(const QString& t);
          Feed *feed;
          
-         void setURL(const QString& t);
-
       public slots:
          void slotOk( );
          void fetchCompleted(Feed *);
@@ -48,6 +46,7 @@ namespace Akregator
 
       private:
          AddFeedWidget *widget;
+         QString feedURL;
    };
 }
 
