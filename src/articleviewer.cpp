@@ -232,6 +232,7 @@ void ArticleViewer::show(Feed *f, bool writeHeaders)
 
 void ArticleViewer::show(Feed *f, MyArticle a)
 {
+    view()->setContentsPos(0,0);
     begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
 
     QString text=formatArticle(f, a) +"</body></html>";
@@ -262,7 +263,7 @@ void ArticleViewer::displayInExternalBrowser(const KURL& url)
 //        proc->setUseShell(true);
           proc->start(KProcess::DontCare);
         delete proc;
-    }        
+    }
 }
 
 void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
@@ -277,7 +278,7 @@ void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& a
 void ArticleViewer::slotOpenLinkInternal()
 {
     if(m_url.isEmpty()) return;
-    emit urlClicked(m_url);   
+    emit urlClicked(m_url);
 }
 
 
