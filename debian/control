@@ -13,6 +13,16 @@ Description: RSS feed aggregator for KDE
  It allows you to quickly browse through hundreds of thousands of internet feeds
  in a quick, efficient, and familiar way.
 
+Package: akregator-i18n
+Architecture: all
+Depends: akregator (= ${Source-Version})
+Description: RSS feed aggregator for KDE
+ aKregator is a fast, lightweight, and intuitive feed reader program for KDE.
+ It allows you to quickly browse through hundreds of thousands of internet feeds
+ in a quick, efficient, and familiar way.
+ .
+ This package contains the internationalized (i18n) files for akregator.
+
 Package: akregator-kontact-plugin
 Architecture: any
 Depends: akregator (= ${Source-Version}), ${shlibs:Depends}

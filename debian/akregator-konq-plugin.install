@@ -1,2 +1,4 @@
 debian/tmp/usr/lib/kde3/libakregatorkonqplugin.*
 debian/tmp/usr/share/services/akregator_konqplugin.desktop
+debian/tmp/usr/lib/kde3/libakregatorkonqfeedicon.*
+debian/tmp/usr/share/apps/khtml/kpartplugins/akregator_konqfeedicon.*

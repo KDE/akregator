@@ -2,8 +2,9 @@ akregator (1.0-beta8-1) unstable; urgency=low
 
   * new upstream (closes: #270807, #278672).
   * to avoid (closes: #279621) depends on k*-3.3.0.
+  * *new* : i18n package.
 
- -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 25 Nov 2004 17:14:14 +0100
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Thu, 25 Nov 2004 17:42:15 +0100
 
 akregator (1.0-beta7-1) unstable; urgency=low
 

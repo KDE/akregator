@@ -16,5 +16,8 @@ install/akregator-konq-plugin::
 install/akregator-kontact-plugin::
 	dh_link
 
+install/akregator-i18n::
+	dh_link
+
 clean::
 	rm -f debian/compat
