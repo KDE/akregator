@@ -120,7 +120,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_searchCombo->insertItem(i18n("All Articles"));
     m_searchCombo->insertItem(i18n("Unread"));
     m_searchCombo->insertItem(i18n("New"));
-    m_searchCombo->insertItem(i18n("New and Unread"));
+    m_searchCombo->insertItem(i18n("New & Unread"));
 
     connect(m_searchCombo, SIGNAL(activated(int)),
                           this, SLOT(slotSearchComboChanged(int)));
