@@ -126,9 +126,8 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
 
     QWhatsThis::add(this, i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
-        "You can also mark feeds as persistent (P column) "
-        "or open article in another tab or even external browser window "
-        "using right-click menu."));
+        "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
+        "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
     connect(this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
 }
