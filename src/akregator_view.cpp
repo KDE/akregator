@@ -267,6 +267,8 @@ void aKregatorView::slotOpenTab(const KURL& url, bool background)
     
     m_part->manager()->addPart(page);
     
+    connect( page, SIGNAL(setTabIcon(const QPixmap&)),
+            this, SLOT(setTabIcon(const QPixmap&)));
     connect( page, SIGNAL(setWindowCaption (const QString &)),
             this, SLOT(slotTabCaption (const QString &)) );
     connect( page, SIGNAL(urlClicked(const KURL &,bool)),
@@ -283,11 +285,16 @@ void aKregatorView::slotOpenTab(const KURL& url, bool background)
     }
     if (m_tabs->count() > 1 && m_tabs->currentPageIndex() != 0)
         m_tabsClose->setEnabled(true);
-    QString favicon = FeedIconManager::self()->iconLocation(url);
-    if (!favicon.isEmpty()) {
-        m_tabs->setTabIconSet(page->widget(), QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
-    }
     page->openURL(url);
+}
+
+
+void aKregatorView::setTabIcon(const QPixmap& icon)
+{
+    const PageViewer *s = dynamic_cast<const PageViewer*>(sender());
+    if (s) {
+        m_tabs->setTabIconSet(const_cast<PageViewer*>(s)->widget(), icon);
+    }
 }
 
 void aKregatorView::connectFrame(Frame *f)

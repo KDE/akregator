@@ -6,6 +6,7 @@
  ***************************************************************************/
 
 #include "akregator_run.h" 
+#include "feediconmanager.h"
 #include "pageviewer.h"
 #include "viewer.h"
 
@@ -203,6 +204,13 @@ bool PageViewer::openURL(const KURL &url)
     m_backAction->setEnabled( m_current != m_history.begin() );
     m_forwardAction->setEnabled( m_current != m_history.fromLast() );
   
+    QString favicon = FeedIconManager::self()->iconLocation(url);
+    if (!favicon.isEmpty()) {
+        emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
+    } else {
+        emit setTabIcon(QPixmap());
+    }
+
     return retval;
 }
 
@@ -388,3 +396,4 @@ void PageViewer::slotSelectionChanged( )
 }
 
 #include "pageviewer.moc"
+// vim: ts=4 sw=4 et

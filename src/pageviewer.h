@@ -70,6 +70,9 @@ namespace Akregator
             void slotSelectionChanged();
 	    void slotGlobalBookmarkArticle();
             
+        signals:
+            void setTabIcon(const QPixmap&);
+
         private:
             QValueList<PageViewerHistoryEntry> m_history;
             QValueList<PageViewerHistoryEntry>::Iterator m_current;

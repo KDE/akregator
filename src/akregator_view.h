@@ -280,6 +280,8 @@ namespace Akregator
             
             QString getTitleNodeText(const QDomDocument &doc);
 
+	    void setTabIcon(const QPixmap&);
+
             /**
              * Write child items of item to node using QDom document document.
              * @param item Current feeds tree item which is being written.
