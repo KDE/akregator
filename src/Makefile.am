@@ -68,14 +68,6 @@ partrc_DATA = pageviewer.rc akregator_part.rc welcome.html
 iconsdir = $(kde_datadir)/akregator/pics
 icons_DATA = akregator_flag.png
 
-if include_kontact
-KONTACT_SUBDIR = kontact_plugin
-endif
-
-if include_konqplugin
-KONQPLUGIN_SUBDIR = konq_plugin
-endif
-
-SUBDIRS = librss $(KONTACT_SUBDIR) $(KONQPLUGIN_SUBDIR)
+SUBDIRS = librss
 
 noinst_HEADERS = archive.h
