@@ -34,7 +34,8 @@ namespace Akregator
             void beginWriting();
             void endWriting();
             void slotOpenLinkInternal();
-                
+
+	    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype);
 
         private:
             QString formatArticle(Feed *f, MyArticle a);

@@ -16,6 +16,7 @@
 #include <qclipboard.h>
 
 #include "viewer.h"
+#include "akregator_run.h"
 #include "akregatorconfig.h"
 
 using namespace Akregator;
@@ -55,11 +56,11 @@ bool Viewer::closeURL()
 /**
  * Display article in external browser.
  */
-void Viewer::displayInExternalBrowser(const KURL &url)
+void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
 {
    if (!url.isValid()) return;
    if (Settings::externalBrowserUseKdeDefault())
-       KRun::runURL(url, "text/html", false, false);
+       KRun::runURL(url, mimetype, false, false);
    else
    {
        QString cmd = Settings::externalBrowserCustomCommand();
@@ -73,15 +74,17 @@ void Viewer::displayInExternalBrowser(const KURL &url)
    }
 }
 
+   //aKregatorRun *run= new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
+
 bool Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-   kdDebug() << "Viewer: Open url request: " << url << endl;
    if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser) {
-       displayInExternalBrowser(url); return true;
+       displayInExternalBrowser(url, "text/html"); return true;
    }
    if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInBackground) {
        emit urlClicked(url,true); return true;
    }
+
    return false;
 }
 
@@ -104,6 +107,14 @@ void Viewer::slotCopyToClipboard()
    cb->setText(m_url.prettyURL(), QClipboard::Selection);
 }
 
+/*
+void Viewer::openLink(const KURL&url, const KParts::URLArgs args)
+{
+   aKregatorRun *run= new aKregatorRun((QWidget*)parent(), this, url, args);
+
+   connect(run, SIGNAL(canEmbed(const KURL&, const KParts::URLArgs&, const QString &)), this, SLOT(slotOpenPage(const KURL &, const KParts::URLArgs &, const QString &)));
+}*/
+
 void Viewer::slotOpenLinkInternal()
 {
    if(m_url.isEmpty()) return;
@@ -113,7 +124,7 @@ void Viewer::slotOpenLinkInternal()
 void Viewer::slotOpenLinkExternal()
 {
    if (m_url.isEmpty()) return;
-   displayInExternalBrowser(m_url);
+   displayInExternalBrowser(m_url, "text/html");
 }
 
 void Viewer::slotStarted(KIO::Job *)
@@ -127,3 +138,5 @@ void Viewer::slotCompleted()
 }
 
 #include "viewer.moc"
+
+// vim: set et ts=4 sts=4 sw=4:

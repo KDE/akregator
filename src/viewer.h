@@ -20,6 +20,9 @@ namespace Akregator
             Viewer(QWidget* parent, const char* name);
 	    bool closeURL();
 	
+	    virtual void openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype) = 0;
+
+
         signals:
            /**
             * This gets emited when url gets clicked
@@ -33,7 +36,7 @@ namespace Akregator
            virtual bool slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
            void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
-           /**
+	              /**
             * Copies current link to clipboard.
             */
            void slotCopyToClipboard();
@@ -62,7 +65,7 @@ namespace Akregator
             /**
              * Display article in external browser.
              */
-            void displayInExternalBrowser(const KURL &url);
+            void displayInExternalBrowser(const KURL &url, const QString &mime);
     };
 }
 

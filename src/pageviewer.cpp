@@ -7,6 +7,7 @@
 
 #include "pageviewer.h"
 #include "viewer.h"
+#include "akregator_run.h"
 
 #include <kapplication.h>
 #include <kglobalsettings.h>
@@ -27,10 +28,16 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
 bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-    kdDebug() << "PageViewer: Open url request: " << url << endl;
-    if(Viewer::slotOpenURLRequest(url, args)) return true;
-    openURL(url);
+    aKregatorRun *run= new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
     return true;
+}
+
+void PageViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype)
+{
+    kdDebug() << "PageViewer: Open url request: " << url << endl;
+    if(Viewer::slotOpenURLRequest(url, args)) return;
+    openURL(url);
+    return;
 }
 
 #include "pageviewer.moc"

@@ -9,6 +9,7 @@
 #include "viewer.h"
 #include "feed.h"
 #include "akregatorconfig.h"
+#include "akregator_run.h"
 
 #include <kapplication.h>
 #include <klocale.h>
@@ -242,10 +243,17 @@ void ArticleViewer::show(Feed *f, MyArticle a)
 
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
+    aKregatorRun *run= new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
+    return true;
+}
+
+
+void ArticleViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype)
+{
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-   if(Viewer::slotOpenURLRequest(url, args)) return true;
+   if(Viewer::slotOpenURLRequest(url, args)) return;
    emit urlClicked(url);
-   return true;
+   return;
 }
 
 void ArticleViewer::slotOpenLinkInternal()
