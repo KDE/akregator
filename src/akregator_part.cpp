@@ -43,6 +43,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
                                   QObject *parent, const char *name )
     : KParts::ReadWritePart(parent, name)
     , m_feeds()
+    , m_html(0)
 {
     // we need an instance
     setInstance( aKregatorPartFactory::instance() );
@@ -79,7 +80,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
     m_panner1->setSizes( m_panner1Sep );
     m_panner2->setSizes( m_panner2Sep );
 
-    //KHTML part
+    // We require KHTMLPart here because of begin()/write()/end() later, as I don't know if there are
+    // any text/html parts that implement this interface. If anyone complains, I'll think about fixing it.
     KTrader::OfferList offers = KTrader::self()->query("text/html", "'KParts/ReadOnlyPart' in ServiceTypes");
 
     KLibFactory *factory = 0;
@@ -96,14 +98,13 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
         factory = KLibLoader::self()->factory( ptr->library() );
         if (factory)
         {
-            m_html = static_cast<KParts::ReadOnlyPart *>(factory->create(m_panner2, ptr->name(), "KParts::ReadOnlyPart"));
+            m_html = static_cast<KHTMLPart *>(factory->create(m_panner2, ptr->name(), "KParts::ReadOnlyPart"));
+            if (!m_html) continue; // its not KHTMLPart, keep looking
             break;
         }
     }
 
-    // if our factory is invalid, then we never found our component
-    // and we might as well just exit now
-    if (!factory)
+    if (!m_html)
     {
         KMessageBox::error(parentWidget, i18n("Could not find a suitable HTML component"));
         ::exit(-1);
@@ -130,8 +131,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char */*widgetName*/,
     new KAction(i18n("&Delete"), "", "Shift+Delete", this, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Modify"), "", "F2", this, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
     new KAction(i18n("&Copy"), "", "Alt+Ctrl+C", this, SLOT(slotFeedCopy()), actionCollection(), "feed_copy");
-    new KAction(i18n("&Fetch"), "", "Alt+Ctrl+F", this, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
-    new KAction(i18n("Fe&tch all"), "", "Alt+Ctrl+A", this, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
+    new KAction(i18n("&Fetch"), "down", "Alt+Ctrl+F", this, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
+    new KAction(i18n("Fe&tch all"), "bottom", "Alt+Ctrl+A", this, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
 
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc");
@@ -333,8 +334,8 @@ bool aKregatorPart::saveFile() // TODO: rewrite using QDom* classes
     QTextStream stream(&file);
     stream.setEncoding(QTextStream::UnicodeUTF8);
 
-    // Write OPML data file
-    // Archive data files are saved elsewhere
+    // Write OPML data file.
+    // Archive data files are saved elsewhere.
 
     stream << "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" << endl
            << "<opml version=\"1.0\">"                      << endl
@@ -368,7 +369,7 @@ bool aKregatorPart::saveFile() // TODO: rewrite using QDom* classes
         }
         else
         {
-            // close outlines, if any above current depth
+            // close outlines, if any, above current depth
             if (!closeDepths.empty() && (*it)->depth() <= closeDepths.last())
             {
                 closeDepths.pop_back();
@@ -432,6 +433,8 @@ void aKregatorPart::slotItemChanged(QListViewItem *item)
     {
         actionCollection()->action("feed_add")->setEnabled(false);
         actionCollection()->action("feed_add_group")->setEnabled(false);
+
+        slotUpdateArticleList( static_cast<Feed *>(feed) );
     }
 
     if (item->parent())
@@ -439,7 +442,6 @@ void aKregatorPart::slotItemChanged(QListViewItem *item)
     else
         actionCollection()->action("feed_remove")->setEnabled(false);
 
-//    slotUpdateArticleList(feed); gnaa needs to test if this is a group first
 }
 
 void aKregatorPart::slotUpdateArticleList(Feed *source)
@@ -559,7 +561,7 @@ void aKregatorPart::slotFeedModify()
     AddFeedDialog *dlg = new AddFeedDialog( this->widget(), "edit_feed" );
     Feed *feed = static_cast<Feed *>(m_feeds.find(elt));
 
-    feed->title          = text;
+    feed->title          = dlg->feedNameEdit->text();
     feed->xmlUrl         = dlg->urlEdit->text();
     feed->isLiveJournal  = dlg->ljUserChkbox->isChecked();
     feed->ljUserName     = dlg->ljUserEdit->text();
@@ -573,7 +575,7 @@ void aKregatorPart::slotFeedModify()
 
     if (dlg->exec() != QDialog::Accepted) return;
 
-    feed->title          = text;
+    feed->title          = dlg->feedNameEdit->text();
     feed->xmlUrl         = dlg->urlEdit->text();
     feed->isLiveJournal  = dlg->ljUserChkbox->isChecked();
     feed->ljUserName     = dlg->ljUserEdit->text();
@@ -596,7 +598,7 @@ void aKregatorPart::slotFetchCurrentFeed()
     if (m_tree->currentItem())
     {
         Feed *f = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-        if (f)
+        if (f && !f->isGroup())
         {
             kdDebug() << "Fetching item " << f->title << endl;
             f->fetch();
@@ -610,8 +612,12 @@ void aKregatorPart::slotFetchCurrentFeed()
             }
 
             for (QListViewItemIterator it(m_tree->currentItem()); it.current(); ++it)
+            {
                 kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
-                // TODO
+                Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+                if (f && !f->isGroup())
+                    f->fetch();
+            }
         }
     }
 }
@@ -619,8 +625,12 @@ void aKregatorPart::slotFetchCurrentFeed()
 void aKregatorPart::slotFetchAllFeeds()
 {
     for (QListViewItemIterator it(m_tree->firstChild()); it.current(); ++it)
+    {
         kdDebug() << "Fetching subitem " << (*it)->text(0) << endl;
-        // TODO
+        Feed *f = static_cast<Feed *>(m_feeds.find(*it));
+        if (f && !f->isGroup())
+            f->fetch();
+    }
 }
 
 
@@ -651,12 +661,13 @@ void aKregatorPart::slotArticleSelected(QListViewItem *item)
     int index = m_articles->itemIndex(item);
     kdDebug() << k_funcinfo << "Selected item number " << index << endl;
 
-    // uh oh FIXME
-    KHTMLPart *htmlPart = static_cast<KHTMLPart *>(m_html);
+    if (index < 0 || static_cast<Article::List::size_type>(index) > feed->articles.size())
+        return;
 
-    htmlPart->begin( KURL( "file:/tmp/something.html" ) );
-    htmlPart->write( feed->articles[index].description() );
-    htmlPart->end();
+    m_html->begin( KURL( "file:/tmp/something.html" ) );
+    // TODO add KMail-like article summary above the article.
+    m_html->write( feed->articles[index].description() );
+    m_html->end();
 
     kdDebug() << k_funcinfo << "END" << endl;
 }

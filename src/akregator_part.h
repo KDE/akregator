@@ -22,6 +22,7 @@ class QListViewItem;
 class KListViewItem;
 class KURL;
 class KListView;
+class KHTMLPart;
 
 namespace Akregator {
     class FeedsTree;
@@ -130,7 +131,7 @@ private:
     /**
      * Currently selected document renderer.
      */
-    KParts::ReadOnlyPart *m_html;
+    KHTMLPart *m_html;
 
     QSplitter *m_panner1, *m_panner2;
     QValueList<int> m_panner1Sep, m_panner2Sep;
