@@ -22,7 +22,8 @@ namespace Akregator
 class FeedGroup;
 class TreeNode;
 
-/** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. */
+/** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
+
 class FeedList : public QObject
 {
 Q_OBJECT
@@ -30,13 +31,13 @@ public:
 
     /** creates a new FeedList from an OPML document, adds the "All Feeds" node.
         @param doc the OPML document to parse
-        @return the parsed feed list, or 0 when a parsing error occured
+        @return the parsed feed list, or @c NULL when a parsing error occured
     */
     static FeedList* fromOPML(const QDomDocument& doc);
 
     FeedList(QObject *parent = 0, const char *name = 0);
 
-    /** Destructor. Contained nodes are NOT deleted. Use @c delete @c rootNode() to delete the tree. FIXME: change that later */
+    /** Destructor. Contained nodes are deleted! */
     ~FeedList();
 
     /** returns the root node "All Feeds". */
@@ -46,11 +47,13 @@ public:
     
     void append(FeedList* list, FeedGroup* parent=0, TreeNode* after=0);
 
+    /** returns the title of the feed list (as used in the OPML document) */
     const QString& title() const;
-    
+
+    /** sets the title of the feed list */
     void setTitle(const QString& name);
 
-    /** exports the feed list as OPML. The root node is ignored! */
+    /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
     QDomDocument toOPML() const;
 
 //    TreeNode* findByID(uint id) const;
@@ -58,8 +61,14 @@ public:
 //  uint idCounter();
 
 protected:
-    
+
+    /** connects a node's notification signals to the slots below. Used for Observer mechanism 
+    @param node the node to connect to
+    */
     void connectToNode(TreeNode* node);
+    /** disconnects from a node's notification signals. @c node is not longer observed.
+    @param the node to disconnect from
+     */
     void disconnectFromNode(TreeNode* node);
 
 protected slots:
