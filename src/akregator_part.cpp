@@ -64,6 +64,7 @@ void aKregatorPart::setupActions()
 
     new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
     new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileExport()), actionCollection(), "file_export");
+    KStdAction::print(m_view, SLOT(slotPrint()), actionCollection(), "file_print");
 
     /* --- Feed/Feed Group popup menu */
     new KAction(i18n("&Open Homepage"), "", "Ctrl+H", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");

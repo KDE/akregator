@@ -1342,6 +1342,11 @@ void aKregatorView::slotOpenCurrentArticleBackgroundTab()
     }
 }
 
+void aKregatorView::slotPrint()
+{
+    m_articleViewer->slotPrint();
+}
+
 void aKregatorView::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupItem* parent)
 {
     FeedGroup* pnode = parent ? parent->node() : 0;

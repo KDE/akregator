@@ -8,10 +8,11 @@ Changes after 1.0b7:
 New features:
        - Add icon to konqueror to show if page has a feed -tpr
 #85532 - Add feed summary -tpr
+#84314 - added print command for article viewer -fo 
+#92330 - Added possibility to set article status (read/unread/new) manually -fo
+       - Added basic "keep flag" support to prevent articles from expiring -fo
 
 Changes:
-       - Added possibility to set article status (read/unread/new) manually -fo
-       - Added basic "keep flag" support to prevent articles from expiring -fo
        - Add pageviewer actions into Go menu and print to file menu when in pageviewer mode -tpr
        - improve tabbed browsing: added back/forward buttons, improved context menus - fo
        - make search bar optional -fo

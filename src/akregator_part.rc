@@ -1,9 +1,11 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="31">
+<kpartgui name="akregator_part" version="35">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
     <Action name="file_export"/>
+    <Separator/> 
+    <Action name="file_print"/>
     <Separator/> 
   </Menu>
 
@@ -61,6 +63,7 @@
   <Action name="feed_fetch"/>
   <Action name="feed_fetch_all"/>
   <Action name="feed_stop"/>
+  <Action name="file_print"/>
   <DefineGroup name="pageviewer_operations" />
   <Merge/>
 </ToolBar>

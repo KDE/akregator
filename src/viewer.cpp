@@ -133,6 +133,7 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    }
    else
    {
+       popup.insertItem(SmallIcon("fileprint"), i18n("Print..."), this, SLOT(slotPrint()));
         KAction *ac = action("setEncoding");
         if (ac)
             ac->plug(&popup);
@@ -185,6 +186,12 @@ void Viewer::slotScrollUp()
 void Viewer::slotScrollDown()
 { 
     view()->scrollBy(0,10); 
+}
+
+// some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
+void Viewer::slotPrint( )
+{
+    view()->print();
 }
 
 #include "viewer.moc"

@@ -251,12 +251,6 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
     m_stopAction->setEnabled(false);
 }
 
-// some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-void PageViewer::slotPrint( )
-{
-    view()->print();
-}
-
 void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
     QString url = kurl.url();

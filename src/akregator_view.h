@@ -161,6 +161,8 @@ namespace Akregator
             void slotOpenCurrentArticleBackgroundTab();
             void slotOpenCurrentArticleForegroundTab();
 
+            /** prints the content of the article viewer */
+            void slotPrint();
             /**
              * This slot is called when user renames a feed in feeds tree.
              */

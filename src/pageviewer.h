@@ -50,8 +50,6 @@ namespace Akregator
             void slotForward();
             void slotReload();
             void slotStop();
-            void slotPrint();
-
 
         protected:
 

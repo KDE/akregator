@@ -35,6 +35,7 @@ namespace Akregator
 
             void slotScrollUp(); 
             void slotScrollDown();
+            void slotPrint();
         
         signals:
            /**
