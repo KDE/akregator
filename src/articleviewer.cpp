@@ -5,32 +5,31 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include <qdatetime.h>
+#include <qevent.h>
+#include <qpaintdevicemetrics.h>
+#include <qscrollview.h>
+#include <qstylesheet.h>
+#include <qvaluelist.h>
+
+#include <kaction.h>
+#include <kapplication.h>
+#include <kdebug.h>
+#include <kglobalsettings.h>
+#include <khtmlview.h>
+#include <klocale.h>
+#include <kprocess.h>
+#include <krun.h>
+#include <kstandarddirs.h>
+#include <kshell.h>
+
+#include "akregator_run.h"
+#include "akregatorconfig.h"
 #include "articleviewer.h"
-#include "viewer.h"
 #include "feed.h"
 #include "feedgroup.h"
 #include "myarticle.h"
 #include "treenode.h"
-#include "akregatorconfig.h"
-#include "akregator_run.h"
-
-#include <kaction.h>
-#include <kapplication.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <kglobalsettings.h>
-#include <kstandarddirs.h>
-#include <khtmlview.h>
-#include <krun.h>
-#include <kprocess.h>
-#include <kshell.h>
-
-#include <qdatetime.h>
-#include <qvaluelist.h>
-#include <qscrollview.h>
-#include <qstylesheet.h>
-#include <qevent.h>
-
 
 using namespace Akregator;
 
@@ -45,13 +44,14 @@ static inline QString stripTags(const QString& str)
     return QString(str).replace(QRegExp("<[^>]*>"), "");
 }
 
-int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
+int ArticleViewer::pointsToPixel(int pointSize) const
 {
+    const QPaintDeviceMetrics metrics(view());
     return ( pointSize * metrics.logicalDpiY() + 36 ) / 72 ;
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-    : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(NormalView)
+    : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
     setXMLFile(locate("data", "akregator/articleviewer.rc"), true);
     generateCSS();
@@ -105,29 +105,17 @@ void ArticleViewer::generateCSS()
     const QColorGroup & cg = QApplication::palette().active();
     m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
                         "<html><head><title></title></head><body>");
-    /*
-    m_htmlHead += QString (
-    "<style type=\"text/css\">\n"
-    "body {\n"
-    "  font-family: \"%1\" ! important;\n"
-// from kmail::headerstyle.cpp
-    "  font-size: %2 ! important;\n"
-    "  color: %3 ! important;\n"
-    "  background: %4 ! important;\n"
-            "}\n\n").arg(KGlobalSettings::generalFont().family())
-            .arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px")
-            .arg(cg.text().name())
-    .arg(cg.base().name());*/
+
+    // from kmail::headerstyle.cpp
     m_htmlHead += QString (
             "<style type=\"text/css\">\n"
             "body {\n"
             "  font-family: \"%1\" ! important;\n"
-// from kmail::headerstyle.cpp
             "  font-size: %2 ! important;\n"
             "  color: %3 ! important;\n"
             "  background: %4 ! important;\n"
             "}\n\n").arg(Settings::standardFont())
-            .arg(QString::number(pointsToPixel(m_metrics, Settings::mediumFontSize()))+"px")
+            .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
             .arg(cg.text().name())
             .arg(cg.base().name());
     m_htmlHead += (
@@ -206,7 +194,7 @@ void ArticleViewer::generateCSS()
             .arg(cg.text().name())
             .arg(cg.text().name())
             .arg(cg.background().light(108).name())
-            .arg(QString::number(pointsToPixel(m_metrics, Settings::mediumFontSize()))+"px")
+            .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
             .arg(Settings::standardFont());
     //kdDebug() << m_htmlHead << endl;
 

@@ -12,7 +12,6 @@
 
 #include <qcolor.h>
 #include <qfont.h>
-#include <qpaintdevicemetrics.h>
 
 #include "articlefilter.h"
 #include "viewer.h"
@@ -75,6 +74,8 @@ namespace Akregator
 
         private:
 
+            int pointsToPixel(int pointSize) const;
+                    
             void showSummary(FeedGroup* group);
             void showSummary(Feed *f);
 
@@ -103,7 +104,6 @@ namespace Akregator
                                   
             QString m_htmlHead;
             QString m_htmlFooter;
-            QPaintDeviceMetrics m_metrics;
             QString m_currentText;
             QString m_imageDir;
             TreeNode* m_node;
