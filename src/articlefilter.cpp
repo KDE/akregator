@@ -22,17 +22,17 @@ Criterion::Criterion()
 }
 
 Criterion::Criterion( Subject subject, Predicate predicate, const QString &object )
-    : m_subject( subject ),
-    m_predicate( predicate ),
-    m_object( object )
+    : m_subject( subject )
+    , m_predicate( predicate )
+    , m_object( object )
 {
     m_type=String;
 }
 
 Criterion::Criterion( Subject subject, Predicate predicate, int object )
-    : m_subject( subject ),
-    m_predicate( predicate ),
-    m_intObject( object )
+    : m_subject( subject )
+    , m_predicate( predicate )
+    , m_intObject( object )
 {
     m_type=Int;
 }
@@ -109,9 +109,9 @@ ArticleFilter::ArticleFilter()
 }
 
 ArticleFilter::ArticleFilter( const QValueList<Criterion> &criteria, Association assoc, Action action )
-    : m_criteria( criteria ),
-    m_association( assoc ),
-    m_action( action )
+    : m_criteria( criteria )
+    , m_association( assoc )
+    , m_action( action )
 {
 }
 
