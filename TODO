@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000048 being the highest available (take this one for your next bug and increase here)
+          #000049 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -15,11 +15,12 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
+#000048 ADD [ ] Document default LiveJournal authorization using KCookieJar (just login in konqueror and have working LJ auth)
 #000047 FIX [ ] Remember feeds' favicons between runs -->smt
 #000042 FIX [ ] "File | Save" without previously selected filename doesn't work (doesn't call "Save As...") -->berkus
 #000040 ADD [ ] finally, add some configuration options
                 [ ] default LiveJournal username and password (use KWallet)
-                [ ] last open opml file
+                [ ] remember last open opml file
 #000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
                 [ ] handle palette changes (color changes in kcontrol)
 #000031 ADD [ ] Autosave: Remember feeds list in "current" file
@@ -30,11 +31,12 @@ ADD new feature
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
 #000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?) (correction: might not be necessary now that we have ArticleListItem)
 #000045 CHG [ ] link the feed image to the URL of the feed (not XML URL, but site URL) -->smt
+                <berkus> use guid if guidIsPermalink, otherwise use article <comments> otherwise use Feed htmlUrl
 #000046 CHG [ ] show link addresses in statusbar -->smt
 
 == MID-TERM ==
 
-#000007 ADD [ ] DCOP (q: should KPart implement DCOP or shell app only?)
+#000007 ADD [ ] DCOP
 #000008 ADD [ ] install mime-type handlers for .opml feed lists
 #000033 ADD [ ] quicksearch bar a-la kmail
 #000009 ADD [ ] write user documentation
