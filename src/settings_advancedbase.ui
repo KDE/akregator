@@ -1,0 +1,74 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>Akregator::SettingsAdvancedBase</class>
+<author>Frank Osterfeld</author>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>SettingsAdvancedBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Archive backend:</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox">
+                    <property name="name">
+                        <cstring>cbBackend</cstring>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pbBackendConfigure</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Configure...</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <spacer row="1" column="0">
+            <property name="name">
+                <cstring>spacer2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>101</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

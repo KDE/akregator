@@ -1,0 +1,35 @@
+[Desktop Entry]
+Type=ServiceType
+X-KDE-ServiceType=Akregator/Plugin
+Comment=Plugin for Akregator
+
+
+# Type of plugin, e.g. "storage".
+[PropertyDef::X-KDE-akregator-plugintype]
+Type=QString
+
+# Internal name for identification, not translated.
+[PropertyDef::X-KDE-akregator-name]
+Type=QString
+
+# List of authors.
+[PropertyDef::X-KDE-akregator-authors]
+Type=QStringList
+
+# List of author's email addresses.
+[PropertyDef::X-KDE-akregator-email]
+Type=QStringList
+
+# Priority of the plugin. When KTrader returns multiple offers, the one with the highest rank is chosen.
+# Range: 0 (disabled) - 255 (highest)
+[PropertyDef::X-KDE-akregator-rank]
+Type=int
+
+# Version of the plugin.
+[PropertyDef::X-KDE-akregator-version]
+Type=int
+
+# Version of the framework this plugin is compatible with.
+# Must be bumped after making incompatible changes.
+[PropertyDef::X-KDE-akregator-framework-version]
+Type=int
