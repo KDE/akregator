@@ -1,13 +1,13 @@
 Begin3
 Title:          akregator
-Version:        0.9
+Version:        1.0-beta2
 Entered-date:   
 Description:    RSS Aggregation tool for KDE
 Keywords:       rss aggregation syndication feed articles KDE Qt
 Author:         Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
 Maintained-by:  Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
 Primary-site:   
-Home-page:      http://berk.upnet.ru/projects/kde/akregator/
+Home-page:      http://akregator.upnet.ru/
 Original-site:  
 Platforms:      Linux and other Unices, requires KDE.
 Copying-policy: GNU Public License
