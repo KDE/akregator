@@ -181,6 +181,7 @@ void AkregatorMainWindow::saveProperties(KConfig* config)
         loadPart();
 
     static_cast<Akregator::aKregatorPart*>(m_part)->saveProperties(config);
+    delete m_part;
 }
 
 void AkregatorMainWindow::readProperties(KConfig* config)
@@ -280,8 +281,6 @@ void AkregatorMainWindow::disconnectActionCollection( KActionCollection *coll )
 
 bool AkregatorMainWindow::queryExit()
 {
-    if(m_part)
-        static_cast<Akregator::aKregatorPart*>(m_part)->saveSettings();
     if ( !kapp->sessionSaving() )
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
     return KParts::MainWindow::queryExit();

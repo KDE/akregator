@@ -194,6 +194,7 @@ void aKregatorPart::saveSettings()
 
 aKregatorPart::~aKregatorPart()
 {
+    saveSettings();
     saveFeedList();
 }
 
