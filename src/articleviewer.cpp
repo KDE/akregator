@@ -39,6 +39,11 @@ static inline QString directionOf(const QString &str)
     return str.isRightToLeft() ? "rtl" : "ltr" ;
 }
 
+static inline QString stripTags(const QString& str)
+{
+    return QString(str).replace(QRegExp("<[^>]*>"), "");
+}
+
 int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 {
     return ( pointSize * metrics.logicalDpiY() + 36 ) / 72 ;
@@ -192,7 +197,7 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
 
     if (!article.title().isEmpty())
     {
-        text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(article.title()));
+        text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(stripTags(article.title())));
         if (article.link().isValid())
             text += "<a id=\"titleanchor\" href=\""+article.link().url()+"\">";
         text += QStyleSheet::escape(article.title()); // TODO: better leave things escaped in the parser
@@ -219,7 +224,7 @@ QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
 
     if (!article.description().isEmpty())
     {
-        text += QString("<div id=\"body\" dir=\"%1\">").arg(directionOf(article.description()) );
+        text += QString("<div id=\"body\" dir=\"%1\">").arg(directionOf(stripTags(article.description())) );
         text += "<span id=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }
@@ -307,7 +312,7 @@ void ArticleViewer::showSummary(FeedGroup* group)
         return;
     QString text;
     text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-    text += QString("<div id=\"headertitle\" dir=\"%1\">%2").arg(directionOf(group->title())).arg(group->title());
+    text += QString("<div id=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(group->title()))).arg(group->title());
     if(group->unread() == 0)
         text += i18n(" (no unread articles)");
     else
@@ -326,7 +331,7 @@ void ArticleViewer::showSummary(Feed *f)
     QString text;
     text = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
-    text += QString("<div id=\"headertitle\" dir=\"%1\">").arg(directionOf(f->title()));
+    text += QString("<div id=\"headertitle\" dir=\"%1\">").arg(directionOf(stripTags(f->title())));
     text += f->title();
     if(f->unread() == 0)
         text += i18n(" (no unread articles)");
@@ -347,7 +352,7 @@ void ArticleViewer::showSummary(Feed *f)
     
     if( !f->description().isEmpty() )
     {
-        text += QString("<div dir=\"%1\">").arg(directionOf(f->description()));
+        text += QString("<div dir=\"%1\">").arg(stripTags(directionOf(f->description())));
         text += i18n("<b>Description:</b> %1<br><br>").arg(f->description());
         text += "</div>\n"; // /description
     }
