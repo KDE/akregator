@@ -69,12 +69,15 @@ namespace Akregator
              */
             virtual bool saveFile();
 
+            void importFile(QString file_name);
+            
         signals:
             void partChanged(KParts::Part *p);
             
         protected slots:
             void fileOpen();
             void fileSaveAs();
+            void fileImport();
 
         private:
             static KAboutData* s_about;

@@ -41,6 +41,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     KStdAction::saveAs(this, SLOT(fileSaveAs()), actionCollection());
     KStdAction::save(this, SLOT(save()), actionCollection());
 
+    new KAction(i18n("&Import Feeds"), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
+    
     /* -- ACTIONS */
 
     /* --- Feed popup menu */
@@ -191,6 +193,27 @@ bool aKregatorPart::saveFile()
     return true;
 }
 
+void aKregatorPart::importFile(QString file_name)
+{
+    QFile file(file_name);
+    if (file.open(IO_ReadOnly) == false)
+        return;
+
+    // Read OPML feeds list and build QDom tree.
+    QTextStream stream(&file);
+    stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
+    QDomDocument doc;
+    QString str;
+
+    str = stream.read();
+    file.close();
+
+    if (!doc.setContent(str))
+        return;
+
+    m_view->importFeeds(doc);
+}
+
 
 /*************************************************************************************************/
 /* SLOTS                                                                                         */
@@ -202,8 +225,8 @@ void aKregatorPart::fileOpen()
     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
     QString file_name = KFileDialog::getOpenFileName( QString::null,
-                        "*.opml|" + i18n("OPML Outlines (*.opml)") + "\n"
-                        "*|" + i18n("All Files") );
+                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
+                        +"\n*|" + i18n("All Files") );
 
     if (file_name.isEmpty() == false)
         openURL(file_name);
@@ -213,10 +236,20 @@ void aKregatorPart::fileSaveAs()
 {
     // this slot is called whenever the File->Save As menu is selected,
     QString file_name = KFileDialog::getSaveFileName( QString::null,
-                        "*.opml|" + i18n("OPML Outlines (*.opml)") + "\n"
-                        "*|" + i18n("All Files") );
+                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
+                        +"\n*|" + i18n("All Files") );
     if (file_name.isEmpty() == false)
         saveAs(file_name);
+}
+
+void aKregatorPart::fileImport()
+{
+    QString file_name = KFileDialog::getOpenFileName( QString::null,
+                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
+                        +"\n*|" + i18n("All Files") );
+
+    if (file_name.isEmpty() == false)
+        importFile(file_name);
 }
 
 

@@ -164,8 +164,20 @@ void aKregatorView::reset()
     m_part->setModified(false);
 }
 
+void aKregatorView::importFeeds(const QDomDocument& doc)
+{
+    bool Ok;
+    
+    QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), "", &Ok);
+    if (!Ok) return;
 
-bool aKregatorView::loadFeeds(const QDomDocument& doc)
+    FeedsTreeItem *elt = new FeedsTreeItem( m_tree, QString::null );
+    m_feeds.addFeedGroup(elt)->setTitle(text);
+    elt->setOpen(true);
+    loadFeeds(doc, elt);
+}
+
+bool aKregatorView::loadFeeds(const QDomDocument& doc, QListViewItem *parent)
 {
     // this should be OPML document
     QDomElement root = doc.documentElement();
@@ -182,12 +194,13 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc)
     if (body.isNull())
         return false;
 
-    reset();
+    if (!parent)
+        reset();
 
     QDomNode n = body.firstChild();
     while( !n.isNull() )
     {
-        parseChildNodes(n);
+        parseChildNodes(n, parent);
         n = n.nextSibling();
     }
 

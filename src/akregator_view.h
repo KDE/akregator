@@ -53,12 +53,13 @@ namespace Akregator
              */
             aKregatorView(aKregatorPart *part, QWidget *parent, const char *wName);
 
+            void importFeeds(const QDomDocument& doc);
 
             /**
              * Parse OPML presentation of feeds and read in articles archive, if present.
              * @param doc QDomDocument generated from OPML by openFile().
              */
-            bool loadFeeds(const QDomDocument& doc);
+            bool loadFeeds(const QDomDocument& doc, QListViewItem *parent = 0);
 
             /**
              * Recursively parse child nodes of the opml document, building feeds tree.
