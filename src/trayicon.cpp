@@ -35,8 +35,7 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
     m_lightIconImage=m_unreadIcon.convertToImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
-    QToolTip::add(this, i18n("Akregator"));
-    contextMenu()->insertItem(SmallIcon("bottom"),i18n("Fetch All Feeds"), this, SLOT(fetchAllFeeds()));
+    QToolTip::add(this, i18n("Akregator - RSS Feed Reader"));
 }
 	
 TrayIcon::~TrayIcon()
@@ -157,11 +156,6 @@ void TrayIcon::settingsChanged()
         show();
     else
         hide();
-}
-
-void TrayIcon::fetchAllFeeds()
-{
-    DCOPRef("akregator","AkregatorIface").send("fetchAllFeeds");
 }
 
 #include "trayicon.moc"

@@ -28,8 +28,7 @@ namespace Akregator
             void settingsChanged();
             void slotSetUnread(int unread);
             void viewButtonClicked();
-            void fetchAllFeeds();
-
+        
         signals:
             void showPart();
 

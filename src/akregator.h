@@ -34,8 +34,7 @@ namespace Akregator
 {
 
 class Part;
-class TrayIcon;
-class MainWindow;    
+class MainWindow;
 
 class BrowserInterface : public KParts::BrowserInterface
 {

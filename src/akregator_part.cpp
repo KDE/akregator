@@ -19,6 +19,7 @@
 #include <kmainwindow.h>
 #include <kmessagebox.h>
 #include <knotifydialog.h>
+#include <kpopupmenu.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
 #include <kparts/browserinterface.h>
@@ -93,9 +94,9 @@ void Part::setupActions()
     vm->insert(ra);
 
     // toolbar / feed menu
-    new KAction(i18n("&Fetch"), "down", "Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
-    new KAction(i18n("Fe&tch All"), "bottom", "Ctrl+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-    new KAction(i18n( "&Stop" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "feed_stop");
+    new KAction(i18n("&Fetch Feed"), "down", "Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
+    new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
+    new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "feed_stop");
 
     new KAction(i18n("&Mark All as Read"), "", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
@@ -176,6 +177,8 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     // notify the part that this is our internal widget
     setWidget(m_view);
 
+    setupActions();
+    
     m_trayIcon = new TrayIcon( getMainWindow() );
     connect(m_trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
 
@@ -190,6 +193,11 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect( m_trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
 
+    KPopupMenu* traypop = m_trayIcon->contextMenu();
+    
+    action("feed_fetch_all")->plug(traypop, 1);
+    action("akregator_configure_akregator")->plug(traypop, 1);
+    
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
     
     connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutdown()));
@@ -200,7 +208,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc", true);
-    setupActions();
+    
     initFonts();
 }
 
@@ -414,7 +422,7 @@ bool Part::openFile()
         }
         else
         {
-            KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read Error") );
+            KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read error") );
             return false;
         }
 
@@ -428,7 +436,7 @@ bool Part::openFile()
 
             copyFile(backup);
 
-            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
+            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML parsing error") );
 
             doc = createDefaultFeedList();
         }
@@ -438,7 +446,7 @@ bool Part::openFile()
             QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
             copyFile(backup);
 
-            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
+            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML parsing error") );
             m_view->loadFeeds(createDefaultFeedList());
         }
         
