@@ -137,7 +137,7 @@ bool aKregator::loadPart()
     }
     else
     {
-        KMessageBox::error(this, i18n("Could not find our part. Please check your installation."));
+        KMessageBox::error(this, i18n("Could not find the aKregator part; please check your installation."));
         return false;
     }
 
