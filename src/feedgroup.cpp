@@ -10,6 +10,7 @@
 
 #include <qlistview.h>
 #include <qdom.h>
+#include <qptrvector.h>
 
 #include <kdebug.h>
 
@@ -30,9 +31,18 @@ FeedGroup::FeedGroup(const QString& title) : TreeNode(), m_unread(0)
 
 FeedGroup::~FeedGroup()
 {
+    // FIXME: this is a workaround, since iterating with first and next doesn't work together with delete. We won't need that when using QValueList<TreeNode*> instead of QPtrList)
+    
+    QPtrVector<TreeNode> vec(m_children.count());
+    int j = 0;
     for (TreeNode* i = m_children.first(); i; i = m_children.next() )
-        delete i;
-    emit signalDestroyed(this);
+    {
+        vec.insert(j, i);
+        j++;
+    }
+
+    for (int i = 0; i < vec.count(); ++i)
+       delete vec[i];
 }
 
 ArticleSequence FeedGroup::articles()

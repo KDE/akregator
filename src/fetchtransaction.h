@@ -15,67 +15,81 @@
 
 namespace Akregator {
 
-    class FetchTransaction : public QObject {
-        Q_OBJECT
+class FetchTransaction : public QObject
+{
+    Q_OBJECT
 
-        public:
-            FetchTransaction(QObject *parent);
-            ~FetchTransaction();
+    public:
+        FetchTransaction(QObject *parent);
+        ~FetchTransaction();
 
-            void start();
-            void stop();
+        void start();
+        void stop();
 
-            void addFeed(Feed *f);
+        void addFeed(Feed *f);
 
-            int fetchesDone(){return m_fetchesDone;}
-            int totalFetches(){return m_totalFetches;}
+        int fetchesDone() { return m_fetchesDone; }
+        int totalFetches() { return m_totalFetches; }
 
-            void loadIcon(Feed *f);
-            void startFetchIcons();
+        void loadIcon(Feed *f);
+        void startFetchIcons();
 
-            void loadImage(Feed *f, Image *i);
-            void startFetchImages();
+        void loadImage(Feed *f, RSS::Image *i);
+        void startFetchImages();
 
-            bool isRunning(){return m_running;}
+        bool isRunning() { return m_running; }
 
-        signals:
-            void completed();
-            void fetched(Feed*);
-            void fetchError(Feed*);
+    signals:
+        void completed();
+        void fetched(Feed*);
+        void fetchError(Feed*);
 
-        private slots:
-            void slotFeedFetched(Feed *);
-            void slotFetchError(Feed *);
-            void slotFetchAborted(Feed *);
+    protected: // methods
 
-            void slotFaviconFetched(const QString &, const QPixmap &);
-            void slotImageFetched(const QPixmap &);
+        void connectToFeed(Feed* feed);
+        void disconnectFromFeed(Feed* feed);
 
-        private:
-            void doFetch(int c);
-            void feedDone(Feed *f);
+    protected slots:
+        
+        void slotNodeDestroyed(TreeNode* node);
+        
+    private: // methods
+        void doFetch(int c);
+        void feedDone(Feed *f);
 
-            void doFetchIcon(int c);
-            void doFetchImage(int c);
+        void doFetchIcon(int c);
+        void doFetchImage(int c);
 
-            QPtrList<Feed> m_fetchList;
-            QPtrList<Feed> m_currentFetches;
 
-            QPtrList<Feed> m_iconFetchList;
-            QDict<Feed> m_iconFetchDict;
+    private slots:
+        void slotFeedFetched(Feed *);
+        void slotFetchError(Feed *);
+        void slotFetchAborted(Feed *);
 
-            QPtrList<Image> m_imageFetchList;
-            QPtrList<Image> m_currentImageFetches;
-            QPtrDict<Feed> m_imageFetchDict;
+        void slotFaviconFetched(const QString &, const QPixmap &);
+        void slotImageFetched(const QPixmap &);
 
-            int m_totalFetches;
-            int m_fetchesDone;
+    private: // fields
 
-            int m_concurrentFetches;
-            bool m_running;
+        QPtrList<Feed> m_fetchList;
+        QPtrList<Feed> m_currentFetches;
 
-    };
-}
+        QPtrList<Feed> m_iconFetchList;
+        QDict<Feed> m_iconFetchDict;
+
+        QPtrList<RSS::Image> m_imageFetchList;
+        QPtrList<RSS::Image> m_currentImageFetches;
+        QPtrDict<Feed> m_imageFetchDict;
+
+        int m_totalFetches;
+        int m_fetchesDone;
+
+        int m_concurrentFetches;
+        bool m_running;
+
+};
+
+} // namespace Akregator
 
 #endif
 

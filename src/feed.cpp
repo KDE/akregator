@@ -126,7 +126,7 @@ Feed::Feed()
 
 Feed::~Feed()
 {
-    abortFetch();
+    slotAbortFetch();
 }
 
 QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
@@ -354,11 +354,6 @@ void Feed::slotSetProgress(unsigned long percent)
 }
 
 void Feed::slotAbortFetch()
-{
-    abortFetch();
-}
-
-void Feed::abortFetch()
 {
     if (m_loader)
         m_loader->abort();

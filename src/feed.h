@@ -60,7 +60,7 @@ namespace Akregator
             /** default constructor */
             Feed();
 
-            ~Feed();
+            virtual ~Feed();
             
             /** exports the feed settings to OPML */
             virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
@@ -145,9 +145,6 @@ namespace Akregator
              */
             void appendArticles(const Document &d);
 
-            /** abort fetching */
-            void abortFetch();
-
             /** returns whether a fetch error has occured */
             bool fetchErrorOccurred() { return m_fetchError; }
 
@@ -170,7 +167,7 @@ namespace Akregator
 
             /** returns if this node is a feed group (@c false here) */
             virtual bool isGroup() const { return false; }
-           
+
             /** returns the next node in the tree.
             Calling next() unless it returns 0 iterates through the tree in pre-order
             */

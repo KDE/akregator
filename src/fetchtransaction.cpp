@@ -56,7 +56,7 @@ void FetchTransaction::stop()
     m_running=false;
     Feed *f;
     for (f=m_currentFetches.first(); f; f=m_currentFetches.next())
-        f->abortFetch();
+        f->slotAbortFetch();
 
     Image *i;
     for (i=m_currentImageFetches.first(); i; i=m_currentImageFetches.next())
@@ -71,11 +71,7 @@ void FetchTransaction::stop()
 
 void FetchTransaction::addFeed(Feed *f)
 {
-    
-    connect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    connect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
-    connect (f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
-
+    connectToFeed(f);
     m_fetchList.append(f);
 }
 
@@ -123,10 +119,7 @@ void FetchTransaction::slotFetchAborted(Feed *f)
 void FetchTransaction::feedDone(Feed *f)
 {
     //kdDebug() << "feed done: "<<f->title()<<endl;
-    disconnect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    disconnect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
-    disconnect (f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
-    
+    disconnectFromFeed(f);    
     m_currentFetches.remove(f);
     m_fetchList.remove(f);
     
@@ -239,6 +232,33 @@ void FetchTransaction::slotImageFetched(const QPixmap &p)
     }
     m_currentImageFetches.remove((Image*)i);
     doFetchImage(0);
+}
+
+void FetchTransaction::connectToFeed(Feed* feed)
+{
+    connect (feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
+    connect (feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
+    connect (feed, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
+    connect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
+}
+
+void FetchTransaction::disconnectFromFeed(Feed* feed)
+{
+    disconnect (feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
+    disconnect (feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
+    disconnect (feed, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
+    disconnect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
+}
+
+void FetchTransaction::slotNodeDestroyed(TreeNode* node)
+{
+    Feed* feed = dynamic_cast<Feed*>(node);
+    if (!feed)
+        return;
+    m_fetchList.remove(feed);
+    m_iconFetchList.remove(feed);
+    m_imageFetchDict.remove(feed);
+    disconnectFromFeed(feed);
 }
 
 #include "fetchtransaction.moc"

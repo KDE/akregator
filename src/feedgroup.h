@@ -41,8 +41,8 @@ namespace Akregator
              */          
             FeedGroup(const QString& title = QString::null); 
             
-             /** Destructor. emits signalDestroyed to inform the world of our tragic demise */
-            ~FeedGroup();
+             /** Destructor.  */
+            virtual ~FeedGroup();
 
             /** returns recursively concatenated articles of children  
             @return an article sequence containing articles of children */
@@ -58,7 +58,7 @@ namespace Akregator
             
             /** Helps the rest of the app to decide if node should be handled as group or not. Use only where necessary, use polymorphism where possible. */
             virtual bool isGroup() const { return true; }
-            
+
             /** converts the feed group into OPML format for save and export and appends it to node @c parent in document @document.
             Children are processed and appended recursively.
             @param parent The parent element 

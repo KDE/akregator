@@ -315,9 +315,6 @@ void ArticleViewer::showSummary(FeedGroup* group)
     text += QString("</div>\n");
     text += "</div>\n"; // /headerbox
     
-    for( TreeNode *it = group; it != 0; it = it->nextSibling() )
-        kdDebug() << "title: " << it->title() << endl;
-
     renderContent(text);
 }
 

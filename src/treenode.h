@@ -98,9 +98,8 @@ public:
     @return whether the node is a feed group or not */
     
     virtual bool isGroup() const = 0;
-    
-    
-    /** exports node and child nodes to OPML (with akregator settings) 
+
+    /** exports node and child nodes to OPML (with akregator settings)
         @param parent the dom element the child node will be attached to
         @param document the opml document */
     

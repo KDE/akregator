@@ -73,13 +73,13 @@ void FeedsTree::setFeedList(FeedList* feedList)
     clear();
 
     disconnectFromFeedList(m_feedList);
-    connectToFeedList(feedList);
-        
-    m_feedList = feedList;
-
+    
     if (!feedList)
         return;
 
+    m_feedList = feedList;
+    connectToFeedList(feedList);
+    
     FeedGroup* rootNode = feedList->rootNode();
     if (!rootNode)
         return;
@@ -517,12 +517,9 @@ void FeedsTree::slotSelectionChanged(QListViewItem* item)
 
 void FeedsTree::slotItemRenamed(QListViewItem* item)
 {
-//    kdDebug() << "enter FeedsTree::slotItemRenamed item: " << item->text(0) << endl;
     TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
     if ( ni && ni->node() )
         ni->node()->setTitle( item->text(0) );
-//    kdDebug() << "leave FeedsTree::slotItemRenamed item: " << item->text(0) << endl;
-    
 }
 
 void FeedsTree::slotFeedFetchStarted(Feed* feed)
@@ -570,7 +567,7 @@ void FeedsTree::slotNodeAdded(TreeNode* node)
     // we aren't interested in nodes whose parents we don't know 
     if (!parentItem)
         return;
-
+    
     TreeNodeItem* item = findNodeItem(node);
     
     QPtrList<TreeNode> children = parent->children();
@@ -717,14 +714,12 @@ void FeedsTree::slotNodeDestroyed(TreeNode* node)
 
 void FeedsTree::slotNodeChanged(TreeNode* node)
 {
-//     kdDebug() << "enter FeedsTree::slotNodeChanged node: " << (node ? node->title() : "null") << endl;
-    TreeNodeItem* item = findNodeItem(node);    
+    TreeNodeItem* item = findNodeItem(node);
     if (item)
     {    
         item->nodeChanged();
         triggerUpdate();
     }    
-//     kdDebug() << "leave FeedsTree::slotNodeChanged node: " << (node ? node->title() : "null") << endl;
 }
 
 QDragObject *FeedsTree::dragObject()
