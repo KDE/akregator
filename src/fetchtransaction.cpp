@@ -104,6 +104,7 @@ void FetchTransaction::feedDone(Feed *f)
     if (m_fetchList.isEmpty() && m_currentFetches.isEmpty())
     {
         startFetchImages();
+        startFetchIcons();
         emit completed();
         return;
     }
