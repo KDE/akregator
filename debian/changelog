@@ -1,3 +1,10 @@
+akregator (1.0-beta7-1) unstable; urgency=low
+
+  * new upstream.
+  * htmlentities now are supported (closes: #263213).
+
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 15 Oct 2004 10:31:35 +0200
+
 akregator (1.0-beta6-2) unstable; urgency=low
 
   * Rewrote a dependency wrt libkcal2-dev (closes: #271182)
