@@ -11,7 +11,6 @@
 #include "article.h"
 #include "tools_p.h"
 
-#include <kdebug.h>
 #include <krfcdate.h>
 #include <kurl.h>
 #include <kurllabel.h>
@@ -143,7 +142,6 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		md5Machine.update(d->title.utf8());
 		md5Machine.update(d->description.utf8());
 		d->guid = QString(md5Machine.hexDigest().data());
-		kdDebug() << d->guid << endl;
 	}
 
     // TODO: iterate among all meta nodes..
