@@ -123,10 +123,10 @@ void Part::setupActions()
     new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", m_view, SLOT(slotMoveCurrentNodeRight()), actionCollection(), "feedstree_move_right" );
 
     // article list
-    KToggleAction* tkf = new KToggleAction(i18n("&Keep Article"), QString::null, "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
+    KToggleAction* tkf = new KToggleAction(i18n("&Keep Article"), "flag", "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
     tkf->setChecked(false);
 
-    new KAction(i18n("&Delete Article"), QString::null, "Delete", m_view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
+    new KAction(i18n("&Delete Article"), "editdelete", "Delete", m_view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
     
 
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark Article" ),
@@ -149,7 +149,7 @@ void Part::setupActions()
 
 
     // article viewer
-    new KAction( i18n("Open Article"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
+    new KAction( i18n("Open Article in Tab"), "tab_new", "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
     new KAction( i18n("Open Article in Background Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
     new KAction( i18n("Open Article in External Browser"), QString::null, "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
 }

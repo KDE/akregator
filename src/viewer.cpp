@@ -215,13 +215,13 @@ void Viewer::slotCompleted()
 }
 
 void Viewer::slotScrollUp()
-{ 
-    view()->scrollBy(0,-10); 
+{
+    view()->scrollBy(0,-10);
 }
 
 void Viewer::slotScrollDown()
-{ 
-    view()->scrollBy(0,10); 
+{
+    view()->scrollBy(0,10);
 }
 
 void Viewer::slotZoomIn()
