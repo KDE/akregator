@@ -117,14 +117,14 @@ bool aKregator::loadPart()
             createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
         }
-        return 1;
+        return true;
     }
     else
     {
-        KMessageBox::error(this, i18n("Could not find our part."));
-        return 0;
-    }   
-    
+        KMessageBox::error(this, i18n("Could not find our part. Please check your installation."));
+        return false;
+    }
+
 }
 
 void aKregator::loadLastOpenFile()
