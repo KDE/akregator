@@ -20,6 +20,7 @@
 
 #include <qaccel.h>
 #include <qclipboard.h>
+#include <qpaintdevicemetrics.h>
 
 #include "viewer.h"
 #include "akregator_run.h"
@@ -81,6 +82,11 @@ bool Viewer::closeURL()
     return KHTMLPart::closeURL();
 }
 
+int Viewer::pointsToPixel(int pointSize) const
+{
+    const QPaintDeviceMetrics metrics(view());
+    return ( pointSize * metrics.logicalDpiY() + 36 ) / 72 ;
+}
 
 void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
 {

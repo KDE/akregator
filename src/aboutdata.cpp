@@ -12,7 +12,7 @@
 namespace Akregator {
 
 AboutData::AboutData()
-    : KAboutData("akregator", I18N_NOOP("Akregator"), "1.0", I18N_NOOP("A KDE Feed Aggregator"),
+    : KAboutData("akregator", I18N_NOOP("Akregator"), AKREGATOR_VERSION, I18N_NOOP("A KDE Feed Aggregator"),
                  License_GPL, I18N_NOOP("(C) 2004, 2005 Akregator developers"), 0,
                      "http://akregator.sourceforge.net/")
 {

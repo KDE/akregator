@@ -11,6 +11,8 @@
 #include <kaboutdata.h>
 #include <kdepimmacros.h>
 
+#define AKREGATOR_VERSION "1.0"
+
 namespace Akregator {
 /**
 @author Teemu Rytilahti

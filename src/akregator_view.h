@@ -31,6 +31,7 @@ class KListViewItem;
 
 namespace Akregator
 {
+    class AboutPageViewer;
     class ArticleFilter;
     class ArticleList;
     class ArticleListItem;
@@ -315,6 +316,7 @@ namespace Akregator
              * A tab widget for multiple viewers.
              */
             TabWidget *m_tabs;
+            
             QToolButton *m_tabsClose;
             QWidget *m_mainTab;
             Frame *m_mainFrame;
@@ -338,7 +340,8 @@ namespace Akregator
             QTimer* m_expiryTimer;
 
             bool m_shuttingDown;
-
+            bool m_displayingAboutPage;
+            
             QPixmap m_keepFlagIcon;
     };
 }

@@ -46,8 +46,8 @@ namespace Akregator
             /** This gets emitted when url gets clicked */
             void urlClicked(const KURL& url, bool background=false);
 
-        protected:
-            KURL m_url;
+            protected: // methods
+            int pointsToPixel(int points) const;
 
         protected slots:
             virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
@@ -78,6 +78,9 @@ namespace Akregator
             void slotCompleted();
 
             virtual void slotSelectionChanged();
+
+        protected: // attributes
+            KURL m_url;
             
         private:
             /**

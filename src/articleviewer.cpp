@@ -7,7 +7,6 @@
 
 #include <qdatetime.h>
 #include <qevent.h>
-#include <qpaintdevicemetrics.h>
 #include <qscrollview.h>
 #include <qvaluelist.h>
 
@@ -22,6 +21,9 @@
 #include <kstandarddirs.h>
 #include <kshell.h>
 
+#include <libkdepim/kfileio.h>
+
+#include "aboutdata.h"
 #include "akregator_run.h"
 #include "akregatorconfig.h"
 #include "articleviewer.h"
@@ -43,12 +45,6 @@ static inline QString stripTags(const QString& str)
     return QString(str).replace(QRegExp("<[^>]*>"), "");
 }
 
-int ArticleViewer::pointsToPixel(int pointSize) const
-{
-    const QPaintDeviceMetrics metrics(view());
-    return ( pointSize * metrics.logicalDpiY() + 36 ) / 72 ;
-}
-
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
@@ -64,37 +60,6 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     m_imageDir="file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/");
     m_htmlFooter = "</body></html>";
-}
-
-void ArticleViewer::openDefault()
-{
-    QString text;
-    text += QString("<h1>%1</h1>\n"
-                    "<p>%2</p><ul>\n"
-                    "<li>%3</li><ul>\n"
-                    "<li><b>%4</b>%5</li>\n"
-                    "<li><b>%6</b>%7</li>\n"
-                    "<li><b>%8</b>%9</li>")
-                    .arg(i18n("Welcome to Akregator"))
-                    .arg(i18n("Use the tree to manage your feeds."))
-                    .arg(i18n("Right click a folder, such as \"All Feeds\", and choose:"))
-                    .arg(i18n("Add Feed..."))
-                    .arg(i18n(" to add a new feed to your feed list."))
-                    .arg(i18n("New Folder..."))
-                    .arg(i18n(" to add a new folder to your list."))
-                    .arg(i18n("Edit..."))
-                    .arg(i18n(" to edit an existing feed or folder."));
-
-    text += QString("<li><b>%1</b>%2</li>\n"
-                    "<li><b>%3</b>%4</li></ul></ul>\n"
-                    "<p>%5</p>")
-                    .arg(i18n("Delete"))
-                    .arg(i18n(" to remove an existing feed or folder."))
-                    .arg(i18n("Fetch"))
-                    .arg(i18n(" to update a feed or folder."))
-                    .arg(i18n("Click \"Fetch All\" to update all feeds."));
-
-    renderContent(text);
 }
 
 void ArticleViewer::generateCSS()
@@ -186,6 +151,37 @@ void ArticleViewer::reload()
     beginWriting();
     write(m_currentText);
     endWriting();
+}
+
+void ArticleViewer::displayAboutPage()
+{
+    QString location = locate("data", "akregator/about/main.html");
+    QString content = KPIM::kFileToString(location);
+    begin(KURL( location ));
+    QString info =
+            i18n("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
+            "--- end of comment ---",
+    "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
+            "<p>Akregator is an RSS feed aggregator for the K Desktop Environment. "
+            "Feed aggregators provide a convenient way to browse different kinds of "
+            "content, including news, blogs, and other content from online sites. "
+            "Instead of checking all your favorite web sites manually for updates, "
+            "Akregator collects the content for you.</p>"
+            "<p>For more information about using Akregator, check the "
+            "<a href=\"%3\">Akregator website</a> as well as the <a href=\"%2\">Akregator handbook</a>.</p>"
+            "<p>We hope that you will enjoy Akregator.</p>\n"
+            "<p>Thank you,</p>\n"
+            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>")
+            .arg(AKREGATOR_VERSION) // Akregator version
+            .arg("help:/akregator/index.html") // Akregator help:// URL
+            .arg("http://akregator.sourceforge.net/"); // Akregator homepage URL
+
+    QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
+    QString appTitle = i18n("Akregator");
+    QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
+    QString quickDescription = i18n("An RSS feed reader for the K Desktop Environment.");
+    write(content.arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
+    end();
 }
 
 QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)

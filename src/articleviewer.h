@@ -34,13 +34,12 @@ namespace Akregator
             /** Constructor */
             ArticleViewer(QWidget* parent, const char* name);
 
-            /** Opens the welcome message. */
-            void openDefault();
-            
             /** Repaints the view. */
             void reload();
+
+            void displayAboutPage();
             
-            public slots: 
+            public slots:
 	    
             // Commandment: We are your interfaces.
             // You shall not use strange interfaces before us.
@@ -74,8 +73,6 @@ namespace Akregator
 
         private:
 
-            int pointsToPixel(int pointSize) const;
-                    
             void showSummary(FeedGroup* group);
             void showSummary(Feed *f);
 

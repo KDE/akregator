@@ -31,6 +31,7 @@
 #include "treenode.h"
 #include "treenodeitem.h"
 #include "notificationmanager.h"
+#include "viewer.h" // replace by aboutpageviewer.h
 
 #include <kaction.h>
 #include <kapplication.h>
@@ -97,6 +98,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_part = part;
     m_feedList = new FeedList();
     m_shuttingDown = false;
+    m_displayingAboutPage = false;
     m_currentFrame = 0L;
     setFocusPolicy(QWidget::StrongFocus);
 
@@ -112,7 +114,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect (m_transaction, SIGNAL(completed()), this, SLOT(slotFetchesCompleted()));
 
     m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
-
+    
     m_tree->setFeedList(m_feedList);
     
     connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNodeItem*, const QPoint&)),
@@ -127,6 +129,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
+    
     connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
     m_tabsClose = new QToolButton( m_tabs );
     m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
@@ -222,8 +225,6 @@ View::View( Part *part, QWidget *parent, const char *name)
     connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
 
-    m_articleViewer->openDefault();
- 
     m_feedSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
 
@@ -242,6 +243,11 @@ View::View( Part *part, QWidget *parent, const char *name)
             slotNormalView();
     }
 
+    m_articles->hide();
+    m_searchBar->hide();
+    m_articleViewer->displayAboutPage();
+    m_displayingAboutPage = true;
+    
     m_fetchTimer=new QTimer(this);
     connect( m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()) );
     m_fetchTimer->start(1000*60);
@@ -800,6 +806,14 @@ void View::slotMoveCurrentNodeRight()
 
 void View::slotNodeSelected(TreeNode* node)
 {
+    if (m_displayingAboutPage)
+    {
+        if (m_viewMode != CombinedView)
+            m_articles->show();
+        m_searchBar->show();
+        m_displayingAboutPage = false;
+    }
+    
     m_tabs->showPage(m_mainTab);
 
     if (m_viewMode == CombinedView)
