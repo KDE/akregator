@@ -800,7 +800,7 @@ void aKregatorView::slotNextUnread()
 
 void aKregatorView::slotMarkAllRead()
 {
-   markAllRead(m_tree->currentItem());
+    markAllRead(m_tree->firstChild());
 }
 
 void aKregatorView::slotOpenHomepage()

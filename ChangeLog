@@ -7,14 +7,15 @@ Changes after 1.0b2:
 
 New Features:
 
-	 Configuration dialog added -tpr
-	 Ability to mark all entries as read on exit -tpr
-	 Ability to change middle mouse button behaviour in browser -tpr
+       - Configuration dialog added -tpr
+       - Ability to mark all entries as read on exit -tpr
+       - Ability to change middle mouse button behaviour in browser -tpr
 
 Bug Fixes:
 
 #82618 - Don't crash if there's no kpart available -tpr
 #82691 - Don't minimize but close aKregator when session is shutting down -tpr
+       - Mark all read marks everything as read -tpr
 
 Changes from 1.0b1 to 1.0b2:
 -----------------------------
