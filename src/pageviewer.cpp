@@ -27,12 +27,11 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     setJavaEnabled(true);
     setMetaRefreshEnabled(true);
     setPluginsEnabled(true);
-    setDNDEnabled(false);
+    setDNDEnabled(true);
     setAutoloadImages(true);
     setStatusMessagesEnabled(true);
 
-    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)),
-                           this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
+    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
 }
 
 void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)

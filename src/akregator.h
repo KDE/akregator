@@ -60,7 +60,7 @@ protected:
      * with @ref saveProperties
      */
     void readProperties(KConfig *);
-
+    
 private slots:
     void fileNew();
     void fileOpen();
@@ -72,6 +72,7 @@ private slots:
     void applyNewToolbarConfig();
 
     void quitProgram();
+    void partChanged(KParts::Part *p);
 
 private:
     void setupAccel();

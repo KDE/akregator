@@ -55,6 +55,8 @@ namespace Akregator
              */
             static KAboutData *createAboutData();
 
+        void changePart(KParts::Part *p);
+            
 	    void setStatusBar(const QString &text);
         protected:
             /**
@@ -67,6 +69,9 @@ namespace Akregator
              */
             virtual bool saveFile();
 
+        signals:
+            void partChanged(KParts::Part *p);
+            
         protected slots:
             void fileOpen();
             void fileSaveAs();

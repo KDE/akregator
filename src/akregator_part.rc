@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="4">
+<kpartgui name="akregator_part" version="5">
 <MenuBar>
   <Menu name="file">
     <Action name="file_open"/>
@@ -7,7 +7,7 @@
     <Action name="file_save"/>
     <Action name="file_save_as"/>
   </Menu>
-  <Menu name="feed">
+  <Menu name="edit">
     <text>&amp;Feed</text>
     <Action name="feed_add"/>
     <Action name="feed_add_group"/>

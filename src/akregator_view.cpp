@@ -34,6 +34,7 @@
 #include <kstandarddirs.h>
 #include <klistview.h>
 #include <khtml_part.h>
+#include <khtmlview.h>
 #include <kdebug.h>
 #include <krun.h>
 #include <kurl.h>
@@ -415,6 +416,13 @@ void aKregatorView::slotTabChanged(QWidget *w)
         m_tabsClose->setEnabled(false);
     else
         m_tabsClose->setEnabled(true);
+    
+    KParts::Part *p;
+    if (w==m_mainTab)
+        p=m_part;
+    else
+        p=(static_cast<KHTMLView *>(w))->part();
+    m_part->changePart(p);
 }
 
 void aKregatorView::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)

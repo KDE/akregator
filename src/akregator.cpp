@@ -55,6 +55,7 @@ aKregator::aKregator()
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 
+            connect (m_part, SIGNAL(partChanged(KParts::Part *)), this, SLOT(partChanged(KParts::Part *)));
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
 
@@ -88,6 +89,11 @@ aKregator::~aKregator()
 {
    Settings::setLastOpenFile( m_part->url().url() );
    Settings::writeConfig();
+}
+
+void aKregator::partChanged(KParts::Part *p)
+{
+    createGUI(p);
 }
 
 void aKregator::load(const KURL& url)

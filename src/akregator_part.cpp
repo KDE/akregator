@@ -99,6 +99,11 @@ void aKregatorPart::setModified(bool modified)
     ReadWritePart::setModified(modified);
 }
 
+void aKregatorPart::changePart(KParts::Part *p)
+{
+    emit partChanged(p);
+}
+
 void aKregatorPart::setStatusBar(const QString &text)
 {
    emit setStatusBarText(text);
