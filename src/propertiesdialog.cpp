@@ -201,6 +201,16 @@ void FeedPropertiesDialog::setMaxArticleNumber(int number)
     widget->sb_maxArticleNumber->setValue(number);             
 }    
 
+void FeedPropertiesDialog::setMarkImmediatelyAsRead(bool enabled)
+{
+    widget->checkBox_markRead->setChecked(enabled);
+}
+
+bool FeedPropertiesDialog::markImmediatelyAsRead() const
+{
+    return widget->checkBox_markRead->isChecked();
+}
+      
 void FeedPropertiesDialog::selectFeedName()
 {
    widget->feedNameEdit->selectAll();

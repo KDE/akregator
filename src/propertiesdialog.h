@@ -38,6 +38,7 @@ namespace Akregator
          Feed::ArchiveMode archiveMode() const;
          int maxArticleAge() const;
          int maxArticleNumber() const;
+         bool markImmediatelyAsRead() const;
                
          void setFeedName(const QString& title);
          void setUrl(const QString& url);
@@ -46,7 +47,7 @@ namespace Akregator
          void setArchiveMode(Feed::ArchiveMode mode);
          void setMaxArticleAge(int age);
          void setMaxArticleNumber(int number);
-         
+         void setMarkImmediatelyAsRead(bool enabled);
          void selectFeedName();
       private:
          FeedPropertiesWidget *widget;

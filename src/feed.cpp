@@ -62,7 +62,7 @@ Feed* Feed::fromOPML(QDomElement e)
         
         QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
-        bool useCustomFetchInterval = e.attribute("y") == "true" ? true : false;
+        bool useCustomFetchInterval = e.attribute("y") == "true";
         
         QString htmlUrl = e.attribute("htmlUrl");
         QString description = e.attribute("description");
@@ -70,6 +70,7 @@ Feed* Feed::fromOPML(QDomElement e)
         ArchiveMode archiveMode = stringToArchiveMode(e.attribute("archiveMode"));
         int maxArticleAge = e.attribute("maxArticleAge").toUInt();
         int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
+        bool markImmediatelyAsRead = e.attribute("markImmediatelyAsRead") == "true";
         uint id = e.attribute("id").toUInt();
         
         feed = new Feed();
@@ -82,7 +83,8 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setArchiveMode(archiveMode);
         feed->setFetchInterval(fetchInterval);
         feed->setMaxArticleAge(maxArticleAge);
-        feed->setMaxArticleNumber(maxArticleNumber);  
+        feed->setMaxArticleNumber(maxArticleNumber);
+        feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
     }   
     
     return feed;
@@ -114,7 +116,8 @@ Feed::Feed()
     : TreeNode()
         , m_archiveMode(globalDefault) 
         , m_maxArticleAge(60) 
-        , m_maxArticleNumber(1000) 
+        , m_maxArticleNumber(1000)
+        , m_markImmediatelyAsRead(false)
         , m_transaction(0)
         , m_fetchError(false)
         , m_fetchTries(0)
@@ -146,6 +149,9 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
     el.setAttribute( "archiveMode", archiveModeToString(m_archiveMode) );
     el.setAttribute( "maxArticleAge", m_maxArticleAge );
+    el.setAttribute( "maxArticleNumber", m_maxArticleNumber );
+    if (m_markImmediatelyAsRead)
+        el.setAttribute( "markImmediatelyAsRead", "true" );
     el.setAttribute( "maxArticleNumber", m_maxArticleNumber );
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );
@@ -268,7 +274,11 @@ void Feed::appendArticles(const Document &d)
             
             if ( old == m_articles.end() ) // article not in list
             {
-                mya.setStatus(MyArticle::New);
+                if (!markImmediatelyAsRead())
+                    mya.setStatus(MyArticle::New);
+                else
+                    mya.setStatus(MyArticle::Read);
+                
                 mya.offsetFetchTime(nudge);
                 nudge--;
                 appendArticle(mya);

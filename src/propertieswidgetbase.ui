@@ -92,23 +92,6 @@
                             </widget>
                         </hbox>
                     </widget>
-                    <spacer row="4" column="0">
-                        <property name="name">
-                            <cstring>spacer9</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>20</width>
-                                <height>140</height>
-                            </size>
-                        </property>
-                    </spacer>
                     <widget class="QLayoutWidget" row="3" column="0">
                         <property name="name">
                             <cstring>layout7</cstring>
@@ -195,6 +178,31 @@
                         </property>
                         <property name="text">
                             <string>Use custom update interval</string>
+                        </property>
+                    </widget>
+                    <spacer row="5" column="0">
+                        <property name="name">
+                            <cstring>spacer9</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>20</width>
+                                <height>140</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QCheckBox" row="4" column="0">
+                        <property name="name">
+                            <cstring>checkBox_markRead</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Mark articles immediately as read</string>
                         </property>
                     </widget>
                 </grid>

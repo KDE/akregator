@@ -110,6 +110,16 @@ namespace Akregator
             /** sets the article count limit used in @c limitArticleNumber archive mode **/
             void setMaxArticleNumber(int maxArticleNumber) { m_maxArticleNumber = maxArticleNumber; }
 
+            /** if @c true, new articles are marked immediately as read instead of new/unread. Useful for high-traffic feeds. */
+            bool markImmediatelyAsRead() const { return m_markImmediatelyAsRead; }
+
+            void setMarkImmediatelyAsRead(bool enabled)
+            {
+                m_markImmediatelyAsRead = enabled;
+                if (enabled)
+                    slotMarkAllArticlesAsRead();
+            }
+
             /** returns the favicon */
             const QPixmap& favicon() const { return m_favicon; }
             
@@ -148,16 +158,17 @@ namespace Akregator
             /** returns whether a fetch error has occured */
             bool fetchErrorOccurred() { return m_fetchError; }
 
+
             /** returns the unread count for this feed */
             virtual int unread() const { return m_unread; }
+
+            /** sets the unread count for this feed */
+            void setUnread(int unread);
 
             /** returns the number of total articles in this feed
             @return number of articles */
     
             virtual int totalCount() const;
-
-            /** sets the unread count for this feed */
-            void setUnread(int unread);
 
             /** returns if the article archive of this feed is loaded */
             bool isMerged() const { return m_merged; }
@@ -172,7 +183,7 @@ namespace Akregator
             Calling next() unless it returns 0 iterates through the tree in pre-order
             */
             virtual TreeNode* next();
-            
+
         public slots:
             /** starts fetching */
             void fetch(bool followDiscovery=false, FetchTransaction *f = 0);
@@ -233,6 +244,7 @@ namespace Akregator
             ArchiveMode m_archiveMode; 
             int m_maxArticleAge; 
             int m_maxArticleNumber;
+            bool m_markImmediatelyAsRead;
             
             Document m_document;            
             FetchTransaction* m_transaction;

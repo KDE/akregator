@@ -862,6 +862,7 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
     dlg->selectFeedName();
     dlg->setMaxArticleAge(60);
     dlg->setMaxArticleNumber(1000);
+    dlg->setMarkImmediatelyAsRead(false);
     dlg->setFetchInterval(30);
     if (!autoExec)
         if (dlg->exec() != QDialog::Accepted) 
@@ -876,6 +877,7 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
     feed->setArchiveMode(dlg->archiveMode());
     feed->setMaxArticleAge(dlg->maxArticleAge());
     feed->setMaxArticleNumber(dlg->maxArticleNumber());
+    feed->setMarkImmediatelyAsRead(dlg->markImmediatelyAsRead());
     feed->setNotificationMode(true, true);    
     feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
@@ -976,6 +978,7 @@ void View::slotFeedModify()
     dlg->setArchiveMode(feed->archiveMode());
     dlg->setMaxArticleAge(feed->maxArticleAge());
     dlg->setMaxArticleNumber(feed->maxArticleNumber());
+    dlg->setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
     
     if (dlg->exec() == QDialog::Accepted) 
     {   
@@ -987,6 +990,7 @@ void View::slotFeedModify()
         feed->setArchiveMode(dlg->archiveMode());
         feed->setMaxArticleAge(dlg->maxArticleAge());
         feed->setMaxArticleNumber(dlg->maxArticleNumber());
+        feed->setMarkImmediatelyAsRead(dlg->markImmediatelyAsRead());
         feed->setNotificationMode(true, true);
         //m_part->setModified(true);
         if ( feed->isMerged() )
