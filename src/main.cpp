@@ -62,7 +62,7 @@ int main(int argc, char **argv)
         {
             widget = new aKregator;
             if(!widget->loadPart()) return 1;
-            widget->loadLastOpenFile();
+            widget->loadStandardFile();
             app.setHaveWindowLoaded(true);
             widget->show();
         }

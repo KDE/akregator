@@ -62,7 +62,7 @@ public:
      
     bool loadPart();
 
-    void loadLastOpenFile();
+    void loadStandardFile();
 
     /**
      * Default Destructor

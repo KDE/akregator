@@ -88,7 +88,7 @@ namespace Akregator
             
             virtual bool openURL(const KURL& url);
             virtual bool closeURL();
-            virtual void openLastFeedList();
+            virtual void openStandardFeedList();
 
             bool loading (){return m_loading;}
             
@@ -103,7 +103,6 @@ namespace Akregator
              * of the group.
              */
             virtual void addFeedToGroup(const QString& url, const QString& group);
-            
             
         protected:
             /**
@@ -132,6 +131,8 @@ namespace Akregator
 
         private:
             void readRecentFileEntries();
+            bool isStandardFeedList();
+            bool populateStandardFeeds();
 
             bool m_loading;
 

@@ -208,9 +208,75 @@ void aKregatorPart::openURLDelayed()
     inherited::openURL(m_delayURL);
 }
 
-void aKregatorPart::openLastFeedList()
+void aKregatorPart::openStandardFeedList()
 {
-    openURL(Settings::lastOpenFile());
+    openURL(KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml");
+}
+
+bool aKregatorPart::isStandardFeedList()
+{
+    QString stdF="file:"+KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
+    if (url().url()==stdF)
+        return true;
+    return false;
+}
+
+bool aKregatorPart::populateStandardFeeds()
+{
+    QString stdF=KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
+    QFile file(stdF);
+
+    if ( !file.open( IO_WriteOnly ) ) {
+        return false;
+    }
+    QTextStream stream( &file );
+    stream.setEncoding(QTextStream::UnicodeUTF8);
+    
+    QDomDocument doc;
+    QDomProcessingInstruction z = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
+    doc.appendChild( z );
+    
+    QDomElement root = doc.createElement( "opml" );
+    root.setAttribute("version","1.0");
+    doc.appendChild( root );
+
+    QDomElement head = doc.createElement( "head" );
+    root.appendChild(head);
+
+    QDomElement text = doc.createElement( "text" );
+    text.appendChild(doc.createTextNode(i18n("Feeds")));
+    head.appendChild(text);
+
+    QDomElement body = doc.createElement( "body" );
+    root.appendChild(body);
+
+    QDomElement mainFolder = doc.createElement( "outline" );
+    mainFolder.setAttribute("text","KDE");
+    body.appendChild(mainFolder);
+    
+    QDomElement dot = doc.createElement( "outline" );
+    dot.setAttribute("text",i18n("KDE Dot News"));
+    dot.setAttribute("xmlUrl","http://www.kde.org/dotkdeorg.rdf");
+    mainFolder.appendChild(dot);
+
+    QDomElement plan = doc.createElement( "outline" );
+    plan.setAttribute("text",i18n("Planet KDE"));
+    plan.setAttribute("xmlUrl","http://planetkde.org/rss20.xml");
+    mainFolder.appendChild(plan);
+
+    QDomElement apps = doc.createElement( "outline" );
+    apps.setAttribute("text",i18n("KDE Apps"));
+    apps.setAttribute("xmlUrl","http://www.kde.org/dot/kde-apps-content.rdf");
+    mainFolder.appendChild(apps);
+
+    QDomElement look = doc.createElement( "outline" );
+    look.setAttribute("text",i18n("KDE Look"));
+    look.setAttribute("xmlUrl","http://www.kde.org/kde-look-content.rdf");
+    mainFolder.appendChild(look);
+
+    stream<<doc.toString();
+
+    return true;
 }
 
 bool aKregatorPart::openFile()
@@ -219,7 +285,18 @@ bool aKregatorPart::openFile()
     QFile file(m_file);
     if (file.open(IO_ReadOnly) == false)
     {
-        return false;
+        if (isStandardFeedList())
+        {
+            if (populateStandardFeeds())
+            {
+                if (file.open(IO_ReadOnly) == false)
+                    return false;
+            }
+            else    
+                return false;
+        }
+        else
+            return false;
     }
 
     m_loading=true;

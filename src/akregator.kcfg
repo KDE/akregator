@@ -3,15 +3,6 @@
 <!-- Author: Stanislav Karchebny, berk@upnet.ru -->
 <kcfg>
   <kcfgfile name="akregatorrc"/>
-
-  <group name="Files">
-     <entry name="LastOpenFile" key="Last Open File" type="Path">
-        <label>Last Open File</label>
-        <default></default>
-        <whatsthis>A pathname of last open file</whatsthis>
-     </entry>
-  </group>
-
   <group name="View">
      <entry name="QuickFilter" key="Quick Filter" type="Int">
         <label>Quick Filter</label>

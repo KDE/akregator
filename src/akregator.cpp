@@ -32,6 +32,8 @@
 
 #include <klibloader.h>
 #include <kmessagebox.h>
+#include <kglobal.h>
+#include <kstandarddirs.h>
 #include <kstatusbar.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -143,10 +145,11 @@ bool aKregator::loadPart()
 
 }
 
-void aKregator::loadLastOpenFile()
+void aKregator::loadStandardFile()
 {
    show();
-   load( Settings::lastOpenFile() );
+   QString file=KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
+   load(file);
 }
 
 aKregator::~aKregator()
@@ -294,30 +297,14 @@ void aKregator::applyNewToolbarConfig()
 
 void aKregator::fileOpen()
 {
-    // this slot is called whenever the File->Open menu is selected,
-    // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
-    // button is clicked
     KURL url =
         KFileDialog::getOpenURL( QString::null, QString::null, this );
 
     if (url.isEmpty() == false)
     {
-        // About this function, the style guide (
-        // http://developer.kde.org/documentation/standards/kde/style/basics/index.html )
-        // says that it should open a new window if the document is _not_
-        // in its initial state.  This is what we do here..
-        if ( m_part->url().isEmpty() && ! m_part->isModified() )
-        {
-            // we open the file in this window...
-            load( url );
-        }
-        else
-        {
-            // we open the file in a new window...
-            aKregator* newWin = new aKregator;
-            newWin->load( url );
-            newWin->show();
-        }
+        aKregator* newWin = new aKregator;
+        newWin->load( url );
+        newWin->show();
     }
 }
 
@@ -353,7 +340,6 @@ bool aKregator::queryExit()
     if( Settings::markAllFeedsReadOnExit() )
         emit markAllFeedsRead();
     
-    Settings::setLastOpenFile( m_part->url().url() );
     Settings::writeConfig();  
     return KParts::MainWindow::queryExit();
 }
