@@ -61,54 +61,25 @@ class MainWindow : public KParts::MainWindow
 {
     Q_OBJECT
 public:
-    /**
-     * Default Constructor
-     */
-    MainWindow();
-    
-    /**
-     * Loads the part
-     * @return Whether the part has been successfully created or not.
-     */
-    bool loadPart();
 
+    MainWindow();
+    virtual ~MainWindow();
+    
     /**
      * Creates the progress widget in the status bar and the ProgressDialog
      * and connects them. 
      */
     void setupProgressWidgets();
 
-    /** 
-     * Loads standard feed list
-    */
-    void loadStandardFile();
-
-    /**
-     * Default Destructor
-     */
-    virtual ~MainWindow();
-
-    /**
-     * Use this method to load whatever file/URL you have.
-     */
-    //void load(const KURL& url);
-
-    /**
-      * Add a feed to a group.
-      * @param url The URL of the feed to add.
-      * @param group The name of the folder into which the feed is added.
-      *
-      * If the group does not exist, it is created.  The feed is added as the last member
-      * of the group.
-      */
-    void addFeedToGroup(const QString& url, const QString& group);
-    
     virtual void setCaption(const QString &);
 
-
+   /**
+    Loads the part
+    @return Whether the part has been successfully created or not.
+    */
+    bool loadPart();
+    
 public slots:
-    void slotSetStatusBarText(const QString & s);
-    void slotActionStatusText(const QString &s);
     void slotClearStatusText();
 
 protected:
@@ -133,36 +104,26 @@ protected:
      * Reimplemented to say if app will be running in system tray if necessary
      */
     virtual bool queryClose(); 
-     
+
+private:
+     void setupActions();
+    void connectActionCollection(KActionCollection *coll);
+    
+    KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
+
 private slots:
-    void fileNew();
-    void fileOpen();
+  
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
     
     void applyNewToolbarConfig();
 
-    //void partChanged(KParts::ReadOnlyPart *p);
-    //void loadingProgress(int percent);
-
 private:
-    void callObjectSlot( QObject *obj, const char *name, const QVariant &argument );
-
-    void setupActions();
-    void connectActionCollection(KActionCollection *coll);
-    void disconnectActionCollection(KActionCollection *coll);
-
-    KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
     BrowserInterface *m_browserIface;
-    /**
-     * Our part
-     */
+  
     Akregator::Part *m_part;
-    KParts::PartManager* m_manager;
-    //KParts::ReadOnlyPart *m_activePart;
     KPIM::StatusbarProgressWidget *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
-    QString m_permStatusText;
 };
 
 } // namespace Akregator

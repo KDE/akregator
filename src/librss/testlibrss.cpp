@@ -60,7 +60,7 @@ int main( int argc, char **argv )
 {
 	KAboutData aboutData( "testlibrss", "testlibrss", "0.1" );
 	KCmdLineArgs::init( argc, argv, &aboutData );
-        KCmdLineArgs::addCmdLineOptions( options );
+    KCmdLineArgs::addCmdLineOptions( options );
 	KApplication app;
 
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();

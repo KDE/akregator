@@ -284,6 +284,8 @@ void Part::setCanceled(KParts::Part* part, const QString &s)
 void Part::readProperties(KConfig* config)
 {
     m_backedUpList = false;
+    openStandardFeedList();
+    
     if(m_view)
         m_view->readProperties(config);
 }
@@ -336,16 +338,8 @@ void Part::openStandardFeedList()
         m_standardListLoaded = true;
 }
 
-bool Part::populateStandardFeeds()
+QDomDocument Part::createDefaultFeedList()
 {
-    QFile file(m_standardFeedList);
-
-    if ( !file.open( IO_WriteOnly ) ) {
-        return false;
-    }
-    QTextStream stream( &file );
-    stream.setEncoding(QTextStream::UnicodeUTF8);
-
     QDomDocument doc;
     QDomProcessingInstruction z = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
     doc.appendChild( z );
@@ -393,59 +387,53 @@ bool Part::populateStandardFeeds()
     look.setAttribute("xmlUrl","http://www.kde.org/kde-look-content.rdf");
     mainFolder.appendChild(look);
 
-    stream<<doc.toString();
-
-    return true;
+    return doc;
 }
 
 bool Part::openFile()
 {
+    QString str;
     // m_file is always local so we can use QFile on it
     QFile file(m_file);
-    if (file.open(IO_ReadOnly) == false)
+    if (file.open(IO_ReadOnly))
     {
-        if ( populateStandardFeeds() )
-        {
-            if (file.open(IO_ReadOnly) == false)
-                return false;
-        }
-        else
-            return false;
+        // Read OPML feeds list and build QDom tree.
+        QTextStream stream(&file);
+        stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
+        str = stream.read();
+        file.close();
     }
-
-    m_loading=true;
-    m_view->startOperation();
-    // don't allow to stop loading of the feedlist, it'd only make you sad -tpr 20041024
-    actionCollection()->action("feed_stop")->setEnabled(false);
+    else
+    {
+        KMessageBox::error(m_view, i18n("Couldn't read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read error") );
+        return false;
+    }
 
     setStatusBar( i18n("Opening Feed List...") );
-    kapp->processEvents();
 
-    // Read OPML feeds list and build QDom tree.
-    QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
     QDomDocument doc;
-    QString str;
-
-    str = stream.read();
-
-    file.close();
-
+    
     if (!doc.setContent(str))
     {
-        m_view->operationError(/*i18n("Invalid Feed List")*/);
-        return false;
+        QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+    
+        copyFile(backup);
+    
+        KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML parsing error") );
+    
+        doc = createDefaultFeedList();
     }
 
-    if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
+    if (!m_view->loadFeeds(doc))
     {
-        m_view->operationError(/*i18n("Invalid Feed List")*/);
-        return false;
-    }
-    m_loading=false;
-    m_view->endOperation();
-    setStatusBar( QString::null );
+        QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+        copyFile(backup);
+ 
+        KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML parsing error") );
+        m_view->loadFeeds(createDefaultFeedList());
+   }
 
+    setStatusBar(QString::null);
 
     if( Settings::markAllFeedsReadOnStartup() )
         m_view->slotMarkAllFeedsRead();
@@ -488,31 +476,16 @@ void Part::slotSaveFeedList()
     if (!m_standardListLoaded)
         return;
     
-    // m_file is always local, so we use QFile
-    QFile file(m_file);
-
     // the first time we overwrite the feed list, we create a backup
     if (!m_backedUpList)
     {
-        if (file.open(IO_ReadOnly))
-        {
-            QFile backup(m_file + "~");
-            if (backup.open(IO_WriteOnly))
-            {
-                // since the feed list is a text file, this should be ok
-                QTextStream in(&file);
-                QTextStream out(&backup);
-                while (!in.atEnd())
-                    out << in.readLine();
+        QString backup = m_file + "~";
 
-                backup.close();
-                m_backedUpList = true;
-            }
-            
-            file.close();
-        }
+        if (copyFile(backup))
+            m_backedUpList = true;
     }
-    
+
+    QFile file(m_file);    
     if (file.open(IO_WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
@@ -796,6 +769,32 @@ void Part::initFonts()
         Settings::setSansSerifFont(fonts[2]);
     if (Settings::serifFont().isEmpty())
         Settings::setSerifFont(fonts[3]);
+}
+
+bool Part::copyFile(const QString& backup)
+{
+    QFile file(m_file);
+
+    if (file.open(IO_ReadOnly))
+    {
+        QFile backupFile(backup);
+        if (backupFile.open(IO_WriteOnly))
+        {
+            QTextStream in(&file);
+            QTextStream out(&backupFile);
+            while (!in.atEnd())
+                out << in.readLine();
+            backupFile.close();
+            file.close();
+            return true;
+        }
+        else
+        {
+            file.close();
+            return false;
+        }
+    }
+    return false;
 }
 
 } // namespace Akregator

@@ -5,16 +5,19 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
-#include "app.h"
-#include "akregator.h"
-#include "akregator_options.h"
-#include "aboutdata.h"
+#include <qstringlist.h>
 
+#include <dcopref.h>
 #include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
-
 #include <kdebug.h>
+
+#include "aboutdata.h"
+#include "app.h"
+#include "akregator.h"
+#include "akregator_options.h"
+
 
 int main(int argc, char **argv)
 {
@@ -36,31 +39,32 @@ int main(int argc, char **argv)
     }
     else
     {
-        // no session.. just start up normally
-        Akregator::MainWindow *widget = 0;
-        
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        widget = new Akregator::MainWindow();
+        Akregator::MainWindow* mainwin = new Akregator::MainWindow();
 
-        if(!widget->loadPart())
-            return 1;
-        
-        widget->loadStandardFile();
+        app.setMainWidget(mainwin);
         app.setHaveWindowLoaded(true);
-        widget->setupProgressWidgets();
-        widget->show();
+        if (mainwin->loadPart() == false)
+            return 1;
+        mainwin->setupProgressWidgets();
+        mainwin->show();  
 
-        app.setMainWidget(widget);
+    
+        DCOPRef akr("akregator", "AkregatorIface");
+        
+        akr.send("openStandardFeedList");
+     
+        QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
+        
+        QCStringList feeds = args->getOptionList("addfeed");
+        QStringList feedsToAdd;
+        for (QCStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
+            feedsToAdd.append(*it);
+        
+        if (!feedsToAdd.isEmpty())
+            akr.send("addFeedsToGroup", feedsToAdd, addFeedGroup );
 
-        QString addFeedGroup = args->getOption("group");
-        QCStringList addFeeds = args->getOptionList("addfeed");
-        QCStringList::iterator addFeedsIt;
-        for (addFeedsIt = addFeeds.begin(); (addFeedsIt != addFeeds.end()) ; ++addFeedsIt )
-        {
-          kdDebug() << "--addfeed " << *addFeedsIt << "--group " << addFeedGroup << endl;
-          widget->addFeedToGroup(*addFeedsIt, addFeedGroup);
-        }
         args->clear();
     }
 

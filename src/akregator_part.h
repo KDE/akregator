@@ -16,6 +16,7 @@
 
 #include "akregator_partiface.h"
 
+class QDomDocument;
 class QTimer;
 
 class KAboutData;
@@ -166,17 +167,22 @@ namespace Akregator
             /** Shows configuration dialog */
             void showOptions();
             void showKNotifyOptions();
+
+        private: // methods
+
+            bool copyFile(const QString& backup);
             
+            /** fills the font settings with system fonts, if fonts are not set */
+            void initFonts();
+            void setupActions();
+            /** creates an OPML file containing the initial feeds (KDE feeds) */
+            static QDomDocument createDefaultFeedList();
+
         private slots:
             void slotStop() {closeURL(); };
 
-        private:
-            /** fills the font settings with system fonts, if fonts are not set */
-            void initFonts();
-            
-            bool populateStandardFeeds();
-            void setupActions();
-
+         private: // attributes
+         
             QString m_standardFeedList;
             bool m_standardListLoaded;
             bool m_loading;

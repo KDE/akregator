@@ -450,11 +450,11 @@ bool View::importFeeds(const QDomDocument& doc)
 bool View::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
 {
     FeedList* feedList = FeedList::fromOPML(doc);
-
+    
     // parsing went wrong
     if (!feedList)
         return false;
-    
+
     m_tree->setUpdatesEnabled(false);
     
     if (!parent)
@@ -467,10 +467,9 @@ bool View::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
     }
     else
         m_feedList->append(feedList, parent);     
-
+    
     m_tree->setUpdatesEnabled(true);
     m_tree->triggerUpdate();
-    
     return true;
 }
 
@@ -1501,10 +1500,7 @@ void View::slotMouseOverInfo(const KFileItem *kifi)
 
 void View::readProperties(KConfig* config) // this is called when session is being restored
 {
-    // load the standard feedlist, fixes #84528, at least partially -tpr 20041025
-    m_part->openStandardFeedList();
-    
-    // read filter settings 
+    // read filter settings
     m_searchLine->setText(config->readEntry("searchLine"));
     m_searchCombo->setCurrentItem(config->readEntry("searchCombo").toInt());
     slotSearchComboChanged(config->readEntry("searchCombo").toInt());

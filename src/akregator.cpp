@@ -61,16 +61,10 @@ MainWindow::MainWindow()
     setXMLFile("akregator_shell.rc");
 
     m_browserIface=new BrowserInterface(this, "browser_interface");
-    //m_activePart=0;
+
     m_part=0;
 
-    m_manager = new KParts::PartManager(this, "akregator_partmanager");
-    m_manager->setAllowNestedParts(true);
-    
-    connect(m_manager, SIGNAL(activePartChanged(KParts::Part*)), this, SLOT(createGUI(KParts::Part*)) );
-    
     // then, setup our actions
-    setupActions();
 
     toolBar()->show();
     // and a status bar
@@ -84,9 +78,11 @@ MainWindow::MainWindow()
     m_statusLabel->setFixedHeight( statH );
     statusBar()->addWidget (m_statusLabel, 1, false);
    // disable the action because we don't have a handbook yet, hope this createGUI doesn't broke anything
-    createGUI(0L);
+ 
     KAction *action = actionCollection()->action("help_contents");
     if(action) action->setEnabled(false);
+    setupActions();
+    createGUI(0L);
 }
 
 bool MainWindow::loadPart()
@@ -107,13 +103,10 @@ bool MainWindow::loadPart()
             setCentralWidget(m_part->widget());
 
             connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
-            //connect (m_part, SIGNAL(partChanged(KParts::ReadOnlyPart *)), this, SLOT(partChanged(KParts::ReadOnlyPart *)));
-            //connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-            //m_activePart=m_part;
+
             // and integrate the part's GUI with the shell's
             connectActionCollection(m_part->actionCollection());
-            m_manager->addPart(m_part);
-            //createGUI(m_part);
+            createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
             setAutoSaveSettings();
             return true;
@@ -138,16 +131,6 @@ void MainWindow::setupProgressWidgets()
     statusBar()->addWidget( m_progressBar, 0, true );
 }
 
-void MainWindow::loadStandardFile()
-{
-    //show();
-    QString file = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
-    
-    if (!m_part)
-        loadPart();
-    m_part->openStandardFeedList();
-}
-
 MainWindow::~MainWindow()
 {}
 
@@ -155,20 +138,6 @@ void MainWindow::setCaption(const QString &a)
 {
     if (sender() && (sender() == m_part) )
         KParts::MainWindow::setCaption(a);
-}
-/*
-void MainWindow::partChanged(KParts::ReadOnlyPart *p)
-{
-    //m_activePart=p;
-    //createGUI(p);
-}*/
-
-
-void MainWindow::addFeedToGroup(const QString& url, const QString& group)
-{
-    if (!m_part)
-        loadPart();
-    (static_cast<Akregator::Part*>(m_part))->addFeedsToGroup( url, group );
 }
 
 void MainWindow::setupActions()
@@ -200,31 +169,11 @@ void MainWindow::readProperties(KConfig* config)
     if (!m_part)
         loadPart();
     static_cast<Akregator::Part*>(m_part)->readProperties(config);
-    if (Settings::showTrayIcon() && config->readBoolEntry("docked", false)) {
+    
+    if (Settings::showTrayIcon() && config->readBoolEntry("docked", false)) 
         hide();
-    } else {
+    else
         show();
-    }
-}
-
-void MainWindow::fileNew()
-{
-    // this slot is called whenever the File->New menu is selected,
-    // the New shortcut is pressed (usually CTRL+N) or the New toolbar
-    // button is clicked
-
-    // About this function, the style guide (
-    // http://developer.kde.org/documentation/standards/kde/style/basics/index.html )
-    // says that it should open a new window if the document is _not_
-    // in its initial state.  This is what we do here..
-//    if ( ! m_part->url().isEmpty() || m_part->isModified() )
- //   {
-//	callObjectSlot( browserExtension(m_part), "saveSettings()", QVariant());
-
- //       aKregator *w=new aKregator();
- //	w->loadPart();
- //	w->show();
- //   }
 }
 
 void MainWindow::optionsConfigureKeys()
@@ -256,18 +205,6 @@ void MainWindow::applyNewToolbarConfig()
     applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
 }
 
-void MainWindow::fileOpen()
-{
-//    KURL url =
-//        KFileDialog::getOpenURL( QString::null, QString::null, this );
-    //
-//    if (url.isEmpty() == false)
-//    {
-//        MainWindow* newWin = new MainWindow();
-//        newWin->load( url );
-//        newWin->show();
-//    }
-}
 
 KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 {
@@ -280,23 +217,14 @@ void MainWindow::connectActionCollection( KActionCollection *coll )
 {
     if (!coll) return;
     connect( coll, SIGNAL( actionStatusText( const QString & ) ),
-             this, SLOT( slotActionStatusText( const QString & ) ) );
+              m_statusLabel, SLOT( setText( const QString & ) ) );
     connect( coll, SIGNAL( clearStatusText() ),
              this, SLOT( slotClearStatusText() ) );
 }
 
-void MainWindow::disconnectActionCollection( KActionCollection *coll )
-{
-    if (!coll) return;
-    disconnect( coll, SIGNAL( actionStatusText( const QString & ) ),
-                this, SLOT( slotActionStatusText( const QString & ) ) );
-    disconnect( coll, SIGNAL( clearStatusText() ),
-                this, SLOT( slotClearStatusText() ) );
-}
-
-
 bool MainWindow::queryExit()
 {
+    kdDebug() << "MainWindow::queryExit()" << endl;
     if ( !kapp->sessionSaving() )
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
     return KParts::MainWindow::queryExit();
@@ -318,72 +246,10 @@ bool MainWindow::queryClose()
     }
 }
 
-/*void MainWindow::loadingProgress(int percent)
-{
-    if ( percent > -1 && percent < 100 )
-    {
-        if ( !m_progressBar->isVisible() )
-            m_progressBar->show();
-    }
-    else
-        m_progressBar->hide();
-
-    m_progressBar->setValue( percent );
-}*/
-
-void MainWindow::slotSetStatusBarText(const QString & s)
-{
-    m_permStatusText=s;
-    m_statusLabel->setText(s);
-}
-
-void MainWindow::slotActionStatusText(const QString &s)
-{
-    m_statusLabel->setText(s);
-}
 
 void MainWindow::slotClearStatusText()
 {
-    m_statusLabel->setText(m_permStatusText);
-}
-
-// yanked from kdelibs
-void MainWindow::callObjectSlot( QObject *obj, const char *name, const QVariant &argument )
-{
-    if (!obj)
-	    return;
-
-    int slot = obj->metaObject()->findSlot( name );
-
-    QUObject o[ 2 ];
-    QStringList strLst;
-    uint i;
-
-    switch ( argument.type() )
-    {
-        case QVariant::Invalid:
-            break;
-        case QVariant::String:
-            static_QUType_QString.set( o + 1, argument.toString() );
-            break;
-        case QVariant::StringList:
-            strLst = argument.toStringList();
-            static_QUType_ptr.set( o + 1, &strLst );
-            break;
-        case QVariant::Int:
-            static_QUType_int.set( o + 1, argument.toInt() );
-            break;
-        case QVariant::UInt:
-            i = argument.toUInt();
-            static_QUType_ptr.set( o + 1, &i );
-            break;
-        case QVariant::Bool:
-            static_QUType_bool.set( o + 1, argument.toBool() );
-            break;
-        default: return;
-    }
-
-    obj->qt_invoke( slot, o );
+    m_statusLabel->setText(QString());
 }
 
 #include "akregator.moc"
