@@ -211,7 +211,8 @@ namespace Akregator
             QSplitter *m_panner1, *m_panner2;
             QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;
-            ArticleFilter *m_currentFilter;
+            ArticleFilter *m_currentTextFilter;
+            ArticleFilter *m_currentStatusFilter;
             ViewMode m_viewMode;
     };
 }

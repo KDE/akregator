@@ -126,7 +126,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_searchLine, SIGNAL(textChanged(const QString &)),
                         this, SLOT(slotSearchTextChanged(const QString &)));
     
-    m_currentFilter=0;
+    m_currentTextFilter=0;
+    m_currentStatusFilter=0;
     m_queuedSearches=0;
 
     m_panner2 = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
@@ -913,17 +914,20 @@ void aKregatorView::activateSearch()
 
 void aKregatorView::updateSearch(const QString &s)
 {
-    delete m_currentFilter;
+    delete m_currentTextFilter;
+    delete m_currentStatusFilter;
 
-    QValueList<Criterion> criteria;
+    QValueList<Criterion> textCriteria;
+    QValueList<Criterion> statusCriteria;
+
     QString textSearch=s.isNull() ? m_searchLine->text() : s;
     
     if (!textSearch.isEmpty())
     {
         Criterion subjCrit( Criterion::Title, Criterion::Contains, textSearch );
-        criteria << subjCrit;
+        textCriteria << subjCrit;
         Criterion crit1( Criterion::Description, Criterion::Contains, textSearch );
-        criteria << crit1;
+        textCriteria << crit1;
     }
     
     if (m_searchCombo->currentItem())
@@ -933,21 +937,21 @@ void aKregatorView::updateSearch(const QString &s)
             case 1:
             {
                 Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::Unread);
-                criteria << crit;
+                statusCriteria << crit;
                 break;
             }
             case 2:
             {
                 Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::New);
-                criteria << crit;
+                statusCriteria << crit;
                 break;
             }
             case 3:
             {
                 Criterion crit1( Criterion::Status, Criterion::Equals, MyArticle::New);
                 Criterion crit2( Criterion::Status, Criterion::Equals, MyArticle::Unread);
-                criteria << crit1;
-                criteria << crit2;
+                statusCriteria << crit1;
+                statusCriteria << crit2;
                 break;
             }
             default:
@@ -955,7 +959,9 @@ void aKregatorView::updateSearch(const QString &s)
         }
     }
     
-    m_currentFilter = new ArticleFilter(criteria, ArticleFilter::LogicalAnd, ArticleFilter::Notify);
+    m_currentTextFilter = new ArticleFilter(textCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
+    m_currentStatusFilter = new ArticleFilter(statusCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
+
     QListViewItem *currentItem = m_articles->selectedItem();
 
     checkItem(m_articles->firstChild());
@@ -983,10 +989,10 @@ void aKregatorView::checkItem(QListViewItem *i)
 
 bool aKregatorView::itemMatches (ArticleListItem *item)
 {
-    if (!m_currentFilter)
+    if (!m_currentStatusFilter || !m_currentTextFilter)
         return true;
 
-    return m_currentFilter->matches( item->article() );
+    return m_currentTextFilter->matches( item->article() ) && m_currentStatusFilter->matches( item->article() );
 }
 
 void aKregatorView::itemAdded(ArticleListItem *item)

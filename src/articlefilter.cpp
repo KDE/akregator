@@ -65,7 +65,7 @@ bool Criterion::satisfiedBy( const MyArticle &article ) const
     const Predicate predicateType = static_cast<Predicate>( m_predicate & ~Negation );
     switch ( predicateType ) {
         case Contains:
-            satisfied = concreteSubject.find( m_object ) != -1;
+            satisfied = concreteSubject.find( m_object, 0, false ) != -1;
             break;
         case Equals:
             if (m_type==Int)
@@ -132,6 +132,8 @@ ArticleFilter::Action ArticleFilter::action() const
 
 bool ArticleFilter::anyCriterionMatches( const MyArticle &a ) const
 {
+    if (m_criteria.count()==0)
+        return true;
     QValueList<Criterion>::ConstIterator it = m_criteria.begin();
     QValueList<Criterion>::ConstIterator end = m_criteria.end();
     for ( ; it != end; ++it ) {
@@ -144,6 +146,8 @@ bool ArticleFilter::anyCriterionMatches( const MyArticle &a ) const
 
 bool ArticleFilter::allCriteriaMatch( const MyArticle &a ) const
 {
+    if (m_criteria.count()==0)
+        return true;
     QValueList<Criterion>::ConstIterator it = m_criteria.begin();
     QValueList<Criterion>::ConstIterator end = m_criteria.end();
     for ( ; it != end; ++it ) {
