@@ -7,7 +7,7 @@
 
 #include "akregator_part.h"
 #include "akregator_view.h"
-
+#include "akregatorconfig.h"
 
 #include <kparts/genericfactory.h>
 #include <kinstance.h>
@@ -35,7 +35,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     // notify the part that this is our internal widget
     setWidget(m_view);
-  
+
     // create our actions
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
     KStdAction::saveAs(this, SLOT(fileSaveAs()), actionCollection());
@@ -48,7 +48,6 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     new KAction(i18n("Add Feed &Group..."), "add", "Alt+Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
     new KAction(i18n("&Delete"), "delete", "Shift+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Modify"), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
-    new KAction(i18n("&Copy"), "editcopy", "Alt+Ctrl+C", m_view, SLOT(slotFeedCopy()), actionCollection(), "feed_copy");
     new KAction(i18n("&Fetch"), "down", "Alt+Ctrl+F", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Alt+Ctrl+A", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
     KRadioAction *ra=new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Alt+Ctrl+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
@@ -56,10 +55,10 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
     ra=new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Alt+Ctrl+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
     ra->setExclusiveGroup( "ViewMode" );
-    
+
     ra=new KRadioAction(i18n("&Combined View"), "view_text", "Alt+Ctrl+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
     ra->setExclusiveGroup( "ViewMode" );
-    
+
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc");
 
@@ -75,6 +74,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
 
 aKregatorPart::~aKregatorPart()
 {
+   Settings::writeConfig();
 }
 
 void aKregatorPart::setReadWrite(bool rw)
@@ -129,7 +129,7 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
         return false;
-        
+
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
         return false;
 

@@ -15,6 +15,7 @@
 #include "articleviewer.h"
 #include "archive.h"
 #include "feed.h"
+#include "akregatorconfig.h"
 
 #include <kfiledialog.h>
 #include <kfileitem.h>
@@ -53,10 +54,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 {
     m_part=part;
 
-    KConfig *c = new KConfig( "akregatorrc");
-    c->setGroup("View");
-    m_viewMode=(ViewMode)c->readNumEntry("ViewMode", (int)NormalView);
-
     QVBoxLayout *lt = new QVBoxLayout( this );
 
     m_panner1Sep << 1 << 1;
@@ -77,9 +74,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
-    //hmm?? FIXME make it a object field
-    QTabWidget *tabs = new QTabWidget(m_panner1);
-    QWhatsThis::add(tabs, i18n("You can view multiple articles in several open tabs."));
+    m_tabs = new QTabWidget(m_panner1);
+    QWhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
 
     QGrid *w1 = new QGrid(1, this);
     QWhatsThis::add(w1, i18n("Articles list."));
@@ -97,17 +93,12 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
 
-    if (m_viewMode==CombinedView)
-    {
-        m_articles->hide();
-    }
-
     connect (m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
             this, SLOT(slotMouseOverInfo(const KFileItem *)));
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
-    tabs->addTab(w1, i18n( "Articles" ));
+    m_tabs->addTab(w1, i18n( "Articles" ));
 
   // -- DEFAULT INIT
     // Root item (will be reset when loading from file)
@@ -117,8 +108,18 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_articleViewer->openDefault();
 
-    delete c;
+    // Change default view mode
+    int viewMode = Settings::viewMode();
 
+    kdDebug() << "Viewmode: " << viewMode << endl;
+
+    if (viewMode==CombinedView)        slotCombinedView();
+    else if (viewMode==WidescreenView) slotWidescreenView();
+    else                               slotNormalView();
+}
+
+void aKregatorView::openTab(KURL& url)
+{
 }
 
 // clears everything out, even removes DEFAULT INIT
@@ -303,11 +304,7 @@ void aKregatorView::slotNormalView()
     m_panner2->setOrientation(QSplitter::Vertical);
     m_viewMode=NormalView;
 
-    KConfig *c = new KConfig( "akregatorrc");
-    c->setGroup("View");
-    c->writeEntry("ViewMode", (int)m_viewMode);
-    c->sync();
-    delete c;
+    Settings::setViewMode( m_viewMode );
 }
 
 void aKregatorView::slotWidescreenView()
@@ -330,11 +327,7 @@ void aKregatorView::slotWidescreenView()
     m_panner2->setOrientation(QSplitter::Horizontal);
     m_viewMode=WidescreenView;
 
-    KConfig *c = new KConfig( "akregatorrc");
-    c->setGroup("View");
-    c->writeEntry("ViewMode", (int)m_viewMode);
-    c->sync();
-    delete c;
+    Settings::setViewMode( m_viewMode );
 }
 
 void aKregatorView::slotCombinedView()
@@ -349,11 +342,7 @@ void aKregatorView::slotCombinedView()
     if (feed)
         m_articleViewer->show(feed);
 
-    KConfig *c = new KConfig( "akregatorrc");
-    c->setGroup("View");
-    c->writeEntry("ViewMode", (int)m_viewMode);
-    c->sync();
-    delete c;
+    Settings::setViewMode( m_viewMode );
 }
 
 

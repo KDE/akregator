@@ -15,6 +15,7 @@
 #include <qwidget.h>
 
 class QSplitter;
+class QTabWidget;
 class QDomDocument;
 class QDomElement;
 class QListViewItem;
@@ -40,8 +41,9 @@ namespace Akregator
     {
         Q_OBJECT
         public:
+            enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
-         /**
+            /**
              * Default constructor.
              */
             aKregatorView(aKregatorPart *part, QWidget *parent, const char *wName);
@@ -116,6 +118,8 @@ namespace Akregator
 
             void slotMouseOverInfo(const KFileItem *kifi);
 
+            void openTab(KURL& url);
+
         private:
             /**
              * Reset to default values, removing all existing data.
@@ -157,10 +161,14 @@ namespace Akregator
              */
             ArticleViewer *m_articleViewer;
 
+            /**
+             * A tab widget for multiple viewers.
+             */
+            QTabWidget *m_tabs;
+
             QSplitter *m_panner1, *m_panner2;
             QValueList<int> m_panner1Sep, m_panner2Sep;
             aKregatorPart *m_part;
-            enum ViewMode{NormalView=0, WidescreenView, CombinedView};
             ViewMode m_viewMode;
     };
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+<!-- Author: Stanislav Karchebny, berk@upnet.ru -->
+<kcfg>
+  <kcfgfile name="akregatorrc"/>
+
+  <group name="View">
+     <entry key="View Mode" type="Int">
+        <label>View Mode</label>
+        <default>0</default>
+        <whatsthis>Article display mode.</whatsthis>
+     </entry>
+  </group>
+
+</kcfg>
