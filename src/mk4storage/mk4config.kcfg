@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+ <kcfgfile name="akregatorrc" />
+ <group name="StorageMK4" >
+  <entry key="Commit Interval" type="Int" >
+   <label>Commit Interval</label>
+   <whatsthis>Commit interval in seconds for writing back changes</whatsthis>
+   <default>3</default>
+  </entry>
+  <entry key="Archive Path" type="String" >
+   <whatsthis>Path to archive</whatsthis>
+   <default></default>
+  </entry>
+ </group>
+</kcfg>

@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Service
+Name=Metakit storage backend
+X-KDE-Library=libakregator_mk4storage_plugin
+Comment=Plugin for Akregator
+ServiceTypes=Akregator/Plugin
+
+X-KDE-akregator-plugintype=storage
+X-KDE-akregator-name=metakit
+X-KDE-akregator-authors=Frank Osterfeld
+X-KDE-akregator-email=frank.osterfeld@kdemail.net
+X-KDE-akregator-rank=255
+X-KDE-akregator-version=1
+X-KDE-akregator-framework-version=1
+

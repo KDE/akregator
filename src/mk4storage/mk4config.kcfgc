@@ -1,0 +1,6 @@
+File=mk4config.kcfg
+ClassName=MK4Config
+Singleton=true
+NameSpace=Akregator
+Mutators=true
+MemberVariables=private
