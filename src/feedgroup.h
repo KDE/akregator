@@ -91,6 +91,12 @@ namespace Akregator
             @param node the child node to remove  */
             virtual void removeChild(TreeNode* node);
 
+            /** returns the first child of the group, 0 if none exist */
+            virtual TreeNode* firstChild();
+            
+            /** returns the last child of the group, 0 if none exist */
+            virtual TreeNode* lastChild();
+            
             /** returns whether the feed group is opened or not..
             Use only in \ref FeedGroupItem. */
             virtual bool isOpen() const;
@@ -128,7 +134,12 @@ namespace Akregator
             virtual void slotAddToFetchTransaction(FetchTransaction* transaction);
             //virtual void slotFetch(int timeout);    
             //virtual void slotAbortFetch();
-    
+
+            /** returns the next node in the tree.
+            Calling next() unless it returns 0 iterates through the tree in pre-order
+             */
+            virtual TreeNode* next();
+        
         protected:
             /** List of children */
             QPtrList<TreeNode> m_children;

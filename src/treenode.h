@@ -44,7 +44,7 @@ public:
      /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree) 
      @return number of new/unread articles */
     
-     virtual int unread() const = 0;
+    virtual int unread() const = 0;
     
     
     /** Get title of node.
@@ -108,7 +108,10 @@ public:
     @param notifyOccuredChanges notify changes occured while turn off when set to true again */
     
     virtual void setNotificationMode(bool doNotify, bool notifyOccuredChanges = true);  
-        
+    /** returns the next node in the tree.
+        Calling next() unless it returns 0 iterates through the tree in pre-order
+     */ 
+    virtual TreeNode* next() = 0; 
 public slots:
     
     /** Deletes all expired articles in the node (depending on the expiry settings).

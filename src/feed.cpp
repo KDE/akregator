@@ -502,4 +502,19 @@ void Feed::setUnread(int unread)
     }    
 }
 
+TreeNode* Feed::next()
+{
+    if (nextSibling())
+        return nextSibling();
+    FeedGroup* p = parent();
+    while (p)
+    {
+        if (p->nextSibling())
+            return p->nextSibling();
+        else
+            p = p->parent();
+    }
+    return 0;
+}
+
 #include "feed.moc"

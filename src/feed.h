@@ -98,7 +98,11 @@ namespace Akregator
 
             bool fetchErrorOccurred() { return m_fetchError; }
            
-	    
+            /** returns the next node in the tree.
+            Calling next() unless it returns 0 iterates through the tree in pre-order
+            */
+            virtual TreeNode* next();
+            
         public slots:
             void fetch(bool follow=false, FetchTransaction *f=0);
             void loadFavicon();

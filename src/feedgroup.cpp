@@ -129,8 +129,19 @@ void FeedGroup::removeChild(TreeNode* node)
         modified();
     }
 //    kdDebug() << "leave FeedGroup::removeChild() node: " << (node ? node->title() : "null") << endl;
-  
 }
+
+
+TreeNode* FeedGroup::firstChild()
+{
+    return m_children.first();
+}            
+
+TreeNode* FeedGroup::lastChild()
+{
+    return m_children.last();
+}
+            
 bool FeedGroup::isOpen() const
 {
     return m_open;
@@ -197,6 +208,25 @@ void FeedGroup::slotAddToFetchTransaction(FetchTransaction* transaction)
 {
     for (TreeNode* i = m_children.first(); i; i = m_children.next() )
         i->slotAddToFetchTransaction(transaction);
+}
+
+TreeNode* FeedGroup::next()
+{
+    if (firstChild())
+        return firstChild();
+
+    if (nextSibling())
+        return nextSibling();
+    
+    FeedGroup* p = parent();
+    while (p)
+    {
+        if (p->nextSibling())
+            return p->nextSibling();
+        else
+            p = p->parent();
+    }
+    return 0;
 }
 
 #include "feedgroup.moc"
