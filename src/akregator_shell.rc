@@ -7,7 +7,7 @@
     <Separator/>
     <Action name="file_quit"/>
   </Menu>
-  <Menu noMerge="1" name="edit">
+  <Menu noMerge="1" name="feed">
   <text>&amp;Feed</text>
     <Merge/>
   </Menu>
