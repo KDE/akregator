@@ -78,6 +78,11 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     connect(this, SIGNAL(completed()), this, SLOT(slotCompleted()));
     connect(this, SIGNAL(canceled(const QString &)), this, SLOT(slotCancelled(const QString &)));
 
+    connect(browserExtension(),
+            SIGNAL(openURLRequest(const KURL&, const KParts::URLArgs&)),
+            this,
+            SLOT(formClicked(const KURL&, const KParts::URLArgs&)));
+
     m_current = m_history.end();
     m_restoring = false;
 }
@@ -389,10 +394,14 @@ void PageViewer::slotCopy( )
 
 void PageViewer::slotSelectionChanged( )
 {
-    if (selectedText().isEmpty())
-        m_copyAction->setEnabled(false);
-    else
-        m_copyAction->setEnabled(true);
+    m_copyAction->setEnabled(!selectedText().isEmpty());
+}
+
+
+void PageViewer::formClicked(const KURL& url, const KParts::URLArgs& args)
+{
+    browserExtension()->setURLArgs(args);
+    openURL(url);
 }
 
 #include "pageviewer.moc"
