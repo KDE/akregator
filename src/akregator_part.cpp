@@ -679,7 +679,7 @@ void Part::partActivateEvent(KParts::PartActivateEvent* event)
             factory()->removeClient(m_mergedPart);
     }
 
-    KPIM::Part::partActivateEvent(event);
+    MyBasePart::partActivateEvent(event);
 }
 
 KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
