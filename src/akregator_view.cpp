@@ -28,6 +28,7 @@
 #include <kstandarddirs.h>
 #include <klineedit.h>
 #include <kpassdlg.h>
+#include <kcharsets.h>
 #include <kstandarddirs.h>
 #include <klistview.h>
 #include <khtml_part.h>
@@ -172,19 +173,20 @@ void aKregatorView::parseChildNodes(QDomNode &node, KListViewItem *parent)
     if( !e.isNull() )
     {
         KListViewItem *elt;
+        QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute
+            ("title");
         if (parent)
         {
             QListViewItem *lastChild = parent->firstChild();
             while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
-            elt = new KListViewItem( parent, lastChild, e.attribute("text") );
+            elt = new KListViewItem( parent, lastChild, KCharsets::resolveEntities(title) );
         }
         else
-            elt = new KListViewItem( m_tree, m_tree->lastItem(), e.attribute("text") );
+            elt = new KListViewItem( m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
 
         if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
         {
             QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
-            QString title=e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
             addFeed_Internal( elt,
                               title,
