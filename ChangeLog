@@ -13,6 +13,7 @@ New Features:
 Bug Fixes:
 
 #82618 - Don't crash if there's no kpart available -tpr
+#82691 - Don't minimize but close aKregator when session is shutting down -tpr
 
 Changes from 1.0b1 to 1.0b2:
 -----------------------------

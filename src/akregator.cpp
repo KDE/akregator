@@ -375,7 +375,7 @@ void aKregator::slotSetStatusBarText(const QString & s)
 
 void aKregator::closeEvent(QCloseEvent* e)
 {
-    if (!m_quit)
+    if (!m_quit && !kapp->sessionSaving())
     {
         KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
         hide();
