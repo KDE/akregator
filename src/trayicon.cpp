@@ -32,6 +32,8 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
     QToolTip::add(this, i18n("aKregator"));
     if(Settings::useNotifications()) {
         m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
+		connect(m_balloon, SIGNAL(signalButtonClicked()),
+			this, SLOT(viewButtonClicked()));
         m_balloon->hide();
     }
 }
@@ -46,7 +48,7 @@ void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art
     if (!m_balloon->isVisible())
     {
         m_balloon->setAnchor(mapToGlobal(pos()));
-        m_balloon->setFixedWidth(m_balloon->width()+10);
+        //m_balloon->setFixedWidth(m_balloon->width()-10);
         m_balloon->show();
         KWin::setOnAllDesktops(m_balloon->winId(), true);
     }
@@ -105,6 +107,12 @@ void TrayIcon::updateUnread(int unread)
         icon.convertFromImage(overlayImg);
         setPixmap(icon);
     }
+}
+
+void TrayIcon::viewButtonClicked()
+{
+	QWidget *p=static_cast<QWidget*>(parent());
+	KWin::forceActiveWindow(p->winId());
 }
 
 void TrayIcon::settingsChanged()

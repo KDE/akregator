@@ -155,8 +155,8 @@ void Balloon::updateMask()
 
 void Balloon::addArticle(const QString&feed, const QPixmap&p, const QString&art)
 {
-	QString title=KStringHandler::rPixelSqueeze(feed, QFontMetrics(m_articleList->font()), m_articleList->width()/3);
-	title=title+"  "+art;
+	QString title=KStringHandler::rPixelSqueeze(feed, QFontMetrics(m_articleList->font()), m_articleList->width()/4);
+	title=title+art;
 	QListViewItem *i=new QListViewItem(m_articleList, title);
 	i->setPixmap(0,p);
 }

@@ -35,6 +35,8 @@ namespace Akregator
 
         public slots:
             void settingsChanged();       
+			void viewButtonClicked();
+
     };
 }
 

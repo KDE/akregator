@@ -28,6 +28,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
 bool PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
+	kdDebug() << "args: frame=="<< args.frameName << endl;
     new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
     return true;
 }
