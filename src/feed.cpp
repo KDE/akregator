@@ -155,7 +155,6 @@ void Feed::appendArticle(const MyArticle &a)
 
 void Feed::fetch(bool followDiscovery)
 {
-    m_fetchError=false;
 	m_followDiscovery=followDiscovery;
     m_fetchTries=0;
 
@@ -176,6 +175,11 @@ void Feed::fetch(bool followDiscovery)
 
 void Feed::tryFetch()
 {
+    if (item() && m_fetchError)
+        item()->setPixmap(0, KGlobal::iconLoader()->loadIcon("txt", KIcon::Small));
+    
+    m_fetchError=false;
+    
     Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     loader->loadFrom( xmlUrl, new FileRetriever );
     // TODO: note that we probably don't want to load the favicon here enventually..
@@ -209,7 +213,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     m_fetchError=false;
     m_document=doc;
-    kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
+    //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
     
     if (image.isNull())
