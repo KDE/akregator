@@ -98,7 +98,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
         }
         else
         {
-            d->format=RSS;
+            d->format=RSSFeed;
             if (attr == QString::fromLatin1("0.91"))
                 d->version = v0_91;
             else if (attr == QString::fromLatin1("0.92"))
@@ -125,11 +125,11 @@ Document::Document(const QDomDocument &doc) : d(new Private)
          * the nodes.
          */
             if (attr == QString::fromLatin1("http://my.netscape.com/rdf/simple/0.9/")) {
-                d->format=RSS;
+                d->format=RSSFeed;
                 d->version = v0_90;
              }
             else if (attr == QString::fromLatin1("http://purl.org/rss/1.0/")) {
-                d->format=RSS;
+                d->format=RSSFeed;
                 d->version = v1_0;
             }
         }

@@ -319,9 +319,14 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
 
 void Loader::discoverFeeds(const QByteArray &data)
 {
-    QString str, s2;
-    QTextStream ts( &str, IO_WriteOnly );
-    ts << data.data();
+    QString str = QString(data).simplifyWhiteSpace();
+    QString s2;
+    //QTextStream ts( &str, IO_WriteOnly );
+    //ts << data.data();
+    
+    // "<[\\s]link[^>]*rel[\\s]=[\\s]\\\"[\\s]alternate[\\s]\\\"[^>]*>"
+    // "type[\\s]=[\\s]\\\"application/rss+xml\\\""
+    // "href[\\s]=[\\s]\\\"application/rss+xml\\\""
     QRegExp rx( "(?:REL)[^=]*=[^sAa]*(?:service.feed|ALTERNATE)[\\s]*[^s][^s](?:[^>]*)(?:HREF)[^=]*=[^A-Z0-9-_~,./$]*([^'\">\\s]*)", false);
     if (rx.search(str)!=-1)
         s2=rx.cap(1);

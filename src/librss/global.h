@@ -111,7 +111,7 @@ namespace RSS
 		es_es, /** Spanish (Spain) */		es_uy, /** Spanish (Uruguay) */
 		es_ve, /** Spanish (Venezuela) */	sv,	/** Swedish */
 		sv_fi, /** Swedish (Finland) */	  sv_se, /** Swedish (Sweden) */
-		tr,	/** Turkish */				uk	 /** Ukranian */
+        tr,	/** Turkish */				uk	 /** Ukranian */
 	};
 	
 	/**
@@ -125,7 +125,7 @@ namespace RSS
 	enum Format {
 		UnknownFormat,
 		AtomFeed,
-		RSS
+		RSSFeed
 	};
 
 	/**
