@@ -6,6 +6,7 @@
  ***************************************************************************/
 
 #include "trayicon.h"
+#include "akregatorconfig.h"
 
 #include <kwin.h>
 #include <kiconeffect.h>
@@ -29,8 +30,10 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
     QToolTip::add(this, i18n("aKregator"));
-	m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
-	m_balloon->hide();
+    if(Settings::useNotifications()) {
+        m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
+        m_balloon->hide();
+    }
 }
 	
 TrayIcon::~TrayIcon()
@@ -39,21 +42,22 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::newArticle(const QString&feed, const QPixmap&p, const QString&art)
 {
-	if (!m_balloon->isVisible())
-	{
-		m_balloon->setAnchor(mapToGlobal(pos()));
-		m_balloon->setFixedWidth(m_balloon->width()+10);
-		m_balloon->show();
-		KWin::setOnAllDesktops(m_balloon->winId(), true);
+    if(!m_balloon) return;
+    if (!m_balloon->isVisible())
+    {
+        m_balloon->setAnchor(mapToGlobal(pos()));
+        m_balloon->setFixedWidth(m_balloon->width()+10);
+        m_balloon->show();
+        KWin::setOnAllDesktops(m_balloon->winId(), true);
     }
-	
-	m_balloon->addArticle(feed, p, art);
+    
+    m_balloon->addArticle(feed, p, art);
 }
 
 
 void TrayIcon::updateUnread(int unread)
 {
-	if (unread==m_unread)
+    if (unread==m_unread)
         return;
     
     m_unread=unread;
@@ -100,6 +104,18 @@ void TrayIcon::updateUnread(int unread)
         QPixmap icon;
         icon.convertFromImage(overlayImg);
         setPixmap(icon);
+    }
+}
+
+void TrayIcon::settingsChanged()
+{
+    if(!m_balloon && Settings::useNotifications()) {
+        m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
+        m_balloon->hide();
+    }
+    if(m_balloon && !Settings::useNotifications()) {
+        delete m_balloon;
+        m_balloon = 0;    
     }
 }
 

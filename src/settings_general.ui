@@ -9,9 +9,12 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>334</width>
-            <height>190</height>
+            <width>364</width>
+            <height>250</height>
         </rect>
+    </property>
+    <property name="caption">
+        <string>General</string>
     </property>
     <vbox>
         <property name="name">
@@ -78,6 +81,17 @@
                             </property>
                         </widget>
                     </hbox>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>kcfg_UseNotifications</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Use notifications</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>This setting selects if aKregator will use balloon notifications for new feeds or not.</string>
+                    </property>
                 </widget>
             </vbox>
         </widget>

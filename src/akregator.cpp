@@ -297,6 +297,8 @@ void aKregator::showOptions()
  
     connect( dialog, SIGNAL(settingsChanged()), 
              m_part, SLOT(saveSettings()) );
+    connect( dialog, SIGNAL(settingsChanged()),
+             m_icon, SLOT(settingsChanged()) );
  
     dialog->show();
 }
