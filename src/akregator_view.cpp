@@ -221,6 +221,7 @@ void aKregatorView::reset()
     // Root item
     FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree, QString::null );
     m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
+    elt->setExpandable(true);
     elt->setOpen(true);
 }
 
@@ -233,6 +234,7 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
 
     FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree->firstChild(), QString::null );
     m_feeds.addFeedGroup(elt)->setTitle(text);
+    elt->setExpandable(true);
     elt->setOpen(true);
     return loadFeeds(doc, elt);
 }
@@ -323,6 +325,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
             if (g)
                 g->setTitle(title);
 
+            elt->setExpandable(true);
             elt->setOpen( e.attribute("isOpen", "true") == "true" ? true : false );
         }
 

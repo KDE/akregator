@@ -215,20 +215,6 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * )
             e->ignore();
         }
     }
-    else
-    {
-
-        QPoint vp = contentsToViewport(e->pos());
-        FeedsTreeItem *f=static_cast<FeedsTreeItem*>(itemAt( vp ));
-        if (f && f->isFolder())
-        {
-            e->acceptAction();
-            movableDropEvent (f, 0);
-            f->setOpen(true);
-        }
-        else
-            KListView::contentsDropEvent(e);
-    }
 }
 
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
