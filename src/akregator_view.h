@@ -188,6 +188,8 @@ namespace Akregator
 
 	    void connectFrame(Frame *);
 
+	    QString getTitleNodeText(const QDomDocument &doc);
+	    
             /**
              * Write child items of item to node using QDom document document.
              * @param item Current feeds tree item which is being written.

@@ -305,10 +305,42 @@ void aKregatorView::reset()
     elt->setOpen(true);
 }
 
+QString aKregatorView::getTitleNodeText(const QDomDocument &doc)
+{
+    if (doc.documentElement().tagName().lower() != "opml")
+        return QString::null;
+
+    QDomNode headNode = doc.documentElement().firstChild();
+    while (!headNode.isNull() &&
+           headNode.toElement().tagName().lower() != "head") {
+        headNode = headNode.nextSibling();
+    }
+
+    if (headNode.isNull()) {
+        return QString::null;
+    }
+
+    QDomNode textNode=headNode.namedItem("text");
+    if (textNode.isNull())
+        textNode=headNode.namedItem("title");
+    if (textNode.isNull())
+        return QString::null;
+
+    QString result = textNode.toElement().text().simplifyWhiteSpace();
+    if (result.isEmpty())
+        return QString::null;
+
+    return result;
+}
+
+
 bool aKregatorView::importFeeds(const QDomDocument& doc)
 {
+    QString text=getTitleNodeText(doc);
+    if (text.isNull())
+        text=i18n("Imported Folder");
     bool Ok;
-    QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), i18n("Imported Folder"), &Ok);
+    text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), text, &Ok);
     if (!Ok) return false;
 
     FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree->firstChild(), QString::null );
@@ -319,8 +351,10 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     
     startOperation();
     if (!loadFeeds(doc, elt))
+    {
         operationError(i18n("Invalid Feed List"));
         return false;
+    }
 
     endOperation();
     return true;
@@ -642,7 +676,7 @@ void aKregatorView::endOperation()
     m_mainFrame->setProgress(100);
 }
 
-void aKregatorView::operationError(const QString &msg)
+void aKregatorView::operationError(const QString & /*msg*/)
 {
     m_mainFrame->setState(Frame::Canceled);
     m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
@@ -882,7 +916,7 @@ void aKregatorView::slotFeedAddGroup()
 {
     if (!m_tree->currentItem() || m_feeds.find(m_tree->currentItem())->isGroup() == false)
     {
-        KMessageBox::error(this, i18n("You have to choose feed group before adding subgroup."));
+        KMessageBox::error(this, i18n("You have to choose a folder before adding a subfolder."));
         return;
     }
 
@@ -923,7 +957,7 @@ void aKregatorView::slotFeedRemove()
     if (!parent) return; // don't delete root element! (safety valve)
 
     QString msg = elt->childCount() ?
-        i18n("<qt>Are you sure you want to delete group<br><b>%1</b><br> and its subgroups and feeds?</qt>") :
+        i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>") :
         i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
     if (KMessageBox::warningContinueCancel(0, msg.arg(elt->text(0)),i18n("Delete Feed"),KGuiItem(i18n("&Delete"),"editdelete")) == KMessageBox::Continue)
     {
