@@ -40,7 +40,7 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-   : Viewer(parent, name), m_metrics(widget()), m_currentText(), m_htmlHead()
+   : Viewer(parent, name), m_htmlHead(), m_metrics(widget()), m_currentText() 
 {
     generateCSS();
 }
