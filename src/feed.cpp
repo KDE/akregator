@@ -11,6 +11,8 @@
 
 #include <kurl.h>
 #include <kdebug.h>
+#include <kglobal.h>
+#include <kiconloader.h>
 
 #include <qtimer.h>
 #include <qlistview.h>
@@ -25,6 +27,7 @@ Feed::Feed(QListViewItem *i, FeedsCollection *coll)
     , ljAuthMode(AuthNone)
     , updateTitle(false)
     , articles()
+    , m_fetchError(false)
 {
 }
 
@@ -79,6 +82,7 @@ QDomElement Feed::toXml( QDomElement parent, QDomDocument document )
 
 void Feed::fetch()
 {
+    m_fetchError=false;
     Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     loader->loadFrom( xmlUrl, new FileRetriever );
 
@@ -93,8 +97,14 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
     // You don't need to do that anyway since Loader instances delete themselves.
 
     if (status != Success)
+    {
+        // smt: perhaps cancel would be better than connect_no?
+        faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("connect_no", KIcon::Small));
+        m_fetchError=true;
+        
         return;
-
+    }
+    
     kdDebug() << "Feed fetched successfully [" << doc.title() << "]" << endl;
 
     if (updateTitle || title().isEmpty()) setTitle( doc.title() );
@@ -115,7 +125,7 @@ void Feed::loadFavicon()
 
 void Feed::faviconChanged(const QString &url, const QPixmap &p)
 {
-    if (xmlUrl==url)
+    if (xmlUrl==url && !m_fetchError)
     {
         item()->setPixmap(0, p);
         emit(faviconLoaded(p)); // emit so that other sources can be updated.. not used right now

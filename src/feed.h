@@ -61,6 +61,7 @@ namespace Akregator
             void faviconChanged(const QString &url, const QPixmap &p);
 
         private:
+            bool m_fetchError;
             // TODO
             //Archived articles
             //QValueList<Article> m_archive; // use articles instead
