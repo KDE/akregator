@@ -112,19 +112,32 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
     
 }
 
-void Feed::appendArticles(const Document &d)
+void Feed::appendArticles(const Document &d, bool findDups)
 {
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
     for (it = d.articles().begin(); it != en; ++it)
     {
-        appendArticle(*it);
+        MyArticle mya(*it);
+        if (findDups)
+        {
+            ArticleSequence::ConstIterator oo=articles.find(mya);
+            // no idea if any better way to do this..
+            if (oo == articles.end() )
+            {
+                appendArticle(mya);
+            }
+        }
+        else
+        {
+            appendArticle(*it);
+        }
     }
 }
 
-void Feed::appendArticle(const Article &a)
+void Feed::appendArticle(const MyArticle &a)
 {
-    articles.append(MyArticle(a));
+    articles.append(a);
 }
 
 
@@ -186,7 +199,8 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     description = m_document.description();
     htmlUrl = m_document.link().url();
 
-    appendArticles(m_document);
+    bool findDups=isMerged();
+    appendArticles(m_document, findDups);
     
     emit fetched(this);
 }

@@ -80,8 +80,8 @@ namespace Akregator
             bool isMerged(){return m_merged;}
             void setMerged(bool m){m_merged=m;}
            
-            void appendArticles(const Document &d);
-            void appendArticle(const Article &a);
+            void appendArticles(const Document &d, bool findDups=false);
+            void appendArticle(const MyArticle &a);
                 
             
         public slots:

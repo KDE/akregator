@@ -87,7 +87,7 @@ void Archive::save(Feed *f)
     f->dumpXmlData( root, doc);
     
     stream<<doc.toString();
-    kdDebug()<< "dump="<<doc.toString()<<endl;
+    //kdDebug()<< "dump="<<doc.toString()<<endl;
     
 }
 
