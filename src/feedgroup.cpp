@@ -41,7 +41,7 @@ FeedGroup::~FeedGroup()
         j++;
     }
 
-    for (int i = 0; i < vec.count(); ++i)
+    for (uint i = 0; i < vec.count(); ++i)
        delete vec[i];
 
     // tell the world that this node is destroyed
