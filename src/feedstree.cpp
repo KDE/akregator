@@ -399,11 +399,9 @@ void FeedsTree::slotItemEnd()
 void FeedsTree::slotItemLeft()
 {
     QListViewItem* sel = selectedItem();
-    if (!sel)
-    {
-        setSelected( firstChild(), true );
-        sel = firstChild();
-    }
+    
+    if (!sel || sel == rootNodeItem())
+        return;
     
     if (sel->isOpen())
         sel->setOpen(false);
@@ -411,8 +409,9 @@ void FeedsTree::slotItemLeft()
     {
         if (sel->parent())
             setSelected( sel->parent(), true );
-    }    
-    ensureItemVisible( selectedItem() );
+    }
+        
+    ensureItemVisible( selectedItem() );    
 }
 
 void FeedsTree::slotItemRight()
