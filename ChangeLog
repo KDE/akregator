@@ -2,6 +2,11 @@ aKregator ChangeLog
 ===================
 (c) 2004 the aKregator authors.
 
+Changes after 1.0b8:
+-----------------------------
+Changes:
+       - Update unread count when stopping fetching before it's finished -tpr
+
 Changes after 1.0b7:
 -----------------------------
 

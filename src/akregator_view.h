@@ -106,6 +106,7 @@ namespace Akregator
             void operationError(const QString &msg);
 
             void stopLoading();
+            void setTotalUnread();
 
             FetchTransaction* transaction() { return m_transaction; }
 
@@ -278,8 +279,6 @@ namespace Akregator
             QWidget *m_mainTab;
             Frame *m_mainFrame;
             Frame *m_currentFrame;
-
-            void setTotalUnread();
 
             KComboBox *m_searchCombo;
             KLineEdit *m_searchLine;
