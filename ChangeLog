@@ -5,10 +5,14 @@ aKregator ChangeLog
 Changes after 1.0b5:
 -----------------------------
 Changes:
+       - Improved dupe detection, using md5 now -ph
 #82187 - Improved session management: save search settings, selected Feed and Article -fo
        - Make it possible to switch notifications off -tpr
-
+       - New message notification added -smt
+       - Only allow one akregator instance (KUniqueApplication) -smt
+       - Autosave: Feeds are autosaved on every change now - save actions removed -smt
 Bug Fixes:
+       - Fixed problems with whitespace handling -ph
        - Make MMB work again in pageviewer -tpr
 #83995 - Don't crash when exiting KDE -fo 
 #82791 - Save the toolbar position -tpr
