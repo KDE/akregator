@@ -114,9 +114,9 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", m_view, SLOT(slotFeedsTreeMoveDown()), actionCollection(), "feedstree_move_down" );
     new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", m_view, SLOT(slotFeedsTreeMoveLeft()), actionCollection(), "feedstree_move_left" );
     new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", m_view, SLOT(slotFeedsTreeMoveRight()), actionCollection(), "feedstree_move_right" );
-    new KAction( i18n("Open Article in Foreground Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleForegroundTab()), actionCollection(), "article_open_foreground_tab" );
-    new KAction( i18n("Open Article in Background Tab"), QString::null, "Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
-    new KAction( i18n("Open Article in External Browser"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
+    new KAction( i18n("Open Article in Foreground Tab"), QString::null, "Shift+Return", m_view, SLOT(slotOpenCurrentArticleForegroundTab()), actionCollection(), "article_open_foreground_tab" );
+    new KAction( i18n("Open Article in Background Tab"), QString::null, "Ctrl+Return", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
+    new KAction( i18n("Open Article in External Browser"), QString::null, "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
     
     // notify the part that this is our internal widget
     setWidget(m_view);
