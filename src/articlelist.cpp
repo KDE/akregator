@@ -174,7 +174,9 @@ void ArticleList::slotShowNode(TreeNode* node)
     
     connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
     connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    
+
+    m_node = node;
+        
     clear();
     
     if ( node->isGroup() && m_columnMode == feedMode )
@@ -188,8 +190,7 @@ void ArticleList::slotShowNode(TreeNode* node)
         hideColumn(1);
         m_columnMode = feedMode;
     }
-    m_node = node;
-    
+
     slotUpdate();
 }
 

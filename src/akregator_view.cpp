@@ -997,13 +997,8 @@ void aKregatorView::slotFeedRemove()
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KGuiItem(i18n("&Delete"), "editdelete")) == KMessageBox::Continue)
     {
         delete selectedNode;
-        if (m_tree->currentItem()) {
-            m_tree->currentItem()->setSelected(true);
-            slotNodeSelected(m_tree->selectedNode());
-        }
         m_tree->setFocus();
-        //m_part->setModified(true);
-    }
+     }
 }
 
 void aKregatorView::slotFeedModify()

@@ -642,8 +642,17 @@ void FeedsTree::disconnectFromNode(TreeNode* node)
 
 void FeedsTree::slotNodeDestroyed(TreeNode* node)
 {
-    delete findNodeItem(node);
+    TreeNodeItem* item = findNodeItem(node);
     m_itemDict.remove(node);
+
+    if ( item->isSelected() )
+    {
+        if (item->itemBelow())
+            item->itemBelow()->setSelected(true);
+        else if (item->itemAbove())
+            item->itemAbove()->setSelected(true);
+    }
+    delete item;
 }
 
 void FeedsTree::slotNodeChanged(TreeNode* node)
