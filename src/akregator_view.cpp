@@ -342,9 +342,13 @@ void aKregatorView::slotCombinedView()
     m_articles->hide();
     m_viewMode=CombinedView;
 
-    Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-    if (feed)
-        m_articleViewer->show(feed);
+    ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
+    if (item)
+    {
+        Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+        if (feed)
+            m_articleViewer->show(feed);
+    }
 
     Settings::setViewMode( m_viewMode );
 }
