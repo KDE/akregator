@@ -4,6 +4,7 @@
   <Menu name="file">
     <Action name="file_import"/>
     <Action name="file_export"/>
+    <Action name="file_getfromweb"/>
     <Separator/> 
     <Action name="file_print"/>
     <Separator/> 
@@ -79,19 +80,6 @@
   <Merge/>
 </ToolBar>
 
-
-<Menu name="feedgroup_popup">
-  <Action name="feed_mark_all_as_read"/>
-  <Separator/>
-  <Action name="feed_fetch"/>
-  <Separator/>
-  <Action name="feed_add"/>
-  <Action name="feed_add_group"/>
-  <Action name="feed_modify"/>
-  <Action name="feed_remove"/>
-</Menu>
-
-'
 <!-- this menu doesn't show up in the app, just groups the actions -->
 <Menu name="various">
 <Action name="go_previous_article"/>
@@ -121,6 +109,17 @@
   <Separator/>
   <Action name="feed_modify"/>
   <Action name="feed_remove"/>
+</Menu>
+
+<Menu name="feedgroup_popup">
+    <Action name="group_mark_all_as_read"/>
+    <Separator/>
+    <Action name="group_fetch"/>
+    <Separator/>
+    <Action name="feed_add"/>
+    <Action name="feed_add_group"/>
+    <Action name="group_modify"/>
+    <Action name="group_remove"/>
 </Menu>
 
 <Menu name="article_popup">

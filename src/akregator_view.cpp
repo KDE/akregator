@@ -975,7 +975,7 @@ void View::slotFeedRemove()
             i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
         msg = msg.arg(selectedNode->title());
     }
-    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
+    if (KMessageBox::warningContinueCancel(0, msg, selectedNode->isGroup() ? i18n("Delete Folder") : i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
         delete selectedNode;
         m_tree->setFocus();

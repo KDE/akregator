@@ -179,6 +179,7 @@ namespace Akregator
             void fileOpen();
             void fileImport();
             void fileExport();
+            void fileGetFeeds();
             void openURLDelayed();
             
             /** Shows configuration dialog */

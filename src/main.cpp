@@ -29,6 +29,7 @@
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include <knotifyclient.h>
 
 #include "aboutdata.h"
 #include "app.h"
@@ -42,6 +43,9 @@ int main(int argc, char **argv)
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options );
     Akregator::Application app;
+    
+    // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
+    KNotifyClient::startDaemon();
 
     // see if we are starting with session management
     if (app.isRestored())
