@@ -83,7 +83,8 @@ namespace Akregator
              * Current item has changed.
              */
             void slotItemChanged(QListViewItem*);
-
+            void slotItemMoved();
+        
             void slotNormalView();
             void slotWidescreenView();
             void slotCombinedView();

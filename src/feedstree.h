@@ -16,11 +16,11 @@ namespace Akregator
     class FeedsTreeItem : public KListViewItem
     {
         public:
-            FeedsTreeItem( QListView *parent, QString label=QString::null);
-            FeedsTreeItem( QListViewItem *parent, QString label=QString::null);
-            FeedsTreeItem( QListView *parent, QListViewItem *after, QString
+            FeedsTreeItem( bool f, QListView *parent, QString label=QString::null);
+            FeedsTreeItem( bool f, QListViewItem *parent, QString label=QString::null);
+            FeedsTreeItem( bool f, QListView *parent, QListViewItem *after, QString
         label=QString::null);
-            FeedsTreeItem(QListViewItem *parent, QListViewItem *after,
+            FeedsTreeItem(bool f, QListViewItem *parent, QListViewItem *after,
                        QString label=QString::null);
         virtual void paintCell( QPainter * p, const QColorGroup & cg,
                             int column, int width, int align );
@@ -28,10 +28,14 @@ namespace Akregator
         int unread(){return m_unread;}
         void setUnread(int u);
         
+        bool isFolder();
+        void setFolder(bool f);
+
         private:
             int countUnreadRecursive();
             void updateParentsRecursive();
             int m_unread;
+            bool m_folder;
     };
               
     

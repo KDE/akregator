@@ -18,27 +18,27 @@
 
 using namespace Akregator;
 
-FeedsTreeItem::FeedsTreeItem( QListView *parent, QString label)
-    : KListViewItem( parent, label ), m_unread(0)
+FeedsTreeItem::FeedsTreeItem( bool isF, QListView *parent, QString label)
+    : KListViewItem( parent, label ), m_unread(0), m_folder(isF)
 {
 
 }
 
-FeedsTreeItem::FeedsTreeItem( QListViewItem *parent, QString label)
-    : KListViewItem( parent, label ), m_unread(0)
+FeedsTreeItem::FeedsTreeItem( bool isF, QListViewItem *parent, QString label)
+    : KListViewItem( parent, label ), m_unread(0), m_folder(isF)
 
 {
 
 }
 
-FeedsTreeItem::FeedsTreeItem(QListView *parent, QListViewItem *after, QString label)
-    : KListViewItem( parent, after, label ), m_unread(0)
+FeedsTreeItem::FeedsTreeItem(bool isF, QListView *parent, QListViewItem *after, QString label)
+    : KListViewItem( parent, after, label ), m_unread(0), m_folder(isF)
 {
 
 }
 
-FeedsTreeItem::FeedsTreeItem(QListViewItem *parent, QListViewItem *after, QString label)
-    : KListViewItem( parent, after, label ), m_unread(0)
+FeedsTreeItem::FeedsTreeItem(bool isF, QListViewItem *parent, QListViewItem *after, QString label)
+    : KListViewItem( parent, after, label ), m_unread(0), m_folder(isF)
 {
 
 }
@@ -50,6 +50,16 @@ void FeedsTreeItem::setUnread(int u)
     
     m_unread=u;
     updateParentsRecursive();
+}
+
+bool FeedsTreeItem::isFolder()
+{
+    return m_folder;
+}
+
+void FeedsTreeItem::setFolder(bool f)
+{
+    m_folder=f;
 }
 
 void FeedsTreeItem::updateParentsRecursive()
@@ -186,13 +196,13 @@ void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
     setUpdatesEnabled(oldUpdatesEnabled);
 }
 
-void FeedsTree::contentsDragEnterEvent (QDragEnterEvent *e)
+void FeedsTree::contentsDragEnterEvent(QDragEnterEvent *e)
 {
     if (e->source() != viewport())
     {
         if (KURLDrag::canDecode( e ))
         {
-            e->acceptAction();
+            e->accept();
         }
         else
         {
@@ -201,7 +211,10 @@ void FeedsTree::contentsDragEnterEvent (QDragEnterEvent *e)
     }
     else
     {
-        KListView::contentsDragEnterEvent(e);
+        if (firstChild()->isSelected())
+            e->ignore();
+        else
+            KListView::contentsDragEnterEvent(e);
     }
 }
 
@@ -216,7 +229,7 @@ void FeedsTree::contentsDropEvent( QDropEvent *e )
             findDrop( e->pos(), parent, afterme );
             KURL::List urls;
             KURLDrag::decode( e, urls );
-            e->acceptAction();
+            e->accept();
             emit dropped( urls, afterme, parent);
         }
         else
@@ -226,20 +239,56 @@ void FeedsTree::contentsDropEvent( QDropEvent *e )
     }
     else
     {
-        KListView::contentsDropEvent(e);
+
+        QPoint vp = contentsToViewport(e->pos());
+        FeedsTreeItem *f=static_cast<FeedsTreeItem*>(itemAt( vp ));
+        if (f && f->isFolder())
+        {
+            e->acceptAction();
+            movableDropEvent (f, 0);
+            f->setOpen(true);
+        }
+        else
+            KListView::contentsDropEvent(e);
     }
 }
 
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
 {
-    QListViewItem* item = itemAt(event->pos());
-    /* check if on root decoration */
-    if (!item || event->pos().x() > header()->cellPos(header()->mapToActual(0)) +
-            treeStepSize() * (item->depth() + 1) + itemMargin() ||
-            event->pos().x() < header()->cellPos(header()->mapToActual(0)))
+    // disable dragging "All Feeds"
+    if (firstChild()->isSelected())
+    {
+        event->ignore();
         return;
-    if (item && item->childCount() && !item->isOpen())
-        item->setOpen(true);
+    }
+
+    // if we are dragging over All feeds, enable
+    QPoint vp = contentsToViewport(event->pos());
+    QListViewItem *i= itemAt(vp);
+    if (i==firstChild())
+    {
+        event->accept();
+        return;
+    }
+    
+    // disable any drops where the result would be top level nodes
+    QListViewItem *afterme;
+    QListViewItem *parent;
+    findDrop( event->pos(), parent, afterme );
+    if (!parent)
+    {
+        event->ignore();
+        return;
+    }
+    
+    if (!i || event->pos().x() > header()->cellPos(header()->mapToActual(0)) +
+            treeStepSize() * (i->depth() + 1) + itemMargin() ||
+            event->pos().x() < header()->cellPos(header()->mapToActual(0)))
+    {}
+    else if (i && i->childCount() && !i->isOpen())
+            i->setOpen(true);
+    
+    event->accept();
 }
 
 void FeedsTree::slotCollapseAll()

@@ -81,7 +81,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
               this, SLOT(slotItemRenamed(QListViewItem *)));
     connect(m_tree, SIGNAL(dropped (KURL::List &, QListViewItem *, QListViewItem *)),
               this, SLOT(slotFeedURLDropped (KURL::List &, QListViewItem *, QListViewItem *)));
-
+    connect(m_tree, SIGNAL(moved()),
+              this, SLOT(slotItemMoved()));
 
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
@@ -161,7 +162,7 @@ void aKregatorView::reset()
     m_part->setModified(false);
 
     // Root item
-    FeedsTreeItem *elt = new FeedsTreeItem( m_tree, QString::null );
+    FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree, QString::null );
     m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
     elt->setOpen(true);
 }
@@ -173,7 +174,7 @@ bool aKregatorView::importFeeds(const QDomDocument& doc)
     QString text = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), i18n("Imported Folder"), &Ok);
     if (!Ok) return false;
 
-    FeedsTreeItem *elt = new FeedsTreeItem( m_tree->firstChild(), QString::null );
+    FeedsTreeItem *elt = new FeedsTreeItem( true, m_tree->firstChild(), QString::null );
     m_feeds.addFeedGroup(elt)->setTitle(text);
     elt->setOpen(true);
     return loadFeeds(doc, elt);
@@ -229,13 +230,14 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
         {
             QListViewItem *lastChild = parent->firstChild();
             while (lastChild && lastChild->nextSibling()) lastChild = lastChild->nextSibling();
-            elt = new FeedsTreeItem( parent, lastChild, KCharsets::resolveEntities(title) );
+            elt = new FeedsTreeItem( true, parent, lastChild, KCharsets::resolveEntities(title) );
         }
         else
-            elt = new FeedsTreeItem( m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
+            elt = new FeedsTreeItem( true, m_tree, m_tree->lastItem(), KCharsets::resolveEntities(title) );
 
         if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
         {
+            elt->setFolder(false);
             QString xmlurl=e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
             addFeed_Internal( 0, elt,
@@ -586,9 +588,9 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
         parent=m_tree->firstChild();
 
     if (after)
-        elt = new FeedsTreeItem(parent, after, text);
+        elt = new FeedsTreeItem(false, parent, after, text);
     else
-        elt = new FeedsTreeItem(parent, text);
+        elt = new FeedsTreeItem(false, parent, text);
 
     feed->setItem(elt);
 
@@ -624,9 +626,9 @@ void aKregatorView::slotFeedAddGroup()
         lastChild = lastChild->nextSibling();
 
     if (lastChild)
-        elt = new FeedsTreeItem(m_tree->currentItem(), lastChild, text);
+        elt = new FeedsTreeItem(true, m_tree->currentItem(), lastChild, text);
     else
-        elt = new FeedsTreeItem(m_tree->currentItem(), text);
+        elt = new FeedsTreeItem(true, m_tree->currentItem(), text);
 
     m_feeds.addFeedGroup(elt);
     FeedGroup *g = m_feeds.find(elt);
@@ -854,6 +856,11 @@ void aKregatorView::slotItemRenamed( QListViewItem *item )
 
         m_part->setModified(true);
     }
+}
+
+void aKregatorView::slotItemMoved()
+{
+    m_part->setModified(true);
 }
 
 void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
