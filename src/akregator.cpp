@@ -10,6 +10,7 @@
 #include "trayicon.h"
 #include "akregatorconfig.h"
 
+#include <ksqueezedtextlabel.h>
 #include <kkeydialog.h>
 #include <kfiledialog.h>
 #include <kprogress.h>
@@ -56,8 +57,18 @@ aKregator::aKregator()
     // and a status bar
     statusBar()->show();
 
+    int statH=fontMetrics().height()+2;
+    m_statusLabel = new KSqueezedTextLabel(this);
+    m_statusLabel->setTextFormat(Qt::RichText);
+    m_statusLabel->setSizePolicy(QSizePolicy( QSizePolicy::Ignored, QSizePolicy::Fixed ));
+    m_statusLabel->setMinimumWidth( 0 );
+    m_statusLabel->setFixedHeight( statH );
+    statusBar()->addWidget (m_statusLabel, 1, false);
+
     m_progressBar = new KProgress( this );
-    m_progressBar->setMaximumHeight(fontMetrics().height());
+    // blame the following on KMLittleProgress
+    m_progressBar->setMaximumWidth(fontMetrics().width( " 999.9 kB/s 00:00:01 " ) + 14);
+    m_progressBar->setFixedHeight(statH);
     m_progressBar->hide();
     statusBar()->addWidget( m_progressBar, 0, true);
 
@@ -324,6 +335,11 @@ void aKregator::loadingProgress(int percent)
         m_progressBar->hide();
 
     m_progressBar->setValue( percent );
+}
+
+void aKregator::slotSetStatusBarText(const QString & s)
+{
+    m_statusLabel->setText(s);
 }
 
 void aKregator::closeEvent(QCloseEvent* e)

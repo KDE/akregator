@@ -18,6 +18,7 @@
 #include <kparts/browserinterface.h>
 
 class KToggleAction;
+class KSqueezedTextLabel;
 class KProgress;
 class aKregator;
 
@@ -68,6 +69,9 @@ public:
     virtual void closeEvent(QCloseEvent* e);
 
     virtual void fontChange(const QFont &);
+public slots:
+    void slotSetStatusBarText(const QString & s);
+
 protected:
     /**
      * This method is called when it is time for the app to save its
@@ -109,7 +113,7 @@ private:
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
     KProgress *m_progressBar;
-
+    KSqueezedTextLabel *m_statusLabel;
     bool m_quit;
 };
 
