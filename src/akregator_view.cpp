@@ -83,6 +83,8 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
               this, SLOT(slotItemChanged(QListViewItem*)));
     connect(m_tree, SIGNAL(itemRenamed(QListViewItem *)),
               this, SLOT(slotItemRenamed(QListViewItem *)));
+    connect(m_tree, SIGNAL(itemRenamed(QListViewItem *,int)),
+              this, SLOT(slotItemRenamed(QListViewItem *)));
     connect(m_tree, SIGNAL(dropped (KURL::List &, QListViewItem *, QListViewItem *)),
               this, SLOT(slotFeedURLDropped (KURL::List &, QListViewItem *, QListViewItem *)));
     connect(m_tree, SIGNAL(moved()),
