@@ -1,7 +1,7 @@
 # set the include path for X, qt and KDE
 INCLUDES = -I$(top_srcdir)/akregator/src/librss $(all_includes)
 
-# let automoc handle all of the meta source files (moc)
+# let automoc handle all of the meta source files (moc).
 METASOURCES = AUTO
 
 messages: rc.cpp
@@ -18,7 +18,7 @@ KDE_ICON = akregator
 bin_PROGRAMS = akregator
 
 # the application source, library search path, and link libraries
-akregator_SOURCES = main.cpp app.cpp akregator.cpp trayicon.cpp akregatorconfig.kcfgc settings_general.ui
+akregator_SOURCES = main.cpp app.cpp akregator.cpp trayicon.cpp akregatorconfig.kcfgc settings_general.ui settings_externalbrowser.ui
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 akregator_LDADD = $(LIB_KPARTS)
 

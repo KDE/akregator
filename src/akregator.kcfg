@@ -44,5 +44,23 @@
         <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
      </entry>
   </group>
-
+  
+  <group name="ExternalBrowser">
+     <entry name="ExternalBrowserUseKdeDefault" key="ExternalBrowserUseKdeDefault" type="Bool">
+        <label>Use default KDE web browser</label>
+        <default>true</default>
+        <whatsthis>Use KDE web browser when double-clicking an article.</whatsthis>
+     </entry>
+     <entry name="ExternalBrowserUseCustomCommand" key="ExternalBrowserUseCustomCommand" type="Bool">
+        <label>Use this command:</label>
+        <default>false</default>
+        <whatsthis>Use the specified command when double-clicking an article.</whatsthis>
+     </entry>
+     <entry name="ExternalBrowserCustomCommand" key="ExternalBrowserCustomCommand" type="String">
+        <label></label>
+        <default>mozilla '%u'</default>
+        <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
+     </entry>
+  </group>
+  
 </kcfg>

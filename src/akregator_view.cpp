@@ -44,6 +44,19 @@
 #include <krun.h>
 #include <kdialog.h>
 #include <kurl.h>
+#include <kprocess.h>
+
+#ifndef KDE_MAKE_VERSION
+#define KDE_MAKE_VERSION( a,b,c ) (((a) << 16) | ((b) << 8) | (c))
+#endif
+
+#ifndef KDE_IS_VERSION
+#define KDE_IS_VERSION(a,b,c) ( KDE_VERSION >= KDE_MAKE_VERSION(a,b,c) )
+#endif
+
+#if KDE_IS_VERSION(3,1,94)
+#include <kshell.h>
+#endif
 
 #include <qfile.h>
 #include <qtextstream.h>
@@ -994,7 +1007,26 @@ void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, i
     if (!item) return;
     if (!item->article().link().isValid()) return;
     // TODO : make this configurable....
-    KRun::runURL(item->article().link(), "text/html", false, false);
+    if (Settings::externalBrowserUseKdeDefault())
+        KRun::runURL(item->article().link(), "text/html", false, false);
+    else
+    {
+      QString cmd = Settings::externalBrowserCustomCommand();
+      QString url = item->article().link().url();
+      cmd.replace(QRegExp("%u"), url);
+      KProcess *proc = new KProcess;
+#if KDE_IS_VERSION(3,1,94)
+      QStringList cmdAndArgs = KShell::splitArgs(cmd);
+#else
+      QStringList cmdAndArgs = QStringList::split(' ',cmd);
+#endif
+      *proc << cmdAndArgs;
+//      This code will also work, but starts an extra shell process.
+//      *proc << cmd;
+//      proc->setUseShell(true);
+      proc->start(KProcess::DontCare);
+      delete proc;
+    }        
 
 }
 
