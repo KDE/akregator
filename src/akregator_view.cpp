@@ -1494,7 +1494,7 @@ void aKregatorView::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
     
-    ArticleListItem* ali = static_cast<ArticleListItem*>(m_articles->selectedItem());
+    ArticleListItem* ali = dynamic_cast<ArticleListItem*>(m_articles->selectedItem());
 
     if (!ali)
         return;
@@ -1505,8 +1505,20 @@ void aKregatorView::slotArticleDelete()
     {
         MyArticle article = ali->article();
         article.setDeleted();
+        ali = dynamic_cast<ArticleListItem*>(ali->nextSibling());
+        if (!ali) {
+            ali = dynamic_cast<ArticleListItem*>(ali->itemAbove()); // slow
+        }
+        if (ali) {
+            m_articles->setCurrentItem(ali);
+            ali->setSelected(true);
+        }
+        if (ali) {
+            slotArticleSelected(ali->article());
+        } else {
+            m_articleViewer->slotClear();
+        }
         m_articles->slotUpdate();
-        m_articleViewer->slotClear();
         Archive::save(article.feed());
     }
 }
