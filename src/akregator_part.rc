@@ -25,11 +25,11 @@
     <Action name="feed_mark_all_as_read"/>
     <Action name="feed_mark_all_feeds_as_read"/>
   </Menu>
-  
+<!--  
   <Menu name="view">
     <text>&amp;View</text>
   </Menu>
-  
+  -->
   <Menu name ="article">
   <text>&amp;Article</text>
   <Action name="article_open"/>
