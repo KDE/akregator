@@ -24,6 +24,7 @@ ADD new feature
 #000037 ADD [ ] add favicon support to the FeedsTree -->smt
 #000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
                 [ ] if the channel image size is well-sized, show in headers -->smt
+                [ ] handle palette changes (color changes in kcontrol)
 #000031 ADD [ ] Autosave: Remember feeds list in "current" file
                 Elaborate: when user saves file, remember as current and restore from it,
                 if file is unsaved, store it to data/current.opml.
