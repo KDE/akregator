@@ -19,6 +19,7 @@
 #include <kicontheme.h>
 #include <kdebug.h>
 #include <ksqueezedtextlabel.h>
+#include <kmessagebox.h>
 
 using namespace Akregator;
 
@@ -82,7 +83,8 @@ void AddFeedDialog::fetchCompleted(Feed *f)
 
 void AddFeedDialog::fetchError(Feed *)
 {
-    KDialogBase::slotOk();
+    KMessageBox::error(this, i18n("Feed not found from %1.").arg(feedURL));
+    KDialogBase::slotCancel();
 }
 
 void AddFeedDialog::fetchDiscovery(Feed *f)
