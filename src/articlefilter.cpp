@@ -123,6 +123,13 @@ ArticleFilter::Action ArticleFilter::action() const
     return m_action;
 }
 
+bool ArticleFilter::operator==(const ArticleFilter &other) const
+{
+    return m_action == other.m_action && m_association == other.m_association && m_criteria == other.m_criteria; 
+}
+bool ArticleFilter::operator!=(const ArticleFilter &other) const
+{ return !(*this == other); }
+
 bool ArticleFilter::anyCriterionMatches( const MyArticle &a ) const
 {
     if (m_criteria.count()==0)

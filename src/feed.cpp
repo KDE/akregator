@@ -48,6 +48,11 @@ QString Feed::archiveModeToString(ArchiveMode mode)
    return "globalDefault";
 }
 
+ArticleSequence Feed::articles() const
+{ 
+    return m_articles; 
+}
+
 Feed::ArchiveMode Feed::stringToArchiveMode(QString str)
 {
     if (str == "globalDefault")
@@ -175,15 +180,17 @@ void Feed::markAllRead()
 void Feed::appendArticles(const Document &d, bool findDups)
 {
     //kdDebug() << "appendArticles findDups=="<<findDups<< " isMerged=="<< m_merged<<endl;
+    bool changed = false;
     findDups=true;
     m_articles.enableSorting(false);
+    Article::List d_articles = d.articles();
     Article::List::ConstIterator it;
-    Article::List::ConstIterator en = d.articles().end();
+    Article::List::ConstIterator en = d_articles.end();
     //kdDebug() << "m_unread before appending articles=="<<m_unread<<endl;
     
     int nudge=0;
 
-    for (it = d.articles().begin(); it != en; ++it)
+    for (it = d_articles.begin(); it != en; ++it)
     {
         MyArticle mya(*it);
         
@@ -202,6 +209,7 @@ void Feed::appendArticles(const Document &d, bool findDups)
 
 		mya.offsetFetchTime(nudge);
                 appendArticle(mya);
+                changed = true;
 		nudge--;
             }
             //else{
@@ -219,16 +227,19 @@ void Feed::appendArticles(const Document &d, bool findDups)
 	
             mya.offsetFetchTime(nudge);
             appendArticle(mya);
+            changed = true;
             nudge++;
         }
     }
     m_articles.enableSorting(true);
     m_articles.sort();
-    
+    if (changed)
+        emit signalChanged();
 }
 
-void Feed::appendArticle(const MyArticle &a)
+void Feed::appendArticle(const MyArticle& a)
 {
+    
     QDateTime now = QDateTime::currentDateTime();
 
     int expiryAge = -1; 
@@ -255,11 +266,13 @@ void Feed::appendArticle(const MyArticle &a)
                 ++it;       
             else
                 inserted = true;
+        MyArticle a2(a);    
+        a2.setFeed(this);    
         if ( inserted )
-            m_articles.insert(it, a);
+            m_articles.insert(it, a2);
         else
-            m_articles.append(a);    
-    }    
+            m_articles.append(a2);    
+     }    
 }
 
 
@@ -388,6 +401,7 @@ void Feed::loadFavicon()
 
 void Feed::deleteExpiredArticles()
 {
+    bool changed = false;
     if ( (m_archiveMode == globalDefault && Settings::EnumArchiveMode::limitArticleAge) || m_archiveMode == limitArticleAge )
     {
         long expiryInSec;
@@ -412,12 +426,15 @@ void Feed::deleteExpiredArticles()
                 tmp = it;
                 ++it;       
                 m_articles.remove(*tmp);
+                changed = true;
          
             }
             else 
                 foundNotYetExpired = true;
         }    
     }    
+    if (changed)
+        emit signalChanged();
 }
 
 void Feed::setFavicon(const QPixmap &p)

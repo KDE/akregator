@@ -8,6 +8,7 @@
 #include "articleviewer.h"
 #include "viewer.h"
 #include "feed.h"
+#include "feedgroup.h"
 #include "myarticle.h"
 #include "akregatorconfig.h"
 #include "akregator_run.h"
@@ -42,7 +43,7 @@ int pointsToPixel(const QPaintDeviceMetrics &metrics, int pointSize)
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-   : Viewer(parent, name), m_htmlHead(), m_metrics(widget()), m_currentText() 
+    : Viewer(parent, name), m_htmlHead(), m_metrics(widget()), m_currentText(), m_node(0), m_viewMode(normalView) 
 {
     generateCSS();
     m_imageDir="file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/");
@@ -261,54 +262,106 @@ void ArticleViewer::endWriting()
     end();
 }
 
-void ArticleViewer::show(Feed *, MyArticle a, bool writeHeaders)
+void ArticleViewer::slotShowArticle(const MyArticle& article)
 {
-    QString text;
-
-    if (writeHeaders)
-    {
-        beginWriting();
-    }
-
-    // we set f to 0 to not show feed image
-    text="<p><div id=\"article\">"+formatArticle(0, a)+"</div><p>";
-    write(text);
-
-    if (writeHeaders)
-    {
-    	endWriting();
-    }
-    else
-    {
-        m_currentText = m_currentText+text;
-    }
-}
-
-void ArticleViewer::show(Feed *f, MyArticle a)
-{
+    m_viewMode = normalView;
+    
     view()->setContentsPos(0,0);
     begin();
 
-    QString text=formatArticle(f, a) +"</body></html>";
+    QString text=formatArticle(article.feed(), article) +"</body></html>";
     m_currentText=text;
 
     write(m_htmlHead + text);
+    
     end();
+}
+
+void ArticleViewer::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
+{
+    if (m_statusFilter == statusFilter && m_textFilter == textFilter)
+        return;
+  
+    m_textFilter = textFilter;
+    m_statusFilter = statusFilter;
+    
+    slotUpdateCombinedView(); 
+}
+
+void ArticleViewer::slotUpdateCombinedView()
+{
+    if (m_viewMode != combinedView)
+        return;
+    
+    if (!m_node)
+        return slotClear();
+    
+    ArticleSequence articles = m_node->articles();
+    ArticleSequence::ConstIterator end = articles.end(); 
+    ArticleSequence::ConstIterator it = articles.begin();
+    
+    beginWriting();
+    
+    QString text;
+    
+    for ( ; it != end; ++it)
+        if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
+            text += "<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";
+     
+    write(text);
+    endWriting();     
+}
+
+void ArticleViewer::slotClear()
+{
+    kdDebug() << "ArticleViewer::slotClear()" << endl;
+    if (m_node)
+    {    
+        disconnect( m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdateCombinedView() ) );
+        disconnect( m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear() ) );
+    }
+    m_node = 0;
+
+    // FIXME: is this the proper way of deleting the view content??    
+    view()->setContentsPos(0,0);
+    begin();
+    end();
+}
+            
+void ArticleViewer::slotShowNode(FeedGroup* node)
+{
+    m_viewMode = combinedView;
+    
+    if (m_node)
+    {    
+        disconnect( m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdateCombinedView() ) );
+        disconnect( m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear() ) );
+    }
+    
+    m_node = node;
+    
+    if (node)
+    {
+        connect( node, SIGNAL(signalChanged()), this, SLOT(slotUpdateCombinedView()) );
+        connect( node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
+    }    
+    slotUpdateCombinedView();
 }
 
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-    openPage(url, args, QString::null);    
-    return true;
+//     openPage(url, args, QString::null);    
+    return true; 
 }
 
 
 void ArticleViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-   if(Viewer::slotOpenURLRequest(url, args)) return;
+   if(Viewer::slotOpenURLRequest(url, args)) 
+       return;
    emit urlClicked(url);
-   return;
+   return; // ??
 }
 
 void ArticleViewer::slotOpenLinkInternal()

@@ -45,7 +45,9 @@ class Criterion
         Subject subject() const;
         Predicate predicate() const;
         QVariant object() const;
-
+        bool operator==(const Criterion& other) const
+        { return m_subject == other.m_subject && m_predicate == other.m_predicate && m_object == other.m_object; }
+        
     private:
         Subject m_subject;
         Predicate m_predicate;
@@ -67,9 +69,9 @@ class ArticleFilter
         ArticleFilter( const QValueList<Criterion> &criteria, Association assoc, Action action );
 
         bool matches( const MyArticle &article ) const;
-
         Action action() const;
-
+        bool operator==(const ArticleFilter &other) const;
+        bool operator!=(const ArticleFilter &other) const;
     private:
         bool anyCriterionMatches( const MyArticle &a ) const;
         bool allCriteriaMatch( const MyArticle &a ) const;

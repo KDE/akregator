@@ -89,7 +89,7 @@ void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int colu
 /* ==================================================================================== */
 
 ArticleList::ArticleList(QWidget *parent, const char *name)
-        : KListView(parent, name)
+    : KListView(parent, name), m_node(0), m_columnMode(feedMode)
 {
     setMinimumSize(250, 150);
     addColumn(i18n("Article"));
@@ -113,8 +113,106 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
         "or open article in another tab or even external browser window "
         "using right-click menu."));
 }
+void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
+{
+    if ( (textFilter != m_textFilter) || (statusFilter != m_statusFilter) )
+    {
+        m_textFilter = textFilter;
+        m_statusFilter = statusFilter;
+               
+        slotUpdate();
+    }
+}
 
+void ArticleList::slotShowNode(FeedGroup* node)
+{
+    kdDebug() << "slotShowNode entered" << endl;
+     if (!node)
+        return slotClear();
+     
+    if (m_node)
+    {
+        disconnect(m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdate()) );
+        disconnect(m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
+    }
+    
+    connect(node, SIGNAL(signalChanged()), this, SLOT(slotUpdate()) );
+    connect(node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
+    
+    clear();
+    
+    if ( node->isGroup() && m_columnMode == feedMode )
+    {
+        addColumn(i18n("Date"));
+        setColumnText(1,i18n("Feed"));
+        setColumnWidthMode(2, QListView::Maximum);
+        setColumnWidthMode(1, QListView::Manual);
+        setColumnWidthMode(0, QListView::Manual);
+        m_columnMode = groupMode;
+    }
+    else
+    {
+        if ( !node->isGroup() && m_columnMode == groupMode)
+        {    
+            setColumnText(1,i18n("Date"));
+            int oldw=columnWidth(0)+columnWidth(1);
+            removeColumn(2);
+            setColumnWidthMode(1, QListView::Maximum);
+            setColumnWidthMode(0, QListView::Manual);
+            setColumnWidth(0, oldw); // resize title col to old title col + feed col width
+            m_columnMode = feedMode;
+        } 
+    }
+    m_node = node;
+    
+    slotUpdate();
+        
+    kdDebug() << "slotShowNode left" << endl;
+}
 
+void ArticleList::slotClear()
+{
+    kdDebug() << "slotClear entered" << endl;
+    if (m_node)
+    {
+        disconnect(m_node, SIGNAL(signalChanged()), this, SLOT(slotUpdate()) );
+        disconnect(m_node, SIGNAL(signalDestroyed()), this, SLOT(slotClear()) );
+    }
+    m_node = 0;
+    
+    clear();
+    
+    kdDebug() << "slotClear left" << endl;
+}
+
+void ArticleList::slotUpdate()
+{
+    kdDebug() << "slotUpdate entered" << endl;
+
+    if (!m_node) 
+        return;    
+    
+    setUpdatesEnabled(false);
+    
+    clear();
+    
+    ArticleSequence articles = m_node->articles();
+    
+    ArticleSequence::ConstIterator end = articles.end();
+    ArticleSequence::ConstIterator it = articles.begin();
+    
+    for ( ; it != end; ++it)
+    {
+        // better use setVisible for filtering?   
+         if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
+             new ArticleListItem(this, lastChild(), *it, (*it).feed() );
+    }        
+    setUpdatesEnabled(true);
+    triggerUpdate();
+
+    kdDebug() << "slotUpdate left" << endl;
+}
+ 
 ArticleList::~ArticleList()
 {}
 

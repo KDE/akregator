@@ -15,8 +15,9 @@ class QDomElement;
 
 namespace Akregator
 {
+    class ArticleSequence;
     class FeedsCollection;
-
+    
     /**
      * This is a dummy feed used to represent feed groups.
      */
@@ -41,12 +42,20 @@ namespace Akregator
             
             FeedsCollection *collection() { return m_collection;}
             void setCollection(FeedsCollection *);
+     
+            virtual ArticleSequence articles() const;
+            
+            signals:       
+                
+            void signalDestroyed();    
+            void signalChanged();
             
         private:
             QString           m_title;        ///< Feed/Group title
 
             QListViewItem    *m_item;         ///< Corresponding list view item.
             FeedsCollection  *m_collection;   ///< Parent collection.
+     
     };
 };
 

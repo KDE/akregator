@@ -49,11 +49,11 @@ namespace Akregator
             ArchiveMode archiveMode() const { return m_archiveMode; }
             void setArchiveMode(ArchiveMode archiveMode) { m_archiveMode = archiveMode; }  
             
-            int maxArticleAge() { return m_maxArticleAge; } const
+            int maxArticleAge() const { return m_maxArticleAge; } 
             void setMaxArticleAge(int maxArticleAge)
             { m_maxArticleAge = maxArticleAge; }
             
-            int maxArticleNumber() { return m_maxArticleNumber; } const
+            int maxArticleNumber() const { return m_maxArticleNumber; } 
             void setMaxArticleNumber(int maxArticleNumber) { m_maxArticleNumber = maxArticleNumber; }
             
             bool isMerged() const { return m_merged; }
@@ -77,11 +77,10 @@ namespace Akregator
             QString description() const { return m_description; }
             void setDescription(const QString& s) { m_description = s; }
           
-            const ArticleSequence& articles() const { return m_articles; }
+            virtual ArticleSequence articles() const;
             void markAllRead();
 
             void appendArticles(const Document &d, bool findDups=false);
-            void appendArticle(const MyArticle &a);
 
             void abortFetch();
 
@@ -104,7 +103,7 @@ namespace Akregator
             void fetchCompleted(Loader *loader, Document doc, Status status);
 
         private:
-            
+            void appendArticle(const MyArticle &a);            
             void tryFetch();
             
             

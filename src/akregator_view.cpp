@@ -195,13 +195,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_articleViewer->openDefault();
     // -- /DEFAULT INIT
 
-    // Change default view mode
-    int viewMode = Settings::viewMode();
-
-    if (viewMode==CombinedView)        slotCombinedView();
-    else if (viewMode==WidescreenView) slotWidescreenView();
-    else                               slotNormalView();
-
     m_feedSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
 
@@ -222,6 +215,13 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     connect(m_expiryTimer, SIGNAL(timeout()), this, 
     SLOT(slotDeleteExpiredArticles()) );
     m_expiryTimer->start(3600000);
+    
+    // Change default view mode
+    int viewMode = Settings::viewMode();
+    
+    if (viewMode==CombinedView)        slotCombinedView();
+    else if (viewMode==WidescreenView) slotWidescreenView();
+    else                               slotNormalView();
 }
 
 void aKregatorView::saveSettings(bool /*quit*/)
@@ -650,17 +650,16 @@ void aKregatorView::slotNormalView()
     if (m_viewMode==NormalView)
        return;
 
-    else if (m_viewMode==CombinedView)
+    if (m_viewMode==CombinedView)
     {
         m_articles->show();
         // tell articleview to redisplay+reformat
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
         if (item)
-        {
-            Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-            if (!feed->isGroup())
-                m_articleViewer->show( feed, item->article() );
-        }
+             //     if (!feed->isGroup()) // What's that if good for? -fo
+            m_articleViewer->slotShowArticle(item->article());
+        else 
+            m_articleViewer->slotClear();
     }
 
     m_articleSplitter->setOrientation(QSplitter::Vertical);
@@ -679,11 +678,11 @@ void aKregatorView::slotWidescreenView()
         // tell articleview to redisplay+reformat
         ArticleListItem *item = static_cast<ArticleListItem *>(m_articles->currentItem());
         if (item)
-        {
-            Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-            if (!feed->isGroup())
-                m_articleViewer->show( feed, item->article() );
-        }
+        
+           // if (!feed->isGroup()) // what's that if good for? -fo
+                m_articleViewer->slotShowArticle(item->article());
+        else
+            m_articleViewer->slotClear();
     }
 
     m_articleSplitter->setOrientation(QSplitter::Horizontal);
@@ -694,15 +693,14 @@ void aKregatorView::slotWidescreenView()
 
 void aKregatorView::slotCombinedView()
 {
-    if (m_viewMode==CombinedView)
+    if (m_viewMode == CombinedView)
        return;
 
     m_articles->hide();
-    m_viewMode=CombinedView;
-
-    if (m_tree->currentItem() && m_fetchTimer) // not initializing
-        slotItemChanged(m_tree->currentItem());
-
+    m_viewMode = CombinedView;
+    
+    slotItemChanged(m_tree->currentItem());
+    
     Settings::setViewMode( m_viewMode );
 }
 
@@ -730,7 +728,6 @@ void aKregatorView::operationError(const QString & /*msg*/)
     m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
     m_mainFrame->setProgress(-1);
 }
-
 
 void aKregatorView::slotRemoveFrame()
 {
@@ -804,104 +801,24 @@ void aKregatorView::slotContextMenu(KListView*, QListViewItem* item, const QPoin
 
 void aKregatorView::slotItemChanged(QListViewItem *item)
 {
-    FeedGroup *feed = static_cast<FeedGroup *>(m_feeds.find(item));
-    if (!feed)
-        return;
-
-    m_tabs->showPage(m_mainTab);
-
-    if (m_viewMode==CombinedView)
-        m_articleViewer->beginWriting();
-
-    if (feed->isGroup())
-    {
-        m_articles->clear();
-
-        if (m_articles->columns() < 3)
-        {
-            m_articles->addColumn(i18n("Date"));
-            m_articles->setColumnText(1,i18n("Feed"));
-            
-            /*if (m_articles->firstChild())
-            {
-                QFontMetrics fm( m_articles->font() );
-                m_articles->setColumnWidth(0, m_articles->width()-
-                                fm.width(m_articles->firstChild()->text(0))
-                                -fm.width(m_articles->firstChild()->text(1)));
-            }*/
-            m_articles->setColumnWidthMode(2, QListView::Maximum);
-	        m_articles->setColumnWidthMode(1, QListView::Manual);
-	        m_articles->setColumnWidthMode(0, QListView::Manual);
-	    }
-
-        slotUpdateArticleList(feed, false);
-    }
-    else
-    {
-        if (m_articles->columns() > 2)
-        {
-            m_articles->setColumnText(1,i18n("Date"));
-            int oldw=m_articles->columnWidth(0)+m_articles->columnWidth(1);
-            m_articles->removeColumn(2);
-            m_articles->setColumnWidthMode(1, QListView::Maximum);
-	        m_articles->setColumnWidthMode(0, QListView::Manual);
-            m_articles->setColumnWidth(0, oldw); // resize title col to old title col + feed col width
-        }
-
-      slotUpdateArticleList( static_cast<Feed *>(feed), false );
-    }
-
-    if (m_viewMode==CombinedView)
-        m_articleViewer->endWriting();
-
-    if (item->parent())
-        m_part->actionCollection()->action("feed_remove")->setEnabled(true);
-    else
-        m_part->actionCollection()->action("feed_remove")->setEnabled(false);
-
-}
-
-void aKregatorView::slotUpdateArticleList(FeedGroup* source, bool appendOnly)
-{
-//  kdDebug() << k_funcinfo << src->title() << endl;
-    if (!source->isGroup())
-    {
-        slotUpdateArticleList(static_cast<Feed *>(source), appendOnly);
-    }
-    else
-    {
-        if (!source->item())
-            return;
-            for ( QListViewItem *i = source->item()->firstChild()
-                ; i ; i = i->nextSibling() )
-        {
-            FeedGroup *g = m_feeds.find(i);
-            if (g)
-                slotUpdateArticleList(g, true);
-        }
-    }
-}
-
-void aKregatorView::slotUpdateArticleList(Feed* source, bool appendOnly)
-{
-    m_articles->setUpdatesEnabled(false); 
-    if (!appendOnly)
-        m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
+    FeedGroup* node = m_feeds.find(item);
     
-    if (source->articles().count() > 0)
+    m_tabs->showPage(m_mainTab);
+    
+    if (m_viewMode == CombinedView)
+        m_articleViewer->slotShowNode(node);
+    else   
+        m_articles->slotShowNode(node);
+    
+    if (item && m_part->actionCollection()->action("feed_remove") )
     {
-        MyArticle::List::ConstIterator it;
-        MyArticle::List::ConstIterator end = source->articles().end();
-        for (it = source->articles().begin(); it != end; ++it)
-            if ( itemAdded( new ArticleListItem( m_articles, m_articles->lastChild(), (*it), source ) ) )
-            {
-                if (m_viewMode==CombinedView)
-                    m_articleViewer->show(source, *it, false);     
-            }
-    }
-    m_articles->setUpdatesEnabled(true);
-    m_articles->triggerUpdate();
+        if (item->parent())
+            m_part->actionCollection()->action("feed_remove")->setEnabled(true);
+        else
+            m_part->actionCollection()->action("feed_remove")->setEnabled(false);
+    }    
 }
+
 
 void aKregatorView::slotFeedAdd()
 {
@@ -1178,6 +1095,7 @@ void aKregatorView::setTotalUnread()
 
 void aKregatorView::fetchItem(QListViewItem *item)
 {
+    kdDebug() << "enter fetchItem" << endl;
     if (item)
     {
         FeedGroup *fg = m_feeds.find(item);
@@ -1193,6 +1111,7 @@ void aKregatorView::fetchItem(QListViewItem *item)
                 m_transaction->fetch(f);
         }
     }
+    kdDebug() << "leave fetchItem" << endl;
 }
 
 void aKregatorView::showFetchStatus()
@@ -1282,15 +1201,16 @@ void aKregatorView::slotFetchesCompleted()
 void aKregatorView::slotFeedFetched(Feed *feed)
 {
     // If its a currenly selected feed, update view
-    if (feed->item() == m_tree->currentItem())
-        slotUpdateArticleList(feed, false);
+//    if (feed->item() == m_tree->currentItem())
+  //      slotUpdateArticleList(feed, false);
 
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {
-        MyArticle::List::ConstIterator it;
-        MyArticle::List::ConstIterator end = feed->articles().end();
-        for (it = feed->articles().begin(); it != end; ++it)
+        ArticleSequence articles = feed->articles(); 
+        ArticleSequence::ConstIterator it;
+        ArticleSequence::ConstIterator end = articles.end();
+        for (it = articles.begin(); it != end; ++it)
         {
             if ((*it).status()==MyArticle::New)
             {
@@ -1366,7 +1286,7 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
         // TODO: schedule this save.. don't want to save a huge file for one change
         Archive::save(feed);
     }
-    m_articleViewer->show( feed, item->article() );
+    m_articleViewer->slotShowArticle( item->article() );
 }
 
 void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, int)
@@ -1391,14 +1311,14 @@ void aKregatorView::slotItemRenamed( QListViewItem *item )
     QString text = item->text(0);
     kdDebug() << "Item renamed to " << text << endl;
 
-    Feed *feed = static_cast<Feed *>(m_feeds.find(item));
+    Feed *feed = static_cast<Feed *> (m_feeds.find(item));
     if (feed)
     {
         if (feed->title()!=text)
             m_part->setModified(true);
 
         feed->setTitle( text );
-     }
+    }
 }
 
 void aKregatorView::slotItemMoved()
@@ -1478,55 +1398,9 @@ void aKregatorView::updateSearch(const QString &s)
     m_currentTextFilter = new ArticleFilter(textCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
     m_currentStatusFilter = new ArticleFilter(statusCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
 
-    QListViewItem *currentItem = m_articles->selectedItem();
-
-    if (m_viewMode==CombinedView)
-       m_articleViewer->beginWriting();
-
-    checkItem(m_articles->firstChild());
-
-    if (m_viewMode==CombinedView)
-        m_articleViewer->endWriting();
-
-    if(currentItem)
-        m_articles->ensureItemVisible(currentItem);
-}
-
-void aKregatorView::checkItem(QListViewItem *i)
-{
-    ArticleListItem *item = static_cast<ArticleListItem *>(i);
-    if (!item)
-        return;
-
-    while(item)
-    {
-        if(itemMatches(item)) {
-            if (m_viewMode==CombinedView)
-                m_articleViewer->show(item->feed(), item->article(), false);
-            item->setVisible(true);
-        }
-        else
-            item->setVisible(false);            
-
-        item = static_cast<ArticleListItem *>(item->nextSibling());
-    }
-
-}
-
-bool aKregatorView::itemMatches (ArticleListItem *item)
-{
-    if (!m_currentStatusFilter || !m_currentTextFilter)
-        return true;
-
-    return  m_currentStatusFilter->matches( item->article() ) && m_currentTextFilter->matches( item->article() );
-}
-
-bool aKregatorView::itemAdded(ArticleListItem *item)
-{
-    bool a=itemMatches(item);
-    item->setVisible(a);
-
-    return a;
+    
+    m_articleViewer->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter)
+    ;m_articles->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
 }
 
 void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)

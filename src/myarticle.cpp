@@ -6,6 +6,7 @@
  ***************************************************************************/
 
 #include "myarticle.h"
+#include "feed.h"
 #include "librss/tools_p.h"
 
 #include <qdatetime.h>
@@ -26,6 +27,7 @@ struct MyArticle::Private : public RSS::Shared
     QString title;
     int status;
     bool keep;
+    Feed* feed;
 };
 
 MyArticle::MyArticle() : d(new Private)
@@ -47,6 +49,7 @@ MyArticle::MyArticle(Article article) : d(new Private)
     
     if (d->keep)
         kdDebug() << "KEEP" << d->title << endl;
+    d->feed = 0;
 }
 
 MyArticle::MyArticle(const MyArticle &other) : d(new Private)
@@ -147,6 +150,13 @@ void MyArticle::setKeep(bool keep)
 {
     d->keep = keep;
 }
+
+void MyArticle::setFeed(Feed* feed)
+{
+    d->feed = feed;
+}
+Feed* MyArticle::feed() const
+{ return d->feed; }
 
 const QDateTime &MyArticle::pubDate() const
 {

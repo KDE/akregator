@@ -7,13 +7,16 @@
 #ifndef AKREGATORARTICLELIST_H
 #define AKREGATORARTICLELIST_H
 
+#include "articlefilter.h"
+
 #include <klistview.h>
 
 namespace Akregator
 {
     class Feed;
+    class FeedGroup;
     class MyArticle;
-    
+
     class ArticleListItem : public KListViewItem
     {
         public:
@@ -35,6 +38,18 @@ namespace Akregator
         public:
             ArticleList(QWidget *parent = 0, const char *name = 0);
             ~ArticleList();
+        public slots:
+            void slotShowNode(FeedGroup* node);
+            void slotClear();
+            void slotUpdate();
+            void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
+                                        
+        private:
+            FeedGroup* m_node;
+            ArticleFilter m_textFilter;
+            ArticleFilter m_statusFilter;
+            enum ColumnMode { groupMode, feedMode };
+            ColumnMode m_columnMode;
     };
 }
 

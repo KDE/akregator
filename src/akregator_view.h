@@ -130,12 +130,6 @@ namespace Akregator
             void slotFeedFetchError(Feed *feed);
 
             /**
-             * Populate article view with articles from selected feed.
-             */
-            void slotUpdateArticleList(FeedGroup *, bool);
-            void slotUpdateArticleList(Feed *, bool);
-
-            /**
              * Display article contents in ArticleViewer.
              */
 
@@ -225,10 +219,7 @@ namespace Akregator
             void fetchItem(QListViewItem *item);
 
             void updateSearch(const QString &s=QString::null);
-            void checkItem(QListViewItem *i);
-            bool itemMatches (ArticleListItem *item);
-            bool itemAdded(ArticleListItem *item);
-
+            
             void showFetchStatus();
 
             /**

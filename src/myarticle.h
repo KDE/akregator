@@ -19,6 +19,7 @@ using namespace RSS;
 
 namespace Akregator
 {
+    class Feed;
     /** A proxy class for RSS::Article with some additional methods to assist sorting. */
     class MyArticle
     {
@@ -50,6 +51,8 @@ namespace Akregator
             /** if true, the article should be kept even when expired **/
             bool keep() const;
             void setKeep(bool keep);
+            void setFeed(Feed* feed);
+            Feed* feed() const;
             bool guidIsPermaLink() const;
             const QDateTime &pubDate() const;
             KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
