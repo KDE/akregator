@@ -46,30 +46,24 @@ class FetchTransaction : public QObject
 
     protected: // methods
 
+        void feedDone(Feed *f);
+        void doFetchIcon(int c);
+        void doFetchImage(int c);
         void connectToFeed(Feed* feed);
         void disconnectFromFeed(Feed* feed);
 
     protected slots:
         
         void slotNodeDestroyed(TreeNode* node);
-        
-    private: // methods
-        void doFetch(int c);
-        void feedDone(Feed *f);
-
-        void doFetchIcon(int c);
-        void doFetchImage(int c);
-
-
-    private slots:
         void slotFeedFetched(Feed *);
         void slotFetchError(Feed *);
         void slotFetchAborted(Feed *);
+        void slotFetchNext();
 
         void slotFaviconFetched(const QString &, const QPixmap &);
         void slotImageFetched(const QPixmap &);
 
-    private: // fields
+    private: 
 
         QPtrList<Feed> m_fetchList;
         QPtrList<Feed> m_currentFetches;

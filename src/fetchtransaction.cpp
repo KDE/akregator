@@ -6,9 +6,12 @@
 
 #include <kdebug.h>
 
+#include <qtimer.h>
+
 #include "fetchtransaction.h"
 #include "feediconmanager.h"
 #include "akregatorconfig.h"
+#include "treenode.h"
 #include "feed.h"
 
 using namespace Akregator;
@@ -30,22 +33,21 @@ FetchTransaction::~FetchTransaction()
 
 void FetchTransaction::start()
 {
+    if (m_running)
+        return;
+    
     if (m_fetchList.count() == 0)
     {
         m_running = false;
         emit completed();
     }
     
-    int i = 0;
     m_running = true;
     m_totalFetches=m_fetchList.count();
     m_fetchesDone=0;
     
-    while (i < m_concurrentFetches)
-    {
-        doFetch(0);
-        i++;
-    }
+    for (int i = 0; i < m_concurrentFetches; ++i)
+        QTimer::singleShot(0, this, SLOT(slotFetchNext()));
 }
 
 void FetchTransaction::stop()
@@ -75,14 +77,15 @@ void FetchTransaction::addFeed(Feed *f)
     m_fetchList.append(f);
 }
 
-void FetchTransaction::doFetch(int c)
+void FetchTransaction::slotFetchNext()
 {
-    Feed *f=m_fetchList.at(c);
-    if (!f) return;
-    //kdDebug() << "starting fetch: "<<f->title()<<endl;
+    Feed *f = m_fetchList.at(0);
+    if (!f)
+        return;
+    //kdDebug() << "starting fetch: " << f << endl;
     f->fetch(false, this);
     m_currentFetches.append(f);
-    m_fetchList.remove(c);
+    m_fetchList.remove((uint)0);
 }
 
 void FetchTransaction::slotFeedFetched(Feed *f)
@@ -132,7 +135,7 @@ void FetchTransaction::feedDone(Feed *f)
         return;
     }
 
-    doFetch(0);
+    QTimer::singleShot(0, this, SLOT(slotFetchNext()));
 }
 
 void FetchTransaction::loadIcon(Feed *f)
@@ -253,8 +256,10 @@ void FetchTransaction::disconnectFromFeed(Feed* feed)
 void FetchTransaction::slotNodeDestroyed(TreeNode* node)
 {
     Feed* feed = dynamic_cast<Feed*>(node);
+
     if (!feed)
         return;
+    
     m_fetchList.remove(feed);
     m_iconFetchList.remove(feed);
     m_imageFetchDict.remove(feed);

@@ -127,6 +127,8 @@ Feed::Feed()
 Feed::~Feed()
 {
     slotAbortFetch();
+    // tell the world that this node is destroyed
+    emit signalDestroyed(this);
 }
 
 QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const

@@ -20,7 +20,7 @@ TreeNode::TreeNode()
 TreeNode::~TreeNode()
 {
     // tell the world that this node is destroyed
-    emit signalDestroyed(this);
+    //emit signalDestroyed(this);
 }
 
 const QString& TreeNode::title() const
