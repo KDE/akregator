@@ -570,7 +570,8 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
     if (!item) // omit "All Feeds" from saving (BR #43)
     {
         item = m_tree->firstChild(); // All Feeds
-        if (!item) return;
+        if (!item) 
+            return;
         writeChildNodes(item, node, document);
         return;
     }
@@ -579,18 +580,7 @@ void aKregatorView::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
     {
         TreeNode* tn = static_cast<TreeNode*> (m_feeds.find(it));
         if (tn)
-        {
-            if (tn->isGroup())
-            {
-                QDomElement base = tn->toOPML( node, document );
-                base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
-
-                if (it->firstChild()) // BR#40
-                   writeChildNodes( it, base, document );
-            } else {
-                tn->toOPML( node, document );
-            }
-        }
+            tn->toOPML( node, document );
     }
 }
 

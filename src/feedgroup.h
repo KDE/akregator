@@ -39,10 +39,12 @@ namespace Akregator
             
             virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
 
+            virtual QPtrDict<TreeNode> children() { return m_children; }
         public slots:
             
             virtual void slotDeleteExpiredArticles();                
             virtual void slotMarkAllArticlesAsRead();
+            virtual void slotChildChanged();
             //virtual void slotFetch(int timeout);    
             //virtual void slotAbortFetch();
     

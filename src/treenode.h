@@ -59,7 +59,7 @@ public:
       
     // These will be removed when TreeNodeItem is ready
     
-    QListViewItem* item() { return m_item; }
+    QListViewItem* item() { return m_item; } const
     void setItem(QListViewItem* i) { m_item = i; }
     FeedsCollection* collection() { return m_collection;}
     void setCollection(FeedsCollection* c) { m_collection = c; }
