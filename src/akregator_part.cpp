@@ -232,16 +232,11 @@ void aKregatorPart::importFile(QString file_name)
         return;
 
     // Read OPML feeds list and build QDom tree.
-    QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
     QDomDocument doc;
-    QString str;
-
-    str = stream.read();
-    file.close();
-
-    if (!doc.setContent(str))
+    if (!doc.setContent(file.readAll())) {
+        kdDebug() << "Failed to build DOM tree, is " << file_name << " valid XML?" << endl;
         return;
+    }
 
     if (m_view->importFeeds(doc))
         setModified(true);
