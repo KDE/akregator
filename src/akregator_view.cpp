@@ -126,7 +126,10 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     QWhatsThis::add(m_mainTab, i18n("Articles list."));
 
-    QHBoxLayout *searchLayout = new QHBoxLayout( 0, 0, KDialog::spacingHint(), "searchLayout");
+    QHBoxLayout *searchLayout = new QHBoxLayout( 0, 0, KDialog::spacingHint(), "searchLayout" );
+    QToolButton *clearButton = new QToolButton( m_mainTab );
+    clearButton->setIconSet( SmallIconSet( "locationbar_erase.png" ) );
+    searchLayout->addWidget(clearButton);
     m_searchLine = new KLineEdit(m_mainTab, "searchline");
     searchLayout->addWidget(m_searchLine);
     m_searchCombo = new KComboBox(m_mainTab, "searchcombo");
@@ -138,6 +141,12 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_searchCombo->insertItem(i18n("New"));
     m_searchCombo->insertItem(i18n("New & Unread"));
 
+    QToolTip::add( clearButton, i18n( "Clear filter" ) );
+    QToolTip::add( m_searchLine, i18n( "Enter space-separated terms to filter article list" ) );
+    QToolTip::add( m_searchCombo, i18n( "Choose what kind of articles to show in article list" ) );
+
+    connect(clearButton, SIGNAL( clicked() ),
+                      m_searchLine, SLOT(clear()) );
     connect(m_searchCombo, SIGNAL(activated(int)),
                           this, SLOT(slotSearchComboChanged(int)));
     connect(m_searchLine, SIGNAL(textChanged(const QString &)),
