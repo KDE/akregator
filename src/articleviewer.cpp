@@ -8,6 +8,7 @@
 #include "articleviewer.h"
 #include "viewer.h"
 #include "feed.h"
+#include "akregatorconfig.h"
 
 #include <kapplication.h>
 #include <klocale.h>
@@ -233,7 +234,7 @@ void ArticleViewer::show(Feed *f, MyArticle a)
 void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-   if(args.frameName == "_blank")
+   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
       KRun::runURL(url, "text/html", false, false);
    else
       emit urlClicked(url);

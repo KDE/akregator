@@ -69,7 +69,7 @@ namespace Akregator
             virtual bool openURL(const KURL& url);
 
             virtual void fetchFeedUrl(const QString&);
-            virtual void saveSettings();
+            
             
         protected:
             /**
@@ -86,7 +86,9 @@ namespace Akregator
 
         signals:
             void partChanged(KParts::ReadOnlyPart *p);
-
+            
+        public slots:
+            virtual void saveSettings();
         protected slots:
             void fileOpen();
             bool fileSaveAs();

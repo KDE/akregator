@@ -12,7 +12,7 @@
 
 //settings
 #include "settings_general.h"
-#include "settings_externalbrowser.h"
+#include "settings_browser.h"
 
 #include <dcopclient.h>
 #include <dcopobject.h>
@@ -270,13 +270,11 @@ void aKregator::showOptions()
         return; 
  
     KConfigDialog *dialog = new KConfigDialog( this, "settings", Settings::self() ); 
-    dialog->addPage(new settings_general(0, "General"), i18n("General"), "settings_general");
-    dialog->addPage(new settings_externalbrowser(0, "External Browser"), 
-        i18n("External Browser"),
-        "settings_externalbrowser");
+    dialog->addPage(new settings_general(0, "General"), i18n("General"), "package_settings");
+    dialog->addPage(new settings_browser(0, "Browser"), i18n("Browser"), "browser");
  
-    /*connect( dialog, SIGNAL(settingsChanged()), 
-    this, SLOT(updateConfiguration()) ); */
+    connect( dialog, SIGNAL(settingsChanged()), 
+             m_part, SLOT(saveSettings()) );
  
     dialog->show();
 }

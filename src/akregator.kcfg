@@ -46,21 +46,30 @@
         <whatsthis>Mark all entries as read on exit</whatsthis>
      </entry>
   </group>
-  <group name="ExternalBrowser">
-     <entry name="ExternalBrowserUseKdeDefault" key="ExternalBrowserUseKdeDefault" type="Bool">
+  <group name="Browser">
+     <entry name="ExternalBrowserUseKdeDefault" key="External Browser Use Kde Default" type="Bool">
         <label>Use default KDE web browser</label>
         <default>true</default>
         <whatsthis>Use KDE web browser when opening in external browser.</whatsthis>
      </entry>
-     <entry name="ExternalBrowserUseCustomCommand" key="ExternalBrowserUseCustomCommand" type="Bool">
+     <entry name="ExternalBrowserUseCustomCommand" key="External Browser Use Custom Command" type="Bool">
         <label>Use this command:</label>
         <default>false</default>
         <whatsthis>Use the specified command when opening in external browser.</whatsthis>
      </entry>
-     <entry name="ExternalBrowserCustomCommand" key="ExternalBrowserCustomCommand" type="String">
+     <entry name="ExternalBrowserCustomCommand" key="External Browser Custom Command" type="String">
         <label></label>
         <default>mozilla '%u'</default>
         <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
+     </entry>
+     <entry name="MMBBehaviour" key="MMB Behaviour" type="Enum">
+        <choices>
+            <choice name="OpenInInternalBrowser"/>
+            <choice name="OpenInExternalBrowser"/>
+        </choices>
+        <label></label>
+        <default>OpenInExternalBrowser</default>
+        <whatsthis>What the click with middle mouse button should do</whatsthis>
      </entry>
   </group>
   

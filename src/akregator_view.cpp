@@ -966,8 +966,10 @@ void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, con
     if (item && button==Qt::MidButton)
     {
         ArticleListItem *i = static_cast<ArticleListItem *>(item);
-        //KRun::runURL(i->article().link(), "text/html", false, false); TODO: add possibility to select which one to use; open in tab, open in background tab or open in external browser..
-        slotOpenTab(i->article().link());
+        if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
+            KRun::runURL(i->article().link(), "text/html", false, false);
+        else
+            slotOpenTab(i->article().link());
     }
 }
 

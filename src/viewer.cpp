@@ -14,6 +14,7 @@
 #include <qclipboard.h>
 
 #include "viewer.h"
+#include "akregatorconfig.h"
 
 using namespace Akregator;
 
@@ -44,7 +45,7 @@ Viewer::Viewer(QWidget *parent, const char *name)
 void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
    kdDebug() << "Viewer: Open url request: " << url << endl;
-   if(args.frameName == "_blank")
+   if(args.frameName == "_blank" && Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
       KRun::runURL(url, "text/html", false, false);
    else
       openURL(url);
