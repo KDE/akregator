@@ -15,9 +15,26 @@
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
 #include <kparts/browserextension.h>
+#include <kparts/browserinterface.h>
 
 class KToggleAction;
 class KProgress;
+class aKregator;
+
+
+class BrowserInterface : public KParts::BrowserInterface
+{
+    Q_OBJECT
+public:
+    BrowserInterface( aKregator *shell, const char *name );
+
+public slots:
+    void test_foo( int );
+
+private:
+    aKregator *m_shell;
+};
+
 
 /**
  * This is the application "Shell".  It has a menubar, toolbar, and
@@ -84,7 +101,7 @@ private:
 
 private:
     KParts::BrowserExtension *browserExtension() const;
-        
+    BrowserInterface *m_browserIface;
     KParts::ReadWritePart *m_part;
 
     KToggleAction *m_toolbarAction;

@@ -28,12 +28,26 @@
 
 using namespace Akregator;
 
+
+BrowserInterface::BrowserInterface( aKregator *shell, const char *name )
+    : KParts::BrowserInterface( shell, name )
+{
+    m_shell = shell;
+}
+
+void BrowserInterface::test_foo(int foobar)
+{
+    kdDebug() << "foobar=="<<foobar<<endl;
+}
+
 aKregator::aKregator()
     : KParts::MainWindow( 0L, "aKregator" )
     , m_quit(false)
 {
     // set the shell's ui resource file
     setXMLFile("akregator_shell.rc");
+
+    m_browserIface=new BrowserInterface(this, "browser_interface");
 
     // then, setup our actions
     setupActions();
@@ -63,10 +77,10 @@ aKregator::aKregator()
 
             connect (m_part, SIGNAL(partChanged(KParts::Part *)), this, SLOT(partChanged(KParts::Part *)));
             connect( browserExtension(), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
-
+            
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
-
+            browserExtension()->setBrowserInterface(m_browserIface);
         }
     }
     else
