@@ -524,8 +524,7 @@ void aKregatorPart::importFile(const QString& fileName)
         return;
     }
 
-    //if (m_view->importFeeds(doc))
-    //    setModified(true);
+    m_view->importFeeds(doc);
 }
 
 void aKregatorPart::exportFile(const QString& fileName)
