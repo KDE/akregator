@@ -50,7 +50,7 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     
     connect( this, SIGNAL(dropped(QDropEvent*,QListViewItem*)), this, SLOT(slotDropped(QDropEvent*,QListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
-    connect( this, SIGNAL(itemRenamed(QListViewItem*)), this, SLOT(slotItemRenamed(QListViewItem*)) );
+    connect( this, SIGNAL(itemRenamed(QListViewItem*, const QString&, int)), this, SLOT(slotItemRenamed(QListViewItem*, const QString&, int)) );
     connect( this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)) );
     
     clear();
@@ -244,7 +244,11 @@ void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
 
 void FeedsTree::keyPressEvent(QKeyEvent* e)
 {
-    e->ignore();    
+    // handle return in in-place renaming, otherwise ignore events
+    if (isRenaming() && e->key() == Qt::Key_Enter)
+        KListView::keyPressEvent(e);
+    else
+        e->ignore();
 }
 
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
@@ -508,11 +512,15 @@ void FeedsTree::slotSelectionChanged(QListViewItem* item)
         emit signalNodeSelected(ni->node());
 }
 
-void FeedsTree::slotItemRenamed(QListViewItem* item)
+void FeedsTree::slotItemRenamed(QListViewItem* item, const QString& text, int)
 {
+    kdDebug() << "FeedsTree::slotItemRenamed(): enter" << endl;
     TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
     if ( ni && ni->node() )
-        ni->node()->setTitle( item->text(0) );
+    {
+        kdDebug() << "renamed item to \"" << text << "\"" << endl;
+        ni->node()->setTitle(text);
+    }
 }
 
 void FeedsTree::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)

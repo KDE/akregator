@@ -147,7 +147,7 @@ namespace Akregator
             
             virtual void slotSelectionChanged(QListViewItem* item);
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
-            virtual void slotItemRenamed(QListViewItem* item);
+            virtual void slotItemRenamed(QListViewItem* item, const QString&, int);
             virtual void slotFeedFetchStarted(Feed* feed);
             virtual void slotFeedFetchAborted(Feed* feed);
             virtual void slotFeedFetchError(Feed* feed);
