@@ -16,7 +16,6 @@
 
 namespace Akregator
 {
-
     class Feed;
 
     class ArticleViewer : public KHTMLPart
@@ -28,12 +27,19 @@ namespace Akregator
             void show(Feed *f);
             void show(Feed *f, MyArticle);
             void generateCSS();
-            void reload();	
+            void reload();
+
         private:
             QString formatArticle(Feed *f, MyArticle a);
             QString m_htmlHead;
             QPaintDeviceMetrics m_metrics;
             QString m_currentText;
+
+        signals:
+           void urlClicked(const KURL& url);
+
+        private slots:
+           void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
     };
 }
 

@@ -118,7 +118,7 @@ namespace Akregator
 
             void slotMouseOverInfo(const KFileItem *kifi);
 
-            void openTab(KURL& url);
+            void slotOpenTab(const KURL& url);
 
         private:
             /**

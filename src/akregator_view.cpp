@@ -80,7 +80,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     QGrid *w1 = new QGrid(1, this);
     QWhatsThis::add(w1, i18n("Articles list."));
 
-    m_panner2 = new QSplitter((m_viewMode==NormalView)? QSplitter::Vertical : QSplitter::Horizontal, w1, "panner2");
+    m_panner2 = new QSplitter(QSplitter::Vertical, w1, "panner2");
 
     m_articles = new ArticleList( m_panner2, "articles" );
     connect( m_articles, SIGNAL(clicked(QListViewItem *)),
@@ -93,33 +93,37 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
     m_articleViewer = new ArticleViewer(m_panner2, "article_viewer");
 
-    connect (m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
-            this, SLOT(slotMouseOverInfo(const KFileItem *)));
+    connect( m_articleViewer, SIGNAL(urlClicked(const KURL&)),
+                        this, SLOT(slotOpenTab(const KURL&)) );
+
+    connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
+                                            this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
     QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
 
     m_tabs->addTab(w1, i18n( "Articles" ));
 
-  // -- DEFAULT INIT
+    // -- DEFAULT INIT
     // Root item (will be reset when loading from file)
-    KListViewItem *elt = new KListViewItem( m_tree, i18n("All Feeds") );
+    KListViewItem *elt = new KListViewItem( m_tree, QString::null );
     m_feeds.addFeedGroup(elt)->setTitle( i18n("All Feeds") );
     elt->setOpen(true);
 
     m_articleViewer->openDefault();
+    // -- /DEFAULT INIT
 
     // Change default view mode
     int viewMode = Settings::viewMode();
-
-    kdDebug() << "Viewmode: " << viewMode << endl;
 
     if (viewMode==CombinedView)        slotCombinedView();
     else if (viewMode==WidescreenView) slotWidescreenView();
     else                               slotNormalView();
 }
 
-void aKregatorView::openTab(KURL& url)
+void aKregatorView::slotOpenTab(const KURL& url)
 {
+   QWidget *test = new QWidget();
+   m_tabs->addTab(test, "test_tab");
 }
 
 // clears everything out, even removes DEFAULT INIT

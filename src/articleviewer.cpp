@@ -43,6 +43,9 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     setDNDEnabled(false);
     setAutoloadImages(true);
     setStatusMessagesEnabled(true);
+
+    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)),
+                           this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
 }
 
 void ArticleViewer::openDefault()
@@ -53,8 +56,8 @@ void ArticleViewer::openDefault()
 void ArticleViewer::generateCSS()
 {
     const QColorGroup & cg = QApplication::palette().active();
-	m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
-						"<html><head><title></title></head><body>");
+    m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
+                        "<html><head><title></title></head><body>");
     m_htmlHead += QString (
     "<style type=\"text/css\">\n"
     "body {\n"
@@ -95,17 +98,17 @@ void ArticleViewer::generateCSS()
     "  clear: none;\n"
     "  overflow: auto;\n"
     "}\n\n")
-        .arg(KGlobalSettings::generalFont().family()).
-    arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px").
-    arg(cg.text().name()).
-    arg(cg.base().name()).
-    arg(cg.link().name()).
-    arg(cg.background().name()).
-    arg(cg.text().name()).
-    arg(cg.highlight().name()).
-    arg(cg.highlightedText().name());
-   
-    m_htmlHead += QString ( 
+    .arg(KGlobalSettings::generalFont().family())
+    .arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px")
+    .arg(cg.text().name())
+    .arg(cg.base().name())
+    .arg(cg.link().name())
+    .arg(cg.background().name())
+    .arg(cg.text().name())
+    .arg(cg.highlight().name())
+    .arg(cg.highlightedText().name());
+
+    m_htmlHead += QString (
     "#article {\n"
     "  overflow: hidden;\n"
     "  border:1px solid #000;\n"
@@ -113,11 +116,8 @@ void ArticleViewer::generateCSS()
     "  padding: 3px;\n"
     "  padding-right: 6px;}\n\n"
     "</style>\n")
-        .arg(cg.background().light(108).name());
-        
-           
-            
-            
+    .arg(cg.background().light(108).name());
+
 }
 
 void ArticleViewer::reload()
@@ -158,7 +158,7 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
         text += "<a href=\"";
         text += a.link().url();
         text += "\">" + i18n( "Full Story" ) + "</a>";
-        if (!a.description().isNull()) 
+        if (!a.description().isNull())
             text += "<p>\n";
     }
     text += "</div>";
@@ -169,19 +169,19 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
 void ArticleViewer::show(Feed *f)
 {
     QString art, text;
-    
+
     begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
     write(m_htmlHead);
-  
+
     ArticleSequence::iterator it;
     for ( it = f->articles.begin(); it != f->articles.end(); ++it )
     {
         // we set f to 0 to not show feed image
-        art="<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>"; 
+        art="<p><div id=\"article\">"+formatArticle(0, *it)+"</div><p>";
         text += art;
         write(art);
     }
-    
+
     m_currentText = text + "</body></html>";
     write("</body></html>");
     end();
@@ -196,6 +196,13 @@ void ArticleViewer::show(Feed *f, MyArticle a)
 
     write(m_htmlHead + text);
     end();
+}
+
+void ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+{
+   kdDebug() << "ArticleViewer: Open url request: " << url << endl;
+
+   emit urlClicked(url);
 }
 
 #include "articleviewer.moc"

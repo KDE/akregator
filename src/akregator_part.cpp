@@ -62,7 +62,6 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // set our XML-UI resource file
     setXMLFile("akregator_part.rc");
 
-    // -- /DEFAULT INIT
     // we are read-write by default
     setReadWrite(true);
 
