@@ -17,6 +17,7 @@
 #include "archive.h"
 #include "feed.h"
 #include "akregatorconfig.h"
+#include "pageviewer.h"
 
 #include <kfiledialog.h>
 #include <kfileitem.h>
@@ -128,8 +129,10 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 
 void aKregatorView::slotOpenTab(const KURL& url)
 {
-   QWidget *test = new QWidget();
-   m_tabs->addTab(test, "test_tab");
+    PageViewer *page = new PageViewer(this, "page");
+    page->openURL(url);
+    m_tabs->addTab(page->widget(), "Untitled");
+    m_tabs->showPage(page->widget());
 }
 
 // clears everything out, even removes DEFAULT INIT
