@@ -420,14 +420,12 @@ KAboutData* aKregatorPart::s_about = 0L;
 KAboutData *aKregatorPart::createAboutData()
 {
     if ( !s_about ) {
-        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "0.9",
+	// this is semi-dummy about data, please see main.cpp for detailed one
+        s_about = new KAboutData("akregatorpart", I18N_NOOP("aKregatorPart"), "1.0-beta5 \"Pierre\"",
                                  I18N_NOOP("This is a KPart for RSS aggregator"),
                                  KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0,
-                                 "http://berk.upnet.ru/projects/kde/akregator",
+                                 "http://akregator.sourceforge.net",
                                  "Stanislav.Karchebny@kdemail.net");
-        s_about->addAuthor("Stanislav Karchebny", I18N_NOOP("Author, Developer, Maintainer"),
-                           "Stanislav.Karchebny@kdemail.net");
-        s_about->addAuthor("Sashmit Bhaduri", I18N_NOOP("Developer"), "smt@vfemail.net");
     }
     return s_about;
 }

@@ -17,7 +17,7 @@
 static const char description[] =
     I18N_NOOP("A KDE RSS Aggregator");
 
-static const char version[] = "1.0-beta4 \"PhantomsRSS\"";
+static const char version[] = "1.0-beta5 \"Pierre\"";
 
 static KCmdLineOptions options[] =
 {
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 {
     KAboutData about("akregator", I18N_NOOP("aKregator"), version, description,
                      KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0,
-                     "http://akregator.upnet.ru/");
+                     "http://akregator.sourceforge.net/");
     about.addAuthor( "Stanislav Karchebny", I18N_NOOP("Author, Developer, Maintainer"), "Stanislav.Karchebny@kdemail.net" );
     about.addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "smt@vfemail.net" );
     about.addAuthor( "Teemu Rytilahti", I18N_NOOP("Contributor"), "teemu.rytilahti@kde-fi.org" );
