@@ -110,7 +110,7 @@ namespace Akregator
              */
             virtual void openStandardFeedList();
 
-            bool loading (){return m_loading;}
+            bool isLoading (){return m_loading;}
             
             virtual void fetchFeedUrl(const QString&);
             /**

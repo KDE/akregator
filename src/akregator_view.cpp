@@ -1134,7 +1134,7 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
 void aKregatorView::slotDoIntervalFetches()
 {
     kdDebug() << "enter slotDoIntervalFetches" << endl;
-    if (m_transaction->isRunning() || m_part->loading())
+    if (m_transaction->isRunning() || m_part->isLoading())
         return;
     kdDebug() << "doIntervalFetches" << endl;
     bool fetch = false;

@@ -429,6 +429,9 @@ bool aKregatorPart::closeURL()
 
 bool aKregatorPart::saveFeedList()
 {
+    // don't save when the part is opening the feed list! (would corrupt the list)
+    if (m_loading)
+        return false;
     // m_file is always local, so we use QFile
     QFile file(m_file);
     if (file.open(IO_WriteOnly) == false)
