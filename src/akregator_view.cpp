@@ -858,9 +858,10 @@ void aKregatorView::slotNodeSelected(TreeNode* node)
     
     else {
         m_articles->slotShowNode(node);
-        if(node->isGroup())
-            m_articleViewer->slotShowSummary(node);
+        if(node->isGroup()) { kdDebug() << "group" << endl; 
+            m_articleViewer->slotShowSummary(node); }
         else {
+            kdDebug() << "normal feed" << endl;
             Feed *f = static_cast<Feed *>(node);
             m_articleViewer->slotShowSummary(f);
         }

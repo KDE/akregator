@@ -264,14 +264,23 @@ void ArticleViewer::endWriting()
     end();
 }
 
-void ArticleViewer::slotShowSummary(TreeNode *item)
+void ArticleViewer::slotShowSummary(TreeNode *node)
 {
+    if(!node) return;
+    
+    m_currentText = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2 ").arg(directionOf(node->title())).arg(node->title());
+    m_currentText += i18n("(%1 unread articles)").arg(node->unread()) += QString("</div>\n");
+    m_currentText += "</div>\n"; // /headerbox
+    
+    for( TreeNode *it = node; it != 0; it = it->nextSibling() )
+        kdDebug() << "title: " << it->title() << endl;
     //for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
         
     
-    /*begin();
-    write(m_htmlHead+text);
-    end();*/
+    begin();
+    write(m_htmlHead+m_currentText);
+    end();
 }
 
 void ArticleViewer::slotShowSummary(Feed *f)
@@ -279,7 +288,8 @@ void ArticleViewer::slotShowSummary(Feed *f)
     if(!f) return;
     
     m_currentText = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2</div>\n").arg(directionOf(f->title())).arg(f->title());
+    m_currentText += QString("<div id=\"headertitle\" dir=\"%1\">%2 ").arg(directionOf(f->title())).arg(f->title());
+    m_currentText += i18n("(%1 unread articles)").arg(f->unread()) += QString("</div>\n");
     m_currentText += "</div>\n"; // /headerbox
     
     if (!f->image().isNull()) // image
@@ -312,7 +322,7 @@ void ArticleViewer::slotShowSummary(Feed *f)
         m_currentText += "</div>\n"; // /language
     }*/
 
-    m_currentText += i18n("<b>Unread articles:</b> %1").arg(f->unread());
+    //m_currentText += i18n("<b>Unread articles:</b> %1").arg(f->unread());
     m_currentText += "</div>"; // /body
     
     m_currentText += "</body></html>";
