@@ -58,11 +58,11 @@ class ArticleFilter
 {
     public:
         enum Action {
-            Hide, Show, Notify
+            NoAction, Hide, Show, Notify
         };
 
         enum Association {
-            LogicalAnd, LogicalOr
+            None, LogicalAnd, LogicalOr
         };
 
         ArticleFilter();

@@ -97,6 +97,8 @@ QVariant Criterion::object() const
 }
 
 ArticleFilter::ArticleFilter()
+    : m_association( None )
+    , m_action( NoAction )
 {
 }
 
@@ -114,6 +116,8 @@ bool ArticleFilter::matches( const MyArticle &a ) const
             return anyCriterionMatches( a );
         case LogicalAnd:
             return allCriteriaMatch( a );
+        default:
+            break;
     }
     return true;
 }

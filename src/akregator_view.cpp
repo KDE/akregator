@@ -94,6 +94,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_part=part;
     m_stopLoading=false;
     m_shuttingDown = false;
+    m_currentFrame = 0L;
     setFocusPolicy(QWidget::StrongFocus);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
@@ -304,7 +305,7 @@ void aKregatorView::connectFrame(Frame *f)
 
 void aKregatorView::slotStatusText(const QString &c)
 {
-    const Frame *f=static_cast<const Frame *>(sender());
+    const Frame *f = dynamic_cast<const Frame *>(sender());
     if (!f) return;
     if (m_currentFrame != f) return;
 
@@ -313,7 +314,7 @@ void aKregatorView::slotStatusText(const QString &c)
 
 void aKregatorView::slotCaptionChanged(const QString &c)
 {
-    const Frame *f=static_cast<const Frame *>(sender());
+    const Frame *f = dynamic_cast<const Frame *>(sender());
     if (!f) return;
     if (m_currentFrame != f) return;
 
@@ -322,7 +323,7 @@ void aKregatorView::slotCaptionChanged(const QString &c)
 
 void aKregatorView::slotStarted()
 {
-    const Frame *f=static_cast<const Frame *>(sender());
+    const Frame *f = dynamic_cast<const Frame *>(sender());
     if (!f) return;
     if (m_currentFrame != f) return;
 
@@ -331,7 +332,7 @@ void aKregatorView::slotStarted()
 
 void aKregatorView::slotCanceled(const QString &s)
 {
-    const Frame *f=static_cast<const Frame *>(sender());
+    const Frame *f = dynamic_cast<const Frame *>(sender());
     if (!f) return;
     if (m_currentFrame != f) return;
 
@@ -340,7 +341,7 @@ void aKregatorView::slotCanceled(const QString &s)
 
 void aKregatorView::slotCompleted()
 {
-    const Frame *f=static_cast<const Frame *>(sender());
+    const Frame *f = dynamic_cast<const Frame *>(sender());
     if (!f) return;
     if (m_currentFrame != f) return;
 
@@ -349,7 +350,7 @@ void aKregatorView::slotCompleted()
 
 void aKregatorView::slotLoadingProgress(int percent)
 {
-    const Frame *f=static_cast<const Frame *>(sender());
+    const Frame *f = dynamic_cast<const Frame *>(sender());
     if (!f) return;
     if (m_currentFrame != f) return;
 
