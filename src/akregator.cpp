@@ -95,9 +95,6 @@ MainWindow::MainWindow()
     m_statusLabel->setFixedHeight( statH );
     statusBar()->addWidget (m_statusLabel, 1, false);
    // disable the action because we don't have a handbook yet, hope this createGUI doesn't broke anything
- 
-    KAction *action = actionCollection()->action("help_contents");
-    if(action) action->setEnabled(false);
 
     if (!initialGeometrySet())
         resize(875,700);
