@@ -2,7 +2,58 @@ aKregator ChangeLog
 ===================
 (c) 2004 the aKregator authors.
 
-NEXT VERSION:
+Changes from 1.0b1 to 1.0b2:
+-----------------------------
+
+
+New Features:
+
+       - Add Search bar for searching text in articles
+       - Clicking on a folder will show articles of all subitems
+       - Feed images are stored and aren't fetched every time
+       - Show progress while loading feed list
+       - Make all shortcuts configurable
+       - Gray out feed icons while fetching
+       - Add context menus to the article and page readers
+#81993 - Save splitter sizes on exit
+#82004 - Next Unread in feed menu
+#82005 - Link title in article viewer to article link
+#82166 - Use ctrl-w to close tabs
+#82084 - Middle click in article list opens article link in tab
+#82095 - Show homepage in feed list context menu
+#82189 - Option to fetch all at startup
+
+Bug Fixes:
+
+
+       - Favicon fetching works for sites that have never been viewed
+       - Make opening large OPML lists much faster
+       - Reset feed icon on fetch if it error-ed
+       - Fix memory leak in adding feeds
+       - Don't write article archive upon reading a read article
+#81965 - "When viewing story right clicking a feed crashes"
+#81966 - Fix the fact that sub-folder fetch fetched all siblings
+#81968 - Import feed list not enabling save
+#81978 - Fix favicon updating after fetch errors
+#81993 - Make splitters more sane
+#81994 - Fix duplicates articles listed in some feeds
+#81998 - Crash when folder selected and clicking in list view
+#81999 - Dragging in feeds view doesn't active save action
+#82000 - Duplicates found in feeds when they should not be
+#82003 - "Initial feed properties are discarded"
+#82021 - Support archiving for feeds whose encoding wasn't utf8
+#82024 - Make sure that All Feeds isn't draggable
+#82029 - In first time use, save action does not work
+#82048 - Renaming a folder doesn't enable "Save Action"
+#82049 - File/New doesn't start with an empty view
+#82131 - Fix fetching with folders that have subfolders
+#82050 - Allow drag and drop to empty folders
+#82053 - Program closes without asking whether user saves
+#82165 - "cannot delete feed via menu"
+#82172 -  "date is not fetched for some feeds"
+#82183 - Mark all as unread empties article list
+
+Changes from 0.9 to 1.0b1:
 
 #000049 FIX [x] Saving a freshly created feeds list erases "All Feeds" root entry text.
         CHG [x] show current feed's title in the article list heading
