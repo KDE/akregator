@@ -50,7 +50,17 @@ libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal
 kde_kcfg_DATA = akregator.kcfg
 kde_module_LTLIBRARIES = libakregatorpart.la
 
-akregator_run.lo: akregatorconfig.h
+archive.lo: akregatorconfig.h
+akregator.lo: akregatorconfig.h
+akregator_part.lo: akregatorconfig.h
+akregator_view.lo: akregatorconfig.h
+akregatorconfig.lo: akregatorconfig.h
+articlelist.lo: akregatorconfig.h
+articleviewer.lo: akregatorconfig.h
+feed.lo: akregatorconfig.h
+fetchtransaction.lo: akregatorconfig.h
+trayicon.lo: akregatorconfig.h
+viewer.lo: akregatorconfig.h
 
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = \
