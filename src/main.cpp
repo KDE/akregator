@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 {
     KAboutData about("akregator", I18N_NOOP("aKregator"), version, description,
                      KAboutData::License_GPL, "(C) 2004 Stanislav Karchebny", 0,
-                     "http://akregator.upnet.ru/", "Stanislav.Karchebny@kdemail.net");
+                     "http://akregator.upnet.ru/");
     about.addAuthor( "Stanislav Karchebny", I18N_NOOP("Author, Developer, Maintainer"), "Stanislav.Karchebny@kdemail.net" );
     about.addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "smt@vfemail.net" );
     KCmdLineArgs::init(argc, argv, &about);
