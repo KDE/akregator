@@ -156,8 +156,8 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     setFullWidth(true);
     setSorting(-1);
     setDragAutoScroll(true);
-    setDropVisualizer(true);//FIXME
-    setDropHighlighter(true);//FIXME
+    setDropVisualizer(true);
+    connect( this, SIGNAL(dropped(QDropEvent*,QListViewItem*)), this, SLOT(slotDropped(QDropEvent*,QListViewItem*)) );
     QWhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
         "Here you can browse tree of feeds. "
         "You can also add feeds or feed groups (folders) "
@@ -196,29 +196,7 @@ void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
     setUpdatesEnabled(oldUpdatesEnabled);
 }
 
-void FeedsTree::contentsDragEnterEvent(QDragEnterEvent *e)
-{
-    if (e->source() != viewport())
-    {
-        if (KURLDrag::canDecode( e ))
-        {
-            e->accept();
-        }
-        else
-        {
-            e->ignore();
-        }
-    }
-    else
-    {
-        if (firstChild()->isSelected())
-            e->ignore();
-        else
-            KListView::contentsDragEnterEvent(e);
-    }
-}
-
-void FeedsTree::contentsDropEvent( QDropEvent *e )
+void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * )
 {
     if (e->source() != viewport())
     {
@@ -255,13 +233,6 @@ void FeedsTree::contentsDropEvent( QDropEvent *e )
 
 void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
 {
-    // disable dragging "All Feeds"
-    if (firstChild()->isSelected())
-    {
-        event->ignore();
-        return;
-    }
-
     // if we are dragging over All feeds, enable
     QPoint vp = contentsToViewport(event->pos());
     QListViewItem *i= itemAt(vp);
@@ -270,7 +241,7 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
         event->accept();
         return;
     }
-    
+
     // disable any drops where the result would be top level nodes
     QListViewItem *afterme;
     QListViewItem *parent;
@@ -280,15 +251,37 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
         event->ignore();
         return;
     }
-    
+
     if (!i || event->pos().x() > header()->cellPos(header()->mapToActual(0)) +
             treeStepSize() * (i->depth() + 1) + itemMargin() ||
             event->pos().x() < header()->cellPos(header()->mapToActual(0)))
     {}
     else if (i && i->childCount() && !i->isOpen())
-            i->setOpen(true);
-    
-    event->accept();
+            i->setOpen(true); // open folders under drag
+
+    // the rest is handled by KListView.
+    KListView::contentsDragMoveEvent(event);
+}
+
+bool FeedsTree::acceptDrag(QDropEvent *e) const
+{
+    if (!acceptDrops() || !itemsMovable())
+        return false;
+
+    if (e->source() != viewport())
+    {
+        return KURLDrag::canDecode( e );
+    }
+    else
+    {
+        // disable dragging "All Feeds"
+        if (firstChild()->isSelected())
+            return false;
+        else
+            return true;
+    }
+
+    return true;
 }
 
 void FeedsTree::slotCollapseAll()

@@ -52,11 +52,12 @@ namespace Akregator
         protected:
             virtual void drawContentsOffset( QPainter * p, int ox, int oy,
                                        int cx, int cy, int cw, int ch );
-            virtual void contentsDragEnterEvent (QDragEnterEvent *e);
-            virtual void contentsDropEvent( QDropEvent *e );
             virtual void contentsDragMoveEvent(QDragMoveEvent* event);
+            virtual bool acceptDrag(QDropEvent *event) const;
 
         public slots:
+            /** handle dropped urls */
+            void slotDropped(QDropEvent *e, QListViewItem *after); 
             /** Shows only first-level feeds */
             void slotCollapseAll();
             /** Shows only root of selected tree */
