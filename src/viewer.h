@@ -77,7 +77,7 @@ namespace Akregator
 
             /** Copies currently selected text to clipboard */
             virtual void slotCopy();
-            
+
             /** Opens @c m_url inside this viewer */
             virtual void slotOpenLinkInternal();
 
@@ -89,7 +89,9 @@ namespace Akregator
 
             /** Opens @c m_url in background tab */
             virtual void slotOpenLinkInBackgroundTab();
-            
+
+            virtual void slotSaveLinkAs();
+
             /** This changes cursor to wait cursor */
             void slotStarted(KIO::Job *);
 

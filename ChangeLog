@@ -5,10 +5,14 @@ Akregator ChangeLog
 Changes after 1.0:
 -----------------------------
 
+New features:
+       - add "Save link as" to context menus -fo
+
 Bug fixes:
 
        - show save|open|cancel dialog for non-html links -fo
        - fix regression: non-working forms #94634 -fo
+
 
 Changes after 1.0b9:
 -----------------------------

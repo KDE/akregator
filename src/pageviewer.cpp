@@ -339,12 +339,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
                 
         popup.insertSeparator();
-        
-        KAction *savelinkas = action("savelinkas");
-        
-        if (savelinkas)
-                savelinkas->plug( &popup);
-        
+        action("savelinkas")->plug(&popup);    
         KAction* copylinkaddress = action("copylinkaddress");
         if (copylinkaddress)
         {

@@ -82,6 +82,9 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
     new KAction(i18n("Copy &Link Address"), "", 0,
                                  this, SLOT(slotCopyLinkAddress()),
                                  actionCollection(), "copylinkaddress");
+    new KAction(i18n("&Save Link As"), "", 0,
+                                 this, SLOT(slotSaveLinkAs()),
+                                 actionCollection(), "savelinkas");
 }
 
 Viewer::~Viewer()
@@ -179,6 +182,8 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    {
         popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.insertSeparator();
+        action("savelinkas")->plug(&popup);
         action("copylinkaddress")->plug(&popup);
    }
    else
@@ -235,6 +240,15 @@ void Viewer::slotOpenLinkInBackgroundTab()
 void Viewer::slotOpenLinkInBrowser()
 {
     displayInExternalBrowser(m_url, QString::null);
+}
+
+void Viewer::slotSaveLinkAs()
+{
+    KURL tmp( m_url );
+
+    if ( tmp.fileName(false).isEmpty() )
+        tmp.setFileName( "index.html" );
+    KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
 void Viewer::slotStarted(KIO::Job *)
