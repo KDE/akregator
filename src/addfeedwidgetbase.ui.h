@@ -6,9 +6,3 @@
 ** init() function in place of a constructor, and a destroy() function in
 ** place of a destructor.
 *****************************************************************************/
-
-
-void AddFeedDialogBase::init()
-{
-    ljAuthMode->setShown( ljUserChkbox->isChecked() );
-}

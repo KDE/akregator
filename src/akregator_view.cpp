@@ -9,6 +9,7 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "addfeeddialog.h"
+#include "propertiesdialog.h"
 #include "feedstree.h"
 #include "articlelist.h"
 #include "articleviewer.h"
@@ -415,11 +416,21 @@ void aKregatorView::slotFeedAdd()
         return;
     }
 
+    
     KListViewItem *elt;
-    AddFeedDialog *dlg = new AddFeedDialog( this, "add_feed" );
+    AddFeedDialog *afd = new AddFeedDialog( this, "add_feed" );
+    if (afd->exec() != QDialog::Accepted) return;
+
+    QString text=afd->feedTitle;
+
+    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
+
+    dlg->widget->feedNameEdit->setText(text);
+    dlg->widget->urlEdit->setText(afd->feedURL);
+    dlg->widget->urlEdit->hide();
+
     if (dlg->exec() != QDialog::Accepted) return;
 
-    QString text = dlg->feedNameEdit->text();
 
     QListViewItem *lastChild = m_tree->currentItem()->firstChild();
     while (lastChild && lastChild->nextSibling())
@@ -432,18 +443,18 @@ void aKregatorView::slotFeedAdd()
 
     addFeed_Internal( elt,
                       text,
-                      dlg->urlEdit->text(),
+                      dlg->widget->urlEdit->text(),
                       "",
                       "",
-                      dlg->ljUserChkbox->isChecked(),
-                      dlg->ljUserEdit->text(),
-                      dlg->ljAuthMode->selectedId() == 0 ? Feed::AuthNone
-                    : dlg->ljAuthMode->selectedId() == 1 ? Feed::AuthGlobal
-                    : dlg->ljAuthMode->selectedId() == 2 ? Feed::AuthLocal
+                      dlg->widget->ljUserChkbox->isChecked(),
+                      dlg->widget->ljUserEdit->text(),
+                      dlg->widget->ljAuthMode->selectedId() == 0 ? Feed::AuthNone
+                    : dlg->widget->ljAuthMode->selectedId() == 1 ? Feed::AuthGlobal
+                    : dlg->widget->ljAuthMode->selectedId() == 2 ? Feed::AuthLocal
                     : Feed::AuthNone,
-                      dlg->loginEdit->text(),
-                      dlg->passwordEdit->text(),
-                      dlg->nameFromRssChkbox->isChecked()
+                      dlg->widget->loginEdit->text(),
+                      dlg->widget->passwordEdit->text(),
+                      false
                     );
 
     m_part->setModified(true);
@@ -520,33 +531,31 @@ void aKregatorView::slotFeedModify()
     Feed *feed = static_cast<Feed *>(g);
     if (!feed) return;
 
-    AddFeedDialog *dlg = new AddFeedDialog( this, "edit_feed" );
+    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( this, "edit_feed" );
 
-    dlg->feedNameEdit->setText( feed->title() );
-    dlg->urlEdit->setText( feed->xmlUrl );
-    dlg->ljUserChkbox->setChecked( feed->isLiveJournal );
-    dlg->ljUserEdit->setText( feed->ljUserName );
-    dlg->ljAuthMode->setButton( feed->ljAuthMode == Feed::AuthNone   ? 0
+    dlg->widget->feedNameEdit->setText( feed->title() );
+    dlg->widget->urlEdit->setText( feed->xmlUrl );
+    dlg->widget->ljUserChkbox->setChecked( feed->isLiveJournal );
+    dlg->widget->ljUserEdit->setText( feed->ljUserName );
+    dlg->widget->ljAuthMode->setButton( feed->ljAuthMode == Feed::AuthNone   ? 0
                               : feed->ljAuthMode == Feed::AuthGlobal ? 1
                               : feed->ljAuthMode == Feed::AuthLocal  ? 2
                               : 0 );
-    dlg->loginEdit->setText( feed->ljLogin );
-    dlg->passwordEdit->setText( feed->ljPassword );
-    dlg->nameFromRssChkbox->setChecked( feed->updateTitle );
+    dlg->widget->loginEdit->setText( feed->ljLogin );
+    dlg->widget->passwordEdit->setText( feed->ljPassword );
 
     if (dlg->exec() != QDialog::Accepted) return;
 
-    feed->setTitle( dlg->feedNameEdit->text() );
-    feed->xmlUrl         = dlg->urlEdit->text();
-    feed->isLiveJournal  = dlg->ljUserChkbox->isChecked();
-    feed->ljUserName     = dlg->ljUserEdit->text();
-    feed->ljAuthMode     = dlg->ljAuthMode->selectedId() == 0 ? Feed::AuthNone
-                         : dlg->ljAuthMode->selectedId() == 1 ? Feed::AuthGlobal
-                         : dlg->ljAuthMode->selectedId() == 2 ? Feed::AuthLocal
+    feed->setTitle( dlg->widget->feedNameEdit->text() );
+    feed->xmlUrl         = dlg->widget->urlEdit->text();
+    feed->isLiveJournal  = dlg->widget->ljUserChkbox->isChecked();
+    feed->ljUserName     = dlg->widget->ljUserEdit->text();
+    feed->ljAuthMode     = dlg->widget->ljAuthMode->selectedId() == 0 ? Feed::AuthNone
+                         : dlg->widget->ljAuthMode->selectedId() == 1 ? Feed::AuthGlobal
+                         : dlg->widget->ljAuthMode->selectedId() == 2 ? Feed::AuthLocal
                          : Feed::AuthNone;
-    feed->ljLogin        = dlg->loginEdit->text();
-    feed->ljPassword     = dlg->passwordEdit->text();
-    feed->updateTitle    = dlg->nameFromRssChkbox->isChecked();
+    feed->ljLogin        = dlg->widget->loginEdit->text();
+    feed->ljPassword     = dlg->widget->passwordEdit->text();
 
     m_part->setModified(true);
 

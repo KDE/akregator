@@ -283,6 +283,8 @@ namespace RSS
 			 * as reported by the employed data retrever.
 			 */
 			int errorCode() const;
+            
+            const KURL &discoveredFeedURL() const;
 
 		signals:
 			/**
@@ -312,7 +314,8 @@ namespace RSS
 			Loader(const Loader &other);
 			Loader &operator=(const Loader &other);
 			~Loader();
-
+            void discoverFeeds(const QByteArray &data);
+            
 			struct Private;
 			Private *d;
 	};

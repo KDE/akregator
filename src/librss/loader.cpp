@@ -187,6 +187,7 @@ struct Loader::Private
 
    DataRetriever *retriever;
    int lastError;
+   KURL discoveredFeedURL;
 };
 
 Loader *Loader::create()
@@ -229,6 +230,11 @@ int Loader::errorCode() const
    return d->lastError;
 }
 
+const KURL &Loader::discoveredFeedURL() const
+{
+   return d->discoveredFeedURL;
+}
+
 void Loader::slotRetrieverDone(const QByteArray &data, bool success)
 {
    d->lastError = d->retriever->errorCode();
@@ -261,8 +267,11 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
       if (doc.setContent(tmpData))
          rssDoc = Document(doc);
       else
+      {
+         discoverFeeds(tmpData);
          status = ParseError;
-
+      }
+      
       tmpData.resetRawData(charData, len);
    } else
       status = RetrieveError;
@@ -272,5 +281,17 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
    delete this;
 }
 
+/* ~~~~ WARNING:!HACK! feed autodiscovery ~~~~~ */
+void Loader::discoverFeeds(const QByteArray &data)
+{
+    QString str, s2;
+    QTextStream ts( &str, IO_WriteOnly );
+    ts << data.data();
+    QRegExp rx( "(rel|REL)[^=]*=[^aA]*(alternate|ALTERNATE)[^hH]*(href|HREF)[^hHwW]*([^'\">\\s]*)");
+    if (rx.search(str)==-1)
+        return;
+    d->discoveredFeedURL=rx.cap(4);
+}
+    
 #include "loader.moc"
 // vim:noet:ts=4
