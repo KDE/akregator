@@ -1,3 +1,10 @@
+akregator (1.0-beta5-1) unstable; urgency=low
+
+  * new upstream.
+  * First upload to debian (ITP closes: #251871).
+
+ -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 16 Jul 2004 18:26:01 +0200
+
 akregator (1.0-beta4-4) unstable; urgency=low
     
   * fixed menu for kde ( kderemove="y" ).
@@ -6,7 +13,6 @@ akregator (1.0-beta4-4) unstable; urgency=low
   * some various fixes to changelog and control files.
   * add some /usr/share/doc symlinks.
   * cleaning lintian overrides.
-  * First upload to debian (ITP closes: #251871).
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 09 Jul 2004 18:06:27 +0200
 
@@ -25,7 +31,7 @@ akregator (1.0-beta4-2) unstable; urgency=low
 
 akregator (1.0-beta4-1) unstable; urgency=low
 
-  * New uptstream.
+  * New upstream.
   * Package now builds in pbuilder.
   * package for the konqueror plugin.
 
@@ -45,13 +51,13 @@ akregator (1.0-beta3-2) unstable; urgency=low
 
 akregator (1.0-beta3-1) unstable; urgency=low
 
-  * New uptstream.
+  * New upstream.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 18 Jun 2004 11:47:45 +0200
 
 akregator (1.0-beta2-1) unstable; urgency=low
 
-  * New uptstream.
+  * New upstream.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Tue, 25 May 2004 11:00:03 +0200
 
