@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000045 being the highest available (take this one for your next bug and increase here)
+          #000047 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -30,6 +30,8 @@ ADD new feature
 #000027 CHG [ ] when changing current feed, change article in m_html also (arguable: mornfall suggested this to be an option!)
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
 #000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?) (correction: might not be necessary now that we have ArticleListItem)
+#000045 CHG [ ] link the feed image to the URL of the feed (not XML URL, but site URL) -->smt
+#000046 CHG [ ] show link addresses in statusbar -->smt
 
 == MID-TERM ==
 
