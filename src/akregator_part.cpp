@@ -196,7 +196,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     KPopupMenu* traypop = m_trayIcon->contextMenu();
     
     action("feed_fetch_all")->plug(traypop, 1);
-    action("akregator_configure_akregator")->plug(traypop, 1);
+    action("akregator_configure_akregator")->plug(traypop, 2);
     
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
     
