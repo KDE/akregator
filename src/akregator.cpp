@@ -289,6 +289,7 @@ void aKregator::closeEvent(QCloseEvent* e)
         if (m_part->queryClose())
             KMainWindow::closeEvent(e);
     }
+    m_quit = false;
 }
 
 #include "akregator.moc"
