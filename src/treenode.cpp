@@ -13,7 +13,7 @@
 using namespace Akregator;
 
 TreeNode::TreeNode()
-    : QObject(0, 0), m_title(""), m_parent(0), m_doNotify(true), m_changeOccured(false)
+    : QObject(0, 0), m_doNotify(true), m_changeOccured(false), m_title(""), m_parent(0)
 {
 }
 
@@ -30,17 +30,17 @@ const QString& TreeNode::title() const
 
 void TreeNode::setTitle(const QString& title)
 {
-    
+
     if (m_title != title)
     {
         m_title = title;
-        modified(); 
+        modified();
     }
 }
 
 TreeNode* TreeNode::nextSibling() const
 {
-    if (!m_parent) 
+    if (!m_parent)
         return 0;
     QPtrList<TreeNode> children = m_parent->children();
     children.find(this);
@@ -49,22 +49,22 @@ TreeNode* TreeNode::nextSibling() const
 
 TreeNode* TreeNode::prevSibling() const
 {
-    if (!m_parent) 
+    if (!m_parent)
         return 0;
     QPtrList<TreeNode> children = m_parent->children();
     children.find(this);
     return children.prev();
 }
-   
+
 FeedGroup* TreeNode::parent() const
 {
     return m_parent;
 }
-    
+
 void TreeNode::setParent(FeedGroup* parent)
 {
     m_parent = parent;
-}    
+}
 
 void TreeNode::setNotificationMode(bool doNotify, bool notifyOccuredChanges)
 {
@@ -73,8 +73,8 @@ void TreeNode::setNotificationMode(bool doNotify, bool notifyOccuredChanges)
         m_doNotify = true;
         if (m_changeOccured && notifyOccuredChanges)
             emit signalChanged(this);
-        m_changeOccured = false; 
-    }    
+        m_changeOccured = false;
+    }
     if (!doNotify && m_doNotify) //turned off
     {
         m_changeOccured = false;
@@ -91,5 +91,5 @@ void TreeNode::modified()
         m_changeOccured = true;
 //    kdDebug() << "leave TreeNode::modified" << title()<< endl;
 }
-    
+
 #include "treenode.moc"
