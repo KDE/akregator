@@ -7,5 +7,5 @@ debian/tmp/usr/share/apps/akregatorpart/akregator_part.rc
 debian/tmp/usr/share/apps/akregatorpart/welcome.html
 debian/tmp/usr/share/config.kcfg
 debian/tmp/usr/share/config.kcfg/akregator.kcfg
-debian/tmp/usr/share/icons/hicolor/*/apps/akregator.png
+debian/tmp/usr/share/icons/*/*/apps/akregator.png
 debian/tmp/usr/share/services/akregator_part.desktop
