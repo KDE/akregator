@@ -5,6 +5,7 @@
  *   Licensed under GPL.                                                   *
  ***************************************************************************/
 
+#include "akregatorconfig.h"
 #include "akregator_run.h" 
 #include "feediconmanager.h"
 #include "pageviewer.h"
@@ -14,7 +15,9 @@
 #include <kapplication.h>
 #include <kbookmark.h>
 #include <kbookmarkmanager.h>
+#include <kconfig.h>
 #include <kglobalsettings.h>
+#include <khtml_settings.h>
 #include <khtmlview.h>
 #include <kiconloader.h>
 #include <klocale.h>
@@ -36,8 +39,11 @@ using namespace Akregator;
 PageViewer::PageViewer(QWidget *parent, const char *name)
     : Viewer(parent, name)
 {
+    KHTMLSettings* s = const_cast<KHTMLSettings*> (settings());
+    s->init(Settings::self()->config());
+    
     setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
-
+    
     m_backAction = new KToolBarPopupAction(i18n("Back"), "back", 0, this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(m_backAction->popupMenu(), SIGNAL(aboutToShow()),
@@ -266,13 +272,16 @@ void PageViewer::slotPaletteOrFontChanged()
     QObject *obj = KParts::BrowserExtension::childObject(this);
     if ( !obj ) // not all views have a browser extension !
         return;
-
+    
     int id = obj->metaObject()->findSlot("reparseConfiguration()");
     if (id == -1)
         return;
     QUObject o[1];
 
     obj->qt_invoke(id, o);
+    
+    KHTMLSettings* s = const_cast<KHTMLSettings*> (settings());
+    s->init(Settings::self()->config());
 }
 
 void PageViewer::slotGlobalBookmarkArticle()
