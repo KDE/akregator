@@ -67,8 +67,6 @@ namespace Akregator
                 
             virtual bool openURL(const KURL& url);
             
-            KParts::BrowserExtension *extension;
-
         protected:
             /**
              * This must be implemented by each part
@@ -93,6 +91,7 @@ namespace Akregator
         private:
             void readRecentFileEntries();
 
+            KParts::BrowserExtension *m_extension;
             KRecentFilesAction *recentFilesAction;
             static KAboutData* s_about;
             aKregatorView* m_view;

@@ -14,7 +14,6 @@
 #include <kprogress.h>
 #include <kconfig.h>
 #include <kurl.h>
-#include <kparts/browserextension.h>
 
 #include <kedittoolbar.h>
 
@@ -55,8 +54,7 @@ aKregator::aKregator()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<aKregatorPart*>(factory->create(this,
-                                "akregator_part", "KParts::ReadWritePart" ));
+        m_part = static_cast<KParts::ReadWritePart*>(factory->create(this, "akregator_part", "KParts::ReadWritePart" ));
 
         if (m_part)
         {
@@ -64,7 +62,7 @@ aKregator::aKregator()
             setCentralWidget(m_part->widget());
 
             connect (m_part, SIGNAL(partChanged(KParts::Part *)), this, SLOT(partChanged(KParts::Part *)));
-            connect( m_part->extension, SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+            connect( browserExtension(), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
 
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
@@ -247,6 +245,11 @@ void aKregator::fileOpen()
             newWin->show();
         }
     }
+}
+
+KParts::BrowserExtension *aKregator::browserExtension() const
+{
+    return KParts::BrowserExtension::childObject( m_part );
 }
 
 

@@ -12,10 +12,9 @@
 #include <config.h>
 #endif
 
-#include "akregator_part.h"
-
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
+#include <kparts/browserextension.h>
 
 class KToggleAction;
 class KProgress;
@@ -84,7 +83,9 @@ private:
     void setupActions();
 
 private:
-    Akregator::aKregatorPart *m_part;
+    KParts::BrowserExtension *browserExtension() const;
+        
+    KParts::ReadWritePart *m_part;
 
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;

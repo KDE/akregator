@@ -34,7 +34,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setInstance( aKregatorFactory::instance() );
 
     m_view=new aKregatorView(this, parentWidget, "Akregator View");
-    extension=new KParts::BrowserExtension(this, "ak_extension");
+    m_extension=new KParts::BrowserExtension(this, "ak_extension");
 
     // notify the part that this is our internal widget
     setWidget(m_view);
@@ -126,7 +126,7 @@ void aKregatorPart::setStatusBar(const QString &text)
 
 void aKregatorPart::setProgress(int percent)
 {
-    emit extension->loadingProgress(percent);
+    emit m_extension->loadingProgress(percent);
 }
 
 /*************************************************************************************************/
@@ -161,13 +161,13 @@ bool aKregatorPart::openFile()
 
     if (!doc.setContent(str))
     {
-        emit extension->loadingProgress(-1);
+        emit m_extension->loadingProgress(-1);
         return false;
     }
 
     if (!m_view->loadFeeds(doc)) // will take care of building feeds tree and loading archive
     {
-        emit extension->loadingProgress(-1);
+        emit m_extension->loadingProgress(-1);
         return false;
     }
 
