@@ -20,12 +20,16 @@
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kstandarddirs.h>
+#include <kparts/browserinterface.h>
 
 #include <qclipboard.h>
 #include <qdatetime.h>
 #include <qfile.h>
 #include <qvaluelist.h>
 #include <qscrollview.h>
+
+#include <qmetaobject.h>
+#include <private/qucomextra_p.h>
 
 using namespace Akregator;
 
@@ -254,6 +258,22 @@ void PageViewer::slotSetCaption(const QString& cap) {
     (*m_current).title = cap;
 }
 
+void PageViewer::slotPaletteOrFontChanged()
+{
+    kdDebug() << "PageViewer::slotPaletteOrFontChanged()" << endl;
+    // taken from KonqView (kdebase/konqueror/konq_view.cc)
+    
+    QObject *obj = KParts::BrowserExtension::childObject(this);
+    if ( !obj ) // not all views have a browser extension !
+        return;
+
+    int id = obj->metaObject()->findSlot("reparseConfiguration()");
+    if (id == -1)
+        return;
+    QUObject o[1];
+
+    obj->qt_invoke(id, o);
+}
 
 void PageViewer::slotGlobalBookmarkArticle()
 {

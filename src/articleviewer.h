@@ -66,7 +66,7 @@ namespace Akregator
 	    
             void slotShowSummary(TreeNode *node);
 
-            void slotPaletteOrFontChanged();
+            virtual void slotPaletteOrFontChanged();
             
         protected:
             

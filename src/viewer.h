@@ -40,6 +40,8 @@ namespace Akregator
             void slotPrint();
             void setSafeMode();
 
+            virtual void slotPaletteOrFontChanged() = 0;
+
         signals:
             /** This gets emitted when url gets clicked */
             void urlClicked(const KURL& url, bool background=false);

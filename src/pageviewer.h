@@ -53,6 +53,7 @@ namespace Akregator
             void slotReload();
             void slotStop();
             void slotSetCaption(const QString& cap);
+            virtual void slotPaletteOrFontChanged();
 
         protected:
 

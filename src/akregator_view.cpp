@@ -295,6 +295,7 @@ void View::saveSettings()
 void View::slotOpenTab(const KURL& url, bool background)
 {
     PageViewer* page = new PageViewer(this, "page");
+    connect( m_part, SIGNAL(signalSettingsChanged()), page, SLOT(slotPaletteOrFontChanged()));
     
     connect( page, SIGNAL(setTabIcon(const QPixmap&)),
             this, SLOT(setTabIcon(const QPixmap&)));
