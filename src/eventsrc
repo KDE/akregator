@@ -3,7 +3,6 @@ IconName=akregator
 Comment=Akregator
 Comment[da]=Akregator Plugin
 Comment[sv]=aKregator
-Comment[xx]=xxAkregatorxx
 
 [feed_added]
 Name=Feed added
@@ -28,7 +27,6 @@ Name[ru]=Лента новостей добавлена
 Name[sl]=Dovod je dodan
 Name[sv]=Källa tillagd
 Name[uk]=Подачу додано
-Name[xx]=xxFeed addedxx
 Name[zh_CN]=添加了新闻源
 Comment=A new feed was remotely added to Akregator
 Comment[bg]=Отдалечено е добавена нова новина към Akregator
@@ -52,7 +50,6 @@ Comment[ru]=Новая лента новостей добавлена в спи�
 Comment[sl]=Nov dovod je bil oddaljeno dodan k Akregatorju
 Comment[sv]=En ny källa har lagts till i aKregator utifrån
 Comment[uk]=Нову подачу було віддалено додано до Akregator
-Comment[xx]=xxA new feed was remotely added to Akregatorxx
 Comment[zh_CN]=新闻源远程添加进了 Akregator
 default_presentation=4
 
@@ -83,7 +80,6 @@ Name[se]=Ođđa artihkkalat
 Name[sl]=Novi članki
 Name[sv]=Nya artiklar
 Name[uk]=Нові статті
-Name[xx]=xxNew Articlesxx
 Name[zh_CN]=新闻文章
 Comment=New articles were fetched
 Comment[bg]=Пристигнали са нови статии
@@ -108,7 +104,6 @@ Comment[se]=Ođđa artihkkalat vižžon
 Comment[sl]=Povlečeni so bili novi članki
 Comment[sv]=Nya artiklar har hämtats
 Comment[uk]=Отримано нові статті
-Comment[xx]=xxNew articles were fetchedxx
 Comment[zh_CN]=获取了新文章
 default_presentation=4
 
