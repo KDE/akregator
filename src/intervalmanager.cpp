@@ -74,8 +74,8 @@ void IntervalManager::read()
         if( !e.isNull() && e.tagName()== "site")
         {
             QString url=e.attribute("url");
-            if (url.isNull())
-                m_siteMap[url]=e.attribute("lastFetched","0").toUInt();
+            if (!url.isNull())
+                m_siteMap[url] = e.attribute("lastFetched","0").toUInt();
         }
         n = n.nextSibling();
     }
