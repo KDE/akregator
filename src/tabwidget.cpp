@@ -59,6 +59,7 @@ void TabWidget::slotTabChanged(QWidget *w)
 
 void TabWidget::removeFrame(Frame *f)
 {
+    f->setCompleted();
     m_frames.remove(f->widget());
     removePage(f->widget());
     setTitle( currentFrame()->title(), currentPage() );
@@ -168,6 +169,8 @@ void TabWidget::slotDetachTab()
    else return;
    kapp->invokeBrowser(url.url(), "0");
    removePage(currentItem);
+   delete currentItem;
+   currentItem = 0;
 }
 
 void TabWidget::slotCopyLinkAddress()
@@ -184,6 +187,8 @@ void TabWidget::slotCloseTab()
 {
    if(!currentItem) return;
    removePage(currentItem);
+   delete currentItem;
+   currentItem = 0;
 }
 
 #include "tabwidget.moc"

@@ -64,6 +64,7 @@ namespace Akregator
             int m_state;
             int m_progress;
             QString m_statusText;
+            QString m_progressId;
             KPIM::ProgressItem *m_progressItem;
     };
 }

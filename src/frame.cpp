@@ -81,6 +81,7 @@ void Frame::setTitle(const QString &s)
 
 void Frame::setCaption(const QString &s)
 {
+    if(m_progressItem) m_progressItem->setLabel(s);
     m_caption=s;
     emit captionChanged(s);
 }
@@ -140,7 +141,8 @@ const QString Frame::statusText() const
 
 void Frame::setStarted()
 {
-    m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title());
+    if(m_progressId.isNull() || m_progressId.isEmpty()) m_progressId = KPIM::ProgressManager::getUniqueID();
+    m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title());
     m_progressItem->setUsesCrypto(false);
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state=Started;
