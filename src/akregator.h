@@ -38,9 +38,14 @@ public:
     virtual ~aKregator();
 
     /**
-     * Use this method to load whatever file/URL you have
+     * Use this method to load whatever file/URL you have.
      */
     void load(const KURL& url);
+
+    /**
+     * Reimplemented from QWidget to prevent from closing when docked.
+     */
+    virtual void closeEvent(QCloseEvent* e);
 
 protected:
     /**
@@ -66,6 +71,8 @@ private slots:
 
     void applyNewToolbarConfig();
 
+    void quitProgram();
+
 private:
     void setupAccel();
     void setupActions();
@@ -75,6 +82,8 @@ private:
 
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
+
+    bool m_quit;
 };
 
 #endif // _AKREGATOR_H_

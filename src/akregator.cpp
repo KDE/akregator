@@ -27,6 +27,7 @@ using namespace Akregator;
 
 aKregator::aKregator()
     : KParts::MainWindow( 0L, "aKregator" )
+    , m_quit(false)
 {
     // set the shell's ui resource file
     setXMLFile("akregator_shell.rc");
@@ -70,6 +71,8 @@ aKregator::aKregator()
 
     TrayIcon *icon = new TrayIcon(this);
     icon->show();
+    connect(icon, SIGNAL(quitSelected()),
+            this, SLOT(quitProgram()));
 
     // apply the saved mainwindow settings, if any, and ask the mainwindow
     // to automatically save settings if changed: window size, toolbar
@@ -91,7 +94,7 @@ void aKregator::setupActions()
     KStdAction::openNew(this, SLOT(fileNew()), actionCollection());
     KStdAction::open(this, SLOT(fileOpen()), actionCollection());
 
-    KStdAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStdAction::quit(this, SLOT(quitProgram()), actionCollection());
 
     m_toolbarAction = KStdAction::showToolbar(this, SLOT(optionsShowToolbar()), actionCollection());
     m_statusbarAction = KStdAction::showStatusbar(this, SLOT(optionsShowStatusbar()), actionCollection());
@@ -216,6 +219,24 @@ void aKregator::fileOpen()
             newWin->show();
         }
     }
+}
+
+void aKregator::quitProgram()
+{
+    // will call queryClose()
+    m_quit = true;
+    close();
+}
+
+void aKregator::closeEvent(QCloseEvent* e)
+{
+    if (!m_quit) {
+        KMessageBox::information(this, i18n( "<qt>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
+        hide();
+        e->ignore();
+    }
+   else
+      KMainWindow::closeEvent(e);
 }
 
 #include "akregator.moc"
