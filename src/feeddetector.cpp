@@ -54,12 +54,12 @@ FeedDetectorEntryList FeedDetector::extractFromLinkTags(const QString& s)
         QString type;
         int pos = reType.search(*it, 0);
         if (pos != -1)
-            type = reHref.cap(1).lower();
+            type = reType.cap(1).lower();
 
         // we accept only type attributes indicating a feed or omitted type attributes
         if ( !type.isEmpty() && type != "application/rss+xml" && type != "application/rdf+xml"
-             && type != "application/atom+xml" )
-            break;
+	      && type != "application/atom+xml" && type != "text/xml" )
+            continue;
                 
         QString title;
         pos = reTitle.search(*it, 0);
@@ -70,7 +70,6 @@ FeedDetectorEntryList FeedDetector::extractFromLinkTags(const QString& s)
         pos = reHref.search(*it, 0);
         if (pos != -1)
             url = reHref.cap(1);
-
 
         // if feed has no title, use the url as preliminary title (until feed is parsed)
         if ( title.isEmpty() )
