@@ -24,6 +24,7 @@ struct MyArticle::Private : public RSS::Shared
     QDateTime fetchDate;
     QString title;
     int status;
+    bool keep;
 };
 
 MyArticle::MyArticle() : d(new Private)
@@ -32,6 +33,7 @@ MyArticle::MyArticle() : d(new Private)
 
 MyArticle::MyArticle(Article article) : d(new Private)
 {
+    d->keep = false;
     d->article = article;
     d->fetchDate = QDateTime::currentDateTime();
     
@@ -129,6 +131,16 @@ int MyArticle::comments() const
 bool MyArticle::guidIsPermaLink() const
 {
     return d->article.guidIsPermaLink();
+}
+
+bool MyArticle::keep() const
+{
+    return d->keep;
+}
+
+void MyArticle::setKeep(bool keep)
+{
+    d->keep = keep;
 }
 
 const QDateTime &MyArticle::pubDate() const

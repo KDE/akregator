@@ -344,7 +344,7 @@ void Feed::deleteExpiredArticles()
         it = m_articles.begin();
         while ( !foundNotYetExpired && it != end )
         {
-            if ((*it).pubDate().secsTo(now) > expiryInSec)
+            if ( !(*it).keep() && (*it).pubDate().secsTo(now) > expiryInSec)
             {
                 tmp = it;
                 ++it;       

@@ -47,7 +47,7 @@ namespace Akregator
             const KURL &link() const;
             QString description() const;
             QString guid() const;
-            /** if true, the article is kept even when expired **/
+            /** if true, the article should be kept even when expired **/
             bool keep() const;
             void setKeep(bool keep);
             bool guidIsPermaLink() const;
