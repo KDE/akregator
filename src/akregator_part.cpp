@@ -503,7 +503,7 @@ QWidget* aKregatorPart::getMainWindow()
         while ( (wid = it.current()) != 0 )
         {
         ++it;
-        kdDebug() << "win name: " << wid->name() << endl;
+        //kdDebug() << "win name: " << wid->name() << endl;
         if (QString(wid->name()) == "akregator_mainwindow")
             return wid;
         }
