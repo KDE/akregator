@@ -37,9 +37,6 @@ namespace Akregator
             aKregatorPart(QWidget *parentWidget, const char *widgetName,
                           QObject *parent, const char *name, const QStringList&);
 
-
-            bool save();
-
 	    /**
              * Destructor.
              */

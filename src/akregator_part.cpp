@@ -82,15 +82,9 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     setModified(false);
 }
 
-bool aKregatorPart::save()
-{
-   m_view->saveSettings(true);
-   return true;
-}
-
 aKregatorPart::~aKregatorPart()
 {
-   save();
+   m_view->saveSettings(true);
 }
 
 void aKregatorPart::readRecentFileEntries()

@@ -198,7 +198,6 @@ void aKregator::fileNew()
     // in its initial state.  This is what we do here..
     if ( ! m_part->url().isEmpty() || m_part->isModified() )
     {
-        m_part->save();
         (new aKregator)->show();
     };
 }
