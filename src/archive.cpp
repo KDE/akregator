@@ -33,8 +33,8 @@ void Archive::load(Feed *f)
     
     if (!url.isValid())
         return;
-    
-    QString iconFile=FeedIconManager::self()->iconLocation(f->xmlUrl);
+   
+    QString iconFile=FeedIconManager::self()->iconLocation("http://"+url.host());
     if (!iconFile.isNull())
         f->setFavicon(QPixmap(KGlobal::dirs()->findResource("cache", iconFile+".png")));
 
