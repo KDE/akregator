@@ -15,6 +15,7 @@
 #include <kstandarddirs.h>
 #include <kiconloader.h>
 #include <kiconeffect.h>
+#include <kapplication.h>
 
 #include <qtimer.h>
 #include <qlistview.h>
@@ -169,7 +170,7 @@ void Feed::fetch(bool followDiscovery)
             (*it).setStatus(MyArticle::Unread);
         }
     }
-    
+
     // Disable icon to show it is fetching.
     if (!favicon.isNull())
     {
@@ -177,7 +178,10 @@ void Feed::fetch(bool followDiscovery)
         QPixmap tempIcon = iconEffect.apply(favicon, KIcon::Small, KIcon::DisabledState);
         item()->setPixmap(0, tempIcon);
     }
-    
+
+    // change cursor to show it's fetching
+    KApplication::setOverrideCursor( waitCursor );
+
     tryFetch();
 }
 
@@ -186,9 +190,9 @@ void Feed::tryFetch()
 {
     if (item() && m_fetchError)
         item()->setPixmap(0, KGlobal::iconLoader()->loadIcon("txt", KIcon::Small));
-    
+
     m_fetchError=false;
-    
+
     Loader *loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     loader->loadFrom( xmlUrl, new FileRetriever );
     // TODO: note that we probably don't want to load the favicon here enventually..
@@ -200,6 +204,9 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
     // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
     // You don't need to do that anyway since Loader instances delete themselves.
+
+    // restore cursor
+    KApplication::restoreOverrideCursor();
 
     if (status!= Success)
     {
@@ -213,7 +220,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
         else
         {
-            faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("cancel", KIcon::Small));
+            faviconChanged(xmlUrl, KGlobal::iconLoader()->loadIcon("error", KIcon::Small));
             m_fetchError=true;
             emit fetchError(this);
             return;
@@ -222,18 +229,18 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     // Restore favicon.
     if (!favicon.isNull()) item()->setPixmap(0, favicon);
-    
+
     m_fetchError=false;
     m_document=doc;
     //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
 
-    
+
     if (image.isNull())
     {
         QString u=xmlUrl;
         QString imageFileName=KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
         image=QPixmap(imageFileName, "PNG");
-   
+
         if (image.isNull())
         {
             if (m_document.image()) // if we aint got teh image
@@ -245,7 +252,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
             }
         }
     }
-    
+
     if (updateTitle || title().isEmpty()) setTitle( m_document.title() );
 
     description = m_document.description();
