@@ -113,6 +113,8 @@ namespace Akregator
             /**
              * Display article contents in ArticleViewer.
              */
+            
+            void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);
             void slotArticleSelected(QListViewItem *);
             void slotArticleDoubleClicked(QListViewItem *, const QPoint &, int);
 

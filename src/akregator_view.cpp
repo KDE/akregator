@@ -133,6 +133,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_panner2 = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
     m_articles = new ArticleList( m_panner2, "articles" );
+    connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
     connect( m_articles, SIGNAL(clicked(QListViewItem *)),
                    this, SLOT( slotArticleSelected(QListViewItem *)) );
     connect( m_articles, SIGNAL(doubleClicked(QListViewItem *, const QPoint &, int)),
@@ -842,6 +843,16 @@ void aKregatorView::slotFeedFetched(Feed *feed)
 
     //kdDebug() << k_funcinfo << "END" << endl;
 }
+
+void aKregatorView::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c)
+{
+    if (item && button==Qt::MidButton)
+    {
+        ArticleListItem *i = static_cast<ArticleListItem *>(item);
+        KRun::runURL(i->article().link(), "text/html", false, false); 
+    }
+}
+
 
 void aKregatorView::slotArticleSelected(QListViewItem *i)
 {
