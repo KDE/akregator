@@ -1,22 +1,22 @@
-akregator (1.0.beta3-2) unstable; urgency=low
+akregator (1.0-beta3-2) unstable; urgency=low
 
   * split package into akregator and akregator-kontact-plugin
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 18 Jun 2004 13:09:53 +0200
 
-akregator (1.0.beta3-1) unstable; urgency=low
+akregator (1.0-beta3-1) unstable; urgency=low
 
   * New uptstream.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Fri, 18 Jun 2004 11:47:45 +0200
 
-akregator (1.0.beta2-1) unstable; urgency=low
+akregator (1.0-beta2-1) unstable; urgency=low
 
   * New uptstream.
 
  -- Pierre Habouzit <pierre.habouzit@m4x.org>  Tue, 25 May 2004 11:00:03 +0200
 
-akregator (1.0.beta1-1) unstable; urgency=low
+akregator (1.0-beta1-1) unstable; urgency=low
 
   * Initial Release.
 
