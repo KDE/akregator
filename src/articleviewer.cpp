@@ -350,7 +350,7 @@ void ArticleViewer::slotShowNode(FeedGroup* node)
 
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-//     openPage(url, args, QString::null);    
+    openPage(url, args, QString::null);    
     return true; 
 }
 
@@ -358,16 +358,14 @@ bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& a
 void ArticleViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
-   if(Viewer::slotOpenURLRequest(url, args)) 
-       return;
-   emit urlClicked(url);
-   return; // ??
+   if( !(Viewer::slotOpenURLRequest(url, args)) ) 
+       emit urlClicked(url);
 }
 
 void ArticleViewer::slotOpenLinkInternal()
 {
-    if(m_url.isEmpty()) return;
-    emit urlClicked(m_url);
+    if(!m_url.isEmpty()) 
+    	emit urlClicked(m_url);
 }
 
 #include "articleviewer.moc"
