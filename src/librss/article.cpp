@@ -121,10 +121,6 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
         d->numComments = elemText.toInt();
     }
 
-
-    // XXX: doesn't this check for the node twice? 
-    //      perhaps after finding the node, we can make an extratData fcn
-	
     tagName=(format==AtomFeed)? QString::fromLatin1("id"): QString::fromLatin1("guid");
     QDomNode n = node.namedItem(tagName);
 	if (!n.isNull()) {
