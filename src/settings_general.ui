@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>settings_general</class>
 <author>Teemu Rytilahti</author>
 <widget class="QWidget">
