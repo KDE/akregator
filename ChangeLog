@@ -6,6 +6,7 @@ Changes after 1.0b4:
 -----------------------------
 
 Bug Fixes:
+#81995 - Don't crash when changing from/to combined view when folder selected -tpr
 #82024 - Fix drag&drop regression which made it possible have multiple top level folders -sg
 
 Changes after 1.0b3:

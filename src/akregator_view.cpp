@@ -623,7 +623,7 @@ void aKregatorView::slotNormalView()
         if (item)
         {
             Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-            if (feed)
+            if (!feed->isGroup())
                 m_articleViewer->show( feed, item->article() );
         }
     }
@@ -669,7 +669,7 @@ void aKregatorView::slotCombinedView()
     if (item)
     {
         Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
-        if (feed)
+        if (!feed->isGroup())
             m_articleViewer->show(feed);
     }
 
