@@ -237,7 +237,7 @@ void aKregatorView::slotOpenTab(const KURL& url, bool background=false)
 
     if(!background)
         m_tabs->showPage(page->widget());
-    if (m_tabs->count() > 1)
+    if (m_tabs->count() > 1 && m_tabs->currentPageIndex() != 0)
         m_tabsClose->setEnabled(true);
     page->openURL(url);
 }
