@@ -451,9 +451,13 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
         i = i.nextSibling();
     }
     
-    
-    m_tree->triggerUpdate();
+    // these are disabled before to prevent crashes caused by dnd while loading the feed list:
+    m_tree->setItemsMovable(true);
+    m_tree->setDragEnabled(true);
+    m_tree->setAcceptDrops(true);
 
+    m_tree->triggerUpdate();
+    
     setTotalUnread();
         
     kdDebug() << "leave AkregatorView::loadFeeds()" << endl;

@@ -35,12 +35,18 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     setRootIsDecorated(false);
     setItemsRenameable(true);
     setItemMargin(2);
-    setDragEnabled(true);
-    setAcceptDrops(true);
+    
+    
     setFullWidth(true);
     setSorting(-1);
     setDragAutoScroll(true);
     setDropVisualizer(true);
+
+     // these have to be enabled from outside after loading the feed list!
+    setDragEnabled(false);
+    setAcceptDrops(false);
+    setItemsMovable(false);
+    
     connect( this, SIGNAL(dropped(QDropEvent*,QListViewItem*)), this, SLOT(slotDropped(QDropEvent*,QListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*)), this, SLOT(slotItemRenamed(QListViewItem*)) );
