@@ -115,7 +115,7 @@ bool MainWindow::loadPart()
     }
     else
     {
-        KMessageBox::error(this, i18n("Could not find the aKregator part; please check your installation."));
+        KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation."));
         return false;
     }
 
@@ -240,7 +240,7 @@ bool MainWindow::queryClose()
 
         // Associate source to image and show the dialog:
         QMimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
-        KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep aKregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
+        KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
         hide();
     return false;
     }
