@@ -67,8 +67,18 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 			d->link = elemText;
 	}
 
-	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"))).isNull())
-		d->description = elemText;
+
+    // prefer content:encoded over summary/description for feeds that provide it
+    
+    if (!(elemText = extractNode(node, QString::fromLatin1("content:encoded"))).isNull())
+        d->description = elemText;
+    
+    if (d->description.isEmpty())
+    {
+        if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"))).isNull())
+	    	d->description = elemText;
+    }
+    
 	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull()) {
 		time_t _time;
 		if (format==AtomFeed)
