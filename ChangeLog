@@ -6,12 +6,18 @@ Changes after 1.0b4:
 -----------------------------
 
 Changes:
+       - Load last loaded feed list in kontact plugin (#84351) - smt
        - Show regular akregator icon in tray if there are no unread articles. Based on patch from cartman. -berkus
+       - Implement session mangement (#82868) - smt
 
 Bug Fixes:
+#82820 - Kontact crashes when fetching - smt
 #84272 - aKregator doesn't restore feed list after logout with running application
 #81995 - Don't crash when changing from/to combined view when folder selected -tpr
 #82024 - Fix drag&drop regression which made it possible have multiple top level folders -sg
+#84471 - Fix sorting of articles with no pubDates - smt
+#83102 - Fix handling of non-HTML web pages - smt
+#83187 - Reset scrollbar while switching feeds in combined view - smt
 
 Changes after 1.0b3:
 -----------------------------
