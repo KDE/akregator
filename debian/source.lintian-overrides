@@ -1,0 +1,2 @@
+akregator: postinst-has-useless-call-to-ldconfig
+akregator: postrm-has-useless-call-to-ldconfig
