@@ -36,7 +36,7 @@ shellrc_DATA = akregator_shell.rc
 kde_module_LTLIBRARIES = libakregatorpart.la
 
 # the Part's source, library search path, and link libraries
-libakregatorpart_la_SOURCES = akregator_part.cpp feedstree.cpp feedscollection.cpp feed.cpp articlelist.cpp feediconmanager.cpp feediconmanager.skel articleviewer.cpp feedgroup.cpp addfeeddialog.cpp addfeeddialogbase.ui
+libakregatorpart_la_SOURCES = akregator_part.cpp feedstree.cpp feedscollection.cpp feed.cpp articlelist.cpp feediconmanager.cpp feediconmanager.skel articleviewer.cpp feedgroup.cpp addfeeddialog.cpp addfeeddialogbase.ui myarticle.cpp
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) -version-info 1:0 -no-undefined $(all_libraries) 
 libakregatorpart_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML)
 
@@ -48,3 +48,4 @@ partdesktop_DATA = akregator_part.desktop
 partrcdir = $(kde_datadir)/akregatorpart
 partrc_DATA = akregator_part.rc welcome.html
 SUBDIRS = librss
+

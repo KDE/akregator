@@ -12,7 +12,8 @@
 #include <kurl.h>
 
 #include "feedgroup.h"
-#include "librss.h" /* <rss/librss> ! */
+#include "librss/librss.h" /* <rss/librss> ! */
+#include "myarticle.h"
 
 using namespace RSS;
 
@@ -47,7 +48,7 @@ namespace Akregator
             QString        ljLogin;       ///< LiveJournal username
             QString        ljPassword;    ///< LiveJournal password md5 digest
             bool           updateTitle;   ///< Whether to update feed title based on fetched rss.
-            Article::List  articles;      ///< List of just fetched feed articles (will be merged with archive?)
+            MyArticle::List  articles;      ///< List of just fetched feed articles (will be merged with archive?)
 
             QPixmap        image;
             QPixmap        favicon;
@@ -55,12 +56,12 @@ namespace Akregator
         public slots:
             void fetch();                 ///< Start fetching rss
             void loadFavicon();
-                    
+
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
             void faviconLoaded(Feed*);
             void imageLoaded(Feed*);
-            
+
 
         private slots:
             void fetchCompleted(Loader *loader, Document doc, Status status);

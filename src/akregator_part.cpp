@@ -46,7 +46,7 @@ typedef KParts::GenericFactory< aKregatorPart > aKregatorFactory;
 K_EXPORT_COMPONENT_FACTORY( libakregatorpart, aKregatorFactory )
 
 aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/,
-                                  QObject *parent, const char *name, const QStringList& )
+                              QObject *parent, const char *name, const QStringList& )
     : KParts::ReadWritePart(parent, name)
     , m_feeds()
 {
@@ -105,11 +105,11 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     /* -- ACTIONS */
 
     /* --- Feed popup menu */
-    new KAction(i18n("&Add..."), "", "Alt+Insert", this, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
-    new KAction(i18n("Add Feed &Group..."), "", "Alt+Shift+Insert", this, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
-    new KAction(i18n("&Delete"), "", "Shift+Delete", this, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
-    new KAction(i18n("&Modify"), "", "F2", this, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
-    new KAction(i18n("&Copy"), "", "Alt+Ctrl+C", this, SLOT(slotFeedCopy()), actionCollection(), "feed_copy");
+    new KAction(i18n("&Add..."), "add", "Alt+Insert", this, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
+    new KAction(i18n("Add Feed &Group..."), "add", "Alt+Shift+Insert", this, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
+    new KAction(i18n("&Delete"), "delete", "Shift+Delete", this, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
+    new KAction(i18n("&Modify"), "edit", "F2", this, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
+    new KAction(i18n("&Copy"), "editcopy", "Alt+Ctrl+C", this, SLOT(slotFeedCopy()), actionCollection(), "feed_copy");
     new KAction(i18n("&Fetch"), "down", "Alt+Ctrl+F", this, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All"), "bottom", "Alt+Ctrl+A", this, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
 
@@ -444,12 +444,12 @@ void aKregatorPart::slotItemChanged(QListViewItem *item)
 void aKregatorPart::slotUpdateArticleList(Feed *source)
 {
     m_articles->setUpdatesEnabled(false);
-    m_articles->clear(); // FIXME could become rather slow if we store a lot of archive items?
+    m_articles->clear(); // FIXME adding could become rather slow if we store a lot of archive items?
 
     if (source->articles.count() > 0)
     {
-        Article::List::const_iterator it;
-        Article::List::const_iterator end = source->articles.end();
+        MyArticle::List::ConstIterator it;
+        MyArticle::List::ConstIterator end = source->articles.end();
         for (it = source->articles.begin(); it != end; ++it)
         {
             new ArticleListItem( m_articles, (*it), source );

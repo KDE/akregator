@@ -12,9 +12,7 @@
 #include <qcolor.h>
 #include <qfont.h>
 #include <qpaintdevicemetrics.h>
-#include "librss/librss.h"
-
-using namespace RSS;
+#include "myarticle.h"
 
 namespace Akregator
 {
@@ -27,7 +25,7 @@ namespace Akregator
         public:
             ArticleViewer(QWidget* parent, const char* name);
             void openDefault();
-            void show(Feed *f, Article);
+            void show(Feed *f, MyArticle);
         private:
             QString htmlHead() const;
             QString cssDefinitions() const;

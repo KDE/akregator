@@ -100,7 +100,7 @@ QString ArticleViewer::cssDefinitions() const
 }
 
 
-void ArticleViewer::show(Feed *f, Article a)
+void ArticleViewer::show(Feed *f, MyArticle a)
 {
     QString dir = ( QApplication::reverseLayout() ? "rtl" : "ltr" );
     QString headerBoxStr = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
@@ -109,7 +109,7 @@ void ArticleViewer::show(Feed *f, Article a)
 
     QString text;
     text += htmlHead()+cssDefinitions();
-    
+
     text += QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
 
     if (!a.title().isEmpty())

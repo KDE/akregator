@@ -21,15 +21,15 @@ using namespace RSS;
 
 struct ArticleListItem::Private
 {
-    Article article;
+    MyArticle article;
     Feed *feed;
 };
 
-ArticleListItem::ArticleListItem( QListView *parent, Article a, Feed *feed )
+ArticleListItem::ArticleListItem( QListView *parent, MyArticle a, Feed *feed )
     : KListViewItem( parent, parent->lastItem(), KCharsets::resolveEntities(a.title()) )
     /* FIXME lastItem() is not needed because we will sort after adding */
+    , d(new Private)
 {
-    d = new Private;
     d->article = a;
     d->feed = feed;
 }
@@ -37,23 +37,18 @@ ArticleListItem::ArticleListItem( QListView *parent, Article a, Feed *feed )
 int ArticleListItem::compare( QListViewItem *i, int col, bool ascending ) const
 {
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
-	if (!item) return -1;
-
-	kdDebug() << "[cmp] " << this << "(1) & " << item << "(2): " << endl;
+    if (!item) return 0;
 
     if ( item->d->article.pubDate().isValid() && d->article.pubDate().isValid() )
     {
         int diff = d->article.pubDate().secsTo( item->d->article.pubDate() );
-		kdDebug() << "[cmp] both dates valid, result " << diff << " for " << d->article.title() << " & " << item->d->article.title() << endl;
         return ascending ? diff : -diff;
     }
 
-	kdDebug() << "[cmp] there were no dates, return -1" << endl;
-
-    return -1;
+    return 0;
 }
 
-Article ArticleListItem::article()
+MyArticle ArticleListItem::article()
 {
     return d->article;
 }

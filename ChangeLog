@@ -4,6 +4,8 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000041 FIX [x] order for dateless items (right now they show in random order) -->berkus
+                order should be: ordered for items with dates, order same as in rss for items without dates.
 #000025 FIX [x] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that local images and css can be referenced from article preview   --> smt
 #000043 ADD [x] download feed image specified for RSS (for #000036) --> smt
             [x] if the channel image size is well-sized, show in headers -->smt

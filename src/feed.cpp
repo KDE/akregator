@@ -104,22 +104,29 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
 
         return;
     }
-    
+
     m_document=doc;
     kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
-   
-    if (m_document.image()){
-        connect (m_document.image(), SIGNAL (gotPixmap(const QPixmap &)), this,
-            SLOT(imageChanged(const QPixmap &)));
+
+    if (m_document.image())
+    {
+        connect (m_document.image(), SIGNAL(gotPixmap(const QPixmap &)),
+                               this, SLOT(imageChanged(const QPixmap &)));
         m_document.image()->getPixmap();
     }
-
-    kdDebug() << "Feed fetched successfully [" << doc.title() << "]" << endl;
 
     if (updateTitle || title().isEmpty()) setTitle( m_document.title() );
     description = m_document.description();
     htmlUrl = m_document.link().url();
-    articles = m_document.articles();
+
+    articles.clear();
+    Article::List::ConstIterator it;
+    Article::List::ConstIterator en = m_document.articles().end();
+    for (it = m_document.articles().begin(); it != en; ++it)
+    {
+        articles.append( MyArticle( (*it) ) );
+    }
+
     // TODO: more document attributes to fetch?
 
     emit fetched(this);
@@ -129,7 +136,7 @@ void Feed::loadFavicon()
 {
     FeedIconManager::self()->loadIcon(xmlUrl);
     connect (FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)),
-            this, SLOT(faviconChanged(const QString &, const QPixmap &)));
+                                this, SLOT(faviconChanged(const QString &, const QPixmap &)));
 }
 
 void Feed::faviconChanged(const QString &url, const QPixmap &p)
