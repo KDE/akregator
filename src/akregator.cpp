@@ -12,7 +12,6 @@
 //settings
 
 #include <dcopclient.h>
-#include <dcopobject.h>
 
 #include <ksqueezedtextlabel.h>
 #include <kkeydialog.h>
@@ -141,7 +140,11 @@ void AkregatorMainWindow::loadStandardFile()
 }
 
 AkregatorMainWindow::~AkregatorMainWindow()
-{}
+{
+    kdDebug() << "AkregatorMainWindow::~AkregatorMainWindow: delete part" << endl;
+    delete m_part;
+    kdDebug() << "AkregatorMainWindow::~AkregatorMainWindow: part deleted" << endl;
+}
 
 void AkregatorMainWindow::setCaption(const QString &a)
 {

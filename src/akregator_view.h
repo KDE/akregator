@@ -56,7 +56,7 @@ namespace Akregator
              * Default constructor.
              */
             aKregatorView(aKregatorPart *part, QWidget *parent, const char *wName);
-
+            ~aKregatorView();
             void saveSettings(bool quit);
 
             bool importFeeds(const QDomDocument& doc);
@@ -163,7 +163,7 @@ namespace Akregator
             void slotNextFeed();
             void slotPrevUnreadArticle();
             void slotNextUnreadArticle();
-     
+
             void slotMarkAllRead();
             void slotMarkAllFeedsRead();
 
@@ -285,6 +285,7 @@ namespace Akregator
             QTimer* m_expiryTimer;
 
             bool m_stopLoading;
+            bool m_shuttingDown;
     };
 }
 

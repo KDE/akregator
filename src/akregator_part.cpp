@@ -69,7 +69,7 @@ void aKregatorPart::setupActions()
     new KAction(i18n("&Open Homepage"), "", "Ctrl+H", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
     new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
     new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
-    new KAction(i18n("&Delete"), "editdelete", "Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
+    new KAction(i18n("&Delete"), "editdelete", "Alt+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Edit..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
 
     // toolbar / feed menu

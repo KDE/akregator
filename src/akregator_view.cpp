@@ -73,13 +73,26 @@
 
 using namespace Akregator;
 
+aKregatorView::~aKregatorView()
+{
+    m_shuttingDown = true; // prevents slotFrameChanged from crashing
+    // close all pageviewers in a controlled way
+    // fixes bug 91660, at least when no part loading data
+    m_tabs->setCurrentPage(m_tabs->count()-1); // select last page
+    while (m_tabs->count() > 1) // remove frames until only the main frame remains
+        slotRemoveFrame();
+    
+    delete m_mainTab;
+    delete m_mainFrame;
+}
+
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
 : QWidget(parent, wName), m_viewMode(NormalView)
 {
     
     m_part=part;
     m_stopLoading=false;
-
+    m_shuttingDown = false;
     setFocusPolicy(QWidget::StrongFocus);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
@@ -248,6 +261,7 @@ void aKregatorView::saveSettings(bool /*quit*/)
 void aKregatorView::slotOpenTab(const KURL& url, bool background=false)
 {
     PageViewer* page = new PageViewer(this, "page");
+    
     m_part->manager()->addPart(page);
     
     connect( page, SIGNAL(setWindowCaption (const QString &)),
@@ -642,7 +656,12 @@ void aKregatorView::slotRemoveFrame()
     Frame *f = m_tabs->currentFrame();
     if (f == m_mainFrame)
         return;
+    
     m_tabs->removeFrame(f);
+    
+    if (f->part() != m_part)
+        delete f->part();
+    
     delete f;
     if (m_tabs->count() <= 1)
         m_tabsClose->setEnabled(false);
@@ -650,6 +669,9 @@ void aKregatorView::slotRemoveFrame()
 
 void aKregatorView::slotFrameChanged(Frame *f)
 {
+    if (m_shuttingDown)
+        return;
+    
     m_currentFrame=f;
 
     if (f == m_mainFrame)
@@ -1056,7 +1078,6 @@ void aKregatorView::slotMarkAllRead()
     m_tree->selectedNode()->slotMarkAllArticlesAsRead();
     setTotalUnread();
 }
-
 
 void aKregatorView::slotOpenHomepage()
 {
