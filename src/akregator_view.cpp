@@ -249,6 +249,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_articles->hide();
     m_searchBar->hide();
     m_articleViewer->displayAboutPage();
+    m_tabs->setTitle("About", m_mainTab);
     m_displayingAboutPage = true;
     
     m_fetchTimer=new QTimer(this);
@@ -811,6 +812,7 @@ void View::slotNodeSelected(TreeNode* node)
 {
     if (m_displayingAboutPage)
     {
+        m_tabs->setTitle("Articles", m_mainTab);
         if (m_viewMode != CombinedView)
             m_articles->show();
         if (Settings::showQuickFilter())
