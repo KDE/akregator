@@ -119,6 +119,8 @@ void TrayIcon::settingsChanged()
 {
     if(!m_balloon && Settings::useNotifications()) {
         m_balloon=new Balloon(i18n( "<qt><nobr><b>Updated Feeds:</b></nobr></qt>" ));
+        connect(m_balloon, SIGNAL(signalButtonClicked()), this, SLOT(viewButtonClicked()));
+
         m_balloon->hide();
     }
     if(m_balloon && !Settings::useNotifications()) {
