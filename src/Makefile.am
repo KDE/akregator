@@ -101,7 +101,7 @@ libakregatorpart_la_SOURCES = \
 	akregator_part.cpp \
 	akregator_view.cpp
 
-libakregatorpart_la_LDFLAGS = $(KDE_RPATH) -version-info 1:0 -no-undefined $(all_libraries)
+libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
 
 # this is where the desktop file will go
