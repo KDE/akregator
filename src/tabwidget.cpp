@@ -12,6 +12,7 @@
 #include <qiconset.h>
 #include <qclipboard.h>
 
+#include <kapplication.h>
 #include <kdebug.h>
 #include <ktabwidget.h>
 #include <ktabbar.h>
@@ -165,7 +166,7 @@ void TabWidget::slotDetachTab()
    KURL url;
    if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
    else return;
-   KRun::runURL(url.prettyURL(),"text/html", false, false);
+   kapp->invokeBrowser(url.url(), "0");
    removePage(currentItem);
 }
 
