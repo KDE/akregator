@@ -243,12 +243,12 @@ void ArticleViewer::show(Feed *f, MyArticle a)
 
 bool ArticleViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
-    aKregatorRun *run= new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
+    new aKregatorRun(this, (QWidget*)parent(), this, url, args, true);
     return true;
 }
 
 
-void ArticleViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &mimetype)
+void ArticleViewer::openPage(const KURL&url, const KParts::URLArgs& args, const QString &)
 {
    kdDebug() << "ArticleViewer: Open url request: " << url << endl;
    if(Viewer::slotOpenURLRequest(url, args)) return;
