@@ -39,7 +39,7 @@ kdelnkdir = $(kde_servicesdir)
 kde_module_LTLIBRARIES = libakregatorpart.la
 
 # the Part's source, library search path, and link libraries
-libakregatorpart_la_SOURCES = akregatorconfig.kcfgc akregator_part.cpp akregator_view.cpp akregator_run.cpp intervalmanager.cpp feedstree.cpp feedscollection.cpp feed.cpp fetchtransaction.cpp articlelist.cpp frame.cpp feediconmanager.cpp feediconmanager.skel viewer.cpp articleviewer.cpp feedgroup.cpp exportwidgetbase.ui addfeeddialog.cpp addfeedwidgetbase.ui propertiesdialog.cpp propertieswidgetbase.ui myarticle.cpp articlefilter.cpp archive.cpp pageviewer.cpp tabwidget.cpp akregator_partiface.skel
+libakregatorpart_la_SOURCES = akregatorconfig.kcfgc akregator_part.cpp akregator_view.cpp akregator_run.cpp articlesequence.cpp intervalmanager.cpp feedstree.cpp feedscollection.cpp feed.cpp fetchtransaction.cpp articlelist.cpp frame.cpp feediconmanager.cpp feediconmanager.skel viewer.cpp articleviewer.cpp feedgroup.cpp exportwidgetbase.ui addfeeddialog.cpp addfeedwidgetbase.ui propertiesdialog.cpp propertieswidgetbase.ui myarticle.cpp articlefilter.cpp archive.cpp pageviewer.cpp tabwidget.cpp akregator_partiface.skel
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) -version-info 1:0 -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KPARTS) $(LIB_KFILE) $(LIB_KHTML)
 
