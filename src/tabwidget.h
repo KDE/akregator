@@ -22,10 +22,15 @@ namespace Akregator
 
             unsigned int tabBarWidthForMaxChars( uint maxLength );
             void setTitle( const QString &title , QWidget* sender);
-        
+
             private:
                 QDict <QWidget>m_titleDict;
                 unsigned int m_CurrentMaxLength;
+                QWidget *currentItem;
+            private slots:
+                void slotDetachTab();
+                void slotCloseTab();
+                void contextMenu (int item, const QPoint &p);
     };
 }
 

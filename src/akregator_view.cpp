@@ -90,6 +90,7 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
     m_panner1->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_panner1);
+
     m_tabsClose = new QToolButton( m_tabs );
     m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
     connect( m_tabsClose, SIGNAL( clicked() ), this,
@@ -188,7 +189,7 @@ void aKregatorView::slotOpenTab(const KURL& url)
             this, SLOT(slotTabCaption (const QString &)) );
     page->openURL(url);
 
-    m_tabs->addTab(page->widget(), "Untitled");
+    m_tabs->addTab(page->widget(), i18n("Untitled"));
     m_tabs->showPage(page->widget());
     if (m_tabs->count() > 1)
         m_tabsClose->setEnabled(true);
