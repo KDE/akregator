@@ -30,6 +30,7 @@
 #include "tabwidget.h"
 #include "treenode.h"
 #include "treenodeitem.h"
+#include "notificationmanager.h"
 
 #include <kaction.h>
 #include <kapplication.h>
@@ -863,6 +864,7 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
     dlg->setMaxArticleAge(60);
     dlg->setMaxArticleNumber(1000);
     dlg->setMarkImmediatelyAsRead(false);
+    dlg->setUseNotification(false);
     dlg->setFetchInterval(30);
     if (!autoExec)
         if (dlg->exec() != QDialog::Accepted) 
@@ -881,7 +883,8 @@ void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool 
     feed->setNotificationMode(true, true);    
     feed->setCustomFetchIntervalEnabled(dlg->autoFetch());
     feed->setFetchInterval(dlg->fetchInterval());
-
+    feed->setUseNotification(dlg->useNotification());
+    
     Archive::load(feed);
     if (!parent)
         parent = m_feedList->rootNode();
@@ -979,6 +982,7 @@ void View::slotFeedModify()
     dlg->setMaxArticleAge(feed->maxArticleAge());
     dlg->setMaxArticleNumber(feed->maxArticleNumber());
     dlg->setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
+    dlg->setUseNotification(feed->useNotification());
     
     if (dlg->exec() == QDialog::Accepted) 
     {   
@@ -991,6 +995,7 @@ void View::slotFeedModify()
         feed->setMaxArticleAge(dlg->maxArticleAge());
         feed->setMaxArticleNumber(dlg->maxArticleNumber());
         feed->setMarkImmediatelyAsRead(dlg->markImmediatelyAsRead());
+        feed->setUseNotification(dlg->useNotification());
         feed->setNotificationMode(true, true);
         //m_part->setModified(true);
         if ( feed->isMerged() )
@@ -1169,9 +1174,10 @@ void View::slotFeedFetched(Feed *feed)
         ArticleSequence::ConstIterator end = articles.end();
         for (it = articles.begin(); it != end; ++it)
         {
-            if ((*it).status()==MyArticle::New)
+            if ((*it).status()==MyArticle::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
             {
-                m_part->newArticle(feed, *it);     // will do systray notification
+                NotificationManager::self()->slotNotifyArticle(*it);
+            //    m_part->newArticle(feed, *it);     // will do systray notification
             }
         }
     }

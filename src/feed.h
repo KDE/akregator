@@ -120,6 +120,16 @@ namespace Akregator
                     slotMarkAllArticlesAsRead();
             }
 
+            void setUseNotification(bool enabled)
+            {
+                m_useNotification = enabled;
+            }
+            
+            bool useNotification() const
+            {
+                return m_useNotification;
+            }
+            
             /** returns the favicon */
             const QPixmap& favicon() const { return m_favicon; }
             
@@ -245,6 +255,7 @@ namespace Akregator
             int m_maxArticleAge; 
             int m_maxArticleNumber;
             bool m_markImmediatelyAsRead;
+            bool m_useNotification;
             
             Document m_document;            
             FetchTransaction* m_transaction;

@@ -18,7 +18,7 @@
 #include <kinstance.h>
 #include <kmainwindow.h>
 #include <kmessagebox.h>
-#include <kpassivepopup.h>
+#include <knotifydialog.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
 #include <kparts/browserinterface.h>
@@ -40,6 +40,7 @@
 #include "fetchtransaction.h"
 #include "frame.h"
 #include "myarticle.h"
+#include "notificationmanager.h"
 #include "pageviewer.h"
 #include "settings_appearance.h"
 #include "settings_archive.h"
@@ -109,6 +110,7 @@ void Part::setupActions()
     // Settings menu
     KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
     sqf->setChecked( Settings::showQuickFilter() );
+    KStdAction::configureNotifications(this,SLOT(showKNotifyOptions()), actionCollection()); // options_configure_notifications
 
     new KAction( i18n("Configure &aKregator..."), "configure", "", this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
     //KStdAction::preferences( this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
@@ -177,7 +179,12 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect(m_trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
 
     if ( isTrayIconEnabled() )
+    {
         m_trayIcon->show();
+        NotificationManager::self()->setWidget(m_trayIcon);
+    }
+    else
+        NotificationManager::self()->setWidget(getMainWindow());
 
     connect( m_trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
@@ -207,6 +214,8 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
+    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_trayIcon : getMainWindow());
+    
     QStringList fonts;
     fonts.append(Settings::standardFont());
     fonts.append(Settings::fixedFont());
@@ -221,7 +230,6 @@ void Part::slotSettingsChanged()
         Settings::setMediumFontSize(Settings::minimumFontSize());
     saveSettings();
     emit signalHTMLSettingsChanged();
- 
 }
 void Part::saveSettings()
 {
@@ -271,13 +279,6 @@ void Part::setCanceled(KParts::Part* part, const QString &s)
         actionCollection()->action("feed_stop")->setEnabled(false);
     
     emit canceled(s);
-}
-
-// will do systray notification
-void Part::newArticle(Feed *src, const MyArticle &a)
-{
-    if ( isTrayIconEnabled() )
-        m_trayIcon->newArticle(src->title(), src->favicon(), a.title());
 }
 
 void Part::readProperties(KConfig* config)
@@ -702,19 +703,8 @@ void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
     {
         kdDebug() << "Akregator::Part::addFeedToGroup adding feed with URL " << *it << " to group " << group << endl;
         m_view->addFeedToGroup(*it, group);
-    }    
-    if (urls.count() == 1)
-    {
-        KPassivePopup::message(i18n("%1:").arg(urls[0]), i18n("Feed added to akregator."), isTrayIconEnabled() ? m_trayIcon : getMainWindow() );
     }
-    else if (urls.count() > 1)
-    {
-        QString message;
-        for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
-            message += *it + "\n";
-        KPassivePopup::message(i18n("Feeds added to akregator:"), message, isTrayIconEnabled() ? m_trayIcon : getMainWindow() );
-    }
-
+    NotificationManager::self()->slotNotifyFeeds(urls);
 }
 
 
@@ -725,6 +715,13 @@ void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
 KAboutData *Part::createAboutData()
 {
     return new Akregator::AboutData;
+}
+
+void Part::showKNotifyOptions()
+{
+    KAboutData* about = new Akregator::AboutData;
+    KNotifyDialog::configure(m_view, "akregator_knotify_config", about);
+    delete about;
 }
 
 void Part::showOptions()

@@ -96,11 +96,11 @@ libakregatorpart_la_SOURCES = \
 	settings_archive.ui \
 	settings_browser.ui \
 	trayicon.cpp \
-	balloon.cpp \
 	feediconmanager.skel \
 	akregator_partiface.skel \
 	akregator_part.cpp \
-	akregator_view.cpp
+	akregator_view.cpp \
+        notificationmanager.cpp
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
@@ -111,7 +111,7 @@ partdesktop_DATA = akregator_part.desktop
 
 # this is where the part's XML-GUI resource file goes
 partrcdir = $(kde_datadir)/akregator
-partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc welcome.html
+partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc welcome.html eventsrc
 
 # this is where the icons go
 iconsdir = $(kde_datadir)/akregator/pics

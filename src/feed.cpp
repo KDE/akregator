@@ -71,6 +71,7 @@ Feed* Feed::fromOPML(QDomElement e)
         int maxArticleAge = e.attribute("maxArticleAge").toUInt();
         int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
         bool markImmediatelyAsRead = e.attribute("markImmediatelyAsRead") == "true";
+        bool useNotification = e.attribute("useNotification") == "true";
         uint id = e.attribute("id").toUInt();
         
         feed = new Feed();
@@ -85,6 +86,7 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setMaxArticleAge(maxArticleAge);
         feed->setMaxArticleNumber(maxArticleNumber);
         feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
+        feed->setUseNotification(useNotification);
     }   
     
     return feed;
@@ -118,6 +120,7 @@ Feed::Feed()
         , m_maxArticleAge(60) 
         , m_maxArticleNumber(1000)
         , m_markImmediatelyAsRead(false)
+        , m_useNotification(false)
         , m_transaction(0)
         , m_fetchError(false)
         , m_fetchTries(0)
@@ -152,6 +155,8 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "maxArticleNumber", m_maxArticleNumber );
     if (m_markImmediatelyAsRead)
         el.setAttribute( "markImmediatelyAsRead", "true" );
+    if (m_useNotification)
+        el.setAttribute( "useNotification", "true" );
     el.setAttribute( "maxArticleNumber", m_maxArticleNumber );
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );

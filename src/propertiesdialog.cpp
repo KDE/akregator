@@ -210,7 +210,17 @@ bool FeedPropertiesDialog::markImmediatelyAsRead() const
 {
     return widget->checkBox_markRead->isChecked();
 }
-      
+
+void FeedPropertiesDialog::setUseNotification(bool enabled)
+{
+    widget->checkBox_useNotification->setChecked(enabled);
+}
+
+bool FeedPropertiesDialog::useNotification() const
+{
+    return widget->checkBox_useNotification->isChecked();
+}
+  
 void FeedPropertiesDialog::selectFeedName()
 {
    widget->feedNameEdit->selectAll();

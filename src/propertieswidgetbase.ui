@@ -37,7 +37,7 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QLayoutWidget" row="0" column="0">
+                    <widget class="QLayoutWidget" row="0" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>layout7</cstring>
                         </property>
@@ -66,7 +66,7 @@
                             </widget>
                         </hbox>
                     </widget>
-                    <widget class="QLayoutWidget" row="1" column="0">
+                    <widget class="QLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>layout23</cstring>
                         </property>
@@ -92,7 +92,7 @@
                             </widget>
                         </hbox>
                     </widget>
-                    <widget class="QLayoutWidget" row="3" column="0">
+                    <widget class="QLayoutWidget" row="3" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>layout7</cstring>
                         </property>
@@ -172,7 +172,7 @@
                             </widget>
                         </hbox>
                     </widget>
-                    <widget class="QCheckBox" row="2" column="0">
+                    <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>upChkbox</cstring>
                         </property>
@@ -180,7 +180,7 @@
                             <string>Use custom update interval</string>
                         </property>
                     </widget>
-                    <spacer row="5" column="0">
+                    <spacer row="6" column="1">
                         <property name="name">
                             <cstring>spacer9</cstring>
                         </property>
@@ -193,11 +193,19 @@
                         <property name="sizeHint">
                             <size>
                                 <width>20</width>
-                                <height>140</height>
+                                <height>120</height>
                             </size>
                         </property>
                     </spacer>
                     <widget class="QCheckBox" row="4" column="0">
+                        <property name="name">
+                            <cstring>checkBox_useNotification</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Notify of new articles</string>
+                        </property>
+                    </widget>
+                    <widget class="QCheckBox" row="5" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>checkBox_markRead</cstring>
                         </property>

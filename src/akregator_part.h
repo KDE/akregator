@@ -70,11 +70,6 @@ namespace Akregator
             void setCompleted(KParts::Part* part);
             void setCanceled(KParts::Part* part, const QString &s);
 
-            /** Informs trayicon about new articles
-             @param src Feed which has new articles
-             @param a An article */
-            void newArticle(Feed *src, const MyArticle &a);
-            
             /**
              Sets the caption of the mainwindow by emiting a signal. You shouldn't use this because there's only one feedlist
              @param text New caption
@@ -170,6 +165,7 @@ namespace Akregator
             
             /** Shows configuration dialog */
             void showOptions();
+            void showKNotifyOptions();
             
         private slots:
             void slotStop() {closeURL(); };

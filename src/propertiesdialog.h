@@ -39,7 +39,8 @@ namespace Akregator
          int maxArticleAge() const;
          int maxArticleNumber() const;
          bool markImmediatelyAsRead() const;
-               
+         bool useNotification() const;
+
          void setFeedName(const QString& title);
          void setUrl(const QString& url);
          void setAutoFetch(bool);
@@ -48,7 +49,9 @@ namespace Akregator
          void setMaxArticleAge(int age);
          void setMaxArticleNumber(int number);
          void setMarkImmediatelyAsRead(bool enabled);
+         void setUseNotification(bool enabled);
          void selectFeedName();
+
       private:
          FeedPropertiesWidget *widget;
    };

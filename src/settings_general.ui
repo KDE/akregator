@@ -85,7 +85,7 @@
                         <cstring>kcfg_UseNotifications</cstring>
                     </property>
                     <property name="text">
-                        <string>Use notifications</string>
+                        <string>Use notifications for all feeds</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string></string>

@@ -1,0 +1,14 @@
+[!Global!]
+IconName=akregator
+Comment=Akregator
+
+[feed_added]
+Name=Feed added
+Comment=A new feed was remotely added to Akregator
+default_presentation=4
+
+[new_articles]
+Name=New Articles
+Comment=New articles were fetched
+default_presentation=4
+

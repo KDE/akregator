@@ -13,8 +13,6 @@
 #include <qimage.h>
 #include <qpixmap.h>
 
-class Balloon;
-
 namespace Akregator
 {
     class TrayIcon : public KSystemTray
@@ -24,7 +22,6 @@ namespace Akregator
             TrayIcon(QWidget *parent = 0, const char *name = 0);
             ~TrayIcon();
             
-            void newArticle(const QString&, const QPixmap&, const QString&);
             QPixmap takeScreenshot() const;
             virtual void mousePressEvent(QMouseEvent *);
         public slots:
@@ -40,9 +37,6 @@ namespace Akregator
             QPixmap m_defaultIcon;
             QImage m_lightIconImage;
             int m_unread;
-            Balloon *m_balloon;
-
-
     };
 }
 
