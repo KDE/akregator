@@ -71,6 +71,7 @@ void FetchTransaction::stop()
 
 void FetchTransaction::addFeed(Feed *f)
 {
+    
     connect (f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     connect (f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedError(Feed*)));
 

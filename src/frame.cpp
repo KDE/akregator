@@ -6,10 +6,12 @@
  ***************************************************************************/
 
 #include "frame.h"
+#include "progressmanager.h"
 
 #include <kactioncollection.h>
 #include <kdebug.h>
 #include <kparts/browserextension.h>
+#include <klocale.h>
 
 
 using namespace Akregator;
@@ -22,6 +24,7 @@ Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, cons
     m_title=tit;
     m_state=Idle;
     m_progress=-1;
+    m_progressItem=0;
 
     if (watchSignals) // e.g, articles tab has no part
     {
@@ -51,6 +54,9 @@ Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, cons
 
 Frame::~Frame()
 {
+    if(m_progressItem) {
+        m_progressItem->setComplete();
+    }
 }
 
 int Frame::state() const
@@ -87,6 +93,9 @@ void Frame::setStatusText(const QString &s)
 
 void Frame::setProgress(int a)
 {
+    if(m_progressItem) {
+        m_progressItem->setProgress((int)a);
+    }
     m_progress=a;
     emit loadingProgress(a);
 }
@@ -98,14 +107,17 @@ void Frame::setState(int a)
     switch (m_state)
     {
         case Frame::Started:
+            if(m_progressItem) m_progressItem->setStatus(i18n("Loading..."));
             emit started();
             break;
         case Frame::Canceled:
+            if(m_progressItem) m_progressItem->setStatus(i18n("Canceled"));
             emit canceled(QString::null);
             break;
         case Frame::Idle:
         case Frame::Completed:
         default:
+            if(m_progressItem) m_progressItem->setStatus(i18n("Loading completed"));
             emit completed();
     }}
 
@@ -128,6 +140,9 @@ const QString Frame::statusText() const
 
 void Frame::setStarted()
 {
+    m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title());
+    m_progressItem->setUsesCrypto(false);
+    //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state=Started;
     emit started();
 }
@@ -140,6 +155,10 @@ void Frame::setCanceled(const QString &s)
 
 void Frame::setCompleted()
 {
+    if(m_progressItem) {
+        m_progressItem->setComplete();
+        m_progressItem = 0;
+    }
     m_state=Completed;
     emit completed();
 }

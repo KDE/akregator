@@ -27,6 +27,10 @@ class KParts::PartManager;
 
 class AkregatorMainWindow;
 
+namespace KPIM
+{
+    class StatusbarProgressWidget;
+}
 
 namespace Akregator
 {
@@ -95,7 +99,6 @@ public:
       */
     void addFeedToGroup(const QString& url, const QString& group);
     
-    virtual void fontChange(const QFont &);
     virtual void setCaption(const QString &);
 
 public slots:
@@ -135,7 +138,7 @@ private slots:
     void applyNewToolbarConfig();
 
     //void partChanged(KParts::ReadOnlyPart *p);
-    void loadingProgress(int percent);
+    //void loadingProgress(int percent);
 
 private:
     void callObjectSlot( QObject *obj, const char *name, const QVariant &argument );
@@ -152,7 +155,7 @@ private:
     Akregator::aKregatorPart *m_part;
     KParts::PartManager* m_manager;
     //KParts::ReadOnlyPart *m_activePart;
-    KProgress *m_progressBar;
+    KPIM::StatusbarProgressWidget *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
     QString m_permStatusText;
 };

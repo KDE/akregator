@@ -12,6 +12,11 @@
 
 #include <qobject.h>
 
+namespace KPIM
+{
+    class ProgressItem;
+}
+
 namespace Akregator
 {
 
@@ -39,7 +44,7 @@ namespace Akregator
             void setCompleted();
             void setState(int);
             void setProgress(int);
-            void setCaption(const QString &); 
+            void setCaption(const QString &);
             void setTitle(const QString &);
             void setStatusText(const QString &); 
 
@@ -59,6 +64,7 @@ namespace Akregator
             int m_state;
             int m_progress;
             QString m_statusText;
+            KPIM::ProgressItem *m_progressItem;
     };
 }
 

@@ -10,6 +10,7 @@
 #include "feed.h"
 #include "feedgroup.h"
 #include "fetchtransaction.h"
+#include "progressmanager.h" //libkdepim
 
 #include <kurl.h>
 #include <kcharsets.h>
@@ -116,6 +117,7 @@ Feed::Feed()
         , m_merged(false)
         , m_unread(0)
         , m_articles()
+        , m_progressItem(0)
 {
 }
 
@@ -336,14 +338,28 @@ void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
             (*it).setStatus(MyArticle::Unread);
         }
     }
-
+    
     emit fetchStarted(this);
 
     tryFetch();
 }
 
+void Feed::slotSetProgress(unsigned long percent)
+{
+    m_progressItem->setProgress((unsigned int) percent);
+}
+
+void Feed::slotAbortFetch()
+{
+    abortFetch();
+}
+
 void Feed::abortFetch()
 {
+    if(m_progressItem) {
+        m_progressItem->setComplete();
+        m_progressItem = 0;
+    }
     if (m_loader)
     {
         m_loader->abort();
@@ -354,8 +370,13 @@ void Feed::abortFetch()
 void Feed::tryFetch()
 {
     m_fetchError = false;
-
+    
+    m_progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title());
+    m_progressItem->setUsesCrypto(false);
+    connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
+    
     m_loader = Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
+    //connect(m_loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
     m_loader->loadFrom( m_xmlUrl, new FileRetriever );
 }
 
@@ -363,7 +384,11 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
     // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
     // You don't need to do that anyway since Loader instances delete themselves.
-
+    if(m_progressItem) {
+        m_progressItem->setComplete();
+        m_progressItem = 0;
+    }
+    
     if (status!= Success)
     {
         if (m_followDiscovery && (status == ParseError) && (m_fetchTries < 3) && 			(l->discoveredFeedURL().isValid()))

@@ -20,6 +20,10 @@ using namespace RSS;
 
 class QDomElement;
 
+namespace KPIM {
+    class ProgressItem;
+}
+
 namespace Akregator
 {
     class FetchTransaction;
@@ -175,6 +179,10 @@ namespace Akregator
         public slots:
             /** starts fetching */
             void fetch(bool followDiscovery=false, FetchTransaction *f = 0);
+            
+            void slotSetProgress(unsigned long);
+            
+            void slotAbortFetch();
 
             /** deletes expired articles */
             virtual void slotDeleteExpiredArticles();
@@ -255,6 +263,7 @@ namespace Akregator
 
             QPixmap m_image;
             QPixmap m_favicon;
+            KPIM::ProgressItem *m_progressItem;
     };
 }
 

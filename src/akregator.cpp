@@ -25,12 +25,14 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kparts/partmanager.h>
-#include <kprogress.h>
 #include <ksqueezedtextlabel.h>
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
 #include <kurl.h>
+
+#include "progressdialog.h"
+#include "statusbarprogresswidget.h"
 
 #include <qmetaobject.h>
 #include <qpen.h>
@@ -82,12 +84,15 @@ AkregatorMainWindow::AkregatorMainWindow()
     m_statusLabel->setFixedHeight( statH );
     statusBar()->addWidget (m_statusLabel, 1, false);
 
-    m_progressBar = new KProgress( this );
-    // blame the following on KMLittleProgress
-    m_progressBar->setMaximumWidth(fontMetrics().width( " 999.9 kB/s 00:00:01 " ) + 14);
-    m_progressBar->setFixedHeight(statH);
-    m_progressBar->hide();
-    statusBar()->addWidget( m_progressBar, 0, true);
+    KPIM::ProgressDialog *progressDialog = new KPIM::ProgressDialog( statusBar(), this );
+    progressDialog->hide();
+    m_progressBar = new KPIM::StatusbarProgressWidget( progressDialog, statusBar() );
+    m_progressBar->show();
+    statusBar()->addWidget( m_progressBar, 0, true );
+    // disable the action because we don't have a handbook yet, hope this createGUI doesn't broke anything
+    createGUI(0L);
+    KAction *action = actionCollection()->action("help_contents");
+    if(action) action->setEnabled(false);
 }
 
 bool AkregatorMainWindow::loadPart()
@@ -109,7 +114,7 @@ bool AkregatorMainWindow::loadPart()
 
             connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
             //connect (m_part, SIGNAL(partChanged(KParts::ReadOnlyPart *)), this, SLOT(partChanged(KParts::ReadOnlyPart *)));
-            connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
+            //connect( browserExtension(m_part), SIGNAL(loadingProgress(int)), this, SLOT(loadingProgress(int)) );
             //m_activePart=m_part;
             // and integrate the part's GUI with the shell's
             connectActionCollection(m_part->actionCollection());
@@ -309,16 +314,7 @@ bool AkregatorMainWindow::queryClose()
     }
 }
 
-// from KonqFrameStatusBar
-void AkregatorMainWindow::fontChange(const QFont & /* oldFont */)
-{
-    int h = fontMetrics().height();
-    if ( h < 13 ) h = 13;
-    m_progressBar->setFixedHeight( h + 2 );
-
-}
-
-void AkregatorMainWindow::loadingProgress(int percent)
+/*void AkregatorMainWindow::loadingProgress(int percent)
 {
     if ( percent > -1 && percent < 100 )
     {
@@ -329,7 +325,7 @@ void AkregatorMainWindow::loadingProgress(int percent)
         m_progressBar->hide();
 
     m_progressBar->setValue( percent );
-}
+}*/
 
 void AkregatorMainWindow::slotSetStatusBarText(const QString & s)
 {

@@ -20,7 +20,7 @@ bin_PROGRAMS = akregator
 # the application source, library search path, and link libraries
 akregator_SOURCES = main.cpp app.cpp akregator.cpp 
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la
+akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
 
 # this is where the desktop file will go
 shelldesktopdir = $(kde_appsdir)/Internet
@@ -102,7 +102,7 @@ libakregatorpart_la_SOURCES = \
 	akregator_view.cpp
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) -version-info 1:0 -no-undefined $(all_libraries)
-libakregatorpart_la_LIBADD = libakregatorprivate.la ../../libkdepim/libkdepim.la
+libakregatorpart_la_LIBADD = libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
 
 # this is where the desktop file will go
 partdesktopdir = $(kde_servicesdir)
