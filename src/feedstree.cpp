@@ -17,6 +17,7 @@
 #include <kiconeffect.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <kmultipledrag.h>
 #include <kstringhandler.h>
 #include <kurldrag.h>
 
@@ -160,7 +161,7 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
     if (!acceptDrag(e))
         return;
     
-     QListViewItem *qiparent;
+    QListViewItem *qiparent;
     QListViewItem *qiafterme;
     findDrop( e->pos(), qiparent, qiafterme );
     FeedGroupItem* parent = static_cast<FeedGroupItem*> (qiparent);
@@ -659,14 +660,20 @@ void FeedsTree::slotNodeChanged(TreeNode* node)
 
 QDragObject *FeedsTree::dragObject()
 {
+    KMultipleDrag *md = new KMultipleDrag(viewport());
     QDragObject *obj = KListView::dragObject();
     if (obj) {
-        QListViewItem *i = static_cast<TreeNodeItem*>(currentItem());
-        if (i) {
-            obj->setPixmap(*(i->pixmap(0)));
+        md->addDragObject(obj);
+    }
+    TreeNodeItem *i = static_cast<TreeNodeItem*>(currentItem());
+    if (i) {
+        md->setPixmap(*(i->pixmap(0)));
+        FeedItem *fi = dynamic_cast<FeedItem*>(i);
+        if (fi) {
+            md->addDragObject(KURLDrag::newDrag(KURL(fi->node()->xmlUrl()), 0L));
         }
     }
-    return obj;
+    return md;
 }
 
 #include "feedstree.moc"
