@@ -22,7 +22,7 @@ Changes:
 Bug fixes:
 #85409 - Resolve entities in feed titles -fo
 #90671 - Shutdown properly hopefully fixes #89172 too -tpr
-         
+       - Update combined view after fetching new articles (doesn't work in group view yet)         
 Changes after 1.0b5:
 -----------------------------
 Changes:
