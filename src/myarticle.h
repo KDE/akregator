@@ -59,9 +59,9 @@ namespace Akregator
             const QDateTime &pubDate() const;
             KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
             const KURL &commentsLink() const;
-			int comments() const;
+            int comments() const;
             
-			void dumpXmlData( QDomElement parent, QDomDocument doc ) const;
+            void dumpXmlData( QDomElement parent, QDomDocument doc ) const;
             
             bool operator<(const MyArticle &other) const;
             bool operator<=(const MyArticle &other) const;

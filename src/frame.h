@@ -18,14 +18,14 @@ namespace Akregator
     class Frame : public QObject
     {
         Q_OBJECT
-	
-	    public:
+
+        public:
             Frame(QObject *parent, KParts::ReadOnlyPart *part, QWidget *w, const QString& tit, bool watch=true);
             ~Frame();
 
             enum {Idle, Started, Completed, Canceled};
 
-    	    KParts::ReadOnlyPart *part() const;
+            KParts::ReadOnlyPart *part() const;
             QWidget *widget() const;
             const QString title() const;
             const QString caption() const;
@@ -52,7 +52,7 @@ namespace Akregator
             void statusText(const QString &);
 
         private:
-    	    KParts::ReadOnlyPart *m_part;
+            KParts::ReadOnlyPart *m_part;
             QWidget *m_widget;
             QString m_title;
             QString m_caption;
