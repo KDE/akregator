@@ -307,7 +307,7 @@ void aKregatorView::parseChildNodes(QDomNode &node, QListViewItem *parent)
                               xmlurl,
                               e.attribute("htmlUrl"),
                               e.attribute("description"),
-                              e.attribute("updateTitle") == "true" ? true : false, 
+                              e.attribute("updateTitle") == "true" ? true : false,
                               e.attribute("autoFetch") == "true" ? true : false,
                               e.attribute("fetchInterval").toUInt()
                             );
@@ -361,7 +361,7 @@ Feed *aKregatorView::addFeed_Internal(Feed *ef, QListViewItem *elt,
     feed->updateTitle    = updateTitle;
     feed->setAutoFetch(autoFetch);
     feed->setFetchInterval(fetchInterval);
-    
+
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
@@ -675,7 +675,7 @@ void aKregatorView::addFeed(QString url, QListViewItem *after, QListViewItem* pa
                       dlg->url(),
                       feed->htmlUrl,
                       feed->description,
-                      false, 
+                      false,
                       dlg->autoFetch(),
                       dlg->fetchInterval()
                     );
@@ -766,7 +766,7 @@ void aKregatorView::slotFeedModify()
     dlg->setUrl( feed->xmlUrl );
     dlg->setAutoFetch(feed->autoFetch());
     dlg->setFetchInterval(feed->fetchInterval());
-    
+
     if (dlg->exec() != QDialog::Accepted) return;
 
     feed->setTitle( dlg->feedName() );
@@ -807,7 +807,10 @@ void aKregatorView::slotOpenHomepage()
 {
    QListViewItem *item=m_tree->currentItem();
    Feed *f = static_cast<Feed *>(m_feeds.find(item));
-   slotOpenTab(f->htmlUrl);
+   if(Settings::mMBBehaviour() == Settings::EnumMMBBehaviour::OpenInExternalBrowser)
+       displayInExternalBrowser(f->htmlUrl);
+   else
+       slotOpenTab(f->htmlUrl);
 }
 
 void aKregatorView::markAllRead(QListViewItem *item)
@@ -924,7 +927,7 @@ void aKregatorView::displayInExternalBrowser(const KURL &url)
 //        proc->setUseShell(true);
           proc->start(KProcess::DontCare);
         delete proc;
-    }        
+    }
 }
 
 void aKregatorView::slotFetchCurrentFeed()
