@@ -38,6 +38,7 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     setPluginsEnabled(false);
     setDNDEnabled(false);
     setAutoloadImages(true);
+    setStatusMessagesEnabled(true);
 }
 
 void ArticleViewer::openDefault()
@@ -136,7 +137,7 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     text += "</div>\n"; // end headerbox
 
     if (!f->image.isNull())
-        text += QString("<img id=\"headimage\" src=\""+f->title()+".png"+"\">\n");
+        text += QString("<a href=\""+f->htmlUrl+"\"><img id=\"headimage\" src=\""+f->title()+".png"+"\"></a>\n");
 
     text += "<div id=\"content\">"+a.description();
     if (a.link().isValid())
