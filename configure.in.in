@@ -1,9 +1,0 @@
-kontact_available=no
-KDE_CHECK_HEADER(kontact/core.h,
-[
-  kontact_available=yes
-],
-[])
-
-AM_CONDITIONAL(include_kontact, test "$kontact_available" = "yes")
-

@@ -1,6 +1,0 @@
-?package(akregator): \
-    needs="X11" \
-    section="Apps/Net" \
-    hints="KDE,aggregator"\
-    title="aKregator" \
-    command="/usr/bin/akregator"
