@@ -10,7 +10,6 @@
 #include <qobject.h>
 #include <qstring.h>
 
-// FIXME: remove these and use proper forward declarations
 #include <qmap.h>
 #include <qvaluelist.h>
 
@@ -23,7 +22,8 @@ namespace Akregator
 class FeedGroup;
 class TreeNode;
 
-/** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. */
+/** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored.
+FIXME: There should be a more sophisticated memory management @see ~FeedList() */
 class FeedList : public QObject
 {
 Q_OBJECT
