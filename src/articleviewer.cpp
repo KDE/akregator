@@ -12,9 +12,11 @@
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
+#include <khtmlview.h>
 
 #include <qdatetime.h>
 #include <qvaluelist.h>
+#include <qscrollview.h>
 
 using namespace Akregator;
 
@@ -54,13 +56,14 @@ void ArticleViewer::generateCSS()
 	m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
 						"<html><head><title></title></head><body>");
     m_htmlHead += QString (
-    "<style type=\"text/css\">"
+    "<style type=\"text/css\">\n"
     "body {\n"
     "  font-family: \"%1\" ! important;\n"
 // from kmail::headerstyle.cpp
     "  font-size: %2 ! important;\n"
     "  color: %3 ! important;\n"
     "  background: %4 ! important;\n"
+    "  overflow: hidden\n"
     "}\n\n"
     "a {\n"
     "  color: %5 ! important;\n"
@@ -87,19 +90,13 @@ void ArticleViewer::generateCSS()
     "#headertext {\n"
     "}\n\n"
     "#headimage {\n"
-    "float: right;\n"
+    "  float: right;\n"
     "}\n\n"
     "#content {\n"
-    "clear: none;\n"
-    "overflow: auto;\n"
-    "}\n\n"
-    "#article {\n"
-    "overflow: hidden;\n"
-    "border:1px dashed #000;\n"
-    "padding: 3px;\n"
-    "padding-right: 6px;}\n\n"
-    "</style>\n")
-    .arg(KGlobalSettings::generalFont().family()).
+    "  clear: none;\n"
+    "  overflow: auto;\n"
+    "}\n\n")
+        .arg(KGlobalSettings::generalFont().family()).
     arg(QString::number( pointsToPixel( m_metrics, KGlobalSettings::generalFont().pointSize()))+"px").
     arg(cg.text().name()).
     arg(cg.base().name()).
@@ -108,6 +105,20 @@ void ArticleViewer::generateCSS()
     arg(cg.text().name()).
     arg(cg.highlight().name()).
     arg(cg.highlightedText().name());
+   
+    m_htmlHead += QString ( 
+    "#article {\n"
+    "  overflow: hidden;\n"
+    "  border:1px solid #000;\n"
+    "  background: %1;\n"
+    "  padding: 3px;\n"
+    "  padding-right: 6px;}\n\n"
+    "</style>\n")
+        .arg(cg.background().light(115).name());
+        
+           
+            
+            
 }
 
 void ArticleViewer::reload()
