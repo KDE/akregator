@@ -8,7 +8,8 @@
 #ifndef PAGEVIEWER_H
 #define PAGEVIEWER_H
 
-#include <cmath>
+#include <cstdlib>
+using std::abs;
 
 #include <qdatetime.h>
 
@@ -18,8 +19,10 @@
 class KAction;
 class KToolBarPopupAction;
 
+
 namespace Akregator
 {
+    
     // taken from KDevelop
     struct PageViewerHistoryEntry
     {
