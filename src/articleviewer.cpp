@@ -71,7 +71,7 @@ void ArticleViewer::generateCSS()
     "}\n\n"
     "a {\n"
     "  color: %5 ! important;\n"
-    "  text-decoration: none ! important;"
+    "  text-decoration: none ! important;\n"
     "}\n\n"
     "#headerbox {\n"
     "  background: %6 ! important;\n"
@@ -117,8 +117,11 @@ void ArticleViewer::generateCSS()
     "  background: %1;\n"
     "  padding: 3px;\n"
     "  padding-right: 6px;}\n\n"
+    "#titleanchor {\n"
+    "  color: %2 !important;}\n\n" 
     "</style>\n")
-    .arg(cg.background().light(108).name());
+    .arg(cg.background().light(108).name())
+    .arg(cg.text().name());
 
 }
 
@@ -138,7 +141,12 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
     if (!a.title().isEmpty())
     {
         text += QString("<div id=\"headertitle\" dir=\"%1\">\n").arg(directionOf(a.title()));
-        text += a.title()+"</div>\n";
+        if (a.link().isValid())
+            text += "<a id=\"titleanchor\" href=\""+a.link().url()+"\">";
+        text += a.title();
+        if (a.link().isValid())
+            text += "</a>";
+        text += "</div>\n";
     }
     if (a.pubDate().isValid())
     {
