@@ -10,6 +10,7 @@
 #include "akregator_view.h"
 #include "addfeeddialog.h"
 #include "propertiesdialog.h"
+#include "feediconmanager.h"
 #include "feedstree.h"
 #include "articlelist.h"
 #include "articleviewer.h"
@@ -27,6 +28,7 @@
 #include <kstandarddirs.h>
 #include <klineedit.h>
 #include <kpassdlg.h>
+#include <kstandarddirs.h>
 #include <klistview.h>
 #include <khtml_part.h>
 #include <kdebug.h>
@@ -244,6 +246,13 @@ Feed *aKregatorView::addFeed_Internal(QListViewItem *elt,
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(slotFeedFetched(Feed *)) );
 
+    QString iconFile=FeedIconManager::self()->iconLocation(xmlUrl);
+    if (!iconFile.isNull())
+    {
+        elt->setPixmap(0, KGlobal::dirs()->findResource("cache", iconFile+".png"));
+    }
+
+    
     // Read feed archive, if present
     Archive::load(feed);
 

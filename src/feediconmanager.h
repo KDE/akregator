@@ -27,7 +27,8 @@ namespace Akregator
         public:
             static FeedIconManager *self();
             void loadIcon(const QString &);
-
+            QString iconLocation(const KURL &) const;
+            
         k_dcop:
             void slotIconChanged(bool, QString, QString);
 
@@ -39,7 +40,6 @@ namespace Akregator
             ~FeedIconManager();
 
       private:
-            QString iconLocation(const KURL &) const;
             static FeedIconManager *m_instance;
     };
 }
