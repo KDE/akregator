@@ -657,4 +657,17 @@ void FeedsTree::slotNodeChanged(TreeNode* node)
 //     kdDebug() << "leave FeedsTree::slotNodeChanged node: " << (node ? node->title() : "null") << endl;
 }
 
+QDragObject *FeedsTree::dragObject()
+{
+    QDragObject *obj = KListView::dragObject();
+    if (obj) {
+        QListViewItem *i = static_cast<TreeNodeItem*>(currentItem());
+        if (i) {
+            obj->setPixmap(*(i->pixmap(0)));
+        }
+    }
+    return obj;
+}
+
 #include "feedstree.moc"
+// vim: ts=4 sw=4 et

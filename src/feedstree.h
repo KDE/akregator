@@ -146,6 +146,10 @@ namespace Akregator
             virtual void slotFeedFetchAborted(Feed* feed);
             virtual void slotFeedFetchError(Feed* feed);
             virtual void slotFeedFetchCompleted(Feed* feed);
+
+        protected:
+            virtual QDragObject *dragObject();
+
         private:
             /** used for finding the item belonging to a node */
             QPtrDict<TreeNodeItem> m_itemDict;
@@ -154,3 +158,4 @@ namespace Akregator
 }
 
 #endif
+// vim: ts=4 sw=4 et
