@@ -299,7 +299,7 @@ void ArticleViewer::showSummary(FeedGroup* group)
     //for (QListViewItem *it = item->firstChild(); it; it = it->nextSibling())
 
     m_currentText += "</body></html>";
-    kdDebug() << m_htmlHead << m_currentText << endl;
+    //kdDebug() << m_htmlHead << m_currentText << endl;
     begin();
     write(m_htmlHead+m_currentText);
     end();
