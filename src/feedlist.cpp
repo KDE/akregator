@@ -87,6 +87,7 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     if (bodyNode.isNull())
     {
         kdDebug() << "Failed to acquire body node, markup broken?" << endl;
+        delete list->rootNode();
         delete list;
         return 0;
     }
