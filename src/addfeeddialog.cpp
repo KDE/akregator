@@ -42,7 +42,9 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
 }
 
 AddFeedDialog::~AddFeedDialog()
-{}
+{
+    delete widget;
+}
 
 void AddFeedDialog::setURL(const QString& t)
 {
