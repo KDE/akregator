@@ -74,8 +74,11 @@ void Viewer::open(const KURL &url)
 
 bool Viewer::closeURL()
 {
+    kdDebug() << "Viewer::closeURL(): emit browserExtension->loadingProgress" << endl;
    emit browserExtension()->loadingProgress(-1);
+   kdDebug() << "Viewer::closeURL(): emit canceled" << endl;
    emit canceled(QString::null);
+   kdDebug() << "return KHTMLPart::closeURL()" << endl;
    return KHTMLPart::closeURL();
 }
 

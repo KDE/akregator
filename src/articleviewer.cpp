@@ -315,26 +315,27 @@ void ArticleViewer::showSummary(Feed *f)
     
     if (!f->image().isNull()) // image
     {
-        m_currentText += QString("<div id=\"body\" style=\"height:%1px\">").arg(f->image().height()+10);
+  //      m_currentText += QString("<div id=\"body\" style=\"height:%1px\">").arg(f->image().height()+10);
+          m_currentText += QString("<div id=\"body\">").arg(f->image().height()+10);
         QString url=f->xmlUrl();
         m_currentText += QString("<a href=\""+f->htmlUrl()+"\"><img id=\"headimage\" src=\""+m_imageDir+url.replace("/", "_").replace(":", "_")+".png\"></a>\n");
     }
     else m_currentText += "<div id=\"body\">";
 
     
+    if( !f->description().isEmpty() )
+    {
+        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->description()));
+        m_currentText += i18n("<b>Description:</b> %1<br><br>").arg(f->description());
+        m_currentText += "</div>\n"; // /description
+    }
+
     if ( !f->htmlUrl().isEmpty() )
     {
         m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->htmlUrl()));
         m_currentText += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(f->htmlUrl()).arg(f->htmlUrl());
         m_currentText += "</div>\n"; // / link
-    }
-    
-    if(f->description() && !f->description().isEmpty()) {
-        m_currentText += QString("<div dir=\"%1\">").arg(directionOf(f->description()));
-        m_currentText += i18n("<b>Description:</b> %1").arg(f->description());
-        m_currentText += "</div>\n"; // /description
-    }
-    
+    }   
     /*if(f->language() && !f->language().isEmpty()) {
         // language name code from kttsd
         QString langName;
