@@ -6,6 +6,7 @@
  ***************************************************************************/
 
 #include "akregator.h"
+#include "trayicon.h"
 
 #include <kkeydialog.h>
 #include <kfiledialog.h>
@@ -21,6 +22,8 @@
 #include <kmessagebox.h>
 #include <kstatusbar.h>
 #include <klocale.h>
+
+using namespace Akregator;
 
 aKregator::aKregator()
     : KParts::MainWindow( 0L, "aKregator" )
@@ -64,6 +67,9 @@ aKregator::aKregator()
         // next time we enter the event loop...
         return;
     }
+
+    TrayIcon *icon = new TrayIcon(this);
+    icon->show();
 
     // apply the saved mainwindow settings, if any, and ask the mainwindow
     // to automatically save settings if changed: window size, toolbar

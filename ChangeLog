@@ -4,6 +4,10 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000006 ADD [x] system tray
+#000038 ADD [x] add isOpen=<bool> to feed group outline opml -->berkus
+#000039 FIX [x] make real use of LiveJournal checkboxes in AddFeedDialog
+#000012 FIX [x] refine aboutbox
 #000034 FIX [x] parse html entities in article titles
 #000035 FIX [x] non-latin1 opml doesn't restore properly
         CHG [x] feeds list now stored using QDom classes

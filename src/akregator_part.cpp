@@ -115,6 +115,7 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // Root item (will be reset when loading from file)
     KListViewItem *elt = new KListViewItem( m_tree, i18n("All Feeds") );
     m_feeds.addFeedGroup(elt);
+    elt->setOpen(true);
 
     m_articleViewer->openDefault();
 
@@ -264,6 +265,8 @@ void aKregatorPart::parseChildNodes(QDomNode &node, KListViewItem *parent)
             FeedGroup *g = m_feeds.find(elt);
             if (g)
                 g->setTitle( e.attribute("text") );
+
+            elt->setOpen( e.attribute("isOpen", "true") == "true" ? true : false );
         }
 
         if (e.hasChildNodes())
@@ -317,6 +320,8 @@ void aKregatorPart::writeChildNodes( QListViewItem *item, QDomElement &node, QDo
             if (g->isGroup())
             {
                 QDomElement base = g->toXml( node, document );
+
+                base.setAttribute("isOpen", it->isOpen() ? "true" : "false");
 
                 writeChildNodes( it->firstChild(), base, document );
             } else {

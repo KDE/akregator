@@ -2,7 +2,7 @@
 INCLUDES = -I$(top_srcdir)/akregator/src/librss $(all_includes)
 
 # these are the headers for your project
-noinst_HEADERS = akregator.h akregator_part.h feedstree.h feedscollection.h feed.h articlelist.h articleviewer.h feedgroup.h addfeeddialog.h
+noinst_HEADERS = akregator.h akregator_part.h feedstree.h feedscollection.h feed.h articlelist.h articleviewer.h feedgroup.h addfeeddialog.h trayicon.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -21,7 +21,7 @@ KDE_ICON = akregator
 bin_PROGRAMS = akregator
 
 # the application source, library search path, and link libraries
-akregator_SOURCES = main.cpp akregator.cpp
+akregator_SOURCES = main.cpp akregator.cpp trayicon.cpp
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 akregator_LDADD = $(LIB_KPARTS)
 

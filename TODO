@@ -15,9 +15,7 @@ ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
-#000039 FIX [x] make real use of LiveJournal checkboxes in AddFeedDialog
 #000003 ADD [ ] sort ArticleList by Article::pubDate -->berkus
-#000038 ADD [ ] add isOpen=<bool> to feed group outline opml -->berkus
 #000037 ADD [ ] add favicon support to the FeedsTree -->smt
 #000036 ADD [+] write CSS to the KHTMLPart in viewing articles -->smt
 #000032 ADD [+] proposals for librss:
@@ -31,10 +29,8 @@ ADD new feature
 #000027 CHG [ ] when changing current feed, change article in m_html also
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
 #000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?)
-#000006 ADD [ ] system tray
 #000007 ADD [ ] DCOP (q: should KPart implement DCOP or shell app only?)
 #000008 ADD [ ] install mime-type handlers for .opml feed lists
-#000012 FIX [ ] refine aboutbox
 #000019 ADD [ ] implement tooltips and What's This? help
 
 == MID-TERM ==
