@@ -82,7 +82,7 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
     new KAction(i18n("Copy &Link Address"), "", 0,
                                  this, SLOT(slotCopyLinkAddress()),
                                  actionCollection(), "copylinkaddress");
-    new KAction(i18n("&Save Link As"), "", 0,
+    new KAction(i18n("&Save Link As..."), "", 0,
                                  this, SLOT(slotSaveLinkAs()),
                                  actionCollection(), "savelinkas");
 }
