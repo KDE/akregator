@@ -2,5 +2,18 @@ aKregator ChangeLog
 ===================
 (c) 2004 the aKregator authors.
 
+NEXT VERSION:
+
+#000016 ADD [x] provide standard AUTHORS, ChangeLog, README, and TODO files
+#000017 ADD [x] provide .lsm file
+#000018 ADD [x] provide .desktop file
+#000024 CHG [x] replace generic HTML part with strictly KHTMLPart (saves some static_cast<>s)
+#000023 FIX [x] implement fetch all
+#000026 CHG [x] unless someone offers me some icons, Fetch and Fetch all will be 'down' and 'bottom' respectively
+#000002 FIX [x] update ArticleList when selecting another feed
+
+
+
 VERSION 0.9:
-  RELEASE :  Added to kdenonbeta/akregator
+
+  RELEASE  Added to kdenonbeta/akregator

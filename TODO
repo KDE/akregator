@@ -3,12 +3,19 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000023 being the highest available (take this one for your next bug and increase here)
+          #000027 being the highest available (take this one for your next bug and increase here)
+Legend  =
+[ ] pending
+[-] unfixed (with reason)
+[+] partially fixed
+[x] completely fixed
+CHG look/feel change
+FIX bug fixed
+ADD new feature
 
 == SHORT-TERM (URGENT) ==
 
 #000001 ADD [ ] allow inline editing of feeds to alter Feed[Group]::title and resetting updateTitle to false (slotItemRenamed)
-#000002 FIX [ ] update ArticleList when selecting another feed
 #000003 ADD [ ] sort ArticleList by Article::pubDate
 #000004 ADD [ ] update ArticleList when selecting feed group - show articles from all child feeds, sorted by pubDate
 #000005 FIX [ ] reimplement back with ArticleList::m_map - to allow selecting items from multiple feeds in single view (re: need to map to a source feed also?)
@@ -27,14 +34,13 @@ TODO-list for aKregator
 
 #000013 FIX [ ] list generated files in .cvsignore files
 #000022 ADD [ ] configure.in.in magic to detect librss presence
+#000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that images and css can be embedded in article preview
 
 == LONG-TERM ==
 
 #000014 ADD [ ] provide .spec file for RPM packaging (or at least let packagers know about it)
 #000015 ADD [ ] provide debian directory and configuration files for Debian packaging (or at least let packagers know about it)
 
-== DONE ==
+== IDEAS ==
 
-#000016 ADD [x] provide standard AUTHORS, ChangeLog, README, and TODO files
-#000017 ADD [x] provide .lsm file
-#000018 ADD [x] provide .desktop file
+* Implement Akregator::Article which will contain RSS::Article ref, bool persistent flag, associated QListViewItem * if present (?!?), Archive ID for article and will encapsulate article manipulation.
