@@ -15,7 +15,7 @@
 static const char description[] =
     I18N_NOOP("A KDE RSS Aggregator");
 
-static const char version[] = "1.0-beta2 \"Beineri\"";
+static const char version[] = "1.0-beta3 \"Teemu\"";
 
 static KCmdLineOptions options[] =
 {
