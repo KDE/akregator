@@ -63,7 +63,6 @@ void ArticleViewer::generateCSS()
     "  font-size: %2 ! important;\n"
     "  color: %3 ! important;\n"
     "  background: %4 ! important;\n"
-    "  overflow: hidden\n"
     "}\n\n"
     "a {\n"
     "  color: %5 ! important;\n"
