@@ -8,7 +8,7 @@
 
 #include "trayicon.h"
 
-#include <kiconeffect.h> 
+#include <kiconeffect.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
@@ -72,7 +72,9 @@ void TrayIcon::updateUnread(int unread)
 {
     if (unread==m_unread)
         return;
-    
+
+    QToolTip::add(this, i18n("aKregator - %1 unread").arg(unread));
+
     if (!unread)
     {
         setPixmap(m_defaultIcon);
@@ -82,7 +84,7 @@ void TrayIcon::updateUnread(int unread)
         // from KMSystemTray
         int oldW = pixmap()->size().width();
         int oldH = pixmap()->size().height();
-        
+
         QString uStr=QString::number( unread );
         QFont f=KGlobalSettings::generalFont();
         f.setBold(true);
@@ -105,7 +107,7 @@ void TrayIcon::updateUnread(int unread)
         pix.setMask(pix.createHeuristicMask());
         QImage img=pix.convertToImage();
 
-        // overlay 
+        // overlay
         QImage overlayImg=m_lightIconImage.copy();
         KIconEffect::overlay(overlayImg, img);*/
 
@@ -122,7 +124,7 @@ void TrayIcon::updateUnread(int unread)
         p.drawText( icon.rect(), Qt::AlignCenter, uStr );
         setPixmap(icon);
     }
-    
+
     m_unread=unread;
 }
 

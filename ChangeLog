@@ -12,6 +12,7 @@ New Features:
        - Ability to change middle mouse button behaviour in browser -tpr
        - Ability to specify external browser (KDE default or custom command) - PhantomsDad
        - Fetch all feeds every <num> minutes -tpr
+       - Display unread count in the tooltip of the tray icon -tpr
 
 Bug Fixes:
 
