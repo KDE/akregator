@@ -199,9 +199,12 @@ namespace Akregator
             void showPart();
 
         private:
+
             bool populateStandardFeeds();
             void setupActions();
 
+            QString m_standardFeedList;
+            bool m_standardListLoaded;
             bool m_loading;
 
             KURL m_delayURL;

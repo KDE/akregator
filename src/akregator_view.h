@@ -96,9 +96,6 @@ namespace Akregator
             /** stops a running operation and resets progress bar, re-enables actions etc. */
             void operationError(/*const QString &msg*/);
 
-            /** stops the loading of the feed list */
-            void stopLoading();
-
             /** returns the fetch transaction object */
             FetchTransaction* transaction() { return m_transaction; }
 
@@ -346,7 +343,6 @@ namespace Akregator
             QTimer *m_fetchTimer;
             QTimer* m_expiryTimer;
 
-            bool m_stopLoading;
             bool m_shuttingDown;
 
             QPixmap m_keepFlagIcon;

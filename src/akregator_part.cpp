@@ -159,7 +159,8 @@ aKregatorPart::aKregatorPart( QWidget *parentWidget, const char * /*widgetName*/
     // we need an instance
     setInstance( aKregatorFactory::instance() );
 
-   
+    m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
+    m_standardListLoaded = false;
     m_loading = false;
 
     m_view = new aKregatorView(this, parentWidget, "akregator_view");
@@ -261,7 +262,6 @@ bool aKregatorPart::openURL(const KURL& url)
     if (m_loading)
     {
         m_view->endOperation();
-        m_view->stopLoading();
         m_delayURL=url;
         QTimer::singleShot(1000, this, SLOT(openURLDelayed()));
         return true;
@@ -290,13 +290,13 @@ void aKregatorPart::openURLDelayed()
 
 void aKregatorPart::openStandardFeedList()
 {
-    openURL(KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml");
+    if ( openURL(m_standardFeedList) )
+        m_standardListLoaded = true;
 }
 
 bool aKregatorPart::populateStandardFeeds()
 {
-    QString stdF=KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
-    QFile file(stdF);
+    QFile file(m_standardFeedList);
 
     if ( !file.open( IO_WriteOnly ) ) {
         return false;
@@ -425,7 +425,6 @@ bool aKregatorPart::closeURL()
 
     if (m_loading)
     {
-        m_view->stopLoading();
         m_loading = false;
         kdDebug() << "closeURL: stop loading" << endl;
         return true;
@@ -446,8 +445,8 @@ bool aKregatorPart::closeURL()
 
 bool aKregatorPart::saveFeedList()
 {
-    // don't save when the part is opening the feed list! (would corrupt the list)
-    if (m_loading)
+    // don't save to the standard feed list, when it wasn't completely loaded before
+    if (!m_standardListLoaded)
         return false;
     // m_file is always local, so we use QFile
     QFile file(m_file);

@@ -92,7 +92,6 @@ aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *
 {
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part=part;
-    m_stopLoading=false;
     m_shuttingDown = false;
     m_currentFrame = 0L;
     setFocusPolicy(QWidget::StrongFocus);
@@ -420,7 +419,6 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
     // this should be OPML document
     QDomElement root = doc.documentElement();
 
-    m_stopLoading=false;
     kdDebug() << "loading OPML feed " << root.tagName().lower() << endl;
     if (root.tagName().lower() != "opml")
         return false;
@@ -447,9 +445,6 @@ bool aKregatorView::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
     QDomNode i = body.firstChild();
     while( !i.isNull() )
     {
-        if (m_stopLoading)
-        break;
-    
         parseChildNodes(i, parent);
     
         curNodes++;
@@ -478,8 +473,6 @@ void aKregatorView::slotDeleteExpiredArticles()
 void aKregatorView::parseChildNodes(QDomNode &node, FeedGroup* parent)
 {
 //    kdDebug() << "parseChildNodes, parent: " << (parent ? parent->title() : "null") << endl;
-    if (m_stopLoading)
-        return;
     QDomElement e = node.toElement(); // try to convert the node to an element.
 
     if (!parent)
@@ -1573,11 +1566,6 @@ void aKregatorView::slotMouseOverInfo(const KFileItem *kifi)
     {
         m_mainFrame->setStatusText(QString::null);
     }
-}
-
-void aKregatorView::stopLoading()
-{
-    m_stopLoading=true;
 }
 
 void aKregatorView::readProperties(KConfig* config) // this is called when session is being restored
