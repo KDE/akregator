@@ -615,7 +615,7 @@ void aKregatorView::slotUpdateArticleList(Feed *source, bool clear, bool onlyUpd
         for (it = source->articles.begin(); it != end; ++it)
         {
             if (!onlyUpdateNew || (*it).status()==MyArticle::New)
-                itemAdded(new ArticleListItem( m_articles, (*it), source ));
+                itemAdded(new ArticleListItem( m_articles, (onlyUpdateNew ? (m_articles->firstChild()): (m_articles->lastChild())), (*it), source ));
         }
     }
     m_articles->setUpdatesEnabled(true);

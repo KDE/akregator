@@ -26,8 +26,8 @@ struct ArticleListItem::Private
     Feed *feed;
 };
 
-ArticleListItem::ArticleListItem( QListView *parent, MyArticle a, Feed *feed )
-    : KListViewItem( parent, parent->lastItem(), KCharsets::resolveEntities(a.title()) )
+ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after,MyArticle a, Feed *feed )
+    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()) )
     , d(new Private)
 {
     d->article = a;
