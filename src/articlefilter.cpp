@@ -68,6 +68,7 @@ bool Criterion::satisfiedBy( const MyArticle &article ) const
             satisfied = concreteSubject.find( m_object, 0, false ) != -1;
             break;
         case Equals:
+	    /// FIXME: use qvariant instead of this hack - smt
             if (m_type==Int)
                 satisfied = intSubj == m_intObject;
             else
