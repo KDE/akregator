@@ -457,6 +457,7 @@ void aKregatorView::slotTabCaption(const QString &capt)
 
 void aKregatorView::slotContextMenu(KListView*, QListViewItem*, const QPoint& p)
 {
+   m_tabs->showPage(m_mainTab);
    QWidget *w = m_part->factory()->container("feeds_popup", m_part);
    if (w)
       static_cast<QPopupMenu *>(w)->exec(p);
