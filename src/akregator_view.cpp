@@ -1050,8 +1050,6 @@ void aKregatorView::slotFeedRemove()
 
 void aKregatorView::slotFeedModify()
 {
-    kdDebug() << k_funcinfo << "BEGIN" << endl;
-
     TreeNode* node = static_cast<TreeNode*> (m_feeds.find(m_tree->currentItem()));
     if (node->isGroup())
     {
@@ -1083,11 +1081,10 @@ void aKregatorView::slotFeedModify()
         feed->setArchiveMode(dlg->archiveMode());
         feed->setMaxArticleAge(dlg->maxArticleAge());
         feed->setMaxArticleNumber(dlg->maxArticleNumber());
-
+        feed->item()->setText(0, dlg->feedName());
         m_part->setModified(true);
     }
     delete dlg;
-    kdDebug() << k_funcinfo << "END" << endl;
 }
 
 void aKregatorView::slotNextUnreadArticle()
