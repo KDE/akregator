@@ -3,7 +3,7 @@ TODO-list for aKregator
 <nick>  = reported by
 -->nick = assigned to
 #x      = sequential bug number,
-          #000044 being the highest available (take this one for your next bug and increase here)
+          #000045 being the highest available (take this one for your next bug and increase here)
 Legend  =
 [ ] pending
 [-] unfixed (with reason)
@@ -36,6 +36,7 @@ ADD new feature
 #000007 ADD [ ] DCOP (q: should KPart implement DCOP or shell app only?)
 #000008 ADD [ ] install mime-type handlers for .opml feed lists
 #000019 ADD [ ] implement tooltips and What's This? help
+#000044 ADD [ ] show an error favicon if feed could not be fetched -->smt
 
 == MID-TERM ==
 
