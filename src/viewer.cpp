@@ -67,7 +67,7 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
 
 bool Viewer::openURL(const KURL &url)
 {
-    new aKregatorRun(this, (QWidget*)parent(), this, url, KParts::URLArgs()/*args*/, true);
+    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, KParts::URLArgs()/*args*/, true);
     emit started(0);
     return true;
 }

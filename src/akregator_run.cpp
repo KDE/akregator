@@ -13,18 +13,18 @@
 using namespace Akregator;
 
 
-aKregatorRun::aKregatorRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *part, const KURL & url, const KParts::URLArgs &args, bool shouldEmbed)
+BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *part, const KURL & url, const KParts::URLArgs &args, bool shouldEmbed)
     : KParts::BrowserRun(url, args, part, parent, false, true)
 {
     m_viewer=viewer;
     m_shouldEmbed=shouldEmbed;
 }
 
-aKregatorRun::~aKregatorRun()
+BrowserRun::~BrowserRun()
 {
 }
 
-void aKregatorRun::foundMimeType( const QString & type )
+void BrowserRun::foundMimeType( const QString & type )
 {
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml"  )
     {

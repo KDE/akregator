@@ -15,12 +15,12 @@ namespace Akregator
 
     class Viewer;
     
-    class aKregatorRun : public KParts::BrowserRun
+    class BrowserRun : public KParts::BrowserRun
 {
 	Q_OBJECT
     public:
-        aKregatorRun(Viewer *, QWidget *, KParts::ReadOnlyPart *, const KURL & , const KParts::URLArgs &, bool);
-        virtual ~aKregatorRun();
+        BrowserRun(Viewer *, QWidget *, KParts::ReadOnlyPart *, const KURL & , const KParts::URLArgs &, bool);
+        virtual ~BrowserRun();
     
     protected:
 	    virtual void foundMimeType( const QString & _type );
