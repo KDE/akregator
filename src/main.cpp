@@ -55,7 +55,7 @@ int main(int argc, char **argv)
         if ( args->count() == 0 )
         {
             widget = new aKregator;
-            if(!widget->loadPart()) return 0;
+            if(!widget->loadPart()) return 1;
             widget->loadLastOpenFile();
             app.setHaveWindowLoaded(true);
             widget->show();
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
             for (; i < args->count(); i++ )
             {
                 widget = new aKregator;
-                if(!widget->loadPart()) return 0;
+                if(!widget->loadPart()) return 1;
                 app.setHaveWindowLoaded(true);
                 widget->show();
                 widget->load( args->url( i ) );
