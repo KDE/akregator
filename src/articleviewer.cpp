@@ -139,6 +139,7 @@ void ArticleViewer::generateCSS()
     "}\n\n"
     "#content > P {\n margin-top: 1px; }"
     "#content > DIV {\n margin-top: 1px; }"
+    "#content > BR {\n display: none;  }"
     ".contentlink {\n display: block; }"
     "\n\n")
     .arg(KGlobalSettings::generalFont().family())
