@@ -350,6 +350,7 @@ void aKregator::disconnectActionCollection( KActionCollection *coll )
 
 bool aKregator::queryExit()
 {
+    if(!m_part) return KParts::MainWindow::queryExit();
     if( Settings::markAllFeedsReadOnExit() )
         emit markAllFeedsRead();
     
