@@ -42,7 +42,7 @@ namespace Akregator
         public:
             ArticleList(QWidget *parent = 0, const char *name = 0);
             ~ArticleList();
-           
+
             void setReceiveUpdates(bool doReceive, bool remember=true);
             
         public slots:
@@ -59,7 +59,12 @@ namespace Akregator
              void signalArticleSelected(MyArticle article);
              
         protected:
+            /** reimplemented for kmail-like behaviour */            
             virtual void keyPressEvent(QKeyEvent* e);
+            
+            /** applies text filter and status filter by setting visibility
+            of items accordingly */
+            virtual void applyFilters();
 
         protected slots:
             virtual void slotSelectionChanged(QListViewItem* item);    

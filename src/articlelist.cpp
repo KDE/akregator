@@ -128,7 +128,7 @@ void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFi
         m_textFilter = textFilter;
         m_statusFilter = statusFilter;
                
-        slotUpdate();
+        applyFilters();
     }
 }
 
@@ -226,13 +226,21 @@ void ArticleList::slotUpdate()
     ArticleSequence::ConstIterator it = articles.begin();
     
     for ( ; it != end; ++it)
-    {
-        // better use setVisible for filtering?   
-         if ( m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
-             new ArticleListItem(this, lastChild(), *it, (*it).feed() );
-    }        
+         new ArticleListItem(this, lastChild(), *it, (*it).feed() );
+
+    applyFilters();        
     setUpdatesEnabled(true);
     triggerUpdate();
+}
+
+void ArticleList::applyFilters()
+{
+    ArticleListItem* ali = 0;
+    for (QListViewItemIterator it(this); it.current(); ++it)
+    {
+        ali = static_cast<ArticleListItem*> (it.current());
+        ali->setVisible( m_statusFilter.matches( ali->article() ) && m_textFilter.matches( ali->article() ) );
+    }
 }
 
 void ArticleList::slotPreviousArticle()
