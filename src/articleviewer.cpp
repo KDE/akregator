@@ -114,7 +114,7 @@ void ArticleViewer::generateCSS()
     "  padding: 3px;\n"
     "  padding-right: 6px;}\n\n"
     "</style>\n")
-        .arg(cg.background().light(115).name());
+        .arg(cg.background().light(108).name());
         
            
             
