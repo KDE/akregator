@@ -89,6 +89,10 @@ QString ArticleViewer::cssDefinitions() const
     "#headimage {\n"
     "float: right;\n"
     "}\n\n"
+    "#content {\n"
+    "clear: none;\n"
+    "overflow: auto;\n"
+    "}\n\n"
     "</style>\n")
     .arg(m_bodyFont.family()).
     arg(QString::number( pointsToPixel( m_metrics, m_bodyFont.pointSize()))+"px").
@@ -131,14 +135,18 @@ void ArticleViewer::show(Feed *f, MyArticle a)
     if (!f->image.isNull())
         text += QString("<img id=\"headimage\" src=\""+f->title()+".png"+"\">\n");
 
-    text += "<p style=\"clear: none;\">"+a.description();
+    text += "<div id=\"content\">"+a.description();
     if (a.link().isValid())
     {
-        text += "<p><a href=\"";
+        if (!a.description().isNull())
+            text += "<p>\n";
+        text += "<a href=\"";
         text += a.link().url();
-        text += "\">" + i18n( "Full Story" ) + "</a></p>";
+        text += "\">" + i18n( "Full Story" ) + "</a>";
+        if (!a.description().isNull()) 
+            text += "<p>\n";
     }
-    text += "</p></body></html>";
+    text += "</div></body></html>";
     write(text);
     end();
 }
