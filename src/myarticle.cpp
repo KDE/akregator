@@ -22,6 +22,7 @@ struct MyArticle::Private : public RSS::Shared
     Article article;
     QDateTime fetchDate;
     QString title;
+    int status;
 };
 
 MyArticle::MyArticle() : d(new Private)
@@ -36,6 +37,7 @@ MyArticle::MyArticle(Article article) : d(new Private)
         d->title=buildTitle();
     else
         d->title=article.title();
+    d->status=d->article.meta("status").toInt();
 }
 
 MyArticle::MyArticle(const MyArticle &other) : d(new Private)
@@ -81,6 +83,11 @@ bool MyArticle::operator==(const MyArticle &other) const
    // FIXME it shouldn't be _that_ strict checking, should it?
    return d->article   == other.d->article
        && d->fetchDate == other.d->fetchDate;
+}
+
+void MyArticle::setStatus(int status)
+{
+    d->status=status;
 }
 
 QString MyArticle::title() const
@@ -157,6 +164,16 @@ void MyArticle::dumpXmlData( QDomElement parent, QDomDocument doc ) const
         pnode.appendChild(dat);
         parent.appendChild(pnode);
     }
+
+    QDomElement metanode = doc.createElement( "metaInfo:meta" );
+    
+    QDomElement statnode = doc.createElement( "item" );
+    statnode.setAttribute("type","status");
+    
+    QDomText stat=doc.createTextNode(QString::number(d->status));
+    statnode.appendChild(stat);
+    metanode.appendChild(statnode);
+    parent.appendChild(metanode);
 }
 
 

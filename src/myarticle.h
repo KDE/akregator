@@ -23,6 +23,7 @@ namespace Akregator
     class MyArticle
     {
         public:
+            enum { Unread=0, Read, New };
             typedef QValueList<MyArticle> List;
 
             MyArticle();
@@ -33,6 +34,9 @@ namespace Akregator
             bool operator!=(const MyArticle &other) const { return !operator==(other); }
             virtual ~MyArticle();
 
+            int status();
+            void setStatus(int s);
+            
             /**
              * @return true if this article is the same as other, based on guid or link.
              */

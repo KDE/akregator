@@ -101,19 +101,26 @@ void Feed::dumpXmlData( QDomElement parent, QDomDocument doc )
         channode.appendChild(lnode);
     }
 
+    // rss 2.0 requires channel description
+    QDomElement dnode = doc.createElement( "description" );
+    QDomText dt=doc.createTextNode( htmlUrl );
+    dnode.appendChild(dt);
+    channode.appendChild(dnode);
+    
     ArticleSequence::ConstIterator it;
     ArticleSequence::ConstIterator en=articles.end();
     for (it = articles.begin(); it != en; ++it)
     {
         QDomElement enode = doc.createElement( "item" );
         (*it).dumpXmlData(enode, doc);
-        parent.appendChild(enode);
+        channode.appendChild(enode);
     }
     
 }
 
 void Feed::appendArticles(const Document &d, bool findDups)
 {
+    kdDebug() << "appendArticles findDups=="<<findDups<<endl;
     Article::List::ConstIterator it;
     Article::List::ConstIterator en = d.articles().end();
     for (it = d.articles().begin(); it != en; ++it)
@@ -127,6 +134,9 @@ void Feed::appendArticles(const Document &d, bool findDups)
             {
                 appendArticle(mya);
             }
+            /*else{
+            kdDebug() << "got dup!!"<<mya.title()<<endl;
+            }*/
         }
         else
         {
@@ -199,6 +209,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
     description = m_document.description();
     htmlUrl = m_document.link().url();
 
+    kdDebug() << "ismerged reprots:::"<<isMerged()<<endl;
     bool findDups=isMerged();
     appendArticles(m_document, findDups);
     

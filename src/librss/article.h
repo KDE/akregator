@@ -11,12 +11,13 @@
 #ifndef LIBRSS_ARTICLE_H
 #define LIBRSS_ARTICLE_H
 
+#include <qmap.h>
+
 #include "global.h"
 
 class QDateTime;
 class QDomNode;
-template <class>
-class QValueList;
+template <class> class QValueList;
 class QString;
 class QWidget;
 class KURL;
@@ -124,7 +125,9 @@ namespace RSS
           * @return The date when the article was published.
           */
          const QDateTime &pubDate() const;
-
+         
+         QString meta(const QString &key) const;
+         
          /**
           * @param parent The parent widget for the KURLLabel.
           * @param name A name for the widget which will be used internally.
@@ -140,7 +143,9 @@ namespace RSS
           * this method yourself.
           */
          KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
-
+         
+         typedef QMap<QString, QString> MetaInfoMap;
+         
       private:
          struct Private;
          Private *d;

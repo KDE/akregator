@@ -655,7 +655,10 @@ void aKregatorView::slotArticleSelected(QListViewItem *i)
     if (!item) return;
     Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
     if (!feed) return;
+
+    item->article().setStatus(MyArticle::Read);
     m_articleViewer->show( feed, item->article() );
+    
 }
 
 void aKregatorView::slotArticleDoubleClicked(QListViewItem *i, const QPoint &, int)

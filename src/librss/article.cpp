@@ -28,6 +28,7 @@ struct Article::Private : public Shared
 	QDateTime pubDate;
 	QString guid;
 	bool guidIsPermaLink;
+    MetaInfoMap meta;
 };
 
 Article::Article() : d(new Private)
@@ -97,6 +98,18 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		if (!(elemText = extractNode(node, QString::fromLatin1("guid"))).isNull())
 			d->guid = elemText;
 	}
+
+    n = node.namedItem(QString::fromLatin1("meta"));
+    if (!n.isNull()) {
+        QDomNode c = n.firstChild();
+        while ( !c.isNull() ) {
+            if ( c.isElement() ) {
+                const QDomElement e = n.toElement();
+                d->meta[e.attribute("type")]=e.text();
+            }
+            c = c.nextSibling();
+        }
+    }
 }
 
 Article::~Article()
@@ -133,6 +146,11 @@ bool Article::guidIsPermaLink() const
 const QDateTime &Article::pubDate() const
 {
 	return d->pubDate;
+}
+
+QString Article::meta(const QString &key) const
+{
+    return d->meta[key];
 }
 
 KURLLabel *Article::widget(QWidget *parent, const char *name) const

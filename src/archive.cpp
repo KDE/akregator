@@ -31,6 +31,8 @@ void Archive::load(Feed *f)
     if (f->isMerged())
         return;
     
+    f->setMerged(true);
+
     QFile file(filePath);
     
     if ( !file.open( IO_ReadOnly ) ) {
@@ -56,8 +58,8 @@ void Archive::load(Feed *f)
     }
 
     f->appendArticles(feedDoc);
+    kdDebug() << "setting merged=true"<<endl;
     f->setMerged(true);
-
 }
 
 void Archive::save(Feed *f)
@@ -81,8 +83,11 @@ void Archive::save(Feed *f)
     QTextStream stream( &file );
     
     QDomDocument doc;
+    doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
+    
     QDomElement root = doc.createElement( "rss" );
     root.setAttribute("version","2.0");
+    root.setAttribute("xmlns:metaInfo","http://foobar");
     doc.appendChild( root );
     f->dumpXmlData( root, doc);
     
