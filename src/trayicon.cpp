@@ -63,7 +63,7 @@ void TrayIcon::updateUnread(int unread)
         return;
     
     m_unread=unread;
-
+	QToolTip::remove(this);
     if (unread == 0)
     {
         QToolTip::add(this, i18n("aKregator - No unread articles"));
