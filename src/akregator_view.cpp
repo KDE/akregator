@@ -89,7 +89,7 @@ aKregatorView::~aKregatorView()
 aKregatorView::aKregatorView( aKregatorPart *part, QWidget *parent, const char *wName)
 : QWidget(parent, wName), m_viewMode(NormalView)
 {
-    m_keepFlagIcon = UserIcon("akregator_flag");
+    m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part=part;
     m_stopLoading=false;
     m_shuttingDown = false;

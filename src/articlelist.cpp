@@ -10,6 +10,7 @@
 #include "myarticle.h"
 #include "treenode.h"
 
+#include <kstandarddirs.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kiconloader.h>
@@ -37,7 +38,7 @@ ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const
     d->article = a;
     d->feed = feed;
     if (a.keep())
-        setPixmap(0, UserIcon("akregator_flag"));
+        setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
     if (parent->columns() > 2)
     {
         setText(2, text(1));
