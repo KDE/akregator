@@ -14,6 +14,7 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 #include <kiconloader.h>
+#include <kiconeffect.h>
 
 #include <qtimer.h>
 #include <qlistview.h>
@@ -168,7 +169,15 @@ void Feed::fetch(bool followDiscovery)
             (*it).setStatus(MyArticle::Unread);
         }
     }
-
+    
+    // Disable icon to show it is fetching.
+    if (!favicon.isNull())
+    {
+        KIconEffect iconEffect;
+        QPixmap tempIcon = iconEffect.apply(favicon, KIcon::Small, KIcon::DisabledState);
+        item()->setPixmap(0, tempIcon);
+    }
+    
     tryFetch();
 }
 
@@ -211,6 +220,9 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
         }
     }
 
+    // Restore favicon.
+    if (!favicon.isNull()) item()->setPixmap(0, favicon);
+    
     m_fetchError=false;
     m_document=doc;
     //kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
