@@ -106,9 +106,6 @@ void aKregator::partChanged(KParts::Part *p)
     createGUI(p);
 }
 
-
-
-
 void aKregator::load(const KURL& url)
 {
     m_part->openURL( url );

@@ -68,7 +68,7 @@ namespace Akregator
             virtual bool openURL(const KURL& url);
             
             KParts::BrowserExtension *extension;
-            
+
         protected:
             /**
              * This must be implemented by each part

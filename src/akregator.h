@@ -12,10 +12,10 @@
 #include <config.h>
 #endif
 
+#include "akregator_part.h"
+
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
-
-#include "akregator_part.h"
 
 class KToggleAction;
 class KProgress;
@@ -77,7 +77,7 @@ private slots:
 
     void quitProgram();
     void partChanged(KParts::Part *p);
-    void loadingProgress ( int percent );
+    void loadingProgress(int percent);
     
 private:
     void setupAccel();

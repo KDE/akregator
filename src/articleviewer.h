@@ -24,10 +24,13 @@ namespace Akregator
         public:
             ArticleViewer(QWidget* parent, const char* name);
             void openDefault();
-            void show(Feed *f);
+            void show(Feed *f, bool headers=true);
             void show(Feed *f, MyArticle);
             void generateCSS();
             void reload();
+            void beginWriting();
+            void endWriting();
+                
 
         private:
             QString formatArticle(Feed *f, MyArticle a);

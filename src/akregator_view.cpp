@@ -512,11 +512,14 @@ void aKregatorView::slotItemChanged(QListViewItem *item)
     {
         m_part->actionCollection()->action("feed_add")->setEnabled(true);
         m_part->actionCollection()->action("feed_add_group")->setEnabled(true);
-
         m_articles->clear();
         m_articles->setColumnText(0, feed->title());
 
+        if (m_viewMode==CombinedView)
+            m_articleViewer->beginWriting();
         slotUpdateArticleList(feed, false);
+        if (m_viewMode==CombinedView)
+            m_articleViewer->endWriting();
     }
     else
     {
@@ -540,6 +543,8 @@ void aKregatorView::slotUpdateArticleList(FeedGroup *src, bool onlyUpdateNew)
     kdDebug() << k_funcinfo << src->title() << endl;
     if (!src->isGroup())
     {
+        if (m_viewMode==CombinedView)
+            m_articleViewer->show(static_cast<Feed *>(src), false);
         slotUpdateArticleList(static_cast<Feed *>(src), false, onlyUpdateNew);
     }
     else

@@ -169,13 +169,29 @@ QString ArticleViewer::formatArticle(Feed *f, MyArticle a)
 
 }
 
-void ArticleViewer::show(Feed *f)
+void ArticleViewer::beginWriting()
+{
+    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+    write(m_htmlHead);
+}
+
+void ArticleViewer::endWriting()
+{
+    m_currentText = m_currentText + "</body></html>";
+    write("</body></html>");
+    end();
+}
+
+void ArticleViewer::show(Feed *f, bool writeHeaders)
 {
     QString art, text;
 
-    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
-    write(m_htmlHead);
-
+    if (writeHeaders)
+    {
+        begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
+        write(m_htmlHead);
+    }
+    
     ArticleSequence::iterator it;
     for ( it = f->articles.begin(); it != f->articles.end(); ++it )
     {
@@ -185,9 +201,16 @@ void ArticleViewer::show(Feed *f)
         write(art);
     }
 
-    m_currentText = text + "</body></html>";
-    write("</body></html>");
-    end();
+    if (writeHeaders)
+    {
+        m_currentText = text + "</body></html>";
+        write("</body></html>");
+        end();
+    }
+    else
+    {
+        m_currentText = m_currentText+text;
+    }
 }
 
 void ArticleViewer::show(Feed *f, MyArticle a)
