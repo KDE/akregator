@@ -92,7 +92,7 @@
   </entry>
   <entry key="Use HTML Cache" type="Bool" >
    <label>Use HTML Cache</label>
-   <whatsthis>Use the KDE-wide HTML cache settings when downloading feeds, to avoid unnecessary traffic. Disable only when necessary!</whatsthis>
+   <whatsthis>Use the KDE-wide HTML cache settings when downloading feeds, to avoid unnecessary traffic. Disable only when necessary.</whatsthis>
    <default>true</default>
   </entry>
  </group>

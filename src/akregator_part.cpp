@@ -407,7 +407,7 @@ bool Part::openFile()
     }
     else
     {
-        KMessageBox::error(m_view, i18n("Couldn't read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read error") );
+        KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read error") );
         return false;
     }
 
