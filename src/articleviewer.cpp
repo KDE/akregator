@@ -6,6 +6,7 @@
  ***************************************************************************/
 
 #include "articleviewer.h"
+#include "feed.h"
 #include <kapplication.h>
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
@@ -83,6 +84,9 @@ QString ArticleViewer::cssDefinitions() const
     "}\n\n"
     "#headertext {\n"
     "}\n\n"
+    "#headimage {\n"
+    "float: right;\n"
+    "}\n\n"
     "</style>\n")
     .arg(m_bodyFont.family()).
     arg(QString::number( pointsToPixel( m_metrics, m_bodyFont.pointSize()))+"px").
@@ -96,15 +100,16 @@ QString ArticleViewer::cssDefinitions() const
 }
 
 
-void ArticleViewer::show(Article a)
+void ArticleViewer::show(Feed *f, Article a)
 {
     QString dir = ( QApplication::reverseLayout() ? "rtl" : "ltr" );
     QString headerBoxStr = QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
 
-    begin( KURL( "file:/tmp/something.html" ) );
+    begin( KURL( "file:"+KGlobal::dirs()->saveLocation("cache", "akregator/Media/") ) );
 
     QString text;
     text += htmlHead()+cssDefinitions();
+    
     text += QString("<div id=\"headerbox\" dir=\"%1\">\n").arg(dir);
 
     if (!a.title().isEmpty())
@@ -121,14 +126,17 @@ void ArticleViewer::show(Article a)
     }
     text += "</div>\n"; // end headerbox
 
-    text += a.description();
+    if (!f->image.isNull())
+        text += QString("<img id=\"headimage\" src=\""+f->title()+".png"+"\">\n");
+
+    text += "<p style=\"clear: none;\">"+a.description();
     if (a.link().isValid())
     {
         text += "<p><a href=\"";
         text += a.link().url();
         text += "\">" + i18n( "Full Story" ) + "</a></p>";
     }
-    text += "</body></html>";
+    text += "</p></body></html>";
     write(text);
     end();
 }

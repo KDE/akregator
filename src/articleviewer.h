@@ -18,13 +18,16 @@ using namespace RSS;
 
 namespace Akregator
 {
+
+    class Feed;
+
     class ArticleViewer : public KHTMLPart
     {
         Q_OBJECT
         public:
             ArticleViewer(QWidget* parent, const char* name);
             void openDefault();
-            void show(Article);
+            void show(Feed *f, Article);
         private:
             QString htmlHead() const;
             QString cssDefinitions() const;

@@ -8,6 +8,9 @@
 #ifndef AKREGATORFEED_H
 #define AKREGATORFEED_H
 
+#include <qpixmap.h>
+#include <kurl.h>
+
 #include "feedgroup.h"
 #include "librss.h" /* <rss/librss> ! */
 
@@ -46,22 +49,27 @@ namespace Akregator
             bool           updateTitle;   ///< Whether to update feed title based on fetched rss.
             Article::List  articles;      ///< List of just fetched feed articles (will be merged with archive?)
 
+            QPixmap        image;
+            QPixmap        favicon;
+
         public slots:
             void fetch();                 ///< Start fetching rss
             void loadFavicon();
                     
-
         signals:
             void fetched(Feed *);         ///< Emitted when feed finishes fetching
-            void faviconLoaded(const QPixmap &p);
+            void faviconLoaded(Feed*);
+            void imageLoaded(Feed*);
             
 
         private slots:
             void fetchCompleted(Loader *loader, Document doc, Status status);
             void faviconChanged(const QString &url, const QPixmap &p);
+            void imageChanged(const QPixmap &p);
 
         private:
             bool m_fetchError;
+            Document m_document;
             // TODO
             //Archived articles
             //QValueList<Article> m_archive; // use articles instead

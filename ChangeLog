@@ -4,6 +4,9 @@ aKregator ChangeLog
 
 NEXT VERSION:
 
+#000025 FIX [ ] fix path in m_html->begin( KURL( "file:/tmp/something.html" ) ) so that local images and css can be referenced from article preview   --> smt
+#000043 ADD [ ] download feed image specified for RSS (for #000036) --> smt
+        [ ] if the channel image size is well-sized, show in headers -->smt
 #000019 ADD [x] implement tooltips and What's This? help -->berkus (enough of those for now)
 #000044 ADD [x] show an error favicon if feed could not be fetched -->smt
 #000037 ADD [x] add favicon support to the FeedsTree -->smt

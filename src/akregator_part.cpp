@@ -307,8 +307,8 @@ Feed *aKregatorPart::addFeed_Internal(QListViewItem *elt,
              this, SLOT(slotFeedFetched(Feed *)) );
 
     // enable when we need to update favicons, on for example systray
-    //connect( feed, SIGNAL(faviconLoaded(const QPixmap &)),
-    //         this, SLOT(slotFaviconLoaded(const QPixmap &)));
+    //connect( feed, SIGNAL(faviconLoaded()),
+    //         this, SLOT(slotFaviconLoaded()));
 
     return feed;
 }
@@ -673,7 +673,9 @@ void aKregatorPart::slotArticleSelected(QListViewItem *i)
 {
     ArticleListItem *item = static_cast<ArticleListItem *>(i);
     if (!item) return;
-    m_articleViewer->show( item->article() );
+    Feed *feed = static_cast<Feed *>(m_feeds.find(m_tree->currentItem()));
+    if (!feed) return;
+    m_articleViewer->show( feed, item->article() );
 }
 
 void aKregatorPart::slotItemRenamed( QListViewItem *item )

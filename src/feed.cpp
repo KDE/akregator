@@ -12,6 +12,7 @@
 #include <kurl.h>
 #include <kdebug.h>
 #include <kglobal.h>
+#include <kstandarddirs.h>
 #include <kiconloader.h>
 
 #include <qtimer.h>
@@ -103,13 +104,22 @@ void Feed::fetchCompleted(Loader */*loader*/, Document doc, Status status)
 
         return;
     }
+    
+    m_document=doc;
+    kdDebug() << "Feed fetched successfully [" << m_document.title() << "]" << endl;
+   
+    if (m_document.image()){
+        connect (m_document.image(), SIGNAL (gotPixmap(const QPixmap &)), this,
+            SLOT(imageChanged(const QPixmap &)));
+        m_document.image()->getPixmap();
+    }
 
     kdDebug() << "Feed fetched successfully [" << doc.title() << "]" << endl;
 
-    if (updateTitle || title().isEmpty()) setTitle( doc.title() );
-    description = doc.description();
-    htmlUrl = doc.link().url();
-    articles = doc.articles();
+    if (updateTitle || title().isEmpty()) setTitle( m_document.title() );
+    description = m_document.description();
+    htmlUrl = m_document.link().url();
+    articles = m_document.articles();
     // TODO: more document attributes to fetch?
 
     emit fetched(this);
@@ -127,10 +137,18 @@ void Feed::faviconChanged(const QString &url, const QPixmap &p)
     if (xmlUrl==url && !m_fetchError)
     {
         item()->setPixmap(0, p);
-        emit(faviconLoaded(p)); // emit so that other sources can be updated.. not used right now
+        favicon=p;
+        emit(faviconLoaded(this)); // emit so that other sources can be updated.. not used right now
     }
 }
 
+void Feed::imageChanged(const QPixmap &p)
+{
+    image=p;
+    // TODO check if present in data dir
+    image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+title()+".png","PNG");
+    emit(imageLoaded(this));
+}
 
 
 #include "feed.moc"
