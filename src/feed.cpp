@@ -150,7 +150,7 @@ void Feed::recalcUnreadCount()
     int unread = 0;
     for (it = tarticles.begin(); it != en; ++it)
         if (!(*it).isDeleted() && (*it).status() != MyArticle::Read)
-            unread++;
+            ++unread;
     m_archive->setUnread(unread);
 }
 

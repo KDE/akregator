@@ -150,8 +150,7 @@ MyArticle::MyArticle(RSS::Article article, Backend::FeedStorage* archive) : d(ne
 }
 void MyArticle::setDeleted()
 {
-    if (status() != Read)
-        d->archive->setUnread(d->archive->unread()-1);
+    setStatus(Read);
     d->status = Private::Deleted | Private::Read;
     d->archive->setStatus(d->guid, d->status);
     d->archive->setDeleted(d->guid);
