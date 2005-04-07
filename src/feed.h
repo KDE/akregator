@@ -245,6 +245,8 @@ namespace Akregator
         protected:
             /** loads articles from archive **/
             void loadArticles();
+
+            void recalcUnreadCount();
             
         private slots:
 

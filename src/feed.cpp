@@ -138,6 +138,20 @@ void Feed::loadArticles()
     m_articles.sort();
     m_articlesLoaded = true;
     enforceLimitArticleNumber();
+    recalcUnreadCount();
+}
+
+void Feed::recalcUnreadCount()
+{
+    ArticleSequence tarticles = articles();
+    ArticleSequence::Iterator it;
+    ArticleSequence::Iterator en = tarticles.end();
+
+    int unread = 0;
+    for (it = tarticles.begin(); it != en; ++it)
+        if (!(*it).isDeleted() && (*it).status() != MyArticle::Read)
+            unread++;
+    m_archive->setUnread(unread);
 }
 
 Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
