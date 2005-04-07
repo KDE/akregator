@@ -137,6 +137,7 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     }
 
     kdDebug() << "measuring startup time: STOP, " << spent.elapsed() << "ms" << endl;
+    kdDebug() << "Number of articles loaded: " << list->rootNode()->totalCount() << endl;
     return list;
 }
 

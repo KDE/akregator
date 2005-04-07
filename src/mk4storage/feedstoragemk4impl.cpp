@@ -44,6 +44,7 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
 {
     public:
         FeedStorageMK4ImplPrivate() :
+            modified(false),
             pguid("guid"),
             ptitle("title"),
             pdescription("description"),
@@ -62,6 +63,7 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
         StorageMK4Impl* mainStorage;
         c4_View archiveView;
         bool autoCommit;
+	bool modified;
         bool convert;
         QString oldArchivePath;
         c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink;
@@ -102,6 +104,7 @@ void FeedStorageMK4Impl::convertOldArchive()
     }
     
     setUnread(unr);
+    d->modified = true;
     commit();
 }
 
@@ -131,7 +134,9 @@ FeedStorageMK4Impl::~FeedStorageMK4Impl()
 
 void FeedStorageMK4Impl::commit()
 {
-    d->storage->Commit();
+    if (d->modified)
+        d->storage->Commit();
+    d->modified = false;
 }
 
 void FeedStorageMK4Impl::rollback()
@@ -190,6 +195,7 @@ void FeedStorageMK4Impl::addEntry(const QString& guid)
     if (!contains(guid))
     {
         d->archiveView.Add(row);
+	d->modified = true;
         setTotalCount(totalCount()+1);
     }
 }
@@ -214,6 +220,7 @@ void FeedStorageMK4Impl::deleteArticle(const QString& guid)
     {
         setTotalCount(totalCount()-1);
         d->archiveView.RemoveAt(findidx);
+	d->modified = true;
     }   
 }
 
@@ -261,6 +268,7 @@ void FeedStorageMK4Impl::setDeleted(const QString& guid)
     d->plink(row) = "";
     d->pcommentsLink(row) = "";
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 QString FeedStorageMK4Impl::link(const QString& guid)
@@ -293,6 +301,7 @@ void FeedStorageMK4Impl::setStatus(const QString& guid, int status)
     row = d->archiveView.GetAt(findidx);
     d->pstatus(row) = status;
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 QString FeedStorageMK4Impl::title(const QString& guid)
@@ -317,6 +326,7 @@ void FeedStorageMK4Impl::setPubDate(const QString& guid, const QDateTime& pubdat
     row = d->archiveView.GetAt(findidx);
     d->ppubDate(row) = pubdate.toTime_t();
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 void FeedStorageMK4Impl::setGuidIsHash(const QString& guid, bool isHash)
@@ -328,6 +338,7 @@ void FeedStorageMK4Impl::setGuidIsHash(const QString& guid, bool isHash)
     row = d->archiveView.GetAt(findidx);
     d->pguidIsHash(row) = isHash;
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 void FeedStorageMK4Impl::setLink(const QString& guid, const QString& link)
@@ -339,6 +350,7 @@ void FeedStorageMK4Impl::setLink(const QString& guid, const QString& link)
     row = d->archiveView.GetAt(findidx);
     d->plink(row) = !link.isEmpty() ? link.ascii() : "";
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 void FeedStorageMK4Impl::setHash(const QString& guid, uint hash)
@@ -350,6 +362,7 @@ void FeedStorageMK4Impl::setHash(const QString& guid, uint hash)
     row = d->archiveView.GetAt(findidx);
     d->phash(row) = hash;
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 void FeedStorageMK4Impl::setTitle(const QString& guid, const QString& title)
@@ -361,6 +374,7 @@ void FeedStorageMK4Impl::setTitle(const QString& guid, const QString& title)
     row = d->archiveView.GetAt(findidx);
     d->ptitle(row) = !title.isEmpty() ? title.utf8().data() : "";
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 void FeedStorageMK4Impl::setDescription(const QString& guid, const QString& description)
@@ -372,6 +386,7 @@ void FeedStorageMK4Impl::setDescription(const QString& guid, const QString& desc
     row = d->archiveView.GetAt(findidx);
     d->pdescription(row) = !description.isEmpty() ? description.utf8().data() : "";
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 void FeedStorageMK4Impl::setCommentsLink(const QString& guid, const QString& commentsLink)
@@ -383,6 +398,7 @@ void FeedStorageMK4Impl::setCommentsLink(const QString& guid, const QString& com
     row = d->archiveView.GetAt(findidx);
     d->pcommentsLink(row) = !commentsLink.isEmpty() ? commentsLink.utf8().data() : "";
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 void FeedStorageMK4Impl::setComments(const QString& guid, int comments)
@@ -394,6 +410,7 @@ void FeedStorageMK4Impl::setComments(const QString& guid, int comments)
     row = d->archiveView.GetAt(findidx);
     d->pcomments(row) = comments;
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 
@@ -406,6 +423,7 @@ void FeedStorageMK4Impl::setGuidIsPermaLink(const QString& guid, bool isPermaLin
     row = d->archiveView.GetAt(findidx);
     d->pguidIsPermaLink(row) = isPermaLink;
     d->archiveView.SetAt(findidx, row);
+    d->modified = true;
 }
 
 }

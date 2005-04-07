@@ -41,10 +41,11 @@ namespace Backend {
 class StorageMK4Impl::StorageMK4ImplPrivate
 {
     public:
-        StorageMK4ImplPrivate() : purl("url"), punread("unread"), ptotalCount("totalCount"), plastFetch("lastFetch") {}
+        StorageMK4ImplPrivate() : modified(false), purl("url"), punread("unread"), ptotalCount("totalCount"), plastFetch("lastFetch") {}
         c4_Storage* m_storage;
         c4_View m_archiveView;
         bool m_autoCommit;
+	bool modified;
         QMap<QString, FeedStorage*> feeds;
         c4_StringProp purl;
         c4_IntProp punread, ptotalCount, plastFetch;
@@ -147,6 +148,7 @@ void StorageMK4Impl::setUnreadFor(const QString &url, int unread)
     findrow = d->m_archiveView.GetAt(findidx);
     d->punread(findrow) = unread;
     d->m_archiveView.SetAt(findidx, findrow);
+    d->modified = true;
 }
 
 int StorageMK4Impl::totalCountFor(const QString &url)
@@ -168,6 +170,7 @@ void StorageMK4Impl::setTotalCountFor(const QString &url, int total)
     findrow = d->m_archiveView.GetAt(findidx);
     d->ptotalCount(findrow) = total;
     d->m_archiveView.SetAt(findidx, findrow);
+    d->modified = true;
 }
 
 int StorageMK4Impl::lastFetchFor(const QString& url)
@@ -189,11 +192,14 @@ void StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
     findrow = d->m_archiveView.GetAt(findidx);
     d->plastFetch(findrow) = lastFetch;
     d->m_archiveView.SetAt(findidx, findrow);
+    d->modified = true;
 }
         
 void StorageMK4Impl::slotCommit()
 {
-    commit();
+    if (d->modified)
+    	commit();
+    d->modified = false;
 }
 
 FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
@@ -209,6 +215,7 @@ FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
         {
             d->punread(findrow) = 0;
             d->m_archiveView.Add(findrow);
+	    d->modified = true;
         }
         fs->convertOldArchive();
     }
