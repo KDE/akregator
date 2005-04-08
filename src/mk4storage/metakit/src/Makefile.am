@@ -1,4 +1,4 @@
-INCLUDES = -I../include
+INCLUDES = -I$(srcdir)/../include
 
 noinst_LTLIBRARIES = libmetakitlocal.la
 
