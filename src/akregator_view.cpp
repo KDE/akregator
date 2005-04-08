@@ -1507,13 +1507,10 @@ void View::slotSetSelectedArticleUnread()
         return;
 
     MyArticle article = ali->article();
-    Feed* feed = article.feed();
-    if (article.status() != MyArticle::Read)
-    {
-        m_articles->setReceiveUpdates(false, false);
-        article.setStatus(MyArticle::Unread);
-        m_articles->setReceiveUpdates(true, false);
-    }
+    
+    m_articles->setReceiveUpdates(false, false);
+    article.setStatus(MyArticle::Unread);
+    m_articles->setReceiveUpdates(true, false);
 }
 
 void View::slotSetSelectedArticleNew()
@@ -1524,13 +1521,10 @@ void View::slotSetSelectedArticleNew()
         return;
 
     MyArticle article = ali->article();
-    Feed* feed = article.feed();
-        if (article.status() != MyArticle::Read)
-    {
-        m_articles->setReceiveUpdates(false, false);
-        article.setStatus(MyArticle::New);
-        m_articles->setReceiveUpdates(true, false);
-    }
+    
+    m_articles->setReceiveUpdates(false, false);
+    article.setStatus(MyArticle::New);
+    m_articles->setReceiveUpdates(true, false);
 }
 
 void View::slotMouseOverInfo(const KFileItem *kifi)

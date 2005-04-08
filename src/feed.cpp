@@ -147,11 +147,19 @@ void Feed::recalcUnreadCount()
     ArticleSequence::Iterator it;
     ArticleSequence::Iterator en = tarticles.end();
 
+    int oldUnread = m_archive->unread();
+    
     int unread = 0;
+
     for (it = tarticles.begin(); it != en; ++it)
         if (!(*it).isDeleted() && (*it).status() != MyArticle::Read)
             ++unread;
-    m_archive->setUnread(unread);
+
+    if (unread != oldUnread)
+    {
+        m_archive->setUnread(unread);
+        modified();
+    }
 }
 
 Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
@@ -274,7 +282,7 @@ void Feed::appendArticles(const Document &d)
             changed = true;
         }
         // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
-        else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !mya.isDeleted())
+        else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !(*old).isDeleted())
         {
             mya.setKeep((*old).keep());
             // reset status to New
@@ -283,7 +291,7 @@ void Feed::appendArticles(const Document &d)
             appendArticle(mya);
             changed = true;
         }
-        else if (mya.isDeleted())
+        else if ((*old).isDeleted())
             deletedArticles.remove(mya);
     }
 
@@ -330,7 +338,7 @@ void Feed::appendArticle(const MyArticle& a)
 {
     if ( a.keep() || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
     {
-        if (a.status() != MyArticle::Read)
+        if (!a.isDeleted() && a.status() != MyArticle::Read)
         {
             setUnread(unread()+1);
         }
@@ -488,9 +496,9 @@ void Feed::slotDeleteExpiredArticles()
     if ( !usesExpiryByAge() )
         return;
 
-    ArticleSequence::ConstIterator it = m_articles.end();
-    ArticleSequence::ConstIterator tmp;
-    ArticleSequence::ConstIterator begin = m_articles.begin();
+    ArticleSequence::Iterator it = m_articles.end();
+    ArticleSequence::Iterator tmp;
+    ArticleSequence::Iterator begin = m_articles.begin();
     // when we found an article which is not yet expired, we can stop, since articles are sorted by date
     bool foundNotYetExpired = false;
 
@@ -502,8 +510,7 @@ void Feed::slotDeleteExpiredArticles()
             if ( isExpired(*it) )
             {
                 tmp = it;
-                m_archive->deleteArticle((*tmp).guid());
-                m_articles.remove(*tmp);
+                (*tmp).setDeleted();
                 changed = true;
             }
             else
