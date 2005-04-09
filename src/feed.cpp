@@ -271,24 +271,26 @@ void Feed::appendArticles(const Document &d)
 
         if ( old == m_articles.end() ) // article not in list
         {
-            if (!markImmediatelyAsRead())
-                mya.setStatus(MyArticle::New);
-            else
-                mya.setStatus(MyArticle::Read);
-
             mya.offsetFetchTime(nudge);
             nudge--;
             appendArticle(mya);
+            
+            if (!mya.isDeleted() && !markImmediatelyAsRead())
+                mya.setStatus(MyArticle::New);
+            else
+                mya.setStatus(MyArticle::Read);
+                
             changed = true;
         }
         // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
         else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !(*old).isDeleted())
         {
             mya.setKeep((*old).keep());
-            // reset status to New
-            mya.setStatus(MyArticle::New);
-            m_articles.remove(old);
             appendArticle(mya);
+            // reset status to New
+            if (!mya.isDeleted() && !markImmediatelyAsRead())
+                mya.setStatus(MyArticle::New);
+            m_articles.remove(old);
             changed = true;
         }
         else if ((*old).isDeleted())
@@ -338,12 +340,12 @@ void Feed::appendArticle(const MyArticle& a)
 {
     if ( a.keep() || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
     {
-        if (!a.isDeleted() && a.status() != MyArticle::Read)
-        {
-            setUnread(unread()+1);
-        }
         if (!m_articles.contains(a))
+        {
             m_articles.append(a);
+            if (!a.isDeleted() && a.status() != MyArticle::Read)
+                setUnread(unread()+1);
+        }
     }
 }
 

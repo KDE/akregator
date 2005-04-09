@@ -214,8 +214,10 @@ FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
         if (findidx == -1)
         {
             d->punread(findrow) = 0;
+	    d->ptotalCount(findrow) = 0;
+	    d->plastFetch(findrow) = 0;
             d->m_archiveView.Add(findrow);
-	    d->modified = true;
+            d->modified = true;
         }
         fs->convertOldArchive();
     }

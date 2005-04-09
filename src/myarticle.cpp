@@ -95,7 +95,7 @@ void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
 
         if (article.meta("deleted") == "true") 
         { // if article is in deleted state, we just add the status and omit the rest
-            d->status = Private::Deleted;
+            d->status = Private::Read | Private::Deleted;
             d->archive->setStatus(d->guid, d->status);
         }
         else
@@ -148,8 +148,11 @@ MyArticle::MyArticle(RSS::Article article, Backend::FeedStorage* archive) : d(ne
     d->feed = 0;
     initialize(article, archive);
 }
+
 void MyArticle::setDeleted()
 {
+    if (isDeleted())
+        return;
     setStatus(Read);
     d->status = Private::Deleted | Private::Read;
     d->archive->setStatus(d->guid, d->status);
@@ -227,7 +230,7 @@ int MyArticle::status() const
 
 void MyArticle::setStatus(int stat)
 {
-    if (d->feed)
+    if (d->feed && !isDeleted())
     {
         if (stat == Read && status() != Read)
             d->feed->setUnread(d->feed->unread()-1);

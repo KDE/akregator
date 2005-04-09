@@ -838,6 +838,13 @@ void View::slotMoveCurrentNodeRight()
 
 void View::slotNodeSelected(TreeNode* node)
 {
+    if (node)
+    {
+        kdDebug() << "node selected: " << node->title() << endl;
+        kdDebug() << "unread: " << node->unread() << endl;
+        kdDebug() << "total: " << node->totalCount() << endl;
+    }
+    
     if (m_displayingAboutPage)
     {
         m_tabs->setTitle(i18n("Articles"), m_mainTab);
