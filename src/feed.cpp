@@ -309,16 +309,20 @@ void Feed::appendArticles(const Document &d)
                 changed = true;
             }
             // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
-            else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !mya.isDeleted())
+            else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !(*old).isDeleted())
             {
-                    mya.setKeep((*old).keep());
-                    // reset status to New
+                mya.setKeep((*old).keep());
+                // reset status to New
+		if (!markImmediatelyAsRead())
+		{
                     mya.setStatus(MyArticle::New);
                     if ((*old).status() != MyArticle::Read)
                         m_unread--;
-                    m_articles.remove(old);
-                    appendArticle(mya);
-                    changed = true;
+                }
+
+                m_articles.remove(old);
+                appendArticle(mya);
+                changed = true;
             }
         }
     }
