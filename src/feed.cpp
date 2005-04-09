@@ -100,6 +100,7 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setId(id);
         feed->setDescription(description);
         feed->setArchiveMode(archiveMode);
+        feed->setUseNotification(useNotification);
         feed->setFetchInterval(fetchInterval);
         feed->setMaxArticleAge(maxArticleAge);
         feed->setMaxArticleNumber(maxArticleNumber);
