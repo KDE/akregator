@@ -25,12 +25,16 @@
 #ifndef AKREGATORMYARTICLE_H
 #define AKREGATORMYARTICLE_H
 
-#include "librss/article.h"
+#include <qvaluelist.h>
 
-class KURLLabel;
+class QDateTime;
 class QDomDocument;
 class QDomElement;
+class QString;
 class QWidget;
+
+class KURL;
+class KURLLabel;
 
 namespace RSS
 {
@@ -48,7 +52,7 @@ namespace Akregator
     class MyArticle
     {
         public:
-            enum { Unread=0, Read, New };
+            enum Status { Unread=0, Read, New };
             typedef QValueList<MyArticle> List;
 
             MyArticle();
@@ -71,11 +75,7 @@ namespace Akregator
             int status() const;
             void setStatus(int s);
 
-            /**
-             * @return true if this article is the same as other, based on guid or link.
-             */
-       //     bool isTheSameAs(const MyArticle &other);
-            void offsetFetchTime(int secs);
+            void offsetPubDate(int secs);
 
             QString title() const;
             KURL link() const;
@@ -99,15 +99,19 @@ namespace Akregator
             bool guidIsHash() const;
             
             bool guidIsPermaLink() const;
+            
             const QDateTime& pubDate() const;
+            
             KURL commentsLink() const;
+            
             int comments() const;
             
             bool operator<(const MyArticle &other) const;
             bool operator<=(const MyArticle &other) const;
             bool operator>(const MyArticle &other) const;
             bool operator>=(const MyArticle &other) const;
-            
+
+
         private:
             void initialize(RSS::Article article, Backend::FeedStorage* archive);
             static uint calcHash(const QString& str);

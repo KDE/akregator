@@ -272,7 +272,7 @@ void Feed::appendArticles(const Document &d)
 
         if ( old == m_articles.end() ) // article not in list
         {
-            mya.offsetFetchTime(nudge);
+            mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya);
             
@@ -568,6 +568,20 @@ void Feed::setUnread(int unread)
     }
 }
 
+void Feed::slotArticleStatusChanged(int oldStatus, const MyArticle& article)
+{
+    if (oldStatus == MyArticle::Read && article.status() != MyArticle::Read)
+        setUnread(unread()+1);
+    else if (oldStatus != MyArticle::Read &&  article.status() == MyArticle::Read)
+        setUnread(unread()-1);
+}
+
+void Feed::slotArticleDeleted(const MyArticle& mya)
+{
+    if (!m_deletedArticles.contains(mya))
+        m_deletedArticles.append(mya);
+}
+
 int Feed::totalCount() const
 {
     return m_articles.count();
@@ -628,12 +642,6 @@ void Feed::enforceLimitArticleNumber()
     
     if (changed)
         modified();
-}
-
-void Feed::setArticleDeleted(const MyArticle& mya)
-{
-    if (!m_deletedArticles.contains(mya))
-        m_deletedArticles.append(mya);
 }
 
 #include "feed.moc"

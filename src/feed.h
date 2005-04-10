@@ -207,8 +207,6 @@ namespace Akregator
             */
             virtual TreeNode* next();
 
-            /** notifies that article @c mya was set to "deleted".
-                Only for use in MyArticle::setDeleted()  */
             void setArticleDeleted(const MyArticle& mya);
 
         public slots:
@@ -228,6 +226,11 @@ namespace Akregator
             /** add this feed to the fetch transaction @c transaction */
             virtual void slotAddToFetchTransaction(FetchTransaction* transaction);
 
+            /** notifies that article @c mya was set to "deleted". */
+            virtual void slotArticleDeleted(const MyArticle& mya);
+            
+            virtual void slotArticleStatusChanged(int oldStatus, const MyArticle& mya);
+            
         signals:
             /** emitted when fetching started */
             void fetchStarted(Feed*);
@@ -269,8 +272,7 @@ namespace Akregator
             /** returns @c true if either this article uses @c limitArticleAge as custom setting or uses the global default, which is @c limitArticleAge */
             bool usesExpiryByAge() const;
 
-            /** executes the actual fetch action
-             */
+            /** executes the actual fetch action */
             void tryFetch();
 
             // attributes:

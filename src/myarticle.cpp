@@ -58,7 +58,6 @@ struct MyArticle::Private : public RSS::Shared
     uint hash;
     Backend::FeedStorage* archive;
     QDateTime pubDate;
-    QDateTime fetchDate;
     Feed* feed;
 };
 
@@ -83,11 +82,10 @@ MyArticle::MyArticle(const QString& guid, Feed* feed) : d(new Private)
 void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
-    d->fetchDate = QDateTime::currentDateTime();
     d->status = Private::New;
     d->hash = calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() + QString::number(article.comments()) );
 
-    d->guid = article.guid();
+        d->guid = article.guid();
     
     if (!d->archive->contains(d->guid))
     {
@@ -110,7 +108,7 @@ void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->archive->setCommentsLink(d->guid, article.commentsLink().url());
             d->archive->setGuidIsPermaLink(d->guid, article.guidIsPermaLink());
             d->archive->setGuidIsHash(d->guid, article.meta("guidIsHash") == "true");
-            d->pubDate = article.pubDate();
+            d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
             d->archive->setPubDate(d->guid, d->pubDate);
             QString status = article.meta("status");
             
@@ -149,6 +147,13 @@ MyArticle::MyArticle(RSS::Article article, Backend::FeedStorage* archive) : d(ne
     initialize(article, archive);
 }
 
+void MyArticle::offsetPubDate(int secs)
+{
+   d->pubDate = d->pubDate.addSecs(secs);
+   d->archive->setPubDate(d->guid, d->pubDate);
+
+}
+
 void MyArticle::setDeleted()
 {
     if (isDeleted())
@@ -157,7 +162,8 @@ void MyArticle::setDeleted()
     d->status = Private::Deleted | Private::Read;
     d->archive->setStatus(d->guid, d->status);
     d->archive->setDeleted(d->guid);
-    d->feed->setArticleDeleted(*this);
+    if (d->feed)
+        d->feed->slotArticleDeleted(*this);
 }
 
 bool MyArticle::isDeleted() const
@@ -173,7 +179,9 @@ MyArticle::MyArticle(const MyArticle &other) : d(new Private)
 MyArticle::~MyArticle()
 {
     if (d->deref())
+    {
         delete d;
+    }
 }
 
 MyArticle &MyArticle::operator=(const MyArticle &other)
@@ -187,10 +195,6 @@ MyArticle &MyArticle::operator=(const MyArticle &other)
     return *this;
 }
 
-void MyArticle::offsetFetchTime(int secs)
-{
-    d->fetchDate=d->fetchDate.addSecs(secs);
-}
 
 bool MyArticle::operator<(const MyArticle &other) const
 {
@@ -230,13 +234,8 @@ int MyArticle::status() const
 
 void MyArticle::setStatus(int stat)
 {
-    if (d->feed && !isDeleted())
-    {
-        if (stat == Read && status() != Read)
-            d->feed->setUnread(d->feed->unread()-1);
-        else if  (stat != Read && status() == Read)
-	    d->feed->setUnread(d->feed->unread()+1);
-    }    
+    int oldStatus = status();
+    
     switch (stat)
     {
         case Read:
@@ -250,6 +249,9 @@ void MyArticle::setStatus(int stat)
             break;
     }
     d->archive->setStatus(d->guid, d->status);
+    
+    if (d->feed)
+        d->feed->slotArticleStatusChanged(oldStatus, *this);
 }
 
 QString MyArticle::title() const
