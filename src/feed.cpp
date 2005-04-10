@@ -235,14 +235,14 @@ void Feed::slotMarkAllArticlesAsRead()
 {
     if (unread() > 0)
     {
+        setNotificationMode(false, true);
         ArticleSequence tarticles = articles();
         ArticleSequence::Iterator it;
         ArticleSequence::Iterator en = tarticles.end();
 
         for (it = tarticles.begin(); it != en; ++it)
             (*it).setStatus(MyArticle::Read);
-
-        modified();
+        setNotificationMode(true, true);
     }
 }
 void Feed::slotAddToFetchTransaction(FetchTransaction* transaction)
