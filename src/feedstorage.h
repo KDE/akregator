@@ -27,7 +27,6 @@
 #include <qobject.h>
 
 class QString;
-class QDateTime;
 class QStringList;
 
 
@@ -63,8 +62,8 @@ class FeedStorage : public QObject
         virtual void setDeleted(const QString& guid) = 0;
         virtual QString link(const QString& guid) = 0;
         virtual void setLink(const QString& guid, const QString& link) = 0;
-        virtual QDateTime pubDate(const QString& guid) = 0;
-        virtual void setPubDate(const QString& guid, const QDateTime& pubdate) = 0;
+        virtual uint pubDate(const QString& guid) = 0;
+        virtual void setPubDate(const QString& guid, uint pubdate) = 0;
         virtual int status(const QString& guid) = 0;
         virtual void setStatus(const QString& guid, int status) = 0;
         virtual QString title(const QString& guid) = 0;

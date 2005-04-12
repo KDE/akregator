@@ -75,7 +75,7 @@ MyArticle::MyArticle(const QString& guid, Feed* feed) : d(new Private)
     d->guid = guid;
     d->archive = Backend::Storage::getInstance()->archiveFor(feed->xmlUrl());
     d->status = d->archive->status(d->guid);
-    d->pubDate = d->archive->pubDate(d->guid);
+    d->pubDate.setTime_t(d->archive->pubDate(d->guid));
     d->hash = d->archive->hash(d->guid);
 }
 
@@ -109,7 +109,7 @@ void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->archive->setGuidIsPermaLink(d->guid, article.guidIsPermaLink());
             d->archive->setGuidIsHash(d->guid, article.meta("guidIsHash") == "true");
             d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
-            d->archive->setPubDate(d->guid, d->pubDate);
+            d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
             QString status = article.meta("status");
             
             if (!status.isEmpty())
@@ -150,7 +150,7 @@ MyArticle::MyArticle(RSS::Article article, Backend::FeedStorage* archive) : d(ne
 void MyArticle::offsetPubDate(int secs)
 {
    d->pubDate = d->pubDate.addSecs(secs);
-   d->archive->setPubDate(d->guid, d->pubDate);
+   d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
 
 }
 

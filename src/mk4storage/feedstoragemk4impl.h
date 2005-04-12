@@ -59,8 +59,8 @@ class FeedStorageMK4Impl : public FeedStorage
         virtual void setDeleted(const QString& guid);
         virtual QString link(const QString& guid);
         virtual void setLink(const QString& guid, const QString& link); 
-        virtual QDateTime pubDate(const QString& guid);
-        virtual void setPubDate(const QString& guid, const QDateTime& pubdate);
+        virtual uint pubDate(const QString& guid);
+        virtual void setPubDate(const QString& guid, uint pubdate);
         virtual int status(const QString& guid);
         virtual void setStatus(const QString& guid, int status);
         virtual QString title(const QString& guid);

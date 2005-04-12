@@ -30,7 +30,6 @@
 #include "../librss/document.h"
 #include <mk4.h>
 
-#include <qdatetime.h>
 #include <qdom.h>
 #include <qfile.h>
 
@@ -277,13 +276,10 @@ QString FeedStorageMK4Impl::link(const QString& guid)
     return findidx != -1 ? QString(d->plink(d->archiveView.GetAt(findidx))) : "";
 }
 
-QDateTime FeedStorageMK4Impl::pubDate(const QString& guid)
+uint FeedStorageMK4Impl::pubDate(const QString& guid)
 {
     int findidx = findArticle(guid);
-    QDateTime time;
-    if (findidx != -1)
-        time.setTime_t(d->ppubDate(d->archiveView.GetAt(findidx)));
-    return time;
+    return findidx != -1 ? d->ppubDate(d->archiveView.GetAt(findidx)) : 0;
 }
 
 int FeedStorageMK4Impl::status(const QString& guid)
@@ -317,14 +313,14 @@ QString FeedStorageMK4Impl::description(const QString& guid)
 }
 
 
-void FeedStorageMK4Impl::setPubDate(const QString& guid, const QDateTime& pubdate)
+void FeedStorageMK4Impl::setPubDate(const QString& guid, uint pubdate)
 {
     int findidx = findArticle(guid);
     if (findidx == -1)
         return;
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->ppubDate(row) = pubdate.toTime_t();
+    d->ppubDate(row) = pubdate;
     d->archiveView.SetAt(findidx, row);
     d->modified = true;
 }
