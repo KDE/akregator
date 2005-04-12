@@ -3,7 +3,7 @@
 <author>Frank Osterfeld</author>
 <widget class="QWidget">
     <property name="name">
-        <cstring>SettingsAdvancedBase</cstring>
+        <cstring>SettingsAdvanced</cstring>
     </property>
     <property name="geometry">
         <rect>
@@ -20,37 +20,6 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget" row="0" column="0">
-            <property name="name">
-                <cstring>layout1</cstring>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QLabel">
-                    <property name="name">
-                        <cstring>textLabel1</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Archive backend:</string>
-                    </property>
-                </widget>
-                <widget class="QComboBox">
-                    <property name="name">
-                        <cstring>cbBackend</cstring>
-                    </property>
-                </widget>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>pbBackendConfigure</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Configure...</string>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
         <spacer row="1" column="0">
             <property name="name">
                 <cstring>spacer2</cstring>
@@ -68,7 +37,41 @@
                 </size>
             </property>
         </spacer>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout2</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Archive backend:</string>
+                    </property>
+                </widget>
+                <widget class="KComboBox">
+                    <property name="name">
+                        <cstring>cbBackend</cstring>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pbBackendConfigure</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Configure...</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
     </grid>
 </widget>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kcombobox.h</includehint>
+</includehints>
 </UI>

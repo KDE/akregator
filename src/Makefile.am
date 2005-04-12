@@ -102,6 +102,7 @@ libakregatorpart_la_SOURCES = \
 	settings_archive.ui \
 	settings_browser.ui \
 	settings_advancedbase.ui \
+	configdialog.cpp \
 	settings_advanced.cpp \
 	trayicon.cpp \
 	akregator_partiface.skel \

@@ -45,8 +45,8 @@ class StorageFactory
     /** returns the (i18n'd) name of the storage type. */
     virtual QString name() const = 0;
 
-    /** returns a widget for configuration */
-    virtual QWidget* configureWidget(QWidget* parent) = 0;
+    /** shows the plugin's configuration dialog */
+    virtual void configure() = 0;
     
     /** creates a storage object with given parameters
         @param params list of implementation-specific parameters

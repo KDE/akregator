@@ -58,6 +58,7 @@
 #include "akregator_view.h"
 #include "akregatorconfig.h"
 #include "akregator.h"
+#include "configdialog.h"
 #include "fetchtransaction.h"
 #include "frame.h"
 #include "myarticle.h"
@@ -65,11 +66,6 @@
 #include "pageviewer.h"
 #include "plugin.h"
 #include "pluginmanager.h"
-#include "settings_advanced.h"
-#include "settings_appearance.h"
-#include "settings_archive.h"
-#include "settings_browser.h"
-#include "settings_general.h"
 #include "storage.h"
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
@@ -786,12 +782,8 @@ void Part::showOptions()
     if ( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    KConfigDialog *dialog = new KConfigDialog( m_view, "settings", Settings::self() );
-    dialog->addPage(new SettingsGeneral(0, "General"), i18n("General"), "package_settings");
-    dialog->addPage(new SettingsArchive(0, "Archive"), i18n("Archive"), "package_settings");
-    dialog->addPage(new SettingsAppearance(0, "Appearance"), i18n("Appearance"), "fonts");
-    dialog->addPage(new SettingsBrowser(0, "Browser"), i18n("Browser"), "package_network");
-    dialog->addPage(new SettingsAdvanced(0, "Advanced"), i18n("Advanced"), "package_network");
+    KConfigDialog* dialog = new ConfigDialog( m_view, "settings", Settings::self() );
+
     connect( dialog, SIGNAL(settingsChanged()),
              this, SLOT(slotSettingsChanged()) );
     connect( dialog, SIGNAL(settingsChanged()),

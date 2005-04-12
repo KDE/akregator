@@ -1,5 +1,5 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>MK4ConfWidgetBase</class>
+<class>Akregator::Backend::MK4ConfWidgetBase</class>
 <widget class="QDialog">
     <property name="name">
         <cstring>MK4ConfWidgetBase</cstring>
@@ -16,6 +16,9 @@
         <string>Metakit settings</string>
     </property>
     <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <property name="modal">
         <bool>true</bool>
     </property>
     <grid>

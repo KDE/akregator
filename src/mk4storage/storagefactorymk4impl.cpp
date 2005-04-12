@@ -23,6 +23,8 @@
 */
 #include "storagefactorymk4impl.h"
 #include "storagemk4impl.h"
+#include "mk4confwidget.h"
+#include "mk4config.h"
 
 #include <klocale.h>
 #include <qstring.h>
@@ -49,9 +51,19 @@ QString StorageFactoryMK4Impl::name() const
    return i18n("Metakit");
 }
 
-QWidget* StorageFactoryMK4Impl::configureWidget(QWidget* parent)
+
+void StorageFactoryMK4Impl::configure()
 {
-    return 0;
+    MK4ConfWidgetBase* confWidget = new MK4ConfWidget();
+    // fill with Settings
+    
+    
+    if (confWidget->exec() == QDialog::Accepted)
+    {
+        // store and apply settings
+    }
+
+    delete confWidget;
 }
 
 }

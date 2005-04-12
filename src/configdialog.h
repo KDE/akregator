@@ -22,29 +22,34 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef STORAGEFACTORYMK4IMPL_H
-#define STORAGEFACTORYMK4IMPL_H
+#ifndef AKREGATOR_CONFIGDIALOG_H
+#define AKREGATOR_CONFIGDIALOG_H
 
-#include "storagefactory.h"
-
-class QString;
-class QStringList;
+#include <kconfigdialog.h>
 
 namespace Akregator {
-namespace Backend {
 
-class Storage;
+class SettingsAdvanced;
 
-class StorageFactoryMK4Impl : public StorageFactory
+class ConfigDialog : public KConfigDialog
 {
+//    Q_OBJECT
     public:
-    virtual QString key() const;
-    virtual QString name() const;
-    virtual void configure();
-    virtual Storage* createStorage(const QStringList& params) const;
+    
+        ConfigDialog(QWidget *parent, const char *name, KConfigSkeleton *config, DialogType dialogType=IconList, int dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
+        
+        virtual ~ConfigDialog();
+
+    protected slots:
+
+        virtual void updateSettings();
+        
+        virtual void updateWidgets();
+
+    private:
+        SettingsAdvanced* m_settingsAdvanced;       
+        
 };
 
-}
-}
-
-#endif
+} // namespace Akregator
+#endif // AKREGATOR_CONFIGDIALOG_H

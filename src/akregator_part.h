@@ -48,7 +48,7 @@ namespace Akregator
     }
     
     typedef KParts::ReadOnlyPart MyBasePart;
-    
+
     class View;
     class Part;
     class Feed;
@@ -225,8 +225,6 @@ namespace Akregator
             /** did we backup the feed list already? */
             bool m_backedUpList;
             Backend::Storage* m_storage;
-            
-            
     };
 }
 

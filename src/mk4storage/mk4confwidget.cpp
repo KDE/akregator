@@ -22,29 +22,13 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef STORAGEFACTORYMK4IMPL_H
-#define STORAGEFACTORYMK4IMPL_H
-
-#include "storagefactory.h"
-
-class QString;
-class QStringList;
-
+#include "mk4confwidget.h"
 namespace Akregator {
 namespace Backend {
 
-class Storage;
-
-class StorageFactoryMK4Impl : public StorageFactory
+MK4ConfWidget::MK4ConfWidget() : MK4ConfWidgetBase()
 {
-    public:
-    virtual QString key() const;
-    virtual QString name() const;
-    virtual void configure();
-    virtual Storage* createStorage(const QStringList& params) const;
-};
+}
 
 }
 }
-
-#endif

@@ -197,4 +197,10 @@
    <default>false</default>
   </entry>
  </group>
+ <group name="Advanced" >
+<entry key="Archive Backend" type="String" >
+   <label>Archive Backend</label>
+   <default>metakit</default>
+  </entry>
+</group>
 </kcfg>
