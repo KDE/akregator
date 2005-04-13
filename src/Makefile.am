@@ -131,3 +131,4 @@ kde_servicetypes_DATA = akregator_plugin.desktop
 SUBDIRS = librss about . mk4storage 
 
 
+KDE_OPTIONS = nofinal

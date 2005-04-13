@@ -33,7 +33,7 @@ class SettingsAdvanced;
 
 class ConfigDialog : public KConfigDialog
 {
-//    Q_OBJECT
+    Q_OBJECT
     public:
     
         ConfigDialog(QWidget *parent, const char *name, KConfigSkeleton *config, DialogType dialogType=IconList, int dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
