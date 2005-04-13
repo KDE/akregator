@@ -174,7 +174,8 @@ void FetchTransaction::addIcon(Feed *f)
     KURL u(f->xmlUrl());
     if (u.protocol()!= "http")
         return;
-    QString h="http://"+u.host();
+    QString h = FeedIconManager::self()->getIconURL(u);
+
     if (!m_iconFetchDict.find(h))
         m_iconFetchList.append(f);
     
@@ -187,12 +188,11 @@ void FetchTransaction::slotFetchNextIcon()
     Feed *f = m_iconFetchList.at(0);
     if (!f)
         return;
-    kdDebug() << "FT::sFNextIcon(): accessing " << f << endl;
-    KURL u(f->xmlUrl());
-    QString h = u.host();
+
     m_iconFetchList.remove((uint)0);
     m_currentIconFetches.append(f);
-    FeedIconManager::self()->loadIcon("http://"+h+"/");
+    
+    FeedIconManager::self()->loadIcon(FeedIconManager::self()->getIconURL(f->xmlUrl()));
 }
 
 void FetchTransaction::startFetchIcons()
@@ -204,8 +204,8 @@ void FetchTransaction::startFetchIcons()
 void FetchTransaction::slotFaviconFetched(const QString &host, const QPixmap &p)
 {
     QString h=host;
-    if (h.left(6) != "http://")
-        h="http://"+h;
+    //if (h.left(6) != "http://")
+    //    h="http://"+h;
     
     Feed *f = m_iconFetchDict[h];
         

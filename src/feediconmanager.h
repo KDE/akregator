@@ -45,6 +45,11 @@ namespace Akregator
         public:
             static FeedIconManager *self();
             void loadIcon(const QString &);
+
+            /** returns the url used to access the icon, e.g.
+                http://dot.kde.org/ for "dot.kde.org/1113317400/" */
+            QString getIconURL(const KURL& url);
+            
             QString iconLocation(const KURL &) const;
             
         k_dcop:
