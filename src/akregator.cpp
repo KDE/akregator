@@ -99,9 +99,6 @@ MainWindow::MainWindow()
     KAction *action = actionCollection()->action("help_contents");
     if(action) action->setEnabled(false);
 
-    if (!initialGeometrySet())
-        resize(875,700);
-
     setupActions();
     createGUI(0L);
 }
