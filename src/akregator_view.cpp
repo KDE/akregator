@@ -202,7 +202,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     QToolTip::add( m_searchCombo, i18n( "Choose what kind of articles to show in article list" ) );
 
     connect(clearButton, SIGNAL( clicked() ),
-                    m_searchLine, SLOT(clear()) );
+                    this, SLOT(slotClearFilter()) );
     connect(m_searchCombo, SIGNAL(activated(int)),
                         this, SLOT(slotSearchComboChanged(int)));
     connect(m_searchLine, SIGNAL(textChanged(const QString &)),
@@ -1555,6 +1555,12 @@ void View::slotMouseOverInfo(const KFileItem *kifi)
     {
         m_mainFrame->setStatusText(QString::null);
     }
+}
+
+void View::slotClearFilter()
+{
+    m_searchLine->clear();
+    m_searchCombo->setCurrentItem(0);
 }
 
 void View::readProperties(KConfig* config) // this is called when session is being restored
