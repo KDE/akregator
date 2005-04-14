@@ -117,6 +117,6 @@ partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc eventsrc
 iconsdir = $(kde_datadir)/akregator/pics
 icons_DATA = akregator_flag.png
 
-SUBDIRS = librss about
+SUBDIRS = librss about pics
 
 noinst_HEADERS = archive.h

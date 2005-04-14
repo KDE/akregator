@@ -191,11 +191,11 @@ View::View( Part *part, QWidget *parent, const char *name)
     if ( !Settings::showQuickFilter() )    
         m_searchBar->hide();
     
-    m_searchCombo->insertItem(i18n("All Articles"));
+    m_searchCombo->insertItem(SmallIcon("exec"), i18n("All Articles"));
     m_searchCombo->insertItem(i18n("New & Unread"));
-    m_searchCombo->insertItem(i18n("New"));
-    m_searchCombo->insertItem(i18n("Unread"));
-    m_searchCombo->insertItem(i18n("Keep Flag Set"));
+    m_searchCombo->insertItem(SmallIcon("kmmsgnew"), i18n("New"));
+    m_searchCombo->insertItem(SmallIcon("kmmsgunseen"), i18n("Unread"));
+    m_searchCombo->insertItem(SmallIcon("kmmsgflag"), i18n("Keep Flag Set"));
 
     QToolTip::add( clearButton, i18n( "Clear filter" ) );
     QToolTip::add( m_searchLine, i18n( "Enter space-separated terms to filter article list" ) );
