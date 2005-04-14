@@ -94,10 +94,6 @@ MainWindow::MainWindow()
     m_statusLabel->setMinimumWidth( 0 );
     m_statusLabel->setFixedHeight( statH );
     statusBar()->addWidget (m_statusLabel, 1, false);
-   // disable the action because we don't have a handbook yet, hope this createGUI doesn't broke anything
-
-    if (!initialGeometrySet())
-        resize(875,700);
 
     setupActions();
     createGUI(0L);
