@@ -128,6 +128,6 @@ icons_DATA = akregator_flag.png
 kde_servicetypes_DATA = akregator_plugin.desktop
 
 
-SUBDIRS = librss about . mk4storage 
+SUBDIRS = librss about . mk4storage pics
 
 
