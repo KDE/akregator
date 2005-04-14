@@ -154,7 +154,7 @@ void ArticleViewer::generateCSS()
     ".content > P:first-child {\n margin-top: 1px; }\n"
     ".content > DIV:first-child {\n margin-top: 1px; }\n"
     ".content > BR:first-child {\n display: none;  }\n"
-    ".contentlink {\n display: block; }\n"
+    //".contentlink {\n display: block; }\n"
     "}\n\n" // @media screen, print
     "@media screen { body { overflow: auto; } }\n"
     "\n\n");
