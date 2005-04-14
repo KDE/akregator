@@ -277,7 +277,9 @@ namespace Akregator
             void slotFeedsTreePageDown();
             void slotFeedsTreeHome();
             void slotFeedsTreeEnd();
-
+            
+            /** This clears filter text and status */
+            void slotClearFilter();
 
         protected:
 
