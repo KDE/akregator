@@ -66,4 +66,4 @@ ConfigDialog::~ConfigDialog() {}
 
 } // namespace Akregator
 
-//#include "configdialog.moc"
+#include "configdialog.moc"
