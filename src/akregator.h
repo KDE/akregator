@@ -56,11 +56,9 @@ class MainWindow;
 class BrowserInterface : public KParts::BrowserInterface
 {
     Q_OBJECT
-    Q_PROPERTY( bool haveWindowLoaded READ haveWindowLoaded )
     
 public:
     BrowserInterface(Akregator::MainWindow *shell, const char *name );
-    bool haveWindowLoaded() const;
 
 private:
     Akregator::MainWindow *m_shell;
