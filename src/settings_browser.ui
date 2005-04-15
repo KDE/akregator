@@ -178,7 +178,7 @@
                         <bool>false</bool>
                     </property>
                     <property name="text">
-                        <string>mozilla -remote 'openURL(%u,new-tab)'</string>
+                        <string>firefox -remote 'openURL(%u,new-tab)'</string>
                     </property>
                 </widget>
             </grid>
