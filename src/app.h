@@ -32,15 +32,12 @@
 namespace Akregator
 {
 
-class Application : public KUniqueApplication {
+class Application : public KUniqueApplication 
+{
     Q_OBJECT
     public:
         Application();
         ~Application();
-        void setHaveWindowLoaded(bool b);
-        bool haveWindowLoaded();
-    private:
-        bool m_haveWindowLoaded;
 };
 
 }

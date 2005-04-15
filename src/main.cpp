@@ -61,7 +61,6 @@ int main(int argc, char **argv)
         Akregator::MainWindow* mainwin = new Akregator::MainWindow();
 
         app.setMainWidget(mainwin);
-        app.setHaveWindowLoaded(true);
         if (mainwin->loadPart() == false)
             return 1;
         mainwin->setupProgressWidgets();

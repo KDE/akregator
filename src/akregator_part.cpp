@@ -473,13 +473,9 @@ bool Part::openFile()
     if( Settings::markAllFeedsReadOnStartup() )
         m_view->slotMarkAllFeedsRead();
 
-    if (Settings::fetchOnStartup() && m_extension->browserInterface())
-    {
-        // has the shell loaded up a window already? then its not starting up
-       QVariant shellHaveWindowLoaded = m_extension->browserInterface()->property( "haveWindowLoaded" );
-       if (!shellHaveWindowLoaded.toBool())
-            m_view->slotFetchAllFeeds();
-    }
+    if (Settings::fetchOnStartup())
+    	m_view->slotFetchAllFeeds();
+    
     return true;
 }
 

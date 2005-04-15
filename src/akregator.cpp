@@ -66,11 +66,6 @@ BrowserInterface::BrowserInterface( MainWindow *shell, const char *name )
     m_shell = shell;
 }
 
-bool BrowserInterface::haveWindowLoaded() const
-{
-    return akreapp->haveWindowLoaded();
-}
-
 MainWindow::MainWindow()
     : KParts::MainWindow( 0L, "akregator_mainwindow" )
 {
