@@ -25,7 +25,6 @@
 #include <kdebug.h>
 
 #include "akregatorconfig.h"
-#include "feediconmanager.h"
 #include "fetchtransaction.h"
 #include "feed.h"
 #include "treenode.h"
@@ -33,13 +32,10 @@
 using namespace Akregator;
 
 FetchTransaction::FetchTransaction(QObject *parent): QObject(parent, "transaction"),
-    m_fetchList(), m_currentFetches(), m_iconFetchList(), m_iconFetchDict(),
-    m_imageFetchList(), m_currentImageFetches(), m_imageFetchDict(), m_totalFetches(0), m_running(false)
+    m_fetchList(), m_currentFetches(), m_imageFetchList(), m_currentImageFetches(), m_imageFetchDict(), m_totalFetches(0), m_running(false)
 {
     m_imageFetchList.setAutoDelete(true); // as we create Image objects only used locally
     m_concurrentFetches=Settings::concurrentFetches();
-
-    connect (FeedIconManager::self(), SIGNAL(iconChanged(const QString &, const QPixmap &)), this, SLOT(slotFaviconFetched(const QString &, const QPixmap &)));
 }
 
 FetchTransaction::~FetchTransaction()
@@ -94,10 +90,6 @@ void FetchTransaction::clear()
     m_currentImageFetches.clear();
     m_imageFetchList.clear();
     
-    m_currentIconFetches.clear();
-    m_iconFetchList.clear();
-    m_iconFetchDict.clear();
-        
     m_fetchesDone = 0;
     m_totalFetches = 0;    
 }
@@ -163,65 +155,9 @@ void FetchTransaction::feedDone(Feed *f)
     if (m_fetchList.isEmpty() && m_currentFetches.isEmpty())
     {
         startFetchImages();
-        startFetchIcons();
         m_running = false;
         emit completed();
     }
-}
-
-void FetchTransaction::addIcon(Feed *f)
-{
-    KURL u(f->xmlUrl());
-    if (u.protocol()!= "http")
-        return;
-    QString h = FeedIconManager::self()->getIconURL(u);
-
-    if (!m_iconFetchDict.find(h))
-        m_iconFetchList.append(f);
-    
-    m_iconFetchDict.insert(h, f);
-    connectToFeed(f);
-}
-
-void FetchTransaction::slotFetchNextIcon()
-{
-    Feed *f = m_iconFetchList.at(0);
-    if (!f)
-        return;
-
-    m_iconFetchList.remove((uint)0);
-    m_currentIconFetches.append(f);
-    
-    FeedIconManager::self()->loadIcon(FeedIconManager::self()->getIconURL(f->xmlUrl()));
-}
-
-void FetchTransaction::startFetchIcons()
-{
-    for (int i = 0; i < m_concurrentFetches; ++i)
-        slotFetchNextIcon();
-}
-
-void FetchTransaction::slotFaviconFetched(const QString &host, const QPixmap &p)
-{
-    QString h=host;
-    //if (h.left(6) != "http://")
-    //    h="http://"+h;
-    
-    Feed *f = m_iconFetchDict[h];
-        
-    while (f)
-    {
-        m_iconFetchDict.remove(h);
-        if (m_currentIconFetches.contains(f)) // if false, the feed was deleted
-        {
-            m_currentIconFetches.remove(f);
-            f->setFavicon(p);
-        }
-        
-        f = m_iconFetchDict[h];
-    }
-
-    slotFetchNextIcon();
 }
 
 void FetchTransaction::addImage(Feed *f, Image *i)
@@ -302,8 +238,6 @@ void FetchTransaction::slotNodeDestroyed(TreeNode* node)
 
      // remove all occurrences of this feed
     while (m_fetchList.remove(feed)) /** do nothing */;
-    while (m_iconFetchList.remove(feed)) /** do nothing */;
-    while (m_currentIconFetches.remove(feed)) /** do nothing */;
     while (m_imageFetchDict.remove(feed)) /** do nothing */;
 }
 

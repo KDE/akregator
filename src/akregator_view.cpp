@@ -29,7 +29,6 @@
 #include "propertiesdialog.h"
 #include "frame.h"
 #include "fetchtransaction.h"
-#include "feediconmanager.h"
 #include "feedstree.h"
 #include "articlelist.h"
 #include "articleviewer.h"

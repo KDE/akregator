@@ -43,7 +43,7 @@ public:
     TreeNodeItem(FeedGroupItem* parent, TreeNode* node);
     TreeNodeItem(FeedGroupItem* parent, TreeNodeItem* after, TreeNode* node);
     TreeNodeItem(KListView* parent, TreeNode* node);
-    ~TreeNodeItem();
+    virtual ~TreeNodeItem();
     virtual TreeNode* node();
     
     virtual void nodeChanged();

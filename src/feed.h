@@ -209,6 +209,9 @@ namespace Akregator
 
             void setArticleDeleted(const MyArticle& mya);
 
+            /** downloads the favicon */
+            void loadFavicon();
+            
         public slots:
             /** starts fetching */
             void fetch(bool followDiscovery=false, FetchTransaction *f = 0);
@@ -254,9 +257,6 @@ namespace Akregator
         private slots:
 
             void fetchCompleted(Loader *loader, Document doc, Status status);
-
-            /** downloads the favicon */
-            void loadFavicon();
 
         private:
             

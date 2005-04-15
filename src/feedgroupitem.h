@@ -42,7 +42,7 @@ public:
     FeedGroupItem(FeedGroupItem* parent, FeedGroup* node);
     FeedGroupItem(FeedGroupItem* parent, TreeNodeItem* after, FeedGroup* node);
     FeedGroupItem(KListView* parent, FeedGroup* node);
-    ~FeedGroupItem();
+    virtual ~FeedGroupItem();
     
     virtual FeedGroup* node();
     

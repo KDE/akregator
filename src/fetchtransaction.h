@@ -61,7 +61,6 @@ class FetchTransaction : public QObject
         int totalFetches() { return m_totalFetches; }
 
         void addFeed(Feed *f);
-        void addIcon(Feed *f);
         void addImage(Feed *f, RSS::Image *i);
 
         
@@ -78,7 +77,6 @@ class FetchTransaction : public QObject
         
         void connectToFeed(Feed* feed);
         void disconnectFromFeed(Feed* feed);
-        void startFetchIcons();
         void startFetchImages();
         
     protected slots:
@@ -88,21 +86,14 @@ class FetchTransaction : public QObject
         void slotFetchError(Feed *);
         void slotFetchAborted(Feed *);
         void slotFetchNextFeed();
-        void slotFetchNextIcon();
         void slotFetchNextImage();
         
-        void slotFaviconFetched(const QString &, const QPixmap &);
         void slotImageFetched(const QPixmap &);
 
     private: 
 
         QPtrList<Feed> m_fetchList;
         QPtrList<Feed> m_currentFetches;
-
-        QPtrList<Feed> m_iconFetchList;
-        QPtrList<Feed> m_currentIconFetches;
-        QDict<Feed> m_iconFetchDict;
-        
 
         QPtrList<RSS::Image> m_imageFetchList;
         QPtrList<RSS::Image> m_currentImageFetches;
@@ -113,7 +104,6 @@ class FetchTransaction : public QObject
 
         int m_concurrentFetches;
         bool m_running;
-
 };
 
 } // namespace Akregator

@@ -42,7 +42,7 @@ FeedGroupItem::FeedGroupItem(FeedGroupItem* parent, FeedGroup* node) : TreeNodeI
 FeedGroupItem::FeedGroupItem(FeedGroupItem* parent, TreeNodeItem* after, FeedGroup* node) : TreeNodeItem(parent, after, node)
 {
     setExpandable(true);
-    setOpen( node->isOpen() );
+    setOpen(node->isOpen());
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     if (node)
         setText(0, node->title());

@@ -27,9 +27,12 @@
 
 #include <dcopobject.h>
 
+#include <qdict.h>
+#include <qvaluelist.h>
 #include <qobject.h>
 
 class QPixmap;
+class QString;
 
 class DCOPClient;
 class KURL;
@@ -37,18 +40,22 @@ class KURL;
 
 namespace Akregator
 {
+    class Feed;
+    class TreeNode;
+    
     class FeedIconManager:public QObject, public DCOPObject
     {
         Q_OBJECT
         K_DCOP
         
         public:
-            static FeedIconManager *self();
-            void loadIcon(const QString &);
 
-            /** returns the url used to access the icon, e.g.
-                http://dot.kde.org/ for "dot.kde.org/1113317400/" */
-            QString getIconURL(const KURL& url);
+            FeedIconManager(QObject * = 0L, const char * = 0L);
+            ~FeedIconManager();
+            
+            static FeedIconManager *self();
+
+            void fetchIcon(Feed* feed);
             
             QString iconLocation(const KURL &) const;
             
@@ -56,14 +63,23 @@ namespace Akregator
             void slotIconChanged(bool, const QString&, const QString&);
 
         signals:
-            void iconChanged(const QString &, const QPixmap &);
+            void signalIconChanged(const QString &, const QPixmap &);
 
-        protected:
-            FeedIconManager(QObject * = 0L, const char * = 0L);
-            ~FeedIconManager();
+        public slots:
+            void slotFeedDestroyed(TreeNode* node);
 
+      protected:
+
+            /** returns the url used to access the icon, e.g.
+                http://dot.kde.org/ for "dot.kde.org/1113317400/" */
+            QString getIconURL(const KURL& url);
+
+            void loadIcon(const QString &);
+      
       private:
             static FeedIconManager *m_instance;
+            QValueList<Feed*> m_registeredFeeds;
+            QDict<Feed> m_urlDict;
     };
 }
 

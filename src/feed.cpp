@@ -41,7 +41,7 @@
 #include "feed.h"
 #include "feedgroup.h"
 #include "fetchtransaction.h"
-
+#include "feediconmanager.h"
 #include "feedstorage.h"
 #include "storage.h"
 
@@ -105,9 +105,10 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setMaxArticleAge(maxArticleAge);
         feed->setMaxArticleNumber(maxArticleNumber);
         feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
+        feed->loadArticles(); // TODO: make me fly: make this delayed
+        
     }
 
-    feed->loadArticles(); // TODO: make me fly: make this delayed
     return feed;
 }
 
@@ -195,6 +196,7 @@ Feed::Feed()
     , m_articlesLoaded(false)
     , m_archive(0)
     , m_articles()
+    , m_favicon()
     , m_progressItem(0)
 {
 }
@@ -488,9 +490,7 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
 void Feed::loadFavicon()
 {
-    if (!m_transaction)
-       return;
-    m_transaction->addIcon(this);
+    FeedIconManager::self()->fetchIcon(this);
 }
 
 void Feed::slotDeleteExpiredArticles()
@@ -526,11 +526,7 @@ void Feed::slotDeleteExpiredArticles()
 
 void Feed::setFavicon(const QPixmap &p)
 {
-    if (p.isNull())
-       return;
     m_favicon = p;
- //   if (!m_fetchError && item())
- //           item()->setPixmap(0, p);
     modified();
 }
 

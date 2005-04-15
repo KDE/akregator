@@ -33,45 +33,19 @@ using namespace Akregator;
 FeedItem::FeedItem(FeedGroupItem* parent, Feed* node) : TreeNodeItem(parent, node)
 {
     setExpandable(false);
-    
-    if (node)
-    {
-        setText(0, node->title());
-        if (!node->favicon().isNull())
-            setPixmap( 0, node->favicon() );
-        else
-            setPixmap( 0, defaultPixmap() );
-    }
+    initialize(node);
 }
 
 FeedItem::FeedItem(KListView* parent, Feed* node) : TreeNodeItem(parent, node)
 {
     setExpandable(false);
-    
-    if (node)
-    {
-        setText(0, node->title());
-        if (!node->favicon().isNull())
-            setPixmap( 0, node->favicon() );
-        else
-            setPixmap( 0, defaultPixmap() );
-            
-    }
-    else
-        kdDebug() << "FeedItem::FeedItem(): node is null!" << endl;
+    initialize(node);
 }
 
 FeedItem::FeedItem(FeedGroupItem* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
 {
     setExpandable(false);
-    if (node)
-    {
-        setText(0, node->title());
-        if (!node->favicon().isNull())
-            setPixmap( 0, node->favicon() );
-        else
-            setPixmap( 0, defaultPixmap() );
-    }
+    initialize(node);
 }
 
 FeedItem::~FeedItem()
@@ -92,7 +66,10 @@ void FeedItem::nodeChanged()
         if (!node()->favicon().isNull())
              setPixmap(0, node()->favicon());
         else
+        {
             setPixmap( 0, defaultPixmap() );
+            node()->loadFavicon();
+        }
     }
     
     TreeNodeItem::nodeChanged();
@@ -108,4 +85,17 @@ QPixmap FeedItem::defaultPixmap()
     return KGlobal::iconLoader()->loadIcon("txt", KIcon::Small);
 }
 
-
+void FeedItem::initialize(Feed* node)
+{
+    if (node)
+    {
+        setText(0, node->title());
+        if (!node->favicon().isNull())
+            setPixmap( 0, node->favicon() );
+        else
+        {
+            setPixmap( 0, defaultPixmap() );
+            node->loadFavicon();
+        }
+    }
+}

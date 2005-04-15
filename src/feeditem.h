@@ -44,13 +44,17 @@ class FeedItem : public TreeNodeItem
     FeedItem(FeedGroupItem* parent, Feed* node);
     FeedItem(FeedGroupItem* parent, TreeNodeItem* after, Feed* node);
     FeedItem(KListView* parent, Feed* node);
-    ~FeedItem();
+    
+    virtual ~FeedItem();
     virtual Feed* node();
     virtual void nodeChanged();
     
     static QPixmap errorPixmap();
-    
     static QPixmap defaultPixmap();
+
+private:
+    void initialize(Feed* node);
+    
 };
 
 }

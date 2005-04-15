@@ -642,6 +642,7 @@ void FeedsTree::slotNodeAdded(TreeNode* node)
                 item = new FeedItem( parentItem, findNodeItem(prev), f );
             else
                 item = new FeedItem( parentItem, f );
+            item->nodeChanged();     
             m_itemDict.insert(node, item);
         }
     }
