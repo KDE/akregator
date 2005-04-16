@@ -34,7 +34,9 @@ using namespace Akregator;
 FetchTransaction::FetchTransaction(QObject *parent): QObject(parent, "transaction"),
     m_fetchList(), m_currentFetches(), m_imageFetchList(), m_currentImageFetches(), m_imageFetchDict(), m_totalFetches(0), m_running(false)
 {
+    m_currentImageFetches.setAutoDelete(true);
     m_imageFetchList.setAutoDelete(true); // as we create Image objects only used locally
+    
     m_concurrentFetches=Settings::concurrentFetches();
 }
 
@@ -165,22 +167,25 @@ void FetchTransaction::addImage(Feed *f, Image *i)
     // create a copy, don't use the pointer directly!
     RSS::Image* imgCopy = new RSS::Image(*i);
     m_imageFetchList.append(imgCopy);
-    m_imageFetchDict.insert(imgCopy, f);
     
     connectToFeed(f);
-    
-    connect (imgCopy, SIGNAL(gotPixmap(const QPixmap &)),
-             this, SLOT(slotImageFetched(const QPixmap &)));
 }
 
 void FetchTransaction::slotFetchNextImage()
 {
-    Image *i=m_imageFetchList.at(0);
-    if (!i) return;
-
-    m_currentImageFetches.append(i);
-    i->getPixmap();
+    Image *i = m_imageFetchList.at(0);
+    if (!i)
+        return;
+    RSS::Image* imgCopy = new RSS::Image(*i);
     m_imageFetchList.remove((uint)0);
+    m_currentImageFetches.append(imgCopy);
+    m_imageFetchDict.insert(imgCopy, m_imageFetchDict.find(i));
+    m_imageFetchDict.remove(i);
+    
+    connect (imgCopy, SIGNAL(gotPixmap(const QPixmap &)),
+             this, SLOT(slotImageFetched(const QPixmap &)));
+    imgCopy->getPixmap();
+    
 }
 
 void FetchTransaction::startFetchImages()
