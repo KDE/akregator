@@ -155,7 +155,7 @@ namespace Akregator
             void setFavicon(const QPixmap& p);
 
             /** returns the feed image */
-            const QPixmap& image() const { return m_image; }
+            const QPixmap& image() const { return m_imagePixmap; }
 
             /** sets the feed image */
             void setImage(const QPixmap &p);
@@ -214,7 +214,7 @@ namespace Akregator
             
         public slots:
             /** starts fetching */
-            void fetch(bool followDiscovery=false, FetchTransaction *f = 0);
+            void fetch(bool followDiscovery=false);
 
             void slotSetProgress(unsigned long);
 
@@ -245,8 +245,6 @@ namespace Akregator
             void fetchDiscovery(Feed *);
             /** emitted when a fetch is aborted */
             void fetchAborted(Feed *);
-            /** emitted when the feed image is loaded */
-            void imageLoaded(Feed*);
 
         protected:
             /** loads articles from archive **/
@@ -257,6 +255,7 @@ namespace Akregator
         private slots:
 
             void fetchCompleted(Loader *loader, Document doc, Status status);
+            void slotImageFetched(const QPixmap& image);
 
         private:
             
@@ -286,8 +285,6 @@ namespace Akregator
             bool m_useNotification;
             int m_lastFetched;
 
-            FetchTransaction* m_transaction;
-
             bool m_fetchError;
             int m_fetchTries;
             bool m_followDiscovery;
@@ -310,7 +307,8 @@ namespace Akregator
             /** list of deleted articles **/
             ArticleSequence m_deletedArticles;
             
-            QPixmap m_image;
+            QPixmap m_imagePixmap;
+            RSS::Image m_image;
             QPixmap m_favicon;
             KPIM::ProgressItem *m_progressItem;
     };

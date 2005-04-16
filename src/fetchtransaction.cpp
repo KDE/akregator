@@ -32,10 +32,8 @@
 using namespace Akregator;
 
 FetchTransaction::FetchTransaction(QObject *parent): QObject(parent, "transaction"),
-    m_fetchList(), m_currentFetches(), m_imageFetchList(), m_currentImageFetches(), m_imageFetchDict(), m_totalFetches(0), m_running(false)
+    m_fetchList(), m_currentFetches(), m_totalFetches(0), m_running(false)
 {
-    m_currentImageFetches.setAutoDelete(true);
-
     m_concurrentFetches=Settings::concurrentFetches();
 }
 
@@ -75,10 +73,7 @@ void FetchTransaction::stop()
     for (f=m_currentFetches.first(); f; f=m_currentFetches.next())
         f->slotAbortFetch();
 
-    for (Image* i=m_currentImageFetches.first(); i; i=m_currentImageFetches.next())
-        i->abort();
-
-    m_running = false;   
+    m_running = false;
     clear();
 }
 
@@ -89,11 +84,6 @@ void FetchTransaction::clear()
 
     m_fetchList.clear();
     m_currentFetches.clear();
-    
-    m_currentImageFetches.clear();
-    m_imageFetchList.setAutoDelete(true);
-    m_imageFetchList.clear();
-    m_imageFetchList.setAutoDelete(false);
     
     m_fetchesDone = 0;
     m_totalFetches = 0;    
@@ -110,8 +100,7 @@ void FetchTransaction::slotFetchNextFeed()
     Feed *f = m_fetchList.at(0);
     if (!f)
         return;
-    //kdDebug() << "starting fetch: " << f << endl;
-    f->fetch(false, this);
+    f->fetch(false);
     m_currentFetches.append(f);
     m_fetchList.remove((uint)0);
 }
@@ -159,57 +148,9 @@ void FetchTransaction::feedDone(Feed *f)
     
     if (m_fetchList.isEmpty() && m_currentFetches.isEmpty())
     {
-        startFetchImages();
         m_running = false;
         emit completed();
     }
-}
-
-void FetchTransaction::addImage(Feed *f, Image *i)
-{
-    // create a copy, don't use the pointer directly!
-    RSS::Image* imgCopy = new RSS::Image(*i);
-    m_imageFetchList.append(imgCopy);
-    m_imageFetchDict.insert(imgCopy, f);
-    
-    connectToFeed(f);
-}
-
-void FetchTransaction::slotFetchNextImage()
-{
-    Image *i = m_imageFetchList.at(0);
-    if (!i)
-        return;
-    m_imageFetchList.remove((uint)0);
-    m_currentImageFetches.append(i);
-
-    connect (i, SIGNAL(gotPixmap(const QPixmap &)),
-             this, SLOT(slotImageFetched(const QPixmap &)));
-    i->getPixmap();
-    
-}
-
-void FetchTransaction::startFetchImages()
-{
-    for (int i = 0; i < m_concurrentFetches; ++i)
-        slotFetchNextImage();
-}
-
-void FetchTransaction::slotImageFetched(const QPixmap &p)
-{
-    const Image *i=static_cast<const Image*>(sender());
-    if (!i) return;
-
-    Feed *f=m_imageFetchDict[(Image*)i];
-    while (f)
-    {
-        f->setImage(p);
-        m_imageFetchDict.remove((Image*)i);
-        f=m_imageFetchDict[(Image*)i];
-    }
-    m_currentImageFetches.remove((Image*)i);
-    
-    slotFetchNextImage();
 }
 
 void FetchTransaction::connectToFeed(Feed* feed)
@@ -225,14 +166,7 @@ void FetchTransaction::disconnectFromFeed(Feed* feed)
     disconnect (feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     disconnect (feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
     disconnect (feed, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
-
-    // NOTE: Don't disconnect from signalDestroyed(), since that leads
-    // to problems when the feed is deleted after RSS fetching
-    // (and would be disconnected) but before Icon/Image fetching. This will
-    // lead to some unnecessary slotNodeDestroyed() calls, but since feeds
-    // are deleted only rarely, we can live with that.
-    
-//    disconnect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
+    disconnect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
 }
 
 void FetchTransaction::slotNodeDestroyed(TreeNode* node)
@@ -242,9 +176,8 @@ void FetchTransaction::slotNodeDestroyed(TreeNode* node)
     if (!feed)
         return;
 
-     // remove all occurrences of this feed
+    // remove all occurrences of this feed
     while (m_fetchList.remove(feed)) /** do nothing */;
-    while (m_imageFetchDict.remove(feed)) /** do nothing */;
 }
 
 #include "fetchtransaction.moc"

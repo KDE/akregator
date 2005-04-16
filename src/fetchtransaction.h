@@ -61,9 +61,7 @@ class FetchTransaction : public QObject
         int totalFetches() { return m_totalFetches; }
 
         void addFeed(Feed *f);
-        void addImage(Feed *f, RSS::Image *i);
 
-        
 
     signals:
         
@@ -77,8 +75,7 @@ class FetchTransaction : public QObject
         
         void connectToFeed(Feed* feed);
         void disconnectFromFeed(Feed* feed);
-        void startFetchImages();
-        
+
     protected slots:
         
         void slotNodeDestroyed(TreeNode* node);
@@ -86,18 +83,10 @@ class FetchTransaction : public QObject
         void slotFetchError(Feed *);
         void slotFetchAborted(Feed *);
         void slotFetchNextFeed();
-        void slotFetchNextImage();
-        
-        void slotImageFetched(const QPixmap &);
-
-    private: 
+    private:
 
         QPtrList<Feed> m_fetchList;
         QPtrList<Feed> m_currentFetches;
-
-        QPtrList<RSS::Image> m_imageFetchList;
-        QPtrList<RSS::Image> m_currentImageFetches;
-        QPtrDict<Feed> m_imageFetchDict;
 
         int m_totalFetches;
         int m_fetchesDone;

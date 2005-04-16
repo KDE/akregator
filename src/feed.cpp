@@ -189,13 +189,13 @@ Feed::Feed()
     , m_maxArticleNumber(1000)
     , m_markImmediatelyAsRead(false)
     , m_useNotification(false)
-    , m_transaction(0)
     , m_fetchError(false)
     , m_fetchTries(0)
     , m_loader(0)
     , m_articlesLoaded(false)
     , m_archive(0)
     , m_articles()
+    , m_image()
     , m_favicon()
     , m_progressItem(0)
 {
@@ -353,10 +353,9 @@ void Feed::appendArticle(const MyArticle& a)
 }
 
 
-void Feed::fetch(bool followDiscovery, FetchTransaction *trans)
+void Feed::fetch(bool followDiscovery)
 {
     m_followDiscovery = followDiscovery;
-    m_transaction = trans;
     m_fetchTries = 0;
 
     // mark all new as unread
@@ -399,6 +398,11 @@ void Feed::tryFetch()
     m_loader->loadFrom( m_xmlUrl, new FileRetriever );
 }
 
+void Feed::slotImageFetched(const QPixmap& image)
+{
+    setImage(image);
+}
+
 void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 {
     // Note that loader instances delete themselves
@@ -427,8 +431,6 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
             m_progressItem->setComplete();
             m_progressItem = 0;
         }
-
-        m_transaction = 0;
 
         if (status == Aborted)
         {
@@ -464,15 +466,19 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     m_fetchError = false;
     
-    if (m_image.isNull())
+    if (m_imagePixmap.isNull())
     {
         QString u = m_xmlUrl;
         QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
-        m_image=QPixmap(imageFileName, "PNG");
+        m_imagePixmap=QPixmap(imageFileName, "PNG");
 
         // if we aint got teh image and the feed provides one, get it....
-        if (m_image.isNull() && doc.image() && m_transaction)
-            m_transaction->addImage(this, doc.image());
+        if (m_imagePixmap.isNull() && doc.image())
+        {
+            m_image = *doc.image();
+            connect(&m_image, SIGNAL(gotPixmap(const QPixmap&)), this, SLOT(slotImageFetched(const QPixmap&)));
+            m_image.getPixmap();
+        }   
     }
 
     if (title().isEmpty())
@@ -483,7 +489,6 @@ void Feed::fetchCompleted(Loader *l, Document doc, Status status)
 
     appendArticles(doc);
 
-    m_transaction = 0;
     m_archive->setLastFetch( QDateTime::currentDateTime().toTime_t());
     emit fetched(this);
 }
@@ -534,10 +539,10 @@ void Feed::setImage(const QPixmap &p)
 {
     if (p.isNull())
         return;
-    m_image=p;
+    m_imagePixmap=p;
     QString u = m_xmlUrl;
-    m_image.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
-    emit(imageLoaded(this));
+    m_imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
+    modified();
 }
 
 Feed::ArchiveMode Feed::archiveMode() const
