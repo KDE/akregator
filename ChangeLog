@@ -10,14 +10,19 @@ New features:
        
 Changes:
        - Changed prev/next unread article actions to cycle through all unread articles -fo	
+       - The article archive is now configurable, using metakit implementation as default.
+         This increases startup speed and reduces memory usage significantly -fo
        
 Bug fixes:
 
+	- Respect markImmediatelyAsRead setting when updating articles (#103502) -fo
+	- make "fetch feeds on startup" option work again (#102085) -fo
+	- Fix favicons, load them on startup (#94888) -fo
 	- make BrowserRun delete itself when the Viewer gets destroyed (#101413) -tpr
         - tolerate leading and trailing whitespace in the Add Feed Dialog (#101988) -fo
         - fixed confusion of "disable archiving" and expiry by age (#101907) -fo
         - show open|save|cancel dialog for non-html links (101274) -fo
-	- make forms work again (regression) #94964 -fo
+	- make forms work again (regression) (#94964) -fo
 	- fix notification when running as kontact plugin -fo
 
 
