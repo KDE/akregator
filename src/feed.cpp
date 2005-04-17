@@ -80,7 +80,7 @@ Feed* Feed::fromOPML(QDomElement e)
 
         QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
-        bool useCustomFetchInterval = e.attribute("y") == "true";
+        bool useCustomFetchInterval = e.attribute("useCustomFetchInterval") == "true";
 
         QString htmlUrl = e.attribute("htmlUrl");
         QString description = e.attribute("description");
@@ -217,7 +217,7 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute( "htmlUrl", m_htmlUrl );
     el.setAttribute( "id", QString::number(id()) );
     el.setAttribute( "description", m_description );
-    el.setAttribute( "autoFetch", (useCustomFetchInterval() ? "true" : "false") );
+    el.setAttribute( "useCustomFetchInterval", (useCustomFetchInterval() ? "true" : "false") );
     el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
     el.setAttribute( "archiveMode", archiveModeToString(m_archiveMode) );
     el.setAttribute( "maxArticleAge", m_maxArticleAge );
