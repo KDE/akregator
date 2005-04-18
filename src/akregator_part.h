@@ -38,6 +38,7 @@ class QTimer;
 
 class KAboutData;
 class KConfig;
+class KURL;
 class KParts::BrowserExtension;
 
 namespace Akregator
@@ -171,8 +172,8 @@ namespace Akregator
             /** This must be implemented by each part */
             virtual bool openFile();
 
-            void importFile(const QString& fileName);
-            void exportFile(const QString& fileName);
+            void importFile(const KURL& url);
+            void exportFile(const KURL& url);
             
             /** FIXME: hack to get the tray icon working */
             QWidget* getMainWindow();

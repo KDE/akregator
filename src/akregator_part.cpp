@@ -35,16 +35,18 @@
 #include <kinstance.h>
 #include <kmainwindow.h>
 #include <kmessagebox.h>
+#include <knotifyclient.h>
 #include <knotifydialog.h>
 #include <kpopupmenu.h>
 #include <kservice.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
+#include <ktempfile.h>
 #include <ktrader.h>
+#include <kio/netaccess.h>
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
 #include <kparts/partmanager.h>
-#include <knotifyclient.h>
 
 #include <qfile.h>
 #include <qobjectlist.h>
@@ -631,49 +633,82 @@ QWidget* Part::getMainWindow()
 }
 
 
-void Part::importFile(const QString& fileName)
+void Part::importFile(const KURL& url)
 {
-    QFile file(fileName);
-    if (file.open(IO_ReadOnly) == false)
-        return;
+    QString filename;
 
-    // Read OPML feeds list and build QDom tree.
-    QDomDocument doc;
-    if (!doc.setContent(file.readAll())) {
-        kdDebug() << "Failed to build DOM tree, is " << fileName << " valid XML?" << endl;
-        return;
+    bool isRemote = false;
+
+    if (url.isLocalFile())
+        filename = url.path();
+    else
+    {
+        isRemote = true;
+        
+        if (!KIO::NetAccess::download(url, filename, m_view) )
+        {
+            KMessageBox::error(m_view, KIO::NetAccess::lastErrorString() );
+            return;
+        }
     }
-
-    m_view->importFeeds(doc);
+    
+    QFile file(filename);
+    if (file.open(IO_ReadOnly))
+    {    
+        // Read OPML feeds list and build QDom tree.
+        QDomDocument doc;
+        if (doc.setContent(file.readAll()))
+            m_view->importFeeds(doc);
+        else    
+            KMessageBox::error(m_view, i18n("Couldn't import the file %1 (no valid OPML)").arg(filename), i18n("OPML Parsing Error") );
+    }
+    else 
+        KMessageBox::error(m_view, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.").arg(filename), i18n("Read Error"));
+    
+    if (isRemote)
+        KIO::NetAccess::removeTempFile(filename);
 }
 
-void Part::exportFile(const QString& fileName)
+void Part::exportFile(const KURL& url)
 {
-   // TODO we could KIO here instead of QFile
-    QFile file(fileName);
-    if ( file.exists() )
-
-        if ( KMessageBox::questionYesNo(m_view,
-          i18n("The file %1 already exists; do you want to overwrite it?").arg(fileName),
-        i18n("Export"),
-        i18n("Overwrite"),
-        i18n("Cancel")) == KMessageBox::No )
-            return;
-
-    if ( !file.open(IO_WriteOnly) )
+    if (url.isLocalFile())
     {
-        KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(fileName), i18n("Write error") );
-        return;
-    }
-
-    // use QTextStream to dump the text to the file
-    QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8);
-
-    QDomDocument doc = m_view->feedListToOPML();
+        QFile file(url.path());
     
-    stream << doc.toString();
-    file.close();
+        if ( file.exists() &&
+                KMessageBox::questionYesNo(m_view,
+            i18n("The file %1 already exists; do you want to overwrite it?").arg(file.name()),
+            i18n("Export"),
+            i18n("Overwrite"),
+            i18n("Cancel")) == KMessageBox::No )
+            return;
+    
+        if ( !file.open(IO_WriteOnly) )
+        {
+            KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write error") );
+            return;
+        }
+    
+        QTextStream stream(&file);
+        stream.setEncoding(QTextStream::UnicodeUTF8);
+
+        stream << m_view->feedListToOPML().toString() << "\n";
+        file.close();
+    }
+    else
+    {
+        KTempFile tmpfile;
+        tmpfile.setAutoDelete(true);
+        
+        QTextStream stream(tmpfile.file());
+        stream.setEncoding(QTextStream::UnicodeUTF8);
+
+        stream << m_view->feedListToOPML().toString() << "\n";
+        tmpfile.close();
+        
+        if (!KIO::NetAccess::upload(tmpfile.name(), url, m_view))
+            KMessageBox::error(m_view, KIO::NetAccess::lastErrorString() );
+    }
 }
 
 /****************************************************************************/
@@ -683,7 +718,7 @@ void Part::exportFile(const QString& fileName)
 void Part::fileOpen()
 {
     // this slot is called whenever the File->Open menu is selected,
-    // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
+//     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
     // button is clicked
     QString file_name = KFileDialog::getOpenFileName( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
@@ -711,22 +746,22 @@ bool Akregator::Part::fileSaveAs()
 
 void Part::fileImport()
 {
-    QString file_name = KFileDialog::getOpenFileName( QString::null,
+    KURL url = KFileDialog::getOpenURL( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
-    if (file_name.isEmpty() == false)
-        importFile(file_name);
+    if (!url.isEmpty())
+        importFile(url);
 }
 
 void Part::fileExport()
 {
-    QString file_name = KFileDialog::getSaveFileName( QString::null,
+    KURL url= KFileDialog::getSaveURL( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
-    if ( !file_name.isEmpty() )
-        exportFile(file_name);
+    if ( !url.isEmpty() )
+        exportFile(url);
 }
 
 void Part::fileGetFeeds()
