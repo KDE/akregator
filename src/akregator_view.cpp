@@ -466,8 +466,7 @@ bool View::importFeeds(const QDomDocument& doc)
 
     if (!ok)
     {
-        delete m_feedList;
-        m_feedList = 0;
+        delete feedList;
         return false;
     }
     FeedGroup* fg = new FeedGroup(title);
