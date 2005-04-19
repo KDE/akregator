@@ -299,6 +299,11 @@ void View::slotOnShutdown()
     m_shuttingDown = true; // prevents slotFrameChanged from crashing
 
     m_transaction->stop();
+    
+    m_tree->setFeedList(0);
+    m_articleViewer->slotShowNode(0);
+    m_articles->slotShowNode(0);
+    
     kdDebug() << "View::slotOnShutdown(): delete feed list" << endl;
     delete m_feedList;
     
