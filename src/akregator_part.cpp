@@ -61,7 +61,6 @@
 #include "akregatorconfig.h"
 #include "akregator.h"
 #include "configdialog.h"
-#include "fetchtransaction.h"
 #include "frame.h"
 #include "myarticle.h"
 #include "notificationmanager.h"
@@ -188,10 +187,14 @@ void Part::setupActions()
 
 Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
-    : DCOPObject("AkregatorIface"), MyBasePart(parent, name), m_shuttingDown(false), m_parentWidget(parentWidget), m_storage(0)
+    : DCOPObject("AkregatorIface")
+       , MyBasePart(parent, name)
+       , m_standardListLoaded(false)
+       , m_shuttingDown(false)
+       , m_mergedPart(0)
+       , m_backedUpList(false)
+       , m_storage(0)
 {
-    m_mergedPart = 0;
-    m_backedUpList = false;
     // we need an instance
     setInstance( AkregatorFactory::instance() );
     
@@ -199,9 +202,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     KNotifyClient::startDaemon();
     
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
-
-    m_standardListLoaded = false;
-    m_loading = false;
 
     loadPlugins(); // FIXME: also unload them!
 
@@ -360,44 +360,17 @@ void Part::readProperties(KConfig* config)
 
 void Part::saveProperties(KConfig* config)
 {
-    if(m_view)
+    if (m_view)
+    {
+        slotSaveFeedList();
         m_view->saveProperties(config);
+    }
 }
-
-/****************************************************************************/
-/* LOAD                                                                     */
-/****************************************************************************/
 
 bool Part::openURL(const KURL& url)
 {
-    // stop whatever we're doing before opening a new feed list
-    if (m_loading)
-    {
-        m_view->endOperation();
-        m_delayURL=url;
-        QTimer::singleShot(1000, this, SLOT(openURLDelayed()));
-        return true;
-    }
-    else if (m_view->transaction()->isRunning())
-    {
-        m_view->endOperation();
-        m_view->transaction()->stop();
-        m_delayURL=url;
-        QTimer::singleShot(1000, this, SLOT(openURLDelayed()));
-        return true;
-    }
-    else
-    {
-        m_file = url.path();
-        bool ret = openFile();
-        return ret;
-    }
-}
-
-void Part::openURLDelayed()
-{
-    m_file = m_delayURL.path();
-    openFile();
+    m_file = url.path();
+    return openFile();
 }
 
 void Part::openStandardFeedList()
@@ -521,25 +494,9 @@ bool Part::openFile()
 
 bool Part::closeURL()
 {
-    m_view->endOperation();
-    setStatusBar(QString::null);
-
-    if (m_loading)
-    {
-        m_loading = false;
-        kdDebug() << "closeURL: stop loading" << endl;
-        return true;
-    }
-    else if (m_view->transaction()->isRunning())
-    {
-        m_view->transaction()->stop();
-        kdDebug() << "closeURL: stop transaction" << endl;
-        return true;
-    }
-
-   return MyBasePart::closeURL();
+    kdWarning() << "Part::closeURL() called!" << endl;
+    return MyBasePart::closeURL();
 }
-
 
 void Part::slotSaveFeedList()
 {
@@ -711,38 +668,8 @@ void Part::exportFile(const KURL& url)
     }
 }
 
-/****************************************************************************/
-/* SLOTS                                                                    */
-/****************************************************************************/
-
 void Part::fileOpen()
-{
-    // this slot is called whenever the File->Open menu is selected,
-//     // the Open shortcut is pressed (usually CTRL+O) or the Open toolbar
-    // button is clicked
-    QString file_name = KFileDialog::getOpenFileName( QString::null,
-                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
-                        +"\n*|" + i18n("All Files") );
-
-    if (file_name.isEmpty() == false)
-        openURL(file_name);
-}
-/*
-bool Akregator::Part::fileSaveAs()
-{
-    // this slot is called whenever the File->Save As menu is selected,
-    QString file_name = KFileDialog::getSaveFileName( QString::null,
-                        "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
-                        +"\n*|" + i18n("All Files") );
-    if (file_name.isEmpty() == false)
-    {
-        kdDebug() << "SaveAs called! Shouldn't ever happen!" << endl;
-        //saveAs(file_name);
-        return true;
-    }
-    return false;
-}
-*/
+{}
 
 void Part::fileImport()
 {
@@ -790,11 +717,6 @@ void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
     }
     NotificationManager::self()->slotNotifyFeeds(urls);
 }
-
-
-/****************************************************************************/
-/* STATIC METHODS                                                           */
-/****************************************************************************/
 
 KAboutData *Part::createAboutData()
 {
@@ -946,5 +868,3 @@ bool Part::copyFile(const QString& backup)
 
 } // namespace Akregator
 #include "akregator_part.moc"
-
-// vim: set et ts=4 sts=4 sw=4:

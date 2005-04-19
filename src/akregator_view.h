@@ -114,12 +114,6 @@ namespace Akregator
             /** Enables fetch actions and informs the frame to disable stop button */
             void endOperation();
             
-            /** stops a running operation and resets progress bar, re-enables actions etc. */
-            void operationError(/*const QString &msg*/);
-
-            /** returns the fetch transaction object */
-            FetchTransaction* transaction() { return m_transaction; }
-
             /** session management **/
             virtual void readProperties(KConfig* config);
             virtual void saveProperties(KConfig* config);
@@ -317,26 +311,10 @@ namespace Akregator
 
             enum ViewMode { NormalView=0, WidescreenView, CombinedView };  
 
-            /** the model of the feed tree */
             FeedList* m_feedList;
-            /**
-             * A tree of all feeds (Columns, Subscriptions).
-             */
             FeedsTree* m_tree;
-
-             /**
-             * List of documents for currently selected feed.
-             */
             ArticleList *m_articles;
-
-            /**
-             * Currently selected article renderer.
-             */
             ArticleViewer *m_articleViewer;
-
-            /**
-             * A tab widget for multiple viewers.
-             */
             TabWidget *m_tabs;
             
             QToolButton *m_tabsClose;
@@ -347,15 +325,16 @@ namespace Akregator
             KComboBox *m_searchCombo;
             KLineEdit *m_searchLine;
             QHBox* m_searchBar;
-            
             int m_queuedSearches;
             QString m_queuedSearch;
-            FetchTransaction *m_transaction;
-            
-            QSplitter *m_feedSplitter, *m_articleSplitter;
-            Akregator::Part *m_part;
             ArticleFilter *m_currentTextFilter;
             ArticleFilter *m_currentStatusFilter;
+
+            FetchTransaction *m_transaction;
+
+            QSplitter *m_articleSplitter;
+            QSplitter *m_feedSplitter;
+            Akregator::Part *m_part;
             ViewMode m_viewMode;
             
             QTimer *m_fetchTimer;

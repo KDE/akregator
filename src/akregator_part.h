@@ -105,15 +105,12 @@ namespace Akregator
              @param url URL to feedlist
              */
             virtual bool openURL(const KURL& url);
-            
-            /** Stops the feed fetching */
-            virtual bool closeURL();
 
+            virtual bool Part::closeURL();
+            
             /** Opens standard feedlist */
             virtual void openStandardFeedList();
 
-            bool isLoading () { return m_loading; }
-            
             virtual void fetchFeedUrl(const QString&);
 
             /** Fetch all feeds in the feed tree */
@@ -190,7 +187,6 @@ namespace Akregator
             void fileImport();
             void fileExport();
             void fileGetFeeds();
-            void openURLDelayed();
             
             /** Shows configuration dialog */
             void showOptions();
@@ -213,13 +209,10 @@ namespace Akregator
          
             QString m_standardFeedList;
             bool m_standardListLoaded;
-            bool m_loading;
             bool m_shuttingDown;
 
-            KURL m_delayURL;
             KParts::BrowserExtension *m_extension;
             KParts::Part* m_mergedPart;
-            QWidget *m_parentWidget;
             View* m_view;
             TrayIcon* m_trayIcon;
             QTimer* m_autosaveTimer;

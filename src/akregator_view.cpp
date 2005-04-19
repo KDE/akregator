@@ -614,14 +614,6 @@ void View::endOperation()
     m_mainFrame->setProgress(100);
 }
 
-void View::operationError(/*const QString& msg*/)
-{
-    m_mainFrame->setState(Frame::Canceled);
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
-    m_mainFrame->setProgress(-1);
-}
-
 void View::slotRemoveFrame()
 {
     Frame *f = m_tabs->currentFrame();
@@ -1137,7 +1129,7 @@ void View::displayInExternalBrowser(const KURL &url)
 
 void View::slotDoIntervalFetches()
 {
-    if ( m_transaction->isRunning() || m_part->isLoading() )
+    if ( m_transaction->isRunning())
         return;
 
     bool fetch = false;
@@ -1218,7 +1210,6 @@ void View::slotFeedFetched(Feed *feed)
             if ((*it).status()==MyArticle::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
             {
                 NotificationManager::self()->slotNotifyArticle(*it);
-            //    m_part->newArticle(feed, *it);     // will do systray notification
             }
         }
     }
@@ -1594,8 +1585,6 @@ void View::readProperties(KConfig* config) // this is called when session is bei
 // this is called when using session management and session is going to close
 void View::saveProperties(KConfig* config)
 {
-    // save the feedlist, fixes #84528, at least partially -tpr 20041025
-    m_part->slotSaveFeedList();
     // save filter settings
     config->writeEntry("searchLine", m_searchLine->text());
     config->writeEntry("searchCombo", m_searchCombo->currentItem());
