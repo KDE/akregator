@@ -48,7 +48,7 @@ class SearchBar : public QHBox
 
         void setDelay(int ms);
         int delay() const;
-        
+
     signals:
         void signalSearch(const ArticleFilter&, const ArticleFilter&);
 

@@ -109,7 +109,7 @@ View::~View()
 View::View( Part *part, QWidget *parent, const char *name)
  : QWidget(parent, name), m_viewMode(NormalView)
 {
-     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+    m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part = part;
     m_feedList = new FeedList();
     m_shuttingDown = false;
@@ -391,35 +391,6 @@ void View::slotAbortFetches()
     endOperation();
     m_transaction->stop();
 }
-
-QString View::getTitleNodeText(const QDomDocument &doc)
-{
-    if (doc.documentElement().tagName().lower() != "opml")
-        return QString::null;
-
-    QDomNode headNode = doc.documentElement().firstChild();
-    while (!headNode.isNull() &&
-        headNode.toElement().tagName().lower() != "head") {
-        headNode = headNode.nextSibling();
-    }
-
-    if (headNode.isNull()) {
-        return QString::null;
-    }
-
-    QDomNode textNode=headNode.namedItem("text");
-    if (textNode.isNull())
-        textNode=headNode.namedItem("title");
-    if (textNode.isNull())
-        return QString::null;
-
-    QString result = textNode.toElement().text().simplifyWhiteSpace();
-    if (result.isEmpty())
-        return QString::null;
-
-    return result;
-}
-
 
 bool View::importFeeds(const QDomDocument& doc)
 {
@@ -1521,5 +1492,3 @@ void View::disconnectFromFeedList(FeedList* feedList)
     disconnect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
 }
 #include "akregator_view.moc"
-
-// vim: set et ts=4 sts=4 sw=4:

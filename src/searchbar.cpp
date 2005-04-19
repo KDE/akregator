@@ -31,10 +31,12 @@
 #include <kiconloader.h>
 #include <klineedit.h>
 #include <klocale.h>
+#include <kstandarddirs.h>
 
 #include <qapplication.h>
 #include <qhbox.h>
 #include <qlabel.h>
+#include <qpixmap.h>
 #include <qstring.h>
 #include <qtimer.h>
 #include <qtoolbutton.h>
@@ -79,13 +81,16 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : QHBox(parent, name), d
     statusLabel->setText( i18n("Status:") );
 
     d->searchCombo = new KComboBox(this, "searchcombo");
-
-    d->searchCombo->insertItem(SmallIcon("exec"), i18n("All Articles"));
+    QPixmap iconAll = KGlobal::iconLoader()->loadIcon("exec", KIcon::Small);
+    QPixmap iconNew(locate("data", "akregator/pics/kmmsgnew.png"));
+    QPixmap iconUnread(locate("data", "akregator/pics/kmmsgunseen.png"));
+    QPixmap iconKeep(locate("data", "akregator/pics/kmmsgflag.png"));
+    
+    d->searchCombo->insertItem(iconAll, i18n("All Articles"));
     d->searchCombo->insertItem(i18n("New & Unread"));
-    d->searchCombo->insertItem(SmallIcon("kmmsgnew"), i18n("New"));
-    d->searchCombo->insertItem(SmallIcon("kmmsgunseen"), i18n("Unread"));
-    d->searchCombo->insertItem(SmallIcon("kmmsgflag"), i18n("Keep Flag Set"));
-    d->searchCombo->setCurrentItem(Settings::quickFilter());
+    d->searchCombo->insertItem(iconNew, i18n("New"));
+    d->searchCombo->insertItem(iconUnread, i18n("Unread"));
+    d->searchCombo->insertItem(iconKeep, i18n("Keep Flag Set"));
     
     QToolTip::add( clearButton, i18n( "Clear filter" ) );
     QToolTip::add( d->searchLine, i18n( "Enter space-separated terms to filter article list" ) );
@@ -144,9 +149,8 @@ void SearchBar::slotSetText(const QString& text)
      d->searchLine->setText(text);
 }
         
-void SearchBar::slotSearchComboChanged(int index)
+void SearchBar::slotSearchComboChanged(int /*index*/)
 {
-    Settings::setQuickFilter(index);
     if (d->timer.isActive())
         d->timer.stop();    
         

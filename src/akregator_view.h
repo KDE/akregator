@@ -289,9 +289,7 @@ namespace Akregator
 
             void slotRemoveFrame();
             
-            QString getTitleNodeText(const QDomDocument &doc);
-
-       	    void setTabIcon(const QPixmap&);
+            void setTabIcon(const QPixmap&);
 
             void showFetchStatus();
 
