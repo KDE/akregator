@@ -424,6 +424,12 @@ void View::slotLoadingProgress(int percent)
     m_part->setProgress(percent);
 }
 
+void View::slotAbortFetches()
+{
+    endOperation();
+    m_transaction->stop();
+}
+
 QString View::getTitleNodeText(const QDomDocument &doc)
 {
     if (doc.documentElement().tagName().lower() != "opml")

@@ -492,10 +492,10 @@ bool Part::openFile()
     return true;
 }
 
-bool Part::closeURL()
+void Part::slotStop()
 {
-    kdWarning() << "Part::closeURL() called!" << endl;
-    return MyBasePart::closeURL();
+    m_view->slotAbortFetches();
+    setStatusBar(QString::null);
 }
 
 void Part::slotSaveFeedList()

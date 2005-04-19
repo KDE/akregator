@@ -192,7 +192,7 @@ namespace Akregator
             void slotCompleted();
             void slotLoadingProgress(int);
 
-            
+            void slotAbortFetches();
             void slotFetchesCompleted();
            
             /** Feed has been fetched, populate article view if needed and update counters. */

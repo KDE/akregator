@@ -106,8 +106,6 @@ namespace Akregator
              */
             virtual bool openURL(const KURL& url);
 
-            virtual bool Part::closeURL();
-            
             /** Opens standard feedlist */
             virtual void openStandardFeedList();
 
@@ -203,7 +201,7 @@ namespace Akregator
             static QDomDocument createDefaultFeedList();
 
         private slots:
-            void slotStop() {closeURL(); };
+            void slotStop();
 
          private: // attributes
          
