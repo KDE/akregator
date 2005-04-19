@@ -40,7 +40,7 @@
 #include "feedlist.h"
 #include "akregatorconfig.h"
 #include "pageviewer.h"
-#include "articlefilter.h"
+#include "searchbar.h"
 #include "storage.h"
 #include "tabwidget.h"
 #include "treenode.h"
@@ -166,50 +166,15 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     QWhatsThis::add(m_mainTab, i18n("Articles list."));
 
-    m_searchBar = new QHBox(m_mainTab);
-    m_searchBar->setMargin(2);
-    m_searchBar->setSpacing(5);
-    m_searchBar->setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
-    QToolButton *clearButton = new QToolButton( m_searchBar );
-    clearButton->setIconSet( SmallIconSet( QApplication::reverseLayout() ? "clear_left" : "locationbar_erase" ) );
+    m_searchBar = new SearchBar(m_mainTab);
 
-    clearButton->setAutoRaise(true);
-
-    QLabel* searchLabel = new QLabel(m_searchBar);
-    searchLabel->setText( i18n("S&earch:") );
-
-    m_searchLine = new KLineEdit(m_searchBar, "searchline");
-    searchLabel->setBuddy(m_searchLine);
-
-    QLabel* statusLabel = new QLabel(m_searchBar);
-    statusLabel->setText( i18n("Status:") );
-
-    m_searchCombo = new KComboBox(m_searchBar, "searchcombo");
-    mainTabLayout->add(m_searchBar);
-
+    connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), this, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
+    
     if ( !Settings::showQuickFilter() )
         m_searchBar->hide();
 
-    m_searchCombo->insertItem(SmallIcon("exec"), i18n("All Articles"));
-    m_searchCombo->insertItem(i18n("New & Unread"));
-    m_searchCombo->insertItem(SmallIcon("kmmsgnew"), i18n("New"));
-    m_searchCombo->insertItem(SmallIcon("kmmsgunseen"), i18n("Unread"));
-    m_searchCombo->insertItem(SmallIcon("kmmsgflag"), i18n("Keep Flag Set"));
-
-    QToolTip::add( clearButton, i18n( "Clear filter" ) );
-    QToolTip::add( m_searchLine, i18n( "Enter space-separated terms to filter article list" ) );
-    QToolTip::add( m_searchCombo, i18n( "Choose what kind of articles to show in article list" ) );
-
-    connect(clearButton, SIGNAL( clicked() ),
-                    this, SLOT(slotClearFilter()) );
-    connect(m_searchCombo, SIGNAL(activated(int)),
-                        this, SLOT(slotSearchComboChanged(int)));
-    connect(m_searchLine, SIGNAL(textChanged(const QString &)),
-                        this, SLOT(slotSearchTextChanged(const QString &)));
-
-    m_currentTextFilter=0;
-    m_currentStatusFilter=0;
-    m_queuedSearches=0;
+    mainTabLayout->addWidget(m_searchBar);
+    
     m_fetchTimer=0;
 
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
@@ -246,9 +211,6 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     m_feedSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
-
-    m_searchCombo->setCurrentItem(Settings::quickFilter());
-    slotSearchComboChanged(Settings::quickFilter());
 
     switch (Settings::viewMode())
     {
@@ -1194,9 +1156,7 @@ void View::slotFetchCurrentFeed()
 
 void View::slotFetchAllFeeds()
 {
-    // this iterator iterates through ALL child items
     showFetchStatus();
-
     m_feedList->rootNode()->slotAddToFetchTransaction(m_transaction);
     startOperation();
     m_transaction->start();
@@ -1349,87 +1309,10 @@ void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupIt
     }
 }
 
-void View::slotSearchComboChanged(int index)
+void View::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
 {
-    Settings::setQuickFilter( index );
-    updateSearch();
-}
-
-// from klistviewsearchline
-void View::slotSearchTextChanged(const QString &search)
-{
-    m_queuedSearches++;
-    m_queuedSearch = search;
-    QTimer::singleShot(200, this, SLOT(slotActivateSearch()));
-}
-
-void View::slotActivateSearch()
-{
-    m_queuedSearches--;
-
-    if(m_queuedSearches == 0)
-        updateSearch(m_queuedSearch);
-}
-
-void View::updateSearch(const QString &s)
-{
-    delete m_currentTextFilter;
-    delete m_currentStatusFilter;
-
-    QValueList<Criterion> textCriteria;
-    QValueList<Criterion> statusCriteria;
-
-    QString textSearch=s.isNull() ? m_searchLine->text() : s;
-
-    if (!textSearch.isEmpty())
-    {
-        Criterion subjCrit( Criterion::Title, Criterion::Contains, textSearch );
-        textCriteria << subjCrit;
-        Criterion crit1( Criterion::Description, Criterion::Contains, textSearch );
-        textCriteria << crit1;
-    }
-
-    if (m_searchCombo->currentItem())
-    {
-        switch (m_searchCombo->currentItem())
-        {
-            case 1: // New & Unread
-            {
-                Criterion crit1( Criterion::Status, Criterion::Equals, MyArticle::New);
-                Criterion crit2( Criterion::Status, Criterion::Equals, MyArticle::Unread);
-                statusCriteria << crit1;
-                statusCriteria << crit2;
-                break;
-            }
-            case 2: // New
-            {
-                Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::New);
-                statusCriteria << crit;
-                break;
-            }
-            case 3: // Unread
-            {
-                Criterion crit( Criterion::Status, Criterion::Equals, MyArticle::Unread);
-                statusCriteria << crit;
-                break;
-            }
-            case 4: // Keep flag set
-            {
-                Criterion crit( Criterion::KeepFlag, Criterion::Equals, true);
-                statusCriteria << crit;
-                break;
-            }
-            default:
-                break;
-        }
-    }
-
-    m_currentTextFilter = new ArticleFilter(textCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
-    m_currentStatusFilter = new ArticleFilter(statusCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
-
-
-    m_articleViewer->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
-    m_articles->slotSetFilter(*m_currentTextFilter, *m_currentStatusFilter);
+    m_articleViewer->slotSetFilter(textFilter, statusFilter);
+    m_articles->slotSetFilter(textFilter, statusFilter);
 }
 
 void View::slotToggleShowQuickFilter()
@@ -1437,10 +1320,8 @@ void View::slotToggleShowQuickFilter()
     if ( Settings::showQuickFilter() )
     {
         Settings::setShowQuickFilter(false);
+        m_searchBar->slotClearSearch();
         m_searchBar->hide();
-        m_searchLine->clear();
-        m_searchCombo->setCurrentItem(0);
-        updateSearch();
     }
     else
     {
@@ -1548,19 +1429,12 @@ void View::slotMouseOverInfo(const KFileItem *kifi)
     }
 }
 
-void View::slotClearFilter()
-{
-    m_searchLine->clear();
-    m_searchCombo->setCurrentItem(0);
-}
-
 void View::readProperties(KConfig* config) // this is called when session is being restored
 {
     // read filter settings
-    m_searchLine->setText(config->readEntry("searchLine"));
-    m_searchCombo->setCurrentItem(config->readEntry("searchCombo").toInt());
-    slotSearchComboChanged(config->readEntry("searchCombo").toInt());
-
+    m_searchBar->slotSetText(config->readEntry("searchLine"));
+    m_searchBar->slotSetStatus(config->readEntry("searchCombo").toInt());
+    
     // read the position of the selected feed
 
     QString selectedFeed = config->readEntry("selectedFeed");
@@ -1597,8 +1471,8 @@ void View::readProperties(KConfig* config) // this is called when session is bei
 void View::saveProperties(KConfig* config)
 {
     // save filter settings
-    config->writeEntry("searchLine", m_searchLine->text());
-    config->writeEntry("searchCombo", m_searchCombo->currentItem());
+    config->writeEntry("searchLine", m_searchBar->text());
+    config->writeEntry("searchCombo", m_searchBar->status());
 
     // write the position of the currently selected feed
     // format is a string, e.g. "3 2 1" means

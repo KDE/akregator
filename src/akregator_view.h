@@ -60,6 +60,7 @@ namespace Akregator
     class FetchTransaction;
     class Frame;
     class Part;
+    class SearchBar;
     class TabWidget;
     class TreeNodeItem;
 
@@ -178,8 +179,7 @@ namespace Akregator
             /** called when URLs are dropped into the tree view */
             void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FeedGroupItem *parent);
      
-            void slotSearchComboChanged(int index);
-            void slotSearchTextChanged(const QString &search);
+            void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
 
             /** displays a URL in the status bar when the user moves the mouse over a link */
             void slotMouseOverInfo(const KFileItem *kifi);
@@ -272,9 +272,6 @@ namespace Akregator
             void slotFeedsTreeHome();
             void slotFeedsTreeEnd();
             
-            /** This clears filter text and status */
-            void slotClearFilter();
-
         protected:
 
             void addFeed(const QString& url, TreeNode* after, FeedGroup* parent, bool autoExec = true);
@@ -288,8 +285,6 @@ namespace Akregator
             
             void delayedInit();
             
-            void slotActivateSearch();
-                    
             void connectFrame(Frame *);
 
             void slotRemoveFrame();
@@ -297,8 +292,6 @@ namespace Akregator
             QString getTitleNodeText(const QDomDocument &doc);
 
        	    void setTabIcon(const QPixmap&);
-
-            void updateSearch(const QString &s=QString::null);
 
             void showFetchStatus();
 
@@ -322,13 +315,7 @@ namespace Akregator
             Frame *m_mainFrame;
             Frame *m_currentFrame;
 
-            KComboBox *m_searchCombo;
-            KLineEdit *m_searchLine;
-            QHBox* m_searchBar;
-            int m_queuedSearches;
-            QString m_queuedSearch;
-            ArticleFilter *m_currentTextFilter;
-            ArticleFilter *m_currentStatusFilter;
+            SearchBar* m_searchBar;
 
             FetchTransaction *m_transaction;
 
