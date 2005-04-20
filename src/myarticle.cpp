@@ -85,7 +85,7 @@ void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
     d->status = Private::New;
     d->hash = calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() + QString::number(article.comments()) );
 
-        d->guid = article.guid();
+    d->guid = article.guid();
     
     if (!d->archive->contains(d->guid))
     {
@@ -124,6 +124,7 @@ void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
     }
     else if (d->hash != d->archive->hash(d->guid)) //article is in archive, was it modified?
     { // if yes, update
+        d->pubDate.setTime_t(d->archive->pubDate(d->guid));
         d->archive->setHash(d->guid, d->hash);
         QString title = article.title().isEmpty() ? buildTitle() :  article.title();
         d->archive->setTitle(d->guid, title);
@@ -334,7 +335,6 @@ const QDateTime& MyArticle::pubDate() const
 {
     return d->pubDate;
 }
-
 
 QString MyArticle::buildTitle()
 {

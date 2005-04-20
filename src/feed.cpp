@@ -289,11 +289,11 @@ void Feed::appendArticles(const Document &d)
         else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !(*old).isDeleted())
         {
             mya.setKeep((*old).keep());
+            m_articles.remove(old);
             appendArticle(mya);
             // reset status to New
             if (!mya.isDeleted() && !markImmediatelyAsRead())
                 mya.setStatus(MyArticle::New);
-            m_articles.remove(old);
             changed = true;
         }
         else if ((*old).isDeleted())
