@@ -2,6 +2,9 @@
 Type=ServiceType
 X-KDE-ServiceType=Akregator/Plugin
 Comment=Plugin for Akregator
+Comment[es]=Extensión para Akregator
+Comment[ga]=Breiseán Akregator
+Comment[sv]=Insticksprogram för Akregator
 
 
 # Type of plugin, e.g. "storage".
