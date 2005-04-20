@@ -124,15 +124,28 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
         d->numComments = elemText.toInt();
     }
 
-    tagName=(format==AtomFeed)? QString::fromLatin1("id"): QString::fromLatin1("guid");
-    QDomNode n = node.namedItem(tagName);
-	if (!n.isNull()) {
-		d->guidIsPermaLink = (format==AtomFeed)? false : true;
-		if (n.toElement().attribute(QString::fromLatin1("isPermaLink"), "true") == "false") d->guidIsPermaLink = false;
+    QDomElement element = QDomNode(node).toElement();
 
-		if (!(elemText = extractNode(node, tagName)).isNull())
-			d->guid = elemText;
-	}
+    // in RSS 1.0, we use <item about> attribute as ID
+    // FIXME: pass format version instead of checking for attribute
+
+    if (!element.isNull() && element.hasAttribute(QString::fromLatin1("rdf:about")))
+    {
+        d->guid = element.attribute(QString::fromLatin1("rdf:about")); // HACK: using ns properly did not work
+        d->guidIsPermaLink = false;
+    }
+    else
+    {
+        tagName=(format==AtomFeed)? QString::fromLatin1("id"): QString::fromLatin1("guid");
+        QDomNode n = node.namedItem(tagName);
+	    if (!n.isNull())
+        {
+            d->guidIsPermaLink = (format==AtomFeed)? false : true;
+            if (n.toElement().attribute(QString::fromLatin1("isPermaLink"), "true") == "false") d->guidIsPermaLink = false;
+            if (!(elemText = extractNode(node, tagName)).isNull())
+                d->guid = elemText;
+        }
+    }    
 
 	if(d->guid.isEmpty()) {
 		d->guidIsPermaLink = false;
