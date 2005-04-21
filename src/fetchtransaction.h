@@ -22,57 +22,51 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef FETCHTRANSACTION_H
-#define FETCHTRANSACTION_H
+#ifndef AKREGATOR_FETCHQUEUE_H
+#define AKREGATOR_FETCHQUEUE_H
 
 #include <qobject.h>
-#include <qdict.h>
-#include <qptrdict.h>
-
-#include "feed.h"
 
 namespace Akregator {
 
-class FetchTransaction : public QObject
+class Feed;
+class TreeNode;
+
+class FetchQueue : public QObject
 {
     Q_OBJECT
 
     public:
-        FetchTransaction(QObject *parent);
-        ~FetchTransaction();
 
-        /** starts the transaction when not already running */
-
-        void start();
+        static FetchQueue* self();
         
-        /** stops a running transaction and clears the fetch lists. Does nothing when not running, to reset a not-running transaction call @ref clear(). */
+        FetchQueue(QObject* parent=0, const char* name=0);
+        virtual ~FetchQueue();
 
-        void stop();
-
-        /** clear the fetch lists and resets the fetch transaction. Does nothing when running, you have to call @ref stop() then */
-
-        void clear();
-
-        /** returns whether the transaction is in state @c running */
+        /** returns true when no feeds are neither fetching nor queued */
+        bool isEmpty();
         
-        bool isRunning() { return m_running; }
-        
-        int fetchesDone() { return m_fetchesDone; }
-        int totalFetches() { return m_totalFetches; }
-
+        /** adds a feed to the queue */
         void addFeed(Feed *f);
 
-
-    signals:
+    public slots:
+    
+        /** aborts currently fetching feeds and empties the queue */
+        void slotAbort();
         
-        void completed();
+    signals:
+
+        void signalStarted();
+        void signalStopped();
         void fetched(Feed*);
         void fetchError(Feed*);
 
     protected: 
 
-        void feedDone(Feed *f);
+        /** fetches the next feed in the queue, unless the maximum of concurrent fetches is reached */
+        void fetchNextFeed();
         
+        void feedDone(Feed *f);
         void connectToFeed(Feed* feed);
         void disconnectFromFeed(Feed* feed);
 
@@ -82,17 +76,12 @@ class FetchTransaction : public QObject
         void slotFeedFetched(Feed *);
         void slotFetchError(Feed *);
         void slotFetchAborted(Feed *);
-        void slotFetchNextFeed();
+        
     private:
-
-        QPtrList<Feed> m_fetchList;
-        QPtrList<Feed> m_currentFetches;
-
-        int m_totalFetches;
-        int m_fetchesDone;
-
-        int m_concurrentFetches;
-        bool m_running;
+        static FetchQueue* m_self;
+        
+        class FetchQueuePrivate;
+        FetchQueuePrivate* d;
 };
 
 } // namespace Akregator

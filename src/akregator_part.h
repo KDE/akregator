@@ -95,12 +95,6 @@ namespace Akregator
             void setCanceled(KParts::Part* part, const QString &s);
 
             /**
-             Sets the caption of the mainwindow by emiting a signal. You shouldn't use this because there's only one feedlist
-             @param text New caption
-             */
-            void setCaption(const QString &text);
-            
-            /**
              Opens feedlist
              @param url URL to feedlist
              */
@@ -185,7 +179,7 @@ namespace Akregator
             void fileImport();
             void fileExport();
             void fileGetFeeds();
-            
+
             /** Shows configuration dialog */
             void showOptions();
             void showKNotifyOptions();
@@ -199,9 +193,6 @@ namespace Akregator
             void setupActions();
             /** creates an OPML file containing the initial feeds (KDE feeds) */
             static QDomDocument createDefaultFeedList();
-
-        private slots:
-            void slotStop();
 
          private: // attributes
          

@@ -22,138 +22,123 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <kdebug.h>
+#include <kstaticdeleter.h>
+
+#include <qvaluelist.h>
 
 #include "akregatorconfig.h"
 #include "fetchtransaction.h"
 #include "feed.h"
 #include "treenode.h"
 
-using namespace Akregator;
 
-FetchTransaction::FetchTransaction(QObject *parent): QObject(parent, "transaction"),
-    m_fetchList(), m_currentFetches(), m_totalFetches(0), m_running(false)
-{
-    m_concurrentFetches=Settings::concurrentFetches();
-}
+namespace Akregator {
 
-FetchTransaction::~FetchTransaction()
+class FetchQueue::FetchQueuePrivate
 {
-    if (m_running)
-        stop();
-    else
-        clear();
-}
-
-void FetchTransaction::start()
-{
-    if (m_running)
-        return;
+    public:
     
-    if (m_fetchList.count() == 0)
+        QValueList<Feed*> queuedFeeds;
+        QValueList<Feed*> fetchingFeeds;
+};
+
+
+FetchQueue* FetchQueue::m_self = 0;
+static KStaticDeleter<FetchQueue> fetchqueuesd;
+
+FetchQueue* FetchQueue::self()
+{
+    if (!m_self)
+        m_self = fetchqueuesd.setObject(m_self, new FetchQueue);
+    return m_self;
+}
+
+FetchQueue::FetchQueue(QObject* parent, const char* name): QObject(parent, name), d(new FetchQueuePrivate) {}
+
+
+FetchQueue::~FetchQueue()
+{
+    slotAbort();
+    delete d;
+    d = 0;
+}
+
+void FetchQueue::slotAbort()
+{
+    for (QValueList<Feed*>::Iterator it = d->fetchingFeeds.begin(); it != d->fetchingFeeds.end(); ++it)
     {
-        m_running = false;
-        emit completed();
+        disconnectFromFeed(*it);
+        (*it)->slotAbortFetch();
     }
+    d->fetchingFeeds.clear();
+
+    for (QValueList<Feed*>::Iterator it = d->queuedFeeds.begin(); it != d->queuedFeeds.end(); ++it)
+    {
+        disconnectFromFeed(*it);
+    }
+    d->queuedFeeds.clear();
     
-    m_running = true;
-    m_totalFetches=m_fetchList.count();
-    m_fetchesDone=0;
-    
-    for (int i = 0; i < m_concurrentFetches; ++i)
-        slotFetchNextFeed();
+    emit signalStopped();
 }
 
-void FetchTransaction::stop()
+void FetchQueue::addFeed(Feed *f)
 {
-    if (!m_running)
-        return;
-    
-    Feed *f;
-    for (f=m_currentFetches.first(); f; f=m_currentFetches.next())
-        f->slotAbortFetch();
-
-    m_running = false;
-    clear();
+    if (!d->queuedFeeds.contains(f) && !d->fetchingFeeds.contains(f))
+    {
+        connectToFeed(f);
+        d->queuedFeeds.append(f);
+        fetchNextFeed();
+    }
 }
 
-void FetchTransaction::clear()
+void FetchQueue::fetchNextFeed()
 {
-    if (m_running)
-        return;
-
-    m_fetchList.clear();
-    m_currentFetches.clear();
-    
-    m_fetchesDone = 0;
-    m_totalFetches = 0;    
+    if (!d->queuedFeeds.isEmpty() && d->fetchingFeeds.count() < Settings::concurrentFetches())
+    {
+        if (d->fetchingFeeds.isEmpty() && d->queuedFeeds.count() == 1)
+            emit signalStarted();
+        Feed* f = *(d->queuedFeeds.begin());
+        d->queuedFeeds.pop_front();
+        d->fetchingFeeds.append(f);
+        f->fetch(false);
+        
+    }
 }
 
-void FetchTransaction::addFeed(Feed *f)
+void FetchQueue::slotFeedFetched(Feed *f)
 {
-    connectToFeed(f);
-    m_fetchList.append(f);
-}
-
-void FetchTransaction::slotFetchNextFeed()
-{
-    Feed *f = m_fetchList.at(0);
-    if (!f)
-        return;
-    f->fetch(false);
-    m_currentFetches.append(f);
-    m_fetchList.remove((uint)0);
-}
-
-void FetchTransaction::slotFeedFetched(Feed *f)
-{
-    if (!m_running)
-        return;
-
-    m_fetchesDone++;
     emit fetched(f);
     feedDone(f);
 }
 
-void FetchTransaction::slotFetchError(Feed *f)
+void FetchQueue::slotFetchError(Feed *f)
 {
-    if (!m_running)
-        return;
-
-    m_fetchesDone++;
     emit fetchError(f);
     feedDone(f);
 }
 
-void FetchTransaction::slotFetchAborted(Feed *f)
+void FetchQueue::slotFetchAborted(Feed *f)
 {
-    if (!m_running)
-        return;
-
-    m_fetchesDone++;
     emit fetched(f); // FIXME: better use a signal like signalAborted(Feed*)
     feedDone(f);
 }
 
-
-void FetchTransaction::feedDone(Feed *f)
+bool FetchQueue::isEmpty()
 {
-    if (f)
-    {
-        disconnectFromFeed(f);    
-        m_currentFetches.remove(f);
-        m_fetchList.remove(f);
-        slotFetchNextFeed();
-    }
-    
-    if (m_fetchList.isEmpty() && m_currentFetches.isEmpty())
-    {
-        m_running = false;
-        emit completed();
-    }
+    return d->queuedFeeds.isEmpty() && d->fetchingFeeds.isEmpty();
 }
 
-void FetchTransaction::connectToFeed(Feed* feed)
+void FetchQueue::feedDone(Feed *f)
+{
+    disconnectFromFeed(f);
+    d->fetchingFeeds.remove(f);
+    if (isEmpty())
+        emit signalStopped();
+    else    
+        fetchNextFeed();
+}
+
+void FetchQueue::connectToFeed(Feed* feed)
 {
     connect (feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     connect (feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
@@ -161,7 +146,7 @@ void FetchTransaction::connectToFeed(Feed* feed)
     connect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
 }
 
-void FetchTransaction::disconnectFromFeed(Feed* feed)
+void FetchQueue::disconnectFromFeed(Feed* feed)
 {
     disconnect (feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     disconnect (feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
@@ -169,18 +154,18 @@ void FetchTransaction::disconnectFromFeed(Feed* feed)
     disconnect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
 }
 
-void FetchTransaction::slotNodeDestroyed(TreeNode* node)
+
+void FetchQueue::slotNodeDestroyed(TreeNode* node)
 {
-    Feed* feed = static_cast<Feed*> (node);
+    Feed* feed = dynamic_cast<Feed*> (node);
 
-    if (!feed)
-        return;
-
-    // remove all occurrences of this feed
-    while (m_fetchList.remove(feed)) /** do nothing */;
+    if (feed)
+    {
+        d->fetchingFeeds.remove(feed);
+        d->queuedFeeds.remove(feed);
+    }
 }
 
+} // namespace Akregator
+
 #include "fetchtransaction.moc"
-
-// vim: set et ts=4 sts=4 sw=4:
-

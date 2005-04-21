@@ -43,7 +43,7 @@ namespace KPIM {
 
 namespace Akregator
 {
-    class FetchTransaction;
+    class FetchQueue;
     class FeedGroup;
 
     namespace Backend
@@ -226,8 +226,8 @@ namespace Akregator
             /** mark all articles in this feed as read */
             virtual void slotMarkAllArticlesAsRead();
 
-            /** add this feed to the fetch transaction @c transaction */
-            virtual void slotAddToFetchTransaction(FetchTransaction* transaction);
+            /** add this feed to the fetch queue @c queue */
+            virtual void slotAddToFetchQueue(FetchQueue* queue);
 
             /** notifies that article @c mya was set to "deleted". */
             virtual void slotArticleDeleted(const MyArticle& mya);

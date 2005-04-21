@@ -247,9 +247,9 @@ void Feed::slotMarkAllArticlesAsRead()
         setNotificationMode(true, true);
     }
 }
-void Feed::slotAddToFetchTransaction(FetchTransaction* transaction)
+void Feed::slotAddToFetchQueue(FetchQueue* queue)
 {
-    transaction->addFeed(this);
+    queue->addFeed(this);
 }
 
 

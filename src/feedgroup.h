@@ -36,7 +36,7 @@ class QDomElement;
 namespace Akregator
 {
     class ArticleSequence;
-    class FetchTransaction;
+    class FetchQueue;
         
     /**
      * Represents a feed group (i.e. a folder containing feeds and/or other folders).
@@ -150,7 +150,7 @@ namespace Akregator
             */
             virtual void slotChildDestroyed(TreeNode* node);
 
-            virtual void slotAddToFetchTransaction(FetchTransaction* transaction);
+            virtual void slotAddToFetchQueue(FetchQueue* queue);
             //virtual void slotFetch(int timeout);    
             //virtual void slotAbortFetch();
 

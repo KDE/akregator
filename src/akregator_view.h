@@ -57,7 +57,6 @@ namespace Akregator
     class FeedGroupItem;
     class FeedList;
     class FeedsTree;
-    class FetchTransaction;
     class Frame;
     class Part;
     class SearchBar;
@@ -109,12 +108,6 @@ namespace Akregator
              */
             void addFeedToGroup(const QString& url, const QString& group);
 
-            /** Disables fetch actions and informs the frame to enable stop button */
-            void startOperation();
-            
-            /** Enables fetch actions and informs the frame to disable stop button */
-            void endOperation();
-            
             /** session management **/
             virtual void readProperties(KConfig* config);
             virtual void saveProperties(KConfig* config);
@@ -125,6 +118,10 @@ namespace Akregator
             /** emitted when the unread count of "All Feeds" was changed */
             void signalUnreadCountChanged(int);
 
+            void setWindowCaption(const QString&);
+            void setStatusBarText(const QString&);
+            void setProgress(int);
+            
         public slots:
 
             void slotOnShutdown();
@@ -192,14 +189,13 @@ namespace Akregator
             void slotCompleted();
             void slotLoadingProgress(int);
 
-            void slotAbortFetches();
-            void slotFetchesCompleted();
+            void slotFetchingStarted();
+            void slotFetchingStopped();
+            
            
             /** Feed has been fetched, populate article view if needed and update counters. */
             void slotFeedFetched(Feed *);
-            void slotFeedFetchError(Feed *feed);
-
-
+            
             /** prints the content of the article viewer */
             void slotPrint();
             /** adds a new feed to the feed tree */
@@ -291,8 +287,6 @@ namespace Akregator
             
             void setTabIcon(const QPixmap&);
 
-            void showFetchStatus();
-
             /** Display article in external browser. */
             void displayInExternalBrowser(const KURL &url);
 
@@ -314,8 +308,6 @@ namespace Akregator
             Frame *m_currentFrame;
 
             SearchBar* m_searchBar;
-
-            FetchTransaction *m_transaction;
 
             QSplitter *m_articleSplitter;
             QSplitter *m_feedSplitter;

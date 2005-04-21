@@ -247,10 +247,10 @@ void FeedGroup::slotDeleteExpiredArticles()
     setNotificationMode(true, true);
 }
 
-void FeedGroup::slotAddToFetchTransaction(FetchTransaction* transaction)
+void FeedGroup::slotAddToFetchQueue(FetchQueue* queue)
 {
     for (TreeNode* i = m_children.first(); i; i = m_children.next() )
-        i->slotAddToFetchTransaction(transaction);
+        i->slotAddToFetchQueue(queue);
 }
 
 TreeNode* FeedGroup::next()

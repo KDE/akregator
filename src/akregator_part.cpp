@@ -61,6 +61,7 @@
 #include "akregatorconfig.h"
 #include "akregator.h"
 #include "configdialog.h"
+#include "fetchtransaction.h"
 #include "frame.h"
 #include "myarticle.h"
 #include "notificationmanager.h"
@@ -120,7 +121,8 @@ void Part::setupActions()
     // toolbar / feed menu
     new KAction(i18n("&Fetch Feed"), "down", "Ctrl+L", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-    new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, this, SLOT( slotStop() ), actionCollection(), "feed_stop");
+        
+    new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, FetchQueue::self(), SLOT(slotAbort()), actionCollection(), "feed_stop");
 
     new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
@@ -216,6 +218,10 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
     m_extension = new BrowserExtension(this, "ak_extension");
+    
+    connect(m_view, SIGNAL(setWindowCaption(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
+    connect(m_view, SIGNAL(setStatusBarText(const QString&)), this, SIGNAL(setStatusBarText(const QString&)));
+    connect(m_view, SIGNAL(setProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
 
     // notify the part that this is our internal widget
     setWidget(m_view);
@@ -308,21 +314,6 @@ Part::~Part()
 {
     if (!m_shuttingDown)
         slotOnShutdown();
-}
-
-void Part::setCaption(const QString &text)
-{
-    emit setWindowCaption(text);
-}
-
-void Part::setStatusBar(const QString &text)
-{
-    emit setStatusBarText(text);
-}
-
-void Part::setProgress(int percent)
-{
-    emit m_extension->loadingProgress(percent);
 }
 
 void Part::setStarted(KParts::Part* part)
@@ -456,7 +447,7 @@ bool Part::openFile()
             return false;
         }
 
-        setStatusBar( i18n("Opening Feed List...") );
+        emit setStatusBarText(i18n("Opening Feed List...") );
 
         QDomDocument doc;
 
@@ -480,7 +471,7 @@ bool Part::openFile()
             m_view->loadFeeds(createDefaultFeedList());
         }
         
-        setStatusBar(QString::null);
+        emit setStatusBarText(QString::null);
     }
     
     if( Settings::markAllFeedsReadOnStartup() )
@@ -490,12 +481,6 @@ bool Part::openFile()
             m_view->slotFetchAllFeeds();
 
     return true;
-}
-
-void Part::slotStop()
-{
-    m_view->slotAbortFetches();
-    setStatusBar(QString::null);
 }
 
 void Part::slotSaveFeedList()

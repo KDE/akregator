@@ -36,7 +36,7 @@ namespace Akregator
 
 class ArticleSequence;
 class FeedGroup;
-class FetchTransaction;
+class FetchQueue;
 
 /**
     \brief Abstract base class for all kind of elements in the feed tree, like feeds and feed groups (and search folders later).
@@ -154,9 +154,9 @@ public slots:
     
     virtual void slotMarkAllArticlesAsRead() = 0;
 
-    /** adds node to a fetch transaction */
+    /** adds node to a fetch queue */
     
-    virtual void slotAddToFetchTransaction(FetchTransaction* transaction) = 0;
+    virtual void slotAddToFetchQueue(FetchQueue* queue) = 0;
     //virtual void slotFetch(int timeout) = 0;    
     //virtual void slotAbortFetch() = 0;
       

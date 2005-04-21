@@ -123,10 +123,9 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_feedSplitter->setOpaqueResize( true );
     lt->addWidget(m_feedSplitter);
 
-    m_transaction= new FetchTransaction(this);
-    connect (m_transaction, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    connect (m_transaction, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
-    connect (m_transaction, SIGNAL(completed()), this, SLOT(slotFetchesCompleted()));
+    connect (FetchQueue::self(), SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
+    connect (FetchQueue::self(), SIGNAL(signalStarted()), this, SLOT(slotFetchingStarted()));
+    connect (FetchQueue::self(), SIGNAL(signalStopped()), this, SLOT(slotFetchingStopped()));
 
     m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
 
@@ -260,7 +259,7 @@ void View::slotOnShutdown()
     kdDebug() << "View::slotOnShutdown(): enter" << endl;
     m_shuttingDown = true; // prevents slotFrameChanged from crashing
 
-    m_transaction->stop();
+    FetchQueue::self()->slotAbort();
     
     m_articles->slotShowNode(0);
     m_articleViewer->slotShowNode(0);
@@ -338,7 +337,7 @@ void View::slotStatusText(const QString &c)
     if (!f) return;
     if (m_currentFrame != f) return;
 
-    m_part->setStatusBar(c);
+    emit setStatusBarText(c);
 }
 
 void View::slotCaptionChanged(const QString &c)
@@ -347,7 +346,7 @@ void View::slotCaptionChanged(const QString &c)
     if (!f) return;
     if (m_currentFrame != f) return;
 
-    m_part->setCaption(c);
+    emit setWindowCaption(c);
 }
 
 void View::slotStarted()
@@ -383,13 +382,7 @@ void View::slotLoadingProgress(int percent)
     if (!f) return;
     if (m_currentFrame != f) return;
 
-    m_part->setProgress(percent);
-}
-
-void View::slotAbortFetches()
-{
-    endOperation();
-    m_transaction->stop();
+    emit setProgress(percent);
 }
 
 bool View::importFeeds(const QDomDocument& doc)
@@ -541,23 +534,6 @@ void View::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
-
-void View::startOperation()
-{
-    m_mainFrame->setState(Frame::Started);
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(false);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(false);
-    m_mainFrame->setProgress(0);
-}
-
-void View::endOperation()
-{
-    m_mainFrame->setState(Frame::Completed);
-    m_part->actionCollection()->action("feed_fetch")->setEnabled(true);
-    m_part->actionCollection()->action("feed_fetch_all")->setEnabled(true);
-    m_mainFrame->setProgress(100);
-}
-
 void View::slotRemoveFrame()
 {
     Frame *f = m_tabs->currentFrame();
@@ -582,9 +558,9 @@ void View::slotFrameChanged(Frame *f)
 
     m_tabsClose->setEnabled(f != m_mainFrame);
 
-    m_part->setCaption(f->caption());
-    m_part->setProgress(f->progress());
-    m_part->setStatusBar(f->statusText());
+    emit setWindowCaption(f->caption());
+    emit setProgress(f->progress());
+    emit setStatusBarText(f->statusText());
 
     m_part->mergePart(m_articleViewer);
 
@@ -1041,15 +1017,6 @@ void View::slotSetTotalUnread()
     emit signalUnreadCountChanged( m_feedList->rootNode()->unread() );
 }
 
-void View::showFetchStatus()
-{
-    if (m_transaction->totalFetches())
-    {
-        m_mainFrame->setStatusText(i18n("Fetching Feeds..."));
-        m_mainFrame->setProgress(0);
-    }
-}
-
 /**
 * Display article in external browser.
 */
@@ -1073,9 +1040,6 @@ void View::displayInExternalBrowser(const KURL &url)
 
 void View::slotDoIntervalFetches()
 {
-    if ( m_transaction->isRunning())
-        return;
-
     bool fetch = false;
     TreeNode* i = m_feedList->rootNode()->firstChild();
 
@@ -1099,19 +1063,13 @@ void View::slotDoIntervalFetches()
 
             if ( interval > 0 && now - lastFetch >= (uint)interval )
             {
-                kdDebug() << "AkregatorView::slotDoIntervalFetches: interval fetch " << f->title() << endl;
-                m_transaction->addFeed(f);
+                kdDebug() << "interval fetch: " << f->title() << endl;
+                FetchQueue::self()->addFeed(f);
                 fetch = true;
             }
         }
 
         i = i->next();
-    }
-
-    if (fetch)
-    {
-        startOperation();
-        m_transaction->start();
     }
 }
 
@@ -1119,23 +1077,25 @@ void View::slotFetchCurrentFeed()
 {
     if ( !m_tree->selectedNode() )
         return;
-    showFetchStatus();
-    m_tree->selectedNode()->slotAddToFetchTransaction(m_transaction);
-    startOperation();
-    m_transaction->start();
+    m_tree->selectedNode()->slotAddToFetchQueue(FetchQueue::self());
 }
 
 void View::slotFetchAllFeeds()
 {
-    showFetchStatus();
-    m_feedList->rootNode()->slotAddToFetchTransaction(m_transaction);
-    startOperation();
-    m_transaction->start();
+    m_feedList->rootNode()->slotAddToFetchQueue(FetchQueue::self());
 }
 
-void View::slotFetchesCompleted()
+void View::slotFetchingStarted()
 {
-    endOperation();
+    m_mainFrame->setState(Frame::Started);
+    //m_mainFrame->setProgress(0);
+    m_mainFrame->setStatusText(i18n("Fetching Feeds..."));
+}
+
+void View::slotFetchingStopped()
+{
+    m_mainFrame->setState(Frame::Completed);
+    //m_mainFrame->setProgress(100);
     m_mainFrame->setStatusText(QString::null);
 }
 
@@ -1155,15 +1115,6 @@ void View::slotFeedFetched(Feed *feed)
             }
         }
     }
-
-    int p=int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
-    m_mainFrame->setProgress(p);
-}
-
-void View::slotFeedFetchError(Feed* /*feed*/)
-{
-    int p = int(100*((double)m_transaction->fetchesDone()/(double)m_transaction->totalFetches()));
-    m_mainFrame->setProgress(p);
 }
 
 void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
@@ -1208,7 +1159,8 @@ void View::slotArticleSelected(MyArticle article)
         article.setStatus(MyArticle::Read);
         m_articles->setReceiveUpdates(true, false);
     }
-
+    kdDebug() << "selected: " << article.guid() << endl;
+    
     m_articleViewer->slotShowArticle( article );
 }
 

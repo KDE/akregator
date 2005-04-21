@@ -12,6 +12,7 @@ Changes:
        - Changed prev/next unread article actions to cycle through all unread articles -fo	
        - The article archive is now configurable, using metakit implementation as default.
          This increases startup speed and reduces memory usage significantly -fo
+       - Make it possible to fetch feeds while other fetches are running -fo
        
 Bug fixes:
 
