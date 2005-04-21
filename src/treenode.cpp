@@ -25,98 +25,120 @@
 #include "feedgroup.h"
 #include "treenode.h"
 
-#include "kdebug.h"
+#include <qstring.h>
 
-using namespace Akregator;
+#include <kdebug.h>
+
+namespace Akregator {
+
+class TreeNode::TreeNodePrivate
+{
+    public:
+    
+    bool doNotify;
+    bool changeOccured;
+    QString title;
+    FeedGroup* parent;
+    uint id;
+};
 
 TreeNode::TreeNode()
-    : QObject(0, 0), m_doNotify(true), m_changeOccured(false), m_title(""), m_parent(0), m_id(0)
+    : QObject(0, 0), d(new TreeNodePrivate)
 {
+    d->doNotify = true;
+    d->changeOccured = false;
+    d->title = "";
+    d->parent = 0;
+    d->id = 0;
 }
 
 TreeNode::~TreeNode()
 {
     // tell the world that this node is destroyed
     //emit signalDestroyed(this);
+    delete d;
+    d = 0;
 }
 
 const QString& TreeNode::title() const
 {
-    return m_title;
+    return d->title;
 }
 
 void TreeNode::setTitle(const QString& title)
 {
 
-    if (m_title != title)
+    if (d->title != title)
     {
-        m_title = title;
+        d->title = title;
         modified();
     }
 }
 
 TreeNode* TreeNode::nextSibling() const
 {
-    if (!m_parent)
+    if (!d->parent)
         return 0;
-    QPtrList<TreeNode> children = m_parent->children();
+    QPtrList<TreeNode> children = d->parent->children();
     children.find(this);
     return children.next();
 }
 
 TreeNode* TreeNode::prevSibling() const
 {
-    if (!m_parent)
+    if (!d->parent)
         return 0;
-    QPtrList<TreeNode> children = m_parent->children();
+    QPtrList<TreeNode> children = d->parent->children();
     children.find(this);
     return children.prev();
 }
 
 FeedGroup* TreeNode::parent() const
 {
-    return m_parent;
+    return d->parent;
 }
 
 void TreeNode::setParent(FeedGroup* parent)
 {
-    m_parent = parent;
+    d->parent = parent;
 }
 
 void TreeNode::setNotificationMode(bool doNotify, bool notifyOccuredChanges)
 {
-    if (doNotify && !m_doNotify) // turned on
+    if (doNotify && !d->doNotify) // turned on
     {
-        m_doNotify = true;
-        if (m_changeOccured && notifyOccuredChanges)
+        d->doNotify = true;
+        if (d->changeOccured && notifyOccuredChanges)
             emit signalChanged(this);
-        m_changeOccured = false;
+        d->changeOccured = false;
     }
-    if (!doNotify && m_doNotify) //turned off
+    if (!doNotify && d->doNotify) //turned off
     {
-        m_changeOccured = false;
-        m_doNotify = false;
+        d->changeOccured = false;
+        d->doNotify = false;
     }
 }
 
 uint TreeNode::id() const
 {
-    return m_id;
+    return d->id;
 }
 
 void TreeNode::setId(uint id)
 {
-    m_id = id;
+    d->id = id;
 }
 
 void TreeNode::modified()
 {
 //    kdDebug() << "enter TreeNode::modified" << title() << endl;
-    if (m_doNotify)
+    if (d->doNotify)
         emit signalChanged(this);
     else
-        m_changeOccured = true;
+        d->changeOccured = true;
 //    kdDebug() << "leave TreeNode::modified" << title()<< endl;
 }
+
+} // namespace Akregator
 
 #include "treenode.moc"

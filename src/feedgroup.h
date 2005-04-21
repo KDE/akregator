@@ -29,7 +29,6 @@
 
 #include <qptrlist.h>
 
-class QListViewItem;
 class QDomDocument;
 class QDomElement;
 
@@ -87,7 +86,7 @@ namespace Akregator
             /** returns the (direct) children of this node.
             @return a list of pointers to the child nodes
              */
-            virtual QPtrList<TreeNode> children() { return m_children; }
+            virtual QPtrList<TreeNode> children();
 
             /** inserts @c node as child after child node @c after.
             if @c after is not a child of this group, @c node will be inserted as first child
@@ -158,16 +157,14 @@ namespace Akregator
             Calling next() unless it returns 0 iterates through the tree in pre-order
              */
             virtual TreeNode* next();
-        
-        protected:
-            /** List of children */
-            QPtrList<TreeNode> m_children;
-            /** caching unread count of children */
-            int m_unread;
-            /** whether or not the folder is expanded */
-            bool m_open;
-            /** update unread count cache */
+
+            
+        private:
+
             virtual void updateUnreadCount();
+            
+            class FeedGroupPrivate;
+            FeedGroupPrivate* d;
     };
 }
 

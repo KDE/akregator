@@ -27,8 +27,6 @@
 
 #include <dcopobject.h>
 
-#include <qdict.h>
-#include <qvaluelist.h>
 #include <qobject.h>
 
 class QPixmap;
@@ -78,8 +76,9 @@ namespace Akregator
       
       private:
             static FeedIconManager *m_instance;
-            QValueList<Feed*> m_registeredFeeds;
-            QDict<Feed> m_urlDict;
+
+            class FeedIconManagerPrivate;
+            FeedIconManagerPrivate* d;
     };
 }
 

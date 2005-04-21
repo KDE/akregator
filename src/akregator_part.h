@@ -53,7 +53,7 @@ namespace Akregator
     class View;
     class Part;
     class Feed;
-    class MyArticle;
+    class Article;
     class TrayIcon;
     
     class BrowserExtension : public KParts::BrowserExtension

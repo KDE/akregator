@@ -26,10 +26,10 @@
 #define AKREGATORTREENODE_H
 
 #include <qobject.h>
-#include <qstring.h>
 
 class QDomDocument;
 class QDomElement;
+class QString;
 
 namespace Akregator 
 {
@@ -189,23 +189,13 @@ signals:
 
     
 protected:    
-    
+
     /** call this if you modified the object. Will do notification immediately or cache it, depending on @c m_doNotify. */
     virtual void modified();
-    
-    /** If set to true, signalChanged is emitted when the node was modified */
-    bool m_doNotify;
-   
-    /** If m_doNotify is set false, this flag caches occurred changes. */
-    bool m_changeOccured;
-    
-    /** title of the node */
-    QString m_title;
-    
-    /** The node's parent */
-    FeedGroup* m_parent;
 
-    uint m_id;
+private:
+    class TreeNodePrivate;
+    TreeNodePrivate* d;
 };
 
 }

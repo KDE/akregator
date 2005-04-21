@@ -130,7 +130,7 @@ namespace Akregator
             void slotNodeSelected(TreeNode* node);
 
             /** the article selection has changed */
-            void slotArticleSelected(MyArticle article);
+            void slotArticleSelected(Article article);
             
             /** Shows requested popup menu for article list */
             void slotArticleListContextMenu(KListView*, ArticleListItem* item, const QPoint& p);

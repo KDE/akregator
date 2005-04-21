@@ -39,7 +39,7 @@ namespace Akregator
 {
     class Feed;
     class FeedGroup;
-    class MyArticle;
+    class Article;
     class TreeNode;
     
     /** This HTML viewer is used to display articles. 
@@ -63,7 +63,7 @@ namespace Akregator
 	    
             /** Show single article (normal view) 
                 @param article the article to render */
-            void slotShowArticle(const MyArticle& article);
+            void slotShowArticle(const Article& article);
             
             /** Shows the articles of the tree node @c node (combined view). Changes in the node will update the view automatically. 
             @param node The node to observe */
@@ -101,7 +101,7 @@ namespace Akregator
             @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
             @param article The article to render
             @return the rendered article as HTML */
-            QString formatArticle(Feed* feed, const MyArticle& article);
+            QString formatArticle(Feed* feed, const Article& article);
             
             /** Resets the canvas and adds writes the HTML header to it.
              */

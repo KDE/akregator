@@ -58,7 +58,7 @@ void NotificationManager::setWidget(QWidget* widget, KInstance* inst)
     m_instance = inst != NULL ? inst : KGlobal::instance();
 }
 
-void NotificationManager::slotNotifyArticle(const MyArticle& article)
+void NotificationManager::slotNotifyArticle(const Article& article)
 {
     m_articles.append(article);
     m_addedInLastInterval = true;
@@ -92,8 +92,8 @@ void NotificationManager::doNotify()
 {
     QString message = "<html><body>";
     QString feedTitle;
-    QValueList<MyArticle>::ConstIterator it = m_articles.begin();
-    QValueList<MyArticle>::ConstIterator en = m_articles.end();
+    QValueList<Article>::ConstIterator it = m_articles.begin();
+    QValueList<Article>::ConstIterator en = m_articles.end();
     for (; it != en; ++it)
     {
         if (feedTitle != (*it).feed()->title())

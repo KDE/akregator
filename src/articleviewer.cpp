@@ -208,7 +208,7 @@ void ArticleViewer::displayAboutPage()
     end();
 }
 
-QString ArticleViewer::formatArticle(Feed* feed, const MyArticle& article)
+QString ArticleViewer::formatArticle(Feed* feed, const Article& article)
 {
     QString text;
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
@@ -397,7 +397,7 @@ void ArticleViewer::showSummary(Feed *f)
     renderContent(text);
 }
 
-void ArticleViewer::slotShowArticle(const MyArticle& article)
+void ArticleViewer::slotShowArticle(const Article& article)
 {
     m_viewMode = NormalView;
     disconnectFromNode(m_node);

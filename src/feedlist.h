@@ -26,13 +26,10 @@
 #define AKREGATORFEEDLIST_H
 
 #include <qobject.h>
-#include <qstring.h>
-
-#include <qmap.h>
-#include <qvaluelist.h>
 
 class QDomDocument;
 class QDomNode;
+class QString;
 
 namespace Akregator
 {
@@ -103,16 +100,13 @@ protected slots:
 private:
 
     static void parseChildNodes(QDomNode &node, FeedGroup* parent);
-    
+
     // never call these
     FeedList(const FeedList&) : QObject() {}
     FeedList& operator=(const FeedList&) { return *this; }
-    
-    uint m_idCounter;
-    QMap<uint, TreeNode*> m_idMap;
-    QValueList<TreeNode*> m_flatList;
-    FeedGroup* m_rootNode;
-    QString m_title;
+
+    class FeedListPrivate;
+    FeedListPrivate* d;
 };
 
 }

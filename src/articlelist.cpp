@@ -40,9 +40,8 @@
 #include <qheader.h>
 
 using namespace Akregator;
-using namespace RSS;
 
-ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const MyArticle& a, Feed *feed)
+ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
     : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
 {
     m_article = a;
@@ -56,7 +55,7 @@ ArticleListItem::~ArticleListItem()
 }
 
 
-MyArticle& ArticleListItem::article()
+Article& ArticleListItem::article()
 {
     return m_article;
 }
@@ -72,9 +71,9 @@ void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int colu
     QColorGroup cg2(cg);
     
     // XXX: make configurable
-    if (article().status()==MyArticle::Unread)
+    if (article().status()==Article::Unread)
         cg2.setColor(QColorGroup::Text, Qt::blue);
-    else if (article().status()==MyArticle::New)
+    else if (article().status()==Article::New)
         cg2.setColor(QColorGroup::Text, Qt::red);
     
     KListViewItem::paintCell( p, cg2, column, width, align );
@@ -238,7 +237,7 @@ void ArticleList::slotUpdate()
     
     setUpdatesEnabled(false);
 
-    MyArticle oldCurrentArticle;
+    Article oldCurrentArticle;
     ArticleListItem *li = dynamic_cast<ArticleListItem*>(selectedItem());
     bool haveOld = false;
     if (li) {
@@ -327,7 +326,7 @@ void ArticleList::slotNextUnreadArticle()
 
     for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
     {
-        if (it->article().status() != MyArticle::Read)
+        if (it->article().status() != Article::Read)
         {
             setSelected(it, true);
             ensureItemVisible(it);
@@ -340,7 +339,7 @@ void ArticleList::slotNextUnreadArticle()
         it = static_cast<ArticleListItem*>(firstChild());
         for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
         {
-            if (it->article().status() != MyArticle::Read)
+            if (it->article().status() != Article::Read)
             {
                 setSelected(it, true);
                 ensureItemVisible(it);
@@ -362,8 +361,8 @@ void ArticleList::slotPreviousUnreadArticle()
         ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
         if (!ali)
             break;
-        if ((ali->article().status()==MyArticle::Unread) ||
-             (ali->article().status()==MyArticle::New))
+        if ((ali->article().status()==Article::Unread) ||
+             (ali->article().status()==Article::New))
         {
             setSelected(ali, true);
             ensureItemVisible(ali);
@@ -378,7 +377,7 @@ void ArticleList::slotPreviousUnreadArticle()
         for ( ; it.current(); --it )
         {
             ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
-            if ((ali->article().status() != MyArticle::Read))
+            if ((ali->article().status() != Article::Read))
             {
                 setSelected(ali, true);
                 ensureItemVisible(ali);

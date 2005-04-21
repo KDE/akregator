@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORMYARTICLE_H
-#define AKREGATORMYARTICLE_H
+#ifndef AKREGATOR_ARTICLE_H
+#define AKREGATOR_ARTICLE_H
 
 #include <qvaluelist.h>
 
@@ -49,28 +49,28 @@ namespace Akregator
     }
     class Feed;
     /** A proxy class for RSS::Article with some additional methods to assist sorting. */
-    class MyArticle
+    class Article
     {
         public:
             enum Status { Unread=0, Read, New };
-            typedef QValueList<MyArticle> List;
+            typedef QValueList<Article> List;
 
-            MyArticle();
+            Article();
             /** creates am article object for an existing article.
              The constructor accesses the archive to load it's data
              */
-            MyArticle(const QString& guid, Feed* feed);
+            Article(const QString& guid, Feed* feed);
             /** creates an article object from a parsed librss Article
                the article is added to the archive if not yet stored, or updated if stored but modified
             */
-            MyArticle(RSS::Article article, Feed* feed);
+            Article(RSS::Article article, Feed* feed);
             
-            MyArticle(RSS::Article article, Backend::FeedStorage* archive);
-            MyArticle(const MyArticle &other);
-            MyArticle &operator=(const MyArticle &other);
-            bool operator==(const MyArticle &other) const;
-            bool operator!=(const MyArticle &other) const { return !operator==(other); }
-            virtual ~MyArticle();
+            Article(RSS::Article article, Backend::FeedStorage* archive);
+            Article(const Article &other);
+            Article &operator=(const Article &other);
+            bool operator==(const Article &other) const;
+            bool operator!=(const Article &other) const { return !operator==(other); }
+            virtual ~Article();
 
             int status() const;
             void setStatus(int s);
@@ -106,10 +106,10 @@ namespace Akregator
             
             int comments() const;
             
-            bool operator<(const MyArticle &other) const;
-            bool operator<=(const MyArticle &other) const;
-            bool operator>(const MyArticle &other) const;
-            bool operator>=(const MyArticle &other) const;
+            bool operator<(const Article &other) const;
+            bool operator<=(const Article &other) const;
+            bool operator>(const Article &other) const;
+            bool operator>=(const Article &other) const;
 
 
         private:

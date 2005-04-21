@@ -49,7 +49,7 @@ class NotificationManager : public QObject
 
         /** notifies an article. Note that articles are not notified separately, but
         "collected" and notified all together */
-        void slotNotifyArticle(const MyArticle& article);
+        void slotNotifyArticle(const Article& article);
 
         /** notifies the addition of feeds (used when added via DCOP or command line) */
         void slotNotifyFeeds(const QStringList& feeds);
@@ -75,7 +75,7 @@ class NotificationManager : public QObject
         QWidget* m_widget;
         KInstance* m_instance;
 
-        QValueList<MyArticle> m_articles;
+        QValueList<Article> m_articles;
 
         static NotificationManager* m_self;
 };

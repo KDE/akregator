@@ -32,7 +32,7 @@ namespace Akregator
     /** This is article list supporting sorting added articles by pubDate
      *  and properly emulating pubDate for articles with invalid pubDates.
      */
-    class ArticleSequence : public MyArticle::List
+    class ArticleSequence : public Article::List
     {
         public:
 
@@ -40,10 +40,10 @@ namespace Akregator
             ArticleSequence(const ArticleSequence &other);
             virtual ~ArticleSequence();
 
-            iterator insert( iterator it, const MyArticle &x );
-            void insert( iterator it, size_type n, const MyArticle &x );
-            iterator append( const MyArticle &x );
-            iterator prepend( const MyArticle &x );
+            iterator insert( iterator it, const Article &x );
+            void insert( iterator it, size_type n, const Article &x );
+            iterator append( const Article &x );
+            iterator prepend( const Article &x );
 
             void enableSorting(bool b);
             void sort();

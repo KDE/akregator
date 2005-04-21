@@ -183,8 +183,8 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
-    connect( m_articles, SIGNAL(signalArticleSelected(MyArticle)),
-                this, SLOT( slotArticleSelected(MyArticle)) );
+    connect( m_articles, SIGNAL(signalArticleSelected(Article)),
+                this, SLOT( slotArticleSelected(Article)) );
     connect( m_articles, SIGNAL(signalDoubleClicked(ArticleListItem*, const QPoint&, int)),
                 this, SLOT( slotOpenArticleExternal(ArticleListItem*, const QPoint&, int)) );
 
@@ -1109,7 +1109,7 @@ void View::slotFeedFetched(Feed *feed)
         ArticleSequence::ConstIterator end = articles.end();
         for (it = articles.begin(); it != end; ++it)
         {
-            if ((*it).status()==MyArticle::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
+            if ((*it).status()==Article::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
             {
                 NotificationManager::self()->slotNotifyArticle(*it);
             }
@@ -1139,7 +1139,7 @@ void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint
     }
 }
 
-void View::slotArticleSelected(MyArticle article)
+void View::slotArticleSelected(Article article)
 {
 
     if (m_viewMode == CombinedView)
@@ -1153,10 +1153,10 @@ void View::slotArticleSelected(MyArticle article)
     if (ka)
         ka->setChecked( article.keep() );
 
-    if (article.status() != MyArticle::Read)
+    if (article.status() != Article::Read)
     {
         m_articles->setReceiveUpdates(false, false);
-        article.setStatus(MyArticle::Read);
+        article.setStatus(Article::Read);
         m_articles->setReceiveUpdates(true, false);
     }
     kdDebug() << "selected: " << article.guid() << endl;
@@ -1179,7 +1179,7 @@ void View::slotOpenCurrentArticle()
     if (!item)
         return;
 
-    MyArticle article = item->article();
+    Article article = item->article();
     QString link;
     if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
     {
@@ -1203,7 +1203,7 @@ void View::slotOpenCurrentArticleBackgroundTab()
     if (!item)
         return;
 
-    MyArticle article = item->article();
+    Article article = item->article();
     QString link;
     if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
     {
@@ -1270,7 +1270,7 @@ void View::slotArticleDelete()
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
-        MyArticle article = ali->article();
+        Article article = ali->article();
         article.setDeleted();
         if ( ali->nextSibling() )
             ali = ali->nextSibling();
@@ -1318,10 +1318,10 @@ void View::slotSetSelectedArticleUnread()
     if (!ali)
         return;
 
-    MyArticle article = ali->article();
+    Article article = ali->article();
 
     m_articles->setReceiveUpdates(false, false);
-    article.setStatus(MyArticle::Unread);
+    article.setStatus(Article::Unread);
     m_articles->setReceiveUpdates(true, false);
 }
 
@@ -1332,10 +1332,10 @@ void View::slotSetSelectedArticleNew()
     if (!ali)
         return;
 
-    MyArticle article = ali->article();
+    Article article = ali->article();
 
     m_articles->setReceiveUpdates(false, false);
-    article.setStatus(MyArticle::New);
+    article.setStatus(Article::New);
     m_articles->setReceiveUpdates(true, false);
 }
 

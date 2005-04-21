@@ -35,13 +35,13 @@ struct ArticleSequence::Private
 };
 
 ArticleSequence::ArticleSequence()
-   : MyArticle::List()
+   : Article::List()
    , d(new Private)
 {
 }
 
 ArticleSequence::ArticleSequence(const ArticleSequence &other)
-   : MyArticle::List(other)
+   : Article::List(other)
    , d(new Private)
 {
 }
@@ -56,26 +56,26 @@ ArticleSequence::~ArticleSequence()
     a) check if there's another record with the exactly same pubDate() present,
     b) if so, adjust this inserted item's clock off by one second to keep sorting sane,
     c) re-sort added items (if enabled).
-    d) use MyArticle::fetchDate for sorting! ( defined by MyArticle::operator <() )
+    d) use Article::fetchDate for sorting! ( defined by Article::operator <() )
  */
-ArticleSequence::iterator ArticleSequence::insert( iterator it, const MyArticle &x )
+ArticleSequence::iterator ArticleSequence::insert( iterator it, const Article &x )
 {
-    return MyArticle::List::insert( it, x );
+    return Article::List::insert( it, x );
 }
 
-void ArticleSequence::insert( iterator it, size_type n, const MyArticle &x )
+void ArticleSequence::insert( iterator it, size_type n, const Article &x )
 {
-    MyArticle::List::insert( it, n, x );
+    Article::List::insert( it, n, x );
 }
 
-ArticleSequence::iterator ArticleSequence::append( const MyArticle &x )
+ArticleSequence::iterator ArticleSequence::append( const Article &x )
 {
-    return MyArticle::List::append( x );
+    return Article::List::append( x );
 }
 
-ArticleSequence::iterator ArticleSequence::prepend( const MyArticle &x )
+ArticleSequence::iterator ArticleSequence::prepend( const Article &x )
 {
-    return MyArticle::List::prepend( x );
+    return Article::List::prepend( x );
 }
 
 

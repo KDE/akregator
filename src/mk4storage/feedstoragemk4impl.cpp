@@ -97,8 +97,8 @@ void FeedStorageMK4Impl::convertOldArchive()
     int unr = 0;
     for (; it != en; ++it)
     {
-        MyArticle a(*it, this);
-        if (a.status() != MyArticle::Read)
+        Article a(*it, this);
+        if (a.status() != Article::Read)
             unr++;
     }
     

@@ -34,7 +34,7 @@ class KConfig;
 
 namespace Akregator
 {
-class MyArticle;
+class Article;
            
 class Criterion
 {
@@ -55,7 +55,7 @@ class Criterion
         Criterion();
         Criterion( Subject subject, Predicate predicate, const QVariant &object );
         
-        bool satisfiedBy( const MyArticle &article ) const;
+        bool satisfiedBy( const Article &article ) const;
 
         Subject subject() const;
         Predicate predicate() const;
@@ -83,13 +83,13 @@ class ArticleFilter
         ArticleFilter();
         ArticleFilter( const QValueList<Criterion> &criteria, Association assoc, Action action );
 
-        bool matches( const MyArticle &article ) const;
+        bool matches( const Article &article ) const;
         Action action() const;
         bool operator==(const ArticleFilter &other) const;
         bool operator!=(const ArticleFilter &other) const;
     private:
-        bool anyCriterionMatches( const MyArticle &a ) const;
-        bool allCriteriaMatch( const MyArticle &a ) const;
+        bool anyCriterionMatches( const Article &a ) const;
+        bool allCriteriaMatch( const Article &a ) const;
 
         QValueList<Criterion> m_criteria;
         Association m_association;

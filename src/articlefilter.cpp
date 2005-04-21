@@ -46,7 +46,7 @@ Criterion::Criterion( Subject subject, Predicate predicate, const QVariant &obje
 {
 }
 
-bool Criterion::satisfiedBy( const MyArticle &article ) const
+bool Criterion::satisfiedBy( const Article &article ) const
 {
     QVariant concreteSubject;
 
@@ -128,7 +128,7 @@ ArticleFilter::ArticleFilter( const QValueList<Criterion> &criteria, Association
 {
 }
 
-bool ArticleFilter::matches( const MyArticle &a ) const
+bool ArticleFilter::matches( const Article &a ) const
 {
     switch ( m_association ) {
         case LogicalOr:
@@ -153,7 +153,7 @@ bool ArticleFilter::operator==(const ArticleFilter &other) const
 bool ArticleFilter::operator!=(const ArticleFilter &other) const
 { return !(*this == other); }
 
-bool ArticleFilter::anyCriterionMatches( const MyArticle &a ) const
+bool ArticleFilter::anyCriterionMatches( const Article &a ) const
 {
     if (m_criteria.count()==0)
         return true;
@@ -167,7 +167,7 @@ bool ArticleFilter::anyCriterionMatches( const MyArticle &a ) const
     return false;
 }
 
-bool ArticleFilter::allCriteriaMatch( const MyArticle &a ) const
+bool ArticleFilter::allCriteriaMatch( const Article &a ) const
 {
     if (m_criteria.count()==0)
         return true;

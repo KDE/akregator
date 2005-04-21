@@ -36,17 +36,27 @@
 #include "feedgroup.h"
 
 
+namespace Akregator {
 
-using namespace Akregator;
-
-FeedList::FeedList(QObject *parent, const char *name)
-    : QObject(parent, name), m_idCounter(2)
+class FeedList::FeedListPrivate
 {
-    m_rootNode = new FeedGroup(i18n("All Feeds"));
-    m_rootNode->setId(1);
-    m_idMap[1] = m_rootNode;
-    m_flatList.append(m_rootNode);
-    connectToNode(m_rootNode);
+    public:
+        uint idCounter;
+        QMap<uint, TreeNode*> idMap;
+        QValueList<TreeNode*> flatList;
+        FeedGroup* rootNode;
+        QString title;
+};
+    
+FeedList::FeedList(QObject *parent, const char *name)
+    : QObject(parent, name), d(new FeedListPrivate)
+{
+    d->idCounter = 2;
+    d->rootNode = new FeedGroup(i18n("All Feeds"));
+    d->rootNode->setId(1);
+    d->idMap[1] = d->rootNode;
+    d->flatList.append(d->rootNode);
+    connectToNode(d->rootNode);
 }
 
 void FeedList::parseChildNodes(QDomNode &node, FeedGroup* parent)
@@ -114,7 +124,7 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
 
     QDomNode i = body.firstChild();
 
-    list->m_idCounter = 0;
+    list->d->idCounter = 0;
     
     while( !i.isNull() )
     {
@@ -122,18 +132,18 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
         i = i.nextSibling();
     }
 
-    list->m_idCounter = 2;
+    list->d->idCounter = 2;
     
     for (TreeNode* i = list->rootNode()->firstChild(); i && i != list->rootNode(); i = i->next() )
-        if (i->id() >= list->m_idCounter)
-            list->m_idCounter = i->id() + 1;
+        if (i->id() >= list->d->idCounter)
+            list->d->idCounter = i->id() + 1;
 
     for (TreeNode* i = list->rootNode()->firstChild(); i && i != list->rootNode(); i = i->next() )
         if (i->id() == 0)
     {
-            uint id = list->m_idCounter++;
+            uint id = list->d->idCounter++;
             i->setId(id);
-            list->m_idMap[id] = i;
+            list->d->idMap[id] = i;
     }
 
     kdDebug() << "measuring startup time: STOP, " << spent.elapsed() << "ms" << endl;
@@ -144,23 +154,25 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
 FeedList::~FeedList()
 {
     emit signalDestroyed(this);
-    delete m_rootNode;
-    m_rootNode = 0;
+    delete d->rootNode;
+    d->rootNode = 0;
+    delete d;
+    d = 0;
 }
 
 TreeNode* FeedList::findByID(uint id) const
 {
-    return m_idMap.contains(id) ? m_idMap[id] : 0;
+    return d->idMap.contains(id) ? d->idMap[id] : 0;
 }
 
 bool FeedList::isEmpty() const
 {
-    return m_rootNode->firstChild() == 0;
+    return d->rootNode->firstChild() == 0;
 }
 
 FeedGroup* FeedList::rootNode() const
 {
-    return m_rootNode;
+    return d->rootNode;
 }
     
 void FeedList::append(FeedList* list, FeedGroup* parent, TreeNode* after)
@@ -168,7 +180,7 @@ void FeedList::append(FeedList* list, FeedGroup* parent, TreeNode* after)
     if ( list == this )
         return;
 
-    if ( !m_flatList.contains(parent) )
+    if ( !d->flatList.contains(parent) )
         parent = rootNode();
 
     QPtrList<TreeNode> children = list->rootNode()->children();
@@ -211,28 +223,28 @@ QDomDocument FeedList::toOPML() const
 
 const QString& FeedList::title() const
 {
-    return m_title;
+    return d->title;
 }
 
 void FeedList::setTitle(const QString& title)
 {
-    m_title = title;
+    d->title = title;
 }
     
 void FeedList::slotNodeAdded(TreeNode* node)
 {
     FeedGroup* parent = node->parent();
-    if ( !node || !m_flatList.contains(parent) || m_flatList.contains(node) )
+    if ( !node || !d->flatList.contains(parent) || d->flatList.contains(node) )
         return;
 
 
-    if (m_idCounter != 0)
+    if (d->idCounter != 0)
     {
-        node->setId(m_idCounter++);
-        m_idMap[node->id()] = node;
+        node->setId(d->idCounter++);
+        d->idMap[node->id()] = node;
     }
     
-    m_flatList.append(node);
+    d->flatList.append(node);
     connectToNode(node);
 
     if ( !node->isGroup() )
@@ -242,7 +254,7 @@ void FeedList::slotNodeAdded(TreeNode* node)
     FeedGroup* fg = static_cast<FeedGroup*> (node);
     for (TreeNode* i = fg->firstChild(); i && i != fg; i = i->next() )
     {
-        m_flatList.append(i);
+        d->flatList.append(i);
         connectToNode(i);
     }
 }
@@ -252,21 +264,21 @@ void FeedList::slotNodeAdded(TreeNode* node)
 
 void FeedList::slotNodeDestroyed(TreeNode* node)
 {
-    if ( !node || !m_flatList.contains(node) )
+    if ( !node || !d->flatList.contains(node) )
         return;
     
-    m_idMap.remove(node->id());
-    m_flatList.remove(node);
+    d->idMap.remove(node->id());
+    d->flatList.remove(node);
 }
 
 void FeedList::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
 {
-    if ( !node || !m_flatList.contains(node) )
+    if ( !node || !d->flatList.contains(node) )
         return;
     
-    m_idMap.remove(node->id());
+    d->idMap.remove(node->id());
     disconnectFromNode(node);
-    m_flatList.remove(node);
+    d->flatList.remove(node);
     
 }
 
@@ -307,5 +319,6 @@ void FeedList::disconnectFromNode(TreeNode* node)
 //        disconnect(f, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }
 }
-    
+
+} // namespace Akregator
 #include "feedlist.moc"

@@ -123,7 +123,7 @@ void FetchQueue::slotFetchAborted(Feed *f)
     feedDone(f);
 }
 
-bool FetchQueue::isEmpty()
+bool FetchQueue::isEmpty() const
 {
     return d->queuedFeeds.isEmpty() && d->fetchingFeeds.isEmpty();
 }

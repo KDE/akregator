@@ -35,16 +35,16 @@ namespace Akregator
 {
     class Feed;
     class FeedGroup;
-    class MyArticle;
+    class Article;
     class TreeNode;
     
     class ArticleListItem : public KListViewItem
     {
         public:
-            ArticleListItem( QListView *parent, QListViewItem *after, const MyArticle& a, Feed *parent );
+            ArticleListItem( QListView *parent, QListViewItem *after, const Article& a, Feed *parent );
             ~ArticleListItem();
 
-            MyArticle& article();
+            Article& article();
             Feed *feed();
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
@@ -54,7 +54,7 @@ namespace Akregator
             virtual ArticleListItem* nextSibling() { return static_cast<ArticleListItem*>(KListViewItem::nextSibling()); }
             
         private:
-            MyArticle m_article;
+            Article m_article;
             Feed *m_feed;
     };
     
@@ -106,7 +106,7 @@ namespace Akregator
         signals:
              /** emitted when an article was selected
                  @param article the article selected*/
-            void signalArticleSelected(MyArticle article);
+            void signalArticleSelected(Article article);
             void signalDoubleClicked(ArticleListItem*, const QPoint&, int);
             void signalContextMenu(KListView*, ArticleListItem*, const QPoint&);
              

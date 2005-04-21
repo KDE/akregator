@@ -33,9 +33,18 @@
 #include <kstaticdeleter.h>
 #include <kurl.h>
 
+#include <qdict.h>
 #include <qpixmap.h>
+#include <qvaluelist.h>
 
-using namespace Akregator;
+namespace Akregator {
+
+class FeedIconManager::FeedIconManagerPrivate
+{
+    public:
+    QValueList<Feed*> registeredFeeds;
+    QDict<Feed> urlDict;
+};
 
 FeedIconManager *FeedIconManager::m_instance = 0;
 
@@ -50,18 +59,18 @@ FeedIconManager* FeedIconManager::self()
 
 void FeedIconManager::fetchIcon(Feed* feed)
 {
-    if (!m_registeredFeeds.contains(feed))
+    if (!d->registeredFeeds.contains(feed))
     {
-        m_registeredFeeds.append(feed);
+        d->registeredFeeds.append(feed);
         connect(feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotFeedDestroyed(TreeNode*)));
     }
     QString iconURL = getIconURL(KURL(feed->xmlUrl()));
-    m_urlDict.insert(iconURL, feed);
+    d->urlDict.insert(iconURL, feed);
     loadIcon(iconURL);
 }
 
 FeedIconManager::FeedIconManager(QObject * parent, const char *name)
-:  QObject(parent, name), DCOPObject("FeedIconManager")
+:  QObject(parent, name), DCOPObject("FeedIconManager"), d(new FeedIconManagerPrivate)
 {
     connectDCOPSignal("kded",
                       "favicons", "iconChanged(bool, QString, QString)",
@@ -70,7 +79,10 @@ FeedIconManager::FeedIconManager(QObject * parent, const char *name)
 
 
 FeedIconManager::~FeedIconManager()
-{}
+{
+    delete d;
+    d = 0;
+}
 
 void FeedIconManager::loadIcon(const QString & url)
 {
@@ -121,8 +133,8 @@ void FeedIconManager::slotFeedDestroyed(TreeNode* node)
 {
     Feed* feed = dynamic_cast<Feed*>(node);
     if (feed)
-        while (m_registeredFeeds.contains(feed))
-            m_registeredFeeds.remove(m_registeredFeeds.find(feed));
+        while (d->registeredFeeds.contains(feed))
+            d->registeredFeeds.remove(d->registeredFeeds.find(feed));
 }
 
 void FeedIconManager::slotIconChanged(bool /*isHost*/, const QString& hostOrURL,
@@ -131,10 +143,11 @@ void FeedIconManager::slotIconChanged(bool /*isHost*/, const QString& hostOrURL,
     QString iconFile = KGlobal::dirs()->findResource("cache",
                                  iconName+".png");
     Feed* f;
-    while (f = m_urlDict.take(hostOrURL))
-        if (m_registeredFeeds.contains(f))
+    while (f = d->urlDict.take(hostOrURL))
+        if (d->registeredFeeds.contains(f))
             f->setFavicon(QPixmap(iconFile));
     emit signalIconChanged(hostOrURL, iconFile);
 }
 
+} // namespace Akregator
 #include "feediconmanager.moc"

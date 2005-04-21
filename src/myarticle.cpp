@@ -39,7 +39,7 @@
 
 namespace Akregator {
 
-struct MyArticle::Private : public RSS::Shared
+struct Article::Private : public RSS::Shared
 {
     /** The status of the article is stored in an int, the bits having the
         following meaning:
@@ -61,7 +61,7 @@ struct MyArticle::Private : public RSS::Shared
     Feed* feed;
 };
 
-MyArticle::MyArticle() : d(new Private)
+Article::Article() : d(new Private)
 {
     d->hash = 0;
     d->status = 0;
@@ -69,7 +69,7 @@ MyArticle::MyArticle() : d(new Private)
     d->archive = 0;
 }
 
-MyArticle::MyArticle(const QString& guid, Feed* feed) : d(new Private)
+Article::Article(const QString& guid, Feed* feed) : d(new Private)
 {
     d->feed = feed;
     d->guid = guid;
@@ -79,7 +79,7 @@ MyArticle::MyArticle(const QString& guid, Feed* feed) : d(new Private)
     d->hash = d->archive->hash(d->guid);
 }
 
-void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
+void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
@@ -135,27 +135,27 @@ void MyArticle::initialize(RSS::Article article, Backend::FeedStorage* archive)
     }
 }
 
-MyArticle::MyArticle(RSS::Article article, Feed* feed) : d(new Private)
+Article::Article(RSS::Article article, Feed* feed) : d(new Private)
 {
     //assert(feed)
     d->feed = feed;
     initialize(article, Backend::Storage::getInstance()->archiveFor(feed->xmlUrl()));
 }
 
-MyArticle::MyArticle(RSS::Article article, Backend::FeedStorage* archive) : d(new Private)
+Article::Article(RSS::Article article, Backend::FeedStorage* archive) : d(new Private)
 {
     d->feed = 0;
     initialize(article, archive);
 }
 
-void MyArticle::offsetPubDate(int secs)
+void Article::offsetPubDate(int secs)
 {
    d->pubDate = d->pubDate.addSecs(secs);
    d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
 
 }
 
-void MyArticle::setDeleted()
+void Article::setDeleted()
 {
     if (isDeleted())
         return;
@@ -167,17 +167,17 @@ void MyArticle::setDeleted()
         d->feed->slotArticleDeleted(*this);
 }
 
-bool MyArticle::isDeleted() const
+bool Article::isDeleted() const
 {
     return (d->status & Private::Deleted) != 0;
 }
 
-MyArticle::MyArticle(const MyArticle &other) : d(new Private)
+Article::Article(const Article &other) : d(new Private)
 {
     *this = other;
 }
 
-MyArticle::~MyArticle()
+Article::~Article()
 {
     if (d->deref())
     {
@@ -185,7 +185,7 @@ MyArticle::~MyArticle()
     }
 }
 
-MyArticle &MyArticle::operator=(const MyArticle &other)
+Article &Article::operator=(const Article &other)
 {
     if (this != &other) {
         other.d->ref();
@@ -197,32 +197,32 @@ MyArticle &MyArticle::operator=(const MyArticle &other)
 }
 
 
-bool MyArticle::operator<(const MyArticle &other) const
+bool Article::operator<(const Article &other) const
 {
     return pubDate() > other.pubDate();
 }
 
-bool MyArticle::operator<=(const MyArticle &other) const
+bool Article::operator<=(const Article &other) const
 {
     return pubDate() >= other.pubDate();
 }
 
-bool MyArticle::operator>(const MyArticle &other) const
+bool Article::operator>(const Article &other) const
 {
     return pubDate() < other.pubDate();
 }
 
-bool MyArticle::operator>=(const MyArticle &other) const
+bool Article::operator>=(const Article &other) const
 {
     return pubDate() <= other.pubDate();
 }
 
-bool MyArticle::operator==(const MyArticle &other) const
+bool Article::operator==(const Article &other) const
 {
     return (d->guid == other.guid());
 }
 
-int MyArticle::status() const
+int Article::status() const
 {
     if ((d->status & Private::Read) != 0)
         return Read;
@@ -233,7 +233,7 @@ int MyArticle::status() const
         return Unread;
 }
 
-void MyArticle::setStatus(int stat)
+void Article::setStatus(int stat)
 {
     int oldStatus = status();
     
@@ -255,40 +255,40 @@ void MyArticle::setStatus(int stat)
         d->feed->slotArticleStatusChanged(oldStatus, *this);
 }
 
-QString MyArticle::title() const
+QString Article::title() const
 {
     return d->archive->title(d->guid).remove("\\");
 }
 
-KURL MyArticle::link() const
+KURL Article::link() const
 {
     return d->archive->link(d->guid);
 }
 
-QString MyArticle::description() const
+QString Article::description() const
 {
     return d->archive->description(d->guid);
 }
 
-QString MyArticle::guid() const
+QString Article::guid() const
 {
     return d->guid;
 }
 
-KURL MyArticle::commentsLink() const
+KURL Article::commentsLink() const
 {
     return d->archive->commentsLink(d->guid);
 }
 
 
-int MyArticle::comments() const
+int Article::comments() const
 {
     
     return d->archive->comments(d->guid);
 }
 
 
-bool MyArticle::guidIsPermaLink() const
+bool Article::guidIsPermaLink() const
 {
     return d->archive->guidIsPermaLink(d->guid);
 }
@@ -298,7 +298,7 @@ bool MyArticle::guidIsPermaLink() const
 * This algorithm was first reported by Dan Bernstein
 * many years ago in comp.lang.c
 */
-uint MyArticle::calcHash(const QString& str)
+uint Article::calcHash(const QString& str)
 {
     const char* s = str.ascii();
     uint hash = 5381;
@@ -307,36 +307,36 @@ uint MyArticle::calcHash(const QString& str)
     return hash;
 }
 
-bool MyArticle::guidIsHash() const
+bool Article::guidIsHash() const
 {
     return d->archive->guidIsHash(d->guid);
 }
 
-uint MyArticle::hash() const
+uint Article::hash() const
 {
     return d->hash;
 }
 
-bool MyArticle::keep() const
+bool Article::keep() const
 {
     return (d->status & Private::Keep) != 0;
 }
 
-void MyArticle::setKeep(bool keep)
+void Article::setKeep(bool keep)
 {
     d->status = keep ? (d->status | Private::Keep) : (d->status & ~Private::Keep);
     d->archive->setStatus(d->guid, d->status);
 }
 
-Feed* MyArticle::feed() const
+Feed* Article::feed() const
 { return d->feed; }
 
-const QDateTime& MyArticle::pubDate() const
+const QDateTime& Article::pubDate() const
 {
     return d->pubDate;
 }
 
-QString MyArticle::buildTitle()
+QString Article::buildTitle()
 {
     QString s = d->archive->description(d->guid);
     int i=s.find('>',500); /*avoid processing too much */
