@@ -129,18 +129,18 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect (FetchQueue::self(), SIGNAL(signalStopped()), this, SLOT(slotFetchingStopped()));
 
     m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
+    ActionManager::getInstance()->initFeedListView(m_tree);
 
-    m_tree->setFeedList(m_feedList);
-
-    connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNodeItem*, const QPoint&)),
-            this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&)));
+    connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNodeItem*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&)));
 
     connect(m_tree, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
 
-    connect(m_tree, SIGNAL(signalDropped (KURL::List &, TreeNodeItem*, FeedGroupItem*)),
-            this, SLOT(slotFeedURLDropped (KURL::List &,
-                        TreeNodeItem*, FeedGroupItem*)));
+    connect(m_tree, SIGNAL(signalDropped (KURL::List &, TreeNodeItem*,
+            FeedGroupItem*)), this, SLOT(slotFeedURLDropped (KURL::List &,
+            TreeNodeItem*, FeedGroupItem*)));
 
+    m_tree->setFeedList(m_feedList);
+    
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
@@ -168,19 +168,16 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     m_searchBar = new SearchBar(m_mainTab);
 
-    connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), this, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
-    
     if ( !Settings::showQuickFilter() )
         m_searchBar->hide();
 
     mainTabLayout->addWidget(m_searchBar);
     
-    m_fetchTimer=0;
-
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
     m_articles = new ArticleList( m_articleSplitter, "articles" );
-
+    ActionManager::getInstance()->initArticleList(m_articles);
+    
     connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
@@ -194,6 +191,12 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
+    
+    ActionManager::getInstance()->initArticleViewer(m_articleViewer);
+
+    connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), m_articles, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
+
+    connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), m_articleViewer, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
                         this, SLOT(slotOpenTab(const KURL&, bool)) );
@@ -230,7 +233,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_tabs->setTitle(i18n("About"), m_mainTab);
     m_displayingAboutPage = true;
 
-    m_fetchTimer=new QTimer(this);
+    m_fetchTimer = new QTimer(this);
     connect( m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()) );
     m_fetchTimer->start(1000*60);
 
@@ -592,17 +595,17 @@ void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint&
     QWidget *w;
     if (node->isGroup()) {
         w = m_part->factory()->container("feedgroup_popup", m_part);
-        ActionManager::getInstance()->actionCollection()->action("feed_fetch")->setText("&Fetch Feeds");
-        ActionManager::getInstance()->actionCollection()->action("feed_remove")->setText("&Delete Folder");
-        ActionManager::getInstance()->actionCollection()->action("feed_modify")->setText("&Rename Folder");
-        ActionManager::getInstance()->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
+        ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feeds");
+        ActionManager::getInstance()->action("feed_remove")->setText("&Delete Folder");
+        ActionManager::getInstance()->action("feed_modify")->setText("&Rename Folder");
+        ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
     }
     else {
         w = m_part->factory()->container("feeds_popup", m_part);
-        ActionManager::getInstance()->actionCollection()->action("feed_fetch")->setText("&Fetch Feed");
-        ActionManager::getInstance()->actionCollection()->action("feed_remove")->setText("&Delete Feed");
-        ActionManager::getInstance()->actionCollection()->action("feed_modify")->setText("&Edit Feed...");
-        ActionManager::getInstance()->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
+        ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feed");
+        ActionManager::getInstance()->action("feed_remove")->setText("&Delete Feed");
+        ActionManager::getInstance()->action("feed_modify")->setText("&Edit Feed...");
+        ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
     }
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
@@ -612,60 +615,12 @@ void View::slotArticleListContextMenu(KListView*, ArticleListItem* item, const Q
 {
     if (!item)
         return;
-    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->actionCollection()->action("article_toggle_keep"));
+    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->action("article_toggle_keep"));
     if (ka)
         ka->setChecked( item->article().keep() );
     QWidget* w = m_part->factory()->container("article_popup", m_part);
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
-}
-
-void View::slotPreviousArticle()
-{
-    m_articles->slotPreviousArticle();
-}
-
-void View::slotNextArticle()
-{
-    m_articles->slotNextArticle();
-}
-
-void View::slotFeedsTreeUp()
-{
-    m_tree->slotItemUp();
-}
-
-void View::slotFeedsTreeDown()
-{
-    m_tree->slotItemDown();
-}
-
-void View::slotFeedsTreeLeft()
-{
-    m_tree->slotItemLeft();
-}
-
-void View::slotFeedsTreeRight()
-{
-    m_tree->slotItemRight();
-}
-
-void View::slotFeedsTreePageUp()
-{
-}
-
-void View::slotFeedsTreePageDown()
-{
-}
-
-void View::slotFeedsTreeHome()
-{
-    m_tree->slotItemBegin();
-}
-
-void View::slotFeedsTreeEnd()
-{
-    m_tree->slotItemEnd();
 }
 
 
@@ -760,12 +715,12 @@ void View::slotNodeSelected(TreeNode* node)
         m_articleViewer->slotShowSummary(node);
     }
 
-    if (ActionManager::getInstance()->actionCollection()->action("feed_remove") )
+    if (ActionManager::getInstance()->action("feed_remove") )
     {
         if (node != m_feedList->rootNode() )
-            ActionManager::getInstance()->actionCollection()->action("feed_remove")->setEnabled(true);
+            ActionManager::getInstance()->action("feed_remove")->setEnabled(true);
         else
-            ActionManager::getInstance()->actionCollection()->action("feed_remove")->setEnabled(false);
+            ActionManager::getInstance()->action("feed_remove")->setEnabled(false);
     }
 }
 
@@ -918,15 +873,6 @@ void View::slotFeedModify()
     delete dlg;
 }
 
-void View::slotPrevFeed()
-{
-    m_tree->slotPrevFeed();
-}
-
-void View::slotNextFeed()
-{
-    m_tree->slotNextFeed();
-}
 void View::slotNextTab()
 {
     m_tabs->slotNextTab();
@@ -943,7 +889,7 @@ void View::slotNextUnreadArticle()
     if (sel && sel->unread() > 0)
         m_articles->slotNextUnreadArticle();
     else
-        slotNextUnreadFeed();
+        m_tree->slotNextUnreadFeed();
 }
 
 void View::slotPrevUnreadArticle()
@@ -952,17 +898,7 @@ void View::slotPrevUnreadArticle()
     if (sel && sel->unread() > 0)
         m_articles->slotPreviousUnreadArticle();
     else
-        slotPrevUnreadFeed();
-}
-
-void View::slotPrevUnreadFeed()
-{
-    m_tree->slotPrevUnreadFeed();
-}
-
-void View::slotNextUnreadFeed()
-{
-    m_tree->slotNextUnreadFeed();
+        m_tree->slotPrevUnreadFeed();
 }
 
 void View::slotMarkAllFeedsRead()
@@ -1072,14 +1008,14 @@ void View::slotFetchAllFeeds()
 void View::slotFetchingStarted()
 {
     m_mainFrame->setState(Frame::Started);
-    ActionManager::getInstance()->actionCollection()->action("feed_stop")->setEnabled(true);
+    ActionManager::getInstance()->action("feed_stop")->setEnabled(true);
     m_mainFrame->setStatusText(i18n("Fetching Feeds..."));
 }
 
 void View::slotFetchingStopped()
 {
     m_mainFrame->setState(Frame::Completed);
-    ActionManager::getInstance()->actionCollection()->action("feed_stop")->setEnabled(false);
+    ActionManager::getInstance()->action("feed_stop")->setEnabled(false);
     m_mainFrame->setStatusText(QString::null);
 }
 
@@ -1133,7 +1069,7 @@ void View::slotArticleSelected(Article article)
     if (!feed)
         return;
 
-    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->actionCollection()->action("article_toggle_keep"));
+    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->action("article_toggle_keep"));
     if (ka)
         ka->setChecked( article.keep() );
 
@@ -1200,11 +1136,6 @@ void View::slotOpenCurrentArticleBackgroundTab()
     }
 }
 
-void View::slotPrint()
-{
-    m_articleViewer->slotPrint();
-}
-
 void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupItem* parent)
 {
     FeedGroup* pnode = parent ? parent->node() : 0;
@@ -1214,12 +1145,6 @@ void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupIt
     {
         addFeed((*it).prettyURL(), afternode, pnode, false);
     }
-}
-
-void View::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
-{
-    m_articleViewer->slotSetFilter(textFilter, statusFilter);
-    m_articles->slotSetFilter(textFilter, statusFilter);
 }
 
 void View::slotToggleShowQuickFilter()
@@ -1288,7 +1213,7 @@ void View::slotArticleToggleKeepFlag()
         ali->setPixmap(0, m_keepFlagIcon);
     else
         ali->setPixmap(0, QPixmap() );
-    KToggleAction* ka = static_cast<KToggleAction*>    (ActionManager::getInstance()->actionCollection()->action("article_toggle_keep"));
+    KToggleAction* ka = static_cast<KToggleAction*>    (ActionManager::getInstance()->action("article_toggle_keep"));
     if (ka)
         ka->setChecked( keep );
 

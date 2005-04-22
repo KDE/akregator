@@ -136,13 +136,6 @@ void ActionManager::initView(View* view)
     new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
-    // "Go" menu
-
-    new KAction(i18n("&Previous Feed"), "", "P", m_view, SLOT(slotPrevFeed()),actionCollection(), "go_prev_feed");
-    new KAction(i18n("&Next Feed"), "", "N", m_view, SLOT(slotNextFeed()),actionCollection(), "go_next_feed");
-    new KAction(i18n("N&ext Unread Feed"), "", "Alt+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
-    new KAction(i18n("Prev&ious Unread Feed"), "", "Alt+Minus", m_view, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
-
     // Settings menu
     KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
     sqf->setChecked( Settings::showQuickFilter() );
@@ -150,8 +143,7 @@ void ActionManager::initView(View* view)
     new KAction( i18n("Open Article in Tab"), "tab_new", "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
     new KAction( i18n("Open Article in Background Tab"), QString::null, "tab_new", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
     new KAction( i18n("Open Article in External Browser"), "window_new", "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
-    new KAction( i18n("&Previous Article"), QString::null, "Left", m_view, SLOT(slotPreviousArticle()), actionCollection(), "go_previous_article" );
-    new KAction( i18n("&Next Article"), QString::null, "Right", m_view, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
+
     new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
     new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
 
@@ -177,23 +169,18 @@ void ActionManager::initView(View* view)
     "Ctrl+N", m_view, SLOT(slotSetSelectedArticleNew()),
     actionCollection(), "article_set_status_new" ));
 
-
-    // TODO: move to initfeedlistview
-
-    new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", view, SLOT(slotFeedsTreeUp()), m_actionCollection, "feedstree_up" );
-    new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", view, SLOT(slotFeedsTreeDown()), m_actionCollection, "feedstree_down" );
-    new KAction( i18n("Go Left in Tree"), QString::null, "Alt+Left", view, SLOT(slotFeedsTreeLeft()), m_actionCollection, "feedstree_left" );
-    new KAction( i18n("Go Right in Tree"), QString::null, "Alt+Right", view, SLOT(slotFeedsTreeRight()), m_actionCollection, "feedstree_right" );
-    new KAction( i18n("Go to Top of Tree"), QString::null, "Alt+Home", view, SLOT(slotFeedsTreeHome()), m_actionCollection, "feedstree_home" );
-    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Alt+End", view, SLOT(slotFeedsTreeEnd()), m_actionCollection, "feedstree_end" );
     new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", view, SLOT(slotMoveCurrentNodeUp()), m_actionCollection, "feedstree_move_up" );
     new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", view, SLOT(slotMoveCurrentNodeDown()), m_actionCollection, "feedstree_move_down" );
     new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", view, SLOT(slotMoveCurrentNodeLeft()), m_actionCollection, "feedstree_move_left" );
-    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", view, SLOT(slotMoveCurrentNodeRight()), m_actionCollection, "feedstree_move_right" );
+    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", view, SLOT(slotMoveCurrentNodeRight()), m_actionCollection, "feedstree_move_right");
 }
 
 void ActionManager::initArticleViewer(ArticleViewer* articleViewer)
 {
+    if (m_articleViewer)
+        return;
+    else
+        m_articleViewer = articleViewer;
 }
 
 void ActionManager::initArticleList(ArticleList* articleList)
@@ -202,6 +189,9 @@ void ActionManager::initArticleList(ArticleList* articleList)
         return;
     else
         m_articleList = articleList;
+
+    new KAction( i18n("&Previous Article"), QString::null, "Left", articleList, SLOT(slotPreviousArticle()), actionCollection(), "go_previous_article" );
+    new KAction( i18n("&Next Article"), QString::null, "Right", articleList, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
 }
 
 void ActionManager::initFeedListView(FeedsTree* feedListView)
@@ -210,12 +200,27 @@ void ActionManager::initFeedListView(FeedsTree* feedListView)
         return;
     else
         m_feedListView = feedListView;
-       
+
+    new KAction(i18n("&Previous Feed"), "", "P", feedListView,  SLOT(slotPrevFeed()),actionCollection(), "go_prev_feed");
+    new KAction(i18n("&Next Feed"), "", "N", feedListView, SLOT(slotNextFeed()),actionCollection(), "go_next_feed");
+    new KAction(i18n("N&ext Unread Feed"), "", "Alt+Plus", feedListView, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
+    new KAction(i18n("Prev&ious Unread Feed"), "", "Alt+Minus", feedListView, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
+
+    new KAction( i18n("Go to Top of Tree"), QString::null, "Alt+Home", feedListView, SLOT(slotItemBegin()), m_actionCollection, "feedstree_home" );
+    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Alt+End", feedListView, SLOT(slotItemEnd()), m_actionCollection, "feedstree_end" );
+    new KAction( i18n("Go Left in Tree"), QString::null, "Alt+Left", feedListView, SLOT(slotItemLeft()), m_actionCollection, "feedstree_left" );
+    new KAction( i18n("Go Right in Tree"), QString::null, "Alt+Right", feedListView, SLOT(slotItemRight()), m_actionCollection, "feedstree_right" );    
+    new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", feedListView, SLOT(slotItemUp()), m_actionCollection, "feedstree_up" );
+    new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", feedListView, SLOT(slotItemDown()), m_actionCollection, "feedstree_down" );
 }
 
 KActionCollection* ActionManager::actionCollection()
 {
     return m_actionCollection;
+}
+KAction* ActionManager::action(const char* name, const char* classname)
+{
+    return m_actionCollection != 0 ? m_actionCollection->action(name, classname) : 0;
 }
 
 } // namespace Akregator

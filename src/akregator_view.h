@@ -184,8 +184,6 @@ namespace Akregator {
             /** called when URLs are dropped into the tree view */
             void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FeedGroupItem *parent);
      
-            void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
-
             /** displays a URL in the status bar when the user moves the mouse over a link */
             void slotMouseOverInfo(const KFileItem *kifi);
             
@@ -204,8 +202,6 @@ namespace Akregator {
             /** Feed has been fetched, populate article view if needed and update counters. */
             void slotFeedFetched(Feed *);
             
-            /** prints the content of the article viewer */
-            void slotPrint();
             /** adds a new feed to the feed tree */
             void slotFeedAdd();
             /** adds a feed group to the feed tree */
@@ -243,39 +239,19 @@ namespace Akregator {
             /** toggles the visibility of the filter bar */
             void slotToggleShowQuickFilter();
 
-            /** selects the previous article in the article list */
-            void slotPreviousArticle();
-            /** selects the next article in the article list */
-            void slotNextArticle();
             /** selects the previous unread article in the article list */
             void slotPrevUnreadArticle();
             /** selects the next unread article in the article list */
             void slotNextUnreadArticle();
-            /** selects the previous (pre-order) feed with unread articles in the tree view */
-            void slotPrevUnreadFeed();
-            /** selects the next (pre-order) feed with unread articles in the tree view */
-            void slotNextUnreadFeed();
-            /** selects the previous (pre-order) feed in the tree view */
-            void slotPrevFeed();
-            /** selects the next (pre-order) feed in the tree view */
-            void slotNextFeed();
 
             void slotNextTab();
             void slotPreviousTab();
 
-            void slotFeedsTreeUp();
-            void slotFeedsTreeDown();
-            void slotFeedsTreeLeft();
-            void slotFeedsTreeRight();
             void slotMoveCurrentNodeUp();
             void slotMoveCurrentNodeDown();
             void slotMoveCurrentNodeLeft();
             void slotMoveCurrentNodeRight();
-            void slotFeedsTreePageUp();
-            void slotFeedsTreePageDown();
-            void slotFeedsTreeHome();
-            void slotFeedsTreeEnd();
-            
+
         protected:
 
             void addFeed(const QString& url, TreeNode* after, FeedGroup* parent, bool autoExec = true);

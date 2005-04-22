@@ -27,6 +27,7 @@
 
 #include <qobject.h>
 
+class KAction;
 class KActionCollection;
 class KXMLGUIClient;
 
@@ -59,6 +60,7 @@ class ActionManager : public QObject
         void initFeedListView(FeedsTree* feedListView);
         
         KActionCollection* actionCollection();
+        KAction* action(const char* name, const char* classname=0);
 
     private:
 

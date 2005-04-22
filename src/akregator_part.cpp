@@ -119,7 +119,8 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     }     
     Backend::Storage::setInstance(m_storage);
 
-    ActionManager::setInstance(new ActionManager(this));
+    ActionManager* m_actionManager = new ActionManager(this);
+    ActionManager::setInstance(m_actionManager);
     ActionManager::getInstance()->initPart(this);
 
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
@@ -187,6 +188,7 @@ void Part::slotOnShutdown()
     slotSaveFeedList();
     m_view->slotOnShutdown();
     delete m_storage;
+    delete m_actionManager;
 }
 
 void Part::slotSettingsChanged()
