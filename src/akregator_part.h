@@ -141,7 +141,15 @@ namespace Akregator
 
             /** Saves the standard feed list to it's default location */
             void slotSaveFeedList();
-            
+
+            void fileImport();
+            void fileExport();
+            void fileGetFeeds();
+
+            /** Shows configuration dialog */
+            void showOptions();
+            void showKNotifyOptions();
+           
         signals:
             void showPart();
             void signalSettingsChanged();
@@ -169,14 +177,6 @@ namespace Akregator
         protected slots:
             void slotOnShutdown();
             void slotSettingsChanged();
-            void fileOpen();
-            void fileImport();
-            void fileExport();
-            void fileGetFeeds();
-
-            /** Shows configuration dialog */
-            void showOptions();
-            void showKNotifyOptions();
 
         private: // methods
 
@@ -184,7 +184,7 @@ namespace Akregator
             
             /** fills the font settings with system fonts, if fonts are not set */
             void initFonts();
-            void setupActions();
+            
             /** creates an OPML file containing the initial feeds (KDE feeds) */
             static QDomDocument createDefaultFeedList();
 

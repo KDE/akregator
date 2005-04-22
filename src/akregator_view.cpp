@@ -23,6 +23,7 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "actionmanager.h"
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "addfeeddialog.h"
@@ -238,6 +239,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect(m_expiryTimer, SIGNAL(timeout()), this,
             SLOT(slotDeleteExpiredArticles()) );
     m_expiryTimer->start(3600*1000);
+
     QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
 
     QTimer::singleShot(0, this, SLOT(delayedInit()));
@@ -590,17 +592,17 @@ void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint&
     QWidget *w;
     if (node->isGroup()) {
         w = m_part->factory()->container("feedgroup_popup", m_part);
-        m_part->actionCollection()->action("feed_fetch")->setText("&Fetch Feeds");
-        m_part->actionCollection()->action("feed_remove")->setText("&Delete Folder");
-        m_part->actionCollection()->action("feed_modify")->setText("&Rename Folder");
-        m_part->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
+        ActionManager::getInstance()->actionCollection()->action("feed_fetch")->setText("&Fetch Feeds");
+        ActionManager::getInstance()->actionCollection()->action("feed_remove")->setText("&Delete Folder");
+        ActionManager::getInstance()->actionCollection()->action("feed_modify")->setText("&Rename Folder");
+        ActionManager::getInstance()->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
     }
     else {
         w = m_part->factory()->container("feeds_popup", m_part);
-        m_part->actionCollection()->action("feed_fetch")->setText("&Fetch Feed");
-        m_part->actionCollection()->action("feed_remove")->setText("&Delete Feed");
-        m_part->actionCollection()->action("feed_modify")->setText("&Edit Feed...");
-        m_part->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
+        ActionManager::getInstance()->actionCollection()->action("feed_fetch")->setText("&Fetch Feed");
+        ActionManager::getInstance()->actionCollection()->action("feed_remove")->setText("&Delete Feed");
+        ActionManager::getInstance()->actionCollection()->action("feed_modify")->setText("&Edit Feed...");
+        ActionManager::getInstance()->actionCollection()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
     }
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
@@ -610,7 +612,7 @@ void View::slotArticleListContextMenu(KListView*, ArticleListItem* item, const Q
 {
     if (!item)
         return;
-    KToggleAction* ka = static_cast<KToggleAction*> (m_part->actionCollection()->action("article_toggle_keep"));
+    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->actionCollection()->action("article_toggle_keep"));
     if (ka)
         ka->setChecked( item->article().keep() );
     QWidget* w = m_part->factory()->container("article_popup", m_part);
@@ -758,12 +760,12 @@ void View::slotNodeSelected(TreeNode* node)
         m_articleViewer->slotShowSummary(node);
     }
 
-    if (m_part->actionCollection()->action("feed_remove") )
+    if (ActionManager::getInstance()->actionCollection()->action("feed_remove") )
     {
         if (node != m_feedList->rootNode() )
-            m_part->actionCollection()->action("feed_remove")->setEnabled(true);
+            ActionManager::getInstance()->actionCollection()->action("feed_remove")->setEnabled(true);
         else
-            m_part->actionCollection()->action("feed_remove")->setEnabled(false);
+            ActionManager::getInstance()->actionCollection()->action("feed_remove")->setEnabled(false);
     }
 }
 
@@ -1070,14 +1072,14 @@ void View::slotFetchAllFeeds()
 void View::slotFetchingStarted()
 {
     m_mainFrame->setState(Frame::Started);
-    m_part->actionCollection()->action("feed_stop")->setEnabled(true);
+    ActionManager::getInstance()->actionCollection()->action("feed_stop")->setEnabled(true);
     m_mainFrame->setStatusText(i18n("Fetching Feeds..."));
 }
 
 void View::slotFetchingStopped()
 {
     m_mainFrame->setState(Frame::Completed);
-    m_part->actionCollection()->action("feed_stop")->setEnabled(false);
+    ActionManager::getInstance()->actionCollection()->action("feed_stop")->setEnabled(false);
     m_mainFrame->setStatusText(QString::null);
 }
 
@@ -1131,7 +1133,7 @@ void View::slotArticleSelected(Article article)
     if (!feed)
         return;
 
-    KToggleAction* ka = static_cast<KToggleAction*> (m_part->actionCollection()->action("article_toggle_keep"));
+    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->actionCollection()->action("article_toggle_keep"));
     if (ka)
         ka->setChecked( article.keep() );
 
@@ -1286,7 +1288,7 @@ void View::slotArticleToggleKeepFlag()
         ali->setPixmap(0, m_keepFlagIcon);
     else
         ali->setPixmap(0, QPixmap() );
-    KToggleAction* ka = static_cast<KToggleAction*>    (m_part->actionCollection()->action("article_toggle_keep"));
+    KToggleAction* ka = static_cast<KToggleAction*>    (ActionManager::getInstance()->actionCollection()->action("article_toggle_keep"));
     if (ka)
         ka->setChecked( keep );
 

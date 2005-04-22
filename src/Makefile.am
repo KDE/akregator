@@ -82,6 +82,7 @@ viewer.lo: akregatorconfig.h
 libakregatorpart_la_SOURCES = \
 	akregator_run.cpp \
 	articlelist.cpp \
+        actionmanager.cpp \
 	frame.cpp \
 	viewer.cpp \
 	articleviewer.cpp \

@@ -56,6 +56,7 @@
 #include <private/qucomextra_p.h>
 
 #include "aboutdata.h"
+#include "actionmanager.h"
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "akregatorconfig.h"
@@ -89,105 +90,6 @@ void BrowserExtension::saveSettings()
     m_part->saveSettings();
 }
 
-void Part::setupActions()
-{
-    // file menu
-
-    new KAction(i18n("&Import Feeds..."), "", "", this, SLOT(fileImport()), actionCollection(), "file_import");
-    new KAction(i18n("&Export Feeds..."), "", "", this, SLOT(fileExport()), actionCollection(), "file_export");
-    new KAction(i18n("&Get Feeds From Web..."), "", "", this, SLOT(fileGetFeeds()), actionCollection(), "file_getfromweb");
-        
-    /* --- Feed/Feed Group popup menu */
-    new KAction(i18n("&Open Homepage"), "", "Ctrl+H", m_view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
-    new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", m_view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
-    new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", m_view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
-    new KAction(i18n("&Delete Feed"), "editdelete", "Alt+Delete", m_view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
-    new KAction(i18n("&Edit Feed..."), "edit", "F2", m_view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
-
-    KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "view_mode" );
-    
-    KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+Shift+1", m_view, SLOT(slotNormalView()), actionCollection(), "normal_view");
-    ra->setExclusiveGroup( "ViewMode" );
-    vm->insert(ra);
-    
-    ra = new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+Shift+2", m_view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
-    ra->setExclusiveGroup( "ViewMode" );
-    vm->insert(ra);
-    
-    ra = new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+Shift+3", m_view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
-    ra->setExclusiveGroup( "ViewMode" );
-    vm->insert(ra);
-
-    // toolbar / feed menu
-    new KAction(i18n("&Fetch Feed"), "down", "Ctrl+L", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
-    new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-        
-    KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, FetchQueue::self(), SLOT(slotAbort()), actionCollection(), "feed_stop");
-    stopAction->setEnabled(false);
-    
-    new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
-    new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
-
-    // "Go" menu
-
-    new KAction(i18n("&Previous Feed"), "", "P", m_view, SLOT(slotPrevFeed()),actionCollection(), "go_prev_feed");
-    new KAction(i18n("&Next Feed"), "", "N", m_view, SLOT(slotNextFeed()),actionCollection(), "go_next_feed");
-    new KAction(i18n("N&ext Unread Feed"), "", "Alt+Plus", m_view, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
-    new KAction(i18n("Prev&ious Unread Feed"), "", "Alt+Minus", m_view, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
-
-    // Settings menu
-    KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
-    sqf->setChecked( Settings::showQuickFilter() );
-    KStdAction::configureNotifications(this,SLOT(showKNotifyOptions()), actionCollection()); // options_configure_notifications
-
-    new KAction( i18n("Configure &Akregator..."), "configure", "", this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
-    //KStdAction::preferences( this, SLOT(showOptions()), actionCollection(), "akregator_configure_akregator" );
-
-    // feed tree navigation
-    new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", m_view, SLOT(slotFeedsTreeUp()), actionCollection(), "feedstree_up" );
-    new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", m_view, SLOT(slotFeedsTreeDown()), actionCollection(), "feedstree_down" );
-    new KAction( i18n("Go Left in Tree"), QString::null, "Alt+Left", m_view, SLOT(slotFeedsTreeLeft()), actionCollection(), "feedstree_left" );
-    new KAction( i18n("Go Right in Tree"), QString::null, "Alt+Right", m_view, SLOT(slotFeedsTreeRight()), actionCollection(), "feedstree_right" );
-    new KAction( i18n("Go to Top of Tree"), QString::null, "Alt+Home", m_view, SLOT(slotFeedsTreeHome()), actionCollection(), "feedstree_home" );
-    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Alt+End", m_view, SLOT(slotFeedsTreeEnd()), actionCollection(), "feedstree_end" );
-    new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", m_view, SLOT(slotMoveCurrentNodeUp()), actionCollection(), "feedstree_move_up" );
-    new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", m_view, SLOT(slotMoveCurrentNodeDown()), actionCollection(), "feedstree_move_down" );
-    new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", m_view, SLOT(slotMoveCurrentNodeLeft()), actionCollection(), "feedstree_move_left" );
-    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", m_view, SLOT(slotMoveCurrentNodeRight()), actionCollection(), "feedstree_move_right" );
-
-
-    // article list
-    new KAction( i18n("Open Article in Tab"), "tab_new", "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
-    new KAction( i18n("Open Article in Background Tab"), QString::null, "tab_new", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
-    new KAction( i18n("Open Article in External Browser"), "window_new", "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
-    new KAction( i18n("&Previous Article"), QString::null, "Left", m_view, SLOT(slotPreviousArticle()), actionCollection(), "go_previous_article" );
-    new KAction( i18n("&Next Article"), QString::null, "Right", m_view, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
-    new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
-    new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
-
-    new KAction(i18n("Select Next Tab"), "", "Ctrl+Period", m_view, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
-    new KAction(i18n("Select Previous Tab"), "", "Ctrl+Comma", m_view, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
-
-    KToggleAction* tkf = new KToggleAction(i18n("&Keep Article"), "flag", "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
-    tkf->setChecked(false);
-
-    new KAction(i18n("&Delete Article"), "editdelete", "Delete", m_view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
-    
-
-    KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark Article" ),
-                                    actionCollection(), "article_set_status" );
-
-    statusMenu->insert(new KAction(KGuiItem(i18n("Mark Article as &Unread"), "",
-                       i18n("Mark selected article as unread")),
-    "Ctrl+U", m_view, SLOT(slotSetSelectedArticleUnread()),
-    actionCollection(), "article_set_status_unread"));
-
-    statusMenu->insert(new KAction(KGuiItem(i18n("Mark Article as &New"), "",
-                        i18n("Mark selected article as new")),
-    "Ctrl+N", m_view, SLOT(slotSetSelectedArticleNew()),
-    actionCollection(), "article_set_status_new" ));
-}
-
 Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
     : DCOPObject("AkregatorIface")
@@ -200,7 +102,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 {
     // we need an instance
     setInstance( AkregatorFactory::instance() );
-    
+
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     KNotifyClient::startDaemon();
     
@@ -216,8 +118,13 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
          // FIXME: prevent part from loading (exit is not a good idea, it could be used in kontact)
     }     
     Backend::Storage::setInstance(m_storage);
-    
+
+    ActionManager::setInstance(new ActionManager(this));
+    ActionManager::getInstance()->initPart(this);
+
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
+    ActionManager::getInstance()->initView(m_view);
+    
     m_extension = new BrowserExtension(this, "ak_extension");
     
     connect(m_view, SIGNAL(setWindowCaption(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
@@ -230,9 +137,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     // notify the part that this is our internal widget
     setWidget(m_view);
 
-    setupActions();
-    
     m_trayIcon = new TrayIcon( getMainWindow() );
+    ActionManager::getInstance()->initTrayIcon(m_trayIcon);
+    
     connect(m_trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
 
     if ( isTrayIconEnabled() )
@@ -246,11 +153,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect( m_trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
 
-    KPopupMenu* traypop = m_trayIcon->contextMenu();
-    
-    action("feed_fetch_all")->plug(traypop, 1);
-    action("akregator_configure_akregator")->plug(traypop, 2);
-    
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
     
     connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutdown()));
@@ -258,10 +160,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_autosaveTimer = new QTimer(this);
     connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
     m_autosaveTimer->start(5*60*1000); // 5 minutes
-    
-    // set our XML-UI resource file
+
     setXMLFile("akregator_part.rc", true);
-    
+            
     initFonts();
 }
 
@@ -632,9 +533,6 @@ void Part::exportFile(const KURL& url)
             KMessageBox::error(m_view, KIO::NetAccess::lastErrorString() );
     }
 }
-
-void Part::fileOpen()
-{}
 
 void Part::fileImport()
 {
