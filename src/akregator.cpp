@@ -22,7 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "app.h"
 #include "akregator.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"

@@ -25,14 +25,13 @@
 #include <qstringlist.h>
 
 #include <dcopref.h>
-#include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <kdebug.h>
 #include <knotifyclient.h>
+#include <kuniqueapplication.h>
 
 #include "aboutdata.h"
-#include "app.h"
 #include "akregator.h"
 #include "akregator_options.h"
 
@@ -42,7 +41,7 @@ int main(int argc, char **argv)
     Akregator::AboutData about;
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options );
-    Akregator::Application app;
+    KUniqueApplication app;
     
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     KNotifyClient::startDaemon();
