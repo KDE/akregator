@@ -88,12 +88,6 @@ namespace Akregator
             /** Create KAboutData for this KPart. */
             static KAboutData *createAboutData();
 
-            void setStatusBar(const QString &text);
-            void setProgress(int percent);
-            void setStarted(KParts::Part* part);
-            void setCompleted(KParts::Part* part);
-            void setCanceled(KParts::Part* part, const QString &s);
-
             /**
              Opens feedlist
              @param url URL to feedlist

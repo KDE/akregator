@@ -333,56 +333,38 @@ void View::connectFrame(Frame *f)
 
 void View::slotStatusText(const QString &c)
 {
-    const Frame *f = dynamic_cast<const Frame *>(sender());
-    if (!f) return;
-    if (m_currentFrame != f) return;
-
-    emit setStatusBarText(c);
+    if (sender() == m_currentFrame)
+        emit setStatusBarText(c);
 }
 
 void View::slotCaptionChanged(const QString &c)
 {
-    const Frame *f = dynamic_cast<const Frame *>(sender());
-    if (!f) return;
-    if (m_currentFrame != f) return;
-
-    emit setWindowCaption(c);
+    if (sender() == m_currentFrame)
+        emit setWindowCaption(c);
 }
 
 void View::slotStarted()
 {
-    const Frame *f = dynamic_cast<const Frame *>(sender());
-    if (!f) return;
-    if (m_currentFrame != f) return;
-
-    m_part->setStarted(f->part());
+    if (sender() == m_currentFrame)
+        emit signalStarted(0);
 }
 
 void View::slotCanceled(const QString &s)
 {
-    const Frame *f = dynamic_cast<const Frame *>(sender());
-    if (!f) return;
-    if (m_currentFrame != f) return;
-
-    m_part->setCanceled(f->part(), s);
+    if (sender() == m_currentFrame)
+        emit signalCanceled(s);
 }
 
 void View::slotCompleted()
 {
-    const Frame *f = dynamic_cast<const Frame *>(sender());
-    if (!f) return;
-    if (m_currentFrame != f) return;
-
-    m_part->setCompleted(f->part());
+    if (sender() == m_currentFrame)
+        emit signalCompleted();
 }
 
 void View::slotLoadingProgress(int percent)
 {
-    const Frame *f = dynamic_cast<const Frame *>(sender());
-    if (!f) return;
-    if (m_currentFrame != f) return;
-
-    emit setProgress(percent);
+    if (sender() == m_currentFrame)
+        emit setProgress(percent);
 }
 
 bool View::importFeeds(const QDomDocument& doc)
@@ -574,15 +556,15 @@ void View::slotFrameChanged(Frame *f)
     switch (f->state())
     {
         case Frame::Started:
-            m_part->setStarted(f->part());
+            emit signalStarted(0);
             break;
         case Frame::Canceled:
-            m_part->setCanceled(f->part(), QString::null);
+            emit signalCanceled(QString::null);
             break;
         case Frame::Idle:
         case Frame::Completed:
         default:
-            m_part->setCompleted(f->part());
+            emit signalCompleted();
     }
 }
 
@@ -1088,14 +1070,14 @@ void View::slotFetchAllFeeds()
 void View::slotFetchingStarted()
 {
     m_mainFrame->setState(Frame::Started);
-    //m_mainFrame->setProgress(0);
+    m_part->actionCollection()->action("feed_stop")->setEnabled(true);
     m_mainFrame->setStatusText(i18n("Fetching Feeds..."));
 }
 
 void View::slotFetchingStopped()
 {
     m_mainFrame->setState(Frame::Completed);
-    //m_mainFrame->setProgress(100);
+    m_part->actionCollection()->action("feed_stop")->setEnabled(false);
     m_mainFrame->setStatusText(QString::null);
 }
 

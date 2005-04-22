@@ -46,8 +46,13 @@ class KLineEdit;
 class KListView;
 class KListViewItem;
 
-namespace Akregator
-{
+namespace KIO {
+
+    class Job;
+}
+
+namespace Akregator {
+
     class AboutPageViewer;
     class ArticleFilter;
     class ArticleList;
@@ -121,6 +126,9 @@ namespace Akregator
             void setWindowCaption(const QString&);
             void setStatusBarText(const QString&);
             void setProgress(int);
+            void signalStarted(KIO::Job*);
+            void signalCompleted();
+            void signalCanceled(const QString&);
             
         public slots:
 

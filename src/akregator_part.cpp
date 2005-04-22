@@ -122,8 +122,9 @@ void Part::setupActions()
     new KAction(i18n("&Fetch Feed"), "down", "Ctrl+L", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
         
-    new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, FetchQueue::self(), SLOT(slotAbort()), actionCollection(), "feed_stop");
-
+    KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, FetchQueue::self(), SLOT(slotAbort()), actionCollection(), "feed_stop");
+    stopAction->setEnabled(false);
+    
     new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
@@ -222,7 +223,10 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect(m_view, SIGNAL(setWindowCaption(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
     connect(m_view, SIGNAL(setStatusBarText(const QString&)), this, SIGNAL(setStatusBarText(const QString&)));
     connect(m_view, SIGNAL(setProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
-
+    connect(m_view, SIGNAL(signalCanceled(const QString&)), this, SIGNAL(canceled(const QString&)));
+    connect(m_view, SIGNAL(signalStarted(KIO::Job*)), this, SIGNAL(started(KIO::Job*)));
+    connect(m_view, SIGNAL(signalCompleted()), this, SIGNAL(completed()));
+    
     // notify the part that this is our internal widget
     setWidget(m_view);
 
@@ -314,30 +318,6 @@ Part::~Part()
 {
     if (!m_shuttingDown)
         slotOnShutdown();
-}
-
-void Part::setStarted(KParts::Part* part)
-{
-    if (part == this)
-        actionCollection()->action("feed_stop")->setEnabled(true);
-    
-    emit started(0);
-}
-
-void Part::setCompleted(KParts::Part* part)
-{
-    if (part == this)
-        actionCollection()->action("feed_stop")->setEnabled(false);
-    
-    emit completed(0);
-}
-
-void Part::setCanceled(KParts::Part* part, const QString &s)
-{
-    if (part == this)
-        actionCollection()->action("feed_stop")->setEnabled(false);
-    
-    emit canceled(s);
 }
 
 void Part::readProperties(KConfig* config)
