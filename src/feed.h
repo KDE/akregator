@@ -38,6 +38,11 @@ namespace KPIM {
     class ProgressItem;
 }
 
+// needed for slot fetchCompleted()
+using RSS::Document;
+using RSS::Loader;
+using RSS::Status;
+
 namespace Akregator
 {
     class FetchQueue;
@@ -240,7 +245,7 @@ namespace Akregator
             
         private slots:
 
-            void fetchCompleted(RSS::Loader *loader, RSS::Document doc, RSS::Status status);
+            void fetchCompleted(Loader *loader, Document doc, Status status);
             void slotImageFetched(const QPixmap& image);
 
         private:

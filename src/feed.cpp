@@ -483,7 +483,7 @@ void Feed::tryFetch()
     d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title(), QString::null, false);
     //connect(d->progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
 
-    d->loader = RSS::Loader::create( this, SLOT(fetchCompleted(RSS::Loader *, RSS::Document, RSS::Status)) );
+    d->loader = RSS::Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     //connect(d->loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
     d->loader->loadFrom( d->xmlUrl, new RSS::FileRetriever );
 }
