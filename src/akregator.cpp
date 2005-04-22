@@ -140,12 +140,12 @@ void MainWindow::setupProgressWidgets()
 }
 
 MainWindow::~MainWindow()
-{}
+{
+}
 
 void MainWindow::setCaption(const QString &a)
 {
-    if (sender() && (sender() == m_part) )
-        KParts::MainWindow::setCaption(a);
+    KParts::MainWindow::setCaption(a);
 }
 
 void MainWindow::setupActions()
@@ -234,7 +234,11 @@ bool MainWindow::queryExit()
 {
     kdDebug() << "MainWindow::queryExit()" << endl;
     if ( !kapp->sessionSaving() )
+    {
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
+        m_part = 0;
+    }    
+    kdDebug() << "ladies and gents, the part was deleted" << endl;
     return KParts::MainWindow::queryExit();
 }
 

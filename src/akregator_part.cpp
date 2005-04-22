@@ -187,8 +187,10 @@ void Part::slotOnShutdown()
     saveSettings();
     slotSaveFeedList();
     m_view->slotOnShutdown();
+    //delete m_view;
     delete m_storage;
-    delete m_actionManager;
+    m_storage = 0;
+    //delete m_actionManager;   
 }
 
 void Part::slotSettingsChanged()
@@ -219,8 +221,10 @@ void Part::saveSettings()
 
 Part::~Part()
 {
+    kdDebug() << "Part::~Part() enter" << endl;
     if (!m_shuttingDown)
         slotOnShutdown();
+    kdDebug() << "Part::~Part(): leaving" << endl;
 }
 
 void Part::readProperties(KConfig* config)

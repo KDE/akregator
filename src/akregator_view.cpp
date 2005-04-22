@@ -175,18 +175,18 @@ View::View( Part *part, QWidget *parent, const char *name)
     
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
-    m_articles = new ArticleList( m_articleSplitter, "articles" );
-    ActionManager::getInstance()->initArticleList(m_articles);
+    m_articleList = new ArticleList( m_articleSplitter, "articles" );
+    ActionManager::getInstance()->initArticleList(m_articleList);
     
-    connect( m_articles, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
+    connect( m_articleList, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
-    connect( m_articles, SIGNAL(signalArticleSelected(Article)),
-                this, SLOT( slotArticleSelected(Article)) );
-    connect( m_articles, SIGNAL(signalDoubleClicked(ArticleListItem*, const QPoint&, int)),
+    connect( m_articleList, SIGNAL(signalArticleChosen(const Article&)),
+                this, SLOT( slotArticleSelected(const Article&)) );
+    connect( m_articleList, SIGNAL(signalDoubleClicked(ArticleListItem*, const QPoint&, int)),
                 this, SLOT( slotOpenArticleExternal(ArticleListItem*, const QPoint&, int)) );
 
-    connect(m_articles, SIGNAL(signalContextMenu(KListView*, ArticleListItem*, const QPoint&)),
+    connect(m_articleList, SIGNAL(signalContextMenu(KListView*, ArticleListItem*, const QPoint&)),
             this, SLOT(slotArticleListContextMenu(KListView*, ArticleListItem*, const QPoint&)));
 
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
@@ -194,7 +194,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     
     ActionManager::getInstance()->initArticleViewer(m_articleViewer);
 
-    connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), m_articles, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
+    connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), m_articleList, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
 
     connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), m_articleViewer, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
 
@@ -227,7 +227,7 @@ View::View( Part *part, QWidget *parent, const char *name)
             slotNormalView();
     }
 
-    m_articles->hide();
+    m_articleList->hide();
     m_searchBar->hide();
     m_articleViewer->displayAboutPage();
     m_tabs->setTitle(i18n("About"), m_mainTab);
@@ -261,16 +261,15 @@ void View::delayedInit()
 
 void View::slotOnShutdown()
 {
-    kdDebug() << "View::slotOnShutdown(): enter" << endl;
     m_shuttingDown = true; // prevents slotFrameChanged from crashing
 
-    FetchQueue::self()->slotAbort();
-    
-    m_articles->slotShowNode(0);
+    m_articleList->slotShowNode(0);
     m_articleViewer->slotShowNode(0);
+
+    FetchQueue::self()->slotAbort();
+       
     m_tree->setFeedList(0);
     
-    kdDebug() << "View::slotOnShutdown(): delete feed list" << endl;
     delete m_feedList;
 
     // close all pageviewers in a controlled way
@@ -467,10 +466,10 @@ void View::slotNormalView()
 
     if (m_viewMode == CombinedView)
     {
-        m_articles->slotShowNode(m_tree->selectedNode());
-        m_articles->show();
+        m_articleList->slotShowNode(m_tree->selectedNode());
+        m_articleList->show();
 
-        ArticleListItem* item = m_articles->selectedItem();
+        ArticleListItem* item = m_articleList->selectedItem();
 
         if (item)
             m_articleViewer->slotShowArticle(item->article());
@@ -491,11 +490,11 @@ void View::slotWidescreenView()
 
     if (m_viewMode == CombinedView)
     {
-        m_articles->slotShowNode(m_tree->selectedNode());
-        m_articles->show();
+        m_articleList->slotShowNode(m_tree->selectedNode());
+        m_articleList->show();
 
         // tell articleview to redisplay+reformat
-        ArticleListItem* item = m_articles->selectedItem();
+        ArticleListItem* item = m_articleList->selectedItem();
         if (item)
             m_articleViewer->slotShowArticle(item->article());
         else
@@ -513,8 +512,8 @@ void View::slotCombinedView()
     if (m_viewMode == CombinedView)
         return;
 
-    m_articles->slotClear();
-    m_articles->hide();
+    m_articleList->slotClear();
+    m_articleList->hide();
     m_viewMode = CombinedView;
 
     slotNodeSelected(m_tree->selectedNode());
@@ -615,9 +614,7 @@ void View::slotArticleListContextMenu(KListView*, ArticleListItem* item, const Q
 {
     if (!item)
         return;
-    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->action("article_toggle_keep"));
-    if (ka)
-        ka->setChecked( item->article().keep() );
+
     QWidget* w = m_part->factory()->container("article_popup", m_part);
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
@@ -699,7 +696,7 @@ void View::slotNodeSelected(TreeNode* node)
     {
         m_tabs->setTitle(i18n("Articles"), m_mainTab);
         if (m_viewMode != CombinedView)
-            m_articles->show();
+            m_articleList->show();
         if (Settings::showQuickFilter())
             m_searchBar->show();
         m_displayingAboutPage = false;
@@ -711,7 +708,7 @@ void View::slotNodeSelected(TreeNode* node)
         m_articleViewer->slotShowNode(node);
     else
     {
-        m_articles->slotShowNode(node);
+        m_articleList->slotShowNode(node);
         m_articleViewer->slotShowSummary(node);
     }
 
@@ -887,7 +884,7 @@ void View::slotNextUnreadArticle()
 {
     TreeNode* sel = m_tree->selectedNode();
     if (sel && sel->unread() > 0)
-        m_articles->slotNextUnreadArticle();
+        m_articleList->slotNextUnreadArticle();
     else
         m_tree->slotNextUnreadFeed();
 }
@@ -896,7 +893,7 @@ void View::slotPrevUnreadArticle()
 {
     TreeNode* sel = m_tree->selectedNode();
     if (sel && sel->unread() > 0)
-        m_articles->slotPreviousUnreadArticle();
+        m_articleList->slotPreviousUnreadArticle();
     else
         m_tree->slotPrevUnreadFeed();
 }
@@ -1059,7 +1056,7 @@ void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint
     }
 }
 
-void View::slotArticleSelected(Article article)
+void View::slotArticleSelected(const Article& article)
 {
 
     if (m_viewMode == CombinedView)
@@ -1069,19 +1066,16 @@ void View::slotArticleSelected(Article article)
     if (!feed)
         return;
 
-    KToggleAction* ka = static_cast<KToggleAction*> (ActionManager::getInstance()->action("article_toggle_keep"));
-    if (ka)
-        ka->setChecked( article.keep() );
-
-    if (article.status() != Article::Read)
+    Article a(article);
+    if (a.status() != Article::Read)
     {
-        m_articles->setReceiveUpdates(false, false);
-        article.setStatus(Article::Read);
-        m_articles->setReceiveUpdates(true, false);
+        m_articleList->setReceiveUpdates(false, false);
+        a.setStatus(Article::Read);
+        m_articleList->setReceiveUpdates(true, false);
     }
-    kdDebug() << "selected: " << article.guid() << endl;
+    kdDebug() << "selected: " << a.guid() << endl;
     
-    m_articleViewer->slotShowArticle( article );
+    m_articleViewer->slotShowArticle(a);
 }
 
 void View::slotOpenArticleExternal(ArticleListItem* item, const QPoint&, int)
@@ -1095,7 +1089,7 @@ void View::slotOpenArticleExternal(ArticleListItem* item, const QPoint&, int)
 
 void View::slotOpenCurrentArticle()
 {
-    ArticleListItem *item = m_articles->currentItem();
+    ArticleListItem *item = m_articleList->currentItem();
     if (!item)
         return;
 
@@ -1114,12 +1108,12 @@ void View::slotOpenCurrentArticle()
 
 void View::slotOpenCurrentArticleExternal()
 {
-    slotOpenArticleExternal(m_articles->currentItem(), QPoint(), 0);
+    slotOpenArticleExternal(m_articleList->currentItem(), QPoint(), 0);
 }
 
 void View::slotOpenCurrentArticleBackgroundTab()
 {
-    ArticleListItem *item = m_articles->currentItem();
+    ArticleListItem *item = m_articleList->currentItem();
     if (!item)
         return;
 
@@ -1170,82 +1164,95 @@ void View::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    ArticleListItem* ali = m_articles->selectedItem();
+    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
 
-    if (!ali)
+    if (items.isEmpty())
         return;
 
-    QString msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(ali->article().title()));
+    QString msg;
+    if (items.count() == 1)     
+        msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(items.first()->article().title()));
+    else
+        msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(items.count());
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
-        Article article = ali->article();
-        article.setDeleted();
-        if ( ali->nextSibling() )
-            ali = ali->nextSibling();
-        else
-            ali = ali->itemAbove();
+        for (ArticleListItem* i = items.first(); i; i = items.next())
+        {
+            Article article = i->article();
+            article.setDeleted();
+        }
 
-        if (ali)
+        if (items.count() == 1)
         {
-            m_articles->setCurrentItem(ali);
-            m_articles->setSelected(ali, true);
+            ArticleListItem* ali = items.first();
+            if ( ali->nextSibling() )
+                ali = ali->nextSibling();
+            else
+                ali = ali->itemAbove();
+            m_articleList->setCurrentItem(ali);
+            m_articleList->setSelected(ali, true);
         }
-        else
-        {
-            m_articleViewer->slotClear();
-        }
-        m_articles->slotUpdate();
+
+        m_articleList->slotUpdate();
     }
 }
 
 
 void View::slotArticleToggleKeepFlag()
 {
-    ArticleListItem* ali = m_articles->selectedItem();
+    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
 
-    if (!ali)
+    if (items.isEmpty())
         return;
 
-    bool keep = !ali->article().keep();
+    bool allFlagsSet = true;
+    for (ArticleListItem* i = items.first(); allFlagsSet && i; i = items.next())
+        if (!i->article().keep())
+            allFlagsSet = false;
+            
+    for (ArticleListItem* i = items.first(); i; i = items.next())
+        i->article().setKeep(!allFlagsSet);
+    m_articleList->slotUpdate();    
+}
 
-    if (keep)
-        ali->setPixmap(0, m_keepFlagIcon);
-    else
-        ali->setPixmap(0, QPixmap() );
-    KToggleAction* ka = static_cast<KToggleAction*>    (ActionManager::getInstance()->action("article_toggle_keep"));
-    if (ka)
-        ka->setChecked( keep );
+void View::slotSetSelectedArticleRead()
+{
+    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
 
-    ali->article().setKeep(keep);
+    if (items.isEmpty())
+        return;
+
+    m_articleList->setReceiveUpdates(false, false);        
+    for (ArticleListItem* i = items.first(); i; i = items.next())
+        i->article().setStatus(Article::Read);
+    m_articleList->setReceiveUpdates(true, false);
 }
 
 void View::slotSetSelectedArticleUnread()
 {
-    ArticleListItem* ali = m_articles->selectedItem();
+    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
 
-    if (!ali)
+    if (items.isEmpty())
         return;
 
-    Article article = ali->article();
-
-    m_articles->setReceiveUpdates(false, false);
-    article.setStatus(Article::Unread);
-    m_articles->setReceiveUpdates(true, false);
+    m_articleList->setReceiveUpdates(false, false);        
+    for (ArticleListItem* i = items.first(); i; i = items.next())
+        i->article().setStatus(Article::Unread);
+    m_articleList->setReceiveUpdates(true, false);
 }
 
 void View::slotSetSelectedArticleNew()
 {
-    ArticleListItem* ali = m_articles->selectedItem();
+    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
 
-    if (!ali)
+    if (items.isEmpty())
         return;
 
-    Article article = ali->article();
-
-    m_articles->setReceiveUpdates(false, false);
-    article.setStatus(Article::New);
-    m_articles->setReceiveUpdates(true, false);
+    m_articleList->setReceiveUpdates(false, false);        
+    for (ArticleListItem* i = items.first(); i; i = items.next())
+        i->article().setStatus(Article::New);
+    m_articleList->setReceiveUpdates(true, false);
 }
 
 void View::slotMouseOverInfo(const KFileItem *kifi)
@@ -1291,9 +1298,9 @@ void View::readProperties(KConfig* config) // this is called when session is bei
             QString selectedArticleEntry = config->readEntry("selectedArticle");
             if ( selectedArticleEntry.isNull() )
             {
-                QListViewItem* selectedArticle = m_articles->findItem(selectedArticleEntry, 0);
+                QListViewItem* selectedArticle = m_articleList->findItem(selectedArticleEntry, 0);
                 if ( selectedArticle )
-                    m_articles->setSelected(selectedArticle, true);
+                    m_articleList->setSelected(selectedArticle, true);
             }
         } // if viewMode != combinedView
     } // if selectedFeed is set
@@ -1337,8 +1344,8 @@ void View::saveProperties(KConfig* config)
 
     if ( m_viewMode != CombinedView )
     {
-        if ( m_articles->selectedItem() )
-            config->writeEntry("selectedArticle", m_articles->selectedItem()->text(0));
+        if ( m_articleList->selectedItem() )
+            config->writeEntry("selectedArticle", m_articleList->selectedItem()->text(0));
     }
 }
 

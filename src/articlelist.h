@@ -29,6 +29,8 @@
 
 #include <klistview.h>
 
+#include <qptrlist.h>
+
 class QKeyEvent;
 
 namespace Akregator
@@ -77,7 +79,8 @@ namespace Akregator
             ArticleListItem* currentItem() const { return static_cast<ArticleListItem*>(KListView::currentItem()); }
             
             ArticleListItem* selectedItem() const { return static_cast<ArticleListItem*>(KListView::selectedItem()); }
-            
+
+            QPtrList<ArticleListItem> selectedArticleListItems(bool includeHiddenItems) const;
         public slots:
 
             /** show article list of tree node @c node (also connects to the notification signals of the node) */
@@ -104,9 +107,7 @@ namespace Akregator
             void slotNextUnreadArticle();
 
         signals:
-             /** emitted when an article was selected
-                 @param article the article selected*/
-            void signalArticleSelected(Article article);
+            void signalArticleChosen(const Article& article);
             void signalDoubleClicked(ArticleListItem*, const QPoint&, int);
             void signalContextMenu(KListView*, ArticleListItem*, const QPoint&);
              
@@ -119,7 +120,8 @@ namespace Akregator
             virtual void applyFilters();
 
         protected slots:
-            virtual void slotSelectionChanged(QListViewItem* item);
+            virtual void slotSelectionChanged();
+            virtual void slotCurrentChanged(QListViewItem* item);
             virtual void slotDoubleClicked(QListViewItem* item, const QPoint& p, int i);
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             

@@ -150,21 +150,25 @@ void ActionManager::initView(View* view)
     new KAction(i18n("Select Next Tab"), "", "Ctrl+Period", m_view, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
     new KAction(i18n("Select Previous Tab"), "", "Ctrl+Comma", m_view, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
 
-    KToggleAction* tkf = new KToggleAction(i18n("&Keep Article"), "flag", "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
-    tkf->setChecked(false);
-
-    new KAction(i18n("&Delete Article"), "editdelete", "Delete", m_view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
+    new KAction(i18n("&Toggle Keep Flag"), "flag", "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
+    
+    new KAction(i18n("&Delete"), "editdelete", "Delete", m_view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
     
 
-    KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark Article" ),
+    KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark" ),
                                     actionCollection(), "article_set_status" );
 
-    statusMenu->insert(new KAction(KGuiItem(i18n("Mark Article as &Unread"), "",
+    statusMenu->insert(new KAction(KGuiItem(i18n("Mark as &Read"), "",
+                       i18n("Mark selected article as read")),
+    "Ctrl+E", m_view, SLOT(slotSetSelectedArticleRead()),
+    actionCollection(), "article_set_status_read"));
+    
+    statusMenu->insert(new KAction(KGuiItem(i18n("Mark as &Unread"), "",
                        i18n("Mark selected article as unread")),
     "Ctrl+U", m_view, SLOT(slotSetSelectedArticleUnread()),
     actionCollection(), "article_set_status_unread"));
 
-    statusMenu->insert(new KAction(KGuiItem(i18n("Mark Article as &New"), "",
+    statusMenu->insert(new KAction(KGuiItem(i18n("Mark as &New"), "",
                         i18n("Mark selected article as new")),
     "Ctrl+N", m_view, SLOT(slotSetSelectedArticleNew()),
     actionCollection(), "article_set_status_new" ));

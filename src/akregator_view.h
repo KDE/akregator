@@ -138,7 +138,7 @@ namespace Akregator {
             void slotNodeSelected(TreeNode* node);
 
             /** the article selection has changed */
-            void slotArticleSelected(Article article);
+            void slotArticleSelected(const Article&);
             
             /** Shows requested popup menu for article list */
             void slotArticleListContextMenu(KListView*, ArticleListItem* item, const QPoint& p);
@@ -225,6 +225,8 @@ namespace Akregator {
             void slotArticleToggleKeepFlag();
             /** deletes the currently selected article */
             void slotArticleDelete();
+            /** marks the currently selected article as read */
+            void slotSetSelectedArticleRead();
             /** marks the currently selected article as unread */
             void slotSetSelectedArticleUnread();
             /** marks the currently selected article as new */
@@ -282,7 +284,7 @@ namespace Akregator {
 
             FeedList* m_feedList;
             FeedsTree* m_tree;
-            ArticleList *m_articles;
+            ArticleList *m_articleList;
             ArticleViewer *m_articleViewer;
             TabWidget *m_tabs;
             
