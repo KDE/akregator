@@ -38,7 +38,7 @@ class TreeNode::TreeNodePrivate
     bool doNotify;
     bool changeOccured;
     QString title;
-    FeedGroup* parent;
+    Folder* parent;
     uint id;
 };
 
@@ -93,12 +93,12 @@ TreeNode* TreeNode::prevSibling() const
     return children.prev();
 }
 
-FeedGroup* TreeNode::parent() const
+Folder* TreeNode::parent() const
 {
     return d->parent;
 }
 
-void TreeNode::setParent(FeedGroup* parent)
+void TreeNode::setParent(Folder* parent)
 {
     d->parent = parent;
 }

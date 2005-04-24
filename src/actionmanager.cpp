@@ -187,7 +187,7 @@ void ActionManager::initArticleViewer(ArticleViewer* articleViewer)
         m_articleViewer = articleViewer;
 }
 
-void ActionManager::initArticleList(ArticleList* articleList)
+void ActionManager::initArticleListView(ArticleListView* articleList)
 {
     if (m_articleList)
         return;
@@ -198,7 +198,7 @@ void ActionManager::initArticleList(ArticleList* articleList)
     new KAction( i18n("&Next Article"), QString::null, "Right", articleList, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
 }
 
-void ActionManager::initFeedListView(FeedsTree* feedListView)
+void ActionManager::initFeedListView(FeedListView* feedListView)
 {
     if (m_feedListView)
         return;

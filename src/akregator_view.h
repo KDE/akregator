@@ -55,13 +55,13 @@ namespace Akregator {
 
     class AboutPageViewer;
     class ArticleFilter;
-    class ArticleList;
-    class ArticleListItem;
+    class ArticleListView;
+    class ArticleItem;
     class ArticleViewer;
-    class FeedGroup;
-    class FeedGroupItem;
+    class Folder;
+    class FolderItem;
     class FeedList;
-    class FeedsTree;
+    class FeedListView;
     class Frame;
     class Part;
     class SearchBar;
@@ -98,7 +98,7 @@ namespace Akregator {
             feed list is replaced by the parsed one
              @param doc QDomDocument generated from OPML
              @param parent The parent group the new nodes */
-            bool loadFeeds(const QDomDocument& doc, FeedGroup* parent = 0);
+            bool loadFeeds(const QDomDocument& doc, Folder* parent = 0);
 
             /**
              @return the displayed Feed List in OPML format
@@ -141,7 +141,7 @@ namespace Akregator {
             void slotArticleSelected(const Article&);
             
             /** Shows requested popup menu for article list */
-            void slotArticleListContextMenu(KListView*, ArticleListItem* item, const QPoint& p);
+            void slotArticleListViewContextMenu(KListView*, ArticleItem* item, const QPoint& p);
             
             /** Shows requested popup menu for feed tree */
             void slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&);
@@ -153,7 +153,7 @@ namespace Akregator {
             void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);
 
             /** opens article of @c item in external browser */
-            void slotOpenArticleExternal(ArticleListItem* item, const QPoint&, int);
+            void slotOpenArticleExternal(ArticleItem* item, const QPoint&, int);
 
             /** opens the current article (currentItem) in external browser
             TODO: use selected instead of current? */
@@ -182,7 +182,7 @@ namespace Akregator {
             void slotCaptionChanged(const QString &);
 
             /** called when URLs are dropped into the tree view */
-            void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FeedGroupItem *parent);
+            void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FolderItem *parent);
      
             /** displays a URL in the status bar when the user moves the mouse over a link */
             void slotMouseOverInfo(const KFileItem *kifi);
@@ -256,7 +256,7 @@ namespace Akregator {
 
         protected:
 
-            void addFeed(const QString& url, TreeNode* after, FeedGroup* parent, bool autoExec = true);
+            void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
             
             void connectToFeedList(FeedList* feedList);
             void disconnectFromFeedList(FeedList* feedList);
@@ -283,8 +283,8 @@ namespace Akregator {
             enum ViewMode { NormalView=0, WidescreenView, CombinedView };  
 
             FeedList* m_feedList;
-            FeedsTree* m_tree;
-            ArticleList *m_articleList;
+            FeedListView* m_tree;
+            ArticleListView *m_articleList;
             ArticleViewer *m_articleViewer;
             TabWidget *m_tabs;
             

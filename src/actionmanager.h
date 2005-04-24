@@ -33,9 +33,9 @@ class KXMLGUIClient;
 
 namespace Akregator {
 
-class ArticleList;
+class ArticleListView;
 class ArticleViewer;
-class FeedsTree;
+class FeedListView;
 class Part;
 class TrayIcon;
 class View;
@@ -56,8 +56,8 @@ class ActionManager : public QObject
         void initView(View* view);
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
-        void initArticleList(ArticleList* articleList);
-        void initFeedListView(FeedsTree* feedListView);
+        void initArticleListView(ArticleListView* articleList);
+        void initFeedListView(FeedListView* feedListView);
         
         KActionCollection* actionCollection();
         KAction* action(const char* name, const char* classname=0);
@@ -66,8 +66,8 @@ class ActionManager : public QObject
 
         static ActionManager* m_self;
         KXMLGUIClient* m_client;
-        ArticleList* m_articleList;
-        FeedsTree* m_feedListView;
+        ArticleListView* m_articleList;
+        FeedListView* m_feedListView;
         View* m_view;
         ArticleViewer* m_articleViewer;
         Part* m_part;

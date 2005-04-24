@@ -25,13 +25,13 @@
 #ifndef AKREGATORFEED_H
 #define AKREGATORFEED_H
 
-#include "articlesequence.h"
 #include "treenode.h"
 #include "librss/librss.h"
 
 class QDomElement;
 class QPixmap;
 class QString;
+class QStringList;
 class KURL;
 
 namespace KPIM {
@@ -45,8 +45,10 @@ using RSS::Status;
 
 namespace Akregator
 {
+    class Article;
+    class ArticleList;
     class FetchQueue;
-    class FeedGroup;
+    class Folder;
 
     namespace Backend
     {
@@ -167,7 +169,7 @@ namespace Akregator
             /** sets the description of this feed */
             void setDescription(const QString& s);
 
-            virtual ArticleSequence articles();
+            virtual ArticleList articles();
             
              /** appends the articles in @c document to the feed's article list
              */
@@ -236,7 +238,11 @@ namespace Akregator
             void fetchDiscovery(Feed *);
             /** emitted when a fetch is aborted */
             void fetchAborted(Feed *);
-
+            /** emitted when new articles were added */
+            void signalArticlesAdded(int feedID, const QStringList& guids);
+            
+            //void signalArticlesDeleted(int feedID, const QStringList& guids);
+            
         protected:
             /** loads articles from archive **/
             void loadArticles();

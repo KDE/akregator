@@ -34,13 +34,13 @@ class QDomElement;
 
 namespace Akregator
 {
-    class ArticleSequence;
+    class ArticleList;
     class FetchQueue;
         
     /**
      * Represents a feed group (i.e. a folder containing feeds and/or other folders).
      */
-    class FeedGroup : public TreeNode
+    class Folder : public TreeNode
     {
         Q_OBJECT
         public:
@@ -48,7 +48,7 @@ namespace Akregator
             Child nodes are not inserted or parsed. 
             @param e the element representing the feed group
             @return a freshly created feed group */
-            static FeedGroup* fromOPML(QDomElement e);
+            static Folder* fromOPML(QDomElement e);
             
             /** The new constructor (DON'T USE YET). The idea: Just pass a parent and let parent do all the work,
             FeedsTree will be notified automatically and create an item
@@ -56,14 +56,14 @@ namespace Akregator
             @param parent The parent node to attach to
             @param title The title of the feed group
              */          
-            FeedGroup(const QString& title = QString::null); 
+            Folder(const QString& title = QString::null);
             
              /** Destructor.  */
-            virtual ~FeedGroup();
+            virtual ~Folder();
 
             /** returns recursively concatenated articles of children  
             @return an article sequence containing articles of children */
-            virtual ArticleSequence articles();
+            virtual ArticleList articles();
             
             /** returns the number of unread articles in all children    
             @return number of unread articles */
@@ -118,10 +118,10 @@ namespace Akregator
             virtual TreeNode* lastChild();
             
             /** returns whether the feed group is opened or not..
-            Use only in \ref FeedGroupItem. */
+            Use only in \ref FolderItem. */
             virtual bool isOpen() const;
             
-            /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref FeedGroupItem. */
+            /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref FolderItem. */
             virtual void setOpen(bool open);
             
         signals:
@@ -129,7 +129,7 @@ namespace Akregator
             void signalChildAdded(TreeNode*);
 
             /** emitted when a child was removed */
-            void signalChildRemoved(FeedGroup*, TreeNode*);
+            void signalChildRemoved(Folder*, TreeNode*);
                        
         public slots:
             
@@ -163,8 +163,8 @@ namespace Akregator
 
             virtual void updateUnreadCount();
             
-            class FeedGroupPrivate;
-            FeedGroupPrivate* d;
+            class FolderPrivate;
+            FolderPrivate* d;
     };
 }
 

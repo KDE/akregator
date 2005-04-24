@@ -37,6 +37,7 @@
 
 #include <libkdepim/progressmanager.h>
 
+#include "articlesequence.h"
 #include "akregatorconfig.h"
 #include "feed.h"
 #include "feedgroup.h"
@@ -73,10 +74,10 @@ class Feed::FeedPrivate
         QString description;
 
         /** list of feed articles */
-        ArticleSequence articles;
+        ArticleList articles;
 
         /** list of deleted articles **/
-        ArticleSequence deletedArticles;
+        ArticleList deletedArticles;
 
         QPixmap imagePixmap;
         RSS::Image image;
@@ -148,7 +149,7 @@ Feed* Feed::fromOPML(QDomElement e)
     return feed;
 }
 
-ArticleSequence Feed::articles()
+ArticleList Feed::articles()
 {
     if (!d->articlesLoaded)
         loadArticles();
@@ -181,9 +182,9 @@ void Feed::loadArticles()
 
 void Feed::recalcUnreadCount()
 {
-    ArticleSequence tarticles = articles();
-    ArticleSequence::Iterator it;
-    ArticleSequence::Iterator en = tarticles.end();
+    ArticleList tarticles = articles();
+    ArticleList::Iterator it;
+    ArticleList::Iterator en = tarticles.end();
 
     int oldUnread = d->archive->unread();
     
@@ -328,9 +329,9 @@ void Feed::slotMarkAllArticlesAsRead()
     if (unread() > 0)
     {
         setNotificationMode(false, true);
-        ArticleSequence tarticles = articles();
-        ArticleSequence::Iterator it;
-        ArticleSequence::Iterator en = tarticles.end();
+        ArticleList tarticles = articles();
+        ArticleList::Iterator it;
+        ArticleList::Iterator en = tarticles.end();
 
         for (it = tarticles.begin(); it != en; ++it)
             (*it).setStatus(Article::Read);
@@ -353,20 +354,21 @@ void Feed::appendArticles(const RSS::Document &doc)
     RSS::Article::List::ConstIterator en = d_articles.end();
 
     int nudge=0;
-
-    ArticleSequence deletedArticles = d->deletedArticles;
+    QStringList newArticles; 
+    ArticleList deletedArticles = d->deletedArticles;
     
     for (it = d_articles.begin(); it != en; ++it)
     {
         Article mya(*it, this);
 
-        ArticleSequence::Iterator old = d->articles.find(mya);
+        ArticleList::Iterator old = d->articles.find(mya);
 
         if ( old == d->articles.end() ) // article not in list
         {
             mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya);
+            newArticles.append(mya.guid());
             
             if (!mya.isDeleted() && !markImmediatelyAsRead())
                 mya.setStatus(Article::New);
@@ -389,10 +391,10 @@ void Feed::appendArticles(const RSS::Document &doc)
         else if ((*old).isDeleted())
             deletedArticles.remove(mya);
     }
-
-    ArticleSequence::ConstIterator dit = deletedArticles.begin();
-    ArticleSequence::ConstIterator dtmp;
-    ArticleSequence::ConstIterator den = deletedArticles.end();
+    
+    ArticleList::ConstIterator dit = deletedArticles.begin();
+    ArticleList::ConstIterator dtmp;
+    ArticleList::ConstIterator den = deletedArticles.end();
 
     // delete articles with delete flag set completely from archive, which aren't in the current feed source anymore
     while (dit != den)
@@ -406,6 +408,8 @@ void Feed::appendArticles(const RSS::Document &doc)
     
     d->articles.enableSorting(true);
     d->articles.sort();
+    if (!newArticles.isEmpty())
+        emit signalArticlesAdded(id(), newArticles);
     if (changed)
         modified();
 }
@@ -449,8 +453,8 @@ void Feed::fetch(bool followDiscovery)
     d->fetchTries = 0;
 
     // mark all new as unread
-    ArticleSequence::Iterator it;
-    ArticleSequence::Iterator en = d->articles.end();
+    ArticleList::Iterator it;
+    ArticleList::Iterator en = d->articles.end();
     for (it = d->articles.begin(); it != en; ++it)
     {
         if ((*it).status() == Article::New)
@@ -594,9 +598,9 @@ void Feed::slotDeleteExpiredArticles()
     if ( !usesExpiryByAge() )
         return;
 
-    ArticleSequence::Iterator it = d->articles.end();
-    ArticleSequence::Iterator tmp;
-    ArticleSequence::Iterator begin = d->articles.begin();
+    ArticleList::Iterator it = d->articles.end();
+    ArticleList::Iterator tmp;
+    ArticleList::Iterator begin = d->articles.begin();
     // when we found an article which is not yet expired, we can stop, since articles are sorted by date
     bool foundNotYetExpired = false;
 
@@ -683,7 +687,7 @@ TreeNode* Feed::next()
     if ( nextSibling() )
         return nextSibling();
 
-    FeedGroup* p = parent();
+    Folder* p = parent();
     while (p)
     {
         if ( p->nextSibling() )
@@ -707,9 +711,9 @@ void Feed::enforceLimitArticleNumber()
         
     bool changed = false;
 
-    ArticleSequence::Iterator it = d->articles.begin();
-    ArticleSequence::Iterator tmp;
-    ArticleSequence::Iterator en = d->articles.end();
+    ArticleList::Iterator it = d->articles.begin();
+    ArticleList::Iterator tmp;
+    ArticleList::Iterator en = d->articles.end();
 
     int c = 0;
     while (it != en)

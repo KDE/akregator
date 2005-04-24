@@ -1,3 +1,4 @@
+
 /*
     This file is part of Akregator.
 
@@ -34,8 +35,8 @@ class QString;
 namespace Akregator 
 {
 
-class ArticleSequence;
-class FeedGroup;
+class ArticleList;
+class Folder;
 class FetchQueue;
 
 /**
@@ -96,19 +97,19 @@ public:
     /** Returns the parent node.
     @return the parent feed group, 0 if there is none */
     
-    virtual FeedGroup* parent() const;
+    virtual Folder* parent() const;
     
     
     /** Sets parent node; Don't call this directly, is done automatically by 
-    insertChild-methods in @ref FeedGroup. */
+    insertChild-methods in @ref Folder. */
     
-    virtual void setParent(FeedGroup* parent);
+    virtual void setParent(Folder* parent);
     
     
     /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
     @return sequence of articles */
     
-    virtual ArticleSequence articles() = 0; // TODO: insert a const version as well
+    virtual ArticleList articles() = 0; // TODO: insert a const version as well
     
     
     /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.

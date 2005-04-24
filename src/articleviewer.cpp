@@ -43,6 +43,7 @@
 #include "aboutdata.h"
 #include "akregator_run.h"
 #include "akregatorconfig.h"
+#include "articlesequence.h"
 #include "articleviewer.h"
 #include "feed.h"
 #include "feedgroup.h"
@@ -326,12 +327,12 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
     }
     
     if (node->isGroup())
-        showSummary(static_cast<FeedGroup*>(m_node));
+        showSummary(static_cast<Folder*>(m_node));
     else
         showSummary(static_cast<Feed*>(m_node));
 }
 
-void ArticleViewer::showSummary(FeedGroup* group)
+void ArticleViewer::showSummary(Folder* group)
 {
     if (!group)
         return;
@@ -424,9 +425,9 @@ void ArticleViewer::slotUpdateCombinedView()
     if (!m_node)
         return slotClear();
 
-    ArticleSequence articles = m_node->articles();
-    ArticleSequence::ConstIterator end = articles.end();
-    ArticleSequence::ConstIterator it = articles.begin();
+    ArticleList articles = m_node->articles();
+    ArticleList::ConstIterator end = articles.end();
+    ArticleList::ConstIterator it = articles.begin();
 
     QString text;
 

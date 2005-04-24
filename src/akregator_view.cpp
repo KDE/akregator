@@ -27,6 +27,7 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "addfeeddialog.h"
+#include "articlesequence.h"
 #include "propertiesdialog.h"
 #include "frame.h"
 #include "fetchtransaction.h"
@@ -128,7 +129,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect (FetchQueue::self(), SIGNAL(signalStarted()), this, SLOT(slotFetchingStarted()));
     connect (FetchQueue::self(), SIGNAL(signalStopped()), this, SLOT(slotFetchingStopped()));
 
-    m_tree = new FeedsTree( m_feedSplitter, "FeedsTree" );
+    m_tree = new FeedListView( m_feedSplitter, "FeedListView" );
     ActionManager::getInstance()->initFeedListView(m_tree);
 
     connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNodeItem*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&)));
@@ -136,8 +137,8 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect(m_tree, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
 
     connect(m_tree, SIGNAL(signalDropped (KURL::List &, TreeNodeItem*,
-            FeedGroupItem*)), this, SLOT(slotFeedURLDropped (KURL::List &,
-            TreeNodeItem*, FeedGroupItem*)));
+            FolderItem*)), this, SLOT(slotFeedURLDropped (KURL::List &,
+            TreeNodeItem*, FolderItem*)));
 
     m_tree->setFeedList(m_feedList);
     
@@ -175,19 +176,19 @@ View::View( Part *part, QWidget *parent, const char *name)
     
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
-    m_articleList = new ArticleList( m_articleSplitter, "articles" );
-    ActionManager::getInstance()->initArticleList(m_articleList);
+    m_articleList = new ArticleListView( m_articleSplitter, "articles" );
+    ActionManager::getInstance()->initArticleListView(m_articleList);
     
     connect( m_articleList, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
     connect( m_articleList, SIGNAL(signalArticleChosen(const Article&)),
                 this, SLOT( slotArticleSelected(const Article&)) );
-    connect( m_articleList, SIGNAL(signalDoubleClicked(ArticleListItem*, const QPoint&, int)),
-                this, SLOT( slotOpenArticleExternal(ArticleListItem*, const QPoint&, int)) );
+    connect( m_articleList, SIGNAL(signalDoubleClicked(ArticleItem*, const QPoint&, int)),
+                this, SLOT( slotOpenArticleExternal(ArticleItem*, const QPoint&, int)) );
 
-    connect(m_articleList, SIGNAL(signalContextMenu(KListView*, ArticleListItem*, const QPoint&)),
-            this, SLOT(slotArticleListContextMenu(KListView*, ArticleListItem*, const QPoint&)));
+    connect(m_articleList, SIGNAL(signalContextMenu(KListView*, ArticleItem*, const QPoint&)),
+            this, SLOT(slotArticleListViewContextMenu(KListView*, ArticleItem*, const QPoint&)));
 
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
@@ -393,14 +394,14 @@ bool View::importFeeds(const QDomDocument& doc)
         return false;
     }
     
-    FeedGroup* fg = new FeedGroup(title);
+    Folder* fg = new Folder(title);
     m_feedList->rootNode()->appendChild(fg);
     m_feedList->append(feedList, fg);
 
     return true;
 }
 
-bool View::loadFeeds(const QDomDocument& doc, FeedGroup* parent)
+bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
 {
     FeedList* feedList = FeedList::fromOPML(doc);
 
@@ -444,15 +445,15 @@ void View::addFeedToGroup(const QString& url, const QString& groupName)
     // Locate the group.
     TreeNode* node = m_tree->findNodeByTitle(groupName);
 
-    FeedGroup* group = 0;
+    Folder* group = 0;
     if (!node || !node->isGroup())
     {
-        FeedGroup* g = new FeedGroup( groupName );
+        Folder* g = new Folder( groupName );
         m_feedList->rootNode()->appendChild(g);
         group = g;
     }
     else
-        group = static_cast<FeedGroup*>(node);
+        group = static_cast<Folder*>(node);
 
     // Invoke the Add Feed dialog with url filled in.
     if (group)
@@ -469,7 +470,7 @@ void View::slotNormalView()
         m_articleList->slotShowNode(m_tree->selectedNode());
         m_articleList->show();
 
-        ArticleListItem* item = m_articleList->selectedItem();
+        ArticleItem* item = m_articleList->selectedItem();
 
         if (item)
             m_articleViewer->slotShowArticle(item->article());
@@ -494,7 +495,7 @@ void View::slotWidescreenView()
         m_articleList->show();
 
         // tell articleview to redisplay+reformat
-        ArticleListItem* item = m_articleList->selectedItem();
+        ArticleItem* item = m_articleList->selectedItem();
         if (item)
             m_articleViewer->slotShowArticle(item->article());
         else
@@ -610,7 +611,7 @@ void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint&
         static_cast<QPopupMenu *>(w)->exec(p);
 }
 
-void View::slotArticleListContextMenu(KListView*, ArticleListItem* item, const QPoint& p)
+void View::slotArticleListViewContextMenu(KListView*, ArticleItem* item, const QPoint& p)
 {
     if (!item)
         return;
@@ -627,7 +628,7 @@ void View::slotMoveCurrentNodeUp()
     if (!current)
         return;
     TreeNode* prev = current->prevSibling();
-    FeedGroup* parent = current->parent();
+    Folder* parent = current->parent();
 
     if (!prev || !parent)
         return;
@@ -643,7 +644,7 @@ void View::slotMoveCurrentNodeDown()
     if (!current)
         return;
     TreeNode* next = current->nextSibling();
-    FeedGroup* parent = current->parent();
+    Folder* parent = current->parent();
 
     if (!next || !parent)
         return;
@@ -659,8 +660,8 @@ void View::slotMoveCurrentNodeLeft()
     if (!current || !current->parent() || !current->parent()->parent())
         return;
 
-    FeedGroup* parent = current->parent();
-    FeedGroup* grandparent = current->parent()->parent();
+    Folder* parent = current->parent();
+    Folder* grandparent = current->parent()->parent();
 
     parent->removeChild(current);
     grandparent->insertChild(current, parent);
@@ -676,7 +677,7 @@ void View::slotMoveCurrentNodeRight()
 
     if ( prev && prev->isGroup() )
     {
-        FeedGroup* fg = static_cast<FeedGroup*>(prev);
+        Folder* fg = static_cast<Folder*>(prev);
         current->parent()->removeChild(current);
         fg->appendChild(current);
         m_tree->ensureNodeVisible(current);
@@ -724,13 +725,13 @@ void View::slotNodeSelected(TreeNode* node)
 
 void View::slotFeedAdd()
 {
-    FeedGroup* group = 0;
+    Folder* group = 0;
     if (!m_tree->selectedNode())
         group = m_feedList->rootNode(); // all feeds
     else
     {
         if ( m_tree->selectedNode()->isGroup())
-            group = static_cast<FeedGroup*>(m_tree->selectedNode());
+            group = static_cast<Folder*>(m_tree->selectedNode());
         else
             group= m_tree->selectedNode()->parent();
 
@@ -741,7 +742,7 @@ void View::slotFeedAdd()
     addFeed(QString::null, lastChild, group, false);
 }
 
-void View::addFeed(const QString& url, TreeNode *after, FeedGroup* parent, bool autoExec)
+void View::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
 {
 
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
@@ -801,7 +802,7 @@ void View::slotFeedAddGroup()
         node = node->parent();
     }
 
-    FeedGroup* currentGroup = static_cast<FeedGroup*> (node);
+    Folder* currentGroup = static_cast<Folder*> (node);
 
     bool Ok;
 
@@ -809,7 +810,7 @@ void View::slotFeedAddGroup()
 
     if (Ok)
     {
-        FeedGroup* newGroup = new FeedGroup(text);
+        Folder* newGroup = new Folder(text);
         if (!after)
             currentGroup->appendChild(newGroup);
         else
@@ -1021,9 +1022,9 @@ void View::slotFeedFetched(Feed *feed)
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {
-        ArticleSequence articles = feed->articles();
-        ArticleSequence::ConstIterator it;
-        ArticleSequence::ConstIterator end = articles.end();
+        ArticleList articles = feed->articles();
+        ArticleList::ConstIterator it;
+        ArticleList::ConstIterator end = articles.end();
         for (it = articles.begin(); it != end; ++it)
         {
             if ((*it).status()==Article::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
@@ -1036,7 +1037,7 @@ void View::slotFeedFetched(Feed *feed)
 
 void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
 {
-    ArticleListItem *i = static_cast<ArticleListItem *>(item);
+    ArticleItem *i = static_cast<ArticleItem *>(item);
     if (!i)
         return;
 
@@ -1078,7 +1079,7 @@ void View::slotArticleSelected(const Article& article)
     m_articleViewer->slotShowArticle(a);
 }
 
-void View::slotOpenArticleExternal(ArticleListItem* item, const QPoint&, int)
+void View::slotOpenArticleExternal(ArticleItem* item, const QPoint&, int)
 {
     if (!item)
         return;
@@ -1089,7 +1090,7 @@ void View::slotOpenArticleExternal(ArticleListItem* item, const QPoint&, int)
 
 void View::slotOpenCurrentArticle()
 {
-    ArticleListItem *item = m_articleList->currentItem();
+    ArticleItem *item = m_articleList->currentItem();
     if (!item)
         return;
 
@@ -1113,7 +1114,7 @@ void View::slotOpenCurrentArticleExternal()
 
 void View::slotOpenCurrentArticleBackgroundTab()
 {
-    ArticleListItem *item = m_articleList->currentItem();
+    ArticleItem *item = m_articleList->currentItem();
     if (!item)
         return;
 
@@ -1130,9 +1131,9 @@ void View::slotOpenCurrentArticleBackgroundTab()
     }
 }
 
-void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupItem* parent)
+void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FolderItem* parent)
 {
-    FeedGroup* pnode = parent ? parent->node() : 0;
+    Folder* pnode = parent ? parent->node() : 0;
     TreeNode* afternode = after ? after->node() : 0;
     KURL::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )
@@ -1164,7 +1165,7 @@ void View::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
+    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
@@ -1177,7 +1178,7 @@ void View::slotArticleDelete()
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
-        for (ArticleListItem* i = items.first(); i; i = items.next())
+        for (ArticleItem* i = items.first(); i; i = items.next())
         {
             Article article = i->article();
             article.setDeleted();
@@ -1185,7 +1186,7 @@ void View::slotArticleDelete()
 
         if (items.count() == 1)
         {
-            ArticleListItem* ali = items.first();
+            ArticleItem* ali = items.first();
             if ( ali->nextSibling() )
                 ali = ali->nextSibling();
             else
@@ -1201,56 +1202,56 @@ void View::slotArticleDelete()
 
 void View::slotArticleToggleKeepFlag()
 {
-    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
+    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
 
     bool allFlagsSet = true;
-    for (ArticleListItem* i = items.first(); allFlagsSet && i; i = items.next())
+    for (ArticleItem* i = items.first(); allFlagsSet && i; i = items.next())
         if (!i->article().keep())
             allFlagsSet = false;
             
-    for (ArticleListItem* i = items.first(); i; i = items.next())
+    for (ArticleItem* i = items.first(); i; i = items.next())
         i->article().setKeep(!allFlagsSet);
     m_articleList->slotUpdate();    
 }
 
 void View::slotSetSelectedArticleRead()
 {
-    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
+    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
 
     m_articleList->setReceiveUpdates(false, false);        
-    for (ArticleListItem* i = items.first(); i; i = items.next())
+    for (ArticleItem* i = items.first(); i; i = items.next())
         i->article().setStatus(Article::Read);
     m_articleList->setReceiveUpdates(true, false);
 }
 
 void View::slotSetSelectedArticleUnread()
 {
-    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
+    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
 
     m_articleList->setReceiveUpdates(false, false);        
-    for (ArticleListItem* i = items.first(); i; i = items.next())
+    for (ArticleItem* i = items.first(); i; i = items.next())
         i->article().setStatus(Article::Unread);
     m_articleList->setReceiveUpdates(true, false);
 }
 
 void View::slotSetSelectedArticleNew()
 {
-    QPtrList<ArticleListItem> items = m_articleList->selectedArticleListItems(false);
+    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
 
     m_articleList->setReceiveUpdates(false, false);        
-    for (ArticleListItem* i = items.first(); i; i = items.next())
+    for (ArticleItem* i = items.first(); i; i = items.next())
         i->article().setStatus(Article::New);
     m_articleList->setReceiveUpdates(true, false);
 }

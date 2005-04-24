@@ -46,7 +46,7 @@
 
 using namespace Akregator;
 
-FeedsTree::FeedsTree( QWidget *parent, const char *name)
+FeedListView::FeedListView( QWidget *parent, const char *name)
         : KListView(parent, name)
 {
     setMinimumSize(150, 150);
@@ -80,10 +80,10 @@ FeedsTree::FeedsTree( QWidget *parent, const char *name)
     setUpdatesEnabled(true);
 }
 
-FeedsTree::~FeedsTree()
+FeedListView::~FeedListView()
 {}
 
-void FeedsTree::setFeedList(FeedList* feedList)
+void FeedListView::setFeedList(FeedList* feedList)
 {
     if (feedList == m_feedList)
          return;
@@ -98,10 +98,10 @@ void FeedsTree::setFeedList(FeedList* feedList)
     m_feedList = feedList;
     connectToFeedList(feedList);
     
-    FeedGroup* rootNode = feedList->rootNode();
+    Folder* rootNode = feedList->rootNode();
     if (!rootNode)
         return;
-    FeedGroupItem* ri = new FeedGroupItem(this, rootNode );
+    FolderItem* ri = new FolderItem(this, rootNode );
     m_itemDict.insert(rootNode, ri);
     connectToNode(rootNode);
 
@@ -111,7 +111,7 @@ void FeedsTree::setFeedList(FeedList* feedList)
         slotNodeAdded(i);
 }
 
-void FeedsTree::takeNode(QListViewItem* item)
+void FeedListView::takeNode(QListViewItem* item)
 {
     if (item->parent())
         item->parent()->takeItem(item);
@@ -119,7 +119,7 @@ void FeedsTree::takeNode(QListViewItem* item)
         takeItem(item);
 }
 
-void FeedsTree::insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after)
+void FeedListView::insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after)
 {
     if (parent)
         parent->insertItem(item);
@@ -129,26 +129,26 @@ void FeedsTree::insertNode(QListViewItem* parent, QListViewItem* item, QListView
         item->moveItem(after);
 }
 
-FeedGroup* FeedsTree::rootNode()
+Folder* FeedListView::rootNode()
 {
     return m_feedList ? m_feedList->rootNode() : 0;
 }
 
-TreeNode* FeedsTree::selectedNode()
+TreeNode* FeedListView::selectedNode()
 {
     TreeNodeItem* item = static_cast<TreeNodeItem*> (selectedItem());
     
     return ( item ? item->node() : 0) ;
 }
 
-void FeedsTree::setSelectedNode(TreeNode* node)
+void FeedListView::setSelectedNode(TreeNode* node)
 {
     TreeNodeItem* item = findNodeItem(node);
     if ( node && item )
         setSelected(item, true);
 }
 
-TreeNode* FeedsTree::findNodeByTitle(const QString& title)
+TreeNode* FeedListView::findNodeByTitle(const QString& title)
 {
     TreeNodeItem* item = static_cast<TreeNodeItem*>(findItem(title, 0));
     if (!item)
@@ -157,22 +157,22 @@ TreeNode* FeedsTree::findNodeByTitle(const QString& title)
         return item->node();
 }
 
-TreeNodeItem* FeedsTree::findNodeItem(TreeNode* node)
+TreeNodeItem* FeedListView::findNodeItem(TreeNode* node)
 {
     return m_itemDict.find(node);
 }
 
-TreeNodeItem* FeedsTree::findItem (const QString& text, int column, ComparisonFlags compare) const
+TreeNodeItem* FeedListView::findItem (const QString& text, int column, ComparisonFlags compare) const
 { 
     return static_cast<TreeNodeItem*> (KListView::findItem(text, column, compare)); 
 }
 
-void FeedsTree::ensureNodeVisible(TreeNode* node)
+void FeedListView::ensureNodeVisible(TreeNode* node)
 {
     ensureItemVisible(findNodeItem(node));
 }
 
-void FeedsTree::clear()
+void FeedListView::clear()
 {
     QPtrDictIterator<TreeNodeItem> it(m_itemDict);
     for( ; it.current(); ++it )
@@ -183,7 +183,7 @@ void FeedsTree::clear()
     KListView::clear();
 }
 
-void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
+void FeedListView::drawContentsOffset( QPainter * p, int ox, int oy,
                                        int cx, int cy, int cw, int ch )
 {
     bool oldUpdatesEnabled = isUpdatesEnabled();
@@ -192,7 +192,7 @@ void FeedsTree::drawContentsOffset( QPainter * p, int ox, int oy,
     setUpdatesEnabled(oldUpdatesEnabled);
 }
 
-void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
+void FeedListView::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
 {
     if (!acceptDrag(e))
         return;
@@ -200,7 +200,7 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
     QListViewItem *qiparent;
     QListViewItem *qiafterme;
     findDrop( e->pos(), qiparent, qiafterme );
-    FeedGroupItem* parent = static_cast<FeedGroupItem*> (qiparent);
+    FolderItem* parent = static_cast<FolderItem*> (qiparent);
                 
     if (!parent)
     {
@@ -213,7 +213,7 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
         if (KURLDrag::canDecode( e ))
         {
             findDrop( e->pos(), qiparent, qiafterme );
-            FeedGroupItem* parent = static_cast<FeedGroupItem*> (qiparent);
+            FolderItem* parent = static_cast<FolderItem*> (qiparent);
             TreeNodeItem* afterme = static_cast<TreeNodeItem*> (qiafterme);
     
             KURL::List urls;
@@ -230,14 +230,14 @@ void FeedsTree::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
     
 }
 
-void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
+void FeedListView::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
 {
     if (selectedItem() == afterme)
         return;
     
     if (parent)
     {    
-        FeedGroup* parentNode = (static_cast<FeedGroupItem*> (parent))->node();
+        Folder* parentNode = (static_cast<FolderItem*> (parent))->node();
 
         TreeNode* afterMeNode = 0; 
         TreeNode* current = selectedNode();
@@ -246,7 +246,7 @@ void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
             afterMeNode = (static_cast<TreeNodeItem*> (afterme))->node();
         
         // don't drop node into own subtree
-        FeedGroup* p = parentNode;
+        Folder* p = parentNode;
         while (p)
             if (p == current)
                 return;
@@ -259,7 +259,7 @@ void FeedsTree::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
     }    
 }
 
-void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
+void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
 {
     // if we are dragging over All feeds, enable
     QPoint vp = contentsToViewport(event->pos());
@@ -273,7 +273,7 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
     QListViewItem *qiparent;
     QListViewItem *qiafterme;
     findDrop( event->pos(), qiparent, qiafterme );
-    FeedGroupItem* parent = static_cast<FeedGroupItem*> (qiparent);
+    FolderItem* parent = static_cast<FolderItem*> (qiparent);
     //TreeNodeItem* afterme = static_cast<TreeNodeItem*> (qiafterme);
     
     // disable any drops where the result would be top level nodes 
@@ -294,7 +294,7 @@ void FeedsTree::contentsDragMoveEvent(QDragMoveEvent* event)
     KListView::contentsDragMoveEvent(event);
 }
 /*
-void FeedsTree::keyPressEvent(QKeyEvent* e)
+void FeedListView::keyPressEvent(QKeyEvent* e)
 {
     switch(e->key())
     {
@@ -315,7 +315,7 @@ void FeedsTree::keyPressEvent(QKeyEvent* e)
      }
 }*/
 
-bool FeedsTree::acceptDrag(QDropEvent *e) const
+bool FeedListView::acceptDrag(QDropEvent *e) const
 {
     if (!acceptDrops() || !itemsMovable())
         return false;
@@ -336,7 +336,7 @@ bool FeedsTree::acceptDrag(QDropEvent *e) const
     return true;
 }
 
-void FeedsTree::slotCollapseAll()
+void FeedListView::slotCollapseAll()
 {
     QListViewItem* it = firstChild();
     while(it)
@@ -346,14 +346,14 @@ void FeedsTree::slotCollapseAll()
     }
 }
 
-void FeedsTree::slotCollapse()
+void FeedListView::slotCollapse()
 {
     if (selectedItem())
         selectedItem()->setOpen(false);
 }
 
 
-void FeedsTree::slotExpandAll()
+void FeedListView::slotExpandAll()
 {
     QListViewItem* it = firstChild();
     while(it)
@@ -363,14 +363,14 @@ void FeedsTree::slotExpandAll()
     }
 }
 
-void FeedsTree::slotExpand()
+void FeedListView::slotExpand()
 {
     if (selectedItem())
         selectedItem()->setOpen(true);
 }
 
 
-void FeedsTree::slotItemUp()
+void FeedListView::slotItemUp()
 {
     if (selectedItem() && selectedItem()->itemAbove())
     {
@@ -379,7 +379,7 @@ void FeedsTree::slotItemUp()
     }   
 }
 
-void FeedsTree::slotItemDown()
+void FeedListView::slotItemDown()
 {
     if (selectedItem() && selectedItem()->itemBelow())
     {    
@@ -388,13 +388,13 @@ void FeedsTree::slotItemDown()
     }
 }
 
-void FeedsTree::slotItemBegin()
+void FeedListView::slotItemBegin()
 {
     setSelected( firstChild(), true );
     ensureItemVisible(firstChild());
 }
 
-void FeedsTree::slotItemEnd()
+void FeedListView::slotItemEnd()
 {
     QListViewItem* elt = firstChild();
     if (elt)
@@ -404,7 +404,7 @@ void FeedsTree::slotItemEnd()
     ensureItemVisible(elt);
 }
 
-void FeedsTree::slotItemLeft()
+void FeedListView::slotItemLeft()
 {
     QListViewItem* sel = selectedItem();
     
@@ -422,7 +422,7 @@ void FeedsTree::slotItemLeft()
     ensureItemVisible( selectedItem() );    
 }
 
-void FeedsTree::slotItemRight()
+void FeedListView::slotItemRight()
 {
     QListViewItem* sel = selectedItem();
     if (!sel)
@@ -440,7 +440,7 @@ void FeedsTree::slotItemRight()
     ensureItemVisible( selectedItem() );
 }
 
-void FeedsTree::slotPrevFeed()
+void FeedListView::slotPrevFeed()
 {
     for (QListViewItemIterator it( selectedItem()); it.current(); --it )
         if ( !(*it)->isSelected() && !(*it)->isExpandable() )
@@ -451,7 +451,7 @@ void FeedsTree::slotPrevFeed()
         }     
 }
     
-void FeedsTree::slotNextFeed()
+void FeedListView::slotNextFeed()
 {
     for (QListViewItemIterator it( selectedItem()); it.current(); ++it )
         if ( !(*it)->isSelected() && !(*it)->isExpandable() )
@@ -462,7 +462,7 @@ void FeedsTree::slotNextFeed()
         }     
 }
 
-void FeedsTree::slotPrevUnreadFeed()
+void FeedListView::slotPrevUnreadFeed()
 {
     if (!firstChild() || !firstChild()->firstChild())
         return;
@@ -508,7 +508,7 @@ void FeedsTree::slotPrevUnreadFeed()
     }
 }
 
-void FeedsTree::slotNextUnreadFeed()
+void FeedListView::slotNextUnreadFeed()
 {
     QListViewItemIterator it;
     
@@ -543,16 +543,16 @@ void FeedsTree::slotNextUnreadFeed()
     }
 }
 
-void FeedsTree::slotSelectionChanged(QListViewItem* item)
+void FeedListView::slotSelectionChanged(QListViewItem* item)
 {
  TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
     if (ni)
         emit signalNodeSelected(ni->node());
 }
 
-void FeedsTree::slotItemRenamed(QListViewItem* item, const QString& text, int)
+void FeedListView::slotItemRenamed(QListViewItem* item, const QString& text, int)
 {
-    kdDebug() << "FeedsTree::slotItemRenamed(): enter" << endl;
+    kdDebug() << "FeedListView::slotItemRenamed(): enter" << endl;
     TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
     if ( ni && ni->node() )
     {
@@ -561,12 +561,12 @@ void FeedsTree::slotItemRenamed(QListViewItem* item, const QString& text, int)
     }
 }
 
-void FeedsTree::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
+void FeedListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
 {
     emit signalContextMenu(list, static_cast<TreeNodeItem*>(item), p);
 }
 
-void FeedsTree::slotFeedFetchStarted(Feed* feed)
+void FeedListView::slotFeedFetchStarted(Feed* feed)
 {
     // Disable icon to show it is fetching.
     if (!feed->favicon().isNull())
@@ -579,34 +579,34 @@ void FeedsTree::slotFeedFetchStarted(Feed* feed)
 
 }
 
-void FeedsTree::slotFeedFetchAborted(Feed* feed)
+void FeedListView::slotFeedFetchAborted(Feed* feed)
 {
     TreeNodeItem* item = findNodeItem(feed);
     if (item)
         item->nodeChanged();
 }
 
-void FeedsTree::slotFeedFetchError(Feed* feed)
+void FeedListView::slotFeedFetchError(Feed* feed)
 {
     TreeNodeItem* item = findNodeItem(feed);
     if (item)
         item->nodeChanged();
 }
 
-void FeedsTree::slotFeedFetchCompleted(Feed* feed)
+void FeedListView::slotFeedFetchCompleted(Feed* feed)
 {
     TreeNodeItem* item = findNodeItem(feed);
     if (item)
         item->nodeChanged();
 }
       
-void FeedsTree::slotNodeAdded(TreeNode* node)
+void FeedListView::slotNodeAdded(TreeNode* node)
 {
     if (!node)
         return;
 
-    FeedGroup* parent = node->parent();
-    FeedGroupItem* parentItem = static_cast<FeedGroupItem*>(findNodeItem(parent));
+    Folder* parent = node->parent();
+    FolderItem* parentItem = static_cast<FolderItem*>(findNodeItem(parent));
         
     // we aren't interested in nodes whose parents we don't know 
     if (!parentItem)
@@ -622,11 +622,11 @@ void FeedsTree::slotNodeAdded(TreeNode* node)
     {
         if (node->isGroup())
         {
-            FeedGroup* fg = static_cast<FeedGroup*>(node);
+            Folder* fg = static_cast<Folder*>(node);
             if (prev)
-                item = new FeedGroupItem( parentItem, findNodeItem(prev), fg);
+                item = new FolderItem( parentItem, findNodeItem(prev), fg);
             else
-                item = new FeedGroupItem( parentItem, fg);
+                item = new FolderItem( parentItem, fg);
 
             m_itemDict.insert(node, item);
             QPtrList<TreeNode> children = fg->children();
@@ -656,7 +656,7 @@ void FeedsTree::slotNodeAdded(TreeNode* node)
     connectToNode(node);
 }
 
-void FeedsTree::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
+void FeedListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 {
     if (!node)
         return;
@@ -665,14 +665,14 @@ void FeedsTree::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
     takeNode(findNodeItem(node));
 }
 
-void FeedsTree::connectToNode(TreeNode* node)
+void FeedListView::connectToNode(TreeNode* node)
 {
     if (node->isGroup())
     {
-        FeedGroup* fg = static_cast<FeedGroup*>(node);
+        Folder* fg = static_cast<Folder*>(node);
                        
         connect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
-        connect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeRemoved(FeedGroup*, TreeNode*) ));
+        connect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
         connect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
         connect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }
@@ -689,7 +689,7 @@ void FeedsTree::connectToNode(TreeNode* node)
     }        
 }
 
-void FeedsTree::connectToFeedList(FeedList* list)
+void FeedListView::connectToFeedList(FeedList* list)
 {
     if (!list)
         return;
@@ -697,7 +697,7 @@ void FeedsTree::connectToFeedList(FeedList* list)
     connect(list, SIGNAL(signalDestroyed(FeedList*)), this, SLOT(slotFeedListDestroyed(FeedList*)) );
 }
 
-void FeedsTree::disconnectFromFeedList(FeedList* list)
+void FeedListView::disconnectFromFeedList(FeedList* list)
 {
     if (!list)
         return;
@@ -705,13 +705,13 @@ void FeedsTree::disconnectFromFeedList(FeedList* list)
     disconnect(list, SIGNAL(signalDestroyed(FeedList*)), this, SLOT(slotFeedListDestroyed(FeedList*)) );
 }
 
-void FeedsTree::disconnectFromNode(TreeNode* node)
+void FeedListView::disconnectFromNode(TreeNode* node)
 {
     if (node->isGroup())
     {
-        FeedGroup* fg = static_cast<FeedGroup*> (node);
+        Folder* fg = static_cast<Folder*> (node);
         disconnect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
-        disconnect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeRemoved(FeedGroup*, TreeNode*) ));
+        disconnect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
         
         disconnect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
         disconnect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
@@ -728,7 +728,7 @@ void FeedsTree::disconnectFromNode(TreeNode* node)
     }
 }
 
-void FeedsTree::slotFeedListDestroyed(FeedList* list)
+void FeedListView::slotFeedListDestroyed(FeedList* list)
 {
     if (list != m_feedList)
         return;
@@ -736,7 +736,7 @@ void FeedsTree::slotFeedListDestroyed(FeedList* list)
     setFeedList(0);
 }
 
-void FeedsTree::slotNodeDestroyed(TreeNode* node)
+void FeedListView::slotNodeDestroyed(TreeNode* node)
 {
     TreeNodeItem* item = findNodeItem(node);
     
@@ -757,7 +757,7 @@ void FeedsTree::slotNodeDestroyed(TreeNode* node)
     delete item;
 }
 
-void FeedsTree::slotNodeChanged(TreeNode* node)
+void FeedListView::slotNodeChanged(TreeNode* node)
 {
     TreeNodeItem* item = findNodeItem(node);
     if (item)
@@ -767,7 +767,7 @@ void FeedsTree::slotNodeChanged(TreeNode* node)
     }    
 }
 
-QDragObject *FeedsTree::dragObject()
+QDragObject *FeedListView::dragObject()
 {
     KMultipleDrag *md = new KMultipleDrag(viewport());
     QDragObject *obj = KListView::dragObject();

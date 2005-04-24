@@ -26,27 +26,27 @@
 
 using namespace Akregator;
 
-// = ArticleSequence ===================================================== //
+// = ArticleList ===================================================== //
 
-struct ArticleSequence::Private
+struct ArticleList::Private
 {
    int dummy;
    bool doSort :1;
 };
 
-ArticleSequence::ArticleSequence()
+ArticleList::ArticleList()
    : Article::List()
    , d(new Private)
 {
 }
 
-ArticleSequence::ArticleSequence(const ArticleSequence &other)
+ArticleList::ArticleList(const ArticleList &other)
    : Article::List(other)
    , d(new Private)
 {
 }
 
-ArticleSequence::~ArticleSequence()
+ArticleList::~ArticleList()
 {
    delete d;
 }
@@ -58,33 +58,33 @@ ArticleSequence::~ArticleSequence()
     c) re-sort added items (if enabled).
     d) use Article::fetchDate for sorting! ( defined by Article::operator <() )
  */
-ArticleSequence::iterator ArticleSequence::insert( iterator it, const Article &x )
+ArticleList::iterator ArticleList::insert( iterator it, const Article &x )
 {
     return Article::List::insert( it, x );
 }
 
-void ArticleSequence::insert( iterator it, size_type n, const Article &x )
+void ArticleList::insert( iterator it, size_type n, const Article &x )
 {
     Article::List::insert( it, n, x );
 }
 
-ArticleSequence::iterator ArticleSequence::append( const Article &x )
+ArticleList::iterator ArticleList::append( const Article &x )
 {
     return Article::List::append( x );
 }
 
-ArticleSequence::iterator ArticleSequence::prepend( const Article &x )
+ArticleList::iterator ArticleList::prepend( const Article &x )
 {
     return Article::List::prepend( x );
 }
 
 
-void ArticleSequence::enableSorting(bool b)
+void ArticleList::enableSorting(bool b)
 {
     d->doSort = b;
 }
 
-void ArticleSequence::sort()
+void ArticleList::sort()
 {
     if (d->doSort)
     {

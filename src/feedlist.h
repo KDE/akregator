@@ -34,7 +34,7 @@ class QString;
 namespace Akregator
 {
 
-class FeedGroup;
+class Folder;
 class TreeNode;
 
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
@@ -56,11 +56,11 @@ public:
     ~FeedList();
 
     /** returns the root node ("All Feeds"). */
-    FeedGroup* rootNode() const;
+    Folder* rootNode() const;
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
     
-    void append(FeedList* list, FeedGroup* parent=0, TreeNode* after=0);
+    void append(FeedList* list, Folder* parent=0, TreeNode* after=0);
 
     /** returns the title of the feed list (as used in the OPML document) */
     const QString& title() const;
@@ -95,11 +95,11 @@ protected slots:
     void slotNodeAdded(TreeNode* node);
 //    void slotNodeChanged(TreeNode* node);
     void slotNodeDestroyed(TreeNode* node);
-    void slotNodeRemoved(FeedGroup* parent, TreeNode* node);
+    void slotNodeRemoved(Folder* parent, TreeNode* node);
     
 private:
 
-    static void parseChildNodes(QDomNode &node, FeedGroup* parent);
+    static void parseChildNodes(QDomNode &node, Folder* parent);
 
     // never call these
     FeedList(const FeedList&) : QObject() {}

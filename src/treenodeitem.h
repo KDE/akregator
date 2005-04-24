@@ -30,7 +30,7 @@
 
 namespace Akregator {
 
-class FeedGroupItem;
+class FolderItem;
 class TreeNode;
 /**
     abstract base class for all items in the feeds tree
@@ -40,8 +40,8 @@ class TreeNodeItem : public KListViewItem
     
 public:
      
-    TreeNodeItem(FeedGroupItem* parent, TreeNode* node);
-    TreeNodeItem(FeedGroupItem* parent, TreeNodeItem* after, TreeNode* node);
+    TreeNodeItem(FolderItem* parent, TreeNode* node);
+    TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* node);
     TreeNodeItem(KListView* parent, TreeNode* node);
     virtual ~TreeNodeItem();
     virtual TreeNode* node();
@@ -50,7 +50,7 @@ public:
  
     virtual TreeNodeItem* firstChild() const; 
     virtual TreeNodeItem* nextSibling() const;
-    virtual FeedGroupItem* parent() const;
+    virtual FolderItem* parent() const;
 
     protected:
     

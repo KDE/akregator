@@ -33,18 +33,18 @@
 namespace Akregator 
 {
 
-class FeedGroup;
+class Folder;
 
-class FeedGroupItem : public TreeNodeItem
+class FolderItem : public TreeNodeItem
 {
 
 public:
-    FeedGroupItem(FeedGroupItem* parent, FeedGroup* node);
-    FeedGroupItem(FeedGroupItem* parent, TreeNodeItem* after, FeedGroup* node);
-    FeedGroupItem(KListView* parent, FeedGroup* node);
-    virtual ~FeedGroupItem();
+    FolderItem(FolderItem* parent, Folder* node);
+    FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node);
+    FolderItem(KListView* parent, Folder* node);
+    virtual ~FolderItem();
     
-    virtual FeedGroup* node();
+    virtual Folder* node();
     
     virtual void setOpen(bool open);
 };

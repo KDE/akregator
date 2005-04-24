@@ -30,7 +30,7 @@
 
 using namespace Akregator;
 
-FeedGroupItem::FeedGroupItem(FeedGroupItem* parent, FeedGroup* node) : TreeNodeItem(parent, node)
+FolderItem::FolderItem(FolderItem* parent, Folder* node) : TreeNodeItem(parent, node)
 {
     setExpandable(true);
     setOpen( node->isOpen() );
@@ -39,7 +39,7 @@ FeedGroupItem::FeedGroupItem(FeedGroupItem* parent, FeedGroup* node) : TreeNodeI
         setText(0, node->title());
 }
 
-FeedGroupItem::FeedGroupItem(FeedGroupItem* parent, TreeNodeItem* after, FeedGroup* node) : TreeNodeItem(parent, after, node)
+FolderItem::FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
 {
     setExpandable(true);
     setOpen(node->isOpen());
@@ -48,7 +48,7 @@ FeedGroupItem::FeedGroupItem(FeedGroupItem* parent, TreeNodeItem* after, FeedGro
         setText(0, node->title());
 }
 
-FeedGroupItem::FeedGroupItem(KListView* parent, FeedGroup* node) : TreeNodeItem(parent, node)
+FolderItem::FolderItem(KListView* parent, Folder* node) : TreeNodeItem(parent, node)
 {
     setExpandable(true);
     setOpen(true);
@@ -57,17 +57,17 @@ FeedGroupItem::FeedGroupItem(KListView* parent, FeedGroup* node) : TreeNodeItem(
         setText(0, node->title());
 }
 
-FeedGroup* FeedGroupItem::node() 
+Folder* FolderItem::node() 
 { 
-    return static_cast<FeedGroup*> (m_node); 
+    return static_cast<Folder*> (m_node); 
 }
 
-void FeedGroupItem::setOpen(bool open)
+void FolderItem::setOpen(bool open)
 {
     node()->setOpen(open);
     KListViewItem::setOpen(open);
 }
 
-FeedGroupItem::~FeedGroupItem()
+FolderItem::~FolderItem()
 {}
 

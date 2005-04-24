@@ -21,8 +21,8 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATORFEEDSTREE_H
-#define AKREGATORFEEDSTREE_H
+#ifndef AKREGATORFEEDLISTVIEW_H
+#define AKREGATORFEEDLISTVIEW_H
 
 #include <qptrdict.h>
 
@@ -33,18 +33,18 @@
 namespace Akregator
 {
     class Feed;
-    class FeedGroup;
-    class FeedGroupItem;
+    class Folder;
+    class FolderItem;
     class FeedList;
     class TreeNode;
     class TreeNodeItem;
     
-    class FeedsTree : public KListView
+    class FeedListView : public KListView
     {
         Q_OBJECT
         public:
-            FeedsTree( QWidget *parent = 0, const char *name = 0 );
-            ~FeedsTree();
+            FeedListView( QWidget *parent = 0, const char *name = 0 );
+            ~FeedListView();
             
             /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
             void setFeedList(FeedList* feedList);
@@ -52,7 +52,7 @@ namespace Akregator
             /** Returns root node ("All Feeds").
              * @return root node
              */
-            FeedGroup* rootNode();
+            Folder* rootNode();
             
             /** Returns the currently selected node, @c null when no one is selected.
              @return selected node
@@ -116,7 +116,7 @@ namespace Akregator
             /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
             
             Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
-            virtual void slotNodeRemoved(FeedGroup* parent, TreeNode* node);
+            virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
             
             /** deletes the item belonging to the deleted node */
             virtual void slotNodeDestroyed(TreeNode* node);
@@ -127,7 +127,7 @@ namespace Akregator
             virtual void slotFeedListDestroyed(FeedList*);
             
         signals:
-            void signalDropped (KURL::List &, TreeNodeItem*, FeedGroupItem*);
+            void signalDropped (KURL::List &, TreeNodeItem*, FolderItem*);
             void signalNodeSelected(TreeNode*);
             void signalContextMenu(KListView*, TreeNodeItem*, const QPoint&);
 

@@ -44,7 +44,7 @@ class FeedList::FeedListPrivate
         uint idCounter;
         QMap<uint, TreeNode*> idMap;
         QValueList<TreeNode*> flatList;
-        FeedGroup* rootNode;
+        Folder* rootNode;
         QString title;
 };
     
@@ -52,14 +52,14 @@ FeedList::FeedList(QObject *parent, const char *name)
     : QObject(parent, name), d(new FeedListPrivate)
 {
     d->idCounter = 2;
-    d->rootNode = new FeedGroup(i18n("All Feeds"));
+    d->rootNode = new Folder(i18n("All Feeds"));
     d->rootNode->setId(1);
     d->idMap[1] = d->rootNode;
     d->flatList.append(d->rootNode);
     connectToNode(d->rootNode);
 }
 
-void FeedList::parseChildNodes(QDomNode &node, FeedGroup* parent)
+void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
 {
     QDomElement e = node.toElement(); // try to convert the node to an element.
     
@@ -74,7 +74,7 @@ void FeedList::parseChildNodes(QDomNode &node, FeedGroup* parent)
         }
         else
         {
-            FeedGroup* fg = FeedGroup::fromOPML(e);
+            Folder* fg = Folder::fromOPML(e);
             parent->appendChild(fg);
         
             if (e.hasChildNodes())
@@ -170,12 +170,12 @@ bool FeedList::isEmpty() const
     return d->rootNode->firstChild() == 0;
 }
 
-FeedGroup* FeedList::rootNode() const
+Folder* FeedList::rootNode() const
 {
     return d->rootNode;
 }
     
-void FeedList::append(FeedList* list, FeedGroup* parent, TreeNode* after)
+void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
 {
     if ( list == this )
         return;
@@ -233,7 +233,7 @@ void FeedList::setTitle(const QString& title)
     
 void FeedList::slotNodeAdded(TreeNode* node)
 {
-    FeedGroup* parent = node->parent();
+    Folder* parent = node->parent();
     if ( !node || !d->flatList.contains(parent) || d->flatList.contains(node) )
         return;
 
@@ -251,7 +251,7 @@ void FeedList::slotNodeAdded(TreeNode* node)
         return;
     
     // if adding a feed group, also connect to sub tree
-    FeedGroup* fg = static_cast<FeedGroup*> (node);
+    Folder* fg = static_cast<Folder*> (node);
     for (TreeNode* i = fg->firstChild(); i && i != fg; i = i->next() )
     {
         d->flatList.append(i);
@@ -271,7 +271,7 @@ void FeedList::slotNodeDestroyed(TreeNode* node)
     d->flatList.remove(node);
 }
 
-void FeedList::slotNodeRemoved(FeedGroup* /*parent*/, TreeNode* node)
+void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 {
     if ( !node || !d->flatList.contains(node) )
         return;
@@ -286,10 +286,10 @@ void FeedList::connectToNode(TreeNode* node)
 {
     if (node->isGroup())
     {
-        FeedGroup* fg = static_cast<FeedGroup*>(node);
+        Folder* fg = static_cast<Folder*>(node);
                        
         connect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
-        connect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeRemoved(FeedGroup*, TreeNode*) ));
+        connect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
         connect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
 //        connect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }
@@ -306,9 +306,9 @@ void FeedList::disconnectFromNode(TreeNode* node)
 {
     if (node->isGroup())
     {
-        FeedGroup* fg = static_cast<FeedGroup*> (node);
+        Folder* fg = static_cast<Folder*> (node);
         disconnect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
-        disconnect(fg, SIGNAL(signalChildRemoved(FeedGroup*, TreeNode*)), this, SLOT(slotNodeRemoved(FeedGroup*, TreeNode*) ));
+        disconnect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
         disconnect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
 //        disconnect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }

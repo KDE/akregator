@@ -21,8 +21,8 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATORARTICLELIST_H
-#define AKREGATORARTICLELIST_H
+#ifndef AKREGATORARTICLELISTVIEW_H
+#define AKREGATORARTICLELISTVIEW_H
 
 #include "articlefilter.h"
 #include "myarticle.h"
@@ -36,24 +36,24 @@ class QKeyEvent;
 namespace Akregator
 {
     class Feed;
-    class FeedGroup;
+    class Folder;
     class Article;
     class TreeNode;
     
-    class ArticleListItem : public KListViewItem
+    class ArticleItem : public KListViewItem
     {
         public:
-            ArticleListItem( QListView *parent, QListViewItem *after, const Article& a, Feed *parent );
-            ~ArticleListItem();
+            ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *parent );
+            ~ArticleItem();
 
             Article& article();
             Feed *feed();
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
 
-            virtual ArticleListItem* itemAbove() { return static_cast<ArticleListItem*>(KListViewItem::itemAbove()); }
+            virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
             
-            virtual ArticleListItem* nextSibling() { return static_cast<ArticleListItem*>(KListViewItem::nextSibling()); }
+            virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(KListViewItem::nextSibling()); }
             
         private:
             Article m_article;
@@ -61,12 +61,12 @@ namespace Akregator
     };
     
     
-    class ArticleList : public KListView
+    class ArticleListView : public KListView
     {
         Q_OBJECT
         public:
-            ArticleList(QWidget *parent = 0, const char *name = 0);
-            ~ArticleList();
+            ArticleListView(QWidget *parent = 0, const char *name = 0);
+            ~ArticleListView();
             
             /**
             Listen to notification signals of the viewed node. Disable this if you don't want this view updated when the node changes.
@@ -76,11 +76,11 @@ namespace Akregator
             @param remember if @c true: if an update request occured while receiving updates was disabled, the view is updated on re-enabling. You have to set this when reenabling, not when disabling! Ignored when @c doReceive is set to false.(Anyone got this?) */
             void setReceiveUpdates(bool doReceive, bool remember=true);
 
-            ArticleListItem* currentItem() const { return static_cast<ArticleListItem*>(KListView::currentItem()); }
+            ArticleItem* currentItem() const { return static_cast<ArticleItem*>(KListView::currentItem()); }
             
-            ArticleListItem* selectedItem() const { return static_cast<ArticleListItem*>(KListView::selectedItem()); }
+            ArticleItem* selectedItem() const { return static_cast<ArticleItem*>(KListView::selectedItem()); }
 
-            QPtrList<ArticleListItem> selectedArticleListItems(bool includeHiddenItems) const;
+            QPtrList<ArticleItem> selectedArticleItems(bool includeHiddenItems) const;
         public slots:
 
             /** show article list of tree node @c node (also connects to the notification signals of the node) */
@@ -108,8 +108,8 @@ namespace Akregator
 
         signals:
             void signalArticleChosen(const Article& article);
-            void signalDoubleClicked(ArticleListItem*, const QPoint&, int);
-            void signalContextMenu(KListView*, ArticleListItem*, const QPoint&);
+            void signalDoubleClicked(ArticleItem*, const QPoint&, int);
+            void signalContextMenu(KListView*, ArticleItem*, const QPoint&);
              
         protected:
             /** reimplemented for kmail-like behaviour */            

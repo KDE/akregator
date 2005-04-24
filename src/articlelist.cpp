@@ -24,6 +24,7 @@
 
 #include "akregatorconfig.h"
 #include "articlelist.h"
+#include "articlesequence.h"
 #include "feed.h"
 #include "treenode.h"
 
@@ -43,7 +44,7 @@
 
 using namespace Akregator;
 
-ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
+ArticleItem::ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
     : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
 {
     m_article = a;
@@ -52,23 +53,23 @@ ArticleListItem::ArticleListItem( QListView *parent, QListViewItem *after, const
         setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
 }
  
-ArticleListItem::~ArticleListItem()
+ArticleItem::~ArticleItem()
 {
 }
 
 
-Article& ArticleListItem::article()
+Article& ArticleItem::article()
 {
     return m_article;
 }
 
-Feed *ArticleListItem::feed()
+Feed *ArticleItem::feed()
 {
     return m_feed;
 }
 
 // paint ze peons
-void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
+void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
 {
     QColorGroup cg2(cg);
     
@@ -83,9 +84,9 @@ void ArticleListItem::paintCell ( QPainter * p, const QColorGroup & cg, int colu
 }
 
 
-int ArticleListItem::compare(QListViewItem *i, int col, bool ascending) const {
+int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
     if (col == 2) {
-        ArticleListItem *item = static_cast<ArticleListItem*>(i);
+        ArticleItem *item = static_cast<ArticleItem*>(i);
         if (item) {
             return ascending ?
 		    item->m_article.pubDate().secsTo(m_article.pubDate()) :
@@ -97,7 +98,7 @@ int ArticleListItem::compare(QListViewItem *i, int col, bool ascending) const {
 
 /* ==================================================================================== */
 
-ArticleList::ArticleList(QWidget *parent, const char *name)
+ArticleListView::ArticleListView(QWidget *parent, const char *name)
     : KListView(parent, name), m_updated(false), m_doReceive(true), m_node(0), m_columnMode(feedMode)
 {
     setMinimumSize(250, 150);
@@ -154,7 +155,7 @@ ArticleList::ArticleList(QWidget *parent, const char *name)
     connect(this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
             this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
 }
-void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
+void ArticleListView::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
 {
     if ( (textFilter != m_textFilter) || (statusFilter != m_statusFilter) )
     {
@@ -165,7 +166,7 @@ void ArticleList::slotSetFilter(const ArticleFilter& textFilter, const ArticleFi
     }
 }
 
-void ArticleList::setReceiveUpdates(bool doReceive, bool remember)
+void ArticleListView::setReceiveUpdates(bool doReceive, bool remember)
 {
     if (m_doReceive && !doReceive)
     {    
@@ -183,7 +184,7 @@ void ArticleList::setReceiveUpdates(bool doReceive, bool remember)
     }   
 }
 
-void ArticleList::slotShowNode(TreeNode* node)
+void ArticleListView::slotShowNode(TreeNode* node)
 {
     if (!node)
     {
@@ -219,7 +220,7 @@ void ArticleList::slotShowNode(TreeNode* node)
     slotUpdate();
 }
 
-void ArticleList::slotClear()
+void ArticleListView::slotClear()
 {
     if (m_node)
     {
@@ -231,7 +232,7 @@ void ArticleList::slotClear()
     clear();
 }
 
-void ArticleList::slotUpdate()
+void ArticleListView::slotUpdate()
 {
     if (!m_doReceive)
     {
@@ -246,7 +247,7 @@ void ArticleList::slotUpdate()
 
     Article oldCurrentArticle;
     
-    ArticleListItem *li = dynamic_cast<ArticleListItem*>(currentItem());
+    ArticleItem *li = dynamic_cast<ArticleItem*>(currentItem());
     bool haveOld = false;
     if (li)
     {
@@ -258,12 +259,12 @@ void ArticleList::slotUpdate()
     
     QPtrList<QListViewItem> selItems = selectedItems(false);
 
-    ArticleSequence selectedArticles;
+    ArticleList selectedArticles;
 
     int haveSelected = 0;    
     for (QListViewItem* i = selItems.first(); i; i = selItems.next() )
     {
-        ArticleListItem* si = static_cast<ArticleListItem*>(i);
+        ArticleItem* si = static_cast<ArticleItem*>(i);
         selectedArticles.append(si->article());
         ++haveSelected;
     }
@@ -275,16 +276,16 @@ void ArticleList::slotUpdate()
     SortOrder order = sortOrder();
     setSorting(-1);
 
-    ArticleSequence articles = m_node->articles();
+    ArticleList articles = m_node->articles();
 
-    ArticleSequence::ConstIterator end = articles.end();
-    ArticleSequence::ConstIterator it = articles.begin();
+    ArticleList::ConstIterator end = articles.end();
+    ArticleList::ConstIterator it = articles.begin();
 
     for (; it != end; ++it)
     {
         if (!(*it).isDeleted())
         {
-            ArticleListItem *ali = new ArticleListItem(this, lastChild(), *it, (*it).feed());
+            ArticleItem *ali = new ArticleItem(this, lastChild(), *it, (*it).feed());
             if (haveOld && *it == oldCurrentArticle)
             {
                 setCurrentItem(ali);
@@ -306,17 +307,17 @@ void ArticleList::slotUpdate()
     triggerUpdate();
 }
 
-void ArticleList::applyFilters()
+void ArticleListView::applyFilters()
 {
-    ArticleListItem* ali = 0;
+    ArticleItem* ali = 0;
     for (QListViewItemIterator it(this); it.current(); ++it)
     {
-        ali = static_cast<ArticleListItem*> (it.current());
+        ali = static_cast<ArticleItem*> (it.current());
         ali->setVisible( m_statusFilter.matches( ali->article() ) && m_textFilter.matches( ali->article() ) );
     }
 }
 
-void ArticleList::slotPreviousArticle()
+void ArticleListView::slotPreviousArticle()
 {
     QListViewItem *lvi = currentItem();
     
@@ -336,7 +337,7 @@ void ArticleList::slotPreviousArticle()
     }
 }
 
-void ArticleList::slotNextArticle()
+void ArticleListView::slotNextArticle()
 {
     QListViewItem *lvi = currentItem();
     
@@ -356,13 +357,13 @@ void ArticleList::slotNextArticle()
     }
 }
 
-void ArticleList::slotNextUnreadArticle()
+void ArticleListView::slotNextUnreadArticle()
 {
-    ArticleListItem *it= static_cast<ArticleListItem*>(currentItem());
+    ArticleItem *it= static_cast<ArticleItem*>(currentItem());
     if (!it)
-        it = static_cast<ArticleListItem*>(firstChild());
+        it = static_cast<ArticleItem*>(firstChild());
 
-    for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
+    for ( ; it; it = static_cast<ArticleItem*>(it->nextSibling()))
     {
         if (it->article().status() != Article::Read)
         {
@@ -376,8 +377,8 @@ void ArticleList::slotNextUnreadArticle()
     // only reached when there is no unread article after the selected one
     if (m_node->unread() > 0)
     {
-        it = static_cast<ArticleListItem*>(firstChild());
-        for ( ; it; it = static_cast<ArticleListItem*>(it->nextSibling()))
+        it = static_cast<ArticleItem*>(firstChild());
+        for ( ; it; it = static_cast<ArticleItem*>(it->nextSibling()))
         {
             if (it->article().status() != Article::Read)
             {
@@ -391,7 +392,7 @@ void ArticleList::slotNextUnreadArticle()
     }
 }
 
-void ArticleList::slotPreviousUnreadArticle()
+void ArticleListView::slotPreviousUnreadArticle()
 {
     if ( !currentItem() )
         slotNextUnreadArticle(); 
@@ -400,7 +401,7 @@ void ArticleList::slotPreviousUnreadArticle()
     
     for ( ; it.current(); --it )
     {
-        ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
+        ArticleItem* ali = static_cast<ArticleItem*> (it.current());
         if (!ali)
             break;
         if ((ali->article().status()==Article::Unread) ||
@@ -416,11 +417,11 @@ void ArticleList::slotPreviousUnreadArticle()
     // only reached when there is no unread article before the selected one
     if (m_node->unread() > 0)
     {
-        it = static_cast<ArticleListItem*>(lastChild());
+        it = static_cast<ArticleItem*>(lastChild());
 
         for ( ; it.current(); --it )
         {
-            ArticleListItem* ali = static_cast<ArticleListItem*> (it.current());
+            ArticleItem* ali = static_cast<ArticleItem*> (it.current());
             if ((ali->article().status() != Article::Read))
             {
                 setCurrentItem(ali);
@@ -433,37 +434,37 @@ void ArticleList::slotPreviousUnreadArticle()
     }
 }
 
-void ArticleList::keyPressEvent(QKeyEvent* e)
+void ArticleListView::keyPressEvent(QKeyEvent* e)
 {
     e->ignore();
 }
 
-void ArticleList::slotSelectionChanged()
+void ArticleListView::slotSelectionChanged()
 {
-    ArticleListItem* ai = dynamic_cast<ArticleListItem*> (currentItem());
+    ArticleItem* ai = dynamic_cast<ArticleItem*> (currentItem());
     if (ai)
         emit signalArticleChosen( ai->article() );
 }
 
-void ArticleList::slotCurrentChanged(QListViewItem* item)
+void ArticleListView::slotCurrentChanged(QListViewItem* item)
 {/*
-    ArticleListItem* ai = dynamic_cast<ArticleListItem*> (item);
+    ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
     if (ai)
         emit signalCurrentArticleChanged( ai->article() );*/
 } 
 
 
-void ArticleList::slotDoubleClicked(QListViewItem* item, const QPoint& p, int i)
+void ArticleListView::slotDoubleClicked(QListViewItem* item, const QPoint& p, int i)
 {
-    emit signalDoubleClicked(static_cast<ArticleListItem*>(item), p, i);
+    emit signalDoubleClicked(static_cast<ArticleItem*>(item), p, i);
 }
 
-void ArticleList::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
+void ArticleListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
 {
-    emit signalContextMenu(list, static_cast<ArticleListItem*>(item), p);
+    emit signalContextMenu(list, static_cast<ArticleItem*>(item), p);
 }
         
-ArticleList::~ArticleList()
+ArticleListView::~ArticleListView()
 {
     Settings::setTitleWidth(columnWidth(0));
     Settings::setFeedWidth(columnWidth(1) > 0 ? columnWidth(1) : m_feedWidth);
@@ -472,12 +473,12 @@ ArticleList::~ArticleList()
     Settings::writeConfig();
 }
 
-QPtrList<ArticleListItem> ArticleList::selectedArticleListItems(bool includeHiddenItems) const
+QPtrList<ArticleItem> ArticleListView::selectedArticleItems(bool includeHiddenItems) const
 {
     QPtrList<QListViewItem> items = selectedItems(includeHiddenItems);
-    QPtrList<ArticleListItem> ret;
+    QPtrList<ArticleItem> ret;
     for (QListViewItem* i = items.first(); i; i = items.next() )
-        ret.append(static_cast<ArticleListItem*>(i));
+        ret.append(static_cast<ArticleItem*>(i));
     return ret;
 }
 

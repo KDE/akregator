@@ -31,8 +31,7 @@ namespace Akregator
 {
 
 class Feed;
-class FeedGroup;
-class FeedGroupItem;
+class FolderItem;
         
 /**
 * the item class corresponding to a Feed
@@ -41,8 +40,8 @@ class FeedItem : public TreeNodeItem
 {
  public:
     
-    FeedItem(FeedGroupItem* parent, Feed* node);
-    FeedItem(FeedGroupItem* parent, TreeNodeItem* after, Feed* node);
+    FeedItem(FolderItem* parent, Feed* node);
+    FeedItem(FolderItem* parent, TreeNodeItem* after, Feed* node);
     FeedItem(KListView* parent, Feed* node);
     
     virtual ~FeedItem();

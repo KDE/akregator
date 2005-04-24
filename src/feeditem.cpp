@@ -30,7 +30,7 @@
 
 using namespace Akregator;
 
-FeedItem::FeedItem(FeedGroupItem* parent, Feed* node) : TreeNodeItem(parent, node)
+FeedItem::FeedItem(FolderItem* parent, Feed* node) : TreeNodeItem(parent, node)
 {
     setExpandable(false);
     initialize(node);
@@ -42,7 +42,7 @@ FeedItem::FeedItem(KListView* parent, Feed* node) : TreeNodeItem(parent, node)
     initialize(node);
 }
 
-FeedItem::FeedItem(FeedGroupItem* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
+FeedItem::FeedItem(FolderItem* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
 {
     setExpandable(false);
     initialize(node);

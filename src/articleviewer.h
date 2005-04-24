@@ -38,7 +38,7 @@ class QKeyEvent;
 namespace Akregator
 {
     class Feed;
-    class FeedGroup;
+    class Folder;
     class Article;
     class TreeNode;
     
@@ -90,7 +90,7 @@ namespace Akregator
 
         private:
 
-            void showSummary(FeedGroup* group);
+            void showSummary(Folder* group);
             void showSummary(Feed *f);
 
             /** renders @c body. Use this method whereever possible.

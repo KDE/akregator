@@ -35,7 +35,7 @@
 
 using namespace Akregator;
 
-TreeNodeItem::TreeNodeItem(FeedGroupItem* parent, TreeNode* node)
+TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNode* node)
     : KListViewItem(parent), m_node(node)
 {
     if (node)
@@ -49,7 +49,7 @@ TreeNodeItem::TreeNodeItem(KListView* parent, TreeNode* node)
          setText(0, node->title() );
 }
 
-TreeNodeItem::TreeNodeItem(FeedGroupItem* parent, TreeNodeItem* after, TreeNode* node)
+TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* node)
     : KListViewItem(parent, after), m_node(node)
 {
     if (node)
@@ -85,9 +85,9 @@ TreeNodeItem* TreeNodeItem::nextSibling() const
     return static_cast<TreeNodeItem*>(KListViewItem::nextSibling()); 
 } 
 
-FeedGroupItem* TreeNodeItem::parent() const 
+FolderItem* TreeNodeItem::parent() const 
 { 
-    return static_cast<FeedGroupItem*>(KListViewItem::parent()); 
+    return static_cast<FolderItem*>(KListViewItem::parent()); 
 } 
     
 

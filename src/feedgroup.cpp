@@ -33,7 +33,7 @@
 
 namespace Akregator {
 
-class FeedGroup::FeedGroupPrivate
+class Folder::FolderPrivate
 {
     public:
         /** List of children */
@@ -45,21 +45,21 @@ class FeedGroup::FeedGroupPrivate
         /** update unread count cache */
 };
            
-FeedGroup* FeedGroup::fromOPML(QDomElement e)
+Folder* Folder::fromOPML(QDomElement e)
 {
-    FeedGroup* fg = new FeedGroup(e.hasAttribute("text") ? e.attribute("text") : e.attribute("title"));
+    Folder* fg = new Folder(e.hasAttribute("text") ? e.attribute("text") : e.attribute("title"));
     fg->setOpen( e.attribute("isOpen") == "true" ? true : false );
     fg->setId( e.attribute("id").toUInt() );
     return fg;
 }
 
-FeedGroup::FeedGroup(const QString& title) : TreeNode(), d(new FeedGroupPrivate)
+Folder::Folder(const QString& title) : TreeNode(), d(new FolderPrivate)
 {
     d->unread = 0;
     setTitle(title);
 } 
 
-FeedGroup::~FeedGroup()
+Folder::~Folder()
 {
     // FIXME: this is a workaround, since iterating with first and next doesn't work together with delete. We won't need that when using QValueList<TreeNode*> instead of QPtrList)
     
@@ -80,16 +80,16 @@ FeedGroup::~FeedGroup()
     d = 0;
 }
 
-ArticleSequence FeedGroup::articles()
+ArticleList Folder::articles()
 {
-    ArticleSequence seq;
+    ArticleList seq;
     for (TreeNode* i = d->children.first(); i; i = d->children.next() )
         seq += i->articles();
      
     return seq;
 }
 
-QDomElement FeedGroup::toOPML( QDomElement parent, QDomDocument document ) const
+QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
 {
     QDomElement el = document.createElement( "outline" );
     el.setAttribute( "text", title() );
@@ -105,12 +105,12 @@ QDomElement FeedGroup::toOPML( QDomElement parent, QDomDocument document ) const
     return el;
 }
 
-QPtrList<TreeNode> FeedGroup::children()
+QPtrList<TreeNode> Folder::children()
 {
     return d->children;
 }
 
-void FeedGroup::insertChild(TreeNode* node, TreeNode* after)
+void Folder::insertChild(TreeNode* node, TreeNode* after)
 {
     int pos = d->children.find(after);
     
@@ -120,9 +120,9 @@ void FeedGroup::insertChild(TreeNode* node, TreeNode* after)
         insertChild(pos+1, node);
 }
 
-void FeedGroup::insertChild(uint index, TreeNode* node)
+void Folder::insertChild(uint index, TreeNode* node)
 {
-//    kdDebug() << "enter FeedGroup::insertChild(int, node) " << node->title() << endl;
+//    kdDebug() << "enter Folder::insertChild(int, node) " << node->title() << endl;
     if (node)
     {    
         d->children.insert(index, node);
@@ -133,12 +133,12 @@ void FeedGroup::insertChild(uint index, TreeNode* node)
         emit signalChildAdded(node);
         modified();
     }   
-//    kdDebug() << "leave FeedGroup::insertChild(int, node) " << node->title() << endl; 
+//    kdDebug() << "leave Folder::insertChild(int, node) " << node->title() << endl; 
 }
 
-void FeedGroup::appendChild(TreeNode* node)
+void Folder::appendChild(TreeNode* node)
 {
-//    kdDebug() << "enter FeedGroup::appendChild() " << node->title() << endl;
+//    kdDebug() << "enter Folder::appendChild() " << node->title() << endl;
     if (node)
     {
         d->children.append(node);
@@ -149,12 +149,12 @@ void FeedGroup::appendChild(TreeNode* node)
         emit signalChildAdded(node);
         modified();
     }    
-//    kdDebug() << "leave FeedGroup::appendChild() " << node->title() << endl;
+//    kdDebug() << "leave Folder::appendChild() " << node->title() << endl;
 }
 
-void FeedGroup::prependChild(TreeNode* node)
+void Folder::prependChild(TreeNode* node)
 {
-//    kdDebug() << "enter FeedGroup::prependChild() " << node->title() << endl;
+//    kdDebug() << "enter Folder::prependChild() " << node->title() << endl;
     if (node)
     {
         d->children.prepend(node);
@@ -165,12 +165,12 @@ void FeedGroup::prependChild(TreeNode* node)
         emit signalChildAdded(node);
         modified();
     }    
-//    kdDebug() << "leave FeedGroup::prependChild() " << node->title() << endl;
+//    kdDebug() << "leave Folder::prependChild() " << node->title() << endl;
 }
 
-void FeedGroup::removeChild(TreeNode* node)
+void Folder::removeChild(TreeNode* node)
 {
-//    kdDebug() << "enter FeedGroup::removeChild() node:" << (node ? node->title() : "null") << endl;
+//    kdDebug() << "enter Folder::removeChild() node:" << (node ? node->title() : "null") << endl;
     if (node && d->children.contains(node))
     {    
         node->setParent(0);
@@ -179,36 +179,36 @@ void FeedGroup::removeChild(TreeNode* node)
         emit signalChildRemoved(this, node);
         modified();
     }
-//    kdDebug() << "leave FeedGroup::removeChild() node: " << (node ? node->title() : "null") << endl;
+//    kdDebug() << "leave Folder::removeChild() node: " << (node ? node->title() : "null") << endl;
 }
 
 
-TreeNode* FeedGroup::firstChild()
+TreeNode* Folder::firstChild()
 {
     return d->children.first();
 }            
 
-TreeNode* FeedGroup::lastChild()
+TreeNode* Folder::lastChild()
 {
     return d->children.last();
 }
             
-bool FeedGroup::isOpen() const
+bool Folder::isOpen() const
 {
     return d->open;
 }
 
-void FeedGroup::setOpen(bool open)
+void Folder::setOpen(bool open)
 {
     d->open = open;
 }
             
-int FeedGroup::unread() const
+int Folder::unread() const
 {
     return d->unread;
 }
 
-int FeedGroup::totalCount() const
+int Folder::totalCount() const
 {
     int totalCount = 0;
   
@@ -220,7 +220,7 @@ int FeedGroup::totalCount() const
     return totalCount;
 }
 
-void FeedGroup::updateUnreadCount()
+void Folder::updateUnreadCount()
 {
     int unread = 0;
   
@@ -232,7 +232,7 @@ void FeedGroup::updateUnreadCount()
     d->unread = unread;
 }
 
-void FeedGroup::slotMarkAllArticlesAsRead() 
+void Folder::slotMarkAllArticlesAsRead() 
 {
     setNotificationMode(false);
     for (TreeNode* i = d->children.first(); i; i = d->children.next() )
@@ -240,26 +240,26 @@ void FeedGroup::slotMarkAllArticlesAsRead()
     setNotificationMode(true, true);
 }
     
-void FeedGroup::slotChildChanged(TreeNode* /*node*/)
+void Folder::slotChildChanged(TreeNode* /*node*/)
 {
-//    kdDebug() << "enter FeedGroup::slotChildChanged child" << node->title() << endl;
+//    kdDebug() << "enter Folder::slotChildChanged child" << node->title() << endl;
     int oldUnread = d->unread;
     updateUnreadCount();    
    
     if (oldUnread != d->unread)
         modified();
 
-//    kdDebug() << "leave FeedGroup::slotChildChanged child"  << node->title() << endl;
+//    kdDebug() << "leave Folder::slotChildChanged child"  << node->title() << endl;
 }
 
-void FeedGroup::slotChildDestroyed(TreeNode* node)
+void Folder::slotChildDestroyed(TreeNode* node)
 {
     d->children.remove(node);
     updateUnreadCount();    
     modified();
 }
 
-void FeedGroup::slotDeleteExpiredArticles()
+void Folder::slotDeleteExpiredArticles()
 {
     setNotificationMode(false);
     for (TreeNode* i = d->children.first(); i; i = d->children.next() )
@@ -267,13 +267,13 @@ void FeedGroup::slotDeleteExpiredArticles()
     setNotificationMode(true, true);
 }
 
-void FeedGroup::slotAddToFetchQueue(FetchQueue* queue)
+void Folder::slotAddToFetchQueue(FetchQueue* queue)
 {
     for (TreeNode* i = d->children.first(); i; i = d->children.next() )
         i->slotAddToFetchQueue(queue);
 }
 
-TreeNode* FeedGroup::next()
+TreeNode* Folder::next()
 {
     if ( firstChild() )
         return firstChild();
@@ -281,7 +281,7 @@ TreeNode* FeedGroup::next()
     if ( nextSibling() )
         return nextSibling();
     
-    FeedGroup* p = parent();
+    Folder* p = parent();
     while (p)
     {
         if ( p->nextSibling() )
