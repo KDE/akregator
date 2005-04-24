@@ -37,6 +37,7 @@
 #include <krun.h>
 #include <kstandarddirs.h>
 #include <kshell.h>
+#include <kmessagebox.h>
 
 #include <libkdepim/kfileio.h>
 
@@ -193,10 +194,10 @@ void ArticleViewer::displayAboutPage()
             "Instead of checking all your favorite web sites manually for updates, "
             "Akregator collects the content for you.</p>"
             "<p>For more information about using Akregator, check the "
-            "<a href=\"%3\">Akregator website</a> as well as the <a href=\"%2\">Akregator handbook</a>.</p>"
+            "<a href=\"%3\">Akregator website</a> as well as the <a href=\"%2\">Akregator handbook</a>. If you don't want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
             "<p>We hope that you will enjoy Akregator.</p>\n"
             "<p>Thank you,</p>\n"
-            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>")
+            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n")
             .arg(AKREGATOR_VERSION) // Akregator version
             .arg("help:/akregator/index.html") // Akregator help:// URL
             .arg("http://akregator.sourceforge.net/"); // Akregator homepage URL
@@ -463,6 +464,19 @@ void ArticleViewer::slotShowNode(TreeNode* node)
 void ArticleViewer::keyPressEvent(QKeyEvent* e)
 {
     e->ignore();
+}
+
+void ArticleViewer::urlSelected(const QString &url, int button, int state, const QString& _target, KParts::URLArgs args)
+{
+    if(url == "config:/disable_introduction") {
+        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page") ) == KMessageBox::Yes) {
+            KConfig *conf = Settings::self()->config();
+            conf->setGroup("General");
+            conf->writeEntry("Disable Introduction", "true");
+        }
+    }
+    else
+        KHTMLPart::urlSelected(url, button, state, _target, args);
 }
 
 void ArticleViewer::slotPaletteOrFontChanged()

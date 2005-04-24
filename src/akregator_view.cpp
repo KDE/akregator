@@ -228,11 +228,15 @@ View::View( Part *part, QWidget *parent, const char *name)
             slotNormalView();
     }
 
-    m_articleList->hide();
-    m_searchBar->hide();
-    m_articleViewer->displayAboutPage();
-    m_tabs->setTitle(i18n("About"), m_mainTab);
-    m_displayingAboutPage = true;
+    KConfig *conf = Settings::self()->config();
+    conf->setGroup("General");
+    if(!conf->readBoolEntry("Disable Introduction", false)) {
+        m_articleList->hide();
+        m_searchBar->hide();
+        m_articleViewer->displayAboutPage();
+        m_tabs->setTitle(i18n("About"), m_mainTab);
+        m_displayingAboutPage = true;
+    }
 
     m_fetchTimer = new QTimer(this);
     connect( m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()) );
@@ -720,6 +724,7 @@ void View::slotNodeSelected(TreeNode* node)
         else
             ActionManager::getInstance()->action("feed_remove")->setEnabled(false);
     }
+    
 }
 
 

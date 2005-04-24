@@ -87,6 +87,7 @@ namespace Akregator
         protected:
             
             virtual void keyPressEvent(QKeyEvent* e);
+            virtual void urlSelected (const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
 
         private:
 
