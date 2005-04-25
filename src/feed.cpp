@@ -381,6 +381,7 @@ void Feed::appendArticles(const RSS::Document &doc)
         else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !(*old).isDeleted())
         {
             mya.setKeep((*old).keep());
+            (*old).setStatus(Article::Read);
             d->articles.remove(old);
             appendArticle(mya);
             // reset status to New
