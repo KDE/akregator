@@ -83,7 +83,7 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
-    d->hash = calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() + QString::number(article.comments()) );
+    d->hash = calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() );
 
     d->guid = article.guid();
     
@@ -122,16 +122,20 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             setKeep(article.meta("keep") == "true");   
         }
     }
-    else if (d->hash != d->archive->hash(d->guid)) //article is in archive, was it modified?
-    { // if yes, update
-        d->pubDate.setTime_t(d->archive->pubDate(d->guid));
-        d->archive->setHash(d->guid, d->hash);
-        QString title = article.title().isEmpty() ? buildTitle() :  article.title();
-        d->archive->setTitle(d->guid, title);
-        d->archive->setLink(d->guid, article.link().url());
-        d->archive->setDescription(d->guid, article.description());
+    else
+    {
+        // always update comments count, as it's not used for hash calculation
         d->archive->setComments(d->guid, article.comments());
-        d->archive->setCommentsLink(d->guid, article.commentsLink().url());
+        if (d->hash != d->archive->hash(d->guid)) //article is in archive, was it modified?
+        { // if yes, update
+            d->pubDate.setTime_t(d->archive->pubDate(d->guid));
+            d->archive->setHash(d->guid, d->hash);
+            QString title = article.title().isEmpty() ? buildTitle() :  article.title();
+            d->archive->setTitle(d->guid, title);
+            d->archive->setLink(d->guid, article.link().url());
+            d->archive->setDescription(d->guid, article.description());
+            d->archive->setCommentsLink(d->guid, article.commentsLink().url());
+        }
     }
 }
 
