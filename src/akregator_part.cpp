@@ -489,7 +489,7 @@ void Part::importFile(const KURL& url)
         if (doc.setContent(file.readAll()))
             m_view->importFeeds(doc);
         else    
-            KMessageBox::error(m_view, i18n("Couldn't import the file %1 (no valid OPML)").arg(filename), i18n("OPML Parsing Error") );
+            KMessageBox::error(m_view, i18n("Could not import the file %1 (no valid OPML)").arg(filename), i18n("OPML Parsing Error") );
     }
     else 
         KMessageBox::error(m_view, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.").arg(filename), i18n("Read Error"));
