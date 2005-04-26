@@ -151,11 +151,6 @@
    <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
    <default>firefox -remote 'openURL(%u,new-tab)'</default>
   </entry>
-  <entry key="Background Tab For Articles" type="Bool" >
-   <label>Open new articles in background tabs</label>
-   <whatsthis>Articles will be opened in background tabs instead of foreground tabs.</whatsthis>
-   <default>false</default>
-  </entry>
   <entry key="LMB Behaviour" type="Enum" >
    <whatsthis>What the click with left mouse button should do.</whatsthis>
    <default>OpenInInternalBrowser</default>

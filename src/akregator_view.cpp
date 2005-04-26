@@ -1108,7 +1108,7 @@ void View::slotOpenCurrentArticle()
             link = article.link().url();
         else
             link = article.guid();
-        slotOpenTab(link, Settings::backgroundTabForArticles());
+        slotOpenTab(link, false);
     }
 }
 
