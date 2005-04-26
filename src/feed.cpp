@@ -79,9 +79,12 @@ class Feed::FeedPrivate
         /** caches guids of new articles for notication */
         QStringList newArticles;
 
-        /** list of deleted articles **/
+        /** list of deleted articles. This contains **/
         ArticleList deletedArticles;
-
+        
+        /** caches guids of deleted articles for notification */
+        QStringList deletedArticlesNotify;
+        
         QPixmap imagePixmap;
         RSS::Image image;
         QPixmap favicon;
@@ -596,7 +599,6 @@ void Feed::loadFavicon()
 
 void Feed::slotDeleteExpiredArticles()
 {
-    bool changed = false;
     if ( !usesExpiryByAge() )
         return;
 
@@ -606,6 +608,8 @@ void Feed::slotDeleteExpiredArticles()
     // when we found an article which is not yet expired, we can stop, since articles are sorted by date
     bool foundNotYetExpired = false;
 
+    setNotificationMode(false);
+        
     while ( !foundNotYetExpired && it != begin )
     {
         --it;
@@ -615,14 +619,12 @@ void Feed::slotDeleteExpiredArticles()
             {
                 tmp = it;
                 (*tmp).setDeleted();
-                changed = true;
             }
             else
                 foundNotYetExpired = true;
         }
     }
-    if (changed)
-        modified();
+    setNotificationMode(true);
 }
 
 void Feed::setFavicon(const QPixmap &p)
@@ -677,6 +679,8 @@ void Feed::slotArticleDeleted(const Article& mya)
 {
     if (!d->deletedArticles.contains(mya))
         d->deletedArticles.append(mya);
+    d->deletedArticlesNotify.append(mya.guid());
+    modified();
 }
 
 int Feed::totalCount() const
@@ -707,6 +711,12 @@ void Feed::modified()
         emit signalArticlesAdded(id(), d->newArticles);
         d->newArticles.clear();
     }
+    if (!d->deletedArticlesNotify.isEmpty())
+    {
+        emit signalArticlesDeleted(id(), d->deletedArticlesNotify);
+        d->deletedArticlesNotify.clear();
+    }
+    
     TreeNode::modified();
 }
 
@@ -720,9 +730,8 @@ void Feed::enforceLimitArticleNumber()
         
     if (limit == -1 || limit >= d->articles.count() - d->deletedArticles.count())
         return;
-        
-    bool changed = false;
 
+    setNotificationMode(false);
     ArticleList::Iterator it = d->articles.begin();
     ArticleList::Iterator tmp;
     ArticleList::Iterator en = d->articles.end();
@@ -737,18 +746,10 @@ void Feed::enforceLimitArticleNumber()
             if (!(*tmp).isDeleted() && !(*tmp).keep())
                c++;
         }
-        else
-        {
-            if (!(*tmp).keep())
-            {
-                (*tmp).setDeleted();
-                changed = true;
-            }
-        }
+        else if (!(*tmp).keep())
+            (*tmp).setDeleted();
     }
-    
-    if (changed)
-        modified();
+    setNotificationMode(true);
 }
 
 } // namespace Akregator

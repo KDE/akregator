@@ -1172,20 +1172,31 @@ void View::slotArticleDelete()
 
     QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
 
-    if (items.isEmpty())
-        return;
-
     QString msg;
-    if (items.count() == 1)     
-        msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(items.first()->article().title()));
-    else
-        msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(items.count());
-
+    switch (items.count())
+    {
+        case 0:
+            return;
+        case 1:
+            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(items.first()->article().title()));
+            break;
+        default:
+            msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(items.count());
+    }
+    
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
+        if (m_tree->selectedNode())
+            m_tree->selectedNode()->setNotificationMode(false);
+            
+        QValueList<Feed*> feeds;
         for (ArticleItem* i = items.first(); i; i = items.next())
         {
             Article article = i->article();
+            Feed* feed = article.feed();
+            if (!feeds.contains(feed))
+                feeds.append(feed);
+            feed->setNotificationMode(false);    
             article.setDeleted();
         }
 
@@ -1199,8 +1210,10 @@ void View::slotArticleDelete()
             m_articleList->setCurrentItem(ali);
             m_articleList->setSelected(ali, true);
         }
-
-        m_articleList->slotUpdate();
+        for (QValueList<Feed*>::Iterator it = feeds.begin(); it != feeds.end(); ++it)
+            (*it)->setNotificationMode(true);
+        if (m_tree->selectedNode())
+            m_tree->selectedNode()->setNotificationMode(true);    
     }
 }
 

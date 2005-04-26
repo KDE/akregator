@@ -241,7 +241,7 @@ namespace Akregator
             /** emitted when new articles were added */
             void signalArticlesAdded(int feedID, const QStringList& guids);
             
-            //void signalArticlesDeleted(int feedID, const QStringList& guids);
+            void signalArticlesDeleted(int feedID, const QStringList& guids);
             
         protected:
             /** loads articles from archive **/
