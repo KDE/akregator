@@ -217,7 +217,7 @@ namespace RSS
 			 * @see skipDays()
 			 */
 			const HourList &skipHours() const;
-
+    
 			/**
 			 * RSS 0.91 and upwards
 			 * @return A list of <day>s of the week, in English, indicating

@@ -248,6 +248,9 @@ namespace Akregator
             void loadArticles();
 
             void recalcUnreadCount();
+
+            /** reimplemented for notification of new articles */
+            virtual void modified();
             
         private slots:
 

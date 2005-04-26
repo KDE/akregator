@@ -76,6 +76,9 @@ class Feed::FeedPrivate
         /** list of feed articles */
         ArticleList articles;
 
+        /** caches guids of new articles for notication */
+        QStringList newArticles;
+
         /** list of deleted articles **/
         ArticleList deletedArticles;
 
@@ -354,7 +357,7 @@ void Feed::appendArticles(const RSS::Document &doc)
     RSS::Article::List::ConstIterator en = d_articles.end();
 
     int nudge=0;
-    QStringList newArticles; 
+    
     ArticleList deletedArticles = d->deletedArticles;
     
     for (it = d_articles.begin(); it != en; ++it)
@@ -368,7 +371,7 @@ void Feed::appendArticles(const RSS::Document &doc)
             mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya);
-            newArticles.append(mya.guid());
+            d->newArticles.append(mya.guid());
             
             if (!mya.isDeleted() && !markImmediatelyAsRead())
                 mya.setStatus(Article::New);
@@ -409,8 +412,6 @@ void Feed::appendArticles(const RSS::Document &doc)
     
     d->articles.enableSorting(true);
     d->articles.sort();
-    if (!newArticles.isEmpty())
-        emit signalArticlesAdded(id(), newArticles);
     if (changed)
         modified();
 }
@@ -697,6 +698,16 @@ TreeNode* Feed::next()
             p = p->parent();
     }
     return 0;
+}
+
+void Feed::modified()
+{
+    if (!d->newArticles.isEmpty())
+    {
+        emit signalArticlesAdded(id(), d->newArticles);
+        d->newArticles.clear();
+    }
+    TreeNode::modified();
 }
 
 void Feed::enforceLimitArticleNumber()
