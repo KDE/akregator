@@ -27,6 +27,7 @@
 
 #include <dcopobject.h>
 #include <qstringlist.h>
+#include <kurl.h>
 
 namespace Akregator {
 
@@ -39,6 +40,7 @@ namespace Akregator {
             virtual void fetchAllFeeds() = 0;
             virtual void saveSettings() = 0;
             virtual void addFeedsToGroup(const QStringList&, const QString&) = 0;
+            virtual void exportFile(const KURL& url) = 0;
     };
 
 }
