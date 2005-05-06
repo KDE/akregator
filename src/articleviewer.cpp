@@ -404,7 +404,10 @@ void ArticleViewer::slotShowArticle(const Article& article)
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
     m_node = 0;
-    renderContent( formatArticle(article.feed(), article) );
+    if(article.description().isEmpty())
+        openURL(article.link());
+    else
+        renderContent( formatArticle(article.feed(), article) );
 }
 
 void ArticleViewer::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
