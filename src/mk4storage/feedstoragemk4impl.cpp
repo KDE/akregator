@@ -25,7 +25,7 @@
 #include "feedstoragemk4impl.h"
 #include "storagemk4impl.h"
 
-#include "../myarticle.h"
+#include "../article.h"
 #include "../librss/article.h"
 #include "../librss/document.h"
 #include <mk4.h>
