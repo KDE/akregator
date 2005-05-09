@@ -86,7 +86,6 @@ libakregatorpart_la_SOURCES = \
 	frame.cpp \
 	viewer.cpp \
 	articleviewer.cpp \
-	exportwidgetbase.ui \
 	addfeeddialog.cpp \
 	addfeedwidgetbase.ui \
 	propertiesdialog.cpp \
