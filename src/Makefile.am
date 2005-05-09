@@ -122,10 +122,6 @@ partdesktop_DATA = akregator_part.desktop
 partrcdir = $(kde_datadir)/akregator
 partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc eventsrc
 
-# this is where the icons go
-iconsdir = $(kde_datadir)/akregator/pics
-icons_DATA = akregator_flag.png
-
 kde_servicetypes_DATA = akregator_plugin.desktop
 
 
