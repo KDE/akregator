@@ -41,7 +41,7 @@
 #include "akregatorconfig.h"
 #include "feed.h"
 #include "feedgroup.h"
-#include "fetchtransaction.h"
+#include "fetchqueue.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"
 #include "storage.h"

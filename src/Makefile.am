@@ -47,7 +47,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
 				 treenode.cpp \
 				 feedgroup.cpp \
 				 feedlist.cpp \
-			         fetchtransaction.cpp \
+			         fetchqueue.cpp \
 			  	 articlelist.cpp \
 				feediconmanager.cpp \
 				feediconmanager.skel \
@@ -74,7 +74,7 @@ akregatorconfig.lo: akregatorconfig.h
 articlelistview.lo: akregatorconfig.h
 articleviewer.lo: akregatorconfig.h
 feed.lo: akregatorconfig.h
-fetchtransaction.lo: akregatorconfig.h
+fetchqueue.lo: akregatorconfig.h
 trayicon.lo: akregatorconfig.h
 viewer.lo: akregatorconfig.h
 

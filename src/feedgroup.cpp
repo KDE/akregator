@@ -23,7 +23,7 @@
 */
 #include "articlelist.h"
 #include "feedgroup.h"
-#include "fetchtransaction.h"
+#include "fetchqueue.h"
 
 #include <qlistview.h>
 #include <qdom.h>

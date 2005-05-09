@@ -30,7 +30,7 @@
 #include "articlelist.h"
 #include "propertiesdialog.h"
 #include "frame.h"
-#include "fetchtransaction.h"
+#include "fetchqueue.h"
 #include "feedlistview.h"
 #include "articlelistview.h"
 #include "articleviewer.h"

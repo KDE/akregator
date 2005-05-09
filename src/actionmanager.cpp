@@ -37,7 +37,7 @@
 #include "articlelistview.h"
 #include "articleviewer.h"
 #include "feedlistview.h"
-#include "fetchtransaction.h"
+#include "fetchqueue.h"
 #include "trayicon.h"
 
 #include <kdebug.h>
