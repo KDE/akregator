@@ -51,7 +51,7 @@ namespace Akregator
             /** Constructor */
             ArticleViewer(QWidget* parent, const char* name);
 
-            bool openURL(const KURL &url);
+            virtual bool openURL(const KURL &url);
 
             /** Repaints the view. */
             void reload();
