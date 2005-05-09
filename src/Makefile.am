@@ -42,13 +42,13 @@ kdelnkdir = $(kde_servicesdir)
 lib_LTLIBRARIES = libakregatorprivate.la
 libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
 				 aboutdata.cpp \
-				 myarticle.cpp \
+				 article.cpp \
 				 feed.cpp \
 				 treenode.cpp \
 				 feedgroup.cpp \
 				 feedlist.cpp \
 			         fetchtransaction.cpp \
-			  	 articlesequence.cpp \
+			  	 articlelist.cpp \
 				feediconmanager.cpp \
 				feediconmanager.skel \
                                 plugin.cpp \
@@ -71,7 +71,7 @@ akregator.lo: akregatorconfig.h
 akregator_part.lo: akregatorconfig.h
 akregator_view.lo: akregatorconfig.h
 akregatorconfig.lo: akregatorconfig.h
-articlelist.lo: akregatorconfig.h
+articlelistview.lo: akregatorconfig.h
 articleviewer.lo: akregatorconfig.h
 feed.lo: akregatorconfig.h
 fetchtransaction.lo: akregatorconfig.h
@@ -81,7 +81,7 @@ viewer.lo: akregatorconfig.h
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = \
 	akregator_run.cpp \
-	articlelist.cpp \
+	articlelistview.cpp \
         actionmanager.cpp \
 	frame.cpp \
 	viewer.cpp \
@@ -94,7 +94,7 @@ libakregatorpart_la_SOURCES = \
 	articlefilter.cpp \
 	pageviewer.cpp \
 	tabwidget.cpp \
-	feedstree.cpp \
+	feedlistview.cpp \
 	treenodeitem.cpp \
 	feedgroupitem.cpp \
 	feeditem.cpp \

@@ -25,7 +25,7 @@
 #define AKREGATORARTICLELISTVIEW_H
 
 #include "articlefilter.h"
-#include "myarticle.h"
+#include "article.h"
 
 #include <klistview.h>
 

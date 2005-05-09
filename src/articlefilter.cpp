@@ -25,7 +25,7 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "articlefilter.h"
-#include "myarticle.h"
+#include "article.h"
 
 #include <kconfig.h>
 #include <kdebug.h>

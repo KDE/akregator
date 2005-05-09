@@ -23,8 +23,8 @@
 */
 
 #include "akregatorconfig.h"
+#include "articlelistview.h"
 #include "articlelist.h"
-#include "articlesequence.h"
 #include "feed.h"
 #include "treenode.h"
 
@@ -482,5 +482,5 @@ QPtrList<ArticleItem> ArticleListView::selectedArticleItems(bool includeHiddenIt
     return ret;
 }
 
-#include "articlelist.moc"
+#include "articlelistview.moc"
 // vim: ts=4 sw=4 et

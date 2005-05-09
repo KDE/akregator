@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ARTICLESEQUENCE_H
 #define AKREGATOR_ARTICLESEQUENCE_H
 
-#include "myarticle.h"
+#include "article.h"
 
 namespace Akregator
 {

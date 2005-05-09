@@ -64,7 +64,7 @@
 #include "configdialog.h"
 #include "fetchtransaction.h"
 #include "frame.h"
-#include "myarticle.h"
+#include "article.h"
 #include "notificationmanager.h"
 #include "pageviewer.h"
 #include "plugin.h"

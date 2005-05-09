@@ -34,9 +34,9 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "akregator_view.h"
-#include "articlelist.h"
+#include "articlelistview.h"
 #include "articleviewer.h"
-#include "feedstree.h"
+#include "feedlistview.h"
 #include "fetchtransaction.h"
 #include "trayicon.h"
 

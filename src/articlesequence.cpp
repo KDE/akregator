@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
  
-#include "articlesequence.h"
+#include "articlelist.h"
 
 using namespace Akregator;
 

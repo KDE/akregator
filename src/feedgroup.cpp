@@ -21,7 +21,7 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#include "articlesequence.h"
+#include "articlelist.h"
 #include "feedgroup.h"
 #include "fetchtransaction.h"
 

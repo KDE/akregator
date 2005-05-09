@@ -44,11 +44,11 @@
 #include "aboutdata.h"
 #include "akregator_run.h"
 #include "akregatorconfig.h"
-#include "articlesequence.h"
+#include "articlelist.h"
 #include "articleviewer.h"
 #include "feed.h"
 #include "feedgroup.h"
-#include "myarticle.h"
+#include "article.h"
 #include "treenode.h"
 
 using namespace Akregator;

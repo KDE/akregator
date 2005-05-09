@@ -24,7 +24,7 @@
 
 #include "feedgroup.h"
 #include "feedgroupitem.h"
-#include "feedstree.h"
+#include "feedlistview.h"
 #include "feed.h"
 #include "feeditem.h"
 #include "feedlist.h"
@@ -785,5 +785,5 @@ QDragObject *FeedListView::dragObject()
     return md;
 }
 
-#include "feedstree.moc"
+#include "feedlistview.moc"
 // vim: ts=4 sw=4 et

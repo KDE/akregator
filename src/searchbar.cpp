@@ -24,7 +24,7 @@
 
 #include "akregatorconfig.h"
 #include "articlefilter.h"
-#include "myarticle.h"
+#include "article.h"
 #include "searchbar.h"
 
 #include <kcombobox.h>

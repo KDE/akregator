@@ -27,7 +27,7 @@
 
 #include <qobject.h>
 
-#include "myarticle.h"
+#include "article.h"
 
 namespace Akregator 
 {

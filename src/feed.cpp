@@ -37,7 +37,7 @@
 
 #include <libkdepim/progressmanager.h>
 
-#include "articlesequence.h"
+#include "articlelist.h"
 #include "akregatorconfig.h"
 #include "feed.h"
 #include "feedgroup.h"
