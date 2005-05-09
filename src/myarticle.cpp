@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "myarticle.h"
+#include "article.h"
 #include "feed.h"
 #include "feedstorage.h"
 #include "storage.h"
