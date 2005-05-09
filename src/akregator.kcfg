@@ -109,16 +109,6 @@
    <whatsthis>Interval for autofetching in minutes.</whatsthis>
    <default>30</default>
   </entry>
-  <entry key="Use Expiry" type="Bool">
-   <label>Delete expired articles</label>
-   <whatsthis>Delete articles older than %1 days.</whatsthis>
-   <default>false</default>
-  </entry>
-  <entry key="Expiry Age" type="Int" >
-   <label>Expiry age</label>
-   <whatsthis>Default expiry age for articles in days.</whatsthis>
-   <default>60</default>
-  </entry>
   <entry key="Use Notifications" type="Bool" >
    <label>Use notifications</label>
    <whatsthis>Specifies if the balloon notifications are used or not.</whatsthis>
