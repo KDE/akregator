@@ -62,7 +62,7 @@
 #include "akregatorconfig.h"
 #include "akregator.h"
 #include "configdialog.h"
-#include "fetchtransaction.h"
+#include "fetchqueue.h"
 #include "frame.h"
 #include "article.h"
 #include "notificationmanager.h"
