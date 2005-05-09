@@ -82,6 +82,11 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     m_htmlFooter = "</body></html>";
 }
 
+bool ArticleViewer::openURL(const KURL &url)
+{
+    return KHTMLPart::openURL(url);
+}
+
 void ArticleViewer::generateCSS()
 {
     const QColorGroup & cg = QApplication::palette().active();
