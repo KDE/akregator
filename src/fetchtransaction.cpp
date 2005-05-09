@@ -27,7 +27,7 @@
 #include <qvaluelist.h>
 
 #include "akregatorconfig.h"
-#include "fetchtransaction.h"
+#include "fetchqueue.h"
 #include "feed.h"
 #include "treenode.h"
 
@@ -168,4 +168,4 @@ void FetchQueue::slotNodeDestroyed(TreeNode* node)
 
 } // namespace Akregator
 
-#include "fetchtransaction.moc"
+#include "fetchqueue.moc"
