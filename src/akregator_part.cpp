@@ -65,6 +65,7 @@
 #include "fetchqueue.h"
 #include "frame.h"
 #include "article.h"
+#include "kernel.h"
 #include "notificationmanager.h"
 #include "pageviewer.h"
 #include "plugin.h"
@@ -116,13 +117,18 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     {
          KMessageBox::error(m_view, i18n("Unable to load storage backend plugin."), i18n("Plugin error") );
          // FIXME: prevent part from loading (exit is not a good idea, it could be used in kontact)
-    }     
+    }
+    
+    
+    Kernel::self()->setStorage(m_storage);
     Backend::Storage::setInstance(m_storage);
-
-    ActionManager* m_actionManager = new ActionManager(this);
+    
+    
+    m_actionManager = new ActionManager(this);
     ActionManager::setInstance(m_actionManager);
+    
     ActionManager::getInstance()->initPart(this);
-
+    
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
     ActionManager::getInstance()->initView(m_view);
     

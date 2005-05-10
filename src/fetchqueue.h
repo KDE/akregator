@@ -38,8 +38,6 @@ class FetchQueue : public QObject
 
     public:
 
-        static FetchQueue* self();
-        
         FetchQueue(QObject* parent=0, const char* name=0);
         virtual ~FetchQueue();
 
@@ -78,8 +76,7 @@ class FetchQueue : public QObject
         void slotFetchAborted(Feed *);
         
     private:
-        static FetchQueue* m_self;
-        
+
         class FetchQueuePrivate;
         FetchQueuePrivate* d;
 };

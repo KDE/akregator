@@ -22,8 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <kstaticdeleter.h>
-
 #include <qvaluelist.h>
 
 #include "akregatorconfig.h"
@@ -42,16 +40,6 @@ class FetchQueue::FetchQueuePrivate
         QValueList<Feed*> fetchingFeeds;
 };
 
-
-FetchQueue* FetchQueue::m_self = 0;
-static KStaticDeleter<FetchQueue> fetchqueuesd;
-
-FetchQueue* FetchQueue::self()
-{
-    if (!m_self)
-        m_self = fetchqueuesd.setObject(m_self, new FetchQueue);
-    return m_self;
-}
 
 FetchQueue::FetchQueue(QObject* parent, const char* name): QObject(parent, name), d(new FetchQueuePrivate) {}
 

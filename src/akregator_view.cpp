@@ -41,6 +41,7 @@
 #include "feedgroupitem.h"
 #include "feedlist.h"
 #include "akregatorconfig.h"
+#include "kernel.h"
 #include "pageviewer.h"
 #include "searchbar.h"
 #include "storage.h"
@@ -125,9 +126,9 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_feedSplitter->setOpaqueResize( true );
     lt->addWidget(m_feedSplitter);
 
-    connect (FetchQueue::self(), SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    connect (FetchQueue::self(), SIGNAL(signalStarted()), this, SLOT(slotFetchingStarted()));
-    connect (FetchQueue::self(), SIGNAL(signalStopped()), this, SLOT(slotFetchingStopped()));
+    connect (Kernel::self()->fetchQueue(), SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
+    connect (Kernel::self()->fetchQueue(), SIGNAL(signalStarted()), this, SLOT(slotFetchingStarted()));
+    connect (Kernel::self()->fetchQueue(), SIGNAL(signalStopped()), this, SLOT(slotFetchingStopped()));
 
     m_tree = new FeedListView( m_feedSplitter, "FeedListView" );
     ActionManager::getInstance()->initFeedListView(m_tree);
@@ -271,7 +272,7 @@ void View::slotOnShutdown()
     m_articleList->slotShowNode(0);
     m_articleViewer->slotShowNode(0);
 
-    FetchQueue::self()->slotAbort();
+    Kernel::self()->fetchQueue()->slotAbort();
        
     m_tree->setFeedList(0);
     
@@ -987,7 +988,7 @@ void View::slotDoIntervalFetches()
             if ( interval > 0 && now - lastFetch >= (uint)interval )
             {
                 kdDebug() << "interval fetch: " << f->title() << endl;
-                FetchQueue::self()->addFeed(f);
+                Kernel::self()->fetchQueue()->addFeed(f);
                 fetch = true;
             }
         }
@@ -1000,12 +1001,12 @@ void View::slotFetchCurrentFeed()
 {
     if ( !m_tree->selectedNode() )
         return;
-    m_tree->selectedNode()->slotAddToFetchQueue(FetchQueue::self());
+    m_tree->selectedNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
 }
 
 void View::slotFetchAllFeeds()
 {
-    m_feedList->rootNode()->slotAddToFetchQueue(FetchQueue::self());
+    m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
 }
 
 void View::slotFetchingStarted()

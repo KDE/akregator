@@ -38,6 +38,7 @@
 #include "articleviewer.h"
 #include "feedlistview.h"
 #include "fetchqueue.h"
+#include "kernel.h"
 #include "trayicon.h"
 
 #include <kdebug.h>
@@ -130,7 +131,7 @@ void ActionManager::initView(View* view)
     new KAction(i18n("&Fetch Feed"), "down", "Ctrl+L", m_view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", m_view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
         
-    KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, FetchQueue::self(), SLOT(slotAbort()), actionCollection(), "feed_stop");
+    KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, Kernel::self()->fetchQueue(), SLOT(slotAbort()), actionCollection(), "feed_stop");
     stopAction->setEnabled(false);
     
     new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");

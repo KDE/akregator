@@ -97,6 +97,7 @@ libakregatorpart_la_SOURCES = \
 	treenodeitem.cpp \
 	feedgroupitem.cpp \
 	feeditem.cpp \
+        kernel.cpp \
 	settings_appearance.ui \
 	settings_general.ui \
 	settings_archive.ui \
