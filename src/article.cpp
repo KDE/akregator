@@ -100,10 +100,10 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
         { // article is not deleted, let's add it to the archive
         
             d->archive->setHash(d->guid, d->hash);
-            QString title = article.title().isEmpty() ? buildTitle() :  article.title();
+            QString title = article.title().isEmpty() ? buildTitle(article.description()) :  article.title();
             d->archive->setTitle(d->guid, title);
-            d->archive->setLink(d->guid, article.link().url());
             d->archive->setDescription(d->guid, article.description());
+            d->archive->setLink(d->guid, article.link().url());
             d->archive->setComments(d->guid, article.comments());
             d->archive->setCommentsLink(d->guid, article.commentsLink().url());
             d->archive->setGuidIsPermaLink(d->guid, article.guidIsPermaLink());
@@ -130,10 +130,10 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
         { // if yes, update
             d->pubDate.setTime_t(d->archive->pubDate(d->guid));
             d->archive->setHash(d->guid, d->hash);
-            QString title = article.title().isEmpty() ? buildTitle() :  article.title();
+            QString title = article.title().isEmpty() ? buildTitle(article.description()) :  article.title();
             d->archive->setTitle(d->guid, title);
-            d->archive->setLink(d->guid, article.link().url());
             d->archive->setDescription(d->guid, article.description());
+            d->archive->setLink(d->guid, article.link().url());
             d->archive->setCommentsLink(d->guid, article.commentsLink().url());
         }
     }
@@ -340,12 +340,15 @@ const QDateTime& Article::pubDate() const
     return d->pubDate;
 }
 
-QString Article::buildTitle()
+QString Article::buildTitle(const QString& description)
 {
-    QString s = d->archive->description(d->guid);
-    int i=s.find('>',500); /*avoid processing too much */
+    QString s = description;
+    if (description.stripWhiteSpace().isEmpty())
+        return "";
+        
+    int i = s.find('>',500); /*avoid processing too much */
     if (i != -1)
-        s=s.left(i+1);
+        s = s.left(i+1);
     QRegExp rx("(<([^\\s>]*)(?:[^>]*)>)[^<]*", false);
     QString tagName, toReplace, replaceWith;
     while (rx.search(s) != -1 )
