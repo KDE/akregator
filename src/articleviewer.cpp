@@ -409,7 +409,7 @@ void ArticleViewer::slotShowArticle(const Article& article)
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
     m_node = 0;
-    if(article.description().isEmpty())
+    if (article.feed()->loadLinkedWebsite())
         openURL(article.link());
     else
         renderContent( formatArticle(article.feed(), article) );

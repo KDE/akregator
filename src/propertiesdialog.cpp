@@ -87,6 +87,7 @@ void FeedPropertiesDialog::slotOk()
      m_feed->setMaxArticleNumber(maxArticleNumber());
      m_feed->setMarkImmediatelyAsRead(markImmediatelyAsRead());
      m_feed->setUseNotification(useNotification());
+     m_feed->setLoadLinkedWebsite(loadLinkedWebsite());
      m_feed->setNotificationMode(true, true);
      
      KDialogBase::slotOk();
@@ -107,6 +108,7 @@ void FeedPropertiesDialog::setFeed(Feed* feed)
     setMaxArticleNumber(feed->maxArticleNumber());
     setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
     setUseNotification(feed->useNotification());
+    setLoadLinkedWebsite(feed->loadLinkedWebsite());
 }
 
 
@@ -273,7 +275,17 @@ bool FeedPropertiesDialog::useNotification() const
 {
     return widget->checkBox_useNotification->isChecked();
 }
-  
+
+bool FeedPropertiesDialog::loadLinkedWebsite() const
+{
+    return widget->checkBox_loadWebsite->isChecked();
+}
+
+void FeedPropertiesDialog::setLoadLinkedWebsite(bool enabled)
+{
+    widget->checkBox_loadWebsite->setChecked(enabled);
+}
+
 void FeedPropertiesDialog::selectFeedName()
 {
    widget->feedNameEdit->selectAll();

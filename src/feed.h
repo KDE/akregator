@@ -141,6 +141,11 @@ namespace Akregator
 
             bool useNotification() const;
 
+            /** if true, the linked URL is loaded directly in the article viewer instead of showing the description */
+            void setLoadLinkedWebsite(bool enabled);
+
+            bool loadLinkedWebsite() const;
+            
             /** returns the favicon */
             const QPixmap& favicon() const;
 

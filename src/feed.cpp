@@ -60,6 +60,7 @@ class Feed::FeedPrivate
         int maxArticleNumber;
         bool markImmediatelyAsRead;
         bool useNotification;
+        bool loadLinkedWebsite;
         int lastFetched;
 
         bool fetchError;
@@ -133,6 +134,7 @@ Feed* Feed::fromOPML(QDomElement e)
         int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
         bool markImmediatelyAsRead = e.attribute("markImmediatelyAsRead") == "true";
         bool useNotification = e.attribute("useNotification") == "true";
+        bool loadLinkedWebsite = e.attribute("loadLinkedWebsite") == "true";
         uint id = e.attribute("id").toUInt();
 
         feed = new Feed();
@@ -148,6 +150,7 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setMaxArticleAge(maxArticleAge);
         feed->setMaxArticleNumber(maxArticleNumber);
         feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
+        feed->setLoadLinkedWebsite(loadLinkedWebsite);
         feed->loadArticles(); // TODO: make me fly: make this delayed
         
     }
@@ -284,6 +287,16 @@ bool Feed::useNotification() const
     return d->useNotification;
 }
 
+void Feed::setLoadLinkedWebsite(bool enabled)
+{
+    d->loadLinkedWebsite = enabled;
+}
+
+bool Feed::loadLinkedWebsite() const
+{
+    return d->loadLinkedWebsite;
+}
+            
 const QPixmap& Feed::favicon() const { return d->favicon; }
 
 const QPixmap& Feed::image() const { return d->imagePixmap; }
@@ -323,6 +336,8 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
         el.setAttribute( "markImmediatelyAsRead", "true" );
     if (d->useNotification)
         el.setAttribute( "useNotification", "true" );
+    if (d->loadLinkedWebsite)
+        el.setAttribute( "loadLinkedWebsite", "true" );
     el.setAttribute( "maxArticleNumber", d->maxArticleNumber );
     el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
     el.setAttribute( "version", "RSS" );

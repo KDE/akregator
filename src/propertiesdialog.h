@@ -63,6 +63,7 @@ namespace Akregator
          int maxArticleNumber() const;
          bool markImmediatelyAsRead() const;
          bool useNotification() const;
+         bool loadLinkedWebsite() const;
 
          void setFeedName(const QString& title);
          void setUrl(const QString& url);
@@ -73,6 +74,7 @@ namespace Akregator
          void setMaxArticleNumber(int number);
          void setMarkImmediatelyAsRead(bool enabled);
          void setUseNotification(bool enabled);
+         void setLoadLinkedWebsite(bool enabled);
          
        protected slots:
            void slotOk();
