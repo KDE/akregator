@@ -87,7 +87,6 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : QHBox(parent, name), d
     QPixmap iconKeep(locate("data", "akregator/pics/kmmsgflag.png"));
     
     d->searchCombo->insertItem(iconAll, i18n("All Articles"));
-    d->searchCombo->insertItem(i18n("New & Unread"));
     d->searchCombo->insertItem(iconNew, i18n("New"));
     d->searchCombo->insertItem(iconUnread, i18n("Unread"));
     d->searchCombo->insertItem(iconKeep, i18n("Keep Flag Set"));
@@ -183,7 +182,13 @@ void SearchBar::slotActivateSearch()
     {
         switch (d->searchCombo->currentItem())
         {
-            case 1: // New & Unread
+            case 1: // New
+            {
+                Criterion crit( Criterion::Status, Criterion::Equals, Article::New);
+                statusCriteria << crit;
+                break;
+            }
+            case 2: // Unread
             {
                 Criterion crit1( Criterion::Status, Criterion::Equals, Article::New);
                 Criterion crit2( Criterion::Status, Criterion::Equals, Article::Unread);
@@ -191,19 +196,7 @@ void SearchBar::slotActivateSearch()
                 statusCriteria << crit2;
                 break;
             }
-            case 2: // New
-            {
-                Criterion crit( Criterion::Status, Criterion::Equals, Article::New);
-                statusCriteria << crit;
-                break;
-            }
-            case 3: // Unread
-            {
-                Criterion crit( Criterion::Status, Criterion::Equals, Article::Unread);
-                statusCriteria << crit;
-                break;
-            }
-            case 4: // Keep flag set
+            case 3: // Keep flag set
             {
                 Criterion crit( Criterion::KeepFlag, Criterion::Equals, true);
                 statusCriteria << crit;
