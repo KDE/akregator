@@ -593,6 +593,11 @@ void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
     NotificationManager::self()->slotNotifyFeeds(urls);
 }
 
+void Part::addFeed()
+{
+    m_view->slotFeedAdd();
+}
+
 KAboutData *Part::createAboutData()
 {
     return new Akregator::AboutData;

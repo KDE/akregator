@@ -41,6 +41,7 @@ namespace Akregator {
             virtual void saveSettings() = 0;
             virtual void addFeedsToGroup(const QStringList&, const QString&) = 0;
             virtual void exportFile(const KURL& url) = 0;
+            virtual void addFeed() = 0;
     };
 
 }

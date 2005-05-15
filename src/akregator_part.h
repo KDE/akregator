@@ -112,6 +112,8 @@ namespace Akregator
              */
             virtual void addFeedsToGroup(const QStringList& urls, const QString& group);
             
+            virtual void addFeed();
+            
             /**
              This method is called when this app is restored.  The KConfig
              object points to the session management config file that was saved
