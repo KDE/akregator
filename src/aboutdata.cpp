@@ -41,10 +41,11 @@ AboutData::AboutData()
     addAuthor( "Gary Cramblitt", I18N_NOOP("Contributor"), "garycramblitt@comcast.net");
     addAuthor( "Stephan Binner", I18N_NOOP("Contributor"), "binner@kde.org" );
     addAuthor( "Christof Musik", I18N_NOOP("Contributor"), "christof@freenet.de" );
-    addCredit( "Marcel Dierkes", I18N_NOOP("Icons"), "marcel.dierkes@gmx.de");
-    addCredit( "Philipp Droessler", I18N_NOOP("Gentoo Ebuild"), "kingmob@albert-unser.net");
     addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "raabe@kde.org" );
+    addCredit( "Eckhart Woerner", I18N_NOOP("Bug tracker management, Usability improvements"), "kde@ewsoftware.de");
+    addCredit( "Marcel Dierkes", I18N_NOOP("Icons"), "marcel.dierkes@gmx.de");
     addCredit( "George Staikos", I18N_NOOP("Insomnia"), "staikos@kde.org" );
+    addCredit( "Philipp Droessler", I18N_NOOP("Gentoo Ebuild"), "kingmob@albert-unser.net");
 }
 
 AboutData::~AboutData()
