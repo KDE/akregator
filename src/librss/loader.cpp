@@ -392,7 +392,7 @@ void Loader::discoverFeeds(const QByteArray &data)
     }
     
     if (s2.isNull()) {
-        kdDebug() << "No feed found for a site" << endl;
+        //kdDebug() << "No feed found for a site" << endl;
         return;
     }
 
