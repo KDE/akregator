@@ -26,6 +26,7 @@
 #define AKREGATORFEEDLIST_H
 
 #include <qobject.h>
+#include <qvaluelist.h>
 
 class QDomDocument;
 class QDomNode;
@@ -76,9 +77,16 @@ public:
     /** returns whether the feed list is empty, root node is ignored */
     bool isEmpty() const;
 
+    /** returns a flat list containing all nodes in the tree */
+    const QValueList<TreeNode*>& asFlatList() const;
+
 signals:
     void signalDestroyed(FeedList*);
-    
+    /** emitted when a node was added to this feed list */
+    void signalNodeAdded(TreeNode*);
+    /** emitted when a node was removed from this feed list */
+    void signalNodeRemoved(TreeNode*);
+
 protected:
 
     /** connects a node's notification signals to the slots below. Used for Observer mechanism 

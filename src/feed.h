@@ -214,8 +214,6 @@ namespace Akregator
             /** starts fetching */
             void fetch(bool followDiscovery=false);
 
-            void slotSetProgress(unsigned long);
-
             void slotAbortFetch();
 
             /** deletes expired articles */

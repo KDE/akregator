@@ -26,16 +26,13 @@
 #include <qdatetime.h>
 #include <qlistview.h>
 #include <qdom.h>
+#include <qpixmap.h>
 
 #include <kurl.h>
 #include <kcharsets.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
-#include <kapplication.h>
-#include <klocale.h>
-
-#include <libkdepim/progressmanager.h>
 
 #include "articlelist.h"
 #include "akregatorconfig.h"
@@ -89,7 +86,6 @@ class Feed::FeedPrivate
         QPixmap imagePixmap;
         RSS::Image image;
         QPixmap favicon;
-        KPIM::ProgressItem* progressItem;
 };
             
 QString Feed::archiveModeToString(ArchiveMode mode)
@@ -240,7 +236,6 @@ Feed::Feed() : TreeNode(), d(new FeedPrivate)
     d->loader = 0;
     d->articlesLoaded = false;
     d->archive = 0;
-    d->progressItem = 0;
 }
 
 Feed::~Feed()
@@ -488,24 +483,17 @@ void Feed::fetch(bool followDiscovery)
     tryFetch();
 }
 
-void Feed::slotSetProgress(unsigned long percent)
-{
-    if (d->progressItem)
-        d->progressItem->setProgress((unsigned int) percent);
-}
-
 void Feed::slotAbortFetch()
 {
     if (d->loader)
+    {
         d->loader->abort();
+    }
 }
 
 void Feed::tryFetch()
 {
     d->fetchError = false;
-
-    d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), title(), QString::null, false);
-    //connect(d->progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
 
     d->loader = RSS::Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
     //connect(d->loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
@@ -525,27 +513,6 @@ void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
     // fetching wasn't successful:
     if (status != RSS::Success)
     {
-        if(d->progressItem)
-        {
-            switch (status)
-            {
-                case RSS::RetrieveError:
-                    d->progressItem->setStatus(i18n("Feed file is not available"));
-                    break;
-                case RSS::ParseError:
-                    d->progressItem->setStatus(i18n("Parsing of feed file failed"));
-                    break;
-                case RSS::Aborted:
-                    d->progressItem->setStatus(i18n("Fetch aborted"));
-                    break;
-                default:
-                    break;
-            }
-
-            d->progressItem->setComplete();
-            d->progressItem = 0;
-        }
-
         if (status == RSS::Aborted)
         {
             d->fetchError = false;
@@ -567,13 +534,7 @@ void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
     }
 
     loadArticles(); // TODO: make me fly: make this delayed
-
-    if (d->progressItem)
-    {
-        d->progressItem->setComplete();
-        d->progressItem = 0;
-    }
-
+    
     // Restore favicon.
     if (d->favicon.isNull())
         loadFavicon();

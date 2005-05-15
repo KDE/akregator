@@ -47,6 +47,7 @@
 #include "storage.h"
 #include "tabwidget.h"
 #include "treenode.h"
+#include "progressmanager.h"
 #include "treenodeitem.h"
 #include "notificationmanager.h"
 
@@ -142,6 +143,7 @@ View::View( Part *part, QWidget *parent, const char *name)
             TreeNodeItem*, FolderItem*)));
 
     m_tree->setFeedList(m_feedList);
+    ProgressManager::self()->setFeedList(m_feedList);
     
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
@@ -275,6 +277,7 @@ void View::slotOnShutdown()
     Kernel::self()->fetchQueue()->slotAbort();
        
     m_tree->setFeedList(0);
+    ProgressManager::self()->setFeedList(0);
     
     delete m_feedList;
 
@@ -419,7 +422,8 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
     if (!parent)
     {
         m_tree->setFeedList(feedList);
-        disconnectFromFeedList(feedList);
+        ProgressManager::self()->setFeedList(feedList);
+        disconnectFromFeedList(m_feedList);
         delete m_feedList;
         m_feedList = feedList;
         connectToFeedList(feedList);

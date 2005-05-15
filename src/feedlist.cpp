@@ -57,8 +57,15 @@ FeedList::FeedList(QObject *parent, const char *name)
     d->idMap[1] = d->rootNode;
     d->flatList.append(d->rootNode);
     connectToNode(d->rootNode);
+    emit signalNodeAdded(d->rootNode);
 }
 
+
+const QValueList<TreeNode*>& FeedList::asFlatList() const
+{
+    return d->flatList;
+}
+    
 void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
 {
     QDomElement e = node.toElement(); // try to convert the node to an element.
@@ -246,7 +253,8 @@ void FeedList::slotNodeAdded(TreeNode* node)
     
     d->flatList.append(node);
     connectToNode(node);
-
+    emit signalNodeAdded(node);
+    
     if ( !node->isGroup() )
         return;
     
@@ -256,6 +264,7 @@ void FeedList::slotNodeAdded(TreeNode* node)
     {
         d->flatList.append(i);
         connectToNode(i);
+        emit signalNodeAdded(i);
     }
 }
 
@@ -269,6 +278,7 @@ void FeedList::slotNodeDestroyed(TreeNode* node)
     
     d->idMap.remove(node->id());
     d->flatList.remove(node);
+    emit signalNodeRemoved(node);
 }
 
 void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
@@ -279,7 +289,7 @@ void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
     d->idMap.remove(node->id());
     disconnectFromNode(node);
     d->flatList.remove(node);
-    
+    emit signalNodeRemoved(node);
 }
 
 void FeedList::connectToNode(TreeNode* node)
