@@ -293,6 +293,7 @@ QString ArticleViewer::formatArticle(Feed* feed, const Article& article)
 
 void ArticleViewer::renderContent(const QString& text)
 {
+    closeURL();
     m_currentText = text;
     beginWriting();
     //kdDebug() << text << endl;
