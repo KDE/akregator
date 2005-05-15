@@ -119,7 +119,6 @@ namespace Akregator
             
             struct Private;
             Private *d;
-            
     };
 }
 
