@@ -114,6 +114,7 @@ void ProgressManager::slotNodeRemoved(TreeNode* node)
     {
         disconnect(feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
         delete d->handlers[feed];
+        d->handlers.remove(feed);
     }
 }
 
@@ -121,7 +122,10 @@ void ProgressManager::slotNodeDestroyed(TreeNode* node)
 {
     Feed* feed = dynamic_cast<Feed*>(node);
     if (feed)
+    {
         delete d->handlers[feed];
+        d->handlers.remove(feed);
+    }
 }
 
 class ProgressItemHandler::ProgressItemHandlerPrivate
