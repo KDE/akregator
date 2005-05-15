@@ -87,8 +87,8 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : QHBox(parent, name), d
     QPixmap iconKeep(locate("data", "akregator/pics/kmmsgflag.png"));
     
     d->searchCombo->insertItem(iconAll, i18n("All Articles"));
-    d->searchCombo->insertItem(iconNew, i18n("New"));
     d->searchCombo->insertItem(iconUnread, i18n("Unread"));
+    d->searchCombo->insertItem(iconNew, i18n("New"));
     d->searchCombo->insertItem(iconKeep, i18n("Keep Flag Set"));
     
     QToolTip::add( clearButton, i18n( "Clear filter" ) );

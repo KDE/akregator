@@ -34,7 +34,7 @@ AboutData::AboutData()
                      "http://akregator.sourceforge.net/")
 {
     addAuthor( "Frank Osterfeld", I18N_NOOP("Maintainer"), "frank.osterfeld@kdemail.net" );
-    addAuthor( "Teemu Rytilahti", I18N_NOOP("Developer"), "teemu.rytilahti@kde-fi.org" );
+    addAuthor( "Teemu Rytilahti", I18N_NOOP("Developer"), "tpr@d5k.net" );
     addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "sashmit@vfemail.net" );
     addAuthor( "Pierre Habouzit", I18N_NOOP("Developer"), "pierre.habouzit@m4x.org" );
     addAuthor( "Stanislav Karchebny", I18N_NOOP("Developer"), "Stanislav.Karchebny@kdemail.net" );
