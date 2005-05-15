@@ -34,6 +34,7 @@
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kcharsets.h>
+#include <kurl.h>
 
 #include <qdatetime.h>
 #include <qpixmap.h>
@@ -41,6 +42,7 @@
 #include <qvaluelist.h>
 #include <qwhatsthis.h>
 #include <qheader.h>
+#include <qdragobject.h>
 
 using namespace Akregator;
 
@@ -113,7 +115,7 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
     setItemsRenameable(false);
     setItemsMovable(false);
     setAllColumnsShowFocus(true);
-    setDragEnabled(false); // FIXME before we implement dragging between archived feeds??
+    setDragEnabled(true); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
     setFullWidth(false);
     
@@ -317,6 +319,12 @@ void ArticleListView::applyFilters()
     }
 }
 
+QDragObject *ArticleListView::dragObject()
+{
+    QDragObject *d = new QTextDrag(currentItem()->article().link().prettyURL(), this);
+    return d;
+}
+
 void ArticleListView::slotPreviousArticle()
 {
     QListViewItem *lvi = currentItem();
@@ -446,7 +454,7 @@ void ArticleListView::slotSelectionChanged()
         emit signalArticleChosen( ai->article() );
 }
 
-void ArticleListView::slotCurrentChanged(QListViewItem* item)
+void ArticleListView::slotCurrentChanged(QListViewItem*/* item*/)
 {/*
     ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
     if (ai)

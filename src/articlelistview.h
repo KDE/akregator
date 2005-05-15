@@ -32,6 +32,7 @@
 #include <qptrlist.h>
 
 class QKeyEvent;
+class QDragObject;
 
 namespace Akregator
 {
@@ -118,6 +119,8 @@ namespace Akregator
             /** applies text filter and status filter by setting visibility
             of items accordingly */
             virtual void applyFilters();
+            
+            virtual QDragObject *dragObject();
 
         protected slots:
             virtual void slotSelectionChanged();
