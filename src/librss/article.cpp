@@ -86,35 +86,38 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
     if (d->description.isEmpty())
     {
 		if (!(elemText = extractNode(node, QString::fromLatin1("body"), false)).isNull())
-	    	d->description = elemText;
+			d->description = elemText;
     
 		if (d->description.isEmpty())  // 3rd try: see http://www.intertwingly.net/blog/1299.html
 		{
 			if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "summary" : "description"), false)).isNull())
 				d->description = elemText;
 		}
-    }
+	}
     
-	if (!(elemText = extractNode(node, QString::fromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull())
-    {
-		time_t _time;
-		if (format==AtomFeed)
-		   _time = parseISO8601Date(elemText); 
-		else
-		   _time = KRFCDate::parseDate(elemText);
+	time_t time = 0;
 
-        // 0 means invalid, not epoch (it returns epoch+1 when it parsed epoch, see the KRFCDate::parseDate() docs)
-        if (_time != 0)
-		  d->pubDate.setTime_t(_time);
+	if (format == AtomFeed)
+	{
+		elemText = extractNode(node, QString::fromLatin1("issued"));
+		if (!elemText.isNull())
+			time = parseISO8601Date(elemText); 	
 	}
+	else 
+	{
+		elemText = extractNode(node, QString::fromLatin1("pubDate"));
+		if (!elemText.isNull())
+			time = KRFCDate::parseDate(elemText);
+	}
+	
 	if (!(elemText = extractNode(node, QString::fromLatin1("dc:date"))).isNull())
-    {
-		time_t _time = parseISO8601Date(elemText);
-
-        // 0 means invalid, not epoch (it returns epoch+1 when it parsed epoch, see the KRFCDate::parseDate() docs)
-        if (_time != 0)
-		  d->pubDate.setTime_t(_time);
+	{
+		time = parseISO8601Date(elemText);
 	}
+
+	// 0 means invalid, not epoch (parsers return epoch+1 when parsing epoch, see the KRFCDate::parseDate() docs)
+        if (time != 0)
+		d->pubDate.setTime_t(time);
 
 	if (!(elemText = extractNode(node, QString::fromLatin1("wfw:comment"))).isNull()) {
 		d->commentsLink = elemText;
