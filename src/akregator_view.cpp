@@ -843,6 +843,8 @@ void View::slotNodeSelected(TreeNode* node)
     
     m_tabs->showPage(m_mainTab);
 
+    slotClearFilter();
+
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
     else
@@ -1342,16 +1344,22 @@ void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FeedGroupIt
 
 void View::slotSearchComboChanged(int index)
 {
-    Settings::setQuickFilter( index );
-    updateSearch();
+    if (index != Settings::quickFilter())
+    {
+        Settings::setQuickFilter( index );
+        updateSearch();
+    }
 }
 
 // from klistviewsearchline
 void View::slotSearchTextChanged(const QString &search)
 {
-    m_queuedSearches++;
-    m_queuedSearch = search;
-    QTimer::singleShot(200, this, SLOT(slotActivateSearch()));
+    if (m_queuedSearch != search)
+    {
+        m_queuedSearches++;
+        m_queuedSearch = search;
+        QTimer::singleShot(200, this, SLOT(slotActivateSearch()));
+    }
 }
 
 void View::slotActivateSearch()
