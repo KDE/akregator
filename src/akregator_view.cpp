@@ -714,6 +714,8 @@ void View::slotNodeSelected(TreeNode* node)
 
     m_tabs->showPage(m_mainTab);
 
+    m_searchBar->slotClearSearch();
+    
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
     else

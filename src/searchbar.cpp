@@ -132,10 +132,13 @@ int SearchBar::delay() const
                 
 void SearchBar::slotClearSearch()
 {
-    d->searchLine->clear();
-    d->searchCombo->setCurrentItem(0);
-    d->timer.stop();
-    slotActivateSearch();
+    if (status() != 0 || !d->searchLine->text().isEmpty())
+    {
+        d->searchLine->clear();
+        d->searchCombo->setCurrentItem(0);
+        d->timer.stop();
+        slotActivateSearch();
+    }
 }
 
 void SearchBar::slotSetStatus(int status)

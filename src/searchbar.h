@@ -50,6 +50,7 @@ class SearchBar : public QHBox
         int delay() const;
 
     signals:
+        /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
         void signalSearch(const ArticleFilter&, const ArticleFilter&);
 
     public slots:
