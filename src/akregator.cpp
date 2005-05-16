@@ -26,12 +26,14 @@
 #include "akregator.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
+#include "trayicon.h"
 
 //settings
 
 #include <dcopclient.h>
 
 #include <kaction.h>
+#include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
 #include <kedittoolbar.h>
@@ -116,7 +118,7 @@ bool MainWindow::loadPart()
             setCentralWidget(m_part->widget());
 
             connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
-
+            connect(m_part->trayIcon(), SIGNAL(quitSelected()), this, SLOT(slotQuit()));
             // and integrate the part's GUI with the shell's
             connectActionCollection(m_part->actionCollection());
             createGUI(m_part);
@@ -212,6 +214,12 @@ void MainWindow::optionsConfigureToolbars()
 }
 
 
+void MainWindow::slotQuit()
+{
+    if (m_part->trayIcon())
+        m_part->trayIcon()->hide();
+    kapp->quit();
+}
 
 void MainWindow::applyNewToolbarConfig()
 {
@@ -245,7 +253,7 @@ bool MainWindow::queryExit()
 
 bool MainWindow::queryClose()
 {
-    if ( kapp->sessionSaving() || !m_part->isTrayIconEnabled() )
+    if ( kapp->sessionSaving() || m_part->trayIcon() == 0 || m_part->trayIcon()->isHidden() )
          return true;
     else
     {

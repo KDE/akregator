@@ -39,7 +39,7 @@ kdelnkdir = $(kde_servicesdir)
 
 # this is a lib shared by both the KPart and the main application
 lib_LTLIBRARIES = libakregatorprivate.la
-libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc aboutdata.cpp
+libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc aboutdata.cpp trayicon.cpp
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined
 libakregatorprivate_la_LIBADD = $(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KHTML)
 
@@ -95,7 +95,6 @@ libakregatorpart_la_SOURCES = \
 	settings_general.ui \
 	settings_archive.ui \
 	settings_browser.ui \
-	trayicon.cpp \
 	feediconmanager.skel \
 	akregator_partiface.skel \
 	akregator_part.cpp \

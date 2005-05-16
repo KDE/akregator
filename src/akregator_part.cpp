@@ -541,6 +541,11 @@ bool Part::isTrayIconEnabled() const
     return Settings::showTrayIcon();
 }
 
+TrayIcon* Part::trayIcon()
+{
+    return m_trayIcon;
+}
+
 QPixmap Part::takeTrayIconScreenshot() const
 {
     return m_trayIcon->takeScreenshot();

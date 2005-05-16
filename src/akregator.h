@@ -120,6 +120,10 @@ protected:
      */
     virtual bool queryClose(); 
 
+protected slots:
+
+    void slotQuit();
+
 private:
      void setupActions();
     void connectActionCollection(KActionCollection *coll);

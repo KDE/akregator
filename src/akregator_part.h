@@ -142,6 +142,8 @@ namespace Akregator
              @return Screenshot of the trayicon */
             virtual QPixmap takeTrayIconScreenshot() const;
 
+            virtual TrayIcon* trayIcon();
+
             /** merges a nested part's GUI into the gui of this part
             @return true iff merging was successful, i.e. the GUI factory was not NULL */
             virtual bool mergePart(KParts::Part*);
