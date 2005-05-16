@@ -68,7 +68,7 @@ libakregatorprivate_la_LIBADD =	$(top_builddir)/libkdepim/libkdepim.la \
 kde_kcfg_DATA = akregator.kcfg
 kde_module_LTLIBRARIES = libakregatorpart.la
 
-akregator.lo: akregatorconfig.h
+mainwindow.lo: akregatorconfig.h
 akregator_part.lo: akregatorconfig.h
 akregator_view.lo: akregatorconfig.h
 akregatorconfig.lo: akregatorconfig.h

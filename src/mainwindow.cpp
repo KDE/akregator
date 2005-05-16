@@ -282,7 +282,7 @@ void MainWindow::slotSetStatusBarText( const QString & text )
     m_statusLabel->setText(text);
 }
 
-#include "akregator.moc"
+#include "mainwindow.moc"
 
 
 // vim: set et ts=4 sts=4 sw=4:
