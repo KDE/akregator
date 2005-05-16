@@ -60,7 +60,6 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "akregatorconfig.h"
-#include "akregator.h"
 #include "configdialog.h"
 #include "fetchqueue.h"
 #include "frame.h"

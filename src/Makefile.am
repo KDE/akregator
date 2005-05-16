@@ -18,7 +18,7 @@ KDE_ICON = AUTO
 bin_PROGRAMS = akregator
 
 # the application source, library search path, and link libraries
-akregator_SOURCES = main.cpp akregator.cpp
+akregator_SOURCES = main.cpp mainwindow.cpp
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la
 #akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la

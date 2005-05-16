@@ -32,7 +32,7 @@
 #include <kuniqueapplication.h>
 
 #include "aboutdata.h"
-#include "akregator.h"
+#include "mainwindow.h"
 #include "akregator_options.h"
 
 

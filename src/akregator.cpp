@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregator.h"
+#include "mainwindow.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
 
