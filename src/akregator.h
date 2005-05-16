@@ -120,8 +120,13 @@ protected:
      */
     virtual bool queryClose(); 
 
+protected slots:
+
+    void slotQuit();
+    
 private:
-     void setupActions();
+
+    void setupActions();
     void connectActionCollection(KActionCollection *coll);
     
     KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);

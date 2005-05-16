@@ -18,7 +18,7 @@ KDE_ICON = AUTO
 bin_PROGRAMS = akregator
 
 # the application source, library search path, and link libraries
-akregator_SOURCES = main.cpp akregator.cpp 
+akregator_SOURCES = main.cpp akregator.cpp
 akregator_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la
 #akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
@@ -42,6 +42,7 @@ kdelnkdir = $(kde_servicesdir)
 lib_LTLIBRARIES = libakregatorprivate.la
 libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
 				 aboutdata.cpp \
+                                 trayicon.cpp \
 				 article.cpp \
 				 feed.cpp \
 				 treenode.cpp \
@@ -107,7 +108,6 @@ libakregatorpart_la_SOURCES = \
 	configdialog.cpp \
 	settings_advanced.cpp \
         searchbar.cpp \
-	trayicon.cpp \
 	akregator_partiface.skel \
 	akregator_part.cpp \
 	akregator_view.cpp \

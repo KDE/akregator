@@ -31,6 +31,7 @@
 #include <dcopclient.h>
 
 #include <kaction.h>
+#include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
 #include <kedittoolbar.h>
@@ -49,6 +50,7 @@
 
 #include "progressdialog.h"
 #include "statusbarprogresswidget.h"
+#include "trayicon.h"
 
 #include <qmetaobject.h>
 #include <qpen.h>
@@ -66,8 +68,7 @@ BrowserInterface::BrowserInterface( MainWindow *shell, const char *name )
 }
 
 MainWindow::MainWindow()
-    : KParts::MainWindow( 0L, "akregator_mainwindow" )
-{
+    : KParts::MainWindow( 0L, "akregator_mainwindow" ){
     // set the shell's ui resource file
     setXMLFile("akregator_shell.rc");
 
@@ -112,6 +113,7 @@ bool MainWindow::loadPart()
 
             connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
 
+            connect(TrayIcon::getInstance(), SIGNAL(quitSelected()), this, SLOT(slotQuit()));
             // and integrate the part's GUI with the shell's
             connectActionCollection(m_part->actionCollection());
             createGUI(m_part);
@@ -237,24 +239,35 @@ bool MainWindow::queryExit()
     {
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
         m_part = 0;
-    }    
-    kdDebug() << "ladies and gents, the part was deleted" << endl;
-    return KParts::MainWindow::queryExit();
+    }
+    else
+        kdDebug("MainWindow::queryExit(): saving session");
+
+    return KMainWindow::queryExit();
+}
+
+void MainWindow::slotQuit()
+{
+    if (TrayIcon::getInstance())
+        TrayIcon::getInstance()->hide();
+    kapp->quit();
 }
 
 bool MainWindow::queryClose()
 {
-    if ( kapp->sessionSaving() || !m_part->isTrayIconEnabled() )
-         return true;
+    if (kapp->sessionSaving() || TrayIcon::getInstance() == 0 || TrayIcon::getInstance()->isHidden() )
+    {
+        return true;
+    }
     else
     {
-        QPixmap shot = m_part->takeTrayIconScreenshot();
+        QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
 
         // Associate source to image and show the dialog:
         QMimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
         KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
         hide();
-    return false;
+        return false;
     }
 }
 
@@ -263,6 +276,7 @@ void MainWindow::slotClearStatusText()
 {
     m_statusLabel->setText(QString());
 }
+
 void MainWindow::slotSetStatusBarText( const QString & text )
 {
     m_statusLabel->setText(text);

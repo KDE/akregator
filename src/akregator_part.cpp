@@ -123,7 +123,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     Kernel::self()->setStorage(m_storage);
     Backend::Storage::setInstance(m_storage);
     
-    
     m_actionManager = new ActionManager(this);
     ActionManager::setInstance(m_actionManager);
     
@@ -144,23 +143,24 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     // notify the part that this is our internal widget
     setWidget(m_view);
 
-    m_trayIcon = new TrayIcon( getMainWindow() );
-    ActionManager::getInstance()->initTrayIcon(m_trayIcon);
+    TrayIcon* trayIcon = new TrayIcon( getMainWindow() );
+    TrayIcon::setInstance(trayIcon);
+    ActionManager::getInstance()->initTrayIcon(trayIcon);
     
-    connect(m_trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
+    connect(trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
 
     if ( isTrayIconEnabled() )
     {
-        m_trayIcon->show();
-        NotificationManager::self()->setWidget(m_trayIcon, instance());
+        trayIcon->show();
+        NotificationManager::self()->setWidget(trayIcon, instance());
     }
     else
         NotificationManager::self()->setWidget(getMainWindow(), instance());
 
-    connect( m_trayIcon, SIGNAL(quitSelected()),
+    connect( trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
 
-    connect( m_view, SIGNAL(signalUnreadCountChanged(int)), m_trayIcon, SLOT(slotSetUnread(int)) );
+    connect( m_view, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
     
     connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutdown()));
 
@@ -201,7 +201,7 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_trayIcon : getMainWindow(), instance());
+    NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
 
     RSS::FileRetriever::setUseCache(Settings::useHTMLCache());
     
@@ -416,11 +416,6 @@ bool Part::isTrayIconEnabled() const
     return Settings::showTrayIcon();
 }
 
-QPixmap Part::takeTrayIconScreenshot() const
-{
-    return m_trayIcon->takeScreenshot();
-}
-
 bool Part::mergePart(KParts::Part* part)
 {
     if (part != m_mergedPart)
@@ -620,7 +615,7 @@ void Part::showOptions()
     connect( dialog, SIGNAL(settingsChanged()),
              this, SLOT(slotSettingsChanged()) );
     connect( dialog, SIGNAL(settingsChanged()),
-             m_trayIcon, SLOT(settingsChanged()) );
+             TrayIcon::getInstance(), SLOT(settingsChanged()) );
 
     dialog->show();
 }

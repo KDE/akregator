@@ -42,7 +42,20 @@
 #include <qtooltip.h>
 
 
-using namespace Akregator;
+namespace Akregator {
+
+TrayIcon* TrayIcon::m_instance = 0;
+
+TrayIcon* TrayIcon::getInstance()
+{
+    return m_instance;
+}
+
+void TrayIcon::setInstance(TrayIcon* trayIcon)
+{
+    m_instance = trayIcon;
+}
+
 
 TrayIcon::TrayIcon(QWidget *parent, const char *name)
         : KSystemTray(parent, name), m_unread(0)
@@ -54,7 +67,8 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
     setPixmap(m_defaultIcon);
     QToolTip::add(this, i18n("Akregator - RSS Feed Reader"));
 }
-	
+
+
 TrayIcon::~TrayIcon()
 {}
 
@@ -174,5 +188,5 @@ void TrayIcon::settingsChanged()
     else
         hide();
 }
-
+}
 #include "trayicon.moc"

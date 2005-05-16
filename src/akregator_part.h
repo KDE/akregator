@@ -127,13 +127,6 @@ namespace Akregator
              Calls AkregatorView's readProperties. */
             virtual void saveProperties(KConfig* config);
 
-            /** @return Whether the tray icon is enabled or not */
-            virtual bool isTrayIconEnabled() const;
-            
-            /** Takes a screenshot from the trayicon
-             @return Screenshot of the trayicon */
-            virtual QPixmap takeTrayIconScreenshot() const;
-
             /** merges a nested part's GUI into the gui of this part
             @return true iff merging was successful, i.e. the GUI factory was not NULL */
             virtual bool mergePart(KParts::Part*);
@@ -160,6 +153,9 @@ namespace Akregator
 
         protected:
 
+        /** @return Whether the tray icon is enabled or not */
+            virtual bool isTrayIconEnabled() const;
+            
             /** loads all Akregator plugins */
             void loadPlugins();
             
@@ -200,7 +196,7 @@ namespace Akregator
             KParts::BrowserExtension *m_extension;
             KParts::Part* m_mergedPart;
             View* m_view;
-            TrayIcon* m_trayIcon;
+            
             QTimer* m_autosaveTimer;
             /** did we backup the feed list already? */
             bool m_backedUpList;
