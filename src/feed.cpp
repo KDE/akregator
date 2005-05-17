@@ -41,6 +41,7 @@
 #include "fetchqueue.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"
+#include "articleinterceptor.h"
 #include "storage.h"
 
 #include "librss/librss.h"
@@ -384,6 +385,11 @@ void Feed::appendArticles(const RSS::Document &doc)
             mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya);
+
+            QValueList<ArticleInterceptor*> interceptors = ArticleInterceptorManager::self()->interceptors();
+            for (QValueList<ArticleInterceptor*>::ConstIterator it = interceptors.begin(); it != interceptors.end(); ++it)
+                (*it)->processArticle(mya);
+            
             d->newArticles.append(mya.guid());
             
             if (!mya.isDeleted() && !markImmediatelyAsRead())

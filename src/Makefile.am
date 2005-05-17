@@ -52,6 +52,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
 			  	 articlelist.cpp \
 				feediconmanager.cpp \
 				feediconmanager.skel \
+                                 articleinterceptor.cpp \
                                 plugin.cpp \
  				pluginmanager.cpp \
 				storagefactoryregistry.cpp \

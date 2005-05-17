@@ -1,0 +1,42 @@
+#ifndef AKREGATOR_ARTICLEINTERCEPTOR_H
+#define AKREGATOR_ARTICLEINTERCEPTOR_H
+
+#include <qvaluelist.h>
+
+namespace Akregator {
+
+class Article;
+
+/** Interface for intercepting new articles which were just fetched before adding them to the archive. E.g. an article filter could implement this interface to get fetched articles and add them to */
+
+class ArticleInterceptor
+{
+    public:
+        /** processes an article. Note that the interceptor may modify the article */
+        virtual void processArticle(Article& article) = 0;
+
+};
+
+/** singleton class managing the interceptors */
+class ArticleInterceptorManager
+{
+    public:
+
+        static ArticleInterceptorManager* self();
+
+        ArticleInterceptorManager();
+        virtual ~ArticleInterceptorManager();
+
+        void addInterceptor(ArticleInterceptor* interceptor);
+        void removeInterceptor(ArticleInterceptor* interceptor);
+        QValueList<ArticleInterceptor*> interceptors() const;
+
+    private:
+       static ArticleInterceptorManager* m_self;
+       class ArticleInterceptorManagerPrivate;
+       ArticleInterceptorManagerPrivate* d;
+};
+
+} //namespace Akregator
+
+#endif // AKREGATOR_ARTICLEINTERCEPTOR_H
