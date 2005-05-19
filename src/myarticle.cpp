@@ -241,6 +241,8 @@ bool MyArticle::guidIsPermaLink() const
 */
 uint MyArticle::calcHash(const QString& str)
 {
+    if (str.isNull()) // treat null strings as empty strings to prevent crashes
+	return calcHash("");
     const char* s = str.ascii();
     uint hash = 5381;
     int c;
