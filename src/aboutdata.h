@@ -28,7 +28,7 @@
 #include <kaboutdata.h>
 #include <kdepimmacros.h>
 
-#define AKREGATOR_VERSION "1.1"
+#define AKREGATOR_VERSION "1.1.1"
 
 namespace Akregator {
 /**
