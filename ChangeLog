@@ -7,9 +7,14 @@ Changes after 1.0
 
 Changes:
        - Changed prev/next unread article actions to cycle through all unread articles -fo	
+       - Use firefox instead of mozilla as default custom browser -fo
        
 Bug fixes:
         - Don't show "running in systray" message box when quitting from systray (#105396) -fo
+	- avoid dupes: use rdf:about as unique ID for RSS 1.0 feeds (#93400) -fo
+	- Don't freeze on exit when a feed/folder with many articles is selected -fo
+        - respect markImmediatelyAsRead: Don't reset updated articles to New (#103502) -fo
+	- Don't crash when the user cancels an import -fo
 	- make BrowserRun delete itself when the Viewer gets destroyed (#101413) -tpr
         - tolerate leading and trailing whitespace in the Add Feed Dialog (#101988) -fo
         - fixed confusion of "disable archiving" and expiry by age (#101907) -fo
