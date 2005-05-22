@@ -75,7 +75,7 @@ void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, 
 {
     QColorGroup cg2(cg);
     
-    // XXX: make configurable
+    // FIXME: make configurable
     if (article().status()==Article::Unread)
         cg2.setColor(QColorGroup::Text, Qt::blue);
     else if (article().status()==Article::New)

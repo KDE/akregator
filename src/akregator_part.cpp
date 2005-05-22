@@ -567,6 +567,35 @@ void Part::fileGetFeeds()
      //KNS::DownloadDialog::open("akregator/feeds", i18n("Get New Feeds"));
 }
 
+void Part::fileSendArticle(bool attach)
+{
+    // FIXME: you have to open article to tab to be able to send...
+    QString title, text;
+    
+    text = m_view->currentFrame()->part()->url().prettyURL();
+    if(text.isEmpty() || text.isNull())
+        return;
+    
+    title = m_view->currentFrame()->title();
+    
+    if(attach) { 
+        kapp->invokeMailer("", 
+                           "", 
+                           "", 
+                           title, 
+                           text, 
+                           "", 
+                           text);
+    }
+    else {
+        kapp->invokeMailer("", 
+                           "", 
+                           "", 
+                           title, 
+                           text);
+    }
+}
+
 void Part::fetchAllFeeds()
 {
     m_view->slotFetchAllFeeds();

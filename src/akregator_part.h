@@ -141,6 +141,10 @@ namespace Akregator
             void fileImport();
             void fileExport();
             void fileGetFeeds();
+            
+            void fileSendLink() { fileSendArticle(); }
+            void fileSendFile() { fileSendArticle(true); }
+            void fileSendArticle(bool attach=false);
 
             /** Shows configuration dialog */
             void showOptions();

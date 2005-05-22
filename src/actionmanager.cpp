@@ -95,7 +95,10 @@ void ActionManager::initPart(Part* part)
         
     new KAction(i18n("&Import Feeds..."), "", "", part, SLOT(fileImport()), m_actionCollection, "file_import");
     new KAction(i18n("&Export Feeds..."), "", "", part, SLOT(fileExport()), m_actionCollection, "file_export");
-    new KAction(i18n("&Get Feeds From Web..."), "", "", part, SLOT(fileGetFeeds()), m_actionCollection, "file_getfromweb");
+    //new KAction(i18n("&Get Feeds From Web..."), "", "", part, SLOT(fileGetFeeds()), m_actionCollection, "file_getfromweb");
+    
+    new KAction(i18n("Send &Link Address..."), "mail_generic", "", part, SLOT(fileSendLink()), m_actionCollection, "file_sendlink");
+    new KAction(i18n("Send &File..."), "mail_generic", "", part, SLOT(fileSendFile()), m_actionCollection, "file_sendfile");
     
     KStdAction::configureNotifications(part, SLOT(showKNotifyOptions()), m_actionCollection); // options_configure_notifications
     new KAction( i18n("Configure &Akregator..."), "configure", "", part, SLOT(showOptions()), m_actionCollection, "akregator_configure_akregator" );
