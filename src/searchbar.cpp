@@ -185,18 +185,18 @@ void SearchBar::slotActivateSearch()
     {
         switch (d->searchCombo->currentItem())
         {
-            case 1: // New
-            {
-                Criterion crit( Criterion::Status, Criterion::Equals, Article::New);
-                statusCriteria << crit;
-                break;
-            }
-            case 2: // Unread
+            case 1: // Unread
             {
                 Criterion crit1( Criterion::Status, Criterion::Equals, Article::New);
                 Criterion crit2( Criterion::Status, Criterion::Equals, Article::Unread);
                 statusCriteria << crit1;
                 statusCriteria << crit2;
+                break;
+            }
+            case 2: // New
+            {
+                Criterion crit( Criterion::Status, Criterion::Equals, Article::New);
+                statusCriteria << crit;
                 break;
             }
             case 3: // Keep flag set
