@@ -1177,7 +1177,7 @@ void View::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
+    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
 
     QString msg;
     switch (items.count())
@@ -1197,9 +1197,9 @@ void View::slotArticleDelete()
             m_tree->selectedNode()->setNotificationMode(false);
             
         QValueList<Feed*> feeds;
-        for (ArticleItem* i = items.first(); i; i = items.next())
+        for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         {
-            Article article = i->article();
+            Article article = (*it)->article();
             Feed* feed = article.feed();
             if (!feeds.contains(feed))
                 feeds.append(feed);
@@ -1209,7 +1209,7 @@ void View::slotArticleDelete()
 
         if (items.count() == 1)
         {
-            ArticleItem* ali = items.first();
+            ArticleItem* ali = *(items.begin());
             if ( ali->nextSibling() )
                 ali = ali->nextSibling();
             else
@@ -1227,57 +1227,58 @@ void View::slotArticleDelete()
 
 void View::slotArticleToggleKeepFlag()
 {
-    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
+    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
 
     bool allFlagsSet = true;
-    for (ArticleItem* i = items.first(); allFlagsSet && i; i = items.next())
-        if (!i->article().keep())
+    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); allFlagsSet && it != items.end(); ++it)
+        if (!(*it)->article().keep())
             allFlagsSet = false;
-            
-    for (ArticleItem* i = items.first(); i; i = items.next())
-        i->article().setKeep(!allFlagsSet);
+
+    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
+        (*it)->article().setKeep(!allFlagsSet);
     m_articleList->slotUpdate();    
 }
 
 void View::slotSetSelectedArticleRead()
 {
-    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
+    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
 
     m_articleList->setReceiveUpdates(false, false);        
-    for (ArticleItem* i = items.first(); i; i = items.next())
-        i->article().setStatus(Article::Read);
+    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
+        (*it)->article().setStatus(Article::Read);
     m_articleList->setReceiveUpdates(true, false);
 }
 
 void View::slotSetSelectedArticleUnread()
 {
-    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
+    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
 
     if (items.isEmpty())
         return;
 
-    m_articleList->setReceiveUpdates(false, false);        
-    for (ArticleItem* i = items.first(); i; i = items.next())
-        i->article().setStatus(Article::Unread);
+    m_articleList->setReceiveUpdates(false, false);
+    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
+        (*it)->article().setStatus(Article::Unread);
     m_articleList->setReceiveUpdates(true, false);
 }
 
 void View::slotSetSelectedArticleNew()
 {
-    QPtrList<ArticleItem> items = m_articleList->selectedArticleItems(false);
-
+    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
+    
     if (items.isEmpty())
         return;
 
     m_articleList->setReceiveUpdates(false, false);        
-    for (ArticleItem* i = items.first(); i; i = items.next())
-        i->article().setStatus(Article::New);
+    
+    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
+        (*it)->article().setStatus(Article::New);
     m_articleList->setReceiveUpdates(true, false);
 }
 

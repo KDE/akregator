@@ -481,10 +481,10 @@ ArticleListView::~ArticleListView()
     Settings::writeConfig();
 }
 
-QPtrList<ArticleItem> ArticleListView::selectedArticleItems(bool includeHiddenItems) const
+QValueList<ArticleItem*> ArticleListView::selectedArticleItems(bool includeHiddenItems) const
 {
     QPtrList<QListViewItem> items = selectedItems(includeHiddenItems);
-    QPtrList<ArticleItem> ret;
+    QValueList<ArticleItem*> ret;
     for (QListViewItem* i = items.first(); i; i = items.next() )
         ret.append(static_cast<ArticleItem*>(i));
     return ret;

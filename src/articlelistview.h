@@ -29,10 +29,9 @@
 
 #include <klistview.h>
 
-#include <qptrlist.h>
-
 class QKeyEvent;
 class QDragObject;
+template <class T> class QValueList;
 
 namespace Akregator
 {
@@ -81,7 +80,7 @@ namespace Akregator
             
             ArticleItem* selectedItem() const { return static_cast<ArticleItem*>(KListView::selectedItem()); }
 
-            QPtrList<ArticleItem> selectedArticleItems(bool includeHiddenItems) const;
+            QValueList<ArticleItem*> selectedArticleItems(bool includeHiddenItems) const;
         public slots:
 
             /** show article list of tree node @c node (also connects to the notification signals of the node) */
