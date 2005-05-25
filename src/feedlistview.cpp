@@ -106,9 +106,10 @@ void FeedListView::setFeedList(FeedList* feedList)
     connectToNode(rootNode);
 
     // add items for children recursively
-    QPtrList<TreeNode> children = rootNode->children();
-    for (TreeNode* i = children.first(); i; i = children.next() )
-        slotNodeAdded(i);
+    QValueList<TreeNode*> children = rootNode->children();
+    
+    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+        slotNodeAdded(*it);
 }
 
 void FeedListView::takeNode(QListViewItem* item)
@@ -613,11 +614,16 @@ void FeedListView::slotNodeAdded(TreeNode* node)
         return;
     
     TreeNodeItem* item = findNodeItem(node);
-    
-    QPtrList<TreeNode> children = parent->children();
-    children.find(node);
-    TreeNode* prev = children.prev();
-    
+
+    QValueList<TreeNode*> pchildren = parent->children();
+    QValueList<TreeNode*>::ConstIterator it = pchildren.find(node);
+
+    TreeNode* prev = 0;
+    if (it != pchildren.end() && it != pchildren.begin())
+    {
+        --it;
+        prev = *it;
+    }
     if (!item)
     {
         if (node->isGroup())
@@ -629,11 +635,11 @@ void FeedListView::slotNodeAdded(TreeNode* node)
                 item = new FolderItem( parentItem, fg);
 
             m_itemDict.insert(node, item);
-            QPtrList<TreeNode> children = fg->children();
+            QValueList<TreeNode*> children = fg->children();
 
             // add children recursively
-            for (TreeNode* i = children.first(); i; i = children.next() )
-                slotNodeAdded(i);
+            for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it )
+                slotNodeAdded(*it);
         }
         else
         {

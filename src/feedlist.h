@@ -26,11 +26,11 @@
 #define AKREGATORFEEDLIST_H
 
 #include <qobject.h>
-#include <qvaluelist.h>
 
 class QDomDocument;
 class QDomNode;
 class QString;
+template <class T> class QValueList;
 
 namespace Akregator
 {

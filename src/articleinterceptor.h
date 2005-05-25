@@ -1,7 +1,7 @@
 #ifndef AKREGATOR_ARTICLEINTERCEPTOR_H
 #define AKREGATOR_ARTICLEINTERCEPTOR_H
 
-#include <qvaluelist.h>
+template <class T> class QValueList;
 
 namespace Akregator {
 

@@ -31,6 +31,7 @@
 #include <qdatetime.h>
 #include <qdom.h>
 #include <qregexp.h>
+#include <qvaluelist.h>
 
 #include <krfcdate.h>
 #include <kdebug.h>

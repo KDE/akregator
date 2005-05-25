@@ -27,7 +27,7 @@
 
 #include <qlistview.h>
 #include <qdom.h>
-#include <qptrvector.h>
+#include <qvaluelist.h>
 
 #include <kdebug.h>
 
@@ -37,7 +37,7 @@ class Folder::FolderPrivate
 {
     public:
         /** List of children */
-        QPtrList<TreeNode> children;
+        QValueList<TreeNode*> children;
         /** caching unread count of children */
         int unread;
         /** whether or not the folder is expanded */
@@ -61,18 +61,9 @@ Folder::Folder(const QString& title) : TreeNode(), d(new FolderPrivate)
 
 Folder::~Folder()
 {
-    // FIXME: this is a workaround, since iterating with first and next doesn't work together with delete. We won't need that when using QValueList<TreeNode*> instead of QPtrList)
-    
-    QPtrVector<TreeNode> vec(d->children.count());
-    int j = 0;
-    for (TreeNode* i = d->children.first(); i; i = d->children.next() )
-    {
-        vec.insert(j, i);
-        j++;
-    }
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != d->children.end(); ++it)
+        delete *it;
 
-    for (uint i = 0; i < vec.count(); ++i)
-       delete vec[i];
 
     // tell the world that this node is destroyed
     emit signalDestroyed(this);
@@ -83,8 +74,9 @@ Folder::~Folder()
 ArticleList Folder::articles()
 {
     ArticleList seq;
-    for (TreeNode* i = d->children.first(); i; i = d->children.next() )
-        seq += i->articles();
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        seq += (*it)->articles();
      
     return seq;
 }
@@ -96,25 +88,29 @@ QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
     parent.appendChild( el );
     el.setAttribute("isOpen", d->open ? "true" : "false");
     el.setAttribute( "id", QString::number(id()) );
-    // necessary because of const
-    QPtrList<TreeNode> children = d->children;
-    
-    for (TreeNode* i = children.first(); i; i = children.next() )
-        el.appendChild( i->toOPML(el, document) );
+
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        el.appendChild( (*it)->toOPML(el, document) );
         
     return el;
 }
 
-QPtrList<TreeNode> Folder::children()
+QValueList<TreeNode*> Folder::children()
+{
+    return d->children;
+}
+
+QValueList<TreeNode*> Folder::children() const
 {
     return d->children;
 }
 
 void Folder::insertChild(TreeNode* node, TreeNode* after)
 {
-    int pos = d->children.find(after);
+    int pos = d->children.findIndex(after);
     
-    if (pos == -1)
+    if (pos < 0)
         prependChild(node);
     else 
         insertChild(pos+1, node);
@@ -124,8 +120,11 @@ void Folder::insertChild(uint index, TreeNode* node)
 {
 //    kdDebug() << "enter Folder::insertChild(int, node) " << node->title() << endl;
     if (node)
-    {    
-        d->children.insert(index, node);
+    {
+        if (index >= d->children.size())
+            d->children.append(node);
+        else
+            d->children.insert(d->children.at(index), node);
         node->setParent(this);
         connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
@@ -185,12 +184,12 @@ void Folder::removeChild(TreeNode* node)
 
 TreeNode* Folder::firstChild()
 {
-    return d->children.first();
+    return d->children.isEmpty() ? 0 : d->children.first();
 }            
 
 TreeNode* Folder::lastChild()
 {
-    return d->children.last();
+    return d->children.isEmpty() ? 0 : d->children.last();
 }
             
 bool Folder::isOpen() const
@@ -211,11 +210,10 @@ int Folder::unread() const
 int Folder::totalCount() const
 {
     int totalCount = 0;
-  
-    QPtrList<TreeNode> children = d->children;
-    
-    for (TreeNode* i = children.first(); i; i = children.next() )
-        totalCount += i->totalCount();
+
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        totalCount += (*it)->totalCount();
     
     return totalCount;
 }
@@ -223,11 +221,10 @@ int Folder::totalCount() const
 void Folder::updateUnreadCount()
 {
     int unread = 0;
-  
-    QPtrList<TreeNode> children = d->children;
-    
-    for (TreeNode* i = children.first(); i; i = children.next() )
-        unread += i->unread();
+
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        unread += (*it)->unread();
     
     d->unread = unread;
 }
@@ -235,8 +232,9 @@ void Folder::updateUnreadCount()
 void Folder::slotMarkAllArticlesAsRead() 
 {
     setNotificationMode(false);
-    for (TreeNode* i = d->children.first(); i; i = d->children.next() )
-        i->slotMarkAllArticlesAsRead();
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        (*it)->slotMarkAllArticlesAsRead();
     setNotificationMode(true, true);
 }
     
@@ -262,15 +260,17 @@ void Folder::slotChildDestroyed(TreeNode* node)
 void Folder::slotDeleteExpiredArticles()
 {
     setNotificationMode(false);
-    for (TreeNode* i = d->children.first(); i; i = d->children.next() )
-        i->slotDeleteExpiredArticles();
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        (*it)->slotDeleteExpiredArticles();
     setNotificationMode(true, true);
 }
 
 void Folder::slotAddToFetchQueue(FetchQueue* queue)
 {
-    for (TreeNode* i = d->children.first(); i; i = d->children.next() )
-        i->slotAddToFetchQueue(queue);
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        (*it)->slotAddToFetchQueue(queue);
 }
 
 TreeNode* Folder::next()

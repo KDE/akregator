@@ -25,13 +25,14 @@
 #ifndef AKREGATOR_ARTICLE_H
 #define AKREGATOR_ARTICLE_H
 
-#include <qvaluelist.h>
-
 class QDateTime;
 class QDomDocument;
 class QDomElement;
 class QString;
 class QWidget;
+template <class T> class QValueList;
+
+typedef unsigned int uint;
 
 class KURL;
 class KURLLabel;

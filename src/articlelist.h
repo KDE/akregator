@@ -22,9 +22,10 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_ARTICLESEQUENCE_H
-#define AKREGATOR_ARTICLESEQUENCE_H
+#ifndef AKREGATOR_ARTICLELIST_H
+#define AKREGATOR_ARTICLELIST_H
 
+#include <qvaluelist.h>
 #include "article.h"
 
 namespace Akregator

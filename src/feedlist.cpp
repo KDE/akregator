@@ -26,7 +26,6 @@
 #include <qdatetime.h>
 #include <qdom.h>
 #include <qmap.h>
-#include <qptrlist.h>
 #include <qvaluelist.h>
 
 #include <kdebug.h>
@@ -190,13 +189,13 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
     if ( !d->flatList.contains(parent) )
         parent = rootNode();
 
-    QPtrList<TreeNode> children = list->rootNode()->children();
-    
-    for (TreeNode* i = children.first(); i; i = children.next() )
+    QValueList<TreeNode*> children = list->rootNode()->children();
+
+    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
     {
-        list->rootNode()->removeChild(i);
-        parent->insertChild(i, after);
-        after = i;
+        list->rootNode()->removeChild(*it);
+        parent->insertChild(*it, after);
+        after = *it;
     }
 }
 
@@ -221,9 +220,10 @@ QDomDocument FeedList::toOPML() const
     QDomElement body = doc.createElement( "body" );
     root.appendChild( body );
 
-    QPtrList<TreeNode> children = rootNode()->children();
-    for (TreeNode* i = children.first(); i; i = children.next() )
-        body.appendChild( i->toOPML(body, doc) );
+    QValueList<TreeNode*> children = rootNode()->children();
+
+    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+        body.appendChild( (*it)->toOPML(body, doc) );
 
     return doc;
 }

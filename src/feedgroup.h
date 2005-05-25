@@ -22,15 +22,14 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORFEEDGROUP_H
-#define AKREGATORFEEDGROUP_H
+#ifndef AKREGATOR_FOLDER_H
+#define AKREGATOR_FOLDER_H
 
 #include "treenode.h"
 
-#include <qptrlist.h>
-
 class QDomDocument;
 class QDomElement;
+template <class T> class QValueList;
 
 namespace Akregator
 {
@@ -86,19 +85,15 @@ namespace Akregator
             /** returns the (direct) children of this node.
             @return a list of pointers to the child nodes
              */
-            virtual QPtrList<TreeNode> children();
-
+            virtual QValueList<TreeNode*> children();
+            virtual QValueList<TreeNode*> children() const;
+            
             /** inserts @c node as child after child node @c after.
             if @c after is not a child of this group, @c node will be inserted as first child
             @param node the tree node to insert
             @param after the node after which @c node will be inserted */
             virtual void insertChild(TreeNode* node, TreeNode* after);
             
-            /** inserts @c node as child on position @c index
-            @param index the position where to insert
-            @param node the tree node to insert */
-            virtual void insertChild(uint index, TreeNode* node);
-
             /** inserts @c node as first child
             @param node the tree node to insert */
             virtual void prependChild(TreeNode* node);
@@ -150,13 +145,18 @@ namespace Akregator
             virtual void slotChildDestroyed(TreeNode* node);
 
             virtual void slotAddToFetchQueue(FetchQueue* queue);
-            //virtual void slotFetch(int timeout);    
-            //virtual void slotAbortFetch();
 
             /** returns the next node in the tree.
             Calling next() unless it returns 0 iterates through the tree in pre-order
              */
             virtual TreeNode* next();
+
+        protected:
+        
+            /** inserts @c node as child on position @c index
+            @param index the position where to insert
+            @param node the tree node to insert */
+            virtual void insertChild(uint index, TreeNode* node);
 
             
         private:
@@ -168,4 +168,4 @@ namespace Akregator
     };
 }
 
-#endif
+#endif // AKREGATOR_FOLDER_H

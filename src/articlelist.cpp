@@ -24,9 +24,10 @@
  
 #include "articlelist.h"
 
+#include <qvaluelist.h>
+
 using namespace Akregator;
 
-// = ArticleList ===================================================== //
 
 struct ArticleList::Private
 {

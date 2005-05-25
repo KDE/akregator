@@ -25,9 +25,9 @@
 #define AKREGATORFEEDDETECTOR_H
 
 #include <qstring.h>
-#include <qvaluelist.h>
 
 class QStringList;
+template <class T> class QValueList;
 
 namespace Akregator
 {
