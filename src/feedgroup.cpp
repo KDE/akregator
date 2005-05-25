@@ -61,10 +61,13 @@ Folder::Folder(const QString& title) : TreeNode(), d(new FolderPrivate)
 
 Folder::~Folder()
 {
+    TreeNode* tmp = 0;
     for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != d->children.end(); ++it)
-        delete *it;
-
-
+    {
+        delete tmp;
+        tmp = *it;
+    }
+    delete tmp;
     // tell the world that this node is destroyed
     emit signalDestroyed(this);
     delete d;
