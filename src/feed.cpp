@@ -237,6 +237,7 @@ Feed::Feed() : TreeNode(), d(new FeedPrivate)
     d->loader = 0;
     d->articlesLoaded = false;
     d->archive = 0;
+    d->loadLinkedWebsite = false;
 }
 
 Feed::~Feed()

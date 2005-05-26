@@ -28,6 +28,7 @@
 #include <qfont.h>
 #include <qheader.h>
 #include <qpainter.h>
+#include <qstring.h>
 
 #include <kstringhandler.h>
 
@@ -59,6 +60,11 @@ TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* no
 
 TreeNodeItem::~TreeNodeItem()
 {}
+
+QString TreeNodeItem::toolTip() const
+{
+    return QString::null;
+}
 
 TreeNode* TreeNodeItem::node()
 { 

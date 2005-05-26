@@ -27,6 +27,7 @@
 
 #include <kdebug.h>
 #include <kiconloader.h>
+#include <qstring.h>
 
 using namespace Akregator;
 
@@ -83,6 +84,11 @@ QPixmap FeedItem::errorPixmap()
 QPixmap FeedItem::defaultPixmap()
 {
     return KGlobal::iconLoader()->loadIcon("txt", KIcon::Small);
+}
+
+QString FeedItem::toolTip() const
+{
+    return "foo";
 }
 
 void FeedItem::initialize(Feed* node)

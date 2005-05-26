@@ -27,6 +27,7 @@
 
 #include <klistview.h>
 
+class QString;
 
 namespace Akregator {
 
@@ -47,8 +48,9 @@ public:
     virtual TreeNode* node();
     
     virtual void nodeChanged();
- 
-    virtual TreeNodeItem* firstChild() const; 
+
+    virtual QString toolTip() const;
+    virtual TreeNodeItem* firstChild() const;
     virtual TreeNodeItem* nextSibling() const;
     virtual FolderItem* parent() const;
 
