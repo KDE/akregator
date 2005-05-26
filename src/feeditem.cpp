@@ -86,11 +86,6 @@ QPixmap FeedItem::defaultPixmap()
     return KGlobal::iconLoader()->loadIcon("txt", KIcon::Small);
 }
 
-QString FeedItem::toolTip() const
-{
-    return "foo";
-}
-
 void FeedItem::initialize(Feed* node)
 {
     if (node)

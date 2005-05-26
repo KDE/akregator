@@ -48,8 +48,6 @@ class FeedItem : public TreeNodeItem
     virtual Feed* node();
     virtual void nodeChanged();
 
-    virtual QString toolTip() const;
-
     static QPixmap errorPixmap();
     static QPixmap defaultPixmap();
 
