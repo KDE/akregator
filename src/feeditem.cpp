@@ -33,18 +33,21 @@ using namespace Akregator;
 
 FeedItem::FeedItem(FolderItem* parent, Feed* node) : TreeNodeItem(parent, node)
 {
+    setRenameEnabled(0, true);
     setExpandable(false);
     initialize(node);
 }
 
 FeedItem::FeedItem(KListView* parent, Feed* node) : TreeNodeItem(parent, node)
 {
+    setRenameEnabled(0, true);
     setExpandable(false);
     initialize(node);
 }
 
 FeedItem::FeedItem(FolderItem* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
 {
+    setRenameEnabled(0, true);
     setExpandable(false);
     initialize(node);
 }

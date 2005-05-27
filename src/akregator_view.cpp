@@ -865,7 +865,6 @@ void View::slotFeedModify()
 
     if (node && node->isGroup())
     {
-        m_tree->selectedItem()->setRenameEnabled(0, true);
         m_tree->selectedItem()->startRename(0);
         return;
     }
