@@ -164,7 +164,7 @@ void SearchBar::slotSearchStringChanged(const QString& search)
     d->searchText = search;
     if (d->timer.isActive())
     	d->timer.stop();    
-        
+
     d->timer.start(200, true);
 }
 

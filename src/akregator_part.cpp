@@ -71,6 +71,7 @@
 #include "pluginmanager.h"
 #include "storage.h"
 #include "storagefactory.h"
+#include "storagefactorydummyimpl.h"
 #include "storagefactoryregistry.h"
 #include "trayicon.h"
 
@@ -108,6 +109,8 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
+    Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
+    Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
     loadPlugins(); // FIXME: also unload them!
 
     m_storage = Backend::StorageFactoryRegistry::self()->getFactory("metakit")->createStorage(QStringList());
