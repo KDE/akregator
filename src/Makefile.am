@@ -59,7 +59,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
 				storage.cpp \
                                 storagedummyimpl.cpp \
                                 storagefactorydummyimpl.cpp \
-                                feedstoragedummyimpl.cpp \
+                                feedstoragedummyimpl.cpp
 				
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined 
 libakregatorprivate_la_LIBADD =	$(top_builddir)/libkdepim/libkdepim.la \
