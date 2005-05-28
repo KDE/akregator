@@ -65,11 +65,12 @@ static inline QString stripTags(const QString& str)
 }
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-    : Viewer(parent, name), m_htmlHead(), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
+    : Viewer(parent, name), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
     setXMLFile(locate("data", "akregator/articleviewer.rc"), true);
-    generateCSS();
-    
+
+    generateNormalModeCSS();
+    generateCombinedModeCSS();
     new KAction( i18n("&Scroll Up"), QString::null, "Up", this, SLOT(slotScrollUp()), actionCollection(), "articleviewer_scroll_up" );
     new KAction( i18n("&Scroll Down"), QString::null, "Down", this, SLOT(slotScrollDown()), actionCollection(), "articleviewer_scroll_down" );
     
@@ -87,15 +88,12 @@ bool ArticleViewer::openURL(const KURL &url)
     return KHTMLPart::openURL(url);
 }
 
-void ArticleViewer::generateCSS()
+void ArticleViewer::generateNormalModeCSS()
 {
     const QColorGroup & cg = QApplication::palette().active();
     
-    m_htmlHead=QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
-                        "<html><head><title>.</title>");
-
     // from kmail::headerstyle.cpp
-    m_htmlHead += QString (
+    m_normalModeCSS += QString (
             "<style type=\"text/css\">\n"
             "@media screen, print {"
             "body {\n"
@@ -107,7 +105,7 @@ void ArticleViewer::generateCSS()
             .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
             .arg(cg.text().name())
             .arg(cg.base().name());
-    m_htmlHead += (
+    m_normalModeCSS += (
     "a {\n"
     + QString("  color: %1 ! important;\n")
     + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
@@ -123,7 +121,7 @@ void ArticleViewer::generateCSS()
             .arg(cg.background().name())
             .arg(cg.text().name());
 
-    m_htmlHead += QString(".headertitle a:link { color: %1  ! important; }\n"
+    m_normalModeCSS += QString(".headertitle a:link { color: %1  ! important; }\n"
     ".headertitle a:visited { color: %2 ! important; }\n"
     ".headertitle a:hover{ color: %3 ! important; }\n"
             ".headertitle a:active { color: %4 ! important; }\n")
@@ -131,7 +129,7 @@ void ArticleViewer::generateCSS()
             .arg(cg.highlightedText().name())
             .arg(cg.highlightedText().name())
             .arg(cg.highlightedText().name());
-    m_htmlHead += QString(
+    m_normalModeCSS += QString(
     ".headertitle {\n"
     "  background: %1 ! important;\n"
     "  padding:2px;\n"
@@ -151,7 +149,7 @@ void ArticleViewer::generateCSS()
             "}\n\n").arg(cg.highlight().name())
             .arg(cg.highlightedText().name());
     
-    m_htmlHead += QString(
+    m_normalModeCSS += QString(
     "body { clear: none; }\n\n"
     ".content {\n"
     "  display: block;\n"
@@ -165,10 +163,83 @@ void ArticleViewer::generateCSS()
     "}\n\n" // @media screen, print
     "@media screen { body { overflow: auto; } }\n"
     "\n\n");
-     
-   
-    m_htmlHead += "</style></head><body>";
-    //kdDebug() << m_htmlHead << endl;
+}
+
+void ArticleViewer::generateCombinedModeCSS()
+{
+    const QColorGroup & cg = QApplication::palette().active();
+    
+    // from kmail::headerstyle.cpp
+    m_combinedModeCSS += QString (
+            "<style type=\"text/css\">\n"
+            "@media screen, print {"
+            "body {\n"
+            "  font-family: \"%1\" ! important;\n"
+            "  font-size: %2 ! important;\n"
+            "  color: %3 ! important;\n"
+            "  background: %4 ! important;\n"
+            "}\n\n").arg(Settings::standardFont())
+            .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
+            .arg(cg.text().name())
+            .arg(cg.base().name());
+    m_combinedModeCSS += (
+    "a {\n"
+    + QString("  color: %1 ! important;\n")
+    + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
+    +       "}\n\n"
+    +".headerbox {\n"
+    +"  background: %2 ! important;\n"
+    +"  color: %3 ! important;\n"
+    +"  border:1px solid #000;\n"
+    +"  margin-bottom: 10pt;\n"
+//    +"  width: 99%;\n"
+    +        "}\n\n")
+            .arg(cg.link().name())
+            .arg(cg.background().name())
+            .arg(cg.text().name());
+
+    m_combinedModeCSS += QString(".headertitle a:link { color: %1  ! important; }\n"
+    ".headertitle a:visited { color: %2 ! important; }\n"
+    ".headertitle a:hover{ color: %3 ! important; }\n"
+            ".headertitle a:active { color: %4 ! important; }\n")
+            .arg(cg.highlightedText().name())
+            .arg(cg.highlightedText().name())
+            .arg(cg.highlightedText().name())
+            .arg(cg.highlightedText().name());
+    m_combinedModeCSS += QString(
+    ".headertitle {\n"
+    "  background: %1 ! important;\n"
+    "  padding:2px;\n"
+    "  color: %2 ! important;\n"
+    "  font-weight: bold;\n"
+    "}\n\n"
+    ".header {\n"
+    "  font-weight: bold;\n"
+    "  padding:2px;\n"
+    "  margin-right: 5px;\n"
+    "}\n\n"
+    ".headertext {\n"
+    "}\n\n"
+    ".headimage {\n"
+    "  float: right;\n"
+    "  margin-left: 5px;\n"
+            "}\n\n").arg(cg.highlight().name())
+            .arg(cg.highlightedText().name());
+    
+    m_combinedModeCSS += QString(
+    "body { clear: none; }\n\n"
+    ".content {\n"
+    "  display: block;\n"
+    "  margin-bottom: 6px;\n"
+            "}\n\n"
+    // these rules make sure that there is no leading space between the header and the first of the text
+    ".content > P:first-child {\n margin-top: 1px; }\n"
+    ".content > DIV:first-child {\n margin-top: 1px; }\n"
+    ".content > BR:first-child {\n display: none;  }\n"
+    //".contentlink {\n display: block; }\n"
+    "}\n\n" // @media screen, print
+    "@media screen { body { overflow: auto; } }\n"
+    "\n\n");
 }
 
 void ArticleViewer::reload()
@@ -303,10 +374,17 @@ void ArticleViewer::renderContent(const QString& text)
 
 void ArticleViewer::beginWriting()
 {
+    QString head = QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
+    
+    if (m_viewMode == CombinedView)
+        head += m_combinedModeCSS;
+    else
+        head += m_normalModeCSS; 
+
+    head += "</style></head><body>";
     view()->setContentsPos(0,0);
     begin();
-    write(m_htmlHead);
-    //kdDebug() << m_htmlHead << endl;
+    write(head);
 }
 
 void ArticleViewer::endWriting()
@@ -490,7 +568,8 @@ void ArticleViewer::urlSelected(const QString &url, int button, int state, const
 
 void ArticleViewer::slotPaletteOrFontChanged()
 {
-    generateCSS();
+    generateNormalModeCSS();
+    generateCombinedModeCSS();
     reload();
 }
 

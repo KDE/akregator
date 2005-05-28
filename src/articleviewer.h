@@ -113,13 +113,15 @@ namespace Akregator
             /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
             void endWriting();
             
-            /** generates the CSS settings used for rendering */
-            void generateCSS();   
-            
+            /** generates the CSS used for rendering in single article mode (normal and wide screen view) */
+            void generateNormalModeCSS();
+            /** generates the CSS for combined view mode */
+            void generateCombinedModeCSS();
             void connectToNode(TreeNode* node);
             void disconnectFromNode(TreeNode* node);
                                   
-            QString m_htmlHead;
+            QString m_normalModeCSS;
+            QString m_combinedModeCSS;
             QString m_htmlFooter;
             QString m_currentText;
             KURL m_imageDir;
