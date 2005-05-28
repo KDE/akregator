@@ -286,7 +286,83 @@ void ArticleViewer::displayAboutPage()
     end();
 }
 
-QString ArticleViewer::formatArticle(Feed* feed, const Article& article)
+QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& article)
+{
+    QString text;
+    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+
+    if (!article.title().isEmpty())
+    {
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(stripTags(article.title())));
+        if (article.link().isValid())
+            text += "<a href=\""+article.link().url()+"\">";
+        text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
+        if (article.link().isValid())
+            text += "</a>";
+        text += "</div>\n";
+    }
+    if (article.pubDate().isValid())
+    {
+        text += QString("<span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Date")));
+        text += QString ("%1:").arg(i18n("Date"));
+        text += "</span><span class=\"headertext\">";
+        text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
+    }
+    text += "</div>\n"; // end headerbox
+
+    if (feed && !feed->image().isNull())
+    {
+        QString url=feed->xmlUrl();
+        QString file = url.replace("/", "_").replace(":", "_");
+        KURL u(m_imageDir);
+        u.setFileName(file);
+        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
+    }
+
+    
+
+    if (!article.description().isEmpty())
+    {
+        text += QString("<div dir=\"%1\">").arg(directionOf(stripTags(article.description())) );
+        text += "<span class=\"content\">"+article.description()+"</span>";
+        text += "</div>";
+    }
+    
+    text += "<div class=\"body\">";
+    
+    if (article.commentsLink().isValid())
+    {
+        text += "<a class=\"contentlink\" href=\"";
+        text += article.commentsLink().url();
+        text += "\">" + i18n( "Comments");
+        if (article.comments())
+        {
+            text += " ("+ QString::number(article.comments()) +")";
+        }
+        text += "</a>";
+    }
+
+    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    {
+        text += "<p><a class=\"contentlink\" href=\"";
+        // in case link isn't valid, fall back to the guid permaLink.
+        if (article.link().isValid())
+        {
+            text += article.link().url();
+        }
+        else
+         {
+            text += article.guid();
+        }
+        text += "\">" + i18n( "Complete Story" ) + "</a></p>";
+    }
+    text += "</div>";
+    //kdDebug() << text << endl;
+    return text;
+
+}
+
+QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& article)
 {
     QString text;
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
@@ -491,7 +567,7 @@ void ArticleViewer::slotShowArticle(const Article& article)
     if (article.feed()->loadLinkedWebsite())
         openURL(article.link());
     else
-        renderContent( formatArticle(article.feed(), article) );
+        renderContent( formatArticleNormalMode(article.feed(), article) );
 }
 
 void ArticleViewer::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
@@ -521,7 +597,7 @@ void ArticleViewer::slotUpdateCombinedView()
 
     for ( ; it != end; ++it)
         if ( !(*it).isDeleted() && m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
-            text += "<p><div class=\"article\">"+formatArticle(0, *it)+"</div><p>";
+            text += "<p><div class=\"article\">"+formatArticleCombinedMode(0, *it)+"</div><p>";
 
     renderContent(text);
 }
