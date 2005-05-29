@@ -40,6 +40,8 @@
 #include <khtml_part.h>
 #include <kiconloader.h>
 #include <kurl.h>
+#include <kurldrag.h>
+#include <kmimetype.h>
 
 #include "akregatorconfig.h"
 
@@ -233,6 +235,25 @@ void TabWidget::slotCloseTab()
    delete currentItem;
    currentItem = 0;
 }
+
+void TabWidget::initiateDrag(int tab)
+{
+    if (tab == 0) // don't initiate drag for the main tab
+        return;
+        
+    Frame* frame = m_frames[page(tab)];
+  
+    if (frame != 0)
+    {
+        KURL::List lst;
+        lst.append( frame->part()->url() );
+        KURLDrag* drag = new KURLDrag( lst, this );
+        drag->setPixmap( KMimeType::pixmapForURL( lst.first(), 0, KIcon::Small ) );
+        drag->dragCopy();
+    }
+}
+
+
 
 void TabWidget::slotCloseRequest(QWidget* widget)
 {

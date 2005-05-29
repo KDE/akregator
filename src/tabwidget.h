@@ -58,6 +58,10 @@ class TabWidget:public KTabWidget
         
         void currentFrameChanged(Frame *);
         
+    protected slots:
+
+        virtual void initiateDrag(int tab);
+        
     private: // methods
         
     private slots:

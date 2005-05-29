@@ -554,7 +554,7 @@ void FeedListView::slotSelectionChanged(QListViewItem* item)
 void FeedListView::slotItemRenamed(QListViewItem* item, const QString& text, int)
 {
     kdDebug() << "FeedListView::slotItemRenamed(): enter" << endl;
-    TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
+    TreeNodeItem* ni = dynamic_cast<TreeNodeItem*> (item);
     if ( ni && ni->node() )
     {
         kdDebug() << "renamed item to \"" << text << "\"" << endl;
