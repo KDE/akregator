@@ -222,7 +222,7 @@ namespace Akregator {
             void slotOpenHomepage();
             
             /** toggles the keep flag of the currently selected article */
-            void slotArticleToggleKeepFlag();
+            void slotArticleToggleKeepFlag(bool enabled);
             /** deletes the currently selected article */
             void slotArticleDelete();
             /** marks the currently selected article as read */

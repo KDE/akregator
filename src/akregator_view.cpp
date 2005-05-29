@@ -1085,6 +1085,9 @@ void View::slotArticleSelected(const Article& article)
         a.setStatus(Article::Read);
         m_articleList->setReceiveUpdates(true, false);
     }
+
+    KToggleAction*  maai = dynamic_cast<KToggleAction*>(ActionManager::getInstance()->action("article_set_status_important"));
+    maai->setChecked(a.keep());
     kdDebug() << "selected: " << a.guid() << endl;
     
     m_articleViewer->slotShowArticle(a);
@@ -1224,7 +1227,7 @@ void View::slotArticleDelete()
 }
 
 
-void View::slotArticleToggleKeepFlag()
+void View::slotArticleToggleKeepFlag(bool /*enabled*/)
 {
     QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
 

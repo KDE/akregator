@@ -457,7 +457,7 @@ bool Feed::isExpired(const Article& a) const
 
 void Feed::appendArticle(const Article& a)
 {
-    if ( a.keep() || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
+    if ( (a.keep() && Settings::doNotExpireImportantArticles()) || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
     {
         if (!d->articles.contains(a))
         {

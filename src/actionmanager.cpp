@@ -144,9 +144,9 @@ void ActionManager::initView(View* view)
     KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
     sqf->setChecked( Settings::showQuickFilter() );
 
-    new KAction( i18n("Open Article in Tab"), "tab_new", "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
-    new KAction( i18n("Open Article in Background Tab"), QString::null, "tab_new", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
-    new KAction( i18n("Open Article in External Browser"), "window_new", "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
+    new KAction( i18n("Open in Tab"), "tab_new", "Shift+Return", m_view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
+    new KAction( i18n("Open in Background Tab"), QString::null, "tab_new", m_view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
+    new KAction( i18n("Open in External Browser"), "window_new", "Ctrl+Shift+Return", m_view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
 
     new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, m_view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
     new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, m_view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
@@ -154,29 +154,34 @@ void ActionManager::initView(View* view)
     new KAction(i18n("Select Next Tab"), "", "Ctrl+Period", m_view, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
     new KAction(i18n("Select Previous Tab"), "", "Ctrl+Comma", m_view, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
 
-    new KAction(i18n("&Toggle Keep Flag"), "flag", "Ctrl+K", m_view, SLOT(slotArticleToggleKeepFlag()), actionCollection(), "article_toggle_keep");
-    
+
     new KAction(i18n("&Delete"), "editdelete", "Delete", m_view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
     
 
-    KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark" ),
+    KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );
 
-    statusMenu->insert(new KAction(KGuiItem(i18n("Mark as &Read"), "",
+    statusMenu->insert(new KAction(KGuiItem(i18n("&Read"), "",
                        i18n("Mark selected article as read")),
     "Ctrl+E", m_view, SLOT(slotSetSelectedArticleRead()),
     actionCollection(), "article_set_status_read"));
     
-    statusMenu->insert(new KAction(KGuiItem(i18n("Mark as &Unread"), "",
-                       i18n("Mark selected article as unread")),
-    "Ctrl+U", m_view, SLOT(slotSetSelectedArticleUnread()),
-    actionCollection(), "article_set_status_unread"));
-
-    statusMenu->insert(new KAction(KGuiItem(i18n("Mark as &New"), "",
+    statusMenu->insert(new KAction(KGuiItem(i18n("&New"), "",
                         i18n("Mark selected article as new")),
     "Ctrl+N", m_view, SLOT(slotSetSelectedArticleNew()),
     actionCollection(), "article_set_status_new" ));
 
+
+    statusMenu->insert(new KAction(KGuiItem(i18n("&Unread"), "",
+                       i18n("Mark selected article as unread")),
+    "Ctrl+U", m_view, SLOT(slotSetSelectedArticleUnread()),
+    actionCollection(), "article_set_status_unread"));
+
+    KToggleAction* importantAction = new KToggleAction(i18n("&Mark as Important"), "flag", "Ctrl+I", actionCollection(), "article_set_status_important");
+    importantAction->setCheckedState(i18n("Remove &Important Mark"));
+    connect(importantAction, SIGNAL(toggled(bool)), m_view, SLOT(slotArticleToggleKeepFlag(bool)));
+    
+    
     new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", view, SLOT(slotMoveCurrentNodeUp()), m_actionCollection, "feedstree_move_up" );
     new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", view, SLOT(slotMoveCurrentNodeDown()), m_actionCollection, "feedstree_move_down" );
     new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", view, SLOT(slotMoveCurrentNodeLeft()), m_actionCollection, "feedstree_move_left" );

@@ -62,8 +62,7 @@
          <label>Disable Archiving</label>
          <whatsthis>Do not save any articles</whatsthis>
        </choice>
- 
-     </choices>
+      </choices>
    </entry>
   <entry key="Max Article Age" type="Int" >
    <label>Expiry Age</label>
@@ -74,6 +73,11 @@
    <label>Article Limit</label>
    <whatsthis>Number of articles to keep per feed.</whatsthis>
    <default>1000</default>
+  </entry>
+  <entry key="Do Not Expire Important Articles" type="Bool">
+ <label>Do Not Expire Important Articles</label>
+   <whatsthis>When this option is enabled, articles you marked as important will not be removed when limit the archive size by either age or number of the articles.</whatsthis>
+   <default>true</default>
   </entry>
  </group>
  <group name="Network" >
