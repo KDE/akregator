@@ -595,11 +595,23 @@ void ArticleViewer::slotUpdateCombinedView()
 
     QString text;
 
+    int num = 0;
+    QTime spent;
+    spent.start();
+    
     for ( ; it != end; ++it)
+    {
         if ( !(*it).isDeleted() && m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
+        {
             text += "<p><div class=\"article\">"+formatArticleCombinedMode(0, *it)+"</div><p>";
-
+            ++num;
+        }
+    }
+    kdDebug() << "Combined view rendering: (" << num << " articles):\n" << "generating HTML: " << spent.elapsed() << "ms " << endl;
     renderContent(text);
+    kdDebug() << "HTML rendering: " << spent.elapsed() << "ms" << endl;
+
+
 }
 
 void ArticleViewer::slotClear()
