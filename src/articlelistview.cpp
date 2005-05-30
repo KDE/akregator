@@ -49,6 +49,7 @@ using namespace Akregator;
 ArticleItem::ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
     : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
 {
+    kdDebug() << m_pubDate << endl;
     if (a.keep())
         setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
 }
@@ -71,15 +72,20 @@ Feed *ArticleItem::feed()
 // paint ze peons
 void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
 {
-    QColorGroup cg2(cg);
+    if (article().status() == Article::Read)
+        KListViewItem::paintCell( p, cg, column, width, align );
+    else
+    {
+        // if article status is unread or new, we change the color: FIXME: make colors configurable
+        QColorGroup cg2(cg);
     
-    // FIXME: make configurable
-    if (article().status()==Article::Unread)
-        cg2.setColor(QColorGroup::Text, Qt::blue);
-    else if (article().status()==Article::New)
-        cg2.setColor(QColorGroup::Text, Qt::red);
+        if (article().status() == Article::Unread)
+            cg2.setColor(QColorGroup::Text, Qt::blue);
+        else // New
+            cg2.setColor(QColorGroup::Text, Qt::red);
     
-    KListViewItem::paintCell( p, cg2, column, width, align );
+        KListViewItem::paintCell( p, cg2, column, width, align );
+    }
 
 }
 
@@ -87,8 +93,10 @@ void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, 
 int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
     if (col == 2)
     {
-        return ascending ?
-        m_pubDate - (static_cast<ArticleItem*>(i))->m_pubDate : (static_cast<ArticleItem*>(i))->m_pubDate - m_pubDate;
+        ArticleItem* item = static_cast<ArticleItem*>(i);
+        if (m_pubDate == item->m_pubDate)
+            return 0;
+        return (m_pubDate > item->m_pubDate) ? 1 : -1;
     }
     return KListViewItem::compare(i, col, ascending);
 }
