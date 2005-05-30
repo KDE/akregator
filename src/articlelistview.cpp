@@ -47,10 +47,8 @@
 using namespace Akregator;
 
 ArticleItem::ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
-    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) )
+    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
 {
-    m_article = a;
-    m_feed = feed;
     if (a.keep())
         setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
 }
@@ -87,13 +85,10 @@ void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, 
 
 
 int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
-    if (col == 2) {
-        ArticleItem *item = static_cast<ArticleItem*>(i);
-        if (item) {
-            return ascending ?
-		    item->m_article.pubDate().secsTo(m_article.pubDate()) :
-		    -m_article.pubDate().secsTo(item->m_article.pubDate());
-        }
+    if (col == 2)
+    {
+        return ascending ?
+        m_pubDate - (static_cast<ArticleItem*>(i))->m_pubDate : (static_cast<ArticleItem*>(i))->m_pubDate - m_pubDate;
     }
     return KListViewItem::compare(i, col, ascending);
 }

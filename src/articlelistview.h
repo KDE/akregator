@@ -24,6 +24,8 @@
 #ifndef AKREGATORARTICLELISTVIEW_H
 #define AKREGATORARTICLELISTVIEW_H
 
+#include <ctime>
+
 #include "articlefilter.h"
 #include "article.h"
 
@@ -57,7 +59,8 @@ namespace Akregator
             
         private:
             Article m_article;
-            Feed *m_feed;
+            Feed* m_feed;
+            time_t m_pubDate;
     };
     
     
