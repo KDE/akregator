@@ -79,7 +79,16 @@ class StorageDummyImpl : public Storage
         virtual void setTotalCountFor(const QString &url, int total);
         virtual int lastFetchFor(const QString& url);
         virtual void setLastFetchFor(const QString& url, int lastFetch);
+        virtual QStringList feeds() const;
 
+        /** adds all feed storages from a source to this storage
+            existing articles are replaced
+        */
+        virtual void add(Storage* source);
+        
+        /** deletes all feed storages in this archive */
+        virtual void clear();
+        
     protected slots:
         virtual void slotCommit();
         

@@ -219,7 +219,7 @@ void FeedStorageMK4Impl::deleteArticle(const QString& guid)
     {
         setTotalCount(totalCount()-1);
         d->archiveView.RemoveAt(findidx);
-	d->modified = true;
+        d->modified = true;
     }   
 }
 
@@ -422,5 +422,66 @@ void FeedStorageMK4Impl::setGuidIsPermaLink(const QString& guid, bool isPermaLin
     d->modified = true;
 }
 
+void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
+{
+    
+    // TODO:
+    // if article is not tagged with tag
+    // - store tag
+    // - add to tag->articles index in Storage
+
 }
+
+void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
+{
+    if (contains(guid))
+    {
+        // TODO:
+        // - remove tag
+        // remove also from tag->articles index in Storage
+    }
 }
+
+QStringList FeedStorageMK4Impl::tags(const QString& guid)
+{
+    return QStringList();
+}
+
+void FeedStorageMK4Impl::add(FeedStorage* source)
+{
+    QStringList articles = source->articles();
+    for (QStringList::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+        copyArticle(*it, source);
+    setUnread(source->unread());
+    setLastFetch(source->lastFetch());
+    setTotalCount(source->totalCount());
+}
+
+void FeedStorageMK4Impl::copyArticle(const QString& guid, FeedStorage* source)
+{
+    if (!contains(guid))
+        addEntry(guid);
+    setComments(guid, source->comments(guid));
+    setCommentsLink(guid, source->commentsLink(guid));
+    setDescription(guid, source->description(guid));
+    setGuidIsHash(guid, source->guidIsHash(guid));
+    setGuidIsPermaLink(guid, source->guidIsPermaLink(guid));
+    setHash(guid, source->hash(guid));
+    setLink(guid, source->link(guid));
+    setPubDate(guid, source->pubDate(guid));
+    setStatus(guid, source->status(guid));
+    setTitle(guid, source->title(guid));
+
+    QStringList tags = source->tags(guid);
+    for (QStringList::ConstIterator it = tags.begin(); it != tags.end(); ++it)
+        addTag(guid, *it);
+}
+
+void FeedStorageMK4Impl::clear()
+{
+    d->storage->RemoveAll();
+    setUnread(0);
+}
+
+} // namespace Backend
+} // namespace Akregator

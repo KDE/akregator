@@ -88,6 +88,18 @@ class Storage : public QObject
         virtual int lastFetchFor(const QString& url) = 0;
         virtual void setLastFetchFor(const QString& url, int lastFetch) = 0;
 
+        /** returns a list of all feeds (URLs) stored in this archive */
+        
+        virtual QStringList feeds() const = 0;
+
+        /** adds all feed storages from a source to this storage
+            existing articles are replaced
+        */
+        virtual void add(Storage* source) = 0;
+        
+        /** deletes all feed storages in this archive */
+        virtual void clear() = 0;
+        
      private:
         
         static Storage *m_instance;

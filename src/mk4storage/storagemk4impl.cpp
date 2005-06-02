@@ -42,11 +42,12 @@ class StorageMK4Impl::StorageMK4ImplPrivate
 {
     public:
         StorageMK4ImplPrivate() : modified(false), purl("url"), punread("unread"), ptotalCount("totalCount"), plastFetch("lastFetch") {}
-        c4_Storage* m_storage;
-        c4_View m_archiveView;
-        bool m_autoCommit;
-	bool modified;
-        QMap<QString, FeedStorage*> feeds;
+        c4_Storage* storage;
+        c4_View archiveView;
+        bool autoCommit;
+	    bool modified;
+        QMap<QString, FeedStorage*> feeds; 
+        QStringList feedURLs;
         c4_StringProp purl;
         c4_IntProp punread, ptotalCount, plastFetch;
         QTimer* commitTimer;
@@ -64,24 +65,25 @@ StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
 StorageMK4Impl::~StorageMK4Impl()
 {
     close();
-    delete d; d = 0;
+    delete d;
+    d = 0;
 }
 void StorageMK4Impl::initialize(const QStringList&) {}
 
 bool StorageMK4Impl::open(bool autoCommit)
 {
     QString filePath = KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive/archiveindex.mk4";
-    d->m_storage = new c4_Storage(filePath.local8Bit(), true);
-    d->m_archiveView = d->m_storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
-    c4_View hash = d->m_storage->GetAs("archiveHash[_H:I,_R:I]");
-    d->m_archiveView = d->m_archiveView.Hash(hash, 1); // hash on url
-    d->m_autoCommit = autoCommit;
+    d->storage = new c4_Storage(filePath.local8Bit(), true);
+    d->archiveView = d->storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
+    c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
+    d->archiveView = d->archiveView.Hash(hash, 1); // hash on url
+    d->autoCommit = autoCommit;
     return true;
 }
 
 bool StorageMK4Impl::autoCommit() const
 {
-    return d->m_autoCommit;
+    return d->autoCommit;
 }
 
 bool StorageMK4Impl::close()
@@ -94,9 +96,9 @@ bool StorageMK4Impl::close()
         it.data()->close();
         delete it.data();
     }
-    if(d->m_autoCommit)
-        d->m_storage->Commit();
-    delete d->m_storage; d->m_storage = 0;
+    if(d->autoCommit)
+        d->storage->Commit();
+    delete d->storage; d->storage = 0;
     return true;
 }
 
@@ -106,9 +108,9 @@ bool StorageMK4Impl::commit()
     for ( it = d->feeds.begin(); it != d->feeds.end(); ++it )
         it.data()->commit();
 
-    if(d->m_storage)
+    if(d->storage)
     {
-        d->m_storage->Commit();
+        d->storage->Commit();
         return true;
     }
 
@@ -121,9 +123,9 @@ bool StorageMK4Impl::rollback()
     for ( it = d->feeds.begin(); it != d->feeds.end(); ++it )
         it.data()->rollback();
 
-    if(d->m_storage)
+    if(d->storage)
     {
-        d->m_storage->Rollback();
+        d->storage->Rollback();
         return true;
     }
     return false;
@@ -133,21 +135,21 @@ int StorageMK4Impl::unreadFor(const QString &url)
 {
     c4_Row findrow;
     d->purl(findrow) = url.ascii();
-    int findidx = d->m_archiveView.Find(findrow);
+    int findidx = d->archiveView.Find(findrow);
     
-    return findidx != -1 ? d->punread(d->m_archiveView.GetAt(findidx)) : 0;
+    return findidx != -1 ? d->punread(d->archiveView.GetAt(findidx)) : 0;
 }
 
 void StorageMK4Impl::setUnreadFor(const QString &url, int unread)
 {
     c4_Row findrow;
     d->purl(findrow) = url.ascii();
-    int findidx = d->m_archiveView.Find(findrow);
+    int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
-    findrow = d->m_archiveView.GetAt(findidx);
+    findrow = d->archiveView.GetAt(findidx);
     d->punread(findrow) = unread;
-    d->m_archiveView.SetAt(findidx, findrow);
+    d->archiveView.SetAt(findidx, findrow);
     d->modified = true;
 }
 
@@ -155,21 +157,21 @@ int StorageMK4Impl::totalCountFor(const QString &url)
 {
     c4_Row findrow;
     d->purl(findrow) = url.ascii();
-    int findidx = d->m_archiveView.Find(findrow);
+    int findidx = d->archiveView.Find(findrow);
     
-    return findidx != -1 ? d->ptotalCount(d->m_archiveView.GetAt(findidx)) : 0;
+    return findidx != -1 ? d->ptotalCount(d->archiveView.GetAt(findidx)) : 0;
 }
 
 void StorageMK4Impl::setTotalCountFor(const QString &url, int total)
 {
     c4_Row findrow;
     d->purl(findrow) = url.ascii();
-    int findidx = d->m_archiveView.Find(findrow);
+    int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
-    findrow = d->m_archiveView.GetAt(findidx);
+    findrow = d->archiveView.GetAt(findidx);
     d->ptotalCount(findrow) = total;
-    d->m_archiveView.SetAt(findidx, findrow);
+    d->archiveView.SetAt(findidx, findrow);
     d->modified = true;
 }
 
@@ -177,21 +179,21 @@ int StorageMK4Impl::lastFetchFor(const QString& url)
 {
     c4_Row findrow;
     d->purl(findrow) = url.ascii();
-    int findidx = d->m_archiveView.Find(findrow);
+    int findidx = d->archiveView.Find(findrow);
     
-    return (findidx != -1 ? d->plastFetch(d->m_archiveView.GetAt(findidx)) : 0);
+    return (findidx != -1 ? d->plastFetch(d->archiveView.GetAt(findidx)) : 0);
 }
 
 void StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
 {
     c4_Row findrow;
     d->purl(findrow) = url.ascii();
-    int findidx = d->m_archiveView.Find(findrow);
+    int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
-    findrow = d->m_archiveView.GetAt(findidx);
+    findrow = d->archiveView.GetAt(findidx);
     d->plastFetch(findrow) = lastFetch;
-    d->m_archiveView.SetAt(findidx, findrow);
+    d->archiveView.SetAt(findidx, findrow);
     d->modified = true;
 }
         
@@ -210,13 +212,13 @@ FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
         d->feeds[url] = fs;
         c4_Row findrow;
         d->purl(findrow) = url.ascii();
-        int findidx = d->m_archiveView.Find(findrow);
+        int findidx = d->archiveView.Find(findrow);
         if (findidx == -1)
         {
             d->punread(findrow) = 0;
 	    d->ptotalCount(findrow) = 0;
 	    d->plastFetch(findrow) = 0;
-            d->m_archiveView.Add(findrow);
+            d->archiveView.Add(findrow);
             d->modified = true;
         }
         fs->convertOldArchive();
@@ -224,7 +226,46 @@ FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
     return d->feeds[url];
 }
 
+QStringList StorageMK4Impl::feeds() const
+{
+    // TODO: cache list
+    QStringList list;
+    int size = d->archiveView.GetSize();
+    for (int i = 0; i < size; i++)
+        list += QString(d->purl(d->archiveView.GetAt(i)));
+    // fill with urls 
+    return list;
+    
 }
+
+void StorageMK4Impl::add(Storage* source)
+{
+    QStringList feeds = source->feeds();
+    for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
+    {
+        FeedStorage* fa = archiveFor(*it);
+        fa->add(source->archiveFor(*it));
+    }
 }
+       
+
+void StorageMK4Impl::clear()
+{
+   QStringList feeds;
+    int size = d->archiveView.GetSize();
+    for (int i = 0; i < size; i++)
+        feeds += QString(d->purl(d->archiveView.GetAt(i)));
+ 
+    for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
+    {
+        FeedStorage* fa = archiveFor(*it);
+        fa->clear();
+    }
+    d->storage->RemoveAll();
+    
+}
+        
+} // namespace Backend
+} // namespace Akregator
 
 #include "storagemk4impl.moc"

@@ -54,6 +54,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             int status;
             uint pubDate;
             uint hash;
+            QStringList tags;
         };
     QMap<QString, Entry> entries;
     Storage* mainStorage;
@@ -140,6 +141,7 @@ bool FeedStorageDummyImpl::contains(const QString& guid)
 void FeedStorageDummyImpl::deleteArticle(const QString& guid)
 {
     d->entries.remove(guid);
+    // TODO: remove also from tag->articles index in Storage
 }
 
 int FeedStorageDummyImpl::comments(const QString& guid)
@@ -267,5 +269,65 @@ void FeedStorageDummyImpl::setGuidIsPermaLink(const QString& guid, bool isPermaL
         d->entries[guid].guidIsPermaLink = isPermaLink;
 }
 
+void FeedStorageDummyImpl::addTag(const QString& guid, const QString& tag)
+{
+    if (contains(guid))
+        d->entries[guid].tags.append(tag);
+        // TODO: add also to tag->articles index in Storage
+
 }
+
+void FeedStorageDummyImpl::removeTag(const QString& guid, const QString& tag)
+{
+    if (contains(guid))
+    {
+        d->entries[guid].tags.remove(tag);
+        // TODO: remove also from tag->articles index in Storage
+    }
+        
 }
+
+QStringList FeedStorageDummyImpl::tags(const QString& guid)
+{
+    return contains(guid) ? d->entries[guid].tags : QStringList();
+}
+
+void FeedStorageDummyImpl::add(FeedStorage* source)
+{
+    QStringList articles = source->articles();
+    for (QStringList::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+        copyArticle(*it, source);
+    setUnread(source->unread());
+    setLastFetch(source->lastFetch());
+    setTotalCount(source->totalCount());
+}
+
+void FeedStorageDummyImpl::copyArticle(const QString& guid, FeedStorage* source)
+{
+    if (!contains(guid))
+        addEntry(guid);
+    setComments(guid, source->comments(guid));
+    setCommentsLink(guid, source->commentsLink(guid));
+    setDescription(guid, source->description(guid));
+    setGuidIsHash(guid, source->guidIsHash(guid));
+    setGuidIsPermaLink(guid, source->guidIsPermaLink(guid));
+    setHash(guid, source->hash(guid));
+    setLink(guid, source->link(guid));
+    setPubDate(guid, source->pubDate(guid));
+    setStatus(guid, source->status(guid));
+    setTitle(guid, source->title(guid));
+    QStringList tags = source->tags(guid);
+    
+    for (QStringList::ConstIterator it = tags.begin(); it != tags.end(); ++it)
+        addTag(guid, *it);
+}
+
+void FeedStorageDummyImpl::clear()
+{
+    d->entries.clear();
+    setUnread(0);
+    setTotalCount(0);
+}
+
+} // namespace Backend
+} // namespace Akregator

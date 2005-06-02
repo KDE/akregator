@@ -44,8 +44,22 @@ class FeedStorage : public QObject
         virtual int totalCount() = 0;
         virtual int lastFetch() = 0;
         virtual void setLastFetch(int lastFetch) = 0;
+        
+        /** returns the guids of all articles in this storage */
         virtual QStringList articles() = 0;
-    
+
+        /** Appends all articles from another storage. If there is already an article in this feed with the same guid, it is replaced by the article from the source
+        @param source the archive which articles should be appended
+        */
+        virtual void add(FeedStorage* source) = 0;
+
+        /** reads an article from another storage and adds it to this storage */
+        virtual void copyArticle(const QString& guid, FeedStorage* source) = 0;
+
+        /** deletes all articles from the archive */
+        virtual void clear() = 0;
+
+        
         virtual bool contains(const QString& guid) = 0;
         virtual void addEntry(const QString& guid) = 0;
         virtual void deleteArticle(const QString& guid) = 0;
@@ -70,6 +84,12 @@ class FeedStorage : public QObject
         virtual void setTitle(const QString& guid, const QString& title) = 0;
         virtual QString description(const QString& guid) = 0;
         virtual void setDescription(const QString& guid, const QString& description) = 0;
+
+        virtual void addTag(const QString& guid, const QString& tag) = 0;
+        virtual void removeTag(const QString& guid, const QString& tag) = 0;
+        virtual QStringList tags(const QString& guid) = 0;
+
+
         virtual void close() = 0;
         virtual void commit() = 0;
         virtual void rollback() = 0;

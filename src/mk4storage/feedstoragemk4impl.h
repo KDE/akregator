@@ -34,6 +34,11 @@ class FeedStorageMK4Impl : public FeedStorage
     public:
         FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main);
         virtual ~FeedStorageMK4Impl();
+
+
+        virtual void add(FeedStorage* source);
+        virtual void copyArticle(const QString& guid, FeedStorage* source);
+        virtual void clear();
         
         virtual int unread();
         virtual void setUnread(int unread);
@@ -67,6 +72,9 @@ class FeedStorageMK4Impl : public FeedStorage
         virtual void setTitle(const QString& guid, const QString& title);
         virtual QString description(const QString& guid);
         virtual void setDescription(const QString& guid, const QString& description);
+        virtual void addTag(const QString& guid, const QString& tag);
+        virtual void removeTag(const QString& guid, const QString& tag);
+        virtual QStringList tags(const QString& guid);
         virtual void close();
         virtual void commit();
         virtual void rollback();

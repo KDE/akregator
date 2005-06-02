@@ -35,6 +35,10 @@ class FeedStorageDummyImpl : public FeedStorage
         FeedStorageDummyImpl(const QString& url, StorageDummyImpl* main);
         virtual ~FeedStorageDummyImpl();
         
+        virtual void add(FeedStorage* source);
+        virtual void copyArticle(const QString& guid, FeedStorage* source);
+        
+        virtual void clear();
         virtual int unread();
         virtual void setUnread(int unread);
         virtual int totalCount();
@@ -67,10 +71,14 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void setTitle(const QString& guid, const QString& title);
         virtual QString description(const QString& guid);
         virtual void setDescription(const QString& guid, const QString& description);
+        virtual void addTag(const QString& guid, const QString& tag);
+        virtual void removeTag(const QString& guid, const QString& tag);
+        virtual QStringList tags(const QString& guid);
+
         virtual void close();
         virtual void commit();
         virtual void rollback();
-        
+
         virtual void convertOldArchive();
    private:
         /** finds article by guid, returns -1 if not in archive **/

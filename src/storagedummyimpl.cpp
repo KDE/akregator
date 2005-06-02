@@ -26,6 +26,7 @@
 
 #include <qmap.h>
 #include <qstring.h>
+#include <qstringlist.h>
 
 namespace Akregator {
 namespace Backend {
@@ -147,7 +148,32 @@ FeedStorage* StorageDummyImpl::archiveFor(const QString& url)
     return d->feeds[url].feedStorage;
 }
 
+QStringList StorageDummyImpl::feeds() const
+{
+    return d->feeds.keys();
 }
+    
+void StorageDummyImpl::add(Storage* source)
+{
+    QStringList feeds = source->feeds();
+    for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
+    {
+        FeedStorage* fa = archiveFor(*it);
+        fa->add(source->archiveFor(*it));
+    }
 }
+
+void StorageDummyImpl::clear()
+{
+    for (QMap<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.begin(); it != d->feeds.end(); ++it)
+    {
+        delete (*it).feedStorage;
+    }
+    d->feeds.clear();
+
+}
+
+} // namespace Backend
+} // namespace Akregator
 
 #include "storagedummyimpl.moc"
