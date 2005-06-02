@@ -115,7 +115,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->mainStorage = main;
     QString t = url;
     QString t2 = url;
-    QString filePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t.replace("/", "_").replace(":", "_") + ".mk4";
+    QString filePath = main->archivePath() +"/"+ t.replace("/", "_").replace(":", "_") + ".mk4";
     d->oldArchivePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t2.replace("/", "_").replace(":", "_") + ".xml";
     d->convert = !QFile::exists(filePath) && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage(filePath.local8Bit(), true);

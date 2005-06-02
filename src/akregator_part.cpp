@@ -113,17 +113,17 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
     loadPlugins(); // FIXME: also unload them!
 
-    m_storage = Backend::StorageFactoryRegistry::self()->getFactory("metakit")->createStorage(QStringList());
+    m_storage = Backend::StorageFactoryRegistry::self()->getFactory("metakit")->createStorage(QStringList()); // FIXME: read backend to use from config
     
     if (!m_storage) // Houston, we have a problem
     {
-         KMessageBox::error(m_view, i18n("Unable to load storage backend plugin."), i18n("Plugin error") );
-         // FIXME: prevent part from loading (exit is not a good idea, it could be used in kontact)
+        m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
+        KMessageBox::error(m_view, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg("metakit"), i18n("Plugin error") );
     }
     
-    
+    m_storage->open(true);
     Kernel::self()->setStorage(m_storage);
-    Backend::Storage::setInstance(m_storage);
+    Backend::Storage::setInstance(m_storage); // TODO: kill this one
     
     m_actionManager = new ActionManager(this);
     ActionManager::setInstance(m_actionManager);

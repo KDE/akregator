@@ -51,15 +51,29 @@ class StorageMK4Impl::StorageMK4ImplPrivate
         c4_StringProp purl;
         c4_IntProp punread, ptotalCount, plastFetch;
         QTimer* commitTimer;
+        QString archivePath;
 };
 
+void StorageMK4Impl::setArchivePath(const QString& archivePath)
+{
+    if (archivePath.isNull()) // if isNull, reset to default
+        d->archivePath = KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive";
+    else
+        d->archivePath = archivePath;
+}
+
+QString StorageMK4Impl::archivePath() const
+{
+    return d->archivePath;
+}
+        
 StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
 {
+    setArchivePath(QString::null); // set path to default
     // commit changes every 3 seconds
     d->commitTimer = new QTimer(this);
     connect(d->commitTimer, SIGNAL(timeout()), this, SLOT(slotCommit()));
     d->commitTimer->start(3000); 
-    open(true);
 }
 
 StorageMK4Impl::~StorageMK4Impl()
@@ -72,7 +86,7 @@ void StorageMK4Impl::initialize(const QStringList&) {}
 
 bool StorageMK4Impl::open(bool autoCommit)
 {
-    QString filePath = KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive/archiveindex.mk4";
+    QString filePath = d->archivePath +"/archiveindex.mk4";
     d->storage = new c4_Storage(filePath.local8Bit(), true);
     d->archiveView = d->storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
@@ -260,6 +274,8 @@ void StorageMK4Impl::clear()
     {
         FeedStorage* fa = archiveFor(*it);
         fa->clear();
+        fa->commit();
+        // FIXME: delete file (should be 0 in size now)
     }
     d->storage->RemoveAll();
     
