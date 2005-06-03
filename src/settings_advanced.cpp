@@ -25,6 +25,7 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : Settings
         i++;
     }
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
+    connect(cbBackend, SIGNAL(activated(int)), this, SLOT(slotFactorySelected(int)));
 }
 
 QString SettingsAdvanced::selectedFactory() const
@@ -35,11 +36,17 @@ QString SettingsAdvanced::selectedFactory() const
 void SettingsAdvanced::selectFactory(const QString& key)
 {
     cbBackend->setCurrentItem(m_keyPos[key]);
+    pbBackendConfigure->setEnabled((m_factories[m_keyPos[key]]->isConfigurable()));
 }
 
 void SettingsAdvanced::slotConfigureStorage()
 {
     m_factories[cbBackend->currentItem()]->configure();
+}
+
+void SettingsAdvanced::slotFactorySelected(int pos)
+{
+    pbBackendConfigure->setEnabled(m_factories[pos]->isConfigurable());
 }
 
 } //namespace Akregator

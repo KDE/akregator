@@ -45,6 +45,9 @@ class StorageFactory
     /** returns the (i18n'd) name of the storage type. */
     virtual QString name() const = 0;
 
+    /** true if the plugin is configurable via a config dialog */
+    virtual bool isConfigurable() const = 0;
+    
     /** shows the plugin's configuration dialog */
     virtual void configure() = 0;
     

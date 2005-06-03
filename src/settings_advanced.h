@@ -30,6 +30,8 @@ class SettingsAdvanced : public SettingsAdvancedBase
     public slots:
         
         void slotConfigureStorage();
+        void slotFactorySelected(int);
+        
     private:
         QMap<int,Backend::StorageFactory*> m_factories;
         QMap<QString, int> m_keyPos;

@@ -42,6 +42,7 @@ class StorageFactoryMK4Impl : public StorageFactory
     virtual QString name() const;
     virtual void configure();
     virtual Storage* createStorage(const QStringList& params) const;
+    virtual bool isConfigurable() const { return true; }
 };
 
 }
