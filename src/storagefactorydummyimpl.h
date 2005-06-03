@@ -41,6 +41,7 @@ class StorageFactoryDummyImpl : public StorageFactory
     virtual QString key() const;
     virtual QString name() const;
     virtual void configure();
+    virtual bool isConfigurable() const { return false; }
     virtual Storage* createStorage(const QStringList& params) const;
 };
 
