@@ -31,6 +31,7 @@
 #include <qdatetime.h>
 #include <qdom.h>
 #include <qregexp.h>
+#include <qstringlist.h>
 #include <qvaluelist.h>
 
 #include <krfcdate.h>
@@ -335,6 +336,26 @@ void Article::setKeep(bool keep)
     d->archive->setStatus(d->guid, d->status);
 }
 
+void Article::addTag(const QString& tag)
+{
+    d->archive->addTag(d->guid, tag);
+}
+
+void Article::removeTag(const QString& tag)
+{
+    d->archive->removeTag(d->guid, tag);
+}
+            
+bool Article::hasTag(const QString& tag) const
+{
+    return d->archive->tags(d->guid).contains(tag);
+}
+
+QStringList Article::tags() const
+{
+    return d->archive->tags(d->guid);
+}
+            
 Feed* Article::feed() const
 { return d->feed; }
 

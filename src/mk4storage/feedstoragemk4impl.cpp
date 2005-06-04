@@ -49,12 +49,14 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
             pdescription("description"),
             plink("link"),
             pcommentsLink("commentsLink"),
+            ptag("tag"),
             phash("hash"),
             pguidIsHash("guidIsHash"),
             pguidIsPermaLink("guidIsPermaLink"),
             pcomments("comments"),
             pstatus("status"),
-            ppubDate("pubDate")
+            ppubDate("pubDate"),
+            ptags("tags")
         {}
             
         QString url;
@@ -65,8 +67,9 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
 	bool modified;
         bool convert;
         QString oldArchivePath;
-        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink;
+        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag;
         c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate;
+        c4_ViewProp ptags;
 };
 
 void FeedStorageMK4Impl::convertOldArchive()
@@ -119,7 +122,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->oldArchivePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t2.replace("/", "_").replace(":", "_") + ".xml";
     d->convert = !QFile::exists(filePath) && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage(filePath.local8Bit(), true);
-    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I]");
+    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S]]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
 }
@@ -424,27 +427,63 @@ void FeedStorageMK4Impl::setGuidIsPermaLink(const QString& guid, bool isPermaLin
 
 void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
 {
-    
-    // TODO:
-    // if article is not tagged with tag
-    // - store tag
-    // - add to tag->articles index in Storage
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+        return;
 
+    c4_Row row;
+    row = d->archiveView.GetAt(findidx);
+    c4_View tagView = d->ptags(row);
+    c4_Row findrow; 
+    d->ptag(findrow) = tag.utf8().data();
+    int tagidx = tagView.Find(findrow);
+    if (tagidx == -1)
+    {
+        tagidx = tagView.Add(findrow);
+        // TODO: add to tag->articles index in Storage
+        d->ptags(row) = tagView;
+        d->archiveView.SetAt(findidx, row);
+    }
 }
 
 void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
 {
-    if (contains(guid))
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+        return;
+
+    c4_Row row;
+    row = d->archiveView.GetAt(findidx);
+    c4_View tagView = d->ptags(row);
+    c4_Row findrow; 
+    d->ptag(findrow) = tag.utf8().data();
+    int tagidx = tagView.Find(findrow);
+    if (tagidx != -1)
     {
-        // TODO:
-        // - remove tag
-        // remove also from tag->articles index in Storage
+        tagView.RemoveAt(tagidx);
+        // TODO: remove from tag->articles index in Storage
+        d->ptags(row) = tagView;
+        d->archiveView.SetAt(findidx, row);
     }
 }
 
 QStringList FeedStorageMK4Impl::tags(const QString& guid)
 {
-    return QStringList();
+    QStringList list;
+    
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+        return list;
+        
+    c4_Row row;
+    row = d->archiveView.GetAt(findidx);
+    c4_View tagView = d->ptags(row);
+    int size = tagView.GetSize();
+    
+    for (int i = 0; i < size; ++i)
+        list += QString::fromUtf8(d->ptag(tagView.GetAt(i)));
+    
+    return list;
 }
 
 void FeedStorageMK4Impl::add(FeedStorage* source)
