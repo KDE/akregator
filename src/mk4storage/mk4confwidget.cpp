@@ -22,13 +22,71 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "mk4config.h"
 #include "mk4confwidget.h"
+#include "storagemk4impl.h"
+
+#include <qcheckbox.h>
+#include <qlabel.h>
+#include <klocale.h>
+#include <kmessagebox.h>
+#include <kurlrequester.h>
+
 namespace Akregator {
 namespace Backend {
 
 MK4ConfWidget::MK4ConfWidget() : MK4ConfWidgetBase()
 {
+    if (MK4Config::archivePath() == StorageMK4Impl::defaultArchivePath() || MK4Config::archivePath().isEmpty())
+    {
+        filereq->setURL(StorageMK4Impl::defaultArchivePath());
+        MK4Config::setArchivePath(StorageMK4Impl::defaultArchivePath());
+        cbUseDefault->setChecked(true);
+        filereq->setEnabled(false);
+        label->setEnabled(false);
+    }
+    else
+    {
+        cbUseDefault->setChecked(false);
+        filereq->setEnabled(true);
+        label->setEnabled(true);
+    }
+    filereq->setURL(MK4Config::archivePath());
+    connect(cbUseDefault, SIGNAL(toggled(bool)), this, SLOT(slotChkBoxUseDefault(bool)));
+    
 }
+
+void MK4ConfWidget::accept()
+{
+
+    QString path = cbUseDefault->isChecked() ? StorageMK4Impl::defaultArchivePath() : filereq->url();
+    if (path != MK4Config::archivePath())
+    {
+        // TODO: if the user changed the archive location, inform him that
+        // the archive is not migrated automatically, but that he has to
+        // close Akregator and copy the files over/use some fancy CLI tool not
+        // yet written
+    }
+    MK4Config::setArchivePath(path);
+    MK4Config::writeConfig();
+    MK4ConfWidgetBase::accept();
+}
+
+void MK4ConfWidget::slotChkBoxUseDefault(bool checked)
+{
+    if (checked)
+    {
+        filereq->setURL(StorageMK4Impl::defaultArchivePath());
+        filereq->setEnabled(false);
+    }
+    else
+    {
+        filereq->setEnabled(true);
+    }
+}
+
 
 }
 }
+
+#include "mk4confwidget.moc"

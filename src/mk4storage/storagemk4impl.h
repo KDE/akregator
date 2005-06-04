@@ -44,14 +44,20 @@ class StorageMK4Impl : public Storage
         StorageMK4Impl &operator =(const StorageMK4Impl&);
         virtual ~StorageMK4Impl();
 
+
+        /** KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive" */
+        static QString defaultArchivePath();
+        
         /** sets the directory where the metakit files will be stored.
-            default is KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive"
+            
             @param archivePath the path to the archive, or QString::null to reset it to the default.
          */   
         void setArchivePath(const QString& archivePath);
 
         /** returns the path to the metakit archives */
         QString archivePath() const;
+
+        
         
         virtual void initialize(const QStringList& params);
         /**

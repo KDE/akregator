@@ -57,7 +57,7 @@ class StorageMK4Impl::StorageMK4ImplPrivate
 void StorageMK4Impl::setArchivePath(const QString& archivePath)
 {
     if (archivePath.isNull()) // if isNull, reset to default
-        d->archivePath = KGlobal::dirs()->saveLocation("data", "akregator")+"/Archive";
+        d->archivePath = defaultArchivePath();
     else
         d->archivePath = archivePath;
 }
@@ -74,6 +74,11 @@ StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
     d->commitTimer = new QTimer(this);
     connect(d->commitTimer, SIGNAL(timeout()), this, SLOT(slotCommit()));
     d->commitTimer->start(3000); 
+}
+
+QString StorageMK4Impl::defaultArchivePath()
+{
+    return KGlobal::dirs()->saveLocation("data", "akregator")+"Archive";
 }
 
 StorageMK4Impl::~StorageMK4Impl()
