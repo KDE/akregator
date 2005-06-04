@@ -2,13 +2,11 @@
 Type=Service
 Name=Metakit storage backend
 Name[bg]=Приставка за архивиране Metakit
-Name[es]=Dorsal de almacenamiento Metakit
 Name[sv]=Metakit lagringsgränssnitt
 X-KDE-Library=libakregator_mk4storage_plugin
 Comment=Plugin for Akregator
 Comment[bg]=Приставка за Akregator
 Comment[cs]=Modul pro Akregator
-Comment[es]=Extensión para Akregator
 Comment[ga]=Breiseán Akregator
 Comment[sv]=Insticksprogram för Akregator
 ServiceTypes=Akregator/Plugin
