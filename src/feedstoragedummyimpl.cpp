@@ -119,9 +119,9 @@ void FeedStorageDummyImpl::setLastFetch(int lastFetch)
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }
 
-QStringList FeedStorageDummyImpl::articles()
+QStringList FeedStorageDummyImpl::articles(const QString& tag)
 {
-    return d->entries.keys();
+    return tag.isNull() ? d->entries.keys() : QStringList(); // TODO: respect tag
 }
 
 void FeedStorageDummyImpl::addEntry(const QString& guid)

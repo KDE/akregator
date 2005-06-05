@@ -45,7 +45,7 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual int lastFetch();
         virtual void setLastFetch(int lastFetch);
       
-        virtual QStringList articles();
+        virtual QStringList articles(const QString& tag=QString::null);
 
         virtual bool contains(const QString& guid);
         virtual void addEntry(const QString& guid);

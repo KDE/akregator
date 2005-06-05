@@ -49,7 +49,6 @@ using namespace Akregator;
 ArticleItem::ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
     : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
 {
-    kdDebug() << m_pubDate << endl;
     if (a.keep())
         setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
 }

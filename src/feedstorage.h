@@ -46,7 +46,7 @@ class FeedStorage : public QObject
         virtual void setLastFetch(int lastFetch) = 0;
         
         /** returns the guids of all articles in this storage */
-        virtual QStringList articles() = 0;
+        virtual QStringList articles(const QString& tag=QString::null) = 0;
 
         /** Appends all articles from another storage. If there is already an article in this feed with the same guid, it is replaced by the article from the source
         @param source the archive which articles should be appended

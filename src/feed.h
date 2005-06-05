@@ -176,12 +176,8 @@ namespace Akregator
 
             virtual ArticleList articles();
             
-             /** appends the articles in @c document to the feed's article list
-             */
-
             /** returns whether a fetch error has occured */
             bool fetchErrorOccurred();
-
 
             /** returns the unread count for this feed */
             virtual int unread() const;

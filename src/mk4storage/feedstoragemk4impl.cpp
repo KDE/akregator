@@ -56,20 +56,24 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
             pcomments("comments"),
             pstatus("status"),
             ppubDate("pubDate"),
-            ptags("tags")
+            ptags("tags"),
+            ptaggedArticles("taggedArticles")
         {}
             
         QString url;
         c4_Storage* storage;
         StorageMK4Impl* mainStorage;
         c4_View archiveView;
+        
+        c4_Storage* tagStorage;
+        c4_View tagView;
         bool autoCommit;
-	bool modified;
+	    bool modified;
         bool convert;
         QString oldArchivePath;
         c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag;
         c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate;
-        c4_ViewProp ptags;
+        c4_ViewProp ptags, ptaggedArticles;
 };
 
 void FeedStorageMK4Impl::convertOldArchive()
@@ -118,32 +122,43 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->mainStorage = main;
     QString t = url;
     QString t2 = url;
-    QString filePath = main->archivePath() +"/"+ t.replace("/", "_").replace(":", "_") + ".mk4";
+    QString filePath = main->archivePath() +"/"+ t.replace("/", "_").replace(":", "_");
     d->oldArchivePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t2.replace("/", "_").replace(":", "_") + ".xml";
-    d->convert = !QFile::exists(filePath) && QFile::exists(d->oldArchivePath);
-    d->storage = new c4_Storage(filePath.local8Bit(), true);
+    d->convert = !QFile::exists(filePath + ".mk4") && QFile::exists(d->oldArchivePath);
+    d->storage = new c4_Storage((filePath + ".mk4").local8Bit(), true);
     d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S]]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
+
+
+    d->tagStorage = new c4_Storage((filePath + ".mk4___TAGS").local8Bit(), true);
+    d->tagView = d->tagStorage->GetAs("tagIndex[tag:S,taggedArticles[guid:S]]");
+    hash = d->tagStorage->GetAs("archiveHash[_H:I,_R:I]");
+    d->tagView = d->tagView.Hash(hash, 1); // hash on tag
 }
 
 FeedStorageMK4Impl::~FeedStorageMK4Impl()
 {
     // TODO: close etc.
     delete d->storage;
+    delete d->tagStorage;
     delete d; d = 0;
 }
 
 void FeedStorageMK4Impl::commit()
 {
     if (d->modified)
+    {
         d->storage->Commit();
+        d->tagStorage->Commit();
+    }
     d->modified = false;
 }
 
 void FeedStorageMK4Impl::rollback()
 {
     d->storage->Rollback();
+    d->tagStorage->Rollback();
 }
 
 void FeedStorageMK4Impl::close()
@@ -180,13 +195,30 @@ void FeedStorageMK4Impl::setLastFetch(int lastFetch)
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }
 
-QStringList FeedStorageMK4Impl::articles()
+QStringList FeedStorageMK4Impl::articles(const QString& tag)
 {
     QStringList list;
-    int size = d->archiveView.GetSize();
-    for (int i = 0; i < size; i++)
-        list += QString(d->pguid(d->archiveView.GetAt(i)));
-    // fill with guids
+    if (tag.isNull()) // return all articles
+    {
+        int size = d->archiveView.GetSize();
+        for (int i = 0; i < size; i++) // fill with guids
+            list += QString(d->pguid(d->archiveView.GetAt(i)));
+    }
+    else
+    {
+        c4_Row tagrow;
+        d->ptag(tagrow) = tag.utf8().data();
+        int tagidx = d->tagView.Find(tagrow);
+        if (tagidx != -1)
+        {
+            tagrow = d->tagView.GetAt(tagidx);
+            c4_View tagView = d->ptaggedArticles(tagrow);
+            int size = tagView.GetSize();
+            for (int i = 0; i < size; i++)
+                list += QString(d->pguid(tagView.GetAt(i)));
+        }
+
+    }
     return list;
 }
 
@@ -440,10 +472,30 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
     if (tagidx == -1)
     {
         tagidx = tagView.Add(findrow);
-        // TODO: add to tag->articles index in Storage
         d->ptags(row) = tagView;
         d->archiveView.SetAt(findidx, row);
-    }
+
+        // add to tag->articles index
+        c4_Row tagrow;
+        d->ptag(tagrow) = tag.utf8().data();
+        int tagidx2 = d->tagView.Find(tagrow);
+        if (tagidx2 == -1)
+            tagidx2 = d->tagView.Add(tagrow);
+        tagrow = d->tagView.GetAt(tagidx2);
+        c4_View tagView2 = d->ptaggedArticles(tagrow);
+
+        c4_Row row3;
+        d->pguid(row3) = guid.ascii();
+        int guididx = tagView2.Find(row3);
+        if (guididx == -1)
+        {
+            guididx = tagView2.Add(row3);
+            tagView2.SetAt(guididx, row3);
+            d->ptaggedArticles(tagrow) = tagView2;
+            d->tagView.SetAt(tagidx2, tagrow);
+        }
+        d->modified = true;
+    } 
 }
 
 void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
@@ -461,9 +513,30 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
     if (tagidx != -1)
     {
         tagView.RemoveAt(tagidx);
-        // TODO: remove from tag->articles index in Storage
         d->ptags(row) = tagView;
         d->archiveView.SetAt(findidx, row);
+
+        // remove from tag->articles index
+        c4_Row tagrow;
+        d->ptag(tagrow) = tag.utf8().data();
+        int tagidx2 = d->tagView.Find(tagrow);
+        if (tagidx2 != -1)
+        {
+            tagrow = d->tagView.GetAt(tagidx2);
+            c4_View tagView2 = d->ptaggedArticles(tagrow);
+
+            c4_Row row3;
+            d->pguid(row3) = guid.ascii();
+            int guididx = tagView2.Find(row3);
+            if (guididx != -1)
+            {
+                tagView2.RemoveAt(guididx);
+                d->ptaggedArticles(tagrow) = tagView2;
+                d->tagView.SetAt(tagidx2, tagrow);
+            }
+        }
+        
+        d->modified = true;
     }
 }
 
@@ -519,7 +592,9 @@ void FeedStorageMK4Impl::copyArticle(const QString& guid, FeedStorage* source)
 void FeedStorageMK4Impl::clear()
 {
     d->storage->RemoveAll();
+    d->tagStorage->RemoveAll();
     setUnread(0);
+    d->modified = true;
 }
 
 } // namespace Backend

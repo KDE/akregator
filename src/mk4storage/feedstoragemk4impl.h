@@ -45,8 +45,9 @@ class FeedStorageMK4Impl : public FeedStorage
         virtual int totalCount();
         virtual int lastFetch();
         virtual void setLastFetch(int lastFetch);
-      
-        virtual QStringList articles();
+
+        /** returns a guid list of the archived articles. If @c tag is not null, only articles tagged with @c tag are returned. */
+        virtual QStringList articles(const QString& tag=QString::null);
 
         virtual bool contains(const QString& guid);
         virtual void addEntry(const QString& guid);
