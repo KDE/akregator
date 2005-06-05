@@ -2,7 +2,8 @@
     This file is part of Akregator.
 
     Copyright (C) 2004 Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
-
+                  2004-2005 Frank Osterfeld <frank.osterfeld@kdemail.net>
+                  
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -49,15 +50,11 @@ namespace Akregator
             @return a freshly created feed group */
             static Folder* fromOPML(QDomElement e);
             
-            /** The new constructor (DON'T USE YET). The idea: Just pass a parent and let parent do all the work,
-            FeedsTree will be notified automatically and create an item
-            etc.
-            @param parent The parent node to attach to
+            /** Creates a new folder with a given title
             @param title The title of the feed group
              */          
             Folder(const QString& title = QString::null);
             
-             /** Destructor.  */
             virtual ~Folder();
 
             /** returns recursively concatenated articles of children  
@@ -85,7 +82,6 @@ namespace Akregator
             /** returns the (direct) children of this node.
             @return a list of pointers to the child nodes
              */
-            virtual QValueList<TreeNode*> children();
             virtual QValueList<TreeNode*> children() const;
             
             /** inserts @c node as child after child node @c after.
@@ -144,6 +140,8 @@ namespace Akregator
             */
             virtual void slotChildDestroyed(TreeNode* node);
 
+            /** enqueues children recursively for fetching
+            @param queue a fetch queue */
             virtual void slotAddToFetchQueue(FetchQueue* queue);
 
             /** returns the next node in the tree.
