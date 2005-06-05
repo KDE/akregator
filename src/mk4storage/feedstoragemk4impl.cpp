@@ -252,6 +252,9 @@ void FeedStorageMK4Impl::deleteArticle(const QString& guid)
     int findidx = findArticle(guid);
     if (findidx != -1)
     {
+        QStringList list = tags(guid);
+        for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it)
+            removeTag(guid, *it);
         setTotalCount(totalCount()-1);
         d->archiveView.RemoveAt(findidx);
         d->modified = true;
@@ -297,6 +300,9 @@ void FeedStorageMK4Impl::setDeleted(const QString& guid)
 
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
+    QStringList list = tags(guid);
+        for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it)
+            removeTag(guid, *it);
     d->pdescription(row) = "";
     d->ptitle(row) = "";
     d->plink(row) = "";
