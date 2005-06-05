@@ -47,7 +47,7 @@
 #include "articlelist.h"
 #include "articleviewer.h"
 #include "feed.h"
-#include "feedgroup.h"
+#include "folder.h"
 #include "article.h"
 #include "treenode.h"
 

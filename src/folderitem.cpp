@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "feedgroup.h"
+#include "folder.h"
 #include "folderitem.h"
 #include "treenode.h"
 

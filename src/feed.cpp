@@ -37,7 +37,7 @@
 #include "articlelist.h"
 #include "akregatorconfig.h"
 #include "feed.h"
-#include "feedgroup.h"
+#include "folder.h"
 #include "fetchqueue.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"

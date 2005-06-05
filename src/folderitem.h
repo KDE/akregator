@@ -26,7 +26,7 @@
 
 #include "treenodeitem.h"
 #include "treenode.h"
-#include "feedgroup.h"
+#include "folder.h"
 
 #include <qpixmap.h>
 

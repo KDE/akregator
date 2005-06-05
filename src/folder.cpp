@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 #include "articlelist.h"
-#include "feedgroup.h"
+#include "folder.h"
 #include "fetchqueue.h"
 
 #include <qlistview.h>
@@ -296,4 +296,4 @@ TreeNode* Folder::next()
 }
 
 } // namespace Akregator
-#include "feedgroup.moc"
+#include "folder.moc"

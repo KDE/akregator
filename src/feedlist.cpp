@@ -32,7 +32,7 @@
 #include <klocale.h>
 
 #include "feed.h"
-#include "feedgroup.h"
+#include "folder.h"
 
 
 namespace Akregator {

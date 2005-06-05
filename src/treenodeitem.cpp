@@ -24,7 +24,7 @@
 
 #include "treenode.h"
 #include "treenodeitem.h"
-#include "feedgroupitem.h"
+#include "folderitem.h"
 #include <qfont.h>
 #include <qheader.h>
 #include <qpainter.h>

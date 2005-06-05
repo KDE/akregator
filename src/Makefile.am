@@ -46,7 +46,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
 				 article.cpp \
 				 feed.cpp \
 				 treenode.cpp \
-				 feedgroup.cpp \
+				 folder.cpp \
 				 feedlist.cpp \
 			         fetchqueue.cpp \
 			  	 articlelist.cpp \
