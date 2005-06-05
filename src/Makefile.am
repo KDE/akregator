@@ -100,7 +100,7 @@ libakregatorpart_la_SOURCES = \
 	tabwidget.cpp \
 	feedlistview.cpp \
 	treenodeitem.cpp \
-	feedgroupitem.cpp \
+	folderitem.cpp \
 	feeditem.cpp \
         progressmanager.cpp \
         kernel.cpp \

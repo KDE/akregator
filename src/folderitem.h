@@ -21,8 +21,8 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATORFEEDGROUPITEM_H
-#define AKREGATORFEEDGROUPITEM_H
+#ifndef AKREGATOR_FOLDERITEM_H
+#define AKREGATOR_FOLDERITEM_H
 
 #include "treenodeitem.h"
 #include "treenode.h"
