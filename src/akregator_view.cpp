@@ -1297,85 +1297,18 @@ void View::slotMouseOverInfo(const KFileItem *kifi)
     }
 }
 
-void View::readProperties(KConfig* config) // this is called when session is being restored
+void View::readProperties(KConfig* config)
 {
     // read filter settings
     m_searchBar->slotSetText(config->readEntry("searchLine"));
     m_searchBar->slotSetStatus(config->readEntry("searchCombo").toInt());
-    
-    // read the position of the selected feed
-
-    QString selectedFeed = config->readEntry("selectedFeed");
-    if ( selectedFeed.isNull() )
-    {
-        QStringList pos = QStringList::split(' ', selectedFeed);
-        QListViewItem* current = m_tree->firstChild();
-        for ( unsigned int i = 0; current && i < pos.count(); i++ )
-        {
-            int childPos = pos[i].toUInt();
-            current = current->firstChild();
-            if (current)
-                for (int j = 0; j < childPos; j++)
-                    if ( current->nextSibling() )
-                        current = current->nextSibling();
-        }
-        m_tree->setSelected(current, true);
-        // read the selected article title (not in Combined View)
-
-        if ( m_viewMode != CombinedView )
-        {
-            QString selectedArticleEntry = config->readEntry("selectedArticle");
-            if ( selectedArticleEntry.isNull() )
-            {
-                QListViewItem* selectedArticle = m_articleList->findItem(selectedArticleEntry, 0);
-                if ( selectedArticle )
-                    m_articleList->setSelected(selectedArticle, true);
-            }
-        } // if viewMode != combinedView
-    } // if selectedFeed is set
 }
 
-// this is called when using session management and session is going to close
 void View::saveProperties(KConfig* config)
 {
     // save filter settings
     config->writeEntry("searchLine", m_searchBar->text());
     config->writeEntry("searchCombo", m_searchBar->status());
-
-    // write the position of the currently selected feed
-    // format is a string, e.g. "3 2 1" means
-    // 2nd child of the 3rd child of the 4th child of the root node (All Feeds)
-    if ( m_tree->selectedItem() )
-    {
-        QListViewItem* item = m_tree->selectedItem();
-        QListViewItem* parent = item->parent();
-        QString pos;
-
-        while (parent)
-        {
-            int n = 0;
-            QListViewItem* i = parent->firstChild();
-            while (i && i != item)
-            {
-                i = i->nextSibling();
-                n++;
-            }
-            pos = QString::number(n) + " " + pos;
-            item = item->parent();
-            parent = item->parent();
-        }
-        pos = pos.stripWhiteSpace();
-        config->writeEntry("selectedFeed", pos);
-    }
-
-    // if not in CombinedView, save currently selected article
-    // atm the item's text() is saved, which is ambigous.
-
-    if ( m_viewMode != CombinedView )
-    {
-        if ( m_articleList->selectedItem() )
-            config->writeEntry("selectedArticle", m_articleList->selectedItem()->text(0));
-    }
 }
 
 void View::connectToFeedList(FeedList* feedList)
