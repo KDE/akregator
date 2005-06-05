@@ -23,7 +23,7 @@
 */
 
 #include "feedgroup.h"
-#include "feedgroupitem.h"
+#include "folderitem.h"
 #include "feedlistview.h"
 #include "feed.h"
 #include "feeditem.h"
