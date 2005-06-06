@@ -47,11 +47,11 @@
 using namespace Akregator;
 
 FeedListView::FeedListView( QWidget *parent, const char *name)
-        : KListView(parent, name)
+        : KListView(parent, name), m_showTagFolders(true)
 {
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
-    setRootIsDecorated(false);
+    setRootIsDecorated(true);
     setItemsRenameable(true);
     setItemMargin(2);
     
@@ -258,6 +258,11 @@ void FeedListView::movableDropEvent(QListViewItem* parent, QListViewItem* afterm
         parentNode->insertChild(current, afterMeNode);
         KListView::movableDropEvent(parent, afterme);
     }    
+}
+
+void FeedListView::setShowTagFolders(bool enabled)
+{
+    m_showTagFolders = enabled;
 }
 
 void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)

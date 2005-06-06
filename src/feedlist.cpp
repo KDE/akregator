@@ -244,7 +244,6 @@ void FeedList::slotNodeAdded(TreeNode* node)
     if ( !node || !d->flatList.contains(parent) || d->flatList.contains(node) )
         return;
 
-
     if (d->idCounter != 0)
     {
         node->setId(d->idCounter++);
@@ -255,17 +254,17 @@ void FeedList::slotNodeAdded(TreeNode* node)
     connectToNode(node);
     emit signalNodeAdded(node);
     
-    if ( !node->isGroup() )
-        return;
-    
-    // if adding a feed group, also connect to sub tree
-    Folder* fg = static_cast<Folder*> (node);
-    for (TreeNode* i = fg->firstChild(); i && i != fg; i = i->next() )
+    if ( node->isGroup() )
     {
-        d->flatList.append(i);
-        connectToNode(i);
-        emit signalNodeAdded(i);
-    }
+        // if adding a feed group, also connect to sub tree
+        Folder* fg = static_cast<Folder*> (node);
+        for (TreeNode* i = fg->firstChild(); i && i != fg; i = i->next() )
+        {
+            d->flatList.append(i);
+            connectToNode(i);
+            emit signalNodeAdded(i);
+        }
+     }
 }
 
 //void FeedList::slotNodeChanged(TreeNode* node)

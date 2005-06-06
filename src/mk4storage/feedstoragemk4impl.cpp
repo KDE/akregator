@@ -550,17 +550,26 @@ QStringList FeedStorageMK4Impl::tags(const QString& guid)
 {
     QStringList list;
     
-    int findidx = findArticle(guid);
-    if (findidx == -1)
-        return list;
+    if (!guid.isNull()) // return tags for an articles
+    {
+        int findidx = findArticle(guid);
+        if (findidx == -1)
+            return list;
+            
+        c4_Row row;
+        row = d->archiveView.GetAt(findidx);
+        c4_View tagView = d->ptags(row);
+        int size = tagView.GetSize();
         
-    c4_Row row;
-    row = d->archiveView.GetAt(findidx);
-    c4_View tagView = d->ptags(row);
-    int size = tagView.GetSize();
-    
-    for (int i = 0; i < size; ++i)
-        list += QString::fromUtf8(d->ptag(tagView.GetAt(i)));
+        for (int i = 0; i < size; ++i)
+            list += QString::fromUtf8(d->ptag(tagView.GetAt(i)));
+    }
+    else // return all tags in the feed
+    {
+        int size = d->tagView.GetSize();
+        for (int i = 0; i < size; i++)
+             list += QString(d->ptag(d->tagView.GetAt(i)));
+    }
     
     return list;
 }

@@ -273,7 +273,7 @@ void FeedStorageDummyImpl::addTag(const QString& guid, const QString& tag)
 {
     if (contains(guid))
         d->entries[guid].tags.append(tag);
-        // TODO: add also to tag->articles index in Storage
+        // TODO: add also to tag->articles index
 
 }
 
@@ -282,14 +282,17 @@ void FeedStorageDummyImpl::removeTag(const QString& guid, const QString& tag)
     if (contains(guid))
     {
         d->entries[guid].tags.remove(tag);
-        // TODO: remove also from tag->articles index in Storage
+        // TODO: remove also from tag->articles index
     }
         
 }
 
 QStringList FeedStorageDummyImpl::tags(const QString& guid)
 {
-    return contains(guid) ? d->entries[guid].tags : QStringList();
+    if (!guid.isNull())
+        return contains(guid) ? d->entries[guid].tags : QStringList();
+    else
+        return QStringList(); // TODO: returns list of all tags in geed
 }
 
 void FeedStorageDummyImpl::add(FeedStorage* source)

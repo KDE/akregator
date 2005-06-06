@@ -75,7 +75,7 @@ class FeedStorageMK4Impl : public FeedStorage
         virtual void setDescription(const QString& guid, const QString& description);
         virtual void addTag(const QString& guid, const QString& tag);
         virtual void removeTag(const QString& guid, const QString& tag);
-        virtual QStringList tags(const QString& guid);
+        virtual QStringList tags(const QString& guid=QString::null);
         virtual void close();
         virtual void commit();
         virtual void rollback();

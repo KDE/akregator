@@ -87,7 +87,9 @@ class FeedStorage : public QObject
 
         virtual void addTag(const QString& guid, const QString& tag) = 0;
         virtual void removeTag(const QString& guid, const QString& tag) = 0;
-        virtual QStringList tags(const QString& guid) = 0;
+
+        /** returns the tags of a given article. If @c guid is null, it returns all tags used in this feed */
+        virtual QStringList tags(const QString& guid=QString::null) = 0;
 
 
         virtual void close() = 0;

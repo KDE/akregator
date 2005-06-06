@@ -37,8 +37,7 @@ namespace Akregator
     class ArticleList;
     class FetchQueue;
         
-    /**
-     * Represents a feed group (i.e. a folder containing feeds and/or other folders).
+    /** Represents a folder (containing feeds and/or other folders)
      */
     class Folder : public TreeNode
     {

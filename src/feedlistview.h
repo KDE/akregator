@@ -80,6 +80,9 @@ namespace Akregator
             /** reimplemented: clears the view and creates the root node ("All Feeds") */
             virtual void clear();
 
+            /** if enabled, the view shows tag folders */
+            void setShowTagFolders(bool enabled);
+            
         public slots:
            
             /** handle dropped urls */
@@ -174,6 +177,7 @@ namespace Akregator
             /** used for finding the item belonging to a node */
             QPtrDict<TreeNodeItem> m_itemDict;
             FeedList* m_feedList;
+            bool m_showTagFolders;
     };
 
 }
