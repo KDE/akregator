@@ -68,6 +68,9 @@
                     <property name="name">
                         <cstring>textLabel1</cstring>
                     </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
                     <property name="text">
                         <string>Fetch feeds every:</string>
                     </property>
@@ -171,6 +174,12 @@
         <sender>kcfg_UseIntervalFetch</sender>
         <signal>toggled(bool)</signal>
         <receiver>kcfg_AutoFetchInterval</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseIntervalFetch</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>textLabel1</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
 </connections>
