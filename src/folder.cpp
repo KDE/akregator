@@ -28,6 +28,7 @@
 
 #include <qlistview.h>
 #include <qdom.h>
+#include <qstringlist.h>
 #include <qvaluelist.h>
 
 #include <kdebug.h>
@@ -73,6 +74,16 @@ Folder::~Folder()
     emit signalDestroyed(this);
     delete d;
     d = 0;
+}
+
+QStringList Folder::tags() const
+{
+    QStringList t;
+    QValueList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+        t += (*it)->tags();
+     
+    return t;
 }
 
 QValueList<Article> Folder::articles(const QString& tag)

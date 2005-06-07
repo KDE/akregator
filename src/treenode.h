@@ -31,6 +31,7 @@
 class QDomDocument;
 class QDomElement;
 class QString;
+class QStringList;
 template <class T> class QValueList;
 
 namespace Akregator 
@@ -113,7 +114,11 @@ public:
     @return sequence of articles */
     
     virtual QValueList<Article> articles(const QString& tag=QString::null) = 0;
-    
+
+    /** returns a list of all tags occuring in this node (sub tree for folders)
+    */
+
+    virtual QStringList tags() const = 0;
     
     /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.
     @return whether the node is a feed group or not */

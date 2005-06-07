@@ -160,6 +160,11 @@ Feed* Feed::fromOPML(QDomElement e)
     return feed;
 }
 
+QStringList Feed::tags() const
+{
+    return d->archive->tags();
+}
+
 QValueList<Article> Feed::articles(const QString& tag)
 {
     if (!d->articlesLoaded)

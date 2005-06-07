@@ -30,6 +30,7 @@
 
 class QDomDocument;
 class QDomElement;
+class QStringList;
 template <class T> class QValueList;
 
 namespace Akregator
@@ -59,6 +60,9 @@ namespace Akregator
             /** returns recursively concatenated articles of children  
             @return an article sequence containing articles of children */
             virtual QValueList<Article> articles(const QString& tag=QString::null);
+
+            /** returns a list of all tags occuring in the subtree of this folder */
+            virtual QStringList tags() const;
             
             /** returns the number of unread articles in all children    
             @return number of unread articles */

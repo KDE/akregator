@@ -178,6 +178,8 @@ namespace Akregator
 
             virtual QValueList<Article> articles(const QString& tag=QString::null);
 
+            virtual QStringList tags() const;
+            
             /** returns whether a fetch error has occured */
             bool fetchErrorOccurred();
 
