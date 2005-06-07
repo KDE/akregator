@@ -33,7 +33,7 @@ class QPixmap;
 class QString;
 class QStringList;
 class KURL;
-template <class T> class QValueList;
+
 
 namespace KPIM {
     class ProgressItem;
@@ -175,7 +175,7 @@ namespace Akregator
             void setDescription(const QString& s);
 
             virtual QValueList<Article> articles(const QString& tag=QString::null);
-            
+
             /** returns whether a fetch error has occured */
             bool fetchErrorOccurred();
 
