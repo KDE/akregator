@@ -27,7 +27,6 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "addfeeddialog.h"
-#include "articlelist.h"
 #include "propertiesdialog.h"
 #include "frame.h"
 #include "fetchqueue.h"
@@ -1033,9 +1032,9 @@ void View::slotFeedFetched(Feed *feed)
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {
-        ArticleList articles = feed->articles();
-        ArticleList::ConstIterator it;
-        ArticleList::ConstIterator end = articles.end();
+        QValueList<Article> articles = feed->articles();
+        QValueList<Article>::ConstIterator it;
+        QValueList<Article>::ConstIterator end = articles.end();
         for (it = articles.begin(); it != end; ++it)
         {
             if ((*it).status()==Article::New && ((*it).feed()->useNotification() || Settings::useNotifications()))

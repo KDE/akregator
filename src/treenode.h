@@ -31,13 +31,15 @@
 class QDomDocument;
 class QDomElement;
 class QString;
+template <class T> class QValueList;
 
 namespace Akregator 
 {
 
-class ArticleList;
+class Article;
 class Folder;
 class FetchQueue;
+
 
 /**
     \brief Abstract base class for all kind of elements in the feed tree, like feeds and feed groups (and search folders later).
@@ -107,9 +109,10 @@ public:
     
     
     /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
+    If @c tag is not null, only articles tagged with @c tag are returned
     @return sequence of articles */
     
-    virtual ArticleList articles() = 0; // TODO: insert a const version as well
+    virtual QValueList<Article> articles(const QString& tag=QString::null) = 0;
     
     
     /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.

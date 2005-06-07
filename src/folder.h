@@ -34,7 +34,7 @@ template <class T> class QValueList;
 
 namespace Akregator
 {
-    class ArticleList;
+    class Article;
     class FetchQueue;
         
     /** Represents a folder (containing feeds and/or other folders)
@@ -58,7 +58,7 @@ namespace Akregator
 
             /** returns recursively concatenated articles of children  
             @return an article sequence containing articles of children */
-            virtual ArticleList articles();
+            virtual QValueList<Article> articles(const QString& tag=QString::null);
             
             /** returns the number of unread articles in all children    
             @return number of unread articles */

@@ -26,7 +26,9 @@
 #include <qdatetime.h>
 #include <qlistview.h>
 #include <qdom.h>
+#include <qmap.h>
 #include <qpixmap.h>
+#include <qvaluelist.h>
 
 #include <kurl.h>
 #include <kcharsets.h>
@@ -34,8 +36,8 @@
 #include <kglobal.h>
 #include <kstandarddirs.h>
 
-#include "articlelist.h"
 #include "akregatorconfig.h"
+#include "article.h"
 #include "feed.h"
 #include "folder.h"
 #include "fetchqueue.h"
@@ -73,13 +75,13 @@ class Feed::FeedPrivate
         QString description;
 
         /** list of feed articles */
-        ArticleList articles;
+        QMap<QString, Article> articles;
 
         /** caches guids of new articles for notication */
         QStringList newArticles;
 
         /** list of deleted articles. This contains **/
-        ArticleList deletedArticles;
+        QValueList<Article> deletedArticles;
         
         /** caches guids of deleted articles for notification */
         QStringList deletedArticlesNotify;
@@ -155,11 +157,23 @@ Feed* Feed::fromOPML(QDomElement e)
     return feed;
 }
 
-ArticleList Feed::articles()
+QValueList<Article> Feed::articles(const QString& tag)
 {
     if (!d->articlesLoaded)
         loadArticles();
-    return d->articles;
+    if (tag.isNull())
+        return d->articles.values();
+    else
+    {
+        // TODO, FIXME: make this sane!
+        QValueList<Article> tagged;
+        QValueList<Article> articles = d->articles.values();
+        for (QValueList<Article>::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+        if ((*it).hasTag(tag))
+            tagged += *it;
+        return tagged;
+        
+    }
 }
 
 void Feed::loadArticles()
@@ -170,17 +184,15 @@ void Feed::loadArticles()
     if (!d->archive)
         d->archive = Backend::Storage::getInstance()->archiveFor(xmlUrl());
 
-    d->articles.enableSorting(false);
     QStringList list = d->archive->articles();
     for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it)
     {
         Article mya(*it, this);
-        d->articles.append(mya);
+        d->articles[mya.guid()] = mya;
         if (mya.isDeleted())
             d->deletedArticles.append(mya);
     }
-    d->articles.enableSorting(true);
-    d->articles.sort();
+    
     d->articlesLoaded = true;
     enforceLimitArticleNumber();
     recalcUnreadCount();
@@ -188,9 +200,9 @@ void Feed::loadArticles()
 
 void Feed::recalcUnreadCount()
 {
-    ArticleList tarticles = articles();
-    ArticleList::Iterator it;
-    ArticleList::Iterator en = tarticles.end();
+    QValueList<Article> tarticles = articles();
+    QValueList<Article>::Iterator it;
+    QValueList<Article>::Iterator en = tarticles.end();
 
     int oldUnread = d->archive->unread();
     
@@ -347,9 +359,9 @@ void Feed::slotMarkAllArticlesAsRead()
     if (unread() > 0)
     {
         setNotificationMode(false, true);
-        ArticleList tarticles = articles();
-        ArticleList::Iterator it;
-        ArticleList::Iterator en = tarticles.end();
+        QValueList<Article> tarticles = articles();
+        QValueList<Article>::Iterator it;
+        QValueList<Article>::Iterator en = tarticles.end();
 
         for (it = tarticles.begin(); it != en; ++it)
             (*it).setStatus(Article::Read);
@@ -366,22 +378,20 @@ void Feed::appendArticles(const RSS::Document &doc)
 {
     bool changed = false;
 
-    d->articles.enableSorting(false);
     RSS::Article::List d_articles = doc.articles();
     RSS::Article::List::ConstIterator it;
     RSS::Article::List::ConstIterator en = d_articles.end();
 
     int nudge=0;
     
-    ArticleList deletedArticles = d->deletedArticles;
-    
+    QValueList<Article> deletedArticles = d->deletedArticles;
+
     for (it = d_articles.begin(); it != en; ++it)
     {
         Article mya(*it, this);
 
-        ArticleList::Iterator old = d->articles.find(mya);
-
-        if ( old == d->articles.end() ) // article not in list
+        
+        if ( !d->articles.contains(mya.guid()) ) // article not in list
         {
             mya.offsetPubDate(nudge);
             nudge--;
@@ -400,38 +410,40 @@ void Feed::appendArticles(const RSS::Document &doc)
                 
             changed = true;
         }
-        // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
-        else if (!mya.guidIsHash() && mya.hash() != (*old).hash() && !(*old).isDeleted())
+        else // article is in list
         {
-            mya.setKeep((*old).keep());
-            (*old).setStatus(Article::Read);
-            d->articles.remove(old);
-            appendArticle(mya);
-            // reset status to New
-            if (!mya.isDeleted() && !markImmediatelyAsRead())
-                mya.setStatus(Article::New);
-            changed = true;
-        }
-        else if ((*old).isDeleted())
-            deletedArticles.remove(mya);
+            // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
+            Article old = d->articles[mya.guid()];
+            if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted())
+            {
+                mya.setKeep(old.keep());
+                old.setStatus(Article::Read);
+                d->articles.remove(old.guid());
+                appendArticle(mya);
+                // reset status to New
+                if (!mya.isDeleted() && !markImmediatelyAsRead())
+                    mya.setStatus(Article::New);
+                changed = true;
+            }
+            else if (old.isDeleted())
+                deletedArticles.remove(mya);
+        }    
     }
     
-    ArticleList::ConstIterator dit = deletedArticles.begin();
-    ArticleList::ConstIterator dtmp;
-    ArticleList::ConstIterator den = deletedArticles.end();
+    QValueList<Article>::ConstIterator dit = deletedArticles.begin();
+    QValueList<Article>::ConstIterator dtmp;
+    QValueList<Article>::ConstIterator den = deletedArticles.end();
 
     // delete articles with delete flag set completely from archive, which aren't in the current feed source anymore
     while (dit != den)
     {
         dtmp = dit;
         ++dit;
-        d->articles.remove(*dtmp);
+        d->articles.remove((*dtmp).guid());
         d->archive->deleteArticle((*dtmp).guid());
         d->deletedArticles.remove(*dtmp);
     }
     
-    d->articles.enableSorting(true);
-    d->articles.sort();
     if (changed)
         modified();
 }
@@ -459,9 +471,9 @@ void Feed::appendArticle(const Article& a)
 {
     if ( (a.keep() && Settings::doNotExpireImportantArticles()) || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
     {
-        if (!d->articles.contains(a))
+        if (!d->articles.contains(a.guid()))
         {
-            d->articles.append(a);
+            d->articles[a.guid()] = a;
             if (!a.isDeleted() && a.status() != Article::Read)
                 setUnread(unread()+1);
         }
@@ -475,9 +487,10 @@ void Feed::fetch(bool followDiscovery)
     d->fetchTries = 0;
 
     // mark all new as unread
-    ArticleList::Iterator it;
-    ArticleList::Iterator en = d->articles.end();
-    for (it = d->articles.begin(); it != en; ++it)
+    QValueList<Article> articles = d->articles.values();
+    QValueList<Article>::Iterator it;
+    QValueList<Article>::Iterator en = articles.end();
+    for (it = articles.begin(); it != en; ++it)
     {
         if ((*it).status() == Article::New)
         {
@@ -585,26 +598,17 @@ void Feed::slotDeleteExpiredArticles()
     if ( !usesExpiryByAge() )
         return;
 
-    ArticleList::Iterator it = d->articles.end();
-    ArticleList::Iterator tmp;
-    ArticleList::Iterator begin = d->articles.begin();
-    // when we found an article which is not yet expired, we can stop, since articles are sorted by date
-    bool foundNotYetExpired = false;
+    QValueList<Article> articles = d->articles.values();
+    
+    QValueList<Article>::Iterator en = articles.end();
 
     setNotificationMode(false);
-        
-    while ( !foundNotYetExpired && it != begin )
+
+    for (QValueList<Article>::Iterator it = articles.begin(); it != en; ++it)
     {
-        --it;
-        if (!(*it).keep())
+        if (!(*it).keep() && isExpired(*it))
         {
-            if ( isExpired(*it) )
-            {
-                tmp = it;
-                (*tmp).setDeleted();
-            }
-            else
-                foundNotYetExpired = true;
+                (*it).setDeleted();
         }
     }
     setNotificationMode(true);
@@ -702,7 +706,6 @@ void Feed::modified()
     
     TreeNode::modified();
 }
-
 void Feed::enforceLimitArticleNumber()
 {
     int limit = -1;
@@ -715,9 +718,11 @@ void Feed::enforceLimitArticleNumber()
         return;
 
     setNotificationMode(false);
-    ArticleList::Iterator it = d->articles.begin();
-    ArticleList::Iterator tmp;
-    ArticleList::Iterator en = d->articles.end();
+    QValueList<Article> articles = d->articles.values();
+    qHeapSort(articles);
+    QValueList<Article>::Iterator it = articles.begin();
+    QValueList<Article>::Iterator tmp;
+    QValueList<Article>::Iterator en = articles.end();
 
     int c = 0;
     while (it != en)

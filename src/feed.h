@@ -33,6 +33,7 @@ class QPixmap;
 class QString;
 class QStringList;
 class KURL;
+template <class T> class QValueList;
 
 namespace KPIM {
     class ProgressItem;
@@ -46,7 +47,6 @@ using RSS::Status;
 namespace Akregator
 {
     class Article;
-    class ArticleList;
     class FetchQueue;
     class Folder;
 
@@ -174,7 +174,7 @@ namespace Akregator
             /** sets the description of this feed */
             void setDescription(const QString& s);
 
-            virtual ArticleList articles();
+            virtual QValueList<Article> articles(const QString& tag=QString::null);
             
             /** returns whether a fetch error has occured */
             bool fetchErrorOccurred();

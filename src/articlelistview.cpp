@@ -24,7 +24,7 @@
 
 #include "akregatorconfig.h"
 #include "articlelistview.h"
-#include "articlelist.h"
+#include "article.h"
 #include "feed.h"
 #include "treenode.h"
 
@@ -263,7 +263,7 @@ void ArticleListView::slotUpdate()
     
     QPtrList<QListViewItem> selItems = selectedItems(false);
 
-    ArticleList selectedArticles;
+    QValueList<Article> selectedArticles;
 
     int haveSelected = 0;    
     for (QListViewItem* i = selItems.first(); i; i = selItems.next() )
@@ -280,10 +280,10 @@ void ArticleListView::slotUpdate()
     SortOrder order = sortOrder();
     setSorting(-1);
 
-    ArticleList articles = m_node->articles();
+    QValueList<Article> articles = m_node->articles();
 
-    ArticleList::ConstIterator end = articles.end();
-    ArticleList::ConstIterator it = articles.begin();
+    QValueList<Article>::ConstIterator end = articles.end();
+    QValueList<Article>::ConstIterator it = articles.begin();
 
     for (; it != end; ++it)
     {

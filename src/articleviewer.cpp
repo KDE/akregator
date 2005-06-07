@@ -44,7 +44,6 @@
 #include "aboutdata.h"
 #include "akregator_run.h"
 #include "akregatorconfig.h"
-#include "articlelist.h"
 #include "articleviewer.h"
 #include "feed.h"
 #include "folder.h"
@@ -589,9 +588,9 @@ void ArticleViewer::slotUpdateCombinedView()
     if (!m_node)
         return slotClear();
 
-    ArticleList articles = m_node->articles();
-    ArticleList::ConstIterator end = articles.end();
-    ArticleList::ConstIterator it = articles.begin();
+    QValueList<Article> articles = m_node->articles();
+    QValueList<Article>::ConstIterator end = articles.end();
+    QValueList<Article>::ConstIterator it = articles.begin();
 
     QString text;
 

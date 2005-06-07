@@ -22,7 +22,7 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#include "articlelist.h"
+#include "article.h"
 #include "folder.h"
 #include "fetchqueue.h"
 
@@ -75,12 +75,12 @@ Folder::~Folder()
     d = 0;
 }
 
-ArticleList Folder::articles()
+QValueList<Article> Folder::articles(const QString& tag)
 {
-    ArticleList seq;
+    QValueList<Article> seq;
     QValueList<TreeNode*>::ConstIterator en = d->children.end();
     for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        seq += (*it)->articles();
+        seq += (*it)->articles(tag);
      
     return seq;
 }
