@@ -77,6 +77,9 @@ class Feed::FeedPrivate
         /** list of feed articles */
         QMap<QString, Article> articles;
 
+        /** caches guids of tagged articles. key: tag, value: list of guids */
+        QMap<QString, QStringList> taggedArticles;
+
         /** caches guids of new articles for notication */
         QStringList newArticles;
 
@@ -167,10 +170,9 @@ QValueList<Article> Feed::articles(const QString& tag)
     {
         // TODO, FIXME: make this sane!
         QValueList<Article> tagged;
-        QValueList<Article> articles = d->articles.values();
-        for (QValueList<Article>::ConstIterator it = articles.begin(); it != articles.end(); ++it)
-        if ((*it).hasTag(tag))
-            tagged += *it;
+        QStringList guids = d->archive->articles(tag);
+        for (QStringList::ConstIterator it = guids.begin(); it != guids.end(); ++it)
+            tagged += d->articles[*it];
         return tagged;
         
     }
@@ -662,11 +664,13 @@ void Feed::slotArticleStatusChanged(int oldStatus, const Article& article)
         setUnread(unread()-1);
 }
 
-void Feed::slotArticleDeleted(const Article& mya)
+void Feed::setArticleDeleted(const Article& mya)
 {
     if (!d->deletedArticles.contains(mya))
         d->deletedArticles.append(mya);
     d->deletedArticlesNotify.append(mya.guid());
+    QStringList tags = d->archive->tags(mya.guid());
+    
     modified();
 }
 

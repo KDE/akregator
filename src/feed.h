@@ -59,6 +59,8 @@ namespace Akregator
      */
     class Feed : public TreeNode
     {
+        friend class Article;
+        
         Q_OBJECT
         public:
             /** the archiving modes:
@@ -201,8 +203,6 @@ namespace Akregator
             */
             virtual TreeNode* next();
 
-            void setArticleDeleted(const Article& mya);
-
             /** downloads the favicon */
             void loadFavicon();
             
@@ -221,9 +221,6 @@ namespace Akregator
             /** add this feed to the fetch queue @c queue */
             virtual void slotAddToFetchQueue(FetchQueue* queue);
 
-            /** notifies that article @c mya was set to "deleted". */
-            virtual void slotArticleDeleted(const Article& mya);
-            
             virtual void slotArticleStatusChanged(int oldStatus, const Article& mya);
             
         signals:
@@ -258,6 +255,10 @@ namespace Akregator
 
         private:
             
+            /** notifies that article @c mya was set to "deleted".
+             */
+            void setArticleDeleted(const Article& mya);
+
             void enforceLimitArticleNumber();
 
             void appendArticles(const RSS::Document &d);
