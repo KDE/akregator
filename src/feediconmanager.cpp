@@ -143,7 +143,7 @@ void FeedIconManager::slotIconChanged(bool /*isHost*/, const QString& hostOrURL,
     QString iconFile = KGlobal::dirs()->findResource("cache",
                                  iconName+".png");
     Feed* f;
-    while (f = d->urlDict.take(hostOrURL))
+    while (( f = d->urlDict.take(hostOrURL) ))
         if (d->registeredFeeds.contains(f))
             f->setFavicon(QPixmap(iconFile));
     emit signalIconChanged(hostOrURL, iconFile);
