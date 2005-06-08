@@ -94,7 +94,10 @@ namespace Akregator
             
             /** Update view */
             void slotUpdate();
-            
+
+            void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
             /** sets text filter and status filter
             @param textFilter filters text
             @param statusFilter filters status (read, unread, new) */
@@ -122,6 +125,9 @@ namespace Akregator
             of items accordingly */
             virtual void applyFilters();
             
+            void connectToNode(TreeNode* node);
+            void disconnectFromNode(TreeNode* node);
+            
             virtual QDragObject *dragObject();
 
         protected slots:
@@ -131,6 +137,8 @@ namespace Akregator
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             
         private:
+            /** maps article to article item */
+            QMap<Article, ArticleItem*> m_articleMap;
             bool m_updated;
             bool m_doReceive;
             TreeNode* m_node;

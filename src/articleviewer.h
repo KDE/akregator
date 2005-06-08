@@ -86,6 +86,12 @@ namespace Akregator
 
             virtual void slotPaletteOrFontChanged();
             
+        protected slots:
+                    
+            void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
+            
         protected:
             
             virtual void keyPressEvent(QKeyEvent* e);

@@ -57,11 +57,6 @@ FeedList::FeedList(QObject *parent, const char *name)
     d->flatList.append(d->rootNode);
     connectToNode(d->rootNode);
 
-    // these are propagated from children to root node, so we connect only rootNode to the corresponding feed list signals, not every node separately.
-    connect(d->rootNode, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)));
-    connect(d->rootNode, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)));
-    connect(d->rootNode, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)));
-
     emit signalNodeAdded(d->rootNode);
 }
 

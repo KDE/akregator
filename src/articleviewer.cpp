@@ -613,6 +613,21 @@ void ArticleViewer::slotUpdateCombinedView()
 
 }
 
+void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<Article>& /*list*/)
+{
+    if (m_viewMode == CombinedView)
+        slotUpdateCombinedView();
+}
+
+void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Article>& /*list*/)
+{
+}
+
+void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& /*list*/)
+{
+}
+
+
 void ArticleViewer::slotClear()
 {
     disconnectFromNode(m_node);
@@ -665,7 +680,12 @@ void ArticleViewer::connectToNode(TreeNode* node)
     if (node)
     {
         if (m_viewMode == CombinedView)
-            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+        {
+//            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+            connect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>)));
+            connect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>)), this, SLOT(slotArticlesRemoved(TreeNode*, const QValueList<Article>)));
+            connect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>)));
+        }
         if (m_viewMode == SummaryView)
             connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
 
@@ -677,9 +697,13 @@ void ArticleViewer::disconnectFromNode(TreeNode* node)
 {
     if (node)
     {
-        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+//        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
         disconnect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
         disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
+        disconnect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>)));
+        disconnect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>)), this, SLOT(slotArticlesRemoved(TreeNode*, const QValueList<Article>)));
+        disconnect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>)));
+
     }
 }
             

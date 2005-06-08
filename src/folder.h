@@ -159,7 +159,7 @@ namespace Akregator
             @param node the tree node to insert */
             virtual void insertChild(uint index, TreeNode* node);
 
-            
+            virtual void doArticleNotification();
         private:
 
             void connectToNode(TreeNode* child);

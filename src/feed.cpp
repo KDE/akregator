@@ -80,16 +80,14 @@ class Feed::FeedPrivate
         /** caches guids of tagged articles. key: tag, value: list of guids */
         QMap<QString, QStringList> taggedArticles;
 
-        /** caches guids of new articles for notication */
-        QStringList newArticles;
-
         /** list of deleted articles. This contains **/
         QValueList<Article> deletedArticles;
         
         /** caches guids of deleted articles for notification */
-        QStringList deletedArticlesNotify;
-
-        QStringList changedArticlesNotify;
+   
+        QValueList<Article> addedArticlesNotify;
+        QValueList<Article> removedArticlesNotify;
+        QValueList<Article> updatedArticlesNotify;
         
         QPixmap imagePixmap;
         RSS::Image image;
@@ -224,7 +222,7 @@ void Feed::recalcUnreadCount()
     if (unread != oldUnread)
     {
         d->archive->setUnread(unread);
-        modified();
+        nodeModified();
     }
 }
 
@@ -397,11 +395,9 @@ void Feed::appendArticles(const RSS::Document &doc)
 
     for (it = d_articles.begin(); it != en; ++it)
     {
-        Article mya(*it, this);
-
-        
-        if ( !d->articles.contains(mya.guid()) ) // article not in list
+        if ( !d->articles.contains((*it).guid()) ) // article not in list
         {
+            Article mya(*it, this);
             mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya);
@@ -410,7 +406,7 @@ void Feed::appendArticles(const RSS::Document &doc)
             for (QValueList<ArticleInterceptor*>::ConstIterator it = interceptors.begin(); it != interceptors.end(); ++it)
                 (*it)->processArticle(mya);
             
-            d->newArticles.append(mya.guid());
+            d->addedArticlesNotify.append(mya);
             
             if (!mya.isDeleted() && !markImmediatelyAsRead())
                 mya.setStatus(Article::New);
@@ -422,7 +418,8 @@ void Feed::appendArticles(const RSS::Document &doc)
         else // article is in list
         {
             // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
-            Article old = d->articles[mya.guid()];
+            Article old = d->articles[(*it).guid()];
+            Article mya(*it, this);          
             if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted())
             {
                 mya.setKeep(old.keep());
@@ -432,7 +429,7 @@ void Feed::appendArticles(const RSS::Document &doc)
                 // reset status to New
                 if (!mya.isDeleted() && !markImmediatelyAsRead())
                     mya.setStatus(Article::New);
-                d->changedArticlesNotify.append(mya.guid());
+                d->updatedArticlesNotify.append(mya);
                 changed = true;
             }
             else if (old.isDeleted())
@@ -455,7 +452,7 @@ void Feed::appendArticles(const RSS::Document &doc)
     }
     
     if (changed)
-        modified();
+        articlesModified();
 }
 
 bool Feed::usesExpiryByAge() const
@@ -627,7 +624,7 @@ void Feed::slotDeleteExpiredArticles()
 void Feed::setFavicon(const QPixmap &p)
 {
     d->favicon = p;
-    modified();
+    nodeModified();
 }
 
 void Feed::setImage(const QPixmap &p)
@@ -637,7 +634,7 @@ void Feed::setImage(const QPixmap &p)
     d->imagePixmap=p;
     QString u = d->xmlUrl;
     d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
-    modified();
+    nodeModified();
 }
 
 Feed::ArchiveMode Feed::archiveMode() const
@@ -660,34 +657,31 @@ void Feed::setUnread(int unread)
     if (d->archive && unread != d->archive->unread())
     {
         d->archive->setUnread(unread);
-        modified();
+        nodeModified();
     }
 }
 
 
-void Feed::setArticleDeleted(const QString& guid)
+void Feed::setArticleDeleted(Article& a)
 {
-    Article mya = d->articles[guid];
-    if (!d->deletedArticles.contains(mya))
-        d->deletedArticles.append(mya);
-    d->deletedArticlesNotify.append(guid);
-    QStringList tags = d->archive->tags(guid);
-    modified();
+    if (!d->deletedArticles.contains(a))
+        d->deletedArticles.append(a);
+    d->removedArticlesNotify.append(a);
+    articlesModified();
 }
 
-void Feed::setArticleChanged(const QString& guid, int oldStatus)
+void Feed::setArticleChanged(Article& a, int oldStatus)
 {
-    
     if (oldStatus != -1)
     {
-        int newStatus = d->articles[guid].status();
+        int newStatus = a.status();
         if (oldStatus == Article::Read && newStatus != Article::Read)
             setUnread(unread()+1);
         else if (oldStatus != Article::Read && newStatus == Article::Read)
             setUnread(unread()-1);
     }
-    d->changedArticlesNotify.append(guid);
-    modified();
+    d->updatedArticlesNotify.append(a);
+    articlesModified();
 }
 
 int Feed::totalCount() const
@@ -711,25 +705,26 @@ TreeNode* Feed::next()
     return 0;
 }
 
-void Feed::modified()
+void Feed::doArticleNotification()
 {
-    if (!d->newArticles.isEmpty())
+    if (!d->addedArticlesNotify.isEmpty())
     {
-        emit signalArticlesAdded(this, d->newArticles);
-        d->newArticles.clear();
+        emit signalArticlesAdded(this, d->addedArticlesNotify);
+        d->addedArticlesNotify.clear();
     }
-    if (!d->deletedArticlesNotify.isEmpty())
+    if (!d->removedArticlesNotify.isEmpty())
     {
-        emit signalArticlesDeleted(this, d->deletedArticlesNotify);
-        d->deletedArticlesNotify.clear();
+        emit signalArticlesRemoved(this, d->removedArticlesNotify);
+        d->removedArticlesNotify.clear();
     }
-    if (!d->changedArticlesNotify.isEmpty())
+    if (!d->updatedArticlesNotify.isEmpty())
     {
-        emit signalArticlesDeleted(this, d->changedArticlesNotify);
-        d->changedArticlesNotify.clear();
+        emit signalArticlesUpdated(this, d->updatedArticlesNotify);
+        d->updatedArticlesNotify.clear();
     }
-    TreeNode::modified();
+    TreeNode::doArticleNotification();
 }
+
 void Feed::enforceLimitArticleNumber()
 {
     int limit = -1;

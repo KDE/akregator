@@ -37,7 +37,8 @@ class TreeNode::TreeNodePrivate
     public:
     
     bool doNotify;
-    bool changeOccured;
+    bool nodeChangeOccured;
+    bool articleChangeOccured;
     QString title;
     Folder* parent;
     uint id;
@@ -47,7 +48,8 @@ TreeNode::TreeNode()
     : QObject(0, 0), d(new TreeNodePrivate)
 {
     d->doNotify = true;
-    d->changeOccured = false;
+    d->nodeChangeOccured = false;
+    d->articleChangeOccured = false;
     d->title = "";
     d->parent = 0;
     d->id = 0;
@@ -72,7 +74,7 @@ void TreeNode::setTitle(const QString& title)
     if (d->title != title)
     {
         d->title = title;
-        modified();
+        nodeModified();
     }
 }
 
@@ -114,13 +116,17 @@ void TreeNode::setNotificationMode(bool doNotify, bool notifyOccuredChanges)
     if (doNotify && !d->doNotify) // turned on
     {
         d->doNotify = true;
-        if (d->changeOccured && notifyOccuredChanges)
+        if (d->nodeChangeOccured && notifyOccuredChanges)
             emit signalChanged(this);
-        d->changeOccured = false;
+        if (d->articleChangeOccured && notifyOccuredChanges)
+            doArticleNotification();
+        d->nodeChangeOccured = false;
+        d->articleChangeOccured = false;
     }
     if (!doNotify && d->doNotify) //turned off
     {
-        d->changeOccured = false;
+        d->nodeChangeOccured = false;
+        d->articleChangeOccured = false;
         d->doNotify = false;
     }
 }
@@ -135,14 +141,24 @@ void TreeNode::setId(uint id)
     d->id = id;
 }
 
-void TreeNode::modified()
+void TreeNode::nodeModified()
 {
-//    kdDebug() << "enter TreeNode::modified" << title() << endl;
     if (d->doNotify)
         emit signalChanged(this);
     else
-        d->changeOccured = true;
-//    kdDebug() << "leave TreeNode::modified" << title()<< endl;
+        d->nodeChangeOccured = true;
+}
+
+void TreeNode::articlesModified()
+{
+    if (d->doNotify)
+        doArticleNotification();
+    else
+        d->articleChangeOccured = true;
+}
+
+void TreeNode::doArticleNotification()
+{
 }
 
 } // namespace Akregator

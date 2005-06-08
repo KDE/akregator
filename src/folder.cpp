@@ -44,7 +44,11 @@ class Folder::FolderPrivate
         int unread;
         /** whether or not the folder is expanded */
         bool open;
-        /** update unread count cache */
+
+        /** caches guids for notifying added articles */
+        QValueList<Article> addedArticlesNotify;
+        /** caches guids for notifying removed articles */
+        QValueList<Article> removedArticlesNotify;
 };
            
 Folder* Folder::fromOPML(QDomElement e)
@@ -139,7 +143,9 @@ void Folder::insertChild(uint index, TreeNode* node)
         connectToNode(node);
         updateUnreadCount();
         emit signalChildAdded(node);
-        modified();
+        d->addedArticlesNotify += node->articles();
+        articlesModified();
+        nodeModified(); 
     }   
 //    kdDebug() << "leave Folder::insertChild(int, node) " << node->title() << endl; 
 }
@@ -154,7 +160,9 @@ void Folder::appendChild(TreeNode* node)
         connectToNode(node);
         updateUnreadCount();
         emit signalChildAdded(node);
-        modified();
+        d->addedArticlesNotify += node->articles();
+        articlesModified();
+        nodeModified();
     }    
 //    kdDebug() << "leave Folder::appendChild() " << node->title() << endl;
 }
@@ -169,7 +177,9 @@ void Folder::prependChild(TreeNode* node)
         connectToNode(node);
         updateUnreadCount();
         emit signalChildAdded(node);
-        modified();
+        d->addedArticlesNotify += node->articles();
+        articlesModified();
+        nodeModified();
     }    
 //    kdDebug() << "leave Folder::prependChild() " << node->title() << endl;
 }
@@ -184,7 +194,9 @@ void Folder::removeChild(TreeNode* node)
         disconnectFromNode(node);
         updateUnreadCount();    
         emit signalChildRemoved(this, node);
-        modified();
+        d->removedArticlesNotify += node->articles();
+        articlesModified(); // articles were removed, TODO: add guids to a list
+        nodeModified();
     }
 //    kdDebug() << "leave Folder::removeChild() node: " << (node ? node->title() : "null") << endl;
 }
@@ -248,21 +260,15 @@ void Folder::slotMarkAllArticlesAsRead()
     
 void Folder::slotChildChanged(TreeNode* /*node*/)
 {
-//    kdDebug() << "enter Folder::slotChildChanged child" << node->title() << endl;
-    int oldUnread = d->unread;
-    updateUnreadCount();    
-   
-    if (oldUnread != d->unread)
-        modified();
-
-//    kdDebug() << "leave Folder::slotChildChanged child"  << node->title() << endl;
+    updateUnreadCount();
+    nodeModified();
 }
 
 void Folder::slotChildDestroyed(TreeNode* node)
 {
     d->children.remove(node);
     updateUnreadCount();    
-    modified();
+    nodeModified();
 }
 
 void Folder::slotDeleteExpiredArticles()
@@ -281,22 +287,26 @@ void Folder::slotAddToFetchQueue(FetchQueue* queue)
         (*it)->slotAddToFetchQueue(queue);
 }
 
+void Folder::doArticleNotification()
+{
+}
+
 void Folder::connectToNode(TreeNode* child)
 {
         connect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         connect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        connect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)));
-        connect(child, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)));
-        connect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)));
+        connect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)));
+        connect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)));
+        connect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)));
 }
 
 void Folder::disconnectFromNode(TreeNode* child)
 {
         disconnect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         disconnect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        disconnect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)));
-        disconnect(child, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)));
-        disconnect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)));
+        disconnect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)));
+        disconnect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)));
+        disconnect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)));
 }
             
 TreeNode* Folder::next()

@@ -197,13 +197,9 @@ void ArticleListView::slotShowNode(TreeNode* node)
     }
      
     if (m_node)
-    {
-        disconnect(m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
-        disconnect(m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    }
-    
-    connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
-    connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
+        disconnectFromNode(m_node);
+
+    connectToNode(node);
 
     m_node = node;
         
@@ -227,15 +223,64 @@ void ArticleListView::slotShowNode(TreeNode* node)
 void ArticleListView::slotClear()
 {
     if (m_node)
-    {
-        disconnect(m_node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
-        disconnect(m_node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    }
+        disconnectFromNode(m_node);
+        
     m_node = 0;
-    
+    m_articleMap.clear();
     clear();
 }
 
+void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Article>& list)
+{
+    setUpdatesEnabled(false);
+    for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    {
+        if (!m_articleMap.contains(*it))
+        {
+            ArticleItem* ali = new ArticleItem(this, lastChild(), *it, (*it).feed());
+            m_articleMap.insert(*it, ali);
+        }
+    }
+    setUpdatesEnabled(true);
+}
+
+void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<Article>& list)
+{
+    setUpdatesEnabled(false);
+    for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    {
+        if (m_articleMap.contains(*it))
+        {
+            ArticleItem* ali = m_articleMap[*it];
+            bool isSelected = ali->isSelected();
+            bool isCurrent = currentItem() == ali;
+            m_articleMap.remove(*it);
+            delete ali;
+            ali = new ArticleItem(this, lastChild(), *it, (*it).feed());
+            m_articleMap.insert(*it, ali);
+            ali->setSelected(isSelected);
+            if (isCurrent)
+                setCurrentItem(ali);
+        }
+    }
+    setUpdatesEnabled(true);
+}
+
+void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& list)
+{
+    setUpdatesEnabled(false);
+    for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    {
+        if (m_articleMap.contains(*it))
+        {
+            ArticleItem* ali = m_articleMap[*it];
+            m_articleMap.remove(*it);
+            delete ali;
+        }
+    }
+    setUpdatesEnabled(true);
+}
+            
 void ArticleListView::slotUpdate()
 {
     if (!m_doReceive)
@@ -258,8 +303,6 @@ void ArticleListView::slotUpdate()
         oldCurrentArticle = li->article();
         haveOld = true;
     }
-
-    
     
     QPtrList<QListViewItem> selItems = selectedItems(false);
 
@@ -290,6 +333,7 @@ void ArticleListView::slotUpdate()
         if (!(*it).isDeleted())
         {
             ArticleItem *ali = new ArticleItem(this, lastChild(), *it, (*it).feed());
+            m_articleMap.insert(*it, ali);
             if (haveOld && *it == oldCurrentArticle)
             {
                 setCurrentItem(ali);
@@ -309,6 +353,24 @@ void ArticleListView::slotUpdate()
     applyFilters();        
     setUpdatesEnabled(true);
     triggerUpdate();
+}
+
+void ArticleListView::connectToNode(TreeNode* node)
+{
+    //connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
+    connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
+    connect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QValueList<Article>&)) );
+}
+
+void ArticleListView::disconnectFromNode(TreeNode* node)
+{
+    //disconnect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
+    disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
+    disconnect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QValueList<Article>&)) );
 }
 
 void ArticleListView::applyFilters()

@@ -115,8 +115,7 @@ public:
     
     virtual QValueList<Article> articles(const QString& tag=QString::null) = 0;
 
-    /** returns a list of all tags occuring in this node (sub tree for folders)
-    */
+    /** returns a list of all tags occuring in this node (sub tree for folders) */
 
     virtual QStringList tags() const = 0;
     
@@ -166,33 +165,44 @@ public slots:
     /** adds node to a fetch queue */
     
     virtual void slotAddToFetchQueue(FetchQueue* queue) = 0;
-    //virtual void slotFetch(int timeout) = 0;    
-    //virtual void slotAbortFetch() = 0;
       
 signals:
     
      /** Emitted when this object is deleted. */
      void signalDestroyed(TreeNode*);
  
-    /** Notification mechanism: emitted, when the node was modified and notification 
-    is enabled. */
-    
+    /** Notification mechanism: emitted, when the node was modified and notification is enabled. A node change is renamed title, icon, unread count. Added, updated or removed articles are not notified via this signal */
     void signalChanged(TreeNode*);
 
-    /** emitted when new articles were added */
-    void signalArticlesAdded(TreeNode*, const QStringList& guids);
+    /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in. For listening to newly fetched articles, you have to register yourself at @ref ArticleInterceptorManager
+        @param TreeNode* the node articles were added to
+        @param QStringList the guids of the articles added
+    */
+    void signalArticlesAdded(TreeNode*, const QValueList<Article>& guids);
     
     /** emitted when articles were updated */
-    void signalArticlesUpdated(TreeNode*, const QStringList& guids);
+    void signalArticlesUpdated(TreeNode*, const QValueList<Article>& guids);
     
-    /** emitted when articles were deleted */
-    void signalArticlesDeleted(TreeNode*, const QStringList& guids);
+    /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved somewhere else in the tree, e.g. if the user moved the feed */
+    void signalArticlesRemoved(TreeNode*, const QValueList<Article>& guids);
 
-protected:    
+protected:
 
-    /** call this if you modified the object. Will do notification immediately or cache it, depending on @c m_doNotify. */
-    virtual void modified();
+    /** call this if you modified the actual node (title, unread count).
+     Call this only when the _actual_ _node_ has changed, i.e. title, unread count. Don't use for article changes!
+     Will do notification immediately or cache it, depending on @c m_doNotify. */
+    virtual void nodeModified();
+    
+    /** call this if the articles in the node were changed. Sends signalArticlesAdded/Updated/Removed signals
+     Will do notification immediately or cache it, depending on @c m_doNotify. */
+    virtual void articlesModified();
 
+    /** reimplement this in subclasses to do the actual notification
+      called by articlesModified
+    */
+    virtual void doArticleNotification();
+
+    
 private:
     class TreeNodePrivate;
     TreeNodePrivate* d;

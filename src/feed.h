@@ -241,8 +241,7 @@ namespace Akregator
 
             void recalcUnreadCount();
 
-            /** reimplemented for notification of new articles */
-            virtual void modified();
+            virtual void doArticleNotification();
             
         private slots:
 
@@ -254,13 +253,13 @@ namespace Akregator
             /** notifies that article @c mya was set to "deleted".
                 To be called by @ref Article
              */
-            void setArticleDeleted(const QString& guid);
+            void setArticleDeleted(Article& a);
 
             /** notifies that article @c mya was changed
                 @param oldStatus if the status was changed, it contains the old status, -1 otherwise
                 To be called by @ref Article
              */
-            void setArticleChanged(const QString& guid, int oldStatus=-1);
+            void setArticleChanged(Article& a, int oldStatus=-1);
             
             void enforceLimitArticleNumber();
 
