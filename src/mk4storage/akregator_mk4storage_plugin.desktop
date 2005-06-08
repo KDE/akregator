@@ -11,6 +11,7 @@ Comment[cs]=Modul pro Akregator
 Comment[es]=Extensión para Akregator
 Comment[ga]=Breiseán Akregator
 Comment[sv]=Insticksprogram för Akregator
+Comment[tr]=Akregator Eklentisi
 ServiceTypes=Akregator/Plugin
 
 X-KDE-akregator-plugintype=storage
