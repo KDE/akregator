@@ -136,9 +136,8 @@ void Folder::insertChild(uint index, TreeNode* node)
         else
             d->children.insert(d->children.at(index), node);
         node->setParent(this);
-        connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
-        connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        updateUnreadCount();    
+        connectToNode(node);
+        updateUnreadCount();
         emit signalChildAdded(node);
         modified();
     }   
@@ -152,9 +151,8 @@ void Folder::appendChild(TreeNode* node)
     {
         d->children.append(node);
         node->setParent(this);
-        connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
-        connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        updateUnreadCount();    
+        connectToNode(node);
+        updateUnreadCount();
         emit signalChildAdded(node);
         modified();
     }    
@@ -168,9 +166,8 @@ void Folder::prependChild(TreeNode* node)
     {
         d->children.prepend(node);
         node->setParent(this);
-        connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
-        connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        updateUnreadCount();    
+        connectToNode(node);
+        updateUnreadCount();
         emit signalChildAdded(node);
         modified();
     }    
@@ -184,6 +181,7 @@ void Folder::removeChild(TreeNode* node)
     {    
         node->setParent(0);
         d->children.remove(node);
+        disconnectFromNode(node);
         updateUnreadCount();    
         emit signalChildRemoved(this, node);
         modified();
@@ -283,6 +281,24 @@ void Folder::slotAddToFetchQueue(FetchQueue* queue)
         (*it)->slotAddToFetchQueue(queue);
 }
 
+void Folder::connectToNode(TreeNode* child)
+{
+        connect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
+        connect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
+        connect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)));
+        connect(child, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)));
+        connect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)));
+}
+
+void Folder::disconnectFromNode(TreeNode* child)
+{
+        disconnect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
+        disconnect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
+        disconnect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)));
+        disconnect(child, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)));
+        disconnect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)));
+}
+            
 TreeNode* Folder::next()
 {
     if ( firstChild() )

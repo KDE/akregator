@@ -171,32 +171,23 @@ public slots:
       
 signals:
     
+     /** Emitted when this object is deleted. */
+     void signalDestroyed(TreeNode*);
+ 
     /** Notification mechanism: emitted, when the node was modified and notification 
     is enabled. */
     
     void signalChanged(TreeNode*);
-    
-    
-    /** Emitted when this object is deleted. */
-    
-    void signalDestroyed(TreeNode*);   
-    
-    
-    /** TODO: not used yet */
-    
-    void signalFetched();
-    
-    
-    /** TODO: not used yet */
-    
-    void signalFetchAborted();
-    
-    
-    /** TODO: not used yet */
-    
-    void signalFetchTimeout();
 
+    /** emitted when new articles were added */
+    void signalArticlesAdded(TreeNode*, const QStringList& guids);
     
+    /** emitted when articles were updated */
+    void signalArticlesUpdated(TreeNode*, const QStringList& guids);
+    
+    /** emitted when articles were deleted */
+    void signalArticlesDeleted(TreeNode*, const QStringList& guids);
+
 protected:    
 
     /** call this if you modified the object. Will do notification immediately or cache it, depending on @c m_doNotify. */

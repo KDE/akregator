@@ -166,7 +166,7 @@ void Article::setDeleted()
     if (isDeleted())
         return;
     if (d->feed)
-        d->feed->setArticleDeleted(*this);
+        d->feed->setArticleDeleted(d->guid);
     setStatus(Read);
     d->status = Private::Deleted | Private::Read;
     d->archive->setStatus(d->guid, d->status);
@@ -243,23 +243,24 @@ int Article::status() const
 void Article::setStatus(int stat)
 {
     int oldStatus = status();
-    
-    switch (stat)
+
+    if (oldStatus != stat)
     {
-        case Read:
-            d->status = (d->status | Private::Read) & ~Private::New;
-            break;
-        case Unread:
-            d->status = (d->status & ~Private::Read) & ~Private::New;
-            break;
-        case New:
-            d->status = (d->status | Private::New) & ~Private::Read;
-            break;
-    }
-    d->archive->setStatus(d->guid, d->status);
-    
-    if (d->feed)
-        d->feed->slotArticleStatusChanged(oldStatus, *this);
+        switch (stat)
+        {
+            case Read:
+                d->status = (d->status | Private::Read) & ~Private::New;
+                break;
+            case Unread:
+                d->status = (d->status & ~Private::Read) & ~Private::New;
+                break;
+            case New:
+                d->status = (d->status | Private::New) & ~Private::Read;
+                break;
+        }
+        d->archive->setStatus(d->guid, d->status);
+        d->feed->setArticleChanged(d->guid, oldStatus);
+     }
 }
 
 QString Article::title() const
@@ -335,16 +336,19 @@ void Article::setKeep(bool keep)
 {
     d->status = keep ? (d->status | Private::Keep) : (d->status & ~Private::Keep);
     d->archive->setStatus(d->guid, d->status);
+    d->feed->setArticleChanged(d->guid);
 }
 
 void Article::addTag(const QString& tag)
 {
     d->archive->addTag(d->guid, tag);
+    d->feed->setArticleChanged(d->guid);
 }
 
 void Article::removeTag(const QString& tag)
 {
     d->archive->removeTag(d->guid, tag);
+    d->feed->setArticleChanged(d->guid);
 }
             
 bool Article::hasTag(const QString& tag) const

@@ -56,6 +56,12 @@ FeedList::FeedList(QObject *parent, const char *name)
     d->idMap[1] = d->rootNode;
     d->flatList.append(d->rootNode);
     connectToNode(d->rootNode);
+
+    // these are propagated from children to root node, so we connect only rootNode to the corresponding feed list signals, not every node separately.
+    connect(d->rootNode, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QStringList&)));
+    connect(d->rootNode, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesDeleted(TreeNode*, const QStringList&)));
+    connect(d->rootNode, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QStringList&)));
+
     emit signalNodeAdded(d->rootNode);
 }
 
@@ -293,39 +299,27 @@ void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 
 void FeedList::connectToNode(TreeNode* node)
 {
+    connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
+
     if (node->isGroup())
     {
         Folder* fg = static_cast<Folder*>(node);
                        
         connect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
         connect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
-        connect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-//        connect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-    }
-    else
-    {
-        Feed* f = static_cast<Feed*> (node);
-        
-        connect(f, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-//        connect(f, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }
 }
             
 void FeedList::disconnectFromNode(TreeNode* node)
 {
+    disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
+    
     if (node->isGroup())
     {
         Folder* fg = static_cast<Folder*> (node);
         disconnect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
         disconnect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
         disconnect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-//        disconnect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-    }
-    else
-    {
-        Feed* f = static_cast<Feed*> (node);
-        disconnect(f, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-//        disconnect(f, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
     }
 }
 

@@ -162,6 +162,9 @@ namespace Akregator
             
         private:
 
+            void connectToNode(TreeNode* child);
+            void disconnectFromNode(TreeNode* child);
+            
             virtual void updateUnreadCount();
             
             class FolderPrivate;

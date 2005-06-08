@@ -87,6 +87,14 @@ signals:
     /** emitted when a node was removed from this feed list */
     void signalNodeRemoved(TreeNode*);
 
+    /** emitted when new articles were added to a feed in this list */
+    void signalArticlesAdded(TreeNode*, const QStringList& guids);
+    
+    /** emitted when articles were updated in this list*/
+    void signalArticlesUpdated(TreeNode*, const QStringList& guids);
+    
+    /** emitted when articles were deleted from feeds in this list */
+    void signalArticlesDeleted(TreeNode*, const QStringList& guids);
 protected:
 
     /** connects a node's notification signals to the slots below. Used for Observer mechanism 

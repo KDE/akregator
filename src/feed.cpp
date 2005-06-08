@@ -88,6 +88,8 @@ class Feed::FeedPrivate
         
         /** caches guids of deleted articles for notification */
         QStringList deletedArticlesNotify;
+
+        QStringList changedArticlesNotify;
         
         QPixmap imagePixmap;
         RSS::Image image;
@@ -192,7 +194,7 @@ void Feed::loadArticles()
         d->archive = Backend::Storage::getInstance()->archiveFor(xmlUrl());
 
     QStringList list = d->archive->articles();
-    for ( QStringList::Iterator it = list.begin(); it != list.end(); ++it)
+    for ( QStringList::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         Article mya(*it, this);
         d->articles[mya.guid()] = mya;
@@ -430,6 +432,7 @@ void Feed::appendArticles(const RSS::Document &doc)
                 // reset status to New
                 if (!mya.isDeleted() && !markImmediatelyAsRead())
                     mya.setStatus(Article::New);
+                d->changedArticlesNotify.append(mya.guid());
                 changed = true;
             }
             else if (old.isDeleted())
@@ -661,21 +664,29 @@ void Feed::setUnread(int unread)
     }
 }
 
-void Feed::slotArticleStatusChanged(int oldStatus, const Article& article)
-{
-    if (oldStatus == Article::Read && article.status() != Article::Read)
-        setUnread(unread()+1);
-    else if (oldStatus != Article::Read &&  article.status() == Article::Read)
-        setUnread(unread()-1);
-}
 
-void Feed::setArticleDeleted(const Article& mya)
+void Feed::setArticleDeleted(const QString& guid)
 {
+    Article mya = d->articles[guid];
     if (!d->deletedArticles.contains(mya))
         d->deletedArticles.append(mya);
-    d->deletedArticlesNotify.append(mya.guid());
-    QStringList tags = d->archive->tags(mya.guid());
+    d->deletedArticlesNotify.append(guid);
+    QStringList tags = d->archive->tags(guid);
+    modified();
+}
+
+void Feed::setArticleChanged(const QString& guid, int oldStatus)
+{
     
+    if (oldStatus != -1)
+    {
+        int newStatus = d->articles[guid].status();
+        if (oldStatus == Article::Read && newStatus != Article::Read)
+            setUnread(unread()+1);
+        else if (oldStatus != Article::Read && newStatus == Article::Read)
+            setUnread(unread()-1);
+    }
+    d->changedArticlesNotify.append(guid);
     modified();
 }
 
@@ -704,15 +715,19 @@ void Feed::modified()
 {
     if (!d->newArticles.isEmpty())
     {
-        emit signalArticlesAdded(id(), d->newArticles);
+        emit signalArticlesAdded(this, d->newArticles);
         d->newArticles.clear();
     }
     if (!d->deletedArticlesNotify.isEmpty())
     {
-        emit signalArticlesDeleted(id(), d->deletedArticlesNotify);
+        emit signalArticlesDeleted(this, d->deletedArticlesNotify);
         d->deletedArticlesNotify.clear();
     }
-    
+    if (!d->changedArticlesNotify.isEmpty())
+    {
+        emit signalArticlesDeleted(this, d->changedArticlesNotify);
+        d->changedArticlesNotify.clear();
+    }
     TreeNode::modified();
 }
 void Feed::enforceLimitArticleNumber()

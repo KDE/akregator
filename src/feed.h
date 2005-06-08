@@ -223,8 +223,6 @@ namespace Akregator
             /** add this feed to the fetch queue @c queue */
             virtual void slotAddToFetchQueue(FetchQueue* queue);
 
-            virtual void slotArticleStatusChanged(int oldStatus, const Article& mya);
-            
         signals:
             /** emitted when fetching started */
             void fetchStarted(Feed*);
@@ -236,11 +234,7 @@ namespace Akregator
             void fetchDiscovery(Feed *);
             /** emitted when a fetch is aborted */
             void fetchAborted(Feed *);
-            /** emitted when new articles were added */
-            void signalArticlesAdded(int feedID, const QStringList& guids);
-            
-            void signalArticlesDeleted(int feedID, const QStringList& guids);
-            
+           
         protected:
             /** loads articles from archive **/
             void loadArticles();
@@ -258,9 +252,16 @@ namespace Akregator
         private:
             
             /** notifies that article @c mya was set to "deleted".
+                To be called by @ref Article
              */
-            void setArticleDeleted(const Article& mya);
+            void setArticleDeleted(const QString& guid);
 
+            /** notifies that article @c mya was changed
+                @param oldStatus if the status was changed, it contains the old status, -1 otherwise
+                To be called by @ref Article
+             */
+            void setArticleChanged(const QString& guid, int oldStatus=-1);
+            
             void enforceLimitArticleNumber();
 
             void appendArticles(const RSS::Document &d);
