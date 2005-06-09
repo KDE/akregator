@@ -242,6 +242,7 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
         }
     }
     setUpdatesEnabled(true);
+    triggerUpdate();
 }
 
 void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<Article>& list)
@@ -264,6 +265,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
         }
     }
     setUpdatesEnabled(true);
+    triggerUpdate();
 }
 
 void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& list)
@@ -279,6 +281,7 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<A
         }
     }
     setUpdatesEnabled(true);
+    triggerUpdate();
 }
             
 void ArticleListView::slotUpdate()
@@ -400,7 +403,7 @@ void ArticleListView::slotPreviousArticle()
         setSelected(firstChild(), true);
     }
     
-    if (lvi && lvi->itemAbove()) 
+    if (lvi && lvi->itemAbove())
     {
         setCurrentItem(lvi->itemAbove());
         clearSelection();
@@ -420,7 +423,7 @@ void ArticleListView::slotNextArticle()
         setSelected(firstChild(), true);
         return;
     }
-    if (lvi && lvi->itemBelow()) 
+    if (lvi && lvi->itemBelow())
     {
         setCurrentItem(lvi->itemBelow());
         clearSelection();
