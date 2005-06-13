@@ -712,15 +712,15 @@ void Feed::doArticleNotification()
         emit signalArticlesAdded(this, d->addedArticlesNotify);
         d->addedArticlesNotify.clear();
     }
-    if (!d->removedArticlesNotify.isEmpty())
-    {
-        emit signalArticlesRemoved(this, d->removedArticlesNotify);
-        d->removedArticlesNotify.clear();
-    }
     if (!d->updatedArticlesNotify.isEmpty())
     {
         emit signalArticlesUpdated(this, d->updatedArticlesNotify);
         d->updatedArticlesNotify.clear();
+    }
+    if (!d->removedArticlesNotify.isEmpty())
+    {
+        emit signalArticlesRemoved(this, d->removedArticlesNotify);
+        d->removedArticlesNotify.clear();
     }
     TreeNode::doArticleNotification();
 }
