@@ -41,6 +41,7 @@ kdelnkdir = $(kde_servicesdir)
 # this is a lib shared by both the KPart and the main application
 lib_LTLIBRARIES = libakregatorprivate.la
 libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
+                                 articlefilter.cpp \
 				 aboutdata.cpp \
                                  trayicon.cpp \
 				 article.cpp \
@@ -86,7 +87,7 @@ viewer.lo: akregatorconfig.h
 libakregatorpart_la_SOURCES = \
 	akregator_run.cpp \
 	articlelistview.cpp \
-        actionmanager.cpp \
+	actionmanager.cpp \
 	frame.cpp \
 	viewer.cpp \
 	articleviewer.cpp \
@@ -94,7 +95,6 @@ libakregatorpart_la_SOURCES = \
 	addfeedwidgetbase.ui \
 	propertiesdialog.cpp \
 	propertieswidgetbase.ui \
-	articlefilter.cpp \
 	pageviewer.cpp \
 	tabwidget.cpp \
 	feedlistview.cpp \
