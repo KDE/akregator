@@ -30,6 +30,8 @@
 
 #include <qpixmap.h>
 
+class QPoint;
+
 namespace Akregator 
 {
 
@@ -47,6 +49,7 @@ public:
     virtual Folder* node();
     
     virtual void setOpen(bool open);
+    virtual void showContextMenu(const QPoint& p);
 };
 
 }

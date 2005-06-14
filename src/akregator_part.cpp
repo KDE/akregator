@@ -128,8 +128,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_actionManager = new ActionManager(this);
     ActionManager::setInstance(m_actionManager);
     
-    ActionManager::getInstance()->initPart(this);
-    
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
     ActionManager::getInstance()->initView(m_view);
     

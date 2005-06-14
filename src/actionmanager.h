@@ -27,9 +27,9 @@
 
 #include <qobject.h>
 
+class QWidget;
 class KAction;
 class KActionCollection;
-class KXMLGUIClient;
 
 namespace Akregator {
 
@@ -49,10 +49,9 @@ class ActionManager : public QObject
         static ActionManager* getInstance();
         static void setInstance(ActionManager* manager);
 
-        ActionManager(KXMLGUIClient* client, QObject* parent=0, const char* name=0);
+        ActionManager(Part* part, QObject* parent=0, const char* name=0);
         virtual ~ActionManager();
 
-        void initPart(Part* part);
         void initView(View* view);
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
@@ -61,11 +60,12 @@ class ActionManager : public QObject
         
         KActionCollection* actionCollection();
         KAction* action(const char* name, const char* classname=0);
+        QWidget* container(const char* name);
 
     private:
 
+        void initPart();
         static ActionManager* m_self;
-        KXMLGUIClient* m_client;
         ArticleListView* m_articleList;
         FeedListView* m_feedListView;
         View* m_view;

@@ -27,12 +27,14 @@
 
 #include <klistview.h>
 
+class QPoint;
 class QString;
 
 namespace Akregator {
 
 class FolderItem;
 class TreeNode;
+
 /**
     abstract base class for all items in the feeds tree
 */
@@ -54,6 +56,8 @@ public:
     virtual TreeNodeItem* nextSibling() const;
     virtual FolderItem* parent() const;
 
+    virtual void showContextMenu(const QPoint& p) = 0;
+    
     protected:
     
     TreeNode* m_node;

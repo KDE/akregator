@@ -47,7 +47,8 @@ class FeedItem : public TreeNodeItem
     virtual ~FeedItem();
     virtual Feed* node();
     virtual void nodeChanged();
-
+    virtual void showContextMenu(const QPoint& p);
+    
     static QPixmap errorPixmap();
     static QPixmap defaultPixmap();
 

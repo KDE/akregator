@@ -22,11 +22,12 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include <qwidget.h>
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
-#include <kxmlguiclient.h>
+#include <kxmlguifactory.h>
 
 #include <qstring.h>
 
@@ -57,16 +58,16 @@ void ActionManager::setInstance(ActionManager* manager)
     m_self = manager;
 }
 
-ActionManager::ActionManager(KXMLGUIClient* client, QObject* parent, const char* name) : QObject(parent, name), m_client(client)
+ActionManager::ActionManager(Part* part, QObject* parent, const char* name) : QObject(parent, name), m_part(part)
 {
-    m_part = 0;
     m_feedListView = 0;
     m_articleList = 0;
     m_trayIcon = 0;
     m_articleViewer = 0;
     m_feedListView = 0;
     m_view = 0;
-    m_actionCollection = client->actionCollection();
+    m_actionCollection = part->actionCollection();
+    initPart();
 }
 
 ActionManager::~ActionManager()
@@ -87,21 +88,17 @@ void ActionManager::initTrayIcon(TrayIcon* trayIcon)
         actionCollection()->action("akregator_configure_akregator")->plug(traypop, 2);
 }
 
-void ActionManager::initPart(Part* part)
+void ActionManager::initPart()
 {
-    if (m_part)
-        return;
-    else m_part = part;
-        
-    new KAction(i18n("&Import Feeds..."), "", "", part, SLOT(fileImport()), m_actionCollection, "file_import");
-    new KAction(i18n("&Export Feeds..."), "", "", part, SLOT(fileExport()), m_actionCollection, "file_export");
-    //new KAction(i18n("&Get Feeds From Web..."), "", "", part, SLOT(fileGetFeeds()), m_actionCollection, "file_getfromweb");
+    new KAction(i18n("&Import Feeds..."), "", "", m_part, SLOT(fileImport()), m_actionCollection, "file_import");
+    new KAction(i18n("&Export Feeds..."), "", "", m_part, SLOT(fileExport()), m_actionCollection, "file_export");
+    //new KAction(i18n("&Get Feeds From Web..."), "", "", m_part, SLOT(fileGetFeeds()), m_actionCollection, "file_getfromweb");
     
-    new KAction(i18n("Send &Link Address..."), "mail_generic", "", part, SLOT(fileSendLink()), m_actionCollection, "file_sendlink");
-    new KAction(i18n("Send &File..."), "mail_generic", "", part, SLOT(fileSendFile()), m_actionCollection, "file_sendfile");
+    new KAction(i18n("Send &Link Address..."), "mail_generic", "", m_part, SLOT(fileSendLink()), m_actionCollection, "file_sendlink");
+    new KAction(i18n("Send &File..."), "mail_generic", "", m_part, SLOT(fileSendFile()), m_actionCollection, "file_sendfile");
     
-    KStdAction::configureNotifications(part, SLOT(showKNotifyOptions()), m_actionCollection); // options_configure_notifications
-    new KAction( i18n("Configure &Akregator..."), "configure", "", part, SLOT(showOptions()), m_actionCollection, "akregator_configure_akregator" );
+    KStdAction::configureNotifications(m_part, SLOT(showKNotifyOptions()), m_actionCollection); // options_configure_notifications
+    new KAction( i18n("Configure &Akregator..."), "configure", "", m_part, SLOT(showOptions()), m_actionCollection, "akregator_configure_akregator" );
 }
 
 void ActionManager::initView(View* view)
@@ -226,6 +223,12 @@ void ActionManager::initFeedListView(FeedListView* feedListView)
     new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", feedListView, SLOT(slotItemUp()), m_actionCollection, "feedstree_up" );
     new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", feedListView, SLOT(slotItemDown()), m_actionCollection, "feedstree_down" );
 }
+
+QWidget* ActionManager::container(const char* name)
+{
+    return m_part->factory()->container(name, m_part);
+}
+
 
 KActionCollection* ActionManager::actionCollection()
 {

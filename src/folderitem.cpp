@@ -22,10 +22,13 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "actionmanager.h"
 #include "folder.h"
 #include "folderitem.h"
 #include "treenode.h"
 
+#include <qpopupmenu.h>
+#include <kaction.h>
 #include <kiconloader.h>
 
 using namespace Akregator;
@@ -74,3 +77,14 @@ void FolderItem::setOpen(bool open)
 FolderItem::~FolderItem()
 {}
 
+void FolderItem::showContextMenu(const QPoint& p)
+{
+    QWidget* w = ActionManager::getInstance()->container("feedgroup_popup");
+    ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feeds");
+    ActionManager::getInstance()->action("feed_remove")->setText("&Delete Folder");
+    ActionManager::getInstance()->action("feed_modify")->setText("&Rename Folder");
+    ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
+
+    if (w)
+        static_cast<QPopupMenu *>(w)->exec(p);
+}

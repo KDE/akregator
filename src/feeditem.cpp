@@ -22,9 +22,12 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "actionmanager.h"
 #include "feed.h"
 #include "feeditem.h"
 
+#include <qpopupmenu.h>
+#include <kaction.h>
 #include <kdebug.h>
 #include <kiconloader.h>
 #include <qstring.h>
@@ -102,4 +105,16 @@ void FeedItem::initialize(Feed* node)
             node->loadFavicon();
         }
     }
+}
+
+void FeedItem::showContextMenu(const QPoint& p)
+{
+    QWidget* w = ActionManager::getInstance()->container("feeds_popup");
+    ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feed");
+    ActionManager::getInstance()->action("feed_remove")->setText("&Delete Feed");
+    ActionManager::getInstance()->action("feed_modify")->setText("&Edit Feed...");
+    ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
+
+    if (w)
+        static_cast<QPopupMenu *>(w)->exec(p);
 }

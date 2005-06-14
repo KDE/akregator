@@ -593,30 +593,8 @@ void View::slotTabCaption(const QString &caption)
 
 void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint& p)
 {
-    TreeNode* node = item ? item->node() : 0;
-
-    if (!node)
-        return;
-
     m_tabs->showPage(m_mainTab);
-
-    QWidget *w;
-    if (node->isGroup()) {
-        w = m_part->factory()->container("feedgroup_popup", m_part);
-        ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feeds");
-        ActionManager::getInstance()->action("feed_remove")->setText("&Delete Folder");
-        ActionManager::getInstance()->action("feed_modify")->setText("&Rename Folder");
-        ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
-    }
-    else {
-        w = m_part->factory()->container("feeds_popup", m_part);
-        ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feed");
-        ActionManager::getInstance()->action("feed_remove")->setText("&Delete Feed");
-        ActionManager::getInstance()->action("feed_modify")->setText("&Edit Feed...");
-        ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
-    }
-    if (w)
-        static_cast<QPopupMenu *>(w)->exec(p);
+    item->showContextMenu(p);
 }
 
 void View::slotArticleListViewContextMenu(KListView*, ArticleItem* item, const QPoint& p)
