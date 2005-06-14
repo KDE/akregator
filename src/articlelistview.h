@@ -147,6 +147,9 @@ namespace Akregator
             enum ColumnMode { groupMode, feedMode };
             ColumnMode m_columnMode;
             int m_feedWidth;
+            friend class ColumnLayoutVisitor;
+            class ColumnLayoutVisitor;
+            ColumnLayoutVisitor* m_columnLayoutVisitor;
     };
 }
 

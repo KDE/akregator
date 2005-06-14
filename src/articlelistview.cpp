@@ -27,6 +27,7 @@
 #include "article.h"
 #include "feed.h"
 #include "treenode.h"
+#include "treenodevisitor.h"
 
 #include <kstandarddirs.h>
 #include <kdebug.h>
@@ -44,7 +45,43 @@
 #include <qheader.h>
 #include <qdragobject.h>
 
-using namespace Akregator;
+namespace Akregator {
+
+class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
+{
+    public:
+        ColumnLayoutVisitor(ArticleListView* view) : m_view(view) {}
+
+        virtual bool visitTagNode(TagNode* node)
+        {
+            return true;
+        }
+        
+        virtual bool visitFolder(Folder* node)
+        {
+            if (m_view->m_columnMode == ArticleListView::feedMode)
+            {
+                m_view->setColumnWidth(1, m_view->m_feedWidth);
+                m_view->m_columnMode = ArticleListView::groupMode;
+            }
+            return true;
+        }
+        
+        virtual bool visitFeed(Feed* node)
+        {
+            if (m_view->m_columnMode == ArticleListView::groupMode)
+            {    
+                m_view->m_feedWidth = m_view->columnWidth(1);
+                m_view->hideColumn(1);
+                m_view->m_columnMode = ArticleListView::feedMode;
+            }
+            return true;
+        }
+    private:
+
+        ArticleListView* m_view;
+    
+};
 
 ArticleItem::ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
     : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
@@ -105,6 +142,7 @@ int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
 ArticleListView::ArticleListView(QWidget *parent, const char *name)
     : KListView(parent, name), m_updated(false), m_doReceive(true), m_node(0), m_columnMode(feedMode)
 {
+    m_columnLayoutVisitor = new ColumnLayoutVisitor(this);
     setMinimumSize(250, 150);
     addColumn(i18n("Article"));
     addColumn(i18n("Feed"));
@@ -546,6 +584,7 @@ ArticleListView::~ArticleListView()
     Settings::setSortColumn(sortColumn());
     Settings::setSortAscending(sortOrder() == Ascending);
     Settings::writeConfig();
+    delete m_columnLayoutVisitor;
 }
 
 QValueList<ArticleItem*> ArticleListView::selectedArticleItems(bool includeHiddenItems) const
@@ -556,6 +595,8 @@ QValueList<ArticleItem*> ArticleListView::selectedArticleItems(bool includeHidde
         ret.append(static_cast<ArticleItem*>(i));
     return ret;
 }
+
+} // namespace Akregator
 
 #include "articlelistview.moc"
 // vim: ts=4 sw=4 et
