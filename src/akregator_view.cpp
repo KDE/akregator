@@ -998,38 +998,7 @@ void View::displayInExternalBrowser(const KURL &url)
 
 void View::slotDoIntervalFetches()
 {
-    bool fetch = false;
-    TreeNode* i = m_feedList->rootNode()->firstChild();
-
-    while ( i && i != m_feedList->rootNode() )
-    {
-        if ( !i->isGroup() )
-        {
-            //TODO: tag nodes need rework
-            Feed* f = static_cast<Feed*> (i);
-
-            int interval = -1;
-
-            if ( f->useCustomFetchInterval() )
-                interval = f->fetchInterval() * 60;
-            else
-                if ( Settings::useIntervalFetch() )
-                    interval = Settings::autoFetchInterval() * 60;
-
-            uint lastFetch = Backend::Storage::getInstance()->lastFetchFor(f->xmlUrl());
-
-            uint now = QDateTime::currentDateTime().toTime_t();
-
-            if ( interval > 0 && now - lastFetch >= (uint)interval )
-            {
-                kdDebug() << "interval fetch: " << f->title() << endl;
-                Kernel::self()->fetchQueue()->addFeed(f);
-                fetch = true;
-            }
-        }
-
-        i = i->next();
-    }
+    m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
 
 void View::slotFetchCurrentFeed()

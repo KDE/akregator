@@ -224,7 +224,7 @@ namespace Akregator
             virtual void slotMarkAllArticlesAsRead();
 
             /** add this feed to the fetch queue @c queue */
-            virtual void slotAddToFetchQueue(FetchQueue* queue);
+            virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly=false);
 
         signals:
             /** emitted when fetching started */

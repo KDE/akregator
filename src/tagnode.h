@@ -105,8 +105,8 @@ public slots:
     virtual void slotMarkAllArticlesAsRead();
 
     /** does nothing for TagNode */
-    virtual void slotAddToFetchQueue(FetchQueue* queue);
-
+    virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly=false);
+    
     virtual void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
     virtual void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
     virtual void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);

@@ -148,7 +148,7 @@ namespace Akregator
 
             /** enqueues children recursively for fetching
             @param queue a fetch queue */
-            virtual void slotAddToFetchQueue(FetchQueue* queue);
+            virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchesOnly=false);
 
             /** returns the next node in the tree.
             Calling next() unless it returns 0 iterates through the tree in pre-order

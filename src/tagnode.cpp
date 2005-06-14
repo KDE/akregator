@@ -134,7 +134,7 @@ void TagNode::slotMarkAllArticlesAsRead()
     setNotificationMode(true);
 }
     
-void TagNode::slotAddToFetchQueue(FetchQueue* queue)
+void TagNode::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
 // not our business
 }

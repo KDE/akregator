@@ -381,9 +381,27 @@ void Feed::slotMarkAllArticlesAsRead()
         setNotificationMode(true, true);
     }
 }
-void Feed::slotAddToFetchQueue(FetchQueue* queue)
+void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
-    queue->addFeed(this);
+    if (!intervalFetchOnly)
+        queue->addFeed(this);
+    else
+    {
+        int interval = -1;
+
+        if (useCustomFetchInterval() )
+            interval = fetchInterval() * 60;
+        else
+            if ( Settings::useIntervalFetch() )
+                interval = Settings::autoFetchInterval() * 60;
+
+        uint lastFetch = d->archive->lastFetch();
+
+        uint now = QDateTime::currentDateTime().toTime_t();
+
+        if ( interval > 0 && now - lastFetch >= (uint)interval )
+            queue->addFeed(this);
+    }
 }
 
 

@@ -164,9 +164,10 @@ public slots:
     
     virtual void slotMarkAllArticlesAsRead() = 0;
 
-    /** adds node to a fetch queue */
-    
-    virtual void slotAddToFetchQueue(FetchQueue* queue) = 0;
+    /** adds node to a fetch queue
+        @param intervalFetchesOnly */
+
+    virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchesOnly=false) = 0;
       
 signals:
     

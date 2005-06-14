@@ -286,11 +286,11 @@ void Folder::slotDeleteExpiredArticles()
     setNotificationMode(true, true);
 }
 
-void Folder::slotAddToFetchQueue(FetchQueue* queue)
+void Folder::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
     QValueList<TreeNode*>::ConstIterator en = d->children.end();
     for (QValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        (*it)->slotAddToFetchQueue(queue);
+        (*it)->slotAddToFetchQueue(queue, intervalFetchOnly);
 }
 
 void Folder::doArticleNotification()
