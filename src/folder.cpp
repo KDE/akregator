@@ -25,6 +25,7 @@
 #include "article.h"
 #include "folder.h"
 #include "fetchqueue.h"
+#include "treenodevisitor.h"
 
 #include <qlistview.h>
 #include <qdom.h>
@@ -51,6 +52,11 @@ class Folder::FolderPrivate
         QValueList<Article> removedArticlesNotify;
 };
            
+bool Folder::accept(TreeNodeVisitor* visitor)
+{
+    return visitor->visitFolder(this);
+}
+
 Folder* Folder::fromOPML(QDomElement e)
 {
     Folder* fg = new Folder(e.hasAttribute("text") ? e.attribute("text") : e.attribute("title"));

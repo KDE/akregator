@@ -69,7 +69,33 @@ class Criterion
         QVariant m_object;
 };
 
-class ArticleFilter
+class AbstractFilter
+{
+    public:
+
+        virtual bool matches(const Article& article) const = 0;
+};
+
+class TagFilter : public AbstractFilter
+{
+    public:
+
+        TagFilter(const QString& tag=QString::null);
+        TagFilter(const TagFilter& other);
+        
+        virtual ~TagFilter();
+        
+        virtual bool matches(const Article& article) const;
+
+        TagFilter& operator=(const TagFilter& other);
+        
+    private:
+    
+         class TagFilterPrivate;
+         TagFilterPrivate* d;
+};
+
+class ArticleFilter : public AbstractFilter
 {
     public:
         enum Action {
@@ -83,7 +109,7 @@ class ArticleFilter
         ArticleFilter();
         ArticleFilter( const QValueList<Criterion> &criteria, Association assoc, Action action );
 
-        bool matches( const Article &article ) const;
+        virtual bool matches( const Article &article ) const;
         Action action() const;
         bool operator==(const ArticleFilter &other) const;
         bool operator!=(const ArticleFilter &other) const;

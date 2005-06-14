@@ -719,6 +719,7 @@ void View::slotFeedAdd()
         group = m_feedList->rootNode(); // all feeds
     else
     {
+        //TODO: tag nodes need rework
         if ( m_tree->selectedNode()->isGroup())
             group = static_cast<Folder*>(m_tree->selectedNode());
         else
@@ -785,6 +786,7 @@ void View::slotFeedAddGroup()
         node = m_tree->rootNode();
 
     // if a feed is selected, add group next to it
+    //TODO: tag nodes need rework
     if (!node->isGroup())
     {
         after = node;
@@ -818,17 +820,21 @@ void View::slotFeedRemove()
         return;
 
     QString msg;
-
-    if (selectedNode->title().isEmpty()) {
+    
+    if (selectedNode->title().isEmpty())
+    {
+        //TODO: tag nodes need rework
         msg = selectedNode->isGroup() ?
             i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>") :
             i18n("<qt>Are you sure you want to delete this feed?</qt>");
     } else {
+        //TODO: tag nodes need rework
         msg = selectedNode->isGroup() ?
             i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>") :
             i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
         msg = msg.arg(selectedNode->title());
     }
+    //TODO: tag nodes need rework
     if (KMessageBox::warningContinueCancel(0, msg, selectedNode->isGroup() ? i18n("Delete Folder") : i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
         delete selectedNode;
@@ -845,7 +851,7 @@ void View::slotFeedModify()
         m_tree->selectedItem()->startRename(0);
         return;
     }
-
+    //TODO: tag nodes need rework
     Feed *feed = static_cast<Feed *>(node);
     if (!feed)
         return;
@@ -902,6 +908,7 @@ void View::slotOpenHomepage()
 {
     Feed* feed = static_cast<Feed *>(m_tree->selectedNode());
 
+    //TODO: tag nodes need rework
     if (!feed || feed->isGroup())
         return;
 
@@ -953,6 +960,7 @@ void View::slotDoIntervalFetches()
     {
         if ( !i->isGroup() )
         {
+            //TODO: tag nodes need rework
             Feed* f = static_cast<Feed*> (i);
 
             int interval = -1;

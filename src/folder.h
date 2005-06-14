@@ -37,6 +37,7 @@ namespace Akregator
 {
     class Article;
     class FetchQueue;
+    class TreeNodeVisitor;
         
     /** Represents a folder (containing feeds and/or other folders)
      */
@@ -57,6 +58,8 @@ namespace Akregator
             
             virtual ~Folder();
 
+            virtual bool Folder::accept(TreeNodeVisitor* visitor);
+            
             /** returns recursively concatenated articles of children  
             @return an article sequence containing articles of children */
             virtual QValueList<Article> articles(const QString& tag=QString::null);

@@ -38,13 +38,14 @@
 
 #include "akregatorconfig.h"
 #include "article.h"
+#include "articleinterceptor.h"
 #include "feed.h"
 #include "folder.h"
 #include "fetchqueue.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"
-#include "articleinterceptor.h"
 #include "storage.h"
+#include "treenodevisitor.h"
 
 #include "librss/librss.h"
 
@@ -158,6 +159,11 @@ Feed* Feed::fromOPML(QDomElement e)
     }
 
     return feed;
+}
+
+bool Feed::accept(TreeNodeVisitor* visitor)
+{
+    return visitor->visitFeed(this);
 }
 
 QStringList Feed::tags() const

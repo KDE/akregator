@@ -37,6 +37,7 @@ template <class T> class QValueList;
 namespace Akregator 
 {
 
+class TreeNodeVisitor;
 class Article;
 class Folder;
 class FetchQueue;
@@ -59,7 +60,8 @@ public:
     /** Standard destructor */
     virtual ~TreeNode();
 
-
+    virtual bool accept(TreeNodeVisitor* visitor) = 0;
+    
     /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree)
     @return number of new/unread articles */
 

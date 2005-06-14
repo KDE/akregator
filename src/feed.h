@@ -49,6 +49,7 @@ namespace Akregator
     class Article;
     class FetchQueue;
     class Folder;
+    class TreeNodeVisitor;
 
     namespace Backend
     {
@@ -88,6 +89,8 @@ namespace Akregator
             Feed();
 
             virtual ~Feed();
+
+            virtual bool accept(TreeNodeVisitor* visitor);
 
             /** exports the feed settings to OPML */
             virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;

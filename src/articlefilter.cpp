@@ -33,7 +33,7 @@
 
 #include <qregexp.h>
 
-using namespace Akregator;
+namespace Akregator {
 
 Criterion::Criterion()
 {
@@ -181,3 +181,38 @@ bool ArticleFilter::allCriteriaMatch( const Article &a ) const
     return true;
 }
 
+class TagFilter::TagFilterPrivate
+{
+    public:
+    QString tag;
+};
+
+TagFilter::TagFilter(const QString& tag) : d(new TagFilterPrivate)
+{
+    d->tag = tag;
+}
+
+TagFilter::~TagFilter()
+{
+    delete d;
+    d = 0;
+}
+
+bool TagFilter::matches(const Article& article) const
+{
+    return article.hasTag(d->tag);
+}
+
+TagFilter::TagFilter(const TagFilter& other) : AbstractFilter(other), d(0)
+{
+    *this = other;
+}
+
+TagFilter& TagFilter::operator=(const TagFilter& other)
+{
+    d = new TagFilterPrivate;
+    *d = *(other.d);
+    return *this;
+}
+
+} //namespace Akregator

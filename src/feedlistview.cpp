@@ -648,6 +648,7 @@ void FeedListView::slotNodeAdded(TreeNode* node)
         }
         else
         {
+            //TODO: tag nodes need rework
             Feed* f = static_cast<Feed*> (node);
             if (prev)
                 item = new FeedItem( parentItem, findNodeItem(prev), f );
@@ -678,6 +679,7 @@ void FeedListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 
 void FeedListView::connectToNode(TreeNode* node)
 {
+    //TODO: tag nodes need rework
     if (node->isGroup())
     {
         Folder* fg = static_cast<Folder*>(node);

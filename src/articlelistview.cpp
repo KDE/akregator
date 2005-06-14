@@ -204,7 +204,7 @@ void ArticleListView::slotShowNode(TreeNode* node)
     m_node = node;
         
     clear();
-    
+    //TODO: tag nodes need rework
     if ( node->isGroup() && m_columnMode == feedMode )
     {
         setColumnWidth(1, m_feedWidth);
