@@ -118,3 +118,4 @@ void FeedItem::showContextMenu(const QPoint& p)
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
 }
+

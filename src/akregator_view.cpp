@@ -48,6 +48,7 @@
 #include "treenode.h"
 #include "progressmanager.h"
 #include "treenodeitem.h"
+#include "treenodevisitor.h"
 #include "notificationmanager.h"
 
 #include <kaction.h>
@@ -93,7 +94,83 @@
 #include <qvaluevector.h>
 #include <qwhatsthis.h>
 
-using namespace Akregator;
+namespace Akregator {
+
+class View::EditNodePropertiesVisitor : public TreeNodeVisitor
+{
+    public:
+        EditNodePropertiesVisitor(View* view) : m_view(view) {}
+
+        virtual bool visitTagNode(TagNode* node)
+        {
+            return true;
+        }
+        
+        virtual bool visitFolder(Folder* node)
+        {
+            m_view->m_tree->findNodeItem(node)->startRename(0);
+            return true;
+        }
+        
+        virtual bool visitFeed(Feed* node)
+        {
+            FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
+            dlg->setFeed(node);
+            dlg->exec();
+            delete dlg;
+            return true;
+        }
+    private:
+
+        View* m_view;
+};
+
+class View::DeleteNodeVisitor : public TreeNodeVisitor
+{
+    public:
+        DeleteNodeVisitor(View* view) : m_view(view) {}
+
+        virtual bool visitTagNode(TagNode* node)
+        {
+            return true;
+        }
+        
+        virtual bool visitFolder(Folder* node)
+        {
+            QString msg;
+            if (node->title().isEmpty())
+                msg = i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>");
+            else
+                msg = i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>").arg(node->title());
+
+            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStdGuiItem::del()) == KMessageBox::Continue)
+            {
+                delete node;
+                m_view->m_tree->setFocus();
+            }
+            return true;
+        }
+        
+        virtual bool visitFeed(Feed* node)
+        {
+            QString msg;
+            if (node->title().isEmpty())
+                msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
+            else 
+                msg = i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>").arg(node->title());
+                
+            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
+            {
+                delete node;
+                m_view->m_tree->setFocus();
+            }
+            return true;
+        }
+    private:
+
+        View* m_view;
+};
+
 
 View::~View()
 {
@@ -106,12 +183,13 @@ View::~View()
         slotOnShutdown();
     }
     kdDebug() << "View::~View(): leaving" << endl;
-
 }
 
 View::View( Part *part, QWidget *parent, const char *name)
  : QWidget(parent, name), m_viewMode(NormalView)
 {
+    m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
+    m_deleteNodeVisitor = new DeleteNodeVisitor(this);
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part = part;
     m_feedList = new FeedList();
@@ -288,6 +366,8 @@ void View::slotOnShutdown()
 
     delete m_mainTab;
     delete m_mainFrame;
+    delete m_editNodePropertiesVisitor;
+    delete m_deleteNodeVisitor;
 }
 
 void View::saveSettings()
@@ -819,50 +899,15 @@ void View::slotFeedRemove()
     if (!selectedNode || selectedNode == m_feedList->rootNode())
         return;
 
-    QString msg;
-    
-    if (selectedNode->title().isEmpty())
-    {
-        //TODO: tag nodes need rework
-        msg = selectedNode->isGroup() ?
-            i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>") :
-            i18n("<qt>Are you sure you want to delete this feed?</qt>");
-    } else {
-        //TODO: tag nodes need rework
-        msg = selectedNode->isGroup() ?
-            i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>") :
-            i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>");
-        msg = msg.arg(selectedNode->title());
-    }
-    //TODO: tag nodes need rework
-    if (KMessageBox::warningContinueCancel(0, msg, selectedNode->isGroup() ? i18n("Delete Folder") : i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
-    {
-        delete selectedNode;
-        m_tree->setFocus();
-     }
+    m_deleteNodeVisitor->visit(selectedNode);
 }
 
 void View::slotFeedModify()
 {
     TreeNode* node = m_tree->selectedNode();
+    if (node)
+        m_editNodePropertiesVisitor->visit(node);
 
-    if (node && node->isGroup())
-    {
-        m_tree->selectedItem()->startRename(0);
-        return;
-    }
-    //TODO: tag nodes need rework
-    Feed *feed = static_cast<Feed *>(node);
-    if (!feed)
-        return;
-
-    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
-
-    dlg->setFeed(feed);
-
-    dlg->exec();
-
-    delete dlg;
 }
 
 void View::slotNextTab()
@@ -1306,4 +1351,7 @@ void View::disconnectFromFeedList(FeedList* feedList)
 {
     disconnect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
 }
+
+} // namespace Akregator
+
 #include "akregator_view.moc"

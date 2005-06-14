@@ -57,7 +57,7 @@ public:
     virtual FolderItem* parent() const;
 
     virtual void showContextMenu(const QPoint& p) = 0;
-    
+
     protected:
     
     TreeNode* m_node;

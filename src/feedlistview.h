@@ -82,7 +82,12 @@ namespace Akregator
 
             /** if enabled, the view shows tag folders */
             void setShowTagFolders(bool enabled);
-            
+
+            /** Find item belonging to tree node @c node, @c null when node is not in tree
+            @return item representing node
+            @param node a tree node */
+
+            TreeNodeItem* findNodeItem(TreeNode* node);
         public slots:
            
             /** handle dropped urls */
@@ -135,12 +140,7 @@ namespace Akregator
             void signalContextMenu(KListView*, TreeNodeItem*, const QPoint&);
 
         protected:
-            /** Find item belonging to tree node @c node, @c null when node is not in tree
-            @return item representing node
-            @param node a tree node */
-
-            TreeNodeItem* findNodeItem(TreeNode* node);
-
+            
             /** observe @c node: connect status change signals of @c node to slots */
             virtual void connectToNode(TreeNode* node);
             

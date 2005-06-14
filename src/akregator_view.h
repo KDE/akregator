@@ -307,6 +307,12 @@ namespace Akregator {
             bool m_displayingAboutPage;
             
             QPixmap m_keepFlagIcon;
+            friend class EditNodePropertiesVisitor;
+            class EditNodePropertiesVisitor;
+            EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
+            friend class DeleteNodeVisitor;
+            class DeleteNodeVisitor;
+            DeleteNodeVisitor* m_deleteNodeVisitor;
     };
 }
 

@@ -58,7 +58,7 @@ namespace Akregator
             
             virtual ~Folder();
 
-            virtual bool Folder::accept(TreeNodeVisitor* visitor);
+            virtual bool accept(TreeNodeVisitor* visitor);
             
             /** returns recursively concatenated articles of children  
             @return an article sequence containing articles of children */

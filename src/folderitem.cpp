@@ -77,6 +77,7 @@ void FolderItem::setOpen(bool open)
 FolderItem::~FolderItem()
 {}
 
+
 void FolderItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("feedgroup_popup");
