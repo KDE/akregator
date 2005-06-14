@@ -174,6 +174,13 @@ namespace Akregator
 
 
         private:
+            friend class ConnectNodeVisitor;
+            class ConnectNodeVisitor;
+            ConnectNodeVisitor* m_connectNodeVisitor;
+            
+            friend class DisconnectNodeVisitor;
+            class DisconnectNodeVisitor;
+            DisconnectNodeVisitor* m_disconnectNodeVisitor;
             /** used for finding the item belonging to a node */
             QPtrDict<TreeNodeItem> m_itemDict;
             FeedList* m_feedList;

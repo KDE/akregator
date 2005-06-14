@@ -28,8 +28,10 @@
 #include "feed.h"
 #include "feeditem.h"
 #include "feedlist.h"
+#include "tagnode.h"
 #include "treenode.h"
 #include "treenodeitem.h"
+#include "treenodevisitor.h"
 
 #include <kdebug.h>
 #include <kiconeffect.h>
@@ -46,9 +48,82 @@
 
 using namespace Akregator;
 
+class FeedListView::ConnectNodeVisitor : public TreeNodeVisitor
+{
+    public:
+        ConnectNodeVisitor(FeedListView* view) : m_view(view) {}
+
+        virtual bool visitTagNode(TagNode* node)
+        {
+            return true;
+        }
+        
+        virtual bool visitFolder(Folder* node)
+        {
+            connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
+            connect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            connect(node, SIGNAL(fetchStarted(Feed*)), m_view, SLOT(slotFeedFetchStarted(Feed*)));
+            connect(node, SIGNAL(fetchAborted(Feed*)), m_view, SLOT(slotFeedFetchAborted(Feed*)));
+            connect(node, SIGNAL(fetchError(Feed*)), m_view, SLOT(slotFeedFetchError(Feed*)));
+            connect(node, SIGNAL(fetched(Feed*)), m_view, SLOT(slotFeedFetchCompleted(Feed*)));
+            return true;
+        }
+        
+        virtual bool visitFeed(Folder* node)
+        {
+            connect(node, SIGNAL(signalChildAdded(TreeNode*)), m_view, SLOT(slotNodeAdded(TreeNode*) ));
+            connect(node, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), m_view, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
+            
+            connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
+            connect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            return true;
+        }
+    private:
+
+        FeedListView* m_view;
+    
+};
+
+class FeedListView::DisconnectNodeVisitor : public TreeNodeVisitor
+{
+    public:
+        DisconnectNodeVisitor(FeedListView* view) : m_view(view) {}
+
+        virtual bool visitTagNode(TagNode* node)
+        {
+            return true;
+        }
+        
+        virtual bool visitFolder(Folder* node)
+        {
+            disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
+            disconnect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            disconnect(node, SIGNAL(fetchStarted(Feed*)), m_view, SLOT(slotFeedFetchStarted(Feed*)));
+            disconnect(node, SIGNAL(fetchAborted(Feed*)), m_view, SLOT(slotFeedFetchAborted(Feed*)));
+            disconnect(node, SIGNAL(fetchError(Feed*)), m_view, SLOT(slotFeedFetchError(Feed*)));
+            disconnect(node, SIGNAL(fetched(Feed*)), m_view, SLOT(slotFeedFetchCompleted(Feed*)));
+            return true;
+        }
+        
+        virtual bool visitFeed(Folder* node)
+        {
+            disconnect(node, SIGNAL(signalChildAdded(TreeNode*)), m_view, SLOT(slotNodeAdded(TreeNode*) ));
+            disconnect(node, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), m_view, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
+            
+            disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
+            disconnect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            return true;
+        }
+    private:
+
+        FeedListView* m_view;
+};
+
 FeedListView::FeedListView( QWidget *parent, const char *name)
         : KListView(parent, name), m_showTagFolders(true)
 {
+    m_connectNodeVisitor = new ConnectNodeVisitor(this),
+    m_disconnectNodeVisitor = new DisconnectNodeVisitor(this);
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
     setRootIsDecorated(true);
@@ -81,7 +156,10 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
 }
 
 FeedListView::~FeedListView()
-{}
+{
+    delete m_connectNodeVisitor;
+    delete m_disconnectNodeVisitor;
+}
 
 void FeedListView::setFeedList(FeedList* feedList)
 {
@@ -679,27 +757,7 @@ void FeedListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 
 void FeedListView::connectToNode(TreeNode* node)
 {
-    //TODO: tag nodes need rework
-    if (node->isGroup())
-    {
-        Folder* fg = static_cast<Folder*>(node);
-                       
-        connect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
-        connect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
-        connect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-        connect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-    }
-    else
-    {
-        Feed* f = static_cast<Feed*> (node);
-        
-        connect(f, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-        connect(f, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-        connect(f, SIGNAL(fetchStarted(Feed*)), this, SLOT(slotFeedFetchStarted(Feed*)));
-        connect(f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFeedFetchAborted(Feed*)));
-        connect(f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
-        connect(f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetchCompleted(Feed*)));
-    }        
+    m_connectNodeVisitor->visit(node);
 }
 
 void FeedListView::connectToFeedList(FeedList* list)
@@ -720,25 +778,7 @@ void FeedListView::disconnectFromFeedList(FeedList* list)
 
 void FeedListView::disconnectFromNode(TreeNode* node)
 {
-    if (node->isGroup())
-    {
-        Folder* fg = static_cast<Folder*> (node);
-        disconnect(fg, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*) ));
-        disconnect(fg, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
-        
-        disconnect(fg, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-        disconnect(fg, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-    }
-    else
-    {
-        Feed* f = static_cast<Feed*> (node);
-        disconnect(f, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*) ));
-        disconnect(f, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotNodeChanged(TreeNode*) ));
-        disconnect(f, SIGNAL(fetchStarted(Feed*)), this, SLOT(slotFeedFetchStarted(Feed*)));
-        disconnect(f, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFeedFetchAborted(Feed*)));
-        disconnect(f, SIGNAL(fetchError(Feed*)), this, SLOT(slotFeedFetchError(Feed*)));
-        disconnect(f, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetchCompleted(Feed*)));
-    }
+    m_disconnectNodeVisitor->visit(node);
 }
 
 void FeedListView::slotFeedListDestroyed(FeedList* list)
