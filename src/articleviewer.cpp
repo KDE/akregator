@@ -648,7 +648,7 @@ void ArticleViewer::slotShowNode(TreeNode* node)
     
     m_node = node;
 
-    if (!node->articles().isEmpty())
+    if (node && !node->articles().isEmpty())
         m_link = node->articles().first().link();
     else
         m_link = KURL();
