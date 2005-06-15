@@ -134,8 +134,8 @@ void ActionManager::initView(View* view)
     KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, Kernel::self()->fetchQueue(), SLOT(slotAbort()), actionCollection(), "feed_stop");
     stopAction->setEnabled(false);
     
-    new KAction(i18n("&Mark Feed as Read"), "apply", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
-    new KAction(i18n("Ma&rk All Feeds as Read"), "apply", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
+    new KAction(i18n("&Mark Feed as Read"), "goto", "Ctrl+R", m_view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
+    new KAction(i18n("Ma&rk All Feeds as Read"), "goto", "Ctrl+Shift+R", m_view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
     // Settings menu
     KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, m_view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
