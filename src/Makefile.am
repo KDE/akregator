@@ -110,6 +110,7 @@ libakregatorpart_la_SOURCES = \
 	settings_archive.ui \
 	settings_browser.ui \
 	settings_advancedbase.ui \
+        tagnodeitem.cpp \
 	configdialog.cpp \
 	settings_advanced.cpp \
         searchbar.cpp \
