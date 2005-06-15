@@ -458,7 +458,7 @@ void ArticleViewer::beginWriting()
 
     head += "</style></head><body>";
     view()->setContentsPos(0,0);
-    begin();
+    begin(m_link);
     write(head);
 }
 
@@ -563,6 +563,7 @@ void ArticleViewer::slotShowArticle(const Article& article)
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
     m_node = 0;
+    m_link = article.link();
     if (article.feed()->loadLinkedWebsite())
         openURL(article.link());
     else
@@ -646,6 +647,11 @@ void ArticleViewer::slotShowNode(TreeNode* node)
     connectToNode(node);
     
     m_node = node;
+
+    if (!node->articles().isEmpty())
+        m_link = node->articles().first().link();
+    else
+        m_link = KURL();
 
     slotUpdateCombinedView();
 }

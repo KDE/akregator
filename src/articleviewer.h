@@ -138,6 +138,7 @@ namespace Akregator
             QString m_currentText;
             KURL m_imageDir;
             TreeNode* m_node;
+            KURL m_link;
             ArticleFilter m_textFilter; 
             ArticleFilter m_statusFilter;
             enum ViewMode { NormalView, CombinedView, SummaryView };
