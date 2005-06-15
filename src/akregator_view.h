@@ -140,9 +140,6 @@ namespace Akregator {
             /** the article selection has changed */
             void slotArticleSelected(const Article&);
             
-            /** Shows requested popup menu for article list */
-            void slotArticleListViewContextMenu(KListView*, ArticleItem* item, const QPoint& p);
-            
             /** Shows requested popup menu for feed tree */
             void slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&);
 

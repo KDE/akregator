@@ -267,9 +267,6 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect( m_articleList, SIGNAL(signalDoubleClicked(ArticleItem*, const QPoint&, int)),
                 this, SLOT( slotOpenArticleExternal(ArticleItem*, const QPoint&, int)) );
 
-    connect(m_articleList, SIGNAL(signalContextMenu(KListView*, ArticleItem*, const QPoint&)),
-            this, SLOT(slotArticleListViewContextMenu(KListView*, ArticleItem*, const QPoint&)));
-
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
     
@@ -676,17 +673,6 @@ void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint&
     m_tabs->showPage(m_mainTab);
     item->showContextMenu(p);
 }
-
-void View::slotArticleListViewContextMenu(KListView*, ArticleItem* item, const QPoint& p)
-{
-    if (!item)
-        return;
-
-    QWidget* w = m_part->factory()->container("article_popup", m_part);
-    if (w)
-        static_cast<QPopupMenu *>(w)->exec(p);
-}
-
 
 void View::slotMoveCurrentNodeUp()
 {

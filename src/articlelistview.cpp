@@ -23,6 +23,7 @@
 */
 
 #include "akregatorconfig.h"
+#include "actionmanager.h"
 #include "articlelistview.h"
 #include "article.h"
 #include "feed.h"
@@ -39,6 +40,7 @@
 
 #include <qdatetime.h>
 #include <qpixmap.h>
+#include <qpopupmenu.h>
 #include <qptrlist.h>
 #include <qvaluelist.h>
 #include <qwhatsthis.h>
@@ -564,7 +566,9 @@ void ArticleListView::slotDoubleClicked(QListViewItem* item, const QPoint& p, in
 
 void ArticleListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
 {
-    emit signalContextMenu(list, static_cast<ArticleItem*>(item), p);
+    QWidget* w = ActionManager::getInstance()->container("article_popup");
+    if (w)
+        static_cast<QPopupMenu *>(w)->exec(p);
 }
         
 ArticleListView::~ArticleListView()
