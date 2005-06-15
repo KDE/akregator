@@ -45,6 +45,7 @@
 #include "searchbar.h"
 #include "storage.h"
 #include "tabwidget.h"
+#include "tagnode.h"
 #include "treenode.h"
 #include "progressmanager.h"
 #include "treenodeitem.h"
@@ -132,6 +133,12 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
+            QString msg = i18n("<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be removed from all articles!</qt>").arg(node->title());
+            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStdGuiItem::del()) == KMessageBox::Continue)
+            {
+                delete node;
+                m_view->m_tree->setFocus();
+            }    
             return true;
         }
         
@@ -141,7 +148,7 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (node->title().isEmpty())
                 msg = i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>");
             else
-                msg = i18n("<qt>Are you sure you want to delete folder<br><b>%1</b><br> and its feeds and subfolders?</qt>").arg(node->title());
+                msg = i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>").arg(node->title());
 
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
@@ -157,7 +164,7 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (node->title().isEmpty())
                 msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
             else 
-                msg = i18n("<qt>Are you sure you want to delete feed<br><b>%1</b>?</qt>").arg(node->title());
+                msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>").arg(node->title());
                 
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
             {

@@ -54,12 +54,7 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
     public:
         ColumnLayoutVisitor(ArticleListView* view) : m_view(view) {}
 
-        virtual bool visitTagNode(TagNode* node)
-        {
-            return true;
-        }
-        
-        virtual bool visitFolder(Folder* node)
+        virtual bool visitTagNode(TagNode* /*node*/)
         {
             if (m_view->m_columnMode == ArticleListView::feedMode)
             {
@@ -69,7 +64,17 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
             return true;
         }
         
-        virtual bool visitFeed(Feed* node)
+        virtual bool visitFolder(Folder* /*node*/)
+        {
+            if (m_view->m_columnMode == ArticleListView::feedMode)
+            {
+                m_view->setColumnWidth(1, m_view->m_feedWidth);
+                m_view->m_columnMode = ArticleListView::groupMode;
+            }
+            return true;
+        }
+        
+        virtual bool visitFeed(Feed* /*node*/)
         {
             if (m_view->m_columnMode == ArticleListView::groupMode)
             {    

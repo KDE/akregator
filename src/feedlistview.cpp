@@ -55,6 +55,8 @@ class FeedListView::ConnectNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
+            connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
+            connect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
             return true;
         }
         
@@ -91,6 +93,8 @@ class FeedListView::DisconnectNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
+            disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
+            disconnect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
             return true;
         }
         
