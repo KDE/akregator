@@ -29,9 +29,11 @@ namespace Akregator {
 
 TagAction::TagAction(const QString& tagName, const QObject *receiver, const char *slot, QObject *parent) 
 //KAction (const QString &text, const KShortcut &cut, const QObject *receiver, const char *slot, QObject *parent, const char *name=0)
-       : KAction(tagName, KShortcut(), receiver, slot, parent)
+       : KAction(tagName, KShortcut(), 0, 0, parent)
        , m_tagName(tagName)
-{}
+{
+    connect(this, SIGNAL(activated(const QString&)), receiver, slot);
+}
 
 TagAction::~TagAction()
 {}
