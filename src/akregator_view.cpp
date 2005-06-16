@@ -133,7 +133,7 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
-            QString msg = i18n("<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be removed from all articles!</qt>").arg(node->title());
+            QString msg = i18n("<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be removed from all articles.</qt>").arg(node->title());
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
