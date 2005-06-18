@@ -414,14 +414,30 @@ void FeedListView::movableDropEvent(QListViewItem* parent, QListViewItem* afterm
 
         if (afterme)
             afterMeNode = (static_cast<TreeNodeItem*> (afterme))->node();
+
+        // don't dnd nodes between different top-level nodes
         
+        TreeNode* root1 = current;
+        while (root1 && root1->parent())
+            root1 = root1->parent();
+
+        TreeNode* root2 = parentNode;
+        while (root2 && root2->parent())
+            root2 = root2->parent();
+
+        if (root1 !=  root2)
+            return;
+            
         // don't drop node into own subtree
+        
         Folder* p = parentNode;
         while (p)
             if (p == current)
                 return;
             else
                 p = p->parent(); 
+
+        // ok, tests passed, let's move the node
         
         current->parent()->removeChild(current);
         parentNode->insertChild(current, afterMeNode);
@@ -436,33 +452,43 @@ void FeedListView::setShowTagFolders(bool enabled)
 
 void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
 {
-    // if we are dragging over All feeds, enable
     QPoint vp = contentsToViewport(event->pos());
     QListViewItem *i = itemAt(vp);
-    if (i == firstChild())
-    {
-        event->accept();
-        return;
-    }
 
     QListViewItem *qiparent;
     QListViewItem *qiafterme;
     findDrop( event->pos(), qiparent, qiafterme );
-    FolderItem* parent = static_cast<FolderItem*> (qiparent);
+    
     //TreeNodeItem* afterme = static_cast<TreeNodeItem*> (qiafterme);
     
     // disable any drops where the result would be top level nodes 
-     if (!parent )
+    if (i && !i->parent())
     {
         event->ignore();
         return;
     }
-        
-    if (!i || event->pos().x() > header()->cellPos(header()->mapToIndex(0)) +
-            treeStepSize() * (i->depth() + 1) + itemMargin() ||
-            event->pos().x() < header()->cellPos(header()->mapToIndex(0)))
-    {}
-    else if (i && i->childCount() && !i->isOpen())
+
+    // prevent dragging nodes from All Feeds to My Tags or vice versa
+    QListViewItem* root1 = i;
+    while (root1 && root1->parent())
+        root1 = root1->parent();
+
+    QListViewItem* root2 = selectedItem();
+    while (root2 && root2->parent())
+        root2 = root2->parent();
+
+    if (root1 != root2)
+    {
+        event->ignore();
+        return;
+    }
+    // what the hell was this good for? -fo
+    //    if (!i || event->pos().x() > header()->cellPos(header()->mapToIndex(0)) +
+    //            treeStepSize() * (i->depth() + 1) + itemMargin() ||
+    //            event->pos().x() < header()->cellPos(header()->mapToIndex(0)))
+    //   {} else
+ 
+   if (i && i->childCount() && !i->isOpen())
             i->setOpen(true); // open folders under drag
 
     // the rest is handled by KListView.
@@ -501,8 +527,8 @@ bool FeedListView::acceptDrag(QDropEvent *e) const
     }
     else
     {
-        // disable dragging "All Feeds"
-        if (firstChild()->isSelected())
+        // disable dragging of top-level nodes (All Feeds, My Tags)
+        if (selectedItem() && !selectedItem()->parent())
             return false;
         else
             return true;
@@ -873,4 +899,3 @@ QDragObject *FeedListView::dragObject()
 }
 
 #include "feedlistview.moc"
-// vim: ts=4 sw=4 et
