@@ -72,8 +72,8 @@ FeedDetectorEntryList FeedDetector::extractFromLinkTags(const QString& s)
         if (pos != -1)
             type = reType.cap(1).lower();
 
-        // we accept only type attributes indicating a feed or omitted type attributes
-        if ( !type.isEmpty() && type != "application/rss+xml" && type != "application/rdf+xml"
+        // we accept only type attributes indicating a feed (omitted type attributes should not be used)
+        if ( type != "application/rss+xml" && type != "application/rdf+xml"
 	      && type != "application/atom+xml" && type != "text/xml" )
             continue;
                 
