@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2004 Frank Osterfeld <frank.osterfeld at kdemail.net>
+    Copyright (C) 2005 Frank Osterfeld <frank.osterfeld at kdemail.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,38 +21,49 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATOR_FOLDERITEM_H
-#define AKREGATOR_FOLDERITEM_H
 
-#include "treenodeitem.h"
-#include "treenode.h"
-#include "folder.h"
+#ifndef AKREGATOR_TAGSET_H
+#define AKREGATOR_TAGSET_H
 
-#include <qpixmap.h>
+#include <qobject.h>
 
-class QPoint;
+class QDomDocument;
+template <class K,class T> class QMap;
+class QString;
+class QStringList;
 
-namespace Akregator 
+namespace Akregator {
+
+class Tag;
+
+class TagSet : public QObject
 {
+    Q_OBJECT
+    public:
 
-class Folder;
+        TagSet(QObject* parent=0);
+        virtual ~TagSet();
 
-class FolderItem : public TreeNodeItem
-{
+        void insert(const Tag& tag);
+        void remove(const Tag& tag);
+        QMap<QString,Tag> toMap() const;
 
-public:
-    FolderItem(FolderItem* parent, Folder* node);
-    FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node);
-    FolderItem(KListView* parent, Folder* node);
-    FolderItem(KListView* parent, TreeNodeItem* after, Folder* node);
-    virtual ~FolderItem();
-    
-    virtual Folder* node();
-    
-    virtual void setOpen(bool open);
-    virtual void showContextMenu(const QPoint& p);
+        bool contains(const Tag& tag) const;
+
+        Tag findByID(const QString& id) const;
+
+        void readFromXML(const QDomDocument& doc);
+        QDomDocument toXML() const;
+        
+    signals:
+        void signalTagAdded(const Tag&);
+        void signalTagRemoved(const Tag&);
+
+    private:
+        class TagSetPrivate;
+        TagSetPrivate* d;
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_TAGSET_H

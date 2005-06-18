@@ -26,6 +26,7 @@
  */
 #include "articlefilter.h"
 #include "article.h"
+#include "tag.h"
 
 #include <kconfig.h>
 #include <kdebug.h>
@@ -146,12 +147,19 @@ ArticleFilter::Action ArticleFilter::action() const
     return m_action;
 }
 
-bool ArticleFilter::operator==(const ArticleFilter &other) const
+bool ArticleFilter::operator==(const AbstractFilter& other) const
 {
-    return m_action == other.m_action && m_association == other.m_association && m_criteria == other.m_criteria; 
+    AbstractFilter* ptr = const_cast<AbstractFilter*>(&other);
+    ArticleFilter* o = dynamic_cast<ArticleFilter*>(ptr);
+    if (!o)
+        return false;
+    else
+        return m_action == o->m_action && m_association == o->m_association && m_criteria == o->m_criteria;
 }
-bool ArticleFilter::operator!=(const ArticleFilter &other) const
-{ return !(*this == other); }
+bool ArticleFilter::operator!=(const AbstractFilter& other) const
+{
+    return !(*this == other);
+}
 
 bool ArticleFilter::anyCriterionMatches( const Article &a ) const
 {
@@ -184,12 +192,20 @@ bool ArticleFilter::allCriteriaMatch( const Article &a ) const
 class TagFilter::TagFilterPrivate
 {
     public:
-    QString tag;
+    Tag tag;
+    bool operator==(const TagFilterPrivate& other) const
+    {
+        return tag == other.tag;
+    }
 };
 
-TagFilter::TagFilter(const QString& tag) : d(new TagFilterPrivate)
+TagFilter::TagFilter(const Tag& tag) : d(new TagFilterPrivate)
 {
     d->tag = tag;
+}
+
+TagFilter::TagFilter() : d(new TagFilterPrivate)
+{
 }
 
 TagFilter::~TagFilter()
@@ -200,12 +216,25 @@ TagFilter::~TagFilter()
 
 bool TagFilter::matches(const Article& article) const
 {
-    return article.hasTag(d->tag);
+    return article.hasTag(d->tag.id());
 }
+
 
 TagFilter::TagFilter(const TagFilter& other) : AbstractFilter(other), d(0)
 {
     *this = other;
+}
+
+bool TagFilter::operator==(const AbstractFilter& other) const
+{
+    AbstractFilter* ptr = const_cast<AbstractFilter*>(&other);
+    TagFilter* tagFilter = dynamic_cast<TagFilter*>(ptr);
+    return tagFilter ? *d == *(tagFilter->d) : false;
+}
+
+bool TagFilter::operator!=(const AbstractFilter &other) const
+{
+    return !(*this == other);
 }
 
 TagFilter& TagFilter::operator=(const TagFilter& other)

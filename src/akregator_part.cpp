@@ -74,6 +74,8 @@
 #include "storagefactorydummyimpl.h"
 #include "storagefactoryregistry.h"
 #include "trayicon.h"
+#include "tagset.h"
+#include "tag.h"
 
 namespace Akregator {
 
@@ -109,6 +111,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
+    m_tagSetPath = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/tagset.xml";
+
+    loadTagSet(m_tagSetPath);
     Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
     Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
     loadPlugins(); // FIXME: also unload them!
@@ -130,6 +135,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     
     m_view = new Akregator::View(this, parentWidget, "akregator_view");
     ActionManager::getInstance()->initView(m_view);
+    ActionManager::getInstance()->setTagSet(Kernel::self()->tagSet());
     
     m_extension = new BrowserExtension(this, "ak_extension");
     
@@ -192,6 +198,7 @@ void Part::slotOnShutdown()
     m_autosaveTimer->stop();
     saveSettings();
     slotSaveFeedList();
+    saveTagSet(m_tagSetPath);
     m_view->slotOnShutdown();
     //delete m_view;
     delete m_storage;
@@ -462,6 +469,35 @@ QWidget* Part::getMainWindow()
     return 0;
 }
 
+void Part::loadTagSet(const QString& path)
+{
+    QFile file(path);
+    if (file.open(IO_ReadOnly))
+    {    
+        QDomDocument doc;
+        if (doc.setContent(file.readAll()))
+            Kernel::self()->tagSet()->readFromXML(doc);
+        file.close();
+    }
+    else
+    {
+        Kernel::self()->tagSet()->insert(Tag("http://akregator.sf.net/tags/Interesting", i18n("Interesting")));
+    }    
+}
+
+void Part::saveTagSet(const QString& path)
+{
+    QFile file(path);
+    
+    if ( file.open(IO_WriteOnly) )
+    {
+
+        QTextStream stream(&file);
+        stream.setEncoding(QTextStream::UnicodeUTF8);
+        stream << Kernel::self()->tagSet()->toXML().toString() << "\n";
+        file.close();
+    }
+}
 
 void Part::importFile(const KURL& url)
 {

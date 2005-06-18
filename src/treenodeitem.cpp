@@ -50,6 +50,12 @@ TreeNodeItem::TreeNodeItem(KListView* parent, TreeNode* node)
          setText(0, node->title() );
 }
 
+TreeNodeItem::TreeNodeItem(KListView* parent, TreeNodeItem* after, TreeNode* node) : KListViewItem(parent, after), m_node(node)
+{
+    if (node)
+         setText(0, node->title() );
+}
+
 TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* node)
     : KListViewItem(parent, after), m_node(node)
 {

@@ -22,50 +22,83 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_KERNEL_H
-#define AKREGATOR_KERNEL_H
+#include "shared.h"
+#include "tag.h"
+
+#include <qstring.h>
 
 namespace Akregator {
 
-namespace Backend 
+class Tag::TagPrivate : public Shared
 {
-    class Storage;
-}
-
-class ActionManager;
-class FeedList;
-class FetchQueue;
-class TagSet;
-
-class Kernel
-{
-     public:
-
-         static Kernel* self();
-
-         Kernel();
-         virtual ~Kernel();
-         
-         Backend::Storage* storage() { return m_storage; }
-         void setStorage(Backend::Storage* storage) { m_storage = storage; }
-
-         FeedList* feedList() { return m_feedList; }
-         void setFeedList(FeedList* feedList) { m_feedList = feedList; }
-
-         FetchQueue* fetchQueue() { return m_fetchQueue; }
-
-         TagSet* tagSet() { return m_tagSet; }
-
-     private:
-
-         static Kernel* m_self;
-
-         Backend::Storage* m_storage;
-         FeedList* m_feedList;
-         FetchQueue* m_fetchQueue;
-         TagSet* m_tagSet;
+    public:
+    QString id;
+    QString name;
+    bool operator==(const TagPrivate& other) const
+    {
+        return id == other.id; // name is ignored!
+    }
 };
 
+Tag::Tag() : d(new TagPrivate)
+{}
+
+Tag::Tag(const QString& id, const QString& name) : d(new TagPrivate)
+{
+    d->id = id;
+    d->name = name.isNull() ? id : name;
 }
 
-#endif // AKREGATOR_KERNEL_H
+Tag::Tag(const Tag& other) : d(0)
+{
+    *this = other;
+}
+
+Tag::~Tag()
+{
+    if (d->deref())
+    {
+        delete d;
+        d = 0;
+    }
+}
+
+Tag& Tag::operator=(const Tag& other)
+{
+    if (this != &other)
+    {
+        other.d->ref();
+        if (d && d->deref())
+            delete d;
+        d = other.d;
+    }
+    return *this;
+}
+
+
+bool Tag::operator==(const Tag& other) const
+{
+    return *(other.d) == *d;
+}
+
+bool Tag::isNull() const
+{
+    return d->id.isNull();
+}
+
+QString Tag::name() const
+{
+    return d->name;
+}
+
+void Tag::setName(const QString& name)
+{
+    d->name = name;
+}
+
+QString Tag::id() const
+{
+    return d->id;
+}
+
+} // namespace Akregator

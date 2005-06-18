@@ -27,8 +27,10 @@
 
 #include <qobject.h>
 
+class QStringList;
 class QWidget;
 class KAction;
+class KActionMenu;
 class KActionCollection;
 
 namespace Akregator {
@@ -38,7 +40,10 @@ class ArticleViewer;
 class FeedListView;
 class Part;
 class TrayIcon;
+class Tag;
+class TagSet;
 class View;
+// TODO: move the methods marked with "iface" to an interface and pass that where initFoo() is not needed, to avoid dependencies between e.g. listviews and Akregator::Part
 
 class ActionManager : public QObject
 {
@@ -52,28 +57,38 @@ class ActionManager : public QObject
         ActionManager(Part* part, QObject* parent=0, const char* name=0);
         virtual ~ActionManager();
 
+        KAction* action(const char* name, const char* classname=0); // iface
+        QWidget* container(const char* name); // iface
+
         void initView(View* view);
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
         void initFeedListView(FeedListView* feedListView);
-        
-        KActionCollection* actionCollection();
-        KAction* action(const char* name, const char* classname=0);
-        QWidget* container(const char* name);
 
+        void setTagSet(TagSet* tagSet); // iface
+        
+    public slots:
+
+        /** fills the remove tag menu with the given tags */
+        void slotUpdateRemoveTagMenu(const QStringList& tagIds); // iface
+
+        
+        void slotTagAdded(const Tag& tag); // iface
+        void slotTagRemoved(const Tag& tag); // iface
+        
+    protected:
+    
+        KActionCollection* actionCollection();
+        
     private:
 
         void initPart();
-        static ActionManager* m_self;
-        ArticleListView* m_articleList;
-        FeedListView* m_feedListView;
-        View* m_view;
-        ArticleViewer* m_articleViewer;
-        Part* m_part;
-        TrayIcon* m_trayIcon;
         
-        KActionCollection* m_actionCollection;
+        static ActionManager* m_self;
+
+        class ActionManagerPrivate;
+        ActionManagerPrivate* d;
 };
 
 } // namespace Akregator

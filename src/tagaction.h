@@ -26,22 +26,26 @@
 #define AKREGATOR_TAGACTION_H
 
 #include <kaction.h>
-#include <qstring.h>
+
+class QString;
 
 namespace Akregator {
 
+class Tag;
+
+/** a KAction for assigning and removing tags. Displays the tag name and emits the tag when activated */
 class TagAction : public KAction
 {
     Q_OBJECT
 
     public:
 
-        TagAction(const QString& tagName, const QObject *receiver, const char *slot, QObject *parent=0);
+        TagAction(const Tag& tag, const QObject *receiver, const char *slot, QObject *parent=0);
         virtual ~TagAction();
 
     signals:
-        
-        void activated(const QString&);
+
+        void activated(const Tag&);
 
     protected: 
 
@@ -49,7 +53,8 @@ class TagAction : public KAction
 
     private:
 
-        QString m_tagName;
+        class TagActionPrivate;
+        TagActionPrivate* d;
 };
 
 } // namespace Akregator

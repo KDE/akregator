@@ -27,6 +27,7 @@
 #include <kstaticdeleter.h>
 
 #include "fetchqueue.h"
+#include "tagset.h"
 
 namespace Akregator
 {
@@ -45,6 +46,9 @@ Kernel* Kernel::self()
 Kernel::Kernel()
 {
     m_fetchQueue = new FetchQueue();
+    m_tagSet = new TagSet();
+    m_storage = 0;
+    m_feedList = 0;
 }
  
 Kernel::~Kernel()

@@ -63,6 +63,17 @@ FolderItem::FolderItem(KListView* parent, Folder* node) : TreeNodeItem(parent, n
         setText(0, node->title());
 }
 
+FolderItem::FolderItem(KListView* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
+{
+    setRenameEnabled(0, true);
+    setExpandable(true);
+    setOpen(true);
+    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
+    if (node)
+        setText(0, node->title());
+}
+
+
 Folder* FolderItem::node() 
 { 
     return static_cast<Folder*> (m_node); 

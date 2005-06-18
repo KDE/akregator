@@ -46,6 +46,7 @@ public:
     TreeNodeItem(FolderItem* parent, TreeNode* node);
     TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* node);
     TreeNodeItem(KListView* parent, TreeNode* node);
+    TreeNodeItem(KListView* parent, TreeNodeItem* after, TreeNode* node);
     virtual ~TreeNodeItem();
     virtual TreeNode* node();
     

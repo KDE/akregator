@@ -101,7 +101,6 @@ ArticleItem::~ArticleItem()
 {
 }
 
-
 Article& ArticleItem::article()
 {
     return m_article;
@@ -572,8 +571,9 @@ void ArticleListView::slotDoubleClicked(QListViewItem* item, const QPoint& p, in
 void ArticleListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("article_popup");
-    if (w)
-        static_cast<QPopupMenu *>(w)->exec(p);
+    QPopupMenu* popup = static_cast<QPopupMenu *>(w);
+    if (popup)
+        popup->exec(p);
 }
         
 ArticleListView::~ArticleListView()

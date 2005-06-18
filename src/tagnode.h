@@ -39,6 +39,7 @@ namespace Akregator
 class Article;
 class Folder;
 class FetchQueue;
+class Tag;
 class TagFilter;
 class TreeNodeVisitor;
 
@@ -49,15 +50,18 @@ Q_OBJECT
 public:
 
     /** creates a tag node, showing articles with a specific tag, from a given node.
-        @param filter the tag filter to match
+        @param tagId the identifier of the tag, as stored in the archive
         @param observed the tag node will list the tagged articles of @c observed (usually "All Feeds" root node)
+        @param title the user visible string used to display the tag
      
     */
-    TagNode(const QString& tag, TreeNode* observed);
+    TagNode(const Tag& tag, TreeNode* observed);
     
     virtual ~TagNode();
 
     virtual bool accept(TreeNodeVisitor* visitor);
+
+    virtual Tag tag() const;
     
     /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree)
     @return number of new/unread articles */

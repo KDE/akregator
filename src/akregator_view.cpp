@@ -45,7 +45,10 @@
 #include "searchbar.h"
 #include "storage.h"
 #include "tabwidget.h"
+#include "tag.h"
+#include "tagset.h"
 #include "tagnode.h"
+#include "tagnodelist.h"
 #include "treenode.h"
 #include "progressmanager.h"
 #include "treenodeitem.h"
@@ -200,6 +203,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
     m_part = part;
     m_feedList = new FeedList();
+    m_tagNodeList = new TagNodeList(m_feedList, Kernel::self()->tagSet());
     m_shuttingDown = false;
     m_displayingAboutPage = false;
     m_currentFrame = 0L;
@@ -215,6 +219,9 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect (Kernel::self()->fetchQueue(), SIGNAL(signalStarted()), this, SLOT(slotFetchingStarted()));
     connect (Kernel::self()->fetchQueue(), SIGNAL(signalStopped()), this, SLOT(slotFetchingStopped()));
 
+    connect(Kernel::self()->tagSet(), SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagCreated(const Tag&)));
+    connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
+    
     m_tree = new FeedListView( m_feedSplitter, "FeedListView" );
     ActionManager::getInstance()->initFeedListView(m_tree);
 
@@ -226,7 +233,6 @@ View::View( Part *part, QWidget *parent, const char *name)
             FolderItem*)), this, SLOT(slotFeedURLDropped (KURL::List &,
             TreeNodeItem*, FolderItem*)));
 
-    m_tree->setFeedList(m_feedList);
     ProgressManager::self()->setFeedList(m_feedList);
     
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
@@ -357,11 +363,12 @@ void View::slotOnShutdown()
 
     Kernel::self()->fetchQueue()->slotAbort();
        
-    m_tree->setFeedList(0);
+    m_tree->setFeedList(0, 0);
     ProgressManager::self()->setFeedList(0);
     
     delete m_feedList;
-
+    delete m_tagNodeList;
+    
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
     m_tabs->setCurrentPage(m_tabs->count()-1); // select last page
@@ -504,12 +511,15 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
 
     if (!parent)
     {
-        m_tree->setFeedList(feedList);
+        
         ProgressManager::self()->setFeedList(feedList);
         disconnectFromFeedList(m_feedList);
         delete m_feedList;
+        delete m_tagNodeList;
         m_feedList = feedList;
-        connectToFeedList(feedList);
+        m_tagNodeList = new TagNodeList(m_feedList, Kernel::self()->tagSet());
+        m_tree->setFeedList(m_feedList, m_tagNodeList);
+        connectToFeedList(m_feedList);
     }
     else
         m_feedList->append(feedList, parent);
@@ -562,7 +572,7 @@ void View::slotNormalView()
         m_articleList->slotShowNode(m_tree->selectedNode());
         m_articleList->show();
 
-        ArticleItem* item = m_articleList->selectedItem();
+        ArticleItem* item = m_articleList->currentItem();
 
         if (item)
             m_articleViewer->slotShowArticle(item->article());
@@ -587,7 +597,7 @@ void View::slotWidescreenView()
         m_articleList->show();
 
         // tell articleview to redisplay+reformat
-        ArticleItem* item = m_articleList->selectedItem();
+        ArticleItem* item = m_articleList->currentItem();
         if (item)
             m_articleViewer->slotShowArticle(item->article());
         else
@@ -1060,6 +1070,39 @@ void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint
     }
 }
 
+void View::slotAssignTag(const Tag& tag)
+{
+    kdDebug() << "assign tag \"" << tag.id() << "\" to selected articles" << endl;
+    QValueList<ArticleItem*> selectedItems = m_articleList->selectedArticleItems(false);
+    for (QValueList<ArticleItem*>::Iterator it = selectedItems.begin(); it != selectedItems.end(); ++it)
+        (*it)->article().addTag(tag.id());
+
+    updateRemoveTagActions();
+}
+
+void View::slotRemoveTag(const Tag& tag)
+{
+    kdDebug() << "remove tag \"" << tag.id() << "\" from selected articles" << endl;
+    QValueList<ArticleItem*> selectedItems = m_articleList->selectedArticleItems(false);
+    for (QValueList<ArticleItem*>::Iterator it = selectedItems.begin(); it != selectedItems.end(); ++it)
+        (*it)->article().removeTag(tag.id());
+
+    updateRemoveTagActions();
+}
+
+void View::slotTagCreated(const Tag& tag)
+{
+    if (m_tagNodeList && !m_tagNodeList->containsTagId(tag.id()))
+    {
+        TagNode* tagNode = new TagNode(tag, m_feedList->rootNode());
+        m_tagNodeList->rootNode()->appendChild(tagNode);
+    }
+}
+
+void View::slotTagRemoved(const Tag& tag)
+{
+}
+
 void View::slotArticleSelected(const Article& article)
 {
 
@@ -1080,7 +1123,10 @@ void View::slotArticleSelected(const Article& article)
 
     KToggleAction*  maai = dynamic_cast<KToggleAction*>(ActionManager::getInstance()->action("article_set_status_important"));
     maai->setChecked(a.keep());
+
     kdDebug() << "selected: " << a.guid() << endl;
+
+    updateRemoveTagActions();
     
     m_articleViewer->slotShowArticle(a);
 }
@@ -1312,6 +1358,24 @@ void View::connectToFeedList(FeedList* feedList)
 void View::disconnectFromFeedList(FeedList* feedList)
 {
     disconnect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
+}
+
+void View::updateRemoveTagActions()
+{
+    QStringList tags;
+    
+    QValueList<ArticleItem*> selectedItems = m_articleList->selectedArticleItems(false);
+    
+    for (QValueList<ArticleItem*>::Iterator it = selectedItems.begin(); it != selectedItems.end(); ++it)
+    {
+        QStringList atags = (*it)->article().tags();
+        for (QStringList::ConstIterator it2 = atags.begin(); it2 != atags.end(); ++it2)
+        {
+            if (!tags.contains(*it2))
+                tags += *it2;
+        }
+    }
+    ActionManager::getInstance()->slotUpdateRemoveTagMenu(tags);
 }
 
 } // namespace Akregator

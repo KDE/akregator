@@ -66,8 +66,10 @@ namespace Akregator {
     class Part;
     class SearchBar;
     class TabWidget;
+    class Tag;
+    class TagNodeList;
     class TreeNodeItem;
-
+    
     /**
      * This is the main widget of the view, containing tree view, article list, viewer etc.
      */
@@ -229,6 +231,11 @@ namespace Akregator {
             /** marks the currently selected article as new */
             void slotSetSelectedArticleNew();
 
+            void slotAssignTag(const Tag& tag);
+            void slotRemoveTag(const Tag& tag);
+            void slotTagCreated(const Tag& tag);
+            void slotTagRemoved(const Tag& tag);
+
             /** switches view mode to normal view */
             void slotNormalView();
             /** switches view mode to widescreen view */
@@ -257,6 +264,8 @@ namespace Akregator {
             
             void connectToFeedList(FeedList* feedList);
             void disconnectFromFeedList(FeedList* feedList);
+
+            void updateRemoveTagActions();
             
         protected slots:
 
@@ -280,6 +289,7 @@ namespace Akregator {
             enum ViewMode { NormalView=0, WidescreenView, CombinedView };  
 
             FeedList* m_feedList;
+            TagNodeList* m_tagNodeList;
             FeedListView* m_tree;
             ArticleListView *m_articleList;
             ArticleViewer *m_articleViewer;

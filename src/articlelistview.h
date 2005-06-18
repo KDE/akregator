@@ -56,7 +56,7 @@ namespace Akregator
             virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
             
             virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(KListViewItem::nextSibling()); }
-            
+
         private:
             Article m_article;
             Feed* m_feed;
@@ -81,8 +81,6 @@ namespace Akregator
 
             ArticleItem* currentItem() const { return static_cast<ArticleItem*>(KListView::currentItem()); }
             
-            ArticleItem* selectedItem() const { return static_cast<ArticleItem*>(KListView::selectedItem()); }
-
             QValueList<ArticleItem*> selectedArticleItems(bool includeHiddenItems) const;
         public slots:
 

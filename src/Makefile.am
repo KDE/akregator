@@ -51,6 +51,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
                                  tagnode.cpp \
 				 folder.cpp \
 				 feedlist.cpp \
+                                 tagnodelist.cpp \
 			         fetchqueue.cpp \
 			  	 feediconmanager.cpp \
 				feediconmanager.skel \
@@ -59,6 +60,8 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
  				pluginmanager.cpp \
 				storagefactoryregistry.cpp \
 				storage.cpp \
+                                tag.cpp \
+                                tagset.cpp \
                                 storagedummyimpl.cpp \
                                 storagefactorydummyimpl.cpp \
                                 feedstoragedummyimpl.cpp

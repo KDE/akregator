@@ -37,9 +37,9 @@ class TreeNodeVisitor
     public:
         virtual bool visit(TreeNode* node);
         
-        virtual bool visitFolder(Folder* node) { return false; }
-        virtual bool visitFeed(Feed* node) { return false; }
-        virtual bool visitTagNode(TagNode* node) { return false; }
+        virtual bool visitFolder(Folder* /*node*/) { return false; }
+        virtual bool visitFeed(Feed* /*node*/) { return false; }
+        virtual bool visitTagNode(TagNode* /*node*/) { return false; }
 };
 
 }

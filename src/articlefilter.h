@@ -35,6 +35,7 @@ class KConfig;
 namespace Akregator
 {
 class Article;
+class Tag;
            
 class Criterion
 {
@@ -74,13 +75,16 @@ class AbstractFilter
     public:
 
         virtual bool matches(const Article& article) const = 0;
+        virtual bool operator==(const AbstractFilter&) const = 0;
+        virtual bool operator!=(const AbstractFilter &other) const = 0;
 };
 
 class TagFilter : public AbstractFilter
 {
     public:
 
-        TagFilter(const QString& tag=QString::null);
+        TagFilter();
+        TagFilter(const Tag& tag);
         TagFilter(const TagFilter& other);
         
         virtual ~TagFilter();
@@ -88,6 +92,8 @@ class TagFilter : public AbstractFilter
         virtual bool matches(const Article& article) const;
 
         TagFilter& operator=(const TagFilter& other);
+        virtual bool operator==(const AbstractFilter&) const;
+        virtual bool operator!=(const AbstractFilter &other) const;
         
     private:
     
@@ -111,8 +117,8 @@ class ArticleFilter : public AbstractFilter
 
         virtual bool matches( const Article &article ) const;
         Action action() const;
-        bool operator==(const ArticleFilter &other) const;
-        bool operator!=(const ArticleFilter &other) const;
+        virtual bool operator==(const AbstractFilter &other) const;
+        virtual bool operator!=(const AbstractFilter &other) const;
     private:
         bool anyCriterionMatches( const Article &a ) const;
         bool allCriteriaMatch( const Article &a ) const;

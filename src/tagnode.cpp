@@ -26,6 +26,7 @@
 #include "articlefilter.h"
 #include "fetchqueue.h"
 #include "folder.h"
+#include "tag.h"
 #include "tagnode.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
@@ -42,16 +43,18 @@ class TagNode::TagNodePrivate
     TagFilter filter;
     TreeNode* observed;
     int unread;
+    Tag tag;
     QValueList<Article> articles;
     QValueList<Article> addedArticlesNotify;
     QValueList<Article> removedArticlesNotify;
     QValueList<Article> updatedArticlesNotify;
 };
 
-TagNode::TagNode(const QString& tag, TreeNode* observed) : d(new TagNodePrivate)
+TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
 {
+    d->tag = tag;
     d->filter = TagFilter(tag);
-    setTitle(tag);
+    setTitle(tag.name());
     d->observed = observed;
     d->unread = 0;
     
@@ -60,10 +63,16 @@ TagNode::TagNode(const QString& tag, TreeNode* observed) : d(new TagNodePrivate)
     connect(observed, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>&)) );
     connect(observed, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QValueList<Article>&)) );
 
-    d->articles = observed->articles(tag);
+    d->articles = observed->articles(tag.id());
     // TODO: calc unread count
 }
-    
+
+
+Tag TagNode::tag() const
+{
+    return d->tag;
+}
+
 TagNode::~TagNode()
 {
     emit signalDestroyed(this);
@@ -134,7 +143,7 @@ void TagNode::slotMarkAllArticlesAsRead()
     setNotificationMode(true);
 }
     
-void TagNode::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
+void TagNode::slotAddToFetchQueue(FetchQueue* /*queue*/, bool /*intervalFetchOnly*/)
 {
 // not our business
 }

@@ -29,6 +29,8 @@
 #include "feeditem.h"
 #include "feedlist.h"
 #include "tagnode.h"
+#include "tagnodeitem.h"
+#include "tagnodelist.h"
 #include "treenode.h"
 #include "treenodeitem.h"
 #include "treenodevisitor.h"
@@ -124,11 +126,83 @@ class FeedListView::DisconnectNodeVisitor : public TreeNodeVisitor
         FeedListView* m_view;
 };
 
+class FeedListView::CreateItemVisitor : public TreeNodeVisitor
+{
+    public:
+        CreateItemVisitor(FeedListView* view) : m_view(view) {}
+
+        virtual bool visitTagNode(TagNode* node)
+        {
+            kdDebug() << "create item for " << node->title() << endl;
+            TagNodeItem* item = 0;
+            TreeNode* prev = node->prevSibling();
+            FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
+            if (prev)
+            {
+                item = new TagNodeItem( parentItem, m_view->findNodeItem(prev), node);
+            }
+            else
+                item = new TagNodeItem( parentItem, node);
+                
+            item->nodeChanged();     
+            m_view->m_itemDict.insert(node, item);
+            m_view->connectToNode(node);
+            return true;
+        }
+        
+        virtual bool visitFolder(Folder* node)
+        {
+            FolderItem* item = 0;
+            TreeNode* prev = node->prevSibling();
+            FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
+            if (prev)
+            {
+                 item = new FolderItem( parentItem, m_view->findNodeItem(prev), node);
+            }
+            else
+                item = new FolderItem(parentItem, node);
+
+            m_view->m_itemDict.insert(node, item);
+            QValueList<TreeNode*> children = node->children();
+
+            // add children recursively
+            for (QValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
+                visit(*it);
+
+            m_view->connectToNode(node);
+            return true;
+        }
+        
+        virtual bool visitFeed(Feed* node)
+        {
+            FeedItem* item = 0;
+            TreeNode* prev = node->prevSibling();
+            FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
+            if (prev)
+            {
+                item = new FeedItem( parentItem, m_view->findNodeItem(prev), node);
+            }
+            else
+                item = new FeedItem( parentItem, node);
+                
+            item->nodeChanged();     
+            m_view->m_itemDict.insert(node, item);
+            m_view->connectToNode(node);
+            return true;
+        }
+        
+    private:
+        FeedListView* m_view;
+};
+
 FeedListView::FeedListView( QWidget *parent, const char *name)
         : KListView(parent, name), m_showTagFolders(true)
 {
+    m_tagNodeList = 0;
     m_connectNodeVisitor = new ConnectNodeVisitor(this),
     m_disconnectNodeVisitor = new DisconnectNodeVisitor(this);
+    m_createItemVisitor = new CreateItemVisitor(this);
+    
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
     setRootIsDecorated(true);
@@ -164,9 +238,10 @@ FeedListView::~FeedListView()
 {
     delete m_connectNodeVisitor;
     delete m_disconnectNodeVisitor;
+    delete m_createItemVisitor;
 }
 
-void FeedListView::setFeedList(FeedList* feedList)
+void FeedListView::setFeedList(FeedList* feedList, TagNodeList* tagNodeList)
 {
     if (feedList == m_feedList)
          return;
@@ -190,6 +265,17 @@ void FeedListView::setFeedList(FeedList* feedList)
 
     // add items for children recursively
     QValueList<TreeNode*> children = rootNode->children();
+    
+    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+        slotNodeAdded(*it);
+
+    // handle tagNodeLsit
+
+    rootNode = tagNodeList->rootNode();
+    ri = new FolderItem(this, ri, rootNode);
+    m_itemDict.insert(rootNode, ri);
+
+    children = rootNode->children();
     
     for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
         slotNodeAdded(*it);
@@ -691,64 +777,7 @@ void FeedListView::slotFeedFetchCompleted(Feed* feed)
       
 void FeedListView::slotNodeAdded(TreeNode* node)
 {
-    if (!node)
-        return;
-
-    Folder* parent = node->parent();
-    FolderItem* parentItem = static_cast<FolderItem*>(findNodeItem(parent));
-        
-    // we aren't interested in nodes whose parents we don't know 
-    if (!parentItem)
-        return;
-    
-    TreeNodeItem* item = findNodeItem(node);
-
-    QValueList<TreeNode*> pchildren = parent->children();
-    QValueList<TreeNode*>::ConstIterator it = pchildren.find(node);
-
-    TreeNode* prev = 0;
-    if (it != pchildren.end() && it != pchildren.begin())
-    {
-        --it;
-        prev = *it;
-    }
-    if (!item)
-    {
-        if (node->isGroup())
-        {
-            Folder* fg = static_cast<Folder*>(node);
-            if (prev)
-                item = new FolderItem( parentItem, findNodeItem(prev), fg);
-            else
-                item = new FolderItem( parentItem, fg);
-
-            m_itemDict.insert(node, item);
-            QValueList<TreeNode*> children = fg->children();
-
-            // add children recursively
-            for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it )
-                slotNodeAdded(*it);
-        }
-        else
-        {
-            //TODO: tag nodes need rework
-            Feed* f = static_cast<Feed*> (node);
-            if (prev)
-                item = new FeedItem( parentItem, findNodeItem(prev), f );
-            else
-                item = new FeedItem( parentItem, f );
-            item->nodeChanged();     
-            m_itemDict.insert(node, item);
-        }
-    }
-    else
-    {
-        insertNode(parentItem, item, findNodeItem(prev));
-        if (!selectedItem())
-            setSelected(item, true);
-    }
-
-    connectToNode(node);
+    m_createItemVisitor->visit(node);
 }
 
 void FeedListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
@@ -791,7 +820,7 @@ void FeedListView::slotFeedListDestroyed(FeedList* list)
     if (list != m_feedList)
         return;
 
-    setFeedList(0);
+    setFeedList(0, 0);
 }
 
 void FeedListView::slotNodeDestroyed(TreeNode* node)

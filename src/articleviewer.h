@@ -50,7 +50,8 @@ namespace Akregator
         public:
             /** Constructor */
             ArticleViewer(QWidget* parent, const char* name);
-
+            virtual ~ArticleViewer();
+            
             virtual bool openURL(const KURL &url);
 
             /** Repaints the view. */
@@ -99,9 +100,10 @@ namespace Akregator
 
         private:
 
-            void showSummary(Folder* group);
-            void showSummary(Feed *f);
-
+            friend class ShowNodeSummaryVisitor;
+            class ShowSummaryVisitor;
+            ShowSummaryVisitor* m_showSummaryVisitor;
+            
             /** renders @c body. Use this method whereever possible.
             @param body html to render, without header and footer */
             void renderContent(const QString& body);

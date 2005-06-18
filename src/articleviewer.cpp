@@ -49,8 +49,10 @@
 #include "folder.h"
 #include "article.h"
 #include "treenode.h"
+#include "treenodevisitor.h"
+#include "tagnode.h"
 
-using namespace Akregator;
+namespace Akregator {
 
 // from kmail::headerstyle.cpp
 static inline QString directionOf(const QString &str)
@@ -63,9 +65,91 @@ static inline QString stripTags(const QString& str)
     return QString(str).replace(QRegExp("<[^>]*>"), "");
 }
 
+class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
+{
+    public:
+    
+    ShowSummaryVisitor(ArticleViewer* view) : m_view(view) {}
+    
+    virtual bool visitFeed(Feed* node)
+    {
+
+        QString text;
+        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+        
+        text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(stripTags(node->title())));
+        text += node->title();
+        if(node->unread() == 0)
+            text += i18n(" (no unread articles)");
+        else
+            text += i18n(" (1 unread article)", " (%n unread articles)", node->unread());
+        text += "</div>\n"; // headertitle
+        text += "</div>\n"; // /headerbox
+        
+        if (!node->image().isNull()) // image
+        {
+            text += QString("<div class=\"body\">");
+            QString url=node->xmlUrl();
+            QString file = url.replace("/", "_").replace(":", "_");
+            KURL u(m_view->m_imageDir);
+            u.setFileName(file);
+            text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
+        }
+        else text += "<div class=\"body\">";
+        
+        
+        if( !node->description().isEmpty() )
+        {
+            text += QString("<div dir=\"%1\">").arg(stripTags(directionOf(node->description())));
+            text += i18n("<b>Description:</b> %1<br><br>").arg(node->description());
+            text += "</div>\n"; // /description
+        }
+        
+        if ( !node->htmlUrl().isEmpty() )
+        {
+            text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
+            text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(node->htmlUrl()).arg(node->htmlUrl());
+            text += "</div>\n"; // / link
+        }
+        
+        //text += i18n("<b>Unread articles:</b> %1").arg(node->unread());
+        text += "</div>"; // /body
+        
+        m_view->renderContent(text);
+        return true;
+    }
+    
+    virtual bool visitFolder(Folder* node)
+    {
+
+        QString text;
+        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(node->title()))).arg(node->title());
+        if(node->unread() == 0)
+            text += i18n(" (no unread articles)");
+        else
+            text += i18n(" (1 unread article)", " (%n unread articles)", node->unread());
+        text += QString("</div>\n");
+        text += "</div>\n"; // /headerbox
+    
+        m_view->renderContent(text);
+        return true;
+    }
+
+    virtual bool visitTagNode(TagNode* node)
+    {
+        return true;
+    }
+
+    private:
+
+    ArticleViewer* m_view;
+};
+
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : Viewer(parent, name), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
+    m_showSummaryVisitor = new ShowSummaryVisitor(this);
     setXMLFile(locate("data", "akregator/articleviewer.rc"), true);
 
     generateNormalModeCSS();
@@ -80,6 +164,11 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     
     m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
     m_htmlFooter = "</body></html>";
+}
+
+ArticleViewer::~ArticleViewer()
+{
+    delete m_showSummaryVisitor;
 }
 
 bool ArticleViewer::openURL(const KURL &url)
@@ -485,78 +574,9 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
         connectToNode(node);
         m_node = node;
     }
-    
-    if (node->isGroup())
-        showSummary(static_cast<Folder*>(m_node));
-    else
-        showSummary(static_cast<Feed*>(m_node));
+    m_showSummaryVisitor->visit(node);
 }
 
-void ArticleViewer::showSummary(Folder* group)
-{
-    if (!group)
-        return;
-    QString text;
-    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-    text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(group->title()))).arg(group->title());
-    if(group->unread() == 0)
-        text += i18n(" (no unread articles)");
-    else
-        text += i18n(" (1 unread article)", " (%n unread articles)", group->unread());
-    text += QString("</div>\n");
-    text += "</div>\n"; // /headerbox
-    
-    renderContent(text);
-}
-
-void ArticleViewer::showSummary(Feed *f)
-{
-    if(!f)
-        return;
-
-    QString text;
-    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-
-    text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(stripTags(f->title())));
-    text += f->title();
-    if(f->unread() == 0)
-        text += i18n(" (no unread articles)");
-    else
-        text += i18n(" (1 unread article)", " (%n unread articles)", f->unread());
-    text += "</div>\n"; // headertitle
-    text += "</div>\n"; // /headerbox
-    
-    if (!f->image().isNull()) // image
-    {
-        text += QString("<div class=\"body\">");
-        QString url=f->xmlUrl();
-        QString file = url.replace("/", "_").replace(":", "_");
-        KURL u(m_imageDir);
-        u.setFileName(file);
-        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(f->htmlUrl()).arg(u.url());
-    }
-    else text += "<div class=\"body\">";
-
-    
-    if( !f->description().isEmpty() )
-    {
-        text += QString("<div dir=\"%1\">").arg(stripTags(directionOf(f->description())));
-        text += i18n("<b>Description:</b> %1<br><br>").arg(f->description());
-        text += "</div>\n"; // /description
-    }
-
-    if ( !f->htmlUrl().isEmpty() )
-    {
-        text += QString("<div dir=\"%1\">").arg(directionOf(f->htmlUrl()));
-        text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(f->htmlUrl()).arg(f->htmlUrl());
-        text += "</div>\n"; // / link
-    }   
-    
-    //text += i18n("<b>Unread articles:</b> %1").arg(f->unread());
-    text += "</div>"; // /body
-
-    renderContent(text);
-}
 
 void ArticleViewer::slotShowArticle(const Article& article)
 {
@@ -712,6 +732,7 @@ void ArticleViewer::disconnectFromNode(TreeNode* node)
 
     }
 }
-            
+
+}
 #include "articleviewer.moc"
-// vim: set et ts=4 sts=4 sw=4:
+

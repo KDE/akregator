@@ -38,6 +38,7 @@ namespace Akregator
     class FeedList;
     class TreeNode;
     class TreeNodeItem;
+    class TagNodeList;
     
     class FeedListView : public KListView
     {
@@ -47,8 +48,8 @@ namespace Akregator
             ~FeedListView();
             
             /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
-            void setFeedList(FeedList* feedList);
-            
+            void setFeedList(FeedList* feedList, TagNodeList* tagNodeList=0);
+
             /** Returns root node ("All Feeds").
              * @return root node
              */
@@ -181,9 +182,15 @@ namespace Akregator
             friend class DisconnectNodeVisitor;
             class DisconnectNodeVisitor;
             DisconnectNodeVisitor* m_disconnectNodeVisitor;
+
+            friend class CreateItemVisitor;
+            class CreateItemVisitor;
+            CreateItemVisitor* m_createItemVisitor;
+            
             /** used for finding the item belonging to a node */
             QPtrDict<TreeNodeItem> m_itemDict;
             FeedList* m_feedList;
+            TagNodeList* m_tagNodeList;
             bool m_showTagFolders;
     };
 

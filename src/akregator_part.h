@@ -131,6 +131,9 @@ namespace Akregator
             @return true iff merging was successful, i.e. the GUI factory was not NULL */
             virtual bool mergePart(KParts::Part*);
 
+            void loadTagSet(const QString& path);
+            void saveTagSet(const QString& path);
+            
         public slots:
             /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
             virtual void saveSettings();
@@ -194,6 +197,7 @@ namespace Akregator
          private: // attributes
          
             QString m_standardFeedList;
+            QString m_tagSetPath;
             bool m_standardListLoaded;
             bool m_shuttingDown;
 

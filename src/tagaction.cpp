@@ -22,25 +22,35 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "tag.h"
 #include "tagaction.h"
 
 namespace Akregator {
 
-
-TagAction::TagAction(const QString& tagName, const QObject *receiver, const char *slot, QObject *parent) 
-//KAction (const QString &text, const KShortcut &cut, const QObject *receiver, const char *slot, QObject *parent, const char *name=0)
-       : KAction(tagName, KShortcut(), 0, 0, parent)
-       , m_tagName(tagName)
+class TagAction::TagActionPrivate
 {
-    connect(this, SIGNAL(activated(const QString&)), receiver, slot);
+    public:
+    Tag tag;
+    
+};
+ 
+TagAction::TagAction(const Tag& tag, const QObject *receiver, const char *slot, QObject *parent)
+//KAction (const QString &text, const KShortcut &cut, const QObject *receiver, const char *slot, QObject *parent, const char *name=0)
+       : KAction(tag.name(), KShortcut(), 0, 0, parent), d(new TagActionPrivate)
+{
+     d->tag = tag;
+     connect(this, SIGNAL(activated(const Tag&)), receiver, slot);
 }
 
 TagAction::~TagAction()
-{}
+{
+    delete d;
+    d = 0;
+}
 
 void TagAction::slotActivated()
 {
-    emit activated(m_tagName);
+    emit activated(d->tag);
     KAction::slotActivated();
 }
 
