@@ -138,6 +138,17 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 
     virtual bool visitTagNode(TagNode* node)
     {
+        QString text;
+        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(node->title()))).arg(node->title());
+        if(node->unread() == 0)
+            text += i18n(" (no unread articles)");
+        else
+            text += i18n(" (1 unread article)", " (%n unread articles)", node->unread());
+        text += QString("</div>\n");
+        text += "</div>\n"; // /headerbox
+    
+        m_view->renderContent(text);
         return true;
     }
 
