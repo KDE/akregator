@@ -123,6 +123,17 @@ namespace Akregator
             of items accordingly */
             virtual void applyFilters();
             
+            /**
+             * @return count of visible articles, used for info boxes
+             */
+            int visibleArticles();
+            
+            /** Paints infobox for filtering and stuff
+             */
+            void paintInfoBox(const QString &message);
+            
+            virtual void viewportPaintEvent(QPaintEvent *e);
+            
             void connectToNode(TreeNode* node);
             void disconnectFromNode(TreeNode* node);
             

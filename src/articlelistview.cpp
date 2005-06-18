@@ -46,6 +46,9 @@
 #include <qwhatsthis.h>
 #include <qheader.h>
 #include <qdragobject.h>
+#include <qsimplerichtext.h>
+#include <qpainter.h>
+#include <qapplication.h>
 
 namespace Akregator {
 
@@ -420,6 +423,64 @@ void ArticleListView::applyFilters()
     }
 }
 
+int ArticleListView::visibleArticles()
+{
+    int visible = 0;
+    ArticleItem* ali = 0;
+    for (QListViewItemIterator it(this); it.current(); ++it) {
+        ali = static_cast<ArticleItem*> (it.current());
+        visible += ali->isVisible();
+    }
+    return visible;
+}
+
+// from amarok :)
+void ArticleListView::paintInfoBox(const QString &message)
+{
+    QPainter p( viewport() );
+    QSimpleRichText t( message, QApplication::font() );
+
+    if ( t.width()+30 >= viewport()->width() || t.height()+30 >= viewport()->height() )
+            //too big, giving up
+        return;
+
+    const uint w = t.width();
+    const uint h = t.height();
+    const uint x = (viewport()->width() - w - 30) / 2 ;
+    const uint y = (viewport()->height() - h - 30) / 2 ;
+
+    p.setBrush( colorGroup().background() );
+    p.drawRoundRect( x, y, w+30, h+30, (8*200)/w, (8*200)/h );
+    t.draw( &p, x+15, y+15, QRect(), colorGroup() );
+}
+
+void ArticleListView::viewportPaintEvent(QPaintEvent *e)
+{
+    if(e)
+        KListView::viewportPaintEvent(e);
+    
+    //kdDebug() << "visible articles: " << visibleArticles() << endl;
+    if(e && visibleArticles() == 0 && childCount() != 0) {
+        
+        QString message = i18n("<div align=center>"
+                               "<h3>No matches</h3>"
+                               "Filter does not match any articles, "
+                               "please change your criteria and try again."
+                               "</div>");
+        paintInfoBox(message);
+    }
+    /* perhaps we should display infobox when feed has no articles, no? */
+    if(e && childCount() == 0) {
+        QString message = i18n("<div align=center>"
+                               "<h3>No feed selected</h3>"
+                               "This area is article list. "
+                               "Select a feed from the feedlist "
+                               "and you will see its articles here."
+                               "</div>");
+        paintInfoBox(message);
+    }
+}
+
 QDragObject *ArticleListView::dragObject()
 {
     QDragObject *d = new QTextDrag(currentItem()->article().link().prettyURL(), this);
@@ -568,7 +629,7 @@ void ArticleListView::slotDoubleClicked(QListViewItem* item, const QPoint& p, in
     emit signalDoubleClicked(static_cast<ArticleItem*>(item), p, i);
 }
 
-void ArticleListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
+void ArticleListView::slotContextMenu(KListView* /*list*/, QListViewItem* /*item*/, const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("article_popup");
     QPopupMenu* popup = static_cast<QPopupMenu *>(w);
