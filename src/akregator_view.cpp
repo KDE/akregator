@@ -956,8 +956,7 @@ void View::slotOpenHomepage()
 {
     Feed* feed = dynamic_cast<Feed *>(m_tree->selectedNode());
 
-    //TODO: tag nodes need rework
-    if (!feed || feed->isGroup())
+    if (!feed)
         return;
 
     switch (Settings::lMBBehaviour())
@@ -1116,9 +1115,7 @@ void View::slotArticleSelected(const Article& article)
     Article a(article);
     if (a.status() != Article::Read)
     {
-        m_articleList->setReceiveUpdates(false, false);
         a.setStatus(Article::Read);
-        m_articleList->setReceiveUpdates(true, false);
     }
 
     KToggleAction*  maai = dynamic_cast<KToggleAction*>(ActionManager::getInstance()->action("article_set_status_important"));
@@ -1289,10 +1286,10 @@ void View::slotSetSelectedArticleRead()
     if (items.isEmpty())
         return;
 
-    m_articleList->setReceiveUpdates(false, false);        
+    m_articleList->setReceiveUpdates(false);        
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setStatus(Article::Read);
-    m_articleList->setReceiveUpdates(true, false);
+    m_articleList->setReceiveUpdates(true);
 }
 
 void View::slotSetSelectedArticleUnread()
@@ -1302,10 +1299,10 @@ void View::slotSetSelectedArticleUnread()
     if (items.isEmpty())
         return;
 
-    m_articleList->setReceiveUpdates(false, false);
+    m_articleList->setReceiveUpdates(false);
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setStatus(Article::Unread);
-    m_articleList->setReceiveUpdates(true, false);
+    m_articleList->setReceiveUpdates(true);
 }
 
 void View::slotSetSelectedArticleNew()
@@ -1315,11 +1312,11 @@ void View::slotSetSelectedArticleNew()
     if (items.isEmpty())
         return;
 
-    m_articleList->setReceiveUpdates(false, false);        
+    m_articleList->setReceiveUpdates(false);
     
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setStatus(Article::New);
-    m_articleList->setReceiveUpdates(true, false);
+    m_articleList->setReceiveUpdates(true);
 }
 
 void View::slotMouseOverInfo(const KFileItem *kifi)

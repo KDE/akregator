@@ -456,29 +456,47 @@ void ArticleListView::paintInfoBox(const QString &message)
 
 void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 {
-    if(e)
-        KListView::viewportPaintEvent(e);
+
+    KListView::viewportPaintEvent(e);
+    
+    if(!e)
+        return;
+        
+    QString message = QString::null;
     
     //kdDebug() << "visible articles: " << visibleArticles() << endl;
-    if(e && visibleArticles() == 0 && childCount() != 0) {
+    
+    if(childCount() != 0) // article list is not empty
+    {
+        if (visibleArticles() == 0)
+        {
+        message = i18n("<div align=center>"
+                        "<h3>No matches</h3>"
+                        "Filter does not match any articles, "
+                        "please change your criteria and try again."
+                        "</div>");
+        }
         
-        QString message = i18n("<div align=center>"
-                               "<h3>No matches</h3>"
-                               "Filter does not match any articles, "
-                               "please change your criteria and try again."
-                               "</div>");
-        paintInfoBox(message);
     }
-    /* perhaps we should display infobox when feed has no articles, no? */
-    if(e && childCount() == 0) {
-        QString message = i18n("<div align=center>"
-                               "<h3>No feed selected</h3>"
-                               "This area is article list. "
-                               "Select a feed from the feedlist "
-                               "and you will see its articles here."
-                               "</div>");
-        paintInfoBox(message);
+    else // article list is empty
+    {
+        if (!m_node) // no node selected
+        {
+            message = i18n("<div align=center>"
+                       "<h3>No feed selected</h3>"
+                       "This area is article list. "
+                       "Select a feed from the feed list "
+                       "and you will see its articles here."
+                       "</div>");
+        }
+        else // empty node
+        {
+            // TODO: we could display message like "empty node, choose "fetch" to update it" 
+        }
     }
+    
+    if (!message.isNull())
+        paintInfoBox(message);
 }
 
 QDragObject *ArticleListView::dragObject()
