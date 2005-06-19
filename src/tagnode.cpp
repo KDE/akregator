@@ -82,7 +82,10 @@ TagNode::~TagNode()
 
 bool TagNode::accept(TreeNodeVisitor* visitor)
 {
-    return visitor->visitTagNode(this);
+    if (visitor->visitTagNode(this))
+        return true;
+    else
+        return visitor->visitTreeNode(this);
 }
 
 int TagNode::unread() const

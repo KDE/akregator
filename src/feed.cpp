@@ -163,7 +163,10 @@ Feed* Feed::fromOPML(QDomElement e)
 
 bool Feed::accept(TreeNodeVisitor* visitor)
 {
-    return visitor->visitFeed(this);
+    if (visitor->visitFeed(this))
+        return true;
+    else
+        return visitor->visitTreeNode(this);
 }
 
 QStringList Feed::tags() const

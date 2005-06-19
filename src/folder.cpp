@@ -54,7 +54,10 @@ class Folder::FolderPrivate
            
 bool Folder::accept(TreeNodeVisitor* visitor)
 {
-    return visitor->visitFolder(this);
+    if (visitor->visitFolder(this))
+        return true;
+    else
+        return visitor->visitTreeNode(this);
 }
 
 Folder* Folder::fromOPML(QDomElement e)

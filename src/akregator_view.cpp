@@ -786,7 +786,7 @@ void View::slotNodeSelected(TreeNode* node)
 
     if (ActionManager::getInstance()->action("feed_remove") )
     {
-        if (node != m_feedList->rootNode() )
+        if ( node->parent() ) // root nodes must not be deleted
             ActionManager::getInstance()->action("feed_remove")->setEnabled(true);
         else
             ActionManager::getInstance()->action("feed_remove")->setEnabled(false);
