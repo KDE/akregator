@@ -954,7 +954,7 @@ void View::slotMarkAllRead()
 
 void View::slotOpenHomepage()
 {
-    Feed* feed = static_cast<Feed *>(m_tree->selectedNode());
+    Feed* feed = dynamic_cast<Feed *>(m_tree->selectedNode());
 
     //TODO: tag nodes need rework
     if (!feed || feed->isGroup())
