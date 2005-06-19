@@ -784,14 +784,7 @@ void View::slotNodeSelected(TreeNode* node)
         m_articleViewer->slotShowSummary(node);
     }
 
-    if (ActionManager::getInstance()->action("feed_remove") )
-    {
-        if ( node->parent() ) // root nodes must not be deleted
-            ActionManager::getInstance()->action("feed_remove")->setEnabled(true);
-        else
-            ActionManager::getInstance()->action("feed_remove")->setEnabled(false);
-    }
-    
+    ActionManager::getInstance()->slotNodeSelected(node);
 }
 
 

@@ -92,11 +92,6 @@ FolderItem::~FolderItem()
 void FolderItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("feedgroup_popup");
-    ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feeds");
-    ActionManager::getInstance()->action("feed_remove")->setText("&Delete Folder");
-    ActionManager::getInstance()->action("feed_modify")->setText("&Rename Folder");
-    ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
-
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
 }

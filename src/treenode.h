@@ -205,6 +205,7 @@ protected:
     */
     virtual void doArticleNotification();
 
+    void emitSignalDestroyed();
     
 private:
     class TreeNodePrivate;

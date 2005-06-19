@@ -110,11 +110,6 @@ void FeedItem::initialize(Feed* node)
 void FeedItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("feeds_popup");
-    ActionManager::getInstance()->action("feed_fetch")->setText("&Fetch Feed");
-    ActionManager::getInstance()->action("feed_remove")->setText("&Delete Feed");
-    ActionManager::getInstance()->action("feed_modify")->setText("&Edit Feed...");
-    ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
-
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
 }

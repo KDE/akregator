@@ -70,10 +70,6 @@ TagNode* TagNodeItem::node()
 void TagNodeItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("tagnode_popup");
-    ActionManager::getInstance()->action("feed_mark_all_as_read")->setText("&Mark Articles as Read");
-    ActionManager::getInstance()->action("feed_remove")->setText("&Delete Tag");
-    ActionManager::getInstance()->action("feed_modify")->setText("&Rename Tag");
-
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
 }

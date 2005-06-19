@@ -39,21 +39,87 @@
 #include "akregator_view.h"
 #include "articlelistview.h"
 #include "articleviewer.h"
+#include "feed.h"
 #include "feedlistview.h"
 #include "fetchqueue.h"
+#include "folder.h"
 #include "kernel.h"
 #include "tag.h"
 #include "tagaction.h"
+#include "tagnode.h"
 #include "tagset.h"
 #include "trayicon.h"
+#include "treenode.h"
+#include "treenodevisitor.h"
+
+
 
 #include <kdebug.h>
 
-namespace Akregator {
+namespace Akregator
+{
+
+class ActionManager::NodeSelectVisitor : public TreeNodeVisitor
+{
+    public:
+    NodeSelectVisitor(ActionManager* manager) : m_manager(manager) {}
+    
+    virtual bool visitFeed(Feed* /*node*/)
+    {
+        KAction* remove = m_manager->action("feed_remove");
+        if (remove)
+            remove->setEnabled(true);
+        KAction* hp = m_manager->action("feed_homepage");
+        if (hp)
+            remove->setEnabled(true);
+        m_manager->action("feed_fetch")->setText("&Fetch Feed");
+        m_manager->action("feed_remove")->setText("&Delete Feed");
+        m_manager->action("feed_modify")->setText("&Edit Feed...");
+        m_manager->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
+
+        return true;
+    }
+    
+    virtual bool visitFolder(Folder* node)
+    {
+        KAction* remove = m_manager->action("feed_remove");
+        if (remove)
+            remove->setEnabled(node->parent()); // root nodes must not be deleted
+        KAction* hp = m_manager->action("feed_homepage");
+        if (hp)
+            remove->setEnabled(false);
+
+        m_manager->action("feed_fetch")->setText("&Fetch Feeds");
+        m_manager->action("feed_remove")->setText("&Delete Folder");
+        m_manager->action("feed_modify")->setText("&Rename Folder");
+        m_manager->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
+
+        return true;
+    }
+
+    virtual bool visitTagNode(TagNode* /*node*/)
+    {
+        KAction* remove = m_manager->action("feed_remove");
+        if (remove)
+            remove->setEnabled(true);
+        KAction* hp = m_manager->action("feed_homepage");
+        if (hp)
+            remove->setEnabled(false);
+        m_manager->action("feed_mark_all_as_read")->setText("&Mark Articles as Read");
+        m_manager->action("feed_remove")->setText("&Delete Tag");
+        m_manager->action("feed_modify")->setText("&Rename Tag");
+
+        return true;
+    }
+    private:
+    ActionManager* m_manager;
+};
+
 class ActionManager::ActionManagerPrivate
 {
 public:
 
+    NodeSelectVisitor* nodeSelectVisitor;
     ArticleListView* articleList;
     FeedListView* feedListView;
     View* view;
@@ -155,9 +221,14 @@ void ActionManager::slotTagRemoved(const Tag& tag)
     d->removeTagActions.remove(id);
 }
 
+void ActionManager::slotNodeSelected(TreeNode* node)
+{
+    d->nodeSelectVisitor->visit(node);
+}
         
 ActionManager::ActionManager(Part* part, QObject* parent, const char* name) : QObject(parent, name), d(new ActionManagerPrivate)
 {
+    d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;
     d->tagSet = 0;
     d->feedListView = 0;
@@ -174,6 +245,7 @@ ActionManager::~ActionManager()
 {
     delete d;
     d = 0;
+    delete d->nodeSelectVisitor;
 }
 
 void ActionManager::initTrayIcon(TrayIcon* trayIcon)

@@ -83,8 +83,9 @@ Folder::~Folder()
         tmp = *it;
     }
     delete tmp;
-    // tell the world that this node is destroyed
-    emit signalDestroyed(this);
+    
+    emitSignalDestroyed();
+
     delete d;
     d = 0;
 }

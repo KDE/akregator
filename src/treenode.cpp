@@ -42,6 +42,7 @@ class TreeNode::TreeNodePrivate
     QString title;
     Folder* parent;
     uint id;
+    bool signalDestroyedEmitted;
 };
 
 TreeNode::TreeNode()
@@ -53,12 +54,22 @@ TreeNode::TreeNode()
     d->title = "";
     d->parent = 0;
     d->id = 0;
+    d->signalDestroyedEmitted = false;
+    
+}
+
+void TreeNode::emitSignalDestroyed()
+{
+    if (!d->signalDestroyedEmitted)
+    {
+        emit signalDestroyed(this);
+        d->signalDestroyedEmitted = true;
+    } 
 }
 
 TreeNode::~TreeNode()
 {
-    // tell the world that this node is destroyed
-    //emit signalDestroyed(this);
+
     delete d;
     d = 0;
 }

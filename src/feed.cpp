@@ -271,8 +271,7 @@ Feed::Feed() : TreeNode(), d(new FeedPrivate)
 Feed::~Feed()
 {
     slotAbortFetch();
-    // tell the world that this node is destroyed
-    emit signalDestroyed(this);
+    emitSignalDestroyed();
     delete d;
     d = 0;
 }

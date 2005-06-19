@@ -75,7 +75,7 @@ Tag TagNode::tag() const
 
 TagNode::~TagNode()
 {
-    emit signalDestroyed(this);
+    emitSignalDestroyed();
     delete d;
     d = 0;
 }

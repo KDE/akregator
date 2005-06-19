@@ -42,6 +42,7 @@ class Part;
 class TrayIcon;
 class Tag;
 class TagSet;
+class TreeNode;
 class View;
 // TODO: move the methods marked with "iface" to an interface and pass that where initFoo() is not needed, to avoid dependencies between e.g. listviews and Akregator::Part
 
@@ -72,7 +73,8 @@ class ActionManager : public QObject
 
         /** fills the remove tag menu with the given tags */
         void slotUpdateRemoveTagMenu(const QStringList& tagIds); // iface
-
+        
+        void slotNodeSelected(TreeNode* node);
         
         void slotTagAdded(const Tag& tag); // iface
         void slotTagRemoved(const Tag& tag); // iface
@@ -87,6 +89,9 @@ class ActionManager : public QObject
         
         static ActionManager* m_self;
 
+        friend class NodeSelectVisitor;
+        class NodeSelectVisitor;
+        
         class ActionManagerPrivate;
         ActionManagerPrivate* d;
 };
