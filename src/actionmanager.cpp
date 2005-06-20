@@ -87,7 +87,7 @@ class ActionManager::NodeSelectVisitor : public TreeNodeVisitor
             remove->setEnabled(node->parent()); // root nodes must not be deleted
         KAction* hp = m_manager->action("feed_homepage");
         if (hp)
-            remove->setEnabled(false);
+            hp->setEnabled(false);
 
         m_manager->action("feed_fetch")->setText("&Fetch Feeds");
         m_manager->action("feed_remove")->setText("&Delete Folder");
