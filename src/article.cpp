@@ -259,7 +259,8 @@ void Article::setStatus(int stat)
                 break;
         }
         d->archive->setStatus(d->guid, d->status);
-        d->feed->setArticleChanged(*this, oldStatus);
+        if (d->feed)
+            d->feed->setArticleChanged(*this, oldStatus);
      }
 }
 
@@ -336,19 +337,22 @@ void Article::setKeep(bool keep)
 {
     d->status = keep ? (d->status | Private::Keep) : (d->status & ~Private::Keep);
     d->archive->setStatus(d->guid, d->status);
-    d->feed->setArticleChanged(*this);
+    if (d->feed)
+        d->feed->setArticleChanged(*this);
 }
 
 void Article::addTag(const QString& tag)
 {
     d->archive->addTag(d->guid, tag);
-    d->feed->setArticleChanged(*this);
+    if (d->feed)
+        d->feed->setArticleChanged(*this);
 }
 
 void Article::removeTag(const QString& tag)
 {
     d->archive->removeTag(d->guid, tag);
-    d->feed->setArticleChanged(*this);
+    if (d->feed)
+        d->feed->setArticleChanged(*this);
 }
             
 bool Article::hasTag(const QString& tag) const
