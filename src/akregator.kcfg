@@ -182,9 +182,17 @@
   </entry>
  </group>
  <group name="Advanced" >
-<entry key="Archive Backend" type="String" >
+  <entry key="Archive Backend" type="String" >
    <label>Archive Backend</label>
    <default>metakit</default>
+  </entry>
+  <entry key="Delay Mark Read" name="UseMarkReadDelay" type="Bool" >
+   <whatsthis>Whether to delay before marking an article as read upon selecting it.</whatsthis>
+   <default>false</default>
+  </entry>
+  <entry key="Mark Read Delay" name="MarkReadDelay" type="Int" >
+   <whatsthis>Configurable delay between selecting and article and it being marked as read.</whatsthis>
+   <default>2</default>
   </entry>
 </group>
 </kcfg>

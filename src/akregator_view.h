@@ -230,6 +230,8 @@ namespace Akregator {
             void slotSetSelectedArticleUnread();
             /** marks the currently selected article as new */
             void slotSetSelectedArticleNew();
+            /** marks the currenctly selected article as read after a user-set delay */
+            void slotSetCurrentArticleReadDelayed();
 
             void slotAssignTag(const Tag& tag);
             void slotRemoveTag(const Tag& tag);
@@ -309,6 +311,7 @@ namespace Akregator {
             
             QTimer *m_fetchTimer;
             QTimer* m_expiryTimer;
+            QTimer *m_markReadTimer;
 
             bool m_shuttingDown;
             bool m_displayingAboutPage;

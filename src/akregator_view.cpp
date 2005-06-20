@@ -338,6 +338,9 @@ View::View( Part *part, QWidget *parent, const char *name)
             SLOT(slotDeleteExpiredArticles()) );
     m_expiryTimer->start(3600*1000);
 
+    m_markReadTimer = new QTimer(this);
+    connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
+
     QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
 
     QTimer::singleShot(0, this, SLOT(delayedInit()));
@@ -755,6 +758,8 @@ void View::slotMoveCurrentNodeRight()
 
 void View::slotNodeSelected(TreeNode* node)
 {
+    m_markReadTimer->stop();
+
     if (node)
     {
         kdDebug() << "node selected: " << node->title() << endl;
@@ -1097,9 +1102,10 @@ void View::slotTagRemoved(const Tag& tag)
 
 void View::slotArticleSelected(const Article& article)
 {
-
     if (m_viewMode == CombinedView)
         return;
+
+    m_markReadTimer->stop();
 
     Feed *feed = article.feed();
     if (!feed)
@@ -1108,7 +1114,18 @@ void View::slotArticleSelected(const Article& article)
     Article a(article);
     if (a.status() != Article::Read)
     {
-        a.setStatus(Article::Read);
+        int delay;
+
+        if ( Settings::useMarkReadDelay() )
+        {
+            delay = Settings::markReadDelay() * 1000;
+
+            m_markReadTimer->start( delay, TRUE );
+        }
+        else
+        {
+            a.setStatus(Article::Read);
+        }
     }
 
     KToggleAction*  maai = dynamic_cast<KToggleAction*>(ActionManager::getInstance()->action("article_set_status_important"));
@@ -1310,6 +1327,16 @@ void View::slotSetSelectedArticleNew()
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setStatus(Article::New);
     m_articleList->setReceiveUpdates(true);
+}
+
+void View::slotSetCurrentArticleReadDelayed()
+{
+    ArticleItem *item = m_articleList->currentItem();
+    if (!item)
+        return;
+
+    Article article = item->article();
+    article.setStatus(Article::Read);
 }
 
 void View::slotMouseOverInfo(const KFileItem *kifi)
