@@ -103,6 +103,9 @@
                     <property name="name">
                         <cstring>kcfg_MarkReadDelay</cstring>
                     </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
                     <property name="suffix">
                         <string> sec</string>
                     </property>
@@ -131,6 +134,14 @@
         </widget>
     </grid>
 </widget>
+<connections>
+    <connection>
+        <sender>kcfg_UseMarkReadDelay</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_MarkReadDelay</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+</connections>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>kcombobox.h</includehint>
