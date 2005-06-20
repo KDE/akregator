@@ -182,7 +182,6 @@ QValueList<Article> Feed::articles(const QString& tag)
         return d->articles.values();
     else
     {
-        // TODO, FIXME: make this sane!
         QValueList<Article> tagged;
         QStringList guids = d->archive->articles(tag);
         for (QStringList::ConstIterator it = guids.begin(); it != guids.end(); ++it)
