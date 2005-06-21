@@ -192,7 +192,7 @@ void ArticleViewer::generateNormalModeCSS()
     const QColorGroup & cg = QApplication::palette().active();
     
     // from kmail::headerstyle.cpp
-    m_normalModeCSS += QString (
+    m_normalModeCSS = QString (
             "<style type=\"text/css\">\n"
             "@media screen, print {"
             "body {\n"
@@ -269,7 +269,7 @@ void ArticleViewer::generateCombinedModeCSS()
     const QColorGroup & cg = QApplication::palette().active();
     
     // from kmail::headerstyle.cpp
-    m_combinedModeCSS += QString (
+    m_combinedModeCSS = QString (
             "<style type=\"text/css\">\n"
             "@media screen, print {"
             "body {\n"
@@ -658,6 +658,13 @@ void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Artic
 void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& /*list*/)
 {
 }
+
+/* testingtesting :)
+void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
+{
+    kdDebug() << m_link << endl;
+    kdDebug() << kurl.url() << endl;
+}*/
 
 
 void ArticleViewer::slotClear()
