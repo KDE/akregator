@@ -1118,13 +1118,12 @@ void View::slotArticleSelected(const Article& article)
 
         if ( Settings::useMarkReadDelay() )
         {
-            delay = Settings::markReadDelay() * 1000;
-
-            m_markReadTimer->start( delay, TRUE );
-        }
-        else
-        {
-            a.setStatus(Article::Read);
+            delay = Settings::markReadDelay();
+            
+            if (delay > 0)
+                m_markReadTimer->start( delay*1000, TRUE );
+            else
+                a.setStatus(Article::Read);
         }
     }
 
