@@ -817,7 +817,8 @@ void FeedListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 
 void FeedListView::connectToNode(TreeNode* node)
 {
-    m_connectNodeVisitor->visit(node);
+    if (node)
+        m_connectNodeVisitor->visit(node);
 }
 
 void FeedListView::connectToFeedList(FeedList* list)
@@ -838,7 +839,8 @@ void FeedListView::disconnectFromFeedList(FeedList* list)
 
 void FeedListView::disconnectFromNode(TreeNode* node)
 {
-    m_disconnectNodeVisitor->visit(node);
+    if (node)
+        m_disconnectNodeVisitor->visit(node);
 }
 
 void FeedListView::slotFeedListDestroyed(FeedList* list)
