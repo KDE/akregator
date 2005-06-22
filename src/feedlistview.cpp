@@ -202,17 +202,18 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     m_connectNodeVisitor = new ConnectNodeVisitor(this),
     m_disconnectNodeVisitor = new DisconnectNodeVisitor(this);
     m_createItemVisitor = new CreateItemVisitor(this);
-    
+
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
     setRootIsDecorated(true);
     setItemsRenameable(true);
     setItemMargin(2);
-    
+
     setFullWidth(true);
     setSorting(-1);
     setDragAutoScroll(true);
     setDropVisualizer(true);
+    //setDropHighlighter(false);
 
      // these have to be enabled from outside after loading the feed list!
     setDragEnabled(true);
@@ -223,7 +224,8 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*, const QString&, int)), this, SLOT(slotItemRenamed(QListViewItem*, const QString&, int)) );
     connect( this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)) );
-    
+    connect( &m_autoopentimer, SIGNAL( timeout() ), this, SLOT( openFolder() ) );
+
     clear();
     
     QWhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
@@ -364,84 +366,41 @@ void FeedListView::drawContentsOffset( QPainter * p, int ox, int oy,
 
 void FeedListView::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
 {
-    if (!acceptDrag(e))
-        return;
-    
-    QListViewItem *qiparent;
-    QListViewItem *qiafterme;
-    findDrop( e->pos(), qiparent, qiafterme );
-    FolderItem* parent = static_cast<FolderItem*> (qiparent);
-                
-    if (!parent)
-    {
-        e->accept();
-        return;
-    }
-    
+	m_autoopentimer.stop();
     if (e->source() != viewport())
     {
-        if (KURLDrag::canDecode( e ))
-        {
-            findDrop( e->pos(), qiparent, qiafterme );
-            FolderItem* parent = static_cast<FolderItem*> (qiparent);
-            TreeNodeItem* afterme = static_cast<TreeNodeItem*> (qiafterme);
-    
-            KURL::List urls;
-            KURLDrag::decode( e, urls );
-            e->accept();
-            emit signalDropped( urls, afterme, parent);
-        }
-        else
-        {
-            e->ignore();
-            return;
-        }
+        openFolder();
+
+        FolderItem* parent = static_cast<FolderItem*> (m_parent);
+        TreeNodeItem* afterMe = 0;
+
+        if(m_afterme)
+            afterMe = static_cast<TreeNodeItem*> (m_afterme);
+
+        KURL::List urls;
+        KURLDrag::decode( e, urls );
+        e->accept();
+        emit signalDropped( urls, afterMe, parent);
     }
-    
 }
 
 void FeedListView::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
 {
-    if (selectedItem() == afterme)
-        return;
-    
-    if (parent)
+	m_autoopentimer.stop();
+    if (m_parent)
     {    
-        Folder* parentNode = (static_cast<FolderItem*> (parent))->node();
+        openFolder();
 
+        Folder* parentNode = (static_cast<FolderItem*> (m_parent))->node();
         TreeNode* afterMeNode = 0; 
         TreeNode* current = selectedNode();
 
-        if (afterme)
-            afterMeNode = (static_cast<TreeNodeItem*> (afterme))->node();
+        if (m_afterme)
+            afterMeNode = (static_cast<TreeNodeItem*> (m_afterme))->node();
 
-        // don't dnd nodes between different top-level nodes
-        
-        TreeNode* root1 = current;
-        while (root1 && root1->parent())
-            root1 = root1->parent();
-
-        TreeNode* root2 = parentNode;
-        while (root2 && root2->parent())
-            root2 = root2->parent();
-
-        if (root1 !=  root2)
-            return;
-            
-        // don't drop node into own subtree
-        
-        Folder* p = parentNode;
-        while (p)
-            if (p == current)
-                return;
-            else
-                p = p->parent(); 
-
-        // ok, tests passed, let's move the node
-        
         current->parent()->removeChild(current);
         parentNode->insertChild(current, afterMeNode);
-        KListView::movableDropEvent(parent, afterme);
+        KListView::movableDropEvent(m_parent, m_afterme);
     }    
 }
 
@@ -458,42 +417,98 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
     QListViewItem *qiparent;
     QListViewItem *qiafterme;
     findDrop( event->pos(), qiparent, qiafterme );
-    
-    //TreeNodeItem* afterme = static_cast<TreeNodeItem*> (qiafterme);
-    
-    // disable any drops where the result would be top level nodes 
-    if (i && !i->parent())
-    {
-        event->ignore();
-        return;
+
+    if (event->source() == viewport()) {
+        // disable any drops where the result would be top level nodes 
+        if (i && !i->parent())
+        {
+            event->ignore();
+            m_autoopentimer.stop();
+            return;
+        }
+
+        // prevent dragging nodes from All Feeds to My Tags or vice versa
+        QListViewItem* root1 = i;
+        while (root1 && root1->parent())
+            root1 = root1->parent();
+
+        QListViewItem* root2 = selectedItem();
+        while (root2 && root2->parent())
+            root2 = root2->parent();
+
+        if (root1 != root2)
+        {
+            event->ignore();
+            m_autoopentimer.stop();
+            return;
+        }
+
+        // don't drop node into own subtree
+        QListViewItem* p = qiparent;
+        while (p)
+            if (p == selectedItem())
+            {
+                event->ignore();
+                m_autoopentimer.stop();
+                return;
+            }
+            else
+            {
+                p = p->parent();
+            }
+
+        // disable drags onto the item itself
+        if (selectedItem() == i)
+        {
+            event->ignore();
+            m_autoopentimer.stop();
+            return;
+        }
     }
 
-    // prevent dragging nodes from All Feeds to My Tags or vice versa
-    QListViewItem* root1 = i;
-    while (root1 && root1->parent())
-        root1 = root1->parent();
-
-    QListViewItem* root2 = selectedItem();
-    while (root2 && root2->parent())
-        root2 = root2->parent();
-
-    if (root1 != root2)
-    {
-        event->ignore();
-        return;
-    }
     // what the hell was this good for? -fo
     //    if (!i || event->pos().x() > header()->cellPos(header()->mapToIndex(0)) +
     //            treeStepSize() * (i->depth() + 1) + itemMargin() ||
     //            event->pos().x() < header()->cellPos(header()->mapToIndex(0)))
     //   {} else
  
-   if (i && i->childCount() && !i->isOpen())
-            i->setOpen(true); // open folders under drag
+    // do we want to move inside the old parent or do we want to move to a new parent
+    if (i && (itemAt(vp - QPoint(0,5)) == i && itemAt(vp + QPoint(0,5)) == i))
+    {
+        setDropVisualizer(false);
+        setDropHighlighter(true);
+        cleanDropVisualizer();
+
+        TreeNode *iNode = (static_cast<TreeNodeItem*> (i))->node();
+        if (iNode->isGroup())
+        {
+            if (i != m_parent)
+                m_autoopentimer.stop();
+            m_parent = i;
+        }
+        else
+        {
+            event->ignore();
+            m_autoopentimer.stop();
+            return;
+        }
+        m_afterme = 0;
+        m_autoopentimer.start(750);
+    }
+    else
+    {
+        setDropVisualizer(true);
+        setDropHighlighter(false);
+        cleanItemHighlighter();
+        m_parent = qiparent;
+        m_afterme = qiafterme;
+        m_autoopentimer.stop();
+    }
 
     // the rest is handled by KListView.
     KListView::contentsDragMoveEvent(event);
 }
+
 /*
 void FeedListView::keyPressEvent(QKeyEvent* e)
 {
@@ -900,4 +915,11 @@ QDragObject *FeedListView::dragObject()
     return md;
 }
 
+void FeedListView::openFolder() {
+    m_autoopentimer.stop();
+    if (m_parent && !m_parent->isOpen())
+    {
+        m_parent->setOpen(true);
+    }
+}
 #include "feedlistview.moc"

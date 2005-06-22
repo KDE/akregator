@@ -36,7 +36,6 @@ using namespace Akregator;
 FolderItem::FolderItem(FolderItem* parent, Folder* node) : TreeNodeItem(parent, node)
 {
     setRenameEnabled(0, true);
-    setExpandable(true);
     setOpen( node->isOpen() );
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     if (node)
@@ -46,7 +45,6 @@ FolderItem::FolderItem(FolderItem* parent, Folder* node) : TreeNodeItem(parent, 
 FolderItem::FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
 {
     setRenameEnabled(0, true);
-    setExpandable(true);
     setOpen(node->isOpen());
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     if (node)
@@ -56,7 +54,6 @@ FolderItem::FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node) : 
 FolderItem::FolderItem(KListView* parent, Folder* node) : TreeNodeItem(parent, node)
 {
     setRenameEnabled(0, true);
-    setExpandable(true);
     setOpen(true);
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     if (node)
@@ -66,7 +63,6 @@ FolderItem::FolderItem(KListView* parent, Folder* node) : TreeNodeItem(parent, n
 FolderItem::FolderItem(KListView* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
 {
     setRenameEnabled(0, true);
-    setExpandable(true);
     setOpen(true);
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     if (node)

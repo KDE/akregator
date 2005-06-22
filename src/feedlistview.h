@@ -28,6 +28,7 @@
 
 #include <klistview.h>
 #include <kurl.h>
+#include <qtimer.h>
 
 
 namespace Akregator
@@ -172,6 +173,7 @@ namespace Akregator
             virtual void slotFeedFetchAborted(Feed* feed);
             virtual void slotFeedFetchError(Feed* feed);
             virtual void slotFeedFetchCompleted(Feed* feed);
+            void openFolder();
 
 
         private:
@@ -186,12 +188,17 @@ namespace Akregator
             friend class CreateItemVisitor;
             class CreateItemVisitor;
             CreateItemVisitor* m_createItemVisitor;
-            
+
             /** used for finding the item belonging to a node */
             QPtrDict<TreeNodeItem> m_itemDict;
             FeedList* m_feedList;
             TagNodeList* m_tagNodeList;
             bool m_showTagFolders;
+
+            // Drag and Drop variables
+            QListViewItem *m_parent;
+            QListViewItem *m_afterme;
+            QTimer m_autoopentimer;
     };
 
 }
