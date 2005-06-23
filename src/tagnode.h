@@ -121,7 +121,7 @@ public slots:
 protected:
 
     virtual void doArticleNotification();
-
+    virtual void calcUnread();
     
 private:
     class TagNodePrivate;
