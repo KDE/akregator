@@ -44,6 +44,7 @@ class Tag;
 class TagSet;
 class TreeNode;
 class View;
+class TabWidget;
 // TODO: move the methods marked with "iface" to an interface and pass that where initFoo() is not needed, to avoid dependencies between e.g. listviews and Akregator::Part
 
 class ActionManager : public QObject
@@ -66,6 +67,7 @@ class ActionManager : public QObject
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
         void initFeedListView(FeedListView* feedListView);
+        void initTabWidget(TabWidget* tabWidget);
 
         void setTagSet(TagSet* tagSet); // iface
         

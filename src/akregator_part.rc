@@ -148,4 +148,10 @@
   <Action name="article_remove_tag_menu"/>
 </Menu>
 
+<Menu name="tab_popup">
+  <Action name="tab_detach"/>
+  <Action name="tab_copylinkaddress"/>
+  <Action name="tab_remove"/>
+</Menu>
+
 </kpartgui>

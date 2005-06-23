@@ -51,6 +51,8 @@
 #include "trayicon.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
+#include "tabwidget.h"
+#include "kstdaccel.h"
 
 
 
@@ -132,6 +134,7 @@ public:
     TagSet* tagSet;
     QMap<QString, KAction*> assignTagActions;
     QMap<QString, KAction*> removeTagActions;
+	TabWidget* tabWidget;
 };
 
 ActionManager* ActionManager::m_self = 0;
@@ -237,6 +240,7 @@ ActionManager::ActionManager(Part* part, QObject* parent, const char* name) : QO
     d->articleViewer = 0;
     d->feedListView = 0;
     d->view = 0;
+    d->tabWidget = 0;
     d->actionCollection = part->actionCollection();
     initPart();
 }
@@ -400,6 +404,18 @@ void ActionManager::initFeedListView(FeedListView* feedListView)
     new KAction( i18n("Go Right in Tree"), QString::null, "Alt+Right", feedListView, SLOT(slotItemRight()), d->actionCollection, "feedstree_right" );
     new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", feedListView, SLOT(slotItemUp()), d->actionCollection, "feedstree_up" );
     new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", feedListView, SLOT(slotItemDown()), d->actionCollection, "feedstree_down" );
+}
+
+void ActionManager::initTabWidget(TabWidget* tabWidget)
+{
+    if (d->tabWidget)
+        return;
+    else
+        d->tabWidget = tabWidget;
+
+    new KAction( i18n("Detach Tab"), "tab_breakoff", CTRL+SHIFT+Key_B, d->tabWidget, SLOT(slotDetachTab()), actionCollection(), "tab_detach" );
+    new KAction( i18n("Copy Link Address"), QString::null, QString::null, d->tabWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "tab_copylinkaddress" );
+    new KAction( i18n("&Close Tab"), "tab_remove", KStdAccel::close(), d->tabWidget, SLOT(slotCloseTab()), actionCollection(), "tab_remove" );
 }
 
 QWidget* ActionManager::container(const char* name)

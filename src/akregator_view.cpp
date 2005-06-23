@@ -238,6 +238,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
+    ActionManager::getInstance()->initTabWidget(m_tabs);
 
     connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
     m_tabsClose = new QToolButton( m_tabs );

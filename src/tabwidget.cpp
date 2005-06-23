@@ -42,6 +42,7 @@
 #include <kurl.h>
 #include <kurldrag.h>
 #include <kmimetype.h>
+#include "actionmanager.h"
 
 #include "akregatorconfig.h"
 
@@ -189,37 +190,32 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
 
 void TabWidget::contextMenu(int i, const QPoint &p)
 {
-   currentItem = page(i);
-   KPopupMenu popup;
-   //popup.insertTitle(tabLabel(currentItem));
-   int detachTab = popup.insertItem( SmallIcon("tab_breakoff"), i18n("Detach Tab"), this, SLOT( slotDetachTab() ) );
-   int copyLink = popup.insertItem( i18n("Copy Link Address"), this, SLOT( slotCopyLinkAddress() ) );
-   //popup.insertSeparator();
-   int closeTab = popup.insertItem( SmallIcon("tab_remove"), i18n("Close Tab"), this, SLOT( slotCloseTab() ) );
-   if(indexOf(currentItem) == 0) { // you can't detach or close articles tab..
-      popup.setItemEnabled(detachTab, false);
-      popup.setItemEnabled(closeTab, false);
-      popup.setItemEnabled(copyLink, false);
-   }
-   popup.exec(p);
+    QWidget* w = ActionManager::getInstance()->container("tab_popup");
+    currentItem = page(i);
+    kdDebug() << indexOf(currentItem) << endl;
+    if (w && indexOf(currentItem) != 0)
+        static_cast<QPopupMenu *>(w)->exec(p);
+    currentItem = 0;
 }
 
 void TabWidget::slotDetachTab()
 {
-   if(!currentItem) return;
-   KURL url;
-   if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
-   else return;
-   kapp->invokeBrowser(url.url(), "0");
-   if (m_frames.find(currentItem) != NULL)
-       removeFrame(m_frames.find(currentItem));
-   delete currentItem;
-   currentItem = 0;
+    if(!currentItem || indexOf(currentItem) == -1) currentItem = currentPage();
+    if(indexOf(currentItem) == 0) return;
+    KURL url;
+    if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
+    else return;
+    kapp->invokeBrowser(url.url(), "0");
+    if (m_frames.find(currentItem) == NULL)
+        removeFrame(m_frames.find(currentItem));
+    delete currentItem;
+    currentItem = 0;
 }
 
 void TabWidget::slotCopyLinkAddress()
 {
-    if(!currentItem) return;
+    if(!currentItem || indexOf(currentItem) == -1) currentItem = currentPage();
+    if(indexOf(currentItem) == 0) return;
     KURL url;
     if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
     else return;
@@ -229,11 +225,12 @@ void TabWidget::slotCopyLinkAddress()
 
 void TabWidget::slotCloseTab()
 {
-   if(!currentItem) return;
-   if (m_frames.find(currentItem) != NULL)
-       removeFrame(m_frames.find(currentItem));
-   delete currentItem;
-   currentItem = 0;
+    if(!currentItem || indexOf(currentItem) == -1) currentItem = currentPage();
+    if(indexOf(currentItem) == 0) return;
+    if (m_frames.find(currentItem) != NULL)
+        removeFrame(m_frames.find(currentItem));
+    delete currentItem;
+    currentItem = 0;
 }
 
 void TabWidget::initiateDrag(int tab)
