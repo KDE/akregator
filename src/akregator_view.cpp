@@ -144,7 +144,13 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             QString msg = i18n("<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be removed from all articles.</qt>").arg(node->title());
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
-                delete node;
+                Tag tag = node->tag();
+                QValueList<Article> articles = m_view->m_feedList->rootNode()->articles(tag.id());
+                node->setNotificationMode(false);
+                for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+                    (*it).removeTag(tag.id());
+                node->setNotificationMode(true);
+                Kernel::self()->tagSet()->remove(tag);
                 m_view->m_tree->setFocus();
             }    
             return true;

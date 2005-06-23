@@ -106,7 +106,7 @@ class ActionManager::NodeSelectVisitor : public TreeNodeVisitor
             remove->setEnabled(true);
         KAction* hp = m_manager->action("feed_homepage");
         if (hp)
-            remove->setEnabled(false);
+            hp->setEnabled(false);
         m_manager->action("feed_mark_all_as_read")->setText("&Mark Articles as Read");
         m_manager->action("feed_remove")->setText("&Delete Tag");
         m_manager->action("feed_modify")->setText("&Edit Tag...");
