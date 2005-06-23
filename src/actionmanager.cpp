@@ -285,7 +285,11 @@ void ActionManager::initView(View* view)
         return;
     else
         d->view = view;
- /* --- Feed/Feed Group popup menu */
+
+    // tag actions
+    new KAction(i18n("&New Tag..."), "", "", d->view, SLOT(slotNewTag()), actionCollection(), "tag_new");
+    
+    // Feed/Feed Group popup menu
     new KAction(i18n("&Open Homepage"), "", "Ctrl+H", d->view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
     new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", d->view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
     new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", d->view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");

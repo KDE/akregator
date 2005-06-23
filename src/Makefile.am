@@ -121,7 +121,9 @@ libakregatorpart_la_SOURCES = \
 	akregator_part.cpp \
 	akregator_view.cpp \
         notificationmanager.cpp \
-        tagaction.cpp
+        tagaction.cpp \
+        tagpropertieswidgetbase.ui \
+        tagpropertiesdialog.cpp
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -avoid-version -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = libakregatorprivate.la 

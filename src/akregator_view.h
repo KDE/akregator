@@ -235,6 +235,7 @@ namespace Akregator {
 
             void slotAssignTag(const Tag& tag);
             void slotRemoveTag(const Tag& tag);
+            void slotNewTag();
             void slotTagCreated(const Tag& tag);
             void slotTagRemoved(const Tag& tag);
 

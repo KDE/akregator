@@ -168,6 +168,7 @@ void TagNodeList::slotTagRemoved(const Tag& tag)
     if (containsTagId(tag.id()))
     {
         delete d->idToNodeMap[tag.id()];
+        d->idToNodeMap[tag.id()] = 0;
     }
 }
 

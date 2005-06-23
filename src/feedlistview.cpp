@@ -298,6 +298,7 @@ void FeedListView::setFeedList(FeedList* feedList, TagNodeList* tagNodeList)
     rootNode = tagNodeList->rootNode();
     ri = new FolderItem(this, ri, rootNode);
     d->itemDict.insert(rootNode, ri);
+    connectToNode(rootNode);
 
     children = rootNode->children();
     

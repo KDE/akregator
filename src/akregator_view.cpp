@@ -49,6 +49,7 @@
 #include "tagset.h"
 #include "tagnode.h"
 #include "tagnodelist.h"
+#include "tagpropertiesdialog.h"
 #include "treenode.h"
 #include "progressmanager.h"
 #include "treenodeitem.h"
@@ -1086,6 +1087,16 @@ void View::slotRemoveTag(const Tag& tag)
         (*it)->article().removeTag(tag.id());
 
     updateRemoveTagActions();
+}
+
+void View::slotNewTag()
+{
+    TagPropertiesDialog* dlg = new TagPropertiesDialog(0);
+    Tag tag(KApplication::randomString(8), "");
+    dlg->setTag(tag);
+    if (dlg->exec())
+        Kernel::self()->tagSet()->insert(tag);
+    delete dlg;
 }
 
 void View::slotTagCreated(const Tag& tag)
