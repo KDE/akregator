@@ -24,8 +24,10 @@
 
 #include "shared.h"
 #include "tag.h"
+#include "tagset.h"
 
 #include <qstring.h>
+#include <qvaluelist.h>
 
 namespace Akregator {
 
@@ -34,6 +36,7 @@ class Tag::TagPrivate : public Shared
     public:
     QString id;
     QString name;
+    QValueList<TagSet*> tagSets;
     bool operator==(const TagPrivate& other) const
     {
         return id == other.id; // name is ignored!
@@ -94,6 +97,18 @@ QString Tag::name() const
 void Tag::setName(const QString& name)
 {
     d->name = name;
+    for (QValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
+        (*it)->tagUpdated(*this);
+}
+
+void Tag::addedToTagSet(TagSet* tagSet) const
+{
+    d->tagSets.append(tagSet);
+}
+
+void Tag::removedFromTagSet(TagSet* tagSet) const
+{
+    d->tagSets.remove(tagSet);
 }
 
 QString Tag::id() const

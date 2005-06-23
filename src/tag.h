@@ -29,6 +29,7 @@
 
 namespace Akregator {
 
+class TagSet;
 /** represents a tag. A tag has an identifier and a name. An identifier is a unique key, where the name is the user-visible name
 The id MUST be unique, the name SHOULD.
 Examples:
@@ -38,6 +39,8 @@ tag from some ontology: id: http://foo/ont/Animals name: Animals
 */
 class Tag
 {
+    friend class TagSet;
+    
     public:
 
     /** creates a tag with given id and name. If name is QString::null, the id is used as name. If id is QString::null, the object is considered as NULL object (@see isNull())*/
@@ -66,6 +69,11 @@ class Tag
     /** tags are equal when their id's are equal, name is ignored */
     bool operator==(const Tag& other) const;
 
+
+    protected:
+
+    void addedToTagSet(TagSet* tagSet) const;
+    void removedFromTagSet(TagSet* tagSet) const;
     private:
 
     class TagPrivate;

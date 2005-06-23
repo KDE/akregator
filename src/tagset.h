@@ -38,6 +38,7 @@ class Tag;
 
 class TagSet : public QObject
 {
+    friend class Tag;
     Q_OBJECT
     public:
 
@@ -54,11 +55,15 @@ class TagSet : public QObject
 
         void readFromXML(const QDomDocument& doc);
         QDomDocument toXML() const;
-        
+
     signals:
         void signalTagAdded(const Tag&);
         void signalTagRemoved(const Tag&);
+        void signalTagUpdated(const Tag&);
 
+    protected:
+        void tagUpdated(const Tag& tag);
+        
     private:
         class TagSetPrivate;
         TagSetPrivate* d;

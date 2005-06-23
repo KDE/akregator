@@ -237,6 +237,13 @@ void TagNode::slotArticlesRemoved(TreeNode* node, const QValueList<Article>& lis
         articlesModified();
 }
 
+void TagNode::setTitle(const QString& title)
+{
+    if (d->tag.name() != title)
+        d->tag.setName(title);
+    TreeNode::setTitle(title);
+}
+
 void TagNode::slotObservedDestroyed(TreeNode* /*observed*/)
 {
     d->removedArticlesNotify = d->articles;

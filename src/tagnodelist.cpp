@@ -56,6 +56,7 @@ TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) : d(new TagNodeList
     connect(d->rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
     connect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
     connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
+    connect(d->tagSet, SIGNAL(signalTagUpdated(const Tag&)), this, SLOT(slotTagUpdated(const Tag&)));
 
     QValueList<Tag> list = tagSet->toMap().values();
     for (QValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
@@ -163,6 +164,13 @@ void TagNodeList::slotTagAdded(const Tag& tag)
     }
 }
 
+void TagNodeList::slotTagUpdated(const Tag& tag)
+{
+    if (containsTagId(tag.id()))
+    {
+        d->idToNodeMap[tag.id()]->setTitle(tag.name());
+    }
+}
 void TagNodeList::slotTagRemoved(const Tag& tag)
 {
     if (containsTagId(tag.id()))

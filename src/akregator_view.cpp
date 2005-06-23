@@ -108,6 +108,10 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
+            TagPropertiesDialog* dlg = new TagPropertiesDialog(0);
+            dlg->setTag(node->tag());
+            dlg->exec();
+            delete dlg;
             return true;
         }
         

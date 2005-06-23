@@ -44,6 +44,10 @@ TagSet::TagSet(QObject* parent) : QObject(parent), d(new TagSetPrivate)
 
 TagSet::~TagSet()
 {
+    QValueList<Tag> tags = d->map.values();
+    for (QValueList<Tag>::Iterator it = tags.begin(); it != tags.end(); ++it)
+        (*it).removedFromTagSet(this);
+    
     delete d;
     d = 0;
 }
@@ -53,6 +57,7 @@ void TagSet::insert(const Tag& tag)
     if (!d->map.contains(tag.id()))
     {
         d->map.insert(tag.id(), tag);
+        tag.addedToTagSet(this);
         emit signalTagAdded(tag);
     }
 }
@@ -62,6 +67,7 @@ void TagSet::remove(const Tag& tag)
     if (d->map.contains(tag.id()))
     {
         d->map.remove(tag.id());
+        tag.removedFromTagSet(this);
         emit signalTagRemoved(tag);
     }
 }
@@ -90,7 +96,7 @@ void TagSet::readFromXML(const QDomDocument& doc)
 
     QDomNodeList list = root.elementsByTagName(QString::fromLatin1("tag"));
 
-    for (int i = 0; i < list.length(); ++i)
+    for (uint i = 0; i < list.length(); ++i)
     {
         QDomElement e = list.item(i).toElement();
         if (!e.isNull())
@@ -105,6 +111,10 @@ void TagSet::readFromXML(const QDomDocument& doc)
         }
     }
 
+}
+void TagSet::tagUpdated(const Tag& tag)
+{
+    emit signalTagUpdated(tag);
 }
         
 QDomDocument TagSet::toXML() const

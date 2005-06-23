@@ -99,6 +99,8 @@ public:
      */ 
     virtual TreeNode* next(); 
 
+    virtual void setTitle(const QString& title);
+    
 public slots:
     
 

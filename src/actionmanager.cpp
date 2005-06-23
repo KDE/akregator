@@ -109,7 +109,7 @@ class ActionManager::NodeSelectVisitor : public TreeNodeVisitor
             remove->setEnabled(false);
         m_manager->action("feed_mark_all_as_read")->setText("&Mark Articles as Read");
         m_manager->action("feed_remove")->setText("&Delete Tag");
-        m_manager->action("feed_modify")->setText("&Rename Tag");
+        m_manager->action("feed_modify")->setText("&Edit Tag...");
 
         return true;
     }

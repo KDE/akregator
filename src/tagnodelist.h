@@ -65,6 +65,7 @@ namespace Akregator {
        void slotNodeRemoved(Folder* parent, TreeNode* node);
 
        void slotTagAdded(const Tag& tag);
+       void slotTagUpdated(const Tag& tag);
        void slotTagRemoved(const Tag& tag);
        
        signals:
