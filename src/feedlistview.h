@@ -24,12 +24,8 @@
 #ifndef AKREGATORFEEDLISTVIEW_H
 #define AKREGATORFEEDLISTVIEW_H
 
-#include <qptrdict.h>
-
 #include <klistview.h>
 #include <kurl.h>
-#include <qtimer.h>
-
 
 namespace Akregator
 {
@@ -179,26 +175,15 @@ namespace Akregator
         private:
             friend class ConnectNodeVisitor;
             class ConnectNodeVisitor;
-            ConnectNodeVisitor* m_connectNodeVisitor;
             
             friend class DisconnectNodeVisitor;
             class DisconnectNodeVisitor;
-            DisconnectNodeVisitor* m_disconnectNodeVisitor;
 
             friend class CreateItemVisitor;
             class CreateItemVisitor;
-            CreateItemVisitor* m_createItemVisitor;
 
-            /** used for finding the item belonging to a node */
-            QPtrDict<TreeNodeItem> m_itemDict;
-            FeedList* m_feedList;
-            TagNodeList* m_tagNodeList;
-            bool m_showTagFolders;
-
-            // Drag and Drop variables
-            QListViewItem *m_parent;
-            QListViewItem *m_afterme;
-            QTimer m_autoopentimer;
+            class FeedListViewPrivate;
+            FeedListViewPrivate* d;
     };
 
 }

@@ -46,9 +46,29 @@
 #include <qfont.h>
 #include <qheader.h>
 #include <qpainter.h>
+#include <qptrdict.h>
+#include <qtimer.h>
 #include <qwhatsthis.h>
 
-using namespace Akregator;
+namespace Akregator {
+
+class FeedListView::FeedListViewPrivate
+{
+    public:
+/** used for finding the item belonging to a node */
+    QPtrDict<TreeNodeItem> itemDict;
+    FeedList* feedList;
+    TagNodeList* tagNodeList;
+    bool showTagFolders;
+
+    // Drag and Drop variables
+    QListViewItem *parent;
+    QListViewItem *afterme;
+    QTimer autoopentimer;
+    ConnectNodeVisitor* connectNodeVisitor;
+    DisconnectNodeVisitor* disconnectNodeVisitor;
+    CreateItemVisitor* createItemVisitor;
+};
 
 class FeedListView::ConnectNodeVisitor : public TreeNodeVisitor
 {
@@ -145,7 +165,7 @@ class FeedListView::CreateItemVisitor : public TreeNodeVisitor
                 item = new TagNodeItem( parentItem, node);
                 
             item->nodeChanged();     
-            m_view->m_itemDict.insert(node, item);
+            m_view->d->itemDict.insert(node, item);
             m_view->connectToNode(node);
             return true;
         }
@@ -162,7 +182,7 @@ class FeedListView::CreateItemVisitor : public TreeNodeVisitor
             else
                 item = new FolderItem(parentItem, node);
 
-            m_view->m_itemDict.insert(node, item);
+            m_view->d->itemDict.insert(node, item);
             QValueList<TreeNode*> children = node->children();
 
             // add children recursively
@@ -186,7 +206,7 @@ class FeedListView::CreateItemVisitor : public TreeNodeVisitor
                 item = new FeedItem( parentItem, node);
                 
             item->nodeChanged();     
-            m_view->m_itemDict.insert(node, item);
+            m_view->d->itemDict.insert(node, item);
             m_view->connectToNode(node);
             return true;
         }
@@ -196,12 +216,13 @@ class FeedListView::CreateItemVisitor : public TreeNodeVisitor
 };
 
 FeedListView::FeedListView( QWidget *parent, const char *name)
-        : KListView(parent, name), m_showTagFolders(true)
+        : KListView(parent, name), d(new FeedListViewPrivate)
 {
-    m_tagNodeList = 0;
-    m_connectNodeVisitor = new ConnectNodeVisitor(this),
-    m_disconnectNodeVisitor = new DisconnectNodeVisitor(this);
-    m_createItemVisitor = new CreateItemVisitor(this);
+    d->showTagFolders = true;
+    d->tagNodeList = 0;
+    d->connectNodeVisitor = new ConnectNodeVisitor(this),
+    d->disconnectNodeVisitor = new DisconnectNodeVisitor(this);
+    d->createItemVisitor = new CreateItemVisitor(this);
 
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
@@ -215,7 +236,6 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     setDropVisualizer(true);
     //setDropHighlighter(false);
 
-     // these have to be enabled from outside after loading the feed list!
     setDragEnabled(true);
     setAcceptDrops(true);
     setItemsMovable(true);
@@ -224,7 +244,7 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*, const QString&, int)), this, SLOT(slotItemRenamed(QListViewItem*, const QString&, int)) );
     connect( this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)) );
-    connect( &m_autoopentimer, SIGNAL( timeout() ), this, SLOT( openFolder() ) );
+    connect( &(d->autoopentimer), SIGNAL( timeout() ), this, SLOT( openFolder() ) );
 
     clear();
     
@@ -238,31 +258,33 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
 
 FeedListView::~FeedListView()
 {
-    delete m_connectNodeVisitor;
-    delete m_disconnectNodeVisitor;
-    delete m_createItemVisitor;
+    delete d->connectNodeVisitor;
+    delete d->disconnectNodeVisitor;
+    delete d->createItemVisitor;
+    delete d;
+    d = 0;
 }
 
 void FeedListView::setFeedList(FeedList* feedList, TagNodeList* tagNodeList)
 {
-    if (feedList == m_feedList)
+    if (feedList == d->feedList)
          return;
 
     clear();
 
-    disconnectFromFeedList(m_feedList);
+    disconnectFromFeedList(d->feedList);
     
     if (!feedList)
         return;
 
-    m_feedList = feedList;
+    d->feedList = feedList;
     connectToFeedList(feedList);
     
     Folder* rootNode = feedList->rootNode();
     if (!rootNode)
         return;
     FolderItem* ri = new FolderItem(this, rootNode );
-    m_itemDict.insert(rootNode, ri);
+    d->itemDict.insert(rootNode, ri);
     connectToNode(rootNode);
 
     // add items for children recursively
@@ -275,7 +297,7 @@ void FeedListView::setFeedList(FeedList* feedList, TagNodeList* tagNodeList)
 
     rootNode = tagNodeList->rootNode();
     ri = new FolderItem(this, ri, rootNode);
-    m_itemDict.insert(rootNode, ri);
+    d->itemDict.insert(rootNode, ri);
 
     children = rootNode->children();
     
@@ -303,7 +325,7 @@ void FeedListView::insertNode(QListViewItem* parent, QListViewItem* item, QListV
 
 Folder* FeedListView::rootNode()
 {
-    return m_feedList ? m_feedList->rootNode() : 0;
+    return d->feedList ? d->feedList->rootNode() : 0;
 }
 
 TreeNode* FeedListView::selectedNode()
@@ -331,7 +353,7 @@ TreeNode* FeedListView::findNodeByTitle(const QString& title)
 
 TreeNodeItem* FeedListView::findNodeItem(TreeNode* node)
 {
-    return m_itemDict.find(node);
+    return d->itemDict.find(node);
 }
 
 TreeNodeItem* FeedListView::findItem (const QString& text, int column, ComparisonFlags compare) const
@@ -346,11 +368,11 @@ void FeedListView::ensureNodeVisible(TreeNode* node)
 
 void FeedListView::clear()
 {
-    QPtrDictIterator<TreeNodeItem> it(m_itemDict);
+    QPtrDictIterator<TreeNodeItem> it(d->itemDict);
     for( ; it.current(); ++it )
         disconnectFromNode( it.current()->node() );
-    m_itemDict.clear();
-    m_feedList = 0;
+    d->itemDict.clear();
+    d->feedList = 0;
     
     KListView::clear();
 }
@@ -366,16 +388,16 @@ void FeedListView::drawContentsOffset( QPainter * p, int ox, int oy,
 
 void FeedListView::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
 {
-	m_autoopentimer.stop();
+	d->autoopentimer.stop();
     if (e->source() != viewport())
     {
         openFolder();
 
-        FolderItem* parent = static_cast<FolderItem*> (m_parent);
+        FolderItem* parent = static_cast<FolderItem*> (d->parent);
         TreeNodeItem* afterMe = 0;
 
-        if(m_afterme)
-            afterMe = static_cast<TreeNodeItem*> (m_afterme);
+        if(d->afterme)
+            afterMe = static_cast<TreeNodeItem*> (d->afterme);
 
         KURL::List urls;
         KURLDrag::decode( e, urls );
@@ -384,29 +406,29 @@ void FeedListView::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
     }
 }
 
-void FeedListView::movableDropEvent(QListViewItem* parent, QListViewItem* afterme)
+void FeedListView::movableDropEvent(QListViewItem* /*parent*/, QListViewItem* /*afterme*/)
 {
-	m_autoopentimer.stop();
-    if (m_parent)
+	d->autoopentimer.stop();
+    if (d->parent)
     {    
         openFolder();
 
-        Folder* parentNode = (static_cast<FolderItem*> (m_parent))->node();
+        Folder* parentNode = (static_cast<FolderItem*> (d->parent))->node();
         TreeNode* afterMeNode = 0; 
         TreeNode* current = selectedNode();
 
-        if (m_afterme)
-            afterMeNode = (static_cast<TreeNodeItem*> (m_afterme))->node();
+        if (d->afterme)
+            afterMeNode = (static_cast<TreeNodeItem*> (d->afterme))->node();
 
         current->parent()->removeChild(current);
         parentNode->insertChild(current, afterMeNode);
-        KListView::movableDropEvent(m_parent, m_afterme);
+        KListView::movableDropEvent(d->parent, d->afterme);
     }    
 }
 
 void FeedListView::setShowTagFolders(bool enabled)
 {
-    m_showTagFolders = enabled;
+    d->showTagFolders = enabled;
 }
 
 void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
@@ -423,7 +445,7 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
         if (i && !i->parent())
         {
             event->ignore();
-            m_autoopentimer.stop();
+            d->autoopentimer.stop();
             return;
         }
 
@@ -439,7 +461,7 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
         if (root1 != root2)
         {
             event->ignore();
-            m_autoopentimer.stop();
+            d->autoopentimer.stop();
             return;
         }
 
@@ -449,7 +471,7 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
             if (p == selectedItem())
             {
                 event->ignore();
-                m_autoopentimer.stop();
+                d->autoopentimer.stop();
                 return;
             }
             else
@@ -461,7 +483,7 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
         if (selectedItem() == i)
         {
             event->ignore();
-            m_autoopentimer.stop();
+            d->autoopentimer.stop();
             return;
         }
     }
@@ -482,27 +504,28 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
         TreeNode *iNode = (static_cast<TreeNodeItem*> (i))->node();
         if (iNode->isGroup())
         {
-            if (i != m_parent)
-                m_autoopentimer.stop();
-            m_parent = i;
+            if (i != d->parent)
+                d->autoopentimer.start(750);
+
+            d->parent = i;
+            d->afterme = 0;
         }
         else
         {
             event->ignore();
-            m_autoopentimer.stop();
+            d->autoopentimer.stop();
+            d->afterme = i;
             return;
         }
-        m_afterme = 0;
-        m_autoopentimer.start(750);
     }
     else
     {
         setDropVisualizer(true);
         setDropHighlighter(false);
         cleanItemHighlighter();
-        m_parent = qiparent;
-        m_afterme = qiafterme;
-        m_autoopentimer.stop();
+        d->parent = qiparent;
+        d->afterme = qiafterme;
+        d->autoopentimer.stop();
     }
 
     // the rest is handled by KListView.
@@ -818,7 +841,7 @@ void FeedListView::slotFeedFetchCompleted(Feed* feed)
       
 void FeedListView::slotNodeAdded(TreeNode* node)
 {
-    m_createItemVisitor->visit(node);
+    d->createItemVisitor->visit(node);
 }
 
 void FeedListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
@@ -833,7 +856,7 @@ void FeedListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 void FeedListView::connectToNode(TreeNode* node)
 {
     if (node)
-        m_connectNodeVisitor->visit(node);
+        d->connectNodeVisitor->visit(node);
 }
 
 void FeedListView::connectToFeedList(FeedList* list)
@@ -855,12 +878,12 @@ void FeedListView::disconnectFromFeedList(FeedList* list)
 void FeedListView::disconnectFromNode(TreeNode* node)
 {
     if (node)
-        m_disconnectNodeVisitor->visit(node);
+        d->disconnectNodeVisitor->visit(node);
 }
 
 void FeedListView::slotFeedListDestroyed(FeedList* list)
 {
-    if (list != m_feedList)
+    if (list != d->feedList)
         return;
 
     setFeedList(0, 0);
@@ -873,7 +896,7 @@ void FeedListView::slotNodeDestroyed(TreeNode* node)
     if (!node || !item)
         return;
     
-    m_itemDict.remove(node);
+    d->itemDict.remove(node);
 
     if ( item->isSelected() )
     {
@@ -916,10 +939,13 @@ QDragObject *FeedListView::dragObject()
 }
 
 void FeedListView::openFolder() {
-    m_autoopentimer.stop();
-    if (m_parent && !m_parent->isOpen())
+    d->autoopentimer.stop();
+    if (d->parent && !d->parent->isOpen())
     {
-        m_parent->setOpen(true);
+        d->parent->setOpen(true);
     }
 }
+
+} // namespace Akregator
+
 #include "feedlistview.moc"
