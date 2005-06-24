@@ -219,8 +219,8 @@ void TabWidget::slotCopyLinkAddress()
     KURL url;
     if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
     else return;
-    QClipboard *cb = QApplication::clipboard();
-    if(cb) cb->setText(url.prettyURL());
+    kapp->clipboard()->setText(url.prettyURL(), QClipboard::Selection);
+    kapp->clipboard()->setText(url.prettyURL(), QClipboard::Clipboard);
 }
 
 void TabWidget::slotCloseTab()
