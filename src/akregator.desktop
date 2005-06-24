@@ -62,3 +62,5 @@ Comment[tr]=Bir KDE RSS Okuyucusu
 Comment[uk]=Агрегатор RSS для KDE
 Comment[zh_CN]=KDE RSS 新闻收集器
 Terminal=false
+Categories=Qt;KDE;Network;
+X-DCOP-ServiceType=Unique
