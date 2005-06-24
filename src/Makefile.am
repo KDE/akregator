@@ -24,7 +24,7 @@ akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la
 #akregator_LDADD = $(LIB_KPARTS) libakregatorprivate.la $(top_builddir)/libkdepim/libkdepim.la
 
 # this is where the desktop file will go
-shelldesktopdir = $(kde_appsdir)/Internet
+shelldesktopdir = $(xdg_appsdir)/
 shelldesktop_DATA = akregator.desktop
 
 # this is where the shell's XML-GUI resource file goes
