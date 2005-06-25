@@ -34,6 +34,7 @@
 #include <krun.h>
 #include <kshell.h>
 #include <kurl.h>
+#include <kparts/browserextension.h>
 
 #include <qaccel.h>
 #include <qclipboard.h>
@@ -171,14 +172,18 @@ void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
     }
 }
 
-void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
+void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
 {
+   const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
+
    QString url = kurl.url();
-   if(this->url() == url) return;
+   
+   if (!isLink)
+        return;
    m_url = url;
    KPopupMenu popup;
    
-   if (!url.isEmpty())
+   if (isLink)
    {
         popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));

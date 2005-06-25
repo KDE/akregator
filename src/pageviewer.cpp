@@ -319,18 +319,15 @@ void PageViewer::slotGlobalBookmarkArticle()
 }
 
 
-void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
+void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
 {
     m_url = kurl;
     QString url = kurl.url(); // maximal url confusion
-    
-    // if true show popup menu for link. Maybe that doesn't work properly when using frames
-    bool isLink = kurl != Viewer::url();
-    
-//  KPopupMenu popup( i18n( "Documentation Viewer" ), this->widget() );
+
+    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
+
     KPopupMenu popup(this->widget());
 
-//     bool needSep = false;
     int idNewWindow = -2;
     if (isLink)
     {
