@@ -175,15 +175,14 @@ void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
 {
    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
-
+   const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
+    
    QString url = kurl.url();
    
-   if (!isLink)
-        return;
    m_url = url;
    KPopupMenu popup;
    
-   if (isLink)
+   if (isLink && !isSelection)
    {
         popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
@@ -193,8 +192,11 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    }
    else
    {
-       action("viewer_copy")->plug(&popup);
-       popup.insertSeparator();
+       if (isSelection)
+       {
+            action("viewer_copy")->plug(&popup);
+            popup.insertSeparator();
+       }
        action("viewer_print")->plug(&popup);
        KAction *ac = action("setEncoding");
        if (ac)
