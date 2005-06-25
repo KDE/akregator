@@ -47,7 +47,6 @@ TagFolderItem::TagFolderItem(KListView* parent, TagFolder* node) : FolderItem(pa
 
 TagFolderItem::TagFolderItem(KListView* parent, TreeNodeItem* after, TagFolder* node) : FolderItem(parent, after, node)
 {
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("bookmark_folder", KIcon::Small) );
 }
 
 
