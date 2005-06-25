@@ -24,6 +24,8 @@
 
 #include "folder.h"
 #include "folderitem.h"
+#include "tagfolder.h"
+#include "tagfolderitem.h"
 #include "feedlistview.h"
 #include "feed.h"
 #include "feeditem.h"
@@ -169,6 +171,29 @@ class FeedListView::CreateItemVisitor : public TreeNodeVisitor
             m_view->connectToNode(node);
             return true;
         }
+
+        virtual bool visitTagFolder(TagFolder* node)
+        {
+            TagFolderItem* item = 0;
+            TreeNode* prev = node->prevSibling();
+            FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
+            if (prev)
+            {
+                 item = new TagFolderItem( parentItem, m_view->findNodeItem(prev), node);
+            }
+            else
+                item = new TagFolderItem(parentItem, node);
+
+            m_view->d->itemDict.insert(node, item);
+            QValueList<TreeNode*> children = node->children();
+
+            // add children recursively
+            for (QValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
+                visit(*it);
+
+            m_view->connectToNode(node);
+            return true;
+        }
         
         virtual bool visitFolder(Folder* node)
         {
@@ -295,12 +320,12 @@ void FeedListView::setFeedList(FeedList* feedList, TagNodeList* tagNodeList)
 
     // handle tagNodeLsit
 
-    rootNode = tagNodeList->rootNode();
-    ri = new FolderItem(this, ri, rootNode);
-    d->itemDict.insert(rootNode, ri);
-    connectToNode(rootNode);
+    TagFolder* rootNode2 = tagNodeList->rootNode();
+    TagFolderItem* ri2 = new TagFolderItem(this, ri, rootNode2);
+    d->itemDict.insert(rootNode2, ri2);
+    connectToNode(rootNode2);
 
-    children = rootNode->children();
+    children = rootNode2->children();
     
     for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
         slotNodeAdded(*it);

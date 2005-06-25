@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="58">
+<kpartgui name="akregator_part" version="59">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -133,6 +133,16 @@
     <Action name="feed_modify"/>
     <Action name="feed_remove"/>
 </Menu>
+
+<Menu name="tagfolder_popup">
+	<Action name="feed_mark_all_as_read"/>
+	<Separator/>
+	<Action name="tag_new"/>
+<!--	<Action name="feed_add_group"/> -->
+	<Action name="feed_modify"/>
+	<Action name="feed_remove"/>
+</Menu>
+
 
 <Menu name="tagnode_popup">
 	<Action name="feed_mark_all_as_read"/>

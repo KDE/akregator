@@ -21,29 +21,50 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATOR_TREENODEVISITOR_H
-#define AKREGATOR_TREENODEVISITOR_H
 
-namespace Akregator 
+#include "actionmanager.h"
+#include "tagfolder.h"
+#include "tagfolderitem.h"
+#include "treenode.h"
+
+#include <qpopupmenu.h>
+#include <kaction.h>
+#include <kiconloader.h>
+
+namespace Akregator {
+
+TagFolderItem::TagFolderItem(FolderItem* parent, TagFolder* node) : FolderItem(parent, node)
 {
-
-class TreeNode;
-class Folder;
-class Feed;
-class TagNode;
-class TagFolder;
-
-class TreeNodeVisitor
-{
-    public:
-        virtual bool visit(TreeNode* node);
-        virtual bool visitTreeNode(TreeNode* /*node*/) { return false; }
-        virtual bool visitFolder(Folder* /*node*/) { return false; }
-        virtual bool visitTagFolder(TagFolder* /*node*/) { return false; }
-        virtual bool visitFeed(Feed* /*node*/) { return false; }
-        virtual bool visitTagNode(TagNode* /*node*/) { return false; }
-};
-
 }
 
-#endif
+TagFolderItem::TagFolderItem(FolderItem* parent, TreeNodeItem* after, TagFolder* node) : FolderItem(parent, after, node)
+{
+}
+
+TagFolderItem::TagFolderItem(KListView* parent, TagFolder* node) : FolderItem(parent, node)
+{
+}
+
+TagFolderItem::TagFolderItem(KListView* parent, TreeNodeItem* after, TagFolder* node) : FolderItem(parent, after, node)
+{
+    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("bookmark_folder", KIcon::Small) );
+}
+
+
+TagFolder* TagFolderItem::node() 
+{ 
+    return static_cast<TagFolder*> (m_node); 
+}
+
+TagFolderItem::~TagFolderItem()
+{}
+
+
+void TagFolderItem::showContextMenu(const QPoint& p)
+{
+    QWidget* w = ActionManager::getInstance()->container("tagfolder_popup");
+    if (w)
+        static_cast<QPopupMenu *>(w)->exec(p);
+}
+
+}

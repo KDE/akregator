@@ -34,6 +34,7 @@ namespace Akregator {
 
    class FeedList;
    class Folder;
+   class TagFolder;
    class TagNode;
    class TreeNode;
    class Tag;
@@ -56,7 +57,7 @@ namespace Akregator {
 
        QDomDocument toXML() const;
 
-       Folder* rootNode();
+       TagFolder* rootNode();
        
        public slots:
 

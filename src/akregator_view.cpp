@@ -36,6 +36,7 @@
 #include "viewer.h"
 #include "feed.h"
 #include "feeditem.h"
+#include "tagfolder.h"
 #include "folder.h"
 #include "folderitem.h"
 #include "feedlist.h"

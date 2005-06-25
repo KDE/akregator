@@ -28,6 +28,7 @@
 #include "tagnodelist.h"
 #include "tagset.h"
 #include "folder.h"
+#include "tagfolder.h"
 
 #include <qdom.h>
 #include <qmap.h>
@@ -41,7 +42,7 @@ namespace Akregator {
 class TagNodeList::TagNodeListPrivate
 {
     public:
-    Folder* rootNode;
+    TagFolder* rootNode;
     FeedList* feedList;
     TagSet* tagSet;
     QMap<QString, TagNode*> idToNodeMap;
@@ -51,7 +52,7 @@ TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) : d(new TagNodeList
 {
     d->feedList = feedList;
     d->tagSet = tagSet;
-    d->rootNode = new Folder(i18n("My Tags"));
+    d->rootNode = new TagFolder(i18n("My Tags"));
     connect(d->rootNode, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
     connect(d->rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
     connect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
@@ -72,7 +73,7 @@ TagNodeList::~TagNodeList()
     d = 0;
 }
 
-Folder* TagNodeList::rootNode()
+TagFolder* TagNodeList::rootNode()
 {
     return d->rootNode;
 }

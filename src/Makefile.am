@@ -50,6 +50,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
                                  treenodevisitor.cpp \
                                  tagnode.cpp \
 				 folder.cpp \
+                                 tagfolder.cpp \
 				 feedlist.cpp \
                                  tagnodelist.cpp \
 			         fetchqueue.cpp \
@@ -123,7 +124,8 @@ libakregatorpart_la_SOURCES = \
         notificationmanager.cpp \
         tagaction.cpp \
         tagpropertieswidgetbase.ui \
-        tagpropertiesdialog.cpp
+        tagpropertiesdialog.cpp \
+        tagfolderitem.cpp
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -avoid-version -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = libakregatorprivate.la 

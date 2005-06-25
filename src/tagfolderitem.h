@@ -21,27 +21,34 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATOR_TREENODEVISITOR_H
-#define AKREGATOR_TREENODEVISITOR_H
+#ifndef AKREGATOR_TAGFOLDERITEM_H
+#define AKREGATOR_TAGFOLDERITEM_H
+
+#include "tagfolder.h"
+#include "treenodeitem.h"
+#include "folderitem.h"
+#include "treenode.h"
+
+#include <qpixmap.h>
+
+class QPoint;
 
 namespace Akregator 
 {
 
-class TreeNode;
-class Folder;
-class Feed;
-class TagNode;
-class TagFolder;
-
-class TreeNodeVisitor
+class TagFolderItem : public FolderItem
 {
-    public:
-        virtual bool visit(TreeNode* node);
-        virtual bool visitTreeNode(TreeNode* /*node*/) { return false; }
-        virtual bool visitFolder(Folder* /*node*/) { return false; }
-        virtual bool visitTagFolder(TagFolder* /*node*/) { return false; }
-        virtual bool visitFeed(Feed* /*node*/) { return false; }
-        virtual bool visitTagNode(TagNode* /*node*/) { return false; }
+
+public:
+    TagFolderItem(FolderItem* parent, TagFolder* node);
+    TagFolderItem(FolderItem* parent, TreeNodeItem* after, TagFolder* node);
+    TagFolderItem(KListView* parent, TagFolder* node);
+    TagFolderItem(KListView* parent, TreeNodeItem* after, TagFolder* node);
+    virtual ~TagFolderItem();
+    
+    virtual TagFolder* node();
+    
+    virtual void showContextMenu(const QPoint& p);
 };
 
 }
