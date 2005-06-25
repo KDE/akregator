@@ -93,8 +93,8 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
     
 };
 
-ArticleItem::ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *feed)
-    : KListViewItem( parent, after, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
+ArticleItem::ArticleItem( QListView *parent, const Article& a, Feed *feed)
+    : KListViewItem( parent, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
         setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
@@ -274,7 +274,7 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
     {
         if (!m_articleMap.contains(*it))
         {
-            ArticleItem* ali = new ArticleItem(this, lastChild(), *it, (*it).feed());
+            ArticleItem* ali = new ArticleItem(this, *it, (*it).feed());
             m_articleMap.insert(*it, ali);
         }
     }
@@ -294,7 +294,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             bool isCurrent = currentItem() == ali;
             m_articleMap.remove(*it);
             delete ali;
-            ali = new ArticleItem(this, lastChild(), *it, (*it).feed());
+            ali = new ArticleItem(this, *it, (*it).feed());
             m_articleMap.insert(*it, ali);
             ali->setSelected(isSelected);
             if (isCurrent)
@@ -367,12 +367,12 @@ void ArticleListView::slotUpdate()
 
     QValueList<Article>::ConstIterator end = articles.end();
     QValueList<Article>::ConstIterator it = articles.begin();
-
+    
     for (; it != end; ++it)
     {
         if (!(*it).isDeleted())
         {
-            ArticleItem *ali = new ArticleItem(this, lastChild(), *it, (*it).feed());
+            ArticleItem *ali = new ArticleItem(this, *it, (*it).feed());
             m_articleMap.insert(*it, ali);
             if (haveOld && *it == oldCurrentArticle)
             {
@@ -386,11 +386,11 @@ void ArticleListView::slotUpdate()
             }
         }
     }
-
+    
     setSorting(col, order == Ascending);
     setShowSortIndicator(true);
 
-    applyFilters();        
+    applyFilters();
     setUpdatesEnabled(true);
     triggerUpdate();
 }

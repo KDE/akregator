@@ -45,7 +45,7 @@ namespace Akregator
     class ArticleItem : public KListViewItem
     {
         public:
-            ArticleItem( QListView *parent, QListViewItem *after, const Article& a, Feed *parent );
+            ArticleItem( QListView *parent, const Article& a, Feed *parent );
             ~ArticleItem();
 
             Article& article();
