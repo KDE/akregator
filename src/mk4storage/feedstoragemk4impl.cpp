@@ -50,12 +50,16 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
             plink("link"),
             pcommentsLink("commentsLink"),
             ptag("tag"),
+            pEnclosureType("enclosureType"),
+            pEnclosureUrl("enclosureUrl"),
             phash("hash"),
             pguidIsHash("guidIsHash"),
             pguidIsPermaLink("guidIsPermaLink"),
             pcomments("comments"),
             pstatus("status"),
             ppubDate("pubDate"),
+            pHasEnclosure("hasEnclosure"),
+            pEnclosureLength("enclosureLength"),
             ptags("tags"),
             ptaggedArticles("taggedArticles")
         {}
@@ -71,8 +75,8 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
 	    bool modified;
         bool convert;
         QString oldArchivePath;
-        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag;
-        c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate;
+        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl;
+        c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate, pHasEnclosure, pEnclosureLength;
         c4_ViewProp ptags, ptaggedArticles;
 };
 
@@ -126,7 +130,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->oldArchivePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t2.replace("/", "_").replace(":", "_") + ".xml";
     d->convert = !QFile::exists(filePath + ".mk4") && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage((filePath + ".mk4").local8Bit(), true);
-    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S]]");
+    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
 
@@ -602,6 +606,56 @@ void FeedStorageMK4Impl::copyArticle(const QString& guid, FeedStorage* source)
     QStringList tags = source->tags(guid);
     for (QStringList::ConstIterator it = tags.begin(); it != tags.end(); ++it)
         addTag(guid, *it);
+}
+
+void FeedStorageMK4Impl::setEnclosure(const QString& guid, const QString& url, const QString& type, int length)
+{
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+        return;
+    c4_Row row;
+    row = d->archiveView.GetAt(findidx);
+    d->pHasEnclosure(row) = true;
+    d->pEnclosureUrl(row) = !url.isEmpty() ? url.utf8().data() : "";
+    d->pEnclosureType(row) = !type.isEmpty() ? type.utf8().data() : "";
+    d->pEnclosureLength(row) = length;
+
+    d->archiveView.SetAt(findidx, row);
+    d->modified = true;
+}
+
+void FeedStorageMK4Impl::removeEnclosure(const QString& guid)
+{
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+        return;
+    c4_Row row;
+    row = d->archiveView.GetAt(findidx);
+    d->pHasEnclosure(row) = false;
+    d->pEnclosureUrl(row) = "";
+    d->pEnclosureType(row) = "";
+    d->pEnclosureLength(row) = -1;
+
+    d->archiveView.SetAt(findidx, row);
+    d->modified = true;
+}
+
+void FeedStorageMK4Impl::enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length)
+{
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+    {
+        hasEnclosure = false;
+        url = QString::null;
+        type = QString::null;
+        length = -1;
+        return;
+    }
+    c4_Row row = d->archiveView.GetAt(findidx);
+    hasEnclosure = d->pHasEnclosure(row);
+    url = d->pEnclosureUrl(row);
+    type = d->pEnclosureType(row);
+    length = d->pEnclosureLength(row);
 }
 
 void FeedStorageMK4Impl::clear()

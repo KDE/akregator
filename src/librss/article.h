@@ -25,6 +25,8 @@ class KURLLabel;
 
 namespace RSS
 {
+   class Enclosure;
+   
    /**
     * Represents an article as stored in a RSS file. You don't have to
     * instantiate one of these yourself, the common way to access instances
@@ -129,6 +131,8 @@ namespace RSS
 		 const KURL &commentsLink() const;
 		 int comments() const;
 
+         Enclosure enclosure() const;
+         
 		 QString meta(const QString &key) const;
          
          /**

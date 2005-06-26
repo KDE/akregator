@@ -75,6 +75,9 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void removeTag(const QString& guid, const QString& tag);
         virtual QStringList tags(const QString& guid=QString::null);
 
+        virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
+        virtual void removeEnclosure(const QString& guid);
+        virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length);
         virtual void close();
         virtual void commit();
         virtual void rollback();

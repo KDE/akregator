@@ -26,7 +26,8 @@
 #include "feed.h"
 #include "feedstorage.h"
 #include "storage.h"
-#include "librss/tools_p.h"
+#include "librss/librss.h"
+#include "shared.h"
 
 #include <qdatetime.h>
 #include <qdom.h>
@@ -41,7 +42,7 @@
 
 namespace Akregator {
 
-struct Article::Private : public RSS::Shared
+struct Article::Private : public Shared
 {
     /** The status of the article is stored in an int, the bits having the
         following meaning:
@@ -112,6 +113,15 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->archive->setGuidIsHash(d->guid, article.meta("guidIsHash") == "true");
             d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
             d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
+            if (!article.enclosure().isNull())
+            {
+                d->archive->setEnclosure(d->guid, article.enclosure().url(), article.enclosure().type(), article.enclosure().length());
+            }
+            else
+            {
+                d->archive->removeEnclosure(d->guid);
+            }
+
             QString status = article.meta("status");
             
             if (!status.isEmpty())
@@ -121,7 +131,7 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
                     statusInt = Unread;
                 setStatus(statusInt);
             }
-            setKeep(article.meta("keep") == "true");   
+            setKeep(article.meta("keep") == "true");
         }
     }
     else
@@ -333,6 +343,18 @@ bool Article::keep() const
     return (d->status & Private::Keep) != 0;
 }
 
+RSS::Enclosure Article::enclosure() const
+{
+    bool hasEnc;
+    QString url, type;
+    int length;
+    d->archive->enclosure(d->guid, hasEnc, url, type, length);
+    return hasEnc ? RSS::Enclosure(url, length, type) : RSS::Enclosure();
+
+    
+}
+
+
 void Article::setKeep(bool keep)
 {
     d->status = keep ? (d->status | Private::Keep) : (d->status & ~Private::Keep);
@@ -354,7 +376,7 @@ void Article::removeTag(const QString& tag)
     if (d->feed)
         d->feed->setArticleChanged(*this);
 }
-            
+
 bool Article::hasTag(const QString& tag) const
 {
     return d->archive->tags(d->guid).contains(tag);

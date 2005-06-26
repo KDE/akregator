@@ -73,6 +73,10 @@ class FeedStorageMK4Impl : public FeedStorage
         virtual void setTitle(const QString& guid, const QString& title);
         virtual QString description(const QString& guid);
         virtual void setDescription(const QString& guid, const QString& description);
+        virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
+        virtual void removeEnclosure(const QString& guid);
+        virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length);
+        
         virtual void addTag(const QString& guid, const QString& tag);
         virtual void removeTag(const QString& guid, const QString& tag);
         virtual QStringList tags(const QString& guid=QString::null);

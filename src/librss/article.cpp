@@ -10,6 +10,7 @@
  */
 #include "article.h"
 #include "tools_p.h"
+#include "enclosure.h"
 
 #include <kdebug.h>
 #include <krfcdate.h>
@@ -36,7 +37,8 @@ struct Article::Private : public Shared
 	bool guidIsPermaLink;
     MetaInfoMap meta;
 	KURL commentsLink;
-	int numComments;
+        int numComments;
+        Enclosure enclosure;
 };
 
 Article::Article() : d(new Private)
@@ -46,6 +48,11 @@ Article::Article() : d(new Private)
 Article::Article(const Article &other) : d(0)
 {
 	*this = other;
+}
+
+Enclosure Article::enclosure() const
+{
+    return d->enclosure;
 }
 
 Article::Article(const QDomNode &node, Format format) : d(new Private)
@@ -160,6 +167,10 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 		d->guid = QString(md5Machine.hexDigest().data());
         d->meta[QString::fromLatin1("guidIsHash")] = QString::fromLatin1("true");
 	}
+
+    QDomNode enclosure = element.namedItem(QString::fromLatin1("enclosure"));
+    if (enclosure.isElement())
+        d->enclosure = Enclosure::fromXML(enclosure.toElement());
 
     for (QDomNode i = node.firstChild(); !i.isNull(); i = i.nextSibling())
     {

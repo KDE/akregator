@@ -13,6 +13,7 @@
 
 #include "article.h"
 #include "document.h"
+#include "enclosure.h"
 #include "global.h"
 #include "image.h"
 #include "loader.h"

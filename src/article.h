@@ -42,6 +42,7 @@ class KURLLabel;
 namespace RSS
 {
     class Article;
+    class Enclosure;
 }
 
 namespace Akregator
@@ -88,6 +89,9 @@ namespace Akregator
             bool keep() const;
             void setKeep(bool keep);
             bool isDeleted() const;
+            
+            RSS::Enclosure enclosure() const;
+            
             void setDeleted();
             
 

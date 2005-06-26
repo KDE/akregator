@@ -91,7 +91,9 @@ class FeedStorage : public QObject
         /** returns the tags of a given article. If @c guid is null, it returns all tags used in this feed */
         virtual QStringList tags(const QString& guid=QString::null) = 0;
 
-
+        virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length) = 0;
+        virtual void removeEnclosure(const QString& guid) = 0;
+        virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) = 0;
         virtual void close() = 0;
         virtual void commit() = 0;
         virtual void rollback() = 0;

@@ -55,6 +55,10 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             uint pubDate;
             uint hash;
             QStringList tags;
+            bool hasEnclosure;
+            QString enclosureUrl;
+            QString enclosureType;
+            int enclosureLength;
         };
     QMap<QString, Entry> entries;
     Storage* mainStorage;
@@ -330,6 +334,49 @@ void FeedStorageDummyImpl::clear()
     d->entries.clear();
     setUnread(0);
     setTotalCount(0);
+}
+
+void FeedStorageDummyImpl::setEnclosure(const QString& guid, const QString& url, const QString& type, int length)
+{
+    if (contains(guid))
+    {
+        FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
+        entry.hasEnclosure = true;
+        entry.enclosureUrl = url;
+        entry.enclosureType = type;
+        entry.enclosureLength = length;
+    }
+}
+
+void FeedStorageDummyImpl::removeEnclosure(const QString& guid)
+{
+    if (contains(guid))
+    {
+        FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
+        entry.hasEnclosure = false;
+        entry.enclosureUrl = QString::null;
+        entry.enclosureType = QString::null;
+        entry.enclosureLength = -1;
+    }
+}
+
+void FeedStorageDummyImpl::enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length)
+{
+    if (contains(guid))
+    {
+        FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
+        hasEnclosure = entry.hasEnclosure;
+        url = entry.enclosureUrl;
+        type = entry.enclosureType;
+        length = entry.enclosureLength;
+    }
+    else
+    {
+        hasEnclosure = false;
+        url = QString::null;
+        type = QString::null;
+        length = -1;
+    }
 }
 
 } // namespace Backend
