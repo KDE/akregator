@@ -35,6 +35,8 @@
 #include "settings_archive.h"
 #include "settings_browser.h"
 #include "settings_general.h"
+#include <qslider.h>
+#include <qlabel.h>
 
 namespace Akregator
 {
@@ -43,11 +45,13 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
 {
     addPage(new SettingsGeneral(this, "General"), i18n("General"), "package_settings");
     addPage(new SettingsArchive(this, "Archive"), i18n("Archive"), "package_settings");
-    addPage(new SettingsAppearance(this, "Appearance"), i18n("Appearance"), "fonts");
+    m_settingsAppearance = new SettingsAppearance(this, "Appearance");
+    addPage(m_settingsAppearance, i18n("Appearance"), "fonts");
     addPage(new SettingsBrowser(this, "Browser"), i18n("Browser"), "package_network");
     m_settingsAdvanced = new SettingsAdvanced(this, "Advanced");
     addPage(m_settingsAdvanced, i18n("Advanced"), "package_network");
     m_settingsAdvanced->selectFactory(Settings::archiveBackend());
+    m_config = config;
 }
 
 void ConfigDialog::updateSettings()
@@ -59,6 +63,10 @@ void ConfigDialog::updateSettings()
 void ConfigDialog::updateWidgets()
 {
     m_settingsAdvanced->selectFactory(Settings::archiveBackend());
+    m_settingsAppearance->slider_minimumFontSize->setDisabled(m_config->isImmutable("MinimumFontSize"));
+    m_settingsAppearance->slider_mediumFontSize->setDisabled(m_config->isImmutable("MediumFontSize"));
+    m_settingsAppearance->lbl_MinimumFontSize->setDisabled(m_config->isImmutable("MinimumFontSize"));
+    m_settingsAppearance->lbl_MediumFontSize->setDisabled(m_config->isImmutable("MediumFontSize"));
     KConfigDialog::updateSettings();
 }
         

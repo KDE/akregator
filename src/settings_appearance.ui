@@ -36,7 +36,7 @@
                 </property>
                 <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
                     <property name="name">
-                        <cstring>textLabel1_2</cstring>
+                        <cstring>lbl_MinimumFontSize</cstring>
                     </property>
                     <property name="text">
                         <string>Minimum font size:</string>
@@ -75,7 +75,7 @@
                 </widget>
                 <widget class="QLabel" row="2" column="0" rowspan="1" colspan="2">
                     <property name="name">
-                        <cstring>textLabel2</cstring>
+                        <cstring>lbl_MediumFontSize</cstring>
                     </property>
                     <property name="text">
                         <string>Medium font size:</string>
