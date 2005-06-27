@@ -27,7 +27,6 @@
 #include <dcopref.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
-#include <kdebug.h>
 #include <knotifyclient.h>
 #include <kuniqueapplication.h>
 
@@ -35,58 +34,74 @@
 #include "mainwindow.h"
 #include "akregator_options.h"
 
+class AkregatorApp : public KUniqueApplication {
+  public:
+    AkregatorApp() : mMainWindow( 0 ) {}
+    ~AkregatorApp() {}
+
+    int newInstance();
+
+  private:
+    Akregator::MainWindow *mMainWindow;
+};
+
+int AkregatorApp::newInstance()
+{
+  DCOPRef akr("akregator", "AkregatorIface");
+
+  if ( isRestored() ) {
+    if ( KMainWindow::canBeRestored( 1 ) ) {
+      mMainWindow = new Akregator::MainWindow();
+      setMainWidget( mMainWindow );
+      mMainWindow->show();
+      mMainWindow->restore( 1 );
+    }
+  } else {
+    if ( !mMainWindow ) {
+      mMainWindow = new Akregator::MainWindow();
+      setMainWidget( mMainWindow );
+      mMainWindow->loadPart();
+      mMainWindow->setupProgressWidgets();
+      mMainWindow->show();
+      akr.send("openStandardFeedList");
+    }
+
+    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
+    QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
+
+    QCStringList feeds = args->getOptionList("addfeed");
+    QStringList feedsToAdd;
+    for (QCStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
+        feedsToAdd.append(*it);
+
+    if (!feedsToAdd.isEmpty())
+        akr.send("addFeedsToGroup", feedsToAdd, addFeedGroup );
+
+    args->clear();
+  }
+
+  return KUniqueApplication::newInstance();
+} 
 
 int main(int argc, char **argv)
 {
     Akregator::AboutData about;
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options );
-    KUniqueApplication app;
-    
+    KUniqueApplication::addCmdLineOptions();
+
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     KNotifyClient::startDaemon();
 
-    // see if we are starting with session management
-    if (app.isRestored())
-    {
-#undef RESTORE
-#define RESTORE(type) { int n = 1;\
-    while (KMainWindow::canBeRestored(n)){\
-        (new type)->restore(n, false);\
-            n++;}}
+    if(!AkregatorApp::start())
+      return 0;
 
-        RESTORE(Akregator::MainWindow);
-    }
-    else
-    {
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    AkregatorApp app;
 
-        Akregator::MainWindow* mainwin = new Akregator::MainWindow();
+    bool ret = app.exec();
+    while ( KMainWindow::memberList->first() )
+        delete KMainWindow::memberList->first();
 
-        app.setMainWidget(mainwin);
-
-        if (mainwin->loadPart() == false)
-            return 1;
-        mainwin->setupProgressWidgets();
-        mainwin->show();  
-
-    
-        DCOPRef akr("akregator", "AkregatorIface");
-        
-        akr.send("openStandardFeedList");
-     
-        QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
-        
-        QCStringList feeds = args->getOptionList("addfeed");
-        QStringList feedsToAdd;
-        for (QCStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
-            feedsToAdd.append(*it);
-        
-        if (!feedsToAdd.isEmpty())
-            akr.send("addFeedsToGroup", feedsToAdd, addFeedGroup );
-
-        args->clear();
-    }
-
-    return app.exec();
+    return ret;
 }
