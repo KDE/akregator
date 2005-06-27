@@ -429,7 +429,7 @@ int ArticleListView::visibleArticles()
     ArticleItem* ali = 0;
     for (QListViewItemIterator it(this); it.current(); ++it) {
         ali = static_cast<ArticleItem*> (it.current());
-        visible += ali->isVisible();
+        visible += ali->isVisible() ? 1 : 0;
     }
     return visible;
 }
@@ -553,7 +553,7 @@ void ArticleListView::slotNextUnreadArticle()
 
     for ( ; it; it = static_cast<ArticleItem*>(it->nextSibling()))
     {
-        if (it->article().status() != Article::Read)
+        if (it->isVisible() && it->article().status() != Article::Read)
         {
             setCurrentItem(it);
             clearSelection();
@@ -568,7 +568,7 @@ void ArticleListView::slotNextUnreadArticle()
         it = static_cast<ArticleItem*>(firstChild());
         for ( ; it; it = static_cast<ArticleItem*>(it->nextSibling()))
         {
-            if (it->article().status() != Article::Read)
+            if (it->isVisible() && it->article().status() != Article::Read)
             {
                 setCurrentItem(it);
                 clearSelection();
@@ -592,8 +592,7 @@ void ArticleListView::slotPreviousUnreadArticle()
         ArticleItem* ali = static_cast<ArticleItem*> (it.current());
         if (!ali)
             break;
-        if ((ali->article().status()==Article::Unread) ||
-             (ali->article().status()==Article::New))
+        if (ali->isVisible() && ali->article().status() != Article::Read)
         {
             setCurrentItem(ali);
             clearSelection();
@@ -610,7 +609,7 @@ void ArticleListView::slotPreviousUnreadArticle()
         for ( ; it.current(); --it )
         {
             ArticleItem* ali = static_cast<ArticleItem*> (it.current());
-            if ((ali->article().status() != Article::Read))
+            if (ali->isVisible()  && ali->article().status() != Article::Read)
             {
                 setCurrentItem(ali);
                 clearSelection();
