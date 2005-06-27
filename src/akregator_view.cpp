@@ -109,7 +109,7 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
-            TagPropertiesDialog* dlg = new TagPropertiesDialog(0);
+            TagPropertiesDialog* dlg = new TagPropertiesDialog(m_view);
             dlg->setTag(node->tag());
             dlg->exec();
             delete dlg;
@@ -124,7 +124,7 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
         
         virtual bool visitFeed(Feed* node)
         {
-            FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
+            FeedPropertiesDialog *dlg = new FeedPropertiesDialog( m_view, "edit_feed" );
             dlg->setFeed(node);
             dlg->exec();
             delete dlg;
