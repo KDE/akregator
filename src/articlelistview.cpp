@@ -93,6 +93,7 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
     
 };
 
+// Remove resolveEntities for KDE 4.0, it's now done in the parser
 ArticleItem::ArticleItem( QListView *parent, const Article& a, Feed *feed)
     : KListViewItem( parent, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
 {
