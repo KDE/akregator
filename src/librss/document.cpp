@@ -142,7 +142,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
     else
         channelNode=rootNode.namedItem(QString::fromLatin1("channel"));
 
-    if (!(elemText = extractNode(channelNode, QString::fromLatin1("title"))).isNull())
+    if (!(elemText = extractTitle(channelNode)).isNull())
         d->title = elemText;
     if (!(elemText = extractNode(channelNode, QString::fromLatin1("description"))).isNull())
         d->description = elemText;

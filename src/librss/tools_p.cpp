@@ -12,6 +12,8 @@
 
 #include <krfcdate.h>
 #include <qdom.h>
+#include <kcharsets.h>
+#include <qregexp.h>
 
 time_t RSS::parseISO8601Date(const QString &s)
 {
@@ -46,6 +48,22 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
 		return QString::null;
 
 	return result;
+}
+
+QString RSS::extractTitle(const QDomNode & parent)
+{
+    QDomNode node = parent.namedItem(QString::fromLatin1("title"));
+    if (node.isNull())
+        return QString::null;
+
+    QString result = node.toElement().text();
+
+    result = KCharsets::resolveEntities(KCharsets::resolveEntities(result).replace(QRegExp("<[^>]*>"), "").remove("\\"));
+
+    if (result.isEmpty())
+        return QString::null;
+
+    return result;
 }
 
 // vim:noet:ts=4

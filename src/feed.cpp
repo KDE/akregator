@@ -31,7 +31,6 @@
 #include <qvaluelist.h>
 
 #include <kurl.h>
-#include <kcharsets.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
@@ -609,7 +608,7 @@ void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
     }
 
     if (title().isEmpty())
-        setTitle( KCharsets::resolveEntities(KCharsets::resolveEntities(doc.title())) );
+        setTitle( doc.title() );
 
     d->description = doc.description();
     d->htmlUrl = doc.link().url();

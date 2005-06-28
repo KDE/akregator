@@ -61,7 +61,7 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 
 	d->numComments=0;
 
-	if (!(elemText = extractNode(node, QString::fromLatin1("title"))).isNull())
+	if (!(elemText = extractTitle(node)).isNull())
 		d->title = elemText;
    
 	if (format==AtomFeed)
