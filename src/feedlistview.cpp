@@ -267,6 +267,7 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     
     connect( this, SIGNAL(dropped(QDropEvent*,QListViewItem*)), this, SLOT(slotDropped(QDropEvent*,QListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
+    connect( this, SIGNAL(itemRenamed(QListViewItem*, int, const QString&)), this, SLOT(slotItemRenamed(QListViewItem*, int, const QString&)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*, const QString&, int)), this, SLOT(slotItemRenamed(QListViewItem*, const QString&, int)) );
     connect( this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)) );
     connect( &(d->autoopentimer), SIGNAL( timeout() ), this, SLOT( openFolder() ) );
@@ -558,28 +559,6 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
     KListView::contentsDragMoveEvent(event);
 }
 
-/*
-void FeedListView::keyPressEvent(QKeyEvent* e)
-{
-    switch(e->key())
-    {
-        case Key_Alt+Key_Up:
-        case Key_Alt+Key_Down:
-        case Key_Alt+Key_Left:    
-        case Key_Alt+Key_Right:
-            KListView::keyPressEvent(e);    
-            break;
-        case Key_Left:
-        case Key_Right:
-        case Key_Up:
-        case Key_Down:
-            e->ignore();
-            break;
-        default:
-            KListView::keyPressEvent(e);    
-     }
-}*/
-
 bool FeedListView::acceptDrag(QDropEvent *e) const
 {
     if (!acceptDrops() || !itemsMovable())
@@ -815,15 +794,23 @@ void FeedListView::slotSelectionChanged(QListViewItem* item)
         emit signalNodeSelected(ni->node());
 }
 
-void FeedListView::slotItemRenamed(QListViewItem* item, const QString& text, int)
+void FeedListView::slotItemRenamed(QListViewItem* item, int col, const QString& text)
 {
-    kdDebug() << "FeedListView::slotItemRenamed(): enter" << endl;
     TreeNodeItem* ni = dynamic_cast<TreeNodeItem*> (item);
-    if ( ni && ni->node() )
+    if ( !ni || !ni->node() )
+        return;
+    if (col == 0)
     {
-        kdDebug() << "renamed item to \"" << text << "\"" << endl;
-        ni->node()->setTitle(text);
+        if (text != ni->node()->title())
+        {
+            kdDebug() << "renamed item to \"" << text << "\"" << endl;
+            ni->node()->setTitle(text);
+        }
     }
+}
+void FeedListView::slotItemRenamed(QListViewItem* item, const QString& text, int col)
+{
+    slotItemRenamed(item, col, text);
 }
 
 void FeedListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
