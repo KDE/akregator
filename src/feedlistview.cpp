@@ -815,7 +815,10 @@ void FeedListView::slotItemRenamed(QListViewItem* item, const QString& text, int
 
 void FeedListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
 {
-    emit signalContextMenu(list, static_cast<TreeNodeItem*>(item), p);
+    TreeNodeItem* ti = dynamic_cast<TreeNodeItem*>(item);
+    emit signalContextMenu(list, ti, p);
+    if (ti)
+        ti->showContextMenu(p);
 }
 
 void FeedListView::slotFeedFetchStarted(Feed* feed)

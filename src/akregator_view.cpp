@@ -704,7 +704,6 @@ void View::slotTabCaption(const QString &caption)
 void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint& p)
 {
     m_tabs->showPage(m_mainTab);
-    item->showContextMenu(p);
 }
 
 void View::slotMoveCurrentNodeUp()
