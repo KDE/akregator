@@ -36,7 +36,6 @@
 #include <kdebug.h>
 #include <ksqueezedtextlabel.h>
 #include <kmessagebox.h>
-#include <kurl.h>
 
 using namespace Akregator;
 
