@@ -51,6 +51,7 @@ using namespace Akregator;
 TabWidget::TabWidget(QWidget * parent, const char *name)
         :KTabWidget(parent, name), m_CurrentMaxLength(30)
 {
+    setMinimumSize(250,150);
     setTabReorderingEnabled(false);
     connect( this, SIGNAL( currentChanged(QWidget *) ), this,
             SLOT( slotTabChanged(QWidget *) ) );
