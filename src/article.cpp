@@ -276,7 +276,7 @@ void Article::setStatus(int stat)
 
 QString Article::title() const
 {
-    return d->archive->title(d->guid).remove("\\");
+    return d->archive->title(d->guid);
 }
 
 KURL Article::link() const
