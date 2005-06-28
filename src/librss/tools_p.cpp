@@ -59,6 +59,7 @@ QString RSS::extractTitle(const QDomNode & parent)
     QString result = node.toElement().text();
 
     result = KCharsets::resolveEntities(KCharsets::resolveEntities(result).replace(QRegExp("<[^>]*>"), "").remove("\\"));
+	result = result.simplifyWhiteSpace();
 
     if (result.isEmpty())
         return QString::null;
