@@ -35,6 +35,7 @@ BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *pa
 {
     m_viewer=viewer;
     connect(m_viewer, SIGNAL(destroyed()), this, SLOT(killMyself()));
+    setEnableExternalBrowser(false);
 }
 
 BrowserRun::~BrowserRun()
