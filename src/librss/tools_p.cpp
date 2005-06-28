@@ -28,6 +28,15 @@ time_t RSS::parseISO8601Date(const QString &s)
         return KRFCDate::parseDateISO8601(s + "T12:00:00");
 }
 
+QString RSS::childNodesAsXML(const QDomNode& parent)
+{
+	QDomNodeList list = parent.childNodes();
+	QString str;
+	QTextStream ts( &str, IO_WriteOnly );
+	for (uint i = 0; i < list.count(); ++i)
+		ts << list.item(i);
+	return str.stripWhiteSpace();
+}
 
 QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool isInlined)
 {
@@ -35,7 +44,13 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
 	if (node.isNull())
 		return QString::null;
 
-	QString result = node.toElement().text();
+	QDomElement e = node.toElement();
+	QString result;
+
+	if (elemName == "content" && ((e.hasAttribute("mode") && e.attribute("mode") == "xml") || !e.hasAttribute("mode")))
+		result = childNodesAsXML(node);
+	else
+		result = e.text();
 
 	bool hasPre = result.contains("<pre>",false);
 	bool hasHtml = hasPre || result.contains("<");	// FIXME: test if we have html, should be more clever -> regexp

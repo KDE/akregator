@@ -28,6 +28,7 @@ namespace RSS
 
 	QString extractNode(const QDomNode &parent, const QString &elemName, bool isInlined=true);
 	QString extractTitle(const QDomNode &parent);
+	QString childNodesAsXML(const QDomNode& parent);
 	time_t parseISO8601Date(const QString &s);
 }
 
