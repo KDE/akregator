@@ -35,6 +35,7 @@ template <class T> class QValueList;
 namespace Akregator
 {
 
+class Article;
 class Feed;
 class Folder;
 class TreeNode;
@@ -77,6 +78,8 @@ public:
 
     /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
     Feed* findByURL(const QString& feedURL) const;
+
+    Article findArticle(const QString& feedURL, const QString& guid) const;
     
     /** returns whether the feed list is empty, root node is ignored */
     bool isEmpty() const;
@@ -91,16 +94,6 @@ signals:
     /** emitted when a node was removed from this feed list */
     void signalNodeRemoved(TreeNode*);
 
-protected:
-
-    /** connects a node's notification signals to the slots below. Used for Observer mechanism 
-    @param node the node to connect to
-    */
-    void connectToNode(TreeNode* node);
-    /** disconnects from a node's notification signals. @c node is not longer observed.
-    @param the node to disconnect from
-     */
-    void disconnectFromNode(TreeNode* node);
 
 protected slots:
 
@@ -117,6 +110,12 @@ private:
     FeedList(const FeedList&) : QObject() {}
     FeedList& operator=(const FeedList&) { return *this; }
 
+    friend class AddNodeVisitor;
+    class AddNodeVisitor;
+
+    friend class RemoveNodeVisitor;
+    class RemoveNodeVisitor;
+    
     class FeedListPrivate;
     FeedListPrivate* d;
 };

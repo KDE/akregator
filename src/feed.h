@@ -182,7 +182,7 @@ namespace Akregator
             virtual QValueList<Article> articles(const QString& tag=QString::null);
 
             /** returns the article with the given @c guid, or a null article if it not exists */
-            virtual Article findArticle(QString& guid) const;
+            virtual Article findArticle(const QString& guid) const;
             
             virtual QStringList tags() const;
             

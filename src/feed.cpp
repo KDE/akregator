@@ -173,7 +173,7 @@ QStringList Feed::tags() const
     return d->archive->tags();
 }
 
-Article Feed::findArticle(QString& guid) const
+Article Feed::findArticle(const QString& guid) const
 {
     return d->articles[guid];
 }
