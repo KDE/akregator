@@ -35,6 +35,7 @@ template <class T> class QValueList;
 namespace Akregator
 {
 
+class Feed;
 class Folder;
 class TreeNode;
 
@@ -45,11 +46,11 @@ class FeedList : public QObject
 Q_OBJECT
 public:
 
-    /** creates a new FeedList from an OPML document, adds the "All Feeds" node.
+    /** reads an OPML document and appends the items to this list
         @param doc the OPML document to parse
-        @return the parsed feed list, or @c NULL when a parsing error occured
+        @return whether parsing was successful or not (TODO: make errors more detailed)
     */
-    static FeedList* fromOPML(const QDomDocument& doc);
+    bool readFromOPML(const QDomDocument& doc);
 
     FeedList(QObject *parent = 0, const char *name = 0);
 
@@ -74,6 +75,9 @@ public:
 
     TreeNode* findByID(uint id) const;
 
+    /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
+    Feed* findByURL(const QString& feedURL) const;
+    
     /** returns whether the feed list is empty, root node is ignored */
     bool isEmpty() const;
 
@@ -107,7 +111,7 @@ protected slots:
     
 private:
 
-    static void parseChildNodes(QDomNode &node, Folder* parent);
+    void parseChildNodes(QDomNode &node, Folder* parent);
 
     // never call these
     FeedList(const FeedList&) : QObject() {}

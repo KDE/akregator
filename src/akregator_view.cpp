@@ -488,12 +488,15 @@ void View::slotLoadingProgress(int percent)
 
 bool View::importFeeds(const QDomDocument& doc)
 {
-    FeedList* feedList = FeedList::fromOPML(doc);
+    FeedList* feedList = new FeedList();
+    bool parsed = feedList->readFromOPML(doc);
 
     // FIXME: parsing error, print some message
-    if (!feedList)
+    if (!parsed)
+    {
+        delete feedList;
         return false;
-
+    }
     QString title = feedList->title();
 
     if (title.isEmpty())
@@ -517,17 +520,20 @@ bool View::importFeeds(const QDomDocument& doc)
 
 bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
 {
-    FeedList* feedList = FeedList::fromOPML(doc);
+    FeedList* feedList = new FeedList();
+    bool parsed = feedList->readFromOPML(doc);
 
     // parsing went wrong
-    if (!feedList)
+    if (!parsed)
+    {
+        delete feedList;
         return false;
-
+    }
     m_tree->setUpdatesEnabled(false);
 
     if (!parent)
     {
-        
+        Kernel::self()->setFeedList(feedList);
         ProgressManager::self()->setFeedList(feedList);
         disconnectFromFeedList(m_feedList);
         delete m_feedList;
@@ -701,7 +707,7 @@ void View::slotTabCaption(const QString &caption)
     }
 }
 
-void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* item, const QPoint& p)
+void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* /*item*/, const QPoint& /*p*/)
 {
     m_tabs->showPage(m_mainTab);
 }
@@ -1118,7 +1124,7 @@ void View::slotTagCreated(const Tag& tag)
     }
 }
 
-void View::slotTagRemoved(const Tag& tag)
+void View::slotTagRemoved(const Tag& /*tag*/)
 {
 }
 

@@ -42,6 +42,7 @@ class FeedList::FeedListPrivate
     public:
         uint idCounter;
         QMap<uint, TreeNode*> idMap;
+        QMap<QString, QValueList<Feed*> > urlMap;
         QValueList<TreeNode*> flatList;
         Folder* rootNode;
         QString title;
@@ -77,7 +78,12 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
         if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
         {
             Feed* feed = Feed::fromOPML(e);
-            parent->appendChild(feed);
+            if (feed)
+            {
+                if (!d->urlMap[feed->xmlUrl()].contains(feed))
+                    d->urlMap[feed->xmlUrl()].append(feed);
+                parent->appendChild(feed);
+            }
         }
         else
         {
@@ -97,10 +103,8 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
     }
 }
 
-FeedList* FeedList::fromOPML(const QDomDocument& doc)
+bool FeedList::readFromOPML(const QDomDocument& doc)
 {
-    FeedList* list = new FeedList();
-
     QDomElement root = doc.documentElement();
 
     kdDebug() << "loading OPML feed " << root.tagName().lower() << endl;
@@ -111,8 +115,7 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     
     if (root.tagName().lower() != "opml")
     {
-        delete list;
-        return 0;
+        return false;
     }
     QDomNode bodyNode = root.firstChild();
     
@@ -123,39 +126,34 @@ FeedList* FeedList::fromOPML(const QDomDocument& doc)
     if (bodyNode.isNull())
     {
         kdDebug() << "Failed to acquire body node, markup broken?" << endl;
-        delete list;
-        return 0;
+        return false;
     }
     
     QDomElement body = bodyNode.toElement();
 
     QDomNode i = body.firstChild();
 
-    list->d->idCounter = 0;
-    
     while( !i.isNull() )
     {
-        parseChildNodes(i, list->rootNode());
+        parseChildNodes(i, rootNode());
         i = i.nextSibling();
     }
 
-    list->d->idCounter = 2;
-    
-    for (TreeNode* i = list->rootNode()->firstChild(); i && i != list->rootNode(); i = i->next() )
-        if (i->id() >= list->d->idCounter)
-            list->d->idCounter = i->id() + 1;
+    for (TreeNode* i = rootNode()->firstChild(); i && i != rootNode(); i = i->next() )
+        if (i->id() >= d->idCounter)
+            d->idCounter = i->id() + 1;
 
-    for (TreeNode* i = list->rootNode()->firstChild(); i && i != list->rootNode(); i = i->next() )
+    for (TreeNode* i = rootNode()->firstChild(); i && i != rootNode(); i = i->next() )
         if (i->id() == 0)
     {
-            uint id = list->d->idCounter++;
+            uint id = d->idCounter++;
             i->setId(id);
-            list->d->idMap[id] = i;
+            d->idMap[id] = i;
     }
 
     kdDebug() << "measuring startup time: STOP, " << spent.elapsed() << "ms" << endl;
-    kdDebug() << "Number of articles loaded: " << list->rootNode()->totalCount() << endl;
-    return list;
+    kdDebug() << "Number of articles loaded: " << rootNode()->totalCount() << endl;
+    return true;
 }
 
 FeedList::~FeedList()
@@ -170,6 +168,14 @@ FeedList::~FeedList()
 TreeNode* FeedList::findByID(uint id) const
 {
     return d->idMap.contains(id) ? d->idMap[id] : 0;
+}
+
+Feed* FeedList::findByURL(const QString& feedURL) const
+{
+    if (d->urlMap[feedURL].isEmpty())
+        return 0;
+    else
+        return *(d->urlMap[feedURL].begin());
 }
 
 bool FeedList::isEmpty() const
@@ -275,9 +281,14 @@ void FeedList::slotNodeDestroyed(TreeNode* node)
 {
     if ( !node || !d->flatList.contains(node) )
         return;
-    
+
     d->idMap.remove(node->id());
     d->flatList.remove(node);
+    
+    Feed* f = dynamic_cast<Feed*>(node); //TODO: use visitor
+    if (f)
+        d->urlMap[f->xmlUrl()].remove(f);
+
     emit signalNodeRemoved(node);
 }
 
@@ -289,6 +300,11 @@ void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
     d->idMap.remove(node->id());
     disconnectFromNode(node);
     d->flatList.remove(node);
+
+    Feed* f = dynamic_cast<Feed*>(node); //TODO: use visitor
+    if (f)
+        d->urlMap[f->xmlUrl()].remove(f);
+        
     emit signalNodeRemoved(node);
 }
 

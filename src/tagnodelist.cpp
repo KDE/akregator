@@ -35,6 +35,7 @@
 #include <qstring.h>
 #include <qvaluelist.h>
 
+#include <kapplication.h>
 #include <klocale.h>
 
 namespace Akregator {
@@ -80,6 +81,7 @@ TagFolder* TagNodeList::rootNode()
 
 bool TagNodeList::insert(TagNode* tagNode)
 {
+    tagNode->setId((uint)KApplication::random());
     QString id = tagNode->tag().id();
     if (!containsTagId(id))
     {
