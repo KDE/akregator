@@ -164,6 +164,11 @@ Article::Article(RSS::Article article, Backend::FeedStorage* archive) : d(new Pr
     initialize(article, archive);
 }
 
+bool Article::isNull() const
+{
+    return d->archive == 0; // TODO: use proper null state
+}
+
 void Article::offsetPubDate(int secs)
 {
    d->pubDate = d->pubDate.addSecs(secs);

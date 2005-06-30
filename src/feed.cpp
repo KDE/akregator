@@ -173,6 +173,11 @@ QStringList Feed::tags() const
     return d->archive->tags();
 }
 
+Article Feed::findArticle(QString& guid) const
+{
+    return d->articles[guid];
+}
+
 QValueList<Article> Feed::articles(const QString& tag)
 {
     if (!d->articlesLoaded)

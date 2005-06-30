@@ -76,6 +76,8 @@ namespace Akregator
             bool operator!=(const Article &other) const { return !operator==(other); }
             virtual ~Article();
 
+            bool isNull() const;
+            
             int status() const;
             void setStatus(int s);
 

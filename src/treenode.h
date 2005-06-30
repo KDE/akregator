@@ -150,7 +150,7 @@ public:
 
     /** sets the ID */
     virtual void setId(uint id);
-    
+
 public slots:
     
     /** Deletes all expired articles in the node (depending on the expiry settings).
