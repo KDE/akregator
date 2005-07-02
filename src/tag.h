@@ -46,6 +46,7 @@ class Tag
     /** creates a tag with given id and name. If name is QString::null, the id is used as name. If id is QString::null, the object is considered as NULL object (@see isNull())*/
     Tag(const QString& id, const QString& name=QString::null);
 
+    /** creates a null tag (isNull() is @c true) */
     Tag();
     
     Tag(const Tag& other);
