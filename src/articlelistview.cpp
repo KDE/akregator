@@ -275,8 +275,11 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
     {
         if (!m_articleMap.contains(*it))
         {
-            ArticleItem* ali = new ArticleItem(this, *it, (*it).feed());
-            m_articleMap.insert(*it, ali);
+            if (!(*it).isDeleted())
+            {
+                ArticleItem* ali = new ArticleItem(this, *it, (*it).feed());
+                m_articleMap.insert(*it, ali);
+            }
         }
     }
     setUpdatesEnabled(true);
@@ -288,18 +291,19 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
     setUpdatesEnabled(false);
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        if (m_articleMap.contains(*it))
+        ArticleItem* ali = m_articleMap[*it];
+        if (ali)
         {
-            ArticleItem* ali = m_articleMap[*it];
-            bool isSelected = ali->isSelected();
-            bool isCurrent = currentItem() == ali;
-            m_articleMap.remove(*it);
-            delete ali;
-            ali = new ArticleItem(this, *it, (*it).feed());
-            m_articleMap.insert(*it, ali);
-            ali->setSelected(isSelected);
-            if (isCurrent)
-                setCurrentItem(ali);
+            if (ali->article().isDeleted()) // if article was set to deleted, delete item
+            {
+                m_articleMap.remove(*it);
+                delete ali;
+            }
+            else
+            {
+                // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
+                ali->setVisible( m_textFilter.matches( ali->article()) );
+            }
         }
     }
     setUpdatesEnabled(true);
