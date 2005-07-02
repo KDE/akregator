@@ -36,6 +36,14 @@ namespace Akregator {
 
 class Tag;
 
+/** \brief represents a set of tags (@see Tag)
+    In an application, there is usually one central tag set that is used.
+    The tag set is not necessarily managed by the application itself, it might also be part of 
+    a desktop-wide framework (like Tenor) managing a common tag set for all applications 
+    
+    @author Frank Osterfeld
+*/
+
 class TagSet : public QObject
 {
     friend class Tag;
@@ -45,23 +53,49 @@ class TagSet : public QObject
         TagSet(QObject* parent=0);
         virtual ~TagSet();
 
+        /** adds a tag to the tag set. The tag set will emit @see signalTagAdded */
         void insert(const Tag& tag);
+
+        /** removes a tag from the tag set. The tag set will emit @see signalTagRemoved */
         void remove(const Tag& tag);
+
+        /** returns the tag set as map ((id, Tag) pairs) */
         QMap<QString,Tag> toMap() const;
 
+        /** returns @c true if this set contains @c tag */
         bool contains(const Tag& tag) const;
 
+        /** returns the tag with the given ID if the tag is element of the set, or a null tag if not */
         Tag findByID(const QString& id) const;
 
+        /** reads tag set from XML
+            see @see toXML() for an explanation of the format */
         void readFromXML(const QDomDocument& doc);
+
+        /** returns an XML representation of the tag set. 
+            The root element is @c <tagSet>, a tag  ("someID", "someName") is represented as
+            \code <tag id="someID">someName</tag> \endcode
+            Full example: 
+            \code
+            <?xml version="1.0" encoding="UTF-8"?>
+            <tagSet version="0.1" >
+            <tag id="http://akregator.sf.net/tags/Interesting" >Interesting</tag>
+            <tag id="AFs3SdaD" >Pretty boring</tag>
+            </tagSet>
+            \endcode
+         */
         QDomDocument toXML() const;
 
     signals:
+        /** emitted when a tag was added to this tag set */
         void signalTagAdded(const Tag&);
+        /** emitted when a tag was removed from this set */
         void signalTagRemoved(const Tag&);
+        /** emitted when a tag in this set was changed (e.g. renamed) */
         void signalTagUpdated(const Tag&);
 
     protected:
+        /** called by the tag (Tag is friend class) after a change */
         void tagUpdated(const Tag& tag);
         
     private:
