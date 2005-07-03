@@ -117,7 +117,7 @@ public:
     
     virtual QValueList<Article> articles(const QString& tag=QString::null) = 0;
 
-    /** returns a list of all tags occuring in this node (sub tree for folders) */
+    /** returns a list of all tags occurring in this node (sub tree for folders) */
 
     virtual QStringList tags() const = 0;
     

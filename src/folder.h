@@ -64,7 +64,7 @@ namespace Akregator
             @return an article sequence containing articles of children */
             virtual QValueList<Article> articles(const QString& tag=QString::null);
 
-            /** returns a list of all tags occuring in the subtree of this folder */
+            /** returns a list of all tags occurring in the subtree of this folder */
             virtual QStringList tags() const;
             
             /** returns the number of unread articles in all children    
