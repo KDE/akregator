@@ -76,7 +76,7 @@ namespace Akregator
             It's enabled by default.
             
             @param doReceive whether listen to notification signals or not
-            @param remember if @c true: if an update request occured while receiving updates was disabled, the view is updated on re-enabling. You have to set this when reenabling, not when disabling! Ignored when @c doReceive is set to false.(Anyone got this?) */
+            @param remember if @c true: if an update request occurred while receiving updates was disabled, the view is updated on re-enabling. You have to set this when reenabling, not when disabling! Ignored when @c doReceive is set to false.(Anyone got this?) */
             void setReceiveUpdates(bool doReceive, bool remember=true);
 
             ArticleItem* currentItem() const { return static_cast<ArticleItem*>(KListView::currentItem()); }

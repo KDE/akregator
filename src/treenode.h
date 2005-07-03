@@ -134,9 +134,9 @@ public:
     
     /** 
     @param doNotify notification on changes on/off flag
-    @param notifyOccuredChanges notify changes occured while turn off when set to true again */
+    @param notifyOccurredChanges notify changes occurred while turn off when set to true again */
     
-    virtual void setNotificationMode(bool doNotify, bool notifyOccuredChanges = true);  
+    virtual void setNotificationMode(bool doNotify, bool notifyOccurredChanges = true);  
     /** returns the next node in the tree.
         Calling next() unless it returns 0 iterates through the tree in pre-order
      */ 

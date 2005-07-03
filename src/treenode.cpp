@@ -37,8 +37,8 @@ class TreeNode::TreeNodePrivate
     public:
     
     bool doNotify;
-    bool nodeChangeOccured;
-    bool articleChangeOccured;
+    bool nodeChangeOccurred;
+    bool articleChangeOccurred;
     QString title;
     Folder* parent;
     uint id;
@@ -49,8 +49,8 @@ TreeNode::TreeNode()
     : QObject(0, 0), d(new TreeNodePrivate)
 {
     d->doNotify = true;
-    d->nodeChangeOccured = false;
-    d->articleChangeOccured = false;
+    d->nodeChangeOccurred = false;
+    d->articleChangeOccurred = false;
     d->title = "";
     d->parent = 0;
     d->id = 0;
@@ -122,22 +122,22 @@ void TreeNode::setParent(Folder* parent)
     d->parent = parent;
 }
 
-void TreeNode::setNotificationMode(bool doNotify, bool notifyOccuredChanges)
+void TreeNode::setNotificationMode(bool doNotify, bool notifyOccurredChanges)
 {
     if (doNotify && !d->doNotify) // turned on
     {
         d->doNotify = true;
-        if (d->nodeChangeOccured && notifyOccuredChanges)
+        if (d->nodeChangeOccurred && notifyOccurredChanges)
             emit signalChanged(this);
-        if (d->articleChangeOccured && notifyOccuredChanges)
+        if (d->articleChangeOccurred && notifyOccurredChanges)
             doArticleNotification();
-        d->nodeChangeOccured = false;
-        d->articleChangeOccured = false;
+        d->nodeChangeOccurred = false;
+        d->articleChangeOccurred = false;
     }
     if (!doNotify && d->doNotify) //turned off
     {
-        d->nodeChangeOccured = false;
-        d->articleChangeOccured = false;
+        d->nodeChangeOccurred = false;
+        d->articleChangeOccurred = false;
         d->doNotify = false;
     }
 }
@@ -157,7 +157,7 @@ void TreeNode::nodeModified()
     if (d->doNotify)
         emit signalChanged(this);
     else
-        d->nodeChangeOccured = true;
+        d->nodeChangeOccurred = true;
 }
 
 void TreeNode::articlesModified()
@@ -165,7 +165,7 @@ void TreeNode::articlesModified()
     if (d->doNotify)
         doArticleNotification();
     else
-        d->articleChangeOccured = true;
+        d->articleChangeOccurred = true;
 }
 
 void TreeNode::doArticleNotification()

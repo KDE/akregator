@@ -1563,7 +1563,7 @@
 
     Yet more fixes in comparisons, this is all one problem, caused by
     changes in caching for ints, floats, and doubles.  Added B24 test.
-    These (last?) problems occured in custom / compound views.
+    These (last?) problems occurred in custom / compound views.
 
 1999-11-08  MK 1.9f     Fixed sort comparisons
 
@@ -1606,7 +1606,7 @@
     to a view of which the underlying storage object goes away will end
     up with the same number of rows as before, but no properties at all.
 
-    Fixed a problem which would have occured when properties are being
+    Fixed a problem which would have occurred when properties are being
     "restructured away" and then committed.  The solution is to check
     for this and delete all such properties at commit time.
 

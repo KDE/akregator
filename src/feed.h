@@ -186,7 +186,7 @@ namespace Akregator
             
             virtual QStringList tags() const;
             
-            /** returns whether a fetch error has occured */
+            /** returns whether a fetch error has occurred */
             bool fetchErrorOccurred();
 
             /** returns the unread count for this feed */
@@ -234,7 +234,7 @@ namespace Akregator
             void fetchStarted(Feed*);
             /** emitted when feed finished fetching */
             void fetched(Feed *);
-            /** emitted when a fetch error occured */
+            /** emitted when a fetch error occurred */
             void fetchError(Feed *);
             /** emitted when a feed URL was found by auto discovery */
             void fetchDiscovery(Feed *);
