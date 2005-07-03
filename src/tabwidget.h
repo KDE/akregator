@@ -77,7 +77,7 @@ class TabWidget:public KTabWidget
 
        QPtrDict<Frame> m_frames;
        unsigned int m_CurrentMaxLength;
-       QWidget* currentItem;
+       QWidget* m_currentItem;
 };
 
 }

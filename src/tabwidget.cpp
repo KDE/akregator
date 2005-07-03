@@ -46,7 +46,7 @@
 
 #include "akregatorconfig.h"
 
-using namespace Akregator;
+namespace Akregator {
 
 TabWidget::TabWidget(QWidget * parent, const char *name)
         :KTabWidget(parent, name), m_CurrentMaxLength(30)
@@ -84,16 +84,17 @@ void TabWidget::slotPreviousTab()
 
 void TabWidget::addFrame(Frame *f)
 {
-    if (!f || !f->widget()) return;
+    if (!f || !f->widget()) 
+        return;
     m_frames.insert(f->widget(), f);
     addTab(f->widget(), f->title());
 }
 
 Frame *TabWidget::currentFrame()
 {
-    QWidget *w=currentPage();
-    if (!w) return 0;
-    return m_frames[w];
+    QWidget* w = currentPage();
+    
+    return w ? m_frames[w] : 0;
 }
 
 void TabWidget::slotTabChanged(QWidget *w)
@@ -114,7 +115,7 @@ void TabWidget::removeFrame(Frame *f)
 unsigned int TabWidget::tabBarWidthForMaxChars( uint maxLength )
 {
     int hframe, overlap;
-    hframe    = tabBar()->style().pixelMetric( QStyle::PM_TabBarTabHSpace, this );
+    hframe = tabBar()->style().pixelMetric( QStyle::PM_TabBarTabHSpace, this );
     overlap = tabBar()->style().pixelMetric( QStyle::PM_TabBarTabOverlap, this );
 
     QFontMetrics fm = tabBar()->fontMetrics();
@@ -153,7 +154,8 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     uint maxTabBarWidth = width() - lcw - rcw;
 
     uint newMaxLength=30;
-    for ( ; newMaxLength > 3; newMaxLength-- ) {
+    for ( ; newMaxLength > 3; newMaxLength-- ) 
+{
         if ( tabBarWidthForMaxChars( newMaxLength ) < maxTabBarWidth )
             break;
     }
@@ -192,46 +194,62 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
 void TabWidget::contextMenu(int i, const QPoint &p)
 {
     QWidget* w = ActionManager::getInstance()->container("tab_popup");
-    currentItem = page(i);
-    kdDebug() << indexOf(currentItem) << endl;
-    if (w && indexOf(currentItem) != 0)
+    m_currentItem = page(i);
+    //kdDebug() << indexOf(m_currentItem) << endl;
+    if (w && indexOf(m_currentItem) != 0)
         static_cast<QPopupMenu *>(w)->exec(p);
-    currentItem = 0;
+    m_currentItem = 0;
 }
 
 void TabWidget::slotDetachTab()
 {
-    if(!currentItem || indexOf(currentItem) == -1) currentItem = currentPage();
-    if(indexOf(currentItem) == 0) return;
+    if (!m_currentItem || indexOf(m_currentItem) == -1) 
+        m_currentItem = currentPage();
+
+    if (indexOf(m_currentItem) == 0) 
+        return;
+
     KURL url;
-    if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
-    else return;
+    KHTMLView* view = dynamic_cast<KHTMLView*>(m_currentItem);
+    
+    if (!view)
+        return;
+
+    url = view->part()->url();
+
     kapp->invokeBrowser(url.url(), "0");
-    if (m_frames.find(currentItem) == NULL)
-        removeFrame(m_frames.find(currentItem));
-    delete currentItem;
-    currentItem = 0;
+    slotCloseTab();
 }
 
 void TabWidget::slotCopyLinkAddress()
 {
-    if(!currentItem || indexOf(currentItem) == -1) currentItem = currentPage();
-    if(indexOf(currentItem) == 0) return;
+    if(!m_currentItem || indexOf(m_currentItem) == -1) 
+        m_currentItem = currentPage();
+    if(indexOf(m_currentItem) == 0) 
+        return;
+
     KURL url;
-    if (KHTMLView *view = dynamic_cast<KHTMLView*>(currentItem)) url = view->part()->url();
-    else return;
+    KHTMLView* view = dynamic_cast<KHTMLView*>(m_currentItem);
+    
+    if (!view)
+        return;
+
+    url = view->part()->url();
+    
     kapp->clipboard()->setText(url.prettyURL(), QClipboard::Selection);
     kapp->clipboard()->setText(url.prettyURL(), QClipboard::Clipboard);
 }
 
 void TabWidget::slotCloseTab()
 {
-    if(!currentItem || indexOf(currentItem) == -1) currentItem = currentPage();
-    if(indexOf(currentItem) == 0) return;
-    if (m_frames.find(currentItem) != NULL)
-        removeFrame(m_frames.find(currentItem));
-    delete currentItem;
-    currentItem = 0;
+    if (!m_currentItem || indexOf(m_currentItem) == -1) 
+        m_currentItem = currentPage();
+    if (indexOf(m_currentItem) == 0) 
+        return;
+    if (m_frames.find(m_currentItem) != NULL)
+        removeFrame(m_frames.find(m_currentItem));
+    delete m_currentItem;
+    m_currentItem = 0;
 }
 
 void TabWidget::initiateDrag(int tab)
@@ -251,14 +269,11 @@ void TabWidget::initiateDrag(int tab)
     }
 }
 
-
-
 void TabWidget::slotCloseRequest(QWidget* widget)
 {
     if (m_frames.find(widget) != NULL)
         removeFrame(m_frames.find(widget));
 }
+} // namespace Akregator
+
 #include "tabwidget.moc"
-
-
-// vim: set et ts=4 sts=4 sw=4:
