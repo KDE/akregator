@@ -112,7 +112,7 @@ void TabWidget::removeFrame(Frame *f)
 }
 
 // copied wholesale from KonqFrameTabs
-unsigned int TabWidget::tabBarWidthForMaxChars( uint maxLength )
+uint TabWidget::tabBarWidthForMaxChars( uint maxLength )
 {
     int hframe, overlap;
     hframe = tabBar()->style().pixelMetric( QStyle::PM_TabBarTabHSpace, this );

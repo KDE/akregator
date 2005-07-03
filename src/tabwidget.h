@@ -34,18 +34,18 @@
 namespace Akregator
 {
 
-class TabWidget:public KTabWidget
+class TabWidget : public KTabWidget
 {
     Q_OBJECT
 
     public:
         TabWidget(QWidget * parent = 0, const char *name = 0);
-        ~TabWidget();
+        virtual ~TabWidget();
+
         void addFrame(Frame *f);
-        Frame *currentFrame();
+        Frame* currentFrame();
         void removeFrame(Frame *f);
         
-        unsigned int tabBarWidthForMaxChars( uint maxLength );
         void setTitle( const QString &title , QWidget* sender);
 
     public slots:
@@ -64,6 +64,8 @@ class TabWidget:public KTabWidget
         
     private: // methods
         
+        uint tabBarWidthForMaxChars( uint maxLength );
+
     private slots:
         
         void slotDetachTab();
@@ -76,7 +78,7 @@ class TabWidget:public KTabWidget
    private: // attributes
 
        QPtrDict<Frame> m_frames;
-       unsigned int m_CurrentMaxLength;
+       uint m_CurrentMaxLength;
        QWidget* m_currentItem;
 };
 

@@ -412,8 +412,6 @@ void View::slotOpenTab(const KURL& url, bool background)
 
     connect( page, SIGNAL(setTabIcon(const QPixmap&)),
             this, SLOT(setTabIcon(const QPixmap&)));
-    connect( page, SIGNAL(setWindowCaption (const QString &)),
-            this, SLOT(slotTabCaption (const QString &)) );
     connect( page, SIGNAL(urlClicked(const KURL &,bool)),
             this, SLOT(slotOpenTab(const KURL &,bool)) );
 
@@ -697,16 +695,6 @@ void View::slotFrameChanged(Frame *f)
     }
 }
 
-void View::slotTabCaption(const QString &caption)
-{
-    if (!caption.isEmpty())
-    {
-        PageViewer *pv=(PageViewer *)sender();
-        m_tabs->setTitle(caption, pv->widget());
-        pv->slotSetCaption(caption);
-    }
-}
-
 void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* /*item*/, const QPoint& /*p*/)
 {
     m_tabs->showPage(m_mainTab);
@@ -927,16 +915,6 @@ void View::slotFeedModify()
     if (node)
         m_editNodePropertiesVisitor->visit(node);
 
-}
-
-void View::slotNextTab()
-{
-    m_tabs->slotNextTab();
-}
-
-void View::slotPreviousTab()
-{
-    m_tabs->slotPreviousTab();
 }
 
 void View::slotNextUnreadArticle()

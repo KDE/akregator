@@ -174,9 +174,6 @@ namespace Akregator {
             @param f the activated frame */
             void slotFrameChanged(Frame *f);
 
-            /** sets the caption of a tab (for page viewers) */
-            void slotTabCaption(const QString &capt);
-            
             /** sets the window caption after a frame change */
             void slotCaptionChanged(const QString &);
 
@@ -252,9 +249,6 @@ namespace Akregator {
             void slotPrevUnreadArticle();
             /** selects the next unread article in the article list */
             void slotNextUnreadArticle();
-
-            void slotNextTab();
-            void slotPreviousTab();
 
             void slotMoveCurrentNodeUp();
             void slotMoveCurrentNodeDown();

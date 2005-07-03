@@ -330,10 +330,6 @@ void ActionManager::initView(View* view)
     new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, d->view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
     new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, d->view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
 
-    new KAction(i18n("Select Next Tab"), "", "Ctrl+Period", d->view, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
-    new KAction(i18n("Select Previous Tab"), "", "Ctrl+Comma", d->view, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
-
-
     new KAction(i18n("&Delete"), "editdelete", "Delete", d->view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
     
     d->assignTagMenu = new KActionMenu ( i18n( "&Assign Tag" ),
@@ -417,6 +413,8 @@ void ActionManager::initTabWidget(TabWidget* tabWidget)
     else
         d->tabWidget = tabWidget;
 
+    new KAction(i18n("Select Next Tab"), "", "Ctrl+Period", d->tabWidget, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
+    new KAction(i18n("Select Previous Tab"), "", "Ctrl+Comma", d->tabWidget, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
     new KAction( i18n("Detach Tab"), "tab_breakoff", CTRL+SHIFT+Key_B, d->tabWidget, SLOT(slotDetachTab()), actionCollection(), "tab_detach" );
     new KAction( i18n("Copy Link Address"), QString::null, QString::null, d->tabWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "tab_copylinkaddress" );
     new KAction( i18n("&Close Tab"), "tab_remove", KStdAccel::close(), d->tabWidget, SLOT(slotCloseTab()), actionCollection(), "tab_remove" );
