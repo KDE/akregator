@@ -34,11 +34,12 @@
 
 #include "frame.h"
 
-using namespace Akregator;
+namespace Akregator {
 
 Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, const QString& tit, bool watchSignals)
    :QObject(parent, "aKregatorFrame")
 {
+    m_autoDeletePart = false;
     m_part=p;
     m_widget=visWidget;
     m_title=tit;
@@ -72,11 +73,19 @@ Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, cons
     }
 }
 
+void Frame::setAutoDeletePart(bool autoDelete)
+{
+    m_autoDeletePart = autoDelete;
+}
+
 Frame::~Frame()
 {
-    if(m_progressItem) {
+    if(m_progressItem) 
+    {
         m_progressItem->setComplete();
     }
+    if (m_autoDeletePart)
+        m_part->deleteLater();
 }
 
 int Frame::state() const
@@ -96,7 +105,11 @@ QWidget *Frame::widget() const
 
 void Frame::setTitle(const QString &s)
 {
-    m_title=s;
+    if (m_title != s)
+    {
+        m_title = s;
+        emit titleChanged(this, s);
+    }
 }
 
 void Frame::setCaption(const QString &s)
@@ -142,17 +155,17 @@ void Frame::setState(int a)
 
 
 
-const QString Frame::title() const
+const QString& Frame::title() const
 {
     return m_title;
 }
 
-const QString Frame::caption() const
+const QString& Frame::caption() const
 {
     return m_caption;
 }
 
-const QString Frame::statusText() const
+const QString& Frame::statusText() const
 {
     return m_statusText;
 }
@@ -194,6 +207,6 @@ int Frame::progress() const
     return m_progress;
 }
 
+} // namespace Akregator
 
 #include "frame.moc"
-// vim: set et ts=4 sts=4 sw=4:

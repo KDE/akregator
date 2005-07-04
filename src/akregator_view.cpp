@@ -253,16 +253,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     ActionManager::getInstance()->initTabWidget(m_tabs);
 
     connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
-    m_tabsClose = new QToolButton( m_tabs );
-    m_tabsClose->setAccel(QKeySequence("Ctrl+W"));
-    connect( m_tabsClose, SIGNAL( clicked() ), this,
-            SLOT( slotRemoveFrame() ) );
-
-    m_tabsClose->setIconSet( SmallIconSet( "tab_remove" ) );
-    m_tabsClose->adjustSize();
-    QToolTip::add(m_tabsClose, i18n("Close the current tab"));
-    m_tabs->setCornerWidget( m_tabsClose, TopRight );
-
+    
     connect( m_tabs, SIGNAL( currentFrameChanged(Frame *) ), this,
             SLOT( slotFrameChanged(Frame *) ) );
 
@@ -333,11 +324,12 @@ View::View( Part *part, QWidget *parent, const char *name)
 
     KConfig *conf = Settings::self()->config();
     conf->setGroup("General");
-    if(!conf->readBoolEntry("Disable Introduction", false)) {
+    if(!conf->readBoolEntry("Disable Introduction", false)) 
+    {
         m_articleList->hide();
         m_searchBar->hide();
         m_articleViewer->displayAboutPage();
-        m_tabs->setTitle(i18n("About"), m_mainTab);
+        m_mainFrame->setTitle(i18n("About"));
         m_displayingAboutPage = true;
     }
 
@@ -389,7 +381,7 @@ void View::slotOnShutdown()
     // fixes bug 91660, at least when no part loading data
     m_tabs->setCurrentPage(m_tabs->count()-1); // select last page
     while (m_tabs->count() > 1) // remove frames until only the main frame remains
-        slotRemoveFrame();
+        m_tabs->slotRemoveCurrentFrame();
 
     delete m_mainTab;
     delete m_mainFrame;
@@ -415,7 +407,10 @@ void View::slotOpenTab(const KURL& url, bool background)
     connect( page, SIGNAL(urlClicked(const KURL &,bool)),
             this, SLOT(slotOpenTab(const KURL &,bool)) );
 
-    Frame *frame=new Frame(this, page, page->widget(), i18n("Untitled"));
+    Frame* frame = new Frame(this, page, page->widget(), i18n("Untitled"));
+    frame->setAutoDeletePart(true); // delete page viewer when removing the tab
+
+    connect(page, SIGNAL(setWindowCaption (const QString &)), frame, SLOT(setTitle (const QString &)));
     connectFrame(frame);
     m_tabs->addFrame(frame);
 
@@ -424,8 +419,6 @@ void View::slotOpenTab(const KURL& url, bool background)
     else
         setFocus();
 
-    //if (m_tabs->count() > 1 && m_tabs->currentPageIndex() != 0)
-//        m_tabsClose->setEnabled(true);
     page->openURL(url);
 }
 
@@ -643,29 +636,12 @@ void View::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
-void View::slotRemoveFrame()
-{
-    Frame *f = m_tabs->currentFrame();
-    if (f == m_mainFrame)
-        return;
-
-    if (f->part() != m_part)
-        f->part()->deleteLater();
-
-    m_tabs->removeFrame(f);
-
-    if (m_tabs->count() <= 1)
-        m_tabsClose->setEnabled(false);
-}
-
 void View::slotFrameChanged(Frame *f)
 {
     if (m_shuttingDown)
         return;
 
     m_currentFrame=f;
-
-    m_tabsClose->setEnabled(f != m_mainFrame);
 
     emit setWindowCaption(f->caption());
     emit setProgress(f->progress());
@@ -775,7 +751,7 @@ void View::slotNodeSelected(TreeNode* node)
 
     if (m_displayingAboutPage)
     {
-        m_tabs->setTitle(i18n("Articles"), m_mainTab);
+        m_mainFrame->setTitle(i18n("Articles"));
         if (m_viewMode != CombinedView)
             m_articleList->show();
         if (Settings::showQuickFilter())

@@ -25,14 +25,14 @@
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 
-#include "frame.h"
-
 #include <ktabwidget.h>
 
-#include <qptrdict.h>
+class QString;
 
 namespace Akregator
 {
+
+class Frame;
 
 class TabWidget : public KTabWidget
 {
@@ -45,14 +45,14 @@ class TabWidget : public KTabWidget
         void addFrame(Frame *f);
         Frame* currentFrame();
         void removeFrame(Frame *f);
-        
-        void setTitle( const QString &title , QWidget* sender);
 
     public slots:
 
+        void slotSetTitle(Frame* frame, const QString& title);
         void slotSettingsChanged();
         void slotNextTab();
         void slotPreviousTab();
+        void slotRemoveCurrentFrame();
 
     signals:
         
@@ -65,6 +65,8 @@ class TabWidget : public KTabWidget
     private: // methods
         
         uint tabBarWidthForMaxChars( uint maxLength );
+        void setTitle( const QString &title , QWidget* sender);
+
 
     private slots:
         
@@ -75,11 +77,10 @@ class TabWidget : public KTabWidget
         void contextMenu (int item, const QPoint &p);
         void slotTabChanged(QWidget *w);
         
-   private: // attributes
+   private:
 
-       QPtrDict<Frame> m_frames;
-       uint m_CurrentMaxLength;
-       QWidget* m_currentItem;
+       class TabWidgetPrivate;
+       TabWidgetPrivate* d;
 };
 
 }

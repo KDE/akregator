@@ -42,18 +42,21 @@ namespace Akregator
         Q_OBJECT
 
         public:
-            Frame(QObject *parent, KParts::ReadOnlyPart *part, QWidget *w, const QString& tit, bool watch=true);
-            ~Frame();
+            Frame(QObject *parent, KParts::ReadOnlyPart *part, QWidget *w, const QString& tit, bool watchSignals=true);
+            virtual ~Frame();
 
             enum {Idle, Started, Completed, Canceled};
 
             KParts::ReadOnlyPart *part() const;
             QWidget *widget() const;
-            const QString title() const;
-            const QString caption() const;
+            const QString& title() const;
+            const QString& caption() const;
             int state() const;
             int progress() const;
-            const QString statusText() const;
+            const QString& statusText() const;
+            
+            /** if set to true, the part is deleted when the frame is deleted. Set to @c false by default */
+            void setAutoDeletePart(bool autoDelete);
 
         public slots:
             void setStarted();
@@ -67,6 +70,7 @@ namespace Akregator
 
         signals:
             void captionChanged(const QString &);
+            void titleChanged(Frame*, const QString&);
             void started();
             void canceled(const QString &);
             void completed();
@@ -83,6 +87,7 @@ namespace Akregator
             QString m_statusText;
             QString m_progressId;
             KPIM::ProgressItem *m_progressItem;
+            bool m_autoDeletePart;
     };
 }
 

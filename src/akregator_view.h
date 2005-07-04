@@ -272,8 +272,6 @@ namespace Akregator {
             
             void connectFrame(Frame *);
 
-            void slotRemoveFrame();
-            
             void setTabIcon(const QPixmap&);
 
             /** Display article in external browser. */
@@ -292,7 +290,6 @@ namespace Akregator {
             ArticleViewer *m_articleViewer;
             TabWidget *m_tabs;
             
-            QToolButton *m_tabsClose;
             QWidget *m_mainTab;
             Frame *m_mainFrame;
             Frame *m_currentFrame;
