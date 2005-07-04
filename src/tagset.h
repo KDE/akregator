@@ -36,7 +36,7 @@ namespace Akregator {
 
 class Tag;
 
-/** \brief represents a set of tags (@see Tag)
+/** \brief represents a set of tags (see Tag)
     In an application, there is usually one central tag set that is used.
     The tag set is not necessarily managed by the application itself, it might also be part of 
     a desktop-wide framework (like Tenor) managing a common tag set for all applications 
@@ -53,10 +53,10 @@ class TagSet : public QObject
         TagSet(QObject* parent=0);
         virtual ~TagSet();
 
-        /** adds a tag to the tag set. The tag set will emit @see signalTagAdded */
+        /** adds a tag to the tag set. The tag set will emit signalTagAdded */
         void insert(const Tag& tag);
 
-        /** removes a tag from the tag set. The tag set will emit @see signalTagRemoved */
+        /** removes a tag from the tag set. The tag set will emit signalTagRemoved */
         void remove(const Tag& tag);
 
         /** returns the tag set as map ((id, Tag) pairs) */
@@ -69,7 +69,7 @@ class TagSet : public QObject
         Tag findByID(const QString& id) const;
 
         /** reads tag set from XML
-            see @see toXML() for an explanation of the format */
+            see toXML() for an explanation of the format */
         void readFromXML(const QDomDocument& doc);
 
         /** returns an XML representation of the tag set. 
