@@ -36,7 +36,7 @@
 
 class AkregatorApp : public KUniqueApplication {
   public:
-    AkregatorApp() : mMainWindow( 0 ) {}
+    AkregatorApp() : mMainWindow( ) {}
     ~AkregatorApp() {}
 
     int newInstance();
@@ -47,16 +47,10 @@ class AkregatorApp : public KUniqueApplication {
 
 int AkregatorApp::newInstance()
 {
-  DCOPRef akr("akregator", "AkregatorIface");
+  if (!isRestored())
+  {
+    DCOPRef akr("akregator", "AkregatorIface");
 
-  if ( isRestored() ) {
-    if ( KMainWindow::canBeRestored( 1 ) ) {
-      mMainWindow = new Akregator::MainWindow();
-      setMainWidget( mMainWindow );
-      mMainWindow->show();
-      mMainWindow->restore( 1 );
-    }
-  } else {
     if ( !mMainWindow ) {
       mMainWindow = new Akregator::MainWindow();
       setMainWidget( mMainWindow );
@@ -80,7 +74,6 @@ int AkregatorApp::newInstance()
 
     args->clear();
   }
-
   return KUniqueApplication::newInstance();
 } 
 
@@ -91,17 +84,22 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options );
     KUniqueApplication::addCmdLineOptions();
 
+    AkregatorApp app;
+
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     KNotifyClient::startDaemon();
 
-    if(!AkregatorApp::start())
-      return 0;
+    // see if we are starting with session management
+    if (app.isRestored())
+    {
+#undef RESTORE
+#define RESTORE(type) { int n = 1;\
+    while (KMainWindow::canBeRestored(n)){\
+        (new type)->restore(n, false);\
+            n++;}}
 
-    AkregatorApp app;
+        RESTORE(Akregator::MainWindow);
+    }
 
-    bool ret = app.exec();
-    while ( KMainWindow::memberList->first() )
-        delete KMainWindow::memberList->first();
-
-    return ret;
+    return app.exec();
 }
