@@ -174,14 +174,23 @@ namespace Akregator {
             @param f the activated frame */
             void slotFrameChanged(Frame *f);
 
+            /** sets the window caption after a frame change */
+            void slotCaptionChanged(const QString &);
+
             /** called when URLs are dropped into the tree view */
             void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FolderItem *parent);
      
             /** displays a URL in the status bar when the user moves the mouse over a link */
             void slotMouseOverInfo(const KFileItem *kifi);
             
+            /** sets the status bar text to a given string */
+	        void slotStatusText(const QString &);
+            
             void slotStarted();
-                        
+            void slotCanceled(const QString &);
+            void slotCompleted();
+            void slotLoadingProgress(int);
+
             void slotFetchingStarted();
             void slotFetchingStopped();
             
