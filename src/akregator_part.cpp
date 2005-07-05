@@ -299,6 +299,11 @@ QDomDocument Part::createDefaultFeedList()
     ak.setAttribute("xmlUrl","http://akregator.sf.net/rss2.php");
     mainFolder.appendChild(ak);
 
+    QDomElement akb = doc.createElement( "outline" );
+    akb.setAttribute("text",i18n("Akregator Blog"));
+    akb.setAttribute("xmlUrl","http://akregator.pwsp.net/blog/?feed=rss2");
+    mainFolder.appendChild(akb);
+
     QDomElement dot = doc.createElement( "outline" );
     dot.setAttribute("text",i18n("KDE Dot News"));
     dot.setAttribute("xmlUrl","http://www.kde.org/dotkdeorg.rdf");

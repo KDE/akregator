@@ -371,7 +371,7 @@ void ArticleViewer::displayAboutPage()
             "Instead of checking all your favorite web sites manually for updates, "
             "Akregator collects the content for you.</p>"
             "<p>For more information about using Akregator, check the "
-            "<a href=\"%3\">Akregator website</a> as well as the <a href=\"%2\">Akregator handbook</a>. If you don't want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
+            "<a href=\"%3\">Akregator website</a>. If you don't want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
             "<p>We hope that you will enjoy Akregator.</p>\n"
             "<p>Thank you,</p>\n"
             "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n")
