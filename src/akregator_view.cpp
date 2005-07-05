@@ -433,48 +433,17 @@ void View::setTabIcon(const QPixmap& icon)
 
 void View::connectFrame(Frame *f)
 {
-    connect(f, SIGNAL(statusText(const QString &)), this, SLOT(slotStatusText(const QString&)));
-    connect(f, SIGNAL(captionChanged (const QString &)), this, SLOT(slotCaptionChanged (const QString &)));
-    connect(f, SIGNAL(loadingProgress(int)), this, SLOT(slotLoadingProgress(int)) );
+    connect(f, SIGNAL(statusText(const QString &)), this, SIGNAL(setStatusBarText(const QString&)));
+    connect(f, SIGNAL(captionChanged (const QString &)), this, SIGNAL(setWindowCaption(const QString &)));
+    connect(f, SIGNAL(loadingProgress(int)), this, SIGNAL(setProgress(int)) );
+connect(f, SIGNAL(completed()), this, SIGNAL(signalCompleted()));
     connect(f, SIGNAL(started()), this, SLOT(slotStarted()));
-    connect(f, SIGNAL(completed()), this, SLOT(slotCompleted()));
-    connect(f, SIGNAL(canceled(const QString &)), this, SLOT(slotCanceled(const QString&)));
-}
-
-void View::slotStatusText(const QString &c)
-{
-    if (sender() == m_currentFrame)
-        emit setStatusBarText(c);
-}
-
-void View::slotCaptionChanged(const QString &c)
-{
-    if (sender() == m_currentFrame)
-        emit setWindowCaption(c);
+    connect(f, SIGNAL(canceled(const QString &)), this, SIGNAL(signalCanceled(const QString&)));
 }
 
 void View::slotStarted()
 {
-    if (sender() == m_currentFrame)
-        emit signalStarted(0);
-}
-
-void View::slotCanceled(const QString &s)
-{
-    if (sender() == m_currentFrame)
-        emit signalCanceled(s);
-}
-
-void View::slotCompleted()
-{
-    if (sender() == m_currentFrame)
-        emit signalCompleted();
-}
-
-void View::slotLoadingProgress(int percent)
-{
-    if (sender() == m_currentFrame)
-        emit setProgress(percent);
+    emit signalStarted(0);
 }
 
 bool View::importFeeds(const QDomDocument& doc)
@@ -641,7 +610,7 @@ void View::slotFrameChanged(Frame *f)
     if (m_shuttingDown)
         return;
 
-    m_currentFrame=f;
+    m_currentFrame = f;
 
     emit setWindowCaption(f->caption());
     emit setProgress(f->progress());
@@ -649,7 +618,7 @@ void View::slotFrameChanged(Frame *f)
 
     m_part->mergePart(m_articleViewer);
 
-    if (f->part() == m_part)
+    if (f == m_mainFrame)
         m_part->mergePart(m_articleViewer);
     else
         m_part->mergePart(f->part());
