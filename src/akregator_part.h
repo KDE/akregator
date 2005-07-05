@@ -50,7 +50,7 @@ namespace Akregator
     
     typedef KParts::ReadOnlyPart MyBasePart;
 
-    class ActionManager;
+    class ActionManagerImpl;
     class View;
     class Part;
     class Feed;
@@ -209,7 +209,7 @@ namespace Akregator
             /** did we backup the feed list already? */
             bool m_backedUpList;
             Backend::Storage* m_storage;
-            ActionManager* m_actionManager;
+            ActionManagerImpl* m_actionManager;
     };
 }
 

@@ -54,6 +54,7 @@ namespace KIO {
 namespace Akregator {
 
     class AboutPageViewer;
+    class ActionManagerImpl;
     class ArticleFilter;
     class ArticleListView;
     class ArticleItem;
@@ -83,7 +84,7 @@ namespace Akregator {
             @param parent parent widget
             @param name the name of the widget (@ref QWidget )
             */
-            View(Akregator::Part *part, QWidget *parent, const char* name);
+            View(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char* name);
 
             /** destructor.  Note that cleanups should be done in
             slotOnShutdown(), so we don't risk accessing self-deleting objects after deletion. */
@@ -308,6 +309,8 @@ namespace Akregator {
             bool m_shuttingDown;
             bool m_displayingAboutPage;
             
+            ActionManagerImpl* m_actionManager;
+
             QPixmap m_keepFlagIcon;
             friend class EditNodePropertiesVisitor;
             class EditNodePropertiesVisitor;

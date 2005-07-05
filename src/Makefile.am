@@ -93,6 +93,7 @@ libakregatorpart_la_SOURCES = \
 	akregator_run.cpp \
 	articlelistview.cpp \
 	actionmanager.cpp \
+        actionmanagerimpl.cpp \
 	frame.cpp \
 	viewer.cpp \
 	articleviewer.cpp \

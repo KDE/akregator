@@ -23,7 +23,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "actionmanager.h"
+#include "actionmanagerimpl.h"
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "addfeeddialog.h"
@@ -207,8 +207,8 @@ View::~View()
     kdDebug() << "View::~View(): leaving" << endl;
 }
 
-View::View( Part *part, QWidget *parent, const char *name)
- : QWidget(parent, name), m_viewMode(NormalView)
+View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
+ : QWidget(parent, name), m_viewMode(NormalView), m_actionManager(actionManager)
 {
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
     m_deleteNodeVisitor = new DeleteNodeVisitor(this);
@@ -235,7 +235,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
     
     m_tree = new FeedListView( m_feedSplitter, "FeedListView" );
-    ActionManager::getInstance()->initFeedListView(m_tree);
+    m_actionManager->initFeedListView(m_tree);
 
     connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNodeItem*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&)));
 
@@ -250,7 +250,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
-    ActionManager::getInstance()->initTabWidget(m_tabs);
+    m_actionManager->initTabWidget(m_tabs);
 
     connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
     
@@ -274,7 +274,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
     m_articleList = new ArticleListView( m_articleSplitter, "articles" );
-    ActionManager::getInstance()->initArticleListView(m_articleList);
+    m_actionManager->initArticleListView(m_articleList);
     
     connect( m_articleList, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 
@@ -287,7 +287,7 @@ View::View( Part *part, QWidget *parent, const char *name)
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
     
-    ActionManager::getInstance()->initArticleViewer(m_articleViewer);
+    m_actionManager->initArticleViewer(m_articleViewer);
 
     connect(m_searchBar, SIGNAL(signalSearch(const ArticleFilter&, const ArticleFilter&)), m_articleList, SLOT(slotSetFilter(const ArticleFilter&, const ArticleFilter&)));
 
@@ -771,7 +771,7 @@ void View::slotNodeSelected(TreeNode* node)
         m_articleViewer->slotShowSummary(node);
     }
 
-    ActionManager::getInstance()->slotNodeSelected(node);
+    m_actionManager->slotNodeSelected(node);
 }
 
 
@@ -988,14 +988,14 @@ void View::slotFetchAllFeeds()
 void View::slotFetchingStarted()
 {
     m_mainFrame->setState(Frame::Started);
-    ActionManager::getInstance()->action("feed_stop")->setEnabled(true);
+    m_actionManager->action("feed_stop")->setEnabled(true);
     m_mainFrame->setStatusText(i18n("Fetching Feeds..."));
 }
 
 void View::slotFetchingStopped()
 {
     m_mainFrame->setState(Frame::Completed);
-    ActionManager::getInstance()->action("feed_stop")->setEnabled(false);
+    m_actionManager->action("feed_stop")->setEnabled(false);
     m_mainFrame->setStatusText(QString::null);
 }
 
@@ -1109,7 +1109,7 @@ void View::slotArticleSelected(const Article& article)
         }
     }
 
-    KToggleAction*  maai = dynamic_cast<KToggleAction*>(ActionManager::getInstance()->action("article_set_status_important"));
+    KToggleAction*  maai = dynamic_cast<KToggleAction*>(m_actionManager->action("article_set_status_important"));
     maai->setChecked(a.keep());
 
     kdDebug() << "selected: " << a.guid() << endl;
@@ -1373,7 +1373,7 @@ void View::updateRemoveTagActions()
                 tags += *it2;
         }
     }
-    ActionManager::getInstance()->slotUpdateRemoveTagMenu(tags);
+    m_actionManager->slotUpdateRemoveTagMenu(tags);
 }
 
 } // namespace Akregator

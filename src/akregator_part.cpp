@@ -56,7 +56,7 @@
 #include <private/qucomextra_p.h>
 
 #include "aboutdata.h"
-#include "actionmanager.h"
+#include "actionmanagerimpl.h"
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "akregatorconfig.h"
@@ -130,12 +130,12 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     Kernel::self()->setStorage(m_storage);
     Backend::Storage::setInstance(m_storage); // TODO: kill this one
     
-    m_actionManager = new ActionManager(this);
+    m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);
     
-    m_view = new Akregator::View(this, parentWidget, "akregator_view");
-    ActionManager::getInstance()->initView(m_view);
-    ActionManager::getInstance()->setTagSet(Kernel::self()->tagSet());
+    m_view = new Akregator::View(this, parentWidget, m_actionManager, "akregator_view");
+    m_actionManager->initView(m_view);
+    m_actionManager->setTagSet(Kernel::self()->tagSet());
     
     m_extension = new BrowserExtension(this, "ak_extension");
     
@@ -151,7 +151,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 
     TrayIcon* trayIcon = new TrayIcon( getMainWindow() );
     TrayIcon::setInstance(trayIcon);
-    ActionManager::getInstance()->initTrayIcon(trayIcon);
+    m_actionManager->initTrayIcon(trayIcon);
     
     connect(trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
 

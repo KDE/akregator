@@ -27,73 +27,32 @@
 
 #include <qobject.h>
 
-class QStringList;
 class QWidget;
+
 class KAction;
-class KActionMenu;
-class KActionCollection;
 
 namespace Akregator {
 
-class ArticleListView;
-class ArticleViewer;
-class FeedListView;
-class Part;
-class TrayIcon;
-class Tag;
-class TagSet;
-class TreeNode;
-class View;
-class TabWidget;
-// TODO: move the methods marked with "iface" to an interface and pass that where initFoo() is not needed, to avoid dependencies between e.g. listviews and Akregator::Part
-
+/** interface for accessing actions, popup menus etc. from widgets.
+    (Extracted from the implementation to avoid dependencies between widgets and  Akregator::Part).
+ */
 class ActionManager : public QObject
 {
-    Q_OBJECT
-
     public:
 
         static ActionManager* getInstance();
         static void setInstance(ActionManager* manager);
 
-        ActionManager(Part* part, QObject* parent=0, const char* name=0);
+        ActionManager(QObject* parent=0, const char* name=0);
         virtual ~ActionManager();
 
-        KAction* action(const char* name, const char* classname=0); // iface
-        QWidget* container(const char* name); // iface
-
-        void initView(View* view);
-        void initTrayIcon(TrayIcon* trayIcon);
-        void initArticleViewer(ArticleViewer* articleViewer);
-        void initArticleListView(ArticleListView* articleList);
-        void initFeedListView(FeedListView* feedListView);
-        void initTabWidget(TabWidget* tabWidget);
-
-        void setTagSet(TagSet* tagSet); // iface
-        
-    public slots:
-
-        /** fills the remove tag menu with the given tags */
-        void slotUpdateRemoveTagMenu(const QStringList& tagIds); // iface
-        
-        void slotNodeSelected(TreeNode* node);
-        
-        void slotTagAdded(const Tag& tag); // iface
-        void slotTagRemoved(const Tag& tag); // iface
-        
-    protected:
-    
-        KActionCollection* actionCollection();
+        virtual KAction* action(const char* name, const char* classname=0) = 0;
+        virtual QWidget* container(const char* name) = 0;
         
     private:
 
-        void initPart();
-        
         static ActionManager* m_self;
 
-        friend class NodeSelectVisitor;
-        class NodeSelectVisitor;
-        
         class ActionManagerPrivate;
         ActionManagerPrivate* d;
 };

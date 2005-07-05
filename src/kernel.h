@@ -32,7 +32,6 @@ namespace Backend
     class Storage;
 }
 
-class ActionManager;
 class FeedList;
 class FetchQueue;
 class TagSet;
