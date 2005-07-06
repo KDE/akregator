@@ -25,9 +25,12 @@
 #ifndef FRAME_H
 #define FRAME_H
 
-#include <kparts/part.h>
-
 #include <qobject.h>
+
+namespace KParts
+{
+    class ReadOnlyPart;
+}
 
 namespace KPIM
 {

@@ -26,9 +26,9 @@
 
 #include <kactioncollection.h>
 #include <kdebug.h>
-#include <kparts/browserextension.h>
 #include <klocale.h>
-#include <qregexp.h>
+#include <kparts/browserextension.h>
+#include <kparts/part.h>
 
 #include <libkdepim/progressmanager.h>
 
