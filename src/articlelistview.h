@@ -26,6 +26,8 @@
 
 #include <ctime>
 
+#include <qpixmap.h>
+
 #include "articlefilter.h"
 #include "article.h"
 
@@ -44,12 +46,16 @@ namespace Akregator
     
     class ArticleItem : public KListViewItem
     {
+        friend class ArticleListView;
+
         public:
             ArticleItem( QListView *parent, const Article& a, Feed *parent );
             ~ArticleItem();
 
             Article& article();
+            
             Feed *feed();
+
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
 
@@ -61,6 +67,7 @@ namespace Akregator
             Article m_article;
             Feed* m_feed;
             time_t m_pubDate;
+            static QPixmap m_keepFlag;
     };
     
     
@@ -82,6 +89,9 @@ namespace Akregator
             ArticleItem* currentItem() const { return static_cast<ArticleItem*>(KListView::currentItem()); }
             
             QValueList<ArticleItem*> selectedArticleItems(bool includeHiddenItems) const;
+            
+            enum Columns { itemTitle, feedTitle, pubDate };
+
         public slots:
 
             /** show article list of tree node @c node (also connects to the notification signals of the node) */

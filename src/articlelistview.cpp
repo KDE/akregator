@@ -98,7 +98,7 @@ ArticleItem::ArticleItem( QListView *parent, const Article& a, Feed *feed)
     : KListViewItem( parent, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
-        setPixmap(0, QPixmap(locate("data", "akregator/pics/akregator_flag.png")));
+        setPixmap(0, m_keepFlag);
 }
  
 ArticleItem::~ArticleItem()
@@ -109,6 +109,8 @@ Article& ArticleItem::article()
 {
     return m_article;
 }
+
+QPixmap ArticleItem::m_keepFlag = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
 
 Feed *ArticleItem::feed()
 {
@@ -134,7 +136,6 @@ void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, 
     }
 
 }
-
 
 int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
     if (col == 2)
@@ -278,6 +279,7 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
             if (!(*it).isDeleted())
             {
                 ArticleItem* ali = new ArticleItem(this, *it, (*it).feed());
+                ali->setVisible( m_textFilter.matches( ali->article()) );
                 m_articleMap.insert(*it, ali);
             }
         }
@@ -301,8 +303,20 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             }
             else
             {
+                bool isCurrent = currentItem() == ali;
+                bool isSelected = ali->isSelected();
+                delete ali;
+                ali = new ArticleItem(this, *it, (*it).feed());
                 // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
-                ali->setVisible( m_textFilter.matches( ali->article()) );
+                if (m_textFilter.matches( ali->article()))
+                {
+                    if (isCurrent)
+                        setCurrentItem(ali);
+                    setSelected(ali, isSelected);
+                }
+                else
+                    ali->setVisible(false);
+                
             }
         }
     }
