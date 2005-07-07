@@ -305,8 +305,10 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             {
                 bool isCurrent = currentItem() == ali;
                 bool isSelected = ali->isSelected();
+
                 delete ali;
                 ali = new ArticleItem(this, *it, (*it).feed());
+                m_articleMap[*it] = ali;
                 // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
                 if (m_textFilter.matches( ali->article()))
                 {
