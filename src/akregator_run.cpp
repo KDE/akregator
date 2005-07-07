@@ -48,7 +48,8 @@ void BrowserRun::foundMimeType( const QString & type )
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml"  )
         m_viewer->openPage(url());
     else
-        handleNonEmbeddable(type);
+        if ( handleNonEmbeddable(type) == KParts::BrowserRun::NotHandled )
+            KRun::foundMimeType( type );
 }
 
 void BrowserRun::killMyself()
