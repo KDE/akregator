@@ -49,12 +49,10 @@ namespace Akregator
         friend class ArticleListView;
 
         public:
-            ArticleItem( QListView *parent, const Article& a, Feed *parent );
+            ArticleItem( QListView *parent, const Article& a);
             ~ArticleItem();
 
             Article& article();
-            
-            Feed *feed();
 
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
@@ -65,7 +63,6 @@ namespace Akregator
 
         private:
             Article m_article;
-            Feed* m_feed;
             time_t m_pubDate;
             static QPixmap m_keepFlag;
     };
@@ -86,7 +83,7 @@ namespace Akregator
             @param remember if @c true: if an update request occurred while receiving updates was disabled, the view is updated on re-enabling. You have to set this when reenabling, not when disabling! Ignored when @c doReceive is set to false.(Anyone got this?) */
             void setReceiveUpdates(bool doReceive, bool remember=true);
 
-            ArticleItem* currentItem() const { return static_cast<ArticleItem*>(KListView::currentItem()); }
+            ArticleItem* currentArticleItem() const { return dynamic_cast<ArticleItem*>(KListView::currentItem()); }
             
             QValueList<ArticleItem*> selectedArticleItems(bool includeHiddenItems) const;
             
@@ -100,9 +97,6 @@ namespace Akregator
             /** clears the list and disconnects from the observed node (if any) */
             void slotClear();
             
-            /** Update view */
-            void slotUpdate();
-
             void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
             void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
             void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);

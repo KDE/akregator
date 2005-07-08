@@ -357,7 +357,7 @@ Folder* FeedListView::rootNode()
 
 TreeNode* FeedListView::selectedNode()
 {
-    TreeNodeItem* item = static_cast<TreeNodeItem*> (selectedItem());
+    TreeNodeItem* item = dynamic_cast<TreeNodeItem*> (selectedItem());
     
     return ( item ? item->node() : 0) ;
 }
@@ -371,7 +371,7 @@ void FeedListView::setSelectedNode(TreeNode* node)
 
 TreeNode* FeedListView::findNodeByTitle(const QString& title)
 {
-    TreeNodeItem* item = static_cast<TreeNodeItem*>(findItem(title, 0));
+    TreeNodeItem* item = dynamic_cast<TreeNodeItem*>(findItem(title, 0));
     if (!item)
         return 0;
     else 
@@ -385,7 +385,7 @@ TreeNodeItem* FeedListView::findNodeItem(TreeNode* node)
 
 TreeNodeItem* FeedListView::findItem (const QString& text, int column, ComparisonFlags compare) const
 { 
-    return static_cast<TreeNodeItem*> (KListView::findItem(text, column, compare)); 
+    return dynamic_cast<TreeNodeItem*> (KListView::findItem(text, column, compare)); 
 }
 
 void FeedListView::ensureNodeVisible(TreeNode* node)
@@ -420,11 +420,11 @@ void FeedListView::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
     {
         openFolder();
 
-        FolderItem* parent = static_cast<FolderItem*> (d->parent);
+        FolderItem* parent = dynamic_cast<FolderItem*> (d->parent);
         TreeNodeItem* afterMe = 0;
 
         if(d->afterme)
-            afterMe = static_cast<TreeNodeItem*> (d->afterme);
+            afterMe = dynamic_cast<TreeNodeItem*> (d->afterme);
 
         KURL::List urls;
         KURLDrag::decode( e, urls );
@@ -440,12 +440,12 @@ void FeedListView::movableDropEvent(QListViewItem* /*parent*/, QListViewItem* /*
     {    
         openFolder();
 
-        Folder* parentNode = (static_cast<FolderItem*> (d->parent))->node();
+        Folder* parentNode = (dynamic_cast<FolderItem*> (d->parent))->node();
         TreeNode* afterMeNode = 0; 
         TreeNode* current = selectedNode();
 
         if (d->afterme)
-            afterMeNode = (static_cast<TreeNodeItem*> (d->afterme))->node();
+            afterMeNode = (dynamic_cast<TreeNodeItem*> (d->afterme))->node();
 
         current->parent()->removeChild(current);
         parentNode->insertChild(current, afterMeNode);
@@ -528,7 +528,7 @@ void FeedListView::contentsDragMoveEvent(QDragMoveEvent* event)
         setDropHighlighter(true);
         cleanDropVisualizer();
 
-        TreeNode *iNode = (static_cast<TreeNodeItem*> (i))->node();
+        TreeNode *iNode = (dynamic_cast<TreeNodeItem*> (i))->node();
         if (iNode->isGroup())
         {
             if (i != d->parent)
@@ -687,23 +687,29 @@ void FeedListView::slotItemRight()
 void FeedListView::slotPrevFeed()
 {
     for (QListViewItemIterator it( selectedItem()); it.current(); --it )
-        if ( !(*it)->isSelected() && !(*it)->isExpandable() )
+    {
+        TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(*it);
+        if (tni && !tni->isSelected() && !tni->node()->isGroup() )
         {
-            setSelected(*it, true);
-            ensureItemVisible(*it);
+            setSelected(tni, true);
+            ensureItemVisible(tni);
             return;
         }     
+    }
 }
     
 void FeedListView::slotNextFeed()
 {
     for (QListViewItemIterator it( selectedItem()); it.current(); ++it )
-        if ( !(*it)->isSelected() && !(*it)->isExpandable() )
+    {
+        TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(*it);
+        if ( tni && !tni->isSelected() && !tni->node()->isGroup() )
         {
-            setSelected(*it, true);
-            ensureItemVisible(*it);
+            setSelected(tni, true);
+            ensureItemVisible(tni);
             return;
         }     
+    }
 }
 
 void FeedListView::slotPrevUnreadFeed()
@@ -717,10 +723,10 @@ void FeedListView::slotPrevUnreadFeed()
     
     for ( ; it.current(); --it )
     {
-        TreeNodeItem* tni = static_cast<TreeNodeItem*> (it.current());
+        TreeNodeItem* tni = dynamic_cast<TreeNodeItem*> (it.current());
         if (!tni)
             break;
-        if ( !tni->isSelected() && !tni->isExpandable() && tni->node()->unread() > 0)
+        if ( !tni->isSelected() && !tni->node()->isGroup() && tni->node()->unread() > 0)
         {
             setSelected(tni, true);
             ensureItemVisible(tni);
@@ -737,12 +743,12 @@ void FeedListView::slotPrevUnreadFeed()
         for ( ; it.current(); --it)
         {
 
-            TreeNodeItem* tni = static_cast<TreeNodeItem*> (it.current());
+            TreeNodeItem* tni = dynamic_cast<TreeNodeItem*> (it.current());
 
             if (!tni)
                 break;
 
-            if (!tni->isSelected() && !tni->isExpandable() && tni->node()->unread() > 0)
+            if (!tni->isSelected() && !tni->node()->isGroup() && tni->node()->unread() > 0)
             {
                 setSelected(tni, true);
                 ensureItemVisible(tni);
@@ -769,10 +775,10 @@ void FeedListView::slotNextUnreadFeed()
     
     for ( ; it.current(); ++it )
     {
-        TreeNodeItem* tni = static_cast<TreeNodeItem*> (it.current());
+        TreeNodeItem* tni = dynamic_cast<TreeNodeItem*> (it.current());
         if (!tni)
             break;
-        if ( !tni->isSelected() && !tni->isExpandable() && tni->node()->unread() > 0)
+        if ( !tni->isSelected() && !tni->node()->isGroup() && tni->node()->unread() > 0)
         {
             setSelected(tni, true);
             ensureItemVisible(tni);
@@ -789,7 +795,7 @@ void FeedListView::slotNextUnreadFeed()
 
 void FeedListView::slotSelectionChanged(QListViewItem* item)
 {
- TreeNodeItem* ni = static_cast<TreeNodeItem*> (item);
+ TreeNodeItem* ni = dynamic_cast<TreeNodeItem*> (item);
     if (ni)
         emit signalNodeSelected(ni->node());
 }
@@ -943,7 +949,7 @@ QDragObject *FeedListView::dragObject()
     if (obj) {
         md->addDragObject(obj);
     }
-    TreeNodeItem *i = static_cast<TreeNodeItem*>(currentItem());
+    TreeNodeItem *i = dynamic_cast<TreeNodeItem*>(currentItem());
     if (i) {
         md->setPixmap(*(i->pixmap(0)));
         FeedItem *fi = dynamic_cast<FeedItem*>(i);

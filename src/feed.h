@@ -192,9 +192,6 @@ namespace Akregator
             /** returns the unread count for this feed */
             virtual int unread() const;
 
-            /** sets the unread count for this feed */
-            void setUnread(int unread);
-
             /** returns the number of total articles in this feed
             @return number of articles */
 
@@ -248,6 +245,10 @@ namespace Akregator
             void recalcUnreadCount();
 
             virtual void doArticleNotification();
+
+            /** sets the unread count for this feed */
+            void setUnread(int unread);
+
             
         private slots:
 

@@ -585,7 +585,7 @@ void View::slotNormalView()
         m_articleList->slotShowNode(m_tree->selectedNode());
         m_articleList->show();
 
-        ArticleItem* item = m_articleList->currentItem();
+        ArticleItem* item = m_articleList->currentArticleItem();
 
         if (item)
             m_articleViewer->slotShowArticle(item->article());
@@ -610,7 +610,7 @@ void View::slotWidescreenView()
         m_articleList->show();
 
         // tell articleview to redisplay+reformat
-        ArticleItem* item = m_articleList->currentItem();
+        ArticleItem* item = m_articleList->currentArticleItem();
         if (item)
             m_articleViewer->slotShowArticle(item->article());
         else
@@ -1019,7 +1019,7 @@ void View::slotFeedFetched(Feed *feed)
 
 void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
 {
-    ArticleItem *i = static_cast<ArticleItem *>(item);
+    ArticleItem *i = dynamic_cast<ArticleItem*>(item);
     if (!i)
         return;
 
@@ -1130,7 +1130,7 @@ void View::slotOpenArticleExternal(ArticleItem* item, const QPoint&, int)
 
 void View::slotOpenCurrentArticle()
 {
-    ArticleItem *item = m_articleList->currentItem();
+    ArticleItem *item = m_articleList->currentArticleItem();
     if (!item)
         return;
 
@@ -1149,12 +1149,12 @@ void View::slotOpenCurrentArticle()
 
 void View::slotOpenCurrentArticleExternal()
 {
-    slotOpenArticleExternal(m_articleList->currentItem(), QPoint(), 0);
+    slotOpenArticleExternal(m_articleList->currentArticleItem(), QPoint(), 0);
 }
 
 void View::slotOpenCurrentArticleBackgroundTab()
 {
-    ArticleItem *item = m_articleList->currentItem();
+    ArticleItem *item = m_articleList->currentArticleItem();
     if (!item)
         return;
 
@@ -1267,7 +1267,6 @@ void View::slotArticleToggleKeepFlag(bool /*enabled*/)
 
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setKeep(!allFlagsSet);
-    m_articleList->slotUpdate();    
 }
 
 void View::slotSetSelectedArticleRead()
@@ -1312,7 +1311,7 @@ void View::slotSetSelectedArticleNew()
 
 void View::slotSetCurrentArticleReadDelayed()
 {
-    ArticleItem *item = m_articleList->currentItem();
+    ArticleItem *item = m_articleList->currentArticleItem();
     if (!item)
         return;
 

@@ -70,6 +70,8 @@ Article::Article() : d(new Private)
     d->status = 0;
     d->feed = 0;
     d->archive = 0;
+    d->pubDate.setTime_t(1);
+
 }
 
 Article::Article(const QString& guid, Feed* feed) : d(new Private)

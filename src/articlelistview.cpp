@@ -94,8 +94,8 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
 };
 
 // FIXME: Remove resolveEntities for KDE 4.0, it's now done in the parser
-ArticleItem::ArticleItem( QListView *parent, const Article& a, Feed *feed)
-    : KListViewItem( parent, KCharsets::resolveEntities(a.title()), feed->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_feed(feed), m_pubDate(a.pubDate().toTime_t())
+ArticleItem::ArticleItem( QListView *parent, const Article& a)
+    : KListViewItem( parent, KCharsets::resolveEntities(a.title()), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
         setPixmap(0, m_keepFlag);
@@ -111,11 +111,6 @@ Article& ArticleItem::article()
 }
 
 QPixmap ArticleItem::m_keepFlag = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
-
-Feed *ArticleItem::feed()
-{
-    return m_feed;
-}
 
 // paint ze peons
 void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
@@ -232,31 +227,46 @@ void ArticleListView::setReceiveUpdates(bool doReceive, bool remember)
     {    
         m_doReceive = true;
         if (remember && m_updated)
-            slotUpdate();
+            ; //slotUpdate();
         m_updated = false;  
     }   
 }
 
 void ArticleListView::slotShowNode(TreeNode* node)
 {
-    if (!node)
-    {
-        slotClear();
+    if (node == m_node)
         return;
-    }
-     
-    if (m_node)
-        disconnectFromNode(m_node);
 
-    connectToNode(node);
+    slotClear();
+
+    if (!node)
+        return;
 
     m_node = node;
-        
-    clear();
-    
+    connectToNode(node);
+
     m_columnLayoutVisitor->visit(node);
 
-    slotUpdate();
+    setUpdatesEnabled(false);
+
+    QValueList<Article> articles = m_node->articles();
+
+    QValueList<Article>::ConstIterator end = articles.end();
+    QValueList<Article>::ConstIterator it = articles.begin();
+    
+    for (; it != end; ++it)
+    {
+        if (!(*it).isDeleted())
+        {
+            ArticleItem* ali = new ArticleItem(this, *it);
+            m_articleMap.insert(*it, ali);
+        }
+    }
+
+    sort();
+    applyFilters();
+    setUpdatesEnabled(true);
+    triggerUpdate();
 }
 
 void ArticleListView::slotClear()
@@ -278,7 +288,7 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
         {
             if (!(*it).isDeleted())
             {
-                ArticleItem* ali = new ArticleItem(this, *it, (*it).feed());
+                ArticleItem* ali = new ArticleItem(this, *it);
                 ali->setVisible( m_textFilter.matches( ali->article()) );
                 m_articleMap.insert(*it, ali);
             }
@@ -296,7 +306,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
         ArticleItem* ali = m_articleMap[*it];
         if (ali)
         {
-            if (ali->article().isDeleted()) // if article was set to deleted, delete item
+            if ((*it).isDeleted()) // if article was set to deleted, delete item
             {
                 m_articleMap.remove(*it);
                 delete ali;
@@ -308,14 +318,14 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
 
                 m_articleMap.remove(*it);
                 delete ali;
-                ali = new ArticleItem(this, *it, (*it).feed());
+                ali = new ArticleItem(this, *it);
                 m_articleMap.insert(*it, ali);
                 // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
                 if (m_textFilter.matches( ali->article()))
                 {
                     if (isCurrent)
-                        setCurrentItem(ali);
-                    setSelected(ali, isSelected);
+                        setCurrentItem(m_articleMap[*it]);
+                    setSelected(m_articleMap[*it], isSelected);
                 }
                 else
                     ali->setVisible(false);
@@ -343,83 +353,8 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<A
     triggerUpdate();
 }
             
-void ArticleListView::slotUpdate()
-{
-    if (!m_doReceive)
-    {
-        m_updated = true;
-        return;
-    }
-        
-    if (!m_node) 
-        return;    
-    
-    setUpdatesEnabled(false);
-
-    Article oldCurrentArticle;
-    
-    ArticleItem *li = dynamic_cast<ArticleItem*>(currentItem());
-    bool haveOld = false;
-    if (li)
-    {
-        oldCurrentArticle = li->article();
-        haveOld = true;
-    }
-    
-    QPtrList<QListViewItem> selItems = selectedItems(false);
-
-    QValueList<Article> selectedArticles;
-
-    int haveSelected = 0;    
-    for (QListViewItem* i = selItems.first(); i; i = selItems.next() )
-    {
-        ArticleItem* si = static_cast<ArticleItem*>(i);
-        selectedArticles.append(si->article());
-        ++haveSelected;
-    }
-    
-    clear();
-    
-    setShowSortIndicator(false);
-    int col = sortColumn();
-    SortOrder order = sortOrder();
-    setSorting(-1);
-
-    QValueList<Article> articles = m_node->articles();
-
-    QValueList<Article>::ConstIterator end = articles.end();
-    QValueList<Article>::ConstIterator it = articles.begin();
-    
-    for (; it != end; ++it)
-    {
-        if (!(*it).isDeleted())
-        {
-            ArticleItem *ali = new ArticleItem(this, *it, (*it).feed());
-            m_articleMap.insert(*it, ali);
-            if (haveOld && *it == oldCurrentArticle)
-            {
-                setCurrentItem(ali);
-                haveOld = false;
-            }
-            if (haveSelected > 0 && selectedArticles.contains(ali->article()))
-            {
-                setSelected(ali, true);
-                --haveSelected;
-            }
-        }
-    }
-    
-    setSorting(col, order == Ascending);
-    setShowSortIndicator(true);
-
-    applyFilters();
-    setUpdatesEnabled(true);
-    triggerUpdate();
-}
-
 void ArticleListView::connectToNode(TreeNode* node)
 {
-    //connect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
     connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
     connect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>&)) );
     connect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>&)) );
@@ -428,7 +363,6 @@ void ArticleListView::connectToNode(TreeNode* node)
 
 void ArticleListView::disconnectFromNode(TreeNode* node)
 {
-    //disconnect(node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdate()) );
     disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
     disconnect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>&)) );
     disconnect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>&)) );
@@ -523,123 +457,108 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 
 QDragObject *ArticleListView::dragObject()
 {
-    QDragObject *d = new QTextDrag(currentItem()->article().link().prettyURL(), this);
+    QDragObject *d = 0;
+    ArticleItem* ali = currentArticleItem();
+    if (ali)
+    {
+        d = new QTextDrag(currentArticleItem()->article().link().prettyURL(), this);
+    }
     return d;
 }
 
 void ArticleListView::slotPreviousArticle()
 {
-    QListViewItem *lvi = currentItem();
+    ArticleItem* ali = 0;
+    if (!currentItem() || selectedItems().isEmpty())
+        ali = dynamic_cast<ArticleItem*>(firstChild());
+    else
+        ali = dynamic_cast<ArticleItem*>(currentItem()->itemAbove());
     
-    if (!lvi && firstChild() )
+    if (ali)
     {
-        setCurrentItem(firstChild());
+        Article a = ali->article();
         clearSelection();
-        setSelected(firstChild(), true);
-    }
-    
-    if (lvi && lvi->itemAbove())
-    {
-        setCurrentItem(lvi->itemAbove());
-        clearSelection();
-        setSelected( lvi->itemAbove(), true);
-        ensureItemVisible(lvi->itemAbove());
+        setSelected(m_articleMap[a], true);
+        setCurrentItem(m_articleMap[a]);
+        ensureItemVisible(m_articleMap[a]);
     }
 }
 
 void ArticleListView::slotNextArticle()
 {
-    QListViewItem *lvi = currentItem();
+    ArticleItem* ali = 0;
+    if (!currentItem() || selectedItems().isEmpty())
+        ali = dynamic_cast<ArticleItem*>(firstChild());
+    else
+        ali = dynamic_cast<ArticleItem*>(currentItem()->itemBelow());
     
-    if (!lvi && firstChild() )
+    if (ali)
     {
-        setCurrentItem(firstChild());
+        Article a = ali->article();
         clearSelection();
-        setSelected(firstChild(), true);
-        return;
-    }
-    if (lvi && lvi->itemBelow())
-    {
-        setCurrentItem(lvi->itemBelow());
-        clearSelection();
-        setSelected(lvi->itemBelow(), true);
-        ensureItemVisible(lvi->itemBelow());
+        setSelected(m_articleMap[a], true);
+        setCurrentItem(m_articleMap[a]);
+        ensureItemVisible(m_articleMap[a]);
     }
 }
 
 void ArticleListView::slotNextUnreadArticle()
 {
-    ArticleItem *it= static_cast<ArticleItem*>(currentItem());
-    if (!it)
-        it = static_cast<ArticleItem*>(firstChild());
+    ArticleItem* start = 0;
+    if (!currentItem() || selectedItems().isEmpty())
+        start = dynamic_cast<ArticleItem*>(firstChild());
+    else
+        start = dynamic_cast<ArticleItem*>(currentItem()->itemBelow() ? currentItem()->itemBelow() : firstChild());
 
-    for ( ; it; it = static_cast<ArticleItem*>(it->nextSibling()))
+    ArticleItem* i = start;
+    ArticleItem* unread = 0;
+    
+    do
     {
-        if (it->isVisible() && it->article().status() != Article::Read)
-        {
-            setCurrentItem(it);
-            clearSelection();
-            setSelected(it, true);
-            ensureItemVisible(it);
-            return;
-        }
+        if (i && i->article().status() != Article::Read)
+            unread = i;
+        else 
+            i = dynamic_cast<ArticleItem*>(i->itemBelow() ? i->itemBelow() : firstChild());
     }
-    // only reached when there is no unread article after the selected one
-    if (m_node->unread() > 0)
+    while (!unread && i != start);
+
+    if (unread)
     {
-        it = static_cast<ArticleItem*>(firstChild());
-        for ( ; it; it = static_cast<ArticleItem*>(it->nextSibling()))
-        {
-            if (it->isVisible() && it->article().status() != Article::Read)
-            {
-                setCurrentItem(it);
-                clearSelection();
-                setSelected(it, true);
-                ensureItemVisible(it);
-                return;
-            }
-        }
+        Article a = unread->article();
+        setCurrentItem(m_articleMap[a]);
+        clearSelection();
+        setSelected(m_articleMap[a], true);
+        ensureItemVisible(m_articleMap[a]);
     }
 }
 
 void ArticleListView::slotPreviousUnreadArticle()
 {
-    if ( !currentItem() )
-        slotNextUnreadArticle(); 
+  ArticleItem* start = 0;
+    if (!currentItem() || selectedItems().isEmpty())
+        start = dynamic_cast<ArticleItem*>(firstChild());
+    else
+        start = dynamic_cast<ArticleItem*>(currentItem()->itemAbove() ? currentItem()->itemAbove() : firstChild());
 
-    QListViewItemIterator it( currentItem() );
+    ArticleItem* i = start;
+    ArticleItem* unread = 0;
     
-    for ( ; it.current(); --it )
+    do
     {
-        ArticleItem* ali = static_cast<ArticleItem*> (it.current());
-        if (!ali)
-            break;
-        if (ali->isVisible() && ali->article().status() != Article::Read)
-        {
-            setCurrentItem(ali);
-            clearSelection();
-            setSelected(ali, true);
-            ensureItemVisible(ali);
-            return;
-        }
+        if (i && i->article().status() != Article::Read)
+            unread = i;
+        else 
+            i = dynamic_cast<ArticleItem*>(i->itemAbove() ? i->itemAbove() : lastChild());
     }
-    // only reached when there is no unread article before the selected one
-    if (m_node->unread() > 0)
-    {
-        it = static_cast<ArticleItem*>(lastChild());
+    while (!unread && i != start);
 
-        for ( ; it.current(); --it )
-        {
-            ArticleItem* ali = static_cast<ArticleItem*> (it.current());
-            if (ali->isVisible()  && ali->article().status() != Article::Read)
-            {
-                setCurrentItem(ali);
-                clearSelection();
-                setSelected(ali, true);
-                ensureItemVisible(ali);
-                return;
-            }
-        }
+    if (unread)
+    {
+        Article a = unread->article();
+        setCurrentItem(m_articleMap[a]);
+        clearSelection();
+        setSelected(m_articleMap[a], true);
+        ensureItemVisible(m_articleMap[a]);
     }
 }
 
