@@ -386,12 +386,12 @@ void ActionManagerImpl::initFeedListView(FeedListView* feedListView)
     new KAction(i18n("N&ext Unread Feed"), "", "Alt+Plus", feedListView, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
     new KAction(i18n("Prev&ious Unread Feed"), "", "Alt+Minus", feedListView, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
 
-    new KAction( i18n("Go to Top of Tree"), QString::null, "Alt+Home", feedListView, SLOT(slotItemBegin()), d->actionCollection, "feedstree_home" );
-    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Alt+End", feedListView, SLOT(slotItemEnd()), d->actionCollection, "feedstree_end" );
-    new KAction( i18n("Go Left in Tree"), QString::null, "Alt+Left", feedListView, SLOT(slotItemLeft()), d->actionCollection, "feedstree_left" );
-    new KAction( i18n("Go Right in Tree"), QString::null, "Alt+Right", feedListView, SLOT(slotItemRight()), d->actionCollection, "feedstree_right" );
-    new KAction( i18n("Go Up in Tree"), QString::null, "Alt+Up", feedListView, SLOT(slotItemUp()), d->actionCollection, "feedstree_up" );
-    new KAction( i18n("Go Down in Tree"), QString::null, "Alt+Down", feedListView, SLOT(slotItemDown()), d->actionCollection, "feedstree_down" );
+    new KAction( i18n("Go to Top of Tree"), QString::null, "Ctrl+Home", feedListView, SLOT(slotItemBegin()), d->actionCollection, "feedstree_home" );
+    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Ctrl+End", feedListView, SLOT(slotItemEnd()), d->actionCollection, "feedstree_end" );
+    new KAction( i18n("Go Left in Tree"), QString::null, "Ctrl+Left", feedListView, SLOT(slotItemLeft()), d->actionCollection, "feedstree_left" );
+    new KAction( i18n("Go Right in Tree"), QString::null, "Ctrl+Right", feedListView, SLOT(slotItemRight()), d->actionCollection, "feedstree_right" );
+    new KAction( i18n("Go Up in Tree"), QString::null, "Ctrl+Up", feedListView, SLOT(slotItemUp()), d->actionCollection, "feedstree_up" );
+    new KAction( i18n("Go Down in Tree"), QString::null, "Ctrl+Down", feedListView, SLOT(slotItemDown()), d->actionCollection, "feedstree_down" );
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
