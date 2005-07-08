@@ -69,7 +69,7 @@ namespace Akregator
             int pointsToPixel(int points) const;
 
         protected slots:
-            virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+            virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
             virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
             /** Copies current link to clipboard. */

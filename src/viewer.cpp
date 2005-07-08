@@ -64,8 +64,6 @@ Viewer::Viewer(QWidget *parent, const char *name)
     connect( this, SIGNAL(completed()),
              this, SLOT(slotCompleted()));
 
-    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
-
     connect( browserExtension(),
 
 SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
@@ -135,27 +133,11 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
    }
 }
 
-
-void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+void Viewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
 {
-    m_url = url;
+    m_url = completeURL(url);
     browserExtension()->setURLArgs(args);
-    if (args.frameName == "_blank") // apparently this indicates that the MMB was pressed...
-    {
-        switch (Settings::mMBBehaviour())
-        {
-            case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-                slotOpenLinkInBrowser();
-                break;
-            case Settings::EnumMMBBehaviour::OpenInBackground:
-                slotOpenLinkInBackgroundTab();
-                break;
-            default:
-                slotOpenLinkInForegroundTab();
-                break;
-        }
-    }
-    else // LMB:
+    if (button == LeftButton)
     {
         switch (Settings::lMBBehaviour())
         {
@@ -169,7 +151,25 @@ void Viewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
                 slotOpenLinkInForegroundTab();
                 break;
         }
+        return;
     }
+    else if (button == MidButton)
+    {
+        switch (Settings::mMBBehaviour())
+        {
+            case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+                slotOpenLinkInBrowser();
+                break;
+            case Settings::EnumMMBBehaviour::OpenInBackground:
+                slotOpenLinkInBackgroundTab();
+                break;
+            default:
+                slotOpenLinkInForegroundTab();
+                break;
+        }
+        return;
+    }
+    KHTMLPart::urlSelected(url,button,state,_target,args);
 }
 
 void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)

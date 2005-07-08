@@ -710,7 +710,7 @@ void ArticleViewer::urlSelected(const QString &url, int button, int state, const
         }
     }
     else
-        KHTMLPart::urlSelected(url, button, state, _target, args);
+        Viewer::urlSelected(url, button, state, _target, args);
 }
 
 void ArticleViewer::slotPaletteOrFontChanged()

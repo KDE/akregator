@@ -213,15 +213,17 @@ bool PageViewer::openURL(const KURL &url)
     return true;
 }
 
-void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+void PageViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
 {
-
-    if (args.frameName == "_blank") // apparently this indicates that the MMB was pressed...
-        Viewer::slotOpenURLRequest(url, args);
+    if (button == MidButton)
+        Viewer::urlSelected(url, button, state, _target, args);
     else
     {
         browserExtension()->setURLArgs(args);
-        openURL(url);
+        if (_target.lower() == "_blank")
+            Viewer::urlSelected(url, button, state, _target, args);
+        else
+            openURL(completeURL(url) );
     }
 }
 
