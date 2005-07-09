@@ -1019,7 +1019,7 @@ void View::slotFeedFetched(Feed *feed)
 
 void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
 {
-    ArticleItem *i = dynamic_cast<ArticleItem*>(item);
+    ArticleItem *i = static_cast<ArticleItem*>(item);
     if (!i)
         return;
 
