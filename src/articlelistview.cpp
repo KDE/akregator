@@ -127,6 +127,8 @@ class ArticleListView::ArticleItem : public KListViewItem
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
 
+            void updateItem();
+
             virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
             
             virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(KListViewItem::nextSibling()); }
@@ -174,6 +176,14 @@ void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup &
         KListViewItem::paintCell( p, cg2, column, width, align );
     }
 
+}
+
+void ArticleListView::ArticleItem::updateItem()
+{
+    setPixmap(0, m_article.keep() ? m_keepFlag : QPixmap());
+    setText(0, KCharsets::resolveEntities(m_article.title()));
+    setText(1, m_article.feed()->title());
+    setText(2, KGlobal::locale()->formatDateTime(m_article.pubDate(), true, false));
 }
 
 int ArticleListView::ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
@@ -376,11 +386,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             {
                 bool isCurrent = currentItem() == ali;
                 bool isSelected = ali->isSelected();
-
-                d->articleMap.remove(*it);
-                delete ali;
-                ali = new ArticleItem(this, *it);
-                d->articleMap.insert(*it, ali);
+                ali->updateItem();
                 // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
                 if (d->textFilter.matches( ali->article()))
                 {
@@ -666,8 +672,9 @@ void ArticleListView::slotContextMenu(KListView* /*list*/, QListViewItem* /*item
 
 void ArticleListView::slotMouseButtonPressed(int button, QListViewItem* item, const QPoint& p, int column)
 {
-    ArticleItem* ali = static_cast<ArticleItem*>(item);
-    emit signalMouseButtonPressed(button, ali->article(), p, column);
+    ArticleItem* ali = dynamic_cast<ArticleItem*>(item);
+    if (ali)
+        emit signalMouseButtonPressed(button, ali->article(), p, column);
 }
 
 ArticleListView::~ArticleListView()
