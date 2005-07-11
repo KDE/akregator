@@ -206,6 +206,7 @@ Article::~Article()
     if (d->deref())
     {
         delete d;
+        d = 0;
     }
 }
 
@@ -243,7 +244,7 @@ bool Article::operator>=(const Article &other) const
 
 bool Article::operator==(const Article &other) const
 {
-    return (d->guid == other.guid());
+    return d->guid == other.guid();
 }
 
 int Article::status() const

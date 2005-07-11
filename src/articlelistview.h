@@ -75,19 +75,13 @@ namespace Akregator
             ArticleListView(QWidget *parent = 0, const char *name = 0);
             ~ArticleListView();
             
-            /**
-            Listen to notification signals of the viewed node. Disable this if you don't want this view updated when the node changes.
-            It's enabled by default.
-            
-            @param doReceive whether listen to notification signals or not
-            @param remember if @c true: if an update request occurred while receiving updates was disabled, the view is updated on re-enabling. You have to set this when reenabling, not when disabling! Ignored when @c doReceive is set to false.(Anyone got this?) */
-            void setReceiveUpdates(bool doReceive, bool remember=true);
-
             ArticleItem* currentArticleItem() const { return dynamic_cast<ArticleItem*>(KListView::currentItem()); }
             
             QValueList<ArticleItem*> selectedArticleItems(bool includeHiddenItems) const;
             
             enum Columns { itemTitle, feedTitle, pubDate };
+
+            void setNotificationMode(bool doNotify);
 
         public slots:
 
@@ -144,7 +138,6 @@ namespace Akregator
             virtual QDragObject *dragObject();
 
         protected slots:
-            virtual void slotSelectionChanged();
             virtual void slotCurrentChanged(QListViewItem* item);
             virtual void slotDoubleClicked(QListViewItem* item, const QPoint& p, int i);
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
@@ -152,8 +145,9 @@ namespace Akregator
         private:
             /** maps article to article item */
             QMap<Article, ArticleItem*> m_articleMap;
-            bool m_updated;
-            bool m_doReceive;
+            bool m_doNotify;
+            bool m_currentChanged;
+            
             TreeNode* m_node;
             ArticleFilter m_textFilter;
             ArticleFilter m_statusFilter;

@@ -146,8 +146,10 @@ int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
 /* ==================================================================================== */
 
 ArticleListView::ArticleListView(QWidget *parent, const char *name)
-    : KListView(parent, name), m_updated(false), m_doReceive(true), m_node(0), m_columnMode(feedMode)
+    : KListView(parent, name), m_node(0), m_columnMode(feedMode)
 {
+    m_doNotify = true;
+    m_currentChanged = false;
     m_columnLayoutVisitor = new ColumnLayoutVisitor(this);
     setMinimumSize(250, 150);
     addColumn(i18n("Article"));
@@ -198,7 +200,7 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
-    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()) );
+    connect(this, SIGNAL(currentChanged(QListViewItem*)), this, SLOT(slotCurrentChanged(QListViewItem* )));
     connect(this, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),  this, SLOT(slotDoubleClicked(QListViewItem*, const QPoint&, int)) );
     connect(this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
             this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
@@ -214,22 +216,20 @@ void ArticleListView::slotSetFilter(const ArticleFilter& textFilter, const Artic
     }
 }
 
-void ArticleListView::setReceiveUpdates(bool doReceive, bool remember)
+void ArticleListView::setNotificationMode(bool doNotify)
 {
-    if (m_doReceive && !doReceive)
-    {    
-        m_updated = false;  
-        m_doReceive = false;
-        return;
+ if (doNotify && !m_doNotify) // turned on
+    {
+        m_doNotify = true;
+        if (m_currentChanged)
+            slotCurrentChanged(currentItem());
+        m_currentChanged = false;
     }
-    
-    if (!m_doReceive && doReceive)
-    {    
-        m_doReceive = true;
-        if (remember && m_updated)
-            ; //slotUpdate();
-        m_updated = false;  
-    }   
+    if (!doNotify && m_doNotify) //turned off
+    {
+        m_currentChanged = false;
+        m_doNotify = false;
+    }
 }
 
 void ArticleListView::slotShowNode(TreeNode* node)
@@ -256,7 +256,7 @@ void ArticleListView::slotShowNode(TreeNode* node)
     
     for (; it != end; ++it)
     {
-        if (!(*it).isDeleted())
+        if (!(*it).isNull() && !(*it).isDeleted())
         {
             ArticleItem* ali = new ArticleItem(this, *it);
             m_articleMap.insert(*it, ali);
@@ -282,11 +282,12 @@ void ArticleListView::slotClear()
 void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Article>& list)
 {
     setUpdatesEnabled(false);
+    setNotificationMode(false);
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (!m_articleMap.contains(*it))
         {
-            if (!(*it).isDeleted())
+            if (!(*it).isNull() && !(*it).isDeleted())
             {
                 ArticleItem* ali = new ArticleItem(this, *it);
                 ali->setVisible( m_textFilter.matches( ali->article()) );
@@ -301,11 +302,15 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
 void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<Article>& list)
 {
     setUpdatesEnabled(false);
+    setNotificationMode(false);
+
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        ArticleItem* ali = m_articleMap[*it];
-        if (ali)
+        
+        if (!(*it).isNull() && m_articleMap.contains(*it))
         {
+            ArticleItem* ali = m_articleMap[*it];
+
             if ((*it).isDeleted()) // if article was set to deleted, delete item
             {
                 m_articleMap.remove(*it);
@@ -317,8 +322,10 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
                 bool isSelected = ali->isSelected();
 
                 m_articleMap.remove(*it);
+                kdDebug() << "create item: " << (*it).title() << endl;
                 delete ali;
                 ali = new ArticleItem(this, *it);
+                kdDebug() << "item created: " << (*it).title() << endl;
                 m_articleMap.insert(*it, ali);
                 // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
                 if (m_textFilter.matches( ali->article()))
@@ -333,6 +340,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             }
         }
     }
+    setNotificationMode(true);
     setUpdatesEnabled(true);
     triggerUpdate();
 }
@@ -340,6 +348,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
 void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& list)
 {
     setUpdatesEnabled(false);
+    setNotificationMode(false);
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (m_articleMap.contains(*it))
@@ -349,6 +358,7 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<A
             delete ali;
         }
     }
+    setNotificationMode(true);
     setUpdatesEnabled(true);
     triggerUpdate();
 }
@@ -567,18 +577,21 @@ void ArticleListView::keyPressEvent(QKeyEvent* e)
     e->ignore();
 }
 
-void ArticleListView::slotSelectionChanged()
+void ArticleListView::slotCurrentChanged(QListViewItem* item)
 {
-    ArticleItem* ai = dynamic_cast<ArticleItem*> (currentItem());
-    if (ai)
-        emit signalArticleChosen( ai->article() );
-}
-
-void ArticleListView::slotCurrentChanged(QListViewItem*/* item*/)
-{/*
-    ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
-    if (ai)
-        emit signalCurrentArticleChanged( ai->article() );*/
+    if (m_doNotify)
+    {
+        ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
+        if (ai)
+            emit signalArticleChosen( ai->article() );
+        else 
+            emit signalArticleChosen( Article() );
+    }
+    else
+    {
+        m_currentChanged = true;
+    }
+    
 } 
 
 

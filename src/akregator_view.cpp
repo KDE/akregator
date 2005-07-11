@@ -1276,10 +1276,8 @@ void View::slotSetSelectedArticleRead()
     if (items.isEmpty())
         return;
 
-    m_articleList->setReceiveUpdates(false);        
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setStatus(Article::Read);
-    m_articleList->setReceiveUpdates(true);
 }
 
 void View::slotSetSelectedArticleUnread()
@@ -1289,10 +1287,8 @@ void View::slotSetSelectedArticleUnread()
     if (items.isEmpty())
         return;
 
-    m_articleList->setReceiveUpdates(false);
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setStatus(Article::Unread);
-    m_articleList->setReceiveUpdates(true);
 }
 
 void View::slotSetSelectedArticleNew()
@@ -1302,11 +1298,8 @@ void View::slotSetSelectedArticleNew()
     if (items.isEmpty())
         return;
 
-    m_articleList->setReceiveUpdates(false);
-    
     for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
         (*it)->article().setStatus(Article::New);
-    m_articleList->setReceiveUpdates(true);
 }
 
 void View::slotSetCurrentArticleReadDelayed()
