@@ -109,10 +109,7 @@ void AddFeedDialog::fetchDiscovery(Feed *f)
 
 void AddFeedDialog::textChanged(const QString& text)
 {
-    if(text.isEmpty())
-        enableButtonOK(false);
-    else
-        enableButtonOK(true);
+    enableButtonOK(!text.isEmpty());
 }
 
 #include "addfeeddialog.moc"
