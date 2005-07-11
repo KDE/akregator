@@ -26,6 +26,7 @@
 #include "actionmanager.h"
 #include "articlelistview.h"
 #include "article.h"
+#include "articlefilter.h"
 #include "feed.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
@@ -50,8 +51,28 @@
 #include <qpainter.h>
 #include <qapplication.h>
 
+#include <ctime>
+
 namespace Akregator {
 
+class ArticleListView::ArticleListViewPrivate
+{
+    public:
+    /** maps article to article item */
+    QMap<Article, ArticleItem*> articleMap;
+    bool doNotify;
+    bool currentChanged;
+    
+    TreeNode* node;
+    ArticleFilter textFilter;
+    ArticleFilter statusFilter;
+    enum ColumnMode { groupMode, feedMode };
+    ColumnMode columnMode;
+    int feedWidth;
+    
+    ColumnLayoutVisitor* columnLayoutVisitor;
+};
+  
 class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
 {
     public:
@@ -59,31 +80,31 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* /*node*/)
         {
-            if (m_view->m_columnMode == ArticleListView::feedMode)
+            if (m_view->d->columnMode == ArticleListViewPrivate::feedMode)
             {
-                m_view->setColumnWidth(1, m_view->m_feedWidth);
-                m_view->m_columnMode = ArticleListView::groupMode;
+                m_view->setColumnWidth(1, m_view->d->feedWidth);
+                m_view->d->columnMode = ArticleListViewPrivate::groupMode;
             }
             return true;
         }
         
         virtual bool visitFolder(Folder* /*node*/)
         {
-            if (m_view->m_columnMode == ArticleListView::feedMode)
+            if (m_view->d->columnMode == ArticleListViewPrivate::feedMode)
             {
-                m_view->setColumnWidth(1, m_view->m_feedWidth);
-                m_view->m_columnMode = ArticleListView::groupMode;
+                m_view->setColumnWidth(1, m_view->d->feedWidth);
+                m_view->d->columnMode = ArticleListViewPrivate::groupMode;
             }
             return true;
         }
         
         virtual bool visitFeed(Feed* /*node*/)
         {
-            if (m_view->m_columnMode == ArticleListView::groupMode)
+            if (m_view->d->columnMode == ArticleListViewPrivate::groupMode)
             {    
-                m_view->m_feedWidth = m_view->columnWidth(1);
+                m_view->d->feedWidth = m_view->columnWidth(1);
                 m_view->hideColumn(1);
-                m_view->m_columnMode = ArticleListView::feedMode;
+                m_view->d->columnMode = ArticleListViewPrivate::feedMode;
             }
             return true;
         }
@@ -93,27 +114,50 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
     
 };
 
+class ArticleListView::ArticleItem : public KListViewItem
+    {
+        friend class ArticleListView;
+
+        public:
+            ArticleItem( QListView *parent, const Article& a);
+            ~ArticleItem();
+
+            Article& article();
+
+            void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
+            virtual int compare(QListViewItem *i, int col, bool ascending) const;
+
+            virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
+            
+            virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(KListViewItem::nextSibling()); }
+
+        private:
+            Article m_article;
+            time_t m_pubDate;
+            static QPixmap m_keepFlag;
+};
+
 // FIXME: Remove resolveEntities for KDE 4.0, it's now done in the parser
-ArticleItem::ArticleItem( QListView *parent, const Article& a)
+ArticleListView::ArticleItem::ArticleItem( QListView *parent, const Article& a)
     : KListViewItem( parent, KCharsets::resolveEntities(a.title()), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
         setPixmap(0, m_keepFlag);
 }
  
-ArticleItem::~ArticleItem()
+ArticleListView::ArticleItem::~ArticleItem()
 {
 }
 
-Article& ArticleItem::article()
+Article& ArticleListView::ArticleItem::article()
 {
     return m_article;
 }
 
-QPixmap ArticleItem::m_keepFlag = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+QPixmap ArticleListView::ArticleItem::m_keepFlag = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
 
 // paint ze peons
-void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
+void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
 {
     if (article().status() == Article::Read)
         KListViewItem::paintCell( p, cg, column, width, align );
@@ -132,7 +176,7 @@ void ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, 
 
 }
 
-int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
+int ArticleListView::ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
     if (col == 2)
     {
         ArticleItem* item = static_cast<ArticleItem*>(i);
@@ -146,11 +190,14 @@ int ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
 /* ==================================================================================== */
 
 ArticleListView::ArticleListView(QWidget *parent, const char *name)
-    : KListView(parent, name), m_node(0), m_columnMode(feedMode)
+    : KListView(parent, name), d (new ArticleListViewPrivate)
 {
-    m_doNotify = true;
-    m_currentChanged = false;
-    m_columnLayoutVisitor = new ColumnLayoutVisitor(this);
+    d->node = 0;
+    d->columnMode = ArticleListViewPrivate::feedMode;
+
+    d->doNotify = true;
+    d->currentChanged = false;
+    d->columnLayoutVisitor = new ColumnLayoutVisitor(this);
     setMinimumSize(250, 150);
     addColumn(i18n("Article"));
     addColumn(i18n("Feed"));
@@ -190,7 +237,7 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
         setColumnWidth(2, w);
     }
     
-    m_feedWidth = columnWidth(1);
+    d->feedWidth = columnWidth(1);
     hideColumn(1);
 
     header()->setStretchEnabled(true, 0);
@@ -204,13 +251,22 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
     connect(this, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),  this, SLOT(slotDoubleClicked(QListViewItem*, const QPoint&, int)) );
     connect(this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
             this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
+
+    connect(this, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
 }
+
+Article ArticleListView::currentArticle() const
+{
+    ArticleItem* ci = dynamic_cast<ArticleItem*>(KListView::currentItem());
+    return (ci && !selectedItems().isEmpty()) ? ci->article() : Article();
+}
+
 void ArticleListView::slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter)
 {
-    if ( (textFilter != m_textFilter) || (statusFilter != m_statusFilter) )
+    if ( (textFilter != d->textFilter) || (statusFilter != d->statusFilter) )
     {
-        m_textFilter = textFilter;
-        m_statusFilter = statusFilter;
+        d->textFilter = textFilter;
+        d->statusFilter = statusFilter;
                
         applyFilters();
     }
@@ -218,23 +274,23 @@ void ArticleListView::slotSetFilter(const ArticleFilter& textFilter, const Artic
 
 void ArticleListView::setNotificationMode(bool doNotify)
 {
- if (doNotify && !m_doNotify) // turned on
+ if (doNotify && !d->doNotify) // turned on
     {
-        m_doNotify = true;
-        if (m_currentChanged)
+        d->doNotify = true;
+        if (d->currentChanged)
             slotCurrentChanged(currentItem());
-        m_currentChanged = false;
+        d->currentChanged = false;
     }
-    if (!doNotify && m_doNotify) //turned off
+    if (!doNotify && d->doNotify) //turned off
     {
-        m_currentChanged = false;
-        m_doNotify = false;
+        d->currentChanged = false;
+        d->doNotify = false;
     }
 }
 
 void ArticleListView::slotShowNode(TreeNode* node)
 {
-    if (node == m_node)
+    if (node == d->node)
         return;
 
     slotClear();
@@ -242,14 +298,14 @@ void ArticleListView::slotShowNode(TreeNode* node)
     if (!node)
         return;
 
-    m_node = node;
+    d->node = node;
     connectToNode(node);
 
-    m_columnLayoutVisitor->visit(node);
+    d->columnLayoutVisitor->visit(node);
 
     setUpdatesEnabled(false);
 
-    QValueList<Article> articles = m_node->articles();
+    QValueList<Article> articles = d->node->articles();
 
     QValueList<Article>::ConstIterator end = articles.end();
     QValueList<Article>::ConstIterator it = articles.begin();
@@ -259,7 +315,7 @@ void ArticleListView::slotShowNode(TreeNode* node)
         if (!(*it).isNull() && !(*it).isDeleted())
         {
             ArticleItem* ali = new ArticleItem(this, *it);
-            m_articleMap.insert(*it, ali);
+            d->articleMap.insert(*it, ali);
         }
     }
 
@@ -271,11 +327,11 @@ void ArticleListView::slotShowNode(TreeNode* node)
 
 void ArticleListView::slotClear()
 {
-    if (m_node)
-        disconnectFromNode(m_node);
+    if (d->node)
+        disconnectFromNode(d->node);
         
-    m_node = 0;
-    m_articleMap.clear();
+    d->node = 0;
+    d->articleMap.clear();
     clear();
 }
 
@@ -285,13 +341,13 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
     setNotificationMode(false);
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        if (!m_articleMap.contains(*it))
+        if (!d->articleMap.contains(*it))
         {
             if (!(*it).isNull() && !(*it).isDeleted())
             {
                 ArticleItem* ali = new ArticleItem(this, *it);
-                ali->setVisible( m_textFilter.matches( ali->article()) );
-                m_articleMap.insert(*it, ali);
+                ali->setVisible( d->textFilter.matches( ali->article()) );
+                d->articleMap.insert(*it, ali);
             }
         }
     }
@@ -307,13 +363,13 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         
-        if (!(*it).isNull() && m_articleMap.contains(*it))
+        if (!(*it).isNull() && d->articleMap.contains(*it))
         {
-            ArticleItem* ali = m_articleMap[*it];
+            ArticleItem* ali = d->articleMap[*it];
 
             if ((*it).isDeleted()) // if article was set to deleted, delete item
             {
-                m_articleMap.remove(*it);
+                d->articleMap.remove(*it);
                 delete ali;
             }
             else
@@ -321,18 +377,16 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
                 bool isCurrent = currentItem() == ali;
                 bool isSelected = ali->isSelected();
 
-                m_articleMap.remove(*it);
-                kdDebug() << "create item: " << (*it).title() << endl;
+                d->articleMap.remove(*it);
                 delete ali;
                 ali = new ArticleItem(this, *it);
-                kdDebug() << "item created: " << (*it).title() << endl;
-                m_articleMap.insert(*it, ali);
+                d->articleMap.insert(*it, ali);
                 // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
-                if (m_textFilter.matches( ali->article()))
+                if (d->textFilter.matches( ali->article()))
                 {
                     if (isCurrent)
-                        setCurrentItem(m_articleMap[*it]);
-                    setSelected(m_articleMap[*it], isSelected);
+                        setCurrentItem(d->articleMap[*it]);
+                    setSelected(d->articleMap[*it], isSelected);
                 }
                 else
                     ali->setVisible(false);
@@ -351,10 +405,10 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<A
     setNotificationMode(false);
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        if (m_articleMap.contains(*it))
+        if (d->articleMap.contains(*it))
         {
-            ArticleItem* ali = m_articleMap[*it];
-            m_articleMap.remove(*it);
+            ArticleItem* ali = d->articleMap[*it];
+            d->articleMap.remove(*it);
             delete ali;
         }
     }
@@ -385,7 +439,7 @@ void ArticleListView::applyFilters()
     for (QListViewItemIterator it(this); it.current(); ++it)
     {
         ali = static_cast<ArticleItem*> (it.current());
-        ali->setVisible( m_statusFilter.matches( ali->article() ) && m_textFilter.matches( ali->article() ) );
+        ali->setVisible( d->statusFilter.matches( ali->article() ) && d->textFilter.matches( ali->article() ) );
     }
 }
 
@@ -446,7 +500,7 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
     }
     else // article list is empty
     {
-        if (!m_node) // no node selected
+        if (!d->node) // no node selected
         {
             message = i18n("<div align=center>"
                        "<h3>No feed selected</h3>"
@@ -467,11 +521,11 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 
 QDragObject *ArticleListView::dragObject()
 {
-    QDragObject *d = 0;
-    ArticleItem* ali = currentArticleItem();
-    if (ali)
+    QDragObject* d = 0;
+    Article article = currentArticle();
+    if (!article.isNull())
     {
-        d = new QTextDrag(currentArticleItem()->article().link().prettyURL(), this);
+        d = new QTextDrag(article.link().prettyURL(), this);
     }
     return d;
 }
@@ -488,9 +542,9 @@ void ArticleListView::slotPreviousArticle()
     {
         Article a = ali->article();
         clearSelection();
-        setSelected(m_articleMap[a], true);
-        setCurrentItem(m_articleMap[a]);
-        ensureItemVisible(m_articleMap[a]);
+        setSelected(d->articleMap[a], true);
+        setCurrentItem(d->articleMap[a]);
+        ensureItemVisible(d->articleMap[a]);
     }
 }
 
@@ -506,9 +560,9 @@ void ArticleListView::slotNextArticle()
     {
         Article a = ali->article();
         clearSelection();
-        setSelected(m_articleMap[a], true);
-        setCurrentItem(m_articleMap[a]);
-        ensureItemVisible(m_articleMap[a]);
+        setSelected(d->articleMap[a], true);
+        setCurrentItem(d->articleMap[a]);
+        ensureItemVisible(d->articleMap[a]);
     }
 }
 
@@ -535,10 +589,10 @@ void ArticleListView::slotNextUnreadArticle()
     if (unread)
     {
         Article a = unread->article();
-        setCurrentItem(m_articleMap[a]);
+        setCurrentItem(d->articleMap[a]);
         clearSelection();
-        setSelected(m_articleMap[a], true);
-        ensureItemVisible(m_articleMap[a]);
+        setSelected(d->articleMap[a], true);
+        ensureItemVisible(d->articleMap[a]);
     }
 }
 
@@ -565,10 +619,10 @@ void ArticleListView::slotPreviousUnreadArticle()
     if (unread)
     {
         Article a = unread->article();
-        setCurrentItem(m_articleMap[a]);
+        setCurrentItem(d->articleMap[a]);
         clearSelection();
-        setSelected(m_articleMap[a], true);
-        ensureItemVisible(m_articleMap[a]);
+        setSelected(d->articleMap[a], true);
+        ensureItemVisible(d->articleMap[a]);
     }
 }
 
@@ -579,7 +633,7 @@ void ArticleListView::keyPressEvent(QKeyEvent* e)
 
 void ArticleListView::slotCurrentChanged(QListViewItem* item)
 {
-    if (m_doNotify)
+    if (d->doNotify)
     {
         ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
         if (ai)
@@ -589,7 +643,7 @@ void ArticleListView::slotCurrentChanged(QListViewItem* item)
     }
     else
     {
-        m_currentChanged = true;
+        d->currentChanged = true;
     }
     
 } 
@@ -597,7 +651,9 @@ void ArticleListView::slotCurrentChanged(QListViewItem* item)
 
 void ArticleListView::slotDoubleClicked(QListViewItem* item, const QPoint& p, int i)
 {
-    emit signalDoubleClicked(static_cast<ArticleItem*>(item), p, i);
+    ArticleItem* ali = dynamic_cast<ArticleItem*>(item);
+    if (ali)
+        emit signalDoubleClicked(ali->article(), p, i);
 }
 
 void ArticleListView::slotContextMenu(KListView* /*list*/, QListViewItem* /*item*/, const QPoint& p)
@@ -607,23 +663,31 @@ void ArticleListView::slotContextMenu(KListView* /*list*/, QListViewItem* /*item
     if (popup)
         popup->exec(p);
 }
-        
+
+void ArticleListView::slotMouseButtonPressed(int button, QListViewItem* item, const QPoint& p, int column)
+{
+    ArticleItem* ali = static_cast<ArticleItem*>(item);
+    emit signalMouseButtonPressed(button, ali->article(), p, column);
+}
+
 ArticleListView::~ArticleListView()
 {
     Settings::setTitleWidth(columnWidth(0));
-    Settings::setFeedWidth(columnWidth(1) > 0 ? columnWidth(1) : m_feedWidth);
+    Settings::setFeedWidth(columnWidth(1) > 0 ? columnWidth(1) : d->feedWidth);
     Settings::setSortColumn(sortColumn());
     Settings::setSortAscending(sortOrder() == Ascending);
     Settings::writeConfig();
-    delete m_columnLayoutVisitor;
+    delete d->columnLayoutVisitor;
+    delete d;
+    d = 0;
 }
 
-QValueList<ArticleItem*> ArticleListView::selectedArticleItems(bool includeHiddenItems) const
+QValueList<Article> ArticleListView::selectedArticles() const
 {
-    QPtrList<QListViewItem> items = selectedItems(includeHiddenItems);
-    QValueList<ArticleItem*> ret;
+    QValueList<Article> ret;
+    QPtrList<QListViewItem> items = selectedItems(false);
     for (QListViewItem* i = items.first(); i; i = items.next() )
-        ret.append(static_cast<ArticleItem*>(i));
+        ret.append((static_cast<ArticleItem*>(i))->article());
     return ret;
 }
 

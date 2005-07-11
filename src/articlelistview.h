@@ -24,13 +24,6 @@
 #ifndef AKREGATORARTICLELISTVIEW_H
 #define AKREGATORARTICLELISTVIEW_H
 
-#include <ctime>
-
-#include <qpixmap.h>
-
-#include "articlefilter.h"
-#include "article.h"
-
 #include <klistview.h>
 
 class QKeyEvent;
@@ -39,34 +32,9 @@ template <class T> class QValueList;
 
 namespace Akregator
 {
-    class Feed;
-    class Folder;
     class Article;
+    class ArticleFilter;
     class TreeNode;
-    
-    class ArticleItem : public KListViewItem
-    {
-        friend class ArticleListView;
-
-        public:
-            ArticleItem( QListView *parent, const Article& a);
-            ~ArticleItem();
-
-            Article& article();
-
-            void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
-            virtual int compare(QListViewItem *i, int col, bool ascending) const;
-
-            virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
-            
-            virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(KListViewItem::nextSibling()); }
-
-        private:
-            Article m_article;
-            time_t m_pubDate;
-            static QPixmap m_keepFlag;
-    };
-    
     
     class ArticleListView : public KListView
     {
@@ -75,9 +43,11 @@ namespace Akregator
             ArticleListView(QWidget *parent = 0, const char *name = 0);
             ~ArticleListView();
             
-            ArticleItem* currentArticleItem() const { return dynamic_cast<ArticleItem*>(KListView::currentItem()); }
+            /** returns the current article, or a null article if there is none */
+            Article currentArticle() const;
             
-            QValueList<ArticleItem*> selectedArticleItems(bool includeHiddenItems) const;
+            /** returns a list of currently selected articles */
+            QValueList<Article> selectedArticles() const;
             
             enum Columns { itemTitle, feedTitle, pubDate };
 
@@ -110,8 +80,9 @@ namespace Akregator
 
         signals:
             void signalArticleChosen(const Article& article);
-            void signalDoubleClicked(ArticleItem*, const QPoint&, int);
-            void signalContextMenu(KListView*, ArticleItem*, const QPoint&);
+            void signalDoubleClicked(const Article&, const QPoint&, int);
+            //void signalContextMenu(KListView*, ArticleItem*, const QPoint&);
+            void signalMouseButtonPressed(int, const Article&, const QPoint &, int);
              
         protected:
             /** reimplemented for kmail-like behaviour */            
@@ -141,22 +112,16 @@ namespace Akregator
             virtual void slotCurrentChanged(QListViewItem* item);
             virtual void slotDoubleClicked(QListViewItem* item, const QPoint& p, int i);
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
+            virtual void slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int);
             
         private:
-            /** maps article to article item */
-            QMap<Article, ArticleItem*> m_articleMap;
-            bool m_doNotify;
-            bool m_currentChanged;
+            class ArticleListViewPrivate;
+            ArticleListViewPrivate* d;
             
-            TreeNode* m_node;
-            ArticleFilter m_textFilter;
-            ArticleFilter m_statusFilter;
-            enum ColumnMode { groupMode, feedMode };
-            ColumnMode m_columnMode;
-            int m_feedWidth;
             friend class ColumnLayoutVisitor;
             class ColumnLayoutVisitor;
-            ColumnLayoutVisitor* m_columnLayoutVisitor;
+            
+            class ArticleItem;
     };
 }
 

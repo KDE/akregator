@@ -276,13 +276,13 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_articleList = new ArticleListView( m_articleSplitter, "articles" );
     m_actionManager->initArticleListView(m_articleList);
     
-    connect( m_articleList, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
+    connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Article&, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, const Article&, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
     connect( m_articleList, SIGNAL(signalArticleChosen(const Article&)),
                 this, SLOT( slotArticleSelected(const Article&)) );
-    connect( m_articleList, SIGNAL(signalDoubleClicked(ArticleItem*, const QPoint&, int)),
-                this, SLOT( slotOpenArticleExternal(ArticleItem*, const QPoint&, int)) );
+    connect( m_articleList, SIGNAL(signalDoubleClicked(const Article&, const QPoint&, int)),
+                this, SLOT( slotOpenArticleExternal(const Article&, const QPoint&, int)) );
 
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
@@ -585,10 +585,10 @@ void View::slotNormalView()
         m_articleList->slotShowNode(m_tree->selectedNode());
         m_articleList->show();
 
-        ArticleItem* item = m_articleList->currentArticleItem();
-
-        if (item)
-            m_articleViewer->slotShowArticle(item->article());
+        Article article = m_articleList->currentArticle();
+        
+        if (!article.isNull())
+            m_articleViewer->slotShowArticle(article);
         else
             m_articleViewer->slotShowSummary(m_tree->selectedNode());
     }
@@ -609,10 +609,10 @@ void View::slotWidescreenView()
         m_articleList->slotShowNode(m_tree->selectedNode());
         m_articleList->show();
 
-        // tell articleview to redisplay+reformat
-        ArticleItem* item = m_articleList->currentArticleItem();
-        if (item)
-            m_articleViewer->slotShowArticle(item->article());
+        Article article = m_articleList->currentArticle();
+        
+        if (!article.isNull())
+            m_articleViewer->slotShowArticle(article);
         else
             m_articleViewer->slotShowSummary(m_tree->selectedNode());
     }
@@ -1017,10 +1017,9 @@ void View::slotFeedFetched(Feed *feed)
     }
 }
 
-void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint &, int)
+void View::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
 {
-    ArticleItem *i = static_cast<ArticleItem*>(item);
-    if (!i)
+    if (article.isNull())
         return;
 
     if (button == Qt::MidButton)
@@ -1028,13 +1027,13 @@ void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint
         switch (Settings::mMBBehaviour())
         {
             case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-                displayInExternalBrowser(i->article().link());
+                displayInExternalBrowser(article.link());
                 break;
             case Settings::EnumMMBBehaviour::OpenInBackground:
-                slotOpenTab(i->article().link(),true);
+                slotOpenTab(article.link(),true);
                 break;
             default:
-                slotOpenTab(i->article().link());
+                slotOpenTab(article.link());
         }
     }
 }
@@ -1042,9 +1041,9 @@ void View::slotMouseButtonPressed(int button, QListViewItem * item, const QPoint
 void View::slotAssignTag(const Tag& tag)
 {
     kdDebug() << "assign tag \"" << tag.id() << "\" to selected articles" << endl;
-    QValueList<ArticleItem*> selectedItems = m_articleList->selectedArticleItems(false);
-    for (QValueList<ArticleItem*>::Iterator it = selectedItems.begin(); it != selectedItems.end(); ++it)
-        (*it)->article().addTag(tag.id());
+    QValueList<Article> selectedArticles = m_articleList->selectedArticles();
+    for (QValueList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
+        (*it).addTag(tag.id());
 
     updateRemoveTagActions();
 }
@@ -1052,9 +1051,9 @@ void View::slotAssignTag(const Tag& tag)
 void View::slotRemoveTag(const Tag& tag)
 {
     kdDebug() << "remove tag \"" << tag.id() << "\" from selected articles" << endl;
-    QValueList<ArticleItem*> selectedItems = m_articleList->selectedArticleItems(false);
-    for (QValueList<ArticleItem*>::Iterator it = selectedItems.begin(); it != selectedItems.end(); ++it)
-        (*it)->article().removeTag(tag.id());
+    QValueList<Article> selectedArticles = m_articleList->selectedArticles();
+    for (QValueList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
+        (*it).removeTag(tag.id());
 
     updateRemoveTagActions();
 }
@@ -1119,22 +1118,20 @@ void View::slotArticleSelected(const Article& article)
     m_articleViewer->slotShowArticle(a);
 }
 
-void View::slotOpenArticleExternal(ArticleItem* item, const QPoint&, int)
+void View::slotOpenArticleExternal(const Article& article, const QPoint&, int)
 {
-    if (!item)
-        return;
-    // TODO : make this configurable....
-    displayInExternalBrowser(item->article().link());
+    if (!article.isNull())
+        displayInExternalBrowser(article.link());
 }
 
 
 void View::slotOpenCurrentArticle()
 {
-    ArticleItem *item = m_articleList->currentArticleItem();
-    if (!item)
+    Article article = m_articleList->currentArticle();
+
+    if (article.isNull())
         return;
 
-    Article article = item->article();
     QString link;
     if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
     {
@@ -1149,16 +1146,16 @@ void View::slotOpenCurrentArticle()
 
 void View::slotOpenCurrentArticleExternal()
 {
-    slotOpenArticleExternal(m_articleList->currentArticleItem(), QPoint(), 0);
+    slotOpenArticleExternal(m_articleList->currentArticle(), QPoint(), 0);
 }
 
 void View::slotOpenCurrentArticleBackgroundTab()
 {
-    ArticleItem *item = m_articleList->currentArticleItem();
-    if (!item)
+    Article article = m_articleList->currentArticle();
+
+    if (article.isNull())
         return;
 
-    Article article = item->article();
     QString link;
     if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
     {
@@ -1205,18 +1202,18 @@ void View::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
+    QValueList<Article> articles = m_articleList->selectedArticles();
 
     QString msg;
-    switch (items.count())
+    switch (articles.count())
     {
         case 0:
             return;
         case 1:
-            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(items.first()->article().title()));
+            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(articles.first().title()));
             break;
         default:
-            msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(items.count());
+            msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(articles.count());
     }
     
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
@@ -1225,26 +1222,15 @@ void View::slotArticleDelete()
             m_tree->selectedNode()->setNotificationMode(false);
             
         QValueList<Feed*> feeds;
-        for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
+        for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         {
-            Article article = (*it)->article();
-            Feed* feed = article.feed();
+            Feed* feed = (*it).feed();
             if (!feeds.contains(feed))
                 feeds.append(feed);
             feed->setNotificationMode(false);    
-            article.setDeleted();
+            (*it).setDeleted();
         }
 
-        if (items.count() == 1)
-        {
-            ArticleItem* ali = *(items.begin());
-            if ( ali->nextSibling() )
-                ali = ali->nextSibling();
-            else
-                ali = ali->itemAbove();
-            m_articleList->setCurrentItem(ali);
-            m_articleList->setSelected(ali, true);
-        }
         for (QValueList<Feed*>::Iterator it = feeds.begin(); it != feeds.end(); ++it)
             (*it)->setNotificationMode(true);
         if (m_tree->selectedNode())
@@ -1255,60 +1241,60 @@ void View::slotArticleDelete()
 
 void View::slotArticleToggleKeepFlag(bool /*enabled*/)
 {
-    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
+    QValueList<Article> articles = m_articleList->selectedArticles();
 
-    if (items.isEmpty())
+    if (articles.isEmpty())
         return;
 
     bool allFlagsSet = true;
-    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); allFlagsSet && it != items.end(); ++it)
-        if (!(*it)->article().keep())
+    for (QValueList<Article>::Iterator it = articles.begin(); allFlagsSet && it != articles.end(); ++it)
+        if (!(*it).keep())
             allFlagsSet = false;
 
-    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
-        (*it)->article().setKeep(!allFlagsSet);
+    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+        (*it).setKeep(!allFlagsSet);
 }
 
 void View::slotSetSelectedArticleRead()
 {
-    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
+    QValueList<Article> articles = m_articleList->selectedArticles();
 
-    if (items.isEmpty())
+    if (articles.isEmpty())
         return;
 
-    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
-        (*it)->article().setStatus(Article::Read);
+    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+        (*it).setStatus(Article::Read);
 }
 
 void View::slotSetSelectedArticleUnread()
 {
-    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
+    QValueList<Article> articles = m_articleList->selectedArticles();
 
-    if (items.isEmpty())
+    if (articles.isEmpty())
         return;
 
-    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
-        (*it)->article().setStatus(Article::Unread);
+    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+        (*it).setStatus(Article::Unread);
 }
 
 void View::slotSetSelectedArticleNew()
 {
-    QValueList<ArticleItem*> items = m_articleList->selectedArticleItems(false);
-    
-    if (items.isEmpty())
+    QValueList<Article> articles = m_articleList->selectedArticles();
+
+    if (articles.isEmpty())
         return;
 
-    for (QValueList<ArticleItem*>::ConstIterator it = items.begin(); it != items.end(); ++it)
-        (*it)->article().setStatus(Article::New);
+    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+        (*it).setStatus(Article::New);
 }
 
 void View::slotSetCurrentArticleReadDelayed()
 {
-    ArticleItem *item = m_articleList->currentArticleItem();
-    if (!item)
-        return;
+    Article article = m_articleList->currentArticle();
 
-    Article article = item->article();
+    if (article.isNull())
+        return;
+    
     article.setStatus(Article::Read);
 }
 
@@ -1354,11 +1340,11 @@ void View::updateRemoveTagActions()
 {
     QStringList tags;
     
-    QValueList<ArticleItem*> selectedItems = m_articleList->selectedArticleItems(false);
+    QValueList<Article> selectedArticles = m_articleList->selectedArticles();
     
-    for (QValueList<ArticleItem*>::Iterator it = selectedItems.begin(); it != selectedItems.end(); ++it)
+    for (QValueList<Article>::ConstIterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
     {
-        QStringList atags = (*it)->article().tags();
+        QStringList atags = (*it).tags();
         for (QStringList::ConstIterator it2 = atags.begin(); it2 != atags.end(); ++it2)
         {
             if (!tags.contains(*it2))

@@ -150,10 +150,10 @@ namespace Akregator {
             void slotSetTotalUnread();
 
             /** special behaviour in article list view (TODO: move code there?) */
-            void slotMouseButtonPressed(int button, QListViewItem * item, const QPoint & pos, int c);
+            void slotMouseButtonPressed(int button, const Article& article, const QPoint & pos, int c);
 
             /** opens article of @c item in external browser */
-            void slotOpenArticleExternal(ArticleItem* item, const QPoint&, int);
+            void slotOpenArticleExternal(const Article& article, const QPoint&, int);
 
             /** opens the current article (currentItem) in external browser
             TODO: use selected instead of current? */
