@@ -53,6 +53,8 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
    : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Add Feed"), KDialogBase::Ok|KDialogBase::Cancel)
 {
     widget = new AddFeedWidget(this);
+    connect(widget->urlEdit, SIGNAL(textChanged(const QString&)), this, SLOT(textChanged(const QString&)));
+    enableButtonOK(false);
     setMainWidget(widget);
 }
 
@@ -103,6 +105,14 @@ void AddFeedDialog::fetchDiscovery(Feed *f)
 {
     widget->statusLabel->setText( i18n("Feed found, downloading...") );
     feedURL=f->xmlUrl();
+}
+
+void AddFeedDialog::textChanged(const QString& text)
+{
+    if(text.isEmpty())
+        enableButtonOK(false);
+    else
+        enableButtonOK(true);
 }
 
 #include "addfeeddialog.moc"

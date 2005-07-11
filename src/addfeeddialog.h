@@ -55,12 +55,15 @@ namespace Akregator
 
          void setURL(const QString& t);
          Feed *feed;
-         
+
       public slots:
          void slotOk( );
          void fetchCompleted(Feed *);
          void fetchDiscovery(Feed *);
          void fetchError(Feed *);
+
+      private slots:
+         void textChanged(const QString&);
 
       private:
          AddFeedWidget *widget;
