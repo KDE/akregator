@@ -57,7 +57,6 @@ namespace Akregator {
     class ActionManagerImpl;
     class ArticleFilter;
     class ArticleListView;
-    class ArticleItem;
     class ArticleViewer;
     class Folder;
     class FolderItem;
