@@ -60,8 +60,6 @@ class ArticleListView::ArticleListViewPrivate
     public:
     /** maps article to article item */
     QMap<Article, ArticleItem*> articleMap;
-    bool doNotify;
-    bool currentChanged;
     
     TreeNode* node;
     ArticleFilter textFilter;
@@ -205,8 +203,6 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
     d->node = 0;
     d->columnMode = ArticleListViewPrivate::feedMode;
 
-    d->doNotify = true;
-    d->currentChanged = false;
     d->columnLayoutVisitor = new ColumnLayoutVisitor(this);
     setMinimumSize(250, 150);
     addColumn(i18n("Article"));
@@ -282,22 +278,6 @@ void ArticleListView::slotSetFilter(const ArticleFilter& textFilter, const Artic
     }
 }
 
-void ArticleListView::setNotificationMode(bool doNotify)
-{
- if (doNotify && !d->doNotify) // turned on
-    {
-        d->doNotify = true;
-        if (d->currentChanged)
-            slotCurrentChanged(currentItem());
-        d->currentChanged = false;
-    }
-    if (!doNotify && d->doNotify) //turned off
-    {
-        d->currentChanged = false;
-        d->doNotify = false;
-    }
-}
-
 void ArticleListView::slotShowNode(TreeNode* node)
 {
     if (node == d->node)
@@ -348,7 +328,7 @@ void ArticleListView::slotClear()
 void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Article>& list)
 {
     setUpdatesEnabled(false);
-    setNotificationMode(false);
+    
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (!d->articleMap.contains(*it))
@@ -368,7 +348,6 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
 void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<Article>& list)
 {
     setUpdatesEnabled(false);
-    setNotificationMode(false);
 
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
@@ -385,13 +364,13 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             else
             {
                 ali->updateItem();
-                // set visibility depending on text filter. we ignore status filter here, as we don't want articles to vanish when selected with quick filter set to "Unread" 
+                // if the updated article matches the filters after the update, make visible. If it matched them before but not after update, they should stay visible (to not confuse users)
                 if (d->textFilter.matches( ali->article()) && d->statusFilter.matches(ali->article()))
                     ali->setVisible(true);
             }
         }
     }
-    setNotificationMode(true);
+
     setUpdatesEnabled(true);
     triggerUpdate();
 }
@@ -399,7 +378,6 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
 void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& list)
 {
     setUpdatesEnabled(false);
-    setNotificationMode(false);
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (d->articleMap.contains(*it))
@@ -409,7 +387,6 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<A
             delete ali;
         }
     }
-    setNotificationMode(true);
     setUpdatesEnabled(true);
     triggerUpdate();
 }
@@ -630,19 +607,11 @@ void ArticleListView::keyPressEvent(QKeyEvent* e)
 
 void ArticleListView::slotCurrentChanged(QListViewItem* item)
 {
-    if (d->doNotify)
-    {
-        ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
-        if (ai)
-            emit signalArticleChosen( ai->article() );
-        else 
-            emit signalArticleChosen( Article() );
-    }
-    else
-    {
-        d->currentChanged = true;
-    }
-    
+    ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
+    if (ai)
+        emit signalArticleChosen( ai->article() );
+    else 
+        emit signalArticleChosen( Article() );
 } 
 
 

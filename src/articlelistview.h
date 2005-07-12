@@ -51,8 +51,6 @@ namespace Akregator
             
             enum Columns { itemTitle, feedTitle, pubDate };
 
-            void setNotificationMode(bool doNotify);
-
         public slots:
 
             /** show article list of tree node @c node (also connects to the notification signals of the node) */
