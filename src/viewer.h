@@ -69,7 +69,15 @@ namespace Akregator
             int pointsToPixel(int points) const;
 
         protected slots:
+        
+            // FIXME: Sort out how things are supposed to work and clean up the following slots
+
+            /** reimplemented to handle url selection according to the settings for LMB and MMB */
             virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
+
+            /** slot for handling openURLRequestDelayed() signal from the browserextension. Handles POST requests (for forms) only, other link handling goes to urlSelected(). Does nothing in Viewer, reimplemented in PageViewer to make forms working */
+            virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+
             virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
             /** Copies current link to clipboard. */

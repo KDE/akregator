@@ -64,11 +64,7 @@ Viewer::Viewer(QWidget *parent, const char *name)
     connect( this, SIGNAL(completed()),
              this, SLOT(slotCompleted()));
 
-    connect( browserExtension(),
-
-SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
-    KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const
-    KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
+    connect( browserExtension(), SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
 
     KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "viewer_print");
     KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "viewer_copy");
@@ -77,6 +73,8 @@ SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const
     new KAction( i18n("&Decrease Font Sizes"), "viewmag-", "Ctrl+Minus", this, SLOT(slotZoomOut()), actionCollection(), "decFontSizes" );
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
+
+    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
 
     new KAction(i18n("Copy &Link Address"), "", 0,
                                  this, SLOT(slotCopyLinkAddress()),
@@ -131,6 +129,11 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
        proc->start(KProcess::DontCare);
        delete proc;
    }
+}
+
+void Viewer::slotOpenURLRequest(const KURL& /*url*/, const KParts::URLArgs& /*args*/)
+{
+
 }
 
 void Viewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)

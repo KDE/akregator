@@ -213,6 +213,16 @@ bool PageViewer::openURL(const KURL &url)
     return true;
 }
 
+void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+{
+    if (args.doPost())
+    {
+        browserExtension()->setURLArgs(args);
+        openURL(url);
+    }
+
+}
+
 void PageViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
 {
     if (button == MidButton)

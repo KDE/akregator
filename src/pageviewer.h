@@ -87,6 +87,7 @@ namespace Akregator
             
             void slotGlobalBookmarkArticle();
             
+            virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
             virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
             
         signals:
