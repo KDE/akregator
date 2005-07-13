@@ -33,7 +33,7 @@ template <class T> class QValueList;
 namespace Akregator
 {
     class Article;
-    class ArticleFilter;
+    class ArticleMatcher;
     class TreeNode;
     
     class ArticleListView : public KListView
@@ -65,7 +65,7 @@ namespace Akregator
             /** sets text filter and status filter
             @param textFilter filters text
             @param statusFilter filters status (read, unread, new) */
-            void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
+            void slotSetFilter(const ArticleMatcher& textFilter, const ArticleMatcher& statusFilter);
 
             /** selects previous article in list view, first article if no article was selected */
             void slotPreviousArticle();

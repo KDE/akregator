@@ -44,7 +44,7 @@ namespace Akregator
     
     /** This HTML viewer is used to display articles. 
     Use the high-level interface provided by the public slots whereever possible (and extend them when necessary instead of using low-level methods).*/
-    class ArticleViewer : public Viewer
+     class ArticleViewer : public Viewer
     {
         Q_OBJECT
         public:
@@ -75,7 +75,7 @@ namespace Akregator
             /** Set filters @c textFilter and @c statusFilter which will be used if the viewer is in combined view mode 
             @param textFilter text filter 
             @param statusFilter status filter */    
-            void slotSetFilter(const ArticleFilter& textFilter, const ArticleFilter& statusFilter);
+            void slotSetFilter(const ArticleMatcher& textFilter, const ArticleMatcher& statusFilter);
             
             /** Update view if combined view mode is set. Has to be called when the displayed node gets modified. */ 
             void slotUpdateCombinedView();
@@ -141,8 +141,8 @@ namespace Akregator
             KURL m_imageDir;
             TreeNode* m_node;
             KURL m_link;
-            ArticleFilter m_textFilter; 
-            ArticleFilter m_statusFilter;
+            ArticleMatcher m_textFilter; 
+            ArticleMatcher m_statusFilter;
             enum ViewMode { NormalView, CombinedView, SummaryView };
             ViewMode m_viewMode;
    };

@@ -40,7 +40,6 @@ class Article;
 class Folder;
 class FetchQueue;
 class Tag;
-class TagFilter;
 class TreeNodeVisitor;
 
 class TagNode : public TreeNode

@@ -48,8 +48,8 @@ namespace Akregator
 class SearchBar::SearchBarPrivate
 {
 public:
-    ArticleFilter textFilter;
-    ArticleFilter statusFilter;
+    ArticleMatcher textFilter;
+    ArticleMatcher statusFilter;
     QString searchText;
     QTimer timer;
     KLineEdit* searchLine;
@@ -210,8 +210,8 @@ void SearchBar::slotActivateSearch()
         }
     }
 
-    d->textFilter = ArticleFilter(textCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
-    d->statusFilter = ArticleFilter(statusCriteria, ArticleFilter::LogicalOr, ArticleFilter::Notify);
+    d->textFilter = ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr, ArticleMatcher::Notify);
+    d->statusFilter = ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr, ArticleMatcher::Notify);
 
     emit signalSearch(d->textFilter, d->statusFilter);
 }

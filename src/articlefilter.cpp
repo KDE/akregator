@@ -116,20 +116,20 @@ QVariant Criterion::object() const
     return m_object;
 }
 
-ArticleFilter::ArticleFilter()
+ArticleMatcher::ArticleMatcher()
     : m_association( None )
     , m_action( NoAction )
 {
 }
 
-ArticleFilter::ArticleFilter( const QValueList<Criterion> &criteria, Association assoc, Action action )
+ArticleMatcher::ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc, Action action )
     : m_criteria( criteria )
     , m_association( assoc )
     , m_action( action )
 {
 }
 
-bool ArticleFilter::matches( const Article &a ) const
+bool ArticleMatcher::matches( const Article &a ) const
 {
     switch ( m_association ) {
         case LogicalOr:
@@ -142,26 +142,26 @@ bool ArticleFilter::matches( const Article &a ) const
     return true;
 }
 
-ArticleFilter::Action ArticleFilter::action() const
+ArticleMatcher::Action ArticleMatcher::action() const
 {
     return m_action;
 }
 
-bool ArticleFilter::operator==(const AbstractFilter& other) const
+bool ArticleMatcher::operator==(const AbstractMatcher& other) const
 {
-    AbstractFilter* ptr = const_cast<AbstractFilter*>(&other);
-    ArticleFilter* o = dynamic_cast<ArticleFilter*>(ptr);
+    AbstractMatcher* ptr = const_cast<AbstractMatcher*>(&other);
+    ArticleMatcher* o = dynamic_cast<ArticleMatcher*>(ptr);
     if (!o)
         return false;
     else
         return m_action == o->m_action && m_association == o->m_association && m_criteria == o->m_criteria;
 }
-bool ArticleFilter::operator!=(const AbstractFilter& other) const
+bool ArticleMatcher::operator!=(const AbstractMatcher& other) const
 {
     return !(*this == other);
 }
 
-bool ArticleFilter::anyCriterionMatches( const Article &a ) const
+bool ArticleMatcher::anyCriterionMatches( const Article &a ) const
 {
     if (m_criteria.count()==0)
         return true;
@@ -175,7 +175,7 @@ bool ArticleFilter::anyCriterionMatches( const Article &a ) const
     return false;
 }
 
-bool ArticleFilter::allCriteriaMatch( const Article &a ) const
+bool ArticleMatcher::allCriteriaMatch( const Article &a ) const
 {
     if (m_criteria.count()==0)
         return true;
@@ -189,57 +189,57 @@ bool ArticleFilter::allCriteriaMatch( const Article &a ) const
     return true;
 }
 
-class TagFilter::TagFilterPrivate
+class TagMatcher::TagMatcherPrivate
 {
     public:
     Tag tag;
-    bool operator==(const TagFilterPrivate& other) const
+    bool operator==(const TagMatcherPrivate& other) const
     {
         return tag == other.tag;
     }
 };
 
-TagFilter::TagFilter(const Tag& tag) : d(new TagFilterPrivate)
+TagMatcher::TagMatcher(const Tag& tag) : d(new TagMatcherPrivate)
 {
     d->tag = tag;
 }
 
-TagFilter::TagFilter() : d(new TagFilterPrivate)
+TagMatcher::TagMatcher() : d(new TagMatcherPrivate)
 {
 }
 
-TagFilter::~TagFilter()
+TagMatcher::~TagMatcher()
 {
     delete d;
     d = 0;
 }
 
-bool TagFilter::matches(const Article& article) const
+bool TagMatcher::matches(const Article& article) const
 {
     return article.hasTag(d->tag.id());
 }
 
 
-TagFilter::TagFilter(const TagFilter& other) : AbstractFilter(other), d(0)
+TagMatcher::TagMatcher(const TagMatcher& other) : AbstractMatcher(other), d(0)
 {
     *this = other;
 }
 
-bool TagFilter::operator==(const AbstractFilter& other) const
+bool TagMatcher::operator==(const AbstractMatcher& other) const
 {
-    AbstractFilter* ptr = const_cast<AbstractFilter*>(&other);
-    TagFilter* tagFilter = dynamic_cast<TagFilter*>(ptr);
+    AbstractMatcher* ptr = const_cast<AbstractMatcher*>(&other);
+    TagMatcher* tagFilter = dynamic_cast<TagMatcher*>(ptr);
     return tagFilter ? *d == *(tagFilter->d) : false;
 }
 
-bool TagFilter::operator!=(const AbstractFilter &other) const
+bool TagMatcher::operator!=(const AbstractMatcher &other) const
 {
     return !(*this == other);
 }
 
-TagFilter& TagFilter::operator=(const TagFilter& other)
+TagMatcher& TagMatcher::operator=(const TagMatcher& other)
 {
-    d = new TagFilterPrivate;
+    d = new TagMatcherPrivate;
     *d = *(other.d);
     return *this;
 }

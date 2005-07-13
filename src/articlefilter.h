@@ -70,38 +70,38 @@ class Criterion
         QVariant m_object;
 };
 
-class AbstractFilter
+class AbstractMatcher
 {
     public:
 
         virtual bool matches(const Article& article) const = 0;
-        virtual bool operator==(const AbstractFilter&) const = 0;
-        virtual bool operator!=(const AbstractFilter &other) const = 0;
+        virtual bool operator==(const AbstractMatcher&) const = 0;
+        virtual bool operator!=(const AbstractMatcher &other) const = 0;
 };
 
-class TagFilter : public AbstractFilter
+class TagMatcher : public AbstractMatcher
 {
     public:
 
-        TagFilter();
-        TagFilter(const Tag& tag);
-        TagFilter(const TagFilter& other);
+        TagMatcher();
+        TagMatcher(const Tag& tag);
+        TagMatcher(const TagMatcher& other);
         
-        virtual ~TagFilter();
+        virtual ~TagMatcher();
         
         virtual bool matches(const Article& article) const;
 
-        TagFilter& operator=(const TagFilter& other);
-        virtual bool operator==(const AbstractFilter&) const;
-        virtual bool operator!=(const AbstractFilter &other) const;
+        TagMatcher& operator=(const TagMatcher& other);
+        virtual bool operator==(const AbstractMatcher&) const;
+        virtual bool operator!=(const AbstractMatcher &other) const;
         
     private:
     
-         class TagFilterPrivate;
-         TagFilterPrivate* d;
+         class TagMatcherPrivate;
+         TagMatcherPrivate* d;
 };
 
-class ArticleFilter : public AbstractFilter
+class ArticleMatcher : public AbstractMatcher
 {
     public:
         enum Action {
@@ -112,13 +112,13 @@ class ArticleFilter : public AbstractFilter
             None, LogicalAnd, LogicalOr
         };
 
-        ArticleFilter();
-        ArticleFilter( const QValueList<Criterion> &criteria, Association assoc, Action action );
+        ArticleMatcher();
+        ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc, Action action );
 
         virtual bool matches( const Article &article ) const;
         Action action() const;
-        virtual bool operator==(const AbstractFilter &other) const;
-        virtual bool operator!=(const AbstractFilter &other) const;
+        virtual bool operator==(const AbstractMatcher &other) const;
+        virtual bool operator!=(const AbstractMatcher &other) const;
     private:
         bool anyCriterionMatches( const Article &a ) const;
         bool allCriteriaMatch( const Article &a ) const;

@@ -32,7 +32,7 @@ class QString;
 namespace Akregator
 {
 
-class ArticleFilter;
+class ArticleMatcher;
 
 class SearchBar : public QHBox
 {
@@ -51,7 +51,7 @@ class SearchBar : public QHBox
 
     signals:
         /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
-        void signalSearch(const ArticleFilter&, const ArticleFilter&);
+        void signalSearch(const ArticleMatcher&, const ArticleMatcher&);
 
     public slots:
         void slotClearSearch();
