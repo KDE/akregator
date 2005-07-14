@@ -118,14 +118,17 @@ QVariant Criterion::object() const
 
 ArticleMatcher::ArticleMatcher()
     : m_association( None )
-    , m_action( NoAction )
 {
 }
 
-ArticleMatcher::ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc, Action action )
+ArticleMatcher* ArticleMatcher::clone() const
+{
+    return new ArticleMatcher(*this);
+}
+
+ArticleMatcher::ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc)
     : m_criteria( criteria )
     , m_association( assoc )
-    , m_action( action )
 {
 }
 
@@ -142,11 +145,6 @@ bool ArticleMatcher::matches( const Article &a ) const
     return true;
 }
 
-ArticleMatcher::Action ArticleMatcher::action() const
-{
-    return m_action;
-}
-
 bool ArticleMatcher::operator==(const AbstractMatcher& other) const
 {
     AbstractMatcher* ptr = const_cast<AbstractMatcher*>(&other);
@@ -154,7 +152,7 @@ bool ArticleMatcher::operator==(const AbstractMatcher& other) const
     if (!o)
         return false;
     else
-        return m_action == o->m_action && m_association == o->m_association && m_criteria == o->m_criteria;
+        return m_association == o->m_association && m_criteria == o->m_criteria;
 }
 bool ArticleMatcher::operator!=(const AbstractMatcher& other) const
 {
@@ -217,6 +215,11 @@ TagMatcher::~TagMatcher()
 bool TagMatcher::matches(const Article& article) const
 {
     return article.hasTag(d->tag.id());
+}
+
+TagMatcher* TagMatcher::clone() const
+{
+    return new TagMatcher(*this);
 }
 
 

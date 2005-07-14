@@ -210,8 +210,8 @@ void SearchBar::slotActivateSearch()
         }
     }
 
-    d->textFilter = ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr, ArticleMatcher::Notify);
-    d->statusFilter = ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr, ArticleMatcher::Notify);
+    d->textFilter = ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr);
+    d->statusFilter = ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr);
 
     emit signalSearch(d->textFilter, d->statusFilter);
 }

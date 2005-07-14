@@ -74,6 +74,8 @@ class AbstractMatcher
 {
     public:
 
+        /** returns a copy of the matcher */
+        virtual AbstractMatcher* clone() const = 0;
         virtual bool matches(const Article& article) const = 0;
         virtual bool operator==(const AbstractMatcher&) const = 0;
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
@@ -89,7 +91,10 @@ class TagMatcher : public AbstractMatcher
         
         virtual ~TagMatcher();
         
+
         virtual bool matches(const Article& article) const;
+
+        virtual TagMatcher* clone() const;
 
         TagMatcher& operator=(const TagMatcher& other);
         virtual bool operator==(const AbstractMatcher&) const;
@@ -104,28 +109,26 @@ class TagMatcher : public AbstractMatcher
 class ArticleMatcher : public AbstractMatcher
 {
     public:
-        enum Action {
-            NoAction, Hide, Show, Notify
-        };
 
         enum Association {
             None, LogicalAnd, LogicalOr
         };
 
         ArticleMatcher();
-        ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc, Action action );
+        ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc);
 
-        virtual bool matches( const Article &article ) const;
-        Action action() const;
+        virtual ArticleMatcher* clone() const;
+        virtual bool matches(const Article &article) const;
         virtual bool operator==(const AbstractMatcher &other) const;
         virtual bool operator!=(const AbstractMatcher &other) const;
+
     private:
+
         bool anyCriterionMatches( const Article &a ) const;
         bool allCriteriaMatch( const Article &a ) const;
 
         QValueList<Criterion> m_criteria;
         Association m_association;
-        Action m_action;
 };
 
 }
