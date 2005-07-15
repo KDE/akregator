@@ -108,6 +108,7 @@ namespace Akregator
 
         protected slots:
             virtual void slotCurrentChanged(QListViewItem* item);
+            virtual void slotSelectionChanged();
             virtual void slotDoubleClicked(QListViewItem* item, const QPoint& p, int i);
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             virtual void slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int);

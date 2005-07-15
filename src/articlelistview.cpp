@@ -67,6 +67,7 @@ class ArticleListView::ArticleListViewPrivate
     enum ColumnMode { groupMode, feedMode };
     ColumnMode columnMode;
     int feedWidth;
+    bool noneSelected;
     
     ColumnLayoutVisitor* columnLayoutVisitor;
 };
@@ -200,6 +201,7 @@ int ArticleListView::ArticleItem::compare(QListViewItem *i, int col, bool ascend
 ArticleListView::ArticleListView(QWidget *parent, const char *name)
     : KListView(parent, name), d (new ArticleListViewPrivate)
 {
+    d->noneSelected = true;
     d->node = 0;
     d->columnMode = ArticleListViewPrivate::feedMode;
 
@@ -254,6 +256,7 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
     connect(this, SIGNAL(currentChanged(QListViewItem*)), this, SLOT(slotCurrentChanged(QListViewItem* )));
+    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
     connect(this, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),  this, SLOT(slotDoubleClicked(QListViewItem*, const QPoint&, int)) );
     connect(this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
             this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
@@ -311,6 +314,7 @@ void ArticleListView::slotShowNode(TreeNode* node)
 
     sort();
     applyFilters();
+    d->noneSelected = true;
     setUpdatesEnabled(true);
     triggerUpdate();
 }
@@ -603,6 +607,20 @@ void ArticleListView::slotPreviousUnreadArticle()
 void ArticleListView::keyPressEvent(QKeyEvent* e)
 {
     e->ignore();
+}
+
+void ArticleListView::slotSelectionChanged()
+{
+    // if there is only one article in the list, currentItem is set initially to 
+    // that article item, although the user hasn't selected it. If the user selects
+    // the article, selection changes, but currentItem does not.
+    // executed. So we have to handle this case by observing selection changes.
+    
+    if (d->noneSelected)
+    {
+        d->noneSelected = false;
+        slotCurrentChanged(currentItem());
+    }
 }
 
 void ArticleListView::slotCurrentChanged(QListViewItem* item)
