@@ -2,6 +2,7 @@
  * articlefilter.h
  *
  * Copyright (c) 2004, 2005 Frerich Raabe <raabe@kde.org>
+ *               2005 Frank Osterfeld <frank.osterfeld@kdemail.net>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -27,6 +28,7 @@
 #ifndef ARTICLEFILTER_H
 #define ARTICLEFILTER_H
 
+#include <qstring.h>
 #include <qvaluelist.h>
 #include <qvariant.h>
 
@@ -34,9 +36,9 @@ class KConfig;
 
 namespace Akregator
 {
+
 class Article;
-class Tag;
-           
+
 class Criterion
 {
     public:
@@ -45,6 +47,9 @@ class Criterion
             Title, Description, Link, Status, KeepFlag
         };
 
+        static QString subjectToString(Subject subj);
+        static Subject stringToSubject(const QString& subjStr);
+
         enum Predicate {
             Contains = 0x01,
             Equals = 0x02,
@@ -52,11 +57,16 @@ class Criterion
             Negation = 0x80
         };
 
-
+        static QString predicateToString(Predicate pred);
+        static Predicate stringToPredicate(const QString& predStr);
+    
         Criterion();
         Criterion( Subject subject, Predicate predicate, const QVariant &object );
         
         bool satisfiedBy( const Article &article ) const;
+
+        virtual void writeConfig(KConfig* config) const;
+        virtual void readConfig(KConfig* config);
 
         Subject subject() const;
         Predicate predicate() const;
@@ -74,9 +84,15 @@ class AbstractMatcher
 {
     public:
 
+        virtual ~AbstractMatcher() {}
         /** returns a copy of the matcher */
         virtual AbstractMatcher* clone() const = 0;
+
         virtual bool matches(const Article& article) const = 0;
+
+        virtual void writeConfig(KConfig* config) const = 0;
+        virtual void readConfig(KConfig* config) = 0;
+
         virtual bool operator==(const AbstractMatcher&) const = 0;
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
 };
@@ -86,7 +102,7 @@ class TagMatcher : public AbstractMatcher
     public:
 
         TagMatcher();
-        TagMatcher(const Tag& tag);
+        TagMatcher(const QString& tagID);
         TagMatcher(const TagMatcher& other);
         
         virtual ~TagMatcher();
@@ -96,6 +112,9 @@ class TagMatcher : public AbstractMatcher
 
         virtual TagMatcher* clone() const;
 
+        virtual void writeConfig(KConfig* config) const;
+        virtual void readConfig(KConfig* config);
+
         TagMatcher& operator=(const TagMatcher& other);
         virtual bool operator==(const AbstractMatcher&) const;
         virtual bool operator!=(const AbstractMatcher &other) const;
@@ -104,6 +123,80 @@ class TagMatcher : public AbstractMatcher
     
          class TagMatcherPrivate;
          TagMatcherPrivate* d;
+};
+
+class FilterAction
+{
+    public:
+        virtual void exec(Article& article) = 0;
+
+        virtual void writeConfig(KConfig* config) const = 0;
+        virtual void readConfig(KConfig* config) = 0;
+
+        virtual FilterAction* clone() const = 0;
+        virtual bool operator==(const FilterAction& other) = 0;
+};
+
+class DeleteAction : public FilterAction
+{
+    public:
+        virtual void exec(Article& article);
+        
+        virtual void writeConfig(KConfig* config) const;
+        virtual void readConfig(KConfig* config);
+
+        virtual DeleteAction* clone() const { return new DeleteAction; }
+        virtual bool operator==(const FilterAction& other);
+};
+
+class AssignTagAction : public FilterAction
+{
+    public:
+
+        AssignTagAction(const QString& tagID=QString::null);
+        virtual void exec(Article& article);
+                
+        const QString& tagID() const;
+
+        virtual void writeConfig(KConfig* config) const;
+        virtual void readConfig(KConfig* config);
+
+        virtual AssignTagAction* clone() const { return new AssignTagAction(*this); }
+        virtual bool operator==(const FilterAction& other);
+
+    private:
+        QString m_tagID;
+};
+
+class ArticleFilter
+{
+    public:
+
+        ArticleFilter();
+        ArticleFilter(const AbstractMatcher& matcher, const FilterAction& action);
+        ArticleFilter(const ArticleFilter& other);
+
+        virtual ~ArticleFilter();
+
+        /** checks whether an article matches the matcher, and executes the action if so */
+        void applyTo(Article& article) const;
+
+        void setName(const QString& name);
+        const QString& name() const;
+
+        AbstractMatcher* matcher() const;
+        FilterAction* action() const;
+
+        ArticleFilter& operator=(const ArticleFilter& other);
+        bool operator==(const ArticleFilter& other) const;
+
+        void writeConfig(KConfig* config) const;
+        void readConfig(KConfig* config);
+
+    private:
+        class ArticleFilterPrivate;
+        ArticleFilterPrivate* d;
+    
 };
 
 class ArticleMatcher : public AbstractMatcher
@@ -116,13 +209,24 @@ class ArticleMatcher : public AbstractMatcher
 
         ArticleMatcher();
         ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc);
+        
+        ArticleMatcher(const ArticleMatcher& other);
+        virtual ~ArticleMatcher();
 
+        ArticleMatcher& operator=(const ArticleMatcher& other);
         virtual ArticleMatcher* clone() const;
         virtual bool matches(const Article &article) const;
         virtual bool operator==(const AbstractMatcher &other) const;
         virtual bool operator!=(const AbstractMatcher &other) const;
+        
+        
+        virtual void writeConfig(KConfig* config) const;
+        virtual void readConfig(KConfig* config);
 
     private:
+
+        static Association stringToAssociation(const QString& assocStr);
+        static QString associationToString(Association association);
 
         bool anyCriterionMatches( const Article &a ) const;
         bool allCriteriaMatch( const Article &a ) const;

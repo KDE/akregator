@@ -53,7 +53,7 @@ class TagNode::TagNodePrivate
 TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
 {
     d->tag = tag;
-    d->filter = TagMatcher(tag);
+    d->filter = TagMatcher(tag.id());
     setTitle(tag.name());
     d->observed = observed;
     d->unread = 0;

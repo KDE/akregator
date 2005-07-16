@@ -26,7 +26,6 @@
  */
 #include "articlefilter.h"
 #include "article.h"
-#include "tag.h"
 
 #include <kconfig.h>
 #include <kdebug.h>
@@ -35,6 +34,74 @@
 #include <qregexp.h>
 
 namespace Akregator {
+
+QString Criterion::subjectToString(Subject subj)
+{
+    switch (subj)
+    {
+        case Title:
+            return QString::fromLatin1("Title");
+        case Link:
+            return QString::fromLatin1("Link");
+        case Description:
+            return QString::fromLatin1("Description");
+        case Status:
+            return QString::fromLatin1("Status");
+        case KeepFlag:
+            return QString::fromLatin1("KeepFlag");
+        default: // should never happen (TM)
+            return QString::fromLatin1("Description");
+    }
+}
+
+Criterion::Subject Criterion::stringToSubject(const QString& subjStr)
+{
+    if (subjStr == QString::fromLatin1("Title"))
+        return Title;
+    else if (subjStr == QString::fromLatin1("Link"))
+        return Link;
+    else if (subjStr == QString::fromLatin1("Description"))
+        return Description;
+    else if (subjStr == QString::fromLatin1("Status"))
+        return Status;
+    else if (subjStr == QString::fromLatin1("KeepFlag"))
+        return KeepFlag;
+
+    // hopefully never reached
+    return Description;
+}
+
+QString Criterion::predicateToString(Predicate pred)
+{
+    switch (pred)
+    {
+        case Contains:
+            return QString::fromLatin1("Contains");
+        case Equals:
+            return QString::fromLatin1("Equals");
+        case Matches:
+            return QString::fromLatin1("Matches");
+        case Negation:
+            return QString::fromLatin1("Negation");
+        default:// hopefully never reached
+            return QString::fromLatin1("Contains");
+    }
+}
+
+Criterion::Predicate Criterion::stringToPredicate(const QString& predStr)
+{
+    if (predStr == QString::fromLatin1("Contains"))
+        return Contains;
+    else if (predStr == QString::fromLatin1("Equals"))
+        return Equals;
+    else if (predStr == QString::fromLatin1("Matches"))
+        return Matches;
+    else if (predStr == QString::fromLatin1("Negation"))
+        return Negation;
+    
+    // hopefully never reached
+    return Contains;
+}
 
 Criterion::Criterion()
 {
@@ -45,6 +112,30 @@ Criterion::Criterion( Subject subject, Predicate predicate, const QVariant &obje
     , m_predicate( predicate )
     , m_object( object )
 {
+
+}
+
+void Criterion::writeConfig(KConfig* config) const
+{
+    config->writeEntry(QString::fromLatin1("subject"), subjectToString(m_subject));
+
+    config->writeEntry(QString::fromLatin1("predicate"), predicateToString(m_predicate));
+
+    config->writeEntry(QString::fromLatin1("objectType"), QString(m_object.typeName()));
+
+    config->writeEntry(QString::fromLatin1("objectValue"), m_object);
+}
+
+void Criterion::readConfig(KConfig* config)
+{
+    m_subject = stringToSubject(config->readEntry(QString::fromLatin1("subject")));
+    m_predicate = stringToPredicate(config->readEntry(QString::fromLatin1("predicate")));
+    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType")).ascii());
+
+    if (type != QVariant::Invalid)
+    {
+        m_object = config->readPropertyEntry(QString::fromLatin1("objectValue"), type);
+    }
 }
 
 bool Criterion::satisfiedBy( const Article &article ) const
@@ -121,6 +212,10 @@ ArticleMatcher::ArticleMatcher()
 {
 }
 
+ArticleMatcher::~ArticleMatcher()
+{
+}
+
 ArticleMatcher* ArticleMatcher::clone() const
 {
     return new ArticleMatcher(*this);
@@ -130,6 +225,18 @@ ArticleMatcher::ArticleMatcher( const QValueList<Criterion> &criteria, Associati
     : m_criteria( criteria )
     , m_association( assoc )
 {
+}
+
+ArticleMatcher& ArticleMatcher::operator=(const ArticleMatcher& other)
+{
+    m_association = other.m_association;
+    m_criteria = other.m_criteria;
+    return *this;
+}
+
+ArticleMatcher::ArticleMatcher(const ArticleMatcher& other) : AbstractMatcher(other)
+{
+    *this = other;
 }
 
 bool ArticleMatcher::matches( const Article &a ) const
@@ -143,6 +250,38 @@ bool ArticleMatcher::matches( const Article &a ) const
             break;
     }
     return true;
+}
+
+void ArticleMatcher::writeConfig(KConfig* config) const
+{
+    config->writeEntry(QString::fromLatin1("matcherAssociation"), associationToString(m_association));
+    
+    config->writeEntry(QString::fromLatin1("matcherCriteriaCount"), m_criteria.count());
+
+    int index = 0;
+
+    for (QValueList<Criterion>::ConstIterator it = m_criteria.begin(); it != m_criteria.end(); ++it)
+    {
+        config->setGroup(config->group()+QString::fromLatin1("_Criterion")+QString::number(index));
+        (*it).writeConfig(config);
+        ++index;
+    }
+}
+
+void ArticleMatcher::readConfig(KConfig* config)
+{
+    m_criteria.clear();
+    m_association = stringToAssociation(config->readEntry(QString::fromLatin1("matcherAssociation")));
+
+    int count =  config->readNumEntry(QString::fromLatin1("matcherCriteriaCount"), 0);
+    
+    for (int i = 0; i < count; ++i)
+    {
+        Criterion c;
+        config->setGroup(config->group()+QString::fromLatin1("_Criterion")+QString::number(i));
+        c.readConfig(config);
+        m_criteria.append(c);
+    }
 }
 
 bool ArticleMatcher::operator==(const AbstractMatcher& other) const
@@ -187,19 +326,43 @@ bool ArticleMatcher::allCriteriaMatch( const Article &a ) const
     return true;
 }
 
+ArticleMatcher::Association ArticleMatcher::stringToAssociation(const QString& assocStr)
+{
+    if (assocStr == QString::fromLatin1("LogicalAnd"))
+        return LogicalAnd;
+    else if (assocStr == QString::fromLatin1("LogicalOr"))
+        return LogicalOr;
+    else
+        return None;
+}
+
+QString ArticleMatcher::associationToString(Association association)
+{
+    switch (association)
+    {
+        case LogicalAnd:
+            return QString::fromLatin1("LogicalAnd");
+        case LogicalOr:
+            return QString::fromLatin1("LogicalOr");
+        default:
+            return QString::fromLatin1("None");
+    }
+}
+
+
 class TagMatcher::TagMatcherPrivate
 {
     public:
-    Tag tag;
+    QString tagID;
     bool operator==(const TagMatcherPrivate& other) const
     {
-        return tag == other.tag;
+        return tagID == other.tagID;
     }
 };
 
-TagMatcher::TagMatcher(const Tag& tag) : d(new TagMatcherPrivate)
+TagMatcher::TagMatcher(const QString& tagID) : d(new TagMatcherPrivate)
 {
-    d->tag = tag;
+    d->tagID = tagID;
 }
 
 TagMatcher::TagMatcher() : d(new TagMatcherPrivate)
@@ -214,7 +377,7 @@ TagMatcher::~TagMatcher()
 
 bool TagMatcher::matches(const Article& article) const
 {
-    return article.hasTag(d->tag.id());
+    return article.hasTag(d->tagID);
 }
 
 TagMatcher* TagMatcher::clone() const
@@ -226,6 +389,17 @@ TagMatcher* TagMatcher::clone() const
 TagMatcher::TagMatcher(const TagMatcher& other) : AbstractMatcher(other), d(0)
 {
     *this = other;
+}
+
+void TagMatcher::writeConfig(KConfig* config) const
+{
+    config->writeEntry(QString::fromLatin1("matcherType"), QString::fromLatin1("TagMatcher"));
+    config->writeEntry(QString::fromLatin1("matcherParams"), d->tagID);
+}
+
+void TagMatcher::readConfig(KConfig* config)
+{
+    d->tagID = config->readEntry(QString::fromLatin1("matcherParams"));
 }
 
 bool TagMatcher::operator==(const AbstractMatcher& other) const
@@ -245,6 +419,172 @@ TagMatcher& TagMatcher::operator=(const TagMatcher& other)
     d = new TagMatcherPrivate;
     *d = *(other.d);
     return *this;
+}
+
+void DeleteAction::exec(Article& article)
+{
+    article.setDeleted();
+}
+
+AssignTagAction::AssignTagAction(const QString& tagID)
+{
+    m_tagID = tagID;
+}
+
+void AssignTagAction::exec(Article& article)
+{
+    article.addTag(m_tagID);
+}
+
+class ArticleFilter::ArticleFilterPrivate
+{
+    public:
+    FilterAction* action;
+    AbstractMatcher* matcher;
+    QString name;
+    
+};
+
+ArticleFilter::ArticleFilter() : d(new ArticleFilterPrivate)
+{
+    d->action = 0;
+    d->matcher = 0;
+}
+
+ArticleFilter::ArticleFilter(const AbstractMatcher& matcher, const FilterAction& action) : d(new ArticleFilterPrivate)
+{
+    d->matcher = matcher.clone();
+    d->action = action.clone();
+}
+
+ArticleFilter::ArticleFilter(const ArticleFilter& other)
+{
+    *this = other;
+}
+
+ArticleFilter::~ArticleFilter()
+{
+    delete d->action;
+    delete d->matcher;
+    delete d;
+}
+
+AbstractMatcher* ArticleFilter::matcher() const
+{
+    return d->matcher;
+}
+
+FilterAction* ArticleFilter::action() const
+{
+    return d->action;
+}
+
+ArticleFilter& ArticleFilter::operator=(const ArticleFilter& other)
+{
+    delete d->matcher;
+    d->matcher = other.d->matcher ? other.d->matcher->clone() : 0;
+    delete d->action;
+    d->action = other.d->action ? other.d->action->clone() : 0;
+    return *this;
+}
+
+bool ArticleFilter::operator==(const ArticleFilter& other) const
+{
+    return *(d->matcher) == *(other.d->matcher) && *(d->action) == *(other.d->action) && d->name == other.d->name;
+}
+
+void AssignTagAction::readConfig(KConfig* config)
+{
+    m_tagID = config->readEntry(QString::fromLatin1("actionParams"));
+}
+
+void AssignTagAction::writeConfig(KConfig* config) const
+{
+    config->writeEntry(QString::fromLatin1("actionType"), QString::fromLatin1("AssignTagAction"));
+    config->writeEntry(QString::fromLatin1("actionParams"), m_tagID);
+}
+
+bool AssignTagAction::operator==(const FilterAction& other)
+{
+    FilterAction* ptr = const_cast<FilterAction*>(&other);
+    AssignTagAction* o = dynamic_cast<AssignTagAction*>(ptr);
+    if (!o)
+        return false;
+    else
+        return m_tagID == o->m_tagID;
+}
+
+const QString& AssignTagAction::tagID() const
+{
+    return m_tagID;
+}
+
+void DeleteAction::readConfig(KConfig* /*config*/)
+{
+}
+
+void DeleteAction::writeConfig(KConfig* config) const
+{
+    config->writeEntry(QString::fromLatin1("actionType"), QString::fromLatin1("DeleteAction"));
+}
+
+bool DeleteAction::operator==(const FilterAction& other)
+{
+    FilterAction* ptr = const_cast<FilterAction*>(&other);
+    DeleteAction* o = dynamic_cast<DeleteAction*>(ptr);
+    return o != 0;
+}
+
+void ArticleFilter::readConfig(KConfig* config)
+{
+    delete d->matcher;
+    d->matcher = 0;
+    delete d->action;
+    d->action = 0;
+
+    QString matcherType = config->readEntry(QString::fromLatin1("matcherType"));
+
+    if (matcherType == QString::fromLatin1("TagMatcher"))
+        d->matcher = new TagMatcher();
+    else if (matcherType == QString::fromLatin1("ArticleMatcher"))
+        d->matcher = new ArticleMatcher();
+
+    if (d->matcher)
+        d->matcher->readConfig(config);
+
+
+    QString actionType = config->readEntry(QString::fromLatin1("actionType"));
+
+    if (actionType == QString::fromLatin1("AssignTagAction"))
+        d->action = new AssignTagAction();
+    else if (actionType == QString::fromLatin1("DeleteAction"))
+        d->action = new DeleteAction();
+
+    if (d->action)
+        d->action->readConfig(config);
+}
+
+void ArticleFilter::writeConfig(KConfig* config) const
+{
+    config->writeEntry(QString::fromLatin1("name"), d->name);
+    d->matcher->writeConfig(config);
+    d->action->writeConfig(config);
+}
+
+void ArticleFilter::setName(const QString& name)
+{
+    d->name = name;
+}
+
+const QString& ArticleFilter::name() const
+{
+    return d->name;
+}
+
+void ArticleFilter::applyTo(Article& article) const
+{
+    if (d->matcher && d->action && d->matcher->matches(article))
+        d->action->exec(article);
 }
 
 } //namespace Akregator
