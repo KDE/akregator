@@ -195,7 +195,9 @@ namespace Akregator
             static QDomDocument createDefaultFeedList();
 
          private: // attributes
-         
+
+            class ApplyFiltersInterceptor;
+            ApplyFiltersInterceptor* m_applyFiltersInterceptor;
             QString m_standardFeedList;
             QString m_tagSetPath;
             bool m_standardListLoaded;

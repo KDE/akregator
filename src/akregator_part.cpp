@@ -61,6 +61,7 @@
 #include "akregator_view.h"
 #include "akregatorconfig.h"
 #include "articlefilter.h"
+#include "articleinterceptor.h"
 #include "configdialog.h"
 #include "fetchqueue.h"
 #include "frame.h"
@@ -93,6 +94,17 @@ void BrowserExtension::saveSettings()
 {
     m_part->saveSettings();
 }
+
+class Part::ApplyFiltersInterceptor : public ArticleInterceptor
+{
+    public:
+    virtual void processArticle(Article& article)
+    {
+        ArticleFilterList list = Kernel::self()->articleFilterList();
+        for (ArticleFilterList::ConstIterator it = list.begin(); it != list.end(); ++it)
+            (*it).applyTo(article);
+    }
+};
 
 Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
@@ -129,6 +141,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     ArticleFilterList list;
     list.readConfig(Settings::self()->config());
     Kernel::self()->setArticleFilterList(list);
+    
+    m_applyFiltersInterceptor = new ApplyFiltersInterceptor();
+    ArticleInterceptorManager::self()->addInterceptor(m_applyFiltersInterceptor);    
     
     m_storage->open(true);
     Kernel::self()->setStorage(m_storage);
@@ -243,6 +258,8 @@ Part::~Part()
     if (!m_shuttingDown)
         slotOnShutdown();
     kdDebug() << "Part::~Part(): leaving" << endl;
+    ArticleInterceptorManager::self()->removeInterceptor(m_applyFiltersInterceptor);
+    delete m_applyFiltersInterceptor;
 }
 
 void Part::readProperties(KConfig* config)
