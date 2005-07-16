@@ -493,6 +493,34 @@ bool ArticleFilter::operator==(const ArticleFilter& other) const
     return *(d->matcher) == *(other.d->matcher) && *(d->action) == *(other.d->action) && d->name == other.d->name;
 }
 
+void ArticleFilterList::writeConfig(KConfig* config) const
+{
+    config->setGroup(QString::fromLatin1("Filters"));
+    config->writeEntry(QString::fromLatin1("count"), count());
+    int index = 0;
+    for (ArticleFilterList::ConstIterator it = begin(); it != end(); ++it)
+    {
+        config->setGroup(QString::fromLatin1("Filters_")+QString::number(index));
+        (*it).writeConfig(config);
+        ++index;
+    }
+}
+
+void ArticleFilterList::readConfig(KConfig* config)
+{
+    clear();
+    config->setGroup(QString::fromLatin1("Filters"));
+    int count = config->readNumEntry(QString::fromLatin1("count"), 0);
+    for (int i = 0; i < count; ++i)
+    {
+        config->setGroup(QString::fromLatin1("Filters_")+QString::number(i));
+        ArticleFilter filter;
+        filter.readConfig(config);
+        append(filter);
+    }
+}
+
+
 void AssignTagAction::readConfig(KConfig* config)
 {
     m_tagID = config->readEntry(QString::fromLatin1("actionParams"));

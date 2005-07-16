@@ -60,6 +60,7 @@
 #include "akregator_part.h"
 #include "akregator_view.h"
 #include "akregatorconfig.h"
+#include "articlefilter.h"
 #include "configdialog.h"
 #include "fetchqueue.h"
 #include "frame.h"
@@ -125,6 +126,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
         m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
         KMessageBox::error(m_view, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg("metakit"), i18n("Plugin error") );
     }
+    ArticleFilterList list;
+    list.readConfig(Settings::self()->config());
+    Kernel::self()->setArticleFilterList(list);
     
     m_storage->open(true);
     Kernel::self()->setStorage(m_storage);
@@ -229,6 +233,7 @@ void Part::slotSettingsChanged()
 }
 void Part::saveSettings()
 {
+    Kernel::self()->articleFilterList().writeConfig(Settings::self()->config());
     m_view->saveSettings();
 }
 

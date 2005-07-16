@@ -25,6 +25,8 @@
 #ifndef AKREGATOR_KERNEL_H
 #define AKREGATOR_KERNEL_H
 
+#include "articlefilter.h"
+
 namespace Akregator {
 
 namespace Backend 
@@ -54,7 +56,14 @@ class Kernel
          FetchQueue* fetchQueue() { return m_fetchQueue; }
 
          TagSet* tagSet() { return m_tagSet; }
+         
+         void setArticleFilterList(const ArticleFilterList& list)
+         {
+            m_articleFilterList = list;
+         }
 
+         ArticleFilterList articleFilterList() const { return m_articleFilterList; }
+        
      private:
 
          static Kernel* m_self;
@@ -63,6 +72,7 @@ class Kernel
          FeedList* m_feedList;
          FetchQueue* m_fetchQueue;
          TagSet* m_tagSet;
+         ArticleFilterList m_articleFilterList;
 };
 
 }

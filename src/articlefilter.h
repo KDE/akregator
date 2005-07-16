@@ -199,6 +199,14 @@ class ArticleFilter
     
 };
 
+class ArticleFilterList : public QValueList<ArticleFilter>
+{
+    public:
+    
+    void writeConfig(KConfig* config) const;
+    void readConfig(KConfig* config);
+};
+
 class ArticleMatcher : public AbstractMatcher
 {
     public:
