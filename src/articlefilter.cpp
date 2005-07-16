@@ -34,6 +34,7 @@
 #include <qregexp.h>
 
 namespace Akregator {
+namespace Filters {
 
 QString Criterion::subjectToString(Subject subj)
 {
@@ -614,5 +615,5 @@ void ArticleFilter::applyTo(Article& article) const
     if (d->matcher && d->action && d->matcher->matches(article))
         d->action->exec(article);
 }
-
+} //namespace Filters
 } //namespace Akregator

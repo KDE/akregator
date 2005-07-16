@@ -57,12 +57,12 @@ class Kernel
 
          TagSet* tagSet() { return m_tagSet; }
          
-         void setArticleFilterList(const ArticleFilterList& list)
+         void setArticleFilterList(const Filters::ArticleFilterList& list)
          {
             m_articleFilterList = list;
          }
 
-         ArticleFilterList articleFilterList() const { return m_articleFilterList; }
+         Filters::ArticleFilterList articleFilterList() const { return m_articleFilterList; }
         
      private:
 
@@ -72,7 +72,7 @@ class Kernel
          FeedList* m_feedList;
          FetchQueue* m_fetchQueue;
          TagSet* m_tagSet;
-         ArticleFilterList m_articleFilterList;
+         Filters::ArticleFilterList m_articleFilterList;
 };
 
 }

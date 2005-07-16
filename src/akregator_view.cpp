@@ -289,9 +289,9 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     
     m_actionManager->initArticleViewer(m_articleViewer);
 
-    connect(m_searchBar, SIGNAL(signalSearch(const ArticleMatcher&, const ArticleMatcher&)), m_articleList, SLOT(slotSetFilter(const ArticleMatcher&, const ArticleMatcher&)));
+    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleList, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
-    connect(m_searchBar, SIGNAL(signalSearch(const ArticleMatcher&, const ArticleMatcher&)), m_articleViewer, SLOT(slotSetFilter(const ArticleMatcher&, const ArticleMatcher&)));
+    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
                         this, SLOT(slotOpenTab(const KURL&, bool)) );

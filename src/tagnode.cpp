@@ -40,7 +40,7 @@ namespace Akregator {
 class TagNode::TagNodePrivate
 {
     public:
-    TagMatcher filter;
+    Filters::TagMatcher filter;
     TreeNode* observed;
     int unread;
     Tag tag;
@@ -53,7 +53,7 @@ class TagNode::TagNodePrivate
 TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
 {
     d->tag = tag;
-    d->filter = TagMatcher(tag.id());
+    d->filter = Filters::TagMatcher(tag.id());
     setTitle(tag.name());
     d->observed = observed;
     d->unread = 0;

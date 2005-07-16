@@ -62,8 +62,8 @@ class ArticleListView::ArticleListViewPrivate
     QMap<Article, ArticleItem*> articleMap;
     
     TreeNode* node;
-    ArticleMatcher textFilter;
-    ArticleMatcher statusFilter;
+    Akregator::Filters::ArticleMatcher textFilter;
+    Akregator::Filters::ArticleMatcher statusFilter;
     enum ColumnMode { groupMode, feedMode };
     ColumnMode columnMode;
     int feedWidth;
@@ -270,7 +270,7 @@ Article ArticleListView::currentArticle() const
     return (ci && !selectedItems().isEmpty()) ? ci->article() : Article();
 }
 
-void ArticleListView::slotSetFilter(const ArticleMatcher& textFilter, const ArticleMatcher& statusFilter)
+void ArticleListView::slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter)
 {
     if ( (textFilter != d->textFilter) || (statusFilter != d->statusFilter) )
     {

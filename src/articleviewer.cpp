@@ -602,7 +602,7 @@ void ArticleViewer::slotShowArticle(const Article& article)
         renderContent( formatArticleNormalMode(article.feed(), article) );
 }
 
-void ArticleViewer::slotSetFilter(const ArticleMatcher& textFilter, const ArticleMatcher& statusFilter)
+void ArticleViewer::slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter)
 {
     if (m_statusFilter == statusFilter && m_textFilter == textFilter)
         return;

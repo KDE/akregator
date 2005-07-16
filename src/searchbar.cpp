@@ -42,6 +42,9 @@
 #include <qtoolbutton.h>
 #include <qtooltip.h>
 
+using Akregator::Filters::ArticleMatcher;
+using Akregator::Filters::Criterion;
+
 namespace Akregator
 {
 

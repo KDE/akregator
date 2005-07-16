@@ -33,9 +33,13 @@ template <class T> class QValueList;
 namespace Akregator
 {
     class Article;
-    class ArticleMatcher;
     class TreeNode;
-    
+
+    namespace Filters
+    {
+        class ArticleMatcher;
+    }
+
     class ArticleListView : public KListView
     {
         Q_OBJECT
@@ -62,17 +66,21 @@ namespace Akregator
             void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
             void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
             void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
+
             /** sets text filter and status filter
             @param textFilter filters text
             @param statusFilter filters status (read, unread, new) */
-            void slotSetFilter(const ArticleMatcher& textFilter, const ArticleMatcher& statusFilter);
+            void slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter);
 
             /** selects previous article in list view, first article if no article was selected */
             void slotPreviousArticle();
+
             /** selects next article in list view, first article if no article was selected */
             void slotNextArticle();
+
             /** selects previous unread article in list view, first unread article if no article was selected */
             void slotPreviousUnreadArticle();
+
             /** selects next unread article in list view, first unread article if no article was selected */
             void slotNextUnreadArticle();
 

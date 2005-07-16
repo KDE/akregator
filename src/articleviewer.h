@@ -75,7 +75,7 @@ namespace Akregator
             /** Set filters @c textFilter and @c statusFilter which will be used if the viewer is in combined view mode 
             @param textFilter text filter 
             @param statusFilter status filter */    
-            void slotSetFilter(const ArticleMatcher& textFilter, const ArticleMatcher& statusFilter);
+            void slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter);
             
             /** Update view if combined view mode is set. Has to be called when the displayed node gets modified. */ 
             void slotUpdateCombinedView();
@@ -141,8 +141,8 @@ namespace Akregator
             KURL m_imageDir;
             TreeNode* m_node;
             KURL m_link;
-            ArticleMatcher m_textFilter; 
-            ArticleMatcher m_statusFilter;
+            Akregator::Filters::ArticleMatcher m_textFilter; 
+            Akregator::Filters::ArticleMatcher m_statusFilter;
             enum ViewMode { NormalView, CombinedView, SummaryView };
             ViewMode m_viewMode;
    };

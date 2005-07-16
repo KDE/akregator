@@ -34,10 +34,11 @@
 
 class KConfig;
 
-namespace Akregator
-{
+namespace Akregator {
 
 class Article;
+
+namespace Filters {
 
 class Criterion
 {
@@ -243,6 +244,7 @@ class ArticleMatcher : public AbstractMatcher
         Association m_association;
 };
 
-}
+} // namespace Filters
+} // namespace Akregator
 
 #endif

@@ -100,8 +100,8 @@ class Part::ApplyFiltersInterceptor : public ArticleInterceptor
     public:
     virtual void processArticle(Article& article)
     {
-        ArticleFilterList list = Kernel::self()->articleFilterList();
-        for (ArticleFilterList::ConstIterator it = list.begin(); it != list.end(); ++it)
+        Filters::ArticleFilterList list = Kernel::self()->articleFilterList();
+        for (Filters::ArticleFilterList::ConstIterator it = list.begin(); it != list.end(); ++it)
             (*it).applyTo(article);
     }
 };
@@ -138,7 +138,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
         m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
         KMessageBox::error(m_view, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg("metakit"), i18n("Plugin error") );
     }
-    ArticleFilterList list;
+    Filters::ArticleFilterList list;
     list.readConfig(Settings::self()->config());
     Kernel::self()->setArticleFilterList(list);
     
