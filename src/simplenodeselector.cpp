@@ -140,4 +140,5 @@ void SimpleNodeSelector::slotNodeDestroyed(TreeNode* node)
 
 } // namespace Akregator
 
-#include "simplenodeselector.h"	
+#include "simplenodeselector.moc"
+	
