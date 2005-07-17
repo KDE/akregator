@@ -131,6 +131,7 @@ libakregatorpart_la_SOURCES = \
         tagfolderitem.cpp \
         speechclient.cpp \
 	kspeechsink.skel \
+        simplenodeselector.cpp \
 	kspeech.stub
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -avoid-version -no-undefined $(all_libraries)
