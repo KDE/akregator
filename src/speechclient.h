@@ -61,7 +61,7 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
         /** emitted when the job queue was empty before and the first job was just queued */
         void signalJobsStarted();
 
-        /** emitted when all jobs where finished or aborted and no further jobs are queued */
+        /** emitted when all jobs were finished or aborted and no further jobs are queued */
         void signalJobsDone();
 
         void signalActivated(bool);
