@@ -44,6 +44,7 @@
 #include "kernel.h"
 #include "pageviewer.h"
 #include "searchbar.h"
+#include "speechclient.h"
 #include "storage.h"
 #include "tabwidget.h"
 #include "tag.h"
@@ -1264,6 +1265,30 @@ void View::slotSetSelectedArticleRead()
 
     for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         (*it).setStatus(Article::Read);
+}
+
+void View::slotTextToSpeechRequest()
+{
+    if (m_currentFrame == m_mainFrame)
+    {
+        if (m_viewMode != CombinedView)
+        {
+            // in non-combined view, read selected articles
+            SpeechClient::self()->slotSpeak(m_articleList->selectedArticles());
+            // TODO: if article viewer has a selection, read only the selected text?
+        }
+        else
+        {
+            if (m_tree->selectedNode())
+            {
+                //TODO: read articles in current node, respecting quick filter!
+            }
+        }
+    }
+    else
+    {
+        // TODO: read selected page viewer
+    }
 }
 
 void View::slotSetSelectedArticleUnread()

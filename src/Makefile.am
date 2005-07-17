@@ -88,6 +88,9 @@ fetchqueue.lo: akregatorconfig.h
 trayicon.lo: akregatorconfig.h
 viewer.lo: akregatorconfig.h
 
+kspeech_DIR = $(kde_includes)
+kspeechsink_DIR = $(kde_includes)
+
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = \
 	akregator_run.cpp \
@@ -125,7 +128,10 @@ libakregatorpart_la_SOURCES = \
         tagaction.cpp \
         tagpropertieswidgetbase.ui \
         tagpropertiesdialog.cpp \
-        tagfolderitem.cpp
+        tagfolderitem.cpp \
+        speechclient.cpp \
+	kspeechsink.skel \
+	kspeech.stub
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -avoid-version -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = libakregatorprivate.la 

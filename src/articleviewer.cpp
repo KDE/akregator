@@ -60,11 +60,6 @@ static inline QString directionOf(const QString &str)
     return str.isRightToLeft() ? "rtl" : "ltr" ;
 }
 
-static inline QString stripTags(const QString& str)
-{
-    return QString(str).replace(QRegExp("<[^>]*>"), "");
-}
-
 class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 {
     public:
@@ -180,6 +175,11 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
 ArticleViewer::~ArticleViewer()
 {
     delete m_showSummaryVisitor;
+}
+
+QString ArticleViewer::stripTags(const QString& str)
+{
+    return QString(str).replace(QRegExp("<[^>]*>"), "");
 }
 
 bool ArticleViewer::openURL(const KURL &url)

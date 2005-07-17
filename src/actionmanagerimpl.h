@@ -65,7 +65,7 @@ class ActionManagerImpl : public ActionManager
         void initFeedListView(FeedListView* feedListView);
         void initTabWidget(TabWidget* tabWidget);
         void setTagSet(TagSet* tagSet);
-        
+
     public slots:
 
         /** fills the remove tag menu with the given tags */

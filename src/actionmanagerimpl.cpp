@@ -44,6 +44,7 @@
 #include "fetchqueue.h"
 #include "folder.h"
 #include "kernel.h"
+#include "speechclient.h"
 #include "tag.h"
 #include "tagaction.h"
 #include "tagnode.h"
@@ -135,6 +136,7 @@ public:
     QMap<QString, KAction*> assignTagActions;
     QMap<QString, KAction*> removeTagActions;
 	TabWidget* tabWidget;
+    KAction* speakSelectedArticlesAction;
 };
 
 void ActionManagerImpl::slotUpdateRemoveTagMenu(const QStringList& tagIds)
@@ -229,6 +231,7 @@ ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* na
     d->feedListView = 0;
     d->view = 0;
     d->tabWidget = 0;
+    d->speakSelectedArticlesAction = 0;
     d->actionCollection = part->actionCollection();
     initPart();
 }
@@ -327,6 +330,14 @@ void ActionManagerImpl::initView(View* view)
 
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );
+
+    d->speakSelectedArticlesAction = new KAction(i18n("&Speak Selected Articles"), "kttsd", "", d->view, SLOT(slotTextToSpeechRequest()), actionCollection(), "akr_texttospeech");
+    
+    KAction* abortTTS = new KAction(i18n( "&Stop Speaking" ), "player_stop", Key_Escape, SpeechClient::self(), SLOT(slotAbortJobs()), actionCollection(), "akr_aborttexttospeech");
+    abortTTS->setEnabled(false);
+
+    connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
+    abortTTS, SLOT(setEnabled(bool)));
 
     statusMenu->insert(new KAction(KGuiItem(i18n("&Read"), "",
                        i18n("Mark selected article as read")),

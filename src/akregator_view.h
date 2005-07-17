@@ -230,6 +230,9 @@ namespace Akregator {
             /** marks the currenctly selected article as read after a user-set delay */
             void slotSetCurrentArticleReadDelayed();
 
+            /** reads the currently selected articles using KTTSD */
+            void slotTextToSpeechRequest();
+
             void slotAssignTag(const Tag& tag);
             void slotRemoveTag(const Tag& tag);
             void slotNewTag();
@@ -279,6 +282,7 @@ namespace Akregator {
 
             void slotDoIntervalFetches();
             void slotDeleteExpiredArticles();
+
         private:
 
             enum ViewMode { NormalView=0, WidescreenView, CombinedView };  

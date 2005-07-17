@@ -21,7 +21,7 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-
+#include <dcopclient.h>
 #include <kaboutdata.h>
 #include <kaction.h>
 #include <kactionclasses.h>
@@ -75,6 +75,7 @@
 #include "storagefactory.h"
 #include "storagefactorydummyimpl.h"
 #include "storagefactoryregistry.h"
+#include "speechclient.h"
 #include "trayicon.h"
 #include "tagset.h"
 #include "tag.h"
@@ -118,7 +119,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 {
     // we need an instance
     setInstance( AkregatorFactory::instance() );
-
+    
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     KNotifyClient::startDaemon();
     
@@ -164,7 +165,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect(m_view, SIGNAL(signalCanceled(const QString&)), this, SIGNAL(canceled(const QString&)));
     connect(m_view, SIGNAL(signalStarted(KIO::Job*)), this, SIGNAL(started(KIO::Job*)));
     connect(m_view, SIGNAL(signalCompleted()), this, SIGNAL(completed()));
-    
+
     // notify the part that this is our internal widget
     setWidget(m_view);
 
@@ -173,7 +174,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_actionManager->initTrayIcon(trayIcon);
     
     connect(trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
-
+    
     if ( isTrayIconEnabled() )
     {
         trayIcon->show();
@@ -614,7 +615,7 @@ void Part::fileImport()
         importFile(url);
 }
 
-void Part::fileExport()
+    void Part::fileExport()
 {
     KURL url= KFileDialog::getSaveURL( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
@@ -832,6 +833,7 @@ bool Part::copyFile(const QString& backup)
     }
     return false;
 }
+
 
 } // namespace Akregator
 #include "akregator_part.moc"
