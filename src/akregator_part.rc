@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="66">
+<kpartgui name="akregator_part" version="67">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -67,11 +67,6 @@
   <Action name="article_remove_tag_menu"/>
   </Menu>
   
-  <Menu name ="tag">
-  <text>&amp;Tag</text>
-  <Action name="tag_new"/>
-</Menu>
-	  
   <Menu name="settings">
     <Action name="show_quick_filter"/>
     <Separator/>
