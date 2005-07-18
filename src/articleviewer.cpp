@@ -51,6 +51,7 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 #include "tagnode.h"
+#include "utils.h"
 
 namespace Akregator {
 
@@ -72,7 +73,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
         
-        text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(stripTags(node->title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
         text += node->title();
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
@@ -95,7 +96,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
         
         if( !node->description().isEmpty() )
         {
-            text += QString("<div dir=\"%1\">").arg(stripTags(directionOf(node->description())));
+            text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
             text += i18n("<b>Description:</b> %1<br><br>").arg(node->description());
             text += "</div>\n"; // /description
         }
@@ -119,7 +120,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(node->title()))).arg(node->title());
+        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
         else
@@ -135,7 +136,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
     {
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
-        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(stripTags(node->title()))).arg(node->title());
+        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
         else
@@ -175,11 +176,6 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
 ArticleViewer::~ArticleViewer()
 {
     delete m_showSummaryVisitor;
-}
-
-QString ArticleViewer::stripTags(const QString& str)
-{
-    return QString(str).replace(QRegExp("<[^>]*>"), "");
 }
 
 bool ArticleViewer::openURL(const KURL &url)
@@ -393,7 +389,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
 
     if (!article.title().isEmpty())
     {
-        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(stripTags(article.title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(Utils::stripTags(article.title())));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
         text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
@@ -423,7 +419,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
 
     if (!article.description().isEmpty())
     {
-        text += QString("<div dir=\"%1\">").arg(directionOf(stripTags(article.description())) );
+        text += QString("<div dir=\"%1\">").arg(directionOf(Utils::stripTags(article.description())) );
         text += "<span class=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }
@@ -469,7 +465,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
 
     if (!article.title().isEmpty())
     {
-        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(stripTags(article.title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(Utils::stripTags(article.title())));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
         text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
@@ -499,7 +495,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
 
     if (!article.description().isEmpty())
     {
-        text += QString("<div dir=\"%1\">").arg(directionOf(stripTags(article.description())) );
+        text += QString("<div dir=\"%1\">").arg(directionOf(Utils::stripTags(article.description())) );
         text += "<span class=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }

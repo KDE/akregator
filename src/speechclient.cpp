@@ -23,12 +23,13 @@
 */
 
 #include "article.h"
-#include "articleviewer.h"
 #include "speechclient.h"
+#include "utils.h"
 
 #include <dcopclient.h>
 #include <kapplication.h>
 #include <kcharsets.h>
+#include <klocale.h>
 #include <kdebug.h>
 #include <kstaticdeleter.h>
 #include <ktrader.h>
@@ -59,7 +60,7 @@ SpeechClient* SpeechClient::self()
 }
 
 
-SpeechClient::SpeechClient() : QObject(), DCOPStub("kttsd", "KSpeech"),  DCOPObject("akregatorpart_kspeechsink"), d(new SpeechClientPrivate)
+SpeechClient::SpeechClient() : DCOPStub("kttsd", "KSpeech"), DCOPObject("akregatorpart_kspeechsink"), QObject(), d(new SpeechClientPrivate)
 {
     d->isTextSpeechInstalled = false;
     setupSpeechSystem();
@@ -91,9 +92,9 @@ void SpeechClient::slotSpeak(const Article& article)
         return;
     
     QString speakMe;
-    speakMe += KCharsets::resolveEntities(ArticleViewer::stripTags((article).title())) 
+    speakMe += KCharsets::resolveEntities(Utils::stripTags((article).title())) 
     + ". . . . " 
-    + KCharsets::resolveEntities(ArticleViewer::stripTags((article).description()));
+    + KCharsets::resolveEntities(Utils::stripTags((article).description()));
     slotSpeak(speakMe, "en");
 }
 
@@ -108,9 +109,9 @@ void SpeechClient::slotSpeak(const QValueList<Article>& articles)
     {
         if (!speakMe.isEmpty())
             speakMe += ". . . . . . " + i18n("Next Article: ");
-        speakMe += KCharsets::resolveEntities(ArticleViewer::stripTags((*it).title())) 
+        speakMe += KCharsets::resolveEntities(Utils::stripTags((*it).title())) 
         + ". . . . " 
-        + KCharsets::resolveEntities(ArticleViewer::stripTags((*it).description()));
+        + KCharsets::resolveEntities(Utils::stripTags((*it).description()));
     }
 
     SpeechClient::self()->slotSpeak(speakMe, "en");

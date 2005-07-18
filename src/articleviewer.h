@@ -87,8 +87,6 @@ namespace Akregator
 
             virtual void slotPaletteOrFontChanged();
             
-            static QString stripTags(const QString& str);
-
         protected slots:
                     
             void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
