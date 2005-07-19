@@ -576,7 +576,7 @@ void ArticleListView::slotNextUnreadArticle()
 
 void ArticleListView::slotPreviousUnreadArticle()
 {
-  ArticleItem* start = 0;
+    ArticleItem* start = 0;
     if (!currentItem() || selectedItems().isEmpty())
         start = dynamic_cast<ArticleItem*>(firstChild());
     else
@@ -592,7 +592,7 @@ void ArticleListView::slotPreviousUnreadArticle()
         else 
             i = dynamic_cast<ArticleItem*>(i->itemAbove() ? i->itemAbove() : lastChild());
     }
-    while (!unread && i != start);
+    while ( !(unread != 0 || i == start) );
 
     if (unread)
     {

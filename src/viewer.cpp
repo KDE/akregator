@@ -87,14 +87,6 @@ Viewer::Viewer(QWidget *parent, const char *name)
 Viewer::~Viewer()
 {}
 
-bool Viewer::openURL(const KURL &url)
-{
-    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
-    emit started(0);
-    return true;
-}
-
-
 bool Viewer::closeURL()
 {
     emit browserExtension()->loadingProgress(-1);
@@ -201,9 +193,9 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
             popup.insertSeparator();
        }
        action("viewer_print")->plug(&popup);
-       KAction *ac = action("setEncoding");
-       if (ac)
-            ac->plug(&popup);
+       //KAction *ac = action("setEncoding");
+       //if (ac)
+       //     ac->plug(&popup);
    }
    popup.exec(p);
 }

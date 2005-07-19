@@ -30,6 +30,7 @@
 #include <qcolor.h>
 #include <qfont.h>
 
+#include "article.h"
 #include "articlefilter.h"
 #include "viewer.h"
 
@@ -39,7 +40,6 @@ namespace Akregator
 {
     class Feed;
     class Folder;
-    class Article;
     class TreeNode;
     
     /** This HTML viewer is used to display articles. 
@@ -140,6 +140,7 @@ namespace Akregator
             QString m_currentText;
             KURL m_imageDir;
             TreeNode* m_node;
+            Article m_article;
             KURL m_link;
             Akregator::Filters::ArticleMatcher m_textFilter; 
             Akregator::Filters::ArticleMatcher m_statusFilter;

@@ -44,7 +44,6 @@ namespace Akregator
             virtual ~Viewer();
 
             virtual bool closeURL();
-            virtual bool openURL(const KURL &);
             
             /** used by the BrowserRun object to call KHTMLPart::openURL() */
             void openPage(const KURL& url) { KHTMLPart::openURL(url);}

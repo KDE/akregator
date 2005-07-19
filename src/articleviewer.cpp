@@ -178,11 +178,6 @@ ArticleViewer::~ArticleViewer()
     delete m_showSummaryVisitor;
 }
 
-bool ArticleViewer::openURL(const KURL &url)
-{
-    return KHTMLPart::openURL(url);
-}
-
 void ArticleViewer::generateNormalModeCSS()
 {
     const QColorGroup & cg = QApplication::palette().active();
@@ -344,6 +339,19 @@ void ArticleViewer::reload()
     beginWriting();
     write(m_currentText);
     endWriting();
+}
+
+bool ArticleViewer::openURL(const KURL& url)
+{
+    if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
+    {
+        return Viewer::openURL(url);
+    }
+    else
+    {
+        reload();
+        return true;
+    }
 }
 
 void ArticleViewer::displayAboutPage()
@@ -590,6 +598,7 @@ void ArticleViewer::slotShowArticle(const Article& article)
 {
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
+    m_article = article;
     m_node = 0;
     m_link = article.link();
     if (article.feed()->loadLinkedWebsite())
@@ -668,6 +677,7 @@ void ArticleViewer::slotClear()
 {
     disconnectFromNode(m_node);
     m_node = 0;
+    m_article = Article();
 
     renderContent(QString());
 }
@@ -681,6 +691,7 @@ void ArticleViewer::slotShowNode(TreeNode* node)
 
     connectToNode(node);
     
+    m_article = Article();
     m_node = node;
 
     if (node && !node->articles().isEmpty())

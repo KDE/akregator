@@ -196,7 +196,8 @@ void PageViewer::slotStop()
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 bool PageViewer::openURL(const KURL &url)
 {
-    Viewer::openURL(url);
+    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
+    emit started(0);
     
     if (!m_restoring)
         addHistoryEntry(url);
