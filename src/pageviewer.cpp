@@ -131,6 +131,9 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     d->forwardAction->setEnabled(false);
     d->stopAction->setEnabled(false);
     
+    connect( this, SIGNAL(setWindowCaption (const QString &)),
+            this, SLOT(slotSetCaption (const QString &)) );
+
     connect(this, SIGNAL(started(KIO::Job *)), this, SLOT(slotStarted(KIO::Job* )));
     connect(this, SIGNAL(completed()), this, SLOT(slotCompleted()));
     connect(this, SIGNAL(canceled(const QString &)), this, SLOT(slotCancelled(const QString &)));
@@ -313,6 +316,7 @@ void PageViewer::slotPopupActivated( int id )
 
 void PageViewer::updateHistoryEntry()
 {
+    (*d->current).title = d->caption;
     (*d->current).state = QByteArray(); // Start with empty buffer.
     QDataStream stream( (*d->current).state, IO_WriteOnly);
     browserExtension()->saveState(stream);
@@ -372,7 +376,8 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
 }
 
 
-void PageViewer::slotSetCaption(const QString& cap) {
+void PageViewer::slotSetCaption(const QString& cap) 
+{
     d->caption = cap;
     (*d->current).title = cap;
 }

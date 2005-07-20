@@ -47,14 +47,6 @@ namespace Akregator
             /** used by the BrowserRun object */
             virtual void openPage(const KURL& url);
 
-        public slots:
-            void slotBack();
-            void slotForward();
-            void slotReload();
-            void slotStop();
-            void slotSetCaption(const QString& cap);
-            virtual void slotPaletteOrFontChanged();
-
         protected:
 
             class HistoryEntry;
@@ -63,6 +55,15 @@ namespace Akregator
             void updateHistoryEntry();
 
         protected slots:
+
+            void slotSetCaption(const QString& cap);
+            void slotBack();
+            void slotForward();
+            void slotReload();
+            void slotStop();
+
+            virtual void slotPaletteOrFontChanged();
+
             void slotStarted(KIO::Job *);
             void slotCompleted();
             void slotCancelled(const QString &errMsg);
