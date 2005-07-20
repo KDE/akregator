@@ -41,14 +41,21 @@ namespace Backend {
 class StorageMK4Impl::StorageMK4ImplPrivate
 {
     public:
-        StorageMK4ImplPrivate() : modified(false), purl("url"), punread("unread"), ptotalCount("totalCount"), plastFetch("lastFetch") {}
+        StorageMK4ImplPrivate() : modified(false), 
+            purl("url"), 
+            pFeedList("feedList"),
+            pTagSet("tagSet"),
+            punread("unread"),
+            ptotalCount("totalCount"),
+            plastFetch("lastFetch") {}
+
         c4_Storage* storage;
         c4_View archiveView;
         bool autoCommit;
 	    bool modified;
         QMap<QString, FeedStorage*> feeds; 
         QStringList feedURLs;
-        c4_StringProp purl;
+        c4_StringProp purl, pFeedList, pTagSet;
         c4_IntProp punread, ptotalCount, plastFetch;
         QTimer* commitTimer;
         QString archivePath;
@@ -284,6 +291,28 @@ void StorageMK4Impl::clear()
     }
     d->storage->RemoveAll();
     
+}
+
+void StorageMK4Impl::storeFeedList(const QString& /*opmlStr*/)
+{
+    // TODO
+}
+
+QString StorageMK4Impl::restoreFeedList() const
+{
+    // TODO
+    return "";
+}
+
+void StorageMK4Impl::storeTagSet(const QString& /*xmlStr*/)
+{
+    // TODO
+}
+
+QString StorageMK4Impl::restoreTagSet() const
+{
+    // TODO
+    return "";
 }
         
 } // namespace Backend

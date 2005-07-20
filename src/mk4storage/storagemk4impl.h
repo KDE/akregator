@@ -97,7 +97,13 @@ class StorageMK4Impl : public Storage
         virtual void setLastFetchFor(const QString& url, int lastFetch);
         
         virtual QStringList feeds() const;
-        
+       
+        virtual void storeFeedList(const QString& opmlStr);
+        virtual QString restoreFeedList() const;
+
+        virtual void storeTagSet(const QString& xmlStr);
+        virtual QString restoreTagSet() const; 
+  
         /** adds all feed storages from a source to this storage
             existing articles are replaced
         */

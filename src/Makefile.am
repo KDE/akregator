@@ -64,6 +64,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
                                 tagset.cpp \
                                 storagedummyimpl.cpp \
                                 storagefactorydummyimpl.cpp \
+                                simplenodeselector.cpp \
                                 feedstoragedummyimpl.cpp
 				
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined 
@@ -131,7 +132,6 @@ libakregatorpart_la_SOURCES = \
         tagfolderitem.cpp \
         speechclient.cpp \
 	kspeechsink.skel \
-        simplenodeselector.cpp \
         utils.cpp \
 	kspeech.stub
 

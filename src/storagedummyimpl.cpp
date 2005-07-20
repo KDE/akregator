@@ -53,7 +53,8 @@ class StorageDummyImpl::StorageDummyImplPrivate
         feeds[url] = entry;
 	
     }
-
+    QString tagSet;
+    QString feedList;
     QMap<QString, Entry> feeds;
 };
 
@@ -171,6 +172,26 @@ void StorageDummyImpl::clear()
     }
     d->feeds.clear();
 
+}
+
+void StorageDummyImpl::storeFeedList(const QString& opmlStr)
+{
+    d->feedList = opmlStr;
+}
+
+QString StorageDummyImpl::restoreFeedList() const
+{
+    return d->feedList;
+}
+
+void StorageDummyImpl::storeTagSet(const QString& xmlStr)
+{
+    d->tagSet = xmlStr;
+}
+
+QString StorageDummyImpl::restoreTagSet() const
+{
+    return d->tagSet;
 }
 
 } // namespace Backend

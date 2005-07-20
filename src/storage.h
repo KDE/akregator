@@ -88,6 +88,16 @@ class Storage : public QObject
         virtual int lastFetchFor(const QString& url) = 0;
         virtual void setLastFetchFor(const QString& url, int lastFetch) = 0;
 
+        /** stores the feed list in the storage backend. This is a fallback for the case that the 
+            feeds.opml file gets corrupted 
+            @param opmlStr the feed list in OPML format
+         */
+        virtual void storeFeedList(const QString& opmlStr) = 0;
+        virtual QString restoreFeedList() const = 0;
+
+        virtual void storeTagSet(const QString& xmlStr) = 0;
+        virtual QString restoreTagSet() const = 0;
+
         /** returns a list of all feeds (URLs) stored in this archive */
         
         virtual QStringList feeds() const = 0;
