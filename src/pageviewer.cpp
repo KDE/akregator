@@ -70,7 +70,7 @@ class PageViewer::HistoryEntry
     int id;
 
     HistoryEntry() {}
-    HistoryEntry(const KURL& u, const QString& t=QString::null, const QDataStream& s=QDataStream()): url(u), title(t)   
+    HistoryEntry(const KURL& u, const QString& t=QString::null): url(u), title(t)   
     {
         id = abs( QTime::currentTime().msecsTo( QTime() ) );    // nasty, but should provide a reasonably unique number
     }
