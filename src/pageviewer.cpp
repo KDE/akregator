@@ -43,18 +43,58 @@
 #include <kparts/browserinterface.h>
 
 #include <qclipboard.h>
+#include <qcstring.h>
+#include <qdatastream.h>
 #include <qdatetime.h>
 #include <qfile.h>
-#include <qvaluelist.h>
-#include <qscrollview.h>
-
 #include <qmetaobject.h>
+#include <qscrollview.h>
+#include <qstring.h>
+#include <qvaluelist.h>
 #include <private/qucomextra_p.h>
 
-using namespace Akregator;
+#include <cstdlib>
+using std::abs;
 
+namespace Akregator {
+
+
+// taken from KDevelop
+class PageViewer::HistoryEntry
+{
+    public:
+
+    KURL url;
+    QString title;
+    QByteArray state;
+    int id;
+
+    HistoryEntry() {}
+    HistoryEntry(const KURL& u, const QString& t=QString::null, const QDataStream& s=QDataStream()): url(u), title(t)   
+    {
+        id = abs( QTime::currentTime().msecsTo( QTime() ) );    // nasty, but should provide a reasonably unique number
+    }
+    
+};
+
+class PageViewer::PageViewerPrivate
+{
+    public:
+
+    QValueList<HistoryEntry> history;
+    QValueList<HistoryEntry>::Iterator current;
+    
+    KToolBarPopupAction* backAction;
+    KToolBarPopupAction* forwardAction;
+    KAction* reloadAction;
+    KAction* stopAction;
+    
+    QString caption;
+};           
+
+ 
 PageViewer::PageViewer(QWidget *parent, const char *name)
-    : Viewer(parent, name)
+    : Viewer(parent, name), d(new PageViewerPrivate)
 {
     // this hack is necessary since the part looks for []HTML Settings] in
     // KGlobal::config() by default, which is wrong when running in Kontact
@@ -63,40 +103,40 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     
     setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
     
-    m_backAction = new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
+    d->backAction = new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
-    connect(m_backAction->popupMenu(), SIGNAL(aboutToShow()),
+    connect(d->backAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotBackAboutToShow()));
-    connect(m_backAction->popupMenu(), SIGNAL(activated(int)),
+    connect(d->backAction->popupMenu(), SIGNAL(activated(int)),
             this, SLOT(slotPopupActivated(int)));
 
     
-    m_forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
+    d->forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
 
-    connect(m_forwardAction->popupMenu(), SIGNAL(aboutToShow()),
+    connect(d->forwardAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotForwardAboutToShow()));
-    connect(m_forwardAction->popupMenu(), SIGNAL(activated(int)),
+    connect(d->forwardAction->popupMenu(), SIGNAL(activated(int)),
             this, SLOT(slotPopupActivated(int)));
 
-    m_reloadAction = new KAction(i18n("Reload"), "reload", 0,
+    d->reloadAction = new KAction(i18n("Reload"), "reload", 0,
                             this, SLOT(slotReload()),
                             actionCollection(), "pageviewer_reload");
-    m_stopAction = new KAction(i18n("Stop"), "stop", 0,
+    d->stopAction = new KAction(i18n("Stop"), "stop", 0,
                                  this, SLOT(slotStop()),
                                  actionCollection(), "pageviewer_stop");
  
     //connect( this, SIGNAL(popupMenu(const QString &, const QPoint &)), this, SLOT(slotPopupMenu(const QString &, const QPoint &)));
 
-    m_backAction->setEnabled(false);
-    m_forwardAction->setEnabled(false);
-    m_stopAction->setEnabled(false);
+    d->backAction->setEnabled(false);
+    d->forwardAction->setEnabled(false);
+    d->stopAction->setEnabled(false);
     
     connect(this, SIGNAL(started(KIO::Job *)), this, SLOT(slotStarted(KIO::Job* )));
     connect(this, SIGNAL(completed()), this, SLOT(slotCompleted()));
     connect(this, SIGNAL(canceled(const QString &)), this, SLOT(slotCancelled(const QString &)));
 
-    m_current = m_history.end();
-    m_restoring = false;
+    d->current = d->history.end();
+
     // uncomment this to load konq plugins (doesn't work properly and clutters the GUI)
     //loadPlugins( partObject(), this, instance() );
     
@@ -104,47 +144,47 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
 PageViewer::~PageViewer()
 {
+    delete d;
+    d = 0;
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotBack()
 {
-    if ( m_current != m_history.begin() )
+    if ( d->current != d->history.begin() )
     {
-        --m_current;
-        m_restoring = true;
-        openURL( (*m_current).url );
-        m_restoring = false;
+        QValueList<HistoryEntry>::Iterator tmp = d->current;
+        --tmp;
+        restoreHistoryEntry(tmp);
     }
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotForward()
 {
-    if (  m_current != m_history.fromLast() )
+    if (  d->current != d->history.fromLast() )
     {
-        ++m_current;
-        m_restoring = true;
-        openURL( (*m_current).url );
-        m_restoring = false;
+        QValueList<HistoryEntry>::Iterator tmp = d->current;
+        ++tmp;
+        restoreHistoryEntry(tmp);
     }
 }
 
 void PageViewer::slotBackAboutToShow()
 {
-    KPopupMenu *popup = m_backAction->popupMenu();
+    KPopupMenu *popup = d->backAction->popupMenu();
     popup->clear();
 
-    if ( m_current == m_history.begin() )
+    if ( d->current == d->history.begin() )
         return;
 
-    QValueList<PageViewerHistoryEntry>::Iterator it = m_current;
+    QValueList<HistoryEntry>::Iterator it = d->current;
     --it;
     
     int i = 0;
     while( i < 10 )
     {
-        if ( it == m_history.begin() )
+        if ( it == d->history.begin() )
         {
             popup->insertItem( (*it).title, (*it).id );
             return;
@@ -158,19 +198,19 @@ void PageViewer::slotBackAboutToShow()
 
 void PageViewer::slotForwardAboutToShow()
 {
-    KPopupMenu *popup = m_forwardAction->popupMenu();
+    KPopupMenu *popup = d->forwardAction->popupMenu();
     popup->clear();
 
-    if ( m_current == m_history.fromLast() )
+    if ( d->current == d->history.fromLast() )
         return;
 
-    QValueList<PageViewerHistoryEntry>::Iterator it = m_current;
+    QValueList<HistoryEntry>::Iterator it = d->current;
     ++it;
     
     int i = 0;
     while( i < 10 )
     {
-        if ( it == m_history.fromLast() )
+        if ( it == d->history.fromLast() )
         {
             popup->insertItem( (*it).title, (*it).id );
             return;
@@ -193,29 +233,47 @@ void PageViewer::slotStop()
     closeURL();
 }
 
-// Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-bool PageViewer::openURL(const KURL &url)
+void PageViewer::openPage(const KURL& url)
 {
-    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
-    emit started(0);
+    Viewer::openPage(url);
+
+    addHistoryEntry(url);
     
-    if (!m_restoring)
-        addHistoryEntry(url);
-    
-    m_backAction->setEnabled( m_current != m_history.begin() );
-    m_forwardAction->setEnabled( m_current != m_history.fromLast() );
+    d->backAction->setEnabled( d->current != d->history.begin() );
+    d->forwardAction->setEnabled( d->current != d->history.fromLast() );
   
     QString favicon = FeedIconManager::self()->iconLocation(url);
     if (!favicon.isEmpty()) 
         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
     else
         emit setTabIcon(SmallIcon("html"));
+}
+
+// Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
+bool PageViewer::openURL(const KURL &url)
+{
+    updateHistoryEntry();
+    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
+    emit started(0);
     
+//     if (!d->restoring)
+//         addHistoryEntry(url);
+//     
+//     d->backAction->setEnabled( d->current != d->history.begin() );
+//     d->forwardAction->setEnabled( d->current != d->history.fromLast() );
+//   
+//     QString favicon = FeedIconManager::self()->iconLocation(url);
+//     if (!favicon.isEmpty()) 
+//         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
+//     else
+//         emit setTabIcon(SmallIcon("html"));
+//     
     return true;
 }
 
 void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
+    updateHistoryEntry();
     if (args.doPost())
     {
         browserExtension()->setURLArgs(args);
@@ -226,6 +284,7 @@ void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args
 
 void PageViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
 {
+    updateHistoryEntry();
     if (button == MidButton)
         Viewer::urlSelected(url, button, state, _target, args);
     else
@@ -240,64 +299,82 @@ void PageViewer::urlSelected(const QString &url, int button, int state, const QS
 
 void PageViewer::slotPopupActivated( int id )
 {
-    QValueList<PageViewerHistoryEntry>::Iterator it = m_history.begin();
-    while( it != m_history.end() )
+    QValueList<HistoryEntry>::Iterator it = d->history.begin();
+    while( it != d->history.end() )
     {
         if ( (*it).id == id )
         {
-            m_current = it;
-            m_restoring = true;
-            openURL( (*m_current).url );
-            m_restoring = false;
+            restoreHistoryEntry(it);
             return;
         }
         ++it;
     }
 }
 
+void PageViewer::updateHistoryEntry()
+{
+    (*d->current).state = QByteArray(); // Start with empty buffer.
+    QDataStream stream( (*d->current).state, IO_WriteOnly);
+    browserExtension()->saveState(stream);
+}
+
+void PageViewer::restoreHistoryEntry(const QValueList<HistoryEntry>::Iterator& entry)
+{
+    updateHistoryEntry();
+    
+    QDataStream stream( (*entry).state, IO_ReadOnly );
+    browserExtension()->restoreState( stream );
+    d->current = entry;
+    d->backAction->setEnabled( d->current != d->history.begin() );
+    d->forwardAction->setEnabled( d->current != d->history.fromLast() );
+    //openURL( entry.url ); // TODO read state
+    
+
+}
+
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::addHistoryEntry(const KURL& url)
 {
-    QValueList<PageViewerHistoryEntry>::Iterator it = m_current;
+    QValueList<HistoryEntry>::Iterator it = d->current;
     
     // if We're not already the last entry, we truncate the list here before adding an entry
-    if ( it != m_history.end() && it != m_history.fromLast() )
+    if ( it != d->history.end() && it != d->history.fromLast() )
     {
-        m_history.erase( ++it, m_history.end() );
+        d->history.erase( ++it, d->history.end() );
     }
-    PageViewerHistoryEntry newEntry( url, url.url() );
-    kdDebug() << "PageViewer::addHistoryEntry() " << url.url() << endl;
-    
+    HistoryEntry newEntry( url, url.url() );
+
     // Only save the new entry if it is different from the last
-    if ( newEntry.url != (*m_current).url )
+    if ( newEntry.url != (*d->current).url )
     {
-        m_history.append( newEntry );
-        m_current = m_history.fromLast();
+        d->history.append( newEntry );
+        d->current = d->history.fromLast();
     }
+    updateHistoryEntry();
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotStarted( KIO::Job * )
 {
-    m_stopAction->setEnabled(true);
+    d->stopAction->setEnabled(true);
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotCompleted( )
 {
-    m_stopAction->setEnabled(false);
+    d->stopAction->setEnabled(false);
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotCancelled( const QString & /*errMsg*/ )
 {
-    m_stopAction->setEnabled(false);
+    d->stopAction->setEnabled(false);
 }
 
 
 void PageViewer::slotSetCaption(const QString& cap) {
-    m_caption = cap;
-    (*m_current).title = cap;
+    d->caption = cap;
+    (*d->current).title = cap;
 }
 
 void PageViewer::slotPaletteOrFontChanged()
@@ -327,7 +404,7 @@ void PageViewer::slotGlobalBookmarkArticle()
 {
     KBookmarkManager *mgr = KBookmarkManager::userBookmarksManager();
     KBookmarkGroup grp = mgr->root();
-    grp.addBookmark(mgr, m_caption, toplevelURL());
+    grp.addBookmark(mgr, d->caption, toplevelURL());
     mgr->save();
 }
 
@@ -360,10 +437,10 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     else // we are not on a link
     {
 
-        m_backAction->plug( &popup );
-        m_forwardAction->plug( &popup );
-        m_reloadAction->plug(&popup);
-        m_stopAction->plug(&popup);
+        d->backAction->plug( &popup );
+        d->forwardAction->plug( &popup );
+        d->reloadAction->plug(&popup);
+        d->stopAction->plug(&popup);
 
         popup.insertSeparator();
         action("viewer_copy")->plug(&popup);
@@ -414,5 +491,6 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     }
 }
 
+} // namespace Akregator 
+
 #include "pageviewer.moc"
-// vim: ts=4 sw=4 et
