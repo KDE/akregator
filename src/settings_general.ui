@@ -49,9 +49,6 @@
                     <property name="text">
                         <string>Use &amp;notifications for all feeds</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+N</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string></string>
                     </property>
@@ -65,9 +62,6 @@
                     </property>
                     <property name="text">
                         <string>Show tra&amp;y icon</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+Y</string>
                     </property>
                 </widget>
                 <widget class="QLabel" row="3" column="0">
@@ -124,9 +118,6 @@
                     <property name="text">
                         <string>Mark &amp;all feeds as read on startup</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+A</string>
-                    </property>
                 </widget>
                 <widget class="QCheckBox" row="1" column="0">
                     <property name="name">
@@ -172,9 +163,6 @@
                     </property>
                     <property name="text">
                         <string>Use the &amp;browser cache (less network traffic)</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+B</string>
                     </property>
                 </widget>
             </grid>

@@ -97,9 +97,6 @@
                         <property name="text">
                             <string>U&amp;se a custom update interval</string>
                         </property>
-                        <property name="accel">
-                            <string>Alt+S</string>
-                        </property>
                     </widget>
                     <widget class="QLayoutWidget">
                         <property name="name">
@@ -194,9 +191,6 @@
                         <property name="text">
                             <string>No&amp;tify when new articles arrive</string>
                         </property>
-                        <property name="accel">
-                            <string>Alt+T</string>
-                        </property>
                     </widget>
                     <widget class="QCheckBox">
                         <property name="name">
@@ -205,9 +199,6 @@
                         <property name="text">
                             <string>&amp;Mark articles as read when they arrive</string>
                         </property>
-                        <property name="accel">
-                            <string>Alt+M</string>
-                        </property>
                     </widget>
                     <widget class="QCheckBox">
                         <property name="name">
@@ -215,9 +206,6 @@
                         </property>
                         <property name="text">
                             <string>&amp;Load the full website when reading articles</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+L</string>
                         </property>
                     </widget>
                     <spacer>
@@ -306,9 +294,6 @@
                             <property name="text">
                                 <string>&amp;Keep all articles</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+K</string>
-                            </property>
                         </widget>
                         <widget class="QRadioButton" row="2" column="0">
                             <property name="name">
@@ -317,9 +302,6 @@
                             <property name="text">
                                 <string>&amp;Limit archive to:</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+L</string>
-                            </property>
                         </widget>
                         <widget class="QRadioButton" row="3" column="0" rowspan="1" colspan="2">
                             <property name="name">
@@ -327,9 +309,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Delete articles older than:</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+D</string>
                             </property>
                         </widget>
                         <widget class="KIntSpinBox" row="3" column="2">
@@ -416,9 +395,6 @@
                             <property name="text">
                                 <string>Di&amp;sable archiving</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+S</string>
-                            </property>
                         </widget>
                         <widget class="QRadioButton" row="0" column="0" rowspan="1" colspan="4">
                             <property name="name">
@@ -426,9 +402,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Use default settings</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+U</string>
                             </property>
                             <property name="checked">
                                 <bool>true</bool>

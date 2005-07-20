@@ -13,9 +13,6 @@
             <height>486</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>Form1</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -54,9 +51,6 @@
                     <property name="text">
                         <string>&amp;Configure...</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+C</string>
-                    </property>
                 </widget>
             </hbox>
         </widget>
@@ -94,9 +88,6 @@
                     </property>
                     <property name="text">
                         <string>Mar&amp;k selected article read after</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+K</string>
                     </property>
                     <property name="checked">
                         <bool>true</bool>

@@ -121,9 +121,6 @@
                     <property name="text">
                         <string>&amp;Apply</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+A</string>
-                    </property>
                     <property name="autoDefault">
                         <bool>true</bool>
                     </property>
