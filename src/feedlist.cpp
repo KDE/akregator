@@ -66,10 +66,10 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
             m_list->d->flatList.append(node);
             if (!m_list->d->urlMap[node->xmlUrl()].contains(node))
                     m_list->d->urlMap[node->xmlUrl()].append(node);
-                    
+
             connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_list, SLOT(slotNodeDestroyed(TreeNode*) ));
             m_list->signalNodeAdded(node); // emit
-            
+
             return true;
         }
         virtual bool visitFolder(Folder* node)
@@ -84,19 +84,19 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
             connect(node, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), m_list, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
 
             m_list->signalNodeAdded(node); // emit
-            
+
             for (TreeNode* i = node->firstChild(); i && i != node; i = i->next() )
                 m_list->slotNodeAdded(i);
 
             return true;
         }
-        
+
         virtual void visit(TreeNode* node, bool preserveID)
         {
             m_preserveID = preserveID;
             TreeNodeVisitor::visit(node);
         }
-        
+
     private:
         FeedList* m_list;
         bool m_preserveID;
@@ -114,23 +114,23 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
             m_list->d->urlMap[node->xmlUrl()].remove(node);
 
             disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_list, SLOT(slotNodeDestroyed(TreeNode*) ));
-            
+
             m_list->signalNodeRemoved(node); // emit signal
-            
+
             return true;
         }
         virtual bool visitFolder(Folder* node)
         {
             m_list->d->idMap.remove(node->id());
             m_list->d->flatList.remove(node);
-            
+
             disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_list, SLOT(slotNodeDestroyed(TreeNode*) ));
             disconnect(node, SIGNAL(signalChildAdded(TreeNode*)), m_list, SLOT(slotNodeAdded(TreeNode*) ));
             disconnect(node, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), m_list, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
             disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_list, SLOT(slotNodeDestroyed(TreeNode*) ));
-        
+
             m_list->signalNodeRemoved(node); // emit signal
-            
+
             return true;
         }
     private:
@@ -142,7 +142,7 @@ FeedList::FeedList(QObject *parent, const char *name)
 {
     d->addNodeVisitor = new AddNodeVisitor(this);
     d->removeNodeVisitor = new RemoveNodeVisitor(this);
-    
+
     d->idCounter = 2;
     d->rootNode = new Folder(i18n("All Feeds"));
     d->rootNode->setId(1);
@@ -154,11 +154,11 @@ const QValueList<TreeNode*>& FeedList::asFlatList() const
 {
     return d->flatList;
 }
-    
+
 void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
 {
     QDomElement e = node.toElement(); // try to convert the node to an element.
-    
+
     if( !e.isNull() )
     {
         QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
@@ -177,7 +177,7 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
         {
             Folder* fg = Folder::fromOPML(e);
             parent->appendChild(fg);
-        
+
             if (e.hasChildNodes())
             {
                 QDomNode child = e.firstChild();
@@ -200,23 +200,23 @@ bool FeedList::readFromOPML(const QDomDocument& doc)
     kdDebug() << "measuring startup time: START" << endl;
     QTime spent;
     spent.start();
-    
+
     if (root.tagName().lower() != "opml")
     {
         return false;
     }
     QDomNode bodyNode = root.firstChild();
-    
+
     while (!bodyNode.isNull() && bodyNode.toElement().tagName().lower() != "body")
         bodyNode = bodyNode.nextSibling();
-   
+
 
     if (bodyNode.isNull())
     {
         kdDebug() << "Failed to acquire body node, markup broken?" << endl;
         return false;
     }
-    
+
     QDomElement body = bodyNode.toElement();
 
     QDomNode i = body.firstChild();
@@ -271,10 +271,10 @@ Feed* FeedList::findByURL(const QString& feedURL) const
 Article FeedList::findArticle(const QString& feedURL, const QString& guid) const
 {
     Feed* feed = findByURL(feedURL);
-    
+
     return feed ? feed->findArticle(guid) : Article();
 }
-    
+
 bool FeedList::isEmpty() const
 {
     return d->rootNode->firstChild() == 0;
@@ -284,7 +284,7 @@ Folder* FeedList::rootNode() const
 {
     return d->rootNode;
 }
-    
+
 void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
 {
     if ( list == this )
@@ -295,7 +295,8 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
 
     QValueList<TreeNode*> children = list->rootNode()->children();
 
-    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+    QValueList<TreeNode*>::ConstIterator end(  children.end() );
+    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
     {
         list->rootNode()->removeChild(*it);
         parent->insertChild(*it, after);
@@ -326,7 +327,9 @@ QDomDocument FeedList::toOPML() const
 
     QValueList<TreeNode*> children = rootNode()->children();
 
-    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+    QValueList<TreeNode*>::ConstIterator end(  children.end() );
+
+    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
         body.appendChild( (*it)->toOPML(body, doc) );
 
     return doc;
@@ -341,7 +344,7 @@ void FeedList::setTitle(const QString& title)
 {
     d->title = title;
 }
-    
+
 void FeedList::slotNodeAdded(TreeNode* node)
 {
     Folder* parent = node->parent();

@@ -17,7 +17,8 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : Settings
     QStringList backends = Backend::StorageFactoryRegistry::self()->list();
     QString tname;
     int i = 0;
-    for (QStringList::Iterator it = backends.begin(); it != backends.end(); ++it)
+    QStringList::Iterator end( backends.end() );
+    for (QStringList::Iterator it = backends.begin(); it != end; ++it)
     {
         m_factories[i] = Backend::StorageFactoryRegistry::self()->getFactory(*it);
         m_keyPos[m_factories[i]->key()] = i;

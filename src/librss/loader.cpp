@@ -82,9 +82,9 @@ void FileRetriever::retrieveData(const KURL &url)
 
    d->job = KIO::get(u, !m_useCache, false);
 
-   
+
    QTimer::singleShot(1000*90, this, SLOT(slotTimeout()));
-   
+
    connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
                 SLOT(slotData(KIO::Job *, const QByteArray &)));
    connect(d->job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));
@@ -100,7 +100,7 @@ void FileRetriever::slotTimeout()
     d->buffer = NULL;
 
     d->lastError = KIO::ERR_SERVER_TIMEOUT;
-    
+
     emit dataRetrieved(QByteArray(), false);
 }
 
@@ -318,13 +318,13 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
          ++charData;
       }
 
-      if ( len > 3 && QChar(*charData) == QChar(0357) ) { // 0357 0273 0277 
+      if ( len > 3 && QChar(*charData) == QChar(0357) ) { // 0357 0273 0277
 			  len -= 3;
 			  charData += 3;
 	  }
       QByteArray tmpData;
       tmpData.setRawData(charData, len);
-      
+
       if (doc.setContent(tmpData))
       {
          rssDoc = Document(doc);
@@ -340,7 +340,7 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
          status = ParseError;
       }
 
-      tmpData.resetRawData(charData, len);      
+      tmpData.resetRawData(charData, len);
    } else
       status = RetrieveError;
 
@@ -355,7 +355,7 @@ void Loader::discoverFeeds(const QByteArray &data)
     QString s2;
     //QTextStream ts( &str, IO_WriteOnly );
     //ts << data.data();
-    
+
     // "<[\\s]link[^>]*rel[\\s]=[\\s]\\\"[\\s]alternate[\\s]\\\"[^>]*>"
     // "type[\\s]=[\\s]\\\"application/rss+xml\\\""
     // "href[\\s]=[\\s]\\\"application/rss+xml\\\""
@@ -381,7 +381,8 @@ void Loader::discoverFeeds(const QByteArray &data)
         s2=feeds.first();
         KURL testURL;
         // loop through, prefer feeds on same host
-        for ( QStringList::Iterator it = feeds.begin(); it != feeds.end(); ++it ) {
+        QStringList::Iterator end( feeds.end() );
+        for ( QStringList::Iterator it = feeds.begin(); it != end; ++it ) {
             testURL=*it;
             if (testURL.host()==host)
             {
@@ -390,7 +391,7 @@ void Loader::discoverFeeds(const QByteArray &data)
             }
         }
     }
-    
+
     if (s2.isNull()) {
         //kdDebug() << "No feed found for a site" << endl;
         return;
@@ -417,9 +418,9 @@ void Loader::discoverFeeds(const QByteArray &data)
     }
     else
         d->discoveredFeedURL=s2;
-    
+
     d->discoveredFeedURL.cleanPath();
 }
-    
+
 #include "loader.moc"
 // vim:noet:ts=4

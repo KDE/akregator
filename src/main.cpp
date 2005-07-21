@@ -66,7 +66,8 @@ int AkregatorApp::newInstance()
 
     QCStringList feeds = args->getOptionList("addfeed");
     QStringList feedsToAdd;
-    for (QCStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
+    QCStringList::ConstIterator end( feeds.end() );
+    for (QCStringList::ConstIterator it = feeds.begin(); it != end; ++it)
         feedsToAdd.append(*it);
 
     if (!feedsToAdd.isEmpty())
@@ -75,7 +76,7 @@ int AkregatorApp::newInstance()
     args->clear();
   }
   return KUniqueApplication::newInstance();
-} 
+}
 
 int main(int argc, char **argv)
 {

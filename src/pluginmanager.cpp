@@ -196,7 +196,7 @@ PluginManager::dump( const KService::Ptr service )
       << "X-KDE-akregator-version          : " << service->property( "X-KDE-akregator-version" ).toString() << endl
       << "X-KDE-akregator-framework-version: " << service->property( "X-KDE-akregator-framework-version" ).toString()
       << endl;
-    
+
 }
 
 
@@ -210,7 +210,8 @@ PluginManager::lookupPlugin( const Plugin* plugin )
     vector<StoreItem>::iterator iter;
 
     //search plugin pointer in store
-    for ( iter = m_store.begin(); iter != m_store.end(); ++iter ) {
+    vector<StoreItem>::const_iterator end;
+    for ( iter = m_store.begin(); iter != end; ++iter ) {
         if ( (*iter).plugin == plugin )
             break;
     }
