@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="67">
+<kpartgui name="akregator_part" version="68">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -155,6 +155,7 @@
 <Menu name="article_popup">
   <Action name="article_open"/>
   <Action name="article_open_external" />
+  <Action name="article_copy_link_address" />
   <Separator/>
   <Action name="article_set_status_important"/>
   <Action name="article_set_status"/>

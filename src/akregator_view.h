@@ -69,7 +69,7 @@ namespace Akregator {
     class Tag;
     class TagNodeList;
     class TreeNodeItem;
-    
+
     /**
      * This is the main widget of the view, containing tree view, article list, viewer etc.
      */
@@ -95,7 +95,7 @@ namespace Akregator {
             /** Adds the feeds in @c doc to the "Imported Folder"
             @param doc the DOM tree (OPML) of the feeds to import */
             bool importFeeds(const QDomDocument& doc);
-            
+
             /** Parse OPML presentation of feeds and read in articles archive, if present. If @c parent is @c NULL, the current
             feed list is replaced by the parsed one
              @param doc QDomDocument generated from OPML
@@ -120,7 +120,7 @@ namespace Akregator {
             virtual void saveProperties(KConfig* config);
 
 	         Frame* currentFrame() const { return m_currentFrame; }
-             
+
         signals:
             /** emitted when the unread count of "All Feeds" was changed */
             void signalUnreadCountChanged(int);
@@ -131,7 +131,7 @@ namespace Akregator {
             void signalStarted(KIO::Job*);
             void signalCompleted();
             void signalCanceled(const QString&);
-            
+
         public slots:
 
             void slotOnShutdown();
@@ -141,7 +141,7 @@ namespace Akregator {
 
             /** the article selection has changed */
             void slotArticleSelected(const Article&);
-            
+
             /** Shows requested popup menu for feed tree */
             void slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&);
 
@@ -157,13 +157,17 @@ namespace Akregator {
             /** opens the current article (currentItem) in external browser
             TODO: use selected instead of current? */
             void slotOpenCurrentArticleExternal();
-            
+
             /** opens the current article (currentItem) in background tab
             TODO: use selected instead of current? */
             void slotOpenCurrentArticleBackgroundTab();
 
             /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
             void slotOpenCurrentArticle();
+
+            /** copies the link of current article to clipboard
+            */
+            void slotCopyLinkAddress();
 
             /** opens a page viewer in a new tab and loads an URL
              @param url the url to load
@@ -179,13 +183,13 @@ namespace Akregator {
 
             /** called when URLs are dropped into the tree view */
             void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FolderItem *parent);
-     
+
             /** displays a URL in the status bar when the user moves the mouse over a link */
             void slotMouseOverInfo(const KFileItem *kifi);
-            
+
             /** sets the status bar text to a given string */
 	        void slotStatusText(const QString &);
-            
+
             void slotStarted();
             void slotCanceled(const QString &);
             void slotCompleted();
@@ -193,11 +197,11 @@ namespace Akregator {
 
             void slotFetchingStarted();
             void slotFetchingStopped();
-            
-           
+
+
             /** Feed has been fetched, populate article view if needed and update counters. */
             void slotFeedFetched(Feed *);
-            
+
             /** adds a new feed to the feed tree */
             void slotFeedAdd();
             /** adds a feed group to the feed tree */
@@ -216,7 +220,7 @@ namespace Akregator {
             void slotMarkAllFeedsRead();
             /** opens the homepage of the currently selected feed */
             void slotOpenHomepage();
-            
+
             /** toggles the keep flag of the currently selected article */
             void slotArticleToggleKeepFlag(bool enabled);
             /** deletes the currently selected article */
@@ -261,18 +265,18 @@ namespace Akregator {
         protected:
 
             void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
-            
+
             void connectToFeedList(FeedList* feedList);
             void disconnectFromFeedList(FeedList* feedList);
 
             void updateRemoveTagActions();
-            
+
         protected slots:
 
             /** this is called by the ctor, does init steps which need a properly created view and part */
-            
+
             void delayedInit();
-            
+
             void connectFrame(Frame *);
 
             void setTabIcon(const QPixmap&);
@@ -285,7 +289,7 @@ namespace Akregator {
 
         private:
 
-            enum ViewMode { NormalView=0, WidescreenView, CombinedView };  
+            enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
             FeedList* m_feedList;
             TagNodeList* m_tagNodeList;
@@ -293,7 +297,7 @@ namespace Akregator {
             ArticleListView *m_articleList;
             ArticleViewer *m_articleViewer;
             TabWidget *m_tabs;
-            
+
             QWidget *m_mainTab;
             Frame *m_mainFrame;
             Frame *m_currentFrame;
@@ -304,14 +308,14 @@ namespace Akregator {
             QSplitter *m_feedSplitter;
             Akregator::Part *m_part;
             ViewMode m_viewMode;
-            
+
             QTimer *m_fetchTimer;
             QTimer* m_expiryTimer;
             QTimer *m_markReadTimer;
 
             bool m_shuttingDown;
             bool m_displayingAboutPage;
-            
+
             ActionManagerImpl* m_actionManager;
 
             QPixmap m_keepFlagIcon;

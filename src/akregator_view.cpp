@@ -100,6 +100,7 @@
 #include <qtooltip.h>
 #include <qvaluevector.h>
 #include <qwhatsthis.h>
+#include <qclipboard.h>
 
 namespace Akregator {
 
@@ -116,13 +117,13 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
             delete dlg;
             return true;
         }
-        
+
         virtual bool visitFolder(Folder* node)
         {
             m_view->m_tree->findNodeItem(node)->startRename(0);
             return true;
         }
-        
+
         virtual bool visitFeed(Feed* node)
         {
             FeedPropertiesDialog *dlg = new FeedPropertiesDialog( m_view, "edit_feed" );
@@ -154,10 +155,10 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
                 node->setNotificationMode(true);
                 Kernel::self()->tagSet()->remove(tag);
                 m_view->m_tree->setFocus();
-            }    
+            }
             return true;
         }
-        
+
         virtual bool visitFolder(Folder* node)
         {
             QString msg;
@@ -173,15 +174,15 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             }
             return true;
         }
-        
+
         virtual bool visitFeed(Feed* node)
         {
             QString msg;
             if (node->title().isEmpty())
                 msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
-            else 
+            else
                 msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>").arg(node->title());
-                
+
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
@@ -234,7 +235,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
 
     connect(Kernel::self()->tagSet(), SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagCreated(const Tag&)));
     connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
-    
+
     m_tree = new FeedListView( m_feedSplitter, "FeedListView" );
     m_actionManager->initFeedListView(m_tree);
 
@@ -247,14 +248,14 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
             TreeNodeItem*, FolderItem*)));
 
     ProgressManager::self()->setFeedList(m_feedList);
-    
+
     m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
 
     m_tabs = new TabWidget(m_feedSplitter);
     m_actionManager->initTabWidget(m_tabs);
 
     connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
-    
+
     connect( m_tabs, SIGNAL( currentFrameChanged(Frame *) ), this,
             SLOT( slotFrameChanged(Frame *) ) );
 
@@ -271,12 +272,12 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
         m_searchBar->hide();
 
     mainTabLayout->addWidget(m_searchBar);
-    
+
     m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
 
     m_articleList = new ArticleListView( m_articleSplitter, "articles" );
     m_actionManager->initArticleListView(m_articleList);
-    
+
     connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Article&, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, const Article&, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
@@ -287,7 +288,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
 
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
-    
+
     m_actionManager->initArticleViewer(m_articleViewer);
 
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleList, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
@@ -325,7 +326,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
 
     KConfig *conf = Settings::self()->config();
     conf->setGroup("General");
-    if(!conf->readBoolEntry("Disable Introduction", false)) 
+    if(!conf->readBoolEntry("Disable Introduction", false))
     {
         m_articleList->hide();
         m_searchBar->hide();
@@ -371,13 +372,13 @@ void View::slotOnShutdown()
     m_articleViewer->slotShowNode(0);
 
     Kernel::self()->fetchQueue()->slotAbort();
-       
+
     m_tree->setFeedList(0, 0);
     ProgressManager::self()->setFeedList(0);
-    
+
     delete m_feedList;
     delete m_tagNodeList;
-    
+
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
     m_tabs->setCurrentPage(m_tabs->count()-1); // select last page
@@ -494,7 +495,7 @@ bool View::importFeeds(const QDomDocument& doc)
 
     if (title.isEmpty())
         title = i18n("Imported Folder");
-    
+
     bool ok;
     title = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), title, &ok);
 
@@ -503,7 +504,7 @@ bool View::importFeeds(const QDomDocument& doc)
         delete feedList;
         return false;
     }
-    
+
     Folder* fg = new Folder(title);
     m_feedList->rootNode()->appendChild(fg);
     m_feedList->append(feedList, fg);
@@ -588,7 +589,7 @@ void View::slotNormalView()
         m_articleList->show();
 
         Article article = m_articleList->currentArticle();
-        
+
         if (!article.isNull())
             m_articleViewer->slotShowArticle(article);
         else
@@ -612,7 +613,7 @@ void View::slotWidescreenView()
         m_articleList->show();
 
         Article article = m_articleList->currentArticle();
-        
+
         if (!article.isNull())
             m_articleViewer->slotShowArticle(article);
         else
@@ -764,7 +765,7 @@ void View::slotNodeSelected(TreeNode* node)
     m_tabs->showPage(m_mainTab);
 
     m_searchBar->slotClearSearch();
-    
+
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
     else
@@ -1102,7 +1103,7 @@ void View::slotArticleSelected(const Article& article)
         if ( Settings::useMarkReadDelay() )
         {
             delay = Settings::markReadDelay();
-            
+
             if (delay > 0)
                 m_markReadTimer->start( delay*1000, true );
             else
@@ -1116,7 +1117,7 @@ void View::slotArticleSelected(const Article& article)
     kdDebug() << "selected: " << a.guid() << endl;
 
     updateRemoveTagActions();
-    
+
     m_articleViewer->slotShowArticle(a);
 }
 
@@ -1170,6 +1171,27 @@ void View::slotOpenCurrentArticleBackgroundTab()
     }
 }
 
+void View::slotCopyLinkAddress()
+{
+    Article article = m_articleList->currentArticle();
+
+    if(article.isNull())
+       return;
+
+    QString link;
+    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    {
+        // in case link isn't valid, fall back to the guid permaLink.
+        if (article.link().isValid())
+            link = article.link().url();
+        else
+            link = article.guid();
+        QClipboard *cb = QApplication::clipboard();
+        cb->setText(link, QClipboard::Clipboard);
+        cb->setText(link, QClipboard::Selection);
+    }
+}
+
 void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FolderItem* parent)
 {
     Folder* pnode = parent ? parent->node() : 0;
@@ -1217,26 +1239,26 @@ void View::slotArticleDelete()
         default:
             msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(articles.count());
     }
-    
+
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
         if (m_tree->selectedNode())
             m_tree->selectedNode()->setNotificationMode(false);
-            
+
         QValueList<Feed*> feeds;
         for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         {
             Feed* feed = (*it).feed();
             if (!feeds.contains(feed))
                 feeds.append(feed);
-            feed->setNotificationMode(false);    
+            feed->setNotificationMode(false);
             (*it).setDeleted();
         }
 
         for (QValueList<Feed*>::Iterator it = feeds.begin(); it != feeds.end(); ++it)
             (*it)->setNotificationMode(true);
         if (m_tree->selectedNode())
-            m_tree->selectedNode()->setNotificationMode(true);    
+            m_tree->selectedNode()->setNotificationMode(true);
     }
 }
 
@@ -1320,7 +1342,7 @@ void View::slotSetCurrentArticleReadDelayed()
 
     if (article.isNull())
         return;
-    
+
     article.setStatus(Article::Read);
 }
 
@@ -1365,9 +1387,9 @@ void View::disconnectFromFeedList(FeedList* feedList)
 void View::updateRemoveTagActions()
 {
     QStringList tags;
-    
+
     QValueList<Article> selectedArticles = m_articleList->selectedArticles();
-    
+
     for (QValueList<Article>::ConstIterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
     {
         QStringList atags = (*it).tags();

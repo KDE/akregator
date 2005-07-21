@@ -66,7 +66,7 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 {
     public:
     NodeSelectVisitor(ActionManagerImpl* manager) : m_manager(manager) {}
-    
+
     virtual bool visitFeed(Feed* /*node*/)
     {
         KAction* remove = m_manager->action("feed_remove");
@@ -82,7 +82,7 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 
         return true;
     }
-    
+
     virtual bool visitFolder(Folder* node)
     {
         KAction* remove = m_manager->action("feed_remove");
@@ -145,10 +145,10 @@ void ActionManagerImpl::slotUpdateRemoveTagMenu(const QStringList& tagIds)
 
     for (QValueList<KAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
         d->removeTagMenu->remove(*it);
-    
+
     for (QStringList::ConstIterator it = tagIds.begin(); it != tagIds.end(); ++it)
         d->removeTagMenu->insert(d->removeTagActions[*it]);
-    
+
 }
 
 void ActionManagerImpl::setTagSet(TagSet* tagSet)
@@ -163,7 +163,7 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
     }
 
     d->tagSet = tagSet;
-    
+
     if (tagSet != 0)
     {
         connect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
@@ -183,12 +183,12 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
         d->removeTagMenu->remove(*it);
         delete *it;
     }
-    
+
     d->assignTagActions.clear();
     d->removeTagActions.clear();
-    
+
     //TODO: remove actions from menus, delete actions, clear maps
-    
+
     QValueList<Tag> list = tagSet->toMap().values();
     for (QValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
         slotTagAdded(*it);
@@ -218,7 +218,7 @@ void ActionManagerImpl::slotNodeSelected(TreeNode* node)
 {
     d->nodeSelectVisitor->visit(node);
 }
-        
+
 ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* name) : ActionManager(parent, name), d(new ActionManagerImplPrivate)
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
@@ -262,10 +262,10 @@ void ActionManagerImpl::initPart()
     new KAction(i18n("&Import Feeds..."), "", "", d->part, SLOT(fileImport()), d->actionCollection, "file_import");
     new KAction(i18n("&Export Feeds..."), "", "", d->part, SLOT(fileExport()), d->actionCollection, "file_export");
     //new KAction(i18n("&Get Feeds From Web..."), "", "", d->part, SLOT(fileGetFeeds()), d->actionCollection, "file_getfromweb");
-    
+
     new KAction(i18n("Send &Link Address..."), "mail_generic", "", d->part, SLOT(fileSendLink()), d->actionCollection, "file_sendlink");
     new KAction(i18n("Send &File..."), "mail_generic", "", d->part, SLOT(fileSendFile()), d->actionCollection, "file_sendfile");
-    
+
     KStdAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
     new KAction( i18n("Configure &Akregator..."), "configure", "", d->part, SLOT(showOptions()), d->actionCollection, "akregator_configure_akregator" );
 }
@@ -279,7 +279,7 @@ void ActionManagerImpl::initView(View* view)
 
     // tag actions
     new KAction(i18n("&New Tag..."), "", "", d->view, SLOT(slotNewTag()), actionCollection(), "tag_new");
-    
+
     // Feed/Feed Group popup menu
     new KAction(i18n("&Open Homepage"), "", "Ctrl+H", d->view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
     new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", d->view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
@@ -287,15 +287,15 @@ void ActionManagerImpl::initView(View* view)
     new KAction(i18n("&Delete Feed"), "editdelete", "Alt+Delete", d->view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Edit Feed..."), "edit", "F2", d->view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
         KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "view_mode" );
-    
+
     KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+Shift+1", d->view, SLOT(slotNormalView()), actionCollection(), "normal_view");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
-    
+
     ra = new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+Shift+2", d->view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
-    
+
     ra = new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+Shift+3", d->view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
@@ -303,10 +303,10 @@ void ActionManagerImpl::initView(View* view)
     // toolbar / feed menu
     new KAction(i18n("&Fetch Feed"), "down", "Ctrl+L", d->view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", d->view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
-        
+
     KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, Kernel::self()->fetchQueue(), SLOT(slotAbort()), actionCollection(), "feed_stop");
     stopAction->setEnabled(false);
-    
+
     new KAction(i18n("&Mark Feed as Read"), "goto", "Ctrl+R", d->view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
     new KAction(i18n("Ma&rk All Feeds as Read"), "goto", "Ctrl+Shift+R", d->view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
@@ -317,12 +317,13 @@ void ActionManagerImpl::initView(View* view)
     new KAction( i18n("Open in Tab"), "tab_new", "Shift+Return", d->view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
     new KAction( i18n("Open in Background Tab"), QString::null, "tab_new", d->view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
     new KAction( i18n("Open in External Browser"), "window_new", "Ctrl+Shift+Return", d->view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
+    new KAction( i18n("Copy Link Address"), QString::null, QString::null, d->view, SLOT(slotCopyLinkAddress()), actionCollection(), "article_copy_link_address" );
 
     new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, d->view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
     new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, d->view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
 
     new KAction(i18n("&Delete"), "editdelete", "Delete", d->view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
-    
+
     d->assignTagMenu = new KActionMenu ( i18n( "&Assign Tag" ),
                                     actionCollection(), "article_assign_tag_menu" );
 
@@ -343,7 +344,7 @@ void ActionManagerImpl::initView(View* view)
                        i18n("Mark selected article as read")),
     "Ctrl+E", d->view, SLOT(slotSetSelectedArticleRead()),
     actionCollection(), "article_set_status_read"));
-    
+
     statusMenu->insert(new KAction(KGuiItem(i18n("&New"), "",
                         i18n("Mark selected article as new")),
     "Ctrl+N", d->view, SLOT(slotSetSelectedArticleNew()),
@@ -358,8 +359,8 @@ void ActionManagerImpl::initView(View* view)
     KToggleAction* importantAction = new KToggleAction(i18n("&Mark as Important"), "flag", "Ctrl+I", actionCollection(), "article_set_status_important");
     importantAction->setCheckedState(i18n("Remove &Important Mark"));
     connect(importantAction, SIGNAL(toggled(bool)), d->view, SLOT(slotArticleToggleKeepFlag(bool)));
-    
-    
+
+
     new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", view, SLOT(slotMoveCurrentNodeUp()), d->actionCollection, "feedstree_move_up" );
     new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", view, SLOT(slotMoveCurrentNodeDown()), d->actionCollection, "feedstree_move_down" );
     new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", view, SLOT(slotMoveCurrentNodeLeft()), d->actionCollection, "feedstree_move_left" );
