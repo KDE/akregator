@@ -65,7 +65,8 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
                                 storagedummyimpl.cpp \
                                 storagefactorydummyimpl.cpp \
                                 simplenodeselector.cpp \
-                                feedstoragedummyimpl.cpp
+                                feedstoragedummyimpl.cpp \
+                                dragobjects.cpp
 				
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined 
 libakregatorprivate_la_LIBADD =	$(top_builddir)/libkdepim/libkdepim.la \

@@ -89,7 +89,7 @@ namespace Akregator
         public slots:
            
             /** handle dropped urls */
-            void slotDropped(QDropEvent *e, QListViewItem *after);
+            void slotDropped(QDropEvent *e, QListViewItem* after);
             /** Shows only first-level feeds */
             void slotCollapseAll();
             /** Shows only root of selected tree */
@@ -182,6 +182,9 @@ namespace Akregator
 
             friend class CreateItemVisitor;
             class CreateItemVisitor;
+
+            friend class DragAndDropVisitor;
+            class DragAndDropVisitor;
 
             class FeedListViewPrivate;
             FeedListViewPrivate* d;

@@ -27,6 +27,7 @@
 #include "articlelistview.h"
 #include "article.h"
 #include "articlefilter.h"
+#include "dragobjects.h"
 #include "feed.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
@@ -500,10 +501,10 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 QDragObject *ArticleListView::dragObject()
 {
     QDragObject* d = 0;
-    Article article = currentArticle();
-    if (!article.isNull())
+    QValueList<Article> articles = selectedArticles();
+    if (!articles.isEmpty())
     {
-        d = new QTextDrag(article.link().prettyURL(), this);
+        d = new ArticleDrag(articles, this);
     }
     return d;
 }

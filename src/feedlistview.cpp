@@ -22,6 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "dragobjects.h"
 #include "folder.h"
 #include "folderitem.h"
 #include "tagfolder.h"
@@ -30,6 +31,7 @@
 #include "feed.h"
 #include "feeditem.h"
 #include "feedlist.h"
+#include "tag.h"
 #include "tagnode.h"
 #include "tagnodeitem.h"
 #include "tagnodelist.h"
@@ -70,6 +72,45 @@ class FeedListView::FeedListViewPrivate
     ConnectNodeVisitor* connectNodeVisitor;
     DisconnectNodeVisitor* disconnectNodeVisitor;
     CreateItemVisitor* createItemVisitor;
+    DragAndDropVisitor* dragAndDropVisitor;
+};
+
+class FeedListView::DragAndDropVisitor : public TreeNodeVisitor
+{
+
+public:
+    DragAndDropVisitor(FeedListView* view) : m_view(view) {}
+
+    
+    virtual bool visitTagNode(TagNode* node)
+    {
+        if (m_mode == ArticlesDropped)
+        {
+            Tag tag = node->tag();
+            QValueList<ArticleDragItem>::ConstIterator end(m_items.end());
+            for (QValueList<ArticleDragItem>::ConstIterator it = m_items.begin(); it != end; ++it)
+            {
+                Feed* f = m_view->d->feedList->findByURL((*it).feedURL);
+                Article a = f != 0 ? f->findArticle((*it).guid) : Article();
+                if (!a.isNull())
+                     a.addTag(tag.id());
+            }
+        }
+        return true;
+    }
+
+    void articlesDropped(TreeNode* node, const QValueList<ArticleDragItem>& items)
+    {
+        m_items = items;
+        m_mode = ArticlesDropped;
+        visit(node);
+    }
+private:
+    FeedListView* m_view;
+    QValueList<ArticleDragItem> m_items;
+     
+    enum Mode { ArticlesDropped };
+    Mode m_mode;
 };
 
 class FeedListView::ConnectNodeVisitor : public TreeNodeVisitor
@@ -248,6 +289,7 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     d->connectNodeVisitor = new ConnectNodeVisitor(this),
     d->disconnectNodeVisitor = new DisconnectNodeVisitor(this);
     d->createItemVisitor = new CreateItemVisitor(this);
+    d->dragAndDropVisitor = new DragAndDropVisitor(this);
 
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
@@ -265,7 +307,7 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     setAcceptDrops(true);
     setItemsMovable(true);
     
-    connect( this, SIGNAL(dropped(QDropEvent*,QListViewItem*)), this, SLOT(slotDropped(QDropEvent*,QListViewItem*)) );
+    connect( this, SIGNAL(dropped(QDropEvent*, QListViewItem*)), this, SLOT(slotDropped(QDropEvent*, QListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*, int, const QString&)), this, SLOT(slotItemRenamed(QListViewItem*, int, const QString&)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*, const QString&, int)), this, SLOT(slotItemRenamed(QListViewItem*, const QString&, int)) );
@@ -287,6 +329,7 @@ FeedListView::~FeedListView()
     delete d->connectNodeVisitor;
     delete d->disconnectNodeVisitor;
     delete d->createItemVisitor;
+    delete d->dragAndDropVisitor;
     delete d;
     d = 0;
 }
@@ -413,9 +456,11 @@ void FeedListView::drawContentsOffset( QPainter * p, int ox, int oy,
     setUpdatesEnabled(oldUpdatesEnabled);
 }
 
-void FeedListView::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
+void FeedListView::slotDropped( QDropEvent *e, QListViewItem*
+/*after*/)
 {
 	d->autoopentimer.stop();
+
     if (e->source() != viewport())
     {
         openFolder();
@@ -426,10 +471,28 @@ void FeedListView::slotDropped( QDropEvent *e, QListViewItem * /*item*/ )
         if(d->afterme)
             afterMe = dynamic_cast<TreeNodeItem*> (d->afterme);
 
-        KURL::List urls;
-        KURLDrag::decode( e, urls );
-        e->accept();
-        emit signalDropped( urls, afterMe, parent);
+        if (ArticleDrag::canDecode(e))
+        {
+            QPoint vp = contentsToViewport(e->pos());
+            TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(itemAt(vp));
+            if (tni != 0 && tni->node() != 0)
+            {
+                QValueList<ArticleDragItem> items;
+                ArticleDrag::decode(e, items);
+                d->dragAndDropVisitor->articlesDropped(tni->node(), items);
+
+            }
+        }
+        else if (KURLDrag::canDecode(e))
+        {
+            KURL::List urls;
+            KURLDrag::decode( e, urls );
+            e->accept();
+            emit signalDropped( urls, afterMe, parent);
+        }
+    }
+    else
+    {
     }
 }
 
@@ -566,7 +629,7 @@ bool FeedListView::acceptDrag(QDropEvent *e) const
 
     if (e->source() != viewport())
     {
-        return KURLDrag::canDecode( e );
+        return KURLDrag::canDecode(e);
     }
     else
     {
