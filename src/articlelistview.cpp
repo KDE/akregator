@@ -127,7 +127,7 @@ class ArticleListView::ArticleItem : public KListViewItem
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
             virtual int compare(QListViewItem *i, int col, bool ascending) const;
 
-            void updateItem();
+            void updateItem(const Article& article);
 
             virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
             
@@ -178,8 +178,9 @@ void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup &
 
 }
 
-void ArticleListView::ArticleItem::updateItem()
+void ArticleListView::ArticleItem::updateItem(const Article& article)
 {
+    m_article = article;
     setPixmap(0, m_article.keep() ? m_keepFlag : QPixmap());
     setText(0, KCharsets::resolveEntities(m_article.title()));
     setText(1, m_article.feed()->title());
@@ -368,7 +369,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             }
             else
             {
-                ali->updateItem();
+                ali->updateItem(*it);
                 // if the updated article matches the filters after the update, make visible. If it matched them before but not after update, they should stay visible (to not confuse users)
                 if (d->textFilter.matches( ali->article()) && d->statusFilter.matches(ali->article()))
                     ali->setVisible(true);
