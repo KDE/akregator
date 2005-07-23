@@ -72,6 +72,11 @@ void TagSet::remove(const Tag& tag)
     }
 }
 
+bool TagSet::containsID(const QString& id) const
+{
+    return d->map.contains(id);
+}
+
 bool TagSet::contains(const Tag& tag) const
 {
     return d->map.contains(tag.id());

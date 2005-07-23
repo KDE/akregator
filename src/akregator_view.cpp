@@ -527,15 +527,30 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
 
     if (!parent)
     {
+        TagSet* tagSet = Kernel::self()->tagSet();
+
         Kernel::self()->setFeedList(feedList);
         ProgressManager::self()->setFeedList(feedList);
         disconnectFromFeedList(m_feedList);
         delete m_feedList;
         delete m_tagNodeList;
         m_feedList = feedList;
-        m_tagNodeList = new TagNodeList(m_feedList, Kernel::self()->tagSet());
+        m_tagNodeList = new TagNodeList(m_feedList, tagSet);
         m_tree->setFeedList(m_feedList, m_tagNodeList);
         connectToFeedList(m_feedList);
+            
+        
+        QStringList tagIDs = m_feedList->rootNode()->tags();
+        QStringList::ConstIterator end = tagIDs.end();
+        for (QStringList::ConstIterator it = tagIDs.begin(); it != end; ++it)
+        {
+            kdDebug() << *it << endl;
+            if (!tagSet->containsID(*it))
+            {
+                Tag tag(*it, *it);
+                tagSet->insert(tag);
+            }
+        }
     }
     else
         m_feedList->append(feedList, parent);

@@ -333,6 +333,15 @@ FeedListView::~FeedListView()
     delete d;
     d = 0;
 }
+FeedList*  FeedListView::feedList() const
+{
+    return d->feedList;
+}
+
+TagNodeList*  FeedListView::tagNodeList() const
+{
+    return d->tagNodeList;
+}
 
 void FeedListView::setFeedList(FeedList* feedList, TagNodeList* tagNodeList)
 {

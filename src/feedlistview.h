@@ -47,6 +47,9 @@ namespace Akregator
             /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
             void setFeedList(FeedList* feedList, TagNodeList* tagNodeList=0);
 
+            FeedList* feedList() const;
+            TagNodeList* tagNodeList() const;
+
             /** Returns root node ("All Feeds").
              * @return root node
              */

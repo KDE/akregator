@@ -65,6 +65,9 @@ class TagSet : public QObject
         /** returns @c true if this set contains @c tag */
         bool contains(const Tag& tag) const;
 
+        /** returns @c true if this set contains a tag with a given ID */
+        bool containsID(const QString& id) const;
+
         /** returns the tag with the given ID if the tag is element of the set, or a null tag if not */
         Tag findByID(const QString& id) const;
 
