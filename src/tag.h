@@ -30,12 +30,16 @@
 namespace Akregator {
 
 class TagSet;
-/** represents a tag. A tag has an identifier and a name. An identifier is a unique key, where the name is the user-visible name
-The id MUST be unique, the name SHOULD.
+
+/** represents a tag. A tag has a required identifier and optional @c scheme and @c name attributes
+ - The identifier is any string and must be unique in the tag set
+ - @c name is the human-readible name of the tag. This is the string used in the GUI
+ - The optional attribute @c scheme is a classification scheme the tag belongs to
+
 Examples:
 user-generated tag with some magic in the id to make it (probably) unique: id: ACB4C7D5FFFriends name: Friends
 mapped from a blog category: id: http://ablog.org/blog#Funny name: Funny
-tag from some ontology: id: http://foo/ont/Animals name: Animals
+tag from some ontology: id: http://foo/ont/AnimalTaxonomy/mammals, name: Mammals, scheme: http://foo/ont/AnimalTaxonomy
 */
 class Tag
 {
@@ -43,13 +47,31 @@ class Tag
     
     public:
 
-    /** creates a tag with given id and name. If name is QString::null, the id is used as name. If id is QString::null, the object is considered as NULL object (see isNull())*/
-    Tag(const QString& id, const QString& name=QString::null);
+    /** creates a tag with given id, name and scheme. If name is QString::null, the id is used as name. If id is QString::null, the object is considered as NULL object (see isNull())*/
+    Tag(const QString& id, const QString& name=QString::null, const QString& scheme=QString::null);
 
     /** creates a null tag (isNull() is @c true) */
     Tag();
-    
+   
     Tag(const Tag& other);
+
+    /** creates a tag from a Atom-1.0-like (term, scheme, label) category.
+
+      @c term is a string that identifies the tag, Examples are: "General", "KDE", "Personal"
+      @c scheme (optional) classification scheme the term belongs to
+      @c label/name the (optinal) human-readable name of the tag, synonymous to @c name
+      
+      Example:
+      
+      Create
+
+      <category term="foo" scheme="http://del.icio.us/tag"  label="Del.icio.us tag for foo"/>
+
+      using Tag::fromCategory("foo", "http://del.icio.us/tag", "Del.icio.us tag for foo")
+      
+      The @c id is built using 'scheme + "/" + term': The example gets id = "http://del.icio.us/tag/foo"
+    */
+    static Tag fromCategory(const QString& term, const QString& scheme=QString::null, const QString& name=QString::null);
 
     virtual ~Tag();
 
@@ -63,6 +85,9 @@ class Tag
     /** user-visible name of the tag */
     QString name() const;
 
+    /** (optional) classfication scheme this tag belongs to */
+    QString scheme() const;
+
     void setName(const QString& name);
 
     Tag& operator=(const Tag& other);
@@ -72,8 +97,10 @@ class Tag
 
 
     protected:
-
+    /** called by TagSet */
     void addedToTagSet(TagSet* tagSet) const;
+
+/** called by TagSet */
     void removedFromTagSet(TagSet* tagSet) const;
     private:
 

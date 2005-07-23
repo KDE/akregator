@@ -110,7 +110,8 @@ void TagSet::readFromXML(const QDomDocument& doc)
             {
                 QString id = e.attribute(QString::fromLatin1("id"));
                 QString name = e.text();
-                Tag tag(id, name);
+                QString scheme = e.attribute(QString::fromLatin1("scheme"));
+                Tag tag(id, name, scheme);
                 insert(tag);
             }
         }
@@ -139,6 +140,8 @@ QDomDocument TagSet::toXML() const
         
         QDomText text = doc.createTextNode((*it).name());
         tn.setAttribute(QString::fromLatin1("id"),(*it).id());
+        if (!(*it).scheme().isEmpty())
+            tn.setAttribute(QString::fromLatin1("scheme"),(*it).scheme());
         tn.appendChild(text);
         root.appendChild(tn);
     }

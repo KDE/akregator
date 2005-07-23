@@ -36,6 +36,7 @@ class Tag::TagPrivate : public Shared
     public:
     QString id;
     QString name;
+    QString scheme;
     QValueList<TagSet*> tagSets;
     bool operator==(const TagPrivate& other) const
     {
@@ -46,11 +47,19 @@ class Tag::TagPrivate : public Shared
 Tag::Tag() : d(new TagPrivate)
 {}
 
-Tag::Tag(const QString& id, const QString& name) : d(new TagPrivate)
+Tag::Tag(const QString& id, const QString& name, const QString& scheme) : d(new TagPrivate)
 {
     d->id = id;
     d->name = name.isNull() ? id : name;
+    d->scheme = scheme;
 }
+
+Tag Tag::fromCategory(const QString& term, const QString& scheme, const QString& name)
+{
+    Tag tag(scheme + "/" + term, name, scheme);
+    return tag;
+}
+
 
 Tag::Tag(const Tag& other) : d(0)
 {
@@ -92,6 +101,11 @@ bool Tag::isNull() const
 QString Tag::name() const
 {
     return d->name;
+}
+
+QString Tag::scheme() const
+{
+    return d->scheme;
 }
 
 void Tag::setName(const QString& name)
