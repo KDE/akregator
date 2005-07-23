@@ -498,7 +498,7 @@ void FeedListView::slotDropped( QDropEvent *e, QListViewItem*
             KURL::List urls;
             KURLDrag::decode( e, urls );
             e->accept();
-            emit signalDropped( urls, afterMe, parent);
+            emit signalDropped( urls, afterMe ? afterMe->node() : 0, parent ? parent->node() : 0);
         }
     }
     else
@@ -861,7 +861,7 @@ void FeedListView::slotItemRenamed(QListViewItem* item, const QString& text, int
 void FeedListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
 {
     TreeNodeItem* ti = dynamic_cast<TreeNodeItem*>(item);
-    emit signalContextMenu(list, ti, p);
+    emit signalContextMenu(list, ti ? ti->node() : 0, p);
     if (ti)
         ti->showContextMenu(p);
 }

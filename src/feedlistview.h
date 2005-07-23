@@ -48,7 +48,11 @@ namespace Akregator
             /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
             void setFeedList(FeedList* feedList, TagNodeList* tagNodeList=0);
 
+            /** returns the currently displayed feed list, or 0 if none is set */
+
             FeedList* feedList() const;
+
+             /** returns the currently displayed tag node list (must belong to feedList()), or 0 if none is set */
             TagNodeList* tagNodeList() const;
 
             /** Returns root node ("All Feeds").
@@ -92,9 +96,6 @@ namespace Akregator
             TreeNodeItem* findNodeItem(TreeNode* node);
         public slots:
            
-            /** handle dropped urls */
-            void slotDropped(QDropEvent *e, QListViewItem* after);
-
             /** go one item up */
             void slotItemUp();
             /** go one item down */
@@ -113,26 +114,10 @@ namespace Akregator
             void slotPrevUnreadFeed();
             void slotNextUnreadFeed();
             
-            /** called when a node is added to the tree. If no item for the node exists, it will be created */
-            virtual void slotNodeAdded(TreeNode* node);
-            
-            /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
-            
-            Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
-            virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
-            
-            /** deletes the item belonging to the deleted node */
-            virtual void slotNodeDestroyed(TreeNode* node);
-            
-            /** update the item belonging to the node */
-            virtual void slotNodeChanged(TreeNode* node);
-
-            virtual void slotFeedListDestroyed(FeedList*);
-            
         signals:
-            void signalDropped (KURL::List &, TreeNodeItem*, FolderItem*);
+            void signalDropped (KURL::List &, TreeNode*, Folder*);
             void signalNodeSelected(TreeNode*);
-            void signalContextMenu(KListView*, TreeNodeItem*, const QPoint&);
+            void signalContextMenu(KListView*, TreeNode*, const QPoint&);
 
         protected:
             
@@ -159,6 +144,9 @@ namespace Akregator
         
         protected slots:
             
+
+            void slotDropped(QDropEvent *e, QListViewItem* after);
+
             virtual void slotSelectionChanged(QListViewItem* item);
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             virtual void slotItemRenamed(QListViewItem* item, int col, const QString& text);
@@ -169,6 +157,21 @@ namespace Akregator
             virtual void slotFeedFetchCompleted(Feed* feed);
             void openFolder();
 
+            /** called when a node is added to the tree. If no item for the node exists, it will be created */
+            virtual void slotNodeAdded(TreeNode* node);
+            
+            /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
+            
+            Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
+            virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
+            
+            /** deletes the item belonging to the deleted node */
+            virtual void slotNodeDestroyed(TreeNode* node);
+            
+            /** update the item belonging to the node */
+            virtual void slotNodeChanged(TreeNode* node);
+
+            virtual void slotFeedListDestroyed(FeedList*);
 
         private:
             friend class ConnectNodeVisitor;

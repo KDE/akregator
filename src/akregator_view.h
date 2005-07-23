@@ -59,7 +59,6 @@ namespace Akregator {
     class ArticleListView;
     class ArticleViewer;
     class Folder;
-    class FolderItem;
     class FeedList;
     class FeedListView;
     class Frame;
@@ -68,7 +67,6 @@ namespace Akregator {
     class TabWidget;
     class Tag;
     class TagNodeList;
-    class TreeNodeItem;
 
     /**
      * This is the main widget of the view, containing tree view, article list, viewer etc.
@@ -143,7 +141,7 @@ namespace Akregator {
             void slotArticleSelected(const Article&);
 
             /** Shows requested popup menu for feed tree */
-            void slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&);
+            void slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&);
 
             /** emits @ref signalUnreadCountChanged(int) */
             void slotSetTotalUnread();
@@ -182,7 +180,7 @@ namespace Akregator {
             void slotCaptionChanged(const QString &);
 
             /** called when URLs are dropped into the tree view */
-            void slotFeedURLDropped (KURL::List &urls, TreeNodeItem* after, FolderItem *parent);
+            void slotFeedURLDropped (KURL::List &urls, TreeNode* after, Folder *parent);
 
             /** displays a URL in the status bar when the user moves the mouse over a link */
             void slotMouseOverInfo(const KFileItem *kifi);

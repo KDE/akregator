@@ -239,13 +239,13 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_tree = new FeedListView( m_feedSplitter, "FeedListView" );
     m_actionManager->initFeedListView(m_tree);
 
-    connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNodeItem*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNodeItem*, const QPoint&)));
+    connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
 
     connect(m_tree, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
 
-    connect(m_tree, SIGNAL(signalDropped (KURL::List &, TreeNodeItem*,
-            FolderItem*)), this, SLOT(slotFeedURLDropped (KURL::List &,
-            TreeNodeItem*, FolderItem*)));
+    connect(m_tree, SIGNAL(signalDropped (KURL::List &, TreeNode*,
+            Folder*)), this, SLOT(slotFeedURLDropped (KURL::List &,
+            TreeNode*, Folder*)));
 
     ProgressManager::self()->setFeedList(m_feedList);
 
@@ -692,7 +692,7 @@ void View::slotFrameChanged(Frame *f)
     }
 }
 
-void View::slotFeedTreeContextMenu(KListView*, TreeNodeItem* /*item*/, const QPoint& /*p*/)
+void View::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
     m_tabs->showPage(m_mainTab);
 }
@@ -1210,14 +1210,12 @@ void View::slotCopyLinkAddress()
     }
 }
 
-void View::slotFeedURLDropped(KURL::List &urls, TreeNodeItem* after, FolderItem* parent)
+void View::slotFeedURLDropped(KURL::List &urls, TreeNode* after, Folder* parent)
 {
-    Folder* pnode = parent ? parent->node() : 0;
-    TreeNode* afternode = after ? after->node() : 0;
     KURL::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )
     {
-        addFeed((*it).prettyURL(), afternode, pnode, false);
+        addFeed((*it).prettyURL(), after, parent, false);
     }
 }
 
