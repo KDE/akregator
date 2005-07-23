@@ -11,6 +11,7 @@
 #include "article.h"
 #include "tools_p.h"
 #include "enclosure.h"
+#include "category.h"
 
 #include <kdebug.h>
 #include <krfcdate.h>
@@ -39,6 +40,7 @@ struct Article::Private : public Shared
 	KURL commentsLink;
         int numComments;
         Enclosure enclosure;
+	QValueList<Category> categories;
 };
 
 Article::Article() : d(new Private)
@@ -53,6 +55,11 @@ Article::Article(const Article &other) : d(0)
 Enclosure Article::enclosure() const
 {
     return d->enclosure;
+}
+
+QValueList<Category> Article::categories() const
+{
+    return d->categories;
 }
 
 Article::Article(const QDomNode &node, Format format) : d(new Private)
@@ -174,10 +181,17 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 
     for (QDomNode i = node.firstChild(); !i.isNull(); i = i.nextSibling())
     {
-        if (i.isElement() && i.toElement().tagName() == QString::fromLatin1("metaInfo:meta"))
+        if (i.isElement())
         {
-            QString type = i.toElement().attribute(QString::fromLatin1("type"));
-            d->meta[type] = i.toElement().text();
+            if (i.toElement().tagName() == QString::fromLatin1("metaInfo:meta"))
+            {
+                QString type = i.toElement().attribute(QString::fromLatin1("type"));
+                d->meta[type] = i.toElement().text();
+            }
+            else if (i.toElement().tagName() == QString::fromLatin1("category"))
+            {
+                d->categories.append(Category::fromXML(i.toElement()));
+            }
         }
     }
 }

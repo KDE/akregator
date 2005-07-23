@@ -25,6 +25,7 @@ class KURLLabel;
 
 namespace RSS
 {
+   class Category;
    class Enclosure;
    
    /**
@@ -132,8 +133,11 @@ namespace RSS
 		 int comments() const;
 
          Enclosure enclosure() const;
-         
-		 QString meta(const QString &key) const;
+
+         /** returns a list of categories this article is assigned to. (RSS2 only, Atom is not supported yet) */
+         QValueList<Category> categories() const;
+
+         QString meta(const QString &key) const;
          
          /**
           * @param parent The parent widget for the KURLLabel.
