@@ -545,6 +545,9 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
         for (QStringList::ConstIterator it = tagIDs.begin(); it != end; ++it)
         {
             kdDebug() << *it << endl;
+            // create a tag for every tag ID in the archive that is not part of the tagset
+            // this is a fallback in case the tagset was corrupted,
+            // so the tagging information from archive does not get lost.
             if (!tagSet->containsID(*it))
             {
                 Tag tag(*it, *it);
