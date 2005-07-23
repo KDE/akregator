@@ -25,7 +25,8 @@
 #define AKREGATORFEEDLISTVIEW_H
 
 #include <klistview.h>
-#include <kurl.h>
+
+class KURL;
 
 namespace Akregator
 {
@@ -93,25 +94,18 @@ namespace Akregator
            
             /** handle dropped urls */
             void slotDropped(QDropEvent *e, QListViewItem* after);
-            /** Shows only first-level feeds */
-            void slotCollapseAll();
-            /** Shows only root of selected tree */
-            void slotCollapse();
-            /** Shows all feeds */
-            void slotExpandAll();
-            /** Shows all feeds of selected tree */
-            void slotExpand();
-            /** Move feed up */
+
+            /** go one item up */
             void slotItemUp();
-            /** Move feed down */
+            /** go one item down */
             void slotItemDown();
-            /** Move feed at the beginning of current list */
+            /** select the first item in the list */
             void slotItemBegin();
-            /** Move feed at the end of current list */
+            /** select last item in the list */
             void slotItemEnd();
-            /** Move feed level up (to enclosing group) */
+            /** go to parent item */
             void slotItemLeft();
-            /** Move feed level down */
+            /** go to first child */
             void slotItemRight();
       
             void slotPrevFeed();

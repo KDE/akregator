@@ -210,6 +210,7 @@ class FeedListView::CreateItemVisitor : public TreeNodeVisitor
             item->nodeChanged();     
             m_view->d->itemDict.insert(node, item);
             m_view->connectToNode(node);
+            parentItem->sortChildItems(0, true);
             return true;
         }
 
@@ -651,40 +652,6 @@ bool FeedListView::acceptDrag(QDropEvent *e) const
 
     return true;
 }
-
-void FeedListView::slotCollapseAll()
-{
-    QListViewItem* it = firstChild();
-    while(it)
-    {
-        it->setOpen(false);
-        it = it->nextSibling();
-    }
-}
-
-void FeedListView::slotCollapse()
-{
-    if (selectedItem())
-        selectedItem()->setOpen(false);
-}
-
-
-void FeedListView::slotExpandAll()
-{
-    QListViewItem* it = firstChild();
-    while(it)
-    {
-        it->setOpen(true);
-        it = it->nextSibling();
-    }
-}
-
-void FeedListView::slotExpand()
-{
-    if (selectedItem())
-        selectedItem()->setOpen(true);
-}
-
 
 void FeedListView::slotItemUp()
 {
