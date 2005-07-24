@@ -574,7 +574,7 @@ void Part::exportFile(const KURL& url)
             i18n("The file %1 already exists; do you want to overwrite it?").arg(file.name()),
             i18n("Export"),
             i18n("Overwrite"),
-            i18n("Cancel")) == KMessageBox::No )
+            KStdGuiItem::cancel()) == KMessageBox::No )
             return;
     
         if ( !file.open(IO_WriteOnly) )

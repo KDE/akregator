@@ -720,7 +720,7 @@ void ArticleViewer::keyPressEvent(QKeyEvent* e)
 void ArticleViewer::urlSelected(const QString &url, int button, int state, const QString& _target, KParts::URLArgs args)
 {
     if(url == "config:/disable_introduction") {
-        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page") ) == KMessageBox::Yes) {
+        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), i18n("Disable"), i18n("Keep Enabled") ) == KMessageBox::Yes) {
             KConfig *conf = Settings::self()->config();
             conf->setGroup("General");
             conf->writeEntry("Disable Introduction", "true");
