@@ -90,8 +90,7 @@ public:
             QValueList<ArticleDragItem>::ConstIterator end(m_items.end());
             for (QValueList<ArticleDragItem>::ConstIterator it = m_items.begin(); it != end; ++it)
             {
-                Feed* f = m_view->d->feedList->findByURL((*it).feedURL);
-                Article a = f != 0 ? f->findArticle((*it).guid) : Article();
+                Article a = m_view->d->feedList->findArticle((*it).feedURL, (*it).guid);
                 if (!a.isNull())
                      a.addTag(tag.id());
             }
@@ -373,7 +372,7 @@ void FeedListView::setFeedList(FeedList* feedList, TagNodeList* tagNodeList)
         slotNodeAdded(*it);
 
     // handle tagNodeLsit
-
+    d->tagNodeList = tagNodeList;
     TagFolder* rootNode2 = tagNodeList->rootNode();
     TagFolderItem* ri2 = new TagFolderItem(this, ri, rootNode2);
     d->itemDict.insert(rootNode2, ri2);
