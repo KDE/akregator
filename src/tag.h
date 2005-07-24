@@ -92,6 +92,10 @@ class Tag
 
     Tag& operator=(const Tag& other);
 
+    /** compares tags by name. If names are equal, id's are compared. 
+        a < b iff a.name < b.name || (a.name == b.name && a.id < b.id) */
+    bool operator<(const Tag& other) const;
+
     /** tags are equal when their id's are equal, name is ignored */
     bool operator==(const Tag& other) const;
 

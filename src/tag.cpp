@@ -93,6 +93,11 @@ bool Tag::operator==(const Tag& other) const
     return *(other.d) == *d;
 }
 
+bool Tag::operator<(const Tag& other) const
+{
+    return (name() < other.name()) || (name() == other.name() && id() < other.id());
+}
+
 bool Tag::isNull() const
 {
     return d->id.isNull();
