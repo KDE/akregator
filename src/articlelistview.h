@@ -45,7 +45,7 @@ namespace Akregator
         Q_OBJECT
         public:
             ArticleListView(QWidget *parent = 0, const char *name = 0);
-            ~ArticleListView();
+            virtual ~ArticleListView();
             
             /** returns the current article, or a null article if there is none */
             Article currentArticle() const;
@@ -63,10 +63,6 @@ namespace Akregator
             /** clears the list and disconnects from the observed node (if any) */
             void slotClear();
             
-            void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
-            void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
-            void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
-
             /** sets text filter and status filter
             @param textFilter filters text
             @param statusFilter filters status (read, unread, new) */
@@ -115,6 +111,11 @@ namespace Akregator
             virtual QDragObject *dragObject();
 
         protected slots:
+
+            void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
+
             virtual void slotCurrentChanged(QListViewItem* item);
             virtual void slotSelectionChanged();
             virtual void slotDoubleClicked(QListViewItem* item, const QPoint& p, int i);
