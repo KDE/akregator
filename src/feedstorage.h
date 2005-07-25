@@ -21,8 +21,8 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef FEEDSTORAGE_H
-#define FEEDSTORAGE_H
+#ifndef AKREGATOR_BACKEND_FEEDSTORAGE_H
+#define AKREGATOR_BACKEND_FEEDSTORAGE_H
 
 #include <qobject.h>
 

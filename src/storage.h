@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef STORAGE_H
-#define STORAGE_H
+#ifndef AKREGATOR_BACKEND_STORAGE_H
+#define AKREGATOR_BACKEND_STORAGE_H
 
 #include <qobject.h>
 

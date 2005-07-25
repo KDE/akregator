@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef STORAGEFACTORYREGISTRY_H
-#define STORAGEFACTORYREGISTRY_H
+#ifndef AKREGATOR_BACKEND_STORAGEFACTORYREGISTRY_H
+#define AKREGATOR_BACKEND_STORAGEFACTORYREGISTRY_H
 
 class QString;
 class QStringList;

@@ -37,6 +37,10 @@ kdelnkdir = $(kde_servicesdir)
 # PRIVATE SECTION
 #########################################################################
 
+# install headers (for storage plugins)
+akregatorinclude_HEADERS = storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h
+akregatorincludedir = $(includedir)/akregator
+
 # this is a lib shared by both the KPart and the main application
 lib_LTLIBRARIES = libakregatorprivate.la
 libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
