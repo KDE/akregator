@@ -150,6 +150,26 @@ class DeleteAction : public AbstractAction
         virtual bool operator==(const AbstractAction& other);
 };
 
+class SetStatusAction : public AbstractAction
+{
+    public:
+        SetStatusAction(int status=0);
+        
+        virtual void exec(Article& article);
+        
+        int status() const;
+        void setStatus(int status);
+
+        virtual void writeConfig(KConfig* config) const;
+        virtual void readConfig(KConfig* config);
+
+        virtual SetStatusAction* clone() const { return new SetStatusAction(*this); }
+        virtual bool operator==(const AbstractAction& other);
+
+    private:
+        int m_status;
+};
+
 class AssignTagAction : public AbstractAction
 {
     public:
@@ -158,6 +178,7 @@ class AssignTagAction : public AbstractAction
         virtual void exec(Article& article);
                 
         const QString& tagID() const;
+        void setTagID(const QString& tagID);
 
         virtual void writeConfig(KConfig* config) const;
         virtual void readConfig(KConfig* config);

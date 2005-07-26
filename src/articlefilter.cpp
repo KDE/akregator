@@ -429,9 +429,50 @@ void DeleteAction::exec(Article& article)
         article.setDeleted();
 }
 
-AssignTagAction::AssignTagAction(const QString& tagID)
+SetStatusAction::SetStatusAction(int status) : m_status(status)
 {
-    m_tagID = tagID;
+}
+        
+void SetStatusAction::exec(Article& article)
+{
+    if (!article.isNull())
+        article.setStatus(m_status);
+}
+
+int SetStatusAction::status() const
+{
+    return m_status;
+}
+
+void SetStatusAction::setStatus(int status)
+{
+    m_status = status;
+}
+
+void SetStatusAction::writeConfig(KConfig* config) const
+{
+    config->writeEntry(QString::fromLatin1("actionType"), QString::fromLatin1("SetStatusAction"));
+    config->writeEntry(QString::fromLatin1("actionParams"), m_status);
+}
+
+void SetStatusAction::readConfig(KConfig* config)
+{
+    m_status = config->readNumEntry(QString::fromLatin1("actionParams"), Article::Read);
+}
+
+bool SetStatusAction::operator==(const AbstractAction& other)
+{
+    AbstractAction* ptr = const_cast<AbstractAction*>(&other);
+    SetStatusAction* o = dynamic_cast<SetStatusAction*>(ptr);
+    if (!o)
+        return false;
+    else
+        return m_status == o->m_status;
+}
+
+ 
+AssignTagAction::AssignTagAction(const QString& tagID) : m_tagID(tagID)
+{
 }
 
 void AssignTagAction::exec(Article& article)
@@ -571,6 +612,11 @@ const QString& AssignTagAction::tagID() const
     return m_tagID;
 }
 
+void AssignTagAction::setTagID(const QString& tagID)
+{
+    m_tagID = tagID;
+}
+
 void DeleteAction::readConfig(KConfig* /*config*/)
 {
 }
@@ -605,12 +651,14 @@ void ArticleFilter::readConfig(KConfig* config)
         d->matcher->readConfig(config);
 
 
-    QString actionType = config->readEntry(QString::fromLatin1("actionType"));
+        QString actionType = config->readEntry(QString::fromLatin1("actionType"));
 
     if (actionType == QString::fromLatin1("AssignTagAction"))
         d->action = new AssignTagAction();
     else if (actionType == QString::fromLatin1("DeleteAction"))
         d->action = new DeleteAction();
+    else if (actionType == QString::fromLatin1("SetStatusAction"))
+        d->action = new SetStatusAction();
 
     if (d->action)
         d->action->readConfig(config);
