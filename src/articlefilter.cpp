@@ -425,7 +425,8 @@ TagMatcher& TagMatcher::operator=(const TagMatcher& other)
 
 void DeleteAction::exec(Article& article)
 {
-    article.setDeleted();
+    if (!article.isNull())
+        article.setDeleted();
 }
 
 AssignTagAction::AssignTagAction(const QString& tagID)
@@ -435,13 +436,14 @@ AssignTagAction::AssignTagAction(const QString& tagID)
 
 void AssignTagAction::exec(Article& article)
 {
-    article.addTag(m_tagID);
+    if (!article.isNull())
+        article.addTag(m_tagID);
 }
 
 class ArticleFilter::ArticleFilterPrivate : public Shared
 {
     public:
-    FilterAction* action;
+    AbstractAction* action;
     AbstractMatcher* matcher;
     QString name;
     
@@ -453,7 +455,7 @@ ArticleFilter::ArticleFilter() : d(new ArticleFilterPrivate)
     d->matcher = 0;
 }
 
-ArticleFilter::ArticleFilter(const AbstractMatcher& matcher, const FilterAction& action) : d(new ArticleFilterPrivate)
+ArticleFilter::ArticleFilter(const AbstractMatcher& matcher, const AbstractAction& action) : d(new ArticleFilterPrivate)
 {
     d->matcher = matcher.clone();
     d->action = action.clone();
@@ -481,7 +483,7 @@ AbstractMatcher* ArticleFilter::matcher() const
     return d->matcher;
 }
 
-FilterAction* ArticleFilter::action() const
+AbstractAction* ArticleFilter::action() const
 {
     return d->action;
 }
@@ -492,7 +494,7 @@ void ArticleFilter::setMatcher(const AbstractMatcher& matcher)
     d->matcher = matcher.clone();
 }
 
-void ArticleFilter::setAction(const FilterAction& action)
+void ArticleFilter::setAction(const AbstractAction& action)
 {
     delete d->action;
     d->action = action.clone();
@@ -554,9 +556,9 @@ void AssignTagAction::writeConfig(KConfig* config) const
     config->writeEntry(QString::fromLatin1("actionParams"), m_tagID);
 }
 
-bool AssignTagAction::operator==(const FilterAction& other)
+bool AssignTagAction::operator==(const AbstractAction& other)
 {
-    FilterAction* ptr = const_cast<FilterAction*>(&other);
+    AbstractAction* ptr = const_cast<AbstractAction*>(&other);
     AssignTagAction* o = dynamic_cast<AssignTagAction*>(ptr);
     if (!o)
         return false;
@@ -578,9 +580,9 @@ void DeleteAction::writeConfig(KConfig* config) const
     config->writeEntry(QString::fromLatin1("actionType"), QString::fromLatin1("DeleteAction"));
 }
 
-bool DeleteAction::operator==(const FilterAction& other)
+bool DeleteAction::operator==(const AbstractAction& other)
 {
-    FilterAction* ptr = const_cast<FilterAction*>(&other);
+    AbstractAction* ptr = const_cast<AbstractAction*>(&other);
     DeleteAction* o = dynamic_cast<DeleteAction*>(ptr);
     return o != 0;
 }

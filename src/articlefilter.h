@@ -126,7 +126,7 @@ class TagMatcher : public AbstractMatcher
          TagMatcherPrivate* d;
 };
 
-class FilterAction
+class AbstractAction
 {
     public:
         virtual void exec(Article& article) = 0;
@@ -134,11 +134,11 @@ class FilterAction
         virtual void writeConfig(KConfig* config) const = 0;
         virtual void readConfig(KConfig* config) = 0;
 
-        virtual FilterAction* clone() const = 0;
-        virtual bool operator==(const FilterAction& other) = 0;
+        virtual AbstractAction* clone() const = 0;
+        virtual bool operator==(const AbstractAction& other) = 0;
 };
 
-class DeleteAction : public FilterAction
+class DeleteAction : public AbstractAction
 {
     public:
         virtual void exec(Article& article);
@@ -147,10 +147,10 @@ class DeleteAction : public FilterAction
         virtual void readConfig(KConfig* config);
 
         virtual DeleteAction* clone() const { return new DeleteAction; }
-        virtual bool operator==(const FilterAction& other);
+        virtual bool operator==(const AbstractAction& other);
 };
 
-class AssignTagAction : public FilterAction
+class AssignTagAction : public AbstractAction
 {
     public:
 
@@ -163,7 +163,7 @@ class AssignTagAction : public FilterAction
         virtual void readConfig(KConfig* config);
 
         virtual AssignTagAction* clone() const { return new AssignTagAction(*this); }
-        virtual bool operator==(const FilterAction& other);
+        virtual bool operator==(const AbstractAction& other);
 
     private:
         QString m_tagID;
@@ -174,7 +174,7 @@ class ArticleFilter
     public:
 
         ArticleFilter();
-        ArticleFilter(const AbstractMatcher& matcher, const FilterAction& action);
+        ArticleFilter(const AbstractMatcher& matcher, const AbstractAction& action);
         ArticleFilter(const ArticleFilter& other);
 
         virtual ~ArticleFilter();
@@ -188,8 +188,8 @@ class ArticleFilter
         AbstractMatcher* matcher() const;
         void setMatcher(const AbstractMatcher& matcher);
 
-        FilterAction* action() const;
-        void setAction(const FilterAction& action);
+        AbstractAction* action() const;
+        void setAction(const AbstractAction& action);
 
         ArticleFilter& operator=(const ArticleFilter& other);
         bool operator==(const ArticleFilter& other) const;
