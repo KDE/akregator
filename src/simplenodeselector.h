@@ -47,6 +47,9 @@ class SimpleNodeSelector : public QWidget
 
         TreeNode* selectedNode() const;
         
+    public slots:
+        void slotSelectNode(TreeNode* node);
+
     signals:
         void signalNodeSelected(TreeNode* node);
 

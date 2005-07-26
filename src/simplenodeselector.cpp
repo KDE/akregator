@@ -89,6 +89,7 @@ class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
     SimpleNodeSelector* m_view;
 };
 
+
 SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, const char* name) : QWidget(parent, name), d(new SimpleNodeSelectorPrivate)
 {
     d->list = feedList;
@@ -113,6 +114,13 @@ SimpleNodeSelector::~SimpleNodeSelector()
 TreeNode* SimpleNodeSelector::selectedNode() const
 {
     return d->itemToNode[d->view->selectedItem()];
+}
+
+void SimpleNodeSelector::slotSelectNode(TreeNode* node)
+{
+    QListViewItem* item = d->nodeToItem[node];
+    if (item != 0)
+        d->view->setSelected(item, true);
 }
 
 void SimpleNodeSelector::slotFeedListDestroyed(FeedList* /*list*/)
