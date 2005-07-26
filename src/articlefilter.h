@@ -40,47 +40,61 @@ class Article;
 
 namespace Filters {
 
-class Criterion
+class AbstractAction;
+class AbstractMatcher;
+class Criterion;
+
+/** an article filter, basically a matcher and an action. 
+ *  @author Frank Osterfeld
+ */
+class ArticleFilter
 {
     public:
 
-        enum Subject {
-            Title, Description, Link, Status, KeepFlag
-        };
+        ArticleFilter();
+        ArticleFilter(const AbstractMatcher& matcher, const AbstractAction& action);
+        ArticleFilter(const ArticleFilter& other);
 
-        static QString subjectToString(Subject subj);
-        static Subject stringToSubject(const QString& subjStr);
+        virtual ~ArticleFilter();
 
-        enum Predicate {
-            Contains = 0x01,
-            Equals = 0x02,
-            Matches = 0x03,
-            Negation = 0x80
-        };
+        /** checks whether an article matches the matcher, and executes the action if so */
+        void applyTo(Article& article) const;
 
-        static QString predicateToString(Predicate pred);
-        static Predicate stringToPredicate(const QString& predStr);
-    
-        Criterion();
-        Criterion( Subject subject, Predicate predicate, const QVariant &object );
         
-        bool satisfiedBy( const Article &article ) const;
-
-        virtual void writeConfig(KConfig* config) const;
-        virtual void readConfig(KConfig* config);
-
-        Subject subject() const;
-        Predicate predicate() const;
-        QVariant object() const;
-        bool operator==(const Criterion& other) const
-        { return m_subject == other.m_subject && m_predicate == other.m_predicate && m_object == other.m_object; }
         
+        /** name of the filter, for display in filter list */
+        const QString& name() const;
+        void setName(const QString& name);
+
+        AbstractMatcher* matcher() const;
+        void setMatcher(const AbstractMatcher& matcher);
+
+        AbstractAction* action() const;
+        void setAction(const AbstractAction& action);
+
+        ArticleFilter& operator=(const ArticleFilter& other);
+        bool operator==(const ArticleFilter& other) const;
+
+        void writeConfig(KConfig* config) const;
+        void readConfig(KConfig* config);
+
     private:
-        Subject m_subject;
-        Predicate m_predicate;
-        QVariant m_object;
+        class ArticleFilterPrivate;
+        ArticleFilterPrivate* d;
+    
 };
 
+class ArticleFilterList : public QValueList<ArticleFilter>
+{
+    public:
+    
+    void writeConfig(KConfig* config) const;
+    void readConfig(KConfig* config);
+};
+
+/** Abstract base class for matchers, a matcher just takes an article and checks whether the article matches some criterion or not. 
+ *  @author Frank Osterfeld
+ */
 class AbstractMatcher
 {
     public:
@@ -190,48 +204,9 @@ class AssignTagAction : public AbstractAction
         QString m_tagID;
 };
 
-class ArticleFilter
-{
-    public:
-
-        ArticleFilter();
-        ArticleFilter(const AbstractMatcher& matcher, const AbstractAction& action);
-        ArticleFilter(const ArticleFilter& other);
-
-        virtual ~ArticleFilter();
-
-        /** checks whether an article matches the matcher, and executes the action if so */
-        void applyTo(Article& article) const;
-
-        void setName(const QString& name);
-        const QString& name() const;
-
-        AbstractMatcher* matcher() const;
-        void setMatcher(const AbstractMatcher& matcher);
-
-        AbstractAction* action() const;
-        void setAction(const AbstractAction& action);
-
-        ArticleFilter& operator=(const ArticleFilter& other);
-        bool operator==(const ArticleFilter& other) const;
-
-        void writeConfig(KConfig* config) const;
-        void readConfig(KConfig* config);
-
-    private:
-        class ArticleFilterPrivate;
-        ArticleFilterPrivate* d;
-    
-};
-
-class ArticleFilterList : public QValueList<ArticleFilter>
-{
-    public:
-    
-    void writeConfig(KConfig* config) const;
-    void readConfig(KConfig* config);
-};
-
+/** a powerful matcher supporting multiple criterions, which can be combined      via logical OR or AND
+ *  @author Frerich Raabe
+ */
 class ArticleMatcher : public AbstractMatcher
 {
     public:
@@ -266,6 +241,50 @@ class ArticleMatcher : public AbstractMatcher
 
         QValueList<Criterion> m_criteria;
         Association m_association;
+};
+
+/** Criterion for ArticleMatcher
+ *  @author Frerich Raabe
+ */
+class Criterion
+{
+    public:
+
+        enum Subject {
+            Title, Description, Link, Status, KeepFlag
+        };
+
+        static QString subjectToString(Subject subj);
+        static Subject stringToSubject(const QString& subjStr);
+
+        enum Predicate {
+            Contains = 0x01,
+            Equals = 0x02,
+            Matches = 0x03,
+            Negation = 0x80
+        };
+
+        static QString predicateToString(Predicate pred);
+        static Predicate stringToPredicate(const QString& predStr);
+    
+        Criterion();
+        Criterion( Subject subject, Predicate predicate, const QVariant &object );
+        
+        bool satisfiedBy( const Article &article ) const;
+
+        virtual void writeConfig(KConfig* config) const;
+        virtual void readConfig(KConfig* config);
+
+        Subject subject() const;
+        Predicate predicate() const;
+        QVariant object() const;
+        bool operator==(const Criterion& other) const
+        { return m_subject == other.m_subject && m_predicate == other.m_predicate && m_object == other.m_object; }
+        
+    private:
+        Subject m_subject;
+        Predicate m_predicate;
+        QVariant m_object;
 };
 
 } // namespace Filters
