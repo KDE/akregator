@@ -97,7 +97,7 @@ SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, cons
     d->view = new KListView(this);
 
     QGridLayout* layout = new QGridLayout(this, 1, 1);
-    layout->addWidget(d->view, 1, 1);
+    layout->addWidget(d->view, 0, 0);
 
     d->visitor = new NodeVisitor(this);
 
