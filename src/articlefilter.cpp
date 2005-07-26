@@ -26,6 +26,7 @@
  */
 #include "articlefilter.h"
 #include "article.h"
+#include "shared.h"
 
 #include <kconfig.h>
 #include <kdebug.h>
@@ -437,7 +438,7 @@ void AssignTagAction::exec(Article& article)
     article.addTag(m_tagID);
 }
 
-class ArticleFilter::ArticleFilterPrivate
+class ArticleFilter::ArticleFilterPrivate : public Shared
 {
     public:
     FilterAction* action;
@@ -465,9 +466,14 @@ ArticleFilter::ArticleFilter(const ArticleFilter& other)
 
 ArticleFilter::~ArticleFilter()
 {
-    delete d->action;
-    delete d->matcher;
-    delete d;
+    if (d->deref())
+    {
+        delete d->action;
+        delete d->matcher;
+        delete d;
+        d = 0;
+    }
+    
 }
 
 AbstractMatcher* ArticleFilter::matcher() const
@@ -480,12 +486,27 @@ FilterAction* ArticleFilter::action() const
     return d->action;
 }
 
-ArticleFilter& ArticleFilter::operator=(const ArticleFilter& other)
+void ArticleFilter::setMatcher(const AbstractMatcher& matcher)
 {
     delete d->matcher;
-    d->matcher = other.d->matcher ? other.d->matcher->clone() : 0;
+    d->matcher = matcher.clone();
+}
+
+void ArticleFilter::setAction(const FilterAction& action)
+{
     delete d->action;
-    d->action = other.d->action ? other.d->action->clone() : 0;
+    d->action = action.clone();
+}
+
+ArticleFilter& ArticleFilter::operator=(const ArticleFilter& other)
+{
+    if (this != &other)
+    {
+        other.d->ref();
+        if (d && d->deref())
+            delete d;
+        d = other.d;
+    }
     return *this;
 }
 

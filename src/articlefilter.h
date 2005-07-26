@@ -186,7 +186,10 @@ class ArticleFilter
         const QString& name() const;
 
         AbstractMatcher* matcher() const;
+        void setMatcher(const AbstractMatcher& matcher);
+
         FilterAction* action() const;
+        void setAction(const FilterAction& action);
 
         ArticleFilter& operator=(const ArticleFilter& other);
         bool operator==(const ArticleFilter& other) const;
