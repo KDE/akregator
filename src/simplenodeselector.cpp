@@ -29,6 +29,7 @@
 #include "treenodevisitor.h"
 
 #include <klistview.h>
+#include <klocale.h>
 
 #include <qlayout.h>
 #include <qmap.h>
@@ -36,6 +37,46 @@
 
 namespace Akregator
 {
+
+class SelectNodeDialog::SelectNodeDialogPrivate
+{
+    public:
+    SimpleNodeSelector* widget;
+};
+
+SelectNodeDialog::SelectNodeDialog(FeedList* feedList, QWidget* parent, char* name) : 
+ KDialogBase(parent, name, true, i18n("Select Feed or Folder"),
+                  KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, true), d(new SelectNodeDialogPrivate)
+{
+    d->widget = new SimpleNodeSelector(feedList, this);
+
+    connect(d->widget, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
+
+    setMainWidget(d->widget);
+    enableButtonOK(false);
+}
+
+SelectNodeDialog::~SelectNodeDialog()
+{
+    delete d;
+    d = 0;
+}
+
+TreeNode* SelectNodeDialog::selectedNode() const
+{
+    return d->widget->selectedNode();
+}
+
+void SelectNodeDialog::slotSelectNode(TreeNode* node)
+{
+    d->widget->slotSelectNode(node);
+}
+
+void SelectNodeDialog::slotNodeSelected(TreeNode* node)
+{
+    enableButtonOK(node != 0);
+}
+
 
 class SimpleNodeSelector::SimpleNodeSelectorPrivate
 {
@@ -93,8 +134,13 @@ class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
 SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, const char* name) : QWidget(parent, name), d(new SimpleNodeSelectorPrivate)
 {
     d->list = feedList;
-    connect(feedList, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotFeedListDestroyed(FeedList*)));
+    connect(feedList, SIGNAL(signalDestroyed(FeedList*)), this, SLOT(slotFeedListDestroyed(FeedList*)));
+
     d->view = new KListView(this);
+    d->view->setRootIsDecorated(true);
+    d->view->addColumn(i18n("Feeds"));
+    
+    connect(d->view, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotItemSelected(QListViewItem*)));
 
     QGridLayout* layout = new QGridLayout(this, 1, 1);
     layout->addWidget(d->view, 0, 0);
@@ -102,6 +148,8 @@ SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, cons
     d->visitor = new NodeVisitor(this);
 
     d->visitor->createItems(d->list->rootNode());
+    d->nodeToItem[d->list->rootNode()]->setOpen(true);
+    d->view->ensureItemVisible(d->nodeToItem[d->list->rootNode()]);
 }
 
 SimpleNodeSelector::~SimpleNodeSelector()

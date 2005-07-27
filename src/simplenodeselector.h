@@ -27,12 +27,41 @@
 
 #include <qwidget.h>
 
+#include <kdialogbase.h>
+
 class QListViewItem;
 
 namespace Akregator {
 
 class FeedList;
 class TreeNode;
+
+class SimpleNodeSelector;
+
+/** \brief A dialog with a simple listview displaying a feed list for selection purposes
+     Use this dialog if you want the user to select a node from the feed list where FeedListView is inappropriate (e.g. in a filter dialog)  */
+
+class SelectNodeDialog : public KDialogBase
+{
+    Q_OBJECT
+    public:
+        SelectNodeDialog(FeedList* feedList, QWidget* parent=0, char* name=0);
+        virtual ~SelectNodeDialog();
+        
+        TreeNode* selectedNode() const;
+
+    public slots:
+
+        virtual void slotSelectNode(TreeNode* node);
+
+    protected slots:
+        
+        virtual void slotNodeSelected(TreeNode* node);
+ 
+    private:
+       class SelectNodeDialogPrivate;
+       SelectNodeDialogPrivate* d;
+};
 
 /** \brief A simple list view displaying a feed list for selection purposes
      Use this widget if you want the user to select a node from the feed list in dialogs where FeedListView is inappropriate (e.g. in a filter dialog)  */
@@ -42,7 +71,7 @@ class SimpleNodeSelector : public QWidget
     Q_OBJECT
 
     public:
-        SimpleNodeSelector(FeedList* feedList, QWidget* parent, const char* name);
+        SimpleNodeSelector(FeedList* feedList, QWidget* parent=0, const char* name=0);
         virtual ~SimpleNodeSelector();
 
         TreeNode* selectedNode() const;
