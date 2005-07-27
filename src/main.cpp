@@ -51,16 +51,17 @@ int AkregatorApp::newInstance()
   {
     DCOPRef akr("akregator", "AkregatorIface");
 
+    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
     if ( !mMainWindow ) {
       mMainWindow = new Akregator::MainWindow();
       setMainWidget( mMainWindow );
       mMainWindow->loadPart();
       mMainWindow->setupProgressWidgets();
-      mMainWindow->show();
+      if (!args->isSet("hide-mainwindow"))
+        mMainWindow->show();
       akr.send("openStandardFeedList");
     }
-
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
     QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
 
@@ -72,7 +73,7 @@ int AkregatorApp::newInstance()
 
     if (!feedsToAdd.isEmpty())
         akr.send("addFeedsToGroup", feedsToAdd, addFeedGroup );
-
+  
     args->clear();
   }
   return KUniqueApplication::newInstance();

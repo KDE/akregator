@@ -36,6 +36,7 @@ static KCmdLineOptions akregator_options[] =
 	{ "addfeed <url>", I18N_NOOP( "Add a feed with the given URL" ), 0},
 	{ "g", 0, 0 },
 	{ "group <groupname>", I18N_NOOP( "When adding feeds, place them in this group" ), I18N_NOOP("Imported") },
+    { "hide-mainwindow", I18N_NOOP( "Hide main window on startup" ), 0},
 	KCmdLineLastOption
 };
 
