@@ -63,9 +63,6 @@ class SelectNodeDialog : public KDialogBase
        SelectNodeDialogPrivate* d;
 };
 
-/** \brief A simple list view displaying a feed list for selection purposes
-     Use this widget if you want the user to select a node from the feed list in dialogs where FeedListView is inappropriate (e.g. in a filter dialog)  */
-
 class SimpleNodeSelector : public QWidget
 {
     Q_OBJECT
