@@ -301,8 +301,8 @@ void ActionManagerImpl::initView(View* view)
     vm->insert(ra);
 
     // toolbar / feed menu
-    new KAction(i18n("&Fetch Feed"), "down", "Ctrl+L", d->view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
-    new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+Shift+L", d->view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
+    new KAction(i18n("&Fetch Feed"), "down", KStdAccel::shortcut(KStdAccel::Reload), d->view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
+    new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+L", d->view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
 
     KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, Kernel::self()->fetchQueue(), SLOT(slotAbort()), actionCollection(), "feed_stop");
     stopAction->setEnabled(false);
