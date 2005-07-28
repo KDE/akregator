@@ -28,6 +28,7 @@
 #include "article.h"
 #include "shared.h"
 
+#include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
 #include <kurl.h>
@@ -487,17 +488,20 @@ class ArticleFilter::ArticleFilterPrivate : public Shared
     AbstractAction* action;
     AbstractMatcher* matcher;
     QString name;
+    int id;
     
 };
 
 ArticleFilter::ArticleFilter() : d(new ArticleFilterPrivate)
 {
+    d->id = KApplication::random();
     d->action = 0;
     d->matcher = 0;
 }
 
 ArticleFilter::ArticleFilter(const AbstractMatcher& matcher, const AbstractAction& action) : d(new ArticleFilterPrivate)
 {
+    d->id = KApplication::random();
     d->matcher = matcher.clone();
     d->action = action.clone();
 }
@@ -551,6 +555,11 @@ ArticleFilter& ArticleFilter::operator=(const ArticleFilter& other)
         d = other.d;
     }
     return *this;
+}
+
+int ArticleFilter::id() const 
+{
+    return d->id;
 }
 
 bool ArticleFilter::operator==(const ArticleFilter& other) const
@@ -640,6 +649,9 @@ void ArticleFilter::readConfig(KConfig* config)
     delete d->action;
     d->action = 0;
 
+    d->name = config->readEntry(QString::fromLatin1("name"));
+    d->id = config->readNumEntry(QString::fromLatin1("id"), 0);
+
     QString matcherType = config->readEntry(QString::fromLatin1("matcherType"));
 
     if (matcherType == QString::fromLatin1("TagMatcher"))
@@ -667,6 +679,7 @@ void ArticleFilter::readConfig(KConfig* config)
 void ArticleFilter::writeConfig(KConfig* config) const
 {
     config->writeEntry(QString::fromLatin1("name"), d->name);
+    config->writeEntry(QString::fromLatin1("id"), d->id);
     d->matcher->writeConfig(config);
     d->action->writeConfig(config);
 }

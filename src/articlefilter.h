@@ -66,6 +66,8 @@ class ArticleFilter
         const QString& name() const;
         void setName(const QString& name);
 
+        int id() const;
+
         AbstractMatcher* matcher() const;
         void setMatcher(const AbstractMatcher& matcher);
 
@@ -86,7 +88,7 @@ class ArticleFilter
 
 class ArticleFilterList : public QValueList<ArticleFilter>
 {
-    public:
+public:
     
     void writeConfig(KConfig* config) const;
     void readConfig(KConfig* config);
