@@ -579,7 +579,7 @@ void Part::exportFile(const KURL& url)
     
         if ( !file.open(IO_WriteOnly) )
         {
-            KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write error") );
+            KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write Error") );
             return;
         }
     

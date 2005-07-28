@@ -76,7 +76,7 @@
                 <cstring>groupBox3_3</cstring>
             </property>
             <property name="title">
-                <string>Article list</string>
+                <string>Article List</string>
             </property>
             <hbox>
                 <property name="name">
