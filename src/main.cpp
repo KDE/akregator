@@ -34,10 +34,12 @@
 #include "mainwindow.h"
 #include "akregator_options.h"
 
-class AkregatorApp : public KUniqueApplication {
+namespace Akregator {
+
+class Application : public KUniqueApplication {
   public:
-    AkregatorApp() : mMainWindow( ) {}
-    ~AkregatorApp() {}
+    Application() : mMainWindow( ) {}
+    ~Application() {}
 
     int newInstance();
 
@@ -45,7 +47,7 @@ class AkregatorApp : public KUniqueApplication {
     Akregator::MainWindow *mMainWindow;
 };
 
-int AkregatorApp::newInstance()
+int Application::newInstance()
 {
   if (!isRestored())
   {
@@ -79,6 +81,8 @@ int AkregatorApp::newInstance()
   return KUniqueApplication::newInstance();
 }
 
+} // namespace Akregator
+
 int main(int argc, char **argv)
 {
     Akregator::AboutData about;
@@ -86,7 +90,7 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options );
     KUniqueApplication::addCmdLineOptions();
 
-    AkregatorApp app;
+    Akregator::Application app;
 
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     KNotifyClient::startDaemon();
@@ -105,3 +109,5 @@ int main(int argc, char **argv)
 
     return app.exec();
 }
+
+
