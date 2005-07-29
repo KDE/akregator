@@ -312,18 +312,6 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_feedSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
 
-    switch (Settings::viewMode())
-    {
-        case CombinedView:
-            slotCombinedView();
-            break;
-        case WidescreenView:
-            slotWidescreenView();
-            break;
-        default:
-            slotNormalView();
-    }
-
     KConfig *conf = Settings::self()->config();
     conf->setGroup("General");
     if(!conf->readBoolEntry("Disable Introduction", false))
@@ -348,8 +336,19 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_markReadTimer = new QTimer(this);
     connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
 
-    QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
+    switch (Settings::viewMode())
+    {
+        case CombinedView:
+            slotCombinedView();
+            break;
+        case WidescreenView:
+            slotWidescreenView();
+            break;
+        default:
+            slotNormalView();
+    }
 
+    QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
     QTimer::singleShot(0, this, SLOT(delayedInit()));
 }
 

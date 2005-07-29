@@ -216,7 +216,8 @@ void ActionManagerImpl::slotTagRemoved(const Tag& tag)
 
 void ActionManagerImpl::slotNodeSelected(TreeNode* node)
 {
-    d->nodeSelectVisitor->visit(node);
+    if (node != 0)
+        d->nodeSelectVisitor->visit(node);
 }
 
 ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* name) : ActionManager(parent, name), d(new ActionManagerImplPrivate)
