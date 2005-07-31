@@ -25,7 +25,7 @@
 #include <kaboutdata.h>
 #include <kaction.h>
 #include <kactionclasses.h>
-#include <kactioncollection.h> 
+#include <kactioncollection.h>
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kconfigdialog.h>
@@ -119,10 +119,10 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 {
     // we need an instance
     setInstance( AkregatorFactory::instance() );
-    
+
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
     KNotifyClient::startDaemon();
-    
+
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
     m_tagSetPath = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/tagset.xml";
@@ -133,7 +133,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     loadPlugins(); // FIXME: also unload them!
 
     m_storage = Backend::StorageFactoryRegistry::self()->getFactory("metakit")->createStorage(QStringList()); // FIXME: read backend to use from config
-    
+
     if (!m_storage) // Houston, we have a problem
     {
         m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
@@ -142,23 +142,23 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     Filters::ArticleFilterList list;
     list.readConfig(Settings::self()->config());
     Kernel::self()->setArticleFilterList(list);
-    
+
     m_applyFiltersInterceptor = new ApplyFiltersInterceptor();
-    ArticleInterceptorManager::self()->addInterceptor(m_applyFiltersInterceptor);    
-    
+    ArticleInterceptorManager::self()->addInterceptor(m_applyFiltersInterceptor);
+
     m_storage->open(true);
     Kernel::self()->setStorage(m_storage);
     Backend::Storage::setInstance(m_storage); // TODO: kill this one
-    
+
     m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);
-    
+
     m_view = new Akregator::View(this, parentWidget, m_actionManager, "akregator_view");
     m_actionManager->initView(m_view);
     m_actionManager->setTagSet(Kernel::self()->tagSet());
-    
+
     m_extension = new BrowserExtension(this, "ak_extension");
-    
+
     connect(m_view, SIGNAL(setWindowCaption(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
     connect(m_view, SIGNAL(setStatusBarText(const QString&)), this, SIGNAL(setStatusBarText(const QString&)));
     connect(m_view, SIGNAL(setProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
@@ -172,9 +172,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     TrayIcon* trayIcon = new TrayIcon( getMainWindow() );
     TrayIcon::setInstance(trayIcon);
     m_actionManager->initTrayIcon(trayIcon);
-    
+
     connect(trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
-    
+
     if ( isTrayIconEnabled() )
     {
         trayIcon->show();
@@ -187,7 +187,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
             kapp, SLOT(quit())) ;
 
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
-    
+
     connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutdown()));
 
     m_autosaveTimer = new QTimer(this);
@@ -195,15 +195,17 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_autosaveTimer->start(5*60*1000); // 5 minutes
 
     setXMLFile("akregator_part.rc", true);
-            
+
     initFonts();
+
+    RSS::FileRetriever::setUserAgent(QString("Akregator/%1; librss/remnants").arg(AKREGATOR_VERSION));
 }
 
 void Part::loadPlugins()
 {
     // "[X-KDE-akregator-plugintype] == 'storage'"
     KTrader::OfferList offers = PluginManager::query();
-        
+
     for( KTrader::OfferList::ConstIterator it = offers.begin(), end = offers.end(); it != end; ++it )
     {
         Akregator::Plugin* plugin = PluginManager::createFromService(*it);
@@ -223,7 +225,7 @@ void Part::slotOnShutdown()
     //delete m_view;
     delete m_storage;
     m_storage = 0;
-    //delete m_actionManager;   
+    //delete m_actionManager;
 }
 
 void Part::slotSettingsChanged()
@@ -231,7 +233,7 @@ void Part::slotSettingsChanged()
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
 
     RSS::FileRetriever::setUseCache(Settings::useHTMLCache());
-    
+
     QStringList fonts;
     fonts.append(Settings::standardFont());
     fonts.append(Settings::fixedFont());
@@ -267,7 +269,7 @@ void Part::readProperties(KConfig* config)
 {
     m_backedUpList = false;
     openStandardFeedList();
-    
+
     if(m_view)
         m_view->readProperties(config);
 }
@@ -398,10 +400,10 @@ bool Part::openFile()
             KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
             m_view->loadFeeds(createDefaultFeedList());
         }
-        
+
         emit setStatusBarText(QString::null);
     }
-    
+
     if( Settings::markAllFeedsReadOnStartup() )
         m_view->slotMarkAllFeedsRead();
 
@@ -416,7 +418,7 @@ void Part::slotSaveFeedList()
     // don't save to the standard feed list, when it wasn't completely loaded before
     if (!m_standardListLoaded)
         return;
-    
+
     // the first time we overwrite the feed list, we create a backup
     if (!m_backedUpList)
     {
@@ -426,7 +428,7 @@ void Part::slotSaveFeedList()
             m_backedUpList = true;
     }
 
-    QFile file(m_file);    
+    QFile file(m_file);
     if (file.open(IO_WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
@@ -464,7 +466,7 @@ bool Part::mergePart(KParts::Part* part)
             factory()->removeClient(m_mergedPart);
         if (part)
             factory()->addClient(part);
-    
+
         m_mergedPart = part;
     }
     return true;
@@ -501,7 +503,7 @@ void Part::loadTagSet(const QString& path)
 {
     QFile file(path);
     if (file.open(IO_ReadOnly))
-    {    
+    {
         QDomDocument doc;
         if (doc.setContent(file.readAll()))
             Kernel::self()->tagSet()->readFromXML(doc);
@@ -510,13 +512,13 @@ void Part::loadTagSet(const QString& path)
     else
     {
         Kernel::self()->tagSet()->insert(Tag("http://akregator.sf.net/tags/Interesting", i18n("Interesting")));
-    }    
+    }
 }
 
 void Part::saveTagSet(const QString& path)
 {
     QFile file(path);
-    
+
     if ( file.open(IO_WriteOnly) )
     {
 
@@ -538,27 +540,27 @@ void Part::importFile(const KURL& url)
     else
     {
         isRemote = true;
-        
+
         if (!KIO::NetAccess::download(url, filename, m_view) )
         {
             KMessageBox::error(m_view, KIO::NetAccess::lastErrorString() );
             return;
         }
     }
-    
+
     QFile file(filename);
     if (file.open(IO_ReadOnly))
-    {    
+    {
         // Read OPML feeds list and build QDom tree.
         QDomDocument doc;
         if (doc.setContent(file.readAll()))
             m_view->importFeeds(doc);
-        else    
+        else
             KMessageBox::error(m_view, i18n("Could not import the file %1 (no valid OPML)").arg(filename), i18n("OPML Parsing Error") );
     }
-    else 
+    else
         KMessageBox::error(m_view, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.").arg(filename), i18n("Read Error"));
-    
+
     if (isRemote)
         KIO::NetAccess::removeTempFile(filename);
 }
@@ -568,7 +570,7 @@ void Part::exportFile(const KURL& url)
     if (url.isLocalFile())
     {
         QFile file(url.path());
-    
+
         if ( file.exists() &&
                 KMessageBox::questionYesNo(m_view,
             i18n("The file %1 already exists; do you want to overwrite it?").arg(file.name()),
@@ -576,13 +578,13 @@ void Part::exportFile(const KURL& url)
             i18n("Overwrite"),
             KStdGuiItem::cancel()) == KMessageBox::No )
             return;
-    
+
         if ( !file.open(IO_WriteOnly) )
         {
             KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write Error") );
             return;
         }
-    
+
         QTextStream stream(&file);
         stream.setEncoding(QTextStream::UnicodeUTF8);
 
@@ -593,13 +595,13 @@ void Part::exportFile(const KURL& url)
     {
         KTempFile tmpfile;
         tmpfile.setAutoDelete(true);
-        
+
         QTextStream stream(tmpfile.file());
         stream.setEncoding(QTextStream::UnicodeUTF8);
 
         stream << m_view->feedListToOPML().toString() << "\n";
         tmpfile.close();
-        
+
         if (!KIO::NetAccess::upload(tmpfile.name(), url, m_view))
             KMessageBox::error(m_view, KIO::NetAccess::lastErrorString() );
     }
@@ -636,27 +638,27 @@ void Part::fileSendArticle(bool attach)
 {
     // FIXME: you have to open article to tab to be able to send...
     QString title, text;
-    
+
     text = m_view->currentFrame()->part()->url().prettyURL();
     if(text.isEmpty() || text.isNull())
         return;
-    
+
     title = m_view->currentFrame()->title();
-    
-    if(attach) { 
-        kapp->invokeMailer("", 
-                           "", 
-                           "", 
-                           title, 
-                           text, 
-                           "", 
+
+    if(attach) {
+        kapp->invokeMailer("",
+                           "",
+                           "",
+                           title,
+                           text,
+                           "",
                            text);
     }
     else {
-        kapp->invokeMailer("", 
-                           "", 
-                           "", 
-                           title, 
+        kapp->invokeMailer("",
+                           "",
+                           "",
+                           title,
                            text);
     }
 }
@@ -773,7 +775,7 @@ void Part::initFonts()
 
     KConfig konq("konquerorrc", true, false);
     konq.setGroup("HTML Settings");
-            
+
     if (!conf->hasKey("MinimumFontSize"))
     {
         int minfs;
@@ -795,7 +797,7 @@ void Part::initFonts()
         kdDebug() << "Part::initFonts(): set MediumFontSize to " << medfs << endl;
         Settings::setMediumFontSize(medfs);
     }
-    
+
     if (!conf->hasKey("UnderlineLinks"))
     {
         bool underline = true;
@@ -805,7 +807,7 @@ void Part::initFonts()
         kdDebug() << "Part::initFonts(): set UnderlineLinks to " << underline << endl;
         Settings::setUnderlineLinks(underline);
     }
-    
+
 }
 
 bool Part::copyFile(const QString& backup)

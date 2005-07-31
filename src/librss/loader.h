@@ -119,8 +119,9 @@ namespace RSS
 
 			virtual void abort();
 
-            static void setUseCache(bool enabled);
-            
+			static void setUseCache(bool enabled);
+			static void setUserAgent(const QString &ua);
+
 		signals:
 			/**
 			 * Signals a permanent redirection. The redirection itself is
@@ -133,7 +134,7 @@ namespace RSS
 
         protected slots:
             void slotTimeout();
-                
+
 		private slots:
 			void slotData(KIO::Job *job, const QByteArray &data);
 			void slotResult(KIO::Job *job);
@@ -141,8 +142,9 @@ namespace RSS
 			                                             const KURL &toUrl);
 
 		private:
-            static bool m_useCache;
-            
+			static bool m_useCache;
+			static QString m_userAgent;
+
 			FileRetriever(const FileRetriever &other);
 			FileRetriever &operator=(const FileRetriever &other);
 
@@ -177,7 +179,7 @@ namespace RSS
 			 * @see Loader::loadFrom()
 			 */
 			virtual void retrieveData(const KURL &url);
-			
+
 			/**
 			 * @return The error code for the last process of retrieving data.
 			 * 0 is returned in case there was no error, otherwise an error
@@ -187,7 +189,7 @@ namespace RSS
 			virtual int errorCode() const;
 
 			virtual void abort() {}
-			
+
 		private slots:
 			void slotOutput(KProcess *process, char *data, int length);
 			void slotExited(KProcess *process);
@@ -272,7 +274,7 @@ namespace RSS
 			 * @param slot Which slot to connect to.
 			 */
 			static Loader *create(QObject *object, const char *slot);
-			
+
 			/**
 			 * Loads the RSS file referenced by the given URL using the
 			 * specified retrieval algorithm. Make sure that you connected
@@ -295,11 +297,11 @@ namespace RSS
 			 * as reported by the employed data retrever.
 			 */
 			int errorCode() const;
-            
+
             const KURL &discoveredFeedURL() const;
 
 			void abort();
-			
+
 		signals:
 			/**
 			 * This signal gets emitted when the loading process triggered by
@@ -329,7 +331,7 @@ namespace RSS
 			Loader &operator=(const Loader &other);
 			~Loader();
             void discoverFeeds(const QByteArray &data);
-            
+
 			struct Private;
 			Private *d;
 	};
