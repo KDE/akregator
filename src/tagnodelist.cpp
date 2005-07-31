@@ -171,7 +171,7 @@ void TagNodeList::slotTagUpdated(const Tag& tag)
 {
     if (containsTagId(tag.id()))
     {
-        d->idToNodeMap[tag.id()]->setTitle(tag.name());
+        d->idToNodeMap[tag.id()]->tagChanged();
     }
 }
 void TagNodeList::slotTagRemoved(const Tag& tag)

@@ -792,6 +792,8 @@ void View::slotNodeSelected(TreeNode* node)
     }
 
     m_actionManager->slotNodeSelected(node);
+
+    updateTagActions();
 }
 
 
@@ -1058,16 +1060,20 @@ void View::slotMouseButtonPressed(int button, const Article& article, const QPoi
     }
 }
 
-void View::slotAssignTag(const Tag& tag)
+void View::slotAssignTag(const Tag& tag, bool assign)
 {
-    kdDebug() << "assign tag \"" << tag.id() << "\" to selected articles" << endl;
+    kdDebug() << (assign ? "assigned" : "removed") << " tag \"" << tag.id() << "\"" << endl;
     QValueList<Article> selectedArticles = m_articleList->selectedArticles();
     for (QValueList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
-        (*it).addTag(tag.id());
-
-    updateRemoveTagActions();
+    {
+        if (assign)
+            (*it).addTag(tag.id());
+        else
+            (*it).removeTag(tag.id());
+    }
+    updateTagActions();
 }
-
+/*
 void View::slotRemoveTag(const Tag& tag)
 {
     kdDebug() << "remove tag \"" << tag.id() << "\" from selected articles" << endl;
@@ -1075,9 +1081,9 @@ void View::slotRemoveTag(const Tag& tag)
     for (QValueList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
         (*it).removeTag(tag.id());
 
-    updateRemoveTagActions();
+    updateTagActions();
 }
-
+*/
 void View::slotNewTag()
 {
     TagPropertiesDialog* dlg = new TagPropertiesDialog(0);
@@ -1133,7 +1139,7 @@ void View::slotArticleSelected(const Article& article)
 
     kdDebug() << "selected: " << a.guid() << endl;
 
-    updateRemoveTagActions();
+    updateTagActions();
 
     m_articleViewer->slotShowArticle(a);
 }
@@ -1399,7 +1405,7 @@ void View::disconnectFromFeedList(FeedList* feedList)
     disconnect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
 }
 
-void View::updateRemoveTagActions()
+void View::updateTagActions()
 {
     QStringList tags;
 
@@ -1414,7 +1420,7 @@ void View::updateRemoveTagActions()
                 tags += *it2;
         }
     }
-    m_actionManager->slotUpdateRemoveTagMenu(tags);
+    m_actionManager->slotUpdateTagActions(!selectedArticles.isEmpty(), tags);
 }
 
 } // namespace Akregator

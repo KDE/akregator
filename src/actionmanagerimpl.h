@@ -68,8 +68,9 @@ class ActionManagerImpl : public ActionManager
 
     public slots:
 
-        /** fills the remove tag menu with the given tags */
-        void slotUpdateRemoveTagMenu(const QStringList& tagIds);
+        /** fills the remove tag menu with the given tags
+            enables/disables tag menu action according to @c enabled */
+        void slotUpdateTagActions(bool enabled, const QStringList& tagIds);
         
         void slotNodeSelected(TreeNode* node);
         

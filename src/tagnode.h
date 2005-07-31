@@ -61,6 +61,8 @@ public:
     virtual bool accept(TreeNodeVisitor* visitor);
 
     virtual Tag tag() const;
+
+    virtual QString icon() const;
     
     /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree)
     @return number of new/unread articles */
@@ -99,7 +101,10 @@ public:
     virtual TreeNode* next(); 
 
     virtual void setTitle(const QString& title);
-    
+
+    /** called by @c TagNodeList when the tag of this node was changed */    
+    virtual void tagChanged();
+
 public slots:
     
 
@@ -116,7 +121,7 @@ public slots:
     virtual void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
     virtual void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
     virtual void slotObservedDestroyed(TreeNode* node);
-    
+
 protected:
 
     virtual void doArticleNotification();

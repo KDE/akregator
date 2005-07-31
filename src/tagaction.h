@@ -25,16 +25,17 @@
 #ifndef AKREGATOR_TAGACTION_H
 #define AKREGATOR_TAGACTION_H
 
-#include <kaction.h>
+#include <kactionclasses.h>
 
 class QString;
+class QWidget;
 
 namespace Akregator {
 
 class Tag;
 
-/** a KAction for assigning and removing tags. Displays the tag name and emits the tag when activated */
-class TagAction : public KAction
+/** a KToggleAction for assigning and removing tags. Displays the tag name and emits the tag when activated */
+class TagAction : public KToggleAction
 {
     Q_OBJECT
 
@@ -42,14 +43,19 @@ class TagAction : public KAction
 
         TagAction(const Tag& tag, const QObject *receiver, const char *slot, QObject *parent=0);
         virtual ~TagAction();
+        
+        //virtual int plug(QWidget *widget, int index=-1);
+        //virtual void unplug(QWidget* widget);
+
+        virtual Tag tag() const;
 
     signals:
 
-        void activated(const Tag&);
+        void toggled(const Tag&, bool);
 
-    protected: 
+    protected slots: 
 
-        virtual void slotActivated();
+        virtual void slotToggled(bool enabled);
 
     private:
 

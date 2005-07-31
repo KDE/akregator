@@ -235,8 +235,8 @@ namespace Akregator {
             /** reads the currently selected articles using KTTSD */
             void slotTextToSpeechRequest();
 
-            void slotAssignTag(const Tag& tag);
-            void slotRemoveTag(const Tag& tag);
+            void slotAssignTag(const Tag& tag, bool assign);
+            //void slotRemoveTag(const Tag& tag);
             void slotNewTag();
             void slotTagCreated(const Tag& tag);
             void slotTagRemoved(const Tag& tag);
@@ -267,7 +267,7 @@ namespace Akregator {
             void connectToFeedList(FeedList* feedList);
             void disconnectFromFeedList(FeedList* feedList);
 
-            void updateRemoveTagActions();
+            void updateTagActions();
 
         protected slots:
 

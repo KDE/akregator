@@ -41,6 +41,7 @@ public:
     TagNodeItem(FolderItem* parent, TreeNodeItem* after, TagNode* node);
     TagNodeItem(KListView* parent, TagNode* node);
     virtual ~TagNodeItem();
+    virtual void nodeChanged();
     
     virtual TagNode* node();
     virtual void showContextMenu(const QPoint& p);

@@ -22,8 +22,17 @@
     without including the source code for Qt in the source distribution.
 */
 
+//#include "menuitems.h"
 #include "tag.h"
 #include "tagaction.h"
+
+#include <kapplication.h>
+#include <kdebug.h>
+#include <kpopupmenu.h>
+
+#include <qmap.h>
+#include <qpopupmenu.h>
+
 
 namespace Akregator {
 
@@ -31,15 +40,17 @@ class TagAction::TagActionPrivate
 {
     public:
     Tag tag;
-    
+    //QMap<int, QPopupMenu*> idToPopup;
+    //QMap<QPopupMenu*, int> popupToId;
 };
  
 TagAction::TagAction(const Tag& tag, const QObject *receiver, const char *slot, QObject *parent)
 //KAction (const QString &text, const KShortcut &cut, const QObject *receiver, const char *slot, QObject *parent, const char *name=0)
-       : KAction(tag.name(), KShortcut(), 0, 0, parent), d(new TagActionPrivate)
+       : KToggleAction(tag.name(), KShortcut(), 0, 0, parent), d(new TagActionPrivate)
 {
      d->tag = tag;
-     connect(this, SIGNAL(activated(const Tag&)), receiver, slot);
+     connect(this, SIGNAL(toggled(const Tag&, bool)), receiver, slot);
+     connect(this, SIGNAL(toggled(bool)), this, SLOT(slotToggled(bool)));
 }
 
 TagAction::~TagAction()
@@ -48,10 +59,54 @@ TagAction::~TagAction()
     d = 0;
 }
 
-void TagAction::slotActivated()
+Tag TagAction::tag() const
 {
-    emit activated(d->tag);
-    KAction::slotActivated();
+    return d->tag;
+}
+
+/*
+void TagAction::unplug(QWidget* widget)
+{
+    KToggleAction::unplug(widget);
+
+    QPopupMenu* popup = ::qt_cast<QPopupMenu *>(widget);
+    if (popup)
+    {
+        d->idToPopup.remove(d->popupToId[popup]);
+        d->popupToId.remove(popup);
+    }
+}*/
+
+/*
+int TagAction::plug(QWidget* widget, int index)
+{
+    QPopupMenu* popup = ::qt_cast<QPopupMenu *>( widget );
+    if (!popup)
+    {
+        kdWarning() << "Can not plug KToggleAction in " << widget->className() << endl;
+        return -1;
+    }
+    if (kapp && !kapp->authorizeKAction(name()))
+        return -1;
+    
+   TagMenuItem* item = new TagMenuItem(d->tag);
+    int id = popup->insertItem(TagMenuItem::checkBoxIconSet(isChecked(), popup->colorGroup()), item, -1, index);
+   
+    
+    popup->connectItem (id, this, SLOT(slotActivated()));
+
+    d->popupToId[popup] = id;
+    d->idToPopup[id] = popup;
+
+    if ( id == -1 )
+        return id;
+    
+    return id;   
+}
+*/
+void TagAction::slotToggled(bool enabled)
+{
+    emit toggled(d->tag, enabled);
 }
 
 } // namespace Akregator

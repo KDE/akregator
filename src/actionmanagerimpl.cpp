@@ -27,6 +27,7 @@
 #include <kactioncollection.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
+#include <kshortcut.h>
 #include <kxmlguifactory.h>
 
 #include <qmap.h>
@@ -129,26 +130,23 @@ public:
     ArticleViewer* articleViewer;
     Part* part;
     TrayIcon* trayIcon;
-    KActionMenu* assignTagMenu;
-    KActionMenu* removeTagMenu;
+    KActionMenu* tagMenu;
     KActionCollection* actionCollection;
     TagSet* tagSet;
-    QMap<QString, KAction*> assignTagActions;
-    QMap<QString, KAction*> removeTagActions;
-	TabWidget* tabWidget;
+    QMap<QString, TagAction*> tagActions;
+    TabWidget* tabWidget;
     KAction* speakSelectedArticlesAction;
 };
 
-void ActionManagerImpl::slotUpdateRemoveTagMenu(const QStringList& tagIds)
+void ActionManagerImpl::slotUpdateTagActions(bool enabled, const QStringList& tagIds)
 {
-    QValueList<KAction*> actions = d->removeTagActions.values();
+    d->tagMenu->setEnabled(enabled);
+    QValueList<TagAction*> actions = d->tagActions.values();
 
-    for (QValueList<KAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
-        d->removeTagMenu->remove(*it);
-
-    for (QStringList::ConstIterator it = tagIds.begin(); it != tagIds.end(); ++it)
-        d->removeTagMenu->insert(d->removeTagActions[*it]);
-
+    for (QValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+    {
+        (*it)->setChecked(tagIds.contains((*it)->tag().id()));
+    }
 }
 
 void ActionManagerImpl::setTagSet(TagSet* tagSet)
@@ -170,22 +168,15 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
         connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
     }
 
-    QValueList<KAction*> actions = d->assignTagActions.values();
-    for (QValueList<KAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+    QValueList<TagAction*> actions = d->tagActions.values();
+    for (QValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
     {
-        d->assignTagMenu->remove(*it);
+        d->tagMenu->remove(*it);
         delete *it;
     }
 
-    actions = d->removeTagActions.values();
-    for (QValueList<KAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
-    {
-        d->removeTagMenu->remove(*it);
-        delete *it;
-    }
-
-    d->assignTagActions.clear();
-    d->removeTagActions.clear();
+    
+    d->tagActions.clear();
 
     //TODO: remove actions from menus, delete actions, clear maps
 
@@ -196,22 +187,20 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
 
 void ActionManagerImpl::slotTagAdded(const Tag& tag)
 {
-    if (!d->assignTagActions.contains(tag.id()))
+    if (!d->tagActions.contains(tag.id()))
     {
-        d->assignTagActions[tag.id()] = new TagAction(tag, d->view, SLOT(slotAssignTag(const Tag&)), d->assignTagMenu);
-        d->removeTagActions[tag.id()] = new TagAction(tag, d->view, SLOT(slotRemoveTag(const Tag&)), d->removeTagMenu);
-        d->assignTagMenu->insert(d->assignTagActions[tag.id()]);
-        //TODO: add to assignTagMenu (sorted!)
+        d->tagActions[tag.id()] = new TagAction(tag, d->view, SLOT(slotAssignTag(const Tag&, bool)), d->tagMenu);
+        d->tagMenu->insert(d->tagActions[tag.id()]);
     }
 }
 
 void ActionManagerImpl::slotTagRemoved(const Tag& tag)
 {
     QString id = tag.id();
-    d->assignTagMenu->remove(d->assignTagActions[id]);
-    d->removeTagMenu->remove(d->removeTagActions[id]);
-    d->assignTagActions.remove(id);
-    d->removeTagActions.remove(id);
+    TagAction* action = d->tagActions[id];
+    d->tagMenu->remove(action);
+    d->tagActions.remove(id);
+    delete action;
 }
 
 void ActionManagerImpl::slotNodeSelected(TreeNode* node)
@@ -325,10 +314,8 @@ void ActionManagerImpl::initView(View* view)
 
     new KAction(i18n("&Delete"), "editdelete", "Delete", d->view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
 
-    d->assignTagMenu = new KActionMenu ( i18n( "&Assign Tag" ),
-                                    actionCollection(), "article_assign_tag_menu" );
-
-    d->removeTagMenu = new KActionMenu ( i18n( "&Remove Tag" ), actionCollection(), "article_remove_tag_menu" );
+    d->tagMenu = new KActionMenu ( i18n( "&Set Tags" ), "rss_tag",  actionCollection(), "article_tagmenu" );
+    d->tagMenu->setEnabled(false); // only enabled when articles are selected
 
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );

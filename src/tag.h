@@ -90,6 +90,9 @@ class Tag
 
     void setName(const QString& name);
 
+    QString icon() const;
+    void setIcon(const QString& icon);
+
     Tag& operator=(const Tag& other);
 
     /** compares tags by name. If names are equal, id's are compared. 

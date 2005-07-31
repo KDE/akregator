@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="69">
+<kpartgui name="akregator_part" version="77">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -82,6 +82,7 @@
   <Action name="feed_fetch_all"/>
   <Action name="feed_stop"/>
   <Action name="feed_mark_all_as_read"/>
+  <Action name="article_tagmenu"/>
   <DefineGroup name="pageviewer_operations" />
   <Merge/>
 </ToolBar>
@@ -161,8 +162,7 @@
   <Action name="article_toggle_keep"/>
   <Action name="article_delete"/>
   <Separator/>
-  <Action name="article_assign_tag_menu"/>
-  <Action name="article_remove_tag_menu"/>
+  <Action name="article_tagmenu"/>
 </Menu>
 
 <Menu name="tab_popup">

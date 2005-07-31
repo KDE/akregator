@@ -39,27 +39,44 @@ TagNodeItem::TagNodeItem(FolderItem* parent, TagNode* node) : TreeNodeItem(paren
 {
     setRenameEnabled(0, false);
     setExpandable(false);
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("bookmark_folder", KIcon::Small) );
+
     if (node)
+    {
         setText(0, node->title());
+        setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), KIcon::Small) );
+    }
+
 }
 
 TagNodeItem::TagNodeItem(FolderItem* parent, TreeNodeItem* after, TagNode* node) : TreeNodeItem(parent, after, node)
 {
     setRenameEnabled(0, false);
     setExpandable(false);
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("bookmark_folder", KIcon::Small) );
     if (node)
+    {
         setText(0, node->title());
+        setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), KIcon::Small) );
+    }
 }
 
 TagNodeItem::TagNodeItem(KListView* parent, TagNode* node) : TreeNodeItem(parent, node)
 {
     setRenameEnabled(0, false);
     setExpandable(false);
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("bookmark_folder", KIcon::Small) );
+
     if (node)
+    {
         setText(0, node->title());
+        setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), KIcon::Small) );
+    }
+
+
+}
+
+void TagNodeItem::nodeChanged()
+{
+    setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node()->icon(), KIcon::Small));
+    TreeNodeItem::nodeChanged();
 }
 
 TagNode* TagNodeItem::node() 

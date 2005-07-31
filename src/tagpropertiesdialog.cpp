@@ -22,6 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include <kicondialog.h>
 #include <klocale.h>
 
 #include <qlineedit.h>
@@ -39,7 +40,7 @@ class TagPropertiesDialog::TagPropertiesDialogPrivate
     TagPropertiesWidgetBase* widget;
 };
 
-TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name) : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Tag Properties"), KDialogBase::Ok|KDialogBase::Cancel), d(new TagPropertiesDialogPrivate)
+TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name) : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Tag Properties"), KDialogBase::Ok|KDialogBase::Cancel|KDialogBase::Apply), d(new TagPropertiesDialogPrivate)
 {
     d->widget = new TagPropertiesWidgetBase(this);
     setMainWidget(d->widget);
@@ -56,12 +57,21 @@ void TagPropertiesDialog::setTag(const Tag& tag)
 {
     d->tag = tag;
     d->widget->le_title->setText(tag.name());
+    d->widget->iconButton->setIcon(tag.icon());
 }
 
 void TagPropertiesDialog::slotOk()
 {
     d->tag.setName(d->widget->le_title->text());
+    d->tag.setIcon(d->widget->iconButton->icon());
     KDialogBase::slotOk();
+}
+
+void TagPropertiesDialog::slotApply()
+{
+    d->tag.setName(d->widget->le_title->text());
+    d->tag.setIcon(d->widget->iconButton->icon());
+    KDialogBase::slotApply();
 }
 
 }  // namespace Akregator

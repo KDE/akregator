@@ -37,6 +37,8 @@ class Tag::TagPrivate : public Shared
     QString id;
     QString name;
     QString scheme;
+    QString icon;
+
     QValueList<TagSet*> tagSets;
     bool operator==(const TagPrivate& other) const
     {
@@ -52,6 +54,7 @@ Tag::Tag(const QString& id, const QString& name, const QString& scheme) : d(new 
     d->id = id;
     d->name = name.isNull() ? id : name;
     d->scheme = scheme;
+    d->icon = "rss_tag";
 }
 
 Tag Tag::fromCategory(const QString& term, const QString& scheme, const QString& name)
@@ -113,11 +116,30 @@ QString Tag::scheme() const
     return d->scheme;
 }
 
+QString Tag::icon() const
+{
+    return d->icon;
+}
+
+void Tag::setIcon(const QString& icon)
+{
+    if (icon != d->icon)
+    {
+        d->icon = icon;
+        for (QValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
+            (*it)->tagUpdated(*this);
+    }
+}
+
+
 void Tag::setName(const QString& name)
 {
-    d->name = name;
-    for (QValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
-        (*it)->tagUpdated(*this);
+    if (name != d->name)
+    {
+        d->name = name;
+        for (QValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
+            (*it)->tagUpdated(*this);
+    }
 }
 
 void Tag::addedToTagSet(TagSet* tagSet) const

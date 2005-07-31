@@ -43,6 +43,7 @@ class TagNode::TagNodePrivate
     Filters::TagMatcher filter;
     TreeNode* observed;
     int unread;
+    QString icon;
     Tag tag;
     QValueList<Article> articles;
     QValueList<Article> addedArticlesNotify;
@@ -53,6 +54,7 @@ class TagNode::TagNodePrivate
 TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
 {
     d->tag = tag;
+    d->icon = tag.icon();
     d->filter = Filters::TagMatcher(tag.id());
     setTitle(tag.name());
     d->observed = observed;
@@ -67,6 +69,10 @@ TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
     calcUnread();
 }
 
+QString TagNode::icon() const
+{
+    return d->icon;
+}
 
 Tag TagNode::tag() const
 {
@@ -272,6 +278,25 @@ void TagNode::slotObservedDestroyed(TreeNode* /*observed*/)
     d->removedArticlesNotify = d->articles;
     d->articles.clear();
     articlesModified();
+}
+
+void TagNode::tagChanged()
+{
+    bool changed = false;
+    if (title() != d->tag.name())
+    {
+        setTitle(d->tag.name());
+        changed = true;
+    }
+
+    if (d->icon != d->tag.icon())
+    {
+        d->icon = d->tag.icon();
+        changed = true;
+    }
+
+    if (changed)
+        nodeModified();
 }
 
 } // namespace Akregator

@@ -47,6 +47,7 @@ class TagPropertiesDialog : public KDialogBase
     protected slots:
 
         virtual void slotOk();
+        virtual void slotApply();
 
     private:
         class TagPropertiesDialogPrivate;
