@@ -1087,7 +1087,7 @@ void View::slotRemoveTag(const Tag& tag)
 void View::slotNewTag()
 {
     TagPropertiesDialog* dlg = new TagPropertiesDialog(0);
-    Tag tag(KApplication::randomString(8), "");
+    Tag tag(KApplication::randomString(8), i18n("New Tag"));
     dlg->setTag(tag);
     if (dlg->exec())
         Kernel::self()->tagSet()->insert(tag);

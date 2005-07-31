@@ -27,8 +27,6 @@
 
 #include <kdialogbase.h>
 
-#include "tagpropertieswidgetbase.h"
-
 namespace Akregator {
 
 class Tag;
@@ -48,6 +46,7 @@ class TagPropertiesDialog : public KDialogBase
 
         virtual void slotOk();
         virtual void slotApply();
+        virtual void slotTextChanged(const QString& text);
 
     private:
         class TagPropertiesDialogPrivate;
