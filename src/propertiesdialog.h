@@ -49,10 +49,10 @@ namespace Akregator
          ~FeedPropertiesDialog();
 
          void setFeed(Feed* feed);
-         
+
          /** selects the text in the feed title lineedit */
          void selectFeedName();
-         
+
        protected:
          const QString feedName() const;
          const QString url() const;
@@ -75,13 +75,16 @@ namespace Akregator
          void setMarkImmediatelyAsRead(bool enabled);
          void setUseNotification(bool enabled);
          void setLoadLinkedWebsite(bool enabled);
-         
+
        protected slots:
            void slotOk();
-           
-      private:
-         FeedPropertiesWidget *widget;
-         Feed* m_feed;
+
+       private:
+           FeedPropertiesWidget *widget;
+           Feed* m_feed;
+
+       private slots:
+           void slotSetCaption(const QString&);
    };
 }
 

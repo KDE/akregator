@@ -70,6 +70,8 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     widget=new FeedPropertiesWidget(this);
     setMainWidget(widget);
     widget->feedNameEdit->setFocus();
+
+    connect(widget->feedNameEdit, SIGNAL(textChanged(const QString&)), this, SLOT(slotSetCaption(const QString&)));
 }
 
 FeedPropertiesDialog::~FeedPropertiesDialog()
@@ -89,8 +91,17 @@ void FeedPropertiesDialog::slotOk()
      m_feed->setUseNotification(useNotification());
      m_feed->setLoadLinkedWebsite(loadLinkedWebsite());
      m_feed->setNotificationMode(true, true);
-     
+
      KDialogBase::slotOk();
+}
+
+void FeedPropertiesDialog::slotSetCaption(const QString& c)
+{
+    if(c.isEmpty())
+        setCaption(i18n("Feed Properties"));
+    else
+        setCaption(i18n("Properties of %1").arg(c));
+
 }
 
 void FeedPropertiesDialog::setFeed(Feed* feed)
@@ -98,7 +109,7 @@ void FeedPropertiesDialog::setFeed(Feed* feed)
     m_feed = feed;
     if (!feed)
         return;
-    
+
     setFeedName( feed->title() );
     setUrl( feed->xmlUrl() );
     setAutoFetch(feed->useCustomFetchInterval());
@@ -109,6 +120,7 @@ void FeedPropertiesDialog::setFeed(Feed* feed)
     setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
     setUseNotification(feed->useNotification());
     setLoadLinkedWebsite(feed->loadLinkedWebsite());
+    slotSetCaption(feedName());
 }
 
 
@@ -147,21 +159,21 @@ Feed::ArchiveMode FeedPropertiesDialog::archiveMode() const
     // i could check the button group's int, but order could change...
     if ( widget->rb_globalDefault->isChecked() )
         return Feed::globalDefault;
-   
+
    if ( widget->rb_keepAllArticles->isChecked() )
         return Feed::keepAllArticles;
-        
+
    if ( widget->rb_limitArticleAge->isChecked() )
         return Feed::limitArticleAge;
-        
+
    if ( widget->rb_limitArticleNumber->isChecked() )
-        return Feed::limitArticleNumber;     
-   
+        return Feed::limitArticleNumber;
+
    if ( widget->rb_disableArchiving->isChecked() )
-        return Feed::disableArchiving;     
-    
+        return Feed::disableArchiving;
+
     // in a perfect world, this is never reached
-    
+
     return Feed::globalDefault;
 }
 
@@ -186,7 +198,7 @@ void FeedPropertiesDialog::setArchiveMode(Feed::ArchiveMode mode)
          case Feed::keepAllArticles:
             widget->rb_keepAllArticles->setChecked(true);
             break;
-         case Feed::disableArchiving:   
+         case Feed::disableArchiving:
             widget->rb_disableArchiving->setChecked(true);
             break;
          case Feed::limitArticleAge:
@@ -227,14 +239,14 @@ void FeedPropertiesDialog::setFetchInterval(int i)
         widget->updateComboBox->setCurrentItem(0); // minutes
         return;
     }
- 
+
    if (i % (60*24) == 0)
    {
        widget->updateSpinBox->setValue(i / (60*24) );
        widget->updateComboBox->setCurrentItem(2); // days
        return;
    }
-   
+
    if (i % 60 == 0)
    {
        widget->updateSpinBox->setValue(i / 60 );
@@ -248,13 +260,13 @@ void FeedPropertiesDialog::setFetchInterval(int i)
 
 void FeedPropertiesDialog::setMaxArticleAge(int age)
  {
-    widget->sb_maxArticleAge->setValue(age);    
-}    
+    widget->sb_maxArticleAge->setValue(age);
+}
 
 void FeedPropertiesDialog::setMaxArticleNumber(int number)
 {
-    widget->sb_maxArticleNumber->setValue(number);             
-}    
+    widget->sb_maxArticleNumber->setValue(number);
+}
 
 void FeedPropertiesDialog::setMarkImmediatelyAsRead(bool enabled)
 {
