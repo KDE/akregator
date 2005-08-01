@@ -45,6 +45,9 @@ public:
     
     virtual TagNode* node();
     virtual void showContextMenu(const QPoint& p);
+
+private:
+    void initialize(TagNode* node);
 };
 
 }

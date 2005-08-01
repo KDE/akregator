@@ -39,30 +39,32 @@ using namespace Akregator;
 TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNode* node)
     : KListViewItem(parent), m_node(node)
 {
-    if (node)
-        setText(0, node->title() );
+    initialize(node);
 }
 
 TreeNodeItem::TreeNodeItem(KListView* parent, TreeNode* node) 
     : KListViewItem(parent), m_node(node)
 {
-    if (node)
-         setText(0, node->title() );
+    initialize(node);
 }
 
 TreeNodeItem::TreeNodeItem(KListView* parent, TreeNodeItem* after, TreeNode* node) : KListViewItem(parent, after), m_node(node)
 {
-    if (node)
-         setText(0, node->title() );
+    initialize(node);
 }
 
 TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* node)
     : KListViewItem(parent, after), m_node(node)
 {
+    initialize(node);
+}
+
+void TreeNodeItem::initialize(TreeNode* node)
+{
+    setRenameEnabled(0, true);
     if (node)
         setText(0, node->title() );
 }
-    
 
 TreeNodeItem::~TreeNodeItem()
 {}

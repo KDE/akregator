@@ -37,31 +37,21 @@ using namespace Akregator;
 
 TagNodeItem::TagNodeItem(FolderItem* parent, TagNode* node) : TreeNodeItem(parent, node)
 {
-    setRenameEnabled(0, false);
-    setExpandable(false);
-
-    if (node)
-    {
-        setText(0, node->title());
-        setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), KIcon::Small) );
-    }
-
+    initialize(node);
 }
 
 TagNodeItem::TagNodeItem(FolderItem* parent, TreeNodeItem* after, TagNode* node) : TreeNodeItem(parent, after, node)
 {
-    setRenameEnabled(0, false);
-    setExpandable(false);
-    if (node)
-    {
-        setText(0, node->title());
-        setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), KIcon::Small) );
-    }
+    initialize(node);
 }
 
 TagNodeItem::TagNodeItem(KListView* parent, TagNode* node) : TreeNodeItem(parent, node)
 {
-    setRenameEnabled(0, false);
+    initialize(node);
+}
+
+void TagNodeItem::initialize(TagNode* node)
+{
     setExpandable(false);
 
     if (node)
@@ -69,8 +59,6 @@ TagNodeItem::TagNodeItem(KListView* parent, TagNode* node) : TreeNodeItem(parent
         setText(0, node->title());
         setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), KIcon::Small) );
     }
-
-
 }
 
 void TagNodeItem::nodeChanged()

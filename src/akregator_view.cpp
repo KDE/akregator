@@ -35,10 +35,8 @@
 #include "articleviewer.h"
 #include "viewer.h"
 #include "feed.h"
-#include "feeditem.h"
 #include "tagfolder.h"
 #include "folder.h"
-#include "folderitem.h"
 #include "feedlist.h"
 #include "akregatorconfig.h"
 #include "kernel.h"
@@ -54,7 +52,6 @@
 #include "tagpropertiesdialog.h"
 #include "treenode.h"
 #include "progressmanager.h"
-#include "treenodeitem.h"
 #include "treenodevisitor.h"
 #include "notificationmanager.h"
 
@@ -120,7 +117,7 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
 
         virtual bool visitFolder(Folder* node)
         {
-            m_view->m_tree->findNodeItem(node)->startRename(0);
+            m_view->m_tree->startNodeRenaming(node);
             return true;
         }
 
@@ -1086,12 +1083,11 @@ void View::slotRemoveTag(const Tag& tag)
 */
 void View::slotNewTag()
 {
-    TagPropertiesDialog* dlg = new TagPropertiesDialog(0);
-    Tag tag(KApplication::randomString(8), i18n("New Tag"));
-    dlg->setTag(tag);
-    if (dlg->exec())
-        Kernel::self()->tagSet()->insert(tag);
-    delete dlg;
+    Tag tag(KApplication::randomString(8), "New Tag");
+    Kernel::self()->tagSet()->insert(tag);
+    TagNode* node = m_tagNodeList->findByTagID(tag.id());
+    if (node)
+        m_tree->startNodeRenaming(node);
 }
 
 void View::slotTagCreated(const Tag& tag)

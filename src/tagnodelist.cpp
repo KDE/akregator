@@ -79,6 +79,11 @@ TagFolder* TagNodeList::rootNode()
     return d->rootNode;
 }
 
+TagNode* TagNodeList::findByTagID(const QString& tagID)
+{
+    return d->idToNodeMap[tagID];
+}
+
 bool TagNodeList::insert(TagNode* tagNode)
 {
     tagNode->setId((uint)KApplication::random());

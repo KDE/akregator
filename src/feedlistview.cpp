@@ -294,7 +294,7 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
     setRootIsDecorated(true);
-    setItemsRenameable(true);
+    setItemsRenameable(false); // NOTE: setting this this to true collides with setRenameEnabled() in items and breaks in-place renaming in strange ways. Do not enable!
     setItemMargin(2);
 
     setFullWidth(true);
@@ -310,7 +310,6 @@ FeedListView::FeedListView( QWidget *parent, const char *name)
     connect( this, SIGNAL(dropped(QDropEvent*, QListViewItem*)), this, SLOT(slotDropped(QDropEvent*, QListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(QListViewItem*, int, const QString&)), this, SLOT(slotItemRenamed(QListViewItem*, int, const QString&)) );
-    connect( this, SIGNAL(itemRenamed(QListViewItem*, const QString&, int)), this, SLOT(slotItemRenamed(QListViewItem*, const QString&, int)) );
     connect( this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)) );
     connect( &(d->autoopentimer), SIGNAL( timeout() ), this, SLOT( openFolder() ) );
 
@@ -423,7 +422,7 @@ void FeedListView::setSelectedNode(TreeNode* node)
 
 TreeNode* FeedListView::findNodeByTitle(const QString& title)
 {
-    TreeNodeItem* item = dynamic_cast<TreeNodeItem*>(findItem(title, 0));
+    TreeNodeItem* item = dynamic_cast<TreeNodeItem*>(findItemByTitle(title, 0));
     if (!item)
         return 0;
     else 
@@ -435,7 +434,7 @@ TreeNodeItem* FeedListView::findNodeItem(TreeNode* node)
     return d->itemDict.find(node);
 }
 
-TreeNodeItem* FeedListView::findItem (const QString& text, int column, ComparisonFlags compare) const
+TreeNodeItem* FeedListView::findItemByTitle(const QString& text, int column, ComparisonFlags compare) const
 { 
     return dynamic_cast<TreeNodeItem*> (KListView::findItem(text, column, compare)); 
 }
@@ -443,6 +442,15 @@ TreeNodeItem* FeedListView::findItem (const QString& text, int column, Compariso
 void FeedListView::ensureNodeVisible(TreeNode* node)
 {
     ensureItemVisible(findNodeItem(node));
+}
+
+void FeedListView::startNodeRenaming(TreeNode* node)
+{
+    TreeNodeItem* item = findNodeItem(node);
+    if (item)
+    {   
+        item->startRename(0);
+    }
 }
 
 void FeedListView::clear()
@@ -852,13 +860,8 @@ void FeedListView::slotItemRenamed(QListViewItem* item, int col, const QString& 
         }
     }
 }
-void FeedListView::slotItemRenamed(QListViewItem* item, const QString& text, int col)
-{
-    slotItemRenamed(item, col, text);
-}
-
 void FeedListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
-{
+{    
     TreeNodeItem* ti = dynamic_cast<TreeNodeItem*>(item);
     emit signalContextMenu(list, ti ? ti->node() : 0, p);
     if (ti)

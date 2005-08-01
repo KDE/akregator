@@ -35,40 +35,31 @@ using namespace Akregator;
 
 FolderItem::FolderItem(FolderItem* parent, Folder* node) : TreeNodeItem(parent, node)
 {
-    setRenameEnabled(0, true);
-    setOpen( node->isOpen() );
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
-    if (node)
-        setText(0, node->title());
+    initialize(node);
 }
 
 FolderItem::FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
 {
-    setRenameEnabled(0, true);
-    setOpen(node->isOpen());
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
-    if (node)
-        setText(0, node->title());
+    initialize(node);
 }
 
 FolderItem::FolderItem(KListView* parent, Folder* node) : TreeNodeItem(parent, node)
 {
-    setRenameEnabled(0, true);
-    setOpen(true);
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
-    if (node)
-        setText(0, node->title());
+    initialize(node);
 }
 
 FolderItem::FolderItem(KListView* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
 {
-    setRenameEnabled(0, true);
+    initialize(node);
+}
+
+void FolderItem::initialize(Folder* node)
+{
     setOpen(true);
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     if (node)
         setText(0, node->title());
 }
-
 
 Folder* FolderItem::node() 
 { 

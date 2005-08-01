@@ -51,6 +51,9 @@ public:
     
     virtual void setOpen(bool open);
     virtual void showContextMenu(const QPoint& p);
+
+private:
+    void initialize(Folder* node);
 };
 
 }

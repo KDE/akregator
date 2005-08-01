@@ -54,6 +54,8 @@ namespace Akregator {
        bool remove(TagNode* tagNode);
        bool containsTagId(const QString& tagId);
        QValueList<TagNode*> toList() const;
+       
+       TagNode* findByTagID(const QString& tagID);
 
        QDomDocument toXML() const;
 

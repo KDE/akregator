@@ -32,7 +32,6 @@ namespace Akregator
 {
     class Feed;
     class Folder;
-    class FolderItem;
     class FeedList;
     class TreeNode;
     class TreeNodeItem;
@@ -80,20 +79,16 @@ namespace Akregator
             /** ensures that @c node is visible. */
             void ensureNodeVisible(TreeNode* node);
 
-            /** reimplemented to return TreeNodeItem* */
-            virtual TreeNodeItem* findItem (const QString& text, int column, ComparisonFlags compare = ExactMatch | CaseSensitive ) const;
-
+            /** activates in-place renaming for the item of @c node */
+            void startNodeRenaming(TreeNode* node);
+            
+            
             /** reimplemented: clears the view and creates the root node ("All Feeds") */
             virtual void clear();
 
             /** if enabled, the view shows tag folders */
             void setShowTagFolders(bool enabled);
 
-            /** Find item belonging to tree node @c node, @c null when node is not in tree
-            @return item representing node
-            @param node a tree node */
-
-            TreeNodeItem* findNodeItem(TreeNode* node);
         public slots:
            
             /** go one item up */
@@ -120,10 +115,19 @@ namespace Akregator
             void signalContextMenu(KListView*, TreeNode*, const QPoint&);
 
         protected:
-            
+
+            /** Find item belonging to tree node @c node, @c null when node is not in tree
+            @return item representing node
+            @param node a tree node */
+
+            TreeNodeItem* findNodeItem(TreeNode* node);
+
+            /** reimplemented to return TreeNodeItem* */
+            virtual TreeNodeItem* findItemByTitle(const QString& text, int column, ComparisonFlags compare = ExactMatch | CaseSensitive ) const;
+
             /** observe @c node: connect status change signals of @c node to slots */
             virtual void connectToNode(TreeNode* node);
-            
+
             /** stop observing @c node: disconnect from status change signals of @c node */
             virtual void disconnectFromNode(TreeNode* node);
 
@@ -150,7 +154,6 @@ namespace Akregator
             virtual void slotSelectionChanged(QListViewItem* item);
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             virtual void slotItemRenamed(QListViewItem* item, int col, const QString& text);
-            virtual void slotItemRenamed(QListViewItem* item, const QString& text, int col);
             virtual void slotFeedFetchStarted(Feed* feed);
             virtual void slotFeedFetchAborted(Feed* feed);
             virtual void slotFeedFetchError(Feed* feed);
