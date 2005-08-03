@@ -43,22 +43,24 @@ namespace Akregator {
 class TagNodeList::TagNodeListPrivate
 {
     public:
-    TagFolder* rootNode;
     FeedList* feedList;
     TagSet* tagSet;
-    QMap<QString, TagNode*> idToNodeMap;
+    QMap<QString, TagNode*> tagIdToNodeMap;
 };
 
-TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) : d(new TagNodeListPrivate)
+TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) :  NodeList(), d(new TagNodeListPrivate)
 {
     d->feedList = feedList;
     d->tagSet = tagSet;
-    d->rootNode = new TagFolder(i18n("My Tags"));
-    connect(d->rootNode, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
-    connect(d->rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
+    TagFolder* rootNode = new TagFolder(i18n("My Tags"));
+
+    connect(rootNode, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
+    connect(rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
     connect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
     connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
     connect(d->tagSet, SIGNAL(signalTagUpdated(const Tag&)), this, SLOT(slotTagUpdated(const Tag&)));
+
+    setRootNode(rootNode);
 
     QValueList<Tag> list = tagSet->toMap().values();
     for (QValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
@@ -69,29 +71,29 @@ TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) : d(new TagNodeList
 
 TagNodeList::~TagNodeList()
 {
-    delete d->rootNode;
+    emit signalDestroyed(this);
     delete d;
     d = 0;
 }
 
-TagFolder* TagNodeList::rootNode()
+TagFolder* TagNodeList::rootNode() const
 {
-    return d->rootNode;
+    return static_cast<TagFolder*>(NodeList::rootNode());
 }
 
 TagNode* TagNodeList::findByTagID(const QString& tagID)
 {
-    return d->idToNodeMap[tagID];
+    return d->tagIdToNodeMap[tagID];
 }
 
 bool TagNodeList::insert(TagNode* tagNode)
 {
-    tagNode->setId((uint)KApplication::random());
+    tagNode->setId(KApplication::random());
     QString id = tagNode->tag().id();
     if (!containsTagId(id))
     {
         rootNode()->appendChild(tagNode); // TODO: maintain sorting
-        d->idToNodeMap[id] = tagNode;
+        d->tagIdToNodeMap[id] = tagNode;
         emit signalTagNodeAdded(tagNode);
         return true;
     }
@@ -103,8 +105,8 @@ bool TagNodeList::remove(TagNode* tagNode)
     QString id = tagNode->tag().id();
     if (containsTagId(id))
     {
-        d->rootNode->removeChild(tagNode);
-        d->idToNodeMap.remove(id);
+        rootNode()->removeChild(tagNode);
+        d->tagIdToNodeMap.remove(id);
         emit signalTagNodeRemoved(tagNode);
         return true;
     }
@@ -118,45 +120,53 @@ void TagNodeList::slotNodeDestroyed(TreeNode* node)
     
     if (tagNode != 0 && containsTagId(id))
     {
-        d->rootNode->removeChild(tagNode);
-        d->idToNodeMap.remove(id);
+        rootNode()->removeChild(tagNode);
+        d->tagIdToNodeMap.remove(id);
         emit signalTagNodeRemoved(tagNode);
     }
 }
 
 void TagNodeList::slotNodeAdded(TreeNode* node)
 {
+    NodeList::slotNodeAdded(node);
+
     TagNode* tagNode = dynamic_cast<TagNode*>(node);
     QString id = tagNode ? tagNode->tag().id() : QString::null;
     
     if (tagNode != 0L && !containsTagId(id))
     {
-       d->idToNodeMap[id] = tagNode;
+       d->tagIdToNodeMap[id] = tagNode;
        emit signalTagNodeAdded(tagNode);
     }
 }
 
 void TagNodeList::slotNodeRemoved(Folder* parent, TreeNode* node)
 {
-    
-     TagNode* tagNode = dynamic_cast<TagNode*>(node);
-     QString id = tagNode ? tagNode->tag().id() : QString::null;
+    NodeList::slotNodeRemoved(parent, node);
 
-     if (parent == d->rootNode && tagNode != 0L && containsTagId(id))
-     {
-         d->idToNodeMap.remove(id);
-         emit signalTagNodeRemoved(tagNode);
-     }
+    TagNode* tagNode = dynamic_cast<TagNode*>(node);
+    QString id = tagNode ? tagNode->tag().id() : QString::null;
+    
+    if (parent == rootNode() && tagNode != 0L && containsTagId(id))
+    {
+        d->tagIdToNodeMap.remove(id);
+        emit signalTagNodeRemoved(tagNode);
+    }
 }
 
 bool TagNodeList::containsTagId(const QString& tagId)
 {
-    return d->idToNodeMap.contains(tagId);
+    return d->tagIdToNodeMap.contains(tagId);
 }
 
 QValueList<TagNode*> TagNodeList::toList() const
 {
-    return d->idToNodeMap.values();
+    return d->tagIdToNodeMap.values();
+}
+
+bool TagNodeList::readFromXML(const QDomDocument& doc)
+{
+    return false; // TODO
 }
 
 QDomDocument TagNodeList::toXML() const
@@ -176,15 +186,15 @@ void TagNodeList::slotTagUpdated(const Tag& tag)
 {
     if (containsTagId(tag.id()))
     {
-        d->idToNodeMap[tag.id()]->tagChanged();
+        d->tagIdToNodeMap[tag.id()]->tagChanged();
     }
 }
 void TagNodeList::slotTagRemoved(const Tag& tag)
 {
     if (containsTagId(tag.id()))
     {
-        delete d->idToNodeMap[tag.id()];
-        d->idToNodeMap[tag.id()] = 0;
+        delete d->tagIdToNodeMap[tag.id()];
+        d->tagIdToNodeMap[tag.id()] = 0;
     }
 }
 

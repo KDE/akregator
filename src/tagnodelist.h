@@ -25,7 +25,8 @@
 #ifndef AKREGATOR_TAGNODELIST_H
 #define AKREGATOR_TAGNODELIST_H
 
-#include <qobject.h>
+#include "tagnodelist.h"
+#include "tagfolder.h"
 
 class QDomDocument;
 template <class T> class QValueList;
@@ -41,7 +42,7 @@ namespace Akregator {
    class TagSet;
    
    
-   class TagNodeList : public QObject
+   class TagNodeList : public NodeList
    {
        Q_OBJECT
        public:
@@ -57,15 +58,12 @@ namespace Akregator {
        
        TagNode* findByTagID(const QString& tagID);
 
-       QDomDocument toXML() const;
+       virtual bool readFromXML(const QDomDocument& doc);
+       virtual QDomDocument toXML() const;
 
-       TagFolder* rootNode();
+       virtual TagFolder* rootNode() const;
        
        public slots:
-
-       void slotNodeDestroyed(TreeNode* node);
-       void slotNodeAdded(TreeNode* node);
-       void slotNodeRemoved(Folder* parent, TreeNode* node);
 
        void slotTagAdded(const Tag& tag);
        void slotTagUpdated(const Tag& tag);
@@ -73,9 +71,16 @@ namespace Akregator {
        
        signals:
 
+       void signalDestroyed(TagNodeList*);
        void signalTagNodeAdded(TagNode* node);
        void signalTagNodeRemoved(TagNode* node);
-       
+
+       protected slots:
+
+       virtual void slotNodeDestroyed(TreeNode* node);
+       virtual void slotNodeAdded(TreeNode* node);
+       virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
+
        private:
        
        class TagNodeListPrivate;
