@@ -159,6 +159,16 @@ QValueList<TreeNode*>* NodeList::flatList() const
     return &(d->flatList);
 }
 
+void NodeList::clear()
+{
+    Q_ASSERT(rootNode());
+    
+    QValueList<TreeNode*> children = rootNode()->children();
+
+    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+        delete *it; // emits signal "emitSignalDestroyed"
+}
+
 QMap<int, TreeNode*>* NodeList::idMap() const
 {
     return &(d->idMap);

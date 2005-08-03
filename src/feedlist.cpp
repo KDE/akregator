@@ -104,16 +104,6 @@ void FeedList::removeNode(TreeNode* node)
    d->removeNodeVisitor->visit(node);
 }
 
-void FeedList::clear()
-{
-    Q_ASSERT(rootNode());
-    
-    QValueList<TreeNode*> children = rootNode()->children();
-
-    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
-        delete *it; // emits signal "emitSignalDestroyed"
-}
-
 void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
 {
     QDomElement e = node.toElement(); // try to convert the node to an element.

@@ -74,6 +74,13 @@ signals:
     /** emitted when a node was removed from the list */
     void signalNodeRemoved(TreeNode*);
 
+public slots:
+
+    /**
+     * Clears the list without touching the root node.
+     */
+    void clear();
+
 protected:
 
     QValueList<TreeNode*>* flatList() const;
