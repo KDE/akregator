@@ -73,6 +73,13 @@ signals:
 
     void signalDestroyed(FeedList*);
 
+public slots:
+
+    /**
+     * Clears the list without touching the root node.
+     */
+    void clear();
+
 protected:
 
     virtual void addNode(TreeNode* node, bool preserveID);
