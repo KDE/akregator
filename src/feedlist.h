@@ -25,12 +25,11 @@
 #ifndef AKREGATORFEEDLIST_H
 #define AKREGATORFEEDLIST_H
 
-#include <qobject.h>
+#include "nodelist.h"
 
 class QDomDocument;
 class QDomNode;
 class QString;
-template <class T> class QValueList;
 
 namespace Akregator
 {
@@ -42,72 +41,49 @@ class TreeNode;
 
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
-class FeedList : public QObject
+class FeedList : public NodeList
 {
 Q_OBJECT
 public:
-
-    /** reads an OPML document and appends the items to this list
-        @param doc the OPML document to parse
-        @return whether parsing was successful or not (TODO: make errors more detailed)
-    */
-    bool readFromOPML(const QDomDocument& doc);
 
     FeedList(QObject *parent = 0, const char *name = 0);
 
     /** Destructor. Contained nodes are deleted! */
     ~FeedList();
 
-    /** returns the root node ("All Feeds"). */
-    Folder* rootNode() const;
-
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
     
     void append(FeedList* list, Folder* parent=0, TreeNode* after=0);
 
-    /** returns the title of the feed list (as used in the OPML document) */
-    const QString& title() const;
-
-    /** sets the title of the feed list */
-    void setTitle(const QString& name);
+    /** reads an OPML document and appends the items to this list
+        @param doc the OPML document to parse
+        @return whether parsing was successful or not (TODO: make errors more detailed)
+    */
+    virtual bool readFromXML(const QDomDocument& doc);
 
     /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
-    QDomDocument toOPML() const;
-
-    TreeNode* findByID(uint id) const;
+    virtual QDomDocument toXML() const;
 
     /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
     Feed* findByURL(const QString& feedURL) const;
 
     Article findArticle(const QString& feedURL, const QString& guid) const;
-    
-    /** returns whether the feed list is empty, root node is ignored */
-    bool isEmpty() const;
-
-    /** returns a flat list containing all nodes in the tree */
-    const QValueList<TreeNode*>& asFlatList() const;
 
 signals:
+
     void signalDestroyed(FeedList*);
-    /** emitted when a node was added to this feed list */
-    void signalNodeAdded(TreeNode*);
-    /** emitted when a node was removed from this feed list */
-    void signalNodeRemoved(TreeNode*);
 
+protected:
 
-protected slots:
+    virtual void addNode(TreeNode* node, bool preserveID);
+    virtual void removeNode(TreeNode* node);
 
-    void slotNodeAdded(TreeNode* node);
-//    void slotNodeChanged(TreeNode* node);
-    void slotNodeDestroyed(TreeNode* node);
-    void slotNodeRemoved(Folder* parent, TreeNode* node);
-    
 private:
 
     void parseChildNodes(QDomNode &node, Folder* parent);
 
     // never call these
-    FeedList(const FeedList&) : QObject() {}
+    FeedList(const FeedList&) : NodeList() {}
     FeedList& operator=(const FeedList&) { return *this; }
 
     friend class AddNodeVisitor;

@@ -479,7 +479,7 @@ void View::slotLoadingProgress(int percent)
 bool View::importFeeds(const QDomDocument& doc)
 {
     FeedList* feedList = new FeedList();
-    bool parsed = feedList->readFromOPML(doc);
+    bool parsed = feedList->readFromXML(doc);
 
     // FIXME: parsing error, print some message
     if (!parsed)
@@ -511,7 +511,7 @@ bool View::importFeeds(const QDomDocument& doc)
 bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
 {
     FeedList* feedList = new FeedList();
-    bool parsed = feedList->readFromOPML(doc);
+    bool parsed = feedList->readFromXML(doc);
 
     // parsing went wrong
     if (!parsed)
@@ -568,7 +568,7 @@ void View::slotDeleteExpiredArticles()
 
 QDomDocument View::feedListToOPML()
 {
-    return m_feedList->toOPML();
+    return m_feedList->toXML();
 }
 
 void View::addFeedToGroup(const QString& url, const QString& groupName)

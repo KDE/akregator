@@ -54,6 +54,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
                                  tagnode.cpp \
 				 folder.cpp \
                                  tagfolder.cpp \
+                                 nodelist.cpp \
 				 feedlist.cpp \
                                  tagnodelist.cpp \
 			         fetchqueue.cpp \
