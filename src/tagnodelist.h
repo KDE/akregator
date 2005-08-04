@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_TAGNODELIST_H
 #define AKREGATOR_TAGNODELIST_H
 
-#include "tagnodelist.h"
 #include "tagfolder.h"
 
 class QDomDocument;
