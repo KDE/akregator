@@ -44,6 +44,12 @@ FeedItem::FeedItem(KListView* parent, Feed* node) : TreeNodeItem(parent, node)
     initialize(node);
 }
 
+FeedItem::FeedItem(KListView* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
+{
+    initialize(node);
+}
+
+
 FeedItem::FeedItem(FolderItem* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
 {
     initialize(node);

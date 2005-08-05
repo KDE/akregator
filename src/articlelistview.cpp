@@ -562,7 +562,7 @@ void ArticleListView::slotNextUnreadArticle()
         if (i && i->article().status() != Article::Read)
             unread = i;
         else 
-            i = dynamic_cast<ArticleItem*>(i->itemBelow() ? i->itemBelow() : firstChild());
+            i = dynamic_cast<ArticleItem*>(i && i->itemBelow() ? i->itemBelow() : firstChild());
     }
     while (!unread && i != start);
 

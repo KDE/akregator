@@ -48,19 +48,21 @@ class TagNodeList::TagNodeListPrivate
     QMap<QString, TagNode*> tagIdToNodeMap;
 };
 
+FeedList* TagNodeList::feedList() const
+{
+    return d->feedList;
+}
+
 TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) :  NodeList(), d(new TagNodeListPrivate)
 {
     d->feedList = feedList;
     d->tagSet = tagSet;
-    TagFolder* rootNode = new TagFolder(i18n("My Tags"));
-
-    connect(rootNode, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
-    connect(rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
+ 
     connect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
     connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
     connect(d->tagSet, SIGNAL(signalTagUpdated(const Tag&)), this, SLOT(slotTagUpdated(const Tag&)));
 
-    setRootNode(rootNode);
+    setRootNode(new TagFolder(i18n("My Tags")));
 
     QValueList<Tag> list = tagSet->toMap().values();
     for (QValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)

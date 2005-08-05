@@ -50,6 +50,11 @@ TagNodeItem::TagNodeItem(KListView* parent, TagNode* node) : TreeNodeItem(parent
     initialize(node);
 }
 
+TagNodeItem::TagNodeItem(KListView* parent, TreeNodeItem* after, TagNode* node) : TreeNodeItem(parent, after, node)
+{
+    initialize(node);
+}
+
 void TagNodeItem::initialize(TagNode* node)
 {
     setExpandable(false);

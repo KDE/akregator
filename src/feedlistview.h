@@ -25,175 +25,180 @@
 #define AKREGATORFEEDLISTVIEW_H
 
 #include <klistview.h>
-
-class KURL;
+#include <kurl.h>
 
 namespace Akregator
 {
-    class Feed;
-    class Folder;
-    class FeedList;
-    class TreeNode;
-    class TreeNodeItem;
-    class TagNodeList;
+class Feed;
+class Folder;
+class NodeList;
+class TreeNode;
+class TreeNodeItem;
+class TagNodeList;
+
+class NodeListView : public KListView
+{
+Q_OBJECT
+public:
+    NodeListView( QWidget *parent = 0, const char *name = 0 );
+    virtual ~NodeListView();
     
-    class FeedListView : public KListView
-    {
-        Q_OBJECT
-        public:
-            FeedListView( QWidget *parent = 0, const char *name = 0 );
-            ~FeedListView();
-            
-            /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
-            void setFeedList(FeedList* feedList, TagNodeList* tagNodeList=0);
+    /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
+    void setNodeList(NodeList* nodeList);
 
-            /** returns the currently displayed feed list, or 0 if none is set */
+    /** Returns root node ("All Feeds").
+        * @return root node
+        */
+    Folder* rootNode();
+    
+    /** Returns the currently selected node, @c null when no one is selected.
+        @return selected node
+        */
+    TreeNode* selectedNode();
 
-            FeedList* feedList() const;
+    /** selects @c node, if it exists
+        * @param node the node to select
+        */
+    void setSelectedNode(TreeNode* node);
 
-             /** returns the currently displayed tag node list (must belong to feedList()), or 0 if none is set */
-            TagNodeList* tagNodeList() const;
+    /** Find first node with title @c title
+        returns 0 if no node was found
+    @param title
+    @return node
+        */ 
+    TreeNode* findNodeByTitle(const QString& title);
 
-            /** Returns root node ("All Feeds").
-             * @return root node
-             */
-            Folder* rootNode();
-            
-            /** Returns the currently selected node, @c null when no one is selected.
-             @return selected node
-             */
-            TreeNode* selectedNode();
-   
-            /** selects @c node, if it exists
-             * @param node the node to select
-             */
-            void setSelectedNode(TreeNode* node);
+    /** ensures that @c node is visible. */
+    void ensureNodeVisible(TreeNode* node);
 
-            /** Find first node with title @c title
-                returns 0 if no node was found
-            @param title
-            @return node
-             */ 
-            TreeNode* findNodeByTitle(const QString& title);
+    /** activates in-place renaming for the item of @c node */
+    void startNodeRenaming(TreeNode* node);
+    
+    
+    /** reimplemented: clears the view and creates the root node ("All Feeds") */
+    virtual void clear();
 
-            /** ensures that @c node is visible. */
-            void ensureNodeVisible(TreeNode* node);
+    /** if enabled, the view shows tag folders */
+    void setShowTagFolders(bool enabled);
 
-            /** activates in-place renaming for the item of @c node */
-            void startNodeRenaming(TreeNode* node);
-            
-            
-            /** reimplemented: clears the view and creates the root node ("All Feeds") */
-            virtual void clear();
+public slots:
+    
+    /** go one item up */
+    void slotItemUp();
+    /** go one item down */
+    void slotItemDown();
+    /** select the first item in the list */
+    void slotItemBegin();
+    /** select last item in the list */
+    void slotItemEnd();
+    /** go to parent item */
+    void slotItemLeft();
+    /** go to first child */
+    void slotItemRight();
 
-            /** if enabled, the view shows tag folders */
-            void setShowTagFolders(bool enabled);
+    void slotPrevFeed();
+    void slotNextFeed();
+    void slotPrevUnreadFeed();
+    void slotNextUnreadFeed();
+    
+signals:
+    void signalDropped (KURL::List &, TreeNode*, Folder*);
+    void signalNodeSelected(TreeNode*);
+    void signalRootNodeChanged(NodeListView*, TreeNode*);
+    void signalContextMenu(KListView*, TreeNode*, const QPoint&);
 
-        public slots:
-           
-            /** go one item up */
-            void slotItemUp();
-            /** go one item down */
-            void slotItemDown();
-            /** select the first item in the list */
-            void slotItemBegin();
-            /** select last item in the list */
-            void slotItemEnd();
-            /** go to parent item */
-            void slotItemLeft();
-            /** go to first child */
-            void slotItemRight();
-      
-            void slotPrevFeed();
-            void slotNextFeed();
-            void slotPrevUnreadFeed();
-            void slotNextUnreadFeed();
-            
-        signals:
-            void signalDropped (KURL::List &, TreeNode*, Folder*);
-            void signalNodeSelected(TreeNode*);
-            void signalContextMenu(KListView*, TreeNode*, const QPoint&);
+protected:
 
-        protected:
+    /** Find item belonging to tree node @c node, @c null when node is not in tree
+    @return item representing node
+    @param node a tree node */
 
-            /** Find item belonging to tree node @c node, @c null when node is not in tree
-            @return item representing node
-            @param node a tree node */
+    TreeNodeItem* findNodeItem(TreeNode* node);
 
-            TreeNodeItem* findNodeItem(TreeNode* node);
+    /** reimplemented to return TreeNodeItem* */
+    virtual TreeNodeItem* findItemByTitle(const QString& text, int column, ComparisonFlags compare = ExactMatch | CaseSensitive ) const;
 
-            /** reimplemented to return TreeNodeItem* */
-            virtual TreeNodeItem* findItemByTitle(const QString& text, int column, ComparisonFlags compare = ExactMatch | CaseSensitive ) const;
+    /** observe @c node: connect status change signals of @c node to slots */
+    virtual void connectToNode(TreeNode* node);
 
-            /** observe @c node: connect status change signals of @c node to slots */
-            virtual void connectToNode(TreeNode* node);
+    /** stop observing @c node: disconnect from status change signals of @c node */
+    virtual void disconnectFromNode(TreeNode* node);
 
-            /** stop observing @c node: disconnect from status change signals of @c node */
-            virtual void disconnectFromNode(TreeNode* node);
+    virtual void connectToNodeList(NodeList* list);
+    virtual void disconnectFromNodeList(NodeList* list);
+    
+    virtual void drawContentsOffset( QPainter * p, int ox, int oy,
+                                        int cx, int cy, int cw, int ch );
+    virtual void contentsDragMoveEvent(QDragMoveEvent* event);
+    virtual bool acceptDrag(QDropEvent *event) const;
+    virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
 
-            virtual void connectToFeedList(FeedList* list);
-            virtual void disconnectFromFeedList(FeedList* list);
-            
-            virtual void drawContentsOffset( QPainter * p, int ox, int oy,
-                                             int cx, int cy, int cw, int ch );
-            virtual void contentsDragMoveEvent(QDragMoveEvent* event);
-            virtual bool acceptDrag(QDropEvent *event) const;
-            virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
-   
-            void takeNode(QListViewItem* item);
-            void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
+    void takeNode(QListViewItem* item);
+    void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
 
-            virtual QDragObject *dragObject();
-                    
-        
-        protected slots:
+    virtual QDragObject *dragObject();
             
 
-            void slotDropped(QDropEvent *e, QListViewItem* after);
+protected slots:
+    
 
-            virtual void slotSelectionChanged(QListViewItem* item);
-            virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
-            virtual void slotItemRenamed(QListViewItem* item, int col, const QString& text);
-            virtual void slotFeedFetchStarted(Feed* feed);
-            virtual void slotFeedFetchAborted(Feed* feed);
-            virtual void slotFeedFetchError(Feed* feed);
-            virtual void slotFeedFetchCompleted(Feed* feed);
-            void openFolder();
+    void slotDropped(QDropEvent *e, QListViewItem* after);
+    void slotRootNodeChanged(TreeNode*);
+    virtual void slotSelectionChanged(QListViewItem* item);
+    virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
+    virtual void slotItemRenamed(QListViewItem* item, int col, const QString& text);
+    virtual void slotFeedFetchStarted(Feed* feed);
+    virtual void slotFeedFetchAborted(Feed* feed);
+    virtual void slotFeedFetchError(Feed* feed);
+    virtual void slotFeedFetchCompleted(Feed* feed);
+    void openFolder();
 
-            /** called when a node is added to the tree. If no item for the node exists, it will be created */
-            virtual void slotNodeAdded(TreeNode* node);
-            
-            /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
-            
-            Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
-            virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
-            
-            /** deletes the item belonging to the deleted node */
-            virtual void slotNodeDestroyed(TreeNode* node);
-            
-            /** update the item belonging to the node */
-            virtual void slotNodeChanged(TreeNode* node);
+    /** called when a node is added to the tree. If no item for the node exists, it will be created */
+    virtual void slotNodeAdded(TreeNode* node);
+    
+    /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
+    
+    Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
+    virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
+    
+    /** deletes the item belonging to the deleted node */
+    virtual void slotNodeDestroyed(TreeNode* node);
+    
+    /** update the item belonging to the node */
+    virtual void slotNodeChanged(TreeNode* node);
 
-            virtual void slotFeedListDestroyed(FeedList*);
+    virtual void slotNodeListDestroyed(NodeList*);
 
-        private:
-            friend class ConnectNodeVisitor;
-            class ConnectNodeVisitor;
-            
-            friend class DisconnectNodeVisitor;
-            class DisconnectNodeVisitor;
+private:
+    friend class ConnectNodeVisitor;
+    class ConnectNodeVisitor;
+    
+    friend class DisconnectNodeVisitor;
+    class DisconnectNodeVisitor;
 
-            friend class CreateItemVisitor;
-            class CreateItemVisitor;
+    friend class CreateItemVisitor;
+    class CreateItemVisitor;
 
-            friend class DragAndDropVisitor;
-            class DragAndDropVisitor;
+    friend class DragAndDropVisitor;
+    class DragAndDropVisitor;
 
-            class FeedListViewPrivate;
-            FeedListViewPrivate* d;
-    };
+    class NodeListViewPrivate;
+    NodeListViewPrivate* d;
+};
 
-}
+
+class TagNodeListView : public NodeListView
+{
+    Q_OBJECT
+    public:
+        TagNodeListView(QWidget *parent = 0, const char *name = 0) {} 
+        virtual ~TagNodeListView() {}
+
+    private:
+        class TagNodeListViewPrivate;
+        TagNodeListViewPrivate* d;
+};
+
+} // namespace Akregator
 
 #endif
-// vim: ts=4 sw=4 et

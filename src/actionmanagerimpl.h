@@ -37,7 +37,7 @@ namespace Akregator {
 
 class ArticleListView;
 class ArticleViewer;
-class FeedListView;
+class ListTabWidget;
 class Part;
 class TrayIcon;
 class Tag;
@@ -62,7 +62,7 @@ class ActionManagerImpl : public ActionManager
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
-        void initFeedListView(FeedListView* feedListView);
+        void initListTabWidget(ListTabWidget* listTabWidget);
         void initTabWidget(TabWidget* tabWidget);
         void setTagSet(TagSet* tagSet);
 

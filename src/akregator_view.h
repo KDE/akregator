@@ -45,6 +45,7 @@ class KFileItem;
 class KLineEdit;
 class KListView;
 class KListViewItem;
+class KTabWidget;
 
 namespace KIO {
 
@@ -60,8 +61,9 @@ namespace Akregator {
     class ArticleViewer;
     class Folder;
     class FeedList;
-    class FeedListView;
     class Frame;
+    class NodeListView;
+    class ListTabWidget;
     class Part;
     class SearchBar;
     class TabWidget;
@@ -291,7 +293,8 @@ namespace Akregator {
 
             FeedList* m_feedList;
             TagNodeList* m_tagNodeList;
-            FeedListView* m_tree;
+            NodeListView* m_feedListView;
+            NodeListView* m_tagNodeListView;
             ArticleListView *m_articleList;
             ArticleViewer *m_articleViewer;
             TabWidget *m_tabs;
@@ -303,7 +306,9 @@ namespace Akregator {
             SearchBar* m_searchBar;
 
             QSplitter *m_articleSplitter;
-            QSplitter *m_feedSplitter;
+            QSplitter *m_horizontalSplitter;
+       
+            ListTabWidget* m_listTabWidget;
             Akregator::Part *m_part;
             ViewMode m_viewMode;
 

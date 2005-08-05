@@ -44,6 +44,7 @@
 #include "feedlistview.h"
 #include "fetchqueue.h"
 #include "folder.h"
+#include "listtabwidget.h"
 #include "kernel.h"
 #include "speechclient.h"
 #include "tag.h"
@@ -125,7 +126,7 @@ public:
 
     NodeSelectVisitor* nodeSelectVisitor;
     ArticleListView* articleList;
-    FeedListView* feedListView;
+    ListTabWidget* listTabWidget;
     View* view;
     ArticleViewer* articleViewer;
     Part* part;
@@ -214,11 +215,10 @@ ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* na
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;
     d->tagSet = 0;
-    d->feedListView = 0;
+    d->listTabWidget = 0;
     d->articleList = 0;
     d->trayIcon = 0;
     d->articleViewer = 0;
-    d->feedListView = 0;
     d->view = 0;
     d->tabWidget = 0;
     d->speakSelectedArticlesAction = 0;
@@ -374,24 +374,24 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     new KAction( i18n("&Next Article"), QString::null, "Right", articleList, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
 }
 
-void ActionManagerImpl::initFeedListView(FeedListView* feedListView)
+void ActionManagerImpl::initListTabWidget(ListTabWidget* listTabWidget)
 {
-    if (d->feedListView)
+    if (d->listTabWidget)
         return;
     else
-        d->feedListView = feedListView;
+        d->listTabWidget = listTabWidget;
 
-    new KAction(i18n("&Previous Feed"), "", "P", feedListView,  SLOT(slotPrevFeed()),actionCollection(), "go_prev_feed");
-    new KAction(i18n("&Next Feed"), "", "N", feedListView, SLOT(slotNextFeed()),actionCollection(), "go_next_feed");
-    new KAction(i18n("N&ext Unread Feed"), "", "Alt+Plus", feedListView, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
-    new KAction(i18n("Prev&ious Unread Feed"), "", "Alt+Minus", feedListView, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
+    new KAction(i18n("&Previous Feed"), "", "P", listTabWidget,  SLOT(slotPrevFeed()),actionCollection(), "go_prev_feed");
+    new KAction(i18n("&Next Feed"), "", "N", listTabWidget, SLOT(slotNextFeed()),actionCollection(), "go_next_feed");
+    new KAction(i18n("N&ext Unread Feed"), "", "Alt+Plus", listTabWidget, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
+    new KAction(i18n("Prev&ious Unread Feed"), "", "Alt+Minus", listTabWidget, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
 
-    new KAction( i18n("Go to Top of Tree"), QString::null, "Ctrl+Home", feedListView, SLOT(slotItemBegin()), d->actionCollection, "feedstree_home" );
-    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Ctrl+End", feedListView, SLOT(slotItemEnd()), d->actionCollection, "feedstree_end" );
-    new KAction( i18n("Go Left in Tree"), QString::null, "Ctrl+Left", feedListView, SLOT(slotItemLeft()), d->actionCollection, "feedstree_left" );
-    new KAction( i18n("Go Right in Tree"), QString::null, "Ctrl+Right", feedListView, SLOT(slotItemRight()), d->actionCollection, "feedstree_right" );
-    new KAction( i18n("Go Up in Tree"), QString::null, "Ctrl+Up", feedListView, SLOT(slotItemUp()), d->actionCollection, "feedstree_up" );
-    new KAction( i18n("Go Down in Tree"), QString::null, "Ctrl+Down", feedListView, SLOT(slotItemDown()), d->actionCollection, "feedstree_down" );
+    new KAction( i18n("Go to Top of Tree"), QString::null, "Ctrl+Home", listTabWidget, SLOT(slotItemBegin()), d->actionCollection, "feedstree_home" );
+    new KAction( i18n("Go to Bottom of Tree"), QString::null, "Ctrl+End", listTabWidget, SLOT(slotItemEnd()), d->actionCollection, "feedstree_end" );
+    new KAction( i18n("Go Left in Tree"), QString::null, "Ctrl+Left", listTabWidget, SLOT(slotItemLeft()), d->actionCollection, "feedstree_left" );
+    new KAction( i18n("Go Right in Tree"), QString::null, "Ctrl+Right", listTabWidget, SLOT(slotItemRight()), d->actionCollection, "feedstree_right" );
+    new KAction( i18n("Go Up in Tree"), QString::null, "Ctrl+Up", listTabWidget, SLOT(slotItemUp()), d->actionCollection, "feedstree_up" );
+    new KAction( i18n("Go Down in Tree"), QString::null, "Ctrl+Down", listTabWidget, SLOT(slotItemDown()), d->actionCollection, "feedstree_down" );
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)

@@ -119,6 +119,7 @@ libakregatorpart_la_SOURCES = \
 	feeditem.cpp \
         progressmanager.cpp \
         kernel.cpp \
+        listtabwidget.cpp \
 	settings_appearance.ui \
 	settings_general.ui \
 	settings_archive.ui \

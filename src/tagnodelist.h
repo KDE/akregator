@@ -50,6 +50,7 @@ namespace Akregator {
        TagNodeList(FeedList* feedList, TagSet* tagSet);
        virtual ~TagNodeList();
        
+       FeedList* feedList() const;
        bool insert(TagNode* tagNode);
        bool remove(TagNode* tagNode);
        bool containsTagId(const QString& tagId);

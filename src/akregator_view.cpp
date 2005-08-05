@@ -26,6 +26,7 @@
 #include "actionmanagerimpl.h"
 #include "akregator_part.h"
 #include "akregator_view.h"
+#include "listtabwidget.h"
 #include "addfeeddialog.h"
 #include "propertiesdialog.h"
 #include "frame.h"
@@ -117,7 +118,7 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
 
         virtual bool visitFolder(Folder* node)
         {
-            m_view->m_tree->startNodeRenaming(node);
+            m_view->m_listTabWidget->activeView()->startNodeRenaming(node);
             return true;
         }
 
@@ -151,7 +152,7 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
                     (*it).removeTag(tag.id());
                 node->setNotificationMode(true);
                 Kernel::self()->tagSet()->remove(tag);
-                m_view->m_tree->setFocus();
+                m_view->m_listTabWidget->activeView()->setFocus();
             }
             return true;
         }
@@ -167,7 +168,7 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
-                m_view->m_tree->setFocus();
+                m_view->m_listTabWidget->activeView()->setFocus();
             }
             return true;
         }
@@ -183,7 +184,7 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
-                m_view->m_tree->setFocus();
+                m_view->m_listTabWidget->activeView()->setFocus();
             }
             return true;
         }
@@ -221,10 +222,11 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     setFocusPolicy(QWidget::StrongFocus);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
+    
+    m_horizontalSplitter = new QSplitter(QSplitter::Horizontal, this);
 
-    m_feedSplitter = new QSplitter(QSplitter::Horizontal, this, "panner1");
-    m_feedSplitter->setOpaqueResize( true );
-    lt->addWidget(m_feedSplitter);
+    m_horizontalSplitter->setOpaqueResize(true);
+    lt->addWidget(m_horizontalSplitter);
 
     connect (Kernel::self()->fetchQueue(), SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
     connect (Kernel::self()->fetchQueue(), SIGNAL(signalStarted()), this, SLOT(slotFetchingStarted()));
@@ -233,22 +235,31 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     connect(Kernel::self()->tagSet(), SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagCreated(const Tag&)));
     connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
 
-    m_tree = new FeedListView( m_feedSplitter, "FeedListView" );
-    m_actionManager->initFeedListView(m_tree);
+    m_listTabWidget = new ListTabWidget(m_horizontalSplitter);
+    m_actionManager->initListTabWidget(m_listTabWidget);
 
-    connect(m_tree, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
+    connect(m_listTabWidget, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
 
-    connect(m_tree, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
 
-    connect(m_tree, SIGNAL(signalDropped (KURL::List &, TreeNode*,
+    m_feedListView = new NodeListView( this, "feedtree" );
+    m_listTabWidget->addView(m_feedListView, i18n("&Feeds"));
+
+    connect(m_feedListView, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
+
+    connect(m_feedListView, SIGNAL(signalDropped (KURL::List &, TreeNode*,
             Folder*)), this, SLOT(slotFeedURLDropped (KURL::List &,
             TreeNode*, Folder*)));
 
+    m_tagNodeListView = new NodeListView(this);
+    m_listTabWidget->addView(m_tagNodeListView, i18n("&Tags"));
+    m_listTabWidget->setViewIconSet(m_tagNodeListView, KGlobal::iconLoader()->loadIcon("rss_tag", KIcon::Small) );
+
+    connect(m_tagNodeListView, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
+
+    
     ProgressManager::self()->setFeedList(m_feedList);
 
-    m_feedSplitter->setResizeMode( m_tree, QSplitter::KeepSize );
-
-    m_tabs = new TabWidget(m_feedSplitter);
+    m_tabs = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabs);
 
     connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
@@ -306,7 +317,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
 
-    m_feedSplitter->setSizes( Settings::splitter1Sizes() );
+    m_horizontalSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
 
     KConfig *conf = Settings::self()->config();
@@ -369,7 +380,7 @@ void View::slotOnShutdown()
 
     Kernel::self()->fetchQueue()->slotAbort();
 
-    m_tree->setFeedList(0, 0);
+    m_feedListView->setNodeList(0);
     ProgressManager::self()->setFeedList(0);
 
     delete m_feedList;
@@ -389,7 +400,7 @@ void View::slotOnShutdown()
 
 void View::saveSettings()
 {
-    Settings::setSplitter1Sizes( m_feedSplitter->sizes() );
+    Settings::setSplitter1Sizes( m_horizontalSplitter->sizes() );
     Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
     Settings::setViewMode( m_viewMode );
     Settings::writeConfig();
@@ -519,8 +530,8 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
         delete feedList;
         return false;
     }
-    m_tree->setUpdatesEnabled(false);
-
+    m_feedListView->setUpdatesEnabled(false);
+    m_tagNodeListView->setUpdatesEnabled(false);
     if (!parent)
     {
         TagSet* tagSet = Kernel::self()->tagSet();
@@ -531,11 +542,12 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
         delete m_feedList;
         delete m_tagNodeList;
         m_feedList = feedList;
-        m_tagNodeList = new TagNodeList(m_feedList, tagSet);
-        m_tree->setFeedList(m_feedList, m_tagNodeList);
         connectToFeedList(m_feedList);
-            
-        
+
+        m_tagNodeList = new TagNodeList(m_feedList, tagSet);
+        m_feedListView->setNodeList(m_feedList);
+        m_tagNodeListView->setNodeList(m_tagNodeList);
+
         QStringList tagIDs = m_feedList->rootNode()->tags();
         QStringList::ConstIterator end = tagIDs.end();
         for (QStringList::ConstIterator it = tagIDs.begin(); it != end; ++it)
@@ -554,8 +566,10 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
     else
         m_feedList->append(feedList, parent);
 
-    m_tree->setUpdatesEnabled(true);
-    m_tree->triggerUpdate();
+    m_feedListView->setUpdatesEnabled(true);
+    m_feedListView->triggerUpdate();
+    m_tagNodeListView->setUpdatesEnabled(true);
+    m_tagNodeListView->triggerUpdate();
     return true;
 }
 
@@ -575,7 +589,7 @@ void View::addFeedToGroup(const QString& url, const QString& groupName)
 {
 
     // Locate the group.
-    TreeNode* node = m_tree->findNodeByTitle(groupName);
+    TreeNode* node = m_feedListView->findNodeByTitle(groupName);
 
     Folder* group = 0;
     if (!node || !node->isGroup())
@@ -599,7 +613,7 @@ void View::slotNormalView()
 
     if (m_viewMode == CombinedView)
     {
-        m_articleList->slotShowNode(m_tree->selectedNode());
+        m_articleList->slotShowNode(m_listTabWidget->activeView()->selectedNode());
         m_articleList->show();
 
         Article article = m_articleList->currentArticle();
@@ -607,7 +621,7 @@ void View::slotNormalView()
         if (!article.isNull())
             m_articleViewer->slotShowArticle(article);
         else
-            m_articleViewer->slotShowSummary(m_tree->selectedNode());
+            m_articleViewer->slotShowSummary(m_listTabWidget->activeView()->selectedNode());
     }
 
     m_articleSplitter->setOrientation(QSplitter::Vertical);
@@ -623,7 +637,7 @@ void View::slotWidescreenView()
 
     if (m_viewMode == CombinedView)
     {
-        m_articleList->slotShowNode(m_tree->selectedNode());
+        m_articleList->slotShowNode(m_listTabWidget->activeView()->selectedNode());
         m_articleList->show();
 
         Article article = m_articleList->currentArticle();
@@ -631,7 +645,7 @@ void View::slotWidescreenView()
         if (!article.isNull())
             m_articleViewer->slotShowArticle(article);
         else
-            m_articleViewer->slotShowSummary(m_tree->selectedNode());
+            m_articleViewer->slotShowSummary(m_listTabWidget->activeView()->selectedNode());
     }
 
     m_articleSplitter->setOrientation(QSplitter::Horizontal);
@@ -649,7 +663,7 @@ void View::slotCombinedView()
     m_articleList->hide();
     m_viewMode = CombinedView;
 
-    slotNodeSelected(m_tree->selectedNode());
+    slotNodeSelected(m_listTabWidget->activeView()->selectedNode());
     Settings::setViewMode( m_viewMode );
 }
 
@@ -695,7 +709,7 @@ void View::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint&
 
 void View::slotMoveCurrentNodeUp()
 {
-    TreeNode* current = m_tree->selectedNode();
+    TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current)
         return;
     TreeNode* prev = current->prevSibling();
@@ -706,12 +720,12 @@ void View::slotMoveCurrentNodeUp()
 
     parent->removeChild(prev);
     parent->insertChild(prev, current);
-    m_tree->ensureNodeVisible(current);
+    m_listTabWidget->activeView()->ensureNodeVisible(current);
 }
 
 void View::slotMoveCurrentNodeDown()
 {
-    TreeNode* current = m_tree->selectedNode();
+    TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current)
         return;
     TreeNode* next = current->nextSibling();
@@ -722,12 +736,12 @@ void View::slotMoveCurrentNodeDown()
 
     parent->removeChild(current);
     parent->insertChild(current, next);
-    m_tree->ensureNodeVisible(current);
+    m_listTabWidget->activeView()->ensureNodeVisible(current);
 }
 
 void View::slotMoveCurrentNodeLeft()
 {
-    TreeNode* current = m_tree->selectedNode();
+    TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current || !current->parent() || !current->parent()->parent())
         return;
 
@@ -736,12 +750,12 @@ void View::slotMoveCurrentNodeLeft()
 
     parent->removeChild(current);
     grandparent->insertChild(current, parent);
-    m_tree->ensureNodeVisible(current);
+    m_listTabWidget->activeView()->ensureNodeVisible(current);
 }
 
 void View::slotMoveCurrentNodeRight()
 {
-    TreeNode* current = m_tree->selectedNode();
+    TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current || !current->parent())
         return;
     TreeNode* prev = current->prevSibling();
@@ -751,7 +765,7 @@ void View::slotMoveCurrentNodeRight()
         Folder* fg = static_cast<Folder*>(prev);
         current->parent()->removeChild(current);
         fg->appendChild(current);
-        m_tree->ensureNodeVisible(current);
+        m_listTabWidget->activeView()->ensureNodeVisible(current);
     }
 }
 
@@ -797,15 +811,15 @@ void View::slotNodeSelected(TreeNode* node)
 void View::slotFeedAdd()
 {
     Folder* group = 0;
-    if (!m_tree->selectedNode())
+    if (!m_feedListView->selectedNode())
         group = m_feedList->rootNode(); // all feeds
     else
     {
         //TODO: tag nodes need rework
-        if ( m_tree->selectedNode()->isGroup())
-            group = static_cast<Folder*>(m_tree->selectedNode());
+        if ( m_feedListView->selectedNode()->isGroup())
+            group = static_cast<Folder*>(m_feedListView->selectedNode());
         else
-            group= m_tree->selectedNode()->parent();
+            group= m_feedListView->selectedNode()->parent();
 
     }
 
@@ -853,7 +867,7 @@ void View::addFeed(const QString& url, TreeNode *after, Folder* parent, bool aut
 
     parent->insertChild(feed, after);
 
-    m_tree->ensureNodeVisible(feed);
+    m_feedListView->ensureNodeVisible(feed);
 
 
     delete dlg;
@@ -861,11 +875,11 @@ void View::addFeed(const QString& url, TreeNode *after, Folder* parent, bool aut
 
 void View::slotFeedAddGroup()
 {
-    TreeNode* node = m_tree->selectedNode();
+    TreeNode* node = m_feedListView->selectedNode();
     TreeNode* after = 0;
 
     if (!node)
-        node = m_tree->rootNode();
+        node = m_feedListView->rootNode();
 
     // if a feed is selected, add group next to it
     //TODO: tag nodes need rework
@@ -889,13 +903,13 @@ void View::slotFeedAddGroup()
         else
             currentGroup->insertChild(newGroup, after);
 
-        m_tree->ensureNodeVisible(newGroup);
+        m_feedListView->ensureNodeVisible(newGroup);
     }
 }
 
 void View::slotFeedRemove()
 {
-    TreeNode* selectedNode = m_tree->selectedNode();
+    TreeNode* selectedNode = m_listTabWidget->activeView()->selectedNode();
 
     // don't delete root element! (safety valve)
     if (!selectedNode || selectedNode == m_feedList->rootNode())
@@ -906,7 +920,7 @@ void View::slotFeedRemove()
 
 void View::slotFeedModify()
 {
-    TreeNode* node = m_tree->selectedNode();
+    TreeNode* node = m_listTabWidget->activeView()->selectedNode();
     if (node)
         m_editNodePropertiesVisitor->visit(node);
 
@@ -914,20 +928,20 @@ void View::slotFeedModify()
 
 void View::slotNextUnreadArticle()
 {
-    TreeNode* sel = m_tree->selectedNode();
+    TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotNextUnreadArticle();
     else
-        m_tree->slotNextUnreadFeed();
+        m_listTabWidget->activeView()->slotNextUnreadFeed();
 }
 
 void View::slotPrevUnreadArticle()
 {
-    TreeNode* sel = m_tree->selectedNode();
+    TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotPreviousUnreadArticle();
     else
-        m_tree->slotPrevUnreadFeed();
+        m_listTabWidget->activeView()->slotPrevUnreadFeed();
 }
 
 void View::slotMarkAllFeedsRead()
@@ -937,13 +951,13 @@ void View::slotMarkAllFeedsRead()
 
 void View::slotMarkAllRead()
 {
-    if(!m_tree->selectedNode()) return;
-    m_tree->selectedNode()->slotMarkAllArticlesAsRead();
+    if(!m_listTabWidget->activeView()->selectedNode()) return;
+    m_listTabWidget->activeView()->selectedNode()->slotMarkAllArticlesAsRead();
 }
 
 void View::slotOpenHomepage()
 {
-    Feed* feed = dynamic_cast<Feed *>(m_tree->selectedNode());
+    Feed* feed = dynamic_cast<Feed *>(m_listTabWidget->activeView()->selectedNode());
 
     if (!feed)
         return;
@@ -994,9 +1008,9 @@ void View::slotDoIntervalFetches()
 
 void View::slotFetchCurrentFeed()
 {
-    if ( !m_tree->selectedNode() )
+    if ( !m_listTabWidget->activeView()->selectedNode() )
         return;
-    m_tree->selectedNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
+    m_listTabWidget->activeView()->selectedNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
 }
 
 void View::slotFetchAllFeeds()
@@ -1087,7 +1101,7 @@ void View::slotNewTag()
     Kernel::self()->tagSet()->insert(tag);
     TagNode* node = m_tagNodeList->findByTagID(tag.id());
     if (node)
-        m_tree->startNodeRenaming(node);
+        m_tagNodeListView->startNodeRenaming(node);
 }
 
 void View::slotTagCreated(const Tag& tag)
@@ -1259,8 +1273,8 @@ void View::slotArticleDelete()
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
     {
-        if (m_tree->selectedNode())
-            m_tree->selectedNode()->setNotificationMode(false);
+        if (m_listTabWidget->activeView()->selectedNode())
+            m_listTabWidget->activeView()->selectedNode()->setNotificationMode(false);
 
         QValueList<Feed*> feeds;
         for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
@@ -1274,8 +1288,8 @@ void View::slotArticleDelete()
 
         for (QValueList<Feed*>::Iterator it = feeds.begin(); it != feeds.end(); ++it)
             (*it)->setNotificationMode(true);
-        if (m_tree->selectedNode())
-            m_tree->selectedNode()->setNotificationMode(true);
+        if (m_listTabWidget->activeView()->selectedNode())
+            m_listTabWidget->activeView()->selectedNode()->setNotificationMode(true);
     }
 }
 
@@ -1319,7 +1333,7 @@ void View::slotTextToSpeechRequest()
         }
         else
         {
-            if (m_tree->selectedNode())
+            if (m_listTabWidget->activeView()->selectedNode())
             {
                 //TODO: read articles in current node, respecting quick filter!
             }

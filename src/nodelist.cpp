@@ -120,8 +120,10 @@ class NodeList::RemoveNodeVisitor : public TreeNodeVisitor
 
 NodeList::NodeList(QObject *parent, const char *name) : d(new NodeListPrivate)
 {
+    d->rootNode = 0;
     d->addNodeVisitor = new AddNodeVisitor(this);
     d->removeNodeVisitor = new RemoveNodeVisitor(this);
+    
 }
 
 const QString& NodeList::title() const
@@ -176,7 +178,11 @@ QMap<int, TreeNode*>* NodeList::idMap() const
 
 void NodeList::setRootNode(Folder* folder)
 {
+    delete d->rootNode;
     d->rootNode = folder;
+    
+    connect(d->rootNode, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
+    connect(d->rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
 }
 
 void NodeList::addNode(TreeNode* node, bool preserveID)
