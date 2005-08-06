@@ -242,7 +242,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
 
 
     m_feedListView = new NodeListView( this, "feedtree" );
-    m_listTabWidget->addView(m_feedListView, i18n("&Feeds"));
+    m_listTabWidget->addView(m_feedListView, i18n("Feeds"));
 
     connect(m_feedListView, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
 
@@ -251,7 +251,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
             TreeNode*, Folder*)));
 
     m_tagNodeListView = new NodeListView(this);
-    m_listTabWidget->addView(m_tagNodeListView, i18n("&Tags"));
+    m_listTabWidget->addView(m_tagNodeListView, i18n("Tags"));
     m_listTabWidget->setViewIconSet(m_tagNodeListView, KGlobal::iconLoader()->loadIcon("rss_tag", KIcon::Small) );
 
     connect(m_tagNodeListView, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
