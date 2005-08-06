@@ -33,6 +33,7 @@ class QStringList;
 namespace Akregator {
 namespace Backend {
 
+/** a convenience class to handle categories in the backend */
 class Category 
 {
     public:
@@ -52,7 +53,7 @@ class Category
     { 
         return !operator==(other); 
     }
-
+    /** we need this for QMaps */
     bool operator<(const Category& other) const
     {
         return other.scheme < other.scheme || (other.scheme == other.scheme && term < other.term);

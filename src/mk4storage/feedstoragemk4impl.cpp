@@ -65,6 +65,7 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
             pEnclosureLength("enclosureLength"),
             ptags("tags"),
             ptaggedArticles("taggedArticles"),
+            pcategorizedArticles("categorizedArticles"),
             pcategories("categories")
         {}
             
@@ -73,6 +74,8 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
         StorageMK4Impl* mainStorage;
         c4_View archiveView;
         
+        c4_Storage* catStorage;
+        c4_View catView;
         c4_Storage* tagStorage;
         c4_View tagView;
         bool autoCommit;
@@ -81,7 +84,7 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
         QString oldArchivePath;
         c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName;
         c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate, pHasEnclosure, pEnclosureLength;
-        c4_ViewProp ptags, ptaggedArticles, pcategories;
+        c4_ViewProp ptags, ptaggedArticles, pcategorizedArticles, pcategories;
 };
 
 void FeedStorageMK4Impl::convertOldArchive()
@@ -145,13 +148,19 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->tagView = d->tagStorage->GetAs("tagIndex[tag:S,taggedArticles[guid:S]]");
     hash = d->tagStorage->GetAs("archiveHash[_H:I,_R:I]");
     d->tagView = d->tagView.Hash(hash, 1); // hash on tag
+
+    d->catStorage = new c4_Storage((filePath + ".mk4___CATEGORIES").local8Bit(), true);
+    d->catView = d->catStorage->GetAs("tagIndex[catTerm:S,catScheme:S,catName:S,categorizedArticles[guid:S]]");
+    hash = d->catStorage->GetAs("archiveHash[_H:I,_R:I]");
+    d->catView = d->catView.Hash(hash, 1);
 }
+
 
 FeedStorageMK4Impl::~FeedStorageMK4Impl()
 {
-    // TODO: close etc.
     delete d->storage;
     delete d->tagStorage;
+    delete d->catStorage;
     delete d; d = 0;
 }
 
@@ -161,6 +170,7 @@ void FeedStorageMK4Impl::commit()
     {
         d->storage->Commit();
         d->tagStorage->Commit();
+        d->catStorage->Commit();
     }
     d->modified = false;
 }
@@ -169,6 +179,7 @@ void FeedStorageMK4Impl::rollback()
 {
     d->storage->Rollback();
     d->tagStorage->Rollback();
+    d->catStorage->Rollback();
 }
 
 void FeedStorageMK4Impl::close()
@@ -234,7 +245,23 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag)
 
 QStringList FeedStorageMK4Impl::articles(const Category& cat)
 {
-    return QStringList(); // TODO
+    QStringList list;
+
+    c4_Row catrow;
+    d->pcatTerm(catrow) = cat.term.utf8().data();
+    d->pcatScheme(catrow) = cat.scheme.utf8().data();
+
+    int catidx = d->catView.Find(catrow);
+    if (catidx != -1)
+    {
+        catrow = d->catView.GetAt(catidx);
+        c4_View catView = d->pcategorizedArticles(catrow);
+        int size = catView.GetSize();
+        for (int i = 0; i < size; i++)
+            list += QString(d->pguid(catView.GetAt(i)));
+    }
+
+    return list;
 }
 
 void FeedStorageMK4Impl::addEntry(const QString& guid)
@@ -499,6 +526,29 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
         catidx = catView.Add(findrow);
         d->pcategories(row) = catView;
         d->archiveView.SetAt(findidx, row);
+
+        // add to category->articles index
+        c4_Row catrow;
+        d->pcatTerm(catrow) = cat.term.utf8().data();
+        d->pcatScheme(catrow) = cat.scheme.utf8().data();
+        d->pcatName(catrow) = cat.name.utf8().data();
+        int catidx2 = d->catView.Find(catrow);
+        if (catidx2 == -1)
+            catidx2 = d->catView.Add(catrow);
+        catrow = d->catView.GetAt(catidx2);
+        c4_View catView2 = d->pcategorizedArticles(catrow);
+
+        c4_Row row3;
+        d->pguid(row3) = guid.ascii();
+        int guididx = catView2.Find(row3);
+        if (guididx == -1)
+        {
+            guididx = catView2.Add(row3);
+            catView2.SetAt(guididx, row3);
+            d->pcategorizedArticles(catrow) = catView2;
+            d->catView.SetAt(catidx2, catrow);
+        }
+
         d->modified = true;
     } 
 }
@@ -532,7 +582,18 @@ QValueList<Category> FeedStorageMK4Impl::categories(const QString& guid)
     }
     else // return all categories in the feed
     {
-        //TODO
+        int size = d->catView.GetSize();
+        for (int i = 0; i < size; i++)
+        {
+            c4_Row row = d->catView.GetAt(i);
+
+            Category cat;
+            cat.term = QString(d->pcatTerm(row));
+            cat.scheme = QString(d->pcatScheme(row));
+            cat.name = QString(d->pcatName(row));
+
+            list += cat;
+        }
     }
     
     return list;
