@@ -52,6 +52,9 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
             ptag("tag"),
             pEnclosureType("enclosureType"),
             pEnclosureUrl("enclosureUrl"),
+            pcatTerm("catTerm"), 
+            pcatScheme("catScheme"), 
+            pcatName("catName"),
             phash("hash"),
             pguidIsHash("guidIsHash"),
             pguidIsPermaLink("guidIsPermaLink"),
@@ -61,7 +64,8 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
             pHasEnclosure("hasEnclosure"),
             pEnclosureLength("enclosureLength"),
             ptags("tags"),
-            ptaggedArticles("taggedArticles")
+            ptaggedArticles("taggedArticles"),
+            pcategories("categories")
         {}
             
         QString url;
@@ -75,9 +79,9 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
 	    bool modified;
         bool convert;
         QString oldArchivePath;
-        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl;
+        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName;
         c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate, pHasEnclosure, pEnclosureLength;
-        c4_ViewProp ptags, ptaggedArticles;
+        c4_ViewProp ptags, ptaggedArticles, pcategories;
 };
 
 void FeedStorageMK4Impl::convertOldArchive()
@@ -130,7 +134,9 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->oldArchivePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t2.replace("/", "_").replace(":", "_") + ".xml";
     d->convert = !QFile::exists(filePath + ".mk4") && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage((filePath + ".mk4").local8Bit(), true);
-    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I]");
+
+    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S]]");
+
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
 
@@ -224,6 +230,11 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag)
 
     }
     return list;
+}
+
+QStringList FeedStorageMK4Impl::articles(const Category& cat)
+{
+    return QStringList(); // TODO
 }
 
 void FeedStorageMK4Impl::addEntry(const QString& guid)
@@ -465,6 +476,66 @@ void FeedStorageMK4Impl::setGuidIsPermaLink(const QString& guid, bool isPermaLin
     d->pguidIsPermaLink(row) = isPermaLink;
     d->archiveView.SetAt(findidx, row);
     d->modified = true;
+}
+
+void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
+{
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+        return;
+
+    c4_Row row;
+    row = d->archiveView.GetAt(findidx);
+    c4_View catView = d->pcategories(row);
+    c4_Row findrow; 
+
+    d->pcatTerm(findrow) = cat.term.utf8().data();
+    d->pcatScheme(findrow) = cat.scheme.utf8().data();
+
+    int catidx = catView.Find(findrow);
+    if (catidx == -1)
+    {
+        d->pcatName(findrow) = cat.name.utf8().data();
+        catidx = catView.Add(findrow);
+        d->pcategories(row) = catView;
+        d->archiveView.SetAt(findidx, row);
+        d->modified = true;
+    } 
+}
+
+QValueList<Category> FeedStorageMK4Impl::categories(const QString& guid)
+{
+
+    QValueList<Category> list;
+        
+    if (!guid.isNull()) // return categories for an article
+    {
+        int findidx = findArticle(guid);
+        if (findidx == -1)
+            return list;
+            
+        c4_Row row;
+        row = d->archiveView.GetAt(findidx);
+        c4_View catView = d->pcategories(row);
+        int size = catView.GetSize();
+        
+        for (int i = 0; i < size; ++i)
+        {
+            Category cat;
+
+            cat.term = QString::fromUtf8(d->pcatTerm(catView.GetAt(i)));
+            cat.scheme = QString::fromUtf8(d->pcatScheme(catView.GetAt(i)));
+            cat.name = QString::fromUtf8(d->pcatName(catView.GetAt(i)));
+
+            list += cat;
+        }
+    }
+    else // return all categories in the feed
+    {
+        //TODO
+    }
+    
+    return list;
 }
 
 void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)

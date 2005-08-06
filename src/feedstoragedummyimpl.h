@@ -47,6 +47,9 @@ class FeedStorageDummyImpl : public FeedStorage
       
         virtual QStringList articles(const QString& tag=QString::null);
 
+        virtual QStringList articles(const Category& cat);
+
+
         virtual bool contains(const QString& guid);
         virtual void addEntry(const QString& guid);
         virtual void deleteArticle(const QString& guid);
@@ -78,6 +81,10 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
         virtual void removeEnclosure(const QString& guid);
         virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length);
+
+        virtual void addCategory(const QString& guid, const Category& category);
+        virtual QValueList<Category> categories(const QString& guid=QString::null);
+
         virtual void close();
         virtual void commit();
         virtual void rollback();

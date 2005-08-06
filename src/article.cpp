@@ -115,6 +115,21 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->archive->setGuidIsHash(d->guid, article.meta("guidIsHash") == "true");
             d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
             d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
+
+            QValueList<RSS::Category> cats = article.categories();
+            QValueList<RSS::Category>::ConstIterator end = cats.end();
+
+            for (QValueList<RSS::Category>::ConstIterator it = cats.begin(); it != end; ++it)
+            {
+                Backend::Category cat;
+
+                cat.term = (*it).category();
+                cat.scheme = (*it).domain();
+                cat.name = (*it).category();
+
+                d->archive->addCategory(d->guid, cat);
+            }
+
             if (!article.enclosure().isNull())
             {
                 d->archive->setEnclosure(d->guid, article.enclosure().url(), article.enclosure().type(), article.enclosure().length());

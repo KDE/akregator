@@ -30,6 +30,7 @@
 #include <qmap.h>
 #include <qstring.h>
 #include <qstringlist.h>
+#include <qvaluelist.h>
 
 //typedef unsigned int uint;
 namespace Akregator {
@@ -43,7 +44,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             public:
             Entry() : guidIsHash(false), guidIsPermaLink(false), status(0), pubDate(0), hash(0) {}
             StorageDummyImpl* mainStorage;
-            
+            QValueList<Category> categories;
             QString title;
             QString description;
             QString link;
@@ -61,6 +62,16 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             int enclosureLength;
         };
     QMap<QString, Entry> entries;
+    
+    // all tags occurring in the feed
+    QStringList tags;
+    
+    // tag -> articles index
+    QMap<QString, QStringList > taggedArticles;
+
+    QValueList<Category> categories;
+    QMap<Category, QStringList> categorizedArticles;
+
     Storage* mainStorage;
     QString url;
 };
@@ -125,7 +136,12 @@ void FeedStorageDummyImpl::setLastFetch(int lastFetch)
 
 QStringList FeedStorageDummyImpl::articles(const QString& tag)
 {
-    return tag.isNull() ? d->entries.keys() : QStringList(); // TODO: respect tag
+    return tag.isNull() ? d->entries.keys() : d->taggedArticles[tag];
+}
+
+QStringList FeedStorageDummyImpl::articles(const Category& cat)
+{
+    return d->categorizedArticles[cat];
 }
 
 void FeedStorageDummyImpl::addEntry(const QString& guid)
@@ -144,8 +160,12 @@ bool FeedStorageDummyImpl::contains(const QString& guid)
 
 void FeedStorageDummyImpl::deleteArticle(const QString& guid)
 {
+    if (!d->entries.contains(guid))
+        return;
+
+    setDeleted(guid);
+
     d->entries.remove(guid);
-    // TODO: remove also from tag->articles index in Storage
 }
 
 int FeedStorageDummyImpl::comments(const QString& guid)
@@ -179,10 +199,34 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
 {
     if (!contains(guid))
         return;
-    
+
     FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
+
+    // remove article from tag->article index
+    QStringList::ConstIterator it = entry.tags.begin();
+    QStringList::ConstIterator end = entry.tags.end();
+
+    for ( ; it != end; ++it)
+    {
+        d->taggedArticles[*it].remove(guid);
+        if (d->taggedArticles[*it].count() == 0)
+            d->tags.remove(*it);
+    }
+
+    // remove article from tag->category index
+    QValueList<Category>::ConstIterator it2 = entry.categories.begin();
+    QValueList<Category>::ConstIterator end2 = entry.categories.end();
+
+    for ( ; it2 != end2; ++it2)
+    {
+        d->categorizedArticles[*it2].remove(guid);
+        if (d->categorizedArticles[*it2].count() == 0)
+            d->categories.remove(*it2);
+    }
+
     entry.description = "";
     entry.title = "";
+    entry.link = "";
     entry.commentsLink = "";
 }
 
@@ -276,19 +320,46 @@ void FeedStorageDummyImpl::setGuidIsPermaLink(const QString& guid, bool isPermaL
 void FeedStorageDummyImpl::addTag(const QString& guid, const QString& tag)
 {
     if (contains(guid))
+    {
         d->entries[guid].tags.append(tag);
-        // TODO: add also to tag->articles index
+        if (!d->taggedArticles[tag].contains(guid))
+            d->taggedArticles[tag].append(guid);
+        if (!d->tags.contains(tag))
+            d->tags.append(tag);
+    }
 
 }
+
+void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
+{
+    if (!contains(guid))
+        return;
+
+    d->entries[guid].categories.append(cat);
+
+    if (d->categorizedArticles[cat].count() == 0)
+        d->categories.append(cat);
+    d->categorizedArticles[cat].append(guid);
+}
+
+QValueList<Category> FeedStorageDummyImpl::categories(const QString& guid)
+{
+  if (!guid.isNull())
+        return contains(guid) ? d->entries[guid].categories : QValueList<Category>();
+    else
+        return d->categories;
+}
+
 
 void FeedStorageDummyImpl::removeTag(const QString& guid, const QString& tag)
 {
     if (contains(guid))
     {
         d->entries[guid].tags.remove(tag);
-        // TODO: remove also from tag->articles index
+        d->taggedArticles[tag].remove(guid);
+        if (d->taggedArticles[tag].count() == 0)
+            d->tags.remove(tag);
     }
-        
 }
 
 QStringList FeedStorageDummyImpl::tags(const QString& guid)
@@ -296,7 +367,9 @@ QStringList FeedStorageDummyImpl::tags(const QString& guid)
     if (!guid.isNull())
         return contains(guid) ? d->entries[guid].tags : QStringList();
     else
-        return QStringList(); // TODO: returns list of all tags in geed
+    {
+        return d->tags;
+    }
 }
 
 void FeedStorageDummyImpl::add(FeedStorage* source)
@@ -313,6 +386,7 @@ void FeedStorageDummyImpl::copyArticle(const QString& guid, FeedStorage* source)
 {
     if (!contains(guid))
         addEntry(guid);
+
     setComments(guid, source->comments(guid));
     setCommentsLink(guid, source->commentsLink(guid));
     setDescription(guid, source->description(guid));

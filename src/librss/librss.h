@@ -12,6 +12,7 @@
 #define LIBRSS_LIBRSS_H
 
 #include "article.h"
+#include "category.h"
 #include "document.h"
 #include "enclosure.h"
 #include "global.h"
