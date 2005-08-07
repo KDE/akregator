@@ -50,12 +50,12 @@ class SpeechClient::SpeechClientPrivate
 
 SpeechClient* SpeechClient::m_self = 0;
 
-static KStaticDeleter<SpeechClient> kernelsd;
+static KStaticDeleter<SpeechClient> speechclsd;
 
 SpeechClient* SpeechClient::self()
 {
     if (!m_self)
-        m_self = kernelsd.setObject(m_self, new SpeechClient);
+        m_self = speechclsd.setObject(m_self, new SpeechClient);
     return m_self;
 }
 

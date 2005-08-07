@@ -100,6 +100,7 @@ kspeechsink_DIR = $(kde_includes)
 
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = \
+	searchbar.cpp \
 	akregator_run.cpp \
 	articlelistview.cpp \
 	actionmanager.cpp \
@@ -128,7 +129,6 @@ libakregatorpart_la_SOURCES = \
         tagnodeitem.cpp \
 	configdialog.cpp \
 	settings_advanced.cpp \
-        searchbar.cpp \
 	akregator_partiface.skel \
 	akregator_part.cpp \
 	akregator_view.cpp \

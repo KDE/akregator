@@ -51,8 +51,8 @@ namespace Akregator
 class SearchBar::SearchBarPrivate
 {
 public:
-    ArticleMatcher textFilter;
-    ArticleMatcher statusFilter;
+    Akregator::Filters::ArticleMatcher textFilter;
+    Akregator::Filters::ArticleMatcher statusFilter;
     QString searchText;
     QTimer timer;
     KLineEdit* searchLine;
