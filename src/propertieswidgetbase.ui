@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>339</width>
-            <height>256</height>
+            <width>355</width>
+            <height>186</height>
         </rect>
     </property>
     <property name="caption">
@@ -33,11 +33,11 @@
                 <attribute name="title">
                     <string>&amp;General</string>
                 </attribute>
-                <vbox>
+                <grid>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QLayoutWidget">
+                    <widget class="QLayoutWidget" row="0" column="0">
                         <property name="name">
                             <cstring>layout8</cstring>
                         </property>
@@ -90,7 +90,7 @@
                             </widget>
                         </grid>
                     </widget>
-                    <widget class="QCheckBox">
+                    <widget class="QCheckBox" row="1" column="0">
                         <property name="name">
                             <cstring>upChkbox</cstring>
                         </property>
@@ -98,7 +98,7 @@
                             <string>U&amp;se a custom update interval</string>
                         </property>
                     </widget>
-                    <widget class="QLayoutWidget">
+                    <widget class="QLayoutWidget" row="2" column="0">
                         <property name="name">
                             <cstring>layout9</cstring>
                         </property>
@@ -131,7 +131,7 @@
                                     <bool>false</bool>
                                 </property>
                                 <property name="text">
-                                    <string>U&amp;pdate every:</string>
+                                    <string>Update &amp;every:</string>
                                 </property>
                                 <property name="buddy" stdset="0">
                                     <cstring>updateSpinBox</cstring>
@@ -184,81 +184,23 @@
                             </widget>
                         </hbox>
                     </widget>
-                    <widget class="QCheckBox">
+                    <widget class="QCheckBox" row="3" column="0">
                         <property name="name">
                             <cstring>checkBox_useNotification</cstring>
                         </property>
                         <property name="text">
-                            <string>No&amp;tify when new articles arrive</string>
+                            <string>Notify when new articles arri&amp;ve</string>
                         </property>
                     </widget>
-                    <widget class="QCheckBox">
-                        <property name="name">
-                            <cstring>checkBox_markRead</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Mark articles as read when they arrive</string>
-                        </property>
-                    </widget>
-                    <widget class="QCheckBox">
-                        <property name="name">
-                            <cstring>checkBox_loadWebsite</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Load the full website when reading articles</string>
-                        </property>
-                    </widget>
-                    <spacer>
-                        <property name="name">
-                            <cstring>spacer9</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>20</width>
-                                <height>16</height>
-                            </size>
-                        </property>
-                    </spacer>
-                </vbox>
+                </grid>
             </widget>
             <widget class="QWidget">
                 <property name="name">
                     <cstring>tab</cstring>
                 </property>
                 <attribute name="title">
-                    <string>&amp;Archive</string>
+                    <string>Ar&amp;chive</string>
                 </attribute>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer11</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>20</width>
-                            <height>55</height>
-                        </size>
-                    </property>
-                    <property name="geometry">
-                        <rect>
-                            <x>206</x>
-                            <y>156</y>
-                            <width>20</width>
-                            <height>55</height>
-                        </rect>
-                    </property>
-                </spacer>
                 <widget class="QButtonGroup">
                     <property name="name">
                         <cstring>bg_feedArchive</cstring>
@@ -300,7 +242,7 @@
                                 <cstring>rb_limitArticleNumber</cstring>
                             </property>
                             <property name="text">
-                                <string>&amp;Limit archive to:</string>
+                                <string>Limit archi&amp;ve to:</string>
                             </property>
                         </widget>
                         <widget class="QRadioButton" row="3" column="0" rowspan="1" colspan="2">
@@ -410,11 +352,71 @@
                     </grid>
                 </widget>
             </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>TabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Adva&amp;nced</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLayoutWidget" row="0" column="0">
+                        <property name="name">
+                            <cstring>layout4</cstring>
+                        </property>
+                        <vbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>checkBox_loadWebsite</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Load the &amp;full website when reading articles</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+F</string>
+                                </property>
+                            </widget>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>checkBox_markRead</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Mar&amp;k articles as read when they arrive</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+K</string>
+                                </property>
+                            </widget>
+                        </vbox>
+                    </widget>
+                    <spacer row="1" column="0">
+                        <property name="name">
+                            <cstring>spacer6</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>20</width>
+                                <height>71</height>
+                            </size>
+                        </property>
+                    </spacer>
+                </grid>
+            </widget>
         </widget>
     </vbox>
 </widget>
-<customwidgets>
-</customwidgets>
 <connections>
     <connection>
         <sender>upChkbox</sender>
