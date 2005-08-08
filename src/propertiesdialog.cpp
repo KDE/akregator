@@ -22,6 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "akregatorconfig.h"
 #include "feed.h"
 #include "propertiesdialog.h"
 
@@ -83,7 +84,8 @@ void FeedPropertiesDialog::slotOk()
      m_feed->setTitle( feedName() );
      m_feed->setXmlUrl( url() );
      m_feed->setCustomFetchIntervalEnabled(autoFetch());
-     m_feed->setFetchInterval(fetchInterval());
+     if (autoFetch())
+        m_feed->setFetchInterval(fetchInterval());
      m_feed->setArchiveMode(archiveMode());
      m_feed->setMaxArticleAge(maxArticleAge());
      m_feed->setMaxArticleNumber(maxArticleNumber());
@@ -113,7 +115,10 @@ void FeedPropertiesDialog::setFeed(Feed* feed)
     setFeedName( feed->title() );
     setUrl( feed->xmlUrl() );
     setAutoFetch(feed->useCustomFetchInterval());
-    setFetchInterval(feed->fetchInterval());
+    if (feed->useCustomFetchInterval())
+        setFetchInterval(feed->fetchInterval());
+    else
+        setFetchInterval(Settings::autoFetchInterval());
     setArchiveMode(feed->archiveMode());
     setMaxArticleAge(feed->maxArticleAge());
     setMaxArticleNumber(feed->maxArticleNumber());
