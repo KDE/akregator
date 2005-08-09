@@ -5,6 +5,7 @@ INCLUDES = -I$(top_srcdir)/akregator/src/librss -I$(top_srcdir) $(all_includes)
 METASOURCES = AUTO
 
 messages: rc.cpp
+	$(EXTRACTRC) `find . -name "*.rc" -o -name "*.ui" -o -name "*.kcfg"` >> rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/akregator.pot
 
 KDE_ICON = AUTO
