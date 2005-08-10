@@ -95,6 +95,7 @@ feed.lo: akregatorconfig.h
 fetchqueue.lo: akregatorconfig.h
 trayicon.lo: akregatorconfig.h
 viewer.lo: akregatorconfig.h
+searchbar.lo: akregatorconfig.h
 
 kspeech_DIR = $(kde_includes)
 kspeechsink_DIR = $(kde_includes)
