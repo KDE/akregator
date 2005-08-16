@@ -136,7 +136,7 @@ void FeedStorageDummyImpl::setLastFetch(int lastFetch)
 
 QStringList FeedStorageDummyImpl::articles(const QString& tag)
 {
-    return tag.isNull() ? d->entries.keys() : d->taggedArticles[tag];
+    return tag.isNull() ? QStringList(d->entries.keys()) : d->taggedArticles[tag];
 }
 
 QStringList FeedStorageDummyImpl::articles(const Category& cat)
