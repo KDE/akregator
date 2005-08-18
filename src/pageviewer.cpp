@@ -436,7 +436,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         if (copylinkaddress)
         {
             copylinkaddress->plug( &popup);
-            popup.insertSeparator();
+            //popup.insertSeparator();
         }
     }
     else // we are not on a link
