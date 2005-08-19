@@ -212,7 +212,8 @@ void ListTabWidget::addView(NodeListView* view, const QString& caption, const QP
     if (tabId == 0) // first widget
     {
         d->current = view;
-        d->currentID = 0;
+        d->currentID = tabId;
+        d->tabBar->setTab(d->currentID, true);
         d->stack->raiseWidget(view);
     }
 }
