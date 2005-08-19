@@ -132,7 +132,10 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
     loadPlugins(); // FIXME: also unload them!
 
-    m_storage = Backend::StorageFactoryRegistry::self()->getFactory("metakit")->createStorage(QStringList()); // FIXME: read backend to use from config
+    m_storage = 0;
+    Backend::StorageFactory* factory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
+    if (factory != 0)
+        m_storage = factory->createStorage(QStringList());
 
     if (!m_storage) // Houston, we have a problem
     {
