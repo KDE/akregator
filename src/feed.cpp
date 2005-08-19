@@ -640,11 +640,27 @@ void Feed::slotDeleteExpiredArticles()
 
     setNotificationMode(false);
 
-    for (QValueList<Article>::Iterator it = articles.begin(); it != en; ++it)
+    // check keep flag only if it should be respected for expiry
+    // the code could be more compact, but we better check
+    // doNotExpiredArticles once instead of in every iteration
+    if (Settings::doNotExpireImportantArticles())
     {
-        if (!(*it).keep() && isExpired(*it))
+        for (QValueList<Article>::Iterator it = articles.begin(); it != en; ++it)
         {
-                (*it).setDeleted();
+            if (!(*it).keep() && isExpired(*it))
+            {
+                    (*it).setDeleted();
+            }
+        }
+    }
+    else
+    {
+        for (QValueList<Article>::Iterator it = articles.begin(); it != en; ++it)
+        {
+            if (isExpired(*it))
+            {
+                    (*it).setDeleted();
+            }
         }
     }
     setNotificationMode(true);
@@ -773,17 +789,37 @@ void Feed::enforceLimitArticleNumber()
     QValueList<Article>::Iterator en = articles.end();
 
     int c = 0;
-    while (it != en)
+    
+    if (Settings::doNotExpireImportantArticles())
     {
-        tmp = it;
-        ++it;
-        if (c < limit)
+        while (it != en)
         {
-            if (!(*tmp).isDeleted() && !(*tmp).keep())
-               c++;
+            tmp = it;
+            ++it;
+            if (c < limit)
+            {
+                if (!(*tmp).isDeleted() && !(*tmp).keep())
+                c++;
+            }
+            else if (!(*tmp).keep())
+                (*tmp).setDeleted();
         }
-        else if (!(*tmp).keep())
-            (*tmp).setDeleted();
+    }
+    else
+    {
+        while (it != en)
+        {
+            tmp = it;
+            ++it;
+            if (c < limit && !(*tmp).isDeleted())
+            {
+                c++;
+            }
+            else
+            {
+                (*tmp).setDeleted();
+            }
+        }
     }
     setNotificationMode(true);
 }
