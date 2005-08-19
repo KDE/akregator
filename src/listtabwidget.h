@@ -28,6 +28,7 @@
 #include <qwidget.h>
 
 class QIconSet;
+class QPixmap;
 class QString;
 
 namespace Akregator {
@@ -51,13 +52,12 @@ public:
     ListTabWidget(QWidget* parent=0, const char* name=0);
     virtual ~ListTabWidget();
 
-    enum ViewMode { /*single,*/ horizTabs };
+    enum ViewMode { /*single, horizontalTabs, */  verticalTabs };
 
     // void setViewMode(ViewMode mode); // TODO
     ViewMode viewMode() const;
 
-    void addView(NodeListView* view, const QString& caption);
-    void setViewIconSet(NodeListView* view, const QIconSet& iconSet);
+    void addView(NodeListView* view, const QString& caption, const QPixmap& icon);
 
     NodeListView* activeView() const;
 
@@ -87,7 +87,7 @@ signals:
 protected slots:
 
     void slotRootNodeChanged(NodeListView*, TreeNode*);
-    void slotCurrentChanged(QWidget* current);
+    void slotTabClicked(int id);
  
 private:
     class ListTabWidgetPrivate;

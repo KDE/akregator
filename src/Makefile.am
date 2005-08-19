@@ -123,7 +123,7 @@ libakregatorpart_la_SOURCES = \
         progressmanager.cpp \
         kernel.cpp \
         listtabwidget.cpp \
-	settings_appearance.ui \
+        settings_appearance.ui \
 	settings_general.ui \
 	settings_archive.ui \
 	settings_browser.ui \
@@ -144,7 +144,7 @@ libakregatorpart_la_SOURCES = \
         utils.cpp \
 	kspeech.stub
 
-libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) -avoid-version -no-undefined $(all_libraries)
+libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) $(LIB_KUTILS) -avoid-version -no-undefined $(all_libraries)
 libakregatorpart_la_LIBADD = libakregatorprivate.la 
 
 # this is where the desktop file will go

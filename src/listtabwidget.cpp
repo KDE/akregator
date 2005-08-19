@@ -27,13 +27,17 @@
 #include "folder.h"
 #include "treenode.h"
 
-#include <ktabwidget.h>
+#include <kmultitabbar.h>
 
 #include <qiconset.h>
 #include <qlayout.h>
 #include <qmap.h>
+#include <qptrlist.h>
 #include <qstring.h>
 #include <qvaluelist.h>
+#include <qwidgetstack.h>
+
+#include <kdebug.h>
 
 namespace Akregator {
 
@@ -41,9 +45,13 @@ class ListTabWidget::ListTabWidgetPrivate
 {
 
 public:
-    KTabWidget* tabWidget;
+    int idCounter;
+    KMultiTabBar* tabBar;
+    QWidgetStack* stack;
     NodeListView* current;
+    int currentID;
     QValueList<NodeListView*> views;
+    QMap<int, NodeListView*> idToView;
     QGridLayout* layout;
     ViewMode viewMode;
     QMap<QWidget*, QString> captions;
@@ -112,6 +120,7 @@ void ListTabWidget::slotNextUnreadFeed()
 
 void ListTabWidget::slotRootNodeChanged(NodeListView* view, TreeNode* node)
 {
+/*
     int unread = node->unread();
     if (unread > 0)
     {
@@ -123,22 +132,44 @@ void ListTabWidget::slotRootNodeChanged(NodeListView* view, TreeNode* node)
     {
         d->tabWidget->changeTab(view, d->captions[view]);
     }
+*/
 }
 
-void ListTabWidget::slotCurrentChanged(QWidget* current)
+void ListTabWidget::slotTabClicked(int id)
 {
-    d->current = dynamic_cast<NodeListView*>(current);
-    emit signalNodeSelected(d->current->selectedNode());
+    NodeListView* view = d->idToView[id];
+    if (view)
+    {
+        d->stack->raiseWidget(view);
+        d->current = view;
+
+        if (d->currentID >= 0)
+            d->tabBar->setTab(d->currentID, false);
+        d->currentID = id;
+        d->tabBar->setTab(d->currentID, true);
+
+        emit signalNodeSelected(d->current->selectedNode());
+    }
 }
 
 ListTabWidget::ListTabWidget(QWidget* parent, const char* name) : QWidget(parent, name), d(new ListTabWidgetPrivate)
 {
-   d->current = 0;
-   d->viewMode = horizTabs;
-   d->layout = new QGridLayout(this, 1, 1);
-   d->tabWidget = new KTabWidget(this); 
-   d->layout->addWidget(d->tabWidget, 0, 0);
-   connect(d->tabWidget, SIGNAL(currentChanged(QWidget*)), this, SLOT(slotCurrentChanged(QWidget*)));
+    d->idCounter = 0;
+    d->current = 0;
+    d->currentID = -1;
+    d->viewMode = verticalTabs;
+    d->layout = new QGridLayout(this, 1, 2);
+    d->tabBar = new KMultiTabBar(KMultiTabBar::Vertical, this); 
+    d->tabBar->setStyle(KMultiTabBar::KDEV3ICON);
+    //d->tabBar->setStyle(KMultiTabBar::KDEV3);
+    d->tabBar->showActiveTabTexts(true);
+    d->tabBar->setPosition(KMultiTabBar::Left);
+    d->layout->addWidget(d->tabBar, 0, 0);
+
+    d->stack = new QWidgetStack(this);
+    d->layout->addWidget(d->stack, 0, 1);
+    
+//    connect(d->tabBar, SIGNAL(currentChanged(QWidget*)), this, SLOT(slotCurrentChanged(QWidget*)));
 }
 
 ListTabWidget::~ListTabWidget()
@@ -161,38 +192,29 @@ ListTabWidget::ViewMode ListTabWidget::viewMode() const
     return d->viewMode;
 }
 
-void ListTabWidget::setViewIconSet(NodeListView* view, const QIconSet& iconSet)
+void ListTabWidget::addView(NodeListView* view, const QString& caption, const QPixmap& icon)
 {
-    
-    switch (d->viewMode)
-    {
-        case horizTabs:
-            d->tabWidget->setTabIconSet(view, iconSet);
-            break;
-        default:
-            break;
-    }
-}
+    d->captions[view] = caption;    
 
-void ListTabWidget::addView(NodeListView* view, const QString& caption)
-{
-    d->views.append(view);
-    d->captions[view] = caption;
+    view->reparent(d->stack, QPoint(0,0));
+    d->stack->addWidget(view);
+   
+    int tabId = d->idCounter++;
+    d->tabBar->appendTab(icon, tabId, caption);
+    d->idToView[tabId] = view;
+    connect(d->tabBar->tab(tabId), SIGNAL(clicked(int)), this, SLOT(slotTabClicked(int)));
+
+    
     connect(view, SIGNAL(signalNodeSelected(TreeNode*)), this, SIGNAL(signalNodeSelected(TreeNode*)));
     connect(view, SIGNAL(signalRootNodeChanged(NodeListView*, TreeNode*)), this, SLOT(slotRootNodeChanged(NodeListView*, TreeNode*)));
 
-    switch (d->viewMode)
+
+    if (tabId == 0) // first widget
     {
-        case horizTabs:
-            d->tabWidget->addTab(view, caption);
-            if (d->tabWidget->count() == 1)
-                d->current = view;
-            break;
-        default:
-            break;
+        d->current = view;
+        d->currentID = 0;
+        d->stack->raiseWidget(view);
     }
-   
-    
 }
 
 NodeListView* ListTabWidget::activeView() const
