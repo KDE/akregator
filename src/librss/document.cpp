@@ -22,6 +22,8 @@
 #include <qdom.h>
 #include <qptrlist.h>
 
+#include <kdebug.h>
+
 using namespace RSS;
 
 struct Document::Private : public Shared
@@ -85,33 +87,34 @@ Document::Document(const QDomDocument &doc) : d(new Private)
         d->valid=true;
     
     attr = rootNode.toElement().attribute(QString::fromLatin1("version"), QString::null);
-    if (!attr.isNull()) {
-        if (rootNode.toElement().tagName()=="feed")
-        {
-            d->format=AtomFeed;
-            if (attr == QString::fromLatin1("0.3"))
-                d->version = vAtom_0_3;
-            else if (attr == QString::fromLatin1("0.2")) /* smt -> review */
-               d->version = vAtom_0_2;
-            else if (attr == QString::fromLatin1("0.1")) /* smt -> review */
-              d->version = vAtom_0_1;
-        }
+    if (rootNode.toElement().tagName()==QString::fromLatin1("feed"))
+    {
+        d->format=AtomFeed;
+        if (attr == QString::fromLatin1("0.3"))
+            d->version = vAtom_0_3;
+        else if (attr == QString::fromLatin1("0.2")) /* smt -> review */
+            d->version = vAtom_0_2;
+        else if (attr == QString::fromLatin1("0.1")) /* smt -> review */
+            d->version = vAtom_0_1;
         else
-        {
-            d->format=RSSFeed;
-            if (attr == QString::fromLatin1("0.91"))
-                d->version = v0_91;
-            else if (attr == QString::fromLatin1("0.92"))
-                d->version = v0_92;
-            else if (attr == QString::fromLatin1("0.93"))
-                d->version = v0_93;
-            else if (attr == QString::fromLatin1("0.94"))
-                d->version = v0_94;
-            else if (attr.startsWith("2.0") || attr == QString::fromLatin1("2")) // http://www.breuls.org/rss puts 2.00 in version (BR #0000016)
-                d->version = v2_0;
+            d->version = vAtom_1_0;
         }
+    else
+    {
+        d->format=RSSFeed;
+        if (attr == QString::fromLatin1("0.91"))
+            d->version = v0_91;
+        else if (attr == QString::fromLatin1("0.92"))
+            d->version = v0_92;
+        else if (attr == QString::fromLatin1("0.93"))
+            d->version = v0_93;
+        else if (attr == QString::fromLatin1("0.94"))
+            d->version = v0_94;
+        else if (attr.startsWith("2.0") || attr == QString::fromLatin1("2")) // http://www.breuls.org/rss puts 2.00 in version (BR #0000016)
+            d->version = v2_0;
     }
-
+    
+    
     if (d->format==UnknownFormat)
     {
         attr = rootNode.toElement().attribute(QString::fromLatin1("xmlns"), QString::null);
@@ -134,7 +137,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
             }
         }
     }
-
+    
     QDomNode channelNode;
 
     if (d->format == AtomFeed)
@@ -184,7 +187,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
     for (n = parentNode.firstChild(); !n.isNull(); n = n.nextSibling()) {
         const QDomElement e = n.toElement();
         if (e.tagName() == tagName)
-            d->articles.append(Article(e, d->format));
+            d->articles.append(Article(e, d->format, d->version));
     }
 
     if (!(elemText = extractNode(channelNode, QString::fromLatin1("copyright"))).isNull())
@@ -506,6 +509,7 @@ QString Document::verbVersion() const
         case vAtom_0_3: return QString::fromLatin1("0.3");
         case vAtom_0_2: return QString::fromLatin1("0.2");
         case vAtom_0_1: return QString::fromLatin1("0.1");
+        case vAtom_1_0: return QString::fromLatin1("1.0");
     }
     return QString::null;
 }

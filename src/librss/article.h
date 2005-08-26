@@ -58,7 +58,7 @@ namespace RSS
           * @param node A QDomNode which references the DOM leaf to be used
           * for constructing the Article.
           */
-         Article(const QDomNode &node, Format format);
+         Article(const QDomNode &node, Format format, Version version);
 
          /**
           * Assignment operator.

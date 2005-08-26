@@ -62,7 +62,7 @@ QValueList<Category> Article::categories() const
     return d->categories;
 }
 
-Article::Article(const QDomNode &node, Format format) : d(new Private)
+Article::Article(const QDomNode &node, Format format, Version version) : d(new Private)
 {
 	QString elemText;
 
@@ -113,7 +113,11 @@ Article::Article(const QDomNode &node, Format format) : d(new Private)
 
 	if (format == AtomFeed)
 	{
-		elemText = extractNode(node, QString::fromLatin1("issued"));
+        if (version == vAtom_1_0)
+            elemText = extractNode(node, QString::fromLatin1("updated"));
+        else
+           elemText = extractNode(node, QString::fromLatin1("issued"));
+
 		if (!elemText.isNull())
 			time = parseISO8601Date(elemText); 	
 	}

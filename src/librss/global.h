@@ -34,7 +34,8 @@ namespace RSS
 		v2_0,	  /// RSS v2.0
 		vAtom_0_1,  /// Atom v0.1
 		vAtom_0_2,  /// Atom v0.2
-		vAtom_0_3  /// Atom v0.3
+		vAtom_0_3,  /// Atom v0.3
+        vAtom_1_0  /// Atom v1.0
 	};
 	
 	/**
