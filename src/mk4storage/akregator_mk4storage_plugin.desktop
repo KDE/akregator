@@ -7,6 +7,7 @@ Name[es]=Dorsal de almacenamiento Metakit
 Name[et]=Metakiti salvestamisrakendus
 Name[fr]=Stockage avec Metakit
 Name[sv]=Metakit lagringsgränssnitt
+Name[xx]=xxMetakit storage backendxx
 Name[zh_CN]=Metakit 存储后端
 X-KDE-Library=libakregator_mk4storage_plugin
 Comment=Plugin for Akregator
@@ -18,6 +19,7 @@ Comment[fr]=Module pour Akregator
 Comment[ga]=Breiseán Akregator
 Comment[sv]=Insticksprogram för Akregator
 Comment[tr]=Akregator Eklentisi
+Comment[xx]=xxPlugin for Akregatorxx
 Comment[zh_CN]=Akregator 插件
 ServiceTypes=Akregator/Plugin
 
