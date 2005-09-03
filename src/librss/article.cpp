@@ -17,7 +17,7 @@
 #include <krfcdate.h>
 #include <kurl.h>
 #include <kurllabel.h>
-#include <kmdcodec.h> 
+#include <kcodecs.h> 
 
 #include <qdatetime.h>
 #include <qdom.h>
