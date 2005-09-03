@@ -97,7 +97,7 @@
 #include <qtoolbutton.h>
 #include <qtooltip.h>
 #include <q3valuevector.h>
-#include <q3whatsthis.h>
+
 #include <qclipboard.h>
 //Added by qt3to4:
 #include <QPixmap>
@@ -270,12 +270,12 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     connect( m_tabs, SIGNAL( currentFrameChanged(Frame *) ), this,
             SLOT( slotFrameChanged(Frame *) ) );
 
-    Q3WhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
+    m_tabs->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this, "Article Tab");
     QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab, 0, 2, "mainTabLayout");
 
-    Q3WhatsThis::add(m_mainTab, i18n("Articles list."));
+    m_mainTab->setWhatsThis( i18n("Articles list."));
 
     m_searchBar = new SearchBar(m_mainTab);
 
@@ -313,7 +313,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
     connect( m_part, SIGNAL(signalSettingsChanged()), m_articleViewer, SLOT(slotPaletteOrFontChanged()));
-    Q3WhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
+    m_articleViewer->widget()->setWhatsThis( i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 
     m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"), false);

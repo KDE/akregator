@@ -52,7 +52,7 @@
 #include <qpainter.h>
 #include <q3ptrdict.h>
 #include <qtimer.h>
-#include <q3whatsthis.h>
+
 //Added by qt3to4:
 #include <QPixmap>
 #include <Q3ValueList>
@@ -366,7 +366,7 @@ NodeListView::NodeListView( QWidget *parent, const char *name)
 
     clear();
     
-    Q3WhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
+    this->setWhatsThis( i18n("<h2>Feeds tree</h2>"
         "Here you can browse tree of feeds. "
         "You can also add feeds or feed groups (folders) "
         "using right-click menu, or reorganize them using "

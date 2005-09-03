@@ -45,7 +45,7 @@
 #include <q3popupmenu.h>
 #include <q3ptrlist.h>
 #include <q3valuelist.h>
-#include <q3whatsthis.h>
+
 #include <q3header.h>
 #include <q3dragobject.h>
 #include <q3simplerichtext.h>
@@ -255,7 +255,7 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
 
     header()->setStretchEnabled(true, 0);
 
-    Q3WhatsThis::add(this, i18n("<h2>Article list</h2>"
+    this->setWhatsThis( i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
