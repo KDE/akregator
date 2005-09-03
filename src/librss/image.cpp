@@ -109,7 +109,7 @@ void Image::getPixmap()
 		return;
 
 	d->pixmapBuffer = new QBuffer;
-	d->pixmapBuffer->open(IO_WriteOnly);
+	d->pixmapBuffer->open(QIODevice::WriteOnly);
 
 	d->job = KIO::get(d->url, false, false);
 	connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),

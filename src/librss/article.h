@@ -12,12 +12,14 @@
 #define LIBRSS_ARTICLE_H
 
 #include <qmap.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include "global.h"
 
 class QDateTime;
 class QDomNode;
-template <class> class QValueList;
+template <class> class Q3ValueList;
 class QString;
 class QWidget;
 class KURL;
@@ -40,7 +42,7 @@ namespace RSS
          /**
           * A list of articles.
           */
-         typedef QValueList<Article> List;
+         typedef Q3ValueList<Article> List;
 
          /**
           * Default constructor.
@@ -135,7 +137,7 @@ namespace RSS
          Enclosure enclosure() const;
 
          /** returns a list of categories this article is assigned to. (RSS2 only, Atom is not supported yet) */
-         QValueList<Category> categories() const;
+         Q3ValueList<Category> categories() const;
 
          QString meta(const QString &key) const;
          

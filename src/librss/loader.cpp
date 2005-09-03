@@ -79,7 +79,7 @@ void FileRetriever::retrieveData(const KURL &url)
       return;
 
    d->buffer = new QBuffer;
-   d->buffer->open(IO_WriteOnly);
+   d->buffer->open(QIODevice::WriteOnly);
 
    KURL u=url;
 
@@ -184,7 +184,7 @@ void OutputRetriever::retrieveData(const KURL &url)
       return;
 
    d->buffer = new QBuffer;
-   d->buffer->open(IO_WriteOnly);
+   d->buffer->open(QIODevice::WriteOnly);
 
    d->process = new KShellProcess();
    connect(d->process, SIGNAL(processExited(KProcess *)),

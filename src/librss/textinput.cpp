@@ -42,7 +42,7 @@ TextInput::TextInput(const QDomNode &node) : d(new Private)
 		d->title = elemText;
 	if (!(elemText = extractNode(node, QString::fromLatin1("description"))).isNull())
 		d->description = elemText;
-	if (!(elemText = extractNode(node, QString::fromLatin1("name"))))
+	if (!(elemText = extractNode(node, QString::fromLatin1("name"))).isNull())
 		d->name = elemText;
 	if (!(elemText = extractNode(node, QString::fromLatin1("link"))).isNull())
 		d->link = elemText;

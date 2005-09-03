@@ -12,6 +12,8 @@
 
 #include <krfcdate.h>
 #include <qdom.h>
+//Added by qt3to4:
+#include <QTextStream>
 #include <kcharsets.h>
 #include <qregexp.h>
 
@@ -32,8 +34,8 @@ QString RSS::childNodesAsXML(const QDomNode& parent)
 {
 	QDomNodeList list = parent.childNodes();
 	QString str;
-	QTextStream ts( &str, IO_WriteOnly );
-	for (uint i = 0; i < list.count(); ++i)
+	QTextStream ts( &str, QIODevice::WriteOnly );
+	for (int i = 0; i < list.count(); ++i)
 		ts << list.item(i);
 	return str.stripWhiteSpace();
 }

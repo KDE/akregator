@@ -14,6 +14,8 @@
 #include "global.h"
 
 #include <qobject.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 class QDomNode;
 
