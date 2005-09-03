@@ -250,6 +250,7 @@ void Part::slotSettingsChanged()
     if (Settings::minimumFontSize() > Settings::mediumFontSize())
         Settings::setMediumFontSize(Settings::minimumFontSize());
     saveSettings();
+    m_view->slotSettingsChanged();
     emit signalSettingsChanged();
 }
 void Part::saveSettings()

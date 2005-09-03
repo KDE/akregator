@@ -141,12 +141,15 @@ public:
 
 void ActionManagerImpl::slotUpdateTagActions(bool enabled, const QStringList& tagIds)
 {
-    d->tagMenu->setEnabled(enabled);
-    QValueList<TagAction*> actions = d->tagActions.values();
-
-    for (QValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+    if (Settings::showTaggingGUI() && d->tagMenu)
     {
-        (*it)->setChecked(tagIds.contains((*it)->tag().id()));
+        d->tagMenu->setEnabled(enabled);
+        QValueList<TagAction*> actions = d->tagActions.values();
+    
+        for (QValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+        {
+            (*it)->setChecked(tagIds.contains((*it)->tag().id()));
+        }
     }
 }
 
@@ -188,6 +191,9 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
 
 void ActionManagerImpl::slotTagAdded(const Tag& tag)
 {
+    if (!Settings::showTaggingGUI())
+        return; 
+
     if (!d->tagActions.contains(tag.id()))
     {
         d->tagActions[tag.id()] = new TagAction(tag, d->view, SLOT(slotAssignTag(const Tag&, bool)), d->tagMenu);
@@ -197,6 +203,9 @@ void ActionManagerImpl::slotTagAdded(const Tag& tag)
 
 void ActionManagerImpl::slotTagRemoved(const Tag& tag)
 {
+    if (!Settings::showTaggingGUI())
+        return; 
+
     QString id = tag.id();
     TagAction* action = d->tagActions[id];
     d->tagMenu->remove(action);
@@ -314,9 +323,11 @@ void ActionManagerImpl::initView(View* view)
 
     new KAction(i18n("&Delete"), "editdelete", "Delete", d->view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
 
-    d->tagMenu = new KActionMenu ( i18n( "&Set Tags" ), "rss_tag",  actionCollection(), "article_tagmenu" );
-    d->tagMenu->setEnabled(false); // only enabled when articles are selected
-
+    if (Settings::showTaggingGUI())
+    {
+        d->tagMenu = new KActionMenu ( i18n( "&Set Tags" ), "rss_tag",  actionCollection(), "article_tagmenu" );
+        d->tagMenu->setEnabled(false); // only enabled when articles are selected
+    }
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );
 

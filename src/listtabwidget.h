@@ -52,9 +52,9 @@ public:
     ListTabWidget(QWidget* parent=0, const char* name=0);
     virtual ~ListTabWidget();
 
-    enum ViewMode { /*single, horizontalTabs, */  verticalTabs };
+    enum ViewMode { single, /* horizontalTabs, */  verticalTabs };
 
-    // void setViewMode(ViewMode mode); // TODO
+    void setViewMode(ViewMode mode);
     ViewMode viewMode() const;
 
     void addView(NodeListView* view, const QString& caption, const QPixmap& icon);

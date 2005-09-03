@@ -52,7 +52,7 @@ public:
     int currentID;
     QValueList<NodeListView*> views;
     QMap<int, NodeListView*> idToView;
-    QGridLayout* layout;
+    QHBoxLayout* layout;
     ViewMode viewMode;
     QMap<QWidget*, QString> captions;
 };
@@ -158,16 +158,17 @@ ListTabWidget::ListTabWidget(QWidget* parent, const char* name) : QWidget(parent
     d->current = 0;
     d->currentID = -1;
     d->viewMode = verticalTabs;
-    d->layout = new QGridLayout(this, 1, 2);
+    d->layout = new QHBoxLayout(this);
+    //d->layout = new QGridLayout(this, 1, 2);
     d->tabBar = new KMultiTabBar(KMultiTabBar::Vertical, this); 
     d->tabBar->setStyle(KMultiTabBar::KDEV3ICON);
     //d->tabBar->setStyle(KMultiTabBar::KDEV3);
     d->tabBar->showActiveTabTexts(true);
     d->tabBar->setPosition(KMultiTabBar::Left);
-    d->layout->addWidget(d->tabBar, 0, 0);
+    d->layout->addWidget(d->tabBar/*, 0, 0*/);
 
     d->stack = new QWidgetStack(this);
-    d->layout->addWidget(d->stack, 0, 1);
+    d->layout->addWidget(d->stack/*, 0, 1*/);
     
 //    connect(d->tabBar, SIGNAL(currentChanged(QWidget*)), this, SLOT(slotCurrentChanged(QWidget*)));
 }
@@ -178,14 +179,17 @@ ListTabWidget::~ListTabWidget()
     d = 0;
 }
 
-/*
+
 void ListTabWidget::setViewMode(ViewMode mode)
 {
     if (mode == d->viewMode)
         return;
 
-    // TODO
-}*/
+    d->viewMode = mode;
+
+    // if mode is "single", we hide the tab bar
+    d->tabBar->setHidden(mode == single);
+}
 
 ListTabWidget::ViewMode ListTabWidget::viewMode() const
 {

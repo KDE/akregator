@@ -240,6 +240,8 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
 
     connect(m_listTabWidget, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
 
+    if (!Settings::showTaggingGUI())
+        m_listTabWidget->setViewMode(ListTabWidget::single);
 
     m_feedListView = new NodeListView( this, "feedtree" );
     m_listTabWidget->addView(m_feedListView, i18n("Feeds"), KGlobal::iconLoader()->loadIcon("folder", KIcon::Small));
@@ -368,6 +370,13 @@ void View::delayedInit()
     // it works. This is kind of creative, but a dirty hack nevertheless.
     if ( !m_part->mergePart(m_articleViewer) )
         QTimer::singleShot(500, this, SLOT(delayedInit()));
+}
+
+void View::slotSettingsChanged()
+{
+    // if tagging is hidden, show only feed list
+    m_listTabWidget->setViewMode(Settings::showTaggingGUI() ? ListTabWidget::verticalTabs : ListTabWidget::single);
+    
 }
 
 void View::slotOnShutdown()

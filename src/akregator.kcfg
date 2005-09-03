@@ -194,5 +194,9 @@
    <whatsthis>Configurable delay between selecting and article and it being marked as read.</whatsthis>
    <default>0</default>
   </entry>
+  <entry key="Show Tagging GUI" type="Bool" >
+   <label>Show Tagging GUI elements (unfinished)</label>
+   <default>false</default>
+  </entry>
 </group>
 </kcfg>

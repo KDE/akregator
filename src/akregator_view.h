@@ -92,6 +92,8 @@ namespace Akregator {
             /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
             void saveSettings();
 
+            void slotSettingsChanged();
+
             /** Adds the feeds in @c doc to the "Imported Folder"
             @param doc the DOM tree (OPML) of the feeds to import */
             bool importFeeds(const QDomDocument& doc);
