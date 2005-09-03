@@ -40,6 +40,7 @@
 #include <qpainter.h>
 #include <qfont.h>
 #include <qtooltip.h>
+#include <QX11Info>
 
 
 namespace Akregator {
@@ -103,7 +104,7 @@ QPixmap TrayIcon::takeScreenshot() const
         y = desktopHeight - h;
 
         // Grab the desktop and draw a circle arround the icon:
-    QPixmap shot = QPixmap::grabWindow(qt_xrootwin(), x, y, w, h);
+    QPixmap shot = QPixmap::grabWindow(QX11Info::appRootWindow(), x, y, w, h);
     QPainter painter(&shot);
     const int MARGINS = 6;
     const int WIDTH   = 3;
