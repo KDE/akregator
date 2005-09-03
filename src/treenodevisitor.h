@@ -36,6 +36,7 @@ class TagFolder;
 class TreeNodeVisitor
 {
     public:
+		virtual ~TreeNodeVisitor(){}
         virtual bool visit(TreeNode* node);
         virtual bool visitTreeNode(TreeNode* /*node*/) { return false; }
         virtual bool visitFolder(Folder* /*node*/) { return false; }

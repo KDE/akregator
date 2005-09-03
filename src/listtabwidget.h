@@ -26,8 +26,10 @@
 #define AKREGATOR_LISTTABWIDGET_H
 
 #include <qwidget.h>
+//Added by qt3to4:
+#include <QPixmap>
 
-class QIconSet;
+class QIcon;
 class QPixmap;
 class QString;
 

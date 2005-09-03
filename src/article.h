@@ -1,3 +1,5 @@
+//Added by qt3to4:
+#include <Q3ValueList>
 /*
     This file is part of Akregator.
 
@@ -32,7 +34,7 @@ class QString;
 class QStringList;
 class QWidget;
 
-template <class T> class QValueList;
+template <class T> class Q3ValueList;
 
 typedef unsigned int uint;
 
@@ -57,7 +59,7 @@ namespace Akregator
     {
         public:
             enum Status { Unread=0, Read, New };
-            typedef QValueList<Article> List;
+            typedef Q3ValueList<Article> List;
 
             Article();
             /** creates am article object for an existing article.

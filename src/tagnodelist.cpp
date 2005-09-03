@@ -33,7 +33,7 @@
 #include <qdom.h>
 #include <qmap.h>
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include <kapplication.h>
 #include <klocale.h>
@@ -64,8 +64,8 @@ TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) :  NodeList(), d(ne
 
     setRootNode(new TagFolder(i18n("My Tags")));
 
-    QValueList<Tag> list = tagSet->toMap().values();
-    for (QValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    Q3ValueList<Tag> list = tagSet->toMap().values();
+    for (Q3ValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
        insert(new TagNode(*it, d->feedList->rootNode()));
     }
@@ -161,7 +161,7 @@ bool TagNodeList::containsTagId(const QString& tagId)
     return d->tagIdToNodeMap.contains(tagId);
 }
 
-QValueList<TagNode*> TagNodeList::toList() const
+Q3ValueList<TagNode*> TagNodeList::toList() const
 {
     return d->tagIdToNodeMap.values();
 }

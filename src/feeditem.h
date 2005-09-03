@@ -26,6 +26,8 @@
 #define AKREGATORFEEDITEM_H
 
 #include "treenodeitem.h"
+//Added by qt3to4:
+#include <QPixmap>
 
 namespace Akregator 
 {

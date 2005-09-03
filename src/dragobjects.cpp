@@ -25,13 +25,15 @@
 #include "dragobjects.h"
 #include "feed.h"
 
-#include <qcstring.h>
+#include <q3cstring.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 namespace Akregator {
 
 class Article;
 
-ArticleDrag::ArticleDrag(const QValueList<Article>& articles, QWidget* dragSource, const char* name)
+ArticleDrag::ArticleDrag(const Q3ValueList<Article>& articles, QWidget* dragSource, const char* name)
 : KURLDrag(articleURLs(articles), dragSource, name), m_items(articlesToDragItems(articles))
 {}
 
@@ -40,12 +42,13 @@ bool ArticleDrag::canDecode(const QMimeSource* e)
     return e->provides("akregator/articles");
 }
 
-bool ArticleDrag::decode(const QMimeSource* e, QValueList<ArticleDragItem>& articles)
+bool ArticleDrag::decode(const QMimeSource* e, Q3ValueList<ArticleDragItem>& articles)
 {
     articles.clear();
     QByteArray array = e->encodedData("akregator/articles");
     
-    QDataStream stream(array, IO_ReadOnly);
+    QDataStream stream( &array,QIODevice::ReadOnly);
+    stream.setVersion(QDataStream::Qt_3_1);
 
     while (!stream.atEnd())
     {
@@ -70,14 +73,15 @@ const char* ArticleDrag::format(int i) const
 
 QByteArray ArticleDrag::encodedData(const char* mime) const
 {
-    QCString mimetype(mime);
+    Q3CString mimetype(mime);
     if (mimetype == "akregator/articles")
     {
         QByteArray ba;
-        QDataStream stream(ba, IO_WriteOnly);
+        QDataStream stream( &ba,QIODevice::WriteOnly);
+        stream.setVersion(QDataStream::Qt_3_1);
 
-        QValueList<ArticleDragItem>::ConstIterator end = m_items.end();
-        for (QValueList<ArticleDragItem>::ConstIterator it = m_items.begin(); it != end; ++it)
+        Q3ValueList<ArticleDragItem>::ConstIterator end = m_items.end();
+        for (Q3ValueList<ArticleDragItem>::ConstIterator it = m_items.begin(); it != end; ++it)
         {
             stream << (*it).feedURL;
             stream << (*it).guid;
@@ -90,13 +94,13 @@ QByteArray ArticleDrag::encodedData(const char* mime) const
     }
 }
 
-QValueList<ArticleDragItem> ArticleDrag::articlesToDragItems(const QValueList<Article>& articles)
+Q3ValueList<ArticleDragItem> ArticleDrag::articlesToDragItems(const Q3ValueList<Article>& articles)
 {
-    QValueList<ArticleDragItem> items;
+    Q3ValueList<ArticleDragItem> items;
     
-    QValueList<Article>::ConstIterator end(articles.end());
+    Q3ValueList<Article>::ConstIterator end(articles.end());
 
-    for (QValueList<Article>::ConstIterator it = articles.begin(); it != end; ++it)
+    for (Q3ValueList<Article>::ConstIterator it = articles.begin(); it != end; ++it)
     {
         ArticleDragItem i;
         i.feedURL = (*it).feed() ? (*it).feed()->xmlUrl() : "";
@@ -107,11 +111,11 @@ QValueList<ArticleDragItem> ArticleDrag::articlesToDragItems(const QValueList<Ar
     return items;
 }
 
-KURL::List ArticleDrag::articleURLs(const QValueList<Article>& articles)
+KURL::List ArticleDrag::articleURLs(const Q3ValueList<Article>& articles)
 {
     KURL::List urls;
-    QValueList<Article>::ConstIterator end(articles.end());
-    for (QValueList<Article>::ConstIterator it = articles.begin(); it != end; ++it)
+    Q3ValueList<Article>::ConstIterator end(articles.end());
+    for (Q3ValueList<Article>::ConstIterator it = articles.begin(); it != end; ++it)
         urls.append((*it).link());
     return urls;
 }

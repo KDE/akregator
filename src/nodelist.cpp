@@ -31,14 +31,14 @@
 
 #include <qmap.h>
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 namespace Akregator {
 
 class NodeList::NodeListPrivate
 {
     public:
-    QValueList<TreeNode*> flatList;
+    Q3ValueList<TreeNode*> flatList;
     Folder* rootNode;
     QString title;
     QMap<int, TreeNode*> idMap;
@@ -146,7 +146,7 @@ Folder* NodeList::rootNode() const
     return d->rootNode;
 }
 
-const QValueList<TreeNode*>& NodeList::asFlatList() const
+const Q3ValueList<TreeNode*>& NodeList::asFlatList() const
 {
     return d->flatList;
 }
@@ -156,7 +156,7 @@ bool NodeList::isEmpty() const
     return d->rootNode->firstChild() == 0;
 }
 
-QValueList<TreeNode*>* NodeList::flatList() const
+Q3ValueList<TreeNode*>* NodeList::flatList() const
 {
     return &(d->flatList);
 }
@@ -165,9 +165,9 @@ void NodeList::clear()
 {
     Q_ASSERT(rootNode());
     
-    QValueList<TreeNode*> children = rootNode()->children();
+    Q3ValueList<TreeNode*> children = rootNode()->children();
 
-    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+    for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
         delete *it; // emits signal "emitSignalDestroyed"
 }
 

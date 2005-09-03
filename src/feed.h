@@ -27,6 +27,9 @@
 
 #include "treenode.h"
 #include "librss/librss.h"
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3ValueList>
 
 class QDomElement;
 class QPixmap;
@@ -179,7 +182,7 @@ namespace Akregator
             /** sets the description of this feed */
             void setDescription(const QString& s);
 
-            virtual QValueList<Article> articles(const QString& tag=QString::null);
+            virtual Q3ValueList<Article> articles(const QString& tag=QString::null);
 
             /** returns the article with the given @c guid, or a null article if it not exists */
             virtual Article findArticle(const QString& guid) const;

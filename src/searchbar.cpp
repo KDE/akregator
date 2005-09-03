@@ -34,13 +34,15 @@
 #include <kstandarddirs.h>
 
 #include <qapplication.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <qlabel.h>
 #include <qpixmap.h>
 #include <qstring.h>
 #include <qtimer.h>
 #include <qtoolbutton.h>
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 using Akregator::Filters::ArticleMatcher;
 using Akregator::Filters::Criterion;
@@ -60,7 +62,7 @@ public:
     int delay;
 };
 
-SearchBar::SearchBar(QWidget* parent, const char* name) : QHBox(parent, name), d(new SearchBar::SearchBarPrivate)
+SearchBar::SearchBar(QWidget* parent, const char* name) : Q3HBox(parent, name), d(new SearchBar::SearchBarPrivate)
 {
     d->delay = 400;
     setMargin(2);
@@ -173,8 +175,8 @@ void SearchBar::slotSearchStringChanged(const QString& search)
 
 void SearchBar::slotActivateSearch()
 {
-    QValueList<Criterion> textCriteria;
-    QValueList<Criterion> statusCriteria;
+    Q3ValueList<Criterion> textCriteria;
+    Q3ValueList<Criterion> statusCriteria;
 
     if (!d->searchText.isEmpty())
     {

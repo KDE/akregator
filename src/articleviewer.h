@@ -29,6 +29,9 @@
 
 #include <qcolor.h>
 #include <qfont.h>
+//Added by qt3to4:
+#include <Q3ValueList>
+#include <QKeyEvent>
 
 #include "article.h"
 #include "articlefilter.h"
@@ -89,9 +92,9 @@ namespace Akregator
             
         protected slots:
                     
-            void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
-            void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
-            void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& list);
+            void slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list);
+            void slotArticlesRemoved(TreeNode* node, const Q3ValueList<Article>& list);
             
         protected:
             

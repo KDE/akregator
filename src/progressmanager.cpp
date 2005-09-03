@@ -23,6 +23,8 @@
 */
 
 #include <qmap.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <klocale.h>
 #include <kstaticdeleter.h>
@@ -87,9 +89,9 @@ void ProgressManager::setFeedList(FeedList* feedList)
     
     if (feedList != 0)
     {
-        QValueList<TreeNode*> list = feedList->asFlatList();
+        Q3ValueList<TreeNode*> list = feedList->asFlatList();
     
-        for (QValueList<TreeNode*>::ConstIterator it = list.begin(); it != list.end(); ++it)
+        for (Q3ValueList<TreeNode*>::ConstIterator it = list.begin(); it != list.end(); ++it)
         slotNodeAdded(*it);
         connect(feedList, SIGNAL(signalNodeAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
         connect(feedList, SIGNAL(signalNodeRemoved(TreeNode*)), this, SLOT(slotNodeRemoved(TreeNode*)));

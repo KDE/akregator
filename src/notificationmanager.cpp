@@ -29,6 +29,8 @@
 
 #include <qlabel.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include "feed.h"
 #include "notificationmanager.h"
@@ -92,8 +94,8 @@ void NotificationManager::doNotify()
 {
     QString message = "<html><body>";
     QString feedTitle;
-    QValueList<Article>::ConstIterator it = m_articles.begin();
-    QValueList<Article>::ConstIterator en = m_articles.end();
+    Q3ValueList<Article>::ConstIterator it = m_articles.begin();
+    Q3ValueList<Article>::ConstIterator en = m_articles.end();
     for (; it != en; ++it)
     {
         if (feedTitle != (*it).feed()->title())

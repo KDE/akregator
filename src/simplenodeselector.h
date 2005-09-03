@@ -29,7 +29,7 @@
 
 #include <kdialogbase.h>
 
-class QListViewItem;
+class Q3ListViewItem;
 
 namespace Akregator {
 
@@ -81,7 +81,7 @@ class SimpleNodeSelector : public QWidget
 
     protected slots:
 
-        virtual void slotItemSelected(QListViewItem* item);
+        virtual void slotItemSelected(Q3ListViewItem* item);
 
         virtual void slotNodeDestroyed(TreeNode* node);
         virtual void slotFeedListDestroyed(FeedList* list);

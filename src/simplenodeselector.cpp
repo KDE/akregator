@@ -34,6 +34,9 @@
 #include <qlayout.h>
 #include <qmap.h>
 #include <qwidget.h>
+//Added by qt3to4:
+#include <Q3ValueList>
+#include <QGridLayout>
 
 namespace Akregator
 {
@@ -84,8 +87,8 @@ class SimpleNodeSelector::SimpleNodeSelectorPrivate
     KListView* view;
     FeedList* list;
     NodeVisitor* visitor;
-    QMap<TreeNode*,QListViewItem*> nodeToItem;
-    QMap<QListViewItem*, TreeNode*> itemToNode;
+    QMap<TreeNode*,Q3ListViewItem*> nodeToItem;
+    QMap<Q3ListViewItem*, TreeNode*> itemToNode;
 };
 
 class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
@@ -102,16 +105,16 @@ class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
     virtual bool visitFolder(Folder* node)
     {
         visitTreeNode(node);
-        QValueList<TreeNode*> children = node->children();
+        Q3ValueList<TreeNode*> children = node->children();
         m_view->d->nodeToItem[node]->setExpandable(true);
-        for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+        for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
              createItems(*it);
         return true;
     }
 
     virtual bool visitTreeNode(TreeNode* node)
     {
-        QListViewItem* pi = node->parent() ? m_view->d->nodeToItem[node->parent()] : 0;
+        Q3ListViewItem* pi = node->parent() ? m_view->d->nodeToItem[node->parent()] : 0;
          
         KListViewItem* item = 0;
         if (pi != 0)
@@ -140,7 +143,7 @@ SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, cons
     d->view->setRootIsDecorated(true);
     d->view->addColumn(i18n("Feeds"));
     
-    connect(d->view, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotItemSelected(QListViewItem*)));
+    connect(d->view, SIGNAL(selectionChanged(Q3ListViewItem*)), this, SLOT(slotItemSelected(Q3ListViewItem*)));
 
     QGridLayout* layout = new QGridLayout(this, 1, 1);
     layout->addWidget(d->view, 0, 0);
@@ -166,7 +169,7 @@ TreeNode* SimpleNodeSelector::selectedNode() const
 
 void SimpleNodeSelector::slotSelectNode(TreeNode* node)
 {
-    QListViewItem* item = d->nodeToItem[node];
+    Q3ListViewItem* item = d->nodeToItem[node];
     if (item != 0)
         d->view->setSelected(item, true);
 }
@@ -178,7 +181,7 @@ void SimpleNodeSelector::slotFeedListDestroyed(FeedList* /*list*/)
     d->view->clear();
 }
 
-void SimpleNodeSelector::slotItemSelected(QListViewItem* item)
+void SimpleNodeSelector::slotItemSelected(Q3ListViewItem* item)
 {
     emit signalNodeSelected(d->itemToNode[item]);
 }
@@ -187,7 +190,7 @@ void SimpleNodeSelector::slotNodeDestroyed(TreeNode* node)
 {
     if (d->nodeToItem.contains(node))
     {
-        QListViewItem* item = d->nodeToItem[node];
+        Q3ListViewItem* item = d->nodeToItem[node];
         d->nodeToItem.remove(node);
         d->itemToNode.remove(item);
         delete item;

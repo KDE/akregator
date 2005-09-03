@@ -26,13 +26,15 @@
 
 #include <qstyle.h>
 #include <qapplication.h>
-#include <qiconset.h>
+#include <qicon.h>
 #include <qclipboard.h>
 #include <qmap.h>
-#include <qptrdict.h>
+#include <q3ptrdict.h>
 #include <qstring.h>
 #include <qtoolbutton.h>
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <Q3PopupMenu>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -57,7 +59,7 @@ namespace Akregator {
 class TabWidget::TabWidgetPrivate
 {
     public:
-    QPtrDict<Frame> frames;
+    Q3PtrDict<Frame> frames;
     uint CurrentMaxLength;
     QWidget* currentItem;
     QToolButton* tabsClose;
@@ -167,7 +169,7 @@ uint TabWidget::tabBarWidthForMaxChars( uint maxLength )
         int lw = fm.width( newTitle );
         int iw = 0;
         if ( tab->iconSet() )
-            iw = tab->iconSet()->pixmap( QIconSet::Small, QIconSet::Normal ).width() + 4;
+            iw = tab->iconSet()->pixmap( QIcon::Small, QIcon::Normal ).width() + 4;
 
         x += ( tabBar()->style().sizeFromContents( QStyle::CT_TabBarTab, this,                             QSize( QMAX( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), QStyleOption( tab ) ) ).width();
     }
@@ -235,7 +237,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
     d->currentItem = page(i);
     //kdDebug() << indexOf(d->currentItem) << endl;
     if (w && indexOf(d->currentItem) != 0)
-        static_cast<QPopupMenu *>(w)->exec(p);
+        static_cast<Q3PopupMenu *>(w)->exec(p);
     d->currentItem = 0;
 }
 

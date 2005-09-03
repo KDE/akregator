@@ -27,7 +27,7 @@
 #include "folderitem.h"
 #include "treenode.h"
 
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 #include <kaction.h>
 #include <kiconloader.h>
 
@@ -80,5 +80,5 @@ void FolderItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("feedgroup_popup");
     if (w)
-        static_cast<QPopupMenu *>(w)->exec(p);
+        static_cast<Q3PopupMenu *>(w)->exec(p);
 }

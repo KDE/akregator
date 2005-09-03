@@ -29,9 +29,12 @@
 #include "kspeech_stub.h"
 
 #include <qobject.h>
+//Added by qt3to4:
+#include <Q3ValueList>
+#include <Q3CString>
 
 class QString;
-template <class T> class QValueList;
+template <class T> class Q3ValueList;
 
 namespace Akregator
 {
@@ -53,7 +56,7 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
 
         void slotSpeak(const QString& text, const QString& language);
         void slotSpeak(const Article& article);
-        void slotSpeak(const QValueList<Article>& articles);
+        void slotSpeak(const Q3ValueList<Article>& articles);
         void slotAbortJobs();
 
     signals:
@@ -71,7 +74,7 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
         SpeechClient();
         void setupSpeechSystem();
 
-        ASYNC textRemoved(const QCString& appId, uint jobNum);
+        ASYNC textRemoved(const Q3CString& appId, uint jobNum);
 
     private:
      

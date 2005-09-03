@@ -26,12 +26,14 @@
 #define AKREGATOR_TAGNODE_H
 
 #include <treenode.h>
-
+//Added by qt3to4:
+#include <Q3ValueList>
+#include <QStringList>
 class QDomDocument;
 class QDomElement;
 class QString;
 class QStringList;
-template <class T> class QValueList;
+template <class T> class Q3ValueList;
 
 namespace Akregator 
 {
@@ -80,7 +82,7 @@ public:
     If @c tag is not null, only articles tagged with @c tag are returned
     @return sequence of articles */
     
-    virtual QValueList<Article> articles(const QString& tag=QString::null);
+    virtual Q3ValueList<Article> articles(const QString& tag=QString::null);
 
     /** returns a list of all tags occurring in this node (sub tree for folders) */
 
@@ -117,9 +119,9 @@ public slots:
     /** does nothing for TagNode */
     virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly=false);
     
-    virtual void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
-    virtual void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
-    virtual void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
+    virtual void slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list);
+    virtual void slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& list);
+    virtual void slotArticlesRemoved(TreeNode* node, const Q3ValueList<Article>& list);
     virtual void slotObservedDestroyed(TreeNode* node);
 
 protected:

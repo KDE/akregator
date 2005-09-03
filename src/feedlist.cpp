@@ -26,7 +26,7 @@
 #include <qdatetime.h>
 #include <qdom.h>
 #include <qmap.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -43,7 +43,7 @@ class FeedList::FeedListPrivate
 {
     public:
 
-        QMap<QString, QValueList<Feed*> > urlMap;
+        QMap<QString, Q3ValueList<Feed*> > urlMap;
         AddNodeVisitor* addNodeVisitor;
         RemoveNodeVisitor* removeNodeVisitor;
 };
@@ -222,10 +222,10 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
     if ( !flatList()->contains(parent) )
         parent = rootNode();
 
-    QValueList<TreeNode*> children = list->rootNode()->children();
+    Q3ValueList<TreeNode*> children = list->rootNode()->children();
 
-    QValueList<TreeNode*>::ConstIterator end(  children.end() );
-    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
+    Q3ValueList<TreeNode*>::ConstIterator end(  children.end() );
+    for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
     {
         list->rootNode()->removeChild(*it);
         parent->insertChild(*it, after);
@@ -254,11 +254,11 @@ QDomDocument FeedList::toXML() const
     QDomElement body = doc.createElement( "body" );
     root.appendChild( body );
 
-    QValueList<TreeNode*> children = rootNode()->children();
+    Q3ValueList<TreeNode*> children = rootNode()->children();
 
-    QValueList<TreeNode*>::ConstIterator end(  children.end() );
+    Q3ValueList<TreeNode*>::ConstIterator end(  children.end() );
 
-    for (QValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
+    for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
         body.appendChild( (*it)->toOPML(body, doc) );
 
     return doc;

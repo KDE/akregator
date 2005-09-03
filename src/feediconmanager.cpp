@@ -33,17 +33,19 @@
 #include <kstaticdeleter.h>
 #include <kurl.h>
 
-#include <qdict.h>
+#include <q3dict.h>
 #include <qpixmap.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 namespace Akregator {
 
 class FeedIconManager::FeedIconManagerPrivate
 {
     public:
-    QValueList<Feed*> registeredFeeds;
-    QDict<Feed> urlDict;
+    Q3ValueList<Feed*> registeredFeeds;
+    Q3Dict<Feed> urlDict;
 };
 
 FeedIconManager *FeedIconManager::m_instance = 0;
@@ -93,7 +95,8 @@ void FeedIconManager::loadIcon(const QString & url)
     if (iconFile.isNull())
     {
         QByteArray data;
-        QDataStream ds(data, IO_WriteOnly);
+        QDataStream ds( &data,QIODevice::WriteOnly);
+        ds.setVersion(QDataStream::Qt_3_1);
         ds << u;
         kapp->dcopClient()->send("kded", "favicons", "downloadHostIcon(KURL)",
                                  data);
@@ -111,8 +114,9 @@ QString FeedIconManager::getIconURL(const KURL& url)
 QString FeedIconManager::iconLocation(const KURL & url) const
 {
     QByteArray data, reply;
-    QCString replyType;
-    QDataStream ds(data, IO_WriteOnly);
+    DCOPCString replyType;
+    QDataStream ds( &data,QIODevice::WriteOnly);
+    ds.setVersion(QDataStream::Qt_3_1);
 
     ds << url;
 
@@ -120,7 +124,8 @@ QString FeedIconManager::iconLocation(const KURL & url) const
                              replyType, reply);
 
     if (replyType == "QString") {
-        QDataStream replyStream(reply, IO_ReadOnly);
+        QDataStream replyStream( &reply,QIODevice::ReadOnly);
+        replyStream.setVersion(QDataStream::Qt_3_1);
         QString result;
         replyStream >> result;
         return result;

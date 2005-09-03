@@ -33,7 +33,7 @@
 #include <qdom.h>
 #include <qregexp.h>
 #include <qstringlist.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include <krfcdate.h>
 #include <kdebug.h>
@@ -116,10 +116,10 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
             d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
 
-            QValueList<RSS::Category> cats = article.categories();
-            QValueList<RSS::Category>::ConstIterator end = cats.end();
+            Q3ValueList<RSS::Category> cats = article.categories();
+            Q3ValueList<RSS::Category>::ConstIterator end = cats.end();
 
-            for (QValueList<RSS::Category>::ConstIterator it = cats.begin(); it != end; ++it)
+            for (Q3ValueList<RSS::Category>::ConstIterator it = cats.begin(); it != end; ++it)
             {
                 Backend::Category cat;
 

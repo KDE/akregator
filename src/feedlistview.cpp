@@ -48,11 +48,16 @@
 #include <kurldrag.h>
 
 #include <qfont.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <qpainter.h>
-#include <qptrdict.h>
+#include <q3ptrdict.h>
 #include <qtimer.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3ValueList>
+#include <QDragMoveEvent>
+#include <QDropEvent>
 
 namespace Akregator {
 
@@ -60,13 +65,13 @@ class NodeListView::NodeListViewPrivate
 {
     public:
 /** used for finding the item belonging to a node */
-    QPtrDict<TreeNodeItem> itemDict;
+    Q3PtrDict<TreeNodeItem> itemDict;
     NodeList* nodeList;
     bool showTagFolders;
 
     // Drag and Drop variables
-    QListViewItem *parent;
-    QListViewItem *afterme;
+    Q3ListViewItem *parent;
+    Q3ListViewItem *afterme;
     QTimer autoopentimer;
     ConnectNodeVisitor* connectNodeVisitor;
     DisconnectNodeVisitor* disconnectNodeVisitor;
@@ -97,7 +102,7 @@ public:
         return true;
     }
 */
-    void articlesDropped(TreeNode* node, const QValueList<ArticleDragItem>& items)
+    void articlesDropped(TreeNode* node, const Q3ValueList<ArticleDragItem>& items)
     {
         m_items = items;
         m_mode = ArticlesDropped;
@@ -106,7 +111,7 @@ public:
 
 private:
     NodeListView* m_view;
-    QValueList<ArticleDragItem> m_items;
+    Q3ValueList<ArticleDragItem> m_items;
      
     enum Mode { ArticlesDropped };
     Mode m_mode;
@@ -249,10 +254,10 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 
             }
             m_view->d->itemDict.insert(node, item);
-            QValueList<TreeNode*> children = node->children();
+            Q3ValueList<TreeNode*> children = node->children();
 
             // add children recursively
-            for (QValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
+            for (Q3ValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
                 visit(*it);
 
             m_view->connectToNode(node);
@@ -283,10 +288,10 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
                     item = new FolderItem(m_view, node);
             }
             m_view->d->itemDict.insert(node, item);
-            QValueList<TreeNode*> children = node->children();
+            Q3ValueList<TreeNode*> children = node->children();
 
             // add children recursively
-            for (QValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
+            for (Q3ValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
                 visit(*it);
 
             m_view->connectToNode(node);
@@ -353,15 +358,15 @@ NodeListView::NodeListView( QWidget *parent, const char *name)
     setAcceptDrops(true);
     setItemsMovable(true);
     
-    connect( this, SIGNAL(dropped(QDropEvent*, QListViewItem*)), this, SLOT(slotDropped(QDropEvent*, QListViewItem*)) );
-    connect( this, SIGNAL(selectionChanged(QListViewItem*)), this, SLOT(slotSelectionChanged(QListViewItem*)) );
-    connect( this, SIGNAL(itemRenamed(QListViewItem*, int, const QString&)), this, SLOT(slotItemRenamed(QListViewItem*, int, const QString&)) );
-    connect( this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)) );
+    connect( this, SIGNAL(dropped(QDropEvent*, Q3ListViewItem*)), this, SLOT(slotDropped(QDropEvent*, Q3ListViewItem*)) );
+    connect( this, SIGNAL(selectionChanged(Q3ListViewItem*)), this, SLOT(slotSelectionChanged(Q3ListViewItem*)) );
+    connect( this, SIGNAL(itemRenamed(Q3ListViewItem*, int, const QString&)), this, SLOT(slotItemRenamed(Q3ListViewItem*, int, const QString&)) );
+    connect( this, SIGNAL(contextMenu(KListView*, Q3ListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, Q3ListViewItem*, const QPoint&)) );
     connect( &(d->autoopentimer), SIGNAL( timeout() ), this, SLOT( openFolder() ) );
 
     clear();
     
-    QWhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
+    Q3WhatsThis::add(this, i18n("<h2>Feeds tree</h2>"
         "Here you can browse tree of feeds. "
         "You can also add feeds or feed groups (folders) "
         "using right-click menu, or reorganize them using "
@@ -403,7 +408,7 @@ void NodeListView::setNodeList(NodeList* nodeList)
     slotRootNodeChanged(rootNode);
 }
 
-void NodeListView::takeNode(QListViewItem* item)
+void NodeListView::takeNode(Q3ListViewItem* item)
 {
     if (item->parent())
         item->parent()->takeItem(item);
@@ -411,7 +416,7 @@ void NodeListView::takeNode(QListViewItem* item)
         takeItem(item);
 }
 
-void NodeListView::insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after)
+void NodeListView::insertNode(Q3ListViewItem* parent, Q3ListViewItem* item, Q3ListViewItem* after)
 {
     if (parent)
         parent->insertItem(item);
@@ -475,7 +480,7 @@ void NodeListView::startNodeRenaming(TreeNode* node)
 
 void NodeListView::clear()
 {
-    QPtrDictIterator<TreeNodeItem> it(d->itemDict);
+    Q3PtrDictIterator<TreeNodeItem> it(d->itemDict);
     for( ; it.current(); ++it )
         disconnectFromNode( it.current()->node() );
     d->itemDict.clear();
@@ -493,7 +498,7 @@ void NodeListView::drawContentsOffset( QPainter * p, int ox, int oy,
     setUpdatesEnabled(oldUpdatesEnabled);
 }
 
-void NodeListView::slotDropped( QDropEvent *e, QListViewItem*
+void NodeListView::slotDropped( QDropEvent *e, Q3ListViewItem*
 /*after*/)
 {
 	d->autoopentimer.stop();
@@ -514,7 +519,7 @@ void NodeListView::slotDropped( QDropEvent *e, QListViewItem*
             TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(itemAt(vp));
             if (tni != 0 && tni->node() != 0)
             {
-                QValueList<ArticleDragItem> items;
+                Q3ValueList<ArticleDragItem> items;
                 ArticleDrag::decode(e, items);
                 d->dragAndDropVisitor->articlesDropped(tni->node(), items);
 
@@ -533,7 +538,7 @@ void NodeListView::slotDropped( QDropEvent *e, QListViewItem*
     }
 }
 
-void NodeListView::movableDropEvent(QListViewItem* /*parent*/, QListViewItem* /*afterme*/)
+void NodeListView::movableDropEvent(Q3ListViewItem* /*parent*/, Q3ListViewItem* /*afterme*/)
 {
 	d->autoopentimer.stop();
     if (d->parent)
@@ -561,10 +566,10 @@ void NodeListView::setShowTagFolders(bool enabled)
 void NodeListView::contentsDragMoveEvent(QDragMoveEvent* event)
 {
     QPoint vp = contentsToViewport(event->pos());
-    QListViewItem *i = itemAt(vp);
+    Q3ListViewItem *i = itemAt(vp);
 
-    QListViewItem *qiparent;
-    QListViewItem *qiafterme;
+    Q3ListViewItem *qiparent;
+    Q3ListViewItem *qiafterme;
     findDrop( event->pos(), qiparent, qiafterme );
 
     if (event->source() == viewport()) {
@@ -577,11 +582,11 @@ void NodeListView::contentsDragMoveEvent(QDragMoveEvent* event)
         }
 
         // prevent dragging nodes from All Feeds to My Tags or vice versa
-        QListViewItem* root1 = i;
+        Q3ListViewItem* root1 = i;
         while (root1 && root1->parent())
             root1 = root1->parent();
 
-        QListViewItem* root2 = selectedItem();
+        Q3ListViewItem* root2 = selectedItem();
         while (root2 && root2->parent())
             root2 = root2->parent();
 
@@ -593,7 +598,7 @@ void NodeListView::contentsDragMoveEvent(QDragMoveEvent* event)
         }
 
         // don't drop node into own subtree
-        QListViewItem* p = qiparent;
+        Q3ListViewItem* p = qiparent;
         while (p)
             if (p == selectedItem())
             {
@@ -706,7 +711,7 @@ void NodeListView::slotItemBegin()
 
 void NodeListView::slotItemEnd()
 {
-    QListViewItem* elt = firstChild();
+    Q3ListViewItem* elt = firstChild();
     if (elt)
         while (elt->itemBelow())
             elt = elt->itemBelow();
@@ -716,7 +721,7 @@ void NodeListView::slotItemEnd()
 
 void NodeListView::slotItemLeft()
 {
-    QListViewItem* sel = selectedItem();
+    Q3ListViewItem* sel = selectedItem();
     
     if (!sel || sel == findNodeItem(rootNode()))
         return;
@@ -734,7 +739,7 @@ void NodeListView::slotItemLeft()
 
 void NodeListView::slotItemRight()
 {
-    QListViewItem* sel = selectedItem();
+    Q3ListViewItem* sel = selectedItem();
     if (!sel)
     {
         setSelected( firstChild(), true );
@@ -752,7 +757,7 @@ void NodeListView::slotItemRight()
 
 void NodeListView::slotPrevFeed()
 {
-    for (QListViewItemIterator it( selectedItem()); it.current(); --it )
+    for (Q3ListViewItemIterator it( selectedItem()); it.current(); --it )
     {
         TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(*it);
         if (tni && !tni->isSelected() && !tni->node()->isGroup() )
@@ -766,7 +771,7 @@ void NodeListView::slotPrevFeed()
     
 void NodeListView::slotNextFeed()
 {
-    for (QListViewItemIterator it( selectedItem()); it.current(); ++it )
+    for (Q3ListViewItemIterator it( selectedItem()); it.current(); ++it )
     {
         TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(*it);
         if ( tni && !tni->isSelected() && !tni->node()->isGroup() )
@@ -785,7 +790,7 @@ void NodeListView::slotPrevUnreadFeed()
     if ( !selectedItem() )
         slotNextUnreadFeed(); 
 
-    QListViewItemIterator it( selectedItem() );
+    Q3ListViewItemIterator it( selectedItem() );
     
     for ( ; it.current(); --it )
     {
@@ -804,7 +809,7 @@ void NodeListView::slotPrevUnreadFeed()
     if (rootNode()->unread() > 0)
     {
 
-        it = QListViewItemIterator(lastItem());
+        it = Q3ListViewItemIterator(lastItem());
     
         for ( ; it.current(); --it)
         {
@@ -826,7 +831,7 @@ void NodeListView::slotPrevUnreadFeed()
 
 void NodeListView::slotNextUnreadFeed()
 {
-    QListViewItemIterator it;
+    Q3ListViewItemIterator it;
     
     if ( !selectedItem() )
     {
@@ -834,10 +839,10 @@ void NodeListView::slotNextUnreadFeed()
         if (!firstChild() || !firstChild()->firstChild())
             return;    
         else 
-            it = QListViewItemIterator( firstChild()->firstChild());
+            it = Q3ListViewItemIterator( firstChild()->firstChild());
     }
     else
-        it = QListViewItemIterator( selectedItem() );
+        it = Q3ListViewItemIterator( selectedItem() );
     
     for ( ; it.current(); ++it )
     {
@@ -859,14 +864,14 @@ void NodeListView::slotNextUnreadFeed()
     }
 }
 
-void NodeListView::slotSelectionChanged(QListViewItem* item)
+void NodeListView::slotSelectionChanged(Q3ListViewItem* item)
 {
  TreeNodeItem* ni = dynamic_cast<TreeNodeItem*> (item);
     if (ni)
         emit signalNodeSelected(ni->node());
 }
 
-void NodeListView::slotItemRenamed(QListViewItem* item, int col, const QString& text)
+void NodeListView::slotItemRenamed(Q3ListViewItem* item, int col, const QString& text)
 {
     TreeNodeItem* ni = dynamic_cast<TreeNodeItem*> (item);
     if ( !ni || !ni->node() )
@@ -880,7 +885,7 @@ void NodeListView::slotItemRenamed(QListViewItem* item, int col, const QString& 
         }
     }
 }
-void NodeListView::slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p)
+void NodeListView::slotContextMenu(KListView* list, Q3ListViewItem* item, const QPoint& p)
 {    
     TreeNodeItem* ti = dynamic_cast<TreeNodeItem*>(item);
     emit signalContextMenu(list, ti ? ti->node() : 0, p);
@@ -1010,10 +1015,10 @@ void NodeListView::slotNodeChanged(TreeNode* node)
     }    
 }
 
-QDragObject *NodeListView::dragObject()
+Q3DragObject *NodeListView::dragObject()
 {
     KMultipleDrag *md = new KMultipleDrag(viewport());
-    QDragObject *obj = KListView::dragObject();
+    Q3DragObject *obj = KListView::dragObject();
     if (obj) {
         md->addDragObject(obj);
     }

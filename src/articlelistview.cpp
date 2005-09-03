@@ -42,15 +42,18 @@
 
 #include <qdatetime.h>
 #include <qpixmap.h>
-#include <qpopupmenu.h>
-#include <qptrlist.h>
-#include <qvaluelist.h>
-#include <qwhatsthis.h>
-#include <qheader.h>
-#include <qdragobject.h>
-#include <qsimplerichtext.h>
+#include <q3popupmenu.h>
+#include <q3ptrlist.h>
+#include <q3valuelist.h>
+#include <q3whatsthis.h>
+#include <q3header.h>
+#include <q3dragobject.h>
+#include <q3simplerichtext.h>
 #include <qpainter.h>
 #include <qapplication.h>
+//Added by qt3to4:
+#include <QPaintEvent>
+#include <QKeyEvent>
 
 #include <ctime>
 
@@ -119,13 +122,13 @@ class ArticleListView::ArticleItem : public KListViewItem
         friend class ArticleListView;
 
         public:
-            ArticleItem( QListView *parent, const Article& a);
+            ArticleItem( Q3ListView *parent, const Article& a);
             ~ArticleItem();
 
             Article& article();
 
             void paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align );
-            virtual int compare(QListViewItem *i, int col, bool ascending) const;
+            virtual int compare(Q3ListViewItem *i, int col, bool ascending) const;
 
             void updateItem(const Article& article);
 
@@ -140,7 +143,7 @@ class ArticleListView::ArticleItem : public KListViewItem
 };
 
 // FIXME: Remove resolveEntities for KDE 4.0, it's now done in the parser
-ArticleListView::ArticleItem::ArticleItem( QListView *parent, const Article& a)
+ArticleListView::ArticleItem::ArticleItem( Q3ListView *parent, const Article& a)
     : KListViewItem( parent, KCharsets::resolveEntities(a.title()), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
@@ -187,7 +190,7 @@ void ArticleListView::ArticleItem::updateItem(const Article& article)
     setText(2, KGlobal::locale()->formatDateTime(m_article.pubDate(), true, false));
 }
 
-int ArticleListView::ArticleItem::compare(QListViewItem *i, int col, bool ascending) const {
+int ArticleListView::ArticleItem::compare(Q3ListViewItem *i, int col, bool ascending) const {
     if (col == 2)
     {
         ArticleItem* item = static_cast<ArticleItem*>(i);
@@ -212,10 +215,10 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
     addColumn(i18n("Article"));
     addColumn(i18n("Feed"));
     addColumn(i18n("Date"));
-    setSelectionMode(QListView::Extended);
-    setColumnWidthMode(2, QListView::Maximum);
-    setColumnWidthMode(1, QListView::Manual);
-    setColumnWidthMode(0, QListView::Manual);
+    setSelectionMode(Q3ListView::Extended);
+    setColumnWidthMode(2, Q3ListView::Maximum);
+    setColumnWidthMode(1, Q3ListView::Manual);
+    setColumnWidthMode(0, Q3ListView::Manual);
     setRootIsDecorated(false);
     setItemsRenameable(false);
     setItemsMovable(false);
@@ -252,18 +255,18 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
 
     header()->setStretchEnabled(true, 0);
 
-    QWhatsThis::add(this, i18n("<h2>Article list</h2>"
+    Q3WhatsThis::add(this, i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
-    connect(this, SIGNAL(currentChanged(QListViewItem*)), this, SLOT(slotCurrentChanged(QListViewItem* )));
+    connect(this, SIGNAL(currentChanged(Q3ListViewItem*)), this, SLOT(slotCurrentChanged(Q3ListViewItem* )));
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
-    connect(this, SIGNAL(doubleClicked(QListViewItem*, const QPoint&, int)),  this, SLOT(slotDoubleClicked(QListViewItem*, const QPoint&, int)) );
-    connect(this, SIGNAL(contextMenu(KListView*, QListViewItem*, const QPoint&)),
-            this, SLOT(slotContextMenu(KListView*, QListViewItem*, const QPoint&)));
+    connect(this, SIGNAL(doubleClicked(Q3ListViewItem*, const QPoint&, int)),  this, SLOT(slotDoubleClicked(Q3ListViewItem*, const QPoint&, int)) );
+    connect(this, SIGNAL(contextMenu(KListView*, Q3ListViewItem*, const QPoint&)),
+            this, SLOT(slotContextMenu(KListView*, Q3ListViewItem*, const QPoint&)));
 
-    connect(this, SIGNAL(mouseButtonPressed(int, QListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int)));
+    connect(this, SIGNAL(mouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)));
 }
 
 Article ArticleListView::currentArticle() const
@@ -300,10 +303,10 @@ void ArticleListView::slotShowNode(TreeNode* node)
 
     setUpdatesEnabled(false);
 
-    QValueList<Article> articles = d->node->articles();
+    Q3ValueList<Article> articles = d->node->articles();
 
-    QValueList<Article>::ConstIterator end = articles.end();
-    QValueList<Article>::ConstIterator it = articles.begin();
+    Q3ValueList<Article>::ConstIterator end = articles.end();
+    Q3ValueList<Article>::ConstIterator it = articles.begin();
     
     for (; it != end; ++it)
     {
@@ -331,11 +334,11 @@ void ArticleListView::slotClear()
     clear();
 }
 
-void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Article>& list)
+void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const Q3ValueList<Article>& list)
 {
     setUpdatesEnabled(false);
     
-    for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (!d->articleMap.contains(*it))
         {
@@ -351,11 +354,11 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
     triggerUpdate();
 }
 
-void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<Article>& list)
+void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const Q3ValueList<Article>& list)
 {
     setUpdatesEnabled(false);
 
-    for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         
         if (!(*it).isNull() && d->articleMap.contains(*it))
@@ -381,10 +384,10 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
     triggerUpdate();
 }
 
-void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& list)
+void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const Q3ValueList<Article>& list)
 {
     setUpdatesEnabled(false);
-    for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (d->articleMap.contains(*it))
         {
@@ -400,23 +403,23 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<A
 void ArticleListView::connectToNode(TreeNode* node)
 {
     connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    connect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>&)) );
-    connect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>&)) );
-    connect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QValueList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const Q3ValueList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)) );
 }
 
 void ArticleListView::disconnectFromNode(TreeNode* node)
 {
     disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    disconnect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QValueList<Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QValueList<Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const QValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QValueList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const Q3ValueList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)) );
 }
 
 void ArticleListView::applyFilters()
 {
     ArticleItem* ali = 0;
-    for (QListViewItemIterator it(this); it.current(); ++it)
+    for (Q3ListViewItemIterator it(this); it.current(); ++it)
     {
         ali = static_cast<ArticleItem*> (it.current());
         ali->setVisible( d->statusFilter.matches( ali->article() ) && d->textFilter.matches( ali->article() ) );
@@ -427,7 +430,7 @@ int ArticleListView::visibleArticles()
 {
     int visible = 0;
     ArticleItem* ali = 0;
-    for (QListViewItemIterator it(this); it.current(); ++it) {
+    for (Q3ListViewItemIterator it(this); it.current(); ++it) {
         ali = static_cast<ArticleItem*> (it.current());
         visible += ali->isVisible() ? 1 : 0;
     }
@@ -438,7 +441,7 @@ int ArticleListView::visibleArticles()
 void ArticleListView::paintInfoBox(const QString &message)
 {
     QPainter p( viewport() );
-    QSimpleRichText t( message, QApplication::font() );
+    Q3SimpleRichText t( message, QApplication::font() );
 
     if ( t.width()+30 >= viewport()->width() || t.height()+30 >= viewport()->height() )
             //too big, giving up
@@ -499,10 +502,10 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
         paintInfoBox(message);
 }
 
-QDragObject *ArticleListView::dragObject()
+Q3DragObject *ArticleListView::dragObject()
 {
-    QDragObject* d = 0;
-    QValueList<Article> articles = selectedArticles();
+    Q3DragObject* d = 0;
+    Q3ValueList<Article> articles = selectedArticles();
     if (!articles.isEmpty())
     {
         d = new ArticleDrag(articles, this);
@@ -625,7 +628,7 @@ void ArticleListView::slotSelectionChanged()
     }
 }
 
-void ArticleListView::slotCurrentChanged(QListViewItem* item)
+void ArticleListView::slotCurrentChanged(Q3ListViewItem* item)
 {
     ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
     if (ai)
@@ -635,22 +638,22 @@ void ArticleListView::slotCurrentChanged(QListViewItem* item)
 } 
 
 
-void ArticleListView::slotDoubleClicked(QListViewItem* item, const QPoint& p, int i)
+void ArticleListView::slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, int i)
 {
     ArticleItem* ali = dynamic_cast<ArticleItem*>(item);
     if (ali)
         emit signalDoubleClicked(ali->article(), p, i);
 }
 
-void ArticleListView::slotContextMenu(KListView* /*list*/, QListViewItem* /*item*/, const QPoint& p)
+void ArticleListView::slotContextMenu(KListView* /*list*/, Q3ListViewItem* /*item*/, const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("article_popup");
-    QPopupMenu* popup = static_cast<QPopupMenu *>(w);
+    Q3PopupMenu* popup = static_cast<Q3PopupMenu *>(w);
     if (popup)
         popup->exec(p);
 }
 
-void ArticleListView::slotMouseButtonPressed(int button, QListViewItem* item, const QPoint& p, int column)
+void ArticleListView::slotMouseButtonPressed(int button, Q3ListViewItem* item, const QPoint& p, int column)
 {
     ArticleItem* ali = dynamic_cast<ArticleItem*>(item);
     if (ali)
@@ -669,11 +672,11 @@ ArticleListView::~ArticleListView()
     d = 0;
 }
 
-QValueList<Article> ArticleListView::selectedArticles() const
+Q3ValueList<Article> ArticleListView::selectedArticles() const
 {
-    QValueList<Article> ret;
-    QPtrList<QListViewItem> items = selectedItems(false);
-    for (QListViewItem* i = items.first(); i; i = items.next() )
+    Q3ValueList<Article> ret;
+    Q3PtrList<Q3ListViewItem> items = selectedItems(false);
+    for (Q3ListViewItem* i = items.first(); i; i = items.next() )
         ret.append((static_cast<ArticleItem*>(i))->article());
     return ret;
 }

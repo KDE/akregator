@@ -26,9 +26,11 @@
 #define AKREGATOR_TAGNODELIST_H
 
 #include "tagfolder.h"
+//Added by qt3to4:
+#include <Q3ValueList>
 
 class QDomDocument;
-template <class T> class QValueList;
+template <class T> class Q3ValueList;
 
 namespace Akregator {
 
@@ -54,7 +56,7 @@ namespace Akregator {
        bool insert(TagNode* tagNode);
        bool remove(TagNode* tagNode);
        bool containsTagId(const QString& tagId);
-       QValueList<TagNode*> toList() const;
+       Q3ValueList<TagNode*> toList() const;
        
        TagNode* findByTagID(const QString& tagID);
 

@@ -26,7 +26,7 @@
 #include "treenode.h"
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include <kdebug.h>
 
@@ -93,7 +93,7 @@ TreeNode* TreeNode::nextSibling() const
 {
     if (!d->parent)
         return 0;
-    QValueList<TreeNode*> children = d->parent->children();
+    Q3ValueList<TreeNode*> children = d->parent->children();
     TreeNode* me = (TreeNode*)this;
         
     int idx = children.findIndex(me);
@@ -105,7 +105,7 @@ TreeNode* TreeNode::prevSibling() const
 {
     if (!d->parent)
         return 0;
-    QValueList<TreeNode*> children = d->parent->children();
+    Q3ValueList<TreeNode*> children = d->parent->children();
     TreeNode* me = (TreeNode*)this;
     
     int idx = children.findIndex(me);

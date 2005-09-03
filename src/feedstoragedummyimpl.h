@@ -25,6 +25,8 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGEDUMMYIMPL_H
 
 #include "feedstorage.h"
+//Added by qt3to4:
+#include <Q3ValueList>
 namespace Akregator {
 namespace Backend {
 
@@ -83,7 +85,7 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length);
 
         virtual void addCategory(const QString& guid, const Category& category);
-        virtual QValueList<Category> categories(const QString& guid=QString::null);
+        virtual Q3ValueList<Category> categories(const QString& guid=QString::null);
 
         virtual void close();
         virtual void commit();

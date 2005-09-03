@@ -1,7 +1,7 @@
 #include "article.h"
 #include "articleinterceptor.h"
 
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <kstaticdeleter.h>
 
 namespace Akregator
@@ -10,7 +10,7 @@ namespace Akregator
 class ArticleInterceptorManager::ArticleInterceptorManagerPrivate 
 {
     public:
-        QValueList<ArticleInterceptor*> interceptors;
+        Q3ValueList<ArticleInterceptor*> interceptors;
 };
 
 
@@ -43,7 +43,7 @@ void ArticleInterceptorManager::removeInterceptor(ArticleInterceptor* intercepto
     d->interceptors.remove(interceptor);
 }
 
-QValueList<ArticleInterceptor*> ArticleInterceptorManager::interceptors() const
+Q3ValueList<ArticleInterceptor*> ArticleInterceptorManager::interceptors() const
 {
     return d->interceptors;
 }

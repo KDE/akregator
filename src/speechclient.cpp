@@ -35,7 +35,9 @@
 #include <ktrader.h>
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <Q3CString>
 
 namespace Akregator 
 {
@@ -45,7 +47,7 @@ class SpeechClient::SpeechClientPrivate
     public:
 
     bool isTextSpeechInstalled;
-    QValueList<uint> pendingJobs;
+    Q3ValueList<uint> pendingJobs;
 };
 
 SpeechClient* SpeechClient::m_self = 0;
@@ -98,14 +100,14 @@ void SpeechClient::slotSpeak(const Article& article)
     slotSpeak(speakMe, "en");
 }
 
-void SpeechClient::slotSpeak(const QValueList<Article>& articles)
+void SpeechClient::slotSpeak(const Q3ValueList<Article>& articles)
 {
     if (!isTextToSpeechInstalled() || articles.isEmpty())
         return;
 
     QString speakMe;
 
-    for (QValueList<Article>::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+    for (Q3ValueList<Article>::ConstIterator it = articles.begin(); it != articles.end(); ++it)
     {
         if (!speakMe.isEmpty())
             speakMe += ". . . . . . " + i18n("Next Article: ");
@@ -121,7 +123,7 @@ void SpeechClient::slotAbortJobs()
 {
     if (!d->pendingJobs.isEmpty())
     {
-        for (QValueList<uint>::ConstIterator it = d->pendingJobs.begin(); it != d->pendingJobs.end(); ++it)
+        for (Q3ValueList<uint>::ConstIterator it = d->pendingJobs.begin(); it != d->pendingJobs.end(); ++it)
         {
             removeText(*it);
         }
@@ -132,7 +134,7 @@ void SpeechClient::slotAbortJobs()
     }
 }
 
-ASYNC SpeechClient::textRemoved(const QCString& /*appId*/, uint jobNum)
+ASYNC SpeechClient::textRemoved(const Q3CString& /*appId*/, uint jobNum)
 {
     kdDebug() << "SpeechClient::textRemoved() called" << endl;
     if (d->pendingJobs.contains(jobNum))

@@ -32,7 +32,7 @@
 
 #include <qmap.h>
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include "actionmanagerimpl.h"
 #include "akregatorconfig.h"
@@ -142,9 +142,9 @@ public:
 void ActionManagerImpl::slotUpdateTagActions(bool enabled, const QStringList& tagIds)
 {
     d->tagMenu->setEnabled(enabled);
-    QValueList<TagAction*> actions = d->tagActions.values();
+    Q3ValueList<TagAction*> actions = d->tagActions.values();
 
-    for (QValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+    for (Q3ValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
     {
         (*it)->setChecked(tagIds.contains((*it)->tag().id()));
     }
@@ -169,8 +169,8 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
         connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
     }
 
-    QValueList<TagAction*> actions = d->tagActions.values();
-    for (QValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+    Q3ValueList<TagAction*> actions = d->tagActions.values();
+    for (Q3ValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
     {
         d->tagMenu->remove(*it);
         delete *it;
@@ -181,8 +181,8 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
 
     //TODO: remove actions from menus, delete actions, clear maps
 
-    QValueList<Tag> list = tagSet->toMap().values();
-    for (QValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    Q3ValueList<Tag> list = tagSet->toMap().values();
+    for (Q3ValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
         slotTagAdded(*it);
 }
 

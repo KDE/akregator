@@ -26,7 +26,9 @@
 #include "feed.h"
 #include "feeditem.h"
 
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
+//Added by qt3to4:
+#include <QPixmap>
 #include <kaction.h>
 #include <kdebug.h>
 #include <kiconloader.h>
@@ -112,6 +114,6 @@ void FeedItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("feeds_popup");
     if (w)
-        static_cast<QPopupMenu *>(w)->exec(p);
+        static_cast<Q3PopupMenu *>(w)->exec(p);
 }
 

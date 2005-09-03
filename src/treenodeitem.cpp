@@ -26,9 +26,11 @@
 #include "treenodeitem.h"
 #include "folderitem.h"
 #include <qfont.h>
-#include <qheader.h>
+#include <q3header.h>
 #include <qpainter.h>
 #include <qstring.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 #include <kstringhandler.h>
 
@@ -133,7 +135,7 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
     p->setFont(f);
 
     QFontMetrics fm( p->fontMetrics() );
-    QListView *lv = listView();
+    Q3ListView *lv = listView();
     int x = lv ? lv->itemMargin() : 1;
     int m=x;
     const QPixmap *icon = pixmap( column );
@@ -148,13 +150,13 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
     if (fm.width( oldText ) + txtW + x > width)
         oldText=KStringHandler::rPixelSqueeze(oldText,fm, width - txtW - x);
 
-    p->drawText( x, 0, width-m-x, height(), align | AlignVCenter, oldText, -1, &br );
+    p->drawText( x, 0, width-m-x, height(), align | Qt::AlignVCenter, oldText, -1, &br );
 
     if ( !isSelected() )
         p->setPen( Qt::blue ); // TODO: configurable
 
     p->drawText( br.right(), 0, width-m-br.right(), height(),
-                 align | AlignVCenter, txt );
+                 align | Qt::AlignVCenter, txt );
 
     /*if ( isSelected() )
     p->setPen( cg.highlightedText() );

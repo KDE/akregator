@@ -30,7 +30,7 @@
 #include <qmap.h>
 #include <qstring.h>
 #include <qstringlist.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 //typedef unsigned int uint;
 namespace Akregator {
@@ -44,7 +44,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             public:
             Entry() : guidIsHash(false), guidIsPermaLink(false), status(0), pubDate(0), hash(0) {}
             StorageDummyImpl* mainStorage;
-            QValueList<Category> categories;
+            Q3ValueList<Category> categories;
             QString title;
             QString description;
             QString link;
@@ -69,7 +69,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
     // tag -> articles index
     QMap<QString, QStringList > taggedArticles;
 
-    QValueList<Category> categories;
+    Q3ValueList<Category> categories;
     QMap<Category, QStringList> categorizedArticles;
 
     Storage* mainStorage;
@@ -214,8 +214,8 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     }
 
     // remove article from tag->category index
-    QValueList<Category>::ConstIterator it2 = entry.categories.begin();
-    QValueList<Category>::ConstIterator end2 = entry.categories.end();
+    Q3ValueList<Category>::ConstIterator it2 = entry.categories.begin();
+    Q3ValueList<Category>::ConstIterator end2 = entry.categories.end();
 
     for ( ; it2 != end2; ++it2)
     {
@@ -342,10 +342,10 @@ void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
     d->categorizedArticles[cat].append(guid);
 }
 
-QValueList<Category> FeedStorageDummyImpl::categories(const QString& guid)
+Q3ValueList<Category> FeedStorageDummyImpl::categories(const QString& guid)
 {
   if (!guid.isNull())
-        return contains(guid) ? d->entries[guid].categories : QValueList<Category>();
+        return contains(guid) ? d->entries[guid].categories : Q3ValueList<Category>();
     else
         return d->categories;
 }

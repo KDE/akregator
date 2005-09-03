@@ -29,13 +29,16 @@
 
 #include <kmultitabbar.h>
 
-#include <qiconset.h>
+#include <qicon.h>
 #include <qlayout.h>
 #include <qmap.h>
-#include <qptrlist.h>
+#include <q3ptrlist.h>
 #include <qstring.h>
-#include <qvaluelist.h>
-#include <qwidgetstack.h>
+#include <q3valuelist.h>
+#include <q3widgetstack.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QGridLayout>
 
 #include <kdebug.h>
 
@@ -47,10 +50,10 @@ class ListTabWidget::ListTabWidgetPrivate
 public:
     int idCounter;
     KMultiTabBar* tabBar;
-    QWidgetStack* stack;
+    Q3WidgetStack* stack;
     NodeListView* current;
     int currentID;
-    QValueList<NodeListView*> views;
+    Q3ValueList<NodeListView*> views;
     QMap<int, NodeListView*> idToView;
     QGridLayout* layout;
     ViewMode viewMode;
@@ -166,7 +169,7 @@ ListTabWidget::ListTabWidget(QWidget* parent, const char* name) : QWidget(parent
     d->tabBar->setPosition(KMultiTabBar::Left);
     d->layout->addWidget(d->tabBar, 0, 0);
 
-    d->stack = new QWidgetStack(this);
+    d->stack = new Q3WidgetStack(this);
     d->layout->addWidget(d->stack, 0, 1);
     
 //    connect(d->tabBar, SIGNAL(currentChanged(QWidget*)), this, SLOT(slotCurrentChanged(QWidget*)));

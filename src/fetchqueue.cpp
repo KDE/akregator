@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include "akregatorconfig.h"
 #include "fetchqueue.h"
@@ -36,8 +36,8 @@ class FetchQueue::FetchQueuePrivate
 {
     public:
     
-        QValueList<Feed*> queuedFeeds;
-        QValueList<Feed*> fetchingFeeds;
+        Q3ValueList<Feed*> queuedFeeds;
+        Q3ValueList<Feed*> fetchingFeeds;
 };
 
 
@@ -53,14 +53,14 @@ FetchQueue::~FetchQueue()
 
 void FetchQueue::slotAbort()
 {
-    for (QValueList<Feed*>::Iterator it = d->fetchingFeeds.begin(); it != d->fetchingFeeds.end(); ++it)
+    for (Q3ValueList<Feed*>::Iterator it = d->fetchingFeeds.begin(); it != d->fetchingFeeds.end(); ++it)
     {
         disconnectFromFeed(*it);
         (*it)->slotAbortFetch();
     }
     d->fetchingFeeds.clear();
 
-    for (QValueList<Feed*>::Iterator it = d->queuedFeeds.begin(); it != d->queuedFeeds.end(); ++it)
+    for (Q3ValueList<Feed*>::Iterator it = d->queuedFeeds.begin(); it != d->queuedFeeds.end(); ++it)
     {
         disconnectFromFeed(*it);
     }

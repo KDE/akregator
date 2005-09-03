@@ -25,10 +25,14 @@
 #define AKREGATORARTICLELISTVIEW_H
 
 #include <klistview.h>
+//Added by qt3to4:
+#include <Q3ValueList>
+#include <QKeyEvent>
+#include <QPaintEvent>
 
 class QKeyEvent;
-class QDragObject;
-template <class T> class QValueList;
+class Q3DragObject;
+template <class T> class Q3ValueList;
 
 namespace Akregator
 {
@@ -51,7 +55,7 @@ namespace Akregator
             Article currentArticle() const;
             
             /** returns a list of currently selected articles */
-            QValueList<Article> selectedArticles() const;
+            Q3ValueList<Article> selectedArticles() const;
             
             enum Columns { itemTitle, feedTitle, pubDate };
 
@@ -108,19 +112,19 @@ namespace Akregator
             void connectToNode(TreeNode* node);
             void disconnectFromNode(TreeNode* node);
             
-            virtual QDragObject *dragObject();
+            virtual Q3DragObject *dragObject();
 
         protected slots:
 
-            void slotArticlesAdded(TreeNode* node, const QValueList<Article>& list);
-            void slotArticlesUpdated(TreeNode* node, const QValueList<Article>& list);
-            void slotArticlesRemoved(TreeNode* node, const QValueList<Article>& list);
+            void slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list);
+            void slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& list);
+            void slotArticlesRemoved(TreeNode* node, const Q3ValueList<Article>& list);
 
-            virtual void slotCurrentChanged(QListViewItem* item);
+            virtual void slotCurrentChanged(Q3ListViewItem* item);
             virtual void slotSelectionChanged();
-            virtual void slotDoubleClicked(QListViewItem* item, const QPoint& p, int i);
-            virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
-            virtual void slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int);
+            virtual void slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, int i);
+            virtual void slotContextMenu(KListView* list, Q3ListViewItem* item, const QPoint& p);
+            virtual void slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int);
             
         private:
             class ArticleListViewPrivate;

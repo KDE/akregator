@@ -31,7 +31,7 @@
 #include <kpopupmenu.h>
 
 #include <qmap.h>
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
 
 
 namespace Akregator {

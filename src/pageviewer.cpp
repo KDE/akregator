@@ -43,14 +43,16 @@
 #include <kparts/browserinterface.h>
 
 #include <qclipboard.h>
-#include <qcstring.h>
+#include <q3cstring.h>
 #include <qdatastream.h>
 #include <qdatetime.h>
 #include <qfile.h>
 #include <qmetaobject.h>
-#include <qscrollview.h>
+#include <q3scrollview.h>
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <QPixmap>
 #include <private/qucomextra_p.h>
 
 #include <cstdlib>
@@ -81,8 +83,8 @@ class PageViewer::PageViewerPrivate
 {
     public:
 
-    QValueList<HistoryEntry> history;
-    QValueList<HistoryEntry>::Iterator current;
+    Q3ValueList<HistoryEntry> history;
+    Q3ValueList<HistoryEntry>::Iterator current;
     
     KToolBarPopupAction* backAction;
     KToolBarPopupAction* forwardAction;
@@ -156,7 +158,7 @@ void PageViewer::slotBack()
 {
     if ( d->current != d->history.begin() )
     {
-        QValueList<HistoryEntry>::Iterator tmp = d->current;
+        Q3ValueList<HistoryEntry>::Iterator tmp = d->current;
         --tmp;
         restoreHistoryEntry(tmp);
     }
@@ -167,7 +169,7 @@ void PageViewer::slotForward()
 {
     if (  d->current != d->history.fromLast() )
     {
-        QValueList<HistoryEntry>::Iterator tmp = d->current;
+        Q3ValueList<HistoryEntry>::Iterator tmp = d->current;
         ++tmp;
         restoreHistoryEntry(tmp);
     }
@@ -181,7 +183,7 @@ void PageViewer::slotBackAboutToShow()
     if ( d->current == d->history.begin() )
         return;
 
-    QValueList<HistoryEntry>::Iterator it = d->current;
+    Q3ValueList<HistoryEntry>::Iterator it = d->current;
     --it;
     
     int i = 0;
@@ -207,7 +209,7 @@ void PageViewer::slotForwardAboutToShow()
     if ( d->current == d->history.fromLast() )
         return;
 
-    QValueList<HistoryEntry>::Iterator it = d->current;
+    Q3ValueList<HistoryEntry>::Iterator it = d->current;
     ++it;
     
     int i = 0;
@@ -302,7 +304,7 @@ void PageViewer::urlSelected(const QString &url, int button, int state, const QS
 
 void PageViewer::slotPopupActivated( int id )
 {
-    QValueList<HistoryEntry>::Iterator it = d->history.begin();
+    Q3ValueList<HistoryEntry>::Iterator it = d->history.begin();
     while( it != d->history.end() )
     {
         if ( (*it).id == id )
@@ -318,15 +320,17 @@ void PageViewer::updateHistoryEntry()
 {
     (*d->current).title = d->caption;
     (*d->current).state = QByteArray(); // Start with empty buffer.
-    QDataStream stream( (*d->current).state, IO_WriteOnly);
+    QDataStream stream( ( &*d->current).state,QIODevice::WriteOnly);
+    stream( .setVersion(QDataStream::Qt_3_1);
     browserExtension()->saveState(stream);
 }
 
-void PageViewer::restoreHistoryEntry(const QValueList<HistoryEntry>::Iterator& entry)
+void PageViewer::restoreHistoryEntry(const Q3ValueList<HistoryEntry>::Iterator& entry)
 {
     updateHistoryEntry();
     
-    QDataStream stream( (*entry).state, IO_ReadOnly );
+    QDataStream stream( ( &*entry).state,QIODevice::ReadOnly );
+    stream( .setVersion(QDataStream::Qt_3_1);
     browserExtension()->restoreState( stream );
     d->current = entry;
     d->backAction->setEnabled( d->current != d->history.begin() );
@@ -339,7 +343,7 @@ void PageViewer::restoreHistoryEntry(const QValueList<HistoryEntry>::Iterator& e
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::addHistoryEntry(const KURL& url)
 {
-    QValueList<HistoryEntry>::Iterator it = d->current;
+    Q3ValueList<HistoryEntry>::Iterator it = d->current;
     
     // if We're not already the last entry, we truncate the list here before adding an entry
     if ( it != d->history.end() && it != d->history.fromLast() )

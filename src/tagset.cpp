@@ -29,6 +29,8 @@
 #include <qmap.h>
 #include <qstring.h>
 #include <qstringlist.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 namespace Akregator {
 
@@ -44,8 +46,8 @@ TagSet::TagSet(QObject* parent) : QObject(parent), d(new TagSetPrivate)
 
 TagSet::~TagSet()
 {
-    QValueList<Tag> tags = d->map.values();
-    for (QValueList<Tag>::Iterator it = tags.begin(); it != tags.end(); ++it)
+    Q3ValueList<Tag> tags = d->map.values();
+    for (Q3ValueList<Tag>::Iterator it = tags.begin(); it != tags.end(); ++it)
         (*it).removedFromTagSet(this);
     
     delete d;
@@ -138,8 +140,8 @@ QDomDocument TagSet::toXML() const
     root.setAttribute( "version", "0.1" );
     doc.appendChild(root);
 
-    QValueList<Tag> list = d->map.values();
-    for (QValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    Q3ValueList<Tag> list = d->map.values();
+    for (Q3ValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {    
     
         QDomElement tn = doc.createElement("tag");

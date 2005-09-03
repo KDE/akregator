@@ -36,9 +36,9 @@
 class QSplitter;
 class QDomDocument;
 class QDomElement;
-class QHBox;
+class Q3HBox;
 class QToolButton;
-class QListViewItem;
+class Q3ListViewItem;
 class KComboBox;
 class KConfig;
 class KFileItem;

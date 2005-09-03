@@ -26,6 +26,9 @@
 
 #include <klistview.h>
 #include <kurl.h>
+//Added by qt3to4:
+#include <QDragMoveEvent>
+#include <QDropEvent>
 
 namespace Akregator
 {
@@ -116,7 +119,7 @@ protected:
     TreeNodeItem* findNodeItem(TreeNode* node);
 
     /** reimplemented to return TreeNodeItem* */
-    virtual TreeNodeItem* findItemByTitle(const QString& text, int column, ComparisonFlags compare = ExactMatch | CaseSensitive ) const;
+    virtual TreeNodeItem* findItemByTitle(const QString& text, int column, ComparisonFlags compare = ExactMatch | Qt::CaseSensitive ) const;
 
     /** observe @c node: connect status change signals of @c node to slots */
     virtual void connectToNode(TreeNode* node);
@@ -131,22 +134,22 @@ protected:
                                         int cx, int cy, int cw, int ch );
     virtual void contentsDragMoveEvent(QDragMoveEvent* event);
     virtual bool acceptDrag(QDropEvent *event) const;
-    virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
+    virtual void movableDropEvent(Q3ListViewItem* parent, Q3ListViewItem* afterme);
 
-    void takeNode(QListViewItem* item);
-    void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
+    void takeNode(Q3ListViewItem* item);
+    void insertNode(Q3ListViewItem* parent, Q3ListViewItem* item, Q3ListViewItem* after);
 
-    virtual QDragObject *dragObject();
+    virtual Q3DragObject *dragObject();
             
 
 protected slots:
     
 
-    void slotDropped(QDropEvent *e, QListViewItem* after);
+    void slotDropped(QDropEvent *e, Q3ListViewItem* after);
     void slotRootNodeChanged(TreeNode*);
-    virtual void slotSelectionChanged(QListViewItem* item);
-    virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
-    virtual void slotItemRenamed(QListViewItem* item, int col, const QString& text);
+    virtual void slotSelectionChanged(Q3ListViewItem* item);
+    virtual void slotContextMenu(KListView* list, Q3ListViewItem* item, const QPoint& p);
+    virtual void slotItemRenamed(Q3ListViewItem* item, int col, const QString& text);
     virtual void slotFeedFetchStarted(Feed* feed);
     virtual void slotFeedFetchAborted(Feed* feed);
     virtual void slotFeedFetchError(Feed* feed);

@@ -82,23 +82,27 @@
 #include <kxmlguifactory.h>
 #include <kparts/partmanager.h>
 
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 #include <qcheckbox.h>
 #include <qdatetime.h> // for startup time measure
 #include <qfile.h>
-#include <qhbox.h>
+#include <q3hbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
-#include <qmultilineedit.h>
-#include <qpopupmenu.h>
-#include <qstylesheet.h>
+#include <q3multilineedit.h>
+#include <q3popupmenu.h>
+#include <q3stylesheet.h>
 #include <qtextstream.h>
 #include <qtimer.h>
 #include <qtoolbutton.h>
 #include <qtooltip.h>
-#include <qvaluevector.h>
-#include <qwhatsthis.h>
+#include <q3valuevector.h>
+#include <q3whatsthis.h>
 #include <qclipboard.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3ValueList>
+#include <QVBoxLayout>
 
 namespace Akregator {
 
@@ -146,9 +150,9 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 Tag tag = node->tag();
-                QValueList<Article> articles = m_view->m_feedList->rootNode()->articles(tag.id());
+                Q3ValueList<Article> articles = m_view->m_feedList->rootNode()->articles(tag.id());
                 node->setNotificationMode(false);
-                for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+                for (Q3ValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
                     (*it).removeTag(tag.id());
                 node->setNotificationMode(true);
                 Kernel::self()->tagSet()->remove(tag);
@@ -219,11 +223,11 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_shuttingDown = false;
     m_displayingAboutPage = false;
     m_currentFrame = 0L;
-    setFocusPolicy(QWidget::StrongFocus);
+    setFocusPolicy(Qt::StrongFocus);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
     
-    m_horizontalSplitter = new QSplitter(QSplitter::Horizontal, this);
+    m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
 
     m_horizontalSplitter->setOpaqueResize(true);
     lt->addWidget(m_horizontalSplitter);
@@ -266,12 +270,12 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     connect( m_tabs, SIGNAL( currentFrameChanged(Frame *) ), this,
             SLOT( slotFrameChanged(Frame *) ) );
 
-    QWhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
+    Q3WhatsThis::add(m_tabs, i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this, "Article Tab");
     QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab, 0, 2, "mainTabLayout");
 
-    QWhatsThis::add(m_mainTab, i18n("Articles list."));
+    Q3WhatsThis::add(m_mainTab, i18n("Articles list."));
 
     m_searchBar = new SearchBar(m_mainTab);
 
@@ -280,7 +284,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
 
     mainTabLayout->addWidget(m_searchBar);
 
-    m_articleSplitter = new QSplitter(QSplitter::Vertical, m_mainTab, "panner2");
+    m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab, "panner2");
 
     m_articleList = new ArticleListView( m_articleSplitter, "articles" );
     m_actionManager->initArticleListView(m_articleList);
@@ -309,7 +313,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
     connect( m_part, SIGNAL(signalSettingsChanged()), m_articleViewer, SLOT(slotPaletteOrFontChanged()));
-    QWhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
+    Q3WhatsThis::add(m_articleViewer->widget(), i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 
     m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
@@ -1036,9 +1040,9 @@ void View::slotFeedFetched(Feed *feed)
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {
-        QValueList<Article> articles = feed->articles();
-        QValueList<Article>::ConstIterator it;
-        QValueList<Article>::ConstIterator end = articles.end();
+        Q3ValueList<Article> articles = feed->articles();
+        Q3ValueList<Article>::ConstIterator it;
+        Q3ValueList<Article>::ConstIterator end = articles.end();
         for (it = articles.begin(); it != end; ++it)
         {
             if ((*it).status()==Article::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
@@ -1073,8 +1077,8 @@ void View::slotMouseButtonPressed(int button, const Article& article, const QPoi
 void View::slotAssignTag(const Tag& tag, bool assign)
 {
     kdDebug() << (assign ? "assigned" : "removed") << " tag \"" << tag.id() << "\"" << endl;
-    QValueList<Article> selectedArticles = m_articleList->selectedArticles();
-    for (QValueList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
+    Q3ValueList<Article> selectedArticles = m_articleList->selectedArticles();
+    for (Q3ValueList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
     {
         if (assign)
             (*it).addTag(tag.id());
@@ -1256,7 +1260,7 @@ void View::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QValueList<Article> articles = m_articleList->selectedArticles();
+    Q3ValueList<Article> articles = m_articleList->selectedArticles();
 
     QString msg;
     switch (articles.count())
@@ -1264,7 +1268,7 @@ void View::slotArticleDelete()
         case 0:
             return;
         case 1:
-            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(articles.first().title()));
+            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(Q3StyleSheet::escape(articles.first().title()));
             break;
         default:
             msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(articles.count());
@@ -1275,8 +1279,8 @@ void View::slotArticleDelete()
         if (m_listTabWidget->activeView()->selectedNode())
             m_listTabWidget->activeView()->selectedNode()->setNotificationMode(false);
 
-        QValueList<Feed*> feeds;
-        for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+        Q3ValueList<Feed*> feeds;
+        for (Q3ValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         {
             Feed* feed = (*it).feed();
             if (!feeds.contains(feed))
@@ -1285,7 +1289,7 @@ void View::slotArticleDelete()
             (*it).setDeleted();
         }
 
-        for (QValueList<Feed*>::Iterator it = feeds.begin(); it != feeds.end(); ++it)
+        for (Q3ValueList<Feed*>::Iterator it = feeds.begin(); it != feeds.end(); ++it)
             (*it)->setNotificationMode(true);
         if (m_listTabWidget->activeView()->selectedNode())
             m_listTabWidget->activeView()->selectedNode()->setNotificationMode(true);
@@ -1295,28 +1299,28 @@ void View::slotArticleDelete()
 
 void View::slotArticleToggleKeepFlag(bool /*enabled*/)
 {
-    QValueList<Article> articles = m_articleList->selectedArticles();
+    Q3ValueList<Article> articles = m_articleList->selectedArticles();
 
     if (articles.isEmpty())
         return;
 
     bool allFlagsSet = true;
-    for (QValueList<Article>::Iterator it = articles.begin(); allFlagsSet && it != articles.end(); ++it)
+    for (Q3ValueList<Article>::Iterator it = articles.begin(); allFlagsSet && it != articles.end(); ++it)
         if (!(*it).keep())
             allFlagsSet = false;
 
-    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+    for (Q3ValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         (*it).setKeep(!allFlagsSet);
 }
 
 void View::slotSetSelectedArticleRead()
 {
-    QValueList<Article> articles = m_articleList->selectedArticles();
+    Q3ValueList<Article> articles = m_articleList->selectedArticles();
 
     if (articles.isEmpty())
         return;
 
-    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+    for (Q3ValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         (*it).setStatus(Article::Read);
 }
 
@@ -1346,23 +1350,23 @@ void View::slotTextToSpeechRequest()
 
 void View::slotSetSelectedArticleUnread()
 {
-    QValueList<Article> articles = m_articleList->selectedArticles();
+    Q3ValueList<Article> articles = m_articleList->selectedArticles();
 
     if (articles.isEmpty())
         return;
 
-    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+    for (Q3ValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         (*it).setStatus(Article::Unread);
 }
 
 void View::slotSetSelectedArticleNew()
 {
-    QValueList<Article> articles = m_articleList->selectedArticles();
+    Q3ValueList<Article> articles = m_articleList->selectedArticles();
 
     if (articles.isEmpty())
         return;
 
-    for (QValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
+    for (Q3ValueList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
         (*it).setStatus(Article::New);
 }
 
@@ -1418,9 +1422,9 @@ void View::updateTagActions()
 {
     QStringList tags;
 
-    QValueList<Article> selectedArticles = m_articleList->selectedArticles();
+    Q3ValueList<Article> selectedArticles = m_articleList->selectedArticles();
 
-    for (QValueList<Article>::ConstIterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
+    for (Q3ValueList<Article>::ConstIterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
     {
         QStringList atags = (*it).tags();
         for (QStringList::ConstIterator it2 = atags.begin(); it2 != atags.end(); ++it2)

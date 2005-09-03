@@ -34,6 +34,8 @@
 #include <kurl.h>
 
 #include <qregexp.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 namespace Akregator {
 namespace Filters {
@@ -224,7 +226,7 @@ ArticleMatcher* ArticleMatcher::clone() const
     return new ArticleMatcher(*this);
 }
 
-ArticleMatcher::ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc)
+ArticleMatcher::ArticleMatcher( const Q3ValueList<Criterion> &criteria, Association assoc)
     : m_criteria( criteria )
     , m_association( assoc )
 {
@@ -263,7 +265,7 @@ void ArticleMatcher::writeConfig(KConfig* config) const
 
     int index = 0;
 
-    for (QValueList<Criterion>::ConstIterator it = m_criteria.begin(); it != m_criteria.end(); ++it)
+    for (Q3ValueList<Criterion>::ConstIterator it = m_criteria.begin(); it != m_criteria.end(); ++it)
     {
         config->setGroup(config->group()+QString::fromLatin1("_Criterion")+QString::number(index));
         (*it).writeConfig(config);
@@ -305,8 +307,8 @@ bool ArticleMatcher::anyCriterionMatches( const Article &a ) const
 {
     if (m_criteria.count()==0)
         return true;
-    QValueList<Criterion>::ConstIterator it = m_criteria.begin();
-    QValueList<Criterion>::ConstIterator end = m_criteria.end();
+    Q3ValueList<Criterion>::ConstIterator it = m_criteria.begin();
+    Q3ValueList<Criterion>::ConstIterator end = m_criteria.end();
     for ( ; it != end; ++it ) {
         if ( ( *it ).satisfiedBy( a ) ) {
             return true;
@@ -319,8 +321,8 @@ bool ArticleMatcher::allCriteriaMatch( const Article &a ) const
 {
     if (m_criteria.count()==0)
         return true;
-    QValueList<Criterion>::ConstIterator it = m_criteria.begin();
-    QValueList<Criterion>::ConstIterator end = m_criteria.end();
+    Q3ValueList<Criterion>::ConstIterator it = m_criteria.begin();
+    Q3ValueList<Criterion>::ConstIterator end = m_criteria.end();
     for ( ; it != end; ++it ) {
         if ( !( *it ).satisfiedBy( a ) ) {
             return false;

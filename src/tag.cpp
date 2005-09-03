@@ -27,7 +27,7 @@
 #include "tagset.h"
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 namespace Akregator {
 
@@ -39,7 +39,7 @@ class Tag::TagPrivate : public Shared
     QString scheme;
     QString icon;
 
-    QValueList<TagSet*> tagSets;
+    Q3ValueList<TagSet*> tagSets;
     bool operator==(const TagPrivate& other) const
     {
         return id == other.id; // name is ignored!
@@ -126,7 +126,7 @@ void Tag::setIcon(const QString& icon)
     if (icon != d->icon)
     {
         d->icon = icon;
-        for (QValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
+        for (Q3ValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
             (*it)->tagUpdated(*this);
     }
 }
@@ -137,7 +137,7 @@ void Tag::setName(const QString& name)
     if (name != d->name)
     {
         d->name = name;
-        for (QValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
+        for (Q3ValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
             (*it)->tagUpdated(*this);
     }
 }

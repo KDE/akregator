@@ -35,12 +35,15 @@
 #include <dcopref.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
-
+#include <QDesktopWidget>
+#include <QMouseEvent>
 #include <qbitmap.h>
 #include <qpainter.h>
 #include <qfont.h>
 #include <qtooltip.h>
 #include <QX11Info>
+//Added by qt3to4:
+#include <QPixmap>
 
 
 namespace Akregator {
@@ -75,7 +78,7 @@ TrayIcon::~TrayIcon()
 
 
 void TrayIcon::mousePressEvent(QMouseEvent *e) {
-    if (e->button() == LeftButton) {
+    if (e->button() == Qt::LeftButton) {
         emit showPart();
     }
 

@@ -29,7 +29,7 @@
 #define ARTICLEFILTER_H
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <qvariant.h>
 
 class KConfig;
@@ -86,7 +86,7 @@ class ArticleFilter
     
 };
 
-class ArticleFilterList : public QValueList<ArticleFilter>
+class ArticleFilterList : public Q3ValueList<ArticleFilter>
 {
 public:
     
@@ -146,7 +146,7 @@ class AbstractAction
 {
     public:
         virtual void exec(Article& article) = 0;
-
+		virtual ~AbstractAction(){}
         virtual void writeConfig(KConfig* config) const = 0;
         virtual void readConfig(KConfig* config) = 0;
 
@@ -158,7 +158,7 @@ class DeleteAction : public AbstractAction
 {
     public:
         virtual void exec(Article& article);
-        
+       	virtual ~DeleteAction(){} 
         virtual void writeConfig(KConfig* config) const;
         virtual void readConfig(KConfig* config);
 
@@ -170,6 +170,7 @@ class SetStatusAction : public AbstractAction
 {
     public:
         SetStatusAction(int status=0);
+		virtual ~SetStatusAction(){}
         
         virtual void exec(Article& article);
         
@@ -191,6 +192,7 @@ class AssignTagAction : public AbstractAction
     public:
 
         AssignTagAction(const QString& tagID=QString::null);
+		virtual ~AssignTagAction(){}
         virtual void exec(Article& article);
                 
         const QString& tagID() const;
@@ -218,7 +220,7 @@ class ArticleMatcher : public AbstractMatcher
         };
 
         ArticleMatcher();
-        ArticleMatcher( const QValueList<Criterion> &criteria, Association assoc);
+        ArticleMatcher( const Q3ValueList<Criterion> &criteria, Association assoc);
         
         ArticleMatcher(const ArticleMatcher& other);
         virtual ~ArticleMatcher();
@@ -241,7 +243,7 @@ class ArticleMatcher : public AbstractMatcher
         bool anyCriterionMatches( const Article &a ) const;
         bool allCriteriaMatch( const Article &a ) const;
 
-        QValueList<Criterion> m_criteria;
+        Q3ValueList<Criterion> m_criteria;
         Association m_association;
 };
 
@@ -271,7 +273,7 @@ class Criterion
     
         Criterion();
         Criterion( Subject subject, Predicate predicate, const QVariant &object );
-        
+        virtual ~Criterion(){} 
         bool satisfiedBy( const Article &article ) const;
 
         virtual void writeConfig(KConfig* config) const;

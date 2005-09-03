@@ -36,7 +36,7 @@ class Storage;
 class StorageFactory
 {
     public:
-    
+	virtual ~StorageFactory(){}    
     /** identifier of the storage type, like "metakit", "postgres" etc. For use in
         configuration files. Must not contain spaces or special characters.
      */

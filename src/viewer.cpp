@@ -36,9 +36,9 @@
 #include <kurl.h>
 #include <kparts/browserextension.h>
 
-#include <qaccel.h>
+#include <q3accel.h>
 #include <qclipboard.h>
-#include <qpaintdevicemetrics.h>
+#include <q3paintdevicemetrics.h>
 
 #include "viewer.h"
 #include "akregator_run.h"
@@ -96,7 +96,7 @@ bool Viewer::closeURL()
 
 int Viewer::pointsToPixel(int pointSize) const
 {
-    const QPaintDeviceMetrics metrics(view());
+    const Q3PaintDeviceMetrics metrics(view());
     return ( pointSize * metrics.logicalDpiY() + 36 ) / 72 ;
 }
 
@@ -132,7 +132,7 @@ void Viewer::urlSelected(const QString &url, int button, int state, const QStrin
 {
     m_url = completeURL(url);
     browserExtension()->setURLArgs(args);
-    if (button == LeftButton)
+    if (button == Qt::LeftButton)
     {
         switch (Settings::lMBBehaviour())
         {
@@ -148,7 +148,7 @@ void Viewer::urlSelected(const QString &url, int button, int state, const QStrin
         }
         return;
     }
-    else if (button == MidButton)
+    else if (button == Qt::MidButton)
     {
         switch (Settings::mMBBehaviour())
         {
@@ -255,7 +255,7 @@ void Viewer::slotSaveLinkAs()
 
 void Viewer::slotStarted(KIO::Job *)
 {
-   widget()->setCursor( waitCursor );
+   widget()->setCursor( Qt::WaitCursor );
 }
 
 void Viewer::slotCompleted()

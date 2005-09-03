@@ -49,10 +49,12 @@
 #include <kparts/partmanager.h>
 
 #include <qfile.h>
-#include <qobjectlist.h>
+#include <qobject.h>
 #include <qstringlist.h>
 #include <qtimer.h>
-#include <qwidgetlist.h>
+#include <qwidget.h>
+//Added by qt3to4:
+#include <QTextStream>
 #include <private/qucomextra_p.h>
 
 #include "aboutdata.h"
@@ -366,7 +368,7 @@ bool Part::openFile()
     }
     else
     {
-        if (file.open(IO_ReadOnly))
+        if (file.open(QIODevice::ReadOnly))
         {
             // Read OPML feeds list and build QDom tree.
             QTextStream stream(&file);
@@ -432,7 +434,7 @@ void Part::slotSaveFeedList()
     }
 
     QFile file(m_file);
-    if (file.open(IO_WriteOnly) == false)
+    if (file.open(QIODevice::WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
         KMessageBox::error(m_view, i18n("Access denied: cannot save feed list (%1)").arg(m_file), i18n("Write error") );
@@ -505,7 +507,7 @@ QWidget* Part::getMainWindow()
 void Part::loadTagSet(const QString& path)
 {
     QFile file(path);
-    if (file.open(IO_ReadOnly))
+    if (file.open(QIODevice::ReadOnly))
     {
         QDomDocument doc;
         if (doc.setContent(file.readAll()))
@@ -522,7 +524,7 @@ void Part::saveTagSet(const QString& path)
 {
     QFile file(path);
 
-    if ( file.open(IO_WriteOnly) )
+    if ( file.open(QIODevice::WriteOnly) )
     {
 
         QTextStream stream(&file);
@@ -552,7 +554,7 @@ void Part::importFile(const KURL& url)
     }
 
     QFile file(filename);
-    if (file.open(IO_ReadOnly))
+    if (file.open(QIODevice::ReadOnly))
     {
         // Read OPML feeds list and build QDom tree.
         QDomDocument doc;
@@ -582,7 +584,7 @@ void Part::exportFile(const KURL& url)
             KStdGuiItem::cancel()) == KMessageBox::No )
             return;
 
-        if ( !file.open(IO_WriteOnly) )
+        if ( !file.open(QIODevice::WriteOnly) )
         {
             KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write Error") );
             return;
@@ -817,10 +819,10 @@ bool Part::copyFile(const QString& backup)
 {
     QFile file(m_file);
 
-    if (file.open(IO_ReadOnly))
+    if (file.open(QIODevice::ReadOnly))
     {
         QFile backupFile(backup);
-        if (backupFile.open(IO_WriteOnly))
+        if (backupFile.open(QIODevice::WriteOnly))
         {
             QTextStream in(&file);
             QTextStream out(&backupFile);

@@ -33,7 +33,7 @@
 #include <knuminput.h>
 
 #include <qcheckbox.h>
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 #include <qradiobutton.h>
 
 using namespace Akregator;

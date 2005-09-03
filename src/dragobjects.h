@@ -31,9 +31,11 @@
 #include <kurldrag.h>
 
 #include <qstring.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
+//Added by qt3to4:
+#include <Q3MemArray>
 
-typedef class QMemArray<char> QByteArray;
+//typedef class Q3MemArray<char> QByteArray;
 
 namespace Akregator {
 
@@ -50,10 +52,10 @@ class ArticleDrag : public KURLDrag
 
 public:
 
-    ArticleDrag(const QValueList<Article>& articles, QWidget* dragSource=0, const char* name=0);
+    ArticleDrag(const Q3ValueList<Article>& articles, QWidget* dragSource=0, const char* name=0);
 
     static bool canDecode(const QMimeSource* e);
-    static bool decode(const QMimeSource* e, QValueList<ArticleDragItem>& articles);
+    static bool decode(const QMimeSource* e, Q3ValueList<ArticleDragItem>& articles);
 
 protected:
 
@@ -62,9 +64,9 @@ protected:
 
 private:
 
-    static QValueList<ArticleDragItem> articlesToDragItems(const QValueList<Article>& articles);
-    static KURL::List articleURLs(const QValueList<Article>& articles);
-    QValueList<ArticleDragItem> m_items;
+    static Q3ValueList<ArticleDragItem> articlesToDragItems(const Q3ValueList<Article>& articles);
+    static KURL::List articleURLs(const Q3ValueList<Article>& articles);
+    Q3ValueList<ArticleDragItem> m_items;
 };
 
 } // namespace Akregator
