@@ -147,11 +147,13 @@ void SearchBar::slotClearSearch()
 void SearchBar::slotSetStatus(int status)
 {
      d->searchCombo->setCurrentItem(status);
+     slotSearchComboChanged(status);
 }
 
 void SearchBar::slotSetText(const QString& text)
 {
      d->searchLine->setText(text);
+     slotSearchStringChanged(text);
 }
         
 void SearchBar::slotSearchComboChanged(int /*index*/)
@@ -215,7 +217,8 @@ void SearchBar::slotActivateSearch()
 
     d->textFilter = ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr);
     d->statusFilter = ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr);
-
+    Settings::setStatusFilter(d->searchCombo->currentItem());
+    Settings::setTextFilter(d->searchText);
     emit signalSearch(d->textFilter, d->statusFilter);
 }
 

@@ -10,6 +10,15 @@
     <whatsthis>Show Quick Filter Bar</whatsthis>
     <default>true</default>
   </entry>
+  <entry key="Status Filter" type="Int" >
+    <label>Status Filter</label>
+    <whatsthis>Stores the last status filter setting</whatsthis>
+    <default>0</default>
+  </entry>
+  <entry key="Text Filter" type="String" >
+    <label>Text Filter</label>
+    <whatsthis>Stores the last search line text</whatsthis>
+  </entry>
   <entry key="View Mode" type="Int" >
    <label>View Mode</label>
    <whatsthis>Article display mode.</whatsthis>
@@ -194,6 +203,11 @@
    <whatsthis>Configurable delay between selecting and article and it being marked as read.</whatsthis>
    <default>0</default>
   </entry>
+   <entry key="Reset Quick Filter On Node Change" name="Reset Quick Filter On Node Change" type="Bool" >
+   <whatsthis>Resets the quick filter when changing feeds.</whatsthis>
+   <default>true</default>
+  </entry>
+
   <entry key="Show Tagging GUI" type="Bool" >
    <label>Show Tagging GUI elements (unfinished)</label>
    <default>false</default>

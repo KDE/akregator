@@ -357,6 +357,12 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
             slotNormalView();
     }
 
+    if (!Settings::resetQuickFilterOnNodeChange())
+    {
+        m_searchBar->slotSetStatus(Settings::statusFilter());
+        m_searchBar->slotSetText(Settings::textFilter());
+    }
+
     QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
     QTimer::singleShot(0, this, SLOT(delayedInit()));
 }
@@ -800,7 +806,8 @@ void View::slotNodeSelected(TreeNode* node)
 
     m_tabs->showPage(m_mainTab);
 
-    m_searchBar->slotClearSearch();
+    if (Settings::resetQuickFilterOnNodeChange())
+        m_searchBar->slotClearSearch();
 
     if (m_viewMode == CombinedView)
         m_articleViewer->slotShowNode(node);
@@ -1400,9 +1407,22 @@ void View::slotMouseOverInfo(const KFileItem *kifi)
 
 void View::readProperties(KConfig* config)
 {
-    // read filter settings
-    m_searchBar->slotSetText(config->readEntry("searchLine"));
-    m_searchBar->slotSetStatus(config->readEntry("searchCombo").toInt());
+    
+    if (!Settings::resetQuickFilterOnNodeChange())
+    {
+        m_searchBar->slotSetText(config->readEntry("searchLine"));
+        int statusfilter = config->readNumEntry("searchCombo", -1);
+        if (statusfilter != -1)
+            m_searchBar->slotSetStatus(statusfilter);
+    }
+    
+    int selectedID = config->readNumEntry("selectedNodeID", -1);
+    if (selectedID != -1)
+    {
+        TreeNode* selNode = m_feedList->findByID(selectedID);
+        if (selNode)
+            m_listTabWidget->activeView()->setSelectedNode(selNode);
+    }
 }
 
 void View::saveProperties(KConfig* config)
@@ -1410,6 +1430,9 @@ void View::saveProperties(KConfig* config)
     // save filter settings
     config->writeEntry("searchLine", m_searchBar->text());
     config->writeEntry("searchCombo", m_searchBar->status());
+    
+    TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
+    config->writeEntry("selectedNodeID", sel ? sel->id() : -1);
 }
 
 void View::connectToFeedList(FeedList* feedList)
