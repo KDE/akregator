@@ -55,7 +55,7 @@ FolderItem::FolderItem(KListView* parent, TreeNodeItem* after, Folder* node) : T
 
 void FolderItem::initialize(Folder* node)
 {
-    setOpen(true);
+    setOpen(node->isOpen());
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", KIcon::Small) );
     if (node)
         setText(0, node->title());
