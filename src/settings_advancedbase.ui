@@ -117,9 +117,6 @@
                     <property name="text">
                         <string>Mar&amp;k selected article read after</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+K</string>
-                    </property>
                     <property name="checked">
                         <bool>true</bool>
                     </property>
