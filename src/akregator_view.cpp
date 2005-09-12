@@ -1283,7 +1283,9 @@ void View::slotArticleDelete()
             msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(QStyleSheet::escape(articles.first().title()));
             break;
         default:
-            msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(articles.count());
+            msg = i18n("<qt>Are you sure you want to delete the selected article?</qt>", 
+		"<qt>Are you sure you want to delete the %n selected articles?</qt>",
+		articles.count());
     }
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
