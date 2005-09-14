@@ -107,7 +107,8 @@ signals:
     void signalRootNodeChanged(NodeListView*, TreeNode*);
     void signalContextMenu(KListView*, TreeNode*, const QPoint&);
 
-protected:
+public:         // compat with KDE-3.x assertions, remove for KDE 4
+// protected:
 
     /** Find item belonging to tree node @c node, @c null when node is not in tree
     @return item representing node
@@ -169,7 +170,8 @@ protected slots:
 
     virtual void slotNodeListDestroyed(NodeList*);
 
-private:
+public:         // compat with KDE-3.x assertions, remove for KDE 4
+// private:
     friend class ConnectNodeVisitor;
     class ConnectNodeVisitor;
     

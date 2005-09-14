@@ -122,7 +122,8 @@ namespace Akregator
             virtual void slotContextMenu(KListView* list, QListViewItem* item, const QPoint& p);
             virtual void slotMouseButtonPressed(int, QListViewItem *, const QPoint &, int);
             
-        private:
+        public:         // compat with KDE-3.x assertions, remove for KDE 4
+	// private:
             class ArticleListViewPrivate;
             ArticleListViewPrivate* d;
             

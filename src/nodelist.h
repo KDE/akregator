@@ -34,6 +34,12 @@ class QString;
 template <class K,class T> class QMap;
 template <class T> class QValueList;
 
+// hack for KDE 3.x series
+#ifdef signals
+#  undef signals
+#  define signals public
+#endif
+
 namespace Akregator {
 
 class Folder;
@@ -81,7 +87,8 @@ public slots:
      */
     void clear();
 
-protected:
+public:         // compat with KDE-3.x assertions, remove for KDE 4
+// protected:
 
     QValueList<TreeNode*>* flatList() const;
     QMap<int, TreeNode*>* idMap() const;
@@ -91,13 +98,15 @@ protected:
     virtual void addNode(TreeNode* node, bool preserveID);
     virtual void removeNode(TreeNode* node);
   
-protected slots:
+public slots:         // compat with KDE-3.x assertions, remove for KDE 4
+// protected slots:
 
     virtual void slotNodeDestroyed(TreeNode* node);
     virtual void slotNodeAdded(TreeNode* node);
     virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
 
-private:
+public:         // compat with KDE-3.x assertions, remove for KDE 4
+// private:
     NodeList(const NodeList&) : QObject() {}
     NodeList& operator=(const NodeList&) { return *this; }
 

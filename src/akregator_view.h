@@ -289,7 +289,8 @@ namespace Akregator {
             void slotDoIntervalFetches();
             void slotDeleteExpiredArticles();
 
-        private:
+        public:         // compat with KDE-3.x assertions, remove for KDE 4
+//         private:
 
             enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 

@@ -78,7 +78,8 @@ protected:
     virtual void addNode(TreeNode* node, bool preserveID);
     virtual void removeNode(TreeNode* node);
 
-private:
+public:         // compat with KDE-3.x assertions, remove for KDE 4
+// private:
 
     void parseChildNodes(QDomNode &node, Folder* parent);
 

@@ -98,7 +98,8 @@ namespace Akregator
             virtual void keyPressEvent(QKeyEvent* e);
             virtual void urlSelected (const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
 
-        private:
+        public:		// compat with KDE-3.x assertions, remove for KDE 4
+	// private:
 
             friend class ShowNodeSummaryVisitor;
             class ShowSummaryVisitor;

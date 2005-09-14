@@ -86,7 +86,8 @@ class SimpleNodeSelector : public QWidget
         virtual void slotNodeDestroyed(TreeNode* node);
         virtual void slotFeedListDestroyed(FeedList* list);
 
-    private:
+    public:         // compat with KDE-3.x assertions, remove for KDE 4
+//     private:
 
         class SimpleNodeSelectorPrivate;
         SimpleNodeSelectorPrivate* d;
