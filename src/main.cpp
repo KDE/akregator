@@ -67,10 +67,10 @@ int Application::newInstance()
 
     QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
 
-    QCStringList feeds = args->getOptionList("addfeed");
+    QByteArrayList feeds = args->getOptionList("addfeed");
     QStringList feedsToAdd;
-    QCStringList::ConstIterator end( feeds.end() );
-    for (QCStringList::ConstIterator it = feeds.begin(); it != end; ++it)
+    QByteArrayList::ConstIterator end( feeds.end() );
+    for (QByteArrayList::ConstIterator it = feeds.begin(); it != end; ++it)
         feedsToAdd.append(*it);
 
     if (!feedsToAdd.isEmpty())

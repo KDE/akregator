@@ -55,11 +55,10 @@
 #include <qmetaobject.h>
 #include <qpen.h>
 #include <qpainter.h>
-//Added by qt3to4:
 #include <QPixmap>
-#include <private/qucomextra_p.h>
-#include <qtimer.h>
+#include <QTimer>
 
+#include <Q3MimeSourceFactory>
 
 using namespace Akregator;
 

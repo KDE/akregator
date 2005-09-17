@@ -168,6 +168,7 @@ Q3ValueList<TagNode*> TagNodeList::toList() const
 
 bool TagNodeList::readFromXML(const QDomDocument& doc)
 {
+    Q_UNUSED(doc)
     return false; // TODO
 }
 

@@ -627,7 +627,7 @@ void View::slotNormalView()
             m_articleViewer->slotShowSummary(m_listTabWidget->activeView()->selectedNode());
     }
 
-    m_articleSplitter->setOrientation(QSplitter::Vertical);
+    m_articleSplitter->setOrientation(Qt::Vertical);
     m_viewMode = NormalView;
 
     Settings::setViewMode( m_viewMode );
@@ -651,7 +651,7 @@ void View::slotWidescreenView()
             m_articleViewer->slotShowSummary(m_listTabWidget->activeView()->selectedNode());
     }
 
-    m_articleSplitter->setOrientation(QSplitter::Horizontal);
+    m_articleSplitter->setOrientation(Qt::Horizontal);
     m_viewMode = WidescreenView;
 
     Settings::setViewMode( m_viewMode );

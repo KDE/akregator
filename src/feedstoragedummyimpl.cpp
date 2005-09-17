@@ -342,7 +342,7 @@ void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
     d->categorizedArticles[cat].append(guid);
 }
 
-Q3ValueList<Category> FeedStorageDummyImpl::categories(const QString& guid)
+QList<Category> FeedStorageDummyImpl::categories(const QString& guid)
 {
   if (!guid.isNull())
         return contains(guid) ? d->entries[guid].categories : Q3ValueList<Category>();

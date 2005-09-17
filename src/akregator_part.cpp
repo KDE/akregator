@@ -53,9 +53,7 @@
 #include <qstringlist.h>
 #include <qtimer.h>
 #include <qwidget.h>
-//Added by qt3to4:
 #include <QTextStream>
-#include <private/qucomextra_p.h>
 
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
@@ -481,23 +479,22 @@ QWidget* Part::getMainWindow()
 {
         // this is a dirty fix to get the main window used for the tray icon
 
-        QWidgetList *l = kapp->topLevelWidgets();
-        QWidgetListIt it( *l );
-        QWidget *wid;
+        QWidgetList l = QApplication::topLevelWidgets();
+        QListIterator<QWidget*> it( l );
 
         // check if there is an akregator main window
-        while ( (wid = it.current()) != 0 )
+        while ( it.hasNext() )
         {
-        ++it;
+        QWidget * wid = it.next();
         //kdDebug() << "win name: " << wid->name() << endl;
         if (QString(wid->name()) == "akregator_mainwindow")
             return wid;
         }
         // if not, check for kontact main window
-        QWidgetListIt it2( *l );
-        while ( (wid = it2.current()) != 0 )
+        it.toFront();
+        while ( it.hasNext() )
         {
-            ++it2;
+            QWidget * wid = it.next();
             if (QString(wid->name()).startsWith("kontact-mainwindow"))
                 return wid;
         }
@@ -642,28 +639,30 @@ void Part::fileGetFeeds()
 void Part::fileSendArticle(bool attach)
 {
     // FIXME: you have to open article to tab to be able to send...
-    QString title, text;
-
-    text = m_view->currentFrame()->part()->url().prettyURL();
+    QByteArray text = m_view->currentFrame()->part()->url().prettyURL().latin1();
     if(text.isEmpty() || text.isNull())
         return;
 
-    title = m_view->currentFrame()->title();
+    QString title = m_view->currentFrame()->title();
 
     if(attach) {
-        kapp->invokeMailer("",
-                           "",
-                           "",
+        kapp->invokeMailer(QString(),
+                           QString(),
+                           QString(),
                            title,
                            text,
-                           "",
+                           QString(),
+                           QStringList(),
                            text);
     }
     else {
-        kapp->invokeMailer("",
-                           "",
-                           "",
+        kapp->invokeMailer(QString(),
+                           QString(),
+                           QString(),
+                           QString(),
                            title,
+                           QString(),
+                           QStringList(),
                            text);
     }
 }

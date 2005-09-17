@@ -123,6 +123,8 @@ void ListTabWidget::slotNextUnreadFeed()
 
 void ListTabWidget::slotRootNodeChanged(NodeListView* view, TreeNode* node)
 {
+    Q_UNUSED(view)
+    Q_UNUSED(node)
 /*
     int unread = node->unread();
     if (unread > 0)

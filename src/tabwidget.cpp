@@ -35,6 +35,7 @@
 #include <qtooltip.h>
 //Added by qt3to4:
 #include <Q3PopupMenu>
+#include <QStyleOption>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -60,7 +61,7 @@ class TabWidget::TabWidgetPrivate
 {
     public:
     Q3PtrDict<Frame> frames;
-    uint CurrentMaxLength;
+    int CurrentMaxLength;
     QWidget* currentItem;
     QToolButton* tabsClose;
 };
@@ -84,7 +85,7 @@ TabWidget::TabWidget(QWidget * parent, const char *name)
     d->tabsClose->setIconSet( SmallIconSet( "tab_remove" ) );
     d->tabsClose->adjustSize();
     QToolTip::add(d->tabsClose, i18n("Close the current tab"));
-    setCornerWidget( d->tabsClose, TopRight );
+    setCornerWidget( d->tabsClose, Qt::TopRight );
 }
 
 TabWidget::~TabWidget()
@@ -151,11 +152,12 @@ void TabWidget::removeFrame(Frame *f)
 }
 
 // copied wholesale from KonqFrameTabs
-uint TabWidget::tabBarWidthForMaxChars( uint maxLength )
+uint TabWidget::tabBarWidthForMaxChars( int maxLength )
 {
     int hframe, overlap;
-    hframe = tabBar()->style().pixelMetric( QStyle::PM_TabBarTabHSpace, this );
-    overlap = tabBar()->style().pixelMetric( QStyle::PM_TabBarTabOverlap, this );
+    QStyleOption o;
+    hframe = tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabHSpace, &o, this );
+    overlap = tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabOverlap, &o, this );
 
     QFontMetrics fm = tabBar()->fontMetrics();
     int x = 0;
@@ -165,13 +167,11 @@ uint TabWidget::tabBarWidthForMaxChars( uint maxLength )
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
 
-        QTab* tab = tabBar()->tabAt( i );
         int lw = fm.width( newTitle );
-        int iw = 0;
-        if ( tab->iconSet() )
-            iw = tab->iconSet()->pixmap( QIcon::Small, QIcon::Normal ).width() + 4;
+        int iw = tabBar()->tabIcon( i ).pixmap( QIcon::Small, QIcon::Normal ).width() + 4;
 
-        x += ( tabBar()->style().sizeFromContents( QStyle::CT_TabBarTab, this,                             QSize( QMAX( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), QStyleOption( tab ) ) ).width();
+        x += ( tabBar()->style()->sizeFromContents( QStyle::CT_TabBarTab, &o,
+               QSize( QMAX( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), this ) ).width();
     }
     return x;
 }
@@ -187,13 +187,13 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
    
     uint lcw=0, rcw=0;
     int tabBarHeight = tabBar()->sizeHint().height();
-    if ( cornerWidget( TopLeft ) && cornerWidget( TopLeft )->isVisible() )
-        lcw = QMAX( cornerWidget( TopLeft )->width(), tabBarHeight );
-    if ( cornerWidget( TopRight ) && cornerWidget( TopRight )->isVisible() )
-        rcw = QMAX( cornerWidget( TopRight )->width(), tabBarHeight );
+    if ( cornerWidget( Qt::TopLeft ) && cornerWidget( Qt::TopLeft )->isVisible() )
+        lcw = QMAX( cornerWidget( Qt::TopLeft )->width(), tabBarHeight );
+    if ( cornerWidget( Qt::TopRight ) && cornerWidget( Qt::TopRight )->isVisible() )
+        rcw = QMAX( cornerWidget( Qt::TopRight )->width(), tabBarHeight );
     uint maxTabBarWidth = width() - lcw - rcw;
 
-    uint newMaxLength=30;
+    int newMaxLength=30;
     for ( ; newMaxLength > 3; newMaxLength-- ) 
 {
         if ( tabBarWidthForMaxChars( newMaxLength ) < maxTabBarWidth )

@@ -665,7 +665,7 @@ ArticleListView::~ArticleListView()
     Settings::setTitleWidth(columnWidth(0));
     Settings::setFeedWidth(columnWidth(1) > 0 ? columnWidth(1) : d->feedWidth);
     Settings::setSortColumn(sortColumn());
-    Settings::setSortAscending(sortOrder() == Ascending);
+    Settings::setSortAscending(sortOrder() == Qt::Ascending);
     Settings::writeConfig();
     delete d->columnLayoutVisitor;
     delete d;

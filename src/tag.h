@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_TAG_H
 #define AKREGATOR_TAG_H
 
-#include <qstring.h>
+#include <QString>
 
 namespace Akregator {
 

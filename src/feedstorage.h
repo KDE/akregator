@@ -124,7 +124,7 @@ class FeedStorage : public QObject
         virtual QStringList tags(const QString& guid=QString::null) = 0;
 
         virtual void addCategory(const QString& guid, const Category& category) = 0;
-        virtual Q3ValueList<Category> categories(const QString& guid=QString::null) = 0;
+        virtual QList<Category> categories(const QString& guid=QString::null) = 0;
 
         virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length) = 0;
         virtual void removeEnclosure(const QString& guid) = 0;

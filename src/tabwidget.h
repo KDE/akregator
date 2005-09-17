@@ -64,7 +64,7 @@ class TabWidget : public KTabWidget
         
     private: // methods
         
-        uint tabBarWidthForMaxChars( uint maxLength );
+        uint tabBarWidthForMaxChars( int maxLength );
         void setTitle( const QString &title , QWidget* sender);
 
 

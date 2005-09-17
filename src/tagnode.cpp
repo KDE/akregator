@@ -31,8 +31,8 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
-#include <qdom.h>
-#include <qstring.h>
+#include <QtXml/QDomElement>
+#include <QString>
 #include <q3valuelist.h>
 
 namespace Akregator {
@@ -122,6 +122,7 @@ int TagNode::totalCount() const
     
 Q3ValueList<Article> TagNode::articles(const QString& tag)
 {
+    Q_UNUSED(tag)
     return d->articles;
 }
 
@@ -133,6 +134,8 @@ QStringList TagNode::tags() const
 
 QDomElement TagNode::toOPML( QDomElement parent, QDomDocument document ) const
 {
+    Q_UNUSED(parent)
+    Q_UNUSED(document)
     return QDomElement();
 }    
 
@@ -193,6 +196,7 @@ void TagNode::doArticleNotification()
 
 void TagNode::slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list)
 {
+    Q_UNUSED(node)
     bool added = false;
     for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
@@ -213,6 +217,7 @@ void TagNode::slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list
 
 void TagNode::slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& list)
 {
+    Q_UNUSED(node)
     bool updated = false;
     for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
@@ -249,6 +254,7 @@ void TagNode::slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& li
 
 void TagNode::slotArticlesRemoved(TreeNode* node, const Q3ValueList<Article>& list)
 {
+    Q_UNUSED(node)
     bool removed = false;
     for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {

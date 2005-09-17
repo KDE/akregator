@@ -51,9 +51,7 @@
 #include <q3scrollview.h>
 #include <qstring.h>
 #include <q3valuelist.h>
-//Added by qt3to4:
 #include <QPixmap>
-#include <private/qucomextra_p.h>
 
 #include <cstdlib>
 using std::abs;
@@ -290,7 +288,7 @@ void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args
 void PageViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
 {
     updateHistoryEntry();
-    if (button == MidButton)
+    if (button == Qt::MidButton)
         Viewer::urlSelected(url, button, state, _target, args);
     else
     {
@@ -320,8 +318,8 @@ void PageViewer::updateHistoryEntry()
 {
     (*d->current).title = d->caption;
     (*d->current).state = QByteArray(); // Start with empty buffer.
-    QDataStream stream( ( &*d->current).state,QIODevice::WriteOnly);
-    stream( .setVersion(QDataStream::Qt_3_1);
+    QDataStream stream( &((*d->current).state),QIODevice::WriteOnly);
+    stream.setVersion(QDataStream::Qt_3_1);
     browserExtension()->saveState(stream);
 }
 
@@ -329,8 +327,8 @@ void PageViewer::restoreHistoryEntry(const Q3ValueList<HistoryEntry>::Iterator& 
 {
     updateHistoryEntry();
     
-    QDataStream stream( ( &*entry).state,QIODevice::ReadOnly );
-    stream( .setVersion(QDataStream::Qt_3_1);
+    QDataStream stream( &((*entry).state),QIODevice::ReadOnly );
+    stream.setVersion(QDataStream::Qt_3_1);
     browserExtension()->restoreState( stream );
     d->current = entry;
     d->backAction->setEnabled( d->current != d->history.begin() );
@@ -390,18 +388,12 @@ void PageViewer::slotPaletteOrFontChanged()
 {
     kdDebug() << "PageViewer::slotPaletteOrFontChanged()" << endl;
     // taken from KonqView (kdebase/konqueror/konq_view.cc)
-    
     QObject *obj = KParts::BrowserExtension::childObject(this);
     if ( !obj ) // not all views have a browser extension !
         return;
-    
-    int id = obj->metaObject()->findSlot("reparseConfiguration()");
-    if (id == -1)
-        return;
-    QUObject o[1];
 
-    obj->qt_invoke(id, o);
-    
+    QMetaObject::invokeMethod( obj, "reparseConfiguration()" );
+
     // this hack is necessary since the part looks for []HTML Settings] in
     // KGlobal::config() by default, which is wrong when running in Kontact
     // NOTE: when running in Kontact, immediate updating doesn't work

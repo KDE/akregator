@@ -150,7 +150,7 @@ QDomDocument TagSet::toXML() const
         tn.setAttribute(QString::fromLatin1("id"),(*it).id());
         if (!(*it).scheme().isEmpty())
             tn.setAttribute(QString::fromLatin1("scheme"),(*it).scheme());
-        if (!(*it).icon().isEmpty())
+        if (!(*it).icon().isNull())
             tn.setAttribute(QString::fromLatin1("icon"),(*it).icon());
         tn.appendChild(text);
         root.appendChild(tn);

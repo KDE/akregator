@@ -68,10 +68,10 @@ class NotificationManager : public QObject
         NotificationManager();
         NotificationManager(const NotificationManager&) : QObject(){}
         
-        uint m_checkInterval;
-        uint m_intervalsLapsed;
-        uint m_maxIntervals;
-        uint m_maxArticles;
+        int m_checkInterval;
+        int m_intervalsLapsed;
+        int m_maxIntervals;
+        int m_maxArticles;
         bool m_running;
         bool m_addedInLastInterval;
         QWidget* m_widget;

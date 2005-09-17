@@ -25,7 +25,8 @@
 #include <kicondialog.h>
 #include <klocale.h>
 
-#include <qlineedit.h>
+#include <QLineEdit>
+#include <QIcon>
 
 #include "tag.h"
 #include "tagpropertiesdialog.h"
@@ -60,7 +61,7 @@ void TagPropertiesDialog::setTag(const Tag& tag)
 {
     d->tag = tag;
     d->widget->le_title->setText(tag.name());
-    d->widget->iconButton->setIcon(tag.icon());
+    d->widget->iconButton->setIcon(QIcon(tag.icon()));
     enableButtonOK(!tag.name().isEmpty());
     enableButtonApply(!tag.name().isEmpty());
 }
@@ -68,7 +69,7 @@ void TagPropertiesDialog::setTag(const Tag& tag)
 void TagPropertiesDialog::slotOk()
 {
     d->tag.setName(d->widget->le_title->text());
-    d->tag.setIcon(d->widget->iconButton->icon());
+   // d->tag.setIcon(d->widget->iconButton->icon());
     KDialogBase::slotOk();
 }
 
@@ -81,7 +82,7 @@ void TagPropertiesDialog::slotTextChanged(const QString& text)
 void TagPropertiesDialog::slotApply()
 {
     d->tag.setName(d->widget->le_title->text());
-    d->tag.setIcon(d->widget->iconButton->icon());
+  //  d->tag.setIcon(d->widget->iconButton->icon());
     KDialogBase::slotApply();
 }
 

@@ -294,7 +294,7 @@ void ActionManagerImpl::initView(View* view)
     new KAction(i18n("&Fetch Feed"), "down", KStdAccel::shortcut(KStdAccel::Reload), d->view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
     new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+L", d->view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
 
-    KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Key_Escape, Kernel::self()->fetchQueue(), SLOT(slotAbort()), actionCollection(), "feed_stop");
+    KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Qt::Key_Escape, Kernel::self()->fetchQueue(), SLOT(slotAbort()), actionCollection(), "feed_stop");
     stopAction->setEnabled(false);
 
     new KAction(i18n("&Mark Feed as Read"), "goto", "Ctrl+R", d->view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
@@ -307,10 +307,10 @@ void ActionManagerImpl::initView(View* view)
     new KAction( i18n("Open in Tab"), "tab_new", "Shift+Return", d->view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
     new KAction( i18n("Open in Background Tab"), QString::null, "tab_new", d->view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
     new KAction( i18n("Open in External Browser"), "window_new", "Ctrl+Shift+Return", d->view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
-    new KAction( i18n("Copy Link Address"), QString::null, QString::null, d->view, SLOT(slotCopyLinkAddress()), actionCollection(), "article_copy_link_address" );
+    new KAction( i18n("Copy Link Address"), "", "", d->view, SLOT(slotCopyLinkAddress()), actionCollection(), "article_copy_link_address" );
 
-    new KAction(i18n("Pre&vious Unread Article"), "", Key_Minus, d->view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
-    new KAction(i18n("Ne&xt Unread Article"), "", Key_Plus, d->view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
+    new KAction(i18n("Pre&vious Unread Article"), "", Qt::Key_Minus, d->view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
+    new KAction(i18n("Ne&xt Unread Article"), "", Qt::Key_Plus, d->view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
 
     new KAction(i18n("&Delete"), "editdelete", "Delete", d->view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
 
@@ -322,7 +322,7 @@ void ActionManagerImpl::initView(View* view)
 
     d->speakSelectedArticlesAction = new KAction(i18n("&Speak Selected Articles"), "kttsd", "", d->view, SLOT(slotTextToSpeechRequest()), actionCollection(), "akr_texttospeech");
     
-    KAction* abortTTS = new KAction(i18n( "&Stop Speaking" ), "player_stop", Key_Escape, SpeechClient::self(), SLOT(slotAbortJobs()), actionCollection(), "akr_aborttexttospeech");
+    KAction* abortTTS = new KAction(i18n( "&Stop Speaking" ), "player_stop", Qt::Key_Escape, SpeechClient::self(), SLOT(slotAbortJobs()), actionCollection(), "akr_aborttexttospeech");
     abortTTS->setEnabled(false);
 
     connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
@@ -403,8 +403,8 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
 
     new KAction(i18n("Select Next Tab"), "", "Ctrl+Period", d->tabWidget, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
     new KAction(i18n("Select Previous Tab"), "", "Ctrl+Comma", d->tabWidget, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
-    new KAction( i18n("Detach Tab"), "tab_breakoff", CTRL+SHIFT+Key_B, d->tabWidget, SLOT(slotDetachTab()), actionCollection(), "tab_detach" );
-    new KAction( i18n("Copy Link Address"), QString::null, QString::null, d->tabWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "tab_copylinkaddress" );
+    new KAction( i18n("Detach Tab"), "tab_breakoff", Qt::CTRL+Qt::SHIFT+Qt::Key_B, d->tabWidget, SLOT(slotDetachTab()), actionCollection(), "tab_detach" );
+    new KAction( i18n("Copy Link Address"), "", "", d->tabWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "tab_copylinkaddress" );
     new KAction( i18n("&Close Tab"), "tab_remove", KStdAccel::close(), d->tabWidget, SLOT(slotCloseTab()), actionCollection(), "tab_remove" );
 }
 

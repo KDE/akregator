@@ -32,6 +32,7 @@
 
 #include <qdom.h>
 #include <qfile.h>
+#include <QTextStream>
 
 #include <kglobal.h>
 #include <kstandarddirs.h>
@@ -553,10 +554,10 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
     } 
 }
 
-QValueList<Category> FeedStorageMK4Impl::categories(const QString& guid)
+QList<Category> FeedStorageMK4Impl::categories(const QString& guid)
 {
 
-    QValueList<Category> list;
+    QList<Category> list;
         
     if (!guid.isNull()) // return categories for an article
     {
