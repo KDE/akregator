@@ -303,10 +303,10 @@ void ArticleListView::slotShowNode(TreeNode* node)
 
     setUpdatesEnabled(false);
 
-    Q3ValueList<Article> articles = d->node->articles();
+    QList<Article> articles = d->node->articles();
 
-    Q3ValueList<Article>::ConstIterator end = articles.end();
-    Q3ValueList<Article>::ConstIterator it = articles.begin();
+    QList<Article>::ConstIterator end = articles.end();
+    QList<Article>::ConstIterator it = articles.begin();
     
     for (; it != end; ++it)
     {
@@ -334,11 +334,11 @@ void ArticleListView::slotClear()
     clear();
 }
 
-void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const Q3ValueList<Article>& list)
+void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& list)
 {
     setUpdatesEnabled(false);
     
-    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (!d->articleMap.contains(*it))
         {
@@ -354,11 +354,11 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const Q3ValueList<Ar
     triggerUpdate();
 }
 
-void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const Q3ValueList<Article>& list)
+void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& list)
 {
     setUpdatesEnabled(false);
 
-    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         
         if (!(*it).isNull() && d->articleMap.contains(*it))
@@ -384,10 +384,10 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const Q3ValueList<
     triggerUpdate();
 }
 
-void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const Q3ValueList<Article>& list)
+void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& list)
 {
     setUpdatesEnabled(false);
-    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (d->articleMap.contains(*it))
         {
@@ -403,17 +403,17 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const Q3ValueList<
 void ArticleListView::connectToNode(TreeNode* node)
 {
     connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    connect(node, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const Q3ValueList<Article>&)) );
-    connect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)) );
-    connect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)) );
+    connect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)) );
 }
 
 void ArticleListView::disconnectFromNode(TreeNode* node)
 {
     disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    disconnect(node, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const Q3ValueList<Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)) );
 }
 
 void ArticleListView::applyFilters()
@@ -505,7 +505,7 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 Q3DragObject *ArticleListView::dragObject()
 {
     Q3DragObject* d = 0;
-    Q3ValueList<Article> articles = selectedArticles();
+    QList<Article> articles = selectedArticles();
     if (!articles.isEmpty())
     {
         d = new ArticleDrag(articles, this);
@@ -672,9 +672,9 @@ ArticleListView::~ArticleListView()
     d = 0;
 }
 
-Q3ValueList<Article> ArticleListView::selectedArticles() const
+QList<Article> ArticleListView::selectedArticles() const
 {
-    Q3ValueList<Article> ret;
+    QList<Article> ret;
     Q3PtrList<Q3ListViewItem> items = selectedItems(false);
     for (Q3ListViewItem* i = items.first(); i; i = items.next() )
         ret.append((static_cast<ArticleItem*>(i))->article());

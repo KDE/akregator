@@ -28,9 +28,9 @@
 #ifndef ARTICLEFILTER_H
 #define ARTICLEFILTER_H
 
-#include <qstring.h>
-#include <q3valuelist.h>
-#include <qvariant.h>
+#include <QString>
+#include <QList>
+#include <QVariant>
 
 class KConfig;
 
@@ -86,7 +86,7 @@ class ArticleFilter
     
 };
 
-class ArticleFilterList : public Q3ValueList<ArticleFilter>
+class ArticleFilterList : public QList<ArticleFilter>
 {
 public:
     
@@ -220,7 +220,7 @@ class ArticleMatcher : public AbstractMatcher
         };
 
         ArticleMatcher();
-        ArticleMatcher( const Q3ValueList<Criterion> &criteria, Association assoc);
+        ArticleMatcher( const QList<Criterion> &criteria, Association assoc);
         
         ArticleMatcher(const ArticleMatcher& other);
         virtual ~ArticleMatcher();
@@ -243,7 +243,7 @@ class ArticleMatcher : public AbstractMatcher
         bool anyCriterionMatches( const Article &a ) const;
         bool allCriteriaMatch( const Article &a ) const;
 
-        Q3ValueList<Criterion> m_criteria;
+        QList<Criterion> m_criteria;
         Association m_association;
 };
 

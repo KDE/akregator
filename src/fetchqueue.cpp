@@ -36,8 +36,8 @@ class FetchQueue::FetchQueuePrivate
 {
     public:
     
-        Q3ValueList<Feed*> queuedFeeds;
-        Q3ValueList<Feed*> fetchingFeeds;
+        QList<Feed*> queuedFeeds;
+        QList<Feed*> fetchingFeeds;
 };
 
 
@@ -53,14 +53,14 @@ FetchQueue::~FetchQueue()
 
 void FetchQueue::slotAbort()
 {
-    for (Q3ValueList<Feed*>::Iterator it = d->fetchingFeeds.begin(); it != d->fetchingFeeds.end(); ++it)
+    for (QList<Feed*>::Iterator it = d->fetchingFeeds.begin(); it != d->fetchingFeeds.end(); ++it)
     {
         disconnectFromFeed(*it);
         (*it)->slotAbortFetch();
     }
     d->fetchingFeeds.clear();
 
-    for (Q3ValueList<Feed*>::Iterator it = d->queuedFeeds.begin(); it != d->queuedFeeds.end(); ++it)
+    for (QList<Feed*>::Iterator it = d->queuedFeeds.begin(); it != d->queuedFeeds.end(); ++it)
     {
         disconnectFromFeed(*it);
     }

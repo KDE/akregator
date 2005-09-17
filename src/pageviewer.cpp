@@ -77,20 +77,18 @@ class PageViewer::HistoryEntry
     
 };
 
-class PageViewer::PageViewerPrivate
+struct PageViewer::PageViewerPrivate
 {
-    public:
+    QLinkedList<HistoryEntry> history;
+    QLinkedList<HistoryEntry>::Iterator current;
 
-    Q3ValueList<HistoryEntry> history;
-    Q3ValueList<HistoryEntry>::Iterator current;
-    
     KToolBarPopupAction* backAction;
     KToolBarPopupAction* forwardAction;
     KAction* reloadAction;
     KAction* stopAction;
-    
+
     QString caption;
-};           
+};
 
  
 PageViewer::PageViewer(QWidget *parent, const char *name)
@@ -156,7 +154,7 @@ void PageViewer::slotBack()
 {
     if ( d->current != d->history.begin() )
     {
-        Q3ValueList<HistoryEntry>::Iterator tmp = d->current;
+        QLinkedList<HistoryEntry>::Iterator tmp = d->current;
         --tmp;
         restoreHistoryEntry(tmp);
     }
@@ -165,9 +163,9 @@ void PageViewer::slotBack()
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotForward()
 {
-    if (  d->current != d->history.fromLast() )
+    if (  d->current != d->history.end() )
     {
-        Q3ValueList<HistoryEntry>::Iterator tmp = d->current;
+        QLinkedList<HistoryEntry>::Iterator tmp = d->current;
         ++tmp;
         restoreHistoryEntry(tmp);
     }
@@ -181,7 +179,7 @@ void PageViewer::slotBackAboutToShow()
     if ( d->current == d->history.begin() )
         return;
 
-    Q3ValueList<HistoryEntry>::Iterator it = d->current;
+    QLinkedList<HistoryEntry>::Iterator it = d->current;
     --it;
     
     int i = 0;
@@ -204,16 +202,16 @@ void PageViewer::slotForwardAboutToShow()
     KPopupMenu *popup = d->forwardAction->popupMenu();
     popup->clear();
 
-    if ( d->current == d->history.fromLast() )
+    if ( d->current == d->history.end() )
         return;
 
-    Q3ValueList<HistoryEntry>::Iterator it = d->current;
+    QLinkedList<HistoryEntry>::Iterator it = d->current;
     ++it;
     
     int i = 0;
     while( i < 10 )
     {
-        if ( it == d->history.fromLast() )
+        if ( it == d->history.end() )
         {
             popup->insertItem( (*it).title, (*it).id );
             return;
@@ -243,7 +241,7 @@ void PageViewer::openPage(const KURL& url)
     addHistoryEntry(url);
     
     d->backAction->setEnabled( d->current != d->history.begin() );
-    d->forwardAction->setEnabled( d->current != d->history.fromLast() );
+    d->forwardAction->setEnabled( d->current != d->history.end() );
   
     QString favicon = FeedIconManager::self()->iconLocation(url);
     if (!favicon.isEmpty()) 
@@ -263,7 +261,7 @@ bool PageViewer::openURL(const KURL &url)
 //         addHistoryEntry(url);
 //     
 //     d->backAction->setEnabled( d->current != d->history.begin() );
-//     d->forwardAction->setEnabled( d->current != d->history.fromLast() );
+//     d->forwardAction->setEnabled( d->current != d->history.end() );
 //   
 //     QString favicon = FeedIconManager::self()->iconLocation(url);
 //     if (!favicon.isEmpty()) 
@@ -302,7 +300,7 @@ void PageViewer::urlSelected(const QString &url, int button, int state, const QS
 
 void PageViewer::slotPopupActivated( int id )
 {
-    Q3ValueList<HistoryEntry>::Iterator it = d->history.begin();
+    QLinkedList<HistoryEntry>::Iterator it = d->history.begin();
     while( it != d->history.end() )
     {
         if ( (*it).id == id )
@@ -323,7 +321,7 @@ void PageViewer::updateHistoryEntry()
     browserExtension()->saveState(stream);
 }
 
-void PageViewer::restoreHistoryEntry(const Q3ValueList<HistoryEntry>::Iterator& entry)
+void PageViewer::restoreHistoryEntry(const QLinkedList<HistoryEntry>::Iterator& entry)
 {
     updateHistoryEntry();
     
@@ -332,7 +330,7 @@ void PageViewer::restoreHistoryEntry(const Q3ValueList<HistoryEntry>::Iterator& 
     browserExtension()->restoreState( stream );
     d->current = entry;
     d->backAction->setEnabled( d->current != d->history.begin() );
-    d->forwardAction->setEnabled( d->current != d->history.fromLast() );
+    d->forwardAction->setEnabled( d->current != d->history.end() );
     //openURL( entry.url ); // TODO read state
     
 
@@ -341,10 +339,10 @@ void PageViewer::restoreHistoryEntry(const Q3ValueList<HistoryEntry>::Iterator& 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::addHistoryEntry(const KURL& url)
 {
-    Q3ValueList<HistoryEntry>::Iterator it = d->current;
+    QLinkedList<HistoryEntry>::Iterator it = d->current;
     
     // if We're not already the last entry, we truncate the list here before adding an entry
-    if ( it != d->history.end() && it != d->history.fromLast() )
+    if ( it != d->history.end() && it != d->history.end() )
     {
         d->history.erase( ++it, d->history.end() );
     }
@@ -354,7 +352,7 @@ void PageViewer::addHistoryEntry(const KURL& url)
     if ( newEntry.url != (*d->current).url )
     {
         d->history.append( newEntry );
-        d->current = d->history.fromLast();
+        d->current = d->history.end();
     }
     updateHistoryEntry();
 }

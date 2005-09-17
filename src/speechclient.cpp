@@ -47,7 +47,7 @@ class SpeechClient::SpeechClientPrivate
     public:
 
     bool isTextSpeechInstalled;
-    Q3ValueList<uint> pendingJobs;
+    QList<uint> pendingJobs;
 };
 
 SpeechClient* SpeechClient::m_self = 0;
@@ -100,14 +100,14 @@ void SpeechClient::slotSpeak(const Article& article)
     slotSpeak(speakMe, "en");
 }
 
-void SpeechClient::slotSpeak(const Q3ValueList<Article>& articles)
+void SpeechClient::slotSpeak(const QList<Article>& articles)
 {
     if (!isTextToSpeechInstalled() || articles.isEmpty())
         return;
 
     QString speakMe;
 
-    for (Q3ValueList<Article>::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+    for (QList<Article>::ConstIterator it = articles.begin(); it != articles.end(); ++it)
     {
         if (!speakMe.isEmpty())
             speakMe += ". . . . . . " + i18n("Next Article: ");
@@ -123,7 +123,7 @@ void SpeechClient::slotAbortJobs()
 {
     if (!d->pendingJobs.isEmpty())
     {
-        for (Q3ValueList<uint>::ConstIterator it = d->pendingJobs.begin(); it != d->pendingJobs.end(); ++it)
+        for (QList<uint>::ConstIterator it = d->pendingJobs.begin(); it != d->pendingJobs.end(); ++it)
         {
             removeText(*it);
         }

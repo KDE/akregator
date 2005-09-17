@@ -39,7 +39,7 @@ class Tag::TagPrivate : public Shared
     QString scheme;
     QString icon;
 
-    Q3ValueList<TagSet*> tagSets;
+    QList<TagSet*> tagSets;
     bool operator==(const TagPrivate& other) const
     {
         return id == other.id; // name is ignored!
@@ -126,7 +126,7 @@ void Tag::setIcon(const QString& icon)
     if (icon != d->icon)
     {
         d->icon = icon;
-        for (Q3ValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
+        for (QList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
             (*it)->tagUpdated(*this);
     }
 }
@@ -137,7 +137,7 @@ void Tag::setName(const QString& name)
     if (name != d->name)
     {
         d->name = name;
-        for (Q3ValueList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
+        for (QList<TagSet*>::ConstIterator it = d->tagSets.begin(); it != d->tagSets.end(); ++it)
             (*it)->tagUpdated(*this);
     }
 }

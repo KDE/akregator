@@ -25,14 +25,13 @@
 #define AKREGATORARTICLELISTVIEW_H
 
 #include <klistview.h>
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <QKeyEvent>
 #include <QPaintEvent>
 
 class QKeyEvent;
 class Q3DragObject;
-template <class T> class Q3ValueList;
+template <class T> class QList;
 
 namespace Akregator
 {
@@ -55,7 +54,7 @@ namespace Akregator
             Article currentArticle() const;
             
             /** returns a list of currently selected articles */
-            Q3ValueList<Article> selectedArticles() const;
+            QList<Article> selectedArticles() const;
             
             enum Columns { itemTitle, feedTitle, pubDate };
 
@@ -116,9 +115,9 @@ namespace Akregator
 
         protected slots:
 
-            void slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list);
-            void slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& list);
-            void slotArticlesRemoved(TreeNode* node, const Q3ValueList<Article>& list);
+            void slotArticlesAdded(TreeNode* node, const QList<Article>& list);
+            void slotArticlesUpdated(TreeNode* node, const QList<Article>& list);
+            void slotArticlesRemoved(TreeNode* node, const QList<Article>& list);
 
             virtual void slotCurrentChanged(Q3ListViewItem* item);
             virtual void slotSelectionChanged();

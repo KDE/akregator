@@ -35,7 +35,7 @@
 #include <qmap.h>
 #include <qwidget.h>
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #include <QGridLayout>
 
 namespace Akregator
@@ -105,9 +105,9 @@ class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
     virtual bool visitFolder(Folder* node)
     {
         visitTreeNode(node);
-        Q3ValueList<TreeNode*> children = node->children();
+        QList<TreeNode*> children = node->children();
         m_view->d->nodeToItem[node]->setExpandable(true);
-        for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+        for (QList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
              createItems(*it);
         return true;
     }

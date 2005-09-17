@@ -26,8 +26,7 @@
 #define AKREGATORNOTIFICATIONMANAGER_H
 
 #include <qobject.h>
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 #include "article.h"
 
@@ -77,7 +76,7 @@ class NotificationManager : public QObject
         QWidget* m_widget;
         KInstance* m_instance;
 
-        Q3ValueList<Article> m_articles;
+        QList<Article> m_articles;
 
         static NotificationManager* m_self;
 };

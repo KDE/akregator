@@ -53,7 +53,7 @@ public:
     Q3WidgetStack* stack;
     NodeListView* current;
     int currentID;
-    Q3ValueList<NodeListView*> views;
+    QList<NodeListView*> views;
     QMap<int, NodeListView*> idToView;
     QGridLayout* layout;
     ViewMode viewMode;

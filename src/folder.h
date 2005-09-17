@@ -27,13 +27,12 @@
 #define AKREGATOR_FOLDER_H
 
 #include "treenode.h"
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 class QDomDocument;
 class QDomElement;
 class QStringList;
-template <class T> class Q3ValueList;
+template <class T> class QList;
 
 namespace Akregator
 {
@@ -64,7 +63,7 @@ namespace Akregator
             
             /** returns recursively concatenated articles of children  
             @return an article sequence containing articles of children */
-            virtual Q3ValueList<Article> articles(const QString& tag=QString::null);
+            virtual QList<Article> articles(const QString& tag=QString::null);
 
             /** returns a list of all tags occurring in the subtree of this folder */
             virtual QStringList tags() const;
@@ -90,7 +89,7 @@ namespace Akregator
             /** returns the (direct) children of this node.
             @return a list of pointers to the child nodes
              */
-            virtual Q3ValueList<TreeNode*> children() const;
+            virtual QList<TreeNode*> children() const;
             
             /** inserts @c node as child after child node @c after.
             if @c after is not a child of this group, @c node will be inserted as first child
@@ -162,7 +161,7 @@ namespace Akregator
             /** inserts @c node as child on position @c index
             @param index the position where to insert
             @param node the tree node to insert */
-            virtual void insertChild(uint index, TreeNode* node);
+            virtual void insertChild(int index, TreeNode* node);
 
             virtual void doArticleNotification();
         private:

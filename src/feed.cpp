@@ -82,13 +82,13 @@ class Feed::FeedPrivate
         QMap<QString, QStringList> taggedArticles;
 
         /** list of deleted articles. This contains **/
-        Q3ValueList<Article> deletedArticles;
+        QList<Article> deletedArticles;
         
         /** caches guids of deleted articles for notification */
    
-        Q3ValueList<Article> addedArticlesNotify;
-        Q3ValueList<Article> removedArticlesNotify;
-        Q3ValueList<Article> updatedArticlesNotify;
+        QList<Article> addedArticlesNotify;
+        QList<Article> removedArticlesNotify;
+        QList<Article> updatedArticlesNotify;
         
         QPixmap imagePixmap;
         RSS::Image image;
@@ -179,7 +179,7 @@ Article Feed::findArticle(const QString& guid) const
     return d->articles[guid];
 }
 
-Q3ValueList<Article> Feed::articles(const QString& tag)
+QList<Article> Feed::articles(const QString& tag)
 {
     if (!d->articlesLoaded)
         loadArticles();
@@ -187,7 +187,7 @@ Q3ValueList<Article> Feed::articles(const QString& tag)
         return d->articles.values();
     else
     {
-        Q3ValueList<Article> tagged;
+        QList<Article> tagged;
         QStringList guids = d->archive->articles(tag);
         for (QStringList::ConstIterator it = guids.begin(); it != guids.end(); ++it)
             tagged += d->articles[*it];
@@ -220,9 +220,9 @@ void Feed::loadArticles()
 
 void Feed::recalcUnreadCount()
 {
-    Q3ValueList<Article> tarticles = articles();
-    Q3ValueList<Article>::Iterator it;
-    Q3ValueList<Article>::Iterator en = tarticles.end();
+    QList<Article> tarticles = articles();
+    QList<Article>::Iterator it;
+    QList<Article>::Iterator en = tarticles.end();
 
     int oldUnread = d->archive->unread();
     
@@ -378,9 +378,9 @@ void Feed::slotMarkAllArticlesAsRead()
     if (unread() > 0)
     {
         setNotificationMode(false, true);
-        Q3ValueList<Article> tarticles = articles();
-        Q3ValueList<Article>::Iterator it;
-        Q3ValueList<Article>::Iterator en = tarticles.end();
+        QList<Article> tarticles = articles();
+        QList<Article>::Iterator it;
+        QList<Article>::Iterator en = tarticles.end();
 
         for (it = tarticles.begin(); it != en; ++it)
             (*it).setStatus(Article::Read);
@@ -421,7 +421,7 @@ void Feed::appendArticles(const RSS::Document &doc)
 
     int nudge=0;
     
-    Q3ValueList<Article> deletedArticles = d->deletedArticles;
+    QList<Article> deletedArticles = d->deletedArticles;
 
     for (it = d_articles.begin(); it != en; ++it)
     {
@@ -432,8 +432,8 @@ void Feed::appendArticles(const RSS::Document &doc)
             nudge--;
             appendArticle(mya);
 
-            Q3ValueList<ArticleInterceptor*> interceptors = ArticleInterceptorManager::self()->interceptors();
-            for (Q3ValueList<ArticleInterceptor*>::ConstIterator it = interceptors.begin(); it != interceptors.end(); ++it)
+            QList<ArticleInterceptor*> interceptors = ArticleInterceptorManager::self()->interceptors();
+            for (QList<ArticleInterceptor*>::ConstIterator it = interceptors.begin(); it != interceptors.end(); ++it)
                 (*it)->processArticle(mya);
             
             d->addedArticlesNotify.append(mya);
@@ -467,9 +467,9 @@ void Feed::appendArticles(const RSS::Document &doc)
         }    
     }
     
-    Q3ValueList<Article>::ConstIterator dit = deletedArticles.begin();
-    Q3ValueList<Article>::ConstIterator dtmp;
-    Q3ValueList<Article>::ConstIterator den = deletedArticles.end();
+    QList<Article>::ConstIterator dit = deletedArticles.begin();
+    QList<Article>::ConstIterator dtmp;
+    QList<Article>::ConstIterator den = deletedArticles.end();
 
     // delete articles with delete flag set completely from archive, which aren't in the current feed source anymore
     while (dit != den)
@@ -524,9 +524,9 @@ void Feed::fetch(bool followDiscovery)
     d->fetchTries = 0;
 
     // mark all new as unread
-    Q3ValueList<Article> articles = d->articles.values();
-    Q3ValueList<Article>::Iterator it;
-    Q3ValueList<Article>::Iterator en = articles.end();
+    QList<Article> articles = d->articles.values();
+    QList<Article>::Iterator it;
+    QList<Article>::Iterator en = articles.end();
     for (it = articles.begin(); it != en; ++it)
     {
         if ((*it).status() == Article::New)
@@ -635,9 +635,9 @@ void Feed::slotDeleteExpiredArticles()
     if ( !usesExpiryByAge() )
         return;
 
-    Q3ValueList<Article> articles = d->articles.values();
+    QList<Article> articles = d->articles.values();
     
-    Q3ValueList<Article>::Iterator en = articles.end();
+    QList<Article>::Iterator en = articles.end();
 
     setNotificationMode(false);
 
@@ -646,7 +646,7 @@ void Feed::slotDeleteExpiredArticles()
     // doNotExpiredArticles once instead of in every iteration
     if (Settings::doNotExpireImportantArticles())
     {
-        for (Q3ValueList<Article>::Iterator it = articles.begin(); it != en; ++it)
+        for (QList<Article>::Iterator it = articles.begin(); it != en; ++it)
         {
             if (!(*it).keep() && isExpired(*it))
             {
@@ -656,7 +656,7 @@ void Feed::slotDeleteExpiredArticles()
     }
     else
     {
-        for (Q3ValueList<Article>::Iterator it = articles.begin(); it != en; ++it)
+        for (QList<Article>::Iterator it = articles.begin(); it != en; ++it)
         {
             if (isExpired(*it))
             {
@@ -783,11 +783,11 @@ void Feed::enforceLimitArticleNumber()
         return;
 
     setNotificationMode(false);
-    Q3ValueList<Article> articles = d->articles.values();
+    QList<Article> articles = d->articles.values();
     qHeapSort(articles);
-    Q3ValueList<Article>::Iterator it = articles.begin();
-    Q3ValueList<Article>::Iterator tmp;
-    Q3ValueList<Article>::Iterator en = articles.end();
+    QList<Article>::Iterator it = articles.begin();
+    QList<Article>::Iterator tmp;
+    QList<Article>::Iterator en = articles.end();
 
     int c = 0;
     

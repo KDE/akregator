@@ -29,8 +29,8 @@
 
 #include <q3listview.h>
 #include <qdom.h>
-#include <qstringlist.h>
-#include <q3valuelist.h>
+#include <QStringList>
+#include <QList>
 
 #include <kdebug.h>
 
@@ -40,16 +40,16 @@ class Folder::FolderPrivate
 {
     public:
         /** List of children */
-        Q3ValueList<TreeNode*> children;
+        QList<TreeNode*> children;
         /** caching unread count of children */
         int unread;
         /** whether or not the folder is expanded */
         bool open;
 
         /** caches guids for notifying added articles */
-        Q3ValueList<Article> addedArticlesNotify;
+        QList<Article> addedArticlesNotify;
         /** caches guids for notifying removed articles */
-        Q3ValueList<Article> removedArticlesNotify;
+        QList<Article> removedArticlesNotify;
 };
            
 bool Folder::accept(TreeNodeVisitor* visitor)
@@ -77,7 +77,7 @@ Folder::Folder(const QString& title) : TreeNode(), d(new FolderPrivate)
 Folder::~Folder()
 {
     TreeNode* tmp = 0;
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != d->children.end(); ++it)
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != d->children.end(); ++it)
     {
         delete tmp;
         tmp = *it;
@@ -93,8 +93,8 @@ Folder::~Folder()
 QStringList Folder::tags() const
 {
     QStringList t;
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
     {
         // intersect tag sets instead of appending lists, to avoid dupes. This sucks. Definitely. I want QSet. Now.
         QStringList t2 = (*it)->tags();
@@ -105,11 +105,11 @@ QStringList Folder::tags() const
     return t;
 }
 
-Q3ValueList<Article> Folder::articles(const QString& tag)
+QList<Article> Folder::articles(const QString& tag)
 {
-    Q3ValueList<Article> seq;
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<Article> seq;
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
         seq += (*it)->articles(tag);
      
     return seq;
@@ -123,14 +123,14 @@ QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute("isOpen", d->open ? "true" : "false");
     el.setAttribute( "id", QString::number(id()) );
 
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
         el.appendChild( (*it)->toOPML(el, document) );
         
     return el;
 }
 
-Q3ValueList<TreeNode*> Folder::children() const
+QList<TreeNode*> Folder::children() const
 {
     return d->children;
 }
@@ -145,7 +145,7 @@ void Folder::insertChild(TreeNode* node, TreeNode* after)
         insertChild(pos+1, node);
 }
 
-void Folder::insertChild(uint index, TreeNode* node)
+void Folder::insertChild(int index, TreeNode* node)
 {
 //    kdDebug() << "enter Folder::insertChild(int, node) " << node->title() << endl;
     if (node)
@@ -153,7 +153,7 @@ void Folder::insertChild(uint index, TreeNode* node)
         if (index >= d->children.size())
             d->children.append(node);
         else
-            d->children.insert(d->children.at(index), node);
+            d->children.insert(index, node);
         node->setParent(this);
         connectToNode(node);
         updateUnreadCount();
@@ -246,8 +246,8 @@ int Folder::totalCount() const
 {
     int totalCount = 0;
 
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
         totalCount += (*it)->totalCount();
     
     return totalCount;
@@ -257,8 +257,8 @@ void Folder::updateUnreadCount()
 {
     int unread = 0;
 
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
         unread += (*it)->unread();
     
     d->unread = unread;
@@ -267,8 +267,8 @@ void Folder::updateUnreadCount()
 void Folder::slotMarkAllArticlesAsRead() 
 {
     setNotificationMode(false);
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
         (*it)->slotMarkAllArticlesAsRead();
     setNotificationMode(true, true);
 }
@@ -289,16 +289,16 @@ void Folder::slotChildDestroyed(TreeNode* node)
 void Folder::slotDeleteExpiredArticles()
 {
     setNotificationMode(false);
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
         (*it)->slotDeleteExpiredArticles();
     setNotificationMode(true, true);
 }
 
 void Folder::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
-    Q3ValueList<TreeNode*>::ConstIterator en = d->children.end();
-    for (Q3ValueList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
+    QList<TreeNode*>::ConstIterator en = d->children.end();
+    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
         (*it)->slotAddToFetchQueue(queue, intervalFetchOnly);
 }
 
@@ -310,18 +310,18 @@ void Folder::connectToNode(TreeNode* child)
 {
         connect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         connect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        connect(child, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)));
-        connect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)));
-        connect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)));
+        connect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)));
+        connect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)));
+        connect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)));
 }
 
 void Folder::disconnectFromNode(TreeNode* child)
 {
         disconnect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         disconnect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        disconnect(child, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)));
-        disconnect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)));
-        disconnect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)));
+        disconnect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)));
+        disconnect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)));
+        disconnect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)));
 }
             
 TreeNode* Folder::next()

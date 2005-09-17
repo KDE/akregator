@@ -26,9 +26,8 @@
 #define PAGEVIEWER_H
 
 #include "viewer.h"
-//Added by qt3to4:
 #include <QPixmap>
-#include <Q3ValueList>
+#include <QLinkedList>
 
 
 class KAction;
@@ -54,7 +53,7 @@ namespace Akregator
 
             class HistoryEntry;
             void addHistoryEntry(const KURL& url);
-            void restoreHistoryEntry(const Q3ValueList<HistoryEntry>::Iterator& entry);
+            void restoreHistoryEntry(const QLinkedList<HistoryEntry>::Iterator& entry);
             void updateHistoryEntry();
 
         protected slots:

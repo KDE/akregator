@@ -45,10 +45,10 @@ class TagNode::TagNodePrivate
     int unread;
     QString icon;
     Tag tag;
-    Q3ValueList<Article> articles;
-    Q3ValueList<Article> addedArticlesNotify;
-    Q3ValueList<Article> removedArticlesNotify;
-    Q3ValueList<Article> updatedArticlesNotify;
+    QList<Article> articles;
+    QList<Article> addedArticlesNotify;
+    QList<Article> removedArticlesNotify;
+    QList<Article> updatedArticlesNotify;
 };
 
 TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
@@ -61,9 +61,9 @@ TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
     d->unread = 0;
     
     connect(observed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotObservedDestroyed(TreeNode*)));
-    connect(observed, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const Q3ValueList<Article>&)) );
-    connect(observed, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)) );
-    connect(observed, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)) );
+    connect(observed, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)) );
+    connect(observed, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)) );
+    connect(observed, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)) );
 
     d->articles = observed->articles(tag.id());
     calcUnread();
@@ -97,8 +97,8 @@ bool TagNode::accept(TreeNodeVisitor* visitor)
 void TagNode::calcUnread()
 {
     int unread = 0;
-    Q3ValueList<Article>::Iterator en = d->articles.end();
-    for (Q3ValueList<Article>::Iterator it = d->articles.begin(); it != en; ++it)
+    QList<Article>::Iterator en = d->articles.end();
+    for (QList<Article>::Iterator it = d->articles.begin(); it != en; ++it)
         if ((*it).status() != Article::Read)
             ++unread;
     if (d->unread != unread)
@@ -120,7 +120,7 @@ int TagNode::totalCount() const
 }
 
     
-Q3ValueList<Article> TagNode::articles(const QString& tag)
+QList<Article> TagNode::articles(const QString& tag)
 {
     Q_UNUSED(tag)
     return d->articles;
@@ -163,8 +163,8 @@ void TagNode::slotDeleteExpiredArticles()
 void TagNode::slotMarkAllArticlesAsRead()
 { 
     setNotificationMode(false);
-    Q3ValueList<Article>::Iterator en = d->articles.end();
-    for (Q3ValueList<Article>::Iterator it = d->articles.begin(); it != en; ++it)
+    QList<Article>::Iterator en = d->articles.end();
+    for (QList<Article>::Iterator it = d->articles.begin(); it != en; ++it)
         (*it).setStatus(Article::Read);
     setNotificationMode(true);
 }
@@ -194,11 +194,11 @@ void TagNode::doArticleNotification()
     TreeNode::doArticleNotification();
 }
 
-void TagNode::slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list)
+void TagNode::slotArticlesAdded(TreeNode* node, const QList<Article>& list)
 {
     Q_UNUSED(node)
     bool added = false;
-    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (!d->articles.contains(*it) && d->filter.matches(*it))
         {
@@ -215,11 +215,11 @@ void TagNode::slotArticlesAdded(TreeNode* node, const Q3ValueList<Article>& list
     }
 }
 
-void TagNode::slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& list)
+void TagNode::slotArticlesUpdated(TreeNode* node, const QList<Article>& list)
 {
     Q_UNUSED(node)
     bool updated = false;
-    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (d->articles.contains(*it))
         {
@@ -252,11 +252,11 @@ void TagNode::slotArticlesUpdated(TreeNode* node, const Q3ValueList<Article>& li
     }
 }
 
-void TagNode::slotArticlesRemoved(TreeNode* node, const Q3ValueList<Article>& list)
+void TagNode::slotArticlesRemoved(TreeNode* node, const QList<Article>& list)
 {
     Q_UNUSED(node)
     bool removed = false;
-    for (Q3ValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (d->articles.contains(*it))
         {

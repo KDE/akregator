@@ -116,10 +116,10 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
             d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
 
-            Q3ValueList<RSS::Category> cats = article.categories();
-            Q3ValueList<RSS::Category>::ConstIterator end = cats.end();
+            QList<RSS::Category> cats = article.categories();
+            QList<RSS::Category>::ConstIterator end = cats.end();
 
-            for (Q3ValueList<RSS::Category>::ConstIterator it = cats.begin(); it != end; ++it)
+            for (QList<RSS::Category>::ConstIterator it = cats.begin(); it != end; ++it)
             {
                 Backend::Category cat;
 

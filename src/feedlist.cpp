@@ -43,7 +43,7 @@ class FeedList::FeedListPrivate
 {
     public:
 
-        QMap<QString, Q3ValueList<Feed*> > urlMap;
+        QMap<QString, QList<Feed*> > urlMap;
         AddNodeVisitor* addNodeVisitor;
         RemoveNodeVisitor* removeNodeVisitor;
 };
@@ -222,10 +222,10 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
     if ( !flatList()->contains(parent) )
         parent = rootNode();
 
-    Q3ValueList<TreeNode*> children = list->rootNode()->children();
+    QList<TreeNode*> children = list->rootNode()->children();
 
-    Q3ValueList<TreeNode*>::ConstIterator end(  children.end() );
-    for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
+    QList<TreeNode*>::ConstIterator end(  children.end() );
+    for (QList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
     {
         list->rootNode()->removeChild(*it);
         parent->insertChild(*it, after);
@@ -254,11 +254,11 @@ QDomDocument FeedList::toXML() const
     QDomElement body = doc.createElement( "body" );
     root.appendChild( body );
 
-    Q3ValueList<TreeNode*> children = rootNode()->children();
+    QList<TreeNode*> children = rootNode()->children();
 
-    Q3ValueList<TreeNode*>::ConstIterator end(  children.end() );
+    QList<TreeNode*>::ConstIterator end(  children.end() );
 
-    for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
+    for (QList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
         body.appendChild( (*it)->toOPML(body, doc) );
 
     return doc;

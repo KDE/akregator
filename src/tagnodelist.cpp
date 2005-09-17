@@ -64,8 +64,8 @@ TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) :  NodeList(), d(ne
 
     setRootNode(new TagFolder(i18n("My Tags")));
 
-    Q3ValueList<Tag> list = tagSet->toMap().values();
-    for (Q3ValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    QList<Tag> list = tagSet->toMap().values();
+    for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
        insert(new TagNode(*it, d->feedList->rootNode()));
     }
@@ -161,7 +161,7 @@ bool TagNodeList::containsTagId(const QString& tagId)
     return d->tagIdToNodeMap.contains(tagId);
 }
 
-Q3ValueList<TagNode*> TagNodeList::toList() const
+QList<TagNode*> TagNodeList::toList() const
 {
     return d->tagIdToNodeMap.values();
 }

@@ -26,15 +26,14 @@
 #ifndef AKREGATORTREENODE_H
 #define AKREGATORTREENODE_H
 
-#include <qobject.h>
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QObject>
+#include <QList>
 
 class QDomDocument;
 class QDomElement;
 class QString;
 class QStringList;
-template <class T> class Q3ValueList;
+template <class T> class QList;
 
 namespace Akregator 
 {
@@ -117,7 +116,7 @@ public:
     If @c tag is not null, only articles tagged with @c tag are returned
     @return sequence of articles */
     
-    virtual Q3ValueList<Article> articles(const QString& tag=QString::null) = 0;
+    virtual QList<Article> articles(const QString& tag=QString::null) = 0;
 
     /** returns a list of all tags occurring in this node (sub tree for folders) */
 
@@ -183,13 +182,13 @@ signals:
         @param TreeNode* the node articles were added to
         @param QStringList the guids of the articles added
     */
-    void signalArticlesAdded(TreeNode*, const Q3ValueList<Article>& guids);
+    void signalArticlesAdded(TreeNode*, const QList<Article>& guids);
     
     /** emitted when articles were updated */
-    void signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>& guids);
+    void signalArticlesUpdated(TreeNode*, const QList<Article>& guids);
     
     /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved somewhere else in the tree, e.g. if the user moved the feed */
-    void signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>& guids);
+    void signalArticlesRemoved(TreeNode*, const QList<Article>& guids);
 
 protected:
 

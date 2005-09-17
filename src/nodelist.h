@@ -25,16 +25,15 @@
 #ifndef AKREGATOR_NODELIST_H
 #define AKREGATOR_NODELIST_H
 
-#include <qobject.h>
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QObject>
+#include <QList>
 
 class QDomDocument;
 class QDomNode;
 class QString;
 
 template <class K,class T> class QMap;
-template <class T> class Q3ValueList;
+template <class T> class QList;
 
 namespace Akregator {
 
@@ -67,7 +66,7 @@ public:
     void setTitle(const QString& name);
 
     /** returns a flat list containing all nodes in the tree */
-    const Q3ValueList<TreeNode*>& asFlatList() const;
+    const QList<TreeNode*>& asFlatList() const;
 
 signals:
     void signalDestroyed(NodeList*);
@@ -85,7 +84,7 @@ public slots:
 
 protected:
 
-    Q3ValueList<TreeNode*>* flatList() const;
+    QList<TreeNode*>* flatList() const;
     QMap<int, TreeNode*>* idMap() const;
     
     int generateID();

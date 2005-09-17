@@ -44,7 +44,7 @@ namespace Akregator {
 class FeedIconManager::FeedIconManagerPrivate
 {
     public:
-    Q3ValueList<Feed*> registeredFeeds;
+    QList<Feed*> registeredFeeds;
     Q3Dict<Feed> urlDict;
 };
 

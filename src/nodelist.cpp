@@ -38,7 +38,7 @@ namespace Akregator {
 class NodeList::NodeListPrivate
 {
     public:
-    Q3ValueList<TreeNode*> flatList;
+    QList<TreeNode*> flatList;
     Folder* rootNode;
     QString title;
     QMap<int, TreeNode*> idMap;
@@ -146,7 +146,7 @@ Folder* NodeList::rootNode() const
     return d->rootNode;
 }
 
-const Q3ValueList<TreeNode*>& NodeList::asFlatList() const
+const QList<TreeNode*>& NodeList::asFlatList() const
 {
     return d->flatList;
 }
@@ -156,7 +156,7 @@ bool NodeList::isEmpty() const
     return d->rootNode->firstChild() == 0;
 }
 
-Q3ValueList<TreeNode*>* NodeList::flatList() const
+QList<TreeNode*>* NodeList::flatList() const
 {
     return &(d->flatList);
 }
@@ -165,9 +165,9 @@ void NodeList::clear()
 {
     Q_ASSERT(rootNode());
     
-    Q3ValueList<TreeNode*> children = rootNode()->children();
+    QList<TreeNode*> children = rootNode()->children();
 
-    for (Q3ValueList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+    for (QList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
         delete *it; // emits signal "emitSignalDestroyed"
 }
 

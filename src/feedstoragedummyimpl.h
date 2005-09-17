@@ -25,8 +25,7 @@
 #define AKREGATOR_BACKEND_FEEDSTORAGEDUMMYIMPL_H
 
 #include "feedstorage.h"
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 namespace Akregator {
 namespace Backend {
 

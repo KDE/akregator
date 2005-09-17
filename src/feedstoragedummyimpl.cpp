@@ -44,7 +44,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             public:
             Entry() : guidIsHash(false), guidIsPermaLink(false), status(0), pubDate(0), hash(0) {}
             StorageDummyImpl* mainStorage;
-            Q3ValueList<Category> categories;
+            QList<Category> categories;
             QString title;
             QString description;
             QString link;
@@ -69,7 +69,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
     // tag -> articles index
     QMap<QString, QStringList > taggedArticles;
 
-    Q3ValueList<Category> categories;
+    QList<Category> categories;
     QMap<Category, QStringList> categorizedArticles;
 
     Storage* mainStorage;
@@ -214,8 +214,8 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     }
 
     // remove article from tag->category index
-    Q3ValueList<Category>::ConstIterator it2 = entry.categories.begin();
-    Q3ValueList<Category>::ConstIterator end2 = entry.categories.end();
+    QList<Category>::ConstIterator it2 = entry.categories.begin();
+    QList<Category>::ConstIterator end2 = entry.categories.end();
 
     for ( ; it2 != end2; ++it2)
     {
@@ -345,7 +345,7 @@ void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
 QList<Category> FeedStorageDummyImpl::categories(const QString& guid)
 {
   if (!guid.isNull())
-        return contains(guid) ? d->entries[guid].categories : Q3ValueList<Category>();
+        return contains(guid) ? d->entries[guid].categories : QList<Category>();
     else
         return d->categories;
 }

@@ -55,7 +55,7 @@
 
 //Added by qt3to4:
 #include <QPixmap>
-#include <Q3ValueList>
+#include <QList>
 #include <QDragMoveEvent>
 #include <QDropEvent>
 
@@ -102,7 +102,7 @@ public:
         return true;
     }
 */
-    void articlesDropped(TreeNode* node, const Q3ValueList<ArticleDragItem>& items)
+    void articlesDropped(TreeNode* node, const QList<ArticleDragItem>& items)
     {
         m_items = items;
         m_mode = ArticlesDropped;
@@ -111,7 +111,7 @@ public:
 
 private:
     NodeListView* m_view;
-    Q3ValueList<ArticleDragItem> m_items;
+    QList<ArticleDragItem> m_items;
      
     enum Mode { ArticlesDropped };
     Mode m_mode;
@@ -254,10 +254,10 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 
             }
             m_view->d->itemDict.insert(node, item);
-            Q3ValueList<TreeNode*> children = node->children();
+            QList<TreeNode*> children = node->children();
 
             // add children recursively
-            for (Q3ValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
+            for (QList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
                 visit(*it);
 
             m_view->connectToNode(node);
@@ -288,10 +288,10 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
                     item = new FolderItem(m_view, node);
             }
             m_view->d->itemDict.insert(node, item);
-            Q3ValueList<TreeNode*> children = node->children();
+            QList<TreeNode*> children = node->children();
 
             // add children recursively
-            for (Q3ValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
+            for (QList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
                 visit(*it);
 
             m_view->connectToNode(node);
@@ -519,7 +519,7 @@ void NodeListView::slotDropped( QDropEvent *e, Q3ListViewItem*
             TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(itemAt(vp));
             if (tni != 0 && tni->node() != 0)
             {
-                Q3ValueList<ArticleDragItem> items;
+                QList<ArticleDragItem> items;
                 ArticleDrag::decode(e, items);
                 d->dragAndDropVisitor->articlesDropped(tni->node(), items);
 

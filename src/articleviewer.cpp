@@ -638,9 +638,9 @@ void ArticleViewer::slotUpdateCombinedView()
     if (!m_node)
         return slotClear();
 
-    Q3ValueList<Article> articles = m_node->articles();
-    Q3ValueList<Article>::ConstIterator end = articles.end();
-    Q3ValueList<Article>::ConstIterator it = articles.begin();
+    QList<Article> articles = m_node->articles();
+    QList<Article>::ConstIterator end = articles.end();
+    QList<Article>::ConstIterator it = articles.begin();
 
     QString text;
 
@@ -663,17 +663,17 @@ void ArticleViewer::slotUpdateCombinedView()
 
 }
 
-void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const Q3ValueList<Article>& /*list*/)
+void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& /*list*/)
 {
     if (m_viewMode == CombinedView)
         slotUpdateCombinedView();
 }
 
-void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const Q3ValueList<Article>& /*list*/)
+void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& /*list*/)
 {
 }
 
-void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const Q3ValueList<Article>& /*list*/)
+void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& /*list*/)
 {
 }
 
@@ -746,9 +746,9 @@ void ArticleViewer::connectToNode(TreeNode* node)
         if (m_viewMode == CombinedView)
         {
 //            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-            connect( node, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const Q3ValueList<Article>&)));
-            connect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)));
-            connect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)));
+            connect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)));
+            connect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)));
+            connect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)));
         }
         if (m_viewMode == SummaryView)
             connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
@@ -764,9 +764,9 @@ void ArticleViewer::disconnectFromNode(TreeNode* node)
 //        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
         disconnect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
         disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
-        disconnect( node, SIGNAL(signalArticlesAdded(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const Q3ValueList<Article>&)));
-        disconnect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const Q3ValueList<Article>&)));
-        disconnect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const Q3ValueList<Article>&)));
+        disconnect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)));
+        disconnect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)));
+        disconnect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)));
 
     }
 }

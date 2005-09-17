@@ -1,9 +1,8 @@
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 #ifndef AKREGATOR_ARTICLEINTERCEPTOR_H
 #define AKREGATOR_ARTICLEINTERCEPTOR_H
 
-template <class T> class Q3ValueList;
+template <class T> class QList;
 
 namespace Akregator {
 
@@ -32,7 +31,7 @@ class ArticleInterceptorManager
 
         void addInterceptor(ArticleInterceptor* interceptor);
         void removeInterceptor(ArticleInterceptor* interceptor);
-        Q3ValueList<ArticleInterceptor*> interceptors() const;
+        QList<ArticleInterceptor*> interceptors() const;
 
     private:
        static ArticleInterceptorManager* m_self;

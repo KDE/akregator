@@ -10,7 +10,7 @@ namespace Akregator
 class ArticleInterceptorManager::ArticleInterceptorManagerPrivate 
 {
     public:
-        Q3ValueList<ArticleInterceptor*> interceptors;
+        QList<ArticleInterceptor*> interceptors;
 };
 
 
@@ -43,7 +43,7 @@ void ArticleInterceptorManager::removeInterceptor(ArticleInterceptor* intercepto
     d->interceptors.remove(interceptor);
 }
 
-Q3ValueList<ArticleInterceptor*> ArticleInterceptorManager::interceptors() const
+QList<ArticleInterceptor*> ArticleInterceptorManager::interceptors() const
 {
     return d->interceptors;
 }

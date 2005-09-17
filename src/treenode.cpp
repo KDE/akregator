@@ -93,23 +93,23 @@ TreeNode* TreeNode::nextSibling() const
 {
     if (!d->parent)
         return 0;
-    Q3ValueList<TreeNode*> children = d->parent->children();
+    QList<TreeNode*> children = d->parent->children();
     TreeNode* me = (TreeNode*)this;
         
     int idx = children.findIndex(me);
     
-    return idx+1 < children.size() ? *(children.at(idx+1)) : 0L;
+    return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
 }
 
 TreeNode* TreeNode::prevSibling() const
 {
     if (!d->parent)
         return 0;
-    Q3ValueList<TreeNode*> children = d->parent->children();
+    QList<TreeNode*> children = d->parent->children();
     TreeNode* me = (TreeNode*)this;
     
     int idx = children.findIndex(me);
-    return idx > 0 ? *(d->parent->children().at(idx-1)) : 0L;
+    return (idx > 0) ? children.at(idx-1) : 0L;
 }
 
 Folder* TreeNode::parent() const

@@ -142,9 +142,9 @@ public:
 void ActionManagerImpl::slotUpdateTagActions(bool enabled, const QStringList& tagIds)
 {
     d->tagMenu->setEnabled(enabled);
-    Q3ValueList<TagAction*> actions = d->tagActions.values();
+    QList<TagAction*> actions = d->tagActions.values();
 
-    for (Q3ValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+    for (QList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
     {
         (*it)->setChecked(tagIds.contains((*it)->tag().id()));
     }
@@ -169,8 +169,8 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
         connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
     }
 
-    Q3ValueList<TagAction*> actions = d->tagActions.values();
-    for (Q3ValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
+    QList<TagAction*> actions = d->tagActions.values();
+    for (QList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
     {
         d->tagMenu->remove(*it);
         delete *it;
@@ -181,8 +181,8 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
 
     //TODO: remove actions from menus, delete actions, clear maps
 
-    Q3ValueList<Tag> list = tagSet->toMap().values();
-    for (Q3ValueList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
+    QList<Tag> list = tagSet->toMap().values();
+    for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
         slotTagAdded(*it);
 }
 

@@ -41,8 +41,7 @@
 #include <qtimer.h>
 #include <qtoolbutton.h>
 #include <qtooltip.h>
-//Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 using Akregator::Filters::ArticleMatcher;
 using Akregator::Filters::Criterion;
@@ -175,8 +174,8 @@ void SearchBar::slotSearchStringChanged(const QString& search)
 
 void SearchBar::slotActivateSearch()
 {
-    Q3ValueList<Criterion> textCriteria;
-    Q3ValueList<Criterion> statusCriteria;
+    QList<Criterion> textCriteria;
+    QList<Criterion> statusCriteria;
 
     if (!d->searchText.isEmpty())
     {
