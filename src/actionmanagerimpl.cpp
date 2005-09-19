@@ -145,7 +145,7 @@ void ActionManagerImpl::slotUpdateTagActions(bool enabled, const QStringList& ta
     {
         d->tagMenu->setEnabled(enabled);
         QValueList<TagAction*> actions = d->tagActions.values();
-    
+
         for (QValueList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
         {
             (*it)->setChecked(tagIds.contains((*it)->tag().id()));
@@ -179,7 +179,7 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
         delete *it;
     }
 
-    
+
     d->tagActions.clear();
 
     //TODO: remove actions from menus, delete actions, clear maps
@@ -192,7 +192,7 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
 void ActionManagerImpl::slotTagAdded(const Tag& tag)
 {
     if (!Settings::showTaggingGUI())
-        return; 
+        return;
 
     if (!d->tagActions.contains(tag.id()))
     {
@@ -204,7 +204,7 @@ void ActionManagerImpl::slotTagAdded(const Tag& tag)
 void ActionManagerImpl::slotTagRemoved(const Tag& tag)
 {
     if (!Settings::showTaggingGUI())
-        return; 
+        return;
 
     QString id = tag.id();
     TagAction* action = d->tagActions[id];
@@ -332,14 +332,14 @@ void ActionManagerImpl::initView(View* view)
                                     actionCollection(), "article_set_status" );
 
     d->speakSelectedArticlesAction = new KAction(i18n("&Speak Selected Articles"), "kttsd", "", d->view, SLOT(slotTextToSpeechRequest()), actionCollection(), "akr_texttospeech");
-    
+
     KAction* abortTTS = new KAction(i18n( "&Stop Speaking" ), "player_stop", Key_Escape, SpeechClient::self(), SLOT(slotAbortJobs()), actionCollection(), "akr_aborttexttospeech");
     abortTTS->setEnabled(false);
 
     connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
     abortTTS, SLOT(setEnabled(bool)));
 
-    statusMenu->insert(new KAction(KGuiItem(i18n("&Read"), "",
+    statusMenu->insert(new KAction(KGuiItem(i18n("as in: mark as read","&Read"), "",
                        i18n("Mark selected article as read")),
     "Ctrl+E", d->view, SLOT(slotSetSelectedArticleRead()),
     actionCollection(), "article_set_status_read"));
