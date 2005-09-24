@@ -711,7 +711,10 @@ void Feed::setArticleDeleted(Article& a)
 {
     if (!d->deletedArticles.contains(a))
         d->deletedArticles.append(a);
-    d->removedArticlesNotify.append(a);
+
+    if (!d->removedArticlesNotify.contains(a))
+        d->removedArticlesNotify.append(a);
+
     articlesModified();
 }
 
@@ -754,17 +757,20 @@ void Feed::doArticleNotification()
 {
     if (!d->addedArticlesNotify.isEmpty())
     {
-        emit signalArticlesAdded(this, d->addedArticlesNotify);
+        QValueList<Article> l = d->addedArticlesNotify;
+        emit signalArticlesAdded(this, l);
         d->addedArticlesNotify.clear();
     }
     if (!d->updatedArticlesNotify.isEmpty())
     {
-        emit signalArticlesUpdated(this, d->updatedArticlesNotify);
+        QValueList<Article> l = d->updatedArticlesNotify;
+        emit signalArticlesUpdated(this, l);
         d->updatedArticlesNotify.clear();
     }
     if (!d->removedArticlesNotify.isEmpty())
     {
-        emit signalArticlesRemoved(this, d->removedArticlesNotify);
+        QValueList<Article> l = d->removedArticlesNotify;
+        emit signalArticlesRemoved(this, l);
         d->removedArticlesNotify.clear();
     }
     TreeNode::doArticleNotification();
