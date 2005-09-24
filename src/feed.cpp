@@ -757,18 +757,24 @@ void Feed::doArticleNotification()
 {
     if (!d->addedArticlesNotify.isEmpty())
     {
+        // copy list, otherwise the refcounting in Article::Private breaks for 
+        // some reason (causing segfaults)
         QValueList<Article> l = d->addedArticlesNotify;
         emit signalArticlesAdded(this, l);
         d->addedArticlesNotify.clear();
     }
     if (!d->updatedArticlesNotify.isEmpty())
     {
+        // copy list, otherwise the refcounting in Article::Private breaks for
+        // some reason (causing segfaults)
         QValueList<Article> l = d->updatedArticlesNotify;
         emit signalArticlesUpdated(this, l);
         d->updatedArticlesNotify.clear();
     }
     if (!d->removedArticlesNotify.isEmpty())
     {
+        // copy list, otherwise the refcounting in Article::Private breaks for 
+        // some reason (causing segfaults)
         QValueList<Article> l = d->removedArticlesNotify;
         emit signalArticlesRemoved(this, l);
         d->removedArticlesNotify.clear();
