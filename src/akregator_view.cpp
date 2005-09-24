@@ -1290,7 +1290,10 @@ void View::slotArticleDelete()
         }
 
         for (QList<Feed*>::Iterator it = feeds.begin(); it != feeds.end(); ++it)
+        {
             (*it)->setNotificationMode(true);
+        }
+
         if (m_listTabWidget->activeView()->selectedNode())
             m_listTabWidget->activeView()->selectedNode()->setNotificationMode(true);
     }

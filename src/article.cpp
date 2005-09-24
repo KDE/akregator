@@ -197,13 +197,14 @@ void Article::setDeleted()
 {
     if (isDeleted())
         return;
-    if (d->feed)
-        d->feed->setArticleDeleted(*this);
+  
     setStatus(Read);
     d->status = Private::Deleted | Private::Read;
     d->archive->setStatus(d->guid, d->status);
     d->archive->setDeleted(d->guid);
 
+    if (d->feed)
+        d->feed->setArticleDeleted(*this);
 }
 
 bool Article::isDeleted() const
