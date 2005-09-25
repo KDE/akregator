@@ -3,6 +3,7 @@ Type=Service
 Name=Metakit storage backend
 Name[bg]=Приставка за архивиране Metakit
 Name[cs]=Metakit úložiště
+Name[da]=Metakit lagringsgrænseflade
 Name[es]=Dorsal de almacenamiento Metakit
 Name[et]=Metakiti salvestamisrakendus
 Name[fr]=Stockage avec Metakit
