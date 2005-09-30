@@ -521,7 +521,7 @@ void Part::loadTagSet(const QString& path)
         file.close();
     }
     // if we can't load the tagset from the xml file, check for the backup in the backend
-    if (!doc.isNull())
+    if (doc.isNull())
     {
          doc.setContent(m_storage->restoreTagSet());
     }
