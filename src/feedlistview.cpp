@@ -117,27 +117,25 @@ class NodeListView::ConnectNodeVisitor : public TreeNodeVisitor
     public:
         ConnectNodeVisitor(NodeListView* view) : m_view(view) {}
 
-        virtual bool visitTagNode(TagNode* node)
+        virtual bool visitTreeNode(TreeNode* node)
         {
             connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
             connect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
             return true;
         }
-        
+
         virtual bool visitFolder(Folder* node)
         {
+            visitTreeNode(node);
             connect(node, SIGNAL(signalChildAdded(TreeNode*)), m_view, SLOT(slotNodeAdded(TreeNode*) ));
             connect(node, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), m_view, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
-            
-            connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
-            connect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
             return true;
         }
         
         virtual bool visitFeed(Feed* node)
         {
-            connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
-            connect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            visitTreeNode(node);
+            
             connect(node, SIGNAL(fetchStarted(Feed*)), m_view, SLOT(slotFeedFetchStarted(Feed*)));
             connect(node, SIGNAL(fetchAborted(Feed*)), m_view, SLOT(slotFeedFetchAborted(Feed*)));
             connect(node, SIGNAL(fetchError(Feed*)), m_view, SLOT(slotFeedFetchError(Feed*)));
@@ -978,11 +976,11 @@ void NodeListView::slotNodeDestroyed(TreeNode* node)
 {
     TreeNodeItem* item = findNodeItem(node);
     
-    if (!node || !item)
-        return;
-    
     d->itemDict.remove(node);
 
+    if (!item)
+        return;
+    
     if ( item->isSelected() )
     {
         if (item->itemBelow())
