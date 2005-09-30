@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>355</width>
-            <height>186</height>
+            <height>189</height>
         </rect>
     </property>
     <property name="caption">
@@ -201,156 +201,162 @@
                 <attribute name="title">
                     <string>Ar&amp;chive</string>
                 </attribute>
-                <widget class="QButtonGroup">
+                <grid>
                     <property name="name">
-                        <cstring>bg_feedArchive</cstring>
+                        <cstring>unnamed</cstring>
                     </property>
-                    <property name="geometry">
-                        <rect>
-                            <x>11</x>
-                            <y>11</y>
-                            <width>409</width>
-                            <height>135</height>
-                        </rect>
-                    </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
-                    </property>
-                    <property name="title">
-                        <string></string>
-                    </property>
-                    <property name="exclusive">
-                        <bool>false</bool>
-                    </property>
-                    <grid>
+                    <widget class="QButtonGroup" row="0" column="0">
                         <property name="name">
-                            <cstring>unnamed</cstring>
+                            <cstring>bg_feedArchive</cstring>
                         </property>
-                        <property name="margin">
-                            <number>0</number>
+                        <property name="frameShape">
+                            <enum>NoFrame</enum>
                         </property>
-                        <widget class="QRadioButton" row="1" column="0" rowspan="1" colspan="4">
+                        <property name="title">
+                            <string></string>
+                        </property>
+                        <property name="exclusive">
+                            <bool>false</bool>
+                        </property>
+                        <grid>
                             <property name="name">
-                                <cstring>rb_keepAllArticles</cstring>
+                                <cstring>unnamed</cstring>
                             </property>
-                            <property name="text">
-                                <string>&amp;Keep all articles</string>
+                            <property name="margin">
+                                <number>0</number>
                             </property>
-                        </widget>
-                        <widget class="QRadioButton" row="2" column="0">
-                            <property name="name">
-                                <cstring>rb_limitArticleNumber</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Limit archi&amp;ve to:</string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="3" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>rb_limitArticleAge</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Delete articles older than:</string>
-                            </property>
-                        </widget>
-                        <widget class="KIntSpinBox" row="3" column="2">
-                            <property name="name">
-                                <cstring>sb_maxArticleAge</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> days</string>
-                            </property>
-                            <property name="specialValueText">
-                                <string>1 day</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>1000000</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                            <property name="value">
-                                <number>1</number>
-                            </property>
-                        </widget>
-                        <spacer row="3" column="3">
-                            <property name="name">
-                                <cstring>spacer5_2</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>99</width>
-                                    <height>20</height>
-                                </size>
-                            </property>
-                        </spacer>
-                        <spacer row="2" column="3">
-                            <property name="name">
-                                <cstring>spacer7</cstring>
-                            </property>
-                            <property name="orientation">
-                                <enum>Horizontal</enum>
-                            </property>
-                            <property name="sizeType">
-                                <enum>Expanding</enum>
-                            </property>
-                            <property name="sizeHint">
-                                <size>
-                                    <width>100</width>
-                                    <height>20</height>
-                                </size>
-                            </property>
-                        </spacer>
-                        <widget class="KIntSpinBox" row="2" column="1" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>sb_maxArticleNumber</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> articles</string>
-                            </property>
-                            <property name="specialValueText">
-                                <string>1 article</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>1000000</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="4" column="0" rowspan="1" colspan="4">
-                            <property name="name">
-                                <cstring>rb_disableArchiving</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Di&amp;sable archiving</string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="0" column="0" rowspan="1" colspan="4">
-                            <property name="name">
-                                <cstring>rb_globalDefault</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Use default settings</string>
-                            </property>
-                            <property name="checked">
-                                <bool>true</bool>
-                            </property>
-                        </widget>
-                    </grid>
-                </widget>
+                            <widget class="QRadioButton" row="1" column="0" rowspan="1" colspan="4">
+                                <property name="name">
+                                    <cstring>rb_keepAllArticles</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Keep all articles</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+K</string>
+                                </property>
+                            </widget>
+                            <widget class="QRadioButton" row="2" column="0">
+                                <property name="name">
+                                    <cstring>rb_limitArticleNumber</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Limit archi&amp;ve to:</string>
+                                </property>
+                            </widget>
+                            <widget class="QRadioButton" row="3" column="0" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>rb_limitArticleAge</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Delete articles older than:</string>
+                                </property>
+                            </widget>
+                            <widget class="KIntSpinBox" row="3" column="2">
+                                <property name="name">
+                                    <cstring>sb_maxArticleAge</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="suffix">
+                                    <string> days</string>
+                                </property>
+                                <property name="specialValueText">
+                                    <string>1 day</string>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000000</number>
+                                </property>
+                                <property name="minValue">
+                                    <number>1</number>
+                                </property>
+                                <property name="value">
+                                    <number>1</number>
+                                </property>
+                            </widget>
+                            <spacer row="3" column="3">
+                                <property name="name">
+                                    <cstring>spacer5_2</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>99</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <spacer row="2" column="3">
+                                <property name="name">
+                                    <cstring>spacer7</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>100</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="KIntSpinBox" row="2" column="1" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>sb_maxArticleNumber</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="suffix">
+                                    <string> articles</string>
+                                </property>
+                                <property name="specialValueText">
+                                    <string>1 article</string>
+                                </property>
+                                <property name="maxValue">
+                                    <number>1000000</number>
+                                </property>
+                                <property name="minValue">
+                                    <number>1</number>
+                                </property>
+                            </widget>
+                            <widget class="QRadioButton" row="4" column="0" rowspan="1" colspan="4">
+                                <property name="name">
+                                    <cstring>rb_disableArchiving</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Di&amp;sable archiving</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+S</string>
+                                </property>
+                            </widget>
+                            <widget class="QRadioButton" row="0" column="0" rowspan="1" colspan="4">
+                                <property name="name">
+                                    <cstring>rb_globalDefault</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Use default settings</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+U</string>
+                                </property>
+                                <property name="checked">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                </grid>
             </widget>
             <widget class="QWidget">
                 <property name="name">
