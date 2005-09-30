@@ -127,7 +127,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 
     m_tagSetPath = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/tagset.xml";
 
-    loadTagSet(m_tagSetPath);
     Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
     Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
     loadPlugins(); // FIXME: also unload them!
@@ -140,8 +139,10 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     if (!m_storage) // Houston, we have a problem
     {
         m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
-        KMessageBox::error(m_view, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg("metakit"), i18n("Plugin error") );
+
+        KMessageBox::error(m_view, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg(Settings::archiveBackend()), i18n("Plugin error") );
     }
+
     Filters::ArticleFilterList list;
     list.readConfig(Settings::self()->config());
     Kernel::self()->setArticleFilterList(list);
@@ -152,6 +153,8 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_storage->open(true);
     Kernel::self()->setStorage(m_storage);
     Backend::Storage::setInstance(m_storage); // TODO: kill this one
+
+    loadTagSet(m_tagSetPath);
 
     m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);
@@ -357,14 +360,22 @@ QDomDocument Part::createDefaultFeedList()
 
 bool Part::openFile()
 {
+    emit setStatusBarText(i18n("Opening Feed List...") );
+
     QString str;
     // m_file is always local so we can use QFile on it
     QFile file(m_file);
-    if (!file.exists())
+
+    bool fileExists = file.exists();
+    QString listBackup = m_storage->restoreFeedList();
+     
+    QDomDocument doc;
+
+    if (!fileExists)
     {
-        m_view->loadFeeds(createDefaultFeedList());
+        str = createDefaultFeedList().toString();
     }
-    else
+    else 
     {
         if (file.open(QIODevice::ReadOnly))
         {
@@ -374,38 +385,33 @@ bool Part::openFile()
             str = stream.read();
             file.close();
         }
-        else
-        {
-            KMessageBox::error(m_view, i18n("Could not read standard feed list (%1). A default feed list will be used.").arg(m_file), i18n("Read Error") );
-            return false;
-        }
-
-        emit setStatusBarText(i18n("Opening Feed List...") );
-
-        QDomDocument doc;
 
         if (!doc.setContent(str))
         {
+
             QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
 
             copyFile(backup);
 
             KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
 
-            doc = createDefaultFeedList();
+            if (!doc.setContent(listBackup))
+                doc = createDefaultFeedList();
         }
-
-        if (!m_view->loadFeeds(doc))
-        {
-            QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
-            copyFile(backup);
-
-            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
-            m_view->loadFeeds(createDefaultFeedList());
-        }
-
-        emit setStatusBarText(QString::null);
     }
+
+    if (!m_view->loadFeeds(doc))
+    {
+        QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+        copyFile(backup);
+
+        KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
+
+        m_view->loadFeeds(createDefaultFeedList());
+    }
+
+    emit setStatusBarText(QString::null);
+    
 
     if( Settings::markAllFeedsReadOnStartup() )
         m_view->slotMarkAllFeedsRead();
@@ -431,6 +437,9 @@ void Part::slotSaveFeedList()
             m_backedUpList = true;
     }
 
+    QString xmlStr = m_view->feedListToOPML().toString();
+    m_storage->storeFeedList(xmlStr);
+
     QFile file(m_file);
     if (file.open(QIODevice::WriteOnly) == false)
     {
@@ -446,7 +455,7 @@ void Part::slotSaveFeedList()
     // Write OPML data file.
     // Archive data files are saved elsewhere.
 
-    stream << m_view->feedListToOPML().toString();
+    stream << xmlStr << endl;
 
     file.close();
 }
@@ -503,13 +512,23 @@ QWidget* Part::getMainWindow()
 
 void Part::loadTagSet(const QString& path)
 {
+    QDomDocument doc;
+
     QFile file(path);
     if (file.open(QIODevice::ReadOnly))
     {
-        QDomDocument doc;
-        if (doc.setContent(file.readAll()))
-            Kernel::self()->tagSet()->readFromXML(doc);
+        doc.setContent(file.readAll());
         file.close();
+    }
+    // if we can't load the tagset from the xml file, check for the backup in the backend
+    if (!doc.isNull())
+    {
+         doc.setContent(m_storage->restoreTagSet());
+    }
+
+    if (doc.isNull())
+    {
+        Kernel::self()->tagSet()->readFromXML(doc);
     }
     else
     {
@@ -519,14 +538,18 @@ void Part::loadTagSet(const QString& path)
 
 void Part::saveTagSet(const QString& path)
 {
+
+    QString xmlStr = Kernel::self()->tagSet()->toXML().toString();
+
+    m_storage->storeTagSet(xmlStr);
+
     QFile file(path);
 
     if ( file.open(QIODevice::WriteOnly) )
     {
-
         QTextStream stream(&file);
         stream.setEncoding(QTextStream::UnicodeUTF8);
-        stream << Kernel::self()->tagSet()->toXML().toString() << "\n";
+        stream << xmlStr << "\n";
         file.close();
     }
 }
