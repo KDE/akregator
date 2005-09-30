@@ -52,13 +52,16 @@ class StorageMK4Impl::StorageMK4ImplPrivate
         c4_Storage* storage;
         c4_View archiveView;
         bool autoCommit;
-	    bool modified;
+        bool modified;
         QMap<QString, FeedStorage*> feeds;
         QStringList feedURLs;
         c4_StringProp purl, pFeedList, pTagSet;
         c4_IntProp punread, ptotalCount, plastFetch;
         QTimer* commitTimer;
         QString archivePath;
+
+        c4_Storage* feedListStorage;
+        c4_View feedListView;
 };
 
 void StorageMK4Impl::setArchivePath(const QString& archivePath)
@@ -104,6 +107,11 @@ bool StorageMK4Impl::open(bool autoCommit)
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on url
     d->autoCommit = autoCommit;
+
+    filePath = d->archivePath +"/feedlistbackup.mk4";
+    d->feedListStorage = new c4_Storage(filePath.local8Bit(), true);
+    d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
+    d->feedListView = d->feedListView.Hash(hash, 1); // hash on url
     return true;
 }
 
@@ -125,7 +133,14 @@ bool StorageMK4Impl::close()
     }
     if(d->autoCommit)
         d->storage->Commit();
-    delete d->storage; d->storage = 0;
+
+    delete d->storage; 
+    d->storage = 0;
+    
+    d->feedListStorage->Commit();
+    delete d->feedListStorage;
+    d->feedListStorage = 0;
+
     return true;
 }
 
@@ -299,26 +314,48 @@ void StorageMK4Impl::clear()
 
 }
 
-void StorageMK4Impl::storeFeedList(const QString& /*opmlStr*/)
+void StorageMK4Impl::storeFeedList(const QString& opmlStr)
 {
-    // TODO
+    c4_Row row;
+
+    if  (d->feedListView.GetSize() == 0)
+        d->feedListView.Add(row);
+    
+    row = d->feedListView.GetAt(0);
+    d->pFeedList(row) = opmlStr.utf8().data();
+    d->feedListView.SetAt(0, row);
+    d->modified = true;
 }
 
 QString StorageMK4Impl::restoreFeedList() const
 {
-    // TODO
-    return "";
+    if  (d->feedListView.GetSize() == 0)
+        return "";
+
+    c4_Row row = d->feedListView.GetAt(0);
+    return QString::fromUtf8(d->pFeedList(row));
 }
 
-void StorageMK4Impl::storeTagSet(const QString& /*xmlStr*/)
+void StorageMK4Impl::storeTagSet(const QString& xmlStr)
 {
-    // TODO
+    c4_Row row;
+
+    if  (d->feedListView.GetSize() == 0)
+        d->feedListView.Add(row);
+
+    row = d->feedListView.GetAt(0);
+    d->pTagSet(row) = xmlStr.utf8().data();
+    d->feedListView.SetAt(0, row);
+    d->modified = true;
 }
 
 QString StorageMK4Impl::restoreTagSet() const
 {
-    // TODO
-    return "";
+    if  (d->feedListView.GetSize() == 0)
+        return "";
+
+    c4_Row row = d->feedListView.GetAt(0);
+    return QString::fromUtf8(d->pTagSet(row));
 }
 
 } // namespace Backend
