@@ -359,7 +359,7 @@ bool ArticleViewer::openURL(const KURL& url)
 void ArticleViewer::displayAboutPage()
 {
     QString location = locate("data", "akregator/about/main.html");
-    QString content = KPIM::kFileToString(location);
+    QString content = KPIM::kFileToByteArray( location );
     content = content.arg( locate( "data", "libkdepim/about/kde_infopage.css" ) );
     if ( kapp->reverseLayout() )
         content = content.arg( "@import \"%1\";" ).arg( locate( "data", "libkdepim/about/kde_infopage_rtl.css" ) );
