@@ -33,4 +33,15 @@ QString Utils::stripTags(const QString& str)
     return QString(str).replace(QRegExp("<[^>]*>"), "");
 }
 
+uint Utils::calcHash(const QString& str)
+{
+    if (str.isNull()) // handle null string as "", prevents crash
+        return calcHash("");
+    const char* s = str.ascii();
+    uint hash = 5381;
+    int c;
+    while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
+    return hash;
+}
+
 }

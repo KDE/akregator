@@ -26,6 +26,7 @@
 #define AKREGATOR_UTILS_H
 
 class QString;
+typedef unsigned int uint;
 
 namespace Akregator {
 
@@ -35,8 +36,13 @@ class Utils
     /** removes HTML/XML tags (everything between < and >, that is) from a string.  "<p><strong>foo</strong> bar</p>" becomes "foo bar" */
     static QString stripTags(const QString& str);
 
-    // /** strips tags, resolves entities and replaces <br/> by new lines */
-    //static QString htmlToPlainText(const QString& str);
+    /** taken from some website... -fo
+    * djb2
+    * This algorithm was first reported by Dan Bernstein
+    * many years ago in comp.lang.c
+    */
+
+    static uint calcHash(const QString& str);
 };
 
 }
