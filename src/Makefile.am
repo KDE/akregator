@@ -72,7 +72,8 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
                                 storagefactorydummyimpl.cpp \
                                 simplenodeselector.cpp \
                                 feedstoragedummyimpl.cpp \
-                                dragobjects.cpp
+                                dragobjects.cpp \
+                                utils.cpp
 				
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined 
 libakregatorprivate_la_LIBADD =	$(top_builddir)/libkdepim/libkdepim.la \
@@ -141,7 +142,6 @@ libakregatorpart_la_SOURCES = \
         tagfolderitem.cpp \
         speechclient.cpp \
 	kspeechsink.skel \
-        utils.cpp \
 	kspeech.stub
 
 libakregatorpart_la_LDFLAGS = $(KDE_RPATH) $(KDE_PLUGIN) $(LIB_KUTILS) -avoid-version -no-undefined $(all_libraries)

@@ -128,7 +128,6 @@ namespace Akregator
 
         private:
             void initialize(RSS::Article article, Backend::FeedStorage* archive);
-            static uint calcHash(const QString& str);
             static QString buildTitle(const QString& description);
             
             struct Private;

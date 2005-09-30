@@ -28,6 +28,7 @@
 #include "storage.h"
 #include "librss/librss.h"
 #include "shared.h"
+#include "utils.h"
 
 #include <qdatetime.h>
 #include <qdom.h>
@@ -88,7 +89,7 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
-    d->hash = calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() );
+    d->hash = Utils::calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() );
 
     d->guid = article.guid();
     
@@ -334,22 +335,6 @@ int Article::comments() const
 bool Article::guidIsPermaLink() const
 {
     return d->archive->guidIsPermaLink(d->guid);
-}
-
-/* taken from some website... -fo
-* djb2
-* This algorithm was first reported by Dan Bernstein
-* many years ago in comp.lang.c
-*/
-uint Article::calcHash(const QString& str)
-{
-    if (str.isNull()) // handle null string as "", prevents crash
-        return calcHash("");
-    const char* s = str.ascii();
-    uint hash = 5381;
-    int c;
-    while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
-    return hash;
 }
 
 bool Article::guidIsHash() const
