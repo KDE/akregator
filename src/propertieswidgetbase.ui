@@ -232,9 +232,6 @@
                                 <property name="text">
                                     <string>&amp;Keep all articles</string>
                                 </property>
-                                <property name="accel">
-                                    <string>Alt+K</string>
-                                </property>
                             </widget>
                             <widget class="QRadioButton" row="2" column="0">
                                 <property name="name">
@@ -336,9 +333,6 @@
                                 <property name="text">
                                     <string>Di&amp;sable archiving</string>
                                 </property>
-                                <property name="accel">
-                                    <string>Alt+S</string>
-                                </property>
                             </widget>
                             <widget class="QRadioButton" row="0" column="0" rowspan="1" colspan="4">
                                 <property name="name">
@@ -346,9 +340,6 @@
                                 </property>
                                 <property name="text">
                                     <string>&amp;Use default settings</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+U</string>
                                 </property>
                                 <property name="checked">
                                     <bool>true</bool>
