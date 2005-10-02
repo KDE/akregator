@@ -24,13 +24,15 @@
 #ifndef AKREGATORPROPDIALOG_H
 #define AKREGATORPROPDIALOG_H
 
+#include <QWidget>
+
 #include "propertieswidgetbase.h"
 
 #include <kdialogbase.h>
 
 namespace Akregator
 {
-   class FeedPropertiesWidget : public FeedPropertiesWidgetBase
+   class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
    {
       Q_OBJECT
       public:

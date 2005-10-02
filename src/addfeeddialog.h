@@ -25,20 +25,18 @@
 #ifndef AKREGATORADDFEEDDIALOG_H
 #define AKREGATORADDFEEDDIALOG_H
 
+#include <QWidget>
+
 #include "addfeedwidgetbase.h"
 
 #include <kdialogbase.h>
-
-using namespace RSS;
-
-
 
 namespace Akregator
 {
 
    class Feed;
 
-   class AddFeedWidget : public AddFeedWidgetBase
+   class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
    {
       Q_OBJECT
       public:

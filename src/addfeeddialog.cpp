@@ -37,11 +37,12 @@
 #include <ksqueezedtextlabel.h>
 #include <kmessagebox.h>
 
-using namespace Akregator;
+namespace Akregator {
 
-AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
-   : AddFeedWidgetBase(parent, name)
+AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
+   : QWidget(parent)
 {
+    setupUi(this);
     pixmapLabel1->setPixmap(kapp->iconLoader()->loadIcon( "package_network",KIcon::Desktop,KIcon::SizeHuge, KIcon::DefaultState, 0, true));
     statusLabel->setText(QString::null);
 }
@@ -111,6 +112,8 @@ void AddFeedDialog::textChanged(const QString& text)
 {
     enableButtonOK(!text.isEmpty());
 }
+
+} // namespace Akregator
 
 #include "addfeeddialog.moc"
 // vim: ts=4 sw=4 et

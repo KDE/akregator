@@ -29,9 +29,6 @@
 
 namespace Akregator {
 
-class SettingsAdvanced;
-class SettingsAppearance;
-
 class ConfigDialog : public KConfigDialog
 {
     Q_OBJECT
@@ -48,10 +45,8 @@ class ConfigDialog : public KConfigDialog
         virtual void updateWidgets();
 
     private:
-        KConfigSkeleton* m_config;
-        SettingsAdvanced* m_settingsAdvanced;
-        SettingsAppearance* m_settingsAppearance;
-        
+        class ConfigDialogPrivate;
+        ConfigDialogPrivate* d;
 };
 
 } // namespace Akregator

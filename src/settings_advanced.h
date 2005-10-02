@@ -3,7 +3,7 @@
 
 #include "settings_advancedbase.h"
 
-#include <qmap.h>
+#include <QMap>
 
 class QString;
 class QWidget;
@@ -15,7 +15,7 @@ namespace Backend
     class StorageFactory;
 }
 
-class SettingsAdvanced : public SettingsAdvancedBase
+class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
 {
     Q_OBJECT	
 

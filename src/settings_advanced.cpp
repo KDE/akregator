@@ -11,9 +11,11 @@
 
 namespace Akregator {
 
-SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : SettingsAdvancedBase(parent, name)
+SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(parent, name)
 {
-
+    setName(name);
+    setupUi(this);
+    
     QStringList backends = Backend::StorageFactoryRegistry::self()->list();
     QString tname;
     int i = 0;

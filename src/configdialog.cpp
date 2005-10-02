@@ -40,37 +40,63 @@
 
 namespace Akregator
 {
-
-ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* config, DialogType dialogType, int dialogButtons, ButtonCode defaultButton, bool modal) : KConfigDialog(parent, name, config, dialogType, dialogButtons, defaultButton, modal)
+class ConfigDialog::ConfigDialogPrivate 
 {
-    addPage(new SettingsGeneral(this, "General"), i18n("General"), "package_settings");
-    addPage(new SettingsArchive(this, "Archive"), i18n("Archive"), "package_settings");
-    m_settingsAppearance = new SettingsAppearance(this, "Appearance");
-    addPage(m_settingsAppearance, i18n("Appearance"), "fonts");
-    addPage(new SettingsBrowser(this, "Browser"), i18n("Browser"), "package_network");
-    m_settingsAdvanced = new SettingsAdvanced(this, "Advanced");
-    addPage(m_settingsAdvanced, i18n("Advanced"), "package_network");
-    m_settingsAdvanced->selectFactory(Settings::archiveBackend());
-    m_config = config;
+    public:
+    KConfigSkeleton* config;
+    SettingsAdvanced* settingsAdvanced;
+    Ui::SettingsAppearance settingsAppearance;
+};
+
+ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* config, DialogType dialogType, int dialogButtons, ButtonCode defaultButton, bool modal) : KConfigDialog(parent, name, config, dialogType, dialogButtons, defaultButton, modal), d(new ConfigDialogPrivate)
+{
+
+    QWidget* generalWidget = new QWidget(this);
+    Ui::SettingsGeneral general;
+    general.setupUi(generalWidget);
+
+    QWidget* archiveWidget = new QWidget(this);
+    Ui::SettingsArchive archive;
+    archive.setupUi(archiveWidget);
+
+    QWidget* appearanceWidget = new QWidget(this);
+    d->settingsAppearance.setupUi(appearanceWidget);
+
+    QWidget* browserWidget = new QWidget(this);
+    Ui::SettingsBrowser browser;
+    browser.setupUi(browserWidget);
+
+    d->settingsAdvanced = new SettingsAdvanced(this, "Advanced");
+
+    addPage(generalWidget, i18n("General"), "package_settings");
+    addPage(archiveWidget, i18n("Archive"), "package_settings");
+    addPage(appearanceWidget, i18n("Appearance"), "fonts");
+    addPage(browserWidget, i18n("Browser"), "package_network");
+    addPage(d->settingsAdvanced, i18n("Advanced"), "package_network");
+    d->settingsAdvanced->selectFactory(Settings::archiveBackend());
+    d->config = config;
 }
 
 void ConfigDialog::updateSettings()
 {
-    Settings::setArchiveBackend(m_settingsAdvanced->selectedFactory());
+    Settings::setArchiveBackend(d->settingsAdvanced->selectedFactory());
     KConfigDialog::updateSettings();
 }
         
 void ConfigDialog::updateWidgets()
 {
-    m_settingsAdvanced->selectFactory(Settings::archiveBackend());
-    m_settingsAppearance->slider_minimumFontSize->setDisabled(m_config->isImmutable("MinimumFontSize"));
-    m_settingsAppearance->slider_mediumFontSize->setDisabled(m_config->isImmutable("MediumFontSize"));
-    m_settingsAppearance->lbl_MinimumFontSize->setDisabled(m_config->isImmutable("MinimumFontSize"));
-    m_settingsAppearance->lbl_MediumFontSize->setDisabled(m_config->isImmutable("MediumFontSize"));
+    d->settingsAdvanced->selectFactory(Settings::archiveBackend());
+    d->settingsAppearance.slider_minimumFontSize->setDisabled(d->config->isImmutable("MinimumFontSize"));
+    d->settingsAppearance.slider_mediumFontSize->setDisabled(d->config->isImmutable("MediumFontSize"));
+    d->settingsAppearance.lbl_MinimumFontSize->setDisabled(d->config->isImmutable("MinimumFontSize"));
+    d->settingsAppearance.lbl_MediumFontSize->setDisabled(d->config->isImmutable("MediumFontSize"));
     KConfigDialog::updateSettings();
 }
         
-ConfigDialog::~ConfigDialog() {}
+ConfigDialog::~ConfigDialog() 
+{
+    delete d;
+}
 
 } // namespace Akregator
 

@@ -1,176 +1,155 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>Akregator::SettingsArchive</class>
-<author>Frank Osterfeld</author>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>SettingsArchive</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>374</width>
-            <height>203</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>Archive</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
+<ui version="4.0" >
+ <author>Frank Osterfeld</author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>Akregator::SettingsArchive</class>
+ <widget class="QWidget" name="Akregator::SettingsArchive" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>374</width>
+    <height>203</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Archive</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" >
+    <layout class="QVBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="Q3ButtonGroup" name="kcfg_ArchiveMode" >
+       <property name="title" >
+        <string>Default Archive Settings</string>
+       </property>
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>10</number>
         </property>
-        <property name="margin">
-            <number>0</number>
+        <property name="spacing" >
+         <number>6</number>
         </property>
-        <widget class="QLayoutWidget" row="0" column="0">
-            <property name="name">
-                <cstring>layout1</cstring>
-            </property>
-            <vbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QButtonGroup">
-                    <property name="name">
-                        <cstring>kcfg_ArchiveMode</cstring>
-                    </property>
-                    <property name="title">
-                        <string>Default Archive Settings</string>
-                    </property>
-                    <grid>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QRadioButton" row="0" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>rb_KeepAllArticles</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Keep all articles</string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="1" column="0">
-                            <property name="name">
-                                <cstring>rb_LimitArticleNumber</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Limit feed archive size to:</string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="2" column="0">
-                            <property name="name">
-                                <cstring>rb_LimitArticleAge</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Delete articles older than: </string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton" row="3" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>rb_DisableArchiving</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Disable archiving</string>
-                            </property>
-                        </widget>
-                        <widget class="KIntSpinBox" row="1" column="1">
-                            <property name="name">
-                                <cstring>kcfg_MaxArticleNumber</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> articles</string>
-                            </property>
-                            <property name="specialValueText">
-                                <string>1 article</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>1000000</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                            <property name="lineStep">
-                                <number>10</number>
-                            </property>
-                            <property name="value">
-                                <number>1000</number>
-                            </property>
-                        </widget>
-                        <widget class="KIntSpinBox" row="2" column="1">
-                            <property name="name">
-                                <cstring>kcfg_MaxArticleAge</cstring>
-                            </property>
-                            <property name="enabled">
-                                <bool>false</bool>
-                            </property>
-                            <property name="suffix">
-                                <string> days</string>
-                            </property>
-                            <property name="specialValueText">
-                                <string>1 day</string>
-                            </property>
-                            <property name="maxValue">
-                                <number>1000000</number>
-                            </property>
-                            <property name="minValue">
-                                <number>1</number>
-                            </property>
-                            <property name="value">
-                                <number>30</number>
-                            </property>
-                        </widget>
-                    </grid>
-                </widget>
-                <widget class="QCheckBox">
-                    <property name="name">
-                        <cstring>kcfg_DoNotExpireImportantArticles</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Do not expire important articles</string>
-                    </property>
-                </widget>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer1</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>20</width>
-                            <height>30</height>
-                        </size>
-                    </property>
-                </spacer>
-            </vbox>
-        </widget>
-    </grid>
-</widget>
-<connections>
-    <connection>
-        <sender>rb_LimitArticleAge</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_MaxArticleAge</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>rb_LimitArticleNumber</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_MaxArticleNumber</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-</connections>
-<layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
-</includehints>
-</UI>
+        <item row="0" column="0" colspan="2" >
+         <widget class="QRadioButton" name="rb_KeepAllArticles" >
+          <property name="text" >
+           <string>Keep all articles</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QRadioButton" name="rb_LimitArticleNumber" >
+          <property name="text" >
+           <string>Limit feed archive size to:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QRadioButton" name="rb_LimitArticleAge" >
+          <property name="text" >
+           <string>Delete articles older than: </string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2" >
+         <widget class="QRadioButton" name="rb_DisableArchiving" >
+          <property name="text" >
+           <string>Disable archiving</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="KIntSpinBox" name="kcfg_MaxArticleNumber" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="specialValueText" >
+           <string>1 article</string>
+          </property>
+          <property name="suffix" >
+           <string> articles</string>
+          </property>
+          <property name="value" >
+           <number>99</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <widget class="KIntSpinBox" name="kcfg_MaxArticleAge" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="specialValueText" >
+           <string>1 day</string>
+          </property>
+          <property name="suffix" >
+           <string> days</string>
+          </property>
+          <property name="value" >
+           <number>30</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="kcfg_DoNotExpireImportantArticles" >
+       <property name="text" >
+        <string>Do not expire important articles</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType" >
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>20</width>
+         <height>30</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3ButtonGroup</class>
+   <extends></extends>
+   <header>Qt3Support/Q3ButtonGroup</header>
+   <container>1</container>
+   <pixmap></pixmap>
+  </customwidget>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends></extends>
+   <header>knuminput.h</header>
+   <container>0</container>
+   <pixmap></pixmap>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -38,17 +38,19 @@ class TagPropertiesDialog::TagPropertiesDialogPrivate
 {
     public:
     Tag tag;
-    TagPropertiesWidgetBase* widget;
+    Ui::TagPropertiesWidgetBase base;
 };
 
 TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name) : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Tag Properties"), KDialogBase::Ok|KDialogBase::Cancel|KDialogBase::Apply), d(new TagPropertiesDialogPrivate)
 {
-    d->widget = new TagPropertiesWidgetBase(this);
-    setMainWidget(d->widget);
-    d->widget->le_title->setFocus();
+    QWidget* widget = new QWidget(this);
+    d->base.setupUi(widget);
+    setMainWidget(widget);
+
+    d->base.le_title->setFocus();
     enableButtonOK(false);
     enableButtonApply(false);
-    connect(d->widget->le_title, SIGNAL(textChanged(const QString&)), this, SLOT(slotTextChanged(const QString& )));
+    connect(d->base.le_title, SIGNAL(textChanged(const QString&)), this, SLOT(slotTextChanged(const QString& )));
 }
 
 TagPropertiesDialog::~TagPropertiesDialog()
@@ -60,16 +62,16 @@ TagPropertiesDialog::~TagPropertiesDialog()
 void TagPropertiesDialog::setTag(const Tag& tag)
 {
     d->tag = tag;
-    d->widget->le_title->setText(tag.name());
-    d->widget->iconButton->setIcon(QIcon(tag.icon()));
+    d->base.le_title->setText(tag.name());
+    d->base.iconButton->setIcon(tag.icon());
     enableButtonOK(!tag.name().isEmpty());
     enableButtonApply(!tag.name().isEmpty());
 }
 
 void TagPropertiesDialog::slotOk()
 {
-    d->tag.setName(d->widget->le_title->text());
-   // d->tag.setIcon(d->widget->iconButton->icon());
+    d->tag.setName(d->base.le_title->text());
+   // d->tag.setIcon(d->base.iconButton->icon());
     KDialogBase::slotOk();
 }
 
@@ -81,8 +83,8 @@ void TagPropertiesDialog::slotTextChanged(const QString& text)
 
 void TagPropertiesDialog::slotApply()
 {
-    d->tag.setName(d->widget->le_title->text());
-  //  d->tag.setIcon(d->widget->iconButton->icon());
+    d->tag.setName(d->base.le_title->text());
+  //  d->tag.setIcon(d->base.iconButton->icon());
     KDialogBase::slotApply();
 }
 

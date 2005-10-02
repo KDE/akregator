@@ -39,8 +39,10 @@
 using namespace Akregator;
 
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
-        : FeedPropertiesWidgetBase(parent, name)
+        : QWidget(parent)
 {
+    setName(name);
+    setupUi(this);
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
