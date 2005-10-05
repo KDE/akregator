@@ -161,9 +161,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->tagView = d->tagView.Hash(hash, 1); // hash on tag
 
     d->catStorage = new c4_Storage((filePath + ".mk4___CATEGORIES").local8Bit(), true);
-    d->catView = d->catStorage->GetAs("tagIndex[catTerm:S,catScheme:S,catName:S,categorizedArticles[guid:S]]");
-    hash = d->catStorage->GetAs("archiveHash[_H:I,_R:I]");
-    d->catView = d->catView.Hash(hash, 1);
+    d->catView = d->catStorage->GetAs("catIndex[catTerm:S,catScheme:S,catName:S,categorizedArticles[guid:S]]");
 }
 
 
@@ -543,11 +541,16 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
         d->pcatTerm(catrow) = cat.term.utf8().data();
         d->pcatScheme(catrow) = cat.scheme.utf8().data();
         d->pcatName(catrow) = cat.name.utf8().data();
+
         int catidx2 = d->catView.Find(catrow);
+
         if (catidx2 == -1)
+        {
             catidx2 = d->catView.Add(catrow);
-        catrow = d->catView.GetAt(catidx2);
-        c4_View catView2 = d->pcategorizedArticles(catrow);
+        }
+
+        c4_Row catrow2 = d->catView.GetAt(catidx2);
+        c4_View catView2 = d->pcategorizedArticles(catrow2);
 
         c4_Row row3;
         d->pguid(row3) = guid.ascii();
@@ -556,8 +559,8 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
         {
             guididx = catView2.Add(row3);
             catView2.SetAt(guididx, row3);
-            d->pcategorizedArticles(catrow) = catView2;
-            d->catView.SetAt(catidx2, catrow);
+            d->pcategorizedArticles(catrow2) = catView2;
+            d->catView.SetAt(catidx2, catrow2);
         }
 
         d->modified = true;
