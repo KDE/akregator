@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>374</width>
-    <height>203</height>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,60 +17,53 @@
   </property>
   <layout class="QGridLayout" >
    <property name="margin" >
-    <number>0</number>
+    <number>8</number>
    </property>
    <property name="spacing" >
     <number>6</number>
    </property>
    <item row="0" column="0" >
-    <layout class="QVBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Default Archive Settings</string>
      </property>
-     <property name="spacing" >
-      <number>6</number>
-     </property>
-     <item>
-      <widget class="Q3ButtonGroup" name="kcfg_ArchiveMode" >
-       <property name="title" >
-        <string>Default Archive Settings</string>
-       </property>
-       <layout class="QGridLayout" >
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>8</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="3" column="0" >
+       <widget class="QRadioButton" name="rb_DisableArchiving" >
+        <property name="text" >
+         <string>Disable archiving</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QRadioButton" name="rb_KeepAllArticles" >
+        <property name="text" >
+         <string>Keep all articles</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QHBoxLayout" >
         <property name="margin" >
-         <number>10</number>
+         <number>0</number>
         </property>
         <property name="spacing" >
          <number>6</number>
         </property>
-        <item row="0" column="0" colspan="2" >
-         <widget class="QRadioButton" name="rb_KeepAllArticles" >
-          <property name="text" >
-           <string>Keep all articles</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
+        <item>
          <widget class="QRadioButton" name="rb_LimitArticleNumber" >
           <property name="text" >
            <string>Limit feed archive size to:</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0" >
-         <widget class="QRadioButton" name="rb_LimitArticleAge" >
-          <property name="text" >
-           <string>Delete articles older than: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" colspan="2" >
-         <widget class="QRadioButton" name="rb_DisableArchiving" >
-          <property name="text" >
-           <string>Disable archiving</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
+        <item>
          <widget class="KIntSpinBox" name="kcfg_MaxArticleNumber" >
           <property name="enabled" >
            <bool>false</bool>
@@ -86,7 +79,24 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1" >
+       </layout>
+      </item>
+      <item row="2" column="0" >
+       <layout class="QHBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QRadioButton" name="rb_LimitArticleAge" >
+          <property name="text" >
+           <string>Delete articles older than: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="KIntSpinBox" name="kcfg_MaxArticleAge" >
           <property name="enabled" >
            <bool>false</bool>
@@ -103,45 +113,38 @@
          </widget>
         </item>
        </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="kcfg_DoNotExpireImportantArticles" >
-       <property name="text" >
-        <string>Do not expire important articles</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeType" >
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>20</width>
-         <height>30</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QCheckBox" name="kcfg_DoNotExpireImportantArticles" >
+     <property name="text" >
+      <string>Do not expire important articles</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>370</width>
+       <height>41</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
-  <customwidget>
-   <class>Q3ButtonGroup</class>
-   <extends></extends>
-   <header>Qt3Support/Q3ButtonGroup</header>
-   <container>1</container>
-   <pixmap></pixmap>
-  </customwidget>
   <customwidget>
    <class>KIntSpinBox</class>
    <extends></extends>

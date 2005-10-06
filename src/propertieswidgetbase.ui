@@ -411,16 +411,16 @@
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
-   <class>KIntSpinBox</class>
+   <class>KLineEdit</class>
    <extends></extends>
-   <header>knuminput.h</header>
+   <header>klineedit.h</header>
    <container>0</container>
    <pixmap></pixmap>
   </customwidget>
   <customwidget>
-   <class>KLineEdit</class>
+   <class>KIntSpinBox</class>
    <extends></extends>
-   <header>klineedit.h</header>
+   <header>knuminput.h</header>
    <container>0</container>
    <pixmap></pixmap>
   </customwidget>

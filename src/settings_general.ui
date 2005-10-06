@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>272</width>
-    <height>382</height>
+    <width>340</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,31 +17,70 @@
   </property>
   <layout class="QGridLayout" >
    <property name="margin" >
-    <number>0</number>
+    <number>8</number>
    </property>
    <property name="spacing" >
     <number>6</number>
    </property>
+   <item row="3" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>270</width>
+       <height>16</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="0" column="0" >
-    <widget class="Q3GroupBox" name="groupBox3_2" >
+    <widget class="QGroupBox" name="groupBox_3" >
      <property name="title" >
       <string>Global</string>
      </property>
      <layout class="QGridLayout" >
       <property name="margin" >
-       <number>10</number>
+       <number>8</number>
       </property>
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item row="2" column="0" colspan="2" >
-       <widget class="QCheckBox" name="kcfg_UseIntervalFetch" >
+      <item row="0" column="0" colspan="3" >
+       <widget class="QCheckBox" name="kcfg_ShowTrayIcon" >
         <property name="text" >
-         <string>&amp;Use interval fetching</string>
+         <string>Show tra&amp;y icon</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="2" >
+      <item row="3" column="0" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QLabel" name="textLabel1" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="text" >
+         <string>Fetch feeds every:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3" >
        <widget class="QCheckBox" name="kcfg_UseNotifications" >
         <property name="toolTip" >
          <string/>
@@ -54,24 +93,14 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="2" >
-       <widget class="QCheckBox" name="kcfg_ShowTrayIcon" >
+      <item row="2" column="0" colspan="3" >
+       <widget class="QCheckBox" name="kcfg_UseIntervalFetch" >
         <property name="text" >
-         <string>Show tra&amp;y icon</string>
+         <string>&amp;Use interval fetching</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" >
-       <widget class="QLabel" name="textLabel1" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-        <property name="text" >
-         <string>Fetch feeds every:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1" >
+      <item row="3" column="2" >
        <widget class="QSpinBox" name="kcfg_AutoFetchInterval" >
         <property name="enabled" >
          <bool>false</bool>
@@ -97,24 +126,17 @@
     </widget>
    </item>
    <item row="1" column="0" >
-    <widget class="Q3GroupBox" name="groupBox3" >
+    <widget class="QGroupBox" name="groupBox_2" >
      <property name="title" >
       <string>Startup</string>
      </property>
      <layout class="QGridLayout" >
       <property name="margin" >
-       <number>10</number>
+       <number>8</number>
       </property>
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item row="0" column="0" >
-       <widget class="QCheckBox" name="kcfg_MarkAllFeedsReadOnStartup" >
-        <property name="text" >
-         <string>Mark &amp;all feeds as read on startup</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0" >
        <widget class="QCheckBox" name="kcfg_FetchOnStartup" >
         <property name="text" >
@@ -122,33 +144,24 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="0" >
+       <widget class="QCheckBox" name="kcfg_MarkAllFeedsReadOnStartup" >
+        <property name="text" >
+         <string>Mark &amp;all feeds as read on startup</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
-   <item row="3" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="2" column="0" >
-    <widget class="Q3GroupBox" name="groupBox3_3" >
+    <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
       <string>Network</string>
      </property>
      <layout class="QGridLayout" >
       <property name="margin" >
-       <number>10</number>
+       <number>8</number>
       </property>
       <property name="spacing" >
        <number>6</number>
@@ -167,15 +180,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends></extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-   <pixmap></pixmap>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
