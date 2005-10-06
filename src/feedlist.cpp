@@ -26,7 +26,6 @@
 #include <qdatetime.h>
 #include <qdom.h>
 #include <qmap.h>
-#include <q3valuelist.h>
 
 #include <kdebug.h>
 #include <klocale.h>

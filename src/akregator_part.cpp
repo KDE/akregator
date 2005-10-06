@@ -198,7 +198,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 
     connect( m_view, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
 
-    connect(kapp, SIGNAL(shutDown()), this, SLOT(slotOnShutdown()));
+    connect(kapp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 
     m_autosaveTimer = new QTimer(this);
     connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));

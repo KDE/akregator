@@ -37,9 +37,8 @@
 #include <kurl.h>
 #include <kparts/browserextension.h>
 
-#include <q3accel.h>
-#include <qclipboard.h>
-#include <q3paintdevicemetrics.h>
+#include <QClipboard>
+#include <QPaintDevice>
 
 #include "viewer.h"
 #include "akregator_run.h"
@@ -97,8 +96,7 @@ bool Viewer::closeURL()
 
 int Viewer::pointsToPixel(int pointSize) const
 {
-    const Q3PaintDeviceMetrics metrics(view());
-    return ( pointSize * metrics.logicalDpiY() + 36 ) / 72 ;
+    return ( pointSize * view()->logicalDpiY() + 36 ) / 72 ;
 }
 
 void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)

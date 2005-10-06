@@ -42,15 +42,11 @@
 #include <kstandarddirs.h>
 #include <kparts/browserinterface.h>
 
-#include <qclipboard.h>
-#include <q3cstring.h>
-#include <qdatastream.h>
-#include <qdatetime.h>
-#include <qfile.h>
-#include <qmetaobject.h>
-#include <q3scrollview.h>
-#include <qstring.h>
-#include <q3valuelist.h>
+#include <QDataStream>
+#include <QDateTime>
+#include <QFile>
+#include <QMetaObject>
+#include <QString>
 #include <QPixmap>
 
 #include <cstdlib>
