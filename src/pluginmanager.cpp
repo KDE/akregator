@@ -18,8 +18,9 @@ email                : markey@web.de
 
 #include <vector>
 
-#include <qfile.h>
-#include <qstring.h>
+#include <QFile>
+#include <QString>
+#include <Q3ValueList>
 
 #include <klibloader.h>
 #include <kdebug.h>

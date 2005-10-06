@@ -38,7 +38,7 @@
 #include <khtmlview.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kstandarddirs.h>
 #include <kparts/browserinterface.h>
 
@@ -173,7 +173,7 @@ void PageViewer::slotForward()
 
 void PageViewer::slotBackAboutToShow()
 {
-    KPopupMenu *popup = d->backAction->popupMenu();
+    KMenu *popup = d->backAction->popupMenu();
     popup->clear();
 
     if ( d->current == d->history.begin() )
@@ -199,7 +199,7 @@ void PageViewer::slotBackAboutToShow()
 
 void PageViewer::slotForwardAboutToShow()
 {
-    KPopupMenu *popup = d->forwardAction->popupMenu();
+    KMenu *popup = d->forwardAction->popupMenu();
     popup->clear();
 
     if ( d->current == d->history.end() )
@@ -415,7 +415,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
 
     const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
 
-    KPopupMenu popup(this->widget());
+    KMenu popup(this->widget());
 
     int idNewWindow = -2;
     if (isLink)

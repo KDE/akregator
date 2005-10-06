@@ -63,8 +63,9 @@
 using namespace Akregator;
 
 BrowserInterface::BrowserInterface( MainWindow *shell, const char *name )
-    : KParts::BrowserInterface( shell, name )
+    : KParts::BrowserInterface( shell)
 {
+    setObjectName(name);
     m_shell = shell;
 }
 

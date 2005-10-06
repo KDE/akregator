@@ -26,6 +26,7 @@
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <klocale.h>
+#include <kmenu.h>
 #include <kpopupmenu.h>
 #include <kshortcut.h>
 #include <kxmlguifactory.h>
@@ -239,7 +240,7 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
         return;
     else d->trayIcon = trayIcon;
 
-    KPopupMenu* traypop = trayIcon->contextMenu();
+    KMenu* traypop = trayIcon->contextMenu();
 
     if (actionCollection()->action("feed_fetch_all"))
         actionCollection()->action("feed_fetch_all")->plug(traypop, 1);

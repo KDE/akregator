@@ -34,8 +34,10 @@ namespace Akregator {
 class Article;
 
 ArticleDrag::ArticleDrag(const QList<Article>& articles, QWidget* dragSource, const char* name)
-: KURLDrag(articleURLs(articles), dragSource, name), m_items(articlesToDragItems(articles))
-{}
+: K3URLDrag(articleURLs(articles), dragSource), m_items(articlesToDragItems(articles))
+{
+    setObjectName(name);
+}
 
 bool ArticleDrag::canDecode(const QMimeSource* e)
 {
@@ -90,7 +92,7 @@ QByteArray ArticleDrag::encodedData(const char* mime) const
     }
     else
     {
-        return KURLDrag::encodedData(mime);
+        return K3URLDrag::encodedData(mime);
     }
 }
 

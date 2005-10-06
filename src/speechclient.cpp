@@ -27,11 +27,11 @@
 #include "utils.h"
 
 #include <dcopclient.h>
-#include <kapplication.h>
 #include <kcharsets.h>
 #include <klocale.h>
 #include <kdebug.h>
 #include <kstaticdeleter.h>
+#include <ktoolinvocation.h>
 #include <ktrader.h>
 
 #include <qstring.h>
@@ -172,7 +172,7 @@ void SpeechClient::setupSpeechSystem()
         else
         {
             QString error;
-            if (KApplication::startServiceByDesktopName("kttsd", QStringList(), &error))
+            if (KToolInvocation::startServiceByDesktopName("kttsd", QStringList(), &error))
             {
                 kdDebug() << "Starting KTTSD failed with message " << error << endl;
                 d->isTextSpeechInstalled = false;

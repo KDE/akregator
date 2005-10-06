@@ -47,8 +47,9 @@
 #include <khtmlview.h>
 #include <khtml_part.h>
 #include <kiconloader.h>
+#include <ktoolinvocation.h>
 #include <kurl.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 #include <kmimetype.h>
 
 #include "actionmanager.h"
@@ -257,7 +258,7 @@ void TabWidget::slotDetachTab()
 
     url = view->part()->url();
 
-    kapp->invokeBrowser(url.url(), "0");
+    KToolInvocation::invokeBrowser(url.url(), "0");
     slotCloseTab();
 }
 
@@ -303,7 +304,7 @@ void TabWidget::initiateDrag(int tab)
     {
         KURL::List lst;
         lst.append( frame->part()->url() );
-        KURLDrag* drag = new KURLDrag( lst, this );
+        K3URLDrag* drag = new K3URLDrag( lst, this );
         drag->setPixmap( KMimeType::pixmapForURL( lst.first(), 0, KIcon::Small ) );
         drag->dragCopy();
     }

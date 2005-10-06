@@ -28,7 +28,7 @@
 #include "article.h"
 
 #include <kurl.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 
 #include <QString>
 #include <QList>
@@ -46,7 +46,7 @@ struct ArticleDragItem
     QString guid;
 };
 
-class ArticleDrag : public KURLDrag
+class ArticleDrag : public K3URLDrag
 {
 
 public:

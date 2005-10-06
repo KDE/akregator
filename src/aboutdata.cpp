@@ -22,7 +22,9 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qstring.h>
+#include <klocale.h>
+
+#include <QString>
 
 #include "aboutdata.h"
 

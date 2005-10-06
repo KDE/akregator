@@ -204,8 +204,9 @@ int ArticleListView::ArticleItem::compare(Q3ListViewItem *i, int col, bool ascen
 /* ==================================================================================== */
 
 ArticleListView::ArticleListView(QWidget *parent, const char *name)
-    : KListView(parent, name), d (new ArticleListViewPrivate)
+    : KListView(parent), d (new ArticleListViewPrivate)
 {
+    setObjectName(name);
     d->noneSelected = true;
     d->node = 0;
     d->columnMode = ArticleListViewPrivate::feedMode;

@@ -43,6 +43,8 @@
 #include <kstdaction.h>
 #include <ktempfile.h>
 #include <ktrader.h>
+#include <ktoolinvocation.h>
+#include <kxmlguifactory.h>
 #include <kio/netaccess.h>
 #include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
@@ -86,8 +88,9 @@ typedef KParts::GenericFactory<Part> AkregatorFactory;
 K_EXPORT_COMPONENT_FACTORY( libakregatorpart, AkregatorFactory )
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
-	    : KParts::BrowserExtension( p, name )
+	    : KParts::BrowserExtension( p)
 {
+    setObjectName(name);
     m_part=p;
 }
 
@@ -110,13 +113,14 @@ class Part::ApplyFiltersInterceptor : public ArticleInterceptor
 Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
                               QObject *parent, const char *name, const QStringList& )
     : DCOPObject("AkregatorIface")
-       , MyBasePart(parent, name)
+       , MyBasePart(parent)
        , m_standardListLoaded(false)
        , m_shuttingDown(false)
        , m_mergedPart(0)
        , m_backedUpList(false)
        , m_storage(0)
 {
+    setObjectName(name);
     // we need an instance
     setInstance( AkregatorFactory::instance() );
 
@@ -669,7 +673,7 @@ void Part::fileSendArticle(bool attach)
     QString title = m_view->currentFrame()->title();
 
     if(attach) {
-        kapp->invokeMailer(QString(),
+        KToolInvocation::invokeMailer(QString(),
                            QString(),
                            QString(),
                            title,
@@ -679,7 +683,7 @@ void Part::fileSendArticle(bool attach)
                            text);
     }
     else {
-        kapp->invokeMailer(QString(),
+        KToolInvocation::invokeMailer(QString(),
                            QString(),
                            QString(),
                            QString(),

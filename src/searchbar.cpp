@@ -75,7 +75,9 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : Q3HBox(parent, name), 
     QLabel* searchLabel = new QLabel(this);
     searchLabel->setText( i18n("S&earch:") );
 
-    d->searchLine = new KLineEdit(this, "searchline");
+    d->searchLine = new KLineEdit(this);
+    d->searchLine->setObjectName("searchline");
+
     connect(d->searchLine, SIGNAL(textChanged(const QString &)),
                         this, SLOT(slotSearchStringChanged(const QString &)));
 
@@ -84,7 +86,9 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : Q3HBox(parent, name), 
     QLabel* statusLabel = new QLabel(this);
     statusLabel->setText( i18n("Status:") );
 
-    d->searchCombo = new KComboBox(this, "searchcombo");
+    d->searchCombo = new KComboBox(this);
+    d->searchCombo->setObjectName("searchcombo");
+
     QPixmap iconAll = KGlobal::iconLoader()->loadIcon("exec", KIcon::Small);
     QPixmap iconNew(locate("data", "akregator/pics/kmmsgnew.png"));
     QPixmap iconUnread(locate("data", "akregator/pics/kmmsgunseen.png"));

@@ -45,7 +45,7 @@
 #include <klocale.h>
 #include <kmultipledrag.h>
 #include <kstringhandler.h>
-#include <kurldrag.h>
+#include <k3urldrag.h>
 
 #include <qfont.h>
 #include <q3header.h>
@@ -332,8 +332,9 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 };
 
 NodeListView::NodeListView( QWidget *parent, const char *name)
-        : KListView(parent, name), d(new NodeListViewPrivate)
+        : KListView(parent), d(new NodeListViewPrivate)
 {
+    setObjectName(name);
     d->showTagFolders = true;
     d->connectNodeVisitor = new ConnectNodeVisitor(this),
     d->disconnectNodeVisitor = new DisconnectNodeVisitor(this);
@@ -523,10 +524,10 @@ void NodeListView::slotDropped( QDropEvent *e, Q3ListViewItem*
 
             }
         }
-        else if (KURLDrag::canDecode(e))
+        else if (K3URLDrag::canDecode(e))
         {
             KURL::List urls;
-            KURLDrag::decode( e, urls );
+            K3URLDrag::decode( e, urls );
             e->accept();
             emit signalDropped( urls, afterMe ? afterMe->node() : 0, parent ? parent->node() : 0);
         }
@@ -669,7 +670,7 @@ bool NodeListView::acceptDrag(QDropEvent *e) const
 
     if (e->source() != viewport())
     {
-        return KURLDrag::canDecode(e);
+        return K3URLDrag::canDecode(e);
     }
     else
     {
@@ -1025,7 +1026,7 @@ Q3DragObject *NodeListView::dragObject()
         md->setPixmap(*(i->pixmap(0)));
         FeedItem *fi = dynamic_cast<FeedItem*>(i);
         if (fi) {
-            md->addDragObject(new KURLDrag(KURL(fi->node()->xmlUrl()), 0L));
+            md->addDragObject(new K3URLDrag(KURL(fi->node()->xmlUrl()), 0L));
         }
     }
     return md;

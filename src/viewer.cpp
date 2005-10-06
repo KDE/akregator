@@ -28,11 +28,12 @@
 #include <khtmlview.h>
 #include <kiconloader.h>
 #include <klocale.h>
+#include <kmenu.h>
 #include <kmessagebox.h>
-#include <kpopupmenu.h>
 #include <kprocess.h>
 #include <krun.h>
 #include <kshell.h>
+#include <ktoolinvocation.h>
 #include <kurl.h>
 #include <kparts/browserextension.h>
 
@@ -106,7 +107,7 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
    if (Settings::externalBrowserUseKdeDefault())
    {
        if (mimetype.isEmpty()) 
-           kapp->invokeBrowser(url.url(), "0");
+           KToolInvocation::invokeBrowser(url.url(), "0");
        else
            KRun::runURL(url, mimetype, false, false);
    }
@@ -175,7 +176,7 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, co
    QString url = kurl.url();
    
    m_url = url;
-   KPopupMenu popup;
+   KMenu popup;
    
    if (isLink && !isSelection)
    {

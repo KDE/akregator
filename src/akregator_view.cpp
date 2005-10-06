@@ -78,6 +78,7 @@
 #include <krun.h>
 #include <kshell.h>
 #include <kstandarddirs.h>
+#include <ktoolinvocation.h>
 #include <kurl.h>
 #include <kxmlguifactory.h>
 #include <kparts/partmanager.h>
@@ -97,7 +98,7 @@
 #include <qtoolbutton.h>
 #include <qtooltip.h>
 #include <q3valuevector.h>
-
+#include <qsplitter.h>
 #include <qclipboard.h>
 //Added by qt3to4:
 #include <QPixmap>
@@ -990,7 +991,7 @@ void View::displayInExternalBrowser(const KURL &url)
 {
     if (!url.isValid()) return;
     if (Settings::externalBrowserUseKdeDefault())
-        kapp->invokeBrowser(url.url(), "0");
+        KToolInvocation::invokeBrowser(url.url(), "0");
     else
     {
         QString cmd = Settings::externalBrowserCustomCommand();
