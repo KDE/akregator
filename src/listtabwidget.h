@@ -25,9 +25,7 @@
 #ifndef AKREGATOR_LISTTABWIDGET_H
 #define AKREGATOR_LISTTABWIDGET_H
 
-#include <qwidget.h>
-//Added by qt3to4:
-#include <QPixmap>
+#include <QWidget>
 
 class QIcon;
 class QPixmap;

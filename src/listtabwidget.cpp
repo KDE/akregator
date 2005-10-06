@@ -32,13 +32,13 @@
 #include <qicon.h>
 #include <qlayout.h>
 #include <qmap.h>
-#include <q3ptrlist.h>
 #include <qstring.h>
-#include <q3valuelist.h>
-#include <q3widgetstack.h>
+//#include <q3valuelist.h>
+//#include <q3widgetstack.h>
 //Added by qt3to4:
 #include <QPixmap>
 #include <QGridLayout>
+#include <QStackedWidget>
 
 #include <kdebug.h>
 
@@ -50,7 +50,7 @@ class ListTabWidget::ListTabWidgetPrivate
 public:
     int idCounter;
     KMultiTabBar* tabBar;
-    Q3WidgetStack* stack;
+    QStackedWidget* stack;
     NodeListView* current;
     int currentID;
     QList<NodeListView*> views;
@@ -145,7 +145,7 @@ void ListTabWidget::slotTabClicked(int id)
     NodeListView* view = d->idToView[id];
     if (view)
     {
-        d->stack->raiseWidget(view);
+        d->stack->setCurrentWidget(view);
         d->current = view;
 
         if (d->currentID >= 0)
@@ -171,7 +171,7 @@ ListTabWidget::ListTabWidget(QWidget* parent, const char* name) : QWidget(parent
     d->tabBar->setPosition(KMultiTabBar::Left);
     d->layout->addWidget(d->tabBar, 0, 0);
 
-    d->stack = new Q3WidgetStack(this);
+    d->stack = new QStackedWidget(this);
     d->layout->addWidget(d->stack, 0, 1);
     
 //    connect(d->tabBar, SIGNAL(currentChanged(QWidget*)), this, SLOT(slotCurrentChanged(QWidget*)));
@@ -219,7 +219,7 @@ void ListTabWidget::addView(NodeListView* view, const QString& caption, const QP
         d->current = view;
         d->currentID = tabId;
         d->tabBar->setTab(d->currentID, true);
-        d->stack->raiseWidget(view);
+        d->stack->setCurrentWidget(view);
     }
 }
 
