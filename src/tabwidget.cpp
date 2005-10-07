@@ -172,7 +172,7 @@ uint TabWidget::tabBarWidthForMaxChars( int maxLength )
         int iw = tabBar()->tabIcon( i ).pixmap( QIcon::Small, QIcon::Normal ).width() + 4;
 
         x += ( tabBar()->style()->sizeFromContents( QStyle::CT_TabBarTab, &o,
-               QSize( QMAX( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), this ) ).width();
+               QSize( qMax( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), this ) ).width();
     }
     return x;
 }
@@ -189,9 +189,9 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     uint lcw=0, rcw=0;
     int tabBarHeight = tabBar()->sizeHint().height();
     if ( cornerWidget( Qt::TopLeft ) && cornerWidget( Qt::TopLeft )->isVisible() )
-        lcw = QMAX( cornerWidget( Qt::TopLeft )->width(), tabBarHeight );
+        lcw = qMax( cornerWidget( Qt::TopLeft )->width(), tabBarHeight );
     if ( cornerWidget( Qt::TopRight ) && cornerWidget( Qt::TopRight )->isVisible() )
-        rcw = QMAX( cornerWidget( Qt::TopRight )->width(), tabBarHeight );
+        rcw = qMax( cornerWidget( Qt::TopRight )->width(), tabBarHeight );
     uint maxTabBarWidth = width() - lcw - rcw;
 
     int newMaxLength=30;
