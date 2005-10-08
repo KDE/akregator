@@ -133,7 +133,7 @@ void TrayIcon::slotSetUnread(int unread)
     QToolTip::remove(this);
     QToolTip::add(this, i18n("Akregator - 1 unread article", "Akregator - %n unread articles", unread > 0 ? unread : 0));
     
-    if (unread == 0)
+    if (unread <= 0)
     {    
         setPixmap(m_defaultIcon);
     }
