@@ -378,7 +378,7 @@ bool Part::openFile()
 
     if (!fileExists)
     {
-        str = createDefaultFeedList().toString();
+        doc = createDefaultFeedList();
     }
     else 
     {
