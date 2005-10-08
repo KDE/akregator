@@ -131,7 +131,7 @@ void TrayIcon::slotSetUnread(int unread)
     m_unread=unread;
     
     QToolTip::remove(this);
-    QToolTip::add(this, i18n("Akregator - 1 unread article", "Akregator - %n unread articles", unread));
+    QToolTip::add(this, i18n("Akregator - 1 unread article", "Akregator - %n unread articles", unread > 0 ? unread : 0));
     
     if (unread == 0)
     {    
