@@ -411,6 +411,7 @@ void PageViewer::slotGlobalBookmarkArticle()
     KBookmarkManager *mgr = KBookmarkManager::userBookmarksManager();
     KBookmarkGroup grp = mgr->root();
     grp.addBookmark(mgr, d->caption, toplevelURL());
+    mgr->emitChanged(grp);
     mgr->save();
 }
 
