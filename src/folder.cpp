@@ -63,7 +63,7 @@ bool Folder::accept(TreeNodeVisitor* visitor)
 Folder* Folder::fromOPML(QDomElement e)
 {
     Folder* fg = new Folder(e.hasAttribute(QString::fromLatin1("text")) ? e.attribute(QString::fromLatin1("text")) : e.attribute(QString::fromLatin1("title")));
-    fg->setOpen( e.attribute(QString::fromLatin1("isOpen")) == QString::fromLatin1(("true")));
+    fg->setOpen( e.attribute(QString::fromLatin1("isOpen")) != QString::fromLatin1(("false")));
     fg->setId( e.attribute(QString::fromLatin1("id")).toUInt() );
     return fg;
 }
