@@ -27,7 +27,7 @@
 #include <QString>
 
 #include "aboutdata.h"
-
+#include <klocale.h>
 namespace Akregator {
 
 AboutData::AboutData()

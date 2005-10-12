@@ -41,7 +41,7 @@
 #include <kdebug.h>
 #include <ktabwidget.h>
 #include <ktabbar.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <krun.h>
 #include <klocale.h>
 #include <khtmlview.h>
@@ -51,6 +51,7 @@
 #include <kurl.h>
 #include <k3urldrag.h>
 #include <kmimetype.h>
+#include <ktoolinvocation.h>
 
 #include "actionmanager.h"
 #include "frame.h"

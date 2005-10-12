@@ -38,7 +38,7 @@
 #include <kmessagebox.h>
 #include <knotifyclient.h>
 #include <knotifydialog.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kservice.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
@@ -57,6 +57,7 @@
 #include <qtimer.h>
 #include <qwidget.h>
 #include <QTextStream>
+#include <ktoolinvocation.h>
 
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"

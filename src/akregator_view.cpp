@@ -105,6 +105,8 @@
 #include <QPixmap>
 #include <QList>
 #include <QVBoxLayout>
+#include <ktoolinvocation.h>
+#include <krandom.h>
 
 namespace Akregator {
 
@@ -1102,7 +1104,7 @@ void View::slotRemoveTag(const Tag& tag)
 */
 void View::slotNewTag()
 {
-    Tag tag(KApplication::randomString(8), "New Tag");
+    Tag tag(KRandom::randomString(8), "New Tag");
     Kernel::self()->tagSet()->insert(tag);
     TagNode* node = m_tagNodeList->findByTagID(tag.id());
     if (node)

@@ -37,6 +37,7 @@
 
 #include <kapplication.h>
 #include <klocale.h>
+#include <krandom.h>
 
 namespace Akregator {
 
@@ -90,7 +91,7 @@ TagNode* TagNodeList::findByTagID(const QString& tagID)
 
 bool TagNodeList::insert(TagNode* tagNode)
 {
-    tagNode->setId(KApplication::random());
+    tagNode->setId(KRandom::random());
     QString id = tagNode->tag().id();
     if (!containsTagId(id))
     {

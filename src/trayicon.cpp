@@ -33,7 +33,7 @@
 #include <kglobalsettings.h>
 #include <dcopclient.h>
 #include <dcopref.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kiconloader.h>
 #include <QDesktopWidget>
 #include <QMouseEvent>

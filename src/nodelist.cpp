@@ -32,6 +32,7 @@
 #include <qmap.h>
 #include <qstring.h>
 #include <q3valuelist.h>
+#include <krandom.h>
 
 namespace Akregator {
 
@@ -206,7 +207,7 @@ NodeList::~NodeList()
 
 int NodeList::generateID()
 {
-    return KApplication::random();
+    return KRandom::random();
 }
 
 void NodeList::slotNodeAdded(TreeNode* node)

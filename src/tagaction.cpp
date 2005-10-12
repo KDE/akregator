@@ -28,10 +28,11 @@
 
 #include <kapplication.h>
 #include <kdebug.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 
 #include <qmap.h>
 #include <q3popupmenu.h>
+#include <kauthorized.h>
 
 
 namespace Akregator {
@@ -86,7 +87,7 @@ int TagAction::plug(QWidget* widget, int index)
         kdWarning() << "Can not plug KToggleAction in " << widget->className() << endl;
         return -1;
     }
-    if (kapp && !kapp->authorizeKAction(name()))
+    if (!KAuthorized::authorizeKAction(name()))
         return -1;
     
    TagMenuItem* item = new TagMenuItem(d->tag);

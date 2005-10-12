@@ -36,6 +36,7 @@
 #include <qregexp.h>
 //Added by qt3to4:
 #include <QList>
+#include <krandom.h>
 
 namespace Akregator {
 namespace Filters {
@@ -496,14 +497,14 @@ class ArticleFilter::ArticleFilterPrivate : public Shared
 
 ArticleFilter::ArticleFilter() : d(new ArticleFilterPrivate)
 {
-    d->id = KApplication::random();
+    d->id = KRandom::random();
     d->action = 0;
     d->matcher = 0;
 }
 
 ArticleFilter::ArticleFilter(const AbstractMatcher& matcher, const AbstractAction& action) : d(new ArticleFilterPrivate)
 {
-    d->id = KApplication::random();
+    d->id = KRandom::random();
     d->matcher = matcher.clone();
     d->action = action.clone();
 }
