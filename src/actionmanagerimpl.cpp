@@ -27,7 +27,7 @@
 #include <kactioncollection.h>
 #include <klocale.h>
 #include <kmenu.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kshortcut.h>
 #include <kxmlguifactory.h>
 
