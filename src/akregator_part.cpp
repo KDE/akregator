@@ -529,7 +529,7 @@ void Part::loadTagSet(const QString& path)
         doc.setContent(m_storage->restoreTagSet());
     }
 
-    if (doc.isNull())
+    if (!doc.isNull())
     {
         Kernel::self()->tagSet()->readFromXML(doc);
     }
