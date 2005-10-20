@@ -41,7 +41,7 @@ class TagAction : public KToggleAction
 
     public:
 
-        TagAction(const Tag& tag, const QObject *receiver, const char *slot, QObject *parent=0);
+        TagAction(const Tag& tag, const QObject *receiver, const char *slot, KActionCollection* parent=0);
         virtual ~TagAction();
         
         //virtual int plug(QWidget *widget, int index=-1);

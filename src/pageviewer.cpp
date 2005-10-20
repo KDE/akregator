@@ -462,7 +462,10 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
             ac->plug(&popup);
         popup.insertItem(SmallIcon("bookmark_add"),i18n("Add to Konqueror Bookmarks"), this, SLOT(slotGlobalBookmarkArticle()));
     }
-    
+
+    popup.exec(p);
+#warning port!
+/*
     int r = popup.exec(p);
     
     if (r == idNewWindow)
@@ -486,6 +489,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
             ;//             slotOpenInNewWindow(kurl);
 //      openURL( kurl );
     }
+*/
 }
 
 } // namespace Akregator 

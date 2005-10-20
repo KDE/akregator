@@ -27,6 +27,7 @@
 #include "tagaction.h"
 
 #include <kapplication.h>
+#include <kactioncollection.h>
 #include <kdebug.h>
 #include <kmenu.h>
 
@@ -45,7 +46,7 @@ class TagAction::TagActionPrivate
     //QMap<QPopupMenu*, int> popupToId;
 };
  
-TagAction::TagAction(const Tag& tag, const QObject *receiver, const char *slot, QObject *parent)
+TagAction::TagAction(const Tag& tag, const QObject* receiver, const char* slot, KActionCollection* parent)
 //KAction (const QString &text, const KShortcut &cut, const QObject *receiver, const char *slot, QObject *parent, const char *name=0)
        : KToggleAction(tag.name(), KShortcut(), 0, 0, parent), d(new TagActionPrivate)
 {

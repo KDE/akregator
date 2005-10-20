@@ -191,7 +191,7 @@ void ActionManagerImpl::slotTagAdded(const Tag& tag)
 {
     if (!d->tagActions.contains(tag.id()))
     {
-        d->tagActions[tag.id()] = new TagAction(tag, d->view, SLOT(slotAssignTag(const Tag&, bool)), d->tagMenu);
+        d->tagActions[tag.id()] = new TagAction(tag, d->view, SLOT(slotAssignTag(const Tag&, bool)), d->actionCollection);
         d->tagMenu->insert(d->tagActions[tag.id()]);
     }
 }
