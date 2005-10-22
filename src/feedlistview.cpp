@@ -401,24 +401,6 @@ void NodeListView::setNodeList(NodeList* nodeList)
     slotRootNodeChanged(rootNode);
 }
 
-void NodeListView::takeNode(QListViewItem* item)
-{
-    if (item->parent())
-        item->parent()->takeItem(item);
-    else
-        takeItem(item);
-}
-
-void NodeListView::insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after)
-{
-    if (parent)
-        parent->insertItem(item);
-    else
-        insertItem(item);
-    if (after)
-        item->moveItem(after);
-}
-
 Folder* NodeListView::rootNode()
 {
     return d->nodeList ? d->nodeList->rootNode() : 0;
@@ -923,15 +905,16 @@ void NodeListView::slotFeedFetchCompleted(Feed* feed)
 void NodeListView::slotNodeAdded(TreeNode* node)
 {
     d->createItemVisitor->visit(node);
+    kdDebug() << "NodeListView::slotNodeAdded: " << node->title() << endl;
 }
 
 void NodeListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 {
     if (!node)
         return;
-    
-    disconnectFromNode(node);    
-    takeNode(findNodeItem(node));
+    kdDebug() << "NodeListView::slotNodeRemoved: " << node->title() << endl; 
+    disconnectFromNode(node);
+    delete d->itemDict.take(node);
 }
 
 void NodeListView::connectToNode(TreeNode* node)

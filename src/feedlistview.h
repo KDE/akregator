@@ -134,9 +134,6 @@ public:         // compat with KDE-3.x assertions, remove for KDE 4
     virtual bool acceptDrag(QDropEvent *event) const;
     virtual void movableDropEvent(QListViewItem* parent, QListViewItem* afterme);
 
-    void takeNode(QListViewItem* item);
-    void insertNode(QListViewItem* parent, QListViewItem* item, QListViewItem* after);
-
     virtual QDragObject *dragObject();
             
 
