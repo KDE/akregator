@@ -452,9 +452,6 @@
         <slot>setEnabled(bool)</slot>
     </connection>
 </connections>
-<includes>
-    <include location="local" impldecl="in implementation">propertieswidgetbase.ui.h</include>
-</includes>
 <slots>
     <slot access="protected" specifier="pure virtual">slotUpdateComboBoxActivated( int )</slot>
     <slot access="protected" specifier="pure virtual">slotUpdateCheckBoxToggled( bool )</slot>
