@@ -127,7 +127,9 @@ Feed* Feed::fromOPML(QDomElement e)
 
         QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
 
-        bool useCustomFetchInterval = e.attribute("useCustomFetchInterval") == "true";
+        bool useCustomFetchInterval = e.attribute("useCustomFetchInterval") == "true" || e.attribute("autoFetch") == "true"; 
+        // "autoFetch" is used in 3.4
+        // Will be removed in KDE4
 
         QString htmlUrl = e.attribute("htmlUrl");
         QString description = e.attribute("description");
