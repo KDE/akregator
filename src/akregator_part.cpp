@@ -120,7 +120,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
        , m_shuttingDown(false)
        , m_mergedPart(0)
        , m_backedUpList(false)
+       , m_view(0)
        , m_storage(0)
+       
 {
     setObjectName(name);
     // we need an instance
@@ -146,7 +148,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     {
         m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
 
-        KMessageBox::error(m_view, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg(Settings::archiveBackend()), i18n("Plugin error") );
+        KMessageBox::error(parentWidget, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg(Settings::archiveBackend()), i18n("Plugin error") );
     }
 
     Filters::ArticleFilterList list;
