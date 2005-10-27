@@ -96,7 +96,7 @@ int main(int argc, char **argv)
     KNotifyClient::startDaemon();
 
     // see if we are starting with session management
-    if (app.isRestored())
+    if (app.isSessionRestored())
     {
 #undef RESTORE
 #define RESTORE(type) { int n = 1;\
