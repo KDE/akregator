@@ -49,7 +49,7 @@ class Application : public KUniqueApplication {
 
 int Application::newInstance()
 {
-  if (!isRestored())
+  if (!isSessionRestored())
   {
     DCOPRef akr("akregator", "AkregatorIface");
 

@@ -43,7 +43,7 @@
 #include <kiconeffect.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kmultipledrag.h>
+#include <k3multipledrag.h>
 #include <kstringhandler.h>
 #include <k3urldrag.h>
 
@@ -1017,7 +1017,7 @@ void NodeListView::slotNodeChanged(TreeNode* node)
 
 Q3DragObject *NodeListView::dragObject()
 {
-    KMultipleDrag *md = new KMultipleDrag(viewport());
+    K3MultipleDrag *md = new K3MultipleDrag(viewport());
     Q3DragObject *obj = KListView::dragObject();
     if (obj) {
         md->addDragObject(obj);
