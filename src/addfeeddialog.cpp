@@ -75,6 +75,11 @@ void AddFeedDialog::slotOk( )
     Feed *f=new Feed();
 
     feed=f;
+
+    // HACK: make weird wordpress links ("feed:http://foobar/rss") work
+    if (feedURL.startsWith("feed:"))
+        feedURL = feedURL.right( feedURL.length() - 5 );
+
     if (feedURL.find(":/") == -1)
         feedURL.prepend("http://");
     f->setXmlUrl(feedURL);
