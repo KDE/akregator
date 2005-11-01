@@ -77,10 +77,10 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
         KAction* hp = m_manager->action("feed_homepage");
         if (hp)
             remove->setEnabled(true);
-        m_manager->action("feed_fetch")->setText("&Fetch Feed");
-        m_manager->action("feed_remove")->setText("&Delete Feed");
-        m_manager->action("feed_modify")->setText("&Edit Feed...");
-        m_manager->action("feed_mark_all_as_read")->setText("&Mark Feed as Read");
+        m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
+        m_manager->action("feed_remove")->setText(i18n("&Delete Feed"));
+        m_manager->action("feed_modify")->setText(i18n("&Edit Feed..."));
+        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Feed as Read"));
 
         return true;
     }
@@ -94,10 +94,10 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
         if (hp)
             hp->setEnabled(false);
 
-        m_manager->action("feed_fetch")->setText("&Fetch Feeds");
-        m_manager->action("feed_remove")->setText("&Delete Folder");
-        m_manager->action("feed_modify")->setText("&Rename Folder");
-        m_manager->action("feed_mark_all_as_read")->setText("&Mark Feeds as Read");
+        m_manager->action("feed_fetch")->setText(i18n("&Fetch Feeds"));
+        m_manager->action("feed_remove")->setText(i18n("&Delete Folder"));
+        m_manager->action("feed_modify")->setText(i18n("&Rename Folder"));
+        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Feeds as Read"));
 
         return true;
     }
@@ -110,9 +110,9 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
         KAction* hp = m_manager->action("feed_homepage");
         if (hp)
             hp->setEnabled(false);
-        m_manager->action("feed_mark_all_as_read")->setText("&Mark Articles as Read");
-        m_manager->action("feed_remove")->setText("&Delete Tag");
-        m_manager->action("feed_modify")->setText("&Edit Tag...");
+        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Articles as Read"));
+        m_manager->action("feed_remove")->setText(i18n("&Delete Tag"));
+        m_manager->action("feed_modify")->setText(i18n("&Edit Tag..."));
 
         return true;
     }
