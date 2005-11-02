@@ -50,7 +50,6 @@ class ConfigDialog::ConfigDialogPrivate
 
 ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* config, DialogType dialogType, int dialogButtons, ButtonCode defaultButton, bool modal) : KConfigDialog(parent, name, config, dialogType, dialogButtons, defaultButton, modal), d(new ConfigDialogPrivate)
 {
-
     QWidget* generalWidget = new QWidget(this);
     Ui::SettingsGeneral general;
     general.setupUi(generalWidget);
@@ -61,7 +60,7 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
 
     QWidget* appearanceWidget = new QWidget(this);
     d->settingsAppearance.setupUi(appearanceWidget);
-
+    
     QWidget* browserWidget = new QWidget(this);
     Ui::SettingsBrowser browser;
     browser.setupUi(browserWidget);
@@ -96,6 +95,7 @@ void ConfigDialog::updateWidgets()
 ConfigDialog::~ConfigDialog() 
 {
     delete d;
+    d = 0;
 }
 
 } // namespace Akregator

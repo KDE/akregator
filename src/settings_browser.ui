@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>340</width>
-    <height>571</height>
+    <width>326</width>
+    <height>401</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -22,47 +22,28 @@
    <property name="spacing" >
     <number>6</number>
    </property>
-   <item row="1" column="0" >
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
-      <string>For External Browsing</string>
+   <item row="2" column="0" >
+    <widget class="QCheckBox" name="kcfg_CloseButtonOnTabs" >
+     <property name="text" >
+      <string>Show tab close button on hover</string>
      </property>
-     <layout class="QGridLayout" >
-      <property name="margin" >
-       <number>8</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item row="1" column="1" >
-       <widget class="QLineEdit" name="kcfg_ExternalBrowserCustomCommand_2_2_2" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-        <property name="text" >
-         <string>firefox -remote 'openURL(%u,new-tab)'</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" >
-       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseCustomCommand_2_2_2" >
-        <property name="text" >
-         <string>Use this command:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2" >
-       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseKdeDefault_2_2_2" >
-        <property name="text" >
-         <string>Use default KDE web browser</string>
-        </property>
-        <property name="checked" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
+   </item>
+   <item row="3" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>31</width>
+       <height>16</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item row="0" column="0" >
     <layout class="QGridLayout" >
@@ -158,27 +139,46 @@
      </item>
     </layout>
    </item>
-   <item row="3" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
+   <item row="1" column="0" >
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>For External Browsing</string>
      </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>31</width>
-       <height>16</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="0" >
-    <widget class="QCheckBox" name="kcfg_CloseButtonOnTabs" >
-     <property name="text" >
-      <string>Show tab close button on hover</string>
-     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>8</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="1" column="1" >
+       <widget class="QLineEdit" name="kcfg_ExternalBrowserCustomCommand" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="text" >
+         <string>firefox -remote 'openURL(%u,new-tab)'</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseCustomCommand" >
+        <property name="text" >
+         <string>Use this command:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2" >
+       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseKdeDefault" >
+        <property name="text" >
+         <string>Use default KDE web browser</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
