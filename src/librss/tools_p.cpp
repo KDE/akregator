@@ -20,7 +20,7 @@
 time_t RSS::parseISO8601Date(const QString &s)
 {
     // do some sanity check: 26-12-2004T00:00+00:00 is parsed to epoch+1 in the KRFCDate, which is wrong. So let's check if the date begins with YYYY -fo
-    if (s.stripWhiteSpace().left(4).toInt() < 1000)
+    if (s.trimmed().left(4).toInt() < 1000)
         return 0; // error
 
     // FIXME: imho this is done in KRFCDate::parseDateISO8601() automatically, so we could omit it? -fo
@@ -37,7 +37,7 @@ QString RSS::childNodesAsXML(const QDomNode& parent)
 	QTextStream ts( &str, QIODevice::WriteOnly );
 	for (int i = 0; i < list.count(); ++i)
 		ts << list.item(i);
-	return str.stripWhiteSpace();
+	return str.trimmed();
 }
 
 QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool isInlined)
@@ -59,7 +59,7 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
 	if(!isInlined && !hasHtml)						// perform nl2br if not a inline elt and it has no html elts
 		result = result = result.replace(QChar('\n'), "<br />");
 	if(!hasPre)										// strip white spaces if no <pre>
-		result = result.simplifyWhiteSpace();
+		result = result.simplified();
 
 	if (result.isEmpty())
 		return QString::null;
@@ -76,7 +76,7 @@ QString RSS::extractTitle(const QDomNode & parent)
     QString result = node.toElement().text();
 
     result = KCharsets::resolveEntities(KCharsets::resolveEntities(result).replace(QRegExp("<[^>]*>"), "").remove("\\"));
-	result = result.simplifyWhiteSpace();
+	result = result.simplified();
 
     if (result.isEmpty())
         return QString::null;

@@ -48,7 +48,7 @@ PluginManager::query( const QString& constraint )
     str  = "[X-KDE-akregator-framework-version] == ";
     str += QString::number( FrameworkVersion );
     str += " and ";
-    if (!constraint.stripWhiteSpace().isEmpty())
+    if (!constraint.trimmed().isEmpty())
         str += constraint + " and ";
     str += "[X-KDE-akregator-rank] > 0";
 

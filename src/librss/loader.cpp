@@ -359,7 +359,7 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
 
 void Loader::discoverFeeds(const QByteArray &data)
 {
-    QString str = QString(data).simplifyWhiteSpace();
+    QString str = QString(data).simplified();
     QString s2;
     //QTextStream ts( &str, IO_WriteOnly );
     //ts << data.data();

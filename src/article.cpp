@@ -407,7 +407,7 @@ const QDateTime& Article::pubDate() const
 QString Article::buildTitle(const QString& description)
 {
     QString s = description;
-    if (description.stripWhiteSpace().isEmpty())
+    if (description.trimmed().isEmpty())
         return "";
         
     int i = s.find('>',500); /*avoid processing too much */
@@ -431,6 +431,6 @@ QString Article::buildTitle(const QString& description)
     }
     if (s.length()> 90)
         s=s.left(90)+"...";
-    return s.simplifyWhiteSpace();
+    return s.simplified();
 }
 } // namespace Akregator
