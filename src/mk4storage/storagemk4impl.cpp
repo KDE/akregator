@@ -111,7 +111,6 @@ bool StorageMK4Impl::open(bool autoCommit)
     filePath = d->archivePath +"/feedlistbackup.mk4";
     d->feedListStorage = new c4_Storage(filePath.local8Bit(), true);
     d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
-    d->feedListView = d->feedListView.Hash(hash, 1); // hash on url
     return true;
 }
 
