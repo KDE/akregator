@@ -111,7 +111,6 @@ bool StorageMK4Impl::open(bool autoCommit)
     filePath = d->archivePath +"/feedlistbackup.mk4";
     d->feedListStorage = new c4_Storage(filePath.local8Bit(), true);
     d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
-    d->feedListView = d->feedListView.Hash(hash, 1); // hash on url
     return true;
 }
 
@@ -316,14 +315,20 @@ void StorageMK4Impl::clear()
 
 void StorageMK4Impl::storeFeedList(const QString& opmlStr)
 {
-    c4_Row row;
-
+   
     if  (d->feedListView.GetSize() == 0)
+    {
+        c4_Row row;
+        d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.utf8().data() : "";
+        d->pTagSet(row) = "";
         d->feedListView.Add(row);
-    
-    row = d->feedListView.GetAt(0);
-    d->pFeedList(row) = opmlStr.utf8().data();
-    d->feedListView.SetAt(0, row);
+    }
+    else
+    {
+        c4_Row row = d->feedListView.GetAt(0);
+        d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.utf8().data() : "";
+        d->feedListView.SetAt(0, row);
+    }
     d->modified = true;
 }
 
@@ -338,14 +343,20 @@ QString StorageMK4Impl::restoreFeedList() const
 
 void StorageMK4Impl::storeTagSet(const QString& xmlStr)
 {
-    c4_Row row;
-
+   
     if  (d->feedListView.GetSize() == 0)
+    {
+        c4_Row row;
+        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.utf8().data() : "";
+        d->pFeedList(row) = "";
         d->feedListView.Add(row);
-
-    row = d->feedListView.GetAt(0);
-    d->pTagSet(row) = xmlStr.utf8().data();
-    d->feedListView.SetAt(0, row);
+    }
+    else
+    {
+        c4_Row row = d->feedListView.GetAt(0);
+        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.utf8().data() : "";
+        d->feedListView.SetAt(0, row);
+    }
     d->modified = true;
 }
 
