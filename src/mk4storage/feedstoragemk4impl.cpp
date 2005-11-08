@@ -98,7 +98,7 @@ void FeedStorageMK4Impl::convertOldArchive()
     d->convert = false;    
     QFile file(d->oldArchivePath);
 
-    if ( !file.open(IO_ReadOnly) )
+    if ( !file.open(QIODevice::ReadOnly) )
         return;
     
     QTextStream stream(&file);

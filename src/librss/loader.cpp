@@ -361,7 +361,7 @@ void Loader::discoverFeeds(const QByteArray &data)
 {
     QString str = QString(data).simplified();
     QString s2;
-    //QTextStream ts( &str, IO_WriteOnly );
+    //QTextStream ts( &str, QIODevice::WriteOnly );
     //ts << data.data();
 
     // "<[\\s]link[^>]*rel[\\s]=[\\s]\\\"[\\s]alternate[\\s]\\\"[^>]*>"
