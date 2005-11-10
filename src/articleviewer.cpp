@@ -73,7 +73,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
     {
 
         QString text;
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         
         text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
         text += node->title();
@@ -121,7 +121,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
     {
 
         QString text;
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
@@ -137,7 +137,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
     virtual bool visitTagNode(TagNode* node)
     {
         QString text;
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
@@ -395,7 +395,7 @@ void ArticleViewer::displayAboutPage()
 QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& article)
 {
     QString text;
-    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
 
     if (!article.title().isEmpty())
     {
@@ -481,7 +481,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
 QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& article)
 {
     QString text;
-    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
+    text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
 
     if (!article.title().isEmpty())
     {

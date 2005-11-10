@@ -68,7 +68,7 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : Q3HBox(parent, name), 
     setSpacing(5);
     setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     QToolButton *clearButton = new QToolButton(this);
-    clearButton->setIconSet( SmallIconSet( QApplication::reverseLayout() ? "clear_left" : "locationbar_erase" ) );
+    clearButton->setIconSet( SmallIconSet( QApplication::isRightToLeft() ? "clear_left" : "locationbar_erase" ) );
 
     clearButton->setAutoRaise(true);
 
