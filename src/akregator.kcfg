@@ -203,7 +203,7 @@
    <whatsthis>Configurable delay between selecting and article and it being marked as read.</whatsthis>
    <default>0</default>
   </entry>
-   <entry key="Reset Quick Filter On Node Change" name="Reset Quick Filter On Node Change" type="Bool" >
+   <entry key="Reset Quick Filter On Node Change" type="Bool" >
    <whatsthis>Resets the quick filter when changing feeds.</whatsthis>
    <default>true</default>
   </entry>
