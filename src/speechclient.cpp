@@ -134,7 +134,7 @@ void SpeechClient::slotAbortJobs()
     }
 }
 
-ASYNC SpeechClient::textRemoved(const Q3CString& /*appId*/, uint jobNum)
+ASYNC SpeechClient::textRemoved(const DCOPCString& /*appId*/, uint jobNum)
 {
     kdDebug() << "SpeechClient::textRemoved() called" << endl;
     if (d->pendingJobs.contains(jobNum))

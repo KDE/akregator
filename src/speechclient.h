@@ -73,7 +73,7 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
         SpeechClient();
         void setupSpeechSystem();
 
-        ASYNC textRemoved(const Q3CString& appId, uint jobNum);
+        ASYNC textRemoved(const DCOPCString& appId, uint jobNum);
 
     private:
      
