@@ -32,9 +32,6 @@
 
 #include <QString>
 #include <QList>
-#include <Q3MemArray>
-
-//typedef class Q3MemArray<char> QByteArray;
 
 namespace Akregator {
 
