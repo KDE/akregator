@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_SEARCHBAR_H
 #define AKREGATOR_SEARCHBAR_H
 
-#include <q3hbox.h>
+#include <khbox.h>
 
 class QString;
 
@@ -37,7 +37,7 @@ namespace Filters
     class ArticleMatcher;
 }
 
-class SearchBar : public Q3HBox
+class SearchBar : public KHBox
 {
     Q_OBJECT
 

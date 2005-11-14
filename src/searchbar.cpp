@@ -34,7 +34,7 @@
 #include <kstandarddirs.h>
 
 #include <qapplication.h>
-#include <q3hbox.h>
+#include <khbox.h>
 #include <qlabel.h>
 #include <qpixmap.h>
 #include <qstring.h>
@@ -61,7 +61,7 @@ public:
     int delay;
 };
 
-SearchBar::SearchBar(QWidget* parent, const char* name) : Q3HBox(parent, name), d(new SearchBar::SearchBarPrivate)
+SearchBar::SearchBar(QWidget* parent, const char* name) : KHBox(parent), d(new SearchBar::SearchBarPrivate)
 {
     d->delay = 400;
     setMargin(2);
