@@ -12,11 +12,9 @@
 #define LIBRSS_GLOBAL_H
 
 #include <kdepimmacros.h>
-//Added by qt3to4:
-#include <Q3ValueList>
 
 template <class>
-class Q3ValueList;
+class QList;
 
 namespace RSS
 {
@@ -138,12 +136,12 @@ namespace RSS
 	/**
 	 * This type is used by Document::skipDays().
 	 */
-	typedef Q3ValueList<Day> DayList;
+	typedef QList<Day> DayList;
 
 	/**
 	 * This type is used by Document::skipHours().
 	 */
-	typedef Q3ValueList<unsigned short> HourList;
+	typedef QList<unsigned short> HourList;
 }
 
 #endif // LIBRSS_GLOBAL_H

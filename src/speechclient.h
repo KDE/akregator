@@ -30,7 +30,6 @@
 
 #include <qobject.h>
 #include <QList>
-#include <Q3CString>
 
 class QString;
 template <class T> class QList;

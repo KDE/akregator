@@ -21,8 +21,6 @@
 
 #include <qdatetime.h>
 #include <qdom.h>
-//Added by qt3to4:
-#include <Q3ValueList>
 
 using namespace RSS;
 namespace RSS
@@ -42,7 +40,7 @@ struct Article::Private : public Shared
 	KURL commentsLink;
         int numComments;
         Enclosure enclosure;
-	Q3ValueList<Category> categories;
+	QList<Category> categories;
 };
 
 Article::Article() : d(new Private)
@@ -59,7 +57,7 @@ Enclosure Article::enclosure() const
     return d->enclosure;
 }
 
-Q3ValueList<Category> Article::categories() const
+QList<Category> Article::categories() const
 {
     return d->categories;
 }

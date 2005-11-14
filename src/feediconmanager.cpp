@@ -36,8 +36,6 @@
 #include <q3dict.h>
 #include <qpixmap.h>
 #include <q3valuelist.h>
-//Added by qt3to4:
-#include <Q3CString>
 
 namespace Akregator {
 
