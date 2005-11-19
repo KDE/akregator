@@ -225,43 +225,53 @@ void FeedPropertiesDialog::setUrl(const QString& url)
    widget->urlEdit->setText(url);
 }
 
-void FeedPropertiesDialog::setAutoFetch(bool w)
+void FeedPropertiesDialog::setAutoFetch(bool customFetchEnabled)
 {
-   widget->upChkbox->setChecked(w);
-   widget->updateSpinBox->setEnabled(w);
+    widget->upChkbox->setChecked(customFetchEnabled);
+    widget->updateComboBox->setEnabled(customFetchEnabled);
+
+    if (widget->updateSpinBox->value() > -1)
+        widget->updateSpinBox->setEnabled(customFetchEnabled);
+    else
+        widget->updateSpinBox->setEnabled(false);
 }
 
-void FeedPropertiesDialog::setFetchInterval(int i)
+void FeedPropertiesDialog::setFetchInterval(int interval)
 {
-    if (i == -1)
+    if (interval == -1) // never update
     {
         widget->updateSpinBox->setValue(0);
+        widget->updateSpinBox->setDisabled(true);
         widget->updateComboBox->setCurrentItem(3); // never
         return;
     }
 
-    if (i == 0)
+    if (interval == 0)
     {
         widget->updateSpinBox->setValue(0);
+        widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
         widget->updateComboBox->setCurrentItem(0); // minutes
         return;
     }
 
-   if (i % (60*24) == 0)
+   if (interval % (60*24) == 0)
    {
-       widget->updateSpinBox->setValue(i / (60*24) );
+       widget->updateSpinBox->setValue(interval / (60*24) );
+       widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
        widget->updateComboBox->setCurrentItem(2); // days
        return;
    }
 
-   if (i % 60 == 0)
+   if (interval % 60 == 0)
    {
-       widget->updateSpinBox->setValue(i / 60 );
+       widget->updateSpinBox->setValue(interval / 60 );
+       widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
        widget->updateComboBox->setCurrentItem(1); // hours
        return;
    }
 
-   widget->updateSpinBox->setValue(i);
+   widget->updateSpinBox->setValue(interval);
+   widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
    widget->updateComboBox->setCurrentItem(0); // minutes
 }
 
