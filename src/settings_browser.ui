@@ -157,7 +157,7 @@
          <bool>false</bool>
         </property>
         <property name="text" >
-         <string>firefox -remote 'openURL(%u,new-tab)'</string>
+         <string>firefox %u</string>
         </property>
        </widget>
       </item>
