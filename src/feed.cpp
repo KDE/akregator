@@ -133,7 +133,7 @@ Feed* Feed::fromOPML(QDomElement e)
 
         QString htmlUrl = e.attribute("htmlUrl");
         QString description = e.attribute("description");
-        int fetchInterval = e.attribute("fetchInterval").toUInt();
+        int fetchInterval = e.attribute("fetchInterval").toInt();
         ArchiveMode archiveMode = stringToArchiveMode(e.attribute("archiveMode"));
         int maxArticleAge = e.attribute("maxArticleAge").toUInt();
         int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
