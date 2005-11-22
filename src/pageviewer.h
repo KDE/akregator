@@ -45,9 +45,6 @@ namespace Akregator
             virtual ~PageViewer();
             virtual bool openURL(const KURL &url);
 
-            /** used by the BrowserRun object */
-            virtual void openPage(const KURL& url);
-
         protected:
 
             class HistoryEntry;

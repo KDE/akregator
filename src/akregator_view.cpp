@@ -26,6 +26,7 @@
 
 #include "actionmanagerimpl.h"
 #include "akregator_part.h"
+#include "akregator_run.h"
 #include "akregator_view.h"
 #include "listtabwidget.h"
 #include "addfeeddialog.h"
@@ -306,7 +307,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
-                        this, SLOT(slotOpenTab(const KURL&, bool)) );
+             this, SLOT(slotUrlClickedInViewer(const KURL&, bool)) );
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
@@ -421,7 +422,7 @@ void View::saveSettings()
     Settings::writeConfig();
 }
 
-void View::slotOpenTab(const KURL& url, bool background)
+void View::slotOpenNewTab(const KURL& url, bool background)
 {
     PageViewer* page = new PageViewer(this, "page");
     
@@ -430,7 +431,7 @@ void View::slotOpenTab(const KURL& url, bool background)
     connect( page, SIGNAL(setTabIcon(const QPixmap&)),
             this, SLOT(setTabIcon(const QPixmap&)));
     connect( page, SIGNAL(urlClicked(const KURL &,bool)),
-            this, SLOT(slotOpenTab(const KURL &,bool)) );
+            this, SLOT(slotUrlClickedInViewer(const KURL &, bool)) );
 
     Frame* frame = new Frame(this, page, page->widget(), i18n("Untitled"));
     frame->setAutoDeletePart(true); // delete page viewer when removing the tab
@@ -823,6 +824,43 @@ void View::slotNodeSelected(TreeNode* node)
     updateTagActions();
 }
 
+void View::slotOpenURL(const KURL& url, Viewer* currentViewer, BrowserRun::OpeningMode mode)
+{
+    if (mode == BrowserRun::EXTERNAL)
+        Viewer::displayInExternalBrowser(url);
+    else
+    {
+         KParts::URLArgs args = currentViewer ? currentViewer->browserExtension()->urlArgs() : KParts::URLArgs();
+            
+        BrowserRun* r = new BrowserRun(this, currentViewer, url, args, mode);
+        connect(r, SIGNAL(signalOpenInViewer(const KURL&, Akregator::Viewer*, Akregator::BrowserRun::OpeningMode)),
+            this, SLOT(slotOpenURLReply(const KURL&, Akregator::Viewer*, Akregator::BrowserRun::OpeningMode)));
+    }
+}
+
+//TODO: KDE4 remove this ugly ugly hack
+void View::slotUrlClickedInViewer(const KURL& url, bool background)
+{
+    slotOpenURL(url, 0L, background ? BrowserRun::NEW_TAB_BACKGROUND : BrowserRun::NEW_TAB_FOREGROUND);
+}
+
+//TODO: KDE4 remove this ugly ugly hack
+void View::slotOpenURLReply(const KURL& url, Viewer* currentViewer, BrowserRun::OpeningMode mode)
+{
+    switch (mode)
+    {
+        case BrowserRun::CURRENT_TAB:
+            currentViewer->openURL(url);
+            break;
+        case BrowserRun::NEW_TAB_FOREGROUND:
+        case BrowserRun::NEW_TAB_BACKGROUND:
+            slotOpenNewTab(url, mode == BrowserRun::NEW_TAB_BACKGROUND);
+            break;
+        case BrowserRun::EXTERNAL:
+            Viewer::displayInExternalBrowser(url);
+            break;
+    }
+}
 
 void View::slotFeedAdd()
 {
@@ -978,43 +1016,25 @@ void View::slotOpenHomepage()
     if (!feed)
         return;
 
+    KURL url = KURL(feed->htmlUrl())
+;
     switch (Settings::lMBBehaviour())
     {
         case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-            displayInExternalBrowser(feed->htmlUrl());
+            slotOpenURL(url, 0, BrowserRun::EXTERNAL);
+            Viewer::displayInExternalBrowser(feed->htmlUrl());
             break;
         case Settings::EnumLMBBehaviour::OpenInBackground:
-            slotOpenTab(feed->htmlUrl(), true);
+            slotOpenURL(url, 0, BrowserRun::NEW_TAB_BACKGROUND);
             break;
         default:
-            slotOpenTab(feed->htmlUrl(), false);
+            slotOpenURL(url, 0, BrowserRun::NEW_TAB_FOREGROUND);
     }
 }
 
 void View::slotSetTotalUnread()
 {
     emit signalUnreadCountChanged( m_feedList->rootNode()->unread() );
-}
-
-/**
-* Display article in external browser.
-*/
-void View::displayInExternalBrowser(const KURL &url)
-{
-    if (!url.isValid()) return;
-    if (Settings::externalBrowserUseKdeDefault())
-        kapp->invokeBrowser(url.url(), "0");
-    else
-    {
-        QString cmd = Settings::externalBrowserCustomCommand();
-        QString urlStr = url.url();
-        cmd.replace(QRegExp("%u"), urlStr);
-        KProcess *proc = new KProcess;
-        QStringList cmdAndArgs = KShell::splitArgs(cmd);
-        *proc << cmdAndArgs;
-        proc->start(KProcess::DontCare);
-        delete proc;
-    }
 }
 
 void View::slotDoIntervalFetches()
@@ -1068,21 +1088,19 @@ void View::slotFeedFetched(Feed *feed)
 
 void View::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
 {
-    if (article.isNull())
-        return;
-
     if (button == Qt::MidButton)
     {
+        KURL link = article.link();
         switch (Settings::mMBBehaviour())
         {
             case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-                displayInExternalBrowser(article.link());
+                slotOpenURL(link, 0L, BrowserRun::EXTERNAL);
                 break;
             case Settings::EnumMMBBehaviour::OpenInBackground:
-                slotOpenTab(article.link(),true);
+                slotOpenURL(link, 0L, BrowserRun::NEW_TAB_BACKGROUND);
                 break;
             default:
-                slotOpenTab(article.link());
+                slotOpenURL(link, 0L, BrowserRun::NEW_TAB_FOREGROUND);
         }
     }
 }
@@ -1173,7 +1191,7 @@ void View::slotArticleSelected(const Article& article)
 void View::slotOpenArticleExternal(const Article& article, const QPoint&, int)
 {
     if (!article.isNull())
-        displayInExternalBrowser(article.link());
+        Viewer::displayInExternalBrowser(article.link());
 }
 
 
@@ -1184,15 +1202,15 @@ void View::slotOpenCurrentArticle()
     if (article.isNull())
         return;
 
-    QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    KURL link;
+    if (article.link().isValid())
+        link = article.link();
+    else if (article.guidIsPermaLink())
+        link = KURL(article.guid());
+    
+    if (link.isValid()) 
     {
-        // in case link isn't valid, fall back to the guid permaLink.
-        if (article.link().isValid())
-            link = article.link().url();
-        else
-            link = article.guid();
-        slotOpenTab(link, false);
+        slotOpenURL(link, 0L, BrowserRun::NEW_TAB_FOREGROUND);
     }
 }
 
@@ -1208,15 +1226,16 @@ void View::slotOpenCurrentArticleBackgroundTab()
     if (article.isNull())
         return;
 
-    QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    KURL link;
+
+    if (article.link().isValid())
+        link = article.link();
+    else if (article.guidIsPermaLink())
+        link = KURL(article.guid());
+    
+    if (link.isValid()) 
     {
-        // in case link isn't valid, fall back to the guid permaLink.
-        if (article.link().isValid())
-            link = article.link().url();
-        else
-            link = article.guid();
-        slotOpenTab(link, true);
+        slotOpenURL(link, 0L, BrowserRun::NEW_TAB_BACKGROUND);
     }
 }
 

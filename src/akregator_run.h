@@ -30,23 +30,37 @@
 namespace Akregator
 {
 
-    class Viewer;
-    
-    class BrowserRun : public KParts::BrowserRun
+class Viewer;
+
+class BrowserRun : public KParts::BrowserRun
 {
-	Q_OBJECT
+    Q_OBJECT
     public:
-        BrowserRun(Viewer *, QWidget *, KParts::ReadOnlyPart *, const KURL & , const KParts::URLArgs &);
+        /** indicates how HTML pages should be opened. It is passed in the constructor and sent back via the openInViewer signal. This is a workaround to fix opening of non-HTML mimetypes in 3.5, which will be refactored for KDE4 anyway. For 3.5.x it's the easiest way to fix the problem without changing too much code TODO KDE4: refactor, remove this enum  */
+        enum OpeningMode 
+        {
+            CURRENT_TAB,
+            NEW_TAB_FOREGROUND,
+            NEW_TAB_BACKGROUND,
+            EXTERNAL
+        };
+
+        BrowserRun(QWidget* mainWindow, Viewer* currentViewer, const KURL& url, const KParts::URLArgs& args, OpeningMode mode);
         virtual ~BrowserRun();
-    
+
+    signals:
+
+        void signalOpenInViewer(const KURL&, Akregator::Viewer*, Akregator::BrowserRun::OpeningMode);
+
     protected:
-	    virtual void foundMimeType( const QString & _type );
+	    virtual void foundMimeType(const QString& type);
 
     private slots:
-        void killMyself();
+        void slotViewerDeleted();
 
     private:
-        Viewer *m_viewer;
+        OpeningMode m_openingMode;
+        Viewer* m_currentViewer;
 };
 
 }

@@ -237,11 +237,14 @@ void PageViewer::slotStop()
     closeURL();
 }
 
-void PageViewer::openPage(const KURL& url)
+bool PageViewer::openURL(const KURL& url)
 {
-    Viewer::openPage(url);
+    updateHistoryEntry(); // update old history entry before switching to the new one
+    emit started(0);
 
-    addHistoryEntry(url);
+    bool val = KHTMLPart::openURL(url);
+    
+    addHistoryEntry(url); // add new URL to history
     
     d->backAction->setEnabled( d->current != d->history.begin() );
     d->forwardAction->setEnabled( d->current != d->history.fromLast() );
@@ -251,29 +254,10 @@ void PageViewer::openPage(const KURL& url)
         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
     else
         emit setTabIcon(SmallIcon("html"));
+
+    return val;
 }
 
-// Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-bool PageViewer::openURL(const KURL &url)
-{
-    updateHistoryEntry();
-    new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
-    emit started(0);
-    
-//     if (!d->restoring)
-//         addHistoryEntry(url);
-//     
-//     d->backAction->setEnabled( d->current != d->history.begin() );
-//     d->forwardAction->setEnabled( d->current != d->history.fromLast() );
-//   
-//     QString favicon = FeedIconManager::self()->iconLocation(url);
-//     if (!favicon.isEmpty()) 
-//         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
-//     else
-//         emit setTabIcon(SmallIcon("html"));
-//     
-    return true;
-}
 
 void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
 {
@@ -494,7 +478,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
 //    kurl.addPath(url);
         if (kurl.isValid())
             ;//             slotOpenInNewWindow(kurl);
-//      openURL( kurl );
+//      ( kurl );
     }
 }
 

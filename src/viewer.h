@@ -40,14 +40,18 @@ namespace Akregator
     {
         Q_OBJECT
         public:
+
+           /**
+            * Display article in external browser.
+            */
+            static void displayInExternalBrowser(const KURL &url, const QString& mimetype=QString::null);    
+
             Viewer(QWidget* parent, const char* name);
             virtual ~Viewer();
 
             virtual bool closeURL();
+        
             
-            /** used by the BrowserRun object to call KHTMLPart::openURL() */
-            virtual void openPage(const KURL& url) { KHTMLPart::openURL(url);}
-
         public slots:
             
             void slotScrollUp(); 
@@ -59,7 +63,7 @@ namespace Akregator
             void setSafeMode();
 
             virtual void slotPaletteOrFontChanged() = 0;
-
+        
         signals:
             /** This gets emitted when url gets clicked */
             void urlClicked(const KURL& url, bool background=false);
@@ -110,11 +114,6 @@ namespace Akregator
         protected: // attributes
             KURL m_url;
             
-        private:
-            /**
-             * Display article in external browser.
-             */
-            void displayInExternalBrowser(const KURL &url, const QString &mime);
     };
 }
 

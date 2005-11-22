@@ -32,6 +32,7 @@
 
 #include <kurl.h>
 
+#include "akregator_run.h"
 #include "feed.h"
 
 class QSplitter;
@@ -47,6 +48,7 @@ class KLineEdit;
 class KListView;
 class KListViewItem;
 class KTabWidget;
+class Viewer;
 
 namespace KIO {
 
@@ -60,6 +62,7 @@ namespace Akregator {
     class ArticleMatcher;
     class ArticleListView;
     class ArticleViewer;
+    class BrowserRun;
     class Folder;
     class FeedList;
     class Frame;
@@ -175,7 +178,7 @@ namespace Akregator {
             /** opens a page viewer in a new tab and loads an URL
              @param url the url to load
              @param background whether the tab should be opened in the background or in the foreground (activated after creation) */
-            void slotOpenTab(const KURL& url, bool background = false);
+            void slotOpenNewTab(const KURL& url, bool background = false);
 
             /** called when another part/frame is activated. Updates progress bar, caption etc. accordingly
             @param f the activated frame */
@@ -273,7 +276,7 @@ namespace Akregator {
             void disconnectFromFeedList(FeedList* feedList);
 
             void updateTagActions();
-
+            
         protected slots:
 
             /** this is called by the ctor, does init steps which need a properly created view and part */
@@ -284,11 +287,16 @@ namespace Akregator {
 
             void setTabIcon(const QPixmap&);
 
-            /** Display article in external browser. */
-            void displayInExternalBrowser(const KURL &url);
-
             void slotDoIntervalFetches();
             void slotDeleteExpiredArticles();
+
+            /** HACK: receives signal from browserrun when the browserrun detects an HTML mimetype and actually loads the page TODO: Remove for KDE 4.0 */
+            void slotOpenURLReply(const KURL& url, Akregator::Viewer* currentViewer, Akregator::BrowserRun::OpeningMode mode);
+
+            /** HACK: part of the url opening hack for 3.5. called when a viewer emits urlClicked(). TODO: Remove for KDE4 */
+            void slotUrlClickedInViewer(const KURL& url, bool background);
+
+            void slotOpenURL(const KURL& url, Akregator::Viewer* currentViewer, Akregator::BrowserRun::OpeningMode mode);
 
         public:         // compat with KDE-3.x assertions, remove for KDE 4
 //         private:

@@ -27,14 +27,19 @@
 #include "viewer.h"
 #include "akregator_run.h"
 
-using namespace Akregator;
+namespace Akregator {
 
 
-BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *part, const KURL & url, const KParts::URLArgs &args)
-    : KParts::BrowserRun(url, args, part, parent, false, true)
+BrowserRun::BrowserRun(QWidget* mainWindow, Viewer* currentViewer, const KURL& url, const KParts::URLArgs& args, OpeningMode mode)
+    : KParts::BrowserRun(url, args, 0L, mainWindow, false, true)
 {
-    m_viewer=viewer;
-    connect(m_viewer, SIGNAL(destroyed()), this, SLOT(killMyself()));
+    m_currentViewer = currentViewer;
+    m_openingMode = mode;
+
+    if (mode == CURRENT_TAB)
+    {
+        connect(m_currentViewer, SIGNAL(destroyed()), this, SLOT(slotViewerDeleted()));
+    }
     setEnableExternalBrowser(false);
 }
 
@@ -46,17 +51,21 @@ BrowserRun::~BrowserRun()
 void BrowserRun::foundMimeType( const QString & type )
 {
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml")
-        m_viewer->openPage(url());
+        emit signalOpenInViewer(url(), m_currentViewer, m_openingMode);
     else
         if ( handleNonEmbeddable(type) == KParts::BrowserRun::NotHandled )
             KRun::foundMimeType( type );
 }
 
-void BrowserRun::killMyself()
+void BrowserRun::slotViewerDeleted()
 {
-    kdDebug() << "BrowserRun::killMyself()" << endl;
-    delete this;
+
+    // HACK: if the mode is to open the page in the current viewer, we set it to new tab (foreground) if the part gets deleted meanwhile
+    m_currentViewer = 0;
+    m_openingMode = NEW_TAB_FOREGROUND;
 }
+
+} // namespace Akregator
 
 #include "akregator_run.moc"
 
