@@ -62,9 +62,21 @@ namespace Akregator {
 class ArticleListView::ArticleListViewPrivate
 {
     public:
+
+    ArticleListViewPrivate(ArticleListView* parent) : m_parent(parent) { }
+
+    void ensureCurrentItemVisible()
+    {
+        if (m_parent->currentItem())
+        {
+            m_parent->center( m_parent->contentsX(), m_parent->itemPos(m_parent->currentItem()), 0, 9.0 );
+        }
+    }
+
+    ArticleListView* m_parent;
+
     /** maps article to article item */
     QMap<Article, ArticleItem*> articleMap;
-    
     TreeNode* node;
     Akregator::Filters::ArticleMatcher textFilter;
     Akregator::Filters::ArticleMatcher statusFilter;
@@ -204,8 +216,9 @@ int ArticleListView::ArticleItem::compare(Q3ListViewItem *i, int col, bool ascen
 /* ==================================================================================== */
 
 ArticleListView::ArticleListView(QWidget *parent, const char *name)
-    : KListView(parent), d (new ArticleListViewPrivate)
+    : KListView(parent)
 {
+    d = new ArticleListViewPrivate(this);
     setObjectName(name);
     d->noneSelected = true;
     d->node = 0;
@@ -528,7 +541,7 @@ void ArticleListView::slotPreviousArticle()
         clearSelection();
         setSelected(d->articleMap[a], true);
         setCurrentItem(d->articleMap[a]);
-        ensureItemVisible(d->articleMap[a]);
+        d->ensureCurrentItemVisible();
     }
 }
 
@@ -546,7 +559,7 @@ void ArticleListView::slotNextArticle()
         clearSelection();
         setSelected(d->articleMap[a], true);
         setCurrentItem(d->articleMap[a]);
-        ensureItemVisible(d->articleMap[a]);
+        d->ensureCurrentItemVisible();
     }
 }
 
@@ -576,7 +589,7 @@ void ArticleListView::slotNextUnreadArticle()
         setCurrentItem(d->articleMap[a]);
         clearSelection();
         setSelected(d->articleMap[a], true);
-        ensureItemVisible(d->articleMap[a]);
+        d->ensureCurrentItemVisible();
     }
 }
 
@@ -606,7 +619,7 @@ void ArticleListView::slotPreviousUnreadArticle()
         setCurrentItem(d->articleMap[a]);
         clearSelection();
         setSelected(d->articleMap[a], true);
-        ensureItemVisible(d->articleMap[a]);
+        d->ensureCurrentItemVisible();
     }
 }
 
