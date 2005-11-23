@@ -45,7 +45,7 @@
 #include "akregator_run.h"
 #include "akregatorconfig.h"
 
-using namespace Akregator;
+namespace Akregator {
 
 Viewer::Viewer(QWidget *parent, const char *name)
     : KHTMLPart(parent, name), m_url(0)
@@ -325,6 +325,8 @@ void Viewer::setSafeMode()
     setDNDEnabled(true);
     setAutoloadImages(true);
     setStatusMessagesEnabled(false);
+}
+
 }
 
 #include "viewer.moc"
