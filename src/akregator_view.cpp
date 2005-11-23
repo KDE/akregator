@@ -1457,7 +1457,11 @@ void View::saveProperties(KConfig* config)
     config->writeEntry("searchCombo", m_searchBar->status());
     
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
-    config->writeEntry("selectedNodeID", sel ? sel->id() : -1);
+
+    if (sel)
+    {
+        config->writeEntry("selectedNodeID", sel->id() );
+    }
 }
 
 void View::connectToFeedList(FeedList* feedList)
