@@ -327,7 +327,7 @@ void Viewer::setSafeMode()
     setStatusMessagesEnabled(false);
 }
 
-}
+} // namespace Akregator
 
 #include "viewer.moc"
 
