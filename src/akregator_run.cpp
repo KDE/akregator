@@ -40,7 +40,7 @@ BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *pa
 
 BrowserRun::~BrowserRun()
 {
-//    kdDebug() << "BrowserRun::~BrowserRun()" << endl;
+    kdDebug() << "BrowserRun::~BrowserRun()" << endl;
 }
 
 void BrowserRun::foundMimeType( const QString & type )
@@ -54,7 +54,7 @@ void BrowserRun::foundMimeType( const QString & type )
 
 void BrowserRun::killMyself()
 {
-//    kdDebug() << "BrowserRun::killMyself()" << endl;
+    kdDebug() << "BrowserRun::killMyself()" << endl;
     delete this;
 }
 
