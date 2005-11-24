@@ -60,7 +60,7 @@
 
 #include <Q3MimeSourceFactory>
 
-using namespace Akregator;
+namespace Akregator {
 
 BrowserInterface::BrowserInterface( MainWindow *shell, const char *name )
     : KParts::BrowserInterface( shell)
@@ -283,6 +283,8 @@ void MainWindow::slotSetStatusBarText( const QString & text )
 {
     m_statusLabel->setText(text);
 }
+
+} // namespace Akregator
 
 #include "mainwindow.moc"
 

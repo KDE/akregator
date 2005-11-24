@@ -33,7 +33,7 @@
 #include <qpoint.h>
 #include <q3popupmenu.h>
 
-using namespace Akregator;
+namespace Akregator {
 
 TagNodeItem::TagNodeItem(FolderItem* parent, TagNode* node) : TreeNodeItem(parent, node)
 {
@@ -86,4 +86,6 @@ void TagNodeItem::showContextMenu(const QPoint& p)
 
 TagNodeItem::~TagNodeItem()
 {}
+
+} // namespace Akregator
 

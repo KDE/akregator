@@ -36,7 +36,7 @@
 #include <q3buttongroup.h>
 #include <qradiobutton.h>
 
-using namespace Akregator;
+namespace Akregator {
 
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
         : QWidget(parent)
@@ -319,6 +319,8 @@ void FeedPropertiesDialog::selectFeedName()
 {
    widget->feedNameEdit->selectAll();
 }
+
+} // namespace Akregator
 
 #include "propertiesdialog.moc"
 // vim: ts=4 sw=4 et

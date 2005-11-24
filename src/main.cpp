@@ -38,10 +38,10 @@ namespace Akregator {
 
 class Application : public KUniqueApplication {
   public:
-    Application() : mMainWindow( ) {}
+    Application() : mMainWindow(0) {}
     ~Application() {}
 
-    int newInstance();
+    virtual int newInstance();
 
   private:
     Akregator::MainWindow *mMainWindow;

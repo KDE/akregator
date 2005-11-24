@@ -31,7 +31,7 @@
 #include <kaction.h>
 #include <kiconloader.h>
 
-using namespace Akregator;
+namespace Akregator {
 
 FolderItem::FolderItem(FolderItem* parent, Folder* node) : TreeNodeItem(parent, node)
 {
@@ -82,3 +82,5 @@ void FolderItem::showContextMenu(const QPoint& p)
     if (w)
         static_cast<Q3PopupMenu *>(w)->exec(p);
 }
+
+} // namespace Akregator

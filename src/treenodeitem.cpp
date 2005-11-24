@@ -36,7 +36,7 @@
 
 #include <kdebug.h>
 
-using namespace Akregator;
+namespace Akregator {
 
 TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNode* node)
     : KListViewItem(parent), m_node(node)
@@ -162,7 +162,6 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
     p->setPen( cg.highlightedText() );
     else
     p->setPen( cg.text() );*/
-
-
 }
 
+} // namespace Akregator
