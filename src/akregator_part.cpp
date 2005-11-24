@@ -742,9 +742,9 @@ void Part::showOptions()
 
     KConfigDialog* dialog = new ConfigDialog( m_view, "settings", Settings::self() );
 
-    connect( dialog, SIGNAL(settingsChanged()),
+    connect( dialog, SIGNAL(settingsChanged( const QString &)),
              this, SLOT(slotSettingsChanged()) );
-    connect( dialog, SIGNAL(settingsChanged()),
+    connect( dialog, SIGNAL(settingsChanged( const QString &)),
              TrayIcon::getInstance(), SLOT(settingsChanged()) );
 
     dialog->show();
