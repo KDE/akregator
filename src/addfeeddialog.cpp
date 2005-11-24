@@ -37,7 +37,7 @@
 #include <ksqueezedtextlabel.h>
 #include <kmessagebox.h>
 
-using namespace Akregator;
+namespace Akregator {
 
 AddFeedWidget::AddFeedWidget(QWidget *parent, const char *name)
    : AddFeedWidgetBase(parent, name)
@@ -116,6 +116,8 @@ void AddFeedDialog::textChanged(const QString& text)
 {
     enableButtonOK(!text.isEmpty());
 }
+
+} // namespace Akregator
 
 #include "addfeeddialog.moc"
 // vim: ts=4 sw=4 et

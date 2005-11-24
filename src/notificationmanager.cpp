@@ -33,7 +33,7 @@
 #include "feed.h"
 #include "notificationmanager.h"
 
-using namespace Akregator;
+namespace Akregator {
 
 NotificationManager::NotificationManager() : QObject()
 {
@@ -137,5 +137,7 @@ NotificationManager* NotificationManager::self()
         m_self = notificationmanagersd.setObject(m_self, new NotificationManager);
     return m_self;
 }
+
+} // namespace Akregator
 
 #include "notificationmanager.moc"

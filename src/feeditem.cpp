@@ -32,7 +32,7 @@
 #include <kiconloader.h>
 #include <qstring.h>
 
-using namespace Akregator;
+namespace Akregator {
 
 FeedItem::FeedItem(FolderItem* parent, Feed* node) : TreeNodeItem(parent, node)
 {
@@ -114,4 +114,6 @@ void FeedItem::showContextMenu(const QPoint& p)
     if (w)
         static_cast<QPopupMenu *>(w)->exec(p);
 }
+
+} // namespace Akregator
 
