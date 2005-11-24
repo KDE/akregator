@@ -20,7 +20,6 @@ email                : markey@web.de
 #include <q3valuelist.h>
 #include <QFile>
 #include <QString>
-#include <Q3ValueList>
 
 #include <klibloader.h>
 #include <kdebug.h>
