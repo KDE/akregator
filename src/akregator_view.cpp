@@ -1022,7 +1022,6 @@ void View::slotOpenHomepage()
     {
         case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
             slotOpenURL(url, 0, BrowserRun::EXTERNAL);
-            Viewer::displayInExternalBrowser(feed->htmlUrl());
             break;
         case Settings::EnumLMBBehaviour::OpenInBackground:
             slotOpenURL(url, 0, BrowserRun::NEW_TAB_BACKGROUND);
