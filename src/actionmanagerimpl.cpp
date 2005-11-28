@@ -69,14 +69,14 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
     public:
     NodeSelectVisitor(ActionManagerImpl* manager) : m_manager(manager) {}
 
-    virtual bool visitFeed(Feed* /*node*/)
+    virtual bool visitFeed(Feed* node)
     {
         KAction* remove = m_manager->action("feed_remove");
         if (remove)
             remove->setEnabled(true);
         KAction* hp = m_manager->action("feed_homepage");
         if (hp)
-            remove->setEnabled(true);
+            hp->setEnabled(!node->htmlUrl().isEmpty());
         m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
         m_manager->action("feed_remove")->setText(i18n("&Delete Feed"));
         m_manager->action("feed_modify")->setText(i18n("&Edit Feed..."));
