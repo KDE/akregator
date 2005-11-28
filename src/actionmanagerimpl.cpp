@@ -33,7 +33,7 @@
 
 #include <qmap.h>
 #include <qstring.h>
-#include <q3valuelist.h>
+#include <QList>
 
 #include "actionmanagerimpl.h"
 #include "akregatorconfig.h"

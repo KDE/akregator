@@ -29,7 +29,7 @@
 #include <qdom.h>
 #include <qmap.h>
 #include <qpixmap.h>
-#include <q3valuelist.h>
+#include <QList>
 
 #include <kurl.h>
 #include <kdebug.h>

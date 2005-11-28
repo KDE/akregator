@@ -17,7 +17,7 @@ email                : markey@web.de
 #include "pluginmanager.h"
 
 #include <vector>
-#include <q3valuelist.h>
+#include <QList>
 #include <QFile>
 #include <QString>
 

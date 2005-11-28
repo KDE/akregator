@@ -34,7 +34,7 @@
 #include <qdom.h>
 #include <qregexp.h>
 #include <qstringlist.h>
-#include <q3valuelist.h>
+#include <QList>
 
 #include <krfcdate.h>
 #include <kdebug.h>

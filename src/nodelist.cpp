@@ -31,7 +31,7 @@
 
 #include <qmap.h>
 #include <qstring.h>
-#include <q3valuelist.h>
+#include <QList>
 #include <krandom.h>
 
 namespace Akregator {

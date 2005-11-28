@@ -25,7 +25,7 @@
 #include <qdatetime.h>
 #include <qevent.h>
 #include <q3scrollview.h>
-#include <q3valuelist.h>
+#include <QList>
 //Added by qt3to4:
 #include <QKeyEvent>
 

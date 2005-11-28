@@ -26,7 +26,7 @@
 #include "treenode.h"
 
 #include <qstring.h>
-#include <q3valuelist.h>
+#include <QList>
 
 #include <kdebug.h>
 

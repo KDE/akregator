@@ -23,7 +23,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <q3valuelist.h>
+#include <QList>
 
 #include "akregatorconfig.h"
 #include "fetchqueue.h"

@@ -33,7 +33,7 @@
 
 #include <QtXml/QDomElement>
 #include <QString>
-#include <q3valuelist.h>
+#include <QList>
 
 namespace Akregator {
 

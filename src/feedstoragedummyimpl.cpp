@@ -30,7 +30,7 @@
 #include <qmap.h>
 #include <qstring.h>
 #include <qstringlist.h>
-#include <q3valuelist.h>
+#include <QList>
 
 //typedef unsigned int uint;
 namespace Akregator {

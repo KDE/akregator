@@ -44,7 +44,7 @@
 #include <qpixmap.h>
 #include <q3popupmenu.h>
 #include <q3ptrlist.h>
-#include <q3valuelist.h>
+#include <QList>
 
 #include <q3header.h>
 #include <q3dragobject.h>
