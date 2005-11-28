@@ -40,39 +40,33 @@ class TagSet;
 
 class Kernel
 {
-     public:
+    public:
 
-         static Kernel* self();
+        static Kernel* self();
 
-         Kernel();
-         virtual ~Kernel();
+        Kernel();
+        virtual ~Kernel();
          
-         Backend::Storage* storage() { return m_storage; }
-         void setStorage(Backend::Storage* storage) { m_storage = storage; }
+        Backend::Storage* storage();
+        void setStorage(Backend::Storage* storage);
 
-         FeedList* feedList() { return m_feedList; }
-         void setFeedList(FeedList* feedList) { m_feedList = feedList; }
+        FeedList* feedList();
+        void setFeedList(FeedList* feedList);
 
-         FetchQueue* fetchQueue() { return m_fetchQueue; }
+        FetchQueue* fetchQueue();
 
-         TagSet* tagSet() { return m_tagSet; }
+        TagSet* tagSet();
          
-         void setArticleFilterList(const Filters::ArticleFilterList& list)
-         {
-            m_articleFilterList = list;
-         }
+        void setArticleFilterList(const Filters::ArticleFilterList& list);
 
-         Filters::ArticleFilterList articleFilterList() const { return m_articleFilterList; }
-        
-     private:
+        Filters::ArticleFilterList articleFilterList() const;
 
-         static Kernel* m_self;
+    private:
 
-         Backend::Storage* m_storage;
-         FeedList* m_feedList;
-         FetchQueue* m_fetchQueue;
-         TagSet* m_tagSet;
-         Filters::ArticleFilterList m_articleFilterList;
+        static Kernel* m_self;
+
+        class KernelPrivate;
+        KernelPrivate* d;
 };
 
 }

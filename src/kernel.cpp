@@ -43,18 +43,70 @@ Kernel* Kernel::self()
     return m_self;
 }
 
-Kernel::Kernel()
+class Kernel::KernelPrivate
 {
-    m_fetchQueue = new FetchQueue();
-    m_tagSet = new TagSet();
-    m_storage = 0;
-    m_feedList = 0;
+    public:
+
+    Backend::Storage* storage;
+    FeedList* feedList;
+    FetchQueue* fetchQueue;
+    TagSet* tagSet;
+    Filters::ArticleFilterList articleFilterList;
+};
+
+Kernel::Kernel() : d(new KernelPrivate)
+{
+    d->fetchQueue = new FetchQueue();
+    d->tagSet = new TagSet();
+    d->storage = 0;
+    d->feedList = 0;
 }
  
 Kernel::~Kernel()
 {
-    delete m_fetchQueue;
+    delete d->fetchQueue;
+    delete d;
+    d = 0;
 }
-         
 
+Backend::Storage* Kernel::storage() 
+{ 
+    return d->storage; 
 }
+
+void Kernel::setStorage(Backend::Storage* storage) 
+{ 
+    d->storage = storage;
+}
+
+FeedList* Kernel::feedList() 
+{ 
+    return d->feedList;
+}
+
+void Kernel::setFeedList(FeedList* feedList) 
+{
+    d->feedList = feedList;
+}
+
+FetchQueue* Kernel::fetchQueue()
+{
+    return d->fetchQueue; 
+}
+
+TagSet* Kernel::tagSet() 
+{
+    return d->tagSet;
+}
+    
+void Kernel::setArticleFilterList(const Filters::ArticleFilterList& list)
+{
+    d->articleFilterList = list;
+}
+
+Filters::ArticleFilterList Kernel::articleFilterList() const
+{
+    return d->articleFilterList;
+}
+
+} // namespace Akregator
