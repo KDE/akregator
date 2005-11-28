@@ -67,14 +67,15 @@ namespace Akregator
         
         Q_OBJECT
         public:
-            /** the archiving modes:
-                - globalDefault: use default from Settings (default)
-                - keepAllArticles: Don't delete any articles
-                - disableArchiving: Don't save any articles except articles with keep flag set (equal to maxArticleNumber() == 0)
-                - limitArticleNumber: Save maxArticleNumber() articles, plus the ones with keep flag set
-                - limitArticleAge: Save articles not older than maxArticleAge() (or keep flag set)
-             */
-            enum ArchiveMode { globalDefault, keepAllArticles, disableArchiving, limitArticleNumber, limitArticleAge };
+            /** the archiving modes */
+
+            enum ArchiveMode {
+                globalDefault, /**< use default from Settings (default) */
+                keepAllArticles, /**< Don't delete any articles */
+                disableArchiving, /**< Don't save any articles except articles with keep flag set (equal to maxArticleNumber() == 0) */
+                limitArticleNumber, /**< Save maxArticleNumber() articles, plus the ones with keep flag set */
+                limitArticleAge /**< Save articles not older than maxArticleAge() (or keep flag set) */
+            };
 
             // class methods
             /** converts strings to ArchiveMode value
@@ -184,7 +185,11 @@ namespace Akregator
 
             virtual QList<Article> articles(const QString& tag=QString::null);
 
-            /** returns the article with the given @c guid, or a null article if it not exists */
+            /** returns article by guid
+             * @param guid the guid of the article to be returned
+             * @return the article object with the given guid, or a
+             * null article if not existant
+             */
             virtual Article findArticle(const QString& guid) const;
             
             virtual QStringList tags() const;
