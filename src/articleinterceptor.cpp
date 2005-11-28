@@ -1,7 +1,7 @@
 #include "article.h"
 #include "articleinterceptor.h"
 
-#include <q3valuelist.h>
+#include <QList>
 #include <kstaticdeleter.h>
 
 namespace Akregator

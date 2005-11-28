@@ -46,7 +46,9 @@ class TreeNode;
 class View;
 class TabWidget;
 
-/** Akregator-specific implementation of the ActionManager interface */
+/** 
+ * Akregator-specific implementation of the ActionManager interface
+ */
 class ActionManagerImpl : public ActionManager
 {
     Q_OBJECT

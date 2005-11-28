@@ -33,8 +33,11 @@ class KAction;
 
 namespace Akregator {
 
-/** interface for accessing actions, popup menus etc. from widgets.
-    (Extracted from the implementation to avoid dependencies between widgets and  Akregator::Part).
+/**
+ * interface for accessing actions, popup menus etc. from
+ * widgets.
+ * (Extracted from the implementation to avoid dependencies
+ *  between widgets and  Akregator::Part).
  */
 class ActionManager : public QObject
 {
