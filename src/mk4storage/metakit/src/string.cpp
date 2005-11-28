@@ -34,14 +34,12 @@
   
 /////////////////////////////////////////////////////////////////////////////
 
-#if q4_MSVC || q4_WATC || q4_BORC || (q4_MWCW && __MWERKS__ < 0x3000)
-#define strcasecmp stricmp
-#elif q4_WINCE
+#if q4_WINCE
 
   // MS C/C++ has this handy stricmp: a case-insensitive version of strcmp
   // This version only works with 7-bit ASCII characters 0x00 through 0x7F
     
-  static int stricmp(const char* p1, const char* p2)
+  static int strcasecmp(const char* p1, const char* p2)
   {
     int c1, c2;
   
@@ -65,9 +63,6 @@
     return c1 - c2;
   }
   
-#endif
-
-#if q4_WINCE
   const char* strrchr(const char* p, char ch)
   {
     const char* q = 0;
@@ -76,6 +71,9 @@
 	q = p;
     return q;
   }
+
+#elif q4_MSVC || q4_WATC || q4_BORC || (q4_MWCW && __MWERKS__ < 0x3000)
+#define strcasecmp stricmp
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

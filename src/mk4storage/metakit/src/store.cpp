@@ -426,6 +426,11 @@ void c4_Storage::SaveTo(c4_Stream& stream_)
   c4_Persist::Save(&stream_, Persist()->Root());
 }
 
+t4_i32 c4_Storage::FreeSpace(t4_i32* bytes_)
+{
+  return Persist()->FreeBytes(bytes_);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 
 c4_DerivedSeq::c4_DerivedSeq (c4_Sequence& seq_)

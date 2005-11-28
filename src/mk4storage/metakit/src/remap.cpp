@@ -504,10 +504,24 @@ class c4_BlockedViewer : public c4_CustomViewer
   c4_ViewProp _pBlock;
   c4_DWordArray _offsets;        
 
+  int _last_base, _last_limit, _last_slot;
+  c4_View _last_view;
+
   int Slot(int& pos_);
   void Split(int block_, int row_);
   void Merge(int block_);
   void Validate() const;
+
+  // 2004-04-27 new cache logic, thx MB
+  void SetLast(int row_);
+  void ClearLast(int slot_)
+  {
+     if (_last_slot >= slot_)
+     {
+        _last_limit = _last_slot = -1;
+        _last_view = c4_View();
+     }
+  }
 
 public:
   c4_BlockedViewer (c4_Sequence& seq_);
@@ -556,7 +570,8 @@ public:
 #endif
 
 c4_BlockedViewer::c4_BlockedViewer (c4_Sequence& seq_)
-  : _base (&seq_), _pBlock ("_B")
+  : _base (&seq_), _pBlock ("_B"),
+    _last_base(-1), _last_limit(-1), _last_slot(-1)
 {
   if (_base.GetSize() < 2)
     _base.SetSize(2);
@@ -580,12 +595,21 @@ c4_BlockedViewer::~c4_BlockedViewer ()
 
 int c4_BlockedViewer::Slot(int& pos_)
 {
-  d4_assert(_offsets.GetSize() > 0);
-  d4_assert(pos_ <= (int) _offsets.GetAt(_offsets.GetSize() - 1));
-
-#if 0
   const int n = _offsets.GetSize();
 
+  d4_assert(n > 0);
+  d4_assert(pos_ <= (int) _offsets.GetAt(n - 1));
+
+#if 0
+  // not sure the following adds any performance (the logic looks ok)
+  // reason: won't work if inserts/removes always invalidate the cache
+  if (_last_base <= pos_ && pos_ < _last_limit) {
+    pos_ -= _last_base;
+    return _last_slot;
+  }
+#endif
+
+#if 0
   int h;
   for (h = 0; h < n; ++h)
     if (pos_ <= (t4_i32) _offsets.GetAt(h))
@@ -593,7 +617,7 @@ int c4_BlockedViewer::Slot(int& pos_)
 #else
     // switch to binary search, adapted from code by Zhang Dehua, 28-3-2002
     // slows down some 5%, but said to be much better with 5 million rows
-  int l = 0, h = _offsets.GetSize() - 1;
+  int l = 0, h = n - 1;
   while (l < h) {
     int m = l + (h - l) / 2;
     if ((t4_i32) _offsets.GetAt(m) < pos_)
@@ -611,7 +635,9 @@ int c4_BlockedViewer::Slot(int& pos_)
 
 void c4_BlockedViewer::Split(int bno_, int row_)
 {
-  int z = _base.GetSize() - 1;
+  ClearLast(bno_);
+
+  int z = _offsets.GetSize();
   d4_assert(bno_ < z);
   c4_View bz = _pBlock (_base[z]);
   c4_View bv = _pBlock (_base[bno_]);
@@ -630,7 +656,9 @@ void c4_BlockedViewer::Split(int bno_, int row_)
 
 void c4_BlockedViewer::Merge(int bno_)
 {
-  int z = _base.GetSize() - 1;
+  ClearLast(bno_);
+
+  int z = _offsets.GetSize();
   c4_View bz = _pBlock (_base[z]);
   c4_View bv1 = _pBlock (_base[bno_]);
   c4_View bv2 = _pBlock (_base[bno_+1]);
@@ -658,38 +686,43 @@ int c4_BlockedViewer::GetSize()
   return n;
 }
 
-bool c4_BlockedViewer::GetItem(int row_, int col_, c4_Bytes& buf_)
+void c4_BlockedViewer::SetLast(int row_)
 {
   int orig = row_;
 
   int i = Slot(row_);
-  d4_assert(0 <= i && i < _base.GetSize() - 1);
+  d4_assert(0 <= i && i < _offsets.GetSize());
 
-  if ((t4_i32) _offsets.GetAt(i) == orig)
+  _last_limit = _offsets.GetAt(i);
+
+  if (_last_limit == orig)
   {
     row_ = i;
-    i = _base.GetSize() - 1;
+    i = _offsets.GetSize();
+    _last_limit = 0; // force miss next time, but view is still cached
   }
 
-  c4_View bv = _pBlock (_base[i]);
-  return bv.GetItem(row_, col_, buf_);
+  if (i != _last_slot)
+  {
+    _last_slot = i;
+    _last_view = _pBlock (_base[i]);
+  }
+
+  _last_base = orig - row_;
+}
+
+bool c4_BlockedViewer::GetItem(int row_, int col_, c4_Bytes& buf_)
+{
+  if (row_ < _last_base || row_ >= _last_limit)
+    SetLast(row_);
+  return _last_view.GetItem(row_ - _last_base, col_, buf_);
 }
 
 bool c4_BlockedViewer::SetItem(int row_, int col_, const c4_Bytes& buf_)
 {
-  int orig = row_;
-
-  int i = Slot(row_);
-  d4_assert(0 <= i && i < _base.GetSize() - 1);
-
-  if ((t4_i32) _offsets.GetAt(i) == orig)
-  {
-    row_ = i;
-    i = _base.GetSize() - 1;
-  }
-
-  c4_View bv = _pBlock (_base[i]);
-  bv.SetItem(row_, col_, buf_);
+  if (row_ < _last_base || row_ >= _last_limit)
+    SetLast(row_);
+  _last_view.SetItem(row_ - _last_base, col_, buf_);
   return true;
 }
 
@@ -699,9 +732,11 @@ bool c4_BlockedViewer::InsertRows(int pos_, c4_Cursor value_, int count_)
   
   bool atEnd = pos_ == GetSize();
 
-  int z = _base.GetSize() - 1;
+  int z = _offsets.GetSize();
   int i = Slot(pos_);
   d4_assert(0 <= i && i < z);
+
+  ClearLast(i);
 
   c4_View bv = _pBlock (_base[i]);
   d4_assert(0 <= pos_ && pos_ <= bv.GetSize());
@@ -727,9 +762,11 @@ bool c4_BlockedViewer::RemoveRows(int pos_, int count_)
   d4_assert(count_ > 0);
   d4_assert(pos_ + count_ <= GetSize());
   
-  int z = _base.GetSize() - 1;
+  int z = _offsets.GetSize();
   int i = Slot(pos_);
   d4_assert(0 <= i && i < z);
+
+  ClearLast(i);
 
   c4_View bv = _pBlock (_base[i]);
   d4_assert(0 <= pos_ && pos_ <= bv.GetSize());

@@ -194,13 +194,15 @@ void c4_Sequence::InsertAt(int index_, c4_Cursor newElem_, int count_)
     const c4_Sequence* hc = newElem_._seq->HandlerContext(i);
     int ri = newElem_._seq->RemapIndex(newElem_._index, hc);
 
-    h.GetBytes(ri, data);
-
     int colNum = PropIndex(h.Property());
     d4_assert(colNum >= 0);
 
     if (h.Property().Type() == 'V')
     {
+        // If inserting from self: Make sure we get a copy of the bytes,
+        // so we don't get an invalid pointer if the memory get realloc'ed
+      h.GetBytes(ri, data, newElem_._seq == this);
+
         // special treatment for subviews, insert empty, then overwrite
         // changed 19990904 - probably fixes a long-standing limitation
       c4_Bytes temp;
@@ -208,11 +210,15 @@ void c4_Sequence::InsertAt(int index_, c4_Cursor newElem_, int count_)
 
       c4_Handler& h2 = NthHandler(colNum);
       h2.Insert(index_, temp, count_);
+
       for (int j = 0; j < count_; ++j)
         h2.Set(index_ + j, data);
     }
     else
+    {
+      h.GetBytes(ri, data);
       NthHandler(colNum).Insert(index_, data, count_);
+    }
   }
 
     // if number of props in dest is larger after adding, clear the rest
@@ -540,7 +546,7 @@ c4_BytesRef& c4_BytesRef::operator= (const c4_Bytes& value_)
   return *this;
 }
 
-c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_) const
+c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_, bool noCopy_) const
 {
   c4_Bytes& buffer = _cursor._seq->Buffer();
   
@@ -552,21 +558,35 @@ c4_Bytes c4_BytesRef::Access(t4_i32 off_, int len_) const
     if (len_ == 0 || off_ + len_ > sz)
       len_ = sz - off_;
 
-    c4_Column* col = h.GetNthMemoCol(_cursor._index, true);
-    if (col != 0)
-    {
-
-      if (len_ > 0) {
-        col->FetchBytes(off_, len_, buffer, true);
-        return buffer;
+    if (len_ > 0) {
+      c4_Column* col = h.GetNthMemoCol(_cursor._index, true);
+      if (col != 0)
+      {
+        if (noCopy_)
+	{
+	  // 21-11-2005 optimization by A. Stigsen
+          // return just the first segment (even if it is smaller than
+          // len). this avoids any expensive memcopies, but you have to
+          // remember to check length of the returned bytes.
+          c4_ColIter iter (*col, off_, off_ + len_);
+          iter.Next();
+          return c4_Bytes(iter.BufLoad(),
+				iter.BufLen() < len_ ? iter.BufLen() : len_);
+        }
+	else
+	{
+	  const t4_byte* bytes = col->FetchBytes(off_, len_, buffer, false);
+          if (bytes == buffer.Contents()) return buffer;
+	  return c4_Bytes (bytes, len_);
+	}
       }
-    }
-    else // do it the hard way for custom/mapped views (2002-03-13)
-    {
-      c4_Bytes result;
-      GetData(result);
-      d4_assert(off_ + len_ <= result.Size());
-      return c4_Bytes (result.Contents() + off_, len_, true);
+      else // do it the hard way for custom/mapped views (2002-03-13)
+      {
+	c4_Bytes result;
+	GetData(result);
+	d4_assert(off_ + len_ <= result.Size());
+	return c4_Bytes (result.Contents() + off_, len_, true);
+      }
     }
   }
 

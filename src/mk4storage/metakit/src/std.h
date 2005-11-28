@@ -17,7 +17,7 @@
 template<class T>
 class c4_ArrayT
 {
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__BORLANDC__)
   d4_std::vector< T, d4_std::allocator<T> > _vector;
 #else
   d4_std::vector< T, d4_std::alloc > _vector;

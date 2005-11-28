@@ -43,7 +43,7 @@
 //---------------------------------------------------------------------------
 
     /// Current release = 100 * major + 10 * minor + maintenance
-#define d4_MetakitLibraryVersion 249    // 2.4.9.3 release, Jan 26, 2004
+#define d4_MetakitLibraryVersion 249    // 2.4.9.5 release, Nov 22, 2005
 #define d4_MetaKitLibraryVersion d4_MetakitLibraryVersion // compat, yuck
 
 //---------------------------------------------------------------------------
@@ -554,6 +554,8 @@ public:
   bool LoadFrom(c4_Stream&);
   void SaveTo(c4_Stream&);
 
+  t4_i32 FreeSpace(t4_i32* bytes_ =0);
+
   //DROPPED: c4_Storage (const char* filename_, const char* description_);
   //DROPPED: c4_View Store(const char* name_, const c4_View& view_);
   //DROPPED: c4_HandlerSeq& RootTable() const;
@@ -1029,7 +1031,7 @@ public:
   c4_BytesRef& operator= (const c4_Bytes&);
 
       /// Fetch data from the memo field, up to end if length is zero
-  c4_Bytes Access(t4_i32, int =0) const;
+  c4_Bytes Access(t4_i32, int =0, bool =false) const;
       /// Store data, resize by diff_ bytes, return true if successful
   bool Modify(const c4_Bytes&, t4_i32, int =0) const;
 };

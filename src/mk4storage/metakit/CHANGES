@@ -1,3 +1,223 @@
+2005-11-22    ############################################    MK 2.4.9.5
+
+    Main reason for this release is the 11-18 disk-full handling fix.
+
+2005-11-21    Optimization for access via c4_BytesRef::Access
+
+    Added a noCopy flag (default remains as before), by A. Stigsen:
+    When I first looked at c4_BytesRef::Access() I noticed that
+    FetchBytes had the forceCopy option set. So I tried removing that,
+    and that gave some improvement. But it still often happened that the
+    item was in several segments, forcing a copy. So I have added a
+    noCopy option to Access() to ensure that I do not get any uneeded
+    memcopies. It gave a huge performance boost in my application, so it
+    might be useful for others as well.
+
+2005-11-18    Fixed incorrect case of handling disk-full on commit
+
+    This is a potentially serious bug (though all data can still be
+    recovered if dealt with right away).  When an I/O error occurs
+    under specific circumstances in the commit, the resulting file
+    may be left in an improper state.  Full details are desribed in
+    http://www.equi4.com/pipermail/metakit/2005-November/002144.html
+
+2005-11-16    Ranlib called too early
+
+    Fixed call to ranlib when installing Mk4tcl.a - this was copied
+    incorrectly by my from the 11-11 patches.  Thx A. Kupries.
+
+2005-11-15    Version number fixed
+
+    Fixed version number mismatch (2.4.9.3, should now be 2.4.9.4).
+
+2005-11-11    Build fixes for Tcl (by Matt Newman)
+
+    Added logic to disable mmap calls on some HP-UX versions.
+    Plus other tweaks for the Tcl build.  Mods by Matt Newman.
+    
+2005-10-01    The HP-UX fix did not work on macosx.
+
+    Made the 2005-09-06 change below conditional on __hpux, so that
+    builds on Mac OS X don't break, i.e. revert it.  Thx D. Steffen.
+
+2005-09-26    Linking with g++ i.s.o. gcc
+
+    Fixed SHARED_LD to use G++ instead of gcc.  This caused problems
+    when using the shared library from a gcc-compiled main.
+
+2005-09-06    Tweak Tcl binding to avoid compiler problems
+
+    Made some changes to let HP-UX's aCC compile mk4tcl.{h,cpp}
+    properly (no static inits with function ptrs?).  Thx Bob T.
+    Also got rid of some warnings caused by const-ness mismatches.
+
+2005-09-05    Fix potential Tcl close problem
+
+    Bug if a Tcl channel is still open on exit in mk::channel.  Fix
+    thanks to Matt Newman.  Also cleaned up some old unused code.
+
+2005-06-10    ############################################    MK 2.4.9.4
+
+    Maintenance release, consolidates over a year of changes/tweaks.
+
+2005-06-10    Adjusted Python builds
+
+    Changed configure.in to use Python 2.4.x by default (was 2.3).
+
+2005-04-15    Fix typo in Mk4py code
+
+    The 2005-01-29 changes had a typo (InsertA i.s.o. InsertAt).
+    So no one built the CVS version since then?  (thx, Ben R.)
+
+2005-03-01    Fix for BTS#112, insert one part of a view in other
+
+    Only showed up in debug builds, due to malloc overwriting mem,
+    this was a dangling pointer.  Reported and fixed by A. Stimms.
+
+2005-02-18    Backed out of faulty change on 2004-09-23
+
+    The c4_BytesRef::Modify change was not correct.  Will need to
+    be reviewed again, thanks to P. Thoyts for reporting this.
+
+2005-02-14    Minor mods or PocketPC
+
+    Changed some #defines to build under eVC4 for PoscketPC.
+    Updated Tcl build to TEA 3.2 for same reason.
+
+2005-01-31    Updated Tcl build to use TEA 3.1
+
+    A number of changes were needed to make the configure & make
+    setup in the tcl/ area work with Tcl's TEA 3.1 build system.
+    Install target not quite there due to missing doc/tests dirs.
+
+2005-01-29    Allow inserting view in Mk4py
+
+    Fix by B. Kelley to support inserting a view into another.
+    Properties in the source view will be added to dest as needed.
+
+2005-01-07    Some Mk4py fixes
+
+    See BTS#105 for report, PyView.cpp leak fixed.
+    See BTS#106 for report, submitter unknown (change in PyHead.h).
+
+2004-11-30    Added license terms in separate file
+
+    As suggested by Daniel Steffen, see "license.terms".
+
+2004-09-23    Fix c4_BytesRef::Modify bytes insertion
+
+    There was a bug preventing bytes from being inserted past the
+    original size.  Reported by A. Stimms, disgnosed by B. Kelley.
+    The solution was to remove an incorrect minor optimization.
+
+2004-06-03    Fixed missing include
+
+    Added stdio include to mk4too.cpp, fixes Tcl 8.5 compile.
+
+2004-05-20    Mac OS X tweak
+
+    Fix gcc shared lib builds flags for Mac OS X (thx D. Steffen).
+
+2004-04-27    Optimization of blocked views
+
+    New caching of most recent subview block saves a lot of time when
+    frequently getting and storing values (also in sequential order).
+    Effects depend on usage pattern of course, expect 10..40% gain.
+
+    Many thanks to M Berk for submitting a good working patch, which
+    was then further tweaked.  No change in API / usage / storage.
+
+    With this improvement, blocked views are highly recommended for
+    larger views, i.e. millions of rows (up to address space limit).
+    This requires C++, Mk4py, or Oomk/Mk4too (not Mk4tcl).
+
+2004-04-26    Python Unicode strings and distutils test suite
+
+    Did some work to integrate Nicholas Riley's PyRowRef.cpp changes
+    into the core.  Now supports unicode and rejects strings which
+    have null bytes in them (use 'B' i.s.o. 'S' type to accept 'em).
+
+    Tweaked setup.py a bit to properly run "python setup.py tests".
+    This required a hack I don't understand, lines 135 and on, marked
+    "jcw".  Without these extra imports, the tests are not found.
+
+    Merged tweak to PyView.cpp to barf on view.append with >1 args.
+
+    Thanks to Nicholas Riley for lots of improvements.
+
+2004-04-24    Autoconf tweaks
+
+    Dropped LINK_SPECIAL_FLAGS="-rpath ${libdir}" from configure.in,
+    which was causing havoc on Linux: make & make test work again now.
+
+    Fixed configure.in + Makefile.in to support static builds again.
+    The Tcl static target is now Mk4tcl.a i.s.o. libmk4tcl.a (ouch).
+    
+    For Tcl and Python, the following now works on my Linux box:
+    	../unix/conficure --with-tcl=/usr/include --with-tcl=/usr
+    More elaborate params are also supported, see "configure --help".
+
+2004-03-30    Fix opening Win32 files with unicode/multibyte chars
+
+    The _open call used on Win32 is not Unicode/multi-byte friendly (!).
+
+    Added code to try a conversion and use the _wopen variant when the
+    _open fails.  This should work for opening existing files and for
+    creating new files as long as the file tail does not have special
+    chars (i.e. only special chars in the directories leading up to it).
+
+    Also removed UTF conversions from mk4tcl.cpp (Windows build), which
+    interfere with this new logic.
+
+    Detected and resolved by Jeff Hobbs for use in the Mk4tcl extension.
+
+2004-03-09    Added new build files for Mk4tcl
+
+    Added the TEA configure system to tcl/, so that Mk4tcl can now also
+    be built with that approach.  This supercedes the current Mk4tcl
+    code in unix/Makefile.in, which will probably be dropped soon.
+
+2004-03-08    Added DESTDIR to makefile
+
+    Added Stuart Cassoff's patches to support DESTDIR in the Makefile.
+
+2004-03-07    Removed libtool dependency
+
+    Thrown out libtool, it is more hassle than it's worth.  Adjusted
+    configure.in and Makefile.in accordingly - these changes are very
+    preliminary, all help to fix remaining platform issues appreciated!
+
+2004-03-03    Added Microsoft Visual Studio 7.0 project files
+
+    Added a new win/msvc70/ directory with all MSVC 7.0 project files.
+    With thanks to David Van Maren for sharing his work on this.
+    
+    Also added David McNab's info on how to build Mk4py with older
+    versions of Python.  See python/README-dmn for details.
+
+2004-02-29    Fix in Mk4tcl property caching
+
+    In very specific cases, Mk4tcl does not properly track properties
+    cached in a Tcl_Obj*.  This affects byte-compiled code when there
+    are properties using the same name but with different types.  Fixed
+    in the mk4tcl.h and mk4tcl.cpp sources.
+
+    Also optimized selections a bit further (pass Tcl_Obj* instead of
+    strings to force more typed matches, and avoid some c4_String's).
+
+2004-02-16    Minor tweaks
+
+    Change in std.h (for STL) to build with Borland C++ 5.0, and a typo
+    in checking code of c4_View::IsCompatibleWith, which means incorrect
+    use of MK was not detected properly (can't happen in blocked views,
+    the main call point of this routine).  Reported by M Dierolf, thx!
+
+2004-01-28    Free space query
+
+    Added a new FreeSpace() member to c4_Storage to determine how much
+    unused space is in a datafile.  The validity of the returned values
+    has not been verified yet, it's an "undocumented feature" for now.
+
 2004-01-26    ############################################    MK 2.4.9.3
 
     Maintenance release, consolidates past 9 months of changes/tweaks.
@@ -1563,7 +1783,7 @@
 
     Yet more fixes in comparisons, this is all one problem, caused by
     changes in caching for ints, floats, and doubles.  Added B24 test.
-    These (last?) problems occurred in custom / compound views.
+    These (last?) problems occured in custom / compound views.
 
 1999-11-08  MK 1.9f     Fixed sort comparisons
 
@@ -1606,7 +1826,7 @@
     to a view of which the underlying storage object goes away will end
     up with the same number of rows as before, but no properties at all.
 
-    Fixed a problem which would have occurred when properties are being
+    Fixed a problem which would have occured when properties are being
     "restructured away" and then committed.  The solution is to check
     for this and delete all such properties at commit time.
 
