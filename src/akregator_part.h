@@ -146,10 +146,6 @@ namespace Akregator
             void fileExport();
             void fileGetFeeds();
             
-            void fileSendLink() { fileSendArticle(); }
-            void fileSendFile() { fileSendArticle(true); }
-            void fileSendArticle(bool attach=false);
-
             /** Shows configuration dialog */
             void showOptions();
             void showKNotifyOptions();
@@ -182,6 +178,8 @@ namespace Akregator
             virtual void partActivateEvent(KParts::PartActivateEvent* event);
 
         protected slots:
+            void slotStarted();
+
             void slotOnShutdown();
             void slotSettingsChanged();
 
@@ -206,11 +204,11 @@ namespace Akregator
 
             KParts::BrowserExtension *m_extension;
             KParts::Part* m_mergedPart;
-            View* m_view;
-            
+                       
             QTimer* m_autosaveTimer;
             /** did we backup the feed list already? */
             bool m_backedUpList;
+            View* m_view;
             Backend::Storage* m_storage;
             ActionManagerImpl* m_actionManager;
     };

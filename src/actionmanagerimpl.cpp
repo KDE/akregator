@@ -254,9 +254,6 @@ void ActionManagerImpl::initPart()
     new KAction(i18n("&Export Feeds..."), "", "", d->part, SLOT(fileExport()), d->actionCollection, "file_export");
     //new KAction(i18n("&Get Feeds From Web..."), "", "", d->part, SLOT(fileGetFeeds()), d->actionCollection, "file_getfromweb");
 
-    new KAction(i18n("Send &Link Address..."), "mail_generic", "", d->part, SLOT(fileSendLink()), d->actionCollection, "file_sendlink");
-    new KAction(i18n("Send &File..."), "mail_generic", "", d->part, SLOT(fileSendFile()), d->actionCollection, "file_sendfile");
-
     KStdAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
     new KAction( i18n("Configure &Akregator..."), "configure", "", d->part, SLOT(showOptions()), d->actionCollection, "akregator_configure_akregator" );
 }
@@ -354,6 +351,9 @@ void ActionManagerImpl::initView(View* view)
     new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", view, SLOT(slotMoveCurrentNodeDown()), d->actionCollection, "feedstree_move_down" );
     new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", view, SLOT(slotMoveCurrentNodeLeft()), d->actionCollection, "feedstree_move_left" );
     new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", view, SLOT(slotMoveCurrentNodeRight()), d->actionCollection, "feedstree_move_right");
+
+    new KAction(i18n("Send &Link Address..."), "mail_generic", "", view, SLOT(slotSendLink()), d->actionCollection, "file_sendlink");
+    new KAction(i18n("Send &File..."), "mail_generic", "", view, SLOT(slotSendFile()), d->actionCollection, "file_sendfile");
 }
 
 void ActionManagerImpl::initArticleViewer(ArticleViewer* articleViewer)

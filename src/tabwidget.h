@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef TABWIDGET_H
-#define TABWIDGET_H
+#ifndef AKREGATOR_TABWIDGET_H
+#define AKREGATOR_TABWIDGET_H
 
 #include <ktabwidget.h>
 
@@ -43,7 +43,6 @@ class TabWidget : public KTabWidget
         virtual ~TabWidget();
 
         void addFrame(Frame *f);
-        Frame* currentFrame();
         void removeFrame(Frame *f);
 
     public slots:
@@ -57,7 +56,11 @@ class TabWidget : public KTabWidget
     signals:
         
         void currentFrameChanged(Frame *);
-        
+
+    protected:
+
+        Frame* currentFrame();
+
     protected slots:
 
         virtual void initiateDrag(int tab);
@@ -83,6 +86,6 @@ class TabWidget : public KTabWidget
        TabWidgetPrivate* d;
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_TABWIDGET_H

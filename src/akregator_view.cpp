@@ -226,7 +226,6 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_tagNodeList = new TagNodeList(m_feedList, Kernel::self()->tagSet());
     m_shuttingDown = false;
     m_displayingAboutPage = false;
-    m_currentFrame = 0L;
     setFocusPolicy(Qt::StrongFocus);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
@@ -266,15 +265,16 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     
     ProgressManager::self()->setFeedList(m_feedList);
 
-    m_tabs = new TabWidget(m_horizontalSplitter);
-    m_actionManager->initTabWidget(m_tabs);
+    m_tabWidget = new TabWidget(m_horizontalSplitter);
+    m_actionManager->initTabWidget(m_tabWidget);
 
-    connect( m_part, SIGNAL(signalSettingsChanged()), m_tabs, SLOT(slotSettingsChanged()));
+    connect( m_part, SIGNAL(signalSettingsChanged()), m_tabWidget, SLOT(slotSettingsChanged()));
 
-    connect( m_tabs, SIGNAL( currentFrameChanged(Frame *) ), this,
+    connect( m_tabWidget, SIGNAL(currentFrameChanged(Frame*)), Kernel::self()->frameManager(), SLOT(slotChangeFrame( Frame* )));
+    connect( Kernel::self()->frameManager(), SIGNAL( signalCurrentFrameChanged(Frame*) ), this,
             SLOT( slotFrameChanged(Frame *) ) );
 
-    m_tabs->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
+    m_tabWidget->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this, "Article Tab");
     QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab, 0, 2, "mainTabLayout");
@@ -320,13 +320,9 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_articleViewer->widget()->setWhatsThis( i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 
-    m_mainFrame = new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
+    m_mainFrame = new MainFrame(this, m_part, m_mainTab, i18n("Articles"));
 
-    m_mainFrame->setRemovable(false);
-    m_mainFrame->setUrlEnabled(false);
-
-    connectFrame(m_mainFrame);
-    m_tabs->addFrame(m_mainFrame);
+    m_tabWidget->addFrame(m_mainFrame);
 
     m_horizontalSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
@@ -338,7 +334,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
         m_articleList->hide();
         m_searchBar->hide();
         m_articleViewer->displayAboutPage();
-        m_mainFrame->setTitle(i18n("About"));
+        m_mainFrame->slotSetTitle(i18n("About"));
         m_displayingAboutPage = true;
     }
 
@@ -399,9 +395,9 @@ void View::slotOnShutdown()
 
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
-    m_tabs->setCurrentPage(m_tabs->count()-1); // select last page
-    while (m_tabs->count() > 1) // remove frames until only the main frame remains
-        m_tabs->slotRemoveCurrentFrame();
+    m_tabWidget->setCurrentPage(m_tabWidget->count()-1); // select last page
+    while (m_tabWidget->count() > 1) // remove frames until only the main frame remains
+        m_tabWidget->slotRemoveCurrentFrame();
 
     delete m_mainTab;
     delete m_mainFrame;
@@ -428,15 +424,14 @@ void View::slotOpenTab(const KURL& url, bool background)
     connect( page, SIGNAL(urlClicked(const KURL &,bool)),
             this, SLOT(slotOpenTab(const KURL &,bool)) );
 
-    Frame* frame = new Frame(this, page, page->widget(), i18n("Untitled"));
-    frame->setAutoDeletePart(true); // delete page viewer when removing the tab
+    Frame* frame = new BrowserFrame(m_tabWidget, page, page->widget(), i18n("Untitled"));
 
-    connect(page, SIGNAL(setWindowCaption (const QString &)), frame, SLOT(setTitle (const QString &)));
-    connectFrame(frame);
-    m_tabs->addFrame(frame);
+    connect(page, SIGNAL(setWindowCaption (const QString &)), frame, SLOT(slotSetTitle (const QString &)));
+
+    m_tabWidget->addFrame(frame);
 
     if(!background)
-        m_tabs->showPage(page->widget());
+        m_tabWidget->showPage(page->widget());
     else
         setFocus();
 
@@ -448,54 +443,48 @@ void View::setTabIcon(const QPixmap& icon)
 {
     const PageViewer *s = dynamic_cast<const PageViewer*>(sender());
     if (s) {
-        m_tabs->setTabIconSet(const_cast<PageViewer*>(s)->widget(), icon);
+        m_tabWidget->setTabIconSet(const_cast<PageViewer*>(s)->widget(), icon);
     }
 }
 
-void View::connectFrame(Frame *f)
+void View::sendArticle(bool attach)
 {
-    connect(f, SIGNAL(statusText(const QString &)), this, SLOT(slotStatusText(const QString&)));
-    connect(f, SIGNAL(captionChanged (const QString &)), this, SLOT(slotCaptionChanged (const QString &)));
-    connect(f, SIGNAL(loadingProgress(int)), this, SLOT(slotLoadingProgress(int)) );
-    connect(f, SIGNAL(started()), this, SLOT(slotStarted()));
-    connect(f, SIGNAL(completed()), this, SLOT(slotCompleted()));
-    connect(f, SIGNAL(canceled(const QString &)), this, SLOT(slotCanceled(const QString&)));
-}
+    // FIXME: you have to open article to tab to be able to send...
+    
+    Frame* frame = Kernel::self()->frameManager()->currentFrame();
+    
+    if (!frame)
+        return;
 
-void View::slotStatusText(const QString &c)
-{
-    if (sender() == m_currentFrame)
-        emit setStatusBarText(c);
-}
+    QByteArray text = frame->url().prettyURL().latin1();
 
-void View::slotCaptionChanged(const QString &c)
-{
-    if (sender() == m_currentFrame)
-        emit setWindowCaption(c);
-}
+    if(text.isEmpty() || text.isNull())
+        return;
 
-void View::slotStarted()
-{
-    if (sender() == m_currentFrame)
-        emit signalStarted(0);
-}
+    QString title = frame->title();
 
-void View::slotCanceled(const QString &s)
-{
-    if (sender() == m_currentFrame)
-        emit signalCanceled(s);
-}
-
-void View::slotCompleted()
-{
-    if (sender() == m_currentFrame)
-        emit signalCompleted();
-}
-
-void View::slotLoadingProgress(int percent)
-{
-    if (sender() == m_currentFrame)
-        emit setProgress(percent);
+    if(attach) 
+    {
+        KToolInvocation::invokeMailer(QString(),
+                           QString(),
+                           QString(),
+                           title,
+                           text,
+                           QString(),
+                           QStringList(),
+                           text);
+    }
+    else 
+    {
+        KToolInvocation::invokeMailer(QString(),
+                           QString(),
+                           QString(),
+                           QString(),
+                           title,
+                           QString(),
+                           QStringList(),
+                           text);
+    }
 }
 
 bool View::importFeeds(const QDomDocument& doc)
@@ -678,44 +667,22 @@ void View::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
-void View::slotFrameChanged(Frame *f)
+void View::slotFrameChanged(Frame* frame)
 {
     if (m_shuttingDown)
         return;
 
-    m_currentFrame=f;
-
-    emit setWindowCaption(f->caption());
-    emit setProgress(f->progress());
-    emit setStatusBarText(f->statusText());
-
-    m_part->mergePart(m_articleViewer);
-
-    if (f->part() == m_part)
+    if (frame == m_mainFrame)
         m_part->mergePart(m_articleViewer);
     else
-        m_part->mergePart(f->part());
+        m_part->mergePart(frame->part());
 
-    f->widget()->setFocus();
-
-    switch (f->state())
-    {
-        case Frame::Started:
-            emit signalStarted(0);
-            break;
-        case Frame::Canceled:
-            emit signalCanceled(QString::null);
-            break;
-        case Frame::Idle:
-        case Frame::Completed:
-        default:
-            emit signalCompleted();
-    }
+    frame->setFocus();
 }
 
 void View::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
-    m_tabs->showPage(m_mainTab);
+    m_tabWidget->showPage(m_mainTab);
 }
 
 void View::slotMoveCurrentNodeUp()
@@ -793,7 +760,7 @@ void View::slotNodeSelected(TreeNode* node)
 
     if (m_displayingAboutPage)
     {
-        m_mainFrame->setTitle(i18n("Articles"));
+        m_mainFrame->slotSetTitle(i18n("Articles"));
         if (m_viewMode != CombinedView)
             m_articleList->show();
         if (Settings::showQuickFilter())
@@ -801,7 +768,7 @@ void View::slotNodeSelected(TreeNode* node)
         m_displayingAboutPage = false;
     }
 
-    m_tabs->showPage(m_mainTab);
+    m_tabWidget->showPage(m_mainTab);
 
     m_searchBar->slotClearSearch();
 
@@ -1031,16 +998,16 @@ void View::slotFetchAllFeeds()
 
 void View::slotFetchingStarted()
 {
-    m_mainFrame->setState(Frame::Started);
+    m_mainFrame->slotSetState(Frame::Started);
     m_actionManager->action("feed_stop")->setEnabled(true);
-    m_mainFrame->setStatusText(i18n("Fetching Feeds..."));
+    m_mainFrame->slotSetStatusText(i18n("Fetching Feeds..."));
 }
 
 void View::slotFetchingStopped()
 {
-    m_mainFrame->setState(Frame::Completed);
+    m_mainFrame->slotSetState(Frame::Completed);
     m_actionManager->action("feed_stop")->setEnabled(false);
-    m_mainFrame->setStatusText(QString::null);
+    m_mainFrame->slotSetStatusText(QString::null);
 }
 
 void View::slotFeedFetched(Feed *feed)
@@ -1337,7 +1304,8 @@ void View::slotSetSelectedArticleRead()
 
 void View::slotTextToSpeechRequest()
 {
-    if (m_currentFrame == m_mainFrame)
+    
+    if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame)
     {
         if (m_viewMode != CombinedView)
         {
@@ -1396,11 +1364,11 @@ void View::slotMouseOverInfo(const KFileItem *kifi)
     if (kifi)
     {
         KFileItem *k=(KFileItem*)kifi;
-        m_mainFrame->setStatusText(k->url().prettyURL());//getStatusBarInfo());
+        m_mainFrame->slotSetStatusText(k->url().prettyURL());//getStatusBarInfo());
     }
     else
     {
-        m_mainFrame->setStatusText(QString::null);
+        m_mainFrame->slotSetStatusText(QString::null);
     }
 }
 

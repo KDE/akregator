@@ -29,7 +29,7 @@
 #include <qicon.h>
 #include <qclipboard.h>
 #include <qmap.h>
-#include <q3ptrdict.h>
+#include <QHash>
 #include <qstring.h>
 #include <qtoolbutton.h>
 #include <qtooltip.h>
@@ -56,13 +56,14 @@
 #include "actionmanager.h"
 #include "frame.h"
 #include "akregatorconfig.h"
+#include "kernel.h"
 
 namespace Akregator {
 
 class TabWidget::TabWidgetPrivate
 {
     public:
-    Q3PtrDict<Frame> frames;
+    QHash<QWidget*, Frame*> frames;
     int CurrentMaxLength;
     QWidget* currentItem;
     QToolButton* tabsClose;
@@ -115,14 +116,16 @@ void TabWidget::slotPreviousTab()
         setCurrentPage(currentPageIndex()-1);
 }
 
-void TabWidget::addFrame(Frame *f)
+void TabWidget::addFrame(Frame* frame)
 {
-    if (!f || !f->widget()) 
+    if (!frame) 
         return;
-    d->frames.insert(f->widget(), f);
-    addTab(f->widget(), f->title());
-    connect(f, SIGNAL(titleChanged(Frame*, const QString& )), this, SLOT(slotSetTitle(Frame*, const QString& )));
-    slotSetTitle(f, f->title());
+    d->frames.insert(frame, frame);
+    // TODO: don't let tabwidget insert frames to the manager
+    Kernel::self()->frameManager()->addFrame(frame);
+    addTab(frame, frame->title());
+    connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString& )), this, SLOT(slotSetTitle(Frame*, const QString& )));
+    slotSetTitle(frame, frame->title());
 }
 
 Frame *TabWidget::currentFrame()
@@ -146,9 +149,10 @@ void TabWidget::slotRemoveCurrentFrame()
 
 void TabWidget::removeFrame(Frame *f)
 {
-    f->setCompleted();
-    d->frames.remove(f->widget());
-    removePage(f->widget());
+    d->frames.remove(f);
+    removePage(f);
+    // TODO: don't let tabwidget insert frames to the manager
+    Kernel::self()->frameManager()->removeFrame(f);
     delete f;
     setTitle( currentFrame()->title(), currentPage() );
 }
@@ -180,7 +184,7 @@ uint TabWidget::tabBarWidthForMaxChars( int maxLength )
 
 void TabWidget::slotSetTitle(Frame* frame, const QString& title)
 {
-    setTitle(title, frame->widget());
+    setTitle(title, frame);
 }
 
 void TabWidget::setTitle( const QString &title , QWidget* sender)
@@ -300,8 +304,8 @@ void TabWidget::initiateDrag(int tab)
 
 void TabWidget::slotCloseRequest(QWidget* widget)
 {
-    if (d->frames.find(widget) != NULL)
-        removeFrame(d->frames.find(widget));
+    if (d->frames[widget])
+        removeFrame(d->frames[widget]);
 }
 } // namespace Akregator
 

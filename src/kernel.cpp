@@ -27,6 +27,7 @@
 #include <kstaticdeleter.h>
 
 #include "fetchqueue.h"
+#include "frame.h"
 #include "tagset.h"
 
 namespace Akregator
@@ -50,6 +51,7 @@ class Kernel::KernelPrivate
     Backend::Storage* storage;
     FeedList* feedList;
     FetchQueue* fetchQueue;
+    FrameManager* frameManager;
     TagSet* tagSet;
     Filters::ArticleFilterList articleFilterList;
 };
@@ -57,14 +59,16 @@ class Kernel::KernelPrivate
 Kernel::Kernel() : d(new KernelPrivate)
 {
     d->fetchQueue = new FetchQueue();
+    d->frameManager = new FrameManager();
     d->tagSet = new TagSet();
     d->storage = 0;
     d->feedList = 0;
 }
- 
+
 Kernel::~Kernel()
 {
     delete d->fetchQueue;
+    delete d->frameManager;
     delete d;
     d = 0;
 }
@@ -107,6 +111,11 @@ void Kernel::setArticleFilterList(const Filters::ArticleFilterList& list)
 Filters::ArticleFilterList Kernel::articleFilterList() const
 {
     return d->articleFilterList;
+}
+
+FrameManager* Kernel::frameManager()
+{
+    return d->frameManager;
 }
 
 } // namespace Akregator

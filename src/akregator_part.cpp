@@ -173,12 +173,12 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 
     m_extension = new BrowserExtension(this, "ak_extension");
 
-    connect(m_view, SIGNAL(setWindowCaption(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
-    connect(m_view, SIGNAL(setStatusBarText(const QString&)), this, SIGNAL(setStatusBarText(const QString&)));
-    connect(m_view, SIGNAL(setProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
-    connect(m_view, SIGNAL(signalCanceled(const QString&)), this, SIGNAL(canceled(const QString&)));
-    connect(m_view, SIGNAL(signalStarted(KIO::Job*)), this, SIGNAL(started(KIO::Job*)));
-    connect(m_view, SIGNAL(signalCompleted()), this, SIGNAL(completed()));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalCaptionChanged(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalStatusText(const QString&)), this, SIGNAL(setStatusBarText(const QString&)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalLoadingProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalCanceled(const QString&)), this, SIGNAL(canceled(const QString&)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalStarted()), this, SLOT(slotStarted()));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalCompleted()), this, SIGNAL(completed()));
 
     // notify the part that this is our internal widget
     setWidget(m_view);
@@ -226,6 +226,11 @@ void Part::loadPlugins()
         if (plugin)
             plugin->init();
     }
+}
+
+void Part::slotStarted()
+{
+    emit started(0L);
 }
 
 void Part::slotOnShutdown()
@@ -667,37 +672,6 @@ void Part::fileGetFeeds()
      //KNS::DownloadDialog::open("akregator/feeds", i18n("Get New Feeds"));
 }
 
-void Part::fileSendArticle(bool attach)
-{
-    // FIXME: you have to open article to tab to be able to send...
-    QByteArray text = m_view->currentFrame()->part()->url().prettyURL().latin1();
-    if(text.isEmpty() || text.isNull())
-        return;
-
-    QString title = m_view->currentFrame()->title();
-
-    if(attach) {
-        KToolInvocation::invokeMailer(QString(),
-                           QString(),
-                           QString(),
-                           title,
-                           text,
-                           QString(),
-                           QStringList(),
-                           text);
-    }
-    else {
-        KToolInvocation::invokeMailer(QString(),
-                           QString(),
-                           QString(),
-                           QString(),
-                           title,
-                           QString(),
-                           QStringList(),
-                           text);
-    }
-}
-
 void Part::fetchAllFeeds()
 {
     m_view->slotFetchAllFeeds();
@@ -765,23 +739,29 @@ void Part::partActivateEvent(KParts::PartActivateEvent* event)
 
 KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
 {
-    bool child = false;
+/*    bool child = false;
     QWidget *me = this->widget();
-    while (widget) {
-        if (widget == me) {
+    while (widget) 
+    {
+        if (widget == me) 
+        {
             child = true;
             break;
         }
-        if (!widget) {
+        if (!widget) 
+        {
             break;
         }
         widget = widget->parentWidget();
     }
-    if (m_view && m_view->currentFrame() && child) {
+    if (m_view && m_view->currentFrame() && child) 
+    {
         return m_view->currentFrame()->part();
-    } else {
+    } 
+    else 
+    {*/
         return MyBasePart::hitTest(widget, globalPos);
-    }
+/*    }*/
 }
 
 void Part::initFonts()
