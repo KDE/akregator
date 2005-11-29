@@ -46,9 +46,11 @@
 #include <QDataStream>
 #include <QDateTime>
 #include <QFile>
+#include <QList>
 #include <QMetaObject>
 #include <QString>
 #include <QPixmap>
+
 
 #include <cstdlib>
 using std::abs;
@@ -76,8 +78,8 @@ class PageViewer::HistoryEntry
 
 struct PageViewer::PageViewerPrivate
 {
-    QLinkedList<HistoryEntry> history;
-    QLinkedList<HistoryEntry>::Iterator current;
+    QList<HistoryEntry> history;
+    QList<HistoryEntry>::Iterator current;
 
     KToolBarPopupAction* backAction;
     KToolBarPopupAction* forwardAction;
@@ -151,7 +153,7 @@ void PageViewer::slotBack()
 {
     if ( d->current != d->history.begin() )
     {
-        QLinkedList<HistoryEntry>::Iterator tmp = d->current;
+        QList<HistoryEntry>::Iterator tmp = d->current;
         --tmp;
         restoreHistoryEntry(tmp);
     }
@@ -160,9 +162,9 @@ void PageViewer::slotBack()
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotForward()
 {
-    if (  d->current != d->history.end() )
+    if ( !d->history.isEmpty() && d->current != --(d->history.end()) )
     {
-        QLinkedList<HistoryEntry>::Iterator tmp = d->current;
+        QList<HistoryEntry>::Iterator tmp = d->current;
         ++tmp;
         restoreHistoryEntry(tmp);
     }
@@ -176,7 +178,7 @@ void PageViewer::slotBackAboutToShow()
     if ( d->current == d->history.begin() )
         return;
 
-    QLinkedList<HistoryEntry>::Iterator it = d->current;
+    QList<HistoryEntry>::Iterator it = d->current;
     --it;
     
     int i = 0;
@@ -199,16 +201,17 @@ void PageViewer::slotForwardAboutToShow()
     KMenu *popup = d->forwardAction->popupMenu();
     popup->clear();
 
-    if ( d->current == d->history.end() )
+    if ( d->history.isEmpty() || d->current == --(d->history.end()) )
         return;
 
-    QLinkedList<HistoryEntry>::Iterator it = d->current;
+    QList<HistoryEntry>::Iterator it = d->current;
     ++it;
     
     int i = 0;
     while( i < 10 )
     {
-        if ( it == d->history.end() )
+
+        if ( !d->history.isEmpty() && it != --(d->history.end()) )
         {
             popup->insertItem( (*it).title, (*it).id );
             return;
@@ -238,7 +241,7 @@ void PageViewer::openPage(const KURL& url)
     addHistoryEntry(url);
     
     d->backAction->setEnabled( d->current != d->history.begin() );
-    d->forwardAction->setEnabled( d->current != d->history.end() );
+    d->forwardAction->setEnabled( !d->history.isEmpty() && d->current != --(d->history.end()) );
   
     QString favicon = FeedIconManager::self()->iconLocation(url);
     if (!favicon.isEmpty()) 
@@ -253,19 +256,7 @@ bool PageViewer::openURL(const KURL &url)
     updateHistoryEntry();
     new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
     emit started(0);
-    
-//     if (!d->restoring)
-//         addHistoryEntry(url);
-//     
-//     d->backAction->setEnabled( d->current != d->history.begin() );
-//     d->forwardAction->setEnabled( d->current != d->history.end() );
-//   
-//     QString favicon = FeedIconManager::self()->iconLocation(url);
-//     if (!favicon.isEmpty()) 
-//         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
-//     else
-//         emit setTabIcon(SmallIcon("html"));
-//     
+
     return true;
 }
 
@@ -297,7 +288,7 @@ void PageViewer::urlSelected(const QString &url, int button, int state, const QS
 
 void PageViewer::slotPopupActivated( int id )
 {
-    QLinkedList<HistoryEntry>::Iterator it = d->history.begin();
+    QList<HistoryEntry>::Iterator it = d->history.begin();
     while( it != d->history.end() )
     {
         if ( (*it).id == id )
@@ -311,23 +302,25 @@ void PageViewer::slotPopupActivated( int id )
 
 void PageViewer::updateHistoryEntry()
 {
-    (*d->current).title = d->caption;
-    (*d->current).state = QByteArray(); // Start with empty buffer.
-    QDataStream stream( &((*d->current).state),QIODevice::WriteOnly);
-    stream.setVersion(QDataStream::Qt_3_1);
-    browserExtension()->saveState(stream);
+    if (d->current != d->history.end())
+    {
+        (*d->current).title = d->caption;
+        (*d->current).state.clear(); // Start with empty buffer.
+        QDataStream stream( &((*d->current).state),QIODevice::WriteOnly);
+        stream.setVersion(QDataStream::Qt_3_1);
+        browserExtension()->saveState(stream);
+    }
 }
 
-void PageViewer::restoreHistoryEntry(const QLinkedList<HistoryEntry>::Iterator& entry)
+void PageViewer::restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry)
 {
     updateHistoryEntry();
-    
     QDataStream stream( &((*entry).state),QIODevice::ReadOnly );
     stream.setVersion(QDataStream::Qt_3_1);
     browserExtension()->restoreState( stream );
     d->current = entry;
     d->backAction->setEnabled( d->current != d->history.begin() );
-    d->forwardAction->setEnabled( d->current != d->history.end() );
+    d->forwardAction->setEnabled(  !d->history.isEmpty() && d->current != --(d->history.end()) );
     //openURL( entry.url ); // TODO read state
     
 
@@ -336,20 +329,20 @@ void PageViewer::restoreHistoryEntry(const QLinkedList<HistoryEntry>::Iterator& 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::addHistoryEntry(const KURL& url)
 {
-    QLinkedList<HistoryEntry>::Iterator it = d->current;
+    QList<HistoryEntry>::Iterator it = d->current;
     
     // if We're not already the last entry, we truncate the list here before adding an entry
-    if ( it != d->history.end() && it != d->history.end() )
+    if ( !d->history.isEmpty() && it != --(d->history.end()) )
     {
         d->history.erase( ++it, d->history.end() );
     }
     HistoryEntry newEntry( url, url.url() );
 
     // Only save the new entry if it is different from the last
-    if ( newEntry.url != (*d->current).url )
+    if ( !d->history.isEmpty() && newEntry.url != (*d->current).url )
     {
         d->history.append( newEntry );
-        d->current = d->history.end();
+        d->current = --(d->history.end());
     }
     updateHistoryEntry();
 }
@@ -376,7 +369,8 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
 void PageViewer::slotSetCaption(const QString& cap) 
 {
     d->caption = cap;
-    (*d->current).title = cap;
+    if (d->current != d->history.end())
+        (*d->current).title = cap;
 }
 
 void PageViewer::slotPaletteOrFontChanged()

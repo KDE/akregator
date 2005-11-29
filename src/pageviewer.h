@@ -27,9 +27,8 @@
 #define PAGEVIEWER_H
 
 #include "viewer.h"
-#include <QPixmap>
-#include <QLinkedList>
 
+#include <QList>
 
 class KAction;
 class KToolBarPopupAction;
@@ -54,7 +53,7 @@ namespace Akregator
 
             class HistoryEntry;
             void addHistoryEntry(const KURL& url);
-            void restoreHistoryEntry(const QLinkedList<HistoryEntry>::Iterator& entry);
+            void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
             void updateHistoryEntry();
 
         protected slots:
