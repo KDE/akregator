@@ -22,10 +22,12 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef FRAME_H
-#define FRAME_H
+#ifndef AKREGATOR_FRAME_H
+#define AKREGATOR_FRAME_H
 
 #include <qobject.h>
+
+class KURL;
 
 namespace KParts
 {
@@ -60,6 +62,30 @@ namespace Akregator
             
             /** if set to true, the part is deleted when the frame is deleted. Set to @c false by default */
             void setAutoDeletePart(bool autoDelete);
+            
+            /** 
+             * Returns whether the frame can be removed from
+             * Akregator (via detach or close tab etc.)  Usually
+             * all tabs but the main tab can be removed. 
+             * Default is @c true
+             */
+            bool isRemovable() const;            
+            void setRemovable(bool removable);
+
+            /** 
+             * returns the URL of the embedded part
+             * @return the current url of the part, or an empty
+             * URL when isURLEnabled is @c false
+             */
+            KURL url() const;
+            
+            /** 
+             * Returns whether this frame contains a part which
+             * URL should e.g. be displayed in captions or can be
+             *  dragged.
+             */ 
+            bool isUrlEnabled() const;
+            void setUrlEnabled(bool enabled);
 
         public slots:
             void setStarted();
@@ -91,6 +117,8 @@ namespace Akregator
             QString m_progressId;
             KPIM::ProgressItem *m_progressItem;
             bool m_autoDeletePart;
+            bool m_isRemovable;
+            bool m_urlEnabled;
     };
 }
 

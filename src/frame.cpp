@@ -27,8 +27,10 @@
 #include <kactioncollection.h>
 #include <kdebug.h>
 #include <klocale.h>
+#include <kurl.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
+
 
 #include <libkdepim/progressmanager.h>
 
@@ -46,6 +48,8 @@ Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, cons
     m_state=Idle;
     m_progress=-1;
     m_progressItem=0;
+    m_isRemovable = true;
+    m_urlEnabled = true;
 
     if (watchSignals) // e.g, articles tab has no part
     {
@@ -71,6 +75,31 @@ Frame::Frame(QObject * parent, KParts::ReadOnlyPart *p, QWidget *visWidget, cons
         }
 */
     }
+}
+
+void Frame::setRemovable(bool removable)
+{
+    m_isRemovable = removable;
+}
+
+bool Frame::isRemovable() const
+{
+    return m_isRemovable;
+}
+
+bool Frame::isUrlEnabled() const
+{
+    return m_urlEnabled;
+}
+
+void Frame::setUrlEnabled(bool enabled)
+{
+    m_urlEnabled = enabled;
+}
+
+KURL Frame::url() const
+{
+    return isUrlEnabled() ? m_part->url() : KURL();
 }
 
 void Frame::setAutoDeletePart(bool autoDelete)

@@ -134,9 +134,9 @@ Frame *TabWidget::currentFrame()
 
 void TabWidget::slotTabChanged(QWidget *w)
 {
-    // FIXME: Don't hardcode the tab position of main frame
-    d->tabsClose->setDisabled(currentPageIndex() == 0);
-    emit currentFrameChanged(d->frames[w]);
+    Frame* frame = d->frames[w];
+    d->tabsClose->setDisabled(frame && frame->isRemovable());
+    emit currentFrameChanged(frame);
 }
 
 void TabWidget::slotRemoveCurrentFrame()
@@ -238,6 +238,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
     QWidget* w = ActionManager::getInstance()->container("tab_popup");
     d->currentItem = page(i);
     //kdDebug() << indexOf(d->currentItem) << endl;
+    // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0)
         static_cast<Q3PopupMenu *>(w)->exec(p);
     d->currentItem = 0;
@@ -248,63 +249,49 @@ void TabWidget::slotDetachTab()
     if (!d->currentItem || indexOf(d->currentItem) == -1) 
         d->currentItem = currentPage();
 
-    if (indexOf(d->currentItem) == 0) 
-        return;
+    Frame* frame = d->frames[d->currentItem];
 
-    KURL url;
-    KHTMLView* view = dynamic_cast<KHTMLView*>(d->currentItem);
-    
-    if (!view)
-        return;
-
-    url = view->part()->url();
-
-    KToolInvocation::invokeBrowser(url.url(), "0");
-    slotCloseTab();
+    if (frame && frame->url().isValid() && frame->isRemovable())
+    {
+        KToolInvocation::invokeBrowser(frame->url().url(), "0");
+        slotCloseTab(); 
+    }
 }
 
 void TabWidget::slotCopyLinkAddress()
 {
     if(!d->currentItem || indexOf(d->currentItem) == -1) 
         d->currentItem = currentPage();
-    if(indexOf(d->currentItem) == 0) 
-        return;
+    Frame* frame = d->frames[d->currentItem];
 
-    KURL url;
-    KHTMLView* view = dynamic_cast<KHTMLView*>(d->currentItem);
-    
-    if (!view)
-        return;
-
-    url = view->part()->url();
-    
-    kapp->clipboard()->setText(url.prettyURL(), QClipboard::Selection);
-    kapp->clipboard()->setText(url.prettyURL(), QClipboard::Clipboard);
+    if (frame && frame->url().isValid())
+    {
+        KURL url = frame->url();
+        kapp->clipboard()->setText(url.prettyURL(), QClipboard::Selection);
+        kapp->clipboard()->setText(url.prettyURL(), QClipboard::Clipboard);
+    }
 }
 
 void TabWidget::slotCloseTab()
 {
     if (!d->currentItem || indexOf(d->currentItem) == -1) 
         d->currentItem = currentPage();
-    if (indexOf(d->currentItem) == 0) 
+    if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() ) 
         return;
-    if (d->frames.find(d->currentItem) != NULL)
-        removeFrame(d->frames.find(d->currentItem));
+    
+    removeFrame(d->frames[d->currentItem]);
     delete d->currentItem;
     d->currentItem = 0;
 }
 
 void TabWidget::initiateDrag(int tab)
 {
-    if (tab == 0) // don't initiate drag for the main tab
-        return;
-        
     Frame* frame = d->frames[page(tab)];
-  
-    if (frame != 0)
+
+    if (frame && frame->url().isValid())
     {
         KURL::List lst;
-        lst.append( frame->part()->url() );
+        lst.append( frame->url() );
         K3URLDrag* drag = new K3URLDrag( lst, this );
         drag->setPixmap( KMimeType::pixmapForURL( lst.first(), 0, KIcon::Small ) );
         drag->dragCopy();

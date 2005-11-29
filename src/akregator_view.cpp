@@ -320,7 +320,11 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     m_articleViewer->widget()->setWhatsThis( i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 
-    m_mainFrame=new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
+    m_mainFrame = new Frame(this, m_part, m_mainTab, i18n("Articles"), false);
+
+    m_mainFrame->setRemovable(false);
+    m_mainFrame->setUrlEnabled(false);
+
     connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
 
