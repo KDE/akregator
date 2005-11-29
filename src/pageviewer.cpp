@@ -240,8 +240,8 @@ void PageViewer::openPage(const KURL& url)
 
     addHistoryEntry(url);
     
-    d->backAction->setEnabled( d->current != d->history.begin() );
-    d->forwardAction->setEnabled( !d->history.isEmpty() && d->current != --(d->history.end()) );
+    d->backAction->setEnabled( !d->history.isEmpty() && d->current != d->history.begin() );
+    d->forwardAction->setEnabled( d->current != d->history.end() && d->current != --(d->history.end()) );
   
     QString favicon = FeedIconManager::self()->iconLocation(url);
     if (!favicon.isEmpty()) 
@@ -319,8 +319,8 @@ void PageViewer::restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry)
     stream.setVersion(QDataStream::Qt_3_1);
     browserExtension()->restoreState( stream );
     d->current = entry;
-    d->backAction->setEnabled( d->current != d->history.begin() );
-    d->forwardAction->setEnabled(  !d->history.isEmpty() && d->current != --(d->history.end()) );
+    d->backAction->setEnabled( !d->history.isEmpty() && d->current != d->history.begin() );
+    d->forwardAction->setEnabled(  d->current != d->history.end() && d->current != --(d->history.end()) );
     //openURL( entry.url ); // TODO read state
     
 
@@ -332,14 +332,14 @@ void PageViewer::addHistoryEntry(const KURL& url)
     QList<HistoryEntry>::Iterator it = d->current;
     
     // if We're not already the last entry, we truncate the list here before adding an entry
-    if ( !d->history.isEmpty() && it != --(d->history.end()) )
+    if ( it != d->history.end()  && it != --(d->history.end()) )
     {
         d->history.erase( ++it, d->history.end() );
     }
     HistoryEntry newEntry( url, url.url() );
 
     // Only save the new entry if it is different from the last
-    if ( !d->history.isEmpty() && newEntry.url != (*d->current).url )
+    if ( it != d->history.end() && newEntry.url != (*d->current).url )
     {
         d->history.append( newEntry );
         d->current = --(d->history.end());
