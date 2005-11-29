@@ -135,7 +135,7 @@ Frame *TabWidget::currentFrame()
 void TabWidget::slotTabChanged(QWidget *w)
 {
     Frame* frame = d->frames[w];
-    d->tabsClose->setDisabled(frame && frame->isRemovable());
+    d->tabsClose->setEnabled(frame && frame->isRemovable());
     emit currentFrameChanged(frame);
 }
 
