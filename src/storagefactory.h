@@ -57,7 +57,7 @@ class StorageFactory
 	virtual Storage* createStorage(const QStringList& params) const = 0;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_BACKEND_STORAGEFACTORY_H

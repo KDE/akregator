@@ -103,7 +103,7 @@ class StorageDummyImpl : public Storage
         StorageDummyImplPrivate *d;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
-#endif // STORAGEDummyIMPL_H
+#endif // AKREGATOR_STORAGEDUMMYIMPL_H

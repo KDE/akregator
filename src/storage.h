@@ -115,7 +115,7 @@ class Storage : public QObject
         static Storage *m_instance;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_BACKEND_STORAGE_H

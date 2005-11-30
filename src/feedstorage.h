@@ -135,7 +135,7 @@ class FeedStorage : public QObject
         virtual void convertOldArchive() = 0;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_BACKEND_FEEDSTORAGE_H

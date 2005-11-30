@@ -99,6 +99,7 @@ class FeedStorageDummyImpl : public FeedStorage
         FeedStorageDummyImplPrivate* d;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
+
 #endif // AKREGATOR_FEEDSTORAGEDUMMYIMPL_H

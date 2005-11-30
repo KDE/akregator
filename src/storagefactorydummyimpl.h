@@ -45,7 +45,7 @@ class StorageFactoryDummyImpl : public StorageFactory
     virtual Storage* createStorage(const QStringList& params) const;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_STORAGEFACTORYDUMMYIMPL_H

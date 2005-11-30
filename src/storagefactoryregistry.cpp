@@ -88,5 +88,5 @@ StorageFactoryRegistry::~StorageFactoryRegistry()
     d = 0;
 }
 
-}
-}
+} // namespace Backend
+} // namespace Akregator

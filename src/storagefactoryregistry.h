@@ -58,7 +58,7 @@ class StorageFactoryRegistry
         StorageFactoryRegistryPrivate* d;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
 #endif // STORAGEFACTORYREGISTRY_H
