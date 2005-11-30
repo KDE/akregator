@@ -31,12 +31,12 @@
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
+#include <krandom.h>
 #include <kurl.h>
 
-#include <qregexp.h>
-//Added by qt3to4:
 #include <QList>
-#include <krandom.h>
+#include <QRegExp>
+
 
 namespace Akregator {
 namespace Filters {
@@ -702,5 +702,6 @@ void ArticleFilter::applyTo(Article& article) const
     if (d->matcher && d->action && d->matcher->matches(article))
         d->action->exec(article);
 }
+
 } //namespace Filters
 } //namespace Akregator

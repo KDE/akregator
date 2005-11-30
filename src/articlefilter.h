@@ -25,11 +25,11 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef ARTICLEFILTER_H
-#define ARTICLEFILTER_H
+#ifndef AKREGATOR_FILTERS_ARTICLEFILTER_H
+#define AKREGATOR_FILTERS_ARTICLEFILTER_H
 
-#include <QString>
 #include <QList>
+#include <QString>
 #include <QVariant>
 
 class KConfig;
@@ -294,4 +294,4 @@ class Criterion
 } // namespace Filters
 } // namespace Akregator
 
-#endif
+#endif // AKREGATOR_FILTERS_ARTICLEFILTER_H
