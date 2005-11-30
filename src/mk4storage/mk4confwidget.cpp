@@ -86,7 +86,7 @@ void MK4ConfWidget::slotChkBoxUseDefault(bool checked)
 }
 
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
 #include "mk4confwidget.moc"

@@ -42,7 +42,7 @@ class MK4ConfWidget : public MK4ConfWidgetBase
         void slotChkBoxUseDefault(bool checked);
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
 #endif // AKREGATOR_BACKEND_MK4CONFWIDGET_H

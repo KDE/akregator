@@ -44,6 +44,7 @@ class MK4Plugin : public Akregator::Plugin
       StorageFactory* m_factory;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
+
 #endif // AKREGATOR_BACKEND_MK4PLUGIN_H

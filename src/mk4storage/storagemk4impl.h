@@ -120,7 +120,7 @@ class StorageMK4Impl : public Storage
         StorageMK4ImplPrivate *d;
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
 #endif // STORAGEMK4IMPL_H

@@ -46,5 +46,5 @@ MK4Plugin::~MK4Plugin()
     delete m_factory;
 }
 
-}
-}
+} // namespace Backend
+} // namespace Akregator

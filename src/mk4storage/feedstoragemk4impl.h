@@ -21,8 +21,8 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef FEEDSTORAGEMK4IMPL_H
-#define FEEDSTORAGEMK4IMPL_H
+#ifndef AKREGATOR_BACKEND_FEEDSTORAGEMK4IMPL_H
+#define AKREGATOR_BACKEND_FEEDSTORAGEMK4IMPL_H
 
 #include "feedstorage.h"
 namespace Akregator {
@@ -98,6 +98,7 @@ class FeedStorageMK4Impl : public FeedStorage
         FeedStorageMK4ImplPrivate* d;
 };
 
-}
-}
-#endif // FEEDSTORAGEMK4IMPL_H
+} // namespace Backend
+} // namespace Akregator
+
+#endif // AKREGATOR_BACKEND_FEEDSTORAGEMK4IMPL_H

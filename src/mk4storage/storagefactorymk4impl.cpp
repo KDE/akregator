@@ -66,5 +66,5 @@ void StorageFactoryMK4Impl::configure()
     delete confWidget;
 }
 
-}
-}
+} // namespace Backend
+} // namespace Akregator

@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef STORAGEFACTORYMK4IMPL_H
-#define STORAGEFACTORYMK4IMPL_H
+#ifndef AKREGATOR_BACKEND_STORAGEFACTORYMK4IMPL_H
+#define AKREGATOR_BACKEND_STORAGEFACTORYMK4IMPL_H
 
 #include "storagefactory.h"
 
@@ -45,7 +45,7 @@ class StorageFactoryMK4Impl : public StorageFactory
     virtual bool isConfigurable() const { return false; }
 };
 
-}
-}
+} // namespace Backend
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_BACKEND_STORAGEFACTORYMK4IMPL_H
