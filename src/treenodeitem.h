@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORTREENODEITEM_H
-#define AKREGATORTREENODEITEM_H
+#ifndef AKREGATOR_TREENODEITEM_H
+#define AKREGATOR_TREENODEITEM_H
 
 #include <klistview.h>
 
@@ -70,6 +70,6 @@ public:
     void initialize(TreeNode* node);
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_TREENODEITEM_H

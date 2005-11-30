@@ -50,4 +50,5 @@ class ConfigDialog : public KConfigDialog
 };
 
 } // namespace Akregator
+
 #endif // AKREGATOR_CONFIGDIALOG_H

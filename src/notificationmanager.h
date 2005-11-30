@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORNOTIFICATIONMANAGER_H
-#define AKREGATORNOTIFICATIONMANAGER_H
+#ifndef AKREGATOR_NOTIFICATIONMANAGER_H
+#define AKREGATOR_NOTIFICATIONMANAGER_H
 
 #include <qobject.h>
 #include <QList>
@@ -33,7 +33,7 @@
 namespace Akregator 
 {
 
-    /** this class collects notification requests (new articles etc.) and processes them using KNotify.  */
+/** this class collects notification requests (new articles etc.) and processes them using KNotify.  */
 class NotificationManager : public QObject
 {
     Q_OBJECT
@@ -81,6 +81,6 @@ class NotificationManager : public QObject
         static NotificationManager* m_self;
 };
 
-} // namespace
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_NOTIFICATIONMANAGER_H

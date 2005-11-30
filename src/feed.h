@@ -23,13 +23,14 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORFEED_H
-#define AKREGATORFEED_H
+#ifndef AKREGATOR_FEED_H
+#define AKREGATOR_FEED_H
 
 #include "treenode.h"
 #include "librss/librss.h"
-#include <QPixmap>
+
 #include <QList>
+#include <QPixmap>
 
 class QDomElement;
 class QPixmap;
@@ -38,262 +39,264 @@ class QStringList;
 class KURL;
 
 
-namespace KPIM {
+namespace KPIM 
+{
     class ProgressItem;
 }
 
 // needed for slot fetchCompleted()
+// FIXME: uise namespace and fully qualify signal and slots
 using RSS::Document;
 using RSS::Loader;
 using RSS::Status;
 
-namespace Akregator
+namespace Akregator {
+
+class Article;
+class FetchQueue;
+class Folder;
+class TreeNodeVisitor;
+
+namespace Backend
 {
-    class Article;
-    class FetchQueue;
-    class Folder;
-    class TreeNodeVisitor;
-
-    namespace Backend
-    {
-        class FeedStorage;
-    }
-    /**
-        represents a feed
-     */
-    class Feed : public TreeNode
-    {
-        friend class Article;
-        
-        Q_OBJECT
-        public:
-            /** the archiving modes */
-
-            enum ArchiveMode {
-                globalDefault, /**< use default from Settings (default) */
-                keepAllArticles, /**< Don't delete any articles */
-                disableArchiving, /**< Don't save any articles except articles with keep flag set (equal to maxArticleNumber() == 0) */
-                limitArticleNumber, /**< Save maxArticleNumber() articles, plus the ones with keep flag set */
-                limitArticleAge /**< Save articles not older than maxArticleAge() (or keep flag set) */
-            };
-
-            // class methods
-            /** converts strings to ArchiveMode value
-             if parsing fails, it returns ArchiveMode::globalDefault
-             */
-            static ArchiveMode stringToArchiveMode(const QString& str);
-
-            /** converts ArchiveMode values to corresponding strings */
-            static QString archiveModeToString(ArchiveMode mode);
-
-            /** creates a Feed object from a description in OPML format */
-            static Feed* fromOPML(QDomElement e);
-
-            /** default constructor */
-            Feed();
-
-            virtual ~Feed();
-
-            virtual bool accept(TreeNodeVisitor* visitor);
-
-            /** exports the feed settings to OPML */
-            virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
-
-            /**
-              returns whether this feed uses its own fetch interval or the global setting
-              @return @c true iff this feed has a custom fetch interval
-             */
-            bool useCustomFetchInterval() const;
-
-            /** set if the feed has its custom fetch interval or uses the
-                global setting
-                @param enabled @c true: use custom interval, @c false: use global default
-             */
-            void setCustomFetchIntervalEnabled(bool enabled);
-
-            // FIXME is it -1 or 0 to disable interval fetching?
-            /** Returns custom auto fetch interval of this feed.
-            @return custom fetch interval in minutes, 0 if disabled */
-            int fetchInterval() const;
-
-            /** Sets custom auto fetch interval.
-            @param interval interval in minutes, -1 for disabling auto fetching */
-            void setFetchInterval(int interval);
-
-            /** returns the archiving mode which is used for this feed */
-            ArchiveMode archiveMode() const;
-
-            /** sets the archiving mode for this feed */
-            void setArchiveMode(ArchiveMode archiveMode);
-
-            /** returns the maximum age of articles used for expiration by age (used in @c limitArticleAge archive mode)
-            @return expiry age in days */
-            int maxArticleAge() const;
-
-            /** sets the maximum age of articles used for expiration by age (used in @c limitArticleAge archive mode)
-            @param maxArticleAge expiry age in days */
-            void setMaxArticleAge(int maxArticleAge);
-            
-
-            /** returns the article count limit used in @c limitArticleNumber archive mode **/
-            int maxArticleNumber() const;
-
-            /** sets the article count limit used in @c limitArticleNumber archive mode **/
-            void setMaxArticleNumber(int maxArticleNumber);
-
-            /** if @c true, new articles are marked immediately as read instead of new/unread. Useful for high-traffic feeds. */
-            bool markImmediatelyAsRead() const;
-
-            void setMarkImmediatelyAsRead(bool enabled);
-
-            void setUseNotification(bool enabled);
-
-            bool useNotification() const;
-
-            /** if true, the linked URL is loaded directly in the article viewer instead of showing the description */
-            void setLoadLinkedWebsite(bool enabled);
-
-            bool loadLinkedWebsite() const;
-            
-            /** returns the favicon */
-            const QPixmap& favicon() const;
-
-            /** sets the favicon (used in the tree view) */
-            void setFavicon(const QPixmap& p);
-
-            /** returns the feed image */
-            const QPixmap& image() const;
-
-            /** sets the feed image */
-            void setImage(const QPixmap &p);
-
-            /** returns the url of the actual feed source (rss/rdf/atom file) */
-            const QString& xmlUrl() const;
-            /** sets the url of the actual feed source (rss/rdf/atom file) */
-            void setXmlUrl(const QString& s);
-
-            /** returns the URL of the HTML page of this feed */
-            const QString& htmlUrl() const;
-            /** sets the URL of the HTML page of this feed */
-            void setHtmlUrl(const QString& s);
-
-            /** returns the description of this feed */
-            const QString& description() const;
-
-            /** sets the description of this feed */
-            void setDescription(const QString& s);
-
-            virtual QList<Article> articles(const QString& tag=QString::null);
-
-            /** returns article by guid
-             * @param guid the guid of the article to be returned
-             * @return the article object with the given guid, or a
-             * null article if not existant
-             */
-            virtual Article findArticle(const QString& guid) const;
-            
-            virtual QStringList tags() const;
-            
-            /** returns whether a fetch error has occurred */
-            bool fetchErrorOccurred();
-
-            /** returns the unread count for this feed */
-            virtual int unread() const;
-
-            /** returns the number of total articles in this feed
-            @return number of articles */
-
-            virtual int totalCount() const;
-
-            /** returns if the article archive of this feed is loaded */
-            bool isArticlesLoaded() const;
-
-           /** returns if this node is a feed group (@c false here) */
-            virtual bool isGroup() const { return false; }
-
-            /** returns the next node in the tree.
-            Calling next() unless it returns 0 iterates through the tree in pre-order
-            */
-            virtual TreeNode* next();
-
-            /** downloads the favicon */
-            void loadFavicon();
-            
-        public slots:
-            /** starts fetching */
-            void fetch(bool followDiscovery=false);
-
-            void slotAbortFetch();
-
-            /** deletes expired articles */
-            virtual void slotDeleteExpiredArticles();
-
-            /** mark all articles in this feed as read */
-            virtual void slotMarkAllArticlesAsRead();
-
-            /** add this feed to the fetch queue @c queue */
-            virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly=false);
-
-        signals:
-            /** emitted when fetching started */
-            void fetchStarted(Feed*);
-            /** emitted when feed finished fetching */
-            void fetched(Feed *);
-            /** emitted when a fetch error occurred */
-            void fetchError(Feed *);
-            /** emitted when a feed URL was found by auto discovery */
-            void fetchDiscovery(Feed *);
-            /** emitted when a fetch is aborted */
-            void fetchAborted(Feed *);
-           
-        protected:
-            /** loads articles from archive **/
-            void loadArticles();
-
-            void recalcUnreadCount();
-
-            virtual void doArticleNotification();
-
-            /** sets the unread count for this feed */
-            void setUnread(int unread);
-
-            
-        private slots:
-
-            void fetchCompleted(Loader *loader, Document doc, Status status);
-            void slotImageFetched(const QPixmap& image);
-
-        private:
-            
-            /** notifies that article @c mya was set to "deleted".
-                To be called by @ref Article
-             */
-            void setArticleDeleted(Article& a);
-
-            /** notifies that article @c mya was changed
-                @param oldStatus if the status was changed, it contains the old status, -1 otherwise
-                To be called by @ref Article
-             */
-            void setArticleChanged(Article& a, int oldStatus=-1);
-            
-            void enforceLimitArticleNumber();
-
-            void appendArticles(const RSS::Document &d);
-            /** appends article @c a to the article list */
-            void appendArticle(const Article& a);
-
-            /** checks whether article @c a is expired (considering custom and global archive mode settings) */
-            bool isExpired(const Article& a) const;
-
-            /** returns @c true if either this article uses @c limitArticleAge as custom setting or uses the global default, which is @c limitArticleAge */
-            bool usesExpiryByAge() const;
-
-            /** executes the actual fetch action */
-            void tryFetch();
-
-            class FeedPrivate;
-            FeedPrivate* d;
-    };
+    class FeedStorage;
 }
 
-#endif
+/** represents a feed */
+class Feed : public TreeNode
+{
+    friend class Article;
+    
+    Q_OBJECT
+    public:
+        /** the archiving modes */
+
+        enum ArchiveMode {
+            globalDefault, /**< use default from Settings (default) */
+            keepAllArticles, /**< Don't delete any articles */
+            disableArchiving, /**< Don't save any articles except articles with keep flag set (equal to maxArticleNumber() == 0) */
+            limitArticleNumber, /**< Save maxArticleNumber() articles, plus the ones with keep flag set */
+            limitArticleAge /**< Save articles not older than maxArticleAge() (or keep flag set) */
+        };
+
+        // class methods
+        /** converts strings to ArchiveMode value
+            if parsing fails, it returns ArchiveMode::globalDefault
+            */
+        static ArchiveMode stringToArchiveMode(const QString& str);
+
+        /** converts ArchiveMode values to corresponding strings */
+        static QString archiveModeToString(ArchiveMode mode);
+
+        /** creates a Feed object from a description in OPML format */
+        static Feed* fromOPML(QDomElement e);
+
+        /** default constructor */
+        Feed();
+
+        virtual ~Feed();
+
+        virtual bool accept(TreeNodeVisitor* visitor);
+
+        /** exports the feed settings to OPML */
+        virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
+
+        /**
+            returns whether this feed uses its own fetch interval or the global setting
+            @return @c true iff this feed has a custom fetch interval
+            */
+        bool useCustomFetchInterval() const;
+
+        /** set if the feed has its custom fetch interval or uses the
+            global setting
+            @param enabled @c true: use custom interval, @c false: use global default
+            */
+        void setCustomFetchIntervalEnabled(bool enabled);
+
+        // FIXME is it -1 or 0 to disable interval fetching?
+        /** Returns custom auto fetch interval of this feed.
+        @return custom fetch interval in minutes, 0 if disabled */
+        int fetchInterval() const;
+
+        /** Sets custom auto fetch interval.
+        @param interval interval in minutes, -1 for disabling auto fetching */
+        void setFetchInterval(int interval);
+
+        /** returns the archiving mode which is used for this feed */
+        ArchiveMode archiveMode() const;
+
+        /** sets the archiving mode for this feed */
+        void setArchiveMode(ArchiveMode archiveMode);
+
+        /** returns the maximum age of articles used for expiration by age (used in @c limitArticleAge archive mode)
+        @return expiry age in days */
+        int maxArticleAge() const;
+
+        /** sets the maximum age of articles used for expiration by age (used in @c limitArticleAge archive mode)
+        @param maxArticleAge expiry age in days */
+        void setMaxArticleAge(int maxArticleAge);
+        
+
+        /** returns the article count limit used in @c limitArticleNumber archive mode **/
+        int maxArticleNumber() const;
+
+        /** sets the article count limit used in @c limitArticleNumber archive mode **/
+        void setMaxArticleNumber(int maxArticleNumber);
+
+        /** if @c true, new articles are marked immediately as read instead of new/unread. Useful for high-traffic feeds. */
+        bool markImmediatelyAsRead() const;
+
+        void setMarkImmediatelyAsRead(bool enabled);
+
+        void setUseNotification(bool enabled);
+
+        bool useNotification() const;
+
+        /** if true, the linked URL is loaded directly in the article viewer instead of showing the description */
+        void setLoadLinkedWebsite(bool enabled);
+
+        bool loadLinkedWebsite() const;
+        
+        /** returns the favicon */
+        const QPixmap& favicon() const;
+
+        /** sets the favicon (used in the tree view) */
+        void setFavicon(const QPixmap& p);
+
+        /** returns the feed image */
+        const QPixmap& image() const;
+
+        /** sets the feed image */
+        void setImage(const QPixmap &p);
+
+        /** returns the url of the actual feed source (rss/rdf/atom file) */
+        const QString& xmlUrl() const;
+        /** sets the url of the actual feed source (rss/rdf/atom file) */
+        void setXmlUrl(const QString& s);
+
+        /** returns the URL of the HTML page of this feed */
+        const QString& htmlUrl() const;
+        /** sets the URL of the HTML page of this feed */
+        void setHtmlUrl(const QString& s);
+
+        /** returns the description of this feed */
+        const QString& description() const;
+
+        /** sets the description of this feed */
+        void setDescription(const QString& s);
+
+        virtual QList<Article> articles(const QString& tag=QString::null);
+
+        /** returns article by guid
+            * @param guid the guid of the article to be returned
+            * @return the article object with the given guid, or a
+            * null article if not existant
+            */
+        virtual Article findArticle(const QString& guid) const;
+        
+        virtual QStringList tags() const;
+        
+        /** returns whether a fetch error has occurred */
+        bool fetchErrorOccurred();
+
+        /** returns the unread count for this feed */
+        virtual int unread() const;
+
+        /** returns the number of total articles in this feed
+        @return number of articles */
+
+        virtual int totalCount() const;
+
+        /** returns if the article archive of this feed is loaded */
+        bool isArticlesLoaded() const;
+
+        /** returns if this node is a feed group (@c false here) */
+        virtual bool isGroup() const { return false; }
+
+        /** returns the next node in the tree.
+        Calling next() unless it returns 0 iterates through the tree in pre-order
+        */
+        virtual TreeNode* next();
+
+        /** downloads the favicon */
+        void loadFavicon();
+        
+    public slots:
+        /** starts fetching */
+        void fetch(bool followDiscovery=false);
+
+        void slotAbortFetch();
+
+        /** deletes expired articles */
+        virtual void slotDeleteExpiredArticles();
+
+        /** mark all articles in this feed as read */
+        virtual void slotMarkAllArticlesAsRead();
+
+        /** add this feed to the fetch queue @c queue */
+        virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly=false);
+
+    signals:
+        /** emitted when fetching started */
+        void fetchStarted(Feed*);
+        /** emitted when feed finished fetching */
+        void fetched(Feed *);
+        /** emitted when a fetch error occurred */
+        void fetchError(Feed *);
+        /** emitted when a feed URL was found by auto discovery */
+        void fetchDiscovery(Feed *);
+        /** emitted when a fetch is aborted */
+        void fetchAborted(Feed *);
+        
+    protected:
+        /** loads articles from archive **/
+        void loadArticles();
+
+        void recalcUnreadCount();
+
+        virtual void doArticleNotification();
+
+        /** sets the unread count for this feed */
+        void setUnread(int unread);
+
+        
+    private slots:
+
+        void fetchCompleted(Loader *loader, Document doc, Status status);
+        void slotImageFetched(const QPixmap& image);
+
+    private:
+        
+        /** notifies that article @c mya was set to "deleted".
+            To be called by @ref Article
+            */
+        void setArticleDeleted(Article& a);
+
+        /** notifies that article @c mya was changed
+            @param oldStatus if the status was changed, it contains the old status, -1 otherwise
+            To be called by @ref Article
+            */
+        void setArticleChanged(Article& a, int oldStatus=-1);
+        
+        void enforceLimitArticleNumber();
+
+        void appendArticles(const RSS::Document &d);
+        /** appends article @c a to the article list */
+        void appendArticle(const Article& a);
+
+        /** checks whether article @c a is expired (considering custom and global archive mode settings) */
+        bool isExpired(const Article& a) const;
+
+        /** returns @c true if either this article uses @c limitArticleAge as custom setting or uses the global default, which is @c limitArticleAge */
+        bool usesExpiryByAge() const;
+
+        /** executes the actual fetch action */
+        void tryFetch();
+
+        class FeedPrivate;
+        FeedPrivate* d;
+};
+
+} // namespace Akregator
+
+#endif // AKREGATOR_FEED_H

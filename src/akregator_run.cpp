@@ -22,13 +22,12 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "akregator_run.h"
+#include "viewer.h"
+
 #include <kdebug.h>
 
-#include "viewer.h"
-#include "akregator_run.h"
-
-using namespace Akregator;
-
+namespace Akregator {
 
 BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *part, const KURL & url, const KParts::URLArgs &args)
     : KParts::BrowserRun(url, args, part, parent, false, true)
@@ -58,6 +57,6 @@ void BrowserRun::killMyself()
     delete this;
 }
 
-#include "akregator_run.moc"
+} // namespace Akregator
 
-// vim: set et ts=4 sts=4 sw=4:
+#include "akregator_run.moc"

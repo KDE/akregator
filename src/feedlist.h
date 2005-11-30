@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORFEEDLIST_H
-#define AKREGATORFEEDLIST_H
+#ifndef AKREGATOR_FEEDLIST_H
+#define AKREGATOR_FEEDLIST_H
 
 #include "nodelist.h"
 
@@ -96,6 +96,6 @@ private:
     FeedListPrivate* d;
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_FEEDLIST_H

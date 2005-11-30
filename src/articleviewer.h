@@ -23,133 +23,134 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef ARTICLEVIEWER_H
-#define ARTICLEVIEWER_H
-
-#include <klocale.h>
-
-#include <qcolor.h>
-#include <qfont.h>
-#include <QList>
-#include <QKeyEvent>
+#ifndef AKREGATOR_ARTICLEVIEWER_H
+#define AKREGATOR_ARTICLEVIEWER_H
 
 #include "article.h"
 #include "articlefilter.h"
 #include "viewer.h"
 
+#include <klocale.h>
+
+#include <QColor>
+#include <QFont>
+#include <QKeyEvent>
+#include <QList>
+
 class QKeyEvent;
 
-namespace Akregator
+namespace Akregator {
+
+class Feed;
+class Folder;
+class TreeNode;
+
+/** This HTML viewer is used to display articles. 
+Use the high-level interface provided by the public slots whereever possible (and extend them when necessary instead of using low-level methods).*/
+class ArticleViewer : public Viewer
 {
-    class Feed;
-    class Folder;
-    class TreeNode;
-    
-    /** This HTML viewer is used to display articles. 
-    Use the high-level interface provided by the public slots whereever possible (and extend them when necessary instead of using low-level methods).*/
-     class ArticleViewer : public Viewer
-    {
-        Q_OBJECT
-        public:
-            /** Constructor */
-            ArticleViewer(QWidget* parent, const char* name);
-            virtual ~ArticleViewer();
-            
-            virtual bool openURL(const KURL &url);
+    Q_OBJECT
+    public:
+        /** Constructor */
+        ArticleViewer(QWidget* parent, const char* name);
+        virtual ~ArticleViewer();
+        
+        virtual bool openURL(const KURL &url);
 
-            /** Repaints the view. */
-            void reload();
+        /** Repaints the view. */
+        void reload();
 
-            void displayAboutPage();
-            
-            public slots:
-	    
-            // Commandment: We are your interfaces.
-            // You shall not use strange interfaces before us.
-	    
-            /** Show single article (normal view) 
-                @param article the article to render */
-            void slotShowArticle(const Article& article);
-            
-            /** Shows the articles of the tree node @c node (combined view). Changes in the node will update the view automatically. 
-            @param node The node to observe */
-            void slotShowNode(TreeNode* node);
-            
-            /** Set filters @c textFilter and @c statusFilter which will be used if the viewer is in combined view mode 
-            @param textFilter text filter 
-            @param statusFilter status filter */    
-            void slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter);
-            
-            /** Update view if combined view mode is set. Has to be called when the displayed node gets modified. */ 
-            void slotUpdateCombinedView();
-            
-            /** Clears the canvas and disconnects from the currently observed node (if in combined view mode). */
-            void slotClear();
-	    
-            void slotShowSummary(TreeNode *node);
+        void displayAboutPage();
+        
+        public slots:
+	
+        // Commandment: We are your interfaces.
+        // You shall not use strange interfaces before us.
+	
+        /** Show single article (normal view) 
+            @param article the article to render */
+        void slotShowArticle(const Article& article);
+        
+        /** Shows the articles of the tree node @c node (combined view). Changes in the node will update the view automatically. 
+        @param node The node to observe */
+        void slotShowNode(TreeNode* node);
+        
+        /** Set filters @c textFilter and @c statusFilter which will be used if the viewer is in combined view mode 
+        @param textFilter text filter 
+        @param statusFilter status filter */    
+        void slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter);
+        
+        /** Update view if combined view mode is set. Has to be called when the displayed node gets modified. */ 
+        void slotUpdateCombinedView();
+        
+        /** Clears the canvas and disconnects from the currently observed node (if in combined view mode). */
+        void slotClear();
+	
+        void slotShowSummary(TreeNode *node);
 
-            virtual void slotPaletteOrFontChanged();
-            
-        protected slots:
-                    
-            void slotArticlesUpdated(TreeNode* node, const QList<Article>& list);
-            void slotArticlesAdded(TreeNode* node, const QList<Article>& list);
-            void slotArticlesRemoved(TreeNode* node, const QList<Article>& list);
-            
-        protected:
-            
-            virtual void keyPressEvent(QKeyEvent* e);
-            virtual void urlSelected (const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
+        virtual void slotPaletteOrFontChanged();
+        
+    protected slots:
+                
+        void slotArticlesUpdated(TreeNode* node, const QList<Article>& list);
+        void slotArticlesAdded(TreeNode* node, const QList<Article>& list);
+        void slotArticlesRemoved(TreeNode* node, const QList<Article>& list);
+        
+    protected:
+        
+        virtual void keyPressEvent(QKeyEvent* e);
+        virtual void urlSelected (const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
 
-        private:
+    private:
 
-            friend class ShowNodeSummaryVisitor;
-            class ShowSummaryVisitor;
-            ShowSummaryVisitor* m_showSummaryVisitor;
-            
-            /** renders @c body. Use this method whereever possible.
-            @param body html to render, without header and footer */
-            void renderContent(const QString& body);
-            
-            /** Takes an article and renders it as HTML with settings for normal view and widescreen view
-            @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
-            @param article The article to render
-            @return the rendered article as HTML */
-            QString formatArticleNormalMode(Feed* feed, const Article& article);
-            
-            /** Takes an article and renders it as HTML with settings for combined view
-            @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
-            @param article The article to render
-            @return the rendered article as HTML */
-            QString formatArticleCombinedMode(Feed* feed, const Article& article);
-            
-            /** Resets the canvas and adds writes the HTML header to it.
-             */
-            void beginWriting();
+        friend class ShowNodeSummaryVisitor;
+        class ShowSummaryVisitor;
+        ShowSummaryVisitor* m_showSummaryVisitor;
+        
+        /** renders @c body. Use this method whereever possible.
+        @param body html to render, without header and footer */
+        void renderContent(const QString& body);
+        
+        /** Takes an article and renders it as HTML with settings for normal view and widescreen view
+        @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
+        @param article The article to render
+        @return the rendered article as HTML */
+        QString formatArticleNormalMode(Feed* feed, const Article& article);
+        
+        /** Takes an article and renders it as HTML with settings for combined view
+        @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
+        @param article The article to render
+        @return the rendered article as HTML */
+        QString formatArticleCombinedMode(Feed* feed, const Article& article);
+        
+        /** Resets the canvas and adds writes the HTML header to it.
+            */
+        void beginWriting();
 
-            /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
-            void endWriting();
-            
-            /** generates the CSS used for rendering in single article mode (normal and wide screen view) */
-            void generateNormalModeCSS();
-            /** generates the CSS for combined view mode */
-            void generateCombinedModeCSS();
-            void connectToNode(TreeNode* node);
-            void disconnectFromNode(TreeNode* node);
-                                  
-            QString m_normalModeCSS;
-            QString m_combinedModeCSS;
-            QString m_htmlFooter;
-            QString m_currentText;
-            KURL m_imageDir;
-            TreeNode* m_node;
-            Article m_article;
-            KURL m_link;
-            Akregator::Filters::ArticleMatcher m_textFilter; 
-            Akregator::Filters::ArticleMatcher m_statusFilter;
-            enum ViewMode { NormalView, CombinedView, SummaryView };
-            ViewMode m_viewMode;
-   };
-}
+        /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
+        void endWriting();
+        
+        /** generates the CSS used for rendering in single article mode (normal and wide screen view) */
+        void generateNormalModeCSS();
+        /** generates the CSS for combined view mode */
+        void generateCombinedModeCSS();
+        void connectToNode(TreeNode* node);
+        void disconnectFromNode(TreeNode* node);
+                                
+        QString m_normalModeCSS;
+        QString m_combinedModeCSS;
+        QString m_htmlFooter;
+        QString m_currentText;
+        KURL m_imageDir;
+        TreeNode* m_node;
+        Article m_article;
+        KURL m_link;
+        Akregator::Filters::ArticleMatcher m_textFilter; 
+        Akregator::Filters::ArticleMatcher m_statusFilter;
+        enum ViewMode { NormalView, CombinedView, SummaryView };
+        ViewMode m_viewMode;
+};
 
-#endif // ARTICLEVIEWER_H
+} // namespace Akregator
+
+#endif // AKREGATOR_ARTICLEVIEWER_H

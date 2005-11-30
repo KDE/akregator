@@ -23,11 +23,10 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORTREENODE_H
-#define AKREGATORTREENODE_H
+#ifndef AKREGATOR_TREENODE_H
+#define AKREGATOR_TREENODE_H
 
 #include <QObject>
-#include <QList>
 
 class QDomDocument;
 class QDomElement;
@@ -213,6 +212,6 @@ private:
     TreeNodePrivate* d;
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_TREENODE_H

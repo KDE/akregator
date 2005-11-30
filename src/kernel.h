@@ -70,6 +70,6 @@ class Kernel
         KernelPrivate* d;
 };
 
-}
+} // namespace Akregator
 
 #endif // AKREGATOR_KERNEL_H

@@ -22,28 +22,29 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORPARTIFACE_H
-#define AKREGATORPARTIFACE_H
+#ifndef AKREGATOR_PARTIFACE_H
+#define AKREGATOR_PARTIFACE_H
 
 #include <dcopobject.h>
-#include <qstringlist.h>
 #include <kurl.h>
+
+#include <QStringList>
 
 namespace Akregator {
 
-    class AkregatorPartIface : virtual public DCOPObject
-    {
-        K_DCOP
-        k_dcop:
-            virtual void openStandardFeedList() = 0;
-            virtual void fetchFeedUrl(const QString&) = 0;
-            virtual void fetchAllFeeds() = 0;
-            virtual void saveSettings() = 0;
-            virtual void addFeedsToGroup(const QStringList&, const QString&) = 0;
-            virtual void exportFile(const KURL& url) = 0;
-            virtual void addFeed() = 0;
-    };
+class AkregatorPartIface : virtual public DCOPObject
+{
+    K_DCOP
+    k_dcop:
+        virtual void openStandardFeedList() = 0;
+        virtual void fetchFeedUrl(const QString&) = 0;
+        virtual void fetchAllFeeds() = 0;
+        virtual void saveSettings() = 0;
+        virtual void addFeedsToGroup(const QStringList&, const QString&) = 0;
+        virtual void exportFile(const KURL& url) = 0;
+        virtual void addFeed() = 0;
+};
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_PARTIFACE_H

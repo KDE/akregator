@@ -29,8 +29,9 @@ namespace Akregator
 {
 
 class Feed;
-class TreeNode;
 class ProgressItemHandler;
+class TreeNode;
+
 /** This class manages the progress items for all feeds */
 
 class ProgressManager : public QObject

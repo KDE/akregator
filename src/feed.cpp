@@ -23,32 +23,33 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qtimer.h>
-#include <qdatetime.h>
-#include <q3listview.h>
-#include <qdom.h>
-#include <qmap.h>
-#include <qpixmap.h>
-#include <QList>
-
-#include <kurl.h>
-#include <kdebug.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
-#include <q3tl.h>
-
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articleinterceptor.h"
 #include "feed.h"
-#include "folder.h"
-#include "fetchqueue.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"
+#include "fetchqueue.h"
+#include "folder.h"
 #include "storage.h"
 #include "treenodevisitor.h"
-
 #include "librss/librss.h"
+
+#include <kdebug.h>
+#include <kglobal.h>
+#include <kstandarddirs.h>
+#include <kurl.h>
+
+#include <q3listview.h>
+#include <q3tl.h>
+
+#include <QDateTime>
+#include <QDomDocument>
+#include <QDomElement>
+#include <QList>
+#include <QMap>
+#include <QPixmap>
+#include <QTimer>
 
 namespace Akregator {
 
@@ -839,4 +840,5 @@ void Feed::enforceLimitArticleNumber()
 }
 
 } // namespace Akregator
+
 #include "feed.moc"

@@ -23,66 +23,63 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef FEEDICONMGR_H
-#define FEEDICONMGR_H
+#ifndef AKREGATOR_FEEDICONMANAGER_H
+#define AKREGATOR_FEEDICONMANAGER_H
 
 #include <dcopobject.h>
 
-#include <qobject.h>
-//Added by qt3to4:
-#include <QPixmap>
+#include <QObject>
+
+class KURL;
 
 class QPixmap;
 class QString;
 
-class DCOPClient;
-class KURL;
+namespace Akregator {
 
+class Feed;
+class TreeNode;
 
-namespace Akregator
+class FeedIconManager:public QObject, public DCOPObject
 {
-    class Feed;
-    class TreeNode;
+    Q_OBJECT
+    K_DCOP
     
-    class FeedIconManager:public QObject, public DCOPObject
-    {
-        Q_OBJECT
-        K_DCOP
+    public:
+
+        FeedIconManager(QObject * = 0L, const char * = 0L);
+        ~FeedIconManager();
         
-        public:
+        static FeedIconManager *self();
 
-            FeedIconManager(QObject * = 0L, const char * = 0L);
-            ~FeedIconManager();
-            
-            static FeedIconManager *self();
+        void fetchIcon(Feed* feed);
+        
+        QString iconLocation(const KURL &) const;
+        
+    k_dcop:
+        void slotIconChanged(bool, const QString&, const QString&);
 
-            void fetchIcon(Feed* feed);
-            
-            QString iconLocation(const KURL &) const;
-            
-        k_dcop:
-            void slotIconChanged(bool, const QString&, const QString&);
+    signals:
+        void signalIconChanged(const QString &, const QPixmap &);
 
-        signals:
-            void signalIconChanged(const QString &, const QPixmap &);
+    public slots:
+        void slotFeedDestroyed(TreeNode* node);
 
-        public slots:
-            void slotFeedDestroyed(TreeNode* node);
+    protected:
 
-      protected:
+        /** returns the url used to access the icon, e.g.
+            http://dot.kde.org/ for "dot.kde.org/1113317400/" */
+        QString getIconURL(const KURL& url);
 
-            /** returns the url used to access the icon, e.g.
-                http://dot.kde.org/ for "dot.kde.org/1113317400/" */
-            QString getIconURL(const KURL& url);
+        void loadIcon(const QString &);
+    
+    private:
+        static FeedIconManager *m_instance;
 
-            void loadIcon(const QString &);
-      
-      private:
-            static FeedIconManager *m_instance;
+        class FeedIconManagerPrivate;
+        FeedIconManagerPrivate* d;
+};
 
-            class FeedIconManagerPrivate;
-            FeedIconManagerPrivate* d;
-    };
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_FEEDICONMANAGER_H

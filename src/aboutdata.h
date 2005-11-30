@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef ABOUTDATA_H
-#define ABOUTDATA_H
+#ifndef AKREGATOR_ABOUTDATA_H
+#define AKREGATOR_ABOUTDATA_H
 
 #include <kaboutdata.h>
 #include <kdepimmacros.h>
@@ -41,6 +41,6 @@ public:
     ~AboutData();
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_ABOUTDATA_H

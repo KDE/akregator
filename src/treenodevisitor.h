@@ -36,7 +36,7 @@ class TagFolder;
 class TreeNodeVisitor
 {
     public:
-		virtual ~TreeNodeVisitor(){}
+        virtual ~TreeNodeVisitor(){}
         virtual bool visit(TreeNode* node);
         virtual bool visitTreeNode(TreeNode* /*node*/) { return false; }
         virtual bool visitFolder(Folder* /*node*/) { return false; }
@@ -45,6 +45,6 @@ class TreeNodeVisitor
         virtual bool visitTagNode(TagNode* /*node*/) { return false; }
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_TREENODEVISITOR_H

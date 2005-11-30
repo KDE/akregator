@@ -110,7 +110,8 @@ class PluginManager
     //attributes:
         static std::vector<StoreItem> m_store;
 };
-}
 
-#endif /* AKREGATOR_PLUGINMANAGER_H */
+} // namespace Akregator
+
+#endif // AKREGATOR_PLUGINMANAGER_H
 

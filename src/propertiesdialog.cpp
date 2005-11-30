@@ -323,4 +323,3 @@ void FeedPropertiesDialog::selectFeedName()
 } // namespace Akregator
 
 #include "propertiesdialog.moc"
-// vim: ts=4 sw=4 et

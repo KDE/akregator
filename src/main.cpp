@@ -22,7 +22,9 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qstringlist.h>
+#include "aboutdata.h"
+#include "mainwindow.h"
+#include "akregator_options.h"
 
 #include <dcopref.h>
 #include <kcmdlineargs.h>
@@ -30,9 +32,7 @@
 #include <knotifyclient.h>
 #include <kuniqueapplication.h>
 
-#include "aboutdata.h"
-#include "mainwindow.h"
-#include "akregator_options.h"
+#include <QStringList>
 
 namespace Akregator {
 

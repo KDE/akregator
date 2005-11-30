@@ -22,20 +22,20 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "feed.h"
 #include "addfeeddialog.h"
-
-#include <qcheckbox.h>
+#include "feed.h"
 
 #include <kapplication.h>
-#include <kurl.h>
-#include <klocale.h>
-#include <klineedit.h>
+#include <kdebug.h>
 #include <kiconloader.h>
 #include <kicontheme.h>
-#include <kdebug.h>
-#include <ksqueezedtextlabel.h>
+#include <klineedit.h>
+#include <klocale.h>
 #include <kmessagebox.h>
+#include <ksqueezedtextlabel.h>
+#include <kurl.h>
+
+#include <QCheckBox>
 
 namespace Akregator {
 
@@ -121,4 +121,3 @@ void AddFeedDialog::textChanged(const QString& text)
 } // namespace Akregator
 
 #include "addfeeddialog.moc"
-// vim: ts=4 sw=4 et

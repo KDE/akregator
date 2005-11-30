@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "actionmanager.h"
+#include "akregatorconfig.h"
 #include "articlelistview.h"
 #include "article.h"
 #include "articlefilter.h"
@@ -32,28 +32,27 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
-#include <kstandarddirs.h>
+#include <kcharsets.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kcharsets.h>
+#include <kstandarddirs.h>
 #include <kurl.h>
 
-#include <qdatetime.h>
-#include <qpixmap.h>
+#include <q3dragobject.h>
+#include <q3header.h>
 #include <q3popupmenu.h>
 #include <q3ptrlist.h>
-#include <QList>
-
-#include <q3header.h>
-#include <q3dragobject.h>
 #include <q3simplerichtext.h>
-#include <qpainter.h>
-#include <qapplication.h>
-//Added by qt3to4:
-#include <QPaintEvent>
+
+#include <QApplication>
+#include <QDateTime>
 #include <QKeyEvent>
+#include <QList>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QPixmap>
 
 #include <ctime>
 
@@ -698,4 +697,3 @@ QList<Article> ArticleListView::selectedArticles() const
 } // namespace Akregator
 
 #include "articlelistview.moc"
-// vim: ts=4 sw=4 et

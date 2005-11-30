@@ -84,7 +84,5 @@ class FetchQueue : public QObject
 
 } // namespace Akregator
 
-#endif
-
-// vim: set et ts=4 sts=4 sw=4:
+#endif // AKREGATOR_FETCHQUEUE_H
 

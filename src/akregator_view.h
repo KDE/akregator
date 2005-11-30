@@ -24,21 +24,17 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef _AKREGATORVIEW_H_
-#define _AKREGATORVIEW_H_
+#ifndef AKREGATOR_VIEW_H
+#define AKREGATOR_VIEW_H
+
+#include "feed.h"
+
+#include <kurl.h>
 
 #include <qpixmap.h>
 #include <qwidget.h>
 
-#include <kurl.h>
 
-#include "feed.h"
-
-class QSplitter;
-class QDomDocument;
-class QDomElement;
-class QToolButton;
-class Q3ListViewItem;
 class KComboBox;
 class KConfig;
 class KFileItem;
@@ -47,269 +43,276 @@ class KListView;
 class KListViewItem;
 class KTabWidget;
 
-namespace KIO {
+class QDomDocument;
+class QDomElement;
+class QSplitter;
+class QToolButton;
+class Q3ListViewItem;
 
+namespace KIO 
+{
     class Job;
 }
 
 namespace Akregator {
 
-    class AboutPageViewer;
-    class ActionManagerImpl;
-    class ArticleMatcher;
-    class ArticleListView;
-    class ArticleViewer;
-    class Folder;
-    class FeedList;
-    class Frame;
-    class NodeListView;
-    class ListTabWidget;
-    class Part;
-    class SearchBar;
-    class TabWidget;
-    class Tag;
-    class TagNodeList;
+class AboutPageViewer;
+class ActionManagerImpl;
+class ArticleMatcher;
+class ArticleListView;
+class ArticleViewer;
+class Folder;
+class FeedList;
+class Frame;
+class NodeListView;
+class ListTabWidget;
+class Part;
+class SearchBar;
+class TabWidget;
+class Tag;
+class TagNodeList;
 
-    /**
-     * This is the main widget of the view, containing tree view, article list, viewer etc.
-     */
-    class View : public QWidget
-    {
-        Q_OBJECT
-        public:
+/**
+    * This is the main widget of the view, containing tree view, article list, viewer etc.
+    */
+class View : public QWidget
+{
+    Q_OBJECT
+    public:
 
-            /** constructor
-            @param part the Akregator::Part which contains this widget
-            @param parent parent widget
-            @param name the name of the widget (@ref QWidget )
+        /** constructor
+        @param part the Akregator::Part which contains this widget
+        @param parent parent widget
+        @param name the name of the widget (@ref QWidget )
+        */
+        View(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char* name);
+
+        /** destructor.  Note that cleanups should be done in
+        slotOnShutdown(), so we don't risk accessing self-deleting objects after deletion. */
+        ~View();
+
+        /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
+        void saveSettings();
+
+        /** Adds the feeds in @c doc to the "Imported Folder"
+        @param doc the DOM tree (OPML) of the feeds to import */
+        bool importFeeds(const QDomDocument& doc);
+
+        /** Parse OPML presentation of feeds and read in articles archive, if present. If @c parent is @c NULL, the current
+        feed list is replaced by the parsed one
+            @param doc QDomDocument generated from OPML
+            @param parent The parent group the new nodes */
+        bool loadFeeds(const QDomDocument& doc, Folder* parent = 0);
+
+        /**
+            @return the displayed Feed List in OPML format
             */
-            View(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char* name);
+            QDomDocument feedListToOPML();
 
-            /** destructor.  Note that cleanups should be done in
-            slotOnShutdown(), so we don't risk accessing self-deleting objects after deletion. */
-            ~View();
-
-            /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
-            void saveSettings();
-
-            /** Adds the feeds in @c doc to the "Imported Folder"
-            @param doc the DOM tree (OPML) of the feeds to import */
-            bool importFeeds(const QDomDocument& doc);
-
-            /** Parse OPML presentation of feeds and read in articles archive, if present. If @c parent is @c NULL, the current
-            feed list is replaced by the parsed one
-             @param doc QDomDocument generated from OPML
-             @param parent The parent group the new nodes */
-            bool loadFeeds(const QDomDocument& doc, Folder* parent = 0);
-
-            /**
-             @return the displayed Feed List in OPML format
-             */
-             QDomDocument feedListToOPML();
-
-            /**
-             Add a feed to a group.
-             @param url The URL of the feed to add.
-             @param group The name of the folder into which the feed is added.
-             If the group does not exist, it is created.  The feed is added as the last member of the group.
-             */
-            void addFeedToGroup(const QString& url, const QString& group);
-
-            /** session management **/
-            virtual void readProperties(KConfig* config);
-            virtual void saveProperties(KConfig* config);
-
-        signals:
-            /** emitted when the unread count of "All Feeds" was changed */
-            void signalUnreadCountChanged(int);
-
-        public slots:
-
-            void slotOnShutdown();
-
-            /** selected tree node has changed */
-            void slotNodeSelected(TreeNode* node);
-
-            /** the article selection has changed */
-            void slotArticleSelected(const Article&);
-
-            /** Shows requested popup menu for feed tree */
-            void slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&);
-
-            /** emits @ref signalUnreadCountChanged(int) */
-            void slotSetTotalUnread();
-
-            /** special behaviour in article list view (TODO: move code there?) */
-            void slotMouseButtonPressed(int button, const Article& article, const QPoint & pos, int c);
-
-            /** opens article of @c item in external browser */
-            void slotOpenArticleExternal(const Article& article, const QPoint&, int);
-
-            /** opens the current article (currentItem) in external browser
-            TODO: use selected instead of current? */
-            void slotOpenCurrentArticleExternal();
-
-            /** opens the current article (currentItem) in background tab
-            TODO: use selected instead of current? */
-            void slotOpenCurrentArticleBackgroundTab();
-
-            /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
-            void slotOpenCurrentArticle();
-
-            /** copies the link of current article to clipboard
+        /**
+            Add a feed to a group.
+            @param url The URL of the feed to add.
+            @param group The name of the folder into which the feed is added.
+            If the group does not exist, it is created.  The feed is added as the last member of the group.
             */
-            void slotCopyLinkAddress();
+        void addFeedToGroup(const QString& url, const QString& group);
 
-            /** opens a page viewer in a new tab and loads an URL
-             @param url the url to load
-             @param background whether the tab should be opened in the background or in the foreground (activated after creation) */
-            void slotOpenTab(const KURL& url, bool background = false);
+        /** session management **/
+        virtual void readProperties(KConfig* config);
+        virtual void saveProperties(KConfig* config);
 
-            /** called when another part/frame is activated. Updates progress bar, caption etc. accordingly
-            @param f the activated frame */
-            void slotFrameChanged(Frame *f);
+    signals:
+        /** emitted when the unread count of "All Feeds" was changed */
+        void signalUnreadCountChanged(int);
 
-            /** called when URLs are dropped into the tree view */
-            void slotFeedURLDropped (KURL::List &urls, TreeNode* after, Folder *parent);
+    public slots:
 
-            /** displays a URL in the status bar when the user moves the mouse over a link */
-            void slotMouseOverInfo(const KFileItem *kifi);
+        void slotOnShutdown();
 
-            /** Feed has been fetched, populate article view if needed and update counters. */
-            void slotFeedFetched(Feed *);
+        /** selected tree node has changed */
+        void slotNodeSelected(TreeNode* node);
 
-            /** adds a new feed to the feed tree */
-            void slotFeedAdd();
-            /** adds a feed group to the feed tree */
-            void slotFeedAddGroup();
-            /** removes the currently selected feed (ask for confirmation)*/
-            void slotFeedRemove();
-            /** calls the properties dialog for feeds, starts renaming for feed groups */
-            void slotFeedModify();
-            /** fetches the currently selected feed */
-            void slotFetchCurrentFeed();
-            /** starts fetching of all feeds in the tree */
-            void slotFetchAllFeeds();
-            /** marks all articles in the currently selected feed as read */
-            void slotMarkAllRead();
-            /** marks all articles in all feeds in the tree as read */
-            void slotMarkAllFeedsRead();
-            /** opens the homepage of the currently selected feed */
-            void slotOpenHomepage();
+        /** the article selection has changed */
+        void slotArticleSelected(const Article&);
 
-            /** toggles the keep flag of the currently selected article */
-            void slotArticleToggleKeepFlag(bool enabled);
-            /** deletes the currently selected article */
-            void slotArticleDelete();
-            /** marks the currently selected article as read */
-            void slotSetSelectedArticleRead();
-            /** marks the currently selected article as unread */
-            void slotSetSelectedArticleUnread();
-            /** marks the currently selected article as new */
-            void slotSetSelectedArticleNew();
-            /** marks the currenctly selected article as read after a user-set delay */
-            void slotSetCurrentArticleReadDelayed();
+        /** Shows requested popup menu for feed tree */
+        void slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&);
 
-            /** reads the currently selected articles using KTTSD */
-            void slotTextToSpeechRequest();
+        /** emits @ref signalUnreadCountChanged(int) */
+        void slotSetTotalUnread();
 
-            void slotAssignTag(const Tag& tag, bool assign);
-            //void slotRemoveTag(const Tag& tag);
-            void slotNewTag();
-            void slotTagCreated(const Tag& tag);
-            void slotTagRemoved(const Tag& tag);
+        /** special behaviour in article list view (TODO: move code there?) */
+        void slotMouseButtonPressed(int button, const Article& article, const QPoint & pos, int c);
 
-            /** switches view mode to normal view */
-            void slotNormalView();
-            /** switches view mode to widescreen view */
-            void slotWidescreenView();
-            /** switches view mode to combined view */
-            void slotCombinedView();
-            /** toggles the visibility of the filter bar */
-            void slotToggleShowQuickFilter();
+        /** opens article of @c item in external browser */
+        void slotOpenArticleExternal(const Article& article, const QPoint&, int);
 
-            /** selects the previous unread article in the article list */
-            void slotPrevUnreadArticle();
-            /** selects the next unread article in the article list */
-            void slotNextUnreadArticle();
+        /** opens the current article (currentItem) in external browser
+        TODO: use selected instead of current? */
+        void slotOpenCurrentArticleExternal();
 
-            void slotMoveCurrentNodeUp();
-            void slotMoveCurrentNodeDown();
-            void slotMoveCurrentNodeLeft();
-            void slotMoveCurrentNodeRight();
+        /** opens the current article (currentItem) in background tab
+        TODO: use selected instead of current? */
+        void slotOpenCurrentArticleBackgroundTab();
 
-            void slotSendLink() { sendArticle(); }
-            void slotSendFile() { sendArticle(true); }
+        /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
+        void slotOpenCurrentArticle();
 
-        protected:
+        /** copies the link of current article to clipboard
+        */
+        void slotCopyLinkAddress();
 
-            void sendArticle(bool attach=false);
+        /** opens a page viewer in a new tab and loads an URL
+            @param url the url to load
+            @param background whether the tab should be opened in the background or in the foreground (activated after creation) */
+        void slotOpenTab(const KURL& url, bool background = false);
 
-            void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
+        /** called when another part/frame is activated. Updates progress bar, caption etc. accordingly
+        @param f the activated frame */
+        void slotFrameChanged(Frame *f);
 
-            void connectToFeedList(FeedList* feedList);
-            void disconnectFromFeedList(FeedList* feedList);
+        /** called when URLs are dropped into the tree view */
+        void slotFeedURLDropped (KURL::List &urls, TreeNode* after, Folder *parent);
 
-            void updateTagActions();
+        /** displays a URL in the status bar when the user moves the mouse over a link */
+        void slotMouseOverInfo(const KFileItem *kifi);
 
-        protected slots:
+        /** Feed has been fetched, populate article view if needed and update counters. */
+        void slotFeedFetched(Feed *);
 
-            /** this is called by the ctor, does init steps which need a properly created view and part */
+        /** adds a new feed to the feed tree */
+        void slotFeedAdd();
+        /** adds a feed group to the feed tree */
+        void slotFeedAddGroup();
+        /** removes the currently selected feed (ask for confirmation)*/
+        void slotFeedRemove();
+        /** calls the properties dialog for feeds, starts renaming for feed groups */
+        void slotFeedModify();
+        /** fetches the currently selected feed */
+        void slotFetchCurrentFeed();
+        /** starts fetching of all feeds in the tree */
+        void slotFetchAllFeeds();
+        /** marks all articles in the currently selected feed as read */
+        void slotMarkAllRead();
+        /** marks all articles in all feeds in the tree as read */
+        void slotMarkAllFeedsRead();
+        /** opens the homepage of the currently selected feed */
+        void slotOpenHomepage();
 
-            void delayedInit();
+        /** toggles the keep flag of the currently selected article */
+        void slotArticleToggleKeepFlag(bool enabled);
+        /** deletes the currently selected article */
+        void slotArticleDelete();
+        /** marks the currently selected article as read */
+        void slotSetSelectedArticleRead();
+        /** marks the currently selected article as unread */
+        void slotSetSelectedArticleUnread();
+        /** marks the currently selected article as new */
+        void slotSetSelectedArticleNew();
+        /** marks the currenctly selected article as read after a user-set delay */
+        void slotSetCurrentArticleReadDelayed();
 
-            void setTabIcon(const QPixmap&);
+        /** reads the currently selected articles using KTTSD */
+        void slotTextToSpeechRequest();
 
-            /** Display article in external browser. */
-            void displayInExternalBrowser(const KURL &url);
+        void slotAssignTag(const Tag& tag, bool assign);
+        //void slotRemoveTag(const Tag& tag);
+        void slotNewTag();
+        void slotTagCreated(const Tag& tag);
+        void slotTagRemoved(const Tag& tag);
 
-            void slotDoIntervalFetches();
-            void slotDeleteExpiredArticles();
+        /** switches view mode to normal view */
+        void slotNormalView();
+        /** switches view mode to widescreen view */
+        void slotWidescreenView();
+        /** switches view mode to combined view */
+        void slotCombinedView();
+        /** toggles the visibility of the filter bar */
+        void slotToggleShowQuickFilter();
 
-            void slotFetchingStarted();
-            void slotFetchingStopped();
+        /** selects the previous unread article in the article list */
+        void slotPrevUnreadArticle();
+        /** selects the next unread article in the article list */
+        void slotNextUnreadArticle();
 
-        private:
+        void slotMoveCurrentNodeUp();
+        void slotMoveCurrentNodeDown();
+        void slotMoveCurrentNodeLeft();
+        void slotMoveCurrentNodeRight();
 
-            enum ViewMode { NormalView=0, WidescreenView, CombinedView };
+        void slotSendLink() { sendArticle(); }
+        void slotSendFile() { sendArticle(true); }
 
-            FeedList* m_feedList;
-            TagNodeList* m_tagNodeList;
-            NodeListView* m_feedListView;
-            NodeListView* m_tagNodeListView;
-            ArticleListView *m_articleList;
-            ArticleViewer *m_articleViewer;
-            TabWidget* m_tabWidget;
+    protected:
 
-            QWidget *m_mainTab;
-            Frame *m_mainFrame;
+        void sendArticle(bool attach=false);
 
-            SearchBar* m_searchBar;
+        void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
 
-            QSplitter *m_articleSplitter;
-            QSplitter *m_horizontalSplitter;
-       
-            ListTabWidget* m_listTabWidget;
-            Akregator::Part *m_part;
-            ViewMode m_viewMode;
+        void connectToFeedList(FeedList* feedList);
+        void disconnectFromFeedList(FeedList* feedList);
 
-            QTimer *m_fetchTimer;
-            QTimer* m_expiryTimer;
-            QTimer *m_markReadTimer;
+        void updateTagActions();
 
-            bool m_shuttingDown;
-            bool m_displayingAboutPage;
+    protected slots:
 
-            ActionManagerImpl* m_actionManager;
+        /** this is called by the ctor, does init steps which need a properly created view and part */
 
-            QPixmap m_keepFlagIcon;
-            friend class EditNodePropertiesVisitor;
-            class EditNodePropertiesVisitor;
-            EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
-            friend class DeleteNodeVisitor;
-            class DeleteNodeVisitor;
-            DeleteNodeVisitor* m_deleteNodeVisitor;
-    };
-}
+        void delayedInit();
 
-#endif // _AKREGATORVIEW_H_
+        void setTabIcon(const QPixmap&);
+
+        /** Display article in external browser. */
+        void displayInExternalBrowser(const KURL &url);
+
+        void slotDoIntervalFetches();
+        void slotDeleteExpiredArticles();
+
+        void slotFetchingStarted();
+        void slotFetchingStopped();
+
+    private:
+
+        enum ViewMode { NormalView=0, WidescreenView, CombinedView };
+
+        FeedList* m_feedList;
+        TagNodeList* m_tagNodeList;
+        NodeListView* m_feedListView;
+        NodeListView* m_tagNodeListView;
+        ArticleListView *m_articleList;
+        ArticleViewer *m_articleViewer;
+        TabWidget* m_tabWidget;
+
+        QWidget *m_mainTab;
+        Frame *m_mainFrame;
+
+        SearchBar* m_searchBar;
+
+        QSplitter *m_articleSplitter;
+        QSplitter *m_horizontalSplitter;
+    
+        ListTabWidget* m_listTabWidget;
+        Akregator::Part *m_part;
+        ViewMode m_viewMode;
+
+        QTimer *m_fetchTimer;
+        QTimer* m_expiryTimer;
+        QTimer *m_markReadTimer;
+
+        bool m_shuttingDown;
+        bool m_displayingAboutPage;
+
+        ActionManagerImpl* m_actionManager;
+
+        QPixmap m_keepFlagIcon;
+        friend class EditNodePropertiesVisitor;
+        class EditNodePropertiesVisitor;
+        EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
+        friend class DeleteNodeVisitor;
+        class DeleteNodeVisitor;
+        DeleteNodeVisitor* m_deleteNodeVisitor;
+};
+
+} // namespace Akregator
+
+#endif // AKREGATOR_VIEW_H

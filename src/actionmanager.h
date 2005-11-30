@@ -27,9 +27,9 @@
 
 #include <qobject.h>
 
-class QWidget;
-
 class KAction;
+
+class QWidget;
 
 namespace Akregator {
 

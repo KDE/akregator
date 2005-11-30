@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef VIEWER_H
-#define VIEWER_H
+#ifndef AKREGATOR_VIEWER_H
+#define AKREGATOR_VIEWER_H
 
 #include <khtml_part.h>
 
@@ -36,87 +36,88 @@ namespace KIO
 
 namespace Akregator
 {
-    class Viewer : public KHTMLPart
-    {
-        Q_OBJECT
-        public:
-            Viewer(QWidget* parent, const char* name);
-            virtual ~Viewer();
 
-            virtual bool closeURL();
-            
-            /** used by the BrowserRun object to call KHTMLPart::openURL() */
-            virtual void openPage(const KURL& url) { KHTMLPart::openURL(url);}
+class Viewer : public KHTMLPart
+{
+    Q_OBJECT
+    public:
+        Viewer(QWidget* parent, const char* name);
+        virtual ~Viewer();
 
-        public slots:
-            
-            void slotScrollUp(); 
-            void slotScrollDown();
-            void slotZoomIn();
-            void slotZoomOut();
-            void slotSetZoomFactor(int percent);
-            void slotPrint();
-            void setSafeMode();
-
-            virtual void slotPaletteOrFontChanged() = 0;
-
-        signals:
-            /** This gets emitted when url gets clicked */
-            void urlClicked(const KURL& url, bool background=false);
-
-            protected: // methods
-            int pointsToPixel(int points) const;
-
-        protected slots:
+        virtual bool closeURL();
         
-            // FIXME: Sort out how things are supposed to work and clean up the following slots
+        /** used by the BrowserRun object to call KHTMLPart::openURL() */
+        virtual void openPage(const KURL& url) { KHTMLPart::openURL(url);}
 
-            /** reimplemented to handle url selection according to the settings for LMB and MMB */
-            virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
+    public slots:
+        
+        void slotScrollUp(); 
+        void slotScrollDown();
+        void slotZoomIn();
+        void slotZoomOut();
+        void slotSetZoomFactor(int percent);
+        void slotPrint();
+        void setSafeMode();
 
-            /** slot for handling openURLRequestDelayed() signal from the browserextension. Handles POST requests (for forms) only, other link handling goes to urlSelected(). Does nothing in Viewer, reimplemented in PageViewer to make forms working */
-            virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+        virtual void slotPaletteOrFontChanged() = 0;
 
-            virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+    signals:
+        /** This gets emitted when url gets clicked */
+        void urlClicked(const KURL& url, bool background=false);
 
-            /** Copies current link to clipboard. */
-            void slotCopyLinkAddress();
+        protected: // methods
+        int pointsToPixel(int points) const;
 
-            /** Copies currently selected text to clipboard */
-            virtual void slotCopy();
+    protected slots:
+    
+        // FIXME: Sort out how things are supposed to work and clean up the following slots
 
-            /** Opens @c m_url inside this viewer */
-            virtual void slotOpenLinkInternal();
+        /** reimplemented to handle url selection according to the settings for LMB and MMB */
+        virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
 
-            /** Opens @c m_url in external viewer, eg. Konqueror */
-            virtual void slotOpenLinkInBrowser();
+        /** slot for handling openURLRequestDelayed() signal from the browserextension. Handles POST requests (for forms) only, other link handling goes to urlSelected(). Does nothing in Viewer, reimplemented in PageViewer to make forms working */
+        virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
 
-            /** Opens @c m_url in foreground tab */
-            virtual void slotOpenLinkInForegroundTab();
+        virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
-            /** Opens @c m_url in background tab */
-            virtual void slotOpenLinkInBackgroundTab();
+        /** Copies current link to clipboard. */
+        void slotCopyLinkAddress();
 
-            virtual void slotSaveLinkAs();
+        /** Copies currently selected text to clipboard */
+        virtual void slotCopy();
 
-            /** This changes cursor to wait cursor */
-            void slotStarted(KIO::Job *);
+        /** Opens @c m_url inside this viewer */
+        virtual void slotOpenLinkInternal();
 
-            /** This reverts cursor back to normal one */
-            void slotCompleted();
+        /** Opens @c m_url in external viewer, eg. Konqueror */
+        virtual void slotOpenLinkInBrowser();
 
-            virtual void slotSelectionChanged();
+        /** Opens @c m_url in foreground tab */
+        virtual void slotOpenLinkInForegroundTab();
 
-        protected: // attributes
-            KURL m_url;
-            
-        private:
-            /**
-             * Display article in external browser.
-             */
-            void displayInExternalBrowser(const KURL &url, const QString &mime);
-    };
-}
+        /** Opens @c m_url in background tab */
+        virtual void slotOpenLinkInBackgroundTab();
 
-#endif // VIEWER_H
-// vim: ts=4 sw=4 et
+        virtual void slotSaveLinkAs();
+
+        /** This changes cursor to wait cursor */
+        void slotStarted(KIO::Job *);
+
+        /** This reverts cursor back to normal one */
+        void slotCompleted();
+
+        virtual void slotSelectionChanged();
+
+    protected: // attributes
+        KURL m_url;
+        
+    private:
+        /**
+            * Display article in external browser.
+            */
+        void displayInExternalBrowser(const KURL &url, const QString &mime);
+};
+
+} // namespace Akregator
+
+#endif // AKREGATOR_VIEWER_H

@@ -98,4 +98,4 @@ class SimpleNodeSelector : public QWidget
 
 } // namespace Akregator
 
-#endif
+#endif // AKREGATOR_SIMPLENODESELECTOR_H

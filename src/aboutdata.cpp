@@ -22,12 +22,14 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "aboutdata.h"
+
 #include <klocale.h>
 
 #include <QString>
 
-#include "aboutdata.h"
-#include <klocale.h>
+
+
 namespace Akregator {
 
 AboutData::AboutData()

@@ -22,51 +22,52 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORADDFEEDDIALOG_H
-#define AKREGATORADDFEEDDIALOG_H
-
-#include <QWidget>
+#ifndef AKREGATOR_ADDFEEDDIALOG_H
+#define AKREGATOR_ADDFEEDDIALOG_H
 
 #include "addfeedwidgetbase.h"
 
 #include <kdialogbase.h>
 
+#include <QWidget>
+
 namespace Akregator
 {
 
-   class Feed;
+class Feed;
 
-   class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
-   {
-      Q_OBJECT
-      public:
-         AddFeedWidget(QWidget *parent = 0, const char *name = 0);
-         ~AddFeedWidget();
-   };
+class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
+{
+    Q_OBJECT
+    public:
+        AddFeedWidget(QWidget *parent = 0, const char *name = 0);
+        ~AddFeedWidget();
+};
 
-   class AddFeedDialog : public KDialogBase
-   {
-      Q_OBJECT
-      public:
-         AddFeedDialog(QWidget *parent = 0, const char *name = 0);
-         ~AddFeedDialog();
+class AddFeedDialog : public KDialogBase
+{
+    Q_OBJECT
+    public:
+        AddFeedDialog(QWidget *parent = 0, const char *name = 0);
+        ~AddFeedDialog();
 
-         void setURL(const QString& t);
-         Feed *feed;
+        void setURL(const QString& t);
+        Feed *feed;
 
-      public slots:
-         void slotOk( );
-         void fetchCompleted(Feed *);
-         void fetchDiscovery(Feed *);
-         void fetchError(Feed *);
+    public slots:
+        void slotOk( );
+        void fetchCompleted(Feed *);
+        void fetchDiscovery(Feed *);
+        void fetchError(Feed *);
 
-      private slots:
-         void textChanged(const QString&);
+    private slots:
+        void textChanged(const QString&);
 
-      private:
-         AddFeedWidget *widget;
-         QString feedURL;
-   };
-}
+    private:
+        AddFeedWidget *widget;
+        QString feedURL;
+};
 
-#endif
+} // namespace Akregator
+
+#endif // AKREGATOR_ADDFEEDDIALOG_H

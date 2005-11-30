@@ -22,19 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qwidget.h>
-#include <kaction.h>
-#include <kactioncollection.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <kmenu.h>
-#include <kshortcut.h>
-#include <kxmlguifactory.h>
-
-#include <qmap.h>
-#include <qstring.h>
-#include <QList>
-
 #include "actionmanagerimpl.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
@@ -45,9 +32,10 @@
 #include "feedlistview.h"
 #include "fetchqueue.h"
 #include "folder.h"
-#include "listtabwidget.h"
 #include "kernel.h"
+#include "listtabwidget.h"
 #include "speechclient.h"
+#include "tabwidget.h"
 #include "tag.h"
 #include "tagaction.h"
 #include "tagnode.h"
@@ -55,12 +43,20 @@
 #include "trayicon.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
-#include "tabwidget.h"
-#include "kstdaccel.h"
 
-
-
+#include <kaction.h>
+#include <kactioncollection.h>
 #include <kdebug.h>
+#include <klocale.h>
+#include <kmenu.h>
+#include <kshortcut.h>
+#include <kstdaccel.h>
+#include <kxmlguifactory.h>
+
+#include <QList>
+#include <QMap>
+#include <QString>
+#include <QWidget>
 
 namespace Akregator
 {

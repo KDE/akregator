@@ -27,11 +27,12 @@
 
 #include "actionmanager.h"
 
+class KAction;
+class KActionCollection;
+class KActionMenu;
+
 class QStringList;
 class QWidget;
-class KAction;
-class KActionMenu;
-class KActionCollection;
 
 namespace Akregator {
 
@@ -39,12 +40,12 @@ class ArticleListView;
 class ArticleViewer;
 class ListTabWidget;
 class Part;
-class TrayIcon;
+class TabWidget;
 class Tag;
 class TagSet;
 class TreeNode;
+class TrayIcon;
 class View;
-class TabWidget;
 
 /** 
  * Akregator-specific implementation of the ActionManager interface

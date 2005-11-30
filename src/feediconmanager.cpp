@@ -34,7 +34,8 @@
 #include <kurl.h>
 
 #include <q3dict.h>
-#include <qpixmap.h>
+
+#include <QPixmap>
 #include <QList>
 
 namespace Akregator {
@@ -157,4 +158,5 @@ void FeedIconManager::slotIconChanged(bool /*isHost*/, const QString& hostOrURL,
 }
 
 } // namespace Akregator
+
 #include "feediconmanager.moc"

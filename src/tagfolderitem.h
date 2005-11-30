@@ -24,12 +24,10 @@
 #ifndef AKREGATOR_TAGFOLDERITEM_H
 #define AKREGATOR_TAGFOLDERITEM_H
 
-#include "tagfolder.h"
-#include "treenodeitem.h"
 #include "folderitem.h"
+#include "tagfolder.h"
 #include "treenode.h"
-
-#include <qpixmap.h>
+#include "treenodeitem.h"
 
 class QPoint;
 
@@ -51,6 +49,6 @@ public:
     virtual void showContextMenu(const QPoint& p);
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_TAGFOLDERITEM_H

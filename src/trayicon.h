@@ -22,44 +22,46 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORTRAYICON_H
-#define AKREGATORTRAYICON_H
+#ifndef AKREGATOR_TRAYICON_H
+#define AKREGATOR_TRAYICON_H
 
 #include <ksystemtray.h>
 
-#include <qimage.h>
-#include <qpixmap.h>
-#include <QMouseEvent>
+#include <QImage>
+#include <QPixmap>
 
-namespace Akregator
+class QMouseEvent;
+
+namespace Akregator {
+
+class TrayIcon : public KSystemTray
 {
-    class TrayIcon : public KSystemTray
-    {
-        Q_OBJECT
-        public:
-            static TrayIcon* getInstance();
-            static void setInstance(TrayIcon* trayIcon);
-            
-            TrayIcon(QWidget *parent = 0, const char *name = 0);
-            ~TrayIcon();
-            
-            QPixmap takeScreenshot() const;
-            virtual void mousePressEvent(QMouseEvent *);
-        public slots:
-            void settingsChanged();
-            void slotSetUnread(int unread);
-            void viewButtonClicked();
+    Q_OBJECT
+    public:
+        static TrayIcon* getInstance();
+        static void setInstance(TrayIcon* trayIcon);
         
-        signals:
-            void showPart();
+        TrayIcon(QWidget *parent = 0, const char *name = 0);
+        ~TrayIcon();
+        
+        QPixmap takeScreenshot() const;
+        virtual void mousePressEvent(QMouseEvent *);
+    public slots:
+        void settingsChanged();
+        void slotSetUnread(int unread);
+        void viewButtonClicked();
+    
+    signals:
+        void showPart();
 
-        private:
-            static TrayIcon* m_instance;
-            
-            QPixmap m_defaultIcon;
-            QImage m_lightIconImage;
-            int m_unread;
-    };
-}
+    private:
+        static TrayIcon* m_instance;
+        
+        QPixmap m_defaultIcon;
+        QImage m_lightIconImage;
+        int m_unread;
+};
 
-#endif
+} // namespace Akregator
+
+#endif // AKREGATOR_TRAYICON_H

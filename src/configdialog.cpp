@@ -22,21 +22,20 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qstringlist.h>
-
-#include <kcombobox.h>
-#include <klocale.h>
-
-#include "configdialog.h"
-
 #include "akregatorconfig.h"
+#include "configdialog.h"
 #include "settings_advanced.h"
 #include "settings_appearance.h"
 #include "settings_archive.h"
 #include "settings_browser.h"
 #include "settings_general.h"
-#include <qslider.h>
+
+#include <kcombobox.h>
+#include <klocale.h>
+
 #include <qlabel.h>
+#include <qslider.h>
+#include <qstringlist.h>
 
 namespace Akregator
 {

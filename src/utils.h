@@ -45,6 +45,6 @@ class Utils
     static uint calcHash(const QString& str);
 };
 
-}
+} // namespace Akregator
 
 #endif // AKREGATOR_UTILS_H

@@ -21,73 +21,74 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATORPROPDIALOG_H
-#define AKREGATORPROPDIALOG_H
-
-#include <QWidget>
+#ifndef AKREGATOR_PROPERTIESDIALOG_H
+#define AKREGATOR_PROPERTIESDIALOG_H
 
 #include "propertieswidgetbase.h"
 
 #include <kdialogbase.h>
 
-namespace Akregator
+#include <QWidget>
+
+namespace Akregator {
+
+class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
-   class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
-   {
-      Q_OBJECT
-      public:
-         FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
-         ~FeedPropertiesWidget();
-         virtual void slotUpdateComboBoxActivated(int index);
-         virtual void slotUpdateCheckBoxToggled(bool enabled);
+    Q_OBJECT
+    public:
+        FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
+        ~FeedPropertiesWidget();
+        virtual void slotUpdateComboBoxActivated(int index);
+        virtual void slotUpdateCheckBoxToggled(bool enabled);
 
-   };
+};
 
-   class FeedPropertiesDialog : public KDialogBase
-   {
-      Q_OBJECT
-      public:
-         FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
-         ~FeedPropertiesDialog();
+class FeedPropertiesDialog : public KDialogBase
+{
+    Q_OBJECT
+    public:
+        FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
+        ~FeedPropertiesDialog();
 
-         void setFeed(Feed* feed);
+        void setFeed(Feed* feed);
 
-         /** selects the text in the feed title lineedit */
-         void selectFeedName();
+        /** selects the text in the feed title lineedit */
+        void selectFeedName();
 
-       protected:
-         const QString feedName() const;
-         const QString url() const;
-         bool autoFetch() const;
-         int fetchInterval() const;
-         Feed::ArchiveMode archiveMode() const;
-         int maxArticleAge() const;
-         int maxArticleNumber() const;
-         bool markImmediatelyAsRead() const;
-         bool useNotification() const;
-         bool loadLinkedWebsite() const;
+    protected:
+        const QString feedName() const;
+        const QString url() const;
+        bool autoFetch() const;
+        int fetchInterval() const;
+        Feed::ArchiveMode archiveMode() const;
+        int maxArticleAge() const;
+        int maxArticleNumber() const;
+        bool markImmediatelyAsRead() const;
+        bool useNotification() const;
+        bool loadLinkedWebsite() const;
 
-         void setFeedName(const QString& title);
-         void setUrl(const QString& url);
-         void setAutoFetch(bool);
-         void setFetchInterval(int);
-         void setArchiveMode(Feed::ArchiveMode mode);
-         void setMaxArticleAge(int age);
-         void setMaxArticleNumber(int number);
-         void setMarkImmediatelyAsRead(bool enabled);
-         void setUseNotification(bool enabled);
-         void setLoadLinkedWebsite(bool enabled);
+        void setFeedName(const QString& title);
+        void setUrl(const QString& url);
+        void setAutoFetch(bool);
+        void setFetchInterval(int);
+        void setArchiveMode(Feed::ArchiveMode mode);
+        void setMaxArticleAge(int age);
+        void setMaxArticleNumber(int number);
+        void setMarkImmediatelyAsRead(bool enabled);
+        void setUseNotification(bool enabled);
+        void setLoadLinkedWebsite(bool enabled);
 
-       protected slots:
-           void slotOk();
+    protected slots:
+        void slotOk();
 
-       private:
-           FeedPropertiesWidget *widget;
-           Feed* m_feed;
+    private:
+        FeedPropertiesWidget *widget;
+        Feed* m_feed;
 
-       private slots:
-           void slotSetCaption(const QString&);
-   };
-}
+    private slots:
+        void slotSetCaption(const QString&);
+};
 
-#endif
+} // namespace Akregator
+
+#endif // AKREGATOR_PROPERTIESDIALOG_H

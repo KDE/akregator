@@ -23,8 +23,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef PAGEVIEWER_H
-#define PAGEVIEWER_H
+#ifndef AKREGATOR_PAGEVIEWER_H
+#define AKREGATOR_PAGEVIEWER_H
 
 #include "viewer.h"
 
@@ -34,58 +34,58 @@ class KAction;
 class KToolBarPopupAction;
 class QString;
 
-namespace Akregator
+namespace Akregator {
+
+// the back/forward navigation was taken from KDevelop. Kudos to the KDevelop team!
+class PageViewer : public Viewer
 {
-    
-    // the back/forward navigation was taken from KDevelop. Kudos to the KDevelop team!
-    class PageViewer : public Viewer
-    {
-        Q_OBJECT
-        public:
-            PageViewer(QWidget* parent, const char* name);
-            virtual ~PageViewer();
-            virtual bool openURL(const KURL &url);
+    Q_OBJECT
+    public:
+        PageViewer(QWidget* parent, const char* name);
+        virtual ~PageViewer();
+        virtual bool openURL(const KURL &url);
 
-            /** used by the BrowserRun object */
-            virtual void openPage(const KURL& url);
+        /** used by the BrowserRun object */
+        virtual void openPage(const KURL& url);
 
-        protected:
+    protected:
 
-            class HistoryEntry;
-            void addHistoryEntry(const KURL& url);
-            void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
-            void updateHistoryEntry();
+        class HistoryEntry;
+        void addHistoryEntry(const KURL& url);
+        void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
+        void updateHistoryEntry();
 
-        protected slots:
+    protected slots:
 
-            void slotSetCaption(const QString& cap);
-            void slotBack();
-            void slotForward();
-            void slotReload();
-            void slotStop();
+        void slotSetCaption(const QString& cap);
+        void slotBack();
+        void slotForward();
+        void slotReload();
+        void slotStop();
 
-            virtual void slotPaletteOrFontChanged();
+        virtual void slotPaletteOrFontChanged();
 
-            void slotStarted(KIO::Job *);
-            void slotCompleted();
-            void slotCancelled(const QString &errMsg);
-            void slotBackAboutToShow();
-            void slotForwardAboutToShow();
-            void slotPopupActivated( int id );
-            virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
-            
-            void slotGlobalBookmarkArticle();
-            
-            virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
-            virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
-            
-        signals:
-            void setTabIcon(const QPixmap&);
+        void slotStarted(KIO::Job *);
+        void slotCompleted();
+        void slotCancelled(const QString &errMsg);
+        void slotBackAboutToShow();
+        void slotForwardAboutToShow();
+        void slotPopupActivated( int id );
+        virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+        
+        void slotGlobalBookmarkArticle();
+        
+        virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+        virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
+        
+    signals:
+        void setTabIcon(const QPixmap&);
 
-        private:
-            class PageViewerPrivate;
-            PageViewerPrivate* d;
-    };
-}
+    private:
+        class PageViewerPrivate;
+        PageViewerPrivate* d;
+};
 
-#endif // PAGEVIEWER_H
+} // namespace Akregator
+
+#endif // AKREGATOR_PAGEVIEWER_H

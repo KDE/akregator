@@ -73,6 +73,6 @@ class SearchBar : public KHBox
         SearchBarPrivate* d;
 };
 
-}
+} // namespace Akregator
 
 #endif //AKREGATOR_SEARCHBAR_H

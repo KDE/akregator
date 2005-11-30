@@ -24,11 +24,9 @@
 #ifndef AKREGATOR_FOLDERITEM_H
 #define AKREGATOR_FOLDERITEM_H
 
-#include "treenodeitem.h"
-#include "treenode.h"
 #include "folder.h"
-
-#include <qpixmap.h>
+#include "treenode.h"
+#include "treenodeitem.h"
 
 class QPoint;
 
@@ -56,6 +54,6 @@ private:
     void initialize(Folder* node);
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_FOLDERITEM_H

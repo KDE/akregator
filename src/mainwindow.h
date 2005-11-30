@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef _AKREGATOR_H_
-#define _AKREGATOR_H_
+#ifndef AKREGATOR_MAINWINDOW_H
+#define AKREGATOR_MAINWINDOW_H
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -148,4 +148,4 @@ private:
 
 } // namespace Akregator
 
-#endif // _AKREGATOR_H_
+#endif // AKREGATOR_MAINWINDOW_H

@@ -192,5 +192,7 @@ void TrayIcon::settingsChanged()
     else
         hide();
 }
-}
+
+} // namespace Akregator
+
 #include "trayicon.moc"

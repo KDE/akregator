@@ -22,17 +22,17 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_RUN_H 
-#define AKREGATOR_RUN_H
+#ifndef AKREGATOR_BROWSERRUN_H 
+#define AKREGATOR_BROWSERRUN_H
 
 #include <kparts/browserrun.h>
 
 namespace Akregator
 {
 
-    class Viewer;
+class Viewer;
     
-    class BrowserRun : public KParts::BrowserRun
+class BrowserRun : public KParts::BrowserRun
 {
 	Q_OBJECT
     public:
@@ -49,8 +49,8 @@ namespace Akregator
         Viewer *m_viewer;
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_BROWSERRUN_H
 
 // vim: set et ts=4 sts=4 sw=4:

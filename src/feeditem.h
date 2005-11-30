@@ -22,12 +22,12 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATORFEEDITEM_H
-#define AKREGATORFEEDITEM_H
+#ifndef AKREGATOR_FEEDITEM_H
+#define AKREGATOR_FEEDITEM_H
 
 #include "treenodeitem.h"
-//Added by qt3to4:
-#include <QPixmap>
+
+class QPixmap;
 
 namespace Akregator 
 {
@@ -60,6 +60,6 @@ private:
     
 };
 
-}
+} // namespace Akregator
 
-#endif
+#endif // AKREGATOR_FEEDITEM_H

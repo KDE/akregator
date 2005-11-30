@@ -22,6 +22,32 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
+
+#include "aboutdata.h"
+#include "actionmanagerimpl.h"
+#include "akregator_part.h"
+#include "akregator_view.h"
+#include "akregatorconfig.h"
+#include "article.h"
+#include "articlefilter.h"
+#include "articleinterceptor.h"
+#include "configdialog.h"
+#include "fetchqueue.h"
+#include "frame.h"
+#include "kernel.h"
+#include "notificationmanager.h"
+#include "pageviewer.h"
+#include "plugin.h"
+#include "pluginmanager.h"
+#include "speechclient.h"
+#include "storage.h"
+#include "storagefactory.h"
+#include "storagefactorydummyimpl.h"
+#include "storagefactoryregistry.h"
+#include "tag.h"
+#include "tagset.h"
+#include "trayicon.h"
+
 #include <dcopclient.h>
 #include <kaboutdata.h>
 #include <kaction.h>
@@ -35,10 +61,10 @@
 #include <khtmldefaults.h>
 #include <kinstance.h>
 #include <kmainwindow.h>
+#include <kmenu.h>
 #include <kmessagebox.h>
 #include <knotifyclient.h>
 #include <knotifydialog.h>
-#include <kmenu.h>
 #include <kservice.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
@@ -51,38 +77,13 @@
 #include <kparts/genericfactory.h>
 #include <kparts/partmanager.h>
 
-#include <qfile.h>
-#include <qobject.h>
-#include <qstringlist.h>
-#include <qtimer.h>
-#include <qwidget.h>
+#include <QFile>
+#include <QObject>
+#include <QStringList>
 #include <QTextStream>
-#include <ktoolinvocation.h>
+#include <QTimer>
+#include <QWidget>
 
-#include "aboutdata.h"
-#include "actionmanagerimpl.h"
-#include "akregator_part.h"
-#include "akregator_view.h"
-#include "akregatorconfig.h"
-#include "articlefilter.h"
-#include "articleinterceptor.h"
-#include "configdialog.h"
-#include "fetchqueue.h"
-#include "frame.h"
-#include "article.h"
-#include "kernel.h"
-#include "notificationmanager.h"
-#include "pageviewer.h"
-#include "plugin.h"
-#include "pluginmanager.h"
-#include "storage.h"
-#include "storagefactory.h"
-#include "storagefactorydummyimpl.h"
-#include "storagefactoryregistry.h"
-#include "speechclient.h"
-#include "trayicon.h"
-#include "tagset.h"
-#include "tag.h"
 
 namespace Akregator {
 
@@ -851,6 +852,6 @@ bool Part::copyFile(const QString& backup)
     return false;
 }
 
-
 } // namespace Akregator
+
 #include "akregator_part.moc"

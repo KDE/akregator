@@ -9,41 +9,40 @@
          Akregator::Plugin* create_plugin() { return new classname; } \
     }
 
-#include <qmap.h>
-#include <qstring.h>
+#include <QMap>
+#include <QString>
 
 
-namespace Akregator
-{
+namespace Akregator {
+
 //    class PluginConfig;
 
-    class Plugin
-    {
-        public:
-            virtual ~Plugin();
+class Plugin
+{
+    public:
+        virtual ~Plugin();
 
-            virtual bool init() = 0;
-            /**
-             * TODO @param parent you must parent the widget to parent
-             * @return the configure widget for your plugin, create it on the heap!
-             */
-             //TODO rename configureWidget( QWidget *parent )
-            // virtual PluginConfig* configure() const { return 0; }
+        virtual bool init() = 0;
+        /**
+            * TODO @param parent you must parent the widget to parent
+            * @return the configure widget for your plugin, create it on the heap!
+            */
+            //TODO rename configureWidget( QWidget *parent )
+        // virtual PluginConfig* configure() const { return 0; }
 
-            void addPluginProperty( const QString& key, const QString& value );
-            QString pluginProperty( const QString& key );
-            bool hasPluginProperty( const QString& key );
+        void addPluginProperty( const QString& key, const QString& value );
+        QString pluginProperty( const QString& key );
+        bool hasPluginProperty( const QString& key );
 
-        protected:
-            Plugin();
+    protected:
+        Plugin();
 
-        private:
-            QMap<QString, QString> m_properties;
-    };
+    private:
+        QMap<QString, QString> m_properties;
+};
 
 } //namespace Akregator
 
-
-#endif /* AKREGATOR_PLUGIN_H */
+#endif // AKREGATOR_PLUGIN_H
 
 

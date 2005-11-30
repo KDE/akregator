@@ -30,8 +30,8 @@
 #include <kurl.h>
 #include <k3urldrag.h>
 
-#include <QString>
 #include <QList>
+#include <QString>
 
 namespace Akregator {
 
