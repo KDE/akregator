@@ -75,7 +75,7 @@ class TagNodeList;
 /**
     * This is the main widget of the view, containing tree view, article list, viewer etc.
     */
-class View : public QWidget
+class MainWidget : public QWidget
 {
     Q_OBJECT
     public:
@@ -85,11 +85,11 @@ class View : public QWidget
         @param parent parent widget
         @param name the name of the widget (@ref QWidget )
         */
-        View(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char* name);
+        MainWidget(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char* name);
 
         /** destructor.  Note that cleanups should be done in
         slotOnShutdown(), so we don't risk accessing self-deleting objects after deletion. */
-        ~View();
+        ~MainWidget();
 
         /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
         void saveSettings();

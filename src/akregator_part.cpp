@@ -121,7 +121,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
        , m_shuttingDown(false)
        , m_mergedPart(0)
        , m_backedUpList(false)
-       , m_view(0)
+       , m_mainWidget(0)
        , m_storage(0)
        
 {
@@ -168,8 +168,8 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);
 
-    m_view = new Akregator::View(this, parentWidget, m_actionManager, "akregator_view");
-    m_actionManager->initView(m_view);
+    m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
+    m_actionManager->initMainWidget(m_mainWidget);
     m_actionManager->setTagSet(Kernel::self()->tagSet());
 
     m_extension = new BrowserExtension(this, "ak_extension");
@@ -182,7 +182,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect(Kernel::self()->frameManager(), SIGNAL(signalCompleted()), this, SIGNAL(completed()));
 
     // notify the part that this is our internal widget
-    setWidget(m_view);
+    setWidget(m_mainWidget);
 
     TrayIcon* trayIcon = new TrayIcon( getMainWindow() );
     TrayIcon::setInstance(trayIcon);
@@ -201,7 +201,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     connect( trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
 
-    connect( m_view, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
+    connect( m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
 
     connect(kapp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 
@@ -241,8 +241,8 @@ void Part::slotOnShutdown()
     saveSettings();
     slotSaveFeedList();
     saveTagSet(m_tagSetPath);
-    m_view->slotOnShutdown();
-    //delete m_view;
+    m_mainWidget->slotOnShutdown();
+    //delete m_mainWidget;
     delete m_storage;
     m_storage = 0;
     //delete m_actionManager;
@@ -272,7 +272,7 @@ void Part::slotSettingsChanged()
 void Part::saveSettings()
 {
     Kernel::self()->articleFilterList().writeConfig(Settings::self()->config());
-    m_view->saveSettings();
+    m_mainWidget->saveSettings();
 }
 
 Part::~Part()
@@ -290,16 +290,16 @@ void Part::readProperties(KConfig* config)
     m_backedUpList = false;
     openStandardFeedList();
 
-    if(m_view)
-        m_view->readProperties(config);
+    if(m_mainWidget)
+        m_mainWidget->readProperties(config);
 }
 
 void Part::saveProperties(KConfig* config)
 {
-    if (m_view)
+    if (m_mainWidget)
     {
         slotSaveFeedList();
-        m_view->saveProperties(config);
+        m_mainWidget->saveProperties(config);
     }
 }
 
@@ -407,31 +407,31 @@ bool Part::openFile()
 
             copyFile(backup);
 
-            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
+            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
 
             if (!doc.setContent(listBackup))
                 doc = createDefaultFeedList();
         }
     }
 
-    if (!m_view->loadFeeds(doc))
+    if (!m_mainWidget->loadFeeds(doc))
     {
         QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
         copyFile(backup);
 
-        KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
+        KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
 
-        m_view->loadFeeds(createDefaultFeedList());
+        m_mainWidget->loadFeeds(createDefaultFeedList());
     }
 
     emit setStatusBarText(QString::null);
     
 
     if( Settings::markAllFeedsReadOnStartup() )
-        m_view->slotMarkAllFeedsRead();
+        m_mainWidget->slotMarkAllFeedsRead();
 
     if (Settings::fetchOnStartup())
-            m_view->slotFetchAllFeeds();
+            m_mainWidget->slotFetchAllFeeds();
 
     return true;
 }
@@ -451,14 +451,14 @@ void Part::slotSaveFeedList()
             m_backedUpList = true;
     }
 
-    QString xmlStr = m_view->feedListToOPML().toString();
+    QString xmlStr = m_mainWidget->feedListToOPML().toString();
     m_storage->storeFeedList(xmlStr);
 
     QFile file(m_file);
     if (file.open(QIODevice::WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
-        KMessageBox::error(m_view, i18n("Access denied: cannot save feed list (%1)").arg(m_file), i18n("Write error") );
+        KMessageBox::error(m_mainWidget, i18n("Access denied: cannot save feed list (%1)").arg(m_file), i18n("Write error") );
         return;
     }
 
@@ -580,9 +580,9 @@ void Part::importFile(const KURL& url)
     {
         isRemote = true;
 
-        if (!KIO::NetAccess::download(url, filename, m_view) )
+        if (!KIO::NetAccess::download(url, filename, m_mainWidget) )
         {
-            KMessageBox::error(m_view, KIO::NetAccess::lastErrorString() );
+            KMessageBox::error(m_mainWidget, KIO::NetAccess::lastErrorString() );
             return;
         }
     }
@@ -593,12 +593,12 @@ void Part::importFile(const KURL& url)
         // Read OPML feeds list and build QDom tree.
         QDomDocument doc;
         if (doc.setContent(file.readAll()))
-            m_view->importFeeds(doc);
+            m_mainWidget->importFeeds(doc);
         else
-            KMessageBox::error(m_view, i18n("Could not import the file %1 (no valid OPML)").arg(filename), i18n("OPML Parsing Error") );
+            KMessageBox::error(m_mainWidget, i18n("Could not import the file %1 (no valid OPML)").arg(filename), i18n("OPML Parsing Error") );
     }
     else
-        KMessageBox::error(m_view, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.").arg(filename), i18n("Read Error"));
+        KMessageBox::error(m_mainWidget, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.").arg(filename), i18n("Read Error"));
 
     if (isRemote)
         KIO::NetAccess::removeTempFile(filename);
@@ -611,7 +611,7 @@ void Part::exportFile(const KURL& url)
         QFile file(url.path());
 
         if ( file.exists() &&
-                KMessageBox::questionYesNo(m_view,
+                KMessageBox::questionYesNo(m_mainWidget,
             i18n("The file %1 already exists; do you want to overwrite it?").arg(file.name()),
             i18n("Export"),
             i18n("Overwrite"),
@@ -620,14 +620,14 @@ void Part::exportFile(const KURL& url)
 
         if ( !file.open(QIODevice::WriteOnly) )
         {
-            KMessageBox::error(m_view, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write Error") );
+            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write Error") );
             return;
         }
 
         QTextStream stream(&file);
         stream.setEncoding(QTextStream::UnicodeUTF8);
 
-        stream << m_view->feedListToOPML().toString() << "\n";
+        stream << m_mainWidget->feedListToOPML().toString() << "\n";
         file.close();
     }
     else
@@ -638,11 +638,11 @@ void Part::exportFile(const KURL& url)
         QTextStream stream(tmpfile.file());
         stream.setEncoding(QTextStream::UnicodeUTF8);
 
-        stream << m_view->feedListToOPML().toString() << "\n";
+        stream << m_mainWidget->feedListToOPML().toString() << "\n";
         tmpfile.close();
 
-        if (!KIO::NetAccess::upload(tmpfile.name(), url, m_view))
-            KMessageBox::error(m_view, KIO::NetAccess::lastErrorString() );
+        if (!KIO::NetAccess::upload(tmpfile.name(), url, m_mainWidget))
+            KMessageBox::error(m_mainWidget, KIO::NetAccess::lastErrorString() );
     }
 }
 
@@ -675,7 +675,7 @@ void Part::fileGetFeeds()
 
 void Part::fetchAllFeeds()
 {
-    m_view->slotFetchAllFeeds();
+    m_mainWidget->slotFetchAllFeeds();
 }
 
 void Part::fetchFeedUrl(const QString&s)
@@ -688,14 +688,14 @@ void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
     for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
     {
         kdDebug() << "Akregator::Part::addFeedToGroup adding feed with URL " << *it << " to group " << group << endl;
-        m_view->addFeedToGroup(*it, group);
+        m_mainWidget->addFeedToGroup(*it, group);
     }
     NotificationManager::self()->slotNotifyFeeds(urls);
 }
 
 void Part::addFeed()
 {
-    m_view->slotFeedAdd();
+    m_mainWidget->slotFeedAdd();
 }
 
 KAboutData *Part::createAboutData()
@@ -706,7 +706,7 @@ KAboutData *Part::createAboutData()
 void Part::showKNotifyOptions()
 {
     KAboutData* about = new Akregator::AboutData;
-    KNotifyDialog::configure(m_view, "akregator_knotify_config", about);
+    KNotifyDialog::configure(m_mainWidget, "akregator_knotify_config", about);
     delete about;
 }
 
@@ -715,7 +715,7 @@ void Part::showOptions()
     if ( KConfigDialog::showDialog( "settings" ) )
         return;
 
-    KConfigDialog* dialog = new ConfigDialog( m_view, "settings", Settings::self() );
+    KConfigDialog* dialog = new ConfigDialog( m_mainWidget, "settings", Settings::self() );
 
     connect( dialog, SIGNAL(settingsChanged( const QString &)),
              this, SLOT(slotSettingsChanged()) );
@@ -755,9 +755,9 @@ KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
         }
         widget = widget->parentWidget();
     }
-    if (m_view && m_view->currentFrame() && child) 
+    if (m_mainWidget && m_mainWidget->currentFrame() && child) 
     {
-        return m_view->currentFrame()->part();
+        return m_mainWidget->currentFrame()->part();
     } 
     else 
     {*/

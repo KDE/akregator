@@ -51,10 +51,10 @@ namespace Backend
 typedef KParts::ReadOnlyPart MyBasePart;
 
 class ActionManagerImpl;
-class View;
-class Part;
-class Feed;
 class Article;
+class Feed;
+class MainWidget;
+class Part;
 class TrayIcon;
 
 class BrowserExtension : public KParts::BrowserExtension
@@ -118,13 +118,13 @@ class Part : public MyBasePart, virtual public AkregatorPartIface
             This method is called when this app is restored.  The KConfig
             object points to the session management config file that was saved
             with @ref saveProperties
-            Calls AkregatorView's saveProperties.
+            Calls Akregator MainWidget's saveProperties.
             */
         virtual void readProperties(KConfig* config);
         
         /** This method is called when it is time for the app to save its
             properties for session management purposes.
-            Calls AkregatorView's readProperties. */
+            Calls Akregator MainWidget's readProperties. */
         virtual void saveProperties(KConfig* config);
 
         /** merges a nested part's GUI into the gui of this part
@@ -207,7 +207,7 @@ class Part : public MyBasePart, virtual public AkregatorPartIface
         QTimer* m_autosaveTimer;
         /** did we backup the feed list already? */
         bool m_backedUpList;
-        View* m_view;
+        MainWidget* m_mainWidget;
         Backend::Storage* m_storage;
         ActionManagerImpl* m_actionManager;
 };

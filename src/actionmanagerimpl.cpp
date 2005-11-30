@@ -124,7 +124,7 @@ public:
     NodeSelectVisitor* nodeSelectVisitor;
     ArticleListView* articleList;
     ListTabWidget* listTabWidget;
-    View* view;
+    MainWidget* mainWidget;
     ArticleViewer* articleViewer;
     Part* part;
     TrayIcon* trayIcon;
@@ -187,7 +187,7 @@ void ActionManagerImpl::slotTagAdded(const Tag& tag)
 {
     if (!d->tagActions.contains(tag.id()))
     {
-        d->tagActions[tag.id()] = new TagAction(tag, d->view, SLOT(slotAssignTag(const Tag&, bool)), d->actionCollection);
+        d->tagActions[tag.id()] = new TagAction(tag, d->mainWidget, SLOT(slotAssignTag(const Tag&, bool)), d->actionCollection);
         d->tagMenu->insert(d->tagActions[tag.id()]);
     }
 }
@@ -216,7 +216,7 @@ ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* na
     d->articleList = 0;
     d->trayIcon = 0;
     d->articleViewer = 0;
-    d->view = 0;
+    d->mainWidget = 0;
     d->tabWidget = 0;
     d->speakSelectedArticlesAction = 0;
     d->actionCollection = part->actionCollection();
@@ -254,59 +254,59 @@ void ActionManagerImpl::initPart()
     new KAction( i18n("Configure &Akregator..."), "configure", "", d->part, SLOT(showOptions()), d->actionCollection, "akregator_configure_akregator" );
 }
 
-void ActionManagerImpl::initView(View* view)
+void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 {
-    if (d->view)
+    if (d->mainWidget)
         return;
     else
-        d->view = view;
+        d->mainWidget = mainWidget;
 
     // tag actions
-    new KAction(i18n("&New Tag..."), "", "", d->view, SLOT(slotNewTag()), actionCollection(), "tag_new");
+    new KAction(i18n("&New Tag..."), "", "", d->mainWidget, SLOT(slotNewTag()), actionCollection(), "tag_new");
 
     // Feed/Feed Group popup menu
-    new KAction(i18n("&Open Homepage"), "", "Ctrl+H", d->view, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
-    new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", d->view, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
-    new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", d->view, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
-    new KAction(i18n("&Delete Feed"), "editdelete", "Alt+Delete", d->view, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
-    new KAction(i18n("&Edit Feed..."), "edit", "F2", d->view, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
-        KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "view_mode" );
+    new KAction(i18n("&Open Homepage"), "", "Ctrl+H", d->mainWidget, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
+    new KAction(i18n("&Add Feed..."), "bookmark_add", "Insert", d->mainWidget, SLOT(slotFeedAdd()), actionCollection(), "feed_add");
+    new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", d->mainWidget, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
+    new KAction(i18n("&Delete Feed"), "editdelete", "Alt+Delete", d->mainWidget, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
+    new KAction(i18n("&Edit Feed..."), "edit", "F2", d->mainWidget, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
+        KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "mainWidget_mode" );
 
-    KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "view_top_bottom", "Ctrl+Shift+1", d->view, SLOT(slotNormalView()), actionCollection(), "normal_view");
+    KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "mainWidget_top_bottom", "Ctrl+Shift+1", d->mainWidget, SLOT(slotNormalView()), actionCollection(), "normal_mainWidget");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
 
-    ra = new KRadioAction(i18n("&Widescreen View"), "view_left_right", "Ctrl+Shift+2", d->view, SLOT(slotWidescreenView()), actionCollection(), "widescreen_view");
+    ra = new KRadioAction(i18n("&Widescreen View"), "mainWidget_left_right", "Ctrl+Shift+2", d->mainWidget, SLOT(slotWidescreenView()), actionCollection(), "widescreen_mainWidget");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
 
-    ra = new KRadioAction(i18n("C&ombined View"), "view_text", "Ctrl+Shift+3", d->view, SLOT(slotCombinedView()), actionCollection(), "combined_view");
+    ra = new KRadioAction(i18n("C&ombined View"), "mainWidget_text", "Ctrl+Shift+3", d->mainWidget, SLOT(slotCombinedView()), actionCollection(), "combined_mainWidget");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
 
     // toolbar / feed menu
-    new KAction(i18n("&Fetch Feed"), "down", KStdAccel::shortcut(KStdAccel::Reload), d->view, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
-    new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+L", d->view, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
+    new KAction(i18n("&Fetch Feed"), "down", KStdAccel::shortcut(KStdAccel::Reload), d->mainWidget, SLOT(slotFetchCurrentFeed()), actionCollection(), "feed_fetch");
+    new KAction(i18n("Fe&tch All Feeds"), "bottom", "Ctrl+L", d->mainWidget, SLOT(slotFetchAllFeeds()), actionCollection(), "feed_fetch_all");
 
     KAction* stopAction = new KAction(i18n( "&Abort Fetches" ), "stop", Qt::Key_Escape, Kernel::self()->fetchQueue(), SLOT(slotAbort()), actionCollection(), "feed_stop");
     stopAction->setEnabled(false);
 
-    new KAction(i18n("&Mark Feed as Read"), "goto", "Ctrl+R", d->view, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
-    new KAction(i18n("Ma&rk All Feeds as Read"), "goto", "Ctrl+Shift+R", d->view, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
+    new KAction(i18n("&Mark Feed as Read"), "goto", "Ctrl+R", d->mainWidget, SLOT(slotMarkAllRead()), actionCollection(), "feed_mark_all_as_read");
+    new KAction(i18n("Ma&rk All Feeds as Read"), "goto", "Ctrl+Shift+R", d->mainWidget, SLOT(slotMarkAllFeedsRead()), actionCollection(), "feed_mark_all_feeds_as_read");
 
     // Settings menu
-    KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, d->view, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
+    KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, d->mainWidget, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
     sqf->setChecked( Settings::showQuickFilter() );
 
-    new KAction( i18n("Open in Tab"), "tab_new", "Shift+Return", d->view, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
-    new KAction( i18n("Open in Background Tab"), QString::null, "tab_new", d->view, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
-    new KAction( i18n("Open in External Browser"), "window_new", "Ctrl+Shift+Return", d->view, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
-    new KAction( i18n("Copy Link Address"), "", "", d->view, SLOT(slotCopyLinkAddress()), actionCollection(), "article_copy_link_address" );
+    new KAction( i18n("Open in Tab"), "tab_new", "Shift+Return", d->mainWidget, SLOT(slotOpenCurrentArticle()), actionCollection(), "article_open" );
+    new KAction( i18n("Open in Background Tab"), QString::null, "tab_new", d->mainWidget, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
+    new KAction( i18n("Open in External Browser"), "window_new", "Ctrl+Shift+Return", d->mainWidget, SLOT(slotOpenCurrentArticleExternal()), actionCollection(), "article_open_external" );
+    new KAction( i18n("Copy Link Address"), "", "", d->mainWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "article_copy_link_address" );
 
-    new KAction(i18n("Pre&vious Unread Article"), "", Qt::Key_Minus, d->view, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
-    new KAction(i18n("Ne&xt Unread Article"), "", Qt::Key_Plus, d->view, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
+    new KAction(i18n("Pre&vious Unread Article"), "", Qt::Key_Minus, d->mainWidget, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
+    new KAction(i18n("Ne&xt Unread Article"), "", Qt::Key_Plus, d->mainWidget, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
 
-    new KAction(i18n("&Delete"), "editdelete", "Delete", d->view, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
+    new KAction(i18n("&Delete"), "editdelete", "Delete", d->mainWidget, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
 
     d->tagMenu = new KActionMenu ( i18n( "&Set Tags" ), "rss_tag",  actionCollection(), "article_tagmenu" );
     d->tagMenu->setEnabled(false); // only enabled when articles are selected
@@ -314,7 +314,7 @@ void ActionManagerImpl::initView(View* view)
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );
 
-    d->speakSelectedArticlesAction = new KAction(i18n("&Speak Selected Articles"), "kttsd", "", d->view, SLOT(slotTextToSpeechRequest()), actionCollection(), "akr_texttospeech");
+    d->speakSelectedArticlesAction = new KAction(i18n("&Speak Selected Articles"), "kttsd", "", d->mainWidget, SLOT(slotTextToSpeechRequest()), actionCollection(), "akr_texttospeech");
     
     KAction* abortTTS = new KAction(i18n( "&Stop Speaking" ), "player_stop", Qt::Key_Escape, SpeechClient::self(), SLOT(slotAbortJobs()), actionCollection(), "akr_aborttexttospeech");
     abortTTS->setEnabled(false);
@@ -324,32 +324,32 @@ void ActionManagerImpl::initView(View* view)
 
     statusMenu->insert(new KAction(KGuiItem(i18n("&Read"), "",
                        i18n("Mark selected article as read")),
-    "Ctrl+E", d->view, SLOT(slotSetSelectedArticleRead()),
+    "Ctrl+E", d->mainWidget, SLOT(slotSetSelectedArticleRead()),
     actionCollection(), "article_set_status_read"));
 
     statusMenu->insert(new KAction(KGuiItem(i18n("&New"), "",
                         i18n("Mark selected article as new")),
-    "Ctrl+N", d->view, SLOT(slotSetSelectedArticleNew()),
+    "Ctrl+N", d->mainWidget, SLOT(slotSetSelectedArticleNew()),
     actionCollection(), "article_set_status_new" ));
 
 
     statusMenu->insert(new KAction(KGuiItem(i18n("&Unread"), "",
                        i18n("Mark selected article as unread")),
-    "Ctrl+U", d->view, SLOT(slotSetSelectedArticleUnread()),
+    "Ctrl+U", d->mainWidget, SLOT(slotSetSelectedArticleUnread()),
     actionCollection(), "article_set_status_unread"));
 
     KToggleAction* importantAction = new KToggleAction(i18n("&Mark as Important"), "flag", "Ctrl+I", actionCollection(), "article_set_status_important");
     importantAction->setCheckedState(i18n("Remove &Important Mark"));
-    connect(importantAction, SIGNAL(toggled(bool)), d->view, SLOT(slotArticleToggleKeepFlag(bool)));
+    connect(importantAction, SIGNAL(toggled(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
 
-    new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", view, SLOT(slotMoveCurrentNodeUp()), d->actionCollection, "feedstree_move_up" );
-    new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", view, SLOT(slotMoveCurrentNodeDown()), d->actionCollection, "feedstree_move_down" );
-    new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", view, SLOT(slotMoveCurrentNodeLeft()), d->actionCollection, "feedstree_move_left" );
-    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", view, SLOT(slotMoveCurrentNodeRight()), d->actionCollection, "feedstree_move_right");
+    new KAction( i18n("Move Node Up"), QString::null, "Shift+Alt+Up", mainWidget, SLOT(slotMoveCurrentNodeUp()), d->actionCollection, "feedstree_move_up" );
+    new KAction( i18n("Move Node Down"), QString::null,  "Shift+Alt+Down", mainWidget, SLOT(slotMoveCurrentNodeDown()), d->actionCollection, "feedstree_move_down" );
+    new KAction( i18n("Move Node Left"), QString::null, "Shift+Alt+Left", mainWidget, SLOT(slotMoveCurrentNodeLeft()), d->actionCollection, "feedstree_move_left" );
+    new KAction( i18n("Move Node Right"), QString::null, "Shift+Alt+Right", mainWidget, SLOT(slotMoveCurrentNodeRight()), d->actionCollection, "feedstree_move_right");
 
-    new KAction(i18n("Send &Link Address..."), "mail_generic", "", view, SLOT(slotSendLink()), d->actionCollection, "file_sendlink");
-    new KAction(i18n("Send &File..."), "mail_generic", "", view, SLOT(slotSendFile()), d->actionCollection, "file_sendfile");
+    new KAction(i18n("Send &Link Address..."), "mail_generic", "", mainWidget, SLOT(slotSendLink()), d->actionCollection, "file_sendlink");
+    new KAction(i18n("Send &File..."), "mail_generic", "", mainWidget, SLOT(slotSendFile()), d->actionCollection, "file_sendfile");
 }
 
 void ActionManagerImpl::initArticleViewer(ArticleViewer* articleViewer)

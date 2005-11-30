@@ -110,14 +110,14 @@
 
 namespace Akregator {
 
-class View::EditNodePropertiesVisitor : public TreeNodeVisitor
+class MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
 {
     public:
-        EditNodePropertiesVisitor(View* view) : m_view(view) {}
+        EditNodePropertiesVisitor(MainWidget* mainWidget) : m_mainWidget(mainWidget) {}
 
         virtual bool visitTagNode(TagNode* node)
         {
-            TagPropertiesDialog* dlg = new TagPropertiesDialog(m_view);
+            TagPropertiesDialog* dlg = new TagPropertiesDialog(m_mainWidget);
             dlg->setTag(node->tag());
             dlg->exec();
             delete dlg;
@@ -126,13 +126,13 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
 
         virtual bool visitFolder(Folder* node)
         {
-            m_view->m_listTabWidget->activeView()->startNodeRenaming(node);
+            m_mainWidget->m_listTabWidget->activeView()->startNodeRenaming(node);
             return true;
         }
 
         virtual bool visitFeed(Feed* node)
         {
-            FeedPropertiesDialog *dlg = new FeedPropertiesDialog( m_view, "edit_feed" );
+            FeedPropertiesDialog *dlg = new FeedPropertiesDialog( m_mainWidget, "edit_feed" );
             dlg->setFeed(node);
             dlg->exec();
             delete dlg;
@@ -140,13 +140,13 @@ class View::EditNodePropertiesVisitor : public TreeNodeVisitor
         }
     private:
 
-        View* m_view;
+        MainWidget* m_mainWidget;
 };
 
-class View::DeleteNodeVisitor : public TreeNodeVisitor
+class MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
 {
     public:
-        DeleteNodeVisitor(View* view) : m_view(view) {}
+        DeleteNodeVisitor(MainWidget* view) : m_mainWidget(view) {}
 
         virtual bool visitTagNode(TagNode* node)
         {
@@ -154,13 +154,13 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 Tag tag = node->tag();
-                QList<Article> articles = m_view->m_feedList->rootNode()->articles(tag.id());
+                QList<Article> articles = m_mainWidget->m_feedList->rootNode()->articles(tag.id());
                 node->setNotificationMode(false);
                 for (QList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
                     (*it).removeTag(tag.id());
                 node->setNotificationMode(true);
                 Kernel::self()->tagSet()->remove(tag);
-                m_view->m_listTabWidget->activeView()->setFocus();
+                m_mainWidget->m_listTabWidget->activeView()->setFocus();
             }
             return true;
         }
@@ -176,7 +176,7 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
-                m_view->m_listTabWidget->activeView()->setFocus();
+                m_mainWidget->m_listTabWidget->activeView()->setFocus();
             }
             return true;
         }
@@ -192,30 +192,30 @@ class View::DeleteNodeVisitor : public TreeNodeVisitor
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
-                m_view->m_listTabWidget->activeView()->setFocus();
+                m_mainWidget->m_listTabWidget->activeView()->setFocus();
             }
             return true;
         }
     private:
 
-        View* m_view;
+        MainWidget* m_mainWidget;
 };
 
 
-View::~View()
+MainWidget::~MainWidget()
 {
     // if m_shuttingDown is false, slotOnShutdown was not called. That
      // means that not the whole app is shutdown, only the part. So it
     // should be no risk to do the cleanups now
     if (!m_shuttingDown)
     {
-        kdDebug() << "View::~View(): slotOnShutdown() wasn't called. Calling it now." << endl;
+        kdDebug() << "MainWidget::~MainWidget(): slotOnShutdown() wasn't called. Calling it now." << endl;
         slotOnShutdown();
     }
-    kdDebug() << "View::~View(): leaving" << endl;
+    kdDebug() << "MainWidget::~MainWidget(): leaving" << endl;
 }
 
-View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
+MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
  : QWidget(parent, name), m_viewMode(NormalView), m_actionManager(actionManager)
 {
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
@@ -367,7 +367,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     QTimer::singleShot(0, this, SLOT(delayedInit()));
 }
 
-void View::delayedInit()
+void MainWidget::delayedInit()
 {
     // HACK, FIXME:
     // for some reason, m_part->factory() is NULL at startup of kontact,
@@ -378,7 +378,7 @@ void View::delayedInit()
         QTimer::singleShot(500, this, SLOT(delayedInit()));
 }
 
-void View::slotOnShutdown()
+void MainWidget::slotOnShutdown()
 {
     m_shuttingDown = true; // prevents slotFrameChanged from crashing
 
@@ -405,7 +405,7 @@ void View::slotOnShutdown()
     delete m_deleteNodeVisitor;
 }
 
-void View::saveSettings()
+void MainWidget::saveSettings()
 {
     Settings::setSplitter1Sizes( m_horizontalSplitter->sizes() );
     Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
@@ -413,7 +413,7 @@ void View::saveSettings()
     Settings::writeConfig();
 }
 
-void View::slotOpenTab(const KURL& url, bool background)
+void MainWidget::slotOpenTab(const KURL& url, bool background)
 {
     PageViewer* page = new PageViewer(this, "page");
     
@@ -439,7 +439,7 @@ void View::slotOpenTab(const KURL& url, bool background)
 }
 
 
-void View::setTabIcon(const QPixmap& icon)
+void MainWidget::setTabIcon(const QPixmap& icon)
 {
     const PageViewer *s = dynamic_cast<const PageViewer*>(sender());
     if (s) {
@@ -447,7 +447,7 @@ void View::setTabIcon(const QPixmap& icon)
     }
 }
 
-void View::sendArticle(bool attach)
+void MainWidget::sendArticle(bool attach)
 {
     // FIXME: you have to open article to tab to be able to send...
     
@@ -487,7 +487,7 @@ void View::sendArticle(bool attach)
     }
 }
 
-bool View::importFeeds(const QDomDocument& doc)
+bool MainWidget::importFeeds(const QDomDocument& doc)
 {
     FeedList* feedList = new FeedList();
     bool parsed = feedList->readFromXML(doc);
@@ -519,7 +519,7 @@ bool View::importFeeds(const QDomDocument& doc)
     return true;
 }
 
-bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
+bool MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
 {
     FeedList* feedList = new FeedList();
     bool parsed = feedList->readFromXML(doc);
@@ -573,19 +573,19 @@ bool View::loadFeeds(const QDomDocument& doc, Folder* parent)
     return true;
 }
 
-void View::slotDeleteExpiredArticles()
+void MainWidget::slotDeleteExpiredArticles()
 {
     TreeNode* rootNode = m_feedList->rootNode();
     if (rootNode)
         rootNode->slotDeleteExpiredArticles();
 }
 
-QDomDocument View::feedListToOPML()
+QDomDocument MainWidget::feedListToOPML()
 {
     return m_feedList->toXML();
 }
 
-void View::addFeedToGroup(const QString& url, const QString& groupName)
+void MainWidget::addFeedToGroup(const QString& url, const QString& groupName)
 {
 
     // Locate the group.
@@ -606,7 +606,7 @@ void View::addFeedToGroup(const QString& url, const QString& groupName)
         addFeed(url, 0, group, true);
 }
 
-void View::slotNormalView()
+void MainWidget::slotNormalView()
 {
     if (m_viewMode == NormalView)
     return;
@@ -630,7 +630,7 @@ void View::slotNormalView()
     Settings::setViewMode( m_viewMode );
 }
 
-void View::slotWidescreenView()
+void MainWidget::slotWidescreenView()
 {
     if (m_viewMode == WidescreenView)
     return;
@@ -654,7 +654,7 @@ void View::slotWidescreenView()
     Settings::setViewMode( m_viewMode );
 }
 
-void View::slotCombinedView()
+void MainWidget::slotCombinedView()
 {
     if (m_viewMode == CombinedView)
         return;
@@ -667,7 +667,7 @@ void View::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
-void View::slotFrameChanged(Frame* frame)
+void MainWidget::slotFrameChanged(Frame* frame)
 {
     if (m_shuttingDown)
         return;
@@ -680,12 +680,12 @@ void View::slotFrameChanged(Frame* frame)
     frame->setFocus();
 }
 
-void View::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint& /*p*/)
+void MainWidget::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
     m_tabWidget->showPage(m_mainTab);
 }
 
-void View::slotMoveCurrentNodeUp()
+void MainWidget::slotMoveCurrentNodeUp()
 {
     TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current)
@@ -701,7 +701,7 @@ void View::slotMoveCurrentNodeUp()
     m_listTabWidget->activeView()->ensureNodeVisible(current);
 }
 
-void View::slotMoveCurrentNodeDown()
+void MainWidget::slotMoveCurrentNodeDown()
 {
     TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current)
@@ -717,7 +717,7 @@ void View::slotMoveCurrentNodeDown()
     m_listTabWidget->activeView()->ensureNodeVisible(current);
 }
 
-void View::slotMoveCurrentNodeLeft()
+void MainWidget::slotMoveCurrentNodeLeft()
 {
     TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current || !current->parent() || !current->parent()->parent())
@@ -731,7 +731,7 @@ void View::slotMoveCurrentNodeLeft()
     m_listTabWidget->activeView()->ensureNodeVisible(current);
 }
 
-void View::slotMoveCurrentNodeRight()
+void MainWidget::slotMoveCurrentNodeRight()
 {
     TreeNode* current = m_listTabWidget->activeView()->selectedNode();
     if (!current || !current->parent())
@@ -747,7 +747,7 @@ void View::slotMoveCurrentNodeRight()
     }
 }
 
-void View::slotNodeSelected(TreeNode* node)
+void MainWidget::slotNodeSelected(TreeNode* node)
 {
     m_markReadTimer->stop();
 
@@ -786,7 +786,7 @@ void View::slotNodeSelected(TreeNode* node)
 }
 
 
-void View::slotFeedAdd()
+void MainWidget::slotFeedAdd()
 {
     Folder* group = 0;
     if (!m_feedListView->selectedNode())
@@ -806,7 +806,7 @@ void View::slotFeedAdd()
     addFeed(QString::null, lastChild, group, false);
 }
 
-void View::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
+void MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
 {
 
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
@@ -851,7 +851,7 @@ void View::addFeed(const QString& url, TreeNode *after, Folder* parent, bool aut
     delete dlg;
 }
 
-void View::slotFeedAddGroup()
+void MainWidget::slotFeedAddGroup()
 {
     TreeNode* node = m_feedListView->selectedNode();
     TreeNode* after = 0;
@@ -885,7 +885,7 @@ void View::slotFeedAddGroup()
     }
 }
 
-void View::slotFeedRemove()
+void MainWidget::slotFeedRemove()
 {
     TreeNode* selectedNode = m_listTabWidget->activeView()->selectedNode();
 
@@ -896,7 +896,7 @@ void View::slotFeedRemove()
     m_deleteNodeVisitor->visit(selectedNode);
 }
 
-void View::slotFeedModify()
+void MainWidget::slotFeedModify()
 {
     TreeNode* node = m_listTabWidget->activeView()->selectedNode();
     if (node)
@@ -904,7 +904,7 @@ void View::slotFeedModify()
 
 }
 
-void View::slotNextUnreadArticle()
+void MainWidget::slotNextUnreadArticle()
 {
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
@@ -913,7 +913,7 @@ void View::slotNextUnreadArticle()
         m_listTabWidget->activeView()->slotNextUnreadFeed();
 }
 
-void View::slotPrevUnreadArticle()
+void MainWidget::slotPrevUnreadArticle()
 {
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
@@ -922,18 +922,18 @@ void View::slotPrevUnreadArticle()
         m_listTabWidget->activeView()->slotPrevUnreadFeed();
 }
 
-void View::slotMarkAllFeedsRead()
+void MainWidget::slotMarkAllFeedsRead()
 {
     m_feedList->rootNode()->slotMarkAllArticlesAsRead();
 }
 
-void View::slotMarkAllRead()
+void MainWidget::slotMarkAllRead()
 {
     if(!m_listTabWidget->activeView()->selectedNode()) return;
     m_listTabWidget->activeView()->selectedNode()->slotMarkAllArticlesAsRead();
 }
 
-void View::slotOpenHomepage()
+void MainWidget::slotOpenHomepage()
 {
     Feed* feed = dynamic_cast<Feed *>(m_listTabWidget->activeView()->selectedNode());
 
@@ -953,7 +953,7 @@ void View::slotOpenHomepage()
     }
 }
 
-void View::slotSetTotalUnread()
+void MainWidget::slotSetTotalUnread()
 {
     emit signalUnreadCountChanged( m_feedList->rootNode()->unread() );
 }
@@ -961,7 +961,7 @@ void View::slotSetTotalUnread()
 /**
 * Display article in external browser.
 */
-void View::displayInExternalBrowser(const KURL &url)
+void MainWidget::displayInExternalBrowser(const KURL &url)
 {
     if (!url.isValid()) return;
     if (Settings::externalBrowserUseKdeDefault())
@@ -979,38 +979,38 @@ void View::displayInExternalBrowser(const KURL &url)
     }
 }
 
-void View::slotDoIntervalFetches()
+void MainWidget::slotDoIntervalFetches()
 {
     m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
 
-void View::slotFetchCurrentFeed()
+void MainWidget::slotFetchCurrentFeed()
 {
     if ( !m_listTabWidget->activeView()->selectedNode() )
         return;
     m_listTabWidget->activeView()->selectedNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
 }
 
-void View::slotFetchAllFeeds()
+void MainWidget::slotFetchAllFeeds()
 {
     m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
 }
 
-void View::slotFetchingStarted()
+void MainWidget::slotFetchingStarted()
 {
     m_mainFrame->slotSetState(Frame::Started);
     m_actionManager->action("feed_stop")->setEnabled(true);
     m_mainFrame->slotSetStatusText(i18n("Fetching Feeds..."));
 }
 
-void View::slotFetchingStopped()
+void MainWidget::slotFetchingStopped()
 {
     m_mainFrame->slotSetState(Frame::Completed);
     m_actionManager->action("feed_stop")->setEnabled(false);
     m_mainFrame->slotSetStatusText(QString::null);
 }
 
-void View::slotFeedFetched(Feed *feed)
+void MainWidget::slotFeedFetched(Feed *feed)
 {
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
@@ -1028,7 +1028,7 @@ void View::slotFeedFetched(Feed *feed)
     }
 }
 
-void View::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
+void MainWidget::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
 {
     if (article.isNull())
         return;
@@ -1049,7 +1049,7 @@ void View::slotMouseButtonPressed(int button, const Article& article, const QPoi
     }
 }
 
-void View::slotAssignTag(const Tag& tag, bool assign)
+void MainWidget::slotAssignTag(const Tag& tag, bool assign)
 {
     kdDebug() << (assign ? "assigned" : "removed") << " tag \"" << tag.id() << "\"" << endl;
     QList<Article> selectedArticles = m_articleList->selectedArticles();
@@ -1063,7 +1063,7 @@ void View::slotAssignTag(const Tag& tag, bool assign)
     updateTagActions();
 }
 /*
-void View::slotRemoveTag(const Tag& tag)
+void MainWidget::slotRemoveTag(const Tag& tag)
 {
     kdDebug() << "remove tag \"" << tag.id() << "\" from selected articles" << endl;
     QValueList<Article> selectedArticles = m_articleList->selectedArticles();
@@ -1073,7 +1073,7 @@ void View::slotRemoveTag(const Tag& tag)
     updateTagActions();
 }
 */
-void View::slotNewTag()
+void MainWidget::slotNewTag()
 {
     Tag tag(KRandom::randomString(8), "New Tag");
     Kernel::self()->tagSet()->insert(tag);
@@ -1082,7 +1082,7 @@ void View::slotNewTag()
         m_tagNodeListView->startNodeRenaming(node);
 }
 
-void View::slotTagCreated(const Tag& tag)
+void MainWidget::slotTagCreated(const Tag& tag)
 {
     if (m_tagNodeList && !m_tagNodeList->containsTagId(tag.id()))
     {
@@ -1091,11 +1091,11 @@ void View::slotTagCreated(const Tag& tag)
     }
 }
 
-void View::slotTagRemoved(const Tag& /*tag*/)
+void MainWidget::slotTagRemoved(const Tag& /*tag*/)
 {
 }
 
-void View::slotArticleSelected(const Article& article)
+void MainWidget::slotArticleSelected(const Article& article)
 {
     if (m_viewMode == CombinedView)
         return;
@@ -1132,14 +1132,14 @@ void View::slotArticleSelected(const Article& article)
     m_articleViewer->slotShowArticle(a);
 }
 
-void View::slotOpenArticleExternal(const Article& article, const QPoint&, int)
+void MainWidget::slotOpenArticleExternal(const Article& article, const QPoint&, int)
 {
     if (!article.isNull())
         displayInExternalBrowser(article.link());
 }
 
 
-void View::slotOpenCurrentArticle()
+void MainWidget::slotOpenCurrentArticle()
 {
     Article article = m_articleList->currentArticle();
 
@@ -1158,12 +1158,12 @@ void View::slotOpenCurrentArticle()
     }
 }
 
-void View::slotOpenCurrentArticleExternal()
+void MainWidget::slotOpenCurrentArticleExternal()
 {
     slotOpenArticleExternal(m_articleList->currentArticle(), QPoint(), 0);
 }
 
-void View::slotOpenCurrentArticleBackgroundTab()
+void MainWidget::slotOpenCurrentArticleBackgroundTab()
 {
     Article article = m_articleList->currentArticle();
 
@@ -1182,7 +1182,7 @@ void View::slotOpenCurrentArticleBackgroundTab()
     }
 }
 
-void View::slotCopyLinkAddress()
+void MainWidget::slotCopyLinkAddress()
 {
     Article article = m_articleList->currentArticle();
 
@@ -1203,7 +1203,7 @@ void View::slotCopyLinkAddress()
     }
 }
 
-void View::slotFeedURLDropped(KURL::List &urls, TreeNode* after, Folder* parent)
+void MainWidget::slotFeedURLDropped(KURL::List &urls, TreeNode* after, Folder* parent)
 {
     KURL::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )
@@ -1212,7 +1212,7 @@ void View::slotFeedURLDropped(KURL::List &urls, TreeNode* after, Folder* parent)
     }
 }
 
-void View::slotToggleShowQuickFilter()
+void MainWidget::slotToggleShowQuickFilter()
 {
     if ( Settings::showQuickFilter() )
     {
@@ -1229,7 +1229,7 @@ void View::slotToggleShowQuickFilter()
 
 }
 
-void View::slotArticleDelete()
+void MainWidget::slotArticleDelete()
 {
 
     if ( m_viewMode == CombinedView )
@@ -1275,7 +1275,7 @@ void View::slotArticleDelete()
 }
 
 
-void View::slotArticleToggleKeepFlag(bool /*enabled*/)
+void MainWidget::slotArticleToggleKeepFlag(bool /*enabled*/)
 {
     QList<Article> articles = m_articleList->selectedArticles();
 
@@ -1291,7 +1291,7 @@ void View::slotArticleToggleKeepFlag(bool /*enabled*/)
         (*it).setKeep(!allFlagsSet);
 }
 
-void View::slotSetSelectedArticleRead()
+void MainWidget::slotSetSelectedArticleRead()
 {
     QList<Article> articles = m_articleList->selectedArticles();
 
@@ -1302,7 +1302,7 @@ void View::slotSetSelectedArticleRead()
         (*it).setStatus(Article::Read);
 }
 
-void View::slotTextToSpeechRequest()
+void MainWidget::slotTextToSpeechRequest()
 {
     
     if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame)
@@ -1327,7 +1327,7 @@ void View::slotTextToSpeechRequest()
     }
 }
 
-void View::slotSetSelectedArticleUnread()
+void MainWidget::slotSetSelectedArticleUnread()
 {
     QList<Article> articles = m_articleList->selectedArticles();
 
@@ -1338,7 +1338,7 @@ void View::slotSetSelectedArticleUnread()
         (*it).setStatus(Article::Unread);
 }
 
-void View::slotSetSelectedArticleNew()
+void MainWidget::slotSetSelectedArticleNew()
 {
     QList<Article> articles = m_articleList->selectedArticles();
 
@@ -1349,7 +1349,7 @@ void View::slotSetSelectedArticleNew()
         (*it).setStatus(Article::New);
 }
 
-void View::slotSetCurrentArticleReadDelayed()
+void MainWidget::slotSetCurrentArticleReadDelayed()
 {
     Article article = m_articleList->currentArticle();
 
@@ -1359,7 +1359,7 @@ void View::slotSetCurrentArticleReadDelayed()
     article.setStatus(Article::Read);
 }
 
-void View::slotMouseOverInfo(const KFileItem *kifi)
+void MainWidget::slotMouseOverInfo(const KFileItem *kifi)
 {
     if (kifi)
     {
@@ -1372,32 +1372,32 @@ void View::slotMouseOverInfo(const KFileItem *kifi)
     }
 }
 
-void View::readProperties(KConfig* config)
+void MainWidget::readProperties(KConfig* config)
 {
     // read filter settings
     m_searchBar->slotSetText(config->readEntry("searchLine"));
     m_searchBar->slotSetStatus(config->readEntry("searchCombo").toInt());
 }
 
-void View::saveProperties(KConfig* config)
+void MainWidget::saveProperties(KConfig* config)
 {
     // save filter settings
     config->writeEntry("searchLine", m_searchBar->text());
     config->writeEntry("searchCombo", m_searchBar->status());
 }
 
-void View::connectToFeedList(FeedList* feedList)
+void MainWidget::connectToFeedList(FeedList* feedList)
 {
     connect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
     slotSetTotalUnread();
 }
 
-void View::disconnectFromFeedList(FeedList* feedList)
+void MainWidget::disconnectFromFeedList(FeedList* feedList)
 {
     disconnect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
 }
 
-void View::updateTagActions()
+void MainWidget::updateTagActions()
 {
     QStringList tags;
 

@@ -39,13 +39,13 @@ namespace Akregator {
 class ArticleListView;
 class ArticleViewer;
 class ListTabWidget;
+class MainWidget;
 class Part;
 class TabWidget;
 class Tag;
 class TagSet;
 class TreeNode;
 class TrayIcon;
-class View;
 
 /** 
  * Akregator-specific implementation of the ActionManager interface
@@ -61,7 +61,7 @@ class ActionManagerImpl : public ActionManager
         virtual KAction* action(const char* name, const char* classname=0);
         virtual QWidget* container(const char* name);
 
-        void initView(View* view);
+        void initMainWidget(MainWidget* mainWidget);
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
