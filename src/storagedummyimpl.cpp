@@ -24,9 +24,9 @@
 #include "storagedummyimpl.h"
 #include "feedstoragedummyimpl.h"
 
-#include <qmap.h>
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QHash>
+#include <QString>
+#include <QStringList>
 
 namespace Akregator {
 namespace Backend {
@@ -55,7 +55,7 @@ class StorageDummyImpl::StorageDummyImplPrivate
     }
     QString tagSet;
     QString feedList;
-    QMap<QString, Entry> feeds;
+    QHash<QString, Entry> feeds;
 };
 
 StorageDummyImpl::StorageDummyImpl() : d(new StorageDummyImplPrivate)
@@ -80,7 +80,7 @@ bool StorageDummyImpl::autoCommit() const
 
 bool StorageDummyImpl::close()
 {
-    for (QMap<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.begin(); it != d->feeds.end(); ++it)
+    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.begin(); it != d->feeds.end(); ++it)
     {
         (*it).feedStorage->close();
         delete (*it).feedStorage;
@@ -166,7 +166,7 @@ void StorageDummyImpl::add(Storage* source)
 
 void StorageDummyImpl::clear()
 {
-    for (QMap<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.begin(); it != d->feeds.end(); ++it)
+    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.begin(); it != d->feeds.end(); ++it)
     {
         delete (*it).feedStorage;
     }

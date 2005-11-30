@@ -3,7 +3,7 @@
 
 #include "settings_advancedbase.h"
 
-#include <QMap>
+#include <QHash>
 
 class QString;
 class QWidget;
@@ -33,8 +33,8 @@ class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
         void slotFactorySelected(int);
         
     private:
-        QMap<int,Backend::StorageFactory*> m_factories;
-        QMap<QString, int> m_keyPos;
+        QHash<int,Backend::StorageFactory*> m_factories;
+        QHash<QString, int> m_keyPos;
 };
 
 } // namespace Akregator

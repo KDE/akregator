@@ -26,7 +26,7 @@
 #include "tagset.h"
 
 #include <qdom.h>
-#include <qmap.h>
+#include <QHash>
 #include <qstring.h>
 #include <qstringlist.h>
 //Added by qt3to4:
@@ -37,7 +37,7 @@ namespace Akregator {
 class TagSet::TagSetPrivate 
 {
     public:
-    QMap<QString,Tag> map;
+    QHash<QString,Tag> hash;
 };
 
 TagSet::TagSet(QObject* parent) : QObject(parent), d(new TagSetPrivate)
@@ -46,7 +46,7 @@ TagSet::TagSet(QObject* parent) : QObject(parent), d(new TagSetPrivate)
 
 TagSet::~TagSet()
 {
-    QList<Tag> tags = d->map.values();
+    QList<Tag> tags = d->hash.values();
     for (QList<Tag>::Iterator it = tags.begin(); it != tags.end(); ++it)
         (*it).removedFromTagSet(this);
     
@@ -56,9 +56,9 @@ TagSet::~TagSet()
 
 void TagSet::insert(const Tag& tag)
 {
-    if (!d->map.contains(tag.id()))
+    if (!d->hash.contains(tag.id()))
     {
-        d->map.insert(tag.id(), tag);
+        d->hash.insert(tag.id(), tag);
         tag.addedToTagSet(this);
         emit signalTagAdded(tag);
     }
@@ -66,9 +66,9 @@ void TagSet::insert(const Tag& tag)
 
 void TagSet::remove(const Tag& tag)
 {
-    if (d->map.contains(tag.id()))
+    if (d->hash.contains(tag.id()))
     {
-        d->map.remove(tag.id());
+        d->hash.remove(tag.id());
         tag.removedFromTagSet(this);
         emit signalTagRemoved(tag);
     }
@@ -76,22 +76,22 @@ void TagSet::remove(const Tag& tag)
 
 bool TagSet::containsID(const QString& id) const
 {
-    return d->map.contains(id);
+    return d->hash.contains(id);
 }
 
 bool TagSet::contains(const Tag& tag) const
 {
-    return d->map.contains(tag.id());
+    return d->hash.contains(tag.id());
 }
 
 Tag TagSet::findByID(const QString& id) const
 {
-    return d->map.contains(id) ? d->map[id] : Tag();
+    return d->hash.contains(id) ? d->hash[id] : Tag();
 }
 
-QMap<QString,Tag> TagSet::toMap() const
+QHash<QString,Tag> TagSet::toHash() const
 {
-    return d->map;
+    return d->hash;
 }
 
 void TagSet::readFromXML(const QDomDocument& doc)
@@ -140,7 +140,7 @@ QDomDocument TagSet::toXML() const
     root.setAttribute( "version", "0.1" );
     doc.appendChild(root);
 
-    QList<Tag> list = d->map.values();
+    QList<Tag> list = d->hash.values();
     for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {    
     

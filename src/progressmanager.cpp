@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qmap.h>
+#include <QHash>
 #include <QList>
 
 #include <klocale.h>
@@ -44,7 +44,7 @@ class ProgressManager::ProgressManagerPrivate
 {
     public:
         FeedList* feedList;
-        QMap<Feed*, ProgressItemHandler*> handlers;
+        QHash<Feed*, ProgressItemHandler*> handlers;
     
 };
 
@@ -76,7 +76,7 @@ void ProgressManager::setFeedList(FeedList* feedList)
 
     if (d->feedList != 0)
     {
-        for (QMap<Feed*, ProgressItemHandler*>::ConstIterator it = d->handlers.begin(); it != d->handlers.end(); ++it)
+        for (QHash<Feed*, ProgressItemHandler*>::ConstIterator it = d->handlers.begin(); it != d->handlers.end(); ++it)
             delete *it;
         d->handlers.clear();
         

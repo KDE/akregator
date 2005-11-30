@@ -27,9 +27,9 @@
 
 #include <kstaticdeleter.h>
 
-#include <qmap.h>
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QHash>
+#include <QString>
+#include <QStringList>
 
 namespace Akregator {
 namespace Backend {
@@ -37,7 +37,7 @@ namespace Backend {
 class StorageFactoryRegistry::StorageFactoryRegistryPrivate
 {
     public:
-        QMap<QString, StorageFactory*> map;
+        QHash<QString, StorageFactory*> map;
 };
 
 StorageFactoryRegistry* StorageFactoryRegistry::m_instance = 0;

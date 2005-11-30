@@ -48,6 +48,7 @@
 
 #include <QApplication>
 #include <QDateTime>
+#include <QHash>
 #include <QKeyEvent>
 #include <QList>
 #include <QPaintEvent>
@@ -75,7 +76,7 @@ class ArticleListView::ArticleListViewPrivate
     ArticleListView* m_parent;
 
     /** maps article to article item */
-    QMap<Article, ArticleItem*> articleMap;
+    QHash<QString, ArticleItem*> articleMap;
     TreeNode* node;
     Akregator::Filters::ArticleMatcher textFilter;
     Akregator::Filters::ArticleMatcher statusFilter;
@@ -326,7 +327,7 @@ void ArticleListView::slotShowNode(TreeNode* node)
         if (!(*it).isNull() && !(*it).isDeleted())
         {
             ArticleItem* ali = new ArticleItem(this, *it);
-            d->articleMap.insert(*it, ali);
+            d->articleMap.insert((*it).guid(), ali);
         }
     }
 
@@ -353,13 +354,13 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>
     
     for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        if (!d->articleMap.contains(*it))
+        if (!d->articleMap.contains((*it).guid()))
         {
             if (!(*it).isNull() && !(*it).isDeleted())
             {
                 ArticleItem* ali = new ArticleItem(this, *it);
                 ali->setVisible( d->textFilter.matches( ali->article()) );
-                d->articleMap.insert(*it, ali);
+                d->articleMap.insert((*it).guid(), ali);
             }
         }
     }
@@ -374,13 +375,13 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QList<Articl
     for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         
-        if (!(*it).isNull() && d->articleMap.contains(*it))
+        if (!(*it).isNull() && d->articleMap.contains((*it).guid()))
         {
-            ArticleItem* ali = d->articleMap[*it];
+            ArticleItem* ali = d->articleMap[(*it).guid()];
 
             if ((*it).isDeleted()) // if article was set to deleted, delete item
             {
-                d->articleMap.remove(*it);
+                d->articleMap.remove((*it).guid());
                 delete ali;
             }
             else
@@ -402,10 +403,10 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QList<Articl
     setUpdatesEnabled(false);
     for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        if (d->articleMap.contains(*it))
+        if (d->articleMap.contains((*it).guid()))
         {
-            ArticleItem* ali = d->articleMap[*it];
-            d->articleMap.remove(*it);
+            ArticleItem* ali = d->articleMap[(*it).guid()];
+            d->articleMap.remove((*it).guid());
             delete ali;
         }
     }
@@ -538,8 +539,8 @@ void ArticleListView::slotPreviousArticle()
     {
         Article a = ali->article();
         clearSelection();
-        setSelected(d->articleMap[a], true);
-        setCurrentItem(d->articleMap[a]);
+        setSelected(d->articleMap[a.guid()], true);
+        setCurrentItem(d->articleMap[a.guid()]);
         d->ensureCurrentItemVisible();
     }
 }
@@ -556,8 +557,8 @@ void ArticleListView::slotNextArticle()
     {
         Article a = ali->article();
         clearSelection();
-        setSelected(d->articleMap[a], true);
-        setCurrentItem(d->articleMap[a]);
+        setSelected(d->articleMap[a.guid()], true);
+        setCurrentItem(d->articleMap[a.guid()]);
         d->ensureCurrentItemVisible();
     }
 }
@@ -585,9 +586,9 @@ void ArticleListView::slotNextUnreadArticle()
     if (unread)
     {
         Article a = unread->article();
-        setCurrentItem(d->articleMap[a]);
+        setCurrentItem(d->articleMap[a.guid()]);
         clearSelection();
-        setSelected(d->articleMap[a], true);
+        setSelected(d->articleMap[a.guid()], true);
         d->ensureCurrentItemVisible();
     }
 }
@@ -615,9 +616,9 @@ void ArticleListView::slotPreviousUnreadArticle()
     if (unread)
     {
         Article a = unread->article();
-        setCurrentItem(d->articleMap[a]);
+        setCurrentItem(d->articleMap[a.guid()]);
         clearSelection();
-        setSelected(d->articleMap[a], true);
+        setSelected(d->articleMap[a.guid()], true);
         d->ensureCurrentItemVisible();
     }
 }

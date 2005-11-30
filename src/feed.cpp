@@ -46,8 +46,8 @@
 #include <QDateTime>
 #include <QDomDocument>
 #include <QDomElement>
+#include <QHash>
 #include <QList>
-#include <QMap>
 #include <QPixmap>
 #include <QTimer>
 
@@ -78,10 +78,10 @@ class Feed::FeedPrivate
         QString description;
 
         /** list of feed articles */
-        QMap<QString, Article> articles;
+        QHash<QString, Article> articles;
 
         /** caches guids of tagged articles. key: tag, value: list of guids */
-        QMap<QString, QStringList> taggedArticles;
+        QHash<QString, QStringList> taggedArticles;
 
         /** list of deleted articles. This contains **/
         QList<Article> deletedArticles;

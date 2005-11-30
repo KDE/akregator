@@ -28,7 +28,7 @@
 #include <qobject.h>
 
 class QDomDocument;
-template <class K,class T> class QMap;
+template <class K,class T> class QHash;
 class QString;
 class QStringList;
 
@@ -59,8 +59,8 @@ class TagSet : public QObject
         /** removes a tag from the tag set. The tag set will emit signalTagRemoved */
         void remove(const Tag& tag);
 
-        /** returns the tag set as map ((id, Tag) pairs) */
-        QMap<QString,Tag> toMap() const;
+        /** returns the tag set as hash ((id, Tag) pairs) */
+        QHash<QString,Tag> toHash() const;
 
         /** returns @c true if this set contains @c tag */
         bool contains(const Tag& tag) const;

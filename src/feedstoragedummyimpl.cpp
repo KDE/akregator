@@ -27,10 +27,11 @@
 
 #include <feed.h>
 
-#include <qmap.h>
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QHash>
 #include <QList>
+#include <QMap>
+#include <QString>
+#include <QStringList>
 
 //typedef unsigned int uint;
 namespace Akregator {
@@ -61,16 +62,17 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             QString enclosureType;
             int enclosureLength;
         };
-    QMap<QString, Entry> entries;
+
+    QHash<QString, Entry> entries;
     
     // all tags occurring in the feed
     QStringList tags;
     
     // tag -> articles index
-    QMap<QString, QStringList > taggedArticles;
+    QHash<QString, QStringList> taggedArticles;
 
     QList<Category> categories;
-    QMap<Category, QStringList> categorizedArticles;
+    QMap<Akregator::Backend::Category, QStringList> categorizedArticles;
 
     Storage* mainStorage;
     QString url;
@@ -136,12 +138,12 @@ void FeedStorageDummyImpl::setLastFetch(int lastFetch)
 
 QStringList FeedStorageDummyImpl::articles(const QString& tag)
 {
-    return tag.isNull() ? QStringList(d->entries.keys()) : d->taggedArticles[tag];
+    return tag.isNull() ? QStringList(d->entries.keys()) : d->taggedArticles.value(tag);
 }
 
 QStringList FeedStorageDummyImpl::articles(const Category& cat)
 {
-    return d->categorizedArticles[cat];
+    return d->categorizedArticles.value(cat);
 }
 
 void FeedStorageDummyImpl::addEntry(const QString& guid)

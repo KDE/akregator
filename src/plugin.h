@@ -9,7 +9,7 @@
          Akregator::Plugin* create_plugin() { return new classname; } \
     }
 
-#include <QMap>
+#include <QHash>
 #include <QString>
 
 
@@ -38,7 +38,7 @@ class Plugin
         Plugin();
 
     private:
-        QMap<QString, QString> m_properties;
+        QHash<QString, QString> m_properties;
 };
 
 } //namespace Akregator

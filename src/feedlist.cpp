@@ -23,9 +23,9 @@
 */
 #include "feedlist.h"
 
-#include <qdatetime.h>
+#include <QDateTime>
 #include <qdom.h>
-#include <qmap.h>
+#include <QHash>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -42,7 +42,7 @@ class FeedList::FeedListPrivate
 {
     public:
 
-        QMap<QString, QList<Feed*> > urlMap;
+        QHash<QString, QList<Feed*> > urlMap;
         AddNodeVisitor* addNodeVisitor;
         RemoveNodeVisitor* removeNodeVisitor;
 };

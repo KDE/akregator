@@ -32,7 +32,7 @@ class QDomDocument;
 class QDomNode;
 class QString;
 
-template <class K,class T> class QMap;
+template <class K,class T> class QHash;
 template <class T> class QList;
 
 namespace Akregator {
@@ -85,7 +85,7 @@ public slots:
 protected:
 
     QList<TreeNode*>* flatList() const;
-    QMap<int, TreeNode*>* idMap() const;
+    QHash<int, TreeNode*>* idMap() const;
     
     int generateID();
     void setRootNode(Folder* folder);

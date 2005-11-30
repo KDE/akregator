@@ -31,12 +31,10 @@
 #include <klistview.h>
 #include <klocale.h>
 
-#include <qlayout.h>
-#include <qmap.h>
-#include <qwidget.h>
-//Added by qt3to4:
-#include <QList>
 #include <QGridLayout>
+#include <QHash>
+#include <QList>
+#include <QWidget>
 
 namespace Akregator
 {
@@ -87,8 +85,8 @@ class SimpleNodeSelector::SimpleNodeSelectorPrivate
     KListView* view;
     FeedList* list;
     NodeVisitor* visitor;
-    QMap<TreeNode*,Q3ListViewItem*> nodeToItem;
-    QMap<Q3ListViewItem*, TreeNode*> itemToNode;
+    QHash<TreeNode*,Q3ListViewItem*> nodeToItem;
+    QHash<Q3ListViewItem*, TreeNode*> itemToNode;
 };
 
 class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor

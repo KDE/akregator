@@ -53,8 +53,8 @@
 #include <kstdaccel.h>
 #include <kxmlguifactory.h>
 
+#include <QHash>
 #include <QList>
-#include <QMap>
 #include <QString>
 #include <QWidget>
 
@@ -131,7 +131,7 @@ public:
     KActionMenu* tagMenu;
     KActionCollection* actionCollection;
     TagSet* tagSet;
-    QMap<QString, TagAction*> tagActions;
+    QHash<QString, TagAction*> tagActions;
     TabWidget* tabWidget;
     KAction* speakSelectedArticlesAction;
 };
@@ -178,7 +178,7 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
 
     //TODO: remove actions from menus, delete actions, clear maps
 
-    QList<Tag> list = tagSet->toMap().values();
+    QList<Tag> list = tagSet->toHash().values();
     for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
         slotTagAdded(*it);
 }

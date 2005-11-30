@@ -31,7 +31,7 @@
 #include "tagfolder.h"
 
 #include <qdom.h>
-#include <qmap.h>
+#include <QHash>
 #include <qstring.h>
 #include <QList>
 
@@ -46,7 +46,7 @@ class TagNodeList::TagNodeListPrivate
     public:
     FeedList* feedList;
     TagSet* tagSet;
-    QMap<QString, TagNode*> tagIdToNodeMap;
+    QHash<QString, TagNode*> tagIdToNodeMap;
 };
 
 FeedList* TagNodeList::feedList() const
@@ -65,7 +65,7 @@ TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) :  NodeList(), d(ne
 
     setRootNode(new TagFolder(i18n("My Tags")));
 
-    QList<Tag> list = tagSet->toMap().values();
+    QList<Tag> list = tagSet->toHash().values();
     for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
        insert(new TagNode(*it, d->feedList->rootNode()));

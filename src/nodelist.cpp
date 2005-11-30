@@ -28,11 +28,11 @@
 #include "treenodevisitor.h"
 
 #include <kapplication.h>
-
-#include <qmap.h>
-#include <qstring.h>
-#include <QList>
 #include <krandom.h>
+
+#include <QHash>
+#include <QList>
+#include <qstring.h>
 
 namespace Akregator {
 
@@ -42,7 +42,7 @@ class NodeList::NodeListPrivate
     QList<TreeNode*> flatList;
     Folder* rootNode;
     QString title;
-    QMap<int, TreeNode*> idMap;
+    QHash<int, TreeNode*> idMap;
     AddNodeVisitor* addNodeVisitor;
     RemoveNodeVisitor* removeNodeVisitor;
 };
@@ -172,7 +172,7 @@ void NodeList::clear()
         delete *it; // emits signal "emitSignalDestroyed"
 }
 
-QMap<int, TreeNode*>* NodeList::idMap() const
+QHash<int, TreeNode*>* NodeList::idMap() const
 {
     return &(d->idMap);
 }
