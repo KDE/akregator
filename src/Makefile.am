@@ -88,7 +88,7 @@ kde_module_LTLIBRARIES = libakregatorpart.la
 
 mainwindow.lo: akregatorconfig.h
 akregator_part.lo: akregatorconfig.h
-akregator_view.lo: akregatorconfig.h
+mainwidget.lo: akregatorconfig.h
 akregatorconfig.lo: akregatorconfig.h
 articlelistview.lo: akregatorconfig.h
 articleviewer.lo: akregatorconfig.h
@@ -135,7 +135,7 @@ libakregatorpart_la_SOURCES = \
 	settings_advanced.cpp \
 	akregator_partiface.skel \
 	akregator_part.cpp \
-	akregator_view.cpp \
+	mainwidget.cpp \
         notificationmanager.cpp \
         tagaction.cpp \
         tagpropertieswidgetbase.ui \

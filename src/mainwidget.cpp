@@ -26,8 +26,8 @@
 
 #include "actionmanagerimpl.h"
 #include "akregator_part.h"
-#include "akregator_view.h"
 #include "listtabwidget.h"
+#include "mainwidget.h"
 #include "addfeeddialog.h"
 #include "browserframe.h"
 #include "propertiesdialog.h"
@@ -1452,4 +1452,4 @@ void MainWidget::updateTagActions()
 
 } // namespace Akregator
 
-#include "akregator_view.moc"
+#include "mainwidget.moc"

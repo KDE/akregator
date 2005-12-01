@@ -26,7 +26,7 @@
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
 #include "akregator_part.h"
-#include "akregator_view.h"
+#include "mainwidget.h"
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlefilter.h"
