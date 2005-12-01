@@ -8,7 +8,6 @@ Name[fi]=AkregatorPart
 Name[pt_BR]=Componente do aKregator
 Name[sv]=aKregator-delprogram
 Name[ta]=aKregatorபகுதி
-Name[xx]=xxaKregatorPartxx
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libakregatorpart
 Type=Service
