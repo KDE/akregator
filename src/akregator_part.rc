@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="77">
+<kpartgui name="akregator_part" version="78">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -85,6 +85,14 @@
   <Action name="article_tagmenu"/>
   <DefineGroup name="pageviewer_operations" />
   <Merge/>
+</ToolBar>
+
+<ToolBar name="browserToolBar">
+	<Action name="browser_back"/>
+	<Action name="browser_forward"/>
+	<Action name="browser_reload"/>
+	<Action name="browser_stop"/>
+	<Merge/>
 </ToolBar>
 
 <ToolBar hidden="true" name="textToSpeechToolBar">

@@ -29,6 +29,7 @@
 #include "akregator_view.h"
 #include "listtabwidget.h"
 #include "addfeeddialog.h"
+#include "browserframe.h"
 #include "propertiesdialog.h"
 #include "frame.h"
 #include "fetchqueue.h"
@@ -221,6 +222,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
     m_deleteNodeVisitor = new DeleteNodeVisitor(this);
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+    m_actionManager->initMainWidget(this);
     m_part = part;
     m_feedList = new FeedList();
     m_tagNodeList = new TagNodeList(m_feedList, Kernel::self()->tagSet());
@@ -415,35 +417,32 @@ void MainWidget::saveSettings()
 
 void MainWidget::slotOpenTab(const KURL& url, bool background)
 {
-    PageViewer* page = new PageViewer(this, "page");
-    
-    connect( m_part, SIGNAL(signalSettingsChanged()), page, SLOT(slotPaletteOrFontChanged()));
+    BrowserFrame* frame = new BrowserFrame(m_tabWidget);
 
-    connect( page, SIGNAL(setTabIcon(const QPixmap&)),
-            this, SLOT(setTabIcon(const QPixmap&)));
-    connect( page, SIGNAL(urlClicked(const KURL &,bool)),
-            this, SLOT(slotOpenTab(const KURL &,bool)) );
+    connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
 
-    Frame* frame = new BrowserFrame(m_tabWidget, page, page->widget(), i18n("Untitled"));
-
-    connect(page, SIGNAL(setWindowCaption (const QString &)), frame, SLOT(slotSetTitle (const QString &)));
+    //connect( page, SIGNAL(setTabIcon(const QPixmap&)),
+    //        this, SLOT(setTabIcon(const QPixmap&)));
+    //connect( page, SIGNAL(urlClicked(const KURL &,bool)),
+    //        this, SLOT(slotOpenTab(const KURL &,bool)) );
 
     m_tabWidget->addFrame(frame);
 
     if(!background)
-        m_tabWidget->showPage(page->widget());
+        m_tabWidget->showPage(frame);
     else
         setFocus();
 
-    page->openURL(url);
+    frame->openURL(url);
 }
 
 
 void MainWidget::setTabIcon(const QPixmap& icon)
 {
-    const PageViewer *s = dynamic_cast<const PageViewer*>(sender());
-    if (s) {
-        m_tabWidget->setTabIconSet(const_cast<PageViewer*>(s)->widget(), icon);
+    Viewer* s = dynamic_cast<Viewer*>(sender());
+    if (s)
+    {
+        m_tabWidget->setTabIconSet(s->widget(), icon);
     }
 }
 
@@ -671,18 +670,53 @@ void MainWidget::slotFrameChanged(Frame* frame)
 {
     if (m_shuttingDown)
         return;
-
-    if (frame == m_mainFrame)
-        m_part->mergePart(m_articleViewer);
-    else
-        m_part->mergePart(frame->part());
-
-    frame->setFocus();
+    if (frame)
+    {
+        m_actionManager->action("browser_back")->setEnabled(frame->canGoBack());
+        m_actionManager->action("browser_forward")->setEnabled(frame->canGoForward());
+        m_actionManager->action("browser_reload")->setEnabled(frame->isReloadable());
+        m_actionManager->action("browser_stop")->setEnabled(frame->isLoading());
+    /*
+        if (frame == m_mainFrame)
+            m_part->mergePart(m_articleViewer);
+        else
+            m_part->mergePart(frame->part());
+    */
+        frame->setFocus();
+    }
 }
 
 void MainWidget::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
     m_tabWidget->showPage(m_mainTab);
+}
+
+void MainWidget::slotBrowserBack()
+{
+    Frame* frame = Kernel::self()->frameManager()->currentFrame();
+    if (frame)
+        frame->slotHistoryBack();
+}
+
+void MainWidget::slotBrowserForward()
+{
+    Frame* frame = Kernel::self()->frameManager()->currentFrame();
+    if (frame)
+        frame->slotHistoryForward();
+}
+
+void MainWidget::slotBrowserReload()
+{
+    Frame* frame = Kernel::self()->frameManager()->currentFrame();
+    if (frame)
+        frame->slotReload();
+}
+
+void MainWidget::slotBrowserStop()
+{
+    Frame* frame = Kernel::self()->frameManager()->currentFrame();
+    if (frame)
+        frame->slotStop();
 }
 
 void MainWidget::slotMoveCurrentNodeUp()

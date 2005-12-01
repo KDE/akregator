@@ -30,23 +30,28 @@
 namespace Akregator
 {
 
-class Viewer;
+class Frame;
     
 class BrowserRun : public KParts::BrowserRun
 {
 	Q_OBJECT
     public:
-        BrowserRun(Viewer *, QWidget *, KParts::ReadOnlyPart *, const KURL & , const KParts::URLArgs &);
+        BrowserRun(Frame* frame, QWidget* widget, const KURL& url, const KParts::URLArgs&);
         virtual ~BrowserRun();
-    
+
+    signals:
+
+        void signalFoundMimeType(Frame*, const KURL&, const KParts::URLArgs&, const QString&);
+
     protected:
-	    virtual void foundMimeType( const QString & _type );
+	    virtual void foundMimeType(const QString& type);
 
     private slots:
         void killMyself();
 
     private:
-        Viewer *m_viewer;
+        Frame* m_frame;
+        KParts::URLArgs m_args;
 };
 
 } // namespace Akregator

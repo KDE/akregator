@@ -350,6 +350,16 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     new KAction(i18n("Send &Link Address..."), "mail_generic", "", mainWidget, SLOT(slotSendLink()), d->actionCollection, "file_sendlink");
     new KAction(i18n("Send &File..."), "mail_generic", "", mainWidget, SLOT(slotSendFile()), d->actionCollection, "file_sendfile");
+
+    new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotBrowserForward()), d->actionCollection, "browser_forward");
+
+    new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBrowserBack()), d->actionCollection, "browser_back");
+
+    new KAction(i18n("Reload"), "reload", 0,                            mainWidget, SLOT(slotBrowserReload()),
+                            d->actionCollection, "browser_reload");
+
+    new KAction(i18n("Stop"), "stop", 0, mainWidget, SLOT(slotBrowserStop()),
+                                 d->actionCollection, "browser_stop");
 }
 
 void ActionManagerImpl::initArticleViewer(ArticleViewer* articleViewer)

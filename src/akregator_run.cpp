@@ -23,37 +23,37 @@
 */
 
 #include "akregator_run.h"
-#include "viewer.h"
+#include "frame.h"
 
 #include <kdebug.h>
 
 namespace Akregator {
 
-BrowserRun::BrowserRun(Viewer *viewer, QWidget *parent, KParts::ReadOnlyPart *part, const KURL & url, const KParts::URLArgs &args)
-    : KParts::BrowserRun(url, args, part, parent, false, true)
+BrowserRun::BrowserRun(Frame* frame, QWidget *parent, const KURL & url, const KParts::URLArgs &args)
+    : KParts::BrowserRun(url, args, 0L, parent, false, true)
 {
-    m_viewer=viewer;
-    connect(m_viewer, SIGNAL(destroyed()), this, SLOT(killMyself()));
+    m_frame = frame;
+    connect(frame, SIGNAL(destroyed()), this, SLOT(killMyself()));
     setEnableExternalBrowser(false);
 }
 
 BrowserRun::~BrowserRun()
-{
-    kdDebug() << "BrowserRun::~BrowserRun()" << endl;
-}
+{}
 
-void BrowserRun::foundMimeType( const QString & type )
+void BrowserRun::foundMimeType(const QString& type)
 {
+    emit signalFoundMimeType(m_frame, url(), m_args, type);
+/*
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml")
         m_viewer->openPage(url());
     else
         if ( handleNonEmbeddable(type) == KParts::BrowserRun::NotHandled )
             KRun::foundMimeType( type );
+*/
 }
 
 void BrowserRun::killMyself()
 {
-    kdDebug() << "BrowserRun::killMyself()" << endl;
     delete this;
 }
 

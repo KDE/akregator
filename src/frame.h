@@ -26,7 +26,10 @@
 #define AKREGATOR_FRAME_H
 
 #include <QSet>
+#include <QString>
 #include <QWidget>
+
+#include <kparts/browserextension.h>
 
 class KURL;
 
@@ -48,12 +51,20 @@ class Frame : public QWidget
     Q_OBJECT
 
     public:
-        Frame(QWidget* parent, KParts::ReadOnlyPart *part, QWidget *w, const QString& tit, bool watchSignals=true);
+        Frame(QWidget* parent=0);
         virtual ~Frame();
 
         enum {Idle, Started, Completed, Canceled};
 
-        KParts::ReadOnlyPart *part() const;
+        /** options for open URL requests sent from the frame to the outside. TODO: check if KParts::URLArgs covers our needs */
+        enum OpenURLOptions 
+        {
+            None, /**< no explicit options, use default */
+            NewTab, /**< open in new tab */
+            ExternalBrowser /**< open in external browser */
+        };
+
+        virtual KParts::ReadOnlyPart* part() const = 0;
 
         /** 
         * Returns whether the frame can be removed from
@@ -74,7 +85,39 @@ class Frame : public QWidget
         virtual int progress() const;
         virtual const QString& statusText() const;
 
+        /** 
+         * returns whether it is possible to go forward in the history
+         */
+        virtual bool canGoForward() const { return false; }
+
+        /** 
+         * returns whether it is possible to go back in the history
+         */
+        virtual bool canGoBack() const { return false; }
+
+        /** 
+         * returns whether the shown content can be reloaded */
+        virtual bool isReloadable() const { return false; }
+
+        /** 
+         * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
+        virtual bool isLoading() const { return false; }
+
+        virtual bool openURL(const KURL& url, const QString& mimetype="text/html") = 0;
+
     public slots:
+
+        /** goes a step forward in the history, if possible. See also canGoForward(). */
+        virtual void slotHistoryForward() {}
+        
+        /** goes a step backwards in the history, if possible. See also canGoBack(). */
+        virtual void slotHistoryBack() {}
+        
+        /** reloads the current content, if possible. See also isReloadable(). */
+        virtual void slotReload() {}
+
+        virtual void slotStop() {}
+
         virtual void slotSetStarted();
         virtual void slotSetCanceled(const QString&);
         virtual void slotSetCompleted();
@@ -93,17 +136,17 @@ class Frame : public QWidget
         void signalLoadingProgress(Frame*, int);
         void signalStatusText(Frame*, const QString&);
     
+        void signalOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args=KParts::URLArgs(), Frame::OpenURLOptions options=None);
+
     protected:
         void setRemovable(bool removable);
 
-    private:
+    protected:
         QString m_title;
         QString m_caption;
         int m_state;
         int m_progress;
         QString m_statusText;
-        KParts::ReadOnlyPart* m_part;
-        QWidget* m_widget;
         QString m_progressId;
         KPIM::ProgressItem* m_progressItem;
         bool m_isRemovable;
@@ -119,18 +162,12 @@ class MainFrame : public Frame
         virtual ~MainFrame();
 
         virtual KURL url() const;
-};
+        virtual bool openURL(const KURL& /*url*/, const QString& mimetype="text/html") { return false; }
 
-class BrowserFrame : public Frame
-{
-    Q_OBJECT
+        virtual KParts::ReadOnlyPart* part() const { return m_part; }
 
-    public:
-
-        BrowserFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* widget, const QString& title);
-        virtual ~BrowserFrame();
-
-        virtual KURL url() const;
+   private:
+        KParts::ReadOnlyPart* m_part;
 };
 
 class FrameManager : public QObject
@@ -150,10 +187,23 @@ class FrameManager : public QObject
     public slots:
 
         void slotChangeFrame(Frame* frame);
+        void slotOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args, Frame::OpenURLOptions options);
 
     signals:
 
+        void signalFrameAdded(Frame*);
+        void signalFrameRemoved(Frame*);
+
+        // TODO: merge signals
+        /** emitted when the active frame is switched */
         void signalCurrentFrameChanged(Frame*);
+
+        /** 
+         * emitted when the active frame is switched
+         * @param the the deactivated frame
+         * @param  the activated frame
+         */
+        void signalCurrentFrameChanged(Frame*, Frame*);
 
         void signalStarted();
         void signalCanceled(const QString&);
@@ -173,6 +223,8 @@ class FrameManager : public QObject
         virtual void slotSetTitle(Frame* frame, const QString& title);
         virtual void slotSetStatusText(Frame* frame, const QString& statusText);
 
+        virtual void slotFoundMimeType(Frame* frame, const KURL& url, const KParts::URLArgs& args, const QString& mimetype);
+
     private:
 
         Frame* m_currentFrame;
@@ -181,4 +233,4 @@ class FrameManager : public QObject
 
 } // namespace Akregator
 
-#endif
+#endif // AKREGATOR_FRAME_H

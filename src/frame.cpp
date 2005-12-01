@@ -35,6 +35,7 @@
 
 #include <libkdepim/progressmanager.h>
 
+#include "akregator_run.h"
 #include "frame.h"
 
 namespace Akregator {
@@ -91,35 +92,14 @@ void Frame::slotSetState(int a)
     }
 }
 
-Frame::Frame(QWidget* parent, KParts::ReadOnlyPart *p, QWidget *visWidget, const QString& tit, bool watchSignals)
+Frame::Frame(QWidget* parent)
    : QWidget(parent)
 {
-    m_part=p;
-    m_widget=visWidget;
-    m_title=tit;
+    m_title = i18n("Untitled");
     m_state=Idle;
     m_progress=-1;
     m_progressItem=0;
     m_isRemovable = true;
-
-    if (watchSignals) // e.g, articles tab has no part
-    {
-        connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(slotSetCaption (const QString &)));
-        connect(m_part, SIGNAL(setStatusBarText (const QString &)), this, SLOT(slotSetStatusText (const QString &)));
-
-        KParts::BrowserExtension *ext=KParts::BrowserExtension::childObject( p );
-        if (ext)
-            connect( ext, SIGNAL(loadingProgress(int)), this, SLOT(slotSetProgress(int)) );
-
-        connect(p, SIGNAL(started(KIO::Job*)), this, SLOT(slotSetStarted()));
-        connect(p, SIGNAL(completed()), this, SLOT(slotSetCompleted()));
-        connect(p, SIGNAL(canceled(const QString &)), this, SLOT(slotSetCanceled(const QString&)));
-        connect(p, SIGNAL(completed(bool)), this, SLOT(slotSetCompleted()));
-    }
-
-    QGridLayout* layout = new QGridLayout(this);
-    layout->addWidget(visWidget, 0, 0);
-    setLayout(layout);
 }
 
 void Frame::setRemovable(bool removable)
@@ -143,11 +123,6 @@ Frame::~Frame()
 int Frame::state() const
 {
     return m_state;
-}
-
-KParts::ReadOnlyPart *Frame::part() const
-{
-    return m_part;
 }
 
 const QString& Frame::title() const
@@ -202,9 +177,13 @@ int Frame::progress() const
     return m_progress;
 }
 
-MainFrame::MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* widget, const QString& title) : Frame(parent, part, widget, title, false)
+MainFrame::MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* visibleWidget, const QString& title) : Frame(parent), m_part(part)
 {
+    
     setRemovable(false);
+    QGridLayout* layout = new QGridLayout(this);
+    layout->addWidget(visibleWidget, 0, 0);
+    setLayout(layout);
 }
 
 MainFrame::~MainFrame()
@@ -216,20 +195,9 @@ KURL MainFrame::url() const
     return KURL();
 }
 
-BrowserFrame::BrowserFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* widget, const QString& title) : Frame(parent, part, widget, title, true)
-{
-    setRemovable(true);
-}
-
-BrowserFrame::~BrowserFrame()
-{
-    part()->deleteLater();
-}
-
-KURL BrowserFrame::url() const
-{
-    return part()->url();
-}
+///////////////////////////////////////////////////////////
+// FrameManager
+///////////////////////////////////////////////////////////
 
 FrameManager::FrameManager(QObject* parent) : QObject(parent)
 {
@@ -248,9 +216,6 @@ void FrameManager::addFrame(Frame* frame)
 {
     m_frames.insert(frame);
 
-    if (m_frames.count() == 1)
-        slotChangeFrame(frame);
-
     connect(frame, SIGNAL(signalCanceled(Frame*, const QString&)), this, SLOT(slotSetCanceled(Frame*, const QString&)) );
     connect(frame, SIGNAL(signalStarted(Frame*)), this, SLOT(slotSetStarted(Frame*)) );
     connect(frame, SIGNAL(signalCaptionChanged(Frame*, const QString&)), this, SLOT(slotSetCaption(Frame*, const QString&)));
@@ -258,6 +223,14 @@ void FrameManager::addFrame(Frame* frame)
     connect(frame, SIGNAL(signalCompleted(Frame*)), this, SLOT(slotSetCompleted(Frame*)));
     connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString&)), this, SLOT(slotSetTitle(Frame*, const QString&)) );
     connect(frame, SIGNAL(signalStatusText(Frame*, const QString&)), this, SLOT(slotSetStatusText(Frame*, const QString&)) );
+    
+    connect(frame, SIGNAL(signalOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs&, const Frame::OpenURLOptions&)), this, SLOT(slotOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs&, const Frame::OpenURLOptions&)) );
+
+    emit signalFrameAdded(frame);
+
+    if (m_frames.count() == 1)
+        slotChangeFrame(frame);
+    
 }
 
 void FrameManager::removeFrame(Frame* frame)
@@ -277,6 +250,8 @@ void FrameManager::removeFrame(Frame* frame)
     }
 
     m_frames.remove(frame);
+    emit signalFrameRemoved(frame);
+    
 
 }
 
@@ -285,6 +260,7 @@ void FrameManager::slotChangeFrame(Frame* frame)
     if (frame == m_currentFrame)
         return;
     
+    Frame* oldFrame = m_currentFrame;
     m_currentFrame = frame;
     
     if (frame)
@@ -318,6 +294,7 @@ void FrameManager::slotChangeFrame(Frame* frame)
     }
 
     emit signalCurrentFrameChanged(frame);
+    emit signalCurrentFrameChanged(oldFrame, frame);
 }
 
 void FrameManager::slotSetStarted(Frame* frame)
@@ -361,6 +338,18 @@ void FrameManager::slotSetStatusText(Frame* frame, const QString& statusText)
     if (frame == m_currentFrame)
         emit signalStatusText(statusText);
 }
+
+void FrameManager::slotFoundMimeType(Frame* frame, const KURL& url, const KParts::URLArgs& /*args*/, const QString& mimetype)
+{
+    frame->openURL(url, mimetype);
+}
+
+void FrameManager::slotOpenURLRequest(Frame* frame, const KURL& url, const KParts::URLArgs& args, Frame::OpenURLOptions /*options*/)
+{
+    BrowserRun* r = new BrowserRun(frame, frame, url, args);
+    connect(r, SIGNAL(signalFoundMimeType(Frame*, const KURL& , const KParts::URLArgs&, const QString&)), this, SLOT(slotFoundMimeType(Frame*, const KURL&, const KParts::URLArgs&, const QString&)) );
+}
+
 
 
 } // namespace Akregator

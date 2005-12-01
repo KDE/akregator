@@ -169,7 +169,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     ActionManager::setInstance(m_actionManager);
 
     m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
-    m_actionManager->initMainWidget(m_mainWidget);
     m_actionManager->setTagSet(Kernel::self()->tagSet());
 
     m_extension = new BrowserExtension(this, "ak_extension");

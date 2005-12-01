@@ -109,13 +109,13 @@ libakregatorpart_la_SOURCES = \
 	actionmanager.cpp \
         actionmanagerimpl.cpp \
 	frame.cpp \
+        browserframe.cpp \
 	viewer.cpp \
 	articleviewer.cpp \
 	addfeeddialog.cpp \
 	addfeedwidgetbase.ui \
 	propertiesdialog.cpp \
 	propertieswidgetbase.ui \
-	pageviewer.cpp \
 	tabwidget.cpp \
 	feedlistview.cpp \
 	treenodeitem.cpp \
