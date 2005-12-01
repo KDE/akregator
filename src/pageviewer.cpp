@@ -24,7 +24,7 @@
 */
 
 #include "akregatorconfig.h"
-#include "akregator_run.h" 
+#include "browserrun.h" 
 #include "feediconmanager.h"
 #include "pageviewer.h"
 #include "viewer.h"

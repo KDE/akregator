@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregator_run.h"
+#include "browserrun.h"
 #include "frame.h"
 
 #include <kdebug.h>
@@ -59,4 +59,4 @@ void BrowserRun::killMyself()
 
 } // namespace Akregator
 
-#include "akregator_run.moc"
+#include "browserrun.moc"

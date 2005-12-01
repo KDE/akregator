@@ -104,7 +104,7 @@ kspeechsink_DIR = $(kde_includes)
 # the Part's source, library search path, and link libraries
 libakregatorpart_la_SOURCES = \
 	searchbar.cpp \
-	akregator_run.cpp \
+	browserrun.cpp \
 	articlelistview.cpp \
 	actionmanager.cpp \
         actionmanagerimpl.cpp \

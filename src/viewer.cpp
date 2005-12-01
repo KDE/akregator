@@ -37,12 +37,12 @@
 #include <ktoolinvocation.h>
 #include <kurl.h>
 #include <kparts/browserextension.h>
+#include <kparts/browserrun.h>
 
 #include <QClipboard>
 #include <QPaintDevice>
 
 #include "viewer.h"
-#include "akregator_run.h"
 #include "akregatorconfig.h"
 
 namespace Akregator {

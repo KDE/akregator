@@ -35,7 +35,6 @@
 
 #include <libkdepim/progressmanager.h>
 
-#include "akregator_run.h"
 #include "frame.h"
 
 namespace Akregator {

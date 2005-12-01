@@ -44,7 +44,6 @@
 #include <libkdepim/kfileio.h>
 
 #include "aboutdata.h"
-#include "akregator_run.h"
 #include "akregatorconfig.h"
 #include "articleviewer.h"
 #include "feed.h"
