@@ -131,6 +131,8 @@ bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimet
 
 void BrowserFrame::BrowserFramePrivate::addHistoryEntry()
 {
+    bool canBack = parent->canGoBack();
+
     if (lockHistory)
         return;
 
@@ -139,10 +141,16 @@ void BrowserFrame::BrowserFramePrivate::addHistoryEntry()
     history.append(HistoryEntry());
 
     current = --(history.end());
+    
+    if (canBack != parent->canGoBack())
+        emit parent->signalCanGoBackToggled(parent, parent->canGoBack());
 }
 
 void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( HistoryEntry& entry)
 {
+    bool canBack = parent->canGoBack();
+    bool canForward = parent->canGoForward();
+
     updateHistoryEntry();
 
     lockHistory = true;
@@ -167,6 +175,11 @@ void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( HistoryEntry& entry
     current = history.find(entry);
     
     lockHistory = false;
+
+    if (canForward != parent->canGoForward())
+        emit parent->signalCanGoForwardToggled(parent, parent->canGoForward());
+    if (canBack != parent->canGoBack())
+        emit parent->signalCanGoBackToggled(parent, parent->canGoBack());
 }
 
 void BrowserFrame::BrowserFramePrivate::connectPart()
@@ -335,13 +348,13 @@ void BrowserFrame::slotPaletteOrFontChanged()
 {
 }
 
-bool BrowserFrame::isReloadable() const 
-{ 
+bool BrowserFrame::isReloadable() const
+{
     return true;
 }
 
-bool BrowserFrame::isLoading() const 
-{ 
+bool BrowserFrame::isLoading() const
+{
     return true;
 }
 
