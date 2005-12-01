@@ -32,6 +32,7 @@
 #include "browserframe.h"
 #include "propertiesdialog.h"
 #include "frame.h"
+#include "framemanager.h"
 #include "fetchqueue.h"
 #include "feedlistview.h"
 #include "articlelistview.h"

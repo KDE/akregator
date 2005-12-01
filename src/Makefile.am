@@ -109,6 +109,7 @@ libakregatorpart_la_SOURCES = \
 	actionmanager.cpp \
         actionmanagerimpl.cpp \
 	frame.cpp \
+        framemanager.cpp \
         browserframe.cpp \
 	viewer.cpp \
 	articleviewer.cpp \

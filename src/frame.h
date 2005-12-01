@@ -138,6 +138,12 @@ class Frame : public QWidget
     
         void signalOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args=KParts::URLArgs(), Frame::OpenURLOptions options=None);
 
+        void signalCanGoBackToggled(Frame*, bool);
+        void signalCanGoForwardToggled(Frame*, bool);
+        void signalIsReloadableToggled(Frame*, bool);
+        void signalIsLoadingToggled(Frame*, bool);
+
+
     protected:
         void setRemovable(bool removable);
 
@@ -168,67 +174,6 @@ class MainFrame : public Frame
 
    private:
         KParts::ReadOnlyPart* m_part;
-};
-
-class FrameManager : public QObject
-{
-    Q_OBJECT
-
-    public:
-
-        FrameManager(QObject* parent=0);
-        virtual ~FrameManager();
-
-        Frame* currentFrame() const;
-
-        void addFrame(Frame* frame);
-        void removeFrame(Frame* frame);
-       
-    public slots:
-
-        void slotChangeFrame(Frame* frame);
-        void slotOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args, Frame::OpenURLOptions options);
-
-    signals:
-
-        void signalFrameAdded(Frame*);
-        void signalFrameRemoved(Frame*);
-
-        // TODO: merge signals
-        /** emitted when the active frame is switched */
-        void signalCurrentFrameChanged(Frame*);
-
-        /** 
-         * emitted when the active frame is switched
-         * @param the the deactivated frame
-         * @param  the activated frame
-         */
-        void signalCurrentFrameChanged(Frame*, Frame*);
-
-        void signalStarted();
-        void signalCanceled(const QString&);
-        void signalCompleted();
-        void signalCaptionChanged(const QString&);
-        void signalTitleChanged(const QString&);
-        void signalLoadingProgress(int);
-        void signalStatusText(const QString&);
-
-    protected slots:
-
-        virtual void slotSetStarted(Frame* frame);
-        virtual void slotSetCanceled(Frame* frame, const QString& reason);
-        virtual void slotSetCompleted(Frame* frame);
-        virtual void slotSetProgress(Frame* frame, int progress);
-        virtual void slotSetCaption(Frame* frame, const QString& caption);
-        virtual void slotSetTitle(Frame* frame, const QString& title);
-        virtual void slotSetStatusText(Frame* frame, const QString& statusText);
-
-        virtual void slotFoundMimeType(Frame* frame, const KURL& url, const KParts::URLArgs& args, const QString& mimetype);
-
-    private:
-
-        Frame* m_currentFrame;
-        QSet<Frame*> m_frames;
 };
 
 } // namespace Akregator

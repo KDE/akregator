@@ -33,7 +33,7 @@
 #include "articleinterceptor.h"
 #include "configdialog.h"
 #include "fetchqueue.h"
-#include "frame.h"
+#include "framemanager.h"
 #include "kernel.h"
 #include "notificationmanager.h"
 #include "pageviewer.h"

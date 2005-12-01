@@ -27,7 +27,7 @@
 #include <kstaticdeleter.h>
 
 #include "fetchqueue.h"
-#include "frame.h"
+#include "framemanager.h"
 #include "tagset.h"
 
 namespace Akregator
