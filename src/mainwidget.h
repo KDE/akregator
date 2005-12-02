@@ -243,11 +243,6 @@ class MainWidget : public QWidget
         void slotSendLink() { sendArticle(); }
         void slotSendFile() { sendArticle(true); }
 
-        void slotBrowserBack();
-        void slotBrowserForward();
-        void slotBrowserReload();
-        void slotBrowserStop();
-
     protected:
 
         void sendArticle(bool attach=false);

@@ -38,6 +38,7 @@ namespace Akregator {
 
 class ArticleListView;
 class ArticleViewer;
+class FrameManager;
 class ListTabWidget;
 class MainWidget;
 class Part;
@@ -68,6 +69,7 @@ class ActionManagerImpl : public ActionManager
         void initListTabWidget(ListTabWidget* listTabWidget);
         void initTabWidget(TabWidget* tabWidget);
         void setTagSet(TagSet* tagSet);
+        void initFrameManager(FrameManager* frameManager);
 
     public slots:
 

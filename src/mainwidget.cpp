@@ -223,7 +223,9 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
     m_deleteNodeVisitor = new DeleteNodeVisitor(this);
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+
     m_actionManager->initMainWidget(this);
+    m_actionManager->initFrameManager(Kernel::self()->frameManager());
     m_part = part;
     m_feedList = new FeedList();
     m_tagNodeList = new TagNodeList(m_feedList, Kernel::self()->tagSet());
@@ -690,34 +692,6 @@ void MainWidget::slotFrameChanged(Frame* frame)
 void MainWidget::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
     m_tabWidget->showPage(m_mainTab);
-}
-
-void MainWidget::slotBrowserBack()
-{
-    Frame* frame = Kernel::self()->frameManager()->currentFrame();
-    if (frame)
-        frame->slotHistoryBack();
-}
-
-void MainWidget::slotBrowserForward()
-{
-    Frame* frame = Kernel::self()->frameManager()->currentFrame();
-    if (frame)
-        frame->slotHistoryForward();
-}
-
-void MainWidget::slotBrowserReload()
-{
-    Frame* frame = Kernel::self()->frameManager()->currentFrame();
-    if (frame)
-        frame->slotReload();
-}
-
-void MainWidget::slotBrowserStop()
-{
-    Frame* frame = Kernel::self()->frameManager()->currentFrame();
-    if (frame)
-        frame->slotStop();
 }
 
 void MainWidget::slotMoveCurrentNodeUp()

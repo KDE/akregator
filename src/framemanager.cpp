@@ -23,7 +23,7 @@
 */
 
 #include "actionmanager.h"
-#include "akregator_run.h"
+#include "browserrun.h"
 #include "framemanager.h"
 
 #include <kaction.h>
@@ -209,6 +209,30 @@ void FrameManager::slotOpenURLRequest(Frame* frame, const KURL& url, const KPart
 {
     BrowserRun* r = new BrowserRun(frame, frame, url, args);
     connect(r, SIGNAL(signalFoundMimeType(Frame*, const KURL& , const KParts::URLArgs&, const QString&)), this, SLOT(slotFoundMimeType(Frame*, const KURL&, const KParts::URLArgs&, const QString&)) );
+}
+
+void FrameManager::slotBrowserBack()
+{
+    if (m_currentFrame)
+        m_currentFrame->slotHistoryBack();
+}
+
+void FrameManager::slotBrowserForward()
+{
+    if (m_currentFrame)
+        m_currentFrame->slotHistoryForward();
+}
+
+void FrameManager::slotBrowserReload()
+{
+    if (m_currentFrame)
+        m_currentFrame->slotReload();
+}
+
+void FrameManager::slotBrowserStop()
+{
+    if (m_currentFrame)
+        m_currentFrame->slotStop();
 }
 
 } // namespace Akregator 

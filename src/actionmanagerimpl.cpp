@@ -25,15 +25,16 @@
 #include "actionmanagerimpl.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
-#include "akregator_view.h"
 #include "articlelistview.h"
 #include "articleviewer.h"
 #include "feed.h"
 #include "feedlistview.h"
 #include "fetchqueue.h"
 #include "folder.h"
+#include "framemanager.h"
 #include "kernel.h"
 #include "listtabwidget.h"
+#include "mainwidget.h"
 #include "speechclient.h"
 #include "tabwidget.h"
 #include "tag.h"
@@ -134,6 +135,7 @@ public:
     QHash<QString, TagAction*> tagActions;
     TabWidget* tabWidget;
     KAction* speakSelectedArticlesAction;
+    FrameManager* frameManager;
 };
 
 void ActionManagerImpl::slotUpdateTagActions(bool enabled, const QStringList& tagIds)
@@ -218,6 +220,7 @@ ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* na
     d->articleViewer = 0;
     d->mainWidget = 0;
     d->tabWidget = 0;
+    d->frameManager = 0;
     d->speakSelectedArticlesAction = 0;
     d->actionCollection = part->actionCollection();
     initPart();
@@ -350,16 +353,6 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     new KAction(i18n("Send &Link Address..."), "mail_generic", "", mainWidget, SLOT(slotSendLink()), d->actionCollection, "file_sendlink");
     new KAction(i18n("Send &File..."), "mail_generic", "", mainWidget, SLOT(slotSendFile()), d->actionCollection, "file_sendfile");
-
-    new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotBrowserForward()), d->actionCollection, "browser_forward");
-
-    new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBrowserBack()), d->actionCollection, "browser_back");
-
-    new KAction(i18n("Reload"), "reload", 0,                            mainWidget, SLOT(slotBrowserReload()),
-                            d->actionCollection, "browser_reload");
-
-    new KAction(i18n("Stop"), "stop", 0, mainWidget, SLOT(slotBrowserStop()),
-                                 d->actionCollection, "browser_stop");
 }
 
 void ActionManagerImpl::initArticleViewer(ArticleViewer* articleViewer)
@@ -413,6 +406,24 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     new KAction( i18n("Detach Tab"), "tab_breakoff", Qt::CTRL+Qt::SHIFT+Qt::Key_B, d->tabWidget, SLOT(slotDetachTab()), actionCollection(), "tab_detach" );
     new KAction( i18n("Copy Link Address"), "", "", d->tabWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "tab_copylinkaddress" );
     new KAction( i18n("&Close Tab"), "tab_remove", KStdAccel::close(), d->tabWidget, SLOT(slotCloseTab()), actionCollection(), "tab_remove" );
+}
+
+void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
+{
+    if (d->frameManager)
+        return;
+
+    d->frameManager = frameManager;
+
+    new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotBrowserForward()), d->actionCollection, "browser_forward");
+
+    new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBrowserBack()), d->actionCollection, "browser_back");
+
+    new KAction(i18n("Reload"), "reload", 0,                            frameManager, SLOT(slotBrowserReload()),
+                            d->actionCollection, "browser_reload");
+
+    new KAction(i18n("Stop"), "stop", 0, frameManager, SLOT(slotBrowserStop()),
+                                 d->actionCollection, "browser_stop");
 }
 
 QWidget* ActionManagerImpl::container(const char* name)

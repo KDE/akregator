@@ -60,6 +60,11 @@ class FrameManager : public QObject
         void slotChangeFrame(Frame* frame);
         void slotOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args, Frame::OpenURLOptions options);
 
+        void slotBrowserBack();
+        void slotBrowserForward();
+        void slotBrowserReload();
+        void slotBrowserStop();
+
     signals:
 
         void signalFrameAdded(Frame*);
