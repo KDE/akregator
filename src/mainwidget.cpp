@@ -25,90 +25,60 @@
 */
 
 #include "actionmanagerimpl.h"
-#include "akregator_part.h"
-#include "listtabwidget.h"
-#include "mainwidget.h"
 #include "addfeeddialog.h"
-#include "browserframe.h"
-#include "propertiesdialog.h"
-#include "frame.h"
-#include "framemanager.h"
-#include "fetchqueue.h"
-#include "feedlistview.h"
 #include "articlelistview.h"
 #include "articleviewer.h"
-#include "viewer.h"
-#include "feed.h"
-#include "tagfolder.h"
-#include "folder.h"
-#include "feedlist.h"
 #include "akregatorconfig.h"
+#include "akregator_part.h"
+#include "browserframe.h"
+#include "feed.h"
+#include "feedlist.h"
+#include "feedlistview.h"
+#include "fetchqueue.h"
+#include "folder.h"
+#include "framemanager.h"
 #include "kernel.h"
-#include "pageviewer.h"
+#include "listtabwidget.h"
+#include "mainwidget.h"
+#include "notificationmanager.h"
+#include "propertiesdialog.h"
+#include "progressmanager.h"
 #include "searchbar.h"
 #include "speechclient.h"
-#include "storage.h"
 #include "tabwidget.h"
 #include "tag.h"
-#include "tagset.h"
+#include "tagfolder.h"
 #include "tagnode.h"
 #include "tagnodelist.h"
 #include "tagpropertiesdialog.h"
+#include "tagset.h"
 #include "treenode.h"
-#include "progressmanager.h"
 #include "treenodevisitor.h"
-#include "notificationmanager.h"
 
 #include <kaction.h>
 #include <kapplication.h>
-#include <kcharsets.h>
-#include <kcombobox.h>
-#include <kconfig.h>
 #include <kdebug.h>
 #include <kdialog.h>
 #include <kfiledialog.h>
 #include <kfileitem.h>
-#include <khtml_part.h>
-#include <khtmlview.h>
 #include <kiconloader.h>
 #include <kinputdialog.h>
-#include <klineedit.h>
-#include <klistview.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <kpassdlg.h>
 #include <kprocess.h>
-#include <krun.h>
+#include <krandom.h>
 #include <kshell.h>
 #include <kstandarddirs.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
-#include <kxmlguifactory.h>
 #include <kparts/partmanager.h>
 
-#include <q3buttongroup.h>
-#include <qcheckbox.h>
-#include <qdatetime.h> // for startup time measure
-#include <qfile.h>
-#include <q3hbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <q3multilineedit.h>
-#include <q3popupmenu.h>
-#include <q3stylesheet.h>
-#include <qtextstream.h>
-#include <qtimer.h>
-#include <qtoolbutton.h>
-#include <qtooltip.h>
-#include <q3valuevector.h>
-#include <qsplitter.h>
-#include <qclipboard.h>
-//Added by qt3to4:
+#include <QClipboard>
 #include <QPixmap>
-#include <QList>
-#include <QVBoxLayout>
-#include <ktoolinvocation.h>
-#include <krandom.h>
+#include <QSplitter>
+#include <QTimer>
+
+#include <q3stylesheet.h>
 
 namespace Akregator {
 
