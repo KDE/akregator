@@ -28,12 +28,11 @@
 
 #include <kcombobox.h>
 #include <klineedit.h>
-#include <kpassdlg.h>
 #include <klocale.h>
 #include <knuminput.h>
+#include <kpassdlg.h>
 
 #include <qcheckbox.h>
-#include <q3buttongroup.h>
 #include <qradiobutton.h>
 
 namespace Akregator {

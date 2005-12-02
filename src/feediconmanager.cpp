@@ -33,10 +33,9 @@
 #include <kstaticdeleter.h>
 #include <kurl.h>
 
-#include <q3dict.h>
-
-#include <QPixmap>
 #include <QList>
+#include <QMultiHash>
+#include <QPixmap>
 
 namespace Akregator {
 
@@ -44,7 +43,7 @@ class FeedIconManager::FeedIconManagerPrivate
 {
     public:
     QList<Feed*> registeredFeeds;
-    Q3Dict<Feed> urlDict;
+    QMultiHash<QString, Feed*> urlDict;
 };
 
 FeedIconManager *FeedIconManager::m_instance = 0;

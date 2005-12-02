@@ -26,13 +26,14 @@
 #include "feed.h"
 #include "feeditem.h"
 
-#include <q3popupmenu.h>
-//Added by qt3to4:
-#include <QPixmap>
 #include <kaction.h>
 #include <kdebug.h>
 #include <kiconloader.h>
-#include <qstring.h>
+
+#include <QPixmap>
+#include <QString>
+
+#include <q3popupmenu.h>
 
 namespace Akregator {
 

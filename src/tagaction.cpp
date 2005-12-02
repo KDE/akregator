@@ -26,15 +26,13 @@
 #include "tag.h"
 #include "tagaction.h"
 
-#include <kapplication.h>
 #include <kactioncollection.h>
+#include <kapplication.h>
+#include <kauthorized.h>
 #include <kdebug.h>
 #include <kmenu.h>
 
-#include <qmap.h>
-#include <q3popupmenu.h>
-#include <kauthorized.h>
-
+#include <QMap>
 
 namespace Akregator {
 

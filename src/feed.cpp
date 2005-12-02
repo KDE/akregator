@@ -40,8 +40,7 @@
 #include <kstandarddirs.h>
 #include <kurl.h>
 
-#include <q3listview.h>
-#include <q3tl.h>
+//#include <qtl.h>
 
 #include <QDateTime>
 #include <QDomDocument>
@@ -798,7 +797,7 @@ void Feed::enforceLimitArticleNumber()
 
     setNotificationMode(false);
     QList<Article> articles = d->articles.values();
-    qHeapSort(articles);
+    qSort(articles);
     QList<Article>::Iterator it = articles.begin();
     QList<Article>::Iterator tmp;
     QList<Article>::Iterator en = articles.end();

@@ -27,7 +27,6 @@
 #include "fetchqueue.h"
 #include "treenodevisitor.h"
 
-#include <q3listview.h>
 #include <qdom.h>
 #include <QStringList>
 #include <QList>

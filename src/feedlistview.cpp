@@ -47,17 +47,16 @@
 #include <kstringhandler.h>
 #include <k3urldrag.h>
 
-#include <qfont.h>
 #include <q3header.h>
-#include <qpainter.h>
-#include <q3ptrdict.h>
-#include <qtimer.h>
 
-//Added by qt3to4:
-#include <QPixmap>
-#include <QList>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QFont>
+#include <QHash>
+#include <QList>
+#include <QPainter>
+#include <QPixmap>
+#include <QTimer>
 
 namespace Akregator {
 
@@ -65,7 +64,7 @@ class NodeListView::NodeListViewPrivate
 {
     public:
 /** used for finding the item belonging to a node */
-    Q3PtrDict<TreeNodeItem> itemDict;
+    QHash<TreeNode*, TreeNodeItem*> itemDict;
     NodeList* nodeList;
     bool showTagFolders;
 
@@ -455,7 +454,7 @@ TreeNode* NodeListView::findNodeByTitle(const QString& title)
 
 TreeNodeItem* NodeListView::findNodeItem(TreeNode* node)
 {
-    return d->itemDict.find(node);
+    return d->itemDict[node];
 }
 
 TreeNodeItem* NodeListView::findItemByTitle(const QString& text, int column, ComparisonFlags compare) const
@@ -479,9 +478,9 @@ void NodeListView::startNodeRenaming(TreeNode* node)
 
 void NodeListView::clear()
 {
-    Q3PtrDictIterator<TreeNodeItem> it(d->itemDict);
-    for( ; it.current(); ++it )
-        disconnectFromNode( it.current()->node() );
+    QHash<TreeNode*, TreeNodeItem*>::Iterator it = d->itemDict.begin();
+    for( ; it != d->itemDict.end(); ++it )
+        disconnectFromNode( (*it)->node() );
     d->itemDict.clear();
     d->nodeList = 0;
     

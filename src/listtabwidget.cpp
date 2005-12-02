@@ -27,20 +27,17 @@
 #include "folder.h"
 #include "treenode.h"
 
+#include <kdebug.h>
 #include <kmultitabbar.h>
 
-#include <qicon.h>
-#include <qlayout.h>
-#include <qmap.h>
-#include <qstring.h>
-//#include <QList>
-//#include <q3widgetstack.h>
-//Added by qt3to4:
-#include <QPixmap>
 #include <QGridLayout>
+#include <QIcon>
+#include <QLayout>
+#include <QMap>
+#include <QPixmap>
 #include <QStackedWidget>
+#include <QString>
 
-#include <kdebug.h>
 
 namespace Akregator {
 

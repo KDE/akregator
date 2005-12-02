@@ -22,19 +22,18 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "folderitem.h"
 #include "treenode.h"
 #include "treenodeitem.h"
-#include "folderitem.h"
-#include <qfont.h>
-#include <q3header.h>
-#include <qpainter.h>
-#include <qstring.h>
-//Added by qt3to4:
-#include <QPixmap>
-
-#include <kstringhandler.h>
 
 #include <kdebug.h>
+#include <kstringhandler.h>
+
+#include <QFont>
+#include <QPainter>
+#include <QPixmap>
+#include <QString>
+
 
 namespace Akregator {
 

@@ -22,13 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <qdatetime.h>
-#include <qevent.h>
-#include <q3scrollview.h>
-#include <QList>
-//Added by qt3to4:
-#include <QKeyEvent>
-
 #include <kaction.h>
 #include <kapplication.h>
 #include <kdebug.h>
@@ -41,14 +34,15 @@
 #include <kshell.h>
 #include <kmessagebox.h>
 #include <kio/netaccess.h>
+
 #include <libkdepim/kfileio.h>
 
 #include "aboutdata.h"
 #include "akregatorconfig.h"
+#include "article.h"
 #include "articleviewer.h"
 #include "feed.h"
 #include "folder.h"
-#include "article.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
 #include "tagnode.h"
