@@ -25,9 +25,8 @@
 
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
-#include "akregator_part.h"
-#include "mainwidget.h"
 #include "akregatorconfig.h"
+#include "akregator_part.h"
 #include "article.h"
 #include "articlefilter.h"
 #include "articleinterceptor.h"
@@ -35,11 +34,10 @@
 #include "fetchqueue.h"
 #include "framemanager.h"
 #include "kernel.h"
+#include "mainwidget.h"
 #include "notificationmanager.h"
-#include "pageviewer.h"
 #include "plugin.h"
 #include "pluginmanager.h"
-#include "speechclient.h"
 #include "storage.h"
 #include "storagefactory.h"
 #include "storagefactorydummyimpl.h"
@@ -50,32 +48,20 @@
 
 #include <dcopclient.h>
 #include <kaboutdata.h>
-#include <kaction.h>
-#include <kactionclasses.h>
-#include <kactioncollection.h>
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kconfigdialog.h>
 #include <kfiledialog.h>
 #include <kglobalsettings.h>
-#include <khtmldefaults.h>
-#include <kinstance.h>
-#include <kmainwindow.h>
-#include <kmenu.h>
 #include <kmessagebox.h>
 #include <knotifyclient.h>
 #include <knotifydialog.h>
-#include <kservice.h>
 #include <kstandarddirs.h>
-#include <kstdaction.h>
 #include <ktempfile.h>
 #include <ktrader.h>
-#include <ktoolinvocation.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
-#include <kparts/browserinterface.h>
 #include <kparts/genericfactory.h>
-#include <kparts/partmanager.h>
 
 #include <QFile>
 #include <QObject>
