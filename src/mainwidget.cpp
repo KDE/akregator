@@ -71,7 +71,6 @@
 #include <kstandarddirs.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
-#include <kparts/partmanager.h>
 
 #include <QClipboard>
 #include <QPixmap>
