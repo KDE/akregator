@@ -689,8 +689,8 @@ ArticleListView::~ArticleListView()
 QList<Article> ArticleListView::selectedArticles() const
 {
     QList<Article> ret;
-    Q3PtrList<Q3ListViewItem> items = selectedItems(false);
-    for (Q3ListViewItem* i = items.first(); i; i = items.next() )
+    QList<Q3ListViewItem*> items = selectedItems(false);
+    Q_FOREACH ( Q3ListViewItem* i, items )
         ret.append((static_cast<ArticleItem*>(i))->article());
     return ret;
 }
