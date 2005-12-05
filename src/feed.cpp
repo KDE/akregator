@@ -62,9 +62,14 @@ class Feed::FeedPrivate
         bool markImmediatelyAsRead;
         bool useNotification;
         bool loadLinkedWebsite;
-        int lastFetched;
 
         bool fetchError;
+        
+        int lastErrorFetch; // save time of last fetch that went wrong.
+                            // != lastFetch property from the archive 
+                            // (that saves the last _successfull fetch!)
+                            // workaround for 3.5.x
+
         int fetchTries;
         bool followDiscovery;
         RSS::Loader* loader;
@@ -267,6 +272,7 @@ Feed::Feed() : TreeNode(), d(new FeedPrivate)
     d->markImmediatelyAsRead = false;
     d->useNotification = false;
     d->fetchError = false;
+    d->lastErrorFetch = 0;
     d->fetchTries = 0;
     d->loader = 0;
     d->articlesLoaded = false;
@@ -395,6 +401,14 @@ void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
         queue->addFeed(this);
     else
     {
+        uint now = QDateTime::currentDateTime().toTime_t();
+
+        // workaround for 3.5.x: if the last fetch went wrong, try again after 30 minutes
+        // this fixes annoying behaviour of akregator, especially when the host is reachable
+        // but Akregator can't parse the feed (the host is hammered every minute then)
+        if ( fetchErrorOccurred() && now - d->lastErrorFetch <= 30*60 )
+             return;
+
         int interval = -1;
 
         if (useCustomFetchInterval() )
@@ -404,8 +418,6 @@ void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
                 interval = Settings::autoFetchInterval() * 60;
 
         uint lastFetch = d->archive->lastFetch();
-
-        uint now = QDateTime::currentDateTime().toTime_t();
 
         if ( interval > 0 && now - lastFetch >= (uint)interval )
             queue->addFeed(this);
@@ -587,6 +599,7 @@ void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
         else
         {
             d->fetchError = true;
+            d->lastErrorFetch = QDateTime::currentDateTime().toTime_t();
             emit fetchError(this);
         }
         return;
