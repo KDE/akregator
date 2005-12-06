@@ -75,7 +75,7 @@ const char* ArticleDrag::format(int i) const
 
 QByteArray ArticleDrag::encodedData(const char* mime) const
 {
-    Q3CString mimetype(mime);
+    QByteArray mimetype(mime);
     if (mimetype == "akregator/articles")
     {
         QByteArray ba;
