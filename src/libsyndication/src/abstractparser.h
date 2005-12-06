@@ -34,7 +34,7 @@ class DocumentSource;
 
 /**
  * Interface for all parsers. The parsers for the various formats must
- * implement this interface and register themselves at the PluginRegistry.
+ * implement this interface and register themselves at the ParserRegistry.
  *
  * @author Frank Osterfeld
  */
