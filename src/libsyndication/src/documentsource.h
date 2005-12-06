@@ -35,7 +35,8 @@ namespace LibSyndication {
  * downloaded file.
  *
  * It provides a (cached) DOM representation of the document, but keeps
- * the raw data available (for (rarely used) formats like Okay! News...).
+ * the raw data available (for (rarely used) non-XML formats like Okay!
+ * News...).
  *
  * This way the document can be passed to all available parsers (to find the
  * right one for the source), regardless whether they parse XML formats or
