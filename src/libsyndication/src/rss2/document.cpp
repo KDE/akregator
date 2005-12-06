@@ -37,6 +37,7 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QList>
+#include <QSet>
 #include <QString>
 
 #include <krfcdate.h>
@@ -66,8 +67,8 @@ class Document::DocumentPrivate : public LibSyndication::Shared
     int ttl;
     Image image;
     TextInput textInput;
-    QList<int> skipHours;
-    QList<int> skipDays;
+    QSet<int> skipHours;
+    QSet<DayOfWeek> skipDays;
     QList<Item> items;
 
     bool operator==(const DocumentPrivate& other) const
@@ -583,7 +584,7 @@ void Document::addSkipHour(int hour)
     d->skipHours.append(hour);
 }
 
-void Document::setSkipHours(const QList<int>& skipHours)
+void Document::setSkipHours(const QSet<int>& skipHours)
 {
     d = DocumentPrivate::copyOnWrite(d);
     d->isNull = false;
@@ -597,36 +598,36 @@ void Document::removeSkipHour(int hour)
     d->skipHours.remove(hour);
 }
 
-QList<int> Document::skipHours() const
+QSet<int> Document::skipHours() const
 {
-    return !d->isNull ? d->skipHours : QList<int>();
+    return !d->isNull ? d->skipHours : QSet<int>();
 }
 
 
-void Document::addSkipDay(int day)
+void Document::addSkipDay(DayOfWeek day)
 {
     d = DocumentPrivate::copyOnWrite(d);
     d->isNull = false;
     d->skipDays.append(day);
 }
 
-void Document::setSkipDays(const QList<int>& skipDays)
+void Document::setSkipDays(const QSet<DayOfWeek>& skipDays)
 {
     d = DocumentPrivate::copyOnWrite(d);
     d->isNull = false;
     d->skipDays = skipDays;
 }
 
-void Document::removeSkipDay(int day)
+void Document::removeSkipDay(DayOfWeek day)
 {
     d = DocumentPrivate::copyOnWrite(d);
     d->isNull = false;
     d->skipDays.remove(day);
 }
 
-QList<int> Document::skipDays() const
+QSet<DayOfWeek> Document::skipDays() const
 {
-    return !d->isNull ? d->skipDays : QList<int>();
+    return !d->isNull ? d->skipDays : QSet<DayOfWeek>();
 }
 
 void Document::addItem(const Item& item)

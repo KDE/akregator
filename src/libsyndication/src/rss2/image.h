@@ -51,56 +51,58 @@ class Image
 
     bool isNull() const;
 
-    void setURL(const QString& url);
+    /**
+     * the URL of a GIF, JPEG or PNG image 
+     *
+     * @return TODO
+     */
     QString url() const;
+    void setURL(const QString& url);
 
-    void setTitle(const QString& title);
+    /** 
+     * Describes the image, can be used in the ALT attribute of the 
+     * HTML <img> tag when the channel is rendered in HTML.
+     *
+     * @return TODO
+     */
     QString title() const;
+    void setTitle(const QString& title);
 
-    void setLink(const QString& title);
+    /**
+     * The URL of the site, when the channel is rendered, the image should be
+     * a link to the site.
+     *
+     * @return TODO
+     */
     QString link() const;
+    void setLink(const QString& title);
 
-    void setWidth(int width);
+    /**
+     * The width of the image. If the feed itself doesn't specify a width,
+     * this method returns 88, the default value.
+     *
+     * @return image width in pixels.
+     */
     int width() const;
+    void setWidth(int width);
 
-    void setHeight(int height);
+    /**
+     * The height of the image. If the feed itself doesn't specify a height,
+     * this method returns 31, the default value.
+     *
+     * @return image height in pixels.
+     */
     int height() const;
+    void setHeight(int height);
 
-    void setDescription(const QString& description);
+    /**
+     * optional text that can be included in the TITLE attribute of the link
+     * formed around the image in HTML rendering.
+     *
+     * @return TODO
+     */
     QString description() const;
-
-/*
-    QString dcTitle() const;
-    void setDcTitle(const QString& dcTitle);
-    QString dcCreator() const;
-    void setDcCreator(const QString& dcCreator);
-    QString dcSubject() const;
-    void setDcSubject(const QString& dcSubject);
-    QString dcDescription() const;
-    void setDcDescription(const QString& dcDescription);
-    QString dcPublisher() const;
-    void setDcPublisher(const QString& dcPublisher);
-    QString dcContributor() const;
-    void setDcContributor(const QString& dcContributor);
-    QDateTime dcDate() const;
-    void setDcDate(const QDatetime& dcDate);
-    QString dcType() const;
-    void setDcType(const QString& dcType);
-    QString dcFormat() const;
-    void setDcFormat(const QString& dcFormat);
-    QString dcIdentifier() const;
-    void setDcIdentifier(const QString& dcIdentifier);
-    QString dcSource() const;
-    void setDcSource(const QString& dcSource);
-    QString dcLanguage() const;
-    void setDcLanguage(const QString& dcLanguage);
-    QString dcRelation() const;
-    void setDcRelation(const QString& dcRelation);
-    QString dcCoverage() const;
-    void setDcCoverage(const QString& dcCoverage);
-    QString dcRights() const;
-    void setDcRights(const QString& dcRights);
-*/
+    void setDescription(const QString& description);
 
     QString debugInfo() const;
 

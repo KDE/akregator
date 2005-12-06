@@ -32,6 +32,12 @@ class QDomElement;
 namespace LibSyndication {
 namespace RSS2 {
 
+    /**
+     * "The purpose of the <textInput> element is something of a mystery.
+     * You can use it to specify a search engine box. Or to allow a
+     * reader to provide feedback. Most aggregators ignore it."
+     *
+     */
     class TextInput
     {
         public:
@@ -49,17 +55,38 @@ namespace RSS2 {
 
         bool isNull() const;
 
-        void setTitle(const QString& title);
+        /**
+         * The label of the Submit button in the text input area.
+         *
+         * @return TODO
+         */
         QString title() const;
 
-        void setName(const QString& name);
+        void setTitle(const QString& title);
+
+        /**
+         * The name of the text object in the text input area.
+         *
+         * @return TODO
+         */
         QString name() const;
+        void setName(const QString& name);
 
-        void setDescription(const QString& description);
+        /**
+         * Explains the text input area.
+         *
+         * @return TODO
+         */
         QString description() const;
+        void setDescription(const QString& description);
 
-        void setLink(const QString& link);
+        /**
+         * The URL of the CGI script that processes text input requests.
+         *
+         * @return TODO
+         */
         QString link() const;
+        void setLink(const QString& link);
 
         QString debugInfo() const;
 

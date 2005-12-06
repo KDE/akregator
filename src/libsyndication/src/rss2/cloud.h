@@ -32,6 +32,30 @@ class QString;
 namespace LibSyndication {
 namespace RSS2
 {
+   // taken from http://blogs.law.harvard.edu/tech/rss
+
+   /**
+    * Cloud information for an RSS channel.
+    * It specifies a web service that supports the rssCloud interface which can
+    * be implemented in HTTP-POST, XML-RPC or SOAP 1.1.
+    * Its purpose is to allow processes to register with a cloud to be notified
+    * of updates to the channel,
+    * implementing a lightweight publish-subscribe protocol for RSS feeds.
+    *
+    * Example:
+    *
+    * Domain="rpc.sys.com", port="80", path="/RPC2"
+    * registerProcedure="myCloud.rssPleaseNotify" protocol="xml-rpc"
+    *
+    * In this example, to request notification on the channel it appears in,
+    * you would send an XML-RPC message to rpc.sys.com on port 80, with a path
+    * of /RPC2. The procedure to call is myCloud.rssPleaseNotify.
+    *
+    * For more information on the rssCloud interface see
+    * http://blogs.law.harvard.edu/tech/soapMeetsRss#rsscloudInterface
+    *
+    * @author Frank Osterfeld
+    */
     class Cloud
     {
         public:

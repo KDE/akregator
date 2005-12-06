@@ -30,6 +30,19 @@ class QDomDocument;
 
 namespace LibSyndication {
 
+/** 
+ * Represents the source of a syndication document, as read from the
+ * downloaded file.
+ *
+ * It provides a (cached) DOM representation of the document, but keeps
+ * the raw data available (for (rarely used) formats like Okay! News...).
+ *
+ * This way the document can be passed to all available parsers (to find the
+ * right one for the source), regardless whether they parse XML formats or
+ * non-XML formats, without having every parser to do the XML parsing again.
+ *
+ * @author Frank Osterfeld
+ */
 class DocumentSource
 {
     public:
@@ -42,7 +55,20 @@ class DocumentSource
 
         DocumentSource& operator=(const DocumentSource& other);
 
+        /**
+         * Returns the feed source as byte array.
+         *
+         * @return the feed source as raw byte array.
+         */
         QByteArray asByteArray() const;
+
+        /**
+         * Returns the feed source as DOM document.
+         * The document is parsed only on the first call of this method
+         * and then cached.
+         *
+         * @return XML representation parsed from the raw source
+         */
         QDomDocument asDomDocument() const;
 
     private: 

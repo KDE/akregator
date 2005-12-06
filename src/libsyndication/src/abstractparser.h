@@ -32,14 +32,40 @@ namespace LibSyndication {
 class Document;
 class DocumentSource;
 
+/**
+ * Interface for all parsers. The parsers for the various formats must
+ * implement this interface and register themselves at the PluginRegistry.
+ *
+ * @author Frank Osterfeld
+ */
 class AbstractParser
 {
     public:
 
         virtual ~AbstractParser() {}
 
+        /**
+         * Lets the parser check if it can parse the passed source.
+         * Parser implementations should do a _quick_ check for the file
+         * format (i.e. check for feed format and version number in the top
+         * element) to find out if the source is in a supported format. They
+         * should _not_ completely parse the document to test for full
+         * compliance to the format specification.
+         *
+         * @param source the document source to be checked
+         * @return whether @c source seems to be in a format supported by the
+         *         parser
+         */
         virtual bool accept(const DocumentSource& source) const = 0;
 
+        /**
+         * Lets the parser parse a document source. The parser returns a
+         * valid document instance if successfull, or an invalid one otherwise.
+         * TODO: add isValid() to Document and link it here
+         *
+         * @param source The document source to be parsed
+         * @return a pointer to a newly created document parsed from @c source
+         */
         virtual Document* parse(const DocumentSource& source) const = 0;
 };
 

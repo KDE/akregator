@@ -33,6 +33,7 @@ class QDomElement;
 class QString;
 
 template <class T> class QList;
+template <class T> class QSet;
 
 namespace LibSyndication {
 namespace RSS2
@@ -65,70 +66,194 @@ namespace RSS2
 
 	virtual bool accept(DocumentVisitor* visitor);
 
-        void setTitle(const QString& title);
+
+
+        /**
+         * The title of the channel.
+         *
+         * @return title TODO: more on escaping/HTML
+         */
         QString title() const;
 
-        void setLink(const QString& link);
+        void setTitle(const QString& title);
+
+        /** 
+         * The URL to the HTML website corresponding to the channel.
+         *
+         * @return TODO 
+         */
         QString link() const;
 
-        void setDescription(const QString& description);
+        void setLink(const QString& link);
+
+        /**
+         * Phrase or sentence describing the channel.
+         *
+         * @return TODO
+         */
         QString description() const;
 
-        void setLanguage(const QString& language);
+        void setDescription(const QString& description);
+
+        /**
+         *
+         * @return TODO
+         */
         QString language() const;
+        void setLanguage(const QString& language);
 
-        void setCopyright(const QString& copyright);
+        /**
+         * Copyright notice for content in the channel.
+         *
+         * @return TODO
+         */
         QString copyright() const;
+        void setCopyright(const QString& copyright);
 
-        void setManagingEditor(const QString& managingEditor);
+        /**
+         * Email address for person responsible for editorial content.
+         *
+         * @return TODO
+         */
         QString managingEditor() const;
+        void setManagingEditor(const QString& managingEditor);
 
-        void setWebMaster(const QString& webMaster);
+        /**
+         * Email address for person responsible for technical issues relating
+         * to channel.
+         *
+         * @return TODO
+         */
         QString webMaster() const;
+        void setWebMaster(const QString& webMaster);
 
-        void setPubDate(const QDateTime& pubDate);
+        /** 
+         * The publication date for the content in the channel. For example,
+         * the New York Times publishes on a daily basis, the publication date
+         * flips once every 24 hours. That's when the pubDate of the channel
+         * changes.
+         *
+         * @return TODO
+         */
         QDateTime pubDate() const;
+        void setPubDate(const QDateTime& pubDate);
 
-        void setLastBuildDate(const QDateTime& lastBuildDate);
+        /**
+         * The last time the content of the channel changed.
+         *
+         * @return TODO
+         */
         QDateTime lastBuildDate() const;
+        void setLastBuildDate(const QDateTime& lastBuildDate);
 
+        /**
+         * Specifies one or more categories that the channel belongs to.
+         *
+         * @return TODO
+         */
+        QList<Category> categories() const;
         void addCategory(const Category& category);
         void setCategories(const QList<Category>& categories);
         void removeCategory(const Category& category);
-        QList<Category> categories() const;
 
-        void setGenerator(const QString& generator);
+        /**
+         * A string indicating the program used to generate the channel.
+         *
+         * @return TODO
+         */
         QString generator() const;
+        void setGenerator(const QString& generator);
 
-        void setDocs(const QString& docs);
+        /**
+         * A URL that points to the documentation for the format used in the
+         * RSS file. It's probably a pointer to this page. It's for people who
+         * might stumble across an RSS file on a Web server 25 years from now
+         * and wonder what it is.
+         *
+         * @return TODO
+         */
         QString docs() const;
+        void setDocs(const QString& docs);
 
-        void setCloud(const Cloud& cloud);
+        /**
+         * Allows processes to register with a cloud to be notified of updates
+         * to the channel, implementing a lightweight publish-subscribe
+         * protocol for RSS feeds.
+         *
+         * @return TODO
+         */
         Cloud cloud() const;
+        void setCloud(const Cloud& cloud);
 
-        void setTtl(int ttl);
+        /**
+         * ttl stands for time to live. It's a number of minutes that indicates
+         * how long a channel can be cached before refreshing from the source.
+         *
+         * @return TODO
+         */
         int ttl() const;
+        void setTtl(int ttl);
 
-        void setImage(const Image& image);
+        /**
+         * Specifies a GIF, JPEG or PNG image that can be displayed with the
+         * channel.
+         *
+         * @return TODO
+         */
         Image image() const;
+        void setImage(const Image& image);
 
-        void setTextInput(const TextInput& textInput);
+        /**
+         * Specifies a text input box that can be displayed with the channel.
+         *
+         * @return TODO
+         */
         TextInput textInput() const;
+        void setTextInput(const TextInput& textInput);
 
+        /**
+         * Contains a set of hours (from 0 to 23), time in GMT, when the
+         * channel is not updated.
+         *
+         * @return TODO
+         */
+        QSet<int> skipHours() const;
         void addSkipHour(int hour);
-        void setSkipHours(const QList<int>& skipHours);
+        void setSkipHours(const QSet<int>& skipHours);
         void removeSkipHour(int hour);
-        QList<int> skipHours() const;
 
-        void addSkipDay(int day);
-        void setSkipDays(const QList<int>& skipDays);
-        void removeSkipDay(int day);
-        QList<int> skipDays() const;
+        /** days of week, used for skip list */
+        enum DayOfWeek
+        {
+            
+            Monday = 0, /**< self-explanatory */
+            Tuesday = 1, /**< self-explanatory */
+            Wednesday = 2, /**< self-explanatory */
+            Thursday = 3, /**< self-explanatory */
+            Friday = 4, /**< self-explanatory */
+            Saturday = 5, /**< self-explanatory */
+            Sunday = 6 /**< self-explanatory */
+        };
 
+        /**
+         * A set of week days where aggregators shouldn't read the channel.
+         *
+         * @return TODO
+         */
+        QSet<DayOfWeek> skipDays() const;
+        void addSkipDay(DayOfWeek day);
+        void setSkipDays(const QSet<DayOfWeek>& skipDays);
+        void removeSkipDay(DayOfWeek day);
+
+        /**
+         *
+         *
+         * @return TODO
+         */
+        QList<Item> items() const;
         void addItem(const Item& item);
         void setItems(const QList<Item>& items);
         void removeItem(const Item& item);
-        QList<Item> items() const;
 
         QString debugInfo() const;
 
