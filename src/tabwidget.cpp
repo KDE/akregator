@@ -119,7 +119,7 @@ void TabWidget::slotPreviousTab()
 
 void TabWidget::addFrame(Frame* frame)
 {
-    if (!frame) 
+    if (!frame)
         return;
     d->frames.insert(frame, frame);
     // TODO: don't let tabwidget insert frames to the manager
@@ -132,7 +132,7 @@ void TabWidget::addFrame(Frame* frame)
 Frame *TabWidget::currentFrame()
 {
     QWidget* w = currentPage();
-    
+
     return w ? d->frames[w] : 0;
 }
 
@@ -191,7 +191,7 @@ void TabWidget::slotSetTitle(Frame* frame, const QString& title)
 void TabWidget::setTitle( const QString &title , QWidget* sender)
 {
     removeTabToolTip( sender );
-   
+
     uint lcw=0, rcw=0;
     int tabBarHeight = tabBar()->sizeHint().height();
     if ( cornerWidget( Qt::TopLeft ) && cornerWidget( Qt::TopLeft )->isVisible() )
@@ -201,7 +201,7 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     uint maxTabBarWidth = width() - lcw - rcw;
 
     int newMaxLength=30;
-    for ( ; newMaxLength > 3; newMaxLength-- ) 
+    for ( ; newMaxLength > 3; newMaxLength-- )
 {
         if ( tabBarWidthForMaxChars( newMaxLength ) < maxTabBarWidth )
             break;
@@ -251,7 +251,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
 
 void TabWidget::slotDetachTab()
 {
-    if (!d->currentItem || indexOf(d->currentItem) == -1) 
+    if (!d->currentItem || indexOf(d->currentItem) == -1)
         d->currentItem = currentPage();
 
     Frame* frame = d->frames[d->currentItem];
@@ -259,13 +259,13 @@ void TabWidget::slotDetachTab()
     if (frame && frame->url().isValid() && frame->isRemovable())
     {
         KToolInvocation::invokeBrowser(frame->url().url(), "0");
-        slotCloseTab(); 
+        slotCloseTab();
     }
 }
 
 void TabWidget::slotCopyLinkAddress()
 {
-    if(!d->currentItem || indexOf(d->currentItem) == -1) 
+    if(!d->currentItem || indexOf(d->currentItem) == -1)
         d->currentItem = currentPage();
     Frame* frame = d->frames[d->currentItem];
 
@@ -279,14 +279,19 @@ void TabWidget::slotCopyLinkAddress()
 
 void TabWidget::slotCloseTab()
 {
-    if (!d->currentItem || indexOf(d->currentItem) == -1) 
+    if (!d->currentItem || indexOf(d->currentItem) == -1)
         d->currentItem = currentPage();
-    if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() ) 
+    if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() )
         return;
-    
+
+    //kdDebug() << "index: " << indexOf(d->currentItem) << endl;
     removeFrame(d->frames[d->currentItem]);
+    //kdDebug() << "index: " << indexOf(d->currentItem) << endl;
+
+    /* no need to do this? looks like it points to main page after removeFrame...
     delete d->currentItem;
-    d->currentItem = 0;
+    d->currentItem = 0;*/
+
 }
 
 void TabWidget::initiateDrag(int tab)
