@@ -22,14 +22,13 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "../shared.h"
-
 #include "category.h"
 #include "tools.h"
 
-#include <qdom.h>
+#include <QDomElement>
 #include <QString>
 
+#include <ksharedptr.h>
 #include <kstaticdeleter.h>
 
 class QString;
@@ -37,26 +36,16 @@ class QString;
 namespace LibSyndication {
 namespace RSS2 {
 
-class Category::CategoryPrivate : public LibSyndication::Shared
+class Category::CategoryPrivate : public KShared
 {
     public:
-    bool isNull;
+
     QString category;
     QString domain;
-
-    bool operator==(const CategoryPrivate &other) const
+    
+    bool operator==(const CategoryPrivate& other) const
     {
-        return (isNull && other.isNull) || (category == other.category && domain == other.domain);
-    }
-
-    static CategoryPrivate* copyOnWrite(CategoryPrivate* ep)
-    {
-        if (ep->count > 1)
-        {
-            ep->deref();
-            ep = new CategoryPrivate(*ep);
-        }
-        return ep;
+        return category == other.category && domain == other.domain;
     }
 };
 
@@ -75,31 +64,19 @@ const Category& Category::null()
 
 bool Category::isNull() const
 {
-    return d->isNull;
+    return d;
 }
 
 Category Category::fromXML(const QDomElement& e)
 {
-    Category obj;
-    if (e.hasAttribute(QString::fromLatin1("domain")))
-        obj.setDomain(e.attribute(QString::fromLatin1("domain")));
-    obj.setCategory(e.text());
+    QString domain = e.attribute(QString::fromLatin1("domain"));
+    QString cat = e.text();
 
+    return Category(cat, domain);
 }
 
-QDomElement Category::toXML(QDomDocument document) const
+Category::Category() : d(0)
 {
-    QDomElement e = document.createElement(QString::fromLatin1("category"));
-    if (!d->domain.isNull())
-        e.setAttribute(QString::fromLatin1("domain"), d->domain);
-    if (!d->category.isNull())
-        e.appendChild(document.createTextNode(d->category));
-    return e;
-}
-
-Category::Category() : d(new CategoryPrivate)
-{
-    d->isNull = true;
 }
 
 Category::Category(const Category& other) : d(0)
@@ -109,59 +86,33 @@ Category::Category(const Category& other) : d(0)
 
 Category::Category(const QString& category, const QString& domain) : d(new CategoryPrivate)
 {
-    d->isNull = false;
     d->category = category;
     d->domain = domain;
 }
 
 Category::~Category()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 Category& Category::operator=(const Category& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 
 bool Category::operator==(const Category &other) const
 {
-    return *d == *other.d;
-}
-
-void Category::setCategory(const QString& category)
-{
-    d = CategoryPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->category = category;
+    return (!d && !other.d) || (*d == *other.d);
 }
 
 QString Category::category() const
 {
-    return !d->isNull ? d->category : QString::null;
-}
-
-void Category::setDomain(const QString& domain)
-{
-    d = CategoryPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->domain = domain;
+    return d ? d->category : QString::null;
 }
 
 QString Category::domain() const
 {
-    return !d->isNull ? d->domain : QString::null;
+    return d ? d->domain : QString::null;
 }
 
 QString Category::debugInfo() const

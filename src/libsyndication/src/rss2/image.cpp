@@ -103,54 +103,6 @@ Image Image::fromXML(const QDomElement& e)
     return obj;
 }
 
-QDomElement Image::toXML(QDomDocument document) const
-{
-    QDomElement e = document.createElement(QString::fromLatin1("image"));
-
-    if (!d->url.isNull()) // required
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("url"));
-        c.appendChild(document.createTextNode(d->url));
-        e.appendChild(c);
-    }
-
-    if (!d->title.isNull()) // required
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("title"));
-        c.appendChild(document.createTextNode(d->title));
-        e.appendChild(c);
-    }
-
-    if (!d->link.isNull()) // required
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("link"));
-        c.appendChild(document.createTextNode(d->link));
-        e.appendChild(c);
-    }
-
-    if (!d->description.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("description"));
-        c.appendChild(document.createTextNode(d->description));
-        e.appendChild(c);
-    }
-
-    if (d->width != -1 && d->width != 88) // 88 is default value
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("width"));
-        c.appendChild(document.createTextNode(QString::number(d->width)));
-        e.appendChild(c);
-    }
-
-    if (d->height != -1 && d->height!= 31) // 31 is default value
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("height"));
-        c.appendChild(document.createTextNode(QString::number(d->height)));
-        e.appendChild(c);
-    }
-    return e;
-}
-
 Image::Image() : d(new ImagePrivate)
 {
     d->isNull = true;

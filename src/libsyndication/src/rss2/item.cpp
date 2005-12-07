@@ -147,64 +147,6 @@ Item Item::fromXML(const QDomElement& e)
     return obj;
 }
 
-QDomElement Item::toXML(QDomDocument document) const
-{
-    QDomElement e = document.createElement(QString::fromLatin1("item"));
-
-    if (!d->title.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("title"));
-        c.appendChild(document.createTextNode(d->title));
-        e.appendChild(c);
-    }
-
-    if (!d->link.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("link"));
-        c.appendChild(document.createTextNode(d->link));
-        e.appendChild(c);
-    }
-
-    if (!d->description.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("description"));
-        c.appendChild(document.createTextNode(d->description));
-        e.appendChild(c);
-    }
-
-    if (!d->author.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("author"));
-        c.appendChild(document.createTextNode(d->author));
-        e.appendChild(c);
-    }
-    if (!d->comments.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("comments"));
-        c.appendChild(document.createTextNode(d->comments));
-        e.appendChild(c);
-    }
-    if (!d->enclosure.isNull())
-        e.appendChild(d->enclosure.toXML(document));
-
-    if (!d->source.isNull())
-        e.appendChild(d->source.toXML(document));
-
-    for (QList<Category>::ConstIterator it = d->categories.begin(); it != d->categories.end(); ++it)
-        e.appendChild((*it).toXML(document));
-
-    if (!d->guid.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("guid"));
-        c.appendChild(document.createTextNode(d->comments));
-        c.setAttribute(QString::fromLatin1("isPermaLink"), d->guidIsPermaLink ? QString::fromLatin1("true") : QString::fromLatin1("false"));
-        e.appendChild(c);
-
-    }
-    // TODO: pubdate
-    return e;
-}
-
 Item::Item() : d(new ItemPrivate)
 {
     d->isNull = true;

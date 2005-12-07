@@ -46,7 +46,6 @@ class Item
     static const Item& null();
 
     static Item fromXML(const QDomElement& e);
-    QDomElement toXML(QDomDocument document) const;
 
     Item();
     Item(const Item& other);

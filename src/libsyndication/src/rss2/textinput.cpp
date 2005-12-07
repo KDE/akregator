@@ -85,39 +85,6 @@ TextInput TextInput::fromXML(const QDomElement& e)
     return obj;
 }
 
-QDomElement TextInput::toXML(QDomDocument document) const
-{
-    QDomElement e = document.createElement(QString::fromLatin1("textInput"));
-
-    if (!d->name.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("name"));
-        c.appendChild(document.createTextNode(d->name));
-        e.appendChild(c);
-    }
-    if (!d->title.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("title"));
-        c.appendChild(document.createTextNode(d->title));
-        e.appendChild(c);
-    }
-
-    if (!d->link.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("link"));
-        c.appendChild(document.createTextNode(d->link));
-        e.appendChild(c);
-    }
-
-    if (!d->description.isNull())
-    {
-        QDomElement c = document.createElement(QString::fromLatin1("description"));
-        c.appendChild(document.createTextNode(d->description));
-        e.appendChild(c);
-    }
-    return e;
-}
-
 TextInput::TextInput() : d(new TextInputPrivate)
 {
     d->isNull = true;

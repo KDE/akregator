@@ -39,7 +39,6 @@ class Source
         static const Source& null();
 
         static Source fromXML(const QDomElement& e);
-        QDomElement toXML(QDomDocument document) const;
 
         Source();
         Source(const QString& source, const QString& url);

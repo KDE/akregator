@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_RSS2_CATEGORY_H
 #define LIBSYNDICATION_RSS2_CATEGORY_H
 
+#include <ksharedptr.h>
+
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -39,7 +41,6 @@ namespace RSS2 {
         static const Category& null();
 
         static Category fromXML(const QDomElement& e);
-        QDomElement toXML(QDomDocument document) const;
 
         Category();
         Category(const Category& other);
@@ -49,10 +50,8 @@ namespace RSS2 {
         Category& operator=(const Category& other);
         bool operator==(const Category& other) const;
 
-        void setCategory(const QString& category);
         QString category() const;
 
-        void setDomain(const QString& domain);
         QString domain() const;
 
         bool isNull() const;
@@ -64,7 +63,7 @@ namespace RSS2 {
         static Category* m_null;
 
         class CategoryPrivate;
-        CategoryPrivate* d;
+        KSharedPtr<CategoryPrivate> d;
 
     };
 } // namespace RSS2

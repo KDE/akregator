@@ -97,19 +97,6 @@ Enclosure Enclosure::fromXML(const QDomElement& e)
     return enc;
 }
 
-QDomElement Enclosure::toXML(QDomDocument document) const
-{
-    QDomElement e = document.createElement(QString::fromLatin1("enclosure"));
-    if (!d->url.isNull())
-        e.setAttribute(QString::fromLatin1("url"), d->url);
-    if (d->length != -1)
-        e.setAttribute(QString::fromLatin1("length"), QString::number(d->length));
-    if (!d->type.isNull())
-        e.setAttribute(QString::fromLatin1("type"), d->type);
-
-    return e;
-}
-
 Enclosure::Enclosure() : d(new EnclosurePrivate)
 {
     d->isNull = true;

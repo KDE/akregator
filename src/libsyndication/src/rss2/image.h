@@ -39,7 +39,6 @@ class Image
     static const Image& null();
 
     static Image fromXML(const QDomElement& e);
-    QDomElement toXML(QDomDocument document) const;
 
     Image();
     Image(const QString& url, const QString& title, const QString& link);

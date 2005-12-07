@@ -52,9 +52,7 @@ namespace RSS2
         static const Document& null();
 
         static Document fromXML(const QDomDocument& document);
-        // TODO: change this to QDomDocument toXML() const;
-        QDomElement toXML(QDomDocument document) const;
-
+        
         Document();
         Document(const Document& other);
         virtual ~Document();

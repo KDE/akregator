@@ -63,7 +63,6 @@ namespace RSS2
         static const Cloud& null();
 
         static Cloud fromXML(const QDomElement& e);
-        QDomElement toXML(QDomDocument document) const;
 
         Cloud();
         Cloud(const Cloud& other);

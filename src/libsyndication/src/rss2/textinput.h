@@ -48,7 +48,6 @@ namespace RSS2 {
         virtual ~TextInput();
 
         static TextInput fromXML(const QDomElement& e);
-        QDomElement toXML(QDomDocument document) const;
 
         TextInput& operator=(const TextInput& other);
         bool operator==(const TextInput& other) const;

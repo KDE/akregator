@@ -39,7 +39,6 @@ namespace RSS2 {
         static const Enclosure& null();
 
         static Enclosure fromXML(const QDomElement& e);
-        QDomElement toXML(QDomDocument document) const;
 
         /** creates an null object (equivalent to @ref Enclosure::null()) */
         Enclosure();

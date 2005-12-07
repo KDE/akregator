@@ -78,19 +78,6 @@ Source Source::fromXML(const QDomElement& e)
     return obj;
 }
 
-QDomElement Source::toXML(QDomDocument document) const
-{
-    QDomElement e = document.createElement(QString::fromLatin1("source"));
-
-    if (!d->source.isNull())
-        e.appendChild(document.createTextNode(d->source));
-
-    if (!d->url.isNull())
-        e.setAttribute(QString::fromLatin1("url"), d->url);
-
-    return e;
-}
-
 bool Source::isNull() const
 {
     return d->isNull;

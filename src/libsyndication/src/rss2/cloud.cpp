@@ -93,23 +93,6 @@ Cloud Cloud::fromXML(const QDomElement& e)
     return obj;
 }
 
-QDomElement Cloud::toXML(QDomDocument document) const
-{
-    QDomElement e = document.createElement(QString::fromLatin1("cloud"));
-    if (!d->domain.isNull())
-        e.setAttribute(QString::fromLatin1("domain"), d->domain);
-    if (!d->path.isNull())
-        e.setAttribute(QString::fromLatin1("path"), d->path);
-    if (d->port != -1)
-        e.setAttribute(QString::fromLatin1("port"), QString::number(d->port));
-    if (!d->registerProcedure.isNull())
-        e.setAttribute(QString::fromLatin1("registerProcedure"), d->registerProcedure);
-    if (!d->protocol.isNull())
-        e.setAttribute(QString::fromLatin1("protocol"), d->protocol);
-
-    return e;
-}
-
 bool Cloud::isNull() const
 {
     return d->isNull;
