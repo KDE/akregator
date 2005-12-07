@@ -68,7 +68,7 @@ class Document::DocumentPrivate : public KShared
     QSet<int> skipHours;
     QSet<DayOfWeek> skipDays;
     QList<Item> items;
-
+    
     bool operator==(const DocumentPrivate& other) const
     {
         return (
@@ -211,6 +211,28 @@ Document Document::fromXML(const QDomDocument& doc)
         }
     }
 
+    QSet<DayOfWeek> skipDays;
+    QDomNode skipDaysNode = e.namedItem(QString::fromLatin1("skipDays"));
+    if (skipDaysNode.isElement())
+    {
+        QHash<QString, DayOfWeek> weekDays;
+
+        weekDays[QString::fromLatin1("Monday")] = Monday;
+        weekDays[QString::fromLatin1("Tuesday")] = Tuesday;
+        weekDays[QString::fromLatin1("Wednesday")] = Wednesday;
+        weekDays[QString::fromLatin1("Thursday")] = Thursday;
+        weekDays[QString::fromLatin1("Friday")] = Friday;
+        weekDays[QString::fromLatin1("Saturday")] = Saturday;
+        weekDays[QString::fromLatin1("Sonday")] = Sunday;
+
+        QList<QDomElement> days = Tools::elementsByTagName(skipHoursNode.toElement(), QString::fromLatin1("day"));
+        for (QList<QDomElement>::ConstIterator it = days.begin(); it != days.end(); ++it)
+        {
+            if (weekDays.contains((*it).text()))
+                skipDays.insert(weekDays[(*it).text()]);
+        }
+    }
+
     QDateTime pubDate;
 
     QString pubDateStr = Tools::extractElementText(e, QString::fromLatin1("pubDate"));
@@ -228,9 +250,15 @@ Document Document::fromXML(const QDomDocument& doc)
         time_t time = KRFCDate::parseDate(lastBuildDateStr);
         lastBuildDate.setTime_t(time);
      }
-    //TODO: skipdays, rating, ttl
-    int ttl = 0;
-    QSet<DayOfWeek> skipDays;
+
+    bool ok;
+    int c;
+
+    QString text = Tools::extractElementText(e, QString::fromLatin1("ttl"));
+    c = text.toInt(&ok);
+    int ttl = ok ? c : 0;
+
+    // TODO: rating
 
     return Document(title, link, description, language, copyright, managingEditor, webMaster, pubDate, lastBuildDate, categories, generator, docs, cloud, ttl, image, textInput, skipHours, skipDays, items);
 }
