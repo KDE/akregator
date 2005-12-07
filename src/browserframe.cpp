@@ -221,7 +221,7 @@ void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
     if (ext)
     {
         (*current).buffer.clear();
-        QDataStream stream( &((*current).buffer), IO_WriteOnly );
+        QDataStream stream( &((*current).buffer), QIODevice::WriteOnly );
 
         ext->saveState( stream );
     }

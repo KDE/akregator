@@ -57,7 +57,7 @@ class Frame : public QWidget
         enum {Idle, Started, Completed, Canceled};
 
         /** options for open URL requests sent from the frame to the outside. TODO: check if KParts::URLArgs covers our needs */
-        enum OpenURLOptions 
+        enum OpenURLOptions
         {
             None, /**< no explicit options, use default */
             NewTab, /**< open in new tab */
@@ -66,15 +66,15 @@ class Frame : public QWidget
 
         virtual KParts::ReadOnlyPart* part() const = 0;
 
-        /** 
+        /**
         * Returns whether the frame can be removed from
         * Akregator (via detach or close tab etc.)  Usually
-        * all tabs but the main tab can be removed. 
+        * all tabs but the main tab can be removed.
         * Default is @c true
         */
-        bool isRemovable() const;            
+        bool isRemovable() const;
 
-        /** 
+        /**
          * returns the URL of the embedded part
          */
         virtual KURL url() const = 0;
@@ -85,21 +85,21 @@ class Frame : public QWidget
         virtual int progress() const;
         virtual const QString& statusText() const;
 
-        /** 
+        /**
          * returns whether it is possible to go forward in the history
          */
         virtual bool canGoForward() const { return false; }
 
-        /** 
+        /**
          * returns whether it is possible to go back in the history
          */
         virtual bool canGoBack() const { return false; }
 
-        /** 
+        /**
          * returns whether the shown content can be reloaded */
         virtual bool isReloadable() const { return false; }
 
-        /** 
+        /**
          * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
         virtual bool isLoading() const { return false; }
 
@@ -109,10 +109,10 @@ class Frame : public QWidget
 
         /** goes a step forward in the history, if possible. See also canGoForward(). */
         virtual void slotHistoryForward() {}
-        
+
         /** goes a step backwards in the history, if possible. See also canGoBack(). */
         virtual void slotHistoryBack() {}
-        
+
         /** reloads the current content, if possible. See also isReloadable(). */
         virtual void slotReload() {}
 
@@ -135,7 +135,7 @@ class Frame : public QWidget
         void signalCompleted(Frame*);
         void signalLoadingProgress(Frame*, int);
         void signalStatusText(Frame*, const QString&);
-    
+
         void signalOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args=KParts::URLArgs(), Frame::OpenURLOptions options=None);
 
         void signalCanGoBackToggled(Frame*, bool);
@@ -164,11 +164,11 @@ class MainFrame : public Frame
 
     public:
 
-        MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* widget, const QString& title);
+        MainFrame(QWidget* /*parent*/, KParts::ReadOnlyPart* /*part*/, QWidget* /*widget*/, const QString& /*title*/);
         virtual ~MainFrame();
 
         virtual KURL url() const;
-        virtual bool openURL(const KURL& /*url*/, const QString& mimetype="text/html") { return false; }
+        virtual bool openURL(const KURL& /*url*/, const QString& /*mimetype="text/html"*/) { return false; }
 
         virtual KParts::ReadOnlyPart* part() const { return m_part; }
 

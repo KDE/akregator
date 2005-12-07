@@ -52,7 +52,7 @@ QString Tools::childNodesAsXML(const QDomNode& parent)
     QTextStream ts( &str, QIODevice::WriteOnly );
     for (int i = 0; i < list.count(); ++i)
         ts << list.item(i);
-    return str.stripWhiteSpace();
+    return str.trimmed();
 }
 
 QString Tools::extractContent(const QDomNode& parent)

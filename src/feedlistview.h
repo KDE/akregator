@@ -45,7 +45,7 @@ Q_OBJECT
 public:
     NodeListView( QWidget *parent = 0, const char *name = 0 );
     virtual ~NodeListView();
-    
+
     /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
     void setNodeList(NodeList* nodeList);
 
@@ -53,7 +53,7 @@ public:
         * @return root node
         */
     Folder* rootNode();
-    
+
     /** Returns the currently selected node, @c null when no one is selected.
         @return selected node
         */
@@ -68,7 +68,7 @@ public:
         returns 0 if no node was found
     @param title
     @return node
-        */ 
+        */
     TreeNode* findNodeByTitle(const QString& title);
 
     /** ensures that @c node is visible. */
@@ -76,8 +76,8 @@ public:
 
     /** activates in-place renaming for the item of @c node */
     void startNodeRenaming(TreeNode* node);
-    
-    
+
+
     /** reimplemented: clears the view and creates the root node ("All Feeds") */
     virtual void clear();
 
@@ -85,7 +85,7 @@ public:
     void setShowTagFolders(bool enabled);
 
 public slots:
-    
+
     /** go one item up */
     void slotItemUp();
     /** go one item down */
@@ -103,7 +103,7 @@ public slots:
     void slotNextFeed();
     void slotPrevUnreadFeed();
     void slotNextUnreadFeed();
-    
+
 signals:
     void signalDropped (KURL::List &, TreeNode*, Folder*);
     void signalNodeSelected(TreeNode*);
@@ -129,7 +129,7 @@ protected:
 
     virtual void connectToNodeList(NodeList* list);
     virtual void disconnectFromNodeList(NodeList* list);
-    
+
     virtual void drawContentsOffset( QPainter * p, int ox, int oy,
                                         int cx, int cy, int cw, int ch );
     virtual void contentsDragMoveEvent(QDragMoveEvent* event);
@@ -140,10 +140,10 @@ protected:
     void insertNode(Q3ListViewItem* parent, Q3ListViewItem* item, Q3ListViewItem* after);
 
     virtual Q3DragObject *dragObject();
-            
+
 
 protected slots:
-    
+
 
     void slotDropped(QDropEvent *e, Q3ListViewItem* after);
     void slotRootNodeChanged(TreeNode*);
@@ -158,15 +158,15 @@ protected slots:
 
     /** called when a node is added to the tree. If no item for the node exists, it will be created */
     virtual void slotNodeAdded(TreeNode* node);
-    
-    /** Called when a node in the tree is taken out of the tree (parent->removeChild()) 
-    
+
+    /** Called when a node in the tree is taken out of the tree (parent->removeChild())
+
     Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
     virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
-    
+
     /** deletes the item belonging to the deleted node */
     virtual void slotNodeDestroyed(TreeNode* node);
-    
+
     /** update the item belonging to the node */
     virtual void slotNodeChanged(TreeNode* node);
 
@@ -175,7 +175,7 @@ protected slots:
 private:
     friend class ConnectNodeVisitor;
     class ConnectNodeVisitor;
-    
+
     friend class DisconnectNodeVisitor;
     class DisconnectNodeVisitor;
 
@@ -194,7 +194,7 @@ class TagNodeListView : public NodeListView
 {
     Q_OBJECT
     public:
-        TagNodeListView(QWidget *parent = 0, const char *name = 0) {} 
+        TagNodeListView(QWidget */*parent = 0*/, const char */*name = 0*/) {}
         virtual ~TagNodeListView() {}
 
     private:

@@ -75,7 +75,7 @@ void Frame::slotSetProgress(int a)
 void Frame::slotSetState(int a)
 {
     m_state=a;
-    
+
     switch (m_state)
     {
         case Frame::Started:
@@ -113,7 +113,7 @@ bool Frame::isRemovable() const
 
 Frame::~Frame()
 {
-    if(m_progressItem) 
+    if(m_progressItem)
     {
         m_progressItem->setComplete();
     }
@@ -176,9 +176,9 @@ int Frame::progress() const
     return m_progress;
 }
 
-MainFrame::MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* visibleWidget, const QString& title) : Frame(parent), m_part(part)
+MainFrame::MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* visibleWidget, const QString& /*title*/) : Frame(parent), m_part(part)
 {
-    
+
     setRemovable(false);
     QGridLayout* layout = new QGridLayout(this);
     layout->addWidget(visibleWidget, 0, 0);

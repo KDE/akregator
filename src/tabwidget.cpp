@@ -151,7 +151,8 @@ void TabWidget::slotRemoveCurrentFrame()
 void TabWidget::removeFrame(Frame *f)
 {
     d->frames.remove(f);
-    removePage(f);
+    slotPreviousTab();
+    removeTab(indexOf(f));
     // TODO: don't let tabwidget insert frames to the manager
     Kernel::self()->frameManager()->removeFrame(f);
     delete f;
@@ -214,8 +215,8 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     }
 
     newTitle.replace( '&', "&&" );
-    if ( tabLabel( sender ) != newTitle )
-        changeTab( sender, newTitle );
+    if ( tabText(indexOf(sender)) != newTitle )
+        setTabText( indexOf(sender), newTitle );
 
     if( newMaxLength != d->CurrentMaxLength )
     {
@@ -231,8 +232,8 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
             }
 
             newTitle.replace( '&', "&&" );
-            if ( newTitle != tabLabel( page( i ) ) )
-                    changeTab( page( i ), newTitle );
+            if ( newTitle != tabText( indexOf( page( i ) ) ) )
+                setTabText( indexOf( page( i ) ), newTitle );
         }
         d->CurrentMaxLength = newMaxLength;
     }
