@@ -315,7 +315,7 @@ QDomElement Document::toXML(QDomDocument document) const
     {
         QDomElement sh = document.createElement(QString::fromLatin1("skipHours"));
         e.appendChild(sh);
-        for (QList<int>::ConstIterator it = d->skipHours.begin(); it != d->skipHours.end(); ++it)
+        for (QSet<int>::ConstIterator it = d->skipHours.begin(); it != d->skipHours.end(); ++it)
         {
             QDomElement c = document.createElement(QString::fromLatin1("hour"));
             c.appendChild(document.createTextNode(QString::number(*it)));
@@ -348,7 +348,7 @@ bool Document::isNull() const
     return d->isNull;
 }
 
-Document::Document(const Document& other)  : d(0)
+Document::Document(const Document& other)  : LibSyndication::Document(other), d(0)
 {
     *this = other;
 }
@@ -581,7 +581,7 @@ void Document::addSkipHour(int hour)
 {
     d = DocumentPrivate::copyOnWrite(d);
     d->isNull = false;
-    d->skipHours.append(hour);
+    d->skipHours.insert(hour);
 }
 
 void Document::setSkipHours(const QSet<int>& skipHours)
@@ -608,7 +608,7 @@ void Document::addSkipDay(DayOfWeek day)
 {
     d = DocumentPrivate::copyOnWrite(d);
     d->isNull = false;
-    d->skipDays.append(day);
+    d->skipDays.insert(day);
 }
 
 void Document::setSkipDays(const QSet<DayOfWeek>& skipDays)
@@ -625,7 +625,7 @@ void Document::removeSkipDay(DayOfWeek day)
     d->skipDays.remove(day);
 }
 
-QSet<DayOfWeek> Document::skipDays() const
+QSet<Document::DayOfWeek> Document::skipDays() const
 {
     return !d->isNull ? d->skipDays : QSet<DayOfWeek>();
 }
@@ -686,7 +686,7 @@ QString Document::debugInfo() const
 
 bool Document::accept(DocumentVisitor* visitor)
 {
-    visitor->visit(this);
+    return visitor->visit(this);
 }
 
 } // namespace RSS2

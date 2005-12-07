@@ -67,6 +67,14 @@ class AbstractParser
          * @return a pointer to a newly created document parsed from @c source
          */
         virtual Document* parse(const DocumentSource& source) const = 0;
+
+        /**
+         * Returns the name of the format supported by this
+         * parser.
+         *
+         * @return a string like "rss2", "atom" or "rdf"
+         */
+        virtual QString format() const = 0;
 };
 
 } // namespace LibSyndication

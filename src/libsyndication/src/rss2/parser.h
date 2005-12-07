@@ -41,6 +41,8 @@ class Parser : public LibSyndication::AbstractParser
         bool accept(const DocumentSource& source) const;
 
         LibSyndication::Document* parse(const DocumentSource& source) const;
+
+        QString format() const;
 };
 
 } // namespace RSS2

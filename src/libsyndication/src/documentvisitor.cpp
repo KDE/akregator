@@ -29,7 +29,7 @@ namespace LibSyndication {
 
 bool DocumentVisitor::visit(Document* document)
 {
-    document->accept(this);
+    return document->accept(this);
 }
 
 } // namespace LibSyndication

@@ -50,5 +50,10 @@ LibSyndication::Document* Parser::parse(const LibSyndication::DocumentSource& so
     return new Document(Document::fromXML(source.asDomDocument()));
 }
 
+QString Parser::format() const
+{
+    return "rss2";
+}
+
 } // namespace RSS2
 } // namespace LibSyndication

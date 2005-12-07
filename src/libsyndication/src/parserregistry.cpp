@@ -25,7 +25,8 @@
 #include "abstractparser.h"
 #include "parserregistry.h"
 
-#include <QList>
+#include <QHash>
+#include <QString>
 
 #include <kstaticdeleter.h>
 
@@ -38,7 +39,7 @@ ParserRegistry* ParserRegistry::m_self = 0;
 class ParserRegistry::ParserRegistryPrivate 
 {
     public:
-    QList<AbstractParser*> parsers;
+    QHash<QString, AbstractParser*> parsers;
 };
 
 ParserRegistry* ParserRegistry::self()
@@ -58,20 +59,35 @@ ParserRegistry::~ParserRegistry()
     d = 0;
 }
 
-void ParserRegistry::registerParser(AbstractParser* parser)
+bool ParserRegistry::registerParser(AbstractParser* parser)
 {
-    d->parsers.append(parser);
+    if (d->parsers.contains(parser->format()))
+        return false;
+
+    d->parsers.insert(parser->format(), parser);
+
+    return true;
 }
 
 void ParserRegistry::unregisterParser(AbstractParser* parser)
 {
-    d->parsers.remove(parser);
+    d->parsers.remove(parser->format());
 }
 
-QList<AbstractParser*> ParserRegistry::parsers() const
+Document* ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
 {
-    return d->parsers;
-}
+    if (d->parsers.contains(formatHint))
+    {
+        if (d->parsers[formatHint]->accept(source))
+            return d->parsers[formatHint]->parse(source);
+    }
 
+    Q_FOREACH (AbstractParser* i, d->parsers)
+    {
+        if (i->accept(source))
+            return i->parse(source);
+    }
+    return 0;
+}
 
 } // namespace LibSyndication

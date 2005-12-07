@@ -25,24 +25,63 @@
 #ifndef LIBSYNDICATION_PARSERREGISTRY_H
 #define LIBSYNDICATION_PARSERREGISTRY_H
 
-template <class T> class QList;
+#include <QString>
 
 namespace LibSyndication {
 
 class AbstractParser;
+class DocumentSource;
 
+/**
+ * Singleton that collects all the parsers for the various formats.
+ * All parsers should be registered here.
+ * To parse a feed source, pass it to the parse() method of this class.
+ *
+ * @author Frank Osterfeld
+ */
 class ParserRegistry
 {
     public:
+
+        /**
+         * Singleton instance of ParserRegistry. Register your parsers here 
+         */
         static ParserRegistry* self();
 
         ParserRegistry();
         virtual ~ParserRegistry();
 
-        virtual void registerParser(AbstractParser* parser);
-        virtual void unregisterParser(AbstractParser* parser);
+        /**
+         * Registers a parser at the registry. Parser::format() must be unique
+         * in the registry. If there is already a parser with the same format
+         * string, the registration fails.
+         *
+         * @param parser The parser to be registered
+         * @return whether the parser was successfully registered or not.
+         */ 
+        bool registerParser(AbstractParser* parser);
 
-        virtual QList<AbstractParser*> parsers() const;
+        /**
+         * Removes a parser from the registry.
+         *
+         * @param parser The parser to be unregistered
+         */ 
+        void unregisterParser(AbstractParser* parser);
+
+        /**
+         * tries to parse a given source with the parsers registered.
+         * The source is passed to the first parser that accepts it.
+         * 
+         * @param source The source to be parsed
+         * @param formatHint An optional hint which parser to test first. If
+         * there is a parser with the given hint as format string (e.g., 
+         * "rss2", "atom", "rdf"...), it is asked first to accept the source.
+         * This can avoid unnecessary Parser::accept() checks and speed up
+         * parsing. See also Parser::format().
+         * @return The document parsed from the source, or NULL if no parser
+         *         accepted the source.
+         */
+        Document* parse(const DocumentSource& source, const QString& formatHint=QString::null);
 
     private:
 
