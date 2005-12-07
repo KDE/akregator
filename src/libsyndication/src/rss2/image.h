@@ -38,81 +38,89 @@ class Image
 {
     public:
 
-    static const Image& null();
+        static const Image& null();
+    
+        static Image fromXML(const QDomElement& e);
+    
+        Image();
+        Image(const Image& other);
+        virtual ~Image();
 
-    static Image fromXML(const QDomElement& e);
+        /**
+         * Assigns the values of @c other. The d pointer is shared, so
+         * this is a cheap operation.
+         *
+         * @param other The object to assign
+         * @return a reference to this object
+         */
+        Image& operator=(const Image& other);
 
-    Image();
-    Image(const Image& other);
-    virtual ~Image();
-
-    Image& operator=(const Image& other);
-    bool operator==(const Image& other) const;
-
-    bool isNull() const;
-
-    /**
-     * the URL of a GIF, JPEG or PNG image 
-     *
-     * @return TODO
-     */
-    QString url() const;
-
-    /** 
-     * Describes the image, can be used in the ALT attribute of the 
-     * HTML <img> tag when the channel is rendered in HTML.
-     *
-     * @return TODO
-     */
-    QString title() const;
-
-    /**
-     * The URL of the site, when the channel is rendered, the image should be
-     * a link to the site.
-     *
-     * @return TODO
-     */
-    QString link() const;
-
-    /**
-     * The width of the image. If the feed itself doesn't specify a width,
-     * this method returns 88, the default value.
-     *
-     * @return image width in pixels.
-     */
-    int width() const;
-
-    /**
-     * The height of the image. If the feed itself doesn't specify a height,
-     * this method returns 31, the default value.
-     *
-     * @return image height in pixels.
-     */
-    int height() const;
-
-    /**
-     * optional text that can be included in the TITLE attribute of the link
-     * formed around the image in HTML rendering.
-     *
-     * @return TODO
-     */
-    QString description() const;
-
-    /**
-     * Returns a description of the object for debugging purposes.
-     *
-     * @return debug string
-     */
-    QString debugInfo() const;
+        bool operator==(const Image& other) const;
+    
+        bool isNull() const;
+    
+        /**
+         * the URL of a GIF, JPEG or PNG image 
+         *
+         * @return TODO
+         */
+        QString url() const;
+    
+        /** 
+         * Describes the image, can be used in the ALT attribute of the 
+         * HTML <img> tag when the channel is rendered in HTML.
+         *
+         * @return TODO
+         */
+        QString title() const;
+    
+        /**
+         * The URL of the site, when the channel is rendered, the image should
+         * be a link to the site.
+         *
+         * @return TODO
+         */
+        QString link() const;
+    
+        /**
+         * The width of the image. If the feed itself doesn't specify a width,
+         * this method returns 88, the default value.
+         *
+         * @return image width in pixels.
+         */
+        int width() const;
+    
+        /**
+         * The height of the image. If the feed itself doesn't specify a height,
+         * this method returns 31, the default value.
+         *
+         * @return image height in pixels.
+         */
+        int height() const;
+    
+        /**
+         * optional text that can be included in the TITLE attribute of the link
+         * formed around the image in HTML rendering.
+         *
+         * @return TODO
+         */
+        QString description() const;
+    
+        /**
+         * Returns a description of the object for debugging purposes.
+         *
+         * @return debug string
+         */
+        QString debugInfo() const;
 
     private:
-
-    Image(const QString& url, const QString& title, const QString& link, const QString& description, int width, int height);
-
-    static Image* m_null;
-
-    class ImagePrivate;
-    KSharedPtr<ImagePrivate> d;
+    
+        Image(const QString& url, const QString& title, const QString& link, const QString& description, int width, int height);
+    
+        static Image* m_null;
+    
+        class ImagePrivate;
+        KSharedPtr<ImagePrivate> d;
 };
 
 } // namespace RSS2

@@ -33,8 +33,8 @@ namespace RSS2 {
 class Constants
 {
     public:
-    static QString contentNameSpace();
-    static QString XHTMLNameSpace();
+        static QString contentNameSpace();
+        static QString XHTMLNameSpace();
 };
 
 } // namespace RSS2

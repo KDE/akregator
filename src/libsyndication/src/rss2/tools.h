@@ -43,24 +43,45 @@ namespace RSS2 {
 class Tools
 {
     public:
-
-    /** concatenates the XML representations of all children. Example: If @c parent is an @c xhtml:body element like <pre><xhtml:body><p>foo</p><blockquote>bar</blockquote></xhtml:body></pre>, this function returns <pre><p>foo</p><blockquote>bar</blockquote></pre> */
-    static QString childNodesAsXML(const QDomNode& parent);
-
-    static QString extractElementText(const QDomNode& parent, const QString& tagName);
-
-    /** extracts encoded content from XHTML, content:encoded and friends
-        @param parent the parent node, e.g. a channel or item element
-    */
-    static QString extractContent(const QDomNode& parent);
-
-    /** returns all sub elements with tag name @c tagname of a given parent node @c parent
-        Contrary to @ref QDomElement::elementsByTagName() only direct descendents are returned */
-    static QList<QDomElement> elementsByTagName(const QDomNode& parent, const QString& tagName);
-
-    /** returns all sub elements with tag name @c tagname of a given parent node @c parent with namespace URI @c nsURI
-    Contrary to @ref QDomElement::elementsByTagNameNS() only direct descendents are returned*/
-    static QList<QDomElement> elementsByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& tagName);
+    
+        /**
+         * concatenates the XML representations of all children. Example: If @c
+         * parent is an @c xhtml:body element like
+         * @code
+         * <pre><xhtml:body><p>foo</p><blockquote>bar</blockquote></xhtml:body>
+         * </pre>
+         * @endcode
+         * this function returns
+         * @code
+         * <pre><p>foo</p><blockquote>bar</blockquote></pre> 
+         * @endcode
+         *
+         */
+        static QString childNodesAsXML(const QDomNode& parent);
+    
+        static QString extractElementText(const QDomNode& parent, const QString& tagName);
+    
+        /** 
+         * extracts encoded content from XHTML, content:encoded and friends
+         * @param parent the parent node, e.g. a channel or item element
+         */
+        static QString extractContent(const QDomNode& parent);
+    
+        /**
+         * returns all sub elements with tag name @c tagname of a given parent
+         * node @c parent
+         * Contrary to @ref QDomElement::elementsByTagName() only direct
+         * descendents are returned
+         */
+        static QList<QDomElement> elementsByTagName(const QDomNode& parent, const QString& tagName);
+    
+        /**
+         * returns all sub elements with tag name @c tagname of a given parent
+         * node @c parent with namespace URI @c nsURI.
+         * Contrary to @ref QDomElement::elementsByTagNameNS() only direct
+         * descendents are returned
+         */
+        static QList<QDomElement> elementsByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& tagName);
 };
 
 } // RSS2

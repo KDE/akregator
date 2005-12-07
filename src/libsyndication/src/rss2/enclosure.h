@@ -34,38 +34,45 @@ class QString;
 namespace LibSyndication {
 namespace RSS2 {
 
-    class Enclosure
-    {
-        public:
-
+class Enclosure
+{
+    public:
+    
         static const Enclosure& null();
-
+    
         static Enclosure fromXML(const QDomElement& e);
-
+    
         /** creates an null object (equivalent to @ref Enclosure::null()) */
         Enclosure();
-
+    
         Enclosure(const Enclosure& other);
         virtual ~Enclosure();
 
+        /**
+         * Assigns the values of @c other. The d pointer is shared, so
+         * this is a cheap operation.
+         *
+         * @param other The object to assign
+         * @return a reference to this object
+         */
         Enclosure& operator=(const Enclosure& other);
         bool operator==(const Enclosure& other) const;
-
+    
         /** returns whether the object is a null object */
         bool isNull() const;
-
+    
         /** returns the URL of the enclosure */
         QString url() const;
-
+    
         /** returns the size of the enclosure in bytes */
         int length() const;
-
-        /** 
+    
+        /**
          * returns the mime type of the enclosure
          * (e.g. "audio/mpeg") 
          */
         QString type() const;
-
+    
         /**
          * Returns a description of the object for debugging purposes.
          *
@@ -73,14 +80,14 @@ namespace RSS2 {
          */
         QString debugInfo() const;
 
-        private:
+    private:
 
         Enclosure(const QString& url, int length, const QString& type);
-
+        
         static Enclosure* m_null;
         class EnclosurePrivate;
         KSharedPtr<EnclosurePrivate> d;
-    };
+};
 
 } // namespace RSS2
 } // namespace LibSyndication

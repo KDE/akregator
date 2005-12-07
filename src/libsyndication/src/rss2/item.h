@@ -34,8 +34,7 @@ class QString;
 template <class T> class QList;
 
 namespace LibSyndication {
-namespace RSS2
-{
+namespace RSS2 {
 
 class Category;
 class Enclosure;
@@ -45,52 +44,59 @@ class Item
 {
     public:
 
-    static const Item& null();
+        static const Item& null();
+    
+        static Item fromXML(const QDomElement& e);
+    
+        Item();
+        Item(const Item& other);
+        virtual ~Item();
 
-    static Item fromXML(const QDomElement& e);
-
-    Item();
-    Item(const Item& other);
-    virtual ~Item();
-
-    Item& operator=(const Item& other);
-    bool operator==(const Item& other) const;
-
-    bool isNull() const;
-
-    QString title() const;
-
-    QString link() const;
-
-    QString description() const;
-
-    /** returns data stored in content:encoded, xhtml:body, xhtml:div */
-    QString content() const;
-
-    QList<Category> categories() const;
-
-    QString comments() const;
-
-    QString author() const;
-
-    Enclosure enclosure() const;
-
-    QString guid() const;
-
-    /** default: true */
-    bool guidIsPermaLink() const;
-
-    QDateTime pubDate() const;
-
-    Source source() const;
-
-    /**
-     * Returns a description of the object and its
-     * children for debugging purposes.
-     *
-     * @return debug string
-     */
-    QString debugInfo() const;
+        /**
+         * Assigns the values of @c other. The d pointer is shared, so
+         * this is a cheap operation.
+         *
+         * @param other The object to assign
+         * @return a reference to this object
+         */
+        Item& operator=(const Item& other);
+        bool operator==(const Item& other) const;
+    
+        bool isNull() const;
+    
+        QString title() const;
+    
+        QString link() const;
+    
+        QString description() const;
+    
+        /** returns data stored in content:encoded, xhtml:body, xhtml:div */
+        QString content() const;
+    
+        QList<Category> categories() const;
+    
+        QString comments() const;
+    
+        QString author() const;
+    
+        Enclosure enclosure() const;
+    
+        QString guid() const;
+    
+        /** default: true */
+        bool guidIsPermaLink() const;
+    
+        QDateTime pubDate() const;
+    
+        Source source() const;
+    
+        /**
+         * Returns a description of the object and its
+         * children for debugging purposes.
+         *
+         * @return debug string
+         */
+        QString debugInfo() const;
 
     private:
 

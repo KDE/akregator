@@ -34,34 +34,34 @@ class QString;
 namespace LibSyndication {
 namespace RSS2
 {
-    /**
-     * Cloud information for an RSS channel.
-     * It specifies a web service that supports the rssCloud interface which can
-     * be implemented in HTTP-POST, XML-RPC or SOAP 1.1.
-     * Its purpose is to allow processes to register with a cloud to be notified
-     * of updates to the channel,
-     * implementing a lightweight publish-subscribe protocol for RSS feeds.
-     *
-     * Example:
-     *
-     * Domain="rpc.sys.com", port="80", path="/RPC2"
-     * registerProcedure="myCloud.rssPleaseNotify" protocol="xml-rpc"
-     *
-     * In this example, to request notification on the channel it appears in,
-     * you would send an XML-RPC message to rpc.sys.com on port 80, with a path
-     * of /RPC2. The procedure to call is myCloud.rssPleaseNotify.
-     *
-     * For more information on the rssCloud interface see
-     * http://blogs.law.harvard.edu/tech/soapMeetsRss#rsscloudInterface
-     *
-     * (Note: This explanation was taken from 
-     * @link http://blogs.law.harvard.edu/tech/rss)
-     *
-     * @author Frank Osterfeld
-     */
-    class Cloud
-    {
-        public:
+/**
+   * Cloud information for an RSS channel.
+   * It specifies a web service that supports the rssCloud interface which can
+   * be implemented in HTTP-POST, XML-RPC or SOAP 1.1.
+   * Its purpose is to allow processes to register with a cloud to be notified
+   * of updates to the channel,
+   * implementing a lightweight publish-subscribe protocol for RSS feeds.
+   *
+   * Example:
+   *
+   * Domain="rpc.sys.com", port="80", path="/RPC2"
+   * registerProcedure="myCloud.rssPleaseNotify" protocol="xml-rpc"
+   *
+   * In this example, to request notification on the channel it appears in,
+   * you would send an XML-RPC message to rpc.sys.com on port 80, with a path
+   * of /RPC2. The procedure to call is myCloud.rssPleaseNotify.
+   *
+   * For more information on the rssCloud interface see
+   * http://blogs.law.harvard.edu/tech/soapMeetsRss#rsscloudInterface
+   *
+   * (Note: This explanation was taken from 
+   * @link http://blogs.law.harvard.edu/tech/rss)
+   *
+   * @author Frank Osterfeld
+   */
+class Cloud
+{
+    public:
 
         static const Cloud& null();
 
@@ -72,6 +72,13 @@ namespace RSS2
         Cloud(const Cloud& other);
         virtual ~Cloud();
 
+        /**
+         * Assigns the values of @c other. The d pointer is shared, so
+         * this is a cheap operation.
+         *
+         * @param other The object to assign
+         * @return a reference to this object
+         */
         Cloud& operator=(const Cloud& other);
         bool operator==(const Cloud& other) const;
 
@@ -94,7 +101,7 @@ namespace RSS2
          */
         QString debugInfo() const;
 
-        private:
+    private:
 
         Cloud(const QString& domain, const QString& path, const QString& registerProcedure, const QString& protocol, int port);
 
@@ -102,7 +109,7 @@ namespace RSS2
 
         class CloudPrivate;
         KSharedPtr<CloudPrivate> d;
-    };
+};
 
 } // namespace RSS2
 } // namespace LibSyndication

@@ -34,16 +34,16 @@ class QString;
 namespace LibSyndication {
 namespace RSS2 {
 
-    /**
-     * A category which can be assigned to items or whole feeds.
-     * These can be simple tags as known from delicious or Technorati, or
-     * a category from a hierarchical taxonomy or ontology.
-     *
-     * @author Frank Osterfeld
-     */
-    class Category
-    {
-        public:
+/**
+ * A category which can be assigned to items or whole feeds.
+ * These can be simple tags as known from delicious or Technorati, or
+ * a category from a hierarchical taxonomy or ontology.
+ *
+ * @author Frank Osterfeld
+ */
+class Category
+{
+    public:
 
         /**
          * static null object. See also Category() and isNull().
@@ -134,7 +134,7 @@ namespace RSS2 {
          */
         QString debugInfo() const;
 
-        private:
+    private:
 
         Category(const QString& category, const QString& domain);
 
@@ -143,7 +143,8 @@ namespace RSS2 {
         class CategoryPrivate;
         KSharedPtr<CategoryPrivate> d;
 
-    };
+};
+
 } // namespace RSS2
 } // namespace LibSyndication
 

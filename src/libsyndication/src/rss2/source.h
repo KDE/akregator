@@ -36,26 +36,34 @@ namespace RSS2 {
 
 class Source
 {
-        public:
+
+    public:
 
         static const Source& null();
-
+    
         static Source fromXML(const QDomElement& e);
-
+    
         Source();
         Source(const Source& other);
         virtual ~Source();
-
+    
+        /**
+         * Assigns the values of @c other. The d pointer is shared, so
+         * this is a cheap operation.
+         *
+         * @param other The object to assign
+         * @return a reference to this object
+         */
         Source& operator=(const Source& other);
         bool operator==(const Source& other) const;
-
+    
         bool isNull() const;
-
+    
         QString source() const;
-
+    
         QString url() const;
-
-
+    
+    
         /**
          * Returns a description of the object for debugging purposes.
          *
@@ -63,12 +71,12 @@ class Source
          */
         QString debugInfo() const;
 
-        private:
+    private:
 
         Source(const QString& source, const QString& url);
-
+        
         static Source* m_null;
-
+        
         class SourcePrivate;
         KSharedPtr<SourcePrivate> d;
 };

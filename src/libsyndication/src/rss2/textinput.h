@@ -34,57 +34,64 @@ class QDomElement;
 namespace LibSyndication {
 namespace RSS2 {
 
-    /**
-     * "The purpose of the <textInput> element is something of a mystery.
-     * You can use it to specify a search engine box. Or to allow a
-     * reader to provide feedback. Most aggregators ignore it."
-     *
-     */
-    class TextInput
-    {
-        public:
+/**
+ * "The purpose of the <textInput> element is something of a mystery.
+ * You can use it to specify a search engine box. Or to allow a
+ * reader to provide feedback. Most aggregators ignore it."
+ *
+ */
+class TextInput
+{
+    public:
         static const TextInput& null();
-
+    
         TextInput();
         TextInput(const TextInput& other);
         virtual ~TextInput();
-
+    
         static TextInput fromXML(const QDomElement& e);
-
+    
+        /**
+         * Assigns the values of @c other. The d pointer is shared, so
+         * this is a cheap operation.
+         *
+         * @param other The object to assign
+         * @return a reference to this object
+         */
         TextInput& operator=(const TextInput& other);
         bool operator==(const TextInput& other) const;
-
+    
         bool isNull() const;
-
+    
         /**
          * The label of the Submit button in the text input area.
          *
          * @return TODO
          */
         QString title() const;
-
+    
         /**
          * The name of the text object in the text input area.
          *
          * @return TODO
          */
         QString name() const;
-
+    
         /**
          * Explains the text input area.
          *
          * @return TODO
          */
         QString description() const;
-
+    
         /**
          * The URL of the CGI script that processes text input requests.
          *
          * @return TODO
          */
         QString link() const;
-
-
+    
+    
         /**
          * Returns a description of the object for debugging purposes.
          *
@@ -92,14 +99,14 @@ namespace RSS2 {
          */
         QString debugInfo() const;
 
-        private:
+    private:
 
-        TextInput(const QString& title, const QString& description, const QString&  link, const QString& name);
-
+        TextInput(const QString& title, const QString& description, const QString& link, const QString& name);
+    
         static TextInput* m_null;
         class TextInputPrivate;
         KSharedPtr<TextInputPrivate> d;
-    };
+};
 
 } // namespace RSS2
 } // namespace LibSyndication
