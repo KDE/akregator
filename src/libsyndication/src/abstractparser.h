@@ -74,7 +74,7 @@ class AbstractParser
          *
          * @return a string like "rss2", "atom" or "rdf"
          */
-        virtual QString format() const = 0;
+        virtual QString format() = 0;
 };
 
 } // namespace LibSyndication
