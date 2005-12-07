@@ -23,7 +23,6 @@
 */
 
 #include "documentsource.h"
-#include "shared.h"
 
 #include <QByteArray>
 #include <qdom.h>
@@ -31,12 +30,12 @@
 
 namespace LibSyndication {
 
-class DocumentSource::DocumentSourcePrivate : public Shared
+class DocumentSource::DocumentSourcePrivate : public KShared
 {
     public:
     QByteArray array;
-    QDomDocument domDoc;
-    bool parsed;
+    mutable QDomDocument domDoc;
+    mutable bool parsed;
 };
 
 DocumentSource::DocumentSource() : d(new DocumentSourcePrivate)
@@ -58,22 +57,11 @@ DocumentSource::DocumentSource(const DocumentSource& other) : d(0)
 
 DocumentSource::~DocumentSource()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 DocumentSource& DocumentSource::operator=(const DocumentSource& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 

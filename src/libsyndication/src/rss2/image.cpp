@@ -176,5 +176,5 @@ QString Image::debugInfo() const
     return info;
 }
 
-} // namespace RSS
+} // namespace RSS2
 } //namespace LibSyndication

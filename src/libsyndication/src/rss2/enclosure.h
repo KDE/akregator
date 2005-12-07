@@ -77,7 +77,7 @@ namespace RSS2 {
         KSharedPtr<EnclosurePrivate> d;
     };
 
-} // namespace RSS
+} // namespace RSS2
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_RSS2_ENCLOSURE_H
