@@ -55,6 +55,12 @@ class Source
 
         QString url() const;
 
+
+        /**
+         * Returns a description of the object for debugging purposes.
+         *
+         * @return debug string
+         */
         QString debugInfo() const;
 
         private:

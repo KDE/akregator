@@ -98,6 +98,11 @@ class Image
      */
     QString description() const;
 
+    /**
+     * Returns a description of the object for debugging purposes.
+     *
+     * @return debug string
+     */
     QString debugInfo() const;
 
     private:

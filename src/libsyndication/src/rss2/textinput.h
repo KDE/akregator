@@ -84,6 +84,12 @@ namespace RSS2 {
          */
         QString link() const;
 
+
+        /**
+         * Returns a description of the object for debugging purposes.
+         *
+         * @return debug string
+         */
         QString debugInfo() const;
 
         private:

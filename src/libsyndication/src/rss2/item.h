@@ -84,6 +84,12 @@ class Item
 
     Source source() const;
 
+    /**
+     * Returns a description of the object and its
+     * children for debugging purposes.
+     *
+     * @return debug string
+     */
     QString debugInfo() const;
 
     private:

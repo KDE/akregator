@@ -34,28 +34,104 @@ class QString;
 namespace LibSyndication {
 namespace RSS2 {
 
+    /**
+     * A category which can be assigned to items or whole feeds.
+     * These can be simple tags as known from delicious or Technorati, or
+     * a category from a hierarchical taxonomy or ontology.
+     *
+     * @author Frank Osterfeld
+     */
     class Category
     {
         public:
 
+        /**
+         * static null object. See also Category() and isNull().
+         *
+         * @return reference to a static null object
+         */
         static const Category& null();
 
+        /**
+         * Parses a category from an <category> XML element.
+         *
+         * @param e The <category> element to parse the category from
+         * @return the category parsed from XML, or a null object
+         *         if parsing failed.
+         */
         static Category fromXML(const QDomElement& e);
 
+
+        /**
+         * Default constructor, creates a null object, which is equal
+         * to Category::null() and for which isNull() is @c true.
+         */
         Category();
+
+        /**
+         * Copy constructor, creates a copy of @c other.
+         * The d pointer is shared, so this is a cheap operation.
+         *
+         * @param other the object to be copied
+         */
         Category(const Category& other);
 
+        /**
+         * Destructor.
+         */
         virtual ~Category();
 
+        /**
+         * Assigns the values of @c other. The d pointer is shared, so
+         * this is a cheap operation.
+         *
+         * @param other The object to assign
+         * @return a reference to this object
+         */
         Category& operator=(const Category& other);
+
+        /**
+         * Checks whether this category is equal to another.
+         * Categories are equal if category() and domain() are equal.
+         *
+         * @param other another category
+         * @return whether this object is equal to @c other or not
+         */
         bool operator==(const Category& other) const;
 
+        /**
+         * Name of the category. This is both to be used as identifier and as
+         * human-readable string. It can bea forward-slash-separated string 
+         * to identify a hierarchic location in the domain indicated by
+         * domain(). Examples: "General", "Programming", "Funny",
+         * "Books/History".
+         *
+         * @return The category identifier/name as string
+         * 
+         */
         QString category() const;
 
+        /**
+         * optional, identifies the domain of the category, i.e. a
+         * categorization taxonomy.
+         *
+         * @return The domain of the category, or QString::null if none is set
+         */
         QString domain() const;
 
+        /**
+         * returns whether this object is a null object. (For a null object,
+         * domain() and category() return both QString::null)
+         *
+         * @return @c true, if this is a null object, otherwise @c false
+         */
         bool isNull() const;
 
+        /**
+         * Returns a description of the object for debugging purposes.
+         *
+         * @return debug string
+         */
         QString debugInfo() const;
 
         private:

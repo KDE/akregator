@@ -33,6 +33,13 @@ template <class T> class QList;
 namespace LibSyndication {
 namespace RSS2 {
 
+/**
+ * Methods for XML handling and content extraction.
+ *
+ * @internal
+ *
+ * @author Frank Osterfeld
+ */
 class Tools
 {
     public:
