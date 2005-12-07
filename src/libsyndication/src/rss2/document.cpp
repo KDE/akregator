@@ -261,6 +261,8 @@ Document& Document::operator=(const Document& other)
 
 bool Document::operator==(const Document& other) const
 {
+    if (!d || !other.d)
+        return d == other.d;
     return *d == *other.d;
 }
 
