@@ -44,7 +44,7 @@ namespace RSS2 {
 
         Category();
         Category(const Category& other);
-        Category(const QString& category, const QString& domain);
+
         virtual ~Category();
 
         Category& operator=(const Category& other);
@@ -59,6 +59,8 @@ namespace RSS2 {
         QString debugInfo() const;
 
         private:
+
+        Category(const QString& category, const QString& domain);
 
         static Category* m_null;
 

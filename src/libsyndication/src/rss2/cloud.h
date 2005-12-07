@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_RSS2_CLOUD_H
 #define LIBSYNDICATION_RSS2_CLOUD_H
 
+#include <ksharedptr.h>
+
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -65,22 +67,21 @@ namespace RSS2
         static Cloud fromXML(const QDomElement& e);
 
         Cloud();
+
         Cloud(const Cloud& other);
         virtual ~Cloud();
 
         Cloud& operator=(const Cloud& other);
         bool operator==(const Cloud& other) const;
 
-        void setDomain(const QString& domain);
         QString domain() const;
-        void setPort(int port);
+
         int port() const;
 
-        void setPath(const QString& path);
         QString path() const;
-        void setRegisterProcedure(const QString& registerProcedure);
+
         QString registerProcedure() const;
-        void setProtocol(const QString& protocol);
+
         QString protocol() const;
 
         bool isNull() const;
@@ -89,10 +90,12 @@ namespace RSS2
 
         private:
 
+        Cloud(const QString& domain, const QString& path, const QString& registerProcedure, const QString& protocol, int port);
+
         static Cloud* m_null;
 
         class CloudPrivate;
-        CloudPrivate* d;
+        KSharedPtr<CloudPrivate> d;
     };
 
 } // namespace RSS2

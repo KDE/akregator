@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_RSS2_SOURCE_H
 #define LIBSYNDICATION_RSS2_SOURCE_H
 
+#include <ksharedptr.h>
+
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -41,7 +43,6 @@ class Source
         static Source fromXML(const QDomElement& e);
 
         Source();
-        Source(const QString& source, const QString& url);
         Source(const Source& other);
         virtual ~Source();
 
@@ -50,20 +51,20 @@ class Source
 
         bool isNull() const;
 
-        void setSource(const QString& source);
         QString source() const;
 
-        void setUrl(const QString& url);
         QString url() const;
 
         QString debugInfo() const;
 
         private:
 
+        Source(const QString& source, const QString& url);
+
         static Source* m_null;
 
-        struct SourcePrivate;
-        SourcePrivate* d;
+        class SourcePrivate;
+        KSharedPtr<SourcePrivate> d;
 };
 
 } // namespace RSS2

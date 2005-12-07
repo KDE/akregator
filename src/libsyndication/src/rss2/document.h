@@ -27,6 +27,8 @@
 
 #include "../document.h"
 
+#include <ksharedptr.h>
+
 class QDateTime;
 class QDomDocument;
 class QDomElement;
@@ -62,9 +64,7 @@ namespace RSS2
 
         bool isNull() const;
 
-	virtual bool accept(DocumentVisitor* visitor);
-
-
+        virtual bool accept(DocumentVisitor* visitor);
 
         /**
          * The title of the channel.
@@ -73,16 +73,12 @@ namespace RSS2
          */
         QString title() const;
 
-        void setTitle(const QString& title);
-
         /** 
          * The URL to the HTML website corresponding to the channel.
          *
          * @return TODO 
          */
         QString link() const;
-
-        void setLink(const QString& link);
 
         /**
          * Phrase or sentence describing the channel.
@@ -91,14 +87,11 @@ namespace RSS2
          */
         QString description() const;
 
-        void setDescription(const QString& description);
-
         /**
          *
          * @return TODO
          */
         QString language() const;
-        void setLanguage(const QString& language);
 
         /**
          * Copyright notice for content in the channel.
@@ -106,7 +99,6 @@ namespace RSS2
          * @return TODO
          */
         QString copyright() const;
-        void setCopyright(const QString& copyright);
 
         /**
          * Email address for person responsible for editorial content.
@@ -114,7 +106,6 @@ namespace RSS2
          * @return TODO
          */
         QString managingEditor() const;
-        void setManagingEditor(const QString& managingEditor);
 
         /**
          * Email address for person responsible for technical issues relating
@@ -123,7 +114,6 @@ namespace RSS2
          * @return TODO
          */
         QString webMaster() const;
-        void setWebMaster(const QString& webMaster);
 
         /** 
          * The publication date for the content in the channel. For example,
@@ -134,7 +124,6 @@ namespace RSS2
          * @return TODO
          */
         QDateTime pubDate() const;
-        void setPubDate(const QDateTime& pubDate);
 
         /**
          * The last time the content of the channel changed.
@@ -142,7 +131,6 @@ namespace RSS2
          * @return TODO
          */
         QDateTime lastBuildDate() const;
-        void setLastBuildDate(const QDateTime& lastBuildDate);
 
         /**
          * Specifies one or more categories that the channel belongs to.
@@ -150,9 +138,6 @@ namespace RSS2
          * @return TODO
          */
         QList<Category> categories() const;
-        void addCategory(const Category& category);
-        void setCategories(const QList<Category>& categories);
-        void removeCategory(const Category& category);
 
         /**
          * A string indicating the program used to generate the channel.
@@ -160,7 +145,6 @@ namespace RSS2
          * @return TODO
          */
         QString generator() const;
-        void setGenerator(const QString& generator);
 
         /**
          * A URL that points to the documentation for the format used in the
@@ -171,7 +155,6 @@ namespace RSS2
          * @return TODO
          */
         QString docs() const;
-        void setDocs(const QString& docs);
 
         /**
          * Allows processes to register with a cloud to be notified of updates
@@ -181,7 +164,6 @@ namespace RSS2
          * @return TODO
          */
         Cloud cloud() const;
-        void setCloud(const Cloud& cloud);
 
         /**
          * ttl stands for time to live. It's a number of minutes that indicates
@@ -190,7 +172,6 @@ namespace RSS2
          * @return TODO
          */
         int ttl() const;
-        void setTtl(int ttl);
 
         /**
          * Specifies a GIF, JPEG or PNG image that can be displayed with the
@@ -199,7 +180,6 @@ namespace RSS2
          * @return TODO
          */
         Image image() const;
-        void setImage(const Image& image);
 
         /**
          * Specifies a text input box that can be displayed with the channel.
@@ -207,7 +187,6 @@ namespace RSS2
          * @return TODO
          */
         TextInput textInput() const;
-        void setTextInput(const TextInput& textInput);
 
         /**
          * Contains a set of hours (from 0 to 23), time in GMT, when the
@@ -216,9 +195,6 @@ namespace RSS2
          * @return TODO
          */
         QSet<int> skipHours() const;
-        void addSkipHour(int hour);
-        void setSkipHours(const QSet<int>& skipHours);
-        void removeSkipHour(int hour);
 
         /** days of week, used for skip list */
         enum DayOfWeek
@@ -239,9 +215,6 @@ namespace RSS2
          * @return TODO
          */
         QSet<DayOfWeek> skipDays() const;
-        void addSkipDay(DayOfWeek day);
-        void setSkipDays(const QSet<DayOfWeek>& skipDays);
-        void removeSkipDay(DayOfWeek day);
 
         /**
          *
@@ -249,16 +222,25 @@ namespace RSS2
          * @return TODO
          */
         QList<Item> items() const;
-        void addItem(const Item& item);
-        void setItems(const QList<Item>& items);
-        void removeItem(const Item& item);
 
         QString debugInfo() const;
 
         private:
+
+        Document(const QString& title, const QString& link,
+                 const QString& description, const QString& language,
+                 const QString& copyright, const QString& managingEditor,
+                 const QString& webMaster, const QDateTime& pubDate,
+                 const QDateTime& lastBuildDate,
+                 const QList<Category>& categories,
+                 const QString& generator, const QString& docs,
+                 const Cloud& cloud, int ttl, const Image& image, 
+                 const TextInput& textInput, const QSet<int>& skipHours,
+                 const QSet<DayOfWeek>& skipDays, const QList<Item>& items);
+
         static Document* m_null;
         class DocumentPrivate;
-        DocumentPrivate* d;
+        KSharedPtr<DocumentPrivate> d;
     };
 } // namespace RSS2
 } // namespace LibSyndication

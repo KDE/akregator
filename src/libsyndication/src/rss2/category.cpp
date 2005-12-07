@@ -64,7 +64,7 @@ const Category& Category::null()
 
 bool Category::isNull() const
 {
-    return d;
+    return !d;
 }
 
 Category Category::fromXML(const QDomElement& e)
@@ -102,7 +102,9 @@ Category& Category::operator=(const Category& other)
 
 bool Category::operator==(const Category &other) const
 {
-    return (!d && !other.d) || (*d == *other.d);
+    if (!d || !other.d)
+        return d == other.d;
+    return *d == *other.d;
 }
 
 QString Category::category() const

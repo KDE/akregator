@@ -22,8 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "../shared.h"
-
 #include "source.h"
 #include "tools.h"
 
@@ -35,25 +33,16 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-struct Source::SourcePrivate : public Shared
+class Source::SourcePrivate : public KShared
 {
-    bool isNull;
+    public:
+
     QString source;
     QString url;
 
     bool operator==(const SourcePrivate &other) const
     {
-        return (isNull && other.isNull) || (source == other.source && url == other.url);
-    }
-
-    static SourcePrivate* copyOnWrite(SourcePrivate* ep)
-    {
-        if (ep->count > 1)
-        {
-            ep->deref();
-            ep = new SourcePrivate(*ep);
-        }
-        return ep;
+        return (source == other.source && url == other.url);
     }
 };
 
@@ -70,22 +59,19 @@ const Source& Source::null()
 
 Source Source::fromXML(const QDomElement& e)
 {
-    Source obj;
-    if (e.hasAttribute(QString::fromLatin1("url")))
-        obj.setUrl(e.attribute(QString::fromLatin1("url")));
-    obj.setSource(e.text());
+    QString url = e.attribute(QString::fromLatin1("url"));
+    QString source = e.text();
 
-    return obj;
+    return Source(source, url);
 }
 
 bool Source::isNull() const
 {
-    return d->isNull;
+    return !d;
 }
 
-Source::Source() : d(new SourcePrivate)
+Source::Source() : d(0)
 {
-    d->isNull = true;
 }
 
 Source::Source(const Source& other) : d(0)
@@ -95,60 +81,35 @@ Source::Source(const Source& other) : d(0)
 
 Source::Source(const QString& source, const QString& url) : d(new SourcePrivate)
 {
-    d->isNull = false;
     d->source = source;
     d->url = url;
 }
 
 Source::~Source()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 Source& Source::operator=(const Source& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 
 bool Source::operator==(const Source &other) const
 {
+    if (!d || !other.d)
+        return d == other.d;
     return *d == *other.d;
-}
-
-
-void Source::setSource(const QString& source)
-{
-    d = SourcePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->source = source;
 }
 
 QString Source::source() const
 {
-    return !d->isNull ? d->source : QString::null;
-}
-
-void Source::setUrl(const QString& url)
-{
-    d = SourcePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->url = url;
+    return d ? d->source : QString::null;
 }
 
 QString Source::url() const
 {
-    return !d->isNull ? d->url : QString::null;
+    return d ? d->url : QString::null;
 }
 
 QString Source::debugInfo() const

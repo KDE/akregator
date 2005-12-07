@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_RSS2_ITEM_H
 #define LIBSYNDICATION_RSS2_ITEM_H
 
+#include <ksharedptr.h>
+
 class QDateTime;
 class QDomDocument;
 class QDomElement;
@@ -56,53 +58,46 @@ class Item
 
     bool isNull() const;
 
-    void setTitle(const QString& title);
     QString title() const;
 
-    void setLink(const QString& title);
     QString link() const;
 
-    void setDescription(const QString& description);
     QString description() const;
 
     /** returns data stored in content:encoded, xhtml:body, xhtml:div */
     QString content() const;
-    void setContent(const QString& content);
 
-    void addCategory(const Category& category);
-    void setCategories(const QList<Category>& categories);
-    void removeCategory(const Category& category);
     QList<Category> categories() const;
 
-    void setComments(const QString& comments);
     QString comments() const;
 
-    void setAuthor(const QString& author);
     QString author() const;
 
-    void setEnclosure(const Enclosure& enclosure);
     Enclosure enclosure() const;
 
-    void setGuid(const QString& guid);
     QString guid() const;
 
     /** default: true */
-    void setGuidIsPermaLink(bool isPermaLink);
     bool guidIsPermaLink() const;
 
-    void setPubDate(const QDateTime& pubDate);
     QDateTime pubDate() const;
 
-    void setSource(const Source& source);
     Source source() const;
 
     QString debugInfo() const;
+
     private:
+
+    Item(const QString& title, const QString& link, const QString& description,
+         const QString& content, const QList<Category>& categories,
+         const QString& comments, const QString& author, 
+         const Enclosure& enclosure, const QString& guid, bool guidIsPermaLink,
+         const QDateTime& pubDate, const Source& source);
 
     static Item* m_null;
 
     class ItemPrivate;
-    ItemPrivate* d;
+    KSharedPtr<ItemPrivate> d;
 };
 
 } // namespace RSS2

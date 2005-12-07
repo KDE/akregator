@@ -22,8 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "../shared.h"
-
 #include "image.h"
 #include "tools.h"
 
@@ -36,11 +34,10 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-class Image::ImagePrivate : public LibSyndication::Shared
+class Image::ImagePrivate : public KShared
 {
     public:
 
-    bool isNull;
     QString url;
     QString title;
     QString link;
@@ -50,23 +47,12 @@ class Image::ImagePrivate : public LibSyndication::Shared
 
     bool operator==(const ImagePrivate& other) const
     {
-        return (isNull && other.isNull) || (
-                url == other.url &&
+        return (url == other.url &&
                 title == other.title &&
                 link == other.link &&
                 width == other.width &&
                 height == other.height &&
                 description == other.description);
-    }
-
-    static ImagePrivate* copyOnWrite(ImagePrivate* ep)
-    {
-        if (ep->count > 1)
-        {
-            ep->deref();
-            ep = new ImagePrivate(*ep);
-        }
-        return ep;
     }
 };
 
@@ -82,11 +68,10 @@ const Image& Image::null()
 
 Image Image::fromXML(const QDomElement& e)
 {
-    Image obj;
-    obj.setURL(Tools::extractElementText(e, QString::fromLatin1("url") ));
-    obj.setTitle(Tools::extractElementText(e, QString::fromLatin1("title") ));
-    obj.setLink(Tools::extractElementText(e, QString::fromLatin1("link") ));
-    obj.setDescription(Tools::extractElementText(e, QString::fromLatin1("description") ));
+    QString url = Tools::extractElementText(e, QString::fromLatin1("url"));
+    QString title = Tools::extractElementText(e, QString::fromLatin1("title"));
+    QString link = Tools::extractElementText(e, QString::fromLatin1("link"));
+    QString description = Tools::extractElementText(e, QString::fromLatin1("description"));
 
     QString text;
     bool ok;
@@ -94,18 +79,17 @@ Image Image::fromXML(const QDomElement& e)
 
     text = Tools::extractElementText(e, QString::fromLatin1("width"));
     c = text.toInt(&ok);
-    obj.setWidth(ok ? c : 88); // set to default if not parsable
+    int width = ok ? c : 88; // set to default if not parsable
 
     text = Tools::extractElementText(e, QString::fromLatin1("height"));
     c = text.toInt(&ok);
-    obj.setHeight(ok ? c : 13); // set to default if not parsable
+    int height = ok ? c : 31; // set to default if not parsable
 
-    return obj;
+    return Image(url, title, link, description, width, height);
 }
 
 Image::Image() : d(new ImagePrivate)
 {
-    d->isNull = true;
     d->width = -1;
     d->height = -1;
 }
@@ -115,117 +99,67 @@ Image::Image(const Image& other) : d(0)
     *this = other;
 }
 
-Image::Image(const QString& url, const QString& title, const QString& link) : d(new ImagePrivate)
+Image::Image(const QString& url, const QString& title, const QString& link, const QString& description, int width, int height) : d(new ImagePrivate)
 {
-    d->isNull = false;
     d->url = url;
     d->title = title;
     d->link = link;
-    d->width = -1;
-    d->height = -1;
+    d->description = description;
+    d->width = width;
+    d->height = height;
 }
 
 Image::~Image()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 bool Image::isNull() const
 {
-    return d->isNull;
+    return !d;
 }
 
 Image& Image::operator=(const Image& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 
 bool Image::operator==(const Image& other) const
 {
-    return *d == *other.d;
-}
+    if (!d || !other.d)
+        return d == other.d;
 
-void Image::setURL(const QString& url)
-{
-    d = ImagePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->url = url;
+    return *d == *other.d;
 }
 
 QString Image::url() const
 {
-    return !d->isNull ? d->url : QString::null;
-}
-
-void Image::setTitle(const QString& title)
-{
-    d = ImagePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->title = title;
+    return d ? d->url : QString::null;
 }
 
 QString Image::title() const
 {
-    return !d->isNull ? d->title : QString::null;
-}
-
-void Image::setLink(const QString& link)
-{
-    d = ImagePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->link = link;
+    return d ? d->title : QString::null;
 }
 
 QString Image::link() const
 {
-    return !d->isNull ? d->link : QString::null;
-}
-
-void Image::setWidth(int width)
-{
-    d = ImagePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->width = width;
+    return d ? d->link : QString::null;
 }
 
 int Image::width() const
 {
-    return !d->isNull ? d->width : -1;
-}
-
-void Image::setHeight(int height)
-{
-    d = ImagePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->height = height;
+    return d ? d->width : -1;
 }
 
 int Image::height() const
 {
-    return !d->isNull ? d->height : -1;
-}
-
-void Image::setDescription(const QString& description)
-{
-    d = ImagePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->description = description;
+    return d ? d->height : -1;
 }
 
 QString Image::description() const
 {
-    return !d->isNull ? d->description : QString::null;
+    return d ? d->description : QString::null;
 }
 
 QString Image::debugInfo() const

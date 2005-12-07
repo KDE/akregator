@@ -23,7 +23,6 @@
 */
 
 #include "cloud.h"
-#include "../shared.h"
 
 #include <QDomDocument>
 #include <QDomElement>
@@ -34,10 +33,10 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-class Cloud::CloudPrivate : public LibSyndication::Shared
+class Cloud::CloudPrivate : public KShared
 {
     public:
-    bool isNull;
+
     QString domain;
     int port;
     QString path;
@@ -46,17 +45,7 @@ class Cloud::CloudPrivate : public LibSyndication::Shared
 
     bool operator==(const CloudPrivate &other) const
     {
-        return (isNull && other.isNull) || (domain == other.domain && port == other.port && path == other.path && registerProcedure == other.registerProcedure && protocol == other.protocol);
-    }
-
-    static CloudPrivate* copyOnWrite(CloudPrivate* ep)
-    {
-        if (ep->count > 1)
-        {
-            ep->deref();
-            ep = new CloudPrivate(*ep);
-        }
-        return ep;
+        return (domain == other.domain && port == other.port && path == other.path && registerProcedure == other.registerProcedure && protocol == other.protocol);
     }
 };
 
@@ -73,35 +62,40 @@ const Cloud& Cloud::null()
 
 Cloud Cloud::fromXML(const QDomElement& e)
 {
-    Cloud obj;
+    QString domain = e.attribute(QString::fromLatin1("domain"));
+    QString path = e.attribute(QString::fromLatin1("path"));
 
-    if (e.hasAttribute(QString::fromLatin1("domain")))
-        obj.setDomain(e.attribute(QString::fromLatin1("domain")));
-    if (e.hasAttribute(QString::fromLatin1("path")))
-        obj.setPath(e.attribute(QString::fromLatin1("path")));
+    int port = -1;
     if (e.hasAttribute(QString::fromLatin1("port")))
     {
         bool ok;
         int c = e.attribute(QString::fromLatin1("port")).toInt(&ok);
-        obj.setPort(ok ? c : -1);
+        port = ok ? c : -1;
     }
-    if (e.hasAttribute(QString::fromLatin1("registerProcedure")))
-        obj.setRegisterProcedure(e.attribute(QString::fromLatin1("registerProcedure")));
-    if (e.hasAttribute(QString::fromLatin1("protocol")))
-        obj.setRegisterProcedure(e.attribute(QString::fromLatin1("protocol")));
 
-    return obj;
+    QString registerProcedure = e.attribute(QString::fromLatin1("registerProcedure"));
+
+    QString protocol = e.attribute(QString::fromLatin1("protocol"));
+
+    return Cloud(domain, path, registerProcedure, protocol, port);
 }
 
 bool Cloud::isNull() const
 {
-    return d->isNull;
+    return !d;
 }
 
-Cloud::Cloud() : d(new CloudPrivate)
+Cloud::Cloud() : d(0)
 {
-    d->port = -1;
-    d->isNull = true;
+}
+
+Cloud::Cloud(const QString& domain, const QString& path, const QString& registerProcedure, const QString& protocol, int port) : d(new CloudPrivate)
+{
+    d->domain = domain;
+    d->path = path;
+    d->registerProcedure = registerProcedure;
+    d->protocol = protocol;
+    d->port = port;
 }
 
 Cloud::Cloud(const Cloud& other) : d(0)
@@ -111,88 +105,44 @@ Cloud::Cloud(const Cloud& other) : d(0)
 
 Cloud::~Cloud()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 Cloud& Cloud::operator=(const Cloud& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 
 bool Cloud::operator==(const Cloud& other) const
 {
+    if (!d || !other.d)
+        return d == other.d;
     return *d == *other.d;
-}
-
-void Cloud::setDomain(const QString& domain)
-{
-    d = CloudPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->domain = domain;
 }
 
 QString Cloud::domain() const
 {
-    return !d->isNull ? d->domain : QString::null;
-}
-
-void Cloud::setPort(int port)
-{
-    d = CloudPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->port = port;
+    return d ? d->domain : QString::null;
 }
 
 int Cloud::port() const
 {
-   return !d->isNull ? d->port : -1;
-}
-
-void Cloud::setPath(const QString& path)
-{
-    d = CloudPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->path = path;
+   return d ? d->port : -1;
 }
 
 QString Cloud::path() const
 {
-    return !d->isNull ? d->path : QString::null;
-}
-
-void Cloud::setRegisterProcedure(const QString& registerProcedure)
-{
-    d = CloudPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->registerProcedure = registerProcedure;
+    return d ? d->path : QString::null;
 }
 
 QString Cloud::registerProcedure() const
 {
-    return !d->isNull ? d->registerProcedure : QString::null;
-}
-
-void Cloud::setProtocol(const QString& protocol)
-{
-    d = CloudPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->protocol = protocol;
+    return d ? d->registerProcedure : QString::null;
 }
 
 QString Cloud::protocol() const
 {
-    return !d->isNull ? d->protocol : QString::null;
+    return d ? d->protocol : QString::null;
 }
 
 QString Cloud::debugInfo() const

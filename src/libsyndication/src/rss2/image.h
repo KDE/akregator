@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_RSS2_IMAGE_H
 #define LIBSYNDICATION_RSS2_IMAGE_H
 
+#include <ksharedptr.h>
+
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -41,7 +43,6 @@ class Image
     static Image fromXML(const QDomElement& e);
 
     Image();
-    Image(const QString& url, const QString& title, const QString& link);
     Image(const Image& other);
     virtual ~Image();
 
@@ -56,7 +57,6 @@ class Image
      * @return TODO
      */
     QString url() const;
-    void setURL(const QString& url);
 
     /** 
      * Describes the image, can be used in the ALT attribute of the 
@@ -65,7 +65,6 @@ class Image
      * @return TODO
      */
     QString title() const;
-    void setTitle(const QString& title);
 
     /**
      * The URL of the site, when the channel is rendered, the image should be
@@ -74,7 +73,6 @@ class Image
      * @return TODO
      */
     QString link() const;
-    void setLink(const QString& title);
 
     /**
      * The width of the image. If the feed itself doesn't specify a width,
@@ -83,7 +81,6 @@ class Image
      * @return image width in pixels.
      */
     int width() const;
-    void setWidth(int width);
 
     /**
      * The height of the image. If the feed itself doesn't specify a height,
@@ -92,7 +89,6 @@ class Image
      * @return image height in pixels.
      */
     int height() const;
-    void setHeight(int height);
 
     /**
      * optional text that can be included in the TITLE attribute of the link
@@ -101,16 +97,17 @@ class Image
      * @return TODO
      */
     QString description() const;
-    void setDescription(const QString& description);
 
     QString debugInfo() const;
 
     private:
 
+    Image(const QString& url, const QString& title, const QString& link, const QString& description, int width, int height);
+
     static Image* m_null;
 
     class ImagePrivate;
-    ImagePrivate* d;
+    KSharedPtr<ImagePrivate> d;
 };
 
 } // namespace RSS2

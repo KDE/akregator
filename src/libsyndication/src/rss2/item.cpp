@@ -25,7 +25,6 @@
 #include "category.h"
 #include "enclosure.h"
 #include "item.h"
-#include "../shared.h"
 #include "source.h"
 #include "tools.h"
 
@@ -40,11 +39,10 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-class Item::ItemPrivate : public LibSyndication::Shared
+class Item::ItemPrivate : public KShared
 {
     public:
 
-    bool isNull;
     QString title;
     QString link;
     QString description;
@@ -60,8 +58,7 @@ class Item::ItemPrivate : public LibSyndication::Shared
 
     bool operator==(const ItemPrivate& other) const
     {
-        return (isNull && other.isNull) ||
-                (title == other.title &&
+        return (title == other.title &&
                 link == other.link &&
                 description == other.description &&
                 content == other.content &&
@@ -73,16 +70,6 @@ class Item::ItemPrivate : public LibSyndication::Shared
                 pubDate == other.pubDate &&
                 source == other.source &&
                 enclosure == other.enclosure);
-    }
-
-    static ItemPrivate* copyOnWrite(ItemPrivate* ep)
-    {
-        if (ep->count > 1)
-        {
-            ep->deref();
-            ep = new ItemPrivate(*ep);
-        }
-        return ep;
     }
 };
 
@@ -98,68 +85,92 @@ const Item& Item::null()
 
 Item Item::fromXML(const QDomElement& e)
 {
-    Item obj;
-    obj.setTitle(Tools::extractElementText(e, QString::fromLatin1("title") ));
-    obj.setLink(Tools::extractElementText(e, QString::fromLatin1("link") ));
-    obj.setDescription(Tools::extractElementText(e, QString::fromLatin1("description") ));
+    QString title = Tools::extractElementText(e, QString::fromLatin1("title") );
+    QString link = Tools::extractElementText(e, QString::fromLatin1("link") );
+    
+    QString description = Tools::extractElementText(e, QString::fromLatin1("description") );
     // parse encoded stuff from content:encoded, xhtml:body and friends into content
-    obj.setContent(Tools::extractContent(e));
-    obj.setAuthor(Tools::extractElementText(e, QString::fromLatin1("author") ));
-    obj.setComments(Tools::extractElementText(e, QString::fromLatin1("comments") ));
+    QString content = Tools::extractContent(e);
+    
+    QString author = Tools::extractElementText(e, QString::fromLatin1("author") );
 
-    QDomNode enclosure = e.namedItem(QString::fromLatin1("enclosure"));
-    if (enclosure.isElement())
-        obj.setEnclosure(Enclosure::fromXML(enclosure.toElement()));
+    QString comments = Tools::extractElementText(e, QString::fromLatin1("comments") );
 
-    QDomNode source = e.namedItem(QString::fromLatin1("source"));
-    if (source.isElement())
-        obj.setSource(Source::fromXML(source.toElement()));
+    Enclosure enclosure; 
+    QDomNode enc = e.namedItem(QString::fromLatin1("enclosure"));
+    if (enc.isElement())
+        enclosure = Enclosure::fromXML(enc.toElement());
 
-    QList<QDomElement> categories = Tools::elementsByTagName(e, QString::fromLatin1("category"));
-    for (QList<QDomElement>::ConstIterator it = categories.begin(); it != categories.end(); ++it)
+    Source source;
+    QDomNode s = e.namedItem(QString::fromLatin1("source"));
+    if (s.isElement())
+        source = Source::fromXML(s.toElement());
+
+    QList<QDomElement> cats = Tools::elementsByTagName(e, QString::fromLatin1("category"));
+
+    QList<Category> categories;
+
+    for (QList<QDomElement>::ConstIterator it = cats.begin(); it != cats.end(); ++it)
     {
         Category i = Category::fromXML(*it);
         if (!i.isNull())
-            obj.addCategory(i);
+            categories.append(i);
     }
 
-    QDomNode guid = e.namedItem(QString::fromLatin1("guid"));
-    if (guid.isElement())
+    QString guid;
+
+    bool guidIsPermaLink = true;  // true is default
+
+    QDomNode guidNode = e.namedItem(QString::fromLatin1("guid"));
+    if (guidNode.isElement())
     {
-        QDomElement guidElem = guid.toElement();
-        obj.setGuid(guidElem.text());
+        QDomElement guidElem = guidNode.toElement();
+        guid = guidElem.text();
 
         if (guidElem.attribute(QString::fromLatin1("isPermaLink")) == QString::fromLatin1("false"))
-            obj.setGuidIsPermaLink(false);
-        else
-            obj.setGuidIsPermaLink(true); // true is default
+            guidIsPermaLink = false;
     }
-    //TODO: pubdate
+    
+    QDateTime pubDate;
 
     QString pubDateStr = Tools::extractElementText(e, QString::fromLatin1("pubDate"));
     if (!pubDateStr.isNull())
     {
         time_t time = KRFCDate::parseDate(pubDateStr);
-        QDateTime pubDate;
         pubDate.setTime_t(time);
-        obj.setPubDate(pubDate);
     }
-    return obj;
+
+    return Item(title, description, link, content, categories, comments, 
+                author, enclosure, guid, guidIsPermaLink, pubDate, source);
 }
 
-Item::Item() : d(new ItemPrivate)
+Item::Item() : d(0)
 {
-    d->isNull = true;
-    d->guidIsPermaLink = true;
 }
+
+Item::Item(const QString& title, const QString& link, const QString& description,
+     const QString& content, const QList<Category>& categories,
+     const QString& comments, const QString& author,
+     const Enclosure& enclosure, const QString& guid, bool guidIsPermaLink,
+     const QDateTime& pubDate, const Source& source) : d(new ItemPrivate)
+{
+    d->title = title;
+    d->link = link;
+    d->description = description;
+    d->content = content;
+    d->categories = categories;
+    d->comments = comments;
+    d->author = author;
+    d->enclosure = enclosure;
+    d->guid = guid;
+    d->guidIsPermaLink = guidIsPermaLink;
+    d->pubDate = pubDate;
+    d->source = source;
+}
+
 
 Item::~Item()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 Item::Item(const Item& other) : d(0)
@@ -169,183 +180,80 @@ Item::Item(const Item& other) : d(0)
 
 Item& Item::operator=(const Item& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 
 bool Item::operator==(const Item& other) const
 {
+    if (!d || !other.d)
+        return d == other.d;
     return *d == *other.d;
 }
 
 bool Item::isNull() const
 {
-    return d->isNull;
-}
-
-void Item::setTitle(const QString& title)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->title = title;
+    return !d;
 }
 
 QString Item::title() const
 {
-    return !d->isNull ? d->title : QString::null;
-}
-
-void Item::setLink(const QString& link)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->link = link;
+    return d ? d->title : QString::null;
 }
 
 QString Item::link() const
 {
-    return !d->isNull ? d->link : QString::null;
-}
-
-void Item::setDescription(const QString& description)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->description = description;
+    return d ? d->link : QString::null;
 }
 
 QString Item::description() const
 {
-    return !d->isNull ? d->description : QString::null;
-}
-
-void Item::setContent(const QString& content)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->content = content;
+    return d ? d->description : QString::null;
 }
 
 QString Item::content() const
 {
-    return !d->isNull ? d->content : QString::null;
+    return d ? d->content : QString::null;
 }
 
-void Item::addCategory(const Category& category)
+QList<Category> Item::categories() const
 {
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->categories.append(category);
-}
-
-void Item::setCategories(const QList<Category>& categories)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->categories = categories;
-}
-
-void Item::removeCategory(const Category& category)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->categories.remove(category);
-}
-
- QList<Category> Item::categories() const
-{
-    return !d->isNull ? d->categories : QList<Category>();
-}
-
-void Item::setComments(const QString& comments)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->comments = comments;
+    return d ? d->categories : QList<Category>();
 }
 
 QString Item::comments() const
 {
-    return !d->isNull ? d->comments : QString::null;
-}
-
-void Item::setAuthor(const QString& author)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->author = author;
+    return d ? d->comments : QString::null;
 }
 
 QString Item::author() const
 {
-    return !d->isNull ? d->author : QString::null;
-}
-
-
-void Item::setEnclosure(const Enclosure& enclosure)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->enclosure = enclosure;
+    return d ? d->author : QString::null;
 }
 
 Enclosure Item::enclosure() const
 {
-    return !d->isNull ? d->enclosure : Enclosure::null();
-}
-
-void Item::setGuid(const QString& guid)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->guid = guid;
+    return d ? d->enclosure : Enclosure::null();
 }
 
 QString Item::guid() const
 {
-    return !d->isNull ? d->guid : QString::null;
-}
-
-void Item::setGuidIsPermaLink(bool isPermaLink)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->guidIsPermaLink = isPermaLink;
+    return d ? d->guid : QString::null;
 }
 
 bool Item::guidIsPermaLink() const
 {
-    return !d->isNull ? d->guidIsPermaLink : false;
-}
-
-void Item::setPubDate(const QDateTime& pubDate)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->pubDate = pubDate;
+    return d ? d->guidIsPermaLink : false;
 }
 
 QDateTime Item::pubDate() const
 {
-    return !d->isNull ? d->pubDate : QDateTime();
-}
-
-void Item::setSource(const Source& source)
-{
-    d = ItemPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->source = source;
+    return d ? d->pubDate : QDateTime();
 }
 
 Source Item::source() const
 {
-    return !d->isNull ? d->source : Source::null();
+    return d ? d->source : Source::null();
 }
 
 QString Item::debugInfo() const

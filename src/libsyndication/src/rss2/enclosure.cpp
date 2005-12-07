@@ -22,8 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "../shared.h"
-
 #include "enclosure.h"
 
 #include <qdom.h>
@@ -35,31 +33,21 @@ namespace LibSyndication {
 namespace RSS2 {
 
 
-class Enclosure::EnclosurePrivate : public LibSyndication::Shared
+class Enclosure::EnclosurePrivate : public KShared
 {
     public:
-    bool isNull;
+
     QString url;
     int length;
     QString type;
 
     bool operator==(const EnclosurePrivate &other) const
     {
-        return (isNull && other.isNull) || (
-                url == other.url &&
+        return (url == other.url &&
                 length == other.length &&
                 type == other.type);
     }
 
-    static EnclosurePrivate* copyOnWrite(EnclosurePrivate* ep)
-    {
-        if (ep->count > 1)
-        {
-            ep->deref();
-            ep = new EnclosurePrivate(*ep);
-        }
-        return ep;
-    }
 };
 
 
@@ -77,30 +65,29 @@ const Enclosure& Enclosure::null()
 
 bool Enclosure::isNull() const
 {
-    return d->isNull;
+    return !d;
 }
 
 Enclosure Enclosure::fromXML(const QDomElement& e)
 {
-    Enclosure enc;
+    QString url = e.attribute(QString::fromLatin1("url"));
 
-    if (e.hasAttribute(QString::fromLatin1("url")))
-        enc.setURL(e.attribute(QString::fromLatin1("url")));
+    int length = -1;
+
     if (e.hasAttribute(QString::fromLatin1("length")))
     {
         bool ok;
         int c = e.attribute(QString::fromLatin1("length")).toInt(&ok);
-        enc.setLength(ok ? c : -1);
+        length = ok ? c : -1;
     }
-    if (e.hasAttribute(QString::fromLatin1("type")))
-        enc.setType(e.attribute(QString::fromLatin1("type")));
-    return enc;
+   
+    QString type = e.attribute(QString::fromLatin1("type"));
+
+    return Enclosure(url, length, type);
 }
 
-Enclosure::Enclosure() : d(new EnclosurePrivate)
+Enclosure::Enclosure() : d(0)
 {
-    d->isNull = true;
-    d->length = -1;
 }
 
 Enclosure::Enclosure(const Enclosure& other) : d(0)
@@ -110,7 +97,6 @@ Enclosure::Enclosure(const Enclosure& other) : d(0)
 
 Enclosure::Enclosure(const QString& url, int length, const QString& type) : d(new EnclosurePrivate)
 {
-    d->isNull = false;
     d->url = url;
     d->length = length;
     d->type = type;
@@ -118,64 +104,34 @@ Enclosure::Enclosure(const QString& url, int length, const QString& type) : d(ne
 
 Enclosure::~Enclosure()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 Enclosure& Enclosure::operator=(const Enclosure& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 
 bool Enclosure::operator==(const Enclosure &other) const
 {
+    if (!d || !other.d)
+        return d == other.d;
     return *d == *other.d;
-}
-
-void Enclosure::setURL(const QString& url)
-{
-    d = EnclosurePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->url = url;
 }
 
 QString Enclosure::url() const
 {
-    return !d->isNull ? d->url : QString::null;
-}
-
-void Enclosure::setLength(int length)
-{
-    d = EnclosurePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->length = length;
+    return d ? d->url : QString::null;
 }
 
 int Enclosure::length() const
 {
-    return !d->isNull ? d->length : -1;
-}
-
-void Enclosure::setType(const QString& type)
-{
-    d = EnclosurePrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->type = type;
+    return d ? d->length : -1;
 }
 
 QString Enclosure::type() const
 {
-    return !d->isNull ? d->type : QString::null;
+    return d ? d->type : QString::null;
 }
 
 QString Enclosure::debugInfo() const

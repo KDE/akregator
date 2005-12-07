@@ -22,8 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "../shared.h"
-
 #include "textinput.h"
 #include "tools.h"
 
@@ -35,11 +33,10 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-class TextInput::TextInputPrivate : public Shared
+class TextInput::TextInputPrivate : public KShared
 {
     public:
 
-    bool isNull;
     QString title;
     QString name;
     QString description;
@@ -47,21 +44,11 @@ class TextInput::TextInputPrivate : public Shared
 
     bool operator==(const TextInputPrivate& other) const
     {
-        return (isNull && other.isNull) || (
+        return (
                 title == other.title &&
                 name == other.name &&
                 description == other.description &&
                 link == other.link);
-    }
-
-    static TextInputPrivate* copyOnWrite(TextInputPrivate* ep)
-    {
-        if (ep->count > 1)
-        {
-            ep->deref();
-            ep = new TextInputPrivate(*ep);
-        }
-        return ep;
     }
 };
 
@@ -77,17 +64,23 @@ const TextInput& TextInput::null()
 
 TextInput TextInput::fromXML(const QDomElement& e)
 {
-    TextInput obj;
-    obj.setName(Tools::extractElementText(e, QString::fromLatin1("name") ));
-    obj.setTitle(Tools::extractElementText(e, QString::fromLatin1("title") ));
-    obj.setLink(Tools::extractElementText(e, QString::fromLatin1("link") ));
-    obj.setDescription(Tools::extractElementText(e, QString::fromLatin1("description") ));
-    return obj;
+    QString name = Tools::extractElementText(e, QString::fromLatin1("name") );
+    QString title = Tools::extractElementText(e, QString::fromLatin1("title") );
+    QString link = Tools::extractElementText(e, QString::fromLatin1("link") );
+    QString description = Tools::extractElementText(e, QString::fromLatin1("description") );
+    return TextInput(title, description, link, name);
 }
 
-TextInput::TextInput() : d(new TextInputPrivate)
+TextInput::TextInput() : d(0)
 {
-    d->isNull = true;
+}
+
+TextInput::TextInput(const QString& title, const QString& description, const QString&  link, const QString& name) : d(new TextInputPrivate)
+{
+    d->title = title;
+    d->description = description;
+    d->link = link;
+    d->name = name; 
 }
 
 TextInput::TextInput(const TextInput& other) : d(0)
@@ -97,81 +90,44 @@ TextInput::TextInput(const TextInput& other) : d(0)
 
 TextInput::~TextInput()
 {
-    if (d->deref())
-    {
-        delete d;
-        d = 0;
-    }
 }
 
 TextInput& TextInput::operator=(const TextInput& other)
 {
-    if (d != other.d)
-    {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    d = other.d;
     return *this;
 }
 
 bool TextInput::operator==(const TextInput& other) const
 {
+    if (!d || !other.d)
+        return d == other.d;
     return *d == *other.d;
 }
 
 bool TextInput::isNull() const
 {
-    return d->isNull;
-}
-
-void TextInput::setTitle(const QString& title)
-{
-    d = TextInputPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->title = title;
+    return !d;
 }
 
 QString TextInput::title() const
 {
-    return !d->isNull ? d->title : QString::null;
-}
-
-void TextInput::setName(const QString& name)
-{
-    d = TextInputPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->name = name;
+    return d ? d->title : QString::null;
 }
 
 QString TextInput::name() const
 {
-    return !d->isNull ? d->name : QString::null;
-}
-
-void TextInput::setDescription(const QString& description)
-{
-    d = TextInputPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->description = description;
+    return d ? d->name : QString::null;
 }
 
 QString TextInput::description() const
 {
-    return !d->isNull ? d->description : QString::null;
-}
-
-void TextInput::setLink(const QString& link)
-{
-    d = TextInputPrivate::copyOnWrite(d);
-    d->isNull = false;
-    d->link = link;
+    return d ? d->description : QString::null;
 }
 
 QString TextInput::link() const
 {
-    return !d->isNull ? d->link : QString::null;
+    return d ? d->link : QString::null;
 }
 
 QString TextInput::debugInfo() const

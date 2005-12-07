@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_RSS2_TEXTINPUT_H
 #define LIBSYNDICATION_RSS2_TEXTINPUT_H
 
+#include <ksharedptr.h>
+
 class QString;
 class QDomDocument;
 class QDomElement;
@@ -61,15 +63,12 @@ namespace RSS2 {
          */
         QString title() const;
 
-        void setTitle(const QString& title);
-
         /**
          * The name of the text object in the text input area.
          *
          * @return TODO
          */
         QString name() const;
-        void setName(const QString& name);
 
         /**
          * Explains the text input area.
@@ -77,7 +76,6 @@ namespace RSS2 {
          * @return TODO
          */
         QString description() const;
-        void setDescription(const QString& description);
 
         /**
          * The URL of the CGI script that processes text input requests.
@@ -85,15 +83,16 @@ namespace RSS2 {
          * @return TODO
          */
         QString link() const;
-        void setLink(const QString& link);
 
         QString debugInfo() const;
 
         private:
 
+        TextInput(const QString& title, const QString& description, const QString&  link, const QString& name);
+
         static TextInput* m_null;
         class TextInputPrivate;
-        TextInputPrivate* d;
+        KSharedPtr<TextInputPrivate> d;
     };
 
 } // namespace RSS2

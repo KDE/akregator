@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_RSS2_ENCLOSURE_H
 #define LIBSYNDICATION_RSS2_ENCLOSURE_H
 
+#include <ksharedptr.h>
+
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -44,7 +46,6 @@ namespace RSS2 {
         Enclosure();
 
         Enclosure(const Enclosure& other);
-        Enclosure(const QString& url, int length, const QString& type);
         virtual ~Enclosure();
 
         Enclosure& operator=(const Enclosure& other);
@@ -53,32 +54,27 @@ namespace RSS2 {
         /** returns whether the object is a null object */
         bool isNull() const;
 
-        /** the location of the enclosure. (REQUIRED)
-            @param url the URL of the enclosure, must start with "http://". Entities must be resolved. */
-        void setURL(const QString& url);
-
         /** returns the URL of the enclosure */
         QString url() const;
-
-        /** the size of the linked file in bytes (REQUIRED) */
-        void setLength(int length);
 
         /** returns the size of the enclosure in bytes */
         int length() const;
 
-        /** sets the mime type of the enclosure (e.g. "audio/mpeg") (REQUIRED)*/
-        void setType(const QString& type);
-
-        /** returns the mime type of the enclosure */
+        /** 
+         * returns the mime type of the enclosure
+         * (e.g. "audio/mpeg") 
+         */
         QString type() const;
 
         QString debugInfo() const;
 
         private:
 
+        Enclosure(const QString& url, int length, const QString& type);
+
         static Enclosure* m_null;
         class EnclosurePrivate;
-        EnclosurePrivate* d;
+        KSharedPtr<EnclosurePrivate> d;
     };
 
 } // namespace RSS
