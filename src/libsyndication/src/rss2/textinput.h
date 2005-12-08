@@ -43,14 +43,43 @@ namespace RSS2 {
 class TextInput
 {
     public:
+
+        /**
+         * static null object. See also TextInput() and isNull().
+         *
+         * @return reference to a static null object
+         */
         static const TextInput& null();
-    
-        TextInput();
-        TextInput(const TextInput& other);
-        virtual ~TextInput();
-    
+
+        /**
+         * Parses an textInput object from an <textInput> XML element.
+         *
+         * @param e The <textInput> element to parse the TextInput from
+         * @return the TextInput parsed from XML, or a null object
+         *         if parsing failed.
+         */
         static TextInput fromXML(const QDomElement& e);
-    
+
+        /**
+         * Default constructor, creates a null object, which is equal
+         * to TextInput::null() and for which isNull() is @c true.
+         */
+        TextInput();
+
+        /**
+         * Copy constructor, creates a copy of @c other.
+         * The d pointer is shared, so this is a cheap operation.
+         *
+         * @param other the object to be copied
+         */
+        TextInput(const TextInput& other);
+
+        /**
+         * Destructor.
+         */
+        virtual ~TextInput();
+
+
         /**
          * Assigns the values of @c other. The d pointer is shared, so
          * this is a cheap operation.
@@ -59,10 +88,23 @@ class TextInput
          * @return a reference to this object
          */
         TextInput& operator=(const TextInput& other);
+
+        /**
+         * Checks whether this TextInput is equal to another.
+         * TextInputs are equal if all properties are equal.
+         *
+         * @param other another TextInput
+         * @return whether this object is equal to @c other or not
+         */
         bool operator==(const TextInput& other) const;
-    
+
+        /**
+         * returns whether this object is a null object.
+         *
+         * @return @c true, if this is a null object, otherwise @c false
+         */
         bool isNull() const;
-    
+ 
         /**
          * The label of the Submit button in the text input area.
          *

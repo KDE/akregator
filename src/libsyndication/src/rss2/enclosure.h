@@ -34,18 +34,51 @@ class QString;
 namespace LibSyndication {
 namespace RSS2 {
 
+/**
+ * Describes a media object that is "attached" to the item.
+ * The most common use case for enclosures are podcasts:
+ * An audio file is attached to the feed that can be
+ * automatically downloaded by a podcast client.
+ * 
+ * @author Frank Osterfeld
+ */
 class Enclosure
 {
     public:
-    
+
+        /**
+         * static null object. See also Enclosure() and isNull().
+         *
+         * @return reference to a static null object
+         */
         static const Enclosure& null();
-    
+
+        /**
+         * Parses an enclosure object from an <enclosure> XML element.
+         *
+         * @param e The <enclosure> element to parse the enclosure from
+         * @return the enclosure parsed from XML, or a null object
+         *         if parsing failed.
+         */
         static Enclosure fromXML(const QDomElement& e);
-    
-        /** creates an null object (equivalent to @ref Enclosure::null()) */
+
+        /**
+         * Default constructor, creates a null object, which is equal
+         * to Enclosure::null() and for which isNull() is @c true.
+         */
         Enclosure();
-    
+
+        /**
+         * Copy constructor, creates a copy of @c other.
+         * The d pointer is shared, so this is a cheap operation.
+         *
+         * @param other the object to be copied
+         */
         Enclosure(const Enclosure& other);
+
+        /**
+         * Destructor.
+         */
         virtual ~Enclosure();
 
         /**
@@ -56,15 +89,31 @@ class Enclosure
          * @return a reference to this object
          */
         Enclosure& operator=(const Enclosure& other);
+
+        /**
+         * Checks whether this enclosure is equal to another.
+         * Enclosures are equal if all properties are equal.
+         *
+         * @param other another enclosure
+         * @return whether this object is equal to @c other or not
+         */
         bool operator==(const Enclosure& other) const;
-    
-        /** returns whether the object is a null object */
+
+        /**
+         * returns whether this object is a null object.
+         *
+         * @return @c true, if this is a null object, otherwise @c false
+         */
         bool isNull() const;
     
-        /** returns the URL of the enclosure */
+        /** 
+         * returns the URL of the enclosure 
+         */
         QString url() const;
     
-        /** returns the size of the enclosure in bytes */
+        /**
+         * returns the size of the enclosure in bytes
+         */
         int length() const;
     
         /**

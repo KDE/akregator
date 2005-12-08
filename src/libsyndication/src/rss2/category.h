@@ -106,7 +106,8 @@ class Category
          * domain(). Examples: "General", "Programming", "Funny",
          * "Books/History".
          *
-         * @return The category identifier/name as string
+         * @return The category identifier/name as string or QString::null for
+         * null objects.
          * 
          */
         QString category() const;
@@ -115,13 +116,12 @@ class Category
          * optional, identifies the domain of the category, i.e. a
          * categorization taxonomy.
          *
-         * @return The domain of the category, or QString::null if none is set
+         * @return The domain of the category, or QString::null if none is set (and for null objects)
          */
         QString domain() const;
 
         /**
-         * returns whether this object is a null object. (For a null object,
-         * domain() and category() return both QString::null)
+         * returns whether this object is a null object. 
          *
          * @return @c true, if this is a null object, otherwise @c false
          */

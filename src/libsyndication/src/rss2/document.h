@@ -51,12 +51,40 @@ class Document : public LibSyndication::Document
 {
     public:
     
+        /**
+         * static null object. See also Document() and isNull().
+         *
+         * @return reference to a static null object
+         */
         static const Document& null();
-    
+
+        /**
+         * Parses an RSS2 document from an XML document.
+         * TODO: More on supported formats etc.
+         *
+         * @param document The dom document to parse the document from
+         * @return the document parsed from XML, or a null object
+         *         if parsing failed.
+         */
         static Document fromXML(const QDomDocument& document);
-        
+
+        /**
+         * Default constructor, creates a null object, which is equal
+         * to Document::null() and for which isNull() is @c true.
+         */
         Document();
+
+        /**
+         * Copy constructor, creates a copy of @c other.
+         * The d pointer is shared, so this is a cheap operation.
+         *
+         * @param other the object to be copied
+         */
         Document(const Document& other);
+
+        /**
+         * Destructor.
+         */
         virtual ~Document();
     
         /**
@@ -67,8 +95,21 @@ class Document : public LibSyndication::Document
          * @return a reference to this object
          */
         Document& operator=(const Document& other);
+
+        /**
+         * Checks whether this document is equal to another.
+         * Documents are equal if all properties and all contained items are equal.
+         *
+         * @param other another document
+         * @return whether this object is equal to @c other or not
+         */
         bool operator==(const Document& other) const;
-    
+
+        /**
+         * returns whether this object is a null object.
+         *
+         * @return @c true, if this is a null object, otherwise @c false
+         */
         bool isNull() const;
     
         virtual bool accept(DocumentVisitor* visitor);

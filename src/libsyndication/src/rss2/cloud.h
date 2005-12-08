@@ -63,13 +63,39 @@ class Cloud
 {
     public:
 
+        /**
+         * static null object. See also Cloud() and isNull().
+         *
+         * @return reference to a static null object
+         */
         static const Cloud& null();
 
+        /**
+         * Parses a cloud object from an <cloud> XML element.
+         *
+         * @param e The <cloud> element to parse the cloud from
+         * @return the cloud parsed from XML, or a null object
+         *         if parsing failed.
+         */
         static Cloud fromXML(const QDomElement& e);
 
+        /**
+         * Default constructor, creates a null object, which is equal
+         * to Cloud::null() and for which isNull() is @c true.
+         */
         Cloud();
 
+        /**
+         * Copy constructor, creates a copy of @c other.
+         * The d pointer is shared, so this is a cheap operation.
+         *
+         * @param other the object to be copied
+         */
         Cloud(const Cloud& other);
+
+        /**
+         * Destructor.
+         */
         virtual ~Cloud();
 
         /**
@@ -80,6 +106,14 @@ class Cloud
          * @return a reference to this object
          */
         Cloud& operator=(const Cloud& other);
+
+        /**
+         * Checks whether this cloud is equal to another.
+         * Categories are equal if all properties are equal.
+         *
+         * @param other another cloud
+         * @return whether this object is equal to @c other or not
+         */
         bool operator==(const Cloud& other) const;
 
         QString domain() const;
@@ -92,6 +126,11 @@ class Cloud
 
         QString protocol() const;
 
+        /**
+         * returns whether this object is a null object.
+         *
+         * @return @c true, if this is a null object, otherwise @c false
+         */
         bool isNull() const;
 
         /**
