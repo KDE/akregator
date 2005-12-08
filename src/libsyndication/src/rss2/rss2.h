@@ -22,17 +22,26 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef LIBSYNDICATION_RSS2_RSS_H
-#define LIBSYNDICATION_RSS2_RSS_H
+#ifndef LIBSYNDICATION_RSS2_RSS2_H
+#define LIBSYNDICATION_RSS2_RSS2_H
 
+#include "category.h"
 #include "cloud.h"
-#include "constants.h"
 #include "document.h"
 #include "enclosure.h"
-#include "item.h"
-#include "category.h"
 #include "image.h"
+#include "item.h"
+#include "parser.h"
 #include "source.h"
 #include "textinput.h"
 
-#endif // LIBSYNDICATION_RSS2_RSS_H
+namespace LibSyndication {
+
+/**
+ * A parser and model classes for RSS2 and predecessors (RSS 0.9x)
+ */
+namespace RSS2 {}
+
+} // namespace LibSyndication
+
+#endif // LIBSYNDICATION_RSS2_RSS2_H
