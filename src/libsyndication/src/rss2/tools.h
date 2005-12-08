@@ -44,21 +44,6 @@ class Tools
 {
     public:
     
-        /**
-         * concatenates the XML representations of all children. Example: If @c
-         * parent is an @c xhtml:body element like
-         * @code
-         * <pre><xhtml:body><p>foo</p><blockquote>bar</blockquote></xhtml:body>
-         * </pre>
-         * @endcode
-         * this function returns
-         * @code
-         * <pre><p>foo</p><blockquote>bar</blockquote></pre> 
-         * @endcode
-         *
-         */
-        static QString childNodesAsXML(const QDomNode& parent);
-    
         static QString extractElementText(const QDomNode& parent, const QString& tagName);
     
         /** 
@@ -75,6 +60,24 @@ class Tools
          */
         static QList<QDomElement> elementsByTagName(const QDomNode& parent, const QString& tagName);
     
+    private:
+
+        /**
+         * concatenates the XML representations of all children. Example: If @c
+         * parent is an @c xhtml:body element like
+         * @code
+         * <pre><xhtml:body><p>foo</p><blockquote>bar</blockquote></xhtml:body>
+         * </pre>
+         * @endcode
+         * this function returns
+         * @code
+         * <pre><p>foo</p><blockquote>bar</blockquote></pre> 
+         * @endcode
+         *
+         */
+        static QString childNodesAsXML(const QDomNode& parent);
+    
+
         /**
          * returns all sub elements with tag name @c tagname of a given parent
          * node @c parent with namespace URI @c nsURI.
@@ -82,6 +85,7 @@ class Tools
          * descendents are returned
          */
         static QList<QDomElement> elementsByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& tagName);
+
 };
 
 } // RSS2
