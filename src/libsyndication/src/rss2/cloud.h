@@ -52,7 +52,7 @@ namespace RSS2
    * of /RPC2. The procedure to call is myCloud.rssPleaseNotify.
    *
    * For more information on the rssCloud interface see
-   * http://blogs.law.harvard.edu/tech/soapMeetsRss#rsscloudInterface
+   * @link http://blogs.law.harvard.edu/tech/soapMeetsRss#rsscloudInterface
    *
    * (Note: This explanation was taken from 
    * @link http://blogs.law.harvard.edu/tech/rss)
@@ -109,7 +109,7 @@ class Cloud
 
         /**
          * Checks whether this cloud is equal to another.
-         * Categories are equal if all properties are equal.
+         * Cloud are equal if all properties are equal.
          *
          * @param other another cloud
          * @return whether this object is equal to @c other or not

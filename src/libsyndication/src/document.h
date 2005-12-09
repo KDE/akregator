@@ -25,6 +25,8 @@
 #ifndef LIBSYNDICATION_DOCUMENT_H
 #define LIBSYNDICATION_DOCUMENT_H
 
+class QString;
+
 namespace LibSyndication {
 
 class DocumentVisitor;
@@ -36,6 +38,13 @@ class Document
         virtual ~Document() {}
 
         virtual bool accept(DocumentVisitor* visitor) = 0;
+
+        /**
+         * Returns a description of the document for debugging purposes.
+         *
+         * @return debug string
+         */
+        virtual QString debugInfo() const = 0;
 };
 
 } // namespace LibSyndication
