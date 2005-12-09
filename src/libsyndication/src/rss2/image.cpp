@@ -88,10 +88,8 @@ Image Image::fromXML(const QDomElement& e)
     return Image(url, title, link, description, width, height);
 }
 
-Image::Image() : d(new ImagePrivate)
+Image::Image() : d(0)
 {
-    d->width = -1;
-    d->height = -1;
 }
 
 Image::Image(const Image& other) : d(0)
