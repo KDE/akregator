@@ -31,6 +31,16 @@ namespace LibSyndication {
 
 class DocumentVisitor;
 
+/**
+ * Document interface. A document is a representation parsed from a document 
+ * source (see DocumentSource). It typically contains several information items
+ * (i.e. articles) plus some additional metadata about the news feed.
+ * The Document classes from the several syndication formats must implement
+ * this interface. It's main purpose is to provide access for document visitors
+ * (see DocumentVisitor).
+ *
+ * @author Frank Osterfeld
+ */
 class Document
 {
     public:

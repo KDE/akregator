@@ -34,6 +34,15 @@ namespace RSS2
     class Document;
 }
 
+/**
+ * Visitor interface, following the Visitor design pattern. Use this if you
+ * want to process documents and the way how to handle the document depends
+ * on it's concrete type (e.g. RSS2::Document, Atom::Document...).
+ *
+ * TODO: insert code example
+ *
+ * @author Frank Osterfeld
+ */
 class DocumentVisitor
 {
     public:
