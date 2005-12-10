@@ -27,6 +27,7 @@ Name[zh_CN]=Metakit 存储后端
 X-KDE-Library=libakregator_mk4storage_plugin
 Comment=Plugin for Akregator
 Comment[bg]=Приставка за Akregator
+Comment[br]=Lugent evit Akregator
 Comment[cs]=Modul pro Akregator
 Comment[de]=Modul für Akregator
 Comment[el]=Πρόσθετο για το Akregator
