@@ -143,19 +143,19 @@ bool FeedList::readFromXML(const QDomDocument& doc)
 {
     QDomElement root = doc.documentElement();
 
-    kdDebug() << "loading OPML feed " << root.tagName().lower() << endl;
+    kdDebug() << "loading OPML feed " << root.tagName().toLower() << endl;
 
     kdDebug() << "measuring startup time: START" << endl;
     QTime spent;
     spent.start();
 
-    if (root.tagName().lower() != "opml")
+    if (root.tagName().toLower() != "opml")
     {
         return false;
     }
     QDomNode bodyNode = root.firstChild();
 
-    while (!bodyNode.isNull() && bodyNode.toElement().tagName().lower() != "body")
+    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != "body")
         bodyNode = bodyNode.nextSibling();
 
 

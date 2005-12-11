@@ -89,7 +89,7 @@ TabWidget::TabWidget(QWidget * parent, const char *name)
     d->tabsClose->setIconSet( SmallIconSet( "tab_remove" ) );
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip( i18n("Close the current tab"));
-    setCornerWidget( d->tabsClose, Qt::TopRight );
+    setCornerWidget( d->tabsClose, Qt::TopRightCorner );
 }
 
 TabWidget::~TabWidget()
@@ -195,10 +195,10 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
 
     uint lcw=0, rcw=0;
     int tabBarHeight = tabBar()->sizeHint().height();
-    if ( cornerWidget( Qt::TopLeft ) && cornerWidget( Qt::TopLeft )->isVisible() )
-        lcw = qMax( cornerWidget( Qt::TopLeft )->width(), tabBarHeight );
-    if ( cornerWidget( Qt::TopRight ) && cornerWidget( Qt::TopRight )->isVisible() )
-        rcw = qMax( cornerWidget( Qt::TopRight )->width(), tabBarHeight );
+    if ( cornerWidget( Qt::TopLeftCorner ) && cornerWidget( Qt::TopLeftCorner )->isVisible() )
+        lcw = qMax( cornerWidget( Qt::TopLeftCorner )->width(), tabBarHeight );
+    if ( cornerWidget( Qt::TopRightCorner ) && cornerWidget( Qt::TopRightCorner )->isVisible() )
+        rcw = qMax( cornerWidget( Qt::TopRightCorner )->width(), tabBarHeight );
     uint maxTabBarWidth = width() - lcw - rcw;
 
     int newMaxLength=30;

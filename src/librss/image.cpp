@@ -119,7 +119,7 @@ void Image::getPixmap()
 
 void Image::slotData(KIO::Job *, const QByteArray &data)
 {
-	d->pixmapBuffer->writeBlock(data.data(), data.size());
+	d->pixmapBuffer->write(data.data(), data.size());
 }
 
 void Image::slotResult(KIO::Job *job)

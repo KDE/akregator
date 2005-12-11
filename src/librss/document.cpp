@@ -457,7 +457,7 @@ Document::Document(const QDomDocument &doc) : d(new Private)
         QString elemText;
         for (QDomElement e = n.firstChild().toElement(); !e.isNull(); e = e.nextSibling().toElement())
             if (e.tagName() == QString::fromLatin1("day")) {
-                elemText = e.text().lower();
+                elemText = e.text().toLower();
                 if (elemText == QString::fromLatin1("monday"))
                     day = Monday;
                 else if (elemText == QString::fromLatin1("tuesday"))

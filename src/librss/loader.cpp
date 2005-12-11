@@ -119,7 +119,7 @@ int FileRetriever::errorCode() const
 
 void FileRetriever::slotData(KIO::Job *, const QByteArray &data)
 {
-   d->buffer->writeBlock(data.data(), data.size());
+   d->buffer->write(data.data(), data.size());
 }
 
 void FileRetriever::slotResult(KIO::Job *job)
@@ -202,7 +202,7 @@ int OutputRetriever::errorCode() const
 
 void OutputRetriever::slotOutput(KProcess *, char *data, int length)
 {
-   d->buffer->writeBlock(data, length);
+   d->buffer->write(data, length);
 }
 
 void OutputRetriever::slotExited(KProcess *p)

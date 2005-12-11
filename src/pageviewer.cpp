@@ -279,7 +279,7 @@ void PageViewer::urlSelected(const QString &url, int button, int state, const QS
     else
     {
         browserExtension()->setURLArgs(args);
-        if (_target.lower() == "_blank")
+        if (_target.toLower() == "_blank")
             Viewer::urlSelected(url, button, state, _target, args);
         else
             openURL(completeURL(url) );
