@@ -88,7 +88,7 @@ TabWidget::TabWidget(QWidget * parent, const char *name)
 
     d->tabsClose->setIconSet( SmallIconSet( "tab_remove" ) );
     d->tabsClose->adjustSize();
-    QToolTip::add(d->tabsClose, i18n("Close the current tab"));
+    d->tabsClose->setToolTip( i18n("Close the current tab"));
     setCornerWidget( d->tabsClose, Qt::TopRight );
 }
 

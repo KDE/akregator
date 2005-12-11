@@ -99,9 +99,9 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : KHBox(parent), d(new S
     d->searchCombo->insertItem(iconNew, i18n("New"));
     d->searchCombo->insertItem(iconKeep, i18n("Important"));
     
-    QToolTip::add( clearButton, i18n( "Clear filter" ) );
-    QToolTip::add( d->searchLine, i18n( "Enter space-separated terms to filter article list" ) );
-    QToolTip::add( d->searchCombo, i18n( "Choose what kind of articles to show in article list" ) );
+    clearButton->setToolTip( i18n( "Clear filter" ) );
+    d->searchLine->setToolTip( i18n( "Enter space-separated terms to filter article list" ) );
+    d->searchCombo->setToolTip( i18n( "Choose what kind of articles to show in article list" ) );
 
     connect(clearButton, SIGNAL( clicked() ),
                     this, SLOT(slotClearSearch()) );

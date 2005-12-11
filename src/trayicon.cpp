@@ -69,7 +69,7 @@ TrayIcon::TrayIcon(QWidget *parent, const char *name)
     m_lightIconImage=m_unreadIcon.convertToImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
-    QToolTip::add(this, i18n("Akregator - RSS Feed Reader"));
+    this->setToolTip( i18n("Akregator - RSS Feed Reader"));
 }
 
 
@@ -135,7 +135,7 @@ void TrayIcon::slotSetUnread(int unread)
     m_unread=unread;
     
     QToolTip::remove(this);
-    QToolTip::add(this, i18n("Akregator - 1 unread article", "Akregator - %n unread articles", unread > 0 ? unread : 0));
+    this->setToolTip( i18n("Akregator - 1 unread article", "Akregator - %n unread articles", unread > 0 ? unread : 0));
     
     if (unread <= 0)
     {    
