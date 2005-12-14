@@ -110,7 +110,7 @@ class Document : public LibSyndication::Document
          */
         bool isNull() const;
     
-        virtual bool accept(DocumentVisitor* visitor);
+        bool accept(DocumentVisitor* visitor);
     
         /**
          * The title of the channel.

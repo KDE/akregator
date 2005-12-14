@@ -45,7 +45,7 @@ class AbstractParser
         /**
          * Lets the parser check if it can parse the passed source.
          * Parser implementations should do a _quick_ check for the file
-         * format (i.e. check for feed format and version number in the top
+         * format (i.e. check for feed format and version number in the root
          * element) to find out if the source is in a supported format. They
          * should _not_ completely parse the document to test for full
          * compliance to the format specification.

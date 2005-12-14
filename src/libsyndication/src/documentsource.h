@@ -48,12 +48,33 @@ class DocumentSource
 {
     public:
 
+        /**
+         * Creates an empty document source. The raw representation is empty and 
+         * the DOM representation will be invalid.
+         */
         DocumentSource();
+        
+        /**
+         * Creates a DocumentSource object from a raw byte array
+         */
         DocumentSource(const QByteArray& source);
+        
+        /** 
+         * Copy constructor. The d pointer is shared, so this is a cheap
+         * operation.
+         * 
+         * @param other DocumentSource to copy
+         */
         DocumentSource(const DocumentSource& other);
 
         virtual ~DocumentSource();
 
+        /**
+         * Assignment operator. The d pointer is shared, so this is a cheap
+         * operation.
+         * 
+         * @param other DocumentSource to assign to this instance
+         */
         DocumentSource& operator=(const DocumentSource& other);
 
         /**
