@@ -56,6 +56,8 @@ class DocumentSource
         
         /**
          * Creates a DocumentSource object from a raw byte array
+         * 
+         * @param source the raw source (of the downloaded feed file usually)
          */
         DocumentSource(const QByteArray& source);
         
@@ -74,6 +76,7 @@ class DocumentSource
          * operation.
          * 
          * @param other DocumentSource to assign to this instance
+         * @return reference to this instance
          */
         DocumentSource& operator=(const DocumentSource& other);
 
