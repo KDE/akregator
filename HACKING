@@ -47,26 +47,15 @@ class Foo
         String value() const { return m_value; }
 };
 
-Also conditionals / loops that only contain one line in their body (but where
-the conditional statement fits onto one line) should omit braces:
-
-if (foo == bar)
-    baz();
-
-But:
-
-if (baz == quux &&
-    ralf == spot)
-{
-    bar();
-}
-
+Same goes for the main namespace of a header (the namespace where the class 
+declaration is in, opposed to forward declaration (see also "Namespaces")
+        
 ================================================================================
 Spaces
 ================================================================================
 
 Spaces should be used between the conditional / loop type and the
-conditional statement.  They should not be used after parenthesis.  However
+conditional statement. They should not be used after parenthesis. However
 the should be to mark of mathematical or comparative operators.
 
 if ( foo == bar )
@@ -80,22 +69,33 @@ if (foo == bar)
 Header Organization
 ================================================================================
 
+Guards:
+        
+For test.h, declaring the class Akregator::Test, use AKREGATOR_TEST_H, not TEST_H,
+nor _AKREGATOR_TEST_H_ etc. Comment the closing #endif.
+
+#ifndef AKREGATOR_TEST_H
+#define AKREGATOR_TEST_H
+...
+#endif // AKREGATOR_TEST_H
+        
 Member variables should always be private or protected and prefixed with "m_".
 Accessors may be inline in the headers. The organization of the members in a
 class should be roughly as follows:
 
 public typedefs:
-public ctors:
+public ctors/dtors:
 public methods:
 public slots:
 signals:
 protected methods:
 protected slots:
 protected fields:
+private ctors/dtors:
 private methods:
 private slots:
 private fields:
-private ctors: // if you define ctors/dtor as private, put them at end
+
 
 If there are no private slots there is no need for two private sections, however
 private functions and private variables should be clearly separated.
@@ -105,6 +105,27 @@ same order of function declarations as the header files.
 
 Virtual functions should always be marked as such even in derived classes where
 it is not strictly necessary.
+
+================================================================================
+Namespaces
+================================================================================
+
+- Do not indent stuff in the "main namespace" of a file. But do for forward declarations.
+- comment the closing bracket of the namespace with // namespace Foo
+
+Example:
+        
+namespace KParts
+{
+    class ReadOnlyPart;
+}
+namespace Akregator {
+
+class Foo
+{
+};
+
+} // namespace Akregator
 
 ================================================================================
 Whitespace
@@ -121,8 +142,29 @@ Also I tend to separate comments by blank lines on both sides.
 Pointer and Reference Operators
 ================================================================================
 
-This one is pretty simple. Use "Foo *f" and "Foo &f" in function signatures
-and declarations. And also in signal/slot names.
+Use "Foo* f" and "Foo& f" in function signatures and declarations. And also in 
+signal/slot names.
+
+================================================================================
+Signals and Slots
+================================================================================
+
+Prefix slots/signals with "slot"/"signal". Fully qualify types used in arguments
+(i.e. add namespaces).
+
+Example:
+        
+Use
+        
+    signals:
+        
+        signalFoo(const Akregator::Article&);
+        
+not
+        
+    signals:
+        
+        foo(const Article&);
 
 ================================================================================
 Pointer and Reference Operators
@@ -190,9 +232,9 @@ class Test : public QObject
 
     private:
         int m_privateVar;
-        QSomething *m_tastyThing;
+        QSomething* m_tastyThing;
 
-        static Test *m_instance;
+        static Test* m_instance;
 };
 
 } // no ; after namespace (borks on gcc 3.4+)
@@ -236,11 +278,11 @@ Test::Test(int i);
     , m_tastyThing(i)
     , m_instance(0)
 {
-    if(i == 0)
+    if (i == 0)
         kdDebug() << "Zero initializer" << endl;
 }
 
-} // no ; after namespace (borks on gcc 3.4+)
+} // namespace Akregator
 
 ================================================================================
 
@@ -249,3 +291,4 @@ Scott Wheeler <wheeler@kde.org>
 
 Amendments for Akregator needs by
 Stanislav Karchebny <stanislav.karchebny@kdemail.net>
+Frank Osterfeld <frank.osterfeld@kdemail.net>
