@@ -31,7 +31,7 @@
 #include <kiconloader.h>
 
 #include <qpoint.h>
-#include <q3popupmenu.h>
+#include <QMenu>
 
 namespace Akregator {
 
@@ -81,7 +81,7 @@ void TagNodeItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("tagnode_popup");
     if (w)
-        static_cast<Q3PopupMenu *>(w)->exec(p);
+        static_cast<QMenu *>(w)->exec(p);
 }
 
 TagNodeItem::~TagNodeItem()

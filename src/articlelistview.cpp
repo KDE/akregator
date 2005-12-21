@@ -42,7 +42,7 @@
 
 #include <q3dragobject.h>
 #include <q3header.h>
-#include <q3popupmenu.h>
+#include <QMenu>
 #include <q3ptrlist.h>
 #include <q3simplerichtext.h>
 
@@ -662,7 +662,7 @@ void ArticleListView::slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, i
 void ArticleListView::slotContextMenu(KListView* /*list*/, Q3ListViewItem* /*item*/, const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("article_popup");
-    Q3PopupMenu* popup = static_cast<Q3PopupMenu *>(w);
+    QMenu* popup = static_cast<QMenu *>(w);
     if (popup)
         popup->exec(p);
 }

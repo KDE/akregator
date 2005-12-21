@@ -34,7 +34,7 @@
 #include <qtoolbutton.h>
 #include <qtooltip.h>
 //Added by qt3to4:
-#include <Q3PopupMenu>
+#include <QMenu>
 #include <QStyleOption>
 
 #include <kapplication.h>
@@ -246,7 +246,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
     //kdDebug() << indexOf(d->currentItem) << endl;
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0)
-        static_cast<Q3PopupMenu *>(w)->exec(p);
+        static_cast<QMenu *>(w)->exec(p);
     d->currentItem = 0;
 }
 

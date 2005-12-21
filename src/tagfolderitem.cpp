@@ -27,7 +27,7 @@
 #include "tagfolderitem.h"
 #include "treenode.h"
 
-#include <q3popupmenu.h>
+#include <QMenu>
 #include <kaction.h>
 #include <kiconloader.h>
 
@@ -63,7 +63,7 @@ void TagFolderItem::showContextMenu(const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("tagfolder_popup");
     if (w)
-        static_cast<Q3PopupMenu *>(w)->exec(p);
+        static_cast<QMenu *>(w)->exec(p);
 }
 
 }
