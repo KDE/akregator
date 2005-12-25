@@ -325,7 +325,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
     abortTTS, SLOT(setEnabled(bool)));
 
-    statusMenu->insert(new KAction(KGuiItem(i18n("&Read"), "",
+    statusMenu->insert(new KAction(KGuiItem(i18n("as in: mark as read","&Read"), "",
                        i18n("Mark selected article as read")),
     "Ctrl+E", d->mainWidget, SLOT(slotSetSelectedArticleRead()),
     actionCollection(), "article_set_status_read"));
