@@ -181,9 +181,13 @@ void NodeList::setRootNode(Folder* folder)
 {
     delete d->rootNode;
     d->rootNode = folder;
-    
-    connect(d->rootNode, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
-    connect(d->rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
+
+    if (d->rootNode)
+    {
+        d->rootNode->setOpen(true);
+        connect(d->rootNode, SIGNAL(signalChildAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
+        connect(d->rootNode, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), this, SLOT(slotNodeRemoved(Folder*, TreeNode*)));
+    }
 }
 
 void NodeList::addNode(TreeNode* node, bool preserveID)
