@@ -78,6 +78,7 @@
 #include <QTimer>
 
 #include <q3stylesheet.h>
+#include <QTextDocument>
 
 namespace Akregator {
 
@@ -1221,7 +1222,7 @@ void MainWidget::slotArticleDelete()
         case 0:
             return;
         case 1:
-            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(Q3StyleSheet::escape(articles.first().title()));
+            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(Qt::escape(articles.first().title()));
             break;
         default:
             msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(articles.count());
