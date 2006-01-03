@@ -134,9 +134,9 @@ void Criterion::writeConfig(KConfig* config) const
 
 void Criterion::readConfig(KConfig* config)
 {
-    m_subject = stringToSubject(config->readEntry(QString::fromLatin1("subject")));
-    m_predicate = stringToPredicate(config->readEntry(QString::fromLatin1("predicate")));
-    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType")).ascii());
+    m_subject = stringToSubject(config->readEntry(QString::fromLatin1("subject"), QString()));
+    m_predicate = stringToPredicate(config->readEntry(QString::fromLatin1("predicate"), QString()));
+    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType"), QString()).ascii());
 
     if (type != QVariant::Invalid)
     {
@@ -277,7 +277,7 @@ void ArticleMatcher::writeConfig(KConfig* config) const
 void ArticleMatcher::readConfig(KConfig* config)
 {
     m_criteria.clear();
-    m_association = stringToAssociation(config->readEntry(QString::fromLatin1("matcherAssociation")));
+    m_association = stringToAssociation(config->readEntry(QString::fromLatin1("matcherAssociation"), QString()));
 
     int count =  config->readNumEntry(QString::fromLatin1("matcherCriteriaCount"), 0);
     
@@ -405,7 +405,7 @@ void TagMatcher::writeConfig(KConfig* config) const
 
 void TagMatcher::readConfig(KConfig* config)
 {
-    d->tagID = config->readEntry(QString::fromLatin1("matcherParams"));
+    d->tagID = config->readEntry(QString::fromLatin1("matcherParams"), QString());
 }
 
 bool TagMatcher::operator==(const AbstractMatcher& other) const
@@ -600,7 +600,7 @@ void ArticleFilterList::readConfig(KConfig* config)
 
 void AssignTagAction::readConfig(KConfig* config)
 {
-    m_tagID = config->readEntry(QString::fromLatin1("actionParams"));
+    m_tagID = config->readEntry(QString::fromLatin1("actionParams"), QString());
 }
 
 void AssignTagAction::writeConfig(KConfig* config) const
@@ -652,10 +652,10 @@ void ArticleFilter::readConfig(KConfig* config)
     delete d->action;
     d->action = 0;
 
-    d->name = config->readEntry(QString::fromLatin1("name"));
+    d->name = config->readEntry(QString::fromLatin1("name"), QString());
     d->id = config->readNumEntry(QString::fromLatin1("id"), 0);
 
-    QString matcherType = config->readEntry(QString::fromLatin1("matcherType"));
+    QString matcherType = config->readEntry(QString::fromLatin1("matcherType"), QString());
 
     if (matcherType == QString::fromLatin1("TagMatcher"))
         d->matcher = new TagMatcher();
@@ -666,7 +666,7 @@ void ArticleFilter::readConfig(KConfig* config)
         d->matcher->readConfig(config);
 
 
-        QString actionType = config->readEntry(QString::fromLatin1("actionType"));
+        QString actionType = config->readEntry(QString::fromLatin1("actionType"), QString());
 
     if (actionType == QString::fromLatin1("AssignTagAction"))
         d->action = new AssignTagAction();
