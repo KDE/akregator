@@ -1441,8 +1441,9 @@ void c4_ColOfInts::ResizeData(int index_, int count_, bool clear_)
       Set(index_++, c4_Bytes (ptr, length));
     }
   }
-  else
+  else {
     d4_assert(count_ == 0);
+  }
 
   FixSize(false);
 }

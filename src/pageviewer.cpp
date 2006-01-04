@@ -476,8 +476,9 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         else
             kurl = KURL(url);
 //    kurl.addPath(url);
-        if (kurl.isValid())
-            ;//             slotOpenInNewWindow(kurl);
+        if (kurl.isValid()) {
+            //slotOpenInNewWindow(kurl);
+        }
 //      ( kurl );
     }
 }
