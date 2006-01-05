@@ -41,7 +41,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
 {
     public:
         class Entry
-        {            
+        {
             public:
             Entry() : guidIsHash(false), guidIsPermaLink(false), status(0), pubDate(0), hash(0) {}
             StorageDummyImpl* mainStorage;
@@ -64,10 +64,10 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
         };
 
     QHash<QString, Entry> entries;
-    
+
     // all tags occurring in the feed
     QStringList tags;
-    
+
     // tag -> articles index
     QHash<QString, QStringList> taggedArticles;
 
@@ -172,7 +172,7 @@ void FeedStorageDummyImpl::deleteArticle(const QString& guid)
 
 int FeedStorageDummyImpl::comments(const QString& guid)
 {
-    
+
     return contains(guid) ? d->entries[guid].comments : 0;
 }
 
@@ -400,7 +400,7 @@ void FeedStorageDummyImpl::copyArticle(const QString& guid, FeedStorage* source)
     setStatus(guid, source->status(guid));
     setTitle(guid, source->title(guid));
     QStringList tags = source->tags(guid);
-    
+
     for (QStringList::ConstIterator it = tags.begin(); it != tags.end(); ++it)
         addTag(guid, *it);
 }
@@ -430,8 +430,8 @@ void FeedStorageDummyImpl::removeEnclosure(const QString& guid)
     {
         FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
         entry.hasEnclosure = false;
-        entry.enclosureUrl = QString::null;
-        entry.enclosureType = QString::null;
+        entry.enclosureUrl.clear();
+        entry.enclosureType.clear();
         entry.enclosureLength = -1;
     }
 }
@@ -449,8 +449,8 @@ void FeedStorageDummyImpl::enclosure(const QString& guid, bool& hasEnclosure, QS
     else
     {
         hasEnclosure = false;
-        url = QString::null;
-        type = QString::null;
+        url.clear();
+        type.clear();
         length = -1;
     }
 }

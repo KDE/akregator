@@ -24,7 +24,7 @@
 */
 
 #include "akregatorconfig.h"
-#include "browserrun.h" 
+#include "browserrun.h"
 #include "feediconmanager.h"
 #include "pageviewer.h"
 #include "viewer.h"
@@ -69,11 +69,11 @@ class PageViewer::HistoryEntry
     int id;
 
     HistoryEntry() {}
-    HistoryEntry(const KURL& u, const QString& t=QString::null): url(u), title(t)   
+    HistoryEntry(const KURL& u, const QString& t=QString()): url(u), title(t)
     {
         id = abs( QTime::currentTime().msecsTo( QTime() ) );    // nasty, but should provide a reasonably unique number
     }
-    
+
 };
 
 struct PageViewer::PageViewerPrivate
@@ -89,7 +89,7 @@ struct PageViewer::PageViewerPrivate
     QString caption;
 };
 
- 
+
 PageViewer::PageViewer(QWidget *parent, const char *name)
     : Viewer(parent, name), d(new PageViewerPrivate)
 {
@@ -97,9 +97,9 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     // KGlobal::config() by default, which is wrong when running in Kontact
     KHTMLSettings* s = const_cast<KHTMLSettings*> (settings());
     s->init(Settings::self()->config());
-    
+
     setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
-    
+
     d->backAction = new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(d->backAction->popupMenu(), SIGNAL(aboutToShow()),
@@ -107,7 +107,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     connect(d->backAction->popupMenu(), SIGNAL(activated(int)),
             this, SLOT(slotPopupActivated(int)));
 
-    
+
     d->forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
 
     connect(d->forwardAction->popupMenu(), SIGNAL(aboutToShow()),
@@ -121,13 +121,13 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     d->stopAction = new KAction(i18n("Stop"), "stop", 0,
                                  this, SLOT(slotStop()),
                                  actionCollection(), "pageviewer_stop");
- 
+
     //connect( this, SIGNAL(popupMenu(const QString &, const QPoint &)), this, SLOT(slotPopupMenu(const QString &, const QPoint &)));
 
     d->backAction->setEnabled(false);
     d->forwardAction->setEnabled(false);
     d->stopAction->setEnabled(false);
-    
+
     connect( this, SIGNAL(setWindowCaption (const QString &)),
             this, SLOT(slotSetCaption (const QString &)) );
 
@@ -139,7 +139,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
     // uncomment this to load konq plugins (doesn't work properly and clutters the GUI)
     //loadPlugins( partObject(), this, instance() );
-    
+
 }
 
 PageViewer::~PageViewer()
@@ -180,7 +180,7 @@ void PageViewer::slotBackAboutToShow()
 
     QList<HistoryEntry>::Iterator it = d->current;
     --it;
-    
+
     int i = 0;
     while( i < 10 )
     {
@@ -189,7 +189,7 @@ void PageViewer::slotBackAboutToShow()
             popup->insertItem( (*it).title, (*it).id );
             return;
         }
-        
+
         popup->insertItem( (*it).title, (*it).id );
         ++i;
         --it;
@@ -206,7 +206,7 @@ void PageViewer::slotForwardAboutToShow()
 
     QList<HistoryEntry>::Iterator it = d->current;
     ++it;
-    
+
     int i = 0;
     while( i < 10 )
     {
@@ -216,7 +216,7 @@ void PageViewer::slotForwardAboutToShow()
             popup->insertItem( (*it).title, (*it).id );
             return;
         }
-        
+
         popup->insertItem( (*it).title, (*it).id );
         ++i;
         ++it;
@@ -239,12 +239,12 @@ void PageViewer::openPage(const KURL& url)
     Viewer::openPage(url);
 
     addHistoryEntry(url);
-    
+
     d->backAction->setEnabled( !d->history.isEmpty() && d->current != d->history.begin() );
     d->forwardAction->setEnabled( d->current != d->history.end() && d->current != --(d->history.end()) );
-  
+
     QString favicon = FeedIconManager::self()->iconLocation(url);
-    if (!favicon.isEmpty()) 
+    if (!favicon.isEmpty())
         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
     else
         emit setTabIcon(SmallIcon("html"));
@@ -322,7 +322,7 @@ void PageViewer::restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry)
     d->backAction->setEnabled( !d->history.isEmpty() && d->current != d->history.begin() );
     d->forwardAction->setEnabled(  d->current != d->history.end() && d->current != --(d->history.end()) );
     //openURL( entry.url ); // TODO read state
-    
+
 
 }
 
@@ -330,7 +330,7 @@ void PageViewer::restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry)
 void PageViewer::addHistoryEntry(const KURL& url)
 {
     QList<HistoryEntry>::Iterator it = d->current;
-    
+
     // if We're not already the last entry, we truncate the list here before adding an entry
     if ( it != d->history.end()  && it != --(d->history.end()) )
     {
@@ -366,7 +366,7 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
 }
 
 
-void PageViewer::slotSetCaption(const QString& cap) 
+void PageViewer::slotSetCaption(const QString& cap)
 {
     d->caption = cap;
     if (d->current != d->history.end())
@@ -415,9 +415,9 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
         idNewWindow = popup.insertItem(SmallIcon("tab_new"),i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.setWhatsThis(idNewWindow, i18n("<b>Open Link in New Tab</b><p>Opens current link in a new tab."));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
-                
+
         popup.insertSeparator();
-        action("savelinkas")->plug(&popup);    
+        action("savelinkas")->plug(&popup);
         KAction* copylinkaddress = action("copylinkaddress");
         if (copylinkaddress)
         {
@@ -445,12 +445,12 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
             decFontAction->plug( &popup );
             popup.insertSeparator();
         }
-    
+
         popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
-    
+
         action("viewer_print")->plug(&popup);
         popup.insertSeparator();
-        
+
         KAction *ac = action("setEncoding");
         if (ac)
             ac->plug(&popup);
@@ -461,7 +461,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
 #warning port!
 /*
     int r = popup.exec(p);
-    
+
     if (r == idNewWindow)
     {
         KURL kurl;
@@ -486,6 +486,6 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
 */
 }
 
-} // namespace Akregator 
+} // namespace Akregator
 
 #include "pageviewer.moc"

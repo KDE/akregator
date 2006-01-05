@@ -55,10 +55,10 @@ class BrowserFrame::HistoryEntry
     QString pageReferrer;
 
     HistoryEntry() {}
-    HistoryEntry(const KURL& u, const QString& t=QString::null) : url(u), title(t), id(idCounter++)
+    HistoryEntry(const KURL& u, const QString& t=QString()) : url(u), title(t), id(idCounter++)
     {
     }
-    
+
     bool operator==(const HistoryEntry& other)
     {
         return id == other.id;
@@ -85,7 +85,7 @@ class BrowserFrame::BrowserFramePrivate
     QGridLayout* layout;
     bool lockHistory;
     BrowserFrame* parent;
-    
+
     QString mimetype;
     KService::Ptr service;
 
@@ -141,7 +141,7 @@ void BrowserFrame::BrowserFramePrivate::addHistoryEntry()
     history.append(HistoryEntry());
 
     current = --(history.end());
-    
+
     if (canBack != parent->canGoBack())
         emit parent->signalCanGoBackToggled(parent, parent->canGoBack());
 }
@@ -173,7 +173,7 @@ void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( HistoryEntry& entry
         parent->openURL(entry.url, entry.mimetype);
 
     current = history.find(entry);
-    
+
     lockHistory = false;
 
     if (canForward != parent->canGoForward())
@@ -200,11 +200,11 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
             connect( ext, SIGNAL(speedProgress(int)), parent, SLOT(slotSpeedProgress(int)) );
             connect( ext, SIGNAL(speedProgress(int)), parent,         SLOT(slotSetProgress(int)) );
             connect( ext, SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&) ), parent, SLOT(slotOpenURLRequestDelayed(const KURL&, const KParts::URLArgs&)) );
-            connect(ext, SIGNAL(setLocationBarURL(const QString&)), parent, SLOT(slotSetLocationBarURL(const QString&)) ); 
-            connect(ext, SIGNAL(setIconURL(const KURL&)), parent, SLOT(slotSetLocationBarURL(const KURL&)) ); 
+            connect(ext, SIGNAL(setLocationBarURL(const QString&)), parent, SLOT(slotSetLocationBarURL(const QString&)) );
+            connect(ext, SIGNAL(setIconURL(const KURL&)), parent, SLOT(slotSetLocationBarURL(const KURL&)) );
         }
     }
-    
+
 }
 
 void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
@@ -230,7 +230,7 @@ void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
 BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent)
 {
     d = new BrowserFramePrivate(this);
-    
+
     d->part = 0;
 
     setRemovable(true);
@@ -300,12 +300,12 @@ bool BrowserFrame::openURL(const KURL& url, const QString& mimetype)
         return false;
 
     d->updateHistoryEntry();
-    
+
     if (!d->loadPartForMimetype(mimetype))
     {
         // TODO: show open|save|cancel dialog
     }
-    
+
     bool res = d->part ? d->part->openURL(url) : false;
 
     if (res)

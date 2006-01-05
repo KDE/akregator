@@ -84,10 +84,10 @@ class ArticleListView::ArticleListViewPrivate
     ColumnMode columnMode;
     int feedWidth;
     bool noneSelected;
-    
+
     ColumnLayoutVisitor* columnLayoutVisitor;
 };
-  
+
 class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
 {
     public:
@@ -102,7 +102,7 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
             }
             return true;
         }
-        
+
         virtual bool visitFolder(Folder* /*node*/)
         {
             if (m_view->d->columnMode == ArticleListViewPrivate::feedMode)
@@ -112,11 +112,11 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
             }
             return true;
         }
-        
+
         virtual bool visitFeed(Feed* /*node*/)
         {
             if (m_view->d->columnMode == ArticleListViewPrivate::groupMode)
-            {    
+            {
                 m_view->d->feedWidth = m_view->columnWidth(1);
                 m_view->hideColumn(1);
                 m_view->d->columnMode = ArticleListViewPrivate::feedMode;
@@ -126,7 +126,7 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
     private:
 
         ArticleListView* m_view;
-    
+
 };
 
 class ArticleListView::ArticleItem : public KListViewItem
@@ -145,7 +145,7 @@ class ArticleListView::ArticleItem : public KListViewItem
             void updateItem(const Article& article);
 
             virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
-            
+
             virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(KListViewItem::nextSibling()); }
 
         private:
@@ -161,7 +161,7 @@ ArticleListView::ArticleItem::ArticleItem( Q3ListView *parent, const Article& a)
     if (a.keep())
         setPixmap(0, m_keepFlag);
 }
- 
+
 ArticleListView::ArticleItem::~ArticleItem()
 {
 }
@@ -182,12 +182,12 @@ void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup &
     {
         // if article status is unread or new, we change the color: FIXME: make colors configurable
         QColorGroup cg2(cg);
-    
+
         if (article().status() == Article::Unread)
             cg2.setColor(QColorGroup::Text, Qt::blue);
         else // New
             cg2.setColor(QColorGroup::Text, Qt::red);
-    
+
         KListViewItem::paintCell( p, cg2, column, width, align );
     }
 
@@ -240,7 +240,7 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
     setDragEnabled(true); // FIXME before we implement dragging between archived feeds??
     setAcceptDrops(false); // FIXME before we implement dragging between archived feeds??
     setFullWidth(false);
-    
+
     setShowSortIndicator(true);
     setDragAutoScroll(true);
     setDropHighlighter(false);
@@ -253,17 +253,17 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
     if (w > 0) {
         setColumnWidth(0, w);
     }
-    
+
     w = Settings::feedWidth();
     if (w > 0) {
         setColumnWidth(1, w);
     }
-    
+
     w = Settings::dateWidth();
     if (w > 0) {
         setColumnWidth(2, w);
     }
-    
+
     d->feedWidth = columnWidth(1);
     hideColumn(1);
 
@@ -295,7 +295,7 @@ void ArticleListView::slotSetFilter(const Akregator::Filters::ArticleMatcher& te
     {
         d->textFilter = textFilter;
         d->statusFilter = statusFilter;
-               
+
         applyFilters();
     }
 }
@@ -321,7 +321,7 @@ void ArticleListView::slotShowNode(TreeNode* node)
 
     QList<Article>::ConstIterator end = articles.end();
     QList<Article>::ConstIterator it = articles.begin();
-    
+
     for (; it != end; ++it)
     {
         if (!(*it).isNull() && !(*it).isDeleted())
@@ -342,7 +342,7 @@ void ArticleListView::slotClear()
 {
     if (d->node)
         disconnectFromNode(d->node);
-        
+
     d->node = 0;
     d->articleMap.clear();
     clear();
@@ -351,7 +351,7 @@ void ArticleListView::slotClear()
 void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& list)
 {
     setUpdatesEnabled(false);
-    
+
     for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (!d->articleMap.contains((*it).guid()))
@@ -374,7 +374,7 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QList<Articl
 
     for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        
+
         if (!(*it).isNull() && d->articleMap.contains((*it).guid()))
         {
             ArticleItem* ali = d->articleMap[(*it).guid()];
@@ -413,7 +413,7 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QList<Articl
     setUpdatesEnabled(true);
     triggerUpdate();
 }
-            
+
 void ArticleListView::connectToNode(TreeNode* node)
 {
     connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
@@ -475,14 +475,14 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 {
 
     KListView::viewportPaintEvent(e);
-    
+
     if(!e)
         return;
-        
-    QString message = QString::null;
-    
+
+    QString message;
+
     //kdDebug() << "visible articles: " << visibleArticles() << endl;
-    
+
     if(childCount() != 0) // article list is not empty
     {
         if (visibleArticles() == 0)
@@ -493,7 +493,7 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
                         "please change your criteria and try again."
                         "</div>");
         }
-        
+
     }
     else // article list is empty
     {
@@ -508,10 +508,10 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
         }
         else // empty node
         {
-            // TODO: we could display message like "empty node, choose "fetch" to update it" 
+            // TODO: we could display message like "empty node, choose "fetch" to update it"
         }
     }
-    
+
     if (!message.isNull())
         paintInfoBox(message);
 }
@@ -534,7 +534,7 @@ void ArticleListView::slotPreviousArticle()
         ali = dynamic_cast<ArticleItem*>(firstChild());
     else
         ali = dynamic_cast<ArticleItem*>(currentItem()->itemAbove());
-    
+
     if (ali)
     {
         Article a = ali->article();
@@ -552,7 +552,7 @@ void ArticleListView::slotNextArticle()
         ali = dynamic_cast<ArticleItem*>(firstChild());
     else
         ali = dynamic_cast<ArticleItem*>(currentItem()->itemBelow());
-    
+
     if (ali)
     {
         Article a = ali->article();
@@ -573,12 +573,12 @@ void ArticleListView::slotNextUnreadArticle()
 
     ArticleItem* i = start;
     ArticleItem* unread = 0;
-    
+
     do
     {
         if (i && i->article().status() != Article::Read)
             unread = i;
-        else 
+        else
             i = dynamic_cast<ArticleItem*>(i && i->itemBelow() ? i->itemBelow() : firstChild());
     }
     while (!unread && i != start);
@@ -603,12 +603,12 @@ void ArticleListView::slotPreviousUnreadArticle()
 
     ArticleItem* i = start;
     ArticleItem* unread = 0;
-    
+
     do
     {
         if (i && i->article().status() != Article::Read)
             unread = i;
-        else 
+        else
             i = dynamic_cast<ArticleItem*>(i->itemAbove() ? i->itemAbove() : lastChild());
     }
     while ( !(unread != 0 || i == start) );
@@ -630,11 +630,11 @@ void ArticleListView::keyPressEvent(QKeyEvent* e)
 
 void ArticleListView::slotSelectionChanged()
 {
-    // if there is only one article in the list, currentItem is set initially to 
+    // if there is only one article in the list, currentItem is set initially to
     // that article item, although the user hasn't selected it. If the user selects
     // the article, selection changes, but currentItem does not.
     // executed. So we have to handle this case by observing selection changes.
-    
+
     if (d->noneSelected)
     {
         d->noneSelected = false;
@@ -647,9 +647,9 @@ void ArticleListView::slotCurrentChanged(Q3ListViewItem* item)
     ArticleItem* ai = dynamic_cast<ArticleItem*> (item);
     if (ai)
         emit signalArticleChosen( ai->article() );
-    else 
+    else
         emit signalArticleChosen( Article() );
-} 
+}
 
 
 void ArticleListView::slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, int i)
