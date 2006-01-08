@@ -6,6 +6,8 @@ Changes after 1.2:
 
 Bug fixes:
 
+ 2006/01/08 Fix problems with keyboard navigation getting stuck on duplicated articles
+            and prevent creation of new items when selecting an unread dupe (#114997) -fo
  2005/12/05 Wait 30 minutes before retrying fetching when fetching failed (host down, parsing error) 
             (#113358) -fo
 
