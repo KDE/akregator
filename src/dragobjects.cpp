@@ -25,8 +25,6 @@
 #include "dragobjects.h"
 #include "feed.h"
 
-#include <q3cstring.h>
-//Added by qt3to4:
 #include <QList>
 
 namespace Akregator {

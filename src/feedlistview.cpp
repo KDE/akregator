@@ -47,8 +47,6 @@
 #include <kstringhandler.h>
 #include <k3urldrag.h>
 
-#include <q3header.h>
-
 #include <QDragMoveEvent>
 #include <QDropEvent>
 #include <QFont>

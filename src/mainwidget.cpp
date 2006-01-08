@@ -75,10 +75,8 @@
 #include <QClipboard>
 #include <QPixmap>
 #include <QSplitter>
-#include <QTimer>
-
-#include <q3stylesheet.h>
 #include <QTextDocument>
+#include <QTimer>
 
 namespace Akregator {
 

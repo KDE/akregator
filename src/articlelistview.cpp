@@ -40,10 +40,7 @@
 #include <kstandarddirs.h>
 #include <kurl.h>
 
-#include <q3dragobject.h>
 #include <q3header.h>
-#include <QMenu>
-#include <q3ptrlist.h>
 #include <q3simplerichtext.h>
 
 #include <QApplication>
@@ -51,6 +48,7 @@
 #include <QHash>
 #include <QKeyEvent>
 #include <QList>
+#include <QMenu>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QPixmap>
