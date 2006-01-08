@@ -112,6 +112,11 @@ bool Resource::isNull() const
     return d == (ResourcePrivate*)0;
 }
 
+Model Resource::model() const
+{
+    return d->model;
+}
+
 bool Resource::isResource() const
 {
     return true;

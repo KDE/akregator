@@ -20,7 +20,12 @@
  *
  */
 
+#include "literal.h"
+#include "property.h"
+#include "resource.h"
 #include "statement.h"
+
+#include <QString>
 
 namespace LibSyndication {
 namespace RDF {
