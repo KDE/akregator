@@ -49,6 +49,8 @@ class Content
         
         QString encoded() const;
         
+        QString debugInfo() const;
+        
     private:
         
         class ContentPrivate;

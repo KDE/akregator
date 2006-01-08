@@ -92,7 +92,11 @@ time_t Syndication::updateBase() const
     return 0;
 }
 
-
+QString Syndication::debugInfo() const
+{
+    QString info = "TODO";
+    return info;
+}
 
 } // namespace RDF
 } // namespace LibSyndication

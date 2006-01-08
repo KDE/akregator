@@ -68,7 +68,14 @@ QString TextInput::name() const
 
 QString TextInput::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### TextInput: ###################\n";
+    info += "title: #" + title() + "#\n";
+    info += "link: #" + link() + "#\n";
+    info += "description: #" + description() + "#\n";
+    info += "name: #" + name() + "#\n";
+    info += "### TextInput end ################\n";
+    return info;
 }
 
 

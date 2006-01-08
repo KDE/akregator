@@ -142,7 +142,21 @@ TextInput Document::textInput() const
 
 QString Document::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Document: ###################\n";
+    info += "title: #" + title() + "#\n";
+    info += "link: #" + link() + "#\n";
+    info += "description: #" + description() + "#\n";
+    info += dc().debugInfo();
+    info += syn().debugInfo();
+    Image img = image();
+    if (!img.isNull())
+        info += img.debugInfo();
+    TextInput input = textInput();
+    if (!input.isNull())
+        info += input.debugInfo();
+    info += "### Document end ################\n";
+    return info;
 }
 
 } // namespace RDF

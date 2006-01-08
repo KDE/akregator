@@ -80,6 +80,13 @@ QString Content::encoded() const
     return d->resource.property(ContentVocab::self()->encoded()).asString();
 }
 
+QString Content::debugInfo() const
+{
+    QString info;
+    if (!encoded().isNull())
+        info += QString("content:encoded: #%1#\n").arg(encoded());
+    return info;
+}
 
 } // namespace RDF
 } // namespace LibSyndication

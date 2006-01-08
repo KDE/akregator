@@ -58,6 +58,8 @@ class Syndication
         
         time_t updateBase() const;
         
+        QString debugInfo() const;
+        
     private:
         
         class SyndicationPrivate;

@@ -74,7 +74,15 @@ Content Item::content() const
 
 QString Item::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Item: ###################\n";
+    info += "title: #" + title() + "#\n";
+    info += "link: #" + link() + "#\n";
+    info += "description: #" + description() + "#\n";
+    info += dc().debugInfo();
+    info += content().debugInfo();
+    info += "### Item end ################\n";
+    return info;
 }
 
 

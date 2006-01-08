@@ -62,7 +62,13 @@ QString Image::url() const
     
 QString Image::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Image: ###################\n";
+    info += "title: #" + title() + "#\n";
+    info += "description: #" + description() + "#\n";
+    info += "url: #" + url() + "#\n";
+    info += "### Image end ################\n";
+    return info;
 }
 
     

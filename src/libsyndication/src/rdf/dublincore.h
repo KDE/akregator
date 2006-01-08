@@ -79,6 +79,8 @@ class DublinCore
         
         QString type() const;
         
+        QString debugInfo() const;
+        
     private:
         
         class DublinCorePrivate;
