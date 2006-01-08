@@ -53,8 +53,11 @@ class Statement::StatementPrivate : public KShared
         }
 };
 
-Statement::Statement() : d(0)
+Statement::Statement() : d(new StatementPrivate)
 {
+    d->subject = new Resource();
+    d->predicate = new Property();
+    d->object = new Resource();
 }
 
 Statement::Statement(const Statement& other)
@@ -90,7 +93,7 @@ bool Statement::operator==(const Statement& other) const
 
 bool Statement::isNull() const
 {
-    return d == (StatementPrivate*)0;
+    return d->subject->isNull();
 }
 
 Resource* Statement::subject() const
@@ -110,7 +113,7 @@ Node* Statement::object() const
 
 QString Statement::asString() const
 {
-    if (!d->object->isLiteral())
+    if (isNull() || !d->object->isLiteral())
         return QString::null;
 
     Literal* l = dynamic_cast<Literal*>(d->object);

@@ -46,7 +46,7 @@ class Sequence::SequencePrivate : public KShared
         
 };
 
-Sequence::Sequence() : d(0)
+Sequence::Sequence() : Resource(), d(0)
 {
 }
 
@@ -57,7 +57,7 @@ Sequence::Sequence(const QString& uri, const Model& model)
 
 Sequence::Sequence(const Sequence& other) : Resource(other)
 {
-    d = other.d;
+    *this = other;
 }
 
 Sequence::~Sequence()
@@ -72,12 +72,13 @@ Sequence& Sequence::operator=(const Sequence& other)
 
 void Sequence::append(const Node& node)
 {
-    d->items.append(node.clone());
+    if (d)
+        d->items.append(node.clone());
 }
 
 QList<Node*> Sequence::items() const
 {
-    return d->items;
+    return d ? d->items : QList<Node*>();
 }
 
 bool Sequence::isSequence() const

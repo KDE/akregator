@@ -94,12 +94,12 @@ bool Resource::operator==(const Node& other) const
 
 bool Resource::hasProperty(const Property& property) const
 {
-    return d->model.resourceHasProperty(*this, property);
+    return d ? d->model.resourceHasProperty(*this, property) : false;
 }
 
 Statement Resource::property(const Property& property) const
 {
-    return d->model.resourceProperty(*this, property);
+    return d ? d->model.resourceProperty(*this, property) : Statement();
 }
 
 Resource* Resource::clone() const
@@ -114,7 +114,7 @@ bool Resource::isNull() const
 
 Model Resource::model() const
 {
-    return d->model;
+    return d ? d->model : Model();
 }
 
 bool Resource::isResource() const
@@ -129,7 +129,7 @@ bool Resource::isLiteral() const
 
 bool Resource::isAnon() const
 {
-    return d->isAnon;
+    return d ? d->isAnon : false;
 }
 
 bool Resource::isSequence() const
