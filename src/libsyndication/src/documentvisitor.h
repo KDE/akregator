@@ -27,6 +27,11 @@ namespace LibSyndication {
 
 class Document;
 
+namespace RDF
+{
+    class Document;
+}
+
 namespace RSS2 
 {
     class Document;
@@ -50,6 +55,8 @@ class DocumentVisitor
         virtual bool visit(Document* document);
 
         virtual bool visit(LibSyndication::RSS2::Document* document) { return false; }
+        
+        virtual bool visit(LibSyndication::RDF::Document* document) { return false; }
 };
 
 } // namespace LibSyndication

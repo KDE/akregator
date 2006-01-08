@@ -34,7 +34,7 @@ static KStaticDeleter<ParserRegistry> parserregistrysd;
 
 ParserRegistry* ParserRegistry::m_self = 0;
 
-class ParserRegistry::ParserRegistryPrivate 
+class ParserRegistry::ParserRegistryPrivate
 {
     public:
     QHash<QString, AbstractParser*> parsers;

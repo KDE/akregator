@@ -1,4 +1,4 @@
-SUBDIRS = rss2
+SUBDIRS = rss2 rdf
 
 INCLUDES = $(all_includes)
 
