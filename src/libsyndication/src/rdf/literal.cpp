@@ -100,6 +100,11 @@ bool Literal::isAnon() const
     return false;
 }
 
+bool Literal::isSequence() const
+{
+    return false;
+}
+
 QString Literal::text() const
 {
     return d ? d->text : QString::null;

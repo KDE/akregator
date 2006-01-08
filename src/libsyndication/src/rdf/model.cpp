@@ -22,6 +22,7 @@
 
 #include "model.h"
 #include "property.h"
+#include "rdfvocab.h"
 #include "resource.h"
 #include "statement.h"
 
@@ -142,6 +143,22 @@ QList<Resource> Model::listSubjects() const
     }
 
     return subjects;
+}
+
+QList<Resource*> Model::resourcesWithType(const Resource& type) const
+{
+    QList<Resource*> list;
+    
+    QList<Statement>::ConstIterator it = d->stmts.begin();
+    QList<Statement>::ConstIterator end = d->stmts.end();
+
+    for ( ; it != end; ++it)
+    {
+        if (*((*it).predicate()) == RDFVocab::type() && *((*it).object()) == type )
+            list.append((*it).subject());
+    }
+
+    return list;
 }
 
 } // namespace RDF

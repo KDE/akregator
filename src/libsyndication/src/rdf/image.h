@@ -37,6 +37,7 @@ class Image : public Resource
     public:
             
         Image();
+        Image(const Resource& resource);
         Image(const QString& uri, const Model& model);
         virtual ~Image();
 

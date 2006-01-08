@@ -33,6 +33,10 @@ Image::Image() : Resource()
 {
 }
 
+Image::Image(const Resource& resource) : Resource(resource)
+{
+}
+
 Image::Image(const QString& uri, const Model& model) : Resource (uri, model)
 {
 }

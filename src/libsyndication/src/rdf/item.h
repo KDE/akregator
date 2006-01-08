@@ -41,6 +41,7 @@ class Item : public Resource
     public:
             
         Item();
+        Item(const Resource& resource);
         Item(const QString& uri, const Model& model);
         
         virtual ~Item();

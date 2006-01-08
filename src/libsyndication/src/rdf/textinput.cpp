@@ -34,6 +34,10 @@ TextInput::TextInput() : Resource()
 {
 }
 
+TextInput::TextInput(const Resource& resource) : Resource(resource)
+{
+}
+
 TextInput::TextInput(const QString& uri, const Model& model) : Resource(uri, model)
 {
 }

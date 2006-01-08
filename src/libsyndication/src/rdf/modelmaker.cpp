@@ -20,12 +20,13 @@
  *
  */
 
+#include "literal.h"
 #include "model.h"
 #include "modelmaker.h"
 #include "property.h"
-#include "literal.h"
 #include "rdfvocab.h"
 #include "resource.h"
+#include "sequence.h"
 #include "statement.h"
 
 #include <QDomElement>
@@ -69,16 +70,28 @@ void ModelMaker::readResource(Model& model, const QDomElement& el)
     QString resource = QString::fromLatin1("resource");
     QString descriptionStr = QString::fromLatin1("Description");
 
-    Resource res(el.attributeNS(RDFVocab::namespaceURI(), about), model); 
+    Resource* res = 0;
 
     if (el.localName() != descriptionStr || el.namespaceURI() != RDFVocab::namespaceURI())
     {
         Resource type(el.namespaceURI() + el.localName(), model);
-        model.addStatement(res, RDFVocab::type(), type);
+        
+        if (type == RDFVocab::seq())
+        {
+            res = new Sequence(el.attributeNS(RDFVocab::namespaceURI(), about), model); 
+        }
+        else
+        {
+            res = new Resource(el.attributeNS(RDFVocab::namespaceURI(), about), model); 
+        }
+        
+        model.addStatement(*res, RDFVocab::type(), type);
     }
 
     QDomNodeList children = el.childNodes();
 
+    bool isSeq = res->isSequence();
+    
     for (uint i = 0; i < children.length(); ++i)
     {
         if (children.item(i).isElement())
@@ -90,23 +103,38 @@ void ModelMaker::readResource(Model& model, const QDomElement& el)
             if (ce.hasAttributeNS(RDFVocab::namespaceURI(), resource)) // referenced Resource via rdf:resource
             {
                 Resource obj(ce.attributeNS(RDFVocab::namespaceURI(), resource), model);
-                model.addStatement(res, pred, obj);
+                
+                if (isSeq && pred == RDFVocab::li())
+                    static_cast<Sequence*>(res)->append(obj);
+                else
+                    model.addStatement(*res, pred, obj);
             }
             else if (ce.hasAttributeNS(RDFVocab::namespaceURI(), about)) // embedded description using rdf:about
             {
                 Resource obj(ce.attributeNS(RDFVocab::namespaceURI(), about), model);
-                model.addStatement(res, pred, obj);
+                
+                if (isSeq && pred == RDFVocab::li())
+                    static_cast<Sequence*>(res)->append(obj);
+                else
+                    model.addStatement(*res, pred, obj);
+                
                 readResource(model, ce); // read recursively
             }
             else if (!ce.text().isEmpty()) // Literal
             {
                 Literal obj(ce.text());
-                model.addStatement(res, pred, obj);
+                
+                if (isSeq && pred == RDFVocab::li())
+                    static_cast<Sequence*>(res)->append(obj);
+                else
+                    model.addStatement(*res, pred, obj);
             }
         
         //TODO: sequence [and bag, anonymous, reification, nice to have, but not important for basic RSS 1.0]
         }
     }
+    
+    delete res;
 }
 
 } // namespace RDF

@@ -36,6 +36,7 @@ class Sequence : public Resource
     public:
         
         Sequence();
+        Sequence(const QString& uri, const Model& model);
         Sequence(const Sequence& other);
         virtual ~Sequence();
         
@@ -43,6 +44,7 @@ class Sequence : public Resource
         
         virtual void append(const Node& node);
         virtual QList<Node*> items() const;
+        virtual bool isSequence() const;
         
     private:
         

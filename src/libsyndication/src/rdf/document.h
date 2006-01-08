@@ -47,6 +47,7 @@ class Document : public LibSyndication::Document, public Resource
     public:
             
         Document();
+        Document(const Resource& resource);
         Document(const QString& uri, const Model& model);
         virtual ~Document();
         

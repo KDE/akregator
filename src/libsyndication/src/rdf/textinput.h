@@ -36,6 +36,7 @@ class TextInput : public Resource
     public:
             
         TextInput();
+        TextInput(const Resource& resource);
         TextInput(const QString& uri, const Model& model);
         virtual ~TextInput();
         

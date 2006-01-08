@@ -60,6 +60,7 @@ class Resource : public Node
         virtual bool isResource() const;
         virtual bool isLiteral() const;
         virtual bool isAnon() const;
+        virtual bool isSequence() const;
     
         virtual QString uri() const;
     

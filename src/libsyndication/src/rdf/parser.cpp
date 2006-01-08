@@ -20,13 +20,18 @@
  *
  */
 
+#include "document.h"
+#include "model.h"
+#include "modelmaker.h"
 #include "parser.h"
 #include "rdfvocab.h"
+#include "rssvocab.h"
 
 #include "../documentsource.h"
 
 #include <QDomDocument>
 #include <QDomNodeList>
+#include <QList>
 #include <QString>
 
 namespace LibSyndication {
@@ -44,7 +49,20 @@ bool Parser::accept(const DocumentSource& source) const
 
 Document* Parser::parse(const DocumentSource& source) const
 {
-    return 0;
+    QDomDocument doc = source.asDomDocument();
+    
+    if (doc.isNull())
+        return 0;
+    
+    ModelMaker maker;
+    Model model = maker.createFromXML(doc);
+    
+    QList<Resource*> channels = model.resourcesWithType(RSSVocab::self()->channel());
+    
+    if (channels.isEmpty())
+        return 0;
+    
+    return new Document(**(channels.begin()));
 }
 
 QString Parser::format() const

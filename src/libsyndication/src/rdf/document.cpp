@@ -28,6 +28,7 @@
 #include "image.h"
 #include "item.h"
 #include "rssvocab.h"
+#include "sequence.h"
 #include "statement.h"
 #include "syndication.h"
 #include "textinput.h"
@@ -41,6 +42,10 @@ namespace RDF {
 
 Document::Document(const QString& uri, const Model& model) 
     : LibSyndication::Document(), Resource(uri, model)
+{
+}
+
+Document::Document(const Resource& resource) : Resource(resource)
 {
 }
 
@@ -83,9 +88,29 @@ Syndication Document::syn() const
 QList<Item> Document::items() const
 {
     QList<Item> list;
+    if (hasProperty(RSSVocab::self()->items()))
+        return list;
     
-    // read Items from RDF seq
-    
+    Node* n = property(RSSVocab::self()->items()).object();
+    if (n->isSequence())
+    {
+        Sequence* seq = dynamic_cast<Sequence*>(n);
+        if (seq)
+        {
+            QList<Node*> items = seq->items();
+            QList<Node*>::ConstIterator it = items.begin();
+            QList<Node*>::ConstIterator end = items.end();
+            
+            for ( ; it != end; ++it)
+            {
+                if ((*it)->isResource())
+                {
+                    Item item(*(static_cast<Resource*>(*it)));
+                    list.append(item);
+                }
+            }
+        }
+    }
     return list;
 }
 

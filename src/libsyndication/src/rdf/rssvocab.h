@@ -30,6 +30,7 @@ namespace LibSyndication {
 namespace RDF {
 
 class Property;
+class Resource;
     
 class RSSVocab
 {
@@ -51,7 +52,7 @@ class RSSVocab
         
         const Property& url() const;
         
-        const Property& channel() const;
+        const Resource& channel() const;
         
         const Property& items() const;
         

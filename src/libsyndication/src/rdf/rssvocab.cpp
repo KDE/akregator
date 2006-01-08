@@ -20,6 +20,7 @@
  *
  */
 
+#include "model.h"
 #include "property.h"
 #include "rssvocab.h"
 
@@ -41,7 +42,7 @@ class RSSVocab::RSSVocabPrivate
     Property name;
     Property url;
     Property image;
-    Property channel;
+    Resource channel;
     Property items;
     Property textinput;
 };
@@ -60,7 +61,7 @@ RSSVocab::RSSVocab() : d(new RSSVocabPrivate)
     d->image = Property(ns + QString::fromLatin1("image"));
     d->textinput = Property(ns + QString::fromLatin1("textinput"));
     d->items = Property(ns + QString::fromLatin1("items"));
-    d->channel = Property(ns + QString::fromLatin1("channel"));
+    d->channel = Resource(ns + QString::fromLatin1("channel"), Model());
 }
 
 RSSVocab::~RSSVocab()
@@ -126,7 +127,7 @@ const Property& RSSVocab::items() const
     return d->items;
 }
 
-const Property& RSSVocab::channel() const
+const Resource& RSSVocab::channel() const
 {
     return d->channel;
 }

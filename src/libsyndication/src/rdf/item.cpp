@@ -39,6 +39,10 @@ Item::Item(const QString& uri, const Model& model) : Resource(uri, model)
 {
 }
 
+Item::Item(const Resource& resource) : Resource(resource)
+{
+}
+
 Item::~Item()
 {
 }

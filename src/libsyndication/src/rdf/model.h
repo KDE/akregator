@@ -56,6 +56,7 @@ class Model
         virtual Statement resourceProperty(const Resource& resource, const Property& property) const;
     
         virtual QList<Statement> statements() const;
+        virtual QList<Resource*> resourcesWithType(const Resource& type) const;
         virtual QList<Resource> listSubjects() const;
 
     private:

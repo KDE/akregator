@@ -50,6 +50,11 @@ Sequence::Sequence() : d(0)
 {
 }
 
+Sequence::Sequence(const QString& uri, const Model& model) 
+    : Resource(uri, model), d(new SequencePrivate)
+{
+}
+
 Sequence::Sequence(const Sequence& other) : Resource(other)
 {
     d = other.d;
@@ -73,6 +78,11 @@ void Sequence::append(const Node& node)
 QList<Node*> Sequence::items() const
 {
     return d->items;
+}
+
+bool Sequence::isSequence() const
+{
+    return true;
 }
 
 } // namespace RDF

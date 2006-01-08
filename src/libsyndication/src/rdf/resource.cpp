@@ -25,6 +25,8 @@
 #include "resource.h"
 #include "statement.h"
 
+#include <krandom.h>
+
 #include <QString>
 
 namespace LibSyndication {
@@ -36,10 +38,11 @@ class Resource::ResourcePrivate : public KShared
     
         QString uri;
         Model model;
+        bool isAnon;
     
         bool operator==(const ResourcePrivate& other) const
         {
-            return uri == other.uri;
+            return uri == other.uri && isAnon == other.isAnon;
         }
 };
 
@@ -54,7 +57,17 @@ Resource::Resource(const Resource& other) : Node(other)
 
 Resource::Resource(const QString& uri, const Model& model) : d(new ResourcePrivate)
 {
-    d->uri = uri;
+    if (uri.isNull())
+    {
+        d->uri = KRandom::randomString(10);
+        d->isAnon = true;
+    }
+    else
+    {
+        d->uri = uri;
+        d->isAnon = false;
+    }
+
     d->model = model;
 }
 
@@ -111,7 +124,12 @@ bool Resource::isLiteral() const
 
 bool Resource::isAnon() const
 {
-    return false; // TODO: add support for anonymous resources
+    return d->isAnon;
+}
+
+bool Resource::isSequence() const
+{
+    return false;
 }
 
 QString Resource::uri() const

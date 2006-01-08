@@ -25,6 +25,7 @@
 #include "document.h"
 #include "documentsource.h"
 #include "parserregistry.h"
+#include "rdf/parser.h"
 #include "rss2/parser.h"
 
 #include <QByteArray>
@@ -38,6 +39,7 @@ using namespace LibSyndication;
 int main(int argc, char **argv)
 {
     ParserRegistry::self()->registerParser(new RSS2::Parser);
+    ParserRegistry::self()->registerParser(new RDF::Parser);
 
     if (argc < 2)
     {

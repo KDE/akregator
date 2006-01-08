@@ -38,6 +38,7 @@ class Node
         virtual bool isNull() const = 0;
         virtual bool isResource() const = 0;
         virtual bool isLiteral() const = 0;
+        virtual bool isSequence() const = 0;
         virtual bool isAnon() const = 0;
 };
 
