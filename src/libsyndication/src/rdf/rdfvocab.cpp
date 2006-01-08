@@ -20,6 +20,7 @@
  *
  */
 
+#include "model.h"
 #include "property.h"
 #include "rdfvocab.h"
 
@@ -28,10 +29,21 @@
 namespace LibSyndication {
 namespace RDF {
 
+Resource RDFVocab::seq()
+{
+    return Resource(QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"), Model());
+}
+
 Property RDFVocab::type()
 {
     return Property(QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"));
 }
+
+Property RDFVocab::li()
+{
+    return Property(QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#li"));
+}
+
 QString RDFVocab::namespaceURI()
 {
     return QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#");

@@ -26,14 +26,19 @@ namespace LibSyndication {
 namespace RDF {
 
 class Property;
+class Resource;
 
 class RDFVocab
 {
     public:
     
         static QString namespaceURI();
+
+        static Resource seq();
         
         static Property type();
+
+        static Property li();
 };
 
 } // namespace RDF

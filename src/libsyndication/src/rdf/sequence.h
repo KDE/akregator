@@ -26,9 +26,11 @@
 
 #include <ksharedptr.h>
 
+template <class T> class QList;
+
 namespace LibSyndication {
 namespace RDF {
-    
+
 class Sequence : public Resource
 {
     public:
@@ -38,6 +40,9 @@ class Sequence : public Resource
         virtual ~Sequence();
         
         virtual Sequence& operator=(const Sequence& other);
+        
+        virtual void append(const Node& node);
+        virtual QList<Node*> items() const;
         
     private:
         

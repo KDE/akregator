@@ -20,7 +20,10 @@
  *
  */
 
+#include "node.h"
 #include "sequence.h"
+
+#include <QList>
 
 namespace LibSyndication {
 namespace RDF {
@@ -29,10 +32,18 @@ class Sequence::SequencePrivate : public KShared
 {
     public:
     
-        bool operator==(const SequencePrivate& other) const
-        {
-            return true;
-        }
+    QList<Node*> items;
+
+    ~SequencePrivate()
+    {
+        QList<Node*>::ConstIterator it = items.begin();
+        QList<Node*>::ConstIterator end = items.end();
+    
+        for ( ; it != end; ++it)
+            delete *it;
+
+    }
+        
 };
 
 Sequence::Sequence() : d(0)
@@ -54,20 +65,15 @@ Sequence& Sequence::operator=(const Sequence& other)
     return *this;
 }
 
-bool Sequence::operator==(const Node& other) const
+void Sequence::append(const Node& node)
 {
-    const Sequence* o2 = dynamic_cast<const Sequence*>(&other);
-    if (!o2)
-        return false;
-
-    if (Sequence::operator==(other))
-        return false;
-
-    if (!d || !o2->d)
-        return d == o2->d;
-    return *d == *(o2->d);
+    d->items.append(node.clone());
 }
 
+QList<Node*> Sequence::items() const
+{
+    return d->items;
+}
 
 } // namespace RDF
 } // namespace LibSyndication
