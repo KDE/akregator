@@ -241,22 +241,24 @@ Article &Article::operator=(const Article &other)
 
 bool Article::operator<(const Article &other) const
 {
-    return pubDate() > other.pubDate();
+    return pubDate() > other.pubDate() || 
+            (pubDate() == other.pubDate() && guid() < other.guid() );
 }
 
 bool Article::operator<=(const Article &other) const
 {
-    return pubDate() >= other.pubDate();
+    return (pubDate() > other.pubDate() || *this == other);
 }
 
 bool Article::operator>(const Article &other) const
 {
-    return pubDate() < other.pubDate();
+    return pubDate() < other.pubDate() || 
+            (pubDate() == other.pubDate() && guid() > other.guid() );
 }
 
 bool Article::operator>=(const Article &other) const
 {
-    return pubDate() <= other.pubDate();
+    return (pubDate() > other.pubDate() || *this == other);
 }
 
 bool Article::operator==(const Article &other) const
