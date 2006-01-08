@@ -154,9 +154,8 @@ class ArticleListView::ArticleItem : public KListViewItem
             static QPixmap m_keepFlag;
 };
 
-// FIXME: Remove resolveEntities for KDE 4.0, it's now done in the parser
 ArticleListView::ArticleItem::ArticleItem( Q3ListView *parent, const Article& a)
-    : KListViewItem( parent, KCharsets::resolveEntities(a.title()), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
+    : KListViewItem( parent, a.title(), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
         setPixmap(0, m_keepFlag);
