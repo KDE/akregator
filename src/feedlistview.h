@@ -178,6 +178,9 @@ public:         // compat with KDE-3.x assertions, remove for KDE 4
     friend class CreateItemVisitor;
     class CreateItemVisitor;
 
+    friend class DeleteItemVisitor;
+    class DeleteItemVisitor;
+    
     friend class DragAndDropVisitor;
     class DragAndDropVisitor;
 

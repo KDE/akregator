@@ -71,6 +71,7 @@ class NodeListView::NodeListViewPrivate
     ConnectNodeVisitor* connectNodeVisitor;
     DisconnectNodeVisitor* disconnectNodeVisitor;
     CreateItemVisitor* createItemVisitor;
+    DeleteItemVisitor* deleteItemVisitor;
     DragAndDropVisitor* dragAndDropVisitor;
 };
 
@@ -186,6 +187,57 @@ class NodeListView::DisconnectNodeVisitor : public TreeNodeVisitor
         NodeListView* m_view;
 };
 
+class NodeListView::DeleteItemVisitor : public TreeNodeVisitor
+{
+    public:
+        
+        DeleteItemVisitor(NodeListView* view) : m_view(view) {}
+        
+        virtual bool visitTreeNode(TreeNode* node)
+        {
+            TreeNodeItem* item = m_view->d->itemDict.take(node);
+    
+            if (!item)
+                return true;
+    
+            if ( m_selectNeighbour && item->isSelected() )
+            {
+                if (item->itemBelow())
+                    m_view->setSelected(item->itemBelow(), true);
+                else if (item->itemAbove())
+                    m_view->setSelected(item->itemAbove(), true);
+                else
+                    m_view->setSelected(item, false);
+            }
+            
+            delete item;
+            return true;
+        
+        }
+        
+        virtual bool visitFolder(Folder* node)
+        {
+            // delete child items recursively before deleting parent
+            QValueList<TreeNode*> children = node->children();
+            for (QValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
+                visit(*it);
+            
+            visitTreeNode(node);
+            
+            return true;
+        }
+        
+        void deleteItem(TreeNode* node, bool selectNeighbour)
+        {
+            m_selectNeighbour = selectNeighbour;
+            visit(node);
+        }
+        
+    private:
+        NodeListView* m_view;
+        bool m_selectNeighbour;
+};
+
 class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 {
     public:
@@ -193,7 +245,6 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
-            kdDebug() << "create item for " << node->title() << endl;
             TagNodeItem* item = 0;
             TreeNode* prev = node->prevSibling();
             FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
@@ -281,9 +332,9 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
                     item = new FolderItem(m_view, node);
             }
             m_view->d->itemDict.insert(node, item);
-            QValueList<TreeNode*> children = node->children();
-
+            
             // add children recursively
+            QValueList<TreeNode*> children = node->children();
             for (QValueList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
                 visit(*it);
 
@@ -333,6 +384,7 @@ NodeListView::NodeListView( QWidget *parent, const char *name)
     d->connectNodeVisitor = new ConnectNodeVisitor(this),
     d->disconnectNodeVisitor = new DisconnectNodeVisitor(this);
     d->createItemVisitor = new CreateItemVisitor(this);
+    d->deleteItemVisitor = new DeleteItemVisitor(this);
     d->dragAndDropVisitor = new DragAndDropVisitor(this);
 
     setMinimumSize(150, 150);
@@ -372,6 +424,7 @@ NodeListView::~NodeListView()
     delete d->connectNodeVisitor;
     delete d->disconnectNodeVisitor;
     delete d->createItemVisitor;
+    delete d->deleteItemVisitor;
     delete d->dragAndDropVisitor;
     delete d;
     d = 0;
@@ -841,9 +894,12 @@ void NodeListView::slotNextUnreadFeed()
 
 void NodeListView::slotSelectionChanged(QListViewItem* item)
 {
- TreeNodeItem* ni = dynamic_cast<TreeNodeItem*> (item);
+    TreeNodeItem* ni = dynamic_cast<TreeNodeItem*> (item);
+    
     if (ni)
+    {
         emit signalNodeSelected(ni->node());
+    }
 }
 
 void NodeListView::slotItemRenamed(QListViewItem* item, int col, const QString& text)
@@ -855,7 +911,6 @@ void NodeListView::slotItemRenamed(QListViewItem* item, int col, const QString& 
     {
         if (text != ni->node()->title())
         {
-            kdDebug() << "renamed item to \"" << text << "\"" << endl;
             ni->node()->setTitle(text);
         }
     }
@@ -874,9 +929,12 @@ void NodeListView::slotFeedFetchStarted(Feed* feed)
     if (!feed->favicon().isNull())
     {
         TreeNodeItem* item = findNodeItem(feed);
-        KIconEffect iconEffect;
-        QPixmap tempIcon = iconEffect.apply(feed->favicon(), KIcon::Small, KIcon::DisabledState);
-        item->setPixmap(0, tempIcon);
+        if (item)
+        {
+            KIconEffect iconEffect;
+            QPixmap tempIcon = iconEffect.apply(feed->favicon(), KIcon::Small, KIcon::DisabledState);
+            item->setPixmap(0, tempIcon);
+        }
     }
 
 }
@@ -904,17 +962,14 @@ void NodeListView::slotFeedFetchCompleted(Feed* feed)
       
 void NodeListView::slotNodeAdded(TreeNode* node)
 {
-    d->createItemVisitor->visit(node);
-    kdDebug() << "NodeListView::slotNodeAdded: " << node->title() << endl;
+    if (node)
+        d->createItemVisitor->visit(node);
 }
 
 void NodeListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 {
-    if (!node)
-        return;
-    kdDebug() << "NodeListView::slotNodeRemoved: " << node->title() << endl; 
-    disconnectFromNode(node);
-    delete d->itemDict.take(node);
+    if (node)
+        d->deleteItemVisitor->deleteItem(node, false);
 }
 
 void NodeListView::connectToNode(TreeNode* node)
@@ -957,23 +1012,8 @@ void NodeListView::slotNodeListDestroyed(NodeList* list)
 
 void NodeListView::slotNodeDestroyed(TreeNode* node)
 {
-    TreeNodeItem* item = findNodeItem(node);
-    
-    d->itemDict.remove(node);
-
-    if (!item)
-        return;
-    
-    if ( item->isSelected() )
-    {
-        if (item->itemBelow())
-            setSelected(item->itemBelow(), true);
-        else if (item->itemAbove())
-            setSelected(item->itemAbove(), true);
-        else
-            setSelected(item, false);
-    }
-    delete item;
+    if (node)
+        d->deleteItemVisitor->deleteItem(node, true);
 }
 
 void NodeListView::slotRootNodeChanged(TreeNode* rootNode)
