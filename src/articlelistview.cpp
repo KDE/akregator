@@ -368,6 +368,12 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
 {
     setUpdatesEnabled(false);
 
+    // if only one item is selected and this selected item
+    // is deleted, we will select the next item in the list
+    bool singleSelected = selectedArticles().count() == 1;
+    
+    QListViewItem* next = 0; // the item to select if a selected item is deleted
+    
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         
@@ -375,8 +381,16 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
         {
             ArticleItem* ali = d->articleMap[*it];
 
-            if ((*it).isDeleted()) // if article was set to deleted, delete item
+            if (ali && (*it).isDeleted()) // if article was set to deleted, delete item
             {
+                if (singleSelected && ali->isSelected())
+                {
+                    if (ali->itemBelow())
+                        next = ali->itemBelow();
+                    else if (ali->itemAbove())
+                        next = ali->itemAbove();
+                }
+                
                 d->articleMap.remove(*it);
                 delete ali;
             }
@@ -390,22 +404,55 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
         }
     }
 
+    // if the only selected item was deleted, select
+    // an item next to it
+    if (singleSelected && next != 0)
+    {
+        setSelected(next, true);
+        setCurrentItem(next);
+    }
+
     setUpdatesEnabled(true);
     triggerUpdate();
 }
 
 void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<Article>& list)
 {
+    // if only one item is selected and this selected item
+    // is deleted, we will select the next item in the list
+    bool singleSelected = selectedArticles().count() == 1;
+
+    QListViewItem* next = 0; // the item to select if a selected item is deleted
+    
     setUpdatesEnabled(false);
+    
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (d->articleMap.contains(*it))
         {
             ArticleItem* ali = d->articleMap[*it];
             d->articleMap.remove(*it);
+            
+            if (singleSelected && ali->isSelected())
+            {
+                if (ali->itemBelow())
+                    next = ali->itemBelow();
+                else if (ali->itemAbove())
+                    next = ali->itemAbove();
+            }
+            
             delete ali;
         }
     }
+    
+    // if the only selected item was deleted, select
+    // an item next to it
+    if (singleSelected && next != 0)
+    {
+        setSelected(next, true);
+        setCurrentItem(next);
+    }
+
     setUpdatesEnabled(true);
     triggerUpdate();
 }

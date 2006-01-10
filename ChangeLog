@@ -7,6 +7,8 @@ Changes after 1.2:
 
 Bug fixes:
 
+ 2006/01/10 Select next item in article list when deleting the selected article
+            (single selection mode only) (#119724) -fo
  2006/01/10 Fix item handling in the feed list, avoid crashes as happening 
             after moving a folder and deleting a subitem afterwards 
             (#118659) -fo
