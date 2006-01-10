@@ -1,0 +1,16 @@
+TODO for libsyndication
+=======================
+
+RSS2:
+
+ - read additional attributes for channel and items from the XML and provide 
+   them as key-value pair
+ - check how widespread Dublin Core is used in RSS, use important attributes
+   when parsing (such as dc:date as pubDate-substitute) and provide the rest as
+   key-value pair (as suggested above)
+
+RDF:
+
+Atom:
+
+
