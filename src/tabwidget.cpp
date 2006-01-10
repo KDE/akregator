@@ -70,8 +70,8 @@ class TabWidget::TabWidgetPrivate
     QToolButton* tabsClose;
 };
 
-TabWidget::TabWidget(QWidget * parent, const char *name)
-        :KTabWidget(parent, name), d(new TabWidgetPrivate)
+TabWidget::TabWidget(QWidget * parent)
+        :KTabWidget(parent), d(new TabWidgetPrivate)
 {
     d->CurrentMaxLength = 30;
     setMinimumSize(250,150);

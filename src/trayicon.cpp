@@ -61,8 +61,8 @@ void TrayIcon::setInstance(TrayIcon* trayIcon)
 }
 
 
-TrayIcon::TrayIcon(QWidget *parent, const char *name)
-        : KSystemTray(parent, name), m_unread(0)
+TrayIcon::TrayIcon(QWidget *parent)
+        : KSystemTray(parent), m_unread(0)
 {
     m_defaultIcon=KSystemTray::loadIcon("akregator");
     QPixmap m_unreadIcon=KSystemTray::loadIcon("akregator_empty");

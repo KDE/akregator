@@ -39,7 +39,7 @@ class TabWidget : public KTabWidget
     Q_OBJECT
 
     public:
-        TabWidget(QWidget * parent = 0, const char *name = 0);
+        TabWidget(QWidget * parent = 0);
         virtual ~TabWidget();
 
         void addFrame(Frame *f);

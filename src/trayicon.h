@@ -41,7 +41,7 @@ class TrayIcon : public KSystemTray
         static TrayIcon* getInstance();
         static void setInstance(TrayIcon* trayIcon);
         
-        TrayIcon(QWidget *parent = 0, const char *name = 0);
+        TrayIcon(QWidget *parent = 0);
         ~TrayIcon();
         
         QPixmap takeScreenshot() const;
