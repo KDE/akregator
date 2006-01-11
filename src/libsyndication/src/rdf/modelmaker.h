@@ -24,6 +24,7 @@
 
 class QDomDocument;
 class QDomElement;
+class QString;
 
 namespace LibSyndication {
 namespace RDF {

@@ -31,19 +31,27 @@ template <class T> class QList;
 namespace LibSyndication {
 namespace RDF {
 
+
+class Sequence;
+
+typedef KSharedPtr<Sequence> SequencePtr;
+    
 class Sequence : public Resource
 {
     public:
         
         Sequence();
-        Sequence(const QString& uri, const Model& model);
+        Sequence(const QString& uri);
         Sequence(const Sequence& other);
         virtual ~Sequence();
         
         virtual Sequence& operator=(const Sequence& other);
         
-        virtual void append(const Node& node);
-        virtual QList<Node*> items() const;
+        virtual void accept(NodeVisitor* visitor, NodePtr ptr);
+        virtual Sequence* clone() const;
+        
+        virtual void append(NodePtr node);
+        virtual QList<NodePtr> items() const;
         virtual bool isSequence() const;
         
     private:

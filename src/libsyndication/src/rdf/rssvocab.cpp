@@ -20,7 +20,6 @@
  *
  */
 
-#include "model.h"
 #include "property.h"
 #include "rssvocab.h"
 
@@ -36,15 +35,15 @@ class RSSVocab::RSSVocabPrivate
     public:
         
     QString namespaceURI;
-    Property title;
-    Property link;
-    Property description;
-    Property name;
-    Property url;
-    Property image;
-    Resource channel;
-    Property items;
-    Property textinput;
+    PropertyPtr title;
+    PropertyPtr link;
+    PropertyPtr description;
+    PropertyPtr name;
+    PropertyPtr url;
+    PropertyPtr image;
+    ResourcePtr channel;
+    PropertyPtr items;
+    PropertyPtr textinput;
 };
 
 RSSVocab::RSSVocab() : d(new RSSVocabPrivate)
@@ -53,15 +52,15 @@ RSSVocab::RSSVocab() : d(new RSSVocabPrivate)
     
     d->namespaceURI = ns;
     
-    d->title = Property(ns + QString::fromLatin1("title"));
-    d->link = Property(ns + QString::fromLatin1("link"));
-    d->description = Property(ns + QString::fromLatin1("description"));
-    d->name = Property(ns + QString::fromLatin1("name"));
-    d->url = Property(ns + QString::fromLatin1("url"));
-    d->image = Property(ns + QString::fromLatin1("image"));
-    d->textinput = Property(ns + QString::fromLatin1("textinput"));
-    d->items = Property(ns + QString::fromLatin1("items"));
-    d->channel = Resource(ns + QString::fromLatin1("channel"), Model());
+    d->title = new Property(ns + QString::fromLatin1("title"));
+    d->link = new Property(ns + QString::fromLatin1("link"));
+    d->description = new Property(ns + QString::fromLatin1("description"));
+    d->name = new Property(ns + QString::fromLatin1("name"));
+    d->url = new Property(ns + QString::fromLatin1("url"));
+    d->image = new Property(ns + QString::fromLatin1("image"));
+    d->textinput = new Property(ns + QString::fromLatin1("textinput"));
+    d->items = new Property(ns + QString::fromLatin1("items"));
+    d->channel = new Resource(ns + QString::fromLatin1("channel"));
 }
 
 RSSVocab::~RSSVocab()
@@ -86,48 +85,48 @@ const QString& RSSVocab::namespaceURI() const
     return d->namespaceURI;
 }
 
-const Property& RSSVocab::title() const
+PropertyPtr RSSVocab::title() const
 {
     return d->title;
 }
 
-const Property& RSSVocab::description() const
+PropertyPtr RSSVocab::description() const
 {
     return d->description;
 }
 
-const Property& RSSVocab::link() const
+PropertyPtr RSSVocab::link() const
 {
     return d->link;
 }
 
-const Property& RSSVocab::name() const
+PropertyPtr RSSVocab::name() const
 {
     return d->name;
 }
 
-const Property& RSSVocab::url() const
+PropertyPtr RSSVocab::url() const
 {
     return d->url;
 }
 
-const Property& RSSVocab::image() const
+PropertyPtr RSSVocab::image() const
 {
     return d->image;
 }
 
-const Property& RSSVocab::textinput() const
+PropertyPtr RSSVocab::textinput() const
 {
     return d->textinput;
 }
 
 
-const Property& RSSVocab::items() const
+PropertyPtr RSSVocab::items() const
 {
     return d->items;
 }
 
-const Resource& RSSVocab::channel() const
+ResourcePtr RSSVocab::channel() const
 {
     return d->channel;
 }

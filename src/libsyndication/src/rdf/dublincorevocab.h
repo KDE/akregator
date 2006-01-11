@@ -23,13 +23,13 @@
 #ifndef LIBSYNDICATION_RDF_DUBLINCOREVOCAB_H
 #define LIBSYNDICATION_RDF_DUBLINCOREVOCAB_H
 
+#include "property.h"
+
 class QString;
 
 namespace LibSyndication {
 namespace RDF {
 
-class Property;
-    
 class DublinCoreVocab
 {
     public:
@@ -40,35 +40,35 @@ class DublinCoreVocab
         
         const QString& namespaceURI() const;
 
-        const Property& contributor() const;
+        PropertyPtr contributor() const;
         
-        const Property& creator() const;
+        PropertyPtr creator() const;
 
-        const Property& coverage() const;
+        PropertyPtr coverage() const;
         
-        const Property& date() const;
+        PropertyPtr date() const;
         
-        const Property& description() const;
+        PropertyPtr description() const;
 
-        const Property& format() const;
+        PropertyPtr format() const;
         
-        const Property& identifier() const;
+        PropertyPtr identifier() const;
         
-        const Property& language() const;
+        PropertyPtr language() const;
         
-        const Property& publisher() const;
+        PropertyPtr publisher() const;
         
-        const Property& relation() const;
+        PropertyPtr relation() const;
         
-        const Property& rights() const;
+        PropertyPtr rights() const;
         
-        const Property& source() const;
+        PropertyPtr source() const;
         
-        const Property& subject() const;
+        PropertyPtr subject() const;
         
-        const Property& title() const;
+        PropertyPtr title() const;
         
-        const Property& type() const;
+        PropertyPtr type() const;
         
     protected:
         

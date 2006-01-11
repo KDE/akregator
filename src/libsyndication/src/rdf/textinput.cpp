@@ -22,6 +22,7 @@
 
 #include "rssvocab.h"
 #include "property.h"
+#include "resource.h"
 #include "statement.h"
 #include "textinput.h"
 
@@ -30,15 +31,11 @@
 namespace LibSyndication {
 namespace RDF {
 
-TextInput::TextInput() : Resource()
+TextInput::TextInput() : ResourceWrapper()
 {
 }
 
-TextInput::TextInput(const Resource& resource) : Resource(resource)
-{
-}
-
-TextInput::TextInput(const QString& uri, const Model& model) : Resource(uri, model)
+TextInput::TextInput(ResourcePtr resource) : ResourceWrapper(resource)
 {
 }
 
@@ -48,22 +45,22 @@ TextInput::~TextInput()
 
 QString TextInput::title() const
 {
-    return property(RSSVocab::self()->title()).asString();
+    return resource()->property(RSSVocab::self()->title())->asString();
 }
 
 QString TextInput::description() const
 {
-    return property(RSSVocab::self()->description()).asString();
+    return resource()->property(RSSVocab::self()->description())->asString();
 }
 
 QString TextInput::link() const
 {
-    return property(RSSVocab::self()->link()).asString();
+    return resource()->property(RSSVocab::self()->link())->asString();
 }
 
 QString TextInput::name() const
 {
-    return property(RSSVocab::self()->name()).asString();
+    return resource()->property(RSSVocab::self()->name())->asString();
 }
 
 QString TextInput::debugInfo() const

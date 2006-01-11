@@ -24,21 +24,21 @@
 #ifndef LIBSYNDICATION_RDF_IMAGE_H
 #define LIBSYNDICATION_RDF_IMAGE_H
 
-#include "resource.h"
-
-#include <ksharedptr.h>
+#include "resourcewrapper.h"
 
 namespace LibSyndication {
 namespace RDF {
 
-class Image : public Resource
+class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
+
+class Image : public ResourceWrapper
 {
     
     public:
             
         Image();
-        Image(const Resource& resource);
-        Image(const QString& uri, const Model& model);
+        Image(ResourcePtr resource);
         virtual ~Image();
 
         QString title() const;

@@ -21,9 +21,17 @@
  */
 
 #include "node.h"
+#include "nodevisitor.h"
 
 namespace LibSyndication {
 namespace RDF {
+
+unsigned int Node::idCounter = 1;
+
+void Node::accept(NodeVisitor* visitor, NodePtr ptr)
+{
+    visitor->visitNode(ptr);
+}
 
 Node::~Node()
 {

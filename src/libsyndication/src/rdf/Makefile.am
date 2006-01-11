@@ -8,7 +8,7 @@ noinst_HEADERS = parser.h dublincorevocab.h dublincore.h \
                          textinput.h document.h rssvocab.h \
                          node.h property.h literal.h resource.h \
                          model.h modelmaker.h rdfvocab.h sequence.h \
-                         statement.h
+                         statement.h resourcewrapper.h
                  
 
 librdflocal_la_SOURCES = parser.cpp dublincorevocab.cpp dublincore.cpp \
@@ -17,6 +17,6 @@ librdflocal_la_SOURCES = parser.cpp dublincorevocab.cpp dublincore.cpp \
                          textinput.cpp document.cpp rssvocab.cpp \
                          node.cpp property.cpp literal.cpp resource.cpp \
                          model.cpp modelmaker.cpp rdfvocab.cpp sequence.cpp \
-                         statement.cpp
+                         statement.cpp resourcewrapper.cpp nodevisitor.cpp
 
 librdflocal_la_METASOURCES = AUTO

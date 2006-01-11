@@ -35,21 +35,21 @@ class DublinCoreVocab::DublinCoreVocabPrivate
     public:
         
     QString namespaceURI;
-    Property contributor;
-    Property coverage;
-    Property creator;
-    Property date;
-    Property description;
-    Property format;
-    Property identifier;
-    Property language;
-    Property publisher;
-    Property relation;
-    Property rights;
-    Property source;
-    Property subject;
-    Property title;
-    Property type;
+    PropertyPtr contributor;
+    PropertyPtr coverage;
+    PropertyPtr creator;
+    PropertyPtr date;
+    PropertyPtr description;
+    PropertyPtr format;
+    PropertyPtr identifier;
+    PropertyPtr language;
+    PropertyPtr publisher;
+    PropertyPtr relation;
+    PropertyPtr rights;
+    PropertyPtr source;
+    PropertyPtr subject;
+    PropertyPtr title;
+    PropertyPtr type;
 };
 
 DublinCoreVocab::DublinCoreVocab() : d(new DublinCoreVocabPrivate)
@@ -58,21 +58,21 @@ DublinCoreVocab::DublinCoreVocab() : d(new DublinCoreVocabPrivate)
     
     d->namespaceURI = ns;
     
-    d->contributor = Property(ns + QString::fromLatin1("contributor"));
-    d->coverage = Property(ns + QString::fromLatin1("coverage"));
-    d->creator = Property(ns + QString::fromLatin1("creator"));
-    d->date = Property(ns + QString::fromLatin1("date"));
-    d->description = Property(ns + QString::fromLatin1("description"));
-    d->format = Property(ns + QString::fromLatin1("format"));
-    d->identifier = Property(ns + QString::fromLatin1("identifier"));
-    d->language = Property(ns + QString::fromLatin1("language"));
-    d->publisher = Property(ns + QString::fromLatin1("publisher"));
-    d->relation = Property(ns + QString::fromLatin1("relation"));
-    d->rights = Property(ns + QString::fromLatin1("rights"));
-    d->source = Property(ns + QString::fromLatin1("source"));
-    d->subject = Property(ns + QString::fromLatin1("subject"));
-    d->title = Property(ns + QString::fromLatin1("title"));
-    d->type = Property(ns + QString::fromLatin1("type"));
+    d->contributor = new Property(ns + QString::fromLatin1("contributor"));
+    d->coverage = new Property(ns + QString::fromLatin1("coverage"));
+    d->creator = new Property(ns + QString::fromLatin1("creator"));
+    d->date = new Property(ns + QString::fromLatin1("date"));
+    d->description = new Property(ns + QString::fromLatin1("description"));
+    d->format = new Property(ns + QString::fromLatin1("format"));
+    d->identifier = new Property(ns + QString::fromLatin1("identifier"));
+    d->language = new Property(ns + QString::fromLatin1("language"));
+    d->publisher = new Property(ns + QString::fromLatin1("publisher"));
+    d->relation = new Property(ns + QString::fromLatin1("relation"));
+    d->rights = new Property(ns + QString::fromLatin1("rights"));
+    d->source = new Property(ns + QString::fromLatin1("source"));
+    d->subject = new Property(ns + QString::fromLatin1("subject"));
+    d->title = new Property(ns + QString::fromLatin1("title"));
+    d->type = new Property(ns + QString::fromLatin1("type"));
     
 }
 
@@ -98,77 +98,77 @@ const QString& DublinCoreVocab::namespaceURI() const
     return d->namespaceURI;
 }
 
-const Property& DublinCoreVocab::contributor() const
+PropertyPtr DublinCoreVocab::contributor() const
 {
     return d->contributor;
 }
 
-const Property& DublinCoreVocab::creator() const
+PropertyPtr DublinCoreVocab::creator() const
 {
     return d->creator;
 }
 
-const Property& DublinCoreVocab::coverage() const
+PropertyPtr DublinCoreVocab::coverage() const
 {
     return d->coverage;
 }
 
-const Property& DublinCoreVocab::date() const
+PropertyPtr DublinCoreVocab::date() const
 {
     return d->date;
 }
 
-const Property& DublinCoreVocab::description() const
+PropertyPtr DublinCoreVocab::description() const
 {
     return d->description;
 }
 
-const Property& DublinCoreVocab::format() const
+PropertyPtr DublinCoreVocab::format() const
 {
     return d->format;
 }
 
-const Property& DublinCoreVocab::identifier() const
+PropertyPtr DublinCoreVocab::identifier() const
 {
     return d->identifier;
 }
 
-const Property& DublinCoreVocab::language() const
+PropertyPtr DublinCoreVocab::language() const
 {
     return d->language;
 }
 
-const Property& DublinCoreVocab::publisher() const
+PropertyPtr DublinCoreVocab::publisher() const
 {
     return d->publisher;
 }
 
-const Property& DublinCoreVocab::relation() const
+PropertyPtr DublinCoreVocab::relation() const
 {
     return d->relation;
 }
 
-const Property& DublinCoreVocab::rights() const
+PropertyPtr DublinCoreVocab::rights() const
 {
     return d->rights;
 }
 
-const Property& DublinCoreVocab::source() const
+PropertyPtr DublinCoreVocab::source() const
 {
     return d->source;
 }
 
-const Property& DublinCoreVocab::subject() const
+PropertyPtr DublinCoreVocab::subject() const
 {
     return d->subject;
 }
 
-const Property& DublinCoreVocab::title() const
+PropertyPtr DublinCoreVocab::title() const
 {
     return d->title;
 }
 
-const Property& DublinCoreVocab::type() const
+PropertyPtr DublinCoreVocab::type() const
 {
     return d->type;
 }

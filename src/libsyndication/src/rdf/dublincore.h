@@ -30,12 +30,10 @@
 class QString;
 
 namespace LibSyndication {
-
-class Resource;
-
 namespace RDF {
 
 class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
 
 class DublinCore
 {
@@ -43,7 +41,7 @@ class DublinCore
         
         DublinCore();
         DublinCore(const DublinCore& other);
-        DublinCore(const Resource& resource);
+        DublinCore(ResourcePtr resource);
         virtual ~DublinCore();
                 
         DublinCore& operator=(const DublinCore& other);

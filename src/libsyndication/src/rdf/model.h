@@ -22,18 +22,21 @@
 #ifndef LIBSYNDICATION_RDF_MODEL_H
 #define LIBSYNDICATION_RDF_MODEL_H
 
+#include <literal.h>
+#include <node.h>
+#include <property.h>
+#include <sequence.h>
+#include <statement.h>
+
 #include <ksharedptr.h>
 
+#include <QString>
+
 template <class T> class QList;
-class QString;
 
 namespace LibSyndication {
 namespace RDF {
 
-class Node;
-class Property;
-class Resource;
-class Statement;
 
 class Model
 {
@@ -47,17 +50,35 @@ class Model
         Model& operator=(const Model& other);
         bool operator==(const Model& other) const;
 
-        virtual Resource createResource(const QString& uri) const;
+        virtual ResourcePtr createResource(ResourcePtr resource);
+        
+        virtual ResourcePtr createResource(const QString& uri=QString::null);
+        
+        virtual PropertyPtr createProperty(const QString& uri=QString::null);
 
-        virtual void addStatement(const Statement& statement);
-        virtual void addStatement(const Resource& subject, const Property& predicate, const Node& object);
+        virtual SequencePtr createSequence(const QString& uri=QString::null);
+        
+        virtual LiteralPtr createLiteral(const QString& text);
+        
+        virtual StatementPtr addStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object);
+        
         virtual bool isEmpty() const;
-        virtual bool resourceHasProperty(const Resource& resource, const Property& property) const;
-        virtual Statement resourceProperty(const Resource& resource, const Property& property) const;
+        
+        virtual bool resourceHasProperty(const Resource* resource, PropertyPtr property) const;
+        
+        virtual StatementPtr resourceProperty(const Resource* resource, PropertyPtr property) const;
     
-        virtual QList<Statement> statements() const;
-        virtual QList<Resource*> resourcesWithType(const Resource& type) const;
-        virtual QList<Resource> listSubjects() const;
+        virtual QList<StatementPtr> statements() const;
+        
+        virtual QList<ResourcePtr> resourcesWithType(ResourcePtr type) const;
+        
+        virtual NodePtr nodeByID(uint id) const;
+        
+        virtual ResourcePtr resourceByID(uint id) const;
+        
+        virtual PropertyPtr propertyByID(uint id) const;
+        
+        virtual LiteralPtr literalByID(uint id) const;
 
     private:
         class ModelPrivate;

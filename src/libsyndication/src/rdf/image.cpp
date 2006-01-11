@@ -29,15 +29,11 @@
 namespace LibSyndication {
 namespace RDF {
     
-Image::Image() : Resource()
+Image::Image() : ResourceWrapper()
 {
 }
 
-Image::Image(const Resource& resource) : Resource(resource)
-{
-}
-
-Image::Image(const QString& uri, const Model& model) : Resource (uri, model)
+Image::Image(ResourcePtr resource) : ResourceWrapper(resource)
 {
 }
 
@@ -47,17 +43,17 @@ Image::~Image()
 
 QString Image::title() const
 {
-    return property(RSSVocab::self()->title()).asString();
+    return resource()->property(RSSVocab::self()->title())->asString();
 }
     
 QString Image::description() const
 {
-    return property(RSSVocab::self()->description()).asString();
+    return resource()->property(RSSVocab::self()->description())->asString();
 }
     
 QString Image::url() const
 {
-    return property(RSSVocab::self()->url()).asString();
+    return resource()->property(RSSVocab::self()->url())->asString();
 }
     
 QString Image::debugInfo() const

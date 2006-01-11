@@ -34,11 +34,11 @@ class DublinCore::DublinCorePrivate : public KShared
 {
     public:
     
-    Resource resource;
+    ResourcePtr resource;
 
     bool operator==(const DublinCorePrivate& other) const
     {
-        return resource == other.resource;
+        return *resource == *(other.resource);
     }
 
 };
@@ -52,7 +52,7 @@ DublinCore::DublinCore(const DublinCore& other) : d(0)
     *this = other;
 }
 
-DublinCore::DublinCore(const Resource& resource) : d(new DublinCorePrivate)
+DublinCore::DublinCore(ResourcePtr resource) : d(new DublinCorePrivate)
 {
     d->resource = resource;
 }
@@ -76,17 +76,17 @@ bool DublinCore::operator==(const DublinCore& other) const
 
 QString DublinCore::contributor() const
 {
-    return d->resource.property(DublinCoreVocab::self()->contributor()).asString();
+    return d->resource->property(DublinCoreVocab::self()->contributor())->asString();
 }
 
 QString DublinCore::coverage() const
 {
-    return d->resource.property(DublinCoreVocab::self()->coverage()).asString();
+    return d->resource->property(DublinCoreVocab::self()->coverage())->asString();
 }
 
 QString DublinCore::creator() const
 {
-    return d->resource.property(DublinCoreVocab::self()->creator()).asString();
+    return d->resource->property(DublinCoreVocab::self()->creator())->asString();
 }
 
 time_t DublinCore::date() const
@@ -97,57 +97,57 @@ time_t DublinCore::date() const
 
 QString DublinCore::description() const
 {
-    return d->resource.property(DublinCoreVocab::self()->description()).asString();
+    return d->resource->property(DublinCoreVocab::self()->description())->asString();
 }
 
 QString DublinCore::format() const
 {
-    return d->resource.property(DublinCoreVocab::self()->format()).asString();
+    return d->resource->property(DublinCoreVocab::self()->format())->asString();
 }
 
 QString DublinCore::identifier() const
 {
-    return d->resource.property(DublinCoreVocab::self()->identifier()).asString();
+    return d->resource->property(DublinCoreVocab::self()->identifier())->asString();
 }
 
 QString DublinCore::language() const
 {
-    return d->resource.property(DublinCoreVocab::self()->language()).asString();
+    return d->resource->property(DublinCoreVocab::self()->language())->asString();
 }
 
 QString DublinCore::publisher() const
 {
-    return d->resource.property(DublinCoreVocab::self()->publisher()).asString();
+    return d->resource->property(DublinCoreVocab::self()->publisher())->asString();
 }
 
 QString DublinCore::relation() const
 {
-    return d->resource.property(DublinCoreVocab::self()->relation()).asString();
+    return d->resource->property(DublinCoreVocab::self()->relation())->asString();
 }
 
 QString DublinCore::rights() const
 {
-    return d->resource.property(DublinCoreVocab::self()->rights()).asString();
+    return d->resource->property(DublinCoreVocab::self()->rights())->asString();
 }
 
 QString DublinCore::source() const
 {
-    return d->resource.property(DublinCoreVocab::self()->source()).asString();
+    return d->resource->property(DublinCoreVocab::self()->source())->asString();
 }
 
 QString DublinCore::subject() const
 {
-    return d->resource.property(DublinCoreVocab::self()->subject()).asString();
+    return d->resource->property(DublinCoreVocab::self()->subject())->asString();
 }
 
 QString DublinCore::title() const
 {
-    return d->resource.property(DublinCoreVocab::self()->title()).asString();
+    return d->resource->property(DublinCoreVocab::self()->title())->asString();
 }
 
 QString DublinCore::type() const
 {
-    return d->resource.property(DublinCoreVocab::self()->type()).asString();
+    return d->resource->property(DublinCoreVocab::self()->type())->asString();
 }
 
 QString DublinCore::debugInfo() const

@@ -20,15 +20,19 @@
  *
  */
 
+#include "literal.h"
 #include "model.h"
+#include "nodevisitor.h"
 #include "property.h"
 #include "rdfvocab.h"
 #include "resource.h"
+#include "sequence.h"
 #include "statement.h"
 
+#include <QHash>
 #include <QList>
 #include <QString>
-
+#include <iostream>
 namespace LibSyndication {
 namespace RDF {
 
@@ -36,21 +40,102 @@ class Model::ModelPrivate : public KShared
 {
     public:
     
-        QList<Statement> stmts;
-
+        long id;
+        static long idCounter;
+        LiteralPtr nullLiteral;
+        PropertyPtr nullProperty;
+        ResourcePtr nullResource;
+        StatementPtr nullStatement;
+        QHash<QString, StatementPtr> statements;
+        QHash<int, NodePtr> nodes;
+        QHash<QString, ResourcePtr> resources;
+        QHash<QString, PropertyPtr> properties;
+        QHash<QString, SequencePtr> sequences;
+        
+        class AddToHashesVisitor;
+        
+        ModelPrivate()
+        {
+            id = idCounter++;
+            addToHashesVisitor = new AddToHashesVisitor(this);
+        }
+        
+        ~ModelPrivate()
+        {
+            delete addToHashesVisitor;
+        }
+        
         bool operator==(const ModelPrivate& other) const
         {
-            return stmts == other.stmts;
+            return id == other.id;
+        }
+       
+        class AddToHashesVisitor : public NodeVisitor
+        {
+            public:
+                
+            AddToHashesVisitor(ModelPrivate* parent) : p(parent)
+            {}
+            
+            bool visitResource(ResourcePtr res)
+            {
+                visitNode(NodePtr::staticCast(res));
+                p->resources[res->uri()] = res;
+                return true;
+            }
+        
+            bool visitSequence(SequencePtr seq)
+            {
+                visitResource(ResourcePtr::staticCast(seq));
+                p->sequences[seq->uri()] = seq;
+                return true;
+            }
+
+            bool visitProperty(PropertyPtr prop)
+            {
+                visitResource(ResourcePtr::staticCast(prop));
+                p->properties[prop->uri()] = prop;
+                return true;
+            }
+
+            bool visitNode(NodePtr node)
+            {
+                p->nodes[node->id()] = node;
+                return true;
+            }
+            
+            ModelPrivate* p;
+        };
+            
+        AddToHashesVisitor* addToHashesVisitor;
+        
+        void addToHashes(NodePtr node)
+        {
+            addToHashesVisitor->visit(node);
+        }
+        
+        void addToHashes(StatementPtr stmt, const QString& key)
+        {
+            statements[key] = stmt;
         }
 };
 
+long Model::ModelPrivate::idCounter = 0;
+
 Model::Model() : d(new ModelPrivate)
 {
+    d->nullLiteral = new Literal();
+    d->nullLiteral->setModel(*this);
+    d->nullProperty = new Property();
+    d->nullProperty->setModel(*this);
+    d->nullResource = new Resource();
+    d->nullResource->setModel(*this);
+    d->nullStatement = new Statement();
 }
 
-Model::Model(const Model& other) : d(new ModelPrivate)
+Model::Model(const Model& other)
 {
-    d->stmts = other.d->stmts;
+    *this = other;
 }
 
 Model::~Model()
@@ -59,7 +144,7 @@ Model::~Model()
 
 Model& Model::operator=(const Model& other)
 {
-    d->stmts = other.d->stmts;
+    d = other.d;
     return *this;
 }
 
@@ -68,97 +153,252 @@ bool Model::operator==(const Model& other) const
     return *d == *(other.d);
 }
 
-Resource Model::createResource(const QString& uri) const
+ResourcePtr Model::createResource(ResourcePtr resource)
 {
-    return Resource(uri, *this);
+    return createResource(resource->uri());
 }
 
+PropertyPtr Model::createProperty(const QString& uri)
+{
+    PropertyPtr prop;
     
-void Model::addStatement(const Statement& statement)
-{
-    if (!d->stmts.contains(statement))
-        d->stmts.append(statement);
+    if (d->properties.contains(uri))
+    {
+        prop = d->properties[uri];
+    }
+    else
+    {
+        prop = new Property(uri);
+        prop->setModel(*this);
+        d->addToHashes(NodePtr::staticCast(prop));
+    }
+
+    return prop;
+
 }
 
-void Model::addStatement(const Resource& subject, const Property& predicate, const Node& object)
+ResourcePtr Model::createResource(const QString& uri)
 {
-    Statement stmt(subject, predicate, object);
-    addStatement(stmt);
+    ResourcePtr res;
+    
+    if (d->resources.contains(uri))
+    {
+        res = d->resources[uri];
+    }
+    else
+    {
+        res = new Resource(uri);
+        res->setModel(*this);
+        d->addToHashes(NodePtr::staticCast(res));
+    }
+
+    return res;
+}
+
+SequencePtr Model::createSequence(const QString& uri)
+{
+    SequencePtr seq;
+    
+    if (d->sequences.contains(uri))
+    {
+        seq = d->sequences[uri];
+    }
+    else
+    {
+        seq = new Sequence(uri);
+        seq->setModel(*this);
+        d->addToHashes(NodePtr::staticCast(seq));
+    }
+
+    return seq;
+}
+
+LiteralPtr Model::createLiteral(const QString& text)
+{
+    LiteralPtr lit = new Literal(text);
+    
+    d->addToHashes(NodePtr::staticCast(lit));
+    return lit;
+}
+
+
+StatementPtr Model::addStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object)
+{
+    ResourcePtr subjInternal = subject;
+    
+    if (!d->nodes.contains(subjInternal->id()))
+    {
+        subjInternal = subject->clone();
+        subjInternal->setModel(*this);
+        d->addToHashes(NodePtr::staticCast(subjInternal));
+    }
+    
+    PropertyPtr predInternal = predicate;
+    
+    if (!d->nodes.contains(predInternal->id()))
+    {
+        predInternal = predicate->clone();
+        predInternal->setModel(*this);
+        d->addToHashes(NodePtr::staticCast(predInternal));
+    }
+    
+    NodePtr objInternal = object;
+            
+    if (!d->nodes.contains(objInternal->id()))
+    {
+        objInternal = object->clone();
+        objInternal->setModel(*this);
+        d->addToHashes(objInternal);
+    }
+    
+    // TODO: avoid duplicated stmts with literal objects!
+    
+    QString key = QString("%1-%2-%3")
+            .arg(QString::number(subjInternal->id()))
+            .arg(QString::number(predInternal->id()))
+            .arg(QString::number(objInternal->id()));
+    
+    StatementPtr stmt;
+            
+    if (!d->statements.contains(key))
+    {
+        stmt = new Statement(subjInternal, predInternal, objInternal);
+        d->addToHashes(stmt, key);
+    }
+    else
+    {
+        stmt = d->statements[key];
+    }
+    
+    return stmt;
 }
 
 bool Model::isEmpty() const
 {
-    return d->stmts.isEmpty();
+    return d->statements.isEmpty();
 }
 
-bool Model::resourceHasProperty(const Resource& resource, const Property& property) const
+bool Model::resourceHasProperty(const Resource* resource, PropertyPtr property) const
 {
-    QList<Statement>::ConstIterator it = d->stmts.begin();
-    QList<Statement>::ConstIterator end = d->stmts.end();
+    // resource unknown
+    if (!d->resources.contains(resource->uri()))
+        return false;
+    
+    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr>::ConstIterator it = stmts.begin();
+    QList<StatementPtr>::ConstIterator end = stmts.end();
 
 // TODO: use more efficient storage
 
     for ( ; it != end; ++it)
     {
-        if (*((*it).subject()) == resource && *((*it).predicate()) == property)
+        if (*((*it)->subject()) == *resource && *((*it)->predicate()) == *property)
             return true;
     }
 
     return false;
 }
 
-Statement Model::resourceProperty(const Resource& resource, const Property& property) const
+StatementPtr Model::resourceProperty(const Resource* resource, PropertyPtr property) const
 {
-    QList<Statement>::ConstIterator it = d->stmts.begin();
-    QList<Statement>::ConstIterator end = d->stmts.end();
+    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr>::ConstIterator it = stmts.begin();
+    QList<StatementPtr>::ConstIterator end = stmts.end();
 
-// TODO: use more efficient storage
+    // TODO: use more efficient storage
 
     for ( ; it != end; ++it)
     {
-        if (*((*it).subject()) == resource && *((*it).predicate()) == property)
+        if (*((*it)->subject()) == *resource && *((*it)->predicate()) == *property)
             return *it;
     }
 
-    return Statement();
+    return d->nullStatement;
 }
 
-QList<Statement> Model::statements() const
+QList<StatementPtr> Model::statements() const
 {
-    return d->stmts;
+    return d->statements.values();
 }
 
-QList<Resource> Model::listSubjects() const
+QList<ResourcePtr> Model::resourcesWithType(ResourcePtr type) const
 {
-    QList<Resource> subjects;
-
-    QList<Statement>::ConstIterator it = d->stmts.begin();
-    QList<Statement>::ConstIterator end = d->stmts.end();
-
-    for ( ; it != end; ++it)
-    {
-        Resource* subj = (*it).subject();
-        if (!subjects.contains(*subj))
-            subjects.append(*subj);
-    }
-
-    return subjects;
-}
-
-QList<Resource*> Model::resourcesWithType(const Resource& type) const
-{
-    QList<Resource*> list;
+    QList<ResourcePtr> list;
     
-    QList<Statement>::ConstIterator it = d->stmts.begin();
-    QList<Statement>::ConstIterator end = d->stmts.end();
+    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr>::ConstIterator it = stmts.begin();
+    QList<StatementPtr>::ConstIterator end = stmts.end();
 
     for ( ; it != end; ++it)
     {
-        if (*((*it).predicate()) == RDFVocab::type() && *((*it).object()) == type )
-            list.append((*it).subject());
+        if (*((*it)->predicate()) == *(RDFVocab::self()->type()) && *((*it)->object()) == *type )
+            list.append((*it)->subject());
     }
 
     return list;
+}
+
+NodePtr Model::nodeByID(uint id) const
+{
+    if (!d->nodes.contains(id))
+    {
+        return NodePtr::staticCast(d->nullLiteral);
+    }
+    else
+    {
+        return d->nodes[id];
+    }
+}
+        
+ResourcePtr Model::resourceByID(uint id) const
+{
+    if (!d->nodes.contains(id))
+    {
+        return d->nullResource;
+    }
+    else
+    {
+        NodePtr node = d->nodes[id];
+        ResourcePtr res = ResourcePtr::dynamicCast(node);
+        if (res)
+            return res;
+        else
+            return d->nullResource;
+    }
+}
+
+PropertyPtr Model::propertyByID(uint id) const
+{
+    if (!d->nodes.contains(id))
+    {
+        return d->nullProperty;
+    }
+    else
+    {
+        NodePtr node = d->nodes[id];
+        PropertyPtr prop = PropertyPtr::dynamicCast(node);
+        if (prop)
+            return prop;
+        else
+            return d->nullProperty;
+    }
+}
+
+LiteralPtr Model::literalByID(uint id) const
+{
+    if (!d->nodes.contains(id))
+    {
+        return d->nullLiteral;
+    }
+    else
+    {
+        NodePtr node = d->nodes[id];
+        LiteralPtr lit = LiteralPtr::dynamicCast(node);
+        if (lit)
+            return lit;
+        else
+            return d->nullLiteral;
+    }
 }
 
 } // namespace RDF

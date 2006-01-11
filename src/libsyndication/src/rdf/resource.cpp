@@ -21,6 +21,7 @@
  */
 
 #include "model.h"
+#include "nodevisitor.h"
 #include "property.h"
 #include "resource.h"
 #include "statement.h"
@@ -39,27 +40,28 @@ class Resource::ResourcePrivate : public KShared
         QString uri;
         Model model;
         bool isAnon;
-    
+        unsigned int id;
+        
         bool operator==(const ResourcePrivate& other) const
         {
             return uri == other.uri && isAnon == other.isAnon;
         }
 };
 
-Resource::Resource() : d(0)
-{
-}
-
 Resource::Resource(const Resource& other) : Node(other)
 {
     *this = other;
 }
 
-Resource::Resource(const QString& uri, const Model& model) : d(new ResourcePrivate)
+Resource::Resource() : d(0)
+{
+}
+
+Resource::Resource(const QString& uri) : d(new ResourcePrivate)
 {
     if (uri.isNull())
     {
-        d->uri = KRandom::randomString(10);
+        d->uri = KRandom::randomString(10); // TODO: ensure uniqueness
         d->isAnon = true;
     }
     else
@@ -67,8 +69,8 @@ Resource::Resource(const QString& uri, const Model& model) : d(new ResourcePriva
         d->uri = uri;
         d->isAnon = false;
     }
-
-    d->model = model;
+    
+    d->id = idCounter++;
 }
 
 Resource::~Resource()
@@ -92,19 +94,34 @@ bool Resource::operator==(const Node& other) const
     return *d == *(o2->d);
 }
 
-bool Resource::hasProperty(const Property& property) const
+bool Resource::hasProperty(PropertyPtr property) const
 {
-    return d ? d->model.resourceHasProperty(*this, property) : false;
+    return d ? d->model.resourceHasProperty(this, property) : false;
 }
 
-Statement Resource::property(const Property& property) const
+StatementPtr Resource::property(PropertyPtr property) const
 {
-    return d ? d->model.resourceProperty(*this, property) : Statement();
+    StatementPtr ptr = new Statement();
+    if (d)
+        ptr = d->model.resourceProperty(this, property);
+    return ptr;
 }
 
 Resource* Resource::clone() const
 {
     return new Resource(*this);
+}
+
+void Resource::accept(NodeVisitor* visitor, NodePtr ptr)
+{
+    ResourcePtr rptr = ResourcePtr::staticCast(ptr);
+    if (!visitor->visitResource(rptr))
+        Node::accept(visitor, ptr);
+}
+
+unsigned int Resource::id() const
+{
+    return d ? d->id : 0;
 }
 
 bool Resource::isNull() const
@@ -135,6 +152,12 @@ bool Resource::isAnon() const
 bool Resource::isSequence() const
 {
     return false;
+}
+
+void Resource::setModel(const Model& model)
+{
+    if (d)
+        d->model = model;
 }
 
 QString Resource::uri() const

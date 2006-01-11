@@ -35,7 +35,7 @@ class ContentVocab::ContentVocabPrivate
     public:
         
     QString namespaceURI;
-    Property encoded;
+    PropertyPtr encoded;
 };
 
 ContentVocab::ContentVocab() : d(new ContentVocabPrivate)
@@ -44,7 +44,7 @@ ContentVocab::ContentVocab() : d(new ContentVocabPrivate)
     
     d->namespaceURI = ns;
     
-    d->encoded = Property(ns + QString::fromLatin1("encoded"));
+    d->encoded = new Property(ns + QString::fromLatin1("encoded"));
     
 }
 
@@ -70,7 +70,7 @@ const QString& ContentVocab::namespaceURI() const
     return d->namespaceURI;
 }
 
-const Property& ContentVocab::encoded() const
+PropertyPtr ContentVocab::encoded() const
 {
     return d->encoded;
 }

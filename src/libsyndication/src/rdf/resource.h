@@ -34,42 +34,54 @@ namespace RDF {
 
 class Model;
 class Property;
+typedef KSharedPtr<Property> PropertyPtr;
+class Resource;
 class Statement;
-    
+typedef KSharedPtr<Statement> StatementPtr;
+
+typedef KSharedPtr<Resource> ResourcePtr;
+
 class Resource : public Node
 {
+    friend class Model;
+    
     public:
     
         Resource();
         Resource(const Resource& other);
-        Resource(const QString& uri, const Model& model);
+        Resource(const QString& uri);
+        
         virtual ~Resource();
         
         virtual Resource& operator=(const Resource& other);
         virtual bool operator==(const Node& other) const;
     
+        virtual void accept(NodeVisitor* visitor,  NodePtr ptr);
         virtual Resource* clone() const;
     
         virtual Model model() const;
     
-        virtual bool hasProperty(const Property& property) const;
-        virtual Statement property(const Property& property) const;
+        virtual bool hasProperty(PropertyPtr property) const;
+        virtual StatementPtr property(PropertyPtr property) const;
     
         virtual bool isNull() const;
-    
+
+        virtual unsigned int id() const;    
         virtual bool isResource() const;
         virtual bool isLiteral() const;
         virtual bool isAnon() const;
         virtual bool isSequence() const;
-    
+
         virtual QString uri() const;
     
+        virtual void setModel(const Model& model);
+                
     private:
     
         class ResourcePrivate;
         KSharedPtr<ResourcePrivate> d;
 };
-    
+
 } // namespace RDF
 } // namespace LibSyndication
 

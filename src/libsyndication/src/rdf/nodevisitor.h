@@ -20,42 +20,45 @@
  *
  */
 
-#ifndef LIBSYNDICATION_RDF_CONTENT_H
-#define LIBSYNDICATION_RDF_CONTENT_H
+#ifndef LIBSYNDICATION_RDF_NODEVISITOR_H
+#define LIBSYNDICATION_RDF_NODEVISITOR_H
 
-#include <ksharedptr.h>
-
-class QString;
+template <class T> class KSharedPtr;
 
 namespace LibSyndication {
 namespace RDF {
 
+class Literal;
+typedef KSharedPtr<Literal> LiteralPtr;
+class Node;
+typedef KSharedPtr<Node> NodePtr;
+class Property;
+typedef KSharedPtr<Property> PropertyPtr;
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
-
-class Content
+class Sequence;
+typedef KSharedPtr<Sequence> SequencePtr;
+    
+class NodeVisitor
 {
     public:
+
+        virtual ~NodeVisitor();
+
+        virtual void visit(NodePtr node);
         
-        Content();
-        Content(const Content& other);
-        Content(ResourcePtr resource);
-        virtual ~Content();
-                
-        Content& operator=(const Content& other);
-        bool operator==(const Content& other) const;
+        virtual bool visitLiteral(LiteralPtr);
         
-        QString encoded() const;
+        virtual bool visitNode(NodePtr);
+
+        virtual bool visitProperty(PropertyPtr);
         
-        QString debugInfo() const;
+        virtual bool visitResource(ResourcePtr);
         
-    private:
-        
-        class ContentPrivate;
-        KSharedPtr<ContentPrivate> d;
+        virtual bool visitSequence(SequencePtr);
 };
 
 } // namespace RDF
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_RDF_CONTENT_H
+#endif // LIBSYNDICATION_RDF_NODEVISITOR_H

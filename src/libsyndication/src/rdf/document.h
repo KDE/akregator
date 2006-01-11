@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_RDF_DOCUMENT_H
 #define LIBSYNDICATION_RDF_DOCUMENT_H
 
-#include "resource.h"
+#include "resourcewrapper.h"
 
 #include "../document.h"
 
@@ -38,17 +38,17 @@ class Image;
 class Item;
 class Model;
 class Resource;
+typedef KSharedPtr<Resource> ResourcecPtr;
 class Syndication;
 class TextInput;
 
-class Document : public LibSyndication::Document, public Resource
+class Document : public LibSyndication::Document, public ResourceWrapper
 {
     
     public:
             
         Document();
-        Document(const Resource& resource);
-        Document(const QString& uri, const Model& model);
+        Document(ResourcePtr resource);
         virtual ~Document();
         
         virtual bool accept(DocumentVisitor* visitor);

@@ -35,9 +35,9 @@ class SyndicationVocab::SyndicationVocabPrivate
     public:
         
     QString namespaceURI;
-    Property updatePeriod;
-    Property updateFrequency;
-    Property updateBase;
+    PropertyPtr updatePeriod;
+    PropertyPtr updateFrequency;
+    PropertyPtr updateBase;
 };
 
 SyndicationVocab::SyndicationVocab() : d(new SyndicationVocabPrivate)
@@ -46,9 +46,9 @@ SyndicationVocab::SyndicationVocab() : d(new SyndicationVocabPrivate)
     
     d->namespaceURI = ns;
     
-    d->updatePeriod = Property(ns + QString::fromLatin1("updatePeriod"));
-    d->updateFrequency = Property(ns + QString::fromLatin1("updateFrequency"));
-    d->updateBase = Property(ns + QString::fromLatin1("updateBase"));
+    d->updatePeriod = new Property(ns + QString::fromLatin1("updatePeriod"));
+    d->updateFrequency = new Property(ns + QString::fromLatin1("updateFrequency"));
+    d->updateBase = new Property(ns + QString::fromLatin1("updateBase"));
     
 }
 
@@ -74,17 +74,17 @@ const QString& SyndicationVocab::namespaceURI() const
     return d->namespaceURI;
 }
 
-const Property& SyndicationVocab::updatePeriod() const
+PropertyPtr SyndicationVocab::updatePeriod() const
 {
     return d->updatePeriod;
 }
 
-const Property& SyndicationVocab::updateFrequency() const
+PropertyPtr SyndicationVocab::updateFrequency() const
 {
     return d->updateFrequency;
 }
 
-const Property& SyndicationVocab::updateBase() const
+PropertyPtr SyndicationVocab::updateBase() const
 {
     return d->updateBase;
 }

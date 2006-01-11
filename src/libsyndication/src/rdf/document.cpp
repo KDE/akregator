@@ -27,6 +27,8 @@
 #include "dublincore.h"
 #include "image.h"
 #include "item.h"
+#include "model.h"
+#include "resource.h"
 #include "rssvocab.h"
 #include "sequence.h"
 #include "statement.h"
@@ -40,12 +42,11 @@ namespace LibSyndication {
 namespace RDF {
 
 
-Document::Document(const QString& uri, const Model& model) 
-    : LibSyndication::Document(), Resource(uri, model)
+Document::Document() : LibSyndication::Document(), ResourceWrapper()
 {
 }
 
-Document::Document(const Resource& resource) : Resource(resource)
+Document::Document(ResourcePtr resource) : ResourceWrapper(resource)
 {
 }
 
@@ -61,51 +62,56 @@ bool Document::accept(DocumentVisitor* visitor)
 QString Document::title() const
 {
     // TODO: handle HTML, encoding etc.
-    return property(RSSVocab::self()->title()).asString();
+    return resource()->property(RSSVocab::self()->title())->asString();
 }
 
 QString Document::description() const
 {
     // TODO: handle HTML, encoding etc.
-    return property(RSSVocab::self()->description()).asString();
+    return resource()->property(RSSVocab::self()->description())->asString();
 }
 
 QString Document::link() const
 {
-    return property(RSSVocab::self()->link()).asString();
+    return resource()->property(RSSVocab::self()->link())->asString();
 }
 
 DublinCore Document::dc() const
 {
-    return DublinCore(*this);
+    return DublinCore(resource());
 }
 
 Syndication Document::syn() const
 {
-    return Syndication(*this);
+    return Syndication(resource());
 }
 
 QList<Item> Document::items() const
 {
     QList<Item> list;
-    if (hasProperty(RSSVocab::self()->items()))
+    if (!resource()->hasProperty(RSSVocab::self()->items()))
         return list;
     
-    Node* n = property(RSSVocab::self()->items()).object();
+    NodePtr n = resource()->property(RSSVocab::self()->items())->object();
     if (n->isSequence())
     {
-        Sequence* seq = dynamic_cast<Sequence*>(n);
+        Sequence* seq = dynamic_cast<Sequence*>(n.data());
         if (seq)
         {
-            QList<Node*> items = seq->items();
-            QList<Node*>::ConstIterator it = items.begin();
-            QList<Node*>::ConstIterator end = items.end();
+            QList<NodePtr> items = seq->items();
+            QList<NodePtr>::Iterator it = items.begin();
+            QList<NodePtr>::Iterator end = items.end();
             
             for ( ; it != end; ++it)
             {
                 if ((*it)->isResource())
                 {
-                    Item item(*(static_cast<Resource*>(*it)));
+                    // well, we need it as ResourcePtr
+                    // maybe this should go to the node
+                    // interface ResourcePtr asResource()?
+                    ResourcePtr ptr = resource()->model().createResource((static_cast<Resource*>((*it).data()))->uri());
+                    
+                    Item item(ptr);
                     list.append(item);
                 }
             }
@@ -116,28 +122,16 @@ QList<Item> Document::items() const
 
 Image Document::image() const
 {
-    // TODO
-    /* 
-    if (hasProperty(RSSVocab::self()->image()))
-    {
-        
-    }
-    */
+    ResourcePtr img = resource()->property(RSSVocab::self()->image())->asResource();
     
-    return Image();
+    return img ? Image(img) : Image();
 }
 
 TextInput Document::textInput() const
 {
-    // TODO
-    /* 
-    if (hasProperty(RSSVocab::self()->textInput()))
-    {
-        
-}
-    */
+    ResourcePtr ti = resource()->property(RSSVocab::self()->textinput())->asResource();
     
-    return TextInput();
+    return ti ? TextInput(ti) : TextInput();
 }
 
 QString Document::debugInfo() const
@@ -150,11 +144,19 @@ QString Document::debugInfo() const
     info += dc().debugInfo();
     info += syn().debugInfo();
     Image img = image();
-    if (!img.isNull())
+    if (!img.resource().isNull())
         info += img.debugInfo();
     TextInput input = textInput();
     if (!input.isNull())
         info += input.debugInfo();
+
+    QList<Item> itlist= items();
+    QList<Item>::ConstIterator it = itlist.begin();
+    QList<Item>::ConstIterator end = itlist.end();
+    for ( ; it != end; ++it)
+        info += (*it).debugInfo();
+    
+    
     info += "### Document end ################\n";
     return info;
 }

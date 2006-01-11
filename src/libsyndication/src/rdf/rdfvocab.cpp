@@ -24,29 +24,71 @@
 #include "property.h"
 #include "rdfvocab.h"
 
+#include <kstaticdeleter.h>
+
 #include <QString>
 
 namespace LibSyndication {
 namespace RDF {
 
-Resource RDFVocab::seq()
+class RDFVocab::RDFVocabPrivate
 {
-    return Resource(QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"), Model());
+    public:
+    
+        QString namespaceURI;
+        ResourcePtr seq;
+        PropertyPtr type;
+        PropertyPtr li;
+};
+
+static KStaticDeleter<RDFVocab> rdfvocabsd;
+
+RDFVocab* RDFVocab::m_self = 0;
+
+RDFVocab* RDFVocab::self()
+{
+    if (m_self == 0)
+        rdfvocabsd.setObject(m_self, new RDFVocab);
+    return m_self;
 }
 
-Property RDFVocab::type()
+RDFVocab::RDFVocab() : d(new RDFVocabPrivate)
 {
-    return Property(QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#type"));
+    QString ns = QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+    
+    d->namespaceURI = ns;
+    
+    d->seq = new Resource(ns + QString::fromLatin1("Seq"));
+    
+    d->type = new Property(ns + QString::fromLatin1("type"));
+    
+    d->li = new Property(ns + QString::fromLatin1("li"));
 }
 
-Property RDFVocab::li()
+RDFVocab::~RDFVocab()
 {
-    return Property(QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#li"));
+    delete d;
+    d = 0;
+}
+
+ResourcePtr RDFVocab::seq()
+{
+    return d->seq;
+}
+
+PropertyPtr RDFVocab::type()
+{
+    return d->type;
+}
+
+PropertyPtr RDFVocab::li()
+{
+    return d->li;
 }
 
 QString RDFVocab::namespaceURI()
 {
-    return QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+    return d->namespaceURI;
 }
 
 } // namespace RDF

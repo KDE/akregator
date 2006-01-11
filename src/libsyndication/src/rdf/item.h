@@ -19,13 +19,12 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
-
 #ifndef LIBSYNDICATION_RDF_ITEM_H
 #define LIBSYNDICATION_RDF_ITEM_H
 
-#include "resource.h"
+#include "resourcewrapper.h"
 
+template <class T> class KSharedPtr;
 class QString;
 
 namespace LibSyndication {
@@ -33,16 +32,19 @@ namespace RDF {
 
 class Content;
 class DublinCore;
+class Item;
 class Model;
-    
-class Item : public Resource
+class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
+
+
+class Item : public ResourceWrapper
 {
     
     public:
             
         Item();
-        Item(const Resource& resource);
-        Item(const QString& uri, const Model& model);
+        Item(ResourcePtr resource);
         
         virtual ~Item();
 

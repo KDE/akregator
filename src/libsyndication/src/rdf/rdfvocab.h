@@ -22,23 +22,41 @@
 #ifndef LIBSYNDICATION_RDF_RDFVOCAB_H
 #define LIBSYNDICATION_RDF_RDFVOCAB_H
 
+template <class T> class KSharedPtr;
+
+class QString;
+
 namespace LibSyndication {
 namespace RDF {
 
 class Property;
+typedef KSharedPtr<Property> PropertyPtr;
 class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
 
 class RDFVocab
 {
     public:
     
-        static QString namespaceURI();
-
-        static Resource seq();
+        static RDFVocab* self();
         
-        static Property type();
+        RDFVocab();
+        ~RDFVocab();
+        
+        QString namespaceURI();
 
-        static Property li();
+        ResourcePtr seq();
+        
+        PropertyPtr type();
+
+        PropertyPtr li();
+        
+    private:
+        
+        static RDFVocab* m_self;
+        
+        class RDFVocabPrivate;
+        RDFVocabPrivate* d;
 };
 
 } // namespace RDF

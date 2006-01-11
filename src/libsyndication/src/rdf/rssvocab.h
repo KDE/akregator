@@ -19,10 +19,10 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
-
 #ifndef LIBSYNDICATION_RDF_RSSVOCAB_H
 #define LIBSYNDICATION_RDF_RSSVOCAB_H
+
+template <class T> class KSharedPtr;
 
 class QString;
 
@@ -30,7 +30,10 @@ namespace LibSyndication {
 namespace RDF {
 
 class Property;
+typedef KSharedPtr<Property> PropertyPtr;
+
 class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
     
 class RSSVocab
 {
@@ -42,23 +45,23 @@ class RSSVocab
         
         const QString& namespaceURI() const;
 
-        const Property& title() const;
+        PropertyPtr title() const;
         
-        const Property& description() const;
+        PropertyPtr description() const;
         
-        const Property& link() const;
+        PropertyPtr link() const;
         
-        const Property& name() const;
+        PropertyPtr name() const;
         
-        const Property& url() const;
+        PropertyPtr url() const;
         
-        const Resource& channel() const;
+        ResourcePtr channel() const;
         
-        const Property& items() const;
+        PropertyPtr items() const;
         
-        const Property& image() const;
+        PropertyPtr image() const;
         
-        const Property& textinput() const;
+        PropertyPtr textinput() const;
         
     protected:
         

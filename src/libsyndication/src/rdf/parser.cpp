@@ -34,6 +34,11 @@
 #include <QList>
 #include <QString>
 
+#include "property.h"
+#include "resource.h"
+#include "statement.h"
+#include <iostream>
+
 namespace LibSyndication {
 namespace RDF {
 
@@ -44,7 +49,7 @@ bool Parser::accept(const DocumentSource& source) const
     if (doc.isNull())
         return false;
     
-    return doc.documentElement().namespaceURI() == RDFVocab::namespaceURI();
+    return doc.documentElement().namespaceURI() == RDFVocab::self()->namespaceURI();
 }
 
 Document* Parser::parse(const DocumentSource& source) const
@@ -57,12 +62,21 @@ Document* Parser::parse(const DocumentSource& source) const
     ModelMaker maker;
     Model model = maker.createFromXML(doc);
     
-    QList<Resource*> channels = model.resourcesWithType(RSSVocab::self()->channel());
+    QList<ResourcePtr> channels = model.resourcesWithType(RSSVocab::self()->channel());
     
+    QList<StatementPtr> stmts = model.statements();
+    QList<StatementPtr>::ConstIterator it = stmts.begin();
+    QList<StatementPtr>::ConstIterator end = stmts.end();
+    for ( ; it != end; ++it)
+    {
+        std::cout << "# " << (*it)->subject()->uri().toLocal8Bit().data() << (*it)->predicate()->uri().toLocal8Bit().data() << (*it)->object()->id() << std::endl;
+    }
+    std::cout << "#foob " << std::endl;
+
     if (channels.isEmpty())
         return 0;
-    
-    return new Document(**(channels.begin()));
+  
+    return new Document(*(channels.begin()));
 }
 
 QString Parser::format() const

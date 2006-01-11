@@ -34,11 +34,11 @@ class Content::ContentPrivate : public KShared
 {
     public:
     
-    Resource resource;
+    ResourcePtr resource;
 
     bool operator==(const ContentPrivate& other) const
     {
-        return resource == other.resource;
+        return *resource == *(other.resource);
     }
 
 };
@@ -52,7 +52,7 @@ Content::Content(const Content& other) : d(0)
     *this = other;
 }
 
-Content::Content(const Resource& resource) : d(new ContentPrivate)
+Content::Content(ResourcePtr resource) : d(new ContentPrivate)
 {
     d->resource = resource;
 }
@@ -77,7 +77,7 @@ bool Content::operator==(const Content& other) const
 QString Content::encoded() const
 {
     // TODO: "normalize" content (make HTML out of it etc.)
-    return d->resource.property(ContentVocab::self()->encoded()).asString();
+    return d->resource->property(ContentVocab::self()->encoded())->asString();
 }
 
 QString Content::debugInfo() const

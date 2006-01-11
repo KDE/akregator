@@ -31,12 +31,10 @@
 class QString;
 
 namespace LibSyndication {
-
-class Resource;
-
 namespace RDF {
 
 class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
 
 class Syndication
 {
@@ -46,7 +44,7 @@ class Syndication
                 
         Syndication();
         Syndication(const Syndication& other);
-        Syndication(const Resource& resource);
+        Syndication(ResourcePtr resource);
         virtual ~Syndication();
                 
         Syndication& operator=(const Syndication& other);

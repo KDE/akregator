@@ -19,25 +19,27 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_RDF_TEXTINPUT_H
 #define LIBSYNDICATION_RDF_TEXTINPUT_H
 
-#include <ksharedptr.h>
+#include "resourcewrapper.h"
+
+template <class T> class KSharedPtr;
 
 namespace LibSyndication {
 namespace RDF {
 
 class Model;
-    
-class TextInput : public Resource
+class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
+
+class TextInput : public ResourceWrapper
 {
     
     public:
             
         TextInput();
-        TextInput(const Resource& resource);
-        TextInput(const QString& uri, const Model& model);
+        TextInput(ResourcePtr resource);
         virtual ~TextInput();
         
         QString title() const;

@@ -19,27 +19,42 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_RDF_NODE_H
 #define LIBSYNDICATION_RDF_NODE_H
+
+#include <ksharedptr.h>
 
 namespace LibSyndication {
 namespace RDF {
 
-class Node
+class Model;
+class Node;
+class NodeVisitor;
+
+typedef KSharedPtr<Node> NodePtr;
+
+class Node : public KShared
 {
     public:
         
         virtual ~Node();
         
+        virtual void accept(NodeVisitor* visitor, NodePtr ptr);
+        
         virtual bool operator==(const Node& other) const = 0;
         
         virtual Node* clone() const = 0;
         virtual bool isNull() const = 0;
+        virtual unsigned int id() const = 0;
         virtual bool isResource() const = 0;
         virtual bool isLiteral() const = 0;
         virtual bool isSequence() const = 0;
         virtual bool isAnon() const = 0;
+        virtual void setModel(const Model& model) = 0;
+        
+    protected:
+        
+        static unsigned int idCounter;
 };
 
 } // namespace RDF

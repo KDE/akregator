@@ -34,11 +34,11 @@ class Syndication::SyndicationPrivate : public KShared
 {
     public:
     
-    Resource resource;
+    ResourcePtr resource;
 
     bool operator==(const SyndicationPrivate& other) const
     {
-        return resource == other.resource;
+        return *resource == *(other.resource);
     }
 
 };
@@ -52,7 +52,7 @@ Syndication::Syndication(const Syndication& other) : d(0)
     *this = other;
 }
 
-Syndication::Syndication(const Resource& resource) : d(new SyndicationPrivate)
+Syndication::Syndication(ResourcePtr resource) : d(new SyndicationPrivate)
 {
     d->resource = resource;
 }
@@ -94,7 +94,8 @@ time_t Syndication::updateBase() const
 
 QString Syndication::debugInfo() const
 {
-    QString info = "TODO";
+    QString info = "";
+    // TODO
     return info;
 }
 

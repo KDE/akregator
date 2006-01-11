@@ -30,6 +30,10 @@
 namespace LibSyndication {
 namespace RDF {
 
+class Literal;
+    
+typedef KSharedPtr<Literal> LiteralPtr;
+    
 class Literal : public Node
 {
     public:
@@ -43,9 +47,10 @@ class Literal : public Node
         virtual bool operator==(const Node& other) const;
     
         virtual Literal* clone() const;
+        virtual void accept( NodeVisitor* visitor, NodePtr ptr);
     
         virtual bool isNull() const;
-    
+        virtual unsigned int id() const;
         virtual bool isResource() const;
         virtual bool isLiteral() const;
         virtual bool isAnon() const;
@@ -53,6 +58,8 @@ class Literal : public Node
     
         virtual QString text() const;
     
+        virtual void setModel(const Model& model);
+        
     private:
         class LiteralPrivate;
         KSharedPtr<LiteralPrivate> d;

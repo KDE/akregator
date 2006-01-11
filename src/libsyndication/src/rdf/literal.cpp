@@ -21,6 +21,7 @@
  */
 
 #include "literal.h"
+#include "nodevisitor.h"
 
 #include <QString>
 
@@ -32,6 +33,7 @@ class Literal::LiteralPrivate : public KShared
     public:
     
         QString text;
+        unsigned int id;
 
         bool operator==(const LiteralPrivate& other) const
         {
@@ -53,9 +55,17 @@ Literal* Literal::clone() const
     return new Literal(*this);
 }
     
+void Literal::accept(NodeVisitor* visitor, NodePtr ptr)
+{
+    LiteralPtr lptr = LiteralPtr::staticCast(ptr);
+    if (!visitor->visitLiteral(lptr))
+        Node::accept(visitor, ptr);
+}
+
 Literal::Literal(const QString& text) : d(new LiteralPrivate)
 {
     d->text = text;
+    d->id = idCounter++;
 }
 
 Literal::~Literal()
@@ -85,6 +95,11 @@ bool Literal::isNull() const
     return d == (LiteralPrivate*)0;
 }
 
+unsigned int Literal::id() const
+{
+    return d ? d->id : 0;
+}
+
 bool Literal::isResource() const
 {
     return false;
@@ -110,6 +125,9 @@ QString Literal::text() const
     return d ? d->text : QString::null;
 }
 
+void Literal::setModel(const Model& /*model*/)
+{
+}
 
 } // namespace RDF
 } // namespace LibSyndication

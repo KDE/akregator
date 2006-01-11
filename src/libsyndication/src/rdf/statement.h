@@ -22,24 +22,27 @@
 #ifndef LIBSYNDICATION_RDF_STATEMENT_H
 #define LIBSYNDICATION_RDF_STATEMENT_H
 
+#include "property.h"
+
 #include <ksharedptr.h>
+
 
 class QString;
 
 namespace LibSyndication {
 namespace RDF {
 
-class Node;
-class Property;
-class Resource;
+class Statement;
 
-class Statement
+typedef KSharedPtr<Statement> StatementPtr;
+
+class Statement : public KShared
 {
     public:
     
         Statement();
         Statement(const Statement& other);
-        Statement(const Resource& subject, const Property& predicate, const Node& object);
+        Statement(ResourcePtr subject, PropertyPtr predicate, NodePtr object);
         virtual ~Statement();
     
         Statement& operator=(const Statement& other);
@@ -47,16 +50,24 @@ class Statement
     
         virtual bool isNull() const;
     
-        virtual Resource* subject() const;
-        virtual Property* predicate() const;
-        virtual Node* object() const;
-    
-    /**
-            * returns the object of this statement as string, if possible.
-            * 
-            * @return the literal text as QString, or QString::null if the object
-            * is not a literal
-        */
+        virtual ResourcePtr subject() const;
+        virtual PropertyPtr predicate() const;
+        virtual NodePtr object() const;
+
+        /**
+         * returns the object of this statement as resource, if possible.
+         * 
+         * @return the object node as Resource, or @c null if the object
+         * is not a resource
+         */
+        virtual ResourcePtr asResource() const;
+        
+        /**
+         * returns the object of this statement as string, if possible.
+         * 
+         * @return the literal text as QString, or QString::null if the object
+         * is not a literal
+         */
         virtual QString asString() const;
 
     

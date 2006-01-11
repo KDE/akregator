@@ -21,6 +21,7 @@
  */
 
 #include "literal.h"
+#include "model.h"
 #include "property.h"
 #include "resource.h"
 #include "statement.h"
@@ -34,43 +35,39 @@ class Statement::StatementPrivate : public KShared
 {
     public:
     
-        Resource* subject;
-        Property* predicate;
-        Node* object;
-
-        ~StatementPrivate()
-        {
-            delete subject;
-            delete predicate;
-            delete object;
-        }
+        uint subjectID;
+        uint predicateID;
+        uint objectID;
+        Model model;
 
         bool operator==(const StatementPrivate& other) const
         {
-            return *subject == *(other.subject) &&
-                    *predicate == *(other.predicate) &&
-                    *object == *(other.object);
+            // FIXME: use better check that works also with multiple models
+            return subjectID == other.subjectID &&
+                   predicateID == other.predicateID &&
+                   objectID == other.objectID;
         }
 };
 
 Statement::Statement() : d(new StatementPrivate)
 {
-    d->subject = new Resource();
-    d->predicate = new Property();
-    d->object = new Resource();
+    d->subjectID = 0;
+    d->predicateID = 0;
+    d->objectID = 0;
 }
 
-Statement::Statement(const Statement& other)
+Statement::Statement(const Statement& other) : KShared(other)
 {
     d = other.d;
 }
 
-Statement::Statement(const Resource& subject, const Property& predicate, 
-                        const Node& object) : d(new StatementPrivate)
+Statement::Statement(ResourcePtr subject, PropertyPtr predicate, 
+                        NodePtr object) : d(new StatementPrivate)
 {
-    d->subject = subject.clone();
-    d->predicate = predicate.clone();
-    d->object = object.clone();
+    d->model = subject->model();
+    d->subjectID = subject->id();
+    d->predicateID = predicate->id();
+    d->objectID = object->id();
 }
 
 Statement::~Statement()
@@ -93,31 +90,40 @@ bool Statement::operator==(const Statement& other) const
 
 bool Statement::isNull() const
 {
-    return d->subject->isNull();
+    return d->subjectID == 0;
 }
 
-Resource* Statement::subject() const
+ResourcePtr Statement::subject() const
 {
-    return d->subject;
+    return d->model.resourceByID(d->subjectID);
 }
 
-Property* Statement::predicate() const
+PropertyPtr Statement::predicate() const
 {
-    return d->predicate;
+    return d->model.propertyByID(d->predicateID);
 }
 
-Node* Statement::object() const
+NodePtr Statement::object() const
 {
-    return d->object;
+    return d->model.nodeByID(d->objectID);
+}
+
+ResourcePtr Statement::asResource() const
+{
+    if (isNull() || !d->model.nodeByID(d->objectID)->isResource())
+        return new Resource;
+
+    return d->model.resourceByID(d->objectID);
 }
 
 QString Statement::asString() const
 {
-    if (isNull() || !d->object->isLiteral())
+    if (isNull() || !d->model.nodeByID(d->objectID)->isLiteral())
         return QString::null;
 
-    Literal* l = dynamic_cast<Literal*>(d->object);
-    if (!l) // should never happen
+    LiteralPtr l = d->model.literalByID(d->objectID);
+    
+    if (l->isNull())
         return QString::null;
 
     return l->text();

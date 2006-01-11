@@ -23,13 +23,17 @@
 #ifndef LIBSYNDICATION_RDF_CONTENTVOCAB_H
 #define LIBSYNDICATION_RDF_CONTENTVOCAB_H
 
+
 class QString;
+
+template <class T> class KSharedPtr;
 
 namespace LibSyndication {
 namespace RDF {
 
 class Property;
-    
+typedef KSharedPtr<Property> PropertyPtr;
+
 class ContentVocab
 {
     public:
@@ -40,7 +44,7 @@ class ContentVocab
         
         const QString& namespaceURI() const;
 
-        const Property& encoded() const;
+        PropertyPtr encoded() const;
         
     protected:
         

@@ -23,6 +23,7 @@
 #include "content.h"
 #include "dublincore.h"
 #include "item.h"
+#include "model.h"
 #include "rssvocab.h"
 #include "statement.h"
 
@@ -31,15 +32,11 @@
 namespace LibSyndication {
 namespace RDF {
 
-Item::Item() : Resource()
+Item::Item() : ResourceWrapper()
 {
 }
 
-Item::Item(const QString& uri, const Model& model) : Resource(uri, model)
-{
-}
-
-Item::Item(const Resource& resource) : Resource(resource)
+Item::Item(ResourcePtr resource) : ResourceWrapper(resource)
 {
 }
 
@@ -49,27 +46,28 @@ Item::~Item()
 
 QString Item::title() const
 {
-    return property(RSSVocab::self()->title()).asString();
+    return resource()->property(RSSVocab::self()->title())->asString();
 }
 
 QString Item::description() const
 {
-    return property(RSSVocab::self()->description()).asString();
+    return resource()->property(RSSVocab::self()->description())->asString();
 }
 
 QString Item::link() const
 {
-    return property(RSSVocab::self()->link()).asString();
+    return resource()->property(RSSVocab::self()->link())->asString();
 }
 
 DublinCore Item::dc() const
 {
-    return DublinCore(*this);
+    return DublinCore(resource());
 }
 
 Content Item::content() const
 {
-    return Content(*this);
+    // FIXME: a complicated way to say "this" (we need a sharedptr)
+    return Content(resource());
 }
 
 QString Item::debugInfo() const

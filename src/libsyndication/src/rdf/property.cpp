@@ -20,7 +20,7 @@
  *
  */
 
-#include "model.h"
+#include "nodevisitor.h"
 #include "property.h"
 
 namespace LibSyndication {
@@ -30,12 +30,20 @@ Property::Property() : Resource()
 {
 }
 
-Property::Property(const QString& uri) : Resource(uri, Model())
+Property::Property(const QString& uri) : Resource(uri)
 {
 }
 
 Property::~Property()
 {
+}
+
+void Property::accept(NodeVisitor* visitor, NodePtr ptr)
+{
+    PropertyPtr pptr = PropertyPtr::staticCast(ptr);
+    
+    if (!visitor->visitProperty(pptr))
+        Resource::accept(visitor, ptr);
 }
 
 Property* Property::clone() const

@@ -23,13 +23,16 @@
 #ifndef LIBSYNDICATION_RDF_SYNDICATIONVOCAB_H
 #define LIBSYNDICATION_RDF_SYNDICATIONVOCAB_H
 
+template <class T> class KSharedPtr;
+
 class QString;
 
 namespace LibSyndication {
 namespace RDF {
 
 class Property;
-    
+typedef KSharedPtr<Property> PropertyPtr;
+
 class SyndicationVocab
 {
     public:
@@ -40,11 +43,11 @@ class SyndicationVocab
         
         const QString& namespaceURI() const;
 
-        const Property& updatePeriod() const;
+        PropertyPtr updatePeriod() const;
         
-        const Property& updateFrequency() const;
+        PropertyPtr updateFrequency() const;
         
-        const Property& updateBase() const;
+        PropertyPtr updateBase() const;
         
     protected:
         

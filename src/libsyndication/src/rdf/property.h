@@ -30,6 +30,10 @@ class QString;
 namespace LibSyndication {
 namespace RDF {
 
+class Property;
+
+typedef KSharedPtr<Property> PropertyPtr;
+
 class Property : public Resource
 {
     public:
@@ -37,6 +41,8 @@ class Property : public Resource
         Property();
         Property(const QString& uri);
         virtual ~Property();
+        
+        virtual void accept(NodeVisitor* visitor, NodePtr ptr);
         
         virtual Property* clone() const;
 };

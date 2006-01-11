@@ -32,6 +32,8 @@
 #include <QDomElement>
 #include <QString>
 
+#include <iostream>
+
 namespace LibSyndication {
 namespace RDF {
 
@@ -66,27 +68,26 @@ Model ModelMaker::createFromXML(const QDomDocument& doc)
 
 void ModelMaker::readResource(Model& model, const QDomElement& el)
 {
+    QString rdfns = RDFVocab::self()->namespaceURI();
     QString about = QString::fromLatin1("about");
     QString resource = QString::fromLatin1("resource");
     QString descriptionStr = QString::fromLatin1("Description");
 
-    Resource* res = 0;
+    ResourcePtr res;
 
-    if (el.localName() != descriptionStr || el.namespaceURI() != RDFVocab::namespaceURI())
+    ResourcePtr type = model.createResource(el.namespaceURI() + el.localName());
+
+    if (*type == *(RDFVocab::self()->seq()))
     {
-        Resource type(el.namespaceURI() + el.localName(), model);
-        
-        if (type == RDFVocab::seq())
-        {
-            res = new Sequence(el.attributeNS(RDFVocab::namespaceURI(), about), model); 
-        }
-        else
-        {
-            res = new Resource(el.attributeNS(RDFVocab::namespaceURI(), about), model); 
-        }
-        
-        model.addStatement(*res, RDFVocab::type(), type);
+        SequencePtr seq = model.createSequence(el.attributeNS(rdfns, about));
+        res = ResourcePtr::staticCast(seq);
     }
+    else
+    {
+        res = model.createResource(el.attributeNS(rdfns, about));
+    }
+
+    model.addStatement(res, RDFVocab::self()->type(), NodePtr::staticCast(type));
 
     QDomNodeList children = el.childNodes();
 
@@ -98,43 +99,43 @@ void ModelMaker::readResource(Model& model, const QDomElement& el)
         {
             QDomElement ce = children.item(i).toElement();
         
-            Property pred(ce.namespaceURI() + ce.localName());
+            PropertyPtr pred = model.createProperty(ce.namespaceURI() + ce.localName());
         
-            if (ce.hasAttributeNS(RDFVocab::namespaceURI(), resource)) // referenced Resource via rdf:resource
+            if (ce.hasAttributeNS(rdfns, resource)) // referenced Resource via rdf:resource
             {
-                Resource obj(ce.attributeNS(RDFVocab::namespaceURI(), resource), model);
+                NodePtr obj = NodePtr::staticCast(model.createResource(ce.attributeNS(rdfns, resource)));
                 
-                if (isSeq && pred == RDFVocab::li())
-                    static_cast<Sequence*>(res)->append(obj);
+                if (isSeq && *pred == *(RDFVocab::self()->li()))
+                    SequencePtr::staticCast(res)->append(obj);
                 else
-                    model.addStatement(*res, pred, obj);
-            }
-            else if (ce.hasAttributeNS(RDFVocab::namespaceURI(), about)) // embedded description using rdf:about
-            {
-                Resource obj(ce.attributeNS(RDFVocab::namespaceURI(), about), model);
-                
-                if (isSeq && pred == RDFVocab::li())
-                    static_cast<Sequence*>(res)->append(obj);
-                else
-                    model.addStatement(*res, pred, obj);
-                
-                readResource(model, ce); // read recursively
+                    model.addStatement(res, pred, obj);
             }
             else if (!ce.text().isEmpty()) // Literal
             {
-                Literal obj(ce.text());
+                NodePtr obj = NodePtr::staticCast(model.createLiteral(ce.text()));
                 
-                if (isSeq && pred == RDFVocab::li())
-                    static_cast<Sequence*>(res)->append(obj);
+                if (isSeq && *pred == *(RDFVocab::self()->li()))
+                    SequencePtr::staticCast(res)->append(obj);
                 else
-                    model.addStatement(*res, pred, obj);
+                    model.addStatement(res, pred, obj);
+            }
+            else if (ce.hasAttributeNS(rdfns, about)) // embedded description
+            {
+                QString uri = ce.attributeNS(rdfns, about);
+                
+                NodePtr obj = NodePtr::staticCast(model.createResource(uri));
+                
+                if (isSeq && *pred == *(RDFVocab::self()->li()))
+                    SequencePtr::staticCast(res)->append(obj);
+                else
+                    model.addStatement(res, pred, obj);
+                
+                readResource(model, ce); // read recursively
             }
         
-        //TODO: sequence [and bag, anonymous, reification, nice to have, but not important for basic RSS 1.0]
+        //TODO: bag, reification (nice to have, but not important for basic RSS 1.0)
         }
     }
-    
-    delete res;
 }
 
 } // namespace RDF
