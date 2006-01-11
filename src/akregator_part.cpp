@@ -803,7 +803,7 @@ void Part::initFonts()
     {
         bool underline = true;
         if (konq.hasKey("UnderlineLinks"))
-            underline = konq.readBoolEntry("UnderlineLinks");
+            underline = konq.readEntry("UnderlineLinks", false);
 
         kdDebug() << "Part::initFonts(): set UnderlineLinks to " << underline << endl;
         Settings::setUnderlineLinks(underline);

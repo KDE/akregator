@@ -182,7 +182,7 @@ void MainWindow::readProperties(KConfig* config)
         loadPart();
     static_cast<Akregator::Part*>(m_part)->readProperties(config);
     
-    if (Settings::showTrayIcon() && config->readBoolEntry("docked", false)) 
+    if (Settings::showTrayIcon() && config->readEntry("docked", false)) 
         hide();
     else
         show();

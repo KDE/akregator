@@ -302,7 +302,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     KConfig *conf = Settings::self()->config();
     conf->setGroup("General");
-    if(!conf->readBoolEntry("Disable Introduction", false))
+    if(!conf->readEntry("Disable Introduction", false))
     {
         m_articleList->hide();
         m_searchBar->hide();
