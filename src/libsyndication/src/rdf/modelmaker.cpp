@@ -32,8 +32,6 @@
 #include <QDomElement>
 #include <QString>
 
-#include <iostream>
-
 namespace LibSyndication {
 namespace RDF {
 

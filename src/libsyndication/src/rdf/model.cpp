@@ -32,7 +32,7 @@
 #include <QHash>
 #include <QList>
 #include <QString>
-#include <iostream>
+
 namespace LibSyndication {
 namespace RDF {
 

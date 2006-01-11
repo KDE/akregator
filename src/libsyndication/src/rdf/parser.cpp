@@ -37,7 +37,6 @@
 #include "property.h"
 #include "resource.h"
 #include "statement.h"
-#include <iostream>
 
 namespace LibSyndication {
 namespace RDF {
@@ -64,15 +63,6 @@ Document* Parser::parse(const DocumentSource& source) const
     
     QList<ResourcePtr> channels = model.resourcesWithType(RSSVocab::self()->channel());
     
-    QList<StatementPtr> stmts = model.statements();
-    QList<StatementPtr>::ConstIterator it = stmts.begin();
-    QList<StatementPtr>::ConstIterator end = stmts.end();
-    for ( ; it != end; ++it)
-    {
-        std::cout << "# " << (*it)->subject()->uri().toLocal8Bit().data() << (*it)->predicate()->uri().toLocal8Bit().data() << (*it)->object()->id() << std::endl;
-    }
-    std::cout << "#foob " << std::endl;
-
     if (channels.isEmpty())
         return 0;
   
