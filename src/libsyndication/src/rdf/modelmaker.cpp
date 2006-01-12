@@ -108,7 +108,7 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
                 else
                     model.addStatement(res, pred, obj);
             }
-            else if (!ce.text().isEmpty()) // Literal
+            else if (!ce.text().isEmpty() && ce.lastChildElement().isNull()) // Literal
             {
                 NodePtr obj = NodePtr::staticCast(model.createLiteral(ce.text()));
                 
@@ -117,12 +117,14 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
                 else
                     model.addStatement(res, pred, obj);
             }
-            else if (ce.hasAttributeNS(rdfns, about)) // embedded description
+            else // embedded description
             {
-                QString uri = ce.attributeNS(rdfns, about);
+                QDomElement re = ce.lastChildElement();
+                
+                QString uri = re.attributeNS(rdfns, about);
                 
                 // read recursively
-                NodePtr obj = NodePtr::staticCast(readResource(model, ce));
+                NodePtr obj = NodePtr::staticCast(readResource(model, re));
                 
                 if (isSeq && *pred == *(RDFVocab::self()->li()))
                     SequencePtr::staticCast(res)->append(obj);
