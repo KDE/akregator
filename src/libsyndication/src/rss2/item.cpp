@@ -138,7 +138,7 @@ Item Item::fromXML(const QDomElement& e)
         pubDate.setTime_t(time);
     }
 
-    return Item(title, description, link, content, categories, comments, 
+    return Item(title, link, description, content, categories, comments, 
                 author, enclosure, guid, guidIsPermaLink, pubDate, source);
 }
 
