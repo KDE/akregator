@@ -52,6 +52,8 @@ class Node : public KShared
         virtual bool isAnon() const = 0;
         virtual void setModel(const Model& model) = 0;
         
+        virtual void setId(unsigned int id) = 0;
+        
     protected:
         
         static unsigned int idCounter;

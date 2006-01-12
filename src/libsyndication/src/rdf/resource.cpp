@@ -44,7 +44,10 @@ class Resource::ResourcePrivate : public KShared
         
         bool operator==(const ResourcePrivate& other) const
         {
-            return uri == other.uri && isAnon == other.isAnon;
+            if (!isAnon && !other.isAnon)
+                return uri == other.uri;
+            else
+                return id == other.id;
         }
 };
 
@@ -160,6 +163,11 @@ void Resource::setModel(const Model& model)
         d->model = model;
 }
 
+void Resource::setId(unsigned int id)
+{
+    d->id = id;
+}
+        
 QString Resource::uri() const
 {
     return d ? d->uri : QString::null;

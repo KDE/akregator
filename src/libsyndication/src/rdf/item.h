@@ -30,7 +30,6 @@ class QString;
 namespace LibSyndication {
 namespace RDF {
 
-class Content;
 class DublinCore;
 class Item;
 class Model;
@@ -56,7 +55,7 @@ class Item : public ResourceWrapper
         
         DublinCore dc() const;
         
-        Content content() const;
+        QString encodedContent() const;
         
         /**
          * Returns a description of the document for debugging purposes.

@@ -125,8 +125,18 @@ QString Literal::text() const
     return d ? d->text : QString::null;
 }
 
+Literal::operator QString() const
+{
+    return d ? d->text : QString::null;
+}
+
 void Literal::setModel(const Model& /*model*/)
 {
+}
+
+void Literal::setId(unsigned int id)
+{
+    d->id = id;
 }
 
 } // namespace RDF

@@ -20,7 +20,7 @@
  *
  */
 
-#include "content.h"
+#include "contentvocab.h"
 #include "dublincore.h"
 #include "item.h"
 #include "model.h"
@@ -64,10 +64,9 @@ DublinCore Item::dc() const
     return DublinCore(resource());
 }
 
-Content Item::content() const
+QString Item::encodedContent() const
 {
-    // FIXME: a complicated way to say "this" (we need a sharedptr)
-    return Content(resource());
+    return resource()->property(ContentVocab::self()->encoded())->asString();
 }
 
 QString Item::debugInfo() const
@@ -77,8 +76,8 @@ QString Item::debugInfo() const
     info += "title: #" + title() + "#\n";
     info += "link: #" + link() + "#\n";
     info += "description: #" + description() + "#\n";
+    info += "content:encoded: #" + encodedContent() + "#\n";
     info += dc().debugInfo();
-    info += content().debugInfo();
     info += "### Item end ################\n";
     return info;
 }

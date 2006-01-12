@@ -30,6 +30,12 @@ namespace RDF {
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
 
+/**
+ * A wrapper for RDF resources. Base class for convenience wrappers
+ * such as @see Document, @see Item etc.
+ *
+ * @author Frank Osterfeld
+ */
 class ResourceWrapper
 {
     public:
@@ -41,8 +47,16 @@ class ResourceWrapper
         ResourceWrapper& operator=(const ResourceWrapper& other);
         bool operator==(const ResourceWrapper& other) const;
         
+        /**
+         * returns a shared pointer to the wrapped resource.
+         */
         ResourcePtr resource() const;
 
+        /**
+         * returns whether the wrapped resource is a null resource
+         * @return @c true if isNull() is true for the wrapped resource,
+         * @c false otherwise
+         */
         bool isNull() const;
 
     private:

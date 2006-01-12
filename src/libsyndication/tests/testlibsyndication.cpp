@@ -28,6 +28,8 @@
 #include "rdf/parser.h"
 #include "rss2/parser.h"
 
+#include <kinstance.h>
+
 #include <QByteArray>
 #include <QFile>
 #include <QString>

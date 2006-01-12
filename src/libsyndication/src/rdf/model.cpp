@@ -170,6 +170,12 @@ PropertyPtr Model::createProperty(const QString& uri)
     {
         prop = new Property(uri);
         prop->setModel(*this);
+        // if there is a resource object with the same uri, replace
+        // the resource object by the new property object and reuse the id
+        if (d->resources.contains(uri))
+        {
+            prop->setId(d->resources[uri]->id());
+        }
         d->addToHashes(NodePtr::staticCast(prop));
     }
 
@@ -207,6 +213,13 @@ SequencePtr Model::createSequence(const QString& uri)
     {
         seq = new Sequence(uri);
         seq->setModel(*this);
+        // if there is a resource object with the same uri, replace
+        // the resource object by the new sequence object and reuse the id
+        if (d->resources.contains(uri))
+        {
+            seq->setId(d->resources[uri]->id());
+        }
+
         d->addToHashes(NodePtr::staticCast(seq));
     }
 

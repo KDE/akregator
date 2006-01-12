@@ -55,10 +55,12 @@ class Literal : public Node
         virtual bool isLiteral() const;
         virtual bool isAnon() const;
         virtual bool isSequence() const;
-    
+
+        virtual operator QString() const;
         virtual QString text() const;
-    
+
         virtual void setModel(const Model& model);
+        virtual void setId(unsigned int id);
         
     private:
         class LiteralPrivate;

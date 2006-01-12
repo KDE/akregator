@@ -36,6 +36,6 @@ void Node::accept(NodeVisitor* visitor, NodePtr ptr)
 Node::~Node()
 {
 }
-    
+
 } // namespace RDF
 } // namespace LibSyndication

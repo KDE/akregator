@@ -22,7 +22,6 @@
 
 #include "../documentvisitor.h"
 
-#include "content.h"
 #include "document.h"
 #include "dublincore.h"
 #include "image.h"

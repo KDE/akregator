@@ -26,22 +26,31 @@ class QDomDocument;
 class QDomElement;
 class QString;
 
+template <class T> class KSharedPtr;
+
 namespace LibSyndication {
 namespace RDF {
 
 class Model;
-    
+class Resource;
+typedef KSharedPtr<Resource> ResourcePtr;
+
 class ModelMaker
 {
     public:
     
         virtual ~ModelMaker();
     
+        /**
+         * parses an RDF model from RDF/XML
+         * @param doc an DOM document, must contain RDF/XML
+         * @return the parsed model, or an empty model if parsing failed
+         */
         Model createFromXML(const QDomDocument& doc);
     
     protected:
     
-        void readResource(Model& model, const QDomElement& el);
+        ResourcePtr readResource(Model& model, const QDomElement& el);
 };
 
 } // namespace RDF

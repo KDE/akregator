@@ -63,7 +63,6 @@ bool ParserRegistry::registerParser(AbstractParser* parser)
         return false;
 
     d->parsers.insert(parser->format(), parser);
-
     return true;
 }
 

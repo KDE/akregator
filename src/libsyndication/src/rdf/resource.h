@@ -75,6 +75,7 @@ class Resource : public Node
         virtual QString uri() const;
     
         virtual void setModel(const Model& model);
+        virtual void setId(unsigned int id);
                 
     private:
     

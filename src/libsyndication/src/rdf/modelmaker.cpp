@@ -64,7 +64,7 @@ Model ModelMaker::createFromXML(const QDomDocument& doc)
     return model;
 }
 
-void ModelMaker::readResource(Model& model, const QDomElement& el)
+ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
 {
     QString rdfns = RDFVocab::self()->namespaceURI();
     QString about = QString::fromLatin1("about");
@@ -121,19 +121,21 @@ void ModelMaker::readResource(Model& model, const QDomElement& el)
             {
                 QString uri = ce.attributeNS(rdfns, about);
                 
-                NodePtr obj = NodePtr::staticCast(model.createResource(uri));
+                // read recursively
+                NodePtr obj = NodePtr::staticCast(readResource(model, ce));
                 
                 if (isSeq && *pred == *(RDFVocab::self()->li()))
                     SequencePtr::staticCast(res)->append(obj);
                 else
                     model.addStatement(res, pred, obj);
-                
-                readResource(model, ce); // read recursively
+
             }
         
         //TODO: bag, reification (nice to have, but not important for basic RSS 1.0)
         }
     }
+    
+    return res;
 }
 
 } // namespace RDF
