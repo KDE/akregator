@@ -781,7 +781,7 @@ void Part::initFonts()
     {
         int minfs;
         if (konq.hasKey("MinimumFontSize"))
-            minfs = konq.readNumEntry("MinimumFontSize");
+            minfs = konq.readEntry("MinimumFontSize", 0);
         else
             minfs = KGlobalSettings::generalFont().pointSize();
         kdDebug() << "Part::initFonts(): set MinimumFontSize to " << minfs << endl;
@@ -792,7 +792,7 @@ void Part::initFonts()
     {
         int medfs;
         if (konq.hasKey("MediumFontSize"))
-            medfs = konq.readNumEntry("MediumFontSize");
+            medfs = konq.readEntry("MediumFontSize", 0);
         else
             medfs = KGlobalSettings::generalFont().pointSize();
         kdDebug() << "Part::initFonts(): set MediumFontSize to " << medfs << endl;

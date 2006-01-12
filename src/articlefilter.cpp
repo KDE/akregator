@@ -279,7 +279,7 @@ void ArticleMatcher::readConfig(KConfig* config)
     m_criteria.clear();
     m_association = stringToAssociation(config->readEntry(QString::fromLatin1("matcherAssociation"), QString()));
 
-    int count =  config->readNumEntry(QString::fromLatin1("matcherCriteriaCount"), 0);
+    int count =  config->readEntry(QString::fromLatin1("matcherCriteriaCount"), 0);
     
     for (int i = 0; i < count; ++i)
     {
@@ -461,7 +461,7 @@ void SetStatusAction::writeConfig(KConfig* config) const
 
 void SetStatusAction::readConfig(KConfig* config)
 {
-    m_status = config->readNumEntry(QString::fromLatin1("actionParams"), Article::Read);
+    m_status = config->readEntry(QString::fromLatin1("actionParams"), int(Article::Read));
 }
 
 bool SetStatusAction::operator==(const AbstractAction& other)
@@ -587,7 +587,7 @@ void ArticleFilterList::readConfig(KConfig* config)
 {
     clear();
     config->setGroup(QString::fromLatin1("Filters"));
-    int count = config->readNumEntry(QString::fromLatin1("count"), 0);
+    int count = config->readEntry(QString::fromLatin1("count"), 0);
     for (int i = 0; i < count; ++i)
     {
         config->setGroup(QString::fromLatin1("Filters_")+QString::number(i));
@@ -653,7 +653,7 @@ void ArticleFilter::readConfig(KConfig* config)
     d->action = 0;
 
     d->name = config->readEntry(QString::fromLatin1("name"), QString());
-    d->id = config->readNumEntry(QString::fromLatin1("id"), 0);
+    d->id = config->readEntry(QString::fromLatin1("id"), 0);
 
     QString matcherType = config->readEntry(QString::fromLatin1("matcherType"), QString());
 
