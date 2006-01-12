@@ -48,7 +48,7 @@ class Image : public ResourceWrapper
         QString url() const;
         
         /**
-        * Returns a description of the document for debugging purposes.
+        * Returns a description of the image for debugging purposes.
         *
         * @return debug string
         */

@@ -58,7 +58,7 @@ class Item : public ResourceWrapper
         QString encodedContent() const;
         
         /**
-         * Returns a description of the document for debugging purposes.
+         * Returns a description of the item for debugging purposes.
          *
          * @return debug string
          */

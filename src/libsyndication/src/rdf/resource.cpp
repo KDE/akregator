@@ -165,7 +165,8 @@ void Resource::setModel(const Model& model)
 
 void Resource::setId(unsigned int id)
 {
-    d->id = id;
+    if (d)
+        d->id = id;
 }
         
 QString Resource::uri() const

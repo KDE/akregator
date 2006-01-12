@@ -28,7 +28,7 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QString>
-
+#include <iostream>
 namespace LibSyndication {
 namespace RSS2 {
 
@@ -50,7 +50,7 @@ LibSyndication::Document* Parser::parse(const LibSyndication::DocumentSource& so
 
 QString Parser::format() const
 {
-    return "rss2";
+    return QString::fromLatin1("rss2");
 }
 
 } // namespace RSS2

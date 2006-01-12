@@ -23,8 +23,8 @@
 #include "documentsource.h"
 
 #include <QByteArray>
-#include <qdom.h>
-#include <qxml.h>
+#include <QDomDocument>
+#include <QXmlSimpleReader>
 
 namespace LibSyndication {
 
@@ -63,12 +63,12 @@ DocumentSource& DocumentSource::operator=(const DocumentSource& other)
     return *this;
 }
 
-QByteArray DocumentSource::asByteArray() const
+const QByteArray& DocumentSource::asByteArray() const
 {
     return d->array;
 }
 
-QDomDocument DocumentSource::asDomDocument() const
+const QDomDocument& DocumentSource::asDomDocument() const
 {
     if (!d->parsed)
     {
@@ -77,7 +77,6 @@ QDomDocument DocumentSource::asDomDocument() const
         
         QXmlSimpleReader reader;
         reader.setFeature("http://xml.org/sax/features/namespaces", true);
-        QDomDocument doc;
         
         d->domDoc.setContent(&source, &reader);
         d->parsed = true;

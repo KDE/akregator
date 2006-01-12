@@ -85,7 +85,7 @@ class DocumentSource
          *
          * @return the feed source as raw byte array.
          */
-        QByteArray asByteArray() const;
+        const QByteArray& asByteArray() const;
 
         /**
          * Returns the feed source as DOM document.
@@ -94,7 +94,7 @@ class DocumentSource
          *
          * @return XML representation parsed from the raw source
          */
-        QDomDocument asDomDocument() const;
+        const QDomDocument& asDomDocument() const;
 
     private: 
 

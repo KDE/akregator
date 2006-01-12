@@ -55,13 +55,11 @@ RDFVocab* RDFVocab::self()
 RDFVocab::RDFVocab() : d(new RDFVocabPrivate)
 {
     QString ns = QString::fromLatin1("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-    
+
     d->namespaceURI = ns;
-    
+
     d->seq = new Resource(ns + QString::fromLatin1("Seq"));
-    
     d->type = new Property(ns + QString::fromLatin1("type"));
-    
     d->li = new Property(ns + QString::fromLatin1("li"));
 }
 

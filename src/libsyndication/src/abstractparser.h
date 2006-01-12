@@ -52,7 +52,7 @@ class AbstractParser
          *
          * @param source the document source to be checked
          * @return whether @c source seems to be in a format supported by the
-         *         parser
+         * parser
          */
         virtual bool accept(const DocumentSource& source) const = 0;
 

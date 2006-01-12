@@ -82,7 +82,9 @@ Document* ParserRegistry::parse(const DocumentSource& source, const QString& for
     Q_FOREACH (AbstractParser* i, d->parsers)
     {
         if (i->accept(source))
+        {
             return i->parse(source);
+        }
     }
     return 0;
 }

@@ -40,97 +40,110 @@ class Model::ModelPrivate : public KShared
 {
     public:
     
-        long id;
-        static long idCounter;
-        LiteralPtr nullLiteral;
-        PropertyPtr nullProperty;
-        ResourcePtr nullResource;
-        StatementPtr nullStatement;
-        QHash<QString, StatementPtr> statements;
-        QHash<int, NodePtr> nodes;
-        QHash<QString, ResourcePtr> resources;
-        QHash<QString, PropertyPtr> properties;
-        QHash<QString, SequencePtr> sequences;
-        
-        class AddToHashesVisitor;
-        
-        ModelPrivate()
-        {
-            id = idCounter++;
-            addToHashesVisitor = new AddToHashesVisitor(this);
-        }
-        
-        ~ModelPrivate()
-        {
-            delete addToHashesVisitor;
-        }
-        
-        bool operator==(const ModelPrivate& other) const
-        {
-            return id == other.id;
-        }
-       
-        class AddToHashesVisitor : public NodeVisitor
-        {
-            public:
-                
-            AddToHashesVisitor(ModelPrivate* parent) : p(parent)
-            {}
+    long id;
+    static long idCounter;
+    LiteralPtr nullLiteral;
+    PropertyPtr nullProperty;
+    ResourcePtr nullResource;
+    StatementPtr nullStatement;
+    QHash<QString, StatementPtr> statements;
+    QHash<int, NodePtr> nodes;
+    QHash<QString, ResourcePtr> resources;
+    QHash<QString, PropertyPtr> properties;
+    QHash<QString, SequencePtr> sequences;
+    Model* model;
+    
+    class AddToHashesVisitor;
+    
+    ModelPrivate(Model* m)
+    {
+        model = m;
+        id = idCounter++;
+        addToHashesVisitor = new AddToHashesVisitor(this);
+        initialized = false;
+    }
+    
+    ~ModelPrivate()
+    {
+        delete addToHashesVisitor;
+    }
+    
+    bool operator==(const ModelPrivate& other) const
+    {
+        return id == other.id;
+    }
+    
+    class AddToHashesVisitor : public NodeVisitor
+    {
+        public:
             
-            bool visitResource(ResourcePtr res)
-            {
-                visitNode(NodePtr::staticCast(res));
-                p->resources[res->uri()] = res;
-                return true;
-            }
+        AddToHashesVisitor(ModelPrivate* parent) : p(parent)
+        {}
         
-            bool visitSequence(SequencePtr seq)
-            {
-                visitResource(ResourcePtr::staticCast(seq));
-                p->sequences[seq->uri()] = seq;
-                return true;
-            }
+        bool visitResource(ResourcePtr res)
+        {
+            visitNode(NodePtr::staticCast(res));
+            p->resources[res->uri()] = res;
+            return true;
+        }
+    
+        bool visitSequence(SequencePtr seq)
+        {
+            visitResource(ResourcePtr::staticCast(seq));
+            p->sequences[seq->uri()] = seq;
+            return true;
+        }
 
-            bool visitProperty(PropertyPtr prop)
-            {
-                visitResource(ResourcePtr::staticCast(prop));
-                p->properties[prop->uri()] = prop;
-                return true;
-            }
+        bool visitProperty(PropertyPtr prop)
+        {
+            visitResource(ResourcePtr::staticCast(prop));
+            p->properties[prop->uri()] = prop;
+            return true;
+        }
 
-            bool visitNode(NodePtr node)
-            {
-                p->nodes[node->id()] = node;
-                return true;
-            }
-            
-            ModelPrivate* p;
-        };
-            
-        AddToHashesVisitor* addToHashesVisitor;
-        
-        void addToHashes(NodePtr node)
+        bool visitNode(NodePtr node)
         {
-            addToHashesVisitor->visit(node);
+            p->nodes[node->id()] = node;
+            return true;
         }
         
-        void addToHashes(StatementPtr stmt, const QString& key)
+        ModelPrivate* p;
+    };
+        
+    AddToHashesVisitor* addToHashesVisitor;
+    
+    void addToHashes(NodePtr node)
+    {
+        addToHashesVisitor->visit(node);
+    }
+    
+    void addToHashes(StatementPtr stmt, const QString& key)
+    {
+        statements[key] = stmt;
+    }
+    
+    bool initialized;
+    
+    void init()
+    {
+        if (!initialized)
         {
-            statements[key] = stmt;
+            nullLiteral = new Literal();
+            nullLiteral->setModel(*model);
+            nullProperty = new Property();
+            nullProperty->setModel(*model);
+            nullResource = new Resource();
+            nullResource->setModel(*model);
+            nullStatement = new Statement();
+            initialized = true;
         }
+    }
 };
 
 long Model::ModelPrivate::idCounter = 0;
 
-Model::Model() : d(new ModelPrivate)
+Model::Model() : d(new ModelPrivate(this))
 {
-    d->nullLiteral = new Literal();
-    d->nullLiteral->setModel(*this);
-    d->nullProperty = new Property();
-    d->nullProperty->setModel(*this);
-    d->nullResource = new Resource();
-    d->nullResource->setModel(*this);
-    d->nullStatement = new Statement();
 }
 
 Model::Model(const Model& other)
@@ -237,6 +250,7 @@ LiteralPtr Model::createLiteral(const QString& text)
 
 StatementPtr Model::addStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object)
 {
+    d->init();
     ResourcePtr subjInternal = subject;
     
     if (!d->nodes.contains(subjInternal->id()))

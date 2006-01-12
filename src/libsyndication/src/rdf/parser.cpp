@@ -47,8 +47,12 @@ bool Parser::accept(const DocumentSource& source) const
     
     if (doc.isNull())
         return false;
+    QDomElement root = doc.documentElement();
     
-    return doc.documentElement().namespaceURI() == RDFVocab::self()->namespaceURI();
+    if (!root.isElement())
+        return false;
+    
+    return root.namespaceURI() == RDFVocab::self()->namespaceURI();
 }
 
 Document* Parser::parse(const DocumentSource& source) const
