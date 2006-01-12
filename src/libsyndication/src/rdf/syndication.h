@@ -35,7 +35,7 @@ class Syndication : public ResourceWrapper
 {
     public:
         
-        enum Period { hourly, daily, weekly, monthly, yearly };
+        enum Period { None, Hourly, Daily, Weekly, Monthly, Yearly };
                 
         Syndication(ResourcePtr resource);
         virtual ~Syndication();
@@ -48,6 +48,11 @@ class Syndication : public ResourceWrapper
         time_t updateBase() const;
         
         QString debugInfo() const;
+        
+    protected:
+        
+        static QString periodToString(Period period);
+        static Period stringToPeriod(const QString& str);
 };
 
 } // namespace RDF

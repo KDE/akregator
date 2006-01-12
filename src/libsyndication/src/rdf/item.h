@@ -24,7 +24,6 @@
 
 #include "resourcewrapper.h"
 
-template <class T> class KSharedPtr;
 class QString;
 
 namespace LibSyndication {
@@ -33,9 +32,6 @@ namespace RDF {
 class DublinCore;
 class Item;
 class Model;
-class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
-
 
 class Item : public ResourceWrapper
 {

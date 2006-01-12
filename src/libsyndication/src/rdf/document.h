@@ -37,8 +37,6 @@ class DublinCore;
 class Image;
 class Item;
 class Model;
-class Resource;
-typedef KSharedPtr<Resource> ResourcecPtr;
 class Syndication;
 class TextInput;
 
@@ -59,6 +57,11 @@ class Document : public LibSyndication::Document, public ResourceWrapper
         
         QString link() const;
         
+        /**
+         * returns a dublin core description of the document.
+         * 
+         * @return a DC description describing this document
+         */
         DublinCore dc() const;
         
         Syndication syn() const;

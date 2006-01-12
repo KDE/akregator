@@ -25,6 +25,7 @@
 #include "property.h"
 #include "statement.h"
 
+#include <QDateTime>
 #include <QString>
 
 namespace LibSyndication {
@@ -57,8 +58,15 @@ QString DublinCore::creator() const
 
 time_t DublinCore::date() const
 {
-    //TODO: parse date
-    return 0;
+    QString base =  resource()->property(DublinCoreVocab::self()->date())->asString();
+    
+    time_t timet = QDateTime::fromString(base, Qt::ISODate).toTime_t();
+    // we return epoch (19700101) as default,even if
+    // base can't be parsed:
+    if (timet == -1)
+        return 0;
+    else
+        return timet;
 }
 
 QString DublinCore::description() const
@@ -125,7 +133,12 @@ QString DublinCore::debugInfo() const
         info += QString("dc:coverage: #%1#\n").arg(coverage());
     if (!creator().isNull())
         info += QString("dc:creator: #%1#\n").arg(creator());
-    info += QString("dc:date: #%1#\n").arg(QString::number(date()));
+    
+    time_t tdate = date();
+    QDateTime date;
+    date.setTime_t(tdate);
+    info += QString("dc:date: #%1#\n").arg(date.toString(Qt::ISODate));
+    
     if (!description().isNull())
         info += QString("dc:description: #%1#\n").arg(description());
     if (!format().isNull())

@@ -48,7 +48,7 @@ class ResourceWrapper
         bool operator==(const ResourceWrapper& other) const;
         
         /**
-         * returns a shared pointer to the wrapped resource.
+         * returns the wrapped resource.
          */
         ResourcePtr resource() const;
 
