@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_RDF_DUBLINCORE_H
 #define LIBSYNDICATION_RDF_DUBLINCORE_H
 
-#include <ksharedptr.h>
+#include "resourcewrapper.h"
 
 #include <ctime>
 
@@ -35,17 +35,12 @@ namespace RDF {
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
 
-class DublinCore
+class DublinCore : public ResourceWrapper
 {
     public:
         
-        DublinCore();
-        DublinCore(const DublinCore& other);
         DublinCore(ResourcePtr resource);
         virtual ~DublinCore();
-                
-        DublinCore& operator=(const DublinCore& other);
-        bool operator==(const DublinCore& other) const;
         
         QString contributor() const;
         
@@ -78,11 +73,6 @@ class DublinCore
         QString type() const;
         
         QString debugInfo() const;
-        
-    private:
-        
-        class DublinCorePrivate;
-        KSharedPtr<DublinCorePrivate> d;
 };
 
 } // namespace RDF

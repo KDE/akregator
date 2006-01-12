@@ -19,12 +19,10 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
-
 #ifndef LIBSYNDICATION_RDF_SYNDICATION_H
 #define LIBSYNDICATION_RDF_SYNDICATION_H
 
-#include <ksharedptr.h>
+#include "resourcewrapper.h"
 
 #include <ctime>
 
@@ -33,22 +31,15 @@ class QString;
 namespace LibSyndication {
 namespace RDF {
 
-class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
-
-class Syndication
+class Syndication : public ResourceWrapper
 {
     public:
         
         enum Period { hourly, daily, weekly, monthly, yearly };
                 
-        Syndication();
-        Syndication(const Syndication& other);
         Syndication(ResourcePtr resource);
         virtual ~Syndication();
                 
-        Syndication& operator=(const Syndication& other);
-        bool operator==(const Syndication& other) const;
                 
         Period updatePeriod() const;
         
@@ -57,14 +48,9 @@ class Syndication
         time_t updateBase() const;
         
         QString debugInfo() const;
-        
-    private:
-        
-        class SyndicationPrivate;
-        KSharedPtr<SyndicationPrivate> d;
 };
 
 } // namespace RDF
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_RDF_CONTENT_H
+#endif // LIBSYNDICATION_RDF_SYNDICATION_H

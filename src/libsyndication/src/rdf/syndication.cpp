@@ -30,49 +30,14 @@
 namespace LibSyndication {
 namespace RDF {
     
-class Syndication::SyndicationPrivate : public KShared
+Syndication::Syndication(ResourcePtr resource) : ResourceWrapper(resource)
 {
-    public:
     
-    ResourcePtr resource;
-
-    bool operator==(const SyndicationPrivate& other) const
-    {
-        return *resource == *(other.resource);
-    }
-
-};
-
-Syndication::Syndication() : d(new SyndicationPrivate)
-{
-}
-
-Syndication::Syndication(const Syndication& other) : d(0)
-{
-    *this = other;
-}
-
-Syndication::Syndication(ResourcePtr resource) : d(new SyndicationPrivate)
-{
-    d->resource = resource;
 }
 
 Syndication::~Syndication()
 {
 }
-
-        
-Syndication& Syndication::operator=(const Syndication& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool Syndication::operator==(const Syndication& other) const
-{
-    return *d == *(other.d);
-}
-
 
 Syndication::Period Syndication::updatePeriod() const
 {
