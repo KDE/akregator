@@ -166,11 +166,6 @@ bool Model::operator==(const Model& other) const
     return *d == *(other.d);
 }
 
-ResourcePtr Model::createResource(ResourcePtr resource)
-{
-    return createResource(resource->uri());
-}
-
 PropertyPtr Model::createProperty(const QString& uri)
 {
     PropertyPtr prop;
@@ -346,6 +341,32 @@ StatementPtr Model::resourceProperty(const Resource* resource, PropertyPtr prope
 QList<StatementPtr> Model::statements() const
 {
     return d->statements.values();
+}
+
+QString Model::debugInfo() const
+{
+    QString info;
+    
+    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr>::ConstIterator it = stmts.begin();
+    QList<StatementPtr>::ConstIterator end = stmts.end();
+    
+    for ( ; it != end; ++it)
+    {
+        info += QString("<%1> <%2> ").arg((*it)->subject()->uri()).arg((*it)->predicate()->uri());
+        
+        if ((*it)->object()->isLiteral())
+        {
+            info += QString("\"%1\"\n").arg((*it)->asString());
+        }
+        else
+        {
+            info += QString("<%1>\n").arg((*it)->asResource()->uri());
+        }
+         
+    }
+    
+    return info;
 }
 
 QList<ResourcePtr> Model::resourcesWithType(ResourcePtr type) const

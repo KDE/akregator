@@ -37,7 +37,11 @@ template <class T> class QList;
 namespace LibSyndication {
 namespace RDF {
 
-
+/**
+ * TODO
+ *
+ * @author Frank Osterfeld
+ */
 class Model
 {
     public:
@@ -49,8 +53,6 @@ class Model
 
         Model& operator=(const Model& other);
         bool operator==(const Model& other) const;
-
-        virtual ResourcePtr createResource(ResourcePtr resource);
         
         /**
          * creates a resource and associates it with this model. If the model
@@ -104,13 +106,7 @@ class Model
          * returns whether this model is empty, i.e. contains no statements.
          */
         virtual bool isEmpty() const;
-        
-        virtual bool resourceHasProperty(const Resource* resource, PropertyPtr property) const;
-        
-        virtual StatementPtr resourceProperty(const Resource* resource, PropertyPtr property) const;
-    
-        virtual QList<StatementPtr> statements() const;
-        
+
         // TODO: support inheritance
         /**
          * returns all resources of a given type.
@@ -119,7 +115,19 @@ class Model
          *
          */
         virtual QList<ResourcePtr> resourcesWithType(ResourcePtr type) const;
+
+        /**
+         * returns a list of the statements in this model.
+         * 
+         */
+        virtual QList<StatementPtr> statements() const;
         
+        virtual QString debugInfo() const;
+        
+        virtual bool resourceHasProperty(const Resource* resource, PropertyPtr property) const;
+
+        virtual StatementPtr resourceProperty(const Resource* resource, PropertyPtr property) const;
+
         /**
          * searches the model for a node by ID.
          *
