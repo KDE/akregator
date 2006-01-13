@@ -25,7 +25,7 @@
 
 #include "resourcewrapper.h"
 
-#include "../document.h"
+#include "../abstractdocument.h"
 
 template <class T> class QList;
 

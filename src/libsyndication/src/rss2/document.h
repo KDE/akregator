@@ -25,7 +25,7 @@
 
 #include "elementwrapper.h"
 
-#include "../document.h"
+#include "../abstractdocument.h"
 
 
 class QDateTime;
