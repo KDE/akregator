@@ -45,8 +45,8 @@ class Image : public ElementWrapper
         static Image fromXML(const QDomElement& e);
 
         /**
-         * Default constructor, creates a null object, which is equal
-         * to Image::null() and for which isNull() is @c true.
+         * Default constructor, creates a null object, for which isNull() is
+         * @c true.
          */
         Image();
 

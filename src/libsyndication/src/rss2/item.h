@@ -57,8 +57,8 @@ class Item : public ElementWrapper
         static Item fromXML(const QDomElement& e);
 
         /**
-         * Default constructor, creates a null object, which is equal
-         * to Item::null() and for which isNull() is @c true.
+         * Default constructor, creates a null object, for which isNull() is
+         * @c true.
          */
         Item();
       

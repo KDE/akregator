@@ -53,8 +53,8 @@ class Enclosure : public ElementWrapper
         static Enclosure fromXML(const QDomElement& e);
 
         /**
-         * Default constructor, creates a null object, which is equal
-         * to Enclosure::null() and for which isNull() is @c true.
+         * Default constructor, creates a null object, for which isNull() is 
+         * @c true.
          */
         Enclosure();
 
