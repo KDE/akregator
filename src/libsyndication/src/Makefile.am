@@ -1,5 +1,4 @@
-#SUBDIRS = rss2 rdf atom
-SUBDIRS = rss2 rdf
+SUBDIRS = rss2 rdf atom
 
 INCLUDES = $(all_includes)
 
@@ -10,7 +9,7 @@ libsyndication_include_HEADERS = abstractdocument.h abstractparser.h parserregis
 libsyndication_includedir = $(includedir)/libsyndication
 
 libsyndication_la_LDFLAGS = $(all_libraries) $(LIB_KDECORE) -no-undefined -version-info 1:0:0
-libsyndication_la_LIBADD = rss2/librss2local.la rdf/librdflocal.la
+libsyndication_la_LIBADD = rss2/librss2local.la rdf/librdflocal.la atom/libatomlocal.la
 
 #bin_SCRIPTS = libsyndication-config
 
