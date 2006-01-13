@@ -77,12 +77,13 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
 
     if (*type == *(RDFVocab::self()->seq()))
     {
-        SequencePtr seq = model.createSequence(el.attributeNS(rdfns, about));
+        SequencePtr seq = model.createSequence(el.attribute(about));
+        
         res = ResourcePtr::staticCast(seq);
     }
     else
     {
-        res = model.createResource(el.attributeNS(rdfns, about));
+        res = model.createResource(el.attribute(about));
     }
 
     model.addStatement(res, RDFVocab::self()->type(), NodePtr::staticCast(type));
@@ -99,9 +100,9 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
         
             PropertyPtr pred = model.createProperty(ce.namespaceURI() + ce.localName());
         
-            if (ce.hasAttributeNS(rdfns, resource)) // referenced Resource via rdf:resource
+            if (ce.hasAttribute(resource)) // referenced Resource via (rdf:)resource
             {
-                NodePtr obj = NodePtr::staticCast(model.createResource(ce.attributeNS(rdfns, resource)));
+                NodePtr obj = NodePtr::staticCast(model.createResource(ce.attribute(resource)));
                 
                 if (isSeq && *pred == *(RDFVocab::self()->li()))
                     SequencePtr::staticCast(res)->append(obj);
@@ -121,7 +122,7 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
             {
                 QDomElement re = ce.lastChildElement();
                 
-                QString uri = re.attributeNS(rdfns, about);
+                QString uri = re.attribute(about);
                 
                 // read recursively
                 NodePtr obj = NodePtr::staticCast(readResource(model, re));
