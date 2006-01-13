@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_RSS2_ITEM_H
 #define LIBSYNDICATION_RSS2_ITEM_H
 
-#include "elementwrapper.h"
+#include "../elementwrapper.h"
 
 class QDateTime;
 class QDomDocument;

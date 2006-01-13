@@ -22,7 +22,7 @@
 #ifndef LIBSYNDICATION_RSS2_TEXTINPUT_H
 #define LIBSYNDICATION_RSS2_TEXTINPUT_H
 
-#include "elementwrapper.h"
+#include "../elementwrapper.h"
 
 class QString;
 class QDomElement;

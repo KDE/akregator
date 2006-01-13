@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_RSS2_DOCUMENT_H
 #define LIBSYNDICATION_RSS2_DOCUMENT_H
 
-#include "elementwrapper.h"
+#include "../elementwrapper.h"
 
 #include "../abstractdocument.h"
 
@@ -37,8 +37,7 @@ template <class T> class QList;
 template <class T> class QSet;
 
 namespace LibSyndication {
-namespace RSS2
-{
+namespace RSS2 {
 
 class Category;
 class Cloud;

@@ -19,18 +19,17 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-#ifndef LIBSYNDICATION_RSS2_ELEMENTWRAPPER_H
-#define LIBSYNDICATION_RSS2_ELEMENTWRAPPER_H
+#ifndef LIBSYNDICATION_ELEMENTWRAPPER_H
+#define LIBSYNDICATION_ELEMENTWRAPPER_H
 
 #include <ksharedptr.h>
 
 class QDomElement;
 
 namespace LibSyndication {
-namespace RSS2 {
 
 /**
- * A wrapper for XML elements. Base class for RSS2 wrapper classes doing
+ * A wrapper for XML elements. Base class for wrapper classes doing
  * lazy parsing.
  *
  * @author Frank Osterfeld
@@ -64,7 +63,6 @@ class ElementWrapper
         KSharedPtr<ElementWrapperPrivate> d;
 };
 
-} // namespace RSS2
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_RSS2_ELEMENTWRAPPER_H
+#endif // LIBSYNDICATION_ELEMENTWRAPPER_H

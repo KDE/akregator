@@ -24,7 +24,6 @@
 #include <QDomElement>
 
 namespace LibSyndication {
-namespace RSS2 {
 
 class ElementWrapper::ElementWrapperPrivate : public KShared
 {
@@ -72,5 +71,4 @@ const QDomElement& ElementWrapper::element() const
     return d->element;
 }
 
-} // namespace RSS2
 } // namespace LibSyndication
