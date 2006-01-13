@@ -19,8 +19,8 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-#ifndef LIBSYNDICATION_DOCUMENT_H
-#define LIBSYNDICATION_DOCUMENT_H
+#ifndef LIBSYNDICATION_ABSTRACTDOCUMENT_H
+#define LIBSYNDICATION_ABSTRACTDOCUMENT_H
 
 class QString;
 
@@ -38,11 +38,11 @@ class DocumentVisitor;
  *
  * @author Frank Osterfeld
  */
-class Document
+class AbstractDocument
 {
     public:
 
-        virtual ~Document() {}
+        virtual ~AbstractDocument() {}
 
         virtual bool accept(DocumentVisitor* visitor) = 0;
 
@@ -56,5 +56,5 @@ class Document
 
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_DOCUMENT_H
+#endif // LIBSYNDICATION_ABSTRACTDOCUMENT_H
 

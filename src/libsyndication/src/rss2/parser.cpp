@@ -28,7 +28,7 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QString>
-#include <iostream>
+
 namespace LibSyndication {
 namespace RSS2 {
 
@@ -43,7 +43,7 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
     return (root.isElement() && root.toElement().hasAttribute(QString::fromLatin1("version")));
 }
 
-LibSyndication::Document* Parser::parse(const LibSyndication::DocumentSource& source) const
+Document* Parser::parse(const LibSyndication::DocumentSource& source) const
 {
     return new Document(Document::fromXML(source.asDomDocument()));
 }

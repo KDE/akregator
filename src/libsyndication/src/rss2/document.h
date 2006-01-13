@@ -46,7 +46,7 @@ class Image;
 class Item;
 class TextInput;
 
-class Document : public LibSyndication::Document, public ElementWrapper
+class Document : public LibSyndication::AbstractDocument, public ElementWrapper
 {
     public:
     

@@ -25,7 +25,7 @@
 
 namespace LibSyndication {
 
-class Document;
+class AbstractDocument;
 
 namespace RDF
 {
@@ -52,7 +52,7 @@ class DocumentVisitor
 
         virtual ~DocumentVisitor() {}
 
-        virtual bool visit(Document* document);
+        virtual bool visit(AbstractDocument* document);
 
         virtual bool visit(LibSyndication::RSS2::Document* document) { return false; }
         

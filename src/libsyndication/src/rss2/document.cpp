@@ -44,7 +44,7 @@ namespace LibSyndication {
 namespace RSS2 {
 
 
-Document::Document(const QDomElement& element) : ElementWrapper(element)
+Document::Document(const QDomElement& element) : AbstractDocument(), ElementWrapper(element)
 {
 }
 
@@ -58,7 +58,7 @@ Document Document::fromXML(const QDomDocument& doc)
         return Document(); // if there is no channel, we just return a null object
 }
 
-Document::Document() : ElementWrapper()
+Document::Document() : AbstractDocument(), ElementWrapper()
 {
 }
 

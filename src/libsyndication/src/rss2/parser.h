@@ -23,14 +23,17 @@
 #ifndef LIBSYNDICATION_RSS2_PARSER_H
 #define LIBSYNDICATION_RSS2_PARSER_H
 
+#include "document.h"
+
 #include "../abstractparser.h"
 
 namespace LibSyndication {
 
-class Document;
 class DocumentSource;
 
 namespace RSS2 {
+
+class Document;
 
 class Parser : public LibSyndication::AbstractParser
 {
@@ -38,7 +41,7 @@ class Parser : public LibSyndication::AbstractParser
 
         bool accept(const DocumentSource& source) const;
 
-        LibSyndication::Document* parse(const DocumentSource& source) const;
+        Document* parse(const DocumentSource& source) const;
 
         QString format() const;
 };

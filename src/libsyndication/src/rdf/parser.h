@@ -22,6 +22,8 @@
 #ifndef LIBSYNDICATION_RDF_PARSER_H
 #define LIBSYNDICATION_RDF_PARSER_H
 
+#include "document.h"
+
 #include "../abstractparser.h"
 
 #include <ksharedptr.h>

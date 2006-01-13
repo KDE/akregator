@@ -26,7 +26,7 @@
 
 namespace LibSyndication {
 
-bool DocumentVisitor::visit(Document* document)
+bool DocumentVisitor::visit(AbstractDocument* document)
 {
     return document->accept(this);
 }

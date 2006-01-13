@@ -71,7 +71,7 @@ void ParserRegistry::unregisterParser(AbstractParser* parser)
     d->parsers.remove(parser->format());
 }
 
-Document* ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
+AbstractDocument* ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
 {
     if (d->parsers.contains(formatHint))
     {

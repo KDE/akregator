@@ -27,6 +27,7 @@
 
 namespace LibSyndication {
 
+class AbstractDocument;
 class AbstractParser;
 class DocumentSource;
 
@@ -79,7 +80,7 @@ class ParserRegistry
          * @return The document parsed from the source, or NULL if no parser
          *         accepted the source.
          */
-        Document* parse(const DocumentSource& source, const QString& formatHint=QString::null);
+        AbstractDocument* parse(const DocumentSource& source, const QString& formatHint=QString::null);
 
     private:
 

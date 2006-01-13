@@ -40,7 +40,7 @@ class Model;
 class Syndication;
 class TextInput;
 
-class Document : public LibSyndication::Document, public ResourceWrapper
+class Document : public LibSyndication::AbstractDocument, public ResourceWrapper
 {
     
     public:
