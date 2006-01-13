@@ -19,14 +19,12 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_RSS2_TEXTINPUT_H
 #define LIBSYNDICATION_RSS2_TEXTINPUT_H
 
-#include <ksharedptr.h>
+#include "elementwrapper.h"
 
 class QString;
-class QDomDocument;
 class QDomElement;
 
 namespace LibSyndication {
@@ -38,16 +36,9 @@ namespace RSS2 {
  * reader to provide feedback. Most aggregators ignore it."
  *
  */
-class TextInput
+class TextInput : public ElementWrapper
 {
     public:
-
-        /**
-         * static null object. See also TextInput() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const TextInput& null();
 
         /**
          * Parses an textInput object from an <textInput> XML element.
@@ -64,45 +55,6 @@ class TextInput
          */
         TextInput();
 
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        TextInput(const TextInput& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~TextInput();
-
-
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        TextInput& operator=(const TextInput& other);
-
-        /**
-         * Checks whether this TextInput is equal to another.
-         * TextInputs are equal if all properties are equal.
-         *
-         * @param other another TextInput
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const TextInput& other) const;
-
-        /**
-         * returns whether this object is a null object.
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
- 
         /**
          * The label of the Submit button in the text input area.
          *
@@ -141,11 +93,7 @@ class TextInput
 
     private:
 
-        TextInput(const QString& title, const QString& description, const QString& link, const QString& name);
-    
-        static TextInput* m_null;
-        class TextInputPrivate;
-        KSharedPtr<TextInputPrivate> d;
+        TextInput(const QDomElement& element);
 };
 
 } // namespace RSS2

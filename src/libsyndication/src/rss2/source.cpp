@@ -26,88 +26,30 @@
 #include <qdom.h>
 #include <qstring.h>
 
-#include <kstaticdeleter.h>
-
 namespace LibSyndication {
 namespace RSS2 {
 
-class Source::SourcePrivate : public KShared
-{
-    public:
-
-    QString source;
-    QString url;
-
-    bool operator==(const SourcePrivate &other) const
-    {
-        return (source == other.source && url == other.url);
-    }
-};
-
-Source* Source::m_null = 0;
-static KStaticDeleter<Source> sourcesd;
-
-const Source& Source::null()
-{
-    if (m_null == 0)
-        sourcesd.setObject(m_null, new Source);
-
-    return *m_null;
-}
-
 Source Source::fromXML(const QDomElement& e)
 {
-    QString url = e.attribute(QString::fromLatin1("url"));
-    QString source = e.text();
-
-    return Source(source, url);
+    return Source(e);
 }
 
-bool Source::isNull() const
-{
-    return !d;
-}
-
-Source::Source() : d(0)
+Source::Source() : ElementWrapper()
 {
 }
 
-Source::Source(const Source& other) : d(0)
+Source::Source(const QDomElement& element) : ElementWrapper(element)
 {
-     *this = other;
-}
-
-Source::Source(const QString& source, const QString& url) : d(new SourcePrivate)
-{
-    d->source = source;
-    d->url = url;
-}
-
-Source::~Source()
-{
-}
-
-Source& Source::operator=(const Source& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool Source::operator==(const Source &other) const
-{
-    if (!d || !other.d)
-        return d == other.d;
-    return *d == *other.d;
 }
 
 QString Source::source() const
 {
-    return d ? d->source : QString::null;
+    return element().text();
 }
 
 QString Source::url() const
 {
-    return d ? d->url : QString::null;
+    return element().attribute(QString::fromLatin1("url"));
 }
 
 QString Source::debugInfo() const

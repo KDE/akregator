@@ -23,139 +23,67 @@
 #include "image.h"
 #include "tools.h"
 
-#include <QDomDocument>
 #include <QDomElement>
 #include <QString>
-
-#include <kstaticdeleter.h>
 
 namespace LibSyndication {
 namespace RSS2 {
 
-class Image::ImagePrivate : public KShared
-{
-    public:
-
-    QString url;
-    QString title;
-    QString link;
-    int width;
-    int height;
-    QString description;
-
-    bool operator==(const ImagePrivate& other) const
-    {
-        return (url == other.url &&
-                title == other.title &&
-                link == other.link &&
-                width == other.width &&
-                height == other.height &&
-                description == other.description);
-    }
-};
-
-Image* Image::m_null = 0;
-static KStaticDeleter<Image> imagesd;
-
-const Image& Image::null()
-{
-    if (m_null == 0)
-        imagesd.setObject(m_null, new Image);
-    return *m_null;
-}
-
 Image Image::fromXML(const QDomElement& e)
 {
-    QString url = Tools::extractElementText(e, QString::fromLatin1("url"));
-    QString title = Tools::extractElementText(e, QString::fromLatin1("title"));
-    QString link = Tools::extractElementText(e, QString::fromLatin1("link"));
-    QString description = Tools::extractElementText(e, QString::fromLatin1("description"));
-
-    QString text;
-    bool ok;
-    int c;
-
-    text = Tools::extractElementText(e, QString::fromLatin1("width"));
-    c = text.toInt(&ok);
-    int width = ok ? c : 88; // set to default if not parsable
-
-    text = Tools::extractElementText(e, QString::fromLatin1("height"));
-    c = text.toInt(&ok);
-    int height = ok ? c : 31; // set to default if not parsable
-
-    return Image(url, title, link, description, width, height);
+    return Image(e);
 }
 
-Image::Image() : d(0)
+Image::Image() : ElementWrapper()
 {
 }
 
-Image::Image(const Image& other) : d(0)
+Image::Image(const QDomElement& element) : ElementWrapper(element)
 {
-    *this = other;
-}
-
-Image::Image(const QString& url, const QString& title, const QString& link, const QString& description, int width, int height) : d(new ImagePrivate)
-{
-    d->url = url;
-    d->title = title;
-    d->link = link;
-    d->description = description;
-    d->width = width;
-    d->height = height;
-}
-
-Image::~Image()
-{
-}
-
-bool Image::isNull() const
-{
-    return !d;
-}
-
-Image& Image::operator=(const Image& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool Image::operator==(const Image& other) const
-{
-    if (!d || !other.d)
-        return d == other.d;
-
-    return *d == *other.d;
 }
 
 QString Image::url() const
 {
-    return d ? d->url : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("url"));
 }
 
 QString Image::title() const
 {
-    return d ? d->title : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("title"));
+    
 }
 
 QString Image::link() const
 {
-    return d ? d->link : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("link"));
+    
 }
 
 int Image::width() const
 {
-    return d ? d->width : -1;
+    QString text;
+    bool ok;
+    int c;
+
+    text = Tools::extractElementText(element(), QString::fromLatin1("width"));
+    c = text.toInt(&ok);
+    return ok ? c : 88; // set to default if not parsable
 }
 
 int Image::height() const
 {
-    return d ? d->height : -1;
+    QString text;
+    bool ok;
+    int c;
+
+    text = Tools::extractElementText(element(), QString::fromLatin1("height"));
+    c = text.toInt(&ok);
+    return ok ? c : 31; // set to default if not parsable
 }
 
 QString Image::description() const
 {
-    return d ? d->description : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("description"));
 }
 
 QString Image::debugInfo() const

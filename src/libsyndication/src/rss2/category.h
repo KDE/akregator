@@ -23,9 +23,8 @@
 #ifndef LIBSYNDICATION_RSS2_CATEGORY_H
 #define LIBSYNDICATION_RSS2_CATEGORY_H
 
-#include <ksharedptr.h>
+#include "elementwrapper.h"
 
-class QDomDocument;
 class QDomElement;
 class QString;
 
@@ -39,16 +38,9 @@ namespace RSS2 {
  *
  * @author Frank Osterfeld
  */
-class Category
+class Category : public ElementWrapper
 {
     public:
-
-        /**
-         * static null object. See also Category() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const Category& null();
 
         /**
          * Parses a category from an <category> XML element.
@@ -65,37 +57,6 @@ class Category
          * to Category::null() and for which isNull() is @c true.
          */
         Category();
-
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        Category(const Category& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~Category();
-
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        Category& operator=(const Category& other);
-
-        /**
-         * Checks whether this category is equal to another.
-         * Categories are equal if category() and domain() are equal.
-         *
-         * @param other another category
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const Category& other) const;
 
         /**
          * Name of the category. This is both to be used as identifier and as
@@ -119,13 +80,6 @@ class Category
         QString domain() const;
 
         /**
-         * returns whether this object is a null object. 
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
-
-        /**
          * Returns a description of the object for debugging purposes.
          *
          * @return debug string
@@ -134,13 +88,7 @@ class Category
 
     private:
 
-        Category(const QString& category, const QString& domain);
-
-        static Category* m_null;
-
-        class CategoryPrivate;
-        KSharedPtr<CategoryPrivate> d;
-
+        Category(const QDomElement& element);
 };
 
 } // namespace RSS2

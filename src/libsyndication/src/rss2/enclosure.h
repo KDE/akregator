@@ -23,9 +23,8 @@
 #ifndef LIBSYNDICATION_RSS2_ENCLOSURE_H
 #define LIBSYNDICATION_RSS2_ENCLOSURE_H
 
-#include <ksharedptr.h>
+#include "elementwrapper.h"
 
-class QDomDocument;
 class QDomElement;
 class QString;
 
@@ -40,16 +39,9 @@ namespace RSS2 {
  * 
  * @author Frank Osterfeld
  */
-class Enclosure
+class Enclosure : public ElementWrapper
 {
     public:
-
-        /**
-         * static null object. See also Enclosure() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const Enclosure& null();
 
         /**
          * Parses an enclosure object from an <enclosure> XML element.
@@ -66,44 +58,7 @@ class Enclosure
          */
         Enclosure();
 
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        Enclosure(const Enclosure& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~Enclosure();
-
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        Enclosure& operator=(const Enclosure& other);
-
-        /**
-         * Checks whether this enclosure is equal to another.
-         * Enclosures are equal if all properties are equal.
-         *
-         * @param other another enclosure
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const Enclosure& other) const;
-
-        /**
-         * returns whether this object is a null object.
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
-    
+       
         /** 
          * returns the URL of the enclosure 
          */
@@ -129,11 +84,7 @@ class Enclosure
 
     private:
 
-        Enclosure(const QString& url, int length, const QString& type);
-        
-        static Enclosure* m_null;
-        class EnclosurePrivate;
-        KSharedPtr<EnclosurePrivate> d;
+        Enclosure(const QDomElement& element);
 };
 
 } // namespace RSS2

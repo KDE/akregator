@@ -31,116 +31,50 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-class Cloud::CloudPrivate : public KShared
-{
-    public:
-
-    QString domain;
-    int port;
-    QString path;
-    QString registerProcedure;
-    QString protocol;
-
-    bool operator==(const CloudPrivate &other) const
-    {
-        return (domain == other.domain && port == other.port && path == other.path && registerProcedure == other.registerProcedure && protocol == other.protocol);
-    }
-};
-
-Cloud* Cloud::m_null = 0;
-static KStaticDeleter<Cloud> cloudsd;
-
-const Cloud& Cloud::null()
-{
-    if (m_null == 0)
-        cloudsd.setObject(m_null, new Cloud);
-
-    return *m_null;
-}
-
 Cloud Cloud::fromXML(const QDomElement& e)
 {
-    QString domain = e.attribute(QString::fromLatin1("domain"));
-    QString path = e.attribute(QString::fromLatin1("path"));
-
-    int port = -1;
-    if (e.hasAttribute(QString::fromLatin1("port")))
-    {
-        bool ok;
-        int c = e.attribute(QString::fromLatin1("port")).toInt(&ok);
-        port = ok ? c : -1;
-    }
-
-    QString registerProcedure = e.attribute(QString::fromLatin1("registerProcedure"));
-
-    QString protocol = e.attribute(QString::fromLatin1("protocol"));
-
-    return Cloud(domain, path, registerProcedure, protocol, port);
+    return Cloud(e);
 }
 
-bool Cloud::isNull() const
-{
-    return !d;
-}
-
-Cloud::Cloud() : d(0)
+Cloud::Cloud() : ElementWrapper()
 {
 }
 
-Cloud::Cloud(const QString& domain, const QString& path, const QString& registerProcedure, const QString& protocol, int port) : d(new CloudPrivate)
+Cloud::Cloud(const QDomElement& element) : ElementWrapper(element)
 {
-    d->domain = domain;
-    d->path = path;
-    d->registerProcedure = registerProcedure;
-    d->protocol = protocol;
-    d->port = port;
-}
-
-Cloud::Cloud(const Cloud& other) : d(0)
-{
-    *this = other;
-}
-
-Cloud::~Cloud()
-{
-}
-
-Cloud& Cloud::operator=(const Cloud& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool Cloud::operator==(const Cloud& other) const
-{
-    if (!d || !other.d)
-        return d == other.d;
-    return *d == *other.d;
 }
 
 QString Cloud::domain() const
 {
-    return d ? d->domain : QString::null;
+    return element().attribute(QString::fromLatin1("domain"));
 }
 
 int Cloud::port() const
 {
-   return d ? d->port : -1;
+    if (element().hasAttribute(QString::fromLatin1("port")))
+    {
+        bool ok;
+        int c = element().attribute(QString::fromLatin1("port")).toInt(&ok);
+        return ok ? c : -1;
+    }
+    
+    return -1;
 }
 
 QString Cloud::path() const
 {
-    return d ? d->path : QString::null;
+    return element().attribute(QString::fromLatin1("path"));
 }
 
 QString Cloud::registerProcedure() const
 {
-    return d ? d->registerProcedure : QString::null;
+    return element().attribute(QString::fromLatin1("registerProcedure"));
 }
 
 QString Cloud::protocol() const
 {
-    return d ? d->protocol : QString::null;
+    
+    return element().attribute(QString::fromLatin1("protocol"));
 }
 
 QString Cloud::debugInfo() const

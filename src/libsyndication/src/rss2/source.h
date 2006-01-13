@@ -23,9 +23,8 @@
 #ifndef LIBSYNDICATION_RSS2_SOURCE_H
 #define LIBSYNDICATION_RSS2_SOURCE_H
 
-#include <ksharedptr.h>
+#include "elementwrapper.h"
 
-class QDomDocument;
 class QDomElement;
 class QString;
 
@@ -41,19 +40,12 @@ namespace RSS2 {
  *
  * @author Frank Osterfeld
  */
-class Source
+class Source : public ElementWrapper
 {
 
     public:
 
-        /**
-         * static null object. See also Source() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const Source& null();
-
-        /**
+ /**
          * Parses an source object from an <source> XML element.
          *
          * @param e The <source> element to parse the source from
@@ -68,44 +60,6 @@ class Source
          */
         Source();
 
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        Source(const Source& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~Source();
-
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        Source& operator=(const Source& other);
-
-        /**
-         * Checks whether this source is equal to another.
-         * Sources are equal if all properties are equal.
-         *
-         * @param other another source
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const Source& other) const;
-
-        /**
-         * returns whether this object is a null object.
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
-    
         /** 
          * The name of the RSS channel that the item came from, derived from
          * its <title>. Example: "Tomalak's Realm"
@@ -133,12 +87,9 @@ class Source
 
     private:
 
-        Source(const QString& source, const QString& url);
+        Source(const QDomElement& element);
         
         static Source* m_null;
-        
-        class SourcePrivate;
-        KSharedPtr<SourcePrivate> d;
 };
 
 } // namespace RSS2

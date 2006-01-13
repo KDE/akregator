@@ -43,160 +43,158 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-class Document::DocumentPrivate : public KShared
+
+Document::Document(const QDomElement& element) : ElementWrapper(element)
 {
-    public:
-
-    QString title;
-    QString description;
-    QString link;
-    QString language;
-    QString copyright;
-    QString managingEditor;
-    QString webMaster;
-    QDateTime pubDate;
-    QDateTime lastBuildDate;
-    QList<Category> categories;
-    QString generator;
-    QString docs;
-    Cloud cloud;
-    int ttl;
-    Image image;
-    TextInput textInput;
-    QSet<int> skipHours;
-    QSet<DayOfWeek> skipDays;
-    QList<Item> items;
-    
-    bool operator==(const DocumentPrivate& other) const
-    {
-        return (
-                title == other.title &&
-                description == other.description &&
-                link == other.link &&
-                language == other.language &&
-                copyright == other.copyright &&
-                managingEditor == other.managingEditor &&
-                webMaster == other.webMaster &&
-                pubDate == other.pubDate &&
-                lastBuildDate == other.lastBuildDate &&
-                categories == other.categories &&
-                generator == other.generator &&
-                docs == other.docs &&
-                cloud == other.cloud &&
-                ttl == other.ttl &&
-                image == other.image &&
-                textInput == other.textInput &&
-                skipHours == other.skipHours &&
-                skipDays == other.skipDays &&
-                items == other.items);
-    }
-};
-
-Document* Document::m_null = 0;
-static KStaticDeleter<Document> documentsd;
-
-const Document& Document::null()
-{
-    if (m_null == 0)
-         documentsd.setObject(m_null, new Document);
-
-    return *m_null;
-}
-
-Document::Document(const QString& title, const QString& link,
-                 const QString& description, const QString& language,
-                 const QString& copyright, const QString& managingEditor,
-                 const QString& webMaster, const QDateTime& pubDate,
-                 const QDateTime& lastBuildDate,
-                 const QList<Category>& categories,
-                 const QString& generator, const QString& docs,
-                 const Cloud& cloud, int ttl, const Image& image, 
-                 const TextInput& textInput, const QSet<int>& skipHours,
-                 const QSet<DayOfWeek>& skipDays, const QList<Item>& items) : d(new DocumentPrivate)
-{
-    d->title = title;
-    d->link = link;
-    d->description = description;
-    d->language = language;
-    d->copyright = copyright;
-    d->managingEditor = managingEditor;
-    d->webMaster = webMaster;
-    d->pubDate = pubDate;
-    d->lastBuildDate = lastBuildDate;
-    d->categories = categories;
-    d->generator = generator;
-    d->docs = docs;
-    d->cloud = cloud;
-    d->ttl = ttl;
-    d->image = image;
-    d->textInput = textInput;
-    d->skipHours = skipHours;
-    d->skipDays = skipDays;
-    d->items = items;
 }
 
 Document Document::fromXML(const QDomDocument& doc)
 {
     QDomNode channelNode = doc.namedItem(QString::fromLatin1("rss")).namedItem(QString::fromLatin1("channel"));
 
-    QDomElement e;
-
     if (channelNode.isElement())
-        e = channelNode.toElement();
+        return Document(channelNode.toElement());
     else
-    {
         return Document(); // if there is no channel, we just return a null object
-    }
+}
 
-    QString title = Tools::extractElementText(e, QString::fromLatin1("title"));
-    QString description = Tools::extractElementText(e, QString::fromLatin1("description") );
-    QString link = Tools::extractElementText(e, QString::fromLatin1("link") );
-    QString language = Tools::extractElementText(e, QString::fromLatin1("language") );
-    QString copyright = Tools::extractElementText(e, QString::fromLatin1("copyright") );
-    QString managingEditor = Tools::extractElementText(e, QString::fromLatin1("managingEditor") );
-    QString webMaster = Tools::extractElementText(e, QString::fromLatin1("webMaster") );
-    QString generator = Tools::extractElementText(e, QString::fromLatin1("generator") );
-    QString docs = Tools::extractElementText(e, QString::fromLatin1("docs"));
+Document::Document() : ElementWrapper()
+{
+}
 
-    QList<QDomElement> itemNodes = Tools::elementsByTagName(e, QString::fromLatin1("item"));
+QString Document::title() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("title"));
+}
 
-    QList<Item> items;
+QString Document::link() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("link") );
+}
 
-    for (QList<QDomElement>::ConstIterator it = itemNodes.begin(); it != itemNodes.end(); ++it)
+QString Document::description() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("description"));
+}
+
+QString Document::language() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("language"));
+}
+
+QString Document::copyright() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("copyright"));
+}
+
+QString Document::managingEditor() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("managingEditor"));
+}
+
+QString Document::webMaster() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("webMaster"));
+}
+
+QDateTime Document::pubDate() const
+{
+    QDateTime pubDate;
+
+    QString pubDateStr = Tools::extractElementText(element(), QString::fromLatin1("pubDate"));
+    if (!pubDateStr.isNull())
     {
-        Item i = Item::fromXML(*it);
-        if (!i.isNull())
-            items.append(i);
+        time_t time = KRFCDate::parseDate(pubDateStr);
+        pubDate.setTime_t(time);
     }
 
+    return pubDate;
+}
+
+QDateTime Document::lastBuildDate() const
+{
+    QDateTime lastBuildDate;
+
+    QString lastBuildDateStr = Tools::extractElementText(element(), QString::fromLatin1("lastBuildDate"));
+    if (!lastBuildDateStr.isNull())
+    {
+        time_t time = KRFCDate::parseDate(lastBuildDateStr);
+        lastBuildDate.setTime_t(time);
+    }
+    
+    return lastBuildDate;
+}
+
+QList<Category> Document::categories() const
+{
     QList<Category> categories;
 
-    QList<QDomElement> catNodes = Tools::elementsByTagName(e, QString::fromLatin1("category"));
+    QList<QDomElement> catNodes = Tools::elementsByTagName(element(), QString::fromLatin1("category"));
     for (QList<QDomElement>::ConstIterator it = catNodes.begin(); it != catNodes.end(); ++it)
     {
         Category i = Category::fromXML(*it);
         if (!i.isNull())
             categories.append(i);
     }
+    
+    return categories;
+}
 
-    TextInput textInput;
+QString Document::generator() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("generator"));
+}
 
-    QDomNode textInputNode = e.namedItem(QString::fromLatin1("textInput"));
-    if (textInputNode.isElement())
-        textInput = TextInput::fromXML(textInputNode.toElement());
+QString Document::docs() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("docs"));
+}
 
-    Image image;
-    QDomNode imageNode = e.namedItem(QString::fromLatin1("image"));
-    if (imageNode.isElement())
-        image = Image::fromXML(imageNode.toElement());
-
+Cloud Document::cloud() const
+{
     Cloud cloud;
-    QDomNode cloudNode = e.namedItem(QString::fromLatin1("cloud"));
+    QDomNode cloudNode = element().namedItem(QString::fromLatin1("cloud"));
     if (cloudNode.isElement())
         cloud = Cloud::fromXML(cloudNode.toElement());
+    
+    return cloud;
+}
 
+int Document::ttl() const
+{
+    bool ok;
+    int c;
+
+    QString text = Tools::extractElementText(element(), QString::fromLatin1("ttl"));
+    c = text.toInt(&ok);
+    return ok ? c : 0;
+}
+
+Image Document::image() const
+{
+    Image image;
+    QDomNode imageNode = element().namedItem(QString::fromLatin1("image"));
+    if (imageNode.isElement())
+        image = Image::fromXML(imageNode.toElement());
+    
+    return image;
+}
+
+TextInput Document::textInput() const
+{
+    TextInput textInput;
+
+    QDomNode textInputNode = element().namedItem(QString::fromLatin1("textInput"));
+    if (textInputNode.isElement())
+        textInput = TextInput::fromXML(textInputNode.toElement());
+    
+    return textInput;
+}
+
+QSet<int> Document::skipHours() const
+{
     QSet<int> skipHours;
-    QDomNode skipHoursNode = e.namedItem(QString::fromLatin1("skipHours"));
+    QDomNode skipHoursNode = element().namedItem(QString::fromLatin1("skipHours"));
     if (skipHoursNode.isElement())
     {
         bool ok = false;
@@ -209,8 +207,13 @@ Document Document::fromXML(const QDomDocument& doc)
         }
     }
 
+    return skipHours;
+}
+
+QSet<Document::DayOfWeek> Document::skipDays() const
+{
     QSet<DayOfWeek> skipDays;
-    QDomNode skipDaysNode = e.namedItem(QString::fromLatin1("skipDays"));
+    QDomNode skipDaysNode = element().namedItem(QString::fromLatin1("skipDays"));
     if (skipDaysNode.isElement())
     {
         QHash<QString, DayOfWeek> weekDays;
@@ -221,9 +224,9 @@ Document Document::fromXML(const QDomDocument& doc)
         weekDays[QString::fromLatin1("Thursday")] = Thursday;
         weekDays[QString::fromLatin1("Friday")] = Friday;
         weekDays[QString::fromLatin1("Saturday")] = Saturday;
-        weekDays[QString::fromLatin1("Sonday")] = Sunday;
+        weekDays[QString::fromLatin1("Sunday")] = Sunday;
 
-        QList<QDomElement> days = Tools::elementsByTagName(skipHoursNode.toElement(), QString::fromLatin1("day"));
+        QList<QDomElement> days = Tools::elementsByTagName(skipDaysNode.toElement(), QString::fromLatin1("day"));
         for (QList<QDomElement>::ConstIterator it = days.begin(); it != days.end(); ++it)
         {
             if (weekDays.contains((*it).text()))
@@ -231,160 +234,23 @@ Document Document::fromXML(const QDomDocument& doc)
         }
     }
 
-    QDateTime pubDate;
-
-    QString pubDateStr = Tools::extractElementText(e, QString::fromLatin1("pubDate"));
-    if (!pubDateStr.isNull())
-    {
-        time_t time = KRFCDate::parseDate(pubDateStr);
-        pubDate.setTime_t(time);
-    }
-
-    QDateTime lastBuildDate;
-
-    QString lastBuildDateStr = Tools::extractElementText(e, QString::fromLatin1("lastBuildDate"));
-    if (!lastBuildDateStr.isNull())
-    {
-        time_t time = KRFCDate::parseDate(lastBuildDateStr);
-        lastBuildDate.setTime_t(time);
-     }
-
-    bool ok;
-    int c;
-
-    QString text = Tools::extractElementText(e, QString::fromLatin1("ttl"));
-    c = text.toInt(&ok);
-    int ttl = ok ? c : 0;
-
-    // TODO: rating
-
-    return Document(title, link, description, language, copyright, managingEditor, webMaster, pubDate, lastBuildDate, categories, generator, docs, cloud, ttl, image, textInput, skipHours, skipDays, items);
-}
-
-Document::Document() : d(0)
-{
-}
-
-Document::~Document()
-{
-}
-
-bool Document::isNull() const
-{
-    return !d;
-}
-
-Document::Document(const Document& other)  : LibSyndication::Document(other), d(0)
-{
-    *this = other;
-}
-
-Document& Document::operator=(const Document& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool Document::operator==(const Document& other) const
-{
-    if (!d || !other.d)
-        return d == other.d;
-    return *d == *other.d;
-}
-
-QString Document::title() const
-{
-    return d ? d->title : QString::null;
-}
-
-QString Document::link() const
-{
-    return d ? d->link : QString::null;
-}
-
-QString Document::description() const
-{
-    return d ? d->description : QString::null;
-}
-
-QString Document::language() const
-{
-    return d ? d->language : QString::null;
-}
-
-QString Document::copyright() const
-{
-    return d ? d->copyright : QString::null;
-}
-
-QString Document::managingEditor() const
-{
-    return d ? d->managingEditor : QString::null;
-}
-
-QString Document::webMaster() const
-{
-    return d ? d->webMaster : QString::null;
-}
-
-QDateTime Document::pubDate() const
-{
-    return d ? d->pubDate : QDateTime();
-}
-
-QDateTime Document::lastBuildDate() const
-{
-    return d ? d->lastBuildDate : QDateTime();
-}
-
-QList<Category> Document::categories() const
-{
-    return d ? d->categories : QList<Category>();
-}
-
-QString Document::generator() const
-{
-    return d ? d->generator : QString::null;
-}
-
-QString Document::docs() const
-{
-    return d ? d->docs : QString::null;
-}
-
-Cloud Document::cloud() const
-{
-    return d ? d->cloud : Cloud::null();
-}
-
-int Document::ttl() const
-{
-    return d ? d->ttl : -1;
-}
-
-Image Document::image() const
-{
-    return d ? d->image : Image::null();
-}
-
-TextInput Document::textInput() const
-{
-    return d ? d->textInput : TextInput::null();
-}
-
-QSet<int> Document::skipHours() const
-{
-    return d ? d->skipHours : QSet<int>();
-}
-
-QSet<Document::DayOfWeek> Document::skipDays() const
-{
-    return d ? d->skipDays : QSet<DayOfWeek>();
+    return skipDays;
 }
 
 QList<Item> Document::items() const
 {
-    return d ? d->items : QList<Item>();
+    QList<QDomElement> itemNodes = Tools::elementsByTagName(element(), QString::fromLatin1("item"));
+
+    QList<Item> items;
+
+    for (QList<QDomElement>::ConstIterator it = itemNodes.begin(); it != itemNodes.end(); ++it)
+    {
+        Item i = Item::fromXML(*it);
+        if (!i.isNull())
+            items.append(i);
+    }
+
+    return items;
 }
 
 QString Document::debugInfo() const
@@ -407,9 +273,13 @@ QString Document::debugInfo() const
         info += cloud().debugInfo();
     if (!image().isNull())
         info += image().debugInfo();
-    for (QList<Category>::ConstIterator it = d->categories.begin(); it != d->categories.end(); ++it)
+    
+    QList<Category> cats = categories();
+    
+    for (QList<Category>::ConstIterator it = cats.begin(); it != cats.end(); ++it)
         info += (*it).debugInfo();
-    for (QList<Item>::ConstIterator it = d->items.begin(); it != d->items.end(); ++it)
+    QList<Item> litems = items();
+    for (QList<Item>::ConstIterator it = litems.begin(); it != litems.end(); ++it)
         info += (*it).debugInfo();
     info += "### Document end ################\n";
     return info;

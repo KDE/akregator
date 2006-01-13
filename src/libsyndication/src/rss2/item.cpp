@@ -32,79 +32,47 @@
 #include <QList>
 
 #include <krfcdate.h>
-#include <kstaticdeleter.h>
 
 namespace LibSyndication {
 namespace RSS2 {
 
-class Item::ItemPrivate : public KShared
-{
-    public:
-
-    QString title;
-    QString link;
-    QString description;
-    QString content;
-    QList<Category> categories;
-    QString comments;
-    QString author;
-    QString guid;
-    bool guidIsPermaLink;
-    QDateTime pubDate;
-    Source source;
-    Enclosure enclosure;
-
-    bool operator==(const ItemPrivate& other) const
-    {
-        return (title == other.title &&
-                link == other.link &&
-                description == other.description &&
-                content == other.content &&
-                categories == other.categories &&
-                comments == other.comments &&
-                author == other.author &&
-                guid == other.guid &&
-                guidIsPermaLink == other.guidIsPermaLink &&
-                pubDate == other.pubDate &&
-                source == other.source &&
-                enclosure == other.enclosure);
-    }
-};
-
-Item* Item::m_null = 0;
-static KStaticDeleter<Item> itemsd;
-
-const Item& Item::null()
-{
-    if (m_null == 0)
-        itemsd.setObject(m_null, new Item);
-    return *m_null;
-}
-
 Item Item::fromXML(const QDomElement& e)
 {
-    QString title = Tools::extractElementText(e, QString::fromLatin1("title") );
-    QString link = Tools::extractElementText(e, QString::fromLatin1("link") );
-    
-    QString description = Tools::extractElementText(e, QString::fromLatin1("description") );
+    return Item(e);
+}
+
+Item::Item() : ElementWrapper()
+{
+}
+
+Item::Item(const QDomElement& element) : ElementWrapper(element)
+{
+}
+
+QString Item::title() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("title") );
+}
+
+QString Item::link() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("link") );
+}
+
+QString Item::description() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("description") );
+}
+
+QString Item::content() const
+{
     // parse encoded stuff from content:encoded, xhtml:body and friends into content
-    QString content = Tools::extractContent(e);
-    
-    QString author = Tools::extractElementText(e, QString::fromLatin1("author") );
+    return Tools::extractContent(element());
+}
 
-    QString comments = Tools::extractElementText(e, QString::fromLatin1("comments") );
-
-    Enclosure enclosure; 
-    QDomNode enc = e.namedItem(QString::fromLatin1("enclosure"));
-    if (enc.isElement())
-        enclosure = Enclosure::fromXML(enc.toElement());
-
-    Source source;
-    QDomNode s = e.namedItem(QString::fromLatin1("source"));
-    if (s.isElement())
-        source = Source::fromXML(s.toElement());
-
-    QList<QDomElement> cats = Tools::elementsByTagName(e, QString::fromLatin1("category"));
+QList<Category> Item::categories() const
+{
+    QList<QDomElement> cats = Tools::elementsByTagName(element(), QString::fromLatin1("category"));
 
     QList<Category> categories;
 
@@ -114,144 +82,81 @@ Item Item::fromXML(const QDomElement& e)
         if (!i.isNull())
             categories.append(i);
     }
+    return categories;
+}
 
+QString Item::comments() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("comments") );
+}
+
+QString Item::author() const
+{
+    return Tools::extractElementText(element(), QString::fromLatin1("author") );
+}
+
+Enclosure Item::enclosure() const
+{
+    Enclosure enclosure; 
+    QDomNode enc = element().namedItem(QString::fromLatin1("enclosure"));
+    if (enc.isElement())
+        enclosure = Enclosure::fromXML(enc.toElement());
+
+    return enclosure;
+}
+
+QString Item::guid() const
+{
     QString guid;
 
-    bool guidIsPermaLink = true;  // true is default
-
-    QDomNode guidNode = e.namedItem(QString::fromLatin1("guid"));
+    QDomNode guidNode = element().namedItem(QString::fromLatin1("guid"));
     if (guidNode.isElement())
     {
         QDomElement guidElem = guidNode.toElement();
         guid = guidElem.text();
+    }
+
+    return guid;
+}
+
+bool Item::guidIsPermaLink() const
+{
+    bool guidIsPermaLink = true;  // true is default
+
+    QDomNode guidNode = element().namedItem(QString::fromLatin1("guid"));
+    if (guidNode.isElement())
+    {
+        QDomElement guidElem = guidNode.toElement();
 
         if (guidElem.attribute(QString::fromLatin1("isPermaLink")) == QString::fromLatin1("false"))
             guidIsPermaLink = false;
     }
-    
+
+    return guidIsPermaLink;
+}
+
+QDateTime Item::pubDate() const
+{
     QDateTime pubDate;
 
-    QString pubDateStr = Tools::extractElementText(e, QString::fromLatin1("pubDate"));
+    QString pubDateStr = Tools::extractElementText(element(), QString::fromLatin1("pubDate"));
     if (!pubDateStr.isNull())
     {
         time_t time = KRFCDate::parseDate(pubDateStr);
         pubDate.setTime_t(time);
     }
-
-    return Item(title, link, description, content, categories, comments, 
-                author, enclosure, guid, guidIsPermaLink, pubDate, source);
-}
-
-Item::Item() : d(0)
-{
-}
-
-Item::Item(const QString& title, const QString& link, const QString& description,
-     const QString& content, const QList<Category>& categories,
-     const QString& comments, const QString& author,
-     const Enclosure& enclosure, const QString& guid, bool guidIsPermaLink,
-     const QDateTime& pubDate, const Source& source) : d(new ItemPrivate)
-{
-    d->title = title;
-    d->link = link;
-    d->description = description;
-    d->content = content;
-    d->categories = categories;
-    d->comments = comments;
-    d->author = author;
-    d->enclosure = enclosure;
-    d->guid = guid;
-    d->guidIsPermaLink = guidIsPermaLink;
-    d->pubDate = pubDate;
-    d->source = source;
-}
-
-
-Item::~Item()
-{
-}
-
-Item::Item(const Item& other) : d(0)
-{
-    *this = other;
-}
-
-Item& Item::operator=(const Item& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool Item::operator==(const Item& other) const
-{
-    if (!d || !other.d)
-        return d == other.d;
-    return *d == *other.d;
-}
-
-bool Item::isNull() const
-{
-    return !d;
-}
-
-QString Item::title() const
-{
-    return d ? d->title : QString::null;
-}
-
-QString Item::link() const
-{
-    return d ? d->link : QString::null;
-}
-
-QString Item::description() const
-{
-    return d ? d->description : QString::null;
-}
-
-QString Item::content() const
-{
-    return d ? d->content : QString::null;
-}
-
-QList<Category> Item::categories() const
-{
-    return d ? d->categories : QList<Category>();
-}
-
-QString Item::comments() const
-{
-    return d ? d->comments : QString::null;
-}
-
-QString Item::author() const
-{
-    return d ? d->author : QString::null;
-}
-
-Enclosure Item::enclosure() const
-{
-    return d ? d->enclosure : Enclosure::null();
-}
-
-QString Item::guid() const
-{
-    return d ? d->guid : QString::null;
-}
-
-bool Item::guidIsPermaLink() const
-{
-    return d ? d->guidIsPermaLink : false;
-}
-
-QDateTime Item::pubDate() const
-{
-    return d ? d->pubDate : QDateTime();
+    
+    return pubDate;
 }
 
 Source Item::source() const
 {
-    return d ? d->source : Source::null();
+    Source source;
+    QDomNode s = element().namedItem(QString::fromLatin1("source"));
+    if (s.isElement())
+        source = Source::fromXML(s.toElement());
+
+    return source;
 }
 
 QString Item::debugInfo() const
@@ -271,7 +176,9 @@ QString Item::debugInfo() const
         info += enclosure().debugInfo();
     if (!source().isNull())
          info += source().debugInfo();
-    for (QList<Category>::ConstIterator it = d->categories.begin(); it != d->categories.end(); ++it)
+    
+    QList<Category> cats = categories();
+    for (QList<Category>::ConstIterator it = cats.begin(); it != cats.end(); ++it)
         info += (*it).debugInfo();
     info += "### Item end ################\n";
     return info;

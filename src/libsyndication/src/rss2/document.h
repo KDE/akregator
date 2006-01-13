@@ -23,9 +23,10 @@
 #ifndef LIBSYNDICATION_RSS2_DOCUMENT_H
 #define LIBSYNDICATION_RSS2_DOCUMENT_H
 
+#include "elementwrapper.h"
+
 #include "../document.h"
 
-#include <ksharedptr.h>
 
 class QDateTime;
 class QDomDocument;
@@ -45,17 +46,10 @@ class Image;
 class Item;
 class TextInput;
 
-class Document : public LibSyndication::Document
+class Document : public LibSyndication::Document, public ElementWrapper
 {
     public:
     
-        /**
-         * static null object. See also Document() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const Document& null();
-
         /**
          * Parses an RSS2 document from an XML document.
          * TODO: More on supported formats etc.
@@ -71,45 +65,7 @@ class Document : public LibSyndication::Document
          * to Document::null() and for which isNull() is @c true.
          */
         Document();
-
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        Document(const Document& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~Document();
-    
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        Document& operator=(const Document& other);
-
-        /**
-         * Checks whether this document is equal to another.
-         * Documents are equal if all properties and all contained items are equal.
-         *
-         * @param other another document
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const Document& other) const;
-
-        /**
-         * returns whether this object is a null object.
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
-    
+        
         bool accept(DocumentVisitor* visitor);
     
         /**
@@ -279,20 +235,8 @@ class Document : public LibSyndication::Document
     
     private:
     
-        Document(const QString& title, const QString& link,
-                    const QString& description, const QString& language,
-                    const QString& copyright, const QString& managingEditor,
-                    const QString& webMaster, const QDateTime& pubDate,
-                    const QDateTime& lastBuildDate,
-                    const QList<Category>& categories,
-                    const QString& generator, const QString& docs,
-                    const Cloud& cloud, int ttl, const Image& image, 
-                    const TextInput& textInput, const QSet<int>& skipHours,
-                    const QSet<DayOfWeek>& skipDays, const QList<Item>& items);
+        Document(const QDomElement& element);
     
-        static Document* m_null;
-        class DocumentPrivate;
-        KSharedPtr<DocumentPrivate> d;
 };
 
 } // namespace RSS2

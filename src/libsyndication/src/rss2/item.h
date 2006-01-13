@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_RSS2_ITEM_H
 #define LIBSYNDICATION_RSS2_ITEM_H
 
-#include <ksharedptr.h>
+#include "elementwrapper.h"
 
 class QDateTime;
 class QDomDocument;
@@ -43,17 +43,10 @@ class Source;
  *
  * @author Frank Osterfeld
  */
-class Item
+class Item : public ElementWrapper
 {
     public:
-
-        /**
-         * static null object. See also Item() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const Item& null();
-
+        
         /**
          * Parses an item object from an <item> XML element.
          *
@@ -68,45 +61,7 @@ class Item
          * to Item::null() and for which isNull() is @c true.
          */
         Item();
-
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        Item(const Item& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~Item();
-
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        Item& operator=(const Item& other);
-
-        /**
-         * Checks whether this item is equal to another.
-         * Items are equal if all properties and contained elements (enclosures etc.) are equal.
-         *
-         * @param other another item
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const Item& other) const;
-
-        /**
-         * returns whether this object is a null object.
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
-
+      
         /**
          * The title of the item.
          * 
@@ -231,16 +186,7 @@ class Item
 
     private:
 
-    Item(const QString& title, const QString& link, const QString& description,
-         const QString& content, const QList<Category>& categories,
-         const QString& comments, const QString& author, 
-         const Enclosure& enclosure, const QString& guid, bool guidIsPermaLink,
-         const QDateTime& pubDate, const Source& source);
-
-    static Item* m_null;
-
-    class ItemPrivate;
-    KSharedPtr<ItemPrivate> d;
+        Item(const QDomElement& element);
 };
 
 } // namespace RSS2

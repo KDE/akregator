@@ -1,7 +1,7 @@
 /*
  * This file is part of libsyndication
  *
- * Copyright (C) 2005 Frank Osterfeld <frank.osterfeld@kdemail.net>
+ * Copyright (C) 2006 Frank Osterfeld <frank.osterfeld@kdemail.net>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -19,50 +19,57 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
-#include "category.h"
-#include "tools.h"
+#include "elementwrapper.h"
 
 #include <QDomElement>
-#include <QString>
-
-class QString;
 
 namespace LibSyndication {
 namespace RSS2 {
 
-
-Category Category::fromXML(const QDomElement& e)
+class ElementWrapper::ElementWrapperPrivate : public KShared
 {
-    return Category(e);
-}
+    public:
+        
+    QDomElement element;
+};
 
-Category::Category() : ElementWrapper()
-{
-}
-
-
-Category::Category(const QDomElement& element) : ElementWrapper(element)
+ElementWrapper::ElementWrapper() : d(new ElementWrapperPrivate)
 {
 }
-QString Category::category() const
+
+ElementWrapper::ElementWrapper(const ElementWrapper& other)
 {
-    return element().text();
+    *this = other;
 }
 
-QString Category::domain() const
+ElementWrapper::ElementWrapper(const QDomElement& element) : d(new ElementWrapperPrivate)
 {
-    return element().attribute(QString::fromLatin1("domain"));
+    d->element = element;
 }
 
-QString Category::debugInfo() const
+ElementWrapper::~ElementWrapper()
 {
-    QString info;
-    info += "### Category: ###################\n";
-    info += "category: #" + category() + "#\n";
-    info += "domain: #" + domain() + "#\n";
-    info += "### Category end ################\n";
-    return info;
+}
+
+ElementWrapper& ElementWrapper::operator=(const ElementWrapper& other)
+{
+    d = other.d;
+    return *this;
+}
+
+bool ElementWrapper::operator==(const ElementWrapper& other) const
+{
+    return d->element == other.d->element;
+}
+
+bool ElementWrapper::isNull() const
+{
+    return d->element.isNull();
+}
+
+const QDomElement& ElementWrapper::element() const
+{
+    return d->element;
 }
 
 } // namespace RSS2

@@ -22,114 +22,47 @@
 
 #include "enclosure.h"
 
-#include <qdom.h>
-#include <qstring.h>
-
-#include <kstaticdeleter.h>
+#include <QDomElement>
+#include <QString>
 
 namespace LibSyndication {
 namespace RSS2 {
 
 
-class Enclosure::EnclosurePrivate : public KShared
-{
-    public:
-
-    QString url;
-    int length;
-    QString type;
-
-    bool operator==(const EnclosurePrivate &other) const
-    {
-        return (url == other.url &&
-                length == other.length &&
-                type == other.type);
-    }
-
-};
-
-
-Enclosure* Enclosure::m_null = 0;
-static KStaticDeleter<Enclosure> enclosuresd;
-
-const Enclosure& Enclosure::null()
-{
-    if (m_null == 0)
-        enclosuresd.setObject(m_null, new Enclosure);
-
-    return *m_null;
-}
-
-
-bool Enclosure::isNull() const
-{
-    return !d;
-}
-
 Enclosure Enclosure::fromXML(const QDomElement& e)
 {
-    QString url = e.attribute(QString::fromLatin1("url"));
-
-    int length = -1;
-
-    if (e.hasAttribute(QString::fromLatin1("length")))
-    {
-        bool ok;
-        int c = e.attribute(QString::fromLatin1("length")).toInt(&ok);
-        length = ok ? c : -1;
-    }
-   
-    QString type = e.attribute(QString::fromLatin1("type"));
-
-    return Enclosure(url, length, type);
+    return Enclosure(e);
 }
 
-Enclosure::Enclosure() : d(0)
+Enclosure::Enclosure() : ElementWrapper()
 {
 }
 
-Enclosure::Enclosure(const Enclosure& other) : d(0)
+Enclosure::Enclosure(const QDomElement& element) : ElementWrapper(element)
 {
-     *this = other;
-}
-
-Enclosure::Enclosure(const QString& url, int length, const QString& type) : d(new EnclosurePrivate)
-{
-    d->url = url;
-    d->length = length;
-    d->type = type;
-}
-
-Enclosure::~Enclosure()
-{
-}
-
-Enclosure& Enclosure::operator=(const Enclosure& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool Enclosure::operator==(const Enclosure &other) const
-{
-    if (!d || !other.d)
-        return d == other.d;
-    return *d == *other.d;
 }
 
 QString Enclosure::url() const
 {
-    return d ? d->url : QString::null;
+    return element().attribute(QString::fromLatin1("url"));
 }
 
 int Enclosure::length() const
 {
-    return d ? d->length : -1;
+    int length = -1;
+
+    if (element().hasAttribute(QString::fromLatin1("length")))
+    {
+        bool ok;
+        int c = element().attribute(QString::fromLatin1("length")).toInt(&ok);
+        length = ok ? c : -1;
+    }
+    return length;
 }
 
 QString Enclosure::type() const
 {
-    return d ? d->type : QString::null;
+    return element().attribute(QString::fromLatin1("type"));
 }
 
 QString Enclosure::debugInfo() const

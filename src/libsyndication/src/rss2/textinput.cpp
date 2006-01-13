@@ -26,106 +26,42 @@
 #include <qdom.h>
 #include <QString>
 
-#include <kstaticdeleter.h>
-
 namespace LibSyndication {
 namespace RSS2 {
 
-class TextInput::TextInputPrivate : public KShared
-{
-    public:
-
-    QString title;
-    QString name;
-    QString description;
-    QString link;
-
-    bool operator==(const TextInputPrivate& other) const
-    {
-        return (
-                title == other.title &&
-                name == other.name &&
-                description == other.description &&
-                link == other.link);
-    }
-};
-
-TextInput* TextInput::m_null = 0;
-static KStaticDeleter<TextInput> textinputsd;
-
-const TextInput& TextInput::null()
-{
-    if (m_null == 0)
-        textinputsd.setObject(m_null, new TextInput);
-    return *m_null;
-}
 
 TextInput TextInput::fromXML(const QDomElement& e)
 {
-    QString name = Tools::extractElementText(e, QString::fromLatin1("name") );
-    QString title = Tools::extractElementText(e, QString::fromLatin1("title") );
-    QString link = Tools::extractElementText(e, QString::fromLatin1("link") );
-    QString description = Tools::extractElementText(e, QString::fromLatin1("description") );
-    return TextInput(title, description, link, name);
+    return TextInput(e);
 }
 
-TextInput::TextInput() : d(0)
+TextInput::TextInput() : ElementWrapper()
 {
 }
 
-TextInput::TextInput(const QString& title, const QString& description, const QString&  link, const QString& name) : d(new TextInputPrivate)
+TextInput::TextInput(const QDomElement& element) : ElementWrapper(element)
 {
-    d->title = title;
-    d->description = description;
-    d->link = link;
-    d->name = name; 
-}
-
-TextInput::TextInput(const TextInput& other) : d(0)
-{
-    *this = other;
-}
-
-TextInput::~TextInput()
-{
-}
-
-TextInput& TextInput::operator=(const TextInput& other)
-{
-    d = other.d;
-    return *this;
-}
-
-bool TextInput::operator==(const TextInput& other) const
-{
-    if (!d || !other.d)
-        return d == other.d;
-    return *d == *other.d;
-}
-
-bool TextInput::isNull() const
-{
-    return !d;
 }
 
 QString TextInput::title() const
 {
-    return d ? d->title : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("title") );
 }
 
 QString TextInput::name() const
 {
-    return d ? d->name : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("name") );
 }
 
 QString TextInput::description() const
 {
-    return d ? d->description : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("description") );
 }
 
 QString TextInput::link() const
 {
-    return d ? d->link : QString::null;
+    return Tools::extractElementText(element(), QString::fromLatin1("link") );
+
 }
 
 QString TextInput::debugInfo() const

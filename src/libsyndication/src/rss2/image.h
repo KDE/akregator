@@ -23,25 +23,17 @@
 #ifndef LIBSYNDICATION_RSS2_IMAGE_H
 #define LIBSYNDICATION_RSS2_IMAGE_H
 
-#include <ksharedptr.h>
+#include "elementwrapper.h"
 
-class QDomDocument;
 class QDomElement;
 class QString;
 
 namespace LibSyndication {
 namespace RSS2 {
 
-class Image
+class Image : public ElementWrapper
 {
     public:
-
-        /**
-         * static null object. See also Cloud() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const Image& null();
 
         /**
          * Parses an image object from an <image> XML element.
@@ -58,44 +50,6 @@ class Image
          */
         Image();
 
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        Image(const Image& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~Image();
-
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        Image& operator=(const Image& other);
-
-        /**
-         * Checks whether this image is equal to another.
-         * Images are equal if all properties are equal.
-         *
-         * @param other another image
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const Image& other) const;
-
-        /**
-         * returns whether this object is a null object.
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
-    
         /**
          * the URL of a GIF, JPEG or PNG image 
          *
@@ -152,12 +106,7 @@ class Image
 
     private:
     
-        Image(const QString& url, const QString& title, const QString& link, const QString& description, int width, int height);
-    
-        static Image* m_null;
-    
-        class ImagePrivate;
-        KSharedPtr<ImagePrivate> d;
+        Image(const QDomElement& el);
 };
 
 } // namespace RSS2

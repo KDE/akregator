@@ -23,9 +23,8 @@
 #ifndef LIBSYNDICATION_RSS2_CLOUD_H
 #define LIBSYNDICATION_RSS2_CLOUD_H
 
-#include <ksharedptr.h>
+#include "elementwrapper.h"
 
-class QDomDocument;
 class QDomElement;
 class QString;
 
@@ -57,17 +56,10 @@ namespace RSS2
    *
    * @author Frank Osterfeld
    */
-class Cloud
+class Cloud : public ElementWrapper
 {
     public:
-
-        /**
-         * static null object. See also Cloud() and isNull().
-         *
-         * @return reference to a static null object
-         */
-        static const Cloud& null();
-
+        
         /**
          * Parses a cloud object from an <cloud> XML element.
          *
@@ -83,37 +75,6 @@ class Cloud
          */
         Cloud();
 
-        /**
-         * Copy constructor, creates a copy of @c other.
-         * The d pointer is shared, so this is a cheap operation.
-         *
-         * @param other the object to be copied
-         */
-        Cloud(const Cloud& other);
-
-        /**
-         * Destructor.
-         */
-        virtual ~Cloud();
-
-        /**
-         * Assigns the values of @c other. The d pointer is shared, so
-         * this is a cheap operation.
-         *
-         * @param other The object to assign
-         * @return a reference to this object
-         */
-        Cloud& operator=(const Cloud& other);
-
-        /**
-         * Checks whether this cloud is equal to another.
-         * Cloud are equal if all properties are equal.
-         *
-         * @param other another cloud
-         * @return whether this object is equal to @c other or not
-         */
-        bool operator==(const Cloud& other) const;
-
         QString domain() const;
 
         int port() const;
@@ -125,13 +86,6 @@ class Cloud
         QString protocol() const;
 
         /**
-         * returns whether this object is a null object.
-         *
-         * @return @c true, if this is a null object, otherwise @c false
-         */
-        bool isNull() const;
-
-        /**
          * Returns a description of the object for debugging purposes.
          *
          * @return debug string
@@ -140,12 +94,7 @@ class Cloud
 
     private:
 
-        Cloud(const QString& domain, const QString& path, const QString& registerProcedure, const QString& protocol, int port);
-
-        static Cloud* m_null;
-
-        class CloudPrivate;
-        KSharedPtr<CloudPrivate> d;
+        Cloud(const QDomElement& element);
 };
 
 } // namespace RSS2

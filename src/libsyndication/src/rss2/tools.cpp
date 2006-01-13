@@ -34,6 +34,8 @@ namespace RSS2 {
 
 QString Tools::extractElementText(const QDomNode& parent, const QString& tagName)
 {
+    if (parent.isNull())
+        return QString::null;
 
     QDomNode node = parent.namedItem(tagName);
 
@@ -45,6 +47,9 @@ QString Tools::extractElementText(const QDomNode& parent, const QString& tagName
 
 QString Tools::childNodesAsXML(const QDomNode& parent)
 {
+    if (parent.isNull())
+        return QString::null;
+
     QDomNodeList list = parent.childNodes();
     QString str;
     QTextStream ts( &str, QIODevice::WriteOnly );
@@ -55,6 +60,9 @@ QString Tools::childNodesAsXML(const QDomNode& parent)
 
 QString Tools::extractContent(const QDomNode& parent)
 {
+    if (parent.isNull())
+        return QString::null;
+    
     QList<QDomElement> list = elementsByTagNameNS(parent, Constants::contentNameSpace(), QString::fromLatin1("encoded"));
 
     if (!list.isEmpty())
@@ -91,6 +99,9 @@ QList<QDomElement> Tools::elementsByTagName(const QDomNode& parent, const QStrin
 
 QList<QDomElement> Tools::elementsByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& localName)
 {
+    if (parent.isNull())
+        return QList<QDomElement>();
+    
     QList<QDomElement> elements;
     for (QDomNode n = parent.firstChild(); !n.isNull(); n = n.nextSibling())
     {
