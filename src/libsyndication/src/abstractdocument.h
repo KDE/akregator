@@ -22,11 +22,16 @@
 #ifndef LIBSYNDICATION_ABSTRACTDOCUMENT_H
 #define LIBSYNDICATION_ABSTRACTDOCUMENT_H
 
+#include <ksharedptr.h>
+
 class QString;
 
 namespace LibSyndication {
 
 class DocumentVisitor;
+class AbstractDocument;
+
+typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
 
 /**
  * Document interface. A document is a representation parsed from a document 
