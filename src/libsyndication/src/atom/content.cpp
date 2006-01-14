@@ -58,12 +58,7 @@ QByteArray Content::asByteArray() const
     return QByteArray();
 }
 
-bool Content::isBinary() const
-{
-    return !isText() && !isXML();
-}
-
-bool Content::isText() const
+Content::Format Content::format() const
 {
     QString ctype = type();
     
@@ -73,17 +68,14 @@ bool Content::isText() const
     if (ctype.isEmpty() && src().isEmpty())
         ctype = QString::fromLatin1("text");
 
-    return (ctype.isEmpty() 
-        || ctype == QString::fromLatin1("text")
-        || ctype == QString::fromLatin1("html")
-        || (ctype.startsWith(QString::fromLatin1("text/"), Qt::CaseInsensitive)
+    if (ctype.isEmpty() 
+            || ctype == QString::fromLatin1("text")
+            || ctype == QString::fromLatin1("html")
+            || (ctype.startsWith(QString::fromLatin1("text/"), Qt::CaseInsensitive)
             && !ctype.startsWith(QString::fromLatin1("text/xml"), Qt::CaseInsensitive))
-           );
-}
-
-bool Content::isXML() const
-{
-    QString ctype = type();
+           )
+        return Text;
+    
     QStringList xmltypes;
     xmltypes.append(QString::fromLatin1("xhtml"));
     // XML media types as defined in RFC3023:
@@ -94,9 +86,27 @@ bool Content::isXML() const
     xmltypes.append(QString::fromLatin1("application/xml-dtd"));
     
     
-    return xmltypes.contains(ctype)
-        || ctype.endsWith(QString::fromLatin1("+xml"), Qt::CaseInsensitive)
-        || ctype.endsWith(QString::fromLatin1("/xml"), Qt::CaseInsensitive);
+    if (xmltypes.contains(ctype)
+            || ctype.endsWith(QString::fromLatin1("+xml"), Qt::CaseInsensitive)
+        || ctype.endsWith(QString::fromLatin1("/xml"), Qt::CaseInsensitive))
+        return XML;
+    
+    return Binary;
+}
+
+bool Content::isBinary() const
+{
+    return format() == Binary;
+}
+
+bool Content::isText() const
+{
+    return format() == Text;
+}
+
+bool Content::isXML() const
+{
+    return format() == XML;
 }
 
 QString Content::asString() const
@@ -119,7 +129,21 @@ QString Content::asString() const
 
 QString Content::debugInfo() const
 {
-    return "TODO";
+ 
+    QString info;
+    info += "### Content: ###################\n";
+    info += "type: #" + type() + "#\n";
+    if (!src().isEmpty())
+        info += "src: #" + src() + "#\n";
+    if (!isBinary())
+        info += "content: #" + asString() + "#\n";
+    else
+    {
+        info += "binary length: #" + QString::number(asByteArray().size()) + "#\n";
+    }
+    info += "### Content end ################\n";
+
+    return info;
 }
 
 } // namespace Atom

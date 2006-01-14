@@ -83,7 +83,7 @@ class Entry : public ElementWrapper
     
         /* 1 */
         QString title() const;
-    
+        
         /* 0..1 */
         Content content() const;
     

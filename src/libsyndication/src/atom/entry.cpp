@@ -185,7 +185,58 @@ Content Entry::content() const
 
 QString Entry::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Entry: ###################\n";
+    if (!title().isEmpty())
+        info += "title: #" + title() + "#\n";
+    if (!summary().isEmpty())
+        info += "summary: #" + summary() + "#\n";
+    if (!id().isEmpty())
+        info += "id: #" + id() + "#\n";
+    if (!content().isNull())
+        info += content().debugInfo();
+    
+    if (!rights().isEmpty())
+        info += "rights: #" + rights() + "#\n";
+    
+    QDateTime dupdated;
+    dupdated.setTime_t(updated()); 
+    info += "updated: #" + dupdated.toString(Qt::ISODate) + "#\n";
+    
+    QDateTime dpublished;
+    dpublished.setTime_t(published());
+    info += "published: #" + dpublished.toString(Qt::ISODate) + "#\n";
+    
+    QList<Link> dlinks = links();
+    QList<Link>::ConstIterator endlinks = dlinks.end();
+    for (QList<Link>::ConstIterator it = dlinks.begin(); it != endlinks; ++it)
+        info += (*it).debugInfo();
+    
+    QList<Category> dcats = categories();
+    QList<Category>::ConstIterator endcats = dcats.end();
+    for (QList<Category>::ConstIterator it = dcats.begin(); it != endcats; ++it)
+        info += (*it).debugInfo();
+
+    info += "### Authors: ###################\n";
+    
+    QList<Person> dauthors = authors();
+    QList<Person>::ConstIterator endauthors = dauthors.end();
+    for (QList<Person>::ConstIterator it = dauthors.begin(); it != endauthors; ++it)
+        info += (*it).debugInfo();
+
+    info += "### Contributors: ###################\n";
+    
+    QList<Person> dcontri = contributors();
+    QList<Person>::ConstIterator endcontri = dcontri.end();
+    for (QList<Person>::ConstIterator it = dcontri.begin(); it != endcontri; ++it)
+        info += (*it).debugInfo();
+    
+    if (!source().isNull())
+        info += source().debugInfo();
+    
+    info += "### Entry end ################\n";
+
+    return info;
 }
 
 } // namespace Atom

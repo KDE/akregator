@@ -46,6 +46,15 @@ class Content : public ElementWrapper
         
         QByteArray asByteArray() const;
         
+        enum Format
+        {
+            Text,
+            XML,
+            Binary
+        };
+        
+        Format format() const;
+        
         /**
          * returns whether the content is embedded XML.
          * Use element() to access the DOM tree, or asString() to get the XML

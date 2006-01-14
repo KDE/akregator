@@ -58,7 +58,14 @@ QString Person::email() const
 
 QString Person::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Person: ###################\n";
+    info += "name: #" + name() + "#\n";
+    info += "email: #" + email() + "#\n";
+    info += "uri: #" + uri() + "#\n";
+    info += "### Person end ################\n";
+
+    return info;
 }
 
 } // namespace Atom

@@ -39,6 +39,7 @@ namespace Atom {
 
 class Category;
 class Entry;
+class Generator;
 class Link;
 class Person;
 
@@ -77,6 +78,9 @@ class FeedDocument : public LibSyndication::AbstractDocument, public ElementWrap
             
         /* 0..1 */
         QString subtitle() const;
+        
+        /* 0..1 */
+        Generator generator() const;
         
         time_t updated() const;
             

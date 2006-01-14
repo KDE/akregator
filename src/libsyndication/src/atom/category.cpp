@@ -58,7 +58,16 @@ QString Category::label() const
 
 QString Category::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Category: ###################\n";
+    info += "term: #" + term() + "#\n";
+    if (!scheme().isEmpty())
+        info += "scheme: #" + scheme() + "#\n";
+    if (!label().isEmpty())
+        info += "label: #" + label() + "#\n";
+    info += "### Category end ################\n";
+
+    return info;
 }
 
 } // namespace Atom
