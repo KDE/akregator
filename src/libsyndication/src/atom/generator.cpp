@@ -20,6 +20,7 @@
  *
  */
 
+#include "constants.h"
 #include "generator.h"
 
 #include <QDomElement>
@@ -38,12 +39,14 @@ Generator::Generator(const QDomElement& element) : ElementWrapper(element)
 
 QString Generator::uri() const
 {
-    return "TODO";
+    return element().attributeNS(Constants::atom1NameSpace(),
+    QString::fromLatin1("uri"));
 }
 
 QString Generator::version() const
 {
-    return "TODO";
+    return element().attributeNS(Constants::atom1NameSpace(),
+    QString::fromLatin1("version"));
 }
 
 QString Generator::debugInfo() const

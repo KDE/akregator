@@ -27,6 +27,12 @@ namespace LibSyndication {
 
 class AbstractDocument;
 
+namespace Atom
+{
+    class EntryDocument;
+    class FeedDocument;
+}
+
 namespace RDF
 {
     class Document;
@@ -40,7 +46,7 @@ namespace RSS2
 /**
  * Visitor interface, following the Visitor design pattern. Use this if you
  * want to process documents and the way how to handle the document depends
- * on it's concrete type (e.g. RSS2::Document, Atom::Document...).
+ * on it's concrete type (e.g. RSS2::Document, RDF::Document...).
  *
  * TODO: insert code example
  *
@@ -57,6 +63,10 @@ class DocumentVisitor
         virtual bool visit(LibSyndication::RSS2::Document* document) { return false; }
         
         virtual bool visit(LibSyndication::RDF::Document* document) { return false; }
+        
+        virtual bool visit(LibSyndication::Atom::FeedDocument* document) { return false; }
+        
+        virtual bool visit(LibSyndication::Atom::EntryDocument* document) { return false; }
 };
 
 } // namespace LibSyndication

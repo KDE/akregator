@@ -21,12 +21,15 @@
  */
 
 #include "category.h"
+#include "constants.h"
 #include "content.h"
 #include "entry.h"
 #include "link.h"
 #include "person.h"
 #include "source.h"
+#include "tools.h"
 
+#include <QDateTime>
 #include <QDomElement>
 #include <QList>
 #include <QString>
@@ -44,62 +47,140 @@ Entry::Entry(const QDomElement& element) : ElementWrapper(element)
 
 QList<Person> Entry::authors() const
 {
-    return QList<Person>(); // TODO
-}
-
-QList<Category> Entry::categories() const
-{
-    return QList<Category>(); // TODO
+    QList<QDomElement> a = 
+            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
+                                       QString::fromLatin1("author"));
+    QList<Person> list;
+                                       
+    QList<QDomElement>::ConstIterator it = a.begin();
+    QList<QDomElement>::ConstIterator end = a.end();
+    
+    
+    for ( ; it != end; ++it)
+    {
+        list.append(Person(*it));
+    }
+        
+    return list;
 }
 
 QList<Person> Entry::contributors() const
 {
-    return QList<Person>(); // TODO
+    QList<QDomElement> a = 
+            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
+                                       QString::fromLatin1("contributor"));
+    QList<Person> list;
+                                       
+    QList<QDomElement>::ConstIterator it = a.begin();
+    QList<QDomElement>::ConstIterator end = a.end();
+    
+    
+    for ( ; it != end; ++it)
+    {
+        list.append(Person(*it));
+    }
+        
+    return list;
+}
+
+QList<Category> Entry::categories() const
+{
+    QList<QDomElement> a = 
+            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
+                                       QString::fromLatin1("category"));
+    QList<Category> list;
+    
+    QList<QDomElement>::ConstIterator it = a.begin();
+    QList<QDomElement>::ConstIterator end = a.end();
+
+
+    for ( ; it != end; ++it)
+    {
+        list.append(Category(*it));
+    }
+
+    return list;
 }
 
 QString Entry::id() const
 {
-    return "TODO";
+    return Tools::extractElementTextNS(element(), 
+                                       Constants::atom1NameSpace(),
+                                       QString::fromLatin1("id"));
+
 }
 
 QList<Link> Entry::links() const
 {
-    return QList<Link>();  // TODO
+    QList<QDomElement> a = 
+            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
+                                       QString::fromLatin1("link"));
+    QList<Link> list;
+    
+    QList<QDomElement>::ConstIterator it = a.begin();
+    QList<QDomElement>::ConstIterator end = a.end();
+
+
+    for ( ; it != end; ++it)
+    {
+        list.append(Link(*it));
+    }
+
+    return list;
 }
 
 QString Entry::rights() const
 {
-    return "TODO";
+    return Tools::extractElementTextNS(element(), 
+                                       Constants::atom1NameSpace(),
+                                       QString::fromLatin1("rights"));
 }
 
 Source Entry::source() const
 {
-    return Source(); // TODO
+    return Source(Tools::firstElementByTagNameNS(element(),
+                   Constants::atom1NameSpace(),
+                   QString::fromLatin1("source")));
 }
 
 time_t Entry::published() const
 {
-    return 0; // TODO
+    QString pub = Tools::extractElementTextNS(element(), 
+                                       Constants::atom1NameSpace(),
+                                       QString::fromLatin1("published"));
+    QDateTime dt = QDateTime::fromString(pub, Qt::ISODate);
+    return dt.toTime_t();
 }
 
 time_t Entry::updated() const
 {
-    return 0; // TODO
+    QString upd = Tools::extractElementTextNS(element(), 
+                                              Constants::atom1NameSpace(),
+                                              QString::fromLatin1("published"));
+    
+    QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
+    return dt.toTime_t();
 }
 
 QString Entry::summary() const
 {
-    return "TODO";
+    return Tools::extractElementTextNS(element(), 
+                                       Constants::atom1NameSpace(),
+                                       QString::fromLatin1("summary"));
 }
 
 QString Entry::title() const
 {
-    return "TODO";
+    return Tools::extractElementTextNS(element(), 
+                                       Constants::atom1NameSpace(),
+                                       QString::fromLatin1("title"));
 }
 
 Content Entry::content() const
 {
-    return Content(); // TODO
+    return Content(Tools::firstElementByTagNameNS(element(),
+                   Constants::atom1NameSpace(),
+                   QString::fromLatin1("content")));
 }
 
 QString Entry::debugInfo() const

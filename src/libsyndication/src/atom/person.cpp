@@ -20,7 +20,9 @@
  *
  */
 
+#include "constants.h"
 #include "person.h"
+#include "tools.h"
 
 #include <QDomElement>
 #include <QString>
@@ -38,17 +40,20 @@ Person::Person(const QDomElement& element) : ElementWrapper(element)
 
 QString Person::name() const
 {
-    return "TODO";
+    return Tools::extractElementTextNS(element(), Constants::atom1NameSpace(),
+                                QString::fromLatin1("name"));
 }
 
 QString Person::uri() const
 {
-    return "TODO";
+    return Tools::extractElementTextNS(element(), Constants::atom1NameSpace(),
+                                QString::fromLatin1("uri"));
 }
 
 QString Person::email() const
 {
-    return "TODO";
+    return Tools::extractElementTextNS(element(), Constants::atom1NameSpace(),
+                                QString::fromLatin1("email"));
 }
 
 QString Person::debugInfo() const

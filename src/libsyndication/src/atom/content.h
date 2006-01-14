@@ -25,6 +25,7 @@
 
 #include "../elementwrapper.h"
 
+class QByteArray;
 class QDomElement;
 class QString;
 
@@ -40,6 +41,28 @@ class Content : public ElementWrapper
         QString type() const;
 
         QString src() const;
+        
+        QString asString() const;
+        
+        QByteArray asByteArray() const;
+        
+        /**
+         * returns whether the content is embedded XML.
+         * Use element() to access the DOM tree, or asString() to get the XML
+         * as string.
+         */
+        bool isXML() const;
+        
+        /**
+         * returns whether the content is binary content.
+         * Use asByteArray() to access it.
+         */
+        bool isBinary() const;
+        
+        /**
+         * 
+         */
+        bool isText() const;
         
         QString debugInfo() const;
 };

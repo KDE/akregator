@@ -20,6 +20,7 @@
  *
  */
 
+#include "constants.h"
 #include "link.h"
 
 #include <QDomElement>
@@ -38,32 +39,42 @@ Link::Link(const QDomElement& element) : ElementWrapper(element)
 
 QString Link::href() const
 {
-    return "TODO";
+    return element().attributeNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("href"));
 }
 
 QString Link::rel() const
 {
-    return "TODO";
+    return element().attributeNS(Constants::atom1NameSpace(),
+    QString::fromLatin1("rel"));
 }
 
 QString Link::type() const
 {
-    return "TODO";
+    return element().attributeNS(Constants::atom1NameSpace(),
+    QString::fromLatin1("type"));
 }
 
 QString Link::hrefLanguage() const
 {
-    return "TODO";
+    return element().attributeNS(Constants::atom1NameSpace(),
+    QString::fromLatin1("hreflang"));
 }
 
 QString Link::title() const
 {
-    return "TODO";
+    return element().attributeNS(Constants::atom1NameSpace(),
+    QString::fromLatin1("title"));
 }
 
 uint Link::length() const
 {
-    return 0; // TODO
+    QString lengthStr = element().attributeNS(Constants::atom1NameSpace(),
+                        QString::fromLatin1("length"));
+    
+    bool ok;
+    uint c = lengthStr.toUInt(&ok);
+    return ok ? c : 0;
 }
 
 QString Link::debugInfo() const
