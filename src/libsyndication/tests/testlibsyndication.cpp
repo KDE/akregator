@@ -22,9 +22,10 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "document.h"
+#include "abstractdocument.h"
 #include "documentsource.h"
 #include "parserregistry.h"
+#include "atom/parser.h"
 #include "rdf/parser.h"
 #include "rss2/parser.h"
 
@@ -42,6 +43,7 @@ int main(int argc, char **argv)
 {
     ParserRegistry::self()->registerParser(new RSS2::Parser);
     ParserRegistry::self()->registerParser(new RDF::Parser);
+    ParserRegistry::self()->registerParser(new Atom::Parser);
 
     if (argc < 2)
     {
@@ -62,7 +64,7 @@ int main(int argc, char **argv)
     file.close();
 
     DocumentSource src(raw);
-    Document* doc = ParserRegistry::self()->parse(src);
+    AbstractDocument* doc = ParserRegistry::self()->parse(src);
 
     if (doc)
     {
