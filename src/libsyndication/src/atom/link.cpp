@@ -39,38 +39,34 @@ Link::Link(const QDomElement& element) : ElementWrapper(element)
 
 QString Link::href() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("href"));
+    return completeURI( element().attribute(QString::fromLatin1("href")));
 }
 
 QString Link::rel() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-    QString::fromLatin1("rel"));
+    return element().attribute(QString::fromLatin1("rel"));
 }
 
 QString Link::type() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-    QString::fromLatin1("type"));
+    return element().attribute(QString::fromLatin1("type"));
 }
 
 QString Link::hrefLanguage() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
+    return element().attribute(
     QString::fromLatin1("hreflang"));
 }
 
 QString Link::title() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
+    return element().attribute(
     QString::fromLatin1("title"));
 }
 
 uint Link::length() const
 {
-    QString lengthStr = element().attributeNS(Constants::atom1NameSpace(),
-                        QString::fromLatin1("length"));
+    QString lengthStr = element().attribute(QString::fromLatin1("length"));
     
     bool ok;
     uint c = lengthStr.toUInt(&ok);
@@ -79,7 +75,22 @@ uint Link::length() const
 
 QString Link::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Link: ###################\n";
+    if (!title().isEmpty())
+        info += "title: #" + title() + "#\n";
+    if (!href().isEmpty())
+        info += "href: #" + href() + "#\n";
+    if (!rel().isEmpty())
+        info += "rel: #" + rel() + "#\n";
+    if (!type().isEmpty())
+        info += "type: #" + type() + "#\n";
+    if (length() != 0)
+        info += "length: #" + QString::number(length()) + "#\n";
+    if (!hrefLanguage().isEmpty())
+        info += "hrefLanguage: #" + hrefLanguage() + "#\n";
+    info += "### Link end ################\n";
+    return info;
 }
 
 } // namespace Atom

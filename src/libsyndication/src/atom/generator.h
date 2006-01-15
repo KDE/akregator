@@ -42,6 +42,8 @@ class Generator : public ElementWrapper
         QString uri() const;
 
         QString version() const;
+        
+        QString name() const;
 
         QString debugInfo() const;
 

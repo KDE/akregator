@@ -41,7 +41,7 @@ class Parser : public LibSyndication::AbstractParser
 
         bool accept(const DocumentSource& source) const;
 
-        Document* parse(const DocumentSource& source) const;
+        LibSyndication::AbstractDocumentPtr parse(const DocumentSource& source) const;
 
         QString format() const;
 };

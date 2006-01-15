@@ -27,7 +27,6 @@
 #include "generator.h"
 #include "link.h"
 #include "person.h"
-#include "tools.h"
 
 #include "../documentvisitor.h"
 
@@ -55,8 +54,8 @@ bool FeedDocument::accept(DocumentVisitor* visitor)
 QList<Person> FeedDocument::authors() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(),
-                                       QString::fromLatin1("author"));
+            elementsByTagNameNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("author"));
     QList<Person> list;
 
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -74,8 +73,8 @@ QList<Person> FeedDocument::authors() const
 QList<Person> FeedDocument::contributors() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(),
-                                       QString::fromLatin1("contributor"));
+            elementsByTagNameNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("contributor"));
     QList<Person> list;
 
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -93,8 +92,8 @@ QList<Person> FeedDocument::contributors() const
 QList<Category> FeedDocument::categories() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(),
-                                       QString::fromLatin1("category"));
+            elementsByTagNameNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("category"));
     QList<Category> list;
 
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -111,57 +110,51 @@ QList<Category> FeedDocument::categories() const
 
 Generator FeedDocument::generator() const
 {
-    return Generator(Tools::firstElementByTagNameNS(element(), Constants::atom1NameSpace(), QString::fromLatin1("generator")));
+    return Generator(firstElementByTagNameNS(Constants::atom1NameSpace(),
+                     QString::fromLatin1("generator")));
 }
 
 QString FeedDocument::icon() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("icon"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("icon"));
 
 }
 
 QString FeedDocument::logo() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("logo"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("logo"));
 }
 
 QString FeedDocument::id() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("id"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("id"));
 }
 
 QString FeedDocument::rights() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("rights"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("rights"));
 }
 
 QString FeedDocument::title() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("title"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("title"));
 }
 
 QString FeedDocument::subtitle() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("subtitle"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("subtitle"));
 }
 
 time_t FeedDocument::updated() const
 {
-    QString upd = Tools::extractElementTextNS(element(), 
-                                              Constants::atom1NameSpace(),
-                                              QString::fromLatin1("updated"));
+    QString upd = extractElementTextNS(Constants::atom1NameSpace(),
+                                       QString::fromLatin1("updated"));
     QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
     return dt.toTime_t();
 }
@@ -169,8 +162,8 @@ time_t FeedDocument::updated() const
 QList<Link> FeedDocument::links() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(),
-                                       QString::fromLatin1("link"));
+            elementsByTagNameNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("link"));
     QList<Link> list;
 
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -188,8 +181,8 @@ QList<Link> FeedDocument::links() const
 QList<Entry> FeedDocument::entries() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(),
-                                       QString::fromLatin1("entry"));
+            elementsByTagNameNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("entry"));
     QList<Entry> list;
 
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -278,7 +271,7 @@ bool EntryDocument::accept(DocumentVisitor* visitor)
 
 Entry EntryDocument::entry() const
 {
-    return Entry(Tools::firstElementByTagNameNS(element(),
+    return Entry(firstElementByTagNameNS(
                  Constants::atom1NameSpace(),
                  QString::fromLatin1("entry")));
 }

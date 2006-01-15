@@ -55,7 +55,7 @@ bool Parser::accept(const DocumentSource& source) const
     return root.namespaceURI() == RDFVocab::self()->namespaceURI();
 }
 
-Document* Parser::parse(const DocumentSource& source) const
+LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) const
 {
     QDomDocument doc = source.asDomDocument();
     
@@ -70,7 +70,8 @@ Document* Parser::parse(const DocumentSource& source) const
     if (channels.isEmpty())
         return 0;
   
-    return new Document(*(channels.begin()));
+    DocumentPtr ptr = new Document(*(channels.begin()));
+    return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
 }
 
 QString Parser::format() const

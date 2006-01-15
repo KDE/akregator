@@ -43,9 +43,11 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
     return (root.isElement() && root.toElement().hasAttribute(QString::fromLatin1("version")));
 }
 
-Document* Parser::parse(const LibSyndication::DocumentSource& source) const
+LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const
 {
-    return new Document(Document::fromXML(source.asDomDocument()));
+    DocumentPtr ptr = new Document(Document::fromXML(source.asDomDocument()));
+    
+    return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
 }
 
 QString Parser::format() const

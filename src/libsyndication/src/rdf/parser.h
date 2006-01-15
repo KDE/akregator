@@ -40,7 +40,7 @@ class Parser : public LibSyndication::AbstractParser
 
         virtual bool accept(const DocumentSource& source) const;
 
-        virtual Document* parse(const DocumentSource& source) const;
+        virtual LibSyndication::AbstractDocumentPtr parse(const DocumentSource& source) const;
 
         virtual QString format() const;
 };

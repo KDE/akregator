@@ -21,7 +21,6 @@
  */
 
 #include "content.h"
-#include "tools.h"
 
 #include <QByteArray>
 #include <QDomElement>
@@ -46,7 +45,7 @@ QString Content::type() const
 
 QString Content::src() const
 {
-    return element().attribute(QString::fromLatin1("src"));
+    return completeURI(element().attribute(QString::fromLatin1("src")));
 }
 
 QByteArray Content::asByteArray() const
@@ -120,7 +119,7 @@ QString Content::asString() const
     }
     else if (isXML())
     {
-        return Tools::childNodesAsXML(element());
+        return childNodesAsXML();
     }
     
     return QString::null;
@@ -129,7 +128,6 @@ QString Content::asString() const
 
 QString Content::debugInfo() const
 {
- 
     QString info;
     info += "### Content: ###################\n";
     info += "type: #" + type() + "#\n";

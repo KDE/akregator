@@ -39,19 +39,32 @@ Generator::Generator(const QDomElement& element) : ElementWrapper(element)
 
 QString Generator::uri() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-    QString::fromLatin1("uri"));
+    return completeURI(element().attribute(QString::fromLatin1("uri")));
+    
+}
+
+QString Generator::name() const
+{
+    return element().text();
 }
 
 QString Generator::version() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-    QString::fromLatin1("version"));
+    return element().attribute(QString::fromLatin1("version"));
 }
 
 QString Generator::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### Generator: ###################\n";
+    if (!name().isEmpty())
+        info += "name: #" + name() + "#\n";
+    if (!uri().isEmpty())
+        info += "uri: #" + uri() + "#\n";
+    if (!version().isEmpty())
+        info += "version: #" + version() + "#\n";
+    info += "### Generator end ################\n";
+    return info;
 }
 
 } // namespace Atom

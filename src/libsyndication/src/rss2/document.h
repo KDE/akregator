@@ -23,10 +23,8 @@
 #ifndef LIBSYNDICATION_RSS2_DOCUMENT_H
 #define LIBSYNDICATION_RSS2_DOCUMENT_H
 
-#include "../elementwrapper.h"
-
 #include "../abstractdocument.h"
-
+#include "../elementwrapper.h"
 
 class QDateTime;
 class QDomDocument;
@@ -41,9 +39,11 @@ namespace RSS2 {
 
 class Category;
 class Cloud;
+class Document;
 class Image;
 class Item;
 class TextInput;
+typedef KSharedPtr<Document> DocumentPtr;
 
 class Document : public LibSyndication::AbstractDocument, public ElementWrapper
 {

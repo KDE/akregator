@@ -20,6 +20,7 @@
  *
  */
 
+#include "abstractdocument.h"
 #include "abstractparser.h"
 #include "parserregistry.h"
 
@@ -71,7 +72,7 @@ void ParserRegistry::unregisterParser(AbstractParser* parser)
     d->parsers.remove(parser->format());
 }
 
-AbstractDocument* ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
+AbstractDocumentPtr ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
 {
     if (d->parsers.contains(formatHint))
     {

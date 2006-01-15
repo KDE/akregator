@@ -23,10 +23,8 @@
 #ifndef LIBSYNDICATION_ATOM_TOOLS_H
 #define LIBSYNDICATION_ATOM_TOOLS_H
 
-class QDomNode;
-class QDomElement;
+class QDomDocument;
 class QString;
-template <class T> class QList;
 
 namespace LibSyndication {
 namespace Atom {
@@ -41,44 +39,10 @@ namespace Atom {
 class Tools
 {
     public:
-    
-        static QString extractElementText(const QDomNode& parent, const QString& tagName);
-    
-        static QString extractElementTextNS(const QDomElement& parent, const QString& namespaceURI, const QString& localName);
- 
-        /**
-         * returns all sub elements with tag name @c tagname of a given parent
-         * node @c parent
-         * Contrary to @ref QDomElement::elementsByTagName() only direct
-         * descendents are returned.
-         */
-        static QList<QDomElement> elementsByTagName(const QDomNode& parent, const QString& tagName);
-    
-        /**
-         * concatenates the XML representations of all children. Example: If @c
-         * parent is an @c xhtml:body element like
-         * @code
-         * <pre><xhtml:body><p>foo</p><blockquote>bar</blockquote></xhtml:body>
-         * </pre>
-         * @endcode
-         * this function returns
-         * @code
-         * <pre><p>foo</p><blockquote>bar</blockquote></pre> 
-         * @endcode
-         *
-         */
-        static QString childNodesAsXML(const QDomNode& parent);
         
-        /**
-         * returns all sub elements with tag name @c tagname of a given parent
-         * node @c parent with namespace URI @c nsURI.
-         * Contrary to @ref QDomElement::elementsByTagNameNS() only direct
-         * descendents are returned
-         */
-        static QList<QDomElement> elementsByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& tagName);
+        static bool isRelativeURL(const QString& url);
         
-        static QDomElement firstElementByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& tagName);
-
+        static QDomDocument convertAtom(const QDomDocument& document);
 };
 
 } // RSS2

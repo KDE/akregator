@@ -51,28 +51,28 @@ Item::Item(const QDomElement& element) : ElementWrapper(element)
 
 QString Item::title() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("title") );
+    return extractElementText(QString::fromLatin1("title") );
 }
 
 QString Item::link() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("link") );
+    return extractElementText(QString::fromLatin1("link") );
 }
 
 QString Item::description() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("description") );
+    return extractElementText(QString::fromLatin1("description") );
 }
 
 QString Item::content() const
 {
     // parse encoded stuff from content:encoded, xhtml:body and friends into content
-    return Tools::extractContent(element());
+    return Tools::extractContent(*this);
 }
 
 QList<Category> Item::categories() const
 {
-    QList<QDomElement> cats = Tools::elementsByTagName(element(), QString::fromLatin1("category"));
+    QList<QDomElement> cats = elementsByTagName(QString::fromLatin1("category"));
 
     QList<Category> categories;
 
@@ -87,12 +87,12 @@ QList<Category> Item::categories() const
 
 QString Item::comments() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("comments") );
+    return extractElementText(QString::fromLatin1("comments") );
 }
 
 QString Item::author() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("author") );
+    return extractElementText(QString::fromLatin1("author") );
 }
 
 Enclosure Item::enclosure() const
@@ -139,7 +139,7 @@ QDateTime Item::pubDate() const
 {
     QDateTime pubDate;
 
-    QString pubDateStr = Tools::extractElementText(element(), QString::fromLatin1("pubDate"));
+    QString pubDateStr = extractElementText(QString::fromLatin1("pubDate"));
     if (!pubDateStr.isNull())
     {
         time_t time = KRFCDate::parseDate(pubDateStr);

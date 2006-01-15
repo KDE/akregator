@@ -25,6 +25,7 @@
 
 #include "../abstractparser.h"
 
+class QDomDocument;
 class QString;
 
 namespace LibSyndication {
@@ -41,9 +42,24 @@ class Parser : public LibSyndication::AbstractParser
 
         bool accept(const LibSyndication::DocumentSource& source) const;
 
-        LibSyndication::AbstractDocument* parse(const LibSyndication::DocumentSource& source) const;
+        LibSyndication::AbstractDocumentPtr parse(const LibSyndication::DocumentSource& source) const;
         
         QString format() const;
+        
+    protected:
+        
+        /**
+         * converts an Atom 0.3 document to an Atom 1.0-similar document
+         * that can be parsed by our parser.
+         * 
+         * @param document a Atom 0.3 document. If it is not Atom 0.3, the 
+         * result is undefined.
+         * @return a new DOM document, suitable for our parser. This is not
+         * completely Atom 1.0-compliant (it might contain now obsolete 
+         * elements, like e.g. atom:created or atom:info), but "enough 1.0"
+         * for our purposes.
+         */
+        static QDomDocument convertAtom0_3(const QDomDocument& document);
 };
 
 } // namespace Atom

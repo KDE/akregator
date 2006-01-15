@@ -33,13 +33,15 @@ namespace LibSyndication {
 namespace RDF {
 
 class Content;
+class Document;
 class DublinCore;
 class Image;
 class Item;
 class Model;
 class Syndication;
 class TextInput;
-
+typedef KSharedPtr<Document> DocumentPtr;
+        
 class Document : public LibSyndication::AbstractDocument, public ResourceWrapper
 {
     

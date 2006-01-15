@@ -22,97 +22,36 @@
 
 #include "constants.h"
 #include "tools.h"
+#include "../elementwrapper.h"
 
 #include <QDomElement>
-#include <QIODevice>
 #include <QList>
 #include <QString>
-#include <QTextStream>
 
 namespace LibSyndication {
 namespace RSS2 {
 
-QString Tools::extractElementText(const QDomNode& parent, const QString& tagName)
+QString Tools::extractContent(const ElementWrapper& wrapper)
 {
-    if (parent.isNull())
-        return QString::null;
-
-    QDomNode node = parent.namedItem(tagName);
-
-    if (node.isNull() || !node.isElement())
-        return QString::null;
-    else
-        return node.toElement().text();
-}
-
-QString Tools::childNodesAsXML(const QDomNode& parent)
-{
-    if (parent.isNull())
-        return QString::null;
-
-    QDomNodeList list = parent.childNodes();
-    QString str;
-    QTextStream ts( &str, QIODevice::WriteOnly );
-    for (int i = 0; i < list.count(); ++i)
-        ts << list.item(i);
-    return str.trimmed();
-}
-
-QString Tools::extractContent(const QDomNode& parent)
-{
-    if (parent.isNull())
+    if (wrapper.isNull())
         return QString::null;
     
-    QList<QDomElement> list = elementsByTagNameNS(parent, Constants::contentNameSpace(), QString::fromLatin1("encoded"));
+    QList<QDomElement> list = wrapper.elementsByTagNameNS(Constants::contentNameSpace(), QString::fromLatin1("encoded"));
 
     if (!list.isEmpty())
         return list.first().text();
 
-    list = elementsByTagNameNS(parent, Constants::XHTMLNameSpace(), QString::fromLatin1("body"));
+    list = wrapper.elementsByTagNameNS(Constants::XHTMLNameSpace(), QString::fromLatin1("body"));
 
     if (!list.isEmpty())
-        return childNodesAsXML(list.first());
+        return ElementWrapper::childNodesAsXML(list.first());
 
-    list = elementsByTagNameNS(parent, Constants::XHTMLNameSpace(), QString::fromLatin1("div"));
+    list = wrapper.elementsByTagNameNS(Constants::XHTMLNameSpace(), QString::fromLatin1("div"));
 
     if (!list.isEmpty())
-        return childNodesAsXML(list.first());
+        return ElementWrapper::childNodesAsXML(list.first());
 
     return QString::null;
-
-}
-
-QList<QDomElement> Tools::elementsByTagName(const QDomNode& parent, const QString& tagName)
-{
-    QList<QDomElement> elements;
-    for (QDomNode n = parent.firstChild(); !n.isNull(); n = n.nextSibling())
-    {
-        if (n.isElement())
-        {
-            QDomElement e = n.toElement();
-            if (e.tagName() == tagName)
-                elements.append(e);
-        }
-    }
-    return elements;
-}
-
-QList<QDomElement> Tools::elementsByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& localName)
-{
-    if (parent.isNull())
-        return QList<QDomElement>();
-    
-    QList<QDomElement> elements;
-    for (QDomNode n = parent.firstChild(); !n.isNull(); n = n.nextSibling())
-    {
-        if (n.isElement())
-        {
-            QDomElement e = n.toElement();
-            if (e.localName() == localName && e.namespaceURI() == nsURI)
-                elements.append(e);
-        }
-    }
-    return elements;
 }
 
 } // namespace RSS2

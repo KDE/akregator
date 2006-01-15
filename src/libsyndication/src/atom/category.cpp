@@ -22,7 +22,6 @@
 
 #include "category.h"
 #include "constants.h"
-#include "tools.h"
 
 #include <QDomElement>
 #include <QString>
@@ -40,20 +39,17 @@ Category::Category(const QDomElement& element) : ElementWrapper(element)
 
 QString Category::term() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-    QString::fromLatin1("term"));
+    return element().attribute(QString::fromLatin1("term"));
 }
 
 QString Category::scheme() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-    QString::fromLatin1("scheme"));
+    return completeURI(element().attribute(QString::fromLatin1("scheme")));
 }
 
 QString Category::label() const
 {
-    return element().attributeNS(Constants::atom1NameSpace(),
-    QString::fromLatin1("label"));
+    return element().attribute(QString::fromLatin1("label"));
 }
 
 QString Category::debugInfo() const

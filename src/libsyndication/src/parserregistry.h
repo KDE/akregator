@@ -25,11 +25,14 @@
 
 #include <QString>
 
+template <class T> class KSharedPtr;
+
 namespace LibSyndication {
 
 class AbstractDocument;
 class AbstractParser;
 class DocumentSource;
+typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
 
 /**
  * Singleton that collects all the parsers for the various formats.
@@ -80,7 +83,7 @@ class ParserRegistry
          * @return The document parsed from the source, or NULL if no parser
          *         accepted the source.
          */
-        AbstractDocument* parse(const DocumentSource& source, const QString& formatHint=QString::null);
+        AbstractDocumentPtr parse(const DocumentSource& source, const QString& formatHint=QString::null);
 
     private:
 

@@ -28,6 +28,7 @@
 
 #include <QDomDocument>
 #include <QDomElement>
+#include <QRegExp>
 #include <QString>
 
 namespace LibSyndication {
@@ -51,7 +52,7 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
     return entryValid;
 }
 
-LibSyndication::AbstractDocument* Parser::parse(const LibSyndication::DocumentSource& source) const
+LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const
 {
     QDomDocument doc = source.asDomDocument();
 
@@ -60,11 +61,23 @@ LibSyndication::AbstractDocument* Parser::parse(const LibSyndication::DocumentSo
 
     
     QDomElement feed = doc.namedItem(QString::fromLatin1("feed")).toElement();
-    bool feedValid = !feed.isNull() && feed.namespaceURI() == Constants::atom1NameSpace();
+    
+    bool feedValid = !feed.isNull();
 
+    if (feedValid && feed.attribute(QString::fromLatin1("version"))
+        == QString::fromLatin1("0.3"))
+    {
+        doc = convertAtom0_3(doc);
+        feed = doc.namedItem(QString::fromLatin1("feed")).toElement();
+        
+    }
+
+    feedValid = !feed.isNull() && feed.namespaceURI() == Constants::atom1NameSpace();
+    
     if (feedValid)
     {
-        return new FeedDocument(feed);
+        FeedDocumentPtr ptr = new FeedDocument(feed);
+        return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
     }
 
     QDomElement entry = doc.namedItem(QString::fromLatin1("entry")).toElement();
@@ -72,7 +85,8 @@ LibSyndication::AbstractDocument* Parser::parse(const LibSyndication::DocumentSo
 
     if (entryValid)
     {
-        return new EntryDocument(entry);
+        EntryDocumentPtr ptr = new EntryDocument(feed);
+        return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
     }
 
     return 0;
@@ -81,6 +95,21 @@ LibSyndication::AbstractDocument* Parser::parse(const LibSyndication::DocumentSo
 QString Parser::format() const
 {
     return QString::fromLatin1("atom");
+}
+
+QDomDocument Parser::convertAtom0_3(const QDomDocument& doc)
+{
+    QString str = doc.toString();
+    
+    str.replace(QRegExp("(<[^>]*)http://purl.org/atom/ns#([^>]*>)"), "\\1http://www.w3.org/2005/Atom\\2");
+    str.replace(QRegExp("(<[^=>]*)issued([^>]*>)"), "\\1published\\2");
+    str.replace(QRegExp("(<[^=>]*)modified([^>]*>)"), "\\1updated\\2");
+    str.replace(QRegExp("(<[^=>]*generator[^>]*)url(\\s*=*>)"), "\\1uri\\2");
+    str.replace(QRegExp("(<[^=>]*)url([^>]*>)"), "\\1uri\\2");
+    str.replace(QRegExp("(<[^=>]*)copyright([^>]*>)"), "\\1rights\\2");
+    str.replace(QRegExp("(<[^=>]*)tagline([^>]*>)"), "\\1subtitle\\2");
+    
+    return DocumentSource(str.toUtf8()).asDomDocument();
 }
 
 } // namespace Atom

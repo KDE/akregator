@@ -27,7 +27,6 @@
 #include "link.h"
 #include "person.h"
 #include "source.h"
-#include "tools.h"
 
 #include <QDateTime>
 #include <QDomElement>
@@ -48,8 +47,8 @@ Entry::Entry(const QDomElement& element) : ElementWrapper(element)
 QList<Person> Entry::authors() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
-                                       QString::fromLatin1("author"));
+            elementsByTagNameNS(Constants::atom1NameSpace(), 
+                                QString::fromLatin1("author"));
     QList<Person> list;
                                        
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -67,8 +66,8 @@ QList<Person> Entry::authors() const
 QList<Person> Entry::contributors() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
-                                       QString::fromLatin1("contributor"));
+            elementsByTagNameNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("contributor"));
     QList<Person> list;
                                        
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -86,8 +85,8 @@ QList<Person> Entry::contributors() const
 QList<Category> Entry::categories() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
-                                       QString::fromLatin1("category"));
+            elementsByTagNameNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("category"));
     QList<Category> list;
     
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -104,17 +103,16 @@ QList<Category> Entry::categories() const
 
 QString Entry::id() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("id"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("id"));
 
 }
 
 QList<Link> Entry::links() const
 {
     QList<QDomElement> a = 
-            Tools::elementsByTagNameNS(element(), Constants::atom1NameSpace(), 
-                                       QString::fromLatin1("link"));
+            elementsByTagNameNS(Constants::atom1NameSpace(), 
+                                QString::fromLatin1("link"));
     QList<Link> list;
     
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -131,32 +129,29 @@ QList<Link> Entry::links() const
 
 QString Entry::rights() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("rights"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("rights"));
 }
 
 Source Entry::source() const
 {
-    return Source(Tools::firstElementByTagNameNS(element(),
-                   Constants::atom1NameSpace(),
-                   QString::fromLatin1("source")));
+    return Source(firstElementByTagNameNS(Constants::atom1NameSpace(),
+                  QString::fromLatin1("source")));
 }
 
 time_t Entry::published() const
 {
-    QString pub = Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
+    QString pub = extractElementTextNS(Constants::atom1NameSpace(),
                                        QString::fromLatin1("published"));
+    
     QDateTime dt = QDateTime::fromString(pub, Qt::ISODate);
     return dt.toTime_t();
 }
 
 time_t Entry::updated() const
 {
-    QString upd = Tools::extractElementTextNS(element(), 
-                                              Constants::atom1NameSpace(),
-                                              QString::fromLatin1("published"));
+    QString upd = extractElementTextNS(Constants::atom1NameSpace(),
+                                       QString::fromLatin1("published"));
     
     QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
     return dt.toTime_t();
@@ -164,22 +159,19 @@ time_t Entry::updated() const
 
 QString Entry::summary() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("summary"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("summary"));
 }
 
 QString Entry::title() const
 {
-    return Tools::extractElementTextNS(element(), 
-                                       Constants::atom1NameSpace(),
-                                       QString::fromLatin1("title"));
+    return extractElementTextNS(Constants::atom1NameSpace(),
+                                QString::fromLatin1("title"));
 }
 
 Content Entry::content() const
 {
-    return Content(Tools::firstElementByTagNameNS(element(),
-                   Constants::atom1NameSpace(),
+    return Content(firstElementByTagNameNS(Constants::atom1NameSpace(),
                    QString::fromLatin1("content")));
 }
 

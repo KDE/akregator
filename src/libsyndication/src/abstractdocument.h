@@ -43,7 +43,7 @@ typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
  *
  * @author Frank Osterfeld
  */
-class AbstractDocument
+class AbstractDocument : public KShared
 {
     public:
 

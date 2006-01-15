@@ -20,104 +20,30 @@
  *
  */
 
-#include "constants.h"
 #include "tools.h"
 
-#include <QDomElement>
-#include <QIODevice>
-#include <QList>
+#include <QDomDocument>
 #include <QString>
-#include <QTextStream>
 
 namespace LibSyndication {
 namespace Atom {
 
-QString Tools::extractElementText(const QDomNode& parent, const QString& tagName)
+bool Tools::isRelativeURL(const QString& url)
 {
-    if (parent.isNull())
-        return QString::null;
-
-    QDomNode node = parent.namedItem(tagName);
-
-    if (node.isNull() || !node.isElement())
-        return QString::null;
-    else
-        return node.toElement().text();
+    return false; // TODO
 }
-
-QString Tools::childNodesAsXML(const QDomNode& parent)
-{
-    if (parent.isNull())
-        return QString::null;
-
-    QDomNodeList list = parent.childNodes();
-    QString str;
-    QTextStream ts( &str, QIODevice::WriteOnly );
-    for (int i = 0; i < list.count(); ++i)
-        ts << list.item(i);
-    return str.trimmed();
-}
-
-QString Tools::extractElementTextNS(const QDomElement& parent, const QString& namespaceURI, const QString& localName)
-{
-    QDomElement el = firstElementByTagNameNS(parent, namespaceURI, localName);
     
-    if (el.isNull())
-        return QString::null;
-
-    return el.text().trimmed();
-}
-
-QList<QDomElement> Tools::elementsByTagName(const QDomNode& parent, const QString& tagName)
+QDomDocument Tools::convertAtom(const QDomDocument& document)
 {
-    QList<QDomElement> elements;
-    for (QDomNode n = parent.firstChild(); !n.isNull(); n = n.nextSibling())
-    {
-        if (n.isElement())
-        {
-            QDomElement e = n.toElement();
-            if (e.tagName() == tagName)
-                elements.append(e);
-        }
-    }
-    return elements;
-}
-
-QDomElement Tools::firstElementByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& localName)
-{
-    if (parent.isNull())
-        return QDomElement();
+    QString src = document.toString();
     
-    for (QDomNode n = parent.firstChild(); !n.isNull(); n = n.nextSibling())
-    {
-        if (n.isElement())
-        {
-            QDomElement e = n.toElement();
-            if (e.localName() == localName && e.namespaceURI() == nsURI)
-                return e;
-        }
-    }
-    
-    return QDomElement();
-}
-
-
-QList<QDomElement> Tools::elementsByTagNameNS(const QDomNode& parent, const QString& nsURI, const QString& localName)
-{
-    if (parent.isNull())
-        return QList<QDomElement>();
-    
-    QList<QDomElement> elements;
-    for (QDomNode n = parent.firstChild(); !n.isNull(); n = n.nextSibling())
-    {
-        if (n.isElement())
-        {
-            QDomElement e = n.toElement();
-            if (e.localName() == localName && e.namespaceURI() == nsURI)
-                elements.append(e);
-        }
-    }
-    return elements;
+    src = src.replace("http://purl.org/atom/ns#", "http://www.w3.org/2005/Atom");
+    src.replace(QRegExp("(<[^=>]*)issued([^>]*>)"), "\\1published\\2");
+    src.replace(QRegExp("(<[^=>]*)modified([^>]*>)"), "\\1updated\\2");
+    src.replace(QRegExp("(<[^=>]*generator[^>]*)url(\\s*=*>)"), "\\1uri\\2");
+    src.replace(QRegExp("(<[^=>]*)url([^>]*>)"), "\\1uri\\2");
+    src.replace(QRegExp("(<[^=>]*)copyright([^>]*>)"), "\\1rights\\2");
+    src.replace(QRegExp("(<[^=>]*)tagline([^>]*>)"), "\\1subtitle\\2");
 }
 
 } // namespace Atom

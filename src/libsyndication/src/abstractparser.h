@@ -64,7 +64,7 @@ class AbstractParser
          * @param source The document source to be parsed
          * @return a pointer to a newly created document parsed from @c source
          */
-        virtual AbstractDocument* parse(const DocumentSource& source) const = 0;
+        virtual AbstractDocumentPtr parse(const DocumentSource& source) const = 0;
 
         /**
          * Returns the name of the format supported by this

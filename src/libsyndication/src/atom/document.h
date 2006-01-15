@@ -39,9 +39,14 @@ namespace Atom {
 
 class Category;
 class Entry;
+class EntryDocument;
+class FeedDocument;
 class Generator;
 class Link;
 class Person;
+typedef KSharedPtr<EntryDocument> EntryDocumentPtr;
+typedef KSharedPtr<FeedDocument> FeedDocumentPtr;
+
 
 class FeedDocument : public LibSyndication::AbstractDocument, public ElementWrapper
 {

@@ -21,7 +21,6 @@
  */
 
 #include "image.h"
-#include "tools.h"
 
 #include <QDomElement>
 #include <QString>
@@ -44,18 +43,18 @@ Image::Image(const QDomElement& element) : ElementWrapper(element)
 
 QString Image::url() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("url"));
+    return extractElementText(QString::fromLatin1("url"));
 }
 
 QString Image::title() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("title"));
+    return extractElementText(QString::fromLatin1("title"));
     
 }
 
 QString Image::link() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("link"));
+    return extractElementText(QString::fromLatin1("link"));
     
 }
 
@@ -65,7 +64,7 @@ int Image::width() const
     bool ok;
     int c;
 
-    text = Tools::extractElementText(element(), QString::fromLatin1("width"));
+    text = extractElementText(QString::fromLatin1("width"));
     c = text.toInt(&ok);
     return ok ? c : 88; // set to default if not parsable
 }
@@ -76,14 +75,14 @@ int Image::height() const
     bool ok;
     int c;
 
-    text = Tools::extractElementText(element(), QString::fromLatin1("height"));
+    text = extractElementText(QString::fromLatin1("height"));
     c = text.toInt(&ok);
     return ok ? c : 31; // set to default if not parsable
 }
 
 QString Image::description() const
 {
-    return Tools::extractElementText(element(), QString::fromLatin1("description"));
+    return extractElementText(QString::fromLatin1("description"));
 }
 
 QString Image::debugInfo() const
