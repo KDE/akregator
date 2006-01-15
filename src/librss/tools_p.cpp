@@ -45,7 +45,7 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
 		return QString::null;
 
 	QDomElement e = node.toElement();
-	QString result;
+        QString result = e.text().stripWhiteSpace(); // let's assume plain text
 
         bool doHTMLCheck = true;
  
@@ -68,8 +68,7 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
             {
                 result = childNodesAsXML(e); // embedded XHMTL
             }
-            
-        }
+        }        
         
         if (doHTMLCheck) // check for HTML; not necessary for Atom:content
         {
@@ -79,11 +78,9 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
                     result = result = result.replace(QChar('\n'), "<br />");
             if(!hasPre)										// strip white spaces if no <pre>
                     result = result.simplifyWhiteSpace();
-        
-            if (result.isEmpty())
-                    return QString::null;
         }
-	return result;
+        
+        return result.isEmpty() ? QString::null : result;
 }
 
 QString RSS::extractTitle(const QDomNode & parent)
