@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     file.close();
 
     DocumentSource src(raw);
-    AbstractDocument* doc = ParserRegistry::self()->parse(src);
+    AbstractDocumentPtr doc = ParserRegistry::self()->parse(src);
 
     if (doc)
     {
