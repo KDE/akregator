@@ -156,7 +156,10 @@ time_t FeedDocument::updated() const
     QString upd = extractElementTextNS(Constants::atom1NameSpace(),
                                        QString::fromLatin1("updated"));
     QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
-    return dt.toTime_t();
+    time_t time = dt.toTime_t() ;
+    if (time == -1)
+        return 0;
+    return time;
 }
 
 QList<Link> FeedDocument::links() const

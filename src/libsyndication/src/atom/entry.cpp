@@ -145,7 +145,10 @@ time_t Entry::published() const
                                        QString::fromLatin1("published"));
     
     QDateTime dt = QDateTime::fromString(pub, Qt::ISODate);
-    return dt.toTime_t();
+    time_t time = dt.toTime_t() ;
+    if (time == -1)
+        return 0;
+    return time;
 }
 
 time_t Entry::updated() const
@@ -154,7 +157,10 @@ time_t Entry::updated() const
                                        QString::fromLatin1("published"));
     
     QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
-    return dt.toTime_t();
+    time_t time = dt.toTime_t() ;
+    if (time == -1)
+        return 0;
+    return time;
 }
 
 QString Entry::summary() const
