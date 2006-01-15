@@ -203,7 +203,7 @@ QString ElementWrapper::extractElementTextNS(const QString& namespaceURI, const 
     if (el.isNull())
         return QString::null;
 
-    return el.text().trimmed();
+    return el.text().simplified();
 }
 
 QList<QDomElement> ElementWrapper::elementsByTagName(const QString& tagName) const

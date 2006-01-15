@@ -32,6 +32,7 @@ class Constants
 {
     public:
         static QString atom1NameSpace();
+        static QString atom0_3NameSpace();
 };
 
 } // namespace Atom

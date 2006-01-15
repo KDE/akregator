@@ -41,7 +41,7 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
         return false;
     
     QDomElement feed = doc.namedItem(QString::fromLatin1("feed")).toElement();
-    bool feedValid = !feed.isNull() && feed.namespaceURI() == Constants::atom1NameSpace();
+    bool feedValid = !feed.isNull() && (feed.namespaceURI() == Constants::atom1NameSpace() || feed.namespaceURI() == Constants::atom0_3NameSpace());
 
     if (feedValid)
         return true;
