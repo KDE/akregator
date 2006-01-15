@@ -47,21 +47,42 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
 	QDomElement e = node.toElement();
 	QString result;
 
-	if (elemName == "content" && ((e.hasAttribute("mode") && e.attribute("mode") == "xml") || !e.hasAttribute("mode")))
-		result = childNodesAsXML(node);
-	else
-		result = e.text();
-
-	bool hasPre = result.contains("<pre>",false);
-	bool hasHtml = hasPre || result.contains("<");	// FIXME: test if we have html, should be more clever -> regexp
-	if(!isInlined && !hasHtml)						// perform nl2br if not a inline elt and it has no html elts
-		result = result = result.replace(QChar('\n'), "<br />");
-	if(!hasPre)										// strip white spaces if no <pre>
-		result = result.simplifyWhiteSpace();
-
-	if (result.isEmpty())
-		return QString::null;
-
+        bool doHTMLCheck = true;
+ 
+        if (elemName == "content") // we have Atom here
+        {
+            doHTMLCheck = false;
+            // the first line is always the Atom 0.3, the second Atom 1.0
+            if (( e.hasAttribute("mode") && e.attribute("mode") == "escaped" && e.attribute("type") == "text/html" )
+            || (!e.hasAttribute("mode") && e.attribute("type") == "html"))
+            {
+                result = KCharsets::resolveEntities(e.text().simplifyWhiteSpace()); // escaped html
+            }
+            else if (( e.hasAttribute("mode") && e.attribute("mode") == "escaped" && e.attribute("type") == "text/plain" )
+                       || (!e.hasAttribute("mode") && e.attribute("type") == "text"))
+            {
+                result = e.text().stripWhiteSpace(); // plain text
+            }
+            else if (( e.hasAttribute("mode") && e.attribute("mode") == "xml" )
+                       || (!e.hasAttribute("mode") && e.attribute("type") == "xhtml"))
+            {
+                result = childNodesAsXML(e); // embedded XHMTL
+            }
+            
+        }
+        
+        if (doHTMLCheck) // check for HTML; not necessary for Atom:content
+        {
+            bool hasPre = result.contains("<pre>",false);
+            bool hasHtml = hasPre || result.contains("<");	// FIXME: test if we have html, should be more clever -> regexp
+            if(!isInlined && !hasHtml)						// perform nl2br if not a inline elt and it has no html elts
+                    result = result = result.replace(QChar('\n'), "<br />");
+            if(!hasPre)										// strip white spaces if no <pre>
+                    result = result.simplifyWhiteSpace();
+        
+            if (result.isEmpty())
+                    return QString::null;
+        }
 	return result;
 }
 
