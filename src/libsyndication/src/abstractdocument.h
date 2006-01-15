@@ -49,6 +49,17 @@ class AbstractDocument : public KShared
 
         virtual ~AbstractDocument() {}
 
+        /**
+         * This must be implemented for the double dispatch
+         * technique (Visitor pattern).
+         * 
+         * The usual implementation is
+         * @code
+         * return visitor->visit(this);
+         * @endcode
+         * 
+         * See also DocumentVisitor.
+         */
         virtual bool accept(DocumentVisitor* visitor) = 0;
 
         /**

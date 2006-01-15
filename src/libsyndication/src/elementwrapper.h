@@ -30,20 +30,52 @@ template <class T> class QList;
 namespace LibSyndication {
 
 /**
- * A wrapper for XML elements. Base class for wrapper classes doing
- * lazy parsing.
+ * A wrapper for XML elements. This is the base class for the (lazy) wrappers
+ * used in the RSS2 and Atom parsers. The wrapped element can be accessed
+ * via element(). It also contains several helper functions for XML processing.
  *
  * @author Frank Osterfeld
  */
 class ElementWrapper
 {
     public:
+        
+        /** 
+         * creates a element wrapper wrapping a null element.
+         * isNull() will return @c true for these instances.
+         */
         ElementWrapper();
+        
+        /**
+         * Copy constructor.The instances share the same element.
+         * @param other the element wrapper to copy
+         */
         ElementWrapper(const ElementWrapper& other);
+        
+        /**
+         * Creates an element wrapper wrapping the DOM element @c element
+         * @param element the element to wrap
+         */
         ElementWrapper(const QDomElement& element);
+        
+        /**
+         * destructor
+         */
         virtual ~ElementWrapper();
 
+        /**
+         * assigns another element wrapper to this one. Both instances
+         * share the same wrapped element instance.
+         * 
+         * @param other the element wrapper to assign
+         * @return reference to this instance
+         */
         ElementWrapper& operator=(const ElementWrapper& other);
+        
+        /**
+         * compares two wrappers
+         * @return @c true iff the wrapped elements are equal.
+         */
         bool operator==(const ElementWrapper& other) const;
         
         /**
@@ -94,8 +126,42 @@ class ElementWrapper
          */
         QString completeURI(const QString& uri) const;
         
+        /**
+         * extracts the text from a sub-element, respecting namespaces. For 
+         * instance, when the wrapped element is @c <thisElement>:
+         * @code
+         * <thisElement>
+         *     <atom:title>Hi there</atom:title>
+         * </thisElement>    
+         * @endcode
+         * @code extractElementText("http://www.w3.org/2005/Atom", "title") 
+         * @endcode will return the text content of @c atom:title, "Hi there".
+         * (Assuming that "atom" is defined as "http://www.w3.org/2005/Atom")
+         * 
+         * @param namespaceURI the namespace URI of the element to extract
+         * @param localName the local name (local within its namespace) of the
+         * element to extract
+         * @return the (trimmed) text content of @c localName, or QString::null if
+         * there is no such tag
+         */
+
         QString extractElementTextNS(const QString& namespaceURI, const QString& localName) const;
         
+        /**
+         * extracts the text from a sub-element, ignoring namespaces. For 
+         * instance, when the wrapped element is @c <thisElement>:
+         * @code
+         * <thisElement>
+         *     <title>Hi there</title>
+         * </thisElement>    
+         * @endcode
+         * @c extractElementText("title") will return the text content
+         * of @c title, "Hi there".
+         * 
+         * @param tagName the name of the element to extract
+         * @return the (trimmed) text content of @c tagName, or QString::null if
+         * there is no such tag
+         */
         QString extractElementText(const QString& tagName) const;
 
         /**
@@ -104,6 +170,12 @@ class ElementWrapper
          */
         QList<QDomElement> elementsByTagName(const QString& tagName) const;
     
+        /**
+         * returns the child nodes of the wrapped element as XML.
+         * 
+         * See childNodesAsXML(const QDomElement& parent) for details
+         * @return XML serialization of the wrapped element's children
+         */
         QString childNodesAsXML() const;
         
         /**
@@ -118,6 +190,8 @@ class ElementWrapper
          * <pre><p>foo</p><blockquote>bar</blockquote></pre> 
          * @endcode
          *
+         * @param parent the DOM element whose children should be returned as XML
+         * @return XML serialization of parent's children
          */
         static QString childNodesAsXML(const QDomElement& parent);
         
@@ -129,6 +203,16 @@ class ElementWrapper
          */
         QList<QDomElement> elementsByTagNameNS(const QString& nsURI, const QString& tagName) const;
         
+        /**
+         * searches the direct children of the wrapped element for an element
+         * with a given namespace and tag name.
+         * 
+         * @param nsURI the namespace URI
+         * @param tagName the local name (local within its namespace) of the 
+         * element to search for
+         * @return the first child element with the given namespace URI and tag name,
+         * or a null element if no such element was found.
+         */
         QDomElement firstElementByTagNameNS(const QString& nsURI, const QString& tagName) const;
         
     private:

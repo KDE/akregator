@@ -40,6 +40,9 @@ class AbstractParser
 {
     public:
 
+        /** 
+         * dtor
+         */
         virtual ~AbstractParser() {}
 
         /**
