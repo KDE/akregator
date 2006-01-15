@@ -55,7 +55,7 @@ Document::~Document()
 
 bool Document::accept(DocumentVisitor* visitor)
 {
-    return visitor->visit(this);
+    return visitor->visitRDFDocument(this);
 }
 
 QString Document::title() const

@@ -26,8 +26,13 @@
 #include "../atom/entry.h"
 #include "../item.h"
 
+template <class T> class KSharedPtr;
+
 namespace LibSyndication {
 namespace Mapper {
+
+class ItemAtomImpl;
+typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
 
 class ItemAtomImpl : public LibSyndication::Item
 {

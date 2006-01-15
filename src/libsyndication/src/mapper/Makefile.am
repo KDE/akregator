@@ -4,6 +4,6 @@ noinst_LTLIBRARIES = libmapperrss2local.la libmapperrdflocal.la libmapperatomloc
 
 # noinst_HEADERS = 
 
-libmapperrss2local_la_SOURCES = itemrss2impl.cpp
-libmapperrdflocal_la_SOURCES = itemrdfimpl.cpp
-libmapperatomlocal_la_SOURCES = itematomimpl.cpp
+libmapperrss2local_la_SOURCES = feedrss2impl.cpp itemrss2impl.cpp
+libmapperrdflocal_la_SOURCES = feedrdfimpl.cpp itemrdfimpl.cpp
+libmapperatomlocal_la_SOURCES = feedatomimpl.cpp itematomimpl.cpp

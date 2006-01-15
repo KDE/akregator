@@ -60,13 +60,13 @@ class DocumentVisitor
 
         virtual bool visit(AbstractDocument* document);
 
-        virtual bool visit(LibSyndication::RSS2::Document* document) { return false; }
+        virtual bool visitRSS2Document(LibSyndication::RSS2::Document* document) { return false; }
         
-        virtual bool visit(LibSyndication::RDF::Document* document) { return false; }
+        virtual bool visitRDFDocument(LibSyndication::RDF::Document* document) { return false; }
         
-        virtual bool visit(LibSyndication::Atom::FeedDocument* document) { return false; }
+        virtual bool visitAtomFeedDocument(LibSyndication::Atom::FeedDocument* document) { return false; }
         
-        virtual bool visit(LibSyndication::Atom::EntryDocument* document) { return false; }
+        virtual bool visitAtomEntryDocument(LibSyndication::Atom::EntryDocument* document) { return false; }
 };
 
 } // namespace LibSyndication

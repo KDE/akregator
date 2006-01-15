@@ -48,7 +48,7 @@ FeedDocument::FeedDocument(const QDomElement& element)  : ElementWrapper(element
 
 bool FeedDocument::accept(DocumentVisitor* visitor)
 {
-    return visitor->visit(this);
+    return visitor->visitAtomFeedDocument(this);
 }
 
 QList<Person> FeedDocument::authors() const
@@ -269,7 +269,7 @@ EntryDocument::EntryDocument(const QDomElement& element)  : ElementWrapper(eleme
 
 bool EntryDocument::accept(DocumentVisitor* visitor)
 {
-    return visitor->visit(this);
+    return visitor->visitAtomEntryDocument(this);
 }
 
 Entry EntryDocument::entry() const

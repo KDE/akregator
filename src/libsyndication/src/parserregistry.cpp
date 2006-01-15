@@ -22,7 +22,15 @@
 
 #include "abstractdocument.h"
 #include "abstractparser.h"
+#include "documentvisitor.h"
 #include "parserregistry.h"
+#include "feed.h"
+#include "atom/document.h"
+#include "rdf/document.h"
+#include "rss2/document.h"
+#include "mapper/feedatomimpl.h"
+#include "mapper/feedrdfimpl.h"
+#include "mapper/feedrss2impl.h"
 
 #include <QHash>
 #include <QString>
@@ -39,6 +47,70 @@ class ParserRegistry::ParserRegistryPrivate
 {
     public:
     QHash<QString, AbstractParser*> parsers;
+    
+    ParserRegistryPrivate(ParserRegistry* reg) : p(reg)
+    {
+        docVisitor = new DocVisitor;
+    }
+    
+    ~ParserRegistryPrivate()
+    {
+        delete docVisitor;
+    }
+    
+    class DocVisitor : public LibSyndication::DocumentVisitor
+    {
+        public:
+            
+        FeedPtr createFeed(AbstractDocumentPtr ptr)
+        {
+            m_ptr = ptr;
+            visit(ptr.data());
+            return feedptr;
+        }
+        
+        bool visitAtomFeedDocument(LibSyndication::Atom::FeedDocument* document)
+        {
+            LibSyndication::Atom::FeedDocumentPtr tptr = 
+                LibSyndication::Atom::FeedDocumentPtr::staticCast(m_ptr);
+            
+            feedptr = new LibSyndication::Mapper::FeedAtomImpl(tptr);
+            return true;
+        }
+        
+        bool visitAtomEntryDocument(LibSyndication::Atom::EntryDocument* /*document*/)
+        {
+            // TODO
+            return false;
+        }
+        
+        bool visitRDFDocument(LibSyndication::RDF::Document* document)
+        {
+            LibSyndication::RDF::DocumentPtr tptr = 
+                    LibSyndication::RDF::DocumentPtr::staticCast(m_ptr);
+            
+            feedptr = new LibSyndication::Mapper::FeedRDFImpl(tptr);
+            return true;
+        }
+        
+        bool visitRSS2Document(LibSyndication::RSS2::Document* document)
+        {
+            LibSyndication::RSS2::DocumentPtr tptr = 
+                    LibSyndication::RSS2::DocumentPtr::staticCast(m_ptr);
+            
+            feedptr = new LibSyndication::Mapper::FeedRSS2Impl(tptr);
+            return true;
+        }
+        
+        FeedPtr feedptr;
+        AbstractDocumentPtr m_ptr;
+    };
+    
+    DocVisitor* docVisitor;
+    
+    private:
+        
+    ParserRegistry* p;
 };
 
 ParserRegistry* ParserRegistry::self()
@@ -48,8 +120,9 @@ ParserRegistry* ParserRegistry::self()
     return m_self;
 }
 
-ParserRegistry::ParserRegistry() : d(new ParserRegistryPrivate)
+ParserRegistry::ParserRegistry()
 {
+    d = new ParserRegistryPrivate(this);
 }
 
 ParserRegistry::~ParserRegistry()
@@ -72,19 +145,19 @@ void ParserRegistry::unregisterParser(AbstractParser* parser)
     d->parsers.remove(parser->format());
 }
 
-AbstractDocumentPtr ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
+FeedPtr ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
 {
     if (d->parsers.contains(formatHint))
     {
         if (d->parsers[formatHint]->accept(source))
-            return d->parsers[formatHint]->parse(source);
+            return d->docVisitor->createFeed(d->parsers[formatHint]->parse(source));
     }
 
     Q_FOREACH (AbstractParser* i, d->parsers)
     {
         if (i->accept(source))
         {
-            return i->parse(source);
+            return d->docVisitor->createFeed(i->parse(source));
         }
     }
     return 0;

@@ -20,21 +20,32 @@
  *
  */
 
-#ifndef LIBSYNDICATION_ITEM_H
-#define LIBSYNDICATION_ITEM_H
+#ifndef LIBSYNDICATION_FEED_H
+#define LIBSYNDICATION_FEED_H
 
 #include <ksharedptr.h>
 
+template <class T> class QList;
+class QString;
+
 namespace LibSyndication {
 
+class AbstractDocument;
+typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
+class Feed;
+typedef KSharedPtr<Feed> FeedPtr;
 class Item;
 typedef KSharedPtr<Item> ItemPtr;
-    
-class Item : public KShared
+
+class Feed : public KShared
 {
     public:
         
-        virtual ~Item() {}
+        virtual ~Feed() {}
+        
+        virtual AbstractDocumentPtr document() const = 0;
+        
+        virtual QList<ItemPtr> items() const = 0;
         
         virtual QString title() const = 0;
         
@@ -42,27 +53,11 @@ class Item : public KShared
         
         virtual QString description() const = 0;
         
-        /**
-         * 
-         * TODO: specify format (HTML)
-         * @return content, or QString::null if not set
-         */
-        virtual QString content() const = 0;
-        
         virtual QString author() const = 0;
         
         virtual QString language() const = 0;
-        
-        /**
-         * returns an ID that identifies the item within its feed. The ID must
-         * be unique within its feed. If no ID is provided by the feed source,
-         * a hash from title, description and content is returned
-         */
-        virtual QString id() const = 0;
-        
-        //Enclosure enclosure() const = 0;
 };
     
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_ITEM_H
+#endif // LIBSYNDICATION_FEED_H

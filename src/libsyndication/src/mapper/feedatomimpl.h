@@ -20,49 +20,44 @@
  *
  */
 
-#ifndef LIBSYNDICATION_ITEM_H
-#define LIBSYNDICATION_ITEM_H
+#ifndef LIBSYNDICATION_MAPPER_FEEDATOMIMPL_H
+#define LIBSYNDICATION_MAPPER_FEEDATOMIMPL_H
 
-#include <ksharedptr.h>
+#include "../atom/document.h"
+#include "../feed.h"
 
 namespace LibSyndication {
+namespace Mapper {
 
-class Item;
-typedef KSharedPtr<Item> ItemPtr;
-    
-class Item : public KShared
+class FeedAtomImpl;
+typedef KSharedPtr<FeedAtomImpl> FeedAtomImplPtr;
+
+class FeedAtomImpl : public LibSyndication::Feed
 {
     public:
         
-        virtual ~Item() {}
+        FeedAtomImpl(LibSyndication::Atom::FeedDocumentPtr doc);
         
-        virtual QString title() const = 0;
+        LibSyndication::AbstractDocumentPtr document() const;
         
-        virtual QString link() const = 0;
+        QList<LibSyndication::ItemPtr> items() const;
+                
+        QString title() const;
         
-        virtual QString description() const = 0;
+        QString link() const;
         
-        /**
-         * 
-         * TODO: specify format (HTML)
-         * @return content, or QString::null if not set
-         */
-        virtual QString content() const = 0;
+        QString description() const;
         
-        virtual QString author() const = 0;
+        QString author() const;
         
-        virtual QString language() const = 0;
+        QString language() const;
         
-        /**
-         * returns an ID that identifies the item within its feed. The ID must
-         * be unique within its feed. If no ID is provided by the feed source,
-         * a hash from title, description and content is returned
-         */
-        virtual QString id() const = 0;
+    private:
         
-        //Enclosure enclosure() const = 0;
+        LibSyndication::Atom::FeedDocumentPtr m_doc;
 };
-    
+
+} // namespace Mapper
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_ITEM_H
+#endif // LIBSYNDICATION_MAPPER_FEEDATOMIMPL_H

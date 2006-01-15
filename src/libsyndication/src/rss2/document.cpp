@@ -288,7 +288,7 @@ QString Document::debugInfo() const
 
 bool Document::accept(DocumentVisitor* visitor)
 {
-    return visitor->visit(this);
+    return visitor->visitRSS2Document(this);
 }
 
 } // namespace RSS2

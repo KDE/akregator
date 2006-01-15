@@ -26,8 +26,13 @@
 #include "../rss2/item.h"
 #include "../item.h"
 
+template <class T> class KSharedPtr;
+
 namespace LibSyndication {
 namespace Mapper {
+
+    class ItemRSS2Impl;
+typedef KSharedPtr<ItemRSS2Impl> ItemRSS2ImplPtr;
 
 class ItemRSS2Impl : public LibSyndication::Item
 {

@@ -26,8 +26,13 @@
 #include "../rdf/item.h"
 #include "../item.h"
 
+template <class T> class KSharedPtr;
+
 namespace LibSyndication {
 namespace Mapper {
+
+class ItemRDFImpl;
+typedef KSharedPtr<ItemRDFImpl> ItemRDFImplPtr;
 
 class ItemRDFImpl : public LibSyndication::Item
 {

@@ -24,6 +24,7 @@
 
 #include "abstractdocument.h"
 #include "documentsource.h"
+#include "feed.h"
 #include "parserregistry.h"
 #include "atom/parser.h"
 #include "rdf/parser.h"
@@ -64,16 +65,16 @@ int main(int argc, char **argv)
     file.close();
 
     DocumentSource src(raw);
-    AbstractDocumentPtr doc = ParserRegistry::self()->parse(src);
+    FeedPtr feed = ParserRegistry::self()->parse(src);
 
-    if (doc)
-    {
-         std::cout << doc->debugInfo().toLocal8Bit().data() << std::endl;
-    }
-    else
+    if (!feed)
     {
          std::cout << "Couldn't parse document " << argv[1] << std::endl;
          return 1;
     }
+
+    AbstractDocumentPtr doc = feed->document();
+
+    std::cout << doc->debugInfo().toLocal8Bit().data() << std::endl;
 }
 
