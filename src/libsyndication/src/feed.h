@@ -37,25 +37,83 @@ typedef KSharedPtr<Feed> FeedPtr;
 class Item;
 typedef KSharedPtr<Item> ItemPtr;
 
+/**
+ * This class represents a feed document ("Channel" in RSS, "Feed" in Atom).
+ * It contains a ordered list of items (e.g., articles) and a description of the
+ * feed (title, homepage, etc.). This interface abstracts from format-specific 
+ * details of e.g. Atom::FeedDocument or RSS::Document and provides a 
+ * format-agnostic, unified view on the feed. 
+ * This way, applications using libsyndication don't have to care about the 
+ * syndication format jungle at all. If necessary, format details and specialities
+ * can be accessed through document() method.
+ *
+ * @author Frank Osterfeld
+ */
 class Feed : public KShared
 {
     public:
         
         virtual ~Feed() {}
         
+        /**
+         * returns the format-specific document this abstraction wraps.
+         * If you want to access format-specific properties, this can be used,
+         * in combination with a DocumentVisitor.
+         * 
+         * @return a shared pointer to the wrapped document.
+         */
         virtual AbstractDocumentPtr document() const = 0;
         
+        /**
+         * A list of items, in the order they were parsed from the feed source.
+         * (usually reverse chronological order, see also Item::datePublished()
+         * for sorting purposes).
+         * 
+         * @return list of items
+         */
         virtual QList<ItemPtr> items() const = 0;
         
+        /**
+         * The title of the feed.
+         * TODO: specify format (whether HTML is allowed or not, etc)
+         * 
+         * @return the title, or QString::null if none is specified
+         */
         virtual QString title() const = 0;
         
+        /** 
+         * returns a link pointing to a website associated with this channel.
+         * This is e.g. a news site, a blog etc.
+         * 
+         * @return a WWW link, or QString::null if none is specified
+         */
         virtual QString link() const = 0;
         
+        /**
+         * A description of the feed.
+         * This string may contain HTML markup (importantly, "<", ">", "&" occurring
+         * in the text are escaped!)
+         * 
+         * @return the description as HTML, or QString::null if none is specified
+         */
         virtual QString description() const = 0;
         
+        /**
+         * TODO
+         * 
+         * @return TODO
+         */
         virtual QString author() const = 0;
         
+        /**
+         * TODO
+         * 
+         * @return TODO
+         */
         virtual QString language() const = 0;
+        
+        //virtual Image image() const = 0;
+        //virtual TextInput textInput() const = 0; 
 };
     
 } // namespace LibSyndication
