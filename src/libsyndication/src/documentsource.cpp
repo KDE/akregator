@@ -34,17 +34,22 @@ class DocumentSource::DocumentSourcePrivate : public KShared
     QByteArray array;
     mutable QDomDocument domDoc;
     mutable bool parsed;
+    mutable unsigned int hash;
+    mutable bool calculatedHash;
 };
 
 DocumentSource::DocumentSource() : d(new DocumentSourcePrivate)
 {
     d->parsed = true;
+    d->calculatedHash = true;
+    d->hash = 0;
 }
 
 
 DocumentSource::DocumentSource(const QByteArray& source) : d(new DocumentSourcePrivate)
 {
     d->array = source;
+    d->calculatedHash = false;
     d->parsed = false;
 }
 
@@ -85,4 +90,31 @@ const QDomDocument& DocumentSource::asDomDocument() const
     return d->domDoc;
 }
 
+unsigned int DocumentSource::size() const
+{
+    return d->array.size();
+}
+
+unsigned int DocumentSource::hash() const
+{
+    if (!d->calculatedHash)
+    {
+        if (d->array.isEmpty())
+        {
+            d->hash = 0;
+        }
+        else
+        {
+            const char* s = d->array.data();
+            uint hash = 5381;
+            int c;
+            while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
+            d->hash = hash;
+        }
+        d->calculatedHash = true;
+    }
+    
+    return d->hash;
+}
+        
 } // namespace LibSyndication

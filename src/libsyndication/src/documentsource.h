@@ -88,6 +88,25 @@ class DocumentSource
         const QByteArray& asByteArray() const;
 
         /**
+         * returns the size the source array in bytes.
+         *
+         * @return the size of the byte array in bytes. 
+         * See also QByteArray::size()
+         */
+        unsigned int size() const;
+
+        /**
+         * calculates a hash value for the source array.
+         * This can be used to decide whether the feed has changed since
+         * the last fetch. If the hash hasn't changed since the last fetch,
+         * the feed wasn't modified with high probability.
+         * 
+         * @return the hash calculated from the source, 0 if the
+         * source is empty
+         */
+        unsigned int hash() const;
+
+        /**
          * Returns the feed source as DOM document.
          * The document is parsed only on the first call of this method
          * and then cached.
