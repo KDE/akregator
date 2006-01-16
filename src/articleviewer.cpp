@@ -637,6 +637,7 @@ void ArticleViewer::slotUpdateCombinedView()
         return slotClear();
 
     QValueList<Article> articles = m_node->articles();
+    qHeapSort(articles);
     QValueList<Article>::ConstIterator end = articles.end();
     QValueList<Article>::ConstIterator it = articles.begin();
 
