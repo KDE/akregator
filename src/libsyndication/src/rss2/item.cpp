@@ -53,7 +53,17 @@ Item::Item(const QDomElement& element) : ElementWrapper(element)
 
 QString Item::title() const
 {
-    return extractElementText(QString::fromLatin1("title") );
+    QString t = extractElementText(QString::fromLatin1("title"));
+    
+    if (!t.isNull())
+    {
+        return t;
+    }
+    else
+    {
+        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                    QString::fromLatin1("title"));
+    }
 }
 
 QString Item::link() const
@@ -63,7 +73,17 @@ QString Item::link() const
 
 QString Item::description() const
 {
-    return extractElementText(QString::fromLatin1("description") );
+    QString d = extractElementText(QString::fromLatin1("description"));
+    
+    if (!d.isNull())
+    {
+        return d;
+    }
+    else
+    {
+        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                    QString::fromLatin1("description"));
+    }
 }
 
 QString Item::content() const
@@ -94,7 +114,17 @@ QString Item::comments() const
 
 QString Item::author() const
 {
-    return extractElementText(QString::fromLatin1("author") );
+    QString a = extractElementText(QString::fromLatin1("author") );
+    if (!a.isNull()) 
+    {
+        return a;
+    }
+    else
+    {
+        // if author is not available, fall back to dc:creator
+        return extractElementTextNS(Constants::dublinCoreNamespace(), QString::fromLatin1("creator") );
+    }
+    
 }
 
 Enclosure Item::enclosure() const

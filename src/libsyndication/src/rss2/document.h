@@ -70,6 +70,10 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
         /**
          * The title of the channel.
          *
+         * This method returns the content of the @c <title> element. If
+         * @c <title> is not available, the method returns * @c <dc:title> instead, if available.
+         *
+         * 
          * @return title TODO: more on escaping/HTML
          */
         QString title() const;
@@ -83,7 +87,10 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
     
         /**
          * Phrase or sentence describing the channel.
+         * This method returns the content of the @c <description> element. If
+         * @c <description> is not available, the method returns * @c <dc:description> instead, if available.
          *
+         * 
          * @return TODO
          */
         QString description() const;
@@ -95,8 +102,12 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
         QString language() const;
     
         /**
+         * 
          * Copyright notice for content in the channel.
-         *
+         * This method returns the content of the @c <copyright> 
+         * element. If @c <copyright> is not available, the method returns
+         * @c <dc:rights> instead, if available.
+         * 
          * @return TODO
          */
         QString copyright() const;
@@ -121,8 +132,9 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
          * the New York Times publishes on a daily basis, the publication date
          * flips once every 24 hours. That's when the pubDate of the channel
          * changes.
-         * This method returns the content of the @c <pubDate> tag. If @c <pubDate>
-         * is not available, the method looks for @c <dc:date>.
+         * This method returns the content of the @c <pubDate> element. If 
+         * @c <pubDate> is not available, the method returns
+         * @c <dc:date> instead, if available.
          * 
          * @return the publication date, or an invalid QDateTime if 
          */

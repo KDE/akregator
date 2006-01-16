@@ -68,6 +68,9 @@ class Item : public ElementWrapper
          * @return The title in plain text. Note that e.g. characters like <,
          * >, & are not escaped!
          * (TODO: this might change, check what makes more sense)
+         * This method returns the content of the @c <title> element. If
+         * @c <title> is not available, the method returns
+         * @c <dc:title> instead, if available.
          */
         QString title() const;
 
@@ -83,6 +86,8 @@ class Item : public ElementWrapper
          * The item synopsis. This might contain a short summary of the
          * item, but also the full content. If content() is set, that usually
          * contains the full content instead.
+         * This method returns the content of the @c <description> element. If
+         * @c <description> is not available, the method returns * @c <dc:description> instead, if available.
          * 
          * @return a string in HTML format (whitespace is irrelevant, <br/> is
          * used for newlines, "&", "<", ">" are escaped) summarizing the item.
@@ -96,7 +101,9 @@ class Item : public ElementWrapper
          * xhtml:div. If this is not set, description() might also contain the
          * content of the item.
          * 
-         * @return the content in HTML format (whitespace is irrelevant, <br/> is used for newlines, "&", "<", ">" are escaped) If no content is specified, QString::null is returned.
+         * @return the content in HTML format (whitespace is irrelevant, <br/> 
+         * is used for newlines, "&", "<", ">" are escaped) If no content is
+         * specified, QString::null is returned.
          */
         QString content() const;
 
@@ -120,6 +127,9 @@ class Item : public ElementWrapper
          * the article that this item describes. For collaborative weblogs, the
          * author of the item might be different from the managing editor or
          * webmaster.
+         * This method returns the content of the @c <author> element. If
+         * @c <author> is not available, the method returns
+         * @c <dc:creator> instead, if available.
          * 
          * @return an email address of the author, or QString::null if not
          * specified
@@ -161,8 +171,9 @@ class Item : public ElementWrapper
         /**
          * Indicates when the item was published. If it's a date in the future,
          * yous may choose to not display the item until that date.
-         * This returns the content of the @c <pubDate> tag. If @c <pubDate>
-         * is not available, the method looks for @c <dc:date>.
+         * This returns the content of the @c <pubDate> element. If @c <pubDate>
+         * is not available, the method returns @c <dc:date> instead,
+         * if available.
          * 
          * @return the publication date, or an invalid QDateTime object if
          * either no date was specified or parsing failed.

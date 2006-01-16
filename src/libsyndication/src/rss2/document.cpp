@@ -25,6 +25,7 @@
 
 #include "category.h"
 #include "cloud.h"
+#include "constants.h"
 #include "document.h"
 #include "image.h"
 #include "item.h"
@@ -64,7 +65,17 @@ Document::Document() : AbstractDocument(), ElementWrapper()
 
 QString Document::title() const
 {
-    return extractElementText(QString::fromLatin1("title"));
+    QString t = extractElementText(QString::fromLatin1("title"));
+    
+    if (!t.isNull())
+    {
+        return t;
+    }
+    else
+    {
+        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                    QString::fromLatin1("title"));
+    }
 }
 
 QString Document::link() const
@@ -74,7 +85,19 @@ QString Document::link() const
 
 QString Document::description() const
 {
-    return extractElementText(QString::fromLatin1("description"));
+    QString d = extractElementText(QString::fromLatin1("description"));
+    
+    if (!d.isNull())
+    {
+        return d;
+    }
+    else
+    {
+        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                    QString::fromLatin1("description"));
+    }
+
+    
 }
 
 QString Document::language() const
@@ -84,7 +107,17 @@ QString Document::language() const
 
 QString Document::copyright() const
 {
-    return extractElementText(QString::fromLatin1("copyright"));
+    QString rights = extractElementText(QString::fromLatin1("copyright"));
+    if (!rights.isNull())
+    {
+        return rights;
+    }
+    else
+    {
+        // if <copyright> is not provided, use <dc:rights>
+        return extractElementTextNS(
+                LibSyndication::Constants::dublinCoreNamespace(), QString::fromLatin1("rights"));
+    }
 }
 
 QString Document::managingEditor() const
