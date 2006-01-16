@@ -26,8 +26,10 @@
 #include "source.h"
 #include "tools.h"
 
+#include "../constants.h"
+
 #include <QDateTime>
-#include <qdom.h>
+#include <QDomElement>
 #include <QString>
 #include <QList>
 
@@ -140,10 +142,20 @@ QDateTime Item::pubDate() const
     QDateTime pubDate;
 
     QString pubDateStr = extractElementText(QString::fromLatin1("pubDate"));
+    
     if (!pubDateStr.isNull())
     {
         time_t time = KRFCDate::parseDate(pubDateStr);
         pubDate.setTime_t(time);
+    }
+    else
+    {   // if there is no pubDate, check for dc:date
+        pubDateStr = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromLatin1("date"));
+        
+        if (!pubDateStr.isNull())
+        {
+            pubDate = QDateTime::fromString(pubDateStr, Qt::ISODate);
+        }
     }
     
     return pubDate;

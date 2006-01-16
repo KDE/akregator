@@ -78,8 +78,8 @@ class ParserRegistry
          * @param formatHint An optional hint which parser to test first. If
          * there is a parser with the given hint as format string (e.g., 
          * "rss2", "atom", "rdf"...), it is asked first to accept the source.
-         * This can avoid unnecessary Parser::accept() checks and speed up
-         * parsing. See also Parser::format().
+         * This can avoid unnecessary AbstractParser::accept() checks and speed up
+         * parsing. See also AbstractParser::format().
          * @return The document parsed from the source, or NULL if no parser
          *         accepted the source.
          */

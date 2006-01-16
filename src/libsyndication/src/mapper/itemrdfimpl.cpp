@@ -70,6 +70,17 @@ QString ItemRDFImpl::id() const
     return m_item.resource()->uri();
 }
 
+
+time_t ItemRDFImpl::datePublished() const 
+{
+    return m_item.dc().date();
+}
+
+time_t ItemRDFImpl::dateUpdated() const 
+{
+    return m_item.dc().date();
+}
+
 //LibSyndication::Enclosure ItemRDFImpl::enclosure() const
 //{
 //}

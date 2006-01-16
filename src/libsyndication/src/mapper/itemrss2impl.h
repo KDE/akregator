@@ -54,6 +54,9 @@ class ItemRSS2Impl : public LibSyndication::Item
         
         QString id() const;
         
+        time_t datePublished() const;
+        
+        time_t dateUpdated() const;
 //        LibSyndication::Enclosure enclosure() const;
         
     private:

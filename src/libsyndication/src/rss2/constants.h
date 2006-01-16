@@ -33,6 +33,7 @@ class Constants
     public:
         static QString contentNameSpace();
         static QString XHTMLNameSpace();
+        static QString dublinCoreNameSpace();
 };
 
 } // namespace RSS2

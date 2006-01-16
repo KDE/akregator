@@ -161,6 +161,8 @@ class Item : public ElementWrapper
         /**
          * Indicates when the item was published. If it's a date in the future,
          * yous may choose to not display the item until that date.
+         * This returns the content of the @c <pubDate> tag. If @c <pubDate>
+         * is not available, the method looks for @c <dc:date>.
          * 
          * @return the publication date, or an invalid QDateTime object if
          * either no date was specified or parsing failed.

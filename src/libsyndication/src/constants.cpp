@@ -30,5 +30,9 @@ QString Constants::xmlNamespace()
 {
     return QString::fromLatin1("http://www.w3.org/XML/1998/namespace");
 }
+QString Constants::dublinCoreNamespace()
+{
+    return QString::fromLatin1("http://purl.org/dc/elements/1.1/");
+}
 
 } // namespace LibSyndication

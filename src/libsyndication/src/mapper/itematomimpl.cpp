@@ -83,6 +83,18 @@ QString ItemAtomImpl::author() const
     return QString("%1 <%2>").arg(name).arg(mail);
 }
 
+time_t ItemAtomImpl::datePublished() const 
+{
+    return m_entry.published();
+}
+
+time_t ItemAtomImpl::dateUpdated() const 
+{
+    time_t upd = m_entry.updated();
+    if (upd == 0)
+        return m_entry.published();
+}
+   
 QString ItemAtomImpl::language() const
 {
     return m_entry.xmlLang();

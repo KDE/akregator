@@ -1,3 +1,4 @@
+
 /*
  * This file is part of libsyndication
  *
@@ -22,6 +23,7 @@
 
 #include "itemrss2impl.h"
 
+#include <QDateTime>
 #include <QList>
 #include <QString>
 
@@ -77,6 +79,20 @@ QString ItemRSS2Impl::id() const
     }
     else
         return guid;
+}
+
+time_t ItemRSS2Impl::datePublished() const
+{
+    time_t time = m_item.pubDate().toTime_t();
+    if (time == -1) 
+        return 0;
+    else 
+        return time;
+}
+
+time_t ItemRSS2Impl::dateUpdated() const
+{
+    return datePublished();
 }
 
 //LibSyndication::Enclosure ItemRSS2Impl::enclosure() const

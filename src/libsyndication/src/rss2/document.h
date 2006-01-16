@@ -121,8 +121,10 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
          * the New York Times publishes on a daily basis, the publication date
          * flips once every 24 hours. That's when the pubDate of the channel
          * changes.
-         *
-         * @return TODO
+         * This method returns the content of the @c <pubDate> tag. If @c <pubDate>
+         * is not available, the method looks for @c <dc:date>.
+         * 
+         * @return the publication date, or an invalid QDateTime if 
          */
         QDateTime pubDate() const;
     
