@@ -110,7 +110,7 @@ class ElementWrapper
         QString xmlLang() const;
 
         /**
-         * completes relative URIs with
+         * completes relative URIs with a prefix specified via xml:base.
          * 
          * Example: 
          * @code
@@ -119,10 +119,12 @@ class ElementWrapper
          * 
          * is completed to @c http://www.foo.org/announcements/bar.html
          * 
+         * See also xmlBase().
+         * 
          * @param uri a possibly relative URI
          * @return the resolved, absolute URI (using xml:base), if @c uri is
-         * a relative, valid URI. If @c uri is not a valid URI or absolute, @c uri
-         * is returned unmodified
+         * a relative, valid URI. If @c uri is not valid, absolute, or no xml:base
+         * is set in the scope of this element, @c uri is returned unmodified.
          */
         QString completeURI(const QString& uri) const;
         
