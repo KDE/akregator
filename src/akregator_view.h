@@ -294,7 +294,7 @@ namespace Akregator {
             void slotOpenURLReply(const KURL& url, Akregator::Viewer* currentViewer, Akregator::BrowserRun::OpeningMode mode);
 
             /** HACK: part of the url opening hack for 3.5. called when a viewer emits urlClicked(). TODO: Remove for KDE4 */
-            void slotUrlClickedInViewer(const KURL& url, bool background);
+            void slotUrlClickedInViewer(const KURL& url, Viewer* viewer, bool newTab, bool background);
 
             void slotOpenURL(const KURL& url, Akregator::Viewer* currentViewer, Akregator::BrowserRun::OpeningMode mode);
 

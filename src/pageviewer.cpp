@@ -270,21 +270,6 @@ void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args
 
 }
 
-void PageViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
-{
-    updateHistoryEntry();
-    if (button == MidButton)
-        Viewer::urlSelected(url, button, state, _target, args);
-    else
-    {
-        browserExtension()->setURLArgs(args);
-        if (_target.lower() == "_blank")
-            Viewer::urlSelected(url, button, state, _target, args);
-        else
-            openURL(completeURL(url) );
-    }
-}
-
 void PageViewer::slotPopupActivated( int id )
 {
     QValueList<HistoryEntry>::Iterator it = d->history.begin();
@@ -360,6 +345,19 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
     d->stopAction->setEnabled(false);
 }
 
+void PageViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
+{
+    if (button == LeftButton)
+    {
+        m_url = completeURL(url);
+        browserExtension()->setURLArgs(args); 
+        slotOpenLinkInThisTab();
+    }
+    else
+    {
+        Viewer::urlSelected(url,button,state,_target,args);
+    }
+}
 
 void PageViewer::slotSetCaption(const QString& cap) 
 {

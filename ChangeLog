@@ -7,6 +7,9 @@ Changes after 1.2:
 
 Bug fixes:
 
+ 2006/01/17 Do not open binary files in the HTML viewer but externally. 
+            Fix Save Link As for binary files (regression introduced after 1.2) 
+            (#120087 (partially)) -fo
  2006/01/16 Fix article order in Combined View: sort by date (reversed) (#118055) -fo
  2006/01/15 Fix parsing of Atom 1.0 feeds with escaped HTML in it: Don't show tags
             as text (#112491, #117938) -fo

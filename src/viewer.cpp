@@ -232,12 +232,17 @@ void Viewer::slotOpenLinkInternal()
 
 void Viewer::slotOpenLinkInForegroundTab()
 {
-    emit urlClicked(m_url, false);
+    emit urlClicked(m_url, this, true, false);
 }
 
 void Viewer::slotOpenLinkInBackgroundTab()
 {
-    emit urlClicked(m_url, true);
+    emit urlClicked(m_url, this, true, true);
+}
+
+void Viewer::slotOpenLinkInThisTab()
+{
+    emit urlClicked(m_url, this, false, false);
 }
 
 void Viewer::slotOpenLinkInBrowser()

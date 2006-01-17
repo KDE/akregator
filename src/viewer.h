@@ -66,7 +66,7 @@ namespace Akregator
         
         signals:
             /** This gets emitted when url gets clicked */
-            void urlClicked(const KURL& url, bool background=false);
+            void urlClicked(const KURL& url, Viewer* viewer, bool newTab, bool background);
 
             protected: // methods
             int pointsToPixel(int points) const;
@@ -100,6 +100,8 @@ namespace Akregator
 
             /** Opens @c m_url in background tab */
             virtual void slotOpenLinkInBackgroundTab();
+            
+            virtual void slotOpenLinkInThisTab();
 
             virtual void slotSaveLinkAs();
 

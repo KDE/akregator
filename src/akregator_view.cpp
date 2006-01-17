@@ -306,8 +306,8 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
 
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
-    connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
-             this, SLOT(slotUrlClickedInViewer(const KURL&, bool)) );
+    connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, Viewer*, bool, bool)),
+             this, SLOT(slotUrlClickedInViewer(const KURL&, Viewer*, bool, bool)) );
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
@@ -430,8 +430,8 @@ void View::slotOpenNewTab(const KURL& url, bool background)
 
     connect( page, SIGNAL(setTabIcon(const QPixmap&)),
             this, SLOT(setTabIcon(const QPixmap&)));
-    connect( page, SIGNAL(urlClicked(const KURL &,bool)),
-            this, SLOT(slotUrlClickedInViewer(const KURL &, bool)) );
+    connect( page, SIGNAL(urlClicked(const KURL &, Viewer*, bool, bool)),
+            this, SLOT(slotUrlClickedInViewer(const KURL &, Viewer*, bool, bool)) );
 
     Frame* frame = new Frame(this, page, page->widget(), i18n("Untitled"));
     frame->setAutoDeletePart(true); // delete page viewer when removing the tab
@@ -839,9 +839,17 @@ void View::slotOpenURL(const KURL& url, Viewer* currentViewer, BrowserRun::Openi
 }
 
 //TODO: KDE4 remove this ugly ugly hack
-void View::slotUrlClickedInViewer(const KURL& url, bool background)
+void View::slotUrlClickedInViewer(const KURL& url, Viewer* viewer, bool newTab, bool background)
 {
-    slotOpenURL(url, 0L, background ? BrowserRun::NEW_TAB_BACKGROUND : BrowserRun::NEW_TAB_FOREGROUND);
+    
+    if (!newTab)
+    {
+        slotOpenURL(url, viewer, BrowserRun::CURRENT_TAB);
+    }
+    else
+    {
+        slotOpenURL(url, 0L, background ? BrowserRun::NEW_TAB_BACKGROUND : BrowserRun::NEW_TAB_FOREGROUND);
+    }
 }
 
 //TODO: KDE4 remove this ugly ugly hack
