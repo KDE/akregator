@@ -27,6 +27,7 @@
 #include "link.h"
 #include "person.h"
 #include "source.h"
+#include "tools.h"
 
 #include <QDateTime>
 #include <QDomElement>
@@ -129,8 +130,7 @@ QList<Link> Entry::links() const
 
 QString Entry::rights() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("rights"));
+    return extractAtomText(*this, QString::fromLatin1("rights"));
 }
 
 Source Entry::source() const
@@ -165,14 +165,12 @@ time_t Entry::updated() const
 
 QString Entry::summary() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("summary"));
+    return extractAtomText(*this, QString::fromLatin1("summary"));
 }
 
 QString Entry::title() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("title"));
+    return extractAtomText(*this, QString::fromLatin1("title"));
 }
 
 Content Entry::content() const

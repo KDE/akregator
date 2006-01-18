@@ -26,6 +26,7 @@
 #include "link.h"
 #include "person.h"
 #include "source.h"
+#include "tools.h"
 
 #include <QDateTime>
 #include <QDomElement>
@@ -145,20 +146,17 @@ QString Source::logo() const
 
 QString Source::rights() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("rights"));
+    return extractAtomText(*this, QString::fromLatin1("rights"));
 }
 
 QString Source::subtitle() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("subtitle"));
+    return extractAtomText(*this, QString::fromLatin1("subtitle"));
 }
 
 QString Source::title() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("title"));
+    return extractAtomText(*this, QString::fromLatin1("title"));
 }
 
 time_t Source::updated() const

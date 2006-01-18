@@ -27,6 +27,7 @@
 #include "generator.h"
 #include "link.h"
 #include "person.h"
+#include "tools.h"
 
 #include "../documentvisitor.h"
 
@@ -135,20 +136,18 @@ QString FeedDocument::id() const
 
 QString FeedDocument::rights() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("rights"));
+
+    return extractAtomText(*this, QString::fromLatin1("rights"));
 }
 
 QString FeedDocument::title() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("title"));
+    return extractAtomText(*this, QString::fromLatin1("title"));
 }
 
 QString FeedDocument::subtitle() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("subtitle"));
+    return extractAtomText(*this, QString::fromLatin1("subtitle"));
 }
 
 time_t FeedDocument::updated() const
