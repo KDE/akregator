@@ -184,12 +184,11 @@ class ElementWrapper
          * concatenates the XML representations of all children. Example: If 
          * @c parent is an @c xhtml:body element like
          * @code
-         * <pre><xhtml:body><p>foo</p><blockquote>bar</blockquote></xhtml:body>
-         * </pre>
+         * <xhtml:body><p>foo</p><blockquote>bar</blockquote></xhtml:body>
          * @endcode
          * this function returns
          * @code
-         * <pre><p>foo</p><blockquote>bar</blockquote></pre> 
+         * <p>foo</p><blockquote>bar</blockquote>
          * @endcode
          *
          * @param parent the DOM element whose children should be returned as XML

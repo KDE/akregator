@@ -114,6 +114,8 @@ class Feed : public KShared
         
         //virtual Image image() const = 0;
         //virtual TextInput textInput() const = 0; 
+        
+        virtual QString debugInfo() const;
 };
     
 } // namespace LibSyndication

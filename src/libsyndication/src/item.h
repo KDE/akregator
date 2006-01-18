@@ -126,6 +126,8 @@ class Item : public KShared
         //  * if not specified
         //  */
         //Enclosure enclosure() const = 0;
+        
+        virtual QString debugInfo() const;
 };
     
 } // namespace LibSyndication
