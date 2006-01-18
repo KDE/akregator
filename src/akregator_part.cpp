@@ -393,11 +393,14 @@ bool Part::openFile()
         if (!doc.setContent(str))
         {
 
-            QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
-
-            copyFile(backup);
-
-            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
+            if (file.size() > 0) // don't backup empty files 
+            {
+                QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+        
+                copyFile(backup);
+        
+                KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
+            }
 
             if (!doc.setContent(listBackup))
                 doc = createDefaultFeedList();
@@ -406,11 +409,13 @@ bool Part::openFile()
 
     if (!m_view->loadFeeds(doc))
     {
-        QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
-        copyFile(backup);
+        if (file.size() > 0) // don't backup empty files 
+        {
+            QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+            copyFile(backup);
 
-        KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
-
+            KMessageBox::error(m_view, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
+        }
         m_view->loadFeeds(createDefaultFeedList());
     }
 
