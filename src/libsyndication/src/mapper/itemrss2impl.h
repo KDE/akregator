@@ -27,10 +27,6 @@
 #include "../item.h"
 
 namespace LibSyndication {
-
-class Enclosure;
-typedef KSharedPtr<Enclosure> EnclosurePtr;
-    
 namespace Mapper {
 
 class ItemRSS2Impl;
@@ -61,6 +57,8 @@ class ItemRSS2Impl : public LibSyndication::Item
         time_t dateUpdated() const;
         
         QList<EnclosurePtr> enclosures() const;
+        
+        QList<CategoryPtr> categories() const;
         
     private:
         

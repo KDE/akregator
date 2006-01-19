@@ -20,54 +20,37 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
-#define LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#include "categoryrss2impl.h"
 
-#include "../atom/entry.h"
-#include "../item.h"
-
-template <class T> class KSharedPtr;
+#include <QString>
 
 namespace LibSyndication {
 namespace Mapper {
 
-class ItemAtomImpl;
-typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
-
-class ItemAtomImpl : public LibSyndication::Item
+CategoryRSS2Impl::CategoryRSS2Impl(const LibSyndication::RSS2::Category& category)
+    : m_category(category)
+{}
+        
+bool CategoryRSS2Impl::isNull() const
 {
-    public:
-        
-        ItemAtomImpl(const LibSyndication::Atom::Entry& entry);
-        
-        QString title() const;
-        
-        QString link() const;
-        
-        QString description() const;
-        
-        QString content() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        QString id() const;
-        
-        time_t datePublished() const;
-        
-        time_t dateUpdated() const;
+    return m_category.isNull();
+}
 
-        QList<EnclosurePtr> enclosures() const;
-        
-        QList<CategoryPtr> categories() const;
-        
-    private:
-        
-        LibSyndication::Atom::Entry m_entry;
-};
+QString CategoryRSS2Impl::term() const
+{
+    return m_category.category();
+}
 
+QString CategoryRSS2Impl::scheme() const
+{
+    return m_category.domain();
+}
+
+QString CategoryRSS2Impl::label() const
+{
+    return QString::null;
+}
+
+ 
 } // namespace Mapper
 } // namespace LibSyndication
-
-#endif // LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H

@@ -29,6 +29,7 @@
 template <class T> class KSharedPtr;
 
 namespace LibSyndication {
+    
 namespace Mapper {
 
 class ItemRDFImpl;
@@ -60,6 +61,8 @@ class ItemRDFImpl : public LibSyndication::Item
 //        LibSyndication::Enclosure enclosure() const;
         
         QList<EnclosurePtr> enclosures() const;
+        
+        QList<CategoryPtr> categories() const;
         
     private:
         

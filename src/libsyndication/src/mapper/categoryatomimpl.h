@@ -20,54 +20,44 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
-#define LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#ifndef LIBSYNDICATION_MAPPER_CATEGORYATOMIMPL_H
+#define LIBSYNDICATION_MAPPER_CATEGORYATOMIMPL_H
 
-#include "../atom/entry.h"
-#include "../item.h"
+#include "../category.h"
+#include "../atom/category.h"
 
-template <class T> class KSharedPtr;
+#include <ksharedptr.h>
 
 namespace LibSyndication {
 namespace Mapper {
+    
+class CategoryAtomImpl;
+typedef KSharedPtr<CategoryAtomImpl> CategoryAtomImplPtr;
 
-class ItemAtomImpl;
-typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
-
-class ItemAtomImpl : public LibSyndication::Item
+/**
+ *
+ * @internal
+ * @author Frank Osterfeld
+ */
+class CategoryAtomImpl : public LibSyndication::Category
 {
     public:
-        
-        ItemAtomImpl(const LibSyndication::Atom::Entry& entry);
-        
-        QString title() const;
-        
-        QString link() const;
-        
-        QString description() const;
-        
-        QString content() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        QString id() const;
-        
-        time_t datePublished() const;
-        
-        time_t dateUpdated() const;
 
-        QList<EnclosurePtr> enclosures() const;
+        CategoryAtomImpl(const LibSyndication::Atom::Category& category);
         
-        QList<CategoryPtr> categories() const;
+        bool isNull() const;
+        
+        QString term() const;
+        
+        QString scheme() const;
+        
+        QString label() const;
         
     private:
-        
-        LibSyndication::Atom::Entry m_entry;
+        LibSyndication::Atom::Category m_category;
 };
-
+    
 } // namespace Mapper
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#endif // LIBSYNDICATION_MAPPER_CATEGORYATOMIMPL_H

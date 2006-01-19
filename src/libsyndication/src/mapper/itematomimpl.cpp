@@ -20,12 +20,15 @@
  *
  */
 
+#include "categoryatomimpl.h"
 #include "enclosureatomimpl.h"
 #include "itematomimpl.h"
 
+#include "../atom/category.h"
 #include "../atom/content.h"
 #include "../atom/link.h"
 #include "../atom/person.h"
+#include "../category.h"
 #include "../enclosure.h"
 
 #include <QList>
@@ -95,6 +98,8 @@ time_t ItemAtomImpl::dateUpdated() const
     time_t upd = m_entry.updated();
     if (upd == 0)
         return m_entry.published();
+    else
+        return upd;
 }
    
 QString ItemAtomImpl::language() const
@@ -131,6 +136,23 @@ QList<LibSyndication::EnclosurePtr> ItemAtomImpl::enclosures() const
         }
     }
 
+    return list;
+}
+
+QList<LibSyndication::CategoryPtr> ItemAtomImpl::categories() const
+{
+    QList<LibSyndication::CategoryPtr> list;
+    
+    QList<LibSyndication::Atom::Category> cats = m_entry.categories();
+    QList<LibSyndication::Atom::Category>::ConstIterator it = cats.begin();
+    QList<LibSyndication::Atom::Category>::ConstIterator end = cats.end();
+    
+    for ( ; it != end; ++it)
+    {
+        CategoryAtomImplPtr impl = new CategoryAtomImpl(*it);
+        list.append(LibSyndication::CategoryPtr::staticCast(impl));
+    }
+    
     return list;
 }
 

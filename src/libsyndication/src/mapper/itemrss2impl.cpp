@@ -21,8 +21,10 @@
  *
  */
 
+#include "categoryrss2impl.h"
 #include "enclosurerss2impl.h"
 #include "itemrss2impl.h"
+#include "../rss2/category.h"
 #include "../rss2/enclosure.h"
 
 #include <QDateTime>
@@ -107,6 +109,23 @@ QList<LibSyndication::EnclosurePtr> ItemRSS2Impl::enclosures() const
     {
         EnclosureRSS2ImplPtr impl = new EnclosureRSS2Impl(enc);
         list.append(LibSyndication::EnclosurePtr::staticCast(impl));
+    }
+    
+    return list;
+}
+
+QList<LibSyndication::CategoryPtr> ItemRSS2Impl::categories() const
+{
+    QList<LibSyndication::CategoryPtr> list;
+    
+    QList<LibSyndication::RSS2::Category> cats = m_item.categories();
+    QList<LibSyndication::RSS2::Category>::ConstIterator it = cats.begin();
+    QList<LibSyndication::RSS2::Category>::ConstIterator end = cats.end();
+    
+    for ( ; it != end; ++it)
+    {
+        CategoryRSS2ImplPtr impl = new CategoryRSS2Impl(*it);
+        list.append(LibSyndication::CategoryPtr::staticCast(impl));
     }
     
     return list;

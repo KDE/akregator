@@ -7,12 +7,12 @@ lib_LTLIBRARIES = libsyndication.la
 
 libsyndication_la_SOURCES = parserregistry.cpp documentsource.cpp \
                             documentvisitor.cpp elementwrapper.cpp constants.cpp \
-                            feed.cpp item.cpp enclosure.cpp
+                            feed.cpp item.cpp enclosure.cpp category.cpp
 
 libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
                                  parserregistry.h documentvisitor.h \
                                  documentsource.h elementwrapper.h \
-                                 item.h feed.h
+                                 item.h feed.h category.h
 
 libsyndication_includedir = $(includedir)/libsyndication
 

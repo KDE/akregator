@@ -20,54 +20,36 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
-#define LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#include "categoryatomimpl.h"
 
-#include "../atom/entry.h"
-#include "../item.h"
-
-template <class T> class KSharedPtr;
+#include <QString>
 
 namespace LibSyndication {
 namespace Mapper {
 
-class ItemAtomImpl;
-typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
-
-class ItemAtomImpl : public LibSyndication::Item
+CategoryAtomImpl::CategoryAtomImpl(const LibSyndication::Atom::Category& category)
+    : m_category(category)
+{}
+        
+bool CategoryAtomImpl::isNull() const
 {
-    public:
-        
-        ItemAtomImpl(const LibSyndication::Atom::Entry& entry);
-        
-        QString title() const;
-        
-        QString link() const;
-        
-        QString description() const;
-        
-        QString content() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        QString id() const;
-        
-        time_t datePublished() const;
-        
-        time_t dateUpdated() const;
+    return m_category.isNull();
+}
 
-        QList<EnclosurePtr> enclosures() const;
-        
-        QList<CategoryPtr> categories() const;
-        
-    private:
-        
-        LibSyndication::Atom::Entry m_entry;
-};
+QString CategoryAtomImpl::term() const
+{
+    return m_category.term();
+}
 
+QString CategoryAtomImpl::scheme() const
+{
+    return m_category.scheme();
+}
+
+QString CategoryAtomImpl::label() const
+{
+    return m_category.label();
+}
+ 
 } // namespace Mapper
 } // namespace LibSyndication
-
-#endif // LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H

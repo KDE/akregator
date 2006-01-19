@@ -23,6 +23,7 @@
 #include "../rdf/dublincore.h"
 #include "../rdf/resource.h"
 #include "../rdf/resourcewrapper.h"
+#include "../category.h"
 #include "../enclosure.h"
 #include "itemrdfimpl.h"
 
@@ -86,6 +87,12 @@ QList<LibSyndication::EnclosurePtr> ItemRDFImpl::enclosures() const
 {
     // return empty list
     return QList<LibSyndication::EnclosurePtr>();
+}
+
+QList<LibSyndication::CategoryPtr> ItemRDFImpl::categories() const
+{
+    // return empty list
+    return QList<LibSyndication::CategoryPtr>();
 }
 
 } // namespace Mapper

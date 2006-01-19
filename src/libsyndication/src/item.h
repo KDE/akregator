@@ -31,6 +31,8 @@ template <class T> class QList;
 
 namespace LibSyndication {
 
+class Category;
+typedef KSharedPtr<Category> CategoryPtr;
 class Enclosure;
 typedef KSharedPtr<Enclosure> EnclosurePtr;
 class Item;
@@ -128,6 +130,8 @@ class Item : public KShared
          * @return a list of enclosures associated with this item
          */
         virtual QList<EnclosurePtr> enclosures() const = 0;
+        
+        virtual QList<CategoryPtr> categories() const = 0;
         
         virtual QString debugInfo() const;
 };
