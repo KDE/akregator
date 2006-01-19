@@ -59,6 +59,8 @@ class ItemRDFImpl : public LibSyndication::Item
         time_t dateUpdated() const;
 //        LibSyndication::Enclosure enclosure() const;
         
+        QList<EnclosurePtr> enclosures() const;
+        
     private:
         
         LibSyndication::RDF::Item m_item;

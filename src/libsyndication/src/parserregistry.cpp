@@ -26,8 +26,11 @@
 #include "parserregistry.h"
 #include "feed.h"
 #include "atom/document.h"
+#include "atom/parser.h"
 #include "rdf/document.h"
+#include "rdf/parser.h"
 #include "rss2/document.h"
+#include "rss2/parser.h"
 #include "mapper/feedatomimpl.h"
 #include "mapper/feedrdfimpl.h"
 #include "mapper/feedrss2impl.h"
@@ -123,10 +126,20 @@ ParserRegistry* ParserRegistry::self()
 ParserRegistry::ParserRegistry()
 {
     d = new ParserRegistryPrivate(this);
+    registerParser(new LibSyndication::RSS2::Parser);
+    registerParser(new LibSyndication::RDF::Parser);
+    registerParser(new LibSyndication::Atom::Parser);
 }
 
 ParserRegistry::~ParserRegistry()
 {
+    QList<AbstractParser*> list = d->parsers.values();
+    QList<AbstractParser*>::ConstIterator it = list.begin();
+    QList<AbstractParser*>::ConstIterator end = list.end();
+    
+    for ( ; it != end; ++it)
+        delete *it;
+    
     delete d;
     d = 0;
 }
@@ -138,11 +151,6 @@ bool ParserRegistry::registerParser(AbstractParser* parser)
 
     d->parsers.insert(parser->format(), parser);
     return true;
-}
-
-void ParserRegistry::unregisterParser(AbstractParser* parser)
-{
-    d->parsers.remove(parser->format());
 }
 
 FeedPtr ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)

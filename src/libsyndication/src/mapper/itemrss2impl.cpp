@@ -21,7 +21,9 @@
  *
  */
 
+#include "enclosurerss2impl.h"
 #include "itemrss2impl.h"
+#include "../rss2/enclosure.h"
 
 #include <QDateTime>
 #include <QList>
@@ -95,9 +97,20 @@ time_t ItemRSS2Impl::dateUpdated() const
     return datePublished();
 }
 
-//LibSyndication::Enclosure ItemRSS2Impl::enclosure() const
-//{
-//}
+QList<LibSyndication::EnclosurePtr> ItemRSS2Impl::enclosures() const
+{
+    QList<LibSyndication::EnclosurePtr> list;
+    
+    LibSyndication::RSS2::Enclosure enc = m_item.enclosure();
+    
+    if (!enc.isNull())
+    {
+        EnclosureRSS2ImplPtr impl = new EnclosureRSS2Impl(enc);
+        list.append(LibSyndication::EnclosurePtr::staticCast(impl));
+    }
+    
+    return list;
+}
 
 } // namespace Mapper
 } // namespace LibSyndication

@@ -23,6 +23,7 @@
 #include "../rdf/dublincore.h"
 #include "../rdf/resource.h"
 #include "../rdf/resourcewrapper.h"
+#include "../enclosure.h"
 #include "itemrdfimpl.h"
 
 #include <QList>
@@ -81,9 +82,11 @@ time_t ItemRDFImpl::dateUpdated() const
     return m_item.dc().date();
 }
 
-//LibSyndication::Enclosure ItemRDFImpl::enclosure() const
-//{
-//}
+QList<LibSyndication::EnclosurePtr> ItemRDFImpl::enclosures() const
+{
+    // return empty list
+    return QList<LibSyndication::EnclosurePtr>();
+}
 
 } // namespace Mapper
 } // namespace LibSyndication

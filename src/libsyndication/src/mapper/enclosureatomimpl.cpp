@@ -20,52 +20,41 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
-#define LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#include "enclosureatomimpl.h"
 
-#include "../atom/entry.h"
-#include "../item.h"
-
-template <class T> class KSharedPtr;
+#include <QString>
 
 namespace LibSyndication {
 namespace Mapper {
 
-class ItemAtomImpl;
-typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
-
-class ItemAtomImpl : public LibSyndication::Item
+EnclosureAtomImpl::EnclosureAtomImpl(const LibSyndication::Atom::Link& link)
+    : m_link(link)
+{}
+        
+bool EnclosureAtomImpl::isNull() const
 {
-    public:
-        
-        ItemAtomImpl(const LibSyndication::Atom::Entry& entry);
-        
-        QString title() const;
-        
-        QString link() const;
-        
-        QString description() const;
-        
-        QString content() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        QString id() const;
-        
-        time_t datePublished() const;
-        
-        time_t dateUpdated() const;
+    return m_link.isNull();
+}
 
-        QList<EnclosurePtr> enclosures() const;
-        
-    private:
-        
-        LibSyndication::Atom::Entry m_entry;
-};
+QString EnclosureAtomImpl::url() const
+{
+    return m_link.href();
+}
 
+QString EnclosureAtomImpl::title() const
+{
+    return m_link.title();
+}
+
+QString EnclosureAtomImpl::type() const
+{
+    return m_link.type();
+}
+
+uint EnclosureAtomImpl::length() const
+{
+    return m_link.length();
+}
+ 
 } // namespace Mapper
 } // namespace LibSyndication
-
-#endif // LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H

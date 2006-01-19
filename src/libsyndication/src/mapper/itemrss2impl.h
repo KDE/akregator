@@ -26,12 +26,14 @@
 #include "../rss2/item.h"
 #include "../item.h"
 
-template <class T> class KSharedPtr;
-
 namespace LibSyndication {
+
+class Enclosure;
+typedef KSharedPtr<Enclosure> EnclosurePtr;
+    
 namespace Mapper {
 
-    class ItemRSS2Impl;
+class ItemRSS2Impl;
 typedef KSharedPtr<ItemRSS2Impl> ItemRSS2ImplPtr;
 
 class ItemRSS2Impl : public LibSyndication::Item
@@ -57,7 +59,8 @@ class ItemRSS2Impl : public LibSyndication::Item
         time_t datePublished() const;
         
         time_t dateUpdated() const;
-//        LibSyndication::Enclosure enclosure() const;
+        
+        QList<EnclosurePtr> enclosures() const;
         
     private:
         

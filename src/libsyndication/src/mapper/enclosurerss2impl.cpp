@@ -20,52 +20,42 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
-#define LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#include "enclosurerss2impl.h"
 
-#include "../atom/entry.h"
-#include "../item.h"
-
-template <class T> class KSharedPtr;
+#include <QString>
 
 namespace LibSyndication {
 namespace Mapper {
 
-class ItemAtomImpl;
-typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
-
-class ItemAtomImpl : public LibSyndication::Item
+EnclosureRSS2Impl::EnclosureRSS2Impl(const LibSyndication::RSS2::Enclosure& enclosure)
+    : m_enclosure(enclosure)
+{}
+        
+bool EnclosureRSS2Impl::isNull() const
 {
-    public:
-        
-        ItemAtomImpl(const LibSyndication::Atom::Entry& entry);
-        
-        QString title() const;
-        
-        QString link() const;
-        
-        QString description() const;
-        
-        QString content() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        QString id() const;
-        
-        time_t datePublished() const;
-        
-        time_t dateUpdated() const;
+    return m_enclosure.isNull();
+}
 
-        QList<EnclosurePtr> enclosures() const;
-        
-    private:
-        
-        LibSyndication::Atom::Entry m_entry;
-};
+QString EnclosureRSS2Impl::url() const
+{
+    return m_enclosure.url();
+}
 
+QString EnclosureRSS2Impl::title() const
+{
+    // RSS2 enclosures have no title
+    return QString::null;
+}
+
+QString EnclosureRSS2Impl::type() const
+{
+    return m_enclosure.type();
+}
+
+uint EnclosureRSS2Impl::length() const
+{
+    return m_enclosure.length();
+}
+ 
 } // namespace Mapper
 } // namespace LibSyndication
-
-#endif // LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H

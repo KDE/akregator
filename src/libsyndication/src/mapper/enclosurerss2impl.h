@@ -20,52 +20,46 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
-#define LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#ifndef LIBSYNDICATION_MAPPER_ENCLOSURERSS2IMPL_H
+#define LIBSYNDICATION_MAPPER_ENCLOSURERSS2IMPL_H
 
-#include "../atom/entry.h"
-#include "../item.h"
+#include "../enclosure.h"
+#include "../rss2/enclosure.h"
 
-template <class T> class KSharedPtr;
+#include <ksharedptr.h>
 
 namespace LibSyndication {
 namespace Mapper {
+    
+class EnclosureRSS2Impl;
+typedef KSharedPtr<EnclosureRSS2Impl> EnclosureRSS2ImplPtr;
 
-class ItemAtomImpl;
-typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
-
-class ItemAtomImpl : public LibSyndication::Item
+/**
+ *
+ * @internal
+ * @author Frank Osterfeld
+ */
+class EnclosureRSS2Impl : public LibSyndication::Enclosure
 {
     public:
+
+        EnclosureRSS2Impl(const LibSyndication::RSS2::Enclosure& enclosure);
         
-        ItemAtomImpl(const LibSyndication::Atom::Entry& entry);
+        bool isNull() const;
+        
+        QString url() const;
         
         QString title() const;
         
-        QString link() const;
+        QString type() const;
         
-        QString description() const;
-        
-        QString content() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        QString id() const;
-        
-        time_t datePublished() const;
-        
-        time_t dateUpdated() const;
-
-        QList<EnclosurePtr> enclosures() const;
+        uint length() const;
         
     private:
-        
-        LibSyndication::Atom::Entry m_entry;
+        LibSyndication::RSS2::Enclosure m_enclosure;
 };
-
+    
 } // namespace Mapper
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
+#endif // LIBSYNDICATION_MAPPER_ENCLOSURERSS2IMPL_H

@@ -1,0 +1,87 @@
+/*
+ * This file is part of libsyndication
+ *
+ * Copyright (C) 2006 Frank Osterfeld <frank.osterfeld@kdemail.net>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public License
+ * along with this library; see the file COPYING.LIB.  If not, write to
+ * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ *
+ */
+
+#ifndef LIBSYNDICATION_ENCLOSURE_H
+#define LIBSYNDICATION_ENCLOSURE_H
+
+#include <ksharedptr.h>
+
+namespace LibSyndication {
+
+class Enclosure;
+typedef KSharedPtr<Enclosure> EnclosurePtr;
+
+/**
+ * 
+ * 
+ * @author Frank Osterfeld
+ */
+class Enclosure : public KShared
+{
+    public:
+
+        /** 
+         * destructor
+         */
+        virtual ~Enclosure() {}
+        
+        virtual bool isNull() const = 0;
+        
+        /**
+         * 
+         * @return 
+         */
+        virtual QString url() const = 0;
+        
+        /**
+         * title of the enclosure. This is a human-readable description of the linked file.
+         * If available, the title should be used in user interfaces instead of URL. If no title
+         * is set (e.g., RSS2 enclosures don't have titles), use url() as fallback.
+         * 
+         * @return title describing the enclosure, or QString::null if not specified.
+         */
+        virtual QString title() const = 0;
+        
+        /**
+         * 
+         * @return the mimetype of the file, or QString::null if not specified
+         */
+        virtual QString type() const = 0;
+        
+        /**
+         * returns the length of the linked file in bytes
+         * 
+         * @return the length of the file in bytes, 0 if not specified
+         */
+        virtual uint length() const = 0;
+        
+        /**
+         * 
+         * 
+         * @return debug string
+         */
+        virtual QString debugInfo() const;
+};
+    
+} // namespace LibSyndication
+
+#endif // LIBSYNDICATION_ENCLOSURE_H

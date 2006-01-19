@@ -27,9 +27,12 @@
 
 #include <ctime>
 
+template <class T> class QList;
+
 namespace LibSyndication {
 
 class Enclosure;
+typedef KSharedPtr<Enclosure> EnclosurePtr;
 class Item;
 typedef KSharedPtr<Item> ItemPtr;
 
@@ -118,14 +121,13 @@ class Item : public KShared
         virtual QString language() const = 0;
         
         
-        // /**
-        //  * returns an enclosure describing a file available on the net.
-        //  * (mostly used for audio files, so-called "Podcasts")
-        //  * 
-        //  * @return an enclosure object associated with this item, or a null enclosure
-        //  * if not specified
-        //  */
-        //Enclosure enclosure() const = 0;
+        /**
+         * returns a list of enclosures describing files available on the net.
+         * (often used for audio files, "Podcasts")
+         * 
+         * @return a list of enclosures associated with this item
+         */
+        virtual QList<EnclosurePtr> enclosures() const = 0;
         
         virtual QString debugInfo() const;
 };

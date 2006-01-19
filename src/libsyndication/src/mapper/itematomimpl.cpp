@@ -20,11 +20,13 @@
  *
  */
 
+#include "enclosureatomimpl.h"
+#include "itematomimpl.h"
+
 #include "../atom/content.h"
 #include "../atom/link.h"
 #include "../atom/person.h"
-
-#include "itematomimpl.h"
+#include "../enclosure.h"
 
 #include <QList>
 #include <QString>
@@ -111,9 +113,26 @@ QString ItemAtomImpl::id() const
     return id;
 }
 
-//LibSyndication::Enclosure ItemAtomImpl::enclosure() const
-//{
-//}
+
+QList<LibSyndication::EnclosurePtr> ItemAtomImpl::enclosures() const
+{
+    QList<LibSyndication::EnclosurePtr> list;
+
+    QList<LibSyndication::Atom::Link> links = m_entry.links();
+    QList<LibSyndication::Atom::Link>::ConstIterator it = links.begin();
+    QList<LibSyndication::Atom::Link>::ConstIterator end = links.end();
+
+    for ( ; it != end; ++it)
+    {
+        if ((*it).rel() == QString::fromLatin1("enclosure"))
+        {
+            EnclosureAtomImplPtr impl = new EnclosureAtomImpl(*it);
+            list.append(LibSyndication::EnclosurePtr::staticCast(impl));
+        }
+    }
+
+    return list;
+}
 
 } // namespace Mapper
 } // namespace LibSyndication

@@ -64,13 +64,6 @@ class ParserRegistry
         bool registerParser(AbstractParser* parser);
 
         /**
-         * Removes a parser from the registry.
-         *
-         * @param parser The parser to be unregistered
-         */ 
-        void unregisterParser(AbstractParser* parser);
-
-        /**
          * tries to parse a given source with the parsers registered.
          * The source is passed to the first parser that accepts it.
          * 

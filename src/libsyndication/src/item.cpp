@@ -71,7 +71,7 @@ QString Item::debugInfo() const
     if (!dlanguage.isNull())
         info += "language: #" + dlanguage + "#\n";
     
-    info += "# Item end ##############\n";
+    info += "# Item end ################\n";
     
     return info;
 }
