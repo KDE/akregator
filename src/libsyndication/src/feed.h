@@ -32,6 +32,8 @@ namespace LibSyndication {
 
 class AbstractDocument;
 typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
+class Category;
+typedef KSharedPtr<Category> CategoryPtr;
 class Feed;
 typedef KSharedPtr<Feed> FeedPtr;
 class Item;
@@ -72,6 +74,13 @@ class Feed : public KShared
          * @return list of items
          */
         virtual QList<ItemPtr> items() const = 0;
+        
+        /**
+         * contains a list of categories this feed is associated with
+         * 
+         * @return
+         */
+        virtual QList<CategoryPtr> categories() const = 0;
         
         /**
          * The title of the feed.

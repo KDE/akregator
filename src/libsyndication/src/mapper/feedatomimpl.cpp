@@ -20,8 +20,10 @@
  *
  */
 
+#include "categoryatomimpl.h"
 #include "feedatomimpl.h"
 #include "itematomimpl.h"
+#include "../atom/category.h"
 #include "../atom/entry.h"
 
 #include <ksharedptr.h>
@@ -55,6 +57,22 @@ QList<LibSyndication::ItemPtr> FeedAtomImpl::items() const
     }
     
     return items;
+}
+
+QList<LibSyndication::CategoryPtr> FeedAtomImpl::categories() const
+{
+    QList<CategoryPtr> categories;
+    QList<LibSyndication::Atom::Category> entries = m_doc->categories();
+    QList<LibSyndication::Atom::Category>::ConstIterator it = entries.begin();
+    QList<LibSyndication::Atom::Category>::ConstIterator end = entries.end();
+    
+    for ( ; it != end; ++it)
+    {
+        CategoryAtomImplPtr item = new CategoryAtomImpl(*it);
+        categories.append(CategoryPtr::staticCast(item));
+    }
+    
+    return categories;
 }
 
 QString FeedAtomImpl::title() const

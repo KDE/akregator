@@ -20,8 +20,10 @@
  *
  */
 
+#include "categoryrss2impl.h"
 #include "feedrss2impl.h"
 #include "itemrss2impl.h"
+#include "../rss2/category.h"
 #include "../rss2/item.h"
 
 #include <ksharedptr.h>
@@ -55,6 +57,22 @@ QList<LibSyndication::ItemPtr> FeedRSS2Impl::items() const
     }
     
     return items;
+}
+
+QList<LibSyndication::CategoryPtr> FeedRSS2Impl::categories() const
+{
+    QList<CategoryPtr> categories;
+    QList<LibSyndication::RSS2::Category> entries = m_doc->categories();
+    QList<LibSyndication::RSS2::Category>::ConstIterator it = entries.begin();
+    QList<LibSyndication::RSS2::Category>::ConstIterator end = entries.end();
+    
+    for ( ; it != end; ++it)
+    {
+        CategoryRSS2ImplPtr item = new CategoryRSS2Impl(*it);
+        categories.append(CategoryPtr::staticCast(item));
+    }
+    
+    return categories;
 }
 
 QString FeedRSS2Impl::title() const

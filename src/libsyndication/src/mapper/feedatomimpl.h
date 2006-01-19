@@ -42,6 +42,8 @@ class FeedAtomImpl : public LibSyndication::Feed
         
         QList<LibSyndication::ItemPtr> items() const;
                 
+        QList<CategoryPtr> categories() const;
+        
         QString title() const;
         
         QString link() const;

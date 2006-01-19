@@ -24,6 +24,7 @@
 #include "itemrdfimpl.h"
 #include "../rdf/dublincore.h"
 #include "../rdf/item.h"
+#include "../category.h"
 
 #include <ksharedptr.h>
 
@@ -56,6 +57,12 @@ QList<LibSyndication::ItemPtr> FeedRDFImpl::items() const
     }
     
     return items;
+}
+
+QList<LibSyndication::CategoryPtr> FeedRDFImpl::categories() const
+{
+    // TODO: check if it makes sense to map dc:subject to categories
+    return QList<LibSyndication::CategoryPtr>();
 }
 
 QString FeedRDFImpl::title() const

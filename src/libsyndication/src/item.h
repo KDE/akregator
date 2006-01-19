@@ -131,6 +131,12 @@ class Item : public KShared
          */
         virtual QList<EnclosurePtr> enclosures() const = 0;
         
+        /**
+         * returns a list of categories this item is filed in.
+         * TODO: more explanation 
+         *
+         * @return a list of categories
+         */
         virtual QList<CategoryPtr> categories() const = 0;
         
         virtual QString debugInfo() const;

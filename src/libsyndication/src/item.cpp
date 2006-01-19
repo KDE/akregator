@@ -20,9 +20,12 @@
  *
  */
 
+#include "category.h"
+#include "enclosure.h"
 #include "item.h"
 
 #include <QDateTime>
+#include <QList>
 #include <QString>
 
 namespace LibSyndication {
@@ -71,6 +74,20 @@ QString Item::debugInfo() const
     if (!dlanguage.isNull())
         info += "language: #" + dlanguage + "#\n";
     
+    QList<CategoryPtr> dcategories = categories();
+    QList<CategoryPtr>::ConstIterator itc = dcategories.begin();
+    QList<CategoryPtr>::ConstIterator endc = dcategories.end();
+    
+    for ( ; itc != endc; ++itc)
+        info += (*itc)->debugInfo();
+
+    QList<EnclosurePtr> denclosures = enclosures();
+    QList<EnclosurePtr>::ConstIterator ite = denclosures.begin();
+    QList<EnclosurePtr>::ConstIterator ende = denclosures.end();
+    
+    for ( ; ite != ende; ++ite)
+        info += (*ite)->debugInfo();
+
     info += "# Item end ################\n";
     
     return info;

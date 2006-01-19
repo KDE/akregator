@@ -20,6 +20,7 @@
  *
  */
 
+#include "category.h"
 #include "feed.h"
 #include "item.h"
 
@@ -62,6 +63,13 @@ QString Feed::debugInfo() const
     for ( ; it != end; ++it)
         info += (*it)->debugInfo();
                 
+    QList<CategoryPtr> dcategories = categories();
+    QList<CategoryPtr>::ConstIterator itc = dcategories.begin();
+    QList<CategoryPtr>::ConstIterator endc = dcategories.end();
+    
+    for ( ; itc != endc; ++itc)
+        info += (*itc)->debugInfo();
+    
     info += "# Feed end ##############\n";
     
     return info;

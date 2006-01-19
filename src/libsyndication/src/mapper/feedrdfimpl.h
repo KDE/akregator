@@ -42,6 +42,8 @@ class FeedRDFImpl : public LibSyndication::Feed
         
         QList<ItemPtr> items() const;
         
+        QList<CategoryPtr> categories() const;
+        
         QString title() const;
         
         QString link() const;
