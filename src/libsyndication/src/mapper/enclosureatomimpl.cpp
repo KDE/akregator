@@ -25,7 +25,6 @@
 #include <QString>
 
 namespace LibSyndication {
-namespace Mapper {
 
 EnclosureAtomImpl::EnclosureAtomImpl(const LibSyndication::Atom::Link& link)
     : m_link(link)
@@ -56,5 +55,4 @@ uint EnclosureAtomImpl::length() const
     return m_link.length();
 }
  
-} // namespace Mapper
 } // namespace LibSyndication

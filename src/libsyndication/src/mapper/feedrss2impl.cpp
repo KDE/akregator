@@ -32,7 +32,6 @@
 #include <QString>
 
 namespace LibSyndication {
-namespace Mapper {
 
 FeedRSS2Impl::FeedRSS2Impl(LibSyndication::RSS2::DocumentPtr doc) : m_doc(doc)
 {
@@ -100,5 +99,4 @@ QString FeedRSS2Impl::language() const
     return "TODO";
 }
 
-} // namespace Mapper
 } // namespace LibSyndication

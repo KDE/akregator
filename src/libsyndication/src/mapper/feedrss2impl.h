@@ -27,7 +27,6 @@
 #include "../feed.h"
 
 namespace LibSyndication {
-namespace Mapper {
 
 class FeedRSS2Impl;
 typedef KSharedPtr<FeedRSS2Impl> FeedRSS2ImplPtr;
@@ -59,7 +58,6 @@ class FeedRSS2Impl : public LibSyndication::Feed
         LibSyndication::RSS2::DocumentPtr m_doc;
 };
 
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_FEEDRSS2IMPL_H

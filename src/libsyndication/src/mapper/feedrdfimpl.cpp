@@ -32,7 +32,6 @@
 #include <QList>
 
 namespace LibSyndication {
-namespace Mapper {
 
 FeedRDFImpl::FeedRDFImpl(LibSyndication::RDF::DocumentPtr doc) : m_doc(doc)
 {
@@ -90,5 +89,4 @@ QString FeedRDFImpl::language() const
     return "TODO";
 }
 
-} // namespace Mapper
 } // namespace LibSyndication

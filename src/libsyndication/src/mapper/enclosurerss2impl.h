@@ -29,7 +29,6 @@
 #include <ksharedptr.h>
 
 namespace LibSyndication {
-namespace Mapper {
     
 class EnclosureRSS2Impl;
 typedef KSharedPtr<EnclosureRSS2Impl> EnclosureRSS2ImplPtr;
@@ -59,7 +58,6 @@ class EnclosureRSS2Impl : public LibSyndication::Enclosure
         LibSyndication::RSS2::Enclosure m_enclosure;
 };
     
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_ENCLOSURERSS2IMPL_H

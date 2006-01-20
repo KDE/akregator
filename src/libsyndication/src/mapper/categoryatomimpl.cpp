@@ -25,7 +25,6 @@
 #include <QString>
 
 namespace LibSyndication {
-namespace Mapper {
 
 CategoryAtomImpl::CategoryAtomImpl(const LibSyndication::Atom::Category& category)
     : m_category(category)
@@ -51,5 +50,4 @@ QString CategoryAtomImpl::label() const
     return m_category.label();
 }
  
-} // namespace Mapper
 } // namespace LibSyndication

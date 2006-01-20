@@ -29,7 +29,6 @@
 #include <ksharedptr.h>
 
 namespace LibSyndication {
-namespace Mapper {
     
 class CategoryAtomImpl;
 typedef KSharedPtr<CategoryAtomImpl> CategoryAtomImplPtr;
@@ -57,7 +56,6 @@ class CategoryAtomImpl : public LibSyndication::Category
         LibSyndication::Atom::Category m_category;
 };
     
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_CATEGORYATOMIMPL_H

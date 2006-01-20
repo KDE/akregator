@@ -77,7 +77,7 @@ class ParserRegistry::ParserRegistryPrivate
             LibSyndication::Atom::FeedDocumentPtr tptr = 
                 LibSyndication::Atom::FeedDocumentPtr::staticCast(m_ptr);
             
-            feedptr = new LibSyndication::Mapper::FeedAtomImpl(tptr);
+            feedptr = new FeedAtomImpl(tptr);
             return true;
         }
         
@@ -92,7 +92,7 @@ class ParserRegistry::ParserRegistryPrivate
             LibSyndication::RDF::DocumentPtr tptr = 
                     LibSyndication::RDF::DocumentPtr::staticCast(m_ptr);
             
-            feedptr = new LibSyndication::Mapper::FeedRDFImpl(tptr);
+            feedptr = new FeedRDFImpl(tptr);
             return true;
         }
         
@@ -101,7 +101,7 @@ class ParserRegistry::ParserRegistryPrivate
             LibSyndication::RSS2::DocumentPtr tptr = 
                     LibSyndication::RSS2::DocumentPtr::staticCast(m_ptr);
             
-            feedptr = new LibSyndication::Mapper::FeedRSS2Impl(tptr);
+            feedptr = new FeedRSS2Impl(tptr);
             return true;
         }
         

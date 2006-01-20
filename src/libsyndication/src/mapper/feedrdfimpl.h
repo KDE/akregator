@@ -27,7 +27,6 @@
 #include "../feed.h"
 
 namespace LibSyndication {
-namespace Mapper {
 
 class FeedRDFImpl;
 typedef KSharedPtr<FeedRDFImpl> FeedRDFImplPtr;
@@ -59,7 +58,6 @@ class FeedRDFImpl : public LibSyndication::Feed
         LibSyndication::RDF::DocumentPtr m_doc;
 };
 
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H

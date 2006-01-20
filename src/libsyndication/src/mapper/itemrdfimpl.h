@@ -29,8 +29,6 @@
 template <class T> class KSharedPtr;
 
 namespace LibSyndication {
-    
-namespace Mapper {
 
 class ItemRDFImpl;
 typedef KSharedPtr<ItemRDFImpl> ItemRDFImplPtr;
@@ -69,7 +67,6 @@ class ItemRDFImpl : public LibSyndication::Item
         LibSyndication::RDF::Item m_item;
 };
 
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_ITEMRDFIMPL_H

@@ -29,7 +29,6 @@
 #include <ksharedptr.h>
 
 namespace LibSyndication {
-namespace Mapper {
     
 class EnclosureAtomImpl;
 typedef KSharedPtr<EnclosureAtomImpl> EnclosureAtomImplPtr;
@@ -59,7 +58,6 @@ class EnclosureAtomImpl : public LibSyndication::Enclosure
         LibSyndication::Atom::Link m_link;
 };
     
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_ENCLOSUREATOMIMPL_H

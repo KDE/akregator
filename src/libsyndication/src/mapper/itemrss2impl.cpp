@@ -32,7 +32,6 @@
 #include <QString>
 
 namespace LibSyndication {
-namespace Mapper {
 
 ItemRSS2Impl::ItemRSS2Impl(const LibSyndication::RSS2::Item& item) : m_item(item)
 {
@@ -131,5 +130,4 @@ QList<LibSyndication::CategoryPtr> ItemRSS2Impl::categories() const
     return list;
 }
 
-} // namespace Mapper
 } // namespace LibSyndication

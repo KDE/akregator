@@ -40,7 +40,6 @@ using LibSyndication::Atom::Link;
 using LibSyndication::Atom::Person;
 
 namespace LibSyndication {
-namespace Mapper {
 
 ItemAtomImpl::ItemAtomImpl(const LibSyndication::Atom::Entry& entry) : m_entry(entry)
 {
@@ -156,5 +155,4 @@ QList<LibSyndication::CategoryPtr> ItemAtomImpl::categories() const
     return list;
 }
 
-} // namespace Mapper
 } // namespace LibSyndication

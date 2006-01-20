@@ -25,7 +25,6 @@
 #include <QString>
 
 namespace LibSyndication {
-namespace Mapper {
 
 CategoryRSS2Impl::CategoryRSS2Impl(const LibSyndication::RSS2::Category& category)
     : m_category(category)
@@ -51,6 +50,4 @@ QString CategoryRSS2Impl::label() const
     return QString::null;
 }
 
- 
-} // namespace Mapper
 } // namespace LibSyndication

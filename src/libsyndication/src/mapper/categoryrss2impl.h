@@ -29,7 +29,6 @@
 #include <ksharedptr.h>
 
 namespace LibSyndication {
-namespace Mapper {
     
 class CategoryRSS2Impl;
 typedef KSharedPtr<CategoryRSS2Impl> CategoryRSS2ImplPtr;
@@ -57,7 +56,6 @@ class CategoryRSS2Impl : public LibSyndication::Category
         LibSyndication::RSS2::Category m_category;
 };
     
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_CATEGORYRSS2IMPL_H

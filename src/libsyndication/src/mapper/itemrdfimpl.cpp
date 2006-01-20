@@ -31,7 +31,6 @@
 #include <QString>
 
 namespace LibSyndication {
-namespace Mapper {
 
 ItemRDFImpl::ItemRDFImpl(const LibSyndication::RDF::Item& item) : m_item(item)
 {
@@ -95,5 +94,4 @@ QList<LibSyndication::CategoryPtr> ItemRDFImpl::categories() const
     return QList<LibSyndication::CategoryPtr>();
 }
 
-} // namespace Mapper
 } // namespace LibSyndication

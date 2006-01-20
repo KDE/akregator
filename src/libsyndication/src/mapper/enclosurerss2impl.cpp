@@ -25,7 +25,6 @@
 #include <QString>
 
 namespace LibSyndication {
-namespace Mapper {
 
 EnclosureRSS2Impl::EnclosureRSS2Impl(const LibSyndication::RSS2::Enclosure& enclosure)
     : m_enclosure(enclosure)
@@ -57,5 +56,4 @@ uint EnclosureRSS2Impl::length() const
     return m_enclosure.length();
 }
  
-} // namespace Mapper
 } // namespace LibSyndication

@@ -29,7 +29,6 @@
 template <class T> class KSharedPtr;
 
 namespace LibSyndication {
-namespace Mapper {
 
 class ItemAtomImpl;
 typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
@@ -67,7 +66,6 @@ class ItemAtomImpl : public LibSyndication::Item
         LibSyndication::Atom::Entry m_entry;
 };
 
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H

@@ -27,7 +27,6 @@
 #include "../feed.h"
 
 namespace LibSyndication {
-namespace Mapper {
 
 class FeedAtomImpl;
 typedef KSharedPtr<FeedAtomImpl> FeedAtomImplPtr;
@@ -59,7 +58,6 @@ class FeedAtomImpl : public LibSyndication::Feed
         LibSyndication::Atom::FeedDocumentPtr m_doc;
 };
 
-} // namespace Mapper
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_MAPPER_FEEDATOMIMPL_H

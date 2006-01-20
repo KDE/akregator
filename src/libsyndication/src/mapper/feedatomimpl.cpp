@@ -32,7 +32,6 @@
 #include <QList>
 
 namespace LibSyndication {
-namespace Mapper {
 
 FeedAtomImpl::FeedAtomImpl(LibSyndication::Atom::FeedDocumentPtr doc) : m_doc(doc)
 {
@@ -100,5 +99,4 @@ QString FeedAtomImpl::language() const
     return m_doc->xmlLang();
 }
 
-} // namespace Mapper
 } // namespace LibSyndication
