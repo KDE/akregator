@@ -30,6 +30,7 @@ namespace LibSyndication {
 class Constants
 {
     public:
+        
         static QString xmlNamespace();
         static QString dublinCoreNamespace();
 };

@@ -11,3 +11,4 @@ libatomlocal_la_SOURCES = category.cpp constants.cpp content.cpp document.cpp \
 
 libatomlocal_la_METASOURCES = AUTO
 
+include $(top_srcdir)/admin/Doxyfile.am

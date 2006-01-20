@@ -31,8 +31,11 @@ class Enclosure;
 typedef KSharedPtr<Enclosure> EnclosurePtr;
 
 /**
- * 
- * 
+ * An enclosure describes a (media) file available on the net.
+ *
+ * Most of the time, enclosures are used for "podcasts", i.e. audio
+ * files announced and distributed via syndication.
+ *
  * @author Frank Osterfeld
  */
 class Enclosure : public KShared
@@ -44,10 +47,14 @@ class Enclosure : public KShared
          */
         virtual ~Enclosure() {}
         
+        /**
+         * returns whether this enclosure is a null object.
+         */ 
         virtual bool isNull() const = 0;
         
         /**
-         * 
+         * The URL of the linked resource.
+         *
          * @return 
          */
         virtual QString url() const = 0;
@@ -62,6 +69,10 @@ class Enclosure : public KShared
         virtual QString title() const = 0;
         
         /**
+         * mimetype of the enclosure.
+         * TODO: link mimetype specs
+         * 
+         * Examples are @c "audio/mpeg" for MP3, or @c "application/pdf" for PDF.
          * 
          * @return the mimetype of the file, or QString::null if not specified
          */
@@ -75,7 +86,7 @@ class Enclosure : public KShared
         virtual uint length() const = 0;
         
         /**
-         * 
+         * description of this enclosure for debugging purposes
          * 
          * @return debug string
          */

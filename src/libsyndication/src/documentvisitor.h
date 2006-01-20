@@ -13,7 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public License
+ * You must have received a copy of the GNU Library General Public License
  * along with this library; see the file COPYING.LIB.  If not, write to
  * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
@@ -58,14 +58,46 @@ class DocumentVisitor
 
         virtual ~DocumentVisitor() {}
 
+        /**
+         * call this method to handle a document. Depending on the concrete type
+         * of the document, a specialized visit method is called.
+         * 
+         * @param document the document to process
+         * @return whether this visitor handles the type of the document.
+         */
         virtual bool visit(AbstractDocument* document);
 
+        /**
+         * reimplement this method to handle RSS2-like (RSS 0.9x, 2.0) documents.
+         * 
+         * @return whether the visitor handled the document.
+         * Reimplementations of this method must return @c true.
+         */
         virtual bool visitRSS2Document(LibSyndication::RSS2::Document* document) { return false; }
         
+        /**
+         * reimplement this method to handle RDF (i.e. RSS 1.0) documents.
+         * 
+         * @return whether the visitor handled the document.
+         * Reimplementations of this method must return @c true.
+         */
         virtual bool visitRDFDocument(LibSyndication::RDF::Document* document) { return false; }
         
+        /**
+         * reimplement this method to handle Atom feed documents (most Atom feeds
+         * are of this type).
+         * 
+         * @return whether the visitor handled the document.
+         * Reimplementations of this method must return @c true.
+         */
         virtual bool visitAtomFeedDocument(LibSyndication::Atom::FeedDocument* document) { return false; }
         
+        /**
+         * reimplement this method to handle Atom entry documents.
+         * 
+         * @return whether the visitor handled the document.
+         * Reimplementations of this method must return @c true.
+         */
         virtual bool visitAtomEntryDocument(LibSyndication::Atom::EntryDocument* document) { return false; }
 };
 

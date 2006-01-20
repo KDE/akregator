@@ -33,3 +33,5 @@ libsyndication_la_LIBADD = rss2/librss2local.la \
 # EXTRA_DIST = $(libsyndication_la_SOURCES) $(libsyndication_include_HEADERS) 
 # $(pkgconfig_DATA)
 
+DOXYGEN_EXCLUDE = mapper
+include $(top_srcdir)/admin/Doxyfile.am

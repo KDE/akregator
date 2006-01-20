@@ -43,9 +43,12 @@ class ImageAtomImpl : public LibSyndication::Image
 {
     public:
         
-        bool isNull() const { return true; }
+        ImageAtomImpl(const QString& logoURI) : m_logoURI(logoURI)
+        {}
+        
+        bool isNull() const { return m_logoURI.isEmpty(); }
                 
-        QString url() const { return QString::null; }
+        QString url() const { return m_logoURI; }
         
         QString title() const { return QString::null; }
         
@@ -56,6 +59,10 @@ class ImageAtomImpl : public LibSyndication::Image
         uint width() const { return 0; }
         
         uint height() const { return 0; }
+        
+    private:
+        
+        QString m_logoURI;
 };
     
 } // namespace LibSyndication

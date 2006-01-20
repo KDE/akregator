@@ -36,9 +36,9 @@ class Image : public ElementWrapper
     public:
 
         /**
-         * Parses an image object from an <image> XML element.
+         * Parses an image object from an @c <image> XML element.
          *
-         * @param e The <image> element to parse the image from
+         * @param e The @c <image> element to parse the image from
          * @return the image parsed from XML, or a null object
          *         if parsing failed.
          */
@@ -52,8 +52,6 @@ class Image : public ElementWrapper
 
         /**
          * the URL of a GIF, JPEG or PNG image 
-         *
-         * @return TODO
          */
         QString url() const;
     
@@ -61,7 +59,7 @@ class Image : public ElementWrapper
          * Describes the image, can be used in the ALT attribute of the 
          * HTML <img> tag when the channel is rendered in HTML.
          *
-         * @return TODO
+         * @return TODO: specify format
          */
         QString title() const;
     
@@ -93,7 +91,7 @@ class Image : public ElementWrapper
          * optional text that can be included in the TITLE attribute of the link
          * formed around the image in HTML rendering.
          *
-         * @return TODO
+         * @return TODO: specify format (HTML etc.)
          */
         QString description() const;
     

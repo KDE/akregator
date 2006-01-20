@@ -11,3 +11,5 @@ librss2local_la_SOURCES = category.cpp cloud.cpp constants.cpp \
                                  tools.cpp
 
 librss2local_la_METASOURCES = AUTO
+
+include $(top_srcdir)/admin/Doxyfile.am

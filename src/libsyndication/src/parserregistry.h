@@ -74,7 +74,7 @@ class ParserRegistry
          * This can avoid unnecessary AbstractParser::accept() checks and speed up
          * parsing. See also AbstractParser::format().
          * @return The document parsed from the source, or NULL if no parser
-         *         accepted the source.
+         * accepted the source.
          */
         FeedPtr parse(const DocumentSource& source, const QString& formatHint=QString::null);
 

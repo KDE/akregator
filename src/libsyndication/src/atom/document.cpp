@@ -124,8 +124,8 @@ QString FeedDocument::icon() const
 
 QString FeedDocument::logo() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("logo"));
+    return completeURI(extractElementTextNS(Constants::atom1NameSpace(),
+                       QString::fromLatin1("logo")));
 }
 
 QString FeedDocument::id() const

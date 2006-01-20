@@ -102,7 +102,7 @@ QString FeedAtomImpl::language() const
 
 ImagePtr FeedAtomImpl::image() const
 {
-    ImageAtomImplPtr ptr = new ImageAtomImpl;
+    ImageAtomImplPtr ptr = new ImageAtomImpl(m_doc->logo());
     return ImagePtr::staticCast(ptr);
 }
 

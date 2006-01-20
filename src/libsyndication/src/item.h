@@ -39,9 +39,8 @@ class Item;
 typedef KSharedPtr<Item> ItemPtr;
 
 /**
- * An item from a news feed.
- * This is part of the unified abstraction for format-agnostics
- * as described in Feed.
+ * An item from a news feed. An item can represent e.g. a news article
+ * or a blog entry.
  * 
  * @author Frank Osterfeld
  */
@@ -125,7 +124,7 @@ class Item : public KShared
         
         /**
          * returns a list of enclosures describing files available on the net.
-         * (often used for audio files, "Podcasts")
+         * (often used for audio files, "Podcasts").
          * 
          * @return a list of enclosures associated with this item
          */
@@ -139,6 +138,11 @@ class Item : public KShared
          */
         virtual QList<CategoryPtr> categories() const = 0;
         
+        /**
+         * returns a description of the item for debugging purposes
+         * 
+         * @return debug string
+         */
         virtual QString debugInfo() const;
 };
     

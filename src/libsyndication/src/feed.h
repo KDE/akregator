@@ -46,10 +46,10 @@ typedef KSharedPtr<Item> ItemPtr;
  * It contains a ordered list of items (e.g., articles) and a description of the
  * feed (title, homepage, etc.). This interface abstracts from format-specific 
  * details of e.g. Atom::FeedDocument or RSS::Document and provides a 
- * format-agnostic, unified view on the feed. 
- * This way, applications using libsyndication don't have to care about the 
+ * format-agnostic, unified view on the document.
+ * This way applications using libsyndication don't have to care about the 
  * syndication format jungle at all. If necessary, format details and specialities
- * can be accessed through document() method.
+ * can be accessed using the document() method.
  *
  * @author Frank Osterfeld
  */
@@ -94,7 +94,7 @@ class Feed : public KShared
         
         /** 
          * returns a link pointing to a website associated with this channel.
-         * This is e.g. a news site, a blog etc.
+         * This is e.g. a news site, a blog...
          * 
          * @return a WWW link, or QString::null if none is specified
          */
@@ -110,7 +110,11 @@ class Feed : public KShared
         virtual QString description() const = 0;
 
         /**
-         *
+         * returns an image associated with this item.
+         * 
+         * @return an image object, or a null image (i.e., image()->isNull() is @c true ) if no image is 
+         * specified in the feed
+         * 
          */
         virtual ImagePtr image() const = 0;
         
@@ -128,12 +132,12 @@ class Feed : public KShared
          */
         virtual QString language() const = 0;
         
-        //virtual Image image() const = 0;
-        //virtual TextInput textInput() const = 0; 
-        
+        /**
+         * returns a description of the feed for debugging purposes
+         * 
+         * @return debug string
+         */
         virtual QString debugInfo() const;
 };
-    
-} // namespace LibSyndication
 
-#endif // LIBSYNDICATION_FEED_H
+} // namespace LibSyndication

@@ -20,3 +20,5 @@ librdflocal_la_SOURCES = parser.cpp dublincorevocab.cpp dublincore.cpp \
                          statement.cpp resourcewrapper.cpp nodevisitor.cpp
 
 librdflocal_la_METASOURCES = AUTO
+
+include $(top_srcdir)/admin/Doxyfile.am
