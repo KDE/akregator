@@ -141,3 +141,5 @@ class Feed : public KShared
 };
 
 } // namespace LibSyndication
+
+#endif // LIBSYNDICATION_FEED_H

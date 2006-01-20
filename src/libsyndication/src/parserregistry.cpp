@@ -42,21 +42,21 @@
 
 namespace LibSyndication {
 
-static KStaticDeleter<ParserRegistry> parserregistrysd;
+static KStaticDeleter<ParserCollection> parserregistrysd;
 
-ParserRegistry* ParserRegistry::m_self = 0;
+ParserCollection* ParserCollection::m_self = 0;
 
-class ParserRegistry::ParserRegistryPrivate
+class ParserCollection::ParserCollectionPrivate
 {
     public:
     QHash<QString, AbstractParser*> parsers;
     
-    ParserRegistryPrivate(ParserRegistry* reg) : p(reg)
+    ParserCollectionPrivate(ParserCollection* reg) : p(reg)
     {
         docVisitor = new DocVisitor;
     }
     
-    ~ParserRegistryPrivate()
+    ~ParserCollectionPrivate()
     {
         delete docVisitor;
     }
@@ -113,25 +113,25 @@ class ParserRegistry::ParserRegistryPrivate
     
     private:
         
-    ParserRegistry* p;
+    ParserCollection* p;
 };
 
-ParserRegistry* ParserRegistry::self()
+ParserCollection* ParserCollection::self()
 {
     if (m_self == 0)
-        parserregistrysd.setObject(m_self, new ParserRegistry);
+        parserregistrysd.setObject(m_self, new ParserCollection);
     return m_self;
 }
 
-ParserRegistry::ParserRegistry()
+ParserCollection::ParserCollection()
 {
-    d = new ParserRegistryPrivate(this);
+    d = new ParserCollectionPrivate(this);
     registerParser(new LibSyndication::RSS2::Parser);
     registerParser(new LibSyndication::RDF::Parser);
     registerParser(new LibSyndication::Atom::Parser);
 }
 
-ParserRegistry::~ParserRegistry()
+ParserCollection::~ParserCollection()
 {
     QList<AbstractParser*> list = d->parsers.values();
     QList<AbstractParser*>::ConstIterator it = list.begin();
@@ -144,7 +144,7 @@ ParserRegistry::~ParserRegistry()
     d = 0;
 }
 
-bool ParserRegistry::registerParser(AbstractParser* parser)
+bool ParserCollection::registerParser(AbstractParser* parser)
 {
     if (d->parsers.contains(parser->format()))
         return false;
@@ -153,7 +153,7 @@ bool ParserRegistry::registerParser(AbstractParser* parser)
     return true;
 }
 
-FeedPtr ParserRegistry::parse(const DocumentSource& source, const QString& formatHint)
+FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& formatHint)
 {
     if (d->parsers.contains(formatHint))
     {

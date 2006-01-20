@@ -20,8 +20,8 @@
  *
  */
 
-#ifndef LIBSYNDICATION_PARSERREGISTRY_H
-#define LIBSYNDICATION_PARSERREGISTRY_H
+#ifndef LIBSYNDICATION_PARSERCOLLECTION_H
+#define LIBSYNDICATION_PARSERCOLLECTION_H
 
 #include <QString>
 
@@ -35,33 +35,40 @@ class Feed;
 typedef KSharedPtr<Feed> FeedPtr;
 
 /**
- * Singleton that collects all the parsers for the various formats.
- * All parsers should be registered here.
+ * Singleton that collects all the format-specific implementations of
+ * AbstractParser.
  * To parse a feed source, pass it to the parse() method of this class.
- *
+ * 
+ * Example code:
+ * 
+ * @code
+ * ...
+ * DocumentSource src(someFile.readAll());
+ * someFile.close();
+ * 
+ * FeedPtr feed = ParserCollection::self()->parse(src);
+ * 
+ * if (feed)
+ * {
+ *     QString title = feed->title();
+ *     QList<ItemPtr> items = feed->items();
+ *     ...
+  * }
+ * @endcode
+ * 
  * @author Frank Osterfeld
  */
-class ParserRegistry
+class ParserCollection
 {
     public:
 
         /**
-         * Singleton instance of ParserRegistry. Register your parsers here 
+         * Singleton instance of ParserCollection.
          */
-        static ParserRegistry* self();
+        static ParserCollection* self();
 
-        ParserRegistry();
-        virtual ~ParserRegistry();
-
-        /**
-         * Registers a parser at the registry. Parser::format() must be unique
-         * in the registry. If there is already a parser with the same format
-         * string, the registration fails.
-         *
-         * @param parser The parser to be registered
-         * @return whether the parser was successfully registered or not.
-         */ 
-        bool registerParser(AbstractParser* parser);
+        /** destructor */
+        virtual ~ParserCollection();
 
         /**
          * tries to parse a given source with the parsers registered.
@@ -78,14 +85,33 @@ class ParserRegistry
          */
         FeedPtr parse(const DocumentSource& source, const QString& formatHint=QString::null);
 
+        /**
+         * Adds a parser to the collection. Parser::format() must be unique
+         * in the collection. If there is already a parser with the same format
+         * string, the parser isn't added.
+         *
+         * @param parser The parser to be registered
+         * @return whether the parser was successfully registered or not.
+         */
+        bool registerParser(AbstractParser* parser);
+
+    protected:
+        
+        /** constructor */
+        ParserCollection();
+        
+        
     private:
 
-        static ParserRegistry* m_self;
+        ParserCollection(const ParserCollection& other) {}
+        ParserCollection& operator=(const ParserCollection& other) {}
+        
+        static ParserCollection* m_self;
 
-        class ParserRegistryPrivate;
-        ParserRegistryPrivate* d;
+        class ParserCollectionPrivate;
+        ParserCollectionPrivate* d;
 };
 
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_PARSERREGISTRY_H
+#endif // LIBSYNDICATION_PARSERCOLLECTION_H
