@@ -22,6 +22,7 @@
 
 #include "category.h"
 #include "feed.h"
+#include "image.h"
 #include "item.h"
 
 #include <QDateTime>
@@ -69,6 +70,11 @@ QString Feed::debugInfo() const
     
     for ( ; itc != endc; ++itc)
         info += (*itc)->debugInfo();
+    
+    ImagePtr image = image();
+     
+    if (!image->isNull())
+        info += image->debugInfo();
     
     info += "# Feed end ##############\n";
     
