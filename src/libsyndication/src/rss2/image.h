@@ -79,7 +79,7 @@ class Image : public ElementWrapper
          *
          * @return image width in pixels.
          */
-        int width() const;
+        uint width() const;
     
         /**
          * The height of the image. If the feed itself doesn't specify a height,
@@ -87,7 +87,7 @@ class Image : public ElementWrapper
          *
          * @return image height in pixels.
          */
-        int height() const;
+        uint height() const;
     
         /**
          * optional text that can be included in the TITLE attribute of the link

@@ -30,6 +30,8 @@ namespace LibSyndication {
 
 class FeedAtomImpl;
 typedef KSharedPtr<FeedAtomImpl> FeedAtomImplPtr;
+class Image;
+typedef KSharedPtr<Image> ImagePtr;
 
 class FeedAtomImpl : public LibSyndication::Feed
 {
@@ -52,6 +54,8 @@ class FeedAtomImpl : public LibSyndication::Feed
         QString author() const;
         
         QString language() const;
+        
+        ImagePtr image() const;
         
     private:
         

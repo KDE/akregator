@@ -21,6 +21,7 @@
  */
 
 #include "feedrdfimpl.h"
+#include "imagerdfimpl.h"
 #include "itemrdfimpl.h"
 #include "../rdf/dublincore.h"
 #include "../rdf/item.h"
@@ -87,6 +88,12 @@ QString FeedRDFImpl::author() const
 QString FeedRDFImpl::language() const
 {
     return "TODO";
+}
+
+ImagePtr FeedRDFImpl::image() const
+{
+    ImageRDFImplPtr ptr = new ImageRDFImpl(m_doc->image());
+    return ImagePtr::staticCast(ptr);
 }
 
 } // namespace LibSyndication

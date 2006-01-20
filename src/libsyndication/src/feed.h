@@ -36,6 +36,8 @@ class Category;
 typedef KSharedPtr<Category> CategoryPtr;
 class Feed;
 typedef KSharedPtr<Feed> FeedPtr;
+class Image;
+typedef KSharedPtr<Image> ImagePtr;
 class Item;
 typedef KSharedPtr<Item> ItemPtr;
 
@@ -106,6 +108,11 @@ class Feed : public KShared
          * @return the description as HTML, or QString::null if none is specified
          */
         virtual QString description() const = 0;
+
+        /**
+         *
+         */
+        virtual ImagePtr image() const = 0;
         
         /**
          * TODO

@@ -20,48 +20,44 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H
-#define LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H
+#ifndef LIBSYNDICATION_MAPPER_IMAGEATOMIMPL_H
+#define LIBSYNDICATION_MAPPER_IMAGEATOMIMPL_H
 
-#include "../rdf/document.h"
-#include "../feed.h"
+#include "../image.h"
+
+#include <QString>
+
+#include <ksharedptr.h>
 
 namespace LibSyndication {
+    
+class ImageAtomImpl;
+typedef KSharedPtr<ImageAtomImpl> ImageAtomImplPtr;
 
-class FeedRDFImpl;
-typedef KSharedPtr<FeedRDFImpl> FeedRDFImplPtr;
-class Image;
-typedef KSharedPtr<Image> ImagePtr;
-
-class FeedRDFImpl : public LibSyndication::Feed
+/**
+ *
+ * @internal
+ * @author Frank Osterfeld
+ */
+class ImageAtomImpl : public LibSyndication::Image
 {
     public:
         
-        FeedRDFImpl(LibSyndication::RDF::DocumentPtr doc);
+        bool isNull() const { return true; }
+                
+        QString url() const { return QString::null; }
         
-        LibSyndication::AbstractDocumentPtr document() const;
+        QString title() const { return QString::null; }
         
-        QList<ItemPtr> items() const;
+        QString link() const { return QString::null; }
         
-        QList<CategoryPtr> categories() const;
+        QString description() const { return QString::null; }
         
-        QString title() const;
+        uint width() const { return 0; }
         
-        QString link() const;
-        
-        QString description() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        ImagePtr image() const;
-        
-    private:
-        
-        LibSyndication::RDF::DocumentPtr m_doc;
+        uint height() const { return 0; }
 };
-
+    
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H
+#endif // LIBSYNDICATION_MAPPER_IMAGEATOMIMPL_H

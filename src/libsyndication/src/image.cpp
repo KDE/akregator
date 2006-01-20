@@ -20,48 +20,50 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H
-#define LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H
+#include <QString>
 
-#include "../rdf/document.h"
-#include "../feed.h"
+#include "image.h"
 
 namespace LibSyndication {
 
-class FeedRDFImpl;
-typedef KSharedPtr<FeedRDFImpl> FeedRDFImplPtr;
-class Image;
-typedef KSharedPtr<Image> ImagePtr;
-
-class FeedRDFImpl : public LibSyndication::Feed
+QString Image::debugInfo() const
 {
-    public:
-        
-        FeedRDFImpl(LibSyndication::RDF::DocumentPtr doc);
-        
-        LibSyndication::AbstractDocumentPtr document() const;
-        
-        QList<ItemPtr> items() const;
-        
-        QList<CategoryPtr> categories() const;
-        
-        QString title() const;
-        
-        QString link() const;
-        
-        QString description() const;
-        
-        QString author() const;
-        
-        QString language() const;
-        
-        ImagePtr image() const;
-        
-    private:
-        
-        LibSyndication::RDF::DocumentPtr m_doc;
-};
+    QString info;
+    info += "# Image begin ##############\n";
+    
+    QString durl = url();
+    
+    if (!durl.isNull())
+    {
+        info += "url: #" + durl + "#\n";
+    }
+    
+    QString dtitle = title();
+    
+    if (!dtitle.isNull())
+    {
+        info += "title: #" + dtitle + "#\n";
+    }
+    
+    QString dlink = link();
+    
+    if (!dlink.isNull())
+    {
+        info += "link: #" + dlink + "#\n";
+    }
+    
+    QString ddescription = description();
+    
+    if (!ddescription.isNull())
+    {
+        info += "description: #" + ddescription + "#\n";
+    }
+    
+    info += "height: #" + QString::number(height()) + "#\n";
+    info += "width: #" + QString::number(width()) + "#\n";
+    info += "# Image end ################\n";
+    
+    return info;
+}
 
 } // namespace LibSyndication
-
-#endif // LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H

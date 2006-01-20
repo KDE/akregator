@@ -22,6 +22,7 @@
 
 #include "categoryatomimpl.h"
 #include "feedatomimpl.h"
+#include "imageatomimpl.h"
 #include "itematomimpl.h"
 #include "../atom/category.h"
 #include "../atom/entry.h"
@@ -97,6 +98,12 @@ QString FeedAtomImpl::author() const
 QString FeedAtomImpl::language() const
 {
     return m_doc->xmlLang();
+}
+
+ImagePtr FeedAtomImpl::image() const
+{
+    ImageAtomImplPtr ptr = new ImageAtomImpl;
+    return ImagePtr::staticCast(ptr);
 }
 
 } // namespace LibSyndication

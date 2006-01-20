@@ -22,6 +22,7 @@
 
 #include "categoryrss2impl.h"
 #include "feedrss2impl.h"
+#include "imagerss2impl.h"
 #include "itemrss2impl.h"
 #include "../rss2/category.h"
 #include "../rss2/item.h"
@@ -97,6 +98,12 @@ QString FeedRSS2Impl::author() const
 QString FeedRSS2Impl::language() const
 {
     return "TODO";
+}
+
+ImagePtr FeedRSS2Impl::image() const
+{
+    ImageRSS2ImplPtr ptr = new ImageRSS2Impl(m_doc->image());
+    return ImagePtr::staticCast(ptr);
 }
 
 } // namespace LibSyndication

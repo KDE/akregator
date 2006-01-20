@@ -58,25 +58,25 @@ QString Image::link() const
     
 }
 
-int Image::width() const
+uint Image::width() const
 {
     QString text;
     bool ok;
-    int c;
+    uint c;
 
     text = extractElementText(QString::fromLatin1("width"));
-    c = text.toInt(&ok);
+    c = text.toUInt(&ok);
     return ok ? c : 88; // set to default if not parsable
 }
 
-int Image::height() const
+uint Image::height() const
 {
     QString text;
     bool ok;
-    int c;
+    uint c;
 
     text = extractElementText(QString::fromLatin1("height"));
-    c = text.toInt(&ok);
+    c = text.toUInt(&ok);
     return ok ? c : 31; // set to default if not parsable
 }
 
