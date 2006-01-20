@@ -5,15 +5,16 @@ INCLUDES = $(all_includes)
 
 lib_LTLIBRARIES = libsyndication.la
 
-libsyndication_la_SOURCES = parserregistry.cpp documentsource.cpp \
+libsyndication_la_SOURCES = parsercollection.cpp documentsource.cpp \
                             documentvisitor.cpp elementwrapper.cpp constants.cpp \
                             feed.cpp item.cpp enclosure.cpp category.cpp \
                             image.cpp
 
 libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
-                                 parserregistry.h documentvisitor.h \
+                                 parsercollection.h documentvisitor.h \
                                  documentsource.h elementwrapper.h \
-                                 item.h feed.h category.h image.h
+                                 item.h feed.h category.h image.h \
+                                 enclosure.h
 
 libsyndication_includedir = $(includedir)/libsyndication
 

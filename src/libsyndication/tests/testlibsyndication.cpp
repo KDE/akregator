@@ -25,7 +25,7 @@
 #include "abstractdocument.h"
 #include "documentsource.h"
 #include "feed.h"
-#include "parserregistry.h"
+#include "parsercollection.h"
 #include "atom/parser.h"
 #include "rdf/parser.h"
 #include "rss2/parser.h"
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
     file.close();
 
     DocumentSource src(raw);
-    FeedPtr feed = ParserRegistry::self()->parse(src);
+    FeedPtr feed = ParserCollection::self()->parse(src);
 
     if (!feed)
     {

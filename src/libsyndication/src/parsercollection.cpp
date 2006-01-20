@@ -23,7 +23,7 @@
 #include "abstractdocument.h"
 #include "abstractparser.h"
 #include "documentvisitor.h"
-#include "parserregistry.h"
+#include "parsercollection.h"
 #include "feed.h"
 #include "atom/document.h"
 #include "atom/parser.h"
