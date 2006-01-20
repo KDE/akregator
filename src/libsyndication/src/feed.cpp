@@ -71,10 +71,10 @@ QString Feed::debugInfo() const
     for ( ; itc != endc; ++itc)
         info += (*itc)->debugInfo();
     
-    ImagePtr image = image();
+    ImagePtr dimage = image();
      
-    if (!image->isNull())
-        info += image->debugInfo();
+    if (!dimage->isNull())
+        info += dimage->debugInfo();
     
     info += "# Feed end ##############\n";
     

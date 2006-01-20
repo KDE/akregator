@@ -42,10 +42,6 @@ using namespace LibSyndication;
 
 int main(int argc, char **argv)
 {
-    ParserRegistry::self()->registerParser(new RSS2::Parser);
-    ParserRegistry::self()->registerParser(new RDF::Parser);
-    ParserRegistry::self()->registerParser(new Atom::Parser);
-
     if (argc < 2)
     {
         std::cerr << "filename expected" << std::endl;
@@ -73,8 +69,10 @@ int main(int argc, char **argv)
          return 1;
     }
 
-    AbstractDocumentPtr doc = feed->document();
-
-    std::cout << doc->debugInfo().toLocal8Bit().data() << std::endl;
+    std::cout << feed->debugInfo().toLocal8Bit().data() << std::endl;
+    
+    //AbstractDocumentPtr doc = feed->document();
+    //
+    //std::cout << doc->debugInfo().toLocal8Bit().data() << std::endl;
 }
 

@@ -47,12 +47,12 @@ QString ImageRDFImpl::title() const
 
 QString ImageRDFImpl::link() const
 {
-    return QString::null;
+    return m_image.link();
 }
 
 QString ImageRDFImpl::description() const
 {
-    return m_image.description();
+    return QString::null;
 }
 
 uint ImageRDFImpl::height() const

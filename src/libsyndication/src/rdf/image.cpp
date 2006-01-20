@@ -46,9 +46,9 @@ QString Image::title() const
     return resource()->property(RSSVocab::self()->title())->asString();
 }
     
-QString Image::description() const
+QString Image::link() const
 {
-    return resource()->property(RSSVocab::self()->description())->asString();
+    return resource()->property(RSSVocab::self()->link())->asString();
 }
     
 QString Image::url() const
@@ -60,9 +60,9 @@ QString Image::debugInfo() const
 {
     QString info;
     info += "### Image: ###################\n";
-    info += "title: #" + title() + "#\n";
-    info += "description: #" + description() + "#\n";
     info += "url: #" + url() + "#\n";
+    info += "title: #" + title() + "#\n";
+    info += "link: #" + link() + "#\n";
     info += "### Image end ################\n";
     return info;
 }

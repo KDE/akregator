@@ -43,7 +43,7 @@ class Image : public ResourceWrapper
 
         QString title() const;
         
-        QString description() const;
+        QString link() const;
         
         QString url() const;
         
