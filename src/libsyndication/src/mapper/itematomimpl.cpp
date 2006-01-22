@@ -30,6 +30,7 @@
 #include "../atom/person.h"
 #include "../category.h"
 #include "../enclosure.h"
+#include "../tools.h"
 
 #include <QList>
 #include <QString>
@@ -52,12 +53,20 @@ QString ItemAtomImpl::title() const
 
 QString ItemAtomImpl::link() const
 {
-    QList<Link> links = m_entry.links();
-    if (links.isEmpty())
-        return QString::null;
-    // TODO: if there is more than one link, find the best suited one (like text/html)
+    QList<LibSyndication::Atom::Link> links = m_entry.links();
+    QList<LibSyndication::Atom::Link>::ConstIterator it = links.begin();
+    QList<LibSyndication::Atom::Link>::ConstIterator end = links.end();
+
+    // return first link where rel="alternate"
+    for ( ; it != end; ++it)
+    {
+        if ((*it).rel() == QString::fromLatin1("alternate"))
+        {
+            return (*it).href();
+        }
+    }
     
-    return links.first().href();
+    return QString::null;
 }
 
 QString ItemAtomImpl::description() const
@@ -84,6 +93,7 @@ QString ItemAtomImpl::author() const
     QString name = authors.first().name();
     QString mail = authors.first().email();
     // TODO: this needs i18n. maybe create a person struct for the abstraction, too?
+
     return QString("%1 <%2>").arg(name).arg(mail);
 }
 
@@ -109,12 +119,10 @@ QString ItemAtomImpl::language() const
 QString ItemAtomImpl::id() const
 {
     QString id = m_entry.id();
-    if (id.isEmpty())
-    {
-        // TODO: calc hash
-        return QString::null;
-    }
-    return id;
+    if (!id.isEmpty())
+        return id;
+    
+    return QString("hash:%1").arg(LibSyndication::calcMD5Sum(title() + description() + link() + content()));
 }
 
 

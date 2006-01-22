@@ -47,66 +47,181 @@ class Person;
 typedef KSharedPtr<EntryDocument> EntryDocumentPtr;
 typedef KSharedPtr<FeedDocument> FeedDocumentPtr;
 
-
+/**
+ * An Atom 1.0 Feed Document, containing metadata describing the 
+ * feed and a number of entries.
+ * 
+ * @author Frank Osterfeld
+ */
 class FeedDocument : public LibSyndication::AbstractDocument, public ElementWrapper
 {
     public:
     
+        /**
+         * default constructor, creates a null feed) 
+         */
         FeedDocument();
+        
+        /**
+         * creates a FeedDocument wrapping an atom:feed element.
+         * @param element a DOM element, should be a atom:feed document (although not enforced), otherwise this object
+         * will not parse anything useful
+         */
         FeedDocument(const QDomElement& element);
     
+        /**
+         * Used by visitors for double dispatch. See DocumentVisitor
+         * for more information.
+         * @param visitor the visitor calling the method
+         */
         bool accept(DocumentVisitor* visitor);
     
-        /* 1..* v each entry has >=1 author element */
-        
+        /**
+         * a list of persons who are the authors of this feed.
+         * According to the Atom 1.0 spec, a feed must have an
+         * author unless all entries in it have one.
+         */
         QList<Person> authors() const;
         
-        /* 0..* */
+        /**
+         * a list of persons who contribute to this feed. (optional)
+         */
         QList<Person> contributors() const;
         
-        /* 0..* */
+        /**
+         * a list of categories this feed is assigned to (optional)
+         */
         QList<Category> categories() const;
         
-        /* 0..1 */
+        /**
+         * URL of an image serving as a feed icon (optional)
+         * 
+         * @return icon URL, or a null string if not specified in the feed.
+         */
         QString icon() const;
             
-        /* 0..1 */
+        /**
+         * URL of an image serving as a feed logo (optional)
+         * 
+         * @return image URL, or a null string if not specified in the feed.
+         */
         QString logo() const;
         
+        /** 
+         * a string that unambigously identifies the feed (required)
+         * 
+         * @return the ID of the feed. As defined in the Atom spec it must be
+         * a valid URI (which is neither checked nor enforced by this parser)
+         * 
+         */
         QString id() const;
             
-        /* 0..1 */
+        /**
+         * copyright information (optional)
+         * 
+         * @return copyright information for the feed (intended for human
+         * readers), or a null string if not specified
+         */
         QString rights() const;
         
-        /* 1 */
+        /**
+         * feed title (required).
+         * 
+         * @return title string as HTML.
+         */
         QString title() const;
             
-        /* 0..1 */
+        /**
+         * description or subtitle of the feed (optional).
+         * 
+         * @return subtitle string as HTML, or a null string
+         * if not specified in the feed.
+         */
         QString subtitle() const;
         
-        /* 0..1 */
+        /** 
+         * description of the agent used to generate the feed. See
+         * Generator for more information (optional).
+         * 
+         * @return description of the generator, or a null Generator object 
+         * if not specified in the feed.
+         */
         Generator generator() const;
         
+        /**
+         * The datetime of the last modification of the feed content.
+         * 
+         * @return the modification date in seconds since epoch
+         */
         time_t updated() const;
-            
+        
+        /**
+         * a list of links. See Link for more information on
+         * link types.
+         */
         QList<Link> links() const;
             
+        /**
+         * a list of the entries (items) in this feed.
+         */
         QList<Entry> entries() const;
     
+        /**
+         * returns a description of this feed document for debugging 
+         * purposes.
+         * 
+         * @return debug string
+         */
         QString debugInfo() const;
 };
 
-class EntryDocument : public LibSyndication::AbstractDocument, public ElementWrapper
+/**
+ * An Atom 1.0 Entry Document, containing a single Atom entry outside
+ * of the context of a feed.
+ * 
+ * @author Frank Osterfeld
+ */
+class EntryDocument : public LibSyndication::AbstractDocument, public LibSyndication::ElementWrapper
 {
     public:
 
+        /**
+         * default constructor, creates a null document
+         */
         EntryDocument();
+        
+        /**
+         * creates an Atom Entry Document wrapping an atom:entry element.
+         * @param element a DOM element, should be a atom:entry element 
+         * (although not enforced), otherwise this object will not parse 
+         * anything useful
+         */
+
+        /**
+         * creates an EntryDocument wrapping an atom:entry element.
+         */
         EntryDocument(const QDomElement& element);
     
+        /**
+         * Used by visitors for double dispatch. See DocumentVisitor
+         * for more information.
+         * @param visitor the visitor calling the method
+         */
         bool accept(DocumentVisitor* visitor);
     
+        /**
+         * returns the single entry described in the source.
+         * 
+         * @return the entry
+         */
         Entry entry() const;
     
+        /**
+         * returns a description of this entry document for debugging 
+         * purposes.
+         * 
+         * @return debug string
+         */
         QString debugInfo() const;
 };
 

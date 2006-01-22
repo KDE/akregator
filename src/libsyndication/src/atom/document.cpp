@@ -117,8 +117,8 @@ Generator FeedDocument::generator() const
 
 QString FeedDocument::icon() const
 {
-    return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("icon"));
+    return completeURI(extractElementTextNS(Constants::atom1NameSpace(),
+                       QString::fromLatin1("icon")));
 
 }
 
@@ -273,9 +273,7 @@ bool EntryDocument::accept(DocumentVisitor* visitor)
 
 Entry EntryDocument::entry() const
 {
-    return Entry(firstElementByTagNameNS(
-                 Constants::atom1NameSpace(),
-                 QString::fromLatin1("entry")));
+    return Entry(element());
 }
 
 QString EntryDocument::debugInfo() const

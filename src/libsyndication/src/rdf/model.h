@@ -38,7 +38,8 @@ namespace LibSyndication {
 namespace RDF {
 
 /**
- * TODO
+ * An RDF model, a set of RDF statements.
+ * Model objects are implicitely shared.
  *
  * @author Frank Osterfeld
  */
@@ -107,7 +108,6 @@ class Model
          */
         virtual bool isEmpty() const;
 
-        // TODO: support inheritance
         /**
          * returns all resources of a given type.
          * Note: Inheritance is ignored right now, so instances of a subtype of 
@@ -121,11 +121,15 @@ class Model
          * 
          */
         virtual QList<StatementPtr> statements() const;
-        
-        virtual QString debugInfo() const;
-        
+
+        /**
+         * @internal
+         */
         virtual bool resourceHasProperty(const Resource* resource, PropertyPtr property) const;
 
+        /**
+         * @internal
+         */
         virtual StatementPtr resourceProperty(const Resource* resource, PropertyPtr property) const;
 
         /**
@@ -163,6 +167,14 @@ class Model
          * model doesn't contain a literal with this ID
          */
         virtual LiteralPtr literalByID(uint id) const;
+
+        /**
+         * a debug string listing the contained statements for 
+         * debugging purposes
+         * 
+         * @return debug string
+         */
+        virtual QString debugInfo() const;
 
     private:
         class ModelPrivate;

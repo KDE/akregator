@@ -41,7 +41,12 @@ class Model;
 class Syndication;
 class TextInput;
 typedef KSharedPtr<Document> DocumentPtr;
-        
+
+/**
+ * Document implementation for RDF, representing an RSS 1.0 feed.
+ * 
+ * @author Frank Osterfeld
+ */
 class Document : public LibSyndication::AbstractDocument, public ResourceWrapper
 {
     
@@ -53,6 +58,11 @@ class Document : public LibSyndication::AbstractDocument, public ResourceWrapper
         
         virtual bool accept(DocumentVisitor* visitor);
     
+        /**
+         * title of the feed (required)
+         * 
+         * @return feed title as TODO: define format
+         */
         QString title() const;
         
         QString description() const;
@@ -61,13 +71,18 @@ class Document : public LibSyndication::AbstractDocument, public ResourceWrapper
         
         /**
          * returns a dublin core description of the document.
-         * 
-         * @return a DC description describing this document
          */
         DublinCore dc() const;
-        
+
+        /**
+         * returns syndication information describing how often this feed
+         * is updated.
+         */
         Syndication syn() const;
         
+        /**
+         * list of items contained in this feed
+         */
         QList<Item> items() const;
         
         Image image() const;
@@ -75,10 +90,10 @@ class Document : public LibSyndication::AbstractDocument, public ResourceWrapper
         TextInput textInput() const;
         
         /**
-        * Returns a description of the document for debugging purposes.
-        *
-        * @return debug string
-        */
+         * Returns a description of the document for debugging purposes.
+         *
+         * @return debug string
+         */
         virtual QString debugInfo() const;
      
 };

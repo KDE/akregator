@@ -21,6 +21,7 @@
  */
 
 #include "documentsource.h"
+#include "tools.h"
 
 #include <QByteArray>
 #include <QDomDocument>
@@ -99,18 +100,7 @@ unsigned int DocumentSource::hash() const
 {
     if (!d->calculatedHash)
     {
-        if (d->array.isEmpty())
-        {
-            d->hash = 0;
-        }
-        else
-        {
-            const char* s = d->array.data();
-            uint hash = 5381;
-            int c;
-            while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
-            d->hash = hash;
-        }
+        d->hash = calcHash(d->array);
         d->calculatedHash = true;
     }
     

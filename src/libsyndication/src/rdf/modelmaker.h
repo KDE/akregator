@@ -35,6 +35,12 @@ class Model;
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
 
+/**
+ * An RDF parser, used to parse an RDF model from RDF/XML. It doesn't support
+ * the complete RDF specification, but suffices for our purposes.
+ * 
+ * @author Frank Osterfeld
+ */
 class ModelMaker
 {
     public:
@@ -48,7 +54,7 @@ class ModelMaker
          */
         Model createFromXML(const QDomDocument& doc);
     
-    protected:
+    private:
     
         ResourcePtr readResource(Model& model, const QDomElement& el);
 };

@@ -32,28 +32,96 @@ class QString;
 namespace LibSyndication {
 namespace Atom {
 
+/**
+ * The content element either contains or links the content of an entry.
+ * The content is usually plain text or HTML, but arbitrary XML or binary
+ * content are also possible. If isContained() is false, the content is
+ * not contained in the feed source, but linked.
+ * 
+ * @author Frank Osterfeld
+ */
 class Content : public ElementWrapper
 {
     public:
+        
+        /**
+         * creates a null content object.
+         */
         Content();
+        
+        /**
+         * creates a Content object wrapping an atom:content element.
+         * @param element a DOM element, should be a atom:content element
+         * (although not enforced), otherwise this object will not parse 
+         * anything useful
+         */
         Content(const QDomElement& element);
 
+        /**
+         * the type of the content. This is either "text" (plain text), 
+         * "html" (escaped HTML), "xhtml" (embedded XHTML) or a mime type
+         * following the TODO: link mimetype spec
+         * 
+         * @return the content type. If no type is specified, "text" (the
+         * default) is returned.
+         */
         QString type() const;
 
+        /**
+         * If src() is set, the content of this entry is not contained in the
+         * feed source, but available on the net.
+         * src() then contains a URL (more precise: IRI reference) linking to
+         * remote content.
+         * If src is provided, type() should contain a mimetype, instead of "text",
+         * "html" or "xhtml".
+         * 
+         * @return  a string if the content is contained in the feed source, or a URL
+         * linking to the remote content
+         */
         QString src() const;
         
+        /**
+         * returns the content as string. If the content format is Text, the
+         * returned string contains the text as HTML.
+         * If the content is embedded XML, the XML is returned as string.
+         * 
+         * @return a string representation of the content, or a null string if
+         * the content is either binary content or not contained but linked
+         * (see isContained())
+         */
+      
         QString asString() const;
         
+        /**
+         * returns the binary content as byte array.
+         * 
+         * @return byte array containing the embedded binary data, or
+         * an empty array if the content is not in binary format
+         */
         QByteArray asByteArray() const;
         
+        /**
+         * format of the content.
+         */
         enum Format
         {
-            Text,
-            XML,
-            Binary
+            Text, /**< the content is plain text (i.e. "<", ">" etc. are text, not
+                   * markup, or HTML (i.e., "<", ">" etc. are markup) */
+            XML, /**< the content is embedded XML */
+            Binary, /**< the content is base64-encoded binary content */
         };
         
+        /**
+         * returns the content format
+         */
         Format format() const;
+        
+        /**
+         * returns whether the content is contained in the feed source,
+         * or not. If it is not contained, src() provides a URL to the
+         * content.
+         */
+        bool isContained() const;
         
         /**
          * returns whether the content is embedded XML.
@@ -69,10 +137,17 @@ class Content : public ElementWrapper
         bool isBinary() const;
         
         /**
-         * 
+         * returns whether the content is plain text or escaped HTML.
+         * Use asString() to access it.
          */
         bool isText() const;
         
+        /**
+         * returns a description of the content object
+         * for debugging purposes
+         * 
+         * @return debug string
+         */
         QString debugInfo() const;
 };
 

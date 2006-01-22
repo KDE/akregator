@@ -32,19 +32,50 @@ class QString;
 namespace LibSyndication {
 namespace Atom {
 
+/**
+ * Description of the agent used to generate the feed.
+ * 
+ * @author Frank Osterfeld
+ */
 class Generator : public ElementWrapper
 {
     public:
 
+        /**
+         * default constructor, creates a null generator
+         */
         Generator();
+        
+        /**
+         * creates a Generator wrapping an atom:generator element.
+         * @param element a DOM element, should be a atom:generator element 
+         * (although not enforced), otherwise this object will not parse 
+         * anything useful
+         */
         Generator(const QDomElement& element);
 
+        /**
+         * A URI for the generator (e.g. its homepage) (optional)
+         */
         QString uri() const;
 
+        /**
+         * version of the agent (optional) 
+         */
         QString version() const;
         
+        /**
+         * human-readable name of the generator. (optional)
+         * 
+         * @return generator name as plain text
+         */
         QString name() const;
 
+        /**
+         * a description of this generator for debugging purposes.
+         * 
+         * @return debug info
+         */
         QString debugInfo() const;
 
 };

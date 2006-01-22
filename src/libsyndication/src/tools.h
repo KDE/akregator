@@ -20,34 +20,20 @@
  *
  */
 
-#ifndef LIBSYNDICATION_ATOM_CONSTANTS_H
-#define LIBSYNDICATION_ATOM_CONSTANTS_H
+#ifndef LIBSYNDICATION_TOOLS_H
+#define LIBSYNDICATION_TOOLS_H
 
+class QByteArray;
 class QString;
 
 namespace LibSyndication {
-namespace Atom {
 
-/**
- * some constants used for parsing Atom
- *
- * @author Frank Osterfeld
- */
-class Constants
-{
-    public:
-        /**
-         * namespace used by Atom 1.0 elements
-         */
-        static QString atom1NameSpace();
-        
-        /**
-         * namespace used by Atom 0.3 elements
-         */
-        static QString atom0_3NameSpace();
-};
+unsigned int calcHash(const QString& str);
 
-} // namespace Atom
+unsigned int calcHash(const QByteArray& array);
+
+QString calcMD5Sum(const QString& str);
+
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_ATOM_CONSTANTS_H
+#endif // LIBSYNDICATION_TOOLS_H

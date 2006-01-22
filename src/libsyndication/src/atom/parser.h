@@ -35,15 +35,30 @@ class DocumentSource;
 
 namespace Atom {
 
-    
+/**
+ * parser implementation for Atom 1.0 and 0.3.
+ * 
+ * @author Frank Osterfeld
+ */
 class Parser : public LibSyndication::AbstractParser
 {
     public:
 
+        /**
+         * returns true iff the source looks like an Atom 1.0 or 0.3 document
+         */
         bool accept(const LibSyndication::DocumentSource& source) const;
 
+        /**
+         * parses either an EntryDocument or a FeedDocument from a
+         * document source. If the source is not an atom document,
+         * the result is undefined.
+         */
         LibSyndication::AbstractDocumentPtr parse(const LibSyndication::DocumentSource& source) const;
         
+        /**
+         * returns "atom"
+         */
         QString format() const;
         
     protected:
@@ -52,12 +67,12 @@ class Parser : public LibSyndication::AbstractParser
          * converts an Atom 0.3 document to an Atom 1.0-similar document
          * that can be parsed by our parser.
          * 
-         * @param document a Atom 0.3 document. If it is not Atom 0.3, the 
+         * @param document an Atom 0.3 document. If it is not Atom 0.3, the 
          * result is undefined.
          * @return a new DOM document, suitable for our parser. This is not
          * completely Atom 1.0-compliant (it might contain now obsolete 
-         * elements, like e.g. atom:created or atom:info), but "enough 1.0"
-         * for our purposes.
+         * elements, like e.g. atom:created or atom:info), but "enough 1.0" for
+         * our purposes.
          */
         static QDomDocument convertAtom0_3(const QDomDocument& document);
 };

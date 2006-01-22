@@ -98,6 +98,11 @@ bool Content::isBinary() const
     return format() == Binary;
 }
 
+bool Content::isContained() const
+{
+    return src().isEmpty();
+}
+
 bool Content::isText() const
 {
     return format() == Text;

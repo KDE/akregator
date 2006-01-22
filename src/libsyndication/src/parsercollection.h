@@ -35,8 +35,7 @@ class Feed;
 typedef KSharedPtr<Feed> FeedPtr;
 
 /**
- * Singleton that collects all the format-specific implementations of
- * AbstractParser.
+ * Singleton that collects all the format-specific parser implementations.
  * To parse a feed source, pass it to the parse() method of this class.
  * 
  * Example code:

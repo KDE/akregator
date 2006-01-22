@@ -41,7 +41,7 @@ class AbstractParser
     public:
 
         /** 
-         * dtor
+         * destructor
          */
         virtual ~AbstractParser() {}
 
@@ -65,7 +65,7 @@ class AbstractParser
          * TODO: add isValid() to Document and link it here
          *
          * @param source The document source to be parsed
-         * @return a pointer to a newly created document parsed from @c source
+         * @return a newly created document parsed from @c source
          */
         virtual AbstractDocumentPtr parse(const DocumentSource& source) const = 0;
 

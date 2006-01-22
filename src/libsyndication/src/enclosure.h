@@ -53,18 +53,20 @@ class Enclosure : public KShared
         virtual bool isNull() const = 0;
         
         /**
-         * The URL of the linked resource.
+         * The URL of the linked resource (required).
          *
          * @return 
          */
         virtual QString url() const = 0;
         
         /**
-         * title of the enclosure. This is a human-readable description of the linked file.
-         * If available, the title should be used in user interfaces instead of URL. If no title
-         * is set (e.g., RSS2 enclosures don't have titles), use url() as fallback.
+         * title of the enclosure. This is a human-readable description of the
+         * linked file. If available, the title should be used in user interfaces
+         * instead of the URL. If no title is set (e.g., RSS2 enclosures don't
+         * have titles), use url() as fallback.
          * 
-         * @return title describing the enclosure, or QString::null if not specified.
+         * @return title describing the enclosure, or QString::null if not
+         * specified.
          */
         virtual QString title() const = 0;
         
@@ -72,9 +74,11 @@ class Enclosure : public KShared
          * mimetype of the enclosure.
          * TODO: link mimetype specs
          * 
-         * Examples are @c "audio/mpeg" for MP3, or @c "application/pdf" for PDF.
+         * Examples are @c "audio/mpeg" for MP3, or @c "application/pdf" for
+         * PDF.
          * 
-         * @return the mimetype of the file, or QString::null if not specified
+         * @return the mimetype of the file, or QString::null if not
+         * specified
          */
         virtual QString type() const = 0;
         

@@ -34,12 +34,12 @@ class AbstractDocument;
 typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
 
 /**
- * Document interface. A document is a representation parsed from a document 
- * source (see DocumentSource). It typically contains several information items
- * (i.e. articles) plus some additional metadata about the news feed.
+ * Document interface. A document is a representation parsed from a document
+ * source (see DocumentSource).
  * The Document classes from the several syndication formats must implement
  * this interface. It's main purpose is to provide access for document visitors
- * (see DocumentVisitor).
+ * (see DocumentVisitor). 
+ * For a unified view on the parsed feed, see Feed class.
  *
  * @author Frank Osterfeld
  */

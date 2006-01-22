@@ -116,7 +116,7 @@ Syndication::Period Syndication::stringToPeriod(const QString& str)
     
     if (str == QString::fromLatin1("hourly"))
         return Hourly;
-    if (str == QString::fromLatin1("onthly"))
+    if (str == QString::fromLatin1("monthly"))
         return Monthly;
     if (str == QString::fromLatin1("weekly"))
         return Weekly;

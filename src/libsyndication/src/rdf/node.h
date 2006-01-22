@@ -43,19 +43,57 @@ class Node : public KShared
         
         virtual bool operator==(const Node& other) const = 0;
         
+        /**
+         * returns a copy of the object. Must be implemented
+         * by subclasses to return a copy using the concrete
+         * type
+         */
         virtual Node* clone() const = 0;
+        
+        /**
+         * returns whether this node is a null node
+         */
         virtual bool isNull() const = 0;
-        virtual unsigned int id() const = 0;
+
+        /**
+         * returns whether this node is a resource
+         */
         virtual bool isResource() const = 0;
+        
+        /**
+         * returns whether this node is a literal
+         */
         virtual bool isLiteral() const = 0;
+        
+        /**
+         * returns whether this node is an RDF sequence
+         */
         virtual bool isSequence() const = 0;
+        
+        /**
+         * returns whether this node is an anonymous resource
+         */
         virtual bool isAnon() const = 0;
+        
+        virtual unsigned int id() const = 0;
+        
+        /**
+         * used in Model
+         * @internal
+         */
         virtual void setModel(const Model& model) = 0;
         
+        /**
+         *  used in Model
+         * @internal
+         */
         virtual void setId(unsigned int id) = 0;
         
     protected:
-        
+
+        /** 
+         * used to generate unique IDs for node objects 
+         */
         static unsigned int idCounter;
 };
 

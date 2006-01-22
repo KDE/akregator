@@ -101,9 +101,10 @@ QString ElementWrapper::xmlBase() const
         }
         
         // no xml:base found
-        d->xmlBase = "";
-        return "";
+        d->xmlBase = QString::null;
+        return QString::null;
     }
+    
     return d->xmlBase;
 }
 

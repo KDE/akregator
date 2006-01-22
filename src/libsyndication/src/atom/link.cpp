@@ -44,7 +44,8 @@ QString Link::href() const
 
 QString Link::rel() const
 {
-    return element().attribute(QString::fromLatin1("rel"));
+    //"alternate" is default
+    return element().attribute(QString::fromLatin1("rel"), QString::fromLatin1("alternate"));
 }
 
 QString Link::type() const

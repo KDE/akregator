@@ -32,15 +32,12 @@ typedef KSharedPtr<Category> CategoryPtr;
 
 /**
  * A category for categorizing items or whole feeds.
- * A category can be an informal string set by the feed author
- * ("General", "Stuff I like"),
- * a tag assigned by readers, as known from flickr.com  
- * or de.licio.us ("KDE", "funny"),
- * or a term from a formally defined ontology.
+ * A category can be an informal string set by the feed author ("General", 
+ * "Stuff I like"), a tag assigned by readers, as known from flickr.com
+ * or de.licio.us ("KDE", "funny"), or a term from a formally defined ontology.
  * 
- * To represent the category in a user interface, use label()
- * (or term() as fallback).
- * To create a key for e.g. storage purposes, use scheme() + term().
+ * To represent the category in a user interface, use label() (or term() as
+ * fallback). To create a key for e.g. storage purposes, use scheme() + term().
  * 
  * @author Frank Osterfeld
  */
@@ -65,7 +62,7 @@ class Category : public KShared
          * The term must be unique in its scheme (see scheme()).
          * 
          * In user interfaces, use it only if there is no label() available.
-         * 
+         * TODO: specify format (HTML, plain text?) and enforce it in the impl 
          * @return  category term. This string is never empty.
          */
         virtual QString term() const = 0;
@@ -86,7 +83,7 @@ class Category : public KShared
          * An optional human-readable label of the category. If specified, this
          * string should be used to represent this category in a user interface.
          * If not specified, use term() instead.
-         * 
+         * TODO: specify format (HTML, plain text?) and enforce it in the impl
          * @return the label of this category, or QString::null if not specified
          */
         virtual QString label() const = 0;

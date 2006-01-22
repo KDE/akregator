@@ -26,6 +26,7 @@
 #include "itemrss2impl.h"
 #include "../rss2/category.h"
 #include "../rss2/enclosure.h"
+#include "../tools.h"
 
 #include <QDateTime>
 #include <QList>
@@ -75,13 +76,11 @@ QString ItemRSS2Impl::language() const
 QString ItemRSS2Impl::id() const
 {
     QString guid = m_item.guid();
-    if (guid.isEmpty())
-    {
-        // TODO: calc hash
-        return QString::null;
-    }
-    else
+    if (!guid.isEmpty())
         return guid;
+    
+    return QString("hash:%1").arg(calcMD5Sum(title() 
+            + description() + content()));
 }
 
 time_t ItemRSS2Impl::datePublished() const

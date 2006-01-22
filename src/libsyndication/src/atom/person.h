@@ -31,30 +31,57 @@ class QString;
 namespace LibSyndication {
 namespace Atom {
 
+/**
+ * describes a person, with name and optional URI and e-mail address.
+ * Used to describe authors and contributors of feeds/entries
+ * 
+ *  @author Frank Osterfeld
+ */
 class Person : public ElementWrapper
 {
     public:
 
+        /**
+         * creates a null person object
+         */
        Person();
+       
+       /**
+        * creates a Person object wrapping an Atom Person Construct (atom:author,
+        * atom:contributor tags)
+        * @param element a DOM element, should be a Atom Person Construct
+        * (although not enforced), otherwise this object will not parse 
+        * anything useful
+        */
        Person(const QDomElement& element);
 
        /**
-        * returns a human-readable name for the person. The name is a required 
-        * attribute of person constructs.
+        * a human-readable name for the person. (required)
+        * The name is a required  attribute of person constructs.
         *
         * @return a human-readable name of the person
         */
         QString name() const;
 
+        /**
+         * A URI associated with the person (optional). Usually the homepage.
+         * 
+         * @return the URI of the person, or a null string if not specified
+         */
         QString uri() const;
 
         /**
-         * returns an e-mail address associated with the person. The e-mail address is optional.
+         * returns an e-mail address associated with the person. (optional)
          *
-         * @return an e-mail address, or QString::null if none is set
+         * @return an e-mail address, or a null string if not specified
          */
         QString email() const;
 
+        /**
+         * description for debugging purposes
+         * 
+         * @return debug string
+         */
         QString debugInfo() const;
 };
 

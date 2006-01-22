@@ -78,7 +78,7 @@ class Feed : public KShared
         virtual QList<ItemPtr> items() const = 0;
         
         /**
-         * contains a list of categories this feed is associated with
+         * returns a list of categories this feed is associated with.
          * 
          * @return
          */

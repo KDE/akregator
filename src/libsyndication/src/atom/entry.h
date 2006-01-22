@@ -40,53 +40,124 @@ class Link;
 class Person;
 class Source;
 
+/**
+ * an Atom entry, equivalent to the "items" in the RSS world.
+ *
+ * @author Frank Osterfeld
+ */
 class Entry : public ElementWrapper
 {
     public:
     
+        /**
+         * creates a null entry object
+         */
         Entry();
+        
+        /**
+         * creates an Entry object wrapping an atom:entry element.
+         * @param element a DOM element, should be a atom:entry element
+         * (although not enforced), otherwise this object will not parse 
+         * anything useful
+         */
         Entry(const QDomElement& element);
     
-        /* 1..0, or atom:source with an author in it, or a feed with author */
+        /**
+         * list of persons who are authors of this entry.
+         * 
+         * This is optional if the containing feed has an author description,
+         * and required if not.
+         */
         QList<Person> authors() const;
         
-        /* 0..* */
+        /**
+         * a list of categories this entry is filed to (optional)
+         */
         QList<Category> categories() const;
     
-        /* 0..* */
+        /**
+         * list of persons contributing to this entry (optional)
+         */
         QList<Person> contributors() const;
     
-        /* 1 */
+        /**
+         * ID of the article. (required)
+         * The ID must be unique inside this feed. The atom spec defines it as a
+         * URI (which is not enforced by this parser)
+         */
         QString id() const;
     
-        /* at least one link with rel=alternate */
+        /**
+         * links pointing to associated web sites and other resources.
+         * 
+         * Links are optional if the entry provides Content.
+         * Otherwise, it must contain at least one link with
+         * a @c rel value of @c "alternate". (see Link).
+         */
         QList<Link> links() const;
     
-        /* 0..1*/
+        /**
+         * copyright information (optional)
+         * 
+         * @return copyright information for the entry (intended for human
+         * readers), or a null string if not specified
+         */
         QString rights() const;
     
-        /* 0..1*/
+        /**
+         * source description of the content (optional)
+         * 
+         * If the content was copied from another feed, this object contains
+         * information about the source feed.
+         * 
+         * @return source description, or a null object if not 
+         * specified
+         */
         Source source() const;
     
-        /* 0..1*/
+        /**
+         * The datetime of the publication of this entry (optional).
+         * 
+         * @return the publication date in seconds since epoch
+         */
         time_t published() const;
     
-        /* 1 */
+        /**
+         * The datetime of the last modification of this entry (required).
+         * 
+         * @return the modification date in seconds since epoch
+         */
         time_t updated() const;
     
-        /* 0..1
-        mandatory when 
-            - atom:content with src attr. (thus empty)
-            - atom:content is not XML but Base64 encoded      
-        */
+        /**
+         * a short summary, abstract or excerpt of an entry. (optional)
+         * This is usually more verbose than title() and but does not
+         * contain the whole content as content() does.
+         * 
+         * @return the summary as HTML, or a null string if not specified
+         */
         QString summary() const;
     
-        /* 1 */
+        /**
+         * title of the entry (required).
+         * 
+         * @return the title as HTML
+         */
         QString title() const;
         
-        /* 0..1 */
+        /**
+         * content of the entry (optional)
+         * See @ref Content for details
+         * 
+         * @return entry content, or a null content object if not specified
+         */
         Content content() const;
     
+        /**
+         * returns a description of this entry for debugging purposes
+         * 
+         * @return debug string
+         */
         QString debugInfo() const;
 };
 

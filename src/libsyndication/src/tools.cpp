@@ -20,34 +20,46 @@
  *
  */
 
-#ifndef LIBSYNDICATION_ATOM_CONSTANTS_H
-#define LIBSYNDICATION_ATOM_CONSTANTS_H
+#include "tools.h"
 
-class QString;
+#include <kcodecs.h> 
+
+#include <QByteArray>
+#include <QString>
 
 namespace LibSyndication {
-namespace Atom {
 
-/**
- * some constants used for parsing Atom
- *
- * @author Frank Osterfeld
- */
-class Constants
+KMD5 md5Machine;
+
+unsigned int calcHash(const QString& str)
 {
-    public:
-        /**
-         * namespace used by Atom 1.0 elements
-         */
-        static QString atom1NameSpace();
-        
-        /**
-         * namespace used by Atom 0.3 elements
-         */
-        static QString atom0_3NameSpace();
-};
+    return calcHash(str.utf8());
+}
 
-} // namespace Atom
+unsigned int calcHash(const QByteArray& array)
+{
+    if (array.isEmpty())
+    {
+        return 0;
+    }
+    else
+    {
+        const char* s = array.data();
+        unsigned int hash = 5381;
+        int c;
+        while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
+        return hash;
+    }
+}
+
+
+QString calcMD5Sum(const QString& str)
+{
+    md5Machine.reset();
+    md5Machine.update(str.utf8());
+    return QString(md5Machine.hexDigest().data());
+}
+
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_ATOM_CONSTANTS_H
+

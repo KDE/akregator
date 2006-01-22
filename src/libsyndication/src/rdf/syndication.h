@@ -31,27 +31,65 @@ class QString;
 namespace LibSyndication {
 namespace RDF {
 
+/**
+ * wrapper to access syndication information for a feed
+ * 
+ * @author Frank Osterfeld
+ */
 class Syndication : public ResourceWrapper
 {
     public:
         
-        enum Period { None, Hourly, Daily, Weekly, Monthly, Yearly };
-                
+        
+        enum Period 
+        { 
+            None, /**< no period is defined. This should never happen,
+                  as Hourly is default if no period is specified */
+            Hourly, /**< TODO */
+            Daily, /**< TODO */
+            Weekly, /**< TODO */
+            Monthly, /**< TODO */
+            Yearly /**< TODO */
+        };
+        
+        /**
+         * creates a wrapper from a resource
+         * @param resource the feed resource to read syndication
+         * information from
+         */
         Syndication(ResourcePtr resource);
         virtual ~Syndication();
                 
-                
+        /**
+         */
         Period updatePeriod() const;
         
         int updateFrequency() const;
         
         time_t updateBase() const;
         
+        /**
+         * description of the syndication information
+         * for debugging purposes
+         * 
+         * @return debug string
+         */
         QString debugInfo() const;
         
     protected:
         
+        /**
+         * returns Period value as string "hourly", "daily", etc.
+         */
         static QString periodToString(Period period);
+        
+        /**
+         * parses a Period value from a string.
+         * 
+         * @param str a period string as defined in the syndication module
+         * @return the parsed period, Daily (the default) if the parsed
+         * string is empty or invalid
+         */
         static Period stringToPeriod(const QString& str);
 };
 
