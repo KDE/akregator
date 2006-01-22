@@ -23,6 +23,7 @@
 #include "feedrdfimpl.h"
 #include "imagerdfimpl.h"
 #include "itemrdfimpl.h"
+#include "personimpl.h"
 #include "../rdf/dublincore.h"
 #include "../rdf/item.h"
 #include "../category.h"
@@ -80,9 +81,18 @@ QString FeedRDFImpl::description() const
     return m_doc->description();
 }
 
-QString FeedRDFImpl::author() const
+QList<PersonPtr> FeedRDFImpl::authors() const
 {
-    return m_doc->dc().creator();
+    QString creator = m_doc->dc().creator();
+    QList<PersonPtr> list;
+    // TODO: check if creator is really a name, extract email address etc.
+    if (!creator.isEmpty())
+    {
+        PersonImplPtr ptr = new PersonImpl(creator, QString::null, QString::null);
+        list.append(PersonPtr::staticCast(ptr));
+    }
+    
+    return list;
 }
 
 QString FeedRDFImpl::language() const

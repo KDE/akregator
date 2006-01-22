@@ -20,12 +20,14 @@
  *
  */
 
+#include "itemrdfimpl.h"
+#include "personimpl.h"
 #include "../rdf/dublincore.h"
 #include "../rdf/resource.h"
 #include "../rdf/resourcewrapper.h"
 #include "../category.h"
 #include "../enclosure.h"
-#include "itemrdfimpl.h"
+
 
 #include <QList>
 #include <QString>
@@ -56,9 +58,18 @@ QString ItemRDFImpl::content() const
     return m_item.encodedContent();
 }
 
-QString ItemRDFImpl::author() const
+QList<PersonPtr> ItemRDFImpl::authors() const
 {
-    return m_item.dc().creator();
+    // TODO: check if creator is really a name, extract email address etc.s
+    QString creator = m_item.dc().creator();
+    QList<PersonPtr> list;
+    
+    if (!creator.isEmpty())
+    {
+        PersonImplPtr ptr = new PersonImpl(creator, QString::null, QString::null);
+        list.append(PersonPtr::staticCast(ptr));
+    }
+    return list;
 }
 
 QString ItemRDFImpl::language() const
@@ -70,7 +81,6 @@ QString ItemRDFImpl::id() const
 {
     return m_item.resource()->uri();
 }
-
 
 time_t ItemRDFImpl::datePublished() const 
 {

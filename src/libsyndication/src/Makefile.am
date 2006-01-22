@@ -8,13 +8,13 @@ lib_LTLIBRARIES = libsyndication.la
 libsyndication_la_SOURCES = parsercollection.cpp documentsource.cpp \
                             documentvisitor.cpp elementwrapper.cpp constants.cpp \
                             feed.cpp item.cpp enclosure.cpp category.cpp \
-                            image.cpp tools.cpp
+                            image.cpp tools.cpp person.cpp
 
 libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
                                  parsercollection.h documentvisitor.h \
                                  documentsource.h elementwrapper.h \
                                  item.h feed.h category.h image.h \
-                                 enclosure.h
+                                 enclosure.h person.h
 
 libsyndication_includedir = $(includedir)/libsyndication
 
@@ -24,7 +24,8 @@ libsyndication_la_LIBADD = rss2/librss2local.la \
                            atom/libatomlocal.la \
                            mapper/libmapperrss2local.la \
                            mapper/libmapperrdflocal.la \
-                           mapper/libmapperatomlocal.la
+                           mapper/libmapperatomlocal.la \
+                           mapper/libmappercommonlocal.la
 
 #bin_SCRIPTS = libsyndication-config
 

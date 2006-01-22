@@ -37,6 +37,8 @@ class Enclosure;
 typedef KSharedPtr<Enclosure> EnclosurePtr;
 class Item;
 typedef KSharedPtr<Item> ItemPtr;
+class Person;
+typedef KSharedPtr<Person> PersonPtr;
 
 /**
  * An item from a news feed. An item can represent e.g. a news article
@@ -117,7 +119,7 @@ class Item : public KShared
          */
         virtual QString id() const = 0;
 
-        virtual QString author() const = 0;
+        virtual QList<PersonPtr> authors() const = 0;
         
         virtual QString language() const = 0;
         

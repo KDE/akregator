@@ -20,53 +20,44 @@
  *
  */
 
-#ifndef LIBSYNDICATION_MAPPER_ITEMRSS2IMPL_H
-#define LIBSYNDICATION_MAPPER_ITEMRSS2IMPL_H
+#ifndef LIBSYNDICATION_PERSONIMPL_H
+#define LIBSYNDICATION_PERSONIMPL_H
 
-#include "../rss2/item.h"
-#include "../item.h"
+#include "../person.h"
+
+#include <QString>
 
 namespace LibSyndication {
 
-class ItemRSS2Impl;
-typedef KSharedPtr<ItemRSS2Impl> ItemRSS2ImplPtr;
+class PersonImpl;
+typedef KSharedPtr<PersonImpl> PersonImplPtr;
 
 /**
  * @internal
  */
-class ItemRSS2Impl : public LibSyndication::Item
+class PersonImpl : public Person
 {
     public:
+
+        PersonImpl();
+        PersonImpl(const QString& name, const QString& uri, const QString& email);
         
-        ItemRSS2Impl(const LibSyndication::RSS2::Item& item);
+        virtual bool isNull() const { return m_null; }
         
-        QString title() const;
+        virtual QString name() const { return m_name; }
         
-        QString link() const;
+        virtual QString uri() const { return m_uri; }
         
-        QString description() const;
-        
-        QString content() const;
-        
-        QList<PersonPtr> authors() const;
-                
-        QString language() const;
-        
-        QString id() const;
-        
-        time_t datePublished() const;
-        
-        time_t dateUpdated() const;
-        
-        QList<EnclosurePtr> enclosures() const;
-        
-        QList<CategoryPtr> categories() const;
+        virtual QString email() const { return m_email; }
         
     private:
         
-        LibSyndication::RSS2::Item m_item;
+        bool m_null;
+        QString m_name;
+        QString m_uri;
+        QString m_email;
 };
-
+    
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_MAPPER_ITEMRSS2IMPL_H
+#endif // LIBSYNDICATION_PERSONIMPL_H

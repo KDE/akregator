@@ -24,6 +24,7 @@
 #include "feedrss2impl.h"
 #include "imagerss2impl.h"
 #include "itemrss2impl.h"
+#include "personimpl.h"
 #include "../rss2/category.h"
 #include "../rss2/item.h"
 
@@ -90,9 +91,9 @@ QString FeedRSS2Impl::description() const
     return m_doc->description();
 }
 
-QString FeedRSS2Impl::author() const
+QList<PersonPtr> FeedRSS2Impl::authors() const
 {
-    return QString::null;
+    return QList<PersonPtr>();
 }
 
 QString FeedRSS2Impl::language() const

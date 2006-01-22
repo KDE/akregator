@@ -24,6 +24,7 @@
 #include "feed.h"
 #include "image.h"
 #include "item.h"
+#include "person.h"
 
 #include <QDateTime>
 #include <QList>
@@ -49,10 +50,6 @@ QString Feed::debugInfo() const
     if (!ddescription.isNull())
         info += "description: #" + ddescription + "#\n";
     
-    QString dauthor = author();
-    if (!dauthor.isNull())
-        info += "author: #" + dauthor + "#\n";
-    
     QString dlanguage = language();
     if (!dlanguage.isNull())
         info += "language: #" + dlanguage + "#\n";
@@ -63,6 +60,13 @@ QString Feed::debugInfo() const
     
     for ( ; it != end; ++it)
         info += (*it)->debugInfo();
+        
+    QList<PersonPtr> dauthors = authors();
+    QList<PersonPtr>::ConstIterator itp = dauthors.begin();
+    QList<PersonPtr>::ConstIterator endp = dauthors.end();
+    
+    for ( ; itp != endp; ++itp)
+        info += (*itp)->debugInfo();
                 
     QList<CategoryPtr> dcategories = categories();
     QList<CategoryPtr>::ConstIterator itc = dcategories.begin();
@@ -70,7 +74,7 @@ QString Feed::debugInfo() const
     
     for ( ; itc != endc; ++itc)
         info += (*itc)->debugInfo();
-    
+
     ImagePtr dimage = image();
      
     if (!dimage->isNull())

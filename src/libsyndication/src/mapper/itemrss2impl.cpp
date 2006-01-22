@@ -24,6 +24,7 @@
 #include "categoryrss2impl.h"
 #include "enclosurerss2impl.h"
 #include "itemrss2impl.h"
+#include "personimpl.h"
 #include "../rss2/category.h"
 #include "../rss2/enclosure.h"
 #include "../tools.h"
@@ -63,9 +64,19 @@ QString ItemRSS2Impl::content() const
     return m_item.content();
 }
 
-QString ItemRSS2Impl::author() const
+QList<PersonPtr> ItemRSS2Impl::authors() const
 {
-    return m_item.author();
+    QList<PersonPtr> list;
+    QString author = m_item.author();
+    
+    if (!author.isEmpty())
+    {
+        // TODO: check whether author() really contains an email address
+        PersonImplPtr ptr = new PersonImpl(QString::null, QString::null, author);
+        list.append(PersonPtr::staticCast(ptr));
+    }
+    
+    return list;
 }
 
 QString ItemRSS2Impl::language() const

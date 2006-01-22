@@ -33,6 +33,9 @@ typedef KSharedPtr<FeedRDFImpl> FeedRDFImplPtr;
 class Image;
 typedef KSharedPtr<Image> ImagePtr;
 
+/**
+ * @internal
+ */
 class FeedRDFImpl : public LibSyndication::Feed
 {
     public:
@@ -51,7 +54,7 @@ class FeedRDFImpl : public LibSyndication::Feed
         
         QString description() const;
         
-        QString author() const;
+        QList<PersonPtr> authors() const;
         
         QString language() const;
         

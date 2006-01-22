@@ -33,6 +33,9 @@ namespace LibSyndication {
 class ItemRDFImpl;
 typedef KSharedPtr<ItemRDFImpl> ItemRDFImplPtr;
 
+/**
+ * @internal
+ */
 class ItemRDFImpl : public LibSyndication::Item
 {
     public:
@@ -47,7 +50,7 @@ class ItemRDFImpl : public LibSyndication::Item
         
         QString content() const;
         
-        QString author() const;
+        QList<PersonPtr> authors() const;
         
         QString language() const;
         
@@ -56,7 +59,6 @@ class ItemRDFImpl : public LibSyndication::Item
         time_t datePublished() const;
         
         time_t dateUpdated() const;
-//        LibSyndication::Enclosure enclosure() const;
         
         QList<EnclosurePtr> enclosures() const;
         

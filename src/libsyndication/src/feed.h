@@ -40,6 +40,8 @@ class Image;
 typedef KSharedPtr<Image> ImagePtr;
 class Item;
 typedef KSharedPtr<Item> ItemPtr;
+class Person;
+typedef KSharedPtr<Person> PersonPtr;
 
 /**
  * This class represents a feed document ("Channel" in RSS, "Feed" in Atom).
@@ -123,7 +125,7 @@ class Feed : public KShared
          * 
          * @return TODO
          */
-        virtual QString author() const = 0;
+        virtual QList<PersonPtr> authors() const = 0;
         
         /**
          * TODO

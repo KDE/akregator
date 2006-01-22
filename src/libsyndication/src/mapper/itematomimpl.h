@@ -33,6 +33,9 @@ namespace LibSyndication {
 class ItemAtomImpl;
 typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
 
+/**
+ * @internal
+ */
 class ItemAtomImpl : public LibSyndication::Item
 {
     public:
@@ -47,7 +50,7 @@ class ItemAtomImpl : public LibSyndication::Item
         
         QString content() const;
         
-        QString author() const;
+        QList<PersonPtr> authors() const;
         
         QString language() const;
         

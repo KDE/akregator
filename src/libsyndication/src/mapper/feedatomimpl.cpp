@@ -24,8 +24,10 @@
 #include "feedatomimpl.h"
 #include "imageatomimpl.h"
 #include "itematomimpl.h"
+#include "personimpl.h"
 #include "../atom/category.h"
 #include "../atom/entry.h"
+#include "../atom/person.h"
 
 #include <ksharedptr.h>
 
@@ -90,9 +92,32 @@ QString FeedAtomImpl::description() const
     return m_doc->subtitle();
 }
 
-QString FeedAtomImpl::author() const
+QList<PersonPtr> FeedAtomImpl::authors() const
 {
-    return "TODO";
+    QList<LibSyndication::Atom::Person> atomps = m_doc->authors();
+    QList<LibSyndication::Atom::Person>::ConstIterator it = atomps.begin();
+    QList<LibSyndication::Atom::Person>::ConstIterator end = atomps.end();
+    
+    QList<PersonPtr> list;
+    
+    for ( ; it != end; ++it)
+    {
+        PersonImplPtr ptr = new PersonImpl((*it).name(), (*it).uri(), (*it).email());
+        list.append(PersonPtr::staticCast(ptr));
+    }
+    
+    atomps = m_doc->contributors();
+    
+    it = atomps.begin();
+    end = atomps.end();
+    
+    for ( ; it != end; ++it)
+    {
+        PersonImplPtr ptr = new PersonImpl((*it).name(), (*it).uri(), (*it).email());
+        list.append(PersonPtr::staticCast(ptr));
+    }
+    
+    return list;
 }
 
 QString FeedAtomImpl::language() const

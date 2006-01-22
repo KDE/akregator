@@ -23,6 +23,7 @@
 #include "category.h"
 #include "enclosure.h"
 #include "item.h"
+#include "person.h"
 
 #include <QDateTime>
 #include <QList>
@@ -66,14 +67,17 @@ QString Item::debugInfo() const
     if (update.isValid())
         info += "dateUpdated: #" + update.toString() + "#\n";
 
-    QString dauthor = author();
-    if (!dauthor.isNull())
-        info += "author: #" + dauthor + "#\n";
-    
     QString dlanguage = language();
     if (!dlanguage.isNull())
         info += "language: #" + dlanguage + "#\n";
     
+    QList<PersonPtr> dauthors = authors();
+    QList<PersonPtr>::ConstIterator itp = dauthors.begin();
+    QList<PersonPtr>::ConstIterator endp = dauthors.end();
+    
+    for ( ; itp != endp; ++itp)
+        info += (*itp)->debugInfo();
+
     QList<CategoryPtr> dcategories = categories();
     QList<CategoryPtr>::ConstIterator itc = dcategories.begin();
     QList<CategoryPtr>::ConstIterator endc = dcategories.end();

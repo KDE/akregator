@@ -23,6 +23,7 @@
 #include "categoryatomimpl.h"
 #include "enclosureatomimpl.h"
 #include "itematomimpl.h"
+#include "personimpl.h"
 
 #include "../atom/category.h"
 #include "../atom/content.h"
@@ -83,18 +84,32 @@ QString ItemAtomImpl::content() const
     return content.asString();
 }
 
-QString ItemAtomImpl::author() const
+QList<PersonPtr> ItemAtomImpl::authors() const
 {
-    QList<Person> authors = m_entry.authors();
+    QList<LibSyndication::Atom::Person> atomps = m_entry.authors();
+    QList<LibSyndication::Atom::Person>::ConstIterator it = atomps.begin();
+    QList<LibSyndication::Atom::Person>::ConstIterator end = atomps.end();
     
-    if (authors.isEmpty())
-        return QString::null;
+    QList<PersonPtr> list;
     
-    QString name = authors.first().name();
-    QString mail = authors.first().email();
-    // TODO: this needs i18n. maybe create a person struct for the abstraction, too?
-
-    return QString("%1 <%2>").arg(name).arg(mail);
+    for ( ; it != end; ++it)
+    {
+        PersonImplPtr ptr = new PersonImpl((*it).name(), (*it).uri(), (*it).email());
+        list.append(PersonPtr::staticCast(ptr));
+    }
+    
+    atomps = m_entry.contributors();
+    
+    it = atomps.begin();
+    end = atomps.end();
+    
+    for ( ; it != end; ++it)
+    {
+        PersonImplPtr ptr = new PersonImpl((*it).name(), (*it).uri(), (*it).email());
+        list.append(PersonPtr::staticCast(ptr));
+    }
+    
+    return list;
 }
 
 time_t ItemAtomImpl::datePublished() const 
