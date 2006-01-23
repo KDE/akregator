@@ -35,7 +35,7 @@
 
 class KAboutData;
 class KConfig;
-class KURL;
+class KUrl;
 class KParts::BrowserExtension;
 
 class QDomDocument;

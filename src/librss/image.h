@@ -23,7 +23,7 @@ namespace KIO
 {
    class Job;
 }
-class KURL;
+class KUrl;
 
 namespace RSS
 {

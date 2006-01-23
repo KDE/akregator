@@ -31,7 +31,7 @@
 
 #include <kparts/browserextension.h>
 
-class KURL;
+class KUrl;
 
 namespace KParts
 {

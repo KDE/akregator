@@ -30,7 +30,7 @@
 #include <klineedit.h>
 #include <klocale.h>
 #include <knuminput.h>
-#include <kpassdlg.h>
+#include <kpassworddialog.h>
 
 #include <qcheckbox.h>
 #include <qradiobutton.h>

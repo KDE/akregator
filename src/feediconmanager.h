@@ -30,7 +30,7 @@
 
 #include <QObject>
 
-class KURL;
+class KUrl;
 
 class QPixmap;
 class QString;

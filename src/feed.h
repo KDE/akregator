@@ -36,7 +36,7 @@ class QDomElement;
 class QPixmap;
 class QString;
 class QStringList;
-class KURL;
+class KUrl;
 
 
 namespace KPIM 

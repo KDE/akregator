@@ -13,7 +13,7 @@
 
 #include "global.h"
 
-class KURL;
+class KUrl;
 
 class QDomNode;
 class QString;

@@ -27,7 +27,7 @@
 
 #include <khtml_part.h>
 
-class KURL;
+class KUrl;
 
 namespace KIO
 {

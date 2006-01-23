@@ -13,7 +13,7 @@
 
 #include "global.h"
 
-class KURL;
+class KUrl;
 
 #include <qobject.h>
 

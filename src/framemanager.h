@@ -32,7 +32,7 @@
 
 class QString;
 
-class KURL;
+class KUrl;
 
 namespace KParts
 {

@@ -20,7 +20,7 @@ class QDomNode;
 template <class> class QList;
 class QString;
 class QWidget;
-class KURL;
+class KUrl;
 class KURLLabel;
 
 namespace RSS

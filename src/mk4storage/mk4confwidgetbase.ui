@@ -60,7 +60,7 @@
                                 <string>Archive location:</string>
                             </property>
                         </widget>
-                        <widget class="KURLRequester">
+                        <widget class="KUrlRequester">
                             <property name="name">
                                 <cstring>filereq</cstring>
                             </property>

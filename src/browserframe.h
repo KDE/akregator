@@ -30,7 +30,7 @@
 class QString;
 class QWidget;
 
-class KURL;
+class KUrl;
 
 namespace KParts 
 {
