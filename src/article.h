@@ -89,7 +89,7 @@ class Article
         void offsetPubDate(int secs);
 
         QString title() const;
-        KURL link() const;
+        KUrl link() const;
         QString description() const;
         QString guid() const;
         /** if true, the article should be kept even when expired **/
@@ -116,7 +116,7 @@ class Article
         
         const QDateTime& pubDate() const;
         
-        KURL commentsLink() const;
+        KUrl commentsLink() const;
         
         int comments() const;
         

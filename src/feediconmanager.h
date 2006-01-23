@@ -54,7 +54,7 @@ class FeedIconManager:public QObject, public DCOPObject
 
         void fetchIcon(Feed* feed);
         
-        QString iconLocation(const KURL &) const;
+        QString iconLocation(const KUrl &) const;
         
     k_dcop:
         void slotIconChanged(bool, const QString&, const QString&);
@@ -69,7 +69,7 @@ class FeedIconManager:public QObject, public DCOPObject
 
         /** returns the url used to access the icon, e.g.
             http://dot.kde.org/ for "dot.kde.org/1113317400/" */
-        QString getIconURL(const KURL& url);
+        QString getIconURL(const KUrl& url);
 
         void loadIcon(const QString &);
     

@@ -52,7 +52,7 @@ namespace RSS
 			 * class in case it needs to retrieve the data.
 			 * @see Loader::loadFrom()
 			 */
-			virtual void retrieveData(const KURL &url) = 0;
+			virtual void retrieveData(const KUrl &url) = 0;
 
 			/**
 			 * @return An error code which might give a more precise information
@@ -107,7 +107,7 @@ namespace RSS
 			 * reference valid XML.
 			 * @see Loader::loadFrom()
 			 */
-			virtual void retrieveData(const KURL &url);
+			virtual void retrieveData(const KUrl &url);
 
 			/**
 			 * @return The error code for the last process of retrieving data.
@@ -130,7 +130,7 @@ namespace RSS
 			 * notify the user, or adjust a database entry.
 			 * @see Loader::loadFrom()
 			 */
-			void permanentRedirection(const KURL &url);
+			void permanentRedirection(const KUrl &url);
 
         protected slots:
             void slotTimeout();
@@ -138,8 +138,8 @@ namespace RSS
 		private slots:
 			void slotData(KIO::Job *job, const QByteArray &data);
 			void slotResult(KIO::Job *job);
-			void slotPermanentRedirection(KIO::Job *job, const KURL &fromUrl,
-			                                             const KURL &toUrl);
+			void slotPermanentRedirection(KIO::Job *job, const KUrl &fromUrl,
+			                                             const KUrl &toUrl);
 
 		private:
 			static bool m_useCache;
@@ -178,7 +178,7 @@ namespace RSS
 			 * file.
 			 * @see Loader::loadFrom()
 			 */
-			virtual void retrieveData(const KURL &url);
+			virtual void retrieveData(const KUrl &url);
 
 			/**
 			 * @return The error code for the last process of retrieving data.
@@ -290,7 +290,7 @@ namespace RSS
 			 * delete it when it doesn't need it anymore.
 			 * @see DataRetriever, Loader::loadingComplete()
 			 */
-			void loadFrom(const KURL &url, DataRetriever *retriever);
+			void loadFrom(const KUrl &url, DataRetriever *retriever);
 
 			/**
 			 * Retrieves the error code of the last loading process (if any),
@@ -298,7 +298,7 @@ namespace RSS
 			 */
 			int errorCode() const;
 
-            const KURL &discoveredFeedURL() const;
+            const KUrl &discoveredFeedURL() const;
 
 			void abort();
 

@@ -109,7 +109,7 @@ namespace RSS
 			 * Note that the RSS 0.91 Specification dictates that URLs not
 			 * starting with "http://" or "ftp://" are considered invalid.
 			 */
-			const KURL &link() const;
+			const KUrl &link() const;
 
 		private:
 			struct Private;
