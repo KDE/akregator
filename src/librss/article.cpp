@@ -252,9 +252,9 @@ QString Article::meta(const QString &key) const
     return d->meta[key];
 }
 
-KURLLabel *Article::widget(QWidget *parent, const char *name) const
+KUrlLabel *Article::widget(QWidget *parent, const char *name) const
 {
-	KURLLabel *label = new KURLLabel(d->link.url(), d->title, parent);
+	KUrlLabel *label = new KUrlLabel(d->link.url(), d->title, parent);
 	label->setObjectName(name);
 	label->setUseTips(true);
 	if (!d->description.isNull())

@@ -21,7 +21,7 @@ template <class> class QList;
 class QString;
 class QWidget;
 class KUrl;
-class KURLLabel;
+class KUrlLabel;
 
 namespace RSS
 {
@@ -140,20 +140,20 @@ namespace RSS
          QString meta(const QString &key) const;
          
          /**
-          * @param parent The parent widget for the KURLLabel.
+          * @param parent The parent widget for the KUrlLabel.
           * @param name A name for the widget which will be used internally.
-          * @return a widget (a KURLLabel in this case) for the Article.
+          * @return a widget (a KUrlLabel in this case) for the Article.
           * This makes building a user-interface which contains the
           * information in this Article object more convenient.
-          * The returned KURLLabel's caption will be the title(), clicking
+          * The returned KUrlLabel's caption will be the title(), clicking
           * on it will emit the URL link(), and it has a QToolTip attached
           * to it which displays the description() (in case it has one,
           * if there is no description, the URL which the label links to
           * will be used).
-          * Note that you have to delete the KURLLabel object returned by
+          * Note that you have to delete the KUrlLabel object returned by
           * this method yourself.
           */
-         KURLLabel *widget(QWidget *parent = 0, const char *name = 0) const;
+         KUrlLabel *widget(QWidget *parent = 0, const char *name = 0) const;
          
          typedef QMap<QString, QString> MetaInfoMap;
          

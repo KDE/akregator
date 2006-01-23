@@ -38,7 +38,7 @@ template <class T> class QList;
 typedef unsigned int uint;
 
 class KUrl;
-class KURLLabel;
+class KUrlLabel;
 
 namespace RSS
 {
