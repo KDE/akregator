@@ -105,7 +105,7 @@ public slots:
     void slotNextUnreadFeed();
 
 signals:
-    void signalDropped (KURL::List &, TreeNode*, Folder*);
+    void signalDropped (KUrl::List &, TreeNode*, Folder*);
     void signalNodeSelected(TreeNode*);
     void signalRootNodeChanged(NodeListView*, TreeNode*);
     void signalContextMenu(KListView*, TreeNode*, const QPoint&);

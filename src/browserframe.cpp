@@ -43,7 +43,7 @@ class BrowserFrame::HistoryEntry
 {
     public:
 
-    KURL url;
+    KUrl url;
     QString title;
     QByteArray buffer;
     int id;
@@ -55,7 +55,7 @@ class BrowserFrame::HistoryEntry
     QString pageReferrer;
 
     HistoryEntry() {}
-    HistoryEntry(const KURL& u, const QString& t=QString()) : url(u), title(t), id(idCounter++)
+    HistoryEntry(const KUrl& u, const QString& t=QString()) : url(u), title(t), id(idCounter++)
     {
     }
 
@@ -199,9 +199,9 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
         {
             connect( ext, SIGNAL(speedProgress(int)), parent, SLOT(slotSpeedProgress(int)) );
             connect( ext, SIGNAL(speedProgress(int)), parent,         SLOT(slotSetProgress(int)) );
-            connect( ext, SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&) ), parent, SLOT(slotOpenURLRequestDelayed(const KURL&, const KParts::URLArgs&)) );
+            connect( ext, SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&) ), parent, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&)) );
             connect(ext, SIGNAL(setLocationBarURL(const QString&)), parent, SLOT(slotSetLocationBarURL(const QString&)) );
-            connect(ext, SIGNAL(setIconURL(const KURL&)), parent, SLOT(slotSetLocationBarURL(const KURL&)) );
+            connect(ext, SIGNAL(setIconURL(const KUrl&)), parent, SLOT(slotSetLocationBarURL(const KUrl&)) );
         }
     }
 
@@ -248,7 +248,7 @@ BrowserFrame::~BrowserFrame()
     d = 0;
 }
 
-KURL BrowserFrame::url() const
+KUrl BrowserFrame::url() const
 {
     return d->part ? d->part->url() : KURL();
 }
@@ -273,7 +273,7 @@ void BrowserFrame::slotSetLocationBarURL(const QString& /*url*/)
     // TODO: use this to update URLs for dragging (like tab drag etc.)
 }
 
-void BrowserFrame::slotSetIconURL(const KURL& /*url*/)
+void BrowserFrame::slotSetIconURL(const KUrl& /*url*/)
 {
 }
 
@@ -281,12 +281,12 @@ void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
 }
 
-void BrowserFrame::slotOpenURLRequestDelayed(const KURL& url, const KParts::URLArgs& args)
+void BrowserFrame::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
 {
     emit signalOpenURLRequest(this, url, args);
 }
 
-void BrowserFrame::slotCreateNewWindow(const KURL& url, const KParts::URLArgs& args)
+void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args)
 {
     KParts::URLArgs args2(args);
     args2.setNewTab(true);
@@ -294,7 +294,7 @@ void BrowserFrame::slotCreateNewWindow(const KURL& url, const KParts::URLArgs& a
     emit signalOpenURLRequest(this, url, args2, NewTab);
 }
 
-bool BrowserFrame::openURL(const KURL& url, const QString& mimetype)
+bool BrowserFrame::openURL(const KUrl& url, const QString& mimetype)
 {
     if (mimetype.isEmpty())
         return false;

@@ -44,7 +44,7 @@ struct Document::Private : public Shared
     Version version;
     QString title;
     QString description;
-    KURL link;
+    KUrl link;
     Image *image;
     TextInput *textInput;
     Article::List articles;
@@ -54,7 +54,7 @@ struct Document::Private : public Shared
     QDateTime pubDate;
     QDateTime lastBuildDate;
     QString rating;
-    KURL docs;
+    KUrl docs;
 	int ttl;
     QString managingEditor;
     QString webMaster;
@@ -524,7 +524,7 @@ QString Document::description() const
     return d->description;
 }
 
-const KURL &Document::link() const
+const KUrl &Document::link() const
 {
     return d->link;
 }
@@ -579,7 +579,7 @@ QString Document::rating() const
     return d->rating;
 }
 
-const KURL &Document::docs() const
+const KUrl &Document::docs() const
 {
     return d->docs;
 }

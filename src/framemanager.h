@@ -58,7 +58,7 @@ class FrameManager : public QObject
     public slots:
 
         void slotChangeFrame(Frame* frame);
-        void slotOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args, Frame::OpenURLOptions options);
+        void slotOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs& args, Frame::OpenURLOptions options);
 
         void slotBrowserBack();
         void slotBrowserForward();
@@ -104,7 +104,7 @@ class FrameManager : public QObject
         void slotIsReloadableToggled(Frame*, bool);
         void slotIsLoadingToggled(Frame*, bool);
 
-        void slotFoundMimeType(Frame* frame, const KURL& url, const KParts::URLArgs& args, const QString& mimetype);
+        void slotFoundMimeType(Frame* frame, const KUrl& url, const KParts::URLArgs& args, const QString& mimetype);
 
     private:
 

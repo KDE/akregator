@@ -77,7 +77,7 @@ class Frame : public QWidget
         /**
          * returns the URL of the embedded part
          */
-        virtual KURL url() const = 0;
+        virtual KUrl url() const = 0;
 
         virtual const QString& title() const;
         virtual const QString& caption() const;
@@ -103,7 +103,7 @@ class Frame : public QWidget
          * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
         virtual bool isLoading() const { return false; }
 
-        virtual bool openURL(const KURL& url, const QString& mimetype="text/html") = 0;
+        virtual bool openURL(const KUrl& url, const QString& mimetype="text/html") = 0;
 
     public slots:
 
@@ -136,7 +136,7 @@ class Frame : public QWidget
         void signalLoadingProgress(Frame*, int);
         void signalStatusText(Frame*, const QString&);
 
-        void signalOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs& args=KParts::URLArgs(), Frame::OpenURLOptions options=None);
+        void signalOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs& args=KParts::URLArgs(), Frame::OpenURLOptions options=None);
 
         void signalCanGoBackToggled(Frame*, bool);
         void signalCanGoForwardToggled(Frame*, bool);
@@ -167,8 +167,8 @@ class MainFrame : public Frame
         MainFrame(QWidget* /*parent*/, KParts::ReadOnlyPart* /*part*/, QWidget* /*widget*/, const QString& /*title*/);
         virtual ~MainFrame();
 
-        virtual KURL url() const;
-        virtual bool openURL(const KURL& /*url*/, const QString& /*mimetype="text/html"*/) { return false; }
+        virtual KUrl url() const;
+        virtual bool openURL(const KUrl& /*url*/, const QString& /*mimetype="text/html"*/) { return false; }
 
         virtual KParts::ReadOnlyPart* part() const { return m_part; }
 

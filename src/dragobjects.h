@@ -61,7 +61,7 @@ protected:
 private:
 
     static QList<ArticleDragItem> articlesToDragItems(const QList<Article>& articles);
-    static KURL::List articleURLs(const QList<Article>& articles);
+    static KUrl::List articleURLs(const QList<Article>& articles);
     QList<ArticleDragItem> m_items;
 };
 

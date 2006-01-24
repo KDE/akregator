@@ -22,7 +22,7 @@ struct TextInput::Private : public Shared
 	QString title;
 	QString description;
 	QString name;
-	KURL link;
+	KUrl link;
 };
 
 TextInput::TextInput() : d(new Private)
@@ -69,7 +69,7 @@ QString TextInput::name() const
 	return d->name;
 }
 
-const KURL &TextInput::link() const
+const KUrl &TextInput::link() const
 {
 	return d->link;
 }

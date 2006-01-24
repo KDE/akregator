@@ -288,7 +288,7 @@ void Part::saveProperties(KConfig* config)
     }
 }
 
-bool Part::openURL(const KURL& url)
+bool Part::openURL(const KUrl& url)
 {
     m_file = url.path();
     return openFile();
@@ -553,7 +553,7 @@ void Part::saveTagSet(const QString& path)
     }
 }
 
-void Part::importFile(const KURL& url)
+void Part::importFile(const KUrl& url)
 {
     QString filename;
 
@@ -589,7 +589,7 @@ void Part::importFile(const KURL& url)
         KIO::NetAccess::removeTempFile(filename);
 }
 
-void Part::exportFile(const KURL& url)
+void Part::exportFile(const KUrl& url)
 {
     if (url.isLocalFile())
     {
@@ -633,7 +633,7 @@ void Part::exportFile(const KURL& url)
 
 void Part::fileImport()
 {
-    KURL url = KFileDialog::getOpenURL( QString::null,
+    KUrl url = KFileDialog::getOpenURL( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
@@ -643,7 +643,7 @@ void Part::fileImport()
 
     void Part::fileExport()
 {
-    KURL url= KFileDialog::getSaveURL( QString::null,
+    KUrl url= KFileDialog::getSaveURL( QString::null,
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 

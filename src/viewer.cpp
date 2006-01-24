@@ -65,7 +65,7 @@ Viewer::Viewer(QWidget *parent, const char *name)
     connect( this, SIGNAL(completed()),
              this, SLOT(slotCompleted()));
 
-    connect( browserExtension(), SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
+    connect( browserExtension(), SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
 
     KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "viewer_print");
     KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "viewer_copy");
@@ -75,7 +75,7 @@ Viewer::Viewer(QWidget *parent, const char *name)
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
-    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KURL&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KURL&, const KParts::URLArgs& )) );
+    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KUrl&, const KParts::URLArgs& )) );
 
     new KAction(i18n("Copy &Link Address"), "", 0,
                                  this, SLOT(slotCopyLinkAddress()),
@@ -100,7 +100,7 @@ int Viewer::pointsToPixel(int pointSize) const
     return ( pointSize * view()->logicalDpiY() + 36 ) / 72 ;
 }
 
-void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
+void Viewer::displayInExternalBrowser(const KUrl &url, const QString &mimetype)
 {
    if (!url.isValid()) return;
    if (Settings::externalBrowserUseKdeDefault())
@@ -123,7 +123,7 @@ void Viewer::displayInExternalBrowser(const KURL &url, const QString &mimetype)
    }
 }
 
-void Viewer::slotOpenURLRequest(const KURL& /*url*/, const KParts::URLArgs& /*args*/)
+void Viewer::slotOpenURLRequest(const KUrl& /*url*/, const KParts::URLArgs& /*args*/)
 {
 
 }
@@ -167,7 +167,7 @@ void Viewer::urlSelected(const QString &url, int button, int state, const QStrin
     KHTMLPart::urlSelected(url,button,state,_target,args);
 }
 
-void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
+void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
 {
    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
    const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
@@ -246,7 +246,7 @@ void Viewer::slotOpenLinkInBrowser()
 
 void Viewer::slotSaveLinkAs()
 {
-    KURL tmp( m_url );
+    KUrl tmp( m_url );
 
     if ( tmp.fileName(false).isEmpty() )
         tmp.setFileName( "index.html" );

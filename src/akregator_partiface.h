@@ -41,7 +41,7 @@ class AkregatorPartIface : virtual public DCOPObject
         virtual void fetchAllFeeds() = 0;
         virtual void saveSettings() = 0;
         virtual void addFeedsToGroup(const QStringList&, const QString&) = 0;
-        virtual void exportFile(const KURL& url) = 0;
+        virtual void exportFile(const KUrl& url) = 0;
         virtual void addFeed() = 0;
 };
 

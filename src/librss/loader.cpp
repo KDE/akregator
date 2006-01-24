@@ -73,7 +73,7 @@ void FileRetriever::setUseCache(bool enabled)
     m_useCache = enabled;
 }
 
-void FileRetriever::retrieveData(const KURL &url)
+void FileRetriever::retrieveData(const KUrl &url)
 {
    if (d->buffer)
       return;
@@ -81,7 +81,7 @@ void FileRetriever::retrieveData(const KURL &url)
    d->buffer = new QBuffer;
    d->buffer->open(QIODevice::WriteOnly);
 
-   KURL u=url;
+   KUrl u=url;
 
    if (u.protocol()=="feed")
        u.setProtocol("http");
@@ -96,8 +96,8 @@ void FileRetriever::retrieveData(const KURL &url)
    connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
                 SLOT(slotData(KIO::Job *, const QByteArray &)));
    connect(d->job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));
-   connect(d->job, SIGNAL(permanentRedirection(KIO::Job *, const KURL &, const KURL &)),
-                SLOT(slotPermanentRedirection(KIO::Job *, const KURL &, const KURL &)));
+   connect(d->job, SIGNAL(permanentRedirection(KIO::Job *, const KUrl &, const KUrl &)),
+                SLOT(slotPermanentRedirection(KIO::Job *, const KUrl &, const KUrl &)));
 }
 
 void FileRetriever::slotTimeout()
@@ -134,7 +134,7 @@ void FileRetriever::slotResult(KIO::Job *job)
    emit dataRetrieved(data, d->lastError == 0);
 }
 
-void FileRetriever::slotPermanentRedirection(KIO::Job *, const KURL &, const KURL &newUrl)
+void FileRetriever::slotPermanentRedirection(KIO::Job *, const KUrl &, const KUrl &newUrl)
 {
    emit permanentRedirection(newUrl);
 }
@@ -177,7 +177,7 @@ OutputRetriever::~OutputRetriever()
    delete d;
 }
 
-void OutputRetriever::retrieveData(const KURL &url)
+void OutputRetriever::retrieveData(const KUrl &url)
 {
    // Ignore subsequent calls if we didn't finish the previous job yet.
    if (d->buffer || d->process)
@@ -236,8 +236,8 @@ struct Loader::Private
 
    DataRetriever *retriever;
    int lastError;
-   KURL discoveredFeedURL;
-   KURL url;
+   KUrl discoveredFeedURL;
+   KUrl url;
 };
 
 Loader *Loader::create()
@@ -262,7 +262,7 @@ Loader::~Loader()
     delete d;
 }
 
-void Loader::loadFrom(const KURL &url, DataRetriever *retriever)
+void Loader::loadFrom(const KUrl &url, DataRetriever *retriever)
 {
    if (d->retriever != NULL)
       return;
@@ -293,7 +293,7 @@ void Loader::abort()
     delete this;
 }
 
-const KURL &Loader::discoveredFeedURL() const
+const KUrl &Loader::discoveredFeedURL() const
 {
    return d->discoveredFeedURL;
 }
@@ -387,7 +387,7 @@ void Loader::discoverFeeds(const QByteArray &data)
         }
 
         s2=feeds.first();
-        KURL testURL;
+        KUrl testURL;
         // loop through, prefer feeds on same host
         QStringList::Iterator end( feeds.end() );
         for ( QStringList::Iterator it = feeds.begin(); it != end; ++it ) {
@@ -405,7 +405,7 @@ void Loader::discoverFeeds(const QByteArray &data)
         return;
     }
 
-    if (KURL::isRelativeURL(s2))
+    if (KUrl::isRelativeURL(s2))
     {
         if (s2.startsWith("//"))
         {

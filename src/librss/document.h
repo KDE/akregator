@@ -100,7 +100,7 @@ namespace RSS
 
 			/**
 			 * RSS 0.90 and upwards
-			 * @return A link pointing to some website, or an empty KURL if no
+			 * @return A link pointing to some website, or an empty KUrl if no
 			 * link was available. This URL mostly points to the homepage of
 			 * the news site from which the RSS document was retrieved.
 			 * Note that the RSS 0.91 Specification dictates that URLs not

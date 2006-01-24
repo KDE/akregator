@@ -165,14 +165,14 @@ class MainWidget : public QWidget
         /** opens a page viewer in a new tab and loads an URL
             @param url the url to load
             @param background whether the tab should be opened in the background or in the foreground (activated after creation) */
-        void slotOpenTab(const KURL& url, bool background = false);
+        void slotOpenTab(const KUrl& url, bool background = false);
 
         /** called when another part/frame is activated. Updates progress bar, caption etc. accordingly
         @param f the activated frame */
         void slotFrameChanged(Frame *f);
 
         /** called when URLs are dropped into the tree view */
-        void slotFeedURLDropped (KURL::List &urls, TreeNode* after, Folder *parent);
+        void slotFeedURLDropped (KUrl::List &urls, TreeNode* after, Folder *parent);
 
         /** displays a URL in the status bar when the user moves the mouse over a link */
         void slotMouseOverInfo(const KFileItem *kifi);
@@ -263,7 +263,7 @@ class MainWidget : public QWidget
         void setTabIcon(const QPixmap&);
 
         /** Display article in external browser. */
-        void displayInExternalBrowser(const KURL &url);
+        void displayInExternalBrowser(const KUrl &url);
 
         void slotDoIntervalFetches();
         void slotDeleteExpiredArticles();

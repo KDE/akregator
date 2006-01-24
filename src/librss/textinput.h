@@ -104,7 +104,7 @@ namespace RSS
 			 * @return A link to which the contents of the input field should
 			 * be sent after the user specified them. This is often a CGI
 			 * program on a remote server which evaluates the entered
-			 * information. An empty KURL is returned in case no link is
+			 * information. An empty KUrl is returned in case no link is
 			 * available.
 			 * Note that the RSS 0.91 Specification dictates that URLs not
 			 * starting with "http://" or "ftp://" are considered invalid.

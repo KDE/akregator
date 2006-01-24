@@ -49,7 +49,7 @@ class BrowserFrame : public Frame
         BrowserFrame(QWidget* parent=0);
         virtual ~BrowserFrame();
 
-        virtual KURL url() const;
+        virtual KUrl url() const;
 
         virtual KParts::ReadOnlyPart* part() const;
 
@@ -58,7 +58,7 @@ class BrowserFrame : public Frame
         virtual bool isReloadable() const;
         virtual bool isLoading() const;
 
-        virtual bool openURL(const KURL& url, const QString& mimetype="text/html");
+        virtual bool openURL(const KUrl& url, const QString& mimetype="text/html");
 
     public slots:
 
@@ -71,11 +71,11 @@ class BrowserFrame : public Frame
 
     protected slots:
 
-        void slotOpenURLRequestDelayed(const KURL&, const KParts::URLArgs&);
-        void slotCreateNewWindow(const KURL&, const KParts::URLArgs&);
+        void slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&);
+        void slotCreateNewWindow(const KUrl&, const KParts::URLArgs&);
         void slotOpenURLNotify();
         void slotSetLocationBarURL(const QString& url);
-        void slotSetIconURL(const KURL& url);
+        void slotSetIconURL(const KUrl& url);
         void slotSpeedProgress(int);
 
     private:

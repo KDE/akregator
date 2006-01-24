@@ -93,7 +93,7 @@ class Part : public MyBasePart, virtual public AkregatorPartIface
             Opens feedlist
             @param url URL to feedlist
             */
-        virtual bool openURL(const KURL& url);
+        virtual bool openURL(const KUrl& url);
 
         /** Opens standard feedlist */
         virtual void openStandardFeedList();
@@ -165,8 +165,8 @@ class Part : public MyBasePart, virtual public AkregatorPartIface
         /** This must be implemented by each part */
         virtual bool openFile();
 
-        void importFile(const KURL& url);
-        void exportFile(const KURL& url);
+        void importFile(const KUrl& url);
+        void exportFile(const KUrl& url);
         
         /** FIXME: hack to get the tray icon working */
         QWidget* getMainWindow();

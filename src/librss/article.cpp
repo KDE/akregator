@@ -31,13 +31,13 @@ namespace RSS
 struct Article::Private : public Shared
 {
 	QString title;
-	KURL link;
+	KUrl link;
 	QString description;
 	QDateTime pubDate;
 	QString guid;
 	bool guidIsPermaLink;
     MetaInfoMap meta;
-	KURL commentsLink;
+	KUrl commentsLink;
         int numComments;
         Enclosure enclosure;
 	QList<Category> categories;
@@ -211,7 +211,7 @@ QString Article::title() const
 	return d->title;
 }
 
-const KURL &Article::link() const
+const KUrl &Article::link() const
 {
 	return d->link;
 }
@@ -236,7 +236,7 @@ const QDateTime &Article::pubDate() const
 	return d->pubDate;
 }
 
-const KURL &Article::commentsLink() const
+const KUrl &Article::commentsLink() const
 {
 	return d->commentsLink;
 }

@@ -82,7 +82,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             text += QString("<div class=\"body\">");
             QString url=node->xmlUrl();
             QString file = url.replace("/", "_").replace(":", "_");
-            KURL u(m_view->m_imageDir);
+            KUrl u(m_view->m_imageDir);
             u.setFileName(file);
             text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
         }
@@ -336,7 +336,7 @@ void ArticleViewer::reload()
     endWriting();
 }
 
-bool ArticleViewer::openURL(const KURL& url)
+bool ArticleViewer::openURL(const KUrl& url)
 {
     if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
     {
@@ -413,7 +413,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
     {
         QString url=feed->xmlUrl();
         QString file = url.replace("/", "_").replace(":", "_");
-        KURL u(m_imageDir);
+        KUrl u(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
@@ -499,7 +499,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
     {
         QString url=feed->xmlUrl();
         QString file = url.replace("/", "_").replace(":", "_");
-        KURL u(m_imageDir);
+        KUrl u(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
@@ -672,7 +672,7 @@ void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>
 }
 
 /* testingtesting :)
-void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
+void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
     kdDebug() << m_link << endl;
     kdDebug() << kurl.url() << endl;

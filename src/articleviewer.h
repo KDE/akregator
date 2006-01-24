@@ -55,7 +55,7 @@ class ArticleViewer : public Viewer
         ArticleViewer(QWidget* parent, const char* name);
         virtual ~ArticleViewer();
         
-        virtual bool openURL(const KURL &url);
+        virtual bool openURL(const KUrl &url);
 
         /** Repaints the view. */
         void reload();
@@ -141,10 +141,10 @@ class ArticleViewer : public Viewer
         QString m_combinedModeCSS;
         QString m_htmlFooter;
         QString m_currentText;
-        KURL m_imageDir;
+        KUrl m_imageDir;
         TreeNode* m_node;
         Article m_article;
-        KURL m_link;
+        KUrl m_link;
         Akregator::Filters::ArticleMatcher m_textFilter; 
         Akregator::Filters::ArticleMatcher m_statusFilter;
         enum ViewMode { NormalView, CombinedView, SummaryView };

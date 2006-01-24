@@ -110,7 +110,7 @@ QString ElementWrapper::xmlBase() const
 
 QString ElementWrapper::completeURI(const QString& uri) const
 {
-    KURL u(xmlBase(), uri);
+    KUrl u(xmlBase(), uri);
     
     if (u.isValid())
         return u.url();

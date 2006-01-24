@@ -36,12 +36,12 @@ class BrowserRun : public KParts::BrowserRun
 {
 	Q_OBJECT
     public:
-        BrowserRun(Frame* frame, QWidget* widget, const KURL& url, const KParts::URLArgs&);
+        BrowserRun(Frame* frame, QWidget* widget, const KUrl& url, const KParts::URLArgs&);
         virtual ~BrowserRun();
 
     signals:
 
-        void signalFoundMimeType(Frame*, const KURL&, const KParts::URLArgs&, const QString&);
+        void signalFoundMimeType(Frame*, const KUrl&, const KParts::URLArgs&, const QString&);
 
     protected:
 	    virtual void foundMimeType(const QString& type);

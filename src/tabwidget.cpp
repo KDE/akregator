@@ -272,7 +272,7 @@ void TabWidget::slotCopyLinkAddress()
 
     if (frame && frame->url().isValid())
     {
-        KURL url = frame->url();
+        KUrl url = frame->url();
         kapp->clipboard()->setText(url.prettyURL(), QClipboard::Selection);
         kapp->clipboard()->setText(url.prettyURL(), QClipboard::Clipboard);
     }
@@ -301,7 +301,7 @@ void TabWidget::initiateDrag(int tab)
 
     if (frame && frame->url().isValid())
     {
-        KURL::List lst;
+        KUrl::List lst;
         lst.append( frame->url() );
         K3URLDrag* drag = new K3URLDrag( lst, this );
         drag->setPixmap( KMimeType::pixmapForURL( lst.first(), 0, KIcon::Small ) );

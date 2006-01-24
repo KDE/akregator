@@ -523,7 +523,7 @@ void NodeListView::slotDropped( QDropEvent *e, Q3ListViewItem*
         }
         else if (K3URLDrag::canDecode(e))
         {
-            KURL::List urls;
+            KUrl::List urls;
             K3URLDrag::decode( e, urls );
             e->accept();
             emit signalDropped( urls, afterMe ? afterMe->node() : 0, parent ? parent->node() : 0);

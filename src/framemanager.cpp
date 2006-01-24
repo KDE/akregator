@@ -55,7 +55,7 @@ void FrameManager::addFrame(Frame* frame)
     connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString&)), this, SLOT(slotSetTitle(Frame*, const QString&)) );
     connect(frame, SIGNAL(signalStatusText(Frame*, const QString&)), this, SLOT(slotSetStatusText(Frame*, const QString&)) );
     
-    connect(frame, SIGNAL(signalOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs&, const Frame::OpenURLOptions&)), this, SLOT(slotOpenURLRequest(Frame*, const KURL&, const KParts::URLArgs&, const Frame::OpenURLOptions&)) );
+    connect(frame, SIGNAL(signalOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs&, const Frame::OpenURLOptions&)), this, SLOT(slotOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs&, const Frame::OpenURLOptions&)) );
 
     connect(frame, SIGNAL( signalCanGoBackToggled(Frame*, bool)), this, SLOT(slotCanGoBackToggled(Frame*, bool)) );
     connect(frame, SIGNAL( signalCanGoForwardToggled(Frame*, bool)), this, SLOT(slotCanGoForwardToggled(Frame*, bool)) );
@@ -200,15 +200,15 @@ void FrameManager::slotSetStatusText(Frame* frame, const QString& statusText)
         emit signalStatusText(statusText);
 }
 
-void FrameManager::slotFoundMimeType(Frame* frame, const KURL& url, const KParts::URLArgs& /*args*/, const QString& mimetype)
+void FrameManager::slotFoundMimeType(Frame* frame, const KUrl& url, const KParts::URLArgs& /*args*/, const QString& mimetype)
 {
     frame->openURL(url, mimetype);
 }
 
-void FrameManager::slotOpenURLRequest(Frame* frame, const KURL& url, const KParts::URLArgs& args, Frame::OpenURLOptions /*options*/)
+void FrameManager::slotOpenURLRequest(Frame* frame, const KUrl& url, const KParts::URLArgs& args, Frame::OpenURLOptions /*options*/)
 {
     BrowserRun* r = new BrowserRun(frame, frame, url, args);
-    connect(r, SIGNAL(signalFoundMimeType(Frame*, const KURL& , const KParts::URLArgs&, const QString&)), this, SLOT(slotFoundMimeType(Frame*, const KURL&, const KParts::URLArgs&, const QString&)) );
+    connect(r, SIGNAL(signalFoundMimeType(Frame*, const KUrl& , const KParts::URLArgs&, const QString&)), this, SLOT(slotFoundMimeType(Frame*, const KUrl&, const KParts::URLArgs&, const QString&)) );
 }
 
 void FrameManager::slotBrowserBack()

@@ -189,7 +189,7 @@ MainFrame::~MainFrame()
 {
 }
 
-KURL MainFrame::url() const
+KUrl MainFrame::url() const
 {
     return KURL();
 }

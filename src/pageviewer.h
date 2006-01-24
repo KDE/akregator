@@ -43,15 +43,15 @@ class PageViewer : public Viewer
     public:
         PageViewer(QWidget* parent, const char* name=0);
         virtual ~PageViewer();
-        virtual bool openURL(const KURL &url);
+        virtual bool openURL(const KUrl &url);
 
         /** used by the BrowserRun object */
-        virtual void openPage(const KURL& url);
+        virtual void openPage(const KUrl& url);
 
     protected:
 
         class HistoryEntry;
-        void addHistoryEntry(const KURL& url);
+        void addHistoryEntry(const KUrl& url);
         void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
         void updateHistoryEntry();
 
@@ -71,11 +71,11 @@ class PageViewer : public Viewer
         void slotBackAboutToShow();
         void slotForwardAboutToShow();
         void slotPopupActivated( int id );
-        virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+        virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
         
         void slotGlobalBookmarkArticle();
         
-        virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+        virtual void slotOpenURLRequest(const KUrl& url, const KParts::URLArgs& args);
         virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
         
     signals:

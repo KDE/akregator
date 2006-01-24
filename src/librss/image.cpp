@@ -26,8 +26,8 @@ struct Image::Private : public Shared
 		{ }
 
 	QString title;
-	KURL url;
-	KURL link;
+	KUrl url;
+	KUrl link;
 	QString description;
 	unsigned int height;
 	unsigned int width;
@@ -77,12 +77,12 @@ QString Image::title() const
 	return d->title;
 }
 
-const KURL &Image::url() const
+const KUrl &Image::url() const
 {
 	return d->url;
 }
 
-const KURL &Image::link() const
+const KUrl &Image::link() const
 {
 	return d->link;
 }

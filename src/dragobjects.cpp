@@ -111,9 +111,9 @@ QList<ArticleDragItem> ArticleDrag::articlesToDragItems(const QList<Article>& ar
     return items;
 }
 
-KURL::List ArticleDrag::articleURLs(const QList<Article>& articles)
+KUrl::List ArticleDrag::articleURLs(const QList<Article>& articles)
 {
-    KURL::List urls;
+    KUrl::List urls;
     QList<Article>::ConstIterator end(articles.end());
     for (QList<Article>::ConstIterator it = articles.begin(); it != end; ++it)
         urls.append((*it).link());

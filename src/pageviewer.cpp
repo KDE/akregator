@@ -63,13 +63,13 @@ class PageViewer::HistoryEntry
 {
     public:
 
-    KURL url;
+    KUrl url;
     QString title;
     QByteArray state;
     int id;
 
     HistoryEntry() {}
-    HistoryEntry(const KURL& u, const QString& t=QString()): url(u), title(t)
+    HistoryEntry(const KUrl& u, const QString& t=QString()): url(u), title(t)
     {
         id = abs( QTime::currentTime().msecsTo( QTime() ) );    // nasty, but should provide a reasonably unique number
     }
@@ -234,7 +234,7 @@ void PageViewer::slotStop()
     closeURL();
 }
 
-void PageViewer::openPage(const KURL& url)
+void PageViewer::openPage(const KUrl& url)
 {
     Viewer::openPage(url);
 
@@ -251,7 +251,7 @@ void PageViewer::openPage(const KURL& url)
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-bool PageViewer::openURL(const KURL &url)
+bool PageViewer::openURL(const KUrl &url)
 {
     updateHistoryEntry();
     new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
@@ -260,7 +260,7 @@ bool PageViewer::openURL(const KURL &url)
     return true;
 }
 
-void PageViewer::slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args)
+void PageViewer::slotOpenURLRequest(const KUrl& url, const KParts::URLArgs& args)
 {
     updateHistoryEntry();
     if (args.doPost())
@@ -327,7 +327,7 @@ void PageViewer::restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry)
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-void PageViewer::addHistoryEntry(const KURL& url)
+void PageViewer::addHistoryEntry(const KUrl& url)
 {
     QList<HistoryEntry>::Iterator it = d->current;
 
@@ -400,7 +400,7 @@ void PageViewer::slotGlobalBookmarkArticle()
 }
 
 
-void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
+void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
 {
     m_url = kurl;
     QString url = kurl.url(); // maximal url confusion
@@ -464,7 +464,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
 
     if (r == idNewWindow)
     {
-        KURL kurl;
+        KUrl kurl;
         if (!KURL(url).path().startsWith("/"))
         {
             kdDebug() << "processing relative url: " << url << endl;

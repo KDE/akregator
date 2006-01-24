@@ -306,7 +306,7 @@ QString Article::title() const
     return d->archive->title(d->guid);
 }
 
-KURL Article::link() const
+KUrl Article::link() const
 {
     return d->archive->link(d->guid);
 }
@@ -321,7 +321,7 @@ QString Article::guid() const
     return d->guid;
 }
 
-KURL Article::commentsLink() const
+KUrl Article::commentsLink() const
 {
     return d->archive->commentsLink(d->guid);
 }

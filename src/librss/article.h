@@ -98,7 +98,7 @@ namespace RSS
          /**
           * RSS 0.90 and upwards
           * @return A URL referencing the complete text for this article,
-          * or an empty KURL if no link was available.
+          * or an empty KUrl if no link was available.
           * Note that the RSS 0.91 Specification dictates that URLs not
           * starting with "http://" or "ftp://" are considered invalid.
           */

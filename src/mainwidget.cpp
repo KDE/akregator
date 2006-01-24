@@ -226,8 +226,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     connect(m_feedListView, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
 
-    connect(m_feedListView, SIGNAL(signalDropped (KURL::List &, TreeNode*,
-            Folder*)), this, SLOT(slotFeedURLDropped (KURL::List &,
+    connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, TreeNode*,
+            Folder*)), this, SLOT(slotFeedURLDropped (KUrl::List &,
             TreeNode*, Folder*)));
 
     m_tagNodeListView = new NodeListView(this);
@@ -283,8 +283,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
-    connect( m_articleViewer, SIGNAL(urlClicked(const KURL&, bool)),
-                        this, SLOT(slotOpenTab(const KURL&, bool)) );
+    connect( m_articleViewer, SIGNAL(urlClicked(const KUrl&, bool)),
+                        this, SLOT(slotOpenTab(const KUrl&, bool)) );
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
                                             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
@@ -386,7 +386,7 @@ void MainWidget::saveSettings()
     Settings::writeConfig();
 }
 
-void MainWidget::slotOpenTab(const KURL& url, bool background)
+void MainWidget::slotOpenTab(const KUrl& url, bool background)
 {
     BrowserFrame* frame = new BrowserFrame(m_tabWidget);
 
@@ -394,8 +394,8 @@ void MainWidget::slotOpenTab(const KURL& url, bool background)
 
     //connect( page, SIGNAL(setTabIcon(const QPixmap&)),
     //        this, SLOT(setTabIcon(const QPixmap&)));
-    //connect( page, SIGNAL(urlClicked(const KURL &,bool)),
-    //        this, SLOT(slotOpenTab(const KURL &,bool)) );
+    //connect( page, SIGNAL(urlClicked(const KUrl &,bool)),
+    //        this, SLOT(slotOpenTab(const KUrl &,bool)) );
 
     m_tabWidget->addFrame(frame);
 
@@ -788,7 +788,7 @@ void MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bo
 
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
 
-    afd->setURL(KURL::decode_string(url));
+    afd->setURL(KUrl::decode_string(url));
 
     if (autoExec)
         afd->slotOk();
@@ -938,7 +938,7 @@ void MainWidget::slotSetTotalUnread()
 /**
 * Display article in external browser.
 */
-void MainWidget::displayInExternalBrowser(const KURL &url)
+void MainWidget::displayInExternalBrowser(const KUrl &url)
 {
     if (!url.isValid()) return;
     if (Settings::externalBrowserUseKdeDefault())
@@ -1180,9 +1180,9 @@ void MainWidget::slotCopyLinkAddress()
     }
 }
 
-void MainWidget::slotFeedURLDropped(KURL::List &urls, TreeNode* after, Folder* parent)
+void MainWidget::slotFeedURLDropped(KUrl::List &urls, TreeNode* after, Folder* parent)
 {
-    KURL::List::iterator it;
+    KUrl::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )
     {
         addFeed((*it).prettyURL(), after, parent, false);

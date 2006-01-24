@@ -29,7 +29,7 @@
 
 namespace Akregator {
 
-BrowserRun::BrowserRun(Frame* frame, QWidget *parent, const KURL & url, const KParts::URLArgs &args)
+BrowserRun::BrowserRun(Frame* frame, QWidget *parent, const KUrl & url, const KParts::URLArgs &args)
     : KParts::BrowserRun(url, args, 0L, parent, false, true)
 {
     m_frame = frame;

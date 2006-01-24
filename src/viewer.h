@@ -47,7 +47,7 @@ class Viewer : public KHTMLPart
         virtual bool closeURL();
         
         /** used by the BrowserRun object to call KHTMLPart::openURL() */
-        virtual void openPage(const KURL& url) { KHTMLPart::openURL(url);}
+        virtual void openPage(const KUrl& url) { KHTMLPart::openURL(url);}
 
     public slots:
         
@@ -63,7 +63,7 @@ class Viewer : public KHTMLPart
 
     signals:
         /** This gets emitted when url gets clicked */
-        void urlClicked(const KURL& url, bool background=false);
+        void urlClicked(const KUrl& url, bool background=false);
 
         protected: // methods
         int pointsToPixel(int points) const;
@@ -76,9 +76,9 @@ class Viewer : public KHTMLPart
         virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
 
         /** slot for handling openURLRequestDelayed() signal from the browserextension. Handles POST requests (for forms) only, other link handling goes to urlSelected(). Does nothing in Viewer, reimplemented in PageViewer to make forms working */
-        virtual void slotOpenURLRequest(const KURL& url, const KParts::URLArgs& args);
+        virtual void slotOpenURLRequest(const KUrl& url, const KParts::URLArgs& args);
 
-        virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KURL&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+        virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
         /** Copies current link to clipboard. */
         void slotCopyLinkAddress();
@@ -109,13 +109,13 @@ class Viewer : public KHTMLPart
         virtual void slotSelectionChanged();
 
     protected: // attributes
-        KURL m_url;
+        KUrl m_url;
         
     private:
         /**
             * Display article in external browser.
             */
-        void displayInExternalBrowser(const KURL &url, const QString &mime);
+        void displayInExternalBrowser(const KUrl &url, const QString &mime);
 };
 
 } // namespace Akregator

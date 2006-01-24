@@ -93,7 +93,7 @@ namespace RSS
          /**
           * RSS 0.90 and upwards
           * @return The URL pointing to the file containing the graphic
-          * data (GIF, JPEG or PNG format), or an empty KURL if no URL
+          * data (GIF, JPEG or PNG format), or an empty KUrl if no URL
           * is available. You can use getPixmap() and gotPixmap() to have
           * the Image download the pixmap data itself.
           * Note that the RSS 0.91 Specification dictates that URLs not
@@ -103,7 +103,7 @@ namespace RSS
 
          /**
           * RSS 0.90 and upwards
-          * @return A link to some resource, or an empty KURL of no link is
+          * @return A link to some resource, or an empty KUrl of no link is
           * available. Clicking on the image should lead the user to the
           * resource referenced by this URL.
           * Note that the RSS 0.91 Specification dictates that URLs not
