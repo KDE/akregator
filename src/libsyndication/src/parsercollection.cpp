@@ -22,6 +22,7 @@
 
 #include "abstractdocument.h"
 #include "abstractparser.h"
+#include "documentsource.h"
 #include "documentvisitor.h"
 #include "parsercollection.h"
 #include "feed.h"
@@ -35,6 +36,7 @@
 #include "mapper/feedrdfimpl.h"
 #include "mapper/feedrss2impl.h"
 
+#include <QDomDocument>
 #include <QHash>
 #include <QString>
 
@@ -50,10 +52,12 @@ class ParserCollection::ParserCollectionPrivate
 {
     public:
     QHash<QString, AbstractParser*> parsers;
+    ErrorCode lastError;
     
     ParserCollectionPrivate(ParserCollection* reg) : p(reg)
     {
         docVisitor = new DocVisitor;
+        lastError = ParserCollection::NoError;
     }
     
     ~ParserCollectionPrivate()
@@ -155,20 +159,48 @@ bool ParserCollection::registerParser(AbstractParser* parser)
 
 FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& formatHint)
 {
+    d->lastError = NoError;
+
     if (d->parsers.contains(formatHint))
     {
         if (d->parsers[formatHint]->accept(source))
-            return d->docVisitor->createFeed(d->parsers[formatHint]->parse(source));
+        {
+            AbstractDocumentPtr doc = d->parsers[formatHint]->parse(source);
+            if (!doc)
+            {
+                d->lastError = InvalidFormatError;
+                return 0;
+            }
+            
+            return d->docVisitor->createFeed(doc);
+        }
     }
 
     Q_FOREACH (AbstractParser* i, d->parsers)
     {
         if (i->accept(source))
         {
-            return d->docVisitor->createFeed(i->parse(source));
+            AbstractDocumentPtr doc = i->parse(source);
+            if (!doc)
+            {
+                d->lastError = InvalidFormatError;
+                return 0;
+            }
+            
+            return d->docVisitor->createFeed(doc);
         }
     }
+    if (source.asDomDocument().isNull())
+        d->lastError = InvalidXmlError;
+    else
+        d->lastError = XmlNotAcceptedError;
+    
     return 0;
+}
+
+ParserCollection::ErrorCode ParserCollection::lastError() const
+{
+    return d->lastError;
 }
 
 } // namespace LibSyndication
