@@ -368,6 +368,11 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>
 void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& list)
 {
     setUpdatesEnabled(false);
+    // if only one item is selected and this selected item
+    // is deleted, we will select the next item in the list
+    bool singleSelected = selectedArticles().count() == 1;
+
+    Q3ListViewItem* next = 0; // the item to select if a selected item is deleted
 
     for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
@@ -376,8 +381,16 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QList<Articl
         {
             ArticleItem* ali = d->articleMap[(*it).guid()];
 
-            if ((*it).isDeleted()) // if article was set to deleted, delete item
+            if (ali && (*it).isDeleted()) // if article was set to deleted, delete item
             {
+                if (singleSelected && ali->isSelected())
+                {
+                    if (ali->itemBelow())
+                        next = ali->itemBelow();
+                    else if (ali->itemAbove())
+                        next = ali->itemAbove();
+                }
+            
                 d->articleMap.remove((*it).guid());
                 delete ali;
             }
@@ -391,22 +404,55 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QList<Articl
         }
     }
 
+    // if the only selected item was deleted, select
+    // an item next to it
+    if (singleSelected && next != 0)
+    {
+        setSelected(next, true);
+        setCurrentItem(next);
+    }
+
     setUpdatesEnabled(true);
     triggerUpdate();
 }
 
 void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& list)
 {
+    // if only one item is selected and this selected item
+    // is deleted, we will select the next item in the list
+    bool singleSelected = selectedArticles().count() == 1;
+   
+    Q3ListViewItem* next = 0; // the item to select if a selected item is deleted
+
     setUpdatesEnabled(false);
+    
     for (QList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (d->articleMap.contains((*it).guid()))
         {
             ArticleItem* ali = d->articleMap[(*it).guid()];
             d->articleMap.remove((*it).guid());
+            
+            if (singleSelected && ali->isSelected())
+            {
+                if (ali->itemBelow())
+                    next = ali->itemBelow();
+                else if (ali->itemAbove())
+                    next = ali->itemAbove();
+            }
+
             delete ali;
         }
     }
+    
+    // if the only selected item was deleted, select
+    // an item next to it
+    if (singleSelected && next != 0)
+    {
+        setSelected(next, true);
+        setCurrentItem(next);
+    }
+
     setUpdatesEnabled(true);
     triggerUpdate();
 }
