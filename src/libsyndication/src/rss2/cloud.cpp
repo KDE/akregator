@@ -31,10 +31,6 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-Cloud Cloud::fromXML(const QDomElement& e)
-{
-    return Cloud(e);
-}
 
 Cloud::Cloud() : ElementWrapper()
 {

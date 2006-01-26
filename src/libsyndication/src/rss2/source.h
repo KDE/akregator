@@ -45,21 +45,19 @@ class Source : public ElementWrapper
 
     public:
 
- /**
-         * Parses an source object from an <source> XML element.
-         *
-         * @param e The <source> element to parse the source from
-         * @return the source parsed from XML, or a null object
-         *         if parsing failed.
-         */
-        static Source fromXML(const QDomElement& e);
-
         /**
          * Default constructor, creates a null object, for which isNull() is
          * @c true.
          */
         Source();
-
+        
+        /**
+         * Creates a source object wrapping a @c <source> XML element.
+         *
+         * @param e The @c <source> element to wrap
+         */
+        Source(const QDomElement& element);
+        
         /** 
          * The name of the RSS channel that the item came from, derived from
          * its <title>. Example: "Tomalak's Realm"
@@ -84,12 +82,6 @@ class Source : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
-
-    private:
-
-        Source(const QDomElement& element);
-        
-        static Source* m_null;
 };
 
 } // namespace RSS2

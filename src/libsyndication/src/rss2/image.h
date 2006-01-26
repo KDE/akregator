@@ -36,20 +36,18 @@ class Image : public ElementWrapper
     public:
 
         /**
-         * Parses an image object from an @c <image> XML element.
-         *
-         * @param e The @c <image> element to parse the image from
-         * @return the image parsed from XML, or a null object
-         *         if parsing failed.
-         */
-        static Image fromXML(const QDomElement& e);
-
-        /**
          * Default constructor, creates a null object, for which isNull() is
          * @c true.
          */
         Image();
 
+        /**
+         * Creates an Image object wrapping an @c <image> XML element.
+         *
+         * @param e The @c <image> element to wrap
+         */
+        Image(const QDomElement& el);
+        
         /**
          * the URL of a GIF, JPEG or PNG image 
          */
@@ -101,10 +99,6 @@ class Image : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
-
-    private:
-    
-        Image(const QDomElement& el);
 };
 
 } // namespace RSS2

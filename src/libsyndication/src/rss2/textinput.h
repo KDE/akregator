@@ -35,25 +35,25 @@ namespace RSS2 {
  * You can use it to specify a search engine box. Or to allow a
  * reader to provide feedback. Most aggregators ignore it."
  *
+ * @author Frank Osterfeld
  */
 class TextInput : public ElementWrapper
 {
     public:
 
         /**
-         * Parses an textInput object from an <textInput> XML element.
-         *
-         * @param e The <textInput> element to parse the TextInput from
-         * @return the TextInput parsed from XML, or a null object
-         *         if parsing failed.
-         */
-        static TextInput fromXML(const QDomElement& e);
-
-        /**
          * Default constructor, creates a null object, for which isNull() is
          * @c true.
          */
         TextInput();
+
+        /**
+         * Creates a TextInput object wrapping a @c <textInput> XML element.
+         *
+         * @param e The @c <textInput> element to wrap
+         */
+        TextInput(const QDomElement& element);
+
 
         /**
          * The label of the Submit button in the text input area.
@@ -90,10 +90,6 @@ class TextInput : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
-
-    private:
-
-        TextInput(const QDomElement& element);
 };
 
 } // namespace RSS2

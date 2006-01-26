@@ -45,6 +45,11 @@ class Item;
 class TextInput;
 typedef KSharedPtr<Document> DocumentPtr;
 
+/**
+ * document implementation, representing an RSS feed from the 0.91-0.94/2.0 family.
+ * 
+ * @author Frank Osterfeld
+ */
 class Document : public LibSyndication::AbstractDocument, public ElementWrapper
 {
     public:
@@ -108,14 +113,14 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
          * element. If @c <copyright> is not available, the method returns
          * @c <dc:rights> instead, if available.
          * 
-         * @return TODO
+         * @return copyright information, or a null string if not set
          */
         QString copyright() const;
     
         /**
          * Email address for person responsible for editorial content.
          *
-         * @return TODO
+         * @return editor's email address, or a null string if not set
          */
         QString managingEditor() const;
     
@@ -123,7 +128,7 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
          * Email address for person responsible for technical issues relating
          * to channel.
          *
-         * @return TODO
+         * @return web master's email address, or a null string if not
          */
         QString webMaster() const;
     
@@ -157,17 +162,19 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
         /**
          * A string indicating the program used to generate the channel.
          *
-         * @return TODO
+         * @return description of the generator program, or a null string if 
+         * not set
          */
         QString generator() const;
     
         /**
          * A URL that points to the documentation for the format used in the
-         * RSS file. It's probably a pointer to this page. It's for people who
-         * might stumble across an RSS file on a Web server 25 years from now
-         * and wonder what it is.
+         * RSS file. It's probably a pointer to the RSS specification. 
+         * It's for people who might stumble across an RSS file on a Web server
+         * 25 years from now and wonder what it is.
          *
-         * @return TODO
+         * @return URL pointing to the format specification, or a null string if
+         * not set
          */
         QString docs() const;
     
@@ -176,7 +183,7 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
          * to the channel, implementing a lightweight publish-subscribe
          * protocol for RSS feeds.
          *
-         * @return TODO
+         * @return cloud information, or a null object if not set
          */
         Cloud cloud() const;
     
@@ -184,7 +191,7 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
          * ttl stands for time to live. It's a number of minutes that indicates
          * how long a channel can be cached before refreshing from the source.
          *
-         * @return TODO
+         * @return the "time to live" in minutes, or 0 if not set
          */
         int ttl() const;
     
@@ -192,22 +199,20 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
          * Specifies a GIF, JPEG or PNG image that can be displayed with the
          * channel.
          *
-         * @return TODO
+         * @return the image, or a null object if not set
          */
         Image image() const;
     
         /**
          * Specifies a text input box that can be displayed with the channel.
          *
-         * @return TODO
+         * @return the text input, or a null object if not set
          */
         TextInput textInput() const;
     
         /**
          * Contains a set of hours (from 0 to 23), time in GMT, when the
          * channel is not updated.
-         *
-         * @return TODO
          */
         QSet<int> skipHours() const;
     
@@ -227,7 +232,6 @@ class Document : public LibSyndication::AbstractDocument, public ElementWrapper
         /**
          * A set of week days where aggregators shouldn't read the channel.
          *
-         * @return TODO
          */
         QSet<DayOfWeek> skipDays() const;
     

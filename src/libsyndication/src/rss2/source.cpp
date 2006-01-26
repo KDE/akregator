@@ -29,11 +29,6 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-Source Source::fromXML(const QDomElement& e)
-{
-    return Source(e);
-}
-
 Source::Source() : ElementWrapper()
 {
 }

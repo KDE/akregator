@@ -38,11 +38,6 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-Item Item::fromXML(const QDomElement& e)
-{
-    return Item(e);
-}
-
 Item::Item() : ElementWrapper()
 {
 }
@@ -100,9 +95,7 @@ QList<Category> Item::categories() const
 
     for (QList<QDomElement>::ConstIterator it = cats.begin(); it != cats.end(); ++it)
     {
-        Category i = Category::fromXML(*it);
-        if (!i.isNull())
-            categories.append(i);
+        categories.append(Category(*it));
     }
     return categories;
 }
@@ -129,12 +122,8 @@ QString Item::author() const
 
 Enclosure Item::enclosure() const
 {
-    Enclosure enclosure; 
     QDomNode enc = element().namedItem(QString::fromLatin1("enclosure"));
-    if (enc.isElement())
-        enclosure = Enclosure::fromXML(enc.toElement());
-
-    return enclosure;
+    return Enclosure(enc.toElement());
 }
 
 QString Item::guid() const
@@ -193,12 +182,8 @@ QDateTime Item::pubDate() const
 
 Source Item::source() const
 {
-    Source source;
     QDomNode s = element().namedItem(QString::fromLatin1("source"));
-    if (s.isElement())
-        source = Source::fromXML(s.toElement());
-
-    return source;
+    return Source(s.toElement());
 }
 
 QString Item::debugInfo() const

@@ -48,20 +48,18 @@ class Item : public ElementWrapper
     public:
         
         /**
-         * Parses an item object from an <item> XML element.
-         *
-         * @param e The <item> element to parse the item from
-         * @return the item parsed from XML, or a null object
-         *         if parsing failed.
-         */
-        static Item fromXML(const QDomElement& e);
-
-        /**
          * Default constructor, creates a null object, for which isNull() is
          * @c true.
          */
         Item();
-      
+     
+        /**
+         * Creates an Item object wrapping an @c <item> XML element.
+         *
+         * @param e The @c <item> element to wrap
+         */
+        Item(const QDomElement& element);
+        
         /**
          * The title of the item.
          * 
@@ -196,10 +194,6 @@ class Item : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
-
-    private:
-
-        Item(const QDomElement& element);
 };
 
 } // namespace RSS2

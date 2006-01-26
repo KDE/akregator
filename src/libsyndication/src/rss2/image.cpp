@@ -28,11 +28,6 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-Image Image::fromXML(const QDomElement& e)
-{
-    return Image(e);
-}
-
 Image::Image() : ElementWrapper()
 {
 }

@@ -43,22 +43,20 @@ class Enclosure : public ElementWrapper
 {
     public:
 
-        /**
-         * Parses an enclosure object from an <enclosure> XML element.
-         *
-         * @param e The <enclosure> element to parse the enclosure from
-         * @return the enclosure parsed from XML, or a null object
-         *         if parsing failed.
-         */
-        static Enclosure fromXML(const QDomElement& e);
-
+        
         /**
          * Default constructor, creates a null object, for which isNull() is 
          * @c true.
          */
         Enclosure();
 
-       
+        /**
+         * Creates an Enclosure object wrapping an @c <enclosure> XML element.
+         *
+         * @param e The @c <enclosure> element to wrap
+         */
+        Enclosure(const QDomElement& element);
+        
         /** 
          * returns the URL of the enclosure 
          */
@@ -81,10 +79,6 @@ class Enclosure : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
-
-    private:
-
-        Enclosure(const QDomElement& element);
 };
 
 } // namespace RSS2

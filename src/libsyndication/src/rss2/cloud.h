@@ -61,19 +61,17 @@ class Cloud : public ElementWrapper
     public:
         
         /**
-         * Parses a cloud object from an <cloud> XML element.
-         *
-         * @param e The <cloud> element to parse the cloud from
-         * @return the cloud parsed from XML, or a null object
-         *         if parsing failed.
-         */
-        static Cloud fromXML(const QDomElement& e);
-
-        /**
-         * Default constructor, creates a null object, which is equal
-         * to Cloud::null() and for which isNull() is @c true.
+         * Default constructor, creates a null object, for which isNull()
+         * is @c true.
          */
         Cloud();
+
+        /**
+         * Creates a Cloud object wrapping a @c <cloud> XML element.
+         *
+         * @param e The @c <cloud> element to wrap
+         */
+        Cloud(const QDomElement& element);
 
         QString domain() const;
 
@@ -83,6 +81,9 @@ class Cloud : public ElementWrapper
 
         QString registerProcedure() const;
 
+        /**
+         * protocol used for publish-subscribe, e.g. "xml-rpc"
+         */
         QString protocol() const;
 
         /**
@@ -91,10 +92,6 @@ class Cloud : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
-
-    private:
-
-        Cloud(const QDomElement& element);
 };
 
 } // namespace RSS2

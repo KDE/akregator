@@ -53,10 +53,7 @@ Document Document::fromXML(const QDomDocument& doc)
 {
     QDomNode channelNode = doc.namedItem(QString::fromLatin1("rss")).namedItem(QString::fromLatin1("channel"));
 
-    if (channelNode.isElement())
-        return Document(channelNode.toElement());
-    else
-        return Document(); // if there is no channel, we just return a null object
+    return Document(channelNode.toElement());
 }
 
 Document::Document() : AbstractDocument(), ElementWrapper()
@@ -175,9 +172,7 @@ QList<Category> Document::categories() const
     QList<QDomElement> catNodes = elementsByTagName(QString::fromLatin1("category"));
     for (QList<QDomElement>::ConstIterator it = catNodes.begin(); it != catNodes.end(); ++it)
     {
-        Category i = Category::fromXML(*it);
-        if (!i.isNull())
-            categories.append(i);
+        categories.append(Category(*it));
     }
     
     return categories;
@@ -195,12 +190,7 @@ QString Document::docs() const
 
 Cloud Document::cloud() const
 {
-    Cloud cloud;
-    QDomNode cloudNode = element().namedItem(QString::fromLatin1("cloud"));
-    if (cloudNode.isElement())
-        cloud = Cloud::fromXML(cloudNode.toElement());
-    
-    return cloud;
+    return Cloud(element().namedItem(QString::fromLatin1("cloud")).toElement());
 }
 
 int Document::ttl() const
@@ -215,23 +205,14 @@ int Document::ttl() const
 
 Image Document::image() const
 {
-    Image image;
     QDomNode imageNode = element().namedItem(QString::fromLatin1("image"));
-    if (imageNode.isElement())
-        image = Image::fromXML(imageNode.toElement());
-    
-    return image;
+    return Image(imageNode.toElement());
 }
 
 TextInput Document::textInput() const
 {
-    TextInput textInput;
-
     QDomNode textInputNode = element().namedItem(QString::fromLatin1("textInput"));
-    if (textInputNode.isElement())
-        textInput = TextInput::fromXML(textInputNode.toElement());
-    
-    return textInput;
+    return TextInput(textInputNode.toElement());
 }
 
 QSet<int> Document::skipHours() const
@@ -290,9 +271,7 @@ QList<Item> Document::items() const
 
     for (QList<QDomElement>::ConstIterator it = itemNodes.begin(); it != itemNodes.end(); ++it)
     {
-        Item i = Item::fromXML(*it);
-        if (!i.isNull())
-            items.append(i);
+        items.append(Item(*it));
     }
 
     return items;

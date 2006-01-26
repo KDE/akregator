@@ -29,11 +29,6 @@ namespace LibSyndication {
 namespace RSS2 {
 
 
-Enclosure Enclosure::fromXML(const QDomElement& e)
-{
-    return Enclosure(e);
-}
-
 Enclosure::Enclosure() : ElementWrapper()
 {
 }

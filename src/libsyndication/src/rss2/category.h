@@ -43,14 +43,11 @@ class Category : public ElementWrapper
     public:
 
         /**
-         * Parses a category from an <category> XML element.
+         * Creates a Category object wrapping a @c <category> XML element.
          *
-         * @param e The <category> element to parse the category from
-         * @return the category parsed from XML, or a null object
-         *         if parsing failed.
+         * @param e The @c <category> element to wrap
          */
-        static Category fromXML(const QDomElement& e);
-
+        Category(const QDomElement& element);
 
         /**
          * Default constructor, creates a null object, for which isNull() is
@@ -86,9 +83,7 @@ class Category : public ElementWrapper
          */
         QString debugInfo() const;
 
-    private:
 
-        Category(const QDomElement& element);
 };
 
 } // namespace RSS2

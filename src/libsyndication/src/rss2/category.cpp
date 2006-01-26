@@ -31,16 +31,9 @@ class QString;
 namespace LibSyndication {
 namespace RSS2 {
 
-
-Category Category::fromXML(const QDomElement& e)
-{
-    return Category(e);
-}
-
 Category::Category() : ElementWrapper()
 {
 }
-
 
 Category::Category(const QDomElement& element) : ElementWrapper(element)
 {

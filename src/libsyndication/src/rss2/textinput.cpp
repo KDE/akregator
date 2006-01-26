@@ -30,11 +30,6 @@ namespace LibSyndication {
 namespace RSS2 {
 
 
-TextInput TextInput::fromXML(const QDomElement& e)
-{
-    return TextInput(e);
-}
-
 TextInput::TextInput() : ElementWrapper()
 {
 }
