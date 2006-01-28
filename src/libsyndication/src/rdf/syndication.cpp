@@ -25,6 +25,8 @@
 #include "syndication.h"
 #include "syndicationvocab.h"
 
+#include "../tools.h"
+
 #include <QDateTime>
 #include <QString>
 
@@ -62,15 +64,9 @@ int Syndication::updateFrequency() const
 
 time_t Syndication::updateBase() const
 {
-    QString base =  resource()->property(SyndicationVocab::self()->updateBase())->asString();
+    QString str =  resource()->property(SyndicationVocab::self()->updateBase())->asString();
     
-    time_t timet = QDateTime::fromString(base, Qt::ISODate).toTime_t();
-    // we return epoch (19700101) as default,even if
-    // base can't be parsed:
-    if (timet == -1)
-        return 0;
-    else
-        return timet;
+    return parseISODate(str);
 }
 
 QString Syndication::debugInfo() const

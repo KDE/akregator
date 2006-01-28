@@ -29,6 +29,8 @@
 #include "source.h"
 #include "tools.h"
 
+#include "../tools.h"
+
 #include <QDateTime>
 #include <QDomElement>
 #include <QList>
@@ -143,24 +145,14 @@ time_t Entry::published() const
 {
     QString pub = extractElementTextNS(Constants::atom1NameSpace(),
                                        QString::fromUtf8("published"));
-    
-    QDateTime dt = QDateTime::fromString(pub, Qt::ISODate);
-    time_t time = dt.toTime_t() ;
-    if (time == -1)
-        return 0;
-    return time;
+    return parseISODate(pub);
 }
 
 time_t Entry::updated() const
 {
     QString upd = extractElementTextNS(Constants::atom1NameSpace(),
                                        QString::fromUtf8("published"));
-    
-    QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
-    time_t time = dt.toTime_t() ;
-    if (time == -1)
-        return 0;
-    return time;
+    return parseISODate(upd);
 }
 
 QString Entry::summary() const

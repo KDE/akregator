@@ -25,7 +25,8 @@
 
 #include "../elementwrapper.h"
 
-class QDateTime;
+#include <ctime>
+
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -173,10 +174,10 @@ class KDE_EXPORT Item : public ElementWrapper
          * is not available, the method returns @c <dc:date> instead,
          * if available.
          * 
-         * @return the publication date, or an invalid QDateTime object if
-         * either no date was specified or parsing failed.
+         * @return the publication date, or 0 if no date was specified or
+         * parsing failed
          */
-        QDateTime pubDate() const;
+        time_t pubDate() const;
 
         /** 
          * The RSS channel that the item came from. See Source class for more

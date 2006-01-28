@@ -22,6 +22,7 @@
 
 #include "../constants.h"
 #include "../documentvisitor.h"
+#include "../tools.h"
 
 #include "category.h"
 #include "cloud.h"
@@ -127,42 +128,26 @@ QString Document::webMaster() const
     return extractElementText(QString::fromUtf8("webMaster"));
 }
 
-QDateTime Document::pubDate() const
+time_t Document::pubDate() const
 {
-    QDateTime pubDate;
-
-    QString pubDateStr = extractElementText(QString::fromUtf8("pubDate"));
+    QString str = extractElementText(QString::fromUtf8("pubDate"));
     
-    if (!pubDateStr.isNull())
+    if (!str.isNull())
     {
-        time_t time = KRFCDate::parseDate(pubDateStr);
-        pubDate.setTime_t(time);
+        return parseRFCDate(str);
     }
     else
     {   // if there is no pubDate, check for dc:date
-        pubDateStr = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
-        
-        if (!pubDateStr.isNull())
-        {
-            pubDate = QDateTime::fromString(pubDateStr, Qt::ISODate);
-        }
+        str = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
+        return parseISODate(str);
     }
-    
-    return pubDate;
 }
 
-QDateTime Document::lastBuildDate() const
+time_t Document::lastBuildDate() const
 {
-    QDateTime lastBuildDate;
-
-    QString lastBuildDateStr = extractElementText(QString::fromUtf8("lastBuildDate"));
-    if (!lastBuildDateStr.isNull())
-    {
-        time_t time = KRFCDate::parseDate(lastBuildDateStr);
-        lastBuildDate.setTime_t(time);
-    }
-
-    return lastBuildDate;
+    QString str = extractElementText(QString::fromUtf8("lastBuildDate"));
+    
+    return parseRFCDate(str);
 }
 
 QList<Category> Document::categories() const
@@ -288,9 +273,17 @@ QString Document::debugInfo() const
     info += "copyright: #" + copyright() + "#\n";
     info += "managingEditor: #" + managingEditor() + "#\n";
     info += "webMaster: #" + webMaster() + "#\n";
-    if (pubDate().isValid())
-        info += "pubDate: #" + pubDate().toString() + "#\n";
-    info += "lastBuildDate: #" + lastBuildDate().toString() + "#\n";
+    
+    QDateTime dpubdate;
+    dpubdate.setTime_t(pubDate());
+    if (dpubdate.isValid())
+        info += "pubDate: #" + dpubdate.toString() + "#\n";
+    
+    QDateTime dlastbuilddate;
+    dlastbuilddate.setTime_t(lastBuildDate());
+    
+    if (dlastbuilddate.isValid())
+        info += "lastBuildDate: #" + dlastbuilddate.toString() + "#\n";
     if (!textInput().isNull())
         info += textInput().debugInfo();
     if (!cloud().isNull())

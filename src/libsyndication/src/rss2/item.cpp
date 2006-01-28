@@ -27,6 +27,7 @@
 #include "tools.h"
 
 #include "../constants.h"
+#include "../tools.h"
 
 #include <QDateTime>
 #include <QDomElement>
@@ -156,28 +157,18 @@ bool Item::guidIsPermaLink() const
     return guidIsPermaLink;
 }
 
-QDateTime Item::pubDate() const
+time_t Item::pubDate() const
 {
-    QDateTime pubDate;
-
-    QString pubDateStr = extractElementText(QString::fromUtf8("pubDate"));
+    QString str = extractElementText(QString::fromUtf8("pubDate"));
     
-    if (!pubDateStr.isNull())
+    if (!str.isNull())
     {
-        time_t time = KRFCDate::parseDate(pubDateStr);
-        pubDate.setTime_t(time);
-    }
-    else
-    {   // if there is no pubDate, check for dc:date
-        pubDateStr = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
-        
-        if (!pubDateStr.isNull())
-        {
-            pubDate = QDateTime::fromString(pubDateStr, Qt::ISODate);
-        }
+        return parseRFCDate(str);
     }
     
-    return pubDate;
+    // if there is no pubDate, check for dc:date
+    str = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
+    return parseISODate(str);
 }
 
 Source Item::source() const
@@ -196,7 +187,10 @@ QString Item::debugInfo() const
     info += "content: #" + content() + "#\n";
     info += "author: #" + author() + "#\n";
     info += "comments: #" + comments() + "#\n";
-    info += "pubDate: #" + pubDate().toString() + "#\n";
+    QDateTime dpubdate;
+    dpubdate.setTime_t(pubDate());
+    if (dpubdate.isValid())
+        info += "pubDate: #" + dpubdate.toString() + "#\n";
     info += "guid: #" + guid() + "#\n";
     info += "guid is PL: #" + (guidIsPermaLink() ? QString("true") : QString("false")) + "#\n";
     if (!enclosure().isNull())

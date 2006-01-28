@@ -23,6 +23,8 @@
 #ifndef LIBSYNDICATION_TOOLS_H
 #define LIBSYNDICATION_TOOLS_H
 
+#include <ctime>
+
 class QByteArray;
 class QString;
 
@@ -33,6 +35,27 @@ unsigned int calcHash(const QString& str);
 unsigned int calcHash(const QByteArray& array);
 
 QString calcMD5Sum(const QString& str);
+
+/**
+ * parses a date string in ISO 8601 extendend format.
+ * (date: "2003-12-13",datetime: "2003-12-13T18:30:02.25", 
+ * datetime with timezone: "2003-12-13T18:30:02.25+01:00")
+ * 
+ * @param str a string in ISO 8601 format
+ * @return parsed date in seconds since epoch, 0 if no date could
+ * be parsed from the string.
+ */
+time_t parseISODate(const QString& str);
+
+/**
+ * parses a date string as defined in RFC 822.
+ * (Sat, 07 Sep 2002 00:00:01 GMT)
+ * 
+ * @param str a string in RFC 822 format
+ * @return parsed date in seconds since epoch,  0 if no date could
+ * be parsed from the string.
+ */
+time_t parseRFCDate(const QString& str);
 
 } // namespace LibSyndication
 

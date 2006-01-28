@@ -26,7 +26,8 @@
 #include "../abstractdocument.h"
 #include "../elementwrapper.h"
 
-class QDateTime;
+#include <ctime>
+
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -46,11 +47,13 @@ class TextInput;
 typedef KSharedPtr<Document> DocumentPtr;
 
 /**
- * document implementation, representing an RSS feed from the 0.91-0.94/2.0 family.
+ * document implementation, representing an RSS feed from the 0.91-0.94/2.0
+ * family.
  * 
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Document : public LibSyndication::AbstractDocument, public ElementWrapper
+class KDE_EXPORT Document : public LibSyndication::AbstractDocument,
+                            public ElementWrapper
 {
     public:
     
@@ -76,7 +79,8 @@ class KDE_EXPORT Document : public LibSyndication::AbstractDocument, public Elem
          * The title of the channel.
          *
          * This method returns the content of the @c <title> element. If
-         * @c <title> is not available, the method returns * @c <dc:title> instead, if available.
+         * @c <title> is not available, the method returns * @c <dc:title>
+         * instead, if available.
          *
          * 
          * @return title TODO: more on escaping/HTML
@@ -93,7 +97,8 @@ class KDE_EXPORT Document : public LibSyndication::AbstractDocument, public Elem
         /**
          * Phrase or sentence describing the channel.
          * This method returns the content of the @c <description> element. If
-         * @c <description> is not available, the method returns * @c <dc:description> instead, if available.
+         * @c <description> is not available, the method returns
+         * @c <dc:description> instead, if available.
          *
          * 
          * @return TODO
@@ -141,16 +146,18 @@ class KDE_EXPORT Document : public LibSyndication::AbstractDocument, public Elem
          * @c <pubDate> is not available, the method returns
          * @c <dc:date> instead, if available.
          * 
-         * @return the publication date, or an invalid QDateTime if 
+         * @return the publication date, or 0 if no date was specified or
+         * parsing failed
          */
-        QDateTime pubDate() const;
+        time_t pubDate() const;
     
         /**
          * The last time the content of the channel changed.
          *
-         * @return TODO
+         * @return the last build date, or 0 if no date was specified or parsing
+         * failed
          */
-        QDateTime lastBuildDate() const;
+        time_t lastBuildDate() const;
     
         /**
          * Specifies one or more categories that the channel belongs to.
@@ -236,9 +243,7 @@ class KDE_EXPORT Document : public LibSyndication::AbstractDocument, public Elem
         QSet<DayOfWeek> skipDays() const;
     
         /**
-         *
-         *
-         * @return TODO
+         * the items contained in this document
          */
         QList<Item> items() const;
     

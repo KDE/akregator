@@ -30,6 +30,7 @@
 #include "tools.h"
 
 #include "../documentvisitor.h"
+#include "../tools.h"
 
 #include <QDomElement>
 #include <QDateTime>
@@ -154,11 +155,7 @@ time_t FeedDocument::updated() const
 {
     QString upd = extractElementTextNS(Constants::atom1NameSpace(),
                                        QString::fromUtf8("updated"));
-    QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
-    time_t time = dt.toTime_t() ;
-    if (time == -1)
-        return 0;
-    return time;
+    return parseISODate(upd);
 }
 
 QList<Link> FeedDocument::links() const

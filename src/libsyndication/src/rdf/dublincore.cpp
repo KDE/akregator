@@ -25,6 +25,8 @@
 #include "property.h"
 #include "statement.h"
 
+#include "../tools.h"
+
 #include <QDateTime>
 #include <QString>
 
@@ -58,15 +60,9 @@ QString DublinCore::creator() const
 
 time_t DublinCore::date() const
 {
-    QString base =  resource()->property(DublinCoreVocab::self()->date())->asString();
+    QString str =  resource()->property(DublinCoreVocab::self()->date())->asString();
+    return parseISODate(str);
     
-    time_t timet = QDateTime::fromString(base, Qt::ISODate).toTime_t();
-    // we return epoch (19700101) as default,even if
-    // base can't be parsed:
-    if (timet == -1)
-        return 0;
-    else
-        return timet;
 }
 
 QString DublinCore::description() const

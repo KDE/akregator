@@ -25,6 +25,7 @@
 #include <kcodecs.h> 
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QString>
 
 namespace LibSyndication {
@@ -52,6 +53,23 @@ unsigned int calcHash(const QByteArray& array)
     }
 }
 
+time_t parseISODate(const QString& str)
+{
+    QDateTime dt = QDateTime::fromString(str, Qt::ISODate);
+    time_t time = dt.toTime_t() ;
+    if (time == -1)
+        return 0;
+    return time;
+}
+
+time_t parseRFCDate(const QString& str)
+{
+    QDateTime dt = QDateTime::fromString(str, Qt::TextDate);
+    time_t time = dt.toTime_t() ;
+    if (time == -1)
+        return 0;
+    return time;
+}
 
 QString calcMD5Sum(const QString& str)
 {

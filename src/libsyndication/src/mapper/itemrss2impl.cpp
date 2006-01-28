@@ -29,7 +29,6 @@
 #include "../rss2/enclosure.h"
 #include "../tools.h"
 
-#include <QDateTime>
 #include <QList>
 #include <QString>
 
@@ -96,11 +95,7 @@ QString ItemRSS2Impl::id() const
 
 time_t ItemRSS2Impl::datePublished() const
 {
-    time_t time = m_item.pubDate().toTime_t();
-    if (time == -1) 
-        return 0;
-    else 
-        return time;
+    return m_item.pubDate();
 }
 
 time_t ItemRSS2Impl::dateUpdated() const
