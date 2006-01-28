@@ -84,10 +84,14 @@ QString Image::debugInfo() const
 {
     QString info;
     info += "### Image: ###################\n";
-    info += "title: #" + title() + "#\n";
-    info += "link: #" + link() + "#\n";
-    info += "description: #" + description() + "#\n";
-    info += "url: #" + url() + "#\n";
+    if (!title().isNull())
+        info += "title: #" + title() + "#\n";
+    if (!link().isNull())
+        info += "link: #" + link() + "#\n";
+    if (!description().isNull())
+        info += "description: #" + description() + "#\n";
+    if (!url().isNull())
+        info += "url: #" + url() + "#\n";
     info += "width: #" + QString::number(width()) + "#\n";
     info += "height: #" + QString::number(height()) + "#\n";
     info += "### Image end ################\n";

@@ -52,8 +52,10 @@ QString Category::debugInfo() const
 {
     QString info;
     info += "### Category: ###################\n";
-    info += "category: #" + category() + "#\n";
-    info += "domain: #" + domain() + "#\n";
+    if (!category().isNull())
+        info += "category: #" + category() + "#\n";
+    if (!domain().isNull())
+        info += "domain: #" + domain() + "#\n";
     info += "### Category end ################\n";
     return info;
 }

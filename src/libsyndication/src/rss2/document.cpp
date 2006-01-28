@@ -266,12 +266,19 @@ QString Document::debugInfo() const
 {
     QString info;
     info += "### Document: ###################\n";
-    info += "title: #" + title() + "#\n";
-    info += "description: #" + description() + "#\n";
-    info += "link: #" + link() + "#\n";
-    info += "language: #" + language() + "#\n";
-    info += "copyright: #" + copyright() + "#\n";
-    info += "managingEditor: #" + managingEditor() + "#\n";
+    if (!title().isNull())
+        info += "title: #" + title() + "#\n";
+    if (!description().isNull())
+        info += "description: #" + description() + "#\n";
+    if (!link().isNull())
+        info += "link: #" + link() + "#\n";
+    if (!language().isNull())
+        info += "language: #" + language() + "#\n";
+    if (!copyright().isNull())
+        info += "copyright: #" + copyright() + "#\n";
+    if (!managingEditor().isNull())
+        info += "managingEditor: #" + managingEditor() + "#\n";
+    if (!webMaster().isNull())
     info += "webMaster: #" + webMaster() + "#\n";
     
     QDateTime dpubdate;

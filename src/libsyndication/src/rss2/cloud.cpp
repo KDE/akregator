@@ -77,11 +77,16 @@ QString Cloud::debugInfo() const
 {
     QString info;
     info += "### Cloud: ###################\n";
-    info += "domain: #" + domain() + "#\n";
-    info += "port: #" + QString::number(port()) + "#\n";
-    info += "path: #" + path() + "#\n";
-    info += "registerProcedure: #" + registerProcedure() + "#\n";
-    info += "protocol: #" + protocol() + "#\n";
+    if (!domain().isNull())
+        info += "domain: #" + domain() + "#\n";
+    if (port() != -1)
+        info += "port: #" + QString::number(port()) + "#\n";
+    if (!path().isNull())
+        info += "path: #" + path() + "#\n";
+    if (!registerProcedure().isNull())
+        info += "registerProcedure: #" + registerProcedure() + "#\n";
+    if (!protocol().isNull())
+        info += "protocol: #" + protocol() + "#\n";
     info += "### Cloud end ################\n";
     return info;
 }

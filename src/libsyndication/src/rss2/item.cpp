@@ -181,18 +181,26 @@ QString Item::debugInfo() const
 {
     QString info;
     info += "### Item: ###################\n";
-    info += "title: #" + title() + "#\n";
-    info += "link: #" + link() + "#\n";
-    info += "description: #" + description() + "#\n";
-    info += "content: #" + content() + "#\n";
-    info += "author: #" + author() + "#\n";
-    info += "comments: #" + comments() + "#\n";
+    if (!title().isNull())
+        info += "title: #" + title() + "#\n";
+    if (!link().isNull())
+        info += "link: #" + link() + "#\n";
+    if (!description().isNull())
+        info += "description: #" + description() + "#\n";
+    if (!content().isNull())
+        info += "content: #" + content() + "#\n";
+    if (!author().isNull())
+        info += "author: #" + author() + "#\n";
+    if (!comments().isNull())
+        info += "comments: #" + comments() + "#\n";
     QDateTime dpubdate;
     dpubdate.setTime_t(pubDate());
     if (dpubdate.isValid())
         info += "pubDate: #" + dpubdate.toString() + "#\n";
-    info += "guid: #" + guid() + "#\n";
-    info += "guid is PL: #" + (guidIsPermaLink() ? QString("true") : QString("false")) + "#\n";
+    if (!guid().isNull())
+        info += "guid: #" + guid() + "#\n";
+    if (guidIsPermaLink())
+        info += "guid is PL: #true#\n";
     if (!enclosure().isNull())
         info += enclosure().debugInfo();
     if (!source().isNull())

@@ -63,10 +63,14 @@ QString TextInput::debugInfo() const
 {
     QString info;
     info += "### TextInput: ###################\n";
-    info += "title: #" + title() + "#\n";
-    info += "link: #" + link() + "#\n";
-    info += "description: #" + description() + "#\n";
-    info += "name: #" + name() + "#\n";
+    if (!title().isNull())
+       info += "title: #" + title() + "#\n";
+    if (!link().isNull())
+        info += "link: #" + link() + "#\n";
+    if (!description().isNull())
+       info += "description: #" + description() + "#\n";
+    if (!name().isNull())
+        info += "name: #" + name() + "#\n";
     info += "### TextInput end ################\n";
     return info;
 }

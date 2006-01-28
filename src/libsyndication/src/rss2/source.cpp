@@ -51,8 +51,10 @@ QString Source::debugInfo() const
 {
     QString info;
     info += "### Source: ###################\n";
+    if (!source().isNull())
     info += "source: #" + source() + "#\n";
-    info += "url: #" + url() + "#\n";
+    if (!url().isNull())
+        info += "url: #" + url() + "#\n";
     info += "### Source end ################\n";
     return info;
 }

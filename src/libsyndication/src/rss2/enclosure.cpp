@@ -64,9 +64,12 @@ QString Enclosure::debugInfo() const
 {
     QString info;
     info += "### Enclosure: ###################\n";
-    info += "url: #" + url() + "#\n";
-    info += "type: #" + type() + "#\n";
-    info += "length: #" + QString::number(length()) + "#\n";
+    if (!url().isNull())
+        info += "url: #" + url() + "#\n";
+    if (!type().isNull())
+        info += "type: #" + type() + "#\n";
+    if (length() != -1)
+        info += "length: #" + QString::number(length()) + "#\n";
     info += "### Enclosure end ################\n";
     return info;
 }
