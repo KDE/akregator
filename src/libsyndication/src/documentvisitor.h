@@ -19,9 +19,10 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_DOCUMENTVISITOR_H
 #define LIBSYNDICATION_DOCUMENTVISITOR_H
+
+#include <kdepimmacros.h>
 
 namespace LibSyndication {
 
@@ -52,7 +53,7 @@ namespace RSS2
  *
  * @author Frank Osterfeld
  */
-class DocumentVisitor
+class KDE_EXPORT DocumentVisitor
 {
     public:
 

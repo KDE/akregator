@@ -95,15 +95,15 @@ QString Syndication::periodToString(Period period)
         case None:
             return QString();
         case Daily:
-            return QString::fromLatin1("daily");
+            return QString::fromUtf8("daily");
         case Hourly:
-            return QString::fromLatin1("hourly");
+            return QString::fromUtf8("hourly");
         case Monthly:
-            return QString::fromLatin1("monthly");
+            return QString::fromUtf8("monthly");
         case Weekly:
-            return QString::fromLatin1("weekly");
+            return QString::fromUtf8("weekly");
         case Yearly:
-            return QString::fromLatin1("yearly");
+            return QString::fromUtf8("yearly");
             default: // should never happen
             return QString();
     }
@@ -114,13 +114,13 @@ Syndication::Period Syndication::stringToPeriod(const QString& str)
     if (str.isEmpty())
         return Daily; // default is "daily"
     
-    if (str == QString::fromLatin1("hourly"))
+    if (str == QString::fromUtf8("hourly"))
         return Hourly;
-    if (str == QString::fromLatin1("monthly"))
+    if (str == QString::fromUtf8("monthly"))
         return Monthly;
-    if (str == QString::fromLatin1("weekly"))
+    if (str == QString::fromUtf8("weekly"))
         return Weekly;
-    if (str == QString::fromLatin1("yearly"))
+    if (str == QString::fromUtf8("yearly"))
         return Yearly;
 
     return Daily;  // default is "daily"

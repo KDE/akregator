@@ -56,7 +56,7 @@ namespace RSS2
    *
    * @author Frank Osterfeld
    */
-class Cloud : public ElementWrapper
+class KDE_EXPORT Cloud : public ElementWrapper
 {
     public:
         

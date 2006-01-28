@@ -19,9 +19,10 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_ATOM_CONSTANTS_H
 #define LIBSYNDICATION_ATOM_CONSTANTS_H
+
+#include <kdepimmacros.h>
 
 class QString;
 
@@ -33,7 +34,7 @@ namespace Atom {
  *
  * @author Frank Osterfeld
  */
-class Constants
+class KDE_EXPORT Constants
 {
     public:
         /**

@@ -41,7 +41,7 @@ typedef KSharedPtr<Statement> StatementPtr;
 
 typedef KSharedPtr<Resource> ResourcePtr;
 
-class Resource : public Node
+class KDE_EXPORT Resource : public Node
 {
     friend class Model;
     

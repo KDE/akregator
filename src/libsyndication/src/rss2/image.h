@@ -31,7 +31,7 @@ class QString;
 namespace LibSyndication {
 namespace RSS2 {
 
-class Image : public ElementWrapper
+class KDE_EXPORT Image : public ElementWrapper
 {
     public:
 

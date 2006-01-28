@@ -61,7 +61,7 @@ QString ItemAtomImpl::link() const
     // return first link where rel="alternate"
     for ( ; it != end; ++it)
     {
-        if ((*it).rel() == QString::fromLatin1("alternate"))
+        if ((*it).rel() == QString::fromUtf8("alternate"))
         {
             return (*it).href();
         }
@@ -151,7 +151,7 @@ QList<LibSyndication::EnclosurePtr> ItemAtomImpl::enclosures() const
 
     for ( ; it != end; ++it)
     {
-        if ((*it).rel() == QString::fromLatin1("enclosure"))
+        if ((*it).rel() == QString::fromUtf8("enclosure"))
         {
             EnclosureAtomImplPtr impl = new EnclosureAtomImpl(*it);
             list.append(LibSyndication::EnclosurePtr::staticCast(impl));

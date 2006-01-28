@@ -39,17 +39,17 @@ Enclosure::Enclosure(const QDomElement& element) : ElementWrapper(element)
 
 QString Enclosure::url() const
 {
-    return element().attribute(QString::fromLatin1("url"));
+    return element().attribute(QString::fromUtf8("url"));
 }
 
 int Enclosure::length() const
 {
     int length = -1;
 
-    if (element().hasAttribute(QString::fromLatin1("length")))
+    if (element().hasAttribute(QString::fromUtf8("length")))
     {
         bool ok;
-        int c = element().attribute(QString::fromLatin1("length")).toInt(&ok);
+        int c = element().attribute(QString::fromUtf8("length")).toInt(&ok);
         length = ok ? c : -1;
     }
     return length;
@@ -57,7 +57,7 @@ int Enclosure::length() const
 
 QString Enclosure::type() const
 {
-    return element().attribute(QString::fromLatin1("type"));
+    return element().attribute(QString::fromUtf8("type"));
 }
 
 QString Enclosure::debugInfo() const

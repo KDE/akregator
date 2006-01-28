@@ -22,6 +22,8 @@
 #ifndef LIBSYNDICATION_RDF_NODE_H
 #define LIBSYNDICATION_RDF_NODE_H
 
+#include <kdepimmacros.h>
+
 #include <ksharedptr.h>
 
 namespace LibSyndication {
@@ -33,7 +35,7 @@ class NodeVisitor;
 
 typedef KSharedPtr<Node> NodePtr;
 
-class Node : public KShared
+class KDE_EXPORT Node : public KShared
 {
     public:
         

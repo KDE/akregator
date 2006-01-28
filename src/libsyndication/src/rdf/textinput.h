@@ -33,7 +33,7 @@ class Model;
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
 
-class TextInput : public ResourceWrapper
+class KDE_EXPORT TextInput : public ResourceWrapper
 {
     
     public:

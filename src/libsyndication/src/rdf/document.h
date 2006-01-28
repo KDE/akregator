@@ -47,7 +47,7 @@ typedef KSharedPtr<Document> DocumentPtr;
  * 
  * @author Frank Osterfeld
  */
-class Document : public LibSyndication::AbstractDocument, public ResourceWrapper
+class KDE_EXPORT Document : public LibSyndication::AbstractDocument, public ResourceWrapper
 {
     
     public:

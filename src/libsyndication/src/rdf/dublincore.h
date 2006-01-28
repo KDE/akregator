@@ -35,7 +35,7 @@ namespace RDF {
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
 
-class DublinCore : public ResourceWrapper
+class KDE_EXPORT DublinCore : public ResourceWrapper
 {
     public:
         

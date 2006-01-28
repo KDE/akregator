@@ -36,7 +36,7 @@ class DocumentSource;
  *
  * @author Frank Osterfeld
  */
-class AbstractParser
+class KDE_EXPORT AbstractParser
 {
     public:
 

@@ -51,7 +51,7 @@ Document::Document(const QDomElement& element) : AbstractDocument(), ElementWrap
 
 Document Document::fromXML(const QDomDocument& doc)
 {
-    QDomNode channelNode = doc.namedItem(QString::fromLatin1("rss")).namedItem(QString::fromLatin1("channel"));
+    QDomNode channelNode = doc.namedItem(QString::fromUtf8("rss")).namedItem(QString::fromUtf8("channel"));
 
     return Document(channelNode.toElement());
 }
@@ -62,7 +62,7 @@ Document::Document() : AbstractDocument(), ElementWrapper()
 
 QString Document::title() const
 {
-    QString t = extractElementText(QString::fromLatin1("title"));
+    QString t = extractElementText(QString::fromUtf8("title"));
     
     if (!t.isNull())
     {
@@ -71,18 +71,18 @@ QString Document::title() const
     else
     {
         return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromLatin1("title"));
+                                    QString::fromUtf8("title"));
     }
 }
 
 QString Document::link() const
 {
-    return extractElementText(QString::fromLatin1("link") );
+    return extractElementText(QString::fromUtf8("link") );
 }
 
 QString Document::description() const
 {
-    QString d = extractElementText(QString::fromLatin1("description"));
+    QString d = extractElementText(QString::fromUtf8("description"));
     
     if (!d.isNull())
     {
@@ -91,7 +91,7 @@ QString Document::description() const
     else
     {
         return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromLatin1("description"));
+                                    QString::fromUtf8("description"));
     }
 
     
@@ -99,12 +99,12 @@ QString Document::description() const
 
 QString Document::language() const
 {
-    return extractElementText(QString::fromLatin1("language"));
+    return extractElementText(QString::fromUtf8("language"));
 }
 
 QString Document::copyright() const
 {
-    QString rights = extractElementText(QString::fromLatin1("copyright"));
+    QString rights = extractElementText(QString::fromUtf8("copyright"));
     if (!rights.isNull())
     {
         return rights;
@@ -113,25 +113,25 @@ QString Document::copyright() const
     {
         // if <copyright> is not provided, use <dc:rights>
         return extractElementTextNS(
-                LibSyndication::Constants::dublinCoreNamespace(), QString::fromLatin1("rights"));
+                LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("rights"));
     }
 }
 
 QString Document::managingEditor() const
 {
-    return extractElementText(QString::fromLatin1("managingEditor"));
+    return extractElementText(QString::fromUtf8("managingEditor"));
 }
 
 QString Document::webMaster() const
 {
-    return extractElementText(QString::fromLatin1("webMaster"));
+    return extractElementText(QString::fromUtf8("webMaster"));
 }
 
 QDateTime Document::pubDate() const
 {
     QDateTime pubDate;
 
-    QString pubDateStr = extractElementText(QString::fromLatin1("pubDate"));
+    QString pubDateStr = extractElementText(QString::fromUtf8("pubDate"));
     
     if (!pubDateStr.isNull())
     {
@@ -140,7 +140,7 @@ QDateTime Document::pubDate() const
     }
     else
     {   // if there is no pubDate, check for dc:date
-        pubDateStr = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromLatin1("date"));
+        pubDateStr = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
         
         if (!pubDateStr.isNull())
         {
@@ -155,7 +155,7 @@ QDateTime Document::lastBuildDate() const
 {
     QDateTime lastBuildDate;
 
-    QString lastBuildDateStr = extractElementText(QString::fromLatin1("lastBuildDate"));
+    QString lastBuildDateStr = extractElementText(QString::fromUtf8("lastBuildDate"));
     if (!lastBuildDateStr.isNull())
     {
         time_t time = KRFCDate::parseDate(lastBuildDateStr);
@@ -169,7 +169,7 @@ QList<Category> Document::categories() const
 {
     QList<Category> categories;
 
-    QList<QDomElement> catNodes = elementsByTagName(QString::fromLatin1("category"));
+    QList<QDomElement> catNodes = elementsByTagName(QString::fromUtf8("category"));
     for (QList<QDomElement>::ConstIterator it = catNodes.begin(); it != catNodes.end(); ++it)
     {
         categories.append(Category(*it));
@@ -180,17 +180,17 @@ QList<Category> Document::categories() const
 
 QString Document::generator() const
 {
-    return extractElementText(QString::fromLatin1("generator"));
+    return extractElementText(QString::fromUtf8("generator"));
 }
 
 QString Document::docs() const
 {
-    return extractElementText(QString::fromLatin1("docs"));
+    return extractElementText(QString::fromUtf8("docs"));
 }
 
 Cloud Document::cloud() const
 {
-    return Cloud(element().namedItem(QString::fromLatin1("cloud")).toElement());
+    return Cloud(element().namedItem(QString::fromUtf8("cloud")).toElement());
 }
 
 int Document::ttl() const
@@ -198,32 +198,32 @@ int Document::ttl() const
     bool ok;
     int c;
 
-    QString text = extractElementText(QString::fromLatin1("ttl"));
+    QString text = extractElementText(QString::fromUtf8("ttl"));
     c = text.toInt(&ok);
     return ok ? c : 0;
 }
 
 Image Document::image() const
 {
-    QDomNode imageNode = element().namedItem(QString::fromLatin1("image"));
+    QDomNode imageNode = element().namedItem(QString::fromUtf8("image"));
     return Image(imageNode.toElement());
 }
 
 TextInput Document::textInput() const
 {
-    QDomNode textInputNode = element().namedItem(QString::fromLatin1("textInput"));
+    QDomNode textInputNode = element().namedItem(QString::fromUtf8("textInput"));
     return TextInput(textInputNode.toElement());
 }
 
 QSet<int> Document::skipHours() const
 {
     QSet<int> skipHours;
-    QDomNode skipHoursNode = element().namedItem(QString::fromLatin1("skipHours"));
+    QDomNode skipHoursNode = element().namedItem(QString::fromUtf8("skipHours"));
     if (skipHoursNode.isElement())
     {
         ElementWrapper skipHoursWrapper(skipHoursNode.toElement());
         bool ok = false;
-        QList<QDomElement> hours = skipHoursWrapper.elementsByTagName(QString::fromLatin1("hour"));
+        QList<QDomElement> hours = skipHoursWrapper.elementsByTagName(QString::fromUtf8("hour"));
         for (QList<QDomElement>::ConstIterator it = hours.begin(); it != hours.end(); ++it)
         {
             int h = (*it).text().toInt(&ok);
@@ -238,21 +238,21 @@ QSet<int> Document::skipHours() const
 QSet<Document::DayOfWeek> Document::skipDays() const
 {
     QSet<DayOfWeek> skipDays;
-    QDomNode skipDaysNode = element().namedItem(QString::fromLatin1("skipDays"));
+    QDomNode skipDaysNode = element().namedItem(QString::fromUtf8("skipDays"));
     if (skipDaysNode.isElement())
     {
         ElementWrapper skipDaysWrapper(skipDaysNode.toElement());
         QHash<QString, DayOfWeek> weekDays;
 
-        weekDays[QString::fromLatin1("Monday")] = Monday;
-        weekDays[QString::fromLatin1("Tuesday")] = Tuesday;
-        weekDays[QString::fromLatin1("Wednesday")] = Wednesday;
-        weekDays[QString::fromLatin1("Thursday")] = Thursday;
-        weekDays[QString::fromLatin1("Friday")] = Friday;
-        weekDays[QString::fromLatin1("Saturday")] = Saturday;
-        weekDays[QString::fromLatin1("Sunday")] = Sunday;
+        weekDays[QString::fromUtf8("Monday")] = Monday;
+        weekDays[QString::fromUtf8("Tuesday")] = Tuesday;
+        weekDays[QString::fromUtf8("Wednesday")] = Wednesday;
+        weekDays[QString::fromUtf8("Thursday")] = Thursday;
+        weekDays[QString::fromUtf8("Friday")] = Friday;
+        weekDays[QString::fromUtf8("Saturday")] = Saturday;
+        weekDays[QString::fromUtf8("Sunday")] = Sunday;
 
-        QList<QDomElement> days = skipDaysWrapper.elementsByTagName( QString::fromLatin1("day"));
+        QList<QDomElement> days = skipDaysWrapper.elementsByTagName( QString::fromUtf8("day"));
         for (QList<QDomElement>::ConstIterator it = days.begin(); it != days.end(); ++it)
         {
             if (weekDays.contains((*it).text()))
@@ -265,7 +265,7 @@ QSet<Document::DayOfWeek> Document::skipDays() const
 
 QList<Item> Document::items() const
 {
-    QList<QDomElement> itemNodes = elementsByTagName(QString::fromLatin1("item"));
+    QList<QDomElement> itemNodes = elementsByTagName(QString::fromUtf8("item"));
 
     QList<Item> items;
 

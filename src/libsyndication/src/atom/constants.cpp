@@ -29,12 +29,12 @@ namespace Atom {
 
 QString Constants::atom1NameSpace()
 {
-    return QString::fromLatin1("http://www.w3.org/2005/Atom");
+    return QString::fromUtf8("http://www.w3.org/2005/Atom");
 }
 
 QString Constants::atom0_3NameSpace()
 {
-    return QString::fromLatin1("http://purl.org/atom/ns#");
+    return QString::fromUtf8("http://purl.org/atom/ns#");
 }
 
 } // namespace Atom

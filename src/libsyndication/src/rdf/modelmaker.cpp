@@ -67,9 +67,9 @@ Model ModelMaker::createFromXML(const QDomDocument& doc)
 ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
 {
     QString rdfns = RDFVocab::self()->namespaceURI();
-    QString about = QString::fromLatin1("about");
-    QString resource = QString::fromLatin1("resource");
-    QString descriptionStr = QString::fromLatin1("Description");
+    QString about = QString::fromUtf8("about");
+    QString resource = QString::fromUtf8("resource");
+    QString descriptionStr = QString::fromUtf8("Description");
 
     ResourcePtr res;
 

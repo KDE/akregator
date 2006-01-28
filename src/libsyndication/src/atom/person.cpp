@@ -40,20 +40,20 @@ Person::Person(const QDomElement& element) : ElementWrapper(element)
 QString Person::name() const
 {
     return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("name"));
+                                QString::fromUtf8("name"));
 }
 
 QString Person::uri() const
 {
  
     return completeURI(extractElementTextNS(Constants::atom1NameSpace(),
-                       QString::fromLatin1("uri")));
+                       QString::fromUtf8("uri")));
 }
 
 QString Person::email() const
 {
     return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("email"));
+                                QString::fromUtf8("email"));
 }
 
 QString Person::debugInfo() const

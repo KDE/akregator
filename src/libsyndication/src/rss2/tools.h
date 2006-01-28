@@ -41,7 +41,7 @@ namespace RSS2 {
  *
  * @author Frank Osterfeld
  */
-class Tools
+class KDE_EXPORT Tools
 {
     public:
     

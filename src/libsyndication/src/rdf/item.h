@@ -33,7 +33,7 @@ class DublinCore;
 class Item;
 class Model;
 
-class Item : public ResourceWrapper
+class KDE_EXPORT Item : public ResourceWrapper
 {
     
     public:

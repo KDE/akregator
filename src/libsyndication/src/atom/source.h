@@ -46,7 +46,7 @@ class Person;
  * 
  * @author Frank Osterfeld
  */
-class Source : public ElementWrapper
+class KDE_EXPORT Source : public ElementWrapper
 {
     public:
 

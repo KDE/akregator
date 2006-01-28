@@ -40,13 +40,13 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
     if (doc.isNull())
         return false;
     
-    QDomElement feed = doc.namedItem(QString::fromLatin1("feed")).toElement();
+    QDomElement feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
     bool feedValid = !feed.isNull() && (feed.namespaceURI() == Constants::atom1NameSpace() || feed.namespaceURI() == Constants::atom0_3NameSpace());
 
     if (feedValid)
         return true;
 
-    QDomElement entry = doc.namedItem(QString::fromLatin1("entry")).toElement();
+    QDomElement entry = doc.namedItem(QString::fromUtf8("entry")).toElement();
     bool entryValid = !entry.isNull() && entry.namespaceURI() == Constants::atom1NameSpace();
 
     return entryValid;
@@ -60,15 +60,15 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
         return 0;
 
     
-    QDomElement feed = doc.namedItem(QString::fromLatin1("feed")).toElement();
+    QDomElement feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
     
     bool feedValid = !feed.isNull();
 
-    if (feedValid && feed.attribute(QString::fromLatin1("version"))
-        == QString::fromLatin1("0.3"))
+    if (feedValid && feed.attribute(QString::fromUtf8("version"))
+        == QString::fromUtf8("0.3"))
     {
         doc = convertAtom0_3(doc);
-        feed = doc.namedItem(QString::fromLatin1("feed")).toElement();
+        feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
         
     }
 
@@ -80,7 +80,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
         return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
     }
 
-    QDomElement entry = doc.namedItem(QString::fromLatin1("entry")).toElement();
+    QDomElement entry = doc.namedItem(QString::fromUtf8("entry")).toElement();
     bool entryValid = !entry.isNull() && entry.namespaceURI() == Constants::atom1NameSpace();
 
     if (entryValid)
@@ -94,7 +94,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
 
 QString Parser::format() const
 {
-    return QString::fromLatin1("atom");
+    return QString::fromUtf8("atom");
 }
 
 QDomDocument Parser::convertAtom0_3(const QDomDocument& doc)

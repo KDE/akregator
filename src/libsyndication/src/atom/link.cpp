@@ -39,35 +39,35 @@ Link::Link(const QDomElement& element) : ElementWrapper(element)
 
 QString Link::href() const
 {
-    return completeURI( element().attribute(QString::fromLatin1("href")));
+    return completeURI( element().attribute(QString::fromUtf8("href")));
 }
 
 QString Link::rel() const
 {
     //"alternate" is default
-    return element().attribute(QString::fromLatin1("rel"), QString::fromLatin1("alternate"));
+    return element().attribute(QString::fromUtf8("rel"), QString::fromUtf8("alternate"));
 }
 
 QString Link::type() const
 {
-    return element().attribute(QString::fromLatin1("type"));
+    return element().attribute(QString::fromUtf8("type"));
 }
 
 QString Link::hrefLanguage() const
 {
     return element().attribute(
-    QString::fromLatin1("hreflang"));
+    QString::fromUtf8("hreflang"));
 }
 
 QString Link::title() const
 {
     return element().attribute(
-    QString::fromLatin1("title"));
+    QString::fromUtf8("title"));
 }
 
 uint Link::length() const
 {
-    QString lengthStr = element().attribute(QString::fromLatin1("length"));
+    QString lengthStr = element().attribute(QString::fromUtf8("length"));
     
     bool ok;
     uint c = lengthStr.toUInt(&ok);

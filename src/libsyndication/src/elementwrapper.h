@@ -24,6 +24,8 @@
 
 #include <ksharedptr.h>
 
+#include <kdepimmacros.h>
+
 class QDomElement;
 template <class T> class QList;
 
@@ -36,7 +38,7 @@ namespace LibSyndication {
  *
  * @author Frank Osterfeld
  */
-class ElementWrapper
+class KDE_EXPORT ElementWrapper
 {
     public:
         

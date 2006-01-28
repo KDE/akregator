@@ -39,7 +39,7 @@ Generator::Generator(const QDomElement& element) : ElementWrapper(element)
 
 QString Generator::uri() const
 {
-    return completeURI(element().attribute(QString::fromLatin1("uri")));
+    return completeURI(element().attribute(QString::fromUtf8("uri")));
     
 }
 
@@ -50,7 +50,7 @@ QString Generator::name() const
 
 QString Generator::version() const
 {
-    return element().attribute(QString::fromLatin1("version"));
+    return element().attribute(QString::fromUtf8("version"));
 }
 
 QString Generator::debugInfo() const

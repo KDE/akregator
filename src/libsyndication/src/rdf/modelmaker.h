@@ -41,7 +41,7 @@ typedef KSharedPtr<Resource> ResourcePtr;
  * 
  * @author Frank Osterfeld
  */
-class ModelMaker
+class KDE_EXPORT ModelMaker
 {
     public:
     

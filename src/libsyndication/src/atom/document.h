@@ -53,7 +53,8 @@ typedef KSharedPtr<FeedDocument> FeedDocumentPtr;
  * 
  * @author Frank Osterfeld
  */
-class FeedDocument : public LibSyndication::AbstractDocument, public ElementWrapper
+class KDE_EXPORT FeedDocument : public LibSyndication::AbstractDocument,
+public ElementWrapper
 {
     public:
     
@@ -181,7 +182,7 @@ class FeedDocument : public LibSyndication::AbstractDocument, public ElementWrap
  * 
  * @author Frank Osterfeld
  */
-class EntryDocument : public LibSyndication::AbstractDocument, public LibSyndication::ElementWrapper
+class KDE_EXPORT EntryDocument : public LibSyndication::AbstractDocument, public LibSyndication::ElementWrapper
 {
     public:
 

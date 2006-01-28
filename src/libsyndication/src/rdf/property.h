@@ -34,7 +34,7 @@ class Property;
 
 typedef KSharedPtr<Property> PropertyPtr;
 
-class Property : public Resource
+class KDE_EXPORT Property : public Resource
 {
     public:
         

@@ -34,7 +34,7 @@ class Literal;
     
 typedef KSharedPtr<Literal> LiteralPtr;
     
-class Literal : public Node
+class KDE_EXPORT Literal : public Node
 {
     public:
 

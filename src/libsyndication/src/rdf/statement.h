@@ -36,7 +36,7 @@ class Statement;
 
 typedef KSharedPtr<Statement> StatementPtr;
 
-class Statement : public KShared
+class KDE_EXPORT Statement : public KShared
 {
     public:
     

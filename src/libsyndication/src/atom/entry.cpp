@@ -49,7 +49,7 @@ QList<Person> Entry::authors() const
 {
     QList<QDomElement> a = 
             elementsByTagNameNS(Constants::atom1NameSpace(), 
-                                QString::fromLatin1("author"));
+                                QString::fromUtf8("author"));
     QList<Person> list;
                                        
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -68,7 +68,7 @@ QList<Person> Entry::contributors() const
 {
     QList<QDomElement> a = 
             elementsByTagNameNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("contributor"));
+                                QString::fromUtf8("contributor"));
     QList<Person> list;
                                        
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -87,7 +87,7 @@ QList<Category> Entry::categories() const
 {
     QList<QDomElement> a = 
             elementsByTagNameNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("category"));
+                                QString::fromUtf8("category"));
     QList<Category> list;
     
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -105,7 +105,7 @@ QList<Category> Entry::categories() const
 QString Entry::id() const
 {
     return extractElementTextNS(Constants::atom1NameSpace(),
-                                QString::fromLatin1("id"));
+                                QString::fromUtf8("id"));
 
 }
 
@@ -113,7 +113,7 @@ QList<Link> Entry::links() const
 {
     QList<QDomElement> a = 
             elementsByTagNameNS(Constants::atom1NameSpace(), 
-                                QString::fromLatin1("link"));
+                                QString::fromUtf8("link"));
     QList<Link> list;
     
     QList<QDomElement>::ConstIterator it = a.begin();
@@ -130,19 +130,19 @@ QList<Link> Entry::links() const
 
 QString Entry::rights() const
 {
-    return extractAtomText(*this, QString::fromLatin1("rights"));
+    return extractAtomText(*this, QString::fromUtf8("rights"));
 }
 
 Source Entry::source() const
 {
     return Source(firstElementByTagNameNS(Constants::atom1NameSpace(),
-                  QString::fromLatin1("source")));
+                  QString::fromUtf8("source")));
 }
 
 time_t Entry::published() const
 {
     QString pub = extractElementTextNS(Constants::atom1NameSpace(),
-                                       QString::fromLatin1("published"));
+                                       QString::fromUtf8("published"));
     
     QDateTime dt = QDateTime::fromString(pub, Qt::ISODate);
     time_t time = dt.toTime_t() ;
@@ -154,7 +154,7 @@ time_t Entry::published() const
 time_t Entry::updated() const
 {
     QString upd = extractElementTextNS(Constants::atom1NameSpace(),
-                                       QString::fromLatin1("published"));
+                                       QString::fromUtf8("published"));
     
     QDateTime dt = QDateTime::fromString(upd, Qt::ISODate);
     time_t time = dt.toTime_t() ;
@@ -165,18 +165,18 @@ time_t Entry::updated() const
 
 QString Entry::summary() const
 {
-    return extractAtomText(*this, QString::fromLatin1("summary"));
+    return extractAtomText(*this, QString::fromUtf8("summary"));
 }
 
 QString Entry::title() const
 {
-    return extractAtomText(*this, QString::fromLatin1("title"));
+    return extractAtomText(*this, QString::fromUtf8("title"));
 }
 
 Content Entry::content() const
 {
     return Content(firstElementByTagNameNS(Constants::atom1NameSpace(),
-                   QString::fromLatin1("content")));
+                   QString::fromUtf8("content")));
 }
 
 QString Entry::debugInfo() const

@@ -40,11 +40,11 @@ class ContentVocab::ContentVocabPrivate
 
 ContentVocab::ContentVocab() : d(new ContentVocabPrivate)
 {
-    QString ns = QString::fromLatin1("http://purl.org/rss/1.0/modules/content/");
+    QString ns = QString::fromUtf8("http://purl.org/rss/1.0/modules/content/");
     
     d->namespaceURI = ns;
     
-    d->encoded = new Property(ns + QString::fromLatin1("encoded"));
+    d->encoded = new Property(ns + QString::fromUtf8("encoded"));
     
 }
 

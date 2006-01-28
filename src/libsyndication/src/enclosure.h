@@ -38,7 +38,7 @@ typedef KSharedPtr<Enclosure> EnclosurePtr;
  *
  * @author Frank Osterfeld
  */
-class Enclosure : public KShared
+class KDE_EXPORT Enclosure : public KShared
 {
     public:
 

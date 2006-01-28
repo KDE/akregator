@@ -39,17 +39,17 @@ Category::Category(const QDomElement& element) : ElementWrapper(element)
 
 QString Category::term() const
 {
-    return element().attribute(QString::fromLatin1("term"));
+    return element().attribute(QString::fromUtf8("term"));
 }
 
 QString Category::scheme() const
 {
-    return completeURI(element().attribute(QString::fromLatin1("scheme")));
+    return completeURI(element().attribute(QString::fromUtf8("scheme")));
 }
 
 QString Category::label() const
 {
-    return element().attribute(QString::fromLatin1("label"));
+    return element().attribute(QString::fromUtf8("label"));
 }
 
 QString Category::debugInfo() const

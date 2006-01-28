@@ -42,13 +42,13 @@ class SyndicationVocab::SyndicationVocabPrivate
 
 SyndicationVocab::SyndicationVocab() : d(new SyndicationVocabPrivate)
 {
-    QString ns = QString::fromLatin1("http://purl.org/rss/1.0/modules/syndication/");
+    QString ns = QString::fromUtf8("http://purl.org/rss/1.0/modules/syndication/");
     
     d->namespaceURI = ns;
     
-    d->updatePeriod = new Property(ns + QString::fromLatin1("updatePeriod"));
-    d->updateFrequency = new Property(ns + QString::fromLatin1("updateFrequency"));
-    d->updateBase = new Property(ns + QString::fromLatin1("updateBase"));
+    d->updatePeriod = new Property(ns + QString::fromUtf8("updatePeriod"));
+    d->updateFrequency = new Property(ns + QString::fromUtf8("updateFrequency"));
+    d->updateBase = new Property(ns + QString::fromUtf8("updateBase"));
     
 }
 

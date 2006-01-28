@@ -22,6 +22,8 @@
 #ifndef LIBSYNDICATION_ABSTRACTDOCUMENT_H
 #define LIBSYNDICATION_ABSTRACTDOCUMENT_H
 
+#include <kdepimmacros.h>
+
 #include <ksharedptr.h>
 
 class QString;
@@ -43,7 +45,7 @@ typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
  *
  * @author Frank Osterfeld
  */
-class AbstractDocument : public KShared
+class KDE_EXPORT AbstractDocument : public KShared
 {
     public:
 

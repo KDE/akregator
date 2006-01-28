@@ -35,7 +35,7 @@ namespace RSS2 {
 
 class Document;
 
-class Parser : public LibSyndication::AbstractParser
+class KDE_EXPORT Parser : public LibSyndication::AbstractParser
 {
     public:
 

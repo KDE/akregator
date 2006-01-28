@@ -45,7 +45,7 @@ class Source;
  *
  * @author Frank Osterfeld
  */
-class Entry : public ElementWrapper
+class KDE_EXPORT Entry : public ElementWrapper
 {
     public:
     

@@ -35,9 +35,9 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
 {
     QString str;
     
-    QString type = parent.element().attribute(QString::fromLatin1("type"));
+    QString type = parent.element().attribute(QString::fromUtf8("type"));
     
-    if (type.isEmpty() || type == QString::fromLatin1("text"))
+    if (type.isEmpty() || type == QString::fromUtf8("text"))
     {
         str = parent.extractElementTextNS(Constants::atom1NameSpace(), tagname);
         str = str.replace("<", "&lt;");
@@ -45,11 +45,11 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
         str = str.replace("&", "&amp;");
         str = str.replace("\"", "&quot;");
     }
-    else if (type == QString::fromLatin1("html"))
+    else if (type == QString::fromUtf8("html"))
     {
         str = parent.extractElementTextNS(Constants::atom1NameSpace(), tagname);
     }
-    else if (type == QString::fromLatin1("xhtml"))
+    else if (type == QString::fromUtf8("xhtml"))
     {
         QDomElement el = parent.firstElementByTagNameNS(Constants::atom1NameSpace(), tagname);
         str = ElementWrapper::childNodesAsXML(el);

@@ -39,7 +39,7 @@ namespace RSS2 {
  * 
  * @author Frank Osterfeld
  */
-class Enclosure : public ElementWrapper
+class KDE_EXPORT Enclosure : public ElementWrapper
 {
     public:
 

@@ -48,7 +48,7 @@ Item::Item(const QDomElement& element) : ElementWrapper(element)
 
 QString Item::title() const
 {
-    QString t = extractElementText(QString::fromLatin1("title"));
+    QString t = extractElementText(QString::fromUtf8("title"));
     
     if (!t.isNull())
     {
@@ -57,18 +57,18 @@ QString Item::title() const
     else
     {
         return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromLatin1("title"));
+                                    QString::fromUtf8("title"));
     }
 }
 
 QString Item::link() const
 {
-    return extractElementText(QString::fromLatin1("link") );
+    return extractElementText(QString::fromUtf8("link") );
 }
 
 QString Item::description() const
 {
-    QString d = extractElementText(QString::fromLatin1("description"));
+    QString d = extractElementText(QString::fromUtf8("description"));
     
     if (!d.isNull())
     {
@@ -77,7 +77,7 @@ QString Item::description() const
     else
     {
         return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromLatin1("description"));
+                                    QString::fromUtf8("description"));
     }
 }
 
@@ -89,7 +89,7 @@ QString Item::content() const
 
 QList<Category> Item::categories() const
 {
-    QList<QDomElement> cats = elementsByTagName(QString::fromLatin1("category"));
+    QList<QDomElement> cats = elementsByTagName(QString::fromUtf8("category"));
 
     QList<Category> categories;
 
@@ -102,12 +102,12 @@ QList<Category> Item::categories() const
 
 QString Item::comments() const
 {
-    return extractElementText(QString::fromLatin1("comments") );
+    return extractElementText(QString::fromUtf8("comments") );
 }
 
 QString Item::author() const
 {
-    QString a = extractElementText(QString::fromLatin1("author") );
+    QString a = extractElementText(QString::fromUtf8("author") );
     if (!a.isNull()) 
     {
         return a;
@@ -115,14 +115,14 @@ QString Item::author() const
     else
     {
         // if author is not available, fall back to dc:creator
-        return extractElementTextNS(Constants::dublinCoreNamespace(), QString::fromLatin1("creator") );
+        return extractElementTextNS(Constants::dublinCoreNamespace(), QString::fromUtf8("creator") );
     }
     
 }
 
 Enclosure Item::enclosure() const
 {
-    QDomNode enc = element().namedItem(QString::fromLatin1("enclosure"));
+    QDomNode enc = element().namedItem(QString::fromUtf8("enclosure"));
     return Enclosure(enc.toElement());
 }
 
@@ -130,7 +130,7 @@ QString Item::guid() const
 {
     QString guid;
 
-    QDomNode guidNode = element().namedItem(QString::fromLatin1("guid"));
+    QDomNode guidNode = element().namedItem(QString::fromUtf8("guid"));
     if (guidNode.isElement())
     {
         QDomElement guidElem = guidNode.toElement();
@@ -144,12 +144,12 @@ bool Item::guidIsPermaLink() const
 {
     bool guidIsPermaLink = true;  // true is default
 
-    QDomNode guidNode = element().namedItem(QString::fromLatin1("guid"));
+    QDomNode guidNode = element().namedItem(QString::fromUtf8("guid"));
     if (guidNode.isElement())
     {
         QDomElement guidElem = guidNode.toElement();
 
-        if (guidElem.attribute(QString::fromLatin1("isPermaLink")) == QString::fromLatin1("false"))
+        if (guidElem.attribute(QString::fromUtf8("isPermaLink")) == QString::fromUtf8("false"))
             guidIsPermaLink = false;
     }
 
@@ -160,7 +160,7 @@ QDateTime Item::pubDate() const
 {
     QDateTime pubDate;
 
-    QString pubDateStr = extractElementText(QString::fromLatin1("pubDate"));
+    QString pubDateStr = extractElementText(QString::fromUtf8("pubDate"));
     
     if (!pubDateStr.isNull())
     {
@@ -169,7 +169,7 @@ QDateTime Item::pubDate() const
     }
     else
     {   // if there is no pubDate, check for dc:date
-        pubDateStr = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromLatin1("date"));
+        pubDateStr = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
         
         if (!pubDateStr.isNull())
         {
@@ -182,7 +182,7 @@ QDateTime Item::pubDate() const
 
 Source Item::source() const
 {
-    QDomNode s = element().namedItem(QString::fromLatin1("source"));
+    QDomNode s = element().namedItem(QString::fromUtf8("source"));
     return Source(s.toElement());
 }
 

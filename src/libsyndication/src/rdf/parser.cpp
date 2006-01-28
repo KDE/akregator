@@ -76,7 +76,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
 
 QString Parser::format() const
 {
-    return QString::fromLatin1("rdf");
+    return QString::fromUtf8("rdf");
 }
 
         

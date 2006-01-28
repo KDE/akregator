@@ -55,7 +55,7 @@ typedef KSharedPtr<Person> PersonPtr;
  *
  * @author Frank Osterfeld
  */
-class Feed : public KShared
+class KDE_EXPORT Feed : public KShared
 {
     public:
         

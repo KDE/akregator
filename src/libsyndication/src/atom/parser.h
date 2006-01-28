@@ -40,7 +40,7 @@ namespace Atom {
  * 
  * @author Frank Osterfeld
  */
-class Parser : public LibSyndication::AbstractParser
+class KDE_EXPORT Parser : public LibSyndication::AbstractParser
 {
     public:
 

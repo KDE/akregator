@@ -19,10 +19,10 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_RDF_CONTENTVOCAB_H
 #define LIBSYNDICATION_RDF_CONTENTVOCAB_H
 
+#include <kdepimmacros.h>
 
 class QString;
 
@@ -34,7 +34,7 @@ namespace RDF {
 class Property;
 typedef KSharedPtr<Property> PropertyPtr;
 
-class ContentVocab
+class KDE_EXPORT ContentVocab
 {
     public:
 

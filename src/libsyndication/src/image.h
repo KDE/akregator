@@ -37,7 +37,7 @@ typedef KSharedPtr<Image> ImagePtr;
  *
  * @author Frank Osterfeld
  */
-class Image : public KShared
+class KDE_EXPORT Image : public KShared
 {
     public:
 

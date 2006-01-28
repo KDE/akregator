@@ -22,6 +22,8 @@
 #ifndef LIBSYNDICATION_RDF_RSSVOCAB_H
 #define LIBSYNDICATION_RDF_RSSVOCAB_H
 
+#include <kdepimmacros.h>
+
 template <class T> class KSharedPtr;
 
 class QString;
@@ -35,7 +37,7 @@ typedef KSharedPtr<Property> PropertyPtr;
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
     
-class RSSVocab
+class KDE_EXPORT RSSVocab
 {
     public:
 

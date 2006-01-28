@@ -44,7 +44,7 @@ namespace LibSyndication {
  *
  * @author Frank Osterfeld
  */
-class DocumentSource
+class KDE_EXPORT DocumentSource
 {
     public:
 

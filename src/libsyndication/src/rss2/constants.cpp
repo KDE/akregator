@@ -29,12 +29,12 @@ namespace RSS2 {
 
 QString Constants::XHTMLNameSpace()
 {
-    return QString::fromLatin1("http://www.w3.org/1999/xhtml");
+    return QString::fromUtf8("http://www.w3.org/1999/xhtml");
 }
 
 QString Constants::contentNameSpace()
 {
-    return QString::fromLatin1("http://purl.org/rss/1.0/modules/content/");
+    return QString::fromUtf8("http://purl.org/rss/1.0/modules/content/");
 }
 
 } // namespace RSS2

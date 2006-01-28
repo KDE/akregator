@@ -3,7 +3,12 @@ INCLUDES = $(all_includes)
 noinst_LTLIBRARIES = libmappercommonlocal.la libmapperrss2local.la \
                      libmapperrdflocal.la libmapperatomlocal.la
 
-# noinst_HEADERS = 
+noinst_HEADERS = personimpl.h \
+                 feedrss2impl.h itemrss2impl.h enclosurerss2impl.h \
+                 categoryrss2impl.h imagerss2impl.h \
+                 feedrdfimpl.h itemrdfimpl.h imagerdfimpl.h \
+                 feedatomimpl.h itematomimpl.h enclosureatomimpl.h \
+                 categoryatomimpl.h
 
 libmappercommonlocal_la_SOURCES = personimpl.cpp
 

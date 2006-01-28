@@ -48,19 +48,19 @@ class RSSVocab::RSSVocabPrivate
 
 RSSVocab::RSSVocab() : d(new RSSVocabPrivate)
 {
-    QString ns = QString::fromLatin1("http://purl.org/rss/1.0/");
+    QString ns = QString::fromUtf8("http://purl.org/rss/1.0/");
     
     d->namespaceURI = ns;
     
-    d->title = new Property(ns + QString::fromLatin1("title"));
-    d->link = new Property(ns + QString::fromLatin1("link"));
-    d->description = new Property(ns + QString::fromLatin1("description"));
-    d->name = new Property(ns + QString::fromLatin1("name"));
-    d->url = new Property(ns + QString::fromLatin1("url"));
-    d->image = new Property(ns + QString::fromLatin1("image"));
-    d->textinput = new Property(ns + QString::fromLatin1("textinput"));
-    d->items = new Property(ns + QString::fromLatin1("items"));
-    d->channel = new Resource(ns + QString::fromLatin1("channel"));
+    d->title = new Property(ns + QString::fromUtf8("title"));
+    d->link = new Property(ns + QString::fromUtf8("link"));
+    d->description = new Property(ns + QString::fromUtf8("description"));
+    d->name = new Property(ns + QString::fromUtf8("name"));
+    d->url = new Property(ns + QString::fromUtf8("url"));
+    d->image = new Property(ns + QString::fromUtf8("image"));
+    d->textinput = new Property(ns + QString::fromUtf8("textinput"));
+    d->items = new Property(ns + QString::fromUtf8("items"));
+    d->channel = new Resource(ns + QString::fromUtf8("channel"));
 }
 
 RSSVocab::~RSSVocab()

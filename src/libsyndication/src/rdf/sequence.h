@@ -36,7 +36,7 @@ class Sequence;
 
 typedef KSharedPtr<Sequence> SequencePtr;
     
-class Sequence : public Resource
+class KDE_EXPORT Sequence : public Resource
 {
     public:
         

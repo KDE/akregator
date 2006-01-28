@@ -33,7 +33,7 @@ namespace RDF {
 class Property;
 typedef KSharedPtr<Property> PropertyPtr;
 
-class SyndicationVocab
+class KDE_EXPORT SyndicationVocab
 {
     public:
 

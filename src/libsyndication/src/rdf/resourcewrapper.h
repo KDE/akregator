@@ -22,6 +22,8 @@
 #ifndef LIBSYNDICATION_RDF_RESOURCEWRAPPER_H
 #define LIBSYNDICATION_RDF_RESOURCEWRAPPER_H
 
+#include <kdepimmacros.h>
+
 #include <ksharedptr.h>
 
 namespace LibSyndication {
@@ -36,7 +38,7 @@ typedef KSharedPtr<Resource> ResourcePtr;
  *
  * @author Frank Osterfeld
  */
-class ResourceWrapper
+class KDE_EXPORT ResourceWrapper
 {
     public:
         ResourceWrapper();

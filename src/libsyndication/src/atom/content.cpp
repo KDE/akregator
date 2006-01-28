@@ -40,12 +40,12 @@ Content::Content(const QDomElement& element) : ElementWrapper(element)
 
 QString Content::type() const
 {
-    return element().attribute(QString::fromLatin1("type"));
+    return element().attribute(QString::fromUtf8("type"));
 }
 
 QString Content::src() const
 {
-    return completeURI(element().attribute(QString::fromLatin1("src")));
+    return completeURI(element().attribute(QString::fromUtf8("src")));
 }
 
 QByteArray Content::asByteArray() const
@@ -64,30 +64,30 @@ Content::Format Content::format() const
     //"If neither the type attribute nor the src attribute is provided,
     //Atom Processors MUST behave as though the type attribute were
     //present with a value of "text""
-    if (ctype.isEmpty() && src().isEmpty())
-        ctype = QString::fromLatin1("text");
+    if (ctype.isNull() && src().isEmpty())
+        ctype = QString::fromUtf8("text");
 
     if (ctype.isEmpty() 
-            || ctype == QString::fromLatin1("text")
-            || ctype == QString::fromLatin1("html")
-            || (ctype.startsWith(QString::fromLatin1("text/"), Qt::CaseInsensitive)
-            && !ctype.startsWith(QString::fromLatin1("text/xml"), Qt::CaseInsensitive))
+            || ctype == QString::fromUtf8("text")
+            || ctype == QString::fromUtf8("html")
+            || (ctype.startsWith(QString::fromUtf8("text/"), Qt::CaseInsensitive)
+            && !ctype.startsWith(QString::fromUtf8("text/xml"), Qt::CaseInsensitive))
            )
         return Text;
     
     QStringList xmltypes;
-    xmltypes.append(QString::fromLatin1("xhtml"));
+    xmltypes.append(QString::fromUtf8("xhtml"));
     // XML media types as defined in RFC3023:
-    xmltypes.append(QString::fromLatin1("text/xml"));
-    xmltypes.append(QString::fromLatin1("application/xml"));
-    xmltypes.append(QString::fromLatin1("text/xml-external-parsed-entity"));
-    xmltypes.append(QString::fromLatin1("application/xml-external-parsed-entity"));
-    xmltypes.append(QString::fromLatin1("application/xml-dtd"));
+    xmltypes.append(QString::fromUtf8("text/xml"));
+    xmltypes.append(QString::fromUtf8("application/xml"));
+    xmltypes.append(QString::fromUtf8("text/xml-external-parsed-entity"));
+    xmltypes.append(QString::fromUtf8("application/xml-external-parsed-entity"));
+    xmltypes.append(QString::fromUtf8("application/xml-dtd"));
     
     
     if (xmltypes.contains(ctype)
-            || ctype.endsWith(QString::fromLatin1("+xml"), Qt::CaseInsensitive)
-        || ctype.endsWith(QString::fromLatin1("/xml"), Qt::CaseInsensitive))
+            || ctype.endsWith(QString::fromUtf8("+xml"), Qt::CaseInsensitive)
+        || ctype.endsWith(QString::fromUtf8("/xml"), Qt::CaseInsensitive))
         return XML;
     
     return Binary;

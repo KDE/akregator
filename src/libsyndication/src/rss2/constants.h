@@ -19,16 +19,17 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_RSS2_CONSTANTS_H
 #define LIBSYNDICATION_RSS2_CONSTANTS_H
+
+#include <kdepimmacros.h>
 
 class QString;
 
 namespace LibSyndication {
 namespace RSS2 {
 
-class Constants
+class KDE_EXPORT Constants
 {
     public:
         static QString contentNameSpace();

@@ -19,9 +19,10 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-
 #ifndef LIBSYNDICATION_RDF_NODEVISITOR_H
 #define LIBSYNDICATION_RDF_NODEVISITOR_H
+
+#include <kdepimmacros.h>
 
 template <class T> class KSharedPtr;
 
@@ -39,7 +40,7 @@ typedef KSharedPtr<Resource> ResourcePtr;
 class Sequence;
 typedef KSharedPtr<Sequence> SequencePtr;
     
-class NodeVisitor
+class KDE_EXPORT NodeVisitor
 {
     public:
 

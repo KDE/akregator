@@ -28,6 +28,8 @@
 #include <sequence.h>
 #include <statement.h>
 
+#include <kdepimmacros.h>
+
 #include <ksharedptr.h>
 
 #include <QString>
@@ -43,7 +45,7 @@ namespace RDF {
  *
  * @author Frank Osterfeld
  */
-class Model
+class KDE_EXPORT Model
 {
     public:
 

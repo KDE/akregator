@@ -57,7 +57,7 @@ typedef KSharedPtr<Feed> FeedPtr;
  * 
  * @author Frank Osterfeld
  */
-class ParserCollection
+class KDE_EXPORT ParserCollection
 {
     public:
 

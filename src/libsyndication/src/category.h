@@ -41,7 +41,7 @@ typedef KSharedPtr<Category> CategoryPtr;
  * 
  * @author Frank Osterfeld
  */
-class Category : public KShared
+class KDE_EXPORT Category : public KShared
 {
     public:
 

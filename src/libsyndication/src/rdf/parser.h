@@ -34,7 +34,7 @@ class DocumentSource;
 
 namespace RDF {
 
-class Parser : public LibSyndication::AbstractParser
+class KDE_EXPORT Parser : public LibSyndication::AbstractParser
 {
     public:
 
