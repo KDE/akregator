@@ -109,7 +109,7 @@ QDomDocument Parser::convertAtom0_3(const QDomDocument& doc)
     str.replace(QRegExp("(<[^=>]*)copyright([^>]*>)"), "\\1rights\\2");
     str.replace(QRegExp("(<[^=>]*)tagline([^>]*>)"), "\\1subtitle\\2");
     
-    return DocumentSource(str.toUtf8()).asDomDocument();
+    return DocumentSource(str.toUtf8(), "").asDomDocument();
 }
 
 } // namespace Atom

@@ -33,6 +33,7 @@ class DocumentSource::DocumentSourcePrivate : public KShared
 {
     public:
     QByteArray array;
+    QString url;
     mutable QDomDocument domDoc;
     mutable bool parsed;
     mutable unsigned int hash;
@@ -47,9 +48,10 @@ DocumentSource::DocumentSource() : d(new DocumentSourcePrivate)
 }
 
 
-DocumentSource::DocumentSource(const QByteArray& source) : d(new DocumentSourcePrivate)
+DocumentSource::DocumentSource(const QByteArray& source, const QString& url) : d(new DocumentSourcePrivate)
 {
     d->array = source;
+    d->url = url;
     d->calculatedHash = false;
     d->parsed = false;
 }
@@ -106,5 +108,10 @@ unsigned int DocumentSource::hash() const
     
     return d->hash;
 }
-        
+
+const QString& DocumentSource::url() const
+{
+    return d->url;
+}
+
 } // namespace LibSyndication

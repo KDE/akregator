@@ -58,8 +58,9 @@ class KDE_EXPORT DocumentSource
          * Creates a DocumentSource object from a raw byte array
          * 
          * @param source the raw source (of the downloaded feed file usually)
+         * @param url the URL/path the source was read from
          */
-        DocumentSource(const QByteArray& source);
+        DocumentSource(const QByteArray& source, const QString& url);
         
         /** 
          * Copy constructor. The d pointer is shared, so this is a cheap
@@ -115,6 +116,11 @@ class KDE_EXPORT DocumentSource
          */
         const QDomDocument& asDomDocument() const;
 
+        /**
+         * returns the URL the document source was loaded from
+         */
+        const QString& url() const;
+        
     private: 
 
         class DocumentSourcePrivate;
