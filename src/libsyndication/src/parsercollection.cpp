@@ -57,7 +57,7 @@ class ParserCollection::ParserCollectionPrivate
     ParserCollectionPrivate(ParserCollection* reg) : p(reg)
     {
         docVisitor = new DocVisitor;
-        lastError = ParserCollection::NoError;
+        lastError = LibSyndication::Success;
     }
     
     ~ParserCollectionPrivate()
@@ -159,7 +159,7 @@ bool ParserCollection::registerParser(AbstractParser* parser)
 
 FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& formatHint)
 {
-    d->lastError = NoError;
+    d->lastError = LibSyndication::Success;
 
     if (d->parsers.contains(formatHint))
     {
@@ -168,7 +168,7 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
             AbstractDocumentPtr doc = d->parsers[formatHint]->parse(source);
             if (!doc)
             {
-                d->lastError = InvalidFormatError;
+                d->lastError = InvalidFormat;
                 return 0;
             }
             
@@ -183,7 +183,7 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
             AbstractDocumentPtr doc = i->parse(source);
             if (!doc)
             {
-                d->lastError = InvalidFormatError;
+                d->lastError = InvalidFormat;
                 return 0;
             }
             
@@ -191,14 +191,14 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
         }
     }
     if (source.asDomDocument().isNull())
-        d->lastError = InvalidXmlError;
+        d->lastError = InvalidXml;
     else
-        d->lastError = XmlNotAcceptedError;
+        d->lastError = XmlNotAccepted;
     
     return 0;
 }
 
-ParserCollection::ErrorCode ParserCollection::lastError() const
+LibSyndication::ErrorCode ParserCollection::lastError() const
 {
     return d->lastError;
 }

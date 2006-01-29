@@ -23,6 +23,8 @@
 #ifndef LIBSYNDICATION_PARSERCOLLECTION_H
 #define LIBSYNDICATION_PARSERCOLLECTION_H
 
+#include "global.h"
+
 #include <QString>
 
 template <class T> class KSharedPtr;
@@ -52,7 +54,7 @@ typedef KSharedPtr<Feed> FeedPtr;
  *     QString title = feed->title();
  *     QList<ItemPtr> items = feed->items();
  *     ...
-  * }
+ * }
  * @endcode
  * 
  * @author Frank Osterfeld
@@ -60,28 +62,6 @@ typedef KSharedPtr<Feed> FeedPtr;
 class KDE_EXPORT ParserCollection
 {
     public:
-
-        /**
-         * Error codes indicating parsing errors
-         */
-        enum ErrorCode
-        {
-            NoError = 0, /**< No error occurred */
-            InvalidXmlError = 1, /**< The XML is invalid. This is returned if no
-                             * parser accepts the source and the DOM document
-                             * can't be parsed. It is not returned if the source
-                             * is not valid XML but a (non-XML) parser accepts it.
-                             */
-            XmlNotAcceptedError = 2, /**< The source is valid XML, but no parser
-                                      * accepted the it.
-                                      */
-            InvalidFormatError = 3, /**< the source was accepted by a parser, but the
-                                * actual parsing failed. As our parser 
-                                * implementations currently do not validate
-                                * the source ("parse what you can get"), this 
-                                * code will be rarely seen.
-                                */
-        };
 
         /**
          * Singleton instance of ParserCollection.
@@ -133,7 +113,7 @@ class KDE_EXPORT ParserCollection
     private:
 
         ParserCollection(const ParserCollection& other) {}
-        ParserCollection& operator=(const ParserCollection& other) {}
+        ParserCollection& operator=(const ParserCollection& other) { return *this; }
         
         static ParserCollection* m_self;
 

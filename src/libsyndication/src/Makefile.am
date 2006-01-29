@@ -3,6 +3,8 @@ SUBDIRS = rss2 rdf atom mapper
 
 INCLUDES = $(all_includes)
 
+METASOURCES = AUTO
+
 lib_LTLIBRARIES = libsyndication.la
 
 libsyndication_la_SOURCES = parsercollection.cpp documentsource.cpp \
@@ -14,11 +16,11 @@ libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
                                  parsercollection.h documentvisitor.h \
                                  documentsource.h elementwrapper.h \
                                  item.h feed.h category.h image.h \
-                                 enclosure.h person.h
+                                 enclosure.h person.h global.h
 
 libsyndication_includedir = $(includedir)/libsyndication
 
-libsyndication_la_LDFLAGS = $(all_libraries) $(LIB_KDECORE) -no-undefined -version-info 1:0:0
+libsyndication_la_LDFLAGS = $(all_libraries) $(LIB_KDECORE) $(LIB_KIO) -no-undefined -version-info 1:0:0
 libsyndication_la_LIBADD = rss2/librss2local.la \
                            rdf/librdflocal.la \
                            atom/libatomlocal.la \
