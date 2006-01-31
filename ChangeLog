@@ -2,6 +2,15 @@ Akregator ChangeLog
 ===================
 (c) 2004-2006 the Akregator authors.
 
+Changes after 1.2.1:
+-----------------------------
+
+Bug fixes:
+
+ 2006/01/31 RSS parser: ignore unknown or invalid version attribute value in the <rss> tag and
+            just assume RSS 2.0. The older formats are compatible to 2.0, so this should work.
+            (at least better than refusing to parse the feeds) (#118793) -fo
+
 Changes after 1.2:
 -----------------------------
 
