@@ -107,7 +107,8 @@ class KDE_EXPORT Feed : public KShared
          * This string may contain HTML markup (importantly, "<", ">", "&" occurring
          * in the text are escaped!)
          * 
-         * @return the description as HTML, or QString::null if none is specified
+         * @return the description as HTML, or QString::null if none is
+         * specified
          */
         virtual QString description() const = 0;
 
@@ -121,9 +122,11 @@ class KDE_EXPORT Feed : public KShared
         virtual ImagePtr image() const = 0;
         
         /**
-         * TODO
+         * returns a list of persons who created the feed content. If there is a
+         * distinction between authors and contributors (Atom), both are added
+         * to the list, where authors are added first.
          * 
-         * @return TODO
+         * @return list of authors (and possibly other contributing persons)
          */
         virtual QList<PersonPtr> authors() const = 0;
         

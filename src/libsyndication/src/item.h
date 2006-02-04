@@ -94,12 +94,10 @@ class KDE_EXPORT Item : public KShared
         virtual QString content() const = 0;
         
         /**
-         * returns the date when the item was published. If no publication date
-         * is provided by the feed, the current date (when parsed) is inserted, 
-         * maintaining the order of the items in the feed by subtracting n
-         * seconds from the n-th item in the list.
+         * returns the date when the item was published.
          * 
-         * @return publication date, as seconds since epoch (Jan 1st 1970)
+         * @return publication date, as seconds since epoch (Jan 1st 1970), or 0
+         * (epoch) if not set
          */
         virtual time_t datePublished() const = 0;
         
@@ -119,10 +117,16 @@ class KDE_EXPORT Item : public KShared
          */
         virtual QString id() const = 0;
 
+        /**
+         * returns a list of persons who created the item content. If there is a
+         * distinction between authors and contributors (Atom), both are added
+         * to the list, where authors are added first.
+         * 
+         * @return list of authors (and possibly other contributing persons)
+         */
         virtual QList<PersonPtr> authors() const = 0;
         
         virtual QString language() const = 0;
-        
         
         /**
          * returns a list of enclosures describing files available on the net.

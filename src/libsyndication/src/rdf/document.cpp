@@ -149,7 +149,7 @@ QString Document::debugInfo() const
     if (!input.isNull())
         info += input.debugInfo();
 
-    QList<Item> itlist= items();
+    QList<Item> itlist = items();
     QList<Item>::ConstIterator it = itlist.begin();
     QList<Item>::ConstIterator end = itlist.end();
     for ( ; it != end; ++it)

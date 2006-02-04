@@ -42,15 +42,20 @@ enum ErrorCode
     FileNotFound = 4, /**< the host was contacted successfully, but reported a
                        * 404 error 
                        */
-    InvalidXml = 5, /**< The XML is invalid. This is returned if no parser
+    OtherRetrieverError = 5, /**< retriever error not covered by the error codes
+                              * above. This is returned if a custom
+                              * DataRetriever was used. See the
+                              * retriever-specific status byte for more
+                              * information on the occurred error. */
+    InvalidXml = 6, /**< The XML is invalid. This is returned if no parser
                      * accepts the source and the DOM document can't be parsed.
                      * It is not returned if the source is not valid XML but a
                      * (non-XML) parser accepts it.
                      */
-    XmlNotAccepted = 6, /**< The source is valid XML, but no parser accepted the
+    XmlNotAccepted = 7, /**< The source is valid XML, but no parser accepted the
                          * it.
                          */
-    InvalidFormat = 7, /**< the source was accepted by a parser, but the actual
+    InvalidFormat = 8, /**< the source was accepted by a parser, but the actual
                         * parsing failed. As our parser implementations
                         * currently do not validate the source ("parse what you
                         * can get"), this code will be rarely seen.

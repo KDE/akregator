@@ -27,6 +27,7 @@
 #include "personimpl.h"
 #include "../atom/category.h"
 #include "../atom/entry.h"
+#include "../atom/link.h"
 #include "../atom/person.h"
 
 #include <ksharedptr.h>
@@ -84,7 +85,21 @@ QString FeedAtomImpl::title() const
 
 QString FeedAtomImpl::link() const
 {
-    return "TODO";
+    QList<LibSyndication::Atom::Link> links = m_doc->links();
+    QList<LibSyndication::Atom::Link>::ConstIterator it = links.begin();
+    QList<LibSyndication::Atom::Link>::ConstIterator end = links.end();
+
+    // return first link where rel="alternate"
+    // TODO: if there are multiple "alternate" links, find other criteria to choose one of them
+    for ( ; it != end; ++it)
+    {
+        if ((*it).rel() == QString::fromUtf8("alternate"))
+        {
+            return (*it).href();
+        }
+    }
+    
+    return QString::null;
 }
 
 QString FeedAtomImpl::description() const
