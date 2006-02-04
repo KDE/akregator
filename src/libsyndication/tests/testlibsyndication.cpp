@@ -22,24 +22,70 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "testlibsyndication.h"
+
 #include "abstractdocument.h"
-#include "documentsource.h"
 #include "feed.h"
-#include "parsercollection.h"
+#include "loader.h"
 #include "atom/parser.h"
 #include "rdf/parser.h"
 #include "rss2/parser.h"
 
+#include <kapplication.h>
+#include <kaboutdata.h>
+#include <kcmdlineargs.h>
 #include <kinstance.h>
+#include <klocale.h>
+#include <kurl.h>
 
 #include <QByteArray>
+#include <QDir>
 #include <QFile>
 #include <QString>
 
+#include <cstdlib>
 #include <iostream>
 
 using namespace LibSyndication;
 
+static const KCmdLineOptions options[] =
+{
+    { "+url", I18N_NOOP("URL of feed"), 0 },
+    KCmdLineLastOption
+};
+
+TestLibSyndication::TestLibSyndication(const QString& url)
+{
+    KUrl kurl;
+    if (!KUrl::isRelativeURL(url))
+        kurl = KUrl(url);
+    else
+        kurl = KUrl("file://"+QDir::currentPath(), url);
+        
+    
+    Loader* loader = Loader::create(this, SLOT(slotLoadingComplete(LibSyndication::Loader*,
+                                    LibSyndication::FeedPtr,
+                                    LibSyndication::ErrorCode)));
+    loader->loadFrom(kurl);
+}
+
+void TestLibSyndication::slotLoadingComplete(LibSyndication::Loader* loader,
+                    LibSyndication::FeedPtr feed,
+                    LibSyndication::ErrorCode error)
+{
+    if (feed)
+    {
+        std::cout << feed->debugInfo().toLocal8Bit().data() << std::endl;
+        exit(0);
+    }
+    else
+    {
+        std::cout << "error" << std::endl;
+        exit(1);
+    }
+    
+}
+                    
 int main(int argc, char **argv)
 {
     if (argc < 2)
@@ -48,31 +94,17 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    QString filename(argv[1]);
-    QFile file(filename);
-    file.open(QIODevice::ReadOnly);
+    KAboutData aboutData("testlibsyndication", "testlibsyndication", "0.1");
+    KCmdLineArgs::init(argc, argv, &aboutData);
+    KCmdLineArgs::addCmdLineOptions(options);
+    KApplication app;
 
-    if (file.error() != QFile::NoError)
-    {
-        std::cerr << "Couldn't read file: " << file.errorString().toLocal8Bit().data() << std::endl;
-    }
+    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    if ( args->count() != 1 ) args->usage();
 
-    QByteArray raw = file.readAll();
-    file.close();
-
-    DocumentSource src(raw);
-    FeedPtr feed = ParserCollection::self()->parse(src);
-
-    if (!feed)
-    {
-         std::cout << "Couldn't parse document " << argv[1] << std::endl;
-         return 1;
-    }
-
-    std::cout << feed->debugInfo().toLocal8Bit().data() << std::endl;
+    TestLibSyndication* tester = new TestLibSyndication(args->arg( 0 ));
     
-    //AbstractDocumentPtr doc = feed->document();
-    //
-    //std::cout << doc->debugInfo().toLocal8Bit().data() << std::endl;
+    return app.exec();
 }
 
+#include "testlibsyndication.moc"
