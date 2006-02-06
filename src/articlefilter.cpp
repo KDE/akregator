@@ -187,7 +187,7 @@ bool Criterion::satisfiedBy( const Article &article ) const
             satisfied = QRegExp( m_object.toString() ).search( concreteSubject.toString() ) != -1;
             break;
         default:
-            kdDebug() << "Internal inconsistency; predicateType should never be Negation" << endl;
+            kDebug() << "Internal inconsistency; predicateType should never be Negation" << endl;
             break;
     }
 

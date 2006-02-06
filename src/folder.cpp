@@ -146,7 +146,7 @@ void Folder::insertChild(TreeNode* node, TreeNode* after)
 
 void Folder::insertChild(int index, TreeNode* node)
 {
-//    kdDebug() << "enter Folder::insertChild(int, node) " << node->title() << endl;
+//    kDebug() << "enter Folder::insertChild(int, node) " << node->title() << endl;
     if (node)
     {
         if (index >= d->children.size())
@@ -161,12 +161,12 @@ void Folder::insertChild(int index, TreeNode* node)
         articlesModified();
         nodeModified(); 
     }   
-//    kdDebug() << "leave Folder::insertChild(int, node) " << node->title() << endl; 
+//    kDebug() << "leave Folder::insertChild(int, node) " << node->title() << endl; 
 }
 
 void Folder::appendChild(TreeNode* node)
 {
-//    kdDebug() << "enter Folder::appendChild() " << node->title() << endl;
+//    kDebug() << "enter Folder::appendChild() " << node->title() << endl;
     if (node)
     {
         d->children.append(node);
@@ -178,12 +178,12 @@ void Folder::appendChild(TreeNode* node)
         articlesModified();
         nodeModified();
     }    
-//    kdDebug() << "leave Folder::appendChild() " << node->title() << endl;
+//    kDebug() << "leave Folder::appendChild() " << node->title() << endl;
 }
 
 void Folder::prependChild(TreeNode* node)
 {
-//    kdDebug() << "enter Folder::prependChild() " << node->title() << endl;
+//    kDebug() << "enter Folder::prependChild() " << node->title() << endl;
     if (node)
     {
         d->children.prepend(node);
@@ -195,12 +195,12 @@ void Folder::prependChild(TreeNode* node)
         articlesModified();
         nodeModified();
     }    
-//    kdDebug() << "leave Folder::prependChild() " << node->title() << endl;
+//    kDebug() << "leave Folder::prependChild() " << node->title() << endl;
 }
 
 void Folder::removeChild(TreeNode* node)
 {
-//    kdDebug() << "enter Folder::removeChild() node:" << (node ? node->title() : "null") << endl;
+//    kDebug() << "enter Folder::removeChild() node:" << (node ? node->title() : "null") << endl;
     if (node && d->children.contains(node))
     {    
         node->setParent(0);
@@ -212,7 +212,7 @@ void Folder::removeChild(TreeNode* node)
         articlesModified(); // articles were removed, TODO: add guids to a list
         nodeModified();
     }
-//    kdDebug() << "leave Folder::removeChild() node: " << (node ? node->title() : "null") << endl;
+//    kDebug() << "leave Folder::removeChild() node: " << (node ? node->title() : "null") << endl;
 }
 
 

@@ -100,7 +100,7 @@ bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimet
 {
     KTrader::OfferList offers = KTrader::self()->query( mimetype, "KParts/ReadOnlyPart", QString::null, QString::null);
 
-    kdDebug() << "BrowserFrame::loadPartForMimetype("<< mimetype << "): " << offers.size() << " offers" << endl;
+    kDebug() << "BrowserFrame::loadPartForMimetype("<< mimetype << "): " << offers.size() << " offers" << endl;
 
     if (!offers.isEmpty())
     {

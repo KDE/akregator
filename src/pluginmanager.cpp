@@ -51,7 +51,7 @@ PluginManager::query( const QString& constraint )
         str += constraint + " and ";
     str += "[X-KDE-akregator-rank] > 0";
 
-    kdDebug() << "Plugin trader constraint: " << str << endl;
+    kDebug() << "Plugin trader constraint: " << str << endl;
 
     return KTrader::self()->query( "Akregator/Plugin", str );
 }
@@ -63,7 +63,7 @@ PluginManager::createFromQuery( const QString &constraint )
     KTrader::OfferList offers = query( constraint );
 
     if ( offers.isEmpty() ) {
-        kdWarning() << k_funcinfo << "No matching plugin found.\n";
+        kWarning() << k_funcinfo << "No matching plugin found.\n";
         return 0;
     }
 
@@ -82,7 +82,7 @@ PluginManager::createFromQuery( const QString &constraint )
 Plugin*
 PluginManager::createFromService( const KService::Ptr service )
 {
-    kdDebug() << "Trying to load: " << service->library() << endl;
+    kDebug() << "Trying to load: " << service->library() << endl;
 
     //get the library loader instance
     KLibLoader *loader = KLibLoader::self();
@@ -100,7 +100,7 @@ PluginManager::createFromService( const KService::Ptr service )
     Plugin* (*create_plugin)() = ( Plugin* (*)() ) lib->symbol( "create_plugin" );
 
     if ( !create_plugin ) {
-        kdWarning() << k_funcinfo << "create_plugin == NULL\n";
+        kWarning() << k_funcinfo << "create_plugin == NULL\n";
         return 0;
     }
     //create plugin on the heap
@@ -125,13 +125,13 @@ PluginManager::unload( Plugin* plugin )
 
     if ( iter != m_store.end() ) {
         delete (*iter).plugin;
-        kdDebug() << "Unloading library: "<< (*iter).service->library() << endl;
+        kDebug() << "Unloading library: "<< (*iter).service->library() << endl;
         (*iter).library->unload();
 
         m_store.erase( iter );
     }
     else
-        kdWarning() << k_funcinfo << "Could not unload plugin (not found in store).\n";
+        kWarning() << k_funcinfo << "Could not unload plugin (not found in store).\n";
 }
 
 
@@ -139,7 +139,7 @@ KService::Ptr
 PluginManager::getService( const Plugin* plugin )
 {
     if ( !plugin ) {
-        kdWarning() << k_funcinfo << "pointer == NULL\n";
+        kWarning() << k_funcinfo << "pointer == NULL\n";
         return KService::Ptr( 0 );
     }
 
@@ -147,7 +147,7 @@ PluginManager::getService( const Plugin* plugin )
     vector<StoreItem>::const_iterator iter = lookupPlugin( plugin );
 
     if ( iter == m_store.end() )
-        kdWarning() << k_funcinfo << "Plugin not found in store.\n";
+        kWarning() << k_funcinfo << "Plugin not found in store.\n";
 
     return (*iter).service;
 }
@@ -183,7 +183,7 @@ PluginManager::showAbout( const QString &constraint )
 void
 PluginManager::dump( const KService::Ptr service )
 {
-    kdDebug()
+    kDebug()
       << "PluginManager Service Info:" << endl
       << "---------------------------" << endl
       << "name                          : " << service->name() << endl

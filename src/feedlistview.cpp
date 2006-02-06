@@ -195,7 +195,7 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
-            kdDebug() << "create item for " << node->title() << endl;
+            kDebug() << "create item for " << node->title() << endl;
             TagNodeItem* item = 0;
             TreeNode* prev = node->prevSibling();
             FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
@@ -876,7 +876,7 @@ void NodeListView::slotItemRenamed(Q3ListViewItem* item, int col, const QString&
     {
         if (text != ni->node()->title())
         {
-            kdDebug() << "renamed item to \"" << text << "\"" << endl;
+            kDebug() << "renamed item to \"" << text << "\"" << endl;
             ni->node()->setTitle(text);
         }
     }
@@ -926,14 +926,14 @@ void NodeListView::slotFeedFetchCompleted(Feed* feed)
 void NodeListView::slotNodeAdded(TreeNode* node)
 {
     d->createItemVisitor->visit(node);
-    kdDebug() << "NodeListView::slotNodeAdded: " << node->title() << endl;
+    kDebug() << "NodeListView::slotNodeAdded: " << node->title() << endl;
 }
 
 void NodeListView::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 {
     if (!node)
         return;
-    kdDebug() << "NodeListView::slotNodeRemoved: " << node->title() << endl; 
+    kDebug() << "NodeListView::slotNodeRemoved: " << node->title() << endl; 
     disconnectFromNode(node);
     delete d->itemDict.take(node);
 }

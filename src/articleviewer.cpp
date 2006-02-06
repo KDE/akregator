@@ -466,7 +466,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
 
         //text += QString("<hr><div><a href=\"%1\">%2</a> (%3, %4)</div>").arg(url).arg(url).arg(lengthStr).arg(type);
     }
-    //kdDebug() << text << endl;
+    //kDebug() << text << endl;
     return text;
 
 }
@@ -542,7 +542,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "\">" + i18n( "Complete Story" ) + "</a></p>";
     }
     text += "</div>";
-    //kdDebug() << text << endl;
+    //kDebug() << text << endl;
     return text;
 
 }
@@ -552,7 +552,7 @@ void ArticleViewer::renderContent(const QString& text)
     closeURL();
     m_currentText = text;
     beginWriting();
-    //kdDebug() << text << endl;
+    //kDebug() << text << endl;
     write(text);
     endWriting();
 }
@@ -575,7 +575,7 @@ void ArticleViewer::beginWriting()
 void ArticleViewer::endWriting()
 {
     write(m_htmlFooter);
-    //kdDebug() << m_htmlFooter << endl;
+    //kDebug() << m_htmlFooter << endl;
     end();
 }
 
@@ -650,9 +650,9 @@ void ArticleViewer::slotUpdateCombinedView()
             ++num;
         }
     }
-    kdDebug() << "Combined view rendering: (" << num << " articles):\n" << "generating HTML: " << spent.elapsed() << "ms " << endl;
+    kDebug() << "Combined view rendering: (" << num << " articles):\n" << "generating HTML: " << spent.elapsed() << "ms " << endl;
     renderContent(text);
-    kdDebug() << "HTML rendering: " << spent.elapsed() << "ms" << endl;
+    kDebug() << "HTML rendering: " << spent.elapsed() << "ms" << endl;
 
 
 }
@@ -674,8 +674,8 @@ void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>
 /* testingtesting :)
 void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
-    kdDebug() << m_link << endl;
-    kdDebug() << kurl.url() << endl;
+    kDebug() << m_link << endl;
+    kDebug() << kurl.url() << endl;
 }*/
 
 

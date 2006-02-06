@@ -133,7 +133,7 @@ void SpeechClient::slotAbortJobs()
 
 ASYNC SpeechClient::textRemoved(const DCOPCString& /*appId*/, uint jobNum)
 {
-    kdDebug() << "SpeechClient::textRemoved() called" << endl;
+    kDebug() << "SpeechClient::textRemoved() called" << endl;
     if (d->pendingJobs.contains(jobNum))
     {
         d->pendingJobs.remove(jobNum);
@@ -155,7 +155,7 @@ void SpeechClient::setupSpeechSystem()
     KTrader::OfferList offers = KTrader::self()->query("DCOP/Text-to-Speech", "Name == 'KTTSD'");
     if (offers.count() == 0)
     {
-        kdDebug() << "KTTSD not installed, disable support" << endl;
+        kDebug() << "KTTSD not installed, disable support" << endl;
         d->isTextSpeechInstalled = false;
     }
     else
@@ -171,7 +171,7 @@ void SpeechClient::setupSpeechSystem()
             QString error;
             if (KToolInvocation::startServiceByDesktopName("kttsd", QStringList(), &error))
             {
-                kdDebug() << "Starting KTTSD failed with message " << error << endl;
+                kDebug() << "Starting KTTSD failed with message " << error << endl;
                 d->isTextSpeechInstalled = false;
             }
             else
@@ -188,7 +188,7 @@ void SpeechClient::setupSpeechSystem()
                 "textRemoved(QCString, uint)",
                 false);
         if (!c)
-            kdDebug() << "SpeechClient::setupSpeechSystem(): connecting signals failed" << endl;
+            kDebug() << "SpeechClient::setupSpeechSystem(): connecting signals failed" << endl;
         c = connectDCOPSignal("kttsd", "KSpeech",
                 "textFinished(QCString, uint)",
                 "textRemoved(QCString, uint)",

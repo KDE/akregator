@@ -243,7 +243,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
 {
     QWidget* w = ActionManager::getInstance()->container("tab_popup");
     d->currentItem = page(i);
-    //kdDebug() << indexOf(d->currentItem) << endl;
+    //kDebug() << indexOf(d->currentItem) << endl;
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0)
         static_cast<QMenu *>(w)->exec(p);
@@ -285,9 +285,9 @@ void TabWidget::slotCloseTab()
     if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() )
         return;
 
-    //kdDebug() << "index: " << indexOf(d->currentItem) << endl;
+    //kDebug() << "index: " << indexOf(d->currentItem) << endl;
     removeFrame(d->frames[d->currentItem]);
-    //kdDebug() << "index: " << indexOf(d->currentItem) << endl;
+    //kDebug() << "index: " << indexOf(d->currentItem) << endl;
 
     /* no need to do this? looks like it points to main page after removeFrame...
     delete d->currentItem;

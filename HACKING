@@ -279,7 +279,7 @@ Test::Test(int i);
     , m_instance(0)
 {
     if (i == 0)
-        kdDebug() << "Zero initializer" << endl;
+        kDebug() << "Zero initializer" << endl;
 }
 
 } // namespace Akregator

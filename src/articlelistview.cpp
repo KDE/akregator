@@ -524,7 +524,7 @@ void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 
     QString message;
 
-    //kdDebug() << "visible articles: " << visibleArticles() << endl;
+    //kDebug() << "visible articles: " << visibleArticles() << endl;
 
     if(childCount() != 0) // article list is not empty
     {

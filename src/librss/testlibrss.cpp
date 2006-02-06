@@ -28,30 +28,30 @@ void Tester::slotLoadingComplete( Loader *loader, Document doc, Status status )
 {
 	if ( status == Success )
 	{
-		kdDebug() << "Successfully retrieved '" << doc.title() << "'" << endl;
-		kdDebug() << doc.description() << endl;
+		kDebug() << "Successfully retrieved '" << doc.title() << "'" << endl;
+		kDebug() << doc.description() << endl;
 
                 if ( doc.image() ) {
-                      kdDebug() << "Image: ";
-                      kdDebug() << "  Title: " << doc.image()->title() << endl;
-                      kdDebug() << "  URL: " << doc.image()->url() << endl;
-                      kdDebug() << "  Link: " << doc.image()->link() << endl;
+                      kDebug() << "Image: ";
+                      kDebug() << "  Title: " << doc.image()->title() << endl;
+                      kDebug() << "  URL: " << doc.image()->url() << endl;
+                      kDebug() << "  Link: " << doc.image()->link() << endl;
                 }
 		
-		kdDebug() << "Articles:" << endl;
+		kDebug() << "Articles:" << endl;
 
 		Article::List list = doc.articles();
 		Article::List::ConstIterator it;
 		Article::List::ConstIterator en=list.end();
 		for (it = list.begin(); it != en; ++it)
 		{
-		    kdDebug() << "\tTitle: " << (*it).title() << endl;
-		    kdDebug() << "\tText:  " << (*it).description() << endl;
+		    kDebug() << "\tTitle: " << (*it).title() << endl;
+		    kDebug() << "\tText:  " << (*it).description() << endl;
 		}
 	}
 
 	if ( status != Success )
-		kdDebug() << "ERROR " << loader->errorCode() << endl;
+		kDebug() << "ERROR " << loader->errorCode() << endl;
 
 	kapp->quit();
 }

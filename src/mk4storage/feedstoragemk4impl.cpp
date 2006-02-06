@@ -142,7 +142,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
         url2 = url.left(200) + QString::number(Akregator::Utils::calcHash(url), 16);
     }
 
-    kdDebug() << url2 << endl;
+    kDebug() << url2 << endl;
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() +"/"+ t.replace("/", "_").replace(":", "_");

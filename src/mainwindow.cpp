@@ -236,14 +236,14 @@ void MainWindow::connectActionCollection( KActionCollection *coll )
 
 bool MainWindow::queryExit()
 {
-    kdDebug() << "MainWindow::queryExit()" << endl;
+    kDebug() << "MainWindow::queryExit()" << endl;
     if ( !kapp->sessionSaving() )
     {
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
         m_part = 0;
     }
     else
-        kdDebug("MainWindow::queryExit(): saving session");
+        kDebug("MainWindow::queryExit(): saving session");
 
     return KMainWindow::queryExit();
 }

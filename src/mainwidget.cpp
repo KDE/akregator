@@ -179,10 +179,10 @@ MainWidget::~MainWidget()
     // should be no risk to do the cleanups now
     if (!m_shuttingDown)
     {
-        kdDebug() << "MainWidget::~MainWidget(): slotOnShutdown() wasn't called. Calling it now." << endl;
+        kDebug() << "MainWidget::~MainWidget(): slotOnShutdown() wasn't called. Calling it now." << endl;
         slotOnShutdown();
     }
-    kdDebug() << "MainWidget::~MainWidget(): leaving" << endl;
+    kDebug() << "MainWidget::~MainWidget(): leaving" << endl;
 }
 
 MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
@@ -522,7 +522,7 @@ bool MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
         QStringList::ConstIterator end = tagIDs.end();
         for (QStringList::ConstIterator it = tagIDs.begin(); it != end; ++it)
         {
-            kdDebug() << *it << endl;
+            kDebug() << *it << endl;
             // create a tag for every tag ID in the archive that is not part of the tagset
             // this is a fallback in case the tagset was corrupted,
             // so the tagging information from archive does not get lost.
@@ -730,9 +730,9 @@ void MainWidget::slotNodeSelected(TreeNode* node)
 
     if (node)
     {
-        kdDebug() << "node selected: " << node->title() << endl;
-        kdDebug() << "unread: " << node->unread() << endl;
-        kdDebug() << "total: " << node->totalCount() << endl;
+        kDebug() << "node selected: " << node->title() << endl;
+        kDebug() << "unread: " << node->unread() << endl;
+        kDebug() << "total: " << node->totalCount() << endl;
     }
 
     if (m_displayingAboutPage)
@@ -1028,7 +1028,7 @@ void MainWidget::slotMouseButtonPressed(int button, const Article& article, cons
 
 void MainWidget::slotAssignTag(const Tag& tag, bool assign)
 {
-    kdDebug() << (assign ? "assigned" : "removed") << " tag \"" << tag.id() << "\"" << endl;
+    kDebug() << (assign ? "assigned" : "removed") << " tag \"" << tag.id() << "\"" << endl;
     QList<Article> selectedArticles = m_articleList->selectedArticles();
     for (QList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
     {
@@ -1042,7 +1042,7 @@ void MainWidget::slotAssignTag(const Tag& tag, bool assign)
 /*
 void MainWidget::slotRemoveTag(const Tag& tag)
 {
-    kdDebug() << "remove tag \"" << tag.id() << "\" from selected articles" << endl;
+    kDebug() << "remove tag \"" << tag.id() << "\" from selected articles" << endl;
     QValueList<Article> selectedArticles = m_articleList->selectedArticles();
     for (QValueList<Article>::Iterator it = selectedArticles.begin(); it != selectedArticles.end(); ++it)
         (*it).removeTag(tag.id());
@@ -1102,7 +1102,7 @@ void MainWidget::slotArticleSelected(const Article& article)
     KToggleAction*  maai = dynamic_cast<KToggleAction*>(m_actionManager->action("article_set_status_important"));
     maai->setChecked(a.keep());
 
-    kdDebug() << "selected: " << a.guid() << endl;
+    kDebug() << "selected: " << a.guid() << endl;
 
     updateTagActions();
 

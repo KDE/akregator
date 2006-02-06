@@ -83,7 +83,7 @@ int TagAction::plug(QWidget* widget, int index)
     QPopupMenu* popup = ::qt_cast<QPopupMenu *>( widget );
     if (!popup)
     {
-        kdWarning() << "Can not plug KToggleAction in " << widget->className() << endl;
+        kWarning() << "Can not plug KToggleAction in " << widget->className() << endl;
         return -1;
     }
     if (!KAuthorized::authorizeKAction(name()))

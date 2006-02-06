@@ -82,12 +82,12 @@ TreeNode* TreeNodeItem::node()
 
 void TreeNodeItem::nodeChanged()
 {
-//    kdDebug() << "enter TreeNodeItem::nodeChanged item" << text(0) << endl; 
+//    kDebug() << "enter TreeNodeItem::nodeChanged item" << text(0) << endl; 
     if (!node())
         return;
     if (text(0) != node()->title())
         setText(0, node()->title());
-//    kdDebug() << "leave TreeNodeItem::nodeChanged item" << text(0) << endl; 
+//    kDebug() << "leave TreeNodeItem::nodeChanged item" << text(0) << endl; 
 }
 
 TreeNodeItem* TreeNodeItem::firstChild() const 
