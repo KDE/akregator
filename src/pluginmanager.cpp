@@ -140,7 +140,7 @@ PluginManager::getService( const Plugin* plugin )
 {
     if ( !plugin ) {
         kdWarning() << k_funcinfo << "pointer == NULL\n";
-        return 0;
+        return KService::Ptr( 0 );
     }
 
     //search plugin in store
