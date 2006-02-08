@@ -45,7 +45,7 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
 
 LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const
 {
-    DocumentPtr ptr = new Document(Document::fromXML(source.asDomDocument()));
+    DocumentPtr ptr(new Document(Document::fromXML(source.asDomDocument())));
     
     return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
 }

@@ -53,7 +53,7 @@ QList<LibSyndication::ItemPtr> FeedRDFImpl::items() const
     
     for ( ; it != end; ++it)
     {
-        ItemRDFImplPtr item = new ItemRDFImpl(*it);
+        ItemRDFImplPtr item(new ItemRDFImpl(*it));
         items.append(ItemPtr::staticCast(item));
     }
     
@@ -88,7 +88,7 @@ QList<PersonPtr> FeedRDFImpl::authors() const
     // TODO: check if creator is really a name, extract email address etc.
     if (!creator.isEmpty())
     {
-        PersonImplPtr ptr = new PersonImpl(creator, QString::null, QString::null);
+        PersonImplPtr ptr(new PersonImpl(creator, QString::null, QString::null));
         list.append(PersonPtr::staticCast(ptr));
     }
     
@@ -102,7 +102,7 @@ QString FeedRDFImpl::language() const
 
 ImagePtr FeedRDFImpl::image() const
 {
-    ImageRDFImplPtr ptr = new ImageRDFImpl(m_doc->image());
+    ImageRDFImplPtr ptr(new ImageRDFImpl(m_doc->image()));
     return ImagePtr::staticCast(ptr);
 }
 

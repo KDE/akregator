@@ -236,7 +236,7 @@ SequencePtr Model::createSequence(const QString& uri)
 
 LiteralPtr Model::createLiteral(const QString& text)
 {
-    LiteralPtr lit = new Literal(text);
+    LiteralPtr lit(new Literal(text));
     
     d->addToHashes(NodePtr::staticCast(lit));
     return lit;

@@ -55,7 +55,7 @@ QList<LibSyndication::ItemPtr> FeedAtomImpl::items() const
     
     for ( ; it != end; ++it)
     {
-        ItemAtomImplPtr item = new ItemAtomImpl(*it);
+        ItemAtomImplPtr item(new ItemAtomImpl(*it));
         items.append(ItemPtr::staticCast(item));
     }
     
@@ -71,7 +71,7 @@ QList<LibSyndication::CategoryPtr> FeedAtomImpl::categories() const
     
     for ( ; it != end; ++it)
     {
-        CategoryAtomImplPtr item = new CategoryAtomImpl(*it);
+        CategoryAtomImplPtr item(new CategoryAtomImpl(*it));
         categories.append(CategoryPtr::staticCast(item));
     }
     
@@ -117,7 +117,7 @@ QList<PersonPtr> FeedAtomImpl::authors() const
     
     for ( ; it != end; ++it)
     {
-        PersonImplPtr ptr = new PersonImpl((*it).name(), (*it).uri(), (*it).email());
+        PersonImplPtr ptr(new PersonImpl((*it).name(), (*it).uri(), (*it).email()));
         list.append(PersonPtr::staticCast(ptr));
     }
     
@@ -128,7 +128,7 @@ QList<PersonPtr> FeedAtomImpl::authors() const
     
     for ( ; it != end; ++it)
     {
-        PersonImplPtr ptr = new PersonImpl((*it).name(), (*it).uri(), (*it).email());
+        PersonImplPtr ptr(new PersonImpl((*it).name(), (*it).uri(), (*it).email()));
         list.append(PersonPtr::staticCast(ptr));
     }
     
@@ -142,7 +142,7 @@ QString FeedAtomImpl::language() const
 
 ImagePtr FeedAtomImpl::image() const
 {
-    ImageAtomImplPtr ptr = new ImageAtomImpl(m_doc->logo());
+    ImageAtomImplPtr ptr(new ImageAtomImpl(m_doc->logo()));
     return ImagePtr::staticCast(ptr);
 }
 

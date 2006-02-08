@@ -66,7 +66,7 @@ QList<PersonPtr> ItemRDFImpl::authors() const
     
     if (!creator.isEmpty())
     {
-        PersonImplPtr ptr = new PersonImpl(creator, QString::null, QString::null);
+        PersonImplPtr ptr(new PersonImpl(creator, QString::null, QString::null));
         list.append(PersonPtr::staticCast(ptr));
     }
     return list;

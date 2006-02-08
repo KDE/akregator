@@ -104,7 +104,7 @@ bool Resource::hasProperty(PropertyPtr property) const
 
 StatementPtr Resource::property(PropertyPtr property) const
 {
-    StatementPtr ptr = new Statement();
+    StatementPtr ptr(new Statement());
     if (d)
         ptr = d->model.resourceProperty(this, property);
     return ptr;

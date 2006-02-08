@@ -60,7 +60,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
     QDomDocument doc = source.asDomDocument();
     
     if (doc.isNull())
-        return 0;
+        return LibSyndication::AbstractDocumentPtr();
     
     ModelMaker maker;
     Model model = maker.createFromXML(doc);
@@ -68,9 +68,9 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
     QList<ResourcePtr> channels = model.resourcesWithType(RSSVocab::self()->channel());
     
     if (channels.isEmpty())
-        return 0;
+        return LibSyndication::AbstractDocumentPtr();
   
-    DocumentPtr ptr = new Document(*(channels.begin()));
+    DocumentPtr ptr(new Document(*(channels.begin())));
     return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
 }
 

@@ -53,7 +53,7 @@ QList<LibSyndication::ItemPtr> FeedRSS2Impl::items() const
     
     for ( ; it != end; ++it)
     {
-        ItemRSS2ImplPtr item = new ItemRSS2Impl(*it);
+        ItemRSS2ImplPtr item(new ItemRSS2Impl(*it));
         items.append(ItemPtr::staticCast(item));
     }
     
@@ -69,7 +69,7 @@ QList<LibSyndication::CategoryPtr> FeedRSS2Impl::categories() const
     
     for ( ; it != end; ++it)
     {
-        CategoryRSS2ImplPtr item = new CategoryRSS2Impl(*it);
+        CategoryRSS2ImplPtr item(new CategoryRSS2Impl(*it));
         categories.append(CategoryPtr::staticCast(item));
     }
     
@@ -103,7 +103,7 @@ QString FeedRSS2Impl::language() const
 
 ImagePtr FeedRSS2Impl::image() const
 {
-    ImageRSS2ImplPtr ptr = new ImageRSS2Impl(m_doc->image());
+    ImageRSS2ImplPtr ptr(new ImageRSS2Impl(m_doc->image()));
     return ImagePtr::staticCast(ptr);
 }
 

@@ -71,7 +71,7 @@ QList<PersonPtr> ItemRSS2Impl::authors() const
     if (!author.isEmpty())
     {
         // TODO: check whether author() really contains an email address
-        PersonImplPtr ptr = new PersonImpl(QString::null, QString::null, author);
+        PersonImplPtr ptr(new PersonImpl(QString::null, QString::null, author));
         list.append(PersonPtr::staticCast(ptr));
     }
     
@@ -111,7 +111,7 @@ QList<LibSyndication::EnclosurePtr> ItemRSS2Impl::enclosures() const
     
     if (!enc.isNull())
     {
-        EnclosureRSS2ImplPtr impl = new EnclosureRSS2Impl(enc);
+        EnclosureRSS2ImplPtr impl(new EnclosureRSS2Impl(enc));
         list.append(LibSyndication::EnclosurePtr::staticCast(impl));
     }
     
@@ -128,7 +128,7 @@ QList<LibSyndication::CategoryPtr> ItemRSS2Impl::categories() const
     
     for ( ; it != end; ++it)
     {
-        CategoryRSS2ImplPtr impl = new CategoryRSS2Impl(*it);
+        CategoryRSS2ImplPtr impl(new CategoryRSS2Impl(*it));
         list.append(LibSyndication::CategoryPtr::staticCast(impl));
     }
     

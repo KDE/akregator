@@ -109,7 +109,7 @@ void Loader::abort()
         d->retriever = 0L;
     }
     
-    emit loadingComplete(this, 0L, Aborted);
+    emit loadingComplete(this, FeedPtr(), Aborted);
     delete this;
 }
 

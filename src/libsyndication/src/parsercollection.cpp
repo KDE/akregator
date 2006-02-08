@@ -169,7 +169,7 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
             if (!doc)
             {
                 d->lastError = InvalidFormat;
-                return 0;
+                return FeedPtr();
             }
             
             return d->docVisitor->createFeed(doc);
@@ -184,7 +184,7 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
             if (!doc)
             {
                 d->lastError = InvalidFormat;
-                return 0;
+                return FeedPtr();
             }
             
             return d->docVisitor->createFeed(doc);
@@ -195,7 +195,7 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
     else
         d->lastError = XmlNotAccepted;
     
-    return 0;
+    return FeedPtr();
 }
 
 LibSyndication::ErrorCode ParserCollection::lastError() const

@@ -57,7 +57,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
     QDomDocument doc = source.asDomDocument();
 
     if (doc.isNull())
-        return 0;
+        return LibSyndication::AbstractDocumentPtr();
 
     
     QDomElement feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
@@ -76,7 +76,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
     
     if (feedValid)
     {
-        FeedDocumentPtr ptr = new FeedDocument(feed);
+        FeedDocumentPtr ptr(new FeedDocument(feed));
         return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
     }
 
@@ -85,11 +85,11 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
 
     if (entryValid)
     {
-        EntryDocumentPtr ptr = new EntryDocument(feed);
+        EntryDocumentPtr ptr(new EntryDocument(feed));
         return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
     }
 
-    return 0;
+    return LibSyndication::AbstractDocumentPtr();
 }
 
 QString Parser::format() const

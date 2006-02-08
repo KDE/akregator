@@ -111,7 +111,7 @@ NodePtr Statement::object() const
 ResourcePtr Statement::asResource() const
 {
     if (isNull() || !d->model.nodeByID(d->objectID)->isResource())
-        return new Resource;
+        return ResourcePtr(new Resource);
 
     return d->model.resourceByID(d->objectID);
 }
