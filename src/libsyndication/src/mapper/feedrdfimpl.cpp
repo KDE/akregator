@@ -97,7 +97,7 @@ QList<PersonPtr> FeedRDFImpl::authors() const
 
 QString FeedRDFImpl::language() const
 {
-    return "TODO";
+    return m_doc->dc().language();
 }
 
 ImagePtr FeedRDFImpl::image() const

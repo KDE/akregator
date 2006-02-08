@@ -275,7 +275,15 @@ Entry EntryDocument::entry() const
 
 QString EntryDocument::debugInfo() const
 {
-    return "TODO";
+    QString info;
+    info += "### EntryDocument: ##################\n";
+    
+    Entry dentry = entry();
+    if (!dentry.isNull())
+        info += dentry.debugInfo();
+    
+    info += "### EntryDocument end ###############\n";
+    return info;
 }
 
 } // namespace Atom

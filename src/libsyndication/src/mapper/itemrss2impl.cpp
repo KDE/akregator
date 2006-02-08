@@ -80,7 +80,7 @@ QList<PersonPtr> ItemRSS2Impl::authors() const
 
 QString ItemRSS2Impl::language() const
 {
-    return "TODO";
+    return QString::null;
 }
 
 QString ItemRSS2Impl::id() const

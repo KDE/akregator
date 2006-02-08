@@ -98,7 +98,7 @@ QList<PersonPtr> FeedRSS2Impl::authors() const
 
 QString FeedRSS2Impl::language() const
 {
-    return "TODO";
+    return m_doc->language();
 }
 
 ImagePtr FeedRSS2Impl::image() const
