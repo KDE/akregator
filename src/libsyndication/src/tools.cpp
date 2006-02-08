@@ -24,9 +24,9 @@
 
 #include <kcharsets.h>
 #include <kcodecs.h> 
+#include <krfcdate.h>
 
 #include <QByteArray>
-#include <QDateTime>
 #include <QRegExp>
 #include <QString>
 
@@ -57,20 +57,12 @@ unsigned int calcHash(const QByteArray& array)
 
 time_t parseISODate(const QString& str)
 {
-    QDateTime dt = QDateTime::fromString(str, Qt::ISODate);
-    time_t time = dt.toTime_t() ;
-    if (time == -1)
-        return 0;
-    return time;
+    return KRFCDate::parseDateISO8601(str);
 }
 
 time_t parseRFCDate(const QString& str)
 {
-    QDateTime dt = QDateTime::fromString(str, Qt::TextDate);
-    time_t time = dt.toTime_t() ;
-    if (time == -1)
-        return 0;
-    return time;
+    return KRFCDate::parseDate(str);
 }
 
 QString calcMD5Sum(const QString& str)
