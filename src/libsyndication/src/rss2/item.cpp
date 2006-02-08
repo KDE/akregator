@@ -51,15 +51,12 @@ QString Item::title() const
 {
     QString t = extractElementText(QString::fromUtf8("title"));
     
-    if (!t.isNull())
+    if (t.isNull())
     {
-        return t;
+        t = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                 QString::fromUtf8("title"));
     }
-    else
-    {
-        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromUtf8("title"));
-    }
+    return htmlize(t);
 }
 
 QString Item::link() const
@@ -71,21 +68,19 @@ QString Item::description() const
 {
     QString d = extractElementText(QString::fromUtf8("description"));
     
-    if (!d.isNull())
+    if (d.isNull())
     {
-        return d;
+        d = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                 QString::fromUtf8("description"));
     }
-    else
-    {
-        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromUtf8("description"));
-    }
+    
+    return htmlize(d);
 }
 
 QString Item::content() const
 {
     // parse encoded stuff from content:encoded, xhtml:body and friends into content
-    return Tools::extractContent(*this);
+    return extractContent(*this);
 }
 
 QList<Category> Item::categories() const

@@ -34,24 +34,11 @@ class ElementWrapper;
 
 namespace RSS2 {
 
-/**
- * Methods for XML handling and content extraction.
- *
- * @internal
- *
- * @author Frank Osterfeld
+/** 
+ * extracts encoded content from XHTML, content:encoded and friends
+ * @param parent the parent node, e.g. a channel or item element
  */
-class KDE_EXPORT Tools
-{
-    public:
-    
-   
-        /** 
-         * extracts encoded content from XHTML, content:encoded and friends
-         * @param parent the parent node, e.g. a channel or item element
-         */
-        static QString extractContent(const ElementWrapper& wrapper);
-};
+QString extractContent(const ElementWrapper& wrapper);
 
 } // RSS2
 } // LibSyndication

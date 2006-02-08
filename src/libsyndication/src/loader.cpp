@@ -14,6 +14,9 @@
 #include "loader.h"
 #include "parsercollection.h"
 
+
+#include <kio/global.h>
+
 #include <ksharedptr.h>
 #include <kurl.h>
 
@@ -21,11 +24,15 @@
 #include <QRegExp>
 #include <QStringList>
 
+// test: TODO remove
+#include <iostream>
+
 namespace LibSyndication {
 
 struct Loader::LoaderPrivate
 {
-    LoaderPrivate() : retriever(0), lastError(Success)
+    LoaderPrivate() : retriever(0), lastError(Success),
+    retrieverError(0)
     {
     }
     
@@ -36,6 +43,7 @@ struct Loader::LoaderPrivate
     
     DataRetriever* retriever;
     LibSyndication::ErrorCode lastError;
+    int retrieverError;
     KUrl discoveredFeedURL;
     KUrl url;
 };
@@ -82,6 +90,11 @@ void Loader::loadFrom(const KUrl &url, DataRetriever *retriever)
     d->retriever->retrieveData(url);
 }
 
+int Loader::retrieverError() const
+{
+    return d->retrieverError;
+}
+        
 LibSyndication::ErrorCode Loader::errorCode() const
 {
     return d->lastError;
@@ -107,13 +120,12 @@ const KUrl &Loader::discoveredFeedURL() const
 
 void Loader::slotRetrieverDone(const QByteArray& data, bool success)
 {
-    //d->lastError = d->retriever->errorCode(); // TODO
-    
+    d->retrieverError = d->retriever->errorCode();
+    ErrorCode status = Success;
+    FeedPtr feed;
+    bool isFileRetriever = dynamic_cast<FileRetriever*>(d->retriever) != 0;
     delete d->retriever;
     d->retriever = 0;
-    
-    FeedPtr feed;
-    ErrorCode status = Success;
     
     if (success)
     {
@@ -128,7 +140,18 @@ void Loader::slotRetrieverDone(const QByteArray& data, bool success)
     }
     else
     {
-        status = FileNotFound; // TODO: correctly set error code
+        if (isFileRetriever)
+        {
+            // retriever is a FileRetriever, so we interpret the 
+            // error code and set lastError accordingly
+            status = FileNotFound; // TODO
+            std::cout << "file retriever error: " <<  d->retrieverError << std::endl;
+        }
+        else
+        {
+            // retriever is a custom impl, so we set OtherRetrieverError
+            status = OtherRetrieverError;
+        }
     }
 
    emit loadingComplete(this, feed, status);

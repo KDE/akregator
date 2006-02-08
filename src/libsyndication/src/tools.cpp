@@ -22,10 +22,12 @@
 
 #include "tools.h"
 
+#include <kcharsets.h>
 #include <kcodecs.h> 
 
 #include <QByteArray>
 #include <QDateTime>
+#include <QRegExp>
 #include <QString>
 
 namespace LibSyndication {
@@ -76,6 +78,48 @@ QString calcMD5Sum(const QString& str)
     md5Machine.reset();
     md5Machine.update(str.utf8());
     return QString(md5Machine.hexDigest().data());
+}
+
+QString plainTextToHtml(const QString& plainText)
+{
+    QString str(plainText);
+    str.replace("&", "&amp;");
+    str.replace("\"", "&quot;");
+    str.replace("<", "&lt;");
+    str.replace(">", "&gt;");
+    str.replace("\n", "<br/>");
+    return str;
+}
+
+QString htmlToPlainText(const QString& html)
+{
+    QString str(html);
+    //TODO: preserve some formatting, such as line breaks
+    str.replace(QRegExp("<[^>]*>"), ""); // remove tags
+    str = KCharsets::resolveEntities(str);
+    str = str.simplified();
+    
+    return str;
+}
+
+bool isHtml(const QString& str)
+{
+    if (str.contains("&amp;") || str.contains("&quot;"))
+        return true;
+    
+    int ltc = str.count('<');
+    if (ltc == 0 || ltc != str.count('>'))
+        return false;
+
+    if (str.contains(QRegExp("<[a-zA-Z]+/?>")))
+        return true;
+        
+    return false; 
+}
+
+QString htmlize(const QString& str)
+{
+    return isHtml(str) ? str : plainTextToHtml(str);
 }
 
 } // namespace LibSyndication

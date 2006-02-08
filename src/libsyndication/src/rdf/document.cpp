@@ -21,6 +21,7 @@
  */
 
 #include "../documentvisitor.h"
+#include "../tools.h"
 
 #include "document.h"
 #include "dublincore.h"
@@ -60,14 +61,15 @@ bool Document::accept(DocumentVisitor* visitor)
 
 QString Document::title() const
 {
-    // TODO: handle HTML, encoding etc.
-    return resource()->property(RSSVocab::self()->title())->asString();
+    QString str = resource()->property(RSSVocab::self()->title())->asString();
+    return htmlize(str);
+
 }
 
 QString Document::description() const
 {
-    // TODO: handle HTML, encoding etc.
-    return resource()->property(RSSVocab::self()->description())->asString();
+    QString str = resource()->property(RSSVocab::self()->description())->asString();
+    return htmlize(str);
 }
 
 QString Document::link() const

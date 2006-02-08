@@ -26,6 +26,7 @@
 #include "model.h"
 #include "rssvocab.h"
 #include "statement.h"
+#include "../tools.h"
 
 #include <QString>
 
@@ -46,12 +47,14 @@ Item::~Item()
 
 QString Item::title() const
 {
-    return resource()->property(RSSVocab::self()->title())->asString();
+    QString str = resource()->property(RSSVocab::self()->title())->asString();
+    return htmlize(str);
 }
 
 QString Item::description() const
 {
-    return resource()->property(RSSVocab::self()->description())->asString();
+    QString str = resource()->property(RSSVocab::self()->description())->asString();
+    return htmlize(str);
 }
 
 QString Item::link() const

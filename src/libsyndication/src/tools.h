@@ -57,6 +57,35 @@ time_t parseISODate(const QString& str);
  */
 time_t parseRFCDate(const QString& str);
 
+/**
+ * converts a plain text string to HTML
+ *
+ * @param plainText a string in plain text.
+ */
+QString plainTextToHtml(const QString& plainText);
+
+/**
+ * converts a HTML string to plain text
+ *
+ * @param html
+ */
+QString htmlToPlainText(const QString& html);
+
+/**
+ * guesses whether a string contains plain text or HTML
+ *
+ * @param str
+ * @return
+ */
+bool isHtml(const QString& str);
+
+/**
+ *
+ * @param str
+ * @return 
+ */
+QString htmlize(const QString& str);
+
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_TOOLS_H

@@ -31,7 +31,7 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-QString Tools::extractContent(const ElementWrapper& wrapper)
+QString extractContent(const ElementWrapper& wrapper)
 {
     if (wrapper.isNull())
         return QString::null;

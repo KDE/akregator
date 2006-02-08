@@ -65,15 +65,13 @@ QString Document::title() const
 {
     QString t = extractElementText(QString::fromUtf8("title"));
     
-    if (!t.isNull())
+    if (t.isNull())
     {
-        return t;
+        t = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                 QString::fromUtf8("title"));
     }
-    else
-    {
-        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromUtf8("title"));
-    }
+    
+    return t;
 }
 
 QString Document::link() const
@@ -85,17 +83,13 @@ QString Document::description() const
 {
     QString d = extractElementText(QString::fromUtf8("description"));
     
-    if (!d.isNull())
+    if (d.isNull())
     {
-        return d;
-    }
-    else
-    {
-        return extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
-                                    QString::fromUtf8("description"));
+        d = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+                                 QString::fromUtf8("description"));
     }
 
-    
+    return htmlize(d);
 }
 
 QString Document::language() const
