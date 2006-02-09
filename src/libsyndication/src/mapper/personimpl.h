@@ -39,6 +39,8 @@ class PersonImpl : public Person
 {
     public:
 
+        static PersonPtr fromString(const QString& str);
+                
         PersonImpl();
         PersonImpl(const QString& name, const QString& uri, const QString& email);
         
@@ -49,9 +51,11 @@ class PersonImpl : public Person
         virtual QString uri() const { return m_uri; }
         
         virtual QString email() const { return m_email; }
-        
+
     private:
         
+        static PersonPtr m_nullPerson;
+                
         bool m_null;
         QString m_name;
         QString m_uri;

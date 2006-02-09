@@ -26,7 +26,6 @@
 #include "item.h"
 #include "person.h"
 
-#include <QDateTime>
 #include <QList>
 #include <QString>
 

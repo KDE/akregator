@@ -22,6 +22,7 @@
 
 #include "itemrdfimpl.h"
 #include "personimpl.h"
+
 #include "../rdf/dublincore.h"
 #include "../rdf/resource.h"
 #include "../rdf/resourcewrapper.h"
@@ -60,15 +61,15 @@ QString ItemRDFImpl::content() const
 
 QList<PersonPtr> ItemRDFImpl::authors() const
 {
-    // TODO: check if creator is really a name, extract email address etc.s
-    QString creator = m_item.dc().creator();
     QList<PersonPtr> list;
     
-    if (!creator.isEmpty())
+    PersonPtr ptr = PersonImpl::fromString(m_item.dc().creator());
+    
+    if (!ptr->isNull())
     {
-        PersonImplPtr ptr(new PersonImpl(creator, QString::null, QString::null));
-        list.append(PersonPtr::staticCast(ptr));
+        list.append(ptr);
     }
+
     return list;
 }
 

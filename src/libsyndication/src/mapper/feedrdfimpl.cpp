@@ -24,6 +24,7 @@
 #include "imagerdfimpl.h"
 #include "itemrdfimpl.h"
 #include "personimpl.h"
+
 #include "../rdf/dublincore.h"
 #include "../rdf/item.h"
 #include "../category.h"
@@ -83,16 +84,16 @@ QString FeedRDFImpl::description() const
 
 QList<PersonPtr> FeedRDFImpl::authors() const
 {
-    QString creator = m_doc->dc().creator();
-    QList<PersonPtr> list;
-    // TODO: check if creator is really a name, extract email address etc.
-    if (!creator.isEmpty())
-    {
-        PersonImplPtr ptr(new PersonImpl(creator, QString::null, QString::null));
-        list.append(PersonPtr::staticCast(ptr));
-    }
+        QList<PersonPtr> list;
+        
+        PersonPtr ptr = PersonImpl::fromString(m_doc->dc().creator());
+        
+        if (!ptr->isNull())
+        {
+            list.append(ptr);
+        }
     
-    return list;
+        return list;
 }
 
 QString FeedRDFImpl::language() const

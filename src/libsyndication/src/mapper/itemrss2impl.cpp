@@ -66,13 +66,12 @@ QString ItemRSS2Impl::content() const
 QList<PersonPtr> ItemRSS2Impl::authors() const
 {
     QList<PersonPtr> list;
-    QString author = m_item.author();
     
-    if (!author.isEmpty())
+    PersonPtr ptr = PersonImpl::fromString(m_item.author());
+    
+    if (!ptr->isNull())
     {
-        // TODO: check whether author() really contains an email address
-        PersonImplPtr ptr(new PersonImpl(QString::null, QString::null, author));
-        list.append(PersonPtr::staticCast(ptr));
+        list.append(ptr);
     }
     
     return list;

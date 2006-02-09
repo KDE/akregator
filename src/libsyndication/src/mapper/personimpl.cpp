@@ -24,9 +24,32 @@
 
 namespace LibSyndication {
 
+PersonPtr PersonImpl::fromString(const QString& str)
+{
+    if (str.trimmed().isEmpty())
+        return m_nullPerson;
+    
+    QString name;
+    QString uri;
+    QString email;
+
+    // TODO: implement person parsing
+    // extract email address "<?..@..>?"
+    // extract uri if there are real-world RSS/RDF feeds
+    // containing  homepage links, otherwise ignore
+    // put everything that is not email or uri into name
+        
+    if (name.isEmpty() && email.isEmpty() && uri.isEmpty())
+        return m_nullPerson;
+       
+    return PersonPtr(new PersonImpl(name, uri, email));
+}
+
 PersonImpl::PersonImpl() : m_null(true)
 {
 }
+
+PersonPtr PersonImpl::m_nullPerson(new PersonImpl);
 
 PersonImpl::PersonImpl(const QString& name, const QString& uri,
                        const QString& email) :

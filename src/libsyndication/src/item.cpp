@@ -39,7 +39,7 @@ QString Item::debugInfo() const
     
     QString did = id();
     if (!did.isNull())
-        info += "#" + did + "#\n";
+        info += "id: #" + did + "#\n";
 
     QString dtitle = title();
     if (!dtitle.isNull())
