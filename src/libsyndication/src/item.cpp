@@ -24,8 +24,8 @@
 #include "enclosure.h"
 #include "item.h"
 #include "person.h"
+#include "tools.h"
 
-#include <QDateTime>
 #include <QList>
 #include <QString>
 
@@ -57,15 +57,13 @@ QString Item::debugInfo() const
     if (!dcontent.isNull())
         info += "content: #" + dcontent + "#\n";
     
-    QDateTime pubdate;
-    pubdate.setTime_t(datePublished());
-    if (pubdate.isValid())
-        info += "datePublished: #" + pubdate.toString() + "#\n";
+    QString pubdate = dateTimeToString(datePublished());
+    if (!pubdate.isNull())
+        info += "datePublished: #" + pubdate + "#\n";
     
-    QDateTime update;
-    update.setTime_t(dateUpdated());
-    if (update.isValid())
-        info += "dateUpdated: #" + update.toString() + "#\n";
+    QString update = dateTimeToString(dateUpdated());
+    if (!update.isNull())
+        info += "dateUpdated: #" + update + "#\n";
 
     QString dlanguage = language();
     if (!dlanguage.isNull())

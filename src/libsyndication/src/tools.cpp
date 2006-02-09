@@ -27,6 +27,7 @@
 #include <krfcdate.h>
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QRegExp>
 #include <QString>
 
@@ -63,6 +64,16 @@ time_t parseISODate(const QString& str)
 time_t parseRFCDate(const QString& str)
 {
     return KRFCDate::parseDate(str);
+}
+
+QString dateTimeToString(time_t date)
+{
+    if (date == 0)
+        return QString::null;
+	
+    QDateTime dt;
+    dt.setTime_t(date);
+    return dt.toString();
 }
 
 QString calcMD5Sum(const QString& str)

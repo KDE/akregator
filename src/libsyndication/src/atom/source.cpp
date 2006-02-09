@@ -30,7 +30,6 @@
 
 #include "../tools.h"
 
-#include <QDateTime>
 #include <QDomElement>
 #include <QList>
 #include <QString>
@@ -189,9 +188,9 @@ QString Source::debugInfo() const
         info += generator().debugInfo();
     
     
-    QDateTime dupdated;
-    dupdated.setTime_t(updated()); 
-    info += "updated: #" + dupdated.toString(Qt::ISODate) + "#\n";
+    QString dupdated = dateTimeToString(updated());
+    if (!dupdated.isNull())
+        info += "updated: #" + dupdated + "#\n";
     
     QList<Link> dlinks = links();
     QList<Link>::ConstIterator endlinks = dlinks.end();

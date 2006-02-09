@@ -31,7 +31,6 @@
 
 #include "../tools.h"
 
-#include <QDateTime>
 #include <QDomElement>
 #include <QList>
 #include <QString>
@@ -187,13 +186,14 @@ QString Entry::debugInfo() const
     if (!rights().isEmpty())
         info += "rights: #" + rights() + "#\n";
     
-    QDateTime dupdated;
-    dupdated.setTime_t(updated()); 
-    info += "updated: #" + dupdated.toString(Qt::ISODate) + "#\n";
     
-    QDateTime dpublished;
-    dpublished.setTime_t(published());
-    info += "published: #" + dpublished.toString(Qt::ISODate) + "#\n";
+    QString dupdated = dateTimeToString(updated());
+    if (!dupdated.isNull())
+        info += "updated: #" + dupdated + "#\n";
+    
+    QString dpublished = dateTimeToString(published());
+    if (!dpublished.isNull())
+        info += "published: #" + dpublished + "#\n";
     
     QList<Link> dlinks = links();
     QList<Link>::ConstIterator endlinks = dlinks.end();

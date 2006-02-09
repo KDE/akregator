@@ -58,6 +58,17 @@ time_t parseISODate(const QString& str);
 time_t parseRFCDate(const QString& str);
 
 /**
+ * @internal
+ * returns a string representation of a datetime.
+ * this is used internally to create debugging output.
+ * 
+ * @param date the date to convert
+ * @return string representation of the date, or QString::null if 
+ * @c date is 0
+ */
+QString dateTimeToString(time_t date);
+
+/**
  * converts a plain text string to HTML
  *
  * @param plainText a string in plain text.

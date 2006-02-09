@@ -32,14 +32,12 @@
 #include "item.h"
 #include "textinput.h"
 
-#include <QDateTime>
 #include <QDomDocument>
 #include <QDomElement>
 #include <QList>
 #include <QSet>
 #include <QString>
 
-#include <krfcdate.h>
 #include <kstaticdeleter.h>
 
 namespace LibSyndication {
@@ -275,16 +273,14 @@ QString Document::debugInfo() const
     if (!webMaster().isNull())
     info += "webMaster: #" + webMaster() + "#\n";
     
-    QDateTime dpubdate;
-    dpubdate.setTime_t(pubDate());
-    if (dpubdate.isValid())
-        info += "pubDate: #" + dpubdate.toString() + "#\n";
+    QString dpubdate = dateTimeToString(pubDate());
+    if (!dpubdate.isNull())
+        info += "pubDate: #" + dpubdate + "#\n";
     
-    QDateTime dlastbuilddate;
-    dlastbuilddate.setTime_t(lastBuildDate());
+    QString dlastbuilddate = dateTimeToString(lastBuildDate());
+    if (!dlastbuilddate.isNull())
+        info += "lastBuildDate: #" + dlastbuilddate + "#\n";
     
-    if (dlastbuilddate.isValid())
-        info += "lastBuildDate: #" + dlastbuilddate.toString() + "#\n";
     if (!textInput().isNull())
         info += textInput().debugInfo();
     if (!cloud().isNull())

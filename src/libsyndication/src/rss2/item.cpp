@@ -29,12 +29,9 @@
 #include "../constants.h"
 #include "../tools.h"
 
-#include <QDateTime>
 #include <QDomElement>
 #include <QString>
 #include <QList>
-
-#include <krfcdate.h>
 
 namespace LibSyndication {
 namespace RSS2 {
@@ -188,10 +185,9 @@ QString Item::debugInfo() const
         info += "author: #" + author() + "#\n";
     if (!comments().isNull())
         info += "comments: #" + comments() + "#\n";
-    QDateTime dpubdate;
-    dpubdate.setTime_t(pubDate());
-    if (dpubdate.isValid())
-        info += "pubDate: #" + dpubdate.toString() + "#\n";
+    QString dpubdate = dateTimeToString(pubDate());
+    if (!dpubdate.isNull())
+        info += "pubDate: #" + dpubdate + "#\n";
     if (!guid().isNull())
         info += "guid: #" + guid() + "#\n";
     if (guidIsPermaLink())

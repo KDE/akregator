@@ -27,7 +27,6 @@
 
 #include "../tools.h"
 
-#include <QDateTime>
 #include <QString>
 
 namespace LibSyndication {
@@ -71,15 +70,14 @@ time_t Syndication::updateBase() const
 
 QString Syndication::debugInfo() const
 {
-    QString info = "";
+    QString info;
     if (updatePeriod() != None)
         info += QString("syn:updatePeriod: #%1#\n").arg(periodToString(updatePeriod()));
     info += QString("syn:updateFrequency: #%1#\n").arg(QString::number(updateFrequency()));
-    time_t base = updateBase();
     
-    QDateTime baseDate;
-    baseDate.setTime_t(base);
-    info += QString("syn:updateBase: #%1#\n").arg(baseDate.toString(Qt::ISODate));
+    QString dbase = dateTimeToString(updateBase());
+    if (!dbase.isNull())
+        info += QString("syn:updateBase: #%1#\n").arg(dbase);
 
     return info;
 }

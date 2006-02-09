@@ -27,7 +27,6 @@
 
 #include "../tools.h"
 
-#include <QDateTime>
 #include <QString>
 
 namespace LibSyndication {
@@ -130,10 +129,10 @@ QString DublinCore::debugInfo() const
     if (!creator().isNull())
         info += QString("dc:creator: #%1#\n").arg(creator());
     
-    time_t tdate = date();
-    QDateTime date;
-    date.setTime_t(tdate);
-    info += QString("dc:date: #%1#\n").arg(date.toString(Qt::ISODate));
+    
+    QString ddate = dateTimeToString(date());
+    if (!ddate.isNull())
+        info += QString("dc:date: #%1#\n").arg(ddate);
     
     if (!description().isNull())
         info += QString("dc:description: #%1#\n").arg(description());
