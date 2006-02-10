@@ -26,8 +26,6 @@
 #include "../category.h"
 #include "../atom/category.h"
 
-#include <ksharedptr.h>
-
 namespace LibSyndication {
     
 class CategoryAtomImpl;

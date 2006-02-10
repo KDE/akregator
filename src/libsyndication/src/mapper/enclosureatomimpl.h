@@ -26,8 +26,6 @@
 #include "../enclosure.h"
 #include "../atom/link.h"
 
-#include <ksharedptr.h>
-
 namespace LibSyndication {
     
 class EnclosureAtomImpl;

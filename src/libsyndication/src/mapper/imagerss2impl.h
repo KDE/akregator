@@ -26,8 +26,6 @@
 #include "../image.h"
 #include "../rss2/image.h"
 
-#include <ksharedptr.h>
-
 namespace LibSyndication {
     
 class ImageRSS2Impl;

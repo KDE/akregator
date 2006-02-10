@@ -26,8 +26,6 @@
 #include "../enclosure.h"
 #include "../rss2/enclosure.h"
 
-#include <ksharedptr.h>
-
 namespace LibSyndication {
     
 class EnclosureRSS2Impl;

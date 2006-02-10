@@ -26,8 +26,6 @@
 #include "../atom/entry.h"
 #include "../item.h"
 
-template <class T> class KSharedPtr;
-
 namespace LibSyndication {
 
 class ItemAtomImpl;

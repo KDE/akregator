@@ -27,8 +27,6 @@
 
 #include <QString>
 
-#include <ksharedptr.h>
-
 namespace LibSyndication {
     
 class ImageAtomImpl;

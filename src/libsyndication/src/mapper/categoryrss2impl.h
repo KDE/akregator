@@ -26,8 +26,6 @@
 #include "../category.h"
 #include "../rss2/category.h"
 
-#include <ksharedptr.h>
-
 namespace LibSyndication {
     
 class CategoryRSS2Impl;

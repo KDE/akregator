@@ -26,8 +26,6 @@
 #include "../rdf/item.h"
 #include "../item.h"
 
-template <class T> class KSharedPtr;
-
 namespace LibSyndication {
 
 class ItemRDFImpl;
