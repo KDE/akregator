@@ -75,8 +75,9 @@ class KDE_EXPORT ElementWrapper
         ElementWrapper& operator=(const ElementWrapper& other);
         
         /**
-         * compares two wrappers
-         * @return @c true iff the wrapped elements are equal.
+         * compares two wrappers. Two wrappers are equal iff
+         * the wrapped elements are equal.
+         * @param other another element wrapper to compare to
          */
         bool operator==(const ElementWrapper& other) const;
         
@@ -145,8 +146,8 @@ class KDE_EXPORT ElementWrapper
          * @param namespaceURI the namespace URI of the element to extract
          * @param localName the local name (local within its namespace) of the
          * element to extract
-         * @return the (trimmed) text content of @c localName, or QString::null if
-         * there is no such tag
+         * @return the (trimmed) text content of @c localName, or QString::null
+         * if there is no such tag
          */
 
         QString extractElementTextNS(const QString& namespaceURI, const QString& localName) const;
@@ -169,8 +170,11 @@ class KDE_EXPORT ElementWrapper
         QString extractElementText(const QString& tagName) const;
 
         /**
-         * returns all subelements with tag name @c tagname 
-         * Contrary to @ref QDomElement::elementsByTagName() only direct descendents are returned.
+         * returns all subelements with tag name @c tagName 
+         * Contrary to QDomElement::elementsByTagName() only direct descendents are returned.
+         * 
+         * @param tagName the tag name of the elements to extract
+         * @return a list of child elements with the given tag name
          */
         QList<QDomElement> elementsByTagName(const QString& tagName) const;
     
@@ -201,8 +205,14 @@ class KDE_EXPORT ElementWrapper
         /**
          * returns all sub elements with tag name @c tagname of a given parent
          * node @c parent with namespace URI @c nsURI.
-         * Contrary to @ref QDomElement::elementsByTagNameNS() only direct
+         * Contrary to QDomElement::elementsByTagNameNS() only direct
          * descendents are returned
+         * 
+         * @param nsURI the namespace URI
+         * @param tagName the local name (local within its namespace) of the 
+         * element to search for
+         * @return a list of child elements with the given namespace URI
+         * and tag name
          */
         QList<QDomElement> elementsByTagNameNS(const QString& nsURI, const QString& tagName) const;
         

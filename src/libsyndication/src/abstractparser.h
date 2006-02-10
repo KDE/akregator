@@ -61,9 +61,10 @@ class KDE_EXPORT AbstractParser
 
         /**
          * Lets the parser parse a document source. The parser returns a
-         * valid document instance if successfull, or an invalid one otherwise.
-         * TODO: add isValid() to Document and link it here
+         * valid document instance if successful, or an invalid one if
+         * not.
          *
+         * @see AbstractDocument::isValid()
          * @param source The document source to be parsed
          * @return a newly created document parsed from @c source
          */

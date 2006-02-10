@@ -126,6 +126,11 @@ class KDE_EXPORT Item : public KShared
          */
         virtual QList<PersonPtr> authors() const = 0;
         
+        /**
+         * returns the language used in the item's content
+         * 
+         * @return TODO: tell about language codes and link them
+         */
         virtual QString language() const = 0;
         
         /**

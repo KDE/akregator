@@ -49,6 +49,9 @@ class KDE_EXPORT AbstractDocument : public KShared
 {
     public:
 
+        /**
+         * virtual dtor
+         */
         virtual ~AbstractDocument() {}
 
         /**
@@ -61,9 +64,18 @@ class KDE_EXPORT AbstractDocument : public KShared
          * @endcode
          * 
          * See also DocumentVisitor.
+         * 
+         * @param visitor the visitor "visiting" this object
          */
         virtual bool accept(DocumentVisitor* visitor) = 0;
 
+        /**
+         * returns whether this document is valid or not.
+         * Invalid documents do not contain any useful
+         * information.
+         */
+        virtual bool isValid() const = 0;
+        
         /**
          * Returns a description of the document for debugging purposes.
          *

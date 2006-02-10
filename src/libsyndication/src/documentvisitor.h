@@ -71,6 +71,7 @@ class KDE_EXPORT DocumentVisitor
         /**
          * reimplement this method to handle RSS2-like (RSS 0.9x, 2.0) documents.
          * 
+         * @param document the RSS2 document to visit
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */
@@ -79,15 +80,17 @@ class KDE_EXPORT DocumentVisitor
         /**
          * reimplement this method to handle RDF (i.e. RSS 1.0) documents.
          * 
+         * @param document the RDF document to visit
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */
         virtual bool visitRDFDocument(LibSyndication::RDF::Document* document) { return false; }
         
         /**
-         * reimplement this method to handle Atom feed documents (most Atom feeds
-         * are of this type).
+         * reimplement this method to handle Atom feed documents (most Atom 
+         * feeds are of this type).
          * 
+         * @param document the atom feed document to visit
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */
@@ -96,6 +99,7 @@ class KDE_EXPORT DocumentVisitor
         /**
          * reimplement this method to handle Atom entry documents.
          * 
+         * @param document the atom entry document to visit
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */

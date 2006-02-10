@@ -59,6 +59,11 @@ Document::Document() : AbstractDocument(), ElementWrapper()
 {
 }
 
+bool Document::isValid() const
+{
+    return !isNull();
+}
+        
 QString Document::title() const
 {
     QString t = extractElementText(QString::fromUtf8("title"));

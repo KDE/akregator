@@ -62,19 +62,26 @@ class KDE_EXPORT Document : public LibSyndication::AbstractDocument,
          * TODO: More on supported formats etc.
          *
          * @param document The dom document to parse the document from
-         * @return the document parsed from XML, or a null object
-         *         if parsing failed.
+         * @return the document parsed from XML, or an invalid 
+         * document if parsing failed.
          */
         static Document fromXML(const QDomDocument& document);
 
         /**
          * Default constructor, creates a null object, for which
-         * isNull() is @c true.
+         * isNull() is @c true and  isValid() is @c false.
          */
         Document();
         
         bool accept(DocumentVisitor* visitor);
     
+        /**
+         * returns whether this document is valid or not.
+         * Invalid documents do not contain any useful
+         * information.
+         */
+        bool isValid() const;
+
         /**
          * The title of the channel.
          *

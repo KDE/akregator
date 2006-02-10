@@ -59,6 +59,11 @@ bool Document::accept(DocumentVisitor* visitor)
     return visitor->visitRDFDocument(this);
 }
 
+bool Document::isValid() const
+{
+    return !isNull();
+}
+        
 QString Document::title() const
 {
     QString str = resource()->property(RSSVocab::self()->title())->asString();

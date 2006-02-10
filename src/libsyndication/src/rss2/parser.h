@@ -59,7 +59,7 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * 
          * @param source the source to wrap
          * @return A LibSyndication::RSS2::Document instance wrapping the XML
-         * source, a null document (not a null pointer!) if there is no @c
+         * source, or a null document (not a null pointer!) if there is no @c
          * &lt;channel> root element in the source.
          */
         LibSyndication::AbstractDocumentPtr parse(const DocumentSource& source) const;

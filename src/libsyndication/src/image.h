@@ -58,7 +58,7 @@ class KDE_EXPORT Image : public KShared
         
         /** 
          * Describes the image, can be used in the ALT attribute of the 
-         * HTML <img> tag when the channel is rendered in HTML.
+         * HTML &lt;img> tag when the channel is rendered in HTML.
          *
          * @return TODO: specify format
          */

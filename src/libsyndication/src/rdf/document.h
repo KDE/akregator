@@ -59,6 +59,13 @@ class KDE_EXPORT Document : public LibSyndication::AbstractDocument, public Reso
         virtual bool accept(DocumentVisitor* visitor);
     
         /**
+         * returns whether this document is valid or not.
+         * Invalid documents do not contain any useful
+         * information.
+         */
+        bool isValid() const;
+        
+        /**
          * title of the feed (required)
          * 
          * @return feed title as TODO: define format

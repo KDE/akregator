@@ -57,6 +57,8 @@ typedef KSharedPtr<Feed> FeedPtr;
  * }
  * @endcode
  * 
+ * For loading the source from the web, use Loader.
+ *
  * @author Frank Osterfeld
  */
 class KDE_EXPORT ParserCollection
@@ -79,10 +81,10 @@ class KDE_EXPORT ParserCollection
          * @param formatHint An optional hint which parser to test first. If
          * there is a parser with the given hint as format string (e.g., 
          * "rss2", "atom", "rdf"...), it is asked first to accept the source.
-         * This can avoid unnecessary AbstractParser::accept() checks and speed up
-         * parsing. See also AbstractParser::format().
-         * @return The document parsed from the source, or NULL if no parser
-         * accepted the source.
+         * This can avoid unnecessary AbstractParser::accept() checks and speed
+         * up parsing. See also AbstractParser::format().
+         * @return The feed document parsed from the source, or NULL if no
+         * parser accepted the source.
          */
         FeedPtr parse(const DocumentSource& source, const QString& formatHint=QString::null);
 

@@ -59,7 +59,9 @@ public ElementWrapper
     public:
     
         /**
-         * default constructor, creates a null feed) 
+         * default constructor, creates a null feed, which
+         * is invalid.
+         * @see isValid()
          */
         FeedDocument();
         
@@ -174,6 +176,13 @@ public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
+        
+        /**
+         * returns whether this document is valid or not.
+         * Invalid documents do not contain any useful
+         * information.
+         */
+        bool isValid() const;
 };
 
 /**
@@ -187,7 +196,8 @@ class KDE_EXPORT EntryDocument : public LibSyndication::AbstractDocument, public
     public:
 
         /**
-         * default constructor, creates a null document
+         * default constructor, creates a null document, which is invalid.
+         * @see isValid()
          */
         EntryDocument();
         
@@ -196,10 +206,6 @@ class KDE_EXPORT EntryDocument : public LibSyndication::AbstractDocument, public
          * @param element a DOM element, should be a atom:entry element 
          * (although not enforced), otherwise this object will not parse 
          * anything useful
-         */
-
-        /**
-         * creates an EntryDocument wrapping an atom:entry element.
          */
         EntryDocument(const QDomElement& element);
     
@@ -224,6 +230,13 @@ class KDE_EXPORT EntryDocument : public LibSyndication::AbstractDocument, public
          * @return debug string
          */
         QString debugInfo() const;
+        
+        /**
+         * returns whether this document is valid or not.
+         * Invalid documents do not contain any useful
+         * information.
+         */
+        bool isValid() const;
 };
 
 } // namespace Atom

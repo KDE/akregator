@@ -50,7 +50,7 @@ class KDE_EXPORT Link : public ElementWrapper
          * (although not enforced), otherwise this object will not parse 
          * anything useful
          */
-        Link(const QDomElement& e);
+        Link(const QDomElement& element);
     
         /**
          * URL of the referenced resource (required)

@@ -45,19 +45,25 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
     public:
 
         /**
-         * returns true iff the source looks like an Atom 1.0 or 0.3 document
+         * returns whether the source looks like an Atom 1.0 or 0.3
+         * document, by checking the root element.
+         * @param source document source to check
          */
         bool accept(const LibSyndication::DocumentSource& source) const;
 
         /**
          * parses either an EntryDocument or a FeedDocument from a
          * document source. If the source is not an atom document,
-         * the result is undefined.
+         * an invalid FeedDocument is returned.
+         * @see AbstractDocument::isValid()
+         * @param source the document source to parse
          */
         LibSyndication::AbstractDocumentPtr parse(const LibSyndication::DocumentSource& source) const;
         
         /**
-         * returns "atom"
+         * returns the format string for this parser implementation, which is
+         * @c "atom"
+         * @return @c "atom"
          */
         QString format() const;
         

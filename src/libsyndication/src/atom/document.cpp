@@ -195,6 +195,11 @@ QList<Entry> FeedDocument::entries() const
     return list;
 }
 
+bool FeedDocument::isValid() const
+{
+    return !isNull();
+}
+
 QString FeedDocument::debugInfo() const
 {
     QString info;
@@ -270,6 +275,11 @@ bool EntryDocument::accept(DocumentVisitor* visitor)
 Entry EntryDocument::entry() const
 {
     return Entry(element());
+}
+
+bool EntryDocument::isValid() const
+{
+    return !isNull();
 }
 
 QString EntryDocument::debugInfo() const
