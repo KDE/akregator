@@ -41,6 +41,7 @@ class RDFVocab::RDFVocabPrivate
         PropertyPtr li;
 };
 
+/** @internal */
 static KStaticDeleter<RDFVocab> rdfvocabsd;
 
 RDFVocab* RDFVocab::m_self = 0;

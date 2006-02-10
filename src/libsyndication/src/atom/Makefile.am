@@ -3,7 +3,7 @@ INCLUDES = $(all_includes)
 noinst_LTLIBRARIES = libatomlocal.la
 
 libatomlocal_include_HEADERS = category.h constants.h content.h document.h entry.h \
-                 generator.h link.h parser.h person.h source.h
+                 generator.h link.h parser.h person.h source.h atom.h
 
 noinst_HEADERS = tools.h
 

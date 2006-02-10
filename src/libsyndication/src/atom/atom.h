@@ -1,7 +1,7 @@
 /*
  * This file is part of libsyndication
  *
- * Copyright (C) 2005 Frank Osterfeld <frank.osterfeld@kdemail.net>
+ * Copyright (C) 2006 Frank Osterfeld <frank.osterfeld@kdemail.net>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -19,30 +19,28 @@
  * Boston, MA 02110-1301, USA.
  *
  */
+#ifndef LIBSYNDICATION_ATOM_ATOM_H
+#define LIBSYNDICATION_ATOM_ATOM_H
 
-#ifndef LIBSYNDICATION_RSS2_TOOLS_H
-#define LIBSYNDICATION_RSS2_TOOLS_H
-
-class QDomNode;
-class QDomElement;
-class QString;
-template <class T> class QList;
+#include "atom.h"
+#include "category.h"
+#include "constants.h"
+#include "content.h"
+#include "document.h"
+#include "entry.h"
+#include "generator.h"
+#include "link.h"
+#include "parser.h"
+#include "person.h"
+#include "source.h"
 
 namespace LibSyndication {
 
-class ElementWrapper;
-
-namespace RSS2 {
-
 /** 
- * @internal
- * extracts encoded content from XHTML, content:encoded and friends
- * @param parent the parent node, e.g. a channel or item element
- * @return the content as HTML (see Item::content() for details)
+ * LibSyndication's Atom parser, supporting Atom 0.3 and 1.0
  */
-QString extractContent(const ElementWrapper& parent);
+namespace Atom {}
 
-} // RSS2
-} // LibSyndication
+}
 
-#endif // LIBSYNDICATION_RSS2_TOOLS_H
+#endif // LIBSYNDICATION_ATOM_ATOM_H

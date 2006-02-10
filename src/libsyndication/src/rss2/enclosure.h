@@ -51,9 +51,9 @@ class KDE_EXPORT Enclosure : public ElementWrapper
         Enclosure();
 
         /**
-         * Creates an Enclosure object wrapping an @c <enclosure> XML element.
+         * Creates an Enclosure object wrapping an @c &lt;enclosure> XML element.
          *
-         * @param e The @c <enclosure> element to wrap
+         * @param element The @c &lt;enclosure> element to wrap
          */
         Enclosure(const QDomElement& element);
         

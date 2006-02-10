@@ -1,7 +1,7 @@
 /*
  * This file is part of libsyndication
  *
- * Copyright (C) 2005 Frank Osterfeld <frank.osterfeld@kdemail.net>
+ * Copyright (C) 2006 Frank Osterfeld <frank.osterfeld@kdemail.net>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -19,30 +19,40 @@
  * Boston, MA 02110-1301, USA.
  *
  */
+#ifndef LIBSYNDICATION_RDF_RDF_H
+#define LIBSYNDICATION_RDF_RDF_H
 
-#ifndef LIBSYNDICATION_RSS2_TOOLS_H
-#define LIBSYNDICATION_RSS2_TOOLS_H
-
-class QDomNode;
-class QDomElement;
-class QString;
-template <class T> class QList;
+#include "contentvocab.h"
+#include "document.h"
+#include "dublincore.h"
+#include "dublincorevocab.h"
+#include "image.h"
+#include "item.h"
+#include "literal.h"
+#include "model.h"
+#include "modelmaker.h"
+#include "node.h"
+#include "nodevisitor.h"
+#include "parser.h"
+#include "property.h"
+#include "rdfvocab.h"
+#include "resource.h"
+#include "resourcewrapper.h"
+#include "rssvocab.h"
+#include "sequence.h"
+#include "statement.h"
+#include "syndication.h"
+#include "syndicationvocab.h"
+#include "textinput.h"
 
 namespace LibSyndication {
 
-class ElementWrapper;
-
-namespace RSS2 {
-
 /** 
- * @internal
- * extracts encoded content from XHTML, content:encoded and friends
- * @param parent the parent node, e.g. a channel or item element
- * @return the content as HTML (see Item::content() for details)
+ * LibSyndication's parser for the RDF-based 
+ * RSS 0.9 and RSS 1.0 formats
  */
-QString extractContent(const ElementWrapper& parent);
+namespace RDF {}
 
-} // RSS2
-} // LibSyndication
+}
 
-#endif // LIBSYNDICATION_RSS2_TOOLS_H
+#endif // LIBSYNDICATION_RDF_RDF_H

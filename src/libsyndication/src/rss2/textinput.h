@@ -31,7 +31,7 @@ namespace LibSyndication {
 namespace RSS2 {
 
 /**
- * "The purpose of the <textInput> element is something of a mystery.
+ * "The purpose of the &lt;textInput> element is something of a mystery.
  * You can use it to specify a search engine box. Or to allow a
  * reader to provide feedback. Most aggregators ignore it."
  *
@@ -48,9 +48,9 @@ class KDE_EXPORT TextInput : public ElementWrapper
         TextInput();
 
         /**
-         * Creates a TextInput object wrapping a @c <textInput> XML element.
+         * Creates a TextInput object wrapping a @c &lt;textInput> XML element.
          *
-         * @param e The @c <textInput> element to wrap
+         * @param element The @c &lt;textInput> element to wrap
          */
         TextInput(const QDomElement& element);
 

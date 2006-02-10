@@ -55,9 +55,9 @@ class KDE_EXPORT Item : public ElementWrapper
         Item();
      
         /**
-         * Creates an Item object wrapping an @c <item> XML element.
+         * Creates an Item object wrapping an @c &lt;item> XML element.
          *
-         * @param e The @c <item> element to wrap
+         * @param element The @c &lt;item> element to wrap
          */
         Item(const QDomElement& element);
         
@@ -67,9 +67,9 @@ class KDE_EXPORT Item : public ElementWrapper
          * @return The title in plain text. Note that e.g. characters like <,
          * >, & are not escaped!
          * (TODO: this might change, check what makes more sense)
-         * This method returns the content of the @c <title> element. If
-         * @c <title> is not available, the method returns
-         * @c <dc:title> instead, if available.
+         * This method returns the content of the @c &lt;title> element. If
+         * @c &lt;title> is not available, the method returns
+         * @c &lt;dc:title> instead, if available.
          */
         QString title() const;
 
@@ -85,12 +85,13 @@ class KDE_EXPORT Item : public ElementWrapper
          * The item synopsis. This might contain a short summary of the
          * item, but also the full content. If content() is set, that usually
          * contains the full content instead.
-         * This method returns the content of the @c <description> element. If
-         * @c <description> is not available, the method returns * @c <dc:description> instead, if available.
+         * This method returns the content of the @c &lt;description> element.
+         * If @c &lt;description> is not available, the method returns * @c
+         * &lt;dc:description> instead, if available.
          * 
-         * @return a string in HTML format (whitespace is irrelevant, <br/> is
-         * used for newlines, "&", "<", ">" are escaped) summarizing the item.
-         * QString::null if no description was specified.
+         * @return a string in HTML format (whitespace is irrelevant, 
+         * @c &lt;br/> is used for newlines, "&", "&lt;", "&gt;" are escaped)
+         * summarizing the item. QString::null if no description was specified.
          */
         QString description() const;
     
@@ -100,9 +101,9 @@ class KDE_EXPORT Item : public ElementWrapper
          * xhtml:div. If this is not set, description() might also contain the
          * content of the item.
          * 
-         * @return the content in HTML format (whitespace is irrelevant, <br/> 
-         * is used for newlines, "&", "<", ">" are escaped) If no content is
-         * specified, QString::null is returned.
+         * @return the content in HTML format (whitespace is irrelevant,
+         * &lt;br/> is used for newlines, "&", "&lt;", "&gt;" are escaped) 
+         * If no content is specified, QString::null is returned.
          */
         QString content() const;
 
@@ -126,9 +127,9 @@ class KDE_EXPORT Item : public ElementWrapper
          * the article that this item describes. For collaborative weblogs, the
          * author of the item might be different from the managing editor or
          * webmaster.
-         * This method returns the content of the @c <author> element. If
-         * @c <author> is not available, the method returns
-         * @c <dc:creator> instead, if available.
+         * This method returns the content of the @c &lt;author> element. If
+         * @c &lt;author> is not available, the method returns
+         * @c &lt;dc:creator> instead, if available.
          * 
          * @return an email address of the author, or QString::null if not
          * specified
@@ -170,9 +171,9 @@ class KDE_EXPORT Item : public ElementWrapper
         /**
          * Indicates when the item was published. If it's a date in the future,
          * yous may choose to not display the item until that date.
-         * This returns the content of the @c <pubDate> element. If @c <pubDate>
-         * is not available, the method returns @c <dc:date> instead,
-         * if available.
+          * This returns the content of the @c &lt;pubDate> element. If @c
+          * &lt;pubDate> is not available, the method returns 
+         * @c &lt;dc:date> instead, if available.
          * 
          * @return the publication date, or 0 if no date was specified or
          * parsing failed

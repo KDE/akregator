@@ -42,11 +42,11 @@ class KDE_EXPORT Image : public ElementWrapper
         Image();
 
         /**
-         * Creates an Image object wrapping an @c <image> XML element.
+         * Creates an Image object wrapping an @c &lt;image> XML element.
          *
-         * @param e The @c <image> element to wrap
+         * @param element The @c &lt;image> element to wrap
          */
-        Image(const QDomElement& el);
+        Image(const QDomElement& element);
         
         /**
          * the URL of a GIF, JPEG or PNG image 
@@ -55,7 +55,7 @@ class KDE_EXPORT Image : public ElementWrapper
     
         /** 
          * Describes the image, can be used in the ALT attribute of the 
-         * HTML <img> tag when the channel is rendered in HTML.
+         * HTML @c &lt;img> tag when the channel is rendered in HTML.
          *
          * @return TODO: specify format
          */

@@ -43,9 +43,9 @@ class KDE_EXPORT Category : public ElementWrapper
     public:
 
         /**
-         * Creates a Category object wrapping a @c <category> XML element.
+         * Creates a Category object wrapping a @c &lt;category> XML element.
          *
-         * @param e The @c <category> element to wrap
+         * @param element The @c &lt;category> element to wrap
          */
         Category(const QDomElement& element);
 

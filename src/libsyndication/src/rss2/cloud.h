@@ -49,10 +49,10 @@ namespace RSS2
    * of /RPC2. The procedure to call is myCloud.rssPleaseNotify.
    *
    * For more information on the rssCloud interface see
-   * @link http://blogs.law.harvard.edu/tech/soapMeetsRss#rsscloudInterface
+   * http://blogs.law.harvard.edu/tech/soapMeetsRss#rsscloudInterface
    *
    * (Note: This explanation was taken from 
-   * @link http://blogs.law.harvard.edu/tech/rss)
+   * http://blogs.law.harvard.edu/tech/rss )
    *
    * @author Frank Osterfeld
    */
@@ -69,7 +69,7 @@ class KDE_EXPORT Cloud : public ElementWrapper
         /**
          * Creates a Cloud object wrapping a @c <cloud> XML element.
          *
-         * @param e The @c <cloud> element to wrap
+         * @param element The @c <cloud> element to wrap
          */
         Cloud(const QDomElement& element);
 

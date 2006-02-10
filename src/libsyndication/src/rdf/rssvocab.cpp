@@ -69,6 +69,7 @@ RSSVocab::~RSSVocab()
     d = 0;
 }
 
+/** @internal */
 static KStaticDeleter<RSSVocab> rssvocabsd;
 
 RSSVocab* RSSVocab::m_self = 0;

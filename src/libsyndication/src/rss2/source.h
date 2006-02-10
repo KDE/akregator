@@ -32,7 +32,7 @@ namespace LibSyndication {
 namespace RSS2 {
 
 /**
- * Class representing the <source> element in RSS2. 
+ * Class representing the @c &lt;source&gt; element in RSS2. 
  * "The purpose of this element is to propogate credit for links, to publicize
  * the sources of news items. It's used in the post command in the Radio
  * UserLand aggregator. It should be generated automatically when forwarding an
@@ -52,15 +52,15 @@ class KDE_EXPORT Source : public ElementWrapper
         Source();
         
         /**
-         * Creates a source object wrapping a @c <source> XML element.
+         * Creates a source object wrapping a @c &lt;source&gt; XML element.
          *
-         * @param e The @c <source> element to wrap
+         * @param element The @c &lt;source&gt; element to wrap
          */
         Source(const QDomElement& element);
         
         /** 
          * The name of the RSS channel that the item came from, derived from
-         * its <title>. Example: "Tomalak's Realm"
+         * its &lt;title>. Example: "Tomalak's Realm"
          *
          * @return A string containing the source, or QString::null if not set
          * (and for null objects)

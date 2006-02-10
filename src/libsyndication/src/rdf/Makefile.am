@@ -8,7 +8,7 @@ librdflocal_include_HEADERS = parser.h dublincorevocab.h dublincore.h \
                          textinput.h document.h rssvocab.h \
                          node.h property.h literal.h resource.h \
                          model.h modelmaker.h rdfvocab.h sequence.h \
-                         statement.h resourcewrapper.h nodevisitor.h
+                         statement.h resourcewrapper.h nodevisitor.h rdf.h
                  
 
 librdflocal_la_SOURCES = parser.cpp dublincorevocab.cpp dublincore.cpp \
