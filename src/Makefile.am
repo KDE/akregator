@@ -158,7 +158,11 @@ partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc eventsrc
 
 kde_servicetypes_DATA = akregator_plugin.desktop
 
+SUBDIRS = librss libsyndication about . mk4storage pics
 
-SUBDIRS = librss about . mk4storage pics
+#build apidox in subdirs, disable it for this dir for now
+
+DOXYGEN_EMPTY = YES
+include $(top_srcdir)/admin/Doxyfile.am
 
 

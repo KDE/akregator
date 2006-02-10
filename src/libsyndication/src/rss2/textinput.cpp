@@ -23,7 +23,7 @@
 #include "textinput.h"
 #include "tools.h"
 
-#include <qdom.h>
+#include <QDomElement>
 #include <QString>
 
 namespace LibSyndication {

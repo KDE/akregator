@@ -20,7 +20,6 @@
 
 #include <qdatetime.h>
 #include <qdom.h>
-#include <q3ptrlist.h>
 
 #include <kdebug.h>
 

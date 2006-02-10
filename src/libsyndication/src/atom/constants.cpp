@@ -22,7 +22,7 @@
 
 #include "constants.h"
 
-#include <qstring.h>
+#include <QString>
 
 namespace LibSyndication {
 namespace Atom {

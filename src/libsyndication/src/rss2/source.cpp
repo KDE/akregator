@@ -23,8 +23,8 @@
 #include "source.h"
 #include "tools.h"
 
-#include <qdom.h>
-#include <qstring.h>
+#include <QDomElement>
+#include <QString>
 
 namespace LibSyndication {
 namespace RSS2 {
