@@ -166,7 +166,7 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
         if (d->parsers[formatHint]->accept(source))
         {
             AbstractDocumentPtr doc = d->parsers[formatHint]->parse(source);
-            if (!doc)
+            if (!doc->isValid())
             {
                 d->lastError = InvalidFormat;
                 return FeedPtr();
@@ -181,7 +181,7 @@ FeedPtr ParserCollection::parse(const DocumentSource& source, const QString& for
         if (i->accept(source))
         {
             AbstractDocumentPtr doc = i->parse(source);
-            if (!doc)
+            if (!doc->isValid())
             {
                 d->lastError = InvalidFormat;
                 return FeedPtr();

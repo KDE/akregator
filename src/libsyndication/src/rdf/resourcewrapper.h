@@ -34,23 +34,58 @@ typedef KSharedPtr<Resource> ResourcePtr;
 
 /**
  * A wrapper for RDF resources. Base class for convenience wrappers
- * such as @see Document, @see Item etc.
+ * such as Document, Item etc.
  *
  * @author Frank Osterfeld
  */
 class KDE_EXPORT ResourceWrapper
 {
     public:
+        /**
+         * creates a wrapper wrapping a null resource, isNull() will be
+         * true.
+         */
         ResourceWrapper();
+        
+        /**
+         * Copy constructor.
+         * Due to the shared d pointer, this is a cheap operation.
+         * 
+         * @param other resource wrapper to copy
+         */
         ResourceWrapper(const ResourceWrapper& other);
+        
+        /**
+         * creates a resource wrapper for a given resource.
+         * If a null pointer is passed, a null resource is 
+         * created internally (resource() will _not_ return a null 
+         * pointer!)
+         * @param resource a resource wrapper instance
+         */
         ResourceWrapper(ResourcePtr resource);
         virtual ~ResourceWrapper();
 
+        /**
+         * Assignment oeprator
+         * Due to the shared d pointer, this is a cheap operation.
+         * 
+         * @param other resource wrapper to assign.
+         */
         ResourceWrapper& operator=(const ResourceWrapper& other);
+        
+        /**
+         * compares two resource wrapper instances.
+         * Two resource wrappers are equal when the wrapped resources
+         * are equal, i.e. they have the same URI.
+         * @see Resource::uri()
+         * @param other resource wrapper instance to compare to
+         */
         bool operator==(const ResourceWrapper& other) const;
         
         /**
-         * returns the wrapped resource.
+         * returns the wrapped resource. Whether a null resource or
+         * not, the returned pointer itself is never a null
+         * _pointer_!
          */
         ResourcePtr resource() const;
 

@@ -33,20 +33,50 @@ namespace RDF {
 class Property;
 typedef KSharedPtr<Property> PropertyPtr;
 
+/**
+ * Singleton providing Property constants for 
+ * the Syndication module.
+ * For a specification, see
+ * http://web.resource.org/rss/1.0/modules/syndication/
+ * 
+ * @author Frank Osterfeld
+ */
 class KDE_EXPORT SyndicationVocab
 {
     public:
 
+        /**
+         * virtual destructor
+         */
         virtual ~SyndicationVocab();
         
+        /**
+         * returns the singleton instance
+         */
         static SyndicationVocab* self();
         
+        /**
+         * namespace URI of the syndication vocabulary, 
+         * @c "http://purl.org/rss/1.0/modules/syndication/"
+         */
         const QString& namespaceURI() const;
 
+        /**
+         * updatePeriod property, see Syndication::updatePeriod() for more
+         * information.
+         */
         PropertyPtr updatePeriod() const;
         
+        /**
+         * updateFrequency property, see Syndication::updateFrequency() for more
+         * information.
+         */
         PropertyPtr updateFrequency() const;
         
+        /**
+         * updateBase property, see Syndication::updateBase() for more
+         * information.
+         */
         PropertyPtr updateBase() const;
         
     protected:

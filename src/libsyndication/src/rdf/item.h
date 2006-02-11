@@ -33,24 +33,71 @@ class DublinCore;
 class Item;
 class Model;
 
+/**
+ * wrapper for RSS 1.0 Item resources.
+ * 
+ * @author Frank Osterfeld
+ */
 class KDE_EXPORT Item : public ResourceWrapper
 {
     
     public:
-            
+        
+        /**
+         * creates an item object wrapping a null resource, isNull() is 
+         * @c true.
+         */
         Item();
+        
+        /**
+         * Creates an item wrapping the given resource
+         * @param resource resource to wrap, should be an instance 
+         * of rss1:item, otherwise the wrapper will not return useful
+         * information.
+         */
         Item(ResourcePtr resource);
         
+        /**
+         * virtual destructor
+         */
         virtual ~Item();
 
+        /**
+         * The item's title (required).
+         * 
+         * @return The item's title as HTML, or a null string if not specified
+         */
         QString title() const;
         
+        /**
+         * A brief description/abstract of the item.
+         * if encodedContent() is not provided, this can also contain the full
+         * content.
+         * 
+         * @return description as HTML, or a null string if not specified
+         */
         QString description() const;
         
+        /**
+         * The item's URL, usually pointing to a website containing the 
+         * full content (news article, blog entry etc.).
+         * 
+         * @return the link
+         */
         QString link() const;
         
+        /**
+         * returns a dublin core description of this 
+         * item (including metadata such as item author
+         * or subject)
+         */
         DublinCore dc() const;
         
+        /**
+         * returns content (@c content:encoded) as HTML.
+         * 
+         * @return content as HTML, or a null string if not specified
+         */
         QString encodedContent() const;
         
         /**

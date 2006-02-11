@@ -35,6 +35,9 @@ namespace RDF {
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
 
+// TODO: add support for multiple statements where it makes sense.
+// e.g. (creator, subject)
+
 class KDE_EXPORT DublinCore : public ResourceWrapper
 {
     public:

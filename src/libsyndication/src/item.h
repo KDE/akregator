@@ -68,17 +68,17 @@ class KDE_EXPORT Item : public KShared
          * cases, this will be a website containing the full article associated
          * with this item.
          * 
-         * @return an URL, or QString::null if not specified
+         * @return a URL, or QString::null if not specified
          */
         virtual QString link() const = 0;
         
         /**
          * returns the description of the item. The description can either be 
          * a tag line, a short summary of the item content up to a complete 
-         * article. If no description is provided by the feed, this method 
-         * returns the content() string.
-         * This string may contain HTML markup (importantly, "<", ">", "&" occurring
-         * in the text are escaped!).
+         * article.
+         * 
+         * This string may contain HTML markup (importantly, "<", ">", "&" 
+         * occurring in the text are escaped!).
          * 
          * @return the description as HTML, or QString::null if not specified
          */
@@ -86,8 +86,8 @@ class KDE_EXPORT Item : public KShared
         
         /**
          * returns the content of the item.
-         * This string may contain HTML markup (importantly, "<", ">", "&" occurring
-         * in the text are escaped!)
+         * This string may contain HTML markup (importantly, "<", ">", "&"
+         * occurring in the text are escaped!)
          *
          * @return content string as HTML, or QString::null if not set
          */

@@ -36,33 +36,85 @@ typedef KSharedPtr<Property> PropertyPtr;
 
 class Resource;
 typedef KSharedPtr<Resource> ResourcePtr;
-    
+
+/**
+ * Singleton holding RDF class and property constants of the RSS 1.0
+ * vocabulary. See http://web.resource.org/rss/1.0/ for a specification.
+ * 
+ * @author Frank Osterfeld
+ */
 class KDE_EXPORT RSSVocab
 {
     public:
 
+        /**
+         * virtual destructor
+         */
         virtual ~RSSVocab();
         
+        /**
+         * returns the singleton instance
+         */
         static RSSVocab* self();
         
+        /**
+         * namespace URI of the RSS 1.0 vocabulary,
+         * @c "http://web.resource.org/rss/1.0/"
+         */
         const QString& namespaceURI() const;
 
+        /**
+         * RSS 1.0 title property, see Document::title() for 
+         * more details
+         */
         PropertyPtr title() const;
         
+        /**
+         * RSS 1.0 description property, see Document::description() for 
+         * more details
+         */
         PropertyPtr description() const;
         
+        /**
+         * RSS 1.0 link property, see Document::link() for 
+         * more details
+         */
         PropertyPtr link() const;
         
+        /**
+         * RSS 1.0 name property, see Document::name() for 
+         * more details
+         */
         PropertyPtr name() const;
         
+        /**
+         * RSS 1.0 url property, see Document::url() for 
+         * more details
+         */
         PropertyPtr url() const;
         
+        /**
+         * RSS 1.0 channel class, the instance is represented by
+         * LibSyndication::RDF::Document
+         */
         ResourcePtr channel() const;
         
+        /**
+         * RSS 1.0 items property, see Document::items() for 
+         * more details
+         */
         PropertyPtr items() const;
         
+        /**
+         * RSS 1.0 image property, see Document::image() for 
+         * more details
+         */
         PropertyPtr image() const;
         
+        /**
+         * RSS 1.0 textinput property, see Document::textinput() for
+         * more details
+         */
         PropertyPtr textinput() const;
         
     protected:

@@ -32,12 +32,13 @@ typedef KSharedPtr<Person> PersonPtr;
 
 /**
  * Person holds information about a person, such as the author of the whole feed
- * or single items. Depending on the feed format, different information is available.
- * While according to the RSS2 spec, RSS2 author elements must contain only an e-mail
- * address, Atom requires the person's name and the e-mail address is optional.
- * Also, in reality, feeds often contain other information than what is specified in the
- * specs. LibSyndication tries to find out what author information is contained and maps it 
- * to this representation.
+ * or single items. Depending on the feed format, different information is 
+ * available.
+ * While according to the RSS2 spec, RSS2 author elements must contain only an
+ * e-mail address, Atom requires the person's name and the e-mail address is
+ * optional. Also, in reality, feeds often contain other information than what
+ * is specified in the specs. LibSyndication tries to find out what author 
+ * information is contained and maps it to this representation.
  * 
  * @author Frank Osterfeld
  */

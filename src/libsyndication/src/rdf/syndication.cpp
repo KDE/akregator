@@ -71,7 +71,7 @@ time_t Syndication::updateBase() const
 QString Syndication::debugInfo() const
 {
     QString info;
-    if (updatePeriod() != None)
+    if (updatePeriod() != Daily)
         info += QString("syn:updatePeriod: #%1#\n").arg(periodToString(updatePeriod()));
     info += QString("syn:updateFrequency: #%1#\n").arg(QString::number(updateFrequency()));
     
@@ -86,8 +86,6 @@ QString Syndication::periodToString(Period period)
 {
     switch (period)
     {
-        case None:
-            return QString();
         case Daily:
             return QString::fromUtf8("daily");
         case Hourly:

@@ -52,7 +52,7 @@ enum ErrorCode
                      * It is not returned if the source is not valid XML but a
                      * (non-XML) parser accepts it.
                      */
-    XmlNotAccepted = 7, /**< The source is valid XML, but no parser accepted the
+    XmlNotAccepted = 7, /**< The source is valid XML, but no parser accepted
                          * it.
                          */
     InvalidFormat = 8, /**< the source was accepted by a parser, but the actual

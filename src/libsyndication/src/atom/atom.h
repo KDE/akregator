@@ -22,7 +22,6 @@
 #ifndef LIBSYNDICATION_ATOM_ATOM_H
 #define LIBSYNDICATION_ATOM_ATOM_H
 
-#include "atom.h"
 #include "category.h"
 #include "constants.h"
 #include "content.h"

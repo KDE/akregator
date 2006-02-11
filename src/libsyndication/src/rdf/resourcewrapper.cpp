@@ -45,7 +45,8 @@ ResourceWrapper::ResourceWrapper(const ResourceWrapper& other)
 
 ResourceWrapper::ResourceWrapper(ResourcePtr resource) : d(new ResourceWrapperPrivate)
 {
-    d->resource = resource;
+    // if a null pointer is passed, we create a null resource
+    d->resource = resource.isNull() ? new Resource() : resource;
 }
 
 ResourceWrapper::~ResourceWrapper()

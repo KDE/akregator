@@ -32,7 +32,12 @@ namespace LibSyndication {
 namespace RDF {
 
 /**
- * wrapper to access syndication information for a feed
+ * Wrapper to access syndication information for a feed.
+ * The RSS 1.0 syndication module provides syndication hints to
+ * aggregators regarding how often it is updated.
+ * 
+ * The specification can be found at
+ * http://web.resource.org/rss/1.0/modules/syndication/
  * 
  * @author Frank Osterfeld
  */
@@ -40,17 +45,23 @@ class KDE_EXPORT Syndication : public ResourceWrapper
 {
     public:
         
-        
+        /**
+         * update period enum as used by updatePeriod().
+         */
         enum Period 
         { 
-            None, /**< no period is defined. This should never happen,
-                  as Hourly is default if no period is specified */
-            Hourly, /**< TODO */
-            Daily, /**< TODO */
-            Weekly, /**< TODO */
-            Monthly, /**< TODO */
-            Yearly /**< TODO */
+            Hourly, /**< the feed is updated hourly */
+            Daily, /**< the feed is updated daily */
+            Weekly, /**< the feed is updated weekly */
+            Monthly, /**< the feed is updated monthly */
+            Yearly /**< the feed is updated yearly */
         };
+        
+        /**
+         * creates a wrapper wrapping a null resource.
+         * isNull() will be true.
+         */
+        Syndication();
         
         /**
          * creates a wrapper from a resource
@@ -58,14 +69,39 @@ class KDE_EXPORT Syndication : public ResourceWrapper
          * information from
          */
         Syndication(ResourcePtr resource);
+        
+        /**
+         * virtual destructor
+         */
         virtual ~Syndication();
                 
         /**
+         * Describes the period over which the channel format is updated.
+         * Acceptable values are: hourly, daily, weekly, monthly, yearly.
+         * If omitted, daily is assumed.
+         * 
+         * @return update period, daily is default
          */
         Period updatePeriod() const;
         
+        /** Used to describe the frequency of updates in relation to the
+         * update period. A positive integer indicates how many times in
+         * that period the channel is updated. For example, an
+         * updatePeriod of daily, and an updateFrequency of 2 indicates
+         * the channel format is updated twice daily. If omitted a value
+         * of 1 is assumed.
+         * 
+         * @return update frequency, default is 1
+         */
         int updateFrequency() const;
         
+        /**
+         * Defines a base date to be used in concert with updatePeriod
+         * and updateFrequency to calculate the publishing schedule. 
+         * 
+         * @return the base date in seconds since epoch. Default value is
+         * 0 (epoch).
+         */
         time_t updateBase() const;
         
         /**
@@ -79,7 +115,9 @@ class KDE_EXPORT Syndication : public ResourceWrapper
     protected:
         
         /**
-         * returns Period value as string "hourly", "daily", etc.
+         * returns Period value as string.
+         * @param period period enum to convert to a string
+         * @return the enum name in lower case, "daily", "hourly", etc.
          */
         static QString periodToString(Period period);
         

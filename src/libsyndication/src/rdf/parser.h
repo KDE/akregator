@@ -34,14 +34,36 @@ class DocumentSource;
 
 namespace RDF {
 
+/**
+ * Parser implementation for RDF-based RSS 1.0 feeds.
+ * 
+ * @author Frank Osterfeld
+ */
 class KDE_EXPORT Parser : public LibSyndication::AbstractParser
 {
     public:
 
+        /**
+         * returns whether the passed document looks like 
+         * an RSS 1.0 document.
+         * @param source the document source to check
+         */
         virtual bool accept(const DocumentSource& source) const;
 
+        /**
+         * Parses an RSS 1.0 document from a feed source.
+         * 
+         * @param source The document source to parse, an invalid
+         * document if parsing failed.
+         * @see Document::isValid()
+         */
         virtual LibSyndication::AbstractDocumentPtr parse(const DocumentSource& source) const;
 
+        /**
+         * format string of this parser, which is @c "rdf".
+         * 
+         * @return @c "rdf"
+         */
         virtual QString format() const;
 };
 

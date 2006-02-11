@@ -50,8 +50,8 @@ typedef KSharedPtr<Person> PersonPtr;
  * details of e.g. Atom::FeedDocument or RSS::Document and provides a 
  * format-agnostic, unified view on the document.
  * This way applications using libsyndication don't have to care about the 
- * syndication format jungle at all. If necessary, format details and specialities
- * can be accessed using the document() method.
+ * syndication format jungle at all. If necessary, format details and 
+ * specialities can be accessed using the document() method.
  *
  * @author Frank Osterfeld
  */
@@ -115,8 +115,8 @@ class KDE_EXPORT Feed : public KShared
         /**
          * returns an image associated with this item.
          * 
-         * @return an image object, or a null image (i.e., image()->isNull() is @c true ) if no image is 
-         * specified in the feed
+         * @return an image object, or a null image (i.e., image()->isNull()
+         * is @c true ) if no image is specified in the feed
          * 
          */
         virtual ImagePtr image() const = 0;
