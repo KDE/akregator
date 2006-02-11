@@ -53,8 +53,9 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
         /**
          * Parses an RSS 1.0 document from a feed source.
          * 
-         * @param source The document source to parse, an invalid
-         * document if parsing failed.
+         * @param source The document source to parse
+         * @return parsed document (a LibSyndication::RDF::Document), or an
+         * invalid document if parsing failed.
          * @see Document::isValid()
          */
         virtual LibSyndication::AbstractDocumentPtr parse(const DocumentSource& source) const;
