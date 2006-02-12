@@ -39,6 +39,7 @@ Name[sv]=Källa tillagd
 Name[ta]=பீஃட் சேர்க்கப்பட்டது
 Name[tr]=Haber kaynağı eklendi
 Name[uk]=Подачу додано
+Name[uz]=Янгиликлар тасмаси қўшилди
 Name[zh_CN]=添加了新闻源
 Comment=A new feed was remotely added to Akregator
 Comment[bg]=Отдалечено е добавена нова новина към Akregator
@@ -72,6 +73,7 @@ Comment[sv]=En ny källa har lagts till i aKregator utifrån
 Comment[ta]=Akregatorக்கு ஒரு புதிய உள்ளீடு சேர்க்கப்பட்டது
 Comment[tr]=Akregator'a yeni bir haber kaynağı eklendi
 Comment[uk]=Нову подачу було віддалено додано до Akregator
+Comment[uz]=Akregator дастурига янги янгиликлар тасмаси қўшилди
 Comment[zh_CN]=新闻源远程添加进了 Akregator
 default_presentation=4
 
