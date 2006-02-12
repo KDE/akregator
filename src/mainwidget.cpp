@@ -1124,7 +1124,7 @@ void MainWidget::slotOpenCurrentArticle()
         return;
 
     QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
     {
         // in case link isn't valid, fall back to the guid permaLink.
         if (article.link().isValid())
@@ -1148,7 +1148,7 @@ void MainWidget::slotOpenCurrentArticleBackgroundTab()
         return;
 
     QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
     {
         // in case link isn't valid, fall back to the guid permaLink.
         if (article.link().isValid())
@@ -1167,7 +1167,7 @@ void MainWidget::slotCopyLinkAddress()
        return;
 
     QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
     {
         // in case link isn't valid, fall back to the guid permaLink.
         if (article.link().isValid())

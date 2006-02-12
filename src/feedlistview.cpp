@@ -1024,7 +1024,7 @@ Q3DragObject *NodeListView::dragObject()
         md->setPixmap(*(i->pixmap(0)));
         FeedItem *fi = dynamic_cast<FeedItem*>(i);
         if (fi) {
-            md->addDragObject(new K3URLDrag(KURL(fi->node()->xmlUrl()), 0L));
+            md->addDragObject(new K3URLDrag(KUrl(fi->node()->xmlUrl()), 0L));
         }
     }
     return md;

@@ -250,7 +250,7 @@ BrowserFrame::~BrowserFrame()
 
 KUrl BrowserFrame::url() const
 {
-    return d->part ? d->part->url() : KURL();
+    return d->part ? d->part->url() : KUrl();
 }
 
 bool BrowserFrame::canGoForward() const

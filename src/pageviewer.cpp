@@ -465,19 +465,19 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
     if (r == idNewWindow)
     {
         KUrl kurl;
-        if (!KURL(url).path().startsWith("/"))
+        if (!KUrl(url).path().startsWith("/"))
         {
             kDebug() << "processing relative url: " << url << endl;
             if (url.startsWith("#"))
             {
-                kurl = KURL(PageViewer::url());
+                kurl = KUrl(PageViewer::url());
                 kurl.setRef(url.mid(1));
             }
             else
-                kurl = KURL(PageViewer::url().upURL().url(true)+url);
+                kurl = KUrl(PageViewer::url().upURL().url(true)+url);
         }
         else
-            kurl = KURL(url);
+            kurl = KUrl(url);
 //    kurl.addPath(url);
         if (kurl.isValid())
             ;//             slotOpenInNewWindow(kurl);

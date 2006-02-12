@@ -191,7 +191,7 @@ MainFrame::~MainFrame()
 
 KUrl MainFrame::url() const
 {
-    return KURL();
+    return KUrl();
 }
 
 } // namespace Akregator

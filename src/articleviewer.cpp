@@ -359,7 +359,7 @@ void ArticleViewer::displayAboutPage()
     else
         content = content.arg( "" );
 
-    begin(KURL( location ));
+    begin(KUrl( location ));
     QString info =
             i18n("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
             "--- end of comment ---",
@@ -441,7 +441,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
         text += "</a>";
     }
 
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
     {
         text += "<p><a class=\"contentlink\" href=\"";
         // in case link isn't valid, fall back to the guid permaLink.
@@ -527,7 +527,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "</a>";
     }
 
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
     {
         text += "<p><a class=\"contentlink\" href=\"";
         // in case link isn't valid, fall back to the guid permaLink.
@@ -703,7 +703,7 @@ void ArticleViewer::slotShowNode(TreeNode* node)
     if (node && !node->articles().isEmpty())
         m_link = node->articles().first().link();
     else
-        m_link = KURL();
+        m_link = KUrl();
 
     slotUpdateCombinedView();
 }

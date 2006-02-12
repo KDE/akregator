@@ -64,7 +64,7 @@ void FeedIconManager::fetchIcon(Feed* feed)
         d->registeredFeeds.append(feed);
         connect(feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotFeedDestroyed(TreeNode*)));
     }
-    QString iconURL = getIconURL(KURL(feed->xmlUrl()));
+    QString iconURL = getIconURL(KUrl(feed->xmlUrl()));
     d->urlDict.insert(iconURL, feed);
     loadIcon(iconURL);
 }
