@@ -620,7 +620,7 @@ void ArticleListView::slotNextUnreadArticle()
     do
     {
         if (i == 0L)
-            i = static_cast<ArticleItem*>(lastChild());
+            i = static_cast<ArticleItem*>(firstChild());
         else
         {
             if (i->article().status() != Article::Read)
