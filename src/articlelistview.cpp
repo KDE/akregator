@@ -608,21 +608,26 @@ void ArticleListView::slotNextArticle()
 
 void ArticleListView::slotNextUnreadArticle()
 {
-    ArticleItem* start = 0;
+    ArticleItem* start = 0L;
     if (!currentItem() || selectedItems().isEmpty())
         start = dynamic_cast<ArticleItem*>(firstChild());
     else
         start = dynamic_cast<ArticleItem*>(currentItem()->itemBelow() ? currentItem()->itemBelow() : firstChild());
 
     ArticleItem* i = start;
-    ArticleItem* unread = 0;
+    ArticleItem* unread = 0L;
     
     do
     {
-        if (i && i->article().status() != Article::Read)
-            unread = i;
-        else 
-            i = dynamic_cast<ArticleItem*>(i && i->itemBelow() ? i->itemBelow() : firstChild());
+        if (i == 0L)
+            i = static_cast<ArticleItem*>(lastChild());
+        else
+        {
+            if (i->article().status() != Article::Read)
+                unread = i;
+            else 
+                i = static_cast<ArticleItem*>(i && i->itemBelow() ? i->itemBelow() : firstChild());
+        }
     }
     while (!unread && i != start);
 
@@ -638,23 +643,28 @@ void ArticleListView::slotNextUnreadArticle()
 
 void ArticleListView::slotPreviousUnreadArticle()
 {
-    ArticleItem* start = 0;
+    ArticleItem* start = 0L;
     if (!currentItem() || selectedItems().isEmpty())
         start = dynamic_cast<ArticleItem*>(firstChild());
     else
         start = dynamic_cast<ArticleItem*>(currentItem()->itemAbove() ? currentItem()->itemAbove() : firstChild());
 
     ArticleItem* i = start;
-    ArticleItem* unread = 0;
+    ArticleItem* unread = 0L;
     
     do
     {
-        if (i && i->article().status() != Article::Read)
-            unread = i;
-        else 
-            i = dynamic_cast<ArticleItem*>(i->itemAbove() ? i->itemAbove() : lastChild());
+        if (i == 0L)
+            i = static_cast<ArticleItem*>(lastChild());
+        else
+        {
+            if (i->article().status() != Article::Read)
+                unread = i;
+            else 
+                i = static_cast<ArticleItem*>(i->itemAbove() ? i->itemAbove() : lastChild());
+        }
     }
-    while ( !(unread != 0 || i == start) );
+    while ( !(unread != 0L || i == start) );
 
     if (unread)
     {

@@ -990,6 +990,9 @@ void View::slotFeedModify()
 
 void View::slotNextUnreadArticle()
 {
+    if (m_viewMode == CombinedView)
+        m_listTabWidget->activeView()->slotNextUnreadFeed();
+    
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotNextUnreadArticle();
@@ -999,6 +1002,9 @@ void View::slotNextUnreadArticle()
 
 void View::slotPrevUnreadArticle()
 {
+    if (m_viewMode == CombinedView)
+        m_listTabWidget->activeView()->slotPrevUnreadFeed();
+    
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotPreviousUnreadArticle();
