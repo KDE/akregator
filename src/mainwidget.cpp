@@ -883,6 +883,9 @@ void MainWidget::slotFeedModify()
 
 void MainWidget::slotNextUnreadArticle()
 {
+    if (m_viewMode == CombinedView)
+        m_listTabWidget->activeView()->slotNextUnreadFeed();
+    
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotNextUnreadArticle();
@@ -892,6 +895,9 @@ void MainWidget::slotNextUnreadArticle()
 
 void MainWidget::slotPrevUnreadArticle()
 {
+    if (m_viewMode == CombinedView)
+        m_listTabWidget->activeView()->slotPrevUnreadFeed();
+    
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotPreviousUnreadArticle();
