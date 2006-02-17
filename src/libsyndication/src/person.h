@@ -86,6 +86,13 @@ class KDE_EXPORT Person : public KShared
          * @return debug string
          */
         virtual QString debugInfo() const;
+        
+        /**
+         * compares two person instances. Persons are equal if and only if
+         * their respective name(), uri() and email() are equal.
+         * @param other another person instance
+         */
+        virtual bool operator==(const Person& other) const;
 };
     
 } // namespace LibSyndication

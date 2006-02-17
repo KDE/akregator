@@ -22,26 +22,44 @@
 
 #include "personimpl.h"
 
+#include <QRegExp>
+
 namespace LibSyndication {
 
-PersonPtr PersonImpl::fromString(const QString& str)
+PersonPtr PersonImpl::fromString(const QString& strp)
 {
-    if (str.trimmed().isEmpty())
+    QString str = strp.trimmed();
+    if (str.isEmpty())
         return m_nullPerson;
     
     QString name;
     QString uri;
     QString email;
 
-    // TODO: implement person parsing
-    // extract email address "<?..@..>?"
-    // extract uri if there are real-world RSS/RDF feeds
-    // containing  homepage links, otherwise ignore
-    // put everything that is not email or uri into name
-        
+    // look for something looking like a mail address ( "foo@bar.com", 
+    // "<foo@bar.com>") and extract it
+    
+    QRegExp remail("<?([^@\\s<]+@[^>\\s]+)>?"); // FIXME: user "proper" regexp,
+       // search kmail source for it
+    
+    int pos = remail.indexIn(str);
+    if (pos != -1)
+    {
+        QString all = remail.cap(0);
+        email = remail.cap(1);
+        str.replace(all, ""); // remove mail address
+    }
+    
+    // simplify the rest and return it as name
+    name = str.simplified();
+    
+    name = name.isEmpty() ? QString() : name;
+    email = email.isEmpty() ? QString() : email;
+    uri = uri.isEmpty() ? QString() : uri;
+
     if (name.isEmpty() && email.isEmpty() && uri.isEmpty())
         return m_nullPerson;
-       
+   
     return PersonPtr(new PersonImpl(name, uri, email));
 }
 

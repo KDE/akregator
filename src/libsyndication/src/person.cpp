@@ -57,4 +57,9 @@ QString Person::debugInfo() const
     return info;
 }
 
+bool Person::operator==(const Person& other) const
+{
+    return name() == other.name() && email() == other.email() && uri() == other.uri();
+}
+        
 } // namespace LibSyndication
