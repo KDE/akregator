@@ -15,7 +15,15 @@ int main()
 {
     QStringList s;
     QList<PersonPtr> p;
-    
+
+    s.append(QString());
+    p.append(PersonPtr(new PersonImpl(QString(), QString(), QString())));
+    s.append("");
+    p.append(PersonPtr(new PersonImpl(QString(), QString(), QString())));
+    s.append("Foo");
+    p.append(PersonPtr(new PersonImpl("Foo", QString(), QString())));
+    s.append("Foo M. Bar");
+    p.append(PersonPtr(new PersonImpl("Foo M. Bar", QString(), QString())));
     s.append("foo@bar.com");
     p.append(PersonPtr(new PersonImpl(QString(), QString(), "foo@bar.com")));
     s.append("<foo@bar.com>");
