@@ -1,13 +1,16 @@
 INCLUDES = -I$(top_srcdir)/akregator/src/libsyndication/src $(all_includes)
 
+AM_LDFLAGS = $(QT_LDFLAGS) $(X_LDFLAGS) $(KDE_RPATH)
+
+check_PROGRAMS = testlibsyndication testpersonimpl
+
+# List of tests to run automatically from "make check"
+TESTS = testpersonimpl
+
 METASOURCES = AUTO
 
-# TODO: make proper test suite
-bin_PROGRAMS = testlibsyndication testpersonfromstring
+LDADD = $(top_builddir)/akregator/src/libsyndication/src/libsyndication.la -lQtTest_debug
+
 testlibsyndication_SOURCES = testlibsyndication.cpp
-testlibsyndication_LDFLAGS = $(all_libraries)
-testlibsyndication_LDADD = $(top_builddir)/akregator/src/libsyndication/src/libsyndication.la
-testpersonfromstring_SOURCES = testpersonfromstring.cpp
-testpersonfromstring_LDFLAGS = $(all_libraries)
-testpersonfromstring_LDADD = $(top_builddir)/akregator/src/libsyndication/src/libsyndication.la
+testpersonimpl_SOURCES = testpersonimpl.cpp
 
