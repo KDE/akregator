@@ -96,7 +96,7 @@ void FeedIconManager::loadIcon(const QString & url)
         QDataStream ds( &data,QIODevice::WriteOnly);
         ds.setVersion(QDataStream::Qt_3_1);
         ds << u;
-        kapp->dcopClient()->send("kded", "favicons", "downloadHostIcon(KURL)",
+        kapp->dcopClient()->send("kded", "favicons", "downloadHostIcon(KUrl)",
                                  data);
     }
     else
@@ -118,7 +118,7 @@ QString FeedIconManager::iconLocation(const KUrl & url) const
 
     ds << url;
 
-    kapp->dcopClient()->call("kded", "favicons", "iconForURL(KURL)", data,
+    kapp->dcopClient()->call("kded", "favicons", "iconForURL(KUrl)", data,
                              replyType, reply);
 
     if (replyType == "QString") {
