@@ -58,11 +58,15 @@ unsigned int calcHash(const QByteArray& array)
 
 time_t parseISODate(const QString& str)
 {
+    if (str.isEmpty())
+        return 0;
     return KRFCDate::parseDateISO8601(str);
 }
 
 time_t parseRFCDate(const QString& str)
 {
+    if (str.isEmpty())
+        return 0;
     return KRFCDate::parseDate(str);
 }
 
@@ -107,22 +111,22 @@ QString htmlToPlainText(const QString& html)
 
 bool isHtml(const QString& str)
 {
-    if (str.contains("&amp;") || str.contains("&quot;"))
+    if (str != KCharsets::resolveEntities(str))
         return true;
     
     int ltc = str.count('<');
     if (ltc == 0 || ltc != str.count('>'))
         return false;
 
-    if (str.contains(QRegExp("<[a-zA-Z]+/?>")))
+    if (str.contains(QRegExp("<[a-zA-Z]+.*/?>")))
         return true;
         
-    return false; 
+    return false;
 }
 
 QString htmlize(const QString& str)
 {
-    return isHtml(str) ? str : plainTextToHtml(str);
+    return isHtml(str) ? str.simplified() : plainTextToHtml(str).simplified();
 }
 
 } // namespace LibSyndication

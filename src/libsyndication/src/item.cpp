@@ -34,8 +34,8 @@ namespace LibSyndication {
 QString Item::debugInfo() const
 {
     QString info;
-    
-    info += "# Item begin ##############\n";
+
+    info += "# Item begin ######################\n";
     
     QString did = id();
     if (!did.isNull())
@@ -90,8 +90,8 @@ QString Item::debugInfo() const
     for ( ; ite != ende; ++ite)
         info += (*ite)->debugInfo();
 
-    info += "# Item end ################\n";
-    
+    info += "# Item end ########################\n";
+
     return info;
 }
 

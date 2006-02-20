@@ -35,8 +35,8 @@ QString Feed::debugInfo() const
 {
     QString info;
     
-    info += "# Feed begin ##############\n";
-    
+    info += "# Feed begin ######################\n";
+
     QString dtitle = title();
     if (!dtitle.isNull())
         info += "title: #" + dtitle + "#\n";
@@ -49,17 +49,14 @@ QString Feed::debugInfo() const
     if (!ddescription.isNull())
         info += "description: #" + ddescription + "#\n";
     
+    QString dcopyright = copyright();
+    if (!dcopyright.isNull())
+        info += "copyright: #" + dcopyright + "#\n";
+
     QString dlanguage = language();
     if (!dlanguage.isNull())
         info += "language: #" + dlanguage + "#\n";
     
-    QList<ItemPtr> ditems = items();
-    QList<ItemPtr>::ConstIterator it = ditems.begin();
-    QList<ItemPtr>::ConstIterator end = ditems.end();
-    
-    for ( ; it != end; ++it)
-        info += (*it)->debugInfo();
-        
     QList<PersonPtr> dauthors = authors();
     QList<PersonPtr>::ConstIterator itp = dauthors.begin();
     QList<PersonPtr>::ConstIterator endp = dauthors.end();
@@ -79,8 +76,15 @@ QString Feed::debugInfo() const
     if (!dimage->isNull())
         info += dimage->debugInfo();
     
-    info += "# Feed end ##############\n";
+    QList<ItemPtr> ditems = items();
+    QList<ItemPtr>::ConstIterator it = ditems.begin();
+    QList<ItemPtr>::ConstIterator end = ditems.end();
     
+    for ( ; it != end; ++it)
+        info += (*it)->debugInfo();
+
+    info += "# Feed end ########################\n";
+
     return info;
 }
 

@@ -138,6 +138,11 @@ class KDE_EXPORT Feed : public KShared
         virtual QString language() const = 0;
         
         /**
+         * returns copyright information about the feed
+         */
+        virtual QString copyright() const = 0;
+        
+        /**
          * returns a description of the feed for debugging purposes
          * 
          * @return debug string

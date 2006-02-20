@@ -29,7 +29,7 @@ namespace LibSyndication {
 QString Person::debugInfo() const
 {
     QString info;
-    info += "# Person begin ##############\n";
+    info += "# Person begin ####################\n";
     
     QString dname = name();
     
@@ -51,8 +51,8 @@ QString Person::debugInfo() const
     {
         info += "email: #" + demail + "#\n";
     }
-    
-    info += "# Person end ################\n";
+
+    info += "# Person end ######################\n";
     
     return info;
 }

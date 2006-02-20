@@ -101,6 +101,11 @@ QString FeedRDFImpl::language() const
     return m_doc->dc().language();
 }
 
+QString FeedRDFImpl::copyright() const
+{
+    return m_doc->dc().rights();
+}
+
 ImagePtr FeedRDFImpl::image() const
 {
     ImageRDFImplPtr ptr(new ImageRDFImpl(m_doc->image()));

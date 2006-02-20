@@ -29,8 +29,8 @@ namespace LibSyndication {
 QString Enclosure::debugInfo() const
 {
     QString info;
-    info += "# Enclosure begin ##############\n";
-    
+    info += "# Enclosure begin #################\n";
+
     QString durl = url();
     
     if (!durl.isNull())
@@ -59,7 +59,7 @@ QString Enclosure::debugInfo() const
         info += "length: #" + QString::number(dlength) + "#\n";
     }
     
-    info += "# Enclosure end ################\n";
+    info += "# Enclosure end ###################\n";
     
     return info;
 }

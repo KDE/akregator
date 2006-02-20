@@ -58,6 +58,8 @@ class FeedAtomImpl : public LibSyndication::Feed
         
         QString language() const;
         
+        QString copyright() const;
+        
         ImagePtr image() const;
         
     private:

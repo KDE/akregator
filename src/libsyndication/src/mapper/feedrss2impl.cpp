@@ -101,6 +101,11 @@ QString FeedRSS2Impl::language() const
     return m_doc->language();
 }
 
+QString FeedRSS2Impl::copyright() const
+{
+    return m_doc->copyright();
+}
+
 ImagePtr FeedRSS2Impl::image() const
 {
     ImageRSS2ImplPtr ptr(new ImageRSS2Impl(m_doc->image()));

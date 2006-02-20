@@ -39,17 +39,17 @@ QString extractContent(const ElementWrapper& wrapper)
     QList<QDomElement> list = wrapper.elementsByTagNameNS(Constants::contentNameSpace(), QString::fromUtf8("encoded"));
 
     if (!list.isEmpty())
-        return list.first().text();
+        return list.first().text().simplified();
 
     list = wrapper.elementsByTagNameNS(Constants::XHTMLNameSpace(), QString::fromUtf8("body"));
 
     if (!list.isEmpty())
-        return ElementWrapper::childNodesAsXML(list.first());
+        return ElementWrapper::childNodesAsXML(list.first()).simplified();
 
     list = wrapper.elementsByTagNameNS(Constants::XHTMLNameSpace(), QString::fromUtf8("div"));
 
     if (!list.isEmpty())
-        return ElementWrapper::childNodesAsXML(list.first());
+        return ElementWrapper::childNodesAsXML(list.first()).simplified();
 
     return QString::null;
 }

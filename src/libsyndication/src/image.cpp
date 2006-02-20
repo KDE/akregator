@@ -29,8 +29,8 @@ namespace LibSyndication {
 QString Image::debugInfo() const
 {
     QString info;
-    info += "# Image begin ##############\n";
-    
+    info += "# Image begin #####################\n";
+
     QString durl = url();
     
     if (!durl.isNull())
@@ -61,7 +61,7 @@ QString Image::debugInfo() const
     
     info += "height: #" + QString::number(height()) + "#\n";
     info += "width: #" + QString::number(width()) + "#\n";
-    info += "# Image end ################\n";
+    info += "# Image end #######################\n";
     
     return info;
 }

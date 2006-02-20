@@ -140,6 +140,12 @@ QString FeedAtomImpl::language() const
     return m_doc->xmlLang();
 }
 
+QString FeedAtomImpl::copyright() const
+{
+    return m_doc->rights();
+}
+
+
 ImagePtr FeedAtomImpl::image() const
 {
     ImageAtomImplPtr ptr(new ImageAtomImpl(m_doc->logo()));

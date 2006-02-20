@@ -29,8 +29,8 @@ namespace LibSyndication {
 QString Category::debugInfo() const
 {
     QString info;
-    info += "# Category begin ##############\n";
-    
+    info += "# Category begin ##################\n";
+
     QString dterm = term();
     
     if (!dterm.isNull())
@@ -52,8 +52,8 @@ QString Category::debugInfo() const
         info += "label: #" + dlabel + "#\n";
     }
     
-    info += "# Category end ################\n";
-    
+    info += "# Category end ####################\n";
+
     return info;
 }
 
