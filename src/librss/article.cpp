@@ -77,7 +77,7 @@ Article::Article(const QDomNode &node, Format format, Version version) : d(new P
 		for (n = node.firstChild(); !n.isNull(); n = n.nextSibling()) {
 			const QDomElement e = n.toElement();
 			if ( (e.tagName()==QString::fromLatin1("link")) &&
-				(e.attribute(QString::fromLatin1("rel"))==QString::fromLatin1("alternate")))
+				(e.attribute(QString::fromLatin1("rel"), QString::fromLatin1("alternate"))==QString::fromLatin1("alternate")))
 				{   
 					d->link=n.toElement().attribute(QString::fromLatin1("href"));
 					break;
