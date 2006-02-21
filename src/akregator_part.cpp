@@ -115,10 +115,9 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
        , m_standardListLoaded(false)
        , m_shuttingDown(false)
        , m_mergedPart(0)
-       , m_backedUpList(false)
        , m_view(0)
+       , m_backedUpList(false)
        , m_storage(0)
-       
 {
     // we need an instance
     setInstance( AkregatorFactory::instance() );
@@ -495,28 +494,35 @@ bool Part::mergePart(KParts::Part* part)
 
 QWidget* Part::getMainWindow()
 {
-        // this is a dirty fix to get the main window used for the tray icon
+    // this is a dirty fix to get the main window used for the tray icon
+    
+    QWidgetList *l = kapp->topLevelWidgets();
+    QWidgetListIt it( *l );
+    QWidget *wid;
 
-        QWidgetList *l = kapp->topLevelWidgets();
-        QWidgetListIt it( *l );
-        QWidget *wid;
-
-        // check if there is an akregator main window
-        while ( (wid = it.current()) != 0 )
-        {
+    // check if there is an akregator main window
+    while ( (wid = it.current()) != 0 )
+    {
         ++it;
         //kdDebug() << "win name: " << wid->name() << endl;
         if (QString(wid->name()) == "akregator_mainwindow")
+        {
+            delete l;
             return wid;
         }
-        // if not, check for kontact main window
-        QWidgetListIt it2( *l );
-        while ( (wid = it2.current()) != 0 )
+    }
+    // if not, check for kontact main window
+    QWidgetListIt it2( *l );
+    while ( (wid = it2.current()) != 0 )
+    {
+        ++it2;
+        if (QString(wid->name()).startsWith("kontact-mainwindow"))
         {
-            ++it2;
-            if (QString(wid->name()).startsWith("kontact-mainwindow"))
-                return wid;
+            delete l;
+            return wid;
         }
+    }
+    delete l;
     return 0;
 }
 
