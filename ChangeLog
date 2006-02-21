@@ -7,6 +7,9 @@ Changes after 1.2.1:
 
 Bug fixes:
 
+ 2006/02/21 Set "rel" attribute default to "alternate", as requested by Atom specification (#122409) -ew
+ 2006/02/21 Disable category support in the metakit backend, so it should support about 500
+            instead of 340 feeds now with the default 1024 open files limit on most systems. -fo
  2006/02/15 Combined View: Do not crash on "Next/Prev Unread Article" (#121999) -fo
  2006/01/31 RSS parser: ignore unknown or invalid version attribute value in the <rss> tag and
             just assume RSS 2.0. The older formats are compatible to 2.0, so this should work.
