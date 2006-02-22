@@ -497,7 +497,6 @@ QWidget* Part::getMainWindow()
         //kDebug() << "win name: " << wid->name() << endl;
         if (QString(wid->name()) == "akregator_mainwindow")
         {
-            delete l;
             return wid;
         }
     }
@@ -508,12 +507,10 @@ QWidget* Part::getMainWindow()
         QWidget * wid = it.next();
         if (QString(wid->name()).startsWith("kontact-mainwindow"))
         {
-            delete l;
             return wid;
         }
     }
     
-    delete l;
     return 0;
 }
 
