@@ -46,6 +46,7 @@
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
+#include <ktoolbar.h>
 #include <kurl.h>
 
 #include "progressdialog.h"
