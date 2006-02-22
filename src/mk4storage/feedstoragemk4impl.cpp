@@ -238,7 +238,7 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag)
     else
     {
         c4_Row tagrow;
-        d->ptag(tagrow) = tag.utf8().data();
+        d->ptag(tagrow) = tag.toUtf8().data();
         int tagidx = d->tagView.Find(tagrow);
         if (tagidx != -1)
         {
@@ -258,8 +258,8 @@ QStringList FeedStorageMK4Impl::articles(const Category& cat)
     QStringList list;
 
     c4_Row catrow;
-    d->pcatTerm(catrow) = cat.term.utf8().data();
-    d->pcatScheme(catrow) = cat.scheme.utf8().data();
+    d->pcatTerm(catrow) = cat.term.toUtf8().data();
+    d->pcatScheme(catrow) = cat.scheme.toUtf8().data();
 
     int catidx = d->catView.Find(catrow);
     if (catidx != -1)
@@ -461,7 +461,7 @@ void FeedStorageMK4Impl::setTitle(const QString& guid, const QString& title)
         return;
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->ptitle(row) = !title.isEmpty() ? title.utf8().data() : "";
+    d->ptitle(row) = !title.isEmpty() ? title.toUtf8().data() : "";
     d->archiveView.SetAt(findidx, row);
     d->modified = true;
 }
@@ -473,7 +473,7 @@ void FeedStorageMK4Impl::setDescription(const QString& guid, const QString& desc
         return;
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->pdescription(row) = !description.isEmpty() ? description.utf8().data() : "";
+    d->pdescription(row) = !description.isEmpty() ? description.toUtf8().data() : "";
     d->archiveView.SetAt(findidx, row);
     d->modified = true;
 }
@@ -485,7 +485,7 @@ void FeedStorageMK4Impl::setCommentsLink(const QString& guid, const QString& com
         return;
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->pcommentsLink(row) = !commentsLink.isEmpty() ? commentsLink.utf8().data() : "";
+    d->pcommentsLink(row) = !commentsLink.isEmpty() ? commentsLink.toUtf8().data() : "";
     d->archiveView.SetAt(findidx, row);
     d->modified = true;
 }
@@ -526,22 +526,22 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
     c4_View catView = d->pcategories(row);
     c4_Row findrow;
 
-    d->pcatTerm(findrow) = cat.term.utf8().data();
-    d->pcatScheme(findrow) = cat.scheme.utf8().data();
+    d->pcatTerm(findrow) = cat.term.toUtf8().data();
+    d->pcatScheme(findrow) = cat.scheme.toUtf8().data();
 
     int catidx = catView.Find(findrow);
     if (catidx == -1)
     {
-        d->pcatName(findrow) = cat.name.utf8().data();
+        d->pcatName(findrow) = cat.name.toUtf8().data();
         catidx = catView.Add(findrow);
         d->pcategories(row) = catView;
         d->archiveView.SetAt(findidx, row);
 
         // add to category->articles index
         c4_Row catrow;
-        d->pcatTerm(catrow) = cat.term.utf8().data();
-        d->pcatScheme(catrow) = cat.scheme.utf8().data();
-        d->pcatName(catrow) = cat.name.utf8().data();
+        d->pcatTerm(catrow) = cat.term.toUtf8().data();
+        d->pcatScheme(catrow) = cat.scheme.toUtf8().data();
+        d->pcatName(catrow) = cat.name.toUtf8().data();
 
         int catidx2 = d->catView.Find(catrow);
 
@@ -624,7 +624,7 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
     row = d->archiveView.GetAt(findidx);
     c4_View tagView = d->ptags(row);
     c4_Row findrow;
-    d->ptag(findrow) = tag.utf8().data();
+    d->ptag(findrow) = tag.toUtf8().data();
     int tagidx = tagView.Find(findrow);
     if (tagidx == -1)
     {
@@ -634,7 +634,7 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
 
         // add to tag->articles index
         c4_Row tagrow;
-        d->ptag(tagrow) = tag.utf8().data();
+        d->ptag(tagrow) = tag.toUtf8().data();
         int tagidx2 = d->tagView.Find(tagrow);
         if (tagidx2 == -1)
             tagidx2 = d->tagView.Add(tagrow);
@@ -665,7 +665,7 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
     row = d->archiveView.GetAt(findidx);
     c4_View tagView = d->ptags(row);
     c4_Row findrow;
-    d->ptag(findrow) = tag.utf8().data();
+    d->ptag(findrow) = tag.toUtf8().data();
     int tagidx = tagView.Find(findrow);
     if (tagidx != -1)
     {
@@ -675,7 +675,7 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
 
         // remove from tag->articles index
         c4_Row tagrow;
-        d->ptag(tagrow) = tag.utf8().data();
+        d->ptag(tagrow) = tag.toUtf8().data();
         int tagidx2 = d->tagView.Find(tagrow);
         if (tagidx2 != -1)
         {
@@ -763,8 +763,8 @@ void FeedStorageMK4Impl::setEnclosure(const QString& guid, const QString& url, c
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
     d->pHasEnclosure(row) = true;
-    d->pEnclosureUrl(row) = !url.isEmpty() ? url.utf8().data() : "";
-    d->pEnclosureType(row) = !type.isEmpty() ? type.utf8().data() : "";
+    d->pEnclosureUrl(row) = !url.isEmpty() ? url.toUtf8().data() : "";
+    d->pEnclosureType(row) = !type.isEmpty() ? type.toUtf8().data() : "";
     d->pEnclosureLength(row) = length;
 
     d->archiveView.SetAt(findidx, row);

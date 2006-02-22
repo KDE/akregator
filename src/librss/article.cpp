@@ -173,8 +173,8 @@ Article::Article(const QDomNode &node, Format format, Version version) : d(new P
         
 		md5Machine.reset();
 		QDomNode n(node);
-		md5Machine.update(d->title.utf8());
-		md5Machine.update(d->description.utf8());
+		md5Machine.update(d->title.toUtf8());
+		md5Machine.update(d->description.toUtf8());
 		d->guid = QString(md5Machine.hexDigest().data());
         d->meta[QString::fromLatin1("guidIsHash")] = QString::fromLatin1("true");
 	}

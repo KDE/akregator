@@ -319,14 +319,14 @@ void StorageMK4Impl::storeFeedList(const QString& opmlStr)
     if  (d->feedListView.GetSize() == 0)
     {
         c4_Row row;
-        d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.utf8().data() : "";
+        d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.toUtf8().data() : "";
         d->pTagSet(row) = "";
         d->feedListView.Add(row);
     }
     else
     {
         c4_Row row = d->feedListView.GetAt(0);
-        d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.utf8().data() : "";
+        d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.toUtf8().data() : "";
         d->feedListView.SetAt(0, row);
     }
     d->modified = true;
@@ -347,14 +347,14 @@ void StorageMK4Impl::storeTagSet(const QString& xmlStr)
     if  (d->feedListView.GetSize() == 0)
     {
         c4_Row row;
-        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.utf8().data() : "";
+        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.toUtf8().data() : "";
         d->pFeedList(row) = "";
         d->feedListView.Add(row);
     }
     else
     {
         c4_Row row = d->feedListView.GetAt(0);
-        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.utf8().data() : "";
+        d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.toUtf8().data() : "";
         d->feedListView.SetAt(0, row);
     }
     d->modified = true;

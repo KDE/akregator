@@ -37,7 +37,7 @@ KMD5 md5Machine;
 
 unsigned int calcHash(const QString& str)
 {
-    return calcHash(str.utf8());
+    return calcHash(str.toUtf8());
 }
 
 unsigned int calcHash(const QByteArray& array)
@@ -83,7 +83,7 @@ QString dateTimeToString(time_t date)
 QString calcMD5Sum(const QString& str)
 {
     md5Machine.reset();
-    md5Machine.update(str.utf8());
+    md5Machine.update(str.toUtf8());
     return QString(md5Machine.hexDigest().data());
 }
 
