@@ -40,7 +40,7 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <widget class="QWidget" name="tab" >
+     <widget class="QWidget" name="tab1" >
       <attribute name="title" >
        <string>&amp;General</string>
       </attribute>
@@ -204,7 +204,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab" >
+     <widget class="QWidget" name="tab2" >
       <attribute name="title" >
        <string>Ar&amp;chive</string>
       </attribute>
@@ -353,7 +353,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="TabPage" >
+     <widget class="QWidget" name="tab3" >
       <attribute name="title" >
        <string>Adva&amp;nced</string>
       </attribute>

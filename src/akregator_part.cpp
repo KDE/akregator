@@ -486,29 +486,21 @@ bool Part::mergePart(KParts::Part* part)
 QWidget* Part::getMainWindow()
 {
     // this is a dirty fix to get the main window used for the tray icon
-
     QWidgetList l = QApplication::topLevelWidgets();
-    QListIterator<QWidget*> it(l);
-
+    QWidget* wid = 0L;
+            
     // check if there is an akregator main window
-    while (it.hasNext())
+    foreach (wid, QApplication::topLevelWidgets())
     {
-        QWidget * wid = it.next();
-        //kDebug() << "win name: " << wid->name() << endl;
         if (QString(wid->name()) == "akregator_mainwindow")
-        {
             return wid;
-        }
     }
-    // if not, check for kontact main window
-    it.toFront();
-    while ( it.hasNext() )
+
+    // if not, check if there is an kontact main window
+    foreach (wid, QApplication::topLevelWidgets())
     {
-        QWidget * wid = it.next();
         if (QString(wid->name()).startsWith("kontact-mainwindow"))
-        {
             return wid;
-        }
     }
     
     return 0;
