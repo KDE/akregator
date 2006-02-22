@@ -96,7 +96,7 @@ TreeNode* TreeNode::nextSibling() const
     QList<TreeNode*> children = d->parent->children();
     TreeNode* me = (TreeNode*)this;
         
-    int idx = children.findIndex(me);
+    int idx = children.indexOf(me);
     
     return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
 }
@@ -108,7 +108,7 @@ TreeNode* TreeNode::prevSibling() const
     QList<TreeNode*> children = d->parent->children();
     TreeNode* me = (TreeNode*)this;
     
-    int idx = children.findIndex(me);
+    int idx = children.indexOf(me);
     return (idx > 0) ? children.at(idx-1) : 0L;
 }
 

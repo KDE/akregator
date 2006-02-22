@@ -136,7 +136,7 @@ QList<TreeNode*> Folder::children() const
 
 void Folder::insertChild(TreeNode* node, TreeNode* after)
 {
-    int pos = d->children.findIndex(after);
+    int pos = d->children.indexOf(after);
     
     if (pos < 0)
         prependChild(node);
