@@ -136,7 +136,7 @@ QString Content::debugInfo() const
     QString info;
     info += "### Content: ###################\n";
     info += "type: #" + type() + "#\n";
-    if (!src().isEmpty())
+    if (!src().isNull())
         info += "src: #" + src() + "#\n";
     if (!isBinary())
         info += "content: #" + asString() + "#\n";

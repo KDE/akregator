@@ -36,11 +36,15 @@ class ElementWrapper::ElementWrapperPrivate : public KShared
         
     QDomElement element;
     mutable QString xmlBase;
+    mutable bool xmlBaseParsed;
     mutable QString xmlLang;
+    mutable bool xmlLangParsed;
 };
 
 ElementWrapper::ElementWrapper() : d(new ElementWrapperPrivate)
 {
+    d->xmlBaseParsed = true;
+    d->xmlLangParsed = true;
 }
 
 ElementWrapper::ElementWrapper(const ElementWrapper& other)
@@ -51,6 +55,8 @@ ElementWrapper::ElementWrapper(const ElementWrapper& other)
 ElementWrapper::ElementWrapper(const QDomElement& element) : d(new ElementWrapperPrivate)
 {
     d->element = element;
+    d->xmlBaseParsed = false;
+    d->xmlLangParsed = false;
 }
 
 ElementWrapper::~ElementWrapper()
@@ -80,7 +86,7 @@ const QDomElement& ElementWrapper::element() const
 
 QString ElementWrapper::xmlBase() const
 {
-    if (d->xmlBase.isNull()) // xmlBase not computed yet
+    if (!d->xmlBaseParsed) // xmlBase not computed yet
     {
         QDomElement current = d->element;
         
@@ -100,9 +106,7 @@ QString ElementWrapper::xmlBase() const
                 current = QDomElement();
         }
         
-        // no xml:base found
-        d->xmlBase = QString::null;
-        return QString::null;
+        d->xmlBaseParsed = true;
     }
     
     return d->xmlBase;
@@ -120,7 +124,7 @@ QString ElementWrapper::completeURI(const QString& uri) const
 
 QString ElementWrapper::xmlLang() const
 {
-    if (d->xmlLang.isNull()) // xmlLang not computed yet
+    if (!d->xmlLangParsed) // xmlLang not computed yet
     {
         QDomElement current = d->element;
         
@@ -139,10 +143,7 @@ QString ElementWrapper::xmlLang() const
             else
                 current = QDomElement();
         }
-        
-        // no xml:lang found
-        d->xmlLang = "";
-        return "";
+        d->xmlLangParsed = true;
     }
     return d->xmlLang;
 }

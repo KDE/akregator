@@ -35,13 +35,14 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
 {
     QString str;
     
-    QString type = parent.element().attribute(QString::fromUtf8("type"));
+    QDomElement el = parent.firstElementByTagNameNS(Constants::atom1NameSpace(), tagname);
+    
+    QString type = el.attribute(QString::fromUtf8("type"));
     
     if (type.isEmpty() || type == QString::fromUtf8("text"))
     {
         str = parent.extractElementTextNS(Constants::atom1NameSpace(), tagname);
         str = str.replace("<", "&lt;");
-        str = str.replace(">", "&gt;");
         str = str.replace("&", "&amp;");
         str = str.replace("\"", "&quot;");
     }
@@ -51,7 +52,6 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
     }
     else if (type == QString::fromUtf8("xhtml"))
     {
-        QDomElement el = parent.firstElementByTagNameNS(Constants::atom1NameSpace(), tagname);
         str = ElementWrapper::childNodesAsXML(el);
     }
     

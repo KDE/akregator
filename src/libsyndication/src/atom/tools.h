@@ -39,10 +39,10 @@ namespace Atom {
      * 
      * @param parent the parent element to extract from. E.g. an atom:entry element.
      * @param tagname the child element of parent to extract from the text from. 
-     * Atom namespace is assumed. Example: <atom:title>
+     * Atom namespace is assumed. Example: &lt;atom:title>
      * @return the HTMLized version of the element content. If the content is
      * escaped HTML, the escaped markup is resolved. If it is XHTML, the XHTML
-     * content is converted to a string. If it is plain text, characters like "<", ">", "&"
+     * content is converted to a string. If it is plain text, characters like "&lt;", ">", "&amp;"
      * are escaped so the return string is valid HTML.
      */
     QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QString& tagname);
