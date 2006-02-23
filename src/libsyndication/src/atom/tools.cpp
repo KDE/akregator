@@ -42,8 +42,8 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
     if (type.isEmpty() || type == QString::fromUtf8("text"))
     {
         str = parent.extractElementTextNS(Constants::atom1NameSpace(), tagname);
-        str = str.replace("<", "&lt;");
         str = str.replace("&", "&amp;");
+        str = str.replace("<", "&lt;");
         str = str.replace("\"", "&quot;");
     }
     else if (type == QString::fromUtf8("html"))
@@ -55,7 +55,7 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
         str = ElementWrapper::childNodesAsXML(el);
     }
     
-    return str;
+    return str.simplified();
 }
 
 } // namespace Atom

@@ -115,19 +115,21 @@ bool Content::isXML() const
 
 QString Content::asString() const
 {
-    QString ctype = type();
-    QString csrc = src();
-    
+    QString str;
+
     if (isText())
     {
-        return element().text().simplified();
+        str = element().text().simplified();
+        str = str.replace("&", "&amp;");
+        str = str.replace("\"", "&quot;");
+        str = str.replace("<", "&lt;");
     }
     else if (isXML())
     {
-        return childNodesAsXML();
+        str = childNodesAsXML().simplified();
     }
     
-    return QString::null;
+    return str;
     
 }
 
