@@ -6,7 +6,7 @@ description: #Feed Description#
 id: #http://www.example.com/a/1#
 title: #Plain text in CDATA#
 link: #http://www.example.com/a/1#
-description: #This entry contains only plain text inside CDATA. No escaped entities of any sort. <br/><br/> &lt; and &gt; here. And national characters too: ï¿½,ï¿½<br/>#
+description: #This entry contains only plain text inside CDATA. No escaped entities of any sort. <br/><br/> &lt; and > here. And national characters too: ï¿½,ï¿½<br/>#
 datePublished: #Sun Mar 14 19:59:12 2004#
 dateUpdated: #Sun Mar 14 19:59:12 2004#
 # Item end ########################

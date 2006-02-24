@@ -28,7 +28,7 @@
 #include "../rdf/resourcewrapper.h"
 #include "../category.h"
 #include "../enclosure.h"
-
+#include "../tools.h"
 
 #include <QList>
 #include <QString>
@@ -80,7 +80,10 @@ QString ItemRDFImpl::language() const
 
 QString ItemRDFImpl::id() const
 {
-    return m_item.resource()->uri();
+    if (!m_item.resource()->isAnon())
+        return m_item.resource()->uri();
+    else
+        return "hash:" + calcMD5Sum(title() + description() + content());
 }
 
 time_t ItemRDFImpl::datePublished() const 
