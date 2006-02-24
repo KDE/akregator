@@ -93,7 +93,7 @@ QString plainTextToHtml(const QString& plainText)
     str.replace("&", "&amp;");
     str.replace("\"", "&quot;");
     str.replace("<", "&lt;");
-    str.replace(">", "&gt;");
+    //str.replace(">", "&gt;");
     str.replace("\n", "<br/>");
     return str;
 }

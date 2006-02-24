@@ -59,8 +59,13 @@ QString Image::debugInfo() const
         info += "description: #" + ddescription + "#\n";
     }
     
-    info += "height: #" + QString::number(height()) + "#\n";
-    info += "width: #" + QString::number(width()) + "#\n";
+    int dheight = height();
+    if (dheight > 0)
+        info += "height: #" + QString::number(height()) + "#\n";
+
+    int dwidth = width();
+    if (dwidth > 0)
+        info += "width: #" + QString::number(width()) + "#\n";
     info += "# Image end #######################\n";
     
     return info;

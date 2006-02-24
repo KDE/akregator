@@ -22,6 +22,8 @@
 
 #include "content.h"
 
+#include "../tools.h"
+
 #include <QByteArray>
 #include <QDomElement>
 #include <QString>
@@ -119,10 +121,7 @@ QString Content::asString() const
 
     if (isText())
     {
-        str = element().text().simplified();
-        str = str.replace("&", "&amp;");
-        str = str.replace("\"", "&quot;");
-        str = str.replace("<", "&lt;");
+        str = plainTextToHtml(element().text().simplified());
     }
     else if (isXML())
     {

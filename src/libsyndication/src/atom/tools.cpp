@@ -23,6 +23,7 @@
 #include "tools.h"
 
 #include "../elementwrapper.h"
+#include "../tools.h"
 
 #include <QDomElement>
 #include <QString>
@@ -41,10 +42,7 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
     
     if (type.isEmpty() || type == QString::fromUtf8("text"))
     {
-        str = parent.extractElementTextNS(Constants::atom1NameSpace(), tagname);
-        str = str.replace("&", "&amp;");
-        str = str.replace("<", "&lt;");
-        str = str.replace("\"", "&quot;");
+        str = plainTextToHtml(parent.extractElementTextNS(Constants::atom1NameSpace(), tagname));
     }
     else if (type == QString::fromUtf8("html"))
     {
