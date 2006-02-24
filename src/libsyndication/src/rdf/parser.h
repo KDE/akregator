@@ -34,6 +34,8 @@ class DocumentSource;
 
 namespace RDF {
 
+class Model;
+    
 /**
  * Parser implementation for RDF-based RSS 1.0 feeds.
  * 
@@ -66,6 +68,10 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * @return @c "rdf"
          */
         virtual QString format() const;
+        
+    private:
+        
+        void map09to10(Model model) const;
 };
 
 } // namespace RDF

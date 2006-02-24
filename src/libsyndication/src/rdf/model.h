@@ -100,11 +100,31 @@ class KDE_EXPORT Model
         
         /**
          * adds a statement to the model.
+         * 
+         * @param subject
+         * @param predicate
+         * @param object
          * @return a shared pointer to a statement associated with this model,
          * with the given @c subject, @c predicate and @c object
          */
         virtual StatementPtr addStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object);
         
+        /**
+         * removes a statement from the model.
+         * 
+         * @param subject subject of the statement
+         * @param predicate predicate of the statement
+         * @param object object of the statement
+         */
+        virtual void removeStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object);
+        
+        /**
+         * removes a statement from the model.
+         * 
+         * @param statement the statement to remove
+         */
+        virtual void removeStatement(StatementPtr statement);
+                
         /**
          * returns whether this model is empty, i.e. contains no statements.
          */

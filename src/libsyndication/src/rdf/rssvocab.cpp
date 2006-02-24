@@ -26,6 +26,7 @@
 #include <kstaticdeleter.h>
 
 #include <QString>
+#include <QStringList>
 
 namespace LibSyndication {
 namespace RDF {
@@ -130,6 +131,128 @@ PropertyPtr RSSVocab::items() const
 ResourcePtr RSSVocab::channel() const
 {
     return d->channel;
+}
+
+class RSS09Vocab::RSS09VocabPrivate
+{
+    public:
+        
+        QString namespaceURI;
+        PropertyPtr title;
+        PropertyPtr link;
+        PropertyPtr description;
+        PropertyPtr name;
+        PropertyPtr url;
+        PropertyPtr image;
+        ResourcePtr channel;
+        ResourcePtr item;
+        PropertyPtr textinput;
+        QStringList properties;
+        QStringList classes;
+};
+
+RSS09Vocab::RSS09Vocab() : d(new RSS09VocabPrivate)
+{
+    QString ns = QString::fromUtf8("http://my.netscape.com/rdf/simple/0.9/");
+    
+    d->namespaceURI = ns;
+    
+    d->title = new Property(ns + QString::fromUtf8("title"));
+    d->properties.append(d->title->uri());
+    d->link = new Property(ns + QString::fromUtf8("link"));
+    d->properties.append(d->link->uri());
+    d->description = new Property(ns + QString::fromUtf8("description"));
+    d->properties.append(d->description->uri());
+    d->name = new Property(ns + QString::fromUtf8("name"));
+    d->properties.append(d->name->uri());
+    d->url = new Property(ns + QString::fromUtf8("url"));
+    d->properties.append(d->url->uri());
+    d->image = new Property(ns + QString::fromUtf8("image"));
+    d->properties.append(d->image->uri());
+    d->textinput = new Property(ns + QString::fromUtf8("textinput"));
+    d->properties.append(d->textinput->uri());
+    d->item = new Resource(ns + QString::fromUtf8("item"));
+    d->classes.append(d->item->uri());
+    d->channel = new Resource(ns + QString::fromUtf8("channel"));
+    d->classes.append(d->channel->uri());
+}
+
+RSS09Vocab::~RSS09Vocab()
+{
+    delete d;
+    d = 0;
+}
+
+/** @internal */
+static KStaticDeleter<RSS09Vocab> rss09vocabsd;
+
+RSS09Vocab* RSS09Vocab::m_self = 0;
+
+RSS09Vocab* RSS09Vocab::self()
+{
+    if (m_self == 0)
+        rss09vocabsd.setObject(m_self, new RSS09Vocab);
+    return m_self;
+}
+        
+const QString& RSS09Vocab::namespaceURI() const
+{
+    return d->namespaceURI;
+}
+
+PropertyPtr RSS09Vocab::title() const
+{
+    return d->title;
+}
+
+PropertyPtr RSS09Vocab::description() const
+{
+    return d->description;
+}
+
+PropertyPtr RSS09Vocab::link() const
+{
+    return d->link;
+}
+
+PropertyPtr RSS09Vocab::name() const
+{
+    return d->name;
+}
+
+PropertyPtr RSS09Vocab::url() const
+{
+    return d->url;
+}
+
+PropertyPtr RSS09Vocab::image() const
+{
+    return d->image;
+}
+
+PropertyPtr RSS09Vocab::textinput() const
+{
+    return d->textinput;
+}
+
+ResourcePtr RSS09Vocab::item() const
+{
+    return d->item;
+}
+
+ResourcePtr RSS09Vocab::channel() const
+{
+    return d->channel;
+}
+
+QStringList RSS09Vocab::classes() const
+{
+    return d->classes;
+}
+
+QStringList RSS09Vocab::properties() const
+{
+    return d->properties;
 }
 
 } // namespace RDF

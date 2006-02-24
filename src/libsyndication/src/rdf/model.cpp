@@ -109,7 +109,7 @@ class Model::ModelPrivate : public KShared
         
         ModelPrivate* p;
     };
-        
+    
     AddToHashesVisitor* addToHashesVisitor;
     
     void addToHashes(NodePtr node)
@@ -120,6 +120,11 @@ class Model::ModelPrivate : public KShared
     void addToHashes(StatementPtr stmt, const QString& key)
     {
         statements[key] = stmt;
+    }
+    
+    void removeFromHashes(const QString& key)
+    {
+        statements.remove(key);
     }
     
     bool initialized;
@@ -242,6 +247,20 @@ LiteralPtr Model::createLiteral(const QString& text)
     return lit;
 }
 
+
+void Model::removeStatement(StatementPtr statement)
+{
+    removeStatement(statement->subject(), statement->predicate(), statement->object());
+}
+        
+void Model::removeStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object)
+{
+    QString key = QString("%1-%2-%3")
+            .arg(QString::number(subject->id()))
+            .arg(QString::number(predicate->id()))
+            .arg(QString::number(object->id()));
+    d->removeFromHashes(key);
+}
 
 StatementPtr Model::addStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object)
 {

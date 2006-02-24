@@ -24,19 +24,21 @@
 #include "model.h"
 #include "modelmaker.h"
 #include "parser.h"
+#include "property.h"
 #include "rdfvocab.h"
+#include "resource.h"
 #include "rssvocab.h"
+#include "statement.h"
 
 #include "../documentsource.h"
 
 #include <QDomDocument>
 #include <QDomNodeList>
+#include <QHash>
 #include <QList>
 #include <QString>
+#include <QStringList>
 
-#include "property.h"
-#include "resource.h"
-#include "statement.h"
 
 namespace LibSyndication {
 namespace RDF {
@@ -65,6 +67,11 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
     ModelMaker maker;
     Model model = maker.createFromXML(doc);
     
+    bool is09 = !model.resourcesWithType(RSS09Vocab::self()->channel()).isEmpty();
+    
+    if (is09)
+        map09to10(model);
+    
     QList<ResourcePtr> channels = model.resourcesWithType(RSSVocab::self()->channel());
     
     if (channels.isEmpty())
@@ -72,6 +79,64 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
   
     DocumentPtr ptr(new Document(*(channels.begin())));
     return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
+}
+
+void Parser::map09to10(Model model) const
+{
+    QHash<QString, PropertyPtr> hash;
+    
+    hash.insert(RSS09Vocab::self()->title()->uri(), RSSVocab::self()->title());
+    hash.insert(RSS09Vocab::self()->description()->uri(), RSSVocab::self()->description());
+    hash.insert(RSS09Vocab::self()->link()->uri(), RSSVocab::self()->link());
+    hash.insert(RSS09Vocab::self()->name()->uri(), RSSVocab::self()->name());
+    hash.insert(RSS09Vocab::self()->url()->uri(), RSSVocab::self()->url());
+    hash.insert(RSS09Vocab::self()->image()->uri(), RSSVocab::self()->image());
+    hash.insert(RSS09Vocab::self()->textinput()->uri(), RSSVocab::self()->textinput());
+        
+    QStringList uris09 = RSS09Vocab::self()->properties();
+    
+    // map statement predicates to RSS 1.0
+    
+    QList<StatementPtr> statements = model.statements();
+    QList<StatementPtr>::ConstIterator it = statements.begin();
+    QList<StatementPtr>::ConstIterator end = statements.end();
+    
+    for ( ; it != end; ++it)
+    {
+        StatementPtr stmt = *it;
+        
+        QString predUri = stmt->predicate()->uri();
+        if (uris09.contains(predUri))
+        {
+        model.addStatement(stmt->subject(), hash[predUri], stmt->object());
+        }
+    }
+    // map channel type
+    QList<ResourcePtr> channels = model.resourcesWithType(RSS09Vocab::self()->channel());
+    
+    ResourcePtr channel;
+    
+    if (!channels.isEmpty())
+    {
+        channel = *(channels.begin());
+        
+        model.removeStatement(channel, RDFVocab::self()->type(), NodePtr::staticCast(RSS09Vocab::self()->channel()));
+        model.addStatement(channel, RDFVocab::self()->type(), NodePtr::staticCast(RSSVocab::self()->channel()));
+        
+        // add Sequence of items as used in RSS 1.0
+        SequencePtr seq = model.createSequence();
+        model.addStatement(channel, RSSVocab::self()->items(), NodePtr::staticCast(seq));
+        QList<ResourcePtr> items = model.resourcesWithType(RSS09Vocab::self()->item());
+        
+        QList<ResourcePtr>::ConstIterator it2 = items.begin();
+        QList<ResourcePtr>::ConstIterator end2 = items.end();
+
+        for ( ; it2 != end2; ++it2)
+        {
+            seq->append(NodePtr::staticCast(*it2));
+            model.addStatement(ResourcePtr::staticCast(seq), RDFVocab::self()->li(), NodePtr::staticCast(*it2));
+        }
+    }
 }
 
 QString Parser::format() const

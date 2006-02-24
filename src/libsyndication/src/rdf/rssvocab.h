@@ -27,6 +27,7 @@
 template <class T> class KSharedPtr;
 
 class QString;
+class QStringList;
 
 namespace LibSyndication {
 namespace RDF {
@@ -127,6 +128,109 @@ class KDE_EXPORT RSSVocab
         
         class RSSVocabPrivate;
         RSSVocabPrivate* d;
+};
+
+/**
+ * Singleton holding RDF class and property constants of the RSS 0.9
+ * vocabulary. Only used to map RSS 0.9 to 1.0.
+ * 
+ * @author Frank Osterfeld
+ */
+
+class KDE_EXPORT RSS09Vocab
+{
+    public:
+
+        /**
+     * virtual destructor
+         */
+        virtual ~RSS09Vocab();
+        
+        /**
+         * returns the singleton instance
+         */
+        static RSS09Vocab* self();
+        
+        /**
+         * namespace URI of the RSS 0.9 vocabulary,
+         * @c "http://web.resource.org/rss/0.9/"
+         */
+        const QString& namespaceURI() const;
+
+        /**
+         * RSS 0.9 title property, see Document::title() for 
+         * more details
+         */
+        PropertyPtr title() const;
+        
+        /**
+         * RSS 0.9 description property, see Document::description() for 
+         * more details
+         */
+        PropertyPtr description() const;
+        
+        /**
+         * RSS 0.9 link property, see Document::link() for 
+         * more details
+         */
+        PropertyPtr link() const;
+        
+        /**
+         * RSS 0.9 name property, see Document::name() for 
+         * more details
+         */
+        PropertyPtr name() const;
+        
+        /**
+         * RSS 0.9 url property, see Document::url() for 
+         * more details
+         */
+        PropertyPtr url() const;
+        
+        /**
+         * RSS 0.9 channel class, the instance is represented by
+         * LibSyndication::RDF::Document
+         */
+        ResourcePtr channel() const;
+        
+        /**
+         * RSS 0.9 item class, see Document::items() for 
+         * more details
+         */
+        ResourcePtr item() const;
+        
+        /**
+         * RSS 0.9 image property, see Document::image() for 
+         * more details
+         */
+        PropertyPtr image() const;
+        
+        /**
+         * RSS 0.9 textinput property, see Document::textinput() for
+         * more details
+         */
+        PropertyPtr textinput() const;
+        
+        /**
+         * returns a list containing all URIs representing properties in this vocabulary
+         */
+        QStringList properties() const;
+        
+        /**
+         * returns a list containing all URIs representing classes in this vocabulary
+         */
+        QStringList classes() const;
+        
+    protected:
+        
+        RSS09Vocab();
+        
+    private:
+        
+        static RSS09Vocab* m_self;
+        
+        class RSS09VocabPrivate;
+        RSS09VocabPrivate* d;
 };
 
 } // namespace RDF
