@@ -25,9 +25,10 @@
 
 #include "../elementwrapper.h"
 
+#include <QString>
+
 class QByteArray;
 class QDomElement;
-class QString;
 
 namespace LibSyndication {
 namespace Atom {
@@ -43,6 +44,26 @@ namespace Atom {
 class Content : public ElementWrapper
 {
     public:
+
+        /**
+         * format of the content.
+         */
+        enum Format
+        {
+            Text, /**< the content is plain text (i.e. "<", ">" etc. are text, not
+                   * markup, or HTML (i.e., "<", ">" etc. are markup) */
+            XML, /**< the content is embedded XML */
+            Binary, /**< the content is base64-encoded binary content */
+        };
+       
+        /**
+         * maps a mimetype to Format enum according to the Atom 1.0 specification
+         *
+         * @param type a valid mimetype, or one of "text", "html", "xhtml"
+         * @param src content source, see src() for details.
+         *
+         */
+        static Format mapTypeToFormat(const QString& type, const QString& src=QString());
         
         /**
          * creates a null content object.
@@ -99,17 +120,6 @@ class Content : public ElementWrapper
          * an empty array if the content is not in binary format
          */
         QByteArray asByteArray() const;
-        
-        /**
-         * format of the content.
-         */
-        enum Format
-        {
-            Text, /**< the content is plain text (i.e. "<", ">" etc. are text, not
-                   * markup, or HTML (i.e., "<", ">" etc. are markup) */
-            XML, /**< the content is embedded XML */
-            Binary, /**< the content is base64-encoded binary content */
-        };
         
         /**
          * returns the content format

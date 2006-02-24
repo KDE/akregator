@@ -59,22 +59,20 @@ QByteArray Content::asByteArray() const
     return QByteArray();
 }
 
-Content::Format Content::format() const
+Content::Format Content::mapTypeToFormat(const QString& typep,  const QString& src)
 {
-    QString ctype = type();
-    
+    QString type = typep;
     //"If neither the type attribute nor the src attribute is provided,
     //Atom Processors MUST behave as though the type attribute were
     //present with a value of "text""
-    if (ctype.isNull() && src().isEmpty())
-        ctype = QString::fromUtf8("text");
+    if (type.isNull() && src.isEmpty())
+        type = QString::fromUtf8("text");
 
-    if (ctype.isEmpty() 
-            || ctype == QString::fromUtf8("text")
-            || ctype == QString::fromUtf8("html")
-            || (ctype.startsWith(QString::fromUtf8("text/"), Qt::CaseInsensitive)
-            && !ctype.startsWith(QString::fromUtf8("text/xml"), Qt::CaseInsensitive))
-           )
+    if (type == QString::fromUtf8("text")
+        || type == QString::fromUtf8("html")
+        || (type.startsWith(QString::fromUtf8("text/"), Qt::CaseInsensitive)
+        && !type.startsWith(QString::fromUtf8("text/xml"), Qt::CaseInsensitive))
+       )
         return Text;
     
     QStringList xmltypes;
@@ -87,12 +85,17 @@ Content::Format Content::format() const
     xmltypes.append(QString::fromUtf8("application/xml-dtd"));
     
     
-    if (xmltypes.contains(ctype)
-            || ctype.endsWith(QString::fromUtf8("+xml"), Qt::CaseInsensitive)
-        || ctype.endsWith(QString::fromUtf8("/xml"), Qt::CaseInsensitive))
+    if (xmltypes.contains(type)
+        || type.endsWith(QString::fromUtf8("+xml"), Qt::CaseInsensitive)
+        || type.endsWith(QString::fromUtf8("/xml"), Qt::CaseInsensitive))
         return XML;
     
     return Binary;
+}
+
+Content::Format Content::format() const
+{
+   return  mapTypeToFormat(type(), src());
 }
 
 bool Content::isBinary() const

@@ -40,12 +40,12 @@ class KDE_EXPORT Constants
         /**
          * namespace used by Atom 1.0 elements
          */
-        static QString atom1NameSpace();
+        static QString atom1Namespace();
         
         /**
          * namespace used by Atom 0.3 elements
          */
-        static QString atom0_3NameSpace();
+        static QString atom0_3Namespace();
 };
 
 } // namespace Atom

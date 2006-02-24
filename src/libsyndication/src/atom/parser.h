@@ -26,7 +26,9 @@
 #include "../abstractparser.h"
 
 class QDomDocument;
+class QDomNode;
 class QString;
+template <class T, class U> class QHash;
 
 namespace LibSyndication {
 
@@ -81,6 +83,7 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * our purposes.
          */
         static QDomDocument convertAtom0_3(const QDomDocument& document);
+        static QDomNode convertNode(QDomDocument& doc, const QDomNode& node, const QHash<QString, QString>& nameMapper);
 };
 
 } // namespace Atom
