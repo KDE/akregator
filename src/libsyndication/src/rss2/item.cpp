@@ -155,12 +155,12 @@ time_t Item::pubDate() const
     
     if (!str.isNull())
     {
-        return parseRFCDate(str);
+        return parseDate(str, RFCDate);
     }
     
     // if there is no pubDate, check for dc:date
     str = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
-    return parseISODate(str);
+    return parseDate(str, ISODate);
 }
 
 Source Item::source() const

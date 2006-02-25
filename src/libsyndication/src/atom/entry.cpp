@@ -144,14 +144,14 @@ time_t Entry::published() const
 {
     QString pub = extractElementTextNS(Constants::atom1Namespace(),
                                        QString::fromUtf8("published"));
-    return parseISODate(pub);
+    return parseDate(pub, ISODate);
 }
 
 time_t Entry::updated() const
 {
     QString upd = extractElementTextNS(Constants::atom1Namespace(),
                                        QString::fromUtf8("published"));
-    return parseISODate(upd);
+    return parseDate(upd, ISODate);
 }
 
 QString Entry::summary() const

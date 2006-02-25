@@ -38,9 +38,9 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
     if (doc.isNull())
         return false;
     
-    QDomNode root = doc.namedItem(QString::fromUtf8("rss"));
+    QDomNode root = doc.namedItem(QString::fromUtf8("rss")).toElement();
 
-    return (root.isElement() && root.toElement().hasAttribute(QString::fromUtf8("version")));
+    return !root.isNull();
 }
 
 LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const

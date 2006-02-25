@@ -164,7 +164,7 @@ time_t Source::updated() const
 {
     QString upd = extractElementTextNS(Constants::atom1Namespace(),
                                        QString::fromUtf8("updated"));
-    return parseISODate(upd);
+    return parseDate(upd, ISODate);
 }
 
 QString Source::debugInfo() const

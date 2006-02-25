@@ -154,7 +154,7 @@ time_t FeedDocument::updated() const
 {
     QString upd = extractElementTextNS(Constants::atom1Namespace(),
                                        QString::fromUtf8("updated"));
-    return parseISODate(upd);
+    return parseDate(upd, ISODate);
 }
 
 QList<Link> FeedDocument::links() const

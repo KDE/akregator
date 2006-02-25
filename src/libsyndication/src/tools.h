@@ -30,14 +30,34 @@ class QString;
 
 namespace LibSyndication {
 
+/**
+ * @internal
+ */
 unsigned int calcHash(const QString& str);
 
+/**
+ * @internal
+ */
 unsigned int calcHash(const QByteArray& array);
 
+/**
+ * @internal
+ */
 QString calcMD5Sum(const QString& str);
 
+/** date formats supported by date parsers */
+
+enum DateFormat
+{
+    ISODate, /**< ISO 8601 extended format.
+              * (date: "2003-12-13",datetime: "2003-12-13T18:30:02.25", 
+              * datetime with timezone: "2003-12-13T18:30:02.25+01:00")
+              */
+    RFCDate /** RFC 822. (e.g. "Sat, 07 Sep 2002 00:00:01 GMT") */
+};
+
 /**
- * parses a date string in ISO 8601 extendend format.
+ * parses a date string in ISO 8601 extended format.
  * (date: "2003-12-13",datetime: "2003-12-13T18:30:02.25", 
  * datetime with timezone: "2003-12-13T18:30:02.25+01:00")
  * 
@@ -52,10 +72,26 @@ time_t parseISODate(const QString& str);
  * (Sat, 07 Sep 2002 00:00:01 GMT)
  * 
  * @param str a string in RFC 822 format
- * @return parsed date in seconds since epoch,  0 if no date could
+ * @return parsed date in seconds since epoch, 0 if no date could
  * be parsed from the string.
  */
 time_t parseRFCDate(const QString& str);
+
+/**
+ * parses a date string in ISO (see parseISODate()) or RFC 822 (see 
+ * parseRFCDate()) format.
+ * It tries both parsers and returns the first valid parsing result found (or 0
+ * otherwise).
+ * To speed up parsing, you can give a hint which format you expect.
+ * The method will try the corresponding parser first then.
+ * 
+ * @param str a date string
+ * @param hint the expected format
+ * @return parsed date in seconds since epoch, 0 if no date could
+ * be parsed from the string.
+ */
+time_t parseDate(const QString& str, DateFormat hint=RFCDate);
+
 
 /**
  * @internal
@@ -91,7 +127,7 @@ QString htmlToPlainText(const QString& html);
 bool isHtml(const QString& str);
 
 /**
- *
+ * 
  * @param str
  * @return 
  */

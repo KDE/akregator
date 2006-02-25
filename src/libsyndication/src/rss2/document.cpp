@@ -131,12 +131,12 @@ time_t Document::pubDate() const
     
     if (!str.isNull())
     {
-        return parseRFCDate(str);
+        return parseDate(str, RFCDate);
     }
     else
     {   // if there is no pubDate, check for dc:date
         str = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
-        return parseISODate(str);
+        return parseDate(str, ISODate);
     }
 }
 
@@ -144,7 +144,7 @@ time_t Document::lastBuildDate() const
 {
     QString str = extractElementText(QString::fromUtf8("lastBuildDate"));
     
-    return parseRFCDate(str);
+    return parseDate(str, RFCDate);
 }
 
 QList<Category> Document::categories() const

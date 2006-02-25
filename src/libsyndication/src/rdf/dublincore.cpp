@@ -60,7 +60,7 @@ QString DublinCore::creator() const
 time_t DublinCore::date() const
 {
     QString str =  resource()->property(DublinCoreVocab::self()->date())->asString();
-    return parseISODate(str);
+    return parseDate(str, ISODate);
     
 }
 

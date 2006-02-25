@@ -58,16 +58,31 @@ unsigned int calcHash(const QByteArray& array)
 
 time_t parseISODate(const QString& str)
 {
-    if (str.isEmpty())
-        return 0;
-    return KRFCDate::parseDateISO8601(str);
+    time_t t = KRFCDate::parseDateISO8601(str);
+    return t > 1 ? t : 0;
 }
 
 time_t parseRFCDate(const QString& str)
 {
+    time_t t = KRFCDate::parseDate(str);
+    return t > 1 ? t : 0;
+}
+
+time_t parseDate(const QString& str, DateFormat hint)
+{
     if (str.isEmpty())
         return 0;
-    return KRFCDate::parseDate(str);
+    
+    if (hint == RFCDate)
+    {
+        time_t t = parseRFCDate(str);
+        return t != 0 ? t : parseISODate(str);
+    }
+    else
+    {
+        time_t t = parseISODate(str);
+        return t != 0 ? t : parseRFCDate(str);
+    }
 }
 
 QString dateTimeToString(time_t date)

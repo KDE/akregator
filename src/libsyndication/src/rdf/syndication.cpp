@@ -65,7 +65,7 @@ time_t Syndication::updateBase() const
 {
     QString str =  resource()->property(SyndicationVocab::self()->updateBase())->asString();
     
-    return parseISODate(str);
+    return parseDate(str, ISODate);
 }
 
 QString Syndication::debugInfo() const
