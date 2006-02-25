@@ -56,6 +56,13 @@
 #include <qwidgetlist.h>
 #include <private/qucomextra_p.h>
 
+#include <cerrno>
+#include <sys/types.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
 #include "akregator_part.h"
@@ -68,6 +75,7 @@
 #include "frame.h"
 #include "article.h"
 #include "kernel.h"
+#include "kcursorsaver.h"
 #include "notificationmanager.h"
 #include "pageviewer.h"
 #include "plugin.h"
@@ -135,8 +143,21 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 
     m_storage = 0;
     Backend::StorageFactory* factory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
+   
     if (factory != 0)
-        m_storage = factory->createStorage(QStringList());
+    {
+        
+        if (Settings::archiveBackend() == "metakit")
+        {
+            if (tryToLock(factory->name()))
+                m_storage = factory->createStorage(QStringList());
+            else 
+                m_storage = dummyFactory->createStorage(QStringList());
+        }
+        else
+            m_storage = factory->createStorage(QStringList());
+    }
+    
 
     if (!m_storage) // Houston, we have a problem
     {
@@ -875,6 +896,117 @@ bool Part::copyFile(const QString& backup)
         }
     }
     return false;
+}
+
+static QString getMyHostName()
+{
+    char hostNameC[256];
+    // null terminate this C string
+    hostNameC[255] = 0;
+    // set the string to 0 length if gethostname fails
+    if(gethostname(hostNameC, 255))
+        hostNameC[0] = 0;
+    return QString::fromLocal8Bit(hostNameC);
+}
+
+// taken from KMail
+bool Part::tryToLock(const QString& backendName)
+{
+// Check and create a lock file to prevent concurrent access to metakit archive
+    QString appName = kapp->instanceName();
+    if ( appName.isEmpty() )
+        appName = "akregator";
+
+    QString programName;
+    const KAboutData *about = kapp->aboutData();
+    if ( about )
+        programName = about->programName();
+    if ( programName.isEmpty() )
+        programName = i18n("Akregator");
+
+    QString lockLocation = locateLocal("data", "akregator/lock");
+    KSimpleConfig config(lockLocation);
+    int oldPid = config.readNumEntry("pid", -1);
+    const QString oldHostName = config.readEntry("hostname");
+    const QString oldAppName = config.readEntry( "appName", appName );
+    const QString oldProgramName = config.readEntry( "programName", programName );
+    const QString hostName = getMyHostName();
+    bool first_instance = false;
+    if ( oldPid == -1 )
+        first_instance = true;
+  // check if the lock file is stale by trying to see if
+  // the other pid is currently running.
+  // Not 100% correct but better safe than sorry
+    else if (hostName == oldHostName && oldPid != getpid()) {
+        if ( kill(oldPid, 0) == -1 )
+            first_instance = ( errno == ESRCH );
+    }
+
+    if ( !first_instance )
+    {
+        QString msg;
+        if ( oldHostName == hostName ) 
+        {
+            // this can only happen if the user is running this application on
+            // different displays on the same machine. All other cases will be
+            // taken care of by KUniqueApplication()
+            if ( oldAppName == appName )
+                msg = i18n("<qt>%1 already seems to be running on another display on "
+                        "this machine. <b>Running %2 more than once is not supported "
+                        "by the %3 backend and "
+                        "can cause the loss of archived articles and crashes at startup.</b> "
+                        "You should disable the archive for now "
+                        "unless you are sure that %2 is not already running.</qt>")
+                        .arg( programName, programName, backendName );
+              // QString::arg( st ) only replaces the first occurrence of %1
+              // with st while QString::arg( s1, s2 ) replacess all occurrences
+              // of %1 with s1 and all occurrences of %2 with s2. So don't
+              // even think about changing the above to .arg( programName ).
+            else
+                msg = i18n("<qt>%1 seems to be running on another display on this "
+                        "machine. <b>Running %1 and %2 at the same "
+                        "time is not supported by the %3 backend and can cause "
+                        "the loss of archived articles and crashes at startup.</b> "
+                        "You should disable the archive for now "
+                        "unless you are sure that %2 is not already running.</qt>")
+                        .arg( oldProgramName, programName, backendName );
+        }
+        else
+        {
+            if ( oldAppName == appName )
+                msg = i18n("<qt>%1 already seems to be running on %2. <b>Running %1 more "
+                        "than once is not supported by the %3 backend and can cause "
+                        "the loss of archived articles and crashes at startup.</b> "
+                        "You should disable the archive for now "
+                        "unless you are sure that it is "
+                        "not already running on %2.</qt>")
+                        .arg( programName, oldHostName, backendName );
+            else
+                msg = i18n("<qt>%1 seems to be running on %3. <b>Running %1 and %2 at the "
+                        "same time is not supported by the %4 backend and can cause "
+                        "the loss of archived articles and crashes at startup.</b> "
+                        "You should disable the archive for now "
+                        "unless you are sure that %1 is "
+                        "not running on %3.</qt>")
+                        .arg( oldProgramName, programName, oldHostName, backendName );
+        }
+
+        KCursorSaver idle( KBusyPtr::idle() );
+        if ( KMessageBox::No ==
+             KMessageBox::warningYesNo( 0, msg, QString::null,
+                                        i18n("Force Access"),
+                                        i18n("Disable Archive")) )
+                                        {
+                                            return false;
+                                        }
+    }
+
+    config.writeEntry("pid", getpid());
+    config.writeEntry("hostname", hostName);
+    config.writeEntry( "appName", appName );
+    config.writeEntry( "programName", programName );
+    config.sync();
+    return true;
 }
 
 

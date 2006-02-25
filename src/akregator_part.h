@@ -195,6 +195,8 @@ namespace Akregator
             /** creates an OPML file containing the initial feeds (KDE feeds) */
             static QDomDocument createDefaultFeedList();
 
+            bool tryToLock(const QString& backendName);
+                    
          private: // attributes
 
             class ApplyFiltersInterceptor;
