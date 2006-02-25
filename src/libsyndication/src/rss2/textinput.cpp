@@ -40,22 +40,22 @@ TextInput::TextInput(const QDomElement& element) : ElementWrapper(element)
 
 QString TextInput::title() const
 {
-    return extractElementText(QString::fromUtf8("title") );
+    return extractElementTextNS(QString(), QString::fromUtf8("title") );
 }
 
 QString TextInput::name() const
 {
-    return extractElementText(QString::fromUtf8("name") );
+    return extractElementTextNS(QString(), QString::fromUtf8("name") );
 }
 
 QString TextInput::description() const
 {
-    return extractElementText(QString::fromUtf8("description") );
+    return extractElementTextNS(QString(), QString::fromUtf8("description") );
 }
 
 QString TextInput::link() const
 {
-    return extractElementText(QString::fromUtf8("link") );
+    return extractElementTextNS(QString(), QString::fromUtf8("link") );
 
 }
 

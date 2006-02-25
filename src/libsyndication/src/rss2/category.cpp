@@ -40,7 +40,7 @@ Category::Category(const QDomElement& element) : ElementWrapper(element)
 }
 QString Category::category() const
 {
-    return element().text();
+    return element().text().simplified();
 }
 
 QString Category::domain() const

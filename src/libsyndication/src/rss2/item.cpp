@@ -46,7 +46,7 @@ Item::Item(const QDomElement& element) : ElementWrapper(element)
 
 QString Item::title() const
 {
-    QString t = extractElementText(QString::fromUtf8("title"));
+    QString t = extractElementTextNS(QString(), QString::fromUtf8("title"));
     
     if (t.isNull())
     {
@@ -58,12 +58,12 @@ QString Item::title() const
 
 QString Item::link() const
 {
-    return extractElementText(QString::fromUtf8("link") );
+    return extractElementTextNS(QString(), QString::fromUtf8("link") );
 }
 
 QString Item::description() const
 {
-    QString d = extractElementText(QString::fromUtf8("description"));
+    QString d = extractElementTextNS(QString(), QString::fromUtf8("description"));
     
     if (d.isNull())
     {
@@ -82,7 +82,8 @@ QString Item::content() const
 
 QList<Category> Item::categories() const
 {
-    QList<QDomElement> cats = elementsByTagName(QString::fromUtf8("category"));
+    QList<QDomElement> cats = elementsByTagNameNS(QString(),
+            QString::fromUtf8("category"));
 
     QList<Category> categories;
 
@@ -95,12 +96,12 @@ QList<Category> Item::categories() const
 
 QString Item::comments() const
 {
-    return extractElementText(QString::fromUtf8("comments") );
+    return extractElementTextNS(QString(), QString::fromUtf8("comments") );
 }
 
 QString Item::author() const
 {
-    QString a = extractElementText(QString::fromUtf8("author") );
+    QString a = extractElementTextNS(QString(), QString::fromUtf8("author") );
     if (!a.isNull()) 
     {
         return a;
@@ -115,34 +116,22 @@ QString Item::author() const
 
 Enclosure Item::enclosure() const
 {
-    QDomNode enc = element().namedItem(QString::fromUtf8("enclosure"));
-    return Enclosure(enc.toElement());
+    return Enclosure(firstElementByTagNameNS(QString(), QString::fromUtf8("enclosure")));
 }
 
 QString Item::guid() const
 {
-    QString guid;
-
-    QDomNode guidNode = element().namedItem(QString::fromUtf8("guid"));
-    if (guidNode.isElement())
-    {
-        QDomElement guidElem = guidNode.toElement();
-        guid = guidElem.text();
-    }
-
-    return guid;
+    return extractElementTextNS(QString(), QString::fromUtf8("guid") );
 }
 
 bool Item::guidIsPermaLink() const
 {
     bool guidIsPermaLink = true;  // true is default
 
-    QDomNode guidNode = element().namedItem(QString::fromUtf8("guid"));
-    if (guidNode.isElement())
+    QDomElement guidNode = firstElementByTagNameNS(QString(), QString::fromUtf8("guid"));
+    if (!guidNode.isNull())
     {
-        QDomElement guidElem = guidNode.toElement();
-
-        if (guidElem.attribute(QString::fromUtf8("isPermaLink")) == QString::fromUtf8("false"))
+        if (guidNode.attribute(QString::fromUtf8("isPermaLink")) == QString::fromUtf8("false"))
             guidIsPermaLink = false;
     }
 
@@ -151,7 +140,7 @@ bool Item::guidIsPermaLink() const
 
 time_t Item::pubDate() const
 {
-    QString str = extractElementText(QString::fromUtf8("pubDate"));
+    QString str = extractElementTextNS(QString(), QString::fromUtf8("pubDate"));
     
     if (!str.isNull())
     {
@@ -165,8 +154,7 @@ time_t Item::pubDate() const
 
 Source Item::source() const
 {
-    QDomNode s = element().namedItem(QString::fromUtf8("source"));
-    return Source(s.toElement());
+    return Source(firstElementByTagNameNS(QString(), QString::fromUtf8("source")));
 }
 
 QString Item::debugInfo() const
