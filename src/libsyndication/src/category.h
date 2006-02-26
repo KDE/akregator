@@ -74,7 +74,7 @@ class KDE_EXPORT Category : public KShared
          * When managing categories, scheme() + term() identifies a category
          * unambigously and can be used as key.
          * 
-         * @return the scheme this category is part of, or QString::null
+         * @return the scheme this category is part of, or a null string
          * if not specified
          */
         virtual QString scheme() const = 0;
@@ -84,7 +84,7 @@ class KDE_EXPORT Category : public KShared
          * string should be used to represent this category in a user interface.
          * If not specified, use term() instead.
          * TODO: specify format (HTML, plain text?) and enforce it in the impl
-         * @return the label of this category, or QString::null if not specified
+         * @return the label of this category, or a null string if not specified
          */
         virtual QString label() const = 0;
 

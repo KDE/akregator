@@ -65,7 +65,7 @@ class KDE_EXPORT Statement : public KShared
         /**
          * returns the object of this statement as string, if possible.
          * 
-         * @return the literal text as QString, or QString::null if the object
+         * @return the literal text as QString, or a null string if the object
          * is not a literal
          */
         virtual QString asString() const;

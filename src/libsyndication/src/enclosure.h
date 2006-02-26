@@ -65,7 +65,7 @@ class KDE_EXPORT Enclosure : public KShared
          * instead of the URL. If no title is set (e.g., RSS2 enclosures don't
          * have titles), use url() as fallback.
          * 
-         * @return title describing the enclosure, or QString::null if not
+         * @return title describing the enclosure, or a null string if not
          * specified.
          */
         virtual QString title() const = 0;
@@ -77,7 +77,7 @@ class KDE_EXPORT Enclosure : public KShared
          * Examples are @c "audio/mpeg" for MP3, or @c "application/pdf" for
          * PDF.
          * 
-         * @return the mimetype of the file, or QString::null if not
+         * @return the mimetype of the file, or a null string if not
          * specified
          */
         virtual QString type() const = 0;

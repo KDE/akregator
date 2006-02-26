@@ -99,7 +99,7 @@ class KDE_EXPORT ElementWrapper
          * relative references found in its scope (its own element and all 
          * descendants). (See also completeURI())
          * 
-         * @return the xml:base value, or QString::null if not set
+         * @return the xml:base value, or a null string if not set
          */
         QString xmlBase() const;
         
@@ -108,7 +108,7 @@ class KDE_EXPORT ElementWrapper
          * The xml:lang attribute indicates the natural language for its element
          * and all descendants.
          * 
-         * @return the xml:lang value, or QString::null if not set
+         * @return the xml:lang value, or a null string if not set
          */
         QString xmlLang() const;
 
@@ -133,7 +133,7 @@ class KDE_EXPORT ElementWrapper
         
         /**
          * extracts the text from a sub-element, respecting namespaces. For 
-         * instance, when the wrapped element is @c <thisElement>:
+         * instance, when the wrapped element is @c &lt;hisElement>:
          * @code
          * <thisElement>
          *     <atom:title>Hi there</atom:title>
@@ -146,7 +146,7 @@ class KDE_EXPORT ElementWrapper
          * @param namespaceURI the namespace URI of the element to extract
          * @param localName the local name (local within its namespace) of the
          * element to extract
-         * @return the (trimmed) text content of @c localName, or QString::null
+         * @return the (trimmed) text content of @c localName, or a null string
          * if there is no such tag
          */
 
@@ -154,7 +154,7 @@ class KDE_EXPORT ElementWrapper
         
         /**
          * extracts the text from a sub-element, ignoring namespaces. For 
-         * instance, when the wrapped element is @c <thisElement>:
+         * instance, when the wrapped element is @c &lt;thisElement>:
          * @code
          * <thisElement>
          *     <title>Hi there</title>
@@ -164,7 +164,7 @@ class KDE_EXPORT ElementWrapper
          * of @c title, "Hi there".
          * 
          * @param tagName the name of the element to extract
-         * @return the (trimmed) text content of @c tagName, or QString::null if
+         * @return the (trimmed) text content of @c tagName, or a null string if
          * there is no such tag
          */
         QString extractElementText(const QString& tagName) const;

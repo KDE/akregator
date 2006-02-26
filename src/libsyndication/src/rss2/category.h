@@ -62,7 +62,7 @@ class KDE_EXPORT Category : public ElementWrapper
          * domain(). Examples: "General", "Programming", "Funny",
          * "Books/History".
          *
-         * @return The category identifier/name as string or QString::null for
+         * @return The category identifier/name as string or a null string for
          * null objects.
          * 
          */
@@ -72,7 +72,7 @@ class KDE_EXPORT Category : public ElementWrapper
          * optional, identifies the domain of the category, i.e. a
          * categorization taxonomy.
          *
-         * @return The domain of the category, or QString::null if none is set (and for null objects)
+         * @return The domain of the category, or a null string if none is set (and for null objects)
          */
         QString domain() const;
 

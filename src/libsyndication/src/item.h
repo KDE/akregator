@@ -59,7 +59,7 @@ class KDE_EXPORT Item : public KShared
          * The title of the item.
          * TODO: specify format (HTML or not?)
          * 
-         * @return the title of the item, or QString::null if not specified
+         * @return the title of the item, or a null string if not specified
          */
         virtual QString title() const = 0;
         
@@ -68,7 +68,7 @@ class KDE_EXPORT Item : public KShared
          * cases, this will be a website containing the full article associated
          * with this item.
          * 
-         * @return a URL, or QString::null if not specified
+         * @return a URL, or a null string if not specified
          */
         virtual QString link() const = 0;
         
@@ -80,7 +80,7 @@ class KDE_EXPORT Item : public KShared
          * This string may contain HTML markup (importantly, "<", ">", "&" 
          * occurring in the text are escaped!).
          * 
-         * @return the description as HTML, or QString::null if not specified
+         * @return the description as HTML, or a null string if not specified
          */
         virtual QString description() const = 0;
         
@@ -89,7 +89,7 @@ class KDE_EXPORT Item : public KShared
          * This string may contain HTML markup (importantly, "<", ">", "&"
          * occurring in the text are escaped!)
          *
-         * @return content string as HTML, or QString::null if not set
+         * @return content string as HTML, or a null string if not set
          */
         virtual QString content() const = 0;
         

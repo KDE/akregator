@@ -69,7 +69,7 @@ class KDE_EXPORT Image : public KShared
          * The URL of the site, when the channel is rendered, the image should
          * be a link to the site. If not set, use Feed::link().
          *
-         * @return the url the rendered image should link to, or QString::null
+         * @return the url the rendered image should link to, or a null string
          * if not specified in the feed.
          */
         virtual QString link() const = 0;

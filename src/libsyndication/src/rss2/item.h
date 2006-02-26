@@ -77,7 +77,7 @@ class KDE_EXPORT Item : public ElementWrapper
          * The URL of the item. This usually links to the web representation
          * of the item, e.g. the full news article.
          * 
-         * @return an URL, or QString::null if not set
+         * @return an URL, or a null string if not set
          */
         QString link() const;
 
@@ -117,7 +117,7 @@ class KDE_EXPORT Item : public ElementWrapper
         /**
          * URL of a page for comments relating to the item.
          * 
-         * @return an URL to the comments, or QString::null if not set
+         * @return an URL to the comments, or a null string if not set
          */
         QString comments() const;
 
@@ -131,7 +131,7 @@ class KDE_EXPORT Item : public ElementWrapper
          * @c &lt;author> is not available, the method returns
          * @c &lt;dc:creator> instead, if available.
          * 
-         * @return an email address of the author, or QString::null if not
+         * @return an email address of the author, or a null string if not
          * specified
          */
         QString author() const;
@@ -153,7 +153,7 @@ class KDE_EXPORT Item : public ElementWrapper
          * them as a string. It's up to the source of the feed to establish the
          * uniqueness of the string."
          * 
-         * @return a guid string, or QString::null if none specified in the
+         * @return a guid string, or a null string if none specified in the
          * feed
          */
         QString guid() const;

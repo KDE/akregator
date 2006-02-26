@@ -84,7 +84,7 @@ class KDE_EXPORT Model
          * already contains a sequence with the given URI, the existing instance
          * is returned.
          * 
-         * @param uri the URI of the sequence, or QString::null for an anonymous
+         * @param uri the URI of the sequence, or a null string for an anonymous
          * instance
          * @return a shared pointer to the requested sequence
          */

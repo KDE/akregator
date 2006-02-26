@@ -62,7 +62,7 @@ class KDE_EXPORT Source : public ElementWrapper
          * The name of the RSS channel that the item came from, derived from
          * its &lt;title>. Example: "Tomalak's Realm"
          *
-         * @return A string containing the source, or QString::null if not set
+         * @return A string containing the source, or a null string if not set
          * (and for null objects)
          */
         QString source() const;
@@ -70,7 +70,7 @@ class KDE_EXPORT Source : public ElementWrapper
         /**
          * Required attribute, links to the XMLization of the source.
          *
-         * @return An url, or QString::null if not set (though required from
+         * @return An url, or a null string if not set (though required from
          * the spec), and for null objects
          */
         QString url() const;

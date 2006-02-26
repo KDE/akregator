@@ -73,7 +73,7 @@ class KDE_EXPORT Category : public ElementWrapper
          * A term is unique in its scheme (like in C++ identifiers are 
          * unique in their namespaces)
          * 
-         * @return a URI representing the scheme, or QString::null
+         * @return a URI representing the scheme, or a null string
          * if not specified
          */
         QString scheme() const;
@@ -85,7 +85,7 @@ class KDE_EXPORT Category : public ElementWrapper
          * If not specified, use term() instead.
          * 
          * @return the label as plain text (no HTML, "&", "<" etc. are
-         * unescaped!), or QString::null if not specified
+         * unescaped!), or a null string if not specified
          */
         QString label() const;
     

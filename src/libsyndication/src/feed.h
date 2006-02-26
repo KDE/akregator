@@ -90,7 +90,7 @@ class KDE_EXPORT Feed : public KShared
          * The title of the feed.
          * TODO: specify format (whether HTML is allowed or not, etc)
          * 
-         * @return the title, or QString::null if none is specified
+         * @return the title, or a null string if none is specified
          */
         virtual QString title() const = 0;
         
@@ -98,7 +98,7 @@ class KDE_EXPORT Feed : public KShared
          * returns a link pointing to a website associated with this channel.
          * This is e.g. a news site, a blog...
          * 
-         * @return a WWW link, or QString::null if none is specified
+         * @return a WWW link, or a null string if none is specified
          */
         virtual QString link() const = 0;
         
@@ -107,7 +107,7 @@ class KDE_EXPORT Feed : public KShared
          * This string may contain HTML markup (importantly, "<", ">", "&" occurring
          * in the text are escaped!)
          * 
-         * @return the description as HTML, or QString::null if none is
+         * @return the description as HTML, or a null string if none is
          * specified
          */
         virtual QString description() const = 0;

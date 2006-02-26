@@ -99,7 +99,7 @@ time_t parseDate(const QString& str, DateFormat hint=RFCDate);
  * this is used internally to create debugging output.
  * 
  * @param date the date to convert
- * @return string representation of the date, or QString::null if 
+ * @return string representation of the date, or a null string if 
  * @c date is 0
  */
 QString dateTimeToString(time_t date);
