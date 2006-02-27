@@ -24,7 +24,7 @@
 
 #include <kcharsets.h>
 #include <kcodecs.h> 
-#include <krfcdate.h>
+#include <kdatetime.h>
 
 #include <QByteArray>
 #include <QDateTime>
@@ -58,14 +58,12 @@ unsigned int calcHash(const QByteArray& array)
 
 time_t parseISODate(const QString& str)
 {
-    time_t t = KRFCDate::parseDateISO8601(str);
-    return t > 1 ? t : 0;
+    return KDateTime::fromString(str, KDateTime::ISODate).toTime_t();
 }
 
 time_t parseRFCDate(const QString& str)
 {
-    time_t t = KRFCDate::parseDate(str);
-    return t > 1 ? t : 0;
+    return KDateTime::fromString(str, KDateTime::RFCDate).toTime_t();
 }
 
 time_t parseDate(const QString& str, DateFormat hint)
