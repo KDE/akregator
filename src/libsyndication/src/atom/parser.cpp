@@ -41,6 +41,13 @@
 namespace LibSyndication {
 namespace Atom {
 
+class Parser::ParserPrivate
+{
+    public:
+    static QDomDocument convertAtom0_3(const QDomDocument& document);
+    static QDomNode convertNode(QDomDocument& doc, const QDomNode& node, const QHash<QString, QString>& nameMapper);
+};
+        
 bool Parser::accept(const LibSyndication::DocumentSource& source) const
 {
     QDomDocument doc = source.asDomDocument();
@@ -77,7 +84,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
     if (feedValid && feed.attribute(QString::fromUtf8("version"))
         == QString::fromUtf8("0.3"))
     {
-        doc = convertAtom0_3(doc);
+        doc = ParserPrivate::convertAtom0_3(doc);
         feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
         
     }
@@ -109,7 +116,7 @@ QString Parser::format() const
     return QString::fromUtf8("atom");
 }
 
-QDomNode Parser::convertNode(QDomDocument& doc, const QDomNode& node, const QHash<QString, QString>& nameMapper)
+QDomNode Parser::ParserPrivate::convertNode(QDomDocument& doc, const QDomNode& node, const QHash<QString, QString>& nameMapper)
 {
     if (!node.isElement())
         return node.cloneNode(true);
@@ -187,7 +194,7 @@ QDomNode Parser::convertNode(QDomDocument& doc, const QDomNode& node, const QHas
     return newEl;
 }
 
-QDomDocument Parser::convertAtom0_3(const QDomDocument& doc03)
+QDomDocument Parser::ParserPrivate::convertAtom0_3(const QDomDocument& doc03)
 {
     QDomDocument doc = doc03.cloneNode(false).toDocument();
     
@@ -208,6 +215,11 @@ QDomDocument Parser::convertAtom0_3(const QDomDocument& doc03)
 
     return doc;
 }
+
+Parser::Parser() {}
+Parser::~Parser() {}
+Parser::Parser(const Parser& other) : AbstractParser(other) {}
+Parser& Parser::operator=(const Parser& other) { return *this; }
 
 } // namespace Atom
 } // namespace LibSyndication

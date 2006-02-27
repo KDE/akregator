@@ -44,6 +44,12 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
 {
     public:
 
+        /** default constructor */
+        Parser();
+        
+        /** destructor */
+        virtual ~Parser();
+        
         /**
          * checks whether a document source looks like an RSS0.9x/2.0 document
          * 
@@ -71,6 +77,18 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * @return @c "rss2"
          */
         QString format() const;
+        
+    protected:
+        
+        /** @internal */
+        Parser(const Parser& other);
+        
+        /** @internal */
+        Parser& operator=(const Parser& other);
+                
+    private:
+        class ParserPrivate;
+        ParserPrivate* d;
 };
 
 } // namespace RSS2

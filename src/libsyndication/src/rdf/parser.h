@@ -37,14 +37,20 @@ namespace RDF {
 class Model;
     
 /**
- * Parser implementation for RDF-based RSS 1.0 feeds.
+ * Parser implementation for RDF-based RSS 0.9 and RSS 1.0 feeds.
  * 
  * @author Frank Osterfeld
  */
 class KDE_EXPORT Parser : public LibSyndication::AbstractParser
 {
     public:
-
+        
+        /** default constructor */
+        Parser();
+        
+        /** destructor */
+        virtual ~Parser();
+        
         /**
          * returns whether the passed document looks like 
          * an RSS 1.0 document.
@@ -68,10 +74,18 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * @return @c "rdf"
          */
         virtual QString format() const;
+    
+    protected:
+        
+        /** @internal */ 
+        Parser(const Parser& other);
+        /** @internal */ 
+        Parser& operator=(const Parser& other);
         
     private:
         
-        void map09to10(Model model) const;
+        class ParserPrivate;
+        ParserPrivate* d;
 };
 
 } // namespace RDF

@@ -46,6 +46,12 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
 {
     public:
 
+        /** default constructor */
+        Parser();
+        
+        /** destructor */
+        virtual ~Parser();
+
         /**
          * returns whether the source looks like an Atom 1.0 or 0.3
          * document, by checking the root element.
@@ -68,22 +74,18 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * @return @c "atom"
          */
         QString format() const;
-        
+    
     protected:
         
-        /**
-         * converts an Atom 0.3 document to an Atom 1.0-similar document
-         * that can be parsed by our parser.
-         * 
-         * @param document an Atom 0.3 document. If it is not Atom 0.3, the 
-         * result is undefined.
-         * @return a new DOM document, suitable for our parser. This is not
-         * completely Atom 1.0-compliant (it might contain now obsolete 
-         * elements, like e.g. atom:created or atom:info), but "enough 1.0" for
-         * our purposes.
-         */
-        static QDomDocument convertAtom0_3(const QDomDocument& document);
-        static QDomNode convertNode(QDomDocument& doc, const QDomNode& node, const QHash<QString, QString>& nameMapper);
+        /** @internal */
+        Parser(const Parser& other);
+        
+        /** @internal */
+        Parser& operator=(const Parser& other);
+        
+    private:
+        class ParserPrivate;
+        ParserPrivate* d;
 };
 
 } // namespace Atom

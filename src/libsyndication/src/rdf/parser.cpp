@@ -43,6 +43,12 @@
 namespace LibSyndication {
 namespace RDF {
 
+class Parser::ParserPrivate
+{
+    public:
+    static void map09to10(Model model);
+};
+
 bool Parser::accept(const DocumentSource& source) const
 {
     QDomDocument doc = source.asDomDocument();
@@ -70,7 +76,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
     bool is09 = !model.resourcesWithType(RSS09Vocab::self()->channel()).isEmpty();
     
     if (is09)
-        map09to10(model);
+        ParserPrivate::map09to10(model);
     
     QList<ResourcePtr> channels = model.resourcesWithType(RSSVocab::self()->channel());
     
@@ -81,7 +87,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
     return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
 }
 
-void Parser::map09to10(Model model) const
+void Parser::ParserPrivate::map09to10(Model model)
 {
     QHash<QString, PropertyPtr> hash;
     
@@ -139,6 +145,11 @@ void Parser::map09to10(Model model) const
     }
 }
 
+Parser::Parser() {}
+Parser::~Parser() {}
+Parser::Parser(const Parser& other) : AbstractParser(other) {}
+Parser& Parser::operator=(const Parser& other) { return *this; }
+       
 QString Parser::format() const
 {
     return QString::fromUtf8("rdf");

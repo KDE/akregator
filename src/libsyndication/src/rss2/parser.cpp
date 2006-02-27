@@ -32,6 +32,8 @@
 namespace LibSyndication {
 namespace RSS2 {
 
+class Parser::ParserPrivate {};
+    
 bool Parser::accept(const LibSyndication::DocumentSource& source) const
 {
     QDomDocument doc = source.asDomDocument();
@@ -54,6 +56,11 @@ QString Parser::format() const
 {
     return QString::fromUtf8("rss2");
 }
+
+Parser::Parser() {}
+Parser::Parser(const Parser& other) : AbstractParser(other) {}
+Parser::~Parser() {}
+Parser& Parser::operator=(const Parser& other) { return *this; }
 
 } // namespace RSS2
 } // namespace LibSyndication
