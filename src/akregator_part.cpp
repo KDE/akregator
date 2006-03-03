@@ -146,16 +146,17 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
    
     if (factory != 0)
     {
-        
-        if (Settings::archiveBackend() == "metakit")
+        if (factory->allowsMultipleWriteAccess())
+        {
+            m_storage = factory->createStorage(QStringList());
+        } 
+        else
         {
             if (tryToLock(factory->name()))
                 m_storage = factory->createStorage(QStringList());
             else 
                 m_storage = dummyFactory->createStorage(QStringList());
         }
-        else
-            m_storage = factory->createStorage(QStringList());
     }
     
 

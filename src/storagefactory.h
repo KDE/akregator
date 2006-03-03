@@ -50,6 +50,13 @@ class StorageFactory
     
     /** shows the plugin's configuration dialog */
     virtual void configure() = 0;
+
+    /**
+     * returns wether the backend allows multiple writers at the same time
+     * If not, Akregator must use a lock to ensure that only one process gains
+     * write access.
+     */
+    virtual bool allowsMultipleWriteAccess() const = 0;
     
     /** creates a storage object with given parameters
         @param params list of implementation-specific parameters
