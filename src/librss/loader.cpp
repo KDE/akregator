@@ -61,7 +61,7 @@ FileRetriever::~FileRetriever()
 }
 
 bool FileRetriever::m_useCache = true;
-QString FileRetriever::m_userAgent = 0;
+QString FileRetriever::m_userAgent = QString();
 
 void FileRetriever::setUserAgent(const QString &ua)
 {
@@ -88,7 +88,8 @@ void FileRetriever::retrieveData(const KURL &url)
 
    d->job = KIO::get(u, !m_useCache, false);
 
-   d->job->addMetaData("UserAgent", m_userAgent);
+   if (!m_userAgent.isNull())
+      d->job->addMetaData("UserAgent", m_userAgent);
 
 
    QTimer::singleShot(1000*90, this, SLOT(slotTimeout()));
