@@ -1,0 +1,25 @@
+kde4_header()
+
+include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+
+
+########### install files ###############
+
+install_files( ${DATA_INSTALL_DIR}/akregator/pics FILES akregator_flag.png kmmsgflag.png kmmsgnew.png kmmsgunseen.png )
+
+kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
+
+kde4_footer()
+
+
+
+#original Makefile.am contents follow:
+
+#pics_DATA = akregator_flag.png kmmsgflag.png kmmsgnew.png kmmsgunseen.png
+#picsdir = $(kde_datadir)/akregator/pics
+#
+#KDE_ICON = AUTO
+#
+##EXTRA_DIST = $(pics_DATA)
+##akregatoricondir = $(kde_datadir)/akregator/icons
+##akregator_ICON = rss_label
