@@ -81,6 +81,7 @@ void FileRetriever::setUserAgent(const QString &ua)
 {
     if (Private::userAgent == 0L)
         FileRetriever::Private::userAgentsd.setObject(Private::userAgent, new QString);
+    (*Private::userAgent) = ua;
 }
 
 void FileRetriever::setUseCache(bool enabled)
