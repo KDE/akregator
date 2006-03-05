@@ -121,6 +121,7 @@ namespace RSS
 
 			static void setUseCache(bool enabled);
 			static void setUserAgent(const QString &ua);
+                        static QString userAgent();
 
 		signals:
 			/**
@@ -143,7 +144,6 @@ namespace RSS
 
 		private:
 			static bool m_useCache;
-			static QString m_userAgent;
 
 			FileRetriever(const FileRetriever &other);
 			FileRetriever &operator=(const FileRetriever &other);

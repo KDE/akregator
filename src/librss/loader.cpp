@@ -13,12 +13,14 @@
 
 #include <kio/job.h>
 #include <kprocess.h>
+#include <kstaticdeleter.h>
 #include <kurl.h>
 #include <kdebug.h>
 
 #include <qdom.h>
 #include <qbuffer.h>
 #include <qregexp.h>
+#include <qstring.h>
 #include <qstringlist.h>
 #include <qtimer.h>
 
@@ -32,8 +34,10 @@ DataRetriever::~DataRetriever()
 {
 }
 
-struct FileRetriever::Private
+class FileRetriever::Private
 {
+    public:
+        
    Private()
       : buffer(NULL),
         lastError(0), job(NULL)
@@ -48,8 +52,12 @@ struct FileRetriever::Private
    QBuffer *buffer;
    int lastError;
    KIO::Job *job;
+   static KStaticDeleter<QString> userAgentsd;
+   static QString* userAgent;
 };
 
+KStaticDeleter<QString> FileRetriever::Private::userAgentsd;
+QString* FileRetriever::Private::userAgent = 0L;
 FileRetriever::FileRetriever()
    : d(new Private)
 {
@@ -61,11 +69,18 @@ FileRetriever::~FileRetriever()
 }
 
 bool FileRetriever::m_useCache = true;
-QString FileRetriever::m_userAgent = QString();
+
+QString FileRetriever::userAgent()
+{
+    if (Private::userAgent == 0L)
+        FileRetriever::Private::userAgentsd.setObject(Private::userAgent, new QString);
+    return *Private::userAgent;
+}
 
 void FileRetriever::setUserAgent(const QString &ua)
 {
-    m_userAgent = ua;
+    if (Private::userAgent == 0L)
+        FileRetriever::Private::userAgentsd.setObject(Private::userAgent, new QString);
 }
 
 void FileRetriever::setUseCache(bool enabled)
@@ -88,8 +103,9 @@ void FileRetriever::retrieveData(const KURL &url)
 
    d->job = KIO::get(u, !m_useCache, false);
 
-   if (!m_userAgent.isNull())
-      d->job->addMetaData("UserAgent", m_userAgent);
+   QString ua = userAgent();
+   if (!ua.isEmpty())
+      d->job->addMetaData("UserAgent", ua);
 
 
    QTimer::singleShot(1000*90, this, SLOT(slotTimeout()));
@@ -298,8 +314,6 @@ const KURL &Loader::discoveredFeedURL() const
 {
    return d->discoveredFeedURL;
 }
-
-#include <kdebug.h>
 
 void Loader::slotRetrieverDone(const QByteArray &data, bool success)
 {
