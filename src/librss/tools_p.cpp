@@ -15,7 +15,9 @@
 #include <kcharsets.h>
 #include <qregexp.h>
 
-time_t RSS::parseISO8601Date(const QString &s)
+namespace RSS {
+
+time_t parseISO8601Date(const QString &s)
 {
     // do some sanity check: 26-12-2004T00:00+00:00 is parsed to epoch+1 in the KRFCDate, which is wrong. So let's check if the date begins with YYYY -fo
     if (s.stripWhiteSpace().left(4).toInt() < 1000)
@@ -28,7 +30,7 @@ time_t RSS::parseISO8601Date(const QString &s)
         return KRFCDate::parseDateISO8601(s + "T12:00:00");
 }
 
-QString RSS::childNodesAsXML(const QDomNode& parent)
+QString childNodesAsXML(const QDomNode& parent)
 {
 	QDomNodeList list = parent.childNodes();
 	QString str;
@@ -38,7 +40,81 @@ QString RSS::childNodesAsXML(const QDomNode& parent)
 	return str.stripWhiteSpace();
 }
 
-QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool isInlined)
+static QString plainTextToHtml(const QString& plainText)
+{
+    QString str(plainText);
+    str.replace("&", "&amp;");
+    str.replace("\"", "&quot;");
+    str.replace("<", "&lt;");
+    //str.replace(">", "&gt;");
+    str.replace("\n", "<br/>");
+    return str;
+}
+
+enum ContentFormat { Text, HTML, XML, Binary };
+        
+static ContentFormat mapTypeToFormat(const QString& modep, const QString& typep,  const QString& src)
+{
+    QString mode = modep.isNull() ? "escaped" : modep;
+    QString type = typep;
+    
+    //"If neither the type attribute nor the src attribute is provided,
+    //Atom Processors MUST behave as though the type attribute were
+    //present with a value of "text""
+    if (type.isNull() && src.isEmpty())
+        type = QString::fromUtf8("text");
+
+    if (type == QString::fromUtf8("html")
+        || type == QString::fromUtf8("text/html"))
+        return HTML;
+    
+    if (type == QString::fromUtf8("text")
+        || (type.startsWith(QString::fromUtf8("text/"), false)
+        && !type.startsWith(QString::fromUtf8("text/xml"), false))
+       )
+        return Text;
+    
+    QStringList xmltypes;
+    xmltypes.append(QString::fromUtf8("xhtml"));
+    // XML media types as defined in RFC3023:
+    xmltypes.append(QString::fromUtf8("text/xml"));
+    xmltypes.append(QString::fromUtf8("application/xml"));
+    xmltypes.append(QString::fromUtf8("text/xml-external-parsed-entity"));
+    xmltypes.append(QString::fromUtf8("application/xml-external-parsed-entity"));
+    xmltypes.append(QString::fromUtf8("application/xml-dtd"));
+    
+    
+    if (xmltypes.contains(type)
+        || type.endsWith(QString::fromUtf8("+xml"), false)
+        || type.endsWith(QString::fromUtf8("/xml"), false))
+        return XML;
+    
+    return Binary;
+}
+
+static QString extractAtomContent(const QDomElement& e)
+{
+    ContentFormat format = mapTypeToFormat(e.attribute("mode"),
+                                           e.attribute("type"),
+                                           e.attribute("src"));
+    
+    switch (format)
+    {
+        case HTML:
+            return KCharsets::resolveEntities(e.text().simplifyWhiteSpace());
+        case Text:
+            return plainTextToHtml(e.text().stripWhiteSpace());
+        case XML:
+            return childNodesAsXML(e).simplifyWhiteSpace();
+        case Binary:
+        default:
+            return QString();
+    }
+    
+    return QString();
+}
+
+QString extractNode(const QDomNode &parent, const QString &elemName, bool isInlined)
 {
 	QDomNode node = parent.namedItem(elemName);
 	if (node.isNull())
@@ -46,31 +122,12 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
 
 	QDomElement e = node.toElement();
         QString result = e.text().stripWhiteSpace(); // let's assume plain text
-
-        bool doHTMLCheck = true;
  
         if (elemName == "content") // we have Atom here
         {
-            doHTMLCheck = false;
-            // the first line is always the Atom 0.3, the second Atom 1.0
-            if (( e.hasAttribute("mode") && e.attribute("mode") == "escaped" && e.attribute("type") == "text/html" )
-            || (!e.hasAttribute("mode") && e.attribute("type") == "html"))
-            {
-                result = KCharsets::resolveEntities(e.text().simplifyWhiteSpace()); // escaped html
-            }
-            else if (( e.hasAttribute("mode") && e.attribute("mode") == "escaped" && e.attribute("type") == "text/plain" )
-                       || (!e.hasAttribute("mode") && e.attribute("type") == "text"))
-            {
-                result = e.text().stripWhiteSpace(); // plain text
-            }
-            else if (( e.hasAttribute("mode") && e.attribute("mode") == "xml" )
-                       || (!e.hasAttribute("mode") && e.attribute("type") == "xhtml"))
-            {
-                result = childNodesAsXML(e); // embedded XHMTL
-            }
+            result = extractAtomContent(e);
         }        
-        
-        if (doHTMLCheck) // check for HTML; not necessary for Atom:content
+        else // check for HTML; not necessary for Atom:content
         {
             bool hasPre = result.contains("<pre>",false);
             bool hasHtml = hasPre || result.contains("<");	// FIXME: test if we have html, should be more clever -> regexp
@@ -83,7 +140,7 @@ QString RSS::extractNode(const QDomNode &parent, const QString &elemName, bool i
         return result.isEmpty() ? QString::null : result;
 }
 
-QString RSS::extractTitle(const QDomNode & parent)
+QString extractTitle(const QDomNode & parent)
 {
     QDomNode node = parent.namedItem(QString::fromLatin1("title"));
     if (node.isNull())
@@ -99,5 +156,7 @@ QString RSS::extractTitle(const QDomNode & parent)
 
     return result;
 }
+
+} // namespace RSS
 
 // vim:noet:ts=4
