@@ -102,14 +102,14 @@ void StorageMK4Impl::initialize(const QStringList&) {}
 bool StorageMK4Impl::open(bool autoCommit)
 {
     QString filePath = d->archivePath +"/archiveindex.mk4";
-    d->storage = new c4_Storage(filePath.local8Bit(), true);
+    d->storage = new c4_Storage(filePath.toLocal8Bit(), true);
     d->archiveView = d->storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on url
     d->autoCommit = autoCommit;
 
     filePath = d->archivePath +"/feedlistbackup.mk4";
-    d->feedListStorage = new c4_Storage(filePath.local8Bit(), true);
+    d->feedListStorage = new c4_Storage(filePath.toLocal8Bit(), true);
     d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
     return true;
 }
