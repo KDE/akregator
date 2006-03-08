@@ -102,7 +102,8 @@ void FileRetriever::retrieveData(const KURL &url)
    if (u.protocol()=="feed")
        u.setProtocol("http");
 
-   d->job = KIO::get(u, !m_useCache, false);
+   d->job = KIO::get(u, false, false);
+   d->job->addMetaData("cache", m_useCache ? "refresh" : "reload");
 
    QString ua = userAgent();
    if (!ua.isEmpty())
