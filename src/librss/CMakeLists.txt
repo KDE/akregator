@@ -8,7 +8,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/src ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} 
 
 ########### next target ###############
 
-set(testlibrss_SRCS testlibrss.cpp )
+set(testlibrss_SRCS testlibrss.cpp ${librsslocal_SRCS} )
 
 kde4_automoc(${testlibrss_SRCS})
 
@@ -16,7 +16,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testlibrss ${testlibrss_SRCS})
 
-target_link_libraries(testlibrss  ${QT_AND_KDECORE_LIBS} rsslocal kio )
+target_link_libraries(testlibrss  ${LIB_KIO} )
 
 endif(KDE4_BUILD_TESTS)
 
