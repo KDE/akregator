@@ -84,10 +84,10 @@ void FileRetriever::retrieveData(const KUrl &url)
     if (u.protocol() == "feed")
         u.setProtocol("http");
 
-    d->job = KIO::get(u, !m_useCache, false);
+    d->job = KIO::get(u, false, false);
 
     d->job->addMetaData("UserAgent", m_userAgent);
-
+    d->job->addMetaData("cache", m_useCache ? "refresh" : "reload");
 
     QTimer::singleShot(1000*90, this, SLOT(slotTimeout()));
 
