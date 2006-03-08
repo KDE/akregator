@@ -18,7 +18,7 @@
 #define d4_assert ASSERT
 
 #undef d4_assertThis
-#define d4_assertThis d4_assert(AfxIsValidAddress(this, sizeof *this, FALSE))
+#define d4_assertThis d4_assert(AfxIsValidAddress(this, sizeof *this, false))
 
 #undef d4_new
 #define d4_new DEBUG_NEW
