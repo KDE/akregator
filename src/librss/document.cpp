@@ -72,6 +72,25 @@ Document::Document(const Document &other) : d(0)
     *this = other;
 }
 
+static QString extractLink(const QDomNode& node, Format format)
+{
+    if (format == AtomFeed)
+    {
+        QDomNode n;
+        for (n = node.firstChild(); !n.isNull(); n = n.nextSibling()) {
+            const QDomElement e = n.toElement();
+            if ( (e.tagName() == QString::fromLatin1("link")) 
+                  && (e.attribute(QString::fromLatin1("rel"), QString::fromLatin1("alternate")) == QString::fromLatin1("alternate")))
+            {   
+                return n.toElement().attribute(QString::fromLatin1("href"));
+            }
+        }
+    }
+
+    return extractNode(node, QString::fromLatin1("link"));
+    
+}
+
 Document::Document(const QDomDocument &doc) : d(new Private)
 {
     QString elemText;
@@ -148,10 +167,11 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 
     if (!(elemText = extractTitle(channelNode)).isNull())
         d->title = elemText;
-    if (!(elemText = extractNode(channelNode, QString::fromLatin1("description"))).isNull())
+    if (!(elemText = extractNode(channelNode, QString::fromLatin1((d->format==AtomFeed)? "summary" : "description"), 
+false)).isNull())
         d->description = elemText;
-    if (!(elemText = extractNode(channelNode, QString::fromLatin1("link"))).isNull())
-        d->link = elemText;
+        
+    d->link = extractLink(channelNode, d->format);
 
     
     /* This is ugly but necessary since RSS 0.90 and 1.0 have a different parent

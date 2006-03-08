@@ -7,6 +7,10 @@ Changes after 1.2.1:
 
 Bug fixes:
 
+ 2006/03/09 Read more feed metadata for Atom feeds (title, link) (#123140) -fo
+ 2006/03/09 Use "refresh" cache mode as default, ignoring konq settings. 
+            ("refresh" == Use cache after verifying with server) 
+            This should make disabling the "Use browser cache" option unnecessary. -fo
  2006/02/21 Set "rel" attribute default to "alternate", as requested by Atom specification (#122409) -ew
  2006/02/21 Disable category support in the metakit backend, so it should support about 500
             instead of 340 feeds now with the default 1024 open files limit on most systems. -fo
