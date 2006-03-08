@@ -1,5 +1,17 @@
 kde4_header()
 
+set(librsslocal_SRCS 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/article.cpp 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/document.cpp 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/image.cpp 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/textinput.cpp 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/tools_p.cpp 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/loader.cpp 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/enclosure.cpp 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss/category.cpp
+	)
+
+
 add_subdirectory( librss ) 
 add_subdirectory( libsyndication ) 
 add_subdirectory( about ) 
@@ -24,7 +36,7 @@ install_targets(/bin akregator )
 
 ########### next target ###############
 
-set(akregatorprivate_LIB_SRCS 
+set(akregatorprivate_LIB_SRCS ${librsslocal_SRCS}
    articlefilter.cpp 
    aboutdata.cpp 
    trayicon.cpp 
@@ -62,7 +74,7 @@ kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate  ${QT_AND_KDECORE_LIBS} kdepim rsslocal khtml )
+target_link_libraries(akregatorprivate  ${QT_AND_KDECORE_LIBS} kdepim  khtml )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install_targets(${LIB_INSTALL_DIR} akregatorprivate )
