@@ -112,6 +112,8 @@ class StorageMK4Impl : public Storage
         /** deletes all feed storages in this archive */
         virtual void clear();
         
+        virtual bool taggingEnabled() const;
+        
     protected slots:
         virtual void slotCommit();
         

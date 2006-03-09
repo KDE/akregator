@@ -144,25 +144,29 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     m_storage = 0;
     Backend::StorageFactory* factory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
    
+    QStringList storageParams;
+    
+    storageParams.append(QString("taggingEnabled=%1").arg(Settings::showTaggingGUI() ? "true" : "false"));
+    
     if (factory != 0)
     {
         if (factory->allowsMultipleWriteAccess())
         {
-            m_storage = factory->createStorage(QStringList());
+            m_storage = factory->createStorage(storageParams);
         } 
         else
         {
             if (tryToLock(factory->name()))
-                m_storage = factory->createStorage(QStringList());
+                m_storage = factory->createStorage(storageParams);
             else 
-                m_storage = dummyFactory->createStorage(QStringList());
+                m_storage = dummyFactory->createStorage(storageParams);
         }
     }
     
 
     if (!m_storage) // Houston, we have a problem
     {
-        m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
+        m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(storageParams);
 
         KMessageBox::error(parentWidget, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg(Settings::archiveBackend()), i18n("Plugin error") );
     }

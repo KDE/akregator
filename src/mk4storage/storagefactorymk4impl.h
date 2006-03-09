@@ -44,6 +44,7 @@ class StorageFactoryMK4Impl : public StorageFactory
     virtual Storage* createStorage(const QStringList& params) const;
     virtual bool isConfigurable() const { return false; }
     virtual bool allowsMultipleWriteAccess() const { return false; }
+    
 };
 
 }

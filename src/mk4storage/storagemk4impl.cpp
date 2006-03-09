@@ -59,10 +59,17 @@ class StorageMK4Impl::StorageMK4ImplPrivate
         c4_IntProp punread, ptotalCount, plastFetch;
         QTimer* commitTimer;
         QString archivePath;
-
+        
+        bool taggingEnabled;
+        
         c4_Storage* feedListStorage;
         c4_View feedListView;
 };
+
+bool StorageMK4Impl::taggingEnabled() const
+{
+    return d->taggingEnabled;
+}
 
 void StorageMK4Impl::setArchivePath(const QString& archivePath)
 {
@@ -97,7 +104,24 @@ StorageMK4Impl::~StorageMK4Impl()
     delete d;
     d = 0;
 }
-void StorageMK4Impl::initialize(const QStringList&) {}
+void StorageMK4Impl::initialize(const QStringList& params)
+{
+    d->taggingEnabled = false;
+    
+    QStringList::ConstIterator it = params.begin();
+    QStringList::ConstIterator end = params.end();
+    
+    for ( ; it != end; ++it)
+    {
+        QStringList tokens = QStringList::split("=", *it);
+        if (tokens.count() == 2 && *(tokens.at(0)) == "taggingEnabled" 
+            && *(tokens.at(1)) == "true")
+        {
+            d->taggingEnabled = true;
+        }
+        
+    }
+}
 
 bool StorageMK4Impl::open(bool autoCommit)
 {

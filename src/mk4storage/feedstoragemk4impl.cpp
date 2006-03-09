@@ -81,7 +81,8 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
         c4_Storage* tagStorage;
         c4_View tagView;
         bool autoCommit;
-	    bool modified;
+        bool modified;
+        bool taggingEnabled;
         bool convert;
         QString oldArchivePath;
         c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName;
@@ -133,7 +134,8 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->autoCommit = main->autoCommit();
     d->url = url;
     d->mainStorage = main;
-
+    d->taggingEnabled = main->taggingEnabled();
+    
     QString url2 = url;
 
     if (url.length() > 255)
@@ -155,12 +157,15 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
 
+    d->tagStorage = 0;
 
-    d->tagStorage = new c4_Storage((filePath + ".mk4___TAGS").local8Bit(), true);
-    d->tagView = d->tagStorage->GetAs("tagIndex[tag:S,taggedArticles[guid:S]]");
-    hash = d->tagStorage->GetAs("archiveHash[_H:I,_R:I]");
-    d->tagView = d->tagView.Hash(hash, 1); // hash on tag
-
+    if (d->taggingEnabled)
+    {
+        d->tagStorage = new c4_Storage((filePath + ".mk4___TAGS").local8Bit(), true);
+        d->tagView = d->tagStorage->GetAs("tagIndex[tag:S,taggedArticles[guid:S]]");
+        hash = d->tagStorage->GetAs("archiveHash[_H:I,_R:I]");
+        d->tagView = d->tagView.Hash(hash, 1); // hash on tag
+    }
     //d->catStorage = new c4_Storage((filePath + ".mk4___CATEGORIES").local8Bit(), true);
     //d->catView = d->catStorage->GetAs("catIndex[catTerm:S,catScheme:S,catName:S,categorizedArticles[guid:S]]");
 }
@@ -169,7 +174,8 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
 FeedStorageMK4Impl::~FeedStorageMK4Impl()
 {
     delete d->storage;
-    delete d->tagStorage;
+    if (d->taggingEnabled)
+        delete d->tagStorage;
 //    delete d->catStorage;
     delete d; d = 0;
 }
@@ -179,7 +185,8 @@ void FeedStorageMK4Impl::commit()
     if (d->modified)
     {
         d->storage->Commit();
-        d->tagStorage->Commit();
+        if (d->taggingEnabled)
+            d->tagStorage->Commit();
 //        d->catStorage->Commit();
     }
     d->modified = false;
@@ -188,7 +195,8 @@ void FeedStorageMK4Impl::commit()
 void FeedStorageMK4Impl::rollback()
 {
     d->storage->Rollback();
-    d->tagStorage->Rollback();
+    if (d->taggingEnabled)
+        d->tagStorage->Rollback();
 //    d->catStorage->Rollback();
 }
 
@@ -235,7 +243,7 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag)
         for (int i = 0; i < size; i++) // fill with guids
             list += QString(d->pguid(d->archiveView.GetAt(i)));
     }
-    else
+    else if (d->taggingEnabled)
     {
         c4_Row tagrow;
         d->ptag(tagrow) = tag.utf8().data();
@@ -620,6 +628,9 @@ QValueList<Category> FeedStorageMK4Impl::categories(const QString& /*guid*/)
 
 void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
 {
+    if (!d->taggingEnabled)
+        return;
+    
     int findidx = findArticle(guid);
     if (findidx == -1)
         return;
@@ -661,6 +672,9 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
 
 void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
 {
+    if (!d->taggingEnabled)
+        return;
+    
     int findidx = findArticle(guid);
     if (findidx == -1)
         return;
@@ -704,6 +718,9 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
 QStringList FeedStorageMK4Impl::tags(const QString& guid)
 {
     QStringList list;
+    
+    if (!d->taggingEnabled)
+        return list;
     
     if (!guid.isNull()) // return tags for an articles
     {
@@ -812,7 +829,8 @@ void FeedStorageMK4Impl::enclosure(const QString& guid, bool& hasEnclosure, QStr
 void FeedStorageMK4Impl::clear()
 {
     d->storage->RemoveAll();
-    d->tagStorage->RemoveAll();
+    if (d->taggingEnabled)
+        d->tagStorage->RemoveAll();
     setUnread(0);
     d->modified = true;
 }
