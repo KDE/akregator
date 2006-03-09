@@ -167,8 +167,17 @@ Document::Document(const QDomDocument &doc) : d(new Private)
 
     if (!(elemText = extractTitle(channelNode)).isNull())
         d->title = elemText;
-    if (!(elemText = extractNode(channelNode, QString::fromLatin1((d->format==AtomFeed)? "summary" : "description"), 
-false)).isNull())
+    QString descriptionTagName = "description";
+    
+    if (d->format == AtomFeed)
+    {
+        if (d->version == vAtom_1_0)
+            descriptionTagName = "subtitle";
+        else
+            descriptionTagName = "tagline";
+    }
+    
+    if (!(elemText = extractNode(channelNode, descriptionTagName)).isNull())
         d->description = elemText;
         
     d->link = extractLink(channelNode, d->format);
