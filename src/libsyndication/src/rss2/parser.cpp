@@ -60,7 +60,7 @@ QString Parser::format() const
 Parser::Parser() {}
 Parser::Parser(const Parser& other) : AbstractParser(other) {}
 Parser::~Parser() {}
-Parser& Parser::operator=(const Parser& other) { return *this; }
+Parser& Parser::operator=(const Parser& /*other*/) { return *this; }
 
 } // namespace RSS2
 } // namespace LibSyndication

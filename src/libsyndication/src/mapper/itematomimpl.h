@@ -62,6 +62,8 @@ class ItemAtomImpl : public LibSyndication::Item
         
         QList<CategoryPtr> categories() const;
         
+        SpecificItemPtr specificItem() const;
+        
     private:
         
         LibSyndication::Atom::Entry m_entry;

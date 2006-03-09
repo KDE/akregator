@@ -76,7 +76,7 @@ class ParserCollection::ParserCollectionPrivate
             return feedptr;
         }
         
-        bool visitAtomFeedDocument(LibSyndication::Atom::FeedDocument* document)
+        bool visitAtomFeedDocument(LibSyndication::Atom::FeedDocument*)
         {
             LibSyndication::Atom::FeedDocumentPtr tptr = 
                 LibSyndication::Atom::FeedDocumentPtr::staticCast(m_ptr);
@@ -85,13 +85,13 @@ class ParserCollection::ParserCollectionPrivate
             return true;
         }
         
-        bool visitAtomEntryDocument(LibSyndication::Atom::EntryDocument* /*document*/)
+        bool visitAtomEntryDocument(LibSyndication::Atom::EntryDocument*)
         {
             // TODO
             return false;
         }
         
-        bool visitRDFDocument(LibSyndication::RDF::Document* document)
+        bool visitRDFDocument(LibSyndication::RDF::Document*)
         {
             LibSyndication::RDF::DocumentPtr tptr = 
                     LibSyndication::RDF::DocumentPtr::staticCast(m_ptr);
@@ -100,7 +100,7 @@ class ParserCollection::ParserCollectionPrivate
             return true;
         }
         
-        bool visitRSS2Document(LibSyndication::RSS2::Document* document)
+        bool visitRSS2Document(LibSyndication::RSS2::Document*)
         {
             LibSyndication::RSS2::DocumentPtr tptr = 
                     LibSyndication::RSS2::DocumentPtr::staticCast(m_ptr);

@@ -24,9 +24,14 @@
 
 #include "resourcewrapper.h"
 
+#include "../specificitem.h"
+
 class QString;
 
 namespace LibSyndication {
+    
+class SpecificItemVisitor;
+    
 namespace RDF {
 
 class DublinCore;
@@ -106,6 +111,26 @@ class KDE_EXPORT Item : public ResourceWrapper
          * @return debug string
          */
         QString debugInfo() const;
+};
+
+typedef KSharedPtr<SpecificItem> SpecificItemPtr;
+class SpecificItem : public LibSyndication::SpecificItem
+{
+    public:
+        
+        SpecificItem();
+        SpecificItem(const Item& item);
+        virtual ~SpecificItem();
+        
+        Item item() const;
+        
+        bool accept(SpecificItemVisitor* visitor);
+        
+    private:
+        
+        class SpecificItemPrivate;
+        SpecificItemPrivate* d;
+
 };
 
 } // namespace RDF

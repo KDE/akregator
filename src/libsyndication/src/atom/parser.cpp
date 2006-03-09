@@ -219,7 +219,7 @@ QDomDocument Parser::ParserPrivate::convertAtom0_3(const QDomDocument& doc03)
 Parser::Parser() {}
 Parser::~Parser() {}
 Parser::Parser(const Parser& other) : AbstractParser(other) {}
-Parser& Parser::operator=(const Parser& other) { return *this; }
+Parser& Parser::operator=(const Parser& /*other*/) { return *this; }
 
 } // namespace Atom
 } // namespace LibSyndication

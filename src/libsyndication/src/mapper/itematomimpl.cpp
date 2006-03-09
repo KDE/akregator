@@ -178,4 +178,9 @@ QList<LibSyndication::CategoryPtr> ItemAtomImpl::categories() const
     return list;
 }
 
+LibSyndication::SpecificItemPtr ItemAtomImpl::specificItem() const
+{
+    return LibSyndication::SpecificItemPtr(new LibSyndication::Atom::SpecificItem(m_entry));
+}
+
 } // namespace LibSyndication

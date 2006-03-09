@@ -24,6 +24,7 @@
 #define LIBSYNDICATION_ATOM_ENTRY_H
 
 #include "../elementwrapper.h"
+#include "../specificitem.h"
 
 #include <ctime>
 
@@ -32,6 +33,9 @@ class QString;
 template <class T> class QList;
 
 namespace LibSyndication {
+
+class SpecificItemVisitor;
+
 namespace Atom {
 
 class Category;
@@ -159,6 +163,25 @@ class KDE_EXPORT Entry : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
+};
+
+typedef KSharedPtr<SpecificItem> SpecificItemPtr;
+class SpecificItem : public LibSyndication::SpecificItem
+{
+    public:
+        
+        SpecificItem();
+        SpecificItem(const Entry& entry);
+        virtual ~SpecificItem();
+        
+        Entry entry() const;
+        
+        bool accept(SpecificItemVisitor* visitor);
+        
+    private:
+        
+        class SpecificItemPrivate;
+        SpecificItemPrivate* d;
 };
 
 } // namespace Atom

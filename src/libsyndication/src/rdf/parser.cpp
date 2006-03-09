@@ -148,7 +148,7 @@ void Parser::ParserPrivate::map09to10(Model model)
 Parser::Parser() {}
 Parser::~Parser() {}
 Parser::Parser(const Parser& other) : AbstractParser(other) {}
-Parser& Parser::operator=(const Parser& other) { return *this; }
+Parser& Parser::operator=(const Parser& /*other*/) { return *this; }
        
 QString Parser::format() const
 {

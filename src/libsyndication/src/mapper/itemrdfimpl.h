@@ -62,6 +62,8 @@ class ItemRDFImpl : public LibSyndication::Item
         
         QList<CategoryPtr> categories() const;
         
+        SpecificItemPtr specificItem() const;
+        
     private:
         
         LibSyndication::RDF::Item m_item;

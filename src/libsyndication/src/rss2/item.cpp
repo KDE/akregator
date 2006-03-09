@@ -27,6 +27,8 @@
 #include "tools.h"
 
 #include "../constants.h"
+#include "../specificitem.h"
+#include "../specificitemvisitor.h"
 #include "../tools.h"
 
 #include <QDomElement>
@@ -190,6 +192,37 @@ QString Item::debugInfo() const
         info += (*it).debugInfo();
     info += "### Item end ################\n";
     return info;
+}
+
+class SpecificItem::SpecificItemPrivate : public KShared
+{
+    public:
+        Item item;
+};
+
+SpecificItem::SpecificItem() : d(new SpecificItemPrivate)
+{
+}
+
+SpecificItem::SpecificItem(const Item& item) : d(new SpecificItemPrivate)
+{
+    d->item = item;
+}
+
+SpecificItem::~SpecificItem()
+{
+    delete d;
+    d = 0;
+}
+
+Item SpecificItem::item() const
+{
+    return d->item;
+}
+        
+bool SpecificItem::accept(SpecificItemVisitor* visitor)
+{
+    return visitor->visitSpecificRSS2Item(this);
 }
 
 } // namespace RSS2

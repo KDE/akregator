@@ -26,6 +26,8 @@
 #include "model.h"
 #include "rssvocab.h"
 #include "statement.h"
+
+#include "../specificitemvisitor.h"
 #include "../tools.h"
 
 #include <QString>
@@ -85,6 +87,36 @@ QString Item::debugInfo() const
     return info;
 }
 
+class SpecificItem::SpecificItemPrivate : public KShared
+{
+    public:
+    Item item;
+};
+
+SpecificItem::SpecificItem() : d(new SpecificItemPrivate)
+{
+}
+
+SpecificItem::SpecificItem(const Item& item) : d(new SpecificItemPrivate)
+{
+    d->item = item;
+}
+
+SpecificItem::~SpecificItem()
+{
+    delete d;
+    d = 0;
+}
+
+Item SpecificItem::item() const
+{
+    return d->item;
+}
+        
+bool SpecificItem::accept(SpecificItemVisitor* visitor)
+{
+    return visitor->visitSpecificRDFItem(this);
+}
 
 } // namespace RDF
 } // namespace LibSyndication

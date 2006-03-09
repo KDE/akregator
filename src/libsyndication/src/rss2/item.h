@@ -24,6 +24,7 @@
 #define LIBSYNDICATION_RSS2_ITEM_H
 
 #include "../elementwrapper.h"
+#include "../specificitem.h"
 
 #include <ctime>
 
@@ -33,6 +34,9 @@ class QString;
 template <class T> class QList;
 
 namespace LibSyndication {
+
+class SpecificItemVisitor;
+    
 namespace RSS2 {
 
 class Category;
@@ -196,6 +200,26 @@ class KDE_EXPORT Item : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
+};
+
+typedef KSharedPtr<SpecificItem> SpecificItemPtr;
+class SpecificItem : public LibSyndication::SpecificItem
+{
+    public:
+        
+        SpecificItem();
+        SpecificItem(const Item& item);
+        virtual ~SpecificItem();
+        
+        Item item() const;
+        
+        bool accept(SpecificItemVisitor* visitor);
+        
+    private:
+        
+        class SpecificItemPrivate;
+        SpecificItemPrivate* d;
+
 };
 
 } // namespace RSS2

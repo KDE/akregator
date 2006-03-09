@@ -62,6 +62,8 @@ class ItemRSS2Impl : public LibSyndication::Item
         
         QList<CategoryPtr> categories() const;
         
+        SpecificItemPtr specificItem() const;
+        
     private:
         
         LibSyndication::RSS2::Item m_item;

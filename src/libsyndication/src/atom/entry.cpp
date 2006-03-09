@@ -29,6 +29,7 @@
 #include "source.h"
 #include "tools.h"
 
+#include "../specificitemvisitor.h"
 #include "../tools.h"
 
 #include <QDomElement>
@@ -225,6 +226,37 @@ QString Entry::debugInfo() const
     info += "### Entry end ################\n";
 
     return info;
+}
+
+class SpecificItem::SpecificItemPrivate : public KShared
+{
+    public:
+        Entry entry;
+};
+
+SpecificItem::SpecificItem() : d(new SpecificItemPrivate)
+{
+}
+
+SpecificItem::SpecificItem(const Entry& entry) : d(new SpecificItemPrivate)
+{
+    d->entry = entry;
+}
+
+SpecificItem::~SpecificItem()
+{
+    delete d;
+    d = 0;
+}
+
+Entry SpecificItem::entry() const
+{
+    return d->entry;
+}
+        
+bool SpecificItem::accept(SpecificItemVisitor* visitor)
+{
+    return visitor->visitSpecificAtomItem(this);
 }
 
 } // namespace Atom

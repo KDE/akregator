@@ -11,14 +11,15 @@ libsyndication_la_SOURCES = parsercollection.cpp documentsource.cpp \
                             documentvisitor.cpp elementwrapper.cpp constants.cpp \
                             feed.cpp item.cpp enclosure.cpp category.cpp \
                             image.cpp tools.cpp person.cpp \
-                            loader.cpp dataretriever.cpp
+                            loader.cpp dataretriever.cpp specificitemvisitor.cpp
 
 libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
                                  parsercollection.h documentvisitor.h \
                                  documentsource.h elementwrapper.h \
                                  item.h feed.h category.h image.h \
                                  enclosure.h person.h global.h \
-                                 dataretriever.h loader.h
+                                 dataretriever.h loader.h specificitemvisitor.h \
+                                 specificitem.h
 
 libsyndication_includedir = $(includedir)/libsyndication
 

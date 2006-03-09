@@ -39,6 +39,8 @@ class Item;
 typedef KSharedPtr<Item> ItemPtr;
 class Person;
 typedef KSharedPtr<Person> PersonPtr;
+class SpecificItem;
+typedef KSharedPtr<SpecificItem> SpecificItemPtr;
 
 /**
  * An item from a news feed. An item can represent e.g. a news article
@@ -148,6 +150,14 @@ class KDE_EXPORT Item : public KShared
          * @return a list of categories
          */
         virtual QList<CategoryPtr> categories() const = 0;
+        
+        /**
+         * returns the format-specific item this object abstracts from.
+         * Use it if you need to access format-specifics that are not covered
+         * by this abstraction.
+         * 
+         */
+        virtual SpecificItemPtr specificItem() const = 0;
         
         /**
          * returns a description of the item for debugging purposes

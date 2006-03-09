@@ -75,7 +75,11 @@ class KDE_EXPORT DocumentVisitor
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */
-        virtual bool visitRSS2Document(LibSyndication::RSS2::Document* document) { return false; }
+        virtual bool visitRSS2Document(LibSyndication::RSS2::Document* document)
+        {
+            Q_UNUSED(document);
+            return false;
+        }
         
         /**
          * reimplement this method to handle RDF (i.e. RSS 1.0) documents.
@@ -84,7 +88,11 @@ class KDE_EXPORT DocumentVisitor
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */
-        virtual bool visitRDFDocument(LibSyndication::RDF::Document* document) { return false; }
+        virtual bool visitRDFDocument(LibSyndication::RDF::Document* document)
+        {
+            Q_UNUSED(document);
+            return false;
+        }
         
         /**
          * reimplement this method to handle Atom feed documents (most Atom 
@@ -94,7 +102,11 @@ class KDE_EXPORT DocumentVisitor
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */
-        virtual bool visitAtomFeedDocument(LibSyndication::Atom::FeedDocument* document) { return false; }
+        virtual bool visitAtomFeedDocument(LibSyndication::Atom::FeedDocument* document)
+        {
+            Q_UNUSED(document);
+            return false;
+        }
         
         /**
          * reimplement this method to handle Atom entry documents.
@@ -103,7 +115,11 @@ class KDE_EXPORT DocumentVisitor
          * @return whether the visitor handled the document.
          * Reimplementations of this method must return @c true.
          */
-        virtual bool visitAtomEntryDocument(LibSyndication::Atom::EntryDocument* document) { return false; }
+        virtual bool visitAtomEntryDocument(LibSyndication::Atom::EntryDocument* document)
+        { 
+            Q_UNUSED(document);
+            return false;
+        }
 };
 
 } // namespace LibSyndication

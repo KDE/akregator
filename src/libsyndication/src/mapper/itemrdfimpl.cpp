@@ -108,4 +108,9 @@ QList<LibSyndication::CategoryPtr> ItemRDFImpl::categories() const
     return QList<LibSyndication::CategoryPtr>();
 }
 
+LibSyndication::SpecificItemPtr ItemRDFImpl::specificItem() const
+{
+    return LibSyndication::SpecificItemPtr(new LibSyndication::RDF::SpecificItem(m_item));
+}
+
 } // namespace LibSyndication
