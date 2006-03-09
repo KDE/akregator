@@ -58,6 +58,16 @@ QString Enclosure::debugInfo() const
     {
         info += "length: #" + QString::number(dlength) + "#\n";
     }
+
+    uint dduration = duration();
+    
+    if (dduration != 0)
+    {
+        int hours = dduration / 3600;
+        int minutes = (dduration - hours*3600) / 60;
+        int seconds = dduration - hours*3600 - minutes*60;
+        info += QString("duration: #%1 (%2:%3:%4)#\n").arg(dduration).arg(hours).arg(minutes).arg(seconds);
+    }
     
     info += "# Enclosure end ###################\n";
     

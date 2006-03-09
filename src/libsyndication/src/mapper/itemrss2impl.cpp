@@ -110,7 +110,7 @@ QList<LibSyndication::EnclosurePtr> ItemRSS2Impl::enclosures() const
     
     if (!enc.isNull())
     {
-        EnclosureRSS2ImplPtr impl(new EnclosureRSS2Impl(enc));
+        EnclosureRSS2ImplPtr impl(new EnclosureRSS2Impl(m_item));
         list.append(LibSyndication::EnclosurePtr::staticCast(impl));
     }
     

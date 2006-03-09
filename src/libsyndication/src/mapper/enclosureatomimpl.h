@@ -51,6 +51,8 @@ class EnclosureAtomImpl : public LibSyndication::Enclosure
         QString type() const;
         
         uint length() const;
+
+        uint duration() const;
         
     private:
         LibSyndication::Atom::Link m_link;

@@ -54,5 +54,10 @@ uint EnclosureAtomImpl::length() const
 {
     return m_link.length();
 }
+
+uint EnclosureAtomImpl::duration() const
+{
+    return 0;
+}
  
 } // namespace LibSyndication

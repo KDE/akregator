@@ -35,4 +35,9 @@ QString Constants::dublinCoreNamespace()
     return QString::fromUtf8("http://purl.org/dc/elements/1.1/");
 }
 
+QString Constants::itunesNamespace()
+{
+        return QString::fromUtf8("http://www.itunes.com/dtds/podcast-1.0.dtd");
+}
+
 } // namespace LibSyndication

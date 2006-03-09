@@ -89,6 +89,14 @@ class KDE_EXPORT Enclosure : public KShared
          */
         virtual uint length() const = 0;
         
+        
+        /** 
+         * for audio/video files, the duration of the file in seconds
+         * 
+         * @return the duration of the file in seconds, or 0 if not specified
+         */
+        virtual uint duration() const = 0;
+        
         /**
          * description of this enclosure for debugging purposes
          * 

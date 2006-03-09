@@ -25,6 +25,7 @@
 
 #include "../enclosure.h"
 #include "../rss2/enclosure.h"
+#include "../rss2/item.h"
 
 namespace LibSyndication {
     
@@ -40,7 +41,7 @@ class EnclosureRSS2Impl : public LibSyndication::Enclosure
 {
     public:
 
-        EnclosureRSS2Impl(const LibSyndication::RSS2::Enclosure& enclosure);
+        EnclosureRSS2Impl(const LibSyndication::RSS2::Item& item);
         
         bool isNull() const;
         
@@ -51,8 +52,11 @@ class EnclosureRSS2Impl : public LibSyndication::Enclosure
         QString type() const;
         
         uint length() const;
+
+        uint duration() const;
         
     private:
+        LibSyndication::RSS2::Item m_item;
         LibSyndication::RSS2::Enclosure m_enclosure;
 };
     

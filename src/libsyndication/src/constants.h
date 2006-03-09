@@ -33,6 +33,7 @@ class Constants
         
         static QString xmlNamespace();
         static QString dublinCoreNamespace();
+        static QString itunesNamespace();
 };
 
 } // namespace LibSyndication
