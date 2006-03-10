@@ -82,7 +82,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             text += QString("<div class=\"body\">");
             QString url=node->xmlUrl();
             QString file = url.replace("/", "_").replace(":", "_");
-            KUrl u(m_view->m_imageDir);
+            KUrl u = KUrl::fromPath(m_view->m_imageDir);
             u.setFileName(file);
             text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
         }
@@ -359,7 +359,7 @@ void ArticleViewer::displayAboutPage()
     else
         content = content.arg( "" );
 
-    begin(KUrl( location ));
+    begin(KUrl::fromPath( location ));
     QString info =
             i18n("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
             "--- end of comment ---",
@@ -413,7 +413,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
     {
         QString url=feed->xmlUrl();
         QString file = url.replace("/", "_").replace(":", "_");
-        KUrl u(m_imageDir);
+        KUrl u = KUrl::fromPath(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
@@ -499,7 +499,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
     {
         QString url=feed->xmlUrl();
         QString file = url.replace("/", "_").replace(":", "_");
-        KUrl u(m_imageDir);
+        KUrl u = KUrl::fromPath(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }

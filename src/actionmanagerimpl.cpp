@@ -415,15 +415,21 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     d->frameManager = frameManager;
 
-    new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotBrowserForward()), d->actionCollection, "browser_forward");
+    new KToolBarPopupAction(i18n("Forward"),"forward", "Alt+Right",
+                            frameManager, SLOT(slotBrowserForward()),
+                            d->actionCollection,"browser_forward");
 
-    new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBrowserBack()), d->actionCollection, "browser_back");
+    new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left",
+                            frameManager, SLOT(slotBrowserBack()),
+                            d->actionCollection, "browser_back");
 
-    new KAction(i18n("Reload"), "reload", 0,                            frameManager, SLOT(slotBrowserReload()),
-                            d->actionCollection, "browser_reload");
+    new KAction(i18n("Reload"), "reload", 0, 
+                frameManager, SLOT(slotBrowserReload()),
+                d->actionCollection, "browser_reload");
 
-    new KAction(i18n("Stop"), "stop", 0, frameManager, SLOT(slotBrowserStop()),
-                                 d->actionCollection, "browser_stop");
+    new KAction(i18n("Stop"), "stop", 0,
+                frameManager, SLOT(slotBrowserStop()),
+                d->actionCollection, "browser_stop");
 }
 
 QWidget* ActionManagerImpl::container(const char* name)

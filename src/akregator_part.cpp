@@ -296,7 +296,7 @@ bool Part::openURL(const KUrl& url)
 
 void Part::openStandardFeedList()
 {
-    if ( !m_standardFeedList.isEmpty() && openURL(m_standardFeedList) )
+    if ( !m_standardFeedList.isEmpty() && openURL(KUrl::fromPath(m_standardFeedList)) )
         m_standardListLoaded = true;
 }
 
