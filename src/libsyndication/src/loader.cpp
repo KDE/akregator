@@ -188,7 +188,7 @@ void Loader::discoverFeeds(const QByteArray &data)
             }
         }
 
-        s2=feeds.first();
+        s2;
         KUrl testURL;
         // loop through, prefer feeds on same host
         QStringList::Iterator end( feeds.end() );

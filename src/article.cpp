@@ -26,9 +26,10 @@
 #include "feed.h"
 #include "feedstorage.h"
 #include "storage.h"
-#include "librss/librss.h"
 #include "shared.h"
 #include "utils.h"
+
+#include "libsyndication.h"
 
 #include <qdatetime.h>
 #include <qdom.h>
@@ -40,6 +41,7 @@
 #include <kdebug.h>
 #include <kurl.h>
 
+using namespace LibSyndication;
 
 namespace Akregator {
 
@@ -85,98 +87,61 @@ Article::Article(const QString& guid, Feed* feed) : d(new Private)
     d->hash = d->archive->hash(d->guid);
 }
 
-void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
+void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
-    d->hash = Utils::calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() );
+    d->hash = Utils::calcHash(article->title() + article->description() + article->link() );
 
-    d->guid = article.guid();
+    d->guid = article->id();
     
     if (!d->archive->contains(d->guid))
     {
         d->archive->addEntry(d->guid);
 
-        if (article.meta("deleted") == "true") 
-        { // if article is in deleted state, we just add the status and omit the rest
-            d->status = Private::Read | Private::Deleted;
-            d->archive->setStatus(d->guid, d->status);
-        }
-        else
-        { // article is not deleted, let's add it to the archive
-        
-            d->archive->setHash(d->guid, d->hash);
-            QString title = article.title().isEmpty() ? buildTitle(article.description()) :  article.title();
-            d->archive->setTitle(d->guid, title);
-            d->archive->setDescription(d->guid, article.description());
-            d->archive->setLink(d->guid, article.link().url());
-            d->archive->setComments(d->guid, article.comments());
-            d->archive->setCommentsLink(d->guid, article.commentsLink().url());
-            d->archive->setGuidIsPermaLink(d->guid, article.guidIsPermaLink());
-            d->archive->setGuidIsHash(d->guid, article.meta("guidIsHash") == "true");
-            d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
-            d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
-
-            QList<RSS::Category> cats = article.categories();
-            QList<RSS::Category>::ConstIterator end = cats.end();
-
-            for (QList<RSS::Category>::ConstIterator it = cats.begin(); it != end; ++it)
-            {
-                Backend::Category cat;
-
-                cat.term = (*it).category();
-                cat.scheme = (*it).domain();
-                cat.name = (*it).category();
-
-                d->archive->addCategory(d->guid, cat);
-            }
-
-            if (!article.enclosure().isNull())
-            {
-                d->archive->setEnclosure(d->guid, article.enclosure().url(), article.enclosure().type(), article.enclosure().length());
-            }
-            else
-            {
-                d->archive->removeEnclosure(d->guid);
-            }
-
-            QString status = article.meta("status");
-            
-            if (!status.isEmpty())
-            {
-                int statusInt = status.toInt();
-                if (statusInt == New)
-                    statusInt = Unread;
-                setStatus(statusInt);
-            }
-            setKeep(article.meta("keep") == "true");
-        }
+        d->archive->setHash(d->guid, d->hash);
+        QString title = article->title();
+        if (title.isEmpty())
+            title = buildTitle(article->description());
+        d->archive->setTitle(d->guid, title);
+        d->archive->setDescription(d->guid, article->description());
+        d->archive->setLink(d->guid, article->link());
+        //d->archive->setComments(d->guid, article.comments());
+        //d->archive->setCommentsLink(d->guid, article.commentsLink().url());
+        d->archive->setGuidIsPermaLink(d->guid, false);
+        d->archive->setGuidIsHash(d->guid, d->guid.startsWith("hash:"));
+        QDateTime datePublished;
+        datePublished.setTime_t(article->datePublished());
+        d->pubDate = datePublished.isValid() ? datePublished : QDateTime::currentDateTime();
+        d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
     }
     else
     {
         // always update comments count, as it's not used for hash calculation
-        d->archive->setComments(d->guid, article.comments());
+        //d->archive->setComments(d->guid, article.comments());
         if (d->hash != d->archive->hash(d->guid)) //article is in archive, was it modified?
         { // if yes, update
             d->pubDate.setTime_t(d->archive->pubDate(d->guid));
             d->archive->setHash(d->guid, d->hash);
-            QString title = article.title().isEmpty() ? buildTitle(article.description()) :  article.title();
+            QString title = article->title();
+            if (title.isEmpty())
+                title = buildTitle(article->description());
             d->archive->setTitle(d->guid, title);
-            d->archive->setDescription(d->guid, article.description());
-            d->archive->setLink(d->guid, article.link().url());
-            d->archive->setCommentsLink(d->guid, article.commentsLink().url());
+            d->archive->setDescription(d->guid, article->description());
+            d->archive->setLink(d->guid, article->link());
+            //d->archive->setCommentsLink(d->guid, article.commentsLink());
         }
     }
 }
 
-Article::Article(RSS::Article article, Feed* feed) : d(new Private)
+Article::Article(ItemPtr article, Feed* feed) : d(new Private)
 {
     //assert(feed)
     d->feed = feed;
     initialize(article, Backend::Storage::getInstance()->archiveFor(feed->xmlUrl()));
 }
 
-Article::Article(RSS::Article article, Backend::FeedStorage* archive) : d(new Private)
+Article::Article(ItemPtr article, Backend::FeedStorage* archive) : d(new Private)
 {
     d->feed = 0;
     initialize(article, archive);
@@ -353,18 +318,6 @@ bool Article::keep() const
 {
     return (d->status & Private::Keep) != 0;
 }
-
-RSS::Enclosure Article::enclosure() const
-{
-    bool hasEnc;
-    QString url, type;
-    int length;
-    d->archive->enclosure(d->guid, hasEnc, url, type, length);
-    return hasEnc ? RSS::Enclosure(url, length, type) : RSS::Enclosure();
-
-    
-}
-
 
 void Article::setKeep(bool keep)
 {

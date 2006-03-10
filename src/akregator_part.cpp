@@ -198,7 +198,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 
     initFonts();
 
-    RSS::FileRetriever::setUserAgent(QString("Akregator/%1; librss/remnants").arg(AKREGATOR_VERSION));
+    LibSyndication::FileRetriever::setUserAgent(QString("Akregator/%1; libsyndication").arg(AKREGATOR_VERSION));
 }
 
 void Part::loadPlugins()
@@ -237,7 +237,7 @@ void Part::slotSettingsChanged()
 {
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
 
-    RSS::FileRetriever::setUseCache(Settings::useHTMLCache());
+    LibSyndication::FileRetriever::setUseCache(Settings::useHTMLCache());
 
     QStringList fonts;
     fonts.append(Settings::standardFont());

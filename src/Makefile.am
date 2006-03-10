@@ -1,5 +1,5 @@
 #set the include path for X, qt and KDE
-INCLUDES = -I$(top_srcdir)/akregator/src/librss -I$(top_srcdir) $(all_includes)
+INCLUDES = -I$(top_srcdir)/akregator/src/libsyndication/src -I$(top_srcdir) $(all_includes)
 
 # let automoc handle all of the meta source files (moc).
 METASOURCES = AUTO
@@ -77,7 +77,7 @@ libakregatorprivate_la_SOURCES = akregatorconfig.kcfgc \
 				
 libakregatorprivate_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined 
 libakregatorprivate_la_LIBADD =	$(top_builddir)/libkdepim/libkdepim.la \
-	$(top_builddir)/akregator/src/librss/librsslocal.la $(LIB_KHTML)
+	$(top_builddir)/akregator/src/libsyndication/src/libsyndication.la $(LIB_KHTML)
 
 #########################################################################
 # KPART SECTION
@@ -158,7 +158,7 @@ partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc eventsrc
 
 kde_servicetypes_DATA = akregator_plugin.desktop
 
-SUBDIRS = librss libsyndication about . mk4storage pics
+SUBDIRS = libsyndication about . pics
 
 #build apidox in subdirs, disable it for this dir for now
 

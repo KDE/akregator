@@ -33,7 +33,7 @@
 #include "folder.h"
 #include "storage.h"
 #include "treenodevisitor.h"
-#include "librss/librss.h"
+#include "libsyndication.h"
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -49,6 +49,8 @@
 #include <QList>
 #include <QPixmap>
 #include <QTimer>
+
+using LibSyndication::ItemPtr;
 
 namespace Akregator {
 
@@ -68,7 +70,7 @@ class Feed::FeedPrivate
         bool fetchError;
         int fetchTries;
         bool followDiscovery;
-        RSS::Loader* loader;
+        LibSyndication::Loader* loader;
         bool articlesLoaded;
         Backend::FeedStorage* archive;
 
@@ -92,7 +94,7 @@ class Feed::FeedPrivate
         QList<Article> updatedArticlesNotify;
         
         QPixmap imagePixmap;
-        RSS::Image image;
+        LibSyndication::ImagePtr image;
         QPixmap favicon;
 };
             
@@ -412,21 +414,22 @@ void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 }
 
 
-void Feed::appendArticles(const RSS::Document &doc)
+void Feed::appendArticles(const LibSyndication::FeedPtr feed)
 {
     bool changed = false;
 
-    RSS::Article::List d_articles = doc.articles();
-    RSS::Article::List::ConstIterator it;
-    RSS::Article::List::ConstIterator en = d_articles.end();
+    QList<ItemPtr> items = feed->items();
+    QList<ItemPtr>::ConstIterator it = items.begin();
+    QList<ItemPtr>::ConstIterator en = items.end();
+    
 
     int nudge=0;
     
     QList<Article> deletedArticles = d->deletedArticles;
 
-    for (it = d_articles.begin(); it != en; ++it)
+    for ( ; it != en; ++it)
     {
-        if ( !d->articles.contains((*it).guid()) ) // article not in list
+        if ( !d->articles.contains((*it)->id()) ) // article not in list
         {
             Article mya(*it, this);
             mya.offsetPubDate(nudge);
@@ -434,8 +437,8 @@ void Feed::appendArticles(const RSS::Document &doc)
             appendArticle(mya);
 
             QList<ArticleInterceptor*> interceptors = ArticleInterceptorManager::self()->interceptors();
-            for (QList<ArticleInterceptor*>::ConstIterator it = interceptors.begin(); it != interceptors.end(); ++it)
-                (*it)->processArticle(mya);
+            for (QList<ArticleInterceptor*>::ConstIterator iit = interceptors.begin(); iit != interceptors.end(); ++iit)
+                (*iit)->processArticle(mya);
             
             d->addedArticlesNotify.append(mya);
             
@@ -449,7 +452,7 @@ void Feed::appendArticles(const RSS::Document &doc)
         else // article is in list
         {
             // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
-            Article old = d->articles[(*it).guid()];
+            Article old = d->articles[(*it)->id()];
             Article mya(*it, this);          
             if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted())
             {
@@ -553,9 +556,11 @@ void Feed::tryFetch()
 {
     d->fetchError = false;
 
-    d->loader = RSS::Loader::create( this, SLOT(fetchCompleted(Loader *, Document, Status)) );
+    d->loader = LibSyndication::Loader::create( this, SLOT(fetchCompleted(LibSyndication::Loader*, 
+                                                                          LibSyndication::FeedPtr, 
+                                                                          LibSyndication::ErrorCode)) );
     //connect(d->loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
-    d->loader->loadFrom( d->xmlUrl, new RSS::FileRetriever );
+    d->loader->loadFrom( d->xmlUrl);
 }
 
 void Feed::slotImageFetched(const QPixmap& image)
@@ -563,20 +568,20 @@ void Feed::slotImageFetched(const QPixmap& image)
     setImage(image);
 }
 
-void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
+void Feed::fetchCompleted(LibSyndication::Loader *l, LibSyndication::FeedPtr doc, LibSyndication::ErrorCode status)
 {
     // Note that loader instances delete themselves
     d->loader = 0;
 
     // fetching wasn't successful:
-    if (status != RSS::Success)
+    if (status != LibSyndication::Success)
     {
-        if (status == RSS::Aborted)
+        if (status == LibSyndication::Aborted)
         {
             d->fetchError = false;
             emit fetchAborted(this);
         }
-        else if (d->followDiscovery && (status == RSS::ParseError) && (d->fetchTries < 3) && (l->discoveredFeedURL().isValid()))
+        else if (d->followDiscovery && (status == LibSyndication::InvalidXml) && (d->fetchTries < 3) && (l->discoveredFeedURL().isValid()))
         {
             d->fetchTries++;
             d->xmlUrl = l->discoveredFeedURL().url();
@@ -606,19 +611,20 @@ void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
         d->imagePixmap=QPixmap(imageFileName, "PNG");
 
         // if we aint got teh image and the feed provides one, get it....
-        if (d->imagePixmap.isNull() && doc.image())
+        // TODO: reenable image fetching!
+        if (false) // d->imagePixmap.isNull() && doc.image())
         {
-            d->image = *doc.image();
-            connect(&d->image, SIGNAL(gotPixmap(const QPixmap&)), this, SLOT(slotImageFetched(const QPixmap&)));
-            d->image.getPixmap();
+            //d->image = *doc.image();
+            //connect(&d->image, SIGNAL(gotPixmap(const QPixmap&)), this, SLOT(slotImageFetched(const QPixmap&)));
+            //d->image.getPixmap();
         }   
     }
 
     if (title().isEmpty())
-        setTitle( doc.title() );
+        setTitle( doc->title() );
 
-    d->description = doc.description();
-    d->htmlUrl = doc.link().url();
+    d->description = doc->description();
+    d->htmlUrl = doc->link();
 
     appendArticles(doc);
 

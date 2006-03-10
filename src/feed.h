@@ -27,7 +27,9 @@
 #define AKREGATOR_FEED_H
 
 #include "treenode.h"
-#include "librss/librss.h"
+
+#include "libsyndication.h"
+#include <ksharedptr.h>
 
 #include <QList>
 #include <QPixmap>
@@ -44,11 +46,6 @@ namespace KPIM
     class ProgressItem;
 }
 
-// needed for slot fetchCompleted()
-// FIXME: uise namespace and fully qualify signal and slots
-using RSS::Document;
-using RSS::Loader;
-using RSS::Status;
 
 namespace Akregator {
 
@@ -262,7 +259,7 @@ class Feed : public TreeNode
         
     private slots:
 
-        void fetchCompleted(Loader *loader, Document doc, Status status);
+        void fetchCompleted(LibSyndication::Loader *loader, LibSyndication::FeedPtr doc, LibSyndication::ErrorCode errorCode);
         void slotImageFetched(const QPixmap& image);
 
     private:
@@ -280,7 +277,8 @@ class Feed : public TreeNode
         
         void enforceLimitArticleNumber();
 
-        void appendArticles(const RSS::Document &d);
+        void appendArticles(const LibSyndication::FeedPtr feed);
+        
         /** appends article @c a to the article list */
         void appendArticle(const Article& a);
 

@@ -26,6 +26,8 @@
 #ifndef AKREGATOR_ARTICLE_H
 #define AKREGATOR_ARTICLE_H
 
+#include <ksharedptr.h>
+
 class QDateTime;
 class QDomDocument;
 class QDomElement;
@@ -40,10 +42,10 @@ typedef unsigned int uint;
 class KUrl;
 class KUrlLabel;
 
-namespace RSS
+namespace LibSyndication
 {
-    class Article;
-    class Enclosure;
+    class Item;
+    typedef KSharedPtr<Item> ItemPtr;
 }
 
 namespace Akregator {
@@ -53,7 +55,7 @@ namespace Backend
     class FeedStorage;
 }
 class Feed;
-/** A proxy class for RSS::Article with some additional methods to assist sorting. */
+/** A proxy class for LibSyndication::ItemPtr with some additional methods to assist sorting. */
 class Article
 {
     public:
@@ -72,9 +74,9 @@ class Article
         /** creates an article object from a parsed librss Article
             the article is added to the archive if not yet stored, or updated if stored but modified
         */
-        Article(RSS::Article article, Feed* feed);
+        Article(LibSyndication::ItemPtr article, Feed* feed);
         
-        Article(RSS::Article article, Backend::FeedStorage* archive);
+        Article(LibSyndication::ItemPtr article, Backend::FeedStorage* archive);
         Article(const Article &other);
         Article &operator=(const Article &other);
         bool operator==(const Article &other) const;
@@ -96,8 +98,6 @@ class Article
         bool keep() const;
         void setKeep(bool keep);
         bool isDeleted() const;
-        
-        RSS::Enclosure enclosure() const;
         
         void setDeleted();
         
@@ -132,7 +132,7 @@ class Article
 
 
     private:
-        void initialize(RSS::Article article, Backend::FeedStorage* archive);
+        void initialize(LibSyndication::ItemPtr item, Backend::FeedStorage* archive);
         static QString buildTitle(const QString& description);
         
         struct Private;

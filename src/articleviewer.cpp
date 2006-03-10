@@ -456,16 +456,17 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
         text += "\">" + i18n( "Complete Story" ) + "</a></p>";
     }
     text += "</div>";
+
     
-    if (!article.enclosure().isNull())
-    {
+//    if (!article.enclosure().isNull())
+  //  {
         //QString url = article.enclosure().url();
         //QString type = article.enclosure().type();
         //int length = article.enclosure().length();
         //QString lengthStr = KIO::convertSize(length);
 
         //text += QString("<hr><div><a href=\"%1\">%2</a> (%3, %4)</div>").arg(url).arg(url).arg(lengthStr).arg(type);
-    }
+   // }
     //kDebug() << text << endl;
     return text;
 
