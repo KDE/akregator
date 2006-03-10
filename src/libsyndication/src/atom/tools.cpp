@@ -42,18 +42,18 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
     
     if (type.isEmpty() || type == QString::fromUtf8("text"))
     {
-        str = plainTextToHtml(parent.extractElementTextNS(Constants::atom1Namespace(), tagname));
+        str = plainTextToHtml(parent.extractElementTextNS(Constants::atom1Namespace(), tagname).simplified());
     }
     else if (type == QString::fromUtf8("html"))
     {
-        str = parent.extractElementTextNS(Constants::atom1Namespace(), tagname);
+        str = parent.extractElementTextNS(Constants::atom1Namespace(), tagname).simplified();
     }
     else if (type == QString::fromUtf8("xhtml"))
     {
-        str = ElementWrapper::childNodesAsXML(el);
+        str = ElementWrapper::childNodesAsXML(el).simplified();
     }
     
-    return str.simplified();
+    return str;
 }
 
 } // namespace Atom

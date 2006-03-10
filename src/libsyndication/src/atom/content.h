@@ -50,8 +50,9 @@ class Content : public ElementWrapper
          */
         enum Format
         {
-            Text, /**< the content is plain text (i.e. "<", ">" etc. are text, not
-                   * markup, or HTML (i.e., "<", ">" etc. are markup) */
+            PlainText, /**< the content is plain text (i.e. "<", ">" etc. are text, not
+                   * markup */
+            EscapedHTML, /**< the content is escaped HTML, (i.e., "<", ">" etc. are markup) */
             XML, /**< the content is embedded XML */
             Binary, /**< the content is base64-encoded binary content */
         };
@@ -96,8 +97,8 @@ class Content : public ElementWrapper
          * If src is provided, type() should contain a mimetype, instead of "text",
          * "html" or "xhtml".
          * 
-         * @return  a string if the content is contained in the feed source, or a URL
-         * linking to the remote content
+         * @return  a null string if the content is contained in the feed
+         * source, or a URL linking to the remote content
          */
         QString src() const;
         
@@ -115,6 +116,7 @@ class Content : public ElementWrapper
         
         /**
          * returns the binary content as byte array.
+         * (WARNING: not yet implemented)
          * 
          * @return byte array containing the embedded binary data, or
          * an empty array if the content is not in binary format
@@ -141,16 +143,22 @@ class Content : public ElementWrapper
         bool isXML() const;
         
         /**
-         * returns whether the content is binary content.
+         * returns whether the content is binary content or not.
          * Use asByteArray() to access it.
          */
         bool isBinary() const;
         
         /**
-         * returns whether the content is plain text or escaped HTML.
+         * returns whether the content is plain text or not.
          * Use asString() to access it.
          */
-        bool isText() const;
+        bool isPlainText() const;
+        
+        /**
+         * returns whether the content is escaped HTML or not
+         * Use asString() to access it
+         */
+        bool isEscapedHTML() const;
         
         /**
          * returns a description of the content object

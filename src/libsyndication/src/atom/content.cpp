@@ -52,7 +52,7 @@ QString Content::src() const
 
 QByteArray Content::asByteArray() const
 {
-    if (isText())
+    if (!isBinary())
         return QByteArray();
     
     // TODO: return base64-encoded content
@@ -68,15 +68,19 @@ Content::Format Content::mapTypeToFormat(const QString& typep,  const QString& s
     if (type.isNull() && src.isEmpty())
         type = QString::fromUtf8("text");
 
+    if (type == QString::fromUtf8("html")
+        || type == QString::fromUtf8("text/html"))
+        return EscapedHTML;
+    
     if (type == QString::fromUtf8("text")
-        || type == QString::fromUtf8("html")
         || (type.startsWith(QString::fromUtf8("text/"), Qt::CaseInsensitive)
         && !type.startsWith(QString::fromUtf8("text/xml"), Qt::CaseInsensitive))
        )
-        return Text;
+        return PlainText;
     
     QStringList xmltypes;
     xmltypes.append(QString::fromUtf8("xhtml"));
+    xmltypes.append(QString::fromUtf8("application/xhtml+xml"));
     // XML media types as defined in RFC3023:
     xmltypes.append(QString::fromUtf8("text/xml"));
     xmltypes.append(QString::fromUtf8("application/xml"));
@@ -108,9 +112,14 @@ bool Content::isContained() const
     return src().isEmpty();
 }
 
-bool Content::isText() const
+bool Content::isPlainText() const
 {
-    return format() == Text;
+    return format() == PlainText;
+}
+
+bool Content::isEscapedHTML() const
+{
+    return format() == EscapedHTML;
 }
 
 bool Content::isXML() const
@@ -120,19 +129,22 @@ bool Content::isXML() const
 
 QString Content::asString() const
 {
-    QString str;
-
-    if (isText())
+    Format f = format();
+    
+    if (f == PlainText)
     {
-        str = plainTextToHtml(element().text().simplified());
+        return plainTextToHtml(element().text().simplified());
     }
-    else if (isXML())
+    else if (f == EscapedHTML)
     {
-        str = childNodesAsXML().simplified();
+        return element().text().simplified();
+    }
+    else if (f == XML)
+    {
+        return childNodesAsXML().simplified();
     }
     
-    return str;
-    
+    return QString();
 }
 
 QString Content::debugInfo() const

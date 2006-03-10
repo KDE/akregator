@@ -166,7 +166,10 @@ QDomNode Parser::ParserPrivate::convertNode(QDomDocument& doc, const QDomNode& n
             case Content::XML:
                 newType = QString::fromUtf8("xhtml");
                 break;
-            case Content::Text:
+            case Content::EscapedHTML:
+                newType = QString::fromUtf8("html");
+                break;
+            case Content::PlainText:
             case Content::Binary:
             default:
                 newType = QString::fromUtf8("text");
