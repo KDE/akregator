@@ -19,7 +19,7 @@
 # the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA 02110-1301, USA.
 
-SUBDIRS = [ 'rss2', 'rdf' ]
+SUBDIRS = [ 'rss2', 'rdf', 'atom' ]
 
 numTotal = 0
 numErrors = 0
