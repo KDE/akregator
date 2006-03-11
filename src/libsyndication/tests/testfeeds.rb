@@ -39,7 +39,7 @@ files.each do |file|
         expected = expFile.read
         expFile.close
         
-        system("./testlibsyndication2 #{file} > testfeeds-output.tmp")
+        system("./testlibsyndication #{file} > testfeeds-output.tmp")
         actFile = File.open("testfeeds-output.tmp")
         actual = actFile.read
         actFile.close
