@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "testlibsyndication.h"
+#include "testloader.h"
 
 #include "abstractdocument.h"
 #include "feed.h"
@@ -107,4 +107,4 @@ int main(int argc, char **argv)
     return app.exec();
 }
 
-#include "testlibsyndication.moc"
+#include "testloader.moc"
