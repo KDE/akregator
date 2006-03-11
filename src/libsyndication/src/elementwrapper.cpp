@@ -130,9 +130,9 @@ QString ElementWrapper::xmlLang() const
         
         while (!current.isNull())
         {
-            if (current.hasAttributeNS(Constants::xmlNamespace(), QString::fromUtf8("base")))
+            if (current.hasAttributeNS(Constants::xmlNamespace(), QString::fromUtf8("lang")))
             {
-                d->xmlLang = current.attributeNS(Constants::xmlNamespace(), QString::fromUtf8("base"));
+                d->xmlLang = current.attributeNS(Constants::xmlNamespace(), QString::fromUtf8("lang"));
                 return d->xmlLang;
             }
             

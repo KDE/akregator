@@ -44,7 +44,10 @@ QString Category::term() const
 
 QString Category::scheme() const
 {
-    return completeURI(element().attribute(QString::fromUtf8("scheme")));
+    // NOTE: The scheme IRI is not completed by purpose.
+    // According to Atom spec, it must be an absolute IRI.
+    // If this is a problem with real-world feeds, it might be changed.
+    return element().attribute(QString::fromUtf8("scheme"));
 }
 
 QString Category::label() const
