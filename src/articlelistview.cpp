@@ -348,6 +348,9 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
 {
     setUpdatesEnabled(false);
     
+    bool statusActive = !(d->statusFilter.matchesAll());
+    bool textActive = !(d->textFilter.matchesAll());
+    
     for (QValueList<Article>::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
         if (!d->articleMap.contains(*it))
@@ -355,7 +358,8 @@ void ArticleListView::slotArticlesAdded(TreeNode* /*node*/, const QValueList<Art
             if (!(*it).isNull() && !(*it).isDeleted())
             {
                 ArticleItem* ali = new ArticleItem(this, *it);
-                ali->setVisible( d->textFilter.matches( ali->article()) );
+                ali->setVisible( (!statusActive ||  d->statusFilter.matches( ali->article()))
+                        && (!textActive || d->textFilter.matches( ali->article())) );
                 d->articleMap.insert(*it, ali);
             }
         }
@@ -371,6 +375,9 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
     // if only one item is selected and this selected item
     // is deleted, we will select the next item in the list
     bool singleSelected = selectedArticles().count() == 1;
+    
+    bool statusActive = !(d->statusFilter.matchesAll());
+    bool textActive = !(d->textFilter.matchesAll());
     
     QListViewItem* next = 0; // the item to select if a selected item is deleted
     
@@ -397,8 +404,11 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
             else
             {
                 ali->updateItem(*it);
-                // if the updated article matches the filters after the update, make visible. If it matched them before but not after update, they should stay visible (to not confuse users)
-                if (d->textFilter.matches( ali->article()) && d->statusFilter.matches(ali->article()))
+                // if the updated article matches the filters after the update,
+                // make visible. If it matched them before but not after update,
+                // they should stay visible (to not confuse users)
+                if ((!statusActive || d->statusFilter.matches(ali->article()))
+                      && (!textActive || d->textFilter.matches( ali->article())) )
                     ali->setVisible(true);
             }
         }
@@ -475,12 +485,44 @@ void ArticleListView::disconnectFromNode(TreeNode* node)
 
 void ArticleListView::applyFilters()
 {
+    bool statusActive = !(d->statusFilter.matchesAll());
+    bool textActive = !(d->textFilter.matchesAll());
+    
     ArticleItem* ali = 0;
-    for (QListViewItemIterator it(this); it.current(); ++it)
+    
+    if (!statusActive && !textActive)
     {
-        ali = static_cast<ArticleItem*> (it.current());
-        ali->setVisible( d->statusFilter.matches( ali->article() ) && d->textFilter.matches( ali->article() ) );
+        for (QListViewItemIterator it(this); it.current(); ++it)
+        {
+            (static_cast<ArticleItem*> (it.current()))->setVisible(true);
+        }
     }
+    else if (statusActive && !textActive)
+    {
+        for (QListViewItemIterator it(this); it.current(); ++it)
+        {
+            ali = static_cast<ArticleItem*> (it.current());
+            ali->setVisible( d->statusFilter.matches( ali->article()) );
+        }
+    }
+    else if (!statusActive && textActive)
+    {
+        for (QListViewItemIterator it(this); it.current(); ++it)
+        {
+            ali = static_cast<ArticleItem*> (it.current());
+            ali->setVisible( d->textFilter.matches( ali->article()) );
+        }
+    }
+    else // both true
+    {
+        for (QListViewItemIterator it(this); it.current(); ++it)
+        {
+            ali = static_cast<ArticleItem*> (it.current());
+            ali->setVisible( d->statusFilter.matches( ali->article()) 
+                    && d->textFilter.matches( ali->article()) );
+        }
+    }
+
 }
 
 int ArticleListView::visibleArticles()

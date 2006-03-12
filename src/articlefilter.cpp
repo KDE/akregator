@@ -219,6 +219,11 @@ ArticleMatcher::~ArticleMatcher()
 {
 }
 
+bool ArticleMatcher::matchesAll() const
+{
+    return m_criteria.isEmpty();
+}
+
 ArticleMatcher* ArticleMatcher::clone() const
 {
     return new ArticleMatcher(*this);

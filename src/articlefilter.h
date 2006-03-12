@@ -223,6 +223,12 @@ class ArticleMatcher : public AbstractMatcher
         ArticleMatcher(const ArticleMatcher& other);
         virtual ~ArticleMatcher();
 
+        /**
+         * returns whether the matcher matches all articles anyway (empty criteria list),
+         * so there is no need to call matches() at all.
+         */
+        virtual bool matchesAll() const;
+        
         ArticleMatcher& operator=(const ArticleMatcher& other);
         virtual ArticleMatcher* clone() const;
         virtual bool matches(const Article &article) const;
