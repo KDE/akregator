@@ -1,3 +1,4 @@
+<!-- Copyright: Mark Pilgrim (feed parser test suite). See LICENSE.UNITTESTS for details. -->
 <feed xmlns="http://www.w3.org/2005/Atom">
 <entry>
     <title>This entry contains plain text with no type set</title>

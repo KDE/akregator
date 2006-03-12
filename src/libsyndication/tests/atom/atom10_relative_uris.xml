@@ -1,3 +1,4 @@
+<!-- Copyright: Frank Osterfeld (libsyndication). See LICENSE.UNITTESTS for details. -->
 <feed xmlns="http://www.w3.org/2005/Atom" xml:base="http://example.com/feed/">
     <generator uri="generator.html">This generator's uri is relative, and must be completed to http://example.com/feed/generator.html, using xml:base</generator>
     
