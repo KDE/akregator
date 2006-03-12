@@ -50,8 +50,20 @@ PersonPtr PersonImpl::fromString(const QString& strp)
         str.replace(all, ""); // remove mail address
     }
     
-    // simplify the rest and return it as name
+    // simplify the rest and use it as name
+    
     name = str.simplified();
+    
+    // str might have the format "foo@bar.com (Foo M. Bar)".
+    // We cut off parentheses if there are any
+    QRegExp rename("\\(([^\\)]*)\\)");
+    
+    pos = rename.indexIn(name);
+    
+    if (pos != -1)
+    {
+        name = rename.cap(1);
+    }
     
     name = name.isEmpty() ? QString() : name;
     email = email.isEmpty() ? QString() : email;

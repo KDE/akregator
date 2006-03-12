@@ -63,6 +63,9 @@ void TestPersonImpl::fromString()
     s.append("Foo Bar <foo@bar.com>");
     p.append(PersonPtr(new PersonImpl("Foo Bar", QString(), "foo@bar.com")));
 
+    s.append("<foo@bar.com> (Foo Bar)");
+    p.append(PersonPtr(new PersonImpl("Foo Bar", QString(), "foo@bar.com")));
+    
     QList<PersonPtr> q;
     
     QStringList::ConstIterator it = s.begin();

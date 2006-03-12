@@ -22,6 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "abstractdocument.h"
 #include "documentsource.h"
 #include "feed.h"
 #include "parsercollection.h"
@@ -35,20 +36,58 @@
 
 using namespace LibSyndication;
 
+void printUsage(const QString& error)
+{
+    std::cerr << "testlibsyndication - (C) Frank Osterfeld 2006" << std::endl;
+    std::cerr << std::endl;
+    if (!error.isNull())
+    {
+        std::cerr << error.toUtf8().data() << std::endl;
+        std::cerr << std::endl;
+    }
+    else
+    {
+        std::cerr << "Prints the parsed content of a feed file to standard output." << std::endl;
+        std::cerr << std::endl;
+    }
+    std::cerr << "Usage: testlibsyndication [--specific-format] <file>" << std::endl;
+    std::cerr << std::endl;
+    std::cerr << "--specific-format: If set, the debug output for the specific" << std::endl;
+    std::cerr << "feed format is printed to stdout, otherwise the debug output" << std::endl;
+    std::cerr << "for the abstraction" << std::endl;
+}
+
 int main(int argc, char **argv)
 {
 
     if (argc < 2)
     {
-        std::cerr << "filename expected" << std::endl;
+        printUsage("filename expected");
         return 1;
     }
 
-    QFile f(argv[1]);
+    QString filename(argv[1]);
+    QString arg1(argv[1]);
+    
+    bool specificformat = false;
+    
+    if (filename == "--specific-format")
+    {
+        if (argc < 3)
+        {
+            printUsage("filename expected");
+            return 1;
+        }
+        filename = QString(argv[2]);
+        specificformat = true;
+    }
+        
+    
+    QFile f(filename);
 
     if (!f.open(QIODevice::ReadOnly))
     {
-        std::cerr << "Couldn't open file" << std::endl;
+        printUsage("Couldn't open file");
         return 1;
     }
  
@@ -57,10 +96,18 @@ int main(int argc, char **argv)
     FeedPtr ptr(ParserCollection::self()->parse(src));
     if (ptr.isNull())
     {
-        std::cerr << "Couldn't parse file" << std::endl;
+        printUsage("Couldn't parse file");
         return 1;
     }
 
-    std::cout << ptr->debugInfo().toUtf8().data() << std::endl;
+    if (specificformat)
+    {
+        std::cout << ptr->document()->debugInfo().toUtf8().data() << std::endl;
+    }
+    else
+    {
+        std::cout << ptr->debugInfo().toUtf8().data() << std::endl;
+    }
+    
     return 0;
 }

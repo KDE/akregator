@@ -203,7 +203,13 @@ Image Document::image() const
 
 TextInput Document::textInput() const
 {
-    return TextInput(firstElementByTagNameNS(QString(), QString::fromUtf8("textInput")));
+    TextInput ti = firstElementByTagNameNS(QString(), QString::fromUtf8("textInput"));
+    
+    if (!ti.isNull())
+        return ti;
+    
+    // Netscape's version of RSS 0.91 has textinput, not textInput
+    return firstElementByTagNameNS(QString(), QString::fromUtf8("textinput"));
 }
 
 QSet<int> Document::skipHours() const

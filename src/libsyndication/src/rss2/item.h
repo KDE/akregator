@@ -184,6 +184,25 @@ class KDE_EXPORT Item : public ElementWrapper
          */
         time_t pubDate() const;
 
+         /**
+          * expiration date, specifying a date when the item is not longer
+          * available.
+          * Only available in RSS 0.93.
+          * 
+          * @return the expiration date, or 0 if no date was specified or
+          * parsing failed
+          */
+        time_t expirationDate() const;
+        
+        /** 
+         * A Platform for Internet Content Selection (PICS) rating tag. 
+         * More information on the format of the rating tag can be found here: 
+         * http://www.w3.org/PICS/
+         * 
+         * @return PICS rating information, or a null string if not specified
+         */
+        QString rating() const;
+        
         /** 
          * The RSS channel that the item came from. See Source class for more
          * information.

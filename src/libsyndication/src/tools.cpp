@@ -58,12 +58,14 @@ unsigned int calcHash(const QByteArray& array)
 
 time_t parseISODate(const QString& str)
 {
-    return KDateTime::fromString(str, KDateTime::ISODate).toTime_t();
+    time_t res = KDateTime::fromString(str, KDateTime::ISODate).toTime_t();
+    return res != -1 ? res : 0;
 }
 
 time_t parseRFCDate(const QString& str)
 {
-    return KDateTime::fromString(str, KDateTime::RFCDate).toTime_t();
+    time_t res = KDateTime::fromString(str, KDateTime::RFCDate).toTime_t();
+    return res != -1 ? res : 0;
 }
 
 time_t parseDate(const QString& str, DateFormat hint)

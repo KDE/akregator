@@ -46,12 +46,32 @@ files.each do |file|
         
         numTotal += 1
         if actual != expected
-            puts "#{file} parsed incorrectly."
+            puts "#{file} parsed incorrectly (abstraction)."
             # TODO: add diff to log
             numErrors += 1
         end
-        
+              
     end
+    specificfn = file + ".expected-specific"
+    if File.exist?(specificfn)
+        specFile = File.open(specificfn, "r")
+        specific = specFile.read
+        specFile.close
+        
+        system("./testlibsyndication --specific-format #{file} > testfeeds-output.tmp")
+        actFile = File.open("testfeeds-output.tmp")
+        actual = actFile.read
+        actFile.close
+        
+        numTotal += 1
+        if actual != specific
+            puts "#{file} parsed incorrectly (specific format)."
+            # TODO: add diff to log
+            numErrors += 1
+        end
+              
+    end
+
 end
 # TODO print more verbose output
 exit(numErrors)

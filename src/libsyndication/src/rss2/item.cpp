@@ -154,9 +154,20 @@ time_t Item::pubDate() const
     return parseDate(str, ISODate);
 }
 
+time_t Item::expirationDate() const
+{
+    QString str = extractElementTextNS(QString(), QString::fromUtf8("expirationDate"));
+    return parseDate(str, RFCDate);
+}
+
 Source Item::source() const
 {
     return Source(firstElementByTagNameNS(QString(), QString::fromUtf8("source")));
+}
+
+QString Item::rating() const
+{
+    return extractElementTextNS(QString(), QString::fromUtf8("rating") );
 }
 
 QString Item::debugInfo() const
