@@ -224,7 +224,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_feedListView = new NodeListView( this, "feedtree" );
     m_listTabWidget->addView(m_feedListView, i18n("Feeds"), KGlobal::iconLoader()->loadIcon("folder", KIcon::Small));
 
-    connect(m_feedListView, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
+    connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
 
     connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, TreeNode*,
             Folder*)), this, SLOT(slotFeedURLDropped (KUrl::List &,
@@ -233,7 +233,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_tagNodeListView = new NodeListView(this);
     m_listTabWidget->addView(m_tagNodeListView, i18n("Tags"), KGlobal::iconLoader()->loadIcon("rss_tag", KIcon::Small));
 
-    connect(m_tagNodeListView, SIGNAL(signalContextMenu(KListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&)));
+    connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
 
     
     ProgressManager::self()->setFeedList(m_feedList);
@@ -657,7 +657,7 @@ void MainWidget::slotFrameChanged(Frame* frame)
     }
 }
 
-void MainWidget::slotFeedTreeContextMenu(KListView*, TreeNode* /*node*/, const QPoint& /*p*/)
+void MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
     m_tabWidget->showPage(m_mainTab);
 }

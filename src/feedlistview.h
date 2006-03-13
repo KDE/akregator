@@ -24,7 +24,7 @@
 #ifndef AKREGATOR_NODELISTVIEW_H
 #define AKREGATOR_NODELISTVIEW_H
 
-#include <klistview.h>
+#include <k3listview.h>
 #include <kurl.h>
 //Added by qt3to4:
 #include <QDragMoveEvent>
@@ -39,7 +39,7 @@ class TreeNode;
 class TreeNodeItem;
 class TagNodeList;
 
-class NodeListView : public KListView
+class NodeListView : public K3ListView
 {
 Q_OBJECT
 public:
@@ -108,7 +108,7 @@ signals:
     void signalDropped (KUrl::List &, TreeNode*, Folder*);
     void signalNodeSelected(TreeNode*);
     void signalRootNodeChanged(NodeListView*, TreeNode*);
-    void signalContextMenu(KListView*, TreeNode*, const QPoint&);
+    void signalContextMenu(K3ListView*, TreeNode*, const QPoint&);
 
 protected:
 
@@ -148,7 +148,7 @@ protected slots:
     void slotDropped(QDropEvent *e, Q3ListViewItem* after);
     void slotRootNodeChanged(TreeNode*);
     virtual void slotSelectionChanged(Q3ListViewItem* item);
-    virtual void slotContextMenu(KListView* list, Q3ListViewItem* item, const QPoint& p);
+    virtual void slotContextMenu(K3ListView* list, Q3ListViewItem* item, const QPoint& p);
     virtual void slotItemRenamed(Q3ListViewItem* item, int col, const QString& text);
     virtual void slotFeedFetchStarted(Feed* feed);
     virtual void slotFeedFetchAborted(Feed* feed);

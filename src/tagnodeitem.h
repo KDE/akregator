@@ -39,8 +39,8 @@ class TagNodeItem : public TreeNodeItem
 public:
     TagNodeItem(FolderItem* parent, TagNode* node);
     TagNodeItem(FolderItem* parent, TreeNodeItem* after, TagNode* node);
-    TagNodeItem(KListView* parent, TagNode* node);
-    TagNodeItem(KListView* parent, TreeNodeItem* after, TagNode* node);
+    TagNodeItem(K3ListView* parent, TagNode* node);
+    TagNodeItem(K3ListView* parent, TreeNodeItem* after, TagNode* node);
     virtual ~TagNodeItem();
     virtual void nodeChanged();
     

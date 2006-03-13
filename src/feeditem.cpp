@@ -42,12 +42,12 @@ FeedItem::FeedItem(FolderItem* parent, Feed* node) : TreeNodeItem(parent, node)
     initialize(node);
 }
 
-FeedItem::FeedItem(KListView* parent, Feed* node) : TreeNodeItem(parent, node)
+FeedItem::FeedItem(K3ListView* parent, Feed* node) : TreeNodeItem(parent, node)
 {
     initialize(node);
 }
 
-FeedItem::FeedItem(KListView* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
+FeedItem::FeedItem(K3ListView* parent, TreeNodeItem* after, Feed* node) : TreeNodeItem(parent, after, node)
 {
     initialize(node);
 }

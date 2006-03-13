@@ -38,24 +38,24 @@
 namespace Akregator {
 
 TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNode* node)
-    : KListViewItem(parent), m_node(node)
+    : K3ListViewItem(parent), m_node(node)
 {
     initialize(node);
 }
 
-TreeNodeItem::TreeNodeItem(KListView* parent, TreeNode* node) 
-    : KListViewItem(parent), m_node(node)
+TreeNodeItem::TreeNodeItem(K3ListView* parent, TreeNode* node) 
+    : K3ListViewItem(parent), m_node(node)
 {
     initialize(node);
 }
 
-TreeNodeItem::TreeNodeItem(KListView* parent, TreeNodeItem* after, TreeNode* node) : KListViewItem(parent, after), m_node(node)
+TreeNodeItem::TreeNodeItem(K3ListView* parent, TreeNodeItem* after, TreeNode* node) : K3ListViewItem(parent, after), m_node(node)
 {
     initialize(node);
 }
 
 TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* node)
-    : KListViewItem(parent, after), m_node(node)
+    : K3ListViewItem(parent, after), m_node(node)
 {
     initialize(node);
 }
@@ -92,17 +92,17 @@ void TreeNodeItem::nodeChanged()
 
 TreeNodeItem* TreeNodeItem::firstChild() const 
 { 
-    return static_cast<TreeNodeItem*>(KListViewItem::firstChild()); 
+    return static_cast<TreeNodeItem*>(K3ListViewItem::firstChild()); 
 } 
 
 TreeNodeItem* TreeNodeItem::nextSibling() const 
 { 
-    return static_cast<TreeNodeItem*>(KListViewItem::nextSibling()); 
+    return static_cast<TreeNodeItem*>(K3ListViewItem::nextSibling()); 
 } 
 
 FolderItem* TreeNodeItem::parent() const 
 { 
-    return static_cast<FolderItem*>(KListViewItem::parent()); 
+    return static_cast<FolderItem*>(K3ListViewItem::parent()); 
 } 
     
 
@@ -115,7 +115,7 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
 
     if (u <= 0)
     {
-        KListViewItem::paintCell(p,cg,column,width,align);
+        K3ListViewItem::paintCell(p,cg,column,width,align);
         return;
     }
 
@@ -124,7 +124,7 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
     setText( column, " " );
 
     // draw bg
-    KListViewItem::paintCell(p,cg,column,width,align);
+    K3ListViewItem::paintCell(p,cg,column,width,align);
 
     setText( column, oldText);
 

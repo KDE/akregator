@@ -41,11 +41,11 @@ TagFolderItem::TagFolderItem(FolderItem* parent, TreeNodeItem* after, TagFolder*
 {
 }
 
-TagFolderItem::TagFolderItem(KListView* parent, TagFolder* node) : FolderItem(parent, node)
+TagFolderItem::TagFolderItem(K3ListView* parent, TagFolder* node) : FolderItem(parent, node)
 {
 }
 
-TagFolderItem::TagFolderItem(KListView* parent, TreeNodeItem* after, TagFolder* node) : FolderItem(parent, after, node)
+TagFolderItem::TagFolderItem(K3ListView* parent, TreeNodeItem* after, TagFolder* node) : FolderItem(parent, after, node)
 {
 }
 

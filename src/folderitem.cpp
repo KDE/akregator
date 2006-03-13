@@ -43,12 +43,12 @@ FolderItem::FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node) : 
     initialize(node);
 }
 
-FolderItem::FolderItem(KListView* parent, Folder* node) : TreeNodeItem(parent, node)
+FolderItem::FolderItem(K3ListView* parent, Folder* node) : TreeNodeItem(parent, node)
 {
     initialize(node);
 }
 
-FolderItem::FolderItem(KListView* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
+FolderItem::FolderItem(K3ListView* parent, TreeNodeItem* after, Folder* node) : TreeNodeItem(parent, after, node)
 {
     initialize(node);
 }
@@ -69,7 +69,7 @@ Folder* FolderItem::node()
 void FolderItem::setOpen(bool open)
 {
     node()->setOpen(open);
-    KListViewItem::setOpen(open);
+    K3ListViewItem::setOpen(open);
 }
 
 FolderItem::~FolderItem()

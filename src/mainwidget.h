@@ -39,8 +39,8 @@ class KComboBox;
 class KConfig;
 class KFileItem;
 class KLineEdit;
-class KListView;
-class KListViewItem;
+class K3ListView;
+class K3ListViewItem;
 class KTabWidget;
 
 class QDomDocument;
@@ -136,7 +136,7 @@ class MainWidget : public QWidget
         void slotArticleSelected(const Article&);
 
         /** Shows requested popup menu for feed tree */
-        void slotFeedTreeContextMenu(KListView*, TreeNode*, const QPoint&);
+        void slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&);
 
         /** emits @ref signalUnreadCountChanged(int) */
         void slotSetTotalUnread();

@@ -28,7 +28,7 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
-#include <klistview.h>
+#include <k3listview.h>
 #include <klocale.h>
 
 #include <QGridLayout>
@@ -82,7 +82,7 @@ void SelectNodeDialog::slotNodeSelected(TreeNode* node)
 class SimpleNodeSelector::SimpleNodeSelectorPrivate
 {
     public:
-    KListView* view;
+    K3ListView* view;
     FeedList* list;
     NodeVisitor* visitor;
     QHash<TreeNode*,Q3ListViewItem*> nodeToItem;
@@ -114,11 +114,11 @@ class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
     {
         Q3ListViewItem* pi = node->parent() ? m_view->d->nodeToItem[node->parent()] : 0;
          
-        KListViewItem* item = 0;
+        K3ListViewItem* item = 0;
         if (pi != 0)
-             item = new KListViewItem(pi, node->title());
+             item = new K3ListViewItem(pi, node->title());
         else
-             item = new KListViewItem(m_view->d->view, node->title());
+             item = new K3ListViewItem(m_view->d->view, node->title());
         item->setExpandable(false);
         m_view->d->nodeToItem.insert(node, item);
         m_view->d->itemToNode.insert(item, node);
@@ -137,7 +137,7 @@ SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, cons
     d->list = feedList;
     connect(feedList, SIGNAL(signalDestroyed(FeedList*)), this, SLOT(slotFeedListDestroyed(FeedList*)));
 
-    d->view = new KListView(this);
+    d->view = new K3ListView(this);
     d->view->setRootIsDecorated(true);
     d->view->addColumn(i18n("Feeds"));
     

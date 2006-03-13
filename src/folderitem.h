@@ -41,8 +41,8 @@ class FolderItem : public TreeNodeItem
 public:
     FolderItem(FolderItem* parent, Folder* node);
     FolderItem(FolderItem* parent, TreeNodeItem* after, Folder* node);
-    FolderItem(KListView* parent, Folder* node);
-    FolderItem(KListView* parent, TreeNodeItem* after, Folder* node);
+    FolderItem(K3ListView* parent, Folder* node);
+    FolderItem(K3ListView* parent, TreeNodeItem* after, Folder* node);
     virtual ~FolderItem();
     
     virtual Folder* node();

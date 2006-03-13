@@ -127,7 +127,7 @@ class ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
 
 };
 
-class ArticleListView::ArticleItem : public KListViewItem
+class ArticleListView::ArticleItem : public K3ListViewItem
     {
         friend class ArticleListView;
 
@@ -142,9 +142,9 @@ class ArticleListView::ArticleItem : public KListViewItem
 
             void updateItem(const Article& article);
 
-            virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(KListViewItem::itemAbove()); }
+            virtual ArticleItem* itemAbove() { return static_cast<ArticleItem*>(K3ListViewItem::itemAbove()); }
 
-            virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(KListViewItem::nextSibling()); }
+            virtual ArticleItem* nextSibling() { return static_cast<ArticleItem*>(K3ListViewItem::nextSibling()); }
 
         private:
             Article m_article;
@@ -153,7 +153,7 @@ class ArticleListView::ArticleItem : public KListViewItem
 };
 
 ArticleListView::ArticleItem::ArticleItem( Q3ListView *parent, const Article& a)
-    : KListViewItem( parent, a.title(), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
+    : K3ListViewItem( parent, a.title(), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
         setPixmap(0, m_keepFlag);
@@ -174,7 +174,7 @@ QPixmap ArticleListView::ArticleItem::m_keepFlag = QPixmap(locate("data", "akreg
 void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
 {
     if (article().status() == Article::Read)
-        KListViewItem::paintCell( p, cg, column, width, align );
+        K3ListViewItem::paintCell( p, cg, column, width, align );
     else
     {
         // if article status is unread or new, we change the color: FIXME: make colors configurable
@@ -185,7 +185,7 @@ void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup &
         else // New
             cg2.setColor(QColorGroup::Text, Qt::red);
 
-        KListViewItem::paintCell( p, cg2, column, width, align );
+        K3ListViewItem::paintCell( p, cg2, column, width, align );
     }
 
 }
@@ -207,13 +207,13 @@ int ArticleListView::ArticleItem::compare(Q3ListViewItem *i, int col, bool ascen
             return 0;
         return (m_pubDate > item->m_pubDate) ? 1 : -1;
     }
-    return KListViewItem::compare(i, col, ascending);
+    return K3ListViewItem::compare(i, col, ascending);
 }
 
 /* ==================================================================================== */
 
 ArticleListView::ArticleListView(QWidget *parent, const char *name)
-    : KListView(parent)
+    : K3ListView(parent)
 {
     d = new ArticleListViewPrivate(this);
     setObjectName(name);
@@ -274,15 +274,15 @@ ArticleListView::ArticleListView(QWidget *parent, const char *name)
     connect(this, SIGNAL(currentChanged(Q3ListViewItem*)), this, SLOT(slotCurrentChanged(Q3ListViewItem* )));
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
     connect(this, SIGNAL(doubleClicked(Q3ListViewItem*, const QPoint&, int)),  this, SLOT(slotDoubleClicked(Q3ListViewItem*, const QPoint&, int)) );
-    connect(this, SIGNAL(contextMenu(KListView*, Q3ListViewItem*, const QPoint&)),
-            this, SLOT(slotContextMenu(KListView*, Q3ListViewItem*, const QPoint&)));
+    connect(this, SIGNAL(contextMenu(K3ListView*, Q3ListViewItem*, const QPoint&)),
+            this, SLOT(slotContextMenu(K3ListView*, Q3ListViewItem*, const QPoint&)));
 
     connect(this, SIGNAL(mouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)));
 }
 
 Article ArticleListView::currentArticle() const
 {
-    ArticleItem* ci = dynamic_cast<ArticleItem*>(KListView::currentItem());
+    ArticleItem* ci = dynamic_cast<ArticleItem*>(K3ListView::currentItem());
     return (ci && !selectedItems().isEmpty()) ? ci->article() : Article();
 }
 
@@ -517,7 +517,7 @@ void ArticleListView::paintInfoBox(const QString &message)
 void ArticleListView::viewportPaintEvent(QPaintEvent *e)
 {
 
-    KListView::viewportPaintEvent(e);
+    K3ListView::viewportPaintEvent(e);
 
     if(!e)
         return;
@@ -702,7 +702,7 @@ void ArticleListView::slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, i
         emit signalDoubleClicked(ali->article(), p, i);
 }
 
-void ArticleListView::slotContextMenu(KListView* /*list*/, Q3ListViewItem* /*item*/, const QPoint& p)
+void ArticleListView::slotContextMenu(K3ListView* /*list*/, Q3ListViewItem* /*item*/, const QPoint& p)
 {
     QWidget* w = ActionManager::getInstance()->container("article_popup");
     QMenu* popup = static_cast<QMenu *>(w);

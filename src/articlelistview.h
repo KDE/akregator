@@ -24,7 +24,7 @@
 #ifndef AKREGATOR_ARTICLELISTVIEW_H
 #define AKREGATOR_ARTICLELISTVIEW_H
 
-#include <klistview.h>
+#include <k3listview.h>
 
 #include <QKeyEvent>
 #include <QList>
@@ -44,7 +44,7 @@ namespace Filters
     class ArticleMatcher;
 }
 
-class ArticleListView : public KListView
+class ArticleListView : public K3ListView
 {
     Q_OBJECT
     public:
@@ -87,7 +87,7 @@ class ArticleListView : public KListView
     signals:
         void signalArticleChosen(const Article& article);
         void signalDoubleClicked(const Article&, const QPoint&, int);
-        //void signalContextMenu(KListView*, ArticleItem*, const QPoint&);
+        //void signalContextMenu(K3ListView*, ArticleItem*, const QPoint&);
         void signalMouseButtonPressed(int, const Article&, const QPoint &, int);
             
     protected:
@@ -123,7 +123,7 @@ class ArticleListView : public KListView
         virtual void slotCurrentChanged(Q3ListViewItem* item);
         virtual void slotSelectionChanged();
         virtual void slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, int i);
-        virtual void slotContextMenu(KListView* list, Q3ListViewItem* item, const QPoint& p);
+        virtual void slotContextMenu(K3ListView* list, Q3ListViewItem* item, const QPoint& p);
         virtual void slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int);
         
     private:

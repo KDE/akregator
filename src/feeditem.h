@@ -44,8 +44,8 @@ class FeedItem : public TreeNodeItem
     
     FeedItem(FolderItem* parent, Feed* node);
     FeedItem(FolderItem* parent, TreeNodeItem* after, Feed* node);
-    FeedItem(KListView* parent, Feed* node);
-    FeedItem(KListView* parent, TreeNodeItem* after, Feed* node);
+    FeedItem(K3ListView* parent, Feed* node);
+    FeedItem(K3ListView* parent, TreeNodeItem* after, Feed* node);
 
     virtual ~FeedItem();
     virtual Feed* node();

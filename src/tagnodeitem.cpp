@@ -45,12 +45,12 @@ TagNodeItem::TagNodeItem(FolderItem* parent, TreeNodeItem* after, TagNode* node)
     initialize(node);
 }
 
-TagNodeItem::TagNodeItem(KListView* parent, TagNode* node) : TreeNodeItem(parent, node)
+TagNodeItem::TagNodeItem(K3ListView* parent, TagNode* node) : TreeNodeItem(parent, node)
 {
     initialize(node);
 }
 
-TagNodeItem::TagNodeItem(KListView* parent, TreeNodeItem* after, TagNode* node) : TreeNodeItem(parent, after, node)
+TagNodeItem::TagNodeItem(K3ListView* parent, TreeNodeItem* after, TagNode* node) : TreeNodeItem(parent, after, node)
 {
     initialize(node);
 }

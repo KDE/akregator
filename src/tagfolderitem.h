@@ -40,8 +40,8 @@ class TagFolderItem : public FolderItem
 public:
     TagFolderItem(FolderItem* parent, TagFolder* node);
     TagFolderItem(FolderItem* parent, TreeNodeItem* after, TagFolder* node);
-    TagFolderItem(KListView* parent, TagFolder* node);
-    TagFolderItem(KListView* parent, TreeNodeItem* after, TagFolder* node);
+    TagFolderItem(K3ListView* parent, TagFolder* node);
+    TagFolderItem(K3ListView* parent, TreeNodeItem* after, TagFolder* node);
     virtual ~TagFolderItem();
     
     virtual TagFolder* node();

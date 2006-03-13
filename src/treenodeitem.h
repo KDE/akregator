@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_TREENODEITEM_H
 #define AKREGATOR_TREENODEITEM_H
 
-#include <klistview.h>
+#include <k3listview.h>
 
 class QPoint;
 class QString;
@@ -38,15 +38,15 @@ class TreeNode;
 /**
     abstract base class for all items in the feeds tree
 */
-class TreeNodeItem : public KListViewItem
+class TreeNodeItem : public K3ListViewItem
 {
     
 public:
      
     TreeNodeItem(FolderItem* parent, TreeNode* node);
     TreeNodeItem(FolderItem* parent, TreeNodeItem* after, TreeNode* node);
-    TreeNodeItem(KListView* parent, TreeNode* node);
-    TreeNodeItem(KListView* parent, TreeNodeItem* after, TreeNode* node);
+    TreeNodeItem(K3ListView* parent, TreeNode* node);
+    TreeNodeItem(K3ListView* parent, TreeNodeItem* after, TreeNode* node);
     virtual ~TreeNodeItem();
     virtual TreeNode* node();
     

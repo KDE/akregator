@@ -329,7 +329,7 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 };
 
 NodeListView::NodeListView( QWidget *parent, const char *name)
-        : KListView(parent), d(new NodeListViewPrivate)
+        : K3ListView(parent), d(new NodeListViewPrivate)
 {
     setObjectName(name);
     d->showTagFolders = true;
@@ -357,7 +357,7 @@ NodeListView::NodeListView( QWidget *parent, const char *name)
     connect( this, SIGNAL(dropped(QDropEvent*, Q3ListViewItem*)), this, SLOT(slotDropped(QDropEvent*, Q3ListViewItem*)) );
     connect( this, SIGNAL(selectionChanged(Q3ListViewItem*)), this, SLOT(slotSelectionChanged(Q3ListViewItem*)) );
     connect( this, SIGNAL(itemRenamed(Q3ListViewItem*, int, const QString&)), this, SLOT(slotItemRenamed(Q3ListViewItem*, int, const QString&)) );
-    connect( this, SIGNAL(contextMenu(KListView*, Q3ListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(KListView*, Q3ListViewItem*, const QPoint&)) );
+    connect( this, SIGNAL(contextMenu(K3ListView*, Q3ListViewItem*, const QPoint&)), this, SLOT(slotContextMenu(K3ListView*, Q3ListViewItem*, const QPoint&)) );
     connect( &(d->autoopentimer), SIGNAL( timeout() ), this, SLOT( openFolder() ) );
 
     clear();
@@ -457,7 +457,7 @@ TreeNodeItem* NodeListView::findNodeItem(TreeNode* node)
 
 TreeNodeItem* NodeListView::findItemByTitle(const QString& text, int column, ComparisonFlags compare) const
 { 
-    return dynamic_cast<TreeNodeItem*> (KListView::findItem(text, column, compare)); 
+    return dynamic_cast<TreeNodeItem*> (K3ListView::findItem(text, column, compare)); 
 }
 
 void NodeListView::ensureNodeVisible(TreeNode* node)
@@ -482,7 +482,7 @@ void NodeListView::clear()
     d->itemDict.clear();
     d->nodeList = 0;
     
-    KListView::clear();
+    K3ListView::clear();
 }
 
 void NodeListView::drawContentsOffset( QPainter * p, int ox, int oy,
@@ -490,7 +490,7 @@ void NodeListView::drawContentsOffset( QPainter * p, int ox, int oy,
 {
     bool oldUpdatesEnabled = isUpdatesEnabled();
     setUpdatesEnabled(false);
-    KListView::drawContentsOffset( p, ox, oy, cx, cy, cw, ch );
+    K3ListView::drawContentsOffset( p, ox, oy, cx, cy, cw, ch );
     setUpdatesEnabled(oldUpdatesEnabled);
 }
 
@@ -550,7 +550,7 @@ void NodeListView::movableDropEvent(Q3ListViewItem* /*parent*/, Q3ListViewItem* 
 
         current->parent()->removeChild(current);
         parentNode->insertChild(current, afterMeNode);
-        KListView::movableDropEvent(d->parent, d->afterme);
+        K3ListView::movableDropEvent(d->parent, d->afterme);
     }    
 }
 
@@ -656,8 +656,8 @@ void NodeListView::contentsDragMoveEvent(QDragMoveEvent* event)
         d->autoopentimer.stop();
     }
 
-    // the rest is handled by KListView.
-    KListView::contentsDragMoveEvent(event);
+    // the rest is handled by K3ListView.
+    K3ListView::contentsDragMoveEvent(event);
 }
 
 bool NodeListView::acceptDrag(QDropEvent *e) const
@@ -881,7 +881,7 @@ void NodeListView::slotItemRenamed(Q3ListViewItem* item, int col, const QString&
         }
     }
 }
-void NodeListView::slotContextMenu(KListView* list, Q3ListViewItem* item, const QPoint& p)
+void NodeListView::slotContextMenu(K3ListView* list, Q3ListViewItem* item, const QPoint& p)
 {    
     TreeNodeItem* ti = dynamic_cast<TreeNodeItem*>(item);
     emit signalContextMenu(list, ti ? ti->node() : 0, p);
@@ -1015,7 +1015,7 @@ void NodeListView::slotNodeChanged(TreeNode* node)
 Q3DragObject *NodeListView::dragObject()
 {
     K3MultipleDrag *md = new K3MultipleDrag(viewport());
-    Q3DragObject *obj = KListView::dragObject();
+    Q3DragObject *obj = K3ListView::dragObject();
     if (obj) {
         md->addDragObject(obj);
     }
