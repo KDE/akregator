@@ -129,7 +129,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
    settings_advancedbase.ui 
    tagpropertieswidgetbase.ui )
 
-kde4_add_dcop_skels(akregatorpart_PART_SRCS akregator_partiface.h kspeechsink.h )
+kde4_add_dcop_skels(akregatorpart_PART_SRCS akregator_partiface.h ${CMAKE_INSTALL_PREFIX}/include/kspeechsink.h )
 
 kde4_add_dcop_stubs(akregatorpart_PART_SRCS kspeech.h )
 
