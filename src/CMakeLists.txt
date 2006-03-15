@@ -18,7 +18,10 @@ add_subdirectory( about )
 add_subdirectory( mk4storage ) 
 add_subdirectory( pics ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/akregator/src/librss ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( 
+	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/ 
+	${CMAKE_SOURCE_DIR}/akregator/src/librss 
+	${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
 ########### next target ###############
@@ -74,7 +77,7 @@ kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate  ${QT_AND_KDECORE_LIBS} kdepim  khtml )
+target_link_libraries(akregatorprivate  ${LIB_KDEUI} kdepim  khtml syndication )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install_targets(${LIB_INSTALL_DIR} akregatorprivate )
