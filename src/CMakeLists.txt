@@ -32,7 +32,7 @@ kde4_automoc(${akregator_SRCS})
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
-target_link_libraries(akregator  ${QT_AND_KDECORE_LIBS} kparts akregatorprivate )
+target_link_libraries(akregator  ${LIB_KPARTS} akregatorprivate)
 
 install_targets(/bin akregator )
 
@@ -131,7 +131,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 kde4_add_dcop_skels(akregatorpart_PART_SRCS akregator_partiface.h ${CMAKE_INSTALL_PREFIX}/include/kspeechsink.h )
 
-kde4_add_dcop_stubs(akregatorpart_PART_SRCS kspeech.h )
+kde4_add_dcop_stubs(akregatorpart_PART_SRCS ${CMAKE_INSTALL_PREFIX}/include/kspeech.h )
 
 kde4_add_plugin(akregatorpart WITH_PREFIX ${akregatorpart_PART_SRCS})
 
