@@ -41,7 +41,6 @@
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kstandarddirs.h>
-#include <kstdaccel.h>
 #include <kparts/browserinterface.h>
 
 #include <qclipboard.h>
@@ -104,12 +103,8 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     s->init(Settings::self()->config());
     
     setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
-
-    QPair< KGuiItem, KGuiItem > backForward = KStdGuiItem::backAndForward();
-    d->backAction = new KToolBarPopupAction(backForward.first, 
-                                KStdAccel::shortcut(KStdAccel::Back), this, 
-                                SLOT(slotBack()), actionCollection(), 
-                                "pageviewer_back");
+    
+    d->backAction = new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(d->backAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotBackAboutToShow()));
@@ -117,21 +112,17 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
             this, SLOT(slotPopupActivated(int)));
 
     
-    d->forwardAction = new KToolBarPopupAction(backForward.second, 
-                                KStdAccel::shortcut(KStdAccel::Forward),this, 
-                                SLOT(slotForward()), actionCollection(), 
-                                "pageviewer_forward");
+    d->forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
 
     connect(d->forwardAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotForwardAboutToShow()));
     connect(d->forwardAction->popupMenu(), SIGNAL(activated(int)),
             this, SLOT(slotPopupActivated(int)));
 
-    d->reloadAction = new KAction(i18n("Reload"), "reload", 
-                            KStdAccel::shortcut(KStdAccel::Reload),
+    d->reloadAction = new KAction(i18n("Reload"), "reload", 0,
                             this, SLOT(slotReload()),
                             actionCollection(), "pageviewer_reload");
-    d->stopAction = new KAction(KStdGuiItem::guiItem(KStdGuiItem::Stop), 0,
+    d->stopAction = new KAction(i18n("Stop"), "stop", 0,
                                  this, SLOT(slotStop()),
                                  actionCollection(), "pageviewer_stop");
  
