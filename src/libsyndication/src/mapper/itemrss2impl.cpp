@@ -27,6 +27,7 @@
 #include "personimpl.h"
 #include "../rss2/category.h"
 #include "../rss2/enclosure.h"
+#include "../constants.h"
 #include "../tools.h"
 
 #include <QList>
@@ -132,6 +133,29 @@ QList<LibSyndication::CategoryPtr> ItemRSS2Impl::categories() const
     }
     
     return list;
+}
+
+int ItemRSS2Impl::commentsCount() const
+{
+    QString cstr = m_item.extractElementTextNS(slashNamespace(), QString::fromUtf8("comments"));
+    bool ok = false;
+    int comments = cstr.toInt(&ok);
+    return ok ? comments : -1;
+}
+
+QString ItemRSS2Impl::commentsLink() const
+{
+    return m_item.comments();
+}
+
+QString ItemRSS2Impl::commentsFeed() const
+{
+    return m_item.extractElementTextNS(commentApiNamespace(), QString::fromUtf8("commentRss"));
+}
+
+QString ItemRSS2Impl::commentPostUri() const
+{
+    return m_item.extractElementTextNS(commentApiNamespace(), QString::fromUtf8("comment"));
 }
 
 LibSyndication::SpecificItemPtr ItemRSS2Impl::specificItem() const

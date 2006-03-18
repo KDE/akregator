@@ -64,6 +64,14 @@ class ItemRSS2Impl : public LibSyndication::Item
         
         SpecificItemPtr specificItem() const;
         
+        int commentsCount() const;
+        
+        QString commentsLink() const;
+        
+        QString commentsFeed() const;
+        
+        QString commentPostUri() const;
+        
     private:
         
         LibSyndication::RSS2::Item m_item;

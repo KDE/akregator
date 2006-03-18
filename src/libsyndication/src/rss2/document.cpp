@@ -26,7 +26,6 @@
 
 #include "category.h"
 #include "cloud.h"
-#include "constants.h"
 #include "document.h"
 #include "image.h"
 #include "item.h"
@@ -70,7 +69,7 @@ QString Document::title() const
     
     if (t.isNull())
     {
-        t = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+        t = extractElementTextNS(dublinCoreNamespace(),
                                  QString::fromUtf8("title"));
     }
     
@@ -88,7 +87,7 @@ QString Document::description() const
     
     if (d.isNull())
     {
-        d = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+        d = extractElementTextNS(dublinCoreNamespace(),
                                  QString::fromUtf8("description"));
     }
 
@@ -97,7 +96,8 @@ QString Document::description() const
 
 QString Document::language() const
 {
-    QString lang = extractElementTextNS(QString(), QString::fromUtf8("language"));
+    QString lang = extractElementTextNS(QString(),
+                                        QString::fromUtf8("language"));
     
     if (!lang.isNull())
     {
@@ -106,14 +106,15 @@ QString Document::language() const
     else
     {
         return extractElementTextNS(
-            LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("language"));   
+            dublinCoreNamespace(), QString::fromUtf8("language"));   
     }
     
 }
 
 QString Document::copyright() const
 {
-    QString rights = extractElementTextNS(QString(), QString::fromUtf8("copyright"));
+    QString rights = extractElementTextNS(QString(),
+                                          QString::fromUtf8("copyright"));
     if (!rights.isNull())
     {
         return rights;
@@ -121,8 +122,8 @@ QString Document::copyright() const
     else
     {
         // if <copyright> is not provided, use <dc:rights>
-        return extractElementTextNS(
-                LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("rights"));
+        return extractElementTextNS(dublinCoreNamespace(),
+                                    QString::fromUtf8("rights"));
     }
 }
 
@@ -146,7 +147,7 @@ time_t Document::pubDate() const
     }
     else
     {   // if there is no pubDate, check for dc:date
-        str = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
+        str = extractElementTextNS(dublinCoreNamespace(), QString::fromUtf8("date"));
         return parseDate(str, ISODate);
     }
 }
@@ -162,8 +163,10 @@ QList<Category> Document::categories() const
 {
     QList<Category> categories;
 
-    QList<QDomElement> catNodes = elementsByTagNameNS(QString(), QString::fromUtf8("category"));
-    for (QList<QDomElement>::ConstIterator it = catNodes.begin(); it != catNodes.end(); ++it)
+    QList<QDomElement> catNodes = elementsByTagNameNS(QString(),
+            QString::fromUtf8("category"));
+    QList<QDomElement>::ConstIterator it = catNodes.begin();
+    for ( ; it != catNodes.end(); ++it)
     {
         categories.append(Category(*it));
     }
@@ -215,13 +218,17 @@ TextInput Document::textInput() const
 QSet<int> Document::skipHours() const
 {
     QSet<int> skipHours;
-    QDomElement skipHoursNode = firstElementByTagNameNS(QString(), QString::fromUtf8("skipHours"));
+    QDomElement skipHoursNode = firstElementByTagNameNS(QString(),
+            QString::fromUtf8("skipHours"));
     if (!skipHoursNode.isNull())
     {
         ElementWrapper skipHoursWrapper(skipHoursNode);
         bool ok = false;
-        QList<QDomElement> hours = skipHoursWrapper.elementsByTagNameNS(QString(), QString::fromUtf8("hour"));
-        for (QList<QDomElement>::ConstIterator it = hours.begin(); it != hours.end(); ++it)
+        QList<QDomElement> hours = 
+                skipHoursWrapper.elementsByTagNameNS(QString(),
+                QString::fromUtf8("hour"));
+        QList<QDomElement>::ConstIterator it = hours.begin();
+        for ( ; it != hours.end(); ++it)
         {
             int h = (*it).text().toInt(&ok);
             if (ok)

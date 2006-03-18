@@ -61,7 +61,7 @@ uint EnclosureRSS2Impl::length() const
 
 uint EnclosureRSS2Impl::duration() const
 {
-    QString durStr = m_item.extractElementTextNS(LibSyndication::Constants::itunesNamespace(), QString::fromUtf8("duration"));
+    QString durStr = m_item.extractElementTextNS(itunesNamespace(), QString::fromUtf8("duration"));
     
     if (durStr.isEmpty())
         return 0;

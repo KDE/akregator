@@ -20,8 +20,8 @@
  *
  */
 
-#include "constants.h"
 #include "tools.h"
+#include "../constants.h"
 #include "../elementwrapper.h"
 
 #include <QDomElement>
@@ -36,17 +36,17 @@ QString extractContent(const ElementWrapper& wrapper)
     if (wrapper.isNull())
         return QString::null;
     
-    QList<QDomElement> list = wrapper.elementsByTagNameNS(Constants::contentNameSpace(), QString::fromUtf8("encoded"));
+    QList<QDomElement> list = wrapper.elementsByTagNameNS(contentNameSpace(), QString::fromUtf8("encoded"));
 
     if (!list.isEmpty())
         return list.first().text().simplified();
 
-    list = wrapper.elementsByTagNameNS(Constants::XHTMLNameSpace(), QString::fromUtf8("body"));
+    list = wrapper.elementsByTagNameNS(xhtmlNamespace(), QString::fromUtf8("body"));
 
     if (!list.isEmpty())
         return ElementWrapper::childNodesAsXML(list.first()).simplified();
 
-    list = wrapper.elementsByTagNameNS(Constants::XHTMLNameSpace(), QString::fromUtf8("div"));
+    list = wrapper.elementsByTagNameNS(xhtmlNamespace(), QString::fromUtf8("div"));
 
     if (!list.isEmpty())
         return ElementWrapper::childNodesAsXML(list.first()).simplified();

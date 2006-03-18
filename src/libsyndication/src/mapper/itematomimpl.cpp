@@ -178,6 +178,26 @@ QList<LibSyndication::CategoryPtr> ItemAtomImpl::categories() const
     return list;
 }
 
+int ItemAtomImpl::commentsCount() const
+{
+    return -1;
+}
+
+QString ItemAtomImpl::commentsLink() const
+{
+    return QString();
+}
+
+QString ItemAtomImpl::commentsFeed() const
+{
+    return QString();
+}
+
+QString ItemAtomImpl::commentPostUri() const
+{
+    return QString();
+}
+
 LibSyndication::SpecificItemPtr ItemAtomImpl::specificItem() const
 {
     return LibSyndication::SpecificItemPtr(new LibSyndication::Atom::SpecificItem(m_entry));

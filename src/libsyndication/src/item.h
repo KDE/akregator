@@ -79,7 +79,7 @@ class KDE_EXPORT Item : public KShared
          * a tag line, a short summary of the item content up to a complete 
          * article.
          * 
-         * This string may contain HTML markup (importantly, "<", ">", "&" 
+         * This string may contain HTML markup (importantly, "<", "\n", "&" 
          * occurring in the text are escaped!).
          * 
          * @return the description as HTML, or a null string if not specified
@@ -88,7 +88,7 @@ class KDE_EXPORT Item : public KShared
         
         /**
          * returns the content of the item.
-         * This string may contain HTML markup (importantly, "<", ">", "&"
+         * This string may contain HTML markup (importantly, "<", "\n", "&"
          * occurring in the text are escaped!)
          *
          * @return content string as HTML, or a null string if not set
@@ -104,7 +104,7 @@ class KDE_EXPORT Item : public KShared
         virtual time_t datePublished() const = 0;
         
         /**
-         * returns the date when the item was modified the last time. If no such 
+         * returns the date when the item was modified the last time. If no such
          * date is provided by the feed, this method returns the value of 
          * datePublished().
          *
@@ -116,6 +116,7 @@ class KDE_EXPORT Item : public KShared
          * returns an ID that identifies the item within its feed. The ID must
          * be unique within its feed. If no ID is provided by the feed source,
          * a hash from title, description and content is returned.
+         * Generated hash IDs start with "hash:".
          */
         virtual QString id() const = 0;
 
@@ -150,6 +151,39 @@ class KDE_EXPORT Item : public KShared
          * @return a list of categories
          */
         virtual QList<CategoryPtr> categories() const = 0;
+        
+        /**
+         * The number of comments on this item.
+         *
+         * @return the number of comments associated to this item, or -1 if not
+         * specified
+         */
+        virtual int commentsCount() const = 0;
+        
+        /**
+         * Link to an HTML site which contains the comments belonging to
+         * this item.
+         * 
+         * @return URL to the comments page, or a null string if not set
+         */
+        virtual QString commentsLink() const = 0;
+        
+        /**
+         * URL of feed syndicating comments belonging to this item.
+         * 
+         * @return comments feed URL, or a null string if not set
+         */
+        virtual QString commentsFeed() const = 0;
+        
+        /**
+         * URI that can be used to post comments via an HTTP POST request using
+         * the Comment API.
+         * For more details on the Comment API, see 
+         * http://wellformedweb.org/story/9
+         * 
+         * @return URI for posting comments, or a null string if not set
+         */
+        virtual QString commentPostUri() const = 0;
         
         /**
          * returns the format-specific item this object abstracts from.

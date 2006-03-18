@@ -26,6 +26,8 @@
 #include "../rdf/item.h"
 #include "../item.h"
 
+#include <QString>
+
 namespace LibSyndication {
 
 class ItemRDFImpl;
@@ -64,6 +66,14 @@ class ItemRDFImpl : public LibSyndication::Item
         
         SpecificItemPtr specificItem() const;
         
+        int commentsCount() const;
+        
+        QString commentsLink() const;
+        
+        QString commentsFeed() const;
+        
+        QString commentPostUri() const;
+
     private:
         
         LibSyndication::RDF::Item m_item;

@@ -108,6 +108,26 @@ QList<LibSyndication::CategoryPtr> ItemRDFImpl::categories() const
     return QList<LibSyndication::CategoryPtr>();
 }
 
+int ItemRDFImpl::commentsCount() const
+{
+    return -1;
+}
+
+QString ItemRDFImpl::commentsLink() const
+{
+    return QString();
+}
+
+QString ItemRDFImpl::commentsFeed() const
+{
+    return QString();
+}
+
+QString ItemRDFImpl::commentPostUri() const
+{
+    return QString();
+}
+
 LibSyndication::SpecificItemPtr ItemRDFImpl::specificItem() const
 {
     return LibSyndication::SpecificItemPtr(new LibSyndication::RDF::SpecificItem(m_item));

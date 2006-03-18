@@ -90,6 +90,24 @@ QString Item::debugInfo() const
     for ( ; ite != ende; ++ite)
         info += (*ite)->debugInfo();
 
+    int dcommentsCount = commentsCount();
+    if (dcommentsCount != -1)
+    {
+        info+= "commentsCount: #" + QString::number(dcommentsCount) + "#\n";
+    }
+    
+    QString dcommentsLink = commentsLink();
+    if (!dcommentsLink.isNull())
+        info+= "commentsLink: #" + dcommentsLink + "#\n";
+    
+    QString dcommentsFeed = commentsFeed();
+    if (!dcommentsFeed.isNull())
+        info+= "commentsFeed: #" + dcommentsFeed + "#\n";
+    
+    QString dcommentPostUri = commentPostUri();
+    if (!dcommentPostUri.isNull())
+        info+= "commentPostUri: #" + dcommentPostUri + "#\n";
+    
     info += "# Item end ########################\n";
 
     return info;

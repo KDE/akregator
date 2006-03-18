@@ -26,18 +26,39 @@
 
 namespace LibSyndication {
 
-QString Constants::xmlNamespace()
+QString xmlNamespace()
 {
     return QString::fromUtf8("http://www.w3.org/XML/1998/namespace");
 }
-QString Constants::dublinCoreNamespace()
+
+QString xhtmlNamespace()
+{
+    return QString::fromUtf8("http://www.w3.org/1999/xhtml");
+}
+
+QString contentNameSpace()
+{
+    return QString::fromUtf8("http://purl.org/rss/1.0/modules/content/");
+}
+
+QString dublinCoreNamespace()
 {
     return QString::fromUtf8("http://purl.org/dc/elements/1.1/");
 }
 
-QString Constants::itunesNamespace()
+QString itunesNamespace()
 {
-        return QString::fromUtf8("http://www.itunes.com/dtds/podcast-1.0.dtd");
+    return QString::fromUtf8("http://www.itunes.com/dtds/podcast-1.0.dtd");
+}
+
+QString commentApiNamespace()
+{
+    return QString::fromUtf8("http://wellformedweb.org/CommentAPI/");
+}
+
+QString slashNamespace()
+{
+    return QString::fromUtf8("http://purl.org/rss/1.0/modules/slash/");
 }
 
 } // namespace LibSyndication

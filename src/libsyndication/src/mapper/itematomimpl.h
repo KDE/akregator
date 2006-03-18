@@ -64,6 +64,14 @@ class ItemAtomImpl : public LibSyndication::Item
         
         SpecificItemPtr specificItem() const;
         
+        int commentsCount() const;
+        
+        QString commentsLink() const;
+        
+        QString commentsFeed() const;
+        
+        QString commentPostUri() const;
+
     private:
         
         LibSyndication::Atom::Entry m_entry;

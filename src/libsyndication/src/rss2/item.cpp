@@ -52,7 +52,7 @@ QString Item::title() const
     
     if (t.isNull())
     {
-        t = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+        t = extractElementTextNS(dublinCoreNamespace(),
                                  QString::fromUtf8("title"));
     }
     return htmlize(t);
@@ -69,7 +69,7 @@ QString Item::description() const
     
     if (d.isNull())
     {
-        d = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(),
+        d = extractElementTextNS(dublinCoreNamespace(),
                                  QString::fromUtf8("description"));
     }
     
@@ -89,7 +89,8 @@ QList<Category> Item::categories() const
 
     QList<Category> categories;
 
-    for (QList<QDomElement>::ConstIterator it = cats.begin(); it != cats.end(); ++it)
+    QList<QDomElement>::ConstIterator it = cats.begin();
+    for ( ; it != cats.end(); ++it)
     {
         categories.append(Category(*it));
     }
@@ -111,14 +112,16 @@ QString Item::author() const
     else
     {
         // if author is not available, fall back to dc:creator
-        return extractElementTextNS(Constants::dublinCoreNamespace(), QString::fromUtf8("creator") );
+        return extractElementTextNS(dublinCoreNamespace(),
+                                    QString::fromUtf8("creator") );
     }
     
 }
 
 Enclosure Item::enclosure() const
 {
-    return Enclosure(firstElementByTagNameNS(QString(), QString::fromUtf8("enclosure")));
+    return Enclosure(firstElementByTagNameNS(QString(),
+                     QString::fromUtf8("enclosure")));
 }
 
 QString Item::guid() const
@@ -130,11 +133,15 @@ bool Item::guidIsPermaLink() const
 {
     bool guidIsPermaLink = true;  // true is default
 
-    QDomElement guidNode = firstElementByTagNameNS(QString(), QString::fromUtf8("guid"));
+    QDomElement guidNode = firstElementByTagNameNS(QString(), 
+            QString::fromUtf8("guid"));
     if (!guidNode.isNull())
     {
-        if (guidNode.attribute(QString::fromUtf8("isPermaLink")) == QString::fromUtf8("false"))
+        if (guidNode.attribute(QString::fromUtf8("isPermaLink")) 
+            == QString::fromUtf8("false"))
+        {
             guidIsPermaLink = false;
+        }
     }
 
     return guidIsPermaLink;
@@ -150,7 +157,7 @@ time_t Item::pubDate() const
     }
     
     // if there is no pubDate, check for dc:date
-    str = extractElementTextNS(LibSyndication::Constants::dublinCoreNamespace(), QString::fromUtf8("date"));
+    str = extractElementTextNS(dublinCoreNamespace(), QString::fromUtf8("date"));
     return parseDate(str, ISODate);
 }
 
