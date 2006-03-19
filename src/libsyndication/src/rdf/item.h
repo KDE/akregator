@@ -114,7 +114,7 @@ class KDE_EXPORT Item : public ResourceWrapper
 };
 
 typedef KSharedPtr<SpecificItem> SpecificItemPtr;
-class SpecificItem : public LibSyndication::SpecificItem
+class KDE_EXPORT SpecificItem : public LibSyndication::SpecificItem
 {
     public:
         

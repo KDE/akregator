@@ -41,7 +41,7 @@ namespace Atom {
  * 
  * @author Frank Osterfeld
  */
-class Content : public ElementWrapper
+class KDE_EXPORT Content : public ElementWrapper
 {
     public:
 

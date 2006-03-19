@@ -94,7 +94,7 @@ class KDE_EXPORT DataRetriever : public QObject
  * by the program on stdout. To be used with Loader::loadFrom().
  * @see DataRetriever, Loader::loadFrom()
  */
-class OutputRetriever : public DataRetriever
+class KDE_EXPORT OutputRetriever : public DataRetriever
 {
     Q_OBJECT
             
