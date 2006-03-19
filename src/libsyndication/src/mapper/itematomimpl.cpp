@@ -30,6 +30,7 @@
 #include "../atom/link.h"
 #include "../atom/person.h"
 #include "../category.h"
+#include "../constants.h"
 #include "../enclosure.h"
 #include "../tools.h"
 
@@ -180,7 +181,10 @@ QList<LibSyndication::CategoryPtr> ItemAtomImpl::categories() const
 
 int ItemAtomImpl::commentsCount() const
 {
-    return -1;
+    QString cstr = m_entry.extractElementTextNS(slashNamespace(), QString::fromUtf8("comments"));
+    bool ok = false;
+    int comments = cstr.toInt(&ok);
+    return ok ? comments : -1;
 }
 
 QString ItemAtomImpl::commentsLink() const
@@ -190,12 +194,12 @@ QString ItemAtomImpl::commentsLink() const
 
 QString ItemAtomImpl::commentsFeed() const
 {
-    return QString();
+    return m_entry.extractElementTextNS(commentApiNamespace(), QString::fromUtf8("commentRss"));
 }
 
 QString ItemAtomImpl::commentPostUri() const
 {
-    return QString();
+    return m_entry.extractElementTextNS(commentApiNamespace(), QString::fromUtf8("comment"));
 }
 
 LibSyndication::SpecificItemPtr ItemAtomImpl::specificItem() const

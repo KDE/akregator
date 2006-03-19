@@ -24,14 +24,20 @@
 #include "personimpl.h"
 
 #include "../rdf/dublincore.h"
+#include "../rdf/property.h"
 #include "../rdf/resource.h"
 #include "../rdf/resourcewrapper.h"
+#include "../rdf/statement.h"
+#include "../constants.h"
 #include "../category.h"
 #include "../enclosure.h"
 #include "../tools.h"
 
 #include <QList>
 #include <QString>
+
+using LibSyndication::RDF::Property;
+using LibSyndication::RDF::PropertyPtr;
 
 namespace LibSyndication {
 
@@ -110,6 +116,11 @@ QList<LibSyndication::CategoryPtr> ItemRDFImpl::categories() const
 
 int ItemRDFImpl::commentsCount() const
 {
+    PropertyPtr prop(new Property(slashNamespace() + QString::fromUtf8("comments")));
+    QString cstr = m_item.resource()->property(prop)->asString();
+    bool ok = false;
+    int comments = cstr.toInt(&ok);
+    return ok ? comments : -1;
     return -1;
 }
 
@@ -120,12 +131,14 @@ QString ItemRDFImpl::commentsLink() const
 
 QString ItemRDFImpl::commentsFeed() const
 {
-    return QString();
+    PropertyPtr prop(new Property(commentApiNamespace() + QString::fromUtf8("commentRss")));
+    return m_item.resource()->property(prop)->asString();
 }
 
 QString ItemRDFImpl::commentPostUri() const
 {
-    return QString();
+    PropertyPtr prop(new Property(commentApiNamespace() + QString::fromUtf8("comment")));
+    return m_item.resource()->property(prop)->asString();
 }
 
 LibSyndication::SpecificItemPtr ItemRDFImpl::specificItem() const
