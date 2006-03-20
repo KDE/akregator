@@ -22,6 +22,7 @@ dateUpdated: #Mon Apr 25 21:39:00 2005#
 # Person begin ####################
 name: #timothy#
 # Person end ######################
+commentsCount: #178#
 # Item end ########################
 # Item begin ######################
 id: #http://it.slashdot.org/article.pl?sid=05/04/25/1710223&from=rss#
@@ -33,6 +34,7 @@ dateUpdated: #Mon Apr 25 20:52:00 2005#
 # Person begin ####################
 name: #timothy#
 # Person end ######################
+commentsCount: #119#
 # Item end ########################
 # Item begin ######################
 id: #http://linux.slashdot.org/article.pl?sid=05/04/25/1321207&from=rss#
@@ -44,6 +46,7 @@ dateUpdated: #Mon Apr 25 20:10:00 2005#
 # Person begin ####################
 name: #Hemos#
 # Person end ######################
+commentsCount: #395#
 # Item end ########################
 # Feed end ########################
 

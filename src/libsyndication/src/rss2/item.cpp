@@ -118,10 +118,19 @@ QString Item::author() const
     
 }
 
-Enclosure Item::enclosure() const
+QList<Enclosure> Item::enclosures() const
 {
-    return Enclosure(firstElementByTagNameNS(QString(),
-                     QString::fromUtf8("enclosure")));
+    QList<QDomElement> encs = elementsByTagNameNS(QString(),
+            QString::fromUtf8("enclosure"));
+
+    QList<Enclosure> enclosures;
+
+    QList<QDomElement>::ConstIterator it = encs.begin();
+    for ( ; it != encs.end(); ++it)
+    {
+        enclosures.append(Enclosure(*it));
+    }
+    return enclosures;
 }
 
 QString Item::guid() const
@@ -200,14 +209,16 @@ QString Item::debugInfo() const
         info += "guid: #" + guid() + "#\n";
     if (guidIsPermaLink())
         info += "guid is PL: #true#\n";
-    if (!enclosure().isNull())
-        info += enclosure().debugInfo();
     if (!source().isNull())
          info += source().debugInfo();
     
     QList<Category> cats = categories();
     for (QList<Category>::ConstIterator it = cats.begin(); it != cats.end(); ++it)
         info += (*it).debugInfo();
+    QList<Enclosure> encs = enclosures();
+    for (QList<Enclosure>::ConstIterator it = encs.begin(); it != encs.end(); ++it)
+        info += (*it).debugInfo();
+
     info += "### Item end ################\n";
     return info;
 }

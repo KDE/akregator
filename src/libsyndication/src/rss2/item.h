@@ -141,13 +141,15 @@ class KDE_EXPORT Item : public ElementWrapper
         QString author() const;
 
         /**
-         * Describes a media object that is attached to the item.
-         * See Enclosure for more details.
+         * Descriptions of media objects that are attached to the item.
+         * Note that the RSS2 spec is a bit unclear about whether an item can
+         * have multiple enclosures or not. Originally it was not intended, but
+         * in reality, tools out there specify multiple enclosures. So most of
+         * the time, this list be either empty or contains a single item, but
+         * it is not guaranteed.
          * 
-         * @return an enclosure object if set, or a null object (see
-         * Enclosure.isNull()) otherwise.
          */
-        Enclosure enclosure() const;
+        QList<Enclosure> enclosures() const;
 
         /**
          * "guid stands for globally unique identifier. It's a string that

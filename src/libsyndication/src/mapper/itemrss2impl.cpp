@@ -107,11 +107,12 @@ QList<LibSyndication::EnclosurePtr> ItemRSS2Impl::enclosures() const
 {
     QList<LibSyndication::EnclosurePtr> list;
     
-    LibSyndication::RSS2::Enclosure enc = m_item.enclosure();
+    QList<LibSyndication::RSS2::Enclosure> encs = m_item.enclosures();
     
-    if (!enc.isNull())
+    for (QList<LibSyndication::RSS2::Enclosure>::ConstIterator it = encs.begin();
+         it != encs.end(); ++it)
     {
-        EnclosureRSS2ImplPtr impl(new EnclosureRSS2Impl(m_item));
+        EnclosureRSS2ImplPtr impl(new EnclosureRSS2Impl(m_item, *it));
         list.append(LibSyndication::EnclosurePtr::staticCast(impl));
     }
     

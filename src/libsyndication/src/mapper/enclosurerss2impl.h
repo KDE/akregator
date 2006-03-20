@@ -41,7 +41,8 @@ class EnclosureRSS2Impl : public LibSyndication::Enclosure
 {
     public:
 
-        EnclosureRSS2Impl(const LibSyndication::RSS2::Item& item);
+        EnclosureRSS2Impl(const LibSyndication::RSS2::Item& item,
+                          const LibSyndication::RSS2::Enclosure& enc);
         
         bool isNull() const;
         

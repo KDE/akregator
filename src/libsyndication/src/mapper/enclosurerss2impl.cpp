@@ -29,8 +29,9 @@
 
 namespace LibSyndication {
 
-EnclosureRSS2Impl::EnclosureRSS2Impl(const LibSyndication::RSS2::Item& item)
-    : m_item(item), m_enclosure(item.enclosure())
+EnclosureRSS2Impl::EnclosureRSS2Impl(const LibSyndication::RSS2::Item& item,
+                                     const LibSyndication::RSS2::Enclosure& enc)
+    : m_item(item), m_enclosure(enc)
 {}
         
 bool EnclosureRSS2Impl::isNull() const
