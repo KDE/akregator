@@ -26,9 +26,33 @@
 
 namespace LibSyndication {
 
+DocumentVisitor::~DocumentVisitor()
+{
+}
+        
 bool DocumentVisitor::visit(AbstractDocument* document)
 {
     return document->accept(this);
+}
+
+bool DocumentVisitor::visitRSS2Document(LibSyndication::RSS2::Document*)
+{
+    return false;
+}
+
+bool DocumentVisitor::visitRDFDocument(LibSyndication::RDF::Document*)
+{
+    return false;
+}
+        
+bool DocumentVisitor::visitAtomFeedDocument(LibSyndication::Atom::FeedDocument*)
+{
+    return false;
+}
+        
+bool DocumentVisitor::visitAtomEntryDocument(LibSyndication::Atom::EntryDocument*)
+{ 
+    return false;
 }
 
 } // namespace LibSyndication

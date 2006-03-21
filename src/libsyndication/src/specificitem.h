@@ -45,7 +45,7 @@ class KDE_EXPORT SpecificItem : public KShared
         /**
          * virtual dtor
          */
-        virtual ~SpecificItem() {}
+        virtual ~SpecificItem();
 
         /**
          * This must be implemented for the double dispatch

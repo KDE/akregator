@@ -31,6 +31,10 @@
 
 namespace LibSyndication {
 
+Item::~Item()
+{
+}
+
 QString Item::debugInfo() const
 {
     QString info;

@@ -20,45 +20,12 @@
  *
  */
 
-#include "category.h"
-
-#include <QString>
+#include "abstractdocument.h"
 
 namespace LibSyndication {
 
-Category::~Category()
+AbstractDocument::~AbstractDocument()
 {
-}
-
-QString Category::debugInfo() const
-{
-    QString info;
-    info += "# Category begin ##################\n";
-
-    QString dterm = term();
-    
-    if (!dterm.isNull())
-    {
-        info += "term: #" + dterm + "#\n";
-    }
-    
-    QString dscheme = scheme();
-    
-    if (!dscheme.isNull())
-    {
-        info += "scheme: #" + dscheme + "#\n";
-    }
-    
-    QString dlabel = label();
-    
-    if (!dlabel.isNull())
-    {
-        info += "label: #" + dlabel + "#\n";
-    }
-    
-    info += "# Category end ####################\n";
-
-    return info;
 }
 
 } // namespace LibSyndication

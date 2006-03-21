@@ -59,7 +59,7 @@ class KDE_EXPORT Feed : public KShared
 {
     public:
         
-        virtual ~Feed() {}
+        virtual ~Feed();
         
         /**
          * returns the format-specific document this abstraction wraps.

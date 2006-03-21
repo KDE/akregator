@@ -52,7 +52,7 @@ class KDE_EXPORT AbstractDocument : public KShared
         /**
          * virtual dtor
          */
-        virtual ~AbstractDocument() {}
+        virtual ~AbstractDocument();
 
         /**
          * This must be implemented for the double dispatch

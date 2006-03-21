@@ -49,7 +49,7 @@ class KDE_EXPORT Person : public KShared
         /** 
          * destructor
          */
-        virtual ~Person() {}
+        virtual ~Person();
         
         /**
          * returns whether this object is a null category

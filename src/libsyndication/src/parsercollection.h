@@ -114,8 +114,8 @@ class KDE_EXPORT ParserCollection
         
     private:
 
-        ParserCollection(const ParserCollection&) {}
-        ParserCollection& operator=(const ParserCollection&) { return *this; }
+        ParserCollection(const ParserCollection&);
+        ParserCollection& operator=(const ParserCollection&);
         
         static ParserCollection* m_self;
 

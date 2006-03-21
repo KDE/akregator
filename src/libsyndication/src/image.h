@@ -44,7 +44,7 @@ class KDE_EXPORT Image : public KShared
         /** 
          * destructor
          */
-        virtual ~Image() {}
+        virtual ~Image();
         
         /**
          * returns whether this image is a null object.
@@ -88,9 +88,7 @@ class KDE_EXPORT Image : public KShared
          * @return image width in pixels or 0 if not specified in the feed.
          */
         virtual uint width() const = 0;
-        
-        
-    
+
         /**
          * The height of the image in pixels
          *

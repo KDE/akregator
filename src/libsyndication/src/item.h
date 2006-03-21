@@ -55,7 +55,7 @@ class KDE_EXPORT Item : public KShared
         /** 
          * destructor
          */
-        virtual ~Item() {}
+        virtual ~Item();
         
         /**
          * The title of the item.

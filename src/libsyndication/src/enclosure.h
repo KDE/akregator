@@ -45,7 +45,7 @@ class KDE_EXPORT Enclosure : public KShared
         /** 
          * destructor
          */
-        virtual ~Enclosure() {}
+        virtual ~Enclosure();
         
         /**
          * returns whether this enclosure is a null object.

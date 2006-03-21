@@ -48,7 +48,7 @@ class KDE_EXPORT Category : public KShared
         /** 
          * destructor
          */
-        virtual ~Category() {}
+        virtual ~Category();
         
         /**
          * returns whether this object is a null category

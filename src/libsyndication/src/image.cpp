@@ -26,6 +26,10 @@
 
 namespace LibSyndication {
 
+Image::~Image()
+{
+}
+
 QString Image::debugInfo() const
 {
     QString info;

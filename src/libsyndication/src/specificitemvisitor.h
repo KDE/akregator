@@ -47,27 +47,15 @@ class KDE_EXPORT SpecificItemVisitor
 {
     public:
 
-        virtual ~SpecificItemVisitor() {}
+        virtual ~SpecificItemVisitor();
 
         virtual bool visit(SpecificItem* item);
         
-        virtual bool visitSpecificRSS2Item(LibSyndication::RSS2::SpecificItem* item)
-        {
-            Q_UNUSED(item);
-            return false;
-        }
+        virtual bool visitSpecificRSS2Item(LibSyndication::RSS2::SpecificItem* item);
         
-        virtual bool visitSpecificRDFItem(LibSyndication::RDF::SpecificItem* item)
-        {
-            Q_UNUSED(item);
-            return false;
-        }
+        virtual bool visitSpecificRDFItem(LibSyndication::RDF::SpecificItem* item);
         
-        virtual bool visitSpecificAtomItem(LibSyndication::Atom::SpecificItem* item)
-        {
-            Q_UNUSED(item);
-            return false;
-        }
+        virtual bool visitSpecificAtomItem(LibSyndication::Atom::SpecificItem* item);
 };
 
 } // namespace LibSyndication

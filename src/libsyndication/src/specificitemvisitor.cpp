@@ -26,9 +26,28 @@
 
 namespace LibSyndication {
 
+SpecificItemVisitor::~SpecificItemVisitor()
+{
+}
+
 bool SpecificItemVisitor::visit(SpecificItem* item)
 {
     return item->accept(this);
+}
+
+bool SpecificItemVisitor::visitSpecificRSS2Item(LibSyndication::RSS2::SpecificItem*)
+{
+    return false;
+}
+        
+bool SpecificItemVisitor::visitSpecificRDFItem(LibSyndication::RDF::SpecificItem*)
+{
+    return false;
+}
+       
+bool SpecificItemVisitor::visitSpecificAtomItem(LibSyndication::Atom::SpecificItem*)
+{
+    return false;
 }
 
 } // namespace LibSyndication

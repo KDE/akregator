@@ -26,6 +26,10 @@
 
 namespace LibSyndication {
 
+Person::~Person()
+{
+}
+
 QString Person::debugInfo() const
 {
     QString info;

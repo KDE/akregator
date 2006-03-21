@@ -23,11 +23,14 @@
 #ifndef LIBSYNDICATION_ABSTRACTPARSER_H
 #define LIBSYNDICATION_ABSTRACTPARSER_H
 
+#include "abstractdocument.h"
+
+#include <kdepimmacros.h>
+
 class QString;
 
 namespace LibSyndication {
 
-class AbstractDocument;
 class DocumentSource;
 
 /**
@@ -41,9 +44,9 @@ class KDE_EXPORT AbstractParser
     public:
 
         /** 
-         * destructor
+         * virtual destructor
          */
-        virtual ~AbstractParser() {}
+        virtual ~AbstractParser();
 
         /**
          * Lets the parser check if it can parse the passed source.

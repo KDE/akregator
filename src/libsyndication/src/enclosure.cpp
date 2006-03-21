@@ -26,6 +26,10 @@
 
 namespace LibSyndication {
 
+Enclosure::~Enclosure()
+{
+}
+
 QString Enclosure::debugInfo() const
 {
     QString info;

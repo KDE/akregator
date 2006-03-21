@@ -203,4 +203,13 @@ LibSyndication::ErrorCode ParserCollection::lastError() const
     return d->lastError;
 }
 
+ParserCollection::ParserCollection(const ParserCollection&)
+{
+}
+
+ParserCollection& ParserCollection::operator=(const ParserCollection&)
+{
+    return *this;
+}
+
 } // namespace LibSyndication

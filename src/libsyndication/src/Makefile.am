@@ -11,7 +11,8 @@ libsyndication_la_SOURCES = parsercollection.cpp documentsource.cpp \
                             documentvisitor.cpp elementwrapper.cpp constants.cpp \
                             feed.cpp item.cpp enclosure.cpp category.cpp \
                             image.cpp tools.cpp person.cpp \
-                            loader.cpp dataretriever.cpp specificitemvisitor.cpp
+                            loader.cpp dataretriever.cpp specificitemvisitor.cpp \
+                            specificitem.cpp abstractdocument.cpp abstractparser.cpp
 
 libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
                                  parsercollection.h documentvisitor.h \
