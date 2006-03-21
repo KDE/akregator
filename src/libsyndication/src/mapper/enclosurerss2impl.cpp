@@ -77,7 +77,9 @@ uint EnclosureRSS2Impl::duration() const
     {
         int intVal = strTokens.at(i).toInt(&ok);
         if (ok)
-            intTokens.append(intVal);
+        {
+            intTokens.append(intVal >= 0 ? intVal : 0); // do not accept negative values
+        }
         else
             return 0;
     }
