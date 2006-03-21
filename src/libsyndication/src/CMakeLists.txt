@@ -15,7 +15,6 @@ include_directories(
 set(librss2local_SRCS 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/category.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/cloud.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/constants.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/document.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/enclosure.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/image.cpp
