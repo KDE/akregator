@@ -16,7 +16,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testlibrss ${testlibrss_SRCS})
 
-target_link_libraries(testlibrss  ${LIB_KIO} )
+target_link_libraries(testlibrss  ${KDE4_KIO_LIBRARIES} )
 
 endif(KDE4_BUILD_TESTS)
 

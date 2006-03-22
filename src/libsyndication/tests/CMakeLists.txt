@@ -13,7 +13,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testlibsyndication ${testlibsyndication_SRCS})
 
-target_link_libraries(testlibsyndication  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(testlibsyndication  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
@@ -27,7 +27,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testlibsyndication2 ${testlibsyndication2_SRCS})
 
-target_link_libraries(testlibsyndication2  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(testlibsyndication2  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 
@@ -41,7 +41,7 @@ if(KDE4_BUILD_TESTS)
 
 kde4_add_executable(testpersonimpl ${testpersonimpl_SRCS})
 
-target_link_libraries(testpersonimpl  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(testpersonimpl  ${KDE4_KDECORE_LIBS} )
 
 endif(KDE4_BUILD_TESTS)
 

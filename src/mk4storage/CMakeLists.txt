@@ -24,7 +24,7 @@ kde4_add_plugin(akregator_mk4storage_plugin WITH_PREFIX ${akregator_mk4storage_p
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} akregator_mk4storage_plugin )
 
-target_link_libraries(akregator_mk4storage_plugin  ${QT_AND_KDECORE_LIBS} metakitlocal rsslocal akregatorprivate )
+target_link_libraries(akregator_mk4storage_plugin  ${KDE4_KDECORE_LIBS} metakitlocal rsslocal akregatorprivate )
 
 install_targets(${LIB_INSTALL_DIR}/kde4 akregator_mk4storage_plugin )
 
