@@ -89,7 +89,7 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : KHBox(parent), d(new S
     d->searchCombo = new KComboBox(this);
     d->searchCombo->setObjectName("searchcombo");
 
-    QPixmap iconAll = KGlobal::iconLoader()->loadIcon("exec", KIcon::Small);
+    QPixmap iconAll = KGlobal::iconLoader()->loadIcon("exec", K3Icon::Small);
     QPixmap iconNew(locate("data", "akregator/pics/kmmsgnew.png"));
     QPixmap iconUnread(locate("data", "akregator/pics/kmmsgunseen.png"));
     QPixmap iconKeep(locate("data", "akregator/pics/kmmsgflag.png"));

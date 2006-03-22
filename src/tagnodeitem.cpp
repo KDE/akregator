@@ -62,13 +62,13 @@ void TagNodeItem::initialize(TagNode* node)
     if (node)
     {
         setText(0, node->title());
-        setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), KIcon::Small) );
+        setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node->icon(), K3Icon::Small) );
     }
 }
 
 void TagNodeItem::nodeChanged()
 {
-    setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node()->icon(), KIcon::Small));
+    setPixmap ( 0, KGlobal::iconLoader()->loadIcon(node()->icon(), K3Icon::Small));
     TreeNodeItem::nodeChanged();
 }
 

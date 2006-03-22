@@ -43,7 +43,7 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
    : QWidget(parent)
 {
     setupUi(this);
-    pixmapLabel1->setPixmap(kapp->iconLoader()->loadIcon( "package_network",KIcon::Desktop,KIcon::SizeHuge, KIcon::DefaultState, 0, true));
+    pixmapLabel1->setPixmap(kapp->iconLoader()->loadIcon( "package_network",K3Icon::Desktop,K3Icon::SizeHuge, K3Icon::DefaultState, 0, true));
     statusLabel->setText(QString::null);
 }
 

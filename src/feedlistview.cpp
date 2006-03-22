@@ -896,7 +896,7 @@ void NodeListView::slotFeedFetchStarted(Feed* feed)
     {
         TreeNodeItem* item = findNodeItem(feed);
         KIconEffect iconEffect;
-        QPixmap tempIcon = iconEffect.apply(feed->favicon(), KIcon::Small, KIcon::DisabledState);
+        QPixmap tempIcon = iconEffect.apply(feed->favicon(), K3Icon::Small, K3Icon::DisabledState);
         item->setPixmap(0, tempIcon);
     }
 
