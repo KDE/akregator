@@ -116,7 +116,7 @@ kde4_automoc(${syndication_LIB_SRCS})
 
 kde4_add_library(syndication SHARED ${syndication_LIB_SRCS})
 
-target_link_libraries(syndication  ${KDE4_KIO_LIBRARIES}  )
+target_link_libraries(syndication  ${KDE4_KIO_LIBS}  )
 
 set_target_properties(syndication PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install_targets(${LIB_INSTALL_DIR} syndication )

@@ -32,7 +32,7 @@ kde4_automoc(${akregator_SRCS})
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
-target_link_libraries(akregator  ${KDE4_KPARTS_LIBRARIES} akregatorprivate)
+target_link_libraries(akregator  ${KDE4_KPARTS_LIBS} akregatorprivate)
 
 install_targets(/bin akregator )
 
@@ -77,7 +77,7 @@ kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate  ${KDE4_KDEUI_LIBRARIES} kdepim  khtml syndication )
+target_link_libraries(akregatorprivate  ${KDE4_KDEUI_LIBS} kdepim  khtml syndication )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install_targets(${LIB_INSTALL_DIR} akregatorprivate )
