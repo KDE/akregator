@@ -59,7 +59,7 @@ class ActionManagerImpl : public ActionManager
         ActionManagerImpl(Part* part, QObject* parent=0, const char* name=0);
         virtual ~ActionManagerImpl();
 
-        virtual KAction* action(const char* name, const char* classname=0);
+        virtual KAction* action(const char* name);
         virtual QWidget* container(const char* name);
 
         void initMainWidget(MainWidget* mainWidget);

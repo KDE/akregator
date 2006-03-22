@@ -273,18 +273,19 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     new KAction(i18n("Ne&w Folder..."), "folder_new", "Shift+Insert", d->mainWidget, SLOT(slotFeedAddGroup()), actionCollection(), "feed_add_group");
     new KAction(i18n("&Delete Feed"), "editdelete", "Alt+Delete", d->mainWidget, SLOT(slotFeedRemove()), actionCollection(), "feed_remove");
     new KAction(i18n("&Edit Feed..."), "edit", "F2", d->mainWidget, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
-        KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "mainWidget_mode" );
+    KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "mainWidget_mode" );
 
+    QActionGroup* agViewMode = new QActionGroup(this);
     KToggleAction *ra = new KToggleAction(i18n("&Normal View"), "mainWidget_top_bottom", "Ctrl+Shift+1", d->mainWidget, SLOT(slotNormalView()), actionCollection(), "normal_mainWidget");
-    ra->setExclusiveGroup( "ViewMode" );
+    ra->setActionGroup(agViewMode);
     vm->insert(ra);
 
     ra = new KToggleAction(i18n("&Widescreen View"), "mainWidget_left_right", "Ctrl+Shift+2", d->mainWidget, SLOT(slotWidescreenView()), actionCollection(), "widescreen_mainWidget");
-    ra->setExclusiveGroup( "ViewMode" );
+    ra->setActionGroup(agViewMode);
     vm->insert(ra);
 
     ra = new KToggleAction(i18n("C&ombined View"), "mainWidget_text", "Ctrl+Shift+3", d->mainWidget, SLOT(slotCombinedView()), actionCollection(), "combined_mainWidget");
-    ra->setExclusiveGroup( "ViewMode" );
+    ra->setActionGroup(agViewMode);
     vm->insert(ra);
 
     // toolbar / feed menu
@@ -311,8 +312,10 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     new KAction(i18n("&Delete"), "editdelete", "Delete", d->mainWidget, SLOT(slotArticleDelete()), actionCollection(), "article_delete");
 
-    d->tagMenu = new KActionMenu ( i18n( "&Set Tags" ), "rss_tag",  actionCollection(), "article_tagmenu" );
+    d->tagMenu = new KActionMenu ( i18n( "&Set Tags" ),  actionCollection(), "article_tagmenu" );
+    d->tagMenu->setIconName("rss_tag");
     d->tagMenu->setEnabled(false); // only enabled when articles are selected
+    
 
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );
@@ -442,9 +445,10 @@ KActionCollection* ActionManagerImpl::actionCollection()
 {
     return d->actionCollection;
 }
-KAction* ActionManagerImpl::action(const char* name, const char* classname)
+
+KAction* ActionManagerImpl::action(const char* name)
 {
-    return d->actionCollection != 0 ? d->actionCollection->action(name, classname) : 0;
+    return d->actionCollection != 0 ? d->actionCollection->action(name) : 0;
 }
 
 } // namespace Akregator
