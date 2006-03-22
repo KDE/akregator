@@ -251,6 +251,12 @@ void Part::loadPlugins()
 void Part::slotOnShutdown()
 {
     m_shuttingDown = true;
+    
+    const QString lockLocation = locateLocal("data", "akregator/lock");
+    KSimpleConfig config(lockLocation);
+    config.writeEntry("pid", -1);
+    config.sync();
+
     m_autosaveTimer->stop();
     saveSettings();
     slotSaveFeedList();
