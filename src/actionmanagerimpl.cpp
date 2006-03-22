@@ -275,15 +275,15 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     new KAction(i18n("&Edit Feed..."), "edit", "F2", d->mainWidget, SLOT(slotFeedModify()), actionCollection(), "feed_modify");
         KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "mainWidget_mode" );
 
-    KRadioAction *ra = new KRadioAction(i18n("&Normal View"), "mainWidget_top_bottom", "Ctrl+Shift+1", d->mainWidget, SLOT(slotNormalView()), actionCollection(), "normal_mainWidget");
+    KToggleAction *ra = new KToggleAction(i18n("&Normal View"), "mainWidget_top_bottom", "Ctrl+Shift+1", d->mainWidget, SLOT(slotNormalView()), actionCollection(), "normal_mainWidget");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
 
-    ra = new KRadioAction(i18n("&Widescreen View"), "mainWidget_left_right", "Ctrl+Shift+2", d->mainWidget, SLOT(slotWidescreenView()), actionCollection(), "widescreen_mainWidget");
+    ra = new KToggleAction(i18n("&Widescreen View"), "mainWidget_left_right", "Ctrl+Shift+2", d->mainWidget, SLOT(slotWidescreenView()), actionCollection(), "widescreen_mainWidget");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
 
-    ra = new KRadioAction(i18n("C&ombined View"), "mainWidget_text", "Ctrl+Shift+3", d->mainWidget, SLOT(slotCombinedView()), actionCollection(), "combined_mainWidget");
+    ra = new KToggleAction(i18n("C&ombined View"), "mainWidget_text", "Ctrl+Shift+3", d->mainWidget, SLOT(slotCombinedView()), actionCollection(), "combined_mainWidget");
     ra->setExclusiveGroup( "ViewMode" );
     vm->insert(ra);
 
