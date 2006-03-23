@@ -110,7 +110,11 @@ set(syndication_LIB_SRCS
    tools.cpp 
    person.cpp 
    loader.cpp 
-   dataretriever.cpp )
+   dataretriever.cpp 
+   specificitemvisitor.cpp
+   specificitem.cpp 
+   abstractdocument.cpp 
+   abstractparser.cpp)
 
 kde4_automoc(${syndication_LIB_SRCS})
 
