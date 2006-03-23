@@ -40,12 +40,12 @@ Category::Category(const QDomElement& element) : ElementWrapper(element)
 }
 QString Category::category() const
 {
-    return element().text().simplified();
+    return text().simplified();
 }
 
 QString Category::domain() const
 {
-    return element().attribute(QString::fromUtf8("domain"));
+    return attribute(QString::fromUtf8("domain"));
 }
 
 QString Category::debugInfo() const

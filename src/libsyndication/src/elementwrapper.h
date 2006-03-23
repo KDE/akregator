@@ -22,6 +22,8 @@
 #ifndef LIBSYNDICATION_ELEMENTWRAPPER_H
 #define LIBSYNDICATION_ELEMENTWRAPPER_H
 
+#include <QString>
+
 #include <ksharedptr.h>
 
 #include <kdepimmacros.h>
@@ -132,15 +134,19 @@ class KDE_EXPORT ElementWrapper
         QString completeURI(const QString& uri) const;
         
         /**
-         * extracts the text from a sub-element, respecting namespaces. For 
-         * instance, when the wrapped element is @c &lt;hisElement>:
+         * extracts the text from a child element, respecting namespaces. If
+         * there is more than one child with the same tag name, the first one is 
+         * processed.
+         * For instance, when the wrapped element is @c &lt;hisElement>:
          * @code
          * <thisElement>
          *     <atom:title>Hi there</atom:title>
          * </thisElement>    
          * @endcode
-         * @code extractElementText("http://www.w3.org/2005/Atom", "title") 
-         * @endcode will return the text content of @c atom:title, "Hi there".
+         * @code 
+         * extractElementText("http://www.w3.org/2005/Atom", "title") 
+         * @endcode 
+         * will return the text content of @c atom:title, "Hi there".
          * (Assuming that "atom" is defined as "http://www.w3.org/2005/Atom")
          * 
          * @param namespaceURI the namespace URI of the element to extract
@@ -153,7 +159,7 @@ class KDE_EXPORT ElementWrapper
         QString extractElementTextNS(const QString& namespaceURI, const QString& localName) const;
         
         /**
-         * extracts the text from a sub-element, ignoring namespaces. For 
+         * extracts the text from a child element, ignoring namespaces. For 
          * instance, when the wrapped element is @c &lt;thisElement>:
          * @code
          * <thisElement>
@@ -170,7 +176,7 @@ class KDE_EXPORT ElementWrapper
         QString extractElementText(const QString& tagName) const;
 
         /**
-         * returns all subelements with tag name @c tagName 
+         * returns all child elements with tag name @c tagName 
          * Contrary to QDomElement::elementsByTagName() only direct descendents are returned.
          * 
          * @param tagName the tag name of the elements to extract
@@ -203,8 +209,8 @@ class KDE_EXPORT ElementWrapper
         static QString childNodesAsXML(const QDomElement& parent);
         
         /**
-         * returns all sub elements with tag name @c tagname of a given parent
-         * node @c parent with namespace URI @c nsURI.
+         * returns all child elements with tag name @c tagname 
+         * and namespace URI @c nsURI.
          * Contrary to QDomElement::elementsByTagNameNS() only direct
          * descendents are returned
          * 
@@ -223,11 +229,59 @@ class KDE_EXPORT ElementWrapper
          * @param nsURI the namespace URI
          * @param tagName the local name (local within its namespace) of the 
          * element to search for
-         * @return the first child element with the given namespace URI and tag name,
-         * or a null element if no such element was found.
+         * @return the first child element with the given namespace URI and tag
+         * name, or a null element if no such element was found.
          */
-        QDomElement firstElementByTagNameNS(const QString& nsURI, const QString& tagName) const;
+        QDomElement firstElementByTagNameNS(const QString& nsURI,
+                                            const QString& tagName) const;
         
+        /** 
+         * Returns the wrapped element's text or an empty string.
+         * For more information, see QDomElement::text();
+         */
+        QString text() const;
+        
+        /** 
+         * Returns the attribute called name. If the attribute does not exist 
+         * defValue is returned.
+         * (which is a null string by default).
+         * 
+         * @param name tag name
+         * @param defValue the default value
+         */
+        QString attribute(const QString& name, 
+                          const QString& defValue=QString()) const;
+        
+        /**
+         * Returns the attribute with the local @c name localName and the 
+         * namespace URI @c nsURI.
+         * If the attribute does not exist @c defValue is returned (which is a
+         * null string by default).
+         * 
+         * @param nsURI namespace URI
+         * @param localName local tag name
+         * @param defValue the default value
+         */
+        QString attributeNS(const QString& nsURI, const QString& localName,
+                            const QString& defValue=QString()) const;
+        
+        
+        /**
+         * Returns true if this element has an attribute called @c name;
+         * otherwise returns @c false.
+         * 
+         * @param name the attribute name (without namespace)
+         */
+        bool hasAttribute(const QString& name) const;
+        
+        /**
+         * Returns true if this element has an attribute with the local name
+         * localName and the namespace URI nsURI; otherwise returns false.
+         * 
+         * @param nsURI namespace URI
+         * @param localName local attribute name
+         */
+        bool hasAttributeNS(const QString& nsURI, const QString& localName) const;
     private:
 
         class ElementWrapperPrivate;

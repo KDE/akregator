@@ -42,12 +42,12 @@ Content::Content(const QDomElement& element) : ElementWrapper(element)
 
 QString Content::type() const
 {
-    return element().attribute(QString::fromUtf8("type"));
+    return attribute(QString::fromUtf8("type"));
 }
 
 QString Content::src() const
 {
-    return completeURI(element().attribute(QString::fromUtf8("src")));
+    return completeURI(attribute(QString::fromUtf8("src")));
 }
 
 QByteArray Content::asByteArray() const
@@ -133,11 +133,11 @@ QString Content::asString() const
     
     if (f == PlainText)
     {
-        return plainTextToHtml(element().text().simplified());
+        return plainTextToHtml(text().simplified());
     }
     else if (f == EscapedHTML)
     {
-        return element().text().simplified();
+        return text().simplified();
     }
     else if (f == XML)
     {

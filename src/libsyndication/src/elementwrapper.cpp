@@ -249,4 +249,29 @@ QList<QDomElement> ElementWrapper::elementsByTagNameNS(const QString& nsURI, con
     return elements;
 }
 
+QString ElementWrapper::text() const
+{
+    return d->element.text();
+}
+        
+QString ElementWrapper::attribute(const QString& name, const QString& defValue) const
+{
+    return d->element.attribute(name, defValue);
+}
+        
+QString ElementWrapper::attributeNS(const QString& nsURI, const QString& localName, const QString& defValue) const
+{
+    return d->element.attributeNS(nsURI, localName, defValue);
+}
+
+bool ElementWrapper::hasAttribute(const QString& name) const
+{
+    return d->element.hasAttribute(name);
+}
+
+bool ElementWrapper::hasAttributeNS(const QString& nsURI, const QString& localName) const
+{
+    return d->element.hasAttributeNS(nsURI, localName);
+}
+
 } // namespace LibSyndication

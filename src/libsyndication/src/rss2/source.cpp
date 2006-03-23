@@ -39,12 +39,12 @@ Source::Source(const QDomElement& element) : ElementWrapper(element)
 
 QString Source::source() const
 {
-    return element().text();
+    return text();
 }
 
 QString Source::url() const
 {
-    return element().attribute(QString::fromUtf8("url"));
+    return attribute(QString::fromUtf8("url"));
 }
 
 QString Source::debugInfo() const
