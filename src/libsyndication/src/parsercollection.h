@@ -23,55 +23,58 @@
 #ifndef LIBSYNDICATION_PARSERCOLLECTION_H
 #define LIBSYNDICATION_PARSERCOLLECTION_H
 
+#include "abstractdocument.h"
+#include "abstractparser.h"
+#include "documentsource.h"
+#include "feed.h"
 #include "global.h"
+#include "mapper.h"
 
+#include <QDomDocument>
+#include <QHash>
 #include <QString>
-
-template <class T> class KSharedPtr;
 
 namespace LibSyndication {
 
-class AbstractParser;
-class DocumentSource;
-class Feed;
-typedef KSharedPtr<Feed> FeedPtr;
 
 /**
- * Singleton that collects all the format-specific parser implementations.
+ * Collects all the format-specific parser implementations.
  * To parse a feed source, pass it to the parse() method of this class.
+ * In most cases, you should use the global singleton
+ * LibSyndication::parserCollection().
+ * When loading the source from the web, use Loader instead of using
+ * this class directly.
  * 
  * Example code:
  * 
  * @code
  * ...
+ * QFile someFile(somePath);
+ * ... 
  * DocumentSource src(someFile.readAll());
  * someFile.close();
  * 
- * FeedPtr feed = ParserCollection::self()->parse(src);
+ * FeedPtr feed = parserCollection()->parse(src);
  * 
  * if (feed)
  * {
- *     QString title = feed->title();
- *     QList<ItemPtr> items = feed->items();
+ *     QString title = feem_title();
+ *     QList<ItemPtr> items = feem_items();
  *     ...
  * }
  * @endcode
- * 
- * For loading the source from the web, use Loader.
  *
+ * TODO: explain &lt;T>
+ * 
  * @author Frank Osterfeld
  */
+template <class T>
 class KDE_EXPORT ParserCollection
 {
     public:
 
-        /**
-         * Singleton instance of ParserCollection.
-         */
-        static ParserCollection* self();
-
         /** destructor */
-        virtual ~ParserCollection();
+        virtual ~ParserCollection() {}
 
         /**
          * tries to parse a given source with the parsers registered.
@@ -86,41 +89,44 @@ class KDE_EXPORT ParserCollection
          * @return The feed document parsed from the source, or NULL if no
          * parser accepted the source.
          */
-        FeedPtr parse(const DocumentSource& source, const QString& formatHint=QString::null);
+        virtual KSharedPtr<T> parse(const DocumentSource& source,
+                            const QString& formatHint=QString()) = 0;
 
+        
         /**
-         * Adds a parser to the collection. Parser::format() must be unique
+         * returns the error code of the last parse() call.
+         * 
+         * @return the last error, or Success if parse() was successful
+         * or not yet called at all.
+         */
+        virtual ErrorCode lastError() const = 0;
+        
+        /**
+         * Adds a parser and corresponding mapper to the collection.
+         * AbstractParser::format() must be unique
          * in the collection. If there is already a parser with the same format
          * string, the parser isn't added.
+         * 
+         * @note ownership for both @c parser and @c mapper is taken by the
+         * implementation, so don't delete them in your code!
          *
          * @param parser The parser to be registered
+         * @param mapper the mapper that should be used for building the
+         * abstraction
          * @return whether the parser was successfully registered or not.
          */
-        bool registerParser(AbstractParser* parser);
-
+        virtual bool registerParser(AbstractParser* parser, Mapper<T>* mapper) = 0;
+        
         /**
-         * returns the error code of the last parse() call
+         * Changes the specific format to abstraction mapping for a parser.
          * 
-         * @return the last error, or NoError if parse() wasn't called yet
+         * @param format the format string of the parser whose 
+         * mapping should be changed. See AbstractParser::format.
+         * @param mapper Mapper implementation doing the mapping from the
+         * format specific representation to abstraction of type T.
          */
-        ErrorCode lastError() const;
-        
-        
-    protected:
-        
-        /** constructor */
-        ParserCollection();
-        
-        
-    private:
+        virtual void changeMapper(const QString& format, Mapper<T>* mapper) = 0;
 
-        ParserCollection(const ParserCollection&);
-        ParserCollection& operator=(const ParserCollection&);
-        
-        static ParserCollection* m_self;
-
-        class ParserCollectionPrivate;
-        ParserCollectionPrivate* d;
 };
 
 } // namespace LibSyndication

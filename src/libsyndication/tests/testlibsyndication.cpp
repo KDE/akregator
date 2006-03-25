@@ -93,7 +93,9 @@ int main(int argc, char **argv)
  
     DocumentSource src(f.readAll(), "http://libsyndicationtest");
     f.close();
-    FeedPtr ptr(ParserCollection::self()->parse(src));
+
+    FeedPtr ptr(LibSyndication::parse(src));
+
     if (ptr.isNull())
     {
         printUsage("Couldn't parse file");

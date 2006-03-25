@@ -22,9 +22,18 @@
 #ifndef LIBSYNDICATION_GLOBAL_H
 #define LIBSYNDICATION_GLOBAL_H
 
+#include "feed.h"
+
+#include <kdepimmacros.h>
+
+#include <QString>
+
 #define LIBSYNDICATION_VERSION "0.1"
 
 namespace LibSyndication {
+
+class DocumentSource;
+template <class T> class ParserCollection;
 
 /**
  * error code indicating fetching or parsing errors
@@ -62,6 +71,12 @@ enum ErrorCode
                         */
 };
 
+KDE_EXPORT
+ParserCollection<Feed>* parserCollection();
+
+KDE_EXPORT
+FeedPtr parse(const DocumentSource& src, const QString& formatHint=QString());
+        
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_GLOBAL_H

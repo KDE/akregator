@@ -8,7 +8,7 @@ noinst_HEADERS = personimpl.h \
                  categoryrss2impl.h imagerss2impl.h \
                  feedrdfimpl.h itemrdfimpl.h imagerdfimpl.h \
                  feedatomimpl.h itematomimpl.h enclosureatomimpl.h \
-                 categoryatomimpl.h
+                 categoryatomimpl.h mapperrss2impl.h mapperrdfimpl.h mapperatomimpl.h
 
 libmappercommonlocal_la_SOURCES = personimpl.cpp
 

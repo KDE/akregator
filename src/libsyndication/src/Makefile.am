@@ -7,10 +7,10 @@ METASOURCES = AUTO
 
 lib_LTLIBRARIES = libsyndication.la
 
-libsyndication_la_SOURCES = parsercollection.cpp documentsource.cpp \
+libsyndication_la_SOURCES = documentsource.cpp \
                             documentvisitor.cpp elementwrapper.cpp constants.cpp \
                             feed.cpp item.cpp enclosure.cpp category.cpp \
-                            image.cpp tools.cpp person.cpp \
+                            image.cpp tools.cpp person.cpp global.cpp \
                             loader.cpp dataretriever.cpp specificitemvisitor.cpp \
                             specificitem.cpp abstractdocument.cpp abstractparser.cpp
 
@@ -20,7 +20,7 @@ libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
                                  item.h feed.h category.h image.h \
                                  enclosure.h person.h global.h \
                                  dataretriever.h loader.h specificitemvisitor.h \
-                                 specificitem.h
+                                 specificitem.h mapper.h
 
 libsyndication_includedir = $(includedir)/libsyndication
 

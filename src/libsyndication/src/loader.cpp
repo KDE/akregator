@@ -11,9 +11,9 @@
 #include "dataretriever.h"
 #include "documentsource.h"
 #include "feed.h"
+#include "global.h"
 #include "loader.h"
 #include "parsercollection.h"
-
 
 #include <kio/global.h>
 
@@ -130,11 +130,11 @@ void Loader::slotRetrieverDone(const QByteArray& data, bool success)
     if (success)
     {
         DocumentSource src(data, d->url.url());
-        feed = ParserCollection::self()->parse(src);
+        feed = parserCollection()->parse(src);
         
-        if (ParserCollection::self()->lastError() != LibSyndication::Success)
+        if (parserCollection()->lastError() != LibSyndication::Success)
         {
-            status = ParserCollection::self()->lastError();
+            status = parserCollection()->lastError();
             discoverFeeds(data);
         }
     }
@@ -188,7 +188,6 @@ void Loader::discoverFeeds(const QByteArray &data)
             }
         }
 
-        s2;
         KUrl testURL;
         // loop through, prefer feeds on same host
         QStringList::Iterator end( feeds.end() );
