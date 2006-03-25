@@ -20,30 +20,39 @@
  *
  */
 
+#include "documentsource.h"
+#include "global.h"
+#include "parsercollectionimpl.h"
+#include "mapper/mapperatomimpl.h"
+#include "mapper/mapperrdfimpl.h"
+#include "mapper/mapperrss2impl.h"
+#include "atom/parser.h"
+#include "rdf/parser.h"
+#include "rss2/parser.h"
 
-#ifndef LIBSYNDICATION_MAPPER_MAPPERRDFIMPL_H
-#define LIBSYNDICATION_MAPPER_MAPPERRDFIMPL_H
-
-#include "feedrdfimpl.h"
-
-#include "../rdf/document.h"
-#include "../abstractdocument.h"
-#include "../feed.h"
-#include "../mapper.h"
-
-
+#include <kstaticdeleter.h>
 
 namespace LibSyndication {
 
-/** @internal */
-class RDFMapper : public Mapper<Feed>
+static ParserCollection<Feed>* parserColl = 0L;
+static KStaticDeleter<ParserCollection<Feed> > parsercollsd;
+
+ParserCollection<Feed>* parserCollection()
 {
-    KSharedPtr<Feed> map(AbstractDocumentPtr doc) const
+    if (parserColl == 0)
     {
-        return KSharedPtr<Feed>(new FeedRDFImpl(LibSyndication::RDF::DocumentPtr::staticCast(doc)));
+        parsercollsd.setObject(parserColl, new ParserCollectionImpl<LibSyndication::Feed>);
+        parserColl->registerParser(new RSS2::Parser, new RSS2Mapper);
+        parserColl->registerParser(new RDF::Parser, new RDFMapper);
+        parserColl->registerParser(new Atom::Parser, new AtomMapper);
     }
-};
+    return parserColl;
+}
+
+FeedPtr parse(const DocumentSource& src, const QString& formatHint)
+{
+    return parserCollection()->parse(src, formatHint);
+}
 
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_MAPPER_MAPPERRDFIMPL_H
