@@ -26,8 +26,6 @@
 #include "../image.h"
 #include "../rdf/image.h"
 
-#include <ksharedptr.h>
-
 namespace LibSyndication {
     
 class ImageRDFImpl;

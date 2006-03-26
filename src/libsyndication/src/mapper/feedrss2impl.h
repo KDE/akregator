@@ -42,7 +42,7 @@ class FeedRSS2Impl : public LibSyndication::Feed
         
         FeedRSS2Impl(LibSyndication::RSS2::DocumentPtr doc);
         
-        LibSyndication::SpecificDocumentPtr document() const;
+        LibSyndication::SpecificDocumentPtr specificDocument() const;
         
         QList<ItemPtr> items() const;
         

@@ -104,7 +104,7 @@ int main(int argc, char **argv)
 
     if (specificformat)
     {
-        std::cout << ptr->document()->debugInfo().toUtf8().data() << std::endl;
+        std::cout << ptr->specificDocument()->debugInfo().toUtf8().data() << std::endl;
     }
     else
     {

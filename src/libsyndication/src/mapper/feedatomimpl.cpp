@@ -30,8 +30,6 @@
 #include "../atom/link.h"
 #include "../atom/person.h"
 
-#include <ksharedptr.h>
-
 #include <QString>
 #include <QList>
 
@@ -41,7 +39,7 @@ FeedAtomImpl::FeedAtomImpl(LibSyndication::Atom::FeedDocumentPtr doc) : m_doc(do
 {
 }
 
-LibSyndication::SpecificDocumentPtr FeedAtomImpl::document() const
+LibSyndication::SpecificDocumentPtr FeedAtomImpl::specificDocument() const
 {
     return m_doc;
 }

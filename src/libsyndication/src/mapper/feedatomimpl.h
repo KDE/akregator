@@ -42,7 +42,7 @@ class FeedAtomImpl : public LibSyndication::Feed
         
         FeedAtomImpl(LibSyndication::Atom::FeedDocumentPtr doc);
         
-        LibSyndication::SpecificDocumentPtr document() const;
+        LibSyndication::SpecificDocumentPtr specificDocument() const;
         
         QList<LibSyndication::ItemPtr> items() const;
                 

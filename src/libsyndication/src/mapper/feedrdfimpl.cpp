@@ -29,8 +29,6 @@
 #include "../rdf/item.h"
 #include "../category.h"
 
-#include <ksharedptr.h>
-
 #include <QString>
 #include <QList>
 
@@ -40,7 +38,7 @@ FeedRDFImpl::FeedRDFImpl(LibSyndication::RDF::DocumentPtr doc) : m_doc(doc)
 {
 }
 
-LibSyndication::SpecificDocumentPtr FeedRDFImpl::document() const
+LibSyndication::SpecificDocumentPtr FeedRDFImpl::specificDocument() const
 {
     return m_doc;
 }

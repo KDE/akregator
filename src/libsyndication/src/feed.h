@@ -53,7 +53,7 @@ typedef SharedPtr<Person> PersonPtr;
  * format-agnostic, unified view on the document.
  * This way applications using libsyndication don't have to care about the 
  * syndication format jungle at all. If necessary, format details and 
- * specialities can be accessed using the document() method.
+ * specialities can be accessed using the specificDocument() method.
  *
  * @author Frank Osterfeld
  */
@@ -70,7 +70,7 @@ class KDE_EXPORT Feed
          * 
          * @return a shared pointer to the wrapped document.
          */
-        virtual SpecificDocumentPtr document() const = 0;
+        virtual SpecificDocumentPtr specificDocument() const = 0;
         
         /**
          * A list of items, in the order they were parsed from the feed source.
