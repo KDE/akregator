@@ -26,8 +26,6 @@
 #ifndef AKREGATOR_ARTICLE_H
 #define AKREGATOR_ARTICLE_H
 
-#include <ksharedptr.h>
-
 class QDateTime;
 class QDomDocument;
 class QDomElement;
@@ -45,7 +43,8 @@ class KUrlLabel;
 namespace LibSyndication
 {
     class Item;
-    typedef KSharedPtr<Item> ItemPtr;
+    template <class T> class SharedPtr;
+    typedef SharedPtr<Item> ItemPtr;
 }
 
 namespace Akregator {
