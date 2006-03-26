@@ -24,12 +24,12 @@
 #include <documentvisitor.h>
 #include <tools.h>
 
-#include "category.h"
-#include "cloud.h"
-#include "document.h"
-#include "image.h"
-#include "item.h"
-#include "textinput.h"
+#include <rss2/category.h>
+#include <rss2/cloud.h>
+#include <rss2/document.h>
+#include <rss2/image.h>
+#include <rss2/item.h>
+#include <rss2/textinput.h>
 
 #include <QDomDocument>
 #include <QList>

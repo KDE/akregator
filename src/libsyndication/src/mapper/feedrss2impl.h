@@ -24,7 +24,7 @@
 #define LIBSYNDICATION_MAPPER_FEEDRSS2IMPL_H
 
 #include <rss2/document.h>
-#include >feed.h>
+#include <feed.h>
 
 namespace LibSyndication {
 

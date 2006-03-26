@@ -25,8 +25,6 @@
 
 #include <QString>
 
-class QString;
-
 namespace LibSyndication {
 namespace RSS2 {
 

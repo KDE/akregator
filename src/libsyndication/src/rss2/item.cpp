@@ -20,12 +20,11 @@
  *
  */
 
-#include "category.h"
-#include "enclosure.h"
-#include "item.h"
-#include "source.h"
-#include "tools.h"
-
+#include <rss2/category.h>
+#include <rss2/enclosure.h>
+#include <rss2/item.h>
+#include <rss2/source.h>
+#include <rss2/tools_p.h>
 #include <constants.h>
 #include <specificitem.h>
 #include <specificitemvisitor.h>
