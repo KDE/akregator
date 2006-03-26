@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_PARSERCOLLECTION_H
 #define LIBSYNDICATION_PARSERCOLLECTION_H
 
-#include "abstractdocument.h"
+#include "specificdocument.h"
 #include "abstractparser.h"
 #include "documentsource.h"
 #include "feed.h"

@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_LIBSYNDICATION_H
 #define LIBSYNDICATION_LIBSYNDICATION_H
 
-#include "abstractdocument.h"
+#include "specificdocument.h"
 #include "abstractparser.h"
 #include "category.h"
 #include "constants.h"

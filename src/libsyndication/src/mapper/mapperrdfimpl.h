@@ -27,7 +27,7 @@
 #include "feedrdfimpl.h"
 
 #include "../rdf/document.h"
-#include "../abstractdocument.h"
+#include "../specificdocument.h"
 #include "../feed.h"
 #include "../mapper.h"
 

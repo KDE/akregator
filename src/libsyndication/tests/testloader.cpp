@@ -24,7 +24,7 @@
 
 #include "testloader.h"
 
-#include "abstractdocument.h"
+#include "specificdocument.h"
 #include "feed.h"
 #include "loader.h"
 #include "atom/parser.h"

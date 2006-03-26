@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_ATOM_DOCUMENT_H
 #define LIBSYNDICATION_ATOM_DOCUMENT_H
 
-#include "../abstractdocument.h"
+#include "../specificdocument.h"
 #include "../elementwrapper.h"
 
 #include <ctime>

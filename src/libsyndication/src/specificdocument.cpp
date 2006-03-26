@@ -20,7 +20,7 @@
  *
  */
 
-#include "abstractdocument.h"
+#include "specificdocument.h"
 
 namespace LibSyndication {
 

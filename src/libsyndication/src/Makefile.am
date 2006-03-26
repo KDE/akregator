@@ -12,9 +12,9 @@ libsyndication_la_SOURCES = documentsource.cpp \
                             feed.cpp item.cpp enclosure.cpp category.cpp \
                             image.cpp tools.cpp person.cpp global.cpp \
                             loader.cpp dataretriever.cpp specificitemvisitor.cpp \
-                            specificitem.cpp abstractdocument.cpp abstractparser.cpp
+                            specificitem.cpp specificdocument.cpp abstractparser.cpp
 
-libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
+libsyndication_include_HEADERS = specificdocument.h abstractparser.h \
                                  parsercollection.h documentvisitor.h \
                                  documentsource.h elementwrapper.h \
                                  item.h feed.h category.h image.h \

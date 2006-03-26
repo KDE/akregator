@@ -21,7 +21,7 @@
  */
 
 
-#include "abstractdocument.h"
+#include "specificdocument.h"
 #include "documentvisitor.h"
 
 namespace LibSyndication {

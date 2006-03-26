@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "abstractdocument.h"
+#include "specificdocument.h"
 #include "documentsource.h"
 #include "feed.h"
 #include "parsercollection.h"

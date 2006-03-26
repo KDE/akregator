@@ -27,7 +27,7 @@
 #include "feedrss2impl.h"
 
 #include "../rss2/document.h"
-#include "../abstractdocument.h"
+#include "../specificdocument.h"
 #include "../feed.h"
 #include "../mapper.h"
 
