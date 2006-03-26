@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_MAPPER_IMAGEATOMIMPL_H
 #define LIBSYNDICATION_MAPPER_IMAGEATOMIMPL_H
 
-#include "../image.h"
+#include <image.h>
 
 #include <QString>
 

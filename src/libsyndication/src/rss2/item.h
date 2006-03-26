@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_RSS2_ITEM_H
 #define LIBSYNDICATION_RSS2_ITEM_H
 
-#include "../elementwrapper.h"
-#include "../specificitem.h"
+#include <elementwrapper.h>
+#include <specificitem.h>
 
 #include <ctime>
 

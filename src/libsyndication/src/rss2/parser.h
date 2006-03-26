@@ -25,7 +25,7 @@
 
 #include "document.h"
 
-#include "../abstractparser.h"
+#include <abstractparser.h>
 
 namespace LibSyndication {
 

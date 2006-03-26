@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
 #define LIBSYNDICATION_MAPPER_ITEMATOMIMPL_H
 
-#include "../atom/entry.h"
-#include "../item.h"
+#include <atom/entry.h>
+#include <item.h>
 
 namespace LibSyndication {
 

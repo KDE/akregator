@@ -1,4 +1,7 @@
-INCLUDES = $(all_includes)
+INCLUDES = -I$(top_srcdir)/akregator/src/libsyndication/src/rss2 \
+           -I$(top_srcdir)/akregator/src/libsyndication/src \
+           $(all_includes)
+ 
 
 noinst_LTLIBRARIES = librss2local.la
 

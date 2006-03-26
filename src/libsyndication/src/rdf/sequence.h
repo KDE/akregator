@@ -24,7 +24,7 @@
 
 #include "resource.h"
 
-#include "../sharedptr.h"
+#include <sharedptr.h>
 
 template <class T> class QList;
 

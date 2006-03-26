@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_FEEDATOMIMPL_H
 #define LIBSYNDICATION_MAPPER_FEEDATOMIMPL_H
 
-#include "../atom/document.h"
-#include "../feed.h"
+#include <atom/document.h>
+#include <feed.h>
 
 namespace LibSyndication {
 

@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_ITEMRSS2IMPL_H
 #define LIBSYNDICATION_MAPPER_ITEMRSS2IMPL_H
 
-#include "../rss2/item.h"
-#include "../item.h"
+#include <rss2/item.h>
+#include <item.h>
 
 namespace LibSyndication {
 

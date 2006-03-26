@@ -1,4 +1,3 @@
-#SUBDIRS = rss2 rdf atom
 SUBDIRS = rss2 rdf atom mapper
 
 INCLUDES = $(all_includes)

@@ -21,7 +21,7 @@
  */
 
 #include "enclosurerss2impl.h"
-#include "../constants.h"
+#include <constants.h>
 
 #include <QRegExp>
 #include <QString>

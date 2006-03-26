@@ -20,9 +20,9 @@
  *
  */
 
-#include "../constants.h"
-#include "../documentvisitor.h"
-#include "../tools.h"
+#include <constants.h>
+#include <documentvisitor.h>
+#include <tools.h>
 
 #include "category.h"
 #include "cloud.h"

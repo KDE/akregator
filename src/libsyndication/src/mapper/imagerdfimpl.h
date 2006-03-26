@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_IMAGERDFIMPL_H
 #define LIBSYNDICATION_MAPPER_IMAGERDFIMPL_H
 
-#include "../image.h"
-#include "../rdf/image.h"
+#include <image.h>
+#include <rdf/image.h>
 
 namespace LibSyndication {
     

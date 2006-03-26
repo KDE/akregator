@@ -25,7 +25,7 @@
 #include "property.h"
 #include "statement.h"
 
-#include "../tools.h"
+#include <tools.h>
 
 #include <QString>
 

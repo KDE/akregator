@@ -25,10 +25,10 @@
 #include "enclosurerss2impl.h"
 #include "itemrss2impl.h"
 #include "personimpl.h"
-#include "../rss2/category.h"
-#include "../rss2/enclosure.h"
-#include "../constants.h"
-#include "../tools.h"
+#include <rss2/category.h>
+#include <rss2/enclosure.h>
+#include <constants.h>
+#include <tools.h>
 
 #include <QList>
 #include <QString>

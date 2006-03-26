@@ -24,7 +24,7 @@
 
 #include "resourcewrapper.h"
 
-#include "../specificitem.h"
+#include <specificitem.h>
 
 class QString;
 

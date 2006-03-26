@@ -27,8 +27,8 @@
 #include "rssvocab.h"
 #include "statement.h"
 
-#include "../specificitemvisitor.h"
-#include "../tools.h"
+#include <specificitemvisitor.h>
+#include <tools.h>
 
 #include <QString>
 

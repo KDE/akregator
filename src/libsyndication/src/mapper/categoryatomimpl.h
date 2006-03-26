@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_CATEGORYATOMIMPL_H
 #define LIBSYNDICATION_MAPPER_CATEGORYATOMIMPL_H
 
-#include "../category.h"
-#include "../atom/category.h"
+#include <category.h>
+#include <atom/category.h>
 
 namespace LibSyndication {
     

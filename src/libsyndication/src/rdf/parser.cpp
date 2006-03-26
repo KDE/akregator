@@ -30,7 +30,7 @@
 #include "rssvocab.h"
 #include "statement.h"
 
-#include "../documentsource.h"
+#include <documentsource.h>
 
 #include <QDomDocument>
 #include <QDomNodeList>

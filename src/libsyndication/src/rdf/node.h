@@ -24,7 +24,7 @@
 
 #include <kdepimmacros.h>
 
-#include "../sharedptr.h"
+#include <sharedptr.h>
 
 namespace LibSyndication {
 namespace RDF {

@@ -23,9 +23,9 @@
 #ifndef LIBSYNDICATION_MAPPER_ENCLOSURERSS2IMPL_H
 #define LIBSYNDICATION_MAPPER_ENCLOSURERSS2IMPL_H
 
-#include "../enclosure.h"
-#include "../rss2/enclosure.h"
-#include "../rss2/item.h"
+#include <enclosure.h>
+#include <rss2/enclosure.h>
+#include <rss2/item.h>
 
 namespace LibSyndication {
     

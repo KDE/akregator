@@ -25,14 +25,14 @@
 #include "itematomimpl.h"
 #include "personimpl.h"
 
-#include "../atom/category.h"
-#include "../atom/content.h"
-#include "../atom/link.h"
-#include "../atom/person.h"
-#include "../category.h"
-#include "../constants.h"
-#include "../enclosure.h"
-#include "../tools.h"
+#include <atom/category.h>
+#include <atom/content.h>
+#include <atom/link.h>
+#include <atom/person.h>
+#include <category.h>
+#include <constants.h>
+#include <enclosure.h>
+#include <tools.h>
 
 #include <QList>
 #include <QString>

@@ -25,10 +25,10 @@
 
 #include "feedatomimpl.h"
 
-#include "../atom/document.h"
-#include "../specificdocument.h"
-#include "../feed.h"
-#include "../mapper.h"
+#include <atom/document.h>
+#include <specificdocument.h>
+#include <feed.h>
+#include <mapper.h>
 
 
 

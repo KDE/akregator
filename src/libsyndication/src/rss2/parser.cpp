@@ -20,7 +20,7 @@
  *
  */
 
-#include "../documentsource.h"
+#include <documentsource.h>
 
 #include "document.h"
 #include "parser.h"

@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H
 #define LIBSYNDICATION_MAPPER_FEEDRDFIMPL_H
 
-#include "../rdf/document.h"
-#include "../feed.h"
+#include <rdf/document.h>
+#include <feed.h>
 
 namespace LibSyndication {
 

@@ -25,8 +25,8 @@
 #include "imagerss2impl.h"
 #include "itemrss2impl.h"
 #include "personimpl.h"
-#include "../rss2/category.h"
-#include "../rss2/item.h"
+#include <rss2/category.h>
+#include <rss2/item.h>
 
 #include <QList>
 #include <QString>

@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_ENCLOSUREATOMIMPL_H
 #define LIBSYNDICATION_MAPPER_ENCLOSUREATOMIMPL_H
 
-#include "../enclosure.h"
-#include "../atom/link.h"
+#include <enclosure.h>
+#include <atom/link.h>
 
 namespace LibSyndication {
     

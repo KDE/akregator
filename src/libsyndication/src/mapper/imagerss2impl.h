@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_IMAGERSS2IMPL_H
 #define LIBSYNDICATION_MAPPER_IMAGERSS2IMPL_H
 
-#include "../image.h"
-#include "../rss2/image.h"
+#include <image.h>
+#include <rss2/image.h>
 
 namespace LibSyndication {
     

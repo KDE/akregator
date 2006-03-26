@@ -23,15 +23,15 @@
 #include "itemrdfimpl.h"
 #include "personimpl.h"
 
-#include "../rdf/dublincore.h"
-#include "../rdf/property.h"
-#include "../rdf/resource.h"
-#include "../rdf/resourcewrapper.h"
-#include "../rdf/statement.h"
-#include "../constants.h"
-#include "../category.h"
-#include "../enclosure.h"
-#include "../tools.h"
+#include <rdf/dublincore.h>
+#include <rdf/property.h>
+#include <rdf/resource.h>
+#include <rdf/resourcewrapper.h>
+#include <rdf/statement.h>
+#include <constants.h>
+#include <category.h>
+#include <enclosure.h>
+#include <tools.h>
 
 #include <QList>
 #include <QString>

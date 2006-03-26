@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_ITEMRDFIMPL_H
 #define LIBSYNDICATION_MAPPER_ITEMRDFIMPL_H
 
-#include "../rdf/item.h"
-#include "../item.h"
+#include <rdf/item.h>
+#include <item.h>
 
 #include <QString>
 

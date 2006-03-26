@@ -26,10 +26,10 @@
 #include "source.h"
 #include "tools.h"
 
-#include "../constants.h"
-#include "../specificitem.h"
-#include "../specificitemvisitor.h"
-#include "../tools.h"
+#include <constants.h>
+#include <specificitem.h>
+#include <specificitemvisitor.h>
+#include <tools.h>
 
 #include <QDomElement>
 #include <QString>

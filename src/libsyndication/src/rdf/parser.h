@@ -24,9 +24,9 @@
 
 #include "document.h"
 
-#include "../abstractparser.h"
+#include <abstractparser.h>
 
-#include "../sharedptr.h"
+#include <sharedptr.h>
 
 namespace LibSyndication {
 

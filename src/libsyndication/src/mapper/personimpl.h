@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_PERSONIMPL_H
 #define LIBSYNDICATION_PERSONIMPL_H
 
-#include "../person.h"
-#include "../sharedptr.h"
+#include <person.h>
+#include <sharedptr.h>
 
 #include <QString>
 

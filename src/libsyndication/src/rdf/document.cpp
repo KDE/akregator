@@ -20,8 +20,8 @@
  *
  */
 
-#include "../documentvisitor.h"
-#include "../tools.h"
+#include <documentvisitor.h>
+#include <tools.h>
 
 #include "document.h"
 #include "dublincore.h"

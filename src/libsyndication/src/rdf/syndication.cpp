@@ -25,7 +25,7 @@
 #include "syndication.h"
 #include "syndicationvocab.h"
 
-#include "../tools.h"
+#include <tools.h>
 
 #include <QString>
 

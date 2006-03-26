@@ -1,4 +1,6 @@
-INCLUDES = $(all_includes)
+INCLUDES = -I$(top_srcdir)/akregator/src/libsyndication/src/atom \
+           -I$(top_srcdir)/akregator/src/libsyndication/src \
+           $(all_includes)
 
 noinst_LTLIBRARIES = libatomlocal.la
 

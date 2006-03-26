@@ -21,8 +21,8 @@
  */
 
 #include "tools.h"
-#include "../constants.h"
-#include "../elementwrapper.h"
+#include <constants.h>
+#include <elementwrapper.h>
 
 #include <QDomElement>
 #include <QList>

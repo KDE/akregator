@@ -24,7 +24,7 @@
 
 #include "property.h"
 
-#include "../sharedptr.h"
+#include <sharedptr.h>
 
 
 class QString;
