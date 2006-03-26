@@ -113,7 +113,7 @@ set(syndication_LIB_SRCS
    dataretriever.cpp 
    specificitemvisitor.cpp
    specificitem.cpp 
-   abstractdocument.cpp 
+   specificdocument.cpp 
    abstractparser.cpp)
 
 kde4_automoc(${syndication_LIB_SRCS})
@@ -128,7 +128,7 @@ install_targets(${LIB_INSTALL_DIR} syndication )
 
 ########### install files ###############
 
-install_files( /include/libsyndication FILES abstractdocument.h abstractparser.h                                   parsercollection.h documentvisitor.h                                   documentsource.h elementwrapper.h                                   item.h feed.h category.h image.h                                   enclosure.h person.h global.h                                   dataretriever.h loader.h )
+install_files( /include/libsyndication FILES specificdocument.h abstractparser.h                                   parsercollection.h documentvisitor.h                                   documentsource.h elementwrapper.h                                   item.h feed.h category.h image.h                                   enclosure.h person.h global.h                                   dataretriever.h loader.h )
 
 kde4_create_doxygen_docs( EXCLUDE mapper  )
 
@@ -153,7 +153,7 @@ kde4_footer()
 #                            image.cpp tools.cpp person.cpp \
 #                            loader.cpp dataretriever.cpp
 #
-#libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
+#libsyndication_include_HEADERS = specificdocument.h abstractparser.h \
 #                                 parsercollection.h documentvisitor.h \
 #                                 documentsource.h elementwrapper.h \
 #                                 item.h feed.h category.h image.h \
