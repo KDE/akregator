@@ -161,7 +161,7 @@ QString ItemRSS2Impl::commentPostUri() const
 
 LibSyndication::SpecificItemPtr ItemRSS2Impl::specificItem() const
 {
-    return LibSyndication::SpecificItemPtr(new LibSyndication::RSS2::SpecificItem(m_item));
+    return LibSyndication::SpecificItemPtr(new LibSyndication::RSS2::Item(m_item));
 }
 
 } // namespace LibSyndication

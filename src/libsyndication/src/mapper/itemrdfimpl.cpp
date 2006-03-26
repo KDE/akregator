@@ -143,7 +143,7 @@ QString ItemRDFImpl::commentPostUri() const
 
 LibSyndication::SpecificItemPtr ItemRDFImpl::specificItem() const
 {
-    return LibSyndication::SpecificItemPtr(new LibSyndication::RDF::SpecificItem(m_item));
+    return LibSyndication::SpecificItemPtr(new LibSyndication::RDF::Item(m_item));
 }
 
 } // namespace LibSyndication

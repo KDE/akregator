@@ -30,17 +30,17 @@ class AbstractDocument;
 
 namespace Atom
 {
-    class SpecificItem;
+    class Entry;
 }
 
 namespace RDF
 {
-    class SpecificItem;
+    class Item;
 }
 
 namespace RSS2 
 {
-    class SpecificItem;
+    class Item;
 }
 
 class KDE_EXPORT SpecificItemVisitor
@@ -51,11 +51,11 @@ class KDE_EXPORT SpecificItemVisitor
 
         virtual bool visit(SpecificItem* item);
         
-        virtual bool visitSpecificRSS2Item(LibSyndication::RSS2::SpecificItem* item);
+        virtual bool visitSpecificRSS2Item(LibSyndication::RSS2::Item* item);
         
-        virtual bool visitSpecificRDFItem(LibSyndication::RDF::SpecificItem* item);
+        virtual bool visitSpecificRDFItem(LibSyndication::RDF::Item* item);
         
-        virtual bool visitSpecificAtomItem(LibSyndication::Atom::SpecificItem* item);
+        virtual bool visitSpecificAtomItem(LibSyndication::Atom::Entry* item);
 };
 
 } // namespace LibSyndication

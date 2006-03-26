@@ -40,6 +40,7 @@
 #include "mapper.h"
 #include "parsercollection.h"
 #include "person.h"
+#include "sharedptr.h"
 #include "specificitem.h"
 #include "specificitemvisitor.h"
 #include "tools.h"

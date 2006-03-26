@@ -43,7 +43,7 @@ class Model;
  * 
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Item : public ResourceWrapper
+class KDE_EXPORT Item : public ResourceWrapper, public SpecificItem
 {
     
     public:
@@ -67,6 +67,8 @@ class KDE_EXPORT Item : public ResourceWrapper
          */
         virtual ~Item();
 
+        bool accept(SpecificItemVisitor* visitor);
+        
         /**
          * The item's title (required).
          * 
@@ -112,27 +114,7 @@ class KDE_EXPORT Item : public ResourceWrapper
          */
         QString debugInfo() const;
 };
-
-typedef SharedPtr<SpecificItem> SpecificItemPtr;
-class KDE_EXPORT SpecificItem : public LibSyndication::SpecificItem
-{
-    public:
         
-        SpecificItem();
-        SpecificItem(const Item& item);
-        virtual ~SpecificItem();
-        
-        Item item() const;
-        
-        bool accept(SpecificItemVisitor* visitor);
-        
-    private:
-        
-        class SpecificItemPrivate;
-        SpecificItemPrivate* d;
-
-};
-
 } // namespace RDF
 } // namespace LibSyndication
 

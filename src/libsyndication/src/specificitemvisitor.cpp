@@ -35,17 +35,17 @@ bool SpecificItemVisitor::visit(SpecificItem* item)
     return item->accept(this);
 }
 
-bool SpecificItemVisitor::visitSpecificRSS2Item(LibSyndication::RSS2::SpecificItem*)
+bool SpecificItemVisitor::visitSpecificRSS2Item(LibSyndication::RSS2::Item*)
 {
     return false;
 }
         
-bool SpecificItemVisitor::visitSpecificRDFItem(LibSyndication::RDF::SpecificItem*)
+bool SpecificItemVisitor::visitSpecificRDFItem(LibSyndication::RDF::Item*)
 {
     return false;
 }
        
-bool SpecificItemVisitor::visitSpecificAtomItem(LibSyndication::Atom::SpecificItem*)
+bool SpecificItemVisitor::visitSpecificAtomItem(LibSyndication::Atom::Entry*)
 {
     return false;
 }

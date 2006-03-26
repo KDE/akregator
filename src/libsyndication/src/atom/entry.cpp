@@ -228,33 +228,7 @@ QString Entry::debugInfo() const
     return info;
 }
 
-class SpecificItem::SpecificItemPrivate
-{
-    public:
-        Entry entry;
-};
-
-SpecificItem::SpecificItem() : d(new SpecificItemPrivate)
-{
-}
-
-SpecificItem::SpecificItem(const Entry& entry) : d(new SpecificItemPrivate)
-{
-    d->entry = entry;
-}
-
-SpecificItem::~SpecificItem()
-{
-    delete d;
-    d = 0;
-}
-
-Entry SpecificItem::entry() const
-{
-    return d->entry;
-}
-        
-bool SpecificItem::accept(SpecificItemVisitor* visitor)
+bool Entry::accept(SpecificItemVisitor* visitor)
 {
     return visitor->visitSpecificAtomItem(this);
 }

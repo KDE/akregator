@@ -48,7 +48,7 @@ class Source;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Item : public ElementWrapper
+class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificItem
 {
     public:
         
@@ -64,6 +64,8 @@ class KDE_EXPORT Item : public ElementWrapper
          * @param element The @c &lt;item> element to wrap
          */
         Item(const QDomElement& element);
+        
+        bool accept(SpecificItemVisitor* visitor);
         
         /**
          * The title of the item.
@@ -221,26 +223,6 @@ class KDE_EXPORT Item : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
-};
-
-typedef SharedPtr<SpecificItem> SpecificItemPtr;
-class KDE_EXPORT SpecificItem : public LibSyndication::SpecificItem
-{
-    public:
-        
-        SpecificItem();
-        SpecificItem(const Item& item);
-        virtual ~SpecificItem();
-        
-        Item item() const;
-        
-        bool accept(SpecificItemVisitor* visitor);
-        
-    private:
-        
-        class SpecificItemPrivate;
-        SpecificItemPrivate* d;
-
 };
 
 } // namespace RSS2

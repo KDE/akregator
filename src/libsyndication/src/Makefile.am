@@ -20,7 +20,7 @@ libsyndication_include_HEADERS = abstractdocument.h abstractparser.h \
                                  item.h feed.h category.h image.h \
                                  enclosure.h person.h global.h \
                                  dataretriever.h loader.h specificitemvisitor.h \
-                                 specificitem.h mapper.h
+                                 specificitem.h mapper.h sharedptr.h
 
 libsyndication_includedir = $(includedir)/libsyndication
 

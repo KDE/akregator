@@ -204,7 +204,7 @@ QString ItemAtomImpl::commentPostUri() const
 
 LibSyndication::SpecificItemPtr ItemAtomImpl::specificItem() const
 {
-    return LibSyndication::SpecificItemPtr(new LibSyndication::Atom::SpecificItem(m_entry));
+    return LibSyndication::SpecificItemPtr(new LibSyndication::Atom::Entry(m_entry));
 }
 
 } // namespace LibSyndication

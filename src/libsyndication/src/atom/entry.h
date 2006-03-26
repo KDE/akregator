@@ -49,7 +49,7 @@ class Source;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Entry : public ElementWrapper
+class KDE_EXPORT Entry : public ElementWrapper, public SpecificItem
 {
     public:
     
@@ -66,6 +66,8 @@ class KDE_EXPORT Entry : public ElementWrapper
          */
         Entry(const QDomElement& element);
     
+        bool accept(SpecificItemVisitor* visitor);
+        
         /**
          * list of persons who are authors of this entry.
          * 
@@ -165,24 +167,6 @@ class KDE_EXPORT Entry : public ElementWrapper
         QString debugInfo() const;
 };
 
-typedef SharedPtr<SpecificItem> SpecificItemPtr;
-class KDE_EXPORT SpecificItem : public LibSyndication::SpecificItem
-{
-    public:
-        
-        SpecificItem();
-        SpecificItem(const Entry& entry);
-        virtual ~SpecificItem();
-        
-        Entry entry() const;
-        
-        bool accept(SpecificItemVisitor* visitor);
-        
-    private:
-        
-        class SpecificItemPrivate;
-        SpecificItemPrivate* d;
-};
 
 } // namespace Atom
 } // namespace LibSyndication

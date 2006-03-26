@@ -223,33 +223,8 @@ QString Item::debugInfo() const
     return info;
 }
 
-class SpecificItem::SpecificItemPrivate
-{
-    public:
-        Item item;
-};
-
-SpecificItem::SpecificItem() : d(new SpecificItemPrivate)
-{
-}
-
-SpecificItem::SpecificItem(const Item& item) : d(new SpecificItemPrivate)
-{
-    d->item = item;
-}
-
-SpecificItem::~SpecificItem()
-{
-    delete d;
-    d = 0;
-}
-
-Item SpecificItem::item() const
-{
-    return d->item;
-}
         
-bool SpecificItem::accept(SpecificItemVisitor* visitor)
+bool Item::accept(SpecificItemVisitor* visitor)
 {
     return visitor->visitSpecificRSS2Item(this);
 }
