@@ -67,11 +67,11 @@ class KDE_EXPORT AbstractParser
          * valid document instance if successful, or an invalid one if
          * not.
          *
-         * @see AbstractDocument::isValid()
+         * @see SpecificDocument::isValid()
          * @param source The document source to be parsed
          * @return a newly created document parsed from @c source
          */
-        virtual AbstractDocumentPtr parse(const DocumentSource& source) const = 0;
+        virtual SpecificDocumentPtr parse(const DocumentSource& source) const = 0;
 
         /**
          * Returns the name of the format supported by this

@@ -226,7 +226,7 @@ QString Item::debugInfo() const
         
 bool Item::accept(SpecificItemVisitor* visitor)
 {
-    return visitor->visitSpecificRSS2Item(this);
+    return visitor->visitRSS2Item(this);
 }
 
 } // namespace RSS2

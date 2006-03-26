@@ -30,7 +30,7 @@ DocumentVisitor::~DocumentVisitor()
 {
 }
         
-bool DocumentVisitor::visit(AbstractDocument* document)
+bool DocumentVisitor::visit(SpecificDocument* document)
 {
     return document->accept(this);
 }

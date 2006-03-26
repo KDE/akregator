@@ -45,7 +45,7 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
     return !root.isNull();
 }
 
-LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const
+LibSyndication::SpecificDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const
 {
     return DocumentPtr(new Document(Document::fromXML(source.asDomDocument())));
 }

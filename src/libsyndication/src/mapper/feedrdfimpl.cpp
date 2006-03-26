@@ -40,7 +40,7 @@ FeedRDFImpl::FeedRDFImpl(LibSyndication::RDF::DocumentPtr doc) : m_doc(doc)
 {
 }
 
-LibSyndication::AbstractDocumentPtr FeedRDFImpl::document() const
+LibSyndication::SpecificDocumentPtr FeedRDFImpl::document() const
 {
     return m_doc;
 }

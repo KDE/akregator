@@ -24,7 +24,7 @@
 
 namespace LibSyndication {
 
-AbstractDocument::~AbstractDocument()
+SpecificDocument::~SpecificDocument()
 {
 }
 

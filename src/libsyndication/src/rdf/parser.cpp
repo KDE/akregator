@@ -63,12 +63,12 @@ bool Parser::accept(const DocumentSource& source) const
     return root.namespaceURI() == RDFVocab::self()->namespaceURI();
 }
 
-LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) const
+LibSyndication::SpecificDocumentPtr Parser::parse(const DocumentSource& source) const
 {
     QDomDocument doc = source.asDomDocument();
     
     if (doc.isNull())
-        return LibSyndication::AbstractDocumentPtr(new Document());
+        return LibSyndication::SpecificDocumentPtr(new Document());
     
     ModelMaker maker;
     Model model = maker.createFromXML(doc);
@@ -81,7 +81,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
     QList<ResourcePtr> channels = model.resourcesWithType(RSSVocab::self()->channel());
     
     if (channels.isEmpty())
-        return LibSyndication::AbstractDocumentPtr(new Document());
+        return LibSyndication::SpecificDocumentPtr(new Document());
   
     return DocumentPtr(new Document(*(channels.begin())));
 }

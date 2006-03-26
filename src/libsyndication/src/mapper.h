@@ -27,11 +27,11 @@ template <class T> class SharedPtr;
 
 namespace LibSyndication {
 
-class AbstractDocument;
-typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
+class SpecificDocument;
+typedef SharedPtr<SpecificDocument> SpecificDocumentPtr;
 
 /**
- * @brief A mapper maps an AbstractDocument to something else.
+ * @brief A mapper maps an SpecificDocument to something else.
  * The type of this "something else" is specified by the template
  * parameter T.
  * In the default implementation it is used with the Feed interface,
@@ -45,7 +45,7 @@ typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
  * 1) Add your own feed parser. In case you need support for another
  * feed format (Okay! News, CDF, totally backward-incompatible Atom 5.0, ... 
  * you name it), you can 
- * implement AbstractParser and AbstractDocument for it and provide a 
+ * implement AbstractParser and SpecificDocument for it and provide a 
  * Mapper&lt;Feed>
  *  
  * * @code
@@ -53,7 +53,7 @@ typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
  * {
  *     public:
  * 
- *     virtual FeedPtr map(AbstractDocumentPtr doc) const { ... }
+ *     virtual FeedPtr map(SpecificDocumentPtr doc) const { ... }
  * };
  * 
  * parserCollection()->registerParser(new OkayNews::Parser, new OkayNewsMapper);
@@ -69,7 +69,7 @@ typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
  * {
  *     public:
  * 
- *     virtual FeedPtr map(AbstractDocumentPtr doc) const { ... }
+ *     virtual FeedPtr map(SpecificDocumentPtr doc) const { ... }
  * };
  * 
  * parserCollection()->changeMapper("atom", new MyAtomMapper);
@@ -123,7 +123,7 @@ class Mapper
          * @param doc the document to map.
          * @return a newly created object implementing the E @c T.
          */
-        virtual SharedPtr<T> map(AbstractDocumentPtr doc) const = 0;
+        virtual SharedPtr<T> map(SpecificDocumentPtr doc) const = 0;
 };
 
 } // namespace libsyndication

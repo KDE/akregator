@@ -124,7 +124,7 @@ SharedPtr<T> ParserCollectionImpl<T>::parse(const DocumentSource& source, const 
     {
         if (m_parsers[formatHint]->accept(source))
         {
-            AbstractDocumentPtr doc = m_parsers[formatHint]->parse(source);
+            SpecificDocumentPtr doc = m_parsers[formatHint]->parse(source);
             if (!doc->isValid())
             {
                 m_lastError = InvalidFormat;
@@ -139,7 +139,7 @@ SharedPtr<T> ParserCollectionImpl<T>::parse(const DocumentSource& source, const 
     {
         if (i->accept(source))
         {
-            AbstractDocumentPtr doc = i->parse(source);
+            SpecificDocumentPtr doc = i->parse(source);
             if (!doc->isValid())
             {
                 m_lastError = InvalidFormat;

@@ -39,7 +39,7 @@ FeedRSS2Impl::FeedRSS2Impl(LibSyndication::RSS2::DocumentPtr doc) : m_doc(doc)
 {
 }
 
-LibSyndication::AbstractDocumentPtr FeedRSS2Impl::document() const
+LibSyndication::SpecificDocumentPtr FeedRSS2Impl::document() const
 {
     return m_doc;
 }

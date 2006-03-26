@@ -32,7 +32,7 @@ template <class T, class U> class QHash;
 
 namespace LibSyndication {
 
-class AbstractDocument;
+class SpecificDocument;
 class DocumentSource;
 
 namespace Atom {
@@ -63,10 +63,10 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * parses either an EntryDocument or a FeedDocument from a
          * document source. If the source is not an atom document,
          * an invalid FeedDocument is returned.
-         * @see AbstractDocument::isValid()
+         * @see SpecificDocument::isValid()
          * @param source the document source to parse
          */
-        LibSyndication::AbstractDocumentPtr parse(const LibSyndication::DocumentSource& source) const;
+        LibSyndication::SpecificDocumentPtr parse(const LibSyndication::DocumentSource& source) const;
         
         /**
          * returns the format string for this parser implementation, which is

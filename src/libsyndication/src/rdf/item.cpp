@@ -89,7 +89,7 @@ QString Item::debugInfo() const
 
 bool Item::accept(SpecificItemVisitor* visitor)
 {
-    return visitor->visitSpecificRDFItem(this);
+    return visitor->visitRDFItem(this);
 }
 
 } // namespace RDF

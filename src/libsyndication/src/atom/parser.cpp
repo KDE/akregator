@@ -66,7 +66,7 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
     return entryValid;
 }
 
-LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const
+LibSyndication::SpecificDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const
 {
     QDomDocument doc = source.asDomDocument();
 

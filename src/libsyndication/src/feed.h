@@ -32,8 +32,8 @@ class QString;
 
 namespace LibSyndication {
 
-class AbstractDocument;
-typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
+class SpecificDocument;
+typedef SharedPtr<SpecificDocument> SpecificDocumentPtr;
 class Category;
 typedef SharedPtr<Category> CategoryPtr;
 class Feed;
@@ -70,7 +70,7 @@ class KDE_EXPORT Feed
          * 
          * @return a shared pointer to the wrapped document.
          */
-        virtual AbstractDocumentPtr document() const = 0;
+        virtual SpecificDocumentPtr document() const = 0;
         
         /**
          * A list of items, in the order they were parsed from the feed source.

@@ -41,7 +41,7 @@ FeedAtomImpl::FeedAtomImpl(LibSyndication::Atom::FeedDocumentPtr doc) : m_doc(do
 {
 }
 
-LibSyndication::AbstractDocumentPtr FeedAtomImpl::document() const
+LibSyndication::SpecificDocumentPtr FeedAtomImpl::document() const
 {
     return m_doc;
 }

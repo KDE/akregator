@@ -19,8 +19,8 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-#ifndef LIBSYNDICATION_ABSTRACTDOCUMENT_H
-#define LIBSYNDICATION_ABSTRACTDOCUMENT_H
+#ifndef LIBSYNDICATION_SPECIFICDOCUMENT_H
+#define LIBSYNDICATION_SPECIFICDOCUMENT_H
 
 #include <kdepimmacros.h>
 
@@ -31,9 +31,9 @@ class QString;
 namespace LibSyndication {
 
 class DocumentVisitor;
-class AbstractDocument;
+class SpecificDocument;
 
-typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
+typedef SharedPtr<SpecificDocument> SpecificDocumentPtr;
 
 /**
  * Document interface. A document is a representation parsed from a document
@@ -45,14 +45,14 @@ typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT AbstractDocument
+class KDE_EXPORT SpecificDocument
 {
     public:
 
         /**
          * virtual dtor
          */
-        virtual ~AbstractDocument();
+        virtual ~SpecificDocument();
 
         /**
          * This must be implemented for the double dispatch
@@ -86,5 +86,5 @@ class KDE_EXPORT AbstractDocument
 
 } // namespace LibSyndication
 
-#endif // LIBSYNDICATION_ABSTRACTDOCUMENT_H
+#endif // LIBSYNDICATION_SPECIFICDOCUMENT_H
 

@@ -43,7 +43,7 @@ namespace LibSyndication {
 namespace RSS2 {
 
 
-Document::Document(const QDomElement& element) : AbstractDocument(), ElementWrapper(element)
+Document::Document(const QDomElement& element) : SpecificDocument(), ElementWrapper(element)
 {
 }
 
@@ -54,7 +54,7 @@ Document Document::fromXML(const QDomDocument& doc)
     return Document(channelNode.toElement());
 }
 
-Document::Document() : AbstractDocument(), ElementWrapper()
+Document::Document() : SpecificDocument(), ElementWrapper()
 {
 }
 

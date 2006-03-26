@@ -42,11 +42,11 @@ namespace LibSyndication {
 namespace RDF {
 
 
-Document::Document() : LibSyndication::AbstractDocument(), ResourceWrapper()
+Document::Document() : LibSyndication::SpecificDocument(), ResourceWrapper()
 {
 }
 
-Document::Document(ResourcePtr resource) : LibSyndication::AbstractDocument(), ResourceWrapper(resource)
+Document::Document(ResourcePtr resource) : LibSyndication::SpecificDocument(), ResourceWrapper(resource)
 {
 }
 

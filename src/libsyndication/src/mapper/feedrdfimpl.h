@@ -42,7 +42,7 @@ class FeedRDFImpl : public LibSyndication::Feed
         
         FeedRDFImpl(LibSyndication::RDF::DocumentPtr doc);
         
-        LibSyndication::AbstractDocumentPtr document() const;
+        LibSyndication::SpecificDocumentPtr document() const;
         
         QList<ItemPtr> items() const;
         

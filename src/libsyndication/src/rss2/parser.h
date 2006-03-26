@@ -68,7 +68,7 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * source, or a null document (not a null pointer!) if there is no @c
          * &lt;channel> root element in the source.
          */
-        LibSyndication::AbstractDocumentPtr parse(const DocumentSource& source) const;
+        LibSyndication::SpecificDocumentPtr parse(const DocumentSource& source) const;
 
         /**
          * returns the format string of this parser implementation, which is

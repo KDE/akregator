@@ -230,7 +230,7 @@ QString Entry::debugInfo() const
 
 bool Entry::accept(SpecificItemVisitor* visitor)
 {
-    return visitor->visitSpecificAtomItem(this);
+    return visitor->visitAtomEntry(this);
 }
 
 } // namespace Atom

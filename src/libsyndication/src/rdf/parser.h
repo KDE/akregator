@@ -66,7 +66,7 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * invalid document if parsing failed.
          * @see Document::isValid()
          */
-        virtual LibSyndication::AbstractDocumentPtr parse(const DocumentSource& source) const;
+        virtual LibSyndication::SpecificDocumentPtr parse(const DocumentSource& source) const;
 
         /**
          * format string of this parser, which is @c "rdf".

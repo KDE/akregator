@@ -38,7 +38,7 @@ namespace LibSyndication {
 /** @internal */
 class RSS2Mapper : public Mapper<Feed>
 {
-    SharedPtr<Feed> map(AbstractDocumentPtr doc) const
+    SharedPtr<Feed> map(SpecificDocumentPtr doc) const
     {
         return SharedPtr<Feed>(new FeedRSS2Impl(doc));
     }

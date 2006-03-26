@@ -26,7 +26,7 @@
 
 namespace LibSyndication {
 
-class AbstractDocument;
+class SpecificDocument;
 
 namespace Atom
 {
@@ -66,7 +66,7 @@ class KDE_EXPORT DocumentVisitor
          * @param document the document to process
          * @return whether this visitor handles the type of the document.
          */
-        virtual bool visit(AbstractDocument* document);
+        virtual bool visit(SpecificDocument* document);
 
         /**
          * reimplement this method to handle RSS2-like (RSS 0.9x, 2.0) documents.
