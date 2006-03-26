@@ -23,7 +23,6 @@
 #include "constants.h"
 #include "person.h"
 
-#include <QDomElement>
 #include <QString>
 
 namespace LibSyndication {

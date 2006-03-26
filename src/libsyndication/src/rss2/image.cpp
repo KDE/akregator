@@ -22,7 +22,6 @@
 
 #include "image.h"
 
-#include <QDomElement>
 #include <QString>
 
 namespace LibSyndication {

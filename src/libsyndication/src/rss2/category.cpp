@@ -23,7 +23,6 @@
 #include "category.h"
 #include "tools.h"
 
-#include <QDomElement>
 #include <QString>
 
 class QString;

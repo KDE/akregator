@@ -23,7 +23,6 @@
 #include "source.h"
 #include "tools.h"
 
-#include <QDomElement>
 #include <QString>
 
 namespace LibSyndication {

@@ -22,8 +22,6 @@
 
 #include "cloud.h"
 
-#include <QDomDocument>
-#include <QDomElement>
 #include <QString>
 
 #include <kstaticdeleter.h>

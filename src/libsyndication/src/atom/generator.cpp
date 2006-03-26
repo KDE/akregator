@@ -23,7 +23,6 @@
 #include "constants.h"
 #include "generator.h"
 
-#include <QDomElement>
 #include <QString>
 
 namespace LibSyndication {
@@ -40,7 +39,6 @@ Generator::Generator(const QDomElement& element) : ElementWrapper(element)
 QString Generator::uri() const
 {
     return completeURI(attribute(QString::fromUtf8("uri")));
-    
 }
 
 QString Generator::name() const
@@ -50,7 +48,7 @@ QString Generator::name() const
 
 QString Generator::version() const
 {
-    return element().attribute(QString::fromUtf8("version"));
+    return attribute(QString::fromUtf8("version"));
 }
 
 QString Generator::debugInfo() const

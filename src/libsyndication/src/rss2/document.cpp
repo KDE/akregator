@@ -32,7 +32,6 @@
 #include "textinput.h"
 
 #include <QDomDocument>
-#include <QDomElement>
 #include <QList>
 #include <QSet>
 #include <QString>

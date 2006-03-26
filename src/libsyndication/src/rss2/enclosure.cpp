@@ -22,7 +22,6 @@
 
 #include "enclosure.h"
 
-#include <QDomElement>
 #include <QString>
 
 namespace LibSyndication {
