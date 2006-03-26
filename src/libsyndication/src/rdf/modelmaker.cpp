@@ -79,14 +79,14 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
     {
         SequencePtr seq = model.createSequence(el.attribute(about));
         
-        res = ResourcePtr::staticCast(seq);
+        res = seq;
     }
     else
     {
         res = model.createResource(el.attribute(about));
     }
 
-    model.addStatement(res, RDFVocab::self()->type(), NodePtr::staticCast(type));
+    model.addStatement(res, RDFVocab::self()->type(), type);
 
     QDomNodeList children = el.childNodes();
 
@@ -102,19 +102,25 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
         
             if (ce.hasAttribute(resource)) // referenced Resource via (rdf:)resource
             {
-                NodePtr obj = NodePtr::staticCast(model.createResource(ce.attribute(resource)));
+                NodePtr obj = model.createResource(ce.attribute(resource));
                 
                 if (isSeq && *pred == *(RDFVocab::self()->li()))
-                    SequencePtr::staticCast(res)->append(obj);
+                {
+                    SequencePtr tseq = res;
+                    tseq->append(obj);
+                }
                 else
                     model.addStatement(res, pred, obj);
             }
             else if (!ce.text().isEmpty() && ce.lastChildElement().isNull()) // Literal
             {
-                NodePtr obj = NodePtr::staticCast(model.createLiteral(ce.text()));
+                NodePtr obj = model.createLiteral(ce.text());
                 
                 if (isSeq && *pred == *(RDFVocab::self()->li()))
-                    SequencePtr::staticCast(res)->append(obj);
+                {
+                    SequencePtr tseq = res;
+                    tseq->append(obj);
+                }
                 else
                     model.addStatement(res, pred, obj);
             }
@@ -125,10 +131,13 @@ ResourcePtr ModelMaker::readResource(Model& model, const QDomElement& el)
                 QString uri = re.attribute(about);
                 
                 // read recursively
-                NodePtr obj = NodePtr::staticCast(readResource(model, re));
+                NodePtr obj = readResource(model, re);
                 
                 if (isSeq && *pred == *(RDFVocab::self()->li()))
-                    SequencePtr::staticCast(res)->append(obj);
+                {
+                    SequencePtr tseq = res;
+                    tseq->append(obj);
+                }
                 else
                     model.addStatement(res, pred, obj);
 

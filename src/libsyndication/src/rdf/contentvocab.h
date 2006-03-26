@@ -26,13 +26,14 @@
 
 class QString;
 
-template <class T> class KSharedPtr;
-
 namespace LibSyndication {
+    
+template <class T> class SharedPtr;
+    
 namespace RDF {
 
 class Property;
-typedef KSharedPtr<Property> PropertyPtr;
+typedef SharedPtr<Property> PropertyPtr;
 
 class KDE_EXPORT ContentVocab
 {

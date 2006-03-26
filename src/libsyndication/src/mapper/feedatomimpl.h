@@ -29,9 +29,9 @@
 namespace LibSyndication {
 
 class FeedAtomImpl;
-typedef KSharedPtr<FeedAtomImpl> FeedAtomImplPtr;
+typedef SharedPtr<FeedAtomImpl> FeedAtomImplPtr;
 class Image;
-typedef KSharedPtr<Image> ImagePtr;
+typedef SharedPtr<Image> ImagePtr;
 
 /**
  * @internal

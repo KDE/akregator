@@ -228,7 +228,7 @@ QString Entry::debugInfo() const
     return info;
 }
 
-class SpecificItem::SpecificItemPrivate : public KShared
+class SpecificItem::SpecificItemPrivate
 {
     public:
         Entry entry;

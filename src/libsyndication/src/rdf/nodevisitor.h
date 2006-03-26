@@ -24,21 +24,22 @@
 
 #include <kdepimmacros.h>
 
-template <class T> class KSharedPtr;
-
 namespace LibSyndication {
+
+template <class T> class SharedPtr;
+
 namespace RDF {
 
 class Literal;
-typedef KSharedPtr<Literal> LiteralPtr;
+typedef SharedPtr<Literal> LiteralPtr;
 class Node;
-typedef KSharedPtr<Node> NodePtr;
+typedef SharedPtr<Node> NodePtr;
 class Property;
-typedef KSharedPtr<Property> PropertyPtr;
+typedef SharedPtr<Property> PropertyPtr;
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 class Sequence;
-typedef KSharedPtr<Sequence> SequencePtr;
+typedef SharedPtr<Sequence> SequencePtr;
     
 class KDE_EXPORT NodeVisitor
 {

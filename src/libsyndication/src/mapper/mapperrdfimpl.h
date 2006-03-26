@@ -38,9 +38,9 @@ namespace LibSyndication {
 /** @internal */
 class RDFMapper : public Mapper<Feed>
 {
-    KSharedPtr<Feed> map(AbstractDocumentPtr doc) const
+    SharedPtr<Feed> map(AbstractDocumentPtr doc) const
     {
-        return KSharedPtr<Feed>(new FeedRDFImpl(LibSyndication::RDF::DocumentPtr::staticCast(doc)));
+        return SharedPtr<Feed>(new FeedRDFImpl(doc));
     }
 };
 

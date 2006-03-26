@@ -89,7 +89,7 @@ class KDE_EXPORT ParserCollection
          * @return The feed document parsed from the source, or NULL if no
          * parser accepted the source.
          */
-        virtual KSharedPtr<T> parse(const DocumentSource& source,
+        virtual SharedPtr<T> parse(const DocumentSource& source,
                             const QString& formatHint=QString()) = 0;
 
         

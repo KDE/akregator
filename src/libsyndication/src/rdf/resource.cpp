@@ -33,7 +33,7 @@
 namespace LibSyndication {
 namespace RDF {
 
-class Resource::ResourcePrivate : public KShared
+class Resource::ResourcePrivate
 {
     public:
     
@@ -117,7 +117,7 @@ Resource* Resource::clone() const
 
 void Resource::accept(NodeVisitor* visitor, NodePtr ptr)
 {
-    ResourcePtr rptr = ResourcePtr::staticCast(ptr);
+    ResourcePtr rptr = ptr;
     if (!visitor->visitResource(rptr))
         Node::accept(visitor, ptr);
 }
@@ -129,7 +129,7 @@ unsigned int Resource::id() const
 
 bool Resource::isNull() const
 {
-    return d == (ResourcePrivate*)0;
+    return d == 0L;
 }
 
 Model Resource::model() const
@@ -140,6 +140,11 @@ Model Resource::model() const
 bool Resource::isResource() const
 {
     return true;
+}
+
+bool Resource::isProperty() const
+{
+    return false;
 }
 
 bool Resource::isLiteral() const

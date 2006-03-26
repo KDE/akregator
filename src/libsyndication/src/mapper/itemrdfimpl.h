@@ -31,7 +31,7 @@
 namespace LibSyndication {
 
 class ItemRDFImpl;
-typedef KSharedPtr<ItemRDFImpl> ItemRDFImplPtr;
+typedef SharedPtr<ItemRDFImpl> ItemRDFImplPtr;
 
 /**
  * @internal

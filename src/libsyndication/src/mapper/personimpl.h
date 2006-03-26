@@ -24,13 +24,14 @@
 #define LIBSYNDICATION_PERSONIMPL_H
 
 #include "../person.h"
+#include "../sharedptr.h"
 
 #include <QString>
 
 namespace LibSyndication {
 
 class PersonImpl;
-typedef KSharedPtr<PersonImpl> PersonImplPtr;
+typedef SharedPtr<PersonImpl> PersonImplPtr;
 
 /**
  * @internal

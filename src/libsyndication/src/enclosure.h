@@ -23,12 +23,14 @@
 #ifndef LIBSYNDICATION_ENCLOSURE_H
 #define LIBSYNDICATION_ENCLOSURE_H
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
+
+#include <kdepimmacros.h>
 
 namespace LibSyndication {
 
 class Enclosure;
-typedef KSharedPtr<Enclosure> EnclosurePtr;
+typedef SharedPtr<Enclosure> EnclosurePtr;
 
 /**
  * An enclosure describes a (media) file available on the net.
@@ -38,7 +40,7 @@ typedef KSharedPtr<Enclosure> EnclosurePtr;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Enclosure : public KShared
+class KDE_EXPORT Enclosure
 {
     public:
 

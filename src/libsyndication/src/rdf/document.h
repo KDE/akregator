@@ -40,7 +40,7 @@ class Item;
 class Model;
 class Syndication;
 class TextInput;
-typedef KSharedPtr<Document> DocumentPtr;
+typedef SharedPtr<Document> DocumentPtr;
 
 /**
  * Document implementation for RDF, representing an RSS 1.0 feed.

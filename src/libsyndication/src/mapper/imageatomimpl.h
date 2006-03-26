@@ -30,7 +30,7 @@
 namespace LibSyndication {
     
 class ImageAtomImpl;
-typedef KSharedPtr<ImageAtomImpl> ImageAtomImplPtr;
+typedef SharedPtr<ImageAtomImpl> ImageAtomImplPtr;
 
 /**
  *

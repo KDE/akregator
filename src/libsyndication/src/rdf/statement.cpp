@@ -31,7 +31,7 @@
 namespace LibSyndication {
 namespace RDF {
 
-class Statement::StatementPrivate : public KShared
+class Statement::StatementPrivate
 {
     public:
     
@@ -56,7 +56,7 @@ Statement::Statement() : d(new StatementPrivate)
     d->objectID = 0;
 }
 
-Statement::Statement(const Statement& other) : KShared(other)
+Statement::Statement(const Statement& other)
 {
     d = other.d;
 }

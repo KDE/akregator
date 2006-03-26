@@ -17,7 +17,7 @@
 
 #include <kio/global.h>
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
 #include <kurl.h>
 
 #include <QBuffer>

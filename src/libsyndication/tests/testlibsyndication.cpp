@@ -96,7 +96,7 @@ int main(int argc, char **argv)
 
     FeedPtr ptr(LibSyndication::parse(src));
 
-    if (ptr.isNull())
+    if (ptr == 0L)
     {
         printUsage("Couldn't parse file");
         return 1;

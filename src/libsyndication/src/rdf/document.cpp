@@ -101,27 +101,26 @@ QList<Item> Document::items() const
     NodePtr n = resource()->property(RSSVocab::self()->items())->object();
     if (n->isSequence())
     {
-        Sequence* seq = dynamic_cast<Sequence*>(n.data());
-        if (seq)
+        Sequence* seq = static_cast<Sequence*>(n.get());
+        
+        QList<NodePtr> items = seq->items();
+        QList<NodePtr>::Iterator it = items.begin();
+        QList<NodePtr>::Iterator end = items.end();
+        
+        for ( ; it != end; ++it)
         {
-            QList<NodePtr> items = seq->items();
-            QList<NodePtr>::Iterator it = items.begin();
-            QList<NodePtr>::Iterator end = items.end();
-            
-            for ( ; it != end; ++it)
+            if ((*it)->isResource())
             {
-                if ((*it)->isResource())
-                {
-                    // well, we need it as ResourcePtr
-                    // maybe this should go to the node
-                    // interface ResourcePtr asResource()?
-                    ResourcePtr ptr = resource()->model().createResource((static_cast<Resource*>((*it).data()))->uri());
-                    
-                    Item item(ptr);
-                    list.append(item);
-                }
+                // well, we need it as ResourcePtr
+                // maybe this should go to the node
+                // interface ResourcePtr asResource()?
+                ResourcePtr ptr = resource()->model().createResource((static_cast<Resource*>((*it).get()))->uri());
+                
+                Item item(ptr);
+                list.append(item);
             }
         }
+    
     }
     return list;
 }
@@ -150,7 +149,7 @@ QString Document::debugInfo() const
     info += dc().debugInfo();
     info += syn().debugInfo();
     Image img = image();
-    if (!img.resource().isNull())
+    if (!img.resource() == 0L)
         info += img.debugInfo();
     TextInput input = textInput();
     if (!input.isNull())

@@ -38,9 +38,14 @@ Property::~Property()
 {
 }
 
+bool Property::isProperty() const
+{
+    return true;
+}
+
 void Property::accept(NodeVisitor* visitor, NodePtr ptr)
 {
-    PropertyPtr pptr = PropertyPtr::staticCast(ptr);
+    PropertyPtr pptr = ptr;
     
     if (!visitor->visitProperty(pptr))
         Resource::accept(visitor, ptr);

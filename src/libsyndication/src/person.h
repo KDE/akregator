@@ -23,12 +23,14 @@
 #ifndef LIBSYNDICATION_PERSON_H
 #define LIBSYNDICATION_PERSON_H
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
+
+#include <kdepimmacros.h>
 
 namespace LibSyndication {
 
 class Person;
-typedef KSharedPtr<Person> PersonPtr;
+typedef SharedPtr<Person> PersonPtr;
 
 /**
  * Person holds information about a person, such as the author of the whole feed
@@ -42,7 +44,7 @@ typedef KSharedPtr<Person> PersonPtr;
  * 
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Person : public KShared
+class KDE_EXPORT Person
 {
     public:
 

@@ -113,7 +113,7 @@ QList<LibSyndication::EnclosurePtr> ItemRSS2Impl::enclosures() const
          it != encs.end(); ++it)
     {
         EnclosureRSS2ImplPtr impl(new EnclosureRSS2Impl(m_item, *it));
-        list.append(LibSyndication::EnclosurePtr::staticCast(impl));
+        list.append(impl);
     }
     
     return list;
@@ -130,7 +130,7 @@ QList<LibSyndication::CategoryPtr> ItemRSS2Impl::categories() const
     for ( ; it != end; ++it)
     {
         CategoryRSS2ImplPtr impl(new CategoryRSS2Impl(*it));
-        list.append(LibSyndication::CategoryPtr::staticCast(impl));
+        list.append(impl);
     }
     
     return list;

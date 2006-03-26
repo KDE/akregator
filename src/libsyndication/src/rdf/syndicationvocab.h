@@ -23,15 +23,16 @@
 #ifndef LIBSYNDICATION_RDF_SYNDICATIONVOCAB_H
 #define LIBSYNDICATION_RDF_SYNDICATIONVOCAB_H
 
-template <class T> class KSharedPtr;
-
 class QString;
 
 namespace LibSyndication {
+    
+template <class T> class SharedPtr;
+
 namespace RDF {
 
 class Property;
-typedef KSharedPtr<Property> PropertyPtr;
+typedef SharedPtr<Property> PropertyPtr;
 
 /**
  * Singleton providing Property constants for 

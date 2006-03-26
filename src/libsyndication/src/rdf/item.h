@@ -113,7 +113,7 @@ class KDE_EXPORT Item : public ResourceWrapper
         QString debugInfo() const;
 };
 
-typedef KSharedPtr<SpecificItem> SpecificItemPtr;
+typedef SharedPtr<SpecificItem> SpecificItemPtr;
 class KDE_EXPORT SpecificItem : public LibSyndication::SpecificItem
 {
     public:

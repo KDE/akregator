@@ -83,8 +83,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const DocumentSource& source) 
     if (channels.isEmpty())
         return LibSyndication::AbstractDocumentPtr(new Document());
   
-    DocumentPtr ptr(new Document(*(channels.begin())));
-    return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
+    return DocumentPtr(new Document(*(channels.begin())));
 }
 
 void Parser::ParserPrivate::map09to10(Model model)
@@ -126,12 +125,12 @@ void Parser::ParserPrivate::map09to10(Model model)
     {
         channel = *(channels.begin());
         
-        model.removeStatement(channel, RDFVocab::self()->type(), NodePtr::staticCast(RSS09Vocab::self()->channel()));
-        model.addStatement(channel, RDFVocab::self()->type(), NodePtr::staticCast(RSSVocab::self()->channel()));
+        model.removeStatement(channel, RDFVocab::self()->type(), RSS09Vocab::self()->channel());
+        model.addStatement(channel, RDFVocab::self()->type(), RSSVocab::self()->channel());
         
         // add Sequence of items as used in RSS 1.0
         SequencePtr seq = model.createSequence();
-        model.addStatement(channel, RSSVocab::self()->items(), NodePtr::staticCast(seq));
+        model.addStatement(channel, RSSVocab::self()->items(), seq);
         QList<ResourcePtr> items = model.resourcesWithType(RSS09Vocab::self()->item());
         
         QList<ResourcePtr>::ConstIterator it2 = items.begin();
@@ -139,8 +138,8 @@ void Parser::ParserPrivate::map09to10(Model model)
 
         for ( ; it2 != end2; ++it2)
         {
-            seq->append(NodePtr::staticCast(*it2));
-            model.addStatement(ResourcePtr::staticCast(seq), RDFVocab::self()->li(), NodePtr::staticCast(*it2));
+            seq->append(*it2);
+            model.addStatement(seq, RDFVocab::self()->li(), *it2);
         }
     }
 }

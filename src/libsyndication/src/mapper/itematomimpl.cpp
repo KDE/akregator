@@ -96,7 +96,7 @@ QList<PersonPtr> ItemAtomImpl::authors() const
     for ( ; it != end; ++it)
     {
         PersonImplPtr ptr(new PersonImpl((*it).name(), (*it).uri(), (*it).email()));
-        list.append(PersonPtr::staticCast(ptr));
+        list.append(ptr);
     }
     
     atomps = m_entry.contributors();
@@ -107,7 +107,7 @@ QList<PersonPtr> ItemAtomImpl::authors() const
     for ( ; it != end; ++it)
     {
         PersonImplPtr ptr(new PersonImpl((*it).name(), (*it).uri(), (*it).email()));
-        list.append(PersonPtr::staticCast(ptr));
+        list.append(ptr);
     }
     
     return list;
@@ -154,8 +154,8 @@ QList<LibSyndication::EnclosurePtr> ItemAtomImpl::enclosures() const
     {
         if ((*it).rel() == QString::fromUtf8("enclosure"))
         {
-            EnclosureAtomImplPtr impl(new EnclosureAtomImpl(*it));
-            list.append(LibSyndication::EnclosurePtr::staticCast(impl));
+            list.append(EnclosureAtomImplPtr(new EnclosureAtomImpl(*it)));
+
         }
     }
 
@@ -173,7 +173,7 @@ QList<LibSyndication::CategoryPtr> ItemAtomImpl::categories() const
     for ( ; it != end; ++it)
     {
         CategoryAtomImplPtr impl(new CategoryAtomImpl(*it));
-        list.append(LibSyndication::CategoryPtr::staticCast(impl));
+        list.append(impl);
     }
     
     return list;

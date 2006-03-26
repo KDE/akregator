@@ -87,7 +87,7 @@ QString Item::debugInfo() const
     return info;
 }
 
-class SpecificItem::SpecificItemPrivate : public KShared
+class SpecificItem::SpecificItemPrivate
 {
     public:
     Item item;

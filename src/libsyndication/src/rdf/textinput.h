@@ -24,14 +24,14 @@
 
 #include "resourcewrapper.h"
 
-template <class T> class KSharedPtr;
+template <class T> class SharedPtr;
 
 namespace LibSyndication {
 namespace RDF {
 
 class Model;
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 /**
  * "The textinput element affords a method for submitting form data to an

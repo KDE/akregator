@@ -23,7 +23,9 @@
 #ifndef LIBSYNDICATION_FEED_H
 #define LIBSYNDICATION_FEED_H
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
+
+#include <kdepimmacros.h>
 
 template <class T> class QList;
 class QString;
@@ -31,17 +33,17 @@ class QString;
 namespace LibSyndication {
 
 class AbstractDocument;
-typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
+typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
 class Category;
-typedef KSharedPtr<Category> CategoryPtr;
+typedef SharedPtr<Category> CategoryPtr;
 class Feed;
-typedef KSharedPtr<Feed> FeedPtr;
+typedef SharedPtr<Feed> FeedPtr;
 class Image;
-typedef KSharedPtr<Image> ImagePtr;
+typedef SharedPtr<Image> ImagePtr;
 class Item;
-typedef KSharedPtr<Item> ItemPtr;
+typedef SharedPtr<Item> ItemPtr;
 class Person;
-typedef KSharedPtr<Person> PersonPtr;
+typedef SharedPtr<Person> PersonPtr;
 
 /**
  * This class represents a feed document ("Channel" in RSS, "Feed" in Atom).
@@ -55,7 +57,7 @@ typedef KSharedPtr<Person> PersonPtr;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Feed : public KShared
+class KDE_EXPORT Feed
 {
     public:
         

@@ -30,7 +30,7 @@
 namespace LibSyndication {
 namespace RDF {
 
-class Sequence::SequencePrivate : public KShared
+class Sequence::SequencePrivate
 {
     public:
     
@@ -56,7 +56,7 @@ Sequence::~Sequence()
 }
 void Sequence::accept(NodeVisitor* visitor, NodePtr ptr)
 {
-    SequencePtr sptr = SequencePtr::staticCast(ptr);
+    SequencePtr sptr = ptr;
     if (!visitor->visitSequence(sptr))
         Resource::accept(visitor, ptr);
 }

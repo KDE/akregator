@@ -22,17 +22,18 @@
 #ifndef LIBSYNDICATION_RDF_RDFVOCAB_H
 #define LIBSYNDICATION_RDF_RDFVOCAB_H
 
-template <class T> class KSharedPtr;
-
 class QString;
 
 namespace LibSyndication {
+    
+template <class T> class SharedPtr;
+
 namespace RDF {
 
 class Property;
-typedef KSharedPtr<Property> PropertyPtr;
+typedef SharedPtr<Property> PropertyPtr;
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 class KDE_EXPORT RDFVocab
 {

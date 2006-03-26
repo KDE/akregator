@@ -28,7 +28,7 @@
 namespace LibSyndication {
 namespace RDF {
 
-class Literal::LiteralPrivate : public KShared
+class Literal::LiteralPrivate
 {
     public:
     
@@ -57,7 +57,7 @@ Literal* Literal::clone() const
     
 void Literal::accept(NodeVisitor* visitor, NodePtr ptr)
 {
-    LiteralPtr lptr = LiteralPtr::staticCast(ptr);
+    LiteralPtr lptr = ptr;
     if (!visitor->visitLiteral(lptr))
         Node::accept(visitor, ptr);
 }
@@ -92,7 +92,7 @@ bool Literal::operator==(const Node& other) const
 
 bool Literal::isNull() const
 {
-    return d == (LiteralPrivate*)0;
+    return d == 0L;
 }
 
 unsigned int Literal::id() const
@@ -101,6 +101,11 @@ unsigned int Literal::id() const
 }
 
 bool Literal::isResource() const
+{
+    return false;
+}
+
+bool Literal::isProperty() const
 {
     return false;
 }

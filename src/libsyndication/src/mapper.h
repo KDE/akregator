@@ -23,12 +23,12 @@
 #ifndef LIBSYNDICATION_MAPPER_H
 #define LIBSYNDICATION_MAPPER_H
 
-template <class T> class KSharedPtr;
+template <class T> class SharedPtr;
 
 namespace LibSyndication {
 
 class AbstractDocument;
-typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
+typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
 
 /**
  * @brief A mapper maps an AbstractDocument to something else.
@@ -81,7 +81,7 @@ typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
  * all feed formats then:
  * 
  * @code
- * class MyFeed : public KShared
+ * class MyFeed
  * {
  *     public:
  * 
@@ -123,7 +123,7 @@ class Mapper
          * @param doc the document to map.
          * @return a newly created object implementing the E @c T.
          */
-        virtual KSharedPtr<T> map(AbstractDocumentPtr doc) const = 0;
+        virtual SharedPtr<T> map(AbstractDocumentPtr doc) const = 0;
 };
 
 } // namespace libsyndication

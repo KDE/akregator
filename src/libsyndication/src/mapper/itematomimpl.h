@@ -29,7 +29,7 @@
 namespace LibSyndication {
 
 class ItemAtomImpl;
-typedef KSharedPtr<ItemAtomImpl> ItemAtomImplPtr;
+typedef SharedPtr<ItemAtomImpl> ItemAtomImplPtr;
 
 /**
  * @internal

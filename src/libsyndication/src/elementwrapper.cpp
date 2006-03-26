@@ -30,7 +30,7 @@
 
 namespace LibSyndication {
 
-class ElementWrapper::ElementWrapperPrivate : public KShared
+class ElementWrapper::ElementWrapperPrivate
 {
     public:
         

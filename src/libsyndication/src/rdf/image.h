@@ -30,7 +30,7 @@ namespace LibSyndication {
 namespace RDF {
 
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 class KDE_EXPORT Image : public ResourceWrapper
 {

@@ -25,7 +25,7 @@
 
 #include "node.h"
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 class QString;
 
@@ -34,12 +34,12 @@ namespace RDF {
 
 class Model;
 class Property;
-typedef KSharedPtr<Property> PropertyPtr;
+typedef SharedPtr<Property> PropertyPtr;
 class Resource;
 class Statement;
-typedef KSharedPtr<Statement> StatementPtr;
+typedef SharedPtr<Statement> StatementPtr;
 
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 class KDE_EXPORT Resource : public Node
 {
@@ -69,6 +69,7 @@ class KDE_EXPORT Resource : public Node
         virtual unsigned int id() const;    
         virtual bool isResource() const;
         virtual bool isLiteral() const;
+        virtual bool isProperty() const;
         virtual bool isAnon() const;
         virtual bool isSequence() const;
 
@@ -80,7 +81,7 @@ class KDE_EXPORT Resource : public Node
     private:
     
         class ResourcePrivate;
-        KSharedPtr<ResourcePrivate> d;
+        SharedPtr<ResourcePrivate> d;
 };
 
 } // namespace RDF

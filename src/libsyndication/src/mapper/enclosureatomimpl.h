@@ -29,7 +29,7 @@
 namespace LibSyndication {
     
 class EnclosureAtomImpl;
-typedef KSharedPtr<EnclosureAtomImpl> EnclosureAtomImplPtr;
+typedef SharedPtr<EnclosureAtomImpl> EnclosureAtomImplPtr;
 
 /**
  *

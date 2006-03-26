@@ -52,7 +52,7 @@ class KDE_EXPORT ParserCollectionImpl : public ParserCollection<T>
         
         virtual ~ParserCollectionImpl();
         
-        KSharedPtr<T> parse(const DocumentSource& source,
+        SharedPtr<T> parse(const DocumentSource& source,
                             const QString& formatHint=QString());
 
         
@@ -116,7 +116,7 @@ void ParserCollectionImpl<T>::changeMapper(const QString& format, Mapper<T>* map
 }
 
 template <class T>
-KSharedPtr<T> ParserCollectionImpl<T>::parse(const DocumentSource& source, const QString& formatHint)
+SharedPtr<T> ParserCollectionImpl<T>::parse(const DocumentSource& source, const QString& formatHint)
 {
     m_lastError = LibSyndication::Success;
 

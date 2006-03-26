@@ -29,9 +29,9 @@
 namespace LibSyndication {
 
 class FeedRDFImpl;
-typedef KSharedPtr<FeedRDFImpl> FeedRDFImplPtr;
+typedef SharedPtr<FeedRDFImpl> FeedRDFImplPtr;
 class Image;
-typedef KSharedPtr<Image> ImagePtr;
+typedef SharedPtr<Image> ImagePtr;
 
 /**
  * @internal

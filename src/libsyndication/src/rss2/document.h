@@ -44,7 +44,7 @@ class Document;
 class Image;
 class Item;
 class TextInput;
-typedef KSharedPtr<Document> DocumentPtr;
+typedef SharedPtr<Document> DocumentPtr;
 
 /**
  * document implementation, representing an RSS feed from the 0.91-0.94/2.0

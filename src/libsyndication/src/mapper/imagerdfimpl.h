@@ -31,7 +31,7 @@
 namespace LibSyndication {
     
 class ImageRDFImpl;
-typedef KSharedPtr<ImageRDFImpl> ImageRDFImplPtr;
+typedef SharedPtr<ImageRDFImpl> ImageRDFImplPtr;
 
 /**
  *

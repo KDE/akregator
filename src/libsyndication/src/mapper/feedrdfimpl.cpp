@@ -42,7 +42,7 @@ FeedRDFImpl::FeedRDFImpl(LibSyndication::RDF::DocumentPtr doc) : m_doc(doc)
 
 LibSyndication::AbstractDocumentPtr FeedRDFImpl::document() const
 {
-    return LibSyndication::AbstractDocumentPtr::staticCast(m_doc);
+    return m_doc;
 }
 
 QList<LibSyndication::ItemPtr> FeedRDFImpl::items() const
@@ -55,7 +55,7 @@ QList<LibSyndication::ItemPtr> FeedRDFImpl::items() const
     for ( ; it != end; ++it)
     {
         ItemRDFImplPtr item(new ItemRDFImpl(*it));
-        items.append(ItemPtr::staticCast(item));
+        items.append(item);
     }
     
     return items;
@@ -109,7 +109,7 @@ QString FeedRDFImpl::copyright() const
 ImagePtr FeedRDFImpl::image() const
 {
     ImageRDFImplPtr ptr(new ImageRDFImpl(m_doc->image()));
-    return ImagePtr::staticCast(ptr);
+    return ptr;
 }
 
 } // namespace LibSyndication

@@ -24,7 +24,7 @@
 
 #include <QString>
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
 
 #include <kdepimmacros.h>
 
@@ -285,7 +285,7 @@ class KDE_EXPORT ElementWrapper
     private:
 
         class ElementWrapperPrivate;
-        KSharedPtr<ElementWrapperPrivate> d;
+        SharedPtr<ElementWrapperPrivate> d;
 };
 
 } // namespace LibSyndication

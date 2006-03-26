@@ -24,7 +24,7 @@
 
 #include "resource.h"
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 template <class T> class QList;
 
@@ -34,7 +34,7 @@ namespace RDF {
 
 class Sequence;
 
-typedef KSharedPtr<Sequence> SequencePtr;
+typedef SharedPtr<Sequence> SequencePtr;
     
 class KDE_EXPORT Sequence : public Resource
 {
@@ -57,7 +57,7 @@ class KDE_EXPORT Sequence : public Resource
     private:
         
         class SequencePrivate;
-        KSharedPtr<SequencePrivate> d;
+        SharedPtr<SequencePrivate> d;
 
 };
 

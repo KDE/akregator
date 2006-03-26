@@ -73,8 +73,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
     if (doc.isNull())
     {
         // if this is not atom, return an invalid feed document
-        FeedDocumentPtr ptr(new FeedDocument());
-        return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
+        return FeedDocumentPtr(new FeedDocument());
     }
     
     QDomElement feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
@@ -93,8 +92,7 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
     
     if (feedValid)
     {
-        FeedDocumentPtr ptr(new FeedDocument(feed));
-        return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
+        return FeedDocumentPtr(new FeedDocument(feed));
     }
 
     QDomElement entry = doc.namedItem(QString::fromUtf8("entry")).toElement();
@@ -102,13 +100,11 @@ LibSyndication::AbstractDocumentPtr Parser::parse(const LibSyndication::Document
 
     if (entryValid)
     {
-        EntryDocumentPtr ptr(new EntryDocument(feed));
-        return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
+        return EntryDocumentPtr(new EntryDocument(feed));
     }
 
     // if this is not atom, return an invalid feed document
-    FeedDocumentPtr ptr(new FeedDocument());
-    return LibSyndication::AbstractDocumentPtr::staticCast(ptr);
+    return FeedDocumentPtr(new FeedDocument());
 }
 
 QString Parser::format() const

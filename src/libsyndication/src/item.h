@@ -23,7 +23,9 @@
 #ifndef LIBSYNDICATION_ITEM_H
 #define LIBSYNDICATION_ITEM_H
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
+
+#include <kdepimmacros.h>
 
 #include <ctime>
 
@@ -32,15 +34,15 @@ template <class T> class QList;
 namespace LibSyndication {
 
 class Category;
-typedef KSharedPtr<Category> CategoryPtr;
+typedef SharedPtr<Category> CategoryPtr;
 class Enclosure;
-typedef KSharedPtr<Enclosure> EnclosurePtr;
+typedef SharedPtr<Enclosure> EnclosurePtr;
 class Item;
-typedef KSharedPtr<Item> ItemPtr;
+typedef SharedPtr<Item> ItemPtr;
 class Person;
-typedef KSharedPtr<Person> PersonPtr;
+typedef SharedPtr<Person> PersonPtr;
 class SpecificItem;
-typedef KSharedPtr<SpecificItem> SpecificItemPtr;
+typedef SharedPtr<SpecificItem> SpecificItemPtr;
 
 /**
  * An item from a news feed. An item can represent e.g. a news article
@@ -48,7 +50,7 @@ typedef KSharedPtr<SpecificItem> SpecificItemPtr;
  * 
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Item : public KShared
+class KDE_EXPORT Item
 {
     public:
 

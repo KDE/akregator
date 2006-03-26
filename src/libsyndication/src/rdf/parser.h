@@ -26,7 +26,7 @@
 
 #include "../abstractparser.h"
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 namespace LibSyndication {
 

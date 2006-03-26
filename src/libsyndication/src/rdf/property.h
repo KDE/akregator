@@ -32,7 +32,7 @@ namespace RDF {
 
 class Property;
 
-typedef KSharedPtr<Property> PropertyPtr;
+typedef SharedPtr<Property> PropertyPtr;
 
 class KDE_EXPORT Property : public Resource
 {
@@ -44,6 +44,7 @@ class KDE_EXPORT Property : public Resource
         
         virtual void accept(NodeVisitor* visitor, NodePtr ptr);
         
+        virtual bool isProperty() const;
         virtual Property* clone() const;
 };
 

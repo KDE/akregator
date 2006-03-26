@@ -24,7 +24,7 @@
 
 #include "property.h"
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 
 class QString;
@@ -34,9 +34,9 @@ namespace RDF {
 
 class Statement;
 
-typedef KSharedPtr<Statement> StatementPtr;
+typedef SharedPtr<Statement> StatementPtr;
 
-class KDE_EXPORT Statement : public KShared
+class KDE_EXPORT Statement
 {
     public:
     
@@ -73,7 +73,7 @@ class KDE_EXPORT Statement : public KShared
     
     private:
         class StatementPrivate;
-        KSharedPtr<StatementPrivate> d;
+        SharedPtr<StatementPrivate> d;
 };
 
 

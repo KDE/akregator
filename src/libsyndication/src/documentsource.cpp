@@ -29,7 +29,7 @@
 
 namespace LibSyndication {
 
-class DocumentSource::DocumentSourcePrivate : public KShared
+class DocumentSource::DocumentSourcePrivate
 {
     public:
     QByteArray array;

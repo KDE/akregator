@@ -26,14 +26,14 @@ class QDomDocument;
 class QDomElement;
 class QString;
 
-template <class T> class KSharedPtr;
+template <class T> class SharedPtr;
 
 namespace LibSyndication {
 namespace RDF {
 
 class Model;
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 /**
  * An RDF parser, used to parse an RDF model from RDF/XML. It doesn't support

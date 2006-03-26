@@ -29,7 +29,7 @@
 namespace LibSyndication {
     
 class ImageRSS2Impl;
-typedef KSharedPtr<ImageRSS2Impl> ImageRSS2ImplPtr;
+typedef SharedPtr<ImageRSS2Impl> ImageRSS2ImplPtr;
 
 /**
  *

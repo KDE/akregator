@@ -41,7 +41,7 @@ FeedRSS2Impl::FeedRSS2Impl(LibSyndication::RSS2::DocumentPtr doc) : m_doc(doc)
 
 LibSyndication::AbstractDocumentPtr FeedRSS2Impl::document() const
 {
-    return LibSyndication::AbstractDocumentPtr::staticCast(m_doc);
+    return m_doc;
 }
         
 QList<LibSyndication::ItemPtr> FeedRSS2Impl::items() const
@@ -54,7 +54,7 @@ QList<LibSyndication::ItemPtr> FeedRSS2Impl::items() const
     for ( ; it != end; ++it)
     {
         ItemRSS2ImplPtr item(new ItemRSS2Impl(*it));
-        items.append(ItemPtr::staticCast(item));
+        items.append(item);
     }
     
     return items;
@@ -70,7 +70,7 @@ QList<LibSyndication::CategoryPtr> FeedRSS2Impl::categories() const
     for ( ; it != end; ++it)
     {
         CategoryRSS2ImplPtr item(new CategoryRSS2Impl(*it));
-        categories.append(CategoryPtr::staticCast(item));
+        categories.append(item);
     }
     
     return categories;
@@ -109,7 +109,7 @@ QString FeedRSS2Impl::copyright() const
 ImagePtr FeedRSS2Impl::image() const
 {
     ImageRSS2ImplPtr ptr(new ImageRSS2Impl(m_doc->image()));
-    return ImagePtr::staticCast(ptr);
+    return ptr;
 }
 
 } // namespace LibSyndication

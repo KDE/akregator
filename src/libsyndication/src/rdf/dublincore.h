@@ -33,7 +33,7 @@ namespace LibSyndication {
 namespace RDF {
 
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 // TODO: add support for multiple statements where it makes sense.
 // e.g. (creator, subject)

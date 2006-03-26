@@ -36,7 +36,7 @@
 namespace LibSyndication {
 namespace RDF {
 
-class Model::ModelPrivate : public KShared
+class Model::ModelPrivate
 {
     public:
     
@@ -82,21 +82,21 @@ class Model::ModelPrivate : public KShared
         
         bool visitResource(ResourcePtr res)
         {
-            visitNode(NodePtr::staticCast(res));
+            visitNode(res);
             p->resources[res->uri()] = res;
             return true;
         }
     
         bool visitSequence(SequencePtr seq)
         {
-            visitResource(ResourcePtr::staticCast(seq));
+            visitResource(seq);
             p->sequences[seq->uri()] = seq;
             return true;
         }
 
         bool visitProperty(PropertyPtr prop)
         {
-            visitResource(ResourcePtr::staticCast(prop));
+            visitResource(prop);
             p->properties[prop->uri()] = prop;
             return true;
         }
@@ -189,7 +189,7 @@ PropertyPtr Model::createProperty(const QString& uri)
         {
             prop->setId(d->resources[uri]->id());
         }
-        d->addToHashes(NodePtr::staticCast(prop));
+        d->addToHashes(prop);
     }
 
     return prop;
@@ -208,7 +208,7 @@ ResourcePtr Model::createResource(const QString& uri)
     {
         res = new Resource(uri);
         res->setModel(*this);
-        d->addToHashes(NodePtr::staticCast(res));
+        d->addToHashes(res);
     }
 
     return res;
@@ -233,7 +233,7 @@ SequencePtr Model::createSequence(const QString& uri)
             seq->setId(d->resources[uri]->id());
         }
 
-        d->addToHashes(NodePtr::staticCast(seq));
+        d->addToHashes(seq);
     }
 
     return seq;
@@ -243,7 +243,7 @@ LiteralPtr Model::createLiteral(const QString& text)
 {
     LiteralPtr lit(new Literal(text));
     
-    d->addToHashes(NodePtr::staticCast(lit));
+    d->addToHashes(lit);
     return lit;
 }
 
@@ -271,7 +271,7 @@ StatementPtr Model::addStatement(ResourcePtr subject, PropertyPtr predicate, Nod
     {
         subjInternal = subject->clone();
         subjInternal->setModel(*this);
-        d->addToHashes(NodePtr::staticCast(subjInternal));
+        d->addToHashes(subjInternal);
     }
     
     PropertyPtr predInternal = predicate;
@@ -280,7 +280,7 @@ StatementPtr Model::addStatement(ResourcePtr subject, PropertyPtr predicate, Nod
     {
         predInternal = predicate->clone();
         predInternal->setModel(*this);
-        d->addToHashes(NodePtr::staticCast(predInternal));
+        d->addToHashes(predInternal);
     }
     
     NodePtr objInternal = object;
@@ -409,7 +409,7 @@ NodePtr Model::nodeByID(uint id) const
 {
     if (!d->nodes.contains(id))
     {
-        return NodePtr::staticCast(d->nullLiteral);
+        return d->nullLiteral;
     }
     else
     {
@@ -426,9 +426,8 @@ ResourcePtr Model::resourceByID(uint id) const
     else
     {
         NodePtr node = d->nodes[id];
-        ResourcePtr res = ResourcePtr::dynamicCast(node);
-        if (res)
-            return res;
+        if (node->isResource())
+            return node;
         else
             return d->nullResource;
     }
@@ -443,9 +442,8 @@ PropertyPtr Model::propertyByID(uint id) const
     else
     {
         NodePtr node = d->nodes[id];
-        PropertyPtr prop = PropertyPtr::dynamicCast(node);
-        if (prop)
-            return prop;
+        if (node->isProperty())
+            return node;
         else
             return d->nullProperty;
     }
@@ -460,9 +458,8 @@ LiteralPtr Model::literalByID(uint id) const
     else
     {
         NodePtr node = d->nodes[id];
-        LiteralPtr lit = LiteralPtr::dynamicCast(node);
-        if (lit)
-            return lit;
+        if (node->isLiteral())
+            return node;
         else
             return d->nullLiteral;
     }

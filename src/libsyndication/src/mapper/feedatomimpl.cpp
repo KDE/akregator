@@ -43,7 +43,7 @@ FeedAtomImpl::FeedAtomImpl(LibSyndication::Atom::FeedDocumentPtr doc) : m_doc(do
 
 LibSyndication::AbstractDocumentPtr FeedAtomImpl::document() const
 {
-    return LibSyndication::AbstractDocumentPtr::staticCast(m_doc);
+    return m_doc;
 }
 
 QList<LibSyndication::ItemPtr> FeedAtomImpl::items() const
@@ -56,7 +56,7 @@ QList<LibSyndication::ItemPtr> FeedAtomImpl::items() const
     for ( ; it != end; ++it)
     {
         ItemAtomImplPtr item(new ItemAtomImpl(*it));
-        items.append(ItemPtr::staticCast(item));
+        items.append(item);
     }
     
     return items;
@@ -72,7 +72,7 @@ QList<LibSyndication::CategoryPtr> FeedAtomImpl::categories() const
     for ( ; it != end; ++it)
     {
         CategoryAtomImplPtr item(new CategoryAtomImpl(*it));
-        categories.append(CategoryPtr::staticCast(item));
+        categories.append(item);
     }
     
     return categories;
@@ -118,7 +118,7 @@ QList<PersonPtr> FeedAtomImpl::authors() const
     for ( ; it != end; ++it)
     {
         PersonImplPtr ptr(new PersonImpl((*it).name(), (*it).uri(), (*it).email()));
-        list.append(PersonPtr::staticCast(ptr));
+        list.append(ptr);
     }
     
     atomps = m_doc->contributors();
@@ -129,7 +129,7 @@ QList<PersonPtr> FeedAtomImpl::authors() const
     for ( ; it != end; ++it)
     {
         PersonImplPtr ptr(new PersonImpl((*it).name(), (*it).uri(), (*it).email()));
-        list.append(PersonPtr::staticCast(ptr));
+        list.append(ptr);
     }
     
     return list;
@@ -148,8 +148,7 @@ QString FeedAtomImpl::copyright() const
 
 ImagePtr FeedAtomImpl::image() const
 {
-    ImageAtomImplPtr ptr(new ImageAtomImpl(m_doc->logo()));
-    return ImagePtr::staticCast(ptr);
+    return ImageAtomImplPtr(new ImageAtomImpl(m_doc->logo()));
 }
 
 } // namespace LibSyndication

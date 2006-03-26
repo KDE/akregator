@@ -24,13 +24,13 @@
 
 #include <kdepimmacros.h>
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 namespace LibSyndication {
 namespace RDF {
 
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 /**
  * A wrapper for RDF resources. Base class for convenience wrappers
@@ -99,7 +99,7 @@ class KDE_EXPORT ResourceWrapper
     private:
 
         class ResourceWrapperPrivate;
-        KSharedPtr<ResourceWrapperPrivate> d;
+        SharedPtr<ResourceWrapperPrivate> d;
 };
 
 } // namespace RDF

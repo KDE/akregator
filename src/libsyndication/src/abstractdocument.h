@@ -24,7 +24,7 @@
 
 #include <kdepimmacros.h>
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
 
 class QString;
 
@@ -33,7 +33,7 @@ namespace LibSyndication {
 class DocumentVisitor;
 class AbstractDocument;
 
-typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
+typedef SharedPtr<AbstractDocument> AbstractDocumentPtr;
 
 /**
  * Document interface. A document is a representation parsed from a document
@@ -45,7 +45,7 @@ typedef KSharedPtr<AbstractDocument> AbstractDocumentPtr;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT AbstractDocument : public KShared
+class KDE_EXPORT AbstractDocument
 {
     public:
 

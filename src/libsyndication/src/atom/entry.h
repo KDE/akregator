@@ -165,7 +165,7 @@ class KDE_EXPORT Entry : public ElementWrapper
         QString debugInfo() const;
 };
 
-typedef KSharedPtr<SpecificItem> SpecificItemPtr;
+typedef SharedPtr<SpecificItem> SpecificItemPtr;
 class KDE_EXPORT SpecificItem : public LibSyndication::SpecificItem
 {
     public:

@@ -23,12 +23,14 @@
 #ifndef LIBSYNDICATION_CATEGORY_H
 #define LIBSYNDICATION_CATEGORY_H
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
+
+#include <kdepimmacros.h>
 
 namespace LibSyndication {
 
 class Category;
-typedef KSharedPtr<Category> CategoryPtr;
+typedef SharedPtr<Category> CategoryPtr;
 
 /**
  * A category for categorizing items or whole feeds.
@@ -41,7 +43,7 @@ typedef KSharedPtr<Category> CategoryPtr;
  * 
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Category : public KShared
+class KDE_EXPORT Category
 {
     public:
 

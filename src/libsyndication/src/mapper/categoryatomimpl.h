@@ -29,7 +29,7 @@
 namespace LibSyndication {
     
 class CategoryAtomImpl;
-typedef KSharedPtr<CategoryAtomImpl> CategoryAtomImplPtr;
+typedef SharedPtr<CategoryAtomImpl> CategoryAtomImplPtr;
 
 /**
  *

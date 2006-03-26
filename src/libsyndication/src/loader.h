@@ -15,7 +15,7 @@
 
 #include <kdepimmacros.h>
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
 
 #include <QObject>
 
@@ -31,7 +31,7 @@ namespace LibSyndication {
 
 class DataRetriever;
 class Feed;
-typedef KSharedPtr<Feed> FeedPtr;
+typedef SharedPtr<Feed> FeedPtr;
 
 /**
  * This class is the preferred way of loading feed sources. Usage is very

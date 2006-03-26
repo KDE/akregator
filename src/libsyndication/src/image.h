@@ -23,12 +23,14 @@
 #ifndef LIBSYNDICATION_IMAGE_H
 #define LIBSYNDICATION_IMAGE_H
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
+
+#include <kdepimmacros.h>
 
 namespace LibSyndication {
 
 class Image;
-typedef KSharedPtr<Image> ImagePtr;
+typedef SharedPtr<Image> ImagePtr;
 
 /**
  * This class represents an image file on the web.
@@ -37,7 +39,7 @@ typedef KSharedPtr<Image> ImagePtr;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Image : public KShared
+class KDE_EXPORT Image
 {
     public:
 

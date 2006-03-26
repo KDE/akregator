@@ -23,7 +23,9 @@
 #ifndef LIBSYNDICATION_DOCUMENTSOURCE_H
 #define LIBSYNDICATION_DOCUMENTSOURCE_H
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
+
+#include <kdepimmacros.h>
 
 class QByteArray;
 class QDomDocument;
@@ -124,7 +126,7 @@ class KDE_EXPORT DocumentSource
     private: 
 
         class DocumentSourcePrivate;
-        KSharedPtr<DocumentSourcePrivate> d;
+        SharedPtr<DocumentSourcePrivate> d;
 };
 
 } // namespace LibSyndication

@@ -29,9 +29,9 @@
 namespace LibSyndication {
 
 class FeedRSS2Impl;
-typedef KSharedPtr<FeedRSS2Impl> FeedRSS2ImplPtr;
+typedef SharedPtr<FeedRSS2Impl> FeedRSS2ImplPtr;
 class Image;
-typedef KSharedPtr<Image> ImagePtr;
+typedef SharedPtr<Image> ImagePtr;
 
 /**
  * @internal

@@ -37,8 +37,12 @@
 #include "image.h"
 #include "item.h"
 #include "loader.h"
+#include "mapper.h"
 #include "parsercollection.h"
 #include "person.h"
+#include "specificitem.h"
+#include "specificitemvisitor.h"
+#include "tools.h"
 
 /**
  * TODO

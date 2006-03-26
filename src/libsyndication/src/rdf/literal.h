@@ -25,14 +25,14 @@
 
 #include "node.h"
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 namespace LibSyndication {
 namespace RDF {
 
 class Literal;
     
-typedef KSharedPtr<Literal> LiteralPtr;
+typedef SharedPtr<Literal> LiteralPtr;
     
 class KDE_EXPORT Literal : public Node
 {
@@ -52,6 +52,7 @@ class KDE_EXPORT Literal : public Node
         virtual bool isNull() const;
         virtual unsigned int id() const;
         virtual bool isResource() const;
+        virtual bool isProperty() const;
         virtual bool isLiteral() const;
         virtual bool isAnon() const;
         virtual bool isSequence() const;
@@ -64,7 +65,7 @@ class KDE_EXPORT Literal : public Node
         
     private:
         class LiteralPrivate;
-        KSharedPtr<LiteralPrivate> d;
+        SharedPtr<LiteralPrivate> d;
 };
 
     

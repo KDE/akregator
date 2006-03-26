@@ -30,7 +30,7 @@
 
 #include <kdepimmacros.h>
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 #include <QString>
 
@@ -200,7 +200,7 @@ class KDE_EXPORT Model
 
     private:
         class ModelPrivate;
-        KSharedPtr<ModelPrivate> d;
+        SharedPtr<ModelPrivate> d;
 };
 
 

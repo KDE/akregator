@@ -24,7 +24,7 @@
 
 #include <kdepimmacros.h>
 
-#include <ksharedptr.h>
+#include "sharedptr.h"
 
 class QString;
 
@@ -33,12 +33,12 @@ namespace LibSyndication {
 class SpecificItemVisitor;
 class SpecificItem;
 
-typedef KSharedPtr<SpecificItem> SpecificItemPtr;
+typedef SharedPtr<SpecificItem> SpecificItemPtr;
 
 /**
  * @author Frank Osterfeld
  */
-class KDE_EXPORT SpecificItem : public KShared
+class KDE_EXPORT SpecificItem
 {
     public:
 

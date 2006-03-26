@@ -24,7 +24,7 @@
 
 #include <kdepimmacros.h>
 
-#include <ksharedptr.h>
+#include "../sharedptr.h"
 
 namespace LibSyndication {
 namespace RDF {
@@ -33,9 +33,9 @@ class Model;
 class Node;
 class NodeVisitor;
 
-typedef KSharedPtr<Node> NodePtr;
+typedef SharedPtr<Node> NodePtr;
 
-class KDE_EXPORT Node : public KShared
+class KDE_EXPORT Node
 {
     public:
         
@@ -62,6 +62,11 @@ class KDE_EXPORT Node : public KShared
          */
         virtual bool isResource() const = 0;
         
+        /**
+         * returns whether this node is a property
+         */
+        virtual bool isProperty() const = 0;
+
         /**
          * returns whether this node is a literal
          */

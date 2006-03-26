@@ -24,19 +24,20 @@
 
 #include <kdepimmacros.h>
 
-template <class T> class KSharedPtr;
-
 class QString;
 class QStringList;
 
 namespace LibSyndication {
+    
+template <class T> class SharedPtr;
+
 namespace RDF {
 
 class Property;
-typedef KSharedPtr<Property> PropertyPtr;
+typedef SharedPtr<Property> PropertyPtr;
 
 class Resource;
-typedef KSharedPtr<Resource> ResourcePtr;
+typedef SharedPtr<Resource> ResourcePtr;
 
 /**
  * Singleton holding RDF class and property constants of the RSS 1.0

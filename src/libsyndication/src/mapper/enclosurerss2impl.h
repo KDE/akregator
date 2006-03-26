@@ -30,7 +30,7 @@
 namespace LibSyndication {
     
 class EnclosureRSS2Impl;
-typedef KSharedPtr<EnclosureRSS2Impl> EnclosureRSS2ImplPtr;
+typedef SharedPtr<EnclosureRSS2Impl> EnclosureRSS2ImplPtr;
 
 /**
  *

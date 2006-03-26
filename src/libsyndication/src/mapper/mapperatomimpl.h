@@ -37,9 +37,9 @@ namespace LibSyndication {
 /** @internal */
 class AtomMapper : public Mapper<Feed>
 {
-    KSharedPtr<Feed> map(AbstractDocumentPtr doc) const
+    SharedPtr<Feed> map(AbstractDocumentPtr doc) const
     {
-        return KSharedPtr<Feed>(new FeedAtomImpl(LibSyndication::Atom::FeedDocumentPtr::staticCast(doc)));
+        return SharedPtr<Feed>(new FeedAtomImpl(doc));
     }
 };
 
