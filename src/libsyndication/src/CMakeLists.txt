@@ -22,8 +22,9 @@ set(librss2local_SRCS
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/parser.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/source.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/textinput.cpp
-	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/tools.cpp
+	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rss2/tools_p.cpp
 	)
+
 
 set(librdflocal_la_SRCS
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rdf/parser.cpp 
@@ -97,7 +98,6 @@ set(syndication_LIB_SRCS
 	${libmapperrss2local_SRCS} 
 	${libmapperrdflocal_SRCS} 
 	${libmapperatomlocal_SRCS}
-   parsercollection.cpp 
    documentsource.cpp 
    documentvisitor.cpp 
    elementwrapper.cpp 
@@ -110,6 +110,7 @@ set(syndication_LIB_SRCS
    tools.cpp 
    person.cpp 
    loader.cpp 
+   global.cpp
    dataretriever.cpp 
    specificitemvisitor.cpp
    specificitem.cpp 
