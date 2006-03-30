@@ -33,9 +33,13 @@ namespace RDF {
 
 
 class Sequence;
-
 typedef SharedPtr<Sequence> SequencePtr;
-    
+
+/**
+ * Sequence container, a sequence contains an ordered list
+ * of RDF nodes. (opposed to the usually unordered graph
+ * structure)
+ */
 class KDE_EXPORT Sequence : public Resource
 {
     public:
@@ -48,6 +52,7 @@ class KDE_EXPORT Sequence : public Resource
         virtual Sequence& operator=(const Sequence& other);
         
         virtual void accept(NodeVisitor* visitor, NodePtr ptr);
+        
         virtual Sequence* clone() const;
         
         virtual void append(NodePtr node);

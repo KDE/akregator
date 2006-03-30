@@ -53,20 +53,22 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
         
         /**
          * returns whether the passed document looks like 
-         * an RSS 1.0 document.
+         * an RSS 0.9 or RSS 1.0 document.
          * @param source the document source to check
          */
         virtual bool accept(const DocumentSource& source) const;
 
         /**
-         * Parses an RSS 1.0 document from a feed source.
+         * Parses an RSS 0.9/1.0 document from a feed source. RSS 0.9
+         * documents are converted to RSS 1.0.
          * 
          * @param source The document source to parse
          * @return parsed document (a LibSyndication::RDF::Document), or an
          * invalid document if parsing failed.
          * @see Document::isValid()
          */
-        virtual LibSyndication::SpecificDocumentPtr parse(const DocumentSource& source) const;
+        virtual LibSyndication::SpecificDocumentPtr parse(
+                const DocumentSource& source) const;
 
         /**
          * format string of this parser, which is @c "rdf".

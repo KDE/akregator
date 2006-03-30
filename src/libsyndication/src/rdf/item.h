@@ -39,7 +39,9 @@ class Item;
 class Model;
 
 /**
- * wrapper for RSS 1.0 Item resources.
+ * An RSS 1.0 item.
+ * (It is a convenience wrapper for the 
+ * underlying RDF resource, which can be accessed via resource()).
  * 
  * @author Frank Osterfeld
  */
@@ -56,7 +58,7 @@ class KDE_EXPORT Item : public ResourceWrapper, public SpecificItem
         
         /**
          * Creates an item wrapping the given resource
-         * @param resource resource to wrap, should be an instance 
+         * @param resource resource to wrap, should be of type
          * of rss1:item, otherwise the wrapper will not return useful
          * information.
          */
@@ -67,6 +69,12 @@ class KDE_EXPORT Item : public ResourceWrapper, public SpecificItem
          */
         virtual ~Item();
 
+        /**
+         * interface for item visitors. See SpecificItemVisitor for 
+         * more information.
+         * 
+         * @param visitor a visitor visiting this object
+         */
         bool accept(SpecificItemVisitor* visitor);
         
         /**

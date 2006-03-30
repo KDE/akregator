@@ -29,6 +29,8 @@
 
 class QString;
 
+template <class T> class QList;
+
 namespace LibSyndication {
 namespace RDF {
 
@@ -63,6 +65,7 @@ class KDE_EXPORT Resource : public Node
     
         virtual bool hasProperty(PropertyPtr property) const;
         virtual StatementPtr property(PropertyPtr property) const;
+        virtual QList<StatementPtr> properties(PropertyPtr property) const;
     
         virtual bool isNull() const;
 

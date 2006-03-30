@@ -329,7 +329,7 @@ bool Model::resourceHasProperty(const Resource* resource, PropertyPtr property) 
     QList<StatementPtr>::ConstIterator it = stmts.begin();
     QList<StatementPtr>::ConstIterator end = stmts.end();
 
-// TODO: use more efficient storage
+    // TODO: use more efficient storage
 
     for ( ; it != end; ++it)
     {
@@ -356,6 +356,25 @@ StatementPtr Model::resourceProperty(const Resource* resource, PropertyPtr prope
 
     return d->nullStatement;
 }
+
+QList<StatementPtr> Model::resourceProperties(const Resource* resource, PropertyPtr property) const
+{
+    QList<StatementPtr> res;
+    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr>::ConstIterator it = stmts.begin();
+    QList<StatementPtr>::ConstIterator end = stmts.end();
+
+    // TODO: use more efficient storage
+
+    for ( ; it != end; ++it)
+    {
+        if (*((*it)->subject()) == *resource && *((*it)->predicate()) == *property)
+            res.append(*it);
+    }
+    
+    return res;
+}
+
 
 QList<StatementPtr> Model::statements() const
 {

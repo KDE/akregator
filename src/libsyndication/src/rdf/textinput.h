@@ -24,18 +24,12 @@
 
 #include "resourcewrapper.h"
 
-template <class T> class SharedPtr;
-
 namespace LibSyndication {
 namespace RDF {
 
-class Model;
-class Resource;
-typedef SharedPtr<Resource> ResourcePtr;
-
 /**
  * "The textinput element affords a method for submitting form data to an
- * arbitrary URL -- usually located at the parent website.
+ * arbitrary URL - usually located at the parent website.
  * The field is typically used as a search box or subscription form"
  * 
  * @author Frank Osterfeld

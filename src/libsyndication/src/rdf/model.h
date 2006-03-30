@@ -49,12 +49,40 @@ class KDE_EXPORT Model
 {
     public:
 
+        /**
+         * default constructor, creates an empty model
+         * containing no statements 
+         */
         Model();
+        
+        /**
+         * constructs a model from another.
+         * Both models will share the same set of statements,
+         * so adding/removing statements from one model also
+         * modifies the other!
+         * 
+         * @param other another model
+         */
         Model(const Model& other);
 
         virtual ~Model();
 
+        /**
+         * assigns another model. Both models will share the same 
+         * set of statements, so adding/removing statements from 
+         * one model also modifies the other!
+         * 
+         * @param other another model
+         */
         Model& operator=(const Model& other);
+        
+        /**
+         * Returns whether two models objects represent the same model
+         * (i.e. share the same underlying statement set). Currently this
+         * method does _not_ compare the statement list.
+         * Two indepently created models containing the same statements
+         * are not equal!
+         */
         bool operator==(const Model& other) const;
         
         /**
@@ -66,7 +94,7 @@ class KDE_EXPORT Model
          * is created.
          * @return a shared pointer to the requested resource
          */
-        virtual ResourcePtr createResource(const QString& uri=QString::null);
+        virtual ResourcePtr createResource(const QString& uri=QString());
         
         /**
          * creates a property and associates it with this model. If the model
@@ -81,14 +109,14 @@ class KDE_EXPORT Model
 
         /**
          * creates a sequence and associates it with this model. If the model
-         * already contains a sequence with the given URI, the existing instance
-         * is returned.
+         * already contains a sequence with the given URI, the existing
+         * instance is returned.
          * 
-         * @param uri the URI of the sequence, or a null string for an anonymous
-         * instance
+         * @param uri the URI of the sequence, or a null string for an
+         * anonymous instance
          * @return a shared pointer to the requested sequence
          */
-        virtual SequencePtr createSequence(const QString& uri=QString::null);
+        virtual SequencePtr createSequence(const QString& uri=QString());
 
         /**
          * creates a literal and associates it with this model. 
@@ -104,10 +132,12 @@ class KDE_EXPORT Model
          * @param subject
          * @param predicate
          * @param object
-         * @return a shared pointer to a statement associated with this model,
-         * with the given @c subject, @c predicate and @c object
+         * @return a shared pointer to a statement associated with this
+         * model, with the given @c subject, @c predicate and @c object
          */
-        virtual StatementPtr addStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object);
+        virtual StatementPtr addStatement(ResourcePtr subject, 
+                                          PropertyPtr predicate,
+                                          NodePtr object);
         
         /**
          * removes a statement from the model.
@@ -116,7 +146,9 @@ class KDE_EXPORT Model
          * @param predicate predicate of the statement
          * @param object object of the statement
          */
-        virtual void removeStatement(ResourcePtr subject, PropertyPtr predicate, NodePtr object);
+        virtual void removeStatement(ResourcePtr subject,
+                                     PropertyPtr predicate,
+                                     NodePtr object);
         
         /**
          * removes a statement from the model.
@@ -132,9 +164,9 @@ class KDE_EXPORT Model
 
         /**
          * returns all resources of a given type.
-         * Note: Inheritance is ignored right now, so instances of a subtype of 
-         * @c type are not returned!
-         *
+         * subClassOf semantics are ignored.
+         * 
+         * @param type a resource representing an RDFS class
          */
         virtual QList<ResourcePtr> resourcesWithType(ResourcePtr type) const;
 
@@ -143,16 +175,6 @@ class KDE_EXPORT Model
          * 
          */
         virtual QList<StatementPtr> statements() const;
-
-        /**
-         * @internal
-         */
-        virtual bool resourceHasProperty(const Resource* resource, PropertyPtr property) const;
-
-        /**
-         * @internal
-         */
-        virtual StatementPtr resourceProperty(const Resource* resource, PropertyPtr property) const;
 
         /**
          * searches the model for a node by ID.
@@ -189,6 +211,24 @@ class KDE_EXPORT Model
          * model doesn't contain a literal with this ID
          */
         virtual LiteralPtr literalByID(uint id) const;
+
+        /**
+         * @internal
+         */
+        virtual bool resourceHasProperty(const Resource* resource,
+                                         PropertyPtr property) const;
+
+        /**
+         * @internal
+         */
+        virtual StatementPtr resourceProperty(const Resource* resource,
+                                              PropertyPtr property) const;
+
+        /**
+         * @internal
+         */
+        virtual QList<StatementPtr> resourceProperties(const Resource* resource,
+                                              PropertyPtr property) const;
 
         /**
          * a debug string listing the contained statements for 

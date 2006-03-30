@@ -27,7 +27,9 @@
 
 #include <tools.h>
 
+#include <QList>
 #include <QString>
+#include <QStringList>
 
 namespace LibSyndication {
 namespace RDF {
@@ -47,6 +49,21 @@ QString DublinCore::contributor() const
     return resource()->property(DublinCoreVocab::self()->contributor())->asString();
 }
 
+QStringList DublinCore::contributors() const
+{
+    QStringList res;
+    QList<StatementPtr> list = resource()->properties(DublinCoreVocab::self()->contributor());
+    QList<StatementPtr>::ConstIterator it = list.begin();
+    QList<StatementPtr>::ConstIterator end = list.end();
+    for ( ; it != end; ++it)
+    {
+        QString str = (*it)->asString();
+        if (!str.isNull())
+            res.append(str);
+    }
+    return res;
+}
+
 QString DublinCore::coverage() const
 {
     return resource()->property(DublinCoreVocab::self()->coverage())->asString();
@@ -55,6 +72,21 @@ QString DublinCore::coverage() const
 QString DublinCore::creator() const
 {
     return resource()->property(DublinCoreVocab::self()->creator())->asString();
+}
+
+QStringList DublinCore::creators() const
+{
+    QStringList res;
+    QList<StatementPtr> list = resource()->properties(DublinCoreVocab::self()->creator());
+    QList<StatementPtr>::ConstIterator it = list.begin();
+    QList<StatementPtr>::ConstIterator end = list.end();
+    for ( ; it != end; ++it)
+    {
+        QString str = (*it)->asString();
+        if (!str.isNull())
+            res.append(str);
+    }
+    return res;
 }
 
 time_t DublinCore::date() const
@@ -107,6 +139,21 @@ QString DublinCore::source() const
 QString DublinCore::subject() const
 {
     return resource()->property(DublinCoreVocab::self()->subject())->asString();
+}
+
+QStringList DublinCore::subjects() const
+{
+    QStringList res;
+    QList<StatementPtr> list = resource()->properties(DublinCoreVocab::self()->subject());
+    QList<StatementPtr>::ConstIterator it = list.begin();
+    QList<StatementPtr>::ConstIterator end = list.end();
+    for ( ; it != end; ++it)
+    {
+        QString str = (*it)->asString();
+        if (!str.isNull())
+            res.append(str);
+    }
+    return res;
 }
 
 QString DublinCore::title() const

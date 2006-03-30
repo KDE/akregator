@@ -28,6 +28,7 @@
 
 #include <krandom.h>
 
+#include <QList>
 #include <QString>
 
 namespace LibSyndication {
@@ -108,6 +109,13 @@ StatementPtr Resource::property(PropertyPtr property) const
     if (d)
         ptr = d->model.resourceProperty(this, property);
     return ptr;
+}
+
+QList<StatementPtr> Resource::properties(PropertyPtr property) const
+{
+    if (d)
+        return d->model.resourceProperties(this, property);
+    return QList<StatementPtr>();
 }
 
 Resource* Resource::clone() const

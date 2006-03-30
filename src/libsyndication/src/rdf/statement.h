@@ -26,7 +26,6 @@
 
 #include <sharedptr.h>
 
-
 class QString;
 
 namespace LibSyndication {
@@ -36,6 +35,10 @@ class Statement;
 
 typedef SharedPtr<Statement> StatementPtr;
 
+/**
+ * An RDF statement, consisting of a triple
+ * (subject, predicate, object).
+ */
 class KDE_EXPORT Statement
 {
     public:
@@ -50,8 +53,19 @@ class KDE_EXPORT Statement
     
         virtual bool isNull() const;
     
+        /**
+         * the subject of the statement.
+         */
         virtual ResourcePtr subject() const;
+        
+        /**
+         * the predicate of the statement 
+         */
         virtual PropertyPtr predicate() const;
+        
+        /**
+         * the object of the statement
+         */
         virtual NodePtr object() const;
 
         /**

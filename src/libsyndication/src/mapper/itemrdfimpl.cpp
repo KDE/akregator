@@ -35,6 +35,7 @@
 
 #include <QList>
 #include <QString>
+#include <QStringList>
 
 using LibSyndication::RDF::Property;
 using LibSyndication::RDF::PropertyPtr;
@@ -69,11 +70,18 @@ QList<PersonPtr> ItemRDFImpl::authors() const
 {
     QList<PersonPtr> list;
     
-    PersonPtr ptr = PersonImpl::fromString(m_item.dc().creator());
+    QStringList people = m_item.dc().creators();
+    people += m_item.dc().contributors();
+    QStringList::ConstIterator it = people.begin();
+    QStringList::ConstIterator end = people.end();
     
-    if (!ptr->isNull())
+    for ( ; it != end; ++it)
     {
-        list.append(ptr);
+        PersonPtr ptr = PersonImpl::fromString(*it);
+        if (!ptr->isNull())
+        {
+            list.append(ptr);
+        }
     }
 
     return list;

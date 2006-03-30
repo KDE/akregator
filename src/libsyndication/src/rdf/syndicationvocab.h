@@ -82,6 +82,9 @@ class KDE_EXPORT SyndicationVocab
         
     protected:
         
+        /**
+         * constructor
+         */
         SyndicationVocab();
         
     private:

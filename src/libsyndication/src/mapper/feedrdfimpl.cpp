@@ -30,6 +30,7 @@
 #include <category.h>
 
 #include <QString>
+#include <QStringList>
 #include <QList>
 
 namespace LibSyndication {
@@ -82,16 +83,23 @@ QString FeedRDFImpl::description() const
 
 QList<PersonPtr> FeedRDFImpl::authors() const
 {
-        QList<PersonPtr> list;
-        
-        PersonPtr ptr = PersonImpl::fromString(m_doc->dc().creator());
-        
+    QList<PersonPtr> list;
+    
+    QStringList people = m_doc->dc().creators();
+    people += m_doc->dc().contributors();
+    QStringList::ConstIterator it = people.begin();
+    QStringList::ConstIterator end = people.end();
+    
+    for ( ; it != end; ++it)
+    {
+        PersonPtr ptr = PersonImpl::fromString(*it);
         if (!ptr->isNull())
         {
             list.append(ptr);
         }
-    
-        return list;
+    }
+
+    return list;
 }
 
 QString FeedRDFImpl::language() const
