@@ -47,7 +47,7 @@ template <class T>
 class KDE_EXPORT ParserCollectionImpl : public ParserCollection<T>
 {
     public:
-
+        
         ParserCollectionImpl();
         
         virtual ~ParserCollectionImpl();

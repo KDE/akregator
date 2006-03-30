@@ -45,8 +45,7 @@ class SpecificItem;
 typedef SharedPtr<SpecificItem> SpecificItemPtr;
 
 /**
- * An item from a news feed. An item can represent e.g. a news article
- * or a blog entry.
+ * An item from a news feed.
  * 
  * @author Frank Osterfeld
  */
@@ -59,11 +58,23 @@ class KDE_EXPORT Item
          */
         virtual ~Item();
         
+                
+        /**
+         * returns the format-specific item this object abstracts from.
+         * Use it if you need to access format-specifics that are not covered
+         * by this abstraction.
+         * 
+         */
+        virtual SpecificItemPtr specificItem() const = 0;
+
         /**
          * The title of the item.
-         * TODO: specify format (HTML or not?)
          * 
-         * @return the title of the item, or a null string if not specified
+         * This string may contain HTML markup.(Importantly, occurrences of
+         * the characters &lt;,'\n', '&amp;', '\'' and  '\"' are escaped).
+         * 
+         * @return the title of the item as HTML, or a null string if not
+         * specified
          */
         virtual QString title() const = 0;
         
@@ -79,26 +90,30 @@ class KDE_EXPORT Item
         /**
          * returns the description of the item. The description can either be 
          * a tag line, a short summary of the item content up to a complete 
-         * article.
+         * article. If content() is non-empty, it 
          * 
-         * This string may contain HTML markup (importantly, "<", "\n", "&" 
-         * occurring in the text are escaped!).
+         * This string may contain HTML markup. (Importantly, occurrences of
+         * the characters &lt;,'\n', '&amp;', '\'' and  '\"' are escaped).
          * 
          * @return the description as HTML, or a null string if not specified
          */
         virtual QString description() const = 0;
         
         /**
-         * returns the content of the item.
-         * This string may contain HTML markup (importantly, "<", "\n", "&"
-         * occurring in the text are escaped!)
+         * returns the content of the item. If provided, this is the most
+         * comprehensive text content available for this item. If it is empty,
+         * use description() (which might also contain complete article
+         * content).
+         * 
+         * This string may contain HTML markup. (Importantly, occurrences of
+         * the characters &lt;,'\n', '&amp;', '\'' and  '\"' are escaped).
          *
          * @return content string as HTML, or a null string if not set
          */
         virtual QString content() const = 0;
         
         /**
-         * returns the date when the item was published.
+         * returns the date when the item was initially published.
          * 
          * @return publication date, as seconds since epoch (Jan 1st 1970), or 0
          * (epoch) if not set
@@ -115,9 +130,10 @@ class KDE_EXPORT Item
         virtual time_t dateUpdated() const = 0;
         
         /**
-         * returns an ID that identifies the item within its feed. The ID must
-         * be unique within its feed. If no ID is provided by the feed source,
-         * a hash from title, description and content is returned.
+         * returns an identifier that identifies the item within its 
+         * feed. The ID must be unique within its feed. If no ID is provided
+         * by the feed source, a hash from title, description and content is
+         * returned.
          * Generated hash IDs start with "hash:".
          */
         virtual QString id() const = 0;
@@ -140,7 +156,7 @@ class KDE_EXPORT Item
         
         /**
          * returns a list of enclosures describing files available on the net.
-         * (often used for audio files, "Podcasts").
+         * (often used for audio files, so-called "Podcasts").
          * 
          * @return a list of enclosures associated with this item
          */
@@ -148,14 +164,14 @@ class KDE_EXPORT Item
         
         /**
          * returns a list of categories this item is filed in.
-         * TODO: more explanation 
+         * See Category for more information on categories.
          *
          * @return a list of categories
          */
         virtual QList<CategoryPtr> categories() const = 0;
         
         /**
-         * The number of comments on this item.
+         * The number of comments posted for this item.
          *
          * @return the number of comments associated to this item, or -1 if not
          * specified
@@ -186,15 +202,7 @@ class KDE_EXPORT Item
          * @return URI for posting comments, or a null string if not set
          */
         virtual QString commentPostUri() const = 0;
-        
-        /**
-         * returns the format-specific item this object abstracts from.
-         * Use it if you need to access format-specifics that are not covered
-         * by this abstraction.
-         * 
-         */
-        virtual SpecificItemPtr specificItem() const = 0;
-        
+       
         /**
          * returns a description of the item for debugging purposes
          * 

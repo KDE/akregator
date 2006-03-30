@@ -72,7 +72,8 @@ class KDE_EXPORT Category : public ElementWrapper
          * optional, identifies the domain of the category, i.e. a
          * categorization taxonomy.
          *
-         * @return The domain of the category, or a null string if none is set (and for null objects)
+         * @return The domain of the category, or a null string if none is set
+         * (and for null objects)
          */
         QString domain() const;
 

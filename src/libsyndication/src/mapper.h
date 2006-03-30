@@ -23,6 +23,8 @@
 #ifndef LIBSYNDICATION_MAPPER_H
 #define LIBSYNDICATION_MAPPER_H
 
+#include <kdepimmacros.h>
+
 template <class T> class SharedPtr;
 
 namespace LibSyndication {
@@ -35,15 +37,14 @@ typedef SharedPtr<SpecificDocument> SpecificDocumentPtr;
  * The type of this "something else" is specified by the template
  * parameter T.
  * In the default implementation it is used with the Feed interface,
- * but its not limited to that. T can be an arbitrary class, but must
- * inherit from KShared (so it can be used with shared pointers).
+ * but its not limited to that. T can be an arbitrary class.
  * 
- * There are three use cases that require you to implement your own
- * mapper (usually it shouldn't be necessary though).
+ * There are three (advanced and hopefully rare) use cases 
+ * that require you to implement your own mapper.
  * For more information on the possible uses, see TODO: link docs.
  * 
  * 1) Add your own feed parser. In case you need support for another
- * feed format (Okay! News, CDF, totally backward-incompatible Atom 5.0, ... 
+ * feed format (Okay! News, CDF, completely backward-incompatible Atom 5.0, 
  * you name it), you can 
  * implement AbstractParser and SpecificDocument for it and provide a 
  * Mapper&lt;Feed>
@@ -102,7 +103,7 @@ typedef SharedPtr<SpecificDocument> SpecificDocumentPtr;
  * @author Frank Osterfeld
  */
 template <class T>
-class Mapper
+class KDE_EXPORT Mapper
 {
     public:
         
@@ -115,13 +116,15 @@ class Mapper
          * maps a format-specific document to abstraction of type 
          * @c T.
          *
-         * \note implementations may assume @c doc to have the right
-         * type and may just statically cast to the subclass without
-         * further checking.
-         *(ParserCollection takes care of passing the right subtype)
+         * \note implementations may assume @c doc to have the 
+         * type whose mapping they implement and may just statically cast
+         * to the subclass without further checking. If you register your
+         * own mapper, it's your responsibility to register the mapper
+         * only for the format it actually handles.
          * 
          * @param doc the document to map.
-         * @return a newly created object implementing the E @c T.
+         * @return a newly created object implementing the abstraction
+         * @c T.
          */
         virtual SharedPtr<T> map(SpecificDocumentPtr doc) const = 0;
 };

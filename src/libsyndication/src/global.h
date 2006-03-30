@@ -36,6 +36,50 @@ class DocumentSource;
 template <class T> class ParserCollection;
 
 /**
+ * 
+ * The default ParserCollection instance parsing 
+ * a DocumentSource into a Feed object.
+ * 
+ * Use this to parse a local file or a otherwise 
+ * manually created DocumentSource object.
+ 
+* To retrieve a feed from the web, use Loader instead.
+ * 
+ * Example code:
+ * 
+ * @code
+ * ...
+ * QFile someFile(somePath);
+ * ... 
+ * DocumentSource src(someFile.readAll());
+ * someFile.close();
+ * 
+ * FeedPtr feed = parserCollection()->parse(src);
+ * 
+ * if (feed)
+ * {
+ *     QString title = feed->title();
+ *     QList<ItemPtr> items = feed->items();
+ *     ...
+ * }
+ * @endcode
+ */
+KDE_EXPORT
+ParserCollection<Feed>* parserCollection();
+
+/**
+ * parses a document from a source and returns a new Feed object
+ * wrapping the feed content.
+ * Shortcut for parserCollection()->parse().
+ * See ParserCollection::parse() for more details.
+ * 
+ * @param src the document source to parse
+ * @param formatHint an optional hint which format to test first
+ */
+KDE_EXPORT
+FeedPtr parse(const DocumentSource& src, const QString& formatHint=QString());
+
+/**
  * error code indicating fetching or parsing errors
  */
 enum ErrorCode
@@ -71,11 +115,6 @@ enum ErrorCode
                         */
 };
 
-KDE_EXPORT
-ParserCollection<Feed>* parserCollection();
-
-KDE_EXPORT
-FeedPtr parse(const DocumentSource& src, const QString& formatHint=QString());
         
 } // namespace LibSyndication
 

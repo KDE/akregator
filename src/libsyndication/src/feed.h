@@ -57,7 +57,7 @@ typedef SharedPtr<Person> PersonPtr;
  *
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Feed
+class KDE_EXPORT Feed : public SharedPtr<Feed>
 {
     public:
         
@@ -83,14 +83,16 @@ class KDE_EXPORT Feed
         
         /**
          * returns a list of categories this feed is associated with.
+         * See Category for more information.
          * 
-         * @return
          */
         virtual QList<CategoryPtr> categories() const = 0;
         
         /**
          * The title of the feed.
-         * TODO: specify format (whether HTML is allowed or not, etc)
+         * 
+         * This string may contain HTML markup.(Importantly, occurrences of
+         * the characters &lt;,'\n', '&amp;', '\'' and  '\"' are escaped).
          * 
          * @return the title, or a null string if none is specified
          */
@@ -98,7 +100,7 @@ class KDE_EXPORT Feed
         
         /** 
          * returns a link pointing to a website associated with this channel.
-         * This is e.g. a news site, a blog...
+         * (blog, news site etc.)
          * 
          * @return a WWW link, or a null string if none is specified
          */
@@ -106,9 +108,10 @@ class KDE_EXPORT Feed
         
         /**
          * A description of the feed.
-         * This string may contain HTML markup (importantly, "<", ">", "&" occurring
-         * in the text are escaped!)
-         * 
+         *
+         * This string may contain HTML markup.(Importantly, occurrences of
+         * the characters &lt;,'\n', '&amp;', '\'' and  '\"' are escaped).
+         *
          * @return the description as HTML, or a null string if none is
          * specified
          */
@@ -117,8 +120,9 @@ class KDE_EXPORT Feed
         /**
          * returns an image associated with this item.
          * 
-         * @return an image object, or a null image (i.e., image()->isNull()
-         * is @c true ) if no image is specified in the feed
+         * @return an image object, or a null image (Not a null pointer! 
+         * I.e., image()->isNull() is @c true) 
+         * if no image is specified in the feed
          * 
          */
         virtual ImagePtr image() const = 0;
@@ -133,9 +137,10 @@ class KDE_EXPORT Feed
         virtual QList<PersonPtr> authors() const = 0;
         
         /**
-         * TODO
+         * The language used in the feed. This is a global setting, which can
+         * be overridden by the contained items.
          * 
-         * @return TODO
+         * TODO: describe concrete format (language codes)
          */
         virtual QString language() const = 0;
         

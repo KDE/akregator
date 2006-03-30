@@ -38,9 +38,9 @@ namespace LibSyndication {
 
 
 /**
- * Collects all the format-specific parser implementations.
+ * A collection of format-specific parser implementations.
  * To parse a feed source, pass it to the parse() method of this class.
- * In most cases, you should use the global singleton
+ * In most cases, you should use the global singleton instance
  * LibSyndication::parserCollection().
  * When loading the source from the web, use Loader instead of using
  * this class directly.
@@ -58,13 +58,16 @@ namespace LibSyndication {
  * 
  * if (feed)
  * {
- *     QString title = feem_title();
- *     QList<ItemPtr> items = feem_items();
+ *     QString title = feed->title();
+ *     QList<ItemPtr> items = feed->items();
  *     ...
  * }
  * @endcode
  *
- * TODO: explain &lt;T>
+ * The template parameter T is the abstraction class parsed documents
+ * should be mapped to. If you want to use your own abstraction MyFeed,
+ * implement ParserCollection&lt;MyFeed> (Note that you have to provide
+ * mapper implementations for every feed format then).
  * 
  * @author Frank Osterfeld
  */

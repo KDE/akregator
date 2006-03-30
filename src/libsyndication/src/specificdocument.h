@@ -36,12 +36,14 @@ class SpecificDocument;
 typedef SharedPtr<SpecificDocument> SpecificDocumentPtr;
 
 /**
- * Document interface. A document is a representation parsed from a document
- * source (see DocumentSource).
+ * Document interface for format-specific feed documents as parsed from a
+ * document source (see DocumentSource).
  * The Document classes from the several syndication formats must implement
  * this interface. It's main purpose is to provide access for document visitors
  * (see DocumentVisitor). 
- * For a unified view on the parsed feed, see Feed class.
+ * Usually it is not necessary to access the format-specific document at all,
+ * use Feed for a format-agnostic interface to all feed documents supported by 
+ * the library.
  *
  * @author Frank Osterfeld
  */
@@ -70,7 +72,7 @@ class KDE_EXPORT SpecificDocument
         virtual bool accept(DocumentVisitor* visitor) = 0;
 
         /**
-         * returns whether this document is valid or not.
+         * Returns whether this document is valid or not.
          * Invalid documents do not contain any useful
          * information.
          */

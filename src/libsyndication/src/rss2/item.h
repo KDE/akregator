@@ -103,7 +103,7 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
     
         /**
          * Returns the actual content of the item. In RSS2, this can be stored
-         * in multiple structs, e.g. in content:encoded, xhtml:body or
+         * in various elements, e.g. in content:encoded, xhtml:body or
          * xhtml:div. If this is not set, description() might also contain the
          * content of the item.
          * 
@@ -146,10 +146,9 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
          * Descriptions of media objects that are attached to the item.
          * Note that the RSS2 spec is a bit unclear about whether an item can
          * have multiple enclosures or not. Originally it was not intended, but
-         * in reality, tools out there specify multiple enclosures. So most of
-         * the time, this list be either empty or contains a single item, but
-         * it is not guaranteed.
-         * 
+         * in reality, some tools out there specify multiple enclosures. 
+         * So most of the time, this list be either empty or contains a 
+         * single item, but don't take that for granted
          */
         QList<Enclosure> enclosures() const;
 
@@ -178,7 +177,7 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
 
         /**
          * Indicates when the item was published. If it's a date in the future,
-         * yous may choose to not display the item until that date.
+         * you may choose to not display the item until that date.
           * This returns the content of the @c &lt;pubDate> element. If @c
           * &lt;pubDate> is not available, the method returns 
          * @c &lt;dc:date> instead, if available.

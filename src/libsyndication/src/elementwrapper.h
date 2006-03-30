@@ -68,7 +68,7 @@ class KDE_EXPORT ElementWrapper
         virtual ~ElementWrapper();
 
         /**
-         * assigns another element wrapper to this one. Both instances
+         * Assigns another element wrapper to this one. Both instances
          * share the same wrapped element instance.
          * 
          * @param other the element wrapper to assign
@@ -77,7 +77,7 @@ class KDE_EXPORT ElementWrapper
         ElementWrapper& operator=(const ElementWrapper& other);
         
         /**
-         * compares two wrappers. Two wrappers are equal iff
+         * compares two wrappers. Two wrappers are equal if and only if
          * the wrapped elements are equal.
          * @param other another element wrapper to compare to
          */
@@ -128,8 +128,9 @@ class KDE_EXPORT ElementWrapper
          * 
          * @param uri a possibly relative URI
          * @return the resolved, absolute URI (using xml:base), if @c uri is
-         * a relative, valid URI. If @c uri is not valid, absolute, or no xml:base
-         * is set in the scope of this element, @c uri is returned unmodified.
+         * a relative, valid URI. If @c uri is not valid, absolute, or no 
+         * xml:base is set in the scope of this element, @c uri is returned
+         * unmodified.
          */
         QString completeURI(const QString& uri) const;
         
@@ -156,7 +157,8 @@ class KDE_EXPORT ElementWrapper
          * if there is no such tag
          */
 
-        QString extractElementTextNS(const QString& namespaceURI, const QString& localName) const;
+        QString extractElementTextNS(const QString& namespaceURI, 
+                                     const QString& localName) const;
         
         /**
          * extracts the text from a child element, ignoring namespaces. For 
@@ -177,7 +179,8 @@ class KDE_EXPORT ElementWrapper
 
         /**
          * returns all child elements with tag name @c tagName 
-         * Contrary to QDomElement::elementsByTagName() only direct descendents are returned.
+         * Contrary to QDomElement::elementsByTagName() only direct descendents
+         * are returned.
          * 
          * @param tagName the tag name of the elements to extract
          * @return a list of child elements with the given tag name
@@ -203,7 +206,10 @@ class KDE_EXPORT ElementWrapper
          * <p>foo</p><blockquote>bar</blockquote>
          * @endcode
          *
-         * @param parent the DOM element whose children should be returned as XML
+         * namespace and xml:base information are preserved.
+         * 
+         * @param parent the DOM element whose children should be returned as
+         * XML
          * @return XML serialization of parent's children
          */
         static QString childNodesAsXML(const QDomElement& parent);
@@ -220,7 +226,8 @@ class KDE_EXPORT ElementWrapper
          * @return a list of child elements with the given namespace URI
          * and tag name
          */
-        QList<QDomElement> elementsByTagNameNS(const QString& nsURI, const QString& tagName) const;
+        QList<QDomElement> elementsByTagNameNS(const QString& nsURI, 
+                                               const QString& tagName) const;
         
         /**
          * searches the direct children of the wrapped element for an element
@@ -282,6 +289,7 @@ class KDE_EXPORT ElementWrapper
          * @param localName local attribute name
          */
         bool hasAttributeNS(const QString& nsURI, const QString& localName) const;
+        
     private:
 
         class ElementWrapperPrivate;

@@ -33,9 +33,9 @@ class Person;
 typedef SharedPtr<Person> PersonPtr;
 
 /**
- * Person holds information about a person, such as the author of the whole feed
- * or single items. Depending on the feed format, different information is 
- * available.
+ * Person objects hold information about a person, such as the author of
+ * the content syndicated in the feed. Depending on the feed format, different 
+ * information is available.
  * While according to the RSS2 spec, RSS2 author elements must contain only an
  * e-mail address, Atom requires the person's name and the e-mail address is
  * optional. Also, in reality, feeds often contain other information than what
@@ -54,7 +54,7 @@ class KDE_EXPORT Person
         virtual ~Person();
         
         /**
-         * returns whether this object is a null category
+         * returns whether this object is a null person
          */
         virtual bool isNull() const = 0;
         
@@ -91,7 +91,7 @@ class KDE_EXPORT Person
         
         /**
          * compares two person instances. Persons are equal if and only if
-         * their respective name(), uri() and email() are equal.
+         * their respective name(), uri() and email() values are equal.
          * @param other another person instance
          */
         virtual bool operator==(const Person& other) const;

@@ -57,6 +57,9 @@ class KDE_EXPORT DocumentVisitor
 {
     public:
 
+        /**
+         * destructor 
+         */
         virtual ~DocumentVisitor();
 
         /**

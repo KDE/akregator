@@ -36,6 +36,10 @@ class SpecificItem;
 typedef SharedPtr<SpecificItem> SpecificItemPtr;
 
 /**
+ * Interface for all format-specific item-like classes, such as
+ * RSS2/RDF items, and Atom entries. To process items based on their
+ * format, use a SpecificItemVisitor.
+ * 
  * @author Frank Osterfeld
  */
 class KDE_EXPORT SpecificItem

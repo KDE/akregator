@@ -70,7 +70,7 @@ class KDE_EXPORT Source : public ElementWrapper
         /**
          * Required attribute, links to the XMLization of the source.
          *
-         * @return An url, or a null string if not set (though required from
+         * @return A URL, or a null string if not set (though required from
          * the spec), and for null objects
          */
         QString url() const;

@@ -29,27 +29,34 @@ class QString;
 
 namespace LibSyndication {
 
-KDE_EXPORT QString xmlNamespace();
+KDE_EXPORT
+QString xmlNamespace();
 
-KDE_EXPORT QString xhtmlNamespace();
+KDE_EXPORT
+QString xhtmlNamespace();
 
-KDE_EXPORT QString dublinCoreNamespace();
+KDE_EXPORT
+QString dublinCoreNamespace();
 
-KDE_EXPORT QString contentNameSpace();
+KDE_EXPORT 
+QString contentNameSpace();
 
-KDE_EXPORT QString itunesNamespace();
+KDE_EXPORT
+QString itunesNamespace();
 
 /**
  * wellformedweb.org's RSS namespace for comment functionality
  * "http://wellformedweb.org/CommentAPI/"
  */
-KDE_EXPORT QString commentApiNamespace();
+KDE_EXPORT
+QString commentApiNamespace();
 
 /**
  * "slash" namespace
  * http://purl.org/rss/1.0/modules/slash/
  */
-KDE_EXPORT QString slashNamespace();
+KDE_EXPORT 
+QString slashNamespace();
 
 } // namespace LibSyndication
 

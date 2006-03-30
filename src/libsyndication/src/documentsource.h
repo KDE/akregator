@@ -38,7 +38,7 @@ namespace LibSyndication {
  *
  * It provides a (cached) DOM representation of the document, but keeps
  * the raw data available (for (rarely used) non-XML formats like Okay!
- * News...).
+ * News).
  *
  * This way the document can be passed to all available parsers (to find the
  * right one for the source), regardless whether they parse XML formats or
@@ -72,7 +72,10 @@ class KDE_EXPORT DocumentSource
          */
         DocumentSource(const DocumentSource& other);
 
-        virtual ~DocumentSource();
+        /** 
+         * destructor 
+         */
+        ~DocumentSource();
 
         /**
          * Assignment operator. The d pointer is shared, so this is a cheap

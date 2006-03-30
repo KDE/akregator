@@ -23,6 +23,8 @@
 #ifndef LIBSYNDICATION_TOOLS_H
 #define LIBSYNDICATION_TOOLS_H
 
+#include <kdepimmacros.h>
+
 #include <ctime>
 
 class QByteArray;
@@ -65,6 +67,7 @@ enum DateFormat
  * @return parsed date in seconds since epoch, 0 if no date could
  * be parsed from the string.
  */
+KDE_EXPORT
 time_t parseISODate(const QString& str);
 
 /**
@@ -75,6 +78,7 @@ time_t parseISODate(const QString& str);
  * @return parsed date in seconds since epoch, 0 if no date could
  * be parsed from the string.
  */
+KDE_EXPORT
 time_t parseRFCDate(const QString& str);
 
 /**
@@ -90,6 +94,7 @@ time_t parseRFCDate(const QString& str);
  * @return parsed date in seconds since epoch, 0 if no date could
  * be parsed from the string.
  */
+KDE_EXPORT
 time_t parseDate(const QString& str, DateFormat hint=RFCDate);
 
 
@@ -102,6 +107,7 @@ time_t parseDate(const QString& str, DateFormat hint=RFCDate);
  * @return string representation of the date, or a null string if 
  * @c date is 0
  */
+KDE_EXPORT
 QString dateTimeToString(time_t date);
 
 /**
@@ -109,28 +115,38 @@ QString dateTimeToString(time_t date);
  *
  * @param plainText a string in plain text.
  */
+KDE_EXPORT
 QString plainTextToHtml(const QString& plainText);
 
 /**
  * converts a HTML string to plain text
  *
- * @param html
+ * @param html string in HTML format
+ * @return stripped text
  */
+KDE_EXPORT
 QString htmlToPlainText(const QString& html);
 
 /**
  * guesses whether a string contains plain text or HTML
  *
- * @param str
- * @return
+ * @param str the string in unknown format
+ * @return @c true if the heuristic thinks it's HTML, @c false
+ * if thinks it is plain text
  */
+KDE_EXPORT
 bool isHtml(const QString& str);
 
 /**
+ * Ensures HTML formatting for a string.
+ * guesses via isHtml() if @c str contains HTML or plain text, and returns
+ * plainTextToHtml(str) if it thinks it is plain text, or the unmodified @c str
+ * otherwise.
  * 
- * @param str
- * @return 
+ * @param str a string with unknown content
+ * @return string as HTML (as long as the heuristics work)
  */
+KDE_EXPORT
 QString htmlize(const QString& str);
 
 } // namespace LibSyndication

@@ -85,8 +85,8 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
         /**
          * The title of the channel.
          *
-         * This method returns the content of the @c <title> element. If
-         * @c <title> is not available, the method returns * @c <dc:title>
+         * This method returns the content of the @c &lt;title> element. If
+         * @c &lt;title> is not available, the method returns * @c &lt;dc:title>
          * instead, if available.
          *
          * 
@@ -103,15 +103,20 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
     
         /**
          * Phrase or sentence describing the channel.
-         * This method returns the content of the @c <description> element. If
-         * @c <description> is not available, the method returns
-         * @c <dc:description> instead, if available.
+         * This method returns the content of the @c &lt;description> element. If
+         * @c &lt;description> is not available, the method returns
+         * @c &lt;dc:description> instead, if available.
          *
          * 
          * @return TODO
          */
         QString description() const;
     
+        /**
+         * the items contained in this document
+         */
+        QList<Item> items() const;
+        
         /**
          *
          * @return TODO
@@ -121,9 +126,9 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
         /**
          * 
          * Copyright notice for content in the channel.
-         * This method returns the content of the @c <copyright> 
-         * element. If @c <copyright> is not available, the method returns
-         * @c <dc:rights> instead, if available.
+         * This method returns the content of the @c &lt;copyright> 
+         * element. If @c &lt;copyright> is not available, the method returns
+         * @c &lt;dc:rights> instead, if available.
          * 
          * @return copyright information, or a null string if not set
          */
@@ -149,9 +154,9 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
          * the New York Times publishes on a daily basis, the publication date
          * flips once every 24 hours. That's when the pubDate of the channel
          * changes.
-         * This method returns the content of the @c <pubDate> element. If 
-         * @c <pubDate> is not available, the method returns
-         * @c <dc:date> instead, if available.
+         * This method returns the content of the @c &lt;pubDate> element. If 
+         * @c &lt;pubDate> is not available, the method returns
+         * @c &lt;dc:date> instead, if available.
          * 
          * @return the publication date, or 0 if no date was specified or
          * parsing failed
@@ -249,11 +254,7 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
          */
         QSet<DayOfWeek> skipDays() const;
     
-        /**
-         * the items contained in this document
-         */
-        QList<Item> items() const;
-    
+   
         /**
          * Returns a description of the object and its children for
          * debugging purposes.
