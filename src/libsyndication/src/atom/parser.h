@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_ATOM_PARSER_H
 #define LIBSYNDICATION_ATOM_PARSER_H
 
-#include "../abstractparser.h"
+#include <abstractparser.h>
 
 class QDomDocument;
 class QDomNode;
@@ -66,7 +66,8 @@ class KDE_EXPORT Parser : public LibSyndication::AbstractParser
          * @see SpecificDocument::isValid()
          * @param source the document source to parse
          */
-        LibSyndication::SpecificDocumentPtr parse(const LibSyndication::DocumentSource& source) const;
+        LibSyndication::SpecificDocumentPtr parse(
+                const LibSyndication::DocumentSource& source) const;
         
         /**
          * returns the format string for this parser implementation, which is

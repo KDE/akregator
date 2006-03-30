@@ -36,17 +36,17 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
 {
     QString str;
     
-    QDomElement el = parent.firstElementByTagNameNS(Constants::atom1Namespace(), tagname);
+    QDomElement el = parent.firstElementByTagNameNS(atom1Namespace(), tagname);
     
     QString type = el.attribute(QString::fromUtf8("type"));
     
     if (type.isEmpty() || type == QString::fromUtf8("text"))
     {
-        str = plainTextToHtml(parent.extractElementTextNS(Constants::atom1Namespace(), tagname).simplified());
+        str = plainTextToHtml(parent.extractElementTextNS(atom1Namespace(), tagname).simplified());
     }
     else if (type == QString::fromUtf8("html"))
     {
-        str = parent.extractElementTextNS(Constants::atom1Namespace(), tagname).simplified();
+        str = parent.extractElementTextNS(atom1Namespace(), tagname).simplified();
     }
     else if (type == QString::fromUtf8("xhtml"))
     {

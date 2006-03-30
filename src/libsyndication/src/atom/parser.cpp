@@ -20,7 +20,7 @@
  *
  */
 
-#include "../documentsource.h"
+#include <documentsource.h>
 
 #include "constants.h"
 #include "content.h"
@@ -55,13 +55,13 @@ bool Parser::accept(const LibSyndication::DocumentSource& source) const
         return false;
     
     QDomElement feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
-    bool feedValid = !feed.isNull() && (feed.namespaceURI() == Constants::atom1Namespace() || feed.namespaceURI() == Constants::atom0_3Namespace());
+    bool feedValid = !feed.isNull() && (feed.namespaceURI() == atom1Namespace() || feed.namespaceURI() == atom0_3Namespace());
 
     if (feedValid)
         return true;
 
     QDomElement entry = doc.namedItem(QString::fromUtf8("entry")).toElement();
-    bool entryValid = !entry.isNull() && entry.namespaceURI() == Constants::atom1Namespace();
+    bool entryValid = !entry.isNull() && entry.namespaceURI() == atom1Namespace();
 
     return entryValid;
 }
@@ -88,7 +88,7 @@ LibSyndication::SpecificDocumentPtr Parser::parse(const LibSyndication::Document
         
     }
 
-    feedValid = !feed.isNull() && feed.namespaceURI() == Constants::atom1Namespace();
+    feedValid = !feed.isNull() && feed.namespaceURI() == atom1Namespace();
     
     if (feedValid)
     {
@@ -96,7 +96,7 @@ LibSyndication::SpecificDocumentPtr Parser::parse(const LibSyndication::Document
     }
 
     QDomElement entry = doc.namedItem(QString::fromUtf8("entry")).toElement();
-    bool entryValid = !entry.isNull() && entry.namespaceURI() == Constants::atom1Namespace();
+    bool entryValid = !entry.isNull() && entry.namespaceURI() == atom1Namespace();
 
     if (entryValid)
     {
@@ -117,11 +117,11 @@ QDomNode Parser::ParserPrivate::convertNode(QDomDocument& doc, const QDomNode& n
     if (!node.isElement())
         return node.cloneNode(true);
     
-    bool isAtom03Element = node.namespaceURI() == Constants::atom0_3Namespace();
+    bool isAtom03Element = node.namespaceURI() == atom0_3Namespace();
     QDomElement oldEl = node.toElement();
             
     // use new namespace
-    QString newNS = isAtom03Element ? Constants::atom1Namespace() : node.namespaceURI();
+    QString newNS = isAtom03Element ? atom1Namespace() : node.namespaceURI();
     
     QString newName = node.localName();
     
@@ -143,7 +143,7 @@ QDomNode Parser::ParserPrivate::convertNode(QDomDocument& doc, const QDomNode& n
             newEl.setAttributeNS(attr.namespaceURI(), attr.name(), attr.value());
     }
     
-    bool isTextConstruct = newNS == Constants::atom1Namespace() 
+    bool isTextConstruct = newNS == atom1Namespace() 
             && (newName == QString::fromUtf8("title")
             || newName == QString::fromUtf8("rights")
             || newName == QString::fromUtf8("subtitle")
@@ -178,7 +178,7 @@ QDomNode Parser::ParserPrivate::convertNode(QDomDocument& doc, const QDomNode& n
     {
         // for generator, rename the "url" attribute to "uri"
         
-        bool isGenerator = newNS == Constants::atom1Namespace() && newName == QString::fromUtf8("generator");        
+        bool isGenerator = newNS == atom1Namespace() && newName == QString::fromUtf8("generator");        
         if (isGenerator && newEl.hasAttribute(QString::fromUtf8("url")))
             newEl.setAttribute(QString::fromUtf8("uri"), newEl.attribute(QString::fromUtf8("url")));
     }

@@ -30,23 +30,16 @@ namespace LibSyndication {
 namespace Atom {
 
 /**
- * some constants used for parsing Atom
- *
- * @author Frank Osterfeld
+ * namespace used by Atom 1.0 elements
  */
-class KDE_EXPORT Constants
-{
-    public:
-        /**
-         * namespace used by Atom 1.0 elements
-         */
-        static QString atom1Namespace();
-        
-        /**
-         * namespace used by Atom 0.3 elements
-         */
-        static QString atom0_3Namespace();
-};
+KDE_EXPORT
+QString atom1Namespace();
+
+/**
+ * namespace used by Atom 0.3 elements
+ */
+KDE_EXPORT
+QString atom0_3Namespace();
 
 } // namespace Atom
 } // namespace LibSyndication

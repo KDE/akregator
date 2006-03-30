@@ -22,7 +22,7 @@
 
 #include "content.h"
 
-#include "../tools.h"
+#include <tools.h>
 
 #include <QByteArray>
 #include <QDomElement>
@@ -54,9 +54,7 @@ QByteArray Content::asByteArray() const
 {
     if (!isBinary())
         return QByteArray();
-    
-    // TODO: return base64-encoded content
-    return QByteArray();
+    return QByteArray::fromBase64(text().trimmed().toAscii());
 }
 
 Content::Format Content::mapTypeToFormat(const QString& typep,  const QString& src)

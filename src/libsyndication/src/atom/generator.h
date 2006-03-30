@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_ATOM_GENERATOR_H
 #define LIBSYNDICATION_ATOM_GENERATOR_H
 
-#include "../elementwrapper.h"
+#include <elementwrapper.h>
 
 class QDomDocument;
 class QDomElement;

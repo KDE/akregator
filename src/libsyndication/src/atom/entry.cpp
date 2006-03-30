@@ -27,10 +27,10 @@
 #include "link.h"
 #include "person.h"
 #include "source.h"
-#include "tools.h"
+#include "atomtools.h"
 
-#include "../specificitemvisitor.h"
-#include "../tools.h"
+#include <specificitemvisitor.h>
+#include <tools.h>
 
 #include <QDomElement>
 #include <QList>
@@ -50,7 +50,7 @@ Entry::Entry(const QDomElement& element) : ElementWrapper(element)
 QList<Person> Entry::authors() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(), 
+            elementsByTagNameNS(atom1Namespace(), 
                                 QString::fromUtf8("author"));
     QList<Person> list;
                                        
@@ -69,7 +69,7 @@ QList<Person> Entry::authors() const
 QList<Person> Entry::contributors() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(),
+            elementsByTagNameNS(atom1Namespace(),
                                 QString::fromUtf8("contributor"));
     QList<Person> list;
                                        
@@ -88,7 +88,7 @@ QList<Person> Entry::contributors() const
 QList<Category> Entry::categories() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(),
+            elementsByTagNameNS(atom1Namespace(),
                                 QString::fromUtf8("category"));
     QList<Category> list;
     
@@ -106,7 +106,7 @@ QList<Category> Entry::categories() const
 
 QString Entry::id() const
 {
-    return extractElementTextNS(Constants::atom1Namespace(),
+    return extractElementTextNS(atom1Namespace(),
                                 QString::fromUtf8("id"));
 
 }
@@ -114,7 +114,7 @@ QString Entry::id() const
 QList<Link> Entry::links() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(), 
+            elementsByTagNameNS(atom1Namespace(), 
                                 QString::fromUtf8("link"));
     QList<Link> list;
     
@@ -137,20 +137,20 @@ QString Entry::rights() const
 
 Source Entry::source() const
 {
-    return Source(firstElementByTagNameNS(Constants::atom1Namespace(),
+    return Source(firstElementByTagNameNS(atom1Namespace(),
                   QString::fromUtf8("source")));
 }
 
 time_t Entry::published() const
 {
-    QString pub = extractElementTextNS(Constants::atom1Namespace(),
+    QString pub = extractElementTextNS(atom1Namespace(),
                                        QString::fromUtf8("published"));
     return parseDate(pub, ISODate);
 }
 
 time_t Entry::updated() const
 {
-    QString upd = extractElementTextNS(Constants::atom1Namespace(),
+    QString upd = extractElementTextNS(atom1Namespace(),
                                        QString::fromUtf8("published"));
     return parseDate(upd, ISODate);
 }
@@ -167,7 +167,7 @@ QString Entry::title() const
 
 Content Entry::content() const
 {
-    return Content(firstElementByTagNameNS(Constants::atom1Namespace(),
+    return Content(firstElementByTagNameNS(atom1Namespace(),
                    QString::fromUtf8("content")));
 }
 

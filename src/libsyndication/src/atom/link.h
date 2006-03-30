@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_ATOM_LINK_H
 #define LIBSYNDICATION_ATOM_LINK_H
 
-#include "../elementwrapper.h"
+#include <elementwrapper.h>
 
 class QDomElement;
 class QString;
@@ -31,11 +31,12 @@ class QString;
 namespace LibSyndication {
 namespace Atom {
 /**
- * defines a reference from an entry or feed to a Web resource
+ * A link, pointing to webpages, media files on the web ("podcast"),
+ * related content, etc. See rel() for details.
  * 
  * @author Frank Osterfeld
  */
-class KDE_EXPORT Link : public ElementWrapper
+class KDE_EXPORT Link : public LibSyndication::ElementWrapper
 {
     public:
 
@@ -86,8 +87,8 @@ class KDE_EXPORT Link : public ElementWrapper
         /**
          * MIME type of the linked resource. (optional)
          * 
-         * @return MIME type following (TODO: link spec), or a null string if
-         * not set
+         * @return MIME type following (e.g., "text/html", "audio/mpeg"),
+         * or a null string if not set
          */
         QString type() const;
     
@@ -96,7 +97,8 @@ class KDE_EXPORT Link : public ElementWrapper
          * If used together with a rel() value of "alternate", it
          * implies a translated version of the entry.
          * 
-         * @return TODO: link spec, or a null string if not specified
+         * @return a language tag as defined in RFC 3066,
+         * or a null string if not specified
          */
         QString hrefLanguage() const;
     

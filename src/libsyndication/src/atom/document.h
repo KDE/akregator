@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_ATOM_DOCUMENT_H
 #define LIBSYNDICATION_ATOM_DOCUMENT_H
 
-#include "../specificdocument.h"
-#include "../elementwrapper.h"
+#include <specificdocument.h>
+#include <elementwrapper.h>
 
 #include <ctime>
 
@@ -67,8 +67,9 @@ public ElementWrapper
         
         /**
          * creates a FeedDocument wrapping an atom:feed element.
-         * @param element a DOM element, should be a atom:feed document (although not enforced), otherwise this object
-         * will not parse anything useful
+         * @param element a DOM element, should be a atom:feed document 
+         * (although not enforced), otherwise this object will not parse
+         * anything useful
          */
         FeedDocument(const QDomElement& element);
     

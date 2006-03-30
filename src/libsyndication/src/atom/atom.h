@@ -36,7 +36,9 @@
 namespace LibSyndication {
 
 /** 
- * LibSyndication's Atom parser, supporting Atom 0.3 and 1.0
+ * Atom parser and model classes, representing
+ * Atom 1.0 documents (Atom 0.3 documents are
+ * converted by the parser) 
  */
 namespace Atom {}
 

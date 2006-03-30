@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_ATOM_PERSON_H
 #define LIBSYNDICATION_ATOM_PERSON_H
 
-#include "../elementwrapper.h"
+#include <elementwrapper.h>
 
 class QDomElement;
 class QString;

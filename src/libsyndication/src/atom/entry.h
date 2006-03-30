@@ -23,8 +23,8 @@
 #ifndef LIBSYNDICATION_ATOM_ENTRY_H
 #define LIBSYNDICATION_ATOM_ENTRY_H
 
-#include "../elementwrapper.h"
-#include "../specificitem.h"
+#include <elementwrapper.h>
+#include <specificitem.h>
 
 #include <ctime>
 

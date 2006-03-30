@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_ATOM_SOURCE_H
 #define LIBSYNDICATION_ATOM_SOURCE_H
 
-#include "../elementwrapper.h"
+#include <elementwrapper.h>
 
 #include <ctime>
 

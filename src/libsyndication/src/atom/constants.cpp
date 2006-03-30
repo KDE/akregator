@@ -27,12 +27,12 @@
 namespace LibSyndication {
 namespace Atom {
 
-QString Constants::atom1Namespace()
+QString atom1Namespace()
 {
     return QString::fromUtf8("http://www.w3.org/2005/Atom");
 }
 
-QString Constants::atom0_3Namespace()
+QString atom0_3Namespace()
 {
     return QString::fromUtf8("http://purl.org/atom/ns#");
 }

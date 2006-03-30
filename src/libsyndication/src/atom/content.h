@@ -23,7 +23,7 @@
 #ifndef LIBSYNDICATION_ATOM_CONTENT_H
 #define LIBSYNDICATION_ATOM_CONTENT_H
 
-#include "../elementwrapper.h"
+#include <elementwrapper.h>
 
 #include <QString>
 
@@ -50,21 +50,25 @@ class KDE_EXPORT Content : public ElementWrapper
          */
         enum Format
         {
-            PlainText, /**< the content is plain text (i.e. "<", ">" etc. are text, not
+            PlainText, /**< the content is plain text (i.e. "<", ">"
+                        * etc. are text, not
                    * markup */
-            EscapedHTML, /**< the content is escaped HTML, (i.e., "<", ">" etc. are markup) */
+            EscapedHTML, /**< the content is escaped HTML, (i.e., "<", ">" etc.
+                          * are markup) */
             XML, /**< the content is embedded XML */
             Binary, /**< the content is base64-encoded binary content */
         };
        
         /**
-         * maps a mimetype to Format enum according to the Atom 1.0 specification
+         * maps a mimetype to Format enum according to the Atom 1.0
+         * specification
          *
          * @param type a valid mimetype, or one of "text", "html", "xhtml"
          * @param src content source, see src() for details.
          *
          */
-        static Format mapTypeToFormat(const QString& type, const QString& src=QString());
+        static Format mapTypeToFormat(const QString& type,
+                                      const QString& src=QString());
         
         /**
          * creates a null content object.
@@ -82,7 +86,6 @@ class KDE_EXPORT Content : public ElementWrapper
         /**
          * the type of the content. This is either "text" (plain text), 
          * "html" (escaped HTML), "xhtml" (embedded XHTML) or a mime type
-         * following the TODO: link mimetype spec
          * 
          * @return the content type. If no type is specified, "text" (the
          * default) is returned.
@@ -115,8 +118,7 @@ class KDE_EXPORT Content : public ElementWrapper
         QString asString() const;
         
         /**
-         * returns the binary content as byte array.
-         * (WARNING: not yet implemented)
+         * returns binary content as byte array.
          * 
          * @return byte array containing the embedded binary data, or
          * an empty array if the content is not in binary format

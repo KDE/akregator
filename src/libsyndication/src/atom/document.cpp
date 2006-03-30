@@ -27,10 +27,10 @@
 #include "generator.h"
 #include "link.h"
 #include "person.h"
-#include "tools.h"
+#include "atomtools.h"
 
-#include "../documentvisitor.h"
-#include "../tools.h"
+#include <documentvisitor.h>
+#include <tools.h>
 
 #include <QDomElement>
 #include <QList>
@@ -55,7 +55,7 @@ bool FeedDocument::accept(DocumentVisitor* visitor)
 QList<Person> FeedDocument::authors() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(),
+            elementsByTagNameNS(atom1Namespace(),
                                 QString::fromUtf8("author"));
     QList<Person> list;
 
@@ -74,7 +74,7 @@ QList<Person> FeedDocument::authors() const
 QList<Person> FeedDocument::contributors() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(),
+            elementsByTagNameNS(atom1Namespace(),
                                 QString::fromUtf8("contributor"));
     QList<Person> list;
 
@@ -93,7 +93,7 @@ QList<Person> FeedDocument::contributors() const
 QList<Category> FeedDocument::categories() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(),
+            elementsByTagNameNS(atom1Namespace(),
                                 QString::fromUtf8("category"));
     QList<Category> list;
 
@@ -111,26 +111,26 @@ QList<Category> FeedDocument::categories() const
 
 Generator FeedDocument::generator() const
 {
-    return Generator(firstElementByTagNameNS(Constants::atom1Namespace(),
+    return Generator(firstElementByTagNameNS(atom1Namespace(),
                      QString::fromUtf8("generator")));
 }
 
 QString FeedDocument::icon() const
 {
-    return completeURI(extractElementTextNS(Constants::atom1Namespace(),
+    return completeURI(extractElementTextNS(atom1Namespace(),
                        QString::fromUtf8("icon")));
 
 }
 
 QString FeedDocument::logo() const
 {
-    return completeURI(extractElementTextNS(Constants::atom1Namespace(),
+    return completeURI(extractElementTextNS(atom1Namespace(),
                        QString::fromUtf8("logo")));
 }
 
 QString FeedDocument::id() const
 {
-    return extractElementTextNS(Constants::atom1Namespace(),
+    return extractElementTextNS(atom1Namespace(),
                                 QString::fromUtf8("id"));
 }
 
@@ -152,7 +152,7 @@ QString FeedDocument::subtitle() const
 
 time_t FeedDocument::updated() const
 {
-    QString upd = extractElementTextNS(Constants::atom1Namespace(),
+    QString upd = extractElementTextNS(atom1Namespace(),
                                        QString::fromUtf8("updated"));
     return parseDate(upd, ISODate);
 }
@@ -160,7 +160,7 @@ time_t FeedDocument::updated() const
 QList<Link> FeedDocument::links() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(),
+            elementsByTagNameNS(atom1Namespace(),
                                 QString::fromUtf8("link"));
     QList<Link> list;
 
@@ -179,7 +179,7 @@ QList<Link> FeedDocument::links() const
 QList<Entry> FeedDocument::entries() const
 {
     QList<QDomElement> a = 
-            elementsByTagNameNS(Constants::atom1Namespace(),
+            elementsByTagNameNS(atom1Namespace(),
                                 QString::fromUtf8("entry"));
     QList<Entry> list;
 
