@@ -137,7 +137,7 @@ unsigned int Resource::id() const
 
 bool Resource::isNull() const
 {
-    return d == 0L;
+    return !d;
 }
 
 Model Resource::model() const

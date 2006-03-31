@@ -92,7 +92,7 @@ bool Literal::operator==(const Node& other) const
 
 bool Literal::isNull() const
 {
-    return d == 0L;
+    return !d;
 }
 
 unsigned int Literal::id() const
