@@ -62,8 +62,9 @@ set(libatomlocal_SRCS
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/atom/parser.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/atom/person.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/atom/source.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/atom/tools.cpp
+	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/atom/atomtools.cpp 
 )
+
 
 set(libmappercommonlocal_SRCS 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/mapper/personimpl.cpp
