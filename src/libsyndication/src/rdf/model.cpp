@@ -47,6 +47,8 @@ class Model::ModelPrivate
     ResourcePtr nullResource;
     StatementPtr nullStatement;
     QHash<QString, StatementPtr> statements;
+    QHash<QString, QList<StatementPtr> > stmtsBySubject;
+            
     QHash<int, NodePtr> nodes;
     QHash<QString, ResourcePtr> resources;
     QHash<QString, PropertyPtr> properties;
@@ -120,11 +122,16 @@ class Model::ModelPrivate
     void addToHashes(StatementPtr stmt, const QString& key)
     {
         statements[key] = stmt;
+        stmtsBySubject[stmt->subject()->uri()].append(stmt);
     }
     
     void removeFromHashes(const QString& key)
     {
+        StatementPtr stmt = statements[key];
+        if (stmt)
+            stmtsBySubject[stmt->subject()->uri()].remove(stmt);
         statements.remove(key);
+        
     }
     
     bool initialized;
@@ -325,15 +332,13 @@ bool Model::resourceHasProperty(const Resource* resource, PropertyPtr property) 
     if (!d->resources.contains(resource->uri()))
         return false;
     
-    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr> stmts = d->stmtsBySubject[resource->uri()];
     QList<StatementPtr>::ConstIterator it = stmts.begin();
     QList<StatementPtr>::ConstIterator end = stmts.end();
 
-    // TODO: use more efficient storage
-
     for ( ; it != end; ++it)
     {
-        if (*((*it)->subject()) == *resource && *((*it)->predicate()) == *property)
+        if (*((*it)->predicate()) == *property)
             return true;
     }
 
@@ -342,15 +347,13 @@ bool Model::resourceHasProperty(const Resource* resource, PropertyPtr property) 
 
 StatementPtr Model::resourceProperty(const Resource* resource, PropertyPtr property) const
 {
-    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr> stmts = d->stmtsBySubject[resource->uri()];
     QList<StatementPtr>::ConstIterator it = stmts.begin();
     QList<StatementPtr>::ConstIterator end = stmts.end();
 
-    // TODO: use more efficient storage
-
     for ( ; it != end; ++it)
     {
-        if (*((*it)->subject()) == *resource && *((*it)->predicate()) == *property)
+        if (*((*it)->predicate()) == *property)
             return *it;
     }
 
@@ -360,15 +363,13 @@ StatementPtr Model::resourceProperty(const Resource* resource, PropertyPtr prope
 QList<StatementPtr> Model::resourceProperties(const Resource* resource, PropertyPtr property) const
 {
     QList<StatementPtr> res;
-    QList<StatementPtr> stmts = d->statements.values();
+    QList<StatementPtr> stmts = d->stmtsBySubject[resource->uri()];
     QList<StatementPtr>::ConstIterator it = stmts.begin();
     QList<StatementPtr>::ConstIterator end = stmts.end();
 
-    // TODO: use more efficient storage
-
     for ( ; it != end; ++it)
     {
-        if (*((*it)->subject()) == *resource && *((*it)->predicate()) == *property)
+        if (*((*it)->predicate()) == *property)
             res.append(*it);
     }
     
