@@ -124,6 +124,8 @@ QString htmlToPlainText(const QString& html)
     return str;
 }
 
+static QRegExp tagRegExp;
+
 bool isHtml(const QString& str)
 {
     if (str != KCharsets::resolveEntities(str))
@@ -133,7 +135,11 @@ bool isHtml(const QString& str)
     if (ltc == 0 || ltc != str.count('>'))
         return false;
 
-    if (str.contains(QRegExp("<[a-zA-Z]+.*/?>")))
+    if (tagRegExp.pattern().isEmpty())
+    {
+        tagRegExp = QRegExp("<[a-zA-Z]+.*/?>");
+    }
+    if (str.contains(tagRegExp))
         return true;
         
     return false;

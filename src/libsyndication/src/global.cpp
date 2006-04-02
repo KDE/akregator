@@ -43,8 +43,8 @@ ParserCollection<Feed>* parserCollection()
     {
         parsercollsd.setObject(parserColl, new ParserCollectionImpl<LibSyndication::Feed>);
         parserColl->registerParser(new RSS2::Parser, new RSS2Mapper);
-        parserColl->registerParser(new RDF::Parser, new RDFMapper);
         parserColl->registerParser(new Atom::Parser, new AtomMapper);
+        parserColl->registerParser(new RDF::Parser, new RDFMapper);
     }
     return parserColl;
 }

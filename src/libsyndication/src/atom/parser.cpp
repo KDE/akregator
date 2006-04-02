@@ -50,20 +50,8 @@ class Parser::ParserPrivate
         
 bool Parser::accept(const LibSyndication::DocumentSource& source) const
 {
-    QDomDocument doc = source.asDomDocument();
-    if (doc.isNull())
-        return false;
-    
-    QDomElement feed = doc.namedItem(QString::fromUtf8("feed")).toElement();
-    bool feedValid = !feed.isNull() && (feed.namespaceURI() == atom1Namespace() || feed.namespaceURI() == atom0_3Namespace());
-
-    if (feedValid)
-        return true;
-
-    QDomElement entry = doc.namedItem(QString::fromUtf8("entry")).toElement();
-    bool entryValid = !entry.isNull() && entry.namespaceURI() == atom1Namespace();
-
-    return entryValid;
+    QDomElement root = source.asDomDocument().documentElement();
+    return !root.isNull() && (root.namespaceURI() == atom1Namespace() || root.namespaceURI() == atom0_3Namespace());
 }
 
 LibSyndication::SpecificDocumentPtr Parser::parse(const LibSyndication::DocumentSource& source) const

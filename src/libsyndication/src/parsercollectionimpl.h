@@ -68,6 +68,8 @@ class KDE_EXPORT ParserCollectionImpl : public ParserCollection<T>
         ParserCollectionImpl& operator=(const ParserCollectionImpl&);
         QHash<QString, AbstractParser*> m_parsers;
         QHash<QString, Mapper<T>*> m_mappers;
+        QList<AbstractParser*> m_parserList;
+        
         ErrorCode m_lastError;
 };
 
@@ -105,6 +107,7 @@ bool ParserCollectionImpl<T>::registerParser(AbstractParser* parser, Mapper<T>* 
     if (m_parsers.contains(parser->format()))
         return false;
 
+    m_parserList.append(parser);
     m_parsers.insert(parser->format(), parser);
     m_mappers.insert(parser->format(), mapper);
     return true;
@@ -120,7 +123,7 @@ SharedPtr<T> ParserCollectionImpl<T>::parse(const DocumentSource& source, const 
 {
     m_lastError = LibSyndication::Success;
 
-    if (m_parsers.contains(formatHint))
+    if (!formatHint.isNull() && m_parsers.contains(formatHint))
     {
         if (m_parsers[formatHint]->accept(source))
         {
@@ -135,7 +138,7 @@ SharedPtr<T> ParserCollectionImpl<T>::parse(const DocumentSource& source, const 
         }
     }
 
-    Q_FOREACH (AbstractParser* i, m_parsers)
+    Q_FOREACH (AbstractParser* i, m_parserList)
     {
         if (i->accept(source))
         {
