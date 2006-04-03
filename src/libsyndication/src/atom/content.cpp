@@ -32,12 +32,38 @@
 namespace LibSyndication {
 namespace Atom {
 
-Content::Content() : ElementWrapper()
+class Content::ContentPrivate
+{
+    public:
+        
+    ContentPrivate() : formatIdentified(false)
+    {
+    }
+    mutable Format format;
+    mutable bool formatIdentified;
+};
+
+Content::Content() : ElementWrapper(), d(new ContentPrivate)
 {
 }
 
-Content::Content(const QDomElement& element) : ElementWrapper(element)
+Content::Content(const QDomElement& element) : ElementWrapper(element), d(new ContentPrivate)
 {
+}
+
+Content::Content(const Content& other) : ElementWrapper(other), d(other.d)
+{
+}
+
+Content::~Content()
+{
+}
+
+Content& Content::operator=(const Content& other)
+{
+    ElementWrapper::operator=(other);
+    d = other.d;
+    return *this;
 }
 
 QString Content::type() const
@@ -56,6 +82,8 @@ QByteArray Content::asByteArray() const
         return QByteArray();
     return QByteArray::fromBase64(text().trimmed().toAscii());
 }
+
+static QStringList xmltypes;
 
 Content::Format Content::mapTypeToFormat(const QString& typep,  const QString& src)
 {
@@ -76,16 +104,17 @@ Content::Format Content::mapTypeToFormat(const QString& typep,  const QString& s
        )
         return PlainText;
     
-    QStringList xmltypes;
-    xmltypes.append(QString::fromUtf8("xhtml"));
-    xmltypes.append(QString::fromUtf8("application/xhtml+xml"));
-    // XML media types as defined in RFC3023:
-    xmltypes.append(QString::fromUtf8("text/xml"));
-    xmltypes.append(QString::fromUtf8("application/xml"));
-    xmltypes.append(QString::fromUtf8("text/xml-external-parsed-entity"));
-    xmltypes.append(QString::fromUtf8("application/xml-external-parsed-entity"));
-    xmltypes.append(QString::fromUtf8("application/xml-dtd"));
-    
+    if (xmltypes.isEmpty())
+    {
+        xmltypes.append(QString::fromUtf8("xhtml"));
+        xmltypes.append(QString::fromUtf8("application/xhtml+xml"));
+        // XML media types as defined in RFC3023:
+        xmltypes.append(QString::fromUtf8("text/xml"));
+        xmltypes.append(QString::fromUtf8("application/xml"));
+        xmltypes.append(QString::fromUtf8("text/xml-external-parsed-entity"));
+        xmltypes.append(QString::fromUtf8("application/xml-external-parsed-entity"));
+        xmltypes.append(QString::fromUtf8("application/xml-dtd"));
+    }
     
     if (xmltypes.contains(type)
         || type.endsWith(QString::fromUtf8("+xml"), Qt::CaseInsensitive)
@@ -97,7 +126,12 @@ Content::Format Content::mapTypeToFormat(const QString& typep,  const QString& s
 
 Content::Format Content::format() const
 {
-   return  mapTypeToFormat(type(), src());
+    if (d->formatIdentified == false)
+    {
+        d->format = mapTypeToFormat(type(), src());
+        d->formatIdentified = true;
+    }
+    return d->format;
 }
 
 bool Content::isBinary() const

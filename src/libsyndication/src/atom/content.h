@@ -24,6 +24,7 @@
 #define LIBSYNDICATION_ATOM_CONTENT_H
 
 #include <elementwrapper.h>
+#include <sharedptr.h>
 
 #include <QString>
 
@@ -83,6 +84,25 @@ class KDE_EXPORT Content : public ElementWrapper
          */
         Content(const QDomElement& element);
 
+        /**
+         * creates a copy of another Content object
+         * 
+         * @param other the content object to copy
+         */
+        Content(const Content& other);
+        
+        /**
+         * destructor
+         */
+        ~Content();
+        
+        /**
+         * assigns another content objecct
+         * 
+         * @param other the Content object to assign
+         */
+        Content& operator=(const Content& other);
+        
         /**
          * the type of the content. This is either "text" (plain text), 
          * "html" (escaped HTML), "xhtml" (embedded XHTML) or a mime type
@@ -169,6 +189,10 @@ class KDE_EXPORT Content : public ElementWrapper
          * @return debug string
          */
         QString debugInfo() const;
+        
+    private:
+        class ContentPrivate;
+        SharedPtr<ContentPrivate> d;
 };
 
 } // namespace Atom

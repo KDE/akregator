@@ -79,7 +79,7 @@ QString ItemAtomImpl::description() const
 QString ItemAtomImpl::content() const
 {
     Content content = m_entry.content();
-    if (content.isNull() || content.format() == Content::Binary)
+    if (content.isNull())
         return QString::null;
     
     return content.asString();
