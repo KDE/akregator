@@ -38,11 +38,17 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
     
     QDomElement el = parent.firstElementByTagNameNS(atom1Namespace(), tagname);
     
+    bool isCDATA = el.firstChild().isCDATASection();
+    
     QString type = el.attribute(QString::fromUtf8("type"), QString::fromUtf8("text"));
     
     if (type == QString::fromUtf8("text"))
     {
-        str = plainTextToHtml(parent.extractElementTextNS(atom1Namespace(), tagname).simplified());
+        str = parent.extractElementTextNS(atom1Namespace(), tagname);
+        if (isCDATA)
+            str = resolveEntities(str);
+            
+        str = escapeSpecialCharacters(str);    
     }
     else if (type == QString::fromUtf8("html"))
     {
