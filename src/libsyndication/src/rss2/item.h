@@ -23,7 +23,10 @@
 #ifndef LIBSYNDICATION_RSS2_ITEM_H
 #define LIBSYNDICATION_RSS2_ITEM_H
 
+#include "document.h"
+
 #include <elementwrapper.h>
+#include <sharedptr.h>
 #include <specificitem.h>
 
 #include <ctime>
@@ -56,14 +59,20 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
          * Default constructor, creates a null object, for which isNull() is
          * @c true.
          */
-        Item();
+        Item(SharedPtr<Document> doc=SharedPtr<Document>());
      
         /**
          * Creates an Item object wrapping an @c &lt;item> XML element.
          *
          * @param element The @c &lt;item> element to wrap
          */
-        Item(const QDomElement& element);
+        Item(const QDomElement& element, SharedPtr<Document> doc=SharedPtr<Document>());
+        
+        Item(const Item& other);
+        
+        ~Item();
+        
+        Item& operator=(const Item& other);
         
         bool accept(SpecificItemVisitor* visitor);
         
@@ -73,9 +82,6 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
          * @return The title in plain text. Note that e.g. characters like <,
          * >, & are not escaped!
          * (TODO: this might change, check what makes more sense)
-         * This method returns the content of the @c &lt;title> element. If
-         * @c &lt;title> is not available, the method returns
-         * @c &lt;dc:title> instead, if available.
          */
         QString title() const;
 
@@ -91,16 +97,13 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
          * The item synopsis. This might contain a short summary of the
          * item, but also the full content. If content() is set, that usually
          * contains the full content instead.
-         * This method returns the content of the @c &lt;description> element.
-         * If @c &lt;description> is not available, the method returns * @c
-         * &lt;dc:description> instead, if available.
          * 
          * @return a string in HTML format (whitespace is irrelevant, 
          * @c &lt;br/> is used for newlines, "&", "&lt;", "&gt;" are escaped)
          * summarizing the item. QString::null if no description was specified.
          */
         QString description() const;
-    
+        
         /**
          * Returns the actual content of the item. In RSS2, this can be stored
          * in various elements, e.g. in content:encoded, xhtml:body or
@@ -173,7 +176,7 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
          * @return @c true if the guid is a permalink and can be interpreted as
          * URL
          */
-         bool guidIsPermaLink() const;
+        bool guidIsPermaLink() const;
 
         /**
          * Indicates when the item was published. If it's a date in the future,
@@ -222,6 +225,21 @@ class KDE_EXPORT Item : public ElementWrapper, public LibSyndication::SpecificIt
          * @return debug string
          */
         QString debugInfo() const;
+        
+        /**
+         * @internal
+         */
+        QString originalDescription() const;
+        
+        /**
+         * @internal
+         */
+        QString originalTitle() const;
+        
+    private:
+        
+        class ItemPrivate;
+        SharedPtr<ItemPrivate> d;
 };
 
 } // namespace RSS2

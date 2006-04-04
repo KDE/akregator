@@ -37,24 +37,61 @@
 namespace LibSyndication {
 namespace RSS2 {
 
-Item::Item() : ElementWrapper()
+class Item::ItemPrivate
+{
+    public:
+        
+        SharedPtr<Document> doc;
+};
+
+Item::Item(SharedPtr<Document> doc) : ElementWrapper(), d(new ItemPrivate)
+{
+    d->doc = doc;
+}
+
+Item::Item(const QDomElement& element, SharedPtr<Document> doc) : ElementWrapper(element), d(new ItemPrivate)
+{
+    d->doc = doc;
+}
+
+Item::~Item()
 {
 }
 
-Item::Item(const QDomElement& element) : ElementWrapper(element)
+Item::Item(const Item& other) : ElementWrapper(other), SpecificItem(other)
 {
+    d = other.d;
+}
+
+Item& Item::operator=(const Item& other)
+{
+    ElementWrapper::operator=(other);
+    SpecificItem::operator=(other);
+    d = other.d;
+    return *this;
 }
 
 QString Item::title() const
 {
-    QString t = extractElementTextNS(QString(), QString::fromUtf8("title"));
+    if (!d->doc)
+        return originalTitle();
     
-    if (t.isNull())
-    {
-        t = extractElementTextNS(dublinCoreNamespace(),
-                                 QString::fromUtf8("title"));
-    }
-    return htmlize(t);
+    bool isCDATA = false;
+    bool containsMarkup = false;
+    d->doc->getItemTitleFormatInfo(isCDATA, containsMarkup);
+    
+    return normalize(originalTitle(), isCDATA, containsMarkup);
+}
+
+
+QString Item::originalDescription() const
+{
+    return extractElementTextNS(QString(), QString::fromUtf8("description"));
+}
+        
+QString Item::originalTitle() const
+{
+    return extractElementTextNS(QString(), QString::fromUtf8("title"));
 }
 
 QString Item::link() const
@@ -64,15 +101,14 @@ QString Item::link() const
 
 QString Item::description() const
 {
-    QString d = extractElementTextNS(QString(), QString::fromUtf8("description"));
+    if (!d->doc)
+        return originalDescription();
+
+    bool isCDATA = false;
+    bool containsMarkup = false;
+    d->doc->getItemDescriptionFormatInfo(isCDATA, containsMarkup);
     
-    if (d.isNull())
-    {
-        d = extractElementTextNS(dublinCoreNamespace(),
-                                 QString::fromUtf8("description"));
-    }
-    
-    return htmlize(d);
+    return normalize(originalDescription(), isCDATA, containsMarkup);
 }
 
 QString Item::content() const
@@ -168,7 +204,7 @@ time_t Item::pubDate() const
     str = extractElementTextNS(dublinCoreNamespace(), QString::fromUtf8("date"));
     return parseDate(str, ISODate);
 }
-
+        
 time_t Item::expirationDate() const
 {
     QString str = extractElementTextNS(QString(), QString::fromUtf8("expirationDate"));

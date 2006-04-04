@@ -50,13 +50,13 @@ Item::~Item()
 QString Item::title() const
 {
     QString str = resource()->property(RSSVocab::self()->title())->asString();
-    return htmlize(str);
+    return normalize(str);
 }
 
 QString Item::description() const
 {
     QString str = resource()->property(RSSVocab::self()->description())->asString();
-    return htmlize(str);
+    return normalize(str);
 }
 
 QString Item::link() const

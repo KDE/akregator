@@ -113,7 +113,7 @@ class KDE_EXPORT ElementWrapper
          * @return the xml:lang value, or a null string if not set
          */
         QString xmlLang() const;
-
+        
         /**
          * completes relative URIs with a prefix specified via xml:base.
          * 

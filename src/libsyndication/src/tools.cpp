@@ -102,6 +102,29 @@ QString calcMD5Sum(const QString& str)
     return QString(md5Machine.hexDigest().data());
 }
 
+QString resolveEntities(const QString& str)
+{
+    return KCharsets::resolveEntities(str);
+}
+
+QString escapeSpecialCharacters(const QString& strp)
+{
+    QString str(strp);
+    str.replace("&", "&amp;");
+    str.replace("\"", "&quot;");
+    str.replace("<", "&lt;");
+    str.replace(">", "&gt;");
+    str.replace("\'", "&apos;");
+    return str;
+}
+
+QString convertNewlines(const QString& strp)
+{
+    QString str(strp);
+    str.replace("\n", "<br/>");
+    return str;
+}
+        
 QString plainTextToHtml(const QString& plainText)
 {
     QString str(plainText);
@@ -110,7 +133,7 @@ QString plainTextToHtml(const QString& plainText)
     str.replace("<", "&lt;");
     //str.replace(">", "&gt;");
     str.replace("\n", "<br/>");
-    return str;
+    return str.simplified();
 }
 
 QString htmlToPlainText(const QString& html)
@@ -118,19 +141,32 @@ QString htmlToPlainText(const QString& html)
     QString str(html);
     //TODO: preserve some formatting, such as line breaks
     str.replace(QRegExp("<[^>]*>"), ""); // remove tags
-    str = KCharsets::resolveEntities(str);
+    str = resolveEntities(str);
     str = str.simplified();
-    
     return str;
 }
 
 static QRegExp tagRegExp;
 static bool tagRegExpSet = false;
 
+bool stringContainsMarkup(const QString& str)
+{
+    int ltc = str.count('<');
+    if (ltc == 0 || ltc != str.count('>'))
+        return false;
+
+    if (!tagRegExpSet)
+    {
+        tagRegExp = QRegExp("<\\w+.*/?>");
+        tagRegExpSet = true;
+    }
+    return str.contains(tagRegExp);
+}
+
 bool isHtml(const QString& str)
 {
-    if (str != KCharsets::resolveEntities(str))
-        return true;
+//    if (str != KCharsets::resolveEntities(str))
+//        return true;
     
     int ltc = str.count('<');
     if (ltc == 0 || ltc != str.count('>'))
@@ -138,7 +174,7 @@ bool isHtml(const QString& str)
 
     if (!tagRegExpSet)
     {
-        tagRegExp = QRegExp("<[a-zA-Z]+.*/?>");
+        tagRegExp = QRegExp("<\\w+.*/?>");
         tagRegExpSet = true;
     }
     if (str.contains(tagRegExp))
@@ -147,9 +183,32 @@ bool isHtml(const QString& str)
     return false;
 }
 
-QString htmlize(const QString& str)
+QString normalize(const QString& str)
 {
-    return isHtml(str) ? str.simplified() : plainTextToHtml(str).simplified();
+    return isHtml(str) ? str.simplified() : plainTextToHtml(str);
+}
+
+QString normalize(const QString& strp, bool isCDATA, bool containsMarkup)
+{
+    if (containsMarkup)
+        return strp.simplified();
+    else
+    {
+        if (isCDATA)
+        {
+            QString str = resolveEntities(strp);
+            str = escapeSpecialCharacters(str);
+            str = convertNewlines(str);
+            str = str.simplified();
+            return str;
+        }
+        else
+        {
+            QString str = escapeSpecialCharacters(strp);
+            str = str.simplified();
+            return str;
+        }
+    }
 }
 
 } // namespace LibSyndication

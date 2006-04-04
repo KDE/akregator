@@ -53,7 +53,7 @@ typedef SharedPtr<Document> DocumentPtr;
  * @author Frank Osterfeld
  */
 class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
-                            public ElementWrapper
+                            public LibSyndication::ElementWrapper
 {
     public:
     
@@ -73,7 +73,13 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
          */
         Document();
         
-        bool accept(DocumentVisitor* visitor);
+        Document(const Document& other);
+        
+        virtual ~Document();
+        
+        Document& operator=(const Document& other);
+        
+        virtual bool accept(DocumentVisitor* visitor);
     
         /**
          * returns whether this document is valid or not.
@@ -85,11 +91,6 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
         /**
          * The title of the channel.
          *
-         * This method returns the content of the @c &lt;title> element. If
-         * @c &lt;title> is not available, the method returns * @c &lt;dc:title>
-         * instead, if available.
-         *
-         * 
          * @return title TODO: more on escaping/HTML
          */
         QString title() const;
@@ -103,10 +104,6 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
     
         /**
          * Phrase or sentence describing the channel.
-         * This method returns the content of the @c &lt;description> element. If
-         * @c &lt;description> is not available, the method returns
-         * @c &lt;dc:description> instead, if available.
-         *
          * 
          * @return TODO
          */
@@ -253,8 +250,7 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
          *
          */
         QSet<DayOfWeek> skipDays() const;
-    
-   
+        
         /**
          * Returns a description of the object and its children for
          * debugging purposes.
@@ -263,9 +259,23 @@ class KDE_EXPORT Document : public LibSyndication::SpecificDocument,
          */
         QString debugInfo() const;
     
+            
+        /**
+         * @internal
+         */
+        void getItemTitleFormatInfo(bool& isCDATA, bool& containsMarkup) const;
+        
+        /**
+         * @internal
+         */
+        void getItemDescriptionFormatInfo(bool& isCDATA, bool& containsMarkup) const;
+
     private:
     
         Document(const QDomElement& element);
+        
+        class DocumentPrivate;
+        SharedPtr<DocumentPrivate> d;
     
 };
 

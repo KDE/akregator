@@ -67,14 +67,14 @@ bool Document::isValid() const
 QString Document::title() const
 {
     QString str = resource()->property(RSSVocab::self()->title())->asString();
-    return htmlize(str);
+    return normalize(str);
 
 }
 
 QString Document::description() const
 {
     QString str = resource()->property(RSSVocab::self()->description())->asString();
-    return htmlize(str);
+    return normalize(str);
 }
 
 QString Document::link() const

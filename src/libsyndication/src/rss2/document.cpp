@@ -41,8 +41,27 @@
 namespace LibSyndication {
 namespace RSS2 {
 
+class Document::DocumentPrivate
+{
+    public:
+    DocumentPrivate() : itemDescriptionIsCDATA(false),
+                        itemDescriptionContainsMarkup(false),
+                        itemDescGuessed(false),
+                        itemTitleIsCDATA(false),
+                        itemTitleContainsMarkup(false),
+                        itemTitlesGuessed(false)
+    {}
+    mutable bool itemDescriptionIsCDATA;
+    mutable bool itemDescriptionContainsMarkup;
+    mutable bool itemDescGuessed;
+    mutable bool itemTitleIsCDATA;
+    mutable bool itemTitleContainsMarkup;
+    mutable bool itemTitlesGuessed;
+};
 
-Document::Document(const QDomElement& element) : SpecificDocument(), ElementWrapper(element)
+Document::Document(const QDomElement& element) : SpecificDocument(), 
+                                                 ElementWrapper(element), 
+                                                 d(new DocumentPrivate)
 {
 }
 
@@ -53,10 +72,25 @@ Document Document::fromXML(const QDomDocument& doc)
     return Document(channelNode.toElement());
 }
 
-Document::Document() : SpecificDocument(), ElementWrapper()
+Document::Document() : SpecificDocument(), ElementWrapper(), d(new DocumentPrivate)
 {
 }
 
+Document::Document(const Document& other) : SpecificDocument(other), ElementWrapper(other)
+{
+    d = other.d;
+}
+
+Document::~Document()
+{
+}
+
+Document& Document::operator=(const Document& other)
+{
+    ElementWrapper::operator=(other);
+    d = other.d;
+    return *this;
+}
 bool Document::isValid() const
 {
     return !isNull();
@@ -64,15 +98,7 @@ bool Document::isValid() const
         
 QString Document::title() const
 {
-    QString t = extractElementTextNS(QString(), QString::fromUtf8("title"));
-    
-    if (t.isNull())
-    {
-        t = extractElementTextNS(dublinCoreNamespace(),
-                                 QString::fromUtf8("title"));
-    }
-    
-    return t;
+    return extractElementTextNS(QString(), QString::fromUtf8("title"));
 }
 
 QString Document::link() const
@@ -83,14 +109,7 @@ QString Document::link() const
 QString Document::description() const
 {
     QString d = extractElementTextNS(QString(), QString::fromUtf8("description"));
-    
-    if (d.isNull())
-    {
-        d = extractElementTextNS(dublinCoreNamespace(),
-                                 QString::fromUtf8("description"));
-    }
-
-    return htmlize(d);
+    return normalize(d);
 }
 
 QString Document::language() const
@@ -268,15 +287,17 @@ QSet<Document::DayOfWeek> Document::skipDays() const
 
 QList<Item> Document::items() const
 {
-    QList<QDomElement> itemNodes = elementsByTagNameNS(QString(), QString::fromUtf8("item"));
-
     QList<Item> items;
-
+    
+    QList<QDomElement> itemNodes = elementsByTagNameNS(QString(), QString::fromUtf8("item"));
+    
+    DocumentPtr doccpy(new Document(*this)); // pass 
+        
     for (QList<QDomElement>::ConstIterator it = itemNodes.begin(); it != itemNodes.end(); ++it)
     {
-        items.append(Item(*it));
+        items.append(Item(*it, doccpy));
     }
-
+    
     return items;
 }
 
@@ -325,6 +346,79 @@ QString Document::debugInfo() const
     return info;
 }
 
+void Document::getItemTitleFormatInfo(bool& isCDATA, bool& containsMarkup) const
+{
+    if (!d->itemTitlesGuessed)
+    {
+        QString titles;
+        QList<Item> litems = items();
+        
+        if (litems.isEmpty())
+        {
+            d->itemTitlesGuessed = true;
+            return;
+        }
+        
+        QDomElement titleEl = (*litems.begin()).firstElementByTagNameNS(QString(), QString::fromUtf8("title"));
+        d->itemTitleIsCDATA = titleEl.firstChild().isCDATASection();
+        
+        int nmax = litems.size() < 10 ? litems.size() : 10; // we check a maximum of 10 items
+        int i = 0;
+        
+        QList<Item>::ConstIterator it = litems.begin(); 
+        
+        while (i < nmax)
+        {
+            titles += (*it).originalTitle();
+            ++it;
+            ++i;
+        }
+        
+        d->itemTitleContainsMarkup = stringContainsMarkup(titles);
+        d->itemTitlesGuessed = true;
+    }
+    
+    isCDATA = d->itemTitleIsCDATA;
+    containsMarkup = d->itemTitleContainsMarkup;
+}
+        
+void Document::getItemDescriptionFormatInfo(bool& isCDATA, bool& containsMarkup) const
+{
+    if (!d->itemDescGuessed)
+    {
+        QString desc;
+        QList<Item> litems = items();
+        
+        
+        if (litems.isEmpty())
+        {
+            d->itemDescGuessed = true;
+            return;
+        }
+        
+        QDomElement descEl = (*litems.begin()).firstElementByTagNameNS(QString(), QString::fromUtf8("description"));
+        d->itemDescriptionIsCDATA = descEl.firstChild().isCDATASection();
+
+        int nmax = litems.size() < 10 ? litems.size() : 10; // we check a maximum of 10 items
+        int i = 0;
+
+        QList<Item>::ConstIterator it = litems.begin(); 
+
+        while (i < nmax)
+        {
+            desc += (*it).originalDescription();
+            ++it;
+            ++i;
+        }
+
+        d->itemDescriptionContainsMarkup = stringContainsMarkup(desc);
+        d->itemDescGuessed = true;
+    }
+    
+    isCDATA = d->itemDescriptionIsCDATA;
+    containsMarkup = d->itemDescriptionContainsMarkup;
+}
+        
 bool Document::accept(DocumentVisitor* visitor)
 {
     return visitor->visitRSS2Document(this);

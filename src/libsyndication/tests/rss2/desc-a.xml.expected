@@ -6,7 +6,7 @@ description: #Feed Description#
 id: #http://www.example.com/a/1#
 title: #CDATA in description - plain-text with HTML entities#
 link: #http://www.example.com/a/1#
-description: #This entry contains a description embedded in CDATA, but the content really is plain-text, apart from HTML entities. Filler content &#8212; Scandinavian letters follow: &aelig; &oslash; &aring;#
+description: #This entry contains a description embedded in CDATA, but the content really is plain-text, apart from HTML entities. <br/> <br/> Filler content — Scandinavian letters follow: æ ø å#
 datePublished: #Sun Mar 14 19:59:12 2004#
 dateUpdated: #Sun Mar 14 19:59:12 2004#
 commentsLink: #http://www.bersvendsen.com/arkiv/207.html#comments#
