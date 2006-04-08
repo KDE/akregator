@@ -34,12 +34,14 @@ title: #This entry contains embedded XHTML with type=xhtml#
 content: #<div xmlns="http://www.w3.org/1999/xhtml">A &amp; B. History of the &lt;blink> tag.</div> <div xmlns="http://www.w3.org/1999/xhtml">Example <b xmlns="http://www.w3.org/1999/xhtml">Atom</b> </div>#
 # Item end ########################
 # Item begin ######################
-id: #hash:32f03d3408abf73d8f891d57b4e054b4#
-title: #This entry contains base64-encoded binary content (&quot;Example &lt;b>Atom&lt;/b>&quot;)#
+id: #hash:bbca64b18cdb71a9aaf9aead88ff0ba8#
+title: #This entry contains base64-encoded binary content (&quot;Example &lt;b&gt;Atom&lt;/b&gt;&quot;)#
 # Item end ########################
 # Item begin ######################
-id: #hash:35ed900418a04517166e4dbdf0ae1b38#
-title: #This entry contains embedded XHTML, but the mimetype is application/x-pdf, so the parser should try to interpret it as binary content (And fail gracefully, without crashing)#
+id: #hash:d74bf42e7834863c2c5af3e25304a3ac#
+title: #This entry contains embedded XHTML, but the mimetype is application/x-pdf, so 
+           the parser should try to interpret it as binary content (And fail gracefully, without
+           crashing)#
 # Item end ########################
 # Feed end ########################
 

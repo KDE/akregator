@@ -1,5 +1,8 @@
 # Feed begin ######################
-title: #This test feeds contains relative URIs of all kinds, which should be completed using xml:base. Affected are: Attributes: generator uri, content src, link href. Elements: &lt;uri> and &lt;logo>. XHTML in text constructs and content. Exceptions: category scheme, and the &lt;id> element, they are expected to contain absolute IRIs.#
+title: #This test feeds contains relative URIs of all kinds, which should be completed using xml:base.
+        Affected are: Attributes: generator uri, content src, link href. Elements: &lt;uri&gt; and &lt;logo&gt;.
+        XHTML in text constructs and content. Exceptions: category scheme, and the &lt;id&gt; element, 
+        they are expected to contain absolute IRIs.#
 # Category begin ##################
 term: #some category#
 scheme: #schemes/localSchemeName#
@@ -17,12 +20,12 @@ id: #hash:96e74844f5681ebe28eb57b128617f83#
 title: #<div xmlns="http://www.w3.org/1999/xhtml" :base="http://example.com/test/" xmlns:="http://www.w3.org/XML/1998/namespace" >Example <a xmlns="http://www.w3.org/1999/xhtml" href="test.html" >test</a>. The link must point to http://example.com/test/test.html. (not .../parent/test.html)</div>#
 # Item end ########################
 # Item begin ######################
-id: #hash:26a72dc40c8c814708983b81efec0c0d#
-title: #This is item's &lt;content> has a src attribute pointing to http://example.com/feed/somesrc.html#
+id: #hash:a7f3a0ecc5c32d76a07948a88ac0dae4#
+title: #This is item&apos;s &lt;content&gt; has a src attribute pointing to http://example.com/feed/somesrc.html#
 # Item end ########################
 # Item begin ######################
-id: #hash:c32021d482c2f2055727924f38f65b90#
-title: #This entry's link and author uri point to test.html. Both must be completed to http://example.com/test/test.html#
+id: #hash:47df83e9fe3434795c12c4dbf988a96b#
+title: #This entry&apos;s link and author uri point to test.html. Both must be completed to http://example.com/test/test.html#
 link: #http://example.com/test/test.html#
 # Person begin ####################
 name: #Test#
@@ -31,7 +34,8 @@ uri: #http://example.com/test/test.html#
 # Item end ########################
 # Item begin ######################
 id: #test/someRelativeUri.html#
-title: #Although this entry's id contains a relative URL, libsyndication should not complete it, as IDs are expected to be absolute IRIs.#
+title: #Although this entry&apos;s id contains a relative URL, libsyndication should not complete it, as
+        IDs are expected to be absolute IRIs.#
 # Item end ########################
 # Feed end ########################
 
