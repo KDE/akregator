@@ -36,8 +36,6 @@
 #include <QSet>
 #include <QString>
 
-#include <kstaticdeleter.h>
-
 namespace LibSyndication {
 namespace RSS2 {
 
