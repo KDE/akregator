@@ -216,7 +216,7 @@ PersonPtr personFromString(const QString& strp)
 {
     QString str = strp.trimmed();
     if (str.isEmpty())
-        return PersonPtr();
+        return PersonPtr(new PersonImpl());
     
     QString name;
     QString uri;
@@ -256,7 +256,7 @@ PersonPtr personFromString(const QString& strp)
     uri = uri.isEmpty() ? QString() : uri;
 
     if (name.isEmpty() && email.isEmpty() && uri.isEmpty())
-        return PersonPtr();
+        return PersonPtr(new PersonImpl());
    
     return PersonPtr(new PersonImpl(name, uri, email));
 }

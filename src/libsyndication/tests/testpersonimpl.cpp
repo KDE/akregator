@@ -21,9 +21,9 @@
  */
 
 #include "testpersonimpl.h"
-#include "mapper/personimpl.h"
 #include "person.h"
-
+#include "personimpl.h"
+#include "tools.h"
 #include <QList>
 #include <QString>
 #include <QStringList>
@@ -74,7 +74,7 @@ void TestPersonImpl::fromString()
     
     while (it != end)
     {
-        PersonPtr q(PersonImpl::fromString(*it));
+        PersonPtr q(LibSyndication::personFromString(*it));
         QCOMPARE(q->debugInfo(), (*pit)->debugInfo());
         ++it;
         ++pit;
