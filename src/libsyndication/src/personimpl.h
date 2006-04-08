@@ -40,8 +40,6 @@ class PersonImpl : public Person
 {
     public:
 
-        static PersonPtr fromString(const QString& str);
-                
         PersonImpl();
         PersonImpl(const QString& name, const QString& uri, const QString& email);
         
@@ -55,8 +53,6 @@ class PersonImpl : public Person
 
     private:
         
-        static PersonPtr m_nullPerson;
-                
         bool m_null;
         QString m_name;
         QString m_uri;

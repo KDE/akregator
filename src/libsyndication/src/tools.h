@@ -23,6 +23,8 @@
 #ifndef LIBSYNDICATION_TOOLS_H
 #define LIBSYNDICATION_TOOLS_H
 
+#include "person.h"
+
 #include <kdepimmacros.h>
 
 #include <ctime>
@@ -31,6 +33,7 @@ class QByteArray;
 class QString;
 
 namespace LibSyndication {
+
 
 /**
  * @internal
@@ -205,6 +208,17 @@ QString normalize(const QString& str);
 KDE_EXPORT
 QString normalize(const QString& str, bool isCDATA, bool containsMarkup);
 
+/**
+ * Parses a person object from a string by identifying name and email address
+ * in the string. Currently detected variants are:
+ * "foo@bar.com", "Foo", "Foo &lt;foo@bar.com>", "foo@bar.com (Foo)".
+  * 
+ * @param str the string to parse the person from.
+ * @return a Person object containing the parsed information.
+ */
+KDE_EXPORT
+PersonPtr personFromString(const QString& str);
+        
 } // namespace LibSyndication
 
 #endif // LIBSYNDICATION_TOOLS_H

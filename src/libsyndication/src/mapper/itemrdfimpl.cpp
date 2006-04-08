@@ -21,7 +21,6 @@
  */
 
 #include "itemrdfimpl.h"
-#include "personimpl.h"
 
 #include <rdf/dublincore.h>
 #include <rdf/property.h>
@@ -31,6 +30,7 @@
 #include <constants.h>
 #include <category.h>
 #include <enclosure.h>
+#include <personimpl.h>
 #include <tools.h>
 
 #include <QList>
@@ -77,7 +77,7 @@ QList<PersonPtr> ItemRDFImpl::authors() const
     
     for ( ; it != end; ++it)
     {
-        PersonPtr ptr = PersonImpl::fromString(*it);
+        PersonPtr ptr = personFromString(*it);
         if (!ptr->isNull())
         {
             list.append(ptr);

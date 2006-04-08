@@ -20,6 +20,7 @@
  *
  */
 
+#include "personimpl.h"
 #include "tools.h"
 
 #include <kcharsets.h>
@@ -209,6 +210,55 @@ QString normalize(const QString& strp, bool isCDATA, bool containsMarkup)
             return str;
         }
     }
+}
+
+PersonPtr personFromString(const QString& strp)
+{
+    QString str = strp.trimmed();
+    if (str.isEmpty())
+        return PersonPtr();
+    
+    QString name;
+    QString uri;
+    QString email;
+
+    // look for something looking like a mail address ( "foo@bar.com", 
+    // "<foo@bar.com>") and extract it
+    
+    QRegExp remail("<?([^@\\s<]+@[^>\\s]+)>?"); // FIXME: user "proper" regexp,
+       // search kmail source for it
+    
+    int pos = remail.indexIn(str);
+    if (pos != -1)
+    {
+        QString all = remail.cap(0);
+        email = remail.cap(1);
+        str.replace(all, ""); // remove mail address
+    }
+    
+    // simplify the rest and use it as name
+    
+    name = str.simplified();
+    
+    // str might have the format "foo@bar.com (Foo M. Bar)".
+    // We cut off parentheses if there are any
+    QRegExp rename("\\(([^\\)]*)\\)");
+    
+    pos = rename.indexIn(name);
+    
+    if (pos != -1)
+    {
+        name = rename.cap(1);
+    }
+    
+    name = name.isEmpty() ? QString() : name;
+    email = email.isEmpty() ? QString() : email;
+    uri = uri.isEmpty() ? QString() : uri;
+
+    if (name.isEmpty() && email.isEmpty() && uri.isEmpty())
+        return PersonPtr();
+   
+    return PersonPtr(new PersonImpl(name, uri, email));
 }
 
 } // namespace LibSyndication

@@ -24,10 +24,10 @@
 #include "categoryrss2impl.h"
 #include "enclosurerss2impl.h"
 #include "itemrss2impl.h"
-#include "personimpl.h"
 #include <rss2/category.h>
 #include <rss2/enclosure.h>
 #include <constants.h>
+#include <personimpl.h>
 #include <tools.h>
 
 #include <QList>
@@ -68,7 +68,7 @@ QList<PersonPtr> ItemRSS2Impl::authors() const
 {
     QList<PersonPtr> list;
     
-    PersonPtr ptr = PersonImpl::fromString(m_item.author());
+    PersonPtr ptr = personFromString(m_item.author());
     
     if (!ptr->isNull())
     {
@@ -151,7 +151,10 @@ QString ItemRSS2Impl::commentsLink() const
 
 QString ItemRSS2Impl::commentsFeed() const
 {
-    return m_item.extractElementTextNS(commentApiNamespace(), QString::fromUtf8("commentRss"));
+    QString t = m_item.extractElementTextNS(commentApiNamespace(), QString::fromUtf8("commentRss"));
+    if (t.isNull())
+        t = m_item.extractElementTextNS(commentApiNamespace(), QString::fromUtf8("commentRSS"));
+    return t;
 }
 
 QString ItemRSS2Impl::commentPostUri() const

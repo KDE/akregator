@@ -24,7 +24,7 @@
 #include "feedatomimpl.h"
 #include "imageatomimpl.h"
 #include "itematomimpl.h"
-#include "personimpl.h"
+#include <personimpl.h>
 #include <atom/category.h>
 #include <atom/entry.h>
 #include <atom/link.h>

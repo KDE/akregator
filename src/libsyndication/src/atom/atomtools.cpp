@@ -44,7 +44,7 @@ QString extractAtomText(const LibSyndication::ElementWrapper& parent, const QStr
     
     if (type == QString::fromUtf8("text"))
     {
-        str = parent.extractElementTextNS(atom1Namespace(), tagname);
+        str = parent.extractElementTextNS(atom1Namespace(), tagname).simplified();
         if (isCDATA)
             str = resolveEntities(str);
             

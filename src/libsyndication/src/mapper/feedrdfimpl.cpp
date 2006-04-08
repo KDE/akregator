@@ -23,11 +23,12 @@
 #include "feedrdfimpl.h"
 #include "imagerdfimpl.h"
 #include "itemrdfimpl.h"
-#include "personimpl.h"
 
 #include <rdf/dublincore.h>
 #include <rdf/item.h>
 #include <category.h>
+#include <personimpl.h>
+#include <tools.h>
 
 #include <QString>
 #include <QStringList>
@@ -92,7 +93,7 @@ QList<PersonPtr> FeedRDFImpl::authors() const
     
     for ( ; it != end; ++it)
     {
-        PersonPtr ptr = PersonImpl::fromString(*it);
+        PersonPtr ptr = personFromString(*it);
         if (!ptr->isNull())
         {
             list.append(ptr);
