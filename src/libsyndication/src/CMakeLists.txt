@@ -66,10 +66,6 @@ set(libatomlocal_SRCS
 )
 
 
-set(libmappercommonlocal_SRCS 
-	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/mapper/personimpl.cpp
-)
-
 set(libmapperrss2local_SRCS 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/mapper/feedrss2impl.cpp 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/mapper/itemrss2impl.cpp 
