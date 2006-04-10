@@ -73,7 +73,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
         else
-            text += i18n(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
         text += "</div>\n"; // headertitle
         text += "</div>\n"; // /headerbox
         
@@ -92,14 +92,14 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
         if( !node->description().isEmpty() )
         {
             text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
-            text += i18n("<b>Description:</b> %1<br><br>").arg(node->description());
+            text += i18n("<b>Description:</b> %1<br><br>", node->description());
             text += "</div>\n"; // /description
         }
         
         if ( !node->htmlUrl().isEmpty() )
         {
             text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
-            text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>").arg(node->htmlUrl()).arg(node->htmlUrl());
+            text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
             text += "</div>\n"; // / link
         }
         
@@ -119,7 +119,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
         else
-            text += i18n(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
         text += QString("</div>\n");
         text += "</div>\n"; // /headerbox
     
@@ -135,7 +135,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
         if(node->unread() == 0)
             text += i18n(" (no unread articles)");
         else
-            text += i18n(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
         text += QString("</div>\n");
         text += "</div>\n"; // /headerbox
     
@@ -361,7 +361,7 @@ void ArticleViewer::displayAboutPage()
 
     begin(KUrl::fromPath( location ));
     QString info =
-            i18n("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
+            i18nc("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
             "--- end of comment ---",
     "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
             "<p>Akregator is an RSS feed aggregator for the K Desktop Environment. "
@@ -373,9 +373,9 @@ void ArticleViewer::displayAboutPage()
             "<a href=\"%3\">Akregator website</a>. If you do not want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
             "<p>We hope that you will enjoy Akregator.</p>\n"
             "<p>Thank you,</p>\n"
-            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n")
-            .arg(AKREGATOR_VERSION) // Akregator version
-            .arg("http://akregator.sourceforge.net/"); // Akregator homepage URL
+            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
+             AKREGATOR_VERSION, // Akregator version
+             "http://akregator.sourceforge.net/"); // Akregator homepage URL
 
     QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
     QString appTitle = i18n("Akregator");

@@ -84,7 +84,7 @@ void AddFeedDialog::slotOk( )
         feedURL.prepend("http://");
     f->setXmlUrl(feedURL);
 
-    widget->statusLabel->setText( i18n("Downloading %1").arg(feedURL) );
+    widget->statusLabel->setText( i18n("Downloading %1", feedURL) );
 
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(fetchCompleted(Feed *)) );
@@ -103,7 +103,7 @@ void AddFeedDialog::fetchCompleted(Feed */*f*/)
 
 void AddFeedDialog::fetchError(Feed *)
 {
-    KMessageBox::error(this, i18n("Feed not found from %1.").arg(feedURL));
+    KMessageBox::error(this, i18n("Feed not found from %1.", feedURL));
     KDialogBase::slotCancel();
 }
 

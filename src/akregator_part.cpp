@@ -135,7 +135,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
     {
         m_storage = Backend::StorageFactoryRegistry::self()->getFactory("dummy")->createStorage(QStringList());
 
-        KMessageBox::error(parentWidget, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.").arg(Settings::archiveBackend()), i18n("Plugin error") );
+        KMessageBox::error(parentWidget, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.", Settings::archiveBackend()), i18n("Plugin error") );
     }
 
     Filters::ArticleFilterList list;
@@ -392,7 +392,7 @@ bool Part::openFile()
 
             copyFile(backup);
 
-            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("XML Parsing Error") );
+            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>", backup), i18n("XML Parsing Error") );
 
             if (!doc.setContent(listBackup))
                 doc = createDefaultFeedList();
@@ -404,7 +404,7 @@ bool Part::openFile()
         QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
         copyFile(backup);
 
-        KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>").arg(backup), i18n("OPML Parsing Error") );
+        KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>", backup), i18n("OPML Parsing Error") );
 
         m_mainWidget->loadFeeds(createDefaultFeedList());
     }
@@ -443,7 +443,7 @@ void Part::slotSaveFeedList()
     if (file.open(QIODevice::WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
-        KMessageBox::error(m_mainWidget, i18n("Access denied: cannot save feed list (%1)").arg(m_file), i18n("Write error") );
+        KMessageBox::error(m_mainWidget, i18n("Access denied: cannot save feed list (%1)", m_file), i18n("Write error") );
         return;
     }
 
@@ -577,10 +577,10 @@ void Part::importFile(const KUrl& url)
         if (doc.setContent(file.readAll()))
             m_mainWidget->importFeeds(doc);
         else
-            KMessageBox::error(m_mainWidget, i18n("Could not import the file %1 (no valid OPML)").arg(filename), i18n("OPML Parsing Error") );
+            KMessageBox::error(m_mainWidget, i18n("Could not import the file %1 (no valid OPML)", filename), i18n("OPML Parsing Error") );
     }
     else
-        KMessageBox::error(m_mainWidget, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.").arg(filename), i18n("Read Error"));
+        KMessageBox::error(m_mainWidget, i18n("The file %1 could not be read, check if it exists or if it is readable for the current user.", filename), i18n("Read Error"));
 
     if (isRemote)
         KIO::NetAccess::removeTempFile(filename);
@@ -594,7 +594,7 @@ void Part::exportFile(const KUrl& url)
 
         if ( file.exists() &&
                 KMessageBox::questionYesNo(m_mainWidget,
-            i18n("The file %1 already exists; do you want to overwrite it?").arg(file.name()),
+            i18n("The file %1 already exists; do you want to overwrite it?", file.name()),
             i18n("Export"),
             i18n("Overwrite"),
             KStdGuiItem::cancel()) == KMessageBox::No )
@@ -602,7 +602,7 @@ void Part::exportFile(const KUrl& url)
 
         if ( !file.open(QIODevice::WriteOnly) )
         {
-            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1").arg(file.name()), i18n("Write Error") );
+            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1", file.name()), i18n("Write Error") );
             return;
         }
 

@@ -103,7 +103,7 @@ void FeedPropertiesDialog::slotSetCaption(const QString& c)
     if(c.isEmpty())
         setCaption(i18n("Feed Properties"));
     else
-        setCaption(i18n("Properties of %1").arg(c));
+        setCaption(i18n("Properties of %1", c));
 
 }
 

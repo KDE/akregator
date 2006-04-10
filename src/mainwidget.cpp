@@ -120,7 +120,7 @@ class MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
-            QString msg = i18n("<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be removed from all articles.</qt>").arg(node->title());
+            QString msg = i18n("<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be removed from all articles.</qt>", node->title());
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
                 Tag tag = node->tag();
@@ -141,7 +141,7 @@ class MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             if (node->title().isEmpty())
                 msg = i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>");
             else
-                msg = i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>").arg(node->title());
+                msg = i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
@@ -157,7 +157,7 @@ class MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             if (node->title().isEmpty())
                 msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
             else
-                msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>").arg(node->title());
+                msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
 
             if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
             {
@@ -1226,10 +1226,10 @@ void MainWidget::slotArticleDelete()
         case 0:
             return;
         case 1:
-            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>").arg(Qt::escape(articles.first().title()));
+            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", Qt::escape(articles.first().title()));
             break;
         default:
-            msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>").arg(articles.count());
+            msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
     }
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)

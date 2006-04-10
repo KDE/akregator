@@ -78,7 +78,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
     if (feeds.count() == 1)
     {
         KNotifyClient::Instance inst(m_instance);
-        KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feed added:\n %1").arg(feeds[0]));
+        KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feed added:\n %1", feeds[0]));
     }
     else if (feeds.count() > 1)
     {
@@ -86,7 +86,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
         for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
             message += *it + "\n";
         KNotifyClient::Instance inst(m_instance);
-        KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feeds added:\n %1").arg(message));
+        KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feeds added:\n %1", message));
     }
 }
 
