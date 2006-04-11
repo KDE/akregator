@@ -70,8 +70,8 @@ Viewer::Viewer(QWidget *parent, const char *name)
     KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "viewer_print");
     KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "viewer_copy");
     
-    new KAction( i18n("&Increase Font Sizes"), "viewmag+", "Ctrl+Plus", this, SLOT(slotZoomIn()), actionCollection(), "incFontSizes" );
-    new KAction( i18n("&Decrease Font Sizes"), "viewmag-", "Ctrl+Minus", this, SLOT(slotZoomOut()), actionCollection(), "decFontSizes" );
+    new KAction( i18n("&Increase Font Sizes"), "viewmag+", KShortcut( "Ctrl+Plus" ), this, SLOT(slotZoomIn()), actionCollection(), "incFontSizes" );
+    new KAction( i18n("&Decrease Font Sizes"), "viewmag-", KShortcut( "Ctrl+Minus" ), this, SLOT(slotZoomOut()), actionCollection(), "decFontSizes" );
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 

@@ -24,7 +24,7 @@ libsyndication_include_HEADERS = specificdocument.h abstractparser.h \
 
 libsyndication_includedir = $(includedir)/libsyndication
 
-libsyndication_la_LDFLAGS = $(all_libraries) $(LIB_KDECORE) $(LIB_KIO) -no-undefined -version-info 1:0:0
+libsyndication_la_LDFLAGS = $(all_libraries) $(LIB_QTXML) $(LIB_KDECORE) $(LIB_KIO) -no-undefined -version-info 1:0:0
 libsyndication_la_LIBADD = rss2/librss2local.la \
                            rdf/librdflocal.la \
                            atom/libatomlocal.la \
