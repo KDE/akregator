@@ -191,7 +191,8 @@ void MainWindow::readProperties(KConfig* config)
 
 void MainWindow::optionsConfigureKeys()
 {
-    KKeyDialog dlg( true, this );
+    KKeyDialog dlg( KKeyChooser::AllActions,
+      KKeyChooser::LetterShortcutsDisallowed, this );
 
     dlg.insert(actionCollection());
     if (m_part)
