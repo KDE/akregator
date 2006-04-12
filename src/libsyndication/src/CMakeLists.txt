@@ -6,7 +6,6 @@ add_subdirectory( atom )
 add_subdirectory( mapper ) 
 
 include_directories(
-	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/rdf/
 	${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
@@ -105,7 +104,8 @@ set(syndication_LIB_SRCS
    category.cpp 
    image.cpp 
    tools.cpp 
-   person.cpp 
+   person.cpp
+   personimpl.cpp 
    loader.cpp 
    global.cpp
    dataretriever.cpp 

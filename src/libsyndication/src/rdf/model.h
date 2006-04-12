@@ -22,11 +22,11 @@
 #ifndef LIBSYNDICATION_RDF_MODEL_H
 #define LIBSYNDICATION_RDF_MODEL_H
 
-#include <literal.h>
-#include <node.h>
-#include <property.h>
-#include <sequence.h>
-#include <statement.h>
+#include <rdf/literal.h>
+#include <rdf/node.h>
+#include <rdf/property.h>
+#include <rdf/sequence.h>
+#include <rdf/statement.h>
 
 #include <kdepimmacros.h>
 
