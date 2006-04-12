@@ -27,8 +27,11 @@
 
 #include "../article.h"
 #include "../utils.h"
-#include "../librss/article.h"
-#include "../librss/document.h"
+#include "libsyndication/src/documentsource.h"
+#include "libsyndication/src/global.h"
+#include "libsyndication/src/feed.h"
+#include "libsyndication/src/item.h"
+
 #include <mk4.h>
 
 #include <qdom.h>
@@ -101,31 +104,28 @@ void FeedStorageMK4Impl::convertOldArchive()
     if ( !file.open(QIODevice::ReadOnly) )
         return;
 
-    QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8);
-    QString data=stream.read();
-    QDomDocument xmldoc;
+    LibSyndication::DocumentSource src(file.readAll(), "http://foo");
+    file.close();
+    LibSyndication::FeedPtr feed = LibSyndication::parse(src);
 
-    if (!xmldoc.setContent(data))
-        return;
-
-    RSS::Document doc(xmldoc);
-
-    RSS::Article::List d_articles = doc.articles();
-    RSS::Article::List::ConstIterator it = d_articles.begin();
-    RSS::Article::List::ConstIterator en = d_articles.end();
-
-    int unr = 0;
-    for (; it != en; ++it)
+    if (feed)
     {
-        Article a(*it, this);
-        if (a.status() != Article::Read)
-            unr++;
-    }
+        QList<LibSyndication::ItemPtr> items = feed->items();
+        QList<LibSyndication::ItemPtr>::ConstIterator it = items.begin();
+        QList<LibSyndication::ItemPtr>::ConstIterator en = items.end();
 
-    setUnread(unr);
-    d->modified = true;
-    commit();
+        int unr = 0;
+        for (; it != en; ++it)
+        {
+            Article a(*it, this);
+            if (a.status() != Article::Read)
+                unr++;
+        }
+
+        setUnread(unr);
+        d->modified = true;
+        commit();
+    }
 }
 
 FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
