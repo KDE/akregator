@@ -30,7 +30,7 @@
 
 #include "tag.h"
 #include "tagpropertiesdialog.h"
-#include "tagpropertieswidgetbase.h"
+#include "ui_tagpropertieswidgetbase.h"
 
 namespace Akregator {
 

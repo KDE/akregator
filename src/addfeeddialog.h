@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ADDFEEDDIALOG_H
 #define AKREGATOR_ADDFEEDDIALOG_H
 
-#include "addfeedwidgetbase.h"
+#include "ui_addfeedwidgetbase.h"
 
 #include <kdialogbase.h>
 

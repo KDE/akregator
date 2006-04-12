@@ -1,7 +1,7 @@
 #ifndef AKREGATOR_SETTINGS_ADVANCED_H
 #define AKREGATOR_SETTINGS_ADVANCED_H
 
-#include "settings_advancedbase.h"
+#include "ui_settings_advancedbase.h"
 
 #include <QHash>
 

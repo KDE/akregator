@@ -25,10 +25,10 @@
 #include "akregatorconfig.h"
 #include "configdialog.h"
 #include "settings_advanced.h"
-#include "settings_appearance.h"
-#include "settings_archive.h"
-#include "settings_browser.h"
-#include "settings_general.h"
+#include "ui_settings_appearance.h"
+#include "ui_settings_archive.h"
+#include "ui_settings_browser.h"
+#include "ui_settings_general.h"
 
 #include <kcombobox.h>
 #include <klocale.h>

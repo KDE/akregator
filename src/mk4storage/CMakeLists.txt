@@ -16,7 +16,7 @@ set(akregator_mk4storage_plugin_PART_SRCS
 
 kde4_automoc(${akregator_mk4storage_plugin_PART_SRCS})
 
-kde4_add_ui_files(akregator_mk4storage_plugin_PART_SRCS mk4confwidgetbase.ui )
+kde4_add_ui3_files(akregator_mk4storage_plugin_PART_SRCS mk4confwidgetbase.ui )
 
 kde4_add_kcfg_files(akregator_mk4storage_plugin_PART_SRCS mk4config.kcfgc )
 
