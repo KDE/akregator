@@ -1,18 +1,18 @@
 kde4_header()
 
-set(librsslocal_SRCS 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/article.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/document.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/image.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/textinput.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/tools_p.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/loader.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/enclosure.cpp 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss/category.cpp
-	)
+#set(librsslocal_SRCS 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/article.cpp 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/document.cpp 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/image.cpp 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/textinput.cpp 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/tools_p.cpp 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/loader.cpp 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/enclosure.cpp 
+#	${CMAKE_SOURCE_DIR}/akregator/src/librss/category.cpp
+#	)
 
 
-add_subdirectory( librss ) 
+#add_subdirectory( librss ) 
 add_subdirectory( libsyndication ) 
 add_subdirectory( about ) 
 add_subdirectory( mk4storage ) 
@@ -20,7 +20,6 @@ add_subdirectory( pics )
 
 include_directories( 
 	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/ 
-	${CMAKE_SOURCE_DIR}/akregator/src/librss 
 	${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
@@ -39,7 +38,7 @@ install_targets(/bin akregator )
 
 ########### next target ###############
 
-set(akregatorprivate_LIB_SRCS ${librsslocal_SRCS}
+set(akregatorprivate_LIB_SRCS # ${librsslocal_SRCS}
    articlefilter.cpp 
    aboutdata.cpp 
    trayicon.cpp 

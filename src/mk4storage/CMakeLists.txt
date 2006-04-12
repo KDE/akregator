@@ -1,5 +1,24 @@
 kde4_header()
 
+set(libmetakitlocal_SRCS 
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/column.cpp 
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/custom.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/derived.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/field.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/fileio.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/format.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/handler.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/persist.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/remap.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/std.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/store.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/string.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/table.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/univ.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/view.cpp
+                ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/src/viewx.cpp
+                )
+
 add_subdirectory( metakit ) 
 
 include_directories( ${CMAKE_SOURCE_DIR}/akregator/src ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
@@ -7,7 +26,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/akregator/src ${CMAKE_SOURCE_DIR}/akreg
 
 ########### next target ###############
 
-set(akregator_mk4storage_plugin_PART_SRCS 
+set(akregator_mk4storage_plugin_PART_SRCS ${libmetakitlocal_SRCS}
    feedstoragemk4impl.cpp 
    storagemk4impl.cpp 
    storagefactorymk4impl.cpp 
