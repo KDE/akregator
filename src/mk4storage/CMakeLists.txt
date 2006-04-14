@@ -21,7 +21,7 @@ set(libmetakitlocal_SRCS
 
 add_subdirectory( metakit ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/akregator/src ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${CMAKE_SOURCE_DIR}/akregator/src ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/akregator/src/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
 ########### next target ###############

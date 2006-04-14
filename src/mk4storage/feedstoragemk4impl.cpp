@@ -27,10 +27,10 @@
 
 #include "../article.h"
 #include "../utils.h"
-#include "libsyndication/src/documentsource.h"
-#include "libsyndication/src/global.h"
-#include "libsyndication/src/feed.h"
-#include "libsyndication/src/item.h"
+#include <libsyndication/documentsource.h>
+#include <libsyndication/global.h>
+#include <libsyndication/feed.h>
+#include <libsyndication/item.h>
 
 #include <mk4.h>
 

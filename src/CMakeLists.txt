@@ -13,13 +13,13 @@ kde4_header()
 
 
 #add_subdirectory( librss ) 
-add_subdirectory( libsyndication ) 
+
 add_subdirectory( about ) 
 add_subdirectory( mk4storage ) 
 add_subdirectory( pics ) 
 
 include_directories( 
-	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/ 
+	${CMAKE_SOURCE_DIR}/libsyndication/ 
 	${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
