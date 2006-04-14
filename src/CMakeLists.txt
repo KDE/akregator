@@ -19,7 +19,7 @@ add_subdirectory( mk4storage )
 add_subdirectory( pics ) 
 
 include_directories( 
-	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/src/ 
+	${CMAKE_SOURCE_DIR}/akregator/src/libsyndication/ 
 	${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 

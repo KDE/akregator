@@ -7,7 +7,10 @@ id: #http://www.example.com/a/1#
 title: #xhtml:body#
 link: #http://www.example.com/a/1#
 description: #Content in xhtml:body#
-content: #<p>This is a paragraph. Containing <a href="http://www.example.com/" >a link</a> </p> <blockquote> <p>This is a blockquote</p> </blockquote>#
+content: #<p>This is a paragraph. Containing <a href="http://www.example.com/" >a link</a>
+ </p><blockquote>
+  <p>This is a blockquote</p>
+ </blockquote>#
 datePublished: #Sun Mar 14 19:59:12 2004#
 dateUpdated: #Sun Mar 14 19:59:12 2004#
 commentsLink: #http://www.bersvendsen.com/arkiv/207.html#comments#

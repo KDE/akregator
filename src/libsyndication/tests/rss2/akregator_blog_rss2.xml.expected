@@ -18,6 +18,7 @@ name: #frank#
 term: #General#
 # Category end ####################
 commentsLink: #http://akregator.pwsp.net/blog/?p=26#comments#
+commentsFeed: #http://akregator.pwsp.net/blog/?feed=rss2&p=26#
 # Item end ########################
 # Feed end ########################
 
