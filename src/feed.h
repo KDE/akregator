@@ -259,7 +259,7 @@ class Feed : public TreeNode
         
     private slots:
 
-        void fetchCompleted(LibSyndication::Loader *loader, LibSyndication::FeedPtr doc, LibSyndication::ErrorCode errorCode);
+        void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
         void slotImageFetched(const QPixmap& image);
 
     private:
@@ -277,7 +277,7 @@ class Feed : public TreeNode
         
         void enforceLimitArticleNumber();
 
-        void appendArticles(const LibSyndication::FeedPtr feed);
+        void appendArticles(const Syndication::FeedPtr feed);
         
         /** appends article @c a to the article list */
         void appendArticle(const Article& a);

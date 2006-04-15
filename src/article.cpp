@@ -41,7 +41,7 @@
 #include <kdebug.h>
 #include <kurl.h>
 
-using namespace LibSyndication;
+using namespace Syndication;
 
 namespace Akregator {
 

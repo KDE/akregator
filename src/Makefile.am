@@ -158,7 +158,7 @@ partrc_DATA = articleviewer.rc pageviewer.rc akregator_part.rc eventsrc
 
 kde_servicetypes_DATA = akregator_plugin.desktop
 
-SUBDIRS = libsyndication about . pics
+SUBDIRS = about . pics
 
 #build apidox in subdirs, disable it for this dir for now
 

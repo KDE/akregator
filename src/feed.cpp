@@ -50,7 +50,7 @@
 #include <QPixmap>
 #include <QTimer>
 
-using LibSyndication::ItemPtr;
+using Syndication::ItemPtr;
 
 namespace Akregator {
 
@@ -70,7 +70,7 @@ class Feed::FeedPrivate
         bool fetchError;
         int fetchTries;
         bool followDiscovery;
-        LibSyndication::Loader* loader;
+        Syndication::Loader* loader;
         bool articlesLoaded;
         Backend::FeedStorage* archive;
 
@@ -94,7 +94,7 @@ class Feed::FeedPrivate
         QList<Article> updatedArticlesNotify;
         
         QPixmap imagePixmap;
-        LibSyndication::ImagePtr image;
+        Syndication::ImagePtr image;
         QPixmap favicon;
 };
             
@@ -414,7 +414,7 @@ void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 }
 
 
-void Feed::appendArticles(const LibSyndication::FeedPtr feed)
+void Feed::appendArticles(const Syndication::FeedPtr feed)
 {
     bool changed = false;
 
@@ -556,9 +556,9 @@ void Feed::tryFetch()
 {
     d->fetchError = false;
 
-    d->loader = LibSyndication::Loader::create( this, SLOT(fetchCompleted(LibSyndication::Loader*, 
-                                                                          LibSyndication::FeedPtr, 
-                                                                          LibSyndication::ErrorCode)) );
+    d->loader = Syndication::Loader::create( this, SLOT(fetchCompleted(Syndication::Loader*, 
+                                                                       Syndication::FeedPtr, 
+                                                                       Syndication::ErrorCode)) );
     //connect(d->loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
     d->loader->loadFrom( d->xmlUrl);
 }
@@ -568,20 +568,20 @@ void Feed::slotImageFetched(const QPixmap& image)
     setImage(image);
 }
 
-void Feed::fetchCompleted(LibSyndication::Loader *l, LibSyndication::FeedPtr doc, LibSyndication::ErrorCode status)
+void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Syndication::ErrorCode status)
 {
     // Note that loader instances delete themselves
     d->loader = 0;
 
     // fetching wasn't successful:
-    if (status != LibSyndication::Success)
+    if (status != Syndication::Success)
     {
-        if (status == LibSyndication::Aborted)
+        if (status == Syndication::Aborted)
         {
             d->fetchError = false;
             emit fetchAborted(this);
         }
-        else if (d->followDiscovery && (status == LibSyndication::InvalidXml) && (d->fetchTries < 3) && (l->discoveredFeedURL().isValid()))
+        else if (d->followDiscovery && (status == Syndication::InvalidXml) && (d->fetchTries < 3) && (l->discoveredFeedURL().isValid()))
         {
             d->fetchTries++;
             d->xmlUrl = l->discoveredFeedURL().url();

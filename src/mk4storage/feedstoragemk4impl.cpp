@@ -104,15 +104,15 @@ void FeedStorageMK4Impl::convertOldArchive()
     if ( !file.open(QIODevice::ReadOnly) )
         return;
 
-    LibSyndication::DocumentSource src(file.readAll(), "http://foo");
+    Syndication::DocumentSource src(file.readAll(), "http://foo");
     file.close();
-    LibSyndication::FeedPtr feed = LibSyndication::parse(src);
+    Syndication::FeedPtr feed = Syndication::parse(src);
 
     if (feed)
     {
-        QList<LibSyndication::ItemPtr> items = feed->items();
-        QList<LibSyndication::ItemPtr>::ConstIterator it = items.begin();
-        QList<LibSyndication::ItemPtr>::ConstIterator en = items.end();
+        QList<Syndication::ItemPtr> items = feed->items();
+        QList<Syndication::ItemPtr>::ConstIterator it = items.begin();
+        QList<Syndication::ItemPtr>::ConstIterator en = items.end();
 
         int unr = 0;
         for (; it != en; ++it)
