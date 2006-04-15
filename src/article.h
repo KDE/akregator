@@ -40,7 +40,7 @@ typedef unsigned int uint;
 class KUrl;
 class KUrlLabel;
 
-namespace LibSyndication
+namespace Syndication
 {
     class Item;
     template <class T> class SharedPtr;
@@ -54,7 +54,7 @@ namespace Backend
     class FeedStorage;
 }
 class Feed;
-/** A proxy class for LibSyndication::ItemPtr with some additional methods to assist sorting. */
+/** A proxy class for Syndication::ItemPtr with some additional methods to assist sorting. */
 class Article
 {
     public:
@@ -73,9 +73,9 @@ class Article
         /** creates an article object from a parsed librss Article
             the article is added to the archive if not yet stored, or updated if stored but modified
         */
-        Article(LibSyndication::ItemPtr article, Feed* feed);
+        Article(Syndication::ItemPtr article, Feed* feed);
         
-        Article(LibSyndication::ItemPtr article, Backend::FeedStorage* archive);
+        Article(Syndication::ItemPtr article, Backend::FeedStorage* archive);
         Article(const Article &other);
         Article &operator=(const Article &other);
         bool operator==(const Article &other) const;
@@ -131,7 +131,7 @@ class Article
 
 
     private:
-        void initialize(LibSyndication::ItemPtr item, Backend::FeedStorage* archive);
+        void initialize(Syndication::ItemPtr item, Backend::FeedStorage* archive);
         static QString buildTitle(const QString& description);
         
         struct Private;
