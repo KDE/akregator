@@ -388,29 +388,32 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
         {
             ArticleItem* ali = d->articleMap[*it];
 
-            if (ali && (*it).isDeleted()) // if article was set to deleted, delete item
+            if (ali)
             {
-                if (singleSelected && ali->isSelected())
+                if ((*it).isDeleted()) // if article was set to deleted, delete item
                 {
-                    if (ali->itemBelow())
-                        next = ali->itemBelow();
-                    else if (ali->itemAbove())
-                        next = ali->itemAbove();
+                    if (singleSelected && ali->isSelected())
+                    {
+                        if (ali->itemBelow())
+                            next = ali->itemBelow();
+                        else if (ali->itemAbove())
+                            next = ali->itemAbove();
+                    }
+                    
+                    d->articleMap.remove(*it);
+                    delete ali;
                 }
-                
-                d->articleMap.remove(*it);
-                delete ali;
-            }
-            else
-            {
-                ali->updateItem(*it);
-                // if the updated article matches the filters after the update,
-                // make visible. If it matched them before but not after update,
-                // they should stay visible (to not confuse users)
-                if ((!statusActive || d->statusFilter.matches(ali->article()))
-                      && (!textActive || d->textFilter.matches( ali->article())) )
-                    ali->setVisible(true);
-            }
+                else
+                {
+                    ali->updateItem(*it);
+                    // if the updated article matches the filters after the update,
+                    // make visible. If it matched them before but not after update,
+                    // they should stay visible (to not confuse users)
+                    if ((!statusActive || d->statusFilter.matches(ali->article()))
+                        && (!textActive || d->textFilter.matches( ali->article())) )
+                        ali->setVisible(true);
+                }
+            } // if ali
         }
     }
 

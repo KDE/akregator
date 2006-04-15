@@ -269,7 +269,8 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
             item->nodeChanged();     
             m_view->d->itemDict.insert(node, item);
             m_view->connectToNode(node);
-            parentItem->sortChildItems(0, true);
+            if (parentItem)
+                parentItem->sortChildItems(0, true);
             return true;
         }
 
