@@ -198,7 +198,7 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
 
     initFonts();
 
-    LibSyndication::FileRetriever::setUserAgent(QString("Akregator/%1; libsyndication").arg(AKREGATOR_VERSION));
+    Syndication::FileRetriever::setUserAgent(QString("Akregator/%1; libsyndication").arg(AKREGATOR_VERSION));
 }
 
 void Part::loadPlugins()
@@ -237,7 +237,7 @@ void Part::slotSettingsChanged()
 {
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
 
-    LibSyndication::FileRetriever::setUseCache(Settings::useHTMLCache());
+    Syndication::FileRetriever::setUseCache(Settings::useHTMLCache());
 
     QStringList fonts;
     fonts.append(Settings::standardFont());
