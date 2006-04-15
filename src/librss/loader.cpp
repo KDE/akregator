@@ -379,7 +379,7 @@ void Loader::discoverFeeds(const QByteArray &data)
         while ( pos >= 0 ) {
             pos = rx.search( str, pos );
             s2=rx.cap(1);
-            if (s2.endsWith(".rdf")|s2.endsWith(".rss")|s2.endsWith(".xml"))
+            if (s2.endsWith(".rdf") || s2.endsWith(".rss") || s2.endsWith(".xml"))
                     feeds.append(s2);
             if ( pos >= 0 ) {
                 pos += rx.matchedLength();

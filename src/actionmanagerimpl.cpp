@@ -179,10 +179,12 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
     d->tagActions.clear();
 
     //TODO: remove actions from menus, delete actions, clear maps
-
-    QList<Tag> list = tagSet->toHash().values();
-    for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
-        slotTagAdded(*it);
+    if (tagSet)
+    {
+        QList<Tag> list = tagSet->toHash().values();
+        for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
+            slotTagAdded(*it);
+    }
 }
 
 void ActionManagerImpl::slotTagAdded(const Tag& tag)
@@ -228,9 +230,9 @@ ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* na
 
 ActionManagerImpl::~ActionManagerImpl()
 {
+    delete d->nodeSelectVisitor;
     delete d;
     d = 0;
-    delete d->nodeSelectVisitor;
 }
 
 void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
