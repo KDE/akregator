@@ -72,8 +72,8 @@
   <Menu name="settings">
     <Action name="show_quick_filter"/>
     <Separator/>
-    <Action name="options_configure_notifications"/>
-    <Action name="akregator_configure_akregator"/>
+    <Action name="options_configure_notifications" group="settings_configure"/>
+    <Action name="akregator_configure_akregator" group="settings_configure"/>
   </Menu>
   <Menu name="help">
   </Menu>
