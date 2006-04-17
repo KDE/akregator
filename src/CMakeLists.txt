@@ -138,7 +138,7 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} akregatorpart )
 
 target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} kutils akregatorprivate )
 
-install_targets(${LIB_INSTALL_DIR}/kde4 akregatorpart )
+install_targets(${PLUGIN_INSTALL_DIR} akregatorpart )
 
 
 ########### install files ###############
