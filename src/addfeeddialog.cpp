@@ -42,6 +42,7 @@ namespace Akregator {
 AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
    : QWidget(parent)
 {
+    setObjectName(name);
     setupUi(this);
     pixmapLabel1->setPixmap(kapp->iconLoader()->loadIcon( "package_network",K3Icon::Desktop,K3Icon::SizeHuge, K3Icon::DefaultState, 0, true));
     statusLabel->setText(QString::null);
@@ -80,7 +81,7 @@ void AddFeedDialog::slotOk( )
     if (feedURL.startsWith("feed:"))
         feedURL = feedURL.right( feedURL.length() - 5 );
 
-    if (feedURL.find(":/") == -1)
+    if (feedURL.indexOf(":/") == -1)
         feedURL.prepend("http://");
     f->setXmlUrl(feedURL);
 

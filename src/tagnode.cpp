@@ -225,7 +225,7 @@ void TagNode::slotArticlesUpdated(TreeNode* node, const QList<Article>& list)
         {
             if (!d->filter.matches(*it)) // articles is in list, but doesn't match our criteria anymore -> remove it
 	    {
-                d->articles.remove(*it);
+                d->articles.removeAll(*it);
                 d->removedArticlesNotify.append(*it);
                 updated = true;
             }
@@ -260,7 +260,7 @@ void TagNode::slotArticlesRemoved(TreeNode* node, const QList<Article>& list)
     {
         if (d->articles.contains(*it))
         {
-            d->articles.remove(*it);
+            d->articles.removeAll(*it);
             d->removedArticlesNotify.append(*it);
             removed = true;
         }

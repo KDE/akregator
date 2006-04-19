@@ -186,8 +186,9 @@ MainWidget::~MainWidget()
 }
 
 MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
- : QWidget(parent, name), m_viewMode(NormalView), m_actionManager(actionManager)
+ : QWidget(parent), m_viewMode(NormalView), m_actionManager(actionManager)
 {
+    setObjectName(name);
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
     m_deleteNodeVisitor = new DeleteNodeVisitor(this);
     m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
@@ -249,8 +250,11 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     m_tabWidget->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
 
-    m_mainTab = new QWidget(this, "Article Tab");
-    QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab, 0, 2, "mainTabLayout");
+    m_mainTab = new QWidget(this);
+    m_mainTab->setObjectName("Article Tab");
+
+    QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab);
+    mainTabLayout->setObjectName("mainTabLayout");
 
     m_mainTab->setWhatsThis( i18n("Articles list."));
 
@@ -261,9 +265,11 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     mainTabLayout->addWidget(m_searchBar);
 
-    m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab, "panner2");
+    m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
+    m_articleSplitter->setObjectName("panner2");
 
     m_articleList = new ArticleListView( m_articleSplitter, "articles" );
+
     m_actionManager->initArticleListView(m_articleList);
 
     connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Article&, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, const Article&, const QPoint &, int)));
@@ -322,6 +328,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_expiryTimer->start(3600*1000);
 
     m_markReadTimer = new QTimer(this);
+    m_markReadTimer->setSingleShot(true);
     connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
 
     switch (Settings::viewMode())
@@ -426,7 +433,7 @@ void MainWidget::sendArticle(bool attach)
     if (!frame)
         return;
 
-    QByteArray text = frame->url().prettyURL().latin1();
+    QByteArray text = frame->url().prettyURL().toLatin1();
 
     if(text.isEmpty() || text.isNull())
         return;
@@ -1099,7 +1106,7 @@ void MainWidget::slotArticleSelected(const Article& article)
             delay = Settings::markReadDelay();
 
             if (delay > 0)
-                m_markReadTimer->start( delay*1000, true );
+                m_markReadTimer->start( delay*1000 );
             else
                 a.setStatus(Article::Read);
         }

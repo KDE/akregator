@@ -71,7 +71,7 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitFeed(Feed* node)
         {
-            m_list->d->urlMap[node->xmlUrl()].remove(node);
+            m_list->d->urlMap[node->xmlUrl()].removeAll(node);
             return true;
         }
 

@@ -136,7 +136,7 @@ void Criterion::readConfig(KConfig* config)
 {
     m_subject = stringToSubject(config->readEntry(QString::fromLatin1("subject"), QString()));
     m_predicate = stringToPredicate(config->readEntry(QString::fromLatin1("predicate"), QString()));
-    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType"), QString()).ascii());
+    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType"), QString()).toAscii());
 
     if (type != QVariant::Invalid)
     {
@@ -175,7 +175,7 @@ bool Criterion::satisfiedBy( const Article &article ) const
 
     switch ( predicateType ) {
         case Contains:
-            satisfied = concreteSubject.toString().find( m_object.toString(), 0, false ) != -1;
+            satisfied = concreteSubject.toString().indexOf( m_object.toString(), 0, Qt::CaseInsensitive ) != -1;
             break;
         case Equals:
             if (subjectType=="int")
@@ -184,7 +184,7 @@ bool Criterion::satisfiedBy( const Article &article ) const
                 satisfied = concreteSubject.toString() == m_object.toString();
             break;
         case Matches:
-            satisfied = QRegExp( m_object.toString() ).search( concreteSubject.toString() ) != -1;
+            satisfied = QRegExp( m_object.toString() ).indexIn( concreteSubject.toString() ) != -1;
             break;
         default:
             kDebug() << "Internal inconsistency; predicateType should never be Negation" << endl;

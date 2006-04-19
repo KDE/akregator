@@ -61,14 +61,14 @@ public:
     int delay;
 };
 
-SearchBar::SearchBar(QWidget* parent, const char* name) : KHBox(parent), d(new SearchBar::SearchBarPrivate)
+SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBarPrivate)
 {
     d->delay = 400;
     setMargin(2);
     setSpacing(5);
     setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
     QToolButton *clearButton = new QToolButton(this);
-    clearButton->setIconSet( SmallIconSet( QApplication::isRightToLeft() ? "clear_left" : "locationbar_erase" ) );
+    clearButton->setIcon( QIcon(QApplication::isRightToLeft() ? "clear_left" : "locationbar_erase") );
 
     clearButton->setAutoRaise(true);
 
@@ -89,15 +89,15 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : KHBox(parent), d(new S
     d->searchCombo = new KComboBox(this);
     d->searchCombo->setObjectName("searchcombo");
 
-    QPixmap iconAll = KGlobal::iconLoader()->loadIcon("exec", K3Icon::Small);
-    QPixmap iconNew(locate("data", "akregator/pics/kmmsgnew.png"));
-    QPixmap iconUnread(locate("data", "akregator/pics/kmmsgunseen.png"));
-    QPixmap iconKeep(locate("data", "akregator/pics/kmmsgflag.png"));
+    QIcon iconAll = KGlobal::iconLoader()->loadIcon("exec", K3Icon::Small);
+    QIcon iconNew(locate("data", "akregator/pics/kmmsgnew.png"));
+    QIcon iconUnread(locate("data", "akregator/pics/kmmsgunseen.png"));
+    QIcon iconKeep(locate("data", "akregator/pics/kmmsgflag.png"));
     
-    d->searchCombo->insertItem(iconAll, i18n("All Articles"));
-    d->searchCombo->insertItem(iconUnread, i18n("Unread"));
-    d->searchCombo->insertItem(iconNew, i18n("New"));
-    d->searchCombo->insertItem(iconKeep, i18n("Important"));
+    d->searchCombo->addItem(iconAll, i18n("All Articles"));
+    d->searchCombo->addItem(iconUnread, i18n("Unread"));
+    d->searchCombo->addItem(iconNew, i18n("New"));
+    d->searchCombo->addItem(iconKeep, i18n("Important"));
     
     clearButton->setToolTip( i18n( "Clear filter" ) );
     d->searchLine->setToolTip( i18n( "Enter space-separated terms to filter article list" ) );
@@ -110,6 +110,7 @@ SearchBar::SearchBar(QWidget* parent, const char* name) : KHBox(parent), d(new S
                         this, SLOT(slotSearchComboChanged(int)));
 
     connect(&(d->timer), SIGNAL(timeout()), this, SLOT(slotActivateSearch()));
+    d->timer.setSingleShot(true);
 }
 
 SearchBar::~SearchBar()
@@ -125,7 +126,7 @@ QString SearchBar::text() const
 
 int SearchBar::status() const
 {
-    return d->searchCombo->currentItem();
+    return d->searchCombo->currentIndex();
 }
 
 void SearchBar::setDelay(int ms)
@@ -143,7 +144,7 @@ void SearchBar::slotClearSearch()
     if (status() != 0 || !d->searchLine->text().isEmpty())
     {
         d->searchLine->clear();
-        d->searchCombo->setCurrentItem(0);
+        d->searchCombo->setCurrentIndex(0);
         d->timer.stop();
         slotActivateSearch();
     }
@@ -151,7 +152,7 @@ void SearchBar::slotClearSearch()
 
 void SearchBar::slotSetStatus(int status)
 {
-     d->searchCombo->setCurrentItem(status);
+     d->searchCombo->setCurrentIndex(status);
 }
 
 void SearchBar::slotSetText(const QString& text)
@@ -164,7 +165,7 @@ void SearchBar::slotSearchComboChanged(int /*index*/)
     if (d->timer.isActive())
         d->timer.stop();    
         
-    d->timer.start(200, true);
+    d->timer.start(200);
 }
 
 void SearchBar::slotSearchStringChanged(const QString& search)
@@ -173,7 +174,7 @@ void SearchBar::slotSearchStringChanged(const QString& search)
     if (d->timer.isActive())
     	d->timer.stop();    
 
-    d->timer.start(200, true);
+    d->timer.start(200);
 }
 
 void SearchBar::slotActivateSearch()
@@ -189,9 +190,9 @@ void SearchBar::slotActivateSearch()
         textCriteria << crit1;
     }
 
-    if (d->searchCombo->currentItem())
+    if (d->searchCombo->currentIndex())
     {
-        switch (d->searchCombo->currentItem())
+        switch (d->searchCombo->currentIndex())
         {
             case 1: // Unread
             {

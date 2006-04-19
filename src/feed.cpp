@@ -467,7 +467,7 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
                 changed = true;
             }
             else if (old.isDeleted())
-                deletedArticles.remove(mya);
+                deletedArticles.removeAll(mya);
         }    
     }
     
@@ -482,7 +482,7 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
         ++dit;
         d->articles.remove((*dtmp).guid());
         d->archive->deleteArticle((*dtmp).guid());
-        d->deletedArticles.remove(*dtmp);
+        d->deletedArticles.removeAll(*dtmp);
     }
     
     if (changed)

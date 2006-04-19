@@ -98,7 +98,7 @@ class NodeList::RemoveNodeVisitor : public TreeNodeVisitor
         virtual bool visitTreeNode(TreeNode* node)
         {
             m_list->d->idMap.remove(node->id());
-            m_list->d->flatList.remove(node);
+            m_list->d->flatList.removeAll(node);
 
             disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_list, SLOT(slotNodeDestroyed(TreeNode*) ));
             m_list->signalNodeRemoved(node); // emit signal

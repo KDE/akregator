@@ -40,7 +40,7 @@ namespace Akregator {
 FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
         : QWidget(parent)
 {
-    setName(name);
+    setObjectName(name);
     setupUi(this);
 }
 
@@ -59,7 +59,7 @@ void FeedPropertiesWidget::slotUpdateComboBoxActivated( int index )
 
 void FeedPropertiesWidget::slotUpdateCheckBoxToggled( bool enabled )
 {
-    if (enabled && updateComboBox->currentItem() != 3 ) // "never"
+    if (enabled && updateComboBox->currentIndex() != 3 ) // "never"
         updateSpinBox->setEnabled(true);
     else
         updateSpinBox->setEnabled(false);
@@ -147,7 +147,7 @@ bool FeedPropertiesDialog::autoFetch() const
 
 int FeedPropertiesDialog::fetchInterval() const
 {
-    switch (widget->updateComboBox->currentItem() )
+    switch (widget->updateComboBox->currentIndex() )
     {
         case 0: // minutes
             return widget->updateSpinBox->value();

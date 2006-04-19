@@ -11,9 +11,9 @@
 
 namespace Akregator {
 
-SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(parent, name)
+SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(parent)
 {
-    setName(name);
+    setObjectName(name);
     setupUi(this);
     
     QStringList backends = Backend::StorageFactoryRegistry::self()->list();
@@ -24,7 +24,7 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
     {
         m_factories[i] = Backend::StorageFactoryRegistry::self()->getFactory(*it);
         m_keyPos[m_factories[i]->key()] = i;
-        cbBackend->insertItem(m_factories[i]->name());
+        cbBackend->addItem(m_factories[i]->name());
         i++;
     }
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
@@ -33,18 +33,18 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
 
 QString SettingsAdvanced::selectedFactory() const
 {
-    return m_factories[cbBackend->currentItem()]->key();
+    return m_factories[cbBackend->currentIndex()]->key();
 }
 
 void SettingsAdvanced::selectFactory(const QString& key)
 {
-    cbBackend->setCurrentItem(m_keyPos[key]);
+    cbBackend->setCurrentIndex(m_keyPos[key]);
     pbBackendConfigure->setEnabled((m_factories[m_keyPos[key]]->isConfigurable()));
 }
 
 void SettingsAdvanced::slotConfigureStorage()
 {
-    m_factories[cbBackend->currentItem()]->configure();
+    m_factories[cbBackend->currentIndex()]->configure();
 }
 
 void SettingsAdvanced::slotFactorySelected(int pos)

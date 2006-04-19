@@ -154,13 +154,14 @@ void ListTabWidget::slotTabClicked(int id)
     }
 }
 
-ListTabWidget::ListTabWidget(QWidget* parent, const char* name) : QWidget(parent, name), d(new ListTabWidgetPrivate)
+ListTabWidget::ListTabWidget(QWidget* parent, const char* name) : QWidget(parent), d(new ListTabWidgetPrivate)
 {
+    setObjectName(name);
     d->idCounter = 0;
     d->current = 0;
     d->currentID = -1;
     d->viewMode = verticalTabs;
-    d->layout = new QGridLayout(this, 1, 2);
+    d->layout = new QGridLayout(this);
     d->tabBar = new KMultiTabBar(KMultiTabBar::Vertical, this); 
     d->tabBar->setStyle(KMultiTabBar::KDEV3ICON);
     //d->tabBar->setStyle(KMultiTabBar::KDEV3);
@@ -198,7 +199,9 @@ void ListTabWidget::addView(NodeListView* view, const QString& caption, const QP
 {
     d->captions[view] = caption;    
 
-    view->reparent(d->stack, QPoint(0,0));
+    view->setParent(d->stack);
+    view->move(QPoint(0,0));
+    
     d->stack->addWidget(view);
    
     int tabId = d->idCounter++;

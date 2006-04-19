@@ -204,7 +204,7 @@ void Folder::removeChild(TreeNode* node)
     if (node && d->children.contains(node))
     {    
         node->setParent(0);
-        d->children.remove(node);
+        d->children.removeAll(node);
         disconnectFromNode(node);
         updateUnreadCount();    
         emit signalChildRemoved(this, node);
@@ -280,7 +280,7 @@ void Folder::slotChildChanged(TreeNode* /*node*/)
 
 void Folder::slotChildDestroyed(TreeNode* node)
 {
-    d->children.remove(node);
+    d->children.removeAll(node);
     updateUnreadCount();    
     nodeModified();
 }

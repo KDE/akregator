@@ -380,8 +380,8 @@ bool Part::openFile()
         {
             // Read OPML feeds list and build QDom tree.
             QTextStream stream(&file);
-            stream.setEncoding(QTextStream::UnicodeUTF8); // FIXME not all opmls are in utf8
-            str = stream.read();
+            stream.setCodec("UTF-8"); // FIXME not all opmls are in utf8
+            str = stream.readAll();
             file.close();
         }
 
@@ -449,7 +449,7 @@ void Part::slotSaveFeedList()
 
     // use QTextStream to dump the text to the file
     QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8);
+    stream.setCodec("UTF-8");
 
     // Write OPML data file.
     // Archive data files are saved elsewhere.
@@ -492,14 +492,14 @@ QWidget* Part::getMainWindow()
     // check if there is an akregator main window
     foreach (wid, QApplication::topLevelWidgets())
     {
-        if (QString(wid->name()) == "akregator_mainwindow")
+        if (wid->objectName() == "akregator_mainwindow")
             return wid;
     }
 
     // if not, check if there is an kontact main window
     foreach (wid, QApplication::topLevelWidgets())
     {
-        if (QString(wid->name()).startsWith("kontact-mainwindow"))
+        if (wid->objectName().startsWith("kontact-mainwindow"))
             return wid;
     }
     
@@ -544,7 +544,7 @@ void Part::saveTagSet(const QString& path)
     if ( file.open(QIODevice::WriteOnly) )
     {
         QTextStream stream(&file);
-        stream.setEncoding(QTextStream::UnicodeUTF8);
+        stream.setCodec("UTF-8");
         stream << xmlStr << "\n";
         file.close();
     }
@@ -594,7 +594,7 @@ void Part::exportFile(const KUrl& url)
 
         if ( file.exists() &&
                 KMessageBox::questionYesNo(m_mainWidget,
-            i18n("The file %1 already exists; do you want to overwrite it?", file.name()),
+            i18n("The file %1 already exists; do you want to overwrite it?", file.fileName()),
             i18n("Export"),
             i18n("Overwrite"),
             KStdGuiItem::cancel()) == KMessageBox::No )
@@ -602,12 +602,12 @@ void Part::exportFile(const KUrl& url)
 
         if ( !file.open(QIODevice::WriteOnly) )
         {
-            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1", file.name()), i18n("Write Error") );
+            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1", file.fileName()), i18n("Write Error") );
             return;
         }
 
         QTextStream stream(&file);
-        stream.setEncoding(QTextStream::UnicodeUTF8);
+        stream.setCodec("UTF-8");
 
         stream << m_mainWidget->feedListToOPML().toString() << "\n";
         file.close();
@@ -618,7 +618,7 @@ void Part::exportFile(const KUrl& url)
         tmpfile.setAutoDelete(true);
 
         QTextStream stream(tmpfile.file());
-        stream.setEncoding(QTextStream::UnicodeUTF8);
+        stream.setCodec("UTF-8");
 
         stream << m_mainWidget->feedListToOPML().toString() << "\n";
         tmpfile.close();

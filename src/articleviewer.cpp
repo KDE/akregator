@@ -82,7 +82,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             text += QString("<div class=\"body\">");
             QString url=node->xmlUrl();
             QString file = url.replace("/", "_").replace(":", "_");
-            KUrl u = KUrl::fromPath(m_view->m_imageDir);
+            KUrl u(KUrl::fromPath(m_view->m_imageDir));
             u.setFileName(file);
             text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
         }
@@ -354,9 +354,9 @@ void ArticleViewer::displayAboutPage()
     QString location = locate("data", "akregator/about/main.html");
     QString content = KPIM::kFileToByteArray(location);
     content = content.arg( locate( "data", "libkdepim/about/kde_infopage.css" ) );
-    if ( kapp->reverseLayout() )
+    if ( kapp->isRightToLeft() ) // reversed layout (from western POV)
         content = content.arg( "@import \"%1\";" ).arg( locate( "data", "libkdepim/about/kde_infopage_rtl.css" ) );
-    else
+    else // left to right
         content = content.arg( "" );
 
     begin(KUrl::fromPath( location ));
@@ -413,7 +413,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
     {
         QString url=feed->xmlUrl();
         QString file = url.replace("/", "_").replace(":", "_");
-        KUrl u = KUrl::fromPath(m_imageDir);
+        KUrl u(KUrl::fromPath(m_imageDir));
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
@@ -500,7 +500,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
     {
         QString url=feed->xmlUrl();
         QString file = url.replace("/", "_").replace(":", "_");
-        KUrl u = KUrl::fromPath(m_imageDir);
+        KUrl u(KUrl::fromPath(m_imageDir));
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }

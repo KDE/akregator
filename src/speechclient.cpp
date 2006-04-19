@@ -136,7 +136,7 @@ ASYNC SpeechClient::textRemoved(const DCOPCString& /*appId*/, uint jobNum)
     kDebug() << "SpeechClient::textRemoved() called" << endl;
     if (d->pendingJobs.contains(jobNum))
     {
-        d->pendingJobs.remove(jobNum);
+        d->pendingJobs.removeAll(jobNum);
         if (d->pendingJobs.isEmpty())
         {
             emit signalJobsDone();
