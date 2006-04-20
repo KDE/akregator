@@ -416,13 +416,13 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
         popup.setWhatsThis(idNewWindow, i18n("<b>Open Link in New Tab</b><p>Opens current link in a new tab."));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
 
-        popup.insertSeparator();
+        popup.addSeparator();
         action("savelinkas")->plug(&popup);
         KAction* copylinkaddress = action("copylinkaddress");
         if (copylinkaddress)
         {
             copylinkaddress->plug( &popup);
-            //popup.insertSeparator();
+            //popup.addSeparator();
         }
     }
     else // we are not on a link
@@ -433,9 +433,9 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
         d->reloadAction->plug(&popup);
         d->stopAction->plug(&popup);
 
-        popup.insertSeparator();
+        popup.addSeparator();
         action("viewer_copy")->plug(&popup);
-        popup.insertSeparator();
+        popup.addSeparator();
 
         KAction* incFontAction = this->action("incFontSizes");
         KAction* decFontAction = this->action("decFontSizes");
@@ -443,13 +443,13 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
         {
             incFontAction->plug( &popup );
             decFontAction->plug( &popup );
-            popup.insertSeparator();
+            popup.addSeparator();
         }
 
         popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
 
         action("viewer_print")->plug(&popup);
-        popup.insertSeparator();
+        popup.addSeparator();
 
         KAction *ac = action("setEncoding");
         if (ac)
