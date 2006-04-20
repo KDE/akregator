@@ -82,11 +82,11 @@ TabWidget::TabWidget(QWidget * parent)
     setHoverCloseButton(Settings::closeButtonOnTabs());
 
     d->tabsClose = new QToolButton(this);
-    d->tabsClose->setAccel(QKeySequence("Ctrl+W"));
+    d->tabsClose->setShortcut(QKeySequence("Ctrl+W"));
     connect( d->tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveCurrentFrame() ) );
 
-    d->tabsClose->setIconSet( SmallIconSet( "tab_remove" ) );
+    d->tabsClose->setIcon( SmallIconSet( "tab_remove" ) );
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip( i18n("Close the current tab"));
     setCornerWidget( d->tabsClose, Qt::TopRightCorner );
