@@ -41,7 +41,9 @@
 #include <qpainter.h>
 #include <qfont.h>
 #include <qtooltip.h>
+#ifdef Q_WS_X11
 #include <QX11Info>
+#endif
 //Added by qt3to4:
 #include <QPixmap>
 
@@ -107,6 +109,7 @@ QPixmap TrayIcon::takeScreenshot() const
         y = desktopHeight - h;
 
         // Grab the desktop and draw a circle arround the icon:
+#ifdef Q_WS_X11
     QPixmap shot = QPixmap::grabWindow(QX11Info::appRootWindow(), x, y, w, h);
     QPainter painter(&shot);
     const int MARGINS = 6;
@@ -125,6 +128,9 @@ QPixmap TrayIcon::takeScreenshot() const
     painter.drawPixmap(BORDER, BORDER, shot);
     painter.end();
     return shot; // not finalShot?? -fo
+#else
+    return QPixmap();
+#endif
 }
 
 void TrayIcon::slotSetUnread(int unread)
