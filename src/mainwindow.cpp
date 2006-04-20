@@ -91,7 +91,7 @@ MainWindow::MainWindow()
     m_statusLabel->setSizePolicy(QSizePolicy( QSizePolicy::Ignored, QSizePolicy::Fixed ));
     m_statusLabel->setMinimumWidth( 0 );
     m_statusLabel->setFixedHeight( statH );
-    statusBar()->addWidget (m_statusLabel, 1, false);
+    statusBar()->addWidget( m_statusLabel, 1 );
 
     setupActions();
     createGUI(0L);
@@ -141,7 +141,7 @@ void MainWindow::setupProgressWidgets()
     progressDialog->hide();
     m_progressBar = new KPIM::StatusbarProgressWidget( progressDialog, statusBar() );
     m_progressBar->show();
-    statusBar()->addWidget( m_progressBar, 0, true );
+    statusBar()->addPermanentWidget( m_progressBar, 0 );
 }
 
 MainWindow::~MainWindow()
