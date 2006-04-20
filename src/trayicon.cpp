@@ -155,13 +155,13 @@ void TrayIcon::slotSetUnread(int unread)
         QString uStr=QString::number( unread );
         QFont f=KGlobalSettings::generalFont();
         f.setBold(true);
-        float pointSize=f.pointSizeFloat();
+        float pointSize=f.pointSizeF();
         QFontMetrics fm(f);
         int w=fm.width(uStr);
         if( w > (oldW) )
         {
             pointSize *= float(oldW) / float(w);
-            f.setPointSizeFloat(pointSize);
+            f.setPointSizeF(pointSize);
         }
 
         QPixmap pix(oldW, oldH);
