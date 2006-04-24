@@ -52,6 +52,7 @@
 #include <k3urldrag.h>
 #include <kmimetype.h>
 #include <ktoolinvocation.h>
+#include <kio/global.h>
 
 #include "actionmanager.h"
 #include "akregatorconfig.h"
@@ -304,7 +305,7 @@ void TabWidget::initiateDrag(int tab)
         KUrl::List lst;
         lst.append( frame->url() );
         K3URLDrag* drag = new K3URLDrag( lst, this );
-        drag->setPixmap( KMimeType::pixmapForURL( lst.first(), 0, K3Icon::Small ) );
+        drag->setPixmap( KIO::pixmapForURL( lst.first(), 0, K3Icon::Small ) );
         drag->dragCopy();
     }
 }
