@@ -143,7 +143,7 @@ SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, cons
     
     connect(d->view, SIGNAL(selectionChanged(Q3ListViewItem*)), this, SLOT(slotItemSelected(Q3ListViewItem*)));
 
-    QGridLayout* layout = new QGridLayout(this, 1, 1);
+    QGridLayout* layout = new QGridLayout(this);
     layout->addWidget(d->view, 0, 0);
 
     d->visitor = new NodeVisitor(this);
