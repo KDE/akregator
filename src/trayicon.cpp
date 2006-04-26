@@ -68,7 +68,7 @@ TrayIcon::TrayIcon(QWidget *parent)
 {
     m_defaultIcon=KSystemTray::loadIcon("akregator");
     QPixmap m_unreadIcon=KSystemTray::loadIcon("akregator_empty");
-    m_lightIconImage=m_unreadIcon.convertToImage();
+    m_lightIconImage=m_unreadIcon.toImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setPixmap(m_defaultIcon);
     this->setToolTip( i18n("Akregator - RSS Feed Reader"));
@@ -172,15 +172,13 @@ void TrayIcon::slotSetUnread(int unread)
         p.drawText(pix.rect(), Qt::AlignCenter, uStr);
 
         pix.setMask(pix.createHeuristicMask());
-        QImage img=pix.convertToImage();
+        QImage img=pix.toImage();
 
         // overlay
         QImage overlayImg=m_lightIconImage.copy();
         KIconEffect::overlay(overlayImg, img);
 
-        QPixmap icon;
-        icon.convertFromImage(overlayImg);
-        setPixmap(icon);
+        setPixmap(QPixmap::fromImage(overlayImg));
     }
 }
 
