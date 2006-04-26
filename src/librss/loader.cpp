@@ -95,7 +95,7 @@ void FileRetriever::retrieveData(const KUrl &url)
 
    connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
                 SLOT(slotData(KIO::Job *, const QByteArray &)));
-   connect(d->job, SIGNAL(result(KIO::Job *)), SLOT(slotResult(KIO::Job *)));
+   connect(d->job, SIGNAL(result(KJob *)), SLOT(slotResult(KJob *)));
    connect(d->job, SIGNAL(permanentRedirection(KIO::Job *, const KUrl &, const KUrl &)),
                 SLOT(slotPermanentRedirection(KIO::Job *, const KUrl &, const KUrl &)));
 }
@@ -122,7 +122,7 @@ void FileRetriever::slotData(KIO::Job *, const QByteArray &data)
    d->buffer->write(data.data(), data.size());
 }
 
-void FileRetriever::slotResult(KIO::Job *job)
+void FileRetriever::slotResult(KJob *job)
 {
    QByteArray data = d->buffer->buffer();
    data.detach();

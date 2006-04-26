@@ -114,7 +114,7 @@ void Image::getPixmap()
 	d->job = KIO::get(d->url, false, false);
 	connect(d->job, SIGNAL(data(KIO::Job *, const QByteArray &)),
 	        this, SLOT(slotData(KIO::Job *, const QByteArray &)));
-	connect(d->job, SIGNAL(result(KIO::Job *)), this, SLOT(slotResult(KIO::Job *)));
+	connect(d->job, SIGNAL(result(KJob *)), this, SLOT(slotResult(KJob *)));
 }
 
 void Image::slotData(KIO::Job *, const QByteArray &data)
@@ -122,7 +122,7 @@ void Image::slotData(KIO::Job *, const QByteArray &data)
 	d->pixmapBuffer->write(data.data(), data.size());
 }
 
-void Image::slotResult(KIO::Job *job)
+void Image::slotResult(KJob *job)
 {
 	QPixmap pixmap;
 	if (!job->error())

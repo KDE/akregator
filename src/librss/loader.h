@@ -137,7 +137,7 @@ namespace RSS
 
 		private slots:
 			void slotData(KIO::Job *job, const QByteArray &data);
-			void slotResult(KIO::Job *job);
+			void slotResult(KJob *job);
 			void slotPermanentRedirection(KIO::Job *job, const KUrl &fromUrl,
 			                                             const KUrl &toUrl);
 

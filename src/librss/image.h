@@ -163,7 +163,7 @@ namespace RSS
 
       private slots:
          void slotData(KIO::Job *job, const QByteArray &data);
-         void slotResult(KIO::Job *job);
+         void slotResult(KJob *job);
 
       private:
          struct Private;
