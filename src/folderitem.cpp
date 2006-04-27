@@ -55,7 +55,7 @@ FolderItem::FolderItem(K3ListView* parent, TreeNodeItem* after, Folder* node) : 
 
 void FolderItem::initialize(Folder* node)
 {
-    setOpen(node->isOpen());
+    setOpen(node && node->isOpen());
     setPixmap ( 0, KGlobal::iconLoader()->loadIcon("folder", K3Icon::Small) );
     if (node)
         setText(0, node->title());
