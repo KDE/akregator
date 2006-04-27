@@ -216,8 +216,10 @@ int NodeList::generateID()
 
 void NodeList::slotNodeAdded(TreeNode* node)
 {
+    if (!node) return;
+
     Folder* parent = node->parent();
-    if ( !node || !d->flatList.contains(parent) || d->flatList.contains(node) )
+    if ( !parent || !d->flatList.contains(parent) || d->flatList.contains(node) )
         return;
 
     addNode(node, false);
