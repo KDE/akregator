@@ -1112,7 +1112,7 @@ void MainWidget::slotArticleSelected(const Article& article)
         }
     }
 
-    KToggleAction*  maai = dynamic_cast<KToggleAction*>(m_actionManager->action("article_set_status_important"));
+    KToggleAction* maai = static_cast<KToggleAction*>(m_actionManager->action("article_set_status_important"));
     maai->setChecked(a.keep());
 
     kDebug() << "selected: " << a.guid() << endl;
