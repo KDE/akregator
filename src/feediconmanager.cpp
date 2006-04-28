@@ -136,8 +136,7 @@ void FeedIconManager::slotFeedDestroyed(TreeNode* node)
 {
     Feed* feed = dynamic_cast<Feed*>(node);
     if (feed)
-        while (d->registeredFeeds.contains(feed))
-            d->registeredFeeds.remove(d->registeredFeeds.find(feed));
+        d->registeredFeeds.removeAll(feed);
 }
 
 void FeedIconManager::slotIconChanged(bool /*isHost*/, const QString& hostOrURL,
