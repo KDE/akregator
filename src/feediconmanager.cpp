@@ -70,8 +70,9 @@ void FeedIconManager::fetchIcon(Feed* feed)
 }
 
 FeedIconManager::FeedIconManager(QObject * parent, const char *name)
-:  QObject(parent, name), DCOPObject("FeedIconManager"), d(new FeedIconManagerPrivate)
+:  QObject(parent), DCOPObject("FeedIconManager"), d(new FeedIconManagerPrivate)
 {
+    setObjectName( name );
     connectDCOPSignal("kded",
                       "favicons", "iconChanged(bool, QString, QString)",
                       "slotIconChanged(bool, QString, QString)", false);

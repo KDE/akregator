@@ -46,7 +46,7 @@ class TreeNode::TreeNodePrivate
 };
 
 TreeNode::TreeNode()
-    : QObject(0, 0), d(new TreeNodePrivate)
+    : QObject(0), d(new TreeNodePrivate)
 {
     d->doNotify = true;
     d->nodeChangeOccurred = false;
