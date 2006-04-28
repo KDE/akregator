@@ -177,7 +177,7 @@ bool StorageMK4Impl::rollback()
 int StorageMK4Impl::unreadFor(const QString &url)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.ascii();
+    d->purl(findrow) = url.toAscii();
     int findidx = d->archiveView.Find(findrow);
 
     return findidx != -1 ? d->punread(d->archiveView.GetAt(findidx)) : 0;
@@ -186,7 +186,7 @@ int StorageMK4Impl::unreadFor(const QString &url)
 void StorageMK4Impl::setUnreadFor(const QString &url, int unread)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.ascii();
+    d->purl(findrow) = url.toAscii();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
@@ -199,7 +199,7 @@ void StorageMK4Impl::setUnreadFor(const QString &url, int unread)
 int StorageMK4Impl::totalCountFor(const QString &url)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.ascii();
+    d->purl(findrow) = url.toAscii();
     int findidx = d->archiveView.Find(findrow);
 
     return findidx != -1 ? d->ptotalCount(d->archiveView.GetAt(findidx)) : 0;
@@ -208,7 +208,7 @@ int StorageMK4Impl::totalCountFor(const QString &url)
 void StorageMK4Impl::setTotalCountFor(const QString &url, int total)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.ascii();
+    d->purl(findrow) = url.toAscii();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
@@ -221,7 +221,7 @@ void StorageMK4Impl::setTotalCountFor(const QString &url, int total)
 int StorageMK4Impl::lastFetchFor(const QString& url)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.ascii();
+    d->purl(findrow) = url.toAscii();
     int findidx = d->archiveView.Find(findrow);
 
     return (findidx != -1 ? d->plastFetch(d->archiveView.GetAt(findidx)) : 0);
@@ -230,7 +230,7 @@ int StorageMK4Impl::lastFetchFor(const QString& url)
 void StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.ascii();
+    d->purl(findrow) = url.toAscii();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
@@ -254,7 +254,7 @@ FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
         FeedStorage* fs = new FeedStorageMK4Impl(url, this);
         d->feeds[url] = fs;
         c4_Row findrow;
-        d->purl(findrow) = url.ascii();
+        d->purl(findrow) = url.toAscii();
         int findidx = d->archiveView.Find(findrow);
         if (findidx == -1)
         {

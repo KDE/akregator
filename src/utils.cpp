@@ -37,7 +37,7 @@ uint Utils::calcHash(const QString& str)
 {
     if (str.isNull()) // handle null string as "", prevents crash
         return calcHash("");
-    const char* s = str.ascii();
+    const char* s = str.toAscii();
     uint hash = 5381;
     int c;
     while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c

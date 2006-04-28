@@ -277,7 +277,7 @@ QStringList FeedStorageMK4Impl::articles(const Category& cat)
 void FeedStorageMK4Impl::addEntry(const QString& guid)
 {
     c4_Row row;
-    d->pguid(row) = guid.ascii();
+    d->pguid(row) = guid.toAscii();
     if (!contains(guid))
     {
         d->archiveView.Add(row);
@@ -294,7 +294,7 @@ bool FeedStorageMK4Impl::contains(const QString& guid)
 int FeedStorageMK4Impl::findArticle(const QString& guid)
 {
     c4_Row findrow;
-    d->pguid(findrow) = guid.ascii();
+    d->pguid(findrow) = guid.toAscii();
     return d->archiveView.Find(findrow);
 }
 
@@ -437,7 +437,7 @@ void FeedStorageMK4Impl::setLink(const QString& guid, const QString& link)
         return;
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->plink(row) = !link.isEmpty() ? link.ascii() : "";
+    d->plink(row) = !link.isEmpty() ? link.toAscii() : "";
     d->archiveView.SetAt(findidx, row);
     d->modified = true;
 }
@@ -554,7 +554,7 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
         c4_View catView2 = d->pcategorizedArticles(catrow2);
 
         c4_Row row3;
-        d->pguid(row3) = guid.ascii();
+        d->pguid(row3) = guid.toAscii();
         int guididx = catView2.Find(row3);
         if (guididx == -1)
         {
@@ -642,7 +642,7 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
         c4_View tagView2 = d->ptaggedArticles(tagrow);
 
         c4_Row row3;
-        d->pguid(row3) = guid.ascii();
+        d->pguid(row3) = guid.toAscii();
         int guididx = tagView2.Find(row3);
         if (guididx == -1)
         {
@@ -683,7 +683,7 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
             c4_View tagView2 = d->ptaggedArticles(tagrow);
 
             c4_Row row3;
-            d->pguid(row3) = guid.ascii();
+            d->pguid(row3) = guid.toAscii();
             int guididx = tagView2.Find(row3);
             if (guididx != -1)
             {
