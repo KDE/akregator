@@ -40,7 +40,7 @@ void ArticleInterceptorManager::addInterceptor(ArticleInterceptor* interceptor)
 
 void ArticleInterceptorManager::removeInterceptor(ArticleInterceptor* interceptor)
 {
-    d->interceptors.remove(interceptor);
+    d->interceptors.removeAll(interceptor);
 }
 
 QList<ArticleInterceptor*> ArticleInterceptorManager::interceptors() const

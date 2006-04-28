@@ -120,7 +120,7 @@ bool FetchQueue::isEmpty() const
 void FetchQueue::feedDone(Feed *f)
 {
     disconnectFromFeed(f);
-    d->fetchingFeeds.remove(f);
+    d->fetchingFeeds.removeAll(f);
     if (isEmpty())
         emit signalStopped();
     else    
@@ -150,8 +150,8 @@ void FetchQueue::slotNodeDestroyed(TreeNode* node)
 
     if (feed)
     {
-        d->fetchingFeeds.remove(feed);
-        d->queuedFeeds.remove(feed);
+        d->fetchingFeeds.removeAll(feed);
+        d->queuedFeeds.removeAll(feed);
     }
 }
 

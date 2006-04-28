@@ -149,7 +149,7 @@ void Tag::addedToTagSet(TagSet* tagSet) const
 
 void Tag::removedFromTagSet(TagSet* tagSet) const
 {
-    d->tagSets.remove(tagSet);
+    d->tagSets.removeAll(tagSet);
 }
 
 QString Tag::id() const

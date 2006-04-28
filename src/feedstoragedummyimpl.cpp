@@ -210,9 +210,9 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
 
     for ( ; it != end; ++it)
     {
-        d->taggedArticles[*it].remove(guid);
+        d->taggedArticles[*it].removeAll(guid);
         if (d->taggedArticles[*it].count() == 0)
-            d->tags.remove(*it);
+            d->tags.removeAll(*it);
     }
 
     // remove article from tag->category index
@@ -221,9 +221,9 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
 
     for ( ; it2 != end2; ++it2)
     {
-        d->categorizedArticles[*it2].remove(guid);
+        d->categorizedArticles[*it2].removeAll(guid);
         if (d->categorizedArticles[*it2].count() == 0)
-            d->categories.remove(*it2);
+            d->categories.removeAll(*it2);
     }
 
     entry.description = "";
@@ -357,10 +357,10 @@ void FeedStorageDummyImpl::removeTag(const QString& guid, const QString& tag)
 {
     if (contains(guid))
     {
-        d->entries[guid].tags.remove(tag);
-        d->taggedArticles[tag].remove(guid);
+        d->entries[guid].tags.removeAll(tag);
+        d->taggedArticles[tag].removeAll(guid);
         if (d->taggedArticles[tag].count() == 0)
-            d->tags.remove(tag);
+            d->tags.removeAll(tag);
     }
 }
 
