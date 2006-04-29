@@ -222,6 +222,7 @@ ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* na
     d->articleViewer = 0;
     d->mainWidget = 0;
     d->tabWidget = 0;
+    d->tagMenu = 0;
     d->frameManager = 0;
     d->speakSelectedArticlesAction = 0;
     d->actionCollection = part->actionCollection();
