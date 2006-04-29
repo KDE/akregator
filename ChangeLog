@@ -2,6 +2,14 @@ Akregator ChangeLog
 ===================
 (c) 2004-2006 the Akregator authors.
 
+Changes after 1.2.2:
+-----------------------------
+
+Bug fixes:
+
+ 2006/04/29 Do not crash on startup when Combined View mode is activated
+ 2006/03/22 Prevent "Akregator is running" messages on startup (reset PID to -1 when closing akregator)
+
 Changes after 1.2.1:
 -----------------------------
 
