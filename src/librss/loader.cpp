@@ -109,7 +109,7 @@ void FileRetriever::slotTimeout()
 
     d->lastError = KIO::ERR_SERVER_TIMEOUT;
 
-    emit dataRetrieved(QByteArray(), false);
+    emit.valueRetrieved(QByteArray(), false);
 }
 
 int FileRetriever::errorCode() const
@@ -131,7 +131,7 @@ void FileRetriever::slotResult(KJob *job)
    d->buffer = NULL;
 
    d->lastError = job->error();
-   emit dataRetrieved(data, d->lastError == 0);
+   emit.valueRetrieved(data, d->lastError == 0);
 }
 
 void FileRetriever::slotPermanentRedirection(KIO::Job *, const KUrl &, const KUrl &newUrl)
@@ -219,7 +219,7 @@ void OutputRetriever::slotExited(KProcess *p)
    delete d->process;
    d->process = NULL;
 
-   emit dataRetrieved(data, p->normalExit() && p->exitStatus() == 0);
+   emit.valueRetrieved(data, p->normalExit() && p->exitStatus() == 0);
 }
 
 struct Loader::Private

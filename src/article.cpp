@@ -368,9 +368,9 @@ QString Article::buildTitle(const QString& description)
     int i = s.indexOf('>',500); /*avoid processing too much */
     if (i != -1)
         s = s.left(i+1);
-    QRegExp rx("(<([^\\s>]*)(?:[^>]*)>)[^<]*", false);
+    QRegExp rx("(<([^\\s>]*)(?:[^>]*)>)[^<]*", Qt::CaseInsensitive);
     QString tagName, toReplace, replaceWith;
-    while (rx.search(s) != -1 )
+    while (rx.indexIn(s) != -1 )
     {
         tagName=rx.cap(2);
         if (tagName=="SCRIPT"||tagName=="script")

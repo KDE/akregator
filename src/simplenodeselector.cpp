@@ -46,8 +46,9 @@ class SelectNodeDialog::SelectNodeDialogPrivate
 };
 
 SelectNodeDialog::SelectNodeDialog(FeedList* feedList, QWidget* parent, char* name) : 
- KDialogBase(parent, name, true, i18n("Select Feed or Folder"),
-                  KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, true), d(new SelectNodeDialogPrivate)
+ KDialogBase(Plain, i18n("Select Feed or Folder"),
+             KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, 
+             parent, name, true/*modal*/, true/*separator*/), d(new SelectNodeDialogPrivate)
 {
     d->widget = new SimpleNodeSelector(feedList, this);
 
@@ -132,8 +133,9 @@ class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
 };
 
 
-SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, const char* name) : QWidget(parent, name), d(new SimpleNodeSelectorPrivate)
+SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, const char* name) : QWidget(parent), d(new SimpleNodeSelectorPrivate)
 {
+    setObjectName(name);
     d->list = feedList;
     connect(feedList, SIGNAL(signalDestroyed(FeedList*)), this, SLOT(slotFeedListDestroyed(FeedList*)));
 

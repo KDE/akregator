@@ -127,8 +127,8 @@ bool StorageMK4Impl::close()
     QMap<QString, FeedStorage*>::Iterator end(d->feeds.end() ) ;
     for (it = d->feeds.begin(); it != end; ++it)
     {
-        it.data()->close();
-        delete it.data();
+        it.value()->close();
+        delete it.value();
     }
     if(d->autoCommit)
         d->storage->Commit();
@@ -148,7 +148,7 @@ bool StorageMK4Impl::commit()
     QMap<QString, FeedStorage*>::Iterator it;
     QMap<QString, FeedStorage*>::Iterator end(d->feeds.end() ) ;
     for ( it = d->feeds.begin(); it != end; ++it )
-        it.data()->commit();
+        it.value()->commit();
 
     if(d->storage)
     {
@@ -164,7 +164,7 @@ bool StorageMK4Impl::rollback()
     QMap<QString, FeedStorage*>::Iterator it;
     QMap<QString, FeedStorage*>::Iterator end(d->feeds.end() ) ;
     for ( it = d->feeds.begin(); it != end; ++it )
-        it.data()->rollback();
+        it.value()->rollback();
 
     if(d->storage)
     {

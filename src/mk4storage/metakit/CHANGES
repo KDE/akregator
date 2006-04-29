@@ -1501,7 +1501,7 @@
 2000-05-28    Better file mark scanning
 
     Added c4_Strategy::EndOfData, to determine the logical end of a
-    Metakit datafile.  This call can be used to check whether a file
+    Metakit.valuefile.  This call can be used to check whether a file
     contains any data, and whether a commit-extend has been performed.
     Old-style scripted documents (with preamble) can now be opened.
     Changed strategy class, DataSeek has been merged with read/write.
