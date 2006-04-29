@@ -140,7 +140,7 @@ void Criterion::readConfig(KConfig* config)
 
     if (type != QVariant::Invalid)
     {
-        m_object = config->readPropertyEntry(QString::fromLatin1("objectValue"), type);
+        m_object = config->readEntry(QString::fromLatin1("objectValue"), QVariant(type) );
     }
 }
 
