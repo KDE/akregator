@@ -512,9 +512,9 @@ void ArticleListView::paintInfoBox(const QString &message)
     const uint x = (viewport()->width() - w - 30) / 2 ;
     const uint y = (viewport()->height() - h - 30) / 2 ;
 
-    p.setBrush( colorGroup().background() );
+    p.setBrush( palette().brush( QPalette::Background ) );
     p.drawRoundRect( x, y, w+30, h+30, (8*200)/w, (8*200)/h );
-    t.draw( &p, x+15, y+15, QRect(), colorGroup() );
+    t.draw( &p, x+15, y+15, QRect(), QColorGroup(palette()) );
 }
 
 void ArticleListView::viewportPaintEvent(QPaintEvent *e)
