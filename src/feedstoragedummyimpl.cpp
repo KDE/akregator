@@ -49,6 +49,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             QString title;
             QString description;
             QString link;
+            QString author;
             QString commentsLink;
             bool guidIsHash;
             bool guidIsPermaLink;
@@ -263,6 +264,11 @@ QString FeedStorageDummyImpl::description(const QString& guid)
     return contains(guid) ? d->entries[guid].description : "";
 }
 
+QString FeedStorageDummyImpl::author(const QString& guid)
+{
+    return contains(guid) ? d->entries[guid].author : QString();
+}
+
 
 void FeedStorageDummyImpl::setPubDate(const QString& guid, uint pubdate)
 {
@@ -304,6 +310,12 @@ void FeedStorageDummyImpl::setCommentsLink(const QString& guid, const QString& c
 {
     if (contains(guid))
         d->entries[guid].commentsLink = commentsLink;
+}
+
+void FeedStorageDummyImpl::setAuthor(const QString& guid, const QString& author)
+{
+    if (contains(guid))
+        d->entries[guid].author = author;
 }
 
 void FeedStorageDummyImpl::setComments(const QString& guid, int comments)

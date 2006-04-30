@@ -91,7 +91,32 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
-    d->hash = Utils::calcHash(article->title() + article->description() + article->link() );
+    
+    QList<PersonPtr> authorList = article->authors();
+    
+    QString author;
+    
+    if (!authorList.isEmpty())
+    {
+        PersonPtr person = *(authorList.begin());
+
+        if (!person->email().isNull())
+        {
+            if (!person->name().isNull())
+                author = QString("<a href=\"mailto:%1\">%2</a>").arg(person->email()).arg(person->name());
+            else
+                author = QString("<a href=\"mailto:%1\">%2</a>").arg(person->email()).arg(person->email());
+        }
+        else if (!person->name().isNull())
+        {
+            if (!person->uri().isNull())
+                author = QString("<a href=\"%1\">%2</a>").arg(person->uri()).arg(person->name());
+            else 
+                author = person->name();
+        }
+    }
+            
+    d->hash = Utils::calcHash(article->title() + article->description() + article->link() + author);
 
     d->guid = article->id();
     
@@ -114,6 +139,7 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
         datePublished.setTime_t(article->datePublished());
         d->pubDate = datePublished.isValid() ? datePublished : QDateTime::currentDateTime();
         d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
+        d->archive->setAuthor(d->guid, author);
     }
     else
     {
@@ -129,6 +155,7 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
             d->archive->setTitle(d->guid, title);
             d->archive->setDescription(d->guid, article->description());
             d->archive->setLink(d->guid, article->link());
+            d->archive->setAuthor(d->guid, author);
             //d->archive->setCommentsLink(d->guid, article.commentsLink());
         }
     }
@@ -269,6 +296,11 @@ void Article::setStatus(int stat)
 QString Article::title() const
 {
     return d->archive->title(d->guid);
+}
+
+QString Article::author() const
+{
+    return d->archive->author(d->guid);
 }
 
 KUrl Article::link() const

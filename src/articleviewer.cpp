@@ -407,6 +407,14 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
         text += "</span><span class=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
     }
+    QString author = article.author();
+    if (!author.isEmpty())
+    {
+        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Author")));
+        text += QString ("%1:").arg(i18n("Author"));
+        text += "</span><span class=\"headertext\">";
+        text += author+"</span>\n"; // TODO: might need RTL?
+    }
     text += "</div>\n"; // end headerbox
 
     if (feed && !feed->image().isNull())
@@ -494,6 +502,16 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "</span><span class=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
     }
+    
+    QString author = article.author();
+    if (!author.isEmpty())
+    {
+        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Author")));
+        text += QString ("%1:").arg(i18n("Author"));
+        text += "</span><span class=\"headertext\">";
+        text += author+"</span>\n"; // TODO: might need RTL?
+    }
+    
     text += "</div>\n"; // end headerbox
 
     if (feed && !feed->image().isNull())

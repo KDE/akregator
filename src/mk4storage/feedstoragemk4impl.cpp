@@ -61,6 +61,7 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
             pcatTerm("catTerm"),
             pcatScheme("catScheme"),
             pcatName("catName"),
+            pauthor("author"),
             phash("hash"),
             pguidIsHash("guidIsHash"),
             pguidIsPermaLink("guidIsPermaLink"),
@@ -88,7 +89,7 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
 	    bool modified;
         bool convert;
         QString oldArchivePath;
-        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName;
+        c4_StringProp pguid, ptitle, pdescription, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName, pauthor;
         c4_IntProp phash, pguidIsHash, pguidIsPermaLink, pcomments, pstatus, ppubDate, pHasEnclosure, pEnclosureLength;
         c4_ViewProp ptags, ptaggedArticles, pcategorizedArticles, pcategories;
 };
@@ -150,7 +151,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     d->convert = !QFile::exists(filePath + ".mk4") && QFile::exists(d->oldArchivePath);
     d->storage = new c4_Storage((filePath + ".mk4").toLocal8Bit(), true);
 
-    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S]]");
+    d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],author:S]");
 
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
@@ -358,6 +359,7 @@ void FeedStorageMK4Impl::setDeleted(const QString& guid)
     d->pdescription(row) = "";
     d->ptitle(row) = "";
     d->plink(row) = "";
+    d->pauthor(row) = "";
     d->pcommentsLink(row) = "";
     d->archiveView.SetAt(findidx, row);
     d->modified = true;
@@ -478,6 +480,25 @@ void FeedStorageMK4Impl::setDescription(const QString& guid, const QString& desc
     d->modified = true;
 }
 
+void FeedStorageMK4Impl::setAuthor(const QString& guid, const QString& author)
+{
+    int findidx = findArticle(guid);
+    if (findidx == -1)
+        return;
+    c4_Row row;
+    row = d->archiveView.GetAt(findidx);
+    d->pauthor(row) = !author.isEmpty() ? author.toUtf8().data() : "";
+    d->archiveView.SetAt(findidx, row);
+    d->modified = true;
+}
+
+QString FeedStorageMK4Impl::author(const QString& guid)
+{
+    int findidx = findArticle(guid);
+    return findidx != -1 ? QString::fromUtf8(d->pauthor(d->archiveView.GetAt(findidx))) : "";
+}
+
+        
 void FeedStorageMK4Impl::setCommentsLink(const QString& guid, const QString& commentsLink)
 {
     int findidx = findArticle(guid);
@@ -749,6 +770,7 @@ void FeedStorageMK4Impl::copyArticle(const QString& guid, FeedStorage* source)
     setPubDate(guid, source->pubDate(guid));
     setStatus(guid, source->status(guid));
     setTitle(guid, source->title(guid));
+    setAuthor(guid, source->author(guid));
 
     QStringList tags = source->tags(guid);
     for (QStringList::ConstIterator it = tags.begin(); it != tags.end(); ++it)

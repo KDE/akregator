@@ -85,6 +85,9 @@ class FeedStorageMK4Impl : public FeedStorage
         virtual void addCategory(const QString& guid, const Category& category);
         virtual QList<Category> categories(const QString& guid=QString::null);
 
+        virtual void setAuthor(const QString& guid, const QString& author);
+        virtual QString author(const QString& guid);
+        
         virtual void close();
         virtual void commit();
         virtual void rollback();

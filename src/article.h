@@ -118,6 +118,8 @@ class Article
         KUrl commentsLink() const;
         
         int comments() const;
+
+        QString author() const;
         
         void addTag(const QString& tag);
         void removeTag(const QString& tag);

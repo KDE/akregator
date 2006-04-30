@@ -127,6 +127,10 @@ class FeedStorage : public QObject
 
         virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length) = 0;
         virtual void removeEnclosure(const QString& guid) = 0;
+        
+        virtual void setAuthor(const QString& /*guid*/, const QString& /*author*/) {}
+        virtual QString author(const QString& /*guid*/) { return QString(); }
+        
         virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) = 0;
         virtual void close() = 0;
         virtual void commit() = 0;
