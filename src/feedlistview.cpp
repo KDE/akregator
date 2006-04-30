@@ -489,7 +489,7 @@ void NodeListView::clear()
 void NodeListView::drawContentsOffset( QPainter * p, int ox, int oy,
                                        int cx, int cy, int cw, int ch )
 {
-    bool oldUpdatesEnabled = isUpdatesEnabled();
+    bool oldUpdatesEnabled = updatesEnabled();
     setUpdatesEnabled(false);
     K3ListView::drawContentsOffset( p, ox, oy, cx, cy, cw, ch );
     setUpdatesEnabled(oldUpdatesEnabled);
