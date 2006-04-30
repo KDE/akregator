@@ -175,7 +175,7 @@ ArticleViewer::~ArticleViewer()
 
 void ArticleViewer::generateNormalModeCSS()
 {
-    const QColorGroup & cg = QApplication::palette().active();
+    const QPalette & pal = QApplication::palette();
     
     // from kmail::headerstyle.cpp
     m_normalModeCSS = QString (
@@ -188,8 +188,8 @@ void ArticleViewer::generateNormalModeCSS()
             "  background: %4 ! important;\n"
             "}\n\n").arg(Settings::standardFont())
             .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
-            .arg(cg.text().name())
-            .arg(cg.base().name());
+            .arg(pal.color( QPalette::Text ).name())
+            .arg(pal.color( QPalette::Base ).name());
     m_normalModeCSS += (
     "a {\n"
     + QString("  color: %1 ! important;\n")
@@ -202,18 +202,18 @@ void ArticleViewer::generateNormalModeCSS()
     +"  margin-bottom: 10pt;\n"
 //    +"  width: 99%;\n"
     +        "}\n\n")
-            .arg(cg.link().name())
-            .arg(cg.background().name())
-            .arg(cg.text().name());
+            .arg(pal.color( QPalette::Link ).name())
+            .arg(pal.color( QPalette::Background ).name())
+            .arg(pal.color( QPalette::Text ).name());
 
     m_normalModeCSS += QString(".headertitle a:link { color: %1  ! important; }\n"
     ".headertitle a:visited { color: %2 ! important; }\n"
     ".headertitle a:hover{ color: %3 ! important; }\n"
             ".headertitle a:active { color: %4 ! important; }\n")
-            .arg(cg.highlightedText().name())
-            .arg(cg.highlightedText().name())
-            .arg(cg.highlightedText().name())
-            .arg(cg.highlightedText().name());
+            .arg(pal.color( QPalette::HighlightedText ).name())
+            .arg(pal.color( QPalette::HighlightedText ).name())
+            .arg(pal.color( QPalette::HighlightedText ).name())
+            .arg(pal.color( QPalette::HighlightedText ).name());
     m_normalModeCSS += QString(
     ".headertitle {\n"
     "  background: %1 ! important;\n"
@@ -231,8 +231,8 @@ void ArticleViewer::generateNormalModeCSS()
     ".headimage {\n"
     "  float: right;\n"
     "  margin-left: 5px;\n"
-            "}\n\n").arg(cg.highlight().name())
-            .arg(cg.highlightedText().name());
+            "}\n\n").arg(pal.color( QPalette::Highlight ).name())
+            .arg(pal.color( QPalette::HighlightedText ).name());
     
     m_normalModeCSS += QString(
     "body { clear: none; }\n\n"
@@ -253,7 +253,7 @@ void ArticleViewer::generateNormalModeCSS()
 
 void ArticleViewer::generateCombinedModeCSS()
 {
-    const QColorGroup & cg = QApplication::palette().active();
+    const QPalette &pal = QApplication::palette();
     
     // from kmail::headerstyle.cpp
     m_combinedModeCSS = QString (
@@ -266,8 +266,8 @@ void ArticleViewer::generateCombinedModeCSS()
             "  background: %4 ! important;\n"
             "}\n\n").arg(Settings::standardFont())
             .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
-            .arg(cg.text().name())
-            .arg(cg.base().name());
+            .arg(pal.color( QPalette::Text ).name())
+            .arg(pal.color( QPalette::Base ).name());
     m_combinedModeCSS += (
     "a {\n"
     + QString("  color: %1 ! important;\n")
@@ -280,18 +280,18 @@ void ArticleViewer::generateCombinedModeCSS()
     +"  margin-bottom: 10pt;\n"
 //    +"  width: 99%;\n"
     +        "}\n\n")
-            .arg(cg.link().name())
-            .arg(cg.background().name())
-            .arg(cg.text().name());
+            .arg( pal.color( QPalette::Link ).name())
+            .arg( pal.color( QPalette::Background ).name())
+            .arg( pal.color( QPalette::Text ).name());
 
     m_combinedModeCSS += QString(".headertitle a:link { color: %1  ! important; }\n"
     ".headertitle a:visited { color: %2 ! important; }\n"
     ".headertitle a:hover{ color: %3 ! important; }\n"
             ".headertitle a:active { color: %4 ! important; }\n")
-            .arg(cg.highlightedText().name())
-            .arg(cg.highlightedText().name())
-            .arg(cg.highlightedText().name())
-            .arg(cg.highlightedText().name());
+            .arg( pal.color( QPalette::HighlightedText ).name() )
+            .arg( pal.color( QPalette::HighlightedText ).name() )
+            .arg( pal.color( QPalette::HighlightedText ).name() )
+            .arg( pal.color( QPalette::HighlightedText ).name() );
     m_combinedModeCSS += QString(
     ".headertitle {\n"
     "  background: %1 ! important;\n"
@@ -309,8 +309,8 @@ void ArticleViewer::generateCombinedModeCSS()
     ".headimage {\n"
     "  float: right;\n"
     "  margin-left: 5px;\n"
-            "}\n\n").arg(cg.highlight().name())
-            .arg(cg.highlightedText().name());
+            "}\n\n").arg( pal.color( QPalette::Highlight ).name() )
+            .arg( pal.color( QPalette::HighlightedText ).name() );
     
     m_combinedModeCSS += QString(
     "body { clear: none; }\n\n"

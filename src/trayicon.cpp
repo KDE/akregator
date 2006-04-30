@@ -123,7 +123,7 @@ QPixmap TrayIcon::takeScreenshot() const
     // Paint the border
     const int BORDER = 1;
     QPixmap finalShot(w + 2*BORDER, h + 2*BORDER);
-    finalShot.fill(KApplication::palette().active().foreground());
+    finalShot.fill( KApplication::palette().color( QPalette::Foreground ));
     painter.begin(&finalShot);
     painter.drawPixmap(BORDER, BORDER, shot);
     painter.end();
