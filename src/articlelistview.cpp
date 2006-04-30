@@ -181,9 +181,9 @@ void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup &
         QColorGroup cg2(cg);
 
         if (article().status() == Article::Unread)
-            cg2.setColor(QColorGroup::Text, Qt::blue);
+            cg2.setColor(QPalette::Text, Qt::blue);
         else // New
-            cg2.setColor(QColorGroup::Text, Qt::red);
+            cg2.setColor(QPalette::Text, Qt::red);
 
         K3ListViewItem::paintCell( p, cg2, column, width, align );
     }
