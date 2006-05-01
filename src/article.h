@@ -86,6 +86,9 @@ namespace Akregator
 
             QString title() const;
             KURL link() const;
+            
+            QString author() const;
+            
             QString description() const;
             QString guid() const;
             /** if true, the article should be kept even when expired **/

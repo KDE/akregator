@@ -5,10 +5,15 @@ Akregator ChangeLog
 Changes after 1.2.2:
 -----------------------------
 
+New features:
+
+ 2006/05/01 add author information to article header (in the article pane only) -fo
+
 Bug fixes:
 
- 2006/04/29 Do not crash on startup when Combined View mode is activated
- 2006/03/22 Prevent "Akregator is running" messages on startup (reset PID to -1 when closing akregator)
+ 2006/04/29 Do not crash on startup when Combined View mode is activated (Happened only when experimental tagging is 
+activated) -fo
+ 2006/03/22 Prevent "Akregator is running" messages on startup (reset PID to -1 when closing akregator) -fo
 
 Changes after 1.2.1:
 -----------------------------

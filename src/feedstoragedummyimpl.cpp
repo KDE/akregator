@@ -48,6 +48,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             QString title;
             QString description;
             QString link;
+            QString author;
             QString commentsLink;
             bool guidIsHash;
             bool guidIsPermaLink;
@@ -340,6 +341,17 @@ void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
     if (d->categorizedArticles[cat].count() == 0)
         d->categories.append(cat);
     d->categorizedArticles[cat].append(guid);
+}
+
+void FeedStorageDummyImpl::setAuthor(const QString& guid, const QString& author)
+{
+    if (contains(guid))
+        d->entries[guid].author = author;
+}
+
+QString FeedStorageDummyImpl::author(const QString& guid)
+{
+    return contains(guid) ? d->entries[guid].author : QString();
 }
 
 QValueList<Category> FeedStorageDummyImpl::categories(const QString& guid)

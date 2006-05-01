@@ -35,6 +35,7 @@ struct Article::Private : public Shared
 	QString description;
 	QDateTime pubDate;
 	QString guid;
+        QString author;
 	bool guidIsPermaLink;
     MetaInfoMap meta;
 	KURL commentsLink;
@@ -61,6 +62,7 @@ QValueList<Category> Article::categories() const
 {
     return d->categories;
 }
+
 
 Article::Article(const QDomNode &node, Format format, Version version) : d(new Private)
 {
@@ -183,6 +185,8 @@ Article::Article(const QDomNode &node, Format format, Version version) : d(new P
     if (enclosure.isElement())
         d->enclosure = Enclosure::fromXML(enclosure.toElement());
 
+    d->author = parseItemAuthor(element, format, version);
+    
     for (QDomNode i = node.firstChild(); !i.isNull(); i = i.nextSibling())
     {
         if (i.isElement())
@@ -209,6 +213,11 @@ Article::~Article()
 QString Article::title() const
 {
 	return d->title;
+}
+
+QString Article::author() const
+{
+    return d->author;
 }
 
 const KURL &Article::link() const

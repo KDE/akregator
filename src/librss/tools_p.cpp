@@ -157,6 +157,88 @@ QString extractTitle(const QDomNode & parent)
     return result;
 }
 
+static void authorFromString(const QString& strp, QString& name, QString& email)
+{
+    QString str = strp.stripWhiteSpace();
+    if (str.isEmpty())
+        return;
+    
+    // look for something looking like a mail address ( "foo@bar.com", 
+    // "<foo@bar.com>") and extract it
+    
+    QRegExp remail("<?([^@\\s<]+@[^>\\s]+)>?"); // FIXME: user "proper" regexp,
+       // search kmail source for it
+    
+    int pos = remail.search(str);
+    if (pos != -1)
+    {
+        QString all = remail.cap(0);
+        email = remail.cap(1);
+        str.replace(all, ""); // remove mail address
+    }
+    
+    // simplify the rest and use it as name
+    
+    name = str.simplifyWhiteSpace();
+    
+    // str might have the format "foo@bar.com (Foo M. Bar)".
+    // We cut off parentheses if there are any
+    QRegExp rename("\\(([^\\)]*)\\)");
+    
+    pos = rename.search(name);
+    
+    if (pos != -1)
+    {
+        name = rename.cap(1);
+    }
+    
+    name = name.isEmpty() ? QString() : name;
+    email = email.isEmpty() ? QString() : email;
+}
+
+QString parseItemAuthor(const QDomElement& element, Format format, Version version)
+{
+    QString name;
+    QString email;
+
+    QDomElement dcCreator = element.namedItem("dc:creator").toElement();
+    
+    if (!dcCreator.isNull())
+         authorFromString(dcCreator.text(), name, email);
+    else if (format == AtomFeed)
+    {
+        QDomElement atomAuthor = element.namedItem("author").toElement();
+        if (atomAuthor.isNull())
+            atomAuthor = element.namedItem("atom:author").toElement();
+        if (!atomAuthor.isNull())
+        {
+            QDomElement atomName = atomAuthor.namedItem("name").toElement();
+            if (atomName.isNull())
+                atomName = atomAuthor.namedItem("atom:name").toElement();
+            name = atomName.text().stripWhiteSpace();
+            
+            QDomElement atomEmail = atomAuthor.namedItem("email").toElement();
+            if (atomEmail.isNull())
+                atomEmail = atomAuthor.namedItem("atom:email").toElement();
+            email = atomEmail.text().stripWhiteSpace();
+        }
+    }
+    else if (format == RSSFeed)
+    {
+        authorFromString(element.namedItem("author").toElement().text(), name, email);
+    }
+    
+    if (name.isNull())
+        name = email;
+            
+    QString author;
+    
+    if (!email.isNull())
+        return QString("<a href=\"mailto:%1\">%2</a>").arg(email).arg(name);
+    else
+        return name;
+}
+
 } // namespace RSS
 
 // vim:noet:ts=4

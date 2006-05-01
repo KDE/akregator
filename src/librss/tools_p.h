@@ -11,9 +11,12 @@
 #ifndef LIBRSS_TOOLS_P_H
 #define LIBRSS_TOOLS_P_H
 
+#include "global.h"
 #include <time.h>
 
+
 class QDomNode;
+class QDomElement;
 class QString;
 
 namespace RSS
@@ -30,6 +33,7 @@ namespace RSS
 	QString extractTitle(const QDomNode &parent);
 	QString childNodesAsXML(const QDomNode& parent);
 	time_t parseISO8601Date(const QString &s);
+        QString parseItemAuthor(const QDomElement& element, Format format, Version version);
 }
 
 #endif // LIBRSS_TOOLS_P_H

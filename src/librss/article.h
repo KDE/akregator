@@ -112,6 +112,11 @@ namespace RSS
          QString description() const;
 
          /**
+          * a string desribing the author of the item.
+          */
+         QString author() const;
+         
+         /**
           * RSS 2.0 and upwards
           * @return An article GUID (globally unique identifier).
           */

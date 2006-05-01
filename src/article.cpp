@@ -89,7 +89,8 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
-    d->hash = Utils::calcHash(article.title() + article.description() + article.link().url() + article.commentsLink().url() );
+    d->hash = Utils::calcHash(article.title() + article.description() + article.author() + article.link().url() 
+                              + article.commentsLink().url() );
 
     d->guid = article.guid();
     
@@ -116,7 +117,8 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->archive->setGuidIsHash(d->guid, article.meta("guidIsHash") == "true");
             d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
             d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
-
+            d->archive->setAuthor(d->guid, article.author());
+                        
             QValueList<RSS::Category> cats = article.categories();
             QValueList<RSS::Category>::ConstIterator end = cats.end();
 
@@ -165,6 +167,7 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->archive->setDescription(d->guid, article.description());
             d->archive->setLink(d->guid, article.link().url());
             d->archive->setCommentsLink(d->guid, article.commentsLink().url());
+            d->archive->setAuthor(d->guid, article.author());
         }
     }
 }
@@ -304,6 +307,11 @@ void Article::setStatus(int stat)
 QString Article::title() const
 {
     return d->archive->title(d->guid);
+}
+
+QString Article::author() const
+{
+    return d->archive->author(d->guid);
 }
 
 KURL Article::link() const
