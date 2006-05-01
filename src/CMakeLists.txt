@@ -154,8 +154,6 @@ install_files( /include/akregator FILES storage.h feedstorage.h storagefactory.h
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
 
-kde4_create_doxygen_docs(  )
-
 kde4_footer()
 
 
