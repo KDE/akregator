@@ -149,7 +149,7 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
     if (fm.width( oldText ) + txtW + x > width)
         oldText=KStringHandler::rPixelSqueeze(oldText,fm, width - txtW - x);
 
-    p->drawText( x, 0, width-m-x, height(), align | Qt::AlignVCenter, oldText, -1, &br );
+    p->drawText( x, 0, width-m-x, height(), align | Qt::AlignVCenter, oldText, &br );
 
     if ( !isSelected() )
         p->setPen( Qt::blue ); // TODO: configurable
