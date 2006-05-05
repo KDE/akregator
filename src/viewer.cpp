@@ -182,17 +182,17 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, co
         popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
         popup.addSeparator();
-        action("savelinkas")->plug(&popup);
-        action("copylinkaddress")->plug(&popup);
+        popup.addAction( action("savelinkas") );
+        popup.addAction( action("copylinkaddress") );
    }
    else
    {
        if (isSelection)
        {
-            action("viewer_copy")->plug(&popup);
+            popup.addAction( action("viewer_copy") );
             popup.addSeparator();
        }
-       action("viewer_print")->plug(&popup);
+       popup.addAction( action("viewer_print") );
        //KAction *ac = action("setEncoding");
        //if (ac)
        //     ac->plug(&popup);
