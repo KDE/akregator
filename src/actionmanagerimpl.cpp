@@ -360,7 +360,8 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );
 
-    d->speakSelectedArticlesAction = new KAction(i18n("&Speak Selected Articles"), "kttsd", 0, d->mainWidget, SLOT(slotTextToSpeechRequest()), actionCollection(), "akr_texttospeech");
+    d->speakSelectedArticlesAction = new KAction(KIcon("kttsd"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
+    connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotTextToSpeechRequest()));
 
     KAction *abortTTS = new KAction(KIcon("player_stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
     connect(abortTTS, SIGNAL(triggered(bool)), SpeechClient::self(), SLOT(slotAbortJobs()));
