@@ -25,8 +25,8 @@
 #include "feedstoragemk4impl.h"
 #include "storagemk4impl.h"
 
-#include "../article.h"
-#include "../utils.h"
+#include "article.h"
+#include "utils.h"
 #include <libsyndication/documentsource.h>
 #include <libsyndication/global.h>
 #include <libsyndication/feed.h>

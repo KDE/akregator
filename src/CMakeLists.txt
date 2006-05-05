@@ -1,7 +1,6 @@
 kde4_header()
 
 add_subdirectory( about ) 
-add_subdirectory( mk4storage ) 
 add_subdirectory( pics ) 
 
 include_directories( 

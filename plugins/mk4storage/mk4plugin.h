@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_BACKEND_MK4PLUGIN_H
 #define AKREGATOR_BACKEND_MK4PLUGIN_H
 
-#include "../plugin.h"
+#include "plugin.h"
 
 class QString;
 
