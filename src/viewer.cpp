@@ -81,12 +81,10 @@ Viewer::Viewer(QWidget *parent, const char *name)
 
     connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KUrl&, const KParts::URLArgs& )) );
 
-    new KAction(i18n("Copy &Link Address"), "", 0,
-                                 this, SLOT(slotCopyLinkAddress()),
-                                 actionCollection(), "copylinkaddress");
-    new KAction(i18n("&Save Link As..."), "", 0,
-                                 this, SLOT(slotSaveLinkAs()),
-                                 actionCollection(), "savelinkas");
+    action = new KAction(i18n("Copy &Link Address"), actionCollection(), "copylinkaddress");
+    connect(action, SIGNAL(triggered(bool) ), SLOT(slotCopyLinkAddress()));
+    action = new KAction(i18n("&Save Link As..."), actionCollection(), "savelinkas");
+    connect(action, SIGNAL(triggered(bool) ), SLOT(slotSaveLinkAs()));
 }
 
 Viewer::~Viewer()

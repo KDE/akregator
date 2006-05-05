@@ -512,13 +512,11 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
                             frameManager, SLOT(slotBrowserBack()),
                             d->actionCollection, "browser_back");
 
-    new KAction(i18n("Reload"), "reload", 0,
-                frameManager, SLOT(slotBrowserReload()),
-                d->actionCollection, "browser_reload");
+    KAction *action = new KAction(KIcon("reload"), i18n("Reload"), d->actionCollection, "browser_reload");
+    connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserReload()));
 
-    new KAction(i18n("Stop"), "stop", 0,
-                frameManager, SLOT(slotBrowserStop()),
-                d->actionCollection, "browser_stop");
+    KAction *action = new KAction(KIcon("stop"), i18n("Stop"), d->actionCollection, "browser_stop");
+    connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserStop()));
 }
 
 QWidget* ActionManagerImpl::container(const char* name)
