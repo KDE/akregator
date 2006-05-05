@@ -515,7 +515,7 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
     KAction *action = new KAction(KIcon("reload"), i18n("Reload"), d->actionCollection, "browser_reload");
     connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserReload()));
 
-    KAction *action = new KAction(KIcon("stop"), i18n("Stop"), d->actionCollection, "browser_stop");
+    action = new KAction(KIcon("stop"), i18n("Stop"), d->actionCollection, "browser_stop");
     connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserStop()));
 }
 
