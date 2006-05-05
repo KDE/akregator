@@ -252,12 +252,14 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
 
 void ActionManagerImpl::initPart()
 {
-    new KAction(i18n("&Import Feeds..."), "", 0, d->part, SLOT(fileImport()), d->actionCollection, "file_import");
-    new KAction(i18n("&Export Feeds..."), "", 0, d->part, SLOT(fileExport()), d->actionCollection, "file_export");
+    KAction *action = new KAction(i18n("&Import Feeds..."), d->actionCollection, "file_import");
+    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileImport()));
+    action = new KAction(i18n("&Export Feeds..."), d->actionCollection, "file_export");
+    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
     //new KAction(i18n("&Get Feeds From Web..."), "", "", d->part, SLOT(fileGetFeeds()), d->actionCollection, "file_getfromweb");
 
     KStdAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
-    KAction *action = new KAction(KIcon("configure"),  i18n("Configure &Akregator..."), d->actionCollection, "akregator_configure_akregator" );
+    action = new KAction(KIcon("configure"),  i18n("Configure &Akregator..."), d->actionCollection, "akregator_configure_akregator" );
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(showOptions()));
 }
 
@@ -269,11 +271,14 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
         d->mainWidget = mainWidget;
 
     // tag actions
-    new KAction(i18n("&New Tag..."), "", 0, d->mainWidget, SLOT(slotNewTag()), actionCollection(), "tag_new");
+    KAction *action = new KAction(i18n("&New Tag..."), actionCollection(), "tag_new");
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNewTag()));
 
     // Feed/Feed Group popup menu
-    new KAction(i18n("&Open Homepage"), "", KShortcut( "Ctrl+H" ), d->mainWidget, SLOT(slotOpenHomepage()), actionCollection(), "feed_homepage");
-    KAction *action = new KAction(KIcon("bookmark_add"), i18n("&Add Feed..."), actionCollection(), "feed_add");
+    action = new KAction(i18n("&Open Homepage"), actionCollection(), "feed_homepage");
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenHomepage()));
+    action->setShortcut(KShortcut( "Ctrl+H" ));
+    action = new KAction(KIcon("bookmark_add"), i18n("&Add Feed..."), actionCollection(), "feed_add");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
     action->setShortcut(KShortcut( "Insert" ));
     action = new KAction(KIcon("folder_new"), i18n("Ne&w Folder..."), actionCollection(), "feed_add_group");
@@ -327,14 +332,21 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action = new KAction(KIcon("tab_new"),  i18n("Open in Tab"), actionCollection(), "article_open" );
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticle()));
     action->setShortcut(KShortcut( "Shift+Return" ));
-    new KAction( i18n("Open in Background Tab"), QString::null, KShortcut( "tab_new" ), d->mainWidget, SLOT(slotOpenCurrentArticleBackgroundTab()), actionCollection(), "article_open_background_tab" );
+    action = new KAction( i18n("Open in Background Tab"), actionCollection(), "article_open_background_tab" );
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleBackgroundTab()));
+    action->setShortcut(KShortcut( "tab_new" ));
     action = new KAction(KIcon("window_new"),  i18n("Open in External Browser"), actionCollection(), "article_open_external" );
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleExternal()));
     action->setShortcut(KShortcut( "Ctrl+Shift+Return" ));
-    new KAction( i18n("Copy Link Address"), "", 0, d->mainWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "article_copy_link_address" );
+    action = new KAction( i18n("Copy Link Address"), actionCollection(), "article_copy_link_address" );
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCopyLinkAddress()));
 
-    new KAction(i18n("Pre&vious Unread Article"), "", Qt::Key_Minus, d->mainWidget, SLOT(slotPrevUnreadArticle()),actionCollection(), "go_prev_unread_article");
-    new KAction(i18n("Ne&xt Unread Article"), "", Qt::Key_Plus, d->mainWidget, SLOT(slotNextUnreadArticle()),actionCollection(), "go_next_unread_article");
+    action = new KAction(i18n("Pre&vious Unread Article"), actionCollection(), "go_prev_unread_article");
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotPrevUnreadArticle()));
+    action->setShortcut(Qt::Key_Minus);
+    action = new KAction(i18n("Ne&xt Unread Article"), actionCollection(), "go_next_unread_article");
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNextUnreadArticle()));
+    action->setShortcut(Qt::Key_Plus);
 
     action = new KAction(KIcon("editdelete"), i18n("&Delete"), actionCollection(), "article_delete");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleDelete()));
@@ -379,10 +391,18 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(importantAction, SIGNAL(toggled(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
 
-    new KAction( i18n("Move Node Up"), QString::null, KShortcut( "Shift+Alt+Up" ), mainWidget, SLOT(slotMoveCurrentNodeUp()), d->actionCollection, "feedstree_move_up" );
-    new KAction( i18n("Move Node Down"), QString::null,  KShortcut( "Shift+Alt+Down" ), mainWidget, SLOT(slotMoveCurrentNodeDown()), d->actionCollection, "feedstree_move_down" );
-    new KAction( i18n("Move Node Left"), QString::null, KShortcut( "Shift+Alt+Left" ), mainWidget, SLOT(slotMoveCurrentNodeLeft()), d->actionCollection, "feedstree_move_left" );
-    new KAction( i18n("Move Node Right"), QString::null, KShortcut( "Shift+Alt+Right" ), mainWidget, SLOT(slotMoveCurrentNodeRight()), d->actionCollection, "feedstree_move_right");
+    action = new KAction( i18n("Move Node Up"), d->actionCollection, "feedstree_move_up" );
+    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeUp()));
+    action->setShortcut(KShortcut( "Shift+Alt+Up" ));
+    action = new KAction( i18n("Move Node Down"), d->actionCollection, "feedstree_move_down" );
+    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeDown()));
+    action->setShortcut(KShortcut( "Shift+Alt+Down" ));
+    action = new KAction( i18n("Move Node Left"), d->actionCollection, "feedstree_move_left" );
+    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeLeft()));
+    action->setShortcut(KShortcut( "Shift+Alt+Left" ));
+    action = new KAction( i18n("Move Node Right"), d->actionCollection, "feedstree_move_right");
+    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeRight()));
+    action->setShortcut(KShortcut( "Shift+Alt+Right" ));
 
     action = new KAction(KIcon("mail_generic"), i18n("Send &Link Address..."), d->actionCollection, "file_sendlink");
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendLink()));
@@ -405,8 +425,12 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     else
         d->articleList = articleList;
 
-    new KAction( i18n("&Previous Article"), QString::null, KShortcut( "Left" ), articleList, SLOT(slotPreviousArticle()), actionCollection(), "go_previous_article" );
-    new KAction( i18n("&Next Article"), QString::null, KShortcut( "Right" ), articleList, SLOT(slotNextArticle()), actionCollection(), "go_next_article" );
+    KAction *action = new KAction( i18n("&Previous Article"), actionCollection(), "go_previous_article" );
+    connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotPreviousArticle()));
+    action->setShortcut(KShortcut( "Left" ));
+    action = new KAction( i18n("&Next Article"), actionCollection(), "go_next_article" );
+    connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotNextArticle()));
+    action->setShortcut(KShortcut( "Right" ));
 }
 
 void ActionManagerImpl::initListTabWidget(ListTabWidget* listTabWidget)
@@ -416,17 +440,37 @@ void ActionManagerImpl::initListTabWidget(ListTabWidget* listTabWidget)
     else
         d->listTabWidget = listTabWidget;
 
-    new KAction(i18n("&Previous Feed"), "", KShortcut( "P" ), listTabWidget,  SLOT(slotPrevFeed()),actionCollection(), "go_prev_feed");
-    new KAction(i18n("&Next Feed"), "", KShortcut( "N" ), listTabWidget, SLOT(slotNextFeed()),actionCollection(), "go_next_feed");
-    new KAction(i18n("N&ext Unread Feed"), "", KShortcut( "Alt+Plus" ), listTabWidget, SLOT(slotNextUnreadFeed()),actionCollection(), "go_next_unread_feed");
-    new KAction(i18n("Prev&ious Unread Feed"), "", KShortcut( "Alt+Minus" ), listTabWidget, SLOT(slotPrevUnreadFeed()),actionCollection(), "go_prev_unread_feed");
+    KAction *action = new KAction(i18n("&Previous Feed"), actionCollection(), "go_prev_feed");
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotPrevFeed()));
+    action->setShortcut(KShortcut( "P" ));
+    action = new KAction(i18n("&Next Feed"), actionCollection(), "go_next_feed");
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotNextFeed()));
+    action->setShortcut(KShortcut( "N" ));
+    action = new KAction(i18n("N&ext Unread Feed"), actionCollection(), "go_next_unread_feed");
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotNextUnreadFeed()));
+    action->setShortcut(KShortcut( "Alt+Plus" ));
+    action = new KAction(i18n("Prev&ious Unread Feed"), actionCollection(), "go_prev_unread_feed");
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotPrevUnreadFeed()));
+    action->setShortcut(KShortcut( "Alt+Minus" ));
 
-    new KAction( i18n("Go to Top of Tree"), QString::null, KShortcut( "Ctrl+Home" ), listTabWidget, SLOT(slotItemBegin()), d->actionCollection, "feedstree_home" );
-    new KAction( i18n("Go to Bottom of Tree"), QString::null, KShortcut( "Ctrl+End" ), listTabWidget, SLOT(slotItemEnd()), d->actionCollection, "feedstree_end" );
-    new KAction( i18n("Go Left in Tree"), QString::null, KShortcut( "Ctrl+Left" ), listTabWidget, SLOT(slotItemLeft()), d->actionCollection, "feedstree_left" );
-    new KAction( i18n("Go Right in Tree"), QString::null, KShortcut( "Ctrl+Right" ), listTabWidget, SLOT(slotItemRight()), d->actionCollection, "feedstree_right" );
-    new KAction( i18n("Go Up in Tree"), QString::null, KShortcut( "Ctrl+Up" ), listTabWidget, SLOT(slotItemUp()), d->actionCollection, "feedstree_up" );
-    new KAction( i18n("Go Down in Tree"), QString::null, KShortcut( "Ctrl+Down" ), listTabWidget, SLOT(slotItemDown()), d->actionCollection, "feedstree_down" );
+    action = new KAction( i18n("Go to Top of Tree"), d->actionCollection, "feedstree_home" );
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemBegin()));
+    action->setShortcut(KShortcut( "Ctrl+Home" ));
+    action = new KAction( i18n("Go to Bottom of Tree"), d->actionCollection, "feedstree_end" );
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemEnd()));
+    action->setShortcut(KShortcut( "Ctrl+End" ));
+    action = new KAction( i18n("Go Left in Tree"), d->actionCollection, "feedstree_left" );
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemLeft()));
+    action->setShortcut(KShortcut( "Ctrl+Left" ));
+    action = new KAction( i18n("Go Right in Tree"), d->actionCollection, "feedstree_right" );
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemRight()));
+    action->setShortcut(KShortcut( "Ctrl+Right" ));
+    action = new KAction( i18n("Go Up in Tree"), d->actionCollection, "feedstree_up" );
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemUp()));
+    action->setShortcut(KShortcut( "Ctrl+Up" ));
+    action = new KAction( i18n("Go Down in Tree"), d->actionCollection, "feedstree_down" );
+    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemDown()));
+    action->setShortcut(KShortcut( "Ctrl+Down" ));
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
@@ -436,12 +480,17 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     else
         d->tabWidget = tabWidget;
 
-    new KAction(i18n("Select Next Tab"), "", KShortcut( "Ctrl+Period" ), d->tabWidget, SLOT(slotNextTab()),actionCollection(), "select_next_tab");
-    new KAction(i18n("Select Previous Tab"), "", KShortcut( "Ctrl+Comma" ), d->tabWidget, SLOT(slotPreviousTab()),actionCollection(), "select_previous_tab");
-    KAction *action = new KAction(KIcon("tab_breakoff"),  i18n("Detach Tab"), actionCollection(), "tab_detach" );
+    KAction *action = new KAction(i18n("Select Next Tab"), actionCollection(), "select_next_tab");
+    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotNextTab()));
+    action->setShortcut(KShortcut( "Ctrl+Period" ));
+    action = new KAction(i18n("Select Previous Tab"), actionCollection(), "select_previous_tab");
+    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotPreviousTab()));
+    action->setShortcut(KShortcut( "Ctrl+Comma" ));
+    action = new KAction(KIcon("tab_breakoff"),  i18n("Detach Tab"), actionCollection(), "tab_detach" );
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotDetachTab()));
     action->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_B);
-    new KAction( i18n("Copy Link Address"), "", 0, d->tabWidget, SLOT(slotCopyLinkAddress()), actionCollection(), "tab_copylinkaddress" );
+    action = new KAction( i18n("Copy Link Address"), actionCollection(), "tab_copylinkaddress" );
+    connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCopyLinkAddress()));
     action = new KAction(KIcon("tab_remove"),  i18n("&Close Tab"), actionCollection(), "tab_remove" );
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
     action->setShortcut(KStdAccel::close());

@@ -69,9 +69,13 @@ Viewer::Viewer(QWidget *parent, const char *name)
 
     KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "viewer_print");
     KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "viewer_copy");
-    
-    new KAction( i18n("&Increase Font Sizes"), "viewmag+", KShortcut( "Ctrl+Plus" ), this, SLOT(slotZoomIn()), actionCollection(), "incFontSizes" );
-    new KAction( i18n("&Decrease Font Sizes"), "viewmag-", KShortcut( "Ctrl+Minus" ), this, SLOT(slotZoomOut()), actionCollection(), "decFontSizes" );
+
+    KAction *action = new KAction(KIcon("viewmag+"),  i18n("&Increase Font Sizes"), actionCollection(), "incFontSizes" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomIn()));
+    action->setShortcut(KShortcut( "Ctrl+Plus" ));
+    action = new KAction(KIcon("viewmag-"),  i18n("&Decrease Font Sizes"), actionCollection(), "decFontSizes" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomOut()));
+    action->setShortcut(KShortcut( "Ctrl+Minus" ));
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
@@ -105,7 +109,7 @@ void Viewer::displayInExternalBrowser(const KUrl &url, const QString &mimetype)
    if (!url.isValid()) return;
    if (Settings::externalBrowserUseKdeDefault())
    {
-       if (mimetype.isEmpty()) 
+       if (mimetype.isEmpty())
            KToolInvocation::invokeBrowser(url.url(), "0");
        else
            KRun::runURL(url, mimetype, false, false);
@@ -171,12 +175,12 @@ void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, co
 {
    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
    const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
-    
+
    QString url = kurl.url();
-   
+
    m_url = url;
    KMenu popup;
-   
+
    if (isLink && !isSelection)
    {
         popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));

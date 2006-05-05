@@ -59,15 +59,15 @@ static inline QString directionOf(const QString &str)
 class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 {
     public:
-    
+
     ShowSummaryVisitor(ArticleViewer* view) : m_view(view) {}
-    
+
     virtual bool visitFeed(Feed* node)
     {
 
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-        
+
         text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
         text += node->title();
         if(node->unread() == 0)
@@ -76,7 +76,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
         text += "</div>\n"; // headertitle
         text += "</div>\n"; // /headerbox
-        
+
         if (!node->image().isNull()) // image
         {
             text += QString("<div class=\"body\">");
@@ -87,29 +87,29 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
         }
         else text += "<div class=\"body\">";
-        
-        
+
+
         if( !node->description().isEmpty() )
         {
             text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
             text += i18n("<b>Description:</b> %1<br><br>", node->description());
             text += "</div>\n"; // /description
         }
-        
+
         if ( !node->htmlUrl().isEmpty() )
         {
             text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
             text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
             text += "</div>\n"; // / link
         }
-        
+
         //text += i18n("<b>Unread articles:</b> %1").arg(node->unread());
         text += "</div>"; // /body
-        
+
         m_view->renderContent(text);
         return true;
     }
-    
+
     virtual bool visitFolder(Folder* node)
     {
 
@@ -122,7 +122,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
         text += QString("</div>\n");
         text += "</div>\n"; // /headerbox
-    
+
         m_view->renderContent(text);
         return true;
     }
@@ -138,7 +138,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
         text += QString("</div>\n");
         text += "</div>\n"; // /headerbox
-    
+
         m_view->renderContent(text);
         return true;
     }
@@ -156,14 +156,18 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
 
     generateNormalModeCSS();
     generateCombinedModeCSS();
-    new KAction( i18n("&Scroll Up"), 0, KShortcut( "Up" ), this, SLOT(slotScrollUp()), actionCollection(), "articleviewer_scroll_up" );
-    new KAction( i18n("&Scroll Down"), 0, KShortcut( "Down" ), this, SLOT(slotScrollDown()), actionCollection(), "articleviewer_scroll_down" );
-    
+    KAction *action = new KAction( i18n("&Scroll Up"), actionCollection(), "articleviewer_scroll_up" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollUp()));
+    action->setShortcut(KShortcut( "Up" ));
+    action = new KAction( i18n("&Scroll Down"), actionCollection(), "articleviewer_scroll_down" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollDown()));
+    action->setShortcut(KShortcut( "Down" ));
+
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
     connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
-    
+
     m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
     m_htmlFooter = "</body></html>";
 }
@@ -176,7 +180,7 @@ ArticleViewer::~ArticleViewer()
 void ArticleViewer::generateNormalModeCSS()
 {
     const QPalette & pal = QApplication::palette();
-    
+
     // from kmail::headerstyle.cpp
     m_normalModeCSS = QString (
             "<style type=\"text/css\">\n"
@@ -233,7 +237,7 @@ void ArticleViewer::generateNormalModeCSS()
     "  margin-left: 5px;\n"
             "}\n\n").arg(pal.color( QPalette::Highlight ).name())
             .arg(pal.color( QPalette::HighlightedText ).name());
-    
+
     m_normalModeCSS += QString(
     "body { clear: none; }\n\n"
     ".content {\n"
@@ -254,7 +258,7 @@ void ArticleViewer::generateNormalModeCSS()
 void ArticleViewer::generateCombinedModeCSS()
 {
     const QPalette &pal = QApplication::palette();
-    
+
     // from kmail::headerstyle.cpp
     m_combinedModeCSS = QString (
             "<style type=\"text/css\">\n"
@@ -311,7 +315,7 @@ void ArticleViewer::generateCombinedModeCSS()
     "  margin-left: 5px;\n"
             "}\n\n").arg( pal.color( QPalette::Highlight ).name() )
             .arg( pal.color( QPalette::HighlightedText ).name() );
-    
+
     m_combinedModeCSS += QString(
     "body { clear: none; }\n\n"
     ".content {\n"
@@ -426,7 +430,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
 
-    
+
 
     if (!article.description().isEmpty())
     {
@@ -434,9 +438,9 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
         text += "<span class=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }
-    
+
     text += "<div class=\"body\">";
-    
+
     if (article.commentsLink().isValid())
     {
         text += "<a class=\"contentlink\" href=\"";
@@ -465,7 +469,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
     }
     text += "</div>";
 
-    
+
 //    if (!article.enclosure().isNull())
   //  {
         //QString url = article.enclosure().url();
@@ -502,7 +506,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "</span><span class=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
     }
-    
+
     QString author = article.author();
     if (!author.isEmpty())
     {
@@ -511,7 +515,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "</span><span class=\"headertext\">";
         text += author+"</span>\n"; // TODO: might need RTL?
     }
-    
+
     text += "</div>\n"; // end headerbox
 
     if (feed && !feed->image().isNull())
@@ -523,7 +527,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
 
-    
+
 
     if (!article.description().isEmpty())
     {
@@ -531,9 +535,9 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "<span class=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }
-    
+
     text += "<div class=\"body\">";
-    
+
     if (article.commentsLink().isValid())
     {
         text += "<a class=\"contentlink\" href=\"";
@@ -579,11 +583,11 @@ void ArticleViewer::renderContent(const QString& text)
 void ArticleViewer::beginWriting()
 {
     QString head = QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
-    
+
     if (m_viewMode == CombinedView)
         head += m_combinedModeCSS;
     else
-        head += m_normalModeCSS; 
+        head += m_normalModeCSS;
 
     head += "</style></head><body>";
     view()->setContentsPos(0,0);
@@ -660,7 +664,7 @@ void ArticleViewer::slotUpdateCombinedView()
     int num = 0;
     QTime spent;
     spent.start();
-    
+
     for ( ; it != end; ++it)
     {
         if ( !(*it).isDeleted() && m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
@@ -715,7 +719,7 @@ void ArticleViewer::slotShowNode(TreeNode* node)
         disconnectFromNode(m_node);
 
     connectToNode(node);
-    
+
     m_article = Article();
     m_node = node;
 
@@ -767,7 +771,7 @@ void ArticleViewer::connectToNode(TreeNode* node)
             connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
 
         connect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
-    }   
+    }
 }
 
 void ArticleViewer::disconnectFromNode(TreeNode* node)
