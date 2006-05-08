@@ -11,13 +11,14 @@
 
 #include <QHash>
 #include <QString>
+#include <kdepim_export.h>
 
 
 namespace Akregator {
 
 //    class PluginConfig;
 
-class Plugin
+class AKREGATOR_EXPORT Plugin
 {
     public:
         virtual ~Plugin();

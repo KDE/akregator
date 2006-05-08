@@ -27,13 +27,14 @@
 #define AKREGATOR_FETCHQUEUE_H
 
 #include <qobject.h>
+#include <kdepim_export.h>
 
 namespace Akregator {
 
 class Feed;
 class TreeNode;
 
-class FetchQueue : public QObject
+class AKREGATOR_EXPORT FetchQueue : public QObject
 {
     Q_OBJECT
 

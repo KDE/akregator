@@ -28,6 +28,7 @@
 #include <treenode.h>
 #include <QList>
 #include <QStringList>
+#include <kdepim_export.h>
 class QDomDocument;
 class QDomElement;
 class QString;
@@ -43,7 +44,7 @@ class FetchQueue;
 class Tag;
 class TreeNodeVisitor;
 
-class TagNode : public TreeNode
+class AKREGATOR_EXPORT TagNode : public TreeNode
 {
 Q_OBJECT
 

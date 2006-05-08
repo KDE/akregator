@@ -26,6 +26,7 @@
 #define AKREGATOR_BACKEND_STORAGE_H
 
 #include <qobject.h>
+#include <kdepim_export.h>
 
 class QString;
 class QStringList;
@@ -39,7 +40,7 @@ class FeedStorage;
     
     An archive implementation must implement Storage, FeedStorage and StorageFactory. See mk4storage for an example.
 */
-class Storage : public QObject
+class AKREGATOR_EXPORT Storage : public QObject
 {
     public:
 

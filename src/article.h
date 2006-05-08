@@ -26,6 +26,8 @@
 #ifndef AKREGATOR_ARTICLE_H
 #define AKREGATOR_ARTICLE_H
 
+#include <kdepim_export.h>
+
 class QDateTime;
 class QDomDocument;
 class QDomElement;
@@ -55,7 +57,7 @@ namespace Backend
 }
 class Feed;
 /** A proxy class for Syndication::ItemPtr with some additional methods to assist sorting. */
-class Article
+class AKREGATOR_EXPORT Article
 {
     public:
         /** (un)read status of the article */

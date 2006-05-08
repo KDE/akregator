@@ -20,13 +20,14 @@ email                : markey@web.de
 
 #include <kservice.h>
 #include <ktrader.h>
+#include <kdepim_export.h>
 
 
 class KLibrary;
 namespace Akregator {
 
 class Plugin;
-class PluginManager
+class AKREGATOR_EXPORT PluginManager
 {
     public:
         /** Bump this number whenever the plugin framework gets incompatible with older versions */

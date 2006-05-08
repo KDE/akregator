@@ -80,8 +80,7 @@ class Part : public MyBasePart, virtual public AkregatorPartIface
         typedef MyBasePart inherited;
 
         /** Default constructor.*/
-        Part(QWidget *parentWidget, const char *widgetName,
-                        QObject *parent, const char *name, const QStringList&);
+        Part(QWidget *parentWidget, QObject *parent, const QStringList&);
 
 	   /** Destructor. */
         virtual ~Part();

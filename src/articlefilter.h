@@ -31,6 +31,7 @@
 #include <QList>
 #include <QString>
 #include <QVariant>
+#include <kdepim_export.h>
 
 class KConfig;
 
@@ -47,7 +48,7 @@ class Criterion;
 /** an article filter, basically a matcher and an action. 
  *  @author Frank Osterfeld
  */
-class ArticleFilter
+class AKREGATOR_EXPORT ArticleFilter
 {
     public:
 
@@ -86,7 +87,7 @@ class ArticleFilter
     
 };
 
-class ArticleFilterList : public QList<ArticleFilter>
+class AKREGATOR_EXPORT ArticleFilterList : public QList<ArticleFilter>
 {
 public:
     
@@ -97,7 +98,7 @@ public:
 /** Abstract base class for matchers, a matcher just takes an article and checks whether the article matches some criterion or not. 
  *  @author Frank Osterfeld
  */
-class AbstractMatcher
+class AKREGATOR_EXPORT AbstractMatcher
 {
     public:
 
@@ -114,7 +115,7 @@ class AbstractMatcher
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
 };
 
-class TagMatcher : public AbstractMatcher
+class AKREGATOR_EXPORT TagMatcher : public AbstractMatcher
 {
     public:
 
@@ -142,7 +143,7 @@ class TagMatcher : public AbstractMatcher
          TagMatcherPrivate* d;
 };
 
-class AbstractAction
+class AKREGATOR_EXPORT AbstractAction
 {
     public:
         virtual void exec(Article& article) = 0;
@@ -154,7 +155,7 @@ class AbstractAction
         virtual bool operator==(const AbstractAction& other) = 0;
 };
 
-class DeleteAction : public AbstractAction
+class AKREGATOR_EXPORT DeleteAction : public AbstractAction
 {
     public:
         virtual void exec(Article& article);
@@ -166,7 +167,7 @@ class DeleteAction : public AbstractAction
         virtual bool operator==(const AbstractAction& other);
 };
 
-class SetStatusAction : public AbstractAction
+class AKREGATOR_EXPORT SetStatusAction : public AbstractAction
 {
     public:
         SetStatusAction(int status=0);
@@ -187,7 +188,7 @@ class SetStatusAction : public AbstractAction
         int m_status;
 };
 
-class AssignTagAction : public AbstractAction
+class AKREGATOR_EXPORT AssignTagAction : public AbstractAction
 {
     public:
 
@@ -211,7 +212,7 @@ class AssignTagAction : public AbstractAction
 /** a powerful matcher supporting multiple criterions, which can be combined      via logical OR or AND
  *  @author Frerich Raabe
  */
-class ArticleMatcher : public AbstractMatcher
+class AKREGATOR_EXPORT ArticleMatcher : public AbstractMatcher
 {
     public:
 
@@ -250,7 +251,7 @@ class ArticleMatcher : public AbstractMatcher
 /** Criterion for ArticleMatcher
  *  @author Frerich Raabe
  */
-class Criterion
+class AKREGATOR_EXPORT Criterion
 {
     public:
 

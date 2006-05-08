@@ -52,6 +52,7 @@
 #include <kmenu.h>
 #include <kshortcut.h>
 #include <kstdaccel.h>
+#include <kstdaction.h>
 #include <kxmlguifactory.h>
 
 #include <QHash>

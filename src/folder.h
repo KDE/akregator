@@ -27,6 +27,7 @@
 #define AKREGATOR_FOLDER_H
 
 #include "treenode.h"
+#include <kdepim_export.h>
 
 class QDomDocument;
 class QDomElement;
@@ -41,7 +42,7 @@ class TreeNodeVisitor;
     
 /** Represents a folder (containing feeds and/or other folders)
     */
-class Folder : public TreeNode
+class AKREGATOR_EXPORT Folder : public TreeNode
 {
     Q_OBJECT
     public:

@@ -26,6 +26,7 @@
 #define AKREGATOR_TAGNODELIST_H
 
 #include "tagfolder.h"
+#include <kdepim_export.h>
 
 class QDomDocument;
 template <class T> class QList;
@@ -41,7 +42,7 @@ class Tag;
 class TagSet;
 
 
-class TagNodeList : public NodeList
+class AKREGATOR_EXPORT TagNodeList : public NodeList
 {
     Q_OBJECT
     public:

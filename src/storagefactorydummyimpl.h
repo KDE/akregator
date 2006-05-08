@@ -26,6 +26,7 @@
 #define AKREGATOR_STORAGEFACTORYDUMMYIMPL_H
 
 #include "storagefactory.h"
+#include <kdepim_export.h>
 
 class QString;
 class QStringList;
@@ -35,7 +36,7 @@ namespace Backend {
 
 class Storage;
 
-class StorageFactoryDummyImpl : public StorageFactory
+class AKREGATOR_EXPORT StorageFactoryDummyImpl : public StorageFactory
 {
     public:
     virtual QString key() const;

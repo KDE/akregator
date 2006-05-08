@@ -31,6 +31,7 @@
 #include <dcopclient.h>
 
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
@@ -107,7 +108,7 @@ bool MainWindow::loadPart()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<Akregator::Part*>(factory->create(this, "akregator_part", "KParts::ReadOnlyPart" ));
+        m_part = static_cast<Akregator::Part*>(factory->create(this, "akregator_part"));
 
         if (m_part)
         {

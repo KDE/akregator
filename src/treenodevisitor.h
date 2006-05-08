@@ -24,6 +24,8 @@
 #ifndef AKREGATOR_TREENODEVISITOR_H
 #define AKREGATOR_TREENODEVISITOR_H
 
+#include <kdepim_export.h>
+
 namespace Akregator 
 {
 
@@ -33,7 +35,7 @@ class Feed;
 class TagNode;
 class TagFolder;
 
-class TreeNodeVisitor
+class AKREGATOR_EXPORT TreeNodeVisitor
 {
     public:
         virtual ~TreeNodeVisitor(){}

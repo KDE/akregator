@@ -30,6 +30,7 @@
 
 #include "libsyndication.h"
 #include <ksharedptr.h>
+#include <kdepim_export.h>
 
 #include <QList>
 #include <QPixmap>
@@ -60,7 +61,7 @@ namespace Backend
 }
 
 /** represents a feed */
-class Feed : public TreeNode
+class AKREGATOR_EXPORT Feed : public TreeNode
 {
     friend class Article;
     

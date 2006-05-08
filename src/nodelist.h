@@ -27,6 +27,7 @@
 
 #include <QObject>
 #include <QList>
+#include <kdepim_export.h>
 
 class QDomDocument;
 class QDomNode;
@@ -40,7 +41,7 @@ namespace Akregator {
 class Folder;
 class TreeNode;
 
-class NodeList : public QObject
+class AKREGATOR_EXPORT NodeList : public QObject
 {
 
 Q_OBJECT

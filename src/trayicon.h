@@ -26,6 +26,7 @@
 #define AKREGATOR_TRAYICON_H
 
 #include <ksystemtray.h>
+#include <kdepim_export.h>
 
 #include <QImage>
 #include <QPixmap>
@@ -34,7 +35,7 @@ class QMouseEvent;
 
 namespace Akregator {
 
-class TrayIcon : public KSystemTray
+class AKREGATOR_EXPORT TrayIcon : public KSystemTray
 {
     Q_OBJECT
     public:

@@ -27,6 +27,7 @@
 #define AKREGATOR_TREENODE_H
 
 #include <QObject>
+#include <kdepim_export.h>
 
 class QDomDocument;
 class QDomElement;
@@ -48,7 +49,7 @@ class FetchQueue;
                    
     TODO: detailed description goes here
 */
-class TreeNode : public QObject
+class AKREGATOR_EXPORT TreeNode : public QObject
 {
 Q_OBJECT
 

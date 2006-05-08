@@ -1,6 +1,8 @@
 #ifndef AKREGATOR_ARTICLEINTERCEPTOR_H
 #define AKREGATOR_ARTICLEINTERCEPTOR_H
 
+#include <kdepim_export.h>
+
 template <class T> class QList;
 
 namespace Akregator {
@@ -13,7 +15,7 @@ class Article;
  * articles and label them.
  */
 
-class ArticleInterceptor
+class AKREGATOR_EXPORT ArticleInterceptor
 {
     public:
         virtual ~ArticleInterceptor() {}
@@ -31,7 +33,7 @@ class ArticleInterceptor
  * Singleton managing the interceptors. Added interceptors 
  * will receive fetched articles.
  */
-class ArticleInterceptorManager
+class AKREGATOR_EXPORT ArticleInterceptorManager
 {
     public:
 

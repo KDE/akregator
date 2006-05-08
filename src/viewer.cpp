@@ -34,6 +34,7 @@
 #include <kprocess.h>
 #include <krun.h>
 #include <kshell.h>
+#include <kstdaction.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
 #include <kparts/browserextension.h>
@@ -48,7 +49,7 @@
 namespace Akregator {
 
 Viewer::Viewer(QWidget *parent, const char *name)
-    : KHTMLPart(parent, name), m_url(0)
+    : KHTMLPart(parent), m_url(0)
 {
     setZoomFactor(100);
     setJScriptEnabled(true);

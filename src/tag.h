@@ -26,6 +26,7 @@
 #define AKREGATOR_TAG_H
 
 #include <QString>
+#include <kdepim_export.h>
 
 namespace Akregator {
 
@@ -41,7 +42,7 @@ user-generated tag with some magic in the id to make it (probably) unique: id: A
 mapped from a blog category: id: http://ablog.org/blog#Funny name: Funny
 tag from some ontology: id: http://foo/ont/AnimalTaxonomy/mammals, name: Mammals, scheme: http://foo/ont/AnimalTaxonomy
 */
-class Tag
+class AKREGATOR_EXPORT Tag
 {
     friend class TagSet;
     

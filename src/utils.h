@@ -25,12 +25,14 @@
 #ifndef AKREGATOR_UTILS_H
 #define AKREGATOR_UTILS_H
 
+#include <kdepim_export.h>
+
 class QString;
 typedef unsigned int uint;
 
 namespace Akregator {
 
-class Utils 
+class AKREGATOR_EXPORT Utils 
 {
     public:
     /** removes HTML/XML tags (everything between < and >, that is) from a string.  "<p><strong>foo</strong> bar</p>" becomes "foo bar" */

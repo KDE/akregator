@@ -99,8 +99,7 @@ class Part::ApplyFiltersInterceptor : public ArticleInterceptor
     }
 };
 
-Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
-                              QObject *parent, const char *name, const QStringList& )
+Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
     : DCOPObject("AkregatorIface")
        , MyBasePart(parent)
        , m_standardListLoaded(false)
@@ -111,7 +110,6 @@ Part::Part( QWidget *parentWidget, const char * /*widgetName*/,
        , m_storage(0)
        
 {
-    setObjectName(name);
     // we need an instance
     setInstance( AkregatorFactory::instance() );
 

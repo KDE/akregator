@@ -26,6 +26,7 @@
 
 #include "treenodeitem.h"
 #include "tagnode.h"
+#include <kdepim_export.h>
 
 namespace Akregator 
 {
@@ -33,7 +34,7 @@ namespace Akregator
 class Folder;
 class FolderItem;
 
-class TagNodeItem : public TreeNodeItem
+class AKREGATOR_EXPORT TagNodeItem : public TreeNodeItem
 {
 
 public:

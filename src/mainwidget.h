@@ -33,6 +33,7 @@
 
 #include <qpixmap.h>
 #include <qwidget.h>
+#include <kdepim_export.h>
 
 
 class KComboBox;
@@ -75,7 +76,7 @@ class TagNodeList;
 /**
     * This is the main widget of the view, containing tree view, article list, viewer etc.
     */
-class MainWidget : public QWidget
+class AKREGATOR_EXPORT MainWidget : public QWidget
 {
     Q_OBJECT
     public:
@@ -309,7 +310,7 @@ class MainWidget : public QWidget
         class EditNodePropertiesVisitor;
         EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
         friend class DeleteNodeVisitor;
-        class DeleteNodeVisitor;
+        class AKREGATOR_EXPORT DeleteNodeVisitor;
         DeleteNodeVisitor* m_deleteNodeVisitor;
 };
 

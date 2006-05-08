@@ -25,6 +25,7 @@
 #define AKREGATOR_ARTICLELISTVIEW_H
 
 #include <k3listview.h>
+#include <kdepim_export.h>
 
 #include <QKeyEvent>
 #include <QList>
@@ -44,7 +45,7 @@ namespace Filters
     class ArticleMatcher;
 }
 
-class ArticleListView : public K3ListView
+class AKREGATOR_EXPORT ArticleListView : public K3ListView
 {
     Q_OBJECT
     public:

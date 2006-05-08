@@ -29,6 +29,7 @@
 
 #include <kurl.h>
 #include <k3urldrag.h>
+#include <kdepim_export.h>
 
 #include <QList>
 #include <QString>
@@ -43,7 +44,7 @@ struct ArticleDragItem
     QString guid;
 };
 
-class ArticleDrag : public K3URLDrag
+class AKREGATOR_EXPORT ArticleDrag : public K3URLDrag
 {
 
 public:
