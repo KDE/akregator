@@ -6,12 +6,12 @@ Changes after 1.2.2:
 -----------------------------
 
 New features:
- 2006/05/10 fix crash when using "Load the full website when reading articles" and an error (e.g. 404) 
-            is returned
  2006/05/01 add author information to article header (in the article pane only) -fo
 
 Bug fixes:
-
+ 2006/05/10 Always show feed logos; load them on startup, not on first fetch -fo
+ 2006/05/10 fix crash when using "Load the full website when reading articles" and an error (e.g. 404) 
+            is returned (#126812) -fo 
  2006/04/29 Do not crash on startup when Combined View mode is activated (Happened only when experimental tagging is 
 activated) -fo
  2006/03/22 Prevent "Akregator is running" messages on startup (reset PID to -1 when closing akregator) -fo

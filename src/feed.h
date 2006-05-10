@@ -161,9 +161,6 @@ namespace Akregator
             /** returns the feed image */
             const QPixmap& image() const;
 
-            /** sets the feed image */
-            void setImage(const QPixmap &p);
-
             /** returns the url of the actual feed source (rss/rdf/atom file) */
             const QString& xmlUrl() const;
             /** sets the url of the actual feed source (rss/rdf/atom file) */
@@ -211,6 +208,9 @@ namespace Akregator
 
             /** downloads the favicon */
             void loadFavicon();
+            
+            /** load the image from the cache if it is in there */
+            void loadImage();
             
         public slots:
             /** starts fetching */

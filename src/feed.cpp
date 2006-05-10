@@ -162,7 +162,7 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
         feed->setLoadLinkedWebsite(loadLinkedWebsite);
         feed->loadArticles(); // TODO: make me fly: make this delayed
-        
+        feed->loadImage();
     }
 
     return feed;
@@ -203,6 +203,13 @@ QValueList<Article> Feed::articles(const QString& tag)
     }
 }
 
+void Feed::loadImage()
+{
+    QString u = d->xmlUrl;
+    QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/") + u.replace("/", "_").replace(":", "_")+".png";
+    d->imagePixmap.load(imageFileName, "PNG");
+}
+        
 void Feed::loadArticles()
 {
     if (d->articlesLoaded)
@@ -573,7 +580,12 @@ void Feed::tryFetch()
 
 void Feed::slotImageFetched(const QPixmap& image)
 {
-    setImage(image);
+    if (image.isNull())
+        return;
+    d->imagePixmap=image;
+    QString u = d->xmlUrl;
+    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
+    nodeModified();
 }
 
 void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
@@ -613,19 +625,11 @@ void Feed::fetchCompleted(RSS::Loader *l, RSS::Document doc, RSS::Status status)
 
     d->fetchError = false;
     
-    if (d->imagePixmap.isNull())
+    if (doc.image() && d->imagePixmap.isNull())
     {
-        QString u = d->xmlUrl;
-        QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
-        d->imagePixmap=QPixmap(imageFileName, "PNG");
-
-        // if we aint got teh image and the feed provides one, get it....
-        if (d->imagePixmap.isNull() && doc.image())
-        {
-            d->image = *doc.image();
-            connect(&d->image, SIGNAL(gotPixmap(const QPixmap&)), this, SLOT(slotImageFetched(const QPixmap&)));
-            d->image.getPixmap();
-        }   
+        d->image = *doc.image();
+        connect(&d->image, SIGNAL(gotPixmap(const QPixmap&)), this, SLOT(slotImageFetched(const QPixmap&)));
+        d->image.getPixmap();
     }
 
     if (title().isEmpty())
@@ -685,16 +689,6 @@ void Feed::slotDeleteExpiredArticles()
 void Feed::setFavicon(const QPixmap &p)
 {
     d->favicon = p;
-    nodeModified();
-}
-
-void Feed::setImage(const QPixmap &p)
-{
-    if (p.isNull())
-        return;
-    d->imagePixmap=p;
-    QString u = d->xmlUrl;
-    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
     nodeModified();
 }
 
