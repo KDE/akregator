@@ -25,7 +25,7 @@
 #include "folder.h"
 #include "treenode.h"
 
-#include <qstring.h>
+#include <QString>
 #include <QList>
 
 #include <kdebug.h>

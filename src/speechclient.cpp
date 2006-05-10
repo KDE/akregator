@@ -34,7 +34,7 @@
 #include <ktoolinvocation.h>
 #include <ktrader.h>
 
-#include <qstring.h>
+#include <QString>
 
 namespace Akregator 
 {

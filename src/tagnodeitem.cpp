@@ -30,7 +30,7 @@
 #include <kaction.h>
 #include <kiconloader.h>
 
-#include <qpoint.h>
+#include <QPoint>
 #include <QMenu>
 
 namespace Akregator {

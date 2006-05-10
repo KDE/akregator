@@ -32,7 +32,7 @@
 
 #include <qdom.h>
 #include <QHash>
-#include <qstring.h>
+#include <QString>
 #include <QList>
 
 #include <kapplication.h>

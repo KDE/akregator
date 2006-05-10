@@ -27,7 +27,7 @@
 #include <kstaticdeleter.h>
 #include <kurl.h>
 
-#include <qlabel.h>
+#include <QLabel>
 #include <qtimer.h>
 //Added by qt3to4:
 #include <QList>

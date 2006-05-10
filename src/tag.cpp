@@ -26,7 +26,7 @@
 #include "tag.h"
 #include "tagset.h"
 
-#include <qstring.h>
+#include <QString>
 #include <QList>
 
 namespace Akregator {

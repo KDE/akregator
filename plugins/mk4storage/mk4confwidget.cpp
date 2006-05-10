@@ -26,8 +26,8 @@
 #include "mk4confwidget.h"
 #include "storagemk4impl.h"
 
-#include <qcheckbox.h>
-#include <qlabel.h>
+#include <QCheckBox>
+#include <QLabel>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kurlrequester.h>

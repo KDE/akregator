@@ -32,7 +32,7 @@
 #include <knuminput.h>
 #include <kpassworddialog.h>
 
-#include <qcheckbox.h>
+#include <QCheckBox>
 #include <qradiobutton.h>
 
 namespace Akregator {

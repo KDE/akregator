@@ -23,8 +23,8 @@
 */
 
 #include "utils.h"
-#include <qregexp.h>
-#include <qstring.h>
+#include <QRegExp>
+#include <QString>
 
 namespace Akregator {
 

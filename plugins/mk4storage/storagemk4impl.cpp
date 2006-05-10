@@ -27,8 +27,8 @@
 
 #include <mk4.h>
 
-#include <qmap.h>
-#include <qstring.h>
+#include <QMap>
+#include <QString>
 #include <qstringlist.h>
 #include <qtimer.h>
 

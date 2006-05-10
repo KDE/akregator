@@ -28,11 +28,11 @@
 #include <qapplication.h>
 #include <qicon.h>
 #include <qclipboard.h>
-#include <qmap.h>
+#include <QMap>
 #include <QHash>
-#include <qstring.h>
+#include <QString>
 #include <qtoolbutton.h>
-#include <qtooltip.h>
+#include <QToolTip>
 //Added by qt3to4:
 #include <QMenu>
 #include <QStyleOption>

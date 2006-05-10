@@ -23,7 +23,7 @@
 */
 
 #include <QGridLayout>
-#include <qregexp.h>
+#include <QRegExp>
 
 #include <kactioncollection.h>
 #include <kdebug.h>

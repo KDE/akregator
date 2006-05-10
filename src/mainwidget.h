@@ -32,7 +32,7 @@
 #include <kurl.h>
 
 #include <qpixmap.h>
-#include <qwidget.h>
+#include <QWidget>
 #include <kdepim_export.h>
 
 

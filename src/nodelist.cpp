@@ -32,7 +32,7 @@
 
 #include <QHash>
 #include <QList>
-#include <qstring.h>
+#include <QString>
 
 namespace Akregator {
 

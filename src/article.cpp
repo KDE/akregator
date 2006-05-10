@@ -33,7 +33,7 @@
 
 #include <qdatetime.h>
 #include <qdom.h>
-#include <qregexp.h>
+#include <QRegExp>
 #include <qstringlist.h>
 #include <QList>
 

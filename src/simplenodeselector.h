@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_SIMPLENODESELECTOR_H
 #define AKREGATOR_SIMPLENODESELECTOR_H
 
-#include <qwidget.h>
+#include <QWidget>
 
 #include <kdialogbase.h>
 

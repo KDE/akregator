@@ -35,7 +35,7 @@
 #include <mk4.h>
 
 #include <qdom.h>
-#include <qfile.h>
+#include <QFile>
 #include <QTextStream>
 
 #include <kdebug.h>

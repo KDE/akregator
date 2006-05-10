@@ -33,7 +33,7 @@
 #include <kcombobox.h>
 #include <klocale.h>
 
-#include <qlabel.h>
+#include <QLabel>
 #include <qslider.h>
 #include <qstringlist.h>
 

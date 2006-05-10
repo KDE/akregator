@@ -39,8 +39,8 @@
 #include <QMouseEvent>
 #include <qbitmap.h>
 #include <qpainter.h>
-#include <qfont.h>
-#include <qtooltip.h>
+#include <QFont>
+#include <QToolTip>
 #ifdef Q_WS_X11
 #include <QX11Info>
 #endif

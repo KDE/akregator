@@ -27,9 +27,9 @@
 #include "mk4config.h"
 
 #include <klocale.h>
-#include <qstring.h>
+#include <QString>
 #include <qstringlist.h>
-#include <qwidget.h>
+#include <QWidget>
 
 namespace Akregator {
 namespace Backend {

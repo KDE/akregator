@@ -35,12 +35,12 @@
 
 #include <qapplication.h>
 #include <khbox.h>
-#include <qlabel.h>
+#include <QLabel>
 #include <qpixmap.h>
-#include <qstring.h>
+#include <QString>
 #include <qtimer.h>
 #include <qtoolbutton.h>
-#include <qtooltip.h>
+#include <QToolTip>
 #include <QList>
 
 using Akregator::Filters::ArticleMatcher;

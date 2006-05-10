@@ -3,9 +3,9 @@
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <qstringlist.h>
-#include <qwidget.h>
+#include <QWidget>
 
 #include <kcombobox.h>
 
