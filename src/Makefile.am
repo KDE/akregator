@@ -160,4 +160,6 @@ kde_servicetypes_DATA = akregator_plugin.desktop
 
 SUBDIRS = librss about . mk4storage pics
 
+DOXYGEN_REFERENCES = kdeui
+include $(top_srcdir)/admin/Doxyfile.am
 
