@@ -294,15 +294,21 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "mainWidget_mode" );
 
     QActionGroup* agViewMode = new QActionGroup(this);
-    KToggleAction *ra = new KToggleAction(i18n("&Normal View"), "mainWidget_top_bottom", KShortcut( "Ctrl+Shift+1" ), d->mainWidget, SLOT(slotNormalView()), actionCollection(), "normal_mainWidget");
+    KToggleAction *ra = new KToggleAction(KIcon("mainWidget_top_bottom"), i18n("&Normal View"), actionCollection(), "normal_mainWidget");
+    connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotNormalView()));
+    ra->setShortcut(KShortcut( "Ctrl+Shift+1" ));
     ra->setActionGroup(agViewMode);
     vm->insert(ra);
 
-    ra = new KToggleAction(i18n("&Widescreen View"), "mainWidget_left_right", KShortcut( "Ctrl+Shift+2" ), d->mainWidget, SLOT(slotWidescreenView()), actionCollection(), "widescreen_mainWidget");
+    ra = new KToggleAction(KIcon("mainWidget_left_right"), i18n("&Widescreen View"), actionCollection(), "widescreen_mainWidget");
+    connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotWidescreenView()));
+    ra->setShortcut(KShortcut( "Ctrl+Shift+2" ));
     ra->setActionGroup(agViewMode);
     vm->insert(ra);
 
-    ra = new KToggleAction(i18n("C&ombined View"), "mainWidget_text", KShortcut( "Ctrl+Shift+3" ), d->mainWidget, SLOT(slotCombinedView()), actionCollection(), "combined_mainWidget");
+    ra = new KToggleAction(KIcon("mainWidget_text"), i18n("C&ombined View"), actionCollection(), "combined_mainWidget");
+    connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotCombinedView()));
+    ra->setShortcut(KShortcut( "Ctrl+Shift+3" ));
     ra->setActionGroup(agViewMode);
     vm->insert(ra);
 
@@ -327,7 +333,8 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcut(KShortcut( "Ctrl+Shift+R" ));
 
     // Settings menu
-    KToggleAction* sqf = new KToggleAction(i18n("Show Quick Filter"), QString::null, 0, d->mainWidget, SLOT(slotToggleShowQuickFilter()), actionCollection(), "show_quick_filter");
+    KToggleAction *sqf = new KToggleAction(i18n("Show Quick Filter"), actionCollection(), "show_quick_filter");
+    connect(sqf, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotToggleShowQuickFilter()));
     sqf->setChecked( Settings::showQuickFilter() );
 
     action = new KAction(KIcon("tab_new"),  i18n("Open in Tab"), actionCollection(), "article_open" );
