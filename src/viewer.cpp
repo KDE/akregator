@@ -323,7 +323,7 @@ void Viewer::slotPrint( )
 
 void Viewer::setSafeMode()
 {
-    setJScriptEnabled(false);
+    //setJScriptEnabled(false);
     setJavaEnabled(false);
     setMetaRefreshEnabled(false);
     setPluginsEnabled(false);

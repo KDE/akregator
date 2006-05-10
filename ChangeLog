@@ -6,7 +6,8 @@ Changes after 1.2.2:
 -----------------------------
 
 New features:
-
+ 2006/05/10 fix crash when using "Load the full website when reading articles" and an error (e.g. 404) 
+            is returned
  2006/05/01 add author information to article header (in the article pane only) -fo
 
 Bug fixes:
