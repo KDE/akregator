@@ -259,7 +259,7 @@ class Criterion
     public:
 
         enum Subject {
-            Title, Description, Link, Status, KeepFlag
+            Title, Description, Author, Link, Status, KeepFlag
         };
 
         static QString subjectToString(Subject subj);

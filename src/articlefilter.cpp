@@ -46,6 +46,8 @@ QString Criterion::subjectToString(Subject subj)
             return QString::fromLatin1("Title");
         case Link:
             return QString::fromLatin1("Link");
+        case Author:
+            return QString::fromLatin1("Author");
         case Description:
             return QString::fromLatin1("Description");
         case Status:
@@ -65,6 +67,8 @@ Criterion::Subject Criterion::stringToSubject(const QString& subjStr)
         return Link;
     else if (subjStr == QString::fromLatin1("Description"))
         return Description;
+    else if (subjStr == QString::fromLatin1("Author"))
+        return Author;
     else if (subjStr == QString::fromLatin1("Status"))
         return Status;
     else if (subjStr == QString::fromLatin1("KeepFlag"))
@@ -151,6 +155,9 @@ bool Criterion::satisfiedBy( const Article &article ) const
             break;
         case Description:
             concreteSubject = QVariant(article.description());
+            break;
+        case Author:
+            concreteSubject = QVariant(article.author());
             break;
         case Link:
             // ### Maybe use prettyURL here?
