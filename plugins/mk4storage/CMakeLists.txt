@@ -1,4 +1,3 @@
-kde4_header()
 
 set(libmetakitlocal_SRCS 
                 ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/column.cpp 
@@ -52,7 +51,6 @@ install_targets(${PLUGIN_INSTALL_DIR} akregator_mk4storage_plugin )
 install_files( ${KCFG_INSTALL_DIR} FILES mk4config.kcfg )
 install_files( ${SERVICES_INSTALL_DIR} FILES akregator_mk4storage_plugin.desktop )
 
-kde4_footer()
 
 
 

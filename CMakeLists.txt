@@ -1,9 +1,7 @@
-kde4_header()
 
 add_subdirectory( plugins ) 
 add_subdirectory( src ) 
 
-kde4_footer()
 
 
 

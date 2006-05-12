@@ -1,4 +1,3 @@
-kde4_header()
 
 add_subdirectory( about ) 
 add_subdirectory( pics ) 
@@ -137,7 +136,6 @@ install_files( /include/akregator FILES storage.h feedstorage.h storagefactory.h
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
 
-kde4_footer()
 
 
 

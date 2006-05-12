@@ -1,4 +1,3 @@
-kde4_header()
 
 
 
@@ -7,7 +6,6 @@ kde4_header()
 
 install_files( ${DATA_INSTALL_DIR}/akregator/about FILES top-right-akregator.png  	main.html  	akregator.css )
 
-kde4_footer()
 
 
 
