@@ -28,7 +28,7 @@
 #include <qdom.h>
 #include <QHash>
 #include <QString>
-#include <qstringlist.h>
+#include <QStringList>
 //Added by qt3to4:
 #include <QList>
 

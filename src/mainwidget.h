@@ -31,7 +31,7 @@
 
 #include <kurl.h>
 
-#include <qpixmap.h>
+#include <QPixmap>
 #include <QWidget>
 #include <kdepim_export.h>
 

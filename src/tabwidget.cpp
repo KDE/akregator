@@ -24,14 +24,14 @@
 
 #include "tabwidget.h"
 
-#include <qstyle.h>
-#include <qapplication.h>
-#include <qicon.h>
-#include <qclipboard.h>
+#include <QStyle>
+#include <QApplication>
+#include <QIcon>
+#include <QClipboard>
 #include <QMap>
 #include <QHash>
 #include <QString>
-#include <qtoolbutton.h>
+#include <QToolButton>
 #include <QToolTip>
 //Added by qt3to4:
 #include <QMenu>

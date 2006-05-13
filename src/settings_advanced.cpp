@@ -4,7 +4,7 @@
 #include "storagefactoryregistry.h"
 
 #include <QPushButton>
-#include <qstringlist.h>
+#include <QStringList>
 #include <QWidget>
 
 #include <kcombobox.h>

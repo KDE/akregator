@@ -26,7 +26,7 @@
 #ifndef AKREGATOR_FETCHQUEUE_H
 #define AKREGATOR_FETCHQUEUE_H
 
-#include <qobject.h>
+#include <QObject>
 #include <kdepim_export.h>
 
 namespace Akregator {

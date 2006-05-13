@@ -26,7 +26,7 @@
 
 #include <klocale.h>
 #include <QString>
-#include <qstringlist.h>
+#include <QStringList>
 #include <QWidget>
 
 namespace Akregator {

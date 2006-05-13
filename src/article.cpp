@@ -31,10 +31,10 @@
 
 #include "libsyndication.h"
 
-#include <qdatetime.h>
+#include <QDateTime>
 #include <qdom.h>
 #include <QRegExp>
-#include <qstringlist.h>
+#include <QStringList>
 #include <QList>
 
 #include <krfcdate.h>

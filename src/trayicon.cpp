@@ -37,8 +37,8 @@
 #include <kiconloader.h>
 #include <QDesktopWidget>
 #include <QMouseEvent>
-#include <qbitmap.h>
-#include <qpainter.h>
+#include <QBitmap>
+#include <QPainter>
 #include <QFont>
 #include <QToolTip>
 #ifdef Q_WS_X11

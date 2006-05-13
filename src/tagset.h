@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_TAGSET_H
 #define AKREGATOR_TAGSET_H
 
-#include <qobject.h>
+#include <QObject>
 #include <kdepim_export.h>
 
 class QDomDocument;

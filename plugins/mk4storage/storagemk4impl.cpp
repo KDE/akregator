@@ -29,8 +29,8 @@
 
 #include <QMap>
 #include <QString>
-#include <qstringlist.h>
-#include <qtimer.h>
+#include <QStringList>
+#include <QTimer>
 
 #include <kdebug.h>
 #include <kstandarddirs.h>

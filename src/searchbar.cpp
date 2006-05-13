@@ -33,13 +33,13 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 
-#include <qapplication.h>
+#include <QApplication>
 #include <khbox.h>
 #include <QLabel>
-#include <qpixmap.h>
+#include <QPixmap>
 #include <QString>
-#include <qtimer.h>
-#include <qtoolbutton.h>
+#include <QTimer>
+#include <QToolButton>
 #include <QToolTip>
 #include <QList>
 

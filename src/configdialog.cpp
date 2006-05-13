@@ -34,8 +34,8 @@
 #include <klocale.h>
 
 #include <QLabel>
-#include <qslider.h>
-#include <qstringlist.h>
+#include <QSlider>
+#include <QStringList>
 
 namespace Akregator
 {

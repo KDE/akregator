@@ -28,7 +28,7 @@
 #include <kurl.h>
 
 #include <QLabel>
-#include <qtimer.h>
+#include <QTimer>
 //Added by qt3to4:
 #include <QList>
 

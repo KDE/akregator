@@ -54,9 +54,9 @@
 #include "statusbarprogresswidget.h"
 #include "trayicon.h"
 
-#include <qmetaobject.h>
-#include <qpen.h>
-#include <qpainter.h>
+#include <QMetaObject>
+#include <QPen>
+#include <QPainter>
 #include <QPixmap>
 #include <QTimer>
 
