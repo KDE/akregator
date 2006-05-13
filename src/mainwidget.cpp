@@ -376,7 +376,7 @@ void MainWidget::slotOnShutdown()
 
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
-    m_tabWidget->setCurrentPage(m_tabWidget->count()-1); // select last page
+    m_tabWidget->setCurrentIndex(m_tabWidget->count()-1); // select last page
     while (m_tabWidget->count() > 1) // remove frames until only the main frame remains
         m_tabWidget->slotRemoveCurrentFrame();
 
@@ -408,7 +408,7 @@ void MainWidget::slotOpenTab(const KUrl& url, bool background)
     m_tabWidget->addFrame(frame);
 
     if(!background)
-        m_tabWidget->showPage(frame);
+        m_tabWidget->setCurrentIndex( m_tabWidget->indexOf(frame) );
     else
         setFocus();
 
@@ -421,7 +421,7 @@ void MainWidget::setTabIcon(const QPixmap& icon)
     Viewer* s = dynamic_cast<Viewer*>(sender());
     if (s)
     {
-        m_tabWidget->setTabIconSet(s->widget(), icon);
+        m_tabWidget->setTabIcon(m_tabWidget->indexOf(s->widget()), icon);
     }
 }
 
@@ -667,7 +667,7 @@ void MainWidget::slotFrameChanged(Frame* frame)
 
 void MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
-    m_tabWidget->showPage(m_mainTab);
+    m_tabWidget->setCurrentIndex( m_tabWidget->indexOf(m_mainTab) );
 }
 
 void MainWidget::slotMoveCurrentNodeUp()
@@ -753,7 +753,7 @@ void MainWidget::slotNodeSelected(TreeNode* node)
         m_displayingAboutPage = false;
     }
 
-    m_tabWidget->showPage(m_mainTab);
+    m_tabWidget->setCurrentIndex( m_tabWidget->indexOf(m_mainTab) );
 
     m_searchBar->slotClearSearch();
 

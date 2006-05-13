@@ -107,15 +107,15 @@ void TabWidget::slotSettingsChanged()
 
 void TabWidget::slotNextTab()
 {
-    setCurrentPage((currentPageIndex()+1) % count());
+    setCurrentIndex((currentIndex()+1) % count());
 }
 
 void TabWidget::slotPreviousTab()
 {
-    if (currentPageIndex() == 0)
-        setCurrentPage(count()-1);
+    if (currentIndex() == 0)
+        setCurrentIndex(count()-1);
     else
-        setCurrentPage(currentPageIndex()-1);
+        setCurrentIndex(currentIndex()-1);
 }
 
 void TabWidget::addFrame(Frame* frame)
@@ -132,7 +132,7 @@ void TabWidget::addFrame(Frame* frame)
 
 Frame *TabWidget::currentFrame()
 {
-    QWidget* w = currentPage();
+    QWidget* w = currentWidget();
 
     return w ? d->frames[w] : 0;
 }
@@ -157,7 +157,7 @@ void TabWidget::removeFrame(Frame *f)
     // TODO: don't let tabwidget insert frames to the manager
     Kernel::self()->frameManager()->removeFrame(f);
     delete f;
-    setTitle( currentFrame()->title(), currentPage() );
+    setTitle( currentFrame()->title(), currentWidget() );
 }
 
 // copied wholesale from KonqFrameTabs
@@ -171,7 +171,7 @@ uint TabWidget::tabBarWidthForMaxChars( int maxLength )
     QFontMetrics fm = tabBar()->fontMetrics();
     int x = 0;
     for( int i=0; i < count(); ++i ) {
-        Frame *f=d->frames[page(i)];
+        Frame *f=d->frames[widget(i)];
         QString newTitle=f->title();
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
@@ -192,7 +192,7 @@ void TabWidget::slotSetTitle(Frame* frame, const QString& title)
 
 void TabWidget::setTitle( const QString &title , QWidget* sender)
 {
-    removeTabToolTip( sender );
+    setTabToolTip( indexOf(sender), QString() );
 
     uint lcw=0, rcw=0;
     int tabBarHeight = tabBar()->sizeHint().height();
@@ -211,7 +211,7 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     QString newTitle = title;
     if ( newTitle.length() > newMaxLength )
     {
-        setTabToolTip( sender, newTitle );
+        setTabToolTip( indexOf(sender), newTitle );
         newTitle = newTitle.left( newMaxLength-3 ) + "...";
     }
 
@@ -223,18 +223,18 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
     {
         for( int i = 0; i < count(); ++i)
         {
-            Frame *f=d->frames[page(i)];
+            Frame *f=d->frames[widget(i)];
             newTitle=f->title();
-            removeTabToolTip( page( i ) );
+            setTabToolTip( indexOf(widget( i )), QString() );
             if ( newTitle.length() > newMaxLength )
             {
-                setTabToolTip( page( i ), newTitle );
+                setTabToolTip( indexOf(widget( i )), newTitle );
                 newTitle = newTitle.left( newMaxLength-3 ) + "...";
             }
 
             newTitle.replace( '&', "&&" );
-            if ( newTitle != tabText( indexOf( page( i ) ) ) )
-                setTabText( indexOf( page( i ) ), newTitle );
+            if ( newTitle != tabText( indexOf( widget( i ) ) ) )
+                setTabText( indexOf( widget( i ) ), newTitle );
         }
         d->CurrentMaxLength = newMaxLength;
     }
@@ -243,7 +243,7 @@ void TabWidget::setTitle( const QString &title , QWidget* sender)
 void TabWidget::contextMenu(int i, const QPoint &p)
 {
     QWidget* w = ActionManager::getInstance()->container("tab_popup");
-    d->currentItem = page(i);
+    d->currentItem = widget(i);
     //kDebug() << indexOf(d->currentItem) << endl;
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0)
@@ -254,7 +254,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
 void TabWidget::slotDetachTab()
 {
     if (!d->currentItem || indexOf(d->currentItem) == -1)
-        d->currentItem = currentPage();
+        d->currentItem = currentWidget();
 
     Frame* frame = d->frames[d->currentItem];
 
@@ -268,7 +268,7 @@ void TabWidget::slotDetachTab()
 void TabWidget::slotCopyLinkAddress()
 {
     if(!d->currentItem || indexOf(d->currentItem) == -1)
-        d->currentItem = currentPage();
+        d->currentItem = currentWidget();
     Frame* frame = d->frames[d->currentItem];
 
     if (frame && frame->url().isValid())
@@ -282,7 +282,7 @@ void TabWidget::slotCopyLinkAddress()
 void TabWidget::slotCloseTab()
 {
     if (!d->currentItem || indexOf(d->currentItem) == -1)
-        d->currentItem = currentPage();
+        d->currentItem = currentWidget();
     if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() )
         return;
 
@@ -298,7 +298,7 @@ void TabWidget::slotCloseTab()
 
 void TabWidget::initiateDrag(int tab)
 {
-    Frame* frame = d->frames[page(tab)];
+    Frame* frame = d->frames[widget(tab)];
 
     if (frame && frame->url().isValid())
     {
