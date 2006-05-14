@@ -63,6 +63,7 @@ class Tag
       
       Example:
       
+      @code
       Create
 
       <category term="foo" scheme="http://del.icio.us/tag"  label="Del.icio.us tag for foo"/>
@@ -70,6 +71,7 @@ class Tag
       using Tag::fromCategory("foo", "http://del.icio.us/tag", "Del.icio.us tag for foo")
       
       The @c id is built using 'scheme + "/" + term': The example gets id = "http://del.icio.us/tag/foo"
+      @encode
     */
     static Tag fromCategory(const QString& term, const QString& scheme=QString::null, const QString& name=QString::null);
 

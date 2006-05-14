@@ -85,6 +85,7 @@ namespace Akregator {
             /** constructor
             @param part the Akregator::Part which contains this widget
             @param parent parent widget
+            @param Actionmanager for this view
             @param name the name of the widget (@ref QWidget )
             */
             View(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char* name);

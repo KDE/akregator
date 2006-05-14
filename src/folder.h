@@ -147,7 +147,8 @@ namespace Akregator
             virtual void slotChildDestroyed(TreeNode* node);
 
             /** enqueues children recursively for fetching
-            @param queue a fetch queue */
+            @param queue a fetch queue 
+            @param internvalFetchesOnly */
             virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchesOnly=false);
 
             /** returns the next node in the tree.

@@ -48,7 +48,7 @@ namespace Akregator
     {
         class Storage;
     }
-    
+
     typedef KParts::ReadOnlyPart MyBasePart;
 
     class ActionManagerImpl;
@@ -57,7 +57,7 @@ namespace Akregator
     class Feed;
     class Article;
     class TrayIcon;
-    
+
     class BrowserExtension : public KParts::BrowserExtension
     {
         Q_OBJECT
@@ -69,7 +69,7 @@ namespace Akregator
         private:
             Part *m_part;
     };
-    
+
     /**
      This is a RSS Aggregator "Part". It does all the real work.
      It is also embeddable into other applications (e.g. for use in Kontact).
@@ -103,18 +103,18 @@ namespace Akregator
 
             /** Fetch all feeds in the feed tree */
             virtual void fetchAllFeeds();
-            
+
             /**
              Add a feed to a group.
-             @param url The URL of the feed to add.
+             @param urls The URL(s) of the feed(s) to add.
              @param group The name of the folder into which the feed is added.
              If the group does not exist, it is created.  The feed is added as the last member
              of the group.
              */
             virtual void addFeedsToGroup(const QStringList& urls, const QString& group);
-            
+
             virtual void addFeed();
-            
+
             /**
              This method is called when this app is restored.  The KConfig
              object points to the session management config file that was saved
@@ -122,7 +122,7 @@ namespace Akregator
              Calls AkregatorView's saveProperties.
              */
             virtual void readProperties(KConfig* config);
-            
+
             /** This method is called when it is time for the app to save its
              properties for session management purposes.
              Calls AkregatorView's readProperties. */
@@ -134,7 +134,7 @@ namespace Akregator
 
             void loadTagSet(const QString& path);
             void saveTagSet(const QString& path);
-            
+
         public slots:
             /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
             virtual void saveSettings();
@@ -145,7 +145,7 @@ namespace Akregator
             void fileImport();
             void fileExport();
             void fileGetFeeds();
-            
+
             void fileSendLink() { fileSendArticle(); }
             void fileSendFile() { fileSendArticle(true); }
             void fileSendArticle(bool attach=false);
@@ -153,32 +153,32 @@ namespace Akregator
             /** Shows configuration dialog */
             void showOptions();
             void showKNotifyOptions();
-           
+
         signals:
             void showPart();
             void signalSettingsChanged();
-            
+
 
         protected:
 
         /** @return Whether the tray icon is enabled or not */
             virtual bool isTrayIconEnabled() const;
-            
+
             /** loads all Akregator plugins */
             void loadPlugins();
-            
+
             /** This must be implemented by each part */
             virtual bool openFile();
 
             void importFile(const KURL& url);
             void exportFile(const KURL& url);
-            
+
             /** FIXME: hack to get the tray icon working */
             QWidget* getMainWindow();
 
             virtual KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
-            /** reimplemented to load/unload the merged parts on selection/deselection */ 
+            /** reimplemented to load/unload the merged parts on selection/deselection */
             virtual void partActivateEvent(KParts::PartActivateEvent* event);
 
         protected slots:
@@ -188,15 +188,15 @@ namespace Akregator
         private: // methods
 
             bool copyFile(const QString& backup);
-            
+
             /** fills the font settings with system fonts, if fonts are not set */
             void initFonts();
-            
+
             /** creates an OPML file containing the initial feeds (KDE feeds) */
             static QDomDocument createDefaultFeedList();
 
             bool tryToLock(const QString& backendName);
-                    
+
          private: // attributes
 
             class ApplyFiltersInterceptor;
@@ -209,7 +209,7 @@ namespace Akregator
             KParts::BrowserExtension *m_extension;
             KParts::Part* m_mergedPart;
             View* m_view;
-            
+
             QTimer* m_autosaveTimer;
             /** did we backup the feed list already? */
             bool m_backedUpList;

@@ -220,7 +220,7 @@ namespace RSS
     
 			/**
 			 * RSS 0.91 and upwards
-			 * @return A list of <day>s of the week, in English, indicating
+			 * @return A list of \<day\>s of the week, in English, indicating
 			 * the days of the week when the RSS document will not be updated.
 			 * @see skipHours(), DayList, Day
 			 */

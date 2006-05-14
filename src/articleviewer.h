@@ -111,13 +111,13 @@ namespace Akregator
             void renderContent(const QString& body);
             
             /** Takes an article and renders it as HTML with settings for normal view and widescreen view
-            @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
+            @param feed article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
             @param article The article to render
             @return the rendered article as HTML */
             QString formatArticleNormalMode(Feed* feed, const Article& article);
             
             /** Takes an article and renders it as HTML with settings for combined view
-            @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
+            @param feed article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
             @param article The article to render
             @return the rendered article as HTML */
             QString formatArticleCombinedMode(Feed* feed, const Article& article);

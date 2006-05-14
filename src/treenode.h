@@ -165,6 +165,7 @@ public slots:
     virtual void slotMarkAllArticlesAsRead() = 0;
 
     /** adds node to a fetch queue
+        @param a fetch queue
         @param intervalFetchesOnly */
 
     virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchesOnly=false) = 0;
@@ -178,10 +179,10 @@ signals:
     void signalChanged(TreeNode*);
 
     /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in. For listening to newly fetched articles, you have to register yourself at @ref ArticleInterceptorManager
-        @param TreeNode* the node articles were added to
-        @param QStringList the guids of the articles added
+        @param node the node articles were added to
+        @param guids the guids of the articles added
     */
-    void signalArticlesAdded(TreeNode*, const QValueList<Article>& guids);
+    void signalArticlesAdded(TreeNode* node, const QValueList<Article>& guids);
     
     /** emitted when articles were updated */
     void signalArticlesUpdated(TreeNode*, const QValueList<Article>& guids);

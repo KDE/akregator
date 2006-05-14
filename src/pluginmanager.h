@@ -81,7 +81,7 @@ class PluginManager
 
         /**
          * Look up service for loaded plugin from store
-         * @param pointer     Pointer to plugin
+         * @param plugin      Pointer to plugin
          * @return            KService, or 0 if not found
          */
         static KService::Ptr getService( const Akregator::Plugin* plugin );

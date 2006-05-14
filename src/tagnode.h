@@ -51,7 +51,6 @@ public:
     /** creates a tag node, showing articles with a specific tag, from a given node.
         @param tagId the identifier of the tag, as stored in the archive
         @param observed the tag node will list the tagged articles of @c observed (usually "All Feeds" root node)
-        @param title the user visible string used to display the tag
      
     */
     TagNode(const Tag& tag, TreeNode* observed);
