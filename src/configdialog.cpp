@@ -67,7 +67,7 @@ void ConfigDialog::updateWidgets()
     m_settingsAppearance->slider_mediumFontSize->setDisabled(m_config->isImmutable("MediumFontSize"));
     m_settingsAppearance->lbl_MinimumFontSize->setDisabled(m_config->isImmutable("MinimumFontSize"));
     m_settingsAppearance->lbl_MediumFontSize->setDisabled(m_config->isImmutable("MediumFontSize"));
-    KConfigDialog::updateSettings();
+    KConfigDialog::updateWidgets();
 }
         
 ConfigDialog::~ConfigDialog() {}
