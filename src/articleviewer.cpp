@@ -64,7 +64,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 
     virtual bool visitFeed(Feed* node)
     {
-
+        m_view->m_link = QString();
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
 
@@ -112,6 +112,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 
     virtual bool visitFolder(Folder* node)
     {
+        m_view->m_link = QString();
 
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
@@ -129,6 +130,8 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 
     virtual bool visitTagNode(TagNode* node)
     {
+        m_view->m_link = QString();
+
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
