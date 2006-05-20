@@ -69,7 +69,8 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
     
     virtual bool visitFeed(Feed* node)
     {
-
+        m_view->m_link = QString();
+        
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
         
@@ -117,7 +118,8 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
     
     virtual bool visitFolder(Folder* node)
     {
-
+        m_view->m_link = QString();
+        
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
@@ -134,6 +136,8 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 
     virtual bool visitTagNode(TagNode* node)
     {
+        m_view->m_link = QString();
+        
         QString text;
         text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
         text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
@@ -673,9 +677,9 @@ void ArticleViewer::slotUpdateCombinedView()
             ++num;
         }
     }
-    kdDebug() << "Combined view rendering: (" << num << " articles):\n" << "generating HTML: " << spent.elapsed() << "ms " << endl;
+    //kdDebug() << "Combined view rendering: (" << num << " articles):\n" << "generating HTML: " << spent.elapsed() << "ms " << endl;
     renderContent(text);
-    kdDebug() << "HTML rendering: " << spent.elapsed() << "ms" << endl;
+    //kdDebug() << "HTML rendering: " << spent.elapsed() << "ms" << endl;
 
 
 }
