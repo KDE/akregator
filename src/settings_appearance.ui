@@ -116,7 +116,7 @@
         </widget>
         <widget class="QGroupBox">
             <property name="name">
-                <cstring>kcfg_Fonts</cstring>
+                <cstring>FontsGroupBox</cstring>
             </property>
             <property name="title">
                 <string>Fonts</string>
@@ -239,8 +239,12 @@
     <includehint>knuminput.h</includehint>
     <includehint>knuminput.h</includehint>
     <includehint>kfontcombo.h</includehint>
+    <includehint>klineedit.h</includehint>
     <includehint>kfontcombo.h</includehint>
+    <includehint>klineedit.h</includehint>
     <includehint>kfontcombo.h</includehint>
+    <includehint>klineedit.h</includehint>
     <includehint>kfontcombo.h</includehint>
+    <includehint>klineedit.h</includehint>
 </includehints>
 </UI>

@@ -11,6 +11,7 @@ New features:
 
 Bug fixes:
 
+ 2006/05/20 Disable Apply-Button in config dialog correctly if no changes were made (#103820) -fo
  2006/05/20 Don't reset article status to New when the article changed (#101907) -fo
  2006/05/10 Always show feed logos; load them on startup, not on first fetch -fo
  2006/05/10 fix crash when using "Load the full website when reading articles" and an error (e.g. 404) 
