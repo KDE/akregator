@@ -23,6 +23,7 @@
 */
 
 #include <qmap.h>
+#include <qstylesheet.h>
 
 #include <klocale.h>
 #include <kstaticdeleter.h>
@@ -167,7 +168,7 @@ void ProgressItemHandler::slotFetchStarted()
         d->progressItem = 0;
     }
     
-    d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString::null, true);
+    d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), QStyleSheet::escape( d->feed->title() ), QString::null, true);
 
     connect(d->progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), d->feed, SLOT(slotAbortFetch()));
 }

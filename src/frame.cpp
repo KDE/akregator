@@ -23,6 +23,7 @@
 */
 
 #include <qregexp.h>
+#include <qstylesheet.h>
 
 #include <kactioncollection.h>
 #include <kdebug.h>
@@ -173,7 +174,7 @@ const QString& Frame::statusText() const
 void Frame::setStarted()
 {
     if(m_progressId.isNull() || m_progressId.isEmpty()) m_progressId = KPIM::ProgressManager::getUniqueID();
-    m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title(), QString::null, false);
+    m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, QStyleSheet::escape( title() ), QString::null, false);
     m_progressItem->setStatus(i18n("Loading..."));
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state=Started;
