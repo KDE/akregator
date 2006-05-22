@@ -796,7 +796,7 @@ void MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bo
 
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
 
-    afd->setURL(KUrl::decode_string(url));
+    afd->setURL(KUrl::fromPercentEncoding( url.toLatin1() ));
 
     if (autoExec)
         afd->slotOk();
