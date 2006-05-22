@@ -218,8 +218,8 @@ void Viewer::slotCopyLinkAddress()
 {
    if(m_url.isEmpty()) return;
    QClipboard *cb = QApplication::clipboard();
-   cb->setText(m_url.prettyURL(), QClipboard::Clipboard);
-   cb->setText(m_url.prettyURL(), QClipboard::Selection);
+   cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
+   cb->setText(m_url.prettyUrl(), QClipboard::Selection);
 }
 
 void Viewer::slotSelectionChanged()

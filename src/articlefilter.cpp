@@ -156,7 +156,7 @@ bool Criterion::satisfiedBy( const Article &article ) const
             concreteSubject = QVariant(article.description());
             break;
         case Link:
-            // ### Maybe use prettyURL here?
+            // ### Maybe use prettyUrl here?
             concreteSubject = QVariant(article.link().url());
             break;
         case Status:

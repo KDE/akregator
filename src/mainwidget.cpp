@@ -434,7 +434,7 @@ void MainWidget::sendArticle(bool attach)
     if (!frame)
         return;
 
-    QByteArray text = frame->url().prettyURL().toLatin1();
+    QByteArray text = frame->url().prettyUrl().toLatin1();
 
     if(text.isEmpty() || text.isNull())
         return;
@@ -1199,7 +1199,7 @@ void MainWidget::slotFeedURLDropped(KUrl::List &urls, TreeNode* after, Folder* p
     KUrl::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )
     {
-        addFeed((*it).prettyURL(), after, parent, false);
+        addFeed((*it).prettyUrl(), after, parent, false);
     }
 }
 
@@ -1355,7 +1355,7 @@ void MainWidget::slotMouseOverInfo(const KFileItem *kifi)
     if (kifi)
     {
         KFileItem *k=(KFileItem*)kifi;
-        m_mainFrame->slotSetStatusText(k->url().prettyURL());//getStatusBarInfo());
+        m_mainFrame->slotSetStatusText(k->url().prettyUrl());//getStatusBarInfo());
     }
     else
     {

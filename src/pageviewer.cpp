@@ -474,7 +474,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
                 kurl.setRef(url.mid(1));
             }
             else
-                kurl = KUrl(PageViewer::url().upURL().url(true)+url);
+                kurl = KUrl(PageViewer::url().upUrl().url(true)+url);
         }
         else
             kurl = KUrl(url);
