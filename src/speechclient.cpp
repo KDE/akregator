@@ -32,7 +32,7 @@
 #include <kdebug.h>
 #include <kstaticdeleter.h>
 #include <ktoolinvocation.h>
-#include <ktrader.h>
+#include <kservicetypetrader.h>
 
 #include <QString>
 
@@ -152,7 +152,7 @@ bool SpeechClient::isTextToSpeechInstalled() const
 
 void SpeechClient::setupSpeechSystem()
 {
-    KTrader::OfferList offers = KTrader::self()->query("DCOP/Text-to-Speech", "Name == 'KTTSD'");
+    KService::List offers = KServiceTypeTrader::self()->query("DCOP/Text-to-Speech", "Name == 'KTTSD'");
     if (offers.count() == 0)
     {
         kDebug() << "KTTSD not installed, disable support" << endl;

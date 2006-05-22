@@ -39,7 +39,7 @@ MK4ConfWidget::MK4ConfWidget() : MK4ConfWidgetBase()
 {
     if (MK4Config::archivePath() == StorageMK4Impl::defaultArchivePath() || MK4Config::archivePath().isEmpty())
     {
-        filereq->setURL(StorageMK4Impl::defaultArchivePath());
+        filereq->setUrl(StorageMK4Impl::defaultArchivePath());
         MK4Config::setArchivePath(StorageMK4Impl::defaultArchivePath());
         cbUseDefault->setChecked(true);
         filereq->setEnabled(false);
@@ -51,7 +51,7 @@ MK4ConfWidget::MK4ConfWidget() : MK4ConfWidgetBase()
         filereq->setEnabled(true);
         label->setEnabled(true);
     }
-    filereq->setURL(MK4Config::archivePath());
+    filereq->setUrl(MK4Config::archivePath());
     connect(cbUseDefault, SIGNAL(toggled(bool)), this, SLOT(slotChkBoxUseDefault(bool)));
     
 }
@@ -59,7 +59,7 @@ MK4ConfWidget::MK4ConfWidget() : MK4ConfWidgetBase()
 void MK4ConfWidget::accept()
 {
 
-    QString path = cbUseDefault->isChecked() ? StorageMK4Impl::defaultArchivePath() : filereq->url();
+    QString path = cbUseDefault->isChecked() ? StorageMK4Impl::defaultArchivePath() : filereq->url().url();
     if (path != MK4Config::archivePath())
     {
         // TODO: if the user changed the archive location, inform him that
@@ -76,7 +76,7 @@ void MK4ConfWidget::slotChkBoxUseDefault(bool checked)
 {
     if (checked)
     {
-        filereq->setURL(StorageMK4Impl::defaultArchivePath());
+        filereq->setUrl(StorageMK4Impl::defaultArchivePath());
         filereq->setEnabled(false);
     }
     else

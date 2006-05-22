@@ -58,7 +58,7 @@
 #include <knotifydialog.h>
 #include <kstandarddirs.h>
 #include <ktempfile.h>
-#include <ktrader.h>
+#include <kservice.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
 #include <kparts/genericfactory.h>
@@ -202,9 +202,9 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 void Part::loadPlugins()
 {
     // "[X-KDE-akregator-plugintype] == 'storage'"
-    KTrader::OfferList offers = PluginManager::query();
+    KService::List offers = PluginManager::query();
 
-    for( KTrader::OfferList::ConstIterator it = offers.begin(), end = offers.end(); it != end; ++it )
+    for( KService::List::ConstIterator it = offers.begin(), end = offers.end(); it != end; ++it )
     {
         Akregator::Plugin* plugin = PluginManager::createFromService(*it);
         if (plugin)

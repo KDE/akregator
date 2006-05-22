@@ -111,7 +111,7 @@ void Viewer::displayInExternalBrowser(const KUrl &url, const QString &mimetype)
        if (mimetype.isEmpty())
            KToolInvocation::invokeBrowser(url.url(), "0");
        else
-           KRun::runURL(url, mimetype, false, false);
+           KRun::runUrl(url, mimetype, false, false);
    }
    else
    {

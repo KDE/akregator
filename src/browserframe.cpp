@@ -32,7 +32,7 @@
 
 #include <kdebug.h>
 #include <klibloader.h>
-#include <ktrader.h>
+#include <kmimetypetrader.h>
 #include <kurl.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
@@ -98,7 +98,7 @@ class BrowserFrame::BrowserFramePrivate
 
 bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimetype)
 {
-    KTrader::OfferList offers = KTrader::self()->query( mimetype, "KParts/ReadOnlyPart", QString::null, QString::null);
+    KService::List offers = KMimeTypeTrader::self()->query( mimetype, "KParts/ReadOnlyPart" );
 
     kDebug() << "BrowserFrame::loadPartForMimetype("<< mimetype << "): " << offers.size() << " offers" << endl;
 

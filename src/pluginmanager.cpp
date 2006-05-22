@@ -39,7 +39,7 @@ PluginManager::m_store;
 // PUBLIC INTERFACE
 /////////////////////////////////////////////////////////////////////////////////////
 
-KTrader::OfferList
+KService::List
 PluginManager::query( const QString& constraint )
 {
     // Add versioning constraint
@@ -53,14 +53,14 @@ PluginManager::query( const QString& constraint )
 
     kDebug() << "Plugin trader constraint: " << str << endl;
 
-    return KTrader::self()->query( "Akregator/Plugin", str );
+    return KServiceTypeTrader::self()->query( "Akregator/Plugin", str );
 }
 
 
 Plugin*
 PluginManager::createFromQuery( const QString &constraint )
 {
-    KTrader::OfferList offers = query( constraint );
+    KService::List offers = query( constraint );
 
     if ( offers.isEmpty() ) {
         kWarning() << k_funcinfo << "No matching plugin found.\n";
@@ -158,7 +158,7 @@ PluginManager::getService( const Plugin* plugin )
 void
 PluginManager::showAbout( const QString &constraint )
 {
-    KTrader::OfferList offers = query( constraint );
+    KService::List offers = query( constraint );
 
     if ( offers.isEmpty() )
         return;
