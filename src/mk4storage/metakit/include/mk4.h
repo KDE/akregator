@@ -100,7 +100,7 @@
 
     // and here's the other end of the scale...
 #if !defined (_WIN32) && !defined (q4_LONG64)
-#if defined (_PA_RISC2_0) || defined (__powerpc64__) || defined(__sparcv9) || \
+#if (defined (_PA_RISC2_0) && defined(__hpux)) || defined (__powerpc64__) || defined(__sparcv9) || \
     defined (__x86_64__) || defined (__s390x__) || defined (__alpha) || \
     (defined (__ia64) && (!defined (__HP_aCC) || defined(__LP64__)))
 #define q4_LONG64 1
