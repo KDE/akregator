@@ -12,21 +12,21 @@
 //---------------------------------------------------------------------------
 //
 //  TITLE
-//                                
+//
 //      The Metakit Library, by Jean-Claude Wippler, Equi4 Software, NL.
-//      
+//
 //  DESCRIPTION
-//                                
+//
 //      Structured data storage with commit / rollback and on-demand loading.
-//  
+//
 //  ACKNOWLEDGEMENTS
-//                                                                        
+//
 //      To Liesbeth and Myra, for making this possible.
 //
 //---------------------------------------------------------------------------
 //
 //  NAMING CONVENTIONS        PREFIX    REMARKS
-//                              
+//
 //      Compile time options    q4_     Always defined as 1 or 0, capitalized
 //      Preprocessor defines    d4_     Use with "#ifdef" or "#if defined()"
 //      Classes                 c4_     Classes, listed at start of headers
@@ -100,7 +100,7 @@
 
     // and here's the other end of the scale...
 #if !defined (_WIN32) && !defined (q4_LONG64)
-#if defined (_PA_RISC2_0) || defined (__powerpc64__) || defined(__sparcv9) || \
+#if (defined (_PA_RISC2_0) && defined(__hpux)) || defined (__powerpc64__) || defined(__sparcv9) || \
     defined (__x86_64__) || defined (__s390x__) || defined (__alpha) || \
     (defined (__ia64) && (!defined (__HP_aCC) || defined(__LP64__)))
 #define q4_LONG64 1
@@ -232,20 +232,20 @@ public:
   c4_View (const c4_Property& property_);
   c4_View (const c4_View&);
   ~c4_View ();
-  
+
   c4_View& operator= (const c4_View&);
   c4_Persist* Persist() const; // added 16-11-2000 to simplify c4_Storage
 
 /* Getting / setting the number of rows */
-  int GetSize() const;    
-  void SetSize(int, int =-1); 
+  int GetSize() const;
+  void SetSize(int, int =-1);
 
   void RemoveAll();
 
 /*: Getting / setting individual elements */
   c4_RowRef GetAt(int) const;
   c4_RowRef operator[] (int) const;
-  
+
   void SetAt(int, const c4_RowRef&);
   c4_RowRef ElementAt(int);
 
@@ -253,7 +253,7 @@ public:
   void SetItem(int, int, const c4_Bytes&) const;
 
 /* These can increase the number of rows */
-  void SetAtGrow(int, const c4_RowRef&);   
+  void SetAtGrow(int, const c4_RowRef&);
   int Add(const c4_RowRef&);
 
 /* Insertion / deletion of rows */
@@ -265,7 +265,7 @@ public:
   void RelocateRows(int, int, c4_View&, int);
 
 /* Dealing with the properties of this view */
-  int NumProperties() const; 
+  int NumProperties() const;
   const c4_Property& NthProperty(int) const;
   int FindProperty(int);
   int FindPropIndexByName(const char*) const;
@@ -275,7 +275,7 @@ public:
   c4_View operator, (const c4_Property&) const;
 
   const char* Description() const;
-  
+
 /* Derived views */
   c4_View Sort() const;
   c4_View SortOn(const c4_View&) const;
@@ -320,7 +320,7 @@ public:
   int Find(const c4_RowRef&, int =0) const;
   int Search(const c4_RowRef&) const;
   int Locate(const c4_RowRef&, int* =0) const;
-  
+
 /* Comparing view contents */
   int Compare(const c4_View&) const;
 
@@ -330,7 +330,7 @@ public:
   friend bool operator> (const c4_View&, const c4_View&);
   friend bool operator<= (const c4_View&, const c4_View&);
   friend bool operator>= (const c4_View&, const c4_View&);
-  
+
 protected:
   void _IncSeqRef();
   void _DecSeqRef();
@@ -355,7 +355,7 @@ protected:
 
 class c4_Cursor
 {
-public: 
+public:
       /// Pointer to the sequence
   c4_Sequence* _seq;
       /// Current index into the sequence
@@ -364,10 +364,10 @@ public:
 /* Construction / destruction / dereferencing */
       /// Construct a new cursor
   c4_Cursor (c4_Sequence&, int);
-  
+
       /// Dereference this cursor to "almost" a row
   c4_RowRef operator* () const;
-  
+
       /// This is the same as *(cursor + offset)
   c4_RowRef operator[] (int) const;
 
@@ -390,7 +390,7 @@ public:
   c4_Cursor operator- (int) const;
       /// Return the distance between two cursors
   int operator- (c4_Cursor) const;
-  
+
       /// Add specified offset
   friend c4_Cursor operator+ (c4_Cursor, int);
       /// Add specified offset to cursor
@@ -432,7 +432,7 @@ class c4_RowRef
       /// A row reference is a cursor in disguise
   c4_Cursor _cursor;
 
-public: 
+public:
 /* General operations */
       /// Assign the value of another row to this one
   c4_RowRef operator= (const c4_RowRef&);
@@ -457,7 +457,7 @@ protected:
 //
 //  A row is implemented as an unattached view with exactly one element.
 
-class c4_Row : public c4_RowRef 
+class c4_Row : public c4_RowRef
 {
 public:
       /// Construct a row with no properties
@@ -468,17 +468,17 @@ public:
   c4_Row (const c4_RowRef&);
       /// Destructor
   ~c4_Row ();
-  
+
       /// Assign a copy of another row to this one
   c4_Row& operator= (const c4_Row&);
       /// Copy another row to this one
   c4_Row& operator= (const c4_RowRef&);
-  
+
       /// Add all properties and values into this row
   void ConcatRow(const c4_RowRef&);
       /// Return a new row which is the concatenation of two others
   friend c4_Row operator+ (const c4_RowRef&, const c4_RowRef&);
-  
+
 private:
   static c4_Cursor Allocate();
   static void Release(c4_Cursor);
@@ -503,13 +503,13 @@ public:
   c4_Bytes (const void*, int, bool);
   c4_Bytes (const c4_Bytes&);
   ~c4_Bytes ();
-  
+
   c4_Bytes& operator= (const c4_Bytes&);
   void Swap(c4_Bytes&);
-  
+
   int Size() const;
   const t4_byte* Contents() const;
-  
+
   t4_byte* SetBuffer(int);
   t4_byte* SetBufferClear(int);
 
@@ -527,27 +527,27 @@ class c4_Storage : public c4_View
 {
 public:
       /// Construct streaming-only storage object
-  c4_Storage (); 
+  c4_Storage ();
       /// Construct a storage using the specified strategy handler
-  c4_Storage (c4_Strategy&, bool =false, int =1); 
+  c4_Storage (c4_Strategy&, bool =false, int =1);
       /// Construct a storage object, keeping the current structure
   c4_Storage (const char*, int);
       /// Reconstruct a storage object from a suitable view
   c4_Storage (const c4_View&);
       /// Destructor, usually closes file, but does not commit by default
   ~c4_Storage ();
-  
+
   void SetStructure(const char*);
   bool AutoCommit(bool =true);
   c4_Strategy& Strategy() const;
   const char* Description(const char* =0);
-  
+
   bool SetAside(c4_Storage&);
   c4_Storage* GetAside() const;
 
   bool Commit(bool =false);
   bool Rollback(bool =false);
-  
+
   c4_ViewRef View(const char*);
   c4_View GetAs(const char*);
 
@@ -578,7 +578,7 @@ public:
       /// Construct a new property with the give type and name
   c4_Property (char, const char*);
   ~c4_Property ();
-  
+
   c4_Property (const c4_Property&);
   void operator= (const c4_Property&);
 
@@ -597,14 +597,14 @@ public:
 };
 
     /// Integer properties.
-class c4_IntProp : public c4_Property 
+class c4_IntProp : public c4_Property
 {
 public:
       /// Construct a new property
   c4_IntProp (const char*);
       /// Destructor
   ~c4_IntProp ();
-  
+
       /// Get or set an integer property in a row
   c4_IntRef operator() (const c4_RowRef&) const;
       /// Get an integer property in a row
@@ -621,14 +621,14 @@ public:
 #if !q4_TINY
 
     /// Long int properties.
-class c4_LongProp : public c4_Property 
+class c4_LongProp : public c4_Property
 {
 public:
       /// Construct a new property
   c4_LongProp (const char*);
       /// Destructor
   ~c4_LongProp ();
-  
+
       /// Get or set a long int property in a row
   c4_LongRef operator() (const c4_RowRef&) const;
       /// Get a long int property in a row
@@ -643,14 +643,14 @@ public:
 };
 
     /// Floating point properties.
-class c4_FloatProp : public c4_Property 
+class c4_FloatProp : public c4_Property
 {
 public:
       /// Construct a new property
   c4_FloatProp (const char*);
       /// Destructor
   ~c4_FloatProp ();
-  
+
       /// Get or set a floating point property in a row
   c4_FloatRef operator() (const c4_RowRef&) const;
       /// Get a floating point property in a row
@@ -665,14 +665,14 @@ public:
 };
 
     /// Double precision properties.
-class c4_DoubleProp : public c4_Property 
+class c4_DoubleProp : public c4_Property
 {
 public:
       /// Construct a new property.
   c4_DoubleProp (const char*);
       /// Destructor
   ~c4_DoubleProp ();
-  
+
       /// Get or set a double precision property in a row
   c4_DoubleRef operator() (const c4_RowRef&) const;
       /// Get a double precision property in a row
@@ -695,7 +695,7 @@ public:
   c4_StringProp (const char*);
       /// Destructor
   ~c4_StringProp ();
-  
+
       /// Get or set a string property in a row
   c4_StringRef operator() (const c4_RowRef&) const;
       /// Get a string property in a row
@@ -717,7 +717,7 @@ public:
   c4_BytesProp (const char*);
       /// Destructor
   ~c4_BytesProp ();
-  
+
       /// Get or set a bytes property in a row
   c4_BytesRef operator() (const c4_RowRef&) const;
       /// Get a bytes property in a row
@@ -739,7 +739,7 @@ public:
   c4_ViewProp (const char*);
       /// Destructor
   ~c4_ViewProp ();
-  
+
       /// Get or set a view property in a row
   c4_ViewRef operator() (const c4_RowRef&) const;
       /// Get a view property in a row
@@ -757,13 +757,13 @@ public:
 
 class c4_CustomViewer
 {
-protected: 
+protected:
       /// Constructor, must be overriden in derived class
   c4_CustomViewer ();
-public: 
+public:
       /// Destructor
   virtual ~c4_CustomViewer ();
-  
+
       /// Return the structure of this view (initialization, called once)
   virtual c4_View GetTemplate() = 0;
       /// Return the number of rows in this view
@@ -850,16 +850,16 @@ protected:
       /// allocated on first use by c4_Sequence::Buffer()
   c4_Bytes* _tempBuf;
 
-public: 
+public:
 /* General */
       /// Abstract constructor
   c4_Sequence ();
-  
+
   virtual int Compare(int, c4_Cursor) const;
   virtual bool RestrictSearch(c4_Cursor, int&, int&);
   void SetAt(int, c4_Cursor);
   virtual int RemapIndex(int, const c4_Sequence*) const;
-  
+
 /* Reference counting */
   void IncRef();
   void DecRef();
@@ -869,7 +869,7 @@ public:
       /// Return the current number of rows
   virtual int NumRows() const = 0;
   void Resize(int, int =-1);
-  
+
   virtual void InsertAt(int, c4_Cursor, int =1);
   virtual void RemoveAt(int, int =1);
   virtual void Move(int, int);
@@ -878,7 +878,7 @@ public:
   int NthPropId(int) const;
   int PropIndex(int);
   int PropIndex(const c4_Property&);
-  
+
       /// Return the number of data handlers in this sequence
   virtual int NumHandlers() const = 0;
       /// Return a reference to the N-th handler in this sequence
@@ -899,7 +899,7 @@ public:
   virtual bool Get(int, int, c4_Bytes&);
       /// Store a data item into this sequence
   virtual void Set(int, const c4_Property&, const c4_Bytes&);
-  
+
 /* Dependency notification */
   void Attach(c4_Sequence*);
   void Detach(c4_Sequence*);
@@ -908,7 +908,7 @@ public:
 
   virtual c4_Notifier* PreChange(c4_Notifier&);
   virtual void PostChange(c4_Notifier&);
-  
+
   const char* UseTempBuffer(const char*);
 
 protected:
@@ -955,7 +955,7 @@ public:
   bool GetData(c4_Bytes&) const;
       /// Store a value into the referenced data item
   void SetData(const c4_Bytes&) const;
-  
+
       /// Return true if the contents of both references is equal
   friend bool operator== (const c4_Reference&, const c4_Reference&);
       /// Return true if the contents of both references is not equal
