@@ -832,7 +832,7 @@ void NodeListView::slotNextUnreadFeed()
     
     if ( !selectedItem() )
     {
-        // if all feeds doesnt exists or is empty, return
+        // if all feeds doesn't exists or is empty, return
         if (!firstChild() || !firstChild()->firstChild())
             return;    
         else 

@@ -451,7 +451,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
         text += "\">" + i18n( "Comments");
         if (article.comments())
         {
-            text += " ("+ QString::number(article.comments()) +")";
+            text += " ("+ QString::number(article.comments()) +')';
         }
         text += "</a>";
     }
@@ -548,7 +548,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "\">" + i18n( "Comments");
         if (article.comments())
         {
-            text += " ("+ QString::number(article.comments()) +")";
+            text += " ("+ QString::number(article.comments()) +')';
         }
         text += "</a>";
     }

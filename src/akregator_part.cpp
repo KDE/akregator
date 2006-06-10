@@ -428,7 +428,7 @@ void Part::slotSaveFeedList()
     // the first time we overwrite the feed list, we create a backup
     if (!m_backedUpList)
     {
-        QString backup = m_file + "~";
+        QString backup = m_file + '~';
 
         if (copyFile(backup))
             m_backedUpList = true;

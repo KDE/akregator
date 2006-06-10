@@ -143,7 +143,7 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
     if (icon)
         x += icon->width() + m;
 
-    QString txt = " (" + QString::number(u) + ")";
+    QString txt = " (" + QString::number(u) + ')';
     int txtW=fm.width( txt );
 
     if (fm.width( oldText ) + txtW + x > width)

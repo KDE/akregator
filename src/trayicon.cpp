@@ -108,7 +108,7 @@ QPixmap TrayIcon::takeScreenshot() const
     if (y + h > desktopHeight)
         y = desktopHeight - h;
 
-        // Grab the desktop and draw a circle arround the icon:
+        // Grab the desktop and draw a circle around the icon:
 #ifdef Q_WS_X11
     QPixmap shot = QPixmap::grabWindow(QX11Info::appRootWindow(), x, y, w, h);
     QPainter painter(&shot);

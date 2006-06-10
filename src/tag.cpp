@@ -59,7 +59,7 @@ Tag::Tag(const QString& id, const QString& name, const QString& scheme) : d(new 
 
 Tag Tag::fromCategory(const QString& term, const QString& scheme, const QString& name)
 {
-    Tag tag(scheme + "/" + term, name, scheme);
+    Tag tag(scheme + '/' + term, name, scheme);
     return tag;
 }
 

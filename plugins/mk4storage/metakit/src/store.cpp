@@ -178,7 +178,7 @@ void c4_Notifier::Notify()
  *
  *  The data storage mechanism implementation provides fail-safe operation:
  *  if anything prevents Commit from completing its task, the last
- *  succesfully committed version of the saved data will be recovered on
+ *  successfully committed version of the saved data will be recovered on
  *  the next open. This also includes changes made to the table structure. 
  *
  *  The following code creates a view with 1 row and stores it on file:

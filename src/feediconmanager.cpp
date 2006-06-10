@@ -107,7 +107,7 @@ void FeedIconManager::loadIcon(const QString & url)
 
 QString FeedIconManager::getIconURL(const KUrl& url)
 {
-    return "http://" +url.host() + "/";
+    return "http://" + url.host() + '/';
 }
 
 QString FeedIconManager::iconLocation(const KUrl & url) const

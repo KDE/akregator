@@ -29,7 +29,6 @@
 
 #include <QLabel>
 #include <QTimer>
-//Added by qt3to4:
 #include <QList>
 
 #include "feed.h"
@@ -84,7 +83,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
     {
         QString message;
         for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
-            message += *it + "\n";
+            message += *it + '\n';
         KNotifyClient::Instance inst(m_instance);
         KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feeds added:\n %1", message));
     }
