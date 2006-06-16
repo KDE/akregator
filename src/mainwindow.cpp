@@ -28,8 +28,6 @@
 
 //settings
 
-#include <dcopclient.h>
-
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kapplication.h>
@@ -183,8 +181,8 @@ void MainWindow::readProperties(KConfig* config)
     if (!m_part)
         loadPart();
     static_cast<Akregator::Part*>(m_part)->readProperties(config);
-    
-    if (Settings::showTrayIcon() && config->readEntry("docked", false)) 
+
+    if (Settings::showTrayIcon() && config->readEntry("docked", false))
         hide();
     else
         show();

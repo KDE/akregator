@@ -1,0 +1,20 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="org.kde.akregator.part">
+    <method name="openStandardFeedList"/>
+    <method name="fetchFeedUrl">
+      <arg name="url" type="s" direction="in"/>
+    </method>
+    <method name="fetchAllFeeds" />
+    <method name="saveSettings" />
+    <method name="addFeedsToGroup">
+      <arg name="lst" type="as" direction="in"/>
+      <arg name="feedname" type="s" direction="in"/>
+    </method>
+    <method name="exportFile">
+      <arg name="url" type="s" direction="in"/>
+    </method>
+    <method name="addFeed" />
+  </interface>
+</node>

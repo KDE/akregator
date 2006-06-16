@@ -26,12 +26,11 @@
 #include "mainwindow.h"
 #include "akregator_options.h"
 
-#include <dcopref.h>
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <knotifyclient.h>
 #include <kuniqueapplication.h>
-
+#include <dbus/qdbus.h>
 #include <QStringList>
 
 namespace Akregator {
@@ -51,7 +50,7 @@ int Application::newInstance()
 {
   if (!isSessionRestored())
   {
-    DCOPRef akr("akregator", "AkregatorIface");
+    QDBusInterfacePtr akr("org.kde.akregator", "/Akregator", "org.kde.akregator.part");
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
@@ -62,7 +61,7 @@ int Application::newInstance()
       mMainWindow->setupProgressWidgets();
       if (!args->isSet("hide-mainwindow"))
         mMainWindow->show();
-      akr.send("openStandardFeedList");
+      akr->call( "openStandardFeedList");
     }
 
     QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
@@ -74,8 +73,8 @@ int Application::newInstance()
         feedsToAdd.append(*it);
 
     if (!feedsToAdd.isEmpty())
-        akr.send("addFeedsToGroup", feedsToAdd, addFeedGroup );
-  
+        akr->call("addFeedsToGroup", feedsToAdd, addFeedGroup );
+
     args->clear();
   }
   return KUniqueApplication::newInstance();

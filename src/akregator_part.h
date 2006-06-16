@@ -26,7 +26,6 @@
 #ifndef AKREGATOR_PART_H
 #define AKREGATOR_PART_H
 
-#include "akregator_partiface.h"
 #include "config.h"
 
 #include <kurl.h>
@@ -73,7 +72,7 @@ class BrowserExtension : public KParts::BrowserExtension
     This is a RSS Aggregator "Part". It does all the real work.
     It is also embeddable into other applications (e.g. for use in Kontact).
     */
-class Part : public MyBasePart, virtual public AkregatorPartIface
+class Part : public MyBasePart
 {
     Q_OBJECT
     public:

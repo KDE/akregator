@@ -69,7 +69,8 @@
 #include <QTextStream>
 #include <QTimer>
 #include <QWidget>
-
+#include "akregatorpartadaptor.h"
+#include <dbus/qdbus.h>
 
 namespace Akregator {
 
@@ -100,16 +101,17 @@ class Part::ApplyFiltersInterceptor : public ArticleInterceptor
 };
 
 Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
-    : DCOPObject("AkregatorIface")
-       , MyBasePart(parent)
+    : MyBasePart(parent)
        , m_standardListLoaded(false)
        , m_shuttingDown(false)
        , m_mergedPart(0)
        , m_backedUpList(false)
        , m_mainWidget(0)
        , m_storage(0)
-       
+
 {
+  new PartAdaptor( this );
+  QDBus::sessionBus().registerObject("/Akregator", this);
     // we need an instance
     setInstance( AkregatorFactory::instance() );
 
@@ -365,14 +367,14 @@ bool Part::openFile()
 
     bool fileExists = file.exists();
     QString listBackup = m_storage->restoreFeedList();
-     
+
     QDomDocument doc;
 
     if (!fileExists)
     {
         doc = createDefaultFeedList();
     }
-    else 
+    else
     {
         if (file.open(QIODevice::ReadOnly))
         {
@@ -408,7 +410,7 @@ bool Part::openFile()
     }
 
     emit setStatusBarText(QString::null);
-    
+
 
     if( Settings::markAllFeedsReadOnStartup() )
         m_mainWidget->slotMarkAllFeedsRead();
@@ -486,7 +488,7 @@ QWidget* Part::getMainWindow()
     // this is a dirty fix to get the main window used for the tray icon
     QWidgetList l = QApplication::topLevelWidgets();
     QWidget* wid = 0L;
-            
+
     // check if there is an akregator main window
     foreach (wid, QApplication::topLevelWidgets())
     {
@@ -500,7 +502,7 @@ QWidget* Part::getMainWindow()
         if (wid->objectName().startsWith("kontact-mainwindow"))
             return wid;
     }
-    
+
     return 0;
 }
 
@@ -722,24 +724,24 @@ KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
 {
 /*    bool child = false;
     QWidget *me = this->widget();
-    while (widget) 
+    while (widget)
     {
-        if (widget == me) 
+        if (widget == me)
         {
             child = true;
             break;
         }
-        if (!widget) 
+        if (!widget)
         {
             break;
         }
         widget = widget->parentWidget();
     }
-    if (m_mainWidget && m_mainWidget->currentFrame() && child) 
+    if (m_mainWidget && m_mainWidget->currentFrame() && child)
     {
         return m_mainWidget->currentFrame()->part();
-    } 
-    else 
+    }
+    else
     {*/
         return MyBasePart::hitTest(widget, globalPos);
 /*    }*/
