@@ -45,11 +45,14 @@ class SelectNodeDialog::SelectNodeDialogPrivate
     SimpleNodeSelector* widget;
 };
 
-SelectNodeDialog::SelectNodeDialog(FeedList* feedList, QWidget* parent, char* name) : 
- KDialogBase(Plain, i18n("Select Feed or Folder"),
-             KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, 
-             parent, name, true/*modal*/, true/*separator*/), d(new SelectNodeDialogPrivate)
+SelectNodeDialog::SelectNodeDialog(FeedList* feedList, QWidget* parent, char* name) :
+ KDialog(parent), d(new SelectNodeDialogPrivate)
 {
+  setCaption( i18n("Select Feed or Folder") );
+  setButtons( KDialog::Ok|KDialog::Cancel );
+  setDefaultButton( KDialog::Ok );
+  setModal( true );
+  enableButtonSeparator( true );
     d->widget = new SimpleNodeSelector(feedList, this);
 
     connect(d->widget, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
@@ -114,7 +117,7 @@ class SimpleNodeSelector::NodeVisitor : public TreeNodeVisitor
     virtual bool visitTreeNode(TreeNode* node)
     {
         Q3ListViewItem* pi = node->parent() ? m_view->d->nodeToItem[node->parent()] : 0;
-         
+
         K3ListViewItem* item = 0;
         if (pi != 0)
              item = new K3ListViewItem(pi, node->title());
@@ -142,7 +145,7 @@ SimpleNodeSelector::SimpleNodeSelector(FeedList* feedList, QWidget* parent, cons
     d->view = new K3ListView(this);
     d->view->setRootIsDecorated(true);
     d->view->addColumn(i18n("Feeds"));
-    
+
     connect(d->view, SIGNAL(selectionChanged(Q3ListViewItem*)), this, SLOT(slotItemSelected(Q3ListViewItem*)));
 
     QGridLayout* layout = new QGridLayout(this);
@@ -200,4 +203,4 @@ void SimpleNodeSelector::slotNodeDestroyed(TreeNode* node)
 } // namespace Akregator
 
 #include "simplenodeselector.moc"
-	
+

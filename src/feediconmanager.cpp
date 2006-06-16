@@ -26,7 +26,6 @@
 #include "feed.h"
 #include "feediconmanager.h"
 
-#include <dcopclient.h>
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kstandarddirs.h>
@@ -36,6 +35,10 @@
 #include <QList>
 #include <QMultiHash>
 #include <QPixmap>
+#include <dbus/qdbusconnection.h>
+#include <dbus/qdbus.h>
+#define FAVICONINTERFACE "org.kde.KonqFavIcon"
+
 
 namespace Akregator {
 
@@ -44,6 +47,7 @@ class FeedIconManager::FeedIconManagerPrivate
     public:
     QList<Feed*> registeredFeeds;
     QMultiHash<QString, Feed*> urlDict;
+  QDBusInterface *m_favIconsModule;
 };
 
 FeedIconManager *FeedIconManager::m_instance = 0;
@@ -70,17 +74,21 @@ void FeedIconManager::fetchIcon(Feed* feed)
 }
 
 FeedIconManager::FeedIconManager(QObject * parent, const char *name)
-:  QObject(parent), DCOPObject("FeedIconManager"), d(new FeedIconManagerPrivate)
+:  QObject(parent), d(new FeedIconManagerPrivate)
 {
-    setObjectName( name );
-    connectDCOPSignal("kded",
-                      "favicons", "iconChanged(bool, QString, QString)",
-                      "slotIconChanged(bool, QString, QString)", false);
+  QDBus::sessionBus().registerObject("/FeedIconManager", this, QDBusConnection::ExportSlots);
+  setObjectName( name );
+  d->m_favIconsModule =
+    QDBus::sessionBus().findInterface("org.kde.kded", "/modules/favicons",
+                                      FAVICONINTERFACE);
+  connect( d->m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
+           this, SLOT(notifyChange(bool,QString,QString)));
 }
 
 
 FeedIconManager::~FeedIconManager()
 {
+  delete d->m_favIconsModule;
     delete d;
     d = 0;
 }
@@ -90,15 +98,10 @@ void FeedIconManager::loadIcon(const QString & url)
     KUrl u(url);
 
     QString iconFile = iconLocation(u);
-    
+
     if (iconFile.isNull())
     {
-        QByteArray data;
-        QDataStream ds( &data,QIODevice::WriteOnly);
-        ds.setVersion(QDataStream::Qt_3_1);
-        ds << u;
-        kapp->dcopClient()->send("kded", "favicons", "downloadHostIcon(KUrl)",
-                                 data);
+        d->m_favIconsModule->call( "downloadHostIcon", u.url() );
     }
     else
         slotIconChanged(false, url, iconFile);
@@ -112,22 +115,11 @@ QString FeedIconManager::getIconURL(const KUrl& url)
 
 QString FeedIconManager::iconLocation(const KUrl & url) const
 {
-    QByteArray data, reply;
-    DCOPCString replyType;
-    QDataStream ds( &data,QIODevice::WriteOnly);
-    ds.setVersion(QDataStream::Qt_3_1);
+    QDBusReply<QString> reply = d->m_favIconsModule->call( "iconForURL", url.url() );
 
-    ds << url;
-
-    kapp->dcopClient()->call("kded", "favicons", "iconForURL(KUrl)", data,
-                             replyType, reply);
-
-    if (replyType == "QString") {
-        QDataStream replyStream( &reply,QIODevice::ReadOnly);
-        replyStream.setVersion(QDataStream::Qt_3_1);
-        QString result;
-        replyStream >> result;
-        return result;
+    if (reply.isSuccess()) {
+      QString result = reply;
+      return result;
     }
 
     return QString::null;

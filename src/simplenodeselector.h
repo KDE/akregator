@@ -27,7 +27,7 @@
 
 #include <QWidget>
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 class Q3ListViewItem;
 
@@ -41,7 +41,7 @@ class SimpleNodeSelector;
 /** \brief A dialog with a simple listview displaying a feed list for selection purposes
      Use this dialog if you want the user to select a node from the feed list where FeedListView is inappropriate (e.g. in a filter dialog)  */
 
-class SelectNodeDialog : public KDialogBase
+class SelectNodeDialog : public KDialog
 {
     Q_OBJECT
     public:

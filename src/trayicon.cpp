@@ -31,8 +31,6 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
-#include <dcopclient.h>
-#include <dcopref.h>
 #include <kmenu.h>
 #include <kiconloader.h>
 #include <QDesktopWidget>

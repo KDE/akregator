@@ -26,7 +26,6 @@
 #ifndef AKREGATOR_FEEDICONMANAGER_H
 #define AKREGATOR_FEEDICONMANAGER_H
 
-#include <dcopobject.h>
 
 #include <QObject>
 
@@ -40,10 +39,10 @@ namespace Akregator {
 class Feed;
 class TreeNode;
 
-class FeedIconManager:public QObject, public DCOPObject
+class FeedIconManager:public QObject
 {
     Q_OBJECT
-    K_DCOP
+    Q_CLASSINFO("D-Bus Interface", "org.kde.akregator.feediconmanager")
     
     public:
 
@@ -56,8 +55,8 @@ class FeedIconManager:public QObject, public DCOPObject
         
         QString iconLocation(const KUrl &) const;
         
-    k_dcop:
-        void slotIconChanged(bool, const QString&, const QString&);
+    public Q_SLOTS:
+        Q_SCRIPTABLE void slotIconChanged(bool, const QString&, const QString&);
 
     signals:
         void signalIconChanged(const QString &, const QPixmap &);
