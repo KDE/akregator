@@ -58,7 +58,7 @@ SelectNodeDialog::SelectNodeDialog(FeedList* feedList, QWidget* parent, char* na
     connect(d->widget, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
 
     setMainWidget(d->widget);
-    enableButtonOK(false);
+    enableButtonOk(false);
 }
 
 SelectNodeDialog::~SelectNodeDialog()
@@ -79,7 +79,7 @@ void SelectNodeDialog::slotSelectNode(TreeNode* node)
 
 void SelectNodeDialog::slotNodeSelected(TreeNode* node)
 {
-    enableButtonOK(node != 0);
+    enableButtonOk(node != 0);
 }
 
 

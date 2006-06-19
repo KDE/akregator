@@ -48,7 +48,7 @@ TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name) : KD
     setMainWidget(widget);
 
     d->base.le_title->setFocus();
-    enableButtonOK(false);
+    enableButtonOk(false);
     enableButtonApply(false);
     connect(d->base.le_title, SIGNAL(textChanged(const QString&)), this, SLOT(slotTextChanged(const QString& )));
 }
@@ -64,7 +64,7 @@ void TagPropertiesDialog::setTag(const Tag& tag)
     d->tag = tag;
     d->base.le_title->setText(tag.name());
     d->base.iconButton->setIcon(tag.icon());
-    enableButtonOK(!tag.name().isEmpty());
+    enableButtonOk(!tag.name().isEmpty());
     enableButtonApply(!tag.name().isEmpty());
 }
 
@@ -77,7 +77,7 @@ void TagPropertiesDialog::slotOk()
 
 void TagPropertiesDialog::slotTextChanged(const QString& text)
 {
-    enableButtonOK(!text.isEmpty());
+    enableButtonOk(!text.isEmpty());
     enableButtonApply(!text.isEmpty());
 }
 

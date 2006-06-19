@@ -56,7 +56,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
 {
     widget = new AddFeedWidget(this);
     connect(widget->urlEdit, SIGNAL(textChanged(const QString&)), this, SLOT(textChanged(const QString&)));
-    enableButtonOK(false);
+    enableButtonOk(false);
     setMainWidget(widget);
 }
 
@@ -70,7 +70,7 @@ void AddFeedDialog::setURL(const QString& t)
 
 void AddFeedDialog::slotOk( )
 {
-    enableButtonOK(false);
+    enableButtonOk(false);
     feedURL = widget->urlEdit->text().trimmed();
 
     Feed *f=new Feed();
@@ -116,7 +116,7 @@ void AddFeedDialog::fetchDiscovery(Feed *f)
 
 void AddFeedDialog::textChanged(const QString& text)
 {
-    enableButtonOK(!text.isEmpty());
+    enableButtonOk(!text.isEmpty());
 }
 
 } // namespace Akregator
