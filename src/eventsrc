@@ -44,6 +44,7 @@ Name[tr]=Haber kaynağı eklendi
 Name[uk]=Подачу додано
 Name[uz]=Янгиликлар тасмаси қўшилди
 Name[zh_CN]=添加了新闻源
+Name[zh_TW]=已加入 Feed
 Comment=A new feed was remotely added to Akregator
 Comment[bg]=Отдалечено е добавена нова новина към Akregator
 Comment[ca]=S'ha afegit remotament un enllaç a Akregator
@@ -81,6 +82,7 @@ Comment[tr]=Akregator'a yeni bir haber kaynağı eklendi
 Comment[uk]=Нову подачу було віддалено додано до Akregator
 Comment[uz]=Akregator дастурига янги янгиликлар тасмаси қўшилди
 Comment[zh_CN]=新闻源远程添加进了 Akregator
+Comment[zh_TW]=已從遠端加入新的 feed 到 Akregator
 default_presentation=4
 
 [new_articles]
@@ -125,6 +127,7 @@ Name[tr]=Yeni Haberler
 Name[uk]=Нові статті
 Name[uz]=Янги мақолалар
 Name[zh_CN]=新闻文章
+Name[zh_TW]=新文章
 Comment=New articles were fetched
 Comment[bg]=Пристигнали са нови статии
 Comment[ca]=S'han obtingut nous articles
@@ -164,5 +167,6 @@ Comment[ta]=புதிய கட்டுரைகள் கொண்டுவ
 Comment[tr]=Yeni haberler alındı
 Comment[uk]=Отримано нові статті
 Comment[zh_CN]=获取了新文章
+Comment[zh_TW]=已抓到新文章
 default_presentation=4
 
