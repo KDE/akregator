@@ -52,9 +52,13 @@ AddFeedWidget::~AddFeedWidget()
 {}
 
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
-   : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Add Feed"), KDialogBase::Ok|KDialogBase::Cancel)
+   : KDialog(parent
+				   /*Qt::WStyle_DialogBorder*/)
 {
     widget = new AddFeedWidget(this);
+	setCaption(i18n("Add Feed"));
+	setButtons(KDialog::Ok|KDialog::Cancel);
+	setDefaultButton(KDialog::Cancel);
     connect(widget->urlEdit, SIGNAL(textChanged(const QString&)), this, SLOT(textChanged(const QString&)));
     enableButtonOk(false);
     setMainWidget(widget);
@@ -99,13 +103,13 @@ void AddFeedDialog::slotOk( )
 
 void AddFeedDialog::fetchCompleted(Feed */*f*/)
 {
-    KDialogBase::slotOk();
+    KDialog::accept();
 }
 
 void AddFeedDialog::fetchError(Feed *)
 {
     KMessageBox::error(this, i18n("Feed not found from %1.", feedURL));
-    KDialogBase::slotCancel();
+	KDialog::reject();
 }
 
 void AddFeedDialog::fetchDiscovery(Feed *f)

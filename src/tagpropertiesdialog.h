@@ -25,13 +25,13 @@
 #ifndef AKREGATOR_TAGPROPERTIESDIALOG_H
 #define AKREGATOR_TAGPROPERTIESDIALOG_H
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 namespace Akregator {
 
 class Tag;
 
-class TagPropertiesDialog : public KDialogBase 
+class TagPropertiesDialog : public KDialog
 {
     Q_OBJECT
 

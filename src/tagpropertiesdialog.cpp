@@ -41,8 +41,14 @@ class TagPropertiesDialog::TagPropertiesDialogPrivate
     Ui::TagPropertiesWidgetBase base;
 };
 
-TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name) : KDialogBase(KDialogBase::Swallow, Qt::WStyle_DialogBorder, parent, name, true, i18n("Tag Properties"), KDialogBase::Ok|KDialogBase::Cancel|KDialogBase::Apply), d(new TagPropertiesDialogPrivate)
+TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name) 
+		: KDialog(parent/*Qt::WStyle_DialogBorder*/)
+		  , d(new TagPropertiesDialogPrivate)
 {
+	setCaption(i18n("Tag Properties"));
+	setButtons(KDialog::Ok|KDialog::Cancel|KDialog::Apply);
+	setDefaultButton(KDialog::Ok);
+	setModal(true);
     QWidget* widget = new QWidget(this);
     d->base.setupUi(widget);
     setMainWidget(widget);
@@ -72,7 +78,7 @@ void TagPropertiesDialog::slotOk()
 {
     d->tag.setName(d->base.le_title->text());
    // d->tag.setIcon(d->base.iconButton->icon());
-    KDialogBase::slotOk();
+	KDialog::accept();
 }
 
 void TagPropertiesDialog::slotTextChanged(const QString& text)
@@ -85,7 +91,8 @@ void TagPropertiesDialog::slotApply()
 {
     d->tag.setName(d->base.le_title->text());
   //  d->tag.setIcon(d->base.iconButton->icon());
-    KDialogBase::slotApply();
+#warning "kde4: port it"    
+  //KDialogBase::slotApply();
 }
 
 }  // namespace Akregator

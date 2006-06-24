@@ -27,7 +27,7 @@
 
 #include "ui_addfeedwidgetbase.h"
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 #include <QWidget>
 
@@ -44,7 +44,7 @@ class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
         ~AddFeedWidget();
 };
 
-class AddFeedDialog : public KDialogBase
+class AddFeedDialog : public KDialog
 {
     Q_OBJECT
     public:

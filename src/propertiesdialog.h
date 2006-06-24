@@ -26,7 +26,7 @@
 
 #include "ui_propertieswidgetbase.h"
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 #include <QWidget>
 
@@ -43,7 +43,7 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 
 };
 
-class FeedPropertiesDialog : public KDialogBase
+class FeedPropertiesDialog : public KDialog
 {
     Q_OBJECT
     public:
