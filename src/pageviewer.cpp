@@ -412,8 +412,8 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     m_url = kurl;
     QString url = kurl.url(); // maximal url confusion
     
-    const bool showReload = KParts::BrowserExtension::ShowReload;
-    const bool showNavigationItems = KParts::BrowserExtension::ShowNavigationItems;
+    const bool showReload = (kpf & KParts::BrowserExtension::ShowReload) != 0;
+    const bool showNavigationItems = (kpf & KParts::BrowserExtension::ShowNavigationItems) != 0;
     const bool isLink = (kpf & (KParts::BrowserExtension::ShowNavigationItems | KParts::BrowserExtension::ShowTextSelectionItems)) == 0;
     const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
         
