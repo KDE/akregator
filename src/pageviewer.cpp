@@ -411,9 +411,12 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
 {
     m_url = kurl;
     QString url = kurl.url(); // maximal url confusion
-
-    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
-
+    
+    const bool showReload = KParts::BrowserExtension::ShowReload;
+    const bool showNavigationItems = KParts::BrowserExtension::ShowNavigationItems;
+    const bool isLink = (kpf & (KParts::BrowserExtension::ShowNavigationItems | KParts::BrowserExtension::ShowTextSelectionItems)) == 0;
+    const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
+        
     KPopupMenu popup(this->widget());
 
     int idNewWindow = -2;
@@ -434,15 +437,24 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl
     }
     else // we are not on a link
     {
+        if (showNavigationItems)
+        {
+            d->backAction->plug( &popup );
+            d->forwardAction->plug( &popup );
+        }
 
-        d->backAction->plug( &popup );
-        d->forwardAction->plug( &popup );
-        d->reloadAction->plug(&popup);
+        if (showReload)
+            d->reloadAction->plug(&popup);
+        
         d->stopAction->plug(&popup);
-
+        
         popup.insertSeparator();
-        action("viewer_copy")->plug(&popup);
-        popup.insertSeparator();
+        
+        if (isSelection)
+        {
+            action("viewer_copy")->plug(&popup);
+            popup.insertSeparator();
+        }
 
         KAction* incFontAction = this->action("incFontSizes");
         KAction* decFontAction = this->action("decFontSizes");

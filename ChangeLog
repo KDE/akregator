@@ -2,6 +2,15 @@ Akregator ChangeLog
 ===================
 (c) 2004-2006 the Akregator authors.
 
+Changes after 1.2.3:
+-----------------------------
+
+Bug fixes:
+ 
+ 2006/06/25 Fix context menus in browser tab, show appriopriate entries when
+            text is selected (copy action) or the cursor is over a link 
+            (#121957) -fo
+ 
 Changes after 1.2.2:
 -----------------------------
 

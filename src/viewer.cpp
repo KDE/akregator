@@ -170,7 +170,7 @@ void Viewer::urlSelected(const QString &url, int button, int state, const QStrin
 
 void Viewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KURL& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
 {
-   const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
+   const bool isLink = (kpf & (KParts::BrowserExtension::ShowNavigationItems | KParts::BrowserExtension::ShowTextSelectionItems)) == 0;
    const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
     
    QString url = kurl.url();
