@@ -52,7 +52,7 @@ SelectNodeDialog::SelectNodeDialog(FeedList* feedList, QWidget* parent, char* na
   setButtons( KDialog::Ok|KDialog::Cancel );
   setDefaultButton( KDialog::Ok );
   setModal( true );
-  enableButtonSeparator( true );
+  showButtonSeparator( true );
     d->widget = new SimpleNodeSelector(feedList, this);
 
     connect(d->widget, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));

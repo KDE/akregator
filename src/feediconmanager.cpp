@@ -35,8 +35,7 @@
 #include <QList>
 #include <QMultiHash>
 #include <QPixmap>
-#include <dbus/qdbusconnection.h>
-#include <dbus/qdbus.h>
+#include <QtDBus>
 #define FAVICONINTERFACE "org.kde.KonqFavIcon"
 
 
