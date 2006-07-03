@@ -70,7 +70,7 @@
 #include <QTimer>
 #include <QWidget>
 #include "akregatorpartadaptor.h"
-#include <dbus/qdbus.h>
+#include <QtDBus>
 
 namespace Akregator {
 

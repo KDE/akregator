@@ -30,7 +30,7 @@
 #include <klocale.h>
 #include <knotifyclient.h>
 #include <kuniqueapplication.h>
-#include <dbus/qdbus.h>
+#include <QtDBus>
 #include <QStringList>
 
 namespace Akregator {
