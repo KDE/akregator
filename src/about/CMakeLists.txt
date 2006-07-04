@@ -4,7 +4,7 @@
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/akregator/about FILES top-right-akregator.png  	main.html  	akregator.css )
+install( FILES top-right-akregator.png  	main.html  	akregator.css  DESTINATION ${DATA_INSTALL_DIR}/akregator/about)
 
 
 

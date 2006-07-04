@@ -15,7 +15,7 @@ kde4_add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator  ${KDE4_KPARTS_LIBS} akregatorprivate)
 
-install_targets(/bin akregator )
+install(TARGETS akregator  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -60,7 +60,7 @@ kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 target_link_libraries(akregatorprivate  ${KDE4_KDEUI_LIBS} kdepim  khtml syndication )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION 1.0.0 SOVERSION 1 )
-install_targets(${LIB_INSTALL_DIR} akregatorprivate )
+install(TARGETS akregatorprivate  DESTINATION ${LIB_INSTALL_DIR})
 
 
 ########### next target ###############
@@ -118,19 +118,19 @@ kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} akregatorpart )
 
 target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} kutils akregatorprivate )
 
-install_targets(${PLUGIN_INSTALL_DIR} akregatorpart )
+install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES akregator.desktop )
-install_files( ${KCFG_INSTALL_DIR} FILES akregator.kcfg )
-install_files( ${SERVICES_INSTALL_DIR} FILES akregator_part.desktop )
-install_files( ${DATA_INSTALL_DIR}/akregator FILES articleviewer.rc pageviewer.rc akregator_part.rc eventsrc )
-install_files( ${SERVICETYPES_INSTALL_DIR} FILES akregator_plugin.desktop )
-install_files( ${DATA_INSTALL_DIR}/akregator FILES akregator_shell.rc )
-install_files( ${SERVICES_INSTALL_DIR} FILES feed.protocol )
-install_files( /include/akregator FILES storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h articleinterceptor.h )
+install( FILES akregator.desktop  DESTINATION ${XDG_APPS_DIR})
+install( FILES akregator.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
+install( FILES akregator_part.desktop  DESTINATION ${SERVICES_INSTALL_DIR})
+install( FILES articleviewer.rc pageviewer.rc akregator_part.rc eventsrc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
+install( FILES akregator_plugin.desktop  DESTINATION ${SERVICETYPES_INSTALL_DIR})
+install( FILES akregator_shell.rc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
+install( FILES feed.protocol  DESTINATION ${SERVICES_INSTALL_DIR})
+install( FILES storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h articleinterceptor.h  DESTINATION ${INCLUDE_INSTALL_DIR}/akregator)
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
 

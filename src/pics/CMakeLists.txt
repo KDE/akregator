@@ -4,7 +4,7 @@
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/akregator/pics FILES akregator_flag.png kmmsgflag.png kmmsgnew.png kmmsgunseen.png )
+install( FILES akregator_flag.png kmmsgflag.png kmmsgnew.png kmmsgunseen.png  DESTINATION ${DATA_INSTALL_DIR}/akregator/pics)
 
 kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
 

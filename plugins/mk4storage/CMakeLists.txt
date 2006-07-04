@@ -43,13 +43,13 @@ kde4_add_plugin(akregator_mk4storage_plugin WITH_PREFIX ${akregator_mk4storage_p
 target_link_libraries(akregator_mk4storage_plugin  ${KDE4_KDECORE_LIBS} syndication akregatorprivate )
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} akregator_mk4storage_plugin )
-install_targets(${PLUGIN_INSTALL_DIR} akregator_mk4storage_plugin )
+install(TARGETS akregator_mk4storage_plugin  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 
 ########### install files ###############
 
-install_files( ${KCFG_INSTALL_DIR} FILES mk4config.kcfg )
-install_files( ${SERVICES_INSTALL_DIR} FILES akregator_mk4storage_plugin.desktop )
+install( FILES mk4config.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
+install( FILES akregator_mk4storage_plugin.desktop  DESTINATION ${SERVICES_INSTALL_DIR})
 
 
 
