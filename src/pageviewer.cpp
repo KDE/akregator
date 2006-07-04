@@ -98,7 +98,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     KHTMLSettings* s = const_cast<KHTMLSettings*> (settings());
     s->init(Settings::self()->config());
 
-    setXMLFile(locate("data", "akregator/pageviewer.rc"), true);
+    setXMLFile(KStandardDirs::locate("data", "akregator/pageviewer.rc"), true);
 
     d->backAction = new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 

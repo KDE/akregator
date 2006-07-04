@@ -168,7 +168,7 @@ Article& ArticleListView::ArticleItem::article()
     return m_article;
 }
 
-QPixmap ArticleListView::ArticleItem::m_keepFlag = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+QPixmap ArticleListView::ArticleItem::m_keepFlag = QPixmap(KStandardDirs::locate("data", "akregator/pics/akregator_flag.png"));
 
 // paint ze peons
 void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )

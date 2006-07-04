@@ -192,7 +192,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     setObjectName(name);
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
     m_deleteNodeVisitor = new DeleteNodeVisitor(this);
-    m_keepFlagIcon = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+    m_keepFlagIcon = QPixmap(KStandardDirs::locate("data", "akregator/pics/akregator_flag.png"));
 
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());

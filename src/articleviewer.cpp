@@ -155,7 +155,7 @@ ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : Viewer(parent, name), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
     m_showSummaryVisitor = new ShowSummaryVisitor(this);
-    setXMLFile(locate("data", "akregator/articleviewer.rc"), true);
+    setXMLFile(KStandardDirs::locate("data", "akregator/articleviewer.rc"), true);
 
     generateNormalModeCSS();
     generateCombinedModeCSS();
@@ -358,11 +358,11 @@ bool ArticleViewer::openURL(const KUrl& url)
 
 void ArticleViewer::displayAboutPage()
 {
-    QString location = locate("data", "akregator/about/main.html");
+    QString location = KStandardDirs::locate("data", "akregator/about/main.html");
     QString content = KPIM::kFileToByteArray(location);
-    content = content.arg( locate( "data", "libkdepim/about/kde_infopage.css" ) );
+    content = content.arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" ) );
     if ( kapp->isRightToLeft() ) // reversed layout (from western POV)
-        content = content.arg( "@import \"%1\";" ).arg( locate( "data", "libkdepim/about/kde_infopage_rtl.css" ) );
+        content = content.arg( "@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" ) );
     else // left to right
         content = content.arg( "" );
 

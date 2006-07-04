@@ -90,9 +90,9 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     d->searchCombo->setObjectName("searchcombo");
 
     QIcon iconAll = KGlobal::iconLoader()->loadIcon("exec", K3Icon::Small);
-    QIcon iconNew(locate("data", "akregator/pics/kmmsgnew.png"));
-    QIcon iconUnread(locate("data", "akregator/pics/kmmsgunseen.png"));
-    QIcon iconKeep(locate("data", "akregator/pics/kmmsgflag.png"));
+    QIcon iconNew(KStandardDirs::locate("data", "akregator/pics/kmmsgnew.png"));
+    QIcon iconUnread(KStandardDirs::locate("data", "akregator/pics/kmmsgunseen.png"));
+    QIcon iconKeep(KStandardDirs::locate("data", "akregator/pics/kmmsgflag.png"));
     
     d->searchCombo->addItem(iconAll, i18n("All Articles"));
     d->searchCombo->addItem(iconUnread, i18n("Unread"));
