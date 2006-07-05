@@ -164,7 +164,9 @@ class Part : public MyBasePart
         virtual bool openFile();
 
         void importFile(const KUrl& url);
+    public:
         void exportFile(const KUrl& url);
+    protected:
         
         /** FIXME: hack to get the tray icon working */
         QWidget* getMainWindow();

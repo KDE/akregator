@@ -34,7 +34,7 @@ class ConfigDialog : public KConfigDialog
     Q_OBJECT
     public:
     
-        ConfigDialog(QWidget *parent, const char *name, KConfigSkeleton *config, DialogType dialogType=IconList, QFlags<ButtonCode> dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
+        ConfigDialog(QWidget *parent, const char *name, KConfigSkeleton *config, FaceType dialogType=List, QFlags<ButtonCode> dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
         
         virtual ~ConfigDialog();
 

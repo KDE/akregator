@@ -50,7 +50,7 @@ int Application::newInstance()
 {
   if (!isSessionRestored())
   {
-    QDBusInterfacePtr akr("org.kde.akregator", "/Akregator", "org.kde.akregator.part");
+    QDBusInterface akr("org.kde.akregator", "/Akregator", "org.kde.akregator.part");
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
@@ -61,7 +61,7 @@ int Application::newInstance()
       mMainWindow->setupProgressWidgets();
       if (!args->isSet("hide-mainwindow"))
         mMainWindow->show();
-      akr->call( "openStandardFeedList");
+      akr.call( "openStandardFeedList");
     }
 
     QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
@@ -73,7 +73,7 @@ int Application::newInstance()
         feedsToAdd.append(*it);
 
     if (!feedsToAdd.isEmpty())
-        akr->call("addFeedsToGroup", feedsToAdd, addFeedGroup );
+        akr.call("addFeedsToGroup", feedsToAdd, addFeedGroup );
 
     args->clear();
   }

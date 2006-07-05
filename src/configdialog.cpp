@@ -47,7 +47,7 @@ class ConfigDialog::ConfigDialogPrivate
     Ui::SettingsAppearance settingsAppearance;
 };
 
-ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* config, DialogType dialogType, QFlags<ButtonCode> dialogButtons, ButtonCode defaultButton, bool modal) : KConfigDialog(parent, name, config, dialogType, dialogButtons, defaultButton, modal), d(new ConfigDialogPrivate)
+ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* config, FaceType dialogType, QFlags<ButtonCode> dialogButtons, ButtonCode defaultButton, bool modal) : KConfigDialog(parent, name, config, dialogType, dialogButtons, defaultButton, modal), d(new ConfigDialogPrivate)
 {
     QWidget* generalWidget = new QWidget(this);
     Ui::SettingsGeneral general;

@@ -46,7 +46,6 @@
 #include "tagset.h"
 #include "trayicon.h"
 
-#include <dcopclient.h>
 #include <kaboutdata.h>
 #include <kapplication.h>
 #include <kconfig.h>
@@ -69,7 +68,7 @@
 #include <QTextStream>
 #include <QTimer>
 #include <QWidget>
-#include "akregatorpartadaptor.h"
+#include "partadaptor.h"
 #include <QtDBus>
 
 namespace Akregator {
@@ -630,7 +629,7 @@ void Part::exportFile(const KUrl& url)
 
 void Part::fileImport()
 {
-    KUrl url = KFileDialog::getOpenURL( QString::null,
+    KUrl url = KFileDialog::getOpenUrl( KUrl(),
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
@@ -640,7 +639,7 @@ void Part::fileImport()
 
     void Part::fileExport()
 {
-    KUrl url= KFileDialog::getSaveURL( QString::null,
+    KUrl url= KFileDialog::getSaveUrl( KUrl(),
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 

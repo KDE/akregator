@@ -115,7 +115,7 @@ QString FeedIconManager::iconLocation(const KUrl & url) const
 {
     QDBusReply<QString> reply = d->m_favIconsModule->call( "iconForURL", url.url() );
 
-    if (reply.isSuccess()) {
+    if (reply.isValid()) {
       QString result = reply;
       return result;
     }
