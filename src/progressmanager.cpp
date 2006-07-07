@@ -80,8 +80,8 @@ void ProgressManager::setFeedList(FeedList* feedList)
             delete *it;
         d->handlers.clear();
         
-        disconnect(feedList, SIGNAL(signalNodeAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
-        disconnect(feedList, SIGNAL(signalNodeRemoved(TreeNode*)), this, SLOT(slotNodeRemoved(TreeNode*)));
+        disconnect(d->feedList, SIGNAL(signalNodeAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
+        disconnect(d->feedList, SIGNAL(signalNodeRemoved(TreeNode*)), this, SLOT(slotNodeRemoved(TreeNode*)));
     }
 
     d->feedList = feedList;
@@ -91,7 +91,7 @@ void ProgressManager::setFeedList(FeedList* feedList)
         QList<TreeNode*> list = feedList->asFlatList();
     
         for (QList<TreeNode*>::ConstIterator it = list.begin(); it != list.end(); ++it)
-        slotNodeAdded(*it);
+            slotNodeAdded(*it);
         connect(feedList, SIGNAL(signalNodeAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
         connect(feedList, SIGNAL(signalNodeRemoved(TreeNode*)), this, SLOT(slotNodeRemoved(TreeNode*)));
     }
