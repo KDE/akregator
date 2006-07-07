@@ -230,8 +230,6 @@ QString parseItemAuthor(const QDomElement& element, Format format, Version versi
     
     if (name.isNull())
         name = email;
-            
-    QString author;
     
     if (!email.isNull())
         return QString("<a href=\"mailto:%1\">%2</a>").arg(email).arg(name);
