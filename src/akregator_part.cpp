@@ -227,6 +227,8 @@ void Part::slotOnShutdown()
     saveTagSet(m_tagSetPath);
     m_mainWidget->slotOnShutdown();
     //delete m_mainWidget;
+    delete TrayIcon::getInstance();
+    TrayIcon::setInstance(0L);
     delete m_storage;
     m_storage = 0;
     //delete m_actionManager;
