@@ -94,8 +94,8 @@ set(akregatorpart_PART_SRCS
    notificationmanager.cpp 
    tagaction.cpp 
    tagpropertiesdialog.cpp 
-   tagfolderitem.cpp 
-   speechclient.cpp )
+   tagfolderitem.cpp )
+   #speechclient.cpp )
 qt4_add_dbus_adaptor( akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part )
 
 kde4_automoc(${akregatorpart_PART_SRCS})

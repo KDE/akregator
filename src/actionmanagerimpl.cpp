@@ -35,7 +35,7 @@
 #include "kernel.h"
 #include "listtabwidget.h"
 #include "mainwidget.h"
-#include "speechclient.h"
+//#include "speechclient.h"
 #include "tabwidget.h"
 #include "tag.h"
 #include "tagaction.h"
@@ -45,6 +45,8 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
+#include <kactionmenu.h>
+#include <ktoolbarpopupaction.h>
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kdebug.h>
@@ -368,16 +370,16 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KActionMenu* statusMenu = new KActionMenu ( i18n( "&Mark As" ),
                                     actionCollection(), "article_set_status" );
 
-    d->speakSelectedArticlesAction = new KAction(KIcon("kttsd"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
-    connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotTextToSpeechRequest()));
+    //d->speakSelectedArticlesAction = new KAction(KIcon("kttsd"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
+    //connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotTextToSpeechRequest()));
 
-    KAction *abortTTS = new KAction(KIcon("player_stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
-    connect(abortTTS, SIGNAL(triggered(bool)), SpeechClient::self(), SLOT(slotAbortJobs()));
-    abortTTS->setShortcut(Qt::Key_Escape);
-    abortTTS->setEnabled(false);
+    //KAction *abortTTS = new KAction(KIcon("player_stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
+    //connect(abortTTS, SIGNAL(triggered(bool)), SpeechClient::self(), SLOT(slotAbortJobs()));
+    //abortTTS->setShortcut(Qt::Key_Escape);
+    //abortTTS->setEnabled(false);
 
-    connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
-    abortTTS, SLOT(setEnabled(bool)));
+    //connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
+    //abortTTS, SLOT(setEnabled(bool)));
 
     statusMenu->insert(new KAction(KGuiItem(i18nc("as in: mark as read","&Read"), "",
                        i18n("Mark selected article as read")),

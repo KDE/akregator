@@ -44,7 +44,7 @@
 #include "propertiesdialog.h"
 #include "progressmanager.h"
 #include "searchbar.h"
-#include "speechclient.h"
+//#include "speechclient.h"
 #include "tabwidget.h"
 #include "tag.h"
 #include "tagfolder.h"
@@ -1301,7 +1301,8 @@ void MainWidget::slotTextToSpeechRequest()
         if (m_viewMode != CombinedView)
         {
             // in non-combined view, read selected articles
-            SpeechClient::self()->slotSpeak(m_articleList->selectedArticles());
+#warning "kde4:readd speechclient";
+            //SpeechClient::self()->slotSpeak(m_articleList->selectedArticles());
             // TODO: if article viewer has a selection, read only the selected text?
         }
         else

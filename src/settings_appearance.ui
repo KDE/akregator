@@ -198,7 +198,7 @@
          <number>6</number>
         </property>
         <item>
-         <widget class="KFontCombo" name="kcfg_StandardFont" >
+         <widget class="QFontComboBox" name="kcfg_StandardFont" >
           <item>
            <property name="text" >
             <string>AR PL KaitiM Big5</string>
@@ -3292,7 +3292,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KFontCombo" name="kcfg_FixedFont" >
+         <widget class="QFontComboBox" name="kcfg_FixedFont" >
           <item>
            <property name="text" >
             <string>AR PL KaitiM Big5</string>
@@ -6386,7 +6386,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KFontCombo" name="kcfg_SerifFont" >
+         <widget class="QFontComboBox" name="kcfg_SerifFont" >
           <item>
            <property name="text" >
             <string>AR PL KaitiM Big5</string>
@@ -9480,7 +9480,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KFontCombo" name="kcfg_SansSerifFont" >
+         <widget class="QFontComboBox" name="kcfg_SansSerifFont" >
           <item>
            <property name="text" >
             <string>AR PL KaitiM Big5</string>
@@ -12594,13 +12594,6 @@
    <class>KIntSpinBox</class>
    <extends></extends>
    <header>knuminput.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
-  </customwidget>
-  <customwidget>
-   <class>KFontCombo</class>
-   <extends></extends>
-   <header>kfontcombo.h</header>
    <container>0</container>
    <pixmap></pixmap>
   </customwidget>
