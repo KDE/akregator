@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_TAGACTION_H
 #define AKREGATOR_TAGACTION_H
 
-#include <kactionclasses.h>
+
 
 class QString;
 class QWidget;
