@@ -26,7 +26,7 @@
 #define AKREGATOR_TAGACTION_H
 
 
-
+#include <ktoggleaction.h>
 class QString;
 class QWidget;
 
