@@ -195,7 +195,7 @@ void ActionManagerImpl::slotTagAdded(const Tag& tag)
     if (!d->tagActions.contains(tag.id()))
     {
         d->tagActions[tag.id()] = new TagAction(tag, d->mainWidget, SLOT(slotAssignTag(const Tag&, bool)), d->actionCollection);
-        d->tagMenu->insert(d->tagActions[tag.id()]);
+        d->tagMenu->addAction(d->tagActions[tag.id()]);
     }
 }
 
@@ -300,19 +300,19 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotNormalView()));
     ra->setShortcut(KShortcut( "Ctrl+Shift+1" ));
     ra->setActionGroup(agViewMode);
-    vm->insert(ra);
+    vm->addAction(ra);
 
     ra = new KToggleAction(KIcon("mainWidget_left_right"), i18n("&Widescreen View"), actionCollection(), "widescreen_mainWidget");
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotWidescreenView()));
     ra->setShortcut(KShortcut( "Ctrl+Shift+2" ));
     ra->setActionGroup(agViewMode);
-    vm->insert(ra);
+    vm->addAction(ra);
 
     ra = new KToggleAction(KIcon("mainWidget_text"), i18n("C&ombined View"), actionCollection(), "combined_mainWidget");
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotCombinedView()));
     ra->setShortcut(KShortcut( "Ctrl+Shift+3" ));
     ra->setActionGroup(agViewMode);
-    vm->insert(ra);
+    vm->addAction(ra);
 
     // toolbar / feed menu
     action = new KAction(KIcon("down"), i18n("&Fetch Feed"), actionCollection(), "feed_fetch");
@@ -385,20 +385,20 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setToolTip(i18n("Mark selected article as read"));
     action->setShortcut(KShortcut( "Ctrl+E" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleRead()));
-    statusMenu->insert(action);
+    statusMenu->addAction(action);
 
     action = new KAction(i18n("&New"), actionCollection(), "article_set_status_new" );
     action->setShortcut(KShortcut( "Ctrl+N" ));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
-    statusMenu->insert(action);
+    statusMenu->addAction(action);
 
 
     action = new KAction(i18n("&Unread"), actionCollection(), "article_set_status_unread");
     action->setToolTip(i18n("Mark selected article as unread"));
     action->setShortcut(KShortcut( "Ctrl+U" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleUnread()));
-    statusMenu->insert(action);
+    statusMenu->addAction(action);
 
     KToggleAction* importantAction = new KToggleAction(i18n("&Mark as Important"), "flag", KShortcut( "Ctrl+I" ), actionCollection(), "article_set_status_important");
     importantAction->setCheckedState(i18n("Remove &Important Mark"));
