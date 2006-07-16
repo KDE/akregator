@@ -381,21 +381,24 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     //connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
     //abortTTS, SLOT(setEnabled(bool)));
 
-    statusMenu->insert(new KAction(KGuiItem(i18nc("as in: mark as read","&Read"), "",
-                       i18n("Mark selected article as read")),
-    KShortcut( "Ctrl+E" ), d->mainWidget, SLOT(slotSetSelectedArticleRead()),
-    actionCollection(), "article_set_status_read"));
+    action = new KAction(i18nc("as in: mark as read","&Read"), actionCollection(), "article_set_status_read");
+    action->setToolTip(i18n("Mark selected article as read"));
+    action->setShortcut(KShortcut( "Ctrl+E" ));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleRead()));
+    statusMenu->insert(action);
 
-    statusMenu->insert(new KAction(KGuiItem(i18n("&New"), "",
-                        i18n("Mark selected article as new")),
-    KShortcut( "Ctrl+N" ), d->mainWidget, SLOT(slotSetSelectedArticleNew()),
-    actionCollection(), "article_set_status_new" ));
+    action = new KAction(i18n("&New"), actionCollection(), "article_set_status_new" );
+    action->setShortcut(KShortcut( "Ctrl+N" ));
+    action->setToolTip(i18n("Mark selected article as new"));
+    connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
+    statusMenu->insert(action);
 
 
-    statusMenu->insert(new KAction(KGuiItem(i18n("&Unread"), "",
-                       i18n("Mark selected article as unread")),
-    KShortcut( "Ctrl+U" ), d->mainWidget, SLOT(slotSetSelectedArticleUnread()),
-    actionCollection(), "article_set_status_unread"));
+    action = new KAction(i18n("&Unread"), actionCollection(), "article_set_status_unread");
+    action->setToolTip(i18n("Mark selected article as unread"));
+    action->setShortcut(KShortcut( "Ctrl+U" ));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleUnread()));
+    statusMenu->insert(action);
 
     KToggleAction* importantAction = new KToggleAction(i18n("&Mark as Important"), "flag", KShortcut( "Ctrl+I" ), actionCollection(), "article_set_status_important");
     importantAction->setCheckedState(i18n("Remove &Important Mark"));
