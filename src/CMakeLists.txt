@@ -57,7 +57,7 @@ kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate  ${KDE4_KDEUI_LIBS} kdepim  khtml syndication )
+target_link_libraries(akregatorprivate  ${KDE4_KDEUI_LIBS} kdepim  ${KDE4_KHTML_LIBS} syndication )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install(TARGETS akregatorprivate  DESTINATION ${LIB_INSTALL_DIR})
@@ -116,7 +116,7 @@ kde4_add_plugin(akregatorpart WITH_PREFIX ${akregatorpart_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} akregatorpart )
 
-target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} kutils akregatorprivate )
+target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} akregatorprivate )
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
