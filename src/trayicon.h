@@ -25,17 +25,18 @@
 #ifndef AKREGATOR_TRAYICON_H
 #define AKREGATOR_TRAYICON_H
 
-#include <ksystemtray.h>
+#include <ksystemtrayicon.h>
 #include <kdepim_export.h>
 
 #include <QImage>
 #include <QPixmap>
+#include <QIcon>
 
 class QMouseEvent;
 
 namespace Akregator {
 
-class AKREGATOR_EXPORT TrayIcon : public KSystemTray
+class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
 {
     Q_OBJECT
     public:
@@ -45,13 +46,14 @@ class AKREGATOR_EXPORT TrayIcon : public KSystemTray
         TrayIcon(QWidget *parent = 0);
         ~TrayIcon();
         
-        QPixmap takeScreenshot() const;
-        virtual void mousePressEvent(QMouseEvent *);
+        //QPixmap takeScreenshot() const;
+        
     public slots:
         void settingsChanged();
         void slotSetUnread(int unread);
         void viewButtonClicked();
-    
+        void slotActivated(QSystemTrayIcon::ActivationReason reason);
+
     signals:
         void showPart();
 

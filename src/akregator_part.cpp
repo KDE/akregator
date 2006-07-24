@@ -177,7 +177,8 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
     if ( isTrayIconEnabled() )
     {
         trayIcon->show();
-        NotificationManager::self()->setWidget(trayIcon, instance());
+#warning this needs a way to get the position of the systray
+        NotificationManager::self()->setWidget(0, instance());
     }
     else
         NotificationManager::self()->setWidget(getMainWindow(), instance());
@@ -236,7 +237,9 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-    NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
+#warning Tray icons are no longer widgets
+//    NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
+    NotificationManager::self()->setWidget( getMainWindow(), instance());
 
     Syndication::FileRetriever::setUseCache(Settings::useHTMLCache());
 

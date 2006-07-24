@@ -62,14 +62,16 @@ void TrayIcon::setInstance(TrayIcon* trayIcon)
 
 
 TrayIcon::TrayIcon(QWidget *parent)
-        : KSystemTray(parent), m_unread(0)
+        : KSystemTrayIcon(parent), m_unread(0)
 {
-    m_defaultIcon=KSystemTray::loadIcon("akregator");
-    QPixmap m_unreadIcon=KSystemTray::loadIcon("akregator_empty");
+    m_defaultIcon=KSystemTrayIcon::loadIcon("akregator").pixmap();
+    QPixmap m_unreadIcon=KSystemTrayIcon::loadIcon("akregator_empty").pixmap();
     m_lightIconImage=m_unreadIcon.toImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
-    setPixmap(m_defaultIcon);
+    setIcon(m_defaultIcon);
     this->setToolTip( i18n("Akregator - RSS Feed Reader"));
+    connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
+             SLOT( QSystemTrayIcon::ActivationReason ) );
 }
 
 
@@ -77,15 +79,13 @@ TrayIcon::~TrayIcon()
 {}
 
 
-void TrayIcon::mousePressEvent(QMouseEvent *e) {
-    if (e->button() == Qt::LeftButton) {
-        emit showPart();
-    }
-
-    KSystemTray::mousePressEvent(e);
+void TrayIcon::slotActivated(QSystemTrayIcon::ActivationReason reason) {
+  if (reason == QSystemTrayIcon::Trigger )
+    emit showPart();
 }
 
 
+#if 0
 QPixmap TrayIcon::takeScreenshot() const
 {
     QPoint g = mapToGlobal(pos());
@@ -130,25 +130,27 @@ QPixmap TrayIcon::takeScreenshot() const
     return QPixmap();
 #endif
 }
+#endif
 
 void TrayIcon::slotSetUnread(int unread)
 {
     if (unread==m_unread)
         return;
-    
+
     m_unread=unread;
-    
+
     this->setToolTip( i18np("Akregator - 1 unread article", "Akregator - %n unread articles", unread > 0 ? unread : 0));
-    
+
     if (unread <= 0)
-    {    
-        setPixmap(m_defaultIcon);
+    {
+        setIcon(m_defaultIcon);
     }
     else
-    {               
+    {
         // from KMSystemTray
-        int oldW = pixmap()->size().width();
-        int oldH = pixmap()->size().height();
+        QSize oldSize = m_defaultIcon.size();
+        int oldW = oldSize.width();
+        int oldH = oldSize.height();
 
         QString uStr=QString::number( unread );
         QFont f=KGlobalSettings::generalFont();
@@ -176,7 +178,7 @@ void TrayIcon::slotSetUnread(int unread)
         QImage overlayImg=m_lightIconImage.copy();
         KIconEffect::overlay(overlayImg, img);
 
-        setPixmap(QPixmap::fromImage(overlayImg));
+        setIcon(QPixmap::fromImage(overlayImg));
     }
 }
 

@@ -245,7 +245,7 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
         return;
     else d->trayIcon = trayIcon;
 
-    KMenu* traypop = trayIcon->contextMenu();
+    QMenu* traypop = trayIcon->contextMenu();
 
     if (actionCollection()->action("feed_fetch_all"))
         actionCollection()->action("feed_fetch_all")->plug(traypop, 1);

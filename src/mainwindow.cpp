@@ -258,17 +258,20 @@ void MainWindow::slotQuit()
 
 bool MainWindow::queryClose()
 {
-    if (kapp->sessionSaving() || TrayIcon::getInstance() == 0 || TrayIcon::getInstance()->isHidden() )
+    if (kapp->sessionSaving() || TrayIcon::getInstance() == 0 || !TrayIcon::getInstance()->isVisible() )
     {
         return true;
     }
     else
     {
+#warning takeScreenShot has to be reimplemented or removed
+#if 0
         QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
 
         // Associate source to image and show the dialog:
         Q3MimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
         KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
+#endif
         hide();
         return false;
     }
