@@ -106,10 +106,11 @@ bool MainWindow::loadPart()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = static_cast<Akregator::Part*>(factory->create(this, "akregator_part"));
+        m_part = static_cast<Akregator::Part*>(factory->create(this, "KParts::ReadOnlyPart"));
 
         if (m_part)
         {
+            m_part->setObjectName("akregator_part");
             // tell the KParts::MainWindow that this is indeed the main widget
             setCentralWidget(m_part->widget());
 

@@ -117,7 +117,8 @@ bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimet
         KLibFactory* factory = KLibLoader::self()->factory( ptr->library().toLatin1() );
         if (factory)
         {
-            part = static_cast<KParts::ReadOnlyPart *>(factory->create(parent, ptr->name().toLatin1()));
+            part = static_cast<KParts::ReadOnlyPart *>(factory->create(parent, "KParts::ReadOnlyPart"));
+            part->setObjectName(ptr->name());
 
             layout->addWidget(part->widget());
             connectPart();
