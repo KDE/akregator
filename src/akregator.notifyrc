@@ -1,23 +1,23 @@
-[!Global!]
+[Global]
 IconName=akregator
 Comment=Akregator
 Comment[x-test]=xxAkregatorxx
 
-[feed_added]
+[Event/feed_added]
 Name=Feed added
 Name[fr]=Flux ajouté
 Name[x-test]=xxFeed addedxx
 Comment=A new feed was remotely added to Akregator
 Comment[fr]=Un flux a été ajouté à distance à Akregator
 Comment[x-test]=xxA new feed was remotely added to Akregatorxx
-default_presentation=4
+Action=Logfile
 
-[new_articles]
+[Event/new_articles]
 Name=New Articles
 Name[fr]=Nouveaux articles
 Name[x-test]=xxNew Articlesxx
 Comment=New articles were fetched
 Comment[fr]=Les nouveaux articles ont été relevés
 Comment[x-test]=xxNew articles were fetchedxx
-default_presentation=4
+Action=Logfile
 

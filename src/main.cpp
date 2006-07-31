@@ -92,7 +92,7 @@ int main(int argc, char **argv)
     Akregator::Application app;
 
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
-    KNotifyClient::startDaemon();
+    //KNotifyClient::startDaemon();
 
     // see if we are starting with session management
     if (app.isSessionRestored())

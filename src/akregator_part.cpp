@@ -46,6 +46,7 @@
 #include "tagset.h"
 #include "trayicon.h"
 
+#include <knotifyconfigwidget.h>
 #include <kaboutdata.h>
 #include <kapplication.h>
 #include <kconfig.h>
@@ -115,7 +116,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
     setInstance( AkregatorFactory::instance() );
 
     // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
-    KNotifyClient::startDaemon();
 
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
@@ -691,9 +691,9 @@ KAboutData *Part::createAboutData()
 
 void Part::showKNotifyOptions()
 {
-    KAboutData* about = new Akregator::AboutData;
-    KNotifyDialog::configure(m_mainWidget, "akregator_knotify_config", about);
-    delete about;
+    //KAboutData* about = new Akregator::AboutData;
+    KNotifyConfigWidget::configure(m_mainWidget/*, "akregator_knotify_config", about*/);
+    //delete about;
 }
 
 void Part::showOptions()

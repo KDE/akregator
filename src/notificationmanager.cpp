@@ -23,7 +23,7 @@
 */
 
 #include <klocale.h>
-#include <knotifyclient.h>
+#include <knotification.h>
 #include <kstaticdeleter.h>
 #include <kurl.h>
 
@@ -76,16 +76,16 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
 {
     if (feeds.count() == 1)
     {
-        KNotifyClient::Instance inst(m_instance);
-        KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feed added:\n %1", feeds[0]));
+        //KNotifyClient::Instance inst(m_instance);
+        KNotification::event("feed_added", i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget);
     }
     else if (feeds.count() > 1)
     {
         QString message;
         for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
             message += *it + '\n';
-        KNotifyClient::Instance inst(m_instance);
-        KNotifyClient::event(m_widget->winId(), "feed_added", i18n("Feeds added:\n %1", message));
+        //KNotifyClient::Instance inst(m_instance);
+        KNotification::event("feed_added", i18n("Feeds added:\n %1", message), QPixmap() ,m_widget);
     }
 }
 
@@ -105,8 +105,8 @@ void NotificationManager::doNotify()
         message += (*it).title() + "<br>";
     }
     message += "</body></html>";
-    KNotifyClient::Instance inst(m_instance);
-    KNotifyClient::event(m_widget->winId(), "new_articles", message);
+    //KNotifyClient::Instance inst(m_instance);
+    KNotification::event("new_articles", message,QPixmap() ,m_widget);
 
     m_articles.clear();
     m_running = false;

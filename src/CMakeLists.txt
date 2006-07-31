@@ -116,7 +116,8 @@ kde4_add_plugin(akregatorpart WITH_PREFIX ${akregatorpart_PART_SRCS})
 
 kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} akregatorpart )
 
-target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} akregatorprivate )
+target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} akregatorprivate
+  knotifyconfig)
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -126,7 +127,7 @@ install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 install( FILES akregator.desktop  DESTINATION ${XDG_APPS_DIR})
 install( FILES akregator.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES akregator_part.desktop  DESTINATION ${SERVICES_INSTALL_DIR})
-install( FILES articleviewer.rc pageviewer.rc akregator_part.rc eventsrc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
+install( FILES articleviewer.rc pageviewer.rc akregator_part.rc akregator.notifyrc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES akregator_plugin.desktop  DESTINATION ${SERVICETYPES_INSTALL_DIR})
 install( FILES akregator_shell.rc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES feed.protocol  DESTINATION ${SERVICES_INSTALL_DIR})
