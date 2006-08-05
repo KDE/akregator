@@ -56,6 +56,7 @@
 #include <kstdaccel.h>
 #include <kstdaction.h>
 #include <kxmlguifactory.h>
+#include <kicon.h> 
 
 #include <QHash>
 #include <QList>

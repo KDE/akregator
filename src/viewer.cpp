@@ -39,6 +39,7 @@
 #include <kurl.h>
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>
+#include <kicon.h>
 
 #include <QClipboard>
 #include <QPaintDevice>
