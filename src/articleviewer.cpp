@@ -385,13 +385,10 @@ void ArticleViewer::displayAboutPage()
     
     QString content = KPIM::kFileToByteArray(location);
     
-    content = content.arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" ) );
-    if ( kapp->isRightToLeft() ) // reversed layout (from western POV)
-        content = content.replace("$RTL_CSS_IMPORT", QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) );
-    else // left to right
-        content = content.replace("$RTL_CSS_IMPORT", "");
+    QString infocss = KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" );
+    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) : QString();
     
-    write(content.arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
+    write(content.arg(infocss).arg(rtl).arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
     end();
 }
 
