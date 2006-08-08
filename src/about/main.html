@@ -10,9 +10,9 @@
   <style type="text/css">
   /*<![CDATA[*/
     @import "%1"; /* kde_infopage.css */
-    %1 /* maybe @import "kde_infopage_rtl.css"; */
+    $RTL_CSS_IMPORT /* maybe @import "kde_infopage_rtl.css"; */
     @import "akregator.css";
-    body {font-size: %1px;}
+    body {font-size: %2px;}
   /*]]>*/
   </style>
 
@@ -25,11 +25,11 @@
     <div id="headerR"/>
 
     <div id="title">
-    %2 <!-- Akregator -->
+    %3 <!-- Akregator -->
     </div>
 
     <div id="tagline">
-    %3 <!-- Catchphrase -->
+    %4 <!-- Catchphrase -->
     </div>
   </div>
 
@@ -39,7 +39,7 @@
     <div id="barL">
       <div id="barR">
         <div id="barCenter" class="bar_text">
-      %4<!-- Akregator is ... -->
+      %5<!-- Akregator is ... -->
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@
       <div id="boxR">
         <div id="boxCenter">
         <!--Welcome to Akregator-->
-	%5
+	%6
         </div>
       </div>
     </div>

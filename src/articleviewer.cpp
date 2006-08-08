@@ -359,13 +359,7 @@ bool ArticleViewer::openURL(const KUrl& url)
 void ArticleViewer::displayAboutPage()
 {
     QString location = KStandardDirs::locate("data", "akregator/about/main.html");
-    QString content = KPIM::kFileToByteArray(location);
-    content = content.arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" ) );
-    if ( kapp->isRightToLeft() ) // reversed layout (from western POV)
-        content = content.arg( "@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" ) );
-    else // left to right
-        content = content.arg( "" );
-
+        
     begin(KUrl::fromPath( location ));
     QString info =
             i18nc("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
@@ -388,6 +382,15 @@ void ArticleViewer::displayAboutPage()
     QString appTitle = i18n("Akregator");
     QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
     QString quickDescription = i18n("An RSS feed reader for the K Desktop Environment.");
+    
+    QString content = KPIM::kFileToByteArray(location);
+    
+    content = content.arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" ) );
+    if ( kapp->isRightToLeft() ) // reversed layout (from western POV)
+        content = content.replace("$RTL_CSS_IMPORT", QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) );
+    else // left to right
+        content = content.replace("$RTL_CSS_IMPORT", "");
+    
     write(content.arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
     end();
 }
