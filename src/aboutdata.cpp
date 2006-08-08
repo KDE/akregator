@@ -37,6 +37,7 @@ AboutData::AboutData()
                  License_GPL, I18N_NOOP("(C) 2004, 2005 Akregator developers"), 0,
                      "http://akregator.sourceforge.net/")
 {
+    setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS 
     addAuthor( "Frank Osterfeld", I18N_NOOP("Maintainer"), "frank.osterfeld@kdemail.net" );
     addAuthor( "Teemu Rytilahti", I18N_NOOP("Developer"), "tpr@d5k.net" );
     addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "sashmit@vfemail.net" );

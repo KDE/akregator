@@ -32,6 +32,7 @@
 #include "articleinterceptor.h"
 #include "configdialog.h"
 #include "fetchqueue.h"
+#include "feediconmanager.h"
 #include "framemanager.h"
 #include "kernel.h"
 #include "mainwidget.h"
@@ -110,13 +111,15 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
        , m_storage(0)
 
 {
-  new PartAdaptor( this );
-  QDBus::sessionBus().registerObject("/Akregator", this);
     // we need an instance
     setInstance( AkregatorFactory::instance() );
+    
+    new PartAdaptor( this );
+    QDBus::sessionBus().registerObject("/Akregator", this);
 
-    // start knotifyclient if not already started. makes it work for people who doesn't use full kde, according to kmail devels
-
+    FeedIconManager::self(); // FIXME: registering the icon manager dbus iface here,
+                               // because otherwise we get a deadlock later
+    
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
     m_tagSetPath = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/tagset.xml";
