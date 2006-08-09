@@ -799,7 +799,7 @@ void MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bo
     afd->setURL(KUrl::fromPercentEncoding( url.toLatin1() ));
 
     if (autoExec)
-        afd->slotOk();
+        afd->accept();
     else
     {
         if (afd->exec() != QDialog::Accepted)

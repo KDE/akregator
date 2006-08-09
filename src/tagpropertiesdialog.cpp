@@ -41,14 +41,21 @@ class TagPropertiesDialog::TagPropertiesDialogPrivate
     Ui::TagPropertiesWidgetBase base;
 };
 
-TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name) 
-		: KDialog(parent/*Qt::WStyle_DialogBorder*/)
-		  , d(new TagPropertiesDialogPrivate)
+void TagPropertiesDialog::slotApplyChanges()
 {
-	setCaption(i18n("Tag Properties"));
-	setButtons(KDialog::Ok|KDialog::Cancel|KDialog::Apply);
-	setDefaultButton(KDialog::Ok);
-	setModal(true);
+    d->tag.setName(d->base.le_title->text());
+    d->tag.setIcon(d->base.iconButton->icon());
+}
+
+TagPropertiesDialog::TagPropertiesDialog(QWidget *parent) 
+                    : KDialog(parent/*Qt::WStyle_DialogBorder*/),
+                       d(new TagPropertiesDialogPrivate)
+{
+        
+    setCaption(i18n("Tag Properties"));
+    setButtons(KDialog::Ok|KDialog::Cancel|KDialog::Apply);
+    setDefaultButton(KDialog::Ok);
+    setModal(true);
     QWidget* widget = new QWidget(this);
     d->base.setupUi(widget);
     setMainWidget(widget);
@@ -57,6 +64,8 @@ TagPropertiesDialog::TagPropertiesDialog(QWidget *parent, const char *name)
     enableButtonOk(false);
     enableButtonApply(false);
     connect(d->base.le_title, SIGNAL(textChanged(const QString&)), this, SLOT(slotTextChanged(const QString& )));
+    connect(this, SIGNAL(okClicked()), this, SLOT(slotApplyChanges()));
+    connect(this, SIGNAL(applyClicked()), this, SLOT(slotApplyChanges()));
 }
 
 TagPropertiesDialog::~TagPropertiesDialog()
@@ -74,25 +83,10 @@ void TagPropertiesDialog::setTag(const Tag& tag)
     enableButtonApply(!tag.name().isEmpty());
 }
 
-void TagPropertiesDialog::slotOk()
-{
-    d->tag.setName(d->base.le_title->text());
-   // d->tag.setIcon(d->base.iconButton->icon());
-	KDialog::accept();
-}
-
 void TagPropertiesDialog::slotTextChanged(const QString& text)
 {
     enableButtonOk(!text.isEmpty());
     enableButtonApply(!text.isEmpty());
-}
-
-void TagPropertiesDialog::slotApply()
-{
-    d->tag.setName(d->base.le_title->text());
-  //  d->tag.setIcon(d->base.iconButton->icon());
-#warning "kde4: port it"    
-  //KDialogBase::slotApply();
 }
 
 }  // namespace Akregator

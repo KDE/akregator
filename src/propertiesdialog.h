@@ -55,6 +55,10 @@ class FeedPropertiesDialog : public KDialog
         /** selects the text in the feed title lineedit */
         void selectFeedName();
 
+    public slots:
+        
+        void accept();
+        
     protected:
         const QString feedName() const;
         const QString url() const;
@@ -77,9 +81,6 @@ class FeedPropertiesDialog : public KDialog
         void setMarkImmediatelyAsRead(bool enabled);
         void setUseNotification(bool enabled);
         void setLoadLinkedWebsite(bool enabled);
-
-    protected slots:
-        void slotOk();
 
     private:
         FeedPropertiesWidget *widget;

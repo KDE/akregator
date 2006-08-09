@@ -37,16 +37,15 @@ class TagPropertiesDialog : public KDialog
 
     public:
 
-        TagPropertiesDialog(QWidget *parent=0, const char *name=0);
+        TagPropertiesDialog(QWidget *parent=0);
         virtual ~TagPropertiesDialog();
 
         void setTag(const Tag& tag);
 
     protected slots:
 
-        virtual void slotOk();
-        virtual void slotApply();
         virtual void slotTextChanged(const QString& text);
+        virtual void slotApplyChanges();
 
     private:
         class TagPropertiesDialogPrivate;

@@ -70,10 +70,11 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
         : KDialog(parent/*, Qt::WStyle_DialogBorder*/)
 {
     widget=new FeedPropertiesWidget(this);
-	setCaption(i18n("Feed Properties"));
-	setButtons(KDialog::Ok|KDialog::Cancel);
-	setDefaultButton(KDialog::Cancel);
-	setModal(true);
+    setCaption(i18n("Feed Properties"));
+    setButtons(KDialog::Ok|KDialog::Cancel);
+    setDefaultButton(KDialog::Cancel);
+    setModal(true);
+    
     setMainWidget(widget);
     widget->feedNameEdit->setFocus();
 
@@ -83,7 +84,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
 FeedPropertiesDialog::~FeedPropertiesDialog()
 {}
 
-void FeedPropertiesDialog::slotOk()
+void FeedPropertiesDialog::accept()
 {
      m_feed->setNotificationMode(false);
      m_feed->setTitle( feedName() );
@@ -99,7 +100,7 @@ void FeedPropertiesDialog::slotOk()
      m_feed->setLoadLinkedWebsite(loadLinkedWebsite());
      m_feed->setNotificationMode(true, true);
 
-	 KDialog::accept();
+     KDialog::accept();
 }
 
 void FeedPropertiesDialog::slotSetCaption(const QString& c)

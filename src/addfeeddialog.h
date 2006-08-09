@@ -55,7 +55,9 @@ class AddFeedDialog : public KDialog
         Feed *feed;
 
     public slots:
-        void slotOk( );
+        
+        void accept();
+        
         void fetchCompleted(Feed *);
         void fetchDiscovery(Feed *);
         void fetchError(Feed *);
