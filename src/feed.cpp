@@ -33,7 +33,7 @@
 #include "folder.h"
 #include "storage.h"
 #include "treenodevisitor.h"
-#include "libsyndication.h"
+#include <syndication/syndication.h>
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -86,18 +86,18 @@ class Feed::FeedPrivate
 
         /** list of deleted articles. This contains **/
         QList<Article> deletedArticles;
-        
+
         /** caches guids of deleted articles for notification */
-   
+
         QList<Article> addedArticlesNotify;
         QList<Article> removedArticlesNotify;
         QList<Article> updatedArticlesNotify;
-        
+
         QPixmap imagePixmap;
         Syndication::ImagePtr image;
         QPixmap favicon;
 };
-            
+
 QString Feed::archiveModeToString(ArchiveMode mode)
 {
     switch (mode)
@@ -158,7 +158,7 @@ Feed* Feed::fromOPML(QDomElement e)
         feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
         feed->setLoadLinkedWebsite(loadLinkedWebsite);
         feed->loadArticles(); // TODO: make me fly: make this delayed
-        
+
     }
 
     return feed;
@@ -195,7 +195,7 @@ QList<Article> Feed::articles(const QString& tag)
         for (QStringList::ConstIterator it = guids.begin(); it != guids.end(); ++it)
             tagged += d->articles[*it];
         return tagged;
-        
+
     }
 }
 
@@ -215,7 +215,7 @@ void Feed::loadArticles()
         if (mya.isDeleted())
             d->deletedArticles.append(mya);
     }
-    
+
     d->articlesLoaded = true;
     enforceLimitArticleNumber();
     recalcUnreadCount();
@@ -228,7 +228,7 @@ void Feed::recalcUnreadCount()
     QList<Article>::Iterator en = tarticles.end();
 
     int oldUnread = d->archive->unread();
-    
+
     int unread = 0;
 
     for (it = tarticles.begin(); it != en; ++it)
@@ -327,7 +327,7 @@ bool Feed::loadLinkedWebsite() const
 {
     return d->loadLinkedWebsite;
 }
-            
+
 const QPixmap& Feed::favicon() const { return d->favicon; }
 
 const QPixmap& Feed::image() const { return d->imagePixmap; }
@@ -421,10 +421,10 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
     QList<ItemPtr> items = feed->items();
     QList<ItemPtr>::ConstIterator it = items.begin();
     QList<ItemPtr>::ConstIterator en = items.end();
-    
+
 
     int nudge=0;
-    
+
     QList<Article> deletedArticles = d->deletedArticles;
 
     for ( ; it != en; ++it)
@@ -439,30 +439,30 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
             QList<ArticleInterceptor*> interceptors = ArticleInterceptorManager::self()->interceptors();
             for (QList<ArticleInterceptor*>::ConstIterator iit = interceptors.begin(); iit != interceptors.end(); ++iit)
                 (*iit)->processArticle(mya);
-            
+
             d->addedArticlesNotify.append(mya);
-            
+
             if (!mya.isDeleted() && !markImmediatelyAsRead())
                 mya.setStatus(Article::New);
             else
                 mya.setStatus(Article::Read);
-                
+
             changed = true;
         }
         else // article is in list
         {
             // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
             Article old = d->articles[(*it)->id()];
-            Article mya(*it, this);          
+            Article mya(*it, this);
             if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted())
             {
                 mya.setKeep(old.keep());
                 int oldstatus = old.status();
                 old.setStatus(Article::Read);
-                
+
                 d->articles.remove(old.guid());
                 appendArticle(mya);
-                
+
                 mya.setStatus(oldstatus);
 
                 d->updatedArticlesNotify.append(mya);
@@ -470,9 +470,9 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
             }
             else if (old.isDeleted())
                 deletedArticles.removeAll(mya);
-        }    
+        }
     }
-    
+
     QList<Article>::ConstIterator dit = deletedArticles.begin();
     QList<Article>::ConstIterator dtmp;
     QList<Article>::ConstIterator den = deletedArticles.end();
@@ -486,7 +486,7 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
         d->archive->deleteArticle((*dtmp).guid());
         d->deletedArticles.removeAll(*dtmp);
     }
-    
+
     if (changed)
         articlesModified();
 }
@@ -558,8 +558,8 @@ void Feed::tryFetch()
 {
     d->fetchError = false;
 
-    d->loader = Syndication::Loader::create( this, SLOT(fetchCompleted(Syndication::Loader*, 
-                                                                       Syndication::FeedPtr, 
+    d->loader = Syndication::Loader::create( this, SLOT(fetchCompleted(Syndication::Loader*,
+                                                                       Syndication::FeedPtr,
                                                                        Syndication::ErrorCode)) );
     //connect(d->loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
     d->loader->loadFrom( d->xmlUrl);
@@ -599,13 +599,13 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     }
 
     loadArticles(); // TODO: make me fly: make this delayed
-    
+
     // Restore favicon.
     if (d->favicon.isNull())
         loadFavicon();
 
     d->fetchError = false;
-    
+
     if (d->imagePixmap.isNull())
     {
         QString u = d->xmlUrl;
@@ -619,7 +619,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
             //d->image = *doc.image();
             //connect(&d->image, SIGNAL(gotPixmap(const QPixmap&)), this, SLOT(slotImageFetched(const QPixmap&)));
             //d->image.getPixmap();
-        }   
+        }
     }
 
     if (title().isEmpty())
@@ -645,7 +645,7 @@ void Feed::slotDeleteExpiredArticles()
         return;
 
     QList<Article> articles = d->articles.values();
-    
+
     QList<Article>::Iterator en = articles.end();
 
     setNotificationMode(false);
@@ -767,7 +767,7 @@ void Feed::doArticleNotification()
 {
     if (!d->addedArticlesNotify.isEmpty())
     {
-        // copy list, otherwise the refcounting in Article::Private breaks for 
+        // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
         QList<Article> l = d->addedArticlesNotify;
         emit signalArticlesAdded(this, l);
@@ -775,7 +775,7 @@ void Feed::doArticleNotification()
     }
     if (!d->updatedArticlesNotify.isEmpty())
     {
-        // copy list, otherwise the refcounting in Article::Private breaks for 
+        // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
         QList<Article> l = d->updatedArticlesNotify;
         emit signalArticlesUpdated(this, l);
@@ -783,7 +783,7 @@ void Feed::doArticleNotification()
     }
     if (!d->removedArticlesNotify.isEmpty())
     {
-        // copy list, otherwise the refcounting in Article::Private breaks for 
+        // copy list, otherwise the refcounting in Article::Private breaks for
         // some reason (causing segfaults)
         QList<Article> l = d->removedArticlesNotify;
         emit signalArticlesRemoved(this, l);
@@ -799,7 +799,7 @@ void Feed::enforceLimitArticleNumber()
         limit = Settings::maxArticleNumber();
     else if (d->archiveMode == limitArticleNumber)
         limit = maxArticleNumber();
-        
+
     if (limit == -1 || limit >= d->articles.count() - d->deletedArticles.count())
         return;
 
@@ -811,7 +811,7 @@ void Feed::enforceLimitArticleNumber()
     QList<Article>::Iterator en = articles.end();
 
     int c = 0;
-    
+
     if (Settings::doNotExpireImportantArticles())
     {
         while (it != en)

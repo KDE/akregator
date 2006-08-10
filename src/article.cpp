@@ -29,7 +29,7 @@
 #include "shared.h"
 #include "utils.h"
 
-#include "libsyndication.h"
+#include <syndication/syndication.h>
 
 #include <QDateTime>
 #include <qdom.h>
@@ -91,11 +91,11 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
-    
+
     QList<PersonPtr> authorList = article->authors();
-    
+
     QString author;
-    
+
     if (!authorList.isEmpty())
     {
         PersonPtr person = *(authorList.begin());
@@ -111,15 +111,15 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
         {
             if (!person->uri().isNull())
                 author = QString("<a href=\"%1\">%2</a>").arg(person->uri()).arg(person->name());
-            else 
+            else
                 author = person->name();
         }
     }
-            
+
     d->hash = Utils::calcHash(article->title() + article->description() + article->link() + author);
 
     d->guid = article->id();
-    
+
     if (!d->archive->contains(d->guid))
     {
         d->archive->addEntry(d->guid);
@@ -190,7 +190,7 @@ void Article::setDeleted()
 {
     if (isDeleted())
         return;
-  
+
     setStatus(Read);
     d->status = Private::Deleted | Private::Read;
     d->archive->setStatus(d->guid, d->status);
@@ -233,7 +233,7 @@ Article &Article::operator=(const Article &other)
 
 bool Article::operator<(const Article &other) const
 {
-    return pubDate() > other.pubDate() || 
+    return pubDate() > other.pubDate() ||
             (pubDate() == other.pubDate() && guid() < other.guid() );
 }
 
@@ -244,7 +244,7 @@ bool Article::operator<=(const Article &other) const
 
 bool Article::operator>(const Article &other) const
 {
-    return pubDate() < other.pubDate() || 
+    return pubDate() < other.pubDate() ||
             (pubDate() == other.pubDate() && guid() > other.guid() );
 }
 
@@ -326,7 +326,7 @@ KUrl Article::commentsLink() const
 
 int Article::comments() const
 {
-    
+
     return d->archive->comments(d->guid);
 }
 
@@ -382,7 +382,7 @@ QStringList Article::tags() const
 {
     return d->archive->tags(d->guid);
 }
-            
+
 Feed* Article::feed() const
 { return d->feed; }
 
@@ -396,7 +396,7 @@ QString Article::buildTitle(const QString& description)
     QString s = description;
     if (description.trimmed().isEmpty())
         return "";
-        
+
     int i = s.indexOf('>',500); /*avoid processing too much */
     if (i != -1)
         s = s.left(i+1);

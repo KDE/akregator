@@ -201,7 +201,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 
     initFonts();
 
-    Syndication::FileRetriever::setUserAgent(QString("Akregator/%1; libsyndication").arg(AKREGATOR_VERSION));
+    Syndication::FileRetriever::setUserAgent(QString("Akregator/%1; syndication").arg(AKREGATOR_VERSION));
 }
 
 void Part::loadPlugins()

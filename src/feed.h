@@ -28,7 +28,7 @@
 
 #include "treenode.h"
 
-#include "libsyndication.h"
+#include <syndication/syndication.h>
 #include <ksharedptr.h>
 #include <kdepim_export.h>
 
@@ -42,7 +42,7 @@ class QStringList;
 class KUrl;
 
 
-namespace KPIM 
+namespace KPIM
 {
     class ProgressItem;
 }
@@ -64,7 +64,7 @@ namespace Backend
 class AKREGATOR_EXPORT Feed : public TreeNode
 {
     friend class Article;
-    
+
     Q_OBJECT
     public:
         /** the archiving modes */
@@ -133,7 +133,7 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         /** sets the maximum age of articles used for expiration by age (used in @c limitArticleAge archive mode)
         @param maxArticleAge expiry age in days */
         void setMaxArticleAge(int maxArticleAge);
-        
+
 
         /** returns the article count limit used in @c limitArticleNumber archive mode **/
         int maxArticleNumber() const;
@@ -154,7 +154,7 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         void setLoadLinkedWebsite(bool enabled);
 
         bool loadLinkedWebsite() const;
-        
+
         /** returns the favicon */
         const QPixmap& favicon() const;
 
@@ -191,9 +191,9 @@ class AKREGATOR_EXPORT Feed : public TreeNode
             * null article if not existant
             */
         virtual Article findArticle(const QString& guid) const;
-        
+
         virtual QStringList tags() const;
-        
+
         /** returns whether a fetch error has occurred */
         bool fetchErrorOccurred();
 
@@ -218,7 +218,7 @@ class AKREGATOR_EXPORT Feed : public TreeNode
 
         /** downloads the favicon */
         void loadFavicon();
-        
+
     public slots:
         /** starts fetching */
         void fetch(bool followDiscovery=false);
@@ -245,7 +245,7 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         void fetchDiscovery(Feed *);
         /** emitted when a fetch is aborted */
         void fetchAborted(Feed *);
-        
+
     protected:
         /** loads articles from archive **/
         void loadArticles();
@@ -257,14 +257,14 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         /** sets the unread count for this feed */
         void setUnread(int unread);
 
-        
+
     private slots:
 
         void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
         void slotImageFetched(const QPixmap& image);
 
     private:
-        
+
         /** notifies that article @c mya was set to "deleted".
             To be called by @ref Article
             */
@@ -275,11 +275,11 @@ class AKREGATOR_EXPORT Feed : public TreeNode
             To be called by @ref Article
             */
         void setArticleChanged(Article& a, int oldStatus=-1);
-        
+
         void enforceLimitArticleNumber();
 
         void appendArticles(const Syndication::FeedPtr feed);
-        
+
         /** appends article @c a to the article list */
         void appendArticle(const Article& a);
 

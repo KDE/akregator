@@ -2,8 +2,6 @@
 add_subdirectory( about ) 
 add_subdirectory( pics ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/libsyndication/ )
-
 
 ########### next target ###############
 

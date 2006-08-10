@@ -27,10 +27,10 @@
 
 #include "article.h"
 #include "utils.h"
-#include <libsyndication/documentsource.h>
-#include <libsyndication/global.h>
-#include <libsyndication/feed.h>
-#include <libsyndication/item.h>
+#include <syndication/documentsource.h>
+#include <syndication/global.h>
+#include <syndication/feed.h>
+#include <syndication/item.h>
 
 #include <mk4.h>
 
@@ -498,7 +498,7 @@ QString FeedStorageMK4Impl::author(const QString& guid)
     return findidx != -1 ? QString::fromUtf8(d->pauthor(d->archiveView.GetAt(findidx))) : "";
 }
 
-        
+
 void FeedStorageMK4Impl::setCommentsLink(const QString& guid, const QString& commentsLink)
 {
     int findidx = findArticle(guid);
