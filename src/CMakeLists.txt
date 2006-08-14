@@ -131,8 +131,8 @@ install( FILES akregator_shell.rc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES feed.protocol  DESTINATION ${SERVICES_INSTALL_DIR})
 install( FILES storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h articleinterceptor.h  DESTINATION ${INCLUDE_INSTALL_DIR}/akregator)
 
-kde4_install_icons( ${ICON_INSTALL_DIR}  hicolor )
-kde4_install_icons( ${ICON_INSTALL_DIR}  crystalsvg )
+kde4_install_icons( ${ICON_INSTALL_DIR}   )
+kde4_install_icons( ${ICON_INSTALL_DIR}   )
 
 
 
