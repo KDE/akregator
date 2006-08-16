@@ -1,8 +1,8 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2004 Sashmit Bhaduri <smt@vfemail.net>
-
+    Copyright (C) 2006 Frank Osterfeld <frank.osterfeld@kdemail.net>
+    
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -22,36 +22,63 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_BROWSERRUN_H 
-#define AKREGATOR_BROWSERRUN_H
-
-#include <kparts/browserrun.h>
-
 #include "openurlrequest.h"
 
-namespace Akregator
+
+namespace Akregator {
+
+OpenURLRequest::OpenURLRequest() : m_frameId(-1), m_options(None)
 {
+}
+
+int OpenURLRequest::frameId() const
+{
+    return m_frameId;
+}
+
+void OpenURLRequest::setFrameId(int frameId)
+{
+    m_frameId = frameId;
+}
+
+const KUrl& OpenURLRequest::url() const
+{
+    return m_url;
+}
+
+void OpenURLRequest::setUrl(const KUrl& url)
+{
+    m_url = url;
+}
     
-class BrowserRun : public KParts::BrowserRun
+const KParts::URLArgs& OpenURLRequest::args() const
 {
-	Q_OBJECT
-    public:
-        BrowserRun(const OpenURLRequest& request, QWidget* parent);
-        virtual ~BrowserRun();
+    return m_args;
+}
 
-    signals:
+void OpenURLRequest::setArgs(const KParts::URLArgs& args)
+{
+    m_args = args;
+}
 
-        void signalFoundMimeType(const OpenURLRequest& request);
+OpenURLRequest::Options OpenURLRequest::options() const
+{
+    return m_options;
+}
 
-    protected:
-	    virtual void foundMimeType(const QString& type);
+void OpenURLRequest::setOptions(OpenURLRequest::Options options)
+{
+    m_options = options;
+}
 
-    private:
-        OpenURLRequest m_request;
-};
+QString OpenURLRequest::mimetype() const
+{
+    return m_mimetype;
+}
+
+void OpenURLRequest::setMimetype(const QString& mimetype)
+{
+    m_mimetype = mimetype;
+}
 
 } // namespace Akregator
-
-#endif // AKREGATOR_BROWSERRUN_H
-
-// vim: set et ts=4 sts=4 sw=4:

@@ -99,6 +99,14 @@ Frame::Frame(QWidget* parent)
     m_progress=-1;
     m_progressItem=0;
     m_isRemovable = true;
+    m_id = m_idCounter++;
+}
+
+int Frame::m_idCounter = 0;
+
+int Frame::id() const
+{
+    return m_id;
 }
 
 void Frame::setRemovable(bool removable)
@@ -118,6 +126,7 @@ Frame::~Frame()
         m_progressItem->setComplete();
     }
 }
+
 
 int Frame::state() const
 {

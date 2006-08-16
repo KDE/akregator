@@ -24,18 +24,25 @@
 
 #include "actionmanager.h"
 #include "browserrun.h"
+#include "frame.h"
 #include "framemanager.h"
+#include "openurlrequest.h"
 
 #include <kaction.h>
 
 namespace Akregator {
 
-FrameManager::FrameManager(QObject* parent) : QObject(parent)
-{
+FrameManager::FrameManager(QWidget* mainWin, QObject* parent) : QObject(parent), m_mainWin(mainWin)
+{    
 }
 
 FrameManager::~FrameManager()
 {
+}
+
+void FrameManager::setMainWindow(QWidget* mainWin)
+{
+    m_mainWin = mainWin;
 }
 
 Frame* FrameManager::currentFrame() const
@@ -45,7 +52,7 @@ Frame* FrameManager::currentFrame() const
 
 void FrameManager::addFrame(Frame* frame)
 {
-    m_frames.insert(frame);
+    m_frames.insert(frame->id(), frame);
 
     connect(frame, SIGNAL(signalCanceled(Frame*, const QString&)), this, SLOT(slotSetCanceled(Frame*, const QString&)) );
     connect(frame, SIGNAL(signalStarted(Frame*)), this, SLOT(slotSetStarted(Frame*)) );
@@ -55,7 +62,7 @@ void FrameManager::addFrame(Frame* frame)
     connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString&)), this, SLOT(slotSetTitle(Frame*, const QString&)) );
     connect(frame, SIGNAL(signalStatusText(Frame*, const QString&)), this, SLOT(slotSetStatusText(Frame*, const QString&)) );
     
-    connect(frame, SIGNAL(signalOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs&, const Frame::OpenURLOptions&)), this, SLOT(slotOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs&, const Frame::OpenURLOptions&)) );
+    connect(frame, SIGNAL(signalOpenURLRequest(const OpenURLRequest&)), this, SLOT(slotOpenURLRequest(const OpenURLRequest&)) );
 
     connect(frame, SIGNAL( signalCanGoBackToggled(Frame*, bool)), this, SLOT(slotCanGoBackToggled(Frame*, bool)) );
     connect(frame, SIGNAL( signalCanGoForwardToggled(Frame*, bool)), this, SLOT(slotCanGoForwardToggled(Frame*, bool)) );
@@ -86,7 +93,7 @@ void FrameManager::removeFrame(Frame* frame)
         slotChangeFrame(0);
     }
 
-    m_frames.remove(frame);
+    m_frames.remove(frame->id());
     emit signalFrameRemoved(frame);
     
 
@@ -200,15 +207,19 @@ void FrameManager::slotSetStatusText(Frame* frame, const QString& statusText)
         emit signalStatusText(statusText);
 }
 
-void FrameManager::slotFoundMimeType(Frame* frame, const KUrl& url, const KParts::URLArgs& /*args*/, const QString& mimetype)
+void FrameManager::slotFoundMimeType(const OpenURLRequest& request)
 {
-    frame->openURL(url, mimetype);
+    if (m_frames.contains(request.frameId()))
+    {
+        m_frames.value(request.frameId())->openURL(request.url(), request.mimetype());
+    }
 }
 
-void FrameManager::slotOpenURLRequest(Frame* frame, const KUrl& url, const KParts::URLArgs& args, Frame::OpenURLOptions /*options*/)
+void FrameManager::slotOpenURLRequest(const OpenURLRequest& request)
 {
-    BrowserRun* r = new BrowserRun(frame, frame, url, args);
-    connect(r, SIGNAL(signalFoundMimeType(Frame*, const KUrl& , const KParts::URLArgs&, const QString&)), this, SLOT(slotFoundMimeType(Frame*, const KUrl&, const KParts::URLArgs&, const QString&)) );
+    
+    BrowserRun* run = new BrowserRun(request, m_mainWin);
+    connect(run, SIGNAL(signalFoundMimeType(const OpenURLRequest&)), this, SLOT(slotFoundMimeType(const OpenURLRequest&)));
 }
 
 void FrameManager::slotBrowserBack()

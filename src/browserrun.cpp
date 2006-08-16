@@ -23,17 +23,16 @@
 */
 
 #include "browserrun.h"
+#include "openurlrequest.h"
 #include "frame.h"
 
 #include <kdebug.h>
 
 namespace Akregator {
 
-BrowserRun::BrowserRun(Frame* frame, QWidget *parent, const KUrl & url, const KParts::URLArgs &args)
-    : KParts::BrowserRun(url, args, 0L, parent, false, true)
+BrowserRun::BrowserRun(const OpenURLRequest& request, QWidget* parent)
+    : KParts::BrowserRun(request.url(), request.args(), 0L, parent, false, true), m_request(request)
 {
-    m_frame = frame;
-    connect(frame, SIGNAL(destroyed()), this, SLOT(killMyself()));
     setEnableExternalBrowser(false);
 }
 
@@ -42,7 +41,8 @@ BrowserRun::~BrowserRun()
 
 void BrowserRun::foundMimeType(const QString& type)
 {
-    emit signalFoundMimeType(m_frame, url(), m_args, type);
+    m_request.setMimetype(type);
+    emit signalFoundMimeType(m_request);
 /*
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml")
         m_viewer->openPage(url());
@@ -50,11 +50,6 @@ void BrowserRun::foundMimeType(const QString& type)
         if ( handleNonEmbeddable(type) == KParts::BrowserRun::NotHandled )
             KRun::foundMimeType( type );
 */
-}
-
-void BrowserRun::killMyself()
-{
-    delete this;
 }
 
 } // namespace Akregator

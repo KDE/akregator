@@ -23,6 +23,7 @@
 */
 
 #include "browserframe.h"
+#include "openurlrequest.h"
 #include "pageviewer.h"
 
 #include <QGridLayout>
@@ -202,7 +203,7 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
             connect( ext, SIGNAL(speedProgress(int)), parent,         SLOT(slotSetProgress(int)) );
             connect( ext, SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&) ), parent, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&)) );
             connect(ext, SIGNAL(setLocationBarURL(const QString&)), parent, SLOT(slotSetLocationBarURL(const QString&)) );
-            connect(ext, SIGNAL(setIconURL(const KUrl&)), parent, SLOT(slotSetLocationBarURL(const KUrl&)) );
+            connect(ext, SIGNAL(setIconURL(const KUrl&)), parent, SLOT(slotSetIconURL(const KUrl&)) );
         }
     }
 
@@ -284,7 +285,13 @@ void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 
 void BrowserFrame::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
 {
-    emit signalOpenURLRequest(this, url, args);
+    OpenURLRequest req;
+    
+    req.setFrameId(id());
+    req.setUrl(url);
+    req.setArgs(args);
+    
+    emit signalOpenURLRequest(req);
 }
 
 void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args)
@@ -292,7 +299,13 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& a
     KParts::URLArgs args2(args);
     args2.setNewTab(true);
 
-    emit signalOpenURLRequest(this, url, args2, NewTab);
+    OpenURLRequest req;
+    req.setFrameId(id());
+    req.setUrl(url);
+    req.setArgs(args2);
+    req.setOptions(OpenURLRequest::NewTab);
+    
+    emit signalOpenURLRequest(req);
 }
 
 bool BrowserFrame::openURL(const KUrl& url, const QString& mimetype)
@@ -302,19 +315,26 @@ bool BrowserFrame::openURL(const KUrl& url, const QString& mimetype)
 
     d->updateHistoryEntry();
 
-    if (!d->loadPartForMimetype(mimetype))
+    if (d->loadPartForMimetype(mimetype))
     {
-        // TODO: show open|save|cancel dialog
+        bool res = d->part ? d->part->openURL(url) : false;
+
+        if (res)
+        {
+            d->addHistoryEntry();
+            d->updateHistoryEntry();
+        }
+        
+        return res;
     }
-
-    bool res = d->part ? d->part->openURL(url) : false;
-
-    if (res)
+    else
     {
-        d->addHistoryEntry();
-        d->updateHistoryEntry();
+            // TODO: show open|save|cancel dialog
+    
+    
     }
-    return res;
+    
+    return false; // TODO: is this correct?
 }
 
 KParts::ReadOnlyPart* BrowserFrame::part() const

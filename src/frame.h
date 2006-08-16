@@ -46,6 +46,8 @@ namespace KPIM
 namespace Akregator
 {
 
+class OpenURLRequest;
+    
 class Frame : public QWidget
 {
     Q_OBJECT
@@ -57,13 +59,7 @@ class Frame : public QWidget
         enum {Idle, Started, Completed, Canceled};
 
         /** options for open URL requests sent from the frame to the outside. TODO: check if KParts::URLArgs covers our needs */
-        enum OpenURLOptions
-        {
-            None, /**< no explicit options, use default */
-            NewTab, /**< open in new tab */
-            ExternalBrowser /**< open in external browser */
-        };
-
+        
         virtual KParts::ReadOnlyPart* part() const = 0;
 
         /**
@@ -84,7 +80,9 @@ class Frame : public QWidget
         virtual int state() const;
         virtual int progress() const;
         virtual const QString& statusText() const;
-
+        
+	virtual int id() const;
+	
         /**
          * returns whether it is possible to go forward in the history
          */
@@ -136,7 +134,7 @@ class Frame : public QWidget
         void signalLoadingProgress(Frame*, int);
         void signalStatusText(Frame*, const QString&);
 
-        void signalOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs& args=KParts::URLArgs(), Frame::OpenURLOptions options=None);
+        void signalOpenURLRequest(const OpenURLRequest& request);
 
         void signalCanGoBackToggled(Frame*, bool);
         void signalCanGoForwardToggled(Frame*, bool);
@@ -156,6 +154,8 @@ class Frame : public QWidget
         QString m_progressId;
         KPIM::ProgressItem* m_progressItem;
         bool m_isRemovable;
+	int m_id;
+	static int m_idCounter;
 };
 
 class MainFrame : public Frame

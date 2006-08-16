@@ -25,10 +25,8 @@
 #ifndef AKREGATOR_FRAMEMANAGER_H
 #define AKREGATOR_FRAMEMANAGER_H
 
+#include <QHash>
 #include <QObject>
-#include <QSet>
-
-#include "frame.h"
 
 class QString;
 
@@ -41,13 +39,16 @@ namespace KParts
 
 namespace Akregator {
 
+class Frame;
+class OpenURLRequest;
+    
 class FrameManager : public QObject
 {
     Q_OBJECT
 
     public:
 
-        FrameManager(QObject* parent=0);
+        FrameManager(QWidget* mainWin=0, QObject* parent=0);
         virtual ~FrameManager();
 
         Frame* currentFrame() const;
@@ -55,10 +56,12 @@ class FrameManager : public QObject
         void addFrame(Frame* frame);
         void removeFrame(Frame* frame);
        
+        void setMainWindow(QWidget* mainWin);
+
     public slots:
 
         void slotChangeFrame(Frame* frame);
-        void slotOpenURLRequest(Frame*, const KUrl&, const KParts::URLArgs& args, Frame::OpenURLOptions options);
+        void slotOpenURLRequest(const OpenURLRequest& request);
 
         void slotBrowserBack();
         void slotBrowserForward();
@@ -104,12 +107,13 @@ class FrameManager : public QObject
         void slotIsReloadableToggled(Frame*, bool);
         void slotIsLoadingToggled(Frame*, bool);
 
-        void slotFoundMimeType(Frame* frame, const KUrl& url, const KParts::URLArgs& args, const QString& mimetype);
+        void slotFoundMimeType(const OpenURLRequest& request);
 
     private:
 
+        QWidget* m_mainWin;
         Frame* m_currentFrame;
-        QSet<Frame*> m_frames;
+        QHash<int, Frame*> m_frames;
 };
 
 } // namespace Akregator
