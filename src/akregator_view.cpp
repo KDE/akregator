@@ -1394,7 +1394,10 @@ void View::slotTextToSpeechRequest()
     }
     else
     {
-        // TODO: read selected page viewer
+        QString selectedText = static_cast<PageViewer *>(m_currentFrame->part())->selectedText();
+        
+        if (!selectedText.isEmpty())
+            SpeechClient::self()->slotSpeak(selectedText, "en");
     }
 }
 
