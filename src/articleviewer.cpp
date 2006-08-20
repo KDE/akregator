@@ -428,8 +428,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
 
     if (feed && !feed->image().isNull())
     {
-        QString url=feed->xmlUrl();
-        QString file = url.replace("/", "_").replace(":", "_");
+        QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KURL u(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
@@ -524,8 +523,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
 
     if (feed && !feed->image().isNull())
     {
-        QString url=feed->xmlUrl();
-        QString file = url.replace("/", "_").replace(":", "_");
+        QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KURL u(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());

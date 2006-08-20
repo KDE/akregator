@@ -46,6 +46,7 @@
 #include "feedstorage.h"
 #include "storage.h"
 #include "treenodevisitor.h"
+#include "utils.h"
 
 #include "librss/librss.h"
 
@@ -205,8 +206,9 @@ QValueList<Article> Feed::articles(const QString& tag)
 
 void Feed::loadImage()
 {
-    QString u = d->xmlUrl;
-    QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/") + u.replace("/", "_").replace(":", "_")+".png";
+    QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/") 
+                            + Utils::fileNameForUrl(d->xmlUrl) + 
+".png";
     d->imagePixmap.load(imageFileName, "PNG");
 }
         
@@ -585,8 +587,9 @@ void Feed::slotImageFetched(const QPixmap& image)
     if (image.isNull())
         return;
     d->imagePixmap=image;
-    QString u = d->xmlUrl;
-    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
+    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/") 
+                        + Utils::fileNameForUrl(d->xmlUrl) + 
+".png","PNG");
     nodeModified();
 }
 
