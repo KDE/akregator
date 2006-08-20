@@ -41,6 +41,7 @@
 #include "listtabwidget.h"
 #include "mainwidget.h"
 #include "notificationmanager.h"
+#include "openurlrequest.h"
 #include "propertiesdialog.h"
 #include "progressmanager.h"
 #include "searchbar.h"
@@ -249,6 +250,9 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( Kernel::self()->frameManager(), SIGNAL( signalCurrentFrameChanged(Frame*) ), this,
             SLOT( slotFrameChanged(Frame *) ) );
 
+    connect( Kernel::self()->frameManager(), SIGNAL( signalRequestNewFrame(int&) ), this,
+             SLOT( slotRequestNewFrame(int&) ) );
+
     m_tabWidget->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this);
@@ -396,14 +400,11 @@ void MainWidget::saveSettings()
 
 void MainWidget::slotOpenTab(const KUrl& url, bool background)
 {
+    
     BrowserFrame* frame = new BrowserFrame(m_tabWidget);
-
+    Kernel::self()->frameManager()->addFrame(frame);
+    
     connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
-
-    //connect( page, SIGNAL(setTabIcon(const QPixmap&)),
-    //        this, SLOT(setTabIcon(const QPixmap&)));
-    //connect( page, SIGNAL(urlClicked(const KUrl &,bool)),
-    //        this, SLOT(slotOpenTab(const KUrl &,bool)) );
 
     m_tabWidget->addFrame(frame);
 
@@ -412,10 +413,22 @@ void MainWidget::slotOpenTab(const KUrl& url, bool background)
     else
         setFocus();
 
-    frame->openURL(url);
+    OpenURLRequest request;
+    request.setUrl(url);
+    request.setFrameId(frame->id());
+    Kernel::self()->frameManager()->slotOpenURLRequest(request);
 }
 
-
+void MainWidget::slotRequestNewFrame(int& frameId)
+{
+    BrowserFrame* frame = new BrowserFrame(m_tabWidget);
+    Kernel::self()->frameManager()->addFrame(frame);
+    connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
+    m_tabWidget->addFrame(frame);
+    
+    frameId = frame->id();
+}
+        
 void MainWidget::setTabIcon(const QPixmap& icon)
 {
     Viewer* s = dynamic_cast<Viewer*>(sender());
@@ -649,20 +662,9 @@ void MainWidget::slotFrameChanged(Frame* frame)
 {
     if (m_shuttingDown)
         return;
+    
     if (frame)
-    {
-        m_actionManager->action("browser_back")->setEnabled(frame->canGoBack());
-        m_actionManager->action("browser_forward")->setEnabled(frame->canGoForward());
-        m_actionManager->action("browser_reload")->setEnabled(frame->isReloadable());
-        m_actionManager->action("browser_stop")->setEnabled(frame->isLoading());
-    /*
-        if (frame == m_mainFrame)
-            m_part->mergePart(m_articleViewer);
-        else
-            m_part->mergePart(frame->part());
-    */
         frame->setFocus();
-    }
 }
 
 void MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const QPoint& /*p*/)

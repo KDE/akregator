@@ -518,14 +518,18 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     d->frameManager = frameManager;
 
-    new KToolBarPopupAction(i18n("Forward"),"forward", KShortcut( "Alt+Right" ),
+    KToolBarPopupAction* forward = new KToolBarPopupAction(i18n("Forward"),"forward", KShortcut( "Alt+Right" ),
                             frameManager, SLOT(slotBrowserForward()),
                             d->actionCollection,"browser_forward");
 
-    new KToolBarPopupAction(i18n("Back"), "back", KShortcut( "Alt+Left" ),
+    connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
+     
+    KToolBarPopupAction* back = new KToolBarPopupAction(i18n("Back"), "back", KShortcut( "Alt+Left" ),
                             frameManager, SLOT(slotBrowserBack()),
                             d->actionCollection, "browser_back");
 
+    connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
+    
     KAction *action = new KAction(KIcon("reload"), i18n("Reload"), d->actionCollection, "browser_reload");
     connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserReload()));
 

@@ -272,9 +272,9 @@ Part::~Part()
     kDebug() << "Part::~Part() enter" << endl;
     if (!m_shuttingDown)
         slotOnShutdown();
-    kDebug() << "Part::~Part(): leaving" << endl;
     ArticleInterceptorManager::self()->removeInterceptor(m_applyFiltersInterceptor);
     delete m_applyFiltersInterceptor;
+    kDebug() << "Part::~Part(): leaving" << endl;
 }
 
 void Part::readProperties(KConfig* config)

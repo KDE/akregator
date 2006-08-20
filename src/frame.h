@@ -58,8 +58,6 @@ class Frame : public QWidget
 
         enum {Idle, Started, Completed, Canceled};
 
-        /** options for open URL requests sent from the frame to the outside. TODO: check if KParts::URLArgs covers our needs */
-        
         virtual KParts::ReadOnlyPart* part() const = 0;
 
         /**
@@ -81,7 +79,7 @@ class Frame : public QWidget
         virtual int progress() const;
         virtual const QString& statusText() const;
         
-	virtual int id() const;
+        virtual int id() const;
 	
         /**
          * returns whether it is possible to go forward in the history
@@ -101,7 +99,7 @@ class Frame : public QWidget
          * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
         virtual bool isLoading() const { return false; }
 
-        virtual bool openURL(const KUrl& url, const QString& mimetype="text/html") = 0;
+        virtual bool openURL(const OpenURLRequest& request) = 0;
 
     public slots:
 
@@ -111,6 +109,9 @@ class Frame : public QWidget
         /** goes a step backwards in the history, if possible. See also canGoBack(). */
         virtual void slotHistoryBack() {}
 
+        virtual void slotHistoryBackAboutToShow() {}
+        virtual void slotHistoryForwardAboutToShow() {}
+        
         /** reloads the current content, if possible. See also isReloadable(). */
         virtual void slotReload() {}
 
@@ -134,7 +135,7 @@ class Frame : public QWidget
         void signalLoadingProgress(Frame*, int);
         void signalStatusText(Frame*, const QString&);
 
-        void signalOpenURLRequest(const OpenURLRequest& request);
+        void signalOpenURLRequest(OpenURLRequest& request);
 
         void signalCanGoBackToggled(Frame*, bool);
         void signalCanGoForwardToggled(Frame*, bool);
@@ -154,8 +155,8 @@ class Frame : public QWidget
         QString m_progressId;
         KPIM::ProgressItem* m_progressItem;
         bool m_isRemovable;
-	int m_id;
-	static int m_idCounter;
+        int m_id;
+        static int m_idCounter;
 };
 
 class MainFrame : public Frame
@@ -168,7 +169,7 @@ class MainFrame : public Frame
         virtual ~MainFrame();
 
         virtual KUrl url() const;
-        virtual bool openURL(const KUrl& /*url*/, const QString& /*mimetype="text/html"*/) { return false; }
+        virtual bool openURL(const OpenURLRequest&) { return false; }
 
         virtual KParts::ReadOnlyPart* part() const { return m_part; }
 

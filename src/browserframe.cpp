@@ -22,219 +22,40 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "actionmanager.h"
 #include "browserframe.h"
+#include "browserframe_p.h"
 #include "openurlrequest.h"
-#include "pageviewer.h"
 
+#include <QAction>
 #include <QGridLayout>
 #include <QList>
+#include <QPoint>
 #include <QString>
 #include <QWidget>
 
+#include <kaction.h>
 #include <kdebug.h>
 #include <klibloader.h>
+#include <kmenu.h>
 #include <kmimetypetrader.h>
+#include <ktoolbarpopupaction.h>
 #include <kurl.h>
+#include <kxmlguiclient.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
+
 namespace Akregator {
-
-class BrowserFrame::HistoryEntry
-{
-    public:
-
-    KUrl url;
-    QString title;
-    QByteArray buffer;
-    int id;
-    QString mimetype;
-    QString strServiceName;
-    QByteArray postData;
-    QString postContentType;
-    bool doPost;
-    QString pageReferrer;
-
-    HistoryEntry() {}
-    HistoryEntry(const KUrl& u, const QString& t=QString()) : url(u), title(t), id(idCounter++)
-    {
-    }
-
-    bool operator==(const HistoryEntry& other)
-    {
-        return id == other.id;
-    }
-
-    bool operator!=(const HistoryEntry& other)
-    {
-        return id != other.id;
-    }
-
-    static int idCounter;
-};
-
-int BrowserFrame::HistoryEntry::idCounter = 0;
-
-class BrowserFrame::BrowserFramePrivate
-{
-    public:
-    BrowserFramePrivate(BrowserFrame* p) : parent(p) {}
-
-    QList<HistoryEntry> history;
-    QList<HistoryEntry>::Iterator current;
-    KParts::ReadOnlyPart* part;
-    QGridLayout* layout;
-    bool lockHistory;
-    BrowserFrame* parent;
-
-    QString mimetype;
-    KService::Ptr service;
-
-    void connectPart();
-    void updateHistoryEntry();
-    void addHistoryEntry();
-    void restoreHistoryEntry(HistoryEntry& entry);
-    bool loadPartForMimetype(const QString& mimetype);
-};
-
-bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimetype)
-{
-    KService::List offers = KMimeTypeTrader::self()->query( mimetype, "KParts/ReadOnlyPart" );
-
-    kDebug() << "BrowserFrame::loadPartForMimetype("<< mimetype << "): " << offers.size() << " offers" << endl;
-
-    if (!offers.isEmpty())
-    {
-        // delete old part
-        // FIXME: do this only if part can't be reused for the new mimetype
-        if (part)
-        {
-            layout->removeWidget(part->widget());
-            delete part;
-            part = 0;
-        }
-
-        KService::Ptr ptr = offers.first();
-        KLibFactory* factory = KLibLoader::self()->factory( ptr->library().toLatin1() );
-        if (factory)
-        {
-            part = static_cast<KParts::ReadOnlyPart *>(factory->create(parent, "KParts::ReadOnlyPart"));
-            part->setObjectName(ptr->name());
-
-            layout->addWidget(part->widget());
-            connectPart();
-        }
-
-        return true;
-    }
-    else
-        return false;
-}
-
-void BrowserFrame::BrowserFramePrivate::addHistoryEntry()
-{
-    bool canBack = parent->canGoBack();
-
-    if (lockHistory)
-        return;
-
-    // cut off history entries after the current one
-    history.erase(current, history.end());
-    history.append(HistoryEntry());
-
-    current = --(history.end());
-
-    if (canBack != parent->canGoBack())
-        emit parent->signalCanGoBackToggled(parent, parent->canGoBack());
-}
-
-void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( HistoryEntry& entry)
-{
-    bool canBack = parent->canGoBack();
-    bool canForward = parent->canGoForward();
-
-    updateHistoryEntry();
-
-    lockHistory = true;
-    // TODO: set all fields to values from entry
-    loadPartForMimetype(entry.mimetype);
-
-    if (!part)
-    {
-        lockHistory = false;
-        return; // FIXME: do something better
-    }
-
-    QDataStream stream(&(entry.buffer), QIODevice::ReadOnly);
-
-    stream.setVersion(QDataStream::Qt_3_1);
-
-    if (part->browserExtension())
-        part->browserExtension()->restoreState(stream);
-    else
-        parent->openURL(entry.url, entry.mimetype);
-
-    current = history.find(entry);
-
-    lockHistory = false;
-
-    if (canForward != parent->canGoForward())
-        emit parent->signalCanGoForwardToggled(parent, parent->canGoForward());
-    if (canBack != parent->canGoBack())
-        emit parent->signalCanGoBackToggled(parent, parent->canGoBack());
-}
-
-void BrowserFrame::BrowserFramePrivate::connectPart()
-{
-    if (part)
-    {
-        connect(part, SIGNAL(setWindowCaption (const QString &)), parent, SLOT(slotSetCaption (const QString &)));
-        connect(part, SIGNAL(setStatusBarText (const QString &)), parent, SLOT(slotSetStatusText (const QString &)));
-        connect(part, SIGNAL(started(KIO::Job*)), parent, SLOT(slotSetStarted()));
-        connect(part, SIGNAL(completed()), parent, SLOT(slotSetCompleted()));
-        connect(part, SIGNAL(canceled(const QString &)), parent, SLOT(slotSetCanceled(const QString&)));
-        connect(part, SIGNAL(completed(bool)), parent, SLOT(slotSetCompleted()));
-        connect(part, SIGNAL(setWindowCaption(const QString &)), parent, SLOT(slotSetTitle(const QString &)));
-
-        KParts::BrowserExtension *ext = KParts::BrowserExtension::childObject( part );
-        if (ext)
-        {
-            connect( ext, SIGNAL(speedProgress(int)), parent, SLOT(slotSpeedProgress(int)) );
-            connect( ext, SIGNAL(speedProgress(int)), parent,         SLOT(slotSetProgress(int)) );
-            connect( ext, SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&) ), parent, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&)) );
-            connect(ext, SIGNAL(setLocationBarURL(const QString&)), parent, SLOT(slotSetLocationBarURL(const QString&)) );
-            connect(ext, SIGNAL(setIconURL(const KUrl&)), parent, SLOT(slotSetIconURL(const KUrl&)) );
-        }
-    }
-
-}
-
-void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
-{
-    if (lockHistory || !part || current == history.end())
-        return;
-
-    (*current).url = part->url();
-    KParts::BrowserExtension* ext = part->browserExtension();
-    (*current).title = parent->title();
-    //(*current).strServiceName = service->desktopEntryName();
-    (*current).mimetype = mimetype;
-
-    if (ext)
-    {
-        (*current).buffer.clear();
-        QDataStream stream( &((*current).buffer), QIODevice::WriteOnly );
-
-        ext->saveState( stream );
-    }
-}
 
 BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent)
 {
     d = new BrowserFramePrivate(this);
 
     d->part = 0;
-
+    d->extension = 0;
+    d->lockHistory = false;
+    
     setRemovable(true);
     d->current = d->history.end();
 
@@ -257,11 +78,12 @@ KUrl BrowserFrame::url() const
 
 bool BrowserFrame::canGoForward() const
 {
-    return !d->history.isEmpty() && d->current != --(d->history.end()) && d->current != d->history.end();
+    return !d->history.isEmpty() && d->current != d->history.end()-1 && d->current != d->history.end();
 }
 
 bool BrowserFrame::canGoBack() const
 {
+    kDebug() << "CANGOBACK" << (!d->history.isEmpty() && d->current != d->history.begin()) << endl;
     return !d->history.isEmpty() && d->current != d->history.begin();
 }
 
@@ -282,7 +104,50 @@ void BrowserFrame::slotSetIconURL(const KUrl& /*url*/)
 void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
 }
-
+void BrowserFrame::slotPopupMenu(KXMLGUIClient* client, 
+                   const QPoint& global, 
+                   const KUrl& url,
+                   const KParts::URLArgs& args,
+                   KParts::BrowserExtension::PopupFlags flags,
+                   mode_t mode)
+{
+    const bool showReload = (flags & KParts::BrowserExtension::ShowReload) != 0;
+    const bool showNavigationItems = (flags & KParts::BrowserExtension::ShowNavigationItems) != 0;
+    const bool isLink = (flags & (KParts::BrowserExtension::ShowNavigationItems | KParts::BrowserExtension::ShowTextSelectionItems)) == 0;
+    const bool isSelection = (flags & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
+        
+    KMenu popup(d->part->widget());
+    bool isFirst = true;
+    
+    if (showNavigationItems)
+    {
+        popup.addAction(ActionManager::getInstance()->action("browser_back"));
+        popup.addAction(ActionManager::getInstance()->action("browser_forward"));
+        isFirst = false;
+    }
+    if (showReload)
+    {
+        popup.addAction(ActionManager::getInstance()->action("browser_reload"));
+        isFirst = false;
+    }
+    
+    if (isLink)
+    {
+        // open link in new tab
+        // ext browser
+        // sep
+        // save link as
+        // copy link address
+    }
+    
+    if (isSelection)
+    {
+        popup.addAction(d->part->action("copy"));
+    }
+    
+    popup.exec(global);
+}
+                   
 void BrowserFrame::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
 {
     OpenURLRequest req;
@@ -296,34 +161,58 @@ void BrowserFrame::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URLA
 
 void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args)
 {
-    KParts::URLArgs args2(args);
-    args2.setNewTab(true);
-
     OpenURLRequest req;
     req.setFrameId(id());
     req.setUrl(url);
-    req.setArgs(args2);
+    req.setArgs(args);
     req.setOptions(OpenURLRequest::NewTab);
     
     emit signalOpenURLRequest(req);
 }
 
-bool BrowserFrame::openURL(const KUrl& url, const QString& mimetype)
+void BrowserFrame::slotCreateNewWindow(const KUrl& url, 
+                                       const KParts::URLArgs& args,
+                                       const KParts::WindowArgs& /*windowArgs*/, 
+                                       KParts::ReadOnlyPart*& part)
 {
-    if (mimetype.isEmpty())
+    OpenURLRequest req;
+    req.setFrameId(id());
+    req.setUrl(url);
+    req.setArgs(args);
+    req.setOptions(OpenURLRequest::NewTab);
+    
+    emit signalOpenURLRequest(req);
+    part = req.part();
+}
+
+bool BrowserFrame::openURL(const OpenURLRequest& request)
+{
+    QString serviceType = request.args().serviceType;
+    
+    if (serviceType.isEmpty())
         return false;
 
     d->updateHistoryEntry();
 
-    if (d->loadPartForMimetype(mimetype))
+    if (d->loadPartForMimetype(serviceType))
     {
-        bool res = d->part ? d->part->openURL(url) : false;
-
+        if (d->extension)
+        {
+            d->extension->setURLArgs(request.args());
+        }
+        bool res = false;
+        
+        if (request.url().isValid())
+            res = d->part->openURL(request.url());
+        
         if (res)
         {
-            d->addHistoryEntry();
+            d->appendHistoryEntry();
             d->updateHistoryEntry();
+            kDebug() << "BrowserFrame::openURL " << d->debugInfo() << endl;
         }
+        
+        kDebug() << "BrowserFrame::openURL: result=" << res << endl;
         
         return res;
     }
@@ -342,27 +231,82 @@ KParts::ReadOnlyPart* BrowserFrame::part() const
     return d->part;
 }
 
+void BrowserFrame::slotHistoryBackAboutToShow()
+{
+    KAction* ba = ActionManager::getInstance()->action("browser_back");
+    QMenu* popup = static_cast<KToolBarPopupAction*>(ba)->menu();
+    popup->clear();
+
+    if (!canGoBack())
+        return;
+    
+    
+    QList<BrowserFramePrivate::HistoryEntry>::Iterator it = d->current-1;
+    
+    int i = 0;
+    while( i < 10)
+    {
+        if ( it == d->history.begin() )
+        {
+            popup->addAction(new BrowserFramePrivate::HistoryAction(it, popup, d));
+            return;
+        }
+        
+        popup->addAction(new BrowserFramePrivate::HistoryAction(it, popup, d));
+        ++i;
+        --it;
+    }
+}
+
+void BrowserFrame::slotHistoryForwardAboutToShow()
+{
+    KAction* fw = ActionManager::getInstance()->action("browser_forward");
+    QMenu* popup = static_cast<KToolBarPopupAction*>(fw)->menu(); 
+    popup->clear();
+    
+    if (!canGoForward())
+        return;
+
+    QList<BrowserFramePrivate::HistoryEntry>::Iterator it = d->current+1;
+        
+    int i = 0;
+    while( i < 10)
+    {
+        if ( it == d->history.end()-1 )
+        {
+            popup->addAction( new BrowserFramePrivate::HistoryAction(it, popup, d));
+            return;
+        }
+        
+        popup->addAction(new BrowserFramePrivate::HistoryAction(it, popup, d));
+        ++i;
+        ++it;
+    }
+}
+
 void BrowserFrame::slotHistoryForward()
 {
     if (canGoForward())
-        d->restoreHistoryEntry(*(++(d->current)));
+        d->restoreHistoryEntry(d->current+1);
 }
 
 void BrowserFrame::slotHistoryBack()
 {
     if (canGoBack())
-        d->restoreHistoryEntry(*(--(d->current)));
+        d->restoreHistoryEntry(d->current-1);
 }
 
 void BrowserFrame::slotReload()
 {
-    d->lockHistory = true;
-    openURL(url(), d->mimetype);
-    d->lockHistory = false;
+    // TODO
+    //d->lockHistory = true;
+    //openURL(d->url, d->mimetype); // this s
+    //d->lockHistory = false;
 }
 
 void BrowserFrame::slotStop()
 {
+    
 }
 
 void BrowserFrame::slotPaletteOrFontChanged()
@@ -371,12 +315,12 @@ void BrowserFrame::slotPaletteOrFontChanged()
 
 bool BrowserFrame::isReloadable() const
 {
-    return true;
+    return false; // TODO
 }
 
 bool BrowserFrame::isLoading() const
 {
-    return true;
+    return true; // TODO
 }
 
 } // namespace Akregator

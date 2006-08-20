@@ -72,6 +72,7 @@ set(akregatorpart_PART_SRCS
    frame.cpp 
    framemanager.cpp 
    browserframe.cpp
+   browserframe_p.cpp
    openurlrequest.cpp
    viewer.cpp 
    articleviewer.cpp 

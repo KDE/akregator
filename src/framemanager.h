@@ -61,28 +61,32 @@ class FrameManager : public QObject
     public slots:
 
         void slotChangeFrame(Frame* frame);
-        void slotOpenURLRequest(const OpenURLRequest& request);
+        void slotOpenURLRequest(OpenURLRequest& request);
 
         void slotBrowserBack();
         void slotBrowserForward();
         void slotBrowserReload();
         void slotBrowserStop();
-
+        void slotBrowserBackAboutToShow();
+        void slotBrowserForwardAboutToShow();
+        
     signals:
 
         void signalFrameAdded(Frame*);
         void signalFrameRemoved(Frame*);
 
+        void signalRequestNewFrame(int& id);
+        
         // TODO: merge signals
         /** emitted when the active frame is switched */
         void signalCurrentFrameChanged(Frame*);
 
         /** 
          * emitted when the active frame is switched
-         * @param the the deactivated frame
-         * @param  the activated frame
+         * @param f1 the the deactivated frame
+         * @param f2 the activated frame
          */
-        void signalCurrentFrameChanged(Frame*, Frame*);
+        void signalCurrentFrameChanged(Frame* f1, Frame* f2);
 
         void signalStarted();
         void signalCanceled(const QString&);
@@ -92,6 +96,11 @@ class FrameManager : public QObject
         void signalLoadingProgress(int);
         void signalStatusText(const QString&);
 
+    protected:
+        
+        void openURL(OpenURLRequest& request);
+        void openInExternalBrowser(const OpenURLRequest& request);
+        
     protected slots:
 
         void slotSetStarted(Frame* frame);

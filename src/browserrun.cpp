@@ -41,7 +41,10 @@ BrowserRun::~BrowserRun()
 
 void BrowserRun::foundMimeType(const QString& type)
 {
-    m_request.setMimetype(type);
+    KParts::URLArgs args = m_request.args();
+    args.serviceType = type;
+    m_request.setArgs(args);
+    
     emit signalFoundMimeType(m_request);
 /*
     if (type=="text/html" ||type=="text/xml" || type=="application/xhtml+xml")

@@ -27,10 +27,14 @@
 
 #include "frame.h"
 
+#include <kparts/browserextension.h>
+
+class QPoint;
 class QString;
 class QWidget;
 
 class KUrl;
+class KXMLGUIClient;
 
 namespace KParts 
 {
@@ -38,7 +42,6 @@ namespace KParts
 }
 
 namespace Akregator {
-
 
 class BrowserFrame : public Frame
 {
@@ -58,7 +61,7 @@ class BrowserFrame : public Frame
         virtual bool isReloadable() const;
         virtual bool isLoading() const;
 
-        virtual bool openURL(const KUrl& url, const QString& mimetype="text/html");
+        virtual bool openURL(const OpenURLRequest& request);
 
     public slots:
 
@@ -66,20 +69,32 @@ class BrowserFrame : public Frame
         virtual void slotHistoryBack();
         virtual void slotReload();
         virtual void slotStop();
-
+        virtual void slotHistoryBackAboutToShow();
+        virtual void slotHistoryForwardAboutToShow();
+        
         virtual void slotPaletteOrFontChanged();
 
     protected slots:
 
         void slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&);
-        void slotCreateNewWindow(const KUrl&, const KParts::URLArgs&);
+        void slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args);
+        void slotCreateNewWindow(const KUrl& url, 
+                                 const KParts::URLArgs& args,
+                                 const KParts::WindowArgs& windowArgs, 
+                                 KParts::ReadOnlyPart*& part);
         void slotOpenURLNotify();
         void slotSetLocationBarURL(const QString& url);
         void slotSetIconURL(const KUrl& url);
         void slotSpeedProgress(int);
-
+        
+        void slotPopupMenu(KXMLGUIClient* client, 
+                           const QPoint& global, 
+                           const KUrl& url,
+                           const KParts::URLArgs& args,
+                           KParts::BrowserExtension::PopupFlags flags,
+                           mode_t mode);
+        
     private:
-        class HistoryEntry;
         class BrowserFramePrivate;
         BrowserFramePrivate* d;
 };

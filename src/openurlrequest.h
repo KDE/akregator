@@ -29,6 +29,11 @@
 
 class KUrl;
 
+namespace KParts
+{
+    class ReadOnlyPart;
+}
+
 namespace Akregator
 {
 
@@ -44,7 +49,7 @@ class OpenURLRequest
          */
         enum Options
         {
-            None, /**< no explicit options, use default */
+            None=0, /**< no explicit options, use default */
             NewTab, /**< open in new tab */
             ExternalBrowser /**< open in external browser */
         };
@@ -61,20 +66,31 @@ class OpenURLRequest
          
         const KParts::URLArgs& args() const;
         void setArgs(const KParts::URLArgs& args);
-        
+
         Options options() const;
         void setOptions(Options options);
         
-        QString mimetype() const;
-        void setMimetype(const QString& mimetype);
+        /**
+         * The part that was created for a "NewTab" request.
+         * 
+         * It must be set after creating the tab, so that the initiating 
+         * part can load the URL into the new part. This works only synchronously
+         * and requires args().serviceType to be set.
+         * 
+         * @see KParts::BrowserExtension::createNewWindow()
+         */
+        KParts::ReadOnlyPart* part() const;
+        void setPart(KParts::ReadOnlyPart* part);
+     
+        QString debugInfo() const;
         
-     private:
+    private:
 
         int m_frameId;
         KUrl m_url;
         KParts::URLArgs m_args;
-        QString m_mimetype;
         Options m_options;
+        KParts::ReadOnlyPart* m_part;
 };
 
 } // namespace Akregator

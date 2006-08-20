@@ -168,6 +168,8 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
             @param background whether the tab should be opened in the background or in the foreground (activated after creation) */
         void slotOpenTab(const KUrl& url, bool background = false);
 
+        void slotRequestNewFrame(int& frameId);
+        
         /** called when another part/frame is activated. Updates progress bar, caption etc. accordingly
         @param f the activated frame */
         void slotFrameChanged(Frame *f);

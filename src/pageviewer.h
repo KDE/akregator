@@ -60,6 +60,8 @@ class PageViewer : public Viewer
         void slotSetCaption(const QString& cap);
         void slotBack();
         void slotForward();
+        void slotBackAboutToShow();
+        void slotForwardAboutToShow();
         void slotReload();
         void slotStop();
 
@@ -68,8 +70,7 @@ class PageViewer : public Viewer
         void slotStarted(KIO::Job *);
         void slotCompleted();
         void slotCancelled(const QString &errMsg);
-        void slotBackAboutToShow();
-        void slotForwardAboutToShow();
+        
         void slotPopupActivated( int id );
         virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
         

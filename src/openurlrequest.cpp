@@ -27,7 +27,7 @@
 
 namespace Akregator {
 
-OpenURLRequest::OpenURLRequest() : m_frameId(-1), m_options(None)
+OpenURLRequest::OpenURLRequest() : m_frameId(-1), m_options(None), m_part(0L)
 {
 }
 
@@ -58,6 +58,7 @@ const KParts::URLArgs& OpenURLRequest::args() const
 
 void OpenURLRequest::setArgs(const KParts::URLArgs& args)
 {
+    //m_hasArgs = true;
     m_args = args;
 }
 
@@ -71,14 +72,23 @@ void OpenURLRequest::setOptions(OpenURLRequest::Options options)
     m_options = options;
 }
 
-QString OpenURLRequest::mimetype() const
+void OpenURLRequest::setPart(KParts::ReadOnlyPart* part)
 {
-    return m_mimetype;
+    m_part = part;
 }
 
-void OpenURLRequest::setMimetype(const QString& mimetype)
+KParts::ReadOnlyPart* OpenURLRequest::part() const
 {
-    m_mimetype = mimetype;
+    return m_part;
+}
+
+QString OpenURLRequest::debugInfo() const
+{
+    return  "url=" + m_url.url() 
+            + " serviceType=" + m_args.serviceType  
+            + " newTab=" + m_args.newTab() 
+            + " forcesNewWindow=" + m_args.forcesNewWindow()
+            + " options="+ m_options; 
 }
 
 } // namespace Akregator

@@ -23,12 +23,16 @@
 */
 
 #include "actionmanager.h"
+#include "akregatorconfig.h"
 #include "browserrun.h"
 #include "frame.h"
 #include "framemanager.h"
 #include "openurlrequest.h"
 
 #include <kaction.h>
+#include <kprocess.h>
+#include <kshell.h>
+#include <ktoolinvocation.h>
 
 namespace Akregator {
 
@@ -62,7 +66,7 @@ void FrameManager::addFrame(Frame* frame)
     connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString&)), this, SLOT(slotSetTitle(Frame*, const QString&)) );
     connect(frame, SIGNAL(signalStatusText(Frame*, const QString&)), this, SLOT(slotSetStatusText(Frame*, const QString&)) );
     
-    connect(frame, SIGNAL(signalOpenURLRequest(const OpenURLRequest&)), this, SLOT(slotOpenURLRequest(const OpenURLRequest&)) );
+    connect(frame, SIGNAL(signalOpenURLRequest(OpenURLRequest&)), this, SLOT(slotOpenURLRequest(OpenURLRequest&)) );
 
     connect(frame, SIGNAL( signalCanGoBackToggled(Frame*, bool)), this, SLOT(slotCanGoBackToggled(Frame*, bool)) );
     connect(frame, SIGNAL( signalCanGoForwardToggled(Frame*, bool)), this, SLOT(slotCanGoForwardToggled(Frame*, bool)) );
@@ -79,7 +83,10 @@ void FrameManager::addFrame(Frame* frame)
 
 void FrameManager::removeFrame(Frame* frame)
 {
-
+    // if we do not know this frame, we do not care
+    if (!m_frames.values().contains(frame))
+        return;
+    
     disconnect(frame, SIGNAL(signalCanceled(Frame*, const QString&)), this, SLOT(slotSetCanceled(Frame*, const QString&)) );
     disconnect(frame, SIGNAL(signalStarted(Frame*)), this, SLOT(slotSetStarted(Frame*)) );
     disconnect(frame, SIGNAL(signalCaptionChanged(Frame*, const QString&)), this, SLOT(slotSetCaption(Frame*, const QString&)));
@@ -92,11 +99,9 @@ void FrameManager::removeFrame(Frame* frame)
     {
         slotChangeFrame(0);
     }
-
+    
     m_frames.remove(frame->id());
     emit signalFrameRemoved(frame);
-    
-
 }
 
 void FrameManager::slotChangeFrame(Frame* frame)
@@ -109,6 +114,13 @@ void FrameManager::slotChangeFrame(Frame* frame)
     
     if (frame)
     {
+        slotCanGoBackToggled(frame, frame->canGoBack());
+        slotCanGoForwardToggled(frame, frame->canGoForward());
+        slotIsReloadableToggled(frame, frame->isReloadable());
+        slotIsLoadingToggled(frame, frame->isLoading());
+        
+        // TODO: handle removable flag
+        
         switch (frame->state())
         {
             case Frame::Started:
@@ -207,19 +219,86 @@ void FrameManager::slotSetStatusText(Frame* frame, const QString& statusText)
         emit signalStatusText(statusText);
 }
 
-void FrameManager::slotFoundMimeType(const OpenURLRequest& request)
+void FrameManager::openURL(OpenURLRequest& request)
 {
+    if (request.args().newTab() || request.args().forcesNewWindow() || request.options() == OpenURLRequest::NewTab)
+    {
+        int newFrameId = -1;
+        emit signalRequestNewFrame(newFrameId);
+        request.setFrameId(newFrameId);
+    }
+    
     if (m_frames.contains(request.frameId()))
     {
-        m_frames.value(request.frameId())->openURL(request.url(), request.mimetype());
+        Frame* frame = m_frames.value(request.frameId());
+        frame->openURL(request);
+        if (frame->part())
+            request.setPart(frame->part());
     }
 }
-
-void FrameManager::slotOpenURLRequest(const OpenURLRequest& request)
+void FrameManager::openInExternalBrowser(const OpenURLRequest& request)
 {
+    KUrl url = request.url(); 
+    if (!url.isValid())
+        return;
+   
+    if (Settings::externalBrowserUseKdeDefault())
+    {
+        if (request.args().serviceType.isEmpty()) 
+            KToolInvocation::self()->invokeBrowser(url.url(), "0");
+        else
+            KRun::runUrl(url, request.args().serviceType, false, false);
+    }
+    else
+    {
+        QString cmd = Settings::externalBrowserCustomCommand();
+        QString urlStr = url.url();
+        cmd.replace(QRegExp("%u"), urlStr);
+        KProcess *proc = new KProcess;
+        QStringList cmdAndArgs = KShell::splitArgs(cmd);
+        *proc << cmdAndArgs;
+        proc->start(KProcess::DontCare);
+        delete proc;
+    }
+}
+void FrameManager::slotFoundMimeType(const OpenURLRequest& request)
+{
+    OpenURLRequest req2 = request;
+    openURL(req2);
+}
+
+void FrameManager::slotOpenURLRequest(OpenURLRequest& request)
+{
+    kDebug() << "FrameManager::slotOpenURLRequest(): " << request.debugInfo() << endl;
     
-    BrowserRun* run = new BrowserRun(request, m_mainWin);
-    connect(run, SIGNAL(signalFoundMimeType(const OpenURLRequest&)), this, SLOT(slotFoundMimeType(const OpenURLRequest&)));
+    if (request.options() == OpenURLRequest::ExternalBrowser)
+    {
+        openInExternalBrowser(request);
+        return;
+    }
+    // if no service type is set, determine it using BrowserRun.
+    if (request.args().serviceType.isEmpty())
+    {
+        BrowserRun* run = new BrowserRun(request, m_mainWin);
+        connect(run, SIGNAL(signalFoundMimeType(const OpenURLRequest&)), this, SLOT(slotFoundMimeType(const OpenURLRequest&)));
+    }
+    else // serviceType is already set, so we open the page synchronously.
+    {
+        openURL(request);
+    }
+    
+}
+
+void FrameManager::slotBrowserBackAboutToShow()
+{
+    if (m_currentFrame)
+        m_currentFrame->slotHistoryBackAboutToShow();
+}
+
+void FrameManager::slotBrowserForwardAboutToShow()
+{
+    if (m_currentFrame)
+        m_currentFrame->slotHistoryForwardAboutToShow();
 }
 
 void FrameManager::slotBrowserBack()
