@@ -477,9 +477,8 @@ void NodeListView::startNodeRenaming(TreeNode* node)
 
 void NodeListView::clear()
 {
-    QHash<TreeNode*, TreeNodeItem*>::Iterator it = d->itemDict.begin();
-    for( ; it != d->itemDict.end(); ++it )
-        disconnectFromNode( (*it)->node() );
+    foreach(TreeNode *node, d->itemDict.keys())
+        disconnectFromNode(node);
     d->itemDict.clear();
     d->nodeList = 0;
     
