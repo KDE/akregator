@@ -80,8 +80,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
         if (!node->image().isNull()) // image
         {
             text += QString("<div class=\"body\">");
-            QString url=node->xmlUrl();
-            QString file = url.replace("/", "_").replace(":", "_");
+            QString file = Utils::fileNameForUrl(node->xmlUrl());
             KUrl u(KUrl::fromPath(m_view->m_imageDir.toString()));
             u.setFileName(file);
             text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
@@ -426,8 +425,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
 
     if (feed && !feed->image().isNull())
     {
-        QString url=feed->xmlUrl();
-        QString file = url.replace("/", "_").replace(":", "_");
+        QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KUrl u(KUrl::fromPath(m_imageDir.toString()));
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
@@ -523,8 +521,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
 
     if (feed && !feed->image().isNull())
     {
-        QString url=feed->xmlUrl();
-        QString file = url.replace("/", "_").replace(":", "_");
+        QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KUrl u(KUrl::fromPath(m_imageDir.toString()));
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());

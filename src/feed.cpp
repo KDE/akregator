@@ -33,6 +33,7 @@
 #include "folder.h"
 #include "storage.h"
 #include "treenodevisitor.h"
+#include "utils.h"
 #include <syndication/syndication.h>
 
 #include <kdebug.h>
@@ -609,7 +610,8 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     if (d->imagePixmap.isNull())
     {
         QString u = d->xmlUrl;
-        QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png";
+        QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")
+                                + Utils::fileNameForUrl(d->xmlUrl) + ".png";
         d->imagePixmap=QPixmap(imageFileName, "PNG");
 
         // if we aint got teh image and the feed provides one, get it....
@@ -687,8 +689,7 @@ void Feed::setImage(const QPixmap &p)
     if (p.isNull())
         return;
     d->imagePixmap=p;
-    QString u = d->xmlUrl;
-    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+u.replace("/", "_").replace(":", "_")+".png","PNG");
+    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+ Utils::fileNameForUrl(d->xmlUrl) + ".png","PNG");
     nodeModified();
 }
 

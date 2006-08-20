@@ -45,6 +45,14 @@ class AKREGATOR_EXPORT Utils
     */
 
     static uint calcHash(const QString& str);
+    
+    /**
+     * returns a file name for a URL, with chars like "/" ":"
+     * replaced by "_". Too long URLs (>255 chars) are shortened and
+     * appended with a hash value.
+     * 
+     */
+    static QString fileNameForUrl(const QString& url);
 };
 
 } // namespace Akregator
