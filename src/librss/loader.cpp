@@ -10,6 +10,7 @@
  */
 #include "loader.h"
 #include "document.h"
+#include "feeddetector.h"
 
 #include <kio/job.h>
 #include <kprocess.h>
@@ -377,74 +378,35 @@ void Loader::slotRetrieverDone(const QByteArray &data, bool success)
 void Loader::discoverFeeds(const QByteArray &data)
 {
     QString str = QString(data).simplifyWhiteSpace();
-    QString s2;
-    //QTextStream ts( &str, IO_WriteOnly );
-    //ts << data.data();
-
-    // "<[\\s]link[^>]*rel[\\s]=[\\s]\\\"[\\s]alternate[\\s]\\\"[^>]*>"
-    // "type[\\s]=[\\s]\\\"application/rss+xml\\\""
-    // "href[\\s]=[\\s]\\\"application/rss+xml\\\""
-    QRegExp rx( "(?:REL)[^=]*=[^sAa]*(?:service.feed|ALTERNATE)[\\s]*[^s][^s](?:[^>]*)(?:HREF)[^=]*=[^A-Z0-9-_~,./$]*([^'\">\\s]*)", false);
-    if (rx.search(str)!=-1)
-        s2=rx.cap(1);
-    else{
-    // does not support Atom/RSS autodiscovery.. try finding feeds by brute force....
-        int pos=0;
-        QStringList feeds;
-        QString host=d->url.host();
-        rx.setPattern("(?:<A )[^H]*(?:HREF)[^=]*=[^A-Z0-9-_~,./]*([^'\">\\s]*)");
-        while ( pos >= 0 ) {
-            pos = rx.search( str, pos );
-            s2=rx.cap(1);
-            if (s2.endsWith(".rdf") || s2.endsWith(".rss") || s2.endsWith(".xml"))
-                    feeds.append(s2);
-            if ( pos >= 0 ) {
-                pos += rx.matchedLength();
-            }
-        }
-
-        s2=feeds.first();
-        KURL testURL;
-        // loop through, prefer feeds on same host
-        QStringList::Iterator end( feeds.end() );
-        for ( QStringList::Iterator it = feeds.begin(); it != end; ++it ) {
-            testURL=*it;
-            if (testURL.host()==host)
-            {
-                s2=*it;
-                break;
-            }
-        }
-    }
-
-    if (s2.isNull()) {
-        //kdDebug() << "No feed found for a site" << endl;
-        return;
-    }
-
-    if (KURL::isRelativeURL(s2))
+    
+    QStringList feeds; 
+    
+    FeedDetectorEntryList list = FeedDetector::extractFromLinkTags(str); 
+    
+    for (FeedDetectorEntryList::ConstIterator it = list.begin(); it != list.end(); ++it)
     {
-        if (s2.startsWith("//"))
+        feeds += (*it).url();
+    }  
+    
+    if (list.isEmpty())
+        feeds = FeedDetector::extractBruteForce(str);
+        
+    QString feed = feeds.first();
+    QString host = d->url.host();
+    KURL testURL;
+    // loop through, prefer feeds on same host
+    QStringList::Iterator end( feeds.end() );
+    for ( QStringList::Iterator it = feeds.begin(); it != end; ++it) 
+    {
+        testURL=*it;
+        if (testURL.host() == host)
         {
-            s2=s2.prepend(d->url.protocol()+":");
-            d->discoveredFeedURL=s2;
+            feed = *it;
+            break;
         }
-        else if (s2.startsWith("/"))
-        {
-            d->discoveredFeedURL=d->url;
-            d->discoveredFeedURL.setPath(s2);
-        }
-        else
-        {
-            d->discoveredFeedURL=d->url;
-            d->discoveredFeedURL.addPath(s2);
-        }
-        d->discoveredFeedURL.cleanPath();
     }
-    else
-        d->discoveredFeedURL=s2;
 
-    d->discoveredFeedURL.cleanPath();
+    d->discoveredFeedURL = feed.isNull() ? QString() : FeedDetector::fixRelativeURL(feed, d->url); 
 }
 
 #include "loader.moc"
