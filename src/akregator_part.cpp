@@ -115,7 +115,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
     setInstance( AkregatorFactory::instance() );
     
     new PartAdaptor( this );
-    QDBus::sessionBus().registerObject("/Akregator", this);
+    QDBusConnection::sessionBus().registerObject("/Akregator", this);
 
     FeedIconManager::self(); // FIXME: registering the icon manager dbus iface here,
                                // because otherwise we get a deadlock later

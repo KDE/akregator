@@ -75,7 +75,7 @@ void FeedIconManager::fetchIcon(Feed* feed)
 FeedIconManager::FeedIconManager(QObject * parent, const char *name)
 :  QObject(parent), d(new FeedIconManagerPrivate)
 {
-  QDBus::sessionBus().registerObject("/FeedIconManager", this, QDBusConnection::ExportSlots);
+  QDBusConnection::sessionBus().registerObject("/FeedIconManager", this, QDBusConnection::ExportScriptableSlots);
   setObjectName( name );
   d->m_favIconsModule =
     new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
