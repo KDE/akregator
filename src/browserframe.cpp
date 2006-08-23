@@ -83,7 +83,6 @@ bool BrowserFrame::canGoForward() const
 
 bool BrowserFrame::canGoBack() const
 {
-    kDebug() << "CANGOBACK" << (!d->history.isEmpty() && d->current != d->history.begin()) << endl;
     return !d->history.isEmpty() && d->current != d->history.begin();
 }
 
@@ -207,13 +206,10 @@ bool BrowserFrame::openURL(const OpenURLRequest& request)
         
         if (res)
         {
-            d->appendHistoryEntry();
+            d->appendHistoryEntry(request.url());
             d->updateHistoryEntry();
-            kDebug() << "BrowserFrame::openURL " << d->debugInfo() << endl;
         }
-        
-        kDebug() << "BrowserFrame::openURL: result=" << res << endl;
-        
+
         return res;
     }
     else

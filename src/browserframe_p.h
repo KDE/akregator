@@ -76,7 +76,7 @@ class BrowserFrame::BrowserFramePrivate : public QObject
 
         void connectPart();
         void updateHistoryEntry();
-        void appendHistoryEntry();
+        void appendHistoryEntry(const KUrl& url);
         void restoreHistoryEntry(QList<HistoryEntry>::Iterator entry);
         bool loadPartForMimetype(const QString& mimetype);
     
