@@ -59,6 +59,7 @@
 #include "frame.h"
 #include "framemanager.h"
 #include "kernel.h"
+#include "openurlrequest.h"
 
 namespace Akregator {
 
@@ -293,8 +294,10 @@ void TabWidget::slotDetachTab()
 
     if (frame && frame->url().isValid() && frame->isRemovable())
     {
-        // TODO: don't do that here, emit request instead
-        KToolInvocation::invokeBrowser(frame->url().url(), "0");
+        OpenURLRequest request;
+        request.setUrl(frame->url());
+        request.setOptions(OpenURLRequest::ExternalBrowser);
+        emit signalOpenURLRequest(request);
         slotCloseTab();
     }
 }

@@ -261,6 +261,9 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
              Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
     
+    connect( m_tabWidget, SIGNAL(signalOpenURLRequest(OpenURLRequest&)),
+             Kernel::self()->frameManager(), SLOT(slotOpenURLRequest(OpenURLRequest&)));
+
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Frame*)),
              m_tabWidget, SLOT(slotAddFrame(Frame*)));
     

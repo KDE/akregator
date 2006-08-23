@@ -33,6 +33,7 @@ namespace Akregator
 {
 
 class Frame;
+class OpenURLRequest;
 
 class TabWidget : public KTabWidget
 {
@@ -57,7 +58,8 @@ class TabWidget : public KTabWidget
     signals:
         
         void signalCurrentFrameChanged(int);
-        void signalRemoveFrameRequest(int frameId);
+        void signalRemoveFrameRequest(int);
+        void signalOpenURLRequest(OpenURLRequest&);
 
     protected:
 
