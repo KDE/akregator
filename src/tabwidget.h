@@ -41,10 +41,7 @@ class TabWidget : public KTabWidget
     public:
         TabWidget(QWidget * parent = 0);
         virtual ~TabWidget();
-
-        void addFrame(Frame *f);
-        void removeFrame(Frame *f);
-
+       
     public slots:
 
         void slotSetTitle(Frame* frame, const QString& title);
@@ -52,10 +49,15 @@ class TabWidget : public KTabWidget
         void slotNextTab();
         void slotPreviousTab();
         void slotRemoveCurrentFrame();
+        void slotAddFrame(Frame* f);
+        void slotRemoveFrame(int frameId);
+        void slotSelectFrame(int frameId);
+
 
     signals:
         
-        void currentFrameChanged(Frame *);
+        void signalCurrentFrameChanged(int);
+        void signalRemoveFrameRequest(int frameId);
 
     protected:
 
@@ -65,12 +67,6 @@ class TabWidget : public KTabWidget
 
         virtual void initiateDrag(int tab);
         
-    private: // methods
-        
-        uint tabBarWidthForMaxChars( int maxLength );
-        void setTitle( const QString &title , QWidget* sender);
-
-
     private slots:
         
         void slotDetachTab();

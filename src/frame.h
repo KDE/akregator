@@ -56,7 +56,7 @@ class Frame : public QWidget
         Frame(QWidget* parent=0);
         virtual ~Frame();
 
-        enum {Idle, Started, Completed, Canceled};
+        enum State {Idle, Started, Completed, Canceled};
 
         virtual KParts::ReadOnlyPart* part() const = 0;
 
@@ -75,7 +75,7 @@ class Frame : public QWidget
 
         virtual const QString& title() const;
         virtual const QString& caption() const;
-        virtual int state() const;
+        virtual State state() const;
         virtual int progress() const;
         virtual const QString& statusText() const;
         
@@ -97,7 +97,7 @@ class Frame : public QWidget
 
         /**
          * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
-        virtual bool isLoading() const { return false; }
+        virtual bool isLoading() const;
 
         virtual bool openURL(const OpenURLRequest& request) = 0;
 
@@ -115,12 +115,12 @@ class Frame : public QWidget
         /** reloads the current content, if possible. See also isReloadable(). */
         virtual void slotReload() {}
 
-        virtual void slotStop() {}
+        virtual void slotStop();
 
         virtual void slotSetStarted();
         virtual void slotSetCanceled(const QString&);
         virtual void slotSetCompleted();
-        virtual void slotSetState(int);
+        virtual void slotSetState(State);
         virtual void slotSetProgress(int);
         virtual void slotSetCaption(const QString&);
         virtual void slotSetTitle(const QString&);
@@ -149,12 +149,13 @@ class Frame : public QWidget
     protected:
         QString m_title;
         QString m_caption;
-        int m_state;
+        State m_state;
         int m_progress;
         QString m_statusText;
         QString m_progressId;
         KPIM::ProgressItem* m_progressItem;
         bool m_isRemovable;
+        bool m_loading;
         int m_id;
         static int m_idCounter;
 };

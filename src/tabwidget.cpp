@@ -65,21 +65,29 @@ namespace Akregator {
 class TabWidget::TabWidgetPrivate
 {
     public:
+    TabWidget* parent;
     QHash<QWidget*, Frame*> frames;
-    int CurrentMaxLength;
+    QHash<int, Frame*> framesById;
+    int currentMaxLength;
     QWidget* currentItem;
     QToolButton* tabsClose;
+    
+    uint tabBarWidthForMaxChars(int maxLength);
+    void setTitle(const QString &title , QWidget* sender);
+
 };
 
 TabWidget::TabWidget(QWidget * parent)
         :KTabWidget(parent), d(new TabWidgetPrivate)
 {
-    d->CurrentMaxLength = 30;
+    d->parent = this;
+    d->currentMaxLength = 30;
     setMinimumSize(250,150);
-    setTabReorderingEnabled(false);
-    connect( this, SIGNAL( currentChanged(QWidget *) ), this,
-            SLOT( slotTabChanged(QWidget *) ) );
-    connect(this, SIGNAL(closeRequest(QWidget*)), this, SLOT(slotCloseRequest(QWidget*)));
+        setTabReorderingEnabled(false);
+    connect( this, SIGNAL( currentChanged(QWidget *) ),
+             this, SLOT( slotTabChanged(QWidget *) ) );
+    connect(this, SIGNAL(closeRequest(QWidget*)), 
+            this, SLOT(slotCloseRequest(QWidget*)));
     setHoverCloseButton(Settings::closeButtonOnTabs());
 
     d->tabsClose = new QToolButton(this);
@@ -117,16 +125,24 @@ void TabWidget::slotPreviousTab()
     else
         setCurrentIndex(currentIndex()-1);
 }
+void TabWidget::slotSelectFrame(int frameId)
+{
+    Frame* frame = d->framesById[frameId];
+    if (frame && frame != currentFrame())
+    {
+        setCurrentWidget(frame);
+    }
+}
 
-void TabWidget::addFrame(Frame* frame)
+void TabWidget::slotAddFrame(Frame* frame)
 {
     if (!frame)
         return;
     d->frames.insert(frame, frame);
-    // TODO: don't let tabwidget insert frames to the manager
-    Kernel::self()->frameManager()->addFrame(frame);
+    d->framesById[frame->id()] = frame;
     addTab(frame, frame->title());
-    connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString& )), this, SLOT(slotSetTitle(Frame*, const QString& )));
+    connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString& )), 
+            this, SLOT(slotSetTitle(Frame*, const QString& )));
     slotSetTitle(frame, frame->title());
 }
 
@@ -141,102 +157,119 @@ void TabWidget::slotTabChanged(QWidget *w)
 {
     Frame* frame = d->frames[w];
     d->tabsClose->setEnabled(frame && frame->isRemovable());
-    emit currentFrameChanged(frame);
+    emit signalCurrentFrameChanged(frame ? frame->id() : -1);
 }
 
 void TabWidget::slotRemoveCurrentFrame()
 {
-    removeFrame(currentFrame());
+    Frame* frame = currentFrame();
+    if (frame)
+        emit signalRemoveFrameRequest(frame->id());
 }
 
-void TabWidget::removeFrame(Frame *f)
+void TabWidget::slotRemoveFrame(int frameId)
 {
+    if (!d->framesById.contains(frameId))
+        return;
+    Frame* f = d->framesById[frameId]; 
     d->frames.remove(f);
+    d->framesById.remove(frameId);
     slotPreviousTab();
     removeTab(indexOf(f));
-    // TODO: don't let tabwidget insert frames to the manager
-    Kernel::self()->frameManager()->removeFrame(f);
-    delete f;
-    setTitle( currentFrame()->title(), currentWidget() );
+    d->setTitle( currentFrame()->title(), currentWidget() );
 }
 
 // copied wholesale from KonqFrameTabs
-uint TabWidget::tabBarWidthForMaxChars( int maxLength )
+uint TabWidget::TabWidgetPrivate::tabBarWidthForMaxChars( int maxLength )
 {
     int hframe, overlap;
     QStyleOption o;
-    hframe = tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabHSpace, &o, this );
-    overlap = tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabOverlap, &o, this );
+    hframe = parent->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabHSpace, &o, parent );
+    overlap = parent->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabOverlap, &o, parent );
 
-    QFontMetrics fm = tabBar()->fontMetrics();
+    QFontMetrics fm = parent->tabBar()->fontMetrics();
     int x = 0;
-    for( int i=0; i < count(); ++i ) {
-        Frame *f=d->frames[widget(i)];
-        QString newTitle=f->title();
+    for (int i = 0; i < parent->count(); ++i) 
+    {
+        Frame* f = frames[parent->widget(i)];
+        QString newTitle = f->title();
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
 
         int lw = fm.width( newTitle );
-        int iw = tabBar()->tabIcon( i ).pixmap( QIcon::Small, QIcon::Normal ).width() + 4;
+        int iw = parent->tabBar()->tabIcon( i ).pixmap( QIcon::Small, QIcon::Normal ).width() + 4;
 
-        x += ( tabBar()->style()->sizeFromContents( QStyle::CT_TabBarTab, &o,
-               QSize( qMax( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), this ) ).width();
+        x += ( parent->tabBar()->style()->sizeFromContents( QStyle::CT_TabBarTab, &o,
+               QSize( qMax( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), parent ) ).width();
     }
     return x;
 }
 
 void TabWidget::slotSetTitle(Frame* frame, const QString& title)
 {
-    setTitle(title, frame);
+    d->setTitle(title, frame);
 }
 
-void TabWidget::setTitle( const QString &title , QWidget* sender)
+void TabWidget::TabWidgetPrivate::setTitle( const QString &title , QWidget* sender)
 {
-    setTabToolTip( indexOf(sender), QString() );
+    int senderIndex = parent->indexOf(sender);
+    
+    parent->setTabToolTip( senderIndex, QString() );
 
     uint lcw=0, rcw=0;
-    int tabBarHeight = tabBar()->sizeHint().height();
-    if ( cornerWidget( Qt::TopLeftCorner ) && cornerWidget( Qt::TopLeftCorner )->isVisible() )
-        lcw = qMax( cornerWidget( Qt::TopLeftCorner )->width(), tabBarHeight );
-    if ( cornerWidget( Qt::TopRightCorner ) && cornerWidget( Qt::TopRightCorner )->isVisible() )
-        rcw = qMax( cornerWidget( Qt::TopRightCorner )->width(), tabBarHeight );
-    uint maxTabBarWidth = width() - lcw - rcw;
+    int tabBarHeight = parent->tabBar()->sizeHint().height();
+    
+    QWidget* leftCorner = parent->cornerWidget( Qt::TopLeftCorner );
+    
+    if ( leftCorner  && leftCorner->isVisible() )
+        lcw = qMax( leftCorner->width(), tabBarHeight );
+    
+    QWidget* rightCorner = parent->cornerWidget( Qt::TopRightCorner );
+    
+    if ( rightCorner && rightCorner->isVisible() )
+        rcw = qMax( rightCorner->width(), tabBarHeight );
+    uint maxTabBarWidth = parent->width() - lcw - rcw;
 
-    int newMaxLength=30;
+    int newMaxLength = 30;
+    
     for ( ; newMaxLength > 3; newMaxLength-- )
-{
+    {
         if ( tabBarWidthForMaxChars( newMaxLength ) < maxTabBarWidth )
             break;
     }
+    
     QString newTitle = title;
     if ( newTitle.length() > newMaxLength )
     {
-        setTabToolTip( indexOf(sender), newTitle );
+        parent->setTabToolTip( senderIndex, newTitle );
         newTitle = newTitle.left( newMaxLength-3 ) + "...";
     }
 
     newTitle.replace( '&', "&&" );
-    if ( tabText(indexOf(sender)) != newTitle )
-        setTabText( indexOf(sender), newTitle );
+    
+    if ( parent->tabText(senderIndex) != newTitle )
+        parent->setTabText( senderIndex, newTitle );
 
-    if( newMaxLength != d->CurrentMaxLength )
+    if( newMaxLength != currentMaxLength )
     {
-        for( int i = 0; i < count(); ++i)
+        for( int i = 0; i < parent->count(); ++i)
         {
-            Frame *f=d->frames[widget(i)];
-            newTitle=f->title();
-            setTabToolTip( indexOf(widget( i )), QString() );
+            Frame* f = frames[parent->widget(i)];
+            newTitle = f->title();
+            int index = parent->indexOf(parent->widget( i ));
+            parent->setTabToolTip( index, QString() );
+            
             if ( newTitle.length() > newMaxLength )
             {
-                setTabToolTip( indexOf(widget( i )), newTitle );
+                parent->setTabToolTip( index, newTitle );
                 newTitle = newTitle.left( newMaxLength-3 ) + "...";
             }
 
             newTitle.replace( '&', "&&" );
-            if ( newTitle != tabText( indexOf( widget( i ) ) ) )
-                setTabText( indexOf( widget( i ) ), newTitle );
+            if ( newTitle != parent->tabText( index ) )
+                parent->setTabText( index, newTitle );
         }
-        d->CurrentMaxLength = newMaxLength;
+        currentMaxLength = newMaxLength;
     }
 }
 
@@ -260,6 +293,7 @@ void TabWidget::slotDetachTab()
 
     if (frame && frame->url().isValid() && frame->isRemovable())
     {
+        // TODO: don't do that here, emit request instead
         KToolInvocation::invokeBrowser(frame->url().url(), "0");
         slotCloseTab();
     }
@@ -285,15 +319,8 @@ void TabWidget::slotCloseTab()
         d->currentItem = currentWidget();
     if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() )
         return;
-
-    //kDebug() << "index: " << indexOf(d->currentItem) << endl;
-    removeFrame(d->frames[d->currentItem]);
-    //kDebug() << "index: " << indexOf(d->currentItem) << endl;
-
-    /* no need to do this? looks like it points to main page after removeFrame...
-    delete d->currentItem;
-    d->currentItem = 0;*/
-
+    
+    emit signalRemoveFrameRequest(d->frames[d->currentItem]->id());
 }
 
 void TabWidget::initiateDrag(int tab)
@@ -313,8 +340,9 @@ void TabWidget::initiateDrag(int tab)
 void TabWidget::slotCloseRequest(QWidget* widget)
 {
     if (d->frames[widget])
-        removeFrame(d->frames[widget]);
+        emit signalRemoveFrameRequest(d->frames[widget]->id());
 }
+
 } // namespace Akregator
 
 #include "tabwidget.moc"

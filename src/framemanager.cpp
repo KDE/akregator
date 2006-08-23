@@ -54,7 +54,7 @@ Frame* FrameManager::currentFrame() const
     return m_currentFrame;
 }
 
-void FrameManager::addFrame(Frame* frame)
+void FrameManager::slotAddFrame(Frame* frame)
 {
     m_frames.insert(frame->id(), frame);
 
@@ -77,14 +77,15 @@ void FrameManager::addFrame(Frame* frame)
     emit signalFrameAdded(frame);
 
     if (m_frames.count() == 1)
-        slotChangeFrame(frame);
+        slotChangeFrame(frame->id());
     
 }
 
-void FrameManager::removeFrame(Frame* frame)
+void FrameManager::slotRemoveFrame(int id)
 {
-    // if we do not know this frame, we do not care
-    if (!m_frames.values().contains(frame))
+    Frame* frame = m_frames[id];
+    
+    if (!frame)
         return;
     
     disconnect(frame, SIGNAL(signalCanceled(Frame*, const QString&)), this, SLOT(slotSetCanceled(Frame*, const QString&)) );
@@ -97,15 +98,21 @@ void FrameManager::removeFrame(Frame* frame)
 
     if (m_currentFrame == frame)
     {
-        slotChangeFrame(0);
+        slotChangeFrame(-1);
     }
     
     m_frames.remove(frame->id());
-    emit signalFrameRemoved(frame);
+    emit signalFrameRemoved(frame->id());
 }
 
-void FrameManager::slotChangeFrame(Frame* frame)
+Frame* FrameManager::findFrameById(int id) const
 {
+    return m_frames[id];
+}
+
+void FrameManager::slotChangeFrame(int frameId)
+{
+    Frame* frame = m_frames[frameId];
     if (frame == m_currentFrame)
         return;
     

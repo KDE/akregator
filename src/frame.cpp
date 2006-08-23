@@ -45,8 +45,13 @@ void Frame::slotSetTitle(const QString &s)
     if (m_title != s)
     {
         m_title = s;
-         emit signalTitleChanged(this, s);
+        emit signalTitleChanged(this, s);
     }
+}
+
+bool Frame::isLoading() const 
+{
+    return m_loading;
 }
 
 void Frame::slotSetCaption(const QString &s)
@@ -72,9 +77,9 @@ void Frame::slotSetProgress(int a)
     emit signalLoadingProgress(this, a);
 }
 
-void Frame::slotSetState(int a)
+void Frame::slotSetState(State state)
 {
-    m_state=a;
+    m_state=state;
 
     switch (m_state)
     {
@@ -99,6 +104,7 @@ Frame::Frame(QWidget* parent)
     m_progress=-1;
     m_progressItem=0;
     m_isRemovable = true;
+    m_loading = false; 
     m_id = m_idCounter++;
 }
 
@@ -128,7 +134,7 @@ Frame::~Frame()
 }
 
 
-int Frame::state() const
+Frame::State Frame::state() const
 {
     return m_state;
 }
@@ -150,34 +156,51 @@ const QString& Frame::statusText() const
 
 void Frame::slotSetStarted()
 {
+    m_loading = true;
     if(m_progressId.isNull() || m_progressId.isEmpty()) m_progressId = KPIM::ProgressManager::getUniqueID();
     m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title(), QString::null, false);
     m_progressItem->setStatus(i18n("Loading..."));
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state=Started;
     emit signalStarted(this);
+    emit signalIsLoadingToggled(this, m_loading);
+}
+
+void Frame::slotStop()
+{
+    if (m_loading)
+    {
+        m_loading = false;
+        emit signalIsLoadingToggled(this, false);
+    }
 }
 
 void Frame::slotSetCanceled(const QString &s)
 {
-    if(m_progressItem) {
+    m_loading = false;
+    if(m_progressItem) 
+    {
         m_progressItem->setStatus(i18n("Loading canceled"));
         m_progressItem->setComplete();
         m_progressItem = 0;
     }
     m_state=Canceled;
     emit signalCanceled(this, s);
+    emit signalIsLoadingToggled(this, m_loading);
 }
 
 void Frame::slotSetCompleted()
 {
-    if(m_progressItem) {
+    m_loading = false; 
+    if(m_progressItem)
+    {
         m_progressItem->setStatus(i18n("Loading completed"));
         m_progressItem->setComplete();
         m_progressItem = 0;
     }
     m_state=Completed;
     emit signalCompleted(this);
+    emit signalIsLoadingToggled(this, m_loading);
 }
 
 int Frame::progress() const

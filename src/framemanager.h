@@ -52,15 +52,17 @@ class FrameManager : public QObject
         virtual ~FrameManager();
 
         Frame* currentFrame() const;
-
-        void addFrame(Frame* frame);
-        void removeFrame(Frame* frame);
-       
+        
+        Frame* findFrameById(int id) const;
+        
         void setMainWindow(QWidget* mainWin);
 
     public slots:
 
-        void slotChangeFrame(Frame* frame);
+        void slotAddFrame(Frame* frame);
+        void slotRemoveFrame(int frameId);
+               
+        void slotChangeFrame(int frameId);
         void slotOpenURLRequest(OpenURLRequest& request);
 
         void slotBrowserBack();
@@ -73,7 +75,7 @@ class FrameManager : public QObject
     signals:
 
         void signalFrameAdded(Frame*);
-        void signalFrameRemoved(Frame*);
+        void signalFrameRemoved(int id);
 
         void signalRequestNewFrame(int& id);
         

@@ -211,47 +211,67 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_horizontalSplitter->setOpaqueResize(true);
     lt->addWidget(m_horizontalSplitter);
 
-    connect (Kernel::self()->fetchQueue(), SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    connect (Kernel::self()->fetchQueue(), SIGNAL(signalStarted()), this, SLOT(slotFetchingStarted()));
-    connect (Kernel::self()->fetchQueue(), SIGNAL(signalStopped()), this, SLOT(slotFetchingStopped()));
+    connect(Kernel::self()->fetchQueue(), SIGNAL(fetched(Feed*)),
+             this, SLOT(slotFeedFetched(Feed*)));
+    connect(Kernel::self()->fetchQueue(), SIGNAL(signalStarted()),
+             this, SLOT(slotFetchingStarted()));
+    connect(Kernel::self()->fetchQueue(), SIGNAL(signalStopped()),
+             this, SLOT(slotFetchingStopped()));
 
-    connect(Kernel::self()->tagSet(), SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagCreated(const Tag&)));
-    connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
+    connect(Kernel::self()->tagSet(), SIGNAL(signalTagAdded(const Tag&)),
+            this, SLOT(slotTagCreated(const Tag&)));
+    connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Tag&)),
+            this, SLOT(slotTagRemoved(const Tag&)));
 
     m_listTabWidget = new ListTabWidget(m_horizontalSplitter);
     m_actionManager->initListTabWidget(m_listTabWidget);
 
-    connect(m_listTabWidget, SIGNAL(signalNodeSelected(TreeNode*)), this, SLOT(slotNodeSelected(TreeNode*)));
+    connect(m_listTabWidget, SIGNAL(signalNodeSelected(TreeNode*)),
+            this, SLOT(slotNodeSelected(TreeNode*)));
 
 
     m_feedListView = new NodeListView( this, "feedtree" );
     m_listTabWidget->addView(m_feedListView, i18n("Feeds"), KGlobal::iconLoader()->loadIcon("folder", K3Icon::Small));
 
-    connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
+    connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)),
+            this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
 
     connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, TreeNode*,
-            Folder*)), this, SLOT(slotFeedURLDropped (KUrl::List &,
+            Folder*)),
+            this, SLOT(slotFeedURLDropped (KUrl::List &,
             TreeNode*, Folder*)));
 
     m_tagNodeListView = new NodeListView(this);
     m_listTabWidget->addView(m_tagNodeListView, i18n("Tags"), KGlobal::iconLoader()->loadIcon("rss_tag", K3Icon::Small));
 
-    connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)), this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
-
+    connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)), 
+            this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
     
     ProgressManager::self()->setFeedList(m_feedList);
 
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
-    connect( m_part, SIGNAL(signalSettingsChanged()), m_tabWidget, SLOT(slotSettingsChanged()));
+    connect( m_part, SIGNAL(signalSettingsChanged()), 
+             m_tabWidget, SLOT(slotSettingsChanged()));
 
-    connect( m_tabWidget, SIGNAL(currentFrameChanged(Frame*)), Kernel::self()->frameManager(), SLOT(slotChangeFrame( Frame* )));
-    connect( Kernel::self()->frameManager(), SIGNAL( signalCurrentFrameChanged(Frame*) ), this,
-            SLOT( slotFrameChanged(Frame *) ) );
+    connect( m_tabWidget, SIGNAL(signalCurrentFrameChanged(int)),     
+             Kernel::self()->frameManager(), SLOT(slotChangeFrame(int)));
+    
+    connect( m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
+             Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
+    
+    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Frame*)),
+             m_tabWidget, SLOT(slotAddFrame(Frame*)));
+    
+    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
+             m_tabWidget, SLOT(slotRemoveFrame(int)));
+    
+    connect( Kernel::self()->frameManager(), SIGNAL(signalCurrentFrameChanged(Frame*)), 
+             this, SLOT( slotFrameChanged(Frame *) ) );
 
-    connect( Kernel::self()->frameManager(), SIGNAL( signalRequestNewFrame(int&) ), this,
-             SLOT( slotRequestNewFrame(int&) ) );
+    connect( Kernel::self()->frameManager(), SIGNAL(signalRequestNewFrame(int&)),
+             this, SLOT( slotRequestNewFrame(int&) ) );
 
     m_tabWidget->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
 
@@ -277,13 +297,14 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     m_actionManager->initArticleListView(m_articleList);
 
-    connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Article&, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, const Article&, const QPoint &, int)));
+    connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Article&, const QPoint &, int)),
+             this, SLOT(slotMouseButtonPressed(int, const Article&, const QPoint &, int)));
 
     // use selectionChanged instead of clicked
     connect( m_articleList, SIGNAL(signalArticleChosen(const Article&)),
-                this, SLOT( slotArticleSelected(const Article&)) );
+             this, SLOT( slotArticleSelected(const Article&)) );
     connect( m_articleList, SIGNAL(signalDoubleClicked(const Article&, const QPoint&, int)),
-                this, SLOT( slotOpenArticleExternal(const Article&, const QPoint&, int)) );
+             this, SLOT( slotOpenArticleExternal(const Article&, const QPoint&, int)) );
 
     m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
@@ -292,21 +313,23 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleList, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
-    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
+    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)),
+            m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
     connect( m_articleViewer, SIGNAL(urlClicked(const KUrl&, bool)),
-                        this, SLOT(slotOpenTab(const KUrl&, bool)) );
+             this, SLOT(slotOpenTab(const KUrl&, bool)) );
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
-                                            this, SLOT(slotMouseOverInfo(const KFileItem *)) );
+             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
-    connect( m_part, SIGNAL(signalSettingsChanged()), m_articleViewer, SLOT(slotPaletteOrFontChanged()));
+    connect( m_part, SIGNAL(signalSettingsChanged()), 
+             m_articleViewer, SLOT(slotPaletteOrFontChanged()));
     m_articleViewer->widget()->setWhatsThis( i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 
     m_mainFrame = new MainFrame(this, m_part, m_mainTab, i18n("Articles"));
 
-    m_tabWidget->addFrame(m_mainFrame);
+    Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
     m_horizontalSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
@@ -323,13 +346,14 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     }
 
     m_fetchTimer = new QTimer(this);
-    connect( m_fetchTimer, SIGNAL(timeout()), this, SLOT(slotDoIntervalFetches()) );
+    connect( m_fetchTimer, SIGNAL(timeout()), 
+             this, SLOT(slotDoIntervalFetches()) );
     m_fetchTimer->start(1000*60);
 
     // delete expired articles once per hour
     m_expiryTimer = new QTimer(this);
-    connect(m_expiryTimer, SIGNAL(timeout()), this,
-            SLOT(slotDeleteExpiredArticles()) );
+    connect(m_expiryTimer, SIGNAL(timeout()),
+            this, SLOT(slotDeleteExpiredArticles()) );
     m_expiryTimer->start(3600*1000);
 
     m_markReadTimer = new QTimer(this);
@@ -402,12 +426,11 @@ void MainWidget::slotOpenTab(const KUrl& url, bool background)
 {
     
     BrowserFrame* frame = new BrowserFrame(m_tabWidget);
-    Kernel::self()->frameManager()->addFrame(frame);
     
     connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
 
-    m_tabWidget->addFrame(frame);
-
+    Kernel::self()->frameManager()->slotAddFrame(frame);
+    
     if(!background)
         m_tabWidget->setCurrentIndex( m_tabWidget->indexOf(frame) );
     else
@@ -422,9 +445,10 @@ void MainWidget::slotOpenTab(const KUrl& url, bool background)
 void MainWidget::slotRequestNewFrame(int& frameId)
 {
     BrowserFrame* frame = new BrowserFrame(m_tabWidget);
-    Kernel::self()->frameManager()->addFrame(frame);
+    
     connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
-    m_tabWidget->addFrame(frame);
+    
+    Kernel::self()->frameManager()->slotAddFrame(frame);
     
     frameId = frame->id();
 }

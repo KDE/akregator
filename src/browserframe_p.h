@@ -69,6 +69,7 @@ class BrowserFrame::BrowserFramePrivate : public QObject
         KParts::BrowserExtension* extension;
         QGridLayout* layout;
         bool lockHistory;
+        bool isLoading;
         BrowserFrame* parent;
 
         QString mimetype;

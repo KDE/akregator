@@ -55,7 +55,7 @@ BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent)
     d->part = 0;
     d->extension = 0;
     d->lockHistory = false;
-    
+    d->isLoading = false;
     setRemovable(true);
     d->current = d->history.end();
 
@@ -302,6 +302,9 @@ void BrowserFrame::slotReload()
 
 void BrowserFrame::slotStop()
 {
+    if (d->part)
+        d->part->closeURL();
+    Frame::slotStop();
     
 }
 
@@ -316,7 +319,7 @@ bool BrowserFrame::isReloadable() const
 
 bool BrowserFrame::isLoading() const
 {
-    return true; // TODO
+    return d->isLoading;
 }
 
 } // namespace Akregator
