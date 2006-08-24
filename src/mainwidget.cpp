@@ -282,7 +282,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_mainTab->setObjectName("Article Tab");
 
     QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab);
-    mainTabLayout->setObjectName("mainTabLayout");
+    mainTabLayout->setMargin(0);
 
     m_mainTab->setWhatsThis( i18n("Articles list."));
 
@@ -309,7 +309,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_articleList, SIGNAL(signalDoubleClicked(const Article&, const QPoint&, int)),
              this, SLOT( slotOpenArticleExternal(const Article&, const QPoint&, int)) );
 
-    m_articleViewer = new ArticleViewer(m_articleSplitter, "article_viewer");
+    m_articleViewer = new ArticleViewer(m_articleSplitter);
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
 
     m_actionManager->initArticleViewer(m_articleViewer);
@@ -322,12 +322,12 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_articleViewer, SIGNAL(signalOpenURLRequest(OpenURLRequest&)),
              Kernel::self()->frameManager(), SLOT(slotOpenURLRequest(OpenURLRequest&)) );
 
-    connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
+    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
              this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
     connect( m_part, SIGNAL(signalSettingsChanged()), 
              m_articleViewer, SLOT(slotPaletteOrFontChanged()));
-    m_articleViewer->widget()->setWhatsThis( i18n("Browsing area."));
+    m_articleViewer->part()->widget()->setWhatsThis( i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
 
     m_mainFrame = new MainFrame(this, m_part, m_mainTab, i18n("Articles"));
@@ -386,7 +386,7 @@ void MainWidget::delayedInit()
     // and thus the article viewer GUI can't be merged when creating the view.
     // Even the delayed init didn't help. Well, we retry every half a second until
     // it works. This is kind of creative, but a dirty hack nevertheless.
-    if ( !m_part->mergePart(m_articleViewer) )
+    if ( !m_part->mergePart(m_articleViewer->part()) )
         QTimer::singleShot(500, this, SLOT(delayedInit()));
 }
 
@@ -465,7 +465,7 @@ void MainWidget::setTabIcon(const QPixmap& icon)
     ArticleViewer* s = dynamic_cast<ArticleViewer*>(sender());
     if (s)
     {
-        m_tabWidget->setTabIcon(m_tabWidget->indexOf(s->widget()), icon);
+        m_tabWidget->setTabIcon(m_tabWidget->indexOf(s->part()->widget()), icon);
     }
 }
 

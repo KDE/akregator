@@ -28,6 +28,8 @@
 #include "article.h"
 #include "articlefilter.h"
 
+#include <QWidget>
+
 #include <khtml_part.h>
 
 class KUrl;
@@ -45,22 +47,23 @@ namespace Akregator
     class OpenURLRequest;
     class TreeNode;
     
-    class ArticleViewer : public KHTMLPart
+    class ArticleViewerPart;
+    
+    class ArticleViewer : public QWidget
     {
         Q_OBJECT
         public:
-            ArticleViewer(QWidget* parent, const char* name=0L);
-            virtual ~ArticleViewer();
+            ArticleViewer(QWidget* parent);
+            ~ArticleViewer();
 
-            bool closeURL();
-        
+                 
             /** Repaints the view. */
             void reload();
         
             void displayAboutPage();
-
-            bool openURL(const KUrl &url);
         
+            KParts::ReadOnlyPart* part() const;
+            
         public slots:
         
             void slotScrollUp(); 
@@ -95,7 +98,7 @@ namespace Akregator
     
             void slotShowSummary(TreeNode *node);
 
-            virtual void slotPaletteOrFontChanged();
+            void slotPaletteOrFontChanged();
         
         signals:
             // This gets emitted when url gets clicked */
@@ -104,40 +107,43 @@ namespace Akregator
             /** This gets emitted when url gets clicked */
             void signalOpenURLRequest(OpenURLRequest&); 
 
-            protected: // methods
-                int pointsToPixel(int points) const;
+        protected: // methods
+            int pointsToPixel(int points) const;
 
+            bool openURL(const KUrl &url);
+            
         protected slots:
-    
-        // FIXME: Sort out how things are supposed to work and clean up the following slots
 
-            /** reimplemented to handle url selection according to the settings for LMB and MMB */
-            virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
-
-            /** slot for handling openURLRequestDelayed() signal from the browserextension. Handles POST requests (for forms) only, other link handling goes to urlSelected(). Does nothing in Viewer, reimplemented in PageViewer to make forms working */
-            virtual void slotOpenURLRequest(const KUrl& url, const KParts::URLArgs& args);
-
-            virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+            void slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&);
+            
+            void slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args);
+            
+            void slotCreateNewWindow(const KUrl& url, 
+                                     const KParts::URLArgs& args,
+                                     const KParts::WindowArgs& windowArgs, 
+                                     KParts::ReadOnlyPart*& part);
+            
+            void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
 
             /** Copies current link to clipboard. */
             void slotCopyLinkAddress();
 
             /** Copies currently selected text to clipboard */
-            virtual void slotCopy();
+            void slotCopy();
 
             /** Opens @c m_url inside this viewer */
-            virtual void slotOpenLinkInternal();
+            void slotOpenLinkInternal();
 
             /** Opens @c m_url in external viewer, eg. Konqueror */
-            virtual void slotOpenLinkInBrowser();
+            void slotOpenLinkInBrowser();
 
             /** Opens @c m_url in foreground tab */
-            virtual void slotOpenLinkInForegroundTab();
+            void slotOpenLinkInForegroundTab();
 
             /** Opens @c m_url in background tab */
-            virtual void slotOpenLinkInBackgroundTab();
+            void slotOpenLinkInBackgroundTab();
 
-            virtual void slotSaveLinkAs();
+            void slotSaveLinkAs();
 
             /** This changes cursor to wait cursor */
             void slotStarted(KIO::Job *);
@@ -145,7 +151,7 @@ namespace Akregator
             /** This reverts cursor back to normal one */
             void slotCompleted();
 
-            virtual void slotSelectionChanged();
+            void slotSelectionChanged();
 
             void slotArticlesUpdated(TreeNode* node, const QList<Article>& list);
             void slotArticlesAdded(TreeNode* node, const QList<Article>& list);
@@ -205,8 +211,31 @@ namespace Akregator
             Akregator::Filters::ArticleMatcher m_statusFilter;
             enum ViewMode { NormalView, CombinedView, SummaryView };
             ViewMode m_viewMode;
+            
+            ArticleViewerPart* m_part;
     };
 
+    class ArticleViewerPart : public KHTMLPart
+    {
+        Q_OBJECT
+
+        public:
+            ArticleViewerPart(QWidget* parent);
+            
+            bool closeURL();
+            
+            int button() const;
+            
+        protected:
+            
+            /** reimplemented to get the mouse button */
+            void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
+            
+        private:
+            
+            int m_button;
+    };
+    
 } // namespace Akregator
 
 #endif // AKREGATOR_ARTICLEVIEWER_H
