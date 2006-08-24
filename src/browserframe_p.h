@@ -31,7 +31,6 @@
 #include "actionmanager.h"
 #include "browserframe.h"
 #include "openurlrequest.h"
-#include "pageviewer.h"
 
 #include <QAction>
 #include <QGridLayout>

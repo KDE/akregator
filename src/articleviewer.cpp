@@ -1,8 +1,9 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2004 Sashmit Bhaduri <smt@vfemail.net>
+    Copyright (C) 2004 Teemu Rytilahti <tpr@d5k.net>
                   2005 Frank Osterfeld <frank.osterfeld at kdemail.net>
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -24,21 +25,33 @@
 
 #include <kaction.h>
 #include <kapplication.h>
-#include <kdebug.h>
-#include <kglobalsettings.h>
+#include <kfiledialog.h>
 #include <khtmlview.h>
+#include <kicon.h>
+#include <kiconloader.h>
 #include <klocale.h>
+#include <kmenu.h>
+#include <kmessagebox.h>
 #include <kprocess.h>
 #include <krun.h>
-#include <kstandarddirs.h>
 #include <kshell.h>
-#include <kmessagebox.h>
-#include <kio/netaccess.h>
+#include <kstandarddirs.h>
+#include <kstdaction.h>
+#include <ktoolinvocation.h>
+#include <kurl.h>
+#include <kparts/browserextension.h>
+#include <kparts/browserrun.h>
+
+#include <QClipboard>
+#include <QPaintDevice>
 
 #include <libkdepim/kfileio.h>
 
-#include "aboutdata.h"
 #include "akregatorconfig.h"
+#include "openurlrequest.h"
+
+// TODO: remove unneeded includes
+#include "aboutdata.h"
 #include "article.h"
 #include "articleviewer.h"
 #include "feed.h"
@@ -60,105 +73,144 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 {
     public:
 
-    ShowSummaryVisitor(ArticleViewer* view) : m_view(view) {}
+        ShowSummaryVisitor(ArticleViewer* view) : m_view(view) {}
 
-    virtual bool visitFeed(Feed* node)
-    {
-        m_view->m_link = QString();
-        QString text;
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-
-        text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
-        text += node->title();
-        if(node->unread() == 0)
-            text += i18n(" (no unread articles)");
-        else
-            text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
-        text += "</div>\n"; // headertitle
-        text += "</div>\n"; // /headerbox
-
-        if (!node->image().isNull()) // image
+        virtual bool visitFeed(Feed* node)
         {
-            text += QString("<div class=\"body\">");
-            QString file = Utils::fileNameForUrl(node->xmlUrl());
-            KUrl u(KUrl::fromPath(m_view->m_imageDir.toString()));
-            u.setFileName(file);
-            text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
-        }
-        else text += "<div class=\"body\">";
+            m_view->m_link = QString();
+            QString text;
+            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+
+            text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
+            text += node->title();
+            if(node->unread() == 0)
+                text += i18n(" (no unread articles)");
+            else
+                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += "</div>\n"; // headertitle
+            text += "</div>\n"; // /headerbox
+
+            if (!node->image().isNull()) // image
+            {
+                text += QString("<div class=\"body\">");
+                QString file = Utils::fileNameForUrl(node->xmlUrl());
+                KUrl u(KUrl::fromPath(m_view->m_imageDir.toString()));
+                u.setFileName(file);
+                text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
+            }
+            else text += "<div class=\"body\">";
 
 
-        if( !node->description().isEmpty() )
-        {
-            text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
-            text += i18n("<b>Description:</b> %1<br><br>", node->description());
-            text += "</div>\n"; // /description
-        }
+            if( !node->description().isEmpty() )
+            {
+                text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
+                text += i18n("<b>Description:</b> %1<br><br>", node->description());
+                text += "</div>\n"; // /description
+            }
 
-        if ( !node->htmlUrl().isEmpty() )
-        {
-            text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
-            text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
-            text += "</div>\n"; // / link
-        }
+            if ( !node->htmlUrl().isEmpty() )
+            {
+                text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
+                text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
+                text += "</div>\n"; // / link
+            }
 
         //text += i18n("<b>Unread articles:</b> %1").arg(node->unread());
-        text += "</div>"; // /body
+            text += "</div>"; // /body
 
-        m_view->renderContent(text);
-        return true;
-    }
+            m_view->renderContent(text);
+            return true;
+        }
 
-    virtual bool visitFolder(Folder* node)
-    {
-        m_view->m_link = QString();
+        virtual bool visitFolder(Folder* node)
+        {
+            m_view->m_link = QString();
 
-        QString text;
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
-        if(node->unread() == 0)
-            text += i18n(" (no unread articles)");
-        else
-            text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
-        text += QString("</div>\n");
-        text += "</div>\n"; // /headerbox
+            QString text;
+            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
+            if(node->unread() == 0)
+                text += i18n(" (no unread articles)");
+            else
+                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += QString("</div>\n");
+            text += "</div>\n"; // /headerbox
 
-        m_view->renderContent(text);
-        return true;
-    }
+            m_view->renderContent(text);
+            return true;
+        }
 
-    virtual bool visitTagNode(TagNode* node)
-    {
-        m_view->m_link = QString();
+        virtual bool visitTagNode(TagNode* node)
+        {
+            m_view->m_link = QString();
 
-        QString text;
-        text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-        text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
-        if(node->unread() == 0)
-            text += i18n(" (no unread articles)");
-        else
-            text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
-        text += QString("</div>\n");
-        text += "</div>\n"; // /headerbox
+            QString text;
+            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
+            if(node->unread() == 0)
+                text += i18n(" (no unread articles)");
+            else
+                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += QString("</div>\n");
+            text += "</div>\n"; // /headerbox
 
-        m_view->renderContent(text);
-        return true;
-    }
+            m_view->renderContent(text);
+            return true;
+        }
 
     private:
 
-    ArticleViewer* m_view;
+        ArticleViewer* m_view;
 };
 
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
-    : Viewer(parent, name), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
+    : KHTMLPart(parent), m_url(0), m_htmlFooter(), m_currentText(), m_node(0),
+      m_viewMode(NormalView)
 {
     m_showSummaryVisitor = new ShowSummaryVisitor(this);
+    setZoomFactor(100);
+    setJScriptEnabled(true);
+    setJavaEnabled(true);
+    setMetaRefreshEnabled(true);
+    setPluginsEnabled(true);
+    setDNDEnabled(true);
+    setAutoloadImages(true);
+    setStatusMessagesEnabled(true);
+
+    // change the cursor when loading stuff...
+    connect( this, SIGNAL(started(KIO::Job *)),
+             this, SLOT(slotStarted(KIO::Job *)));
+    connect( this, SIGNAL(completed()),
+             this, SLOT(slotCompleted()));
+
+    connect( browserExtension(), SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
+
+    KStdAction::print(this, SLOT(slotPrint()), actionCollection(), "viewer_print");
+    KStdAction::copy(this, SLOT(slotCopy()), actionCollection(), "viewer_copy");
+
+    KAction *action = new KAction(KIcon("viewmag+"),  i18n("&Increase Font Sizes"), actionCollection(), "incFontSizes" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomIn()));
+    action->setShortcut(KShortcut( "Ctrl+Plus" ));
+    action = new KAction(KIcon("viewmag-"),  i18n("&Decrease Font Sizes"), actionCollection(), "decFontSizes" );
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomOut()));
+    action->setShortcut(KShortcut( "Ctrl+Minus" ));
+
+    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
+
+    connect( browserExtension(), SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequest(const KUrl&, const KParts::URLArgs& )) );
+
+    action = new KAction(i18n("Copy &Link Address"), actionCollection(), "copylinkaddress");
+    connect(action, SIGNAL(triggered(bool) ), SLOT(slotCopyLinkAddress()));
+    action = new KAction(i18n("&Save Link As..."), actionCollection(), "savelinkas");
+    connect(action, SIGNAL(triggered(bool) ), SLOT(slotSaveLinkAs()));
+    
+    // from articleviewer:
+    
     setXMLFile(KStandardDirs::locate("data", "akregator/articleviewer.rc"), true);
 
     generateNormalModeCSS();
     generateCombinedModeCSS();
-    KAction *action = new KAction( i18n("&Scroll Up"), actionCollection(), "articleviewer_scroll_up" );
+    action = new KAction( i18n("&Scroll Up"), actionCollection(), "articleviewer_scroll_up" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollUp()));
     action->setShortcut(KShortcut( "Up" ));
     action = new KAction( i18n("&Scroll Down"), actionCollection(), "articleviewer_scroll_down" );
@@ -179,6 +231,272 @@ ArticleViewer::~ArticleViewer()
     delete m_showSummaryVisitor;
 }
 
+bool ArticleViewer::closeURL()
+{
+    emit browserExtension()->loadingProgress(-1);
+    emit canceled(QString::null);
+    return KHTMLPart::closeURL();
+}
+
+int ArticleViewer::pointsToPixel(int pointSize) const
+{
+    return ( pointSize * view()->logicalDpiY() + 36 ) / 72 ;
+}
+
+void ArticleViewer::slotOpenURLRequest(const KUrl& /*url*/, const KParts::URLArgs& /*args*/)
+{
+
+}
+
+void ArticleViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
+{
+    if (url == "config:/disable_introduction") 
+    {
+        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), i18n("Disable"), i18n("Keep Enabled") ) == KMessageBox::Yes) 
+        {
+            KConfig* conf = Settings::self()->config();
+            conf->setGroup("General");
+            conf->writeEntry("Disable Introduction", "true");
+        }
+    }
+    else
+    {
+        m_url = completeURL(url);
+        browserExtension()->setURLArgs(args);
+        if (button == Qt::LeftButton)
+        {
+            switch (Settings::lMBBehaviour())
+            {
+                case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
+                    slotOpenLinkInBrowser();
+                    break;
+                case Settings::EnumLMBBehaviour::OpenInBackground:
+                    slotOpenLinkInBackgroundTab();
+                    break;
+                default:
+                    slotOpenLinkInForegroundTab();
+                    break;
+            }
+            return;
+        }
+        else if (button == Qt::MidButton)
+        {
+            switch (Settings::mMBBehaviour())
+            {
+                case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+                    slotOpenLinkInBrowser();
+                    break;
+                case Settings::EnumMMBBehaviour::OpenInBackground:
+                    slotOpenLinkInBackgroundTab();
+                    break;
+                default:
+                    slotOpenLinkInForegroundTab();
+                    break;
+            }
+            return;
+        }
+        KHTMLPart::urlSelected(url,button,state,_target,args);
+    }
+}
+
+void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
+{
+    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
+    const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
+
+    QString url = kurl.url();
+
+    m_url = url;
+    KMenu popup;
+
+    if (isLink && !isSelection)
+    {
+        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
+        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.addSeparator();
+        popup.addAction( action("savelinkas") );
+        popup.addAction( action("copylinkaddress") );
+    }
+    else
+    {
+        if (isSelection)
+        {
+            popup.addAction( action("viewer_copy") );
+            popup.addSeparator();
+        }
+        popup.addAction( action("viewer_print") );
+       //KAction *ac = action("setEncoding");
+       //if (ac)
+       //     ac->plug(&popup);
+    }
+    popup.exec(p);
+}
+
+// taken from KDevelop
+void ArticleViewer::slotCopy()
+{
+    QString text = selectedText();
+    text.replace( QChar( 0xa0 ), ' ' );
+    QClipboard *cb = QApplication::clipboard();
+    disconnect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
+    cb->setText(text);
+    connect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
+}
+
+void ArticleViewer::slotCopyLinkAddress()
+{
+    if(m_url.isEmpty()) return;
+    QClipboard *cb = QApplication::clipboard();
+    cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
+    cb->setText(m_url.prettyUrl(), QClipboard::Selection);
+}
+
+void ArticleViewer::slotSelectionChanged()
+{
+    action("viewer_copy")->setEnabled(!selectedText().isEmpty());
+}
+
+void ArticleViewer::slotOpenLinkInternal()
+{
+    openURL(m_url);
+}
+
+void ArticleViewer::slotOpenLinkInForegroundTab()
+{
+    OpenURLRequest req(m_url);
+    req.setOptions(OpenURLRequest::NewTab);
+    emit signalOpenURLRequest(req);
+}
+
+void ArticleViewer::slotOpenLinkInBackgroundTab()
+{
+    OpenURLRequest req(m_url);
+    req.setOptions(OpenURLRequest::NewTab);
+    req.setOpenInBackground(true);
+    emit signalOpenURLRequest(req);
+}
+
+void ArticleViewer::slotOpenLinkInBrowser()
+{
+    OpenURLRequest req(m_url);
+    req.setOptions(OpenURLRequest::ExternalBrowser);
+    emit signalOpenURLRequest(req);
+}
+
+void ArticleViewer::slotSaveLinkAs()
+{
+    KUrl tmp( m_url );
+
+    if ( tmp.fileName(false).isEmpty() )
+        tmp.setFileName( "index.html" );
+    KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
+}
+
+void ArticleViewer::slotStarted(KIO::Job *)
+{
+    widget()->setCursor( Qt::WaitCursor );
+}
+
+void ArticleViewer::slotCompleted()
+{
+    widget()->unsetCursor();
+}
+
+void ArticleViewer::slotScrollUp()
+{
+    view()->scrollBy(0,-10);
+}
+
+void ArticleViewer::slotScrollDown()
+{
+    view()->scrollBy(0,10);
+}
+
+void ArticleViewer::slotZoomIn()
+{
+    int zf = zoomFactor();
+    if (zf < 100)
+    {
+        zf = zf - (zf % 20) + 20;
+        setZoomFactor(zf);
+    }
+    else
+    {
+        zf = zf - (zf % 50) + 50;
+        setZoomFactor(zf < 300 ? zf : 300);
+    }
+}
+
+void ArticleViewer::slotZoomOut()
+{
+    int zf = zoomFactor();
+    if (zf <= 100)
+    {
+        zf = zf - (zf % 20) - 20;
+        setZoomFactor(zf > 20 ? zf : 20);
+    }
+    else
+    {
+        zf = zf - (zf % 50) - 50;
+        setZoomFactor(zf);
+    }
+}
+
+void ArticleViewer::slotSetZoomFactor(int percent)
+{
+    setZoomFactor(percent);
+}
+
+// some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
+void ArticleViewer::slotPrint( )
+{
+    view()->print();
+}
+
+
+void ArticleViewer::setSafeMode()
+{
+    setJScriptEnabled(false);
+    setJavaEnabled(false);
+    setMetaRefreshEnabled(false);
+    setPluginsEnabled(false);
+    setDNDEnabled(true);
+    setAutoloadImages(true);
+    setStatusMessagesEnabled(false);
+}
+
+void ArticleViewer::connectToNode(TreeNode* node)
+{
+    if (node)
+    {
+        if (m_viewMode == CombinedView)
+        {
+//            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+            connect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)));
+            connect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)));
+            connect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)));
+        }
+        if (m_viewMode == SummaryView)
+            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
+
+        connect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
+    }
+}
+
+void ArticleViewer::disconnectFromNode(TreeNode* node)
+{
+    if (node)
+    {
+//        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+        disconnect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
+        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
+        disconnect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)));
+        disconnect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)));
+        disconnect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)));
+
+    }
+}
+
 void ArticleViewer::generateNormalModeCSS()
 {
     const QPalette & pal = QApplication::palette();
@@ -197,64 +515,64 @@ void ArticleViewer::generateNormalModeCSS()
             .arg(pal.color( QPalette::Text ).name())
             .arg(pal.color( QPalette::Base ).name());
     m_normalModeCSS += (
-    "a {\n"
-    + QString("  color: %1 ! important;\n")
-    + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
-    +       "}\n\n"
-    +".headerbox {\n"
-    +"  background: %2 ! important;\n"
-    +"  color: %3 ! important;\n"
-    +"  border:1px solid #000;\n"
-    +"  margin-bottom: 10pt;\n"
+            "a {\n"
+            + QString("  color: %1 ! important;\n")
+            + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
+            +       "}\n\n"
+            +".headerbox {\n"
+            +"  background: %2 ! important;\n"
+            +"  color: %3 ! important;\n"
+            +"  border:1px solid #000;\n"
+            +"  margin-bottom: 10pt;\n"
 //    +"  width: 99%;\n"
-    +        "}\n\n")
+            +        "}\n\n")
             .arg(pal.color( QPalette::Link ).name())
             .arg(pal.color( QPalette::Background ).name())
             .arg(pal.color( QPalette::Text ).name());
 
     m_normalModeCSS += QString(".headertitle a:link { color: %1  ! important; }\n"
-    ".headertitle a:visited { color: %2 ! important; }\n"
-    ".headertitle a:hover{ color: %3 ! important; }\n"
+            ".headertitle a:visited { color: %2 ! important; }\n"
+            ".headertitle a:hover{ color: %3 ! important; }\n"
             ".headertitle a:active { color: %4 ! important; }\n")
             .arg(pal.color( QPalette::HighlightedText ).name())
             .arg(pal.color( QPalette::HighlightedText ).name())
             .arg(pal.color( QPalette::HighlightedText ).name())
             .arg(pal.color( QPalette::HighlightedText ).name());
     m_normalModeCSS += QString(
-    ".headertitle {\n"
-    "  background: %1 ! important;\n"
-    "  padding:2px;\n"
-    "  color: %2 ! important;\n"
-    "  font-weight: bold;\n"
-    "}\n\n"
-    ".header {\n"
-    "  font-weight: bold;\n"
-    "  padding:2px;\n"
-    "  margin-right: 5px;\n"
-    "}\n\n"
-    ".headertext {\n"
-    "}\n\n"
-    ".headimage {\n"
-    "  float: right;\n"
-    "  margin-left: 5px;\n"
+            ".headertitle {\n"
+            "  background: %1 ! important;\n"
+            "  padding:2px;\n"
+            "  color: %2 ! important;\n"
+            "  font-weight: bold;\n"
+            "}\n\n"
+            ".header {\n"
+            "  font-weight: bold;\n"
+            "  padding:2px;\n"
+            "  margin-right: 5px;\n"
+            "}\n\n"
+            ".headertext {\n"
+            "}\n\n"
+            ".headimage {\n"
+            "  float: right;\n"
+            "  margin-left: 5px;\n"
             "}\n\n").arg(pal.color( QPalette::Highlight ).name())
             .arg(pal.color( QPalette::HighlightedText ).name());
 
     m_normalModeCSS += QString(
-    "body { clear: none; }\n\n"
-    ".content {\n"
-    "  display: block;\n"
-    "  margin-bottom: 6px;\n"
+            "body { clear: none; }\n\n"
+            ".content {\n"
+            "  display: block;\n"
+            "  margin-bottom: 6px;\n"
             "}\n\n"
     // these rules make sure that there is no leading space between the header and the first of the text
-    ".content > P:first-child {\n margin-top: 1px; }\n"
-    ".content > DIV:first-child {\n margin-top: 1px; }\n"
-    ".content > BR:first-child {\n display: none;  }\n"
+            ".content > P:first-child {\n margin-top: 1px; }\n"
+            ".content > DIV:first-child {\n margin-top: 1px; }\n"
+            ".content > BR:first-child {\n display: none;  }\n"
     //".contentlink {\n display: block; }\n"
-    "}\n\n" // @media screen, print
+            "}\n\n" // @media screen, print
     // Why did we need that, bug #108187?
     //"@media screen { body { overflow: auto; } }\n"
-    "\n\n");
+            "\n\n");
 }
 
 void ArticleViewer::generateCombinedModeCSS()
@@ -275,120 +593,64 @@ void ArticleViewer::generateCombinedModeCSS()
             .arg(pal.color( QPalette::Text ).name())
             .arg(pal.color( QPalette::Base ).name());
     m_combinedModeCSS += (
-    "a {\n"
-    + QString("  color: %1 ! important;\n")
-    + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
-    +       "}\n\n"
-    +".headerbox {\n"
-    +"  background: %2 ! important;\n"
-    +"  color: %3 ! important;\n"
-    +"  border:1px solid #000;\n"
-    +"  margin-bottom: 10pt;\n"
+            "a {\n"
+            + QString("  color: %1 ! important;\n")
+            + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
+            +       "}\n\n"
+            +".headerbox {\n"
+            +"  background: %2 ! important;\n"
+            +"  color: %3 ! important;\n"
+            +"  border:1px solid #000;\n"
+            +"  margin-bottom: 10pt;\n"
 //    +"  width: 99%;\n"
-    +        "}\n\n")
+            +        "}\n\n")
             .arg( pal.color( QPalette::Link ).name())
             .arg( pal.color( QPalette::Background ).name())
             .arg( pal.color( QPalette::Text ).name());
 
     m_combinedModeCSS += QString(".headertitle a:link { color: %1  ! important; }\n"
-    ".headertitle a:visited { color: %2 ! important; }\n"
-    ".headertitle a:hover{ color: %3 ! important; }\n"
+            ".headertitle a:visited { color: %2 ! important; }\n"
+            ".headertitle a:hover{ color: %3 ! important; }\n"
             ".headertitle a:active { color: %4 ! important; }\n")
             .arg( pal.color( QPalette::HighlightedText ).name() )
             .arg( pal.color( QPalette::HighlightedText ).name() )
             .arg( pal.color( QPalette::HighlightedText ).name() )
             .arg( pal.color( QPalette::HighlightedText ).name() );
     m_combinedModeCSS += QString(
-    ".headertitle {\n"
-    "  background: %1 ! important;\n"
-    "  padding:2px;\n"
-    "  color: %2 ! important;\n"
-    "  font-weight: bold;\n"
-    "}\n\n"
-    ".header {\n"
-    "  font-weight: bold;\n"
-    "  padding:2px;\n"
-    "  margin-right: 5px;\n"
-    "}\n\n"
-    ".headertext {\n"
-    "}\n\n"
-    ".headimage {\n"
-    "  float: right;\n"
-    "  margin-left: 5px;\n"
+            ".headertitle {\n"
+            "  background: %1 ! important;\n"
+            "  padding:2px;\n"
+            "  color: %2 ! important;\n"
+            "  font-weight: bold;\n"
+            "}\n\n"
+            ".header {\n"
+            "  font-weight: bold;\n"
+            "  padding:2px;\n"
+            "  margin-right: 5px;\n"
+            "}\n\n"
+            ".headertext {\n"
+            "}\n\n"
+            ".headimage {\n"
+            "  float: right;\n"
+            "  margin-left: 5px;\n"
             "}\n\n").arg( pal.color( QPalette::Highlight ).name() )
             .arg( pal.color( QPalette::HighlightedText ).name() );
 
     m_combinedModeCSS += QString(
-    "body { clear: none; }\n\n"
-    ".content {\n"
-    "  display: block;\n"
-    "  margin-bottom: 6px;\n"
+            "body { clear: none; }\n\n"
+            ".content {\n"
+            "  display: block;\n"
+            "  margin-bottom: 6px;\n"
             "}\n\n"
     // these rules make sure that there is no leading space between the header and the first of the text
-    ".content > P:first-child {\n margin-top: 1px; }\n"
-    ".content > DIV:first-child {\n margin-top: 1px; }\n"
-    ".content > BR:first-child {\n display: none;  }\n"
+            ".content > P:first-child {\n margin-top: 1px; }\n"
+            ".content > DIV:first-child {\n margin-top: 1px; }\n"
+            ".content > BR:first-child {\n display: none;  }\n"
     //".contentlink {\n display: block; }\n"
-    "}\n\n" // @media screen, print
+            "}\n\n" // @media screen, print
     // Why did we need that, bug #108187?
     //"@media screen { body { overflow: auto; } }\n"
-    "\n\n");
-}
-
-void ArticleViewer::reload()
-{
-    beginWriting();
-    write(m_currentText);
-    endWriting();
-}
-
-bool ArticleViewer::openURL(const KUrl& url)
-{
-    if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
-    {
-        return Viewer::openURL(url);
-    }
-    else
-    {
-        reload();
-        return true;
-    }
-}
-
-void ArticleViewer::displayAboutPage()
-{
-    QString location = KStandardDirs::locate("data", "akregator/about/main.html");
-        
-    begin(KUrl::fromPath( location ));
-    QString info =
-            i18nc("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
-            "--- end of comment ---",
-    "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
-            "<p>Akregator is an RSS feed aggregator for the K Desktop Environment. "
-            "Feed aggregators provide a convenient way to browse different kinds of "
-            "content, including news, blogs, and other content from online sites. "
-            "Instead of checking all your favorite web sites manually for updates, "
-            "Akregator collects the content for you.</p>"
-            "<p>For more information about using Akregator, check the "
-            "<a href=\"%3\">Akregator website</a>. If you do not want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
-            "<p>We hope that you will enjoy Akregator.</p>\n"
-            "<p>Thank you,</p>\n"
-            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
-             AKREGATOR_VERSION, // Akregator version
-             "http://akregator.sourceforge.net/"); // Akregator homepage URL
-
-    QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
-    QString appTitle = i18n("Akregator");
-    QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
-    QString quickDescription = i18n("An RSS feed reader for the K Desktop Environment.");
-    
-    QString content = KPIM::kFileToByteArray(location);
-    
-    QString infocss = KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" );
-    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) : QString();
-    
-    write(content.arg(infocss).arg(rtl).arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
-    end();
+            "\n\n");
 }
 
 QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& article)
@@ -431,8 +693,6 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
 
-
-
     if (!article.description().isEmpty())
     {
         text += QString("<div dir=\"%1\">").arg(directionOf(Utils::stripTags(article.description())) );
@@ -463,7 +723,7 @@ QString ArticleViewer::formatArticleNormalMode(Feed* feed, const Article& articl
             text += article.link().url();
         }
         else
-         {
+        {
             text += article.guid();
         }
         text += "\">" + i18n( "Complete Story" ) + "</a></p>";
@@ -527,8 +787,6 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
 
-
-
     if (!article.description().isEmpty())
     {
         text += QString("<div dir=\"%1\">").arg(directionOf(Utils::stripTags(article.description())) );
@@ -559,7 +817,7 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
             text += article.link().url();
         }
         else
-         {
+        {
             text += article.guid();
         }
         text += "\">" + i18n( "Complete Story" ) + "</a></p>";
@@ -567,7 +825,6 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
     text += "</div>";
     //kDebug() << text << endl;
     return text;
-
 }
 
 void ArticleViewer::renderContent(const QString& text)
@@ -602,6 +859,7 @@ void ArticleViewer::endWriting()
     end();
 }
 
+
 void ArticleViewer::slotShowSummary(TreeNode* node)
 {
     m_viewMode = SummaryView;
@@ -633,6 +891,19 @@ void ArticleViewer::slotShowArticle(const Article& article)
         openURL(article.link());
     else
         renderContent( formatArticleNormalMode(article.feed(), article) );
+}
+
+bool ArticleViewer::openURL(const KUrl& url)
+{
+    if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
+    {
+        return KHTMLPart::openURL(url);
+    }
+    else
+    {
+        reload();
+        return true;
+    }
 }
 
 void ArticleViewer::slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter)
@@ -736,19 +1007,6 @@ void ArticleViewer::keyPressEvent(QKeyEvent* e)
     e->ignore();
 }
 
-void ArticleViewer::urlSelected(const QString &url, int button, int state, const QString& _target, KParts::URLArgs args)
-{
-    if(url == "config:/disable_introduction") {
-        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), i18n("Disable"), i18n("Keep Enabled") ) == KMessageBox::Yes) {
-            KConfig *conf = Settings::self()->config();
-            conf->setGroup("General");
-            conf->writeEntry("Disable Introduction", "true");
-        }
-    }
-    else
-        Viewer::urlSelected(url, button, state, _target, args);
-}
-
 void ArticleViewer::slotPaletteOrFontChanged()
 {
     generateNormalModeCSS();
@@ -756,38 +1014,50 @@ void ArticleViewer::slotPaletteOrFontChanged()
     reload();
 }
 
-void ArticleViewer::connectToNode(TreeNode* node)
+void ArticleViewer::reload()
 {
-    if (node)
-    {
-        if (m_viewMode == CombinedView)
-        {
-//            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-            connect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)));
-            connect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)));
-            connect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)));
-        }
-        if (m_viewMode == SummaryView)
-            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
-
-        connect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
-    }
+    beginWriting();
+    write(m_currentText);
+    endWriting();
 }
 
-void ArticleViewer::disconnectFromNode(TreeNode* node)
+void ArticleViewer::displayAboutPage()
 {
-    if (node)
-    {
-//        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-        disconnect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
-        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
-        disconnect( node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Article>&)));
-        disconnect( node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Article>&)));
-        disconnect( node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Article>&)));
+    QString location = KStandardDirs::locate("data", "akregator/about/main.html");
+        
+    begin(KUrl::fromPath( location ));
+    QString info =
+            i18nc("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
+            "--- end of comment ---",
+    "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
+            "<p>Akregator is an RSS feed aggregator for the K Desktop Environment. "
+            "Feed aggregators provide a convenient way to browse different kinds of "
+            "content, including news, blogs, and other content from online sites. "
+            "Instead of checking all your favorite web sites manually for updates, "
+            "Akregator collects the content for you.</p>"
+            "<p>For more information about using Akregator, check the "
+            "<a href=\"%3\">Akregator website</a>. If you do not want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
+            "<p>We hope that you will enjoy Akregator.</p>\n"
+            "<p>Thank you,</p>\n"
+            "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
+    AKREGATOR_VERSION, // Akregator version
+    "http://akregator.sourceforge.net/"); // Akregator homepage URL
 
-    }
+    QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
+    QString appTitle = i18n("Akregator");
+    QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
+    QString quickDescription = i18n("An RSS feed reader for the K Desktop Environment.");
+    
+    QString content = KPIM::kFileToByteArray(location);
+    
+    QString infocss = KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" );
+    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) : QString();
+    
+    write(content.arg(infocss).arg(rtl).arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
+    end();
 }
 
-}
+} // namespace Akregator
+
 #include "articleviewer.moc"
 

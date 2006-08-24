@@ -319,8 +319,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)),
             m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
-    connect( m_articleViewer, SIGNAL(urlClicked(const KUrl&, bool)),
-             this, SLOT(slotOpenTab(const KUrl&, bool)) );
+    connect( m_articleViewer, SIGNAL(signalOpenURLRequest(OpenURLRequest&)),
+             Kernel::self()->frameManager(), SLOT(slotOpenURLRequest(OpenURLRequest&)) );
 
     connect( m_articleViewer->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
              this, SLOT(slotMouseOverInfo(const KFileItem *)) );
@@ -462,7 +462,7 @@ void MainWidget::slotRequestNewFrame(int& frameId)
         
 void MainWidget::setTabIcon(const QPixmap& icon)
 {
-    Viewer* s = dynamic_cast<Viewer*>(sender());
+    ArticleViewer* s = dynamic_cast<ArticleViewer*>(sender());
     if (s)
     {
         m_tabWidget->setTabIcon(m_tabWidget->indexOf(s->widget()), icon);
