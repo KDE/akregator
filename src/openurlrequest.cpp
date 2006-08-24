@@ -27,7 +27,8 @@
 
 namespace Akregator {
 
-OpenURLRequest::OpenURLRequest() : m_frameId(-1), m_options(None), m_part(0L)
+OpenURLRequest::OpenURLRequest(const KUrl& url) : m_frameId(-1), m_url(url),
+     m_options(None), m_part(0L), m_inBackground(false)
 {
 }
 
@@ -50,7 +51,16 @@ void OpenURLRequest::setUrl(const KUrl& url)
 {
     m_url = url;
 }
-    
+bool OpenURLRequest::openInBackground() const
+{
+    return m_inBackground;
+}
+
+void OpenURLRequest::setOpenInBackground(bool background)
+{
+    m_inBackground = background;
+}
+          
 const KParts::URLArgs& OpenURLRequest::args() const
 {
     return m_args;

@@ -103,6 +103,7 @@ void BrowserFrame::slotSetIconURL(const KUrl& /*url*/)
 void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
 }
+
 void BrowserFrame::slotPopupMenu(KXMLGUIClient* client, 
                    const QPoint& global, 
                    const KUrl& url,
@@ -112,12 +113,14 @@ void BrowserFrame::slotPopupMenu(KXMLGUIClient* client,
 {
     const bool showReload = (flags & KParts::BrowserExtension::ShowReload) != 0;
     const bool showNavigationItems = (flags & KParts::BrowserExtension::ShowNavigationItems) != 0;
-    const bool isLink = (flags & (KParts::BrowserExtension::ShowNavigationItems | KParts::BrowserExtension::ShowTextSelectionItems)) == 0;
+    const bool isLink = (flags & KParts::BrowserExtension:: IsLink) != 0;
     const bool isSelection = (flags & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
         
-    KMenu popup(d->part->widget());
     bool isFirst = true;
     
+    KMenu popup(d->part->widget());
+    
+    /*    
     if (showNavigationItems)
     {
         popup.addAction(ActionManager::getInstance()->action("browser_back"));
@@ -132,18 +135,26 @@ void BrowserFrame::slotPopupMenu(KXMLGUIClient* client,
     
     if (isLink)
     {
+        if (!isFirst)
+            popup.addSeparator();
         // open link in new tab
         // ext browser
-        // sep
+        popup.addSeparator();
+        popup.addAction(d->part->action("savelinkas"));
         // save link as
         // copy link address
+        isFirst = false;
     }
     
     if (isSelection)
     {
-        popup.addAction(d->part->action("copy"));
-    }
+        if (!isFirst)
+            popup.addSeparator();
     
+        popup.addAction(d->part->action("copy"));
+        isFirst = false;
+    }
+    */
     popup.exec(global);
 }
                    

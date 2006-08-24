@@ -101,6 +101,7 @@ class FrameManager : public QObject
     protected:
         
         void openURL(OpenURLRequest& request);
+        
         void openInExternalBrowser(const OpenURLRequest& request);
         
     protected slots:

@@ -249,7 +249,10 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
     protected:
 
         void sendArticle(bool attach=false);
-
+        
+        void openURLDefault(const KUrl& url);
+        void openArticleLink(const Article& article, bool background=false);
+                
         void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
 
         void connectToFeedList(FeedList* feedList);
@@ -264,9 +267,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void delayedInit();
 
         void setTabIcon(const QPixmap&);
-
-        /** Display article in external browser. */
-        void displayInExternalBrowser(const KUrl &url);
 
         void slotDoIntervalFetches();
         void slotDeleteExpiredArticles();

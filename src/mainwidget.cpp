@@ -427,7 +427,11 @@ void MainWidget::saveSettings()
 
 void MainWidget::slotOpenTab(const KUrl& url, bool background)
 {
-    
+    OpenURLRequest req(url);
+    req.setOptions(OpenURLRequest::NewTab);
+    req.setOpenInBackground(background);
+    Kernel::self()->frameManager()->slotOpenURLRequest(req);
+    /*
     BrowserFrame* frame = new BrowserFrame(m_tabWidget);
     
     connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
@@ -439,10 +443,10 @@ void MainWidget::slotOpenTab(const KUrl& url, bool background)
     else
         setFocus();
 
-    OpenURLRequest request;
-    request.setUrl(url);
+    OpenURLRequest request(url);
     request.setFrameId(frame->id());
     Kernel::self()->frameManager()->slotOpenURLRequest(request);
+    */
 }
 
 void MainWidget::slotRequestNewFrame(int& frameId)
@@ -953,50 +957,39 @@ void MainWidget::slotMarkAllRead()
     m_listTabWidget->activeView()->selectedNode()->slotMarkAllArticlesAsRead();
 }
 
+
+void MainWidget::openURLDefault(const KUrl& url)
+{
+    OpenURLRequest req(url);
+    
+    switch (Settings::lMBBehaviour())
+    {
+        case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
+            req.setOptions(OpenURLRequest::ExternalBrowser);
+            break;
+        case Settings::EnumLMBBehaviour::OpenInBackground:
+            req.setOptions(OpenURLRequest::NewTab);
+            req.setOpenInBackground(true);
+            break;
+        default:
+            req.setOptions(OpenURLRequest::NewTab);
+            req.setOpenInBackground(false);
+    }
+    
+    Kernel::self()->frameManager()->slotOpenURLRequest(req);
+}
+
 void MainWidget::slotOpenHomepage()
 {
     Feed* feed = dynamic_cast<Feed *>(m_listTabWidget->activeView()->selectedNode());
 
-    if (!feed)
-        return;
-
-    switch (Settings::lMBBehaviour())
-    {
-        case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-            displayInExternalBrowser(feed->htmlUrl());
-            break;
-        case Settings::EnumLMBBehaviour::OpenInBackground:
-            slotOpenTab(feed->htmlUrl(), true);
-            break;
-        default:
-            slotOpenTab(feed->htmlUrl(), false);
-    }
+    if (feed)
+        openURLDefault(feed->htmlUrl());
 }
 
 void MainWidget::slotSetTotalUnread()
 {
     emit signalUnreadCountChanged( m_feedList->rootNode()->unread() );
-}
-
-/**
-* Display article in external browser.
-*/
-void MainWidget::displayInExternalBrowser(const KUrl &url)
-{
-    if (!url.isValid()) return;
-    if (Settings::externalBrowserUseKdeDefault())
-        KToolInvocation::invokeBrowser(url.url(), "0");
-    else
-    {
-        QString cmd = Settings::externalBrowserCustomCommand();
-        QString urlStr = url.url();
-        cmd.replace(QRegExp("%u"), urlStr);
-        KProcess *proc = new KProcess;
-        QStringList cmdAndArgs = KShell::splitArgs(cmd);
-        *proc << cmdAndArgs;
-        proc->start(KProcess::DontCare);
-        delete proc;
-    }
 }
 
 void MainWidget::slotDoIntervalFetches()
@@ -1050,23 +1043,31 @@ void MainWidget::slotFeedFetched(Feed *feed)
 
 void MainWidget::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
 {
-    if (article.isNull())
+    if (article.isNull() || button != Qt::MidButton)
         return;
-
-    if (button == Qt::MidButton)
+    
+    KUrl url = article.link();
+    
+    if (!url.isValid())
+        return;
+    
+    OpenURLRequest req(url);
+    
+    switch (Settings::mMBBehaviour())
     {
-        switch (Settings::mMBBehaviour())
-        {
-            case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-                displayInExternalBrowser(article.link());
-                break;
-            case Settings::EnumMMBBehaviour::OpenInBackground:
-                slotOpenTab(article.link(),true);
-                break;
-            default:
-                slotOpenTab(article.link());
-        }
+        case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+            req.setOptions(OpenURLRequest::ExternalBrowser);
+            break;
+        case Settings::EnumMMBBehaviour::OpenInBackground:
+            req.setOptions(OpenURLRequest::NewTab);
+            req.setOpenInBackground(true);
+            break;
+        default:
+            req.setOptions(OpenURLRequest::NewTab);
+            req.setOpenInBackground(false);
     }
+    
+    Kernel::self()->frameManager()->slotOpenURLRequest(req);
 }
 
 void MainWidget::slotAssignTag(const Tag& tag, bool assign)
@@ -1154,27 +1155,32 @@ void MainWidget::slotArticleSelected(const Article& article)
 
 void MainWidget::slotOpenArticleExternal(const Article& article, const QPoint&, int)
 {
-    if (!article.isNull())
-        displayInExternalBrowser(article.link());
+    if (!article.isNull() && article.link().isValid())
+    {
+        OpenURLRequest req(article.link());
+        req.setOptions(OpenURLRequest::ExternalBrowser);
+        Kernel::self()->frameManager()->slotOpenURLRequest(req);
+    }
 }
 
 
 void MainWidget::slotOpenCurrentArticle()
 {
-    Article article = m_articleList->currentArticle();
+    openArticleLink(m_articleList->currentArticle(), false);
+}
 
+void MainWidget::openArticleLink(const Article& article, bool background)
+{
     if (article.isNull())
         return;
 
-    QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
+    KUrl url = article.link(); 
+    
+    if (url.isValid())
     {
-        // in case link isn't valid, fall back to the guid permaLink.
-        if (article.link().isValid())
-            link = article.link().url();
-        else
-            link = article.guid();
-        slotOpenTab(link, false);
+        OpenURLRequest req(url);
+        req.setOpenInBackground(background);
+        Kernel::self()->frameManager()->slotOpenURLRequest(req);
     }
 }
 
@@ -1185,21 +1191,7 @@ void MainWidget::slotOpenCurrentArticleExternal()
 
 void MainWidget::slotOpenCurrentArticleBackgroundTab()
 {
-    Article article = m_articleList->currentArticle();
-
-    if (article.isNull())
-        return;
-
-    QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
-    {
-        // in case link isn't valid, fall back to the guid permaLink.
-        if (article.link().isValid())
-            link = article.link().url();
-        else
-            link = article.guid();
-        slotOpenTab(link, true);
-    }
+    openArticleLink(m_articleList->currentArticle(), true);
 }
 
 void MainWidget::slotCopyLinkAddress()
@@ -1210,13 +1202,9 @@ void MainWidget::slotCopyLinkAddress()
        return;
 
     QString link;
-    if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
+    if (article.link().isValid())
     {
-        // in case link isn't valid, fall back to the guid permaLink.
-        if (article.link().isValid())
-            link = article.link().url();
-        else
-            link = article.guid();
+        link = article.link().url();
         QClipboard *cb = QApplication::clipboard();
         cb->setText(link, QClipboard::Clipboard);
         cb->setText(link, QClipboard::Selection);

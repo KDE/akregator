@@ -27,7 +27,7 @@
 
 #include <kparts/browserextension.h>
 
-class KUrl;
+#include <kurl.h>
 
 namespace KParts
 {
@@ -54,7 +54,7 @@ class OpenURLRequest
             ExternalBrowser /**< open in external browser */
         };
         
-        OpenURLRequest();
+        OpenURLRequest(const KUrl& url=KUrl());
 
         /**
          * the Id of the frame that sent the request */  
@@ -69,6 +69,9 @@ class OpenURLRequest
 
         Options options() const;
         void setOptions(Options options);
+        
+        bool openInBackground() const;
+        void setOpenInBackground(bool background);
         
         /**
          * The part that was created for a "NewTab" request.
@@ -91,6 +94,7 @@ class OpenURLRequest
         KParts::URLArgs m_args;
         Options m_options;
         KParts::ReadOnlyPart* m_part;
+        bool m_inBackground;
 };
 
 } // namespace Akregator
