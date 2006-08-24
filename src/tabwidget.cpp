@@ -132,6 +132,14 @@ void TabWidget::slotSelectFrame(int frameId)
     if (frame && frame != currentFrame())
     {
         setCurrentWidget(frame);
+        if (frame->part() && frame->part()->widget())
+        {
+            frame->part()->widget()->setFocus();
+        }
+        else
+        {
+            frame->setFocus();
+        }
     }
 }
 

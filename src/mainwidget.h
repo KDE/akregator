@@ -163,11 +163,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         */
         void slotCopyLinkAddress();
 
-        /** opens a page viewer in a new tab and loads an URL
-            @param url the url to load
-            @param background whether the tab should be opened in the background or in the foreground (activated after creation) */
-        void slotOpenTab(const KUrl& url, bool background = false);
-
         void slotRequestNewFrame(int& frameId);
         
         /** called when another part/frame is activated. Updates progress bar, caption etc. accordingly

@@ -79,6 +79,8 @@ class FrameManager : public QObject
 
         void signalRequestNewFrame(int& id);
         
+        void signalSelectFrame(int id);
+        
         // TODO: merge signals
         /** emitted when the active frame is switched */
         void signalCurrentFrameChanged(Frame*);

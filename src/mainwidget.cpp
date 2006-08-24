@@ -257,7 +257,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     connect( m_tabWidget, SIGNAL(signalCurrentFrameChanged(int)),     
              Kernel::self()->frameManager(), SLOT(slotChangeFrame(int)));
-    
+
     connect( m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
              Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
     
@@ -266,6 +266,9 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Frame*)),
              m_tabWidget, SLOT(slotAddFrame(Frame*)));
+    
+    connect( Kernel::self()->frameManager(), SIGNAL(signalSelectFrame(int)), 
+             m_tabWidget, SLOT(slotSelectFrame(int)) );
     
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
              m_tabWidget, SLOT(slotRemoveFrame(int)));
@@ -425,29 +428,6 @@ void MainWidget::saveSettings()
     Settings::writeConfig();
 }
 
-void MainWidget::slotOpenTab(const KUrl& url, bool background)
-{
-    OpenURLRequest req(url);
-    req.setOptions(OpenURLRequest::NewTab);
-    req.setOpenInBackground(background);
-    Kernel::self()->frameManager()->slotOpenURLRequest(req);
-    /*
-    BrowserFrame* frame = new BrowserFrame(m_tabWidget);
-    
-    connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
-
-    Kernel::self()->frameManager()->slotAddFrame(frame);
-    
-    if(!background)
-        m_tabWidget->setCurrentIndex( m_tabWidget->indexOf(frame) );
-    else
-        setFocus();
-
-    OpenURLRequest request(url);
-    request.setFrameId(frame->id());
-    Kernel::self()->frameManager()->slotOpenURLRequest(request);
-    */
-}
 
 void MainWidget::slotRequestNewFrame(int& frameId)
 {

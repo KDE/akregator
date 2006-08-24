@@ -242,6 +242,9 @@ void FrameManager::openURL(OpenURLRequest& request)
         if (frame->part())
             request.setPart(frame->part());
     }
+    
+    if (!request.openInBackground())
+        emit signalSelectFrame(request.frameId());
 }
 void FrameManager::openInExternalBrowser(const OpenURLRequest& request)
 {
