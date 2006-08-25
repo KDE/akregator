@@ -106,9 +106,9 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         bool loadFeeds(const QDomDocument& doc, Folder* parent = 0);
 
         /**
-            @return the displayed Feed List in OPML format
-            */
-            QDomDocument feedListToOPML();
+         * @return the displayed Feed List in OPML format
+         */
+        QDomDocument feedListToOPML();
 
         /**
             Add a feed to a group.
@@ -241,7 +241,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
 
         void sendArticle(bool attach=false);
         
-        void openURLDefault(const KUrl& url);
         void openArticleLink(const Article& article, bool background=false);
                 
         void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);

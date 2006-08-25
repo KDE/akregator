@@ -925,28 +925,6 @@ void MainWidget::slotMarkAllRead()
     m_listTabWidget->activeView()->selectedNode()->slotMarkAllArticlesAsRead();
 }
 
-
-void MainWidget::openURLDefault(const KUrl& url)
-{
-    OpenURLRequest req(url);
-    
-    switch (Settings::lMBBehaviour())
-    {
-        case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenURLRequest::ExternalBrowser);
-            break;
-        case Settings::EnumLMBBehaviour::OpenInBackground:
-            req.setOptions(OpenURLRequest::NewTab);
-            req.setOpenInBackground(true);
-            break;
-        default:
-            req.setOptions(OpenURLRequest::NewTab);
-            req.setOpenInBackground(false);
-    }
-    
-    Kernel::self()->frameManager()->slotOpenURLRequest(req);
-}
-
 void MainWidget::slotOpenHomepage()
 {
     Feed* feed = dynamic_cast<Feed *>(m_listTabWidget->activeView()->selectedNode());
