@@ -291,7 +291,6 @@ void ArticleViewer::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URL
                 req.setOpenInBackground(true);
                 break;
             default:
-                slotOpenLinkInForegroundTab();
                 break;
         }
     }

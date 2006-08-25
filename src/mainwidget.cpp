@@ -273,9 +273,6 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
              m_tabWidget, SLOT(slotRemoveFrame(int)));
     
-    connect( Kernel::self()->frameManager(), SIGNAL(signalCurrentFrameChanged(Frame*)), 
-             this, SLOT( slotFrameChanged(Frame *) ) );
-
     connect( Kernel::self()->frameManager(), SIGNAL(signalRequestNewFrame(int&)),
              this, SLOT( slotRequestNewFrame(int&) ) );
 
@@ -395,8 +392,8 @@ void MainWidget::delayedInit()
 
 void MainWidget::slotOnShutdown()
 {
-    m_shuttingDown = true; // prevents slotFrameChanged from crashing
-
+    m_shuttingDown = true;
+    
     m_articleList->slotShowNode(0);
     m_articleViewer->slotShowNode(0);
 
@@ -667,15 +664,6 @@ void MainWidget::slotCombinedView()
 
     slotNodeSelected(m_listTabWidget->activeView()->selectedNode());
     Settings::setViewMode( m_viewMode );
-}
-
-void MainWidget::slotFrameChanged(Frame* frame)
-{
-    if (m_shuttingDown)
-        return;
-    
-    if (frame)
-        frame->setFocus();
 }
 
 void MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const QPoint& /*p*/)
@@ -963,8 +951,17 @@ void MainWidget::slotOpenHomepage()
 {
     Feed* feed = dynamic_cast<Feed *>(m_listTabWidget->activeView()->selectedNode());
 
-    if (feed)
-        openURLDefault(feed->htmlUrl());
+    if (!feed)
+        return;
+    
+    KUrl url(feed->htmlUrl());
+    
+    if (url.isValid())
+    {
+        OpenURLRequest req(feed->htmlUrl());
+        req.setOptions(OpenURLRequest::ExternalBrowser);
+        Kernel::self()->frameManager()->slotOpenURLRequest(req);
+    }
 }
 
 void MainWidget::slotSetTotalUnread()

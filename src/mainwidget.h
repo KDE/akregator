@@ -125,7 +125,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
     signals:
         /** emitted when the unread count of "All Feeds" was changed */
         void signalUnreadCountChanged(int);
-
+        
     public slots:
 
         void slotOnShutdown();
@@ -165,10 +165,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
 
         void slotRequestNewFrame(int& frameId);
         
-        /** called when another part/frame is activated. Updates progress bar, caption etc. accordingly
-        @param f the activated frame */
-        void slotFrameChanged(Frame *f);
-
         /** called when URLs are dropped into the tree view */
         void slotFeedURLDropped (KUrl::List &urls, TreeNode* after, Folder *parent);
 
