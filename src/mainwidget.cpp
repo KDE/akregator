@@ -309,6 +309,9 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_articleList, SIGNAL(signalDoubleClicked(const Article&, const QPoint&, int)),
              this, SLOT( slotOpenArticleInBrowser(const Article&)) );
 
+    connect( m_part, SIGNAL(signalSettingsChanged()), 
+             m_articleList, SLOT(slotPaletteOrFontChanged()));
+    
     m_articleViewer = new ArticleViewer(m_articleSplitter);
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
 

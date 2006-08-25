@@ -85,6 +85,8 @@ class AKREGATOR_EXPORT ArticleListView : public K3ListView
         /** selects next unread article in list view, first unread article if no article was selected */
         void slotNextUnreadArticle();
 
+        void slotPaletteOrFontChanged();
+        
     signals:
         void signalArticleChosen(const Article& article);
         void signalDoubleClicked(const Article&, const QPoint&, int);

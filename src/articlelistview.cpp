@@ -181,9 +181,11 @@ void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup &
         QColorGroup cg2(cg);
 
         if (article().status() == Article::Unread)
-            cg2.setColor(QPalette::Text, Qt::blue);
+            cg2.setColor(QColorGroup::Text, Settings::useCustomColors() ?
+                    Settings::colorUnreadArticles() : Qt::blue);
         else // New
-            cg2.setColor(QPalette::Text, Qt::red);
+            cg2.setColor(QColorGroup::Text, Settings::useCustomColors() ?
+                    Settings::colorNewArticles() : Qt::red);
 
         K3ListViewItem::paintCell( p, cg2, column, width, align );
     }
@@ -296,7 +298,11 @@ void ArticleListView::slotSetFilter(const Akregator::Filters::ArticleMatcher& te
         applyFilters();
     }
 }
-
+void ArticleListView::slotPaletteOrFontChanged()
+{
+    triggerUpdate();
+}
+        
 void ArticleListView::slotShowNode(TreeNode* node)
 {
     if (node == d->node)
