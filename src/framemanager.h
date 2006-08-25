@@ -80,17 +80,12 @@ class FrameManager : public QObject
         void signalRequestNewFrame(int& id);
         
         void signalSelectFrame(int id);
-        
-        // TODO: merge signals
-        /** emitted when the active frame is switched */
-        void signalCurrentFrameChanged(Frame*);
-
         /** 
          * emitted when the active frame is switched
-         * @param f1 the the deactivated frame
-         * @param f2 the activated frame
+         * @param deactivated the the deactivated frame
+         * @param activated the activated frame
          */
-        void signalCurrentFrameChanged(Frame* f1, Frame* f2);
+        void signalCurrentFrameChanged(Frame* deactivated, Frame* activated);
 
         void signalStarted();
         void signalCanceled(const QString&);

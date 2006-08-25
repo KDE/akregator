@@ -343,12 +343,11 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action = new KAction(KIcon("tab_new"),  i18n("Open in Tab"), actionCollection(), "article_open" );
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticle()));
     action->setShortcut(KShortcut( "Shift+Return" ));
-    action = new KAction( i18n("Open in Background Tab"), actionCollection(), "article_open_background_tab" );
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleBackgroundTab()));
-    action->setShortcut(KShortcut( "tab_new" ));
+    
     action = new KAction(KIcon("window_new"),  i18n("Open in External Browser"), actionCollection(), "article_open_external" );
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleExternal()));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleInBrowser()));
     action->setShortcut(KShortcut( "Ctrl+Shift+Return" ));
+    
     action = new KAction( i18n("Copy Link Address"), actionCollection(), "article_copy_link_address" );
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCopyLinkAddress()));
 

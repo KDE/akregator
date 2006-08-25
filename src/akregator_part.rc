@@ -118,7 +118,6 @@
 <Action name="feedstree_move_left"/>
 <Action name="feedstree_move_right"/>
 <Action name="article_open_in_tab"/>
-<Action name="article_open_background_tab"/>
 <Action name="article_open"/>
 <Action name="select_previous_tab"/>
 <Action name="select_next_tab"/>

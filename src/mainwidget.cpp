@@ -307,7 +307,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_articleList, SIGNAL(signalArticleChosen(const Article&)),
              this, SLOT( slotArticleSelected(const Article&)) );
     connect( m_articleList, SIGNAL(signalDoubleClicked(const Article&, const QPoint&, int)),
-             this, SLOT( slotOpenArticleExternal(const Article&, const QPoint&, int)) );
+             this, SLOT( slotOpenArticleInBrowser(const Article&)) );
 
     m_articleViewer = new ArticleViewer(m_articleSplitter);
     m_articleViewer->setSafeMode();  // disable JS, Java, etc...
@@ -925,23 +925,6 @@ void MainWidget::slotMarkAllRead()
     m_listTabWidget->activeView()->selectedNode()->slotMarkAllArticlesAsRead();
 }
 
-void MainWidget::slotOpenHomepage()
-{
-    Feed* feed = dynamic_cast<Feed *>(m_listTabWidget->activeView()->selectedNode());
-
-    if (!feed)
-        return;
-    
-    KUrl url(feed->htmlUrl());
-    
-    if (url.isValid())
-    {
-        OpenURLRequest req(feed->htmlUrl());
-        req.setOptions(OpenURLRequest::ExternalBrowser);
-        Kernel::self()->frameManager()->slotOpenURLRequest(req);
-    }
-}
-
 void MainWidget::slotSetTotalUnread()
 {
     emit signalUnreadCountChanged( m_feedList->rootNode()->unread() );
@@ -994,35 +977,6 @@ void MainWidget::slotFeedFetched(Feed *feed)
             }
         }
     }
-}
-
-void MainWidget::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
-{
-    if (article.isNull() || button != Qt::MidButton)
-        return;
-    
-    KUrl url = article.link();
-    
-    if (!url.isValid())
-        return;
-    
-    OpenURLRequest req(url);
-    
-    switch (Settings::mMBBehaviour())
-    {
-        case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenURLRequest::ExternalBrowser);
-            break;
-        case Settings::EnumMMBBehaviour::OpenInBackground:
-            req.setOptions(OpenURLRequest::NewTab);
-            req.setOpenInBackground(true);
-            break;
-        default:
-            req.setOptions(OpenURLRequest::NewTab);
-            req.setOpenInBackground(false);
-    }
-    
-    Kernel::self()->frameManager()->slotOpenURLRequest(req);
 }
 
 void MainWidget::slotAssignTag(const Tag& tag, bool assign)
@@ -1108,7 +1062,58 @@ void MainWidget::slotArticleSelected(const Article& article)
     m_articleViewer->slotShowArticle(a);
 }
 
-void MainWidget::slotOpenArticleExternal(const Article& article, const QPoint&, int)
+void MainWidget::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
+{
+    if (article.isNull() || button != Qt::MidButton)
+        return;
+    
+    KUrl url = article.link();
+    
+    if (!url.isValid())
+        return;
+    
+    OpenURLRequest req(url);
+    
+    switch (Settings::mMBBehaviour())
+    {
+        case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
+            req.setOptions(OpenURLRequest::ExternalBrowser);
+            break;
+        case Settings::EnumMMBBehaviour::OpenInBackground:
+            req.setOptions(OpenURLRequest::NewTab);
+            req.setOpenInBackground(true);
+            break;
+        default:
+            req.setOptions(OpenURLRequest::NewTab);
+            req.setOpenInBackground(false);
+    }
+    
+    Kernel::self()->frameManager()->slotOpenURLRequest(req);
+}
+
+void MainWidget::slotOpenHomepage()
+{
+    Feed* feed = dynamic_cast<Feed *>(m_listTabWidget->activeView()->selectedNode());
+
+    if (!feed)
+        return;
+    
+    KUrl url(feed->htmlUrl());
+    
+    if (url.isValid())
+    {
+        OpenURLRequest req(feed->htmlUrl());
+        req.setOptions(OpenURLRequest::ExternalBrowser);
+        Kernel::self()->frameManager()->slotOpenURLRequest(req);
+    }
+}
+
+void MainWidget::slotOpenCurrentArticleInBrowser()
+{
+    slotOpenArticleInBrowser(m_articleList->currentArticle());
+}
+
+void MainWidget::slotOpenArticleInBrowser(const Article& article)
 {
     if (!article.isNull() && article.link().isValid())
     {
@@ -1121,11 +1126,8 @@ void MainWidget::slotOpenArticleExternal(const Article& article, const QPoint&, 
 
 void MainWidget::slotOpenCurrentArticle()
 {
-    openArticleLink(m_articleList->currentArticle(), false);
-}
-
-void MainWidget::openArticleLink(const Article& article, bool background)
-{
+    Article article = m_articleList->currentArticle();
+    
     if (article.isNull())
         return;
 
@@ -1134,19 +1136,10 @@ void MainWidget::openArticleLink(const Article& article, bool background)
     if (url.isValid())
     {
         OpenURLRequest req(url);
-        req.setOpenInBackground(background);
+        // TODO: (re-)add a setting for foreground/background
+        // and use it here
         Kernel::self()->frameManager()->slotOpenURLRequest(req);
     }
-}
-
-void MainWidget::slotOpenCurrentArticleExternal()
-{
-    slotOpenArticleExternal(m_articleList->currentArticle(), QPoint(), 0);
-}
-
-void MainWidget::slotOpenCurrentArticleBackgroundTab()
-{
-    openArticleLink(m_articleList->currentArticle(), true);
 }
 
 void MainWidget::slotCopyLinkAddress()

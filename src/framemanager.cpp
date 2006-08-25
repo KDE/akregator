@@ -156,7 +156,6 @@ void FrameManager::slotChangeFrame(int frameId)
         emit signalStatusText(QString::null);
     }
 
-    emit signalCurrentFrameChanged(frame);
     emit signalCurrentFrameChanged(oldFrame, frame);
 }
 

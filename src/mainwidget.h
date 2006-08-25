@@ -111,11 +111,12 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         QDomDocument feedListToOPML();
 
         /**
-            Add a feed to a group.
-            @param url The URL of the feed to add.
-            @param group The name of the folder into which the feed is added.
-            If the group does not exist, it is created.  The feed is added as the last member of the group.
-            */
+         * Add a feed to a group.
+         * @param url The URL of the feed to add.
+         * @param group The name of the folder into which the feed is added.
+         * If the group does not exist, it is created. 
+         * The feed is added as the last member of the group.
+         */
         void addFeedToGroup(const QString& url, const QString& group);
 
         /** session management **/
@@ -127,6 +128,13 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void signalUnreadCountChanged(int);
         
     public slots:
+        
+        /** opens the current article (currentItem) in external browser
+        TODO: use selected instead of current? */
+        void slotOpenCurrentArticleInBrowser();
+
+        /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
+        void slotOpenCurrentArticle();
 
         void slotOnShutdown();
 
@@ -141,23 +149,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
 
         /** emits @ref signalUnreadCountChanged(int) */
         void slotSetTotalUnread();
-
-        /** special behaviour in article list view (TODO: move code there?) */
-        void slotMouseButtonPressed(int button, const Article& article, const QPoint & pos, int c);
-
-        /** opens article of @c item in external browser */
-        void slotOpenArticleExternal(const Article& article, const QPoint&, int);
-
-        /** opens the current article (currentItem) in external browser
-        TODO: use selected instead of current? */
-        void slotOpenCurrentArticleExternal();
-
-        /** opens the current article (currentItem) in background tab
-        TODO: use selected instead of current? */
-        void slotOpenCurrentArticleBackgroundTab();
-
-        /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
-        void slotOpenCurrentArticle();
 
         /** copies the link of current article to clipboard
         */
@@ -241,8 +232,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
 
         void sendArticle(bool attach=false);
         
-        void openArticleLink(const Article& article, bool background=false);
-                
         void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
 
         void connectToFeedList(FeedList* feedList);
@@ -251,6 +240,12 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void updateTagActions();
 
     protected slots:
+
+        /** special behaviour in article list view (TODO: move code there?) */
+        void slotMouseButtonPressed(int button, const Article& article, const QPoint & pos, int c);
+
+        /** opens the link of an article in the external browser */
+        void slotOpenArticleInBrowser(const Article& article);
 
         /** this is called by the ctor, does init steps which need a properly created view and part */
 
