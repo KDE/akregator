@@ -819,6 +819,8 @@ void View::slotNodeSelected(TreeNode* node)
         m_articleViewer->slotShowSummary(node);
     }
 
+    m_mainFrame->setCaption(node->title());
+
     m_actionManager->slotNodeSelected(node);
 
     updateTagActions();
