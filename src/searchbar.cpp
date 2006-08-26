@@ -67,17 +67,13 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     setMargin(2);
     setSpacing(5);
     setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
-    QToolButton *clearButton = new QToolButton(this);
-    clearButton->setIcon( QIcon(QApplication::isRightToLeft() ? "clear_left" : "locationbar_erase") );
-
-    clearButton->setAutoRaise(true);
 
     QLabel* searchLabel = new QLabel(this);
     searchLabel->setText( i18n("S&earch:") );
 
     d->searchLine = new KLineEdit(this);
-    d->searchLine->setObjectName("searchline");
-
+    d->searchLine->setClearButtonShown(true);
+    
     connect(d->searchLine, SIGNAL(textChanged(const QString &)),
                         this, SLOT(slotSearchStringChanged(const QString &)));
 
@@ -87,7 +83,6 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     statusLabel->setText( i18n("Status:") );
 
     d->searchCombo = new KComboBox(this);
-    d->searchCombo->setObjectName("searchcombo");
 
     QIcon iconAll = KGlobal::iconLoader()->loadIcon("exec", K3Icon::Small);
     QIcon iconNew(KStandardDirs::locate("data", "akregator/pics/kmmsgnew.png"));
@@ -99,12 +94,8 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     d->searchCombo->addItem(iconNew, i18n("New"));
     d->searchCombo->addItem(iconKeep, i18n("Important"));
     
-    clearButton->setToolTip( i18n( "Clear filter" ) );
     d->searchLine->setToolTip( i18n( "Enter space-separated terms to filter article list" ) );
     d->searchCombo->setToolTip( i18n( "Choose what kind of articles to show in article list" ) );
-
-    connect(clearButton, SIGNAL( clicked() ),
-                    this, SLOT(slotClearSearch()) );
 
     connect(d->searchCombo, SIGNAL(activated(int)),
                         this, SLOT(slotSearchComboChanged(int)));
