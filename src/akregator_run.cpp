@@ -31,7 +31,7 @@ namespace Akregator {
 
 
 BrowserRun::BrowserRun(QWidget* mainWindow, Viewer* currentViewer, const KURL& url, const KParts::URLArgs& args, OpeningMode mode)
-    : KParts::BrowserRun(url, args, 0L, mainWindow, false, true)
+    : KParts::BrowserRun(url, args, 0L, mainWindow, false, false, true)
 {
     m_currentViewer = currentViewer;
     m_openingMode = mode;
