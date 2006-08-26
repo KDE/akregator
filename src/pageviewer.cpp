@@ -175,7 +175,7 @@ void PageViewer::slotBack()
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
 void PageViewer::slotForward()
 {
-    if (  d->current != d->history.fromLast() )
+    if ( d->current != d->history.fromLast() && d->current != d->history.end() )
     {
         QValueList<HistoryEntry>::Iterator tmp = d->current;
         ++tmp;
