@@ -31,7 +31,7 @@
 namespace Akregator {
 
 BrowserRun::BrowserRun(const OpenURLRequest& request, QWidget* parent)
-    : KParts::BrowserRun(request.url(), request.args(), 0L, parent, false, true), m_request(request)
+    : KParts::BrowserRun(request.url(), request.args(), 0L, parent, false, false, true), m_request(request)
 {
     setEnableExternalBrowser(false);
 }
