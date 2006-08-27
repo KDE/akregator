@@ -7,6 +7,8 @@ Changes after 1.2.4:
 
 Bug fixes:
 
+ 2006/08/28 Do not create multiple items in the feed lists when dragging feeds to a folder
+            that was moved before (#124303) -fo
  2006/08/26 Fix a possible crash in the internal browser when going forward -fo
  2006/08/26 show error messages while browsing as HTML, not as annoying popups (#107740) -fo
  2006/08/25 Show title of selected feed in window caption (#111471) -fo
