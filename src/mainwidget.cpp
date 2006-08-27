@@ -771,7 +771,8 @@ void MainWidget::slotNodeSelected(TreeNode* node)
     
     m_mainFrame->setCaption(node->title());
             
-    m_actionManager->slotNodeSelected(node);
+    if (node)
+        m_actionManager->slotNodeSelected(node);
 
     updateTagActions();
 }
