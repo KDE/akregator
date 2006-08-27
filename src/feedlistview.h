@@ -182,9 +182,9 @@ private:
     friend class CreateItemVisitor;
     class CreateItemVisitor;
 
-    friend class DragAndDropVisitor;
-    class DragAndDropVisitor;
-
+    friend class DeleteItemVisitor;
+    class DeleteItemVisitor;
+    
     class NodeListViewPrivate;
     NodeListViewPrivate* d;
 };
