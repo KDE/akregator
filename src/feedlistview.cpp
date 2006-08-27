@@ -72,45 +72,6 @@ class NodeListView::NodeListViewPrivate
     DisconnectNodeVisitor* disconnectNodeVisitor;
     CreateItemVisitor* createItemVisitor;
     DeleteItemVisitor* deleteItemVisitor;
-    DragAndDropVisitor* dragAndDropVisitor;
-};
-
-class NodeListView::DragAndDropVisitor : public TreeNodeVisitor
-{
-
-public:
-    DragAndDropVisitor(NodeListView* view) : m_view(view) {}
-
-    /*
-    virtual bool visitTagNode(TagNode* node)
-    {
-        if (m_mode == ArticlesDropped)
-        {
-            Tag tag = node->tag();
-            QValueList<ArticleDragItem>::ConstIterator end(m_items.end());
-            for (QValueList<ArticleDragItem>::ConstIterator it = m_items.begin(); it != end; ++it)
-            {
-                Article a = Kernel::self()->feedList()->findArticle((*it).feedURL, (*it).guid);
-                if (!a.isNull())
-                     a.addTag(tag.id());
-            }
-        }
-        return true;
-    }
-*/
-    void articlesDropped(TreeNode* node, const QValueList<ArticleDragItem>& items)
-    {
-        m_items = items;
-        m_mode = ArticlesDropped;
-        visit(node);
-    }
-
-private:
-    NodeListView* m_view;
-    QValueList<ArticleDragItem> m_items;
-     
-    enum Mode { ArticlesDropped };
-    Mode m_mode;
 };
 
 class NodeListView::ConnectNodeVisitor : public TreeNodeVisitor
@@ -210,6 +171,7 @@ class NodeListView::DeleteItemVisitor : public TreeNodeVisitor
                     m_view->setSelected(item, false);
             }
             
+            m_view->disconnectFromNode(node);
             delete item;
             return true;
         
@@ -245,6 +207,9 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
+            if (m_view->findNodeItem(node))
+                return true;
+            
             TagNodeItem* item = 0;
             TreeNode* prev = node->prevSibling();
             FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
@@ -276,6 +241,9 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
 
         virtual bool visitTagFolder(TagFolder* node)
         {
+            if (m_view->findNodeItem(node))
+                return true;
+         
             TagFolderItem* item = 0;
             TreeNode* prev = node->prevSibling();
             FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
@@ -311,6 +279,9 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
         
         virtual bool visitFolder(Folder* node)
         {
+            if (m_view->findNodeItem(node))
+                return true;
+                     
             FolderItem* item = 0;
             TreeNode* prev = node->prevSibling();
             FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
@@ -345,6 +316,9 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
         
         virtual bool visitFeed(Feed* node)
         {
+            if (m_view->findNodeItem(node))
+                return true;
+         
             FeedItem* item = 0;
             TreeNode* prev = node->prevSibling();
             FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
@@ -386,7 +360,6 @@ NodeListView::NodeListView( QWidget *parent, const char *name)
     d->disconnectNodeVisitor = new DisconnectNodeVisitor(this);
     d->createItemVisitor = new CreateItemVisitor(this);
     d->deleteItemVisitor = new DeleteItemVisitor(this);
-    d->dragAndDropVisitor = new DragAndDropVisitor(this);
 
     setMinimumSize(150, 150);
     addColumn(i18n("Feeds"));
@@ -426,7 +399,6 @@ NodeListView::~NodeListView()
     delete d->disconnectNodeVisitor;
     delete d->createItemVisitor;
     delete d->deleteItemVisitor;
-    delete d->dragAndDropVisitor;
     delete d;
     d = 0;
 }
@@ -536,26 +508,14 @@ void NodeListView::slotDropped( QDropEvent *e, QListViewItem*
     {
         openFolder();
 
-        FolderItem* parent = dynamic_cast<FolderItem*> (d->parent);
-        TreeNodeItem* afterMe = 0;
-
-        if(d->afterme)
-            afterMe = dynamic_cast<TreeNodeItem*> (d->afterme);
-
-        if (ArticleDrag::canDecode(e))
+        if (KURLDrag::canDecode(e))
         {
-            QPoint vp = contentsToViewport(e->pos());
-            TreeNodeItem* tni = dynamic_cast<TreeNodeItem*>(itemAt(vp));
-            if (tni != 0 && tni->node() != 0)
-            {
-                QValueList<ArticleDragItem> items;
-                ArticleDrag::decode(e, items);
-                d->dragAndDropVisitor->articlesDropped(tni->node(), items);
-
-            }
-        }
-        else if (KURLDrag::canDecode(e))
-        {
+            FolderItem* parent = dynamic_cast<FolderItem*> (d->parent);
+            TreeNodeItem* afterMe = 0;
+            
+            if(d->afterme)
+                afterMe = dynamic_cast<TreeNodeItem*> (d->afterme);
+            
             KURL::List urls;
             KURLDrag::decode( e, urls );
             e->accept();
