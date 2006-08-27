@@ -120,7 +120,7 @@ QString FeedIconManager::iconLocation(const KUrl & url) const
       return result;
     }
 
-    return QString::null;
+    return QString();
 }
 
 void FeedIconManager::slotFeedDestroyed(TreeNode* node)

@@ -43,7 +43,7 @@ TreeNodeItem::TreeNodeItem(FolderItem* parent, TreeNode* node)
     initialize(node);
 }
 
-TreeNodeItem::TreeNodeItem(K3ListView* parent, TreeNode* node) 
+TreeNodeItem::TreeNodeItem(K3ListView* parent, TreeNode* node)
     : K3ListViewItem(parent), m_node(node)
 {
     initialize(node);
@@ -72,39 +72,39 @@ TreeNodeItem::~TreeNodeItem()
 
 QString TreeNodeItem::toolTip() const
 {
-    return QString::null;
+    return QString();
 }
 
 TreeNode* TreeNodeItem::node()
-{ 
-    return m_node; 
+{
+    return m_node;
 }
 
 void TreeNodeItem::nodeChanged()
 {
-//    kDebug() << "enter TreeNodeItem::nodeChanged item" << text(0) << endl; 
+//    kDebug() << "enter TreeNodeItem::nodeChanged item" << text(0) << endl;
     if (!node())
         return;
     if (text(0) != node()->title())
         setText(0, node()->title());
-//    kDebug() << "leave TreeNodeItem::nodeChanged item" << text(0) << endl; 
+//    kDebug() << "leave TreeNodeItem::nodeChanged item" << text(0) << endl;
 }
 
-TreeNodeItem* TreeNodeItem::firstChild() const 
-{ 
-    return static_cast<TreeNodeItem*>(K3ListViewItem::firstChild()); 
-} 
+TreeNodeItem* TreeNodeItem::firstChild() const
+{
+    return static_cast<TreeNodeItem*>(K3ListViewItem::firstChild());
+}
 
-TreeNodeItem* TreeNodeItem::nextSibling() const 
-{ 
-    return static_cast<TreeNodeItem*>(K3ListViewItem::nextSibling()); 
-} 
+TreeNodeItem* TreeNodeItem::nextSibling() const
+{
+    return static_cast<TreeNodeItem*>(K3ListViewItem::nextSibling());
+}
 
-FolderItem* TreeNodeItem::parent() const 
-{ 
-    return static_cast<FolderItem*>(K3ListViewItem::parent()); 
-} 
-    
+FolderItem* TreeNodeItem::parent() const
+{
+    return static_cast<FolderItem*>(K3ListViewItem::parent());
+}
+
 
 // TODO: reverse for reverse layout
 void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
