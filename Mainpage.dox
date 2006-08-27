@@ -1,1 +1,3 @@
 // DOXYGEN_REFERENCES = kdeui kparts syndication
+// DOXYGEN_EXCLUDE = plugins/mk4plugin/metakit
+
