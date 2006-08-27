@@ -820,7 +820,7 @@ void View::slotNodeSelected(TreeNode* node)
     }
 
     if (node)
-        m_mainFrame->setCaptionnode->title());
+        m_mainFrame->setCaption(node->title());
 
     m_actionManager->slotNodeSelected(node);
 
