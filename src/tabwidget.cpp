@@ -343,7 +343,7 @@ void TabWidget::initiateDrag(int tab)
         KUrl::List lst;
         lst.append( frame->url() );
         K3URLDrag* drag = new K3URLDrag( lst, this );
-        drag->setPixmap( KIO::pixmapForURL( lst.first(), 0, K3Icon::Small ) );
+        drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, K3Icon::Small ) );
         drag->dragCopy();
     }
 }

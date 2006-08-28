@@ -146,7 +146,7 @@ void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( QList<HistoryEntry>
     else
     {
         kDebug() << "BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!" << endl; 
-        part->openURL((*entry).url);
+        part->openUrl((*entry).url);
     }
 
     current = entry;

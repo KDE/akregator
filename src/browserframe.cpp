@@ -208,12 +208,12 @@ bool BrowserFrame::openURL(const OpenURLRequest& request)
     {
         if (d->extension)
         {
-            d->extension->setURLArgs(request.args());
+            d->extension->setUrlArgs(request.args());
         }
         bool res = false;
         
         if (request.url().isValid())
-            res = d->part->openURL(request.url());
+            res = d->part->openUrl(request.url());
         
         if (res)
         {
@@ -314,7 +314,7 @@ void BrowserFrame::slotReload()
 void BrowserFrame::slotStop()
 {
     if (d->part)
-        d->part->closeURL();
+        d->part->closeUrl();
     Frame::slotStop();
     
 }
