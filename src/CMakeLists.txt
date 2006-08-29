@@ -75,6 +75,7 @@ set(akregatorpart_PART_SRCS
    browserframe_p.cpp
    openurlrequest.cpp
    articleviewer.cpp 
+   articleformatter.cpp
    addfeeddialog.cpp 
    propertiesdialog.cpp 
    tabwidget.cpp 

@@ -41,7 +41,7 @@ namespace KIO
 
 namespace Akregator
 {
-
+    class ArticleFormatter;
     class Feed;
     class Folder;
     class OpenURLRequest;
@@ -63,6 +63,10 @@ namespace Akregator
             void displayAboutPage();
         
             KParts::ReadOnlyPart* part() const;
+            
+            void setNormalViewFormatter(const ArticleFormatter& formatter);
+            
+            void setCombinedViewFormatter(const ArticleFormatter& formatter);
             
         public slots:
         
@@ -173,29 +177,15 @@ namespace Akregator
             @param body html to render, without header and footer */
             void renderContent(const QString& body);
         
-        /** Takes an article and renders it as HTML with settings for normal view and widescreen view
-            @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
-            @param article The article to render
-            @return the rendered article as HTML */
-            QString formatArticleNormalMode(Feed* feed, const Article& article);
-        
-        /** Takes an article and renders it as HTML with settings for combined view
-            @param f article's feed (used for feed icon atm) -- article.feed() would do. better use a (No)Icon flag. -fo
-            @param article The article to render
-            @return the rendered article as HTML */
-            QString formatArticleCombinedMode(Feed* feed, const Article& article);
-        
-        /** Resets the canvas and adds writes the HTML header to it.
-         */
+            /** Resets the canvas and adds writes the HTML header to it.
+             */
             void beginWriting();
 
             /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
             void endWriting();
         
-            /** generates the CSS used for rendering in single article mode (normal and wide screen view) */
-            void generateNormalModeCSS();
-            /** generates the CSS for combined view mode */
-            void generateCombinedModeCSS();
+            void updateCss();
+            
             void connectToNode(TreeNode* node);
             void disconnectFromNode(TreeNode* node);
                                 
@@ -205,6 +195,8 @@ namespace Akregator
             QString m_currentText;
             KUrl m_imageDir;
             TreeNode* m_node;
+            ArticleFormatter* m_normalViewFormatter;
+            ArticleFormatter* m_combinedViewFormatter;
             Article m_article;
             KUrl m_link;
             Akregator::Filters::ArticleMatcher m_textFilter; 
