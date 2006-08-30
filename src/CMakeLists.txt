@@ -55,7 +55,7 @@ kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate  ${KDE4_KDEUI_LIBS} kdepim  ${KDE4_KHTML_LIBS} syndication )
+target_link_libraries(akregatorprivate  kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install(TARGETS akregatorprivate  DESTINATION ${LIB_INSTALL_DIR})
