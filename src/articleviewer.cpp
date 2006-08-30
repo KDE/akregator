@@ -385,7 +385,7 @@ void ArticleViewer::slotSelectionChanged()
 
 void ArticleViewer::slotOpenLinkInternal()
 {
-    openURL(m_url);
+    openUrl(m_url);
 }
 
 void ArticleViewer::slotOpenLinkInForegroundTab()
@@ -585,16 +585,16 @@ void ArticleViewer::slotShowArticle(const Article& article)
     m_node = 0;
     m_link = article.link();
     if (article.feed()->loadLinkedWebsite())
-        openURL(article.link());
+        openUrl(article.link());
     else
         renderContent( m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon) );
 }
 
-bool ArticleViewer::openURL(const KUrl& url)
+bool ArticleViewer::openUrl(const KUrl& url)
 {
     if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
     {
-        return m_part->openURL(url);
+        return m_part->openUrl(url);
     }
     else
     {
@@ -768,7 +768,7 @@ bool ArticleViewerPart::closeURL()
 {
     emit browserExtension()->loadingProgress(-1);
     emit canceled(QString::null);
-    return KHTMLPart::closeURL();
+    return KHTMLPart::closeUrl();
 }
 
 void ArticleViewerPart::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)

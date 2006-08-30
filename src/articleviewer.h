@@ -114,7 +114,7 @@ namespace Akregator
         protected: // methods
             int pointsToPixel(int points) const;
 
-            bool openURL(const KUrl &url);
+            bool openUrl(const KUrl &url);
             
         protected slots:
 
