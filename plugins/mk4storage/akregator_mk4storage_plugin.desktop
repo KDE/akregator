@@ -1,12 +1,8 @@
 [Desktop Entry]
 Type=Service
 Name=Metakit storage backend
-Name[fr]=Stockage avec Metakit
-Name[x-test]=xxMetakit storage backendxx
 X-KDE-Library=libakregator_mk4storage_plugin
 Comment=Plugin for Akregator
-Comment[fr]=Module pour Akregator
-Comment[x-test]=xxPlugin for Akregatorxx
 ServiceTypes=Akregator/Plugin
 
 X-KDE-akregator-plugintype=storage

@@ -1,7 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=aKregatorPart
-Name[x-test]=xxaKregatorPartxx
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libakregatorpart
 Type=Service
