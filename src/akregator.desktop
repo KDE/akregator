@@ -1,12 +1,17 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Akregator
+Name[x-test]=xxAkregatorxx
 Exec=akregator %i %m -caption "%c"
 Icon=akregator
 Type=Application
 DocPath=akregator/akregator.html
 GenericName=RSS Feed Reader
+GenericName[fr]=Lecteur de flux RSS
+GenericName[x-test]=xxRSS Feed Readerxx
 Comment=An RSS Aggregator for KDE
+Comment[fr]=Un lecteur de flux RSS pour KDE
+Comment[x-test]=xxAn RSS Aggregator for KDExx
 Terminal=false
 Categories=Qt;KDE;Network;
 X-DCOP-ServiceType=Unique

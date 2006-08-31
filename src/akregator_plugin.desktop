@@ -2,6 +2,8 @@
 Type=ServiceType
 X-KDE-ServiceType=Akregator/Plugin
 Comment=Plugin for Akregator
+Comment[fr]=Module pour Akregator
+Comment[x-test]=xxPlugin for Akregatorxx
 
 
 # Type of plugin, e.g. "storage".
