@@ -33,7 +33,7 @@
 
 #include <QApplication>
 #include <QPaintDevice>
-#include <QPalette> 
+#include <QPalette>
 #include <QString>
 
 namespace Akregator {
@@ -41,7 +41,7 @@ namespace Akregator {
 class ArticleFormatter::Private
 {
     public:
-        
+
     QPaintDevice* device;
 };
 
@@ -54,13 +54,13 @@ ArticleFormatter::ArticleFormatter(const ArticleFormatter& other)  : d(new Priva
 {
     d->device = other.d->device;
 }
-        
+
 ArticleFormatter& ArticleFormatter::operator=(const ArticleFormatter& other)
 {
     d->device = other.d->device;
     return *this;
 }
-        
+
 ArticleFormatter::~ArticleFormatter()
 {
     delete d;
@@ -71,7 +71,7 @@ void ArticleFormatter::setPaintDevice(QPaintDevice* device)
 {
     d->device = device;
 }
-        
+
 int ArticleFormatter::pointsToPixel(int pointSize) const
 {
     return ( pointSize * d->device->logicalDpiY() + 36 ) / 72 ;
@@ -126,12 +126,12 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
     }
     text += "</div>\n"; // end headerbox
 
-    
+
     if (icon == ShowIcon && article.feed() && !article.feed()->image().isNull())
     {
         Feed* feed = article.feed();
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        KUrl u(KUrl::fromPath(m_imageDir.toString()));
+        KUrl u(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
@@ -263,7 +263,7 @@ QString DefaultNormalViewFormatter::getCss() const
     // Why did we need that, bug #108187?
     //"@media screen { body { overflow: auto; } }\n"
             "\n\n");
-    
+
     return css;
 }
 
@@ -313,7 +313,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
     {
         Feed* feed = article.feed();
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        KUrl u(KUrl::fromPath(m_imageDir.toString()));
+        KUrl u(m_imageDir);
         u.setFileName(file);
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
     }
@@ -434,7 +434,7 @@ QString DefaultCombinedViewFormatter::getCss() const
     // Why did we need that, bug #108187?
     //"@media screen { body { overflow: auto; } }\n"
             "\n\n");
-    
+
     return css;
 }
 

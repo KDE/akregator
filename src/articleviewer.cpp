@@ -44,7 +44,7 @@
 
 #include <QClipboard>
 #include <QGridLayout>
-    
+
 #include <libkdepim/kfileio.h>
 
 #include "akregatorconfig.h"
@@ -95,7 +95,7 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
             {
                 text += QString("<div class=\"body\">");
                 QString file = Utils::fileNameForUrl(node->xmlUrl());
-                KUrl u(KUrl::fromPath(m_view->m_imageDir.toString()));
+                KUrl u(m_view->m_imageDir);
                 u.setFileName(file);
                 text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
             }
@@ -174,7 +174,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     QGridLayout* layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(m_part->widget(), 0, 0);
-     
+
     m_showSummaryVisitor = new ShowSummaryVisitor(this);
     m_part->setZoomFactor(100);
     m_part->setJScriptEnabled(true);
@@ -184,7 +184,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     m_part->setDNDEnabled(true);
     m_part->setAutoloadImages(true);
     m_part->setStatusMessagesEnabled(true);
-    
+
     // change the cursor when loading stuff...
     connect( this, SIGNAL(started(KIO::Job *)),
              this, SLOT(slotStarted(KIO::Job *)));
@@ -192,23 +192,23 @@ ArticleViewer::ArticleViewer(QWidget *parent)
              this, SLOT(slotCompleted()));
 
     KParts::BrowserExtension* ext = m_part->browserExtension();
-    connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)), 
+    connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)),
              this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
 
     connect( ext, SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs& )) );
-    
+
     connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
             parent, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
-    
+
     connect(ext, SIGNAL(createNewWindow(const KUrl&,
             const KParts::URLArgs&,
             const KParts::WindowArgs&,
             KParts::ReadOnlyPart*&)),
-            parent, SLOT(slotCreateNewWindow(const KUrl&, 
-                         const KParts::URLArgs&, 
+            parent, SLOT(slotCreateNewWindow(const KUrl&,
+                         const KParts::URLArgs&,
                          const KParts::WindowArgs&,
                          KParts::ReadOnlyPart*&)));
-    
+
     KStdAction::print(this, SLOT(slotPrint()), m_part->actionCollection(), "viewer_print");
     KStdAction::copy(this, SLOT(slotCopy()), m_part->actionCollection(), "viewer_copy");
 
@@ -226,14 +226,14 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect(action, SIGNAL(triggered(bool) ), SLOT(slotCopyLinkAddress()));
     action = new KAction(i18n("&Save Link As..."), m_part->actionCollection(), "savelinkas");
     connect(action, SIGNAL(triggered(bool) ), SLOT(slotSaveLinkAs()));
-    
+
     m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
-    
+
     setNormalViewFormatter(DefaultNormalViewFormatter(m_imageDir));
     setCombinedViewFormatter(DefaultCombinedViewFormatter(m_imageDir));
-    
+
     updateCss();
-    
+
     action = new KAction( i18n("&Scroll Up"), m_part->actionCollection(), "articleviewer_scroll_up" );
     connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollUp()));
     action->setShortcut(KShortcut( "Up" ));
@@ -246,7 +246,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
 
-    
+
     m_htmlFooter = "</body></html>";
 }
 
@@ -270,7 +270,7 @@ void ArticleViewer::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URL
     OpenURLRequest req(url);
     req.setArgs(args);
     req.setOptions(OpenURLRequest::NewTab);
-    
+
     if (m_part->button() == Qt::LeftButton)
     {
         switch (Settings::lMBBehaviour())
@@ -299,7 +299,7 @@ void ArticleViewer::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URL
                 break;
         }
     }
-    
+
     emit signalOpenURLRequest(req);
 }
 
@@ -308,20 +308,20 @@ void ArticleViewer::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& 
     OpenURLRequest req(url);
     req.setArgs(args);
     req.setOptions(OpenURLRequest::NewTab);
-    
+
     emit signalOpenURLRequest(req);
 }
 
-void ArticleViewer::slotCreateNewWindow(const KUrl& url, 
+void ArticleViewer::slotCreateNewWindow(const KUrl& url,
                                        const KParts::URLArgs& args,
-                                       const KParts::WindowArgs& /*windowArgs*/, 
+                                       const KParts::WindowArgs& /*windowArgs*/,
                                        KParts::ReadOnlyPart*& part)
 {
     OpenURLRequest req;
     req.setUrl(url);
     req.setArgs(args);
     req.setOptions(OpenURLRequest::NewTab);
-    
+
     emit signalOpenURLRequest(req);
     part = req.part();
 }
@@ -720,7 +720,7 @@ void ArticleViewer::reload()
 void ArticleViewer::displayAboutPage()
 {
     QString location = KStandardDirs::locate("data", "akregator/about/main.html");
-        
+
     m_part->begin(KUrl::fromPath( location ));
     QString info =
             i18nc("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
@@ -743,12 +743,12 @@ void ArticleViewer::displayAboutPage()
     QString appTitle = i18n("Akregator");
     QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
     QString quickDescription = i18n("An RSS feed reader for the K Desktop Environment.");
-    
+
     QString content = KPIM::kFileToByteArray(location);
-    
+
     QString infocss = KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" );
     QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) : QString();
-    
+
     m_part->write(content.arg(infocss).arg(rtl).arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
     m_part->end();
 }
@@ -776,9 +776,9 @@ void ArticleViewerPart::urlSelected(const QString &url, int button, int state, c
     m_button = button;
     KHTMLPart::urlSelected(url,button,state,_target,args);
     /*
-    if (url == "config:/disable_introduction") 
+    if (url == "config:/disable_introduction")
     {
-        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), i18n("Disable"), i18n("Keep Enabled") ) == KMessageBox::Yes) 
+        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), i18n("Disable"), i18n("Keep Enabled") ) == KMessageBox::Yes)
         {
             KConfig* conf = Settings::self()->config();
             conf->setGroup("General");
@@ -841,7 +841,7 @@ void ArticleViewer::setNormalViewFormatter(const ArticleFormatter& formatter)
 
 void ArticleViewer::setCombinedViewFormatter(const ArticleFormatter& formatter)
 {
-    delete m_combinedViewFormatter; 
+    delete m_combinedViewFormatter;
     m_combinedViewFormatter = formatter.clone();
     m_combinedViewFormatter->setPaintDevice(m_part->view());
 }
