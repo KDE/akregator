@@ -420,6 +420,10 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QList<Articl
         setSelected(next, true);
         setCurrentItem(next);
     }
+    else
+    {
+        d->noneSelected = true;
+    }
 
     setUpdatesEnabled(true);
     triggerUpdate();
@@ -460,6 +464,10 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QList<Articl
     {
         setSelected(next, true);
         setCurrentItem(next);
+    }
+    else
+    {
+        d->noneSelected = true;
     }
 
     setUpdatesEnabled(true);
@@ -700,7 +708,10 @@ void ArticleListView::slotCurrentChanged(Q3ListViewItem* item)
     if (ai)
         emit signalArticleChosen( ai->article() );
     else
+    {
+        d->noneSelected = true;
         emit signalArticleChosen( Article() );
+    }
 }
 
 
