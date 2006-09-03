@@ -419,18 +419,16 @@ void ArticleListView::slotArticlesUpdated(TreeNode* /*node*/, const QValueList<A
 
     // if the only selected item was deleted, select
     // an item next to it
-    if (singleSelected)
+    if (singleSelected && next != 0)
     {
-        if (next)
-        {
-            setSelected(next, true);
-            setCurrentItem(next);
-        }
-        else
-        {
-            d->noneSelected = true;
-        }
+        setSelected(next, true);
+        setCurrentItem(next);
     }
+    else
+    {
+        d->noneSelected = true;
+    }
+    
 
     setUpdatesEnabled(true);
     triggerUpdate();
@@ -467,19 +465,16 @@ void ArticleListView::slotArticlesRemoved(TreeNode* /*node*/, const QValueList<A
     
     // if the only selected item was deleted, select
     // an item next to it
-    if (singleSelected)
+    if (singleSelected && next != 0)
     {
-        if (next)
-        {
-            setSelected(next, true);
-            setCurrentItem(next);
-        }
-        else
-        {
-            d->noneSelected = true;
-        }
+        setSelected(next, true);
+        setCurrentItem(next);
     }
-    
+    else
+    {
+        d->noneSelected = true;
+    }
+     
     setUpdatesEnabled(true);
     triggerUpdate();
 }
