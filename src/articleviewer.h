@@ -214,7 +214,7 @@ namespace Akregator
         public:
             ArticleViewerPart(QWidget* parent);
             
-            bool closeURL();
+            bool closeUrl();
             
             int button() const;
             

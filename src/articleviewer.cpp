@@ -526,7 +526,7 @@ void ArticleViewer::disconnectFromNode(TreeNode* node)
 
 void ArticleViewer::renderContent(const QString& text)
 {
-    m_part->closeURL();
+    m_part->closeUrl();
     m_currentText = text;
     beginWriting();
     //kDebug() << text << endl;
@@ -764,7 +764,7 @@ int ArticleViewerPart::button() const
     return m_button;
 }
 
-bool ArticleViewerPart::closeURL()
+bool ArticleViewerPart::closeUrl()
 {
     emit browserExtension()->loadingProgress(-1);
     emit canceled(QString::null);

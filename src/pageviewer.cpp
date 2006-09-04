@@ -231,7 +231,7 @@ void PageViewer::slotReload()
 
 void PageViewer::slotStop()
 {
-    closeURL();
+    closeUrl();
 }
 
 void PageViewer::openPage(const KUrl& url)
