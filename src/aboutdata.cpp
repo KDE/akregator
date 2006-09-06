@@ -35,7 +35,7 @@ namespace Akregator {
 AboutData::AboutData()
     : KAboutData("akregator", I18N_NOOP("Akregator"), AKREGATOR_VERSION, I18N_NOOP("A KDE Feed Aggregator"),
                  License_GPL, I18N_NOOP("(C) 2004, 2005 Akregator developers"), 0,
-                     "http://akregator.sourceforge.net/")
+                     "http://akregator.kde.org/")
 {
     setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS 
     addAuthor( "Frank Osterfeld", I18N_NOOP("Maintainer"), "frank.osterfeld@kdemail.net" );

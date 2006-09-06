@@ -737,7 +737,7 @@ void ArticleViewer::displayAboutPage()
             "<p>Thank you,</p>\n"
             "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
     AKREGATOR_VERSION, // Akregator version
-    "http://akregator.sourceforge.net/"); // Akregator homepage URL
+    "http://akregator.kde.org/"); // Akregator homepage URL
 
     QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
     QString appTitle = i18n("Akregator");
