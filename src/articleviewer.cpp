@@ -492,13 +492,15 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
     QString text;
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::reverseLayout() ? "rtl" : "ltr");
 
+    KURL link = article.link();
+    
     if (!article.title().isEmpty())
     {
         text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(Utils::stripTags(article.title())));
-        if (article.link().isValid())
-            text += "<a href=\""+article.link().url()+"\">";
+        if (link.isValid())
+            text += "<a href=\""+link.url()+"\">";
         text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
-        if (article.link().isValid())
+        if (link.isValid())
             text += "</a>";
         text += "</div>\n";
     }
@@ -552,13 +554,13 @@ QString ArticleViewer::formatArticleCombinedMode(Feed* feed, const Article& arti
         text += "</a>";
     }
 
-    if (article.link().isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
+    if (link.isValid() || (article.guidIsPermaLink() && KURL(article.guid()).isValid()))
     {
         text += "<p><a class=\"contentlink\" href=\"";
         // in case link isn't valid, fall back to the guid permaLink.
-        if (article.link().isValid())
+        if (link.isValid())
         {
-            text += article.link().url();
+            text += link.url();
         }
         else
          {
