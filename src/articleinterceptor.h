@@ -7,7 +7,9 @@ namespace Akregator {
 
 class Article;
 
-/** Interface for intercepting new articles which were just fetched before adding them to the archive. E.g. an article filter could implement this interface to get fetched articles and label them */
+/** Interface for intercepting new articles which were just fetched before adding 
+ *  them to the archive. E.g. an article filter could implement this interface to 
+ *  get fetched articles and label them */
 
 class ArticleInterceptor
 {
