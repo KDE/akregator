@@ -21,10 +21,7 @@ libakregator_mk4storage_plugin_la_LDFLAGS = \
 libakregator_mk4storage_plugin_la_SOURCES = feedstoragemk4impl.cpp \
                                             storagemk4impl.cpp \
                                             storagefactorymk4impl.cpp \
-                                            mk4confwidgetbase.ui \
-                                            mk4confwidget.cpp \
-                                            mk4plugin.cpp \
-                                            mk4config.kcfgc
+                                            mk4plugin.cpp
 
 METASOURCES = AUTO
 
