@@ -39,6 +39,7 @@
 #include <kstdaction.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
+#include <kglobalsettings.h>
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>
 
@@ -243,8 +244,8 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
-    connect(kapp, SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
-    connect(kapp, SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
+    connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
+    connect(KGlobalSettings::self(), SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
 
 
     m_htmlFooter = "</body></html>";
