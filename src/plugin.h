@@ -4,6 +4,8 @@
 #ifndef AKREGATOR_PLUGIN_H
 #define AKREGATOR_PLUGIN_H
 
+#include "akregator_export.h"
+
 #define AKREGATOR_EXPORT_PLUGIN( classname ) \
     extern "C" { \
          Akregator::Plugin* create_plugin() { return new classname; } \
@@ -17,7 +19,7 @@ namespace Akregator
 {
 //    class PluginConfig;
 
-    class Plugin
+    class AKREGATOR_EXPORT Plugin
     {
         public:
             virtual ~Plugin();

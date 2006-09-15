@@ -25,6 +25,8 @@
 #ifndef AKREGATOR_BACKEND_STORAGEFACTORYREGISTRY_H
 #define AKREGATOR_BACKEND_STORAGEFACTORYREGISTRY_H
 
+#include "akregator_export.h"
+
 class QString;
 class QStringList;
 
@@ -33,7 +35,7 @@ namespace Backend {
 
 class StorageFactory;
 
-class StorageFactoryRegistry
+class AKREGATOR_EXPORT StorageFactoryRegistry
 {
     public:
         static StorageFactoryRegistry* self();

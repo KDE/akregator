@@ -27,6 +27,8 @@
 #include <qobject.h>
 #include <qstring.h>
 
+#include "akregator_export.h"
+
 class QStringList;
 
 
@@ -34,7 +36,7 @@ namespace Akregator {
 namespace Backend {
 
 /** a convenience class to handle categories in the backend */
-class Category 
+class AKREGATOR_EXPORT Category 
 {
     public:
 
@@ -62,7 +64,7 @@ class Category
 
 class Storage;
 
-class FeedStorage : public QObject
+class AKREGATOR_EXPORT FeedStorage : public QObject
 {
     public:
     

@@ -39,7 +39,8 @@ kdelnkdir = $(kde_servicesdir)
 #########################################################################
 
 # install headers (for storage plugins)
-akregatorinclude_HEADERS = storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h articleinterceptor.h
+akregatorinclude_HEADERS = storage.h feedstorage.h storagefactory.h storagefactoryregistry.h \
+                           plugin.h articleinterceptor.h akregator_export.h
 akregatorincludedir = $(includedir)/akregator
 
 # this is a lib shared by both the KPart and the main application

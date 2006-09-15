@@ -1,6 +1,8 @@
 #ifndef AKREGATOR_ARTICLEINTERCEPTOR_H
 #define AKREGATOR_ARTICLEINTERCEPTOR_H
 
+#include "akregator_export.h"
+
 template <class T> class QValueList;
 
 namespace Akregator {
@@ -11,7 +13,7 @@ class Article;
  *  them to the archive. E.g. an article filter could implement this interface to 
  *  get fetched articles and label them */
 
-class ArticleInterceptor
+class AKREGATOR_EXPORT ArticleInterceptor
 {
     public:
         /** processes an article. Note that the interceptor may modify the article */
@@ -20,7 +22,7 @@ class ArticleInterceptor
 };
 
 /** Singleton managing the interceptors */
-class ArticleInterceptorManager
+class AKREGATOR_EXPORT ArticleInterceptorManager
 {
     public:
 
