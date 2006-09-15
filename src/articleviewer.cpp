@@ -187,8 +187,7 @@ void ArticleViewer::generateNormalModeCSS()
     const QColorGroup & cg = QApplication::palette().active();
     
     // from kmail::headerstyle.cpp
-    m_normalModeCSS = QString (
-            "<style type=\"text/css\">\n"
+    m_normalModeCSS = QString(
             "@media screen, print {"
             "body {\n"
             "  font-family: \"%1\" ! important;\n"
@@ -199,7 +198,7 @@ void ArticleViewer::generateNormalModeCSS()
             .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
             .arg(cg.text().name())
             .arg(cg.base().name());
-    m_normalModeCSS += (
+    m_normalModeCSS += QString(
     "a {\n"
     + QString("  color: %1 ! important;\n")
     + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
@@ -223,6 +222,7 @@ void ArticleViewer::generateNormalModeCSS()
             .arg(cg.highlightedText().name())
             .arg(cg.highlightedText().name())
             .arg(cg.highlightedText().name());
+    
     m_normalModeCSS += QString(
     ".headertitle {\n"
     "  background: %1 ! important;\n"
@@ -253,11 +253,12 @@ void ArticleViewer::generateNormalModeCSS()
     ".content > P:first-child {\n margin-top: 1px; }\n"
     ".content > DIV:first-child {\n margin-top: 1px; }\n"
     ".content > BR:first-child {\n display: none;  }\n"
-    //".contentlink {\n display: block; }\n"
-    "}\n\n" // @media screen, print
-    // Why did we need that, bug #108187?
-    //"@media screen { body { overflow: auto; } }\n"
-    "\n\n");
+    "iframe {display: none !important; }\n"
+    "frame {display: none !important; }\n"
+    "frameset {display: none !important; }\n"
+    "object {display: none !important; }\n"
+    "applet {display: none !important; }\n"
+    "}\n\n"); // @media screen, print    
 }
 
 void ArticleViewer::generateCombinedModeCSS()
@@ -266,7 +267,7 @@ void ArticleViewer::generateCombinedModeCSS()
     
     // from kmail::headerstyle.cpp
     m_combinedModeCSS = QString (
-            "<style type=\"text/css\">\n"
+//            "<style type=\"text/css\">\n"
             "@media screen, print {"
             "body {\n"
             "  font-family: \"%1\" ! important;\n"
@@ -331,11 +332,12 @@ void ArticleViewer::generateCombinedModeCSS()
     ".content > P:first-child {\n margin-top: 1px; }\n"
     ".content > DIV:first-child {\n margin-top: 1px; }\n"
     ".content > BR:first-child {\n display: none;  }\n"
-    //".contentlink {\n display: block; }\n"
-    "}\n\n" // @media screen, print
-    // Why did we need that, bug #108187?
-    //"@media screen { body { overflow: auto; } }\n"
-    "\n\n");
+    "iframe {display: none !important; }\n"
+    "frame {display: none !important; }\n"
+    "frameset {display: none !important; }\n"
+    "object {display: none !important; }\n"
+    "applet {display: none !important; }\n"
+    "}\n\n"); // @media screen, print
 }
 
 void ArticleViewer::reload()
@@ -586,16 +588,10 @@ void ArticleViewer::renderContent(const QString& text)
 
 void ArticleViewer::beginWriting()
 {
-    QString head = QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title>");
-    
-    if (m_viewMode == CombinedView)
-        head += m_combinedModeCSS;
-    else
-        head += m_normalModeCSS; 
-
-    head += "</style></head><body>";
+    QString head = QString("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n <html><head><title>.</title></head>");
     view()->setContentsPos(0,0);
     begin(m_link);
+    setUserStyleSheet(m_viewMode == CombinedView ? m_combinedModeCSS : m_normalModeCSS);
     write(head);
 }
 
