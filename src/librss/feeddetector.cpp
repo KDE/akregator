@@ -174,6 +174,6 @@ QString FeedDetector::fixRelativeURL(const QString &s, const KURL &baseurl)
 
     u.cleanPath();
     //kdDebug() << "AKREGATOR_PLUGIN_FIXURL: " << "url=" << s << " baseurl=" << baseurl.url() << " fixed=" << u.url() << 
-    endl;
+    //endl;
     return u.url();
 }
