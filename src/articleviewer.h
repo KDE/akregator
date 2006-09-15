@@ -27,6 +27,7 @@
 
 #include "article.h"
 #include "articlefilter.h"
+#include "sharedptr.h"
 
 #include <QWidget>
 
@@ -64,9 +65,9 @@ namespace Akregator
         
             KParts::ReadOnlyPart* part() const;
             
-            void setNormalViewFormatter(const ArticleFormatter& formatter);
+            void setNormalViewFormatter(SharedPtr<ArticleFormatter> formatter);
             
-            void setCombinedViewFormatter(const ArticleFormatter& formatter);
+            void setCombinedViewFormatter(SharedPtr<ArticleFormatter> formatter);
             
         public slots:
         
@@ -76,7 +77,6 @@ namespace Akregator
             void slotZoomOut();
             void slotSetZoomFactor(int percent);
             void slotPrint();
-            void setSafeMode();
    
         // Commandment: We are your interfaces.
         // You shall not use strange interfaces before us.
@@ -111,6 +111,10 @@ namespace Akregator
             /** This gets emitted when url gets clicked */
             void signalOpenURLRequest(OpenURLRequest&); 
 
+            void started(KIO::Job*);
+            void selectionChanged();
+            void completed();
+            
         protected: // methods
             int pointsToPixel(int points) const;
 
@@ -195,8 +199,8 @@ namespace Akregator
             QString m_currentText;
             KUrl m_imageDir;
             TreeNode* m_node;
-            ArticleFormatter* m_normalViewFormatter;
-            ArticleFormatter* m_combinedViewFormatter;
+            SharedPtr<ArticleFormatter> m_normalViewFormatter;
+            SharedPtr<ArticleFormatter> m_combinedViewFormatter;
             Article m_article;
             KUrl m_link;
             Akregator::Filters::ArticleMatcher m_textFilter; 

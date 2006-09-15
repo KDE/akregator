@@ -77,17 +77,6 @@ int ArticleFormatter::pointsToPixel(int pointSize) const
     return ( pointSize * d->device->logicalDpiY() + 36 ) / 72 ;
 }
 
-
-DefaultNormalViewFormatter* DefaultNormalViewFormatter::clone() const
-{
-    return new DefaultNormalViewFormatter(*this);
-}
-
-DefaultCombinedViewFormatter* DefaultCombinedViewFormatter::clone() const
-{
-    return new DefaultCombinedViewFormatter(*this);
-}
-
 // from kmail::headerstyle.cpp
 static inline QString directionOf(const QString &str)
 {

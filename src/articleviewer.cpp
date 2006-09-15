@@ -178,18 +178,19 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     m_showSummaryVisitor = new ShowSummaryVisitor(this);
     m_part->setZoomFactor(100);
-    m_part->setJScriptEnabled(true);
-    m_part->setJavaEnabled(true);
-    m_part->setMetaRefreshEnabled(true);
-    m_part->setPluginsEnabled(true);
+
+    m_part->setJScriptEnabled(false);
+    m_part->setJavaEnabled(false);
+    m_part->setMetaRefreshEnabled(false);
+    m_part->setPluginsEnabled(false);
     m_part->setDNDEnabled(true);
     m_part->setAutoloadImages(true);
-    m_part->setStatusMessagesEnabled(true);
+    m_part->setStatusMessagesEnabled(false);
 
     // change the cursor when loading stuff...
-    connect( this, SIGNAL(started(KIO::Job *)),
+    connect( m_part, SIGNAL(started(KIO::Job *)),
              this, SLOT(slotStarted(KIO::Job *)));
-    connect( this, SIGNAL(completed()),
+    connect( m_part, SIGNAL(completed()),
              this, SLOT(slotCompleted()));
 
     KParts::BrowserExtension* ext = m_part->browserExtension();
@@ -230,8 +231,8 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
 
-    setNormalViewFormatter(DefaultNormalViewFormatter(m_imageDir));
-    setCombinedViewFormatter(DefaultCombinedViewFormatter(m_imageDir));
+    setNormalViewFormatter(new DefaultNormalViewFormatter(m_imageDir));
+    setCombinedViewFormatter(new DefaultCombinedViewFormatter(m_imageDir));
 
     updateCss();
 
@@ -420,14 +421,16 @@ void ArticleViewer::slotSaveLinkAs()
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
 
-void ArticleViewer::slotStarted(KIO::Job *)
+void ArticleViewer::slotStarted(KIO::Job* job)
 {
     m_part->widget()->setCursor( Qt::WaitCursor );
+    emit started(job);
 }
 
 void ArticleViewer::slotCompleted()
 {
     m_part->widget()->unsetCursor();
+    emit completed();
 }
 
 void ArticleViewer::slotScrollUp()
@@ -482,16 +485,6 @@ void ArticleViewer::slotPrint( )
 }
 
 
-void ArticleViewer::setSafeMode()
-{
-    m_part->setJScriptEnabled(false);
-    m_part->setJavaEnabled(false);
-    m_part->setMetaRefreshEnabled(false);
-    m_part->setPluginsEnabled(false);
-    m_part->setDNDEnabled(true);
-    m_part->setAutoloadImages(true);
-    m_part->setStatusMessagesEnabled(false);
-}
 
 void ArticleViewer::connectToNode(TreeNode* node)
 {
@@ -776,6 +769,7 @@ void ArticleViewerPart::urlSelected(const QString &url, int button, int state, c
 {
     m_button = button;
     KHTMLPart::urlSelected(url,button,state,_target,args);
+#warning port disable_introduction
     /*
     if (url == "config:/disable_introduction")
     {
@@ -833,17 +827,15 @@ void ArticleViewer::updateCss()
     m_combinedModeCSS = m_combinedViewFormatter->getCss();
 }
 
-void ArticleViewer::setNormalViewFormatter(const ArticleFormatter& formatter)
+void ArticleViewer::setNormalViewFormatter(SharedPtr<ArticleFormatter> formatter)
 {
-    delete m_normalViewFormatter;
-    m_normalViewFormatter = formatter.clone();
+    m_normalViewFormatter = formatter;
     m_normalViewFormatter->setPaintDevice(m_part->view());
 }
 
-void ArticleViewer::setCombinedViewFormatter(const ArticleFormatter& formatter)
+void ArticleViewer::setCombinedViewFormatter(SharedPtr<ArticleFormatter> formatter)
 {
-    delete m_combinedViewFormatter;
-    m_combinedViewFormatter = formatter.clone();
+    m_combinedViewFormatter = formatter;
     m_combinedViewFormatter->setPaintDevice(m_part->view());
 }
 

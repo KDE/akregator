@@ -313,7 +313,6 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
              m_articleList, SLOT(slotPaletteOrFontChanged()));
     
     m_articleViewer = new ArticleViewer(m_articleSplitter);
-    m_articleViewer->setSafeMode();  // disable JS, Java, etc...
 
     m_actionManager->initArticleViewer(m_articleViewer);
 

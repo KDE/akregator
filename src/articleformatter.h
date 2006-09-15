@@ -50,8 +50,6 @@ class ArticleFormatter
         
         ArticleFormatter& operator=(const ArticleFormatter& other);
         
-        virtual ArticleFormatter* clone() const = 0;
-        
         void setPaintDevice(QPaintDevice* device);
          
         virtual QString formatArticle(const Article& article, IconOption icon) const = 0;
@@ -74,8 +72,6 @@ class DefaultNormalViewFormatter : public ArticleFormatter
         
         DefaultNormalViewFormatter(KUrl imageDir);
         
-        DefaultNormalViewFormatter* clone() const;
-        
         QString formatArticle(const Article& article, IconOption option) const;
         
         QString getCss() const;
@@ -90,8 +86,6 @@ class DefaultCombinedViewFormatter : public ArticleFormatter
     public:
         
         DefaultCombinedViewFormatter(KUrl m_imageDir);
-        
-        DefaultCombinedViewFormatter* clone() const;
         
         QString formatArticle(const Article& article, IconOption option) const;
         
