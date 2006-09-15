@@ -603,7 +603,7 @@ void Part::exportFile(const KUrl& url)
                 KMessageBox::questionYesNo(m_mainWidget,
             i18n("The file %1 already exists; do you want to overwrite it?", file.fileName()),
             i18n("Export"),
-            i18n("Overwrite"),
+            KGuiItem(i18n("Overwrite")),
             KStdGuiItem::cancel()) == KMessageBox::No )
             return;
 

@@ -401,7 +401,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     statusMenu->addAction(action);
 
     KToggleAction* importantAction = new KToggleAction(i18n("&Mark as Important"), "flag", KShortcut( "Ctrl+I" ), actionCollection(), "article_set_status_important");
-    importantAction->setCheckedState(i18n("Remove &Important Mark"));
+    importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
     connect(importantAction, SIGNAL(toggled(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
 
