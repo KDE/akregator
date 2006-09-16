@@ -26,6 +26,10 @@
 #include "article.h"
 #include "articleformatter.h"
 #include "feed.h"
+#include "folder.h"
+#include "tagnode.h"
+#include "treenode.h"
+#include "treenodevisitor.h"
 #include "utils.h"
 
 #include <kglobal.h>
@@ -42,8 +46,10 @@ class ArticleFormatter::Private
 {
     public:
 
-    QPaintDevice* device;
+        QPaintDevice* device;
+        class SummaryVisitor;
 };
+
 
 ArticleFormatter::ArticleFormatter() : d(new Private)
 {
@@ -82,6 +88,93 @@ static inline QString directionOf(const QString &str)
 {
     return str.isRightToLeft() ? "rtl" : "ltr" ;
 }
+
+class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
+{
+    public:
+        SummaryVisitor(DefaultNormalViewFormatter* p) : parent(p) {}
+        virtual bool visitFeed(Feed* node)
+        {
+            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+
+            text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
+            text += node->title();
+            if(node->unread() == 0)
+                text += i18n(" (no unread articles)");
+            else
+                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += "</div>\n"; // headertitle
+            text += "</div>\n"; // /headerbox
+
+            if (!node->image().isNull()) // image
+            {
+                text += QString("<div class=\"body\">");
+                QString file = Utils::fileNameForUrl(node->xmlUrl());
+                KUrl u(parent->m_imageDir);
+                u.setFileName(file);
+                text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
+            }
+            else text += "<div class=\"body\">";
+
+
+            if( !node->description().isEmpty() )
+            {
+                text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
+                text += i18n("<b>Description:</b> %1<br><br>", node->description());
+                text += "</div>\n"; // /description
+            }
+
+            if ( !node->htmlUrl().isEmpty() )
+            {
+                text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
+                text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
+                text += "</div>\n"; // / link
+            }
+
+        //text += i18n("<b>Unread articles:</b> %1").arg(node->unread());
+            text += "</div>"; // /body
+
+            return true;
+        }
+
+        virtual bool visitFolder(Folder* node)
+        {
+            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
+            if(node->unread() == 0)
+                text += i18n(" (no unread articles)");
+            else
+                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += QString("</div>\n");
+            text += "</div>\n"; // /headerbox
+            
+            return true;
+        }
+
+        virtual bool visitTagNode(TagNode* node)
+        {
+            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
+            if(node->unread() == 0)
+                text += i18n(" (no unread articles)");
+            else
+                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+            text += QString("</div>\n");
+            text += "</div>\n"; // /headerbox
+            
+            return true;
+        }
+        
+        QString formatSummary(TreeNode* node)
+        {
+            text = QString();
+            visit(node);
+            return text;
+        }
+        
+        QString text;
+        DefaultNormalViewFormatter* parent;
+};
 
 QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOption icon) const
 {
@@ -256,11 +349,26 @@ QString DefaultNormalViewFormatter::getCss() const
     return css;
 }
 
-DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(KUrl imageDir) : m_imageDir(imageDir)
+DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const KUrl& imageDir) : m_imageDir(imageDir)
 {
 }
 
-DefaultNormalViewFormatter::DefaultNormalViewFormatter(KUrl imageDir) : m_imageDir(imageDir)
+DefaultNormalViewFormatter::DefaultNormalViewFormatter(const KUrl& imageDir) : ArticleFormatter(), m_imageDir(imageDir)
+{
+    m_summaryVisitor = new SummaryVisitor(this);
+}
+
+DefaultNormalViewFormatter::DefaultNormalViewFormatter() : ArticleFormatter()    
+{
+    m_summaryVisitor = new SummaryVisitor(this);
+}
+
+DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
+{
+    delete m_summaryVisitor;
+}
+
+DefaultCombinedViewFormatter::DefaultCombinedViewFormatter() : ArticleFormatter()
 {
 }
 
@@ -425,6 +533,16 @@ QString DefaultCombinedViewFormatter::getCss() const
             "\n\n");
 
     return css;
+}
+
+QString DefaultNormalViewFormatter::formatSummary(TreeNode* node) const
+{
+    return m_summaryVisitor->formatSummary(node);
+}
+
+QString DefaultCombinedViewFormatter::formatSummary(TreeNode*) const
+{
+    return QString();
 }
 
 } // namespace Akregator

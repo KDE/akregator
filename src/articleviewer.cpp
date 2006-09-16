@@ -71,100 +71,6 @@ static inline QString directionOf(const QString &str)
     return str.isRightToLeft() ? "rtl" : "ltr" ;
 }
 
-class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
-{
-    public:
-
-        ShowSummaryVisitor(ArticleViewer* view) : m_view(view) {}
-
-        virtual bool visitFeed(Feed* node)
-        {
-            m_view->m_link = QString();
-            QString text;
-            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-
-            text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
-            text += node->title();
-            if(node->unread() == 0)
-                text += i18n(" (no unread articles)");
-            else
-                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
-            text += "</div>\n"; // headertitle
-            text += "</div>\n"; // /headerbox
-
-            if (!node->image().isNull()) // image
-            {
-                text += QString("<div class=\"body\">");
-                QString file = Utils::fileNameForUrl(node->xmlUrl());
-                KUrl u(m_view->m_imageDir);
-                u.setFileName(file);
-                text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
-            }
-            else text += "<div class=\"body\">";
-
-
-            if( !node->description().isEmpty() )
-            {
-                text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
-                text += i18n("<b>Description:</b> %1<br><br>", node->description());
-                text += "</div>\n"; // /description
-            }
-
-            if ( !node->htmlUrl().isEmpty() )
-            {
-                text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
-                text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
-                text += "</div>\n"; // / link
-            }
-
-        //text += i18n("<b>Unread articles:</b> %1").arg(node->unread());
-            text += "</div>"; // /body
-
-            m_view->renderContent(text);
-            return true;
-        }
-
-        virtual bool visitFolder(Folder* node)
-        {
-            m_view->m_link = QString();
-
-            QString text;
-            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
-            if(node->unread() == 0)
-                text += i18n(" (no unread articles)");
-            else
-                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
-            text += QString("</div>\n");
-            text += "</div>\n"; // /headerbox
-
-            m_view->renderContent(text);
-            return true;
-        }
-
-        virtual bool visitTagNode(TagNode* node)
-        {
-            m_view->m_link = QString();
-
-            QString text;
-            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
-            if(node->unread() == 0)
-                text += i18n(" (no unread articles)");
-            else
-                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
-            text += QString("</div>\n");
-            text += "</div>\n"; // /headerbox
-
-            m_view->renderContent(text);
-            return true;
-        }
-
-    private:
-
-        ArticleViewer* m_view;
-};
-
 ArticleViewer::ArticleViewer(QWidget *parent)
     : QWidget(parent), m_url(0), m_htmlFooter(), m_currentText(), m_node(0),
       m_viewMode(NormalView)
@@ -176,9 +82,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     layout->setMargin(0);
     layout->addWidget(m_part->widget(), 0, 0);
 
-    m_showSummaryVisitor = new ShowSummaryVisitor(this);
     m_part->setZoomFactor(100);
-
     m_part->setJScriptEnabled(false);
     m_part->setJavaEnabled(false);
     m_part->setMetaRefreshEnabled(false);
@@ -254,7 +158,6 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
 ArticleViewer::~ArticleViewer()
 {
-    delete m_showSummaryVisitor;
 }
 
 KParts::ReadOnlyPart* ArticleViewer::part() const
@@ -567,7 +470,10 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
         connectToNode(node);
         m_node = node;
     }
-    m_showSummaryVisitor->visit(node);
+    
+    QString summary = m_normalViewFormatter->formatSummary(node);
+    m_link = QString();
+    renderContent(summary);
 }
 
 
@@ -579,9 +485,13 @@ void ArticleViewer::slotShowArticle(const Article& article)
     m_node = 0;
     m_link = article.link();
     if (article.feed()->loadLinkedWebsite())
+    {
         openUrl(article.link());
+    }
     else
+    {
         renderContent( m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon) );
+    }
 }
 
 bool ArticleViewer::openUrl(const KUrl& url)
@@ -638,8 +548,6 @@ void ArticleViewer::slotUpdateCombinedView()
     kDebug() << "Combined view rendering: (" << num << " articles):\n" << "generating HTML: " << spent.elapsed() << "ms " << endl;
     renderContent(text);
     kDebug() << "HTML rendering: " << spent.elapsed() << "ms" << endl;
-
-
 }
 
 void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& /*list*/)

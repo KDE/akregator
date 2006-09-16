@@ -33,7 +33,8 @@ class QString;
 namespace Akregator {
 
 class Article;
-    
+class TreeNode;
+
 class ArticleFormatter
 {
     public:
@@ -54,6 +55,8 @@ class ArticleFormatter
          
         virtual QString formatArticle(const Article& article, IconOption icon) const = 0;
         
+        virtual QString formatSummary(TreeNode* node) const = 0;
+        
         virtual QString getCss() const = 0;
         
     protected:
@@ -70,14 +73,21 @@ class DefaultNormalViewFormatter : public ArticleFormatter
 {
     public:
         
-        DefaultNormalViewFormatter(KUrl imageDir);
+        DefaultNormalViewFormatter(const KUrl& imageDir);
+        ~DefaultNormalViewFormatter();
         
         QString formatArticle(const Article& article, IconOption option) const;
+        
+        QString formatSummary(TreeNode* node) const;
         
         QString getCss() const;
         
     private:
+        DefaultNormalViewFormatter();
+        
         KUrl m_imageDir;
+        class SummaryVisitor;
+        SummaryVisitor* m_summaryVisitor;
 };
 
 class DefaultCombinedViewFormatter : public ArticleFormatter
@@ -85,13 +95,17 @@ class DefaultCombinedViewFormatter : public ArticleFormatter
             
     public:
         
-        DefaultCombinedViewFormatter(KUrl m_imageDir);
+        DefaultCombinedViewFormatter(const KUrl& m_imageDir);
         
         QString formatArticle(const Article& article, IconOption option) const;
+        
+        QString formatSummary(TreeNode* node) const;
         
         QString getCss() const;
         
     private:
+        DefaultCombinedViewFormatter();
+        
         KUrl m_imageDir;
 };
 
