@@ -297,7 +297,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         class EditNodePropertiesVisitor;
         EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
         friend class DeleteNodeVisitor;
-        class AKREGATOR_EXPORT DeleteNodeVisitor;
+        class DeleteNodeVisitor;
         DeleteNodeVisitor* m_deleteNodeVisitor;
 };
 

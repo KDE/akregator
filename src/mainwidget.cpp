@@ -769,7 +769,7 @@ void MainWidget::slotNodeSelected(TreeNode* node)
     }
 
     if (node)    
-       m_mainFrame->setCaption(node->title());
+       m_mainFrame->setWindowTitle(node->title());
             
     m_actionManager->slotNodeSelected(node);
 
