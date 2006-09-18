@@ -101,7 +101,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)),
              this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
 
-    connect( ext, SIGNAL(openURLRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs& )) );
+    connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs& )) );
 
     connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
             parent, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));

@@ -206,7 +206,7 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
                      parent, SLOT(slotSpeedProgress(int)) );
             connect( ext, SIGNAL(speedProgress(int)), 
                      parent, SLOT(slotSetProgress(int)) );
-            connect( ext, SIGNAL(openURLRequestDelayed(const KUrl&, 
+            connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, 
                      const KParts::URLArgs&) ),
                      parent, SLOT(slotOpenURLRequestDelayed(const KUrl&, 
                                   const KParts::URLArgs&)) );
