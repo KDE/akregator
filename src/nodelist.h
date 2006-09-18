@@ -47,7 +47,7 @@ class AKREGATOR_EXPORT NodeList : public QObject
 Q_OBJECT
 
 public:
-    NodeList(QObject *parent=0, const char *name=0);
+    NodeList(QObject *parent=0);
     virtual ~NodeList();
 
     virtual Folder* rootNode() const;

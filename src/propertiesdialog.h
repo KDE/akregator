@@ -87,7 +87,7 @@ class FeedPropertiesDialog : public KDialog
         Feed* m_feed;
 
     private slots:
-        void slotSetCaption(const QString&);
+        void slotSetWindowTitle(const QString&);
 };
 
 } // namespace Akregator

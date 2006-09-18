@@ -55,6 +55,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
    : KDialog(parent
      /*Qt::WStyle_DialogBorder*/)
 {
+    setObjectName(name);
     widget = new AddFeedWidget(this);
     setCaption(i18n("Add Feed"));
     setButtons(KDialog::Ok|KDialog::Cancel);

@@ -30,7 +30,6 @@
 
 #include <QImage>
 #include <QPixmap>
-#include <QIcon>
 
 class QMouseEvent;
 
@@ -60,7 +59,7 @@ class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
     private:
         static TrayIcon* m_instance;
         
-        QPixmap m_defaultIcon;
+        QPixmap m_defaultPixmap;
         QImage m_lightIconImage;
         int m_unread;
 };

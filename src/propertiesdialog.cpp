@@ -50,27 +50,22 @@ FeedPropertiesWidget::~FeedPropertiesWidget()
 
 void FeedPropertiesWidget::slotUpdateComboBoxActivated( int index )
 {
-    if ( index == 3 ) // "never"
-        updateSpinBox->setEnabled(false);
-    else
-        updateSpinBox->setEnabled(true);
+    updateSpinBox->setEnabled( index != 3 ); // not never
 }
 
 
 void FeedPropertiesWidget::slotUpdateCheckBoxToggled( bool enabled )
 {
-    if (enabled && updateComboBox->currentIndex() != 3 ) // "never"
-        updateSpinBox->setEnabled(true);
-    else
-        updateSpinBox->setEnabled(false);
+    updateSpinBox->setEnabled(enabled && updateComboBox->currentIndex() != 3); // "never"
 }
 
 
 FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
         : KDialog(parent/*, Qt::WStyle_DialogBorder*/)
 {
+    setObjectName(name);
     widget=new FeedPropertiesWidget(this);
-    setCaption(i18n("Feed Properties"));
+    setWindowTitle(i18n("Feed Properties"));
     setButtons(KDialog::Ok|KDialog::Cancel);
     setDefaultButton(KDialog::Cancel);
     setModal(true);
@@ -78,7 +73,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     setMainWidget(widget);
     widget->feedNameEdit->setFocus();
 
-    connect(widget->feedNameEdit, SIGNAL(textChanged(const QString&)), this, SLOT(slotSetCaption(const QString&)));
+    connect(widget->feedNameEdit, SIGNAL(textChanged(const QString&)), this, SLOT(slotSetWindowTitle(const QString&)));
 }
 
 FeedPropertiesDialog::~FeedPropertiesDialog()
@@ -103,13 +98,10 @@ void FeedPropertiesDialog::accept()
      KDialog::accept();
 }
 
-void FeedPropertiesDialog::slotSetCaption(const QString& c)
+void FeedPropertiesDialog::slotSetWindowTitle(const QString& title)
 {
-    if(c.isEmpty())
-        setCaption(i18n("Feed Properties"));
-    else
-        setCaption(i18n("Properties of %1", c));
-
+    setWindowTitle(title.isEmpty() ? i18n("Feed Properties") 
+                                   : i18n("Properties of %1", title));
 }
 
 void FeedPropertiesDialog::setFeed(Feed* feed)
@@ -131,7 +123,7 @@ void FeedPropertiesDialog::setFeed(Feed* feed)
     setMarkImmediatelyAsRead(feed->markImmediatelyAsRead());
     setUseNotification(feed->useNotification());
     setLoadLinkedWebsite(feed->loadLinkedWebsite());
-    slotSetCaption(feedName());
+    slotSetWindowTitle(feedName());
 }
 
 

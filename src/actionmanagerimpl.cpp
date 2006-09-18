@@ -175,7 +175,7 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
     QList<TagAction*> actions = d->tagActions.values();
     for (QList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
     {
-        d->tagMenu->remove(*it);
+        d->tagMenu->removeAction(*it);
         delete *it;
     }
 
@@ -204,7 +204,7 @@ void ActionManagerImpl::slotTagRemoved(const Tag& tag)
 {
     QString id = tag.id();
     TagAction* action = d->tagActions[id];
-    d->tagMenu->remove(action);
+    d->tagMenu->removeAction(action);
     d->tagActions.remove(id);
     delete action;
 }
@@ -363,7 +363,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcut(KShortcut( "Delete" ));
 
     d->tagMenu = new KActionMenu ( i18n( "&Set Tags" ),  actionCollection(), "article_tagmenu" );
-    d->tagMenu->setIconName("rss_tag");
+    d->tagMenu->setIcon(KIcon("rss_tag"));
     d->tagMenu->setEnabled(false); // only enabled when articles are selected
 
 

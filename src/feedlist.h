@@ -47,7 +47,7 @@ class AKREGATOR_EXPORT FeedList : public NodeList
 Q_OBJECT
 public:
 
-    FeedList(QObject *parent = 0, const char *name = 0);
+    FeedList(QObject *parent = 0);
 
     /** Destructor. Contained nodes are deleted! */
     ~FeedList();

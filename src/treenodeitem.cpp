@@ -27,7 +27,6 @@
 #include "treenodeitem.h"
 
 #include <kdebug.h>
-#include <kstringhandler.h>
 
 #include <QFont>
 #include <QPainter>
@@ -147,7 +146,7 @@ void TreeNodeItem::paintCell( QPainter * p, const QColorGroup & cg,
     int txtW=fm.width( txt );
 
     if (fm.width( oldText ) + txtW + x > width)
-        oldText=KStringHandler::rPixelSqueeze(oldText,fm, width - txtW - x);
+        oldText = fm.elidedText(oldText, Qt::ElideRight, width - txtW - x);
 
     p->drawText( x, 0, width-m-x, height(), align | Qt::AlignVCenter, oldText, &br );
 

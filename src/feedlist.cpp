@@ -79,8 +79,8 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
         FeedList* m_list;
 };
 
-FeedList::FeedList(QObject *parent, const char *name)
-    : NodeList(parent, name), d(new FeedListPrivate)
+FeedList::FeedList(QObject *parent)
+    : NodeList(parent), d(new FeedListPrivate)
 {
     d->addNodeVisitor = new AddNodeVisitor(this);
     d->removeNodeVisitor = new RemoveNodeVisitor(this);

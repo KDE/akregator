@@ -119,7 +119,7 @@ class NodeList::RemoveNodeVisitor : public TreeNodeVisitor
         NodeList* m_list;
 };
 
-NodeList::NodeList(QObject *parent, const char *name) : d(new NodeListPrivate)
+NodeList::NodeList(QObject* parent) : QObject(parent), d(new NodeListPrivate)
 {
     d->rootNode = 0;
     d->addNodeVisitor = new AddNodeVisitor(this);

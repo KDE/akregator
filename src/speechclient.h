@@ -28,8 +28,7 @@
 #include <kspeechsink.h>
 #include "kspeech_stub.h"
 
-#include <qobject.h>
-#include <QList>
+#include <QObject>
 
 class QString;
 template <class T> class QList;
