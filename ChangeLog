@@ -7,6 +7,7 @@ Changes after 1.2.4:
 
 Bug fixes:
 
+ 2006/09/18 Set default font sizes, prevents use of font size 1 in article viewer on first startup -fo
  2006/08/28 Do not create multiple items in the feed lists when dragging feeds to a folder
             that was moved before (#124303) -fo
  2006/08/26 Fix a possible crash in the internal browser when going forward -fo
