@@ -29,14 +29,9 @@ set(akregator_mk4storage_plugin_PART_SRCS ${libmetakitlocal_SRCS}
    feedstoragemk4impl.cpp 
    storagemk4impl.cpp 
    storagefactorymk4impl.cpp 
-   mk4confwidget.cpp 
    mk4plugin.cpp )
 
 kde4_automoc(${akregator_mk4storage_plugin_PART_SRCS})
-
-kde4_add_ui3_files(akregator_mk4storage_plugin_PART_SRCS mk4confwidgetbase.ui )
-
-kde4_add_kcfg_files(akregator_mk4storage_plugin_PART_SRCS mk4config.kcfgc )
 
 kde4_add_plugin(akregator_mk4storage_plugin WITH_PREFIX ${akregator_mk4storage_plugin_PART_SRCS})
 
@@ -48,5 +43,4 @@ install(TARGETS akregator_mk4storage_plugin  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### install files ###############
 
-install( FILES mk4config.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES akregator_mk4storage_plugin.desktop  DESTINATION ${SERVICES_INSTALL_DIR})

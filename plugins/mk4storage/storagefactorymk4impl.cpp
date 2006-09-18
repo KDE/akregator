@@ -23,8 +23,6 @@
 */
 #include "storagefactorymk4impl.h"
 #include "storagemk4impl.h"
-#include "mk4confwidget.h"
-#include "mk4config.h"
 
 #include <klocale.h>
 #include <QString>
@@ -54,16 +52,6 @@ QString StorageFactoryMK4Impl::name() const
 
 void StorageFactoryMK4Impl::configure()
 {
-    MK4ConfWidgetBase* confWidget = new MK4ConfWidget();
-    // fill with Settings
-    
-    
-    if (confWidget->exec() == QDialog::Accepted)
-    {
-        // store and apply settings
-    }
-
-    delete confWidget;
 }
 
 } // namespace Backend
