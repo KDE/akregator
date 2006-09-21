@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=Akregator
 Name[x-test]=xxAkregatorxx
-Exec=akregator %i %m -caption "%c"
+Exec=akregator %i -caption "%c"
 Icon=akregator
 Type=Application
 DocPath=akregator/akregator.html
