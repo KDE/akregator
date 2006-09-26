@@ -63,7 +63,7 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
     QWidget* browserWidget = new QWidget(this);
     Ui::SettingsBrowser browser;
     browser.setupUi(browserWidget);
-
+    connect(browser.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)), browser.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)));
     d->settingsAdvanced = new SettingsAdvanced(this, "Advanced");
 
     addPage(generalWidget, i18n("General"), "package_settings");
