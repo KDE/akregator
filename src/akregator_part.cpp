@@ -58,7 +58,7 @@
 #include <knotifyclient.h>
 #include <knotifydialog.h>
 #include <kstandarddirs.h>
-#include <ktempfile.h>
+#include <ktemporaryfile.h>
 #include <kservice.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
@@ -621,16 +621,16 @@ void Part::exportFile(const KUrl& url)
     }
     else
     {
-        KTempFile tmpfile;
-        tmpfile.setAutoDelete(true);
+        KTemporaryFile tmpfile;
+        tmpfile.open();
 
-        QTextStream stream(tmpfile.file());
+        QTextStream stream(&tmpfile);
         stream.setCodec("UTF-8");
 
         stream << m_mainWidget->feedListToOPML().toString() << "\n";
-        tmpfile.close();
+        stream.flush();
 
-        if (!KIO::NetAccess::upload(tmpfile.name(), url, m_mainWidget))
+        if (!KIO::NetAccess::upload(tmpfile.fileName(), url, m_mainWidget))
             KMessageBox::error(m_mainWidget, KIO::NetAccess::lastErrorString() );
     }
 }
