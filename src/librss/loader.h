@@ -227,7 +227,7 @@ namespace RSS
 	 * 'OutputRetriever' will make it execute the script
 	 * '/home/myself/some-script.py' and assume whatever that script prints to
 	 * stdout is RSS markup. This is e.g. handy for conversion scripts, which
-	 * download a HTML file and convert it's contents into RSS markup.
+	 * download an HTML file and convert it's contents into RSS markup.
 	 *
 	 * No matter what kind of retrieval algorithm you employ, your
 	 * 'slotLoadingComplete' method might look like this:
