@@ -294,22 +294,22 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action = new KAction(KIcon("edit"), i18n("&Edit Feed..."), actionCollection(), "feed_modify");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedModify()));
     action->setShortcut(KShortcut( "F2" ));
-    KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "mainWidget_mode" );
+    KActionMenu* vm = new KActionMenu( i18n( "&View Mode" ), actionCollection(), "view_mode" );
 
     QActionGroup* agViewMode = new QActionGroup(this);
-    KToggleAction *ra = new KToggleAction(KIcon("mainWidget_top_bottom"), i18n("&Normal View"), actionCollection(), "normal_mainWidget");
+    KToggleAction *ra = new KToggleAction(KIcon("view_top_bottom"), i18n("&Normal View"), actionCollection(), "normal_view");
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotNormalView()));
     ra->setShortcut(KShortcut( "Ctrl+Shift+1" ));
     ra->setActionGroup(agViewMode);
     vm->addAction(ra);
 
-    ra = new KToggleAction(KIcon("mainWidget_left_right"), i18n("&Widescreen View"), actionCollection(), "widescreen_mainWidget");
+    ra = new KToggleAction(KIcon("view_left_right"), i18n("&Widescreen View"), actionCollection(), "widescreen_view");
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotWidescreenView()));
     ra->setShortcut(KShortcut( "Ctrl+Shift+2" ));
     ra->setActionGroup(agViewMode);
     vm->addAction(ra);
 
-    ra = new KToggleAction(KIcon("mainWidget_text"), i18n("C&ombined View"), actionCollection(), "combined_mainWidget");
+    ra = new KToggleAction(KIcon("view_text"), i18n("C&ombined View"), actionCollection(), "combined_view");
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotCombinedView()));
     ra->setShortcut(KShortcut( "Ctrl+Shift+3" ));
     ra->setActionGroup(agViewMode);
