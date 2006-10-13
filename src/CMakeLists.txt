@@ -50,7 +50,7 @@ set(akregatorprivate_LIB_SRCS
 kde4_automoc(akregatorprivate ${akregatorprivate_LIB_SRCS})
 
 
-kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
+kde4_add_kcfg_files(akregatorprivate akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
