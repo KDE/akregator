@@ -31,7 +31,7 @@ set(akregator_mk4storage_plugin_PART_SRCS ${libmetakitlocal_SRCS}
    storagefactorymk4impl.cpp 
    mk4plugin.cpp )
 
-kde4_automoc(${akregator_mk4storage_plugin_PART_SRCS})
+kde4_automoc(akregator_mk4storage_plugin ${akregator_mk4storage_plugin_PART_SRCS})
 
 kde4_add_plugin(akregator_mk4storage_plugin WITH_PREFIX ${akregator_mk4storage_plugin_PART_SRCS})
 
