@@ -26,11 +26,16 @@
 #define AKREGATOR_UTILS_H
 
 #include <kdepim_export.h>
-
-class QString;
+#include <QString>
 typedef unsigned int uint;
 
 namespace Akregator {
+
+// from kmail::headerstyle.cpp
+static inline QString directionOf(const QString &str)
+{
+    return str.isRightToLeft() ? "rtl" : "ltr" ;
+}
 
 class AKREGATOR_EXPORT Utils 
 {

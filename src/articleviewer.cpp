@@ -65,12 +65,6 @@
 
 namespace Akregator {
 
-// from kmail::headerstyle.cpp
-static inline QString directionOf(const QString &str)
-{
-    return str.isRightToLeft() ? "rtl" : "ltr" ;
-}
-
 ArticleViewer::ArticleViewer(QWidget *parent)
     : QWidget(parent), m_url(0), m_htmlFooter(), m_currentText(), m_node(0),
       m_viewMode(NormalView)

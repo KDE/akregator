@@ -83,12 +83,6 @@ int ArticleFormatter::pointsToPixel(int pointSize) const
     return ( pointSize * d->device->logicalDpiY() + 36 ) / 72 ;
 }
 
-// from kmail::headerstyle.cpp
-static inline QString directionOf(const QString &str)
-{
-    return str.isRightToLeft() ? "rtl" : "ltr" ;
-}
-
 class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 {
     public:
