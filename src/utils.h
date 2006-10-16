@@ -32,7 +32,7 @@ typedef unsigned int uint;
 namespace Akregator {
 
 // from kmail::headerstyle.cpp
-static inline QString directionOf(const QString &str)
+static QString directionOf(const QString &str)
 {
     return str.isRightToLeft() ? "rtl" : "ltr" ;
 }
