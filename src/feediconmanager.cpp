@@ -72,21 +72,20 @@ void FeedIconManager::fetchIcon(Feed* feed)
     loadIcon(iconURL);
 }
 
-FeedIconManager::FeedIconManager(QObject * parent, const char *name)
-:  QObject(parent), d(new FeedIconManagerPrivate)
+FeedIconManager::FeedIconManager()
+:  QObject(), d(new FeedIconManagerPrivate)
 {
-  QDBusConnection::sessionBus().registerObject("/FeedIconManager", this, QDBusConnection::ExportScriptableSlots);
-  setObjectName( name );
-  d->m_favIconsModule =
-    new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
-  connect( d->m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
+   QDBusConnection::sessionBus().registerObject("/FeedIconManager", this, QDBusConnection::ExportScriptableSlots);
+   d->m_favIconsModule =
+     new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
+   connect( d->m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
            this, SLOT(notifyChange(bool,QString,QString)));
 }
 
 
 FeedIconManager::~FeedIconManager()
 {
-  delete d->m_favIconsModule;
+    delete d->m_favIconsModule;
     delete d;
     d = 0;
 }

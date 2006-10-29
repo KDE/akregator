@@ -46,7 +46,7 @@ class FeedIconManager:public QObject
     
     public:
 
-        FeedIconManager(QObject * = 0L, const char * = 0L);
+
         ~FeedIconManager();
         
         static FeedIconManager *self();
@@ -75,6 +75,8 @@ class FeedIconManager:public QObject
     private:
         static FeedIconManager *m_instance;
 
+        FeedIconManager();
+	
         class FeedIconManagerPrivate;
         FeedIconManagerPrivate* d;
 };
