@@ -8,6 +8,7 @@ Changes after 1.2.5:
 Bug fixes:
 
  2006/10/31 Fix group name encoding bug when adding feeds from commandline (e.g., using the Konq plugin) (#136559)
+            Patch by Andrey Cherepanov.
 
 Changes after 1.2.4:
 -----------------------------
