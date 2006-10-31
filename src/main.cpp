@@ -64,7 +64,9 @@ int Application::newInstance()
       akr.call( "openStandardFeedList");
     }
 
-    QString addFeedGroup = !args->getOption("group").isEmpty() ? args->getOption("group") : i18n("Imported Folder");
+    QString addFeedGroup = !args->getOption("group").isEmpty() ? 
+         QString::fromLocal8Bit(args->getOption("group")) 
+         : i18n("Imported Folder");
 
     QByteArrayList feeds = args->getOptionList("addfeed");
     QStringList feedsToAdd;
