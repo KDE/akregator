@@ -37,7 +37,7 @@ kde4_add_plugin(akregator_mk4storage_plugin WITH_PREFIX ${akregator_mk4storage_p
 
 target_link_libraries(akregator_mk4storage_plugin  ${KDE4_KDECORE_LIBS} ${KDE4_SYNDICATION_LIBS} akregatorprivate )
 
-kde4_install_libtool_file( ${PLUGIN_INSTALL_DIR} akregator_mk4storage_plugin )
+
 install(TARGETS akregator_mk4storage_plugin  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 
