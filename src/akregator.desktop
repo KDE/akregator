@@ -14,4 +14,4 @@ Comment[fr]=Un lecteur de flux RSS pour KDE
 Comment[x-test]=xxAn RSS Aggregator for KDExx
 Terminal=false
 Categories=Qt;KDE;Network;
-X-DCOP-ServiceType=Unique
+X-DBUS-StartupType=Unique
