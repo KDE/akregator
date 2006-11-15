@@ -26,7 +26,7 @@
 #define AKREGATOR_ABOUTDATA_H
 
 #include <kaboutdata.h>
-#include <kdepimmacros.h>
+#include <kdemacros.h>
 
 #define AKREGATOR_VERSION "1.2.50"
 
