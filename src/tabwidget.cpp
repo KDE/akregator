@@ -33,7 +33,6 @@
 #include <QString>
 #include <QToolButton>
 #include <QToolTip>
-//Added by qt3to4:
 #include <QMenu>
 #include <QStyleOption>
 
@@ -49,7 +48,6 @@
 #include <kiconloader.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
-#include <k3urldrag.h>
 #include <kmimetype.h>
 #include <ktoolinvocation.h>
 #include <kio/global.h>
@@ -342,9 +340,12 @@ void TabWidget::initiateDrag(int tab)
     {
         KUrl::List lst;
         lst.append( frame->url() );
-        K3URLDrag* drag = new K3URLDrag( lst, this );
+        QDrag* drag = new QDrag( this );
+        QMimeData *md = new QMimeData;
+        drag->setMimeData( md );
+        lst.populateMimeData( md );
         drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, K3Icon::Small ) );
-        drag->dragCopy();
+        drag->start();
     }
 }
 

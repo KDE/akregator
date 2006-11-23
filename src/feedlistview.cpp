@@ -528,8 +528,8 @@ void NodeListView::slotDropped( QDropEvent *e, Q3ListViewItem*
     if (e->source() != viewport())
     {
         openFolder();
-        
-        if (K3URLDrag::canDecode(e))
+        const QMimeData *md = e->mimeData();
+        if (KUrl::List::canDecode(md))
         {
             FolderItem* parent = dynamic_cast<FolderItem*> (d->parent);
             TreeNodeItem* afterMe = 0;
@@ -537,8 +537,7 @@ void NodeListView::slotDropped( QDropEvent *e, Q3ListViewItem*
             if(d->afterme)
                 afterMe = dynamic_cast<TreeNodeItem*> (d->afterme);
         
-            KUrl::List urls;
-            K3URLDrag::decode( e, urls );
+            KUrl::List urls = KUrl::List::fromMimeData( md );
             e->accept();
             emit signalDropped( urls, afterMe ? afterMe->node() : 0, parent ? parent->node() : 0);
         }
@@ -681,7 +680,8 @@ bool NodeListView::acceptDrag(QDropEvent *e) const
 
     if (e->source() != viewport())
     {
-        return K3URLDrag::canDecode(e);
+        const QMimeData *md = e->mimeData();
+        return KUrl::List::canDecode(md);
     }
     else
     {
@@ -1008,6 +1008,7 @@ void NodeListView::slotNodeChanged(TreeNode* node)
     }    
 }
 
+#warning Port to new drag'n'drop way of using QMimeData and QDrop instead of drop objects
 Q3DragObject *NodeListView::dragObject()
 {
     K3MultipleDrag *md = new K3MultipleDrag(viewport());
