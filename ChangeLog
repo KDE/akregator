@@ -7,6 +7,8 @@ Changes after 1.2.5:
 
 Bug fixes:
 
+ 2006/11/24 Add session management for browser tabs (#100964) Patch by Carsten Pfeiffer <pfeiffer at kde.org> -fo
+ 2006/11/10 Fix crash in Konqueror icon plugin sometimes happening when switching parts (#134929) -fo
  2006/10/31 Fix group name encoding bug when adding feeds from commandline (e.g., using the Konq plugin) (#136559)
             Patch by Andrey Cherepanov.
 

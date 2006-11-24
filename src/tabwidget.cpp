@@ -127,6 +127,19 @@ Frame *TabWidget::currentFrame()
     return w ? d->frames[w] : 0;
 }
 
+QPtrList<Frame> TabWidget::frames() const
+{
+    QPtrList<Frame> result;
+    QPtrDictIterator<Frame> it(d->frames);
+    while (it.current())
+    {
+        result.append(it.current());
+        ++it;
+    }
+
+    return result;
+}
+
 void TabWidget::slotTabChanged(QWidget *w)
 {
     // FIXME: Don't hardcode the tab position of main frame

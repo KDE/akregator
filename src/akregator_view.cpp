@@ -93,6 +93,7 @@
 #include <qlayout.h>
 #include <qmultilineedit.h>
 #include <qpopupmenu.h>
+#include <qptrlist.h>
 #include <qstylesheet.h>
 #include <qtextstream.h>
 #include <qtimer.h>
@@ -1467,6 +1468,15 @@ void View::readProperties(KConfig* config)
         if (selNode)
             m_listTabWidget->activeView()->setSelectedNode(selNode);
     }
+
+    QStringList urls = config->readListEntry("FeedBrowserURLs");
+    QStringList::ConstIterator it = urls.begin();
+    for (; it != urls.end(); ++it)
+    {
+        KURL url = KURL::fromPathOrURL(*it);
+        if (url.isValid())
+            slotOpenNewTab(url, true); // open in background
+    }
 }
 
 void View::saveProperties(KConfig* config)
@@ -1481,6 +1491,25 @@ void View::saveProperties(KConfig* config)
     {
         config->writeEntry("selectedNodeID", sel->id() );
     }
+
+    // save browser URLs
+    QStringList urls;
+    QPtrList<Frame> frames = m_tabs->frames();
+    QPtrList<Frame>::ConstIterator it = frames.begin();
+    for (; it != frames.end(); ++it)
+    {
+        Frame *frame = *it;
+        KParts::ReadOnlyPart *part = frame->part();
+        PageViewer *pageViewer = dynamic_cast<PageViewer*>(part); // don't save the ArticleViewer
+        if (pageViewer)
+        {
+            KURL url = pageViewer->url();
+            if (url.isValid())
+                urls.append(url.prettyURL());
+        }
+    }
+
+    config->writeEntry("FeedBrowserURLs", urls);
 }
 
 void View::connectToFeedList(FeedList* feedList)

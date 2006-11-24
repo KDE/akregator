@@ -25,6 +25,7 @@
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 
+#include <qptrlist.h>
 #include <ktabwidget.h>
 
 class QString;
@@ -45,6 +46,7 @@ class TabWidget : public KTabWidget
         void addFrame(Frame *f);
         Frame* currentFrame();
         void removeFrame(Frame *f);
+        QPtrList<Frame> frames() const;
 
     public slots:
 
