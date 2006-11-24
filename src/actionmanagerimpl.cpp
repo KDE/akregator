@@ -325,7 +325,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     KAction *stopAction = new KAction(KIcon("stop"), i18n( "&Abort Fetches" ), actionCollection(), "feed_stop");
     connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
-    stopAction->setShortcut(Qt::Key_Escape);
+    stopAction->setShortcut(QKeySequence(Qt::Key_Escape));
     stopAction->setEnabled(false);
 
     action = new KAction(KIcon("goto"), i18n("&Mark Feed as Read"), actionCollection(), "feed_mark_all_as_read");
@@ -353,10 +353,10 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = new KAction(i18n("Pre&vious Unread Article"), actionCollection(), "go_prev_unread_article");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotPrevUnreadArticle()));
-    action->setShortcut(Qt::Key_Minus);
+    action->setShortcut(QKeySequence(Qt::Key_Minus));
     action = new KAction(i18n("Ne&xt Unread Article"), actionCollection(), "go_next_unread_article");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNextUnreadArticle()));
-    action->setShortcut(Qt::Key_Plus);
+    action->setShortcut(QKeySequence(Qt::Key_Plus));
 
     action = new KAction(KIcon("editdelete"), i18n("&Delete"), actionCollection(), "article_delete");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleDelete()));
@@ -375,7 +375,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     //KAction *abortTTS = new KAction(KIcon("player_stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
     //connect(abortTTS, SIGNAL(triggered(bool)), SpeechClient::self(), SLOT(slotAbortJobs()));
-    //abortTTS->setShortcut(Qt::Key_Escape);
+    //abortTTS->setShortcut(QKeySequence(Qt::Key_Escape));
     //abortTTS->setEnabled(false);
 
     //connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
@@ -502,7 +502,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     action->setShortcut(KShortcut( "Ctrl+Comma" ));
     action = new KAction(KIcon("tab_breakoff"),  i18n("Detach Tab"), actionCollection(), "tab_detach" );
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotDetachTab()));
-    action->setShortcut(Qt::CTRL+Qt::SHIFT+Qt::Key_B);
+    action->setShortcut(QKeySequence(Qt::CTRL+Qt::SHIFT+Qt::Key_B));
     action = new KAction( i18n("Copy Link Address"), actionCollection(), "tab_copylinkaddress" );
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCopyLinkAddress()));
     action = new KAction(KIcon("tab_remove"),  i18n("&Close Tab"), actionCollection(), "tab_remove" );
