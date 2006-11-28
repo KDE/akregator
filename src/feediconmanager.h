@@ -28,6 +28,7 @@
 
 
 #include <QObject>
+#include <kdepim_export.h>
 
 class KUrl;
 
@@ -39,7 +40,7 @@ namespace Akregator {
 class Feed;
 class TreeNode;
 
-class FeedIconManager:public QObject
+class AKREGATOR_EXPORT FeedIconManager:public QObject
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.kde.akregator.feediconmanager")
