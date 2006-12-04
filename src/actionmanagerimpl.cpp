@@ -73,10 +73,10 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 
     virtual bool visitFeed(Feed* node)
     {
-        KAction* remove = m_manager->action("feed_remove");
+        QAction* remove = m_manager->action("feed_remove");
         if (remove)
             remove->setEnabled(true);
-        KAction* hp = m_manager->action("feed_homepage");
+        QAction* hp = m_manager->action("feed_homepage");
         if (hp)
             hp->setEnabled(!node->htmlUrl().isEmpty());
         m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
@@ -89,10 +89,10 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 
     virtual bool visitFolder(Folder* node)
     {
-        KAction* remove = m_manager->action("feed_remove");
+        QAction* remove = m_manager->action("feed_remove");
         if (remove)
             remove->setEnabled(node->parent()); // root nodes must not be deleted
-        KAction* hp = m_manager->action("feed_homepage");
+        QAction* hp = m_manager->action("feed_homepage");
         if (hp)
             hp->setEnabled(false);
 
@@ -106,10 +106,10 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
 
     virtual bool visitTagNode(TagNode* /*node*/)
     {
-        KAction* remove = m_manager->action("feed_remove");
+        QAction* remove = m_manager->action("feed_remove");
         if (remove)
             remove->setEnabled(true);
-        KAction* hp = m_manager->action("feed_homepage");
+        QAction* hp = m_manager->action("feed_homepage");
         if (hp)
             hp->setEnabled(false);
         m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Articles as Read"));
@@ -249,9 +249,9 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
     QMenu* traypop = trayIcon->contextMenu();
 
     if (actionCollection()->action("feed_fetch_all"))
-        actionCollection()->action("feed_fetch_all")->plug(traypop, 1);
+        traypop->insertAction(traypop->actions().value(0), actionCollection()->action("feed_fetch_all"));
     if (actionCollection()->action("akregator_configure_akregator"))
-        actionCollection()->action("akregator_configure_akregator")->plug(traypop, 2);
+        traypop->insertAction(traypop->actions().value(1), actionCollection()->action("akregator_configure_akregator"));
 }
 
 void ActionManagerImpl::initPart()
@@ -547,7 +547,7 @@ KActionCollection* ActionManagerImpl::actionCollection()
     return d->actionCollection;
 }
 
-KAction* ActionManagerImpl::action(const char* name)
+QAction* ActionManagerImpl::action(const char* name)
 {
     return d->actionCollection != 0 ? d->actionCollection->action(name) : 0;
 }

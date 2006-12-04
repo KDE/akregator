@@ -27,7 +27,7 @@
 
 #include <qobject.h>
 
-class KAction;
+class QAction;
 
 class QWidget;
 
@@ -49,7 +49,7 @@ class ActionManager : public QObject
         ActionManager(QObject* parent=0, const char* name=0);
         virtual ~ActionManager();
 
-        virtual KAction* action(const char* name) = 0;
+        virtual QAction* action(const char* name) = 0;
         virtual QWidget* container(const char* name) = 0;
         
     private:

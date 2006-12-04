@@ -240,7 +240,7 @@ KParts::ReadOnlyPart* BrowserFrame::part() const
 
 void BrowserFrame::slotHistoryBackAboutToShow()
 {
-    KAction* ba = ActionManager::getInstance()->action("browser_back");
+    QAction* ba = ActionManager::getInstance()->action("browser_back");
     QMenu* popup = static_cast<KToolBarPopupAction*>(ba)->menu();
     popup->clear();
 
@@ -267,7 +267,7 @@ void BrowserFrame::slotHistoryBackAboutToShow()
 
 void BrowserFrame::slotHistoryForwardAboutToShow()
 {
-    KAction* fw = ActionManager::getInstance()->action("browser_forward");
+    QAction* fw = ActionManager::getInstance()->action("browser_forward");
     QMenu* popup = static_cast<KToolBarPopupAction*>(fw)->menu(); 
     popup->clear();
     
