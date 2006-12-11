@@ -46,6 +46,7 @@ AboutData::AboutData()
     addAuthor( "Gary Cramblitt", I18N_NOOP("Contributor"), "garycramblitt@comcast.net");
     addAuthor( "Stephan Binner", I18N_NOOP("Contributor"), "binner@kde.org" );
     addAuthor( "Christof Musik", I18N_NOOP("Contributor"), "christof@freenet.de" );
+    addCredit( "Anne-Marie Mahfouf", I18N_NOOP("Handbook"), "annma@kde.org" );
     addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "raabe@kde.org" );
     addCredit( "Eckhart Woerner", I18N_NOOP("Bug tracker management, Usability improvements"), "kde@ewsoftware.de");
     addCredit( "Heinrich Wendel", I18N_NOOP("Tons of bug fixes"), "h_wendel@cojobo.net");
