@@ -36,7 +36,7 @@
 #include <QMultiHash>
 #include <QPixmap>
 #include <QtDBus>
-#define FAVICONINTERFACE "org.kde.KonqFavIcon"
+#define FAVICONINTERFACE "org.kde.FavIcon"
 
 
 namespace Akregator {
