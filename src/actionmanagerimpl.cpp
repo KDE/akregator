@@ -54,7 +54,7 @@
 #include <kmenu.h>
 #include <kshortcut.h>
 #include <kstdaccel.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kxmlguifactory.h>
 #include <kicon.h> 
 
@@ -262,7 +262,7 @@ void ActionManagerImpl::initPart()
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
     //new KAction(i18n("&Get Feeds From Web..."), "", "", d->part, SLOT(fileGetFeeds()), d->actionCollection, "file_getfromweb");
 
-    KStdAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
+    KStandardAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
     action = new KAction(KIcon("configure"),  i18n("Configure &Akregator..."), d->actionCollection, "akregator_configure_akregator" );
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(showOptions()));
 }

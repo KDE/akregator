@@ -44,7 +44,7 @@
 #include <ksqueezedtextlabel.h>
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <ktoolbar.h>
 #include <kurl.h>
 
@@ -159,13 +159,13 @@ void MainWindow::setupActions()
 {
     connectActionCollection(actionCollection());
 
-    KStdAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
 
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
-    KStdAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
-    KStdAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
+    KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
+    KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
 }
 
 void MainWindow::saveProperties(KConfig* config)

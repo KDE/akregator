@@ -36,7 +36,7 @@
 #include <krun.h>
 #include <kshell.h>
 #include <kstandarddirs.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
 #include <kglobalsettings.h>
@@ -109,8 +109,8 @@ ArticleViewer::ArticleViewer(QWidget *parent)
                          const KParts::WindowArgs&,
                          KParts::ReadOnlyPart*&)));
 
-    KStdAction::print(this, SLOT(slotPrint()), m_part->actionCollection(), "viewer_print");
-    KStdAction::copy(this, SLOT(slotCopy()), m_part->actionCollection(), "viewer_copy");
+    KStandardAction::print(this, SLOT(slotPrint()), m_part->actionCollection(), "viewer_print");
+    KStandardAction::copy(this, SLOT(slotCopy()), m_part->actionCollection(), "viewer_copy");
 
     KAction *action = new KAction(KIcon("viewmag+"),  i18n("&Increase Font Sizes"),
                                   m_part->actionCollection(), "incFontSizes" );
