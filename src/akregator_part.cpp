@@ -604,7 +604,7 @@ void Part::exportFile(const KUrl& url)
             i18n("The file %1 already exists; do you want to overwrite it?", file.fileName()),
             i18n("Export"),
             KGuiItem(i18n("Overwrite")),
-            KStdGuiItem::cancel()) == KMessageBox::No )
+            KStandardGuiItem::cancel()) == KMessageBox::No )
             return;
 
         if ( !file.open(QIODevice::WriteOnly) )

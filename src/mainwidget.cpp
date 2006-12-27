@@ -123,7 +123,7 @@ class MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
         virtual bool visitTagNode(TagNode* node)
         {
             QString msg = i18n("<qt>Are you sure you want to delete tag <b>%1</b>? The tag will be removed from all articles.</qt>", node->title());
-            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStdGuiItem::del()) == KMessageBox::Continue)
+            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Tag"), KStandardGuiItem::del()) == KMessageBox::Continue)
             {
                 Tag tag = node->tag();
                 QList<Article> articles = m_mainWidget->m_feedList->rootNode()->articles(tag.id());
@@ -145,7 +145,7 @@ class MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             else
                 msg = i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
-            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStdGuiItem::del()) == KMessageBox::Continue)
+            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStandardGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
                 m_mainWidget->m_listTabWidget->activeView()->setFocus();
@@ -161,7 +161,7 @@ class MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             else
                 msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
 
-            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStdGuiItem::del()) == KMessageBox::Continue)
+            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStandardGuiItem::del()) == KMessageBox::Continue)
             {
                 delete node;
                 m_mainWidget->m_listTabWidget->activeView()->setFocus();
@@ -1210,7 +1210,7 @@ void MainWidget::slotArticleDelete()
             msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
     }
 
-    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStdGuiItem::del()) == KMessageBox::Continue)
+    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStandardGuiItem::del()) == KMessageBox::Continue)
     {
         if (m_listTabWidget->activeView()->selectedNode())
             m_listTabWidget->activeView()->selectedNode()->setNotificationMode(false);

@@ -53,7 +53,7 @@
 #include <klocale.h>
 #include <kmenu.h>
 #include <kshortcut.h>
-#include <kstdaccel.h>
+#include <kstandardshortcut.h>
 #include <kstandardaction.h>
 #include <kxmlguifactory.h>
 #include <kicon.h> 
@@ -318,7 +318,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     // toolbar / feed menu
     action = new KAction(KIcon("down"), i18n("&Fetch Feed"), actionCollection(), "feed_fetch");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFetchCurrentFeed()));
-    action->setShortcut(KStdAccel::shortcut(KStdAccel::Reload));
+    action->setShortcut(KStandardShortcut::shortcut(KStandardShortcut::Reload));
     action = new KAction(KIcon("bottom"), i18n("Fe&tch All Feeds"), actionCollection(), "feed_fetch_all");
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFetchAllFeeds()));
     action->setShortcut(KShortcut( "Ctrl+L" ));
@@ -507,7 +507,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCopyLinkAddress()));
     action = new KAction(KIcon("tab_remove"),  i18n("&Close Tab"), actionCollection(), "tab_remove" );
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
-    action->setShortcut(KStdAccel::close());
+    action->setShortcut(KStandardShortcut::close());
 }
 
 void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
