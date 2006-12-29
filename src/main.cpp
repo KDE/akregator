@@ -28,7 +28,6 @@
 
 #include <kcmdlineargs.h>
 #include <klocale.h>
-#include <knotifyclient.h>
 #include <kuniqueapplication.h>
 #include <QtDBus>
 #include <QStringList>

@@ -55,8 +55,7 @@
 #include <kfiledialog.h>
 #include <kglobalsettings.h>
 #include <kmessagebox.h>
-#include <knotifyclient.h>
-#include <knotifydialog.h>
+
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
 #include <kservice.h>
