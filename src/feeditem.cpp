@@ -27,6 +27,7 @@
 #include "feeditem.h"
 
 #include <kaction.h>
+#include <kapplication.h>
 #include <kdebug.h>
 #include <kiconloader.h>
 
@@ -87,12 +88,12 @@ void FeedItem::nodeChanged()
 
 QPixmap FeedItem::errorPixmap()
 {
-    return KGlobal::iconLoader()->loadIcon("error", K3Icon::Small);
+    return kapp->iconLoader()->loadIcon("error", K3Icon::Small);
 }
 
 QPixmap FeedItem::defaultPixmap()
 {
-    return KGlobal::iconLoader()->loadIcon("txt", K3Icon::Small);
+    return kapp->iconLoader()->loadIcon("txt", K3Icon::Small);
 }
 
 void FeedItem::initialize(Feed* node)
