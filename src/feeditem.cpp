@@ -30,6 +30,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kiconloader.h>
+#include <kapplication.h>
 
 #include <QPixmap>
 #include <QString>

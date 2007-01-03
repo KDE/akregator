@@ -33,8 +33,8 @@
 #include <klineedit.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <kapplication.h>
 
-#include <QApplication>
 #include <khbox.h>
 #include <QLabel>
 #include <QPixmap>

@@ -31,6 +31,7 @@
 #include <kaction.h>
 #include <kapplication.h>
 #include <kiconloader.h>
+#include <kapplication.h>
 
 namespace Akregator {
 
