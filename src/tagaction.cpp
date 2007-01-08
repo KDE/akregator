@@ -46,11 +46,12 @@ class TagAction::TagActionPrivate
  
 TagAction::TagAction(const Tag& tag, const QObject* receiver, const char* slot, KActionCollection* parent)
 //KAction (const QString &text, const KShortcut &cut, const QObject *receiver, const char *slot, QObject *parent, const char *name=0)
-       : KToggleAction(tag.name(), KShortcut(), 0, 0, parent), d(new TagActionPrivate)
+       : KToggleAction(tag.name(), parent), d(new TagActionPrivate)
 {
      d->tag = tag;
      connect(this, SIGNAL(toggled(const Tag&, bool)), receiver, slot);
      connect(this, SIGNAL(toggled(bool)), this, SLOT(slotToggled(bool)));
+     parent->addAction("this_needs_a_name", parent);
 }
 
 TagAction::~TagAction()

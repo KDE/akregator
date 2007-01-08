@@ -24,6 +24,7 @@
 */
 
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
 #include <khtmlview.h>
@@ -109,22 +110,30 @@ ArticleViewer::ArticleViewer(QWidget *parent)
                          const KParts::WindowArgs&,
                          KParts::ReadOnlyPart*&)));
 
-    KStandardAction::print(this, SLOT(slotPrint()), m_part->actionCollection(), "viewer_print");
-    KStandardAction::copy(this, SLOT(slotCopy()), m_part->actionCollection(), "viewer_copy");
+    QAction *action;
+    action = KStandardAction::print(this, SLOT(slotPrint()), m_part->actionCollection());
+    m_part->actionCollection()->addAction("viewer_print", action);
+    action = KStandardAction::copy(this, SLOT(slotCopy()), m_part->actionCollection());
+    m_part->actionCollection()->addAction("viewer_copy", action);
 
-    KAction *action = new KAction(KIcon("viewmag+"),  i18n("&Increase Font Sizes"),
-                                  m_part->actionCollection(), "incFontSizes" );
+    action = m_part->actionCollection()->addAction("incFontSizes");
+    action->setIcon(KIcon("viewmag+"));
+    action->setText(i18n("&Increase Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomIn()));
-    action->setShortcut(KShortcut( "Ctrl+Plus" ));
-    action = new KAction(KIcon("viewmag-"),  i18n("&Decrease Font Sizes"), m_part->actionCollection(), "decFontSizes" );
+    action->setShortcuts(KShortcut( "Ctrl+Plus" ));
+    action = m_part->actionCollection()->addAction("decFontSizes");
+    action->setIcon(KIcon("viewmag-"));
+    action->setText(i18n("&Decrease Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomOut()));
-    action->setShortcut(KShortcut( "Ctrl+Minus" ));
+    action->setShortcuts(KShortcut( "Ctrl+Minus" ));
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
-    action = new KAction(i18n("Copy &Link Address"), m_part->actionCollection(), "copylinkaddress");
+    action = m_part->actionCollection()->addAction("copylinkaddress");
+    action->setText(i18n("Copy &Link Address"));
     connect(action, SIGNAL(triggered(bool) ), SLOT(slotCopyLinkAddress()));
-    action = new KAction(i18n("&Save Link As..."), m_part->actionCollection(), "savelinkas");
+    action = m_part->actionCollection()->addAction("savelinkas");
+    action->setText(i18n("&Save Link As..."));
     connect(action, SIGNAL(triggered(bool) ), SLOT(slotSaveLinkAs()));
 
     m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
@@ -134,12 +143,14 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     updateCss();
 
-    action = new KAction( i18n("&Scroll Up"), m_part->actionCollection(), "articleviewer_scroll_up" );
+    action = m_part->actionCollection()->addAction("articleviewer_scroll_up");
+    action->setText(i18n("&Scroll Up"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollUp()));
-    action->setShortcut(KShortcut( "Up" ));
-    action = new KAction( i18n("&Scroll Down"), m_part->actionCollection(), "articleviewer_scroll_down" );
+    action->setShortcuts(KShortcut( "Up" ));
+    action = m_part->actionCollection()->addAction("articleviewer_scroll_down");
+    action->setText(i18n("&Scroll Down"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollDown()));
-    action->setShortcut(KShortcut( "Down" ));
+    action->setShortcuts(KShortcut( "Down" ));
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 

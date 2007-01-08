@@ -27,6 +27,7 @@
 
 
 #include <ktoggleaction.h>
+#include <kactioncollection.h>
 class QString;
 class QWidget;
 
