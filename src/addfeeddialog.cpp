@@ -25,7 +25,6 @@
 #include "addfeeddialog.h"
 #include "feed.h"
 
-#include <kapplication.h>
 #include <kdebug.h>
 #include <kiconloader.h>
 #include <kicontheme.h>
@@ -44,7 +43,7 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
 {
     setObjectName(name);
     setupUi(this);
-    pixmapLabel1->setPixmap(kapp->iconLoader()->loadIcon( "package_network",K3Icon::Desktop,K3Icon::SizeHuge, K3Icon::DefaultState, 0, true));
+    pixmapLabel1->setPixmap(KIconLoader::global()->loadIcon( "package_network",K3Icon::Desktop,K3Icon::SizeHuge, K3Icon::DefaultState, 0, true));
     statusLabel->setText(QString::null);
 }
 

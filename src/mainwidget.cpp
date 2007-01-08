@@ -57,7 +57,6 @@
 #include "treenodevisitor.h"
 
 #include <kaction.h>
-#include <kapplication.h>
 #include <kdebug.h>
 #include <kdialog.h>
 #include <kfiledialog.h>
@@ -231,7 +230,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
 
     m_feedListView = new NodeListView( this, "feedtree" );
-    m_listTabWidget->addView(m_feedListView, i18n("Feeds"), kapp->iconLoader()->loadIcon("folder", K3Icon::Small));
+    m_listTabWidget->addView(m_feedListView, i18n("Feeds"), KIconLoader::global()->loadIcon("folder", K3Icon::Small));
 
     connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)),
             this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
@@ -242,7 +241,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
             TreeNode*, Folder*)));
 
     m_tagNodeListView = new NodeListView(this);
-    m_listTabWidget->addView(m_tagNodeListView, i18n("Tags"), kapp->iconLoader()->loadIcon("rss_tag", K3Icon::Small));
+    m_listTabWidget->addView(m_tagNodeListView, i18n("Tags"), KIconLoader::global()->loadIcon("rss_tag", K3Icon::Small));
 
     connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)), 
             this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));

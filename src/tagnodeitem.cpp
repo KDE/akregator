@@ -28,9 +28,7 @@
 #include "treenode.h"
 
 #include <kaction.h>
-#include <kapplication.h>
 #include <kiconloader.h>
-#include <kapplication.h>
 
 #include <QPoint>
 #include <QMenu>
@@ -64,13 +62,13 @@ void TagNodeItem::initialize(TagNode* node)
     if (node)
     {
         setText(0, node->title());
-        setPixmap ( 0, kapp->iconLoader()->loadIcon(node->icon(), K3Icon::Small) );
+        setPixmap ( 0, KIconLoader::global()->loadIcon(node->icon(), K3Icon::Small) );
     }
 }
 
 void TagNodeItem::nodeChanged()
 {
-    setPixmap ( 0, kapp->iconLoader()->loadIcon(node()->icon(), K3Icon::Small));
+    setPixmap ( 0, KIconLoader::global()->loadIcon(node()->icon(), K3Icon::Small));
     TreeNodeItem::nodeChanged();
 }
 

@@ -27,13 +27,11 @@
 #include "article.h"
 #include "searchbar.h"
 
-#include <kapplication.h>
 #include <kcombobox.h>
 #include <kiconloader.h>
 #include <klineedit.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-#include <kapplication.h>
 
 #include <khbox.h>
 #include <QLabel>
@@ -85,7 +83,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
 
     d->searchCombo = new KComboBox(this);
 
-    QIcon iconAll = kapp->iconLoader()->loadIcon("exec", K3Icon::Small);
+    QIcon iconAll = KIconLoader::global()->loadIcon("exec", K3Icon::Small);
     QIcon iconNew(KStandardDirs::locate("data", "akregator/pics/kmmsgnew.png"));
     QIcon iconUnread(KStandardDirs::locate("data", "akregator/pics/kmmsgunseen.png"));
     QIcon iconKeep(KStandardDirs::locate("data", "akregator/pics/kmmsgflag.png"));
