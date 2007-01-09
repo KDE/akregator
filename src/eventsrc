@@ -6,6 +6,7 @@ Comment[sv]=aKregator
 
 [feed_added]
 Name=Feed added
+Name[af]=Stroom bygevoeg
 Name[bg]=Добавена е новина
 Name[ca]=Enllaç afegit
 Name[cs]=Přidán kanál
@@ -48,6 +49,7 @@ Name[uz]=Янгиликлар тасмаси қўшилди
 Name[zh_CN]=添加了新闻源
 Name[zh_TW]=已加入 Feed
 Comment=A new feed was remotely added to Akregator
+Comment[af]='n Nuwe stroom was vanaf 'n afgeleë ligging by Akregator bygevoeg.
 Comment[bg]=Отдалечено е добавена нова новина към Akregator
 Comment[ca]=S'ha afegit remotament un enllaç a Akregator
 Comment[cs]=Byl přidán nový kanál do Akregatoru
@@ -92,6 +94,7 @@ default_presentation=4
 
 [new_articles]
 Name=New Articles
+Name[af]=Nuwe Artikels
 Name[bg]=Нови статии
 Name[br]=Pennadoù nevez
 Name[ca]=Nous articles
@@ -136,6 +139,7 @@ Name[uz]=Янги мақолалар
 Name[zh_CN]=新闻文章
 Name[zh_TW]=新文章
 Comment=New articles were fetched
+Comment[af]=Nuwe artikels was afgelaai
 Comment[bg]=Пристигнали са нови статии
 Comment[ca]=S'han obtingut nous articles
 Comment[cs]=Byly staženy nové články
