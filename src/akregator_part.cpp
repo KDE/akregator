@@ -179,7 +179,9 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
     if ( isTrayIconEnabled() )
     {
         trayIcon->show();
+#ifdef __GNUC__
 #warning this needs a way to get the position of the systray
+#endif
         NotificationManager::self()->setWidget(0, instance());
     }
     else
@@ -239,7 +241,9 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
+#ifdef __GNUC__
 #warning Tray icons are no longer widgets
+#endif
 //    NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
     NotificationManager::self()->setWidget( getMainWindow(), instance());
 

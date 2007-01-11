@@ -458,7 +458,9 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
     }
 
     popup.exec(p);
+#ifdef __GNUC__
 #warning port!
+#endif
 /*
     int r = popup.exec(p);
 

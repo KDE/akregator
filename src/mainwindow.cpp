@@ -267,7 +267,9 @@ bool MainWindow::queryClose()
     }
     else
     {
+#ifdef __GNUC__
 #warning takeScreenShot has to be reimplemented or removed
+#endif
 #if 0
         QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
 

@@ -682,7 +682,9 @@ void ArticleViewerPart::urlSelected(const QString &url, int button, int state, c
 {
     m_button = button;
     KHTMLPart::urlSelected(url,button,state,_target,args);
+#ifdef __GNUC__
 #warning port disable_introduction
+#endif
     /*
     if (url == "config:/disable_introduction")
     {

@@ -1008,7 +1008,9 @@ void NodeListView::slotNodeChanged(TreeNode* node)
     }    
 }
 
+#ifdef __GNUC__
 #warning Port to new drag'n'drop way of using QMimeData and QDrop instead of drop objects
+#endif
 Q3DragObject *NodeListView::dragObject()
 {
     K3MultipleDrag *md = new K3MultipleDrag(viewport());
