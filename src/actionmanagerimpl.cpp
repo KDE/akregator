@@ -630,7 +630,7 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
     connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
      
     KToolBarPopupAction* back = new KToolBarPopupAction(KIcon("back"), i18n( "Back"), this);
-    d->actionCollection->addAction("browser_back", forward);
+    d->actionCollection->addAction("browser_back", back);
     back->setShortcuts(KShortcut("Alt+Left"));
     connect(back, SIGNAL(triggered()), frameManager, SLOT(slotBrowserBack()));
 
