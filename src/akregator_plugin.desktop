@@ -2,6 +2,7 @@
 Type=ServiceType
 X-KDE-ServiceType=Akregator/Plugin
 Comment=Plugin for Akregator
+Comment[el]=Πρόσθετο για το Akregator
 Comment[fr]=Module pour Akregator
 Comment[x-test]=xxPlugin for Akregatorxx
 
