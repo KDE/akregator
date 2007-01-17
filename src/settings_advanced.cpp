@@ -23,8 +23,11 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
     for (QStringList::Iterator it = backends.begin(); it != end; ++it)
     {
         m_factories[i] = Backend::StorageFactoryRegistry::self()->getFactory(*it);
-        m_keyPos[m_factories[i]->key()] = i;
-        cbBackend->addItem(m_factories[i]->name());
+	if(m_factories[i])
+	{
+          m_keyPos[m_factories[i]->key()] = i;
+          cbBackend->addItem(m_factories[i]->name());
+	}
         i++;
     }
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
