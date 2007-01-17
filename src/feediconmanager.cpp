@@ -79,7 +79,7 @@ FeedIconManager::FeedIconManager()
    d->m_favIconsModule =
      new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
    connect( d->m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
-           this, SLOT(notifyChange(bool,QString,QString)));
+           this, SLOT(slotIconChanged(bool,QString,QString)));
 }
 
 
