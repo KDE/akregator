@@ -95,6 +95,7 @@ default_presentation=4
 [new_articles]
 Name=New Articles
 Name[af]=Nuwe Artikels
+Name[ar]=المقالات الجديدة
 Name[bg]=Нови статии
 Name[br]=Pennadoù nevez
 Name[ca]=Nous articles
@@ -140,6 +141,7 @@ Name[zh_CN]=新闻文章
 Name[zh_TW]=新文章
 Comment=New articles were fetched
 Comment[af]=Nuwe artikels was afgelaai
+Comment[ar]=تمّ جلب المقالات الجديدة
 Comment[bg]=Пристигнали са нови статии
 Comment[ca]=S'han obtingut nous articles
 Comment[cs]=Byly staženy nové články
