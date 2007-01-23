@@ -635,9 +635,9 @@ void ArticleListView::slotPreviousArticle()
     if (ali)
     {
         Article a = ali->article();
+        setCurrentItem(d->articleMap[a]);
         clearSelection();
         setSelected(d->articleMap[a], true);
-        setCurrentItem(d->articleMap[a]);
         d->ensureCurrentItemVisible();
     }
 }
@@ -653,9 +653,9 @@ void ArticleListView::slotNextArticle()
     if (ali)
     {
         Article a = ali->article();
+        setCurrentItem(d->articleMap[a]);
         clearSelection();
         setSelected(d->articleMap[a], true);
-        setCurrentItem(d->articleMap[a]);
         d->ensureCurrentItemVisible();
     }
 }
