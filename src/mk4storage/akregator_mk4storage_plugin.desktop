@@ -39,6 +39,7 @@ Name[zh_TW]=Metakit 儲存後端介面
 X-KDE-Library=libakregator_mk4storage_plugin
 Comment=Plugin for Akregator
 Comment[af]=Inprop module vir Akregator
+Comment[be]=Утулка для Akregator
 Comment[bg]=Приставка за Akregator
 Comment[br]=Lugent evit Akregator
 Comment[ca]=Endollable per a Akregator
