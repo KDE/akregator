@@ -111,7 +111,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 
 {
     // we need an instance
-    setInstance( AkregatorFactory::instance() );
+    setComponentData( AkregatorFactory::componentData() );
     
     new PartAdaptor( this );
     QDBusConnection::sessionBus().registerObject("/Akregator", this);
@@ -182,10 +182,10 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 #ifdef __GNUC__
 #warning this needs a way to get the position of the systray
 #endif
-        NotificationManager::self()->setWidget(0, instance());
+        NotificationManager::self()->setWidget(0, componentData());
     }
     else
-        NotificationManager::self()->setWidget(getMainWindow(), instance());
+        NotificationManager::self()->setWidget(getMainWindow(), componentData());
 
     connect( trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;
@@ -245,7 +245,7 @@ void Part::slotSettingsChanged()
 #warning Tray icons are no longer widgets
 #endif
 //    NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
-    NotificationManager::self()->setWidget( getMainWindow(), instance());
+    NotificationManager::self()->setWidget( getMainWindow(), componentData());
 
     Syndication::FileRetriever::setUseCache(Settings::useHTMLCache());
 

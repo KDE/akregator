@@ -205,7 +205,7 @@ void MainWindow::optionsConfigureKeys()
 
 void MainWindow::optionsConfigureToolbars()
 {
-    saveMainWindowSettings(KGlobal::config(), autoSaveGroup());
+    saveMainWindowSettings(KGlobal::config().data(), autoSaveGroup());
 
     // use the standard toolbar editor
     KEditToolbar dlg(factory());
@@ -218,7 +218,7 @@ void MainWindow::optionsConfigureToolbars()
 
 void MainWindow::applyNewToolbarConfig()
 {
-    applyMainWindowSettings(KGlobal::config(), autoSaveGroup());
+    applyMainWindowSettings(KGlobal::config().data(), autoSaveGroup());
 }
 
 

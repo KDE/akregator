@@ -29,6 +29,7 @@
 #include <QList>
 
 #include "article.h"
+#include <kcomponentdata.h>
 
 namespace Akregator 
 {
@@ -44,7 +45,7 @@ class NotificationManager : public QObject
         ~NotificationManager();
 
         /** the widget used for notification, normally either the mainwindow or the tray icon */
-        void setWidget(QWidget* widget, KInstance* inst=0);
+        void setWidget(QWidget* widget, const KComponentData &inst = KComponentData());
         
     public slots:
 
@@ -74,7 +75,7 @@ class NotificationManager : public QObject
         bool m_running;
         bool m_addedInLastInterval;
         QWidget* m_widget;
-        KInstance* m_instance;
+        KComponentData m_instance;
 
         QList<Article> m_articles;
 

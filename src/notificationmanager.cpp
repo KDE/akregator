@@ -45,7 +45,6 @@ NotificationManager::NotificationManager() : QObject()
     m_addedInLastInterval = false;
     m_maxArticles = 20;
     m_widget = NULL;
-    m_instance = NULL;
 }
 
 NotificationManager::~NotificationManager()
@@ -53,10 +52,10 @@ NotificationManager::~NotificationManager()
     m_self = 0;
 }
 
-void NotificationManager::setWidget(QWidget* widget, KInstance* inst)
+void NotificationManager::setWidget(QWidget* widget, const KComponentData &inst)
 {
     m_widget = widget;
-    m_instance = inst != NULL ? inst : KGlobal::instance();
+    m_instance = inst.isValid() ? inst : KGlobal::mainComponent();
 }
 
 void NotificationManager::slotNotifyArticle(const Article& article)
