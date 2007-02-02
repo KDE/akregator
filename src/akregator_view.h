@@ -277,12 +277,8 @@ namespace Akregator {
             void disconnectFromFeedList(FeedList* feedList);
 
             void updateTagActions();
-            
+
         protected slots:
-
-            /** this is called by the ctor, does init steps which need a properly created view and part */
-
-            void delayedInit();
 
             void connectFrame(Frame *);
 
