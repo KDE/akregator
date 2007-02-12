@@ -402,7 +402,7 @@ bool Part::openFile()
 
             copyFile(backup);
 
-            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%2</b></p></qt>", backup), i18n("XML Parsing Error") );
+            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backup), i18n("XML Parsing Error") );
 
             if (!doc.setContent(listBackup))
                 doc = createDefaultFeedList();
@@ -414,7 +414,7 @@ bool Part::openFile()
         QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
         copyFile(backup);
 
-        KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%2</b></p></qt>", backup), i18n("OPML Parsing Error") );
+        KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%1</b></p></qt>", backup), i18n("OPML Parsing Error") );
 
         m_mainWidget->loadFeeds(createDefaultFeedList());
     }

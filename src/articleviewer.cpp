@@ -630,7 +630,7 @@ void ArticleViewer::displayAboutPage()
 
     m_part->begin(KUrl::fromPath( location ));
     QString info =
-            i18nc("%1: Akregator version; %2: help:// URL; %3: homepage URL; "
+            i18nc("%1: Akregator version; %2: homepage URL; "
             "--- end of comment ---",
     "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
             "<p>Akregator is an RSS feed aggregator for the K Desktop Environment. "
@@ -639,7 +639,8 @@ void ArticleViewer::displayAboutPage()
             "Instead of checking all your favorite web sites manually for updates, "
             "Akregator collects the content for you.</p>"
             "<p>For more information about using Akregator, check the "
-            "<a href=\"%3\">Akregator website</a>. If you do not want to see this page anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
+            "<a href=\"%2\">Akregator website</a>. If you do not want to see this page "
+            "anymore, <a href=\"config:/disable_introduction\">click here</a>.</p>"
             "<p>We hope that you will enjoy Akregator.</p>\n"
             "<p>Thank you,</p>\n"
             "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",

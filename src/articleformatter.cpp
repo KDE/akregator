@@ -96,7 +96,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
             else
-                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+                text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
             text += "</div>\n"; // headertitle
             text += "</div>\n"; // /headerbox
 
@@ -138,7 +138,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
             else
-                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+                text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
             text += QString("</div>\n");
             text += "</div>\n"; // /headerbox
             
@@ -152,7 +152,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
             else
-                text += i18np(" (1 unread article)", " (%n unread articles)", node->unread());
+                text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
             text += QString("</div>\n");
             text += "</div>\n"; // /headerbox
             

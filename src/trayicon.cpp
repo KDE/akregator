@@ -138,7 +138,7 @@ void TrayIcon::slotSetUnread(int unread)
 
     m_unread=unread;
 
-    this->setToolTip( i18np("Akregator - 1 unread article", "Akregator - %n unread articles", unread > 0 ? unread : 0));
+    this->setToolTip( i18np("Akregator - 1 unread article", "Akregator - %1 unread articles", unread > 0 ? unread : 0));
 
     if (unread <= 0)
     {
