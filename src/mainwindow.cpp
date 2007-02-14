@@ -120,7 +120,6 @@ bool MainWindow::loadPart()
 
             connect(TrayIcon::getInstance(), SIGNAL(quitSelected()), this, SLOT(slotQuit()));
             // and integrate the part's GUI with the shell's
-            connectActionCollection(m_part->actionCollection());
             createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
             setAutoSaveSettings();
@@ -157,8 +156,6 @@ void MainWindow::setCaption(const QString &a)
 
 void MainWindow::setupActions()
 {
-    connectActionCollection(actionCollection());
-
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
 
     setStandardToolBarMenuEnabled(true);
@@ -225,17 +222,6 @@ void MainWindow::applyNewToolbarConfig()
 KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 {
     return KParts::BrowserExtension::childObject( p );
-}
-
-
-// from konqmainwindow
-void MainWindow::connectActionCollection( KActionCollection *coll )
-{
-    if (!coll) return;
-    connect( coll, SIGNAL( actionStatusText( const QString & ) ),
-              m_statusLabel, SLOT( setText( const QString & ) ) );
-    connect( coll, SIGNAL( clearStatusText() ),
-             this, SLOT( slotClearStatusText() ) );
 }
 
 bool MainWindow::queryExit()

@@ -127,8 +127,6 @@ protected slots:
 private:
 
     void setupActions();
-    void connectActionCollection(KActionCollection *coll);
-    
     KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
 
 private slots:
