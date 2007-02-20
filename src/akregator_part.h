@@ -33,7 +33,7 @@
 #include <kparts/part.h>
 
 class KAboutData;
-class KConfig;
+class KConfigGroup;
 class KUrl;
 class KParts::BrowserExtension;
 
@@ -118,12 +118,12 @@ class Part : public MyBasePart
             with @ref saveProperties
             Calls Akregator MainWidget's saveProperties.
             */
-        virtual void readProperties(KConfig* config);
+        virtual void readProperties(const KConfigGroup & config);
         
         /** This method is called when it is time for the app to save its
             properties for session management purposes.
             Calls Akregator MainWidget's readProperties. */
-        virtual void saveProperties(KConfig* config);
+        virtual void saveProperties(KConfigGroup & config);
 
         /** merges a nested part's GUI into the gui of this part
         @return true iff merging was successful, i.e. the GUI factory was not NULL */

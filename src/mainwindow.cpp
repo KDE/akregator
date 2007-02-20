@@ -165,24 +165,24 @@ void MainWindow::setupActions()
     KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
 }
 
-void MainWindow::saveProperties(KConfig* config)
+void MainWindow::saveProperties(KConfigGroup &config)
 {
     if (!m_part)
         loadPart();
 
     static_cast<Akregator::Part*>(m_part)->saveProperties(config);
-    config->writeEntry("docked", isHidden());
+    config.writeEntry("docked", isHidden());
 
     //delete m_part;
 }
 
-void MainWindow::readProperties(KConfig* config)
+void MainWindow::readProperties(const KConfigGroup & config)
 {
     if (!m_part)
         loadPart();
     static_cast<Akregator::Part*>(m_part)->readProperties(config);
 
-    if (Settings::showTrayIcon() && config->readEntry("docked", false))
+    if (Settings::showTrayIcon() && config.readEntry("docked", false))
         hide();
     else
         show();
@@ -202,7 +202,7 @@ void MainWindow::optionsConfigureKeys()
 
 void MainWindow::optionsConfigureToolbars()
 {
-    saveMainWindowSettings(KGlobal::config().data(), autoSaveGroup());
+    saveMainWindowSettings(KGlobal::config().data()->group( autoSaveGroup()) );
 
     // use the standard toolbar editor
     KEditToolbar dlg(factory());
@@ -215,7 +215,7 @@ void MainWindow::optionsConfigureToolbars()
 
 void MainWindow::applyNewToolbarConfig()
 {
-    applyMainWindowSettings(KGlobal::config().data(), autoSaveGroup());
+    applyMainWindowSettings(KGlobal::config()->group( autoSaveGroup()) );
 }
 
 

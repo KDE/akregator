@@ -120,8 +120,8 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void addFeedToGroup(const QString& url, const QString& group);
 
         /** session management **/
-        virtual void readProperties(KConfig* config);
-        virtual void saveProperties(KConfig* config);
+        virtual void readProperties(const KConfigGroup & config);
+        virtual void saveProperties(KConfigGroup & config);
 
     signals:
         /** emitted when the unread count of "All Feeds" was changed */

@@ -112,13 +112,13 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 {
     // we need an instance
     setComponentData( AkregatorFactory::componentData() );
-    
+
     new PartAdaptor( this );
     QDBusConnection::sessionBus().registerObject("/Akregator", this);
 
     FeedIconManager::self(); // FIXME: registering the icon manager dbus iface here,
                                // because otherwise we get a deadlock later
-    
+
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
     m_tagSetPath = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/tagset.xml";
@@ -280,7 +280,7 @@ Part::~Part()
     kDebug() << "Part::~Part(): leaving" << endl;
 }
 
-void Part::readProperties(KConfig* config)
+void Part::readProperties(const KConfigGroup & config)
 {
     m_backedUpList = false;
     openStandardFeedList();
@@ -289,7 +289,7 @@ void Part::readProperties(KConfig* config)
         m_mainWidget->readProperties(config);
 }
 
-void Part::saveProperties(KConfig* config)
+void Part::saveProperties(KConfigGroup & config)
 {
     if (m_mainWidget)
     {
@@ -778,13 +778,12 @@ void Part::initFonts()
     if (Settings::serifFont().isEmpty())
         Settings::setSerifFont(fonts[3]);
 
-    KConfig* conf = Settings::self()->config();
-    conf->setGroup("HTML Settings");
+    KConfigGroup conf( Settings::self()->config(), "HTML Settings");
 
-    KConfig konq("konquerorrc", true, false);
-    konq.setGroup("HTML Settings");
+    KConfig _konq( "konquerorrc", KConfig::NoGlobals  );
+    KConfigGroup konq(&_konq, "HTML Settings");
 
-    if (!conf->hasKey("MinimumFontSize"))
+    if (!conf.hasKey("MinimumFontSize"))
     {
         int minfs;
         if (konq.hasKey("MinimumFontSize"))
@@ -795,7 +794,7 @@ void Part::initFonts()
         Settings::setMinimumFontSize(minfs);
     }
 
-    if (!conf->hasKey("MediumFontSize"))
+    if (!conf.hasKey("MediumFontSize"))
     {
         int medfs;
         if (konq.hasKey("MediumFontSize"))
@@ -806,7 +805,7 @@ void Part::initFonts()
         Settings::setMediumFontSize(medfs);
     }
 
-    if (!conf->hasKey("UnderlineLinks"))
+    if (!conf.hasKey("UnderlineLinks"))
     {
         bool underline = true;
         if (konq.hasKey("UnderlineLinks"))

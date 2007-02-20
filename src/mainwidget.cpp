@@ -204,7 +204,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     setFocusPolicy(Qt::StrongFocus);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
-    
+
     m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
 
     m_horizontalSplitter->setOpaqueResize(true);
@@ -243,35 +243,35 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_tagNodeListView = new NodeListView(this);
     m_listTabWidget->addView(m_tagNodeListView, i18n("Tags"), KIconLoader::global()->loadIcon("rss_tag", K3Icon::Small));
 
-    connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)), 
+    connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)),
             this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
-    
+
     ProgressManager::self()->setFeedList(m_feedList);
 
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
-    connect( m_part, SIGNAL(signalSettingsChanged()), 
+    connect( m_part, SIGNAL(signalSettingsChanged()),
              m_tabWidget, SLOT(slotSettingsChanged()));
 
-    connect( m_tabWidget, SIGNAL(signalCurrentFrameChanged(int)),     
+    connect( m_tabWidget, SIGNAL(signalCurrentFrameChanged(int)),
              Kernel::self()->frameManager(), SLOT(slotChangeFrame(int)));
 
     connect( m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
              Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
-    
+
     connect( m_tabWidget, SIGNAL(signalOpenURLRequest(OpenURLRequest&)),
              Kernel::self()->frameManager(), SLOT(slotOpenURLRequest(OpenURLRequest&)));
 
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Frame*)),
              m_tabWidget, SLOT(slotAddFrame(Frame*)));
-    
-    connect( Kernel::self()->frameManager(), SIGNAL(signalSelectFrame(int)), 
+
+    connect( Kernel::self()->frameManager(), SIGNAL(signalSelectFrame(int)),
              m_tabWidget, SLOT(slotSelectFrame(int)) );
-    
+
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
              m_tabWidget, SLOT(slotRemoveFrame(int)));
-    
+
     connect( Kernel::self()->frameManager(), SIGNAL(signalRequestNewFrame(int&)),
              this, SLOT( slotRequestNewFrame(int&) ) );
 
@@ -308,9 +308,9 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_articleList, SIGNAL(signalDoubleClicked(const Article&, const QPoint&, int)),
              this, SLOT( slotOpenArticleInBrowser(const Article&)) );
 
-    connect( m_part, SIGNAL(signalSettingsChanged()), 
+    connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleList, SLOT(slotPaletteOrFontChanged()));
-    
+
     m_articleViewer = new ArticleViewer(m_articleSplitter);
 
     m_actionManager->initArticleViewer(m_articleViewer);
@@ -326,7 +326,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
              this, SLOT(slotMouseOverInfo(const KFileItem *)) );
 
-    connect( m_part, SIGNAL(signalSettingsChanged()), 
+    connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleViewer, SLOT(slotPaletteOrFontChanged()));
     m_articleViewer->part()->widget()->setWhatsThis( i18n("Browsing area."));
     mainTabLayout->addWidget( m_articleSplitter );
@@ -338,9 +338,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_horizontalSplitter->setSizes( Settings::splitter1Sizes() );
     m_articleSplitter->setSizes( Settings::splitter2Sizes() );
 
-    KConfig *conf = Settings::self()->config();
-    conf->setGroup("General");
-    if(!conf->readEntry("Disable Introduction", false))
+    KConfigGroup conf(Settings::self()->config(), "General");
+    if(!conf.readEntry("Disable Introduction", false))
     {
         m_articleList->hide();
         m_searchBar->hide();
@@ -350,7 +349,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     }
 
     m_fetchTimer = new QTimer(this);
-    connect( m_fetchTimer, SIGNAL(timeout()), 
+    connect( m_fetchTimer, SIGNAL(timeout()),
              this, SLOT(slotDoIntervalFetches()) );
     m_fetchTimer->start(1000*60);
 
@@ -394,7 +393,7 @@ void MainWidget::delayedInit()
 void MainWidget::slotOnShutdown()
 {
     m_shuttingDown = true;
-    
+
     m_articleList->slotShowNode(0);
     m_articleViewer->slotShowNode(0);
 
@@ -430,14 +429,14 @@ void MainWidget::saveSettings()
 void MainWidget::slotRequestNewFrame(int& frameId)
 {
     BrowserFrame* frame = new BrowserFrame(m_tabWidget);
-    
+
     connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
-    
+
     Kernel::self()->frameManager()->slotAddFrame(frame);
-    
+
     frameId = frame->id();
 }
-        
+
 void MainWidget::setTabIcon(const QPixmap& icon)
 {
     ArticleViewer* s = dynamic_cast<ArticleViewer*>(sender());
@@ -450,9 +449,9 @@ void MainWidget::setTabIcon(const QPixmap& icon)
 void MainWidget::sendArticle(bool attach)
 {
     // FIXME: you have to open article to tab to be able to send...
-    
+
     Frame* frame = Kernel::self()->frameManager()->currentFrame();
-    
+
     if (!frame)
         return;
 
@@ -463,7 +462,7 @@ void MainWidget::sendArticle(bool attach)
 
     QString title = frame->title();
 
-    if(attach) 
+    if(attach)
     {
         KToolInvocation::invokeMailer(QString(),
                            QString(),
@@ -474,7 +473,7 @@ void MainWidget::sendArticle(bool attach)
                            QStringList(),
                            text);
     }
-    else 
+    else
     {
         KToolInvocation::invokeMailer(QString(),
                            QString(),
@@ -767,9 +766,9 @@ void MainWidget::slotNodeSelected(TreeNode* node)
         m_articleViewer->slotShowSummary(node);
     }
 
-    if (node)    
+    if (node)
        m_mainFrame->setWindowTitle(node->title());
-            
+
     m_actionManager->slotNodeSelected(node);
 
     updateTagActions();
@@ -898,7 +897,7 @@ void MainWidget::slotNextUnreadArticle()
 {
     if (m_viewMode == CombinedView)
         m_listTabWidget->activeView()->slotNextUnreadFeed();
-    
+
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotNextUnreadArticle();
@@ -910,7 +909,7 @@ void MainWidget::slotPrevUnreadArticle()
 {
     if (m_viewMode == CombinedView)
         m_listTabWidget->activeView()->slotPrevUnreadFeed();
-    
+
     TreeNode* sel = m_listTabWidget->activeView()->selectedNode();
     if (sel && sel->unread() > 0)
         m_articleList->slotPreviousUnreadArticle();
@@ -1070,14 +1069,14 @@ void MainWidget::slotMouseButtonPressed(int button, const Article& article, cons
 {
     if (article.isNull() || button != Qt::MidButton)
         return;
-    
+
     KUrl url = article.link();
-    
+
     if (!url.isValid())
         return;
-    
+
     OpenURLRequest req(url);
-    
+
     switch (Settings::mMBBehaviour())
     {
         case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
@@ -1091,7 +1090,7 @@ void MainWidget::slotMouseButtonPressed(int button, const Article& article, cons
             req.setOptions(OpenURLRequest::NewTab);
             req.setOpenInBackground(false);
     }
-    
+
     Kernel::self()->frameManager()->slotOpenURLRequest(req);
 }
 
@@ -1101,9 +1100,9 @@ void MainWidget::slotOpenHomepage()
 
     if (!feed)
         return;
-    
+
     KUrl url(feed->htmlUrl());
-    
+
     if (url.isValid())
     {
         OpenURLRequest req(feed->htmlUrl());
@@ -1131,12 +1130,12 @@ void MainWidget::slotOpenArticleInBrowser(const Article& article)
 void MainWidget::slotOpenCurrentArticle()
 {
     Article article = m_articleList->currentArticle();
-    
+
     if (article.isNull())
         return;
 
-    KUrl url = article.link(); 
-    
+    KUrl url = article.link();
+
     if (url.isValid())
     {
         OpenURLRequest req(url);
@@ -1264,7 +1263,7 @@ void MainWidget::slotSetSelectedArticleRead()
 
 void MainWidget::slotTextToSpeechRequest()
 {
-    
+
     if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame)
     {
         if (m_viewMode != CombinedView)
@@ -1335,18 +1334,18 @@ void MainWidget::slotMouseOverInfo(const KFileItem *kifi)
     }
 }
 
-void MainWidget::readProperties(KConfig* config)
+void MainWidget::readProperties(const KConfigGroup &config)
 {
     // read filter settings
-    m_searchBar->slotSetText(config->readEntry("searchLine"));
-    m_searchBar->slotSetStatus(config->readEntry("searchCombo").toInt());
+    m_searchBar->slotSetText(config.readEntry("searchLine"));
+    m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
 }
 
-void MainWidget::saveProperties(KConfig* config)
+void MainWidget::saveProperties(KConfigGroup & config)
 {
     // save filter settings
-    config->writeEntry("searchLine", m_searchBar->text());
-    config->writeEntry("searchCombo", m_searchBar->status());
+    config.writeEntry("searchLine", m_searchBar->text());
+    config.writeEntry("searchCombo", m_searchBar->status());
 }
 
 void MainWidget::connectToFeedList(FeedList* feedList)
