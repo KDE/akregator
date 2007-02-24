@@ -2,6 +2,14 @@
 ===================
 (c) 2004-2006 the Akregator authors.
 
+Changes after 1.2.6:
+-----------------------------
+
+Bug fixes:
+
+ 2007/02/24 fix crash when using "Load the full website when reading articles" and an error (e.g. 404) 
+            is returned (2nd try) (#126812) -fo 
+
 Changes after 1.2.5:
 -----------------------------
 
