@@ -51,10 +51,7 @@ Viewer::Viewer(QWidget *parent, const char *name)
     : KHTMLPart(parent, name), m_url(0)
 {
     setZoomFactor(100);
-    setJScriptEnabled(false);
-    setJavaEnabled(true);
     setMetaRefreshEnabled(true);
-    setPluginsEnabled(true);
     setDNDEnabled(true);
     setAutoloadImages(true);
     setStatusMessagesEnabled(true);
