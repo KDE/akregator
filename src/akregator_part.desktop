@@ -1,6 +1,13 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=aKregatorPart
+Name[cs]=Komponenta aKregator
+Name[da]=AkregatorPart
+Name[de]=aKregator-Komponente
+Name[nds]=aKregator-Komponent
+Name[pt_BR]=Componente do aKregator
+Name[sv]=aKregator-delprogram
+Name[ta]=aKregatorபகுதி
 Name[x-test]=xxaKregatorPartxx
 ServiceTypes=KParts/ReadOnlyPart
 X-KDE-Library=libakregatorpart
