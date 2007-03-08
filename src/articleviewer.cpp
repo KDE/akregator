@@ -117,12 +117,12 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     m_part->actionCollection()->addAction("viewer_copy", action);
 
     action = m_part->actionCollection()->addAction("incFontSizes");
-    action->setIcon(KIcon("viewmag+"));
+    action->setIcon(KIcon("zoom-in"));
     action->setText(i18n("&Increase Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomIn()));
     action->setShortcuts(KShortcut( "Ctrl+Plus" ));
     action = m_part->actionCollection()->addAction("decFontSizes");
-    action->setIcon(KIcon("viewmag-"));
+    action->setIcon(KIcon("zoom-out"));
     action->setText(i18n("&Decrease Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomOut()));
     action->setShortcuts(KShortcut( "Ctrl+Minus" ));
@@ -248,8 +248,8 @@ void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& k
 
     if (isLink && !isSelection)
     {
-        popup.insertItem(SmallIcon("tab_new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.insertItem(SmallIcon("tab-new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
+        popup.insertItem(SmallIcon("window-new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
         popup.addSeparator();
         popup.addAction( m_part->action("savelinkas") );
         popup.addAction( m_part->action("copylinkaddress") );

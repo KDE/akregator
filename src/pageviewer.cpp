@@ -100,7 +100,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
     setXMLFile(KStandardDirs::locate("data", "akregator/pageviewer.rc"), true);
 
-    d->backAction = new KToolBarPopupAction(i18n("Back"), "back", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
+    d->backAction = new KToolBarPopupAction(i18n("Back"), "go-previous", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(d->backAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotBackAboutToShow()));
@@ -108,17 +108,17 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
             this, SLOT(slotPopupActivated(int)));
 
 
-    d->forwardAction = new KToolBarPopupAction(i18n("Forward"), "forward", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
+    d->forwardAction = new KToolBarPopupAction(i18n("Forward"), "go-next", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
 
     connect(d->forwardAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotForwardAboutToShow()));
     connect(d->forwardAction->popupMenu(), SIGNAL(activated(int)),
             this, SLOT(slotPopupActivated(int)));
 
-    d->reloadAction = new KAction(i18n("Reload"), "reload", 0,
+    d->reloadAction = new KAction(i18n("Reload"), "view-refresh", 0,
                             this, SLOT(slotReload()),
                             actionCollection(), "pageviewer_reload");
-    d->stopAction = new KAction(i18n("Stop"), "stop", 0,
+    d->stopAction = new KAction(i18n("Stop"), "process-stop", 0,
                                  this, SLOT(slotStop()),
                                  actionCollection(), "pageviewer_stop");
 
@@ -412,9 +412,9 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
     int idNewWindow = -2;
     if (isLink)
     {
-        idNewWindow = popup.insertItem(SmallIcon("tab_new"),i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
+        idNewWindow = popup.insertItem(SmallIcon("tab-new"),i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
         popup.setWhatsThis(idNewWindow, i18n("<b>Open Link in New Tab</b><p>Opens current link in a new tab."));
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.insertItem(SmallIcon("window-new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
 
         popup.addSeparator();
         action("savelinkas")->plug(&popup);
@@ -446,7 +446,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
             popup.addSeparator();
         }
 
-        popup.insertItem(SmallIcon("window_new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.insertItem(SmallIcon("window-new"), i18n("Open Page in External Browser"), this, SLOT(slotOpenLinkInBrowser()));
 
         action("viewer_print")->plug(&popup);
         popup.addSeparator();
@@ -454,7 +454,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
         KAction *ac = action("setEncoding");
         if (ac)
             ac->plug(&popup);
-        popup.insertItem(SmallIcon("bookmark_add"),i18n("Add to Konqueror Bookmarks"), this, SLOT(slotGlobalBookmarkArticle()));
+        popup.insertItem(SmallIcon("bookmark-new"),i18n("Add to Konqueror Bookmarks"), this, SLOT(slotGlobalBookmarkArticle()));
     }
 
     popup.exec(p);

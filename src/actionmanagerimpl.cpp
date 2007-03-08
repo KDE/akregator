@@ -292,19 +292,19 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Ctrl+H" ));
 
     action = coll->addAction("feed_add");
-    action->setIcon(KIcon("bookmark_add"));
+    action->setIcon(KIcon("bookmark-new"));
     action->setText(i18n("&Add Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
     action->setShortcuts(KShortcut( "Insert" ));
 
     action = coll->addAction("feed_add_group");
-    action->setIcon(KIcon("folder_new"));
+    action->setIcon(KIcon("folder-new"));
     action->setText(i18n("Ne&w Folder..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAddGroup()));
     action->setShortcuts(KShortcut( "Shift+Insert" ));
 
     action = coll->addAction("feed_remove");
-    action->setIcon(KIcon("editdelete"));
+    action->setIcon(KIcon("edit-delete"));
     action->setText(i18n("&Delete Feed"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedRemove()));
     action->setShortcuts(KShortcut( "Alt+Delete" ));
@@ -336,7 +336,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("combined_view");
-    ra->setIcon(KIcon("view_text"));
+    ra->setIcon(KIcon("fileview-text"));
     ra->setText(i18n("C&ombined View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotCombinedView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+3" ));
@@ -345,32 +345,32 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     // toolbar / feed menu
     action = coll->addAction("feed_fetch");
-    action->setIcon(KIcon("down"));
+    action->setIcon(KIcon("go-down"));
     action->setText(i18n("&Fetch Feed"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFetchCurrentFeed()));
     action->setShortcuts(KStandardShortcut::shortcut(KStandardShortcut::Reload));
 
     action = coll->addAction("feed_fetch_all");
-    action->setIcon(KIcon("bottom"));
+    action->setIcon(KIcon("go-bottom"));
     action->setText(i18n("Fe&tch All Feeds"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFetchAllFeeds()));
     action->setShortcuts(KShortcut( "Ctrl+L" ));
 
     QAction *stopAction = coll->addAction("feed_stop");
-    stopAction->setIcon(KIcon("stop"));
+    stopAction->setIcon(KIcon("process-stop"));
     stopAction->setText(i18n("&Abort Fetches"));
     connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
     stopAction->setShortcut(QKeySequence(Qt::Key_Escape));
     stopAction->setEnabled(false);
 
     action = coll->addAction("feed_mark_all_as_read");
-    action->setIcon(KIcon("goto"));
+    action->setIcon(KIcon("goto-page"));
     action->setText(i18n("&Mark Feed as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllRead()));
     action->setShortcuts(KShortcut( "Ctrl+R" ));
 
     action = coll->addAction("feed_mark_all_feeds_as_read");
-    action->setIcon(KIcon("goto"));
+    action->setIcon(KIcon("goto-page"));
     action->setText(i18n("Ma&rk All Feeds as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllFeedsRead()));
     action->setShortcuts(KShortcut( "Ctrl+Shift+R" ));
@@ -382,13 +382,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     sqf->setChecked( Settings::showQuickFilter() );
 
     action = coll->addAction("article_open" );
-    action->setIcon(KIcon("tab_new"));
+    action->setIcon(KIcon("tab-new"));
     action->setText(i18n("Open in Tab"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticle()));
     action->setShortcuts(KShortcut( "Shift+Return" ));
     
     action = coll->addAction("article_open_external" );
-    action->setIcon(KIcon("window_new"));
+    action->setIcon(KIcon("window-new"));
     action->setText(i18n("Open in External Browser"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleInBrowser()));
     action->setShortcuts(KShortcut( "Ctrl+Shift+Return" ));
@@ -408,7 +408,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcut(QKeySequence(Qt::Key_Plus));
 
     action = coll->addAction("article_delete");
-    action->setIcon(KIcon("editdelete"));
+    action->setIcon(KIcon("edit-delete"));
     action->setText(i18n("&Delete"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleDelete()));
     action->setShortcuts(KShortcut( "Delete" ));
@@ -425,7 +425,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     //d->speakSelectedArticlesAction = new KAction(KIcon("kttsd"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
     //connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotTextToSpeechRequest()));
 
-    //KAction *abortTTS = new KAction(KIcon("player_stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
+    //KAction *abortTTS = new KAction(KIcon("media-playback-stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
     //connect(abortTTS, SIGNAL(triggered(bool)), SpeechClient::self(), SLOT(slotAbortJobs()));
     //abortTTS->setShortcut(QKeySequence(Qt::Key_Escape));
     //abortTTS->setEnabled(false);
@@ -484,12 +484,12 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Shift+Alt+Right" ));
 
     action = coll->addAction("file_sendlink");
-    action->setIcon(KIcon("mail_generic"));
+    action->setIcon(KIcon("mail"));
     action->setText(i18n("Send &Link Address..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendLink()));
 
     action = coll->addAction("file_sendfile");
-    action->setIcon(KIcon("mail_generic"));
+    action->setIcon(KIcon("mail"));
     action->setText(i18n("Send &File..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendFile()));
 }
@@ -609,7 +609,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCopyLinkAddress()));
 
     action = coll->addAction("tab_remove");
-    action->setIcon(KIcon("tab_remove"));
+    action->setIcon(KIcon("tab-remove"));
     action->setText(i18n("&Close Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
     action->setShortcuts(KStandardShortcut::close());
@@ -622,14 +622,14 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     d->frameManager = frameManager;
 
-    KToolBarPopupAction* forward = new KToolBarPopupAction(KIcon("forward"), i18n( "Forward"), this);
+    KToolBarPopupAction* forward = new KToolBarPopupAction(KIcon("go-next"), i18n( "Forward"), this);
     d->actionCollection->addAction("browser_forward", forward);
     forward->setShortcuts(KShortcut("Alt+Right"));
     connect(forward, SIGNAL(triggered()), frameManager, SLOT(slotBrowserForward()));
 
     connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
      
-    KToolBarPopupAction* back = new KToolBarPopupAction(KIcon("back"), i18n( "Back"), this);
+    KToolBarPopupAction* back = new KToolBarPopupAction(KIcon("go-previous"), i18n( "Back"), this);
     d->actionCollection->addAction("browser_back", back);
     back->setShortcuts(KShortcut("Alt+Left"));
     connect(back, SIGNAL(triggered()), frameManager, SLOT(slotBrowserBack()));
@@ -637,12 +637,12 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
     
     QAction *action = d->actionCollection->addAction("browser_reload");
-    action->setIcon(KIcon("reload"));
+    action->setIcon(KIcon("view-refresh"));
     action->setText(i18n("Reload"));
     connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserReload()));
 
     action = d->actionCollection->addAction("browser_stop");
-    action->setIcon(KIcon("stop"));
+    action->setIcon(KIcon("process-stop"));
     action->setText(i18n("Stop"));
     connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserStop()));
 }
