@@ -300,7 +300,7 @@ void Part::saveProperties(KConfigGroup & config)
 
 bool Part::openURL(const KUrl& url)
 {
-    m_file = url.path();
+    setLocalFilePath(url.path());
     return openFile();
 }
 
@@ -373,7 +373,7 @@ bool Part::openFile()
 
     QString str;
     // m_file is always local so we can use QFile on it
-    QFile file(m_file);
+    QFile file(localFilePath());
 
     bool fileExists = file.exists();
     QString listBackup = m_storage->restoreFeedList();
@@ -398,7 +398,9 @@ bool Part::openFile()
         if (!doc.setContent(str))
         {
 
-            QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+            QString backup = localFilePath()
+                + QLatin1String("-backup.")
+                + QString::number(QDateTime::currentDateTime().toTime_t());
 
             copyFile(backup);
 
@@ -411,7 +413,10 @@ bool Part::openFile()
 
     if (!m_mainWidget->loadFeeds(doc))
     {
-        QString backup = m_file + "-backup." +  QString::number(QDateTime::currentDateTime().toTime_t());
+        QString backup = localFilePath()
+            + QLatin1String("-backup.")
+            + QString::number(QDateTime::currentDateTime().toTime_t());
+
         copyFile(backup);
 
         KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%1</b></p></qt>", backup), i18n("OPML Parsing Error") );
@@ -440,7 +445,7 @@ void Part::slotSaveFeedList()
     // the first time we overwrite the feed list, we create a backup
     if (!m_backedUpList)
     {
-        QString backup = m_file + '~';
+        QString backup = localFilePath() + QLatin1String("~");
 
         if (copyFile(backup))
             m_backedUpList = true;
@@ -449,11 +454,11 @@ void Part::slotSaveFeedList()
     QString xmlStr = m_mainWidget->feedListToOPML().toString();
     m_storage->storeFeedList(xmlStr);
 
-    QFile file(m_file);
+    QFile file(localFilePath());
     if (file.open(QIODevice::WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
-        KMessageBox::error(m_mainWidget, i18n("Access denied: cannot save feed list (%1)", m_file), i18n("Write error") );
+        KMessageBox::error(m_mainWidget, i18n("Access denied: cannot save feed list (%1)", localFilePath()), i18n("Write error") );
         return;
     }
 
@@ -819,7 +824,7 @@ void Part::initFonts()
 
 bool Part::copyFile(const QString& backup)
 {
-    QFile file(m_file);
+    QFile file(localFilePath());
 
     if (file.open(QIODevice::ReadOnly))
     {
