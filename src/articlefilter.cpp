@@ -572,8 +572,8 @@ bool ArticleFilter::operator==(const ArticleFilter& other) const
 
 void ArticleFilterList::writeConfig(KConfig* config) const
 {
-    config->setGroup(QString::fromLatin1("Filters"));
-    config->writeEntry(QString::fromLatin1("count"), count());
+    KConfigGroup group = config->group(QString::fromLatin1("Filters"));
+    group.writeEntry(QString::fromLatin1("count"), count());
     int index = 0;
     for (ArticleFilterList::ConstIterator it = begin(); it != end(); ++it)
     {
@@ -586,8 +586,8 @@ void ArticleFilterList::writeConfig(KConfig* config) const
 void ArticleFilterList::readConfig(KConfig* config)
 {
     clear();
-    config->setGroup(QString::fromLatin1("Filters"));
-    int count = config->readEntry(QString::fromLatin1("count"), 0);
+    KConfigGroup group = config->group(QString::fromLatin1("Filters"));
+    int count = group.readEntry(QString::fromLatin1("count"), 0);
     for (int i = 0; i < count; ++i)
     {
         config->setGroup(QString::fromLatin1("Filters_")+QString::number(i));
