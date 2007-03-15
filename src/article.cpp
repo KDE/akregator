@@ -37,7 +37,6 @@
 #include <QStringList>
 #include <QList>
 
-#include <krfcdate.h>
 #include <kdebug.h>
 #include <kurl.h>
 
