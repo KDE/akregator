@@ -6,7 +6,7 @@
 
 #define AKREGATOR_EXPORT_PLUGIN( classname ) \
     extern "C" { \
-         Akregator::Plugin* create_plugin() { return new classname; } \
+         KDE_EXPORT Akregator::Plugin* create_plugin() { return new classname; } \
     }
 
 #include <QHash>
