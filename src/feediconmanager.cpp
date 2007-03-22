@@ -112,13 +112,15 @@ QString FeedIconManager::getIconURL(const KUrl& url)
 
 QString FeedIconManager::iconLocation(const KUrl & url) const
 {
+#warning Reenable this, currently causes a crash on startup, looks like a [Qt]DBus bug
+#if 0
     QDBusReply<QString> reply = d->m_favIconsModule->call( "iconForURL", url.url() );
 
     if (reply.isValid()) {
       QString result = reply;
       return result;
     }
-
+#endif
     return QString();
 }
 
