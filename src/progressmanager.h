@@ -68,7 +68,7 @@ class ProgressItemHandler : public QObject
 {
     Q_OBJECT
     public:
-        ProgressItemHandler(Feed* feed);
+        explicit ProgressItemHandler(Feed* feed);
         virtual ~ProgressItemHandler();
 
     public slots:

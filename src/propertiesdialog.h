@@ -36,7 +36,7 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
     Q_OBJECT
     public:
-        FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
+        explicit FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
         ~FeedPropertiesWidget();
         virtual void slotUpdateComboBoxActivated(int index);
         virtual void slotUpdateCheckBoxToggled(bool enabled);
@@ -47,7 +47,7 @@ class FeedPropertiesDialog : public KDialog
 {
     Q_OBJECT
     public:
-        FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
+        explicit FeedPropertiesDialog(QWidget *parent = 0, const char *name = 0);
         ~FeedPropertiesDialog();
 
         void setFeed(Feed* feed);

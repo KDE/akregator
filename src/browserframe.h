@@ -49,7 +49,7 @@ class BrowserFrame : public Frame
 
     public:
 
-        BrowserFrame(QWidget* parent=0);
+        explicit BrowserFrame(QWidget* parent=0);
         virtual ~BrowserFrame();
 
         virtual KUrl url() const;

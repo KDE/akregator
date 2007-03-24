@@ -48,7 +48,7 @@ class FrameManager : public QObject
 
     public:
 
-        FrameManager(QWidget* mainWin=0, QObject* parent=0);
+        explicit FrameManager(QWidget* mainWin=0, QObject* parent=0);
         virtual ~FrameManager();
 
         Frame* currentFrame() const;

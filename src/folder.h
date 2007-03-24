@@ -55,7 +55,7 @@ class AKREGATOR_EXPORT Folder : public TreeNode
         /** Creates a new folder with a given title
         @param title The title of the feed group
             */          
-        Folder(const QString& title = QString::null);
+        explicit Folder(const QString& title = QString());
         
         virtual ~Folder();
 

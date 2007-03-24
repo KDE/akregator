@@ -41,7 +41,7 @@ class PageViewer : public Viewer
 {
     Q_OBJECT
     public:
-        PageViewer(QWidget* parent, const char* name=0);
+        explicit PageViewer(QWidget* parent, const char* name=0);
         virtual ~PageViewer();
         virtual bool openURL(const KUrl &url);
 

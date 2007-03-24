@@ -24,8 +24,6 @@
 
 #include "mk4plugin.h"
 
-#include <klocale.h>
-
 #include "storagefactorymk4impl.h"
 #include "storagefactoryregistry.h"
 

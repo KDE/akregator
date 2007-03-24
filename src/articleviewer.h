@@ -54,7 +54,7 @@ class ArticleViewer : public QWidget
 {
     Q_OBJECT
     public:
-        ArticleViewer(QWidget* parent);
+        explicit ArticleViewer(QWidget* parent);
         ~ArticleViewer();
 
                 
@@ -221,7 +221,7 @@ class ArticleViewerPart : public KHTMLPart
     Q_OBJECT
 
     public:
-        ArticleViewerPart(QWidget* parent);
+        explicit ArticleViewerPart(QWidget* parent);
         
         bool closeUrl();
         

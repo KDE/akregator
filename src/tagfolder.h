@@ -38,7 +38,7 @@ class TagFolder : public Folder
 {
     public:
 
-        TagFolder(const QString& title = QString::null);
+        explicit TagFolder(const QString& title = QString());
 
         virtual ~TagFolder();
         virtual bool accept(TreeNodeVisitor* visitor);

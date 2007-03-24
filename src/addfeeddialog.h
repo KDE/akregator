@@ -48,7 +48,7 @@ class AddFeedDialog : public KDialog
 {
     Q_OBJECT
     public:
-        AddFeedDialog(QWidget *parent = 0, const char *name = 0);
+        explicit AddFeedDialog(QWidget *parent = 0, const char *name = 0);
         ~AddFeedDialog();
 
         void setURL(const QString& t);

@@ -95,7 +95,7 @@ class DefaultCombinedViewFormatter : public ArticleFormatter
             
     public:
         
-        DefaultCombinedViewFormatter(const KUrl& m_imageDir);
+        explicit DefaultCombinedViewFormatter(const KUrl& m_imageDir);
         
         QString formatArticle(const Article& article, IconOption option) const;
         

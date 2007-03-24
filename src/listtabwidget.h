@@ -49,7 +49,7 @@ Q_OBJECT
 
 public:
 
-    ListTabWidget(QWidget* parent=0, const char* name=0);
+    explicit ListTabWidget(QWidget* parent=0, const char* name=0);
     virtual ~ListTabWidget();
 
     enum ViewMode { /*single, horizontalTabs, */  verticalTabs };

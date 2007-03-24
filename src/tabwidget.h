@@ -40,7 +40,7 @@ class TabWidget : public KTabWidget
     Q_OBJECT
 
     public:
-        TabWidget(QWidget * parent = 0);
+        explicit TabWidget(QWidget * parent = 0);
         virtual ~TabWidget();
        
     public slots:

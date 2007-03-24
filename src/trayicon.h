@@ -42,7 +42,7 @@ class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
         static TrayIcon* getInstance();
         static void setInstance(TrayIcon* trayIcon);
         
-        TrayIcon(QWidget *parent = 0);
+        explicit TrayIcon(QWidget *parent = 0);
         ~TrayIcon();
         
         //QPixmap takeScreenshot() const;

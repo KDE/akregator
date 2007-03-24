@@ -37,7 +37,7 @@ class TagPropertiesDialog : public KDialog
 
     public:
 
-        TagPropertiesDialog(QWidget *parent=0);
+        explicit TagPropertiesDialog(QWidget *parent=0);
         virtual ~TagPropertiesDialog();
 
         void setTag(const Tag& tag);

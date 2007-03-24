@@ -51,7 +51,7 @@ class AKREGATOR_EXPORT TagSet : public QObject
     Q_OBJECT
     public:
 
-        TagSet(QObject* parent=0);
+        explicit TagSet(QObject* parent=0);
         virtual ~TagSet();
 
         /** adds a tag to the tag set. The tag set will emit signalTagAdded */

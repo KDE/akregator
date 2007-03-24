@@ -40,7 +40,7 @@ class AKREGATOR_EXPORT FetchQueue : public QObject
 
     public:
 
-        FetchQueue(QObject* parent=0, const char* name=0);
+        explicit FetchQueue(QObject* parent=0, const char* name=0);
         virtual ~FetchQueue();
 
         /** returns true when no feeds are neither fetching nor queued */

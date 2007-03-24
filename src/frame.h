@@ -53,7 +53,7 @@ class Frame : public QWidget
     Q_OBJECT
 
     public:
-        Frame(QWidget* parent=0);
+        explicit Frame(QWidget* parent=0);
         virtual ~Frame();
 
         enum State {Idle, Started, Completed, Canceled};

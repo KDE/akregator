@@ -49,7 +49,7 @@ class AKREGATOR_EXPORT ArticleListView : public K3ListView
 {
     Q_OBJECT
     public:
-        ArticleListView(QWidget *parent = 0, const char *name = 0);
+        explicit ArticleListView(QWidget *parent = 0, const char *name = 0);
         virtual ~ArticleListView();
         
         /** returns the current article, or a null article if there is none */

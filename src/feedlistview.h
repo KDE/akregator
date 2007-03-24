@@ -43,7 +43,7 @@ class NodeListView : public K3ListView
 {
 Q_OBJECT
 public:
-    NodeListView( QWidget *parent = 0, const char *name = 0 );
+    explicit NodeListView( QWidget *parent = 0, const char *name = 0 );
     virtual ~NodeListView();
 
     /** sets the feed list to show. Disconnects from the old feed list, if there is any. */

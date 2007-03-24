@@ -61,7 +61,7 @@ class BrowserExtension : public KParts::BrowserExtension
     Q_OBJECT
 
     public:
-        BrowserExtension(Part *p, const char *name );
+        explicit BrowserExtension(Part *p, const char *name=0);
     public slots:
         void saveSettings();
     private:

@@ -49,7 +49,7 @@ class AKREGATOR_EXPORT ArticleDrag : public K3URLDrag
 
 public:
 
-    ArticleDrag(const QList<Article>& articles, QWidget* dragSource=0, const char* name=0);
+    explicit ArticleDrag(const QList<Article>& articles, QWidget* dragSource=0, const char* name=0);
 
     static bool canDecode(const QMimeSource* e);
     static bool decode(const QMimeSource* e, QList<ArticleDragItem>& articles);

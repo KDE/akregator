@@ -54,7 +54,7 @@ class OpenUrlRequest
             ExternalBrowser /**< open in external browser */
         };
         
-        OpenUrlRequest(const KUrl& url=KUrl());
+        explicit OpenUrlRequest(const KUrl& url=KUrl());
 
         /**
          * the Id of the frame that sent the request */  
