@@ -210,9 +210,9 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
                      const KParts::URLArgs&) ),
                      parent, SLOT(slotOpenURLRequestDelayed(const KUrl&, 
                                   const KParts::URLArgs&)) );
-            connect(ext, SIGNAL(setLocationBarURL(const QString&)),
+            connect(ext, SIGNAL(setLocationBarUrl(const QString&)),
                     parent, SLOT(slotSetLocationBarURL(const QString&)) );
-            connect(ext, SIGNAL(setIconURL(const KUrl&)),
+            connect(ext, SIGNAL(setIconUrl(const KUrl&)),
                     parent, SLOT(slotSetIconURL(const KUrl&)) );
             connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
                     parent, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));

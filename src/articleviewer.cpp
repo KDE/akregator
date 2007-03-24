@@ -99,13 +99,13 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs& )) );
 
     connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
-            parent, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
+            this, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
 
     connect(ext, SIGNAL(createNewWindow(const KUrl&,
             const KParts::URLArgs&,
             const KParts::WindowArgs&,
             KParts::ReadOnlyPart*&)),
-            parent, SLOT(slotCreateNewWindow(const KUrl&,
+            this, SLOT(slotCreateNewWindow(const KUrl&,
                          const KParts::URLArgs&,
                          const KParts::WindowArgs&,
                          KParts::ReadOnlyPart*&)));

@@ -70,7 +70,7 @@ TrayIcon::TrayIcon(QWidget *parent)
     setIcon(m_defaultPixmap);
     this->setToolTip( i18n("Akregator - RSS Feed Reader"));
     connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
-             SLOT( QSystemTrayIcon::ActivationReason ) );
+             SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
 }
 
 
