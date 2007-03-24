@@ -46,7 +46,7 @@ namespace KPIM
 namespace Akregator
 {
 
-class OpenURLRequest;
+class OpenUrlRequest;
     
 class Frame : public QWidget
 {
@@ -99,7 +99,7 @@ class Frame : public QWidget
          * returns whether the embedded part is loading a website. If so, it can be stopped using slotStop() */
         virtual bool isLoading() const;
 
-        virtual bool openURL(const OpenURLRequest& request) = 0;
+        virtual bool openUrl(const OpenUrlRequest& request) = 0;
 
     public slots:
 
@@ -135,7 +135,7 @@ class Frame : public QWidget
         void signalLoadingProgress(Frame*, int);
         void signalStatusText(Frame*, const QString&);
 
-        void signalOpenURLRequest(OpenURLRequest& request);
+        void signalOpenUrlRequest(OpenUrlRequest& request);
 
         void signalCanGoBackToggled(Frame*, bool);
         void signalCanGoForwardToggled(Frame*, bool);
@@ -170,7 +170,8 @@ class MainFrame : public Frame
         virtual ~MainFrame();
 
         virtual KUrl url() const;
-        virtual bool openURL(const OpenURLRequest&) { return false; }
+
+        virtual bool openUrl(const OpenUrlRequest&) { return false; }
 
         virtual KParts::ReadOnlyPart* part() const { return m_part; }
 

@@ -40,7 +40,7 @@ namespace KParts
 namespace Akregator {
 
 class Frame;
-class OpenURLRequest;
+class OpenUrlRequest;
     
 class FrameManager : public QObject
 {
@@ -63,7 +63,7 @@ class FrameManager : public QObject
         void slotRemoveFrame(int frameId);
                
         void slotChangeFrame(int frameId);
-        void slotOpenURLRequest(OpenURLRequest& request);
+        void slotOpenUrlRequest(OpenUrlRequest& request);
 
         void slotBrowserBack();
         void slotBrowserForward();
@@ -97,9 +97,9 @@ class FrameManager : public QObject
 
     protected:
         
-        void openURL(OpenURLRequest& request);
+        void openUrl(OpenUrlRequest& request);
         
-        void openInExternalBrowser(const OpenURLRequest& request);
+        void openInExternalBrowser(const OpenUrlRequest& request);
         
     protected slots:
 
@@ -116,7 +116,7 @@ class FrameManager : public QObject
         void slotIsReloadableToggled(Frame*, bool);
         void slotIsLoadingToggled(Frame*, bool);
 
-        void slotFoundMimeType(const OpenURLRequest& request);
+        void slotFoundMimeType(const OpenUrlRequest& request);
 
     private:
 

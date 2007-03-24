@@ -61,7 +61,7 @@ class BrowserFrame : public Frame
         virtual bool isReloadable() const;
         virtual bool isLoading() const;
 
-        virtual bool openURL(const OpenURLRequest& request);
+        virtual bool openUrl(const OpenUrlRequest& request);
 
     public slots:
 
@@ -76,13 +76,13 @@ class BrowserFrame : public Frame
 
     protected slots:
 
-        void slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&);
+        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::URLArgs&);
         void slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args);
         void slotCreateNewWindow(const KUrl& url, 
                                  const KParts::URLArgs& args,
                                  const KParts::WindowArgs& windowArgs, 
                                  KParts::ReadOnlyPart*& part);
-        void slotOpenURLNotify();
+        void slotOpenUrlNotify();
         void slotSetLocationBarURL(const QString& url);
         void slotSetIconURL(const KUrl& url);
         void slotSpeedProgress(int);

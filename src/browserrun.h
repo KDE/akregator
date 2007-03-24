@@ -36,18 +36,18 @@ class BrowserRun : public KParts::BrowserRun
 {
 	Q_OBJECT
     public:
-        BrowserRun(const OpenURLRequest& request, QWidget* parent);
+        BrowserRun(const OpenUrlRequest& request, QWidget* parent);
         virtual ~BrowserRun();
 
     signals:
 
-        void signalFoundMimeType(const OpenURLRequest& request);
+        void signalFoundMimeType(const OpenUrlRequest& request);
 
     protected:
 	    virtual void foundMimeType(const QString& type);
 
     private:
-        OpenURLRequest m_request;
+        OpenUrlRequest m_request;
 };
 
 } // namespace Akregator

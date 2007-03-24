@@ -76,7 +76,7 @@ class PageViewer : public Viewer
         
         void slotGlobalBookmarkArticle();
         
-        virtual void slotOpenURLRequest(const KUrl& url, const KParts::URLArgs& args);
+        virtual void slotOpenUrlRequest(const KUrl& url, const KParts::URLArgs& args);
         virtual void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
         
     signals:

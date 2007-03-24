@@ -39,7 +39,7 @@ namespace Akregator
 
 class Frame;
     
-class OpenURLRequest
+class OpenUrlRequest
 {
     public:
         
@@ -54,7 +54,7 @@ class OpenURLRequest
             ExternalBrowser /**< open in external browser */
         };
         
-        OpenURLRequest(const KUrl& url=KUrl());
+        OpenUrlRequest(const KUrl& url=KUrl());
 
         /**
          * the Id of the frame that sent the request */  

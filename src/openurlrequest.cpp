@@ -27,72 +27,72 @@
 
 namespace Akregator {
 
-OpenURLRequest::OpenURLRequest(const KUrl& url) : m_frameId(-1), m_url(url),
+OpenUrlRequest::OpenUrlRequest(const KUrl& url) : m_frameId(-1), m_url(url),
      m_options(None), m_part(0L), m_inBackground(false)
 {
 }
 
-int OpenURLRequest::frameId() const
+int OpenUrlRequest::frameId() const
 {
     return m_frameId;
 }
 
-void OpenURLRequest::setFrameId(int frameId)
+void OpenUrlRequest::setFrameId(int frameId)
 {
     m_frameId = frameId;
 }
 
-const KUrl& OpenURLRequest::url() const
+const KUrl& OpenUrlRequest::url() const
 {
     return m_url;
 }
 
-void OpenURLRequest::setUrl(const KUrl& url)
+void OpenUrlRequest::setUrl(const KUrl& url)
 {
     m_url = url;
 }
-bool OpenURLRequest::openInBackground() const
+bool OpenUrlRequest::openInBackground() const
 {
     return m_inBackground;
 }
 
-void OpenURLRequest::setOpenInBackground(bool background)
+void OpenUrlRequest::setOpenInBackground(bool background)
 {
     m_inBackground = background;
 }
           
-const KParts::URLArgs& OpenURLRequest::args() const
+const KParts::URLArgs& OpenUrlRequest::args() const
 {
     return m_args;
 }
 
-void OpenURLRequest::setArgs(const KParts::URLArgs& args)
+void OpenUrlRequest::setArgs(const KParts::URLArgs& args)
 {
     //m_hasArgs = true;
     m_args = args;
 }
 
-OpenURLRequest::Options OpenURLRequest::options() const
+OpenUrlRequest::Options OpenUrlRequest::options() const
 {
     return m_options;
 }
 
-void OpenURLRequest::setOptions(OpenURLRequest::Options options)
+void OpenUrlRequest::setOptions(OpenUrlRequest::Options options)
 {
     m_options = options;
 }
 
-void OpenURLRequest::setPart(KParts::ReadOnlyPart* part)
+void OpenUrlRequest::setPart(KParts::ReadOnlyPart* part)
 {
     m_part = part;
 }
 
-KParts::ReadOnlyPart* OpenURLRequest::part() const
+KParts::ReadOnlyPart* OpenUrlRequest::part() const
 {
     return m_part;
 }
 
-QString OpenURLRequest::debugInfo() const
+QString OpenUrlRequest::debugInfo() const
 {
     return  "url=" + m_url.url() 
             + " serviceType=" + m_args.serviceType  

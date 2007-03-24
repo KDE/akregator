@@ -86,7 +86,7 @@ bool BrowserFrame::canGoBack() const
     return !d->history.isEmpty() && d->current != d->history.begin();
 }
 
-void BrowserFrame::slotOpenURLNotify()
+void BrowserFrame::slotOpenUrlNotify()
 {
     // TODO: inform the world that a new url was opened
 }
@@ -158,26 +158,26 @@ void BrowserFrame::slotPopupMenu(KXMLGUIClient* client,
     popup.exec(global);
 }
                    
-void BrowserFrame::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
+void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
 {
-    OpenURLRequest req;
+    OpenUrlRequest req;
     
     req.setFrameId(id());
     req.setUrl(url);
     req.setArgs(args);
     
-    emit signalOpenURLRequest(req);
+    emit signalOpenUrlRequest(req);
 }
 
 void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args)
 {
-    OpenURLRequest req;
+    OpenUrlRequest req;
     req.setFrameId(id());
     req.setUrl(url);
     req.setArgs(args);
-    req.setOptions(OpenURLRequest::NewTab);
+    req.setOptions(OpenUrlRequest::NewTab);
     
-    emit signalOpenURLRequest(req);
+    emit signalOpenUrlRequest(req);
 }
 
 void BrowserFrame::slotCreateNewWindow(const KUrl& url, 
@@ -185,17 +185,17 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url,
                                        const KParts::WindowArgs& /*windowArgs*/, 
                                        KParts::ReadOnlyPart*& part)
 {
-    OpenURLRequest req;
+    OpenUrlRequest req;
     req.setFrameId(id());
     req.setUrl(url);
     req.setArgs(args);
-    req.setOptions(OpenURLRequest::NewTab);
+    req.setOptions(OpenUrlRequest::NewTab);
     
-    emit signalOpenURLRequest(req);
+    emit signalOpenUrlRequest(req);
     part = req.part();
 }
 
-bool BrowserFrame::openURL(const OpenURLRequest& request)
+bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 {
     QString serviceType = request.args().serviceType;
     
@@ -307,7 +307,7 @@ void BrowserFrame::slotReload()
 {
     // TODO
     //d->lockHistory = true;
-    //openURL(d->url, d->mimetype); // this s
+    //openUrl(d->url, d->mimetype); // this s
     //d->lockHistory = false;
 }
 

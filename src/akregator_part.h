@@ -91,7 +91,7 @@ class Part : public MyBasePart
             Opens feedlist
             @param url URL to feedlist
             */
-        virtual bool openURL(const KUrl& url);
+        virtual bool openUrl(const KUrl& url);
 
         /** Opens standard feedlist */
         virtual void openStandardFeedList();

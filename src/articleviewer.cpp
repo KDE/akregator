@@ -96,7 +96,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)),
              this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
 
-    connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs& )) );
+    connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenUrlRequestDelayed(const KUrl&, const KParts::URLArgs& )) );
 
     connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
             this, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
@@ -175,18 +175,18 @@ int ArticleViewer::pointsToPixel(int pointSize) const
     return ( pointSize * m_part->view()->logicalDpiY() + 36 ) / 72 ;
 }
 
-void ArticleViewer::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
+void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
 {
-    OpenURLRequest req(url);
+    OpenUrlRequest req(url);
     req.setArgs(args);
-    req.setOptions(OpenURLRequest::NewTab);
+    req.setOptions(OpenUrlRequest::NewTab);
 
     if (m_part->button() == Qt::LeftButton)
     {
         switch (Settings::lMBBehaviour())
         {
             case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-                req.setOptions(OpenURLRequest::ExternalBrowser);
+                req.setOptions(OpenUrlRequest::ExternalBrowser);
                 break;
             case Settings::EnumLMBBehaviour::OpenInBackground:
                 req.setOpenInBackground(true);
@@ -200,7 +200,7 @@ void ArticleViewer::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URL
         switch (Settings::mMBBehaviour())
         {
             case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-                req.setOptions(OpenURLRequest::ExternalBrowser);
+                req.setOptions(OpenUrlRequest::ExternalBrowser);
                 break;
             case Settings::EnumMMBBehaviour::OpenInBackground:
                 req.setOpenInBackground(true);
@@ -210,16 +210,16 @@ void ArticleViewer::slotOpenURLRequestDelayed(const KUrl& url, const KParts::URL
         }
     }
 
-    emit signalOpenURLRequest(req);
+    emit signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args)
 {
-    OpenURLRequest req(url);
+    OpenUrlRequest req(url);
     req.setArgs(args);
-    req.setOptions(OpenURLRequest::NewTab);
+    req.setOptions(OpenUrlRequest::NewTab);
 
-    emit signalOpenURLRequest(req);
+    emit signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotCreateNewWindow(const KUrl& url,
@@ -227,12 +227,12 @@ void ArticleViewer::slotCreateNewWindow(const KUrl& url,
                                        const KParts::WindowArgs& /*windowArgs*/,
                                        KParts::ReadOnlyPart*& part)
 {
-    OpenURLRequest req;
+    OpenUrlRequest req;
     req.setUrl(url);
     req.setArgs(args);
-    req.setOptions(OpenURLRequest::NewTab);
+    req.setOptions(OpenUrlRequest::NewTab);
 
-    emit signalOpenURLRequest(req);
+    emit signalOpenUrlRequest(req);
     part = req.part();
 }
 
@@ -300,24 +300,24 @@ void ArticleViewer::slotOpenLinkInternal()
 
 void ArticleViewer::slotOpenLinkInForegroundTab()
 {
-    OpenURLRequest req(m_url);
-    req.setOptions(OpenURLRequest::NewTab);
-    emit signalOpenURLRequest(req);
+    OpenUrlRequest req(m_url);
+    req.setOptions(OpenUrlRequest::NewTab);
+    emit signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotOpenLinkInBackgroundTab()
 {
-    OpenURLRequest req(m_url);
-    req.setOptions(OpenURLRequest::NewTab);
+    OpenUrlRequest req(m_url);
+    req.setOptions(OpenUrlRequest::NewTab);
     req.setOpenInBackground(true);
-    emit signalOpenURLRequest(req);
+    emit signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotOpenLinkInBrowser()
 {
-    OpenURLRequest req(m_url);
-    req.setOptions(OpenURLRequest::ExternalBrowser);
-    emit signalOpenURLRequest(req);
+    OpenUrlRequest req(m_url);
+    req.setOptions(OpenUrlRequest::ExternalBrowser);
+    emit signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotSaveLinkAs()

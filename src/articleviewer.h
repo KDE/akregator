@@ -45,7 +45,7 @@ namespace Akregator {
 class ArticleFormatter;
 class Feed;
 class Folder;
-class OpenURLRequest;
+class OpenUrlRequest;
 class TreeNode;
 
 class ArticleViewerPart;
@@ -118,7 +118,7 @@ class ArticleViewer : public QWidget
     signals:
     
         /** This gets emitted when url gets clicked */
-        void signalOpenURLRequest(OpenURLRequest&); 
+        void signalOpenUrlRequest(OpenUrlRequest&); 
 
         void started(KIO::Job*);
         void selectionChanged();
@@ -131,7 +131,7 @@ class ArticleViewer : public QWidget
         
     protected slots:
 
-        void slotOpenURLRequestDelayed(const KUrl&, const KParts::URLArgs&);
+        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::URLArgs&);
         
         void slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args);
         

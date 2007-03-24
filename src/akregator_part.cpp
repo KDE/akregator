@@ -298,7 +298,7 @@ void Part::saveProperties(KConfigGroup & config)
     }
 }
 
-bool Part::openURL(const KUrl& url)
+bool Part::openUrl(const KUrl& url)
 {
     setLocalFilePath(url.path());
     return openFile();
@@ -306,7 +306,7 @@ bool Part::openURL(const KUrl& url)
 
 void Part::openStandardFeedList()
 {
-    if ( !m_standardFeedList.isEmpty() && openURL(KUrl::fromPath(m_standardFeedList)) )
+    if ( !m_standardFeedList.isEmpty() && openUrl(KUrl::fromPath(m_standardFeedList)) )
         m_standardListLoaded = true;
 }
 

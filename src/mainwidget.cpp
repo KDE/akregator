@@ -260,8 +260,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
              Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
 
-    connect( m_tabWidget, SIGNAL(signalOpenURLRequest(OpenURLRequest&)),
-             Kernel::self()->frameManager(), SLOT(slotOpenURLRequest(OpenURLRequest&)));
+    connect( m_tabWidget, SIGNAL(signalOpenUrlRequest(OpenUrlRequest&)),
+             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(OpenUrlRequest&)));
 
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Frame*)),
              m_tabWidget, SLOT(slotAddFrame(Frame*)));
@@ -320,8 +320,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)),
             m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
-    connect( m_articleViewer, SIGNAL(signalOpenURLRequest(OpenURLRequest&)),
-             Kernel::self()->frameManager(), SLOT(slotOpenURLRequest(OpenURLRequest&)) );
+    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(OpenUrlRequest&)),
+             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(OpenUrlRequest&)) );
 
     connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
              this, SLOT(slotMouseOverInfo(const KFileItem *)) );
@@ -1075,23 +1075,23 @@ void MainWidget::slotMouseButtonPressed(int button, const Article& article, cons
     if (!url.isValid())
         return;
 
-    OpenURLRequest req(url);
+    OpenUrlRequest req(url);
 
     switch (Settings::mMBBehaviour())
     {
         case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-            req.setOptions(OpenURLRequest::ExternalBrowser);
+            req.setOptions(OpenUrlRequest::ExternalBrowser);
             break;
         case Settings::EnumMMBBehaviour::OpenInBackground:
-            req.setOptions(OpenURLRequest::NewTab);
+            req.setOptions(OpenUrlRequest::NewTab);
             req.setOpenInBackground(true);
             break;
         default:
-            req.setOptions(OpenURLRequest::NewTab);
+            req.setOptions(OpenUrlRequest::NewTab);
             req.setOpenInBackground(false);
     }
 
-    Kernel::self()->frameManager()->slotOpenURLRequest(req);
+    Kernel::self()->frameManager()->slotOpenUrlRequest(req);
 }
 
 void MainWidget::slotOpenHomepage()
@@ -1105,9 +1105,9 @@ void MainWidget::slotOpenHomepage()
 
     if (url.isValid())
     {
-        OpenURLRequest req(feed->htmlUrl());
-        req.setOptions(OpenURLRequest::ExternalBrowser);
-        Kernel::self()->frameManager()->slotOpenURLRequest(req);
+        OpenUrlRequest req(feed->htmlUrl());
+        req.setOptions(OpenUrlRequest::ExternalBrowser);
+        Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
 }
 
@@ -1120,9 +1120,9 @@ void MainWidget::slotOpenArticleInBrowser(const Article& article)
 {
     if (!article.isNull() && article.link().isValid())
     {
-        OpenURLRequest req(article.link());
-        req.setOptions(OpenURLRequest::ExternalBrowser);
-        Kernel::self()->frameManager()->slotOpenURLRequest(req);
+        OpenUrlRequest req(article.link());
+        req.setOptions(OpenUrlRequest::ExternalBrowser);
+        Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
 }
 
@@ -1138,10 +1138,10 @@ void MainWidget::slotOpenCurrentArticle()
 
     if (url.isValid())
     {
-        OpenURLRequest req(url);
+        OpenUrlRequest req(url);
         // TODO: (re-)add a setting for foreground/background
         // and use it here
-        Kernel::self()->frameManager()->slotOpenURLRequest(req);
+        Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
 }
 

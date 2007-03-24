@@ -66,7 +66,7 @@ void FrameManager::slotAddFrame(Frame* frame)
     connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString&)), this, SLOT(slotSetTitle(Frame*, const QString&)) );
     connect(frame, SIGNAL(signalStatusText(Frame*, const QString&)), this, SLOT(slotSetStatusText(Frame*, const QString&)) );
     
-    connect(frame, SIGNAL(signalOpenURLRequest(OpenURLRequest&)), this, SLOT(slotOpenURLRequest(OpenURLRequest&)) );
+    connect(frame, SIGNAL(signalOpenUrlRequest(OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(OpenUrlRequest&)) );
 
     connect(frame, SIGNAL( signalCanGoBackToggled(Frame*, bool)), this, SLOT(slotCanGoBackToggled(Frame*, bool)) );
     connect(frame, SIGNAL( signalCanGoForwardToggled(Frame*, bool)), this, SLOT(slotCanGoForwardToggled(Frame*, bool)) );
@@ -225,9 +225,9 @@ void FrameManager::slotSetStatusText(Frame* frame, const QString& statusText)
         emit signalStatusText(statusText);
 }
 
-void FrameManager::openURL(OpenURLRequest& request)
+void FrameManager::openUrl(OpenUrlRequest& request)
 {
-    if (request.args().newTab() || request.args().forcesNewWindow() || request.options() == OpenURLRequest::NewTab)
+    if (request.args().newTab() || request.args().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab)
     {
         int newFrameId = -1;
         emit signalRequestNewFrame(newFrameId);
@@ -237,7 +237,7 @@ void FrameManager::openURL(OpenURLRequest& request)
     if (m_frames.contains(request.frameId()))
     {
         Frame* frame = m_frames.value(request.frameId());
-        frame->openURL(request);
+        frame->openUrl(request);
         if (frame->part())
             request.setPart(frame->part());
     }
@@ -245,7 +245,7 @@ void FrameManager::openURL(OpenURLRequest& request)
     if (!request.openInBackground())
         emit signalSelectFrame(request.frameId());
 }
-void FrameManager::openInExternalBrowser(const OpenURLRequest& request)
+void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
 {
     KUrl url = request.url(); 
     if (!url.isValid())
@@ -270,17 +270,17 @@ void FrameManager::openInExternalBrowser(const OpenURLRequest& request)
         delete proc;
     }
 }
-void FrameManager::slotFoundMimeType(const OpenURLRequest& request)
+void FrameManager::slotFoundMimeType(const OpenUrlRequest& request)
 {
-    OpenURLRequest req2 = request;
-    openURL(req2);
+    OpenUrlRequest req2 = request;
+    openUrl(req2);
 }
 
-void FrameManager::slotOpenURLRequest(OpenURLRequest& request)
+void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
 {
-    kDebug() << "FrameManager::slotOpenURLRequest(): " << request.debugInfo() << endl;
+    kDebug() << "FrameManager::slotOpenUrlRequest(): " << request.debugInfo() << endl;
     
-    if (request.options() == OpenURLRequest::ExternalBrowser)
+    if (request.options() == OpenUrlRequest::ExternalBrowser)
     {
         openInExternalBrowser(request);
         return;
@@ -289,11 +289,11 @@ void FrameManager::slotOpenURLRequest(OpenURLRequest& request)
     if (request.args().serviceType.isEmpty())
     {
         BrowserRun* run = new BrowserRun(request, m_mainWin);
-        connect(run, SIGNAL(signalFoundMimeType(const OpenURLRequest&)), this, SLOT(slotFoundMimeType(const OpenURLRequest&)));
+        connect(run, SIGNAL(signalFoundMimeType(const OpenUrlRequest&)), this, SLOT(slotFoundMimeType(const OpenUrlRequest&)));
     }
     else // serviceType is already set, so we open the page synchronously.
     {
-        openURL(request);
+        openUrl(request);
     }
     
 }

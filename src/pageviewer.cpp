@@ -226,7 +226,7 @@ void PageViewer::slotForwardAboutToShow()
 
 void PageViewer::slotReload()
 {
-    openURL( url() );
+    openUrl( url() );
 }
 
 void PageViewer::slotStop()
@@ -251,7 +251,7 @@ void PageViewer::openPage(const KUrl& url)
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
-bool PageViewer::openURL(const KUrl &url)
+bool PageViewer::openUrl(const KUrl &url)
 {
     updateHistoryEntry();
     new Akregator::BrowserRun(this, (QWidget*)parent(), this, url, browserExtension()->urlArgs());
@@ -260,13 +260,13 @@ bool PageViewer::openURL(const KUrl &url)
     return true;
 }
 
-void PageViewer::slotOpenURLRequest(const KUrl& url, const KParts::URLArgs& args)
+void PageViewer::slotOpenUrlRequest(const KUrl& url, const KParts::URLArgs& args)
 {
     updateHistoryEntry();
     if (args.doPost())
     {
         browserExtension()->setURLArgs(args);
-        openURL(url);
+        openUrl(url);
     }
 
 }
@@ -282,7 +282,7 @@ void PageViewer::urlSelected(const QString &url, int button, int state, const QS
         if (_target.toLower() == "_blank")
             Viewer::urlSelected(url, button, state, _target, args);
         else
-            openURL(completeURL(url) );
+            openUrl(completeURL(url) );
     }
 }
 
@@ -321,7 +321,7 @@ void PageViewer::restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry)
     d->current = entry;
     d->backAction->setEnabled( !d->history.isEmpty() && d->current != d->history.begin() );
     d->forwardAction->setEnabled(  d->current != d->history.end() && d->current != --(d->history.end()) );
-    //openURL( entry.url ); // TODO read state
+    //openUrl( entry.url ); // TODO read state
 
 
 }
@@ -483,7 +483,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
 //    kurl.addPath(url);
         if (kurl.isValid())
             ;//             slotOpenInNewWindow(kurl);
-//      openURL( kurl );
+//      openUrl( kurl );
     }
 */
 }
