@@ -112,7 +112,7 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
     {
         QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
-        if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl"))
+        if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl") || e.hasAttribute("xmlURL") )
         {
             Feed* feed = Feed::fromOPML(e);
             if (feed)
