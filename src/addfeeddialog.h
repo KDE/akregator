@@ -51,7 +51,7 @@ class AddFeedDialog : public KDialog
         explicit AddFeedDialog(QWidget *parent = 0, const char *name = 0);
         ~AddFeedDialog();
 
-        void setURL(const QString& t);
+        void setUrl(const QString& t);
         Feed *feed;
 
     public slots:
@@ -67,7 +67,7 @@ class AddFeedDialog : public KDialog
 
     private:
         AddFeedWidget *widget;
-        QString feedURL;
+        QString feedUrl;
 };
 
 } // namespace Akregator

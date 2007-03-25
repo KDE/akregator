@@ -31,12 +31,6 @@ typedef unsigned int uint;
 
 namespace Akregator {
 
-// from kmail::headerstyle.cpp
-static QString directionOf(const QString &str)
-{
-    return str.isRightToLeft() ? "rtl" : "ltr" ;
-}
-
 class AKREGATOR_EXPORT Utils 
 {
     public:
@@ -58,6 +52,8 @@ class AKREGATOR_EXPORT Utils
      * 
      */
     static QString fileNameForUrl(const QString& url);
+
+    static QString directionOf(const QString &str);
 };
 
 } // namespace Akregator

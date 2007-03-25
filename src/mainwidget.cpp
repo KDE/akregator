@@ -237,7 +237,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, TreeNode*,
             Folder*)),
-            this, SLOT(slotFeedURLDropped (KUrl::List &,
+            this, SLOT(slotFeedUrlDropped (KUrl::List &,
             TreeNode*, Folder*)));
 
     m_tagNodeListView = new NodeListView(this);
@@ -800,7 +800,7 @@ void MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bo
 
     AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
 
-    afd->setURL(KUrl::fromPercentEncoding( url.toLatin1() ));
+    afd->setUrl(KUrl::fromPercentEncoding( url.toLatin1() ));
 
     if (autoExec)
         afd->accept();
@@ -1162,7 +1162,7 @@ void MainWidget::slotCopyLinkAddress()
     }
 }
 
-void MainWidget::slotFeedURLDropped(KUrl::List &urls, TreeNode* after, Folder* parent)
+void MainWidget::slotFeedUrlDropped(KUrl::List &urls, TreeNode* after, Folder* parent)
 {
     KUrl::List::iterator it;
     for ( it = urls.begin(); it != urls.end(); ++it )

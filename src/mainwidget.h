@@ -157,7 +157,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void slotRequestNewFrame(int& frameId);
         
         /** called when URLs are dropped into the tree view */
-        void slotFeedURLDropped (KUrl::List &urls, TreeNode* after, Folder *parent);
+        void slotFeedUrlDropped (KUrl::List &urls, TreeNode* after, Folder *parent);
 
         /** displays a URL in the status bar when the user moves the mouse over a link */
         void slotMouseOverInfo(const KFileItem *kifi);

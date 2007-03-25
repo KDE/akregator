@@ -91,7 +91,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
         {
             text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
 
-            text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(directionOf(Utils::stripTags(node->title())));
+            text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(node->title())));
             text += node->title();
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
@@ -113,14 +113,14 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 
             if( !node->description().isEmpty() )
             {
-                text += QString("<div dir=\"%1\">").arg(Utils::stripTags(directionOf(node->description())));
+                text += QString("<div dir=\"%1\">").arg(Utils::stripTags(Utils::directionOf(node->description())));
                 text += i18n("<b>Description:</b> %1<br><br>", node->description());
                 text += "</div>\n"; // /description
             }
 
             if ( !node->htmlUrl().isEmpty() )
             {
-                text += QString("<div dir=\"%1\">").arg(directionOf(node->htmlUrl()));
+                text += QString("<div dir=\"%1\">").arg(Utils::directionOf(node->htmlUrl()));
                 text += i18n("<b>Homepage:</b> <a href=\"%1\">%2</a>", node->htmlUrl(), node->htmlUrl());
                 text += "</div>\n"; // / link
             }
@@ -134,7 +134,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
         virtual bool visitFolder(Folder* node)
         {
             text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
+            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title()))).arg(node->title());
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
             else
@@ -148,7 +148,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
         virtual bool visitTagNode(TagNode* node)
         {
             text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(directionOf(Utils::stripTags(node->title()))).arg(node->title());
+            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title()))).arg(node->title());
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
             else
@@ -177,7 +177,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
 
     if (!article.title().isEmpty())
     {
-        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(Utils::stripTags(article.title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(Utils::stripTags(article.title())));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
         text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
@@ -187,7 +187,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
     }
     if (article.pubDate().isValid())
     {
-        text += QString("<span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Date")));
+        text += QString("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span class=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
@@ -195,7 +195,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
     QString author = article.author();
     if (!author.isEmpty())
     {
-        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Author")));
+        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
         text += QString ("%1:").arg(i18n("Author"));
         text += "</span><span class=\"headertext\">";
         text += author+"</span>\n"; // TODO: might need RTL?
@@ -214,7 +214,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
 
     if (!article.description().isEmpty())
     {
-        text += QString("<div dir=\"%1\">").arg(directionOf(Utils::stripTags(article.description())) );
+        text += QString("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(article.description())) );
         text += "<span class=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }
@@ -373,7 +373,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
 
     if (!article.title().isEmpty())
     {
-        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(directionOf(Utils::stripTags(article.title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(Utils::stripTags(article.title())));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
         text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
@@ -383,7 +383,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
     }
     if (article.pubDate().isValid())
     {
-        text += QString("<span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Date")));
+        text += QString("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span class=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
@@ -392,7 +392,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
     QString author = article.author();
     if (!author.isEmpty())
     {
-        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(directionOf(i18n("Author")));
+        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
         text += QString ("%1:").arg(i18n("Author"));
         text += "</span><span class=\"headertext\">";
         text += author+"</span>\n"; // TODO: might need RTL?
@@ -411,7 +411,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
 
     if (!article.description().isEmpty())
     {
-        text += QString("<div dir=\"%1\">").arg(directionOf(Utils::stripTags(article.description())) );
+        text += QString("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(article.description())) );
         text += "<span class=\"content\">"+article.description()+"</span>";
         text += "</div>";
     }

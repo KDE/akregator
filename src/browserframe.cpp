@@ -91,12 +91,12 @@ void BrowserFrame::slotOpenUrlNotify()
     // TODO: inform the world that a new url was opened
 }
 
-void BrowserFrame::slotSetLocationBarURL(const QString& /*url*/)
+void BrowserFrame::slotSetLocationBarUrl(const QString& /*url*/)
 {
     // TODO: use this to update URLs for dragging (like tab drag etc.)
 }
 
-void BrowserFrame::slotSetIconURL(const KUrl& /*url*/)
+void BrowserFrame::slotSetIconUrl(const KUrl& /*url*/)
 {
 }
 

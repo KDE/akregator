@@ -32,8 +32,8 @@ void BrowserFrame::BrowserFramePrivate::HistoryAction::slotTriggered(bool)
 }
 
 BrowserFrame::BrowserFramePrivate::HistoryAction::HistoryAction(QList<HistoryEntry>::Iterator entry,
-         QObject* parent,
-         BrowserFramePrivate* priv) : QAction((*entry).title, parent), m_entry(entry)
+         QObject* q,
+         BrowserFramePrivate* priv) : QAction((*entry).title, q), m_entry(entry)
 {
     connect(this, SIGNAL(triggered(bool)), this, SLOT(slotTriggered(bool)));
     connect(this, SIGNAL(triggered(QList<BrowserFrame::BrowserFramePrivate::HistoryEntry>::Iterator)), priv, SLOT(slotHistoryEntrySelected(QList<BrowserFrame::BrowserFramePrivate::HistoryEntry>::Iterator)));
@@ -64,7 +64,7 @@ bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimet
         KLibFactory* factory = KLibLoader::self()->factory( ptr->library().toLatin1() );
         if (factory)
         {
-            part = static_cast<KParts::ReadOnlyPart *>(factory->create(parent, "KParts::ReadOnlyPart"));
+            part = static_cast<KParts::ReadOnlyPart *>(factory->create(q, "KParts::ReadOnlyPart"));
             part->setObjectName(ptr->name());
             extension = KParts::BrowserExtension::childObject(part);
             
@@ -98,8 +98,8 @@ void BrowserFrame::BrowserFramePrivate::appendHistoryEntry(const KUrl& url)
     if (lockHistory)
         return;
     
-    bool canBack = parent->canGoBack();
-    bool canForward = parent->canGoForward();
+    bool canBack = q->canGoBack();
+    bool canForward = q->canGoForward();
     
     
     if (current != history.end())
@@ -116,16 +116,16 @@ void BrowserFrame::BrowserFramePrivate::appendHistoryEntry(const KUrl& url)
 
     current = history.end()-1;
 
-    if (canBack != parent->canGoBack())
-        emit parent->signalCanGoBackToggled(parent, !canBack);
-    if (canForward != parent->canGoForward())
-        emit parent->signalCanGoForwardToggled(parent, !canForward);
+    if (canBack != q->canGoBack())
+        emit q->signalCanGoBackToggled(q, !canBack);
+    if (canForward != q->canGoForward())
+        emit q->signalCanGoForwardToggled(q, !canForward);
 }
 
 void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( QList<HistoryEntry>::Iterator entry)
 {
-    bool canBack = parent->canGoBack();
-    bool canForward = parent->canGoForward();
+    bool canBack = q->canGoBack();
+    bool canForward = q->canGoForward();
 
     updateHistoryEntry();
 
@@ -153,10 +153,10 @@ void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( QList<HistoryEntry>
 
     lockHistory = false;
 
-    if (canForward != parent->canGoForward())
-        emit parent->signalCanGoForwardToggled(parent, !canForward);
-    if (canBack != parent->canGoBack())
-        emit parent->signalCanGoBackToggled(parent, !canBack);
+    if (canForward != q->canGoForward())
+        emit q->signalCanGoForwardToggled(q, !canForward);
+    if (canBack != q->canGoBack())
+        emit q->signalCanGoBackToggled(q, !canBack);
 }
 
 
@@ -168,7 +168,7 @@ void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
     kDebug() << "BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id << " url=" << part->url().url() << endl;
     
     (*current).url = part->url();
-    (*current).title = parent->title();
+    (*current).title = q->title();
     //(*current).strServiceName = service->desktopEntryName();
     (*current).mimetype = mimetype;
 
@@ -186,48 +186,48 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
     if (part)
     {
         connect(part, SIGNAL(setWindowCaption (const QString &)), 
-                parent, SLOT(slotSetCaption (const QString &)));
+                q, SLOT(slotSetCaption (const QString &)));
         connect(part, SIGNAL(setStatusBarText (const QString &)), 
-                parent, SLOT(slotSetStatusText (const QString &)));
-        connect(part, SIGNAL(started(KIO::Job*)), parent, SLOT(slotSetStarted()));
-        connect(part, SIGNAL(completed()), parent, SLOT(slotSetCompleted()));
+                q, SLOT(slotSetStatusText (const QString &)));
+        connect(part, SIGNAL(started(KIO::Job*)), q, SLOT(slotSetStarted()));
+        connect(part, SIGNAL(completed()), q, SLOT(slotSetCompleted()));
         connect(part, SIGNAL(canceled(const QString &)),
-                parent, SLOT(slotSetCanceled(const QString&)));
+                q, SLOT(slotSetCanceled(const QString&)));
         connect(part, SIGNAL(completed(bool)),
-                parent, SLOT(slotSetCompleted()));
+                q, SLOT(slotSetCompleted()));
         connect(part, SIGNAL(setWindowCaption(const QString &)),
-                parent, SLOT(slotSetTitle(const QString &)));
+                q, SLOT(slotSetTitle(const QString &)));
         
         KParts::BrowserExtension* ext = extension;
 
         if (ext)
         {
             connect( ext, SIGNAL(speedProgress(int)), 
-                     parent, SLOT(slotSpeedProgress(int)) );
+                     q, SLOT(slotSpeedProgress(int)) );
             connect( ext, SIGNAL(speedProgress(int)), 
-                     parent, SLOT(slotSetProgress(int)) );
+                     q, SLOT(slotSetProgress(int)) );
             connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, 
                      const KParts::URLArgs&) ),
-                     parent, SLOT(slotOpenUrlRequestDelayed(const KUrl&, 
+                     q, SLOT(slotOpenUrlRequestDelayed(const KUrl&, 
                                   const KParts::URLArgs&)) );
             connect(ext, SIGNAL(setLocationBarUrl(const QString&)),
-                    parent, SLOT(slotSetLocationBarURL(const QString&)) );
+                    q, SLOT(slotSetLocationBarUrl(const QString&)) );
             connect(ext, SIGNAL(setIconUrl(const KUrl&)),
-                    parent, SLOT(slotSetIconURL(const KUrl&)) );
+                    q, SLOT(slotSetIconUrl(const KUrl&)) );
             connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
-                    parent, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
+                    q, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
             connect(ext, SIGNAL(createNewWindow(const KUrl&,
                     const KParts::URLArgs&,
                     const KParts::WindowArgs&,
                     KParts::ReadOnlyPart*&)),
-                    parent, SLOT(slotCreateNewWindow(const KUrl&, 
+                    q, SLOT(slotCreateNewWindow(const KUrl&, 
                                  const KParts::URLArgs&, 
                                  const KParts::WindowArgs&,
                                  KParts::ReadOnlyPart*&)));
             connect(ext, SIGNAL(popupMenu(KXMLGUIClient *, const QPoint&,
                     const KUrl&, const KParts::URLArgs&, 
                     KParts::BrowserExtension::PopupFlags, mode_t)), 
-                    parent, SLOT(slotPopupMenu(KXMLGUIClient *, const QPoint&, 
+                    q, SLOT(slotPopupMenu(KXMLGUIClient *, const QPoint&, 
                     const KUrl&, const KParts::URLArgs&,
                     KParts::BrowserExtension::PopupFlags, mode_t)));
         }

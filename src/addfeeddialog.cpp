@@ -67,7 +67,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
 AddFeedDialog::~AddFeedDialog()
 {}
 
-void AddFeedDialog::setURL(const QString& t)
+void AddFeedDialog::setUrl(const QString& t)
 {
     widget->urlEdit->setText(t);
 }
@@ -75,21 +75,21 @@ void AddFeedDialog::setURL(const QString& t)
 void AddFeedDialog::accept()
 {
     enableButtonOk(false);
-    feedURL = widget->urlEdit->text().trimmed();
+    feedUrl = widget->urlEdit->text().trimmed();
 
     Feed *f=new Feed();
 
     feed=f;
 
     // HACK: make weird wordpress links ("feed:http://foobar/rss") work
-    if (feedURL.startsWith("feed:"))
-        feedURL = feedURL.right( feedURL.length() - 5 );
+    if (feedUrl.startsWith("feed:"))
+        feedUrl = feedUrl.right( feedUrl.length() - 5 );
 
-    if (feedURL.indexOf(":/") == -1)
-        feedURL.prepend("http://");
-    f->setXmlUrl(feedURL);
+    if (feedUrl.indexOf(":/") == -1)
+        feedUrl.prepend("http://");
+    f->setXmlUrl(feedUrl);
 
-    widget->statusLabel->setText( i18n("Downloading %1", feedURL) );
+    widget->statusLabel->setText( i18n("Downloading %1", feedUrl) );
 
     connect( feed, SIGNAL(fetched(Feed* )),
              this, SLOT(fetchCompleted(Feed *)) );
@@ -108,14 +108,14 @@ void AddFeedDialog::fetchCompleted(Feed */*f*/)
 
 void AddFeedDialog::fetchError(Feed *)
 {
-    KMessageBox::error(this, i18n("Feed not found from %1.", feedURL));
+    KMessageBox::error(this, i18n("Feed not found from %1.", feedUrl));
     KDialog::reject();
 }
 
 void AddFeedDialog::fetchDiscovery(Feed *f)
 {
     widget->statusLabel->setText( i18n("Feed found, downloading...") );
-    feedURL=f->xmlUrl();
+    feedUrl=f->xmlUrl();
 }
 
 void AddFeedDialog::textChanged(const QString& text)

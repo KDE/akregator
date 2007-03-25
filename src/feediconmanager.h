@@ -69,7 +69,7 @@ class AKREGATOR_EXPORT FeedIconManager:public QObject
 
         /** returns the url used to access the icon, e.g.
             http://dot.kde.org/ for "dot.kde.org/1113317400/" */
-        QString getIconURL(const KUrl& url);
+        QString getIconUrl(const KUrl& url);
 
         void loadIcon(const QString &);
     

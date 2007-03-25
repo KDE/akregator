@@ -57,7 +57,7 @@ class BrowserFrame::BrowserFramePrivate : public QObject
     Q_OBJECT
 
     public:
-        BrowserFramePrivate(BrowserFrame* p) : QObject(), parent(p) {}
+        BrowserFramePrivate(BrowserFrame* p) : QObject(), q(p) {}
 
         class HistoryEntry;
         class HistoryAction;
@@ -69,7 +69,7 @@ class BrowserFrame::BrowserFramePrivate : public QObject
         QGridLayout* layout;
         bool lockHistory;
         bool isLoading;
-        BrowserFrame* parent;
+        BrowserFrame* q;
 
         QString mimetype;
         KService::Ptr service;
@@ -124,7 +124,7 @@ class BrowserFrame::BrowserFramePrivate::HistoryAction : public QAction
     Q_OBJECT            
     public:
         HistoryAction(QList<HistoryEntry>::Iterator entry, 
-                      QObject* parent,
+                      QObject* q,
                       BrowserFramePrivate* priv);
         
         QList<HistoryEntry>::Iterator m_entry;

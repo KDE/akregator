@@ -83,8 +83,8 @@ class BrowserFrame : public Frame
                                  const KParts::WindowArgs& windowArgs, 
                                  KParts::ReadOnlyPart*& part);
         void slotOpenUrlNotify();
-        void slotSetLocationBarURL(const QString& url);
-        void slotSetIconURL(const KUrl& url);
+        void slotSetLocationBarUrl(const QString& url);
+        void slotSetIconUrl(const KUrl& url);
         void slotSpeedProgress(int);
         
         void slotPopupMenu(KXMLGUIClient* client, 
