@@ -65,7 +65,7 @@
 #include <kinputdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <krandom.h>
 #include <kshell.h>
 #include <kstandarddirs.h>

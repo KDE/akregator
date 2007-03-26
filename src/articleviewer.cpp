@@ -33,7 +33,7 @@
 #include <klocale.h>
 #include <kmenu.h>
 #include <kmessagebox.h>
-#include <kprocess.h>
+#include <k3process.h>
 #include <krun.h>
 #include <kshell.h>
 #include <kstandarddirs.h>
