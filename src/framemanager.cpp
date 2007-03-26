@@ -30,7 +30,7 @@
 #include "openurlrequest.h"
 
 #include <kaction.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kshell.h>
 #include <ktoolinvocation.h>
 
@@ -263,10 +263,10 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
         QString cmd = Settings::externalBrowserCustomCommand();
         QString urlStr = url.url();
         cmd.replace(QRegExp("%u"), urlStr);
-        K3Process *proc = new K3Process;
+        KProcess *proc = new KProcess;
         QStringList cmdAndArgs = KShell::splitArgs(cmd);
         *proc << cmdAndArgs;
-        proc->start(K3Process::DontCare);
+        proc->start(KProcess::DontCare);
         delete proc;
     }
 }
