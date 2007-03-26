@@ -193,9 +193,9 @@ void MainWindow::optionsConfigureKeys()
     KKeyDialog dlg( KKeyChooser::AllActions,
       KKeyChooser::LetterShortcutsDisallowed, this );
 
-    dlg.insert(actionCollection());
+    dlg.addCollection(actionCollection());
     if (m_part)
-        dlg.insert(m_part->actionCollection());
+        dlg.addCollection(m_part->actionCollection());
 
     dlg.configure();
 }

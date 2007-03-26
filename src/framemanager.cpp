@@ -263,7 +263,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
         QString cmd = Settings::externalBrowserCustomCommand();
         QString urlStr = url.url();
         cmd.replace(QRegExp("%u"), urlStr);
-        K3Process *proc = new KProcess;
+        K3Process *proc = new K3Process;
         QStringList cmdAndArgs = KShell::splitArgs(cmd);
         *proc << cmdAndArgs;
         proc->start(K3Process::DontCare);
