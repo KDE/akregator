@@ -36,7 +36,7 @@
 #include <kedittoolbar.h>
 #include <kfiledialog.h>
 #include <kglobal.h>
-#include <kkeydialog.h>
+#include <kshortcutsdialog.h>
 #include <klibloader.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -190,8 +190,8 @@ void MainWindow::readProperties(const KConfigGroup & config)
 
 void MainWindow::optionsConfigureKeys()
 {
-    KKeyDialog dlg( KKeyChooser::AllActions,
-      KKeyChooser::LetterShortcutsDisallowed, this );
+    KShortcutsDialog dlg( KShortcutsEditor::AllActions,
+      KShortcutsEditor::LetterShortcutsDisallowed, this );
 
     dlg.addCollection(actionCollection());
     if (m_part)
