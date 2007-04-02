@@ -205,7 +205,7 @@ void MainWindow::optionsConfigureToolbars()
     saveMainWindowSettings(KGlobal::config().data()->group( autoSaveGroup()) );
 
     // use the standard toolbar editor
-    KEditToolbar dlg(factory());
+    KEditToolBar dlg(factory());
     connect(&dlg, SIGNAL(newToolbarConfig()),
             this, SLOT(applyNewToolbarConfig()));
     dlg.exec();
