@@ -26,7 +26,7 @@
 #include "trayicon.h"
 
 #include <kapplication.h>
-#include <kwin.h>
+#include <kwm.h>
 #include <kiconeffect.h>
 #include <kdebug.h>
 #include <klocale.h>
@@ -184,7 +184,7 @@ void TrayIcon::slotSetUnread(int unread)
 void TrayIcon::viewButtonClicked()
 {
 	QWidget* p = static_cast<QWidget*>(parent());
-	KWin::forceActiveWindow(p->winId());
+	KWM::activateActiveWindow(p->winId());
 }
 
 void TrayIcon::settingsChanged()
