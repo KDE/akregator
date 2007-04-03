@@ -184,7 +184,7 @@ void TrayIcon::slotSetUnread(int unread)
 void TrayIcon::viewButtonClicked()
 {
 	QWidget* p = static_cast<QWidget*>(parent());
-	KWM::activateActiveWindow(p->winId());
+	KWM::activateWindow(p->winId());
 }
 
 void TrayIcon::settingsChanged()
