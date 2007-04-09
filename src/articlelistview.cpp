@@ -153,7 +153,7 @@ class ArticleListView::ArticleItem : public K3ListViewItem
 };
 
 ArticleListView::ArticleItem::ArticleItem( Q3ListView *parent, const Article& a)
-    : K3ListViewItem( parent, a.title(), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
+    : K3ListViewItem( parent, a.title(), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), KLocale::ShortDate, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
         setPixmap(0, m_keepFlag);
@@ -198,7 +198,7 @@ void ArticleListView::ArticleItem::updateItem(const Article& article)
     setPixmap(0, m_article.keep() ? m_keepFlag : QPixmap());
     setText(0, KCharsets::resolveEntities(m_article.title()));
     setText(1, m_article.feed()->title());
-    setText(2, KGlobal::locale()->formatDateTime(m_article.pubDate(), true, false));
+    setText(2, KGlobal::locale()->formatDateTime(m_article.pubDate(), KLocale::ShortDate, false));
 }
 
 int ArticleListView::ArticleItem::compare(Q3ListViewItem *i, int col, bool ascending) const {

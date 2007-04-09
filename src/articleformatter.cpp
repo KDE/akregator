@@ -190,7 +190,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         text += QString("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span class=\"headertext\">";
-        text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
+        text += KGlobal::locale()->formatDateTime(article.pubDate(), KLocale::LongDate, false)+"</span>\n"; // TODO: might need RTL?
     }
     QString author = article.author();
     if (!author.isEmpty())
@@ -386,7 +386,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += QString("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span class=\"headertext\">";
-        text += KGlobal::locale()->formatDateTime(article.pubDate(), false, false)+"</span>\n"; // TODO: might need RTL?
+        text += KGlobal::locale()->formatDateTime(article.pubDate(), KLocale::LongDate, false)+"</span>\n"; // TODO: might need RTL?
     }
 
     QString author = article.author();
