@@ -69,8 +69,8 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
     addPage(generalWidget, i18n("General"), "package_settings");
     addPage(archiveWidget, i18n("Archive"), "package_settings");
     addPage(appearanceWidget, i18n("Appearance"), "fonts");
-    addPage(browserWidget, i18n("Browser"), "package_network");
-    addPage(d->settingsAdvanced, i18n("Advanced"), "package_network");
+    addPage(browserWidget, i18n("Browser"), "package-network");
+    addPage(d->settingsAdvanced, i18n("Advanced"), "package-network");
     d->settingsAdvanced->selectFactory(Settings::archiveBackend());
     d->config = config;
 }

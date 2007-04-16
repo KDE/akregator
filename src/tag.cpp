@@ -54,7 +54,7 @@ Tag::Tag(const QString& id, const QString& name, const QString& scheme) : d(new 
     d->id = id;
     d->name = name.isNull() ? id : name;
     d->scheme = scheme;
-    d->icon = "rss_tag";
+    d->icon = "rss-tag";
 }
 
 Tag Tag::fromCategory(const QString& term, const QString& scheme, const QString& name)
