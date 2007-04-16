@@ -320,7 +320,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     QActionGroup* agViewMode = new QActionGroup(this);
     KToggleAction *ra = coll->add<KToggleAction>("normal_view");
-    ra->setIcon(KIcon("view_top_bottom"));
+    ra->setIcon(KIcon("view-top-bottom"));
     ra->setText(i18n("&Normal View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotNormalView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+1" ));
