@@ -328,7 +328,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("widescreen_view");
-    ra->setIcon(KIcon("view_left_right"));
+    ra->setIcon(KIcon("view-left-right"));
     ra->setText(i18n("&Widescreen View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotWidescreenView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+2" ));
@@ -415,7 +415,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     d->tagMenu = coll->add<KActionMenu>("article_tagmenu");
     d->tagMenu->setText(i18n("&Set Tags"));
-    d->tagMenu->setIcon(KIcon("rss_tag"));
+    d->tagMenu->setIcon(KIcon("rss-tag"));
     d->tagMenu->setEnabled(false); // only enabled when articles are selected
 
 
@@ -599,7 +599,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     action->setShortcuts(KShortcut( "Ctrl+Comma" ));
 
     action = coll->addAction("tab_detach");
-    action->setIcon(KIcon("tab_breakoff"));
+    action->setIcon(KIcon("tab-breakoff"));
     action->setText(i18n("Detach Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotDetachTab()));
     action->setShortcut(QKeySequence(Qt::CTRL+Qt::SHIFT+Qt::Key_B));
