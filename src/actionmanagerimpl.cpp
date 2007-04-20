@@ -249,9 +249,9 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
     QMenu* traypop = trayIcon->contextMenu();
 
     if (actionCollection()->action("feed_fetch_all"))
-        traypop->insertAction(traypop->actions().value(0), actionCollection()->action("feed_fetch_all"));
+        traypop->addAction(actionCollection()->action("feed_fetch_all"));
     if (actionCollection()->action("akregator_configure_akregator"))
-        traypop->insertAction(traypop->actions().value(1), actionCollection()->action("akregator_configure_akregator"));
+        traypop->addAction(actionCollection()->action("akregator_configure_akregator"));
 }
 
 void ActionManagerImpl::initPart()

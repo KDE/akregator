@@ -203,6 +203,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     setFocusPolicy(Qt::StrongFocus);
 
     QVBoxLayout *lt = new QVBoxLayout( this );
+    lt->setMargin(0);
 
     m_horizontalSplitter = new QSplitter(Qt::Horizontal, this);
 

@@ -66,9 +66,9 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
     connect(browser.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)), browser.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)));
     d->settingsAdvanced = new SettingsAdvanced(this, "Advanced");
 
-    addPage(generalWidget, i18n("General"), "package_settings");
-    addPage(archiveWidget, i18n("Archive"), "package_settings");
-    addPage(appearanceWidget, i18n("Appearance"), "fonts");
+    addPage(generalWidget, i18n("General"), "tool");
+    addPage(archiveWidget, i18n("Archive"), "ark");
+    addPage(appearanceWidget, i18n("Appearance"), "screen");
     addPage(browserWidget, i18n("Browser"), "package-network");
     addPage(d->settingsAdvanced, i18n("Advanced"), "package-network");
     d->settingsAdvanced->selectFactory(Settings::archiveBackend());

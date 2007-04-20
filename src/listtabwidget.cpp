@@ -162,6 +162,7 @@ ListTabWidget::ListTabWidget(QWidget* parent, const char* name) : QWidget(parent
     d->currentID = -1;
     d->viewMode = verticalTabs;
     d->layout = new QGridLayout(this);
+    d->layout->setMargin(0);
     d->tabBar = new KMultiTabBar(KMultiTabBar::Vertical, this); 
     d->tabBar->setStyle(KMultiTabBar::KDEV3ICON);
     //d->tabBar->setStyle(KMultiTabBar::KDEV3);
