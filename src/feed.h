@@ -188,14 +188,14 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         /** returns article by guid
             * @param guid the guid of the article to be returned
             * @return the article object with the given guid, or a
-            * null article if not existant
+            * null article if non-existent
             */
         virtual Article findArticle(const QString& guid) const;
 
         virtual QStringList tags() const;
 
         /** returns whether a fetch error has occurred */
-        bool fetchErrorOccurred();
+        bool fetchErrorOccurred() const;
 
         /** returns the unread count for this feed */
         virtual int unread() const;

@@ -347,7 +347,7 @@ const QString& Feed::description() const { return d->description; }
 
 void Feed::setDescription(const QString& s) { d->description = s; }
 
-bool Feed::fetchErrorOccurred() { return d->fetchError; }
+bool Feed::fetchErrorOccurred() const { return d->fetchError; }
 
 bool Feed::isArticlesLoaded() const { return d->articlesLoaded; }
 
