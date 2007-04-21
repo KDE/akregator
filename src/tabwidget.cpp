@@ -32,7 +32,7 @@
 #include <QHash>
 #include <QString>
 #include <QToolButton>
-#include <QToolTip>
+
 #include <QMenu>
 #include <QStyleOption>
 

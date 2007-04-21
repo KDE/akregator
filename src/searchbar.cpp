@@ -39,7 +39,7 @@
 #include <QString>
 #include <QTimer>
 #include <QToolButton>
-#include <QToolTip>
+
 #include <QList>
 
 using Akregator::Filters::ArticleMatcher;

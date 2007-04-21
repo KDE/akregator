@@ -38,7 +38,7 @@
 #include <QBitmap>
 #include <QPainter>
 #include <QFont>
-#include <QToolTip>
+
 #ifdef Q_WS_X11
 #include <QX11Info>
 #endif
