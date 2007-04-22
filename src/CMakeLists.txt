@@ -23,6 +23,7 @@ set(akregatorprivate_LIB_SRCS
    aboutdata.cpp 
    trayicon.cpp 
    article.cpp 
+   articlemodel.cpp
    feed.cpp 
    treenode.cpp 
    treenodevisitor.cpp 

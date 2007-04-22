@@ -295,18 +295,18 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
     m_articleSplitter->setObjectName("panner2");
 
-    m_articleList = new ArticleListView( m_articleSplitter, "articles" );
+    m_articleList = new ArticleListView( m_articleSplitter );
 
     m_actionManager->initArticleListView(m_articleList);
 
     connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Article&, const QPoint &, int)),
              this, SLOT(slotMouseButtonPressed(int, const Article&, const QPoint &, int)));
 
-    // use selectionChanged instead of clicked
-    connect( m_articleList, SIGNAL(signalArticleChosen(const Article&)),
-             this, SLOT( slotArticleSelected(const Article&)) );
-    connect( m_articleList, SIGNAL(signalDoubleClicked(const Article&, const QPoint&, int)),
-             this, SLOT( slotOpenArticleInBrowser(const Article&)) );
+    connect( m_articleList, SIGNAL(signalArticleChosen(const Akregator::Article&)),
+             this, SLOT( slotArticleSelected(const Akregator::Article&)) );
+
+    connect( m_articleList, SIGNAL(signalDoubleClicked(const Akregator::Article&, const QPoint&, int)),
+             this, SLOT( slotOpenArticleInBrowser(const Akregator::Article&)) );
 
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleList, SLOT(slotPaletteOrFontChanged()));
@@ -1028,7 +1028,7 @@ void MainWidget::slotTagRemoved(const Tag& /*tag*/)
 {
 }
 
-void MainWidget::slotArticleSelected(const Article& article)
+void MainWidget::slotArticleSelected(const Akregator::Article& article)
 {
     if (m_viewMode == CombinedView)
         return;
@@ -1116,7 +1116,7 @@ void MainWidget::slotOpenCurrentArticleInBrowser()
     slotOpenArticleInBrowser(m_articleList->currentArticle());
 }
 
-void MainWidget::slotOpenArticleInBrowser(const Article& article)
+void MainWidget::slotOpenArticleInBrowser(const Akregator::Article& article)
 {
     if (!article.isNull() && article.link().isValid())
     {

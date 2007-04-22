@@ -48,7 +48,6 @@ class QDomDocument;
 class QDomElement;
 class QSplitter;
 class QToolButton;
-class Q3ListViewItem;
 
 namespace KIO 
 {
@@ -142,7 +141,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void slotNodeSelected(TreeNode* node);
 
         /** the article selection has changed */
-        void slotArticleSelected(const Article&);
+        void slotArticleSelected(const Akregator::Article&);
 
         /** Shows requested popup menu for feed tree */
         void slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&);
@@ -157,7 +156,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void slotRequestNewFrame(int& frameId);
         
         /** called when URLs are dropped into the tree view */
-        void slotFeedUrlDropped (KUrl::List &urls, TreeNode* after, Folder *parent);
+        void slotFeedUrlDropped (KUrl::List &urls, Akregator::TreeNode* after, Akregator::Folder *parent);
 
         /** displays a URL in the status bar when the user moves the mouse over a link */
         void slotMouseOverInfo(const KFileItem *kifi);
@@ -242,10 +241,10 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
     protected slots:
 
         /** special behaviour in article list view (TODO: move code there?) */
-        void slotMouseButtonPressed(int button, const Article& article, const QPoint & pos, int c);
+        void slotMouseButtonPressed(int button, const Akregator::Article& article, const QPoint & pos, int c);
 
         /** opens the link of an article in the external browser */
-        void slotOpenArticleInBrowser(const Article& article);
+        void slotOpenArticleInBrowser(const Akregator::Article& article);
 
         /** this is called by the ctor, does init steps which need a properly created view and part */
 
@@ -267,7 +266,8 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         TagNodeList* m_tagNodeList;
         NodeListView* m_feedListView;
         NodeListView* m_tagNodeListView;
-        ArticleListView *m_articleList;
+        ArticleListView* m_articleList;
+
         ArticleViewer *m_articleViewer;
         TabWidget* m_tabWidget;
 

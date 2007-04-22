@@ -30,6 +30,8 @@
 #include <QKeyEvent>
 #include <QList>
 #include <QPaintEvent>
+#include <QSortFilterProxyModel>
+#include <QTreeView>
 
 class QKeyEvent;
 class Q3DragObject;
@@ -45,12 +47,107 @@ namespace Filters
     class ArticleMatcher;
 }
 
-class AKREGATOR_EXPORT ArticleListView : public K3ListView
+class AKREGATOR_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel {
+    Q_OBJECT
+public:
+
+    explicit SortColorizeProxyModel( QObject* parent = 0 );
+
+    //reimpl
+    int columnCount( const QModelIndex& index=QModelIndex() ) const;
+
+    //reimpl
+    QVariant data( const QModelIndex& index, int role=Qt::DisplayRole ) const;
+
+    //reimpl
+    QVariant headerData( int section, Qt::Orientation orientation, int role=Qt::DisplayRole ) const;
+
+private:
+    enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
+};
+
+
+class AKREGATOR_EXPORT ArticleListView : public QTreeView
+{
+    Q_OBJECT
+
+public:
+
+    explicit ArticleListView( QWidget* parent = 0 );
+    ~ArticleListView();
+
+public Q_SLOTS:
+
+    /** show article list of tree node @c node  */
+    void slotShowNode(TreeNode* node);
+
+    /** clears the list and disconnects from the observed node (if any) */
+    void slotClear();
+
+    /** returns the current article, or a null article if there is none */
+    Akregator::Article currentArticle() const;
+
+    /** returns a list of currently selected articles */
+    QList<Akregator::Article> selectedArticles() const;
+
+    /** selects previous article in list view, first article if no article was selected */
+    void slotPreviousArticle();
+
+    /** selects next article in list view, first article if no article was selected */
+    void slotNextArticle();
+
+    /** selects previous unread article in list view, first unread article if no article was selected */
+    void slotPreviousUnreadArticle();
+
+    /** selects next unread article in list view, first unread article if no article was selected */
+    void slotNextUnreadArticle();
+
+signals:
+
+    void signalArticleChosen( const Akregator::Article& );
+
+    void signalDoubleClicked( const Akregator::Article& );
+
+protected:
+
+    //reimpl
+    void paintEvent( QPaintEvent* e );
+
+    //reimpl
+    void keyPressEvent(QKeyEvent* e);
+
+protected Q_SLOTS:
+
+    //reimpl
+    void currentChanged( const QModelIndex& current, const QModelIndex& previous );
+
+    void slotDoubleClicked( const QModelIndex& index );
+
+private:
+
+    void selectIndex( const QModelIndex& index );
+
+    bool isRead( const QModelIndex& index ) const;
+
+    Akregator::Article articleForIndex( const QModelIndex& index ) const;
+
+    void setupHeader();
+
+private:
+
+    enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
+
+    friend class ColumnLayoutVisitor;
+    class ColumnLayoutVisitor;
+    ColumnLayoutVisitor* m_columnLayoutVisitor;
+};
+
+class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
 {
     Q_OBJECT
     public:
-        explicit ArticleListView(QWidget *parent = 0, const char *name = 0);
-        virtual ~ArticleListView();
+        explicit ArticleListViewOld(QWidget *parent = 0, const char *name = 0);
+        ~ArticleListViewOld();
         
         /** returns the current article, or a null article if there is none */
         Article currentArticle() const;
@@ -95,43 +192,39 @@ class AKREGATOR_EXPORT ArticleListView : public K3ListView
             
     protected:
         /** reimplemented for kmail-like behaviour */            
-        virtual void keyPressEvent(QKeyEvent* e);
+        void keyPressEvent(QKeyEvent* e);
         
         /** applies text filter and status filter by setting visibility
         of items accordingly */
-        virtual void applyFilters();
+        void applyFilters();
         
         /**
-            * @return count of visible articles, used for info boxes
-            */
+        * @return count of visible articles, used for info boxes
+        */
         int visibleArticles();
         
-        /** Paints infobox for filtering and stuff
-            */
-        void paintInfoBox(const QString &message);
-        
-        virtual void viewportPaintEvent(QPaintEvent *e);
+        void viewportPaintEvent(QPaintEvent *e);
         
         void connectToNode(TreeNode* node);
         void disconnectFromNode(TreeNode* node);
         
-        virtual Q3DragObject *dragObject();
+        Q3DragObject *dragObject();
 
     protected slots:
 
-        void slotArticlesAdded(TreeNode* node, const QList<Article>& list);
-        void slotArticlesUpdated(TreeNode* node, const QList<Article>& list);
-        void slotArticlesRemoved(TreeNode* node, const QList<Article>& list);
+        void slotArticlesAdded(TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesUpdated(TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesRemoved(TreeNode* node, const QList<Akregator::Article>& list);
 
-        virtual void slotCurrentChanged(Q3ListViewItem* item);
-        virtual void slotSelectionChanged();
-        virtual void slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, int i);
-        virtual void slotContextMenu(K3ListView* list, Q3ListViewItem* item, const QPoint& p);
-        virtual void slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int);
+        void slotCurrentChanged(Q3ListViewItem* item);
+        void slotSelectionChanged();
+        void slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, int i);
+        void slotContextMenu(K3ListView* list, Q3ListViewItem* item, const QPoint& p);
+        void slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int);
         
     private:
-        class ArticleListViewPrivate;
-        ArticleListViewPrivate* d;
+        class ArticleListViewOldPrivate;
+        ArticleListViewOldPrivate* d;
         
         friend class ColumnLayoutVisitor;
         class ColumnLayoutVisitor;
