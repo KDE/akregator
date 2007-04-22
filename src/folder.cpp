@@ -309,18 +309,18 @@ void Folder::connectToNode(TreeNode* child)
 {
         connect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         connect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        connect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)));
-        connect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)));
-        connect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)));
+        connect(child, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)));
+        connect(child, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)));
+        connect(child, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)));
 }
 
 void Folder::disconnectFromNode(TreeNode* child)
 {
         disconnect(child, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotChildChanged(TreeNode*)));
         disconnect(child, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotChildDestroyed(TreeNode*)));
-        disconnect(child, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Article>&)));
-        disconnect(child, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Article>&)));
-        disconnect(child, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)), this, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Article>&)));
+        disconnect(child, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)));
+        disconnect(child, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)));
+        disconnect(child, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)));
 }
             
 TreeNode* Folder::next()

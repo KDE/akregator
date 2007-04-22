@@ -170,9 +170,9 @@ class ArticleViewer : public QWidget
 
         void slotSelectionChanged();
 
-        void slotArticlesUpdated(TreeNode* node, const QList<Article>& list);
-        void slotArticlesAdded(TreeNode* node, const QList<Article>& list);
-        void slotArticlesRemoved(TreeNode* node, const QList<Article>& list);
+        void slotArticlesUpdated(TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesAdded(TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesRemoved(TreeNode* node, const QList<Akregator::Article>& list);
     
     protected: // attributes
         KUrl m_url;

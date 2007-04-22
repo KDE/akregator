@@ -52,8 +52,8 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
     public slots:
 
         void slotSpeak(const QString& text, const QString& language);
-        void slotSpeak(const Article& article);
-        void slotSpeak(const QList<Article>& articles);
+        void slotSpeak(const Akregator::Article& article);
+        void slotSpeak(const QList<Akregator::Article>& articles);
         void slotAbortJobs();
 
     signals:

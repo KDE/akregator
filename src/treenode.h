@@ -1,4 +1,3 @@
-
 /*
     This file is part of Akregator.
 
@@ -182,13 +181,13 @@ signals:
         @param TreeNode* the node articles were added to
         @param QStringList the guids of the articles added
     */
-    void signalArticlesAdded(TreeNode*, const QList<Article>& guids);
+    void signalArticlesAdded(TreeNode*, const QList<Akregator::Article>& guids);
     
     /** emitted when articles were updated */
-    void signalArticlesUpdated(TreeNode*, const QList<Article>& guids);
+    void signalArticlesUpdated(TreeNode*, const QList<Akregator::Article>& guids);
     
     /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved somewhere else in the tree, e.g. if the user moved the feed */
-    void signalArticlesRemoved(TreeNode*, const QList<Article>& guids);
+    void signalArticlesRemoved(TreeNode*, const QList<Akregator::Article>& guids);
 
 protected:
 
