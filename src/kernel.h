@@ -45,8 +45,7 @@ class Kernel
 
         static Kernel* self();
 
-        Kernel();
-        virtual ~Kernel();
+        ~Kernel();
          
         Backend::Storage* storage();
         void setStorage(Backend::Storage* storage);
@@ -62,7 +61,9 @@ class Kernel
         Filters::ArticleFilterList articleFilterList() const;
 
         FrameManager* frameManager();
+
     private:
+        Kernel();
 
         static Kernel* m_self;
 
