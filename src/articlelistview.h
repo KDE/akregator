@@ -76,19 +76,20 @@ public:
     explicit ArticleListView( QWidget* parent = 0 );
     ~ArticleListView();
 
-public Q_SLOTS:
-
-    /** show article list of tree node @c node  */
-    void slotShowNode(TreeNode* node);
-
-    /** clears the list and disconnects from the observed node (if any) */
-    void slotClear();
 
     /** returns the current article, or a null article if there is none */
     Akregator::Article currentArticle() const;
 
     /** returns a list of currently selected articles */
     QList<Akregator::Article> selectedArticles() const;
+
+public Q_SLOTS:
+
+    /** show article list of tree node @c node  */
+    void slotShowNode(Akregator::TreeNode* node);
+
+    /** clears the list and disconnects from the observed node (if any) */
+    void slotClear();
 
     /** selects previous article in list view, first article if no article was selected */
     void slotPreviousArticle();
@@ -133,13 +134,16 @@ private:
 
     void setupHeader();
 
+    void setFeedMode();
+    void setGroupMode();
+
 private:
 
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
 
-    friend class ColumnLayoutVisitor;
-    class ColumnLayoutVisitor;
-    ColumnLayoutVisitor* m_columnLayoutVisitor;
+    enum ColumnMode { Unspecified, GroupMode, FeedMode };
+    ColumnMode m_columnMode;
+    int m_lastFeedWidth;
 };
 
 class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
@@ -160,7 +164,7 @@ class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
     public slots:
 
         /** show article list of tree node @c node (also connects to the notification signals of the node) */
-        void slotShowNode(TreeNode* node);
+        void slotShowNode(Akregator::TreeNode* node);
         
         /** clears the list and disconnects from the observed node (if any) */
         void slotClear();
@@ -185,10 +189,10 @@ class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
         void slotPaletteOrFontChanged();
         
     signals:
-        void signalArticleChosen(const Article& article);
-        void signalDoubleClicked(const Article&, const QPoint&, int);
+        void signalArticleChosen(const Akregator::Article& article);
+        void signalDoubleClicked(const Akregator::Article&, const QPoint&, int);
         //void signalContextMenu(K3ListView*, ArticleItem*, const QPoint&);
-        void signalMouseButtonPressed(int, const Article&, const QPoint &, int);
+        void signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int);
             
     protected:
         /** reimplemented for kmail-like behaviour */            
@@ -212,9 +216,9 @@ class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
 
     protected slots:
 
-        void slotArticlesAdded(TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesUpdated(TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesRemoved(TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
 
         void slotCurrentChanged(Q3ListViewItem* item);
         void slotSelectionChanged();

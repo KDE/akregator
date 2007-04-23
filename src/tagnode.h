@@ -88,10 +88,13 @@ public:
 
     virtual QStringList tags() const;
     
-    /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.
+    /** Helps the rest of the app to decide if node should be handled as group or not.
     @return whether the node is a feed group or not */
     
     virtual bool isGroup() const {return false;}
+
+    //impl
+    virtual bool isAggregation() const { return true; }
 
     /** reimplemented to return an invalid element */
     
@@ -117,12 +120,12 @@ public slots:
     virtual void slotMarkAllArticlesAsRead();
 
     /** does nothing for TagNode */
-    virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly=false);
+    virtual void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchOnly=false);
     
-    virtual void slotArticlesAdded(TreeNode* node, const QList<Article>& list);
-    virtual void slotArticlesUpdated(TreeNode* node, const QList<Article>& list);
-    virtual void slotArticlesRemoved(TreeNode* node, const QList<Article>& list);
-    virtual void slotObservedDestroyed(TreeNode* node);
+    virtual void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
+    virtual void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
+    virtual void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
+    virtual void slotObservedDestroyed(Akregator::TreeNode* node);
 
 protected:
 

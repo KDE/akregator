@@ -160,16 +160,16 @@ void ActionManagerImpl::setTagSet(TagSet* tagSet)
 
     if (d->tagSet != 0)
     {
-        disconnect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
-        disconnect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
+        disconnect(d->tagSet, SIGNAL(signalTagAdded(const Akregator::Tag&)), this, SLOT(slotTagAdded(const Akregator::Tag&)));
+        disconnect(d->tagSet, SIGNAL(signalTagRemoved(const Akregator::Tag&)), this, SLOT(slotTagRemoved(const Akregator::Tag&)));
     }
 
     d->tagSet = tagSet;
 
     if (tagSet != 0)
     {
-        connect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
-        connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
+        connect(d->tagSet, SIGNAL(signalTagAdded(const Akregator::Tag&)), this, SLOT(slotTagAdded(const Akregator::Tag&)));
+        connect(d->tagSet, SIGNAL(signalTagRemoved(const Akregator::Tag&)), this, SLOT(slotTagRemoved(const Akregator::Tag&)));
     }
 
     QList<TagAction*> actions = d->tagActions.values();
@@ -195,7 +195,7 @@ void ActionManagerImpl::slotTagAdded(const Tag& tag)
 {
     if (!d->tagActions.contains(tag.id()))
     {
-        d->tagActions[tag.id()] = new TagAction(tag, d->mainWidget, SLOT(slotAssignTag(const Tag&, bool)), d->actionCollection);
+        d->tagActions[tag.id()] = new TagAction(tag, d->mainWidget, SLOT(slotAssignTag(const Akregator::Tag&, bool)), d->actionCollection);
         d->tagMenu->addAction(d->tagActions[tag.id()]);
     }
 }

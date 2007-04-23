@@ -210,41 +210,41 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_horizontalSplitter->setOpaqueResize(true);
     lt->addWidget(m_horizontalSplitter);
 
-    connect(Kernel::self()->fetchQueue(), SIGNAL(fetched(Feed*)),
-             this, SLOT(slotFeedFetched(Feed*)));
+    connect(Kernel::self()->fetchQueue(), SIGNAL(fetched(Akregator::Feed*)),
+             this, SLOT(slotFeedFetched(Akregator::Feed*)));
     connect(Kernel::self()->fetchQueue(), SIGNAL(signalStarted()),
              this, SLOT(slotFetchingStarted()));
     connect(Kernel::self()->fetchQueue(), SIGNAL(signalStopped()),
              this, SLOT(slotFetchingStopped()));
 
-    connect(Kernel::self()->tagSet(), SIGNAL(signalTagAdded(const Tag&)),
-            this, SLOT(slotTagCreated(const Tag&)));
-    connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Tag&)),
-            this, SLOT(slotTagRemoved(const Tag&)));
+    connect(Kernel::self()->tagSet(), SIGNAL(signalTagAdded(const Akregator::Tag&)),
+            this, SLOT(slotTagCreated(const Akregator::Tag&)));
+    connect(Kernel::self()->tagSet(), SIGNAL(signalTagRemoved(const Akregator::Tag&)),
+            this, SLOT(slotTagRemoved(const Akregator::Tag&)));
 
     m_listTabWidget = new ListTabWidget(m_horizontalSplitter);
     m_actionManager->initListTabWidget(m_listTabWidget);
 
-    connect(m_listTabWidget, SIGNAL(signalNodeSelected(TreeNode*)),
-            this, SLOT(slotNodeSelected(TreeNode*)));
+    connect(m_listTabWidget, SIGNAL(signalNodeSelected(Akregator::TreeNode*)),
+            this, SLOT(slotNodeSelected(Akregator::TreeNode*)));
 
 
     m_feedListView = new NodeListView( this, "feedtree" );
     m_listTabWidget->addView(m_feedListView, i18n("Feeds"), KIconLoader::global()->loadIcon("folder", K3Icon::Small));
 
-    connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)),
-            this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
+    connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)),
+            this, SLOT(slotFeedTreeContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)));
 
-    connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, TreeNode*,
-            Folder*)),
+    connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
+            Akregator::Folder*)),
             this, SLOT(slotFeedUrlDropped (KUrl::List &,
-            TreeNode*, Folder*)));
+            Akregator::TreeNode*, Akregator::Folder*)));
 
     m_tagNodeListView = new NodeListView(this);
     m_listTabWidget->addView(m_tagNodeListView, i18n("Tags"), KIconLoader::global()->loadIcon("rss-tag", K3Icon::Small));
 
-    connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, TreeNode*, const QPoint&)),
-            this, SLOT(slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&)));
+    connect(m_tagNodeListView, SIGNAL(signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)),
+            this, SLOT(slotFeedTreeContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)));
 
     ProgressManager::self()->setFeedList(m_feedList);
 
@@ -260,11 +260,11 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_tabWidget, SIGNAL(signalRemoveFrameRequest(int)),
              Kernel::self()->frameManager(), SLOT(slotRemoveFrame(int)));
 
-    connect( m_tabWidget, SIGNAL(signalOpenUrlRequest(OpenUrlRequest&)),
-             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(OpenUrlRequest&)));
+    connect( m_tabWidget, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
+             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)));
 
-    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Frame*)),
-             m_tabWidget, SLOT(slotAddFrame(Frame*)));
+    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Akregator::Frame*)),
+             m_tabWidget, SLOT(slotAddFrame(Akregator::Frame*)));
 
     connect( Kernel::self()->frameManager(), SIGNAL(signalSelectFrame(int)),
              m_tabWidget, SLOT(slotSelectFrame(int)) );
@@ -299,8 +299,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
 
     m_actionManager->initArticleListView(m_articleList);
 
-    connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Article&, const QPoint &, int)),
-             this, SLOT(slotMouseButtonPressed(int, const Article&, const QPoint &, int)));
+    connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)),
+             this, SLOT(slotMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)));
 
     connect( m_articleList, SIGNAL(signalArticleChosen(const Akregator::Article&)),
              this, SLOT( slotArticleSelected(const Akregator::Article&)) );
@@ -320,8 +320,8 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)),
             m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
-    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(OpenUrlRequest&)),
-             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(OpenUrlRequest&)) );
+    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
+             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
 
     connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
              this, SLOT(slotMouseOverInfo(const KFileItem *)) );
@@ -1350,13 +1350,13 @@ void MainWidget::saveProperties(KConfigGroup & config)
 
 void MainWidget::connectToFeedList(FeedList* feedList)
 {
-    connect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
+    connect(feedList->rootNode(), SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotSetTotalUnread()));
     slotSetTotalUnread();
 }
 
 void MainWidget::disconnectFromFeedList(FeedList* feedList)
 {
-    disconnect(feedList->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotSetTotalUnread()));
+    disconnect(feedList->rootNode(), SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotSetTotalUnread()));
 }
 
 void MainWidget::updateTagActions()

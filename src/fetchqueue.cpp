@@ -131,18 +131,18 @@ void FetchQueue::feedDone(Feed *f)
 
 void FetchQueue::connectToFeed(Feed* feed)
 {
-    connect (feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    connect (feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
-    connect (feed, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
-    connect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
+    connect (feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFeedFetched(Akregator::Feed*)));
+    connect (feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError(Akregator::Feed*)));
+    connect (feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted(Akregator::Feed*)));
+    connect (feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
 }
 
 void FetchQueue::disconnectFromFeed(Feed* feed)
 {
-    disconnect (feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFeedFetched(Feed*)));
-    disconnect (feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError(Feed*)));
-    disconnect (feed, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted(Feed*)));
-    disconnect (feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
+    disconnect (feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFeedFetched(Akregator::Feed*)));
+    disconnect (feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError(Akregator::Feed*)));
+    disconnect (feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted(Akregator::Feed*)));
+    disconnect (feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
 }
 
 

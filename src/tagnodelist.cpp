@@ -59,9 +59,9 @@ TagNodeList::TagNodeList(FeedList* feedList, TagSet* tagSet) :  NodeList(), d(ne
     d->feedList = feedList;
     d->tagSet = tagSet;
  
-    connect(d->tagSet, SIGNAL(signalTagAdded(const Tag&)), this, SLOT(slotTagAdded(const Tag&)));
-    connect(d->tagSet, SIGNAL(signalTagRemoved(const Tag&)), this, SLOT(slotTagRemoved(const Tag&)));
-    connect(d->tagSet, SIGNAL(signalTagUpdated(const Tag&)), this, SLOT(slotTagUpdated(const Tag&)));
+    connect(d->tagSet, SIGNAL(signalTagAdded(const Akregator::Tag&)), this, SLOT(slotTagAdded(const Akregator::Tag&)));
+    connect(d->tagSet, SIGNAL(signalTagRemoved(const Akregator::Tag&)), this, SLOT(slotTagRemoved(const Akregator::Tag&)));
+    connect(d->tagSet, SIGNAL(signalTagUpdated(const Akregator::Tag&)), this, SLOT(slotTagUpdated(const Akregator::Tag&)));
 
     setRootNode(new TagFolder(i18n("My Tags")));
 

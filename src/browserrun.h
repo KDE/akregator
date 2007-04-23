@@ -41,7 +41,7 @@ class BrowserRun : public KParts::BrowserRun
 
     signals:
 
-        void signalFoundMimeType(const OpenUrlRequest& request);
+        void signalFoundMimeType(const Akregator::OpenUrlRequest& request);
 
     protected:
 	    virtual void foundMimeType(const QString& type);

@@ -45,12 +45,12 @@ class TabWidget : public KTabWidget
        
     public slots:
 
-        void slotSetTitle(Frame* frame, const QString& title);
+        void slotSetTitle(Akregator::Frame* frame, const QString& title);
         void slotSettingsChanged();
         void slotNextTab();
         void slotPreviousTab();
         void slotRemoveCurrentFrame();
-        void slotAddFrame(Frame* f);
+        void slotAddFrame(Akregator::Frame* f);
         void slotRemoveFrame(int frameId);
         void slotSelectFrame(int frameId);
 
@@ -59,7 +59,7 @@ class TabWidget : public KTabWidget
         
         void signalCurrentFrameChanged(int);
         void signalRemoveFrameRequest(int);
-        void signalOpenUrlRequest(OpenUrlRequest&);
+        void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
 
     protected:
 

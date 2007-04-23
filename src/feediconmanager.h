@@ -63,7 +63,7 @@ class AKREGATOR_EXPORT FeedIconManager:public QObject
         void signalIconChanged(const QString &, const QPixmap &);
 
     public slots:
-        void slotFeedDestroyed(TreeNode* node);
+        void slotFeedDestroyed(Akregator::TreeNode* node);
 
     protected:
 

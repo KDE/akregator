@@ -52,7 +52,7 @@ class TagAction : public KToggleAction
 
     signals:
 
-        void toggled(const Tag&, bool);
+        void toggled(const Akregator::Tag&, bool);
 
     protected slots: 
 

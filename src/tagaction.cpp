@@ -49,7 +49,7 @@ TagAction::TagAction(const Tag& tag, const QObject* receiver, const char* slot, 
        : KToggleAction(tag.name(), parent), d(new TagActionPrivate)
 {
      d->tag = tag;
-     connect(this, SIGNAL(toggled(const Tag&, bool)), receiver, slot);
+     connect(this, SIGNAL(toggled(const Akregator::Tag&, bool)), receiver, slot);
      connect(this, SIGNAL(toggled(bool)), this, SLOT(slotToggled(bool)));
      parent->addAction("this_needs_a_name", parent);
 }

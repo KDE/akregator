@@ -92,15 +92,15 @@ class AKREGATOR_EXPORT TagSet : public QObject
 
     signals:
         /** emitted when a tag was added to this tag set */
-        void signalTagAdded(const Tag&);
+        void signalTagAdded(const Akregator::Tag&);
         /** emitted when a tag was removed from this set */
-        void signalTagRemoved(const Tag&);
+        void signalTagRemoved(const Akregator::Tag&);
         /** emitted when a tag in this set was changed (e.g. renamed) */
-        void signalTagUpdated(const Tag&);
+        void signalTagUpdated(const Akregator::Tag&);
 
     protected:
         /** called by the tag (Tag is friend class) after a change */
-        void tagUpdated(const Tag& tag);
+        void tagUpdated(const Akregator::Tag& tag);
         
     private:
         class TagSetPrivate;

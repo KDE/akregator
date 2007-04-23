@@ -117,51 +117,21 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
     return QSortFilterProxyModel::data( idx, role );
 }
 
-class Akregator::ArticleListView::ColumnLayoutVisitor : public TreeNodeVisitor
+void Akregator::ArticleListView::setGroupMode()
 {
-    public:
-        ColumnLayoutVisitor(ArticleListView* view) : q(view), m_columnMode( Akregator::ArticleListView::ColumnLayoutVisitor::Unspecified ) {}
+    if ( m_columnMode == GroupMode )
+        return;
+    setColumnHidden( ArticleListView::FeedTitleColumn, false );
+    m_columnMode = GroupMode;
+}
 
-        void setGroupMode()
-        {
-            if ( m_columnMode == GroupMode )
-                return;
-            q->setColumnHidden( ArticleListView::FeedTitleColumn, false );
-            m_columnMode = GroupMode;
-        }
-
-        void setFeedMode()
-        {
-            if ( m_columnMode == FeedMode )
-                return;
-            q->setColumnHidden( ArticleListView::FeedTitleColumn, true );
-            m_columnMode = FeedMode;
-        }
-
-        bool visitTagNode(TagNode* /*node*/)
-        {
-            setGroupMode();
-            return true;
-        }
-
-        bool visitFolder(Folder* /*node*/)
-        {
-            setGroupMode();
-            return true;
-        }
-
-        bool visitFeed(Feed* /*node*/)
-        {
-            setFeedMode();
-            return true;
-        }
-    private:
-
-        ArticleListView* q;
-        enum ColumnMode { Unspecified, GroupMode, FeedMode };
-        ColumnMode m_columnMode;
-        int m_lastFeedWidth;
-};
+void Akregator::ArticleListView::setFeedMode()
+{
+    if ( m_columnMode == FeedMode )
+        return;
+    setColumnHidden( ArticleListView::FeedTitleColumn, true );
+    m_columnMode = FeedMode;
+}
 
 Akregator::ArticleListView::~ArticleListView()
 {
@@ -170,10 +140,9 @@ Akregator::ArticleListView::~ArticleListView()
     Settings::setSortColumn( header()->sortIndicatorSection() );
     Settings::setSortAscending( header()->sortIndicatorOrder() );
     Settings::writeConfig();
-    delete m_columnLayoutVisitor;
 }
 
-Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(parent),  m_columnLayoutVisitor( new ColumnLayoutVisitor( this ) )
+Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(parent), m_columnMode( Akregator::ArticleListView::Unspecified )
 {
     setSortingEnabled( true );
     setSelectionMode( QAbstractItemView::ExtendedSelection );
@@ -228,10 +197,14 @@ namespace {
 
 void Akregator::ArticleListView::slotShowNode(TreeNode* node)
 {
+    //TODO move model creation and deletion outside of view
     QAbstractItemModel* const oldModel = model();
     setModel( ::createModelForTreeNode( node, this ) );
     delete oldModel;
-    m_columnLayoutVisitor->visit( node );
+    if ( node->isAggregation() )
+        setGroupMode();
+    else
+        setFeedMode();
 }
 
 
@@ -840,18 +813,18 @@ void ArticleListViewOld::slotArticlesRemoved(TreeNode* /*node*/, const QList<Art
 
 void ArticleListViewOld::connectToNode(TreeNode* node)
 {
-    connect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    connect(node, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(TreeNode*, QList<Akregator::Article>)) );
-    connect(node, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(TreeNode*, QList<Akregator::Article>)) );
-    connect(node, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(TreeNode*, QList<Akregator::Article>)) );
+    connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear()) );
+    connect(node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)) );
+    connect(node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)) );
+    connect(node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)) );
 }
 
 void ArticleListViewOld::disconnectFromNode(TreeNode* node)
 {
-    disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear()) );
-    disconnect(node, SIGNAL(signalArticlesAdded(TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesAdded(TreeNode*, const QList<Akregator::Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesUpdated(TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesUpdated(TreeNode*, const QList<Akregator::Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesRemoved(TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesRemoved(TreeNode*, const QList<Akregator::Article>&)) );
+    disconnect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear()) );
+    disconnect(node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*, const QList<Akregator::Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*, const QList<Akregator::Article>&)) );
+    disconnect(node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*, const QList<Akregator::Article>&)) );
 }
 
 void ArticleListViewOld::applyFilters()

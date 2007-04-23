@@ -211,6 +211,9 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         /** returns if this node is a feed group (@c false here) */
         virtual bool isGroup() const { return false; }
 
+        //impl
+        virtual bool isAggregation() const { return false; }
+
         /** returns the next node in the tree.
         Calling next() unless it returns 0 iterates through the tree in pre-order
         */
@@ -232,19 +235,19 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         virtual void slotMarkAllArticlesAsRead();
 
         /** add this feed to the fetch queue @c queue */
-        virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly=false);
+        virtual void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchOnly=false);
 
     signals:
         /** emitted when fetching started */
-        void fetchStarted(Feed*);
+        void fetchStarted(Akregator::Feed*);
         /** emitted when feed finished fetching */
-        void fetched(Feed *);
+        void fetched(Akregator::Feed *);
         /** emitted when a fetch error occurred */
-        void fetchError(Feed *);
+        void fetchError(Akregator::Feed *);
         /** emitted when a feed URL was found by auto discovery */
-        void fetchDiscovery(Feed *);
+        void fetchDiscovery(Akregator::Feed *);
         /** emitted when a fetch is aborted */
-        void fetchAborted(Feed *);
+        void fetchAborted(Akregator::Feed *);
 
     protected:
         /** loads articles from archive **/

@@ -37,9 +37,9 @@ Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstra
     Q_ASSERT(m_node);
     m_articles = m_node->articles();
     connect( m_node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
-    connect( m_node, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( m_node, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( m_node, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+    connect( m_node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+    connect( m_node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+    connect( m_node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
 }
 
 int Akregator::ArticleModel::columnCount( const QModelIndex& ) const

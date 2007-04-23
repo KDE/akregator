@@ -54,7 +54,7 @@ class AKREGATOR_EXPORT Tag
     /** creates a null tag (isNull() is @c true) */
     Tag();
    
-    Tag(const Tag& other);
+    Tag(const Akregator::Tag& other);
 
     /** creates a tag from a Atom-1.0-like (term, scheme, label) category.
 
@@ -74,7 +74,7 @@ class AKREGATOR_EXPORT Tag
     */
     static Tag fromCategory(const QString& term, const QString& scheme=QString::null, const QString& name=QString::null);
 
-    virtual ~Tag();
+    ~Tag();
 
     /** returns whether this is a null object (equal to id().isNull())*/
 

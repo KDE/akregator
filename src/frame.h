@@ -127,20 +127,20 @@ class Frame : public QWidget
         virtual void slotSetStatusText(const QString&);
 
     signals:
-        void signalCaptionChanged(Frame*, const QString&);
-        void signalTitleChanged(Frame*, const QString&);
-        void signalStarted(Frame*);
-        void signalCanceled(Frame*, const QString&);
-        void signalCompleted(Frame*);
-        void signalLoadingProgress(Frame*, int);
-        void signalStatusText(Frame*, const QString&);
+        void signalCaptionChanged(Akregator::Frame*, const QString&);
+        void signalTitleChanged(Akregator::Frame*, const QString&);
+        void signalStarted(Akregator::Frame*);
+        void signalCanceled(Akregator::Frame*, const QString&);
+        void signalCompleted(Akregator::Frame*);
+        void signalLoadingProgress(Akregator::Frame*, int);
+        void signalStatusText(Akregator::Frame*, const QString&);
 
-        void signalOpenUrlRequest(OpenUrlRequest& request);
+        void signalOpenUrlRequest(Akregator::OpenUrlRequest& request);
 
-        void signalCanGoBackToggled(Frame*, bool);
-        void signalCanGoForwardToggled(Frame*, bool);
-        void signalIsReloadableToggled(Frame*, bool);
-        void signalIsLoadingToggled(Frame*, bool);
+        void signalCanGoBackToggled(Akregator::Frame*, bool);
+        void signalCanGoForwardToggled(Akregator::Frame*, bool);
+        void signalIsReloadableToggled(Akregator::Frame*, bool);
+        void signalIsLoadingToggled(Akregator::Frame*, bool);
 
 
     protected:

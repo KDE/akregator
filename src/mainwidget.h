@@ -138,13 +138,13 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void slotOnShutdown();
 
         /** selected tree node has changed */
-        void slotNodeSelected(TreeNode* node);
+        void slotNodeSelected(Akregator::TreeNode* node);
 
         /** the article selection has changed */
         void slotArticleSelected(const Akregator::Article&);
 
         /** Shows requested popup menu for feed tree */
-        void slotFeedTreeContextMenu(K3ListView*, TreeNode*, const QPoint&);
+        void slotFeedTreeContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&);
 
         /** emits @ref signalUnreadCountChanged(int) */
         void slotSetTotalUnread();
@@ -162,7 +162,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void slotMouseOverInfo(const KFileItem *kifi);
 
         /** Feed has been fetched, populate article view if needed and update counters. */
-        void slotFeedFetched(Feed *);
+        void slotFeedFetched(Akregator::Feed *);
 
         /** adds a new feed to the feed tree */
         void slotFeedAdd();
@@ -199,11 +199,11 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         /** reads the currently selected articles using KTTSD */
         void slotTextToSpeechRequest();
 
-        void slotAssignTag(const Tag& tag, bool assign);
+        void slotAssignTag(const Akregator::Tag& tag, bool assign);
         //void slotRemoveTag(const Tag& tag);
         void slotNewTag();
-        void slotTagCreated(const Tag& tag);
-        void slotTagRemoved(const Tag& tag);
+        void slotTagCreated(const Akregator::Tag& tag);
+        void slotTagRemoved(const Akregator::Tag& tag);
 
         /** switches view mode to normal view */
         void slotNormalView();

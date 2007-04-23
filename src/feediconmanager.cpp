@@ -65,7 +65,7 @@ void FeedIconManager::fetchIcon(Feed* feed)
     if (!d->registeredFeeds.contains(feed))
     {
         d->registeredFeeds.append(feed);
-        connect(feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotFeedDestroyed(TreeNode*)));
+        connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotFeedDestroyed(Akregator::TreeNode*)));
     }
     const QString iconUrl = getIconUrl(KUrl(feed->xmlUrl()));
     d->urlDict.insert(iconUrl, feed);

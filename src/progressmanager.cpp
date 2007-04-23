@@ -80,8 +80,8 @@ void ProgressManager::setFeedList(FeedList* feedList)
             delete *it;
         d->handlers.clear();
         
-        disconnect(d->feedList, SIGNAL(signalNodeAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
-        disconnect(d->feedList, SIGNAL(signalNodeRemoved(TreeNode*)), this, SLOT(slotNodeRemoved(TreeNode*)));
+        disconnect(d->feedList, SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
+        disconnect(d->feedList, SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
     }
 
     d->feedList = feedList;
@@ -92,8 +92,8 @@ void ProgressManager::setFeedList(FeedList* feedList)
     
         for (QList<TreeNode*>::ConstIterator it = list.begin(); it != list.end(); ++it)
             slotNodeAdded(*it);
-        connect(feedList, SIGNAL(signalNodeAdded(TreeNode*)), this, SLOT(slotNodeAdded(TreeNode*)));
-        connect(feedList, SIGNAL(signalNodeRemoved(TreeNode*)), this, SLOT(slotNodeRemoved(TreeNode*)));
+        connect(feedList, SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
+        connect(feedList, SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
     }
 }
      
@@ -104,7 +104,7 @@ void ProgressManager::slotNodeAdded(TreeNode* node)
     {
         if (!d->handlers.contains(feed))
         d->handlers[feed] = new ProgressItemHandler(feed);
-        connect(feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
+        connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
     }
 }
 
@@ -113,7 +113,7 @@ void ProgressManager::slotNodeRemoved(TreeNode* node)
     Feed* feed = dynamic_cast<Feed*>(node);
     if (feed)
     {
-        disconnect(feed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotNodeDestroyed(TreeNode*)));
+        disconnect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
         delete d->handlers[feed];
         d->handlers.remove(feed);
     }
@@ -142,10 +142,10 @@ ProgressItemHandler::ProgressItemHandler(Feed* feed) : d(new ProgressItemHandler
     d->feed = feed;
     d->progressItem = 0;
     
-    connect(feed, SIGNAL(fetchStarted(Feed*)), this, SLOT(slotFetchStarted()));
-    connect(feed, SIGNAL(fetched(Feed*)), this, SLOT(slotFetchCompleted()));
-    connect(feed, SIGNAL(fetchError(Feed*)), this, SLOT(slotFetchError()));
-    connect(feed, SIGNAL(fetchAborted(Feed*)), this, SLOT(slotFetchAborted()));
+    connect(feed, SIGNAL(fetchStarted(Akregator::Feed*)), this, SLOT(slotFetchStarted()));
+    connect(feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFetchCompleted()));
+    connect(feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError()));
+    connect(feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted()));
 }
 
 ProgressItemHandler::~ProgressItemHandler()

@@ -91,12 +91,12 @@ void AddFeedDialog::accept()
 
     widget->statusLabel->setText( i18n("Downloading %1", feedUrl) );
 
-    connect( feed, SIGNAL(fetched(Feed* )),
-             this, SLOT(fetchCompleted(Feed *)) );
-    connect( feed, SIGNAL(fetchError(Feed* )),
-             this, SLOT(fetchError(Feed *)) );
-    connect( feed, SIGNAL(fetchDiscovery(Feed* )),
-             this, SLOT(fetchDiscovery(Feed *)) );
+    connect( feed, SIGNAL(fetched(Akregator::Feed* )),
+             this, SLOT(fetchCompleted(Akregator::Feed *)) );
+    connect( feed, SIGNAL(fetchError(Akregator::Feed* )),
+             this, SLOT(fetchError(Akregator::Feed *)) );
+    connect( feed, SIGNAL(fetchDiscovery(Akregator::Feed* )),
+             this, SLOT(fetchDiscovery(Akregator::Feed *)) );
 
     f->fetch(true);
 }

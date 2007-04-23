@@ -49,9 +49,9 @@ class ProgressManager : public QObject
 
     protected slots:
 
-        void slotNodeAdded(TreeNode* node);
-        void slotNodeRemoved(TreeNode* node);
-        void slotNodeDestroyed(TreeNode* node);
+        void slotNodeAdded(Akregator::TreeNode* node);
+        void slotNodeRemoved(Akregator::TreeNode* node);
+        void slotNodeDestroyed(Akregator::TreeNode* node);
 
     private:
 

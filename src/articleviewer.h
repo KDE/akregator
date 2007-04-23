@@ -84,13 +84,13 @@ class ArticleViewer : public QWidget
         /** Show single article (normal view) 
          * @param article the article to render
          */
-        void slotShowArticle(const Article& article);
+        void slotShowArticle(const Akregator::Article& article);
     
         /** Shows the articles of the tree node @c node (combined view).
          * Changes in the node will update the view automatically.
          * 
          *  @param node The node to observe */
-        void slotShowNode(TreeNode* node);
+        void slotShowNode(Akregator::TreeNode* node);
     
         /** Set filters @c textFilter and @c statusFilter which will be used
          * if the viewer is in combined view mode
@@ -111,14 +111,14 @@ class ArticleViewer : public QWidget
          */
         void slotClear();
 
-        void slotShowSummary(TreeNode *node);
+        void slotShowSummary(Akregator::TreeNode *node);
 
         void slotPaletteOrFontChanged();
     
     signals:
     
         /** This gets emitted when url gets clicked */
-        void signalOpenUrlRequest(OpenUrlRequest&); 
+        void signalOpenUrlRequest(Akregator::OpenUrlRequest&); 
 
         void started(KIO::Job*);
         void selectionChanged();
@@ -170,9 +170,9 @@ class ArticleViewer : public QWidget
 
         void slotSelectionChanged();
 
-        void slotArticlesUpdated(TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesAdded(TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesRemoved(TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
+        void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
     
     protected: // attributes
         KUrl m_url;

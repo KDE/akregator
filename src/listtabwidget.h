@@ -82,11 +82,11 @@ public slots:
     void slotNextUnreadFeed();
 
 signals:
-    void signalNodeSelected(TreeNode*);
+    void signalNodeSelected(Akregator::TreeNode*);
 
 protected slots:
 
-    void slotRootNodeChanged(NodeListView*, TreeNode*);
+    void slotRootNodeChanged(Akregator::NodeListView*, Akregator::TreeNode*);
     void slotTabClicked(int id);
  
 private:

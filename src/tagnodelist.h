@@ -66,21 +66,21 @@ class AKREGATOR_EXPORT TagNodeList : public NodeList
     
     public slots:
 
-    void slotTagAdded(const Tag& tag);
-    void slotTagUpdated(const Tag& tag);
-    void slotTagRemoved(const Tag& tag);
+    void slotTagAdded(const Akregator::Tag& tag);
+    void slotTagUpdated(const Akregator::Tag& tag);
+    void slotTagRemoved(const Akregator::Tag& tag);
     
     signals:
 
-    void signalDestroyed(TagNodeList*);
-    void signalTagNodeAdded(TagNode* node);
-    void signalTagNodeRemoved(TagNode* node);
+    void signalDestroyed(Akregator::TagNodeList*);
+    void signalTagNodeAdded(Akregator::TagNode* node);
+    void signalTagNodeRemoved(Akregator::TagNode* node);
 
     protected slots:
 
-    virtual void slotNodeDestroyed(TreeNode* node);
-    virtual void slotNodeAdded(TreeNode* node);
-    virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
+    virtual void slotNodeDestroyed(Akregator::TreeNode* node);
+    virtual void slotNodeAdded(Akregator::TreeNode* node);
+    virtual void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
 
     private:
     

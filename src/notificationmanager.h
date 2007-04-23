@@ -51,7 +51,7 @@ class NotificationManager : public QObject
 
         /** notifies an article. Note that articles are not notified separately, but
         "collected" and notified all together */
-        void slotNotifyArticle(const Article& article);
+        void slotNotifyArticle(const Akregator::Article& article);
 
         /** notifies the addition of feeds (used when added via DCOP or command line) */
         void slotNotifyFeeds(const QStringList& feeds);

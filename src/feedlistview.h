@@ -105,10 +105,10 @@ public slots:
     void slotNextUnreadFeed();
 
 signals:
-    void signalDropped (KUrl::List &, TreeNode*, Folder*);
-    void signalNodeSelected(TreeNode*);
-    void signalRootNodeChanged(NodeListView*, TreeNode*);
-    void signalContextMenu(K3ListView*, TreeNode*, const QPoint&);
+    void signalDropped(KUrl::List &, Akregator::TreeNode*, Akregator::Folder*);
+    void signalNodeSelected(Akregator::TreeNode*);
+    void signalRootNodeChanged(Akregator::NodeListView*, Akregator::TreeNode*);
+    void signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&);
 
 protected:
 
@@ -146,31 +146,31 @@ protected slots:
 
 
     void slotDropped(QDropEvent *e, Q3ListViewItem* after);
-    void slotRootNodeChanged(TreeNode*);
+    void slotRootNodeChanged(Akregator::TreeNode*);
     virtual void slotSelectionChanged(Q3ListViewItem* item);
     virtual void slotContextMenu(K3ListView* list, Q3ListViewItem* item, const QPoint& p);
     virtual void slotItemRenamed(Q3ListViewItem* item, int col, const QString& text);
-    virtual void slotFeedFetchStarted(Feed* feed);
-    virtual void slotFeedFetchAborted(Feed* feed);
-    virtual void slotFeedFetchError(Feed* feed);
-    virtual void slotFeedFetchCompleted(Feed* feed);
+    virtual void slotFeedFetchStarted(Akregator::Feed* feed);
+    virtual void slotFeedFetchAborted(Akregator::Feed* feed);
+    virtual void slotFeedFetchError(Akregator::Feed* feed);
+    virtual void slotFeedFetchCompleted(Akregator::Feed* feed);
     void openFolder();
 
     /** called when a node is added to the tree. If no item for the node exists, it will be created */
-    virtual void slotNodeAdded(TreeNode* node);
+    virtual void slotNodeAdded(Akregator::TreeNode* node);
 
     /** Called when a node in the tree is taken out of the tree (parent->removeChild())
 
     Removes a node and its children from the tree. Note that it doesn't delete the corresponding view items (get deleted only when the node itself gets deleted) */
-    virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
+    virtual void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
 
     /** deletes the item belonging to the deleted node */
-    virtual void slotNodeDestroyed(TreeNode* node);
+    virtual void slotNodeDestroyed(Akregator::TreeNode* node);
 
     /** update the item belonging to the node */
-    virtual void slotNodeChanged(TreeNode* node);
+    virtual void slotNodeChanged(Akregator::TreeNode* node);
 
-    virtual void slotNodeListDestroyed(NodeList*);
+    virtual void slotNodeListDestroyed(Akregator::NodeList*);
 
 private:
     friend class ConnectNodeVisitor;

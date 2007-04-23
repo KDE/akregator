@@ -83,16 +83,16 @@ class NodeListView::ConnectNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitTreeNode(TreeNode* node)
         {
-            connect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
-            connect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_view, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
+            connect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_view, SLOT(slotNodeChanged(Akregator::TreeNode*) ));
             return true;
         }
 
         virtual bool visitFolder(Folder* node)
         {
             visitTreeNode(node);
-            connect(node, SIGNAL(signalChildAdded(TreeNode*)), m_view, SLOT(slotNodeAdded(TreeNode*) ));
-            connect(node, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), m_view, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
+            connect(node, SIGNAL(signalChildAdded(Akregator::TreeNode*)), m_view, SLOT(slotNodeAdded(Akregator::TreeNode*) ));
+            connect(node, SIGNAL(signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*)), m_view, SLOT(slotNodeRemoved(Akregator::Folder*, Akregator::TreeNode*) ));
             return true;
         }
         
@@ -100,10 +100,10 @@ class NodeListView::ConnectNodeVisitor : public TreeNodeVisitor
         {
             visitTreeNode(node);
             
-            connect(node, SIGNAL(fetchStarted(Feed*)), m_view, SLOT(slotFeedFetchStarted(Feed*)));
-            connect(node, SIGNAL(fetchAborted(Feed*)), m_view, SLOT(slotFeedFetchAborted(Feed*)));
-            connect(node, SIGNAL(fetchError(Feed*)), m_view, SLOT(slotFeedFetchError(Feed*)));
-            connect(node, SIGNAL(fetched(Feed*)), m_view, SLOT(slotFeedFetchCompleted(Feed*)));
+            connect(node, SIGNAL(fetchStarted(Akregator::Feed*)), m_view, SLOT(slotFeedFetchStarted(Akregator::Feed*)));
+            connect(node, SIGNAL(fetchAborted(Akregator::Feed*)), m_view, SLOT(slotFeedFetchAborted(Akregator::Feed*)));
+            connect(node, SIGNAL(fetchError(Akregator::Feed*)), m_view, SLOT(slotFeedFetchError(Akregator::Feed*)));
+            connect(node, SIGNAL(fetched(Akregator::Feed*)), m_view, SLOT(slotFeedFetchCompleted(Akregator::Feed*)));
             return true;
         }
     private:
@@ -119,30 +119,30 @@ class NodeListView::DisconnectNodeVisitor : public TreeNodeVisitor
 
         virtual bool visitTagNode(TagNode* node)
         {
-            disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
-            disconnect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            disconnect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_view, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
+            disconnect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_view, SLOT(slotNodeChanged(Akregator::TreeNode*) ));
             return true;
         }
         
         virtual bool visitFolder(Folder* node)
         {
-            disconnect(node, SIGNAL(signalChildAdded(TreeNode*)), m_view, SLOT(slotNodeAdded(TreeNode*) ));
-            disconnect(node, SIGNAL(signalChildRemoved(Folder*, TreeNode*)), m_view, SLOT(slotNodeRemoved(Folder*, TreeNode*) ));
+            disconnect(node, SIGNAL(signalChildAdded(Akregator::TreeNode*)), m_view, SLOT(slotNodeAdded(Akregator::TreeNode*) ));
+            disconnect(node, SIGNAL(signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*)), m_view, SLOT(slotNodeRemoved(Akregator::Folder*, Akregator::TreeNode*) ));
             
-            disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
-            disconnect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
+            disconnect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_view, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
+            disconnect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_view, SLOT(slotNodeChanged(Akregator::TreeNode*) ));
             return true;
         }
         
         virtual bool visitFeed(Feed* node)
         {
 
-            disconnect(node, SIGNAL(signalDestroyed(TreeNode*)), m_view, SLOT(slotNodeDestroyed(TreeNode*) ));
-            disconnect(node, SIGNAL(signalChanged(TreeNode*)), m_view, SLOT(slotNodeChanged(TreeNode*) ));
-            disconnect(node, SIGNAL(fetchStarted(Feed*)), m_view, SLOT(slotFeedFetchStarted(Feed*)));
-            disconnect(node, SIGNAL(fetchAborted(Feed*)), m_view, SLOT(slotFeedFetchAborted(Feed*)));
-            disconnect(node, SIGNAL(fetchError(Feed*)), m_view, SLOT(slotFeedFetchError(Feed*)));
-            disconnect(node, SIGNAL(fetched(Feed*)), m_view, SLOT(slotFeedFetchCompleted(Feed*)));
+            disconnect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_view, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
+            disconnect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_view, SLOT(slotNodeChanged(Akregator::TreeNode*) ));
+            disconnect(node, SIGNAL(fetchStarted(Akregator::Feed*)), m_view, SLOT(slotFeedFetchStarted(Akregator::Feed*)));
+            disconnect(node, SIGNAL(fetchAborted(Akregator::Feed*)), m_view, SLOT(slotFeedFetchAborted(Akregator::Feed*)));
+            disconnect(node, SIGNAL(fetchError(Akregator::Feed*)), m_view, SLOT(slotFeedFetchError(Akregator::Feed*)));
+            disconnect(node, SIGNAL(fetched(Akregator::Feed*)), m_view, SLOT(slotFeedFetchCompleted(Akregator::Feed*)));
             return true;
         }
     private:
@@ -960,8 +960,8 @@ void NodeListView::connectToNodeList(NodeList* list)
     if (!list)
         return;
     
-    connect(list, SIGNAL(signalDestroyed(NodeList*)), this, SLOT(slotNodeListDestroyed(NodeList*)) );
-    connect(list->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotRootNodeChanged(TreeNode*)));
+    connect(list, SIGNAL(signalDestroyed(Akregator::NodeList*)), this, SLOT(slotNodeListDestroyed(Akregator::NodeList*)) );
+    connect(list->rootNode(), SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotRootNodeChanged(Akregator::TreeNode*)));
 }
 
 void NodeListView::disconnectFromNodeList(NodeList* list)
@@ -969,8 +969,8 @@ void NodeListView::disconnectFromNodeList(NodeList* list)
     if (!list)
         return;
     
-    disconnect(list, SIGNAL(signalDestroyed(NodeList*)), this, SLOT(slotNodeListDestroyed(NodeList*)) );
-    disconnect(list->rootNode(), SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotRootNodeChanged(TreeNode*)));
+    disconnect(list, SIGNAL(signalDestroyed(Akregator::NodeList*)), this, SLOT(slotNodeListDestroyed(Akregator::NodeList*)) );
+    disconnect(list->rootNode(), SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotRootNodeChanged(Akregator::TreeNode*)));
 }
 
 void NodeListView::disconnectFromNode(TreeNode* node)

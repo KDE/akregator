@@ -58,21 +58,23 @@ void FrameManager::slotAddFrame(Frame* frame)
 {
     m_frames.insert(frame->id(), frame);
 
-    connect(frame, SIGNAL(signalCanceled(Frame*, const QString&)), this, SLOT(slotSetCanceled(Frame*, const QString&)) );
-    connect(frame, SIGNAL(signalStarted(Frame*)), this, SLOT(slotSetStarted(Frame*)) );
-    connect(frame, SIGNAL(signalCaptionChanged(Frame*, const QString&)), this, SLOT(slotSetCaption(Frame*, const QString&)));
-    connect(frame, SIGNAL(signalLoadingProgress(Frame*, int)), this, SLOT(slotSetProgress(Frame*, int)));
-    connect(frame, SIGNAL(signalCompleted(Frame*)), this, SLOT(slotSetCompleted(Frame*)));
-    connect(frame, SIGNAL(signalTitleChanged(Frame*, const QString&)), this, SLOT(slotSetTitle(Frame*, const QString&)) );
-    connect(frame, SIGNAL(signalStatusText(Frame*, const QString&)), this, SLOT(slotSetStatusText(Frame*, const QString&)) );
+    connect(frame, SIGNAL(signalCanceled(Akregator::Frame*, const QString&)), this, SLOT(slotSetCanceled(Akregator::Frame*, const QString&)) );
+    connect(frame, SIGNAL(signalStarted(Akregator::Frame*)), this, SLOT(slotSetStarted(Akregator::Frame*)) );
+    connect(frame, SIGNAL(signalCaptionChanged(Akregator::Frame*, const QString&)), this, SLOT(slotSetCaption(Akregator::Frame*, const QString&)));
+    connect(frame, SIGNAL(signalLoadingProgress(Akregator::Frame*, int)), this, SLOT(slotSetProgress(Akregator::Frame*, int)));
+    connect(frame, SIGNAL(signalCompleted(Akregator::Frame*)), this, SLOT(slotSetCompleted(Akregator::Frame*)));
+    connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*, const QString&)), this, SLOT(slotSetTitle(Akregator::Frame*, const QString&)) );
+    connect(frame, SIGNAL(signalStatusText(Akregator::Frame*, const QString&)), this, SLOT(slotSetStatusText(Akregator::Frame*, const QString&)) 
+);
     
-    connect(frame, SIGNAL(signalOpenUrlRequest(OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(OpenUrlRequest&)) );
+    connect(frame, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
 
-    connect(frame, SIGNAL( signalCanGoBackToggled(Frame*, bool)), this, SLOT(slotCanGoBackToggled(Frame*, bool)) );
-    connect(frame, SIGNAL( signalCanGoForwardToggled(Frame*, bool)), this, SLOT(slotCanGoForwardToggled(Frame*, bool)) );
-    connect(frame, SIGNAL( signalIsReloadableToggled(Frame*, bool)), this, SLOT(slotIsReloadableToggled(Frame*, bool)) );
+    connect(frame, SIGNAL( signalCanGoBackToggled(Akregator::Frame*, bool)), this, SLOT(slotCanGoBackToggled(Akregator::Frame*, bool)) );
+    connect(frame, SIGNAL( signalCanGoForwardToggled(Akregator::Frame*, bool)), this, SLOT(slotCanGoForwardToggled(Akregator::Frame*, bool)) );
+    connect(frame, SIGNAL( signalIsReloadableToggled(Akregator::Frame*, bool)), this, SLOT(slotIsReloadableToggled(Akregator::Frame*, bool)) 
+);
 
-    connect(frame, SIGNAL( signalIsLoadingToggled(Frame*, bool)), this, SLOT(slotIsLoadingToggled(Frame*, bool)) );
+    connect(frame, SIGNAL( signalIsLoadingToggled(Akregator::Frame*, bool)), this, SLOT(slotIsLoadingToggled(Akregator::Frame*, bool)) );
     
     emit signalFrameAdded(frame);
 
@@ -88,13 +90,13 @@ void FrameManager::slotRemoveFrame(int id)
     if (!frame)
         return;
     
-    disconnect(frame, SIGNAL(signalCanceled(Frame*, const QString&)), this, SLOT(slotSetCanceled(Frame*, const QString&)) );
-    disconnect(frame, SIGNAL(signalStarted(Frame*)), this, SLOT(slotSetStarted(Frame*)) );
-    disconnect(frame, SIGNAL(signalCaptionChanged(Frame*, const QString&)), this, SLOT(slotSetCaption(Frame*, const QString&)));
-    disconnect(frame, SIGNAL(signalLoadingProgress(Frame*, int)), this, SLOT(slotSetProgress(Frame*, int)));
-    disconnect(frame, SIGNAL(signalCompleted(Frame*)), this, SLOT(slotSetCompleted(Frame*)));
-    disconnect(frame, SIGNAL(signalTitleChanged(Frame*, const QString&)), this, SLOT(slotSetTitle(Frame*, const QString&)) );
-    disconnect(frame, SIGNAL(signalStatusText(Frame*, const QString&)), this, SLOT(slotSetStatusText(Frame*, const QString&)) );
+    disconnect(frame, SIGNAL(signalCanceled(Akregator::Frame*, const QString&)), this, SLOT(slotSetCanceled(Akregator::Frame*, const QString&)) );
+    disconnect(frame, SIGNAL(signalStarted(Akregator::Frame*)), this, SLOT(slotSetStarted(Akregator::Frame*)) );
+    disconnect(frame, SIGNAL(signalCaptionChanged(Akregator::Frame*, const QString&)), this, SLOT(slotSetCaption(Akregator::Frame*, const QString&)));
+    disconnect(frame, SIGNAL(signalLoadingProgress(Akregator::Frame*, int)), this, SLOT(slotSetProgress(Akregator::Frame*, int)));
+    disconnect(frame, SIGNAL(signalCompleted(Akregator::Frame*)), this, SLOT(slotSetCompleted(Akregator::Frame*)));
+    disconnect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*, const QString&)), this, SLOT(slotSetTitle(Akregator::Frame*, const QString&)) );
+    disconnect(frame, SIGNAL(signalStatusText(Akregator::Frame*, const QString&)), this, SLOT(slotSetStatusText(Akregator::Frame*, const QString&)) );
 
     if (m_currentFrame == frame)
     {
@@ -289,7 +291,7 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
     if (request.args().serviceType.isEmpty())
     {
         BrowserRun* run = new BrowserRun(request, m_mainWin);
-        connect(run, SIGNAL(signalFoundMimeType(const OpenUrlRequest&)), this, SLOT(slotFoundMimeType(const OpenUrlRequest&)));
+        connect(run, SIGNAL( signalFoundMimeType( Akregator::OpenUrlRequest ) ), this, SLOT(slotFoundMimeType( Akregator::OpenUrlRequest )));
     }
     else // serviceType is already set, so we open the page synchronously.
     {

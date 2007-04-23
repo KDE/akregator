@@ -77,10 +77,10 @@ class ActionManagerImpl : public ActionManager
             enables/disables tag menu action according to @c enabled */
         void slotUpdateTagActions(bool enabled, const QStringList& tagIds);
         
-        void slotNodeSelected(TreeNode* node);
+        void slotNodeSelected(Akregator::TreeNode* node);
         
-        void slotTagAdded(const Tag& tag);
-        void slotTagRemoved(const Tag& tag);
+        void slotTagAdded(const Akregator::Tag& tag);
+        void slotTagRemoved(const Akregator::Tag& tag);
         
     protected:
     

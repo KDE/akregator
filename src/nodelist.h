@@ -70,11 +70,11 @@ public:
     const QList<TreeNode*>& asFlatList() const;
 
 signals:
-    void signalDestroyed(NodeList*);
+    void signalDestroyed(Akregator::NodeList*);
     /** emitted when a node was added to the list */
-    void signalNodeAdded(TreeNode*);
+    void signalNodeAdded(Akregator::TreeNode*);
     /** emitted when a node was removed from the list */
-    void signalNodeRemoved(TreeNode*);
+    void signalNodeRemoved(Akregator::TreeNode*);
 
 public slots:
 
@@ -95,9 +95,9 @@ protected:
   
 protected slots:
 
-    virtual void slotNodeDestroyed(TreeNode* node);
-    virtual void slotNodeAdded(TreeNode* node);
-    virtual void slotNodeRemoved(Folder* parent, TreeNode* node);
+    virtual void slotNodeDestroyed(Akregator::TreeNode* node);
+    virtual void slotNodeAdded(Akregator::TreeNode* node);
+    virtual void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
 
 private:
     NodeList(const NodeList&) : QObject() {}

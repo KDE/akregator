@@ -58,8 +58,8 @@ class AKREGATOR_EXPORT FetchQueue : public QObject
 
         void signalStarted();
         void signalStopped();
-        void fetched(Feed*);
-        void fetchError(Feed*);
+        void fetched(Akregator::Feed*);
+        void fetchError(Akregator::Feed*);
 
     protected: 
 
@@ -72,10 +72,10 @@ class AKREGATOR_EXPORT FetchQueue : public QObject
 
     protected slots:
         
-        void slotNodeDestroyed(TreeNode* node);
-        void slotFeedFetched(Feed *);
-        void slotFetchError(Feed *);
-        void slotFetchAborted(Feed *);
+        void slotNodeDestroyed(Akregator::TreeNode* node);
+        void slotFeedFetched(Akregator::Feed *);
+        void slotFetchError(Akregator::Feed *);
+        void slotFetchAborted(Akregator::Feed *);
         
     private:
 

@@ -126,6 +126,12 @@ public:
     
     virtual bool isGroup() const = 0;
 
+    /** returns if the node represents an aggregation, i.e. containing 
+     * items from more than once source feed. Folders and virtual folders 
+     * are aggregations, feeds are not.
+     */ 
+    virtual bool isAggregation() const = 0;
+
     /** exports node and child nodes to OPML (with akregator settings)
         @param parent the dom element the child node will be attached to
         @param document the opml document */
@@ -167,27 +173,27 @@ public slots:
     /** adds node to a fetch queue
         @param intervalFetchesOnly */
 
-    virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchesOnly=false) = 0;
+    virtual void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchesOnly=false) = 0;
       
 signals:
     
      /** Emitted when this object is deleted. */
-     void signalDestroyed(TreeNode*);
+     void signalDestroyed(Akregator::TreeNode*);
  
     /** Notification mechanism: emitted, when the node was modified and notification is enabled. A node change is renamed title, icon, unread count. Added, updated or removed articles are not notified via this signal */
-    void signalChanged(TreeNode*);
+    void signalChanged(Akregator::TreeNode*);
 
     /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in. For listening to newly fetched articles, you have to register yourself at @ref ArticleInterceptorManager
         @param TreeNode* the node articles were added to
         @param QStringList the guids of the articles added
     */
-    void signalArticlesAdded(TreeNode*, const QList<Akregator::Article>& guids);
+    void signalArticlesAdded(Akregator::TreeNode*, const QList<Akregator::Article>& guids);
     
     /** emitted when articles were updated */
-    void signalArticlesUpdated(TreeNode*, const QList<Akregator::Article>& guids);
+    void signalArticlesUpdated(Akregator::TreeNode*, const QList<Akregator::Article>& guids);
     
     /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved somewhere else in the tree, e.g. if the user moved the feed */
-    void signalArticlesRemoved(TreeNode*, const QList<Akregator::Article>& guids);
+    void signalArticlesRemoved(Akregator::TreeNode*, const QList<Akregator::Article>& guids);
 
 protected:
 

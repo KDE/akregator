@@ -50,7 +50,7 @@ class AKREGATOR_EXPORT Folder : public TreeNode
         Child nodes are not inserted or parsed. 
         @param e the element representing the feed group
         @return a freshly created feed group */
-        static Folder* fromOPML(QDomElement e);
+        static Folder* fromOPML(const QDomElement& e);
         
         /** Creates a new folder with a given title
         @param title The title of the feed group
@@ -76,8 +76,11 @@ class AKREGATOR_EXPORT Folder : public TreeNode
         @return number of articles */
         virtual int totalCount() const;
         
-        /** Helps the rest of the app to decide if node should be handled as group or not. Use only where necessary, use polymorphism where possible. */
+        /** Helps the rest of the app to decide if node should be handled as group or not. */
         virtual bool isGroup() const { return true; }
+
+        //impl
+        virtual bool isAggregation() const { return true; }
 
         /** converts the feed group into OPML format for save and export and appends it to node @c parent in document @document.
         Children are processed and appended recursively.
@@ -121,13 +124,18 @@ class AKREGATOR_EXPORT Folder : public TreeNode
         
         /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref FolderItem. */
         virtual void setOpen(bool open);
+
+        /** returns the next node in the tree.
+        Calling next() unless it returns 0 iterates through the tree in pre-order
+            */
+        virtual TreeNode* next();
         
     signals:
         /** emitted when a child was added */
-        void signalChildAdded(TreeNode*);
+        void signalChildAdded(Akregator::TreeNode*);
 
         /** emitted when a child was removed */
-        void signalChildRemoved(Folder*, TreeNode*);
+        void signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*);
                     
     public slots:
         
@@ -140,21 +148,16 @@ class AKREGATOR_EXPORT Folder : public TreeNode
         /** Called when a child was modified. 
         @param node the child that was changed
             */
-        virtual void slotChildChanged(TreeNode* node);
+        virtual void slotChildChanged(Akregator::TreeNode* node);
         
         /** Called when a child was destroyed. 
         @param node the child that was destroyed
         */
-        virtual void slotChildDestroyed(TreeNode* node);
+        virtual void slotChildDestroyed(Akregator::TreeNode* node);
 
         /** enqueues children recursively for fetching
         @param queue a fetch queue */
-        virtual void slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchesOnly=false);
-
-        /** returns the next node in the tree.
-        Calling next() unless it returns 0 iterates through the tree in pre-order
-            */
-        virtual TreeNode* next();
+        virtual void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchesOnly=false);
 
     protected:
     
@@ -164,6 +167,7 @@ class AKREGATOR_EXPORT Folder : public TreeNode
         virtual void insertChild(int index, TreeNode* node);
 
         virtual void doArticleNotification();
+
     private:
 
         void connectToNode(TreeNode* child);

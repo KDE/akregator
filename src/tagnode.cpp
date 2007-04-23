@@ -60,10 +60,10 @@ TagNode::TagNode(const Tag& tag, TreeNode* observed) : d(new TagNodePrivate)
     d->observed = observed;
     d->unread = 0;
     
-    connect(observed, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotObservedDestroyed(TreeNode*)));
-    connect(observed, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(TreeNode*, QList<Akregator::Article>)) );
-    connect(observed, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(TreeNode*, QList<Akregator::Article>)) );
-    connect(observed, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(TreeNode*, QList<Akregator::Article>)) );
+    connect(observed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotObservedDestroyed(Akregator::TreeNode*)));
+    connect(observed, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)) );
+    connect(observed, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)) );
+    connect(observed, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)) );
 
     d->articles = observed->articles(tag.id());
     calcUnread();

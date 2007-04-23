@@ -58,9 +58,9 @@ class AddFeedDialog : public KDialog
         
         void accept();
         
-        void fetchCompleted(Feed *);
-        void fetchDiscovery(Feed *);
-        void fetchError(Feed *);
+        void fetchCompleted(Akregator::Feed *);
+        void fetchDiscovery(Akregator::Feed *);
+        void fetchError(Akregator::Feed *);
 
     private slots:
         void textChanged(const QString&);

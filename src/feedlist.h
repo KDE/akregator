@@ -72,7 +72,7 @@ public:
 
 signals:
 
-    void signalDestroyed(FeedList*);
+    void signalDestroyed(Akregator::FeedList*);
 
 protected:
 

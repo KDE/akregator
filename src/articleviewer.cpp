@@ -399,15 +399,15 @@ void ArticleViewer::connectToNode(TreeNode* node)
     {
         if (m_viewMode == CombinedView)
         {
-//            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-            connect( node, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(TreeNode*, QList<Akregator::Article>)));
-            connect( node, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(TreeNode*, QList<Akregator::Article>)));
-            connect( node, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(TreeNode*, QList<Akregator::Article>)));
+            connect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+            connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)));
+            connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)));
+            connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)));
         }
         if (m_viewMode == SummaryView)
-            connect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
+            connect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotShowSummary(Akregator::TreeNode*) ) );
 
-        connect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
+        connect( node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear() ) );
     }
 }
 
@@ -415,12 +415,12 @@ void ArticleViewer::disconnectFromNode(TreeNode* node)
 {
     if (node)
     {
-//        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-        disconnect( node, SIGNAL(signalDestroyed(TreeNode*)), this, SLOT(slotClear() ) );
-        disconnect( node, SIGNAL(signalChanged(TreeNode*)), this, SLOT(slotShowSummary(TreeNode*) ) );
-        disconnect( node, SIGNAL(signalArticlesAdded(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(TreeNode*, QList<Akregator::Article>)));
-        disconnect( node, SIGNAL(signalArticlesRemoved(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(TreeNode*, QList<Akregator::Article>)));
-        disconnect( node, SIGNAL(signalArticlesUpdated(TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(TreeNode*, QList<Akregator::Article>)));
+        disconnect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
+        disconnect( node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear() ) );
+        disconnect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotShowSummary(Akregator::TreeNode*) ) );
+        disconnect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)));
+        disconnect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)));
+        disconnect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)));
     }
 }
 
@@ -673,7 +673,7 @@ int ArticleViewerPart::button() const
 bool ArticleViewerPart::closeUrl()
 {
     emit browserExtension()->loadingProgress(-1);
-    emit canceled(QString::null);
+    emit canceled(QString());
     return KHTMLPart::closeUrl();
 }
 

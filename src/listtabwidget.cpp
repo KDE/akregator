@@ -211,8 +211,8 @@ void ListTabWidget::addView(NodeListView* view, const QString& caption, const QP
     connect(d->tabBar->tab(tabId), SIGNAL(clicked(int)), this, SLOT(slotTabClicked(int)));
 
     
-    connect(view, SIGNAL(signalNodeSelected(TreeNode*)), this, SIGNAL(signalNodeSelected(TreeNode*)));
-    connect(view, SIGNAL(signalRootNodeChanged(NodeListView*, TreeNode*)), this, SLOT(slotRootNodeChanged(NodeListView*, TreeNode*)));
+    connect(view, SIGNAL(signalNodeSelected(Akregator::TreeNode*)), this, SIGNAL(signalNodeSelected(Akregator::TreeNode*)));
+    connect(view, SIGNAL(signalRootNodeChanged(Akregator::NodeListView*, Akregator::TreeNode*)), this, SLOT(slotRootNodeChanged(Akregator::NodeListView*, Akregator::TreeNode*)));
 
 
     if (tabId == 0) // first widget

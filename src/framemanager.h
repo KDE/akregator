@@ -49,7 +49,7 @@ class FrameManager : public QObject
     public:
 
         explicit FrameManager(QWidget* mainWin=0, QObject* parent=0);
-        virtual ~FrameManager();
+        ~FrameManager();
 
         Frame* currentFrame() const;
         
@@ -63,7 +63,7 @@ class FrameManager : public QObject
         void slotRemoveFrame(int frameId);
                
         void slotChangeFrame(int frameId);
-        void slotOpenUrlRequest(OpenUrlRequest& request);
+        void slotOpenUrlRequest(Akregator::OpenUrlRequest& request);
 
         void slotBrowserBack();
         void slotBrowserForward();
@@ -74,7 +74,7 @@ class FrameManager : public QObject
         
     signals:
 
-        void signalFrameAdded(Frame*);
+        void signalFrameAdded(Akregator::Frame*);
         void signalFrameRemoved(int id);
 
         void signalRequestNewFrame(int& id);
@@ -85,7 +85,7 @@ class FrameManager : public QObject
          * @param deactivated the the deactivated frame
          * @param activated the activated frame
          */
-        void signalCurrentFrameChanged(Frame* deactivated, Frame* activated);
+        void signalCurrentFrameChanged(Akregator::Frame* deactivated, Akregator::Frame* activated);
 
         void signalStarted();
         void signalCanceled(const QString&);
@@ -103,20 +103,20 @@ class FrameManager : public QObject
         
     protected slots:
 
-        void slotSetStarted(Frame* frame);
-        void slotSetCanceled(Frame* frame, const QString& reason);
-        void slotSetCompleted(Frame* frame);
-        void slotSetProgress(Frame* frame, int progress);
-        void slotSetCaption(Frame* frame, const QString& caption);
-        void slotSetTitle(Frame* frame, const QString& title);
-        void slotSetStatusText(Frame* frame, const QString& statusText);
+        void slotSetStarted(Akregator::Frame* frame);
+        void slotSetCanceled(Akregator::Frame* frame, const QString& reason);
+        void slotSetCompleted(Akregator::Frame* frame);
+        void slotSetProgress(Akregator::Frame* frame, int progress);
+        void slotSetCaption(Akregator::Frame* frame, const QString& caption);
+        void slotSetTitle(Akregator::Frame* frame, const QString& title);
+        void slotSetStatusText(Akregator::Frame* frame, const QString& statusText);
 
-        void slotCanGoBackToggled(Frame*, bool);
-        void slotCanGoForwardToggled(Frame*, bool);
-        void slotIsReloadableToggled(Frame*, bool);
-        void slotIsLoadingToggled(Frame*, bool);
+        void slotCanGoBackToggled(Akregator::Frame*, bool);
+        void slotCanGoForwardToggled(Akregator::Frame*, bool);
+        void slotIsReloadableToggled(Akregator::Frame*, bool);
+        void slotIsLoadingToggled(Akregator::Frame*, bool);
 
-        void slotFoundMimeType(const OpenUrlRequest& request);
+        void slotFoundMimeType(const Akregator::OpenUrlRequest& request);
 
     private:
 
