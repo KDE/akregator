@@ -76,11 +76,6 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                     return article.title();
             }
         }
-        case Qt::DecorationRole:
-        {
-            // TODO return keep icon, if keep flag is set
-            return QVariant();
-        }
         case GuidRole:
         {
             return article.guid();
@@ -92,6 +87,10 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
         case StatusRole:
         {
             return article.status();
+        }
+        case IsImportantRole:
+        {
+            return article.keep();
         }
     }
 

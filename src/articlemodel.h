@@ -42,7 +42,8 @@ public:
     enum Role {
         GuidRole=Qt::UserRole,
         FeedIdRole,
-        StatusRole
+        StatusRole,
+        IsImportantRole
     };
 
     explicit ArticleModel( TreeNode* node, QObject* parent = 0 );

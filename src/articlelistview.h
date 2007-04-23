@@ -64,6 +64,8 @@ public:
 
 private:
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
+
+    QIcon m_keepFlagIcon;
 };
 
 

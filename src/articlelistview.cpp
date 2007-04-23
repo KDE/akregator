@@ -63,6 +63,7 @@
 
 Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent )
 {
+    m_keepFlagIcon = QIcon( KStandardDirs::locate("data", "akregator/pics/akregator_flag.png") );
 }
 
 int Akregator::SortColorizeProxyModel::columnCount( const QModelIndex& index ) const
@@ -94,25 +95,38 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
     if ( !idx.isValid() || !sourceModel() )
         return QVariant();
 
-   if ( role == Qt::ForegroundRole )
+    switch ( role )
     {
-        switch ( static_cast<Akregator::Article::Status>( QSortFilterProxyModel::data( idx, Akregator::ArticleModel::StatusRole ).toInt() ) )
+        case Qt::ForegroundRole:
         {
-            case Akregator::Article::Unread:
+            switch ( static_cast<Akregator::Article::Status>( QSortFilterProxyModel::data( idx, Akregator::ArticleModel::StatusRole ).toInt() ) )
             {
-                return Settings::useCustomColors() ?
-                    Settings::colorUnreadArticles() : Qt::blue;
-            }
-            case Akregator::Article::New:
-            {
-                return Settings::useCustomColors() ?
-                    Settings::colorNewArticles() : Qt::red;
-            }
-            case Akregator::Article::Read:
-            {
-                return QApplication::palette().color( QPalette::WindowText );
+                case Akregator::Article::Unread:
+                {
+                    return Settings::useCustomColors() ?
+                        Settings::colorUnreadArticles() : Qt::blue;
+                }
+                case Akregator::Article::New:
+                {
+                    return Settings::useCustomColors() ?
+                        Settings::colorNewArticles() : Qt::red;
+                }
+                case Akregator::Article::Read:
+                {
+                    return QApplication::palette().color( QPalette::WindowText );
+                }
             }
         }
+        break;
+        case Qt::DecorationRole:
+        {
+            if ( idx.column() == ItemTitleColumn )
+            {
+                const QModelIndex sourceIdx = mapToSource( idx );
+                return sourceIdx.data( Akregator::ArticleModel::IsImportantRole ).toBool() ? m_keepFlagIcon : QVariant();
+            }
+        }
+        break;
     }
     return QSortFilterProxyModel::data( idx, role );
 }
