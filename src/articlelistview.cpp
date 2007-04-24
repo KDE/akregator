@@ -159,7 +159,10 @@ Akregator::ArticleListView::~ArticleListView()
 Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(parent), m_columnMode( Akregator::ArticleListView::Unspecified )
 {
     setSortingEnabled( true );
+    setAlternatingRowColors( true );
     setSelectionMode( QAbstractItemView::ExtendedSelection );
+    setUniformRowHeights( true );
+
     setMinimumSize(250, 150);
     setWhatsThis( i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
