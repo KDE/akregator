@@ -127,7 +127,7 @@ NodeList::NodeList(QObject* parent) : QObject(parent), d(new NodeListPrivate)
     
 }
 
-const QString& NodeList::title() const
+QString NodeList::title() const
 {
     return d->title;
 }
@@ -147,7 +147,7 @@ Folder* NodeList::rootNode() const
     return d->rootNode;
 }
 
-const QList<TreeNode*>& NodeList::asFlatList() const
+QList<TreeNode*> NodeList::asFlatList() const
 {
     return d->flatList;
 }

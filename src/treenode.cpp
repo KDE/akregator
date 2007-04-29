@@ -74,7 +74,7 @@ TreeNode::~TreeNode()
     d = 0;
 }
 
-const QString& TreeNode::title() const
+QString TreeNode::title() const
 {
     return d->title;
 }

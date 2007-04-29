@@ -218,7 +218,7 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
     if ( list == this )
         return;
 
-    if ( !flatList()->contains(parent) )
+    if ( !asFlatList().contains(parent) )
         parent = rootNode();
 
     QList<TreeNode*> children = list->rootNode()->children();

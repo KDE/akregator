@@ -40,8 +40,8 @@ class ArticleListView;
 class ArticleViewer;
 class FrameManager;
 class MainWidget;
-class NodeListView;
 class Part;
+class SubscriptionListView;
 class TabWidget;
 class TreeNode;
 class TrayIcon;
@@ -64,7 +64,7 @@ class ActionManagerImpl : public ActionManager
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
-        void initSubscriptionListView(NodeListView* subscriptionListView);
+        void initSubscriptionListView(SubscriptionListView* subscriptionListView);
         void initTabWidget(TabWidget* tabWidget);
         void initFrameManager(FrameManager* frameManager);
 

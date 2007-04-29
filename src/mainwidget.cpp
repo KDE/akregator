@@ -45,6 +45,7 @@
 #include "progressmanager.h"
 #include "searchbar.h"
 //#include "speechclient.h"
+#include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
@@ -183,9 +184,10 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect(Kernel::self()->fetchQueue(), SIGNAL(signalStopped()),
              this, SLOT(slotFetchingStopped()));
 
-    m_feedListView = new NodeListView( m_horizontalSplitter );
+    m_feedListView = new SubscriptionListView( m_horizontalSplitter );
     m_feedListView->setObjectName( "feedtree" );
-    m_actionManager->initSubscriptionListView(m_feedListView);
+
+    m_actionManager->initSubscriptionListView( m_feedListView );
 
     connect(m_feedListView, SIGNAL(signalNodeSelected(Akregator::TreeNode*)),
             this, SLOT(slotNodeSelected(Akregator::TreeNode*)));
@@ -351,7 +353,7 @@ void MainWidget::slotOnShutdown()
 
     Kernel::self()->fetchQueue()->slotAbort();
 
-    m_feedListView->setNodeList(0);
+    m_feedListView->setFeedList( 0 );
     ProgressManager::self()->setFeedList(0);
 
     delete m_feedList;
@@ -490,7 +492,7 @@ bool MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
         m_feedList = feedList;
         connectToFeedList(m_feedList);
 
-        m_feedListView->setNodeList(m_feedList);
+        m_feedListView->setFeedList( m_feedList );
     }
     else
         m_feedList->append(feedList, parent);

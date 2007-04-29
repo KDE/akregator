@@ -28,13 +28,13 @@
 #include "articlelistview.h"
 #include "articleviewer.h"
 #include "feed.h"
-#include "feedlistview.h"
 #include "fetchqueue.h"
 #include "folder.h"
 #include "framemanager.h"
 #include "kernel.h"
 #include "mainwidget.h"
 //#include "speechclient.h"
+#include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "trayicon.h"
 #include "treenode.h"
@@ -110,7 +110,7 @@ public:
 
     NodeSelectVisitor* nodeSelectVisitor;
     ArticleListView* articleList;
-    NodeListView* subscriptionListView;
+    SubscriptionListView* subscriptionListView;
     MainWidget* mainWidget;
     ArticleViewer* articleViewer;
     Part* part;
@@ -421,7 +421,7 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     action->setShortcuts(KShortcut( "Right" ));
 }
 
-void ActionManagerImpl::initSubscriptionListView(NodeListView* subscriptionListView)
+void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscriptionListView)
 {
     if (d->subscriptionListView)
         return;

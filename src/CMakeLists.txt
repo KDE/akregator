@@ -38,9 +38,10 @@ set(akregatorprivate_LIB_SRCS
    feediconmanager.cpp 
    articleinterceptor.cpp 
    plugin.cpp 
-   pluginmanager.cpp 
+   pluginmanager.cpp
    storagefactoryregistry.cpp 
-   storage.cpp 
+   storage.cpp
+   subscriptionlistmodel.cpp
    tag.cpp 
    tagset.cpp 
    storagedummyimpl.cpp 
@@ -92,6 +93,7 @@ set(akregatorpart_PART_SRCS
    akregator_part.cpp 
    mainwidget.cpp 
    notificationmanager.cpp 
+   subscriptionlistview.cpp
    tagaction.cpp 
    tagpropertiesdialog.cpp 
    tagfolderitem.cpp )

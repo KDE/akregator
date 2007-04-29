@@ -63,11 +63,11 @@ QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orienta
     switch (section)
     {
         case ItemTitleColumn:
-            return tr("Article");
+            return i18n("Article");
         case FeedTitleColumn:
-            return tr("Feed");
+            return i18n("Feed");
         case DateColumn:
-            return tr("Date");
+            return i18n("Date");
     }
 
     return QVariant();

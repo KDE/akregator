@@ -61,13 +61,13 @@ public:
     TreeNode* findByID(int id) const;
 
     /** returns the title of the feed list (as used in the OPML document) */
-    const QString& title() const;
+    QString title() const;
 
     /** sets the title of the feed list */
     void setTitle(const QString& name);
 
     /** returns a flat list containing all nodes in the tree */
-    const QList<TreeNode*>& asFlatList() const;
+    QList<TreeNode*> asFlatList() const;
 
 signals:
     void signalDestroyed(Akregator::NodeList*);

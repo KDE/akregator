@@ -77,14 +77,14 @@ public:
     /** Get title of node.
     @return the title of the node */
     
-    virtual const QString& title() const;
+    QString title() const;
     
     
     /** Sets the title of the node.
     @c title should not contain entities.
     @param title the title string */
     
-    virtual void setTitle(const QString& title);
+    void setTitle(const QString& title);
     
     
     /** Get the next sibling.

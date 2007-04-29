@@ -68,6 +68,7 @@ class NodeListView;
 class ListTabWidget;
 class Part;
 class SearchBar;
+class SubscriptionListView;
 class TabWidget;
 
 /**
@@ -253,9 +254,9 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
         FeedList* m_feedList;
-        NodeListView* m_feedListView;
+        SubscriptionListView* m_feedListView;
         ArticleListView* m_articleList;
-
+        
         ArticleViewer *m_articleViewer;
         TabWidget* m_tabWidget;
 
