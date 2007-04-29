@@ -39,12 +39,10 @@ namespace Akregator {
 class ArticleListView;
 class ArticleViewer;
 class FrameManager;
-class ListTabWidget;
 class MainWidget;
+class NodeListView;
 class Part;
 class TabWidget;
-class Tag;
-class TagSet;
 class TreeNode;
 class TrayIcon;
 
@@ -66,21 +64,13 @@ class ActionManagerImpl : public ActionManager
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
-        void initListTabWidget(ListTabWidget* listTabWidget);
+        void initSubscriptionListView(NodeListView* subscriptionListView);
         void initTabWidget(TabWidget* tabWidget);
-        void setTagSet(TagSet* tagSet);
         void initFrameManager(FrameManager* frameManager);
 
     public slots:
 
-        /** fills the remove tag menu with the given tags
-            enables/disables tag menu action according to @c enabled */
-        void slotUpdateTagActions(bool enabled, const QStringList& tagIds);
-        
         void slotNodeSelected(Akregator::TreeNode* node);
-        
-        void slotTagAdded(const Akregator::Tag& tag);
-        void slotTagRemoved(const Akregator::Tag& tag);
         
     protected:
     

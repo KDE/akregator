@@ -121,8 +121,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
-    m_tagSetPath = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/tagset.xml";
-
     Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
     Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
     loadPlugins(); // FIXME: also unload them!
@@ -150,14 +148,10 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
     Kernel::self()->setStorage(m_storage);
     Backend::Storage::setInstance(m_storage); // TODO: kill this one
 
-    loadTagSet(m_tagSetPath);
-
     m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);
 
     m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
-    m_actionManager->setTagSet(Kernel::self()->tagSet());
-
     m_extension = new BrowserExtension(this, "ak_extension");
 
     connect(Kernel::self()->frameManager(), SIGNAL(signalCaptionChanged(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
@@ -229,7 +223,6 @@ void Part::slotOnShutdown()
     m_autosaveTimer->stop();
     saveSettings();
     slotSaveFeedList();
-    saveTagSet(m_tagSetPath);
     m_mainWidget->slotOnShutdown();
     //delete m_mainWidget;
     delete TrayIcon::getInstance();
@@ -519,50 +512,6 @@ QWidget* Part::getMainWindow()
     }
 
     return 0;
-}
-
-void Part::loadTagSet(const QString& path)
-{
-    QDomDocument doc;
-
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly))
-    {
-        doc.setContent(file.readAll());
-        file.close();
-    }
-    // if we can't load the tagset from the xml file, check for the backup in the backend
-    if (doc.isNull())
-    {
-         doc.setContent(m_storage->restoreTagSet());
-    }
-
-    if (!doc.isNull())
-    {
-        Kernel::self()->tagSet()->readFromXML(doc);
-    }
-    else
-    {
-        Kernel::self()->tagSet()->insert(Tag("http://akregator.sf.net/tags/Interesting", i18n("Interesting")));
-    }
-}
-
-void Part::saveTagSet(const QString& path)
-{
-
-    QString xmlStr = Kernel::self()->tagSet()->toXML().toString();
-
-    m_storage->storeTagSet(xmlStr);
-
-    QFile file(path);
-
-    if ( file.open(QIODevice::WriteOnly) )
-    {
-        QTextStream stream(&file);
-        stream.setCodec("UTF-8");
-        stream << xmlStr << "\n";
-        file.close();
-    }
 }
 
 void Part::importFile(const KUrl& url)

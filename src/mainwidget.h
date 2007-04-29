@@ -69,8 +69,6 @@ class ListTabWidget;
 class Part;
 class SearchBar;
 class TabWidget;
-class Tag;
-class TagNodeList;
 
 /**
     * This is the main widget of the view, containing tree view, article list, viewer etc.
@@ -159,7 +157,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void slotFeedUrlDropped (KUrl::List &urls, Akregator::TreeNode* after, Akregator::Folder *parent);
 
         /** displays a URL in the status bar when the user moves the mouse over a link */
-        void slotMouseOverInfo(const KFileItem *kifi);
+        void slotMouseOverInfo(const KFileItem* const kifi);
 
         /** Feed has been fetched, populate article view if needed and update counters. */
         void slotFeedFetched(Akregator::Feed *);
@@ -199,12 +197,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         /** reads the currently selected articles using KTTSD */
         void slotTextToSpeechRequest();
 
-        void slotAssignTag(const Akregator::Tag& tag, bool assign);
-        //void slotRemoveTag(const Tag& tag);
-        void slotNewTag();
-        void slotTagCreated(const Akregator::Tag& tag);
-        void slotTagRemoved(const Akregator::Tag& tag);
-
         /** switches view mode to normal view */
         void slotNormalView();
         /** switches view mode to widescreen view */
@@ -236,8 +228,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         void connectToFeedList(FeedList* feedList);
         void disconnectFromFeedList(FeedList* feedList);
 
-        void updateTagActions();
-
     protected slots:
 
         /** special behaviour in article list view (TODO: move code there?) */
@@ -263,9 +253,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
         enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
         FeedList* m_feedList;
-        TagNodeList* m_tagNodeList;
         NodeListView* m_feedListView;
-        NodeListView* m_tagNodeListView;
         ArticleListView* m_articleList;
 
         ArticleViewer *m_articleViewer;
@@ -278,8 +266,7 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
 
         QSplitter *m_articleSplitter;
         QSplitter *m_horizontalSplitter;
-    
-        ListTabWidget* m_listTabWidget;
+
         Akregator::Part *m_part;
         ViewMode m_viewMode;
 

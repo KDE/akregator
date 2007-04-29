@@ -33,14 +33,9 @@
 #include "folder.h"
 #include "framemanager.h"
 #include "kernel.h"
-#include "listtabwidget.h"
 #include "mainwidget.h"
 //#include "speechclient.h"
 #include "tabwidget.h"
-#include "tag.h"
-#include "tagaction.h"
-#include "tagnode.h"
-#include "tagset.h"
 #include "trayicon.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
@@ -48,6 +43,7 @@
 #include <kactionmenu.h>
 #include <ktoolbarpopupaction.h>
 #include <kaction.h>
+#include <KToggleAction>
 #include <kactioncollection.h>
 #include <kdebug.h>
 #include <klocale.h>
@@ -104,20 +100,6 @@ class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
         return true;
     }
 
-    virtual bool visitTagNode(TagNode* /*node*/)
-    {
-        QAction* remove = m_manager->action("feed_remove");
-        if (remove)
-            remove->setEnabled(true);
-        QAction* hp = m_manager->action("feed_homepage");
-        if (hp)
-            hp->setEnabled(false);
-        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Articles as Read"));
-        m_manager->action("feed_remove")->setText(i18n("&Delete Tag"));
-        m_manager->action("feed_modify")->setText(i18n("&Edit Tag..."));
-
-        return true;
-    }
     private:
     ActionManagerImpl* m_manager;
 };
@@ -128,86 +110,18 @@ public:
 
     NodeSelectVisitor* nodeSelectVisitor;
     ArticleListView* articleList;
-    ListTabWidget* listTabWidget;
+    NodeListView* subscriptionListView;
     MainWidget* mainWidget;
     ArticleViewer* articleViewer;
     Part* part;
     TrayIcon* trayIcon;
     KActionMenu* tagMenu;
     KActionCollection* actionCollection;
-    TagSet* tagSet;
-    QHash<QString, TagAction*> tagActions;
     TabWidget* tabWidget;
     KAction* speakSelectedArticlesAction;
     FrameManager* frameManager;
 };
 
-void ActionManagerImpl::slotUpdateTagActions(bool enabled, const QStringList& tagIds)
-{
-    d->tagMenu->setEnabled(enabled);
-    QList<TagAction*> actions = d->tagActions.values();
-
-    for (QList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
-    {
-        (*it)->setChecked(tagIds.contains((*it)->tag().id()));
-    }
-}
-
-void ActionManagerImpl::setTagSet(TagSet* tagSet)
-{
-    if (tagSet == d->tagSet)
-        return;
-
-    if (d->tagSet != 0)
-    {
-        disconnect(d->tagSet, SIGNAL(signalTagAdded(const Akregator::Tag&)), this, SLOT(slotTagAdded(const Akregator::Tag&)));
-        disconnect(d->tagSet, SIGNAL(signalTagRemoved(const Akregator::Tag&)), this, SLOT(slotTagRemoved(const Akregator::Tag&)));
-    }
-
-    d->tagSet = tagSet;
-
-    if (tagSet != 0)
-    {
-        connect(d->tagSet, SIGNAL(signalTagAdded(const Akregator::Tag&)), this, SLOT(slotTagAdded(const Akregator::Tag&)));
-        connect(d->tagSet, SIGNAL(signalTagRemoved(const Akregator::Tag&)), this, SLOT(slotTagRemoved(const Akregator::Tag&)));
-    }
-
-    QList<TagAction*> actions = d->tagActions.values();
-    for (QList<TagAction*>::ConstIterator it = actions.begin(); it != actions.end(); ++it)
-    {
-        d->tagMenu->removeAction(*it);
-        delete *it;
-    }
-
-
-    d->tagActions.clear();
-
-    //TODO: remove actions from menus, delete actions, clear maps
-    if (tagSet)
-    {
-        QList<Tag> list = tagSet->toHash().values();
-        for (QList<Tag>::ConstIterator it = list.begin(); it != list.end(); ++it)
-            slotTagAdded(*it);
-    }
-}
-
-void ActionManagerImpl::slotTagAdded(const Tag& tag)
-{
-    if (!d->tagActions.contains(tag.id()))
-    {
-        d->tagActions[tag.id()] = new TagAction(tag, d->mainWidget, SLOT(slotAssignTag(const Akregator::Tag&, bool)), d->actionCollection);
-        d->tagMenu->addAction(d->tagActions[tag.id()]);
-    }
-}
-
-void ActionManagerImpl::slotTagRemoved(const Tag& tag)
-{
-    QString id = tag.id();
-    TagAction* action = d->tagActions[id];
-    d->tagMenu->removeAction(action);
-    d->tagActions.remove(id);
-    delete action;
-}
 
 void ActionManagerImpl::slotNodeSelected(TreeNode* node)
 {
@@ -219,8 +133,7 @@ ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* na
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;
-    d->tagSet = 0;
-    d->listTabWidget = 0;
+    d->subscriptionListView = 0;
     d->articleList = 0;
     d->trayIcon = 0;
     d->articleViewer = 0;
@@ -275,18 +188,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 {
     if (d->mainWidget)
         return;
-    else
-        d->mainWidget = mainWidget;
 
-    KActionCollection *coll = actionCollection();
+    d->mainWidget = mainWidget;
 
-    // tag actions
-    QAction *action = coll->addAction("tag_new");
-    action->setText(i18n("&New Tag..."));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNewTag()));
-
+    KActionCollection* coll = actionCollection();
+    
     // Feed/Feed Group popup menu
-    action = coll->addAction("feed_homepage");
+    QAction* action = coll->addAction("feed_homepage");
     action->setText(i18n("&Open Homepage"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenHomepage()));
     action->setShortcuts(KShortcut( "Ctrl+H" ));
@@ -413,12 +321,6 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleDelete()));
     action->setShortcuts(KShortcut( "Delete" ));
 
-    d->tagMenu = coll->add<KActionMenu>("article_tagmenu");
-    d->tagMenu->setText(i18n("&Set Tags"));
-    d->tagMenu->setIcon(KIcon("rss-tag"));
-    d->tagMenu->setEnabled(false); // only enabled when articles are selected
-
-
     KActionMenu* statusMenu = coll->add<KActionMenu>("article_set_status");
     statusMenu->setText(i18n("&Mark As"));
 
@@ -519,63 +421,63 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     action->setShortcuts(KShortcut( "Right" ));
 }
 
-void ActionManagerImpl::initListTabWidget(ListTabWidget* listTabWidget)
+void ActionManagerImpl::initSubscriptionListView(NodeListView* subscriptionListView)
 {
-    if (d->listTabWidget)
+    if (d->subscriptionListView)
         return;
     else
-        d->listTabWidget = listTabWidget;
+        d->subscriptionListView = subscriptionListView;
 
     KActionCollection *coll = actionCollection();
 
     QAction *action = coll->addAction("go_prev_feed");
     action->setText(i18n("&Previous Feed"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotPrevFeed()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevFeed()));
     action->setShortcuts(KShortcut( "P" ));
 
     action = coll->addAction("go_next_feed");
     action->setText(i18n("&Next Feed"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotNextFeed()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextFeed()));
     action->setShortcuts(KShortcut( "N" ));
 
     action = coll->addAction("go_next_unread_feed");
     action->setText(i18n("N&ext Unread Feed"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotNextUnreadFeed()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextUnreadFeed()));
     action->setShortcuts(KShortcut( "Alt+Plus" ));
 
     action = coll->addAction("go_prev_unread_feed");
     action->setText(i18n("Prev&ious Unread Feed"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotPrevUnreadFeed()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevUnreadFeed()));
     action->setShortcuts(KShortcut( "Alt+Minus" ));
 
     action = coll->addAction("feedstree_home");
     action->setText(i18n("Go to Top of Tree"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemBegin()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemBegin()));
     action->setShortcuts(KShortcut( "Ctrl+Home" ));
 
     action = coll->addAction("feedstree_end");
     action->setText(i18n("Go to Bottom of Tree"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemEnd()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemEnd()));
     action->setShortcuts(KShortcut( "Ctrl+End" ));
 
     action = coll->addAction("feedstree_left");
     action->setText(i18n("Go Left in Tree"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemLeft()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemLeft()));
     action->setShortcuts(KShortcut( "Ctrl+Left" ));
 
     action = coll->addAction("feedstree_right");
     action->setText(i18n("Go Right in Tree"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemRight()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemRight()));
     action->setShortcuts(KShortcut( "Ctrl+Right" ));
 
     action = coll->addAction("feedstree_up");
     action->setText(i18n("Go Up in Tree"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemUp()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemUp()));
     action->setShortcuts(KShortcut( "Ctrl+Up" ));
 
     action = coll->addAction("feedstree_down" );
     action->setText(i18n("Go Down in Tree"));
-    connect(action, SIGNAL(triggered(bool)), listTabWidget, SLOT(slotItemDown()));
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemDown()));
     action->setShortcuts(KShortcut( "Ctrl+Down" ));
 }
 

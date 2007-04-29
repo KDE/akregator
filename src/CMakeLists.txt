@@ -86,7 +86,6 @@ set(akregatorpart_PART_SRCS
    feeditem.cpp 
    progressmanager.cpp 
    kernel.cpp 
-   listtabwidget.cpp 
    tagnodeitem.cpp 
    configdialog.cpp 
    settings_advanced.cpp 

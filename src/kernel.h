@@ -37,7 +37,6 @@ namespace Backend
 class FeedList;
 class FetchQueue;
 class FrameManager;
-class TagSet;
 
 class Kernel
 {
@@ -54,8 +53,7 @@ class Kernel
         void setFeedList(FeedList* feedList);
 
         FetchQueue* fetchQueue();
-        TagSet* tagSet();
-         
+
         void setArticleFilterList(const Filters::ArticleFilterList& list);
 
         Filters::ArticleFilterList articleFilterList() const;

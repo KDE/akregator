@@ -52,7 +52,6 @@ class Kernel::KernelPrivate
     FeedList* feedList;
     FetchQueue* fetchQueue;
     FrameManager* frameManager;
-    TagSet* tagSet;
     Filters::ArticleFilterList articleFilterList;
 };
 
@@ -60,7 +59,6 @@ Kernel::Kernel() : d(new KernelPrivate)
 {
     d->fetchQueue = new FetchQueue();
     d->frameManager = new FrameManager();
-    d->tagSet = new TagSet();
     d->storage = 0;
     d->feedList = 0;
 }
@@ -98,11 +96,6 @@ FetchQueue* Kernel::fetchQueue()
     return d->fetchQueue; 
 }
 
-TagSet* Kernel::tagSet() 
-{
-    return d->tagSet;
-}
-    
 void Kernel::setArticleFilterList(const Filters::ArticleFilterList& list)
 {
     d->articleFilterList = list;
