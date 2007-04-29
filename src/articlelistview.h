@@ -30,6 +30,7 @@
 #include <QSortFilterProxyModel>
 #include <QTreeView>
 
+class QContextMenuEvent;
 class QPaintEvent;
 class QKeyEvent;
 template <class T> class QList;
@@ -96,7 +97,6 @@ public Q_SLOTS:
 signals:
 
     void signalArticleChosen( const Akregator::Article& );
-
     void signalDoubleClicked( const Akregator::Article& );
 
     void articleSelected( const QString& );
@@ -109,6 +109,9 @@ protected:
 
     //reimpl
     void keyPressEvent( QKeyEvent* e );
+
+    //reimpl
+    void contextMenuEvent( QContextMenuEvent* event );
 
 protected Q_SLOTS:
 

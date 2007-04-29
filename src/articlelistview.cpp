@@ -36,6 +36,7 @@
 #include <KLocale>
 
 #include <QApplication>
+#include <QContextMenuEvent>
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QList>
@@ -165,9 +166,7 @@ Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(paren
     connect( this, SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( slotDoubleClicked( QModelIndex ) )  );
 
     //connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
-    //connect(this, SIGNAL(contextMenu(K3ListView*, Q3ListViewItem*, const QPoint&)),
-    //        this, SLOT(slotContextMenu(K3ListView*, Q3ListViewItem*, const QPoint&)));
-
+    
     //connect(this, SIGNAL(mouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)));
 
     setupHeader();
@@ -258,6 +257,14 @@ void Akregator::ArticleListView::slotShowNode(TreeNode* node)
 void Akregator::ArticleListView::keyPressEvent(QKeyEvent* e)
 {
     e->ignore();
+}
+
+void Akregator::ArticleListView::contextMenuEvent( QContextMenuEvent* event )
+{
+    QWidget* w = ActionManager::getInstance()->container( "article_popup" );
+    QMenu* popup = qobject_cast<QMenu*>( w );
+    if (popup)
+        popup->exec( event->globalPos() );
 }
 
 void Akregator::ArticleListView::paintEvent( QPaintEvent* e )
