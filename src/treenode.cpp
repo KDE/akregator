@@ -117,6 +117,12 @@ Folder* TreeNode::parent() const
     return d->parent;
 }
 
+QList<TreeNode*> TreeNode::children() const
+{
+    return QList<TreeNode*>();
+}
+
+
 void TreeNode::setParent(Folder* parent)
 {
     d->parent = parent;
