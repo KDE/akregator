@@ -24,14 +24,13 @@
 #ifndef AKREGATOR_ARTICLEMODEL_H
 #define AKREGATOR_ARTICLEMODEL_H
 
-#include "article.h"
-
-#include <QObject>
 #include <QAbstractListModel>
 
 namespace Akregator {
 
 class TreeNode;
+
+class ArticleModelPrivate;
 
 class AKREGATOR_EXPORT ArticleModel : public QAbstractListModel
 {
@@ -40,13 +39,20 @@ class AKREGATOR_EXPORT ArticleModel : public QAbstractListModel
 public:
 
     enum Role {
-        GuidRole=Qt::UserRole,
+        TitleRole=Qt::UserRole,
+        LinkRole,
+        DescriptionRole,
+        ContentRole,
+        GuidRole,
+        ItemIdRole,
         FeedIdRole,
         StatusRole,
-        IsImportantRole
+        IsImportantRole,
+        AuthorRole
     };
 
-    explicit ArticleModel( TreeNode* node, QObject* parent = 0 );
+    explicit ArticleModel( Akregator::TreeNode* node, QObject* parent = 0 );
+    ~ArticleModel();
 
     //reimpl
     int columnCount( const QModelIndex& parent=QModelIndex() ) const;
@@ -65,8 +71,10 @@ private Q_SLOTS:
     void articlesChanged();
 
 private:
-    TreeNode* m_node;
-    QList<Akregator::Article> m_articles;
+    ArticleModel( const ArticleModel& );
+    ArticleModel& operator=( const ArticleModel& );
+
+    ArticleModelPrivate* d;
 };
 
 } //namespace Akregator

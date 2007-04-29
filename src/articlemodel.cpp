@@ -21,6 +21,7 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
+#include "article.h"
 #include "articlemodel.h"
 #include "akregatorconfig.h"
 #include "treenode.h"
@@ -31,15 +32,26 @@
 #include <KGlobal>
 #include <KLocale>
 
+struct Akregator::ArticleModelPrivate {
+    Akregator::TreeNode* node;
+    QList<Akregator::Article> articles;
+};
 
-Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractListModel( parent ), m_node(node)
+Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractListModel( parent ), d( new Akregator::ArticleModelPrivate )
 {
-    Q_ASSERT(m_node);
-    m_articles = m_node->articles();
-    connect( m_node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
-    connect( m_node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( m_node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( m_node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+    d->node = node;
+    Q_ASSERT(node);
+    d->articles = node->articles();
+    connect( node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
+    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+}
+
+Akregator::ArticleModel::~ArticleModel()
+{
+    delete d;
+    d = 0;
 }
 
 int Akregator::ArticleModel::columnCount( const QModelIndex& ) const
@@ -49,20 +61,21 @@ int Akregator::ArticleModel::columnCount( const QModelIndex& ) const
 
 int Akregator::ArticleModel::rowCount( const QModelIndex& parent ) const
 {
-    return !parent.isValid() ? m_articles.count() : 0;
+    return !parent.isValid() ? d->articles.count() : 0;
 }
 
 QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) const
 {
-    if ( !index.isValid() || index.row() < 0 || index.row() >= m_articles.count() )
+    if ( !index.isValid() || index.row() < 0 || index.row() >= d->articles.count() )
         return QVariant();
-    const Akregator::Article article = m_articles[ index.row() ];
+    const Akregator::Article article = d->articles[ index.row() ];
 
     if ( article.isNull() )
         return QVariant();
 
     switch ( role )
     {
+        case TitleRole:
         case Qt::DisplayRole:
         {
             switch ( index.column() )
@@ -76,6 +89,16 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                     return article.title();
             }
         }
+        case LinkRole:
+        {
+            return article.link();
+        }
+        case ContentRole:
+        case DescriptionRole:
+        {
+            return article.description();
+        }
+        case ItemIdRole:
         case GuidRole:
         {
             return article.guid();
@@ -91,6 +114,10 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
         case IsImportantRole:
         {
             return article.keep();
+        }   
+        case AuthorRole:
+        {
+            return article.author();
         }
     }
 
@@ -99,13 +126,13 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
 
 void Akregator::ArticleModel::nodeDestroyed()
 {
-    m_node = 0;
-    m_articles.clear();
+    d->node = 0;
+    d->articles.clear();
 }
 
 void Akregator::ArticleModel::articlesChanged()
 {
-    m_articles = m_node->articles();
+    d->articles = d->node->articles();
 }
 
 #include "articlemodel.moc"
