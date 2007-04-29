@@ -2,6 +2,7 @@
     This file is part of Akregator.
 
     Copyright (C) 2004 Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
+                  2005-2007 Frank Osterfeld <frank.osterfeld@kdemail.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,17 +25,13 @@
 #ifndef AKREGATOR_ARTICLELISTVIEW_H
 #define AKREGATOR_ARTICLELISTVIEW_H
 
-#include <k3listview.h>
 #include <kdepim_export.h>
 
-#include <QKeyEvent>
-#include <QList>
-#include <QPaintEvent>
 #include <QSortFilterProxyModel>
 #include <QTreeView>
 
+class QPaintEvent;
 class QKeyEvent;
-class Q3DragObject;
 template <class T> class QList;
 
 namespace Akregator {
@@ -78,31 +75,22 @@ public:
     explicit ArticleListView( QWidget* parent = 0 );
     ~ArticleListView();
 
-
-    /** returns the current article, or a null article if there is none */
     Akregator::Article currentArticle() const;
 
-    /** returns a list of currently selected articles */
     QList<Akregator::Article> selectedArticles() const;
 
 public Q_SLOTS:
 
-    /** show article list of tree node @c node  */
-    void slotShowNode(Akregator::TreeNode* node);
+    void slotShowNode( Akregator::TreeNode* node );
 
-    /** clears the list and disconnects from the observed node (if any) */
     void slotClear();
 
-    /** selects previous article in list view, first article if no article was selected */
     void slotPreviousArticle();
 
-    /** selects next article in list view, first article if no article was selected */
     void slotNextArticle();
 
-    /** selects previous unread article in list view, first unread article if no article was selected */
     void slotPreviousUnreadArticle();
 
-    /** selects next unread article in list view, first unread article if no article was selected */
     void slotNextUnreadArticle();
 
 signals:
@@ -111,28 +99,29 @@ signals:
 
     void signalDoubleClicked( const Akregator::Article& );
 
+    void articleSelected( const QString& );
+    void articleDoubleClicked( const QString& );
+
 protected:
 
     //reimpl
     void paintEvent( QPaintEvent* e );
 
     //reimpl
-    void keyPressEvent(QKeyEvent* e);
+    void keyPressEvent( QKeyEvent* e );
 
 protected Q_SLOTS:
 
     //reimpl
     void currentChanged( const QModelIndex& current, const QModelIndex& previous );
 
+private Q_SLOTS:
+
     void slotDoubleClicked( const QModelIndex& index );
 
 private:
 
     void selectIndex( const QModelIndex& index );
-
-    bool isRead( const QModelIndex& index ) const;
-
-    Akregator::Article articleForIndex( const QModelIndex& index ) const;
 
     void setupHeader();
 
@@ -142,12 +131,11 @@ private:
 private:
 
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
-
     enum ColumnMode { Unspecified, GroupMode, FeedMode };
     ColumnMode m_columnMode;
-    int m_lastFeedWidth;
 };
 
+#if 0
 class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
 {
     Q_OBJECT
@@ -238,6 +226,9 @@ class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
         class ArticleItem;
 };
 
+#endif // if 0
+
 } // namespace Akregator
+
 
 #endif // AKREGATOR_ARTICLELISTVIEW_H
