@@ -33,6 +33,7 @@
 #include "folder.h"
 #include "storage.h"
 #include "treenodevisitor.h"
+#include "types.h"
 #include "utils.h"
 #include <syndication/syndication.h>
 
@@ -235,7 +236,7 @@ void Feed::recalcUnreadCount()
     int unread = 0;
 
     for (it = tarticles.begin(); it != en; ++it)
-        if (!(*it).isDeleted() && (*it).status() != Article::Read)
+        if (!(*it).isDeleted() && (*it).status() != Read)
             ++unread;
 
     if (unread != oldUnread)
@@ -389,7 +390,7 @@ void Feed::slotMarkAllArticlesAsRead()
         QList<Article>::Iterator en = tarticles.end();
 
         for (it = tarticles.begin(); it != en; ++it)
-            (*it).setStatus(Article::Read);
+            (*it).setStatus(Read);
         setNotificationMode(true, true);
     }
 }
@@ -446,9 +447,9 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
             d->addedArticlesNotify.append(mya);
 
             if (!mya.isDeleted() && !markImmediatelyAsRead())
-                mya.setStatus(Article::New);
+                mya.setStatus(New);
             else
-                mya.setStatus(Article::Read);
+                mya.setStatus(Read);
 
             changed = true;
         }
@@ -461,7 +462,7 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
             {
                 mya.setKeep(old.keep());
                 int oldstatus = old.status();
-                old.setStatus(Article::Read);
+                old.setStatus(Read);
 
                 d->articles.remove(old.guid());
                 appendArticle(mya);
@@ -520,7 +521,7 @@ void Feed::appendArticle(const Article& a)
         if (!d->articles.contains(a.guid()))
         {
             d->articles[a.guid()] = a;
-            if (!a.isDeleted() && a.status() != Article::Read)
+            if (!a.isDeleted() && a.status() != Read)
                 setUnread(unread()+1);
         }
     }
@@ -538,9 +539,9 @@ void Feed::fetch(bool followDiscovery)
     QList<Article>::Iterator en = articles.end();
     for (it = articles.begin(); it != en; ++it)
     {
-        if ((*it).status() == Article::New)
+        if ((*it).status() == New)
         {
-            (*it).setStatus(Article::Unread);
+            (*it).setStatus(Unread);
         }
     }
 
@@ -736,9 +737,9 @@ void Feed::setArticleChanged(Article& a, int oldStatus)
     if (oldStatus != -1)
     {
         int newStatus = a.status();
-        if (oldStatus == Article::Read && newStatus != Article::Read)
+        if (oldStatus == Read && newStatus != Read)
             setUnread(unread()+1);
-        else if (oldStatus != Article::Read && newStatus == Article::Read)
+        else if (oldStatus != Read && newStatus == Read)
             setUnread(unread()-1);
     }
     d->updatedArticlesNotify.append(a);

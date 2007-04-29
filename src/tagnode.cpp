@@ -99,7 +99,7 @@ void TagNode::calcUnread()
     int unread = 0;
     QList<Article>::Iterator en = d->articles.end();
     for (QList<Article>::Iterator it = d->articles.begin(); it != en; ++it)
-        if ((*it).status() != Article::Read)
+        if ((*it).status() != Read)
             ++unread;
     if (d->unread != unread)
     {
@@ -165,7 +165,7 @@ void TagNode::slotMarkAllArticlesAsRead()
     setNotificationMode(false);
     QList<Article>::Iterator en = d->articles.end();
     for (QList<Article>::Iterator it = d->articles.begin(); it != en; ++it)
-        (*it).setStatus(Article::Read);
+        (*it).setStatus(Read);
     setNotificationMode(true);
 }
     

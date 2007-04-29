@@ -186,15 +186,15 @@ void SearchBar::slotActivateSearch()
         {
             case 1: // Unread
             {
-                Criterion crit1( Criterion::Status, Criterion::Equals, Article::New);
-                Criterion crit2( Criterion::Status, Criterion::Equals, Article::Unread);
+                Criterion crit1( Criterion::Status, Criterion::Equals, New);
+                Criterion crit2( Criterion::Status, Criterion::Equals, Unread);
                 statusCriteria << crit1;
                 statusCriteria << crit2;
                 break;
             }
             case 2: // New
             {
-                Criterion crit( Criterion::Status, Criterion::Equals, Article::New);
+                Criterion crit( Criterion::Status, Criterion::Equals, New);
                 statusCriteria << crit;
                 break;
             }

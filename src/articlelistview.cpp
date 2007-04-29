@@ -25,10 +25,10 @@
 #include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "articlelistview.h"
-#include "article.h"
 #include "articlemodel.h"
 #include "feedlist.h"
 #include "kernel.h"
+#include "types.h"
 
 #include <KIcon>
 #include <KIconLoader>
@@ -81,19 +81,19 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
     {
         case Qt::ForegroundRole:
         {
-            switch ( static_cast<Akregator::Article::Status>( QSortFilterProxyModel::data( idx, Akregator::ArticleModel::StatusRole ).toInt() ) )
+            switch ( static_cast<Akregator::ArticleStatus>( QSortFilterProxyModel::data( idx, Akregator::ArticleModel::StatusRole ).toInt() ) )
             {
-                case Akregator::Article::Unread:
+                case Akregator::Unread:
                 {
                     return Settings::useCustomColors() ?
                         Settings::colorUnreadArticles() : Qt::blue;
                 }
-                case Akregator::Article::New:
+                case Akregator::New:
                 {
                     return Settings::useCustomColors() ?
                         Settings::colorNewArticles() : Qt::red;
                 }
-                case Akregator::Article::Read:
+                case Akregator::Read:
                 {
                     return QApplication::palette().color( QPalette::WindowText );
                 }
@@ -120,7 +120,7 @@ namespace {
         if ( !idx.isValid() )
             return false;
     
-        return static_cast<Akregator::Article::Status>( idx.data( Akregator::ArticleModel::StatusRole ).toInt() ) == Akregator::Article::Read;
+        return static_cast<Akregator::ArticleStatus>( idx.data( Akregator::ArticleModel::StatusRole ).toInt() ) == Akregator::Read;
     }
 }
 

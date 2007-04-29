@@ -27,6 +27,7 @@
 #include "articlefilter.h"
 #include "article.h"
 #include "shared.h"
+#include "types.h"
 
 #include <kapplication.h>
 #include <kconfig.h>
@@ -461,7 +462,7 @@ void SetStatusAction::writeConfig(KConfig* config) const
 
 void SetStatusAction::readConfig(KConfig* config)
 {
-    m_status = config->readEntry(QString::fromLatin1("actionParams"), int(Article::Read));
+    m_status = config->readEntry(QString::fromLatin1("actionParams"), int(Read));
 }
 
 bool SetStatusAction::operator==(const AbstractAction& other)

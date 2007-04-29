@@ -50,6 +50,7 @@
 #include "tabwidget.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
+#include "types.h"
 
 #include <kaction.h>
 #include <kdebug.h>
@@ -903,7 +904,7 @@ void MainWidget::slotFeedFetched(Feed *feed)
         QList<Article>::ConstIterator end = articles.end();
         for (it = articles.begin(); it != end; ++it)
         {
-            if ((*it).status()==Article::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
+            if ((*it).status()==Akregator::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
             {
                 NotificationManager::self()->slotNotifyArticle(*it);
             }
@@ -925,7 +926,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article& article)
         return;
 
     Article a(article);
-    if (a.status() != Article::Read)
+    if (a.status() != Akregator::Read)
     {
         int delay;
 
@@ -936,7 +937,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article& article)
             if (delay > 0)
                 m_markReadTimer->start( delay*1000 );
             else
-                a.setStatus(Article::Read);
+                a.setStatus(Akregator::Read);
         }
     }
 
@@ -1141,7 +1142,7 @@ void MainWidget::slotSetSelectedArticleRead()
         return;
 
     for (QList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
-        (*it).setStatus(Article::Read);
+        (*it).setStatus(Akregator::Read);
 }
 
 void MainWidget::slotTextToSpeechRequest()
@@ -1180,7 +1181,7 @@ void MainWidget::slotSetSelectedArticleUnread()
         return;
 
     for (QList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
-        (*it).setStatus(Article::Unread);
+        (*it).setStatus(Akregator::Unread);
 }
 
 void MainWidget::slotSetSelectedArticleNew()
@@ -1191,7 +1192,7 @@ void MainWidget::slotSetSelectedArticleNew()
         return;
 
     for (QList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
-        (*it).setStatus(Article::New);
+        (*it).setStatus(Akregator::New);
 }
 
 void MainWidget::slotSetCurrentArticleReadDelayed()
@@ -1201,7 +1202,7 @@ void MainWidget::slotSetCurrentArticleReadDelayed()
     if (article.isNull())
         return;
 
-    article.setStatus(Article::Read);
+    article.setStatus(Akregator::Read);
 }
 
 void MainWidget::slotMouseOverInfo(const KFileItem* const kifi)

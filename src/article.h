@@ -26,6 +26,8 @@
 #ifndef AKREGATOR_ARTICLE_H
 #define AKREGATOR_ARTICLE_H
 
+#include "types.h"
+
 #include <kdepim_export.h>
 
 class QDateTime;
@@ -60,12 +62,6 @@ class Feed;
 class AKREGATOR_EXPORT Article
 {
     public:
-        /** (un)read status of the article */
-        enum Status {
-            Unread=0, /**< article wasn't read yet by the user */
-            Read, /**< article is read */
-            New /**< article was fetched in the last fetch of it's feed and not read yet. Note that, semantically, new implies unread */
-        };
 
         Article();
         /** creates am article object for an existing article.
