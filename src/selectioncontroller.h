@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2007 Frank Osterfeld <frank.osterfeld@kdemail.net>
+        Copyright (C) 2007 Frank Osterfeld <frank.osterfeld at kdemail.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,44 +21,54 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
+#ifndef AKREGATOR_SELECTIONCONTROLLER_H
+#define AKREGATOR_SELECTIONCONTROLLER_H
 
-#ifndef AKREGATOR_SUBSCRIPTIONLISTVIEW_H
-#define AKREGATOR_SUBSCRIPTIONLISTVIEW_H
+#include "abstractselectioncontroller.h"
 
-#include <QTreeView>
+class QModelIndex;
 
 namespace Akregator {
 
-class FeedList;
+class SelectionController : public AbstractSelectionController
+{
+    Q_OBJECT
 
-class SubscriptionListView : public QTreeView {
-Q_OBJECT
 public:
-    explicit SubscriptionListView( QWidget* parent = 0 );
 
-// the following is all transitional, for easier porting from the item-based views
+    explicit SelectionController( QObject* parent = 0 );
 
-    Akregator::TreeNode* findNodeByTitle( const QString& title );
+    //impl
+    void setFeedSelector( QAbstractItemView* feedSelector ) ;
 
-    void startNodeRenaming( Akregator::TreeNode* node );
+    //impl
+    void setArticleLister( Akregator::ArticleLister* lister );
 
-    void ensureNodeVisible( Akregator::TreeNode* node );
+    //impl
+    Akregator::Article currentArticle() const;
 
-    void triggerUpdate() {}
+    //impl
+    Akregator::TreeNode* selectedSubscription() const;
 
-public Q_SLOTS:
+    //impl
+    void setFeedList( Akregator::FeedList* list );
 
-    void slotPrevFeed();
-    void slotNextFeed();
+private:
 
-    void slotPrevUnreadFeed();
-    void slotNextUnreadFeed();
+    void setUp();
+
+private Q_SLOTS:
+
+    void selectedSubscriptionChanged( const QModelIndex& index );
+    void currentArticleIndexChanged( const QModelIndex& index );
 
 private:
 
     Akregator::FeedList* m_feedList;
+    QAbstractItemView* m_feedSelector;
+    Akregator::ArticleLister* m_articleLister;
 };
 
-}
+} // namespace Akregator
 
-#endif // AKREGATOR_SUBSCRIPTIONLISTVIEW_H
+#endif // AKREGATOR_SELECTIONCONTROLLER_H

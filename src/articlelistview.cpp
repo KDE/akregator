@@ -29,7 +29,6 @@
 #include "articlemodel.h"
 #include "feedlist.h"
 #include "kernel.h"
-#include "treenode.h"
 
 #include <KIcon>
 #include <KIconLoader>
@@ -125,6 +124,18 @@ namespace {
     }
 }
 
+void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model )
+{
+    QAbstractProxyModel* proxy = new Akregator::SortColorizeProxyModel( model );
+    proxy->setSourceModel( model );
+    setModel( proxy );
+}
+
+QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
+{
+    return selectionModel();
+}
+
 void Akregator::ArticleListView::setGroupMode()
 {
     if ( m_columnMode == GroupMode )
@@ -196,13 +207,6 @@ void Akregator::ArticleListView::setupHeader()
 }
 
 namespace {
-    static QAbstractItemModel* createModelForTreeNode( Akregator::TreeNode* node, QObject* parent )
-    {
-        QSortFilterProxyModel* const model = new Akregator::SortColorizeProxyModel( parent );
-        model->setSourceModel( new Akregator::ArticleModel( node, model ) );
-        return model;
-    }
-
     static QString itemIdForIndex( const QModelIndex& index )
     {
         return index.isValid() ? index.data( Akregator::ArticleModel::ItemIdRole ).toString() : QString();
@@ -240,19 +244,6 @@ namespace {
         return articles;
     }
 }
-
-void Akregator::ArticleListView::slotShowNode(TreeNode* node)
-{
-    //TODO move model creation and deletion outside of view
-    QAbstractItemModel* const oldModel = model();
-    setModel( ::createModelForTreeNode( node, this ) );
-    delete oldModel;
-    if ( node->isAggregation() )
-        setGroupMode();
-    else
-        setFeedMode();
-}
-
 
 void Akregator::ArticleListView::keyPressEvent(QKeyEvent* e)
 {
@@ -312,20 +303,9 @@ void Akregator::ArticleListView::slotClear()
     delete oldModel;
 }
 
-Akregator::Article Akregator::ArticleListView::currentArticle() const
-{
-    return ::articleForIndex( currentIndex() );
-}
-
 QList<Akregator::Article> Akregator::ArticleListView::selectedArticles() const
 {
     return ::articlesForIndexes( selectedIndexes() );
-}
-
-void Akregator::ArticleListView::currentChanged( const QModelIndex& current, const QModelIndex& previous )
-{
-    QTreeView::currentChanged( current, previous );
-    emit signalArticleChosen( articleForIndex( current ) );
 }
 
 void Akregator::ArticleListView::slotDoubleClicked( const QModelIndex& index )

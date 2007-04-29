@@ -24,6 +24,7 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "selectioncontroller.h"
 #include "actionmanagerimpl.h"
 #include "addfeeddialog.h"
 #include "articlelistview.h"
@@ -159,7 +160,6 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     setObjectName(name);
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
     m_deleteNodeVisitor = new DeleteNodeVisitor(this);
-    m_keepFlagIcon = QPixmap(KStandardDirs::locate("data", "akregator/pics/akregator_flag.png"));
 
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
@@ -188,9 +188,6 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_feedListView->setObjectName( "feedtree" );
 
     m_actionManager->initSubscriptionListView( m_feedListView );
-
-    connect(m_feedListView, SIGNAL(signalNodeSelected(Akregator::TreeNode*)),
-            this, SLOT(slotNodeSelected(Akregator::TreeNode*)));
 
     connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)),
             this, SLOT(slotFeedTreeContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)));
@@ -249,27 +246,36 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_articleSplitter = new QSplitter(Qt::Vertical, m_mainTab);
     m_articleSplitter->setObjectName("panner2");
 
-    m_articleList = new ArticleListView( m_articleSplitter );
+    m_articleListView = new ArticleListView( m_articleSplitter );
 
-    m_actionManager->initArticleListView(m_articleList);
+    m_selectionController = new SelectionController( this );
+    m_selectionController->setArticleLister( m_articleListView );
+    m_selectionController->setFeedSelector( m_feedListView );
+    m_selectionController->setFeedList( m_feedList );
 
-    connect( m_articleList, SIGNAL(signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)),
+    connect( m_selectionController, SIGNAL( currentSubscriptionChanged( Akregator::TreeNode* ) ), 
+             this, SLOT( slotNodeSelected( Akregator::TreeNode* ) ) );
+
+    connect( m_selectionController, SIGNAL( currentArticleChanged( Akregator::Article ) ), 
+             this, SLOT( slotArticleSelected( Akregator::Article ) ) );
+
+    void currentArticleIndexChanged( const QModelIndex& index );
+    m_actionManager->initArticleListView(m_articleListView);
+
+    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)),
              this, SLOT(slotMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)));
 
-    connect( m_articleList, SIGNAL(signalArticleChosen(const Akregator::Article&)),
-             this, SLOT( slotArticleSelected(const Akregator::Article&)) );
-
-    connect( m_articleList, SIGNAL(signalDoubleClicked(const Akregator::Article&, const QPoint&, int)),
+    connect( m_articleListView, SIGNAL(signalDoubleClicked(const Akregator::Article&, const QPoint&, int)),
              this, SLOT( slotOpenArticleInBrowser(const Akregator::Article&)) );
 
     connect( m_part, SIGNAL(signalSettingsChanged()),
-             m_articleList, SLOT(slotPaletteOrFontChanged()));
+             m_articleListView, SLOT(slotPaletteOrFontChanged()));
 
     m_articleViewer = new ArticleViewer(m_articleSplitter);
 
     m_actionManager->initArticleViewer(m_articleViewer);
 
-    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleList, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
+    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleListView, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
     connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)),
             m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
@@ -295,7 +301,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     KConfigGroup conf(Settings::self()->config(), "General");
     if(!conf.readEntry("Disable Introduction", false))
     {
-        m_articleList->hide();
+        m_articleListView->hide();
         m_searchBar->hide();
         m_articleViewer->displayAboutPage();
         m_mainFrame->slotSetTitle(i18n("About"));
@@ -348,12 +354,9 @@ void MainWidget::slotOnShutdown()
 {
     m_shuttingDown = true;
 
-    m_articleList->slotShowNode(0);
-    m_articleViewer->slotShowNode(0);
-
     Kernel::self()->fetchQueue()->slotAbort();
 
-    m_feedListView->setFeedList( 0 );
+    m_selectionController->setFeedList( 0 );
     ProgressManager::self()->setFeedList(0);
 
     delete m_feedList;
@@ -492,7 +495,7 @@ bool MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
         m_feedList = feedList;
         connectToFeedList(m_feedList);
 
-        m_feedListView->setFeedList( m_feedList );
+        m_selectionController->setFeedList( m_feedList );
     }
     else
         m_feedList->append(feedList, parent);
@@ -542,15 +545,14 @@ void MainWidget::slotNormalView()
 
     if (m_viewMode == CombinedView)
     {
-        m_articleList->slotShowNode(m_feedListView->selectedNode());
-        m_articleList->show();
+        m_articleListView->show();
 
-        Article article = m_articleList->currentArticle();
+        const Article article =  m_selectionController->currentArticle();
 
         if (!article.isNull())
             m_articleViewer->slotShowArticle(article);
         else
-            m_articleViewer->slotShowSummary(m_feedListView->selectedNode());
+            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
     }
 
     m_articleSplitter->setOrientation(Qt::Vertical);
@@ -566,15 +568,14 @@ void MainWidget::slotWidescreenView()
 
     if (m_viewMode == CombinedView)
     {
-        m_articleList->slotShowNode(m_feedListView->selectedNode());
-        m_articleList->show();
+        m_articleListView->show();
 
-        Article article = m_articleList->currentArticle();
+        Article article =  m_selectionController->currentArticle();
 
         if (!article.isNull())
             m_articleViewer->slotShowArticle(article);
         else
-            m_articleViewer->slotShowSummary(m_feedListView->selectedNode());
+            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
     }
 
     m_articleSplitter->setOrientation(Qt::Horizontal);
@@ -588,11 +589,10 @@ void MainWidget::slotCombinedView()
     if (m_viewMode == CombinedView)
         return;
 
-    m_articleList->slotClear();
-    m_articleList->hide();
+    m_articleListView->slotClear();
+    m_articleListView->hide();
     m_viewMode = CombinedView;
 
-    slotNodeSelected(m_feedListView->selectedNode());
     Settings::setViewMode( m_viewMode );
 }
 
@@ -603,7 +603,7 @@ void MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const 
 
 void MainWidget::slotMoveCurrentNodeUp()
 {
-    TreeNode* current = m_feedListView->selectedNode();
+    TreeNode* current = m_selectionController->selectedSubscription();
     if (!current)
         return;
     TreeNode* prev = current->prevSibling();
@@ -619,7 +619,7 @@ void MainWidget::slotMoveCurrentNodeUp()
 
 void MainWidget::slotMoveCurrentNodeDown()
 {
-    TreeNode* current = m_feedListView->selectedNode();
+    TreeNode* current = m_selectionController->selectedSubscription();
     if (!current)
         return;
     TreeNode* next = current->nextSibling();
@@ -635,7 +635,7 @@ void MainWidget::slotMoveCurrentNodeDown()
 
 void MainWidget::slotMoveCurrentNodeLeft()
 {
-    TreeNode* current = m_feedListView->selectedNode();
+    TreeNode* current = m_selectionController->selectedSubscription();
     if (!current || !current->parent() || !current->parent()->parent())
         return;
 
@@ -649,7 +649,7 @@ void MainWidget::slotMoveCurrentNodeLeft()
 
 void MainWidget::slotMoveCurrentNodeRight()
 {
-    TreeNode* current = m_feedListView->selectedNode();
+    TreeNode* current = m_selectionController->selectedSubscription();
     if (!current || !current->parent())
         return;
     TreeNode* prev = current->prevSibling();
@@ -678,7 +678,7 @@ void MainWidget::slotNodeSelected(TreeNode* node)
     {
         m_mainFrame->slotSetTitle(i18n("Articles"));
         if (m_viewMode != CombinedView)
-            m_articleList->show();
+            m_articleListView->show();
         if (Settings::showQuickFilter())
             m_searchBar->show();
         m_displayingAboutPage = false;
@@ -689,10 +689,11 @@ void MainWidget::slotNodeSelected(TreeNode* node)
     m_searchBar->slotClearSearch();
 
     if (m_viewMode == CombinedView)
+    {
         m_articleViewer->slotShowNode(node);
+    }
     else
     {
-        m_articleList->slotShowNode(node);
         m_articleViewer->slotShowSummary(node);
     }
 
@@ -706,14 +707,14 @@ void MainWidget::slotNodeSelected(TreeNode* node)
 void MainWidget::slotFeedAdd()
 {
     Folder* group = 0;
-    if (!m_feedListView->selectedNode())
+    if ( !m_selectionController->selectedSubscription() )
         group = m_feedList->rootNode(); // all feeds
     else
     {
-        if ( m_feedListView->selectedNode()->isGroup())
-            group = static_cast<Folder*>(m_feedListView->selectedNode());
+        if ( m_selectionController->selectedSubscription()->isGroup())
+            group = static_cast<Folder*>( m_selectionController->selectedSubscription() );
         else
-            group= m_feedListView->selectedNode()->parent();
+            group= m_selectionController->selectedSubscription()->parent();
 
     }
 
@@ -769,11 +770,11 @@ void MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bo
 
 void MainWidget::slotFeedAddGroup()
 {
-    TreeNode* node = m_feedListView->selectedNode();
+    TreeNode* node = m_selectionController->selectedSubscription();
     TreeNode* after = 0;
 
     if (!node)
-        node = m_feedListView->rootNode();
+        node = m_feedList->rootNode();
 
     // if a feed is selected, add group next to it
     if (!node->isGroup())
@@ -802,7 +803,7 @@ void MainWidget::slotFeedAddGroup()
 
 void MainWidget::slotFeedRemove()
 {
-    TreeNode* selectedNode = m_feedListView->selectedNode();
+    TreeNode* selectedNode = m_selectionController->selectedSubscription();
 
     // don't delete root element! (safety valve)
     if (!selectedNode || selectedNode == m_feedList->rootNode())
@@ -813,7 +814,7 @@ void MainWidget::slotFeedRemove()
 
 void MainWidget::slotFeedModify()
 {
-    TreeNode* node = m_feedListView->selectedNode();
+    TreeNode* node = m_selectionController->selectedSubscription();
     if (node)
         m_editNodePropertiesVisitor->visit(node);
 
@@ -824,9 +825,9 @@ void MainWidget::slotNextUnreadArticle()
     if (m_viewMode == CombinedView)
         m_feedListView->slotNextUnreadFeed();
 
-    TreeNode* sel = m_feedListView->selectedNode();
+    TreeNode* sel = m_selectionController->selectedSubscription();
     if (sel && sel->unread() > 0)
-        m_articleList->slotNextUnreadArticle();
+        m_articleListView->slotNextUnreadArticle();
     else
         m_feedListView->slotNextUnreadFeed();
 }
@@ -836,9 +837,9 @@ void MainWidget::slotPrevUnreadArticle()
     if (m_viewMode == CombinedView)
         m_feedListView->slotPrevUnreadFeed();
 
-    TreeNode* sel = m_feedListView->selectedNode();
+    TreeNode* sel = m_selectionController->selectedSubscription();
     if (sel && sel->unread() > 0)
-        m_articleList->slotPreviousUnreadArticle();
+        m_articleListView->slotPreviousUnreadArticle();
     else
         m_feedListView->slotPrevUnreadFeed();
 }
@@ -850,8 +851,9 @@ void MainWidget::slotMarkAllFeedsRead()
 
 void MainWidget::slotMarkAllRead()
 {
-    if(!m_feedListView->selectedNode()) return;
-    m_feedListView->selectedNode()->slotMarkAllArticlesAsRead();
+    if(!m_selectionController->selectedSubscription())
+        return;
+    m_selectionController->selectedSubscription()->slotMarkAllArticlesAsRead();
 }
 
 void MainWidget::slotSetTotalUnread()
@@ -866,9 +868,9 @@ void MainWidget::slotDoIntervalFetches()
 
 void MainWidget::slotFetchCurrentFeed()
 {
-    if ( !m_feedListView->selectedNode() )
+    if ( !m_selectionController->selectedSubscription() )
         return;
-    m_feedListView->selectedNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
+    m_selectionController->selectedSubscription()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
 }
 
 void MainWidget::slotFetchAllFeeds()
@@ -976,7 +978,7 @@ void MainWidget::slotMouseButtonPressed(int button, const Article& article, cons
 
 void MainWidget::slotOpenHomepage()
 {
-    Feed* feed = dynamic_cast<Feed *>(m_feedListView->selectedNode());
+    Feed* feed = dynamic_cast<Feed *>( m_selectionController->selectedSubscription() );
 
     if (!feed)
         return;
@@ -993,7 +995,7 @@ void MainWidget::slotOpenHomepage()
 
 void MainWidget::slotOpenCurrentArticleInBrowser()
 {
-    slotOpenArticleInBrowser(m_articleList->currentArticle());
+    slotOpenArticleInBrowser( m_selectionController->currentArticle() );
 }
 
 void MainWidget::slotOpenArticleInBrowser(const Akregator::Article& article)
@@ -1009,7 +1011,7 @@ void MainWidget::slotOpenArticleInBrowser(const Akregator::Article& article)
 
 void MainWidget::slotOpenCurrentArticle()
 {
-    Article article = m_articleList->currentArticle();
+    Article article =  m_selectionController->currentArticle();
 
     if (article.isNull())
         return;
@@ -1027,7 +1029,7 @@ void MainWidget::slotOpenCurrentArticle()
 
 void MainWidget::slotCopyLinkAddress()
 {
-    Article article = m_articleList->currentArticle();
+    const Article article =  m_selectionController->currentArticle();
 
     if(article.isNull())
        return;
@@ -1074,7 +1076,7 @@ void MainWidget::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QList<Article> articles = m_articleList->selectedArticles();
+    QList<Article> articles = m_articleListView->selectedArticles();
 
     QString msg;
     switch (articles.count())
@@ -1090,8 +1092,8 @@ void MainWidget::slotArticleDelete()
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStandardGuiItem::del()) == KMessageBox::Continue)
     {
-        if (m_feedListView->selectedNode())
-            m_feedListView->selectedNode()->setNotificationMode(false);
+        if ( m_selectionController->selectedSubscription() )
+            m_selectionController->selectedSubscription()->setNotificationMode(false);
 
         QList<Feed*> feeds;
         for (QList<Article>::Iterator it = articles.begin(); it != articles.end(); ++it)
@@ -1108,15 +1110,15 @@ void MainWidget::slotArticleDelete()
             (*it)->setNotificationMode(true);
         }
 
-        if (m_feedListView->selectedNode())
-            m_feedListView->selectedNode()->setNotificationMode(true);
+        if ( m_selectionController->selectedSubscription() )
+            m_selectionController->selectedSubscription()->setNotificationMode(true);
     }
 }
 
 
 void MainWidget::slotArticleToggleKeepFlag(bool /*enabled*/)
 {
-    QList<Article> articles = m_articleList->selectedArticles();
+    QList<Article> articles = m_articleListView->selectedArticles();
 
     if (articles.isEmpty())
         return;
@@ -1132,7 +1134,7 @@ void MainWidget::slotArticleToggleKeepFlag(bool /*enabled*/)
 
 void MainWidget::slotSetSelectedArticleRead()
 {
-    QList<Article> articles = m_articleList->selectedArticles();
+    QList<Article> articles = m_articleListView->selectedArticles();
 
     if (articles.isEmpty())
         return;
@@ -1152,12 +1154,12 @@ void MainWidget::slotTextToSpeechRequest()
 #ifdef __GNUC__
 #warning "kde4:readd speechclient";
 #endif
-            //SpeechClient::self()->slotSpeak(m_articleList->selectedArticles());
+            //SpeechClient::self()->slotSpeak(m_articleListView->selectedArticles());
             // TODO: if article viewer has a selection, read only the selected text?
         }
         else
         {
-            if (m_feedListView->selectedNode())
+            if (m_selectionController->selectedSubscription())
             {
                 //TODO: read articles in current node, respecting quick filter!
             }
@@ -1171,7 +1173,7 @@ void MainWidget::slotTextToSpeechRequest()
 
 void MainWidget::slotSetSelectedArticleUnread()
 {
-    QList<Article> articles = m_articleList->selectedArticles();
+    QList<Article> articles = m_articleListView->selectedArticles();
 
     if (articles.isEmpty())
         return;
@@ -1182,7 +1184,7 @@ void MainWidget::slotSetSelectedArticleUnread()
 
 void MainWidget::slotSetSelectedArticleNew()
 {
-    QList<Article> articles = m_articleList->selectedArticles();
+    QList<Article> articles = m_articleListView->selectedArticles();
 
     if (articles.isEmpty())
         return;
@@ -1193,7 +1195,7 @@ void MainWidget::slotSetSelectedArticleNew()
 
 void MainWidget::slotSetCurrentArticleReadDelayed()
 {
-    Article article = m_articleList->currentArticle();
+    Article article =  m_selectionController->currentArticle();
 
     if (article.isNull())
         return;

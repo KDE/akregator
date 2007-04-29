@@ -32,17 +32,9 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setRootIsDecorated( false );
     setAlternatingRowColors( true );
     setUniformRowHeights( true );
-
-    connect( selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
-             this, SLOT( currentChanged( QModelIndex, QModelIndex ) ) );
 }
 
 namespace {
-
-    static QAbstractItemModel* createModelForFeedList( Akregator::FeedList* list, QObject* parent )
-    {
-        return list ? new Akregator::SubscriptionListModel( list, parent ) : 0;
-    }
 
     static Akregator::TreeNode* nodeForIndex( const QModelIndex& index, Akregator::FeedList* list )
     {
@@ -51,23 +43,6 @@ namespace {
 
          return list->findByID( index.internalId() );
     }
-}
-
-Akregator::Folder* Akregator::SubscriptionListView::rootNode()
-{
-    return m_feedList->rootNode();
-}
-
-void Akregator::SubscriptionListView::setFeedList( Akregator::FeedList* feedList )
-{
-    delete model();
-    m_feedList = feedList;
-    setModel( ::createModelForFeedList( feedList, this ) );
-}
-
-Akregator::TreeNode* Akregator::SubscriptionListView::selectedNode() {
-    const QModelIndexList indexes = selectedIndexes();
-    return indexes.isEmpty() ? 0L : ::nodeForIndex( indexes.first(), m_feedList );
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
@@ -93,11 +68,6 @@ void Akregator::SubscriptionListView::ensureNodeVisible( Akregator::TreeNode* )
 Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QString& )
 {
     return 0L;
-}
-
-void Akregator::SubscriptionListView::currentChanged( const QModelIndex& current, const QModelIndex& )
-{
-    emit signalNodeSelected( ::nodeForIndex( current, m_feedList ) );
 }
 
 void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* node )

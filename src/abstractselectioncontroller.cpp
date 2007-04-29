@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2007 Frank Osterfeld <frank.osterfeld@kdemail.net>
+    Copyright (C) 2007 Frank Osterfeld <frank.osterfeld at kdemail.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,43 +22,14 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_SUBSCRIPTIONLISTVIEW_H
-#define AKREGATOR_SUBSCRIPTIONLISTVIEW_H
+#include "abstractselectioncontroller.h"
 
-#include <QTreeView>
-
-namespace Akregator {
-
-class FeedList;
-
-class SubscriptionListView : public QTreeView {
-Q_OBJECT
-public:
-    explicit SubscriptionListView( QWidget* parent = 0 );
-
-// the following is all transitional, for easier porting from the item-based views
-
-    Akregator::TreeNode* findNodeByTitle( const QString& title );
-
-    void startNodeRenaming( Akregator::TreeNode* node );
-
-    void ensureNodeVisible( Akregator::TreeNode* node );
-
-    void triggerUpdate() {}
-
-public Q_SLOTS:
-
-    void slotPrevFeed();
-    void slotNextFeed();
-
-    void slotPrevUnreadFeed();
-    void slotNextUnreadFeed();
-
-private:
-
-    Akregator::FeedList* m_feedList;
-};
-
+Akregator::AbstractSelectionController::AbstractSelectionController( QObject* parent ) : QObject( parent )
+{
 }
 
-#endif // AKREGATOR_SUBSCRIPTIONLISTVIEW_H
+Akregator::AbstractSelectionController::~AbstractSelectionController()
+{
+}
+
+#include "abstractselectioncontroller.moc"

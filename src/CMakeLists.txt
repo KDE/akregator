@@ -1,4 +1,3 @@
-
 add_subdirectory( about ) 
 add_subdirectory( pics ) 
 
@@ -12,7 +11,7 @@ kde4_automoc(${akregator_SRCS})
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
-target_link_libraries(akregator  ${KDE4_KPARTS_LIBS} akregatorprivate)
+target_link_libraries(akregator ${KDE4_KPARTS_LIBS} akregatorprivate )
 
 install(TARGETS akregator  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -20,35 +19,12 @@ install(TARGETS akregator  DESTINATION ${BIN_INSTALL_DIR} )
 ########### next target ###############
 
 set(akregatorprivate_LIB_SRCS
-   articlefilter.cpp 
+   plugin.cpp 
    aboutdata.cpp 
    trayicon.cpp 
-   article.cpp 
-   articlemodel.cpp
-   feed.cpp 
-   treenode.cpp 
-   treenodevisitor.cpp 
-   tagnode.cpp 
-   folder.cpp 
-   tagfolder.cpp 
-   nodelist.cpp 
-   feedlist.cpp 
-   tagnodelist.cpp 
-   fetchqueue.cpp 
-   feediconmanager.cpp 
-   articleinterceptor.cpp 
-   plugin.cpp 
-   pluginmanager.cpp
    storagefactoryregistry.cpp 
    storage.cpp
-   subscriptionlistmodel.cpp
-   tag.cpp 
-   tagset.cpp 
-   storagedummyimpl.cpp 
-   storagefactorydummyimpl.cpp 
-   feedstoragedummyimpl.cpp 
-   dragobjects.cpp 
-   utils.cpp )
+)
 
 kde4_automoc(${akregatorprivate_LIB_SRCS})
 
@@ -66,6 +42,32 @@ install(TARGETS akregatorprivate  DESTINATION ${LIB_INSTALL_DIR})
 ########### next target ###############
 
 set(akregatorpart_PART_SRCS 
+   abstractselectioncontroller.cpp
+   article.cpp 
+   articlefilter.cpp 
+   articlemodel.cpp
+   feed.cpp 
+   treenode.cpp 
+   treenodevisitor.cpp 
+   tagnode.cpp 
+   folder.cpp 
+   tagfolder.cpp 
+   nodelist.cpp 
+   feedlist.cpp 
+   tagnodelist.cpp 
+   fetchqueue.cpp 
+   feediconmanager.cpp 
+   articleinterceptor.cpp 
+   pluginmanager.cpp
+   selectioncontroller.cpp
+   subscriptionlistmodel.cpp
+   tag.cpp 
+   tagset.cpp 
+   storagedummyimpl.cpp 
+   storagefactorydummyimpl.cpp 
+   feedstoragedummyimpl.cpp 
+   dragobjects.cpp 
+   utils.cpp
    searchbar.cpp 
    browserrun.cpp 
    articlelistview.cpp 
@@ -118,7 +120,7 @@ kde4_add_plugin(akregatorpart WITH_PREFIX ${akregatorpart_PART_SRCS})
 
 
 
-target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} akregatorprivate ${KDE4_KNOTIFYCONFIG_LIBS})
+target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorprivate)
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 

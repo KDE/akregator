@@ -25,6 +25,8 @@
 #ifndef AKREGATOR_ARTICLELISTVIEW_H
 #define AKREGATOR_ARTICLELISTVIEW_H
 
+#include "abstractselectioncontroller.h"
+
 #include <kdepim_export.h>
 
 #include <QSortFilterProxyModel>
@@ -67,7 +69,7 @@ private:
 };
 
 
-class AKREGATOR_EXPORT ArticleListView : public QTreeView
+class AKREGATOR_EXPORT ArticleListView : public QTreeView, public ArticleLister
 {
     Q_OBJECT
 
@@ -76,13 +78,15 @@ public:
     explicit ArticleListView( QWidget* parent = 0 );
     ~ArticleListView();
 
-    Akregator::Article currentArticle() const;
-
     QList<Akregator::Article> selectedArticles() const;
 
-public Q_SLOTS:
+    //impl ArticleLister
+    void setArticleModel( Akregator::ArticleModel* model );
 
-    void slotShowNode( Akregator::TreeNode* node );
+    //impl ArticleLister
+    QItemSelectionModel* articleSelectionModel() const;
+
+public Q_SLOTS:
 
     void slotClear();
 
@@ -96,7 +100,6 @@ public Q_SLOTS:
 
 signals:
 
-    void signalArticleChosen( const Akregator::Article& );
     void signalDoubleClicked( const Akregator::Article& );
 
     void articleSelected( const QString& );
@@ -112,11 +115,6 @@ protected:
 
     //reimpl
     void contextMenuEvent( QContextMenuEvent* event );
-
-protected Q_SLOTS:
-
-    //reimpl
-    void currentChanged( const QModelIndex& current, const QModelIndex& previous );
 
 private Q_SLOTS:
 

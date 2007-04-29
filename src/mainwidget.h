@@ -57,6 +57,7 @@ namespace KIO
 namespace Akregator {
 
 class AboutPageViewer;
+class AbstractSelectionController;
 class ActionManagerImpl;
 class ArticleMatcher;
 class ArticleListView;
@@ -253,9 +254,11 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
 
         enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
+        AbstractSelectionController* m_selectionController;
         FeedList* m_feedList;
+
         SubscriptionListView* m_feedListView;
-        ArticleListView* m_articleList;
+        ArticleListView* m_articleListView;
         
         ArticleViewer *m_articleViewer;
         TabWidget* m_tabWidget;
@@ -280,7 +283,6 @@ class AKREGATOR_EXPORT MainWidget : public QWidget
 
         ActionManagerImpl* m_actionManager;
 
-        QPixmap m_keepFlagIcon;
         friend class EditNodePropertiesVisitor;
         class EditNodePropertiesVisitor;
         EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
