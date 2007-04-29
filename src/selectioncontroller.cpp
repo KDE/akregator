@@ -42,6 +42,17 @@ namespace {
         return feedList->findArticle( feedId, guid );
     }
 
+    static QList<Akregator::Article> articlesForIndexes( const QModelIndexList& indexes, Akregator::FeedList* feedList )
+    {
+        QList<Akregator::Article> articles;
+        Q_FOREACH ( const QModelIndex i, indexes )
+        {
+            articles.append( articleForIndex( i, feedList ) );
+        }
+
+        return articles;
+    }
+
     static Akregator::TreeNode* subscriptionForIndex( const QModelIndex& index, Akregator::FeedList* feedList )
     {
         if ( !index.isValid() )
@@ -54,6 +65,7 @@ namespace {
 Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 )
 {
 }
+
 
 void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSelector )
 {
@@ -83,6 +95,10 @@ Akregator::Article Akregator::SelectionController::currentArticle() const
     return ::articleForIndex( m_articleLister->articleSelectionModel()->currentIndex(), m_feedList );
 }
 
+QList<Akregator::Article> Akregator::SelectionController::selectedArticles() const
+{
+    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedIndexes(), m_feedList );
+}
 
 Akregator::TreeNode* Akregator::SelectionController::selectedSubscription() const
 {
@@ -104,6 +120,8 @@ void Akregator::SelectionController::setUp()
         connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
                  this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
 
+        if ( m_articleLister->itemView() )
+        connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
     }
 }
 
@@ -124,6 +142,12 @@ void Akregator::SelectionController::currentArticleIndexChanged( const QModelInd
 {
     const Akregator::Article article = currentArticle();
     emit currentArticleChanged( article );
+}
+
+void Akregator::SelectionController::articleIndexDoubleClicked( const QModelIndex& index )
+{
+    const Akregator::Article article = ::articleForIndex( index, m_feedList );
+    emit articleDoubleClicked( article );
 }
 
 #include "selectioncontroller.moc"

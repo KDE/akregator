@@ -47,6 +47,8 @@ public:
     //impl
     Akregator::Article currentArticle() const;
 
+    QList<Akregator::Article> selectedArticles() const;
+
     //impl
     Akregator::TreeNode* selectedSubscription() const;
 
@@ -61,6 +63,7 @@ private Q_SLOTS:
 
     void selectedSubscriptionChanged( const QModelIndex& index );
     void currentArticleIndexChanged( const QModelIndex& index );
+    void articleIndexDoubleClicked( const QModelIndex& index );
 
 private:
 

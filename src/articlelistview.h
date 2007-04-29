@@ -40,7 +40,6 @@ template <class T> class QList;
 namespace Akregator {
 
 class Article;
-class TreeNode;
 
 namespace Filters
 {
@@ -78,13 +77,17 @@ public:
     explicit ArticleListView( QWidget* parent = 0 );
     ~ArticleListView();
 
-    QList<Akregator::Article> selectedArticles() const;
-
     //impl ArticleLister
     void setArticleModel( Akregator::ArticleModel* model );
 
     //impl ArticleLister
     QItemSelectionModel* articleSelectionModel() const;
+
+    //impl ArticleLister
+    const QAbstractItemView* itemView() const;
+
+    //impl ArticleLister
+    QAbstractItemView* itemView();
 
 public Q_SLOTS:
 
@@ -98,13 +101,6 @@ public Q_SLOTS:
 
     void slotNextUnreadArticle();
 
-signals:
-
-    void signalDoubleClicked( const Akregator::Article& );
-
-    void articleSelected( const QString& );
-    void articleDoubleClicked( const QString& );
-
 protected:
 
     //reimpl
@@ -115,10 +111,6 @@ protected:
 
     //reimpl
     void contextMenuEvent( QContextMenuEvent* event );
-
-private Q_SLOTS:
-
-    void slotDoubleClicked( const QModelIndex& index );
 
 private:
 

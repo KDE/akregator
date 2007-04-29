@@ -136,6 +136,16 @@ QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
     return selectionModel();
 }
 
+const QAbstractItemView* Akregator::ArticleListView::itemView() const
+{
+    return this;
+}
+
+QAbstractItemView* Akregator::ArticleListView::itemView()
+{
+    return this;
+}
+
 void Akregator::ArticleListView::setGroupMode()
 {
     if ( m_columnMode == GroupMode )
@@ -173,8 +183,6 @@ Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(paren
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
-
-    connect( this, SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( slotDoubleClicked( QModelIndex ) )  );
 
     //connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
     
@@ -218,27 +226,6 @@ namespace {
         Q_FOREACH ( const QModelIndex i, indexes )
         {
             articles.append( itemIdForIndex( i ) );
-        }
-
-        return articles;
-    }
-
-    static Akregator::Article articleForIndex( const QModelIndex& index )
-    {
-        if ( !index.isValid() )
-            return Akregator::Article();
-
-        const QString guid = index.data( Akregator::ArticleModel::GuidRole ).toString();
-        const QString feedId = index.data( Akregator::ArticleModel::FeedIdRole ).toString();
-        return Akregator::Kernel::self()->feedList()->findArticle( feedId, guid );
-    }
-
-    static QList<Akregator::Article> articlesForIndexes( const QModelIndexList& indexes )
-    {
-        QList<Akregator::Article> articles;
-        Q_FOREACH ( const QModelIndex i, indexes )
-        {
-            articles.append( articleForIndex( i ) );
         }
 
         return articles;
@@ -301,16 +288,6 @@ void Akregator::ArticleListView::slotClear()
     QAbstractItemModel* const oldModel = model();
     setModel( 0L );
     delete oldModel;
-}
-
-QList<Akregator::Article> Akregator::ArticleListView::selectedArticles() const
-{
-    return ::articlesForIndexes( selectedIndexes() );
-}
-
-void Akregator::ArticleListView::slotDoubleClicked( const QModelIndex& index )
-{
-    emit signalDoubleClicked( articleForIndex( index ) );
 }
 
 void Akregator::ArticleListView::slotPreviousArticle()

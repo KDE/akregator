@@ -43,7 +43,12 @@ public:
     virtual ~ArticleLister() {}
 
     virtual void setArticleModel( Akregator::ArticleModel* model ) = 0;
+
     virtual QItemSelectionModel* articleSelectionModel() const = 0;
+
+    virtual const QAbstractItemView* itemView() const = 0;
+
+    virtual QAbstractItemView* itemView() = 0;
 };
 
 class SubscriptionLister
@@ -65,16 +70,23 @@ public:
 
 
     virtual void setFeedList( Akregator::FeedList* list ) = 0;
+
     virtual void setFeedSelector( QAbstractItemView* feedSelector ) = 0;
+
     virtual void setArticleLister( Akregator::ArticleLister* lister ) = 0;
 
     virtual Akregator::Article currentArticle() const = 0;
+
+    virtual QList<Akregator::Article> selectedArticles() const = 0;
 
     virtual Akregator::TreeNode* selectedSubscription() const = 0;
 
 Q_SIGNALS:
     void currentSubscriptionChanged( Akregator::TreeNode* node );
+
     void currentArticleChanged( const Akregator::Article& );
+
+    void articleDoubleClicked( const Akregator::Article& );
 };
 
 } // namespace Akregator

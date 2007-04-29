@@ -259,15 +259,16 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     connect( m_selectionController, SIGNAL( currentArticleChanged( Akregator::Article ) ), 
              this, SLOT( slotArticleSelected( Akregator::Article ) ) );
 
+    connect( m_selectionController, SIGNAL( articleDoubleClicked( Akregator::Article ) ),
+             this, SLOT( slotOpenArticleInBrowser( Akregator::Article )) );
+
     void currentArticleIndexChanged( const QModelIndex& index );
     m_actionManager->initArticleListView(m_articleListView);
 
     connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)),
              this, SLOT(slotMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)));
 
-    connect( m_articleListView, SIGNAL(signalDoubleClicked(const Akregator::Article&, const QPoint&, int)),
-             this, SLOT( slotOpenArticleInBrowser(const Akregator::Article&)) );
-
+    
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleListView, SLOT(slotPaletteOrFontChanged()));
 
@@ -1076,7 +1077,7 @@ void MainWidget::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QList<Article> articles = m_articleListView->selectedArticles();
+    QList<Article> articles = m_selectionController->selectedArticles();
 
     QString msg;
     switch (articles.count())
@@ -1118,7 +1119,7 @@ void MainWidget::slotArticleDelete()
 
 void MainWidget::slotArticleToggleKeepFlag(bool /*enabled*/)
 {
-    QList<Article> articles = m_articleListView->selectedArticles();
+    QList<Article> articles = m_selectionController->selectedArticles();
 
     if (articles.isEmpty())
         return;
@@ -1134,7 +1135,7 @@ void MainWidget::slotArticleToggleKeepFlag(bool /*enabled*/)
 
 void MainWidget::slotSetSelectedArticleRead()
 {
-    QList<Article> articles = m_articleListView->selectedArticles();
+    QList<Article> articles = m_selectionController->selectedArticles();
 
     if (articles.isEmpty())
         return;
@@ -1154,7 +1155,7 @@ void MainWidget::slotTextToSpeechRequest()
 #ifdef __GNUC__
 #warning "kde4:readd speechclient";
 #endif
-            //SpeechClient::self()->slotSpeak(m_articleListView->selectedArticles());
+            //SpeechClient::self()->slotSpeak(m_selectionController->selectedArticles());
             // TODO: if article viewer has a selection, read only the selected text?
         }
         else
@@ -1173,7 +1174,7 @@ void MainWidget::slotTextToSpeechRequest()
 
 void MainWidget::slotSetSelectedArticleUnread()
 {
-    QList<Article> articles = m_articleListView->selectedArticles();
+    QList<Article> articles = m_selectionController->selectedArticles();
 
     if (articles.isEmpty())
         return;
@@ -1184,7 +1185,7 @@ void MainWidget::slotSetSelectedArticleUnread()
 
 void MainWidget::slotSetSelectedArticleNew()
 {
-    QList<Article> articles = m_articleListView->selectedArticles();
+    QList<Article> articles = m_selectionController->selectedArticles();
 
     if (articles.isEmpty())
         return;
