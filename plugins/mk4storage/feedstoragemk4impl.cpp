@@ -25,8 +25,6 @@
 #include "feedstoragemk4impl.h"
 #include "storagemk4impl.h"
 
-#include "article.h"
-#include "utils.h"
 #include <syndication/documentsource.h>
 #include <syndication/global.h>
 #include <syndication/feed.h>
@@ -41,6 +39,20 @@
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
+
+namespace {
+static uint calcHash(const QString& str)
+{
+    if (str.isNull()) // handle null string as "", prevents crash
+        return calcHash("");
+    const char* s = str.toAscii();
+    uint hash = 5381;
+    int c;
+    while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
+    return hash;
+}
+}
+
 
 namespace Akregator {
 namespace Backend {
@@ -114,16 +126,6 @@ void FeedStorageMK4Impl::convertOldArchive()
         QList<Syndication::ItemPtr> items = feed->items();
         QList<Syndication::ItemPtr>::ConstIterator it = items.begin();
         QList<Syndication::ItemPtr>::ConstIterator en = items.end();
-
-        int unr = 0;
-        for (; it != en; ++it)
-        {
-            Article a(*it, this);
-            if (a.status() != Article::Read)
-                unr++;
-        }
-
-        setUnread(unr);
         d->modified = true;
         commit();
     }
@@ -140,7 +142,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
 
     if (url.length() > 255)
     {
-        url2 = url.left(200) + QString::number(Akregator::Utils::calcHash(url), 16);
+        url2 = url.left(200) + QString::number(::calcHash(url), 16);
     }
 
     kDebug() << url2 << endl;
