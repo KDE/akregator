@@ -44,11 +44,14 @@ typedef unsigned int uint;
 class KUrl;
 class KUrlLabel;
 
+namespace boost {
+    template <class T> class shared_ptr;
+}
+
 namespace Syndication
 {
     class Item;
-    template <class T> class SharedPtr;
-    typedef SharedPtr<Item> ItemPtr;
+    typedef boost::shared_ptr<Item> ItemPtr;
 }
 
 namespace Akregator {

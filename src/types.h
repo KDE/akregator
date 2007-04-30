@@ -36,5 +36,3 @@ enum ArticleStatus {
 }
 
 #endif // AKREGATOR_TYPES_H
-
-
