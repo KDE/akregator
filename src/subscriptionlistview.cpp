@@ -22,27 +22,15 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "feedlist.h"
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
 
-Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent ), m_feedList( 0 )
+Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
 {
     setSelectionMode( QAbstractItemView::SingleSelection );
     setRootIsDecorated( false );
     setAlternatingRowColors( true );
     setUniformRowHeights( true );
-}
-
-namespace {
-
-    static Akregator::TreeNode* nodeForIndex( const QModelIndex& index, Akregator::FeedList* list )
-    {
-        if ( !index.isValid() || !list )
-            return 0L;
-
-         return list->findByID( index.internalId() );
-    }
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
@@ -65,7 +53,7 @@ void Akregator::SubscriptionListView::ensureNodeVisible( Akregator::TreeNode* )
 {
 }
 
-Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QString& )
+Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QString& ) const
 {
     return 0L;
 }

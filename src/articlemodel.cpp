@@ -75,7 +75,6 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
 
     switch ( role )
     {
-        case TitleRole:
         case Qt::DisplayRole:
         {
             switch ( index.column() )
@@ -85,18 +84,17 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                 case DateColumn:
                     return article.pubDate();
                 case ItemTitleColumn:
-                default:
                     return article.title();
+                case AuthorColumn:
+                    return article.author();
+                case DescriptionColumn:
+                case ContentColumn:
+                    return article.description();
             }
         }
         case LinkRole:
         {
             return article.link();
-        }
-        case ContentRole:
-        case DescriptionRole:
-        {
-            return article.description();
         }
         case ItemIdRole:
         case GuidRole:
@@ -114,10 +112,6 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
         case IsImportantRole:
         {
             return article.keep();
-        }   
-        case AuthorRole:
-        {
-            return article.author();
         }
     }
 

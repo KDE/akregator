@@ -29,7 +29,7 @@
 
 namespace Akregator {
 
-class FeedList;
+class TreeNode;
 
 class SubscriptionListView : public QTreeView {
 Q_OBJECT
@@ -38,7 +38,7 @@ public:
 
 // the following is all transitional, for easier porting from the item-based views
 
-    Akregator::TreeNode* findNodeByTitle( const QString& title );
+    Akregator::TreeNode* findNodeByTitle( const QString& title ) const;
 
     void startNodeRenaming( Akregator::TreeNode* node );
 
@@ -53,10 +53,6 @@ public Q_SLOTS:
 
     void slotPrevUnreadFeed();
     void slotNextUnreadFeed();
-
-private:
-
-    Akregator::FeedList* m_feedList;
 };
 
 }

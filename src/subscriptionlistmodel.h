@@ -39,10 +39,10 @@ Q_OBJECT
 public:
 
     enum Role {
-        TitleRole=Qt::UserRole,
-        UnreadCountRole,
-        TotalCountRole,
-        SubscriptionIdRole
+        SubscriptionIdRole=Qt::UserRole,
+        IsFetchableRole,
+        IsGroupRole,
+        IsAggregationRole
     };
 
     enum Column {

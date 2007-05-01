@@ -77,7 +77,6 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
     switch ( role )
     {
         case Qt::DisplayRole:
-        case TitleRole:
         {
             switch ( index.column() )
             {
@@ -94,17 +93,21 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
             // TODO: for feeds, return favicon or error icon
             return ( node->isGroup() && index.column() == TitleColumn ) ? KIcon("folder") : QVariant();
         }
-        case UnreadCountRole:
-        {
-            return node->unread();
-        }
-        case TotalCountRole:
-        {
-            return node->totalCount();
-        }
         case SubscriptionIdRole:
         {
             return node->id();
+        }
+        case IsGroupRole:
+        {
+            return node->isGroup();
+        }
+        case IsFetchableRole:
+        {
+            return !node->isGroup() && !node->isAggregation();
+        }
+        case IsAggregationRole:
+        {
+            return node->isAggregation();
         }
     }
 

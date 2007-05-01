@@ -38,17 +38,21 @@ class AKREGATOR_EXPORT ArticleModel : public QAbstractListModel
 
 public:
 
+    enum Column { ItemTitleColumn=0, 
+                  FeedTitleColumn,
+                  DateColumn,
+                  AuthorColumn, 
+                  DescriptionColumn,
+                  ContentColumn,
+                  ColumnCount };
+
     enum Role {
-        TitleRole=Qt::UserRole,
-        LinkRole,
-        DescriptionRole,
-        ContentRole,
+        LinkRole=Qt::UserRole,
         GuidRole,
         ItemIdRole,
         FeedIdRole,
         StatusRole,
         IsImportantRole,
-        AuthorRole
     };
 
     explicit ArticleModel( Akregator::TreeNode* node, QObject* parent = 0 );
@@ -62,8 +66,6 @@ public:
 
     //impl
     QVariant data( const QModelIndex& index, int role=Qt::DisplayRole ) const;
-
-    enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
 
 private Q_SLOTS:
 

@@ -26,12 +26,10 @@
 #include "akregatorconfig.h"
 #include "articlelistview.h"
 #include "articlemodel.h"
-#include "feedlist.h"
 #include "kernel.h"
 #include "types.h"
 
 #include <KIcon>
-#include <KIconLoader>
 #include <KLocale>
 
 #include <QApplication>

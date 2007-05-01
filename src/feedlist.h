@@ -60,10 +60,10 @@ public:
         @param doc the OPML document to parse
         @return whether parsing was successful or not (TODO: make errors more detailed)
     */
-    virtual bool readFromXML(const QDomDocument& doc);
+    bool readFromXML(const QDomDocument& doc);
 
     /** exports the feed list as OPML. The root node ("All Feeds") is ignored! */
-    virtual QDomDocument toXML() const;
+    QDomDocument toXML() const;
 
     /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
     Feed* findByURL(const QString& feedURL) const;
@@ -76,8 +76,8 @@ signals:
 
 protected:
 
-    virtual void addNode(TreeNode* node, bool preserveID);
-    virtual void removeNode(TreeNode* node);
+    void addNode(TreeNode* node, bool preserveID);
+    void removeNode(TreeNode* node);
 
 private:
 
