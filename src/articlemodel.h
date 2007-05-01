@@ -52,7 +52,7 @@ public:
         ItemIdRole,
         FeedIdRole,
         StatusRole,
-        IsImportantRole,
+        IsImportantRole
     };
 
     explicit ArticleModel( Akregator::TreeNode* node, QObject* parent = 0 );
