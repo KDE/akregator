@@ -122,11 +122,6 @@ class AKREGATOR_EXPORT Article
 
         QString author() const;
         
-        void addTag(const QString& tag);
-        void removeTag(const QString& tag);
-        bool hasTag(const QString& tag) const;
-        QStringList tags() const;
-        
         bool operator<(const Article &other) const;
         bool operator<=(const Article &other) const;
         bool operator>(const Article &other) const;

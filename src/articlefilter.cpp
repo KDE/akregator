@@ -356,78 +356,6 @@ QString ArticleMatcher::associationToString(Association association)
     }
 }
 
-
-class TagMatcher::TagMatcherPrivate
-{
-    public:
-    QString tagID;
-    bool operator==(const TagMatcherPrivate& other) const
-    {
-        return tagID == other.tagID;
-    }
-};
-
-TagMatcher::TagMatcher(const QString& tagID) : d(new TagMatcherPrivate)
-{
-    d->tagID = tagID;
-}
-
-TagMatcher::TagMatcher() : d(new TagMatcherPrivate)
-{
-}
-
-TagMatcher::~TagMatcher()
-{
-    delete d;
-    d = 0;
-}
-
-bool TagMatcher::matches(const Article& article) const
-{
-    return article.hasTag(d->tagID);
-}
-
-TagMatcher* TagMatcher::clone() const
-{
-    return new TagMatcher(*this);
-}
-
-
-TagMatcher::TagMatcher(const TagMatcher& other) : AbstractMatcher(other), d(0)
-{
-    *this = other;
-}
-
-void TagMatcher::writeConfig(KConfig* config) const
-{
-    config->writeEntry(QString::fromLatin1("matcherType"), QString::fromLatin1("TagMatcher"));
-    config->writeEntry(QString::fromLatin1("matcherParams"), d->tagID);
-}
-
-void TagMatcher::readConfig(KConfig* config)
-{
-    d->tagID = config->readEntry(QString::fromLatin1("matcherParams"), QString());
-}
-
-bool TagMatcher::operator==(const AbstractMatcher& other) const
-{
-    AbstractMatcher* ptr = const_cast<AbstractMatcher*>(&other);
-    TagMatcher* tagFilter = dynamic_cast<TagMatcher*>(ptr);
-    return tagFilter ? *d == *(tagFilter->d) : false;
-}
-
-bool TagMatcher::operator!=(const AbstractMatcher &other) const
-{
-    return !(*this == other);
-}
-
-TagMatcher& TagMatcher::operator=(const TagMatcher& other)
-{
-    d = new TagMatcherPrivate;
-    *d = *(other.d);
-    return *this;
-}
-
 void DeleteAction::exec(Article& article)
 {
     if (!article.isNull())
@@ -474,18 +402,7 @@ bool SetStatusAction::operator==(const AbstractAction& other)
     else
         return m_status == o->m_status;
 }
-
  
-AssignTagAction::AssignTagAction(const QString& tagID) : m_tagID(tagID)
-{
-}
-
-void AssignTagAction::exec(Article& article)
-{
-    if (!article.isNull())
-        article.addTag(m_tagID);
-}
-
 class ArticleFilter::ArticleFilterPrivate : public Shared
 {
     public:
@@ -598,38 +515,6 @@ void ArticleFilterList::readConfig(KConfig* config)
     }
 }
 
-
-void AssignTagAction::readConfig(KConfig* config)
-{
-    m_tagID = config->readEntry(QString::fromLatin1("actionParams"), QString());
-}
-
-void AssignTagAction::writeConfig(KConfig* config) const
-{
-    config->writeEntry(QString::fromLatin1("actionType"), QString::fromLatin1("AssignTagAction"));
-    config->writeEntry(QString::fromLatin1("actionParams"), m_tagID);
-}
-
-bool AssignTagAction::operator==(const AbstractAction& other)
-{
-    AbstractAction* ptr = const_cast<AbstractAction*>(&other);
-    AssignTagAction* o = dynamic_cast<AssignTagAction*>(ptr);
-    if (!o)
-        return false;
-    else
-        return m_tagID == o->m_tagID;
-}
-
-const QString& AssignTagAction::tagID() const
-{
-    return m_tagID;
-}
-
-void AssignTagAction::setTagID(const QString& tagID)
-{
-    m_tagID = tagID;
-}
-
 void DeleteAction::readConfig(KConfig* /*config*/)
 {
 }
@@ -658,9 +543,7 @@ void ArticleFilter::readConfig(KConfig* config)
 
     QString matcherType = config->readEntry(QString::fromLatin1("matcherType"), QString());
 
-    if (matcherType == QString::fromLatin1("TagMatcher"))
-        d->matcher = new TagMatcher();
-    else if (matcherType == QString::fromLatin1("ArticleMatcher"))
+    if (matcherType == QString::fromLatin1("ArticleMatcher"))
         d->matcher = new ArticleMatcher();
 
     if (d->matcher)
@@ -669,9 +552,7 @@ void ArticleFilter::readConfig(KConfig* config)
 
         QString actionType = config->readEntry(QString::fromLatin1("actionType"), QString());
 
-    if (actionType == QString::fromLatin1("AssignTagAction"))
-        d->action = new AssignTagAction();
-    else if (actionType == QString::fromLatin1("DeleteAction"))
+    if (actionType == QString::fromLatin1("DeleteAction"))
         d->action = new DeleteAction();
     else if (actionType == QString::fromLatin1("SetStatusAction"))
         d->action = new SetStatusAction();

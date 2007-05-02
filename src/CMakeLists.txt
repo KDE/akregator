@@ -49,20 +49,15 @@ set(akregatorpart_PART_SRCS
    feed.cpp 
    treenode.cpp 
    treenodevisitor.cpp 
-   tagnode.cpp 
    folder.cpp 
-   tagfolder.cpp 
    nodelist.cpp 
    feedlist.cpp 
-   tagnodelist.cpp 
    fetchqueue.cpp 
    feediconmanager.cpp 
    articleinterceptor.cpp 
    pluginmanager.cpp
    selectioncontroller.cpp
    subscriptionlistmodel.cpp
-   tag.cpp 
-   tagset.cpp 
    storagedummyimpl.cpp 
    storagefactorydummyimpl.cpp 
    feedstoragedummyimpl.cpp 
@@ -89,16 +84,12 @@ set(akregatorpart_PART_SRCS
    feeditem.cpp 
    progressmanager.cpp 
    kernel.cpp 
-   tagnodeitem.cpp 
    configdialog.cpp 
    settings_advanced.cpp 
    akregator_part.cpp 
    mainwidget.cpp 
    notificationmanager.cpp 
-   subscriptionlistview.cpp
-   tagaction.cpp 
-   tagpropertiesdialog.cpp 
-   tagfolderitem.cpp )
+   subscriptionlistview.cpp )
    #speechclient.cpp )
 qt4_add_dbus_adaptor( akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part )
 
@@ -111,8 +102,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
    settings_general.ui 
    settings_archive.ui 
    settings_browser.ui 
-   settings_advancedbase.ui 
-   tagpropertieswidgetbase.ui )
+   settings_advancedbase.ui )
 
 
 

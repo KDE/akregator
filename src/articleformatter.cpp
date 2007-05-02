@@ -27,7 +27,6 @@
 #include "articleformatter.h"
 #include "feed.h"
 #include "folder.h"
-#include "tagnode.h"
 #include "treenode.h"
 #include "treenodevisitor.h"
 #include "utils.h"
@@ -132,20 +131,6 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
         }
 
         virtual bool visitFolder(Folder* node)
-        {
-            text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title()))).arg(node->title());
-            if(node->unread() == 0)
-                text += i18n(" (no unread articles)");
-            else
-                text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
-            text += QString("</div>\n");
-            text += "</div>\n"; // /headerbox
-            
-            return true;
-        }
-
-        virtual bool visitTagNode(TagNode* node)
         {
             text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
             text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title()))).arg(node->title());

@@ -358,30 +358,6 @@ void Article::setKeep(bool keep)
         d->feed->setArticleChanged(*this);
 }
 
-void Article::addTag(const QString& tag)
-{
-    d->archive->addTag(d->guid, tag);
-    if (d->feed)
-        d->feed->setArticleChanged(*this);
-}
-
-void Article::removeTag(const QString& tag)
-{
-    d->archive->removeTag(d->guid, tag);
-    if (d->feed)
-        d->feed->setArticleChanged(*this);
-}
-
-bool Article::hasTag(const QString& tag) const
-{
-    return d->archive->tags(d->guid).contains(tag);
-}
-
-QStringList Article::tags() const
-{
-    return d->archive->tags(d->guid);
-}
-
 Feed* Article::feed() const
 { return d->feed; }
 

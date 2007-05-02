@@ -115,34 +115,6 @@ class AKREGATOR_EXPORT AbstractMatcher
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
 };
 
-class AKREGATOR_EXPORT TagMatcher : public AbstractMatcher
-{
-    public:
-
-        TagMatcher();
-        TagMatcher(const QString& tagID);
-        TagMatcher(const TagMatcher& other);
-        
-        virtual ~TagMatcher();
-        
-
-        virtual bool matches(const Article& article) const;
-
-        virtual TagMatcher* clone() const;
-
-        virtual void writeConfig(KConfig* config) const;
-        virtual void readConfig(KConfig* config);
-
-        TagMatcher& operator=(const TagMatcher& other);
-        virtual bool operator==(const AbstractMatcher&) const;
-        virtual bool operator!=(const AbstractMatcher &other) const;
-        
-    private:
-    
-         class TagMatcherPrivate;
-         TagMatcherPrivate* d;
-};
-
 class AKREGATOR_EXPORT AbstractAction
 {
     public:
@@ -186,27 +158,6 @@ class AKREGATOR_EXPORT SetStatusAction : public AbstractAction
 
     private:
         int m_status;
-};
-
-class AKREGATOR_EXPORT AssignTagAction : public AbstractAction
-{
-    public:
-
-        AssignTagAction(const QString& tagID=QString::null);
-		virtual ~AssignTagAction(){}
-        virtual void exec(Article& article);
-                
-        const QString& tagID() const;
-        void setTagID(const QString& tagID);
-
-        virtual void writeConfig(KConfig* config) const;
-        virtual void readConfig(KConfig* config);
-
-        virtual AssignTagAction* clone() const { return new AssignTagAction(*this); }
-        virtual bool operator==(const AbstractAction& other);
-
-    private:
-        QString m_tagID;
 };
 
 /** a powerful matcher supporting multiple criterions, which can be combined      via logical OR or AND

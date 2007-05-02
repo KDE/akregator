@@ -37,7 +37,6 @@ class Folder;
 class NodeList;
 class TreeNode;
 class TreeNodeItem;
-class TagNodeList;
 
 class NodeListView : public K3ListView
 {
@@ -80,9 +79,6 @@ public:
 
     /** reimplemented: clears the view and creates the root node ("All Feeds") */
     virtual void clear();
-
-    /** if enabled, the view shows tag folders */
-    void setShowTagFolders(bool enabled);
 
 public slots:
 
@@ -189,18 +185,6 @@ private:
     NodeListViewPrivate* d;
 };
 
-
-class TagNodeListView : public NodeListView
-{
-    Q_OBJECT
-    public:
-        TagNodeListView(QWidget */*parent = 0*/, const char */*name = 0*/) {}
-        virtual ~TagNodeListView() {}
-
-    private:
-        class TagNodeListViewPrivate;
-        TagNodeListViewPrivate* d;
-};
 
 } // namespace Akregator
 

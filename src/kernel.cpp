@@ -28,7 +28,6 @@
 
 #include "fetchqueue.h"
 #include "framemanager.h"
-#include "tagset.h"
 
 namespace Akregator
 {

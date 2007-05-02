@@ -59,8 +59,6 @@
 #include "feed.h"
 #include "folder.h"
 #include "treenode.h"
-#include "treenodevisitor.h"
-#include "tagnode.h"
 #include "utils.h"
 
 namespace Akregator {
@@ -92,26 +90,28 @@ ArticleViewer::ArticleViewer(QWidget *parent)
              this, SLOT(slotCompleted()));
 
     KParts::BrowserExtension* ext = m_part->browserExtension();
-    connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)),
-             this, SLOT(slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)));
+    connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, QPoint, KUrl, KParts::URLArgs, KParts::BrowserExtension::PopupFlags, mode_t)),
+             this, SLOT(slotPopupMenu(KXMLGUIClient*, QPoint, KUrl, KParts::URLArgs, KParts::BrowserExtension::PopupFlags, mode_t)));
 
-    connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, const KParts::URLArgs&)), this, SLOT(slotOpenUrlRequestDelayed(const KUrl&, const KParts::URLArgs& )) );
+    connect( ext, SIGNAL(openUrlRequestDelayed(KUrl, KParts::URLArgs)),
+             this, SLOT(slotOpenUrlRequestDelayed(KUrl, KParts::URLArgs )) );
 
-    connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
-            this, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
+    connect(ext, SIGNAL(createNewWindow(KUrl, KParts::URLArgs)),
+            this, SLOT(slotCreateNewWindow(KUrl, KParts::URLArgs)));
 
-    connect(ext, SIGNAL(createNewWindow(const KUrl&,
-            const KParts::URLArgs&,
-            const KParts::WindowArgs&,
-            KParts::ReadOnlyPart*&)),
-            this, SLOT(slotCreateNewWindow(const KUrl&,
-                         const KParts::URLArgs&,
-                         const KParts::WindowArgs&,
-                         KParts::ReadOnlyPart*&)));
+    connect(ext, SIGNAL(createNewWindow(KUrl,
+            KParts::URLArgs,
+            KParts::WindowArgs,
+            KParts::ReadOnlyPart*)),
+            this, SLOT(slotCreateNewWindow(KUrl,
+                         KParts::URLArgs,
+                         KParts::WindowArgs,
+                         KParts::ReadOnlyPart*)));
 
-    QAction *action;
+    QAction* action = 0;
     action = KStandardAction::print(this, SLOT(slotPrint()), m_part->actionCollection());
     m_part->actionCollection()->addAction("viewer_print", action);
+
     action = KStandardAction::copy(this, SLOT(slotCopy()), m_part->actionCollection());
     m_part->actionCollection()->addAction("viewer_copy", action);
 
@@ -120,20 +120,30 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     action->setText(i18n("&Increase Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomIn()));
     action->setShortcuts(KShortcut( "Ctrl+Plus" ));
+
     action = m_part->actionCollection()->addAction("decFontSizes");
     action->setIcon(KIcon("zoom-out"));
     action->setText(i18n("&Decrease Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomOut()));
     action->setShortcuts(KShortcut( "Ctrl+Minus" ));
 
-    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
-
     action = m_part->actionCollection()->addAction("copylinkaddress");
     action->setText(i18n("Copy &Link Address"));
     connect(action, SIGNAL(triggered(bool) ), SLOT(slotCopyLinkAddress()));
+
     action = m_part->actionCollection()->addAction("savelinkas");
     action->setText(i18n("&Save Link As..."));
     connect(action, SIGNAL(triggered(bool) ), SLOT(slotSaveLinkAs()));
+
+    action = m_part->actionCollection()->addAction("articleviewer_scroll_up");
+    action->setText(i18n("&Scroll Up"));
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollUp()));
+    action->setShortcuts(KShortcut( "Up" ));
+
+    action = m_part->actionCollection()->addAction("articleviewer_scroll_down");
+    action->setText(i18n("&Scroll Down"));
+    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollDown()));
+    action->setShortcuts(KShortcut( "Down" ));
 
     m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
 
@@ -142,20 +152,10 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     updateCss();
 
-    action = m_part->actionCollection()->addAction("articleviewer_scroll_up");
-    action->setText(i18n("&Scroll Up"));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollUp()));
-    action->setShortcuts(KShortcut( "Up" ));
-    action = m_part->actionCollection()->addAction("articleviewer_scroll_down");
-    action->setText(i18n("&Scroll Down"));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollDown()));
-    action->setShortcuts(KShortcut( "Down" ));
-
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
 
     connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
     connect(KGlobalSettings::self(), SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
-
 
     m_htmlFooter = "</body></html>";
 }
@@ -479,8 +479,7 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
     renderContent(summary);
 }
 
-
-void ArticleViewer::slotShowArticle(const Article& article)
+void ArticleViewer::showArticle( const Akregator::Article& article )
 {
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
@@ -584,7 +583,7 @@ void ArticleViewer::slotClear()
     renderContent(QString());
 }
 
-void ArticleViewer::slotShowNode(TreeNode* node)
+void ArticleViewer::showNode(TreeNode* node)
 {
     m_viewMode = CombinedView;
 

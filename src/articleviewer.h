@@ -68,7 +68,15 @@ class ArticleViewer : public QWidget
         void setNormalViewFormatter(SharedPtr<ArticleFormatter> formatter);
         
         void setCombinedViewFormatter(SharedPtr<ArticleFormatter> formatter);
-        
+
+        void showArticle( const Akregator::Article& article );
+
+        /** Shows the articles of the tree node @c node (combined view).
+         * Changes in the node will update the view automatically.
+         * 
+         *  @param node The node to observe */
+        void showNode(Akregator::TreeNode* node);
+    
     public slots:
     
         void slotScrollUp(); 
@@ -78,20 +86,6 @@ class ArticleViewer : public QWidget
         void slotSetZoomFactor(int percent);
         void slotPrint();
 
-    // Commandment: We are your interfaces.
-    // You shall not use strange interfaces before us.
-
-        /** Show single article (normal view) 
-         * @param article the article to render
-         */
-        void slotShowArticle(const Akregator::Article& article);
-    
-        /** Shows the articles of the tree node @c node (combined view).
-         * Changes in the node will update the view automatically.
-         * 
-         *  @param node The node to observe */
-        void slotShowNode(Akregator::TreeNode* node);
-    
         /** Set filters @c textFilter and @c statusFilter which will be used
          * if the viewer is in combined view mode
          * 

@@ -432,16 +432,6 @@ class Akregator::ArticleListViewOld::ColumnLayoutVisitor : public TreeNodeVisito
     public:
         ColumnLayoutVisitor(Akregator::ArticleListViewOld* view) : m_view(view) {}
 
-        virtual bool visitTagNode(TagNode* /*node*/)
-        {
-            if (m_view->d->columnMode == Akregator::ArticleListViewOldPrivate::feedMode)
-            {
-                m_view->setColumnWidth(1, m_view->d->m_lastFeedWidth);
-                m_view->d->columnMode = Akregator::ArticleListViewOldPrivate::groupMode;
-            }
-            return true;
-        }
-
         virtual bool visitFolder(Folder* /*node*/)
         {
             if (m_view->d->columnMode == Akregator::ArticleListViewOldPrivate::feedMode)

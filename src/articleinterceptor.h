@@ -41,7 +41,7 @@ class AKREGATOR_EXPORT ArticleInterceptorManager
         static ArticleInterceptorManager* self();
 
         ArticleInterceptorManager();
-        virtual ~ArticleInterceptorManager();
+        ~ArticleInterceptorManager();
 
         /** adds an interceptor. When added, the interceptor receives 
          * fetches articles. 

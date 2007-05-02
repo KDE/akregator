@@ -43,8 +43,6 @@
 #include "storagefactory.h"
 #include "storagefactorydummyimpl.h"
 #include "storagefactoryregistry.h"
-#include "tag.h"
-#include "tagset.h"
 #include "trayicon.h"
 
 #include <knotifyconfigwidget.h>

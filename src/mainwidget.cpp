@@ -552,7 +552,7 @@ void MainWidget::slotNormalView()
         const Article article =  m_selectionController->currentArticle();
 
         if (!article.isNull())
-            m_articleViewer->slotShowArticle(article);
+            m_articleViewer->showArticle(article);
         else
             m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
     }
@@ -575,7 +575,7 @@ void MainWidget::slotWidescreenView()
         Article article =  m_selectionController->currentArticle();
 
         if (!article.isNull())
-            m_articleViewer->slotShowArticle(article);
+            m_articleViewer->showArticle(article);
         else
             m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
     }
@@ -692,7 +692,7 @@ void MainWidget::slotNodeSelected(TreeNode* node)
 
     if (m_viewMode == CombinedView)
     {
-        m_articleViewer->slotShowNode(node);
+        m_articleViewer->showNode(node);
     }
     else
     {
@@ -946,7 +946,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article& article)
 
     kDebug() << "selected: " << a.guid() << endl;
 
-    m_articleViewer->slotShowArticle(a);
+    m_articleViewer->showArticle(a);
 }
 
 void MainWidget::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)

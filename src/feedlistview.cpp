@@ -25,16 +25,10 @@
 #include "dragobjects.h"
 #include "folder.h"
 #include "folderitem.h"
-#include "tagfolder.h"
-#include "tagfolderitem.h"
 #include "feedlistview.h"
 #include "feed.h"
 #include "feeditem.h"
 #include "feedlist.h"
-#include "tag.h"
-#include "tagnode.h"
-#include "tagnodeitem.h"
-#include "tagnodelist.h"
 #include "treenode.h"
 #include "treenodeitem.h"
 #include "treenodevisitor.h"
@@ -64,7 +58,6 @@ class NodeListView::NodeListViewPrivate
 /** used for finding the item belonging to a node */
     QHash<TreeNode*, TreeNodeItem*> itemDict;
     NodeList* nodeList;
-    bool showTagFolders;
 
     // Drag and Drop variables
     Q3ListViewItem *parent;
@@ -117,13 +110,6 @@ class NodeListView::DisconnectNodeVisitor : public TreeNodeVisitor
     public:
         DisconnectNodeVisitor(NodeListView* view) : m_view(view) {}
 
-        virtual bool visitTagNode(TagNode* node)
-        {
-            disconnect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_view, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
-            disconnect(node, SIGNAL(signalChanged(Akregator::TreeNode*)), m_view, SLOT(slotNodeChanged(Akregator::TreeNode*) ));
-            return true;
-        }
-        
         virtual bool visitFolder(Folder* node)
         {
             disconnect(node, SIGNAL(signalChildAdded(Akregator::TreeNode*)), m_view, SLOT(slotNodeAdded(Akregator::TreeNode*) ));
@@ -208,78 +194,6 @@ class NodeListView::CreateItemVisitor : public TreeNodeVisitor
     public:
         CreateItemVisitor(NodeListView* view) : m_view(view) {}
 
-        virtual bool visitTagNode(TagNode* node)
-        {
-            if (m_view->findNodeItem(node))
-                return true;
-
-            TagNodeItem* item = 0;
-            TreeNode* prev = node->prevSibling();
-            FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
-            if (parentItem)
-            {
-                if (prev)
-                {
-                    item = new TagNodeItem( parentItem, m_view->findNodeItem(prev), node);
-                }
-                else
-                    item = new TagNodeItem( parentItem, node);
-            }
-            else
-            {
-                if (prev)
-                {
-                    item = new TagNodeItem(m_view, m_view->findNodeItem(prev), node);
-                }
-                else
-                    item = new TagNodeItem(m_view, node);
-            }                
-            item->nodeChanged();     
-            m_view->d->itemDict.insert(node, item);
-            m_view->connectToNode(node);
-            if (parentItem)
-                parentItem->sortChildItems(0, true);
-            return true;
-        }
-
-        virtual bool visitTagFolder(TagFolder* node)
-        {
-            if (m_view->findNodeItem(node))
-                return true;
-
-            TagFolderItem* item = 0;
-            TreeNode* prev = node->prevSibling();
-            FolderItem* parentItem = static_cast<FolderItem*>(m_view->findNodeItem(node->parent()));
-            if (parentItem)
-            {
-                if (prev)
-                {
-                    item = new TagFolderItem( parentItem, m_view->findNodeItem(prev), node);
-                }
-                else
-                    item = new TagFolderItem(parentItem, node);
-            }
-            else
-            {
-                if (prev)
-                {
-                    item = new TagFolderItem(m_view, m_view->findNodeItem(prev), node);
-                }
-                else
-                    item = new TagFolderItem(m_view, node);
-
-            }
-            m_view->d->itemDict.insert(node, item);
-            QList<TreeNode*> children = node->children();
-
-            // add children recursively
-            for (QList<TreeNode*>::ConstIterator it =  children.begin(); it != children.end(); ++it )
-                visit(*it);
-
-            m_view->connectToNode(node);
-            return true;
-        }
-        
         virtual bool visitFolder(Folder* node)
         {
             if (m_view->findNodeItem(node))
@@ -359,7 +273,6 @@ NodeListView::NodeListView( QWidget *parent, const char *name)
         : K3ListView(parent), d(new NodeListViewPrivate)
 {
     setObjectName(name);
-    d->showTagFolders = true;
     d->connectNodeVisitor = new ConnectNodeVisitor(this),
     d->disconnectNodeVisitor = new DisconnectNodeVisitor(this);
     d->createItemVisitor = new CreateItemVisitor(this);
@@ -567,10 +480,6 @@ void NodeListView::movableDropEvent(Q3ListViewItem* /*parent*/, Q3ListViewItem* 
     }    
 }
 
-void NodeListView::setShowTagFolders(bool enabled)
-{
-    d->showTagFolders = enabled;
-}
 
 void NodeListView::contentsDragMoveEvent(QDragMoveEvent* event)
 {
