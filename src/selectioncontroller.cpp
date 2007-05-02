@@ -62,7 +62,7 @@ namespace {
     }
 } // anon namespace 
 
-Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 )
+Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 )
 {
 }
 
@@ -88,6 +88,11 @@ void Akregator::SelectionController::setArticleLister( Akregator::ArticleLister*
 
     m_articleLister = lister;
     setUp();
+}
+
+void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleArticleDisplay* display )
+{
+    m_singleDisplay = display;
 }
 
 Akregator::Article Akregator::SelectionController::currentArticle() const
@@ -121,7 +126,9 @@ void Akregator::SelectionController::setUp()
                  this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
 
         if ( m_articleLister->itemView() )
-        connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
+        {
+            connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
+        }
     }
 }
 
@@ -141,6 +148,8 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
 void Akregator::SelectionController::currentArticleIndexChanged( const QModelIndex& )
 {
     const Akregator::Article article = currentArticle();
+    if ( m_singleDisplay )
+        m_singleDisplay->showArticle( article );
     emit currentArticleChanged( article );
 }
 

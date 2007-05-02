@@ -47,7 +47,11 @@ public:
     //impl
     Akregator::Article currentArticle() const;
 
+    //impl
     QList<Akregator::Article> selectedArticles() const;
+
+    //impl
+    void setSingleArticleDisplay( Akregator::SingleArticleDisplay* display );
 
     //impl
     Akregator::TreeNode* selectedSubscription() const;
@@ -70,6 +74,7 @@ private:
     Akregator::FeedList* m_feedList;
     QAbstractItemView* m_feedSelector;
     Akregator::ArticleLister* m_articleLister;
+    Akregator::SingleArticleDisplay* m_singleDisplay;
 };
 
 } // namespace Akregator
