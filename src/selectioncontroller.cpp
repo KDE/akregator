@@ -28,8 +28,11 @@
 #include "selectioncontroller.h"
 #include "subscriptionlistmodel.h"
 
+#include <KRandom>
+
 #include <QAbstractItemView>
 #include <QItemSelectionModel>
+#include <QTimer>
 
 namespace {
     static Akregator::Article articleForIndex( const QModelIndex& index, Akregator::FeedList* feedList )
@@ -62,8 +65,9 @@ namespace {
     }
 } // anon namespace 
 
-Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 )
+Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_selectedSubscription( 0 )
 {
+    m_articleFetchTimer = new QTimer( this );
 }
 
 
@@ -132,17 +136,33 @@ void Akregator::SelectionController::setUp()
     }
 }
 
+void Akregator::SelectionController::articleHeadersAvailable()
+{
+    m_articleLister->setArticleModel( new Akregator::ArticleModel( m_selectedSubscription , 0 ) );
+    connect( m_articleLister->articleSelectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex) ),
+             this, SLOT( currentArticleIndexChanged( QModelIndex ) ) );
+}
+
 void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIndex& index )
 {
     if ( !index.isValid() )
         return;
 
-    Akregator::TreeNode* selected = selectedSubscription();
+    m_selectedSubscription = selectedSubscription();
+    emit currentSubscriptionChanged( m_selectedSubscription );
 
-    m_articleLister->setArticleModel( new Akregator::ArticleModel( selected, 0 ) );
-    connect( m_articleLister->articleSelectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex) ),
-             this, SLOT( currentArticleIndexChanged( QModelIndex ) ) );
-    emit currentSubscriptionChanged( selected );
+    // using a timer here internally to simulate async data fetching (which is still synchronous), 
+    // to ensure the UI copes with async behavior later on
+
+    if ( m_articleFetchTimer->isActive() ) 
+        m_articleFetchTimer->stop(); // to come: kill running list job
+
+    m_articleFetchTimer->setInterval( KRandom::random() % 400 );
+    m_articleFetchTimer->setSingleShot( true );
+    connect( m_articleFetchTimer, SIGNAL( timeout() ),
+             this, SLOT( articleHeadersAvailable() ) );
+    m_articleFetchTimer->start();
+
 }
 
 void Akregator::SelectionController::currentArticleIndexChanged( const QModelIndex& )

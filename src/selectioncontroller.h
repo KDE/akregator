@@ -27,6 +27,7 @@
 #include "abstractselectioncontroller.h"
 
 class QModelIndex;
+class QTimer;
 
 namespace Akregator {
 
@@ -68,6 +69,7 @@ private Q_SLOTS:
     void selectedSubscriptionChanged( const QModelIndex& index );
     void currentArticleIndexChanged( const QModelIndex& index );
     void articleIndexDoubleClicked( const QModelIndex& index );
+    void articleHeadersAvailable();
 
 private:
 
@@ -75,6 +77,8 @@ private:
     QAbstractItemView* m_feedSelector;
     Akregator::ArticleLister* m_articleLister;
     Akregator::SingleArticleDisplay* m_singleDisplay;
+    TreeNode* m_selectedSubscription;
+    QTimer* m_articleFetchTimer;
 };
 
 } // namespace Akregator
