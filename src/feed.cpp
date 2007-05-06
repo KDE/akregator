@@ -39,6 +39,7 @@
 
 #include <kdebug.h>
 #include <kglobal.h>
+#include <KIcon>
 #include <kstandarddirs.h>
 #include <kurl.h>
 
@@ -97,7 +98,7 @@ class Feed::FeedPrivate
 
         QPixmap imagePixmap;
         Syndication::ImagePtr image;
-        QPixmap favicon;
+        QIcon favicon;
 };
 
 QString Feed::archiveModeToString(ArchiveMode mode)
@@ -332,19 +333,17 @@ bool Feed::loadLinkedWebsite() const
     return d->loadLinkedWebsite;
 }
 
-const QPixmap& Feed::favicon() const { return d->favicon; }
+QPixmap Feed::image() const { return d->imagePixmap; }
 
-const QPixmap& Feed::image() const { return d->imagePixmap; }
-
-const QString& Feed::xmlUrl() const { return d->xmlUrl; }
+QString Feed::xmlUrl() const { return d->xmlUrl; }
 
 void Feed::setXmlUrl(const QString& s) { d->xmlUrl = s; }
 
-const QString& Feed::htmlUrl() const { return d->htmlUrl; }
+QString Feed::htmlUrl() const { return d->htmlUrl; }
 
 void Feed::setHtmlUrl(const QString& s) { d->htmlUrl = s; }
 
-const QString& Feed::description() const { return d->description; }
+QString Feed::description() const { return d->description; }
 
 void Feed::setDescription(const QString& s) { d->description = s; }
 
@@ -639,9 +638,20 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     emit fetched(this);
 }
 
-void Feed::loadFavicon()
+void Feed::loadFavicon() const
 {
-    FeedIconManager::self()->fetchIcon(this);
+    FeedIconManager::self()->fetchIcon( const_cast<Feed*>(this) );
+}
+
+QIcon Feed::icon() const
+{
+    if ( fetchErrorOccurred() )
+        return KIcon("error");
+
+    if ( d->favicon.isNull() )
+        loadFavicon();
+
+    return !d->favicon.isNull() ? d->favicon : KIcon("txt");
 }
 
 void Feed::slotDeleteExpiredArticles()
@@ -681,9 +691,9 @@ void Feed::slotDeleteExpiredArticles()
     setNotificationMode(true);
 }
 
-void Feed::setFavicon(const QPixmap &p)
+void Feed::setFavicon( const QIcon& icon )
 {
-    d->favicon = p;
+    d->favicon = icon;
     nodeModified();
 }
 

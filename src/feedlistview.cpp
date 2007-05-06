@@ -814,6 +814,7 @@ void NodeListView::slotContextMenu(K3ListView* list, Q3ListViewItem* item, const
 
 void NodeListView::slotFeedFetchStarted(Feed* feed)
 {
+#if 0
     // Disable icon to show it is fetching.
     if (!feed->favicon().isNull())
     {
@@ -822,7 +823,7 @@ void NodeListView::slotFeedFetchStarted(Feed* feed)
         QPixmap tempIcon = iconEffect.apply(feed->favicon(), K3Icon::Small, K3Icon::DisabledState);
         item->setPixmap(0, tempIcon);
     }
-
+#endif
 }
 
 void NodeListView::slotFeedFetchAborted(Feed* feed)

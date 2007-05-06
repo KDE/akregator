@@ -132,7 +132,12 @@ QString NodeList::title() const
     return d->title;
 }
 
-TreeNode* NodeList::findByID(int id) const
+const TreeNode* NodeList::findByID(int id) const
+{
+    return d->idMap[id];
+}
+
+TreeNode* NodeList::findByID(int id)
 {
     return d->idMap[id];
 }
@@ -142,12 +147,17 @@ void NodeList::setTitle(const QString& title)
     d->title = title;
 }
 
-Folder* NodeList::rootNode() const
+const Folder* NodeList::rootNode() const
 {
     return d->rootNode;
 }
 
-QList<TreeNode*> NodeList::asFlatList() const
+Folder* NodeList::rootNode()
+{
+    return d->rootNode;
+}
+
+QList<TreeNode*> NodeList::asFlatList()
 {
     return d->flatList;
 }

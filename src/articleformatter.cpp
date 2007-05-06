@@ -190,7 +190,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
 
     if (icon == ShowIcon && article.feed() && !article.feed()->image().isNull())
     {
-        Feed* feed = article.feed();
+        const Feed* feed = article.feed();
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KUrl u(m_imageDir);
         u.setFileName(file);
@@ -387,7 +387,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
 
     if (icon == ShowIcon && article.feed() && !article.feed()->image().isNull())
     {
-        Feed* feed = article.feed();
+        const Feed* feed = article.feed();
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KUrl u(m_imageDir);
         u.setFileName(file);

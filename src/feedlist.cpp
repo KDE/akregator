@@ -198,7 +198,7 @@ FeedList::~FeedList()
     d = 0;
 }
 
-Feed* FeedList::findByURL(const QString& feedURL) const
+const Feed* FeedList::findByURL(const QString& feedURL) const
 {
     if (d->urlMap[feedURL].isEmpty())
         return 0;
@@ -206,10 +206,9 @@ Feed* FeedList::findByURL(const QString& feedURL) const
         return *(d->urlMap[feedURL].begin());
 }
 
-Article FeedList::findArticle(const QString& feedURL, const QString& guid) const
+const Article FeedList::findArticle(const QString& feedURL, const QString& guid) const
 {
-    Feed* feed = findByURL(feedURL);
-
+    const Feed* feed = findByURL(feedURL);
     return feed ? feed->findArticle(guid) : Article();
 }
 

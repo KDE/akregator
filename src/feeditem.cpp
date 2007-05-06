@@ -69,19 +69,7 @@ Feed* FeedItem::node()
 
 void FeedItem::nodeChanged()
 {
-    if ( node()->fetchErrorOccurred() )
-        setPixmap(0, errorPixmap());
-    else
-    {
-        if (!node()->favicon().isNull())
-             setPixmap(0, node()->favicon());
-        else
-        {
-            setPixmap( 0, defaultPixmap() );
-            node()->loadFavicon();
-        }
-    }
-    
+    //setPixmap( 0, node()->icon() );
     TreeNodeItem::nodeChanged();
 }
 
@@ -101,13 +89,7 @@ void FeedItem::initialize(Feed* node)
     if (node)
     {
         setText(0, node->title());
-        if (!node->favicon().isNull())
-            setPixmap( 0, node->favicon() );
-        else
-        {
-            setPixmap( 0, defaultPixmap() );
-            node->loadFavicon();
-        }
+        //setPixmap( 0, node->icon() );
     }
 }
 

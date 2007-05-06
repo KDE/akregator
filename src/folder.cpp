@@ -31,6 +31,7 @@
 #include <QStringList>
 #include <QList>
 
+#include <KIcon>
 #include <kdebug.h>
 
 namespace Akregator {
@@ -142,6 +143,11 @@ void Folder::insertChild(TreeNode* node, TreeNode* after)
         prependChild(node);
     else 
         insertChild(pos+1, node);
+}
+
+QIcon Folder::icon() const
+{
+    return KIcon("folder");
 }
 
 void Folder::insertChild(int index, TreeNode* node)

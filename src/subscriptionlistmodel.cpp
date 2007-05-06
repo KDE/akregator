@@ -31,13 +31,13 @@
 #include <KLocale>
 
 namespace {
-    static Akregator::TreeNode* nodeForIndex( const QModelIndex& index, Akregator::FeedList* feedList )
+    static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const Akregator::FeedList* feedList )
     {
         return ( !index.isValid() || !feedList ) ? 0 : feedList->findByID( index.internalId() );
     }
 }
 
-Akregator::SubscriptionListModel::SubscriptionListModel( Akregator::FeedList* feedList, QObject* parent ) : QAbstractItemModel( parent ), m_feedList( feedList )
+Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedList* feedList, QObject* parent ) : QAbstractItemModel( parent ), m_feedList( feedList )
 {
     if ( feedList )
     {
@@ -90,8 +90,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         }
         case Qt::DecorationRole:
         {
-            // TODO: for feeds, return favicon or error icon
-            return ( node->isGroup() && index.column() == TitleColumn ) ? KIcon("folder") : QVariant();
+            return index.column() == TitleColumn ? node->icon() : QVariant();
         }
         case SubscriptionIdRole:
         {

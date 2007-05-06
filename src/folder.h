@@ -130,6 +130,8 @@ class AKREGATOR_EXPORT Folder : public TreeNode
             */
         virtual TreeNode* next();
         
+        QIcon icon() const;
+
     signals:
         /** emitted when a child was added */
         void signalChildAdded(Akregator::TreeNode*);

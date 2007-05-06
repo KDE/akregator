@@ -32,11 +32,10 @@
 #include <ksharedptr.h>
 #include <kdepim_export.h>
 
+#include <QIcon>
 #include <QList>
-#include <QPixmap>
 
 class QDomElement;
-class QPixmap;
 class QString;
 class QStringList;
 class KUrl;
@@ -92,12 +91,12 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         /** default constructor */
         Feed();
 
-        virtual ~Feed();
+        ~Feed();
 
-        virtual bool accept(TreeNodeVisitor* visitor);
+        bool accept(TreeNodeVisitor* visitor);
 
         /** exports the feed settings to OPML */
-        virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
+        QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
 
         /**
             returns whether this feed uses its own fetch interval or the global setting
@@ -155,72 +154,69 @@ class AKREGATOR_EXPORT Feed : public TreeNode
 
         bool loadLinkedWebsite() const;
 
-        /** returns the favicon */
-        const QPixmap& favicon() const;
-
-        /** sets the favicon (used in the tree view) */
-        void setFavicon(const QPixmap& p);
-
         /** returns the feed image */
-        const QPixmap& image() const;
+        QPixmap image() const;
 
         /** sets the feed image */
         void setImage(const QPixmap &p);
 
+        /** sets the favicon (used in the tree view) */
+        void setFavicon(const QIcon& icon);
+
         /** returns the url of the actual feed source (rss/rdf/atom file) */
-        const QString& xmlUrl() const;
+        QString xmlUrl() const;
         /** sets the url of the actual feed source (rss/rdf/atom file) */
         void setXmlUrl(const QString& s);
 
         /** returns the URL of the HTML page of this feed */
-        const QString& htmlUrl() const;
+        QString htmlUrl() const;
         /** sets the URL of the HTML page of this feed */
         void setHtmlUrl(const QString& s);
 
         /** returns the description of this feed */
-        const QString& description() const;
+        QString description() const;
 
         /** sets the description of this feed */
         void setDescription(const QString& s);
 
-        virtual QList<Article> articles(const QString& tag=QString::null);
+        QList<Article> articles(const QString& tag=QString::null);
 
         /** returns article by guid
             * @param guid the guid of the article to be returned
             * @return the article object with the given guid, or a
             * null article if non-existent
             */
-        virtual Article findArticle(const QString& guid) const;
+        Article findArticle(const QString& guid) const;
 
-        virtual QStringList tags() const;
+        QStringList tags() const;
 
         /** returns whether a fetch error has occurred */
         bool fetchErrorOccurred() const;
 
         /** returns the unread count for this feed */
-        virtual int unread() const;
+        int unread() const;
 
         /** returns the number of total articles in this feed
         @return number of articles */
 
-        virtual int totalCount() const;
+        int totalCount() const;
 
         /** returns if the article archive of this feed is loaded */
         bool isArticlesLoaded() const;
 
         /** returns if this node is a feed group (@c false here) */
-        virtual bool isGroup() const { return false; }
+        bool isGroup() const { return false; }
 
         //impl
-        virtual bool isAggregation() const { return false; }
+        bool isAggregation() const { return false; }
 
         /** returns the next node in the tree.
         Calling next() unless it returns 0 iterates through the tree in pre-order
         */
-        virtual TreeNode* next();
+        TreeNode* next();
 
-        /** downloads the favicon */
-        void loadFavicon();
+        //impl
+        QIcon icon() const;
 
     public slots:
         /** starts fetching */
@@ -229,13 +225,13 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         void slotAbortFetch();
 
         /** deletes expired articles */
-        virtual void slotDeleteExpiredArticles();
+        void slotDeleteExpiredArticles();
 
         /** mark all articles in this feed as read */
-        virtual void slotMarkAllArticlesAsRead();
+        void slotMarkAllArticlesAsRead();
 
         /** add this feed to the fetch queue @c queue */
-        virtual void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchOnly=false);
+        void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchOnly=false);
 
     signals:
         /** emitted when fetching started */
@@ -255,7 +251,7 @@ class AKREGATOR_EXPORT Feed : public TreeNode
 
         void recalcUnreadCount();
 
-        virtual void doArticleNotification();
+        void doArticleNotification();
 
         /** sets the unread count for this feed */
         void setUnread(int unread);
@@ -267,6 +263,9 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         void slotImageFetched(const QPixmap& image);
 
     private:
+
+        /** downloads the favicon */
+        void loadFavicon() const;
 
         /** notifies that article @c mya was set to "deleted".
             To be called by @ref Article

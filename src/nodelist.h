@@ -50,7 +50,9 @@ public:
     explicit NodeList(QObject *parent=0);
     virtual ~NodeList();
 
-    virtual Folder* rootNode() const;
+    virtual const Folder* rootNode() const;
+    virtual Folder* rootNode();
+
 
     virtual bool readFromXML(const QDomDocument& doc) = 0;
 
@@ -58,7 +60,9 @@ public:
 
     virtual bool isEmpty() const;
 
-    TreeNode* findByID(int id) const;
+    const TreeNode* findByID(int id) const;
+
+    TreeNode* findByID(int id);
 
     /** returns the title of the feed list (as used in the OPML document) */
     QString title() const;
@@ -67,7 +71,7 @@ public:
     void setTitle(const QString& name);
 
     /** returns a flat list containing all nodes in the tree */
-    QList<TreeNode*> asFlatList() const;
+    QList<TreeNode*> asFlatList();
 
 signals:
     void signalDestroyed(Akregator::NodeList*);

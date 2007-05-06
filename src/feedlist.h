@@ -66,9 +66,9 @@ public:
     QDomDocument toXML() const;
 
     /** returns a feed object for a given feed URL. If the feed list does not contain a feed with @c url, NULL is returned. If it contains the same feed multiple times, any of the Feed objects is returned. */
-    Feed* findByURL(const QString& feedURL) const;
+    const Feed* findByURL(const QString& feedURL) const;
 
-    Article findArticle(const QString& feedURL, const QString& guid) const;
+    const Article findArticle(const QString& feedURL, const QString& guid) const;
 
 signals:
 

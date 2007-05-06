@@ -51,7 +51,7 @@ public:
         TotalCountColumn=2
     };
 
-    explicit SubscriptionListModel( Akregator::FeedList* feedList, QObject* parent = 0 );
+    explicit SubscriptionListModel( const Akregator::FeedList* feedList, QObject* parent = 0 );
 
     //impl
     int columnCount( const QModelIndex& parent = QModelIndex() ) const;
@@ -81,7 +81,7 @@ private Q_SLOTS:
 
 private:
 
-    Akregator::FeedList* m_feedList;
+    const Akregator::FeedList* m_feedList;
 };
 
 } // namespace Akregator

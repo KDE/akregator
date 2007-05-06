@@ -30,6 +30,7 @@
 
 class QDomDocument;
 class QDomElement;
+class QIcon;
 class QString;
 class QStringList;
 template <class T> class QList;
@@ -114,7 +115,8 @@ public:
     
     virtual void setParent(Folder* parent);
     
-    
+    virtual QIcon icon() const = 0;
+
     /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
     If @c tag is not null, only articles tagged with @c tag are returned
     @return sequence of articles */

@@ -921,7 +921,7 @@ void MainWidget::slotArticleSelected(const Akregator::Article& article)
 
     m_markReadTimer->stop();
 
-    Feed *feed = article.feed();
+    const Feed *feed = article.feed();
     if (!feed)
         return;
 
