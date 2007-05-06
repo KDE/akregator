@@ -22,16 +22,20 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "selectioncontroller.h"
+
+#include "actionmanager.h"
 #include "article.h"
 #include "articlemodel.h"
 #include "feedlist.h"
-#include "selectioncontroller.h"
 #include "subscriptionlistmodel.h"
+#include "treenode.h"
 
 #include <KRandom>
 
 #include <QAbstractItemView>
 #include <QItemSelectionModel>
+#include <QMenu>
 #include <QTimer>
 
 namespace {
@@ -73,13 +77,19 @@ Akregator::SelectionController::SelectionController( QObject* parent ) : Abstrac
 
 void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSelector )
 {
-    if ( m_feedSelector && m_feedSelector->selectionModel() )
+    if ( m_feedSelector )
     {
-        disconnect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
-                    this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
+        disconnect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
+                    this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
+
+        if ( m_feedSelector->selectionModel() )
+        {
+            disconnect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
+                        this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
+        }
     }
-    
     m_feedSelector = feedSelector;
+    setUp();
 }
 
 void Akregator::SelectionController::setArticleLister( Akregator::ArticleLister* lister )
@@ -129,6 +139,9 @@ void Akregator::SelectionController::setUp()
         connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
                  this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
 
+        connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
+                 this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
+
         if ( m_articleLister->itemView() )
         {
             connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
@@ -163,6 +176,22 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
              this, SLOT( articleHeadersAvailable() ) );
     m_articleFetchTimer->start();
 
+}
+
+void Akregator::SelectionController::subscriptionContextMenuRequested( const QPoint& point )
+{
+    Q_ASSERT( m_feedSelector );
+    const TreeNode* const node = ::subscriptionForIndex( m_feedSelector->indexAt( point ), m_feedList );
+    if ( !node )
+        return;
+
+    QWidget* w = ActionManager::getInstance()->container( node->isGroup() ? "feedgroup_popup" : "feeds_popup" );
+    QMenu* popup = qobject_cast<QMenu*>( w );
+    if ( popup )
+    {
+        const QPoint globalPos = m_feedSelector->viewport()->mapToGlobal( point );
+        popup->exec( globalPos );
+    }
 }
 
 void Akregator::SelectionController::currentArticleIndexChanged( const QModelIndex& )

@@ -27,6 +27,7 @@
 #include "abstractselectioncontroller.h"
 
 class QModelIndex;
+class QPoint;
 class QTimer;
 
 namespace Akregator {
@@ -69,6 +70,7 @@ private Q_SLOTS:
     void selectedSubscriptionChanged( const QModelIndex& index );
     void currentArticleIndexChanged( const QModelIndex& index );
     void articleIndexDoubleClicked( const QModelIndex& index );
+    void subscriptionContextMenuRequested( const QPoint& point );
     void articleHeadersAvailable();
 
 private:

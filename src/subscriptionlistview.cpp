@@ -31,6 +31,7 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setRootIsDecorated( false );
     setAlternatingRowColors( true );
     setUniformRowHeights( true );
+    setContextMenuPolicy( Qt::CustomContextMenu );
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
