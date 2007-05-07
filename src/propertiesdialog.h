@@ -41,6 +41,12 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
         virtual void slotUpdateComboBoxActivated(int index);
         virtual void slotUpdateCheckBoxToggled(bool enabled);
 
+        enum IntervalStep 
+        { 
+            Minutes=0,
+            Hours,
+            Days,
+            Never };
 };
 
 class FeedPropertiesDialog : public KDialog

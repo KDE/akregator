@@ -61,13 +61,13 @@ FeedPropertiesWidget::~FeedPropertiesWidget()
 
 void FeedPropertiesWidget::slotUpdateComboBoxActivated( int index )
 {
-    updateSpinBox->setEnabled( index != 3 ); // not never
+    updateSpinBox->setEnabled( index != Never );
 }
 
 
 void FeedPropertiesWidget::slotUpdateCheckBoxToggled( bool enabled )
 {
-    updateSpinBox->setEnabled(enabled && updateComboBox->currentIndex() != 3); // "never"
+    updateSpinBox->setEnabled( enabled && updateComboBox->currentIndex() != Never );
 }
 
 
@@ -157,12 +157,13 @@ int FeedPropertiesDialog::fetchInterval() const
 {
     switch (widget->updateComboBox->currentIndex() )
     {
-        case 0: // minutes
+        case FeedPropertiesWidget::Minutes:
             return widget->updateSpinBox->value();
-        case 1: // hours
+        case FeedPropertiesWidget::Hours:
             return widget->updateSpinBox->value()*60;
-        case 2: // days
+        case FeedPropertiesWidget::Days:
             return widget->updateSpinBox->value()*60*24;
+        case FeedPropertiesWidget::Never:
         default:
             return -1; // never
     }
@@ -249,7 +250,7 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
     {
         widget->updateSpinBox->setValue(0);
         widget->updateSpinBox->setDisabled(true);
-        widget->updateComboBox->setCurrentIndex(3); // never
+        widget->updateComboBox->setCurrentIndex( FeedPropertiesWidget::Never );
         return;
     }
 
@@ -257,7 +258,7 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
     {
         widget->updateSpinBox->setValue(0);
         widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
-        widget->updateComboBox->setCurrentIndex(0); // minutes
+        widget->updateComboBox->setCurrentIndex( FeedPropertiesWidget::Minutes );
         return;
     }
 
@@ -265,7 +266,7 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
    {
        widget->updateSpinBox->setValue(interval / (60*24) );
        widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
-       widget->updateComboBox->setCurrentIndex(2); // days
+       widget->updateComboBox->setCurrentIndex( FeedPropertiesWidget::Days );
        return;
    }
 
@@ -273,13 +274,13 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
    {
        widget->updateSpinBox->setValue(interval / 60 );
        widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
-       widget->updateComboBox->setCurrentIndex(1); // hours
+       widget->updateComboBox->setCurrentIndex( FeedPropertiesWidget::Hours );
        return;
    }
 
    widget->updateSpinBox->setValue(interval);
    widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
-   widget->updateComboBox->setCurrentIndex(0); // minutes
+   widget->updateComboBox->setCurrentIndex( FeedPropertiesWidget::Minutes );
 }
 
 void FeedPropertiesDialog::setMaxArticleAge(int age)
