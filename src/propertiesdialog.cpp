@@ -42,6 +42,17 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
 {
     setObjectName(name);
     setupUi(this);
+    connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
+             updateSpinBox, SLOT( setEnabled( bool ) ) );
+    connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
+             updateComboBox, SLOT( setEnabled( bool ) ) );
+    connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
+             updateLabel, SLOT( setEnabled( bool ) ) );
+
+    connect( rb_limitArticleAge, SIGNAL( toggled( bool ) ),
+             sb_maxArticleAge, SLOT( setEnabled( bool ) ) );
+    connect( rb_limitArticleNumber, SIGNAL( toggled( bool ) ),
+             sb_maxArticleNumber, SLOT( setEnabled( bool ) ) );
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
@@ -139,7 +150,7 @@ const QString FeedPropertiesDialog::url() const
 
 bool FeedPropertiesDialog::autoFetch() const
 {
-   return widget->upChkbox->isChecked();
+   return widget->cb_updateInterval->isChecked();
 }
 
 int FeedPropertiesDialog::fetchInterval() const
@@ -223,7 +234,7 @@ void FeedPropertiesDialog::setUrl(const QString& url)
 
 void FeedPropertiesDialog::setAutoFetch(bool customFetchEnabled)
 {
-    widget->upChkbox->setChecked(customFetchEnabled);
+    widget->cb_updateInterval->setChecked(customFetchEnabled);
     widget->updateComboBox->setEnabled(customFetchEnabled);
 
     if (widget->updateSpinBox->value() > -1)
@@ -245,7 +256,7 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
     if (interval == 0)
     {
         widget->updateSpinBox->setValue(0);
-        widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
+        widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
         widget->updateComboBox->setCurrentIndex(0); // minutes
         return;
     }
@@ -253,7 +264,7 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
    if (interval % (60*24) == 0)
    {
        widget->updateSpinBox->setValue(interval / (60*24) );
-       widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
+       widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
        widget->updateComboBox->setCurrentIndex(2); // days
        return;
    }
@@ -261,13 +272,13 @@ void FeedPropertiesDialog::setFetchInterval(int interval)
    if (interval % 60 == 0)
    {
        widget->updateSpinBox->setValue(interval / 60 );
-       widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
+       widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
        widget->updateComboBox->setCurrentIndex(1); // hours
        return;
    }
 
    widget->updateSpinBox->setValue(interval);
-   widget->updateSpinBox->setEnabled(widget->upChkbox->isChecked());
+   widget->updateSpinBox->setEnabled(widget->cb_updateInterval->isChecked());
    widget->updateComboBox->setCurrentIndex(0); // minutes
 }
 

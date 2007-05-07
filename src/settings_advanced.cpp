@@ -32,6 +32,8 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
     }
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
     connect(cbBackend, SIGNAL(activated(int)), this, SLOT(slotFactorySelected(int)));
+    connect( kcfg_UseMarkReadDelay, SIGNAL( toggled( bool ) ),
+             kcfg_MarkReadDelay, SLOT( setEnabled( bool ) ) );
 }
 
 QString SettingsAdvanced::selectedFactory() const

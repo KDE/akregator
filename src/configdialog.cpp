@@ -56,14 +56,39 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
     QWidget* generalWidget = new QWidget(this);
     Ui::SettingsGeneral general;
     general.setupUi(generalWidget);
+    connect( general.kcfg_UseIntervalFetch, SIGNAL( toggled( bool ) ),
+             general.kcfg_AutoFetchInterval, SLOT( setEnabled( bool ) ) );
 
     QWidget* archiveWidget = new QWidget(this);
     Ui::SettingsArchive archive;
     archive.setupUi(archiveWidget);
 
+    connect( archive.rb_LimitArticleNumber, SIGNAL( toggled( bool ) ),
+             archive.kcfg_MaxArticleNumber, SLOT( setEnabled( bool ) ) );
+
+    connect( archive.rb_LimitArticleAge, SIGNAL( toggled( bool ) ),
+             archive.kcfg_MaxArticleAge, SLOT( setEnabled( bool ) ) );
+
     QWidget* appearanceWidget = new QWidget(this);
     d->settingsAppearance.setupUi(appearanceWidget);
-    
+
+    connect( d->settingsAppearance.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             d->settingsAppearance.kcfg_ColorUnreadArticles, SLOT( setEnabled( bool ) ) );
+    connect( d->settingsAppearance.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             d->settingsAppearance.kcfg_ColorNewArticles, SLOT( setEnabled( bool ) ) );
+    connect( d->settingsAppearance.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             d->settingsAppearance.lbl_newArticles, SLOT( setEnabled( bool ) ) );
+    connect( d->settingsAppearance.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             d->settingsAppearance.lbl_unreadArticles, SLOT( setEnabled( bool ) ) );
+    connect( d->settingsAppearance.slider_minimumFontSize, SIGNAL( sliderMoved( int ) ),
+             d->settingsAppearance.kcfg_MinimumFontSize , SLOT( setValue( int ) ) );
+    connect( d->settingsAppearance.slider_mediumFontSize, SIGNAL( sliderMoved( int ) ),
+             d->settingsAppearance.kcfg_MediumFontSize , SLOT( setValue( int ) ) );
+    connect( d->settingsAppearance.kcfg_MinimumFontSize, SIGNAL( valueChanged( int ) ),
+             d->settingsAppearance.slider_minimumFontSize, SLOT( setValue( int ) ) );
+    connect( d->settingsAppearance.kcfg_MediumFontSize, SIGNAL( valueChanged( int ) ),
+             d->settingsAppearance.slider_mediumFontSize, SLOT( setValue( int ) ) );
+
     QWidget* browserWidget = new QWidget(this);
     Ui::SettingsBrowser browser;
     browser.setupUi(browserWidget);
