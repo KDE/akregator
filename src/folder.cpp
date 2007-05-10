@@ -90,27 +90,12 @@ Folder::~Folder()
     d = 0;
 }
 
-QStringList Folder::tags() const
-{
-    QStringList t;
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-    {
-        // intersect tag sets instead of appending lists, to avoid dupes. This sucks. Definitely. I want QSet. Now.
-        QStringList t2 = (*it)->tags();
-        for (QStringList::ConstIterator it2 = t2.begin(); it2 != t2.end(); ++it2)
-            if (!t.contains(*it2))
-                t.append(*it2);
-    } 
-    return t;
-}
-
-QList<Article> Folder::articles(const QString& tag)
+QList<Article> Folder::articles()
 {
     QList<Article> seq;
     QList<TreeNode*>::ConstIterator en = d->children.end();
     for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        seq += (*it)->articles(tag);
+        seq += (*it)->articles();
      
     return seq;
 }

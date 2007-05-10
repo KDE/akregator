@@ -84,9 +84,6 @@ class Feed::FeedPrivate
         /** list of feed articles */
         QHash<QString, Article> articles;
 
-        /** caches guids of tagged articles. key: tag, value: list of guids */
-        QHash<QString, QStringList> taggedArticles;
-
         /** list of deleted articles. This contains **/
         QList<Article> deletedArticles;
 
@@ -177,31 +174,16 @@ bool Feed::accept(TreeNodeVisitor* visitor)
         return visitor->visitTreeNode(this);
 }
 
-QStringList Feed::tags() const
-{
-    return d->archive->tags();
-}
-
 Article Feed::findArticle(const QString& guid) const
 {
     return d->articles[guid];
 }
 
-QList<Article> Feed::articles(const QString& tag)
+QList<Article> Feed::articles()
 {
     if (!d->articlesLoaded)
         loadArticles();
-    if (tag.isNull())
-        return d->articles.values();
-    else
-    {
-        QList<Article> tagged;
-        QStringList guids = d->archive->articles(tag);
-        for (QStringList::ConstIterator it = guids.begin(); it != guids.end(); ++it)
-            tagged += d->articles[*it];
-        return tagged;
-
-    }
+    return d->articles.values();
 }
 
 void Feed::loadArticles()

@@ -22,9 +22,9 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "subscriptionlistmodel.h"
 #include "feedlist.h"
 #include "folder.h"
-#include "subscriptionlistmodel.h"
 #include "treenode.h"
 
 #include <KIcon>

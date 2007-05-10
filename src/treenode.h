@@ -121,11 +121,7 @@ public:
     If @c tag is not null, only articles tagged with @c tag are returned
     @return sequence of articles */
     
-    virtual QList<Article> articles(const QString& tag=QString::null) = 0;
-
-    /** returns a list of all tags occurring in this node (sub tree for folders) */
-
-    virtual QStringList tags() const = 0;
+    virtual QList<Article> articles() = 0;
     
     /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.
     @return whether the node is a feed group or not */

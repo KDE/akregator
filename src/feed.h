@@ -179,7 +179,7 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         /** sets the description of this feed */
         void setDescription(const QString& s);
 
-        QList<Article> articles(const QString& tag=QString::null);
+        QList<Article> articles();
 
         /** returns article by guid
             * @param guid the guid of the article to be returned
@@ -187,8 +187,6 @@ class AKREGATOR_EXPORT Feed : public TreeNode
             * null article if non-existent
             */
         Article findArticle(const QString& guid) const;
-
-        QStringList tags() const;
 
         /** returns whether a fetch error has occurred */
         bool fetchErrorOccurred() const;
@@ -245,7 +243,7 @@ class AKREGATOR_EXPORT Feed : public TreeNode
         /** emitted when a fetch is aborted */
         void fetchAborted(Akregator::Feed *);
 
-    protected:
+    private:
         /** loads articles from archive **/
         void loadArticles();
 
