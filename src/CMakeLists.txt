@@ -3,6 +3,8 @@ add_subdirectory( pics )
 
 add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
 
+include_directories ( ${Boost_INCLUDE_DIR} )
+
 ########### next target ###############
 
 set(akregator_SRCS main.cpp mainwindow.cpp )
