@@ -380,7 +380,7 @@ void MainWidget::saveSettings()
     Settings::setSplitter1Sizes( m_horizontalSplitter->sizes() );
     Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
     Settings::setViewMode( m_viewMode );
-    Settings::writeConfig();
+    Settings::self()->writeConfig();
 }
 
 

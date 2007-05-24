@@ -166,7 +166,7 @@ Akregator::ArticleListView::~ArticleListView()
     Settings::setFeedWidth( columnWidth(FeedTitleColumn) );
     Settings::setSortColumn( header()->sortIndicatorSection() );
     Settings::setSortAscending( header()->sortIndicatorOrder() );
-    Settings::writeConfig();
+    Settings::self()->writeConfig();
 }
 
 Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(parent), m_columnMode( Akregator::ArticleListView::Unspecified )
@@ -1078,7 +1078,7 @@ Akregator::ArticleListViewOld::~Akregator::ArticleListViewOld()
     Settings::setFeedWidth(columnWidth(1) > 0 ? columnWidth(1) : d->m_lastFeedWidth);
     Settings::setSortColumn(sortColumn());
     Settings::setSortAscending(sortOrder() == Qt::Ascending);
-    Settings::writeConfig();
+    Settings::self()->writeConfig();
     delete d->columnLayoutVisitor;
     delete d;
     d = 0;
