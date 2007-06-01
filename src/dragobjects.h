@@ -25,11 +25,11 @@
 #ifndef AKREGATOR_DRAGOBJECTS_H
 #define AKREGATOR_DRAGOBJECTS_H
 
+#include "akregator_export.h"
 #include "article.h"
 
 #include <kurl.h>
 #include <k3urldrag.h>
-#include <kdepim_export.h>
 
 #include <QList>
 #include <QString>

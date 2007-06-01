@@ -4,6 +4,8 @@
 #ifndef AKREGATOR_PLUGIN_H
 #define AKREGATOR_PLUGIN_H
 
+#include "akregator_export.h"
+
 #define AKREGATOR_EXPORT_PLUGIN( classname ) \
     extern "C" { \
          KDE_EXPORT Akregator::Plugin* create_plugin() { return new classname; } \
@@ -11,7 +13,6 @@
 
 #include <QHash>
 #include <QString>
-#include <kdepim_export.h>
 
 
 namespace Akregator {

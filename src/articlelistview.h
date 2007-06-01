@@ -25,9 +25,8 @@
 #ifndef AKREGATOR_ARTICLELISTVIEW_H
 #define AKREGATOR_ARTICLELISTVIEW_H
 
+#include "akregator_export.h"
 #include "abstractselectioncontroller.h"
-
-#include <kdepim_export.h>
 
 #include <QSortFilterProxyModel>
 #include <QTreeView>

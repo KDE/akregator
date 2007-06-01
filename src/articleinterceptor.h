@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ARTICLEINTERCEPTOR_H
 #define AKREGATOR_ARTICLEINTERCEPTOR_H
 
-#include <kdepim_export.h>
+#include "akregator_export.h"
 
 template <class T> class QList;
 

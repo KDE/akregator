@@ -25,9 +25,9 @@
 #ifndef AKREGATOR_NODELIST_H
 #define AKREGATOR_NODELIST_H
 
+#include "akregator_export.h"
 #include <QObject>
 #include <QList>
-#include <kdepim_export.h>
 
 class QDomDocument;
 class QDomNode;

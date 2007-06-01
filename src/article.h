@@ -26,9 +26,8 @@
 #ifndef AKREGATOR_ARTICLE_H
 #define AKREGATOR_ARTICLE_H
 
+#include "akregator_export.h"
 #include "types.h"
-
-#include <kdepim_export.h>
 
 class QDateTime;
 class QDomDocument;

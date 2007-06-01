@@ -26,9 +26,8 @@
 #ifndef AKREGATOR_FEEDICONMANAGER_H
 #define AKREGATOR_FEEDICONMANAGER_H
 
-
+#include "akregator_export.h"
 #include <QObject>
-#include <kdepim_export.h>
 
 class KUrl;
 

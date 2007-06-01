@@ -26,8 +26,8 @@
 #ifndef AKREGATOR_FOLDER_H
 #define AKREGATOR_FOLDER_H
 
+#include "akregator_export.h"
 #include "treenode.h"
-#include <kdepim_export.h>
 
 class QDomDocument;
 class QDomElement;

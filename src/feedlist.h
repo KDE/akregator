@@ -25,8 +25,8 @@
 #ifndef AKREGATOR_FEEDLIST_H
 #define AKREGATOR_FEEDLIST_H
 
+#include "akregator_export.h"
 #include "nodelist.h"
-#include <kdepim_export.h>
 
 class QDomDocument;
 class QDomNode;

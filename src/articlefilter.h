@@ -28,10 +28,10 @@
 #ifndef AKREGATOR_FILTERS_ARTICLEFILTER_H
 #define AKREGATOR_FILTERS_ARTICLEFILTER_H
 
+#include "akregator_export.h"
 #include <QList>
 #include <QString>
 #include <QVariant>
-#include <kdepim_export.h>
 
 class KConfig;
 

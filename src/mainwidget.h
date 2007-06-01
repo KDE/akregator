@@ -27,13 +27,13 @@
 #ifndef AKREGATOR_VIEW_H
 #define AKREGATOR_VIEW_H
 
+#include "akregator_export.h"
 #include "feed.h"
 
 #include <kurl.h>
 
 #include <QPixmap>
 #include <QWidget>
-#include <kdepim_export.h>
 
 
 class KComboBox;

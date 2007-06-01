@@ -24,7 +24,7 @@
 #ifndef AKREGATOR_TREENODEVISITOR_H
 #define AKREGATOR_TREENODEVISITOR_H
 
-#include <kdepim_export.h>
+#include "akregator_export.h"
 
 namespace Akregator 
 {

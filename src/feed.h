@@ -26,11 +26,11 @@
 #ifndef AKREGATOR_FEED_H
 #define AKREGATOR_FEED_H
 
+#include "akregator_export.h"
 #include "treenode.h"
 
 #include <syndication/syndication.h>
 #include <ksharedptr.h>
-#include <kdepim_export.h>
 
 #include <QIcon>
 #include <QList>

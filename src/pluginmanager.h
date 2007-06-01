@@ -16,12 +16,12 @@ email                : markey@web.de
 #ifndef AKREGATOR_PLUGINMANAGER_H
 #define AKREGATOR_PLUGINMANAGER_H
 
-#include <vector>
+#include "akregator_export.h"
 
 #include <kservice.h>
 #include <kservicetypetrader.h>
-#include <kdepim_export.h>
 
+#include <vector>
 
 class KLibrary;
 namespace Akregator {

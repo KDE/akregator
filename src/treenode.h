@@ -25,8 +25,8 @@
 #ifndef AKREGATOR_TREENODE_H
 #define AKREGATOR_TREENODE_H
 
+#include "akregator_export.h"
 #include <QObject>
-#include <kdepim_export.h>
 
 class QDomDocument;
 class QDomElement;

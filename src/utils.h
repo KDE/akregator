@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_UTILS_H
 #define AKREGATOR_UTILS_H
 
-#include <kdepim_export.h>
+#include "akregator_export.h"
 #include <QString>
 typedef unsigned int uint;
 

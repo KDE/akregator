@@ -25,8 +25,8 @@
 #ifndef AKREGATOR_TRAYICON_H
 #define AKREGATOR_TRAYICON_H
 
+#include "akregator_export.h"
 #include <ksystemtrayicon.h>
-#include <kdepim_export.h>
 
 #include <QImage>
 #include <QPixmap>
