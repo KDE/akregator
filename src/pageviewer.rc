@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="pageviewer" version="17">
+<kpartgui name="pageviewer" version="390">
 <ToolBar name="mainToolBar">
   <Separator/> 
   <Action name="pageviewer_back"/>
