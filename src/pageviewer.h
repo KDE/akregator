@@ -30,8 +30,6 @@
 
 #include <QList>
 
-class KAction;
-class KToolBarPopupAction;
 class QString;
 
 namespace Akregator {

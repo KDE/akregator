@@ -29,9 +29,7 @@
 
 class KAction;
 class KActionCollection;
-class KActionMenu;
 
-class QStringList;
 class QWidget;
 
 namespace Akregator {

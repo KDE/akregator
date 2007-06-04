@@ -29,7 +29,6 @@
 
 class QString;
 class QStringList;
-class QWidget;
 namespace Akregator {
 namespace Backend {
 

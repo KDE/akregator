@@ -37,27 +37,16 @@
 
 class QDomElement;
 class QString;
-class QStringList;
-class KUrl;
 
 
-namespace KPIM
-{
-    class ProgressItem;
-}
 
 
 namespace Akregator {
 
 class Article;
 class FetchQueue;
-class Folder;
 class TreeNodeVisitor;
 
-namespace Backend
-{
-    class FeedStorage;
-}
 
 /** represents a feed */
 class AKREGATOR_EXPORT Feed : public TreeNode

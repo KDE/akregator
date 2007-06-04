@@ -30,12 +30,7 @@
 
 class QString;
 
-class KUrl;
 
-namespace KParts
-{
-    class URLArgs;
-}
 
 namespace Akregator {
 

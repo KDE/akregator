@@ -35,12 +35,8 @@
 #include <kparts/browserextension.h>
 #include <kio/job.h>
 
-class KActionCollection;
-class KToggleAction;
 class KSqueezedTextLabel;
-class KProgress;
 class KParts::BrowserExtension;
-class KParts::PartManager;
 
 namespace KPIM
 {

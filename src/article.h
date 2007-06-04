@@ -30,18 +30,13 @@
 #include "types.h"
 
 class QDateTime;
-class QDomDocument;
-class QDomElement;
 class QString;
-class QStringList;
-class QWidget;
 
 template <class T> class QList;
 
 typedef unsigned int uint;
 
 class KUrl;
-class KUrlLabel;
 
 namespace boost {
     template <class T> class shared_ptr;

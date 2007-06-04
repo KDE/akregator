@@ -31,7 +31,6 @@
 
 class QDomDocument;
 class QDomElement;
-class QStringList;
 template <class T> class QList;
 
 namespace Akregator {

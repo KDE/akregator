@@ -31,7 +31,6 @@
 #include <QImage>
 #include <QPixmap>
 
-class QMouseEvent;
 
 namespace Akregator {
 

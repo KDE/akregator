@@ -27,7 +27,6 @@
 
 #include "plugin.h"
 
-class QString;
 
 namespace Akregator {
 namespace Backend {

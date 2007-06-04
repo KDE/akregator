@@ -36,37 +36,22 @@
 #include <QWidget>
 
 
-class KComboBox;
 class KConfig;
 class KFileItem;
-class KLineEdit;
 class K3ListView;
-class K3ListViewItem;
-class KTabWidget;
 
 class QDomDocument;
-class QDomElement;
 class QSplitter;
-class QToolButton;
-
-namespace KIO 
-{
-    class Job;
-}
 
 namespace Akregator {
 
-class AboutPageViewer;
 class AbstractSelectionController;
 class ActionManagerImpl;
-class ArticleMatcher;
 class ArticleListView;
 class ArticleViewer;
 class Folder;
 class FeedList;
 class Frame;
-class NodeListView;
-class ListTabWidget;
 class Part;
 class SearchBar;
 class SubscriptionListView;

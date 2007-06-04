@@ -50,7 +50,6 @@ namespace Backend
 typedef KParts::ReadOnlyPart MyBasePart;
 
 class ActionManagerImpl;
-class Article;
 class Feed;
 class MainWidget;
 class Part;

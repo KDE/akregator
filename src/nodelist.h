@@ -30,7 +30,6 @@
 #include <QList>
 
 class QDomDocument;
-class QDomNode;
 class QString;
 
 template <class K,class T> class QHash;

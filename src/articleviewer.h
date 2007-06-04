@@ -35,16 +35,9 @@
 
 class KUrl;
 
-namespace KIO
-{
-    class MetaData;
-}
-
 namespace Akregator {
 
 class ArticleFormatter;
-class Feed;
-class Folder;
 class OpenUrlRequest;
 class TreeNode;
 
