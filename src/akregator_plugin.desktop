@@ -3,6 +3,7 @@ Type=ServiceType
 X-KDE-ServiceType=Akregator/Plugin
 Comment=Plugin for Akregator
 Comment[af]=Inprop module vir Akregator
+Comment[be]=Утулка для Akregator
 Comment[br]=Lugent evit Akregator
 Comment[ca]=Endollable per a Akregator
 Comment[cs]=Modul pro Akregator
