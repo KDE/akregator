@@ -42,7 +42,7 @@ class TreeNode;
 
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
-class AKREGATOR_EXPORT FeedList : public NodeList
+class AKREGATORPART_EXPORT FeedList : public NodeList
 {
 Q_OBJECT
 public:
@@ -87,11 +87,11 @@ private:
     FeedList(const FeedList&) : NodeList() {}
     FeedList& operator=(const FeedList&) { return *this; }
 
-    friend class AddNodeVisitor;
-    class AddNodeVisitor;
+    friend class FLAddNodeVisitor;
+    class FLAddNodeVisitor;
 
-    friend class RemoveNodeVisitor;
-    class RemoveNodeVisitor;
+    friend class FLRemoveNodeVisitor;
+    class FLRemoveNodeVisitor;
     
     class FeedListPrivate;
     FeedListPrivate* d;

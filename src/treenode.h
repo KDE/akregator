@@ -49,7 +49,7 @@ class FetchQueue;
                    
     TODO: detailed description goes here
 */
-class AKREGATOR_EXPORT TreeNode : public QObject
+class AKREGATORPART_EXPORT TreeNode : public QObject
 {
 Q_OBJECT
 

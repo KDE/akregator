@@ -34,7 +34,7 @@ namespace Akregator {
 class Feed;
 class TreeNode;
 
-class AKREGATOR_EXPORT FetchQueue : public QObject
+class AKREGATORPART_EXPORT FetchQueue : public QObject
 {
     Q_OBJECT
 

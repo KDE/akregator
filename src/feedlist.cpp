@@ -43,14 +43,14 @@ class FeedList::FeedListPrivate
     public:
 
         QHash<QString, QList<Feed*> > urlMap;
-        AddNodeVisitor* addNodeVisitor;
-        RemoveNodeVisitor* removeNodeVisitor;
+        FLAddNodeVisitor* addNodeVisitor;
+        FLRemoveNodeVisitor* removeNodeVisitor;
 };
 
-class FeedList::AddNodeVisitor : public TreeNodeVisitor
+class FeedList::FLAddNodeVisitor : public TreeNodeVisitor
 {
     public:
-        AddNodeVisitor(FeedList* list) : m_list(list) {}
+        FLAddNodeVisitor(FeedList* list) : m_list(list) {}
 
 
         virtual bool visitFeed(Feed* node)
@@ -64,10 +64,10 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
         FeedList* m_list;
 };
 
-class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
+class FeedList::FLRemoveNodeVisitor : public TreeNodeVisitor
 {
     public:
-        RemoveNodeVisitor(FeedList* list) : m_list(list) {}
+        FLRemoveNodeVisitor(FeedList* list) : m_list(list) {}
 
         virtual bool visitFeed(Feed* node)
         {
@@ -82,8 +82,8 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
 FeedList::FeedList(QObject *parent)
     : NodeList(parent), d(new FeedListPrivate)
 {
-    d->addNodeVisitor = new AddNodeVisitor(this);
-    d->removeNodeVisitor = new RemoveNodeVisitor(this);
+    d->addNodeVisitor = new FLAddNodeVisitor(this);
+    d->removeNodeVisitor = new FLRemoveNodeVisitor(this);
 
     Folder* rootNode = new Folder(i18n("All Feeds"));
     rootNode->setId(1);

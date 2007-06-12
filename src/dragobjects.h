@@ -44,7 +44,7 @@ struct ArticleDragItem
     QString guid;
 };
 
-class AKREGATOR_EXPORT ArticleDrag : public K3URLDrag
+class AKREGATORPART_EXPORT ArticleDrag : public K3URLDrag
 {
 
 public:

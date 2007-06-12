@@ -27,7 +27,7 @@ class KLibrary;
 namespace Akregator {
 
 class Plugin;
-class AKREGATOR_EXPORT PluginManager
+class AKREGATORPART_EXPORT PluginManager
 {
     public:
         /** Bump this number whenever the plugin framework gets incompatible with older versions */

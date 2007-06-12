@@ -39,7 +39,7 @@ class Article;
  * articles and label them.
  */
 
-class AKREGATOR_EXPORT ArticleInterceptor
+class AKREGATORPART_EXPORT ArticleInterceptor
 {
     public:
         virtual ~ArticleInterceptor() {}
@@ -57,7 +57,7 @@ class AKREGATOR_EXPORT ArticleInterceptor
  * Singleton managing the interceptors. Added interceptors 
  * will receive fetched articles.
  */
-class AKREGATOR_EXPORT ArticleInterceptorManager
+class AKREGATORPART_EXPORT ArticleInterceptorManager
 {
     public:
 

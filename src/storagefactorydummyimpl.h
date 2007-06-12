@@ -36,7 +36,7 @@ namespace Backend {
 
 class Storage;
 
-class AKREGATOR_EXPORT StorageFactoryDummyImpl : public StorageFactory
+class AKREGATORPART_EXPORT StorageFactoryDummyImpl : public StorageFactory
 {
     public:
     virtual QString key() const;

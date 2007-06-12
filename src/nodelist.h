@@ -40,7 +40,7 @@ namespace Akregator {
 class Folder;
 class TreeNode;
 
-class AKREGATOR_EXPORT NodeList : public QObject
+class AKREGATORPART_EXPORT NodeList : public QObject
 {
 
 Q_OBJECT

@@ -56,7 +56,7 @@ namespace Backend
 }
 class Feed;
 /** A proxy class for Syndication::ItemPtr with some additional methods to assist sorting. */
-class AKREGATOR_EXPORT Article
+class AKREGATORPART_EXPORT Article
 {
     public:
 

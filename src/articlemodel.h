@@ -26,13 +26,15 @@
 
 #include <QAbstractListModel>
 
+#include "akregator_export.h"
+
 namespace Akregator {
 
 class TreeNode;
 
-class ArticleModelPrivate;
+struct ArticleModelPrivate;
 
-class AKREGATOR_EXPORT ArticleModel : public QAbstractListModel
+class AKREGATORPART_EXPORT ArticleModel : public QAbstractListModel
 {
     Q_OBJECT
 

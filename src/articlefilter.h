@@ -48,7 +48,7 @@ class Criterion;
 /** an article filter, basically a matcher and an action. 
  *  @author Frank Osterfeld
  */
-class AKREGATOR_EXPORT ArticleFilter
+class AKREGATORPART_EXPORT ArticleFilter
 {
     public:
 
@@ -86,8 +86,11 @@ class AKREGATOR_EXPORT ArticleFilter
         ArticleFilterPrivate* d;
     
 };
+#ifdef MAKE_AKREGATORPART_LIB
+KDE_DUMMY_QHASH_FUNCTION(ArticleFilter)
+#endif
 
-class AKREGATOR_EXPORT ArticleFilterList : public QList<ArticleFilter>
+class AKREGATORPART_EXPORT ArticleFilterList : public QList<ArticleFilter>
 {
 public:
     
@@ -98,7 +101,7 @@ public:
 /** Abstract base class for matchers, a matcher just takes an article and checks whether the article matches some criterion or not. 
  *  @author Frank Osterfeld
  */
-class AKREGATOR_EXPORT AbstractMatcher
+class AKREGATORPART_EXPORT AbstractMatcher
 {
     public:
 
@@ -115,7 +118,7 @@ class AKREGATOR_EXPORT AbstractMatcher
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
 };
 
-class AKREGATOR_EXPORT AbstractAction
+class AKREGATORPART_EXPORT AbstractAction
 {
     public:
         virtual void exec(Article& article) = 0;
@@ -127,7 +130,7 @@ class AKREGATOR_EXPORT AbstractAction
         virtual bool operator==(const AbstractAction& other) = 0;
 };
 
-class AKREGATOR_EXPORT DeleteAction : public AbstractAction
+class AKREGATORPART_EXPORT DeleteAction : public AbstractAction
 {
     public:
         virtual void exec(Article& article);
@@ -139,7 +142,7 @@ class AKREGATOR_EXPORT DeleteAction : public AbstractAction
         virtual bool operator==(const AbstractAction& other);
 };
 
-class AKREGATOR_EXPORT SetStatusAction : public AbstractAction
+class AKREGATORPART_EXPORT SetStatusAction : public AbstractAction
 {
     public:
         SetStatusAction(int status=0);
@@ -163,7 +166,7 @@ class AKREGATOR_EXPORT SetStatusAction : public AbstractAction
 /** a powerful matcher supporting multiple criterions, which can be combined      via logical OR or AND
  *  @author Frerich Raabe
  */
-class AKREGATOR_EXPORT ArticleMatcher : public AbstractMatcher
+class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
 {
     public:
 
@@ -202,7 +205,7 @@ class AKREGATOR_EXPORT ArticleMatcher : public AbstractMatcher
 /** Criterion for ArticleMatcher
  *  @author Frerich Raabe
  */
-class AKREGATOR_EXPORT Criterion
+class AKREGATORPART_EXPORT Criterion
 {
     public:
 

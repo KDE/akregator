@@ -24,12 +24,22 @@
 #include <kdemacros.h>
 
 #ifndef AKREGATOR_EXPORT
-# if defined(MAKE_AKREGATOR_LIB)
+# if defined(MAKE_AKREGATORPRIVATE_LIB)
    /* We are building this library */ 
 #  define AKREGATOR_EXPORT KDE_EXPORT
 # else
    /* We are using this library */ 
 #  define AKREGATOR_EXPORT KDE_IMPORT
+# endif
+#endif
+
+#ifndef AKREGATORPART_EXPORT
+# if defined(MAKE_AKREGATORPART_LIB)
+   /* We are building this library */ 
+#  define AKREGATORPART_EXPORT KDE_EXPORT
+# else
+   /* We are using this library */ 
+#  define AKREGATORPART_EXPORT KDE_IMPORT
 # endif
 #endif
 

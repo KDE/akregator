@@ -45,7 +45,7 @@ namespace Filters
     class ArticleMatcher;
 }
 
-class AKREGATOR_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel {
+class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel {
     Q_OBJECT
 public:
 
@@ -67,7 +67,7 @@ private:
 };
 
 
-class AKREGATOR_EXPORT ArticleListView : public QTreeView, public ArticleLister
+class AKREGATORPART_EXPORT ArticleListView : public QTreeView, public ArticleLister
 {
     Q_OBJECT
 
@@ -128,7 +128,7 @@ private:
 };
 
 #if 0
-class AKREGATOR_EXPORT ArticleListViewOld : public K3ListView
+class AKREGATORPART_EXPORT ArticleListViewOld : public K3ListView
 {
     Q_OBJECT
     public:

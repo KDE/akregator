@@ -31,7 +31,7 @@ typedef unsigned int uint;
 
 namespace Akregator {
 
-class AKREGATOR_EXPORT Utils 
+class AKREGATORPART_EXPORT Utils 
 {
     public:
     /** removes HTML/XML tags (everything between &lt; and &gt;) from a string.  "<p><strong>foo</strong> bar</p>" becomes "foo bar" */

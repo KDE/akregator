@@ -49,7 +49,7 @@ class TreeNodeVisitor;
 
 
 /** represents a feed */
-class AKREGATOR_EXPORT Feed : public TreeNode
+class AKREGATORPART_EXPORT Feed : public TreeNode
 {
     friend class Article;
 

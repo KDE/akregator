@@ -33,7 +33,7 @@ namespace Akregator {
 class FeedList;
 class TreeNode;
 
-class AKREGATOR_EXPORT SubscriptionListModel : public QAbstractItemModel
+class AKREGATORPART_EXPORT SubscriptionListModel : public QAbstractItemModel
 {
 Q_OBJECT
 public:

@@ -247,7 +247,9 @@ void Akregator::ArticleListView::paintEvent( QPaintEvent* e )
 {
     QTreeView::paintEvent(e);
 
+#ifdef __GNUC__
 #warning The distinction between empty node and 0 items after filtering is hard to port to interview
+#endif
 #if 0
     QString message;
 

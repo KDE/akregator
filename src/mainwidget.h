@@ -60,7 +60,7 @@ class TabWidget;
 /**
     * This is the main widget of the view, containing tree view, article list, viewer etc.
     */
-class AKREGATOR_EXPORT MainWidget : public QWidget
+class AKREGATORPART_EXPORT MainWidget : public QWidget
 {
     Q_OBJECT
     public:
