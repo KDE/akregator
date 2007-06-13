@@ -64,8 +64,8 @@ void TrayIcon::setInstance(TrayIcon* trayIcon)
 TrayIcon::TrayIcon(QWidget *parent)
         : KSystemTrayIcon(parent), m_unread(0)
 {
-    m_defaultPixmap = KSystemTrayIcon::loadIcon("akregator").pixmap();
-    m_lightIconImage = KSystemTrayIcon::loadIcon("akregator_empty").pixmap();
+    m_defaultPixmap = KSystemTrayIcon::loadIcon("akregator").pixmap(geometry().size());
+    m_lightIconImage = KSystemTrayIcon::loadIcon("akregator_empty").pixmap(geometry().size()).toImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
     setIcon(m_defaultPixmap);
     this->setToolTip( i18n("Akregator - RSS Feed Reader"));

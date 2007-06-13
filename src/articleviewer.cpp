@@ -247,8 +247,8 @@ void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& k
 
     if (isLink && !isSelection)
     {
-        popup.insertItem(SmallIcon("tab-new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
-        popup.insertItem(SmallIcon("window-new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.addAction(KIcon("tab-new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
+        popup.addAction(KIcon("window-new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
         popup.addSeparator();
         popup.addAction( m_part->action("savelinkas") );
         popup.addAction( m_part->action("copylinkaddress") );
