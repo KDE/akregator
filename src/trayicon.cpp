@@ -148,6 +148,10 @@ void TrayIcon::slotSetUnread(int unread)
     {
         // from KMSystemTray
         QSize oldSize = m_defaultPixmap.size();
+
+        if ( oldSize.width() == 0 || oldSize.height() == 0 )
+            return;
+
         int oldW = oldSize.width();
         int oldH = oldSize.height();
 
