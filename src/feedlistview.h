@@ -34,19 +34,19 @@ namespace Akregator
 {
 class Feed;
 class Folder;
-class NodeList;
+class FeedList;
 class TreeNode;
 class TreeNodeItem;
 
-class NodeListView : public K3ListView
+class FeedListView : public K3ListView
 {
 Q_OBJECT
 public:
-    explicit NodeListView( QWidget *parent = 0, const char *name = 0 );
-    virtual ~NodeListView();
+    explicit FeedListView( QWidget *parent = 0, const char *name = 0 );
+    virtual ~FeedListView();
 
     /** sets the feed list to show. Disconnects from the old feed list, if there is any. */
-    void setNodeList(NodeList* nodeList);
+    void setFeedList(FeedList* nodeList);
 
     /** Returns root node ("All Feeds").
         * @return root node
@@ -103,7 +103,7 @@ public slots:
 signals:
     void signalDropped(KUrl::List &, Akregator::TreeNode*, Akregator::Folder*);
     void signalNodeSelected(Akregator::TreeNode*);
-    void signalRootNodeChanged(Akregator::NodeListView*, Akregator::TreeNode*);
+    void signalRootNodeChanged(Akregator::FeedListView*, Akregator::TreeNode*);
     void signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&);
 
 protected:
@@ -123,8 +123,8 @@ protected:
     /** stop observing @c node: disconnect from status change signals of @c node */
     virtual void disconnectFromNode(TreeNode* node);
 
-    virtual void connectToNodeList(NodeList* list);
-    virtual void disconnectFromNodeList(NodeList* list);
+    virtual void connectToFeedList(FeedList* list);
+    virtual void disconnectFromFeedList(FeedList* list);
 
     virtual void drawContentsOffset( QPainter * p, int ox, int oy,
                                         int cx, int cy, int cw, int ch );
@@ -166,7 +166,7 @@ protected slots:
     /** update the item belonging to the node */
     virtual void slotNodeChanged(Akregator::TreeNode* node);
 
-    virtual void slotNodeListDestroyed(Akregator::NodeList*);
+    virtual void slotFeedListDestroyed(Akregator::FeedList*);
 
 private:
     friend class ConnectNodeVisitor;
@@ -181,8 +181,8 @@ private:
     friend class DeleteItemVisitor;
     class DeleteItemVisitor;
     
-    class NodeListViewPrivate;
-    NodeListViewPrivate* d;
+    class FeedListViewPrivate;
+    FeedListViewPrivate* d;
 };
 
 

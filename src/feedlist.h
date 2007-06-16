@@ -26,14 +26,15 @@
 #define AKREGATOR_FEEDLIST_H
 
 #include "akregator_export.h"
-#include "nodelist.h"
+#include <QObject>
 
 class QDomDocument;
 class QDomNode;
+template <class T> class QList;
+template <class K,class T> class QHash;
 class QString;
 
-namespace Akregator
-{
+namespace Akregator {
 
 class Article;
 class Feed;
@@ -42,7 +43,7 @@ class TreeNode;
 
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
-class AKREGATORPART_EXPORT FeedList : public NodeList
+class AKREGATORPART_EXPORT FeedList : public QObject
 {
 Q_OBJECT
 public:
@@ -51,6 +52,24 @@ public:
 
     /** Destructor. Contained nodes are deleted! */
     ~FeedList();
+
+    const Folder* rootNode() const;
+    Folder* rootNode();
+
+    bool isEmpty() const;
+
+    const TreeNode* findByID(int id) const;
+
+    TreeNode* findByID(int id);
+
+    /** returns the title of the feed list (as used in the OPML document) */
+    QString title() const;
+
+    /** sets the title of the feed list */
+    void setTitle(const QString& name);
+
+    /** returns a flat list containing all nodes in the tree */
+    QList<TreeNode*> asFlatList();
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
     
@@ -70,28 +89,49 @@ public:
 
     const Article findArticle(const QString& feedURL, const QString& guid) const;
 
+public slots:
+
+    /**
+     * Clears the list without touching the root node.
+     */
+    void clear();
+
 signals:
 
     void signalDestroyed(Akregator::FeedList*);
 
-protected:
+    /** emitted when a node was added to the list */
+    void signalNodeAdded(Akregator::TreeNode*);
+
+    /** emitted when a node was removed from the list */
+    void signalNodeRemoved(Akregator::TreeNode*);
+
+
+private:
 
     void addNode(TreeNode* node, bool preserveID);
     void removeNode(TreeNode* node);
 
-private:
+    QList<TreeNode*>* flatList() const;
+    QHash<int, TreeNode*>* idMap() const;
+    
+    int generateID() const;
+    void setRootNode(Folder* folder);
 
     void parseChildNodes(QDomNode &node, Folder* parent);
 
-    // never call these
-    FeedList(const FeedList&) : NodeList() {}
-    FeedList& operator=(const FeedList&) { return *this; }
+private slots:
 
-    friend class FLAddNodeVisitor;
-    class FLAddNodeVisitor;
+    void slotNodeDestroyed(Akregator::TreeNode* node);
+    void slotNodeAdded(Akregator::TreeNode* node);
+    void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
 
-    friend class FLRemoveNodeVisitor;
-    class FLRemoveNodeVisitor;
+private:
+    friend class AddNodeVisitor;
+    class AddNodeVisitor;
+
+    friend class RemoveNodeVisitor;
+    class RemoveNodeVisitor;
     
     class FeedListPrivate;
     FeedListPrivate* d;

@@ -52,7 +52,6 @@ set(akregatorpart_PART_SRCS
    treenode.cpp 
    treenodevisitor.cpp 
    folder.cpp 
-   nodelist.cpp 
    feedlist.cpp 
    fetchqueue.cpp 
    feediconmanager.cpp 
