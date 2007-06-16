@@ -41,62 +41,8 @@ class Article;
 
 namespace Filters {
 
-class AbstractAction;
 class AbstractMatcher;
 class Criterion;
-
-/** an article filter, basically a matcher and an action. 
- *  @author Frank Osterfeld
- */
-class AKREGATORPART_EXPORT ArticleFilter
-{
-    public:
-
-        ArticleFilter();
-        ArticleFilter(const AbstractMatcher& matcher, const AbstractAction& action);
-        ArticleFilter(const ArticleFilter& other);
-
-        virtual ~ArticleFilter();
-
-        /** checks whether an article matches the matcher, and executes the action if so */
-        void applyTo(Article& article) const;
-
-        
-        
-        /** name of the filter, for display in filter list */
-        const QString& name() const;
-        void setName(const QString& name);
-
-        int id() const;
-
-        AbstractMatcher* matcher() const;
-        void setMatcher(const AbstractMatcher& matcher);
-
-        AbstractAction* action() const;
-        void setAction(const AbstractAction& action);
-
-        ArticleFilter& operator=(const ArticleFilter& other);
-        bool operator==(const ArticleFilter& other) const;
-
-        void writeConfig(KConfig* config) const;
-        void readConfig(KConfig* config);
-
-    private:
-        class ArticleFilterPrivate;
-        ArticleFilterPrivate* d;
-    
-};
-#ifdef MAKE_AKREGATORPART_LIB
-KDE_DUMMY_QHASH_FUNCTION(ArticleFilter)
-#endif
-
-class AKREGATORPART_EXPORT ArticleFilterList : public QList<ArticleFilter>
-{
-public:
-    
-    void writeConfig(KConfig* config) const;
-    void readConfig(KConfig* config);
-};
 
 /** Abstract base class for matchers, a matcher just takes an article and checks whether the article matches some criterion or not. 
  *  @author Frank Osterfeld
@@ -118,50 +64,6 @@ class AKREGATORPART_EXPORT AbstractMatcher
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
 };
 
-class AKREGATORPART_EXPORT AbstractAction
-{
-    public:
-        virtual void exec(Article& article) = 0;
-		virtual ~AbstractAction(){}
-        virtual void writeConfig(KConfig* config) const = 0;
-        virtual void readConfig(KConfig* config) = 0;
-
-        virtual AbstractAction* clone() const = 0;
-        virtual bool operator==(const AbstractAction& other) = 0;
-};
-
-class AKREGATORPART_EXPORT DeleteAction : public AbstractAction
-{
-    public:
-        virtual void exec(Article& article);
-       	virtual ~DeleteAction(){} 
-        virtual void writeConfig(KConfig* config) const;
-        virtual void readConfig(KConfig* config);
-
-        virtual DeleteAction* clone() const { return new DeleteAction; }
-        virtual bool operator==(const AbstractAction& other);
-};
-
-class AKREGATORPART_EXPORT SetStatusAction : public AbstractAction
-{
-    public:
-        SetStatusAction(int status=0);
-		virtual ~SetStatusAction(){}
-        
-        virtual void exec(Article& article);
-        
-        int status() const;
-        void setStatus(int status);
-
-        virtual void writeConfig(KConfig* config) const;
-        virtual void readConfig(KConfig* config);
-
-        virtual SetStatusAction* clone() const { return new SetStatusAction(*this); }
-        virtual bool operator==(const AbstractAction& other);
-
-    private:
-        int m_status;
-};
 
 /** a powerful matcher supporting multiple criterions, which can be combined      via logical OR or AND
  *  @author Frerich Raabe

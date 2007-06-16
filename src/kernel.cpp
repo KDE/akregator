@@ -51,7 +51,6 @@ class Kernel::KernelPrivate
     FeedList* feedList;
     FetchQueue* fetchQueue;
     FrameManager* frameManager;
-    Filters::ArticleFilterList articleFilterList;
 };
 
 Kernel::Kernel() : d(new KernelPrivate)
@@ -93,16 +92,6 @@ void Kernel::setFeedList(FeedList* feedList)
 FetchQueue* Kernel::fetchQueue()
 {
     return d->fetchQueue; 
-}
-
-void Kernel::setArticleFilterList(const Filters::ArticleFilterList& list)
-{
-    d->articleFilterList = list;
-}
-
-Filters::ArticleFilterList Kernel::articleFilterList() const
-{
-    return d->articleFilterList;
 }
 
 FrameManager* Kernel::frameManager()

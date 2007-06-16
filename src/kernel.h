@@ -54,10 +54,6 @@ class Kernel
 
         FetchQueue* fetchQueue();
 
-        void setArticleFilterList(const Filters::ArticleFilterList& list);
-
-        Filters::ArticleFilterList articleFilterList() const;
-
         FrameManager* frameManager();
 
     private:

@@ -28,8 +28,6 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "article.h"
-#include "articlefilter.h"
-#include "articleinterceptor.h"
 #include "configdialog.h"
 #include "fetchqueue.h"
 #include "feediconmanager.h"
@@ -87,17 +85,6 @@ void BrowserExtension::saveSettings()
     m_part->saveSettings();
 }
 
-class Part::ApplyFiltersInterceptor : public ArticleInterceptor
-{
-    public:
-    virtual void processArticle(Article& article)
-    {
-        Filters::ArticleFilterList list = Kernel::self()->articleFilterList();
-        for (Filters::ArticleFilterList::ConstIterator it = list.begin(); it != list.end(); ++it)
-            (*it).applyTo(article);
-    }
-};
-
 Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
     : MyBasePart(parent)
        , m_standardListLoaded(false)
@@ -134,13 +121,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 
         KMessageBox::error(parentWidget, i18n("Unable to load storage backend plugin \"%1\". No feeds are archived.", Settings::archiveBackend()), i18n("Plugin error") );
     }
-
-    Filters::ArticleFilterList list;
-    list.readConfig(Settings::self()->config());
-    Kernel::self()->setArticleFilterList(list);
-
-    m_applyFiltersInterceptor = new ApplyFiltersInterceptor();
-    ArticleInterceptorManager::self()->addInterceptor(m_applyFiltersInterceptor);
 
     m_storage->open(true);
     Kernel::self()->setStorage(m_storage);
@@ -256,7 +236,6 @@ void Part::slotSettingsChanged()
 }
 void Part::saveSettings()
 {
-    Kernel::self()->articleFilterList().writeConfig(Settings::self()->config());
     m_mainWidget->saveSettings();
 }
 
@@ -265,8 +244,6 @@ Part::~Part()
     kDebug() << "Part::~Part() enter" << endl;
     if (!m_shuttingDown)
         slotOnShutdown();
-    ArticleInterceptorManager::self()->removeInterceptor(m_applyFiltersInterceptor);
-    delete m_applyFiltersInterceptor;
     kDebug() << "Part::~Part(): leaving" << endl;
 }
 
