@@ -586,13 +586,6 @@ void Part::fileImport()
         exportFile(url);
 }
 
-void Part::fileGetFeeds()
-{
-    /*GetFeeds *gf = new GetFeeds();
-    gf->show();*/
-     //KNS::DownloadDialog::open("akregator/feeds", i18n("Get New Feeds"));
-}
-
 void Part::fetchAllFeeds()
 {
     m_mainWidget->slotFetchAllFeeds();
@@ -643,6 +636,7 @@ void Part::showOptions()
              TrayIcon::getInstance(), SLOT(settingsChanged()) );
 
     dialog->show();
+    delete dialog;
 }
 
 void Part::partActivateEvent(KParts::PartActivateEvent* event)

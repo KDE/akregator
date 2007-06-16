@@ -175,7 +175,6 @@ void ActionManagerImpl::initPart()
     action = d->actionCollection->addAction("file_export");
     action->setText(i18n("&Export Feeds..." ));
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
-    //new KAction(i18n("&Get Feeds From Web..."), "", "", d->part, SLOT(fileGetFeeds()), d->actionCollection, "file_getfromweb");
 
     KStandardAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
     action = d->actionCollection->addAction("akregator_configure_akregator");

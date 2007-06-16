@@ -81,7 +81,7 @@ class Part : public MyBasePart
         Part(QWidget *parentWidget, QObject *parent, const QStringList&);
 
 	   /** Destructor. */
-        virtual ~Part();
+        ~Part();
 
         /** Create KAboutData for this KPart. */
         static KAboutData *createAboutData();
@@ -90,15 +90,15 @@ class Part : public MyBasePart
             Opens feedlist
             @param url URL to feedlist
             */
-        virtual bool openUrl(const KUrl& url);
+        bool openUrl(const KUrl& url);
 
         /** Opens standard feedlist */
-        virtual void openStandardFeedList();
+        void openStandardFeedList();
 
-        virtual void fetchFeedUrl(const QString&);
+        void fetchFeedUrl(const QString&);
 
         /** Fetch all feeds in the feed tree */
-        virtual void fetchAllFeeds();
+        void fetchAllFeeds();
         
         /**
             Add a feed to a group.
@@ -107,9 +107,9 @@ class Part : public MyBasePart
             If the group does not exist, it is created.  The feed is added as the last member
             of the group.
             */
-        virtual void addFeedsToGroup(const QStringList& urls, const QString& group);
+        void addFeedsToGroup(const QStringList& urls, const QString& group);
         
-        virtual void addFeed();
+        void addFeed();
         
         /**
             This method is called when this app is restored.  The KConfig
@@ -126,18 +126,19 @@ class Part : public MyBasePart
 
         /** merges a nested part's GUI into the gui of this part
         @return true iff merging was successful, i.e. the GUI factory was not NULL */
-        virtual bool mergePart(KParts::Part*);
-        
+        bool mergePart(KParts::Part*);
+
+        void exportFile(const KUrl& url);
+
     public slots:
         /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
-        virtual void saveSettings();
+        void saveSettings();
 
         /** Saves the standard feed list to it's default location */
         void slotSaveFeedList();
 
         void fileImport();
         void fileExport();
-        void fileGetFeeds();
         
         /** Shows configuration dialog */
         void showOptions();
@@ -148,31 +149,28 @@ class Part : public MyBasePart
         void signalSettingsChanged();
         
 
-    protected:
+    private:
 
     /** @return Whether the tray icon is enabled or not */
-        virtual bool isTrayIconEnabled() const;
+        bool isTrayIconEnabled() const;
         
         /** loads all Akregator plugins */
         void loadPlugins();
         
         /** This must be implemented by each part */
-        virtual bool openFile();
+        bool openFile();
 
         void importFile(const KUrl& url);
-    public:
-        void exportFile(const KUrl& url);
-    protected:
-        
+
         /** FIXME: hack to get the tray icon working */
         QWidget* getMainWindow();
 
-        virtual KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
+        KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
         /** reimplemented to load/unload the merged parts on selection/deselection */ 
-        virtual void partActivateEvent(KParts::PartActivateEvent* event);
+        void partActivateEvent(KParts::PartActivateEvent* event);
 
-    protected slots:
+    private slots:
         void slotStarted();
 
         void slotOnShutdown();
@@ -188,7 +186,7 @@ class Part : public MyBasePart
         /** creates an OPML file containing the initial feeds (KDE feeds) */
         static QDomDocument createDefaultFeedList();
 
-        private: // attributes
+    private: // attributes
 
         class ApplyFiltersInterceptor;
         ApplyFiltersInterceptor* m_applyFiltersInterceptor;
