@@ -1,5 +1,5 @@
 /*
- * articlefilter.h
+ * articlematcher.h
  *
  * Copyright (c) 2004, 2005 Frerich Raabe <raabe@kde.org>
  *               2005 Frank Osterfeld <frank.osterfeld@kdemail.net>

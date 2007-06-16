@@ -23,7 +23,7 @@
 */
 
 #include "akregatorconfig.h"
-#include "articlefilter.h"
+#include "articlematcher.h"
 #include "article.h"
 #include "searchbar.h"
 

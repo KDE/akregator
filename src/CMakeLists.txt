@@ -45,7 +45,7 @@ install(TARGETS akregatorprivate  DESTINATION ${LIB_INSTALL_DIR})
 set(akregatorpart_PART_SRCS 
    abstractselectioncontroller.cpp
    article.cpp 
-   articlefilter.cpp 
+   articlematcher.cpp 
    articlemodel.cpp
    feed.cpp 
    treenode.cpp 

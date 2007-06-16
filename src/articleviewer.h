@@ -26,7 +26,7 @@
 #define AKREGATOR_ARTICLEVIEWER_H
 
 #include "article.h"
-#include "articlefilter.h"
+#include "articlematcher.h"
 #include "sharedptr.h"
 
 #include <QWidget>

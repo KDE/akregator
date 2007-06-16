@@ -381,7 +381,7 @@ void Akregator::ArticleListView::slotPreviousUnreadArticle()
 }
 
 #if 0
-#include "articlefilter.h"
+#include "articlematcher.h"
 #include "dragobjects.h"
 #include "feed.h"
 #include "treenodevisitor.h"

@@ -1,5 +1,5 @@
 /*
- * articlefilter.cpp
+ * articlematcher.cpp
  *
  * Copyright (c) 2004, 2005 Frerich Raabe <raabe@kde.org>
  *
@@ -24,7 +24,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "articlefilter.h"
+#include "articlematcher.h"
 #include "article.h"
 #include "shared.h"
 #include "types.h"

@@ -25,8 +25,6 @@
 #ifndef AKREGATOR_KERNEL_H
 #define AKREGATOR_KERNEL_H
 
-#include "articlefilter.h"
-
 namespace Akregator {
 
 namespace Backend 
