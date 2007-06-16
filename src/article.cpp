@@ -259,6 +259,11 @@ bool Article::operator==(const Article &other) const
     return d->guid == other.guid();
 }
 
+bool Article::operator!=(const Article &other) const
+{
+    return d->guid != other.guid();
+}
+
 int Article::status() const
 {
     if ((d->status & Private::Read) != 0)
@@ -266,8 +271,8 @@ int Article::status() const
 
     if ((d->status & Private::New) != 0)
         return New;
-    else
-        return Unread;
+
+    return Unread;
 }
 
 void Article::setStatus(int stat)

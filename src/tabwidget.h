@@ -41,7 +41,7 @@ class TabWidget : public KTabWidget
 
     public:
         explicit TabWidget(QWidget * parent = 0);
-        virtual ~TabWidget();
+        ~TabWidget();
        
     public slots:
 
@@ -61,16 +61,8 @@ class TabWidget : public KTabWidget
         void signalRemoveFrameRequest(int);
         void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
 
-    protected:
-
-        Frame* currentFrame();
-
-    protected slots:
-
-        virtual void initiateDrag(int tab);
-        
     private slots:
-        
+        void initiateDrag(int tab);
         void slotDetachTab();
         void slotCopyLinkAddress();
         void slotCloseTab();
@@ -79,6 +71,8 @@ class TabWidget : public KTabWidget
         void slotTabChanged(QWidget *w);
         
    private:
+
+       Frame* currentFrame();
 
        class TabWidgetPrivate;
        TabWidgetPrivate* d;

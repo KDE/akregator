@@ -72,17 +72,17 @@ class AKREGATORPART_EXPORT Article
         
         Article(Syndication::ItemPtr article, Backend::FeedStorage* archive);
         Article(const Article &other);
+        ~Article();
+
         Article &operator=(const Article &other);
         bool operator==(const Article &other) const;
-        bool operator!=(const Article &other) const { return !operator==(other); }
-        virtual ~Article();
+        bool operator!=(const Article &other) const;
+        
 
         bool isNull() const;
         
         int status() const;
         void setStatus(int s);
-
-        void offsetPubDate(int secs);
 
         QString title() const;
         KUrl link() const;
@@ -94,7 +94,8 @@ class AKREGATORPART_EXPORT Article
         bool isDeleted() const;
         
         void setDeleted();
-        
+
+        void offsetPubDate(int secs);
 
         Feed* feed() const;
 
@@ -125,7 +126,8 @@ class AKREGATORPART_EXPORT Article
     private:
         void initialize(Syndication::ItemPtr item, Backend::FeedStorage* archive);
         static QString buildTitle(const QString& description);
-        
+
+    private:
         struct Private;
         Private *d;
 };
