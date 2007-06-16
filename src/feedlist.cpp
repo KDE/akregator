@@ -21,6 +21,7 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
+#include "storage.h"
 #include "feedlist.h"
 #include "article.h"
 #include "feed.h"
@@ -41,6 +42,7 @@ namespace Akregator {
 class FeedList::FeedListPrivate
 {
 public:
+    Akregator::Backend::Storage* storage;
     QList<TreeNode*> flatList;
     Folder* rootNode;
     QString title;
@@ -138,9 +140,11 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
         FeedList* m_list;
 };
 
-FeedList::FeedList(QObject *parent)
+FeedList::FeedList(Akregator::Backend::Storage* storage, QObject *parent)
     : QObject(parent), d(new FeedListPrivate)
 {
+    Q_ASSERT( storage );
+    d->storage = storage;
     d->rootNode = 0;
     d->addNodeVisitor = new AddNodeVisitor(this);
     d->removeNodeVisitor = new RemoveNodeVisitor(this);
@@ -170,7 +174,7 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
 
         if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl") || e.hasAttribute("xmlURL") )
         {
-            Feed* feed = Feed::fromOPML(e);
+            Feed* feed = Feed::fromOPML(e, d->storage);
             if (feed)
             {
                 if (!d->urlMap[feed->xmlUrl()].contains(feed))

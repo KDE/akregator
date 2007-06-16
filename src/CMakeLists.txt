@@ -25,7 +25,6 @@ set(akregatorprivate_LIB_SRCS
    aboutdata.cpp 
    trayicon.cpp 
    storagefactoryregistry.cpp 
-   storage.cpp
 )
 
 kde4_automoc(${akregatorprivate_LIB_SRCS})

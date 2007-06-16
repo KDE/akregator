@@ -80,7 +80,7 @@ Article::Article(const QString& guid, Feed* feed) : d(new Private)
 {
     d->feed = feed;
     d->guid = guid;
-    d->archive = Backend::Storage::getInstance()->archiveFor(feed->xmlUrl());
+    d->archive = feed->storage()->archiveFor(feed->xmlUrl());
     d->status = d->archive->status(d->guid);
     d->pubDate.setTime_t(d->archive->pubDate(d->guid));
     d->hash = d->archive->hash(d->guid);
@@ -164,9 +164,9 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
 
 Article::Article(ItemPtr article, Feed* feed) : d(new Private)
 {
-    //assert(feed)
+    Q_ASSERT( feed );
     d->feed = feed;
-    initialize(article, Backend::Storage::getInstance()->archiveFor(feed->xmlUrl()));
+    initialize(article, feed->storage()->archiveFor(feed->xmlUrl()));
 }
 
 Article::Article(ItemPtr article, Backend::FeedStorage* archive) : d(new Private)

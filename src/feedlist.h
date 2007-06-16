@@ -41,6 +41,10 @@ class Feed;
 class Folder;
 class TreeNode;
 
+namespace Backend {
+    class Storage;
+}
+
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
 class AKREGATORPART_EXPORT FeedList : public QObject
@@ -48,7 +52,7 @@ class AKREGATORPART_EXPORT FeedList : public QObject
 Q_OBJECT
 public:
 
-    explicit FeedList(QObject *parent = 0);
+    explicit FeedList(Akregator::Backend::Storage* storage, QObject *parent = 0);
 
     /** Destructor. Contained nodes are deleted! */
     ~FeedList();

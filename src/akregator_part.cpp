@@ -144,7 +144,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 
     m_storage->open(true);
     Kernel::self()->setStorage(m_storage);
-    Backend::Storage::setInstance(m_storage); // TODO: kill this one
 
     m_actionManager = new ActionManagerImpl(this);
     ActionManager::setInstance(m_actionManager);

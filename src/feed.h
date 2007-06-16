@@ -38,15 +38,15 @@
 class QDomElement;
 class QString;
 
-
-
-
 namespace Akregator {
 
 class Article;
 class FetchQueue;
 class TreeNodeVisitor;
 
+namespace Backend {
+    class Storage;
+}
 
 /** represents a feed */
 class AKREGATORPART_EXPORT Feed : public TreeNode
@@ -75,11 +75,10 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         static QString archiveModeToString(ArchiveMode mode);
 
         /** creates a Feed object from a description in OPML format */
-        static Feed* fromOPML(QDomElement e);
+        static Feed* fromOPML(QDomElement e, Akregator::Backend::Storage* storage);
 
         /** default constructor */
-        Feed();
-
+        Feed( Akregator::Backend::Storage* storage );
         ~Feed();
 
         bool accept(TreeNodeVisitor* visitor);
@@ -233,6 +232,9 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         void fetchAborted(Akregator::Feed *);
 
     private:
+        Akregator::Backend::Storage* storage();
+
+    private:
         /** loads articles from archive **/
         void loadArticles();
 
@@ -242,14 +244,6 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
 
         /** sets the unread count for this feed */
         void setUnread(int unread);
-
-
-    private slots:
-
-        void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
-        void slotImageFetched(const QPixmap& image);
-
-    private:
 
         /** downloads the favicon */
         void loadFavicon() const;
@@ -280,6 +274,13 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
 
         /** executes the actual fetch action */
         void tryFetch();
+
+    private slots:
+
+        void fetchCompleted(Syndication::Loader *loader, Syndication::FeedPtr doc, Syndication::ErrorCode errorCode);
+        void slotImageFetched(const QPixmap& image);
+
+    private:
 
         class FeedPrivate;
         FeedPrivate* d;

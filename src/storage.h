@@ -44,9 +44,6 @@ class AKREGATOR_EXPORT Storage : public QObject
 {
     public:
 
-        static Storage* getInstance();
-        static void setInstance(Storage* instance);
-
         virtual ~Storage() {}
 
         /** initializes the storage object with given parameters */
@@ -110,10 +107,6 @@ class AKREGATOR_EXPORT Storage : public QObject
         
         /** deletes all feed storages in this archive */
         virtual void clear() = 0;
-        
-     private:
-        
-        static Storage *m_instance;
 };
 
 } // namespace Backend

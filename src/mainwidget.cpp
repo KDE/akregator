@@ -165,7 +165,7 @@ MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionMa
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
     m_part = part;
-    m_feedList = new FeedList();
+    m_feedList = new FeedList( Kernel::self()->storage() );
     m_shuttingDown = false;
     m_displayingAboutPage = false;
     setFocusPolicy(Qt::StrongFocus);
@@ -446,7 +446,7 @@ void MainWidget::sendArticle(bool attach)
 
 bool MainWidget::importFeeds(const QDomDocument& doc)
 {
-    FeedList* feedList = new FeedList();
+    FeedList* feedList = new FeedList( Kernel::self()->storage() );
     bool parsed = feedList->readFromXML(doc);
 
     // FIXME: parsing error, print some message
@@ -478,7 +478,7 @@ bool MainWidget::importFeeds(const QDomDocument& doc)
 
 bool MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
 {
-    FeedList* feedList = new FeedList();
+    FeedList* feedList = new FeedList( Kernel::self()->storage() );
     bool parsed = feedList->readFromXML(doc);
 
     // parsing went wrong

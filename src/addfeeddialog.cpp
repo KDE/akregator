@@ -24,6 +24,7 @@
 
 #include "addfeeddialog.h"
 #include "feed.h"
+#include "kernel.h"
 
 #include <kdebug.h>
 #include <kiconloader.h>
@@ -77,7 +78,7 @@ void AddFeedDialog::accept()
     enableButtonOk(false);
     feedUrl = widget->urlEdit->text().trimmed();
 
-    Feed *f=new Feed();
+    Feed *f=new Feed( Kernel::self()->storage() );
 
     feed=f;
 

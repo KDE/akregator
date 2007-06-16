@@ -60,6 +60,7 @@ namespace Akregator {
 class Feed::FeedPrivate
 {
     public:
+        Akregator::Backend::Storage* storage;
         bool autoFetch;
         int fetchInterval;
         ArchiveMode archiveMode;
@@ -119,7 +120,7 @@ QString Feed::archiveModeToString(ArchiveMode mode)
    return "globalDefault";
 }
 
-Feed* Feed::fromOPML(QDomElement e)
+Feed* Feed::fromOPML(QDomElement e, Akregator::Backend::Storage* storage )
 {
 
     Feed* feed = 0;
@@ -145,7 +146,7 @@ Feed* Feed::fromOPML(QDomElement e)
         bool loadLinkedWebsite = e.attribute("loadLinkedWebsite") == "true";
         uint id = e.attribute("id").toUInt();
 
-        feed = new Feed();
+        feed = new Feed( storage );
         feed->setTitle(title);
         feed->setXmlUrl(xmlUrl);
         feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
@@ -186,13 +187,18 @@ QList<Article> Feed::articles()
     return d->articles.values();
 }
 
+Akregator::Backend::Storage* Feed::storage()
+{
+    return d->storage;
+}
+
 void Feed::loadArticles()
 {
     if (d->articlesLoaded)
         return;
 
     if (!d->archive)
-        d->archive = Backend::Storage::getInstance()->archiveFor(xmlUrl());
+        d->archive = d->storage->archiveFor(xmlUrl());
 
     QStringList list = d->archive->articles();
     for ( QStringList::ConstIterator it = list.begin(); it != list.end(); ++it)
@@ -245,8 +251,9 @@ Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
     return globalDefault;
 }
 
-Feed::Feed() : TreeNode(), d(new FeedPrivate)
+Feed::Feed( Akregator::Backend::Storage* storage ) : TreeNode(), d(new FeedPrivate)
 {
+    Q_ASSERT( storage );
     d->autoFetch = false;
     d->fetchInterval = 30;
     d->archiveMode = globalDefault;
@@ -260,6 +267,7 @@ Feed::Feed() : TreeNode(), d(new FeedPrivate)
     d->articlesLoaded = false;
     d->archive = 0;
     d->loadLinkedWebsite = false;
+    d->storage = storage;
 }
 
 Feed::~Feed()
