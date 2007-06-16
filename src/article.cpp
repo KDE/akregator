@@ -134,9 +134,11 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
         //d->archive->setCommentsLink(d->guid, article.commentsLink().url());
         d->archive->setGuidIsPermaLink(d->guid, false);
         d->archive->setGuidIsHash(d->guid, d->guid.startsWith("hash:"));
-        QDateTime datePublished;
-        datePublished.setTime_t(article->datePublished());
-        d->pubDate = datePublished.isValid() ? datePublished : QDateTime::currentDateTime();
+        const time_t datePublished = article->datePublished();
+        if ( datePublished > 0 )
+            d->pubDate.setTime_t( datePublished );
+        else
+            d->pubDate = QDateTime::currentDateTime();
         d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
         d->archive->setAuthor(d->guid, author);
     }
