@@ -39,9 +39,9 @@
 #include "pluginmanager.h"
 #include "storage.h"
 #include "storagefactory.h"
-#include "storagefactorydummyimpl.h"
 #include "storagefactoryregistry.h"
 #include "trayicon.h"
+#include "dummystorage/storagefactorydummyimpl.h"
 
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>

@@ -58,9 +58,6 @@ set(akregatorpart_PART_SRCS
    pluginmanager.cpp
    selectioncontroller.cpp
    subscriptionlistmodel.cpp
-   storagedummyimpl.cpp 
-   storagefactorydummyimpl.cpp 
-   feedstoragedummyimpl.cpp 
    utils.cpp
    searchbar.cpp 
    browserrun.cpp 
@@ -88,7 +85,10 @@ set(akregatorpart_PART_SRCS
    akregator_part.cpp 
    mainwidget.cpp 
    notificationmanager.cpp 
-   subscriptionlistview.cpp )
+   subscriptionlistview.cpp
+   dummystorage/storagedummyimpl.cpp 
+   dummystorage/storagefactorydummyimpl.cpp 
+   dummystorage/feedstoragedummyimpl.cpp )
    #speechclient.cpp )
 qt4_add_dbus_adaptor( akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part )
 
