@@ -22,7 +22,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "dragobjects.h"
 #include "folder.h"
 #include "folderitem.h"
 #include "feedlistview.h"

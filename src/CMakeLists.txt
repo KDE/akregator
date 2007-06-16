@@ -61,7 +61,6 @@ set(akregatorpart_PART_SRCS
    storagedummyimpl.cpp 
    storagefactorydummyimpl.cpp 
    feedstoragedummyimpl.cpp 
-   dragobjects.cpp 
    utils.cpp
    searchbar.cpp 
    browserrun.cpp 

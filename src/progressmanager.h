@@ -42,7 +42,7 @@ class ProgressManager : public QObject
         static ProgressManager* self();
 
         ProgressManager();
-        virtual ~ProgressManager();
+        ~ProgressManager();
 
         /** sets the feed list to be managed */
         void setFeedList(FeedList* feedList);
@@ -69,7 +69,7 @@ class ProgressItemHandler : public QObject
     Q_OBJECT
     public:
         explicit ProgressItemHandler(Feed* feed);
-        virtual ~ProgressItemHandler();
+        ~ProgressItemHandler();
 
     public slots:
 

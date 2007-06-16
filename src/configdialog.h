@@ -36,13 +36,13 @@ class ConfigDialog : public KConfigDialog
     
         ConfigDialog(QWidget *parent, const char *name, KConfigSkeleton *config, FaceType dialogType=List, QFlags<ButtonCode> dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
         
-        virtual ~ConfigDialog();
+        ~ConfigDialog();
 
-    protected slots:
+    private slots:
 
-        virtual void updateSettings();
+        void updateSettings();
         
-        virtual void updateWidgets();
+        void updateWidgets();
 
     private:
         class ConfigDialogPrivate;

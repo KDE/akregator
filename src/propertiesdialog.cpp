@@ -138,12 +138,12 @@ void FeedPropertiesDialog::setFeed(Feed* feed)
 }
 
 
-const QString FeedPropertiesDialog::feedName() const
+QString FeedPropertiesDialog::feedName() const
 {
    return widget->feedNameEdit->text();
 }
 
-const QString FeedPropertiesDialog::url() const
+QString FeedPropertiesDialog::url() const
 {
    return widget->urlEdit->text();
 }

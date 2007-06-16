@@ -66,8 +66,8 @@ class FeedPropertiesDialog : public KDialog
         void accept();
         
     protected:
-        const QString feedName() const;
-        const QString url() const;
+        QString feedName() const;
+        QString url() const;
         bool autoFetch() const;
         int fetchInterval() const;
         Feed::ArchiveMode archiveMode() const;
