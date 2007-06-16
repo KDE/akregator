@@ -43,9 +43,8 @@ void ActionManager::setInstance(ActionManager* manager)
 }
 
 
-ActionManager::ActionManager(QObject* parent, const char* name) : QObject(parent), d(new ActionManagerPrivate)
+ActionManager::ActionManager(QObject* parent) : QObject(parent), d(new ActionManagerPrivate)
 {
-  setObjectName( name );
 }
 
 ActionManager::~ActionManager()

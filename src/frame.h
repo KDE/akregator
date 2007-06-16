@@ -47,7 +47,7 @@ namespace Akregator
 {
 
 class OpenUrlRequest;
-    
+
 class Frame : public QWidget
 {
     Q_OBJECT
@@ -73,13 +73,13 @@ class Frame : public QWidget
          */
         virtual KUrl url() const = 0;
 
-        virtual const QString& title() const;
-        virtual const QString& caption() const;
-        virtual State state() const;
-        virtual int progress() const;
-        virtual const QString& statusText() const;
+        QString title() const;
+        QString caption() const;
+        State state() const;
+        int progress() const;
+        QString statusText() const;
         
-        virtual int id() const;
+        int id() const;
 	
         /**
          * returns whether it is possible to go forward in the history
@@ -117,14 +117,14 @@ class Frame : public QWidget
 
         virtual void slotStop();
 
-        virtual void slotSetStarted();
-        virtual void slotSetCanceled(const QString&);
-        virtual void slotSetCompleted();
-        virtual void slotSetState(State);
-        virtual void slotSetProgress(int);
-        virtual void slotSetCaption(const QString&);
-        virtual void slotSetTitle(const QString&);
-        virtual void slotSetStatusText(const QString&);
+        void slotSetStarted();
+        void slotSetCanceled(const QString&);
+        void slotSetCompleted();
+        void slotSetState(State);
+        void slotSetProgress(int);
+        void slotSetCaption(const QString&);
+        void slotSetTitle(const QString&);
+        void slotSetStatusText(const QString&);
 
     signals:
         void signalCaptionChanged(Akregator::Frame*, const QString&);

@@ -78,6 +78,7 @@ FeedIconManager::FeedIconManager()
    QDBusConnection::sessionBus().registerObject("/FeedIconManager", this, QDBusConnection::ExportScriptableSlots);
    d->m_favIconsModule =
      new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
+   Q_ASSERT( d->m_favIconsModule );
    connect( d->m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
            this, SLOT(slotIconChanged(bool,QString,QString)));
 }

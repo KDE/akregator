@@ -129,7 +129,7 @@ void ActionManagerImpl::slotNodeSelected(TreeNode* node)
         d->nodeSelectVisitor->visit(node);
 }
 
-ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent, const char* name) : ActionManager(parent, name), d(new ActionManagerImplPrivate)
+ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent ) : ActionManager(parent), d(new ActionManagerImplPrivate)
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;

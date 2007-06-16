@@ -50,31 +50,31 @@ class BrowserFrame : public Frame
     public:
 
         explicit BrowserFrame(QWidget* parent=0);
-        virtual ~BrowserFrame();
+        ~BrowserFrame();
 
-        virtual KUrl url() const;
+        KUrl url() const;
 
-        virtual KParts::ReadOnlyPart* part() const;
+        KParts::ReadOnlyPart* part() const;
 
-        virtual bool canGoForward() const;
-        virtual bool canGoBack() const;
-        virtual bool isReloadable() const;
-        virtual bool isLoading() const;
+        bool canGoForward() const;
+        bool canGoBack() const;
+        bool isReloadable() const;
+        bool isLoading() const;
 
-        virtual bool openUrl(const OpenUrlRequest& request);
+        bool openUrl(const OpenUrlRequest& request);
 
     public slots:
 
-        virtual void slotHistoryForward();
-        virtual void slotHistoryBack();
-        virtual void slotReload();
-        virtual void slotStop();
-        virtual void slotHistoryBackAboutToShow();
-        virtual void slotHistoryForwardAboutToShow();
+        void slotHistoryForward();
+        void slotHistoryBack();
+        void slotReload();
+        void slotStop();
+        void slotHistoryBackAboutToShow();
+        void slotHistoryForwardAboutToShow();
         
-        virtual void slotPaletteOrFontChanged();
+        void slotPaletteOrFontChanged();
 
-    protected slots:
+    private slots:
 
         void slotOpenUrlRequestDelayed(const KUrl&, const KParts::URLArgs&);
         void slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args);

@@ -90,13 +90,13 @@ class FrameManager : public QObject
         void signalLoadingProgress(int);
         void signalStatusText(const QString&);
 
-    protected:
+    private:
         
         void openUrl(OpenUrlRequest& request);
         
         void openInExternalBrowser(const OpenUrlRequest& request);
         
-    protected slots:
+    private slots:
 
         void slotSetStarted(Akregator::Frame* frame);
         void slotSetCanceled(Akregator::Frame* frame, const QString& reason);

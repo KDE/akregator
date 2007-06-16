@@ -139,17 +139,17 @@ Frame::State Frame::state() const
     return m_state;
 }
 
-const QString& Frame::title() const
+QString Frame::title() const
 {
     return m_title;
 }
 
-const QString& Frame::caption() const
+QString Frame::caption() const
 {
     return m_caption;
 }
 
-const QString& Frame::statusText() const
+QString Frame::statusText() const
 {
     return m_statusText;
 }

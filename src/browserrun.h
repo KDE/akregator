@@ -37,14 +37,14 @@ class BrowserRun : public KParts::BrowserRun
 	Q_OBJECT
     public:
         BrowserRun(const OpenUrlRequest& request, QWidget* parent);
-        virtual ~BrowserRun();
+        ~BrowserRun();
 
     signals:
 
         void signalFoundMimeType(const Akregator::OpenUrlRequest& request);
 
-    protected:
-	    virtual void foundMimeType(const QString& type);
+    private:
+        void foundMimeType(const QString& type);
 
     private:
         OpenUrlRequest m_request;

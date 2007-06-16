@@ -44,7 +44,7 @@ class SearchBar : public KHBox
     public:
 
         explicit SearchBar(QWidget* parent=0);
-        virtual ~SearchBar();
+        ~SearchBar();
 
         QString text() const;
         int status() const;

@@ -57,22 +57,19 @@ class AKREGATORPART_EXPORT FeedIconManager:public QObject
         
     public Q_SLOTS:
         Q_SCRIPTABLE void slotIconChanged(bool, const QString&, const QString&);
+        void slotFeedDestroyed(Akregator::TreeNode* node);
 
     signals:
         void signalIconChanged(const QString &, const QPixmap &);
 
-    public slots:
-        void slotFeedDestroyed(Akregator::TreeNode* node);
-
-    protected:
+    private:
 
         /** returns the url used to access the icon, e.g.
             http://dot.kde.org/ for "dot.kde.org/1113317400/" */
         QString getIconUrl(const KUrl& url);
 
         void loadIcon(const QString &);
-    
-    private:
+
         static FeedIconManager *m_instance;
 
         FeedIconManager();
