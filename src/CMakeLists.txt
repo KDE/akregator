@@ -1,5 +1,5 @@
 add_subdirectory( about ) 
-add_subdirectory( pics ) 
+add_subdirectory( icons ) 
 
 add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
 
