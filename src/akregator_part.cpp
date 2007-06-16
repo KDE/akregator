@@ -185,7 +185,7 @@ void Part::loadPlugins()
     {
         Akregator::Plugin* plugin = PluginManager::createFromService(*it);
         if (plugin)
-            plugin->init();
+            plugin->initialize();
     }
 }
 

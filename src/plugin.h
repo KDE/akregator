@@ -24,7 +24,7 @@ class AKREGATOR_EXPORT Plugin
     public:
         virtual ~Plugin();
 
-        virtual bool init() = 0;
+        void initialize();
         /**
             * TODO @param parent you must parent the widget to parent
             * @return the configure widget for your plugin, create it on the heap!
@@ -33,11 +33,12 @@ class AKREGATOR_EXPORT Plugin
         // virtual PluginConfig* configure() const { return 0; }
 
         void addPluginProperty( const QString& key, const QString& value );
-        QString pluginProperty( const QString& key );
-        bool hasPluginProperty( const QString& key );
+        QString pluginProperty( const QString& key ) const;
+        bool hasPluginProperty( const QString& key ) const;
 
     protected:
         Plugin();
+        virtual void doInitialize() = 0;
 
     private:
         QHash<QString, QString> m_properties;

@@ -36,8 +36,10 @@ class StorageFactory;
 class MK4Plugin : public Akregator::Plugin 
 {
    public: 
-      virtual ~MK4Plugin();	
-      virtual bool init();
+      ~MK4Plugin();	
+
+   private:
+      void doInitialize();
 
    private:
       StorageFactory* m_factory;

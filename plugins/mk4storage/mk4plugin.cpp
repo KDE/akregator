@@ -32,10 +32,10 @@ AKREGATOR_EXPORT_PLUGIN( Akregator::Backend::MK4Plugin )
 namespace Akregator {
 namespace Backend {
 
-bool MK4Plugin::init()
+void MK4Plugin::doInitialize()
 {
    m_factory = new StorageFactoryMK4Impl();
-   return StorageFactoryRegistry::self()->registerFactory(m_factory, "metakit");
+   StorageFactoryRegistry::self()->registerFactory(m_factory, "metakit");
 }
 
 MK4Plugin::~MK4Plugin()

@@ -22,8 +22,13 @@ Plugin::addPluginProperty( const QString& key, const QString& value )
 }
 
 
+void Plugin::initialize()
+{
+    doInitialize();
+}
+
 QString
-Plugin::pluginProperty( const QString& key )
+Plugin::pluginProperty( const QString& key ) const
 {
     if ( m_properties.find( key.toLower() ) == m_properties.end() )
         return "false";
@@ -33,7 +38,7 @@ Plugin::pluginProperty( const QString& key )
 
 
 bool
-Plugin::hasPluginProperty( const QString& key )
+Plugin::hasPluginProperty( const QString& key ) const
 {
     return m_properties.find( key.toLower() ) != m_properties.end();
 }
