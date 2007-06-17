@@ -29,6 +29,8 @@
 #include "akregator_export.h"
 #include "types.h"
 
+#include <boost/shared_ptr.hpp>
+
 class QDateTime;
 class QString;
 
@@ -37,10 +39,6 @@ template <class T> class QList;
 typedef unsigned int uint;
 
 class KUrl;
-
-namespace boost {
-    template <class T> class shared_ptr;
-}
 
 namespace Syndication
 {
@@ -129,7 +127,7 @@ class AKREGATORPART_EXPORT Article
 
     private:
         struct Private;
-        Private *d;
+        boost::shared_ptr<Private> d;
 };
 
 } // namespace Akregator

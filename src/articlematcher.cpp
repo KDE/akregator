@@ -26,7 +26,6 @@
  */
 #include "articlematcher.h"
 #include "article.h"
-#include "shared.h"
 #include "types.h"
 
 #include <kapplication.h>
