@@ -89,7 +89,7 @@ class MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
 
         virtual bool visitFeed(Feed* node)
         {
-            FeedPropertiesDialog *dlg = new FeedPropertiesDialog( m_mainWidget, "edit_feed" );
+            QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( m_mainWidget, "edit_feed" );
             dlg->setFeed(node);
             dlg->exec();
             delete dlg;
@@ -728,44 +728,40 @@ void MainWidget::slotFeedAdd()
 void MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
 {
 
-    AddFeedDialog *afd = new AddFeedDialog( 0, "add_feed" );
+    QPointer<AddFeedDialog> afd = new AddFeedDialog( this, "add_feed" );
 
     afd->setUrl(KUrl::fromPercentEncoding( url.toLatin1() ));
 
-    if (autoExec)
+    QPointer<QObject> thisPointer( this );
+
+    if ( autoExec )
         afd->accept();
     else
-    {
-        if (afd->exec() != QDialog::Accepted)
-        {
-            delete afd;
-            return;
-        }
-    }
+        afd->exec();
 
-    Feed* feed = afd->feed;
+    if ( !thisPointer ) // "this" might have been deleted while exec()!
+        return;
+
+    Feed* const feed = afd->feed();
     delete afd;
 
-    FeedPropertiesDialog *dlg = new FeedPropertiesDialog( 0, "edit_feed" );
-    dlg->setFeed(feed);
+    if ( !feed )
+        return;
 
+    QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( this, "edit_feed" );
+    dlg->setFeed(feed);
     dlg->selectFeedName();
 
-    if (!autoExec)
-        if (dlg->exec() != QDialog::Accepted)
-        {
-            delete feed;
-            delete dlg;
-            return;
-        }
-
-    if (!parent)
-        parent = m_feedList->rootNode();
-
-    parent->insertChild(feed, after);
-
-    m_feedListView->ensureNodeVisible(feed);
-
+    if ( !autoExec && ( dlg->exec() != QDialog::Accepted || !thisPointer ) )
+    {
+        delete feed;
+    }
+    else
+    {
+        parent = parent ? parent : m_feedList->rootNode();
+        parent->insertChild(feed, after);
+        m_feedListView->ensureNodeVisible(feed);
+    }
 
     delete dlg;
 }

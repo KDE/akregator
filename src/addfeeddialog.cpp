@@ -51,9 +51,14 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
 AddFeedWidget::~AddFeedWidget()
 {}
 
+Feed* AddFeedDialog::feed()
+{
+    return m_feed;
+}
+
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
    : KDialog(parent
-     /*Qt::WStyle_DialogBorder*/)
+     /*Qt::WStyle_DialogBorder*/), m_feed( 0 )
 {
     setObjectName(name);
     widget = new AddFeedWidget(this);
@@ -78,9 +83,8 @@ void AddFeedDialog::accept()
     enableButtonOk(false);
     feedUrl = widget->urlEdit->text().trimmed();
 
-    Feed *f=new Feed( Kernel::self()->storage() );
-
-    feed=f;
+    delete m_feed;
+    m_feed = new Feed( Kernel::self()->storage() );
 
     // HACK: make weird wordpress links ("feed:http://foobar/rss") work
     if (feedUrl.startsWith("feed:"))
@@ -88,18 +92,18 @@ void AddFeedDialog::accept()
 
     if (feedUrl.indexOf(":/") == -1)
         feedUrl.prepend("http://");
-    f->setXmlUrl(feedUrl);
+    m_feed->setXmlUrl(feedUrl);
 
     widget->statusLabel->setText( i18n("Downloading %1", feedUrl) );
 
-    connect( feed, SIGNAL(fetched(Akregator::Feed* )),
+    connect( m_feed, SIGNAL(fetched(Akregator::Feed* )),
              this, SLOT(fetchCompleted(Akregator::Feed *)) );
-    connect( feed, SIGNAL(fetchError(Akregator::Feed* )),
+    connect( m_feed, SIGNAL(fetchError(Akregator::Feed* )),
              this, SLOT(fetchError(Akregator::Feed *)) );
-    connect( feed, SIGNAL(fetchDiscovery(Akregator::Feed* )),
+    connect( m_feed, SIGNAL(fetchDiscovery(Akregator::Feed* )),
              this, SLOT(fetchDiscovery(Akregator::Feed *)) );
 
-    f->fetch(true);
+    m_feed->fetch(true);
 }
 
 void AddFeedDialog::fetchCompleted(Feed */*f*/)
