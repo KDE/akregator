@@ -25,8 +25,8 @@
 #ifndef AKREGATOR_ABOUTDATA_H
 #define AKREGATOR_ABOUTDATA_H
 
+#include "akregator_export.h"
 #include <kaboutdata.h>
-#include <kdemacros.h>
 
 #define AKREGATOR_VERSION "1.2.50"
 
@@ -34,7 +34,7 @@ namespace Akregator {
 /**
 @author Teemu Rytilahti
 */
-class KDE_EXPORT AboutData : public KAboutData
+class AKREGATOR_EXPORT AboutData : public KAboutData
 {
 public:
     AboutData();
