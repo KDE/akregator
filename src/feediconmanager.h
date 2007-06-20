@@ -73,7 +73,7 @@ class AKREGATORPART_EXPORT FeedIconManager:public QObject
         static FeedIconManager *m_instance;
 
         FeedIconManager();
-	
+
         class FeedIconManagerPrivate;
         FeedIconManagerPrivate* d;
 };

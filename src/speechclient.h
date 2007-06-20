@@ -47,7 +47,7 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
 
         static SpeechClient* self();
         bool isTextToSpeechInstalled() const;
-        virtual ~SpeechClient();
+        ~SpeechClient();
 
     public slots:
 
