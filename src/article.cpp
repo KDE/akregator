@@ -217,6 +217,7 @@ Article::~Article()
 Article &Article::operator=(const Article &other)
 {
     d = other.d;
+    return *this;
 }
 
 
