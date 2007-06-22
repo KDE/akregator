@@ -15,32 +15,46 @@ kde4_automoc(${akregator_SRCS})
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
-target_link_libraries(akregator ${KDE4_KPARTS_LIBS} akregatorprivate )
+target_link_libraries(akregator ${KDE4_KPARTS_LIBS} akregatorinterfaces akregatorprivate )
 
 install(TARGETS akregator  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### next target ###############
 
-set(akregatorprivate_LIB_SRCS
+set(akregatorinterfaces_LIB_SRCS
+   articleinterceptor.cpp 
    plugin.cpp 
-   aboutdata.cpp 
-   trayicon.cpp 
    storagefactoryregistry.cpp 
 )
 
-kde4_automoc(${akregatorprivate_LIB_SRCS})
+kde4_automoc(${akregatorinterfaces_LIB_SRCS})
 
+kde4_add_library(akregatorinterfaces SHARED ${akregatorinterfaces_LIB_SRCS})
+
+target_link_libraries(akregatorinterfaces kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} )
+
+set_target_properties(akregatorinterfaces PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
+install(TARGETS akregatorinterfaces DESTINATION ${LIB_INSTALL_DIR})
+install( FILES storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h articleinterceptor.h  DESTINATION ${INCLUDE_INSTALL_DIR}/akregator )
+
+########### next target ###############
+
+set(akregatorprivate_LIB_SRCS
+   aboutdata.cpp 
+   trayicon.cpp 
+)
+
+kde4_automoc(${akregatorprivate_LIB_SRCS})
 
 kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate  kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} )
+target_link_libraries(akregatorprivate kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-install(TARGETS akregatorprivate  DESTINATION ${LIB_INSTALL_DIR})
-
+install(TARGETS akregatorprivate DESTINATION ${LIB_INSTALL_DIR})
 
 ########### next target ###############
 
@@ -56,7 +70,6 @@ set(akregatorpart_PART_SRCS
    feedlist.cpp 
    fetchqueue.cpp 
    feediconmanager.cpp 
-   articleinterceptor.cpp 
    pluginmanager.cpp
    selectioncontroller.cpp
    subscriptionlistmodel.cpp
@@ -111,7 +124,7 @@ kde4_add_plugin(akregatorpart WITH_PREFIX ${akregatorpart_PART_SRCS})
 
 
 
-target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorprivate)
+target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate)
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -125,5 +138,4 @@ install( FILES articleviewer.rc pageviewer.rc akregator_part.rc akregator.notify
 install( FILES akregator_plugin.desktop  DESTINATION ${SERVICETYPES_INSTALL_DIR})
 install( FILES akregator_shell.rc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES feed.protocol  DESTINATION ${SERVICES_INSTALL_DIR})
-#install( FILES storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h articleinterceptor.h  DESTINATION ${INCLUDE_INSTALL_DIR}/akregator)
 install( FILES org.kde.akregator.part.xml DESTINATION ${DBUS_INTERFACES_DIR} )
