@@ -1,3 +1,4 @@
+include_directories( ${CMAKE_SOURCE_DIR}/akregator/interfaces ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIR} )
 
 set(libmetakitlocal_SRCS 
                 ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/column.cpp 
@@ -20,9 +21,6 @@ set(libmetakitlocal_SRCS
 
 add_subdirectory( metakit ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/akregator/src ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIR} )
-
-
 ########### next target ###############
 
 set(akregator_mk4storage_plugin_PART_SRCS ${libmetakitlocal_SRCS}
@@ -37,9 +35,7 @@ kde4_add_plugin(akregator_mk4storage_plugin WITH_PREFIX ${akregator_mk4storage_p
 
 target_link_libraries(akregator_mk4storage_plugin  ${KDE4_KDECORE_LIBS} ${KDE4_SYNDICATION_LIBS} akregatorinterfaces )
 
-
 install(TARGETS akregator_mk4storage_plugin  DESTINATION ${PLUGIN_INSTALL_DIR})
-
 
 ########### install files ###############
 
