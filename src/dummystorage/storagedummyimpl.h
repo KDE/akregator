@@ -39,64 +39,65 @@ class StorageDummyImpl : public Storage
     Q_OBJECT
     public:
 
-        StorageDummyImpl();     
+        StorageDummyImpl();
         StorageDummyImpl(const StorageDummyImpl&);
         StorageDummyImpl &operator =(const StorageDummyImpl&);
-        virtual ~StorageDummyImpl();
-        virtual void initialize(const QStringList& params);
+        ~StorageDummyImpl();
+        void initialize(const QStringList& params);
         /**
          * Open storage and prepare it for work.
          * @return true on success.
          */
-        virtual bool open(bool autoCommit = false);
+        bool open(bool autoCommit = false);
 
         /**
          * Commit changes made in feeds and articles, making them persistent.
          * @return true on success.
          */
-        virtual bool commit();
+        bool commit();
 
         /**
          * Rollback changes made in feeds and articles, reverting to last committed values.
          * @returns true on success.
          */
-        virtual bool rollback();
+        bool rollback();
 
         /**
          * Closes storage, freeing all allocated resources. Called from destructor, so you don't need to call it directly.
          * @return true on success.
          */
-        virtual bool close();
+        bool close();
 
         /**
          * @return Article archive for feed at given url.
          */
-        virtual FeedStorage* archiveFor(const QString &url);
-        virtual bool autoCommit() const;
-        virtual int unreadFor(const QString &url);
-        virtual void setUnreadFor(const QString &url, int unread);
-        virtual int totalCountFor(const QString &url);
-        virtual void setTotalCountFor(const QString &url, int total);
-        virtual int lastFetchFor(const QString& url);
-        virtual void setLastFetchFor(const QString& url, int lastFetch);
-        virtual QStringList feeds() const;
+        FeedStorage* archiveFor(const QString &url);
+	const FeedStorage* archiveFor(const QString &url) const;
+        bool autoCommit() const;
+        int unreadFor(const QString &url) const;
+        void setUnreadFor(const QString &url, int unread);
+        int totalCountFor(const QString &url) const;
+        void setTotalCountFor(const QString &url, int total);
+        int lastFetchFor(const QString& url) const;
+        void setLastFetchFor(const QString& url, int lastFetch);
+        QStringList feeds() const;
 
-        virtual void storeFeedList(const QString& opmlStr);
-        virtual QString restoreFeedList() const;
+        void storeFeedList(const QString& opmlStr);
+        QString restoreFeedList() const;
 
-        virtual void storeTagSet(const QString& xmlStr);
-        virtual QString restoreTagSet() const;
+        void storeTagSet(const QString& xmlStr);
+        QString restoreTagSet() const;
 
         /** adds all feed storages from a source to this storage
             existing articles are replaced
         */
-        virtual void add(Storage* source);
+        void add(Storage* source);
         
         /** deletes all feed storages in this archive */
-        virtual void clear();
+        void clear();
         
     protected slots:
-        virtual void slotCommit();
+        void slotCommit();
         
     private:
         class StorageDummyImplPrivate;

@@ -35,10 +35,8 @@
 #include <kdebug.h>
 #include <kstandarddirs.h>
 
-namespace Akregator {
-namespace Backend {
 
-class StorageMK4Impl::StorageMK4ImplPrivate
+class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 {
     public:
         StorageMK4ImplPrivate() : modified(false),
@@ -50,10 +48,11 @@ class StorageMK4Impl::StorageMK4ImplPrivate
             plastFetch("lastFetch") {}
 
         c4_Storage* storage;
+	Akregator::Backend::StorageMK4Impl* q;
         c4_View archiveView;
         bool autoCommit;
         bool modified;
-        QMap<QString, FeedStorage*> feeds;
+        mutable QMap<QString, Akregator::Backend::FeedStorageMK4Impl*> feeds;
         QStringList feedURLs;
         c4_StringProp purl, pFeedList, pTagSet;
         c4_IntProp punread, ptotalCount, plastFetch;
@@ -62,23 +61,13 @@ class StorageMK4Impl::StorageMK4ImplPrivate
 
         c4_Storage* feedListStorage;
         c4_View feedListView;
+
+        Akregator::Backend::FeedStorageMK4Impl* createFeedStorage( const QString& url );
 };
 
-void StorageMK4Impl::setArchivePath(const QString& archivePath)
+Akregator::Backend::StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
 {
-    if (archivePath.isNull()) // if isNull, reset to default
-        d->archivePath = defaultArchivePath();
-    else
-        d->archivePath = archivePath;
-}
-
-QString StorageMK4Impl::archivePath() const
-{
-    return d->archivePath;
-}
-
-StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
-{
+    d->q = this;
     setArchivePath(QString::null); // set path to default
     // commit changes every 3 seconds
     d->commitTimer = new QTimer(this);
@@ -86,20 +75,65 @@ StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
     d->commitTimer->start(3000);
 }
 
-QString StorageMK4Impl::defaultArchivePath()
+Akregator::Backend::FeedStorageMK4Impl* Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate::createFeedStorage( const QString& url )
+{
+    if (!feeds.contains(url))
+    {
+        Akregator::Backend::FeedStorageMK4Impl* fs = new Akregator::Backend::FeedStorageMK4Impl(url, q);
+        feeds[url] = fs;
+        c4_Row findrow;
+        purl(findrow) = url.toAscii();
+        int findidx = archiveView.Find(findrow);
+        if (findidx == -1)
+        {
+            punread(findrow) = 0;
+            ptotalCount(findrow) = 0;
+            plastFetch(findrow) = 0;
+            archiveView.Add(findrow);
+            modified = true;
+        }
+        fs->convertOldArchive();
+    }
+    return feeds[url];
+}
+
+Akregator::Backend::FeedStorage* Akregator::Backend::StorageMK4Impl::archiveFor(const QString& url)
+{
+    return d->createFeedStorage( url );
+}
+
+const Akregator::Backend::FeedStorage* Akregator::Backend::StorageMK4Impl::archiveFor(const QString& url) const
+{
+    return d->createFeedStorage( url );
+}
+
+void Akregator::Backend::StorageMK4Impl::setArchivePath(const QString& archivePath)
+{
+    if (archivePath.isNull()) // if isNull, reset to default
+        d->archivePath = defaultArchivePath();
+    else
+        d->archivePath = archivePath;
+}
+
+QString Akregator::Backend::StorageMK4Impl::archivePath() const
+{
+    return d->archivePath;
+}
+
+QString Akregator::Backend::StorageMK4Impl::defaultArchivePath() 
 {
     return KGlobal::dirs()->saveLocation("data", "akregator")+"Archive";
 }
 
-StorageMK4Impl::~StorageMK4Impl()
+Akregator::Backend::StorageMK4Impl::~StorageMK4Impl()
 {
     close();
     delete d;
     d = 0;
 }
-void StorageMK4Impl::initialize(const QStringList&) {}
+void Akregator::Backend::StorageMK4Impl::initialize(const QStringList&) {}
 
-bool StorageMK4Impl::open(bool autoCommit)
+bool Akregator::Backend::StorageMK4Impl::open(bool autoCommit)
 {
     QString filePath = d->archivePath +"/archiveindex.mk4";
     d->storage = new c4_Storage(filePath.toLocal8Bit(), true);
@@ -114,17 +148,17 @@ bool StorageMK4Impl::open(bool autoCommit)
     return true;
 }
 
-bool StorageMK4Impl::autoCommit() const
+bool Akregator::Backend::StorageMK4Impl::autoCommit() const
 {
     return d->autoCommit;
 }
 
-bool StorageMK4Impl::close()
+bool Akregator::Backend::StorageMK4Impl::close()
 {
     d->commitTimer->stop();
 
-    QMap<QString, FeedStorage*>::Iterator it;
-    QMap<QString, FeedStorage*>::Iterator end(d->feeds.end() ) ;
+    QMap<QString, FeedStorageMK4Impl*>::Iterator it;
+    QMap<QString, FeedStorageMK4Impl*>::Iterator end(d->feeds.end() ) ;
     for (it = d->feeds.begin(); it != end; ++it)
     {
         it.value()->close();
@@ -143,10 +177,10 @@ bool StorageMK4Impl::close()
     return true;
 }
 
-bool StorageMK4Impl::commit()
+bool Akregator::Backend::StorageMK4Impl::commit()
 {
-    QMap<QString, FeedStorage*>::Iterator it;
-    QMap<QString, FeedStorage*>::Iterator end(d->feeds.end() ) ;
+    QMap<QString, FeedStorageMK4Impl*>::Iterator it;
+    QMap<QString, FeedStorageMK4Impl*>::Iterator end(d->feeds.end() ) ;
     for ( it = d->feeds.begin(); it != end; ++it )
         it.value()->commit();
 
@@ -159,10 +193,10 @@ bool StorageMK4Impl::commit()
     return false;
 }
 
-bool StorageMK4Impl::rollback()
+bool Akregator::Backend::StorageMK4Impl::rollback()
 {
-    QMap<QString, FeedStorage*>::Iterator it;
-    QMap<QString, FeedStorage*>::Iterator end(d->feeds.end() ) ;
+    QMap<QString, FeedStorageMK4Impl*>::Iterator it;
+    QMap<QString, FeedStorageMK4Impl*>::Iterator end(d->feeds.end() ) ;
     for ( it = d->feeds.begin(); it != end; ++it )
         it.value()->rollback();
 
@@ -174,7 +208,7 @@ bool StorageMK4Impl::rollback()
     return false;
 }
 
-int StorageMK4Impl::unreadFor(const QString &url)
+int Akregator::Backend::StorageMK4Impl::unreadFor(const QString &url) const 
 {
     c4_Row findrow;
     d->purl(findrow) = url.toAscii();
@@ -183,7 +217,7 @@ int StorageMK4Impl::unreadFor(const QString &url)
     return findidx != -1 ? d->punread(d->archiveView.GetAt(findidx)) : 0;
 }
 
-void StorageMK4Impl::setUnreadFor(const QString &url, int unread)
+void Akregator::Backend::StorageMK4Impl::setUnreadFor(const QString &url, int unread)
 {
     c4_Row findrow;
     d->purl(findrow) = url.toAscii();
@@ -196,7 +230,7 @@ void StorageMK4Impl::setUnreadFor(const QString &url, int unread)
     d->modified = true;
 }
 
-int StorageMK4Impl::totalCountFor(const QString &url)
+int Akregator::Backend::StorageMK4Impl::totalCountFor(const QString &url) const 
 {
     c4_Row findrow;
     d->purl(findrow) = url.toAscii();
@@ -205,7 +239,7 @@ int StorageMK4Impl::totalCountFor(const QString &url)
     return findidx != -1 ? d->ptotalCount(d->archiveView.GetAt(findidx)) : 0;
 }
 
-void StorageMK4Impl::setTotalCountFor(const QString &url, int total)
+void Akregator::Backend::StorageMK4Impl::setTotalCountFor(const QString &url, int total)
 {
     c4_Row findrow;
     d->purl(findrow) = url.toAscii();
@@ -218,7 +252,7 @@ void StorageMK4Impl::setTotalCountFor(const QString &url, int total)
     d->modified = true;
 }
 
-int StorageMK4Impl::lastFetchFor(const QString& url)
+int Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString& url) const 
 {
     c4_Row findrow;
     d->purl(findrow) = url.toAscii();
@@ -227,7 +261,7 @@ int StorageMK4Impl::lastFetchFor(const QString& url)
     return (findidx != -1 ? d->plastFetch(d->archiveView.GetAt(findidx)) : 0);
 }
 
-void StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
+void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
 {
     c4_Row findrow;
     d->purl(findrow) = url.toAscii();
@@ -240,36 +274,14 @@ void StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
     d->modified = true;
 }
 
-void StorageMK4Impl::slotCommit()
+void Akregator::Backend::StorageMK4Impl::slotCommit()
 {
     if (d->modified)
     	commit();
     d->modified = false;
 }
 
-FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
-{
-    if (!d->feeds.contains(url))
-    {
-        FeedStorage* fs = new FeedStorageMK4Impl(url, this);
-        d->feeds[url] = fs;
-        c4_Row findrow;
-        d->purl(findrow) = url.toAscii();
-        int findidx = d->archiveView.Find(findrow);
-        if (findidx == -1)
-        {
-            d->punread(findrow) = 0;
-            d->ptotalCount(findrow) = 0;
-            d->plastFetch(findrow) = 0;
-            d->archiveView.Add(findrow);
-            d->modified = true;
-        }
-        fs->convertOldArchive();
-    }
-    return d->feeds[url];
-}
-
-QStringList StorageMK4Impl::feeds() const
+QStringList Akregator::Backend::StorageMK4Impl::feeds() const
 {
     // TODO: cache list
     QStringList list;
@@ -281,7 +293,7 @@ QStringList StorageMK4Impl::feeds() const
 
 }
 
-void StorageMK4Impl::add(Storage* source)
+void Akregator::Backend::StorageMK4Impl::add(Storage* source)
 {
     QStringList feeds = source->feeds();
     QStringList::ConstIterator end(feeds.end() ) ;
@@ -294,7 +306,7 @@ void StorageMK4Impl::add(Storage* source)
 }
 
 
-void StorageMK4Impl::clear()
+void Akregator::Backend::StorageMK4Impl::clear()
 {
    QStringList feeds;
     int size = d->archiveView.GetSize();
@@ -313,7 +325,7 @@ void StorageMK4Impl::clear()
 
 }
 
-void StorageMK4Impl::storeFeedList(const QString& opmlStr)
+void Akregator::Backend::StorageMK4Impl::storeFeedList(const QString& opmlStr)
 {
    
     if  (d->feedListView.GetSize() == 0)
@@ -332,7 +344,7 @@ void StorageMK4Impl::storeFeedList(const QString& opmlStr)
     d->modified = true;
 }
 
-QString StorageMK4Impl::restoreFeedList() const
+QString Akregator::Backend::StorageMK4Impl::restoreFeedList() const
 {
     if  (d->feedListView.GetSize() == 0)
         return "";
@@ -341,7 +353,7 @@ QString StorageMK4Impl::restoreFeedList() const
     return QString::fromUtf8(d->pFeedList(row));
 }
 
-void StorageMK4Impl::storeTagSet(const QString& xmlStr)
+void Akregator::Backend::StorageMK4Impl::storeTagSet(const QString& xmlStr)
 {
    
     if  (d->feedListView.GetSize() == 0)
@@ -360,7 +372,7 @@ void StorageMK4Impl::storeTagSet(const QString& xmlStr)
     d->modified = true;
 }
 
-QString StorageMK4Impl::restoreTagSet() const
+QString Akregator::Backend::StorageMK4Impl::restoreTagSet() const
 {
     if  (d->feedListView.GetSize() == 0)
         return "";
@@ -369,7 +381,5 @@ QString StorageMK4Impl::restoreTagSet() const
     return QString::fromUtf8(d->pTagSet(row));
 }
 
-} // namespace Backend
-} // namespace Akregator
 
 #include "storagemk4impl.moc"

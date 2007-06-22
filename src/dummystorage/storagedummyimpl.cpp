@@ -98,7 +98,7 @@ bool StorageDummyImpl::rollback()
     return true;
 }
 
-int StorageDummyImpl::unreadFor(const QString &url)
+int StorageDummyImpl::unreadFor(const QString &url) const
 {
     return d->feeds.contains(url) ? d->feeds[url].unread : 0;
 }
@@ -111,7 +111,7 @@ void StorageDummyImpl::setUnreadFor(const QString &url, int unread)
        d->feeds[url].unread = unread;
 }
 
-int StorageDummyImpl::totalCountFor(const QString &url)
+int StorageDummyImpl::totalCountFor(const QString &url) const
 {
     return d->feeds.contains(url) ? d->feeds[url].totalCount : 0;
 }
@@ -124,7 +124,7 @@ void StorageDummyImpl::setTotalCountFor(const QString &url, int total)
        d->feeds[url].totalCount = total;
 }
 
-int StorageDummyImpl::lastFetchFor(const QString& url)
+int StorageDummyImpl::lastFetchFor(const QString& url) const
 {
     return d->feeds.contains(url) ? d->feeds[url].lastFetch : 0;
 }
@@ -145,6 +145,14 @@ FeedStorage* StorageDummyImpl::archiveFor(const QString& url)
 {
     if (!d->feeds.contains(url))
         d->feeds[url].feedStorage = new FeedStorageDummyImpl(url, this);
+
+    return d->feeds[url].feedStorage;
+}
+
+const FeedStorage* StorageDummyImpl::archiveFor(const QString& url) const
+{
+    if (!d->feeds.contains(url))
+        d->feeds[url].feedStorage = new FeedStorageDummyImpl(url, const_cast<StorageDummyImpl*>( this ) );
 
     return d->feeds[url].feedStorage;
 }

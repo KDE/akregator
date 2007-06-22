@@ -33,69 +33,69 @@ class FeedStorageMK4Impl : public FeedStorage
 {
     public:
         FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main);
-        virtual ~FeedStorageMK4Impl();
+        ~FeedStorageMK4Impl();
 
 
-        virtual void add(FeedStorage* source);
-        virtual void copyArticle(const QString& guid, FeedStorage* source);
-        virtual void clear();
+        void add(FeedStorage* source);
+        void copyArticle(const QString& guid, FeedStorage* source);
+        void clear();
         
-        virtual int unread();
-        virtual void setUnread(int unread);
-        virtual int totalCount();
-        virtual int lastFetch();
-        virtual void setLastFetch(int lastFetch);
+        int unread() const;
+        void setUnread(int unread);
+        int totalCount() const;
+        int lastFetch() const;
+        void setLastFetch(int lastFetch);
 
-        virtual QStringList articles(const QString& tag=QString::null);
+        QStringList articles(const QString& tag=QString::null) const;
 
-        virtual QStringList articles(const Category& cat);
+        QStringList articles(const Category& cat) const;
 
-        virtual bool contains(const QString& guid);
-        virtual void addEntry(const QString& guid);
-        virtual void deleteArticle(const QString& guid);
-        virtual int comments(const QString& guid);
-        virtual QString commentsLink(const QString& guid);
-        virtual void setCommentsLink(const QString& guid, const QString& commentsLink);
-        virtual void setComments(const QString& guid, int comments);
-        virtual bool guidIsHash(const QString& guid);
-        virtual void setGuidIsHash(const QString& guid, bool isHash);
-        virtual bool guidIsPermaLink(const QString& guid);
-        virtual void setGuidIsPermaLink(const QString& guid, bool isPermaLink);
-        virtual uint hash(const QString& guid);
-        virtual void setHash(const QString& guid, uint hash);
-        virtual void setDeleted(const QString& guid);
-        virtual QString link(const QString& guid);
-        virtual void setLink(const QString& guid, const QString& link); 
-        virtual uint pubDate(const QString& guid);
-        virtual void setPubDate(const QString& guid, uint pubdate);
-        virtual int status(const QString& guid);
-        virtual void setStatus(const QString& guid, int status);
-        virtual QString title(const QString& guid);
-        virtual void setTitle(const QString& guid, const QString& title);
-        virtual QString description(const QString& guid);
-        virtual void setDescription(const QString& guid, const QString& description);
-        virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
-        virtual void removeEnclosure(const QString& guid);
-        virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length);
+        bool contains(const QString& guid) const;
+        void addEntry(const QString& guid);
+        void deleteArticle(const QString& guid);
+        int comments(const QString& guid) const;
+        QString commentsLink(const QString& guid) const;
+        void setCommentsLink(const QString& guid, const QString& commentsLink);
+        void setComments(const QString& guid, int comments);
+        bool guidIsHash(const QString& guid) const;
+        void setGuidIsHash(const QString& guid, bool isHash);
+        bool guidIsPermaLink(const QString& guid) const;
+        void setGuidIsPermaLink(const QString& guid, bool isPermaLink);
+        uint hash(const QString& guid) const;
+        void setHash(const QString& guid, uint hash);
+        void setDeleted(const QString& guid);
+        QString link(const QString& guid) const;
+        void setLink(const QString& guid, const QString& link); 
+        uint pubDate(const QString& guid) const;
+        void setPubDate(const QString& guid, uint pubdate);
+        int status(const QString& guid) const;
+        void setStatus(const QString& guid, int status);
+        QString title(const QString& guid) const;
+        void setTitle(const QString& guid, const QString& title);
+        QString description(const QString& guid) const;
+        void setDescription(const QString& guid, const QString& description);
+        void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
+        void removeEnclosure(const QString& guid);
+        void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) const;
         
-        virtual void addTag(const QString& guid, const QString& tag);
-        virtual void removeTag(const QString& guid, const QString& tag);
-        virtual QStringList tags(const QString& guid=QString::null);
+        void addTag(const QString& guid, const QString& tag);
+        void removeTag(const QString& guid, const QString& tag);
+        QStringList tags(const QString& guid=QString::null) const;
 
-        virtual void addCategory(const QString& guid, const Category& category);
-        virtual QList<Category> categories(const QString& guid=QString::null);
+        void addCategory(const QString& guid, const Category& category);
+        QList<Category> categories(const QString& guid=QString::null) const;
 
-        virtual void setAuthor(const QString& guid, const QString& author);
-        virtual QString author(const QString& guid);
+        void setAuthor(const QString& guid, const QString& author);
+        QString author(const QString& guid) const;
         
-        virtual void close();
-        virtual void commit();
-        virtual void rollback();
+        void close();
+        void commit();
+        void rollback();
         
-        virtual void convertOldArchive();
+        void convertOldArchive();
    private:
         /** finds article by guid, returns -1 if not in archive **/
-        int findArticle(const QString& guid);
+        int findArticle(const QString& guid) const;
         void setTotalCount(int total);
         class FeedStorageMK4ImplPrivate;
         FeedStorageMK4ImplPrivate* d;

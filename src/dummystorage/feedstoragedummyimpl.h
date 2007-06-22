@@ -40,54 +40,54 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void copyArticle(const QString& guid, FeedStorage* source);
         
         virtual void clear();
-        virtual int unread();
+        virtual int unread() const;
         virtual void setUnread(int unread);
-        virtual int totalCount();
-        virtual int lastFetch();
+        virtual int totalCount() const;
+        virtual int lastFetch() const;
         virtual void setLastFetch(int lastFetch);
       
-        virtual QStringList articles(const QString& tag=QString::null);
+        virtual QStringList articles(const QString& tag=QString::null) const;
 
-        virtual QStringList articles(const Category& cat);
+        virtual QStringList articles(const Category& cat) const;
 
 
-        virtual bool contains(const QString& guid);
+        virtual bool contains(const QString& guid) const;
         virtual void addEntry(const QString& guid);
         virtual void deleteArticle(const QString& guid);
-        virtual int comments(const QString& guid);
-        virtual QString commentsLink(const QString& guid);
+        virtual int comments(const QString& guid) const;
+        virtual QString commentsLink(const QString& guid) const;
         virtual void setCommentsLink(const QString& guid, const QString& commentsLink);
         virtual void setComments(const QString& guid, int comments);
-        virtual bool guidIsHash(const QString& guid);
+        virtual bool guidIsHash(const QString& guid) const;
         virtual void setGuidIsHash(const QString& guid, bool isHash);
-        virtual bool guidIsPermaLink(const QString& guid);
+        virtual bool guidIsPermaLink(const QString& guid) const;
         virtual void setGuidIsPermaLink(const QString& guid, bool isPermaLink);
-        virtual uint hash(const QString& guid);
+        virtual uint hash(const QString& guid) const;
         virtual void setHash(const QString& guid, uint hash);
         virtual void setDeleted(const QString& guid);
-        virtual QString link(const QString& guid);
+        virtual QString link(const QString& guid) const;
         virtual void setLink(const QString& guid, const QString& link); 
-        virtual uint pubDate(const QString& guid);
+        virtual uint pubDate(const QString& guid) const;
         virtual void setPubDate(const QString& guid, uint pubdate);
-        virtual int status(const QString& guid);
+        virtual int status(const QString& guid) const;
         virtual void setStatus(const QString& guid, int status);
-        virtual QString title(const QString& guid);
+        virtual QString title(const QString& guid) const;
         virtual void setTitle(const QString& guid, const QString& title);
-        virtual QString description(const QString& guid);
+        virtual QString description(const QString& guid) const;
         virtual void setDescription(const QString& guid, const QString& description);
         virtual void addTag(const QString& guid, const QString& tag);
         virtual void removeTag(const QString& guid, const QString& tag);
-        virtual QStringList tags(const QString& guid=QString::null);
+        virtual QStringList tags(const QString& guid=QString::null) const;
 
         virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
         virtual void removeEnclosure(const QString& guid);
-        virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length);
+        virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) const;
 
         virtual void addCategory(const QString& guid, const Category& category);
-        virtual QList<Category> categories(const QString& guid=QString::null);
+        virtual QList<Category> categories(const QString& guid=QString::null) const;
 
         virtual void setAuthor(const QString& guid, const QString& author);
-        virtual QString author(const QString& guid);
+        virtual QString author(const QString& guid) const;
 
         virtual void close();
         virtual void commit();
@@ -96,7 +96,7 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void convertOldArchive();
    private:
         /** finds article by guid, returns -1 if not in archive **/
-        int findArticle(const QString& guid);
+        int findArticle(const QString& guid) const;
         void setTotalCount(int total);
         class FeedStorageDummyImplPrivate;
         FeedStorageDummyImplPrivate* d;

@@ -107,7 +107,7 @@ void FeedStorageDummyImpl::close()
 {
 }
 
-int FeedStorageDummyImpl::unread()
+int FeedStorageDummyImpl::unread() const
 {
     return d->mainStorage->unreadFor(d->url);
 }
@@ -117,7 +117,7 @@ void FeedStorageDummyImpl::setUnread(int unread)
     d->mainStorage->setUnreadFor(d->url, unread);
 }
 
-int FeedStorageDummyImpl::totalCount()
+int FeedStorageDummyImpl::totalCount() const
 {
     return d->mainStorage->totalCountFor(d->url);
 }
@@ -127,7 +127,7 @@ void FeedStorageDummyImpl::setTotalCount(int total)
     d->mainStorage->setTotalCountFor(d->url, total);
 }
 
-int FeedStorageDummyImpl::lastFetch()
+int FeedStorageDummyImpl::lastFetch() const
 {
     return d->mainStorage->lastFetchFor(d->url);
 }
@@ -137,12 +137,12 @@ void FeedStorageDummyImpl::setLastFetch(int lastFetch)
     d->mainStorage->setLastFetchFor(d->url, lastFetch);
 }
 
-QStringList FeedStorageDummyImpl::articles(const QString& tag)
+QStringList FeedStorageDummyImpl::articles(const QString& tag) const
 {
     return tag.isNull() ? QStringList(d->entries.keys()) : d->taggedArticles.value(tag);
 }
 
-QStringList FeedStorageDummyImpl::articles(const Category& cat)
+QStringList FeedStorageDummyImpl::articles(const Category& cat) const
 {
     return d->categorizedArticles.value(cat);
 }
@@ -156,7 +156,7 @@ void FeedStorageDummyImpl::addEntry(const QString& guid)
     }
 }
 
-bool FeedStorageDummyImpl::contains(const QString& guid)
+bool FeedStorageDummyImpl::contains(const QString& guid) const
 {
     return d->entries.contains(guid);
 }
@@ -171,28 +171,28 @@ void FeedStorageDummyImpl::deleteArticle(const QString& guid)
     d->entries.remove(guid);
 }
 
-int FeedStorageDummyImpl::comments(const QString& guid)
+int FeedStorageDummyImpl::comments(const QString& guid) const
 {
 
     return contains(guid) ? d->entries[guid].comments : 0;
 }
 
-QString FeedStorageDummyImpl::commentsLink(const QString& guid)
+QString FeedStorageDummyImpl::commentsLink(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].commentsLink : "";
 }
 
-bool FeedStorageDummyImpl::guidIsHash(const QString& guid)
+bool FeedStorageDummyImpl::guidIsHash(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].guidIsHash : false;
 }
 
-bool FeedStorageDummyImpl::guidIsPermaLink(const QString& guid)
+bool FeedStorageDummyImpl::guidIsPermaLink(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].guidIsPermaLink : false;
 }
 
-uint FeedStorageDummyImpl::hash(const QString& guid)
+uint FeedStorageDummyImpl::hash(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].hash : 0;
 }
@@ -233,17 +233,17 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     entry.commentsLink = "";
 }
 
-QString FeedStorageDummyImpl::link(const QString& guid)
+QString FeedStorageDummyImpl::link(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].link : "";
 }
 
-uint FeedStorageDummyImpl::pubDate(const QString& guid)
+uint FeedStorageDummyImpl::pubDate(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].pubDate : 0;
 }
 
-int FeedStorageDummyImpl::status(const QString& guid)
+int FeedStorageDummyImpl::status(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].status : 0;
 }
@@ -254,17 +254,17 @@ void FeedStorageDummyImpl::setStatus(const QString& guid, int status)
         d->entries[guid].status = status;
 }
 
-QString FeedStorageDummyImpl::title(const QString& guid)
+QString FeedStorageDummyImpl::title(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].title : "";
 }
 
-QString FeedStorageDummyImpl::description(const QString& guid)
+QString FeedStorageDummyImpl::description(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].description : "";
 }
 
-QString FeedStorageDummyImpl::author(const QString& guid)
+QString FeedStorageDummyImpl::author(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].author : QString();
 }
@@ -356,7 +356,7 @@ void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
     d->categorizedArticles[cat].append(guid);
 }
 
-QList<Category> FeedStorageDummyImpl::categories(const QString& guid)
+QList<Category> FeedStorageDummyImpl::categories(const QString& guid) const
 {
   if (!guid.isNull())
         return contains(guid) ? d->entries[guid].categories : QList<Category>();
@@ -376,7 +376,7 @@ void FeedStorageDummyImpl::removeTag(const QString& guid, const QString& tag)
     }
 }
 
-QStringList FeedStorageDummyImpl::tags(const QString& guid)
+QStringList FeedStorageDummyImpl::tags(const QString& guid) const
 {
     if (!guid.isNull())
         return contains(guid) ? d->entries[guid].tags : QStringList();
@@ -448,7 +448,7 @@ void FeedStorageDummyImpl::removeEnclosure(const QString& guid)
     }
 }
 
-void FeedStorageDummyImpl::enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length)
+void FeedStorageDummyImpl::enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length)  const
 {
     if (contains(guid))
     {
