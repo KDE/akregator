@@ -65,10 +65,8 @@ namespace Akregator {
 
 ArticleViewer::ArticleViewer(QWidget *parent)
     : QWidget(parent), m_url(0), m_htmlFooter(), m_currentText(), m_node(0),
-      m_viewMode(NormalView)
+      m_viewMode(NormalView) 
 {
-    m_normalViewFormatter = 0;
-    m_combinedViewFormatter = 0;
     m_part = new ArticleViewerPart(this);
     QGridLayout* layout = new QGridLayout(this);
     layout->setMargin(0);
@@ -147,8 +145,8 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
 
-    setNormalViewFormatter(new DefaultNormalViewFormatter(m_imageDir));
-    setCombinedViewFormatter(new DefaultCombinedViewFormatter(m_imageDir));
+    setNormalViewFormatter(ArticleFormatterPtr(new DefaultNormalViewFormatter(m_imageDir)));
+    setCombinedViewFormatter(ArticleFormatterPtr(new DefaultCombinedViewFormatter(m_imageDir)));
 
     updateCss();
 
@@ -740,13 +738,13 @@ void ArticleViewer::updateCss()
     m_combinedModeCSS = m_combinedViewFormatter->getCss();
 }
 
-void ArticleViewer::setNormalViewFormatter(SharedPtr<ArticleFormatter> formatter)
+void ArticleViewer::setNormalViewFormatter(ArticleFormatterPtr formatter)
 {
     m_normalViewFormatter = formatter;
     m_normalViewFormatter->setPaintDevice(m_part->view());
 }
 
-void ArticleViewer::setCombinedViewFormatter(SharedPtr<ArticleFormatter> formatter)
+void ArticleViewer::setCombinedViewFormatter(ArticleFormatterPtr formatter)
 {
     m_combinedViewFormatter = formatter;
     m_combinedViewFormatter->setPaintDevice(m_part->view());

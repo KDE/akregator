@@ -27,17 +27,19 @@
 
 #include "article.h"
 #include "articlematcher.h"
-#include "sharedptr.h"
+
+#include <khtml_part.h>
 
 #include <QWidget>
 
-#include <khtml_part.h>
+#include <boost/shared_ptr.hpp>
 
 class KUrl;
 
 namespace Akregator {
 
 class ArticleFormatter;
+typedef boost::shared_ptr<ArticleFormatter> ArticleFormatterPtr;
 class OpenUrlRequest;
 class TreeNode;
 
@@ -58,9 +60,9 @@ class ArticleViewer : public QWidget
     
         KParts::ReadOnlyPart* part() const;
         
-        void setNormalViewFormatter(SharedPtr<ArticleFormatter> formatter);
+        void setNormalViewFormatter(ArticleFormatterPtr formatter);
         
-        void setCombinedViewFormatter(SharedPtr<ArticleFormatter> formatter);
+        void setCombinedViewFormatter(ArticleFormatterPtr formatter);
 
         void showArticle( const Akregator::Article& article );
 
@@ -191,16 +193,15 @@ class ArticleViewer : public QWidget
         QString m_currentText;
         KUrl m_imageDir;
         TreeNode* m_node;
-        SharedPtr<ArticleFormatter> m_normalViewFormatter;
-        SharedPtr<ArticleFormatter> m_combinedViewFormatter;
         Article m_article;
         KUrl m_link;
         Akregator::Filters::ArticleMatcher m_textFilter; 
         Akregator::Filters::ArticleMatcher m_statusFilter;
         enum ViewMode { NormalView, CombinedView, SummaryView };
-        ViewMode m_viewMode;
-        
+        ViewMode m_viewMode;        
         ArticleViewerPart* m_part;
+        ArticleFormatterPtr m_normalViewFormatter;
+        ArticleFormatterPtr m_combinedViewFormatter;
 };
 
 class ArticleViewerPart : public KHTMLPart
