@@ -116,9 +116,6 @@ private:
     void addNode(TreeNode* node, bool preserveID);
     void removeNode(TreeNode* node);
 
-    QList<TreeNode*>* flatList() const;
-    QHash<int, TreeNode*>* idMap() const;
-    
     int generateID() const;
     void setRootNode(Folder* folder);
 

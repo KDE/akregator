@@ -61,8 +61,8 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
         bool visitFeed(Feed* node)
         {
             visitTreeNode(node);
-            m_list->idMap()->insert(node->id(), node);
-            m_list->flatList()->append(node);
+            m_list->d->idMap.insert(node->id(), node);
+            m_list->d->flatList.append(node);
             return true;
         }
 
@@ -241,7 +241,7 @@ bool FeedList::readFromXML(const QDomDocument& doc)
     {
             uint id = generateID();
             i->setId(id);
-            idMap()->insert(id, i);
+            d->idMap.insert(id, i);
     }
 
     kDebug() << "measuring startup time: STOP, " << spent.elapsed() << "ms" << endl;
@@ -278,7 +278,7 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
     if ( list == this )
         return;
 
-    if ( !asFlatList().contains(parent) )
+    if ( !d->flatList.contains(parent) )
         parent = rootNode();
 
     QList<TreeNode*> children = list->rootNode()->children();
@@ -363,24 +363,14 @@ bool FeedList::isEmpty() const
     return d->rootNode->firstChild() == 0;
 }
 
-QList<TreeNode*>* FeedList::flatList() const
-{
-    return &(d->flatList);
-}
-
 void FeedList::clear()
 {
     Q_ASSERT(rootNode());
-    
+
     QList<TreeNode*> children = rootNode()->children();
 
     for (QList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
         delete *it; // emits signal "emitSignalDestroyed"
-}
-
-QHash<int, TreeNode*>* FeedList::idMap() const
-{
-    return &(d->idMap);
 }
 
 void FeedList::setRootNode(Folder* folder)
