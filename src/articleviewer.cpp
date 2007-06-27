@@ -46,7 +46,7 @@
 #include <QClipboard>
 #include <QGridLayout>
 
-#include <libkdepim/kfileio.h>
+#include <kpimutils/kfileio.h>
 
 #include "akregatorconfig.h"
 #include "openurlrequest.h"
@@ -647,7 +647,7 @@ void ArticleViewer::displayAboutPage()
     QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
     QString quickDescription = i18n("An RSS feed reader for the K Desktop Environment.");
 
-    QString content = KPIM::kFileToByteArray(location);
+    QString content = KPIMUtils::kFileToByteArray(location);
 
     QString infocss = KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" );
     QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) : QString();
