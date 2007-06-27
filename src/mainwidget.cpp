@@ -52,6 +52,8 @@
 #include "treenodevisitor.h"
 #include "types.h"
 
+#include <solid/networking.h>
+
 #include <kaction.h>
 #include <kdebug.h>
 #include <kdialog.h>
@@ -861,6 +863,8 @@ void MainWidget::slotSetTotalUnread()
 
 void MainWidget::slotDoIntervalFetches()
 {
+    if ( Solid::Networking::status() != Solid::Networking::Connected )
+        return;
     m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
 
