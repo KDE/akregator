@@ -64,13 +64,13 @@ int Application::newInstance()
     }
 
     QString addFeedGroup = !args->getOption("group").isEmpty() ? 
-         QString::fromLocal8Bit(args->getOption("group")) 
+         args->getOption("group") 
          : i18n("Imported Folder");
 
-    QByteArrayList feeds = args->getOptionList("addfeed");
+    QStringList feeds = args->getOptionList("addfeed");
     QStringList feedsToAdd;
-    QByteArrayList::ConstIterator end( feeds.end() );
-    for (QByteArrayList::ConstIterator it = feeds.begin(); it != end; ++it)
+    QStringList::ConstIterator end( feeds.end() );
+    for (QStringList::ConstIterator it = feeds.begin(); it != end; ++it)
         feedsToAdd.append(*it);
 
     if (!feedsToAdd.isEmpty())
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 {
     Akregator::AboutData about;
     KCmdLineArgs::init(argc, argv, &about);
-    KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options );
+    KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options() );
     KUniqueApplication::addCmdLineOptions();
 
     Akregator::Application app;

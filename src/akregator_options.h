@@ -30,15 +30,16 @@
 
 namespace Akregator {
 
-static KCmdLineOptions akregator_options[] =
+static KCmdLineOptions akregator_options ()
 {
-	{ "a", 0, 0 },
-	{ "addfeed <url>", I18N_NOOP( "Add a feed with the given URL" ), 0},
-	{ "g", 0, 0 },
-	{ "group <groupname>", I18N_NOOP( "When adding feeds, place them in this group" ), I18N_NOOP("Imported") },
-    { "hide-mainwindow", I18N_NOOP( "Hide main window on startup" ), 0},
-	KCmdLineLastOption
-};
+	KCmdLineOptions options;
+	options.add( "a" );
+	options.add( "addfeed <url>", ki18n( "Add a feed with the given URL" ) );
+	options.add( "g" );
+	options.add( "group <groupname>", ki18n( "When adding feeds, place them in this group" ), "Imported");
+	options.add( "hide-mainwindow", ki18n( "Hide main window on startup" ));
+	return options;
+}
 
 }
 

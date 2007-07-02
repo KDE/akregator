@@ -33,27 +33,27 @@
 namespace Akregator {
 
 AboutData::AboutData()
-    : KAboutData("akregator", I18N_NOOP("Akregator"), AKREGATOR_VERSION, I18N_NOOP("A KDE Feed Aggregator"),
-                 License_GPL, I18N_NOOP("(C) 2004, 2005 Akregator developers"), 0,
+    : KAboutData("akregator", 0, ki18n("Akregator"), AKREGATOR_VERSION, ki18n("A KDE Feed Aggregator"),
+                 License_GPL, ki18n("(C) 2004, 2005 Akregator developers"), KLocalizedString(),
                      "http://akregator.kde.org/")
 {
     setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS 
-    addAuthor( "Frank Osterfeld", I18N_NOOP("Maintainer"), "frank.osterfeld@kdemail.net" );
-    addAuthor( "Teemu Rytilahti", I18N_NOOP("Developer"), "tpr@d5k.net" );
-    addAuthor( "Sashmit Bhaduri", I18N_NOOP("Developer"), "sashmit@vfemail.net" );
-    addAuthor( "Pierre Habouzit", I18N_NOOP("Developer"), "pierre.habouzit@m4x.org" );
-    addAuthor( "Stanislav Karchebny", I18N_NOOP("Developer"), "Stanislav.Karchebny@kdemail.net" );
-    addAuthor( "Gary Cramblitt", I18N_NOOP("Contributor"), "garycramblitt@comcast.net");
-    addAuthor( "Stephan Binner", I18N_NOOP("Contributor"), "binner@kde.org" );
-    addAuthor( "Christof Musik", I18N_NOOP("Contributor"), "christof@freenet.de" );
-    addCredit( "Anne-Marie Mahfouf", I18N_NOOP("Handbook"), "annma@kde.org" );
-    addCredit( "Frerich Raabe", I18N_NOOP("Author of librss"), "raabe@kde.org" );
-    addCredit( "Eckhart Woerner", I18N_NOOP("Bug tracker management, Usability improvements"), "kde@ewsoftware.de");
-    addCredit( "Heinrich Wendel", I18N_NOOP("Tons of bug fixes"), "h_wendel@cojobo.net");
-    addCredit( "Eike Hein", I18N_NOOP("'Delayed mark as read' feature"), "sho@eikehein.com" );
-    addCredit( "Marcel Dierkes", I18N_NOOP("Icons"), "marcel.dierkes@gmx.de");
-    addCredit( "George Staikos", I18N_NOOP("Insomnia"), "staikos@kde.org" );
-    addCredit( "Philipp Droessler", I18N_NOOP("Gentoo Ebuild"), "kingmob@albert-unser.net");
+    addAuthor( ki18n("Frank Osterfeld"), ki18n("Maintainer"), "frank.osterfeld@kdemail.net" );
+    addAuthor( ki18n("Teemu Rytilahti"), ki18n("Developer"), "tpr@d5k.net" );
+    addAuthor( ki18n("Sashmit Bhaduri"), ki18n("Developer"), "sashmit@vfemail.net" );
+    addAuthor( ki18n("Pierre Habouzit"), ki18n("Developer"), "pierre.habouzit@m4x.org" );
+    addAuthor( ki18n("Stanislav Karchebny"), ki18n("Developer"), "Stanislav.Karchebny@kdemail.net" );
+    addAuthor( ki18n("Gary Cramblitt"), ki18n("Contributor"), "garycramblitt@comcast.net");
+    addAuthor( ki18n("Stephan Binner"), ki18n("Contributor"), "binner@kde.org" );
+    addAuthor( ki18n("Christof Musik"), ki18n("Contributor"), "christof@freenet.de" );
+    addCredit( ki18n("Anne-Marie Mahfouf"), ki18n("Handbook"), "annma@kde.org" );
+    addCredit( ki18n("Frerich Raabe"), ki18n("Author of librss"), "raabe@kde.org" );
+    addCredit( ki18n("Eckhart Woerner"), ki18n("Bug tracker management, Usability improvements"), "kde@ewsoftware.de");
+    addCredit( ki18n("Heinrich Wendel"), ki18n("Tons of bug fixes"), "h_wendel@cojobo.net");
+    addCredit( ki18n("Eike Hein"), ki18n("'Delayed mark as read' feature"), "sho@eikehein.com" );
+    addCredit( ki18n("Marcel Dierkes"), ki18n("Icons"), "marcel.dierkes@gmx.de");
+    addCredit( ki18n("George Staikos"), ki18n("Insomnia"), "staikos@kde.org" );
+    addCredit( ki18n("Philipp Droessler"), ki18n("Gentoo Ebuild"), "kingmob@albert-unser.net");
 }
 
 AboutData::~AboutData()
