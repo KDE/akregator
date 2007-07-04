@@ -38,6 +38,7 @@ static KCmdLineOptions akregator_options ()
 	options.add( "g" );
 	options.add( "group <groupname>", ki18n( "When adding feeds, place them in this group" ), "Imported");
 	options.add( "hide-mainwindow", ki18n( "Hide main window on startup" ));
+	options.add( "+[url]", ki18n( "Add a feed with the given URL" ) );
 	return options;
 }
 

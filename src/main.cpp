@@ -73,6 +73,12 @@ int Application::newInstance()
     for (QStringList::ConstIterator it = feeds.begin(); it != end; ++it)
         feedsToAdd.append(*it);
 
+    if (feedsToAdd.isEmpty() && args->count() > 0) {
+        QString url = args->url(0).url();
+        if(!url.isEmpty())
+            feedsToAdd.append(url);
+    }
+
     if (!feedsToAdd.isEmpty())
         akr.call("addFeedsToGroup", feedsToAdd, addFeedGroup );
 
