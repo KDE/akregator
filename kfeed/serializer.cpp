@@ -66,6 +66,14 @@ public:
         return reader.isStartElement() && reader.name() == name && reader.namespaceUri() == ns;
     }
 
+    void writeStartElement( QXmlStreamWriter& writer ) const
+    {
+        if ( !ns.isNull() )
+            writer.writeStartElement( ns, name );
+        else
+            writer.writeStartElement( name );
+    }
+
     void write( const QVariant& value , QXmlStreamWriter& writer, TextMode mode = ::PlainText ) const
     {
         if ( value == defaultValue )
@@ -114,7 +122,8 @@ struct Elements
                  category( atomNS, "category" ),
                  customProperty( kfeedNS, "customProperty" ),
                  key( kfeedNS, "key" ),
-                 value( kfeedNS, "value" )
+                 value( kfeedNS, "value" ),
+                 entry( atomNS, "entry" )
 {}
     const QString atomNS;
     const QString kfeedNS;
@@ -143,7 +152,11 @@ struct Elements
     const Element customProperty;
     const Element key;
     const Element value;
+    const Element entry;
+    static const Elements instance;
 };
+
+const Elements Elements::instance;
 
 void writeAttributeIfNotEmpty( const QString& ns, const QString& element, const QVariant& value, QXmlStreamWriter& writer )
 {
@@ -165,7 +178,7 @@ void writeLink( const QString& url, QXmlStreamWriter& writer )
 {
     if ( url.isEmpty() )
         return;
-    writer.writeStartElement( Syndication::Atom::atom1Namespace(), "link" );
+    ::Elements::instance.link.writeStartElement( writer );
     writer.writeAttribute( "rel", "alternate" );
     writeAttributeIfNotEmpty( "href", url, writer );
     writer.writeEndElement();
@@ -173,7 +186,7 @@ void writeLink( const QString& url, QXmlStreamWriter& writer )
 
 void writeCategory( const KFeed::Category& category, QXmlStreamWriter& writer )
 {
-    writer.writeStartElement( Syndication::Atom::atom1Namespace(), "category" );
+    ::Elements::instance.category.writeStartElement( writer );
     writeAttributeIfNotEmpty( "term", category.term(), writer );
     writeAttributeIfNotEmpty( "scheme", category.scheme(), writer );
     writeAttributeIfNotEmpty( "label", category.label(), writer );
@@ -184,16 +197,16 @@ void writeAuthor( const KFeed::Person& person, QXmlStreamWriter& writer )
 {
     const ::Elements el;
     const QString atomNS = Syndication::Atom::atom1Namespace();
-    writer.writeStartElement( atomNS, "author" );
-    el.name.write( person.name(), writer );
-    el.uri.write( person.uri(), writer );
-    el.email.write( person.email(), writer );
+    ::Elements::instance.author.writeStartElement( writer );
+    ::Elements::instance.name.write( person.name(), writer );
+    ::Elements::instance.uri.write( person.uri(), writer );
+    ::Elements::instance.email.write( person.email(), writer );
     writer.writeEndElement();
 }
 
 void writeEnclosure( const KFeed::Enclosure& enclosure, QXmlStreamWriter& writer )
 {
-    writer.writeStartElement( Syndication::Atom::atom1Namespace(), "link" );
+    ::Elements::instance.link.writeStartElement( writer );
     writeAttributeIfNotEmpty( "rel", "enclosure", writer );
     writeAttributeIfNotEmpty( "href", enclosure.url(), writer );
     writeAttributeIfNotEmpty( "title", enclosure.title(), writer );
@@ -216,7 +229,7 @@ void writeItem( const KFeed::Item& item, QXmlStreamWriter& writer )
     writer.writeNamespace( kfeedNS, "kfeed" );
     writer.writeNamespace( Syndication::itunesNamespace(), "itunes" );
 
-    writer.writeStartElement( atomNS, "entry" );
+    el.entry.writeStartElement( writer );
     el.title.write( item.title(), writer, ::Html );
     const QString description = item.description();
     el.summary.write( description, writer, ::Html );
@@ -256,7 +269,7 @@ void writeItem( const KFeed::Item& item, QXmlStreamWriter& writer )
     el.status.write( item.status(), writer );
     el.hash.write( item.hash(), writer );
     el.idIsHash.write( item.idIsHash(), writer );
-    el.sourceFeedId.write( item.feedId(), writer );
+    el.sourceFeedId.write( item.sourceFeedId(), writer );
 
     const QHash<QString, QVariant> props = item.customProperties();
     Q_FOREACH ( const QString i, props.keys() )
@@ -264,7 +277,7 @@ void writeItem( const KFeed::Item& item, QXmlStreamWriter& writer )
         const QString value = props[i].toString();
         if ( value.isNull() )
             continue;
-        writer.writeStartElement( kfeedNS, "customProperty" );
+        el.customProperty.writeStartElement( writer );
         el.key.write( i, writer );
         el.value.write( value, writer );
         writer.writeEndElement();
@@ -347,7 +360,7 @@ bool KFeed::XmlSerializerImpl::deserialize( KFeed::Item& item, const QByteArray&
             else if ( el.idIsHash.isNextIn( reader ) )
                 item.setIdIsHash( QVariant( reader.readElementText() ).toBool() );
             else if ( el.sourceFeedId.isNextIn( reader ) )
-                item.setFeedId( reader.readElementText().toInt() );
+                item.setSourceFeedId( reader.readElementText().toInt() );
             else if ( el.commentsLink.isNextIn( reader ) )
                 item.setCommentsLink( reader.readElementText() );
             else if ( el.commentPostUri.isNextIn( reader ) )

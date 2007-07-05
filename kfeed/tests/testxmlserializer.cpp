@@ -36,7 +36,8 @@ void testItem( const KFeed::Item& item )
     QByteArray ba;
     serializer.serialize( item, ba );
     KFeed::Item deserialized;
-    serializer.deserialize( deserialized, ba );
+    const bool success = serializer.deserialize( deserialized, ba );
+    QVERIFY2( success, "Deserialization failed" );
     QCOMPARE( item, deserialized );
 }
 

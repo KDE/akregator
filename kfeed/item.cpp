@@ -290,12 +290,12 @@ void KFeed::Item::setStatus( int status )
     d->status = status;
 }
 
-int KFeed::Item::feedId() const
+int KFeed::Item::sourceFeedId() const
 {
     return d->feedId;
 }
 
-void KFeed::Item::setFeedId( int feedId )
+void KFeed::Item::setSourceFeedId( int feedId )
 {
     d->feedId = feedId;
 }

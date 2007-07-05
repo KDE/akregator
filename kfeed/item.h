@@ -67,8 +67,8 @@ public:
     bool idIsHash() const;
     void setIdIsHash( bool isHash );
 
-    int feedId() const;
-    void setFeedId( int id );
+    int sourceFeedId() const;
+    void setSourceFeedId( int id );
 
     /**
      * The title of the item.
