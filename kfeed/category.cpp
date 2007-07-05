@@ -32,6 +32,11 @@ public:
         return term == other.term && scheme == other.scheme && label == other.label;
     }
 
+    bool operator!=( const CategoryPrivate& other ) const
+    {
+        return term != other.term && scheme != other.scheme && label != other.label;
+    }
+
     QString term;
     QString scheme;
     QString label;
@@ -60,6 +65,11 @@ KFeed::Category& KFeed::Category::operator=( const KFeed::Category& other )
 bool KFeed::Category::operator==( const KFeed::Category& other ) const
 {
     return *d == *(other.d);
+}
+
+bool KFeed::Category::operator!=( const KFeed::Category& other ) const
+{
+    return *d != *(other.d);
 }
 
 QString KFeed::Category::term() const

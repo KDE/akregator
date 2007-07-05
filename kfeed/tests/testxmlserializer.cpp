@@ -30,12 +30,21 @@
 
 #include <KDateTime>
 
-#include <QTest>
+#include <qtest_kde.h>
 
+#include <QDebug>
 #include <QByteArray>
 #include <QVariant>
 
 namespace {
+
+void printItem( const KFeed::Item& item )
+{
+    const KFeed::XmlSerializerImpl serializer;
+    QByteArray ba;
+    serializer.serialize( item, ba );
+    qDebug() << ba;
+}
 
 void testItem( const KFeed::Item& item )
 {
@@ -45,6 +54,11 @@ void testItem( const KFeed::Item& item )
     KFeed::Item deserialized;
     const bool success = serializer.deserialize( deserialized, ba );
     QVERIFY2( success, "Deserialization failed" );
+    if ( item != deserialized )
+    {
+        ::printItem( item );
+        ::printItem( deserialized );
+    }
     QCOMPARE( item, deserialized );
 }
 
@@ -174,6 +188,6 @@ void TestXmlSerializer::testComments()
 }
 
 
-QTEST_MAIN( TestXmlSerializer )
+QTEST_KDEMAIN( TestXmlSerializer, NoGUI )
 
 #include "testxmlserializer.moc"

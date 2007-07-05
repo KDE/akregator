@@ -49,6 +49,7 @@ public:
 
     Person& operator=( const Person& other );
     bool operator==( const Person& other ) const;
+    bool operator!=( const Person& other ) const;
 
 private:
     PersonPrivate* const d;

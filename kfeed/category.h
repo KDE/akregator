@@ -49,6 +49,7 @@ public:
 
     Category& operator=( const Category& other );
     bool operator==( const Category& other ) const;
+    bool operator!=( const Category& other ) const;
 
 private:
     CategoryPrivate* const d;

@@ -36,6 +36,11 @@ public:
         return url == other.url && title == other.title && type == other.type && length == other.length && duration == other.duration;
     }
 
+    bool operator!=( const EnclosurePrivate& other ) const
+    {
+        return url != other.url && title != other.title && type != other.type && length != other.length && duration != other.duration;
+    }
+
     QString url;
     QString title;
     QString type;
@@ -67,6 +72,13 @@ bool KFeed::Enclosure::operator==( const KFeed::Enclosure& other ) const
 {
     return *d == *(other.d);
 }
+
+
+bool KFeed::Enclosure::operator!=( const KFeed::Enclosure& other ) const
+{
+    return *d != *(other.d);
+}
+
 QString KFeed::Enclosure::url() const
 {
     return d->url;

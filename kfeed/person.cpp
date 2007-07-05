@@ -33,6 +33,11 @@ public:
         return name == other.name && email == other.email && uri == other.uri;
     }
 
+    bool operator!=( const PersonPrivate& other ) const
+    {
+        return name != other.name && email != other.email && uri != other.uri;
+    }
+
     QString name;
     QString email;
     QString uri;
@@ -91,4 +96,9 @@ KFeed::Person& KFeed::Person::operator=( const KFeed::Person& other )
 bool KFeed::Person::operator==( const KFeed::Person& other ) const
 {
     return *d == *(other.d);
+}
+
+bool KFeed::Person::operator!=( const KFeed::Person& other ) const
+{
+    return *d != *(other.d);
 }

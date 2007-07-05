@@ -32,7 +32,6 @@
 #include <QHash>
 #include <QList>
 #include <QString>
-#include <QVariant>
 
 class KFeed::ItemPrivate
 {
@@ -40,6 +39,11 @@ public:
     ItemPrivate() : status( Read ), hash( 0 ), idIsHash( false ), commentsCount( -1 ), feedId( -1 )
     {}
 
+
+    bool operator!=( const ItemPrivate& other ) const
+    {
+        return !( *this == other );
+    }
 
     bool operator==( const ItemPrivate& other ) const
     {
@@ -81,7 +85,7 @@ public:
     QString commentsLink;
     QString commentsFeed;
     QString commentPostUri;
-    QHash<QString, QVariant> customProperties;
+    QHash<QString, QString> customProperties;
     int feedId;
 };
 
@@ -103,6 +107,11 @@ KFeed::Item& KFeed::Item::operator=( const Item& other )
 bool KFeed::Item::operator==( const Item& other ) const
 {
     return *d == *(other.d);
+}
+
+bool KFeed::Item::operator!=( const Item& other ) const
+{
+    return *d != *(other.d);
 }
 
 KFeed::Item::Item( const Item& other ) : d( new ItemPrivate )
@@ -300,17 +309,17 @@ void KFeed::Item::setSourceFeedId( int feedId )
     d->feedId = feedId;
 }
 
-QHash<QString, QVariant> KFeed::Item::customProperties() const
+QHash<QString, QString> KFeed::Item::customProperties() const
 {
     return d->customProperties;
 }
 
-QVariant KFeed::Item::customProperty( const QString& key ) const
+QString KFeed::Item::customProperty( const QString& key ) const
 {
     return d->customProperties[key];
 }
 
-void KFeed::Item::setCustomProperty( const QString& key, const QVariant& value )
+void KFeed::Item::setCustomProperty( const QString& key, const QString& value )
 {
     d->customProperties[key] = value;
 }

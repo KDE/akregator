@@ -99,31 +99,31 @@ struct Elements
     Elements() : atomNS( Syndication::Atom::atom1Namespace() ), 
                  kfeedNS( ::kfeedNamespace() ),
                  commentNS( Syndication::commentApiNamespace() ),
-                 title( atomNS, "title" ),
-                 summary( atomNS, "summary" ),
-                 content( atomNS, "content" ),
-                 link( atomNS, "link" ),
-                 language( atomNS, "language" ),
-                 id( atomNS, "id" ),
+                 title( atomNS, "title", QString() ),
+                 summary( atomNS, "summary", QString() ),
+                 content( atomNS, "content", QString() ),
+                 link( atomNS, "link", QString() ),
+                 language( atomNS, "language", QString() ),
+                 id( atomNS, "id", QString() ),
                  published( atomNS, "published", KDateTime().toString( KDateTime::ISODate ) ),
                  updated( atomNS, "updated", KDateTime().toString( KDateTime::ISODate ) ),
                  commentsCount( Syndication::slashNamespace(), "comments", -1 ),
-                 commentsFeed( commentNS, "commentRss" ),
-                 commentPostUri( commentNS, "comment" ),
-                 commentsLink( kfeedNS, "commentsLink" ),
-                 status( kfeedNS, "status", 0 ),
+                 commentsFeed( commentNS, "commentRss", QString() ),
+                 commentPostUri( commentNS, "comment", QString() ),
+                 commentsLink( kfeedNS, "commentsLink", QString() ),
+                 status( kfeedNS, "status", KFeed::Read ),
                  hash( kfeedNS, "hash", 0 ),
                  idIsHash( kfeedNS, "idIsHash", false ),
-                 sourceFeedId( kfeedNS, "sourceFeedId", 0 ),
-                 name( atomNS, "name" ),
-                 uri( atomNS, "uri" ),
-                 email( atomNS, "email" ),
-                 author( atomNS, "author" ),
-                 category( atomNS, "category" ),
-                 customProperty( kfeedNS, "customProperty" ),
-                 key( kfeedNS, "key" ),
-                 value( kfeedNS, "value" ),
-                 entry( atomNS, "entry" )
+                 sourceFeedId( kfeedNS, "sourceFeedId", -1 ),
+                 name( atomNS, "name", QString() ),
+                 uri( atomNS, "uri", QString() ),
+                 email( atomNS, "email", QString() ),
+                 author( atomNS, "author", QString() ),
+                 category( atomNS, "category", QString() ),
+                 customProperty( kfeedNS, "customProperty", QString() ),
+                 key( kfeedNS, "key", QString() ),
+                 value( kfeedNS, "value", QString() ),
+                 entry( atomNS, "entry", QString() )
 {}
     const QString atomNS;
     const QString kfeedNS;
@@ -212,7 +212,7 @@ void writeEnclosure( const KFeed::Enclosure& enclosure, QXmlStreamWriter& writer
     writeAttributeIfNotEmpty( "title", enclosure.title(), writer );
     writeAttributeIfNotEmpty( "length", enclosure.length(), writer );
     writeAttributeIfNotEmpty( "type", enclosure.type(), writer );
-    const int duration = enclosure.duration();
+    const uint duration = enclosure.duration();
     if ( duration != 0 )
         writer.writeAttribute( Syndication::itunesNamespace(), "duration", QString::number( duration ) );
     writer.writeEndElement();
@@ -271,15 +271,12 @@ void writeItem( const KFeed::Item& item, QXmlStreamWriter& writer )
     el.idIsHash.write( item.idIsHash(), writer );
     el.sourceFeedId.write( item.sourceFeedId(), writer );
 
-    const QHash<QString, QVariant> props = item.customProperties();
+    const QHash<QString, QString> props = item.customProperties();
     Q_FOREACH ( const QString i, props.keys() )
     {
-        const QString value = props[i].toString();
-        if ( value.isNull() )
-            continue;
         el.customProperty.writeStartElement( writer );
         el.key.write( i, writer );
-        el.value.write( value, writer );
+        el.value.write( props[i], writer );
         writer.writeEndElement();
     }
 
@@ -297,14 +294,14 @@ void readLink( KFeed::Item& item, QXmlStreamReader& reader )
     else if ( rel == "enclosure" )
     {
         KFeed::Enclosure enc;
-        enc.setUrl( attrs.value( QString(), "url" ).toString() );
+        enc.setUrl( attrs.value( QString(), "href" ).toString() );
         enc.setType( attrs.value( QString(), "type" ).toString() );
         enc.setTitle( attrs.value( QString(), "title" ).toString() );
         bool ok;
-        const int length = attrs.value( QString(), "length" ).toString().toInt( &ok );
+        const uint length = attrs.value( QString(), "length" ).toString().toUInt( &ok );
         if ( ok )
             enc.setLength( length );
-        const int duration = attrs.value( Syndication::itunesNamespace(), "duration" ).toString().toInt( &ok );
+        const uint duration = attrs.value( Syndication::itunesNamespace(), "duration" ).toString().toUInt( &ok );
         if ( ok )
             enc.setDuration( duration );
         QList<KFeed::Enclosure> encs = item.enclosures();
@@ -315,11 +312,60 @@ void readLink( KFeed::Item& item, QXmlStreamReader& reader )
 
 void readAuthor( KFeed::Item& item, QXmlStreamReader& reader )
 {
-    
+    KFeed::Person author;
+    int depth = 1;
+    while ( !reader.atEnd() && depth > 0 )
+    {
+        reader.readNext();
+        if ( reader.isEndElement() )
+            --depth;
+        else if ( reader.isStartElement() )
+        {
+            if ( ::Elements::instance.name.isNextIn( reader ) )
+                author.setName( reader.readElementText() );
+            else if ( ::Elements::instance.uri.isNextIn( reader ) )
+                author.setUri( reader.readElementText() );
+            else if ( ::Elements::instance.email.isNextIn( reader ) )
+                author.setEmail( reader.readElementText() );
+        }
+
+    }
+    QList<KFeed::Person> authors = item.authors();
+    authors.append( author );
+    item.setAuthors( authors );
 }
 
 void readCategory( KFeed::Item& item, QXmlStreamReader& reader )
 {
+    const QXmlStreamAttributes attrs = reader.attributes();
+    KFeed::Category cat;
+    cat.setTerm( attrs.value( QString(), "term" ).toString() );
+    cat.setScheme( attrs.value( QString(), "scheme" ).toString() );
+    cat.setLabel( attrs.value( QString(), "label" ).toString() );
+    QList<KFeed::Category> cats = item.categories();
+    cats.append( cat );
+    item.setCategories( cats );
+}
+
+void readCustomProperty( KFeed::Item& item, QXmlStreamReader& reader )
+{
+    QString key;
+    QString value;
+    int depth = 1;
+    while ( !reader.atEnd() && depth > 0 )
+    {
+        reader.readNext();
+        if ( reader.isEndElement() )
+            --depth;
+        else if ( reader.isStartElement() )
+        {
+            if ( ::Elements::instance.key.isNextIn( reader ) )
+                key = reader.readElementText();
+            else if ( ::Elements::instance.value.isNextIn( reader ) )
+                value = reader.readElementText();
+        }
+    }
+    item.setCustomProperty( key, value );
 }
 
 } // namespace
@@ -375,10 +421,14 @@ bool KFeed::XmlSerializerImpl::deserialize( KFeed::Item& item, const QByteArray&
                 ::readAuthor( item, reader );
             else if ( el.category.isNextIn( reader ) )
                 ::readCategory( item, reader );
+            else if ( el.published.isNextIn( reader ) )
+                item.setDatePublished( KDateTime::fromString( reader.readElementText(), KDateTime::ISODate ) );
+            else if ( el.updated.isNextIn( reader ) )
+                item.setDateUpdated( KDateTime::fromString( reader.readElementText(), KDateTime::ISODate ) );
+            else if ( el.customProperty.isNextIn( reader ) )
+                ::readCustomProperty( item, reader );
 
 /*
-            published
-            updated
             customProperties */
         }
     }

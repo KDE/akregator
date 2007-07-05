@@ -57,6 +57,7 @@ public:
 
     Enclosure& operator=( const Enclosure& other );
     bool operator==( const Enclosure& other ) const;
+    bool operator!=( const Enclosure& other ) const;
 
 private:
     EnclosurePrivate* const d;

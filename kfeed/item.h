@@ -30,7 +30,7 @@ class KDateTime;
 template <class T> class QList;
 template <class K, class T> class QHash;
 class QString;
-class QVariant;
+class QString;
 
 namespace KFeed {
 
@@ -57,6 +57,7 @@ public:
 
     Item& operator=( const Item& other );
     bool operator==( const Item& other ) const;
+    bool operator!=( const Item& other ) const;
 
     int status() const;
     void setStatus( int status );
@@ -221,9 +222,9 @@ public:
     QString commentPostUri() const;
     void setCommentPostUri( const QString& uri );
 
-    QHash<QString, QVariant> customProperties() const;
-    QVariant customProperty( const QString& key ) const;
-    void setCustomProperty( const QString& key, const QVariant& value );
+    QHash<QString, QString> customProperties() const;
+    QString customProperty( const QString& key ) const;
+    void setCustomProperty( const QString& key, const QString& value );
 
 private:
     ItemPrivate* const d;
