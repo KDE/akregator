@@ -37,7 +37,7 @@
 class KFeed::ItemPrivate
 {
 public:
-    ItemPrivate() : status( New ), hash( 0 ), idIsHash( false ), commentsCount( 0 ), feedId( 0 )
+    ItemPrivate() : status( Read ), hash( 0 ), idIsHash( false ), commentsCount( -1 ), feedId( -1 )
     {}
 
 
@@ -142,7 +142,7 @@ void KFeed::Item::setLink( const QString& link )
 
 QString KFeed::Item::content() const
 {
-    return d->content;
+    return d->content.isNull() ? d->description : d->content;
 }
 
 void KFeed::Item::setContent( const QString& content ) 
@@ -162,7 +162,7 @@ void KFeed::Item::setDatePublished( const KDateTime& datePublished )
 
 KDateTime KFeed::Item::dateUpdated() const
 {
-    return d->dateUpdated;
+    return d->dateUpdated.isValid() ? d->dateUpdated : d->datePublished;
 }
 
 void KFeed::Item::setDateUpdated( const KDateTime& dateUpdated ) 

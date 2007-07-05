@@ -8,4 +8,14 @@ kde4_automoc(${testxmlserializer_SRCS})
 
 kde4_add_unit_test(testxmlserializer TESTNAME kfeed-testxmlserializer  ${testxmlserializer_SRCS})
 
-target_link_libraries(testxmlserializer kfeed ${KDE4_KDECORE_LIBS} ${QT_QTTEST_LIBRARY} )
+target_link_libraries(testxmlserializer kfeed ${KDE4_KDECORE_LIBS} ${QT_QTTEST_LIBRARY} ${QT_QTGUI_LIBRARY} )
+
+########### next target ###############
+
+set(testitem_SRCS testitem.cpp )
+
+kde4_automoc(${testitem_SRCS})
+
+kde4_add_unit_test(testitem TESTNAME kfeed-testitem  ${testitem_SRCS})
+
+target_link_libraries(testitem kfeed ${KDE4_KDECORE_LIBS} ${QT_QTTEST_LIBRARY} ${QT_QTGUI_LIBRARY} )
