@@ -30,7 +30,7 @@
 #include "openurlrequest.h"
 
 #include <kaction.h>
-#include <k3process.h>
+#include <kprocess.h>
 #include <kshell.h>
 #include <ktoolinvocation.h>
 
@@ -263,13 +263,10 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
     else
     {
         QString cmd = Settings::externalBrowserCustomCommand();
+        // XXX Use KMacroExpander
         QString urlStr = url.url();
         cmd.replace(QRegExp("%u"), urlStr);
-        K3Process *proc = new K3Process;
-        QStringList cmdAndArgs = KShell::splitArgs(cmd);
-        *proc << cmdAndArgs;
-        proc->start(K3Process::DontCare);
-        delete proc;
+        KProcess::startDetached(KShell::splitArgs(cmd));
     }
 }
 void FrameManager::slotFoundMimeType(const OpenUrlRequest& request)
