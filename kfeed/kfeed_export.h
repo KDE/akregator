@@ -24,7 +24,7 @@
 #include <kdemacros.h>
 
 #ifndef KFEED_EXPORT
-# if defined(MAKE_AKREGATORPRIVATE_LIB)
+# if defined(MAKE_KFEED_LIB)
    /* We are building this library */ 
 #  define KFEED_EXPORT KDE_EXPORT
 # else
