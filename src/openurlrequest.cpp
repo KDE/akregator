@@ -42,7 +42,7 @@ void OpenUrlRequest::setFrameId(int frameId)
     m_frameId = frameId;
 }
 
-const KUrl& OpenUrlRequest::url() const
+KUrl OpenUrlRequest::url() const
 {
     return m_url;
 }
@@ -61,7 +61,7 @@ void OpenUrlRequest::setOpenInBackground(bool background)
     m_inBackground = background;
 }
           
-const KParts::URLArgs& OpenUrlRequest::args() const
+KParts::URLArgs OpenUrlRequest::args() const
 {
     return m_args;
 }

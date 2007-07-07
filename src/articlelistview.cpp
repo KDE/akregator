@@ -195,20 +195,22 @@ void Akregator::ArticleListView::setupHeader()
 
     sortByColumn( (c < 0 && c > ColumnCount - 1 ) ? DateColumn : c, Settings::sortAscending() ? Qt::AscendingOrder : Qt::DescendingOrder );
 
-    int w = 0;
-    w = Settings::titleWidth();
-    if (w > 0) {
-        setColumnWidth(ItemTitleColumn, w);
+    const int titleWidth = Settings::titleWidth();
+    if ( titleWidth > 0 )
+    {
+        setColumnWidth( ItemTitleColumn, titleWidth );
     }
 
-    w = Settings::feedWidth();
-    if (w > 0) {
-        setColumnWidth(FeedTitleColumn, w);
+    const int feedWidth = Settings::feedWidth();
+    if ( feedWidth > 0 )
+    {
+        setColumnWidth( FeedTitleColumn, feedWidth );
     }
 
-    w = Settings::dateWidth();
-    if (w > 0) {
-        setColumnWidth(DateColumn, w);
+    const int dateWidth = Settings::dateWidth();
+    if ( dateWidth > 0 )
+    {
+        setColumnWidth( DateColumn, dateWidth );
     }
 }
 

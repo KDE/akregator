@@ -61,10 +61,10 @@ class OpenUrlRequest
         int frameId() const;
         void setFrameId(int frameId);
         
-        const KUrl& url() const;
+        KUrl url() const;
         void setUrl(const KUrl& url);
          
-        const KParts::URLArgs& args() const;
+        KParts::URLArgs args() const;
         void setArgs(const KParts::URLArgs& args);
 
         Options options() const;

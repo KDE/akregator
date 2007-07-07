@@ -42,8 +42,7 @@ class FetchQueue::FetchQueuePrivate
 };
 
 
-FetchQueue::FetchQueue(QObject* parent, const char* name): QObject(parent), d(new FetchQueuePrivate) {
-  setObjectName( name );
+FetchQueue::FetchQueue(QObject* parent): QObject(parent), d(new FetchQueuePrivate) {
 }
 
 
