@@ -3,7 +3,6 @@
 include_directories( ${Boost_INCLUDE_DIR} )
 
 set(akregatorinterfaces_LIB_SRCS
-   articleinterceptor.cpp 
    plugin.cpp 
    storagefactoryregistry.cpp 
 )
@@ -16,4 +15,4 @@ target_link_libraries(akregatorinterfaces kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYND
 
 set_target_properties(akregatorinterfaces PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 install(TARGETS akregatorinterfaces DESTINATION ${LIB_INSTALL_DIR})
-install( FILES akregator_export.h article.h types.h storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h articleinterceptor.h  DESTINATION ${INCLUDE_INSTALL_DIR}/akregator )
+install( FILES akregator_export.h article.h types.h storage.h feedstorage.h storagefactory.h storagefactoryregistry.h plugin.h DESTINATION ${INCLUDE_INSTALL_DIR}/akregator )

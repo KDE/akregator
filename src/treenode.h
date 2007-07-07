@@ -185,7 +185,7 @@ signals:
     /** Notification mechanism: emitted, when the node was modified and notification is enabled. A node change is renamed title, icon, unread count. Added, updated or removed articles are not notified via this signal */
     void signalChanged(Akregator::TreeNode*);
 
-    /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in. For listening to newly fetched articles, you have to register yourself at @ref ArticleInterceptorManager
+    /** emitted when new articles were added to this node or any node in the subtree (for folders). Note that this has nothing to do with fetching, the article might have been moved from somewhere else in the tree into this subtree, e.g. by moving the feed the article is in.
         @param TreeNode* the node articles were added to
         @param QStringList the guids of the articles added
     */

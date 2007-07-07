@@ -25,7 +25,6 @@
 
 #include "akregatorconfig.h"
 #include "article.h"
-#include "articleinterceptor.h"
 #include "feed.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"
@@ -428,11 +427,6 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
             mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya);
-
-            QList<ArticleInterceptor*> interceptors = ArticleInterceptorManager::self()->interceptors();
-            for (QList<ArticleInterceptor*>::ConstIterator iit = interceptors.begin(); iit != interceptors.end(); ++iit)
-                (*iit)->processArticle(mya);
-
             d->addedArticlesNotify.append(mya);
 
             if (!mya.isDeleted() && !markImmediatelyAsRead())
