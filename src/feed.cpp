@@ -796,7 +796,7 @@ void Feed::enforceLimitArticleNumber()
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    Q_FOREACH ( const Akregator::Article i, articles )
+    Q_FOREACH ( Akregator::Article i, articles )
     {
         if (c < limit)
         {
@@ -804,10 +804,7 @@ void Feed::enforceLimitArticleNumber()
                 ++c;
         }
         else if ( !useKeep || !i.keep() )
-#ifdef __GNUC__
-#warning port setDeleted()!
-#endif
-          ;//  i.setDeleted();
+             i.setDeleted();
     }
 }
 

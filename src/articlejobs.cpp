@@ -62,7 +62,6 @@ void Akregator::ArticleDeleteJob::start()
 
 Akregator::ArticleModifyJob::ArticleModifyJob( QObject* parent ) : KJob( parent ), m_feedList( Kernel::self()->feedList() )
 {
-    
     Q_ASSERT( m_feedList );
 }
 
