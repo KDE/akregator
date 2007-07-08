@@ -128,6 +128,9 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         
         QIcon icon() const;
 
+        /** Delete expired articles recursively. */
+        void deleteExpiredArticles( Akregator::ArticleDeleteJob* job );
+
     signals:
         /** emitted when a child was added */
         void signalChildAdded(Akregator::TreeNode*);
@@ -136,10 +139,7 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         void signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*);
                     
     public slots:
-        
-        /** Delete expired articles recursively. */
-        void slotDeleteExpiredArticles();
-        
+
         /** Mark articles of children recursively as read. */
         void slotMarkAllArticlesAsRead();
 

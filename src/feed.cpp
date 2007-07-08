@@ -25,6 +25,7 @@
 
 #include "akregatorconfig.h"
 #include "article.h"
+#include "articlejobs.h"
 #include "feed.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"
@@ -372,14 +373,13 @@ void Feed::slotMarkAllArticlesAsRead()
 {
     if (unread() > 0)
     {
-        setNotificationMode(false, true);
-        QList<Article> tarticles = articles();
-        QList<Article>::Iterator it;
-        QList<Article>::Iterator en = tarticles.end();
-
-        for (it = tarticles.begin(); it != en; ++it)
-            (*it).setStatus(Read);
-        setNotificationMode(true, true);
+        Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
+        Q_FOREACH ( const Akregator::Article i, articles() )    
+        {
+            const Akregator::ArticleId aid = { xmlUrl(), i.guid() };
+            job->setStatus( aid, Akregator::Read );
+        }
+        job->start();
     }
 }
 void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
@@ -638,40 +638,28 @@ QIcon Feed::icon() const
     return !d->favicon.isNull() ? d->favicon : KIcon("txt");
 }
 
-void Feed::slotDeleteExpiredArticles()
+void Feed::deleteExpiredArticles( Akregator::ArticleDeleteJob* deleteJob )
 {
     if ( !usesExpiryByAge() )
         return;
 
-    QList<Article> articles = d->articles.values();
-
-    QList<Article>::Iterator en = articles.end();
-
     setNotificationMode(false);
 
-    // check keep flag only if it should be respected for expiry
-    // the code could be more compact, but we better check
-    // doNotExpiredArticles once instead of in every iteration
-    if (Settings::doNotExpireImportantArticles())
+    const QList<Article> articles = d->articles.values();
+    QList<Akregator::ArticleId> toDelete;
+    const QString feedUrl = xmlUrl();
+    const bool useKeep = Settings::doNotExpireImportantArticles();
+
+    Q_FOREACH ( const Akregator::Article i, articles )
     {
-        for (QList<Article>::Iterator it = articles.begin(); it != en; ++it)
+        if ( ( !useKeep || !i.keep() ) && isExpired( i ) )
         {
-            if (!(*it).keep() && isExpired(*it))
-            {
-                    (*it).setDeleted();
-            }
+            const ArticleId aid = { feedUrl, i.guid() };
+            toDelete.append( aid );
         }
     }
-    else
-    {
-        for (QList<Article>::Iterator it = articles.begin(); it != en; ++it)
-        {
-            if (isExpired(*it))
-            {
-                    (*it).setDeleted();
-            }
-        }
-    }
+
+    deleteJob->appendArticleIds( toDelete );
     setNotificationMode(true);
 }
 
@@ -804,44 +792,23 @@ void Feed::enforceLimitArticleNumber()
     setNotificationMode(false);
     QList<Article> articles = d->articles.values();
     qSort(articles);
-    QList<Article>::Iterator it = articles.begin();
-    QList<Article>::Iterator tmp;
-    QList<Article>::Iterator en = articles.end();
 
     int c = 0;
+    const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    if (Settings::doNotExpireImportantArticles())
+    Q_FOREACH ( const Akregator::Article i, articles )
     {
-        while (it != en)
+        if (c < limit)
         {
-            tmp = it;
-            ++it;
-            if (c < limit)
-            {
-                if (!(*tmp).isDeleted() && !(*tmp).keep())
-                c++;
-            }
-            else if (!(*tmp).keep())
-                (*tmp).setDeleted();
+            if ( !i.isDeleted() && ( !useKeep || !i.keep() ) )
+                ++c;
         }
+        else if ( !useKeep || !i.keep() )
+#ifdef __GNUC__
+#warning port setDeleted()!
+#endif
+          ;//  i.setDeleted();
     }
-    else
-    {
-        while (it != en)
-        {
-            tmp = it;
-            ++it;
-            if (c < limit && !(*tmp).isDeleted())
-            {
-                c++;
-            }
-            else
-            {
-                (*tmp).setDeleted();
-            }
-        }
-    }
-    setNotificationMode(true);
 }
 
 } // namespace Akregator

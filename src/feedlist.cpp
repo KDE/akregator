@@ -267,6 +267,14 @@ const Feed* FeedList::findByURL(const QString& feedURL) const
         return *(d->urlMap[feedURL].begin());
 }
 
+Feed* FeedList::findByURL(const QString& feedURL)
+{
+    if (d->urlMap[feedURL].isEmpty())
+        return 0;
+    else
+        return *(d->urlMap[feedURL].begin());
+}
+
 const Article FeedList::findArticle(const QString& feedURL, const QString& guid) const
 {
     const Feed* feed = findByURL(feedURL);

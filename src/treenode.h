@@ -38,6 +38,7 @@ template <class T> class QList;
 namespace Akregator 
 {
 
+class ArticleDeleteJob;
 class TreeNodeVisitor;
 class Article;
 class Folder;
@@ -144,7 +145,8 @@ public:
     @param doNotify notification on changes on/off flag
     @param notifyOccurredChanges notify changes occurred while turn off when set to true again */
     
-    virtual void setNotificationMode(bool doNotify, bool notifyOccurredChanges = true);  
+    virtual void setNotificationMode(bool doNotify);
+
     /** returns the next node in the tree.
         Calling next() unless it returns 0 iterates through the tree in pre-order
      */ 
@@ -153,20 +155,17 @@ public:
     /** returns the ID of this node. IDs are managed by @ref FeedList objects and must be unique within the list. Some IDs have a special meaning:
     @c 0 is the default value and indicates that no ID was set
     @c 1 is reserved for the "All Feeds" root node */
-    
     virtual uint id() const;
 
     /** sets the ID */
     virtual void setId(uint id);
 
-public slots:
-    
     /** Deletes all expired articles in the node (depending on the expiry settings).
         Works recursively for feed groups. */
-    
-    virtual void slotDeleteExpiredArticles() = 0;
-    
-    
+    virtual void deleteExpiredArticles( Akregator::ArticleDeleteJob* job ) = 0;
+
+public slots:
+        
     /** Marks all articles in this node as read.
     Works recursively for feed groups. */
     

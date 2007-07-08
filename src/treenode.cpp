@@ -128,19 +128,19 @@ void TreeNode::setParent(Folder* parent)
     d->parent = parent;
 }
 
-void TreeNode::setNotificationMode(bool doNotify, bool notifyOccurredChanges)
+void TreeNode::setNotificationMode( bool doNotify )
 {
-    if (doNotify && !d->doNotify) // turned on
+    if ( doNotify && !d->doNotify ) // turned on
     {
         d->doNotify = true;
-        if (d->nodeChangeOccurred && notifyOccurredChanges)
-            emit signalChanged(this);
-        if (d->articleChangeOccurred && notifyOccurredChanges)
+        if ( d->nodeChangeOccurred )
+            emit signalChanged( this );
+        if ( d->articleChangeOccurred )
             doArticleNotification();
         d->nodeChangeOccurred = false;
         d->articleChangeOccurred = false;
     }
-    if (!doNotify && d->doNotify) //turned off
+    else if ( !doNotify && d->doNotify ) //turned off
     {
         d->nodeChangeOccurred = false;
         d->articleChangeOccurred = false;

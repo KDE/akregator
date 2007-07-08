@@ -108,9 +108,8 @@ QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
     el.setAttribute("isOpen", d->open ? "true" : "false");
     el.setAttribute( "id", QString::number(id()) );
 
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        el.appendChild( (*it)->toOPML(el, document) );
+    Q_FOREACH ( const Akregator::TreeNode* i, d->children )
+        el.appendChild( i->toOPML(el, document) );
         
     return el;
 }
@@ -235,32 +234,25 @@ int Folder::unread() const
 int Folder::totalCount() const
 {
     int totalCount = 0;
-
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        totalCount += (*it)->totalCount();
-    
+    Q_FOREACH ( const Akregator::TreeNode* i, d->children )
+        totalCount += i->totalCount();
     return totalCount;
 }
 
 void Folder::updateUnreadCount()
 {
     int unread = 0;
-
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        unread += (*it)->unread();
-    
+    Q_FOREACH ( const Akregator::TreeNode* i, d->children )
+        unread += i->unread();
     d->unread = unread;
 }
 
 void Folder::slotMarkAllArticlesAsRead() 
 {
     setNotificationMode(false);
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        (*it)->slotMarkAllArticlesAsRead();
-    setNotificationMode(true, true);
+    Q_FOREACH ( Akregator::TreeNode* i, d->children )
+        i->slotMarkAllArticlesAsRead();
+    setNotificationMode(true);
 }
     
 void Folder::slotChildChanged(TreeNode* /*node*/)
@@ -276,20 +268,20 @@ void Folder::slotChildDestroyed(TreeNode* node)
     nodeModified();
 }
 
-void Folder::slotDeleteExpiredArticles()
+void Folder::deleteExpiredArticles( Akregator::ArticleDeleteJob* job )
 {
     setNotificationMode(false);
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        (*it)->slotDeleteExpiredArticles();
-    setNotificationMode(true, true);
+    Q_FOREACH ( Akregator::TreeNode* i, d->children )
+        i->deleteExpiredArticles( job );
+    setNotificationMode(true);
 }
 
 void Folder::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        (*it)->slotAddToFetchQueue(queue, intervalFetchOnly);
+    Q_FOREACH ( Akregator::TreeNode* i, d->children )
+    {
+        i->slotAddToFetchQueue(queue, intervalFetchOnly);
+    }
 }
 
 void Folder::doArticleNotification()

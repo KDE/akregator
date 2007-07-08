@@ -30,7 +30,6 @@
 #include "treenode.h"
 
 #include <syndication/syndication.h>
-#include <ksharedptr.h>
 
 #include <QIcon>
 #include <QList>
@@ -204,14 +203,14 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         //impl
         QIcon icon() const;
 
+        /** deletes expired articles */
+        void deleteExpiredArticles( Akregator::ArticleDeleteJob* job );
+
     public slots:
         /** starts fetching */
         void fetch(bool followDiscovery=false);
 
         void slotAbortFetch();
-
-        /** deletes expired articles */
-        void slotDeleteExpiredArticles();
 
         /** mark all articles in this feed as read */
         void slotMarkAllArticlesAsRead();
@@ -237,6 +236,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
     private:
         /** loads articles from archive **/
         void loadArticles();
+        void enforceLimitArticleNumber();
 
         void recalcUnreadCount();
 
@@ -258,8 +258,6 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
             To be called by @ref Article
             */
         void setArticleChanged(Article& a, int oldStatus=-1);
-
-        void enforceLimitArticleNumber();
 
         void appendArticles(const Syndication::FeedPtr feed);
 

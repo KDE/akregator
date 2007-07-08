@@ -56,6 +56,9 @@ class Feed;
 /** A proxy class for Syndication::ItemPtr with some additional methods to assist sorting. */
 class AKREGATORPART_EXPORT Article
 {
+    friend class ArticleDeleteJob;
+    friend class ArticleModifyJob;
+    friend class Feed;
     public:
 
         Article();
@@ -80,7 +83,6 @@ class AKREGATORPART_EXPORT Article
         bool isNull() const;
         
         int status() const;
-        void setStatus(int s);
 
         QString title() const;
         KUrl link() const;
@@ -88,11 +90,9 @@ class AKREGATORPART_EXPORT Article
         QString guid() const;
         /** if true, the article should be kept even when expired **/
         bool keep() const;
-        void setKeep(bool keep);
+
         bool isDeleted() const;
         
-        void setDeleted();
-
         void offsetPubDate(int secs);
 
         Feed* feed() const;
@@ -120,6 +120,10 @@ class AKREGATORPART_EXPORT Article
         bool operator>(const Article &other) const;
         bool operator>=(const Article &other) const;
 
+    private: //only for our friends
+        void setStatus(int s);
+        void setDeleted();
+        void setKeep(bool keep);
 
     private:
         void initialize(Syndication::ItemPtr item, Backend::FeedStorage* archive);

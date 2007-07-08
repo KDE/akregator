@@ -104,7 +104,7 @@ void FeedPropertiesDialog::accept()
      m_feed->setMarkImmediatelyAsRead(markImmediatelyAsRead());
      m_feed->setUseNotification(useNotification());
      m_feed->setLoadLinkedWebsite(loadLinkedWebsite());
-     m_feed->setNotificationMode(true, true);
+     m_feed->setNotificationMode(true);
 
      KDialog::accept();
 }
