@@ -25,10 +25,6 @@
 #ifndef AKREGATOR_MAINWINDOW_H
 #define AKREGATOR_MAINWINDOW_H
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 #include <kapplication.h>
 #include <kparts/mainwindow.h>
 #include <kparts/browserinterface.h>

@@ -26,8 +26,6 @@
 #ifndef AKREGATOR_PART_H
 #define AKREGATOR_PART_H
 
-#include "config.h"
-
 #include <kurl.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
