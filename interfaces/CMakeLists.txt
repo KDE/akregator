@@ -7,7 +7,6 @@ set(akregatorinterfaces_LIB_SRCS
    storagefactoryregistry.cpp 
 )
 
-kde4_automoc(${akregatorinterfaces_LIB_SRCS})
 
 kde4_add_library(akregatorinterfaces SHARED ${akregatorinterfaces_LIB_SRCS})
 

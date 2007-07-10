@@ -11,7 +11,6 @@ include_directories ( ${Boost_INCLUDE_DIR}  ${CMAKE_SOURCE_DIR}/akregator/interf
 
 set(akregator_SRCS main.cpp mainwindow.cpp )
 
-kde4_automoc(${akregator_SRCS})
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
@@ -27,7 +26,6 @@ set(akregatorprivate_LIB_SRCS
    trayicon.cpp 
 )
 
-kde4_automoc(${akregatorprivate_LIB_SRCS})
 
 kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
 
@@ -90,7 +88,6 @@ set(akregatorpart_PART_SRCS
    #speechclient.cpp )
 qt4_add_dbus_adaptor( akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part )
 
-kde4_automoc(${akregatorpart_PART_SRCS})
 
 kde4_add_ui_files(akregatorpart_PART_SRCS 
    addfeedwidgetbase.ui 
