@@ -10,13 +10,13 @@
 #include "column.h"
 #include "persist.h"
 
-#if !q4_INLINE
+#if !defined(q4_INLINE)
 #include "column.inl"
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if !HAVE_MEMMOVE && !HAVE_BCOPY
+#if !defined(HAVE_MEMMOVE) && !defined(HAVE_BCOPY)
   // in case we have no library memmove, or one that can't handle overlap
 
   void f4_memmove (void* to_, const void* from_, int n_)
@@ -44,7 +44,7 @@ c4_Column::c4_Column (c4_Persist* persist_)
 {
 }
 
-#if q4_CHECK
+#if defined(q4_CHECK)
 
     // debugging version to verify that the internal data is consistent
   void c4_Column::Validate() const
@@ -1013,7 +1013,7 @@ bool c4_ColOfInts::Set_4b(int index_, const t4_byte* item_)
 }
 
 // avoid a bug in MS EVC 3.0's code gen for ARM (i.e. WinCE)
-#ifdef _ARM_
+#if defined(_ARM_)
 #pragma optimize("g",off)
 #endif
 
@@ -1029,7 +1029,7 @@ bool c4_ColOfInts::Set_8i(int index_, const t4_byte* item_)
   return v == (signed char) v;
 }
 
-#ifdef _ARM_
+#if defined(_ARM_)
 #pragma optimize("",on)
 #endif
 

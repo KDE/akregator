@@ -43,7 +43,7 @@
 #define __K4CONF_H__    // skip section in "mk4.h", since we use "header.h"
 
     // if neither MFC nor STD are specified, default to Universal version
-#if !q4_MFC && !q4_STD && !defined (q4_UNIV)
+#if !defined(q4_MFC) && !defined(q4_STD) && !defined (q4_UNIV)
 #define q4_UNIV 1
 #endif
 
@@ -108,27 +108,27 @@
 /////////////////////////////////////////////////////////////////////////////
 // Some of the options take precedence over others
 
-#if !q4_BOOL && !q4_STD         // define a bool datatype
+#if !defined(q4_BOOL) && !defined(q4_STD)        // define a bool datatype
 #define false 0
 #define true 1
 #define bool int
 #endif
 
-#if !q4_CHECK                   // disable assertions
+#if !defined(q4_CHECK)                  // disable assertions
 #undef d4_assert
 #define d4_dbgdef(x)
 #define d4_assert(x)
 #endif
 
-#if q4_NO_NS                    // don't use namespaces
+#if defined(q4_NO_NS)                    // don't use namespaces
 #define d4_std
 #else
 #define d4_std std
 #endif
 
-#if HAVE_MEMMOVE
+#if defined(HAVE_MEMMOVE)
 #define d4_memmove(d,s,n)   memmove(d,s,n)
-#elif HAVE_BCOPY
+#elif defined(HAVE_BCOPY)
 #define d4_memmove(d,s,n)   bcopy(s,d,n)
 #else
 #define d4_memmove f4_memmove
@@ -137,7 +137,7 @@ extern void f4_memmove(void* d, const void* s, int n);
 
 typedef unsigned char t4_byte;  // create typedefs for t4_byte, etc.
 
-#if SIZEOF_LONG == 8
+#if defined(SIZEOF_LONG) && (SIZEOF_LONG == 8)
 typedef int t4_i32;             // longs are 64b, so int must be 32b
 #else
 typedef long t4_i32;            // longs aren't 64b, so they are 32b
@@ -146,19 +146,19 @@ typedef long t4_i32;            // longs aren't 64b, so they are 32b
 /////////////////////////////////////////////////////////////////////////////
 // Include header files which contain additional os/cpu/ide/fw specifics
 
-#ifdef d4_OS_H                  // operating system dependencies
+#if defined(d4_OS_H)                  // operating system dependencies
 #include d4_OS_H
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 // Several defines should always be set
 
-#ifndef d4_assert               // assertion macro
+#if !defined(d4_assert)              // assertion macro
 #include <assert.h>
 #define d4_assert assert
 #endif
 
-#ifndef d4_dbgdef               // conditionally compiled
+#if !defined(d4_dbgdef)               // conditionally compiled
 #ifdef NDEBUG
 #define d4_dbgdef(x)
 #else
@@ -166,18 +166,18 @@ typedef long t4_i32;            // longs aren't 64b, so they are 32b
 #endif
 #endif
 
-#ifndef d4_new                  // heap allocator
+#if !defined(d4_new)                  // heap allocator
 #define d4_new new
 #endif
 
-#ifndef d4_reentrant            // thread-local storage
+#if !defined(d4_reentrant)            // thread-local storage
 #define d4_reentrant
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 // Debug logging option, called internally where properties are modified
 
-#if q4_LOGPROPMODS
+#if defined(q4_LOGPROPMODS)
 void f4_DoLogProp(const c4_Handler*, int, const char*, int);
 #else
 #define f4_LogPropMods(a,b) 0
@@ -188,15 +188,15 @@ void f4_DoLogProp(const c4_Handler*, int, const char*, int);
 
 #include "mk4.h"
 
-#if q4_MFC
+#if defined(q4_MFC)
 #include "mfc.h"
-#elif q4_STD
+#elif defined(q4_STD)
 #include "std.h"
-#elif q4_UNIV
+#elif defined(q4_UNIV)
 #include "univ.h"
 #endif
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER)
 #pragma warning(disable: 4100 4127 4135 4244 4511 4512 4514)
 #endif
 
@@ -204,8 +204,8 @@ void f4_DoLogProp(const c4_Handler*, int, const char*, int);
 
 /////////////////////////////////////////////////////////////////////////////
 // Report unexpected combinations of settings
-
-#if !q4_FIX
+#if 0
+#if !defined(q4_FIX)
 #if (q4_DOS+q4_MAC+q4_UNIX+q4_VMS+q4_WIN) != 1
 #error Exactly one operating system should have been defined
 #endif
@@ -213,7 +213,7 @@ void f4_DoLogProp(const c4_Handler*, int, const char*, int);
 #error Exactly one container library should have been defined
 #endif
 #endif
-    
+#endif    
 /////////////////////////////////////////////////////////////////////////////
 
 #endif

@@ -9,9 +9,9 @@
 /////////////////////////////////////////////////////////////////////////////
 // c4_String
 
-#if q4_MFC                      // Microsoft Foundation Classes
+#if defined(q4_MFC)                      // Microsoft Foundation Classes
     
-#elif q4_STD                    // STL and standard strings
+#elif defined(q4_STD)                    // STL and standard strings
 
 /// Construct empty string
 d4_inline c4_String::c4_String ()

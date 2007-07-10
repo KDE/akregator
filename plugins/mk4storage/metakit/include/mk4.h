@@ -138,17 +138,17 @@
 
     // GNU gcc/egcs
 #if defined (__GNUC__)
-#ifndef q4_BOOL
+#if !defined(q4_BOOL)
 #define q4_BOOL 1
 #endif
-#ifndef HAVE_LONG_LONG
+#if !defined(HAVE_LONG_LONG)
 #define HAVE_LONG_LONG 1
 #endif
 #endif
 
     // HP aCC
 #if defined (__HP_aCC)
-#ifndef HAVE_LONG_LONG
+#if !defined(HAVE_LONG_LONG)
 #define HAVE_LONG_LONG 1
 #endif
 #endif
@@ -181,17 +181,17 @@
 //---------------------------------------------------------------------------
 // Other definitions needed by the public Metakit library header files
 
-#if !q4_BOOL && !q4_STD         // define a bool datatype
+#if !defined(q4_BOOL) && !defined(q4_STD)         // define a bool datatype
 #define false 0
 #define true 1
 #define bool int
 #endif
 
-#if q4_KITDLL                   // add declaration specifiers
+#if defined(q4_KITDLL)                   // add declaration specifiers
 #include "mk4dll.h"
 #endif
 
-#if q4_INLINE                   // enable inline expansion
+#if defined(q4_INLINE)                   // enable inline expansion
 #define d4_inline inline
 #else
 #define d4_inline
@@ -199,17 +199,17 @@
 
 typedef unsigned char t4_byte;  // create typedefs for t4_byte, etc.
 
-#if q4_LONG64
+#if defined(q4_LONG64)
 typedef int t4_i32;             // if longs are 64b, then int must be 32b
 #else
 typedef long t4_i32;            // if longs aren't 64b, then they are 32b
 #endif
 
-#if q4_LONG64           // choose a way to represent 64b integers
+#if defined(q4_LONG64)           // choose a way to represent 64b integers
 typedef long t4_i64;
 #elif defined (LONG_LONG)
 typedef LONG_LONG t4_i64;
-#elif HAVE_LONG_LONG
+#elif defined(HAVE_LONG_LONG)
 typedef long long t4_i64;
 #else
 struct t4_i64 { long l1; long l2; };
@@ -618,7 +618,7 @@ public:
   c4_Row AsRow(t4_i32) const;
 };
 
-#if !q4_TINY
+#if !defined(q4_TINY)
 
     /// Long int properties.
 class c4_LongProp : public c4_Property
@@ -979,7 +979,7 @@ public:
   c4_IntRef& operator= (t4_i32);
 };
 
-#if !q4_TINY
+#if !defined(q4_TINY)
 
     /// Used to get or set long int values.
 class c4_LongRef : public c4_Reference
@@ -1063,7 +1063,7 @@ public:
 //---------------------------------------------------------------------------
 // Debug logging option, can generate log of changes for one/all properties
 
-#if q4_LOGPROPMODS
+#if defined(q4_LOGPROPMODS)
 FILE* f4_LogPropMods(FILE* fp_, int propId_);
 #else
 #define f4_LogPropMods(a,b) 0
@@ -1071,7 +1071,7 @@ FILE* f4_LogPropMods(FILE* fp_, int propId_);
 
 //---------------------------------------------------------------------------
 
-#if q4_INLINE
+#if defined(q4_INLINE)
 #include "mk4.inl"
 #endif
 

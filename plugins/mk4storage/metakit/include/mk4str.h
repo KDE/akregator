@@ -11,25 +11,25 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if q4_MFC                      // Microsoft Foundation Classes
+#if defined(q4_MFC)                      // Microsoft Foundation Classes
 
-#ifdef _WINDOWS
+#if defined(_WINDOWS)
 #include <afxwin.h>
 #else
 #include <afxcoll.h>
 #endif
 
-#if _MSC_VER == 800
+#if defined(_MSC_VER) && (_MSC_VER == 800)
 // MSVC 1.52 thinks a typedef has no constructor, use define instead
 #define c4_String CString
-#elif _MSC_VER >= 1300
+#elif defined(_MSC_VER) && (_MSC_VER >= 1300)
 // VC 7.0 does not like "class" (6-2-2002, Zhang Dehua)
 typedef CString c4_String;
 #else
 typedef class CString c4_String;
 #endif
 
-#elif q4_STD                    // STL and standard strings
+#elif defined(q4_STD)                    // STL and standard strings
 
 #include <string>
 
@@ -172,7 +172,7 @@ bool operator!= (const char* s1, const c4_String& s2);
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if q4_INLINE
+#if defined(q4_INLINE)
 #include "mk4str.inl"
 #endif
 

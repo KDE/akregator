@@ -9,8 +9,8 @@
 #include "header.h"
 #include "mk4io.h"
 
-#if q4_WIN32
-#if q4_MSVC && !q4_STRICT
+#if defined(q4_WIN32)
+#if defined(q4_MSVC) && !defined(q4_STRICT)
 #pragma warning(disable: 4201) // nonstandard extension used : ...
 #endif
 #define WIN32_LEAN_AND_MEAN
@@ -20,17 +20,17 @@
 #include <sys/stat.h>
 #endif
 
-#if q4_UNIX && HAVE_MMAP
+#if defined(q4_UNIX) && defined(HAVE_MMAP)
 #include <sys/types.h>
 #include <sys/mman.h>
 #endif
 
-#if q4_UNIX
+#if defined(q4_UNIX)
 #include <unistd.h>
 #include <fcntl.h>
 #endif
 
-#if q4_WINCE
+#if defined(q4_WINCE)
 #define _get_osfhandle(x) x
 #endif
 
@@ -161,7 +161,7 @@ static void FinalizeIO()
 
 /////////////////////////////////////////////////////////////////////////////
 
-#if q4_CHECK
+#if defined(q4_CHECK)
 #include <stdlib.h>
 
 void f4_AssertionFailed(const char* cond_, const char* file_, int line_)
@@ -255,7 +255,7 @@ t4_i32 c4_FileStrategy::FreshGeneration()
 
 void c4_FileStrategy::ResetFileMapping()
 {
-#if q4_WIN32
+#if defined(q4_WIN32)
   if (_mapStart != 0) {
     _mapStart -= _baseOffset;
     d4_dbgdef(BOOL g =)
@@ -289,7 +289,7 @@ void c4_FileStrategy::ResetFileMapping()
       }
     }
   }
-#elif HAVE_MMAP && !NO_MMAP
+#elif defined(HAVE_MMAP) && !defined(NO_MMAP)
   if (_mapStart != 0) {
     _mapStart -= _baseOffset;
     munmap((char*) _mapStart, _baseOffset + _dataSize); // also loses const
@@ -317,7 +317,7 @@ bool c4_FileStrategy::DataOpen(const char* fname_, int mode_)
 {
   d4_assert(!_file);
 
-#if q4_WIN32 && !q4_BORC && !q4_WINCE
+#if defined(q4_WIN32) && !defined(q4_BORC) && !defined(q4_WINCE)
   int flags = _O_BINARY | _O_NOINHERIT | (mode_ > 0 ? _O_RDWR : _O_RDONLY);
   int fd = _open(fname_, flags);
   if (fd == -1) {
@@ -329,7 +329,7 @@ bool c4_FileStrategy::DataOpen(const char* fname_, int mode_)
     _cleanup = _file = _fdopen(fd, mode_ > 0 ? "r+b" : "rb");
 #else
   _cleanup = _file = fopen(fname_, mode_ > 0 ? "r+b" : "rb");
-#if q4_UNIX
+#if defined(q4_UNIX)
   if (_file != 0)
     fcntl(fileno(_file), F_SETFD, FD_CLOEXEC);
 #endif //q4_UNIX
@@ -341,7 +341,7 @@ bool c4_FileStrategy::DataOpen(const char* fname_, int mode_)
   }
 
   if (mode_ > 0) {
-#if q4_WIN32 && !q4_BORC && !q4_WINCE
+#if defined(q4_WIN32) && !defined(q4_BORC) && !defined(q4_WINCE)
     fd = _open(fname_, flags | _O_CREAT, _S_IREAD | _S_IWRITE);
     if (fd == -1) {
       WCHAR wName[MAX_PATH];
@@ -352,7 +352,7 @@ bool c4_FileStrategy::DataOpen(const char* fname_, int mode_)
       _cleanup = _file = _fdopen(fd, "w+b");
 #else
     _cleanup = _file = fopen(fname_, "w+b");
-#if q4_UNIX
+#if defined(q4_UNIX)
     if (_file != 0)
       fcntl(fileno(_file), F_SETFD, FD_CLOEXEC);
 #endif //q4_UNIX
@@ -391,7 +391,7 @@ void c4_FileStrategy::DataWrite(t4_i32 pos_, const void* buf_, int len_)
   fflush(stdout);
 #endif
 
-#if q4_WIN32 || __hpux || __MACH__ 
+#if defined(q4_WIN32) || defined(__hpux) || defined(__MACH__)
 // if (buf_ >= _mapStart && buf_ <= _mapLimit - len_)
 
     // a horrendous hack to allow file mapping for Win95 on network drive
