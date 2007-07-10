@@ -104,7 +104,7 @@ kde4_add_plugin(akregatorpart WITH_PREFIX ${akregatorpart_PART_SRCS})
 
 
 
-target_link_libraries(akregatorpart  ${KDE4_KDECORE_LIBS} ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate)
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate)
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
