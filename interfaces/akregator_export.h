@@ -24,7 +24,7 @@
 #include <kdemacros.h>
 
 #ifndef AKREGATOR_EXPORT
-# if defined(MAKE_AKREGATORPRIVATE_LIB)
+# if defined(MAKE_AKREGATORINTERFACES_LIB) || defined(MAKE_AKREGATORPRIVATE_LIB)
    /* We are building this library */ 
 #  define AKREGATOR_EXPORT KDE_EXPORT
 # else
