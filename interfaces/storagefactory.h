@@ -34,7 +34,7 @@ namespace Backend {
 
 class Storage;
 
-class AKREGATOR_EXPORT StorageFactory
+class AKREGATORINTERFACES_EXPORT StorageFactory
 {
     public:
 	virtual ~StorageFactory(){}    

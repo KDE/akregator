@@ -6,7 +6,7 @@
 
 #include "akregator_export.h"
 
-#define AKREGATOR_EXPORT_PLUGIN( classname ) \
+#define AKREGATORINTERFACES_EXPORT_PLUGIN( classname ) \
     extern "C" { \
          KDE_EXPORT Akregator::Plugin* create_plugin() { return new classname; } \
     }
@@ -19,7 +19,7 @@ namespace Akregator {
 
 //    class PluginConfig;
 
-class AKREGATOR_EXPORT Plugin
+class AKREGATORINTERFACES_EXPORT Plugin
 {
     public:
         virtual ~Plugin();

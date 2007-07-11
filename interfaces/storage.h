@@ -40,7 +40,7 @@ class FeedStorage;
     
     An archive implementation must implement Storage, FeedStorage and StorageFactory. See mk4storage for an example.
 */
-class AKREGATOR_EXPORT Storage : public QObject
+class AKREGATORINTERFACES_EXPORT Storage : public QObject
 {
     public:
 

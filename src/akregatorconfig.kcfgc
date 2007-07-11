@@ -4,5 +4,6 @@ ClassName=Settings
 NameSpace=Akregator
 Singleton=true
 Mutators=true
-Visibility=KDE_EXPORT
+IncludeFiles=akregator_export.h
+Visibility=AKREGATOR_EXPORT
 MemberVariables=private

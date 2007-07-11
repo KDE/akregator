@@ -35,7 +35,7 @@ namespace Backend {
 
 class StorageFactory;
 
-class AKREGATOR_EXPORT StorageFactoryRegistry
+class AKREGATORINTERFACES_EXPORT StorageFactoryRegistry
 {
     public:
         static StorageFactoryRegistry* self();
