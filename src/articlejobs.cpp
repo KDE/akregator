@@ -65,17 +65,17 @@ Akregator::ArticleModifyJob::ArticleModifyJob( QObject* parent ) : KJob( parent 
     Q_ASSERT( m_feedList );
 }
 
-void Akregator::ArticleModifyJob::ArticleModifyJob::setStatus( const ArticleId& id, int status )
+void Akregator::ArticleModifyJob::setStatus( const ArticleId& id, int status )
 {
     m_status[id] = status;
 }
 
-void Akregator::ArticleModifyJob::ArticleModifyJob::setKeep( const ArticleId& id, bool keep )
+void Akregator::ArticleModifyJob::setKeep( const ArticleId& id, bool keep )
 {
     m_keepFlags[id] = keep;
 }
 
-void Akregator::ArticleModifyJob::ArticleModifyJob::start()
+void Akregator::ArticleModifyJob::start()
 {
     QSet<Akregator::Feed*> feeds;
 
