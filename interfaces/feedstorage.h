@@ -24,8 +24,8 @@
 #ifndef AKREGATOR_BACKEND_FEEDSTORAGE_H
 #define AKREGATOR_BACKEND_FEEDSTORAGE_H
 
-#include <QObject>
-#include <QList>
+#include <QtCore/QObject>
+#include <QtCore/QList>
 
 class QString;
 class QStringList;

@@ -11,8 +11,8 @@
          KDE_EXPORT Akregator::Plugin* create_plugin() { return new classname; } \
     }
 
-#include <QHash>
-#include <QString>
+#include <QtCore/QHash>
+#include <QtCore/QString>
 
 
 namespace Akregator {
