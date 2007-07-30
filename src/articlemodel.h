@@ -40,13 +40,15 @@ class AKREGATORPART_EXPORT ArticleModel : public QAbstractListModel
 
 public:
 
-    enum Column { ItemTitleColumn=0, 
-                  FeedTitleColumn,
-                  DateColumn,
-                  AuthorColumn, 
-                  DescriptionColumn,
-                  ContentColumn,
-                  ColumnCount };
+    enum Column {
+        ItemTitleColumn=0, 
+        FeedTitleColumn,
+        DateColumn,
+        AuthorColumn, 
+        DescriptionColumn,
+        ContentColumn,
+        ColumnCount 
+    };
 
     enum Role {
         LinkRole=Qt::UserRole,
@@ -61,13 +63,13 @@ public:
     ~ArticleModel();
 
     //reimpl
-    int columnCount( const QModelIndex& parent=QModelIndex() ) const;
+    int columnCount( const QModelIndex& parent = QModelIndex() ) const;
 
     //impl
-    int rowCount( const QModelIndex& parent=QModelIndex() ) const;
+    int rowCount( const QModelIndex& parent = QModelIndex() ) const;
 
     //impl
-    QVariant data( const QModelIndex& index, int role=Qt::DisplayRole ) const;
+    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
 
 private Q_SLOTS:
 

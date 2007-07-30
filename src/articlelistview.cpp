@@ -22,9 +22,10 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "articlelistview.h"
+
 #include "actionmanager.h"
 #include "akregatorconfig.h"
-#include "articlelistview.h"
 #include "articlemodel.h"
 #include "kernel.h"
 #include "types.h"
@@ -50,7 +51,6 @@ int Akregator::SortColorizeProxyModel::columnCount( const QModelIndex& index ) c
 {
     return 3;
 }
-
 
 QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orientation, int role ) const
 {
@@ -127,6 +127,9 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
     QAbstractProxyModel* proxy = new Akregator::SortColorizeProxyModel( model );
     proxy->setSourceModel( model );
     setModel( proxy );
+    header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
+    header()->setStretchLastSection( false );
+    header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
 }
 
 QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
@@ -169,14 +172,25 @@ Akregator::ArticleListView::~ArticleListView()
     Settings::self()->writeConfig();
 }
 
-Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(parent), m_columnMode( Akregator::ArticleListView::Unspecified )
+void Akregator::ArticleListView::setIsAggregation( bool aggregation )
+{
+    if ( aggregation == m_isAggregation )
+        return;
+    m_isAggregation = aggregation;
+    if ( aggregation )
+        setGroupMode();
+    else
+        setFeedMode();
+}
+
+Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(parent), m_columnMode( Akregator::ArticleListView::Unspecified ), m_isAggregation( false )
 {
     setSortingEnabled( true );
     setAlternatingRowColors( true );
     setSelectionMode( QAbstractItemView::ExtendedSelection );
     setUniformRowHeights( true );
 
-    setMinimumSize(250, 150);
+    setMinimumSize( 250, 150 );
     setWhatsThis( i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
@@ -241,13 +255,13 @@ void Akregator::ArticleListView::contextMenuEvent( QContextMenuEvent* event )
 {
     QWidget* w = ActionManager::getInstance()->container( "article_popup" );
     QMenu* popup = qobject_cast<QMenu*>( w );
-    if (popup)
+    if ( popup )
         popup->exec( event->globalPos() );
 }
 
 void Akregator::ArticleListView::paintEvent( QPaintEvent* e )
 {
-    QTreeView::paintEvent(e);
+    QTreeView::paintEvent( e );
 
 #ifdef __GNUC__
 #warning The distinction between empty node and 0 items after filtering is hard to port to interview

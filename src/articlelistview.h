@@ -88,6 +88,8 @@ public:
     //impl ArticleLister
     QAbstractItemView* itemView();
 
+    void setIsAggregation( bool isAggregation );
+
 public Q_SLOTS:
 
     void slotClear();
@@ -125,6 +127,7 @@ private:
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
     enum ColumnMode { Unspecified, GroupMode, FeedMode };
     ColumnMode m_columnMode;
+    bool m_isAggregation;
 };
 
 #if 0

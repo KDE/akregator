@@ -40,11 +40,14 @@ class TreeNode;
 class ArticleLister
 {
 public:
+
     virtual ~ArticleLister() {}
 
     virtual void setArticleModel( Akregator::ArticleModel* model ) = 0;
 
     virtual QItemSelectionModel* articleSelectionModel() const = 0;
+
+    virtual void setIsAggregation( bool isAggregation ) = 0;
 
     virtual const QAbstractItemView* itemView() const = 0;
 

@@ -21,8 +21,9 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#include "article.h"
 #include "articlemodel.h"
+
+#include "article.h"
 #include "akregatorconfig.h"
 #include "treenode.h"
 #include "feed.h"
@@ -40,7 +41,7 @@ struct Akregator::ArticleModelPrivate {
 Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractListModel( parent ), d( new Akregator::ArticleModelPrivate )
 {
     d->node = node;
-    Q_ASSERT(node);
+    Q_ASSERT( node );
     d->articles = node->articles();
     connect( node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
     connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
@@ -127,6 +128,7 @@ void Akregator::ArticleModel::nodeDestroyed()
 void Akregator::ArticleModel::articlesChanged()
 {
     d->articles = d->node->articles();
+    reset();
 }
 
 #include "articlemodel.moc"
