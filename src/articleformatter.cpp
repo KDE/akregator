@@ -244,7 +244,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
 
         //text += QString("<hr><div><a href=\"%1\">%2</a> (%3, %4)</div>").arg(url).arg(url).arg(lengthStr).arg(type);
    // }
-    //kDebug() << text << endl;
+    //kDebug() << text;
     return text;
 }
 
@@ -430,7 +430,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += "\">" + i18n( "Complete Story" ) + "</a></p>";
     }
     text += "</div>";
-    //kDebug() << text << endl;
+    //kDebug() << text;
     return text;
 }
 

@@ -226,7 +226,7 @@ KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 
 bool MainWindow::queryExit()
 {
-    kDebug() << "MainWindow::queryExit()" << endl;
+    kDebug() <<"MainWindow::queryExit()";
     if ( !kapp->sessionSaving() )
     {
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache

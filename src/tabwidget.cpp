@@ -284,7 +284,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
 {
     QWidget* w = ActionManager::getInstance()->container("tab_popup");
     d->currentItem = widget(i);
-    //kDebug() << indexOf(d->currentItem) << endl;
+    //kDebug() << indexOf(d->currentItem);
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0)
         static_cast<QMenu *>(w)->exec(p);

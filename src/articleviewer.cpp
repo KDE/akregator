@@ -427,7 +427,7 @@ void ArticleViewer::renderContent(const QString& text)
     m_part->closeUrl();
     m_currentText = text;
     beginWriting();
-    //kDebug() << text << endl;
+    //kDebug() << text;
     m_part->write(text);
     endWriting();
 }
@@ -450,7 +450,7 @@ void ArticleViewer::beginWriting()
 void ArticleViewer::endWriting()
 {
     m_part->write(m_htmlFooter);
-    //kDebug() << m_htmlFooter << endl;
+    //kDebug() << m_htmlFooter;
     m_part->end();
 }
 
@@ -545,9 +545,9 @@ void ArticleViewer::slotUpdateCombinedView()
             ++num;
         }
     }
-    kDebug() << "Combined view rendering: (" << num << " articles):\n" << "generating HTML: " << spent.elapsed() << "ms " << endl;
+    kDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
     renderContent(text);
-    kDebug() << "HTML rendering: " << spent.elapsed() << "ms" << endl;
+    kDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
 }
 
 void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& /*list*/)
@@ -567,8 +567,8 @@ void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>
 /* testingtesting :)
 void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
 {
-    kDebug() << m_link << endl;
-    kDebug() << kurl.url() << endl;
+    kDebug() << m_link;
+    kDebug() << kurl.url();
 }*/
 
 

@@ -894,7 +894,7 @@ void Akregator::ArticleListViewOld::viewportPaintEvent(QPaintEvent *e)
 
     QString message;
 
-    //kDebug() << "visible articles: " << visibleArticles() << endl;
+    //kDebug() <<"visible articles:" << visibleArticles();
 
     if(childCount() != 0) // article list is not empty
     {

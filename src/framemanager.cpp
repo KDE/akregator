@@ -277,7 +277,7 @@ void FrameManager::slotFoundMimeType(const OpenUrlRequest& request)
 
 void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
 {
-    kDebug() << "FrameManager::slotOpenUrlRequest(): " << request.debugInfo() << endl;
+    kDebug() <<"FrameManager::slotOpenUrlRequest():" << request.debugInfo();
     
     if (request.options() == OpenUrlRequest::ExternalBrowser)
     {

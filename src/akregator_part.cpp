@@ -241,10 +241,10 @@ void Part::saveSettings()
 
 Part::~Part()
 {
-    kDebug() << "Part::~Part() enter" << endl;
+    kDebug() <<"Part::~Part() enter";
     if (!m_shuttingDown)
         slotOnShutdown();
-    kDebug() << "Part::~Part(): leaving" << endl;
+    kDebug() <<"Part::~Part(): leaving";
 }
 
 void Part::readProperties(const KConfigGroup & config)
@@ -452,7 +452,7 @@ bool Part::mergePart(KParts::Part* part)
     {
         if (!factory())
         {
-            kDebug() << "Akregator::Part::mergePart(): factory() returns NULL" << endl;
+            kDebug() <<"Akregator::Part::mergePart(): factory() returns NULL";
             return false;
         }
         if (m_mergedPart)
@@ -593,14 +593,14 @@ void Part::fetchAllFeeds()
 
 void Part::fetchFeedUrl(const QString&s)
 {
-    kDebug() << "fetchFeedURL==" << s << endl;
+    kDebug() <<"fetchFeedURL==" << s;
 }
 
 void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
 {
     for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
     {
-        kDebug() << "Akregator::Part::addFeedToGroup adding feed with URL " << *it << " to group " << group << endl;
+        kDebug() <<"Akregator::Part::addFeedToGroup adding feed with URL" << *it <<" to group" << group;
         m_mainWidget->addFeedToGroup(*it, group);
     }
     NotificationManager::self()->slotNotifyFeeds(urls);
@@ -712,7 +712,7 @@ void Part::initFonts()
             minfs = konq.readEntry("MinimumFontSize", 0);
         else
             minfs = KGlobalSettings::generalFont().pointSize();
-        kDebug() << "Part::initFonts(): set MinimumFontSize to " << minfs << endl;
+        kDebug() <<"Part::initFonts(): set MinimumFontSize to" << minfs;
         Settings::setMinimumFontSize(minfs);
     }
 
@@ -723,7 +723,7 @@ void Part::initFonts()
             medfs = konq.readEntry("MediumFontSize", 0);
         else
             medfs = KGlobalSettings::generalFont().pointSize();
-        kDebug() << "Part::initFonts(): set MediumFontSize to " << medfs << endl;
+        kDebug() <<"Part::initFonts(): set MediumFontSize to" << medfs;
         Settings::setMediumFontSize(medfs);
     }
 
@@ -733,7 +733,7 @@ void Part::initFonts()
         if (konq.hasKey("UnderlineLinks"))
             underline = konq.readEntry("UnderlineLinks", false);
 
-        kDebug() << "Part::initFonts(): set UnderlineLinks to " << underline << endl;
+        kDebug() <<"Part::initFonts(): set UnderlineLinks to" << underline;
         Settings::setUnderlineLinks(underline);
     }
 

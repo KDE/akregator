@@ -798,7 +798,7 @@ void FeedListView::slotItemRenamed(Q3ListViewItem* item, int col, const QString&
     {
         if (text != ni->node()->title())
         {
-            kDebug() << "renamed item to \"" << text << "\"" << endl;
+            kDebug() <<"renamed item to \"" << text <<"\"";
             ni->node()->setTitle(text);
         }
     }

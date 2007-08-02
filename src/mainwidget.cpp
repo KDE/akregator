@@ -151,10 +151,10 @@ Akregator::MainWidget::~MainWidget()
     // should be no risk to do the cleanups now
     if (!m_shuttingDown)
     {
-        kDebug() << "Akregator::MainWidget::~MainWidget(): slotOnShutdown() wasn't called. Calling it now." << endl;
+        kDebug() <<"Akregator::MainWidget::~MainWidget(): slotOnShutdown() wasn't called. Calling it now.";
         slotOnShutdown();
     }
-    kDebug() << "Akregator::MainWidget::~MainWidget(): leaving" << endl;
+    kDebug() <<"Akregator::MainWidget::~MainWidget(): leaving";
 }
 
 Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
@@ -675,9 +675,9 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
 
     if (node)
     {
-        kDebug() << "node selected: " << node->title() << endl;
-        kDebug() << "unread: " << node->unread() << endl;
-        kDebug() << "total: " << node->totalCount() << endl;
+        kDebug() <<"node selected:" << node->title();
+        kDebug() <<"unread:" << node->unread();
+        kDebug() <<"total:" << node->totalCount();
     }
 
     if (m_displayingAboutPage)
@@ -950,7 +950,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
     KToggleAction* maai = static_cast<KToggleAction*>(m_actionManager->action("article_set_status_important"));
     maai->setChecked(article.keep());
 
-    kDebug() << "selected: " << article.guid() << endl;
+    kDebug() <<"selected:" << article.guid();
 
     m_articleViewer->showArticle( article );
 }

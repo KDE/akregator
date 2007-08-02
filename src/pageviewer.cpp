@@ -375,7 +375,7 @@ void PageViewer::slotSetCaption(const QString& cap)
 
 void PageViewer::slotPaletteOrFontChanged()
 {
-    kDebug() << "PageViewer::slotPaletteOrFontChanged()" << endl;
+    kDebug() <<"PageViewer::slotPaletteOrFontChanged()";
     // taken from KonqView (kdebase/konqueror/konq_view.cc)
     QObject *obj = KParts::BrowserExtension::childObject(this);
     if ( !obj ) // not all views have a browser extension !
@@ -469,7 +469,7 @@ void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl
         KUrl kurl;
         if (!KUrl(url).path().startsWith("/"))
         {
-            kDebug() << "processing relative url: " << url << endl;
+            kDebug() <<"processing relative url:" << url;
             if (url.startsWith("#"))
             {
                 kurl = KUrl(PageViewer::url());

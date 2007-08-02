@@ -46,7 +46,7 @@ bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimet
 {
     KService::List offers = KMimeTypeTrader::self()->query( mimetype, "KParts/ReadOnlyPart" );
 
-    kDebug() << "BrowserFrame::loadPartForMimetype("<< mimetype << "): " << offers.size() << " offers" << endl;
+    kDebug() <<"BrowserFrame::loadPartForMimetype("<< mimetype <<"):" << offers.size() <<" offers";
 
     if (!offers.isEmpty())
     {
@@ -145,7 +145,7 @@ void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( QList<HistoryEntry>
         extension->restoreState(stream);
     else
     {
-        kDebug() << "BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!" << endl; 
+        kDebug() <<"BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!"; 
         part->openUrl((*entry).url);
     }
 
@@ -165,7 +165,7 @@ void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
     if (lockHistory || !part || current == history.end() || !part->url().isValid())
         return;
 
-    kDebug() << "BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id << " url=" << part->url().url() << endl;
+    kDebug() <<"BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id <<" url=" << part->url().url();
     
     (*current).url = part->url();
     (*current).title = q->title();

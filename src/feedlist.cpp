@@ -204,9 +204,9 @@ bool FeedList::readFromXML(const QDomDocument& doc)
 {
     QDomElement root = doc.documentElement();
 
-    kDebug() << "loading OPML feed " << root.tagName().toLower() << endl;
+    kDebug() <<"loading OPML feed" << root.tagName().toLower();
 
-    kDebug() << "measuring startup time: START" << endl;
+    kDebug() <<"measuring startup time: START";
     QTime spent;
     spent.start();
 
@@ -222,7 +222,7 @@ bool FeedList::readFromXML(const QDomDocument& doc)
 
     if (bodyNode.isNull())
     {
-        kDebug() << "Failed to acquire body node, markup broken?" << endl;
+        kDebug() <<"Failed to acquire body node, markup broken?";
         return false;
     }
 
@@ -244,8 +244,8 @@ bool FeedList::readFromXML(const QDomDocument& doc)
             d->idMap.insert(id, i);
     }
 
-    kDebug() << "measuring startup time: STOP, " << spent.elapsed() << "ms" << endl;
-    kDebug() << "Number of articles loaded: " << rootNode()->totalCount() << endl;
+    kDebug() <<"measuring startup time: STOP," << spent.elapsed() <<"ms";
+    kDebug() <<"Number of articles loaded:" << rootNode()->totalCount();
     return true;
 }
 
