@@ -31,7 +31,7 @@
 namespace Akregator {
 
 BrowserRun::BrowserRun(const OpenUrlRequest& request, QWidget* parent)
-    : KParts::BrowserRun(request.url(), request.args(), 0L, parent, false, false, true), m_request(request)
+    : KParts::BrowserRun(request.url(), request.args(), request.browserArgs(), 0L, parent, false, false, true), m_request(request)
 {
     setEnableExternalBrowser(false);
 }
@@ -41,8 +41,8 @@ BrowserRun::~BrowserRun()
 
 void BrowserRun::foundMimeType(const QString& type)
 {
-    KParts::URLArgs args = m_request.args();
-    args.serviceType = type;
+    KParts::OpenUrlArguments args = m_request.args();
+    args.setMimeType(type);
     m_request.setArgs(args);
     
     emit signalFoundMimeType(m_request);

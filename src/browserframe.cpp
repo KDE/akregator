@@ -107,7 +107,8 @@ void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 void BrowserFrame::slotPopupMenu(KXMLGUIClient* client, 
                    const QPoint& global, 
                    const KUrl& url,
-                   const KParts::URLArgs& args,
+                   const KParts::OpenUrlArguments& args,
+                   const KParts::BrowserArguments& browserArgs,
                    KParts::BrowserExtension::PopupFlags flags,
                    mode_t mode)
 {
@@ -158,46 +159,50 @@ void BrowserFrame::slotPopupMenu(KXMLGUIClient* client,
     popup.exec(global);
 }
                    
-void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
+void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
 {
     OpenUrlRequest req;
     
     req.setFrameId(id());
     req.setUrl(url);
     req.setArgs(args);
+    req.setBrowserArgs(browserArgs);
     
     emit signalOpenUrlRequest(req);
 }
 
-void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args)
+void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
 {
     OpenUrlRequest req;
     req.setFrameId(id());
     req.setUrl(url);
     req.setArgs(args);
+    req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
     
     emit signalOpenUrlRequest(req);
 }
 
 void BrowserFrame::slotCreateNewWindow(const KUrl& url, 
-                                       const KParts::URLArgs& args,
+                                       const KParts::OpenUrlArguments& args,
+                                       const KParts::BrowserArguments& browserArgs,
                                        const KParts::WindowArgs& /*windowArgs*/, 
-                                       KParts::ReadOnlyPart*& part)
+                                       KParts::ReadOnlyPart** part)
 {
     OpenUrlRequest req;
     req.setFrameId(id());
     req.setUrl(url);
     req.setArgs(args);
+    req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
     
     emit signalOpenUrlRequest(req);
-    part = req.part();
+    *part = req.part();
 }
 
 bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 {
-    QString serviceType = request.args().serviceType;
+    QString serviceType = request.args().mimeType();
     
     if (serviceType.isEmpty())
         return false;
@@ -206,9 +211,9 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 
     if (d->loadPartForMimetype(serviceType))
     {
-        if (d->extension)
+        if (d->part)
         {
-            d->extension->setUrlArgs(request.args());
+            d->part->setArguments(request.args());
         }
         bool res = false;
         

@@ -38,6 +38,7 @@ class KXMLGUIClient;
 
 namespace KParts 
 {
+    class OpenUrlArguments;
     class ReadOnlyPart;
 }
 
@@ -76,12 +77,13 @@ class BrowserFrame : public Frame
 
     private slots:
 
-        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::URLArgs&);
-        void slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args);
+        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
+        void slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs);
         void slotCreateNewWindow(const KUrl& url, 
-                                 const KParts::URLArgs& args,
+                                 const KParts::OpenUrlArguments& args,
+                                 const KParts::BrowserArguments& browserArgs,
                                  const KParts::WindowArgs& windowArgs, 
-                                 KParts::ReadOnlyPart*& part);
+                                 KParts::ReadOnlyPart** part);
         void slotOpenUrlNotify();
         void slotSetLocationBarUrl(const QString& url);
         void slotSetIconUrl(const KUrl& url);
@@ -90,7 +92,8 @@ class BrowserFrame : public Frame
         void slotPopupMenu(KXMLGUIClient* client, 
                            const QPoint& global, 
                            const KUrl& url,
-                           const KParts::URLArgs& args,
+                           const KParts::OpenUrlArguments& args,
+                           const KParts::BrowserArguments& browserArgs,
                            KParts::BrowserExtension::PopupFlags flags,
                            mode_t mode);
         

@@ -120,16 +120,17 @@ class ArticleViewer : public QWidget
         
     protected slots:
 
-        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::URLArgs&);
+        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
         
-        void slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args);
+        void slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs);
         
         void slotCreateNewWindow(const KUrl& url, 
-                                    const KParts::URLArgs& args,
+                                    const KParts::OpenUrlArguments& args,
+                                    const KParts::BrowserArguments& browserArgs,
                                     const KParts::WindowArgs& windowArgs, 
-                                    KParts::ReadOnlyPart*& part);
+                                    KParts::ReadOnlyPart** part);
         
-        void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+        void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags, mode_t);
 
         /** Copies current link to clipboard. */
         void slotCopyLinkAddress();
@@ -218,7 +219,9 @@ class ArticleViewerPart : public KHTMLPart
     protected:
         
         /** reimplemented to get the mouse button */
-        void urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args);
+        bool urlSelected(const QString &url, int button, int state, const QString &_target,
+                         const KParts::OpenUrlArguments& args = KParts::OpenUrlArguments(),
+                         const KParts::BrowserArguments& browserArgs = KParts::BrowserArguments());
         
     private:
         

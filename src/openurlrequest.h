@@ -26,13 +26,9 @@
 #define AKREGATOR_OPENURLREQUEST_H
 
 #include <kparts/browserextension.h>
+#include <kparts/part.h>
 
 #include <kurl.h>
-
-namespace KParts
-{
-    class ReadOnlyPart;
-}
 
 namespace Akregator
 {
@@ -64,8 +60,11 @@ class OpenUrlRequest
         KUrl url() const;
         void setUrl(const KUrl& url);
          
-        KParts::URLArgs args() const;
-        void setArgs(const KParts::URLArgs& args);
+        KParts::OpenUrlArguments args() const;
+        void setArgs(const KParts::OpenUrlArguments& args);
+
+        KParts::BrowserArguments browserArgs() const;
+        void setBrowserArgs(const KParts::BrowserArguments& args);
 
         Options options() const;
         void setOptions(Options options);
@@ -91,7 +90,8 @@ class OpenUrlRequest
 
         int m_frameId;
         KUrl m_url;
-        KParts::URLArgs m_args;
+        KParts::OpenUrlArguments m_args;
+        KParts::BrowserArguments m_browserArgs;
         Options m_options;
         KParts::ReadOnlyPart* m_part;
         bool m_inBackground;

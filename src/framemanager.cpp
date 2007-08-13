@@ -229,7 +229,7 @@ void FrameManager::slotSetStatusText(Frame* frame, const QString& statusText)
 
 void FrameManager::openUrl(OpenUrlRequest& request)
 {
-    if (request.args().newTab() || request.args().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab)
+    if (request.browserArgs().newTab() || request.browserArgs().forcesNewWindow() || request.options() == OpenUrlRequest::NewTab)
     {
         int newFrameId = -1;
         emit signalRequestNewFrame(newFrameId);
@@ -255,10 +255,10 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
    
     if (Settings::externalBrowserUseKdeDefault())
     {
-        if (request.args().serviceType.isEmpty()) 
+        if (request.args().mimeType().isEmpty()) 
             KToolInvocation::self()->invokeBrowser(url.url(), "0");
         else
-            KRun::runUrl(url, request.args().serviceType, false, false);
+            KRun::runUrl(url, request.args().mimeType(), 0 /*window*/, false, false);
     }
     else
     {
@@ -285,7 +285,7 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
         return;
     }
     // if no service type is set, determine it using BrowserRun.
-    if (request.args().serviceType.isEmpty())
+    if (request.args().mimeType().isEmpty())
     {
         BrowserRun* run = new BrowserRun(request, m_mainWin);
         connect(run, SIGNAL( signalFoundMimeType( Akregator::OpenUrlRequest ) ), this, SLOT(slotFoundMimeType( Akregator::OpenUrlRequest )));

@@ -88,23 +88,25 @@ ArticleViewer::ArticleViewer(QWidget *parent)
              this, SLOT(slotCompleted()));
 
     KParts::BrowserExtension* ext = m_part->browserExtension();
-    connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, QPoint, KUrl, KParts::URLArgs, KParts::BrowserExtension::PopupFlags, mode_t)),
-             this, SLOT(slotPopupMenu(KXMLGUIClient*, QPoint, KUrl, KParts::URLArgs, KParts::BrowserExtension::PopupFlags, mode_t)));
+    connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, QPoint, KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments, KParts::BrowserExtension::PopupFlags, mode_t)),
+             this, SLOT(slotPopupMenu(KXMLGUIClient*, QPoint, KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments, KParts::BrowserExtension::PopupFlags, mode_t)));
 
-    connect( ext, SIGNAL(openUrlRequestDelayed(KUrl, KParts::URLArgs)),
-             this, SLOT(slotOpenUrlRequestDelayed(KUrl, KParts::URLArgs )) );
+    connect( ext, SIGNAL(openUrlRequestDelayed(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)),
+             this, SLOT(slotOpenUrlRequestDelayed(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)) );
 
-    connect(ext, SIGNAL(createNewWindow(KUrl, KParts::URLArgs)),
-            this, SLOT(slotCreateNewWindow(KUrl, KParts::URLArgs)));
+    connect( ext, SIGNAL(createNewWindow(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)),
+             this, SLOT(slotCreateNewWindow(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)) );
 
     connect(ext, SIGNAL(createNewWindow(KUrl,
-            KParts::URLArgs,
+            KParts::OpenUrlArguments,
+            KParts::BrowserArguments
             KParts::WindowArgs,
-            KParts::ReadOnlyPart*)),
+            KParts::ReadOnlyPart**)),
             this, SLOT(slotCreateNewWindow(KUrl,
-                         KParts::URLArgs,
+                         KParts::OpenUrlArguments,
+                         KParts::BrowserArguments
                          KParts::WindowArgs,
-                         KParts::ReadOnlyPart*)));
+                         KParts::ReadOnlyPart**)));
 
     QAction* action = 0;
     action = KStandardAction::print(this, SLOT(slotPrint()), m_part->actionCollection());
@@ -172,10 +174,11 @@ int ArticleViewer::pointsToPixel(int pointSize) const
     return ( pointSize * m_part->view()->logicalDpiY() + 36 ) / 72 ;
 }
 
-void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::URLArgs& args)
+void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
 {
     OpenUrlRequest req(url);
     req.setArgs(args);
+    req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
 
     if (m_part->button() == Qt::LeftButton)
@@ -210,30 +213,33 @@ void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::URL
     emit signalOpenUrlRequest(req);
 }
 
-void ArticleViewer::slotCreateNewWindow(const KUrl& url, const KParts::URLArgs& args)
+void ArticleViewer::slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
 {
     OpenUrlRequest req(url);
     req.setArgs(args);
+    req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
 
     emit signalOpenUrlRequest(req);
 }
 
 void ArticleViewer::slotCreateNewWindow(const KUrl& url,
-                                       const KParts::URLArgs& args,
+                                       const KParts::OpenUrlArguments& args,
+                                       const KParts::BrowserArguments& browserArgs,
                                        const KParts::WindowArgs& /*windowArgs*/,
-                                       KParts::ReadOnlyPart*& part)
+                                       KParts::ReadOnlyPart** part)
 {
     OpenUrlRequest req;
     req.setUrl(url);
     req.setArgs(args);
+    req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
 
     emit signalOpenUrlRequest(req);
-    part = req.part();
+    *part = req.part();
 }
 
-void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
+void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
 {
     const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
     const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
@@ -675,10 +681,12 @@ bool ArticleViewerPart::closeUrl()
     return KHTMLPart::closeUrl();
 }
 
-void ArticleViewerPart::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
+bool ArticleViewerPart::urlSelected(const QString &url, int button, int state, const QString &_target,
+                                    const KParts::OpenUrlArguments& args,
+                                    const KParts::BrowserArguments& browserArgs)
 {
     m_button = button;
-    KHTMLPart::urlSelected(url,button,state,_target,args);
+    return KHTMLPart::urlSelected(url,button,state,_target,args,browserArgs);
 #ifdef __GNUC__
 #warning port disable_introduction
 #endif

@@ -61,15 +61,25 @@ void OpenUrlRequest::setOpenInBackground(bool background)
     m_inBackground = background;
 }
           
-KParts::URLArgs OpenUrlRequest::args() const
+KParts::OpenUrlArguments OpenUrlRequest::args() const
 {
     return m_args;
 }
 
-void OpenUrlRequest::setArgs(const KParts::URLArgs& args)
+void OpenUrlRequest::setArgs(const KParts::OpenUrlArguments& args)
 {
     //m_hasArgs = true;
     m_args = args;
+}
+
+KParts::BrowserArguments OpenUrlRequest::browserArgs() const
+{
+    return m_browserArgs;
+}
+
+void OpenUrlRequest::setBrowserArgs(const KParts::BrowserArguments& args)
+{
+    m_browserArgs = args;
 }
 
 OpenUrlRequest::Options OpenUrlRequest::options() const
@@ -95,9 +105,9 @@ KParts::ReadOnlyPart* OpenUrlRequest::part() const
 QString OpenUrlRequest::debugInfo() const
 {
     return  "url=" + m_url.url() 
-            + " serviceType=" + m_args.serviceType  
-            + " newTab=" + m_args.newTab() 
-            + " forcesNewWindow=" + m_args.forcesNewWindow()
+            + " mimeType=" + m_args.mimeType()  
+            + " newTab=" + m_browserArgs.newTab() 
+            + " forcesNewWindow=" + m_browserArgs.forcesNewWindow()
             + " options="+ m_options; 
 }
 
