@@ -317,7 +317,8 @@ void TabWidget::slotCopyLinkAddress()
     if (frame && frame->url().isValid())
     {
         KUrl url = frame->url();
-        kapp->clipboard()->setText(url.prettyUrl(), QClipboard::Selection);
+        // don't set url to selection as it's a no-no according to a fd.o spec
+        //kapp->clipboard()->setText(url.prettyUrl(), QClipboard::Selection);
         kapp->clipboard()->setText(url.prettyUrl(), QClipboard::Clipboard);
     }
 }

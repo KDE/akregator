@@ -1048,7 +1048,8 @@ void Akregator::MainWidget::slotCopyLinkAddress()
         link = article.link().url();
         QClipboard *cb = QApplication::clipboard();
         cb->setText(link, QClipboard::Clipboard);
-        cb->setText(link, QClipboard::Selection);
+        // don't set url to selection as it's a no-no according to a fd.o spec
+        //cb->setText(link, QClipboard::Selection);
     }
 }
 

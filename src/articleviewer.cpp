@@ -282,7 +282,8 @@ void ArticleViewer::slotCopyLinkAddress()
     if(m_url.isEmpty()) return;
     QClipboard *cb = QApplication::clipboard();
     cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
-    cb->setText(m_url.prettyUrl(), QClipboard::Selection);
+    // don't set url to selection as it's a no-no according to a fd.o spec
+    //cb->setText(m_url.prettyUrl(), QClipboard::Selection);
 }
 
 void ArticleViewer::slotSelectionChanged()
