@@ -207,28 +207,32 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
             connect( ext, SIGNAL(speedProgress(int)), 
                      q, SLOT(slotSetProgress(int)) );
             connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, 
-                     const KParts::URLArgs&) ),
+                     const KParts::OpenUrlArguments&,
+                     const KParts::BrowserArguments&) ),
                      q, SLOT(slotOpenUrlRequestDelayed(const KUrl&, 
-                                  const KParts::URLArgs&)) );
+                                  const KParts::OpenUrlArguments&,
+                                  const KParts::BrowserArguments&)) );
             connect(ext, SIGNAL(setLocationBarUrl(const QString&)),
                     q, SLOT(slotSetLocationBarUrl(const QString&)) );
             connect(ext, SIGNAL(setIconUrl(const KUrl&)),
                     q, SLOT(slotSetIconUrl(const KUrl&)) );
-            connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::URLArgs&)),
-                    q, SLOT(slotCreateNewWindow(const KUrl&, const KParts::URLArgs&)));
+            connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
+                    q, SLOT(slotCreateNewWindow(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)));
             connect(ext, SIGNAL(createNewWindow(const KUrl&,
-                    const KParts::URLArgs&,
+                    const KParts::OpenUrlArguments&,
+                    const KParts::BrowserArguments&
                     const KParts::WindowArgs&,
-                    KParts::ReadOnlyPart*&)),
+                    KParts::ReadOnlyPart**)),
                     q, SLOT(slotCreateNewWindow(const KUrl&, 
-                                 const KParts::URLArgs&, 
+                                 const KParts::OpenUrlArguments&,
+                                 const KParts::BrowserArguments&
                                  const KParts::WindowArgs&,
-                                 KParts::ReadOnlyPart*&)));
+                                 KParts::ReadOnlyPart**)));
             connect(ext, SIGNAL(popupMenu(KXMLGUIClient *, const QPoint&,
-                    const KUrl&, const KParts::URLArgs&, 
+                    const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, 
                     KParts::BrowserExtension::PopupFlags, mode_t)), 
                     q, SLOT(slotPopupMenu(KXMLGUIClient *, const QPoint&, 
-                    const KUrl&, const KParts::URLArgs&,
+                    const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&,
                     KParts::BrowserExtension::PopupFlags, mode_t)));
         }
     }
