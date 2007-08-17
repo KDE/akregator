@@ -391,7 +391,7 @@ bool Part::openFile()
         m_mainWidget->loadFeeds(createDefaultFeedList());
     }
 
-    emit setStatusBarText(QString::null);
+    emit setStatusBarText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
 
 
     if( Settings::markAllFeedsReadOnStartup() )

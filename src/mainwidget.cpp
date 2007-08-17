@@ -726,7 +726,7 @@ void Akregator::MainWidget::slotFeedAdd()
 
     TreeNode* lastChild = group->children().last();
 
-    addFeed(QString::null, lastChild, group, false);
+    addFeed(QString::null, lastChild, group, false);	//krazy:exclude=nullstrassign for old broken gcc
 }
 
 void Akregator::MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
@@ -893,7 +893,7 @@ void Akregator::MainWidget::slotFetchingStopped()
 {
     m_mainFrame->slotSetState(Frame::Completed);
     m_actionManager->action("feed_stop")->setEnabled(false);
-    m_mainFrame->slotSetStatusText(QString::null);
+    m_mainFrame->slotSetStatusText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
 }
 
 void Akregator::MainWidget::slotFeedFetched(Feed *feed)

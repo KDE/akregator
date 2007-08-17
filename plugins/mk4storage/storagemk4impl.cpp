@@ -68,7 +68,7 @@ class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 Akregator::Backend::StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
 {
     d->q = this;
-    setArchivePath(QString::null); // set path to default
+    setArchivePath(QString::null); // set path to default	//krazy:exclude=nullstrassign for old broken gcc
     // commit changes every 3 seconds
     d->commitTimer = new QTimer(this);
     connect(d->commitTimer, SIGNAL(timeout()), this, SLOT(slotCommit()));

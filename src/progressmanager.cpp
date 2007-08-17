@@ -168,7 +168,7 @@ void ProgressItemHandler::slotFetchStarted()
         d->progressItem = 0;
     }
     
-    d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString::null, true);
+    d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString::null, true);	//krazy:exclude=nullstrassign for old broken gcc
 
     connect(d->progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), d->feed, SLOT(slotAbortFetch()));
 }

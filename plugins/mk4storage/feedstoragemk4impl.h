@@ -46,7 +46,7 @@ class FeedStorageMK4Impl : public FeedStorage
         int lastFetch() const;
         void setLastFetch(int lastFetch);
 
-        QStringList articles(const QString& tag=QString::null) const;
+        QStringList articles(const QString& tag=QString::null) const;	//krazy:exclude=nullstrassign for old broken gcc
 
         QStringList articles(const Category& cat) const;
 
@@ -80,10 +80,10 @@ class FeedStorageMK4Impl : public FeedStorage
         
         void addTag(const QString& guid, const QString& tag);
         void removeTag(const QString& guid, const QString& tag);
-        QStringList tags(const QString& guid=QString::null) const;
+        QStringList tags(const QString& guid=QString::null) const;	//krazy:exclude=nullstrassign for old broken gcc
 
         void addCategory(const QString& guid, const Category& category);
-        QList<Category> categories(const QString& guid=QString::null) const;
+        QList<Category> categories(const QString& guid=QString::null) const;	//krazy:exclude=nullstrassign for old broken gcc
 
         void setAuthor(const QString& guid, const QString& author);
         QString author(const QString& guid) const;

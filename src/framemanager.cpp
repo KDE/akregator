@@ -136,7 +136,7 @@ void FrameManager::slotChangeFrame(int frameId)
                 emit signalStarted();
                 break;
             case Frame::Canceled:
-                emit signalCanceled(QString::null);
+                emit signalCanceled(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
                 break;
             case Frame::Idle:
             case Frame::Completed:
@@ -152,10 +152,10 @@ void FrameManager::slotChangeFrame(int frameId)
     else
     {
         emit signalCompleted();
-        emit signalCaptionChanged(QString::null);
-        emit signalTitleChanged(QString::null);
+        emit signalCaptionChanged(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
+        emit signalTitleChanged(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
         emit signalLoadingProgress(100);
-        emit signalStatusText(QString::null);
+        emit signalStatusText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
     }
 
     emit signalCurrentFrameChanged(oldFrame, frame);

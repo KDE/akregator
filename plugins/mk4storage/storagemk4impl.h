@@ -50,7 +50,7 @@ class StorageMK4Impl : public Storage
         
         /** sets the directory where the metakit files will be stored.
             
-            @param archivePath the path to the archive, or QString::null to reset it to the default.
+            @param archivePath the path to the archive, or QString() to reset it to the default.
          */   
         void setArchivePath(const QString& archivePath);
 
