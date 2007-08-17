@@ -74,7 +74,7 @@ class FeedStorage : public QObject
         virtual void setLastFetch(int lastFetch) = 0;
         
         /** returns the guids of all articles in this storage. If a tagID is given, only articles with this tag are returned */
-        virtual QStringList articles(const QString& tagID=QString::null) const = 0;
+        virtual QStringList articles(const QString& tagID=QString()) const = 0;
 
         /** returns the guid of the articles in a given category */
         virtual QStringList articles(const Category& cat) const = 0;
@@ -120,10 +120,10 @@ class FeedStorage : public QObject
         virtual void removeTag(const QString& guid, const QString& tag) = 0;
 
         /** returns the tags of a given article. If @c guid is null, it returns all tags used in this feed */
-        virtual QStringList tags(const QString& guid=QString::null) const  = 0;
+        virtual QStringList tags(const QString& guid=QString()) const  = 0;
 
         virtual void addCategory(const QString& guid, const Category& category) = 0;
-        virtual QList<Category> categories(const QString& guid=QString::null) const  = 0;
+        virtual QList<Category> categories(const QString& guid=QString()) const  = 0;
 
         virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length) = 0;
         virtual void removeEnclosure(const QString& guid) = 0;

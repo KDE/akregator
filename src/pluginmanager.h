@@ -50,22 +50,22 @@ class AKREGATORPART_EXPORT PluginManager
          * The keys used in the query (Type, ServiceType, Exec) are all
          * fields found in the .desktop files.
          *
-         * @param constraint  A constraint to limit the choices returned, QString::null to	//krazy:exclude=nullstrassign for old broken gcc
+         * @param constraint  A constraint to limit the choices returned, QString() to
          *                    get all services of the given @p servicetype
          *
          * @return            A list of services that satisfy the query
          * @see               http://developer.kde.org/documentation/library/kdeqt/tradersyntax.html
          */
-        static KService::List query( const QString& constraint = QString::null );	//krazy:exclude=nullstrassign for old broken gcc
+        static KService::List query( const QString& constraint = QString() );
 
         /**
          * Load and instantiate plugin from query
-         * @param constraint  A constraint to limit the choices returned, QString::null to	//krazy:exclude=nullstrassign for old broken gcc
+         * @param constraint  A constraint to limit the choices returned, QString() to
          *                    get all services of the given @p servicetype
          * @return            Pointer to Plugin, or NULL if error
          * @see               http://developer.kde.org/documentation/library/kdeqt/tradersyntax.html
          */
-        static Akregator::Plugin* createFromQuery( const QString& constraint = QString::null );	//krazy:exclude=nullstrassign for old broken gcc
+        static Akregator::Plugin* createFromQuery( const QString& constraint = QString() );
 
         /**
          * Load and instantiate plugin from service

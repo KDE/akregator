@@ -87,7 +87,7 @@ void Frame::slotSetState(State state)
             emit signalStarted(this);
             break;
         case Frame::Canceled:
-            emit signalCanceled(this, QString::null);	//krazy:exclude=nullstrassign for old broken gcc
+            emit signalCanceled(this, QString());
             break;
         case Frame::Idle:
         case Frame::Completed:
@@ -158,7 +158,7 @@ void Frame::slotSetStarted()
 {
     m_loading = true;
     if(m_progressId.isNull() || m_progressId.isEmpty()) m_progressId = KPIM::ProgressManager::getUniqueID();
-    m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title(), QString::null, false);	//krazy:exclude=nullstrassign for old broken gcc
+    m_progressItem = KPIM::ProgressManager::createProgressItem(m_progressId, title(), QString(), false);
     m_progressItem->setStatus(i18n("Loading..."));
     //connect(m_progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), SLOT(slotAbortFetch()));
     m_state=Started;

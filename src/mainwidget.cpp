@@ -893,7 +893,7 @@ void Akregator::MainWidget::slotFetchingStopped()
 {
     m_mainFrame->slotSetState(Frame::Completed);
     m_actionManager->action("feed_stop")->setEnabled(false);
-    m_mainFrame->slotSetStatusText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
+    m_mainFrame->slotSetStatusText(QString());
 }
 
 void Akregator::MainWidget::slotFeedFetched(Feed *feed)

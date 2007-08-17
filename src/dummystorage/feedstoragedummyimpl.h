@@ -46,7 +46,7 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual int lastFetch() const;
         virtual void setLastFetch(int lastFetch);
       
-        virtual QStringList articles(const QString& tag=QString::null) const;	//krazy:exclude=nullstrassign for old broken gcc
+        virtual QStringList articles(const QString& tag=QString()) const;
 
         virtual QStringList articles(const Category& cat) const;
 
@@ -77,14 +77,14 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void setDescription(const QString& guid, const QString& description);
         virtual void addTag(const QString& guid, const QString& tag);
         virtual void removeTag(const QString& guid, const QString& tag);
-        virtual QStringList tags(const QString& guid=QString::null) const;	//krazy:exclude=nullstrassign for old broken gcc
+        virtual QStringList tags(const QString& guid=QString()) const;
 
         virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
         virtual void removeEnclosure(const QString& guid);
         virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) const;
 
         virtual void addCategory(const QString& guid, const Category& category);
-        virtual QList<Category> categories(const QString& guid=QString::null) const;	//krazy:exclude=nullstrassign for old broken gcc
+        virtual QList<Category> categories(const QString& guid=QString()) const;
 
         virtual void setAuthor(const QString& guid, const QString& author);
         virtual QString author(const QString& guid) const;
