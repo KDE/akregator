@@ -758,7 +758,7 @@ public:
 class c4_CustomViewer
 {
 protected:
-      /// Constructor, must be overidden in derived class
+      /// Constructor, must be overridden in derived class
   c4_CustomViewer ();
 public:
       /// Destructor

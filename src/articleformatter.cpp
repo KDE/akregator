@@ -113,7 +113,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
             if( !node->description().isEmpty() )
             {
                 text += QString("<div dir=\"%1\">").arg(Utils::stripTags(Utils::directionOf(node->description())));
-                text += i18n("<b>Description:</b> %1<br><br>", node->description());
+                text += i18n("<b>Description:</b> %1<br /><br />", node->description());
                 text += "</div>\n"; // /description
             }
 
