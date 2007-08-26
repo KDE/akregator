@@ -37,8 +37,6 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
 
 }
 
-#include <QDebug>
-
 void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
 {
     QTreeView::setModel( model );
@@ -48,7 +46,6 @@ void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
     while ( !stack.isEmpty() )
     {
         const QModelIndex i = stack.pop();
-        qDebug() << "processing index: " << i.data( Qt::DisplayRole ); 
         const int childCount = model->rowCount( i );
         for ( int j = 0; j < childCount; ++j )
         {
