@@ -35,7 +35,7 @@ namespace Akregator {
 class TreeNode::TreeNodePrivate
 {
     public:
-    
+    TreeNodePrivate();
     bool doNotify;
     bool nodeChangeOccurred;
     bool articleChangeOccurred;
@@ -45,17 +45,19 @@ class TreeNode::TreeNodePrivate
     bool signalDestroyedEmitted;
 };
 
+TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify( true ), 
+                                               nodeChangeOccurred( false ), 
+                                               articleChangeOccurred( false ), 
+                                               title(), 
+                                               parent( 0 ),
+                                               id ( 0 ),
+                                               signalDestroyedEmitted( false )
+{
+}
+
 TreeNode::TreeNode()
     : QObject(0), d(new TreeNodePrivate)
 {
-    d->doNotify = true;
-    d->nodeChangeOccurred = false;
-    d->articleChangeOccurred = false;
-    d->title = "";
-    d->parent = 0;
-    d->id = 0;
-    d->signalDestroyedEmitted = false;
-    
 }
 
 void TreeNode::emitSignalDestroyed()

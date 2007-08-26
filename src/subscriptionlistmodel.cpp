@@ -67,9 +67,9 @@ int Akregator::SubscriptionListModel::rowCount( const QModelIndex& parent ) cons
     return node ? node->children().count() : 0;
 }
 
-int Akregator::SubscriptionListModel::nodeIdForIndex( const QModelIndex& idx ) const
+uint Akregator::SubscriptionListModel::nodeIdForIndex( const QModelIndex& idx ) const
 {
-    return idx.isValid() ? idx.internalId() : -1;
+    return idx.isValid() ? idx.internalId() : 0;
 }
 
 QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int role ) const

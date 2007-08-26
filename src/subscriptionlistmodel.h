@@ -72,7 +72,7 @@ public:
     //reimpl
     QVariant headerData( int section, Qt::Orientation orientation, int role=Qt::DisplayRole ) const;
 
-    int nodeIdForIndex( const QModelIndex& index ) const;
+    uint nodeIdForIndex( const QModelIndex& index ) const;
 
 private Q_SLOTS:
 
