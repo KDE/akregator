@@ -311,12 +311,10 @@ void Akregator::ArticleListView::slotPreviousArticle()
     if ( !model() )
         return;
 
-    QModelIndex idx = currentIndex();
-
-    const int newRow = !idx.isValid() ? model()->rowCount() : idx.row() - 1;
-
-    idx = model()->index( qMax(newRow, 0), 0 );
-    selectIndex( idx );
+    const QModelIndex idx = currentIndex();
+    const int newRow = ( idx.isValid() ? idx.row() : model()->rowCount() ) - 1;
+    const QModelIndex newIdx = model()->index( qMax( newRow, 0 ), 0 );
+    selectIndex( newIdx );
 }
 
 void Akregator::ArticleListView::slotNextArticle()
@@ -324,13 +322,11 @@ void Akregator::ArticleListView::slotNextArticle()
     if ( !model() )
         return;
 
-    QModelIndex idx = currentIndex();
+    const QModelIndex idx = currentIndex();
 
-    const int newRow = !idx.isValid() ? 0 : idx.row() + 1;
-
-    idx = model()->index( qMin( newRow, model()->rowCount() - 1 ), 0 );
-
-    selectIndex( idx );
+    const int newRow = ( idx.isValid() ? idx.row() : 0 ) + 1;
+    const QModelIndex newIdx = model()->index( qMin( newRow, model()->rowCount() - 1 ), 0 );
+    selectIndex( newIdx );
 }
 
 void Akregator::ArticleListView::slotNextUnreadArticle()
@@ -339,7 +335,7 @@ void Akregator::ArticleListView::slotNextUnreadArticle()
         return;
 
     const int rowCount = model()->rowCount();
-    const int startRow = qMin( rowCount - 1, !currentIndex().isValid() ? 0 : currentIndex().row() + 1 );
+    const int startRow = qMin( rowCount - 1, ( currentIndex().isValid() ? currentIndex().row() + 1 : 0 ) );
 
     int i = startRow;
     bool foundUnread = false;
@@ -376,7 +372,7 @@ void Akregator::ArticleListView::slotPreviousUnreadArticle()
         return;
 
     const int rowCount = model()->rowCount();
-    const int startRow = qMax( 0, !currentIndex().isValid() ? rowCount - 1 : currentIndex().row() - 1 );
+    const int startRow = qMax( 0, ( currentIndex().isValid() ? currentIndex().row() : rowCount ) - 1 );
 
     int i = startRow;
     bool foundUnread = false;
