@@ -133,7 +133,12 @@ namespace Akregator
         private:
             void initialize(RSS::Article article, Backend::FeedStorage* archive);
             static QString buildTitle(const QString& description);
-            
+
+            int statusBits() const; // returns all of the status bits for the article.  this
+                                    // differs from status() which only returns the most relevant
+                                    // status flag.
+                                    
+
             struct Private;
             Private *d;
     };

@@ -57,12 +57,18 @@ struct Article::Private : public Shared
 
     enum Status {Deleted=0x01, Trash=0x02, New=0x04, Read=0x08, Keep=0x10};
 
-    int status;
     QString guid;
-    uint hash;
     Backend::FeedStorage* archive;
-    QDateTime pubDate;
     Feed* feed;
+
+    // the variables below are initialized to null values in the Article constructor 
+    // and then loaded on demand instead.
+    //
+    // to read their values, you should therefore use the accessor methods of the Article
+    // hash(), pubDate(), statusBits() rather than accessing them directly.
+    uint hash;
+    QDateTime pubDate;  
+    int status;
 };
 
 Article::Article() : d(new Private)
@@ -71,18 +77,20 @@ Article::Article() : d(new Private)
     d->status = 0;
     d->feed = 0;
     d->archive = 0;
-    d->pubDate.setTime_t(1);
-
 }
 
 Article::Article(const QString& guid, Feed* feed) : d(new Private)
 {
+    // this constructor should be as cheap as possible, so avoid calls to 
+    // read information from the archive in here if possible
+    //
+    // d->hash, d->pubDate and d->status are loaded on-demand by
+    // the hash(), pubDate() and statusBits() methods respectively
+
     d->feed = feed;
     d->guid = guid;
     d->archive = Backend::Storage::getInstance()->archiveFor(feed->xmlUrl());
-    d->status = d->archive->status(d->guid);
-    d->pubDate.setTime_t(d->archive->pubDate(d->guid));
-    d->hash = d->archive->hash(d->guid);
+    d->status = 0;
 }
 
 void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
@@ -106,7 +114,7 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
         else
         { // article is not deleted, let's add it to the archive
         
-            d->archive->setHash(d->guid, d->hash);
+            d->archive->setHash(d->guid, hash() );
             QString title = article.title().isEmpty() ? buildTitle(article.description()) :  article.title();
             d->archive->setTitle(d->guid, title);
             d->archive->setDescription(d->guid, article.description());
@@ -158,10 +166,10 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
     {
         // always update comments count, as it's not used for hash calculation
         d->archive->setComments(d->guid, article.comments());
-        if (d->hash != d->archive->hash(d->guid)) //article is in archive, was it modified?
+        if ( hash() != d->archive->hash(d->guid)) //article is in archive, was it modified?
         { // if yes, update
             d->pubDate.setTime_t(d->archive->pubDate(d->guid));
-            d->archive->setHash(d->guid, d->hash);
+            d->archive->setHash(d->guid, hash() );
             QString title = article.title().isEmpty() ? buildTitle(article.description()) :  article.title();
             d->archive->setTitle(d->guid, title);
             d->archive->setDescription(d->guid, article.description());
@@ -192,7 +200,7 @@ bool Article::isNull() const
 
 void Article::offsetPubDate(int secs)
 {
-   d->pubDate = d->pubDate.addSecs(secs);
+   d->pubDate = pubDate().addSecs(secs);
    d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
 
 }
@@ -213,7 +221,7 @@ void Article::setDeleted()
 
 bool Article::isDeleted() const
 {
-    return (d->status & Private::Deleted) != 0;
+    return (statusBits() & Private::Deleted) != 0;
 }
 
 Article::Article(const Article &other) : d(new Private)
@@ -269,12 +277,23 @@ bool Article::operator==(const Article &other) const
     return d->guid == other.guid();
 }
 
+int Article::statusBits() const
+{
+    // delayed loading of status information from archive
+    if ( d->status == 0 ) 
+    {
+        d->status = d->archive->status(d->guid);
+    }
+
+    return d->status;
+}
+
 int Article::status() const
 {
-    if ((d->status & Private::Read) != 0)
+    if ((statusBits() & Private::Read) != 0)
         return Read;
 
-    if ((d->status & Private::New) != 0)
+    if ((statusBits() & Private::New) != 0)
         return New;
     else
         return Unread;
@@ -282,6 +301,8 @@ int Article::status() const
 
 void Article::setStatus(int stat)
 {
+    // use status() rather than statusBits() here to filter out status flags that we are not
+    // interested in
     int oldStatus = status();
 
     if (oldStatus != stat)
@@ -289,13 +310,13 @@ void Article::setStatus(int stat)
         switch (stat)
         {
             case Read:
-                d->status = (d->status | Private::Read) & ~Private::New;
+                d->status = ( d->status | Private::Read) & ~Private::New;
                 break;
             case Unread:
-                d->status = (d->status & ~Private::Read) & ~Private::New;
+                d->status = ( d->status & ~Private::Read) & ~Private::New;
                 break;
             case New:
-                d->status = (d->status | Private::New) & ~Private::Read;
+                d->status = ( d->status | Private::New) & ~Private::Read;
                 break;
         }
         d->archive->setStatus(d->guid, d->status);
@@ -354,12 +375,18 @@ bool Article::guidIsHash() const
 
 uint Article::hash() const
 {
+    // delayed loading of hash from archive
+    if ( d->hash == 0 )
+    {
+        d->hash = d->archive->hash(d->guid);
+    }
+
     return d->hash;
 }
 
 bool Article::keep() const
 {
-    return (d->status & Private::Keep) != 0;
+    return ( statusBits() & Private::Keep) != 0;
 }
 
 RSS::Enclosure Article::enclosure() const
@@ -376,7 +403,7 @@ RSS::Enclosure Article::enclosure() const
 
 void Article::setKeep(bool keep)
 {
-    d->status = keep ? (d->status | Private::Keep) : (d->status & ~Private::Keep);
+    d->status = keep ? ( statusBits() | Private::Keep) : ( statusBits() & ~Private::Keep);
     d->archive->setStatus(d->guid, d->status);
     if (d->feed)
         d->feed->setArticleChanged(*this);
@@ -411,6 +438,12 @@ Feed* Article::feed() const
 
 const QDateTime& Article::pubDate() const
 {
+    // delayed loading of publication date information from archive
+    if ( d->pubDate.isNull() )
+    {
+        d->pubDate.setTime_t(d->archive->pubDate(d->guid));
+    }
+
     return d->pubDate;
 }
 

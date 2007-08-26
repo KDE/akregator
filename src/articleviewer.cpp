@@ -160,6 +160,10 @@ class ArticleViewer::ShowSummaryVisitor : public TreeNodeVisitor
 ArticleViewer::ArticleViewer(QWidget *parent, const char *name)
     : Viewer(parent, name), m_htmlFooter(), m_currentText(), m_node(0), m_viewMode(NormalView)
 {
+    setJScriptEnabled(false);
+    setJavaEnabled(false);
+    setPluginsEnabled(false);
+    
     m_showSummaryVisitor = new ShowSummaryVisitor(this);
     setXMLFile(locate("data", "akregator/articleviewer.rc"), true);
 

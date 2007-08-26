@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Akregator
+Name[ne]=एक्रिगेटर
 Exec=akregator %i %m -caption "%c"
 Icon=akregator
 Type=Application
@@ -31,6 +32,7 @@ GenericName[lt]=RSS kanalų skaityklė
 GenericName[ms]= Pembaca Suapan RSS 
 GenericName[nb]=Leser for RSS-kanal
 GenericName[nds]=Kieker för RSS-Mellenströöm
+GenericName[ne]=आरएसएस फिड रिडर
 GenericName[nl]=RSS-feedlezer
 GenericName[nn]=RSS-lesar
 GenericName[pl]=Program do przeglądania kanałów RSS
@@ -72,6 +74,7 @@ Comment[km]=កម្មវិធី​អាន RSS សម្រាប់ KDE
 Comment[ms]=Pengagregat RSS untuk KDE
 Comment[nb]=En RSS-oppsamler for KDE
 Comment[nds]=Tosamensteller för RSS-Mellenströöm vun KDE
+Comment[ne]=केडीई का लागि एउटा आरएसएस एक्रिगेटर
 Comment[nl]=Een RSS-agregator voor KDE
 Comment[nn]=Ein RSS-lesar for KDE
 Comment[pl]=Program podsumowujący kanały RSS dla KDE

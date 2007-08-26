@@ -356,15 +356,22 @@ void PageViewer::slotCancelled( const QString & /*errMsg*/ )
 
 void PageViewer::urlSelected(const QString &url, int button, int state, const QString &_target, KParts::URLArgs args)
 {
-    if (button == LeftButton)
+    if (url.startsWith(QString::fromLatin1( "javascript:" ), /*case-sensitive=*/false) )
     {
-        m_url = completeURL(url);
-        browserExtension()->setURLArgs(args); 
-        slotOpenLinkInThisTab();
+        KHTMLPart::urlSelected(url,button,state,_target,args);
     }
     else
     {
-        Viewer::urlSelected(url,button,state,_target,args);
+        if (button == LeftButton)
+        {
+            m_url = completeURL(url);
+            browserExtension()->setURLArgs(args); 
+            slotOpenLinkInThisTab();
+        }
+        else
+        {
+            Viewer::urlSelected(url,button,state,_target,args);
+        }
     }
 }
 
