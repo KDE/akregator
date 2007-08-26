@@ -24,7 +24,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "selectioncontroller.h"
+#include "mainwidget.h"
 #include "actionmanagerimpl.h"
 #include "addfeeddialog.h"
 #include "articlelistview.h"
@@ -40,13 +40,14 @@
 #include "folder.h"
 #include "framemanager.h"
 #include "kernel.h"
-#include "mainwidget.h"
 #include "notificationmanager.h"
 #include "openurlrequest.h"
 #include "propertiesdialog.h"
 #include "progressmanager.h"
 #include "searchbar.h"
+#include "selectioncontroller.h"
 //#include "speechclient.h"
+#include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "treenode.h"
@@ -255,6 +256,12 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController->setArticleLister( m_articleListView );
     m_selectionController->setFeedSelector( m_feedListView );
     m_selectionController->setFeedList( m_feedList );
+
+    FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
+        connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) ); 
+        connect( m_feedListView, SIGNAL( collapsed( QModelIndex ) ), expansionHandler, SLOT( itemCollapsed( QModelIndex ) ) ); 
+
+    m_selectionController->setFolderExpansionHandler( expansionHandler );
 
     connect( m_selectionController, SIGNAL( currentSubscriptionChanged( Akregator::TreeNode* ) ), 
              this, SLOT( slotNodeSelected( Akregator::TreeNode* ) ) );

@@ -25,6 +25,8 @@
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
 
+#include <QStack>
+
 Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
 {
     setSelectionMode( QAbstractItemView::SingleSelection );
@@ -32,6 +34,31 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setAlternatingRowColors( true );
     setUniformRowHeights( true );
     setContextMenuPolicy( Qt::CustomContextMenu );
+
+}
+
+#include <QDebug>
+
+void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
+{
+    QTreeView::setModel( model );
+    
+    QStack<QModelIndex> stack;
+    stack.push( rootIndex() );
+    while ( !stack.isEmpty() )
+    {
+        const QModelIndex i = stack.pop();
+        qDebug() << "processing index: " << i.data( Qt::DisplayRole ); 
+        const int childCount = model->rowCount( i );
+        for ( int j = 0; j < childCount; ++j )
+        {
+            const QModelIndex child = model->index( j, 0, i );
+            if ( child.isValid() )
+                stack.push( child );
+        }
+        setExpanded( i, i.data( Akregator::SubscriptionListModel::IsOpenRole ).toBool() );
+    }
+
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
@@ -62,5 +89,6 @@ Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QSt
 void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* node )
 {
 }
+
 
 #include "subscriptionlistview.moc"

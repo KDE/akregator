@@ -34,6 +34,7 @@ namespace Akregator {
 class Article;
 class ArticleModel;
 class FeedList;
+class FolderExpansionHandler;
 class SubscriptionListModel;
 class TreeNode;
 
@@ -84,6 +85,8 @@ public:
     virtual void setFeedSelector( QAbstractItemView* feedSelector ) = 0;
 
     virtual void setArticleLister( Akregator::ArticleLister* lister ) = 0;
+
+    virtual void setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler ) = 0;
 
     virtual void setSingleArticleDisplay( Akregator::SingleArticleDisplay* display ) = 0;
 

@@ -30,6 +30,9 @@
 #include <KIcon>
 #include <KLocale>
 
+#include <QStack>
+#include <QTreeView>
+
 namespace {
     static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const Akregator::FeedList* feedList )
     {
@@ -62,6 +65,11 @@ int Akregator::SubscriptionListModel::rowCount( const QModelIndex& parent ) cons
 
     const Akregator::TreeNode* const node = ::nodeForIndex( parent, m_feedList );
     return node ? node->children().count() : 0;
+}
+
+int Akregator::SubscriptionListModel::nodeIdForIndex( const QModelIndex& idx ) const
+{
+    return idx.isValid() ? idx.internalId() : -1;
 }
 
 QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int role ) const
@@ -107,6 +115,14 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         case IsAggregationRole:
         {
             return node->isAggregation();
+        }
+        case IsOpenRole:
+        {
+            if ( !node->isGroup() )
+                return false;
+            const Akregator::Folder* const folder = qobject_cast<const Akregator::Folder* const>( node );
+            Q_ASSERT( folder );
+            return folder->isOpen();
         }
     }
 
@@ -175,6 +191,44 @@ void Akregator::SubscriptionListModel::subscriptionAdded( Akregator::TreeNode* s
 void Akregator::SubscriptionListModel::subscriptionRemoved( Akregator::TreeNode* subscription )
 {
     reset();
+}
+
+void Akregator::FolderExpansionHandler::itemExpanded( const QModelIndex& idx )
+{
+    setExpanded( idx, true );
+}
+
+
+void Akregator::FolderExpansionHandler::itemCollapsed( const QModelIndex& idx )
+{
+    setExpanded( idx, false );
+}
+
+void Akregator::FolderExpansionHandler::setExpanded( const QModelIndex& idx, bool expanded )
+{
+    if ( !m_feedList || !m_model )
+        return;
+    Akregator::TreeNode* const node = m_feedList->findByID( m_model->nodeIdForIndex( idx ) );
+    if ( !node || !node->isGroup() )
+        return;
+
+    Akregator::Folder* const folder = qobject_cast<Akregator::Folder*>( node );
+    Q_ASSERT( folder );
+    folder->setOpen( expanded );
+}
+
+Akregator::FolderExpansionHandler::FolderExpansionHandler( QObject* parent ) : QObject( parent ), m_feedList( 0 ), m_model( 0 )
+{
+}
+
+void Akregator::FolderExpansionHandler::setModel( Akregator::SubscriptionListModel* model )
+{
+    m_model = model;
+}
+
+void Akregator::FolderExpansionHandler::setFeedList( Akregator::FeedList* feedList )
+{
+    m_feedList = feedList;
 }
 
 #include "subscriptionlistmodel.moc"

@@ -42,7 +42,8 @@ public:
         SubscriptionIdRole=Qt::UserRole,
         IsFetchableRole,
         IsGroupRole,
-        IsAggregationRole
+        IsAggregationRole,
+        IsOpenRole
     };
 
     enum Column {
@@ -71,6 +72,8 @@ public:
     //reimpl
     QVariant headerData( int section, Qt::Orientation orientation, int role=Qt::DisplayRole ) const;
 
+    int nodeIdForIndex( const QModelIndex& index ) const;
+
 private Q_SLOTS:
 
     void feedListDestroyed( Akregator::FeedList* feedList );
@@ -82,6 +85,34 @@ private Q_SLOTS:
 private:
 
     const Akregator::FeedList* m_feedList;
+};
+
+}
+
+class QTreeView;
+
+namespace Akregator {
+
+class AKREGATOR_EXPORT FolderExpansionHandler : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit FolderExpansionHandler( QObject* parent = 0 );
+
+    void setFeedList( Akregator::FeedList* feedList );
+    void setModel( Akregator::SubscriptionListModel* model );
+
+public Q_SLOTS:
+    void itemExpanded( const QModelIndex& index );
+    void itemCollapsed( const QModelIndex& index );
+
+private:
+    void setExpanded( const QModelIndex& index, bool expanded );
+
+private:
+    Akregator::FeedList* m_feedList;
+    Akregator::SubscriptionListModel* m_model;
 };
 
 } // namespace Akregator

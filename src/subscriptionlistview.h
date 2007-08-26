@@ -44,6 +44,9 @@ public:
 
     void ensureNodeVisible( Akregator::TreeNode* node );
 
+    //override
+    void setModel( QAbstractItemModel* model );
+
     void triggerUpdate() {}
 
 public Q_SLOTS:

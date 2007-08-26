@@ -69,7 +69,7 @@ namespace {
     }
 } // anon namespace 
 
-Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_selectedSubscription( 0 )
+Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_subscriptionModel ( 0 ), m_folderExpansionHandler( 0 ), m_selectedSubscription( 0 )
 {
     m_articleFetchTimer = new QTimer( this );
 }
@@ -130,22 +130,37 @@ void Akregator::SelectionController::setFeedList( Akregator::FeedList* list )
     setUp();
 }
 
+void Akregator::SelectionController::setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler )
+{
+    m_folderExpansionHandler = handler;
+    if ( !handler )
+        return;
+    handler->setFeedList( m_feedList );
+    handler->setModel( m_subscriptionModel );
+}
+
 void Akregator::SelectionController::setUp()
 {
-    if ( m_feedList && m_feedSelector && m_articleLister )
+    if ( !m_feedList || !m_feedSelector || !m_articleLister )
+        return;
+
+    m_subscriptionModel = new SubscriptionListModel( m_feedList, this );
+    if ( m_folderExpansionHandler )
     {
-        m_feedSelector->setModel( new SubscriptionListModel( m_feedList, this ) );
+        m_folderExpansionHandler->setFeedList( m_feedList );
+        m_folderExpansionHandler->setModel( m_subscriptionModel );
+    }
+    m_feedSelector->setModel( m_subscriptionModel );
 
-        connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
-                 this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
+    connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
+             this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
 
-        connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
-                 this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
+    connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
+             this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
 
-        if ( m_articleLister->itemView() )
-        {
-            connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
-        }
+    if ( m_articleLister->itemView() )
+    {
+        connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
     }
 }
 

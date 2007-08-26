@@ -61,6 +61,9 @@ public:
     //impl
     void setFeedList( Akregator::FeedList* list );
 
+    //impl
+    void setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler );
+
 private:
 
     void setUp();
@@ -79,6 +82,8 @@ private:
     QAbstractItemView* m_feedSelector;
     Akregator::ArticleLister* m_articleLister;
     Akregator::SingleArticleDisplay* m_singleDisplay;
+    Akregator::SubscriptionListModel* m_subscriptionModel;
+    Akregator::FolderExpansionHandler* m_folderExpansionHandler;
     TreeNode* m_selectedSubscription;
     QTimer* m_articleFetchTimer;
 };
