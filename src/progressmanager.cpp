@@ -26,7 +26,7 @@
 #include <QList>
 
 #include <klocale.h>
-#include <kstaticdeleter.h>
+#include <k3staticdeleter.h>
 
 #include <libkdepim/progressmanager.h>
 
@@ -48,7 +48,7 @@ class ProgressManager::ProgressManagerPrivate
     
 };
 
-static KStaticDeleter<ProgressManager> progressmanagersd;
+static K3StaticDeleter<ProgressManager> progressmanagersd;
 ProgressManager* ProgressManager::m_self = 0;
 
 ProgressManager* ProgressManager::self()

@@ -29,7 +29,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kstandarddirs.h>
-#include <kstaticdeleter.h>
+#include <k3staticdeleter.h>
 #include <kurl.h>
 
 #include <QList>
@@ -51,7 +51,7 @@ class FeedIconManager::FeedIconManagerPrivate
 
 FeedIconManager *FeedIconManager::m_instance = 0;
 
-static KStaticDeleter<FeedIconManager> feediconmanagersd;
+static K3StaticDeleter<FeedIconManager> feediconmanagersd;
 
 FeedIconManager* FeedIconManager::self()
 {

@@ -30,7 +30,7 @@
 #include <kcharsets.h>
 #include <klocale.h>
 #include <kdebug.h>
-#include <kstaticdeleter.h>
+#include <k3staticdeleter.h>
 #include <ktoolinvocation.h>
 #include <kservicetypetrader.h>
 
@@ -49,7 +49,7 @@ class SpeechClient::SpeechClientPrivate
 
 SpeechClient* SpeechClient::m_self = 0;
 
-static KStaticDeleter<SpeechClient> speechclsd;
+static K3StaticDeleter<SpeechClient> speechclsd;
 
 SpeechClient* SpeechClient::self()
 {

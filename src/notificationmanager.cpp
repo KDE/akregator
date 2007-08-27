@@ -24,7 +24,7 @@
 
 #include <klocale.h>
 #include <knotification.h>
-#include <kstaticdeleter.h>
+#include <k3staticdeleter.h>
 #include <kurl.h>
 
 #include <QLabel>
@@ -129,7 +129,7 @@ void NotificationManager::slotIntervalCheck()
 }
 
 NotificationManager* NotificationManager::m_self;
-static KStaticDeleter<NotificationManager> notificationmanagersd;
+static K3StaticDeleter<NotificationManager> notificationmanagersd;
 
 NotificationManager* NotificationManager::self()
 {
