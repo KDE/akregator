@@ -24,8 +24,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_VIEW_H
-#define AKREGATOR_VIEW_H
+#ifndef AKREGATOR_MAINWIDGET_H
+#define AKREGATOR_MAINWIDGET_H
 
 #include "akregator_export.h"
 #include "feed.h"
@@ -279,4 +279,4 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
 } // namespace Akregator
 
-#endif // AKREGATOR_VIEW_H
+#endif // AKREGATOR_MAINWIDGET_H

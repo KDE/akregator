@@ -21,8 +21,8 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATOR_NODELISTVIEW_H
-#define AKREGATOR_NODELISTVIEW_H
+#ifndef AKREGATOR_FEEDLISTVIEW_H
+#define AKREGATOR_FEEDLISTVIEW_H
 
 #include <k3listview.h>
 #include <kurl.h>
@@ -188,4 +188,4 @@ private:
 
 } // namespace Akregator
 
-#endif // AKREGATOR_NODELISTVIEW_H
+#endif // AKREGATOR_FEEDLISTVIEW_H

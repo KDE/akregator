@@ -49,7 +49,6 @@
 #include <ktoolinvocation.h>
 #include <kurl.h>
 #include <kmimetype.h>
-#include <ktoolinvocation.h>
 #include <kio/global.h>
 
 #include "actionmanager.h"
