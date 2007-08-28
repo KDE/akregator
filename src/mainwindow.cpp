@@ -261,7 +261,7 @@ bool MainWindow::queryClose()
 
         // Associate source to image and show the dialog:
         Q3MimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
-        KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"systray_shot\"></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
+        KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"systray_shot\" /></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
 #endif
         hide();
         return false;
