@@ -93,7 +93,7 @@ class QTreeView;
 
 namespace Akregator {
 
-class AKREGATOR_EXPORT FolderExpansionHandler : public QObject
+class AKREGATORPART_EXPORT FolderExpansionHandler : public QObject
 {
     Q_OBJECT
 
