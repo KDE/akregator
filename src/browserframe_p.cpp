@@ -85,7 +85,7 @@ QString BrowserFrame::BrowserFramePrivate::debugInfo() const
     QList<HistoryEntry>::ConstIterator it = history.begin();
     while(it != history.end())
     {
-        res += (*it).id + " ";
+        res += (*it).id + ' ';
         ++it;
     }
     
