@@ -55,7 +55,6 @@ int Application::newInstance()
 
     if ( !mMainWindow ) {
       mMainWindow = new Akregator::MainWindow();
-      setMainWidget( mMainWindow );
       mMainWindow->loadPart();
       mMainWindow->setupProgressWidgets();
       if (!args->isSet("hide-mainwindow"))
