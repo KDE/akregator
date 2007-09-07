@@ -33,7 +33,7 @@
 #include <QString>
 #include <QVariant>
 
-class KConfig;
+class KConfigGroup;
 
 namespace Akregator {
 
@@ -57,8 +57,8 @@ class AKREGATORPART_EXPORT AbstractMatcher
 
         virtual bool matches(const Article& article) const = 0;
 
-        virtual void writeConfig(KConfig* config) const = 0;
-        virtual void readConfig(KConfig* config) = 0;
+        virtual void writeConfig(KConfigGroup* config) const = 0;
+        virtual void readConfig(KConfigGroup* config) = 0;
 
         virtual bool operator==(const AbstractMatcher&) const = 0;
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
@@ -89,8 +89,8 @@ class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
         virtual bool operator!=(const AbstractMatcher &other) const;
         
         
-        virtual void writeConfig(KConfig* config) const;
-        virtual void readConfig(KConfig* config);
+        virtual void writeConfig(KConfigGroup* config) const;
+        virtual void readConfig(KConfigGroup* config);
 
     private:
 
@@ -133,8 +133,8 @@ class AKREGATORPART_EXPORT Criterion
         virtual ~Criterion(){} 
         bool satisfiedBy( const Article &article ) const;
 
-        virtual void writeConfig(KConfig* config) const;
-        virtual void readConfig(KConfig* config);
+        virtual void writeConfig(KConfigGroup* config) const;
+        virtual void readConfig(KConfigGroup* config);
 
         Subject subject() const;
         Predicate predicate() const;

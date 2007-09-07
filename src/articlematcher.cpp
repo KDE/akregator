@@ -29,7 +29,7 @@
 #include "types.h"
 
 #include <kapplication.h>
-#include <kconfig.h>
+#include <kconfiggroup.h>
 #include <kdebug.h>
 #include <krandom.h>
 #include <kurl.h>
@@ -121,7 +121,7 @@ Criterion::Criterion( Subject subject, Predicate predicate, const QVariant &obje
 
 }
 
-void Criterion::writeConfig(KConfig* config) const
+void Criterion::writeConfig(KConfigGroup* config) const
 {
     config->writeEntry(QString::fromLatin1("subject"), subjectToString(m_subject));
 
@@ -132,7 +132,7 @@ void Criterion::writeConfig(KConfig* config) const
     config->writeEntry(QString::fromLatin1("objectValue"), m_object);
 }
 
-void Criterion::readConfig(KConfig* config)
+void Criterion::readConfig(KConfigGroup* config)
 {
     m_subject = stringToSubject(config->readEntry(QString::fromLatin1("subject"), QString()));
     m_predicate = stringToPredicate(config->readEntry(QString::fromLatin1("predicate"), QString()));
@@ -258,7 +258,7 @@ bool ArticleMatcher::matches( const Article &a ) const
     return true;
 }
 
-void ArticleMatcher::writeConfig(KConfig* config) const
+void ArticleMatcher::writeConfig(KConfigGroup* config) const
 {
     config->writeEntry(QString::fromLatin1("matcherAssociation"), associationToString(m_association));
     
@@ -266,25 +266,29 @@ void ArticleMatcher::writeConfig(KConfig* config) const
 
     int index = 0;
 
+    QString criterionGroupPrefix = config->group() + QString::fromLatin1("_Criterion");
+
     for (QList<Criterion>::ConstIterator it = m_criteria.begin(); it != m_criteria.end(); ++it)
     {
-        config->setGroup(config->group()+QString::fromLatin1("_Criterion")+QString::number(index));
+        config->changeGroup(criterionGroupPrefix + QString::number(index));
         (*it).writeConfig(config);
         ++index;
     }
 }
 
-void ArticleMatcher::readConfig(KConfig* config)
+void ArticleMatcher::readConfig(KConfigGroup* config)
 {
     m_criteria.clear();
     m_association = stringToAssociation(config->readEntry(QString::fromLatin1("matcherAssociation"), QString()));
 
     int count =  config->readEntry(QString::fromLatin1("matcherCriteriaCount"), 0);
+
+    QString criterionGroupPrefix = config->group() + QString::fromLatin1("_Criterion");
     
     for (int i = 0; i < count; ++i)
     {
         Criterion c;
-        config->setGroup(config->group()+QString::fromLatin1("_Criterion")+QString::number(i));
+        config->changeGroup(criterionGroupPrefix + QString::number(i));
         c.readConfig(config);
         m_criteria.append(c);
     }
