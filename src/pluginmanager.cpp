@@ -190,7 +190,7 @@ PluginManager::dump( const KService::Ptr service )
       << "---------------------------" << endl
       << "name                          : " << service->name() << endl
       << "library                       : " << service->library() << endl
-      << "desktopEntryPath              : " << service->desktopEntryPath() << endl
+      << "desktopEntryPath              : " << service->entryPath() << endl
       << "X-KDE-akregator-plugintype       : " << service->property( "X-KDE-akregator-plugintype" ).toString() << endl
       << "X-KDE-akregator-name             : " << service->property( "X-KDE-akregator-name" ).toString() << endl
       << "X-KDE-akregator-authors          : " << service->property( "X-KDE-akregator-authors" ).toStringList() << endl
