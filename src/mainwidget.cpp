@@ -258,15 +258,15 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController->setFeedList( m_feedList );
 
     FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
-        connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) ); 
-        connect( m_feedListView, SIGNAL( collapsed( QModelIndex ) ), expansionHandler, SLOT( itemCollapsed( QModelIndex ) ) ); 
+        connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) );
+        connect( m_feedListView, SIGNAL( collapsed( QModelIndex ) ), expansionHandler, SLOT( itemCollapsed( QModelIndex ) ) );
 
     m_selectionController->setFolderExpansionHandler( expansionHandler );
 
-    connect( m_selectionController, SIGNAL( currentSubscriptionChanged( Akregator::TreeNode* ) ), 
+    connect( m_selectionController, SIGNAL( currentSubscriptionChanged( Akregator::TreeNode* ) ),
              this, SLOT( slotNodeSelected( Akregator::TreeNode* ) ) );
 
-    connect( m_selectionController, SIGNAL( currentArticleChanged( Akregator::Article ) ), 
+    connect( m_selectionController, SIGNAL( currentArticleChanged( Akregator::Article ) ),
              this, SLOT( slotArticleSelected( Akregator::Article ) ) );
 
     connect( m_selectionController, SIGNAL( articleDoubleClicked( Akregator::Article ) ),
@@ -278,7 +278,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)),
              this, SLOT(slotMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)));
 
-    
+
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleListView, SLOT(slotPaletteOrFontChanged()));
 
@@ -294,8 +294,8 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
              Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
 
-    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem *)),
-             this, SLOT(slotMouseOverInfo(const KFileItem *)) );
+    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem&)),
+             this, SLOT(slotMouseOverInfo(const KFileItem&)) );
 
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleViewer, SLOT(slotPaletteOrFontChanged()));
@@ -1123,7 +1123,7 @@ void Akregator::MainWidget::slotArticleDelete()
             job->start();
         }
 
-        Q_FOREACH( Akregator::Feed* i, feeds ) 
+        Q_FOREACH( Akregator::Feed* i, feeds )
             i->setNotificationMode(true);
 
         if ( m_selectionController->selectedSubscription() )
@@ -1232,9 +1232,9 @@ void Akregator::MainWidget::slotSetCurrentArticleReadDelayed()
     job->start();
 }
 
-void Akregator::MainWidget::slotMouseOverInfo(const KFileItem* const kifi)
+void Akregator::MainWidget::slotMouseOverInfo(const KFileItem& kifi)
 {
-    m_mainFrame->slotSetStatusText( kifi ? kifi->url().prettyUrl() : QString());
+    m_mainFrame->slotSetStatusText( kifi.isNull() ? QString : kifi.url().prettyUrl() );
 }
 
 void Akregator::MainWidget::readProperties(const KConfigGroup &config)
