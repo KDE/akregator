@@ -99,7 +99,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
          * Add a feed to a group.
          * @param url The URL of the feed to add.
          * @param group The name of the folder into which the feed is added.
-         * If the group does not exist, it is created. 
+         * If the group does not exist, it is created.
          * The feed is added as the last member of the group.
          */
         void addFeedToGroup(const QString& url, const QString& group);
@@ -111,9 +111,9 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
     signals:
         /** emitted when the unread count of "All Feeds" was changed */
         void signalUnreadCountChanged(int);
-        
+
     public slots:
-        
+
         /** opens the current article (currentItem) in external browser
         TODO: use selected instead of current? */
         void slotOpenCurrentArticleInBrowser();
@@ -140,12 +140,12 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotCopyLinkAddress();
 
         void slotRequestNewFrame(int& frameId);
-        
+
         /** called when URLs are dropped into the tree view */
         void slotFeedUrlDropped (KUrl::List &urls, Akregator::TreeNode* after, Akregator::Folder *parent);
 
         /** displays a URL in the status bar when the user moves the mouse over a link */
-        void slotMouseOverInfo(const KFileItem* const kifi);
+        void slotMouseOverInfo(const KFileItem& kifi);
 
         /** Feed has been fetched, populate article view if needed and update counters. */
         void slotFeedFetched(Akregator::Feed *);
@@ -210,7 +210,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
     protected:
 
         void sendArticle(bool attach=false);
-        
+
         void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
 
         void connectToFeedList(FeedList* feedList);
@@ -245,7 +245,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         SubscriptionListView* m_feedListView;
         ArticleListView* m_articleListView;
-        
+
         ArticleViewer *m_articleViewer;
         TabWidget* m_tabWidget;
 
