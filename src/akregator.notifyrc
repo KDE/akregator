@@ -38,6 +38,7 @@ Name[tr]=Haber kaynağı eklendi
 Name[uk]=Подачу додано
 Name[uz]=Янгиликлар тасмаси қўшилди
 Name[x-test]=xxFeed addedxx
+Name[zh_TW]=已新增 Feed
 Comment=A new feed was remotely added to Akregator
 Comment[af]='n Nuwe stroom was vanaf 'n afgeleë ligging by Akregator bygevoeg.
 Comment[cs]=Byl přidán nový kanál do Akregatoru
@@ -70,6 +71,7 @@ Comment[tr]=Akregator'a yeni bir haber kaynağı eklendi
 Comment[uk]=Нову подачу було віддалено додано до Akregator
 Comment[uz]=Akregator дастурига янги янгиликлар тасмаси қўшилди
 Comment[x-test]=xxA new feed was remotely added to Akregatorxx
+Comment[zh_TW]=已從遠端新增 Feed 到 Akregator
 Action=Logfile
 
 [Event/new_articles]
@@ -108,6 +110,7 @@ Name[tr]=Yeni Haberler
 Name[uk]=Нові статті
 Name[uz]=Янги мақолалар
 Name[x-test]=xxNew Articlesxx
+Name[zh_TW]=新文章
 Comment=New articles were fetched
 Comment[af]=Nuwe artikels was afgelaai
 Comment[cs]=Byly staženy nové články
@@ -141,5 +144,6 @@ Comment[ta]=புதிய கட்டுரைகள் கொண்டுவ
 Comment[tr]=Yeni haberler alındı
 Comment[uk]=Отримано нові статті
 Comment[x-test]=xxNew articles were fetchedxx
+Comment[zh_TW]=有新文章進來
 Action=Logfile
 
