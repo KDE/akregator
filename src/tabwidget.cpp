@@ -346,7 +346,7 @@ void TabWidget::initiateDrag(int tab)
         QMimeData *md = new QMimeData;
         drag->setMimeData( md );
         lst.populateMimeData( md );
-        drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, K3Icon::Small ) );
+        drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, KIconLoader::Small ) );
         drag->start();
     }
 }

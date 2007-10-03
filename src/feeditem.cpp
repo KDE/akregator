@@ -75,12 +75,12 @@ void FeedItem::nodeChanged()
 
 QPixmap FeedItem::errorPixmap()
 {
-    return KIconLoader::global()->loadIcon("error", K3Icon::Small);
+    return KIconLoader::global()->loadIcon("error", KIconLoader::Small);
 }
 
 QPixmap FeedItem::defaultPixmap()
 {
-    return KIconLoader::global()->loadIcon("txt", K3Icon::Small);
+    return KIconLoader::global()->loadIcon("txt", KIconLoader::Small);
 }
 
 void FeedItem::initialize(Feed* node)
