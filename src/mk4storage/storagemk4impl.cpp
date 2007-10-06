@@ -57,7 +57,6 @@ class StorageMK4Impl::StorageMK4ImplPrivate
         QStringList feedURLs;
         c4_StringProp purl, pFeedList, pTagSet;
         c4_IntProp punread, ptotalCount, plastFetch;
-        QTimer* commitTimer;
         QString archivePath;
         
         bool taggingEnabled;
@@ -87,10 +86,6 @@ QString StorageMK4Impl::archivePath() const
 StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
 {
     setArchivePath(QString::null); // set path to default
-    // commit changes every 3 seconds
-    d->commitTimer = new QTimer(this);
-    connect(d->commitTimer, SIGNAL(timeout()), this, SLOT(slotCommit()));
-    d->commitTimer->start(3000);
 }
 
 QString StorageMK4Impl::defaultArchivePath()
@@ -145,8 +140,6 @@ bool StorageMK4Impl::autoCommit() const
 
 bool StorageMK4Impl::close()
 {
-    d->commitTimer->stop();
-
     QMap<QString, FeedStorage*>::Iterator it;
     QMap<QString, FeedStorage*>::Iterator end(d->feeds.end() ) ;
     for (it = d->feeds.begin(); it != end; ++it)
@@ -217,7 +210,7 @@ void StorageMK4Impl::setUnreadFor(const QString &url, int unread)
     findrow = d->archiveView.GetAt(findidx);
     d->punread(findrow) = unread;
     d->archiveView.SetAt(findidx, findrow);
-    d->modified = true;
+    markDirty();
 }
 
 int StorageMK4Impl::totalCountFor(const QString &url)
@@ -239,7 +232,7 @@ void StorageMK4Impl::setTotalCountFor(const QString &url, int total)
     findrow = d->archiveView.GetAt(findidx);
     d->ptotalCount(findrow) = total;
     d->archiveView.SetAt(findidx, findrow);
-    d->modified = true;
+    markDirty();
 }
 
 int StorageMK4Impl::lastFetchFor(const QString& url)
@@ -261,13 +254,23 @@ void StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
     findrow = d->archiveView.GetAt(findidx);
     d->plastFetch(findrow) = lastFetch;
     d->archiveView.SetAt(findidx, findrow);
-    d->modified = true;
+    markDirty();
+}
+
+void StorageMK4Impl::markDirty()
+{
+    if (!d->modified)
+    {
+        d->modified = true;
+        // commit changes after 3 seconds
+        QTimer::singleShot(3000, this, SLOT(slotCommit()));
+    }
 }
 
 void StorageMK4Impl::slotCommit()
 {
     if (d->modified)
-    	commit();
+        commit();
     d->modified = false;
 }
 
@@ -286,7 +289,7 @@ FeedStorage* StorageMK4Impl::archiveFor(const QString& url)
 	    d->ptotalCount(findrow) = 0;
 	    d->plastFetch(findrow) = 0;
             d->archiveView.Add(findrow);
-            d->modified = true;
+            markDirty();
         }
         fs->convertOldArchive();
     }
@@ -353,7 +356,7 @@ void StorageMK4Impl::storeFeedList(const QString& opmlStr)
         d->pFeedList(row) = !opmlStr.isEmpty() ? opmlStr.utf8().data() : "";
         d->feedListView.SetAt(0, row);
     }
-    d->modified = true;
+    markDirty();
 }
 
 QString StorageMK4Impl::restoreFeedList() const
@@ -381,7 +384,7 @@ void StorageMK4Impl::storeTagSet(const QString& xmlStr)
         d->pTagSet(row) = !xmlStr.isEmpty() ? xmlStr.utf8().data() : "";
         d->feedListView.SetAt(0, row);
     }
-    d->modified = true;
+    markDirty();
 }
 
 QString StorageMK4Impl::restoreTagSet() const

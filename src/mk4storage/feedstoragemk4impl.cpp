@@ -125,7 +125,7 @@ void FeedStorageMK4Impl::convertOldArchive()
     }
     
     setUnread(unr);
-    d->modified = true;
+    markDirty();
     commit();
 }
 
@@ -179,6 +179,16 @@ FeedStorageMK4Impl::~FeedStorageMK4Impl()
         delete d->tagStorage;
 //    delete d->catStorage;
     delete d; d = 0;
+}
+
+void FeedStorageMK4Impl::markDirty()
+{
+    if (!d->modified)
+    {
+        d->modified = true;
+        // Tell this to mainStorage
+        d->mainStorage->markDirty();
+    }
 }
 
 void FeedStorageMK4Impl::commit()
@@ -290,7 +300,7 @@ void FeedStorageMK4Impl::addEntry(const QString& guid)
     if (!contains(guid))
     {
         d->archiveView.Add(row);
-	d->modified = true;
+        markDirty();
         setTotalCount(totalCount()+1);
     }
 }
@@ -318,7 +328,7 @@ void FeedStorageMK4Impl::deleteArticle(const QString& guid)
             removeTag(guid, *it);
         setTotalCount(totalCount()-1);
         d->archiveView.RemoveAt(findidx);
-        d->modified = true;
+        markDirty();
     }   
 }
 
@@ -370,7 +380,7 @@ void FeedStorageMK4Impl::setDeleted(const QString& guid)
     d->pauthor(row) = "";
     d->pcommentsLink(row) = "";
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 QString FeedStorageMK4Impl::link(const QString& guid)
@@ -400,7 +410,7 @@ void FeedStorageMK4Impl::setStatus(const QString& guid, int status)
     row = d->archiveView.GetAt(findidx);
     d->pstatus(row) = status;
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 QString FeedStorageMK4Impl::title(const QString& guid)
@@ -425,7 +435,7 @@ void FeedStorageMK4Impl::setPubDate(const QString& guid, uint pubdate)
     row = d->archiveView.GetAt(findidx);
     d->ppubDate(row) = pubdate;
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::setGuidIsHash(const QString& guid, bool isHash)
@@ -437,7 +447,7 @@ void FeedStorageMK4Impl::setGuidIsHash(const QString& guid, bool isHash)
     row = d->archiveView.GetAt(findidx);
     d->pguidIsHash(row) = isHash;
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::setLink(const QString& guid, const QString& link)
@@ -449,7 +459,7 @@ void FeedStorageMK4Impl::setLink(const QString& guid, const QString& link)
     row = d->archiveView.GetAt(findidx);
     d->plink(row) = !link.isEmpty() ? link.ascii() : "";
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::setHash(const QString& guid, uint hash)
@@ -461,7 +471,7 @@ void FeedStorageMK4Impl::setHash(const QString& guid, uint hash)
     row = d->archiveView.GetAt(findidx);
     d->phash(row) = hash;
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::setTitle(const QString& guid, const QString& title)
@@ -473,7 +483,7 @@ void FeedStorageMK4Impl::setTitle(const QString& guid, const QString& title)
     row = d->archiveView.GetAt(findidx);
     d->ptitle(row) = !title.isEmpty() ? title.utf8().data() : "";
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::setDescription(const QString& guid, const QString& description)
@@ -485,7 +495,7 @@ void FeedStorageMK4Impl::setDescription(const QString& guid, const QString& desc
     row = d->archiveView.GetAt(findidx);
     d->pdescription(row) = !description.isEmpty() ? description.utf8().data() : "";
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::setAuthor(const QString& guid, const QString& author)
@@ -497,7 +507,7 @@ void FeedStorageMK4Impl::setAuthor(const QString& guid, const QString& author)
     row = d->archiveView.GetAt(findidx);
     d->pauthor(row) = !author.isEmpty() ? author.utf8().data() : "";
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 QString FeedStorageMK4Impl::author(const QString& guid)
@@ -516,7 +526,7 @@ void FeedStorageMK4Impl::setCommentsLink(const QString& guid, const QString& com
     row = d->archiveView.GetAt(findidx);
     d->pcommentsLink(row) = !commentsLink.isEmpty() ? commentsLink.utf8().data() : "";
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::setComments(const QString& guid, int comments)
@@ -528,7 +538,7 @@ void FeedStorageMK4Impl::setComments(const QString& guid, int comments)
     row = d->archiveView.GetAt(findidx);
     d->pcomments(row) = comments;
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 
@@ -541,7 +551,7 @@ void FeedStorageMK4Impl::setGuidIsPermaLink(const QString& guid, bool isPermaLin
     row = d->archiveView.GetAt(findidx);
     d->pguidIsPermaLink(row) = isPermaLink;
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::addCategory(const QString& /*guid*/, const Category& /*cat*/)
@@ -595,7 +605,7 @@ void FeedStorageMK4Impl::addCategory(const QString& /*guid*/, const Category& /*
             d->catView.SetAt(catidx2, catrow2);
         }
 
-        d->modified = true;
+        markDirty();
     } 
     */
 }
@@ -687,7 +697,7 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
             d->ptaggedArticles(tagrow) = tagView2;
             d->tagView.SetAt(tagidx2, tagrow);
         }
-        d->modified = true;
+        markDirty();
     } 
 }
 
@@ -732,7 +742,7 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
             }
         }
         
-        d->modified = true;
+        markDirty();
     }
 }
 
@@ -811,7 +821,7 @@ void FeedStorageMK4Impl::setEnclosure(const QString& guid, const QString& url, c
     d->pEnclosureLength(row) = length;
 
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::removeEnclosure(const QString& guid)
@@ -827,7 +837,7 @@ void FeedStorageMK4Impl::removeEnclosure(const QString& guid)
     d->pEnclosureLength(row) = -1;
 
     d->archiveView.SetAt(findidx, row);
-    d->modified = true;
+    markDirty();
 }
 
 void FeedStorageMK4Impl::enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length)
@@ -854,7 +864,7 @@ void FeedStorageMK4Impl::clear()
     if (d->taggingEnabled)
         d->tagStorage->RemoveAll();
     setUnread(0);
-    d->modified = true;
+    markDirty();
 }
 
 } // namespace Backend
