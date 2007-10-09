@@ -266,7 +266,7 @@ void ArticleMatcher::writeConfig(KConfigGroup* config) const
 
     int index = 0;
 
-    QString criterionGroupPrefix = config->group() + QString::fromLatin1("_Criterion");
+    QString criterionGroupPrefix = config->name() + QString::fromLatin1("_Criterion");
 
     for (QList<Criterion>::ConstIterator it = m_criteria.begin(); it != m_criteria.end(); ++it)
     {
@@ -283,8 +283,8 @@ void ArticleMatcher::readConfig(KConfigGroup* config)
 
     int count =  config->readEntry(QString::fromLatin1("matcherCriteriaCount"), 0);
 
-    QString criterionGroupPrefix = config->group() + QString::fromLatin1("_Criterion");
-    
+    QString criterionGroupPrefix = config->name() + QString::fromLatin1("_Criterion");
+
     for (int i = 0; i < count; ++i)
     {
         Criterion c;

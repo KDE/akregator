@@ -26,6 +26,7 @@
 #include <knotification.h>
 #include <k3staticdeleter.h>
 #include <kurl.h>
+#include <kglobal.h>
 
 #include <QLabel>
 #include <QTimer>
