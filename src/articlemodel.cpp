@@ -38,7 +38,7 @@ struct Akregator::ArticleModelPrivate {
     QList<Akregator::Article> articles;
 };
 
-Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractListModel( parent ), d( new Akregator::ArticleModelPrivate )
+Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Akregator::ArticleModelPrivate )
 {
     d->node = node;
     Q_ASSERT( node );

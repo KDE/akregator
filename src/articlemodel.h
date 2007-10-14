@@ -24,7 +24,7 @@
 #ifndef AKREGATOR_ARTICLEMODEL_H
 #define AKREGATOR_ARTICLEMODEL_H
 
-#include <QAbstractListModel>
+#include <QAbstractTableModel>
 
 #include "akregator_export.h"
 
@@ -34,7 +34,7 @@ class TreeNode;
 
 struct ArticleModelPrivate;
 
-class AKREGATORPART_EXPORT ArticleModel : public QAbstractListModel
+class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
 {
     Q_OBJECT
 
