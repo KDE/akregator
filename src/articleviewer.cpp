@@ -88,8 +88,8 @@ ArticleViewer::ArticleViewer(QWidget *parent)
              this, SLOT(slotCompleted()));
 
     KParts::BrowserExtension* ext = m_part->browserExtension();
-    connect(ext, SIGNAL(popupMenu (KXMLGUIClient*, QPoint, KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments, KParts::BrowserExtension::PopupFlags, mode_t)),
-             this, SLOT(slotPopupMenu(KXMLGUIClient*, QPoint, KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments, KParts::BrowserExtension::PopupFlags, mode_t)));
+    connect(ext, SIGNAL(popupMenu (QPoint, KUrl, mode_t, KParts::OpenUrlArguments, KParts::BrowserArguments, KParts::BrowserExtension::PopupFlags, KParts::BrowserExtension::ActionGroupMap)),
+             this, SLOT(slotPopupMenu(QPoint, KUrl, mode_t, KParts::OpenUrlArguments, KParts::BrowserArguments, KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
 
     connect( ext, SIGNAL(openUrlRequestDelayed(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)),
              this, SLOT(slotOpenUrlRequestDelayed(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)) );
@@ -239,9 +239,9 @@ void ArticleViewer::slotCreateNewWindow(const KUrl& url,
     *part = req.part();
 }
 
-void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
+void ArticleViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags kpf)
 {
-    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
+    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## why not use kpf & IsLink ?
     const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
 
     QString url = kurl.url();
@@ -570,14 +570,6 @@ void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& 
 void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& /*list*/)
 {
 }
-
-/* testingtesting :)
-void ArticleViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t)
-{
-    kDebug() << m_link;
-    kDebug() << kurl.url();
-}*/
-
 
 void ArticleViewer::slotClear()
 {

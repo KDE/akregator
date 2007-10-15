@@ -122,8 +122,6 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
                                  this, SLOT(slotStop()),
                                  actionCollection(), "pageviewer_stop");
 
-    //connect( this, SIGNAL(popupMenu(const QString &, const QPoint &)), this, SLOT(slotPopupMenu(const QString &, const QPoint &)));
-
     d->backAction->setEnabled(false);
     d->forwardAction->setEnabled(false);
     d->stopAction->setEnabled(false);
@@ -400,12 +398,12 @@ void PageViewer::slotGlobalBookmarkArticle()
 }
 
 
-void PageViewer::slotPopupMenu(KXMLGUIClient*, const QPoint& p, const KUrl& kurl, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf, mode_t)
+void PageViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags kpf)
 {
     m_url = kurl;
     QString url = kurl.url(); // maximal url confusion
 
-    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0;
+    const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## Why not use kpf & IsLink?
 
     KMenu popup(this->widget());
 

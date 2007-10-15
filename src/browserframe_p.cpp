@@ -228,12 +228,12 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
                                  const KParts::BrowserArguments&
                                  const KParts::WindowArgs&,
                                  KParts::ReadOnlyPart**)));
-            connect(ext, SIGNAL(popupMenu(KXMLGUIClient *, const QPoint&,
-                    const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, 
-                    KParts::BrowserExtension::PopupFlags, mode_t)), 
-                    q, SLOT(slotPopupMenu(KXMLGUIClient *, const QPoint&, 
-                    const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&,
-                    KParts::BrowserExtension::PopupFlags, mode_t)));
+            connect(ext, SIGNAL(popupMenu(QPoint,KUrl,mode_t,
+                    const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, 
+                    KParts::BrowserExtension::PopupFlags, KParts::BrowserExtension::ActionGroupMap)), 
+                    q, SLOT(slotPopupMenu(QPoint,KUrl,mode_t,
+                    const KParts::OpenUrlArguments&, const KParts::BrowserArguments&,
+                    KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument not used by slot
         }
     }
 }
