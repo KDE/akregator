@@ -95,11 +95,11 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
     connect(browser.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)), browser.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)));
     d->settingsAdvanced = new SettingsAdvanced(this, "Advanced");
 
-    addPage(generalWidget, i18n("General"), "tool");
-    addPage(archiveWidget, i18n("Archive"), "ark");
-    addPage(appearanceWidget, i18n("Appearance"), "screen");
-    addPage(browserWidget, i18n("Browser"), "package-network");
-    addPage(d->settingsAdvanced, i18n("Advanced"), "package-network");
+    addPage(generalWidget, i18n("General"), "akregator");
+    addPage(archiveWidget, i18n("Archive"), "utilities-file-archiver");
+    addPage(appearanceWidget, i18n("Appearance"), "video-display");
+    addPage(browserWidget, i18n("Browser"), "konqueror");
+    addPage(d->settingsAdvanced, i18n("Advanced"), "tool");
     d->settingsAdvanced->selectFactory(Settings::archiveBackend());
     d->config = config;
 }

@@ -32,18 +32,15 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <kmenu.h>
+#include <kicon.h>
 #include <kiconloader.h>
-#include <QDesktopWidget>
-#include <QMouseEvent>
+
 #include <QBitmap>
 #include <QPainter>
-#include <QFont>
 
 #ifdef Q_WS_X11
 #include <QX11Info>
 #endif
-//Added by qt3to4:
-#include <QPixmap>
 
 
 namespace Akregator {
@@ -64,10 +61,9 @@ void TrayIcon::setInstance(TrayIcon* trayIcon)
 TrayIcon::TrayIcon(QWidget *parent)
         : KSystemTrayIcon(parent), m_unread(0)
 {
-    m_defaultPixmap = KSystemTrayIcon::loadIcon("akregator").pixmap(geometry().size());
-    m_lightIconImage = KSystemTrayIcon::loadIcon("akregator_empty").pixmap(geometry().size()).toImage();
+    m_lightIconImage = KSystemTrayIcon::loadIcon("akregator").pixmap(22).toImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60);
-    setIcon(m_defaultPixmap);
+    setIcon(KIcon("akregator"));
     this->setToolTip( i18n("Akregator - RSS Feed Reader"));
     connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
              SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
@@ -142,12 +138,12 @@ void TrayIcon::slotSetUnread(int unread)
 
     if (unread <= 0)
     {
-        setIcon(m_defaultPixmap);
+        setIcon(KIcon("akregator"));
     }
     else
     {
         // from KMSystemTray
-        QSize oldSize = m_defaultPixmap.size();
+        QSize oldSize = m_lightIconImage.size();
 
         if ( oldSize.width() == 0 || oldSize.height() == 0 )
             return;

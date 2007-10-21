@@ -636,7 +636,6 @@ void Part::showOptions()
              TrayIcon::getInstance(), SLOT(settingsChanged()) );
 
     dialog->show();
-    delete dialog;
 }
 
 void Part::partActivateEvent(KParts::PartActivateEvent* event)

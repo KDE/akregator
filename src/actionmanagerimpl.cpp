@@ -271,13 +271,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     stopAction->setEnabled(false);
 
     action = coll->addAction("feed_mark_all_as_read");
-    action->setIcon(KIcon("goto-page"));
+    action->setIcon(KIcon("go-jump"));
     action->setText(i18n("&Mark Feed as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllRead()));
     action->setShortcuts(KShortcut( "Ctrl+R" ));
 
     action = coll->addAction("feed_mark_all_feeds_as_read");
-    action->setIcon(KIcon("goto-page"));
+    action->setIcon(KIcon("go-jump"));
     action->setText(i18n("Ma&rk All Feeds as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllFeedsRead()));
     action->setShortcuts(KShortcut( "Ctrl+Shift+R" ));
