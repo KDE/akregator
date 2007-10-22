@@ -500,7 +500,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     action->setShortcuts(KShortcut( "Ctrl+Comma" ));
 
     action = coll->addAction("tab_detach");
-    action->setIcon(KIcon("tab-breakoff"));
+    action->setIcon(KIcon("tab-detach"));
     action->setText(i18n("Detach Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotDetachTab()));
     action->setShortcut(QKeySequence(Qt::CTRL+Qt::SHIFT+Qt::Key_B));
@@ -510,7 +510,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCopyLinkAddress()));
 
     action = coll->addAction("tab_remove");
-    action->setIcon(KIcon("tab-remove"));
+    action->setIcon(KIcon("tab-close"));
     action->setText(i18n("&Close Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
     action->setShortcuts(KStandardShortcut::close());
