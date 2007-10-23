@@ -130,7 +130,7 @@ class ArticleViewer : public QWidget
                                     const KParts::WindowArgs& windowArgs, 
                                     KParts::ReadOnlyPart** part);
         
-        void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags, mode_t);
+        void slotPopupMenu(const QPoint&, const KUrl&, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags);
 
         /** Copies current link to clipboard. */
         void slotCopyLinkAddress();

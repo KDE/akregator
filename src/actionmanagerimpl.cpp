@@ -271,13 +271,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     stopAction->setEnabled(false);
 
     action = coll->addAction("feed_mark_all_as_read");
-    action->setIcon(KIcon("goto-page"));
+    action->setIcon(KIcon("go-jump"));
     action->setText(i18n("&Mark Feed as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllRead()));
     action->setShortcuts(KShortcut( "Ctrl+R" ));
 
     action = coll->addAction("feed_mark_all_feeds_as_read");
-    action->setIcon(KIcon("goto-page"));
+    action->setIcon(KIcon("go-jump"));
     action->setText(i18n("Ma&rk All Feeds as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllFeedsRead()));
     action->setShortcuts(KShortcut( "Ctrl+Shift+R" ));
@@ -500,7 +500,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     action->setShortcuts(KShortcut( "Ctrl+Comma" ));
 
     action = coll->addAction("tab_detach");
-    action->setIcon(KIcon("tab-breakoff"));
+    action->setIcon(KIcon("tab-detach"));
     action->setText(i18n("Detach Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotDetachTab()));
     action->setShortcut(QKeySequence(Qt::CTRL+Qt::SHIFT+Qt::Key_B));
@@ -510,7 +510,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCopyLinkAddress()));
 
     action = coll->addAction("tab_remove");
-    action->setIcon(KIcon("tab-remove"));
+    action->setIcon(KIcon("tab-close"));
     action->setText(i18n("&Close Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
     action->setShortcuts(KStandardShortcut::close());

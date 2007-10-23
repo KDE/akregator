@@ -312,8 +312,8 @@ void Akregator::ArticleListView::slotPreviousArticle()
         return;
 
     const QModelIndex idx = currentIndex();
-    const int newRow = ( idx.isValid() ? idx.row() : model()->rowCount() ) - 1;
-    const QModelIndex newIdx = model()->index( qMax( newRow, 0 ), 0 );
+    const int newRow = qMax( 0, ( idx.isValid() ? idx.row() : model()->rowCount() ) - 1 );
+    const QModelIndex newIdx = idx.isValid() ? idx.sibling( newRow, 0 ) : model()->index( newRow, 0 );
     selectIndex( newIdx );
 }
 
@@ -323,8 +323,7 @@ void Akregator::ArticleListView::slotNextArticle()
         return;
 
     const QModelIndex idx = currentIndex();
-
-    const int newRow = ( idx.isValid() ? idx.row() : 0 ) + 1;
+    const int newRow = idx.isValid() ? ( idx.row() + 1 ) : 0;
     const QModelIndex newIdx = model()->index( qMin( newRow, model()->rowCount() - 1 ), 0 );
     selectIndex( newIdx );
 }
@@ -357,11 +356,13 @@ void Akregator::ArticleListView::slotNextUnreadArticle()
 
 void Akregator::ArticleListView::selectIndex( const QModelIndex& idx )
 {
-    if ( idx.isValid() )
+    if ( !idx.isValid() )
+        return;
     {
         setCurrentIndex( idx );
         clearSelection();
-        selectionModel()->select( idx, QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows );
+        Q_ASSERT( selectionModel() );
+        selectionModel()->select( idx, QItemSelectionModel::Select | QItemSelectionModel::Rows );
         scrollTo( idx );
     }
 }

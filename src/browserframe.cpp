@@ -104,13 +104,13 @@ void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
 }
 
-void BrowserFrame::slotPopupMenu(KXMLGUIClient* client, 
+void BrowserFrame::slotPopupMenu(
                    const QPoint& global, 
                    const KUrl& url,
+                   mode_t mode,
                    const KParts::OpenUrlArguments& args,
                    const KParts::BrowserArguments& browserArgs,
-                   KParts::BrowserExtension::PopupFlags flags,
-                   mode_t mode)
+                   KParts::BrowserExtension::PopupFlags flags)
 {
     const bool showReload = (flags & KParts::BrowserExtension::ShowReload) != 0;
     const bool showNavigationItems = (flags & KParts::BrowserExtension::ShowNavigationItems) != 0;

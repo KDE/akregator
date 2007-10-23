@@ -34,7 +34,6 @@ class QString;
 class QWidget;
 
 class KUrl;
-class KXMLGUIClient;
 
 namespace KParts 
 {
@@ -89,13 +88,12 @@ class BrowserFrame : public Frame
         void slotSetIconUrl(const KUrl& url);
         void slotSpeedProgress(int);
         
-        void slotPopupMenu(KXMLGUIClient* client, 
-                           const QPoint& global, 
+        void slotPopupMenu(const QPoint& global,
                            const KUrl& url,
+                           mode_t mode,
                            const KParts::OpenUrlArguments& args,
                            const KParts::BrowserArguments& browserArgs,
-                           KParts::BrowserExtension::PopupFlags flags,
-                           mode_t mode);
+                           KParts::BrowserExtension::PopupFlags flags);
         
     private:
         class BrowserFramePrivate;

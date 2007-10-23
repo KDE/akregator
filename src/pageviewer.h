@@ -70,7 +70,7 @@ class PageViewer : public Viewer
         void slotCancelled(const QString &errMsg);
         
         void slotPopupActivated( int id );
-        virtual void slotPopupMenu(KXMLGUIClient*, const QPoint&, const KUrl&, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags, mode_t);
+        virtual void slotPopupMenu(const QPoint&, const KUrl&, mode_t, const KParts::URLArgs&, KParts::BrowserExtension::PopupFlags);
         
         void slotGlobalBookmarkArticle();
         
