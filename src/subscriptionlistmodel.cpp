@@ -46,9 +46,9 @@ Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedLi
     {
         connect( feedList, SIGNAL( signalDestroyed( Akregator::FeedList* ) ),
                  this, SLOT( feedListDestroyed( Akregator::FeedList* ) ) );
-        connect( feedList, SIGNAL( signalTreeNodeAdded( Akregator::TreeNode* ) ),
+        connect( feedList, SIGNAL( signalNodeAdded( Akregator::TreeNode* ) ),
                  this, SLOT( subscriptionAdded( Akregator::TreeNode* ) ) );
-        connect( feedList, SIGNAL( signalTreeNodeRemoved( Akregator::TreeNode* ) ),
+        connect( feedList, SIGNAL( signalNodeRemoved( Akregator::TreeNode* ) ),
                  this, SLOT( subscriptionRemoved( Akregator::TreeNode* ) ) );
     }
 }
