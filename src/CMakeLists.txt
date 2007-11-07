@@ -70,10 +70,6 @@ set(akregatorpart_PART_SRCS
    addfeeddialog.cpp 
    propertiesdialog.cpp 
    tabwidget.cpp 
-   feedlistview.cpp 
-   treenodeitem.cpp 
-   folderitem.cpp 
-   feeditem.cpp 
    progressmanager.cpp 
    kernel.cpp 
    configdialog.cpp 
