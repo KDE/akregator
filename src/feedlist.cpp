@@ -63,6 +63,8 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
             visitTreeNode(node);
             m_list->d->idMap.insert(node->id(), node);
             m_list->d->flatList.append(node);
+            m_list->d->urlMap[node->xmlUrl()].append(node);
+            
             return true;
         }
 
