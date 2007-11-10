@@ -83,7 +83,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
 
     d->searchCombo = new KComboBox(this);
 
-    QIcon iconAll = KIconLoader::global()->loadIcon("exec", KIconLoader::Small);
+    QIcon iconAll = KIconLoader::global()->loadIcon("system-run", KIconLoader::Small);
     QIcon iconNew(KStandardDirs::locate("data", "akregator/pics/kmmsgnew.png"));
     QIcon iconUnread(KStandardDirs::locate("data", "akregator/pics/kmmsgunseen.png"));
     QIcon iconKeep(KStandardDirs::locate("data", "akregator/pics/kmmsgflag.png"));
