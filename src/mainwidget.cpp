@@ -35,7 +35,6 @@
 #include "browserframe.h"
 #include "feed.h"
 #include "feedlist.h"
-#include "feedlistview.h"
 #include "fetchqueue.h"
 #include "folder.h"
 #include "framemanager.h"

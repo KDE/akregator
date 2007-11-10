@@ -91,7 +91,7 @@ void Akregator::ArticleModifyJob::start()
             article.setKeep( m_keepFlags[id] );
     }
 
-    Q_FOREACH ( const Akregator::ArticleId id, m_keepFlags.keys() )
+    Q_FOREACH ( const Akregator::ArticleId id, m_status.keys() )
     {
         Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
         if ( !feed )

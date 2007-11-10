@@ -189,6 +189,7 @@ Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(paren
     setAlternatingRowColors( true );
     setSelectionMode( QAbstractItemView::ExtendedSelection );
     setUniformRowHeights( true );
+    setRootIsDecorated( false );
 
     setMinimumSize( 250, 150 );
     setWhatsThis( i18n("<h2>Article list</h2>"
