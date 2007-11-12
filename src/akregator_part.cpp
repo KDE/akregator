@@ -71,7 +71,7 @@
 namespace Akregator {
 
 typedef KParts::GenericFactory<Part> AkregatorFactory;
-K_EXPORT_COMPONENT_FACTORY( libakregatorpart, AkregatorFactory )
+K_EXPORT_COMPONENT_FACTORY( akregatorpart, AkregatorFactory )
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
 	    : KParts::BrowserExtension( p)

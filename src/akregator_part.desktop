@@ -11,6 +11,6 @@ Name[sv]=aKregator-delprogram
 Name[ta]=aKregatorபகுதி
 Name[x-test]=xxaKregatorPartxx
 ServiceTypes=KParts/ReadOnlyPart
-X-KDE-Library=libakregatorpart
+X-KDE-Library=akregatorpart
 Type=Service
 Icon=akregator

@@ -96,7 +96,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 
 
-kde4_add_plugin(akregatorpart WITH_PREFIX ${akregatorpart_PART_SRCS})
+kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
 
 
