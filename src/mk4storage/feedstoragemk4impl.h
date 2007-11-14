@@ -94,6 +94,7 @@ class FeedStorageMK4Impl : public FeedStorage
         
         virtual void convertOldArchive();
    private:
+        void markDirty();
         /** finds article by guid, returns -1 if not in archive **/
         int findArticle(const QString& guid);
         void setTotalCount(int total);

@@ -1,6 +1,14 @@
 #Akregator ChangeLog
 ===================
-(c) 2004-2006 the Akregator authors.
+(c) 2004-2007 the Akregator authors.
+
+Changes after 1.2.7:
+-----------------------------
+
+Bug fixes:
+
+ 2007/10/05 Fix storage backend waking up CPU every 3 seconds (#150389) -ew
+            Original patch by Alan Jenkins
 
 Changes after 1.2.6:
 -----------------------------

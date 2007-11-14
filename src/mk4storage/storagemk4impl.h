@@ -114,6 +114,8 @@ class StorageMK4Impl : public Storage
         
         virtual bool taggingEnabled() const;
         
+        void markDirty();
+
     protected slots:
         virtual void slotCommit();
         
