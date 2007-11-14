@@ -67,6 +67,7 @@ TabWidget::TabWidget(QWidget * parent, const char *name)
         :KTabWidget(parent, name), d(new TabWidgetPrivate)
 {
     d->CurrentMaxLength = 30;
+    d->currentItem = 0;
     setMinimumSize(250,150);
     setTabReorderingEnabled(false);
     connect( this, SIGNAL( currentChanged(QWidget *) ), this,
