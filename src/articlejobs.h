@@ -42,7 +42,7 @@ struct ArticleId
     QString guid;
     bool operator<( const ArticleId& other ) const
     {
-        return feedUrl < other.feedUrl && guid < other.guid;
+        return feedUrl < other.feedUrl || ( feedUrl == other.feedUrl  && guid < other.guid );
     }
 };
 
