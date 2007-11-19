@@ -30,7 +30,7 @@ set(akregator_mk4storage_plugin_PART_SRCS ${libmetakitlocal_SRCS}
    mk4plugin.cpp )
 
 
-kde4_add_plugin(akregator_mk4storage_plugin WITH_PREFIX ${akregator_mk4storage_plugin_PART_SRCS})
+kde4_add_plugin(akregator_mk4storage_plugin ${akregator_mk4storage_plugin_PART_SRCS})
 
 target_link_libraries(akregator_mk4storage_plugin  ${KDE4_KDECORE_LIBS} ${KDE4_SYNDICATION_LIBS} akregatorinterfaces )
 

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=aKregatorPart
 Name[be]=аKregatorPart
 Name[cs]=Komponenta aKregator
@@ -10,7 +9,7 @@ Name[pt_BR]=Componente do aKregator
 Name[sv]=aKregator-delprogram
 Name[ta]=aKregatorபகுதி
 Name[x-test]=xxaKregatorPartxx
-ServiceTypes=KParts/ReadOnlyPart
-X-KDE-Library=libakregatorpart
+X-KDE-ServiceTypes=KParts/ReadOnlyPart
+X-KDE-Library=akregatorpart
 Type=Service
 Icon=akregator

@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Type=Service
 Name=Metakit storage backend
 Name[af]=Metakit stoor agterkant
@@ -44,7 +43,7 @@ Name[uk]=Програма зберігання Metakit
 Name[x-test]=xxMetakit storage backendxx
 Name[zh_CN]=Metakit 存储后端
 Name[zh_TW]=Metakit 儲存後端介面
-X-KDE-Library=libakregator_mk4storage_plugin
+X-KDE-Library=akregator_mk4storage_plugin
 Comment=Plugin for Akregator
 Comment[af]=Inprop module vir Akregator
 Comment[be]=Утулка для Akregator
@@ -94,7 +93,7 @@ Comment[uz]=Akregator учун плагин
 Comment[x-test]=xxPlugin for Akregatorxx
 Comment[zh_CN]=Akregator 插件
 Comment[zh_TW]=Akregator 外掛程式
-ServiceTypes=Akregator/Plugin
+X-KDE-ServiceTypes=Akregator/Plugin
 
 X-KDE-akregator-plugintype=storage
 X-KDE-akregator-name=metakit
