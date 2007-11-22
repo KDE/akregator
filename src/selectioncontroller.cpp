@@ -89,6 +89,9 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
         }
     }
     m_feedSelector = feedSelector;
+
+    connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
+             this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
     setUp();
 }
 
@@ -101,7 +104,11 @@ void Akregator::SelectionController::setArticleLister( Akregator::ArticleLister*
     }
 
     m_articleLister = lister;
-    setUp();
+
+    if ( m_articleLister->itemView() )
+    {
+        connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
+    }
 }
 
 void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleArticleDisplay* display )
@@ -141,8 +148,10 @@ void Akregator::SelectionController::setFolderExpansionHandler( Akregator::Folde
 
 void Akregator::SelectionController::setUp()
 {
-    if ( !m_feedList || !m_feedSelector || !m_articleLister )
+    if ( !m_feedList || !m_feedSelector )
         return;
+
+    //FIXME: Make sure that setUp is only run once (or that we're not connecting more than once)
 
     m_subscriptionModel = new SubscriptionListModel( m_feedList, this );
     if ( m_folderExpansionHandler )
@@ -154,14 +163,6 @@ void Akregator::SelectionController::setUp()
 
     connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
              this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
-
-    connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
-             this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
-
-    if ( m_articleLister->itemView() )
-    {
-        connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
-    }
 }
 
 void Akregator::SelectionController::articleHeadersAvailable()
