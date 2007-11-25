@@ -94,6 +94,7 @@ TabWidget::TabWidget(QWidget * parent)
             SLOT( slotRemoveCurrentFrame() ) );
 
     d->tabsClose->setIcon( KIcon( "tab-close" ) );
+    d->tabsClose->setEnabled( false );
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip( i18n("Close the current tab"));
     setCornerWidget( d->tabsClose, Qt::TopRightCorner );
