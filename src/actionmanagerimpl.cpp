@@ -171,9 +171,11 @@ void ActionManagerImpl::initPart()
 {
     QAction *action = d->actionCollection->addAction("file_import");
     action->setText(i18n("&Import Feeds..."));
+    action->setIcon(KIcon("document-import"));
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileImport()));
     action = d->actionCollection->addAction("file_export");
     action->setText(i18n("&Export Feeds..." ));
+    action->setIcon(KIcon("document-export"));
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
 
     KStandardAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications

@@ -99,7 +99,7 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
     addPage(archiveWidget, i18n("Archive"), "utilities-file-archiver");
     addPage(appearanceWidget, i18n("Appearance"), "video-display");
     addPage(browserWidget, i18n("Browser"), "konqueror");
-    addPage(d->settingsAdvanced, i18n("Advanced"), "tool");
+    addPage(d->settingsAdvanced, i18n("Advanced"), "preferences-other");
     d->settingsAdvanced->selectFactory(Settings::archiveBackend());
     d->config = config;
 }
