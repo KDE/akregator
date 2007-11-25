@@ -328,7 +328,7 @@ void ArticleViewer::slotSaveLinkAs()
 {
     KUrl tmp( m_url );
 
-    if ( tmp.fileName(false).isEmpty() )
+    if ( tmp.fileName(KUrl::ObeyTrailingSlash).isEmpty() )
         tmp.setFileName( "index.html" );
     KParts::BrowserRun::simpleSave(tmp, tmp.fileName());
 }
