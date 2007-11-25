@@ -59,8 +59,8 @@ BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent)
     setRemovable(true);
     d->current = d->history.end();
 
-    d->layout = new QGridLayout(this);
-    setLayout(d->layout);
+    d->layout = new QGridLayout( this );
+    d->layout->setMargin( 0 );
 }
 
 BrowserFrame::~BrowserFrame()
