@@ -72,6 +72,9 @@ namespace {
 Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_subscriptionModel ( 0 ), m_folderExpansionHandler( 0 ), m_selectedSubscription( 0 )
 {
     m_articleFetchTimer = new QTimer( this );
+    connect( m_articleFetchTimer, SIGNAL( timeout() ),
+             this, SLOT( articleHeadersAvailable() ) );
+
 }
 
 
@@ -197,8 +200,6 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
 
     m_articleFetchTimer->setInterval( KRandom::random() % 400 );
     m_articleFetchTimer->setSingleShot( true );
-    connect( m_articleFetchTimer, SIGNAL( timeout() ),
-             this, SLOT( articleHeadersAvailable() ) );
     m_articleFetchTimer->start();
 
 }
