@@ -64,6 +64,11 @@ public:
     //impl
     void setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler );
 
+public Q_SLOTS:
+
+    //impl
+    void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
+
 private:
 
     void setUp();
@@ -75,7 +80,7 @@ private Q_SLOTS:
     void articleIndexDoubleClicked( const QModelIndex& index );
     void subscriptionContextMenuRequested( const QPoint& point );
     void articleHeadersAvailable();
-
+    
 private:
 
     Akregator::FeedList* m_feedList;

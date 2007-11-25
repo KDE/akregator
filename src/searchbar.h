@@ -27,6 +27,9 @@
 
 #include <khbox.h>
 
+#include <boost/shared_ptr.hpp>
+#include <vector>
+
 class QString;
 
 namespace Akregator
@@ -34,7 +37,7 @@ namespace Akregator
 
 namespace Filters 
 {
-    class ArticleMatcher;
+    class AbstractMatcher;
 }
 
 class SearchBar : public KHBox
@@ -54,7 +57,7 @@ class SearchBar : public KHBox
 
     signals:
         /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
-        void signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&);
+        void signalSearch( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > & );
 
     public slots:
         void slotClearSearch();

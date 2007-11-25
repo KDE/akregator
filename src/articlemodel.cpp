@@ -24,6 +24,7 @@
 #include "articlemodel.h"
 
 #include "article.h"
+#include "articlematcher.h"
 #include "akregatorconfig.h"
 #include "treenode.h"
 #include "feed.h"
@@ -32,6 +33,8 @@
 
 #include <KGlobal>
 #include <KLocale>
+
+#include <cassert>
 
 using namespace Akregator;
 
@@ -159,5 +162,15 @@ void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article
     articles = node->articles();
     q->reset();
 }
+
+
+bool ArticleModel::rowMatches( int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher>& matcher ) const
+{
+    assert( matcher );
+    if ( row < 0 || row >= d->articles.count() )
+        return false;
+    return matcher->matches( d->articles[row] );
+}
+
 
 #include "articlemodel.moc"

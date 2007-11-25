@@ -26,6 +26,9 @@
 
 #include <QObject>
 
+#include <boost/shared_ptr.hpp>
+#include <vector>
+
 class QAbstractItemView;
 class QItemSelectionModel;
 
@@ -38,6 +41,10 @@ class FolderExpansionHandler;
 class SubscriptionListModel;
 class TreeNode;
 
+namespace Filters {
+    class AbstractMatcher;
+}
+
 class ArticleLister
 {
 public:
@@ -49,6 +56,8 @@ public:
     virtual QItemSelectionModel* articleSelectionModel() const = 0;
 
     virtual void setIsAggregation( bool isAggregation ) = 0;
+
+    virtual void setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& ) = 0;
 
     virtual const QAbstractItemView* itemView() const = 0;
 
@@ -95,6 +104,10 @@ public:
     virtual QList<Akregator::Article> selectedArticles() const = 0;
 
     virtual Akregator::TreeNode* selectedSubscription() const = 0;
+
+public Q_SLOTS:
+
+    virtual void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& ) = 0;
 
 Q_SIGNALS:
     void currentSubscriptionChanged( Akregator::TreeNode* node );

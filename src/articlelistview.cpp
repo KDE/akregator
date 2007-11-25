@@ -42,6 +42,8 @@
 #include <QPaintEvent>
 #include <QPalette>
 
+using namespace Akregator;
+
 Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent )
 {
     m_keepFlagIcon = KIcon("flag");
@@ -50,6 +52,29 @@ Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : Q
 int Akregator::SortColorizeProxyModel::columnCount( const QModelIndex& index ) const
 {
     return index.isValid() ? 0 : 3;
+}
+
+
+bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelIndex& source_parent ) const 
+{
+    if ( source_parent.isValid() )
+        return false;
+
+    for ( uint i = 0; i < m_matchers.size(); ++i )
+    { 
+        if ( !static_cast<ArticleModel*>( sourceModel() )->rowMatches( source_row, m_matchers[i] ) )
+            return false;
+    }
+                                                           
+    return true;
+}
+
+void SortColorizeProxyModel::setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >&  matchers )
+{
+    if ( m_matchers == matchers )
+        return;
+    m_matchers = matchers;
+    invalidateFilter();
 }
 
 QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orientation orientation, int role ) const
@@ -128,9 +153,9 @@ namespace {
 void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model )
 {
     slotClear();
-    QAbstractProxyModel* proxy = new Akregator::SortColorizeProxyModel( model );
-    proxy->setSourceModel( model );
-    setModel( proxy );
+    m_proxy = new Akregator::SortColorizeProxyModel( model );
+    m_proxy->setSourceModel( model );
+    setModel( m_proxy );
     header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
     header()->setStretchLastSection( false );
     header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
@@ -397,6 +422,14 @@ void Akregator::ArticleListView::slotPreviousUnreadArticle()
         selectIndex( model()->index( i, 0 ) );
     }
 }
+
+
+void ArticleListView::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& matchers )
+{
+    if ( m_proxy )
+        m_proxy->setFilters( matchers );
+}
+
 
 #if 0
 #include "articlematcher.h"

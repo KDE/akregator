@@ -38,6 +38,8 @@
 #include <QMenu>
 #include <QTimer>
 
+using namespace Akregator;
+
 namespace {
     static Akregator::Article articleForIndex( const QModelIndex& index, Akregator::FeedList* feedList )
     {
@@ -232,6 +234,12 @@ void Akregator::SelectionController::articleIndexDoubleClicked( const QModelInde
 {
     const Akregator::Article article = ::articleForIndex( index, m_feedList );
     emit articleDoubleClicked( article );
+}
+
+void SelectionController::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& matchers )
+{
+    Q_ASSERT( m_articleLister );
+    m_articleLister->setFilters( matchers );
 }
 
 #include "selectioncontroller.moc"

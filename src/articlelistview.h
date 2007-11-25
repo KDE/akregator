@@ -28,6 +28,7 @@
 #include "akregator_export.h"
 #include "abstractselectioncontroller.h"
 
+#include <QPointer>
 #include <QSortFilterProxyModel>
 #include <QTreeView>
 
@@ -60,10 +61,17 @@ public:
     //reimpl
     QVariant headerData( int section, Qt::Orientation orientation, int role=Qt::DisplayRole ) const;
 
+    void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
+
 private:
+
+    //reimpl
+    bool filterAcceptsRow ( int source_row, const QModelIndex& source_parent ) const;
+
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
 
     QIcon m_keepFlagIcon;
+    std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > m_matchers;
 };
 
 
@@ -88,6 +96,10 @@ public:
     //impl ArticleLister
     QAbstractItemView* itemView();
 
+
+    //impl ArticleLister
+    void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
+
     void setIsAggregation( bool isAggregation );
 
 public Q_SLOTS:
@@ -102,7 +114,7 @@ public Q_SLOTS:
 
     void slotNextUnreadArticle();
 
-protected:
+private:
 
     //reimpl
     void paintEvent( QPaintEvent* e );
@@ -112,8 +124,6 @@ protected:
 
     //reimpl
     void contextMenuEvent( QContextMenuEvent* event );
-
-private:
 
     void selectIndex( const QModelIndex& index );
 
@@ -128,6 +138,7 @@ private:
     enum ColumnMode { Unspecified, GroupMode, FeedMode };
     ColumnMode m_columnMode;
     bool m_isAggregation;
+    QPointer<SortColorizeProxyModel> m_proxy;
 };
 
 #if 0

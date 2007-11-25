@@ -256,9 +256,11 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController->setFeedSelector( m_feedListView );
     m_selectionController->setFeedList( m_feedList );
 
+    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ), m_selectionController, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
+
     FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
-        connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) );
-        connect( m_feedListView, SIGNAL( collapsed( QModelIndex ) ), expansionHandler, SLOT( itemCollapsed( QModelIndex ) ) );
+    connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) );
+    connect( m_feedListView, SIGNAL( collapsed( QModelIndex ) ), expansionHandler, SLOT( itemCollapsed( QModelIndex ) ) );
 
     m_selectionController->setFolderExpansionHandler( expansionHandler );
 
@@ -284,11 +286,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_articleViewer = new ArticleViewer(m_articleSplitter);
 
     m_actionManager->initArticleViewer(m_articleViewer);
-
-    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)), m_articleListView, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
-
-    connect(m_searchBar, SIGNAL(signalSearch(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)),
-            m_articleViewer, SLOT(slotSetFilter(const Akregator::Filters::ArticleMatcher&, const Akregator::Filters::ArticleMatcher&)));
 
     connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
              Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
@@ -1220,12 +1217,12 @@ void Akregator::MainWidget::slotSetSelectedArticleNew()
 
 void Akregator::MainWidget::slotSetCurrentArticleReadDelayed()
 {
-    Article article =  m_selectionController->currentArticle();
+    const Article article =  m_selectionController->currentArticle();
 
     if (article.isNull())
         return;
 
-    Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
+    Akregator::ArticleModifyJob* const job = new Akregator::ArticleModifyJob;
     const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
     job->setStatus( aid, Akregator::Read );
     job->start();
