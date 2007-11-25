@@ -44,9 +44,8 @@
 
 using namespace Akregator;
 
-Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent )
+Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( "flag" )
 {
-    m_keepFlagIcon = KIcon("flag");
 }
 
 int Akregator::SortColorizeProxyModel::columnCount( const QModelIndex& index ) const
