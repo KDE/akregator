@@ -607,7 +607,7 @@ void Akregator::MainWidget::slotCombinedView()
 
 void Akregator::MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const QPoint& /*p*/)
 {
-    m_tabWidget->setCurrentIndex( m_tabWidget->indexOf(m_mainTab) );
+    m_tabWidget->setCurrentWidget( m_mainFrame );
 }
 
 void Akregator::MainWidget::slotMoveCurrentNodeUp()
@@ -676,13 +676,6 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
 {
     m_markReadTimer->stop();
 
-    if (node)
-    {
-        kDebug() <<"node selected:" << node->title();
-        kDebug() <<"unread:" << node->unread();
-        kDebug() <<"total:" << node->totalCount();
-    }
-
     if (m_displayingAboutPage)
     {
         m_mainFrame->slotSetTitle(i18n("Articles"));
@@ -693,7 +686,7 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
         m_displayingAboutPage = false;
     }
 
-    m_tabWidget->setCurrentIndex( m_tabWidget->indexOf(m_mainTab) );
+    m_tabWidget->setCurrentWidget( m_mainFrame );
 
     m_searchBar->slotClearSearch();
 
