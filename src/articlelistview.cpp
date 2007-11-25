@@ -49,12 +49,14 @@ Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : Q
 
 int Akregator::SortColorizeProxyModel::columnCount( const QModelIndex& index ) const
 {
-    return 3;
+    return index.isValid() ? 0 : 3;
 }
 
-QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orientation, int role ) const
+QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orientation orientation, int role ) const
 {
     if ( role != Qt::DisplayRole )
+        return QVariant();
+    if ( orientation == Qt::Vertical )
         return QVariant();
 
     switch (section)
@@ -75,11 +77,13 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
     if ( !idx.isValid() || !sourceModel() )
         return QVariant();
 
+    const QModelIndex sourceIdx = mapToSource( idx ); 
+
     switch ( role )
     {
         case Qt::ForegroundRole:
         {
-            switch ( static_cast<Akregator::ArticleStatus>( QSortFilterProxyModel::data( idx, Akregator::ArticleModel::StatusRole ).toInt() ) )
+            switch ( static_cast<Akregator::ArticleStatus>( sourceIdx.data( Akregator::ArticleModel::StatusRole ).toInt() ) )
             {
                 case Akregator::Unread:
                 {
@@ -100,15 +104,14 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
         break;
         case Qt::DecorationRole:
         {
-            if ( idx.column() == ItemTitleColumn )
+            if ( sourceIdx.column() == ItemTitleColumn )
             {
-                const QModelIndex sourceIdx = mapToSource( idx );
                 return sourceIdx.data( Akregator::ArticleModel::IsImportantRole ).toBool() ? m_keepFlagIcon : QVariant();
             }
         }
         break;
     }
-    return QSortFilterProxyModel::data( idx, role );
+    return sourceIdx.data( role );
 }
 
 namespace {
@@ -124,6 +127,7 @@ namespace {
 
 void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model )
 {
+    slotClear();
     QAbstractProxyModel* proxy = new Akregator::SortColorizeProxyModel( model );
     proxy->setSourceModel( model );
     setModel( proxy );

@@ -33,36 +33,48 @@
 #include <KGlobal>
 #include <KLocale>
 
-struct Akregator::ArticleModelPrivate {
+using namespace Akregator;
+
+class ArticleModel::Private {
+private:
+    ArticleModel* const q;
+public:
+    Private( ArticleModel* qq ) : q( qq ) {}
     Akregator::TreeNode* node;
     QList<Akregator::Article> articles;
+    void nodeDestroyed();
+    void articlesAdded( TreeNode*, const QList<Article>& );
+    void articlesRemoved( TreeNode*, const QList<Article>& );
+    void articlesUpdated( TreeNode*, const QList<Article>& );
+
 };
 
-Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Akregator::ArticleModelPrivate )
+Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Private( this ) )
 {
     d->node = node;
     Q_ASSERT( node );
     d->articles = node->articles();
     connect( node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
-    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+#if 0 // PENDING: reenable when slots are implemented correctly
+    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT((articlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)) );
+    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT((articlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)) );
+    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT((articlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)) );
+#endif 
 }
 
 Akregator::ArticleModel::~ArticleModel()
 {
     delete d;
-    d = 0;
 }
 
-int Akregator::ArticleModel::columnCount( const QModelIndex& ) const
+int Akregator::ArticleModel::columnCount( const QModelIndex& parent ) const
 {
-    return 3;
+    return parent.isValid() ? 0 : 3;
 }
 
 int Akregator::ArticleModel::rowCount( const QModelIndex& parent ) const
 {
-    return !parent.isValid() ? d->articles.count() : 0;
+    return parent.isValid() ? 0 : d->articles.count();
 }
 
 QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) const
@@ -119,16 +131,33 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
     return QVariant();
 }
 
-void Akregator::ArticleModel::nodeDestroyed()
+void Akregator::ArticleModel::Private::nodeDestroyed()
 {
-    d->node = 0;
-    d->articles.clear();
+    node = 0;
+    articles.clear();
+    q->reset();
 }
 
-void Akregator::ArticleModel::articlesChanged()
+void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>& list )
 {
-    d->articles = d->node->articles();
-    reset();
+//TODO
+    articles = node->articles();
+    q->reset();
+}
+
+void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article>& list )
+{
+//TODO
+    articles = node->articles();
+    q->reset();
+}
+
+
+void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article>& list )
+{
+//TODO
+    articles = node->articles();
+    q->reset();
 }
 
 #include "articlemodel.moc"

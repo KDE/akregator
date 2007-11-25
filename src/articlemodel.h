@@ -32,8 +32,6 @@ namespace Akregator {
 
 class TreeNode;
 
-struct ArticleModelPrivate;
-
 class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -71,16 +69,16 @@ public:
     //impl
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
 
-private Q_SLOTS:
-
-    void nodeDestroyed();
-    void articlesChanged();
-
 private:
     ArticleModel( const ArticleModel& );
     ArticleModel& operator=( const ArticleModel& );
 
-    ArticleModelPrivate* d;
+    class Private;
+    Private* const d;
+    Q_PRIVATE_SLOT( d, void nodeDestroyed() )
+    Q_PRIVATE_SLOT( d, void articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) )
+    Q_PRIVATE_SLOT( d, void articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) )
+    Q_PRIVATE_SLOT( d, void articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) )
 };
 
 } //namespace Akregator
