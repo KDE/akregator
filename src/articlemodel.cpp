@@ -146,6 +146,8 @@ void Akregator::ArticleModel::Private::nodeDestroyed()
 
 void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>& list )
 {
+    if ( list.isEmpty() ) //assert?
+        return;
     const int first = static_cast<int>( articles.count() );
     q->beginInsertRows( QModelIndex(), first, first + list.size() - 1 );
     articles << list; 
