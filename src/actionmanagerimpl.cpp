@@ -201,7 +201,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Ctrl+H" ));
 
     action = coll->addAction("feed_add");
-    action->setIcon(KIcon("bookmark-new"));
+    action->setIcon(KIcon("rss-tag"));
     action->setText(i18n("&Add Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
     action->setShortcuts(KShortcut( "Insert" ));
@@ -219,7 +219,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Alt+Delete" ));
 
     action = coll->addAction("feed_modify");
-    action->setIcon(KIcon("edit"));
+    action->setIcon(KIcon("object-edit"));
     action->setText(i18n("&Edit Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedModify()));
     action->setShortcuts(KShortcut( "F2" ));
@@ -325,7 +325,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KActionMenu* statusMenu = coll->add<KActionMenu>("article_set_status");
     statusMenu->setText(i18n("&Mark As"));
 
-    //d->speakSelectedArticlesAction = new KAction(KIcon("kttsd"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
+    //d->speakSelectedArticlesAction = new KAction(KIcon("media-playback-start"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
     //connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotTextToSpeechRequest()));
 
     //KAction *abortTTS = new KAction(KIcon("media-playback-stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
@@ -360,7 +360,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     KToggleAction* importantAction = coll->add<KToggleAction>("article_set_status_important");
     importantAction->setText(i18n("&Mark as Important"));
-    importantAction->setIcon(KIcon("flag"));
+    importantAction->setIcon(KIcon("mail-mark-important"));
     importantAction->setShortcuts(KShortcut("Ctrl+I"));
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
     connect(importantAction, SIGNAL(toggled(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
@@ -387,12 +387,12 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Shift+Alt+Right" ));
 
     action = coll->addAction("file_sendlink");
-    action->setIcon(KIcon("mail"));
+    action->setIcon(KIcon("mail-send"));
     action->setText(i18n("Send &Link Address..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendLink()));
 
     action = coll->addAction("file_sendfile");
-    action->setIcon(KIcon("mail"));
+    action->setIcon(KIcon("mail-send"));
     action->setText(i18n("Send &File..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendFile()));
 }
