@@ -121,7 +121,7 @@ Akregator::Article Akregator::SelectionController::currentArticle() const
 
 QList<Akregator::Article> Akregator::SelectionController::selectedArticles() const
 {
-    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedIndexes(), m_feedList );
+    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedRows(), m_feedList );
 }
 
 Akregator::TreeNode* Akregator::SelectionController::selectedSubscription() const
