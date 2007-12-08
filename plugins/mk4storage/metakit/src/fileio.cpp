@@ -13,7 +13,9 @@
 #if defined(q4_MSVC) && !defined(q4_STRICT)
 #pragma warning(disable: 4201) // nonstandard extension used : ...
 #endif
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
+#endif
 #include <windows.h>
 #include <io.h>
 #include <fcntl.h>
