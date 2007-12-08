@@ -106,7 +106,7 @@ void AddFeedDialog::accept()
     m_feed->fetch(true);
 }
 
-void AddFeedDialog::fetchCompleted(Feed */*f*/)
+void AddFeedDialog::fetchCompleted(Feed * /*f*/)
 {
     KDialog::accept();
 }
