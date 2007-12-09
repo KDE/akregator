@@ -323,12 +323,8 @@ QDomDocument FeedList::toXML() const
     QDomElement body = doc.createElement( "body" );
     root.appendChild( body );
 
-    QList<TreeNode*> children = rootNode()->children();
-
-    QList<TreeNode*>::ConstIterator end(  children.end() );
-
-    for (QList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
-        body.appendChild( (*it)->toOPML(body, doc) );
+    foreach( const TreeNode* const i, rootNode()->children() )
+        body.appendChild( i->toOPML(body, doc) );
 
     return doc;
 }

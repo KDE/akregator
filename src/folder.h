@@ -88,7 +88,8 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         /** returns the (direct) children of this node.
         @return a list of pointers to the child nodes
             */
-        QList<TreeNode*> children() const;
+        QList<const TreeNode*> children() const;
+        QList<TreeNode*> children();
         
         /** inserts @c node as child after child node @c after.
         if @c after is not a child of this group, @c node will be inserted as first child

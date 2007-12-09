@@ -109,7 +109,8 @@ public:
     /** returns the (direct) children of this node.
         @return a list of pointers to the child nodes
      */
-    virtual QList<TreeNode*> children() const;
+    virtual QList<const TreeNode*> children() const;
+    virtual QList<TreeNode*> children();
 
     /** Sets parent node; Don't call this directly, is done automatically by 
     insertChild-methods in @ref Folder. */

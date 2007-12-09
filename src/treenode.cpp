@@ -119,11 +119,15 @@ Folder* TreeNode::parent() const
     return d->parent;
 }
 
-QList<TreeNode*> TreeNode::children() const
+QList<const TreeNode*> TreeNode::children() const
+{
+    return QList<const TreeNode*>();
+}
+
+QList<TreeNode*> TreeNode::children()
 {
     return QList<TreeNode*>();
 }
-
 
 void TreeNode::setParent(Folder* parent)
 {

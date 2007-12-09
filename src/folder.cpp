@@ -114,7 +114,15 @@ QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
     return el;
 }
 
-QList<TreeNode*> Folder::children() const
+QList<const TreeNode*> Folder::children() const
+{
+    QList<const TreeNode*> children;
+    Q_FOREACH( const TreeNode* i, d->children )
+        children.append( i );
+    return children;
+}
+
+QList<TreeNode*> Folder::children()
 {
     return d->children;
 }
