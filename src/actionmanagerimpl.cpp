@@ -52,7 +52,7 @@
 #include <kstandardshortcut.h>
 #include <kstandardaction.h>
 #include <kxmlguifactory.h>
-#include <kicon.h> 
+#include <kicon.h>
 
 #include <QHash>
 #include <QList>
@@ -193,7 +193,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     d->mainWidget = mainWidget;
 
     KActionCollection* coll = actionCollection();
-    
+
     // Feed/Feed Group popup menu
     QAction* action = coll->addAction("feed_homepage");
     action->setText(i18n("&Open Homepage"));
@@ -295,13 +295,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setText(i18n("Open in Tab"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticle()));
     action->setShortcuts(KShortcut( "Shift+Return" ));
-    
+
     action = coll->addAction("article_open_external" );
     action->setIcon(KIcon("window-new"));
     action->setText(i18n("Open in External Browser"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleInBrowser()));
     action->setShortcuts(KShortcut( "Ctrl+Shift+Return" ));
-    
+
     action = coll->addAction("article_copy_link_address" );
     action->setText(i18n("Copy Link Address"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCopyLinkAddress()));
@@ -338,7 +338,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_read");
     action->setText(i18nc("as in: mark as read","&Read"));
-    importantAction->setIcon(KIcon("mail-mark-read"));
+    action->setIcon(KIcon("mail-mark-read"));
     action->setToolTip(i18n("Mark selected article as read"));
     action->setShortcuts(KShortcut( "Ctrl+E" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleRead()));
@@ -346,7 +346,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_new");
     action->setText(i18n("&New"));
-    importantAction->setIcon(KIcon("mail-mark-new"));
+    action->setIcon(KIcon("mail-mark-new"));
     action->setShortcuts(KShortcut( "Ctrl+N" ));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
@@ -355,7 +355,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_unread");
     action->setText(i18n("&Unread"));
-    importantAction->setIcon(KIcon("mail-mark-unread"));
+    action->setIcon(KIcon("mail-mark-unread"));
     action->setToolTip(i18n("Mark selected article as unread"));
     action->setShortcuts(KShortcut( "Ctrl+U" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleUnread()));
@@ -534,14 +534,14 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
     connect(forward, SIGNAL(triggered()), frameManager, SLOT(slotBrowserForward()));
 
     connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
-     
+
     KToolBarPopupAction* back = new KToolBarPopupAction(KIcon("go-previous"), i18n( "Back"), this);
     d->actionCollection->addAction("browser_back", back);
     back->setShortcuts(KShortcut("Alt+Left"));
     connect(back, SIGNAL(triggered()), frameManager, SLOT(slotBrowserBack()));
 
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
-    
+
     QAction *action = d->actionCollection->addAction("browser_reload");
     action->setIcon(KIcon("view-refresh"));
     action->setText(i18n("Reload"));
