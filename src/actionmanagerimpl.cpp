@@ -219,7 +219,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Alt+Delete" ));
 
     action = coll->addAction("feed_modify");
-    action->setIcon(KIcon("object-edit"));
+    action->setIcon(KIcon("document-properties"));
     action->setText(i18n("&Edit Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedModify()));
     action->setShortcuts(KShortcut( "F2" ));
@@ -273,13 +273,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     stopAction->setEnabled(false);
 
     action = coll->addAction("feed_mark_all_as_read");
-    action->setIcon(KIcon("go-jump"));
+    action->setIcon(KIcon("mail-mark-read"));
     action->setText(i18n("&Mark Feed as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllRead()));
     action->setShortcuts(KShortcut( "Ctrl+R" ));
 
     action = coll->addAction("feed_mark_all_feeds_as_read");
-    action->setIcon(KIcon("go-jump"));
+    action->setIcon(KIcon("mail-mark-read"));
     action->setText(i18n("Ma&rk All Feeds as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllFeedsRead()));
     action->setShortcuts(KShortcut( "Ctrl+Shift+R" ));
@@ -338,6 +338,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_read");
     action->setText(i18nc("as in: mark as read","&Read"));
+    importantAction->setIcon(KIcon("mail-mark-read"));
     action->setToolTip(i18n("Mark selected article as read"));
     action->setShortcuts(KShortcut( "Ctrl+E" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleRead()));
@@ -345,6 +346,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_new");
     action->setText(i18n("&New"));
+    importantAction->setIcon(KIcon("mail-mark-new"));
     action->setShortcuts(KShortcut( "Ctrl+N" ));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
@@ -353,6 +355,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_unread");
     action->setText(i18n("&Unread"));
+    importantAction->setIcon(KIcon("mail-mark-unread"));
     action->setToolTip(i18n("Mark selected article as unread"));
     action->setShortcuts(KShortcut( "Ctrl+U" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleUnread()));
@@ -387,12 +390,12 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Shift+Alt+Right" ));
 
     action = coll->addAction("file_sendlink");
-    action->setIcon(KIcon("mail-send"));
+    action->setIcon(KIcon("mail-message-new"));
     action->setText(i18n("Send &Link Address..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendLink()));
 
     action = coll->addAction("file_sendfile");
-    action->setIcon(KIcon("mail-send"));
+    action->setIcon(KIcon("mail-message-new"));
     action->setText(i18n("Send &File..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendFile()));
 }
