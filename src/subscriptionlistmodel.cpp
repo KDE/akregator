@@ -96,6 +96,14 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
                     return node->totalCount();
             }
         }
+	case Qt::FontRole:
+	{
+	    if(node->unread() > 0) {
+		QFont font;
+		font.setBold(true);
+		return font;
+	    }
+	}
         case Qt::DecorationRole:
         {
             return index.column() == TitleColumn ? node->icon() : QVariant();

@@ -24,6 +24,7 @@
 #include "articlemodel.h"
 
 #include "article.h"
+#include "articlematcher.h"
 #include "akregatorconfig.h"
 #include "treenode.h"
 #include "feed.h"
@@ -33,36 +34,53 @@
 #include <KGlobal>
 #include <KLocale>
 
-struct Akregator::ArticleModelPrivate {
+#include <cassert>
+#include <cmath>
+
+using namespace Akregator;
+
+class ArticleModel::Private {
+private:
+    ArticleModel* const q;
+public:
+    Private( TreeNode* node_, ArticleModel* qq );
     Akregator::TreeNode* node;
     QList<Akregator::Article> articles;
+    void nodeDestroyed();
+    void articlesAdded( TreeNode*, const QList<Article>& );
+    void articlesRemoved( TreeNode*, const QList<Article>& );
+    void articlesUpdated( TreeNode*, const QList<Article>& );
+
 };
 
-Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Akregator::ArticleModelPrivate )
+ArticleModel::Private::Private( TreeNode* node_, ArticleModel* qq )
+ : q( qq ), node( node_ )
 {
-    d->node = node;
     Q_ASSERT( node );
+}
+
+Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Private( node, this ) )
+{
     d->articles = node->articles();
     connect( node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
-    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
-    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesChanged()) );
+    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT( articlesAdded(Akregator::TreeNode*, QList<Akregator::Article>) ) );
+    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)) );
+    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)) );
 }
 
 Akregator::ArticleModel::~ArticleModel()
 {
     delete d;
-    d = 0;
 }
 
-int Akregator::ArticleModel::columnCount( const QModelIndex& ) const
+int Akregator::ArticleModel::columnCount( const QModelIndex& parent ) const
 {
-    return 3;
+    return parent.isValid() ? 0 : ColumnCount;
 }
 
 int Akregator::ArticleModel::rowCount( const QModelIndex& parent ) const
 {
-    return !parent.isValid() ? d->articles.count() : 0;
+    return parent.isValid() ? 0 : d->articles.count();
 }
 
 QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) const
@@ -119,16 +137,60 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
     return QVariant();
 }
 
-void Akregator::ArticleModel::nodeDestroyed()
+void Akregator::ArticleModel::Private::nodeDestroyed()
 {
-    d->node = 0;
-    d->articles.clear();
+    node = 0;
+    articles.clear();
+    q->reset();
 }
 
-void Akregator::ArticleModel::articlesChanged()
+void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>& list )
 {
-    d->articles = d->node->articles();
-    reset();
+    if ( list.isEmpty() ) //assert?
+        return;
+    const int first = static_cast<int>( articles.count() );
+    q->beginInsertRows( QModelIndex(), first, first + list.size() - 1 );
+    articles << list; 
+    q->endInsertRows();
 }
+
+void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article>& list )
+{
+    //might want to avoid indexOf() in case of performance problems
+    Q_FOREACH ( const Article& i, list )
+    {
+        const int row = articles.indexOf( i ); 
+        assert( row != -1 );
+        q->beginRemoveRows( QModelIndex(), row, row );
+        q->endRemoveRows();
+    }
+}
+
+
+void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article>& list )
+{
+    int rmin = articles.count() - 1;
+    int rmax = 0;
+
+    //might want to avoid indexOf() in case of performance problems
+    Q_FOREACH ( const Article& i, list )
+    {
+        const int row = articles.indexOf( i ); 
+        assert( row != -1 );
+        rmin = std::min( row, rmin );
+        rmax = std::max( row, rmax );
+    }
+    emit q->dataChanged( q->index( rmin, 0 ), q->index( rmax, ColumnCount-1 ) );
+}
+
+
+bool ArticleModel::rowMatches( int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher>& matcher ) const
+{
+    assert( matcher );
+    if ( row < 0 || row >= d->articles.count() )
+        return false;
+    return matcher->matches( d->articles[row] );
+}
+
 
 #include "articlemodel.moc"

@@ -42,19 +42,45 @@
 #include <QPaintEvent>
 #include <QPalette>
 
-Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent )
+using namespace Akregator;
+
+Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( KIcon( "flag" ) )
 {
-    m_keepFlagIcon = KIcon("flag");
 }
 
 int Akregator::SortColorizeProxyModel::columnCount( const QModelIndex& index ) const
 {
-    return 3;
+    return index.isValid() ? 0 : 3;
 }
 
-QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orientation, int role ) const
+
+bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelIndex& source_parent ) const 
+{
+    if ( source_parent.isValid() )
+        return false;
+
+    for ( uint i = 0; i < m_matchers.size(); ++i )
+    { 
+        if ( !static_cast<ArticleModel*>( sourceModel() )->rowMatches( source_row, m_matchers[i] ) )
+            return false;
+    }
+                                                           
+    return true;
+}
+
+void SortColorizeProxyModel::setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >&  matchers )
+{
+    if ( m_matchers == matchers )
+        return;
+    m_matchers = matchers;
+    invalidateFilter();
+}
+
+QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orientation orientation, int role ) const
 {
     if ( role != Qt::DisplayRole )
+        return QVariant();
+    if ( orientation == Qt::Vertical )
         return QVariant();
 
     switch (section)
@@ -75,11 +101,13 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
     if ( !idx.isValid() || !sourceModel() )
         return QVariant();
 
+    const QModelIndex sourceIdx = mapToSource( idx ); 
+
     switch ( role )
     {
         case Qt::ForegroundRole:
         {
-            switch ( static_cast<Akregator::ArticleStatus>( QSortFilterProxyModel::data( idx, Akregator::ArticleModel::StatusRole ).toInt() ) )
+            switch ( static_cast<Akregator::ArticleStatus>( sourceIdx.data( Akregator::ArticleModel::StatusRole ).toInt() ) )
             {
                 case Akregator::Unread:
                 {
@@ -100,15 +128,14 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
         break;
         case Qt::DecorationRole:
         {
-            if ( idx.column() == ItemTitleColumn )
+            if ( sourceIdx.column() == ItemTitleColumn )
             {
-                const QModelIndex sourceIdx = mapToSource( idx );
                 return sourceIdx.data( Akregator::ArticleModel::IsImportantRole ).toBool() ? m_keepFlagIcon : QVariant();
             }
         }
         break;
     }
-    return QSortFilterProxyModel::data( idx, role );
+    return sourceIdx.data( role );
 }
 
 namespace {
@@ -124,9 +151,10 @@ namespace {
 
 void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model )
 {
-    QAbstractProxyModel* proxy = new Akregator::SortColorizeProxyModel( model );
-    proxy->setSourceModel( model );
-    setModel( proxy );
+    slotClear();
+    m_proxy = new Akregator::SortColorizeProxyModel( model );
+    m_proxy->setSourceModel( model );
+    setModel( m_proxy );
     header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
     header()->setStretchLastSection( false );
     header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
@@ -393,6 +421,14 @@ void Akregator::ArticleListView::slotPreviousUnreadArticle()
         selectIndex( model()->index( i, 0 ) );
     }
 }
+
+
+void ArticleListView::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& matchers )
+{
+    if ( m_proxy )
+        m_proxy->setFilters( matchers );
+}
+
 
 #if 0
 #include "articlematcher.h"

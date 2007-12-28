@@ -25,6 +25,7 @@
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
 
+#include <QHeaderView>
 #include <QStack>
 
 Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
@@ -34,7 +35,6 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setAlternatingRowColors( true );
     setUniformRowHeights( true );
     setContextMenuPolicy( Qt::CustomContextMenu );
-
 }
 
 void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
@@ -55,6 +55,11 @@ void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
         }
         setExpanded( i, i.data( Akregator::SubscriptionListModel::IsOpenRole ).toBool() );
     }
+
+    header()->setResizeMode( TitleColumn, QHeaderView::Stretch );
+    header()->setStretchLastSection( false );
+    header()->setResizeMode( UnreadColumn, QHeaderView::ResizeToContents );
+    header()->setResizeMode( TotalColumn, QHeaderView::ResizeToContents );
 
 }
 

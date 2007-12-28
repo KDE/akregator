@@ -28,11 +28,16 @@
 
 #include "akregator_export.h"
 
+#include <boost/shared_ptr.hpp>
+#include <vector>
+
 namespace Akregator {
 
 class TreeNode;
 
-struct ArticleModelPrivate;
+namespace Filters {
+    class AbstractMatcher;
+}
 
 class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
 {
@@ -71,16 +76,18 @@ public:
     //impl
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
 
-private Q_SLOTS:
-
-    void nodeDestroyed();
-    void articlesChanged();
+    bool rowMatches( int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher>& matcher ) const;
 
 private:
     ArticleModel( const ArticleModel& );
     ArticleModel& operator=( const ArticleModel& );
 
-    ArticleModelPrivate* d;
+    class Private;
+    Private* const d;
+    Q_PRIVATE_SLOT( d, void nodeDestroyed() )
+    Q_PRIVATE_SLOT( d, void articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) )
+    Q_PRIVATE_SLOT( d, void articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) )
+    Q_PRIVATE_SLOT( d, void articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) )
 };
 
 } //namespace Akregator

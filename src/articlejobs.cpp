@@ -28,7 +28,7 @@
 #include "feedlist.h"
 #include "kernel.h"
 
-#include <QSet>
+#include <vector>
 
 Akregator::ArticleDeleteJob::ArticleDeleteJob( QObject* parent ) : KJob( parent ), m_feedList( Kernel::self()->feedList() )
 {
@@ -49,10 +49,7 @@ void Akregator::ArticleDeleteJob::start()
 {
     Q_FOREACH ( const Akregator::ArticleId id, m_ids )
     {
-        const Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
-        if ( !feed )
-            continue;
-        Akregator::Article article = feed->findArticle( id.guid );
+        Akregator::Article article = m_feedList->findArticle( id.feedUrl, id.guid );
         if ( !article.isNull() )
             article.setDeleted();
     } 
@@ -77,15 +74,15 @@ void Akregator::ArticleModifyJob::setKeep( const ArticleId& id, bool keep )
 
 void Akregator::ArticleModifyJob::start()
 {
-    QSet<Akregator::Feed*> feeds;
+    std::vector<Akregator::Feed*> feeds;
 
     Q_FOREACH ( const Akregator::ArticleId id, m_keepFlags.keys() )
     {
         Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
-        feed->setNotificationMode( false );
-        feeds.insert( feed );
         if ( !feed )
             continue;
+        feed->setNotificationMode( false );
+        feeds.push_back( feed );
         Akregator::Article article = feed->findArticle( id.guid );
         if ( !article.isNull() )
             article.setKeep( m_keepFlags[id] );
@@ -96,12 +93,14 @@ void Akregator::ArticleModifyJob::start()
         Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
         if ( !feed )
             continue;
+        feed->setNotificationMode( false );
+        feeds.push_back( feed );
         Akregator::Article article = feed->findArticle( id.guid );
         if ( !article.isNull() )
             article.setStatus( m_status[id] );
     }
 
-    Q_FOREACH ( Akregator::Feed* i, feeds )
+    Q_FOREACH ( Akregator::Feed* const i, feeds )
         i->setNotificationMode( true ); 
     emitResult();
 }

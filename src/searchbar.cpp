@@ -34,14 +34,17 @@
 #include <kstandarddirs.h>
 
 #include <khbox.h>
+#include <KIcon>
+
 #include <QLabel>
+#include <QList>
 #include <QPixmap>
 #include <QString>
 #include <QTimer>
 #include <QToolButton>
 
-#include <QList>
 
+using Akregator::Filters::AbstractMatcher;
 using Akregator::Filters::ArticleMatcher;
 using Akregator::Filters::Criterion;
 
@@ -51,8 +54,6 @@ namespace Akregator
 class SearchBar::SearchBarPrivate
 {
 public:
-    Akregator::Filters::ArticleMatcher textFilter;
-    Akregator::Filters::ArticleMatcher statusFilter;
     QString searchText;
     QTimer timer;
     KLineEdit* searchLine;
@@ -86,7 +87,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     QIcon iconAll = KIconLoader::global()->loadIcon("system-run", KIconLoader::Small);
     QIcon iconNew(KStandardDirs::locate("data", "akregator/pics/kmmsgnew.png"));
     QIcon iconUnread(KStandardDirs::locate("data", "akregator/pics/kmmsgunseen.png"));
-    QIcon iconKeep(KStandardDirs::locate("data", "akregator/pics/kmmsgflag.png"));
+    const KIcon iconKeep( "flag" );
     
     d->searchCombo->addItem(iconAll, i18n("All Articles"));
     d->searchCombo->addItem(iconUnread, i18n("Unread"));
@@ -209,10 +210,11 @@ void SearchBar::slotActivateSearch()
         }
     }
 
-    d->textFilter = ArticleMatcher(textCriteria, ArticleMatcher::LogicalOr);
-    d->statusFilter = ArticleMatcher(statusCriteria, ArticleMatcher::LogicalOr);
-
-    emit signalSearch(d->textFilter, d->statusFilter);
+    std::vector<boost::shared_ptr<const AbstractMatcher> > matchers;
+    
+    matchers.push_back( boost::shared_ptr<const AbstractMatcher>( new ArticleMatcher( textCriteria, ArticleMatcher::LogicalOr ) ) );
+    matchers.push_back( boost::shared_ptr<const AbstractMatcher>( new ArticleMatcher( statusCriteria, ArticleMatcher::LogicalOr ) ) );
+    emit signalSearch( matchers );
 }
 
 }

@@ -49,6 +49,12 @@ public:
 
     void triggerUpdate() {}
 
+    enum Column {
+        TitleColumn=0,
+        UnreadColumn=1,
+        TotalColumn=2
+    };
+
 public Q_SLOTS:
 
     void slotPrevFeed();

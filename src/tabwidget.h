@@ -55,13 +55,17 @@ class TabWidget : public KTabWidget
         void slotSelectFrame(int frameId);
 
 
-    signals:
+    Q_SIGNALS:
         
         void signalCurrentFrameChanged(int);
         void signalRemoveFrameRequest(int);
         void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
 
-    private slots:
+    private:
+        /*reimpl*/ void tabInserted( int );        
+        /*reimpl*/ void tabRemoved( int );
+
+    private Q_SLOTS:
         void initiateDrag(int tab);
         void slotDetachTab();
         void slotCopyLinkAddress();
@@ -72,10 +76,8 @@ class TabWidget : public KTabWidget
         
    private:
 
-       Frame* currentFrame();
-
-       class TabWidgetPrivate;
-       TabWidgetPrivate* d;
+       class Private;
+       Private* const d;
 };
 
 } // namespace Akregator

@@ -58,11 +58,18 @@
 #include "kernel.h"
 #include "openurlrequest.h"
 
+#include <cassert>
+
 namespace Akregator {
 
-class TabWidget::TabWidgetPrivate
+class TabWidget::Private
 {
-    public:
+private:
+    TabWidget* const q;
+
+public:
+    explicit Private( TabWidget * qq ) : q( qq ) {}
+
     TabWidget* parent;
     QHash<QWidget*, Frame*> frames;
     QHash<int, Frame*> framesById;
@@ -72,16 +79,22 @@ class TabWidget::TabWidgetPrivate
     
     uint tabBarWidthForMaxChars(int maxLength);
     void setTitle(const QString &title , QWidget* sender);
-
+    void updateTabBarVisibility();
+    Frame* currentFrame();
 };
 
+void TabWidget::Private::updateTabBarVisibility()
+{
+    q->setTabBarHidden( q->count() <= 1 );
+}
+
 TabWidget::TabWidget(QWidget * parent)
-        :KTabWidget(parent), d(new TabWidgetPrivate)
+    :KTabWidget(parent), d(new Private( this ) )
 {
     d->parent = this;
     d->currentMaxLength = 30;
     setMinimumSize(250,150);
-        setTabReorderingEnabled(false);
+    setTabReorderingEnabled(false);
     connect( this, SIGNAL( currentChanged(QWidget *) ),
              this, SLOT( slotTabChanged(QWidget *) ) );
     connect(this, SIGNAL(closeRequest(QWidget*)), 
@@ -94,15 +107,16 @@ TabWidget::TabWidget(QWidget * parent)
             SLOT( slotRemoveCurrentFrame() ) );
 
     d->tabsClose->setIcon( KIcon( "tab-close" ) );
+    d->tabsClose->setEnabled( false );
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip( i18n("Close the current tab"));
     setCornerWidget( d->tabsClose, Qt::TopRightCorner );
+    setTabBarHidden( true );
 }
 
 TabWidget::~TabWidget()
 {
     delete d;
-    d = 0;
 }
 
 void TabWidget::slotSettingsChanged()
@@ -126,7 +140,7 @@ void TabWidget::slotPreviousTab()
 void TabWidget::slotSelectFrame(int frameId)
 {
     Frame* frame = d->framesById[frameId];
-    if (frame && frame != currentFrame())
+    if (frame && frame != d->currentFrame())
     {
         setCurrentWidget(frame);
         if (frame->part() && frame->part()->widget())
@@ -152,11 +166,11 @@ void TabWidget::slotAddFrame(Frame* frame)
     slotSetTitle(frame, frame->title());
 }
 
-Frame *TabWidget::currentFrame()
+Frame * TabWidget::Private::currentFrame()
 {
-    QWidget* w = currentWidget();
-
-    return w ? d->frames[w] : 0;
+    QWidget* w = q->currentWidget();
+    assert( frames[w] );
+    return w ? frames[w] : 0;
 }
 
 void TabWidget::slotTabChanged(QWidget *w)
@@ -166,9 +180,20 @@ void TabWidget::slotTabChanged(QWidget *w)
     emit signalCurrentFrameChanged(frame ? frame->id() : -1);
 }
 
+void TabWidget::tabInserted( int )
+{
+    d->updateTabBarVisibility();
+}
+
+
+void TabWidget::tabRemoved( int )
+{
+    d->updateTabBarVisibility();
+}
+
 void TabWidget::slotRemoveCurrentFrame()
 {
-    Frame* frame = currentFrame();
+    Frame* const frame = d->currentFrame();
     if (frame)
         emit signalRemoveFrameRequest(frame->id());
 }
@@ -187,7 +212,7 @@ void TabWidget::slotRemoveFrame(int frameId)
 }
 
 // copied wholesale from KonqFrameTabs
-uint TabWidget::TabWidgetPrivate::tabBarWidthForMaxChars( int maxLength )
+uint TabWidget::Private::tabBarWidthForMaxChars( int maxLength )
 {
     int hframe, overlap;
     QStyleOption o;
@@ -219,7 +244,7 @@ void TabWidget::slotSetTitle(Frame* frame, const QString& title)
     d->setTitle(title, frame);
 }
 
-void TabWidget::TabWidgetPrivate::setTitle( const QString &title , QWidget* sender)
+void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
 {
     int senderIndex = parent->indexOf(sender);
     

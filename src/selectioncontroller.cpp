@@ -38,6 +38,8 @@
 #include <QMenu>
 #include <QTimer>
 
+using namespace Akregator;
+
 namespace {
     static Akregator::Article articleForIndex( const QModelIndex& index, Akregator::FeedList* feedList )
     {
@@ -72,6 +74,9 @@ namespace {
 Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_subscriptionModel ( 0 ), m_folderExpansionHandler( 0 ), m_selectedSubscription( 0 )
 {
     m_articleFetchTimer = new QTimer( this );
+    connect( m_articleFetchTimer, SIGNAL( timeout() ),
+             this, SLOT( articleHeadersAvailable() ) );
+
 }
 
 
@@ -116,7 +121,7 @@ Akregator::Article Akregator::SelectionController::currentArticle() const
 
 QList<Akregator::Article> Akregator::SelectionController::selectedArticles() const
 {
-    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedIndexes(), m_feedList );
+    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedRows(), m_feedList );
 }
 
 Akregator::TreeNode* Akregator::SelectionController::selectedSubscription() const
@@ -151,15 +156,22 @@ void Akregator::SelectionController::setUp()
         m_folderExpansionHandler->setModel( m_subscriptionModel );
     }
     m_feedSelector->setModel( m_subscriptionModel );
+    
+    // setUp might be called more than once, so disconnect first
 
+    disconnect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
+             this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
     connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
              this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
 
+    disconnect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
+             this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
     connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
              this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
 
     if ( m_articleLister->itemView() )
     {
+        disconnect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
         connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
     }
 }
@@ -190,8 +202,6 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
 
     m_articleFetchTimer->setInterval( KRandom::random() % 400 );
     m_articleFetchTimer->setSingleShot( true );
-    connect( m_articleFetchTimer, SIGNAL( timeout() ),
-             this, SLOT( articleHeadersAvailable() ) );
     m_articleFetchTimer->start();
 
 }
@@ -224,6 +234,12 @@ void Akregator::SelectionController::articleIndexDoubleClicked( const QModelInde
 {
     const Akregator::Article article = ::articleForIndex( index, m_feedList );
     emit articleDoubleClicked( article );
+}
+
+void SelectionController::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& matchers )
+{
+    Q_ASSERT( m_articleLister );
+    m_articleLister->setFilters( matchers );
 }
 
 #include "selectioncontroller.moc"
