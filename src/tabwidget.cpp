@@ -207,8 +207,8 @@ void TabWidget::slotRemoveFrame(int frameId)
     d->framesById.remove(frameId);
     slotPreviousTab();
     removeTab(indexOf(f));
-    if (currentFrame())
-      d->setTitle( currentFrame()->title(), currentWidget() );
+    if (d->currentFrame())
+      d->setTitle( d->currentFrame()->title(), currentWidget() );
 }
 
 // copied wholesale from KonqFrameTabs
