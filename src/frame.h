@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_FRAME_H
 #define AKREGATOR_FRAME_H
 
-#include <QSet>
 #include <QString>
 #include <QWidget>
 

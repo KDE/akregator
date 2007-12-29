@@ -29,10 +29,7 @@
 #include "treenode.h"
 #include "feed.h"
 
-#include <QString>
 
-#include <KGlobal>
-#include <KLocale>
 
 #include <cassert>
 #include <cmath>

@@ -42,7 +42,6 @@
 
 #include <QDragMoveEvent>
 #include <QDropEvent>
-#include <QFont>
 #include <QHash>
 #include <QList>
 #include <QPainter>

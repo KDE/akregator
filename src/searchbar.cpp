@@ -38,10 +38,8 @@
 
 #include <QLabel>
 #include <QList>
-#include <QPixmap>
 #include <QString>
 #include <QTimer>
-#include <QToolButton>
 
 
 using Akregator::Filters::AbstractMatcher;

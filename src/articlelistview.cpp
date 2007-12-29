@@ -441,7 +441,6 @@ void ArticleListView::setFilters( const std::vector<boost::shared_ptr<const Filt
 #include <kstandarddirs.h>
 #include <kurl.h>
 
-#include <QDateTime>
 #include <QHash>
 #include <QPainter>
 #include <QPixmap>

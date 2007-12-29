@@ -35,9 +35,7 @@
 #include <QAction>
 #include <QGridLayout>
 #include <QList>
-#include <QPoint>
 #include <QString>
-#include <QWidget>
 
 #include <kaction.h>
 #include <kdebug.h>

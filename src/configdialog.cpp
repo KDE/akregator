@@ -33,9 +33,6 @@
 #include <kcombobox.h>
 #include <klocale.h>
 
-#include <QLabel>
-#include <QSlider>
-#include <QStringList>
 
 namespace Akregator
 {

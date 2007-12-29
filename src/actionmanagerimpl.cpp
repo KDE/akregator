@@ -55,8 +55,6 @@
 #include <kicon.h>
 
 #include <QHash>
-#include <QList>
-#include <QString>
 #include <QWidget>
 
 namespace Akregator

@@ -44,8 +44,6 @@
 #include <kparts/browserinterface.h>
 
 #include <QDataStream>
-#include <QDateTime>
-#include <QFile>
 #include <QList>
 #include <QMetaObject>
 #include <QString>

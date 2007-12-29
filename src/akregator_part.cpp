@@ -66,7 +66,6 @@
 #include <QTimer>
 #include <QWidget>
 #include "partadaptor.h"
-#include <QtDBus>
 
 namespace Akregator {
 

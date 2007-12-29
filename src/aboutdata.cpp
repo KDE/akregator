@@ -26,7 +26,6 @@
 
 #include <klocale.h>
 
-#include <QString>
 
 
 

@@ -27,11 +27,9 @@
 #include "folder.h"
 #include "treenode.h"
 
-#include <KIcon>
 #include <KLocale>
-
-#include <QStack>
-#include <QTreeView>
+#include <QFont>
+#include <QIcon>
 
 namespace {
     static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const Akregator::FeedList* feedList )

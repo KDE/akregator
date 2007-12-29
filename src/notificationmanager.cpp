@@ -28,7 +28,6 @@
 #include <kurl.h>
 #include <kglobal.h>
 
-#include <QLabel>
 #include <QTimer>
 #include <QList>
 

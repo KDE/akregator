@@ -33,7 +33,6 @@
 #include <kpassworddialog.h>
 
 #include <QCheckBox>
-#include <QRadioButton>
 
 namespace Akregator {
 

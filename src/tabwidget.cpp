@@ -28,7 +28,6 @@
 #include <QApplication>
 #include <QIcon>
 #include <QClipboard>
-#include <QMap>
 #include <QHash>
 #include <QString>
 #include <QToolButton>

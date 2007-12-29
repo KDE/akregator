@@ -28,7 +28,6 @@
 #include "treenodevisitor.h"
 
 #include <qdom.h>
-#include <QStringList>
 #include <QList>
 
 #include <KIcon>

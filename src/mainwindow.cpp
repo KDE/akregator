@@ -52,11 +52,7 @@
 #include "statusbarprogresswidget.h"
 #include "trayicon.h"
 
-#include <QMetaObject>
-#include <QPen>
-#include <QPainter>
 #include <QPixmap>
-#include <QTimer>
 
 #include <Q3MimeSourceFactory>
 

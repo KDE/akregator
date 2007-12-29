@@ -51,7 +51,6 @@
 #include <QHash>
 #include <QList>
 #include <QPixmap>
-#include <QTimer>
 
 using Syndication::ItemPtr;
 
