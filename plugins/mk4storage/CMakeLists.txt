@@ -1,25 +1,23 @@
 include_directories( ${CMAKE_SOURCE_DIR}/akregator/interfaces ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIR} )
 
 set(libmetakitlocal_SRCS 
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/column.cpp 
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/custom.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/derived.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/field.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/fileio.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/format.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/handler.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/persist.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/remap.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/std.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/store.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/string.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/table.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/univ.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/view.cpp
-                ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/src/viewx.cpp
+                metakit/src/column.cpp 
+                metakit/src/custom.cpp
+                metakit/src/derived.cpp
+                metakit/src/field.cpp
+                metakit/src/fileio.cpp
+                metakit/src/format.cpp
+                metakit/src/handler.cpp
+                metakit/src/persist.cpp
+                metakit/src/remap.cpp
+                metakit/src/std.cpp
+                metakit/src/store.cpp
+                metakit/src/string.cpp
+                metakit/src/table.cpp
+                metakit/src/univ.cpp
+                metakit/src/view.cpp
+                metakit/src/viewx.cpp
                 )
-
-add_subdirectory( metakit ) 
 
 ########### next target ###############
 
