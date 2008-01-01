@@ -227,7 +227,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     QActionGroup* agViewMode = new QActionGroup(this);
     KToggleAction *ra = coll->add<KToggleAction>("normal_view");
-    ra->setIcon(KIcon("view-top-bottom"));
+    ra->setIcon(KIcon("view-split-top-bottom"));
     ra->setText(i18n("&Normal View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotNormalView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+1" ));
@@ -235,7 +235,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("widescreen_view");
-    ra->setIcon(KIcon("view-left-right"));
+    ra->setIcon(KIcon("view-split-left-right"));
     ra->setText(i18n("&Widescreen View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotWidescreenView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+2" ));
