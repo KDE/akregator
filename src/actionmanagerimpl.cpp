@@ -243,7 +243,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("combined_view");
-    ra->setIcon(KIcon("fileview-text"));
+    ra->setIcon(KIcon("view-list-text"));
     ra->setText(i18n("C&ombined View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotCombinedView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+3" ));
@@ -344,7 +344,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_new");
     action->setText(i18n("&New"));
-    action->setIcon(KIcon("mail-mark-new"));
+    action->setIcon(KIcon("mail-mark-unread-new"));
     action->setShortcuts(KShortcut( "Ctrl+N" ));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
