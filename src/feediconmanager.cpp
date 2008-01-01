@@ -35,7 +35,7 @@
 #include <QList>
 #include <QMultiHash>
 #include <QPixmap>
-#include <QtDBus>
+#include <QtDBus/QtDBus>
 #define FAVICONINTERFACE "org.kde.FavIcon"
 
 

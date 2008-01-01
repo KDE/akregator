@@ -29,7 +29,7 @@
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <kuniqueapplication.h>
-#include <QtDBus>
+#include <QtDBus/QtDBus>
 #include <QStringList>
 
 namespace Akregator {
