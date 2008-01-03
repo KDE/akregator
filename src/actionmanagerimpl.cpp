@@ -199,7 +199,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Ctrl+H" ));
 
     action = coll->addAction("feed_add");
-    action->setIcon(KIcon("rss-tag"));
+    action->setIcon(KIcon("feed-subscribe"));
     action->setText(i18n("&Add Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
     action->setShortcuts(KShortcut( "Insert" ));
