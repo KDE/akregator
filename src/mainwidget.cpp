@@ -302,8 +302,12 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
-    m_horizontalSplitter->setSizes( Settings::splitter1Sizes() );
-    m_articleSplitter->setSizes( Settings::splitter2Sizes() );
+    const QList<int> sp1sizes = Settings::splitter1Sizes();
+    if ( sp1sizes.count() >= m_horizontalSplitter->count() )
+        m_horizontalSplitter->setSizes( sp1sizes );
+    const QList<int> sp2sizes = Settings::splitter2Sizes();
+    if ( sp2sizes.count() >= m_articleSplitter->count() )
+        m_articleSplitter->setSizes( sp2sizes );
 
     KConfigGroup conf(Settings::self()->config(), "General");
     if(!conf.readEntry("Disable Introduction", false))
