@@ -1,7 +1,5 @@
 <ui version="4.0" >
  <author>Teemu Rytilahti</author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>Akregator::SettingsGeneral</class>
  <widget class="QWidget" name="Akregator::SettingsGeneral" >
   <property name="geometry" >
@@ -16,10 +14,22 @@
    <string>General</string>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
+   <property name="leftMargin" >
     <number>8</number>
    </property>
-   <property name="spacing" >
+   <property name="topMargin" >
+    <number>8</number>
+   </property>
+   <property name="rightMargin" >
+    <number>8</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>8</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
     <number>6</number>
    </property>
    <item row="3" column="0" >
@@ -44,10 +54,22 @@
       <string>Global</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>8</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>8</number>
+      </property>
+      <property name="rightMargin" >
+       <number>8</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>8</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="0" column="0" colspan="3" >
@@ -71,7 +93,7 @@
        </spacer>
       </item>
       <item row="3" column="1" >
-       <widget class="QLabel" name="textLabel1" >
+       <widget class="QLabel" name="autoFetchIntervalLabel" >
         <property name="enabled" >
          <bool>false</bool>
         </property>
@@ -111,11 +133,11 @@
         <property name="suffix" >
          <string> minutes</string>
         </property>
-        <property name="maximum" >
-         <number>3600</number>
-        </property>
         <property name="minimum" >
          <number>1</number>
+        </property>
+        <property name="maximum" >
+         <number>3600</number>
         </property>
         <property name="singleStep" >
          <number>10</number>
@@ -131,10 +153,22 @@
       <string>Startup</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>8</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>8</number>
+      </property>
+      <property name="rightMargin" >
+       <number>8</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>8</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="1" column="0" >
@@ -160,10 +194,22 @@
       <string>Network</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>8</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>8</number>
+      </property>
+      <property name="rightMargin" >
+       <number>8</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>8</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="0" column="0" >
