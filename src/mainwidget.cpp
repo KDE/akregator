@@ -77,6 +77,7 @@
 #include <QTextDocument>
 #include <QTimer>
 
+#include <cassert>
 
 class Akregator::MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
 {
@@ -947,8 +948,9 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
         }
     }
 
-    KToggleAction* maai = static_cast<KToggleAction*>(m_actionManager->action("article_set_status_important"));
-    maai->setChecked(article.keep());
+    KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
+    assert( maai );
+    maai->setChecked( article.keep() );
 
     kDebug() <<"selected:" << article.guid();
 
@@ -1125,7 +1127,7 @@ void Akregator::MainWidget::slotArticleDelete()
 }
 
 
-void Akregator::MainWidget::slotArticleToggleKeepFlag(bool /*enabled*/)
+void Akregator::MainWidget::slotArticleToggleKeepFlag( bool )
 {
     const QList<Article> articles = m_selectionController->selectedArticles();
 

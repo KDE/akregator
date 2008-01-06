@@ -364,8 +364,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     importantAction->setIcon(KIcon("mail-mark-important"));
     importantAction->setShortcuts(KShortcut("Ctrl+I"));
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
-    connect(importantAction, SIGNAL(toggled(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
-
+    connect(importantAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
     action = coll->addAction("feedstree_move_up");
     action->setText(i18n("Move Node Up"));
