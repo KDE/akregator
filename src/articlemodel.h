@@ -61,7 +61,8 @@ public:
         ItemIdRole,
         FeedIdRole,
         StatusRole,
-        IsImportantRole
+        IsImportantRole,
+        IsDeletedRole
     };
 
     explicit ArticleModel( Akregator::TreeNode* node, QObject* parent = 0 );

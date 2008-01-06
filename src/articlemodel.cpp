@@ -129,6 +129,10 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
         {
             return article.keep();
         }
+        case IsDeletedRole:
+        {
+            return article.isDeleted();
+        }
     }
 
     return QVariant();
