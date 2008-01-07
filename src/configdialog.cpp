@@ -33,9 +33,6 @@
 #include <kcombobox.h>
 #include <klocale.h>
 
-#include <QLabel>
-#include <QSlider>
-#include <QStringList>
 
 namespace Akregator
 {
@@ -58,6 +55,8 @@ ConfigDialog::ConfigDialog(QWidget* parent, const char* name, KConfigSkeleton* c
     general.setupUi(generalWidget);
     connect( general.kcfg_UseIntervalFetch, SIGNAL( toggled( bool ) ),
              general.kcfg_AutoFetchInterval, SLOT( setEnabled( bool ) ) );
+    connect( general.kcfg_UseIntervalFetch, SIGNAL( toggled( bool ) ),
+             general.autoFetchIntervalLabel, SLOT( setEnabled( bool ) ) );
 
     QWidget* archiveWidget = new QWidget(this);
     Ui::SettingsArchive archive;

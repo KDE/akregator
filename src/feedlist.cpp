@@ -33,9 +33,9 @@
 #include <klocale.h>
 #include <krandom.h>
 
-#include <QDateTime>
 #include <qdom.h>
 #include <QHash>
+#include <QTime>
 
 namespace Akregator {
 

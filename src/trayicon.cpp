@@ -35,8 +35,8 @@
 #include <kicon.h>
 #include <kiconloader.h>
 
-#include <QBitmap>
 #include <QPainter>
+#include <QBitmap>
 
 #ifdef Q_WS_X11
 #include <QX11Info>

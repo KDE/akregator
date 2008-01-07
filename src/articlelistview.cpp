@@ -59,6 +59,9 @@ bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelInde
     if ( source_parent.isValid() )
         return false;
 
+    if ( sourceModel()->index( source_row, 0 ).data( ArticleModel::IsDeletedRole ).toBool() )
+        return false;
+    
     for ( uint i = 0; i < m_matchers.size(); ++i )
     { 
         if ( !static_cast<ArticleModel*>( sourceModel() )->rowMatches( source_row, m_matchers[i] ) )
@@ -441,7 +444,6 @@ void ArticleListView::setFilters( const std::vector<boost::shared_ptr<const Filt
 #include <kstandarddirs.h>
 #include <kurl.h>
 
-#include <QDateTime>
 #include <QHash>
 #include <QPainter>
 #include <QPixmap>

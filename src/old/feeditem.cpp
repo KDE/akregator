@@ -31,7 +31,6 @@
 #include <kiconloader.h>
 
 #include <QPixmap>
-#include <QString>
 
 #include <QMenu>
 

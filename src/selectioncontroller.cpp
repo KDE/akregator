@@ -34,7 +34,6 @@
 #include <KRandom>
 
 #include <QAbstractItemView>
-#include <QItemSelectionModel>
 #include <QMenu>
 #include <QTimer>
 

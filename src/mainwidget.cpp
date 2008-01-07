@@ -77,6 +77,7 @@
 #include <QTextDocument>
 #include <QTimer>
 
+#include <cassert>
 
 class Akregator::MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
 {
@@ -302,8 +303,12 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
-    m_horizontalSplitter->setSizes( Settings::splitter1Sizes() );
-    m_articleSplitter->setSizes( Settings::splitter2Sizes() );
+    const QList<int> sp1sizes = Settings::splitter1Sizes();
+    if ( sp1sizes.count() >= m_horizontalSplitter->count() )
+        m_horizontalSplitter->setSizes( sp1sizes );
+    const QList<int> sp2sizes = Settings::splitter2Sizes();
+    if ( sp2sizes.count() >= m_articleSplitter->count() )
+        m_articleSplitter->setSizes( sp2sizes );
 
     KConfigGroup conf(Settings::self()->config(), "General");
     if(!conf.readEntry("Disable Introduction", false))
@@ -943,8 +948,9 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
         }
     }
 
-    KToggleAction* maai = static_cast<KToggleAction*>(m_actionManager->action("article_set_status_important"));
-    maai->setChecked(article.keep());
+    KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
+    assert( maai );
+    maai->setChecked( article.keep() );
 
     kDebug() <<"selected:" << article.guid();
 
@@ -1121,7 +1127,7 @@ void Akregator::MainWidget::slotArticleDelete()
 }
 
 
-void Akregator::MainWidget::slotArticleToggleKeepFlag(bool /*enabled*/)
+void Akregator::MainWidget::slotArticleToggleKeepFlag( bool )
 {
     const QList<Article> articles = m_selectionController->selectedArticles();
 

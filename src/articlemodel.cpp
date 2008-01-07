@@ -29,10 +29,7 @@
 #include "treenode.h"
 #include "feed.h"
 
-#include <QString>
 
-#include <KGlobal>
-#include <KLocale>
 
 #include <cassert>
 #include <cmath>
@@ -131,6 +128,10 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
         case IsImportantRole:
         {
             return article.keep();
+        }
+        case IsDeletedRole:
+        {
+            return article.isDeleted();
         }
     }
 

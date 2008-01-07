@@ -136,6 +136,15 @@
 #undef false
 #endif
 
+#if defined (__SUNPRO_CC)
+#define q4_BOOL 1
+#ifdef bool
+#undef bool
+#undef true
+#undef false
+#endif
+#endif
+
     // GNU gcc/egcs
 #if defined (__GNUC__)
 #if !defined(q4_BOOL)

@@ -66,7 +66,7 @@ public:
 private:
 
     //reimpl
-    bool filterAcceptsRow ( int source_row, const QModelIndex& source_parent ) const;
+    bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
 
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
 

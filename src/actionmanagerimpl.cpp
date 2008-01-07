@@ -55,8 +55,6 @@
 #include <kicon.h>
 
 #include <QHash>
-#include <QList>
-#include <QString>
 #include <QWidget>
 
 namespace Akregator
@@ -201,7 +199,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setShortcuts(KShortcut( "Ctrl+H" ));
 
     action = coll->addAction("feed_add");
-    action->setIcon(KIcon("rss-tag"));
+    action->setIcon(KIcon("feed-subscribe"));
     action->setText(i18n("&Add Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
     action->setShortcuts(KShortcut( "Insert" ));
@@ -229,7 +227,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     QActionGroup* agViewMode = new QActionGroup(this);
     KToggleAction *ra = coll->add<KToggleAction>("normal_view");
-    ra->setIcon(KIcon("view-top-bottom"));
+    ra->setIcon(KIcon("view-split-top-bottom"));
     ra->setText(i18n("&Normal View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotNormalView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+1" ));
@@ -237,7 +235,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("widescreen_view");
-    ra->setIcon(KIcon("view-left-right"));
+    ra->setIcon(KIcon("view-split-left-right"));
     ra->setText(i18n("&Widescreen View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotWidescreenView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+2" ));
@@ -245,7 +243,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("combined_view");
-    ra->setIcon(KIcon("fileview-text"));
+    ra->setIcon(KIcon("view-list-text"));
     ra->setText(i18n("C&ombined View"));
     connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotCombinedView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+3" ));
@@ -346,7 +344,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("article_set_status_new");
     action->setText(i18n("&New"));
-    action->setIcon(KIcon("mail-mark-new"));
+    action->setIcon(KIcon("mail-mark-unread-new"));
     action->setShortcuts(KShortcut( "Ctrl+N" ));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
@@ -366,8 +364,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     importantAction->setIcon(KIcon("mail-mark-important"));
     importantAction->setShortcuts(KShortcut("Ctrl+I"));
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
-    connect(importantAction, SIGNAL(toggled(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
-
+    connect(importantAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
     action = coll->addAction("feedstree_move_up");
     action->setText(i18n("Move Node Up"));
