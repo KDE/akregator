@@ -725,7 +725,7 @@ void Akregator::MainWidget::slotFeedAdd()
 
     }
 
-    TreeNode* lastChild = group->children().last();
+    TreeNode* const lastChild = !group->children().isEmpty() ? group->children().last() : 0;
 
     addFeed(QString::null, lastChild, group, false);	//krazy:exclude=nullstrassign for old broken gcc
 }
