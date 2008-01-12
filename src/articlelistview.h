@@ -46,6 +46,17 @@ namespace Filters
     class ArticleMatcher;
 }
 
+class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyModel {
+    Q_OBJECT
+public:
+    
+    explicit FilterDeletedProxyModel( QObject* parent = 0 );
+    
+private:
+    //reimpl
+    bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
+};
+
 class AKREGATORPART_EXPORT SortColorizeProxyModel : public QSortFilterProxyModel {
     Q_OBJECT
 public:

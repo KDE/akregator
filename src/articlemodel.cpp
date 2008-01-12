@@ -162,8 +162,7 @@ void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article
     {
         const int row = articles.indexOf( i ); 
         assert( row != -1 );
-        q->beginRemoveRows( QModelIndex(), row, row );
-        q->endRemoveRows();
+        q->removeRow( row, QModelIndex() );
     }
 }
 
@@ -188,10 +187,14 @@ void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article
 bool ArticleModel::rowMatches( int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher>& matcher ) const
 {
     assert( matcher );
-    if ( row < 0 || row >= d->articles.count() )
-        return false;
-    return matcher->matches( d->articles[row] );
+    return matcher->matches( article( row ) );
 }
 
+Article ArticleModel::article( int row ) const
+{
+    if ( row < 0 || row >= d->articles.count() )
+        return Article();
+    return d->articles[row];      
+}
 
 #include "articlemodel.moc"

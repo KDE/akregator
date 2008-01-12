@@ -33,6 +33,7 @@
 
 namespace Akregator {
 
+class Article;
 class TreeNode;
 
 namespace Filters {
@@ -79,6 +80,8 @@ public:
 
     bool rowMatches( int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher>& matcher ) const;
 
+    Article article( int row ) const;
+    
 private:
     ArticleModel( const ArticleModel& );
     ArticleModel& operator=( const ArticleModel& );

@@ -26,6 +26,7 @@
 
 #include "actionmanager.h"
 #include "akregatorconfig.h"
+#include "article.h"
 #include "articlemodel.h"
 #include "kernel.h"
 #include "types.h"
@@ -44,6 +45,17 @@
 
 using namespace Akregator;
 
+
+FilterDeletedProxyModel::FilterDeletedProxyModel( QObject* parent ) : QSortFilterProxyModel( parent )
+{
+    setDynamicSortFilter( true );    
+}
+    
+bool FilterDeletedProxyModel::filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const
+{
+    return !sourceModel()->index( source_row, 0, source_parent ).data( ArticleModel::IsDeletedRole ).toBool();
+}
+
 Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( KIcon( "flag" ) )
 {
 }
@@ -58,10 +70,7 @@ bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelInde
 {
     if ( source_parent.isValid() )
         return false;
-
-    if ( sourceModel()->index( source_row, 0 ).data( ArticleModel::IsDeletedRole ).toBool() )
-        return false;
-    
+      
     for ( uint i = 0; i < m_matchers.size(); ++i )
     { 
         if ( !static_cast<ArticleModel*>( sourceModel() )->rowMatches( source_row, m_matchers[i] ) )
@@ -155,9 +164,13 @@ namespace {
 void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model )
 {
     slotClear();
+    if ( !model )
+        return;
     m_proxy = new Akregator::SortColorizeProxyModel( model );
     m_proxy->setSourceModel( model );
-    setModel( m_proxy );
+    FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( m_proxy );
+    proxy2->setSourceModel( m_proxy );
+    setModel( proxy2 );
     header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
     header()->setStretchLastSection( false );
     header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );

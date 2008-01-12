@@ -52,9 +52,11 @@
 #include <QList>
 #include <QPixmap>
 
-using Syndication::ItemPtr;
+#include <boost/bind.hpp>
 
-namespace Akregator {
+using Syndication::ItemPtr;
+using namespace Akregator;
+using namespace boost;
 
 class Feed::FeedPrivate
 {
@@ -470,6 +472,8 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
         ++dit;
         d->articles.remove((*dtmp).guid());
         d->archive->deleteArticle((*dtmp).guid());
+        d->removedArticlesNotify.append( *dtmp );
+        changed = true;
         d->deletedArticles.removeAll(*dtmp);
     }
 
@@ -707,8 +711,7 @@ void Feed::setArticleDeleted(Article& a)
     if (!d->deletedArticles.contains(a))
         d->deletedArticles.append(a);
 
-    if (!d->removedArticlesNotify.contains(a))
-        d->removedArticlesNotify.append(a);
+    d->updatedArticlesNotify.append(a);
 
     articlesModified();
 }
@@ -729,7 +732,7 @@ void Feed::setArticleChanged(Article& a, int oldStatus)
 
 int Feed::totalCount() const
 {
-    return d->articles.count();
+    return std::count_if( d->articles.begin(), d->articles.end(), !bind( &Article::isDeleted, _1 ) );
 }
 
 TreeNode* Feed::next()
@@ -806,7 +809,5 @@ void Feed::enforceLimitArticleNumber()
              i.setDeleted();
     }
 }
-
-} // namespace Akregator
 
 #include "feed.moc"

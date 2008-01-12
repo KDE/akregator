@@ -1103,8 +1103,9 @@ void Akregator::MainWidget::slotArticleDelete()
 
     if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStandardGuiItem::del()) == KMessageBox::Continue)
     {
-        if ( m_selectionController->selectedSubscription() )
-            m_selectionController->selectedSubscription()->setNotificationMode(false);
+        TreeNode* const selected = m_selectionController->selectedSubscription();
+        if ( selected )
+            selected->setNotificationMode( false );
 
         QSet<Feed*> feeds;
         Q_FOREACH( const Akregator::Article i, articles )
@@ -1121,8 +1122,8 @@ void Akregator::MainWidget::slotArticleDelete()
         Q_FOREACH( Akregator::Feed* i, feeds )
             i->setNotificationMode(true);
 
-        if ( m_selectionController->selectedSubscription() )
-            m_selectionController->selectedSubscription()->setNotificationMode(true);
+        if ( selected )
+            selected->setNotificationMode( true );
     }
 }
 
