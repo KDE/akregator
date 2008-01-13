@@ -65,7 +65,7 @@ int Akregator::SubscriptionListModel::rowCount( const QModelIndex& parent ) cons
     if ( !parent.isValid() )
         return 1;
 
-    const Akregator::TreeNode* const node = ::nodeForIndex( parent, m_feedList );
+    const Akregator::TreeNode* const node = nodeForIndex( parent, m_feedList );
     return node ? node->children().count() : 0;
 }
 
@@ -79,7 +79,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
     if ( !index.isValid() )
         return QVariant();
     
-    const Akregator::TreeNode* const node = ::nodeForIndex( index, m_feedList );
+    const Akregator::TreeNode* const node = nodeForIndex( index, m_feedList );
 
     if ( !node )
         return QVariant();
@@ -159,7 +159,7 @@ QVariant Akregator::SubscriptionListModel::headerData( int section, Qt::Orientat
 
 QModelIndex Akregator::SubscriptionListModel::parent( const QModelIndex& index ) const
 {
-    const Akregator::TreeNode* const node = ::nodeForIndex( index, m_feedList );
+    const Akregator::TreeNode* const node = nodeForIndex( index, m_feedList );
 
     if ( !node || !node->parent() )
         return QModelIndex();
@@ -181,9 +181,9 @@ QModelIndex Akregator::SubscriptionListModel::parent( const QModelIndex& index )
 QModelIndex Akregator::SubscriptionListModel::index( int row, int column, const QModelIndex& parent ) const
 {
     if ( !parent.isValid() )
-        return createIndex( row, column, row == 0 ? m_feedList->rootNode()->id() : -1 );
+        return createIndex( row, column, ( row == 0 && m_feedList ) ? m_feedList->rootNode()->id() : -1 );
 
-    const Akregator::TreeNode* const parentNode = ::nodeForIndex( parent, m_feedList );
+    const Akregator::TreeNode* const parentNode = nodeForIndex( parent, m_feedList );
     const int id = ( !parentNode || row > parentNode->children().count() ) ? -1 : parentNode->children().at( row )->id();
     return createIndex( row, column, id );
 }
@@ -191,7 +191,7 @@ QModelIndex Akregator::SubscriptionListModel::index( int row, int column, const 
 
 QModelIndex SubscriptionListModel::indexForNode( const TreeNode* node ) const
 {
-    if ( !node )
+    if ( !node || !m_feedList )
         return QModelIndex();
     const Folder* const parent = node->parent();
     if ( !parent )
