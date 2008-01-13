@@ -64,9 +64,6 @@ public:
     explicit SortColorizeProxyModel( QObject* parent = 0 );
 
     //reimpl
-    int columnCount( const QModelIndex& index=QModelIndex() ) const;
-
-    //reimpl
     QVariant data( const QModelIndex& index, int role=Qt::DisplayRole ) const;
 
     //reimpl
@@ -78,6 +75,9 @@ private:
 
     //reimpl
     bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
+
+    //reimpl
+    bool filterAcceptsColumn( int source_column, const QModelIndex& source_parent ) const;
 
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
 

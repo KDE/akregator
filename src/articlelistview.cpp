@@ -60,11 +60,10 @@ Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : Q
 {
 }
 
-int Akregator::SortColorizeProxyModel::columnCount( const QModelIndex& index ) const
+bool SortColorizeProxyModel::filterAcceptsColumn( int col, const QModelIndex& parent ) const 
 {
-    return index.isValid() ? 0 : 3;
+    return col <= ArticleModel::DateColumn;
 }
-
 
 bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelIndex& source_parent ) const 
 {
@@ -173,7 +172,7 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
     setModel( proxy2 );
     header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
     header()->setStretchLastSection( false );
-    header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
+    //header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
 }
 
 QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
