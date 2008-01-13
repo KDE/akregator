@@ -31,6 +31,8 @@
 #include <QFont>
 #include <QIcon>
 
+using namespace Akregator;
+
 namespace {
     static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const Akregator::FeedList* feedList )
     {
@@ -46,8 +48,10 @@ Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedLi
                  this, SLOT( feedListDestroyed( Akregator::FeedList* ) ) );
         connect( feedList, SIGNAL( signalNodeAdded( Akregator::TreeNode* ) ),
                  this, SLOT( subscriptionAdded( Akregator::TreeNode* ) ) );
-        connect( feedList, SIGNAL( signalNodeRemoved( Akregator::TreeNode* ) ),
-                 this, SLOT( subscriptionRemoved( Akregator::TreeNode* ) ) );
+        connect( feedList, SIGNAL( signalAboutToRemoveNode( Akregator::TreeNode* ) ),
+                 this, SLOT( aboutToRemoveSubscription( Akregator::TreeNode* ) ) );
+        connect( feedList, SIGNAL( signalNodeChanged( Akregator::TreeNode* ) ),
+                 this, SLOT( subscriptionChanged( Akregator::TreeNode* ) ) );
     }
 }
 
@@ -167,7 +171,7 @@ QModelIndex Akregator::SubscriptionListModel::parent( const QModelIndex& index )
 
     const Akregator::Folder* const grandparent = parent->parent();
 
-    const int row = grandparent->children().indexOf( parent );
+    const int row = grandparent->indexOf( parent );
 
     Q_ASSERT( row != -1 );
 
@@ -184,6 +188,21 @@ QModelIndex Akregator::SubscriptionListModel::index( int row, int column, const 
     return createIndex( row, column, id );
 }
 
+
+QModelIndex SubscriptionListModel::indexForNode( const TreeNode* node ) const
+{
+    if ( !node )
+        return QModelIndex();
+    const Folder* const parent = node->parent();
+    if ( !parent )
+        return index( 0, 0 );
+    const int row = parent->indexOf( node );
+    Q_ASSERT( row >= 0 );
+    const QModelIndex idx = index( row, 0, indexForNode( parent ) );
+    Q_ASSERT( idx.internalId() == node->id() );
+    return idx;
+}
+
 void Akregator::SubscriptionListModel::feedListDestroyed( Akregator::FeedList* )
 {
     m_feedList = 0;
@@ -191,12 +210,24 @@ void Akregator::SubscriptionListModel::feedListDestroyed( Akregator::FeedList* )
 
 void Akregator::SubscriptionListModel::subscriptionAdded( Akregator::TreeNode* subscription )
 {
-    reset();
+    const Folder* const parent = subscription->parent();
+    const int row = parent ? parent->indexOf( subscription ) : 0;
+    Q_ASSERT( row >= 0 );
+    insertRow( row, indexForNode( parent ) );
 }
 
-void Akregator::SubscriptionListModel::subscriptionRemoved( Akregator::TreeNode* subscription )
+void Akregator::SubscriptionListModel::aboutToRemoveSubscription( Akregator::TreeNode* subscription )
 {
-    reset();
+    //TODO
+}
+
+void Akregator::SubscriptionListModel::subscriptionChanged( TreeNode* node )
+{
+    const QModelIndex idx = indexForNode( node );
+    if ( !idx.isValid() )
+        return;
+    emit dataChanged( index( idx.row(), 0, idx.parent() ),
+                      index( idx.row(), ColumnCount - 1, idx.parent() ) );
 }
 
 void Akregator::FolderExpansionHandler::itemExpanded( const QModelIndex& idx )

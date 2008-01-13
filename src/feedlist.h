@@ -111,7 +111,10 @@ signals:
     /** emitted when a node was removed from the list */
     void signalNodeRemoved(Akregator::TreeNode*);
 
-
+    void signalAboutToRemoveNode( Akregator::TreeNode* );
+    
+    void signalNodeChanged( Akregator::TreeNode* );
+    
 private:
 
     void addNode(TreeNode* node, bool preserveID);
@@ -127,7 +130,7 @@ private slots:
     void slotNodeDestroyed(Akregator::TreeNode* node);
     void slotNodeAdded(Akregator::TreeNode* node);
     void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
-
+    
 private:
     friend class AddNodeVisitor;
     class AddNodeVisitor;

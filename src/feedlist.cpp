@@ -82,6 +82,7 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
             m_list->d->flatList.append(node);
             
             connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_list, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
+            connect( node, SIGNAL( signalChanged( Akregator::TreeNode* ) ), m_list, SIGNAL( signalNodeChanged(Akregator::TreeNode* ) ) );
             m_list->signalNodeAdded(node); // emit
 
             return true;
@@ -90,6 +91,7 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
         bool visitFolder(Folder* node)
         {
             connect(node, SIGNAL(signalChildAdded(Akregator::TreeNode*)), m_list, SLOT(slotNodeAdded(Akregator::TreeNode*) ));
+            connect( node, SIGNAL( signalAboutToRemoveChild( Akregator::TreeNode* ) ), m_list, SIGNAL( signalAboutToRemoveNode( Akregator::TreeNode* ) ) );
             connect(node, SIGNAL(signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*)), m_list, SLOT(slotNodeRemoved(Akregator::Folder*, Akregator::TreeNode*) ));
 
             visitTreeNode(node);
@@ -123,7 +125,7 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
             m_list->d->flatList.removeAll(node);
 
             disconnect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_list, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
-            m_list->signalNodeRemoved(node); // emit signal
+            emit m_list->signalNodeRemoved(node); // emit signal
             
             return true;
         }
@@ -163,7 +165,7 @@ void FeedList::addNode(TreeNode* node, bool preserveID)
 
 void FeedList::removeNode(TreeNode* node)
 {
-   d->removeNodeVisitor->visit(node);
+    d->removeNodeVisitor->visit(node);
 }
 
 void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
@@ -389,6 +391,7 @@ void FeedList::setRootNode(Folder* folder)
         d->rootNode->setOpen(true);
         connect(d->rootNode, SIGNAL(signalChildAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
         connect(d->rootNode, SIGNAL(signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::Folder*, Akregator::TreeNode*)));
+        connect( d->rootNode, SIGNAL( signalChanged(Akregator::TreeNode* ) ), this, SLOT( signalChanged(Akregator::TreeNode* ) ) );
     }
 }
 

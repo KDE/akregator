@@ -120,10 +120,15 @@ QList<const TreeNode*> Folder::children() const
         children.append( i );
     return children;
 }
-
+        
 QList<TreeNode*> Folder::children()
 {
     return d->children;
+}
+
+int Folder::indexOf( const TreeNode* node ) const
+{
+    return children().indexOf( node );
 }
 
 void Folder::insertChild(TreeNode* node, TreeNode* after)
@@ -197,19 +202,19 @@ void Folder::prependChild(TreeNode* node)
 
 void Folder::removeChild(TreeNode* node)
 {
-//    kDebug() <<"enter Folder::removeChild() node:" << (node ? node->title() :"null");
-    if (node && d->children.contains(node))
-    {    
-        node->setParent(0);
-        d->children.removeAll(node);
-        disconnectFromNode(node);
-        updateUnreadCount();    
-        emit signalChildRemoved(this, node);
-        d->removedArticlesNotify += node->articles();
-        articlesModified(); // articles were removed, TODO: add guids to a list
-        nodeModified();
-    }
-//    kDebug() <<"leave Folder::removeChild() node:" << (node ? node->title() :"null");
+    if (!node || !d->children.contains(node))
+        return;
+     
+    emit signalAboutToRemoveChild( node );
+    node->setParent(0);
+
+    d->children.removeAll(node);
+    disconnectFromNode(node);
+    updateUnreadCount();    
+    emit signalChildRemoved(this, node);
+    d->removedArticlesNotify += node->articles();
+    articlesModified(); // articles were removed, TODO: add guids to a list
+    nodeModified();
 }
 
 

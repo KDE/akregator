@@ -49,7 +49,8 @@ public:
     enum Column {
         TitleColumn=0,
         UnreadCountColumn=1,
-        TotalCountColumn=2
+        TotalCountColumn=2,
+        ColumnCount=3
     };
 
     explicit SubscriptionListModel( const Akregator::FeedList* feedList, QObject* parent = 0 );
@@ -74,14 +75,19 @@ public:
 
     uint nodeIdForIndex( const QModelIndex& index ) const;
 
+private:
+    QModelIndex indexForNode( const TreeNode* node ) const;
+    
 private Q_SLOTS:
 
     void feedListDestroyed( Akregator::FeedList* feedList );
 
     void subscriptionAdded( Akregator::TreeNode* );
 
-    void subscriptionRemoved( Akregator::TreeNode* );
+    void aboutToRemoveSubscription( Akregator::TreeNode* );
 
+    void subscriptionChanged( Akregator::TreeNode* );
+    
 private:
 
     const Akregator::FeedList* m_feedList;

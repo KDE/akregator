@@ -90,6 +90,8 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
             */
         QList<const TreeNode*> children() const;
         QList<TreeNode*> children();
+
+        int indexOf( const TreeNode* node ) const;
         
         /** inserts @c node as child after child node @c after.
         if @c after is not a child of this group, @c node will be inserted as first child
@@ -138,7 +140,9 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
 
         /** emitted when a child was removed */
         void signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*);
-                    
+        
+        void signalAboutToRemoveChild( Akregator::TreeNode* );
+        
     public slots:
 
         /** Mark articles of children recursively as read. */
