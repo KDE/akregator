@@ -148,7 +148,10 @@ class ArticleListView::ArticleItem : public KListViewItem
         private:
             Article m_article;
             time_t m_pubDate;
-            static QPixmap m_keepFlag;
+            static QPixmap keepFlag() {
+                   static QPixmap s_keepFlag = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
+                   return s_keepFlag;
+	    }
 };
 
 // FIXME: Remove resolveEntities for KDE 4.0, it's now done in the parser
@@ -156,7 +159,7 @@ ArticleListView::ArticleItem::ArticleItem( QListView *parent, const Article& a)
     : KListViewItem( parent, KCharsets::resolveEntities(a.title()), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), true, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
-        setPixmap(0, m_keepFlag);
+        setPixmap(0, keepFlag());
 }
  
 ArticleListView::ArticleItem::~ArticleItem()
@@ -167,8 +170,6 @@ Article& ArticleListView::ArticleItem::article()
 {
     return m_article;
 }
-
-QPixmap ArticleListView::ArticleItem::m_keepFlag = QPixmap(locate("data", "akregator/pics/akregator_flag.png"));
 
 // paint ze peons
 void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
@@ -193,7 +194,7 @@ void ArticleListView::ArticleItem::paintCell ( QPainter * p, const QColorGroup &
 void ArticleListView::ArticleItem::updateItem(const Article& article)
 {
     m_article = article;
-    setPixmap(0, m_article.keep() ? m_keepFlag : QPixmap());
+    setPixmap(0, m_article.keep() ? keepFlag() : QPixmap());
     setText(0, KCharsets::resolveEntities(m_article.title()));
     setText(1, m_article.feed()->title());
     setText(2, KGlobal::locale()->formatDateTime(m_article.pubDate(), true, false));
