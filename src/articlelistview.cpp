@@ -62,6 +62,7 @@ Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : Q
 
 bool SortColorizeProxyModel::filterAcceptsColumn( int col, const QModelIndex& parent ) const 
 {
+    Q_UNUSED(parent);
     return col <= ArticleModel::DateColumn;
 }
 
@@ -75,7 +76,7 @@ bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelInde
         if ( !static_cast<ArticleModel*>( sourceModel() )->rowMatches( source_row, m_matchers[i] ) )
             return false;
     }
-                                                           
+
     return true;
 }
 
@@ -272,6 +273,7 @@ void Akregator::ArticleListView::setupHeader()
     }
 }
 
+#if 0 // unused
 namespace {
     static QString itemIdForIndex( const QModelIndex& index )
     {
@@ -289,6 +291,7 @@ namespace {
         return articles;
     }
 }
+#endif
 
 void Akregator::ArticleListView::keyPressEvent(QKeyEvent* e)
 {
@@ -546,14 +549,18 @@ class Akregator::ArticleListViewOld::ArticleItem : public K3ListViewItem
         private:
             Article m_article;
             time_t m_pubDate;
-            static QPixmap m_keepFlag;
+            static QPixmap keepFlag() {
+                   // keep in mind that a method-static object is ok, a class-static object is not (#139042).
+                   static QPixmap s_keepFlag = QPixmap(KStandardDirs::locate("data", "akregator/pics/akregator_flag.png"));
+                   return s_keepFlag;
+            }
 };
 
 Akregator::ArticleListViewOld::ArticleItem::ArticleItem( Q3ListView *parent, const Article& a)
     : K3ListViewItem( parent, a.title(), a.feed()->title(), KGlobal::locale()->formatDateTime(a.pubDate(), KLocale::ShortDate, false) ), m_article(a), m_pubDate(a.pubDate().toTime_t())
 {
     if (a.keep())
-        setPixmap(0, m_keepFlag);
+        setPixmap(0, keepFlag());
 }
 
 Akregator::ArticleListViewOld::ArticleItem::~ArticleItem()
@@ -564,8 +571,6 @@ Article& Akregator::ArticleListViewOld::ArticleItem::article()
 {
     return m_article;
 }
-
-QPixmap Akregator::ArticleListViewOld::ArticleItem::m_keepFlag = QPixmap(KStandardDirs::locate("data", "akregator/pics/akregator_flag.png"));
 
 // paint ze peons
 void Akregator::ArticleListViewOld::ArticleItem::paintCell ( QPainter * p, const QColorGroup & cg, int column, int width, int align )
@@ -592,7 +597,7 @@ void Akregator::ArticleListViewOld::ArticleItem::paintCell ( QPainter * p, const
 void Akregator::ArticleListViewOld::ArticleItem::updateItem(const Article& article)
 {
     m_article = article;
-    setPixmap(0, m_article.keep() ? m_keepFlag : QPixmap());
+    setPixmap(0, m_article.keep() ? keepFlag() : QPixmap());
     setText(0, KCharsets::resolveEntities(m_article.title()));
     setText(1, m_article.feed()->title());
     setText(2, KGlobal::locale()->formatDateTime(m_article.pubDate(), KLocale::ShortDate, false));
