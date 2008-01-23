@@ -638,7 +638,7 @@ QIcon Feed::icon() const
     if ( d->favicon.isNull() )
         loadFavicon();
 
-    return !d->favicon.isNull() ? d->favicon : KIcon("txt");
+    return !d->favicon.isNull() ? d->favicon : KIcon("text-html");
 }
 
 void Feed::deleteExpiredArticles( Akregator::ArticleDeleteJob* deleteJob )
