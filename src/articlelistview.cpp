@@ -171,8 +171,8 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
     FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( m_proxy );
     proxy2->setSourceModel( m_proxy );
     setModel( proxy2 );
-    header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
-    header()->setStretchLastSection( false );
+//    header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
+//    header()->setStretchLastSection( false );
     //header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
 }
 
