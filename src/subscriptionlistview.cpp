@@ -24,9 +24,15 @@
 
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
+#include "akregatorconfig.h"
 
 #include <QHeaderView>
 #include <QStack>
+
+#include <KMenu>
+#include <KLocale>
+#include <KDebug>
+#include <KConfigGroup>
 
 Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
 {
@@ -56,13 +62,66 @@ void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
         setExpanded( i, i.data( Akregator::SubscriptionListModel::IsOpenRole ).toBool() );
     }
 
-    header()->setResizeMode( TitleColumn, QHeaderView::Stretch );
-    header()->setStretchLastSection( false );
-    header()->setResizeMode( UnreadColumn, QHeaderView::ResizeToContents );
-    header()->setResizeMode( TotalColumn, QHeaderView::ResizeToContents );
+//    header()->setResizeMode( TitleColumn, QHeaderView::Stretch );
+//    header()->setStretchLastSection( false );
+//    header()->setResizeMode( UnreadColumn, QHeaderView::ResizeToContents );
+//    header()->setResizeMode( TotalColumn, QHeaderView::ResizeToContents );
+
+    // To show/hide specific columns, borrowed from KTorrent
+    header()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(header(),SIGNAL(customContextMenuRequested(const QPoint & ) ),this,SLOT(showHeaderMenu( const QPoint& )));
+    m_headerMenu = new KMenu(this);
+    m_headerMenu->addTitle(i18n("Columns"));
+
+    for (int i = 0; i < model->columnCount(); i++)
+    {
+        QString col = model->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
+        QAction* act = m_headerMenu->addAction(col);
+        act->setCheckable(true);
+        act->setChecked(true);
+        m_columnMap[act] = i;
+    }
+
+    connect(m_headerMenu, SIGNAL(triggered(QAction* )), this, SLOT(headerMenuItemTriggered(QAction*)));
 
 }
 
+void Akregator::SubscriptionListView::showHeaderMenu(const QPoint& pos)
+{
+    m_headerMenu->popup(header()->mapToGlobal(pos));
+}
+
+void Akregator::SubscriptionListView::headerMenuItemTriggered(QAction* act)
+{
+        int idx = m_columnMap[act];
+        if (act->isChecked())
+                header()->showSection(idx);
+        else
+                header()->hideSection(idx);
+}
+
+void Akregator::SubscriptionListView::saveHeaderColumnState()
+{
+    KConfigGroup conf(Settings::self()->config(), "SubscriptionList");
+    QByteArray s = header()->saveState();
+    conf.writeEntry("ColumnState",s.toBase64());
+}
+
+void Akregator::SubscriptionListView::loadHeaderColumnState()
+{
+    KConfigGroup conf(Settings::self()->config(), "SubscriptionList");
+    QByteArray s = QByteArray::fromBase64(conf.readEntry("ColumnState",QByteArray()));
+    if (!s.isNull())
+        header()->restoreState(s);
+
+    QMap<QAction*,int>::iterator i = m_columnMap.begin();
+    while (i != m_columnMap.end())
+    {
+        QAction* act = i.key();
+        act->setChecked(!header()->isSectionHidden(i.value()));
+        i++;
+    }  
+}
 void Akregator::SubscriptionListView::slotPrevFeed()
 {
 }

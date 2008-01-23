@@ -26,6 +26,10 @@
 #define AKREGATOR_SUBSCRIPTIONLISTVIEW_H
 
 #include <QTreeView>
+#include <QMap>
+#include <QAction>
+
+class KMenu;
 
 namespace Akregator {
 
@@ -48,6 +52,9 @@ public:
     void setModel( QAbstractItemModel* model );
 
     void triggerUpdate() {}
+    
+    void saveHeaderColumnState();
+    void loadHeaderColumnState();
 
     enum Column {
         TitleColumn=0,
@@ -55,6 +62,10 @@ public:
         TotalColumn=2
     };
 
+private:
+    QMap<QAction*,int> m_columnMap;
+    KMenu *m_headerMenu;
+    
 public Q_SLOTS:
 
     void slotPrevFeed();
@@ -62,6 +73,10 @@ public Q_SLOTS:
 
     void slotPrevUnreadFeed();
     void slotNextUnreadFeed();
+    
+private Q_SLOTS:
+    void showHeaderMenu(const QPoint&);
+    void headerMenuItemTriggered(QAction*);
 };
 
 }
