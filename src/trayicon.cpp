@@ -34,6 +34,7 @@
 #include <kmenu.h>
 #include <kicon.h>
 #include <kiconloader.h>
+#include <KColorScheme>
 
 #include <QPainter>
 #include <QBitmap>
@@ -142,28 +143,26 @@ void TrayIcon::slotSetUnread(int unread)
     }
     else
     {
-        // from KMSystemTray
-        QSize oldSize = m_lightIconImage.size();
+        // adapted from KMSystemTray::updateCount()
+        int oldWidth = m_lightIconImage.size().width();
 
-        if ( oldSize.width() == 0 || oldSize.height() == 0 )
+        if ( oldWidth == 0 )
             return;
 
-        int oldW = oldSize.width();
-        int oldH = oldSize.height();
-
-        QString uStr = QString::number( unread );
+        QString countStr = QString::number( unread );
         QFont f = KGlobalSettings::generalFont();
         f.setBold(true);
+	
         float pointSize = f.pointSizeF();
         QFontMetrics fm(f);
-        int w=fm.width(uStr);
-        if( w > (oldW) )
+        int w = fm.width(countStr);
+        if( w > (oldWidth) )
         {
-            pointSize *= float(oldW) / float(w);
+            pointSize *= float(oldWidth) / float(w);
             f.setPointSizeF(pointSize);
         }
 
-        QPixmap pix(oldW, oldH);
+        /*QPixmap pix(oldW, oldH);
         pix.fill(Qt::white);
         QPainter p(&pix);
         p.setFont(f);
@@ -171,11 +170,15 @@ void TrayIcon::slotSetUnread(int unread)
         p.drawText(pix.rect(), Qt::AlignCenter, uStr);
 
         pix.setMask(pix.createHeuristicMask());
-        QImage img = pix.toImage();
+        QImage img = pix.toImage();*/
 
         // overlay
         QImage overlayImg = m_lightIconImage.copy();
-        KIconEffect::overlay(overlayImg, img);
+	QPainter p(&overlayImg);
+	p.setFont(f);
+	KColorScheme scheme(QPalette::Active, KColorScheme::Window);
+	p.setPen(scheme.foreground(KColorScheme::LinkText).color());
+	p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
 
         setIcon(QPixmap::fromImage(overlayImg));
     }
