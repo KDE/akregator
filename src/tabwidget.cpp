@@ -30,7 +30,7 @@
 #include <QClipboard>
 #include <QHash>
 #include <QString>
-#include <QToolButton>
+#include <QPushButton>
 
 #include <QMenu>
 #include <QStyleOption>
@@ -74,7 +74,7 @@ public:
     QHash<int, Frame*> framesById;
     int currentMaxLength;
     QWidget* currentItem;
-    QToolButton* tabsClose;
+    QPushButton* tabsClose;
     
     uint tabBarWidthForMaxChars(int maxLength);
     void setTitle(const QString &title , QWidget* sender);
@@ -100,7 +100,7 @@ TabWidget::TabWidget(QWidget * parent)
             this, SLOT(slotCloseRequest(QWidget*)));
     setHoverCloseButton(Settings::closeButtonOnTabs());
 
-    d->tabsClose = new QToolButton(this);
+    d->tabsClose = new QPushButton(this);
     d->tabsClose->setShortcut(QKeySequence("Ctrl+W"));
     connect( d->tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveCurrentFrame() ) );
