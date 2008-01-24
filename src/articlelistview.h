@@ -32,6 +32,8 @@
 #include <QSortFilterProxyModel>
 #include <QTreeView>
 
+class KUrl;
+
 class QContextMenuEvent;
 class QPaintEvent;
 class QKeyEvent;
@@ -112,6 +114,12 @@ public:
     void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
 
     void setIsAggregation( bool isAggregation );
+
+protected:
+    void mousePressEvent(QMouseEvent *ev);
+
+signals:
+    void signalMouseButtonPressed(int, const KUrl);
 
 public Q_SLOTS:
 

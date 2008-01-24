@@ -277,8 +277,8 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     void currentArticleIndexChanged( const QModelIndex& index );
     m_actionManager->initArticleListView(m_articleListView);
 
-    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)),
-             this, SLOT(slotMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int)));
+    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, const KUrl&)),
+             this, SLOT(slotMouseButtonPressed(int, const KUrl&)));
 
 
     connect( m_part, SIGNAL(signalSettingsChanged()),
@@ -957,12 +957,10 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
     m_articleViewer->showArticle( article );
 }
 
-void Akregator::MainWidget::slotMouseButtonPressed(int button, const Article& article, const QPoint &, int)
+void Akregator::MainWidget::slotMouseButtonPressed(int button, const KUrl& url)
 {
-    if (article.isNull() || button != Qt::MidButton)
+    if (button != Qt::MidButton)
         return;
-
-    KUrl url = article.link();
 
     if (!url.isValid())
         return;

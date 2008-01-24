@@ -219,7 +219,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
     protected slots:
 
         /** special behaviour in article list view (TODO: move code there?) */
-        void slotMouseButtonPressed(int button, const Akregator::Article& article, const QPoint & pos, int c);
+        void slotMouseButtonPressed(int button, const KUrl&);
 
         /** opens the link of an article in the external browser */
         void slotOpenArticleInBrowser(const Akregator::Article& article);
