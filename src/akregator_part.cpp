@@ -513,13 +513,21 @@ bool Part::mergePart(KParts::Part* part)
     {
         if (!factory())
         {
-            kdDebug() << "Akregator::Part::mergePart(): factory() returns NULL" << endl;
-            return false;
+          if (m_mergedPart)
+            removeChildClient(m_mergedPart);
+          else
+            insertChildClient(part);
         }
-        if (m_mergedPart)
+        else
+        {
+          if (m_mergedPart) {
             factory()->removeClient(m_mergedPart);
-        if (part)
+            if (childClients()->containsRef(m_mergedPart))
+              removeChildClient(m_mergedPart);
+          }
+          if (part)
             factory()->addClient(part);
+        }
 
         m_mergedPart = part;
     }

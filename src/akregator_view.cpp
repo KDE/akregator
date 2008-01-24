@@ -367,18 +367,7 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     }
 
     QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
-    QTimer::singleShot(0, this, SLOT(delayedInit()));
-}
-
-void View::delayedInit()
-{
-    // HACK, FIXME:
-    // for some reason, m_part->factory() is NULL at startup of kontact,
-    // and thus the article viewer GUI can't be merged when creating the view.
-    // Even the delayed init didn't help. Well, we retry every half a second until
-    // it works. This is kind of creative, but a dirty hack nevertheless.
-    if ( !m_part->mergePart(m_articleViewer) )
-        QTimer::singleShot(500, this, SLOT(delayedInit()));
+    m_part->mergePart(m_articleViewer);
 }
 
 void View::slotSettingsChanged()
@@ -694,8 +683,6 @@ void View::slotFrameChanged(Frame *f)
     emit setWindowCaption(f->caption());
     emit setProgress(f->progress());
     emit setStatusBarText(f->statusText());
-
-    m_part->mergePart(m_articleViewer);
 
     if (f->part() == m_part)
         m_part->mergePart(m_articleViewer);
