@@ -627,8 +627,8 @@ void ArticleViewer::displayAboutPage()
             i18nc("%1: Akregator version; %2: homepage URL; "
             "--- end of comment ---",
     "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
-            "<p>Akregator is an RSS feed aggregator for the K Desktop Environment. "
-            "Feed aggregators provide a convenient way to browse different kinds of "
+            "<p>Akregator is an feed reader for the K Desktop Environment. "
+            "Feed readers provide a convenient way to browse different kinds of "
             "content, including news, blogs, and other content from online sites. "
             "Instead of checking all your favorite web sites manually for updates, "
             "Akregator collects the content for you.</p>"

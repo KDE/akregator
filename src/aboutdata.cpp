@@ -32,7 +32,7 @@
 namespace Akregator {
 
 AboutData::AboutData()
-    : KAboutData("akregator", 0, ki18n("Akregator"), AKREGATOR_VERSION, ki18n("A KDE Feed Aggregator"),
+    : KAboutData("akregator", 0, ki18n("Akregator"), AKREGATOR_VERSION, ki18n("A KDE Feed Reader"),
                  License_GPL, ki18n("(C) 2004, 2005 Akregator developers"), KLocalizedString(),
                      "http://akregator.kde.org/")
 {
