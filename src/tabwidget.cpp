@@ -204,7 +204,6 @@ void TabWidget::slotRemoveFrame(int frameId)
     Frame* f = d->framesById[frameId]; 
     d->frames.remove(f);
     d->framesById.remove(frameId);
-    slotPreviousTab();
     removeTab(indexOf(f));
     if (d->currentFrame())
       d->setTitle( d->currentFrame()->title(), currentWidget() );
