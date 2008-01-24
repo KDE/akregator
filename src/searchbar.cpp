@@ -85,7 +85,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     QIcon iconAll = KIconLoader::global()->loadIcon("system-run", KIconLoader::Small);
     QIcon iconNew(KStandardDirs::locate("data", "akregator/pics/kmmsgnew.png"));
     QIcon iconUnread(KStandardDirs::locate("data", "akregator/pics/kmmsgunseen.png"));
-    const KIcon iconKeep( "flag" );
+    const KIcon iconKeep( "mail-mark-important" );
     
     d->searchCombo->addItem(iconAll, i18n("All Articles"));
     d->searchCombo->addItem(iconUnread, i18n("Unread"));

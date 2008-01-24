@@ -56,7 +56,7 @@ bool FilterDeletedProxyModel::filterAcceptsRow( int source_row, const QModelInde
     return !sourceModel()->index( source_row, 0, source_parent ).data( ArticleModel::IsDeletedRole ).toBool();
 }
 
-Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( KIcon( "flag" ) )
+Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( KIcon( "mail-mark-important" ) )
 {
 }
 
