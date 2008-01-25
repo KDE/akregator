@@ -76,7 +76,7 @@ private:
 private Q_SLOTS:
 
     void selectedSubscriptionChanged( const QModelIndex& index );
-    void currentArticleIndexChanged( const QModelIndex& index, const QModelIndex& index );
+    void currentArticleIndexChanged( const QModelIndex& index, const QModelIndex& prev );
     void articleIndexDoubleClicked( const QModelIndex& index );
     void subscriptionContextMenuRequested( const QPoint& point );
     void articleHeadersAvailable();
