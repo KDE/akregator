@@ -29,7 +29,7 @@
 #include "treenode.h"
 #include "feed.h"
 
-
+#include <KLocale>
 
 #include <cassert>
 #include <cmath>
@@ -78,6 +78,30 @@ int Akregator::ArticleModel::columnCount( const QModelIndex& parent ) const
 int Akregator::ArticleModel::rowCount( const QModelIndex& parent ) const
 {
     return parent.isValid() ? 0 : d->articles.count();
+}
+
+QVariant Akregator::ArticleModel::headerData( int section, Qt::Orientation, int role ) const
+{
+    if ( role != Qt::DisplayRole )
+        return QVariant();
+
+    switch (section)
+    {
+        case ItemTitleColumn:
+            return i18n("Article title");
+        case FeedTitleColumn:
+            return i18n("Feed title");
+        case DateColumn:
+            return i18n("Date");
+	case AuthorColumn:
+	    return i18n("Author");
+	case DescriptionColumn:
+	    return i18n("Description");
+	case ContentColumn:
+	    return i18n("Content");
+    }
+
+    return QVariant();
 }
 
 QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) const

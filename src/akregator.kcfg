@@ -192,7 +192,15 @@
    <default>false</default>
   </entry>
  </group>
- <group name="Advanced" >
+<group name="Columns" >
+  <entry key="Feedlist Header States" type="String" >
+   <default></default>
+  </entry>
+  <entry key="Articlelist Header States" type="String" >
+   <default></default>
+  </entry>
+</group>
+<group name="Advanced" >
   <entry key="Archive Backend" type="String" >
    <label>Archive Backend</label>
    <default>metakit</default>

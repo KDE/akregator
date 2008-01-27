@@ -43,6 +43,11 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setContextMenuPolicy( Qt::CustomContextMenu );
 }
 
+Akregator::SubscriptionListView::~SubscriptionListView()
+{
+    saveHeaderSettings();
+}
+
 void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
 {
     QTreeView::setModel( model );
@@ -81,9 +86,10 @@ void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
         act->setChecked(true);
         m_columnMap[act] = i;
     }
-
+    
     connect(m_headerMenu, SIGNAL(triggered(QAction* )), this, SLOT(headerMenuItemTriggered(QAction*)));
 
+    loadHeaderSettings();
 }
 
 void Akregator::SubscriptionListView::showHeaderMenu(const QPoint& pos)
@@ -95,22 +101,20 @@ void Akregator::SubscriptionListView::headerMenuItemTriggered(QAction* act)
 {
         int idx = m_columnMap[act];
         if (act->isChecked())
-                header()->showSection(idx);
+            header()->showSection(idx);
         else
-                header()->hideSection(idx);
+            header()->hideSection(idx);
 }
 
-void Akregator::SubscriptionListView::saveHeaderColumnState()
+void Akregator::SubscriptionListView::saveHeaderSettings()
 {
-    KConfigGroup conf(Settings::self()->config(), "SubscriptionList");
     QByteArray s = header()->saveState();
-    conf.writeEntry("ColumnState",s.toBase64());
+    Settings::setFeedlistHeaderStates(s.toBase64());
 }
 
-void Akregator::SubscriptionListView::loadHeaderColumnState()
+void Akregator::SubscriptionListView::loadHeaderSettings()
 {
-    KConfigGroup conf(Settings::self()->config(), "SubscriptionList");
-    QByteArray s = QByteArray::fromBase64(conf.readEntry("ColumnState",QByteArray()));
+    QByteArray s = QByteArray::fromBase64(Settings::feedlistHeaderStates().toAscii());
     if (!s.isNull())
         header()->restoreState(s);
 

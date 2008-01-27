@@ -75,6 +75,7 @@ public:
     //impl
     int rowCount( const QModelIndex& parent = QModelIndex() ) const;
 
+    QVariant headerData( int section, Qt::Orientation, int role ) const;
     //impl
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const;
 

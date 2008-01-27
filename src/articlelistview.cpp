@@ -34,6 +34,7 @@
 #include <KIcon>
 #include <KLocale>
 #include <KUrl>
+#include <KMenu>
 
 #include <QApplication>
 #include <QContextMenuEvent>
@@ -175,6 +176,59 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
 //    header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
 //    header()->setStretchLastSection( false );
     //header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
+    
+    header()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(header(),SIGNAL(customContextMenuRequested(const QPoint & ) ),this,SLOT(showHeaderMenu( const QPoint& )));
+    m_headerMenu = new KMenu(this);
+    m_headerMenu->addTitle(i18n("Columns"));
+
+    for (int i = 0; i < model->columnCount(); i++)
+    {
+        QString col = model->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
+        QAction* act = m_headerMenu->addAction(col);
+        act->setCheckable(true);
+        act->setChecked(true);
+        m_columnMap[act] = i;
+    }
+    
+    connect(m_headerMenu, SIGNAL(triggered(QAction* )), this, SLOT(headerMenuItemTriggered(QAction*)));
+
+    loadHeaderSettings();
+}
+
+void Akregator::ArticleListView::showHeaderMenu(const QPoint& pos)
+{
+    m_headerMenu->popup(header()->mapToGlobal(pos));
+}
+
+void Akregator::ArticleListView::headerMenuItemTriggered(QAction* act)
+{
+        int idx = m_columnMap[act];
+        if (act->isChecked())
+            header()->showSection(idx);
+        else
+            header()->hideSection(idx);
+}
+
+void Akregator::ArticleListView::saveHeaderSettings()
+{
+    QByteArray s = header()->saveState();
+    Settings::setArticlelistHeaderStates(s.toBase64());
+}
+
+void Akregator::ArticleListView::loadHeaderSettings()
+{
+    QByteArray s = QByteArray::fromBase64(Settings::articlelistHeaderStates().toAscii());
+    if (!s.isNull())
+        header()->restoreState(s);
+
+    QMap<QAction*,int>::iterator i = m_columnMap.begin();
+    while (i != m_columnMap.end())
+    {
+        QAction* act = i.key();
+        act->setChecked(!header()->isSectionHidden(i.value()));
+        i++;
+    }  
 }
 
 QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
@@ -210,11 +264,12 @@ void Akregator::ArticleListView::setFeedMode()
 
 Akregator::ArticleListView::~ArticleListView()
 {
-    Settings::setTitleWidth( columnWidth(ItemTitleColumn) );
+    saveHeaderSettings();
+    /*Settings::setTitleWidth( columnWidth(ItemTitleColumn) );
     Settings::setFeedWidth( columnWidth(FeedTitleColumn) );
     Settings::setSortColumn( header()->sortIndicatorSection() );
     Settings::setSortAscending( header()->sortIndicatorOrder() );
-    Settings::self()->writeConfig();
+    Settings::self()->writeConfig();*/
 }
 
 void Akregator::ArticleListView::setIsAggregation( bool aggregation )
@@ -246,7 +301,8 @@ Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(paren
     
     //connect(this, SIGNAL(mouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)));
 
-    setupHeader();
+    // disabled to test whether saving the header states is enough
+    //setupHeader();
 }
 
 void Akregator::ArticleListView::mousePressEvent(QMouseEvent *ev)

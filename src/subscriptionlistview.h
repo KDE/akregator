@@ -39,7 +39,7 @@ class SubscriptionListView : public QTreeView {
 Q_OBJECT
 public:
     explicit SubscriptionListView( QWidget* parent = 0 );
-
+    ~SubscriptionListView();
 // the following is all transitional, for easier porting from the item-based views
 
     Akregator::TreeNode* findNodeByTitle( const QString& title ) const;
@@ -52,15 +52,16 @@ public:
     void setModel( QAbstractItemModel* model );
 
     void triggerUpdate() {}
-    
-    void saveHeaderColumnState();
-    void loadHeaderColumnState();
 
     enum Column {
         TitleColumn=0,
         UnreadColumn=1,
         TotalColumn=2
     };
+
+private:
+    void saveHeaderSettings();
+    void loadHeaderSettings();
 
 private:
     QMap<QAction*,int> m_columnMap;

@@ -33,6 +33,7 @@
 #include <QTreeView>
 
 class KUrl;
+class KMenu;
 
 class QContextMenuEvent;
 class QPaintEvent;
@@ -114,7 +115,11 @@ public:
     void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
 
     void setIsAggregation( bool isAggregation );
-
+    
+private:
+    void saveHeaderSettings();
+    void loadHeaderSettings();
+    
 protected:
     void mousePressEvent(QMouseEvent *ev);
 
@@ -133,6 +138,10 @@ public Q_SLOTS:
 
     void slotNextUnreadArticle();
 
+private Q_SLOTS:
+    void showHeaderMenu(const QPoint&);
+    void headerMenuItemTriggered(QAction*);
+    
 private:
 
     //reimpl
@@ -158,6 +167,9 @@ private:
     ColumnMode m_columnMode;
     bool m_isAggregation;
     QPointer<SortColorizeProxyModel> m_proxy;
+    
+    KMenu *m_headerMenu;
+    QMap<QAction*,int> m_columnMap;
 };
 
 #if 0
