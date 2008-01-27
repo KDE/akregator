@@ -172,7 +172,12 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
 
     initFonts();
 
-    Syndication::FileRetriever::setUserAgent(QString("Akregator/%1; syndication").arg(AKREGATOR_VERSION));
+    QString useragent = QString( "Akregator/%1; syndication" ).arg( AKREGATOR_VERSION );
+    
+    if( !Settings::customUserAgent().isEmpty() )
+        useragent = Settings::customUserAgent();
+        
+    Syndication::FileRetriever::setUserAgent( useragent );
 }
 
 void Part::loadPlugins()

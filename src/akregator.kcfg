@@ -102,6 +102,10 @@
    <whatsthis>Use the KDE-wide HTML cache settings when downloading feeds, to avoid unnecessary traffic. Disable only when necessary.</whatsthis>
    <default>true</default>
   </entry>
+  <entry key="Custom UserAgent" type="String" >
+   <whatsthis>This option allows user to specify custom user-agent string instead of using the default one. This is here because some proxies may interrupt the connection because of having "gator" in the name.</whatsthis>
+   <default></default>
+  </entry>
  </group>
  <group name="General" >
   <entry key="Fetch On Startup" type="Bool" >
