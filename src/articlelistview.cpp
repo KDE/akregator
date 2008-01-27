@@ -100,11 +100,11 @@ QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orienta
     switch (section)
     {
         case ItemTitleColumn:
-            return i18n("Article");
+            return i18n( "Article" );
         case FeedTitleColumn:
-            return i18n("Feed");
+            return i18n( "Feed" );
         case DateColumn:
-            return i18n("Date");
+            return i18n( "Date" );
     }
 
     return QVariant();
@@ -174,21 +174,21 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
     proxy2->setSourceModel( m_proxy );
     setModel( proxy2 );
     
-    header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(),SIGNAL(customContextMenuRequested(const QPoint & ) ),this,SLOT(showHeaderMenu( const QPoint& )));
-    m_headerMenu = new KMenu(this);
-    m_headerMenu->addTitle(i18n("Columns"));
+    header()->setContextMenuPolicy( Qt::CustomContextMenu );
+    connect( header(), SIGNAL( customContextMenuRequested(const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
+    m_headerMenu = new KMenu( this );
+    m_headerMenu->addTitle( i18n( "Columns" ) );
 
     for (int i = 0; i < model->columnCount(); i++)
     {
-        QString col = model->headerData(i,Qt::Horizontal,Qt::DisplayRole).toString();
-        QAction* act = m_headerMenu->addAction(col);
-        act->setCheckable(true);
-        act->setChecked(true);
+        QString col = model->headerData( i, Qt::Horizontal, Qt::DisplayRole ).toString();
+        QAction* act = m_headerMenu->addAction( col );
+        act->setCheckable( true );
+        act->setChecked( true );
         m_columnMap[act] = i;
     }
     
-    connect(m_headerMenu, SIGNAL(triggered(QAction* )), this, SLOT(headerMenuItemTriggered(QAction*)));
+    connect( m_headerMenu, SIGNAL( triggered( QAction* ) ), this, SLOT( headerMenuItemTriggered( QAction* ) ) );
 
     // this has to be called here, so that the column states will be used.
     loadHeaderSettings();
@@ -196,42 +196,42 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
 
 void Akregator::ArticleListView::showHeaderMenu(const QPoint& pos)
 {
-    m_headerMenu->popup(header()->mapToGlobal(pos));
+    m_headerMenu->popup( header()->mapToGlobal( pos ) );
 }
 
 void Akregator::ArticleListView::headerMenuItemTriggered(QAction* act)
 {
         int idx = m_columnMap[act];
-        if (act->isChecked())
-            header()->showSection(idx);
+        if ( act->isChecked() )
+            header()->showSection( idx );
         else
-            header()->hideSection(idx);
+            header()->hideSection( idx );
 }
 
 void Akregator::ArticleListView::saveHeaderSettings()
 {
     QByteArray s = header()->saveState();
-    Settings::setArticlelistHeaderStates(s.toBase64());
+    Settings::setArticlelistHeaderStates( s.toBase64() );
     
-    Settings::setArticlelistSortColumn(header()->sortIndicatorSection());
-    Settings::setArticlelistSortOrder(header()->sortIndicatorOrder() == Qt::AscendingOrder ? 1 : 0);
+    Settings::setArticlelistSortColumn( header()->sortIndicatorSection() );
+    Settings::setArticlelistSortOrder( header()->sortIndicatorOrder() == Qt::AscendingOrder ? 1 : 0 );
 }
 
 void Akregator::ArticleListView::loadHeaderSettings()
 {
-    QByteArray s = QByteArray::fromBase64(Settings::articlelistHeaderStates().toAscii());
-    if (!s.isNull())
-        header()->restoreState(s);
+    QByteArray s = QByteArray::fromBase64( Settings::articlelistHeaderStates().toAscii() );
+    if ( !s.isNull() )
+        header()->restoreState( s );
 
     QMap<QAction*,int>::iterator i = m_columnMap.begin();
-    while (i != m_columnMap.end())
+    while ( i != m_columnMap.end() )
     {
         QAction* act = i.key();
-        act->setChecked(!header()->isSectionHidden(i.value()));
+        act->setChecked( !header()->isSectionHidden( i.value() ) );
         i++;
     }
     
-    header()->setSortIndicator(Settings::articlelistSortColumn(), (Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder));
+    header()->setSortIndicator( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
 }
 
 QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
@@ -296,16 +296,16 @@ Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(paren
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));    
 }
 
-void Akregator::ArticleListView::mousePressEvent(QMouseEvent *ev)
+void Akregator::ArticleListView::mousePressEvent( QMouseEvent *ev )
 {
     // let's push the event, so we can use currentIndex() to get the newly selected article..
-    QTreeView::mousePressEvent(ev);
+    QTreeView::mousePressEvent( ev );
 	
-    if(ev->button() == Qt::MidButton) {    
-        QModelIndex idx(currentIndex());
-        const KUrl url = currentIndex().data(ArticleModel::LinkRole).value<KUrl>();
+    if( ev->button() == Qt::MidButton ) {    
+        QModelIndex idx( currentIndex() );
+        const KUrl url = currentIndex().data( ArticleModel::LinkRole ).value<KUrl>();
 
-        emit signalMouseButtonPressed(ev->button(), url);
+        emit signalMouseButtonPressed( ev->button(), url );
     }
 }
 

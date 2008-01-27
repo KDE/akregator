@@ -76,8 +76,8 @@ public Q_SLOTS:
     void slotNextUnreadFeed();
     
 private Q_SLOTS:
-    void showHeaderMenu(const QPoint&);
-    void headerMenuItemTriggered(QAction*);
+    void showHeaderMenu( const QPoint& pos );
+    void headerMenuItemTriggered( QAction* action );
 };
 
 }

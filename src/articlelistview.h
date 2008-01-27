@@ -121,10 +121,10 @@ private:
     void loadHeaderSettings();
     
 protected:
-    void mousePressEvent(QMouseEvent *ev);
+    void mousePressEvent( QMouseEvent *ev );
 
 signals:
-    void signalMouseButtonPressed(int, const KUrl);
+    void signalMouseButtonPressed( int, const KUrl );
 
 public Q_SLOTS:
 
@@ -139,8 +139,8 @@ public Q_SLOTS:
     void slotNextUnreadArticle();
 
 private Q_SLOTS:
-    void showHeaderMenu(const QPoint&);
-    void headerMenuItemTriggered(QAction*);
+    void showHeaderMenu( const QPoint& pos );
+    void headerMenuItemTriggered( QAction* action );
     
 private:
 
