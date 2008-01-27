@@ -1103,7 +1103,7 @@ void Akregator::MainWidget::slotArticleDelete()
             msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
     }
 
-    if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Article"), KStandardGuiItem::del()) == KMessageBox::Continue)
+    if ( KMessageBox::warningContinueCancel( 0, msg, i18n( "Delete Article" ), KStandardGuiItem::del(), KStandardGuiItem::cancel(), "Disable delete article confirmation" ) == KMessageBox::Continue )
     {
         TreeNode* const selected = m_selectionController->selectedSubscription();
         if ( selected )
