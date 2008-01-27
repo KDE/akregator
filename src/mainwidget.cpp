@@ -372,6 +372,8 @@ void Akregator::MainWidget::slotOnShutdown()
     ProgressManager::self()->setFeedList(0);
 
     delete m_feedList;
+    delete m_feedListView; // call delete here, so that the header settings will get saved
+    delete m_articleListView; // same for this one
 
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
@@ -383,6 +385,8 @@ void Akregator::MainWidget::slotOnShutdown()
     delete m_mainFrame;
     delete m_editNodePropertiesVisitor;
     delete m_deleteNodeVisitor;
+
+    Settings::self()->writeConfig();
 }
 
 void Akregator::MainWidget::saveSettings()
