@@ -198,6 +198,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         /** returns the next node in the tree.
         Calling next() unless it returns 0 iterates through the tree in pre-order
         */
+        const TreeNode* next() const;
         TreeNode* next();
 
         //impl

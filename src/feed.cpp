@@ -751,6 +751,23 @@ TreeNode* Feed::next()
     return 0;
 }
 
+
+const TreeNode* Feed::next() const
+{
+    if ( nextSibling() )
+        return nextSibling();
+
+    const Folder* p = parent();
+    while (p)
+    {
+        if ( p->nextSibling() )
+            return p->nextSibling();
+        else
+            p = p->parent();
+    }
+    return 0;
+}
+
 void Feed::doArticleNotification()
 {
     if (!d->addedArticlesNotify.isEmpty())

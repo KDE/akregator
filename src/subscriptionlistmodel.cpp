@@ -23,24 +23,39 @@
 */
 
 #include "subscriptionlistmodel.h"
+#include "feed.h"
 #include "feedlist.h"
 #include "folder.h"
+#include "subscriptionlistjobs.h"
 #include "treenode.h"
 
-#include <KLocale>
+#include <KDebug>
+#include <KLocalizedString>
+
+#include <QByteArray>
+#include <QDataStream>
 #include <QFont>
 #include <QIcon>
+#include <QList>
+#include <QMimeData>
+#include <QUrl>
+#include <QVariant>
+
+#include <cassert>
 
 using namespace Akregator;
 
+#define AKREGATOR_TREENODE_MIMETYPE "akregator/treenode-id"
+
 namespace {
+
     static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const Akregator::FeedList* feedList )
     {
         return ( !index.isValid() || !feedList ) ? 0 : feedList->findByID( index.internalId() );
     }
 }
 
-Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedList* feedList, QObject* parent ) : QAbstractItemModel( parent ), m_feedList( feedList )
+Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedList* feedList, QObject* parent ) : QAbstractItemModel( parent ), m_feedList( feedList ), m_beganRemoval( false )
 {
     if ( feedList )
     {
@@ -50,6 +65,8 @@ Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedLi
                  this, SLOT( subscriptionAdded( Akregator::TreeNode* ) ) );
         connect( feedList, SIGNAL( signalAboutToRemoveNode( Akregator::TreeNode* ) ),
                  this, SLOT( aboutToRemoveSubscription( Akregator::TreeNode* ) ) );
+        connect( feedList, SIGNAL( signalNodeRemoved( Akregator::TreeNode* ) ),
+                   this, SLOT( subscriptionRemoved( Akregator::TreeNode* ) ) );
         connect( feedList, SIGNAL( signalNodeChanged( Akregator::TreeNode* ) ),
                  this, SLOT( subscriptionChanged( Akregator::TreeNode* ) ) );
     }
@@ -126,6 +143,11 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         {
             return node->isAggregation();
         }
+        case LinkRole: 
+        {
+        	const Feed* const feed = qobject_cast<const Feed* const>( node );
+        	return feed ? feed->xmlUrl() : QVariant();
+        }
         case IsOpenRole:
         {
             if ( !node->isGroup() )
@@ -164,7 +186,7 @@ QModelIndex Akregator::SubscriptionListModel::parent( const QModelIndex& index )
     if ( !node || !node->parent() )
         return QModelIndex();
 
-    Akregator::Folder* parent = node->parent();
+    const Akregator::Folder* parent = node->parent();
 
     if ( !parent->parent() )
         return createIndex( 0, 0, parent->id() );
@@ -181,11 +203,11 @@ QModelIndex Akregator::SubscriptionListModel::parent( const QModelIndex& index )
 QModelIndex Akregator::SubscriptionListModel::index( int row, int column, const QModelIndex& parent ) const
 {
     if ( !parent.isValid() )
-        return createIndex( row, column, ( row == 0 && m_feedList ) ? m_feedList->rootNode()->id() : -1 );
+        return ( row == 0 && m_feedList ) ? createIndex( row, column , m_feedList->rootNode()->id() ) : QModelIndex();
 
     const Akregator::TreeNode* const parentNode = nodeForIndex( parent, m_feedList );
-    const int id = ( !parentNode || row > parentNode->children().count() ) ? -1 : parentNode->children().at( row )->id();
-    return createIndex( row, column, id );
+    const Akregator::TreeNode* const childNode = parentNode->childAt( row );
+    return  childNode ? createIndex( row, column, childNode->id() ) : QModelIndex();
 }
 
 
@@ -213,12 +235,29 @@ void Akregator::SubscriptionListModel::subscriptionAdded( Akregator::TreeNode* s
     const Folder* const parent = subscription->parent();
     const int row = parent ? parent->indexOf( subscription ) : 0;
     Q_ASSERT( row >= 0 );
-    insertRow( row, indexForNode( parent ) );
+    beginInsertRows( indexForNode( parent ), row, row );
+    endInsertRows();
 }
 
 void Akregator::SubscriptionListModel::aboutToRemoveSubscription( Akregator::TreeNode* subscription )
 {
-    //TODO
+    kDebug() << subscription->id() << endl;
+    const Folder* const parent = subscription->parent();
+    const int row = parent ? parent->indexOf( subscription ) : -1;
+    if ( row < 0 )
+        return;
+    beginRemoveRows( indexForNode( parent ), row, row );
+    m_beganRemoval = true;
+}
+
+void Akregator::SubscriptionListModel::subscriptionRemoved( TreeNode* subscription )
+{
+    kDebug() << subscription->id() << endl;
+    if ( m_beganRemoval )
+    {
+        m_beganRemoval = false;
+        endRemoveRows();
+    }
 }
 
 void Akregator::SubscriptionListModel::subscriptionChanged( TreeNode* node )
@@ -266,6 +305,119 @@ void Akregator::FolderExpansionHandler::setModel( Akregator::SubscriptionListMod
 void Akregator::FolderExpansionHandler::setFeedList( Akregator::FeedList* feedList )
 {
     m_feedList = feedList;
+}
+
+Qt::ItemFlags SubscriptionListModel::flags( const QModelIndex& idx ) const
+{
+    const Qt::ItemFlags flags = QAbstractItemModel::flags( idx );
+    if ( !idx.isValid() | idx.column() != TitleColumn )
+        return flags;
+    if ( !idx.parent().isValid() ) // the root folder is neither draggable nor editable
+        return flags | Qt::ItemIsDropEnabled;
+    return flags | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEditable;
+}
+
+QStringList SubscriptionListModel::mimeTypes() const
+{
+    QStringList types;
+    types << "text/uri-list" << AKREGATOR_TREENODE_MIMETYPE;
+    return types;
+}
+
+QMimeData* SubscriptionListModel::mimeData( const QModelIndexList& indexes ) const
+{
+    QMimeData* mimeData = new QMimeData;
+
+    QList<QUrl> urls;
+    Q_FOREACH ( const QModelIndex& i, indexes )
+    {
+        const QUrl url = i.data( LinkRole ).toString();
+        if ( !url.isEmpty() )
+            urls << url;
+    }
+
+    mimeData->setUrls( urls );
+
+    QByteArray idList;
+    QDataStream idStream( &idList, QIODevice::WriteOnly );
+    Q_FOREACH ( const QModelIndex& i, indexes )
+        if ( i.isValid() )
+            idStream << i.data( SubscriptionIdRole ).toInt();
+
+    mimeData->setData( AKREGATOR_TREENODE_MIMETYPE, idList );
+
+    return mimeData;
+}
+
+
+bool SubscriptionListModel::setData( const QModelIndex& idx, const QVariant& value, int role )
+{
+    if ( !idx.isValid() || idx.column() != TitleColumn || role != Qt::EditRole )
+        return false;
+    const TreeNode* const node = nodeForIndex( idx, m_feedList );
+    if ( !node )
+        return false;
+    RenameSubscriptionJob* job = new RenameSubscriptionJob( this );
+    job->setSubscriptionId( node->id() );
+    job->setName( value.toString() );
+    job->start();
+    return true;
+}
+
+bool SubscriptionListModel::dropMimeData( const QMimeData* data,
+                                          Qt::DropAction action,
+                                          int row,
+                                          int column,
+                                          const QModelIndex& parent )
+{
+    if ( action == Qt::IgnoreAction )
+        return true;
+    
+    //if ( column != TitleColumn )
+    //    return false;
+    
+    if ( data->hasFormat( AKREGATOR_TREENODE_MIMETYPE ) )
+    {
+        const TreeNode* const droppedOnNode = qobject_cast<const TreeNode*>( nodeForIndex( parent, m_feedList ) );
+
+        const Folder* const destFolder = droppedOnNode->isGroup() ? qobject_cast<const Folder*>( droppedOnNode ) : droppedOnNode->parent();
+        if ( !destFolder )
+            return false;
+        
+        QByteArray idData = data->data( AKREGATOR_TREENODE_MIMETYPE );
+        QList<int> ids;
+        QDataStream stream( &idData, QIODevice::ReadOnly );
+        while ( !stream.atEnd() )
+        {
+            int id;
+            stream >> id;
+            ids << id;
+        }
+        
+        //don't drop nodes into their own subtree
+        Q_FOREACH ( const int id, ids )
+        {
+            const Folder* const asFolder = qobject_cast<const Folder*>( m_feedList->findByID( id ) );
+            if ( asFolder && asFolder->subtreeContains( destFolder ) )
+                return false;
+        }
+        
+        const TreeNode* const after = droppedOnNode->isGroup() ? destFolder->childAt( row ) : droppedOnNode;
+       
+        Q_FOREACH ( const int id, ids )
+        {
+            const TreeNode* const node = m_feedList->findByID( id );
+            if ( !node )
+                continue;
+            MoveSubscriptionJob* job = new MoveSubscriptionJob( this );
+            job->setSubscriptionId( node->id() );
+            job->setDestination( destFolder->id(), after ? after->id() : -1 );
+            job->start();
+        }
+        return true;
+    }
+
+    return false;
 }
 
 #include "subscriptionlistmodel.moc"

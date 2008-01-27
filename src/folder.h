@@ -88,10 +88,22 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         /** returns the (direct) children of this node.
         @return a list of pointers to the child nodes
             */
+        
+        //reimpl
         QList<const TreeNode*> children() const;
+       
+        //reimpl
         QList<TreeNode*> children();
 
         int indexOf( const TreeNode* node ) const;
+        
+        //reimpl
+        TreeNode* childAt( int pos );
+        
+        //reimpl
+        const TreeNode* childAt( int pos ) const;
+
+        
         
         /** inserts @c node as child after child node @c after.
         if @c after is not a child of this group, @c node will be inserted as first child
@@ -113,9 +125,13 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
 
         /** returns the first child of the group, 0 if none exist */
         TreeNode* firstChild();
+        const TreeNode* firstChild() const;
+
         
         /** returns the last child of the group, 0 if none exist */
         TreeNode* lastChild();
+        const TreeNode* lastChild() const;
+
         
         /** returns whether the feed group is opened or not..
         Use only in \ref FolderItem. */
@@ -128,12 +144,18 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         Calling next() unless it returns 0 iterates through the tree in pre-order
             */
         TreeNode* next();
+        const TreeNode* next() const;
         
         QIcon icon() const;
 
         /** Delete expired articles recursively. */
         void deleteExpiredArticles( Akregator::ArticleDeleteJob* job );
 
+        /* returns whether @p node is among the direct or indirect children of this
+         * folder
+         */
+        bool subtreeContains( const Akregator::TreeNode* node ) const;
+        
     signals:
         /** emitted when a child was added */
         void signalChildAdded(Akregator::TreeNode*);

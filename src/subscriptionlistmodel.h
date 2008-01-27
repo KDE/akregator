@@ -31,6 +31,7 @@
 namespace Akregator {
 
 class FeedList;
+class Folder;
 class TreeNode;
 
 class AKREGATORPART_EXPORT SubscriptionListModel : public QAbstractItemModel
@@ -43,6 +44,8 @@ public:
         IsFetchableRole,
         IsGroupRole,
         IsAggregationRole,
+        LinkRole,
+        IdRole,
         IsOpenRole
     };
 
@@ -73,6 +76,21 @@ public:
     //reimpl
     QVariant headerData( int section, Qt::Orientation orientation, int role=Qt::DisplayRole ) const;
 
+    //reimpl 
+    Qt::ItemFlags flags( const QModelIndex& index ) const;
+    
+    //reimpl
+    QStringList mimeTypes() const;
+    
+    //reimpl
+    QMimeData* mimeData( const QModelIndexList& indexes ) const;
+    
+    //reimpl
+    bool dropMimeData( const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent );
+    
+    //reimpl
+    bool setData( const QModelIndex& idx, const QVariant& value, int role = Qt::EditRole );
+    
     uint nodeIdForIndex( const QModelIndex& index ) const;
 
 private:
@@ -86,11 +104,14 @@ private Q_SLOTS:
 
     void aboutToRemoveSubscription( Akregator::TreeNode* );
 
+    void subscriptionRemoved( Akregator::TreeNode* );
+
     void subscriptionChanged( Akregator::TreeNode* );
     
 private:
 
-    const Akregator::FeedList* m_feedList;
+    const FeedList* m_feedList;
+    bool m_beganRemoval;
 };
 
 }

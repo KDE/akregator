@@ -54,6 +54,7 @@ set(akregatorpart_PART_SRCS
    pluginmanager.cpp
    selectioncontroller.cpp
    subscriptionlistmodel.cpp
+   subscriptionlistjobs.cpp
    utils.cpp
    searchbar.cpp 
    browserrun.cpp 

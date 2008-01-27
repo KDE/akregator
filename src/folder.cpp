@@ -109,10 +109,10 @@ QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
 
     Q_FOREACH ( const Akregator::TreeNode* i, d->children )
         el.appendChild( i->toOPML(el, document) );
-        
     return el;
 }
 
+        
 QList<const TreeNode*> Folder::children() const
 {
     QList<const TreeNode*> children;
@@ -207,7 +207,6 @@ void Folder::removeChild(TreeNode* node)
      
     emit signalAboutToRemoveChild( node );
     node->setParent(0);
-
     d->children.removeAll(node);
     disconnectFromNode(node);
     updateUnreadCount();    
@@ -220,14 +219,24 @@ void Folder::removeChild(TreeNode* node)
 
 TreeNode* Folder::firstChild()
 {
-    return d->children.isEmpty() ? 0 : d->children.first();
+    return d->children.isEmpty() ? 0 : children().first();
+}            
+
+const TreeNode* Folder::firstChild() const
+{
+    return d->children.isEmpty() ? 0 : children().first();
 }            
 
 TreeNode* Folder::lastChild()
 {
-    return d->children.isEmpty() ? 0 : d->children.last();
+    return d->children.isEmpty() ? 0 : children().last();
 }
-            
+
+const TreeNode* Folder::lastChild() const
+{
+    return d->children.isEmpty() ? 0 : children().last();
+}
+
 bool Folder::isOpen() const
 {
     return d->open;
@@ -288,6 +297,21 @@ void Folder::deleteExpiredArticles( Akregator::ArticleDeleteJob* job )
     setNotificationMode(true);
 }
 
+bool Folder::subtreeContains( const TreeNode* node ) const
+{
+    if ( node == this )
+        return false;
+    const Folder* parent = node ? node->parent() : 0;
+    while ( parent )
+    {
+        if ( parent == this )
+            return true;
+        parent = parent->parent();
+    }
+    
+    return false;
+}
+
 void Folder::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
     Q_FOREACH ( Akregator::TreeNode* i, d->children )
@@ -320,7 +344,22 @@ void Folder::disconnectFromNode(TreeNode* child)
         disconnect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), 
                    this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)));
 }
-            
+
+
+TreeNode* Folder::childAt( int pos )
+{
+    if ( pos < 0 || pos >= d->children.count() )
+        return 0;
+    return d->children.at( pos );
+}
+
+const TreeNode* Folder::childAt( int pos ) const
+{
+    if ( pos < 0 || pos >= d->children.count() )
+        return 0;
+    return d->children.at( pos );
+}
+
 TreeNode* Folder::next()
 {
     if ( firstChild() )
@@ -330,6 +369,25 @@ TreeNode* Folder::next()
         return nextSibling();
     
     Folder* p = parent();
+    while (p)
+    {
+        if ( p->nextSibling() )
+            return p->nextSibling();
+        else
+            p = p->parent();
+    }
+    return 0;
+}
+
+const TreeNode* Folder::next() const
+{
+    if ( firstChild() )
+        return firstChild();
+
+    if ( nextSibling() )
+        return nextSibling();
+    
+    const Folder* p = parent();
     while (p)
     {
         if ( p->nextSibling() )

@@ -92,25 +92,32 @@ public:
     /** Get the next sibling.
     @return the next sibling, 0 if there is none */
     
-    virtual TreeNode* nextSibling() const;
-    
+    virtual const TreeNode* nextSibling() const;
+    virtual TreeNode* nextSibling();
     
     /** Get the previous sibling.
     @return the previous sibling, 0 if there is none */
     
-    virtual TreeNode* prevSibling() const;
+    virtual const TreeNode* prevSibling() const;
+    virtual TreeNode* prevSibling();
+
     
     
     /** Returns the parent node.
     @return the parent feed group, 0 if there is none */
     
-    virtual Folder* parent() const;
+    virtual const Folder* parent() const;
+    virtual Folder* parent();
+
     
     /** returns the (direct) children of this node.
         @return a list of pointers to the child nodes
      */
     virtual QList<const TreeNode*> children() const;
     virtual QList<TreeNode*> children();
+
+    virtual TreeNode* childAt( int pos );
+    virtual const TreeNode* childAt( int pos ) const;
 
     /** Sets parent node; Don't call this directly, is done automatically by 
     insertChild-methods in @ref Folder. */
@@ -151,8 +158,9 @@ public:
     /** returns the next node in the tree.
         Calling next() unless it returns 0 iterates through the tree in pre-order
      */ 
-    virtual TreeNode* next() = 0; 
-
+    virtual const TreeNode* next() const = 0;
+    virtual TreeNode* next() = 0;
+    
     /** returns the ID of this node. IDs are managed by @ref FeedList objects and must be unique within the list. Some IDs have a special meaning:
     @c 0 is the default value and indicates that no ID was set
     @c 1 is reserved for the "All Feeds" root node */

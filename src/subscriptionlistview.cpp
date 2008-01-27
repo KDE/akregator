@@ -34,6 +34,8 @@
 #include <KDebug>
 #include <KConfigGroup>
 
+using namespace Akregator;
+
 Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
 {
     setSelectionMode( QAbstractItemView::SingleSelection );
@@ -41,6 +43,9 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setAlternatingRowColors( true );
     setUniformRowHeights( true );
     setContextMenuPolicy( Qt::CustomContextMenu );
+    setDragDropMode( QAbstractItemView::DragDrop );
+    setDropIndicatorShown( true );
+    setAcceptDrops( true );
 }
 
 Akregator::SubscriptionListView::~SubscriptionListView()
@@ -149,6 +154,5 @@ Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QSt
 void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* node )
 {
 }
-
 
 #include "subscriptionlistview.moc"

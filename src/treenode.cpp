@@ -30,6 +30,8 @@
 
 #include <kdebug.h>
 
+#include <cassert>
+
 namespace Akregator {
 
 class TreeNode::TreeNodePrivate
@@ -64,6 +66,8 @@ void TreeNode::emitSignalDestroyed()
 {
     if (!d->signalDestroyedEmitted)
     {
+        if ( parent() )
+            parent()->removeChild( this );
         emit signalDestroyed(this);
         d->signalDestroyedEmitted = true;
     } 
@@ -71,7 +75,7 @@ void TreeNode::emitSignalDestroyed()
 
 TreeNode::~TreeNode()
 {
-
+    assert( d->signalDestroyedEmitted || !"TreeNode subclasses must call emitSignalDestroyed in their destructor" );
     delete d;
     d = 0;
 }
@@ -91,30 +95,51 @@ void TreeNode::setTitle(const QString& title)
     }
 }
 
-TreeNode* TreeNode::nextSibling() const
+TreeNode* TreeNode::nextSibling()
 {
     if (!d->parent)
         return 0;
-    QList<TreeNode*> children = d->parent->children();
-    TreeNode* me = (TreeNode*)this;
-        
-    int idx = children.indexOf(me);
+    const QList<TreeNode*> children = parent()->children();
+    const int idx = children.indexOf( this );
     
     return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
 }
 
-TreeNode* TreeNode::prevSibling() const
+const TreeNode* TreeNode::nextSibling() const
 {
     if (!d->parent)
         return 0;
-    QList<TreeNode*> children = d->parent->children();
-    TreeNode* me = (TreeNode*)this;
+    const QList<const TreeNode*> children = parent()->children();
+    const int idx = children.indexOf( this );
     
-    int idx = children.indexOf(me);
+    return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
+}
+
+TreeNode* TreeNode::prevSibling()
+{
+    if (!d->parent)
+        return 0;
+    const QList<TreeNode*> children = parent()->children();
+    
+    const int idx = children.indexOf( this );
     return (idx > 0) ? children.at(idx-1) : 0L;
 }
 
-Folder* TreeNode::parent() const
+const TreeNode* TreeNode::prevSibling() const
+{
+    if (!d->parent)
+        return 0;
+    const QList<const TreeNode*> children = parent()->children();
+    const int idx = children.indexOf( this );
+    return (idx > 0) ? children.at(idx-1) : 0L;
+}
+
+const Folder* TreeNode::parent() const
+{
+    return d->parent;
+}
+
+Folder* TreeNode::parent()
 {
     return d->parent;
 }
@@ -127,6 +152,16 @@ QList<const TreeNode*> TreeNode::children() const
 QList<TreeNode*> TreeNode::children()
 {
     return QList<TreeNode*>();
+}
+
+const TreeNode* TreeNode::childAt( int pos ) const
+{
+    return 0;
+}
+
+TreeNode* TreeNode::childAt( int pos )
+{
+    return 0;
 }
 
 void TreeNode::setParent(Folder* parent)
