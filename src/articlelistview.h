@@ -155,8 +155,6 @@ private:
 
     void selectIndex( const QModelIndex& index );
 
-    void setupHeader();
-
     void setFeedMode();
     void setGroupMode();
 

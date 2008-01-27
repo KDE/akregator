@@ -173,9 +173,6 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
     FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( m_proxy );
     proxy2->setSourceModel( m_proxy );
     setModel( proxy2 );
-//    header()->setResizeMode( ItemTitleColumn, QHeaderView::Stretch );
-//    header()->setStretchLastSection( false );
-    //header()->setResizeMode( DateColumn, QHeaderView::ResizeToContents );
     
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(),SIGNAL(customContextMenuRequested(const QPoint & ) ),this,SLOT(showHeaderMenu( const QPoint& )));
@@ -193,6 +190,7 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
     
     connect(m_headerMenu, SIGNAL(triggered(QAction* )), this, SLOT(headerMenuItemTriggered(QAction*)));
 
+    // this has to be called here, so that the column states will be used.
     loadHeaderSettings();
 }
 
@@ -270,11 +268,6 @@ void Akregator::ArticleListView::setFeedMode()
 Akregator::ArticleListView::~ArticleListView()
 {
     saveHeaderSettings();
-    /*Settings::setTitleWidth( columnWidth(ItemTitleColumn) );
-    Settings::setFeedWidth( columnWidth(FeedTitleColumn) );
-    Settings::setSortColumn( header()->sortIndicatorSection() );
-    Settings::setSortAscending( header()->sortIndicatorOrder() );
-    Settings::self()->writeConfig();*/
 }
 
 void Akregator::ArticleListView::setIsAggregation( bool aggregation )
@@ -300,14 +293,7 @@ Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(paren
     setWhatsThis( i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
-        "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
-
-    //connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
-    
-    //connect(this, SIGNAL(mouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)), this, SLOT(slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int)));
-
-    // disabled to test whether saving the header states is enough
-    //setupHeader();
+        "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));    
 }
 
 void Akregator::ArticleListView::mousePressEvent(QMouseEvent *ev)
@@ -323,30 +309,6 @@ void Akregator::ArticleListView::mousePressEvent(QMouseEvent *ev)
     }
 }
 
-void Akregator::ArticleListView::setupHeader()
-{
-    const int c = Settings::sortColumn();
-
-    sortByColumn( (c < 0 && c > ColumnCount - 1 ) ? DateColumn : c, Settings::sortAscending() ? Qt::AscendingOrder : Qt::DescendingOrder );
-
-    const int titleWidth = Settings::titleWidth();
-    if ( titleWidth > 0 )
-    {
-        setColumnWidth( ItemTitleColumn, titleWidth );
-    }
-
-    const int feedWidth = Settings::feedWidth();
-    if ( feedWidth > 0 )
-    {
-        setColumnWidth( FeedTitleColumn, feedWidth );
-    }
-
-    const int dateWidth = Settings::dateWidth();
-    if ( dateWidth > 0 )
-    {
-        setColumnWidth( DateColumn, dateWidth );
-    }
-}
 
 #if 0 // unused
 namespace {
