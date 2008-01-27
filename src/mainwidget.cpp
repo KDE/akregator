@@ -116,7 +116,7 @@ class Akregator::MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             else
                 msg = i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
-            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Folder"), KStandardGuiItem::del()) == KMessageBox::Continue)
+            if ( KMessageBox::warningContinueCancel( 0, msg, i18n( "Delete Folder" ), KStandardGuiItem::del(), KStandardGuiItem::cancel(), "Disable delete folder confirmation" ) == KMessageBox::Continue )
             {
                 delete node;
                 m_mainWidget->m_feedListView->setFocus();
@@ -132,7 +132,7 @@ class Akregator::MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             else
                 msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
 
-            if (KMessageBox::warningContinueCancel(0, msg, i18n("Delete Feed"), KStandardGuiItem::del()) == KMessageBox::Continue)
+            if ( KMessageBox::warningContinueCancel( 0, msg, i18n( "Delete Feed" ), KStandardGuiItem::del(), KStandardGuiItem::cancel(), "Disable delete feed confirmation" ) == KMessageBox::Continue )
             {
                 delete node;
                 m_mainWidget->m_feedListView->setFocus();
