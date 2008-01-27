@@ -199,6 +199,12 @@
   <entry key="Articlelist Header States" type="String" >
    <default></default>
   </entry>
+  <entry key="Articlelist Sort Column" type="Int" >
+   <default>0</default>
+  </entry>
+  <entry key="Articlelist Sort Order" type="Int" >
+   <default>0</default>
+  </entry>
 </group>
 <group name="Advanced" >
   <entry key="Archive Backend" type="String" >

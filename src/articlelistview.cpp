@@ -214,6 +214,9 @@ void Akregator::ArticleListView::saveHeaderSettings()
 {
     QByteArray s = header()->saveState();
     Settings::setArticlelistHeaderStates(s.toBase64());
+    
+    Settings::setArticlelistSortColumn(header()->sortIndicatorSection());
+    Settings::setArticlelistSortOrder(header()->sortIndicatorOrder() == Qt::AscendingOrder ? 1 : 0);
 }
 
 void Akregator::ArticleListView::loadHeaderSettings()
@@ -228,7 +231,9 @@ void Akregator::ArticleListView::loadHeaderSettings()
         QAction* act = i.key();
         act->setChecked(!header()->isSectionHidden(i.value()));
         i++;
-    }  
+    }
+    
+    header()->setSortIndicator(Settings::articlelistSortColumn(), (Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder));
 }
 
 QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
