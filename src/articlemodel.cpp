@@ -108,7 +108,7 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
 {
     if ( !index.isValid() || index.row() < 0 || index.row() >= d->articles.count() )
         return QVariant();
-    const Akregator::Article article = d->articles[ index.row() ];
+    const Akregator::Article& article( d->articles[ index.row() ] );
 
     if ( article.isNull() )
         return QVariant();

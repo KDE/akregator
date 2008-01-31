@@ -25,6 +25,7 @@
 #include "article.h"
 #include "feed.h"
 #include "feedstorage.h"
+#include "shared.h"
 #include "storage.h"
 #include "utils.h"
 
@@ -42,7 +43,7 @@ using namespace Syndication;
 
 namespace Akregator {
 
-struct Article::Private
+struct Article::Private : public Shared
 {
     /** The status of the article is stored in an int, the bits having the
         following meaning:
@@ -206,16 +207,26 @@ bool Article::isDeleted() const
 
 Article::Article(const Article &other) : d(new Private)
 {
-    d = other.d;
+    *this = other;
 }
 
 Article::~Article()
 {
+    if ( d->deref() )
+    {
+        delete d;
+        d = 0;
+    }
 }
 
 Article &Article::operator=(const Article &other)
 {
-    d = other.d;
+    if (this != &other) {
+        other.d->ref();
+        if (d && d->deref())
+            delete d;
+        d = other.d;
+    }
     return *this;
 }
 
