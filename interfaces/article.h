@@ -131,7 +131,7 @@ class AKREGATORPART_EXPORT Article
 
     private:
         struct Private;
-        boost::shared_ptr<Private> d;
+        Private* d;
 };
 
 } // namespace Akregator
