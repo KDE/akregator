@@ -205,9 +205,9 @@ bool Article::isDeleted() const
     return (d->status & Private::Deleted) != 0;
 }
 
-Article::Article(const Article &other) : d(new Private)
+Article::Article(const Article &other) : d( other.d )
 {
-    *this = other;
+    d->ref();
 }
 
 Article::~Article()
@@ -221,12 +221,8 @@ Article::~Article()
 
 Article &Article::operator=(const Article &other)
 {
-    if (this != &other) {
-        other.d->ref();
-        if (d && d->deref())
-            delete d;
-        d = other.d;
-    }
+    Article copy( other );
+    swap( copy );
     return *this;
 }
 

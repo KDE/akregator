@@ -75,6 +75,10 @@ class AKREGATORPART_EXPORT Article
         Article(const Article &other);
         ~Article();
 
+        void swap( Article & other ) {
+            std::swap( d, other.d );
+        }
+
         Article &operator=(const Article &other);
         bool operator==(const Article &other) const;
         bool operator!=(const Article &other) const;
