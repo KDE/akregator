@@ -29,6 +29,9 @@
 #include "treenode.h"
 #include "feed.h"
 
+#include <QString>
+#include <QVector>
+
 #include <KLocale>
 
 #include <cassert>
@@ -43,6 +46,8 @@ public:
     Private( TreeNode* node_, ArticleModel* qq );
     Akregator::TreeNode* node;
     QList<Akregator::Article> articles;
+    QVector<QString> titleCache;
+    
     void nodeDestroyed();
     void articlesAdded( TreeNode*, const QList<Article>& );
     void articlesRemoved( TreeNode*, const QList<Article>& );
@@ -59,6 +64,9 @@ ArticleModel::Private::Private( TreeNode* node_, ArticleModel* qq )
 Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Private( node, this ) )
 {
     d->articles = node->articles();
+    d->titleCache.resize( d->articles.count() );
+    for ( int i = 0; i < d->articles.count(); ++i )
+        d->titleCache[i] = d->articles[i].title();
     connect( node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
     connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT( articlesAdded(Akregator::TreeNode*, QList<Akregator::Article>) ) );
     connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)) );
@@ -108,7 +116,8 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
 {
     if ( !index.isValid() || index.row() < 0 || index.row() >= d->articles.count() )
         return QVariant();
-    const Akregator::Article& article( d->articles[ index.row() ] );
+    const int row = index.row();
+    const Akregator::Article& article( d->articles[row] );
 
     if ( article.isNull() )
         return QVariant();
@@ -124,7 +133,7 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                 case DateColumn:
                     return article.pubDate();
                 case ItemTitleColumn:
-                    return article.title();
+                    return d->titleCache[row];
                 case AuthorColumn:
                     return article.author();
                 case DescriptionColumn:
@@ -171,16 +180,23 @@ void Akregator::ArticleModel::Private::nodeDestroyed()
 
 void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>& list )
 {
+    Q_UNUSED( node );
     if ( list.isEmpty() ) //assert?
         return;
     const int first = static_cast<int>( articles.count() );
     q->beginInsertRows( QModelIndex(), first, first + list.size() - 1 );
-    articles << list; 
+    
+    const int oldSize = articles.size();
+    articles << list;
+    titleCache.resize( articles.count() );
+    for ( int i = oldSize; i < articles.count(); ++i )
+        titleCache[i] = articles[i].title();
     q->endInsertRows();
 }
 
 void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article>& list )
 {
+    Q_UNUSED( node );
     //might want to avoid indexOf() in case of performance problems
     Q_FOREACH ( const Article& i, list )
     {
@@ -193,6 +209,7 @@ void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article
 
 void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article>& list )
 {
+    Q_UNUSED( node );
     int rmin = articles.count() - 1;
     int rmax = 0;
 
