@@ -83,14 +83,10 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
 {
     if ( m_feedSelector )
     {
-        disconnect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
-                    this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
-
+        m_feedSelector->disconnect( this );
+        
         if ( m_feedSelector->selectionModel() )
-        {
-            disconnect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
-                        this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
-        }
+            m_feedSelector->selectionModel()->disconnect( this );
     }
     m_feedSelector = feedSelector;
     setUp();
@@ -99,11 +95,7 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
 void Akregator::SelectionController::setArticleLister( Akregator::ArticleLister* lister )
 {
     if ( m_articleLister )
-    {
-        disconnect( m_articleLister->articleSelectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
-                 this, SLOT( currentArticleIndexChanged( QModelIndex, QModelIndex ) ) );
-    }
-
+        m_articleLister->articleSelectionModel()->disconnect( this );
     m_articleLister = lister;
     setUp();
 }
@@ -157,12 +149,13 @@ void Akregator::SelectionController::setUp()
     m_feedSelector->setModel( m_subscriptionModel );
     
     // setUp might be called more than once, so disconnect first
-
+    //connect exactly once:
     disconnect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
              this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
     connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
              this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
 
+    //connect exactly once:
     disconnect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
              this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
     connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
@@ -170,6 +163,7 @@ void Akregator::SelectionController::setUp()
 
     if ( m_articleLister->itemView() )
     {
+        //connect exactly once:
         disconnect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
         connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
     }

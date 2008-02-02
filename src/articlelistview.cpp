@@ -45,6 +45,8 @@
 #include <QPaintEvent>
 #include <QPalette>
 
+#include <cassert>
+
 using namespace Akregator;
 
 
@@ -923,10 +925,8 @@ void Akregator::ArticleListViewOld::connectToNode(TreeNode* node)
 
 void Akregator::ArticleListViewOld::disconnectFromNode(TreeNode* node)
 {
-    disconnect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear()) );
-    disconnect(node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*, const QList<Akregator::Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*, const QList<Akregator::Article>&)) );
-    disconnect(node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, const QList<Akregator::Article>&)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*, const QList<Akregator::Article>&)) );
+    assert( node );
+    node->disconnect( this );
 }
 
 void Akregator::ArticleListViewOld::applyFilters()

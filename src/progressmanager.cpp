@@ -78,9 +78,7 @@ void ProgressManager::setFeedList(FeedList* feedList)
     {
         qDeleteAll( d->handlers );
         d->handlers.clear();
-        
-        disconnect(d->feedList, SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
-        disconnect(d->feedList, SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
+        d->feedList->disconnect( this );
     }
 
     d->feedList = feedList;
@@ -111,10 +109,10 @@ void ProgressManager::slotNodeAdded(TreeNode* node)
 
 void ProgressManager::slotNodeRemoved(TreeNode* node)
 {
-    Feed* feed = dynamic_cast<Feed*>(node);
+    Feed* feed = qobject_cast<Feed*>(node);
     if (feed)
     {
-        disconnect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
+        feed->disconnect( this );
         delete d->handlers[feed];
         d->handlers.remove(feed);
     }
@@ -122,7 +120,7 @@ void ProgressManager::slotNodeRemoved(TreeNode* node)
 
 void ProgressManager::slotNodeDestroyed(TreeNode* node)
 {
-    Feed* feed = dynamic_cast<Feed*>(node);
+    Feed* feed = qobject_cast<Feed*>(node);
     if (feed)
     {
         delete d->handlers[feed];

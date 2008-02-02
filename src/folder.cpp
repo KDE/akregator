@@ -33,7 +33,9 @@
 #include <KIcon>
 #include <kdebug.h>
 
-namespace Akregator {
+#include <cassert>
+
+using namespace Akregator;
 
 class Folder::FolderPrivate
 {
@@ -326,23 +328,17 @@ void Folder::doArticleNotification()
 
 void Folder::connectToNode(TreeNode* child)
 {
-        connect(child, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotChildChanged(Akregator::TreeNode*)));
-        connect(child, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotChildDestroyed(Akregator::TreeNode*)));
-        connect(child, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)));
-        connect(child, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)));
-        connect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)));
+    connect(child, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotChildChanged(Akregator::TreeNode*)));
+    connect(child, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotChildDestroyed(Akregator::TreeNode*)));
+    connect(child, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)));
+    connect(child, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)));
+    connect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)));
 }
 
 void Folder::disconnectFromNode(TreeNode* child)
 {
-        disconnect(child, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotChildChanged(Akregator::TreeNode*)));
-        disconnect(child, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotChildDestroyed(Akregator::TreeNode*)));
-        disconnect(child, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), 
-                   this, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)));
-        disconnect(child, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)),
-                   this, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)));
-        disconnect(child, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), 
-                   this, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)));
+    assert( child );
+    child->disconnect( this );
 }
 
 
@@ -398,5 +394,4 @@ const TreeNode* Folder::next() const
     return 0;
 }
 
-} // namespace Akregator
 #include "folder.moc"

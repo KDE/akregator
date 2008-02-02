@@ -31,7 +31,7 @@
 #include "treenode.h"
 
 
-namespace Akregator {
+using namespace Akregator;
 
 class FetchQueue::FetchQueuePrivate
 {
@@ -55,17 +55,15 @@ FetchQueue::~FetchQueue()
 
 void FetchQueue::slotAbort()
 {
-    for (QList<Feed*>::Iterator it = d->fetchingFeeds.begin(); it != d->fetchingFeeds.end(); ++it)
+    foreach( Feed* const i, d->fetchingFeeds )
     {
-        disconnectFromFeed(*it);
-        (*it)->slotAbortFetch();
+        disconnectFromFeed( i );
+        i->slotAbortFetch();
     }
     d->fetchingFeeds.clear();
 
-    for (QList<Feed*>::Iterator it = d->queuedFeeds.begin(); it != d->queuedFeeds.end(); ++it)
-    {
-        disconnectFromFeed(*it);
-    }
+    foreach ( Feed* const i, d->queuedFeeds )
+        disconnectFromFeed( i );
     d->queuedFeeds.clear();
     
     emit signalStopped();
@@ -138,10 +136,7 @@ void FetchQueue::connectToFeed(Feed* feed)
 
 void FetchQueue::disconnectFromFeed(Feed* feed)
 {
-    disconnect (feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFeedFetched(Akregator::Feed*)));
-    disconnect (feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError(Akregator::Feed*)));
-    disconnect (feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted(Akregator::Feed*)));
-    disconnect (feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
+    feed->disconnect( this );
 }
 
 
@@ -155,7 +150,5 @@ void FetchQueue::slotNodeDestroyed(TreeNode* node)
         d->queuedFeeds.removeAll(feed);
     }
 }
-
-} // namespace Akregator
 
 #include "fetchqueue.moc"

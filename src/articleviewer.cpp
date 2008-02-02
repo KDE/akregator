@@ -278,10 +278,7 @@ void ArticleViewer::slotCopy()
 {
     QString text = m_part->selectedText();
     text.replace( QChar( 0xa0 ), ' ' );
-    QClipboard *cb = QApplication::clipboard();
-    disconnect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
-    cb->setText(text);
-    connect( cb, SIGNAL( selectionChanged() ), this, SLOT( slotClearSelection() ) );
+    QApplication::clipboard()->disconnect( this );
 }
 
 void ArticleViewer::slotCopyLinkAddress()
@@ -420,14 +417,7 @@ void ArticleViewer::connectToNode(TreeNode* node)
 void ArticleViewer::disconnectFromNode(TreeNode* node)
 {
     if (node)
-    {
-        disconnect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotUpdateCombinedView() ) );
-        disconnect( node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear() ) );
-        disconnect( node, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotShowSummary(Akregator::TreeNode*) ) );
-        disconnect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)));
-        disconnect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)));
-        disconnect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), this, SLOT(slotArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)));
-    }
+        node->disconnect( this );
 }
 
 void ArticleViewer::renderContent(const QString& text)

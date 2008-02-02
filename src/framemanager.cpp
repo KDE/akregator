@@ -89,15 +89,9 @@ void FrameManager::slotRemoveFrame(int id)
     
     if (!frame)
         return;
-    
-    disconnect(frame, SIGNAL(signalCanceled(Akregator::Frame*, const QString&)), this, SLOT(slotSetCanceled(Akregator::Frame*, const QString&)) );
-    disconnect(frame, SIGNAL(signalStarted(Akregator::Frame*)), this, SLOT(slotSetStarted(Akregator::Frame*)) );
-    disconnect(frame, SIGNAL(signalCaptionChanged(Akregator::Frame*, const QString&)), this, SLOT(slotSetCaption(Akregator::Frame*, const QString&)));
-    disconnect(frame, SIGNAL(signalLoadingProgress(Akregator::Frame*, int)), this, SLOT(slotSetProgress(Akregator::Frame*, int)));
-    disconnect(frame, SIGNAL(signalCompleted(Akregator::Frame*)), this, SLOT(slotSetCompleted(Akregator::Frame*)));
-    disconnect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*, const QString&)), this, SLOT(slotSetTitle(Akregator::Frame*, const QString&)) );
-    disconnect(frame, SIGNAL(signalStatusText(Akregator::Frame*, const QString&)), this, SLOT(slotSetStatusText(Akregator::Frame*, const QString&)) );
 
+    frame->disconnect( this );
+    
     if (m_currentFrame == frame)
     {
         slotChangeFrame(-1);
