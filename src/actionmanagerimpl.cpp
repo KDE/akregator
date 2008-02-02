@@ -444,12 +444,12 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
     action = coll->addAction("go_next_unread_feed");
     action->setText(i18n("N&ext Unread Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextUnreadFeed()));
-    action->setShortcuts(KShortcut( "Alt+Plus" ));
+    action->setShortcut(  QKeySequence(Qt::ALT+Qt::Key_Plus) );
 
     action = coll->addAction("go_prev_unread_feed");
     action->setText(i18n("Prev&ious Unread Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevUnreadFeed()));
-    action->setShortcuts(KShortcut( "Alt+Minus" ));
+    action->setShortcut( QKeySequence(Qt::ALT+Qt::Key_Minus) );
 
     action = coll->addAction("feedstree_home");
     action->setText(i18n("Go to Top of Tree"));

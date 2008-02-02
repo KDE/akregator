@@ -44,6 +44,7 @@
 #include <kparts/browserrun.h>
 
 #include <QClipboard>
+#include <QKeySequence>
 #include <QGridLayout>
 
 #include <kpimutils/kfileio.h>
@@ -119,13 +120,13 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     action->setIcon(KIcon("zoom-in"));
     action->setText(i18n("&Increase Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomIn()));
-    action->setShortcuts(KShortcut( "Ctrl+Plus" ));
+    action->setShortcut( QKeySequence( Qt::CTRL+Qt::Key_Plus ) );
 
     action = m_part->actionCollection()->addAction("decFontSizes");
     action->setIcon(KIcon("zoom-out"));
     action->setText(i18n("&Decrease Font Sizes"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomOut()));
-    action->setShortcuts(KShortcut( "Ctrl+Minus" ));
+    action->setShortcut( QKeySequence(  Qt::CTRL + Qt::Key_Minus ) );
 
     action = m_part->actionCollection()->addAction("copylinkaddress");
     action->setText(i18n("Copy &Link Address"));
