@@ -68,6 +68,13 @@ public Q_SLOTS:
     void slotPrevUnreadFeed();
     void slotNextUnreadFeed();
 
+    void slotItemBegin();
+    void slotItemEnd();
+    void slotItemLeft();
+    void slotItemRight();
+    void slotItemUp();
+    void slotItemDown();
+    
 private:
     void saveHeaderSettings();
     void loadHeaderSettings();

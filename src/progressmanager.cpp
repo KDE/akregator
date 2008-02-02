@@ -43,6 +43,7 @@ namespace Akregator {
 class ProgressManager::ProgressManagerPrivate
 {
     public:
+        ProgressManagerPrivate() : feedList( 0 ) {}
         FeedList* feedList;
         QHash<Feed*, ProgressItemHandler*> handlers;
     
@@ -60,7 +61,6 @@ ProgressManager* ProgressManager::self()
 
 ProgressManager::ProgressManager() : d(new ProgressManagerPrivate)
 {
-    d->feedList = 0;
 }
 
 ProgressManager::~ProgressManager()
@@ -71,13 +71,12 @@ ProgressManager::~ProgressManager()
 
 void ProgressManager::setFeedList(FeedList* feedList)
 {
-    if (feedList == d->feedList)
+    if ( feedList == d->feedList )
         return;
 
-    if (d->feedList != 0)
+    if ( d->feedList )
     {
-        for (QHash<Feed*, ProgressItemHandler*>::ConstIterator it = d->handlers.begin(); it != d->handlers.end(); ++it)
-            delete *it;
+        qDeleteAll( d->handlers );
         d->handlers.clear();
         
         disconnect(d->feedList, SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
@@ -86,12 +85,12 @@ void ProgressManager::setFeedList(FeedList* feedList)
 
     d->feedList = feedList;
     
-    if (feedList != 0)
+    if ( d->feedList )
     {
         QList<TreeNode*> list = feedList->asFlatList();
     
-        for (QList<TreeNode*>::ConstIterator it = list.begin(); it != list.end(); ++it)
-            slotNodeAdded(*it);
+        foreach( TreeNode* i, list )
+            slotNodeAdded( i );
         connect(feedList, SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
         connect(feedList, SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
     }
@@ -99,13 +98,15 @@ void ProgressManager::setFeedList(FeedList* feedList)
      
 void ProgressManager::slotNodeAdded(TreeNode* node)
 {
-    Feed* feed = dynamic_cast<Feed*>(node);
-    if (feed)
-    {
-        if (!d->handlers.contains(feed))
-        d->handlers[feed] = new ProgressItemHandler(feed);
-        connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
-    }
+    Feed* const feed = qobject_cast<Feed*>(node);
+    if (!feed)
+        return;
+    
+    if ( d->handlers.contains( feed ) )
+        return;
+    
+    d->handlers[feed] = new ProgressItemHandler(feed);
+    connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
 }
 
 void ProgressManager::slotNodeRemoved(TreeNode* node)

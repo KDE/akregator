@@ -266,6 +266,36 @@ void Akregator::SubscriptionListView::slotNextUnreadFeed()
         setCurrentIndex( next );
 }
 
+void SubscriptionListView::slotItemBegin()
+{
+    
+}
+
+void SubscriptionListView::slotItemEnd()
+{
+}
+
+void SubscriptionListView::slotItemLeft()
+{
+    
+}
+
+void SubscriptionListView::slotItemRight()
+{
+    
+}
+
+void SubscriptionListView::slotItemUp()
+{
+    
+}
+
+void SubscriptionListView::slotItemDown()
+{
+    
+}
+
+
 void Akregator::SubscriptionListView::ensureNodeVisible( Akregator::TreeNode* )
 {
 }

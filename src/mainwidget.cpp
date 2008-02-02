@@ -77,6 +77,7 @@
 #include <QTextDocument>
 #include <QTimer>
 
+#include <memory>
 #include <cassert>
 
 class Akregator::MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
@@ -159,7 +160,7 @@ Akregator::MainWidget::~MainWidget()
 }
 
 Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
- : QWidget(parent), m_viewMode(NormalView), m_actionManager(actionManager)
+ : QWidget(parent), m_feedList( 0 ), m_viewMode(NormalView), m_actionManager(actionManager)
 {
     setObjectName(name);
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
@@ -168,7 +169,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
     m_part = part;
-    m_feedList = new FeedList( Kernel::self()->storage() );
     m_shuttingDown = false;
     m_displayingAboutPage = false;
     setFocusPolicy(Qt::StrongFocus);
@@ -189,8 +189,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
              this, SLOT(slotFetchingStopped()));
 
     m_feedListView = new SubscriptionListView( m_horizontalSplitter );
-    m_feedListView->setObjectName( "feedtree" );
-
+    m_feedListView->setObjectName( "feedtree" );    
     m_actionManager->initSubscriptionListView( m_feedListView );
 
     connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)),
@@ -200,10 +199,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
             Akregator::Folder*)),
             this, SLOT(slotFeedUrlDropped (KUrl::List &,
             Akregator::TreeNode*, Akregator::Folder*)));
-
-    ProgressManager::self()->setFeedList(m_feedList);
-    Kernel::self()->setFeedList( m_feedList );
-
+    
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
@@ -235,14 +231,12 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 
     m_mainTab = new QWidget(this);
     m_mainTab->setObjectName("Article Tab");
+    m_mainTab->setWhatsThis( i18n("Articles list."));
 
     QVBoxLayout *mainTabLayout = new QVBoxLayout( m_mainTab);
     mainTabLayout->setMargin(0);
 
-    m_mainTab->setWhatsThis( i18n("Articles list."));
-
     m_searchBar = new SearchBar(m_mainTab);
-
     if ( !Settings::showQuickFilter() )
         m_searchBar->hide();
 
@@ -256,7 +250,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController = new SelectionController( this );
     m_selectionController->setArticleLister( m_articleListView );
     m_selectionController->setFeedSelector( m_feedListView );
-    m_selectionController->setFeedList( m_feedList );
 
     connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ), m_selectionController, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
 
@@ -275,29 +268,25 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect( m_selectionController, SIGNAL( articleDoubleClicked( Akregator::Article ) ),
              this, SLOT( slotOpenArticleInBrowser( Akregator::Article )) );
 
-    void currentArticleIndexChanged( const QModelIndex& index );
     m_actionManager->initArticleListView(m_articleListView);
 
-    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, const KUrl&)),
-             this, SLOT(slotMouseButtonPressed(int, const KUrl&)));
-
+    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, KUrl )),
+             this, SLOT(slotMouseButtonPressed(int, KUrl )));
 
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleListView, SLOT(slotPaletteOrFontChanged()));
 
     m_articleViewer = new ArticleViewer(m_articleSplitter);
-
     m_actionManager->initArticleViewer(m_articleViewer);
 
-    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
-             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
-
-    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(const KFileItem&)),
-             this, SLOT(slotMouseOverInfo(const KFileItem&)) );
-
+    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest )),
+             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest( Akregator::OpenUrlRequest )) );
+    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo( KFileItem )),
+             this, SLOT(slotMouseOverInfo( KFileItem )) );
     connect( m_part, SIGNAL(signalSettingsChanged()),
-             m_articleViewer, SLOT(slotPaletteOrFontChanged()));
+             m_articleViewer, SLOT(slotPaletteOrFontChanged()));   
     m_articleViewer->part()->widget()->setWhatsThis( i18n("Browsing area."));
+    
     mainTabLayout->addWidget( m_articleSplitter );
 
     m_mainFrame = new MainFrame(this, m_part, m_mainTab, i18n("Articles"));
@@ -336,6 +325,8 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_markReadTimer->setSingleShot(true);
     connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
 
+    setFeedList( new FeedList( Kernel::self()->storage() ) );
+
     switch (Settings::viewMode())
     {
         case CombinedView:
@@ -349,18 +340,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     }
 
     QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
-    QTimer::singleShot(0, this, SLOT(delayedInit()));
-}
-
-void Akregator::MainWidget::delayedInit()
-{
-    // HACK, FIXME:
-    // for some reason, m_part->factory() is NULL at startup of kontact,
-    // and thus the article viewer GUI can't be merged when creating the view.
-    // Even the delayed init didn't help. Well, we retry every half a second until
-    // it works. This is kind of creative, but a dirty hack nevertheless.
-    if ( !m_part->mergePart(m_articleViewer->part()) )
-        QTimer::singleShot(500, this, SLOT(delayedInit()));
 }
 
 void Akregator::MainWidget::slotOnShutdown()
@@ -369,10 +348,8 @@ void Akregator::MainWidget::slotOnShutdown()
 
     Kernel::self()->fetchQueue()->slotAbort();
 
-    m_selectionController->setFeedList( 0 );
-    ProgressManager::self()->setFeedList(0);
-
-    delete m_feedList;
+    setFeedList( 0 );
+    
     delete m_feedListView; // call delete here, so that the header settings will get saved
     delete m_articleListView; // same for this one
 
@@ -491,33 +468,45 @@ bool Akregator::MainWidget::importFeeds(const QDomDocument& doc)
     return true;
 }
 
+void Akregator::MainWidget::setFeedList( FeedList* list )
+{
+    if ( list == m_feedList )
+        return;
+    FeedList* const oldList = m_feedList;
+
+    m_feedList = list;
+    if ( m_feedList )
+    {    
+        connect( m_feedList->rootNode(), SIGNAL( signalChanged( Akregator::TreeNode* ) ),
+                 this, SLOT( slotSetTotalUnread() ) );
+        slotSetTotalUnread();
+    }
+
+    Kernel::self()->setFeedList( m_feedList);
+    ProgressManager::self()->setFeedList( m_feedList );
+    m_selectionController->setFeedList( m_feedList );
+    oldList->disconnect( this );
+
+    if ( oldList )
+        oldList->rootNode()->disconnect( this );
+    delete oldList;
+}
+
 bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
 {
-    FeedList* feedList = new FeedList( Kernel::self()->storage() );
-    bool parsed = feedList->readFromXML(doc);
+    assert( m_feedList );
+    std::auto_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
 
-    // parsing went wrong
-    if (!parsed)
-    {
-        delete feedList;
+    if ( !feedList->readFromXML( doc ) )
         return false;
-    }
-    m_feedListView->setUpdatesEnabled(false);
-    if (!parent)
-    {
-        Kernel::self()->setFeedList(feedList);
-        ProgressManager::self()->setFeedList(feedList);
-        disconnectFromFeedList(m_feedList);
-        delete m_feedList;
-        m_feedList = feedList;
-        connectToFeedList(m_feedList);
-
-        m_selectionController->setFeedList( m_feedList );
-    }
+    
+    m_feedListView->setUpdatesEnabled( false );
+    if ( !parent )
+        setFeedList( feedList.release() );
     else
-        m_feedList->append(feedList, parent);
+        m_feedList->append( feedList.release(), parent );
 
-    m_feedListView->setUpdatesEnabled(true);
+    m_feedListView->setUpdatesEnabled( true );
     m_feedListView->triggerUpdate();
     return true;
 }
@@ -866,7 +855,7 @@ void Akregator::MainWidget::slotMarkAllRead()
 
 void Akregator::MainWidget::slotSetTotalUnread()
 {
-    emit signalUnreadCountChanged( m_feedList->rootNode()->unread() );
+    emit signalUnreadCountChanged( m_feedList ? m_feedList->rootNode()->unread() : 0 );
 }
 
 void Akregator::MainWidget::slotDoIntervalFetches()
@@ -1249,17 +1238,5 @@ void Akregator::MainWidget::saveProperties(KConfigGroup & config)
     config.writeEntry("searchLine", m_searchBar->text());
     config.writeEntry("searchCombo", m_searchBar->status());
 }
-
-void Akregator::MainWidget::connectToFeedList(FeedList* feedList)
-{
-    connect(feedList->rootNode(), SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotSetTotalUnread()));
-    slotSetTotalUnread();
-}
-
-void Akregator::MainWidget::disconnectFromFeedList(FeedList* feedList)
-{
-    disconnect(feedList->rootNode(), SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(slotSetTotalUnread()));
-}
-
 
 #include "mainwidget.moc"

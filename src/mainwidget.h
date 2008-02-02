@@ -213,9 +213,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
 
-        void connectToFeedList(FeedList* feedList);
-        void disconnectFromFeedList(FeedList* feedList);
-
     protected slots:
 
         /** special behaviour in article list view (TODO: move code there?) */
@@ -223,10 +220,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         /** opens the link of an article in the external browser */
         void slotOpenArticleInBrowser(const Akregator::Article& article);
-
-        /** this is called by the ctor, does init steps which need a properly created view and part */
-
-        void delayedInit();
 
         void setTabIcon(const QPixmap&);
 
@@ -237,9 +230,10 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotFetchingStopped();
 
     private:
-
+        
         enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
+        void setFeedList( FeedList* feedList );
         AbstractSelectionController* m_selectionController;
         FeedList* m_feedList;
 
