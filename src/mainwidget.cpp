@@ -202,6 +202,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
             Akregator::TreeNode*, Akregator::Folder*)));
 
     ProgressManager::self()->setFeedList(m_feedList);
+    Kernel::self()->setFeedList( m_feedList );
 
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
