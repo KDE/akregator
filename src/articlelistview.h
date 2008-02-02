@@ -32,6 +32,8 @@
 #include <QSortFilterProxyModel>
 #include <QTreeView>
 
+#include <boost/shared_ptr.hpp>
+
 class KUrl;
 class KMenu;
 
@@ -43,6 +45,7 @@ template <class T> class QList;
 namespace Akregator {
 
 class Article;
+class FilterColumnsProxyModel;
 
 namespace Filters
 {
@@ -69,18 +72,12 @@ public:
     //reimpl
     QVariant data( const QModelIndex& index, int role=Qt::DisplayRole ) const;
 
-    //reimpl
-    QVariant headerData( int section, Qt::Orientation orientation, int role=Qt::DisplayRole ) const;
-
     void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
 
 private:
 
     //reimpl
     bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
-
-    //reimpl
-    bool filterAcceptsColumn( int source_column, const QModelIndex& source_parent ) const;
 
     enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
 
@@ -94,7 +91,7 @@ class AKREGATORPART_EXPORT ArticleListView : public QTreeView, public ArticleLis
     Q_OBJECT
 
 public:
-
+    
     explicit ArticleListView( QWidget* parent = 0 );
     ~ArticleListView();
 
@@ -165,9 +162,7 @@ private:
     ColumnMode m_columnMode;
     bool m_isAggregation;
     QPointer<SortColorizeProxyModel> m_proxy;
-    
-    KMenu *m_headerMenu;
-    QMap<QAction*,int> m_columnMap;
+    bool m_headerSetUp;
 };
 
 #if 0

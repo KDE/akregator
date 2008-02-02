@@ -49,8 +49,8 @@ public:
     enum Column {
         ItemTitleColumn=0, 
         FeedTitleColumn,
+        AuthorColumn,
         DateColumn,
-        AuthorColumn, 
         DescriptionColumn,
         ContentColumn,
         ColumnCount 

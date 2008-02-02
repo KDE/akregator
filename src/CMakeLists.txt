@@ -51,6 +51,7 @@ set(akregatorpart_PART_SRCS
    feedlist.cpp 
    fetchqueue.cpp 
    feediconmanager.cpp 
+   filtercolumnsproxymodel.cpp
    pluginmanager.cpp
    selectioncontroller.cpp
    subscriptionlistmodel.cpp

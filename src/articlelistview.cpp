@@ -23,11 +23,11 @@
 */
 
 #include "articlelistview.h"
-
 #include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlemodel.h"
+#include "filtercolumnsproxymodel.h"
 #include "kernel.h"
 #include "types.h"
 
@@ -64,12 +64,6 @@ Akregator::SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : Q
 {
 }
 
-bool SortColorizeProxyModel::filterAcceptsColumn( int col, const QModelIndex& parent ) const 
-{
-    Q_UNUSED(parent);
-    return col <= ArticleModel::DateColumn;
-}
-
 bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelIndex& source_parent ) const 
 {
     if ( source_parent.isValid() )
@@ -90,26 +84,6 @@ void SortColorizeProxyModel::setFilters( const std::vector<boost::shared_ptr<con
         return;
     m_matchers = matchers;
     invalidateFilter();
-}
-
-QVariant Akregator::SortColorizeProxyModel::headerData( int section, Qt::Orientation orientation, int role ) const
-{
-    if ( role != Qt::DisplayRole )
-        return QVariant();
-    if ( orientation == Qt::Vertical )
-        return QVariant();
-
-    switch (section)
-    {
-        case ItemTitleColumn:
-            return i18n( "Article" );
-        case FeedTitleColumn:
-            return i18n( "Feed" );
-        case DateColumn:
-            return i18n( "Date" );
-    }
-
-    return QVariant();
 }
 
 QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int role ) const
@@ -167,6 +141,8 @@ namespace {
 
 void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model )
 {
+    const QByteArray headerState = header()->saveState();
+
     slotClear();
     if ( !model )
         return;
@@ -174,65 +150,72 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
     m_proxy->setSourceModel( model );
     FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( m_proxy );
     proxy2->setSourceModel( m_proxy );
-    setModel( proxy2 );
-    
-    header()->setContextMenuPolicy( Qt::CustomContextMenu );
-    connect( header(), SIGNAL( customContextMenuRequested(const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
-    m_headerMenu = new KMenu( this );
-    m_headerMenu->addTitle( i18n( "Columns" ) );
 
-    for (int i = 0; i < model->columnCount(); i++)
+    FilterColumnsProxyModel* const columnsProxy = new FilterColumnsProxyModel( this );
+    columnsProxy->setSourceModel( proxy2 );
+    columnsProxy->setColumnEnabled( ArticleModel::ItemTitleColumn );
+    columnsProxy->setColumnEnabled( ArticleModel::FeedTitleColumn );
+    columnsProxy->setColumnEnabled( ArticleModel::DateColumn );
+    columnsProxy->setColumnEnabled( ArticleModel::AuthorColumn );
+
+    setModel( columnsProxy );
+    header()->restoreState( headerState );
+    
+    if ( !m_headerSetUp )
     {
-        QString col = model->headerData( i, Qt::Horizontal, Qt::DisplayRole ).toString();
-        QAction* act = m_headerMenu->addAction( col );
-        act->setCheckable( true );
-        act->setChecked( true );
-        m_columnMap[act] = i;
+        loadHeaderSettings();
+        m_headerSetUp = true;
     }
-    
-    connect( m_headerMenu, SIGNAL( triggered( QAction* ) ), this, SLOT( headerMenuItemTriggered( QAction* ) ) );
-
-    // this has to be called here, so that the column states will be used.
-    loadHeaderSettings();
+    header()->setContextMenuPolicy( Qt::CustomContextMenu );
+    connect( header(), SIGNAL( customContextMenuRequested( QPoint ) ),
+             this, SLOT( showHeaderMenu( QPoint ) ) );
 }
 
 void Akregator::ArticleListView::showHeaderMenu(const QPoint& pos)
 {
-    m_headerMenu->popup( header()->mapToGlobal( pos ) );
+    if ( !model() )
+        return;
+    
+    QPointer<KMenu> menu = new KMenu( this );
+    connect( menu, SIGNAL( triggered( QAction* ) ),
+            this, SLOT( headerMenuItemTriggered( QAction* ) ) );
+    menu->addTitle( i18n( "Columns" ) );
+    menu->setAttribute( Qt::WA_DeleteOnClose );
+    
+    const int colCount = model()->columnCount();
+    for ( int i = 0; i < colCount; ++i )
+    {
+        QAction* act = menu->addAction( model()->headerData( i, Qt::Horizontal ).toString() );
+        act->setCheckable( true );
+        act->setData( i );
+        act->setChecked( !header()->isSectionHidden( i ) );
+    }
+    
+    menu->popup( header()->mapToGlobal( pos ) );
 }
 
-void Akregator::ArticleListView::headerMenuItemTriggered(QAction* act)
+void Akregator::ArticleListView::headerMenuItemTriggered( QAction* act )
 {
-        int idx = m_columnMap[act];
-        if ( act->isChecked() )
-            header()->showSection( idx );
-        else
-            header()->hideSection( idx );
+    assert( act );
+    const int col = act->data().toInt();
+    if ( act->isChecked() )
+        header()->showSection( col );
+    else
+        header()->hideSection( col );
 }
 
 void Akregator::ArticleListView::saveHeaderSettings()
 {
-    QByteArray s = header()->saveState();
-    Settings::setArticlelistHeaderStates( s.toBase64() );
-    
+    Settings::setArticlelistHeaderStates( header()->saveState().toBase64() );
     Settings::setArticlelistSortColumn( header()->sortIndicatorSection() );
     Settings::setArticlelistSortOrder( header()->sortIndicatorOrder() == Qt::AscendingOrder ? 1 : 0 );
 }
 
 void Akregator::ArticleListView::loadHeaderSettings()
 {
-    QByteArray s = QByteArray::fromBase64( Settings::articlelistHeaderStates().toAscii() );
+    const QByteArray s = QByteArray::fromBase64( Settings::articlelistHeaderStates().toAscii() );
     if ( !s.isNull() )
         header()->restoreState( s );
-
-    QMap<QAction*,int>::iterator i = m_columnMap.begin();
-    while ( i != m_columnMap.end() )
-    {
-        QAction* act = i.key();
-        act->setChecked( !header()->isSectionHidden( i.value() ) );
-        i++;
-    }
-    
     header()->setSortIndicator( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
 }
 
@@ -283,7 +266,11 @@ void Akregator::ArticleListView::setIsAggregation( bool aggregation )
         setFeedMode();
 }
 
-Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(parent), m_columnMode( Akregator::ArticleListView::Unspecified ), m_isAggregation( false )
+Akregator::ArticleListView::ArticleListView( QWidget* parent )
+    : QTreeView(parent), 
+    m_columnMode( Unspecified ),
+    m_isAggregation( false ),
+    m_headerSetUp( false )
 {
     setSortingEnabled( true );
     setAlternatingRowColors( true );
@@ -295,7 +282,7 @@ Akregator::ArticleListView::ArticleListView( QWidget* parent ) : QTreeView(paren
     setWhatsThis( i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
-        "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));    
+        "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));         
 }
 
 void Akregator::ArticleListView::mousePressEvent( QMouseEvent *ev )

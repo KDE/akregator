@@ -96,17 +96,17 @@ QVariant Akregator::ArticleModel::headerData( int section, Qt::Orientation, int 
     switch (section)
     {
         case ItemTitleColumn:
-            return i18n("Article title");
+            return i18n("Title");
         case FeedTitleColumn:
-            return i18n("Feed title");
+            return i18n("Feed");
         case DateColumn:
             return i18n("Date");
-	case AuthorColumn:
-	    return i18n("Author");
-	case DescriptionColumn:
-	    return i18n("Description");
-	case ContentColumn:
-	    return i18n("Content");
+        case AuthorColumn:
+            return i18n("Author");
+        case DescriptionColumn:
+            return i18n("Description");
+        case ContentColumn:
+            return i18n("Content");
     }
 
     return QVariant();
