@@ -277,6 +277,7 @@ Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QSt
 
 void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* node )
 {
+    Q_UNUSED( node );
     const QModelIndex current = currentIndex();
     if ( !current.isValid() )
         return;
