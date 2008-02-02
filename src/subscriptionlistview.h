@@ -59,13 +59,6 @@ public:
         TotalColumn=2
     };
 
-private:
-    void saveHeaderSettings();
-    void loadHeaderSettings();
-
-private:
-    QMap<QAction*,int> m_columnMap;
-    KMenu *m_headerMenu;
     
 public Q_SLOTS:
 
@@ -74,10 +67,19 @@ public Q_SLOTS:
 
     void slotPrevUnreadFeed();
     void slotNextUnreadFeed();
+
+private:
+    void saveHeaderSettings();
+    void loadHeaderSettings();
+
     
 private Q_SLOTS:
     void showHeaderMenu( const QPoint& pos );
     void headerMenuItemTriggered( QAction* action );
+
+private:
+    QMap<QAction*,int> m_columnMap;
+    KMenu *m_headerMenu;
 };
 
 }

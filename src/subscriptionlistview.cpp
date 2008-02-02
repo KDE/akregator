@@ -34,7 +34,69 @@
 #include <KDebug>
 #include <KConfigGroup>
 
+#include <cassert>
+
 using namespace Akregator;
+
+namespace {
+
+QModelIndex nextIndex( const QModelIndex& idx )
+{
+    if ( !idx.isValid() )
+        return QModelIndex();
+    const QAbstractItemModel* const model = idx.model();
+    assert( model );
+    if ( model->hasChildren( idx ) )
+        return idx.child( 0, idx.column() );
+    QModelIndex i = idx;
+    while ( true )
+    {
+        if ( !i.isValid() )
+            return i;
+        const int siblings = model->rowCount( i.parent() );
+        if ( i.row() + 1 < siblings )
+            return i.sibling( i.row() + 1, i.column() );
+        i = i.parent();
+    }   
+}
+
+QModelIndex nextIndex( const QModelIndex& idx )
+{
+    if ( !idx.isValid() )
+        return QModelIndex();
+    const QAbstractItemModel* const model = idx.model();
+    assert( model );
+    if ( model->hasChildren( idx ) )
+        return idx.child( 0, idx.column() );
+    QModelIndex i = idx;
+    while ( true )
+    {
+        if ( !i.isValid() )
+            return i;
+        const int siblings = model->rowCount( i.parent() );
+        if ( i.row() + 1 < siblings )
+            return i.sibling( i.row() + 1, i.column() );
+        i = i.parent();
+    }   
+}
+
+QModelIndex nextFeedIndex( const QModelIndex& idx )
+{
+    QModelIndex next = nextIndex( idx );
+    while ( next.isValid() && next.data( SubscriptionListModel::IsAggregationRole ).toBool() )
+        next = nextIndex( next );
+    return next;
+}
+
+QModelIndex nextUnreadFeedIndex( const QModelIndex& idx )
+{
+    QModelIndex next = nextIndex( idx );
+    while ( next.isValid() && ( next.data( SubscriptionListModel::IsAggregationRole ).toBool() || next.sibling( next.row(), SubscriptionListModel::UnreadCountColumn ).data().toInt() == 0 ) )
+        next = nextIndex( next );
+    return next;
+}
+
+}
 
 Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
 {
@@ -128,10 +190,19 @@ void Akregator::SubscriptionListView::loadHeaderSettings()
 }
 void Akregator::SubscriptionListView::slotPrevFeed()
 {
+    
 }
 
 void Akregator::SubscriptionListView::slotNextFeed()
 {
+    if ( !model() )
+        return;
+    const QModelIndex current = currentIndex();
+    QModelIndex next = nextFeedIndex( current );
+    if ( !next.isValid() )
+        next = nextFeedIndex( model()->index( 0, 0 ) );
+    if ( next.isValid() )
+        setCurrentIndex( next );
 }
 
 void Akregator::SubscriptionListView::slotPrevUnreadFeed()
@@ -140,6 +211,14 @@ void Akregator::SubscriptionListView::slotPrevUnreadFeed()
 
 void Akregator::SubscriptionListView::slotNextUnreadFeed()
 {
+    if ( !model() )
+        return;
+    const QModelIndex current = currentIndex();
+    QModelIndex next = nextUnreadFeedIndex( current );
+    if ( !next.isValid() )
+        next = nextUnreadFeedIndex( model()->index( 0, 0 ) );
+    if ( next.isValid() )
+        setCurrentIndex( next );
 }
 
 void Akregator::SubscriptionListView::ensureNodeVisible( Akregator::TreeNode* )
@@ -153,6 +232,10 @@ Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QSt
 
 void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* node )
 {
+    const QModelIndex current = currentIndex();
+    if ( !current.isValid() )
+        return;
+    openPersistentEditor( current );
 }
 
 #include "subscriptionlistview.moc"
