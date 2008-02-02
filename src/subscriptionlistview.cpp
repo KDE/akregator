@@ -40,24 +40,50 @@ using namespace Akregator;
 
 namespace {
 
-QModelIndex nextIndex( const QModelIndex& idx )
+QModelIndex prevIndex( const QModelIndex& idx )
 {
     if ( !idx.isValid() )
         return QModelIndex();
     const QAbstractItemModel* const model = idx.model();
     assert( model );
-    if ( model->hasChildren( idx ) )
-        return idx.child( 0, idx.column() );
-    QModelIndex i = idx;
-    while ( true )
+
+    if ( idx.row() > 0 )
     {
-        if ( !i.isValid() )
-            return i;
-        const int siblings = model->rowCount( i.parent() );
-        if ( i.row() + 1 < siblings )
-            return i.sibling( i.row() + 1, i.column() );
-        i = i.parent();
-    }   
+        QModelIndex i = idx.sibling( idx.row() - 1, idx.column() );
+        while ( model->hasChildren( i ) )
+            i = i.child( model->rowCount( i ) - 1, i.column() );
+        return i;
+    }
+    else 
+        return idx.parent();
+}
+
+
+QModelIndex prevFeedIndex( const QModelIndex& idx, bool allowPassed = false )
+{
+    QModelIndex prev = allowPassed ? idx : prevIndex( idx );
+    while ( prev.isValid() && prev.data( SubscriptionListModel::IsAggregationRole ).toBool() )
+        prev = prevIndex( prev );
+    return prev;
+}
+
+QModelIndex prevUnreadFeedIndex( const QModelIndex& idx, bool allowPassed = false )
+{
+    QModelIndex prev = allowPassed ? idx : prevIndex( idx );
+    while ( prev.isValid() && ( prev.data( SubscriptionListModel::IsAggregationRole ).toBool() || prev.sibling( prev.row(), SubscriptionListModel::UnreadCountColumn ).data().toInt() == 0 ) )
+        prev = prevIndex( prev );
+    return prev;
+}
+
+QModelIndex lastLeaveChild( const QAbstractItemModel* const model )
+{
+    assert( model );
+    if ( model->rowCount() == 0 )
+        return QModelIndex();
+    QModelIndex idx = model->index( model->rowCount() - 1, 0 );
+    while ( model->hasChildren( idx ) )
+        idx = idx.child( model->rowCount( idx ) - 1, idx.column() );
+    return idx;
 }
 
 QModelIndex nextIndex( const QModelIndex& idx )
@@ -188,8 +214,19 @@ void Akregator::SubscriptionListView::loadHeaderSettings()
         i++;
     }  
 }
+
 void Akregator::SubscriptionListView::slotPrevFeed()
 {
+    if ( !model() )
+        return;
+    const QModelIndex current = currentIndex();
+    QModelIndex prev = prevFeedIndex( current );
+    if ( !prev.isValid() )
+    {
+        prev = prevFeedIndex( lastLeaveChild( model() ), true );
+    }
+    if ( prev.isValid() )
+        setCurrentIndex( prev );
     
 }
 
@@ -207,6 +244,14 @@ void Akregator::SubscriptionListView::slotNextFeed()
 
 void Akregator::SubscriptionListView::slotPrevUnreadFeed()
 {
+    if ( !model() )
+        return;
+    const QModelIndex current = currentIndex();
+    QModelIndex prev = prevUnreadFeedIndex( current );
+    if ( !prev.isValid() )
+        prev = prevUnreadFeedIndex( lastLeaveChild( model() ), true );
+    if ( prev.isValid() )
+        setCurrentIndex( prev );
 }
 
 void Akregator::SubscriptionListView::slotNextUnreadFeed()
