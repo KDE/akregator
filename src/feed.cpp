@@ -72,7 +72,7 @@ class Feed::FeedPrivate
         bool loadLinkedWebsite;
         int lastFetched;
 
-        bool fetchError;
+        Syndication::ErrorCode fetchErrorCode;
         int fetchTries;
         bool followDiscovery;
         Syndication::Loader* loader;
@@ -262,7 +262,7 @@ Feed::Feed( Akregator::Backend::Storage* storage ) : TreeNode(), d(new FeedPriva
     d->maxArticleNumber = 1000;
     d->markImmediatelyAsRead = false;
     d->useNotification = false;
-    d->fetchError = false;
+    d->fetchErrorCode = Syndication::Success;
     d->fetchTries = 0;
     d->loader = 0;
     d->articlesLoaded = false;
@@ -296,6 +296,8 @@ int Feed::maxArticleNumber() const { return d->maxArticleNumber; }
 void Feed::setMaxArticleNumber(int maxArticleNumber) { d->maxArticleNumber = maxArticleNumber; }
 
 bool Feed::markImmediatelyAsRead() const { return d->markImmediatelyAsRead; }
+
+bool Feed::isFetching() const { return d->loader != 0; }
 
 void Feed::setMarkImmediatelyAsRead(bool enabled)
 {
@@ -338,7 +340,9 @@ QString Feed::description() const { return d->description; }
 
 void Feed::setDescription(const QString& s) { d->description = s; }
 
-bool Feed::fetchErrorOccurred() const { return d->fetchError; }
+bool Feed::fetchErrorOccurred() const { return d->fetchErrorCode != Syndication::Success; }
+
+Syndication::ErrorCode Feed::fetchErrorCode() const { return d->fetchErrorCode; }
 
 bool Feed::isArticlesLoaded() const { return d->articlesLoaded; }
 
@@ -546,7 +550,7 @@ void Feed::slotAbortFetch()
 
 void Feed::tryFetch()
 {
-    d->fetchError = false;
+    d->fetchErrorCode = Syndication::Success;
 
     d->loader = Syndication::Loader::create( this, SLOT(fetchCompleted(Syndication::Loader*,
                                                                        Syndication::FeedPtr,
@@ -570,7 +574,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     {
         if (status == Syndication::Aborted)
         {
-            d->fetchError = false;
+            d->fetchErrorCode = Syndication::Success;
             emit fetchAborted(this);
         }
         else if (d->followDiscovery && (status == Syndication::InvalidXml) && (d->fetchTries < 3) && (l->discoveredFeedURL().isValid()))
@@ -582,7 +586,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
         }
         else
         {
-            d->fetchError = true;
+            d->fetchErrorCode = status;
             emit fetchError(this);
         }
         return;
@@ -594,7 +598,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     if (d->favicon.isNull())
         loadFavicon();
 
-    d->fetchError = false;
+    d->fetchErrorCode = Syndication::Success;
 
     if (d->imagePixmap.isNull())
     {
@@ -633,7 +637,7 @@ void Feed::loadFavicon() const
 QIcon Feed::icon() const
 {
     if ( fetchErrorOccurred() )
-        return KIcon("error");
+        return KIcon("dialog-error");
 
     if ( d->favicon.isNull() )
         loadFavicon();

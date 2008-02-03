@@ -63,6 +63,18 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
             m_list->d->idMap.insert(node->id(), node);
             m_list->d->flatList.append(node);
             m_list->d->urlMap[node->xmlUrl()].append(node);
+            connect( node, SIGNAL( fetchStarted( Akregator::Feed* ) ),
+                     m_list, SIGNAL( fetchStarted( Akregator::Feed* ) ) );
+            connect( node, SIGNAL( fetched( Akregator::Feed* ) ),
+                     m_list, SIGNAL( fetched( Akregator::Feed* ) ) );
+            connect( node, SIGNAL( fetchAborted( Akregator::Feed* ) ),
+                     m_list, SIGNAL( fetchAborted( Akregator::Feed* ) ) );
+            connect( node, SIGNAL( fetchError( Akregator::Feed* ) ),
+                     m_list, SIGNAL( fetchError( Akregator::Feed* ) ) );
+            connect( node, SIGNAL( fetchDiscovery( Akregator::Feed* ) ),
+                     m_list, SIGNAL( fetchDiscovery( Akregator::Feed* ) ) );
+            
+                    
             visitTreeNode(node);
             return true;
         }

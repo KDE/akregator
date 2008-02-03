@@ -30,6 +30,7 @@
 #include "treenode.h"
 
 #include <KDebug>
+#include <KIconLoader>
 #include <KLocalizedString>
 
 #include <QByteArray>
@@ -44,10 +45,35 @@
 #include <cassert>
 
 using namespace Akregator;
+using namespace Syndication;
 
 #define AKREGATOR_TREENODE_MIMETYPE "akregator/treenode-id"
 
+
 namespace {
+
+    QString errorCodeToString( Syndication::ErrorCode err )
+    {
+        switch ( err )
+        {
+            case Timeout:
+                return i18n( "Timeout on remote server" );
+            case UnknownHost:
+                return i18n( "Unknown host" );
+            case FileNotFound:
+                return i18n( "Feed file not found on remote server" );
+            case InvalidXml:
+                return i18n( "Could not read feed (invalid XML)" );
+            case XmlNotAccepted:
+                return i18n( "Could not read feed (unknown format)" );
+            case InvalidFormat:
+                return i18n( "Could not read feed (invalid feed)" );
+            case Success:
+            case Aborted:
+            default:
+                return QString();
+        }
+    }
 
     static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const Akregator::FeedList* feedList )
     {
@@ -69,6 +95,12 @@ Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedLi
                    this, SLOT( subscriptionRemoved( Akregator::TreeNode* ) ) );
         connect( feedList, SIGNAL( signalNodeChanged( Akregator::TreeNode* ) ),
                  this, SLOT( subscriptionChanged( Akregator::TreeNode* ) ) );
+        connect( feedList, SIGNAL( fetchStarted( Akregator::Feed* ) ),
+                 this, SLOT( fetchStarted( Akregator::Feed* ) ) );
+        connect( feedList, SIGNAL( fetched( Akregator::Feed* ) ),
+                 this, SLOT( fetched( Akregator::Feed* ) ) );
+        connect( feedList, SIGNAL( fetchAborted( Akregator::Feed* ) ),
+                 this, SLOT( fetchAborted( Akregator::Feed* ) ) );
     }
 }
 
@@ -115,17 +147,30 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
                     return node->totalCount();
             }
         }
-	case Qt::FontRole:
-	{
-	    if(node->unread() > 0) {
-		QFont font;
-		font.setBold(true);
-		return font;
-	    }
-	}
+        case Qt::FontRole:
+        {
+            if(node->unread() > 0) {
+                QFont font;
+                font.setBold(true);
+                return font;
+            }
+        }
+        case Qt::ToolTipRole:
+        {
+            if ( node->isGroup() || node->isAggregation() )
+                return QString();
+            const Feed* const feed = qobject_cast<const Feed* const>( node );
+            if ( feed && feed->fetchErrorOccurred() )
+                return i18n( "Could not fetch feed: %1", errorCodeToString( feed->fetchErrorCode() ) );
+            else
+                return QString();
+        }
         case Qt::DecorationRole:
         {
-            return index.column() == TitleColumn ? node->icon() : QVariant();
+            if ( index.column() != TitleColumn )
+                return QVariant();
+            const Feed* const feed = qobject_cast<const Feed* const>( node );
+            return feed && feed->isFetching() ? node->icon().pixmap( KIconLoader::SizeSmall, QIcon::Active ) : node->icon(); 
         }
         case SubscriptionIdRole:
         {
@@ -267,6 +312,21 @@ void Akregator::SubscriptionListModel::subscriptionChanged( TreeNode* node )
         return;
     emit dataChanged( index( idx.row(), 0, idx.parent() ),
                       index( idx.row(), ColumnCount - 1, idx.parent() ) );
+}
+
+void SubscriptionListModel::fetchStarted( Akregator::Feed* node )
+{
+    subscriptionChanged( node );
+}
+
+void SubscriptionListModel::fetched( Akregator::Feed* node )
+{
+    subscriptionChanged( node );
+}
+
+void SubscriptionListModel::fetchError( Akregator::Feed* node )
+{
+    subscriptionChanged( node );
 }
 
 void Akregator::FolderExpansionHandler::itemExpanded( const QModelIndex& idx )

@@ -63,7 +63,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
             limitArticleNumber, /**< Save maxArticleNumber() articles, plus the ones with keep flag set */
             limitArticleAge /**< Save articles not older than maxArticleAge() (or keep flag set) */
         };
-
+        
         // class methods
         /** converts strings to ArchiveMode value
             if parsing fails, it returns ArchiveMode::globalDefault
@@ -77,7 +77,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         static Feed* fromOPML(QDomElement e, Akregator::Backend::Storage* storage);
 
         /** default constructor */
-        Feed( Akregator::Backend::Storage* storage );
+        explicit Feed( Akregator::Backend::Storage* storage );
         ~Feed();
 
         bool accept(TreeNodeVisitor* visitor);
@@ -178,6 +178,8 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         /** returns whether a fetch error has occurred */
         bool fetchErrorOccurred() const;
 
+        Syndication::ErrorCode fetchErrorCode() const;
+        
         /** returns the unread count for this feed */
         int unread() const;
 
@@ -207,6 +209,8 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         /** deletes expired articles */
         void deleteExpiredArticles( Akregator::ArticleDeleteJob* job );
 
+        bool isFetching() const;
+        
     public slots:
         /** starts fetching */
         void fetch(bool followDiscovery=false);

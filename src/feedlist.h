@@ -114,7 +114,21 @@ signals:
     void signalAboutToRemoveNode( Akregator::TreeNode* );
     
     void signalNodeChanged( Akregator::TreeNode* );
+
+    /** emitted when fetching started */
+    void fetchStarted(Akregator::Feed*);
+
+    /** emitted when feed finished fetching */
+    void fetched(Akregator::Feed *);
+
+    /** emitted when a fetch error occurred */
+    void fetchError(Akregator::Feed *);
+    /** emitted when a feed URL was found by auto discovery */
+    void fetchDiscovery(Akregator::Feed *);
     
+    /** emitted when a fetch is aborted */
+    void fetchAborted(Akregator::Feed *);
+
 private:
 
     void addNode(TreeNode* node, bool preserveID);

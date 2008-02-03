@@ -30,6 +30,7 @@
 
 namespace Akregator {
 
+class Feed;
 class FeedList;
 class Folder;
 class TreeNode;
@@ -107,7 +108,13 @@ private Q_SLOTS:
     void subscriptionRemoved( Akregator::TreeNode* );
 
     void subscriptionChanged( Akregator::TreeNode* );
-    
+
+    void fetchStarted( Akregator::Feed* );
+
+    void fetched( Akregator::Feed* );
+
+    void fetchError( Akregator::Feed* );
+
 private:
 
     const FeedList* m_feedList;
