@@ -28,9 +28,6 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "article.h"
-#if 0
-#include "configdialog.h"
-#endif
 #include "fetchqueue.h"
 #include "feediconmanager.h"
 #include "framemanager.h"
@@ -53,6 +50,7 @@
 #include <kfiledialog.h>
 #include <kglobalsettings.h>
 #include <kmessagebox.h>
+#include <KCMultiDialog>
 
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
@@ -631,19 +629,24 @@ void Part::showKNotifyOptions()
 
 void Part::showOptions()
 {
-#if 0
-    if ( KConfigDialog::showDialog( "settings" ) )
-        return;
+    saveSettings();
 
-    KConfigDialog* dialog = new ConfigDialog( m_mainWidget, "settings", Settings::self() );
+    QPointer<KCMultiDialog> dlg( new KCMultiDialog( m_mainWidget ) );
+    dlg->setModal( true );
+    connect( dlg, SIGNAL( configCommitted() ),
+             this, SLOT( slotSettingsChanged() ) );
 
-    connect( dialog, SIGNAL(settingsChanged( const QString &)),
-             this, SLOT(slotSettingsChanged()) );
-    connect( dialog, SIGNAL(settingsChanged( const QString &)),
-             TrayIcon::getInstance(), SLOT(settingsChanged()) );
+    connect( dlg, SIGNAL( configCommitted() ),
+             TrayIcon::getInstance(), SLOT( settingsChanged() ) );
 
-    dialog->show();
-#endif
+    dlg->addModule( "akregator_config_general.desktop" );
+    dlg->addModule( "akregator_config_appearance.desktop" );
+    dlg->addModule( "akregator_config_archive.desktop" );
+    dlg->addModule( "akregator_config_browser.desktop" );
+    dlg->addModule( "akregator_config_advanced.desktop" );
+
+    dlg->exec();
+    delete dlg;
 }
 
 void Part::partActivateEvent(KParts::PartActivateEvent* event)
