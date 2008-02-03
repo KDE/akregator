@@ -1,0 +1,14 @@
+[Desktop Entry]
+Icon=video-display
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-DocPath=akregator/preferences.html#general-lookup
+
+X-KDE-Library=akregator_config_appearance
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregator
+X-KDE-CfgDlgHierarchy=Akregator
+
+Name=Appearance
+Comment=Configure the Feed Reader Appearance
+X-KDE-Keywords=akregator, configure, settings, appearance, look, feel

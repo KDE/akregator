@@ -28,7 +28,9 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "article.h"
+#if 0
 #include "configdialog.h"
+#endif
 #include "fetchqueue.h"
 #include "feediconmanager.h"
 #include "framemanager.h"
@@ -629,6 +631,7 @@ void Part::showKNotifyOptions()
 
 void Part::showOptions()
 {
+#if 0
     if ( KConfigDialog::showDialog( "settings" ) )
         return;
 
@@ -640,6 +643,7 @@ void Part::showOptions()
              TrayIcon::getInstance(), SLOT(settingsChanged()) );
 
     dialog->show();
+#endif
 }
 
 void Part::partActivateEvent(KParts::PartActivateEvent* event)

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Icon=konqueror
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-DocPath=akregator/preferences.html#general-lookup
+
+X-KDE-Library=akregator_config_browser
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregator
+X-KDE-CfgDlgHierarchy=Akregator
+
+Name=Browser
+Comment=Configure Internal Browser Component
+X-KDE-Keywords=akregator, configure, settings, Browser, Web, Internal

@@ -14,7 +14,7 @@ set(akregator_SRCS main.cpp mainwindow.cpp )
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
-target_link_libraries(akregator ${KDE4_KPARTS_LIBS} akregatorinterfaces akregatorprivate )
+target_link_libraries(akregator ${KDE4_KPARTS_LIBS} akregatorprivate )
 
 install(TARGETS akregator  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -26,12 +26,9 @@ set(akregatorprivate_LIB_SRCS
    trayicon.cpp 
 )
 
-
-kde4_add_kcfg_files(akregatorprivate_LIB_SRCS akregatorconfig.kcfgc )
-
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} )
+target_link_libraries(akregatorprivate kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} akregatorinterfaces )
 
 set_target_properties(akregatorprivate PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 install(TARGETS akregatorprivate DESTINATION ${LIB_INSTALL_DIR})
@@ -74,8 +71,7 @@ set(akregatorpart_PART_SRCS
    tabwidget.cpp 
    progressmanager.cpp 
    kernel.cpp 
-   configdialog.cpp 
-   settings_advanced.cpp 
+#   configdialog.cpp 
    akregator_part.cpp 
    mainwidget.cpp 
    notificationmanager.cpp 
@@ -90,19 +86,11 @@ qt4_add_dbus_adaptor( akregatorpart_PART_SRCS org.kde.akregator.part.xml akregat
 kde4_add_ui_files(akregatorpart_PART_SRCS 
    addfeedwidgetbase.ui 
    propertieswidgetbase.ui 
-   settings_appearance.ui 
-   settings_general.ui 
-   settings_archive.ui 
-   settings_browser.ui 
-   settings_advancedbase.ui )
-
-
+)
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-
-
-target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate)
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorprivate)
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -110,7 +98,6 @@ install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### install files ###############
 
 install( FILES akregator.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
-install( FILES akregator.kcfg  DESTINATION ${KCFG_INSTALL_DIR})
 install( FILES akregator_part.desktop  DESTINATION ${SERVICES_INSTALL_DIR})
 install( FILES articleviewer.rc pageviewer.rc akregator_part.rc akregator.notifyrc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES akregator_plugin.desktop  DESTINATION ${SERVICETYPES_INSTALL_DIR})
