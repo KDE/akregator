@@ -24,7 +24,7 @@
 #ifndef AKREGATOR_PROPERTIESDIALOG_H
 #define AKREGATOR_PROPERTIESDIALOG_H
 
-#include "ui_propertieswidgetbase.h"
+#include "ui_feedpropertieswidgetbase.h"
 
 #include <kdialog.h>
 

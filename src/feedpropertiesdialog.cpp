@@ -24,7 +24,7 @@
 
 #include "akregatorconfig.h"
 #include "feed.h"
-#include "propertiesdialog.h"
+#include "feedpropertiesdialog.h"
 
 #include <kcombobox.h>
 #include <klineedit.h>
@@ -329,4 +329,4 @@ void FeedPropertiesDialog::selectFeedName()
 
 } // namespace Akregator
 
-#include "propertiesdialog.moc"
+#include "feedpropertiesdialog.moc"

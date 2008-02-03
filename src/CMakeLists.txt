@@ -67,7 +67,7 @@ set(akregatorpart_PART_SRCS
    articleviewer.cpp 
    articleformatter.cpp
    addfeeddialog.cpp 
-   propertiesdialog.cpp 
+   feedpropertiesdialog.cpp 
    tabwidget.cpp 
    progressmanager.cpp 
    kernel.cpp 
@@ -84,7 +84,7 @@ qt4_add_dbus_adaptor( akregatorpart_PART_SRCS org.kde.akregator.part.xml akregat
 
 kde4_add_ui_files(akregatorpart_PART_SRCS 
    addfeedwidgetbase.ui 
-   propertieswidgetbase.ui 
+   feedpropertieswidgetbase.ui 
 )
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
