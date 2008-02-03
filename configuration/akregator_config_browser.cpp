@@ -21,7 +21,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "kcmakrbrowserconfig.h"
+#include "akregator_config_browser.h"
 #include "akregatorconfig.h"
 
 #include "ui_settings_browser.h"
@@ -62,4 +62,4 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVa
     addConfig( Settings::self(), m_widget );
 }
 
-#include "kcmakrbrowserconfig.moc"
+#include "akregator_config_browser.moc"

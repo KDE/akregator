@@ -7,7 +7,7 @@ include_directories(
 ########### next target ###############
 
 set(kcm_akrgeneralconfig_SRCS 
-   kcmakrgeneralconfig.cpp )
+   akregator_config_general.cpp )
 
 kde4_add_ui_files( kcm_akrgeneralconfig_SRCS settings_general.ui )
 kde4_add_plugin(akregator_config_general ${kcm_akrgeneralconfig_SRCS})
@@ -20,7 +20,7 @@ install(TARGETS akregator_config_general  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 
 set(kcm_akrappearanceconfig_SRCS 
-   kcmakrappearanceconfig.cpp )
+   akregator_config_appearance.cpp )
 
 kde4_add_ui_files( kcm_akrappearanceconfig_SRCS settings_appearance.ui )
 kde4_add_plugin(akregator_config_appearance ${kcm_akrappearanceconfig_SRCS})
@@ -33,7 +33,7 @@ install(TARGETS akregator_config_appearance DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 
 set(kcm_akrarchiveconfig_SRCS 
-   kcmakrarchiveconfig.cpp )
+   akregator_config_archive.cpp )
 
 kde4_add_ui_files( kcm_akrarchiveconfig_SRCS settings_archive.ui )
 kde4_add_plugin( akregator_config_archive ${kcm_akrarchiveconfig_SRCS})
@@ -47,7 +47,7 @@ install(TARGETS akregator_config_archive  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 
 set(kcm_akrbrowserconfig_SRCS 
-   kcmakrbrowserconfig.cpp )
+   akregator_config_browser.cpp )
 
 kde4_add_ui_files( kcm_akrbrowserconfig_SRCS settings_browser.ui )
 kde4_add_plugin(akregator_config_browser ${kcm_akrbrowserconfig_SRCS})

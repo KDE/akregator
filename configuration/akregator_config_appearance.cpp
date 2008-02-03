@@ -21,7 +21,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "kcmakrappearanceconfig.h"
+#include "akregator_config_appearance.h"
 #include "akregatorconfig.h"
 
 #include "ui_settings_appearance.h"
@@ -76,4 +76,4 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
     addConfig( Settings::self(), m_widget );
 }
 
-#include "kcmakrappearanceconfig.moc"
+#include "akregator_config_appearance.moc"

@@ -21,10 +21,10 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "kcmakrarchiveconfig.h"
+#include "akregator_config_general.h"
 #include "akregatorconfig.h"
 
-#include "ui_settings_archive.h"
+#include "ui_settings_general.h"
 
 #include <KAboutData>
 #include <KConfigDialogManager>
@@ -36,25 +36,25 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
-K_EXPORT_PLUGIN(KCMAkregatorArchiveConfigFactory( "kcmakrarchiveconfig" ))
+K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
+K_EXPORT_PLUGIN(KCMAkregatorGeneralConfigFactory( "kcmakrgeneralconfig" ))
 
-KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorArchiveConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
+KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVariantList& args )
+    : KCModule( KCMAkregatorGeneralConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
 {  
-    Ui::SettingsArchive ui;
+    Ui::SettingsGeneral ui;
     ui.setupUi( m_widget );
 
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-   
-    connect( ui.rb_LimitArticleNumber, SIGNAL( toggled( bool ) ),
-             ui.kcfg_MaxArticleNumber, SLOT( setEnabled( bool ) ) );
-    connect( ui.rb_LimitArticleAge, SIGNAL( toggled( bool ) ),
-             ui.kcfg_MaxArticleAge, SLOT( setEnabled( bool ) ) );
+    
+    connect( ui.kcfg_UseIntervalFetch, SIGNAL( toggled( bool ) ),
+             ui.kcfg_AutoFetchInterval, SLOT( setEnabled( bool ) ) );
+    connect( ui.kcfg_UseIntervalFetch, SIGNAL( toggled( bool ) ),
+             ui.autoFetchIntervalLabel, SLOT( setEnabled( bool ) ) );
 
-    KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrarchiveconfig" ), 0,
-                                        ki18n( "Configure Feed Reader Archive" ),
+    KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrgeneralconfig" ), 0,
+                                        ki18n( "Configure Feeds" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
                                         ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
@@ -64,4 +64,4 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVa
     addConfig( Settings::self(), m_widget );
 }
 
-#include "kcmakrarchiveconfig.moc"
+#include "akregator_config_general.moc"
