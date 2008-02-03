@@ -24,8 +24,6 @@
 #include "akregator_config_appearance.h"
 #include "akregatorconfig.h"
 
-#include "ui_settings_appearance.h"
-
 #include <KAboutData>
 #include <KConfigDialogManager>
 #include <KGenericFactory>
@@ -42,28 +40,27 @@ K_EXPORT_PLUGIN(KCMAkregatorAppearanceConfigFactory( "kcmakrappearanceconfig" ))
 KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, const QVariantList& args )
     : KCModule( KCMAkregatorAppearanceConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
 {  
-    Ui::SettingsAppearance ui;
-    ui.setupUi( m_widget );
+    m_ui.setupUi( m_widget );
 
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
    
-    connect( ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
-             ui.kcfg_ColorUnreadArticles, SLOT( setEnabled( bool ) ) );
-    connect( ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
-             ui.kcfg_ColorNewArticles, SLOT( setEnabled( bool ) ) );
-    connect( ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
-             ui.lbl_newArticles, SLOT( setEnabled( bool ) ) );
-    connect( ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
-             ui.lbl_unreadArticles, SLOT( setEnabled( bool ) ) );
-    connect( ui.slider_minimumFontSize, SIGNAL( sliderMoved( int ) ),
-             ui.kcfg_MinimumFontSize , SLOT( setValue( int ) ) );
-    connect( ui.slider_mediumFontSize, SIGNAL( sliderMoved( int ) ),
-             ui.kcfg_MediumFontSize , SLOT( setValue( int ) ) );
-    connect( ui.kcfg_MinimumFontSize, SIGNAL( valueChanged( int ) ),
-             ui.slider_minimumFontSize, SLOT( setValue( int ) ) );
-    connect( ui.kcfg_MediumFontSize, SIGNAL( valueChanged( int ) ),
-             ui.slider_mediumFontSize, SLOT( setValue( int ) ) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             m_ui.kcfg_ColorUnreadArticles, SLOT( setEnabled( bool ) ) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             m_ui.kcfg_ColorNewArticles, SLOT( setEnabled( bool ) ) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             m_ui.lbl_newArticles, SLOT( setEnabled( bool ) ) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL( toggled( bool ) ),
+             m_ui.lbl_unreadArticles, SLOT( setEnabled( bool ) ) );
+    connect( m_ui.slider_minimumFontSize, SIGNAL( sliderMoved( int ) ),
+             m_ui.kcfg_MinimumFontSize , SLOT( setValue( int ) ) );
+    connect( m_ui.slider_mediumFontSize, SIGNAL( sliderMoved( int ) ),
+             m_ui.kcfg_MediumFontSize , SLOT( setValue( int ) ) );
+    connect( m_ui.kcfg_MinimumFontSize, SIGNAL( valueChanged( int ) ),
+             m_ui.slider_minimumFontSize, SLOT( setValue( int ) ) );
+    connect( m_ui.kcfg_MediumFontSize, SIGNAL( valueChanged( int ) ),
+             m_ui.slider_mediumFontSize, SLOT( setValue( int ) ) );
 
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrappearanceconfig" ), 0,
                                         ki18n( "Configure Feed Reader Appearance" ),
@@ -74,6 +71,14 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
     setAboutData( about );
 
     addConfig( Settings::self(), m_widget );
+}
+
+void KCMAkregatorAppearanceConfig::save()
+{
+    m_ui.slider_minimumFontSize->setDisabled( Settings::self()->isImmutable("MinimumFontSize"));
+    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable("MediumFontSize"));
+    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable("MinimumFontSize"));
+    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable("MediumFontSize"));
 }
 
 #include "akregator_config_appearance.moc"

@@ -21,31 +21,29 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef KCMAKRAPPEARANCECONFIG_H
-#define KCMAKRAPPEARANCECONFIG_H
-
-#include "ui_settings_appearance.h"
+#ifndef AKREGATOR_CONFIG_ADVANCED_H
+#define AKREGATOR_CONFIG_ADVANCED_H
 
 #include <KCModule>
 
 #include <QVariant>
 
-class QWidget;
+namespace Akregator {
+    class SettingsAdvanced;
+}
 
-class KComponentData;
-
-class KCMAkregatorAppearanceConfig : public KCModule
+class KCMAkregatorAdvancedConfig : public KCModule
 {
     Q_OBJECT
-public:
-    KCMAkregatorAppearanceConfig( QWidget *parent, const QVariantList &args );
-    
-    /*reimpl*/ void save();
-    
-private:
-    QWidget* m_widget;
-    Akregator::Ui::SettingsAppearance m_ui;
 
+    public:
+      KCMAkregatorAdvancedConfig( QWidget *parent, const QVariantList &args );
+
+      /*reimpl*/ void load();
+      /*reimpl*/ void save();
+      
+    private:
+        Akregator::SettingsAdvanced* m_widget;
 };
 
 #endif

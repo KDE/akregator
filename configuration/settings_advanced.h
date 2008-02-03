@@ -1,6 +1,7 @@
 /*
     This file is part of Akregator.
-    Copyright (c) 2008 Frank Osterfeld <osterfeld@kde.org>
+
+    Copyright (C) 2005-2007 Frank Osterfeld <frank.osterfeld@kdemail.net>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,31 +22,45 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef KCMAKRAPPEARANCECONFIG_H
-#define KCMAKRAPPEARANCECONFIG_H
+#ifndef AKREGATOR_SETTINGS_ADVANCED_H
+#define AKREGATOR_SETTINGS_ADVANCED_H
 
-#include "ui_settings_appearance.h"
+#include "ui_settings_advancedbase.h"
 
-#include <KCModule>
+#include <QHash>
 
-#include <QVariant>
-
+class QString;
 class QWidget;
 
-class KComponentData;
+namespace Akregator {
 
-class KCMAkregatorAppearanceConfig : public KCModule
+namespace Backend
 {
-    Q_OBJECT
-public:
-    KCMAkregatorAppearanceConfig( QWidget *parent, const QVariantList &args );
-    
-    /*reimpl*/ void save();
-    
-private:
-    QWidget* m_widget;
-    Akregator::Ui::SettingsAppearance m_ui;
+    class StorageFactory;
+}
 
+class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
+{
+    Q_OBJECT	
+
+    public:
+        explicit SettingsAdvanced(QWidget* parent=0, const char* name=0);
+
+        /** returns the key of the currently selected factory */
+        QString selectedFactory() const;
+        
+        void selectFactory(const QString& key);
+        
+    public slots:
+        
+        void slotConfigureStorage();
+        void slotFactorySelected(int);
+        
+    private:
+        QHash<int,Backend::StorageFactory*> m_factories;
+        QHash<QString, int> m_keyPos;
 };
 
-#endif
+} // namespace Akregator
+
+#endif //AKREGATOR_SETTINGS_ADVANCED_H

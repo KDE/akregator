@@ -56,3 +56,16 @@ target_link_libraries( akregator_config_browser akregatorinterfaces ${KDE4_KIO_L
 
 install( FILES akregator_config_browser.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 install(TARGETS akregator_config_browser DESTINATION ${PLUGIN_INSTALL_DIR})
+
+########### next target ###############
+
+set(kcm_akradvancedconfig_SRCS 
+   akregator_config_advanced.cpp settings_advanced.cpp )
+
+kde4_add_ui_files( kcm_akradvancedconfig_SRCS settings_advancedbase.ui )
+kde4_add_plugin(akregator_config_advanced ${kcm_akradvancedconfig_SRCS})
+
+target_link_libraries( akregator_config_advanced akregatorinterfaces ${KDE4_KIO_LIBS} )
+
+install( FILES akregator_config_advanced.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(TARGETS akregator_config_advanced DESTINATION ${PLUGIN_INSTALL_DIR})

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Icon=utilities-file-archiver
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-DocPath=akregator/preferences.html#general-lookup
+
+X-KDE-Library=akregator_config_advanced
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregator
+X-KDE-CfgDlgHierarchy=Akregator
+
+Name=Advanced
+Comment=Advanced Feed Reader Settings
+X-KDE-Keywords=akregator, configure, settings, advanced
