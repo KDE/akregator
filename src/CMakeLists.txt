@@ -5,7 +5,11 @@ add_subdirectory( icons )
 
 add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
 
-include_directories ( ${Boost_INCLUDE_DIR}  ${CMAKE_SOURCE_DIR}/akregator/interfaces )
+include_directories (
+    ${Boost_INCLUDE_DIR} 
+    ${CMAKE_SOURCE_DIR}/akregator/interfaces 
+    ${CMAKE_BINARY_DIR}/akregator/interfaces 
+)
 
 ########### next target ###############
 
