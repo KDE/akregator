@@ -48,7 +48,7 @@ Name[tr]=Haber kaynağı eklendi
 Name[uk]=Подачу додано
 Name[uz]=Янгиликлар тасмаси қўшилди
 Name[x-test]=xxFeed addedxx
-Name[zh_CN]=添加了新闻源
+Name[zh_CN]=添加了种子
 Name[zh_TW]=已新增 Feed
 Comment=A new feed was remotely added to Akregator
 Comment[af]='n Nuwe stroom was vanaf 'n afgeleë ligging by Akregator bygevoeg.
@@ -90,7 +90,7 @@ Comment[tr]=Akregator uygulamasına yeni bir haber kaynağı eklendi
 Comment[uk]=Нову подачу було віддалено додано до Akregator
 Comment[uz]=Akregator дастурига янги янгиликлар тасмаси қўшилди
 Comment[x-test]=xxA new feed was remotely added to Akregatorxx
-Comment[zh_CN]=新闻源远程添加进了 Akregator
+Comment[zh_CN]=远程添加新种子进了 Akregator
 Comment[zh_TW]=已從遠端新增 Feed 到 Akregator
 Action=Logfile
 
