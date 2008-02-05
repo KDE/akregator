@@ -10,5 +10,9 @@ X-KDE-ParentComponents=akregator,kontact_akregator
 X-KDE-CfgDlgHierarchy=Akregator
 
 Name=Archive
+Name[ga]=Cartlann
+Name[nds]=Archiev
 Comment=Configure Feed Archive
+Comment[ga]=Cumraigh Cartlann na bhFothaí
+Comment[nds]=Stroomarchiev instellen
 X-KDE-Keywords=akregator, configure, settings, archive

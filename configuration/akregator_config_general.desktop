@@ -63,4 +63,6 @@ Name[uz]=Умумий
 Name[x-test]=xxGeneralxx
 Name[zh_CN]=常规
 Comment=Configure Feeds
+Comment[ga]=Cumraigh Fothaí
+Comment[nds]=Strööm instellen
 X-KDE-Keywords=akregator, configure, settings, General
