@@ -10,7 +10,9 @@ X-KDE-ParentComponents=akregator,kontact_akregator
 X-KDE-CfgDlgHierarchy=Akregator
 
 Name=Advanced
+Name[km]=កម្រិត​ខ្ពស់
 Name[nds]=Verwiedert
 Comment=Advanced Feed Reader Settings
+Comment[km]=ការ​កំណត់​កម្មវិធី​អាន​មតិព័ត៌មានកម្រិត​ខ្ពស់
 Comment[nds]=Verwiedert Stroomkieker-Instellen
 X-KDE-Keywords=akregator, configure, settings, advanced

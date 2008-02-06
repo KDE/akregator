@@ -64,5 +64,6 @@ Name[x-test]=xxGeneralxx
 Name[zh_CN]=常规
 Comment=Configure Feeds
 Comment[ga]=Cumraigh Fothaí
+Comment[km]=កំណត់​រចនាសម្ព័ន្ធ​មតិព័ត៌មាន
 Comment[nds]=Strööm instellen
 X-KDE-Keywords=akregator, configure, settings, General

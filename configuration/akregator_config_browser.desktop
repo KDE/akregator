@@ -11,7 +11,9 @@ X-KDE-CfgDlgHierarchy=Akregator
 
 Name=Browser
 Name[ga]=Brabhsálaí
+Name[km]=កម្មវិធី​រុករក
 Name[nds]=Kieker
 Comment=Configure Internal Browser Component
+Comment[km]=កំណត់​រចនាសម្ព័ន្ធ​សមាសភាគ​កម្មវិធី​រុករក​ខាង​ក្នុង
 Comment[nds]=Intern Kiekerkomponent instellen
 X-KDE-Keywords=akregator, configure, settings, Browser, Web, Internal
