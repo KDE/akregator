@@ -370,7 +370,7 @@ void Akregator::FolderExpansionHandler::setFeedList( Akregator::FeedList* feedLi
 Qt::ItemFlags SubscriptionListModel::flags( const QModelIndex& idx ) const
 {
     const Qt::ItemFlags flags = QAbstractItemModel::flags( idx );
-    if ( !idx.isValid() | idx.column() != TitleColumn )
+    if ( (!idx.isValid() | idx.column()) != TitleColumn )
         return flags;
     if ( !idx.parent().isValid() ) // the root folder is neither draggable nor editable
         return flags | Qt::ItemIsDropEnabled;
