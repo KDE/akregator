@@ -75,6 +75,7 @@
 #include <QPixmap>
 #include <QSplitter>
 #include <QTextDocument>
+#include <QDomDocument>
 #include <QTimer>
 
 #include <memory>

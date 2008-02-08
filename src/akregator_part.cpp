@@ -65,6 +65,7 @@
 #include <QTextStream>
 #include <QTimer>
 #include <QWidget>
+#include <QDomDocument>
 #include "partadaptor.h"
 
 namespace Akregator {
