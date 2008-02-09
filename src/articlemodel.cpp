@@ -29,6 +29,8 @@
 #include "treenode.h"
 #include "feed.h"
 
+#include <syndication/tools.h>
+
 #include <QString>
 #include <QVector>
 
@@ -66,7 +68,7 @@ Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstra
     d->articles = node->articles();
     d->titleCache.resize( d->articles.count() );
     for ( int i = 0; i < d->articles.count(); ++i )
-        d->titleCache[i] = d->articles[i].title();
+        d->titleCache[i] = Syndication::htmlToPlainText( d->articles[i].title() );
     connect( node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
     connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT( articlesAdded(Akregator::TreeNode*, QList<Akregator::Article>) ) );
     connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)) );
@@ -190,7 +192,7 @@ void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>&
     articles << list;
     titleCache.resize( articles.count() );
     for ( int i = oldSize; i < articles.count(); ++i )
-        titleCache[i] = articles[i].title();
+        titleCache[i] = Syndication::htmlToPlainText( articles[i].title() );
     q->endInsertRows();
 }
 
