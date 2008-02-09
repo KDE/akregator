@@ -105,7 +105,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
                 QString file = Utils::fileNameForUrl(node->xmlUrl());
                 KUrl u(parent->m_imageDir);
                 u.setFileName(file);
-                text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl()).arg(u.url());
+                text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(node->htmlUrl(), u.url());
             }
             else text += "<div class=\"body\">";
 
@@ -133,7 +133,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
         virtual bool visitFolder(Folder* node)
         {
             text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title()))).arg(node->title());
+            text += QString("<div class=\"headertitle\" dir=\"%1\">%2").arg(Utils::directionOf(Utils::stripTags(node->title())), node->title());
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
             else
@@ -194,7 +194,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KUrl u(m_imageDir);
         u.setFileName(file);
-        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
+        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
     if (!article.description().isEmpty())
@@ -261,10 +261,11 @@ QString DefaultNormalViewFormatter::getCss() const
             "  font-size: %2 ! important;\n"
             "  color: %3 ! important;\n"
             "  background: %4 ! important;\n"
-            "}\n\n").arg(Settings::standardFont())
-            .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
-            .arg(pal.color( QPalette::Text ).name())
-            .arg(pal.color( QPalette::Base ).name());
+            "}\n\n")
+            .arg( Settings::standardFont(),
+                  QString::number(pointsToPixel(Settings::mediumFontSize()))+"px",
+                  pal.color( QPalette::Text ).name(),
+                  pal.color( QPalette::Base ).name() );
     css += (
             "a {\n"
             + QString("  color: %1 ! important;\n")
@@ -276,9 +277,9 @@ QString DefaultNormalViewFormatter::getCss() const
             +"  border:1px solid #000;\n"
             +"  margin-bottom: 10pt;\n"
             +        "}\n\n")
-            .arg(pal.color( QPalette::Link ).name())
-            .arg(pal.color( QPalette::Background ).name())
-            .arg(pal.color( QPalette::Text ).name());
+            .arg( pal.color( QPalette::Link ).name(),
+                  pal.color( QPalette::Background ).name(),
+                  pal.color( QPalette::Text ).name() );
     css += QString(".headertitle a:link { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
             ".headertitle a:visited { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
             ".headertitle a:hover{ color: %1 ! important;\n text-decoration: none ! important;\n }\n"
@@ -304,8 +305,9 @@ QString DefaultNormalViewFormatter::getCss() const
             ".headimage {\n"
             "  float: right;\n"
             "  margin-left: 5px;\n"
-            "}\n\n").arg(pal.color( QPalette::Highlight ).name())
-            .arg(pal.color( QPalette::HighlightedText ).name());
+            "}\n\n").arg(
+                    pal.color( QPalette::Highlight ).name(), 
+                    pal.color( QPalette::HighlightedText ).name() );
 
     css += QString(
             "body { clear: none; }\n\n"
@@ -389,7 +391,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         QString file = Utils::fileNameForUrl(feed->xmlUrl());
         KUrl u(m_imageDir);
         u.setFileName(file);
-        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl()).arg(u.url());
+        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
     if (!article.description().isEmpty())
@@ -445,10 +447,10 @@ QString DefaultCombinedViewFormatter::getCss() const
             "  font-size: %2 ! important;\n"
             "  color: %3 ! important;\n"
             "  background: %4 ! important;\n"
-            "}\n\n").arg(Settings::standardFont())
-            .arg(QString::number(pointsToPixel(Settings::mediumFontSize()))+"px")
-            .arg(pal.color( QPalette::Text ).name())
-            .arg(pal.color( QPalette::Base ).name());
+            "}\n\n").arg(Settings::standardFont(),
+                         QString::number(pointsToPixel(Settings::mediumFontSize()))+"px",
+                         pal.color( QPalette::Text ).name(),
+                         pal.color( QPalette::Base ).name() );
     css += (
             "a {\n"
             + QString("  color: %1 ! important;\n")
@@ -461,17 +463,14 @@ QString DefaultCombinedViewFormatter::getCss() const
             +"  margin-bottom: 10pt;\n"
 //    +"  width: 99%;\n"
             +        "}\n\n")
-            .arg( pal.color( QPalette::Link ).name())
-            .arg( pal.color( QPalette::Background ).name())
-            .arg( pal.color( QPalette::Text ).name());
+            .arg( pal.color( QPalette::Link ).name(), 
+                  pal.color( QPalette::Background ).name(),
+                  pal.color( QPalette::Text ).name() );
 
-    css += QString(".headertitle a:link { color: %1  ! important; }\n"
-            ".headertitle a:visited { color: %2 ! important; }\n"
-            ".headertitle a:hover{ color: %3 ! important; }\n"
-            ".headertitle a:active { color: %4 ! important; }\n")
-            .arg( pal.color( QPalette::HighlightedText ).name() )
-            .arg( pal.color( QPalette::HighlightedText ).name() )
-            .arg( pal.color( QPalette::HighlightedText ).name() )
+    css += QString(".headertitle a:link { color: %1  ! important; text-decoration: none ! important;\n }\n"
+            ".headertitle a:visited { color: %1 ! important; text-decoration: none ! important;\n }\n"
+            ".headertitle a:hover{ color: %1 ! important; text-decoration: none ! important;\n }\n"
+            ".headertitle a:active { color: %1 ! important; text-decoration: none ! important;\n }\n")
             .arg( pal.color( QPalette::HighlightedText ).name() );
     css += QString(
             ".headertitle {\n"
@@ -479,19 +478,22 @@ QString DefaultCombinedViewFormatter::getCss() const
             "  padding:2px;\n"
             "  color: %2 ! important;\n"
             "  font-weight: bold;\n"
+            "  text-decoration: none ! important;\n"
             "}\n\n"
             ".header {\n"
             "  font-weight: bold;\n"
             "  padding:2px;\n"
             "  margin-right: 5px;\n"
+            "  text-decoration: none ! important;\n"
             "}\n\n"
             ".headertext {\n"
+            "  text-decoration: none ! important;\n"
             "}\n\n"
             ".headimage {\n"
             "  float: right;\n"
             "  margin-left: 5px;\n"
-            "}\n\n").arg( pal.color( QPalette::Highlight ).name() )
-            .arg( pal.color( QPalette::HighlightedText ).name() );
+            "}\n\n").arg( pal.color( QPalette::Highlight ).name(),
+                          pal.color( QPalette::HighlightedText ).name() );
 
     css += QString(
             "body { clear: none; }\n\n"
