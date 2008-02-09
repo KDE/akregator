@@ -275,33 +275,31 @@ QString DefaultNormalViewFormatter::getCss() const
             +"  color: %3 ! important;\n"
             +"  border:1px solid #000;\n"
             +"  margin-bottom: 10pt;\n"
-//    +"  width: 99%;\n"
             +        "}\n\n")
             .arg(pal.color( QPalette::Link ).name())
             .arg(pal.color( QPalette::Background ).name())
             .arg(pal.color( QPalette::Text ).name());
-
-    css += QString(".headertitle a:link { color: %1  ! important; }\n"
-            ".headertitle a:visited { color: %2 ! important; }\n"
-            ".headertitle a:hover{ color: %3 ! important; }\n"
-            ".headertitle a:active { color: %4 ! important; }\n")
-            .arg(pal.color( QPalette::HighlightedText ).name())
-            .arg(pal.color( QPalette::HighlightedText ).name())
-            .arg(pal.color( QPalette::HighlightedText ).name())
-            .arg(pal.color( QPalette::HighlightedText ).name());
+    css += QString(".headertitle a:link { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
+            ".headertitle a:visited { color: %1 ! important;\n text-decoration: none ! important;\n }\n"
+            ".headertitle a:hover{ color: %1 ! important;\n text-decoration: none ! important;\n }\n"
+            ".headertitle a:active { color: %1 ! important;\n  text-decoration: none ! important;\n }\n" )
+            .arg( pal.color( QPalette::HighlightedText ).name() );
     css += QString(
             ".headertitle {\n"
             "  background: %1 ! important;\n"
             "  padding:2px;\n"
             "  color: %2 ! important;\n"
             "  font-weight: bold;\n"
+            "  text-decoration: none ! important;\n"
             "}\n\n"
             ".header {\n"
             "  font-weight: bold;\n"
             "  padding:2px;\n"
             "  margin-right: 5px;\n"
+            "  text-decoration: none ! important;\n"
             "}\n\n"
-            ".headertext {\n"
+            ".headertext a {\n"
+            "  text-decoration: none ! important;\n"
             "}\n\n"
             ".headimage {\n"
             "  float: right;\n"
