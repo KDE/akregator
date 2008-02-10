@@ -118,7 +118,7 @@ QVariant Akregator::SortColorizeProxyModel::data( const QModelIndex& idx, int ro
         break;
         case Qt::DecorationRole:
         {
-            if ( sourceIdx.column() == ItemTitleColumn )
+            if ( sourceIdx.column() == ArticleModel::ItemTitleColumn )
             {
                 return sourceIdx.data( Akregator::ArticleModel::IsImportantRole ).toBool() ? m_keepFlagIcon : QVariant();
             }

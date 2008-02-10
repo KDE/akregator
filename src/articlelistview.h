@@ -79,8 +79,6 @@ private:
     //reimpl
     bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
 
-    enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
-
     QIcon m_keepFlagIcon;
     std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > m_matchers;
 };

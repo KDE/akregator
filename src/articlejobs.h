@@ -50,7 +50,7 @@ typedef QList<Akregator::ArticleId> ArticleIdList;
 
 class ArticleDeleteJob : public KJob
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     explicit ArticleDeleteJob( QObject* parent = 0 );
 
@@ -58,7 +58,10 @@ public:
     void appendArticleId( const Akregator::ArticleId& id );
 
     void start();
-
+    
+private Q_SLOTS:
+    void doStart();
+    
 private:
     Akregator::FeedList* m_feedList;
     ArticleIdList m_ids;
@@ -66,6 +69,7 @@ private:
 
 class ArticleModifyJob : public KJob
 {
+    Q_OBJECT
 public:
     explicit ArticleModifyJob( QObject* parent = 0 );
 
@@ -74,6 +78,9 @@ public:
     void setKeep( const ArticleId& id, bool keep );
 
     void start();
+
+private Q_SLOTS:
+    void doStart();
 
 private:
     Akregator::FeedList* m_feedList;
