@@ -115,6 +115,9 @@ private Q_SLOTS:
 
     void fetchError( Akregator::Feed* );
 
+    void fetchAborted( Akregator::Feed* );
+
+
 private:
 
     const FeedList* m_feedList;

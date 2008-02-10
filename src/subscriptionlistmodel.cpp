@@ -329,6 +329,11 @@ void SubscriptionListModel::fetchError( Akregator::Feed* node )
     subscriptionChanged( node );
 }
 
+void SubscriptionListModel::fetchAborted( Akregator::Feed* node )
+{
+    subscriptionChanged( node );
+}
+
 void Akregator::FolderExpansionHandler::itemExpanded( const QModelIndex& idx )
 {
     setExpanded( idx, true );
