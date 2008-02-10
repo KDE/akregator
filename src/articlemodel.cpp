@@ -61,18 +61,22 @@ ArticleModel::Private::Private( TreeNode* node_, ArticleModel* qq )
  : q( qq ), node( node_ )
 {
     Q_ASSERT( node );
+    articles = node->articles();
+    titleCache.resize( articles.count() );
+    for ( int i = 0; i < articles.count(); ++i )
+        titleCache[i] = Syndication::htmlToPlainText( articles[i].title() );
+    connect( node, SIGNAL( destroyed() ) , q, SLOT( nodeDestroyed() ) );
+    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ), 
+                          q, SLOT( articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ), 
+                           q, SLOT( articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+    connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
+                           q, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+
 }
 
 Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Private( node, this ) )
 {
-    d->articles = node->articles();
-    d->titleCache.resize( d->articles.count() );
-    for ( int i = 0; i < d->articles.count(); ++i )
-        d->titleCache[i] = Syndication::htmlToPlainText( d->articles[i].title() );
-    connect( node, SIGNAL(destroyed()), this, SLOT(nodeDestroyed()) );
-    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT( articlesAdded(Akregator::TreeNode*, QList<Akregator::Article>) ) );
-    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesRemoved(Akregator::TreeNode*, QList<Akregator::Article>)) );
-    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)), SLOT(articlesUpdated(Akregator::TreeNode*, QList<Akregator::Article>)) );
 }
 
 Akregator::ArticleModel::~ArticleModel()
@@ -220,6 +224,7 @@ void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article
     {
         const int row = articles.indexOf( i ); 
         assert( row != -1 );
+        titleCache[row] = articles[row].title();
         rmin = std::min( row, rmin );
         rmax = std::max( row, rmax );
     }
