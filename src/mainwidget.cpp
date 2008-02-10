@@ -46,6 +46,7 @@
 #include "searchbar.h"
 #include "selectioncontroller.h"
 //#include "speechclient.h"
+#include "subscriptionlistjobs.h"
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
 #include "tabwidget.h"
@@ -56,7 +57,6 @@
 #include <solid/networking.h>
 
 #include <kaction.h>
-#include <kdebug.h>
 #include <kdialog.h>
 #include <kfiledialog.h>
 #include <kfileitem.h>
@@ -125,7 +125,9 @@ class Akregator::MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
                                                      KStandardGuiItem::cancel(),
                                                      "Disable delete folder confirmation" ) == KMessageBox::Continue )
             {
-                delete node;
+                DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
+                job->setSubscriptionId( node->id() );
+                job->start();
                 m_mainWidget->m_feedListView->setFocus();
             }
             return true;
@@ -146,7 +148,9 @@ class Akregator::MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
                                                      KStandardGuiItem::cancel(),
                                                      "Disable delete feed confirmation" ) == KMessageBox::Continue )
             {
-                delete node;
+                DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
+                job->setSubscriptionId( node->id() );
+                job->start();
                 m_mainWidget->m_feedListView->setFocus();
             }
             return true;
@@ -163,11 +167,7 @@ Akregator::MainWidget::~MainWidget()
      // means that not the whole app is shutdown, only the part. So it
     // should be no risk to do the cleanups now
     if (!m_shuttingDown)
-    {
-        kDebug() <<"Akregator::MainWidget::~MainWidget(): slotOnShutdown() wasn't called. Calling it now.";
         slotOnShutdown();
-    }
-    kDebug() <<"Akregator::MainWidget::~MainWidget(): leaving";
 }
 
 Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
@@ -449,32 +449,28 @@ void Akregator::MainWidget::sendArticle(bool attach)
 
 bool Akregator::MainWidget::importFeeds(const QDomDocument& doc)
 {
-    FeedList* feedList = new FeedList( Kernel::self()->storage() );
-    bool parsed = feedList->readFromXML(doc);
+    std::auto_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
+    const bool parsed = feedList->readFromXML(doc);
 
     // FIXME: parsing error, print some message
     if (!parsed)
-    {
-        delete feedList;
         return false;
-    }
-    QString title = feedList->title();
 
-    if (title.isEmpty())
-        title = i18n("Imported Folder");
+    QString title = !feedList->title().isEmpty() ? feedList->title() : i18n("Imported Folder");
 
     bool ok;
-    title = KInputDialog::getText(i18n("Add Imported Folder"), i18n("Imported folder name:"), title, &ok);
+    title = KInputDialog::getText( i18n("Add Imported Folder"),
+                                   i18n("Imported folder name:"),
+                                   title,
+                                   &ok,
+                                   this );
 
     if (!ok)
-    {
-        delete feedList;
         return false;
-    }
 
     Folder* fg = new Folder(title);
     m_feedList->rootNode()->appendChild(fg);
-    m_feedList->append(feedList, fg);
+    m_feedList->append(feedList.get(), fg);
 
     return true;
 }
@@ -956,8 +952,6 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
     KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
     assert( maai );
     maai->setChecked( article.keep() );
-
-    kDebug() <<"selected:" << article.guid();
 
     m_articleViewer->showArticle( article );
 }

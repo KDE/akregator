@@ -131,13 +131,7 @@ void DeleteSubscriptionJob::start()
 void DeleteSubscriptionJob::doDelete()
 {
     if ( m_id > 0 )
-    {
-        TreeNode* const node = m_feedList->findByID( m_id );
-        if ( node )
-        {
-            //TODO
-        }
-    }
+        delete m_feedList->findByID( m_id );
     emitResult();
 }
 
