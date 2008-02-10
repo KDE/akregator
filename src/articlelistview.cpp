@@ -27,9 +27,10 @@
 #include "akregatorconfig.h"
 #include "article.h"
 #include "articlemodel.h"
-#include "filtercolumnsproxymodel.h"
 #include "kernel.h"
 #include "types.h"
+
+#include <utils/filtercolumnsproxymodel.h>
 
 #include <KIcon>
 #include <KLocale>

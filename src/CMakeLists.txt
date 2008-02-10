@@ -39,7 +39,12 @@ install(TARGETS akregatorprivate DESTINATION ${LIB_INSTALL_DIR})
 
 ########### next target ###############
 
+set( akregator_utils_SRCS 
+     utils/filtercolumnsproxymodel.cpp
+)
+
 set(akregatorpart_PART_SRCS 
+   ${akregator_utils_SRCS}
    abstractselectioncontroller.cpp
    article.cpp
    articlejobs.cpp
@@ -52,7 +57,6 @@ set(akregatorpart_PART_SRCS
    feedlist.cpp 
    fetchqueue.cpp 
    feediconmanager.cpp 
-   filtercolumnsproxymodel.cpp
    pluginmanager.cpp
    selectioncontroller.cpp
    subscriptionlistmodel.cpp
