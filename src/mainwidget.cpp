@@ -118,7 +118,12 @@ class Akregator::MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             else
                 msg = i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
-            if ( KMessageBox::warningContinueCancel( 0, msg, i18n( "Delete Folder" ), KStandardGuiItem::del(), KStandardGuiItem::cancel(), "Disable delete folder confirmation" ) == KMessageBox::Continue )
+            if ( KMessageBox::warningContinueCancel( m_mainWidget, 
+                                                     msg,
+                                                     i18n( "Delete Folder" ),
+                                                     KStandardGuiItem::del(),
+                                                     KStandardGuiItem::cancel(),
+                                                     "Disable delete folder confirmation" ) == KMessageBox::Continue )
             {
                 delete node;
                 m_mainWidget->m_feedListView->setFocus();
@@ -134,7 +139,12 @@ class Akregator::MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
             else
                 msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
 
-            if ( KMessageBox::warningContinueCancel( 0, msg, i18n( "Delete Feed" ), KStandardGuiItem::del(), KStandardGuiItem::cancel(), "Disable delete feed confirmation" ) == KMessageBox::Continue )
+            if ( KMessageBox::warningContinueCancel( m_mainWidget, 
+                                                     msg,
+                                                     i18n( "Delete Feed" ),
+                                                     KStandardGuiItem::del(),
+                                                     KStandardGuiItem::cancel(),
+                                                     "Disable delete feed confirmation" ) == KMessageBox::Continue )
             {
                 delete node;
                 m_mainWidget->m_feedListView->setFocus();
@@ -1094,30 +1104,31 @@ void Akregator::MainWidget::slotArticleDelete()
             msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
     }
 
-    if ( KMessageBox::warningContinueCancel( 0, msg, i18n( "Delete Article" ), KStandardGuiItem::del(), KStandardGuiItem::cancel(), "Disable delete article confirmation" ) == KMessageBox::Continue )
+    if ( KMessageBox::warningContinueCancel( this, 
+                                             msg, i18n( "Delete Article" ),
+                                             KStandardGuiItem::del(),
+                                             KStandardGuiItem::cancel(),
+                                             "Disable delete article confirmation" ) != KMessageBox::Continue )
+        return;
+    
+    TreeNode* const selected = m_selectionController->selectedSubscription();
+
+    if ( selected )
+        selected->setNotificationMode( false );
+
+    Akregator::ArticleDeleteJob* job = new Akregator::ArticleDeleteJob;
+    Q_FOREACH( const Akregator::Article i, articles )
     {
-        TreeNode* const selected = m_selectionController->selectedSubscription();
-        if ( selected )
-            selected->setNotificationMode( false );
-
-        QSet<Feed*> feeds;
-        Q_FOREACH( const Akregator::Article i, articles )
-        {
-            Feed* feed = i.feed();
-            feeds.insert( feed );
-            feed->setNotificationMode(false);
-            Akregator::ArticleDeleteJob* job = new Akregator::ArticleDeleteJob;
-            const Akregator::ArticleId aid = { feed->xmlUrl(), i.guid() };
-            job->appendArticleId( aid );
-            job->start();
-        }
-
-        Q_FOREACH( Akregator::Feed* i, feeds )
-            i->setNotificationMode(true);
-
-        if ( selected )
-            selected->setNotificationMode( true );
+        Feed* const feed = i.feed();
+        assert( feed );
+        const Akregator::ArticleId aid = { feed->xmlUrl(), i.guid() };
+        job->appendArticleId( aid );
     }
+
+    job->start();
+
+    if ( selected )
+        selected->setNotificationMode( true );
 }
 
 
