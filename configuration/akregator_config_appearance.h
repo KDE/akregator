@@ -40,8 +40,6 @@ class KCMAkregatorAppearanceConfig : public KCModule
 public:
     KCMAkregatorAppearanceConfig( QWidget *parent, const QVariantList &args );
     
-    /*reimpl*/ void save();
-    
 private:
     QWidget* m_widget;
     Akregator::Ui::SettingsAppearance m_ui;

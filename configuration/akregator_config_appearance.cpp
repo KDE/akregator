@@ -70,15 +70,13 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
     setAboutData( about );
 
+    m_ui.slider_minimumFontSize->setDisabled( Settings::self()->isImmutable("MinimumFontSize") );
+    m_ui.slider_mediumFontSize->setDisabled( Settings::self()->isImmutable("MediumFontSize") );
+    m_ui.lbl_MinimumFontSize->setDisabled( Settings::self()->isImmutable("MinimumFontSize") );
+    m_ui.lbl_MediumFontSize->setDisabled( Settings::self()->isImmutable("MediumFontSize") );
+
     addConfig( Settings::self(), m_widget );
 }
 
-void KCMAkregatorAppearanceConfig::save()
-{
-    m_ui.slider_minimumFontSize->setDisabled( Settings::self()->isImmutable("MinimumFontSize"));
-    m_ui.slider_mediumFontSize->setDisabled(Settings::self()->isImmutable("MediumFontSize"));
-    m_ui.lbl_MinimumFontSize->setDisabled(Settings::self()->isImmutable("MinimumFontSize"));
-    m_ui.lbl_MediumFontSize->setDisabled(Settings::self()->isImmutable("MediumFontSize"));
-}
 
 #include "akregator_config_appearance.moc"
