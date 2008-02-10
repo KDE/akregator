@@ -774,35 +774,29 @@ void Akregator::MainWidget::addFeed(const QString& url, TreeNode *after, Folder*
 
 void Akregator::MainWidget::slotFeedAddGroup()
 {
+    bool ok;
+    QString text = KInputDialog::getText( i18n( "Add Folder" ), 
+                                          i18n( "Folder name:" ), 
+                                           "", 
+                                           &ok,
+                                           this );
+    if ( !ok )
+        return;
+
     TreeNode* node = m_selectionController->selectedSubscription();
-    TreeNode* after = 0;
 
     if (!node)
         node = m_feedList->rootNode();
+    
+    TreeNode* const after = !node->isGroup() ? node : 0;
 
-    // if a feed is selected, add group next to it
-    if (!node->isGroup())
-    {
-        after = node;
-        node = node->parent();
-    }
+    Folder* const parentFolder = node->isGroup() ? qobject_cast<Folder*>( node ) : node->parent();
+    assert( parentFolder );
 
-    Folder* currentGroup = static_cast<Folder*> (node);
+    Folder* const newFolder = new Folder( text );
+    parentFolder->insertChild( newFolder, after );
 
-    bool Ok;
-
-    QString text = KInputDialog::getText(i18n("Add Folder"), i18n("Folder name:"), "", &Ok);
-
-    if (Ok)
-    {
-        Folder* newGroup = new Folder(text);
-        if (!after)
-            currentGroup->appendChild(newGroup);
-        else
-            currentGroup->insertChild(newGroup, after);
-
-        m_feedListView->ensureNodeVisible(newGroup);
-    }
+    m_feedListView->ensureNodeVisible( newFolder );
 }
 
 void Akregator::MainWidget::slotFeedRemove()
@@ -925,10 +919,8 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
 
     m_markReadTimer->stop();
 
-    const Feed *feed = article.feed();
-    if (!feed)
-        return;
-
+    assert( article.feed() );
+   
     if (article.status() != Akregator::Read)
     {
         if ( Settings::useMarkReadDelay() )
