@@ -28,7 +28,11 @@
 #include "feedlist.h"
 #include "kernel.h"
 
+#include <QTimer>
+
 #include <vector>
+
+using namespace Akregator;
 
 Akregator::ArticleDeleteJob::ArticleDeleteJob( QObject* parent ) : KJob( parent ), m_feedList( Kernel::self()->feedList() )
 {
@@ -45,14 +49,32 @@ void Akregator::ArticleDeleteJob::appendArticleId( const Akregator::ArticleId& i
     m_ids += id;
 }
 
+
 void Akregator::ArticleDeleteJob::start()
 {
+    QTimer::singleShot( 20, this, SLOT( doStart() ) );
+}
+
+void Akregator::ArticleDeleteJob::doStart()
+{
+    std::vector<Akregator::Feed*> feeds;
+
     Q_FOREACH ( const Akregator::ArticleId id, m_ids )
     {
         Akregator::Article article = m_feedList->findArticle( id.feedUrl, id.guid );
-        if ( !article.isNull() )
-            article.setDeleted();
+        if ( article.isNull() )
+            continue;
+        ;
+        if ( Feed* const feed = m_feedList->findByURL( id.feedUrl ) )
+        {
+            feeds.push_back( feed );
+            feed->setNotificationMode( false );
+        }
+        article.setDeleted();
     } 
+
+    Q_FOREACH ( Akregator::Feed* const i, feeds )
+        i->setNotificationMode( true ); 
 
     emitResult();
 }
@@ -73,6 +95,11 @@ void Akregator::ArticleModifyJob::setKeep( const ArticleId& id, bool keep )
 }
 
 void Akregator::ArticleModifyJob::start()
+{
+    QTimer::singleShot( 20, this, SLOT( doStart() ) );
+}
+
+void Akregator::ArticleModifyJob::doStart()
 {
     std::vector<Akregator::Feed*> feeds;
 
