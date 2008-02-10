@@ -812,13 +812,13 @@ void Feed::enforceLimitArticleNumber()
     if (limit == -1 || limit >= d->articles.count() - d->deletedArticles.count())
         return;
 
-    setNotificationMode(false);
     QList<Article> articles = d->articles.values();
     qSort(articles);
 
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
+    ArticleDeleteJob* job = new ArticleDeleteJob;
     Q_FOREACH ( Akregator::Article i, articles )
     {
         if (c < limit)
@@ -827,8 +827,13 @@ void Feed::enforceLimitArticleNumber()
                 ++c;
         }
         else if ( !useKeep || !i.keep() )
-             i.setDeleted();
+        {
+            const ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
+            job->appendArticleId( aid );
+        }
     }
+    job->start();
 }
 
 #include "feed.moc"
+    
