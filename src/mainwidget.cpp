@@ -290,8 +290,8 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_articleViewer = new ArticleViewer(m_articleSplitter);
     m_actionManager->initArticleViewer(m_articleViewer);
 
-    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest )),
-             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest( Akregator::OpenUrlRequest )) );
+    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest& )),
+             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest( Akregator::OpenUrlRequest& )) );
     connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo( KFileItem )),
              this, SLOT(slotMouseOverInfo( KFileItem )) );
     connect( m_part, SIGNAL(signalSettingsChanged()),
