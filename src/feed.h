@@ -285,8 +285,8 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
 
     private:
 
-        class FeedPrivate;
-        FeedPrivate* d;
+        class Private;
+        Private* d;
 };
 
 } // namespace Akregator

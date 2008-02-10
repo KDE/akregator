@@ -58,9 +58,12 @@ using Syndication::ItemPtr;
 using namespace Akregator;
 using namespace boost;
 
-class Feed::FeedPrivate
+class Feed::Private
 {
+        Feed* const q;
     public:
+        explicit Private( Akregator::Backend::Storage* storage, Feed* qq );
+        
         Akregator::Backend::Storage* storage;
         bool autoFetch;
         int fetchInterval;
@@ -124,46 +127,43 @@ QString Feed::archiveModeToString(ArchiveMode mode)
 Feed* Feed::fromOPML(QDomElement e, Akregator::Backend::Storage* storage )
 {
 
-    Feed* feed = 0;
+    if( !e.hasAttribute("xmlUrl") && !e.hasAttribute("xmlurl") && !e.hasAttribute("xmlURL") )
+        return 0;
+    
+    QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
-    if( e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl") || e.hasAttribute("xmlURL") )
-    {
-        QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
+    QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
+    if (xmlUrl.isEmpty())
+        xmlUrl = e.attribute("xmlURL");
 
-        QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
-        if (xmlUrl.isEmpty())
-            xmlUrl = e.attribute("xmlURL");
+    bool useCustomFetchInterval = e.attribute("useCustomFetchInterval") == "true";
 
-        bool useCustomFetchInterval = e.attribute("useCustomFetchInterval") == "true";
+    QString htmlUrl = e.attribute("htmlUrl");
+    QString description = e.attribute("description");
+    int fetchInterval = e.attribute("fetchInterval").toInt();
+    ArchiveMode archiveMode = stringToArchiveMode(e.attribute("archiveMode"));
+    int maxArticleAge = e.attribute("maxArticleAge").toUInt();
+    int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
+    bool markImmediatelyAsRead = e.attribute("markImmediatelyAsRead") == "true";
+    bool useNotification = e.attribute("useNotification") == "true";
+    bool loadLinkedWebsite = e.attribute("loadLinkedWebsite") == "true";
+    uint id = e.attribute("id").toUInt();
 
-        QString htmlUrl = e.attribute("htmlUrl");
-        QString description = e.attribute("description");
-        int fetchInterval = e.attribute("fetchInterval").toInt();
-        ArchiveMode archiveMode = stringToArchiveMode(e.attribute("archiveMode"));
-        int maxArticleAge = e.attribute("maxArticleAge").toUInt();
-        int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
-        bool markImmediatelyAsRead = e.attribute("markImmediatelyAsRead") == "true";
-        bool useNotification = e.attribute("useNotification") == "true";
-        bool loadLinkedWebsite = e.attribute("loadLinkedWebsite") == "true";
-        uint id = e.attribute("id").toUInt();
-
-        feed = new Feed( storage );
-        feed->setTitle(title);
-        feed->setXmlUrl(xmlUrl);
-        feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
-        feed->setHtmlUrl(htmlUrl);
-        feed->setId(id);
-        feed->setDescription(description);
-        feed->setArchiveMode(archiveMode);
-        feed->setUseNotification(useNotification);
-        feed->setFetchInterval(fetchInterval);
-        feed->setMaxArticleAge(maxArticleAge);
-        feed->setMaxArticleNumber(maxArticleNumber);
-        feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
-        feed->setLoadLinkedWebsite(loadLinkedWebsite);
-        feed->loadArticles(); // TODO: make me fly: make this delayed
-
-    }
+    Feed* const feed = new Feed( storage );
+    feed->setTitle(title);
+    feed->setXmlUrl(xmlUrl);
+    feed->setCustomFetchIntervalEnabled(useCustomFetchInterval);
+    feed->setHtmlUrl(htmlUrl);
+    feed->setId(id);
+    feed->setDescription(description);
+    feed->setArchiveMode(archiveMode);
+    feed->setUseNotification(useNotification);
+    feed->setFetchInterval(fetchInterval);
+    feed->setMaxArticleAge(maxArticleAge);
+    feed->setMaxArticleNumber(maxArticleNumber);
+    feed->setMarkImmediatelyAsRead(markImmediatelyAsRead);
+    feed->setLoadLinkedWebsite(loadLinkedWebsite);
+    feed->loadArticles(); // TODO: make me fly: make this delayed
 
     return feed;
 }
@@ -252,23 +252,31 @@ Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
     return globalDefault;
 }
 
-Feed::Feed( Akregator::Backend::Storage* storage ) : TreeNode(), d(new FeedPrivate)
+Feed::Private::Private( Akregator::Backend::Storage* storage_, Feed* qq ) 
+  : q( qq ),
+    storage( storage_ ),
+    autoFetch( false ),
+    fetchInterval( 30 ),
+    archiveMode( globalDefault ),
+    maxArticleAge( 60 ),
+    maxArticleNumber( 1000 ),
+    markImmediatelyAsRead( false ),
+    useNotification( false ),
+    loadLinkedWebsite( false ),
+    lastFetched( 0 ),
+    fetchErrorCode( Syndication::Success ),
+    fetchTries( 0 ),
+    followDiscovery( false ),
+    loader( 0 ),
+    articlesLoaded( false ),
+    archive( 0 )
 {
-    Q_ASSERT( storage );
-    d->autoFetch = false;
-    d->fetchInterval = 30;
-    d->archiveMode = globalDefault;
-    d->maxArticleAge = 60;
-    d->maxArticleNumber = 1000;
-    d->markImmediatelyAsRead = false;
-    d->useNotification = false;
-    d->fetchErrorCode = Syndication::Success;
-    d->fetchTries = 0;
-    d->loader = 0;
-    d->articlesLoaded = false;
-    d->archive = 0;
-    d->loadLinkedWebsite = false;
-    d->storage = storage;
+    assert( q );
+    assert( storage );
+}
+
+Feed::Feed( Akregator::Backend::Storage* storage ) : TreeNode(), d( new Private( storage, this ) )
+{
 }
 
 Feed::~Feed()
