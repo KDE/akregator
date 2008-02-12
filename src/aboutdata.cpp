@@ -37,7 +37,7 @@ AboutData::AboutData()
                      "http://akregator.kde.org/")
 {
     setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS 
-    addAuthor( ki18n("Frank Osterfeld"), ki18n("Maintainer"), "frank.osterfeld@kdemail.net" );
+    addAuthor( ki18n("Frank Osterfeld"), ki18n("Maintainer"), "osterfeld@kde.org" );
     addAuthor( ki18n("Teemu Rytilahti"), ki18n("Developer"), "tpr@d5k.net" );
     addAuthor( ki18n("Sashmit Bhaduri"), ki18n("Developer"), "sashmit@vfemail.net" );
     addAuthor( ki18n("Pierre Habouzit"), ki18n("Developer"), "pierre.habouzit@m4x.org" );

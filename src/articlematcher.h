@@ -2,7 +2,7 @@
  * articlematcher.h
  *
  * Copyright (c) 2004, 2005 Frerich Raabe <raabe@kde.org>
- *               2005 Frank Osterfeld <frank.osterfeld@kdemail.net>
+ *               2005 Frank Osterfeld <osterfeld@kde.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
