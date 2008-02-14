@@ -101,7 +101,10 @@ static QString extractAtomContent(const QDomElement& e)
     switch (format)
     {
         case HTML:
-            return KCharsets::resolveEntities(e.text().simplifyWhiteSpace());
+        {
+            const bool hasPre = e.text().contains( "<pre>", false ) || e.text().contains( "<pre ", false );
+            return KCharsets::resolveEntities( hasPre ? e.text() : e.text().simplifyWhiteSpace() );
+        }
         case Text:
             return plainTextToHtml(e.text().stripWhiteSpace());
         case XML:
@@ -129,7 +132,7 @@ QString extractNode(const QDomNode &parent, const QString &elemName, bool isInli
         }        
         else // check for HTML; not necessary for Atom:content
         {
-            bool hasPre = result.contains("<pre>",false);
+            bool hasPre = result.contains("<pre>", false) || result.contains("<pre ", false);
             bool hasHtml = hasPre || result.contains("<");	// FIXME: test if we have html, should be more clever -> regexp
             if(!isInlined && !hasHtml)						// perform nl2br if not a inline elt and it has no html elts
                     result = result = result.replace(QChar('\n'), "<br />");
