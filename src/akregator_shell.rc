@@ -49,6 +49,9 @@
   <Merge/>
   <Action name="stop"/>
 </ToolBar>
+<ToolBar noMerge="1" name="browserToolBar"><text>Browser Toolbar</text>
+  <Merge/>
+</ToolBar>
 <ToolBar hidden="true" noMerge="1" name="textToSpeechToolBar"><text>Speech Toolbar</text>
 	<Merge/>
 </ToolBar>
