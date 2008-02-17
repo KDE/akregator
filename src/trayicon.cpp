@@ -62,9 +62,10 @@ void TrayIcon::setInstance(TrayIcon* trayIcon)
 TrayIcon::TrayIcon(QWidget *parent)
         : KSystemTrayIcon(parent), m_unread(0)
 {
-    m_lightIconImage = KSystemTrayIcon::loadIcon("akregator").pixmap(22).toImage();
+    m_defaultIcon = KIcon("akregator").pixmap(22);
+    m_lightIconImage = m_defaultIcon.toImage();
     KIconEffect::deSaturate(m_lightIconImage, 0.60f);
-    setIcon(KIcon("akregator"));
+    setIcon(m_defaultIcon);
     this->setToolTip( i18n("Akregator - Feed Reader"));
     connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
              SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
@@ -139,7 +140,7 @@ void TrayIcon::slotSetUnread(int unread)
 
     if (unread <= 0)
     {
-        setIcon(KIcon("akregator"));
+        setIcon(m_defaultIcon);
     }
     else
     {
@@ -162,23 +163,13 @@ void TrayIcon::slotSetUnread(int unread)
             f.setPointSizeF(pointSize);
         }
 
-        /*QPixmap pix(oldW, oldH);
-        pix.fill(Qt::white);
-        QPainter p(&pix);
-        p.setFont(f);
-        p.setPen(Qt::blue);
-        p.drawText(pix.rect(), Qt::AlignCenter, uStr);
-
-        pix.setMask(pix.createHeuristicMask());
-        QImage img = pix.toImage();*/
-
         // overlay
         QImage overlayImg = m_lightIconImage.copy();
-	QPainter p(&overlayImg);
-	p.setFont(f);
-	KColorScheme scheme(QPalette::Active, KColorScheme::Window);
-	p.setPen(scheme.foreground(KColorScheme::LinkText).color());
-	p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
+        QPainter p(&overlayImg);
+        p.setFont(f);
+        KColorScheme scheme(QPalette::Active, KColorScheme::Window);
+        p.setPen(scheme.foreground(KColorScheme::LinkText).color());
+        p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
 
         setIcon(QPixmap::fromImage(overlayImg));
     }

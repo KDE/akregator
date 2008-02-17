@@ -59,6 +59,7 @@ class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
         static TrayIcon* m_instance;
 
         QImage m_lightIconImage;
+        QPixmap m_defaultIcon;
         int m_unread;
 };
 
