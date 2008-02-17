@@ -175,8 +175,9 @@ void Akregator::SelectionController::articleHeadersAvailable()
 
     m_articleLister->setIsAggregation( m_selectedSubscription->isAggregation() );
 
-    connect( m_articleLister->articleSelectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex) ),
-             this, SLOT( currentArticleIndexChanged( QModelIndex, QModelIndex ) ) );
+    connect( m_articleLister->articleSelectionModel(), SIGNAL( selectionChanged( QItemSelection, QItemSelection ) ),
+             this, SLOT( articleSelectionChanged() ) );
+
 }
 
 void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIndex& index )
@@ -215,11 +216,8 @@ void Akregator::SelectionController::subscriptionContextMenuRequested( const QPo
     }
 }
 
-void Akregator::SelectionController::currentArticleIndexChanged( const QModelIndex&, const QModelIndex &prev )
+void Akregator::SelectionController::articleSelectionChanged()
 {
-    if(!prev.isValid())
-        return;
-
     const Akregator::Article article = currentArticle();
     if ( m_singleDisplay )
         m_singleDisplay->showArticle( article );
