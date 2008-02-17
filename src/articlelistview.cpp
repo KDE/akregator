@@ -218,6 +218,7 @@ void Akregator::ArticleListView::loadHeaderSettings()
     if ( !s.isNull() )
         header()->restoreState( s );
     header()->setSortIndicator( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
+    sortByColumn( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
 }
 
 QItemSelectionModel* Akregator::ArticleListView::articleSelectionModel() const
