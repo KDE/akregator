@@ -180,10 +180,10 @@
   </entry>
   </group>
 <group name="Columns" >
-  <entry key="Feedlist Header States" type="String" >
+  <entry key="Feedlist Header States" type="IntList" ><!-- move back to type String, when the saveState()-Qt-Bug is fixed -->
    <default></default>
   </entry>
-  <entry key="Articlelist Header States" type="String" >
+  <entry key="Articlelist Header States" type="IntList" ><!-- move back to type String, when the saveState()-Qt-Bug is fixed -->
    <default></default>
   </entry>
   <entry key="Articlelist Sort Column" type="Int" >

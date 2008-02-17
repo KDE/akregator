@@ -196,15 +196,28 @@ void Akregator::SubscriptionListView::headerMenuItemTriggered( QAction* act )
 
 void Akregator::SubscriptionListView::saveHeaderSettings()
 {
-    QByteArray s = header()->saveState();
-    Settings::setFeedlistHeaderStates( s.toBase64() );
+    //QByteArray s = header()->saveState();
+    //Settings::setFeedlistHeaderStates( s.toBase64() );
+    QList<int> columnsSize;
+    for (int i = 0; i != header()->count(); i++)
+    {
+        kDebug() << i;
+        columnsSize.append( columnWidth( i ) );
+    }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
+    Settings::setFeedlistHeaderStates( columnsSize );
 }
 
 void Akregator::SubscriptionListView::loadHeaderSettings()
 {
-    QByteArray s = QByteArray::fromBase64( Settings::feedlistHeaderStates().toAscii() );
-    if ( !s.isNull() )
-        header()->restoreState( s );
+    //QByteArray s = QByteArray::fromBase64( Settings::feedlistHeaderStates().toAscii() );
+    //if ( !s.isNull() )
+    //    header()->restoreState( s );
+    QList<int> columnsSize = Settings::feedlistHeaderStates();
+    for (int i = 0; i != columnsSize.count(); i++)
+    {
+        kDebug() << i << " " << columnsSize.at( i );
+        setColumnWidth( i, columnsSize.at( i ) );
+    }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
 
     QMap<QAction*,int>::iterator i = m_columnMap.begin();
     while ( i != m_columnMap.end() )
