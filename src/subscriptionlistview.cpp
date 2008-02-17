@@ -213,12 +213,13 @@ void Akregator::SubscriptionListView::loadHeaderSettings()
     //if ( !s.isNull() )
     //    header()->restoreState( s );
     QList<int> columnsSize = Settings::feedlistHeaderStates();
-    for (int i = 0; i != columnsSize.count(); i++)
-    {
-        kDebug() << i << " " << columnsSize.at( i );
-        setColumnWidth( i, columnsSize.at( i ) );
-    }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
-
+    if ( !columnsSize.isEmpty() ) {
+        for (int i = 0; i != columnsSize.count(); i++)
+        {
+            kDebug() << i << " " << columnsSize.at( i );
+            setColumnWidth( i, columnsSize.at( i ) );
+        }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
+    }
     QMap<QAction*,int>::iterator i = m_columnMap.begin();
     while ( i != m_columnMap.end() )
     {
