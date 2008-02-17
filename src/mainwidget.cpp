@@ -81,6 +81,9 @@
 #include <memory>
 #include <cassert>
 
+using namespace Akregator;
+using namespace Solid;
+
 class Akregator::MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
 {
     public:
@@ -861,7 +864,8 @@ void Akregator::MainWidget::slotSetTotalUnread()
 
 void Akregator::MainWidget::slotDoIntervalFetches()
 {
-    if ( Solid::Networking::status() != Solid::Networking::Connected )
+    const Networking::Status status = Solid::Networking::status();
+    if ( status != Networking::Connected && status != Networking::Unknown )
         return;
     m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
