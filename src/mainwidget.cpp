@@ -919,33 +919,33 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
 
     m_markReadTimer->stop();
 
-    assert( article.feed() );
+    assert( article.isNull() || article.feed() );
    
-    if (article.status() != Akregator::Read)
-    {
-        if ( Settings::useMarkReadDelay() )
-        {
-            const int delay = Settings::markReadDelay();
-
-            if ( delay > 0 )
-            {
-                m_markReadTimer->start( delay * 1000 );
-            }
-            else
-            {
-                Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-                const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
-                job->setStatus( aid, Akregator::Read );
-                job->start();
-            }
-        }
-    }
-
     KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
     assert( maai );
     maai->setChecked( article.keep() );
 
     m_articleViewer->showArticle( article );
+
+    if ( article.isNull() || article.status() == Akregator::Read )
+        return;
+
+    if ( !Settings::useMarkReadDelay() )
+        return;
+    
+    const int delay = Settings::markReadDelay();
+
+    if ( delay > 0 )
+    {
+        m_markReadTimer->start( delay * 1000 );
+    }
+    else
+    {
+        Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
+        const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
+        job->setStatus( aid, Akregator::Read );
+        job->start();
+    }
 }
 
 void Akregator::MainWidget::slotMouseButtonPressed(int button, const KUrl& url)

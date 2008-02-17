@@ -477,6 +477,12 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
 
 void ArticleViewer::showArticle( const Akregator::Article& article )
 {
+    if ( article.isNull() )
+    {
+        slotClear();
+        return;
+    }
+        
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
     m_article = article;
