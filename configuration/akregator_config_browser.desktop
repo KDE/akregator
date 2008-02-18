@@ -10,6 +10,7 @@ X-KDE-ParentComponents=akregator,kontact_akregator
 X-KDE-CfgDlgHierarchy=Akregator
 
 Name=Browser
+Name[ca]=Navegador
 Name[ga]=Brabhsálaí
 Name[ja]=ブラウザ
 Name[km]=កម្មវិធី​រុករក
@@ -17,6 +18,7 @@ Name[nds]=Kieker
 Name[pt]=Navegador
 Name[pt_BR]=Navegador
 Comment=Configure Internal Browser Component
+Comment[ca]=Configura el component navegador intern
 Comment[km]=កំណត់​រចនាសម្ព័ន្ធ​សមាសភាគ​កម្មវិធី​រុករក​ខាង​ក្នុង
 Comment[nds]=Intern Kiekerkomponent instellen
 Comment[pt]=Configurar a Componente de Navegação Interna
