@@ -1,4 +1,4 @@
-include_directories( ${CMAKE_SOURCE_DIR}/akregator/interfaces ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIR} )
+include_directories( ${CMAKE_SOURCE_DIR}/akregator/interfaces ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/akregator/plugins/mk4storage/metakit/include ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_BINARY_DIR}/akregator ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${Boost_INCLUDE_DIR} )
 
 set(libmetakitlocal_SRCS 
                 metakit/src/column.cpp 

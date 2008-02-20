@@ -12,7 +12,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 // necessary for SIZEOF_LONG
-#include <config.h>
+#include <config-akregator.h>
 
 ////////////////////////////////////////////////////////////////////////////
 // A number of preprocessor options are used in the source code
@@ -216,7 +216,7 @@ void f4_DoLogProp(const c4_Handler*, int, const char*, int);
 #error Exactly one container library should have been defined
 #endif
 #endif
-#endif    
+#endif
 /////////////////////////////////////////////////////////////////////////////
 
 #endif
