@@ -220,12 +220,12 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
                     q, SLOT(slotCreateNewWindow(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)));
             connect(ext, SIGNAL(createNewWindow(const KUrl&,
                     const KParts::OpenUrlArguments&,
-                    const KParts::BrowserArguments&
+                    const KParts::BrowserArguments&,
                     const KParts::WindowArgs&,
                     KParts::ReadOnlyPart**)),
                     q, SLOT(slotCreateNewWindow(const KUrl&, 
                                  const KParts::OpenUrlArguments&,
-                                 const KParts::BrowserArguments&
+                                 const KParts::BrowserArguments&,
                                  const KParts::WindowArgs&,
                                  KParts::ReadOnlyPart**)));
             connect(ext, SIGNAL(popupMenu(QPoint,KUrl,mode_t,
