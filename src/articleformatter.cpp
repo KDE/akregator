@@ -44,32 +44,22 @@ namespace Akregator {
 class ArticleFormatter::Private
 {
     public:
-
+        explicit Private( QPaintDevice* device_ );
         QPaintDevice* device;
         class SummaryVisitor;
 };
 
-
-ArticleFormatter::ArticleFormatter() : d(new Private)
-{
-    d->device = 0;
+ArticleFormatter::Private::Private( QPaintDevice* device_ ) : device( device_ )
+{    
 }
 
-ArticleFormatter::ArticleFormatter(const ArticleFormatter& other)  : d(new Private)
+ArticleFormatter::ArticleFormatter( QPaintDevice* device ) : d( new Private( device ) )
 {
-    d->device = other.d->device;
-}
-
-ArticleFormatter& ArticleFormatter::operator=(const ArticleFormatter& other)
-{
-    d->device = other.d->device;
-    return *this;
 }
 
 ArticleFormatter::~ArticleFormatter()
 {
     delete d;
-    d = 0;
 }
 
 void ArticleFormatter::setPaintDevice(QPaintDevice* device)
@@ -328,27 +318,20 @@ QString DefaultNormalViewFormatter::getCss() const
     return css;
 }
 
-DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const KUrl& imageDir) : m_imageDir(imageDir)
+DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const KUrl& imageDir, QPaintDevice* device ) : ArticleFormatter( device ), m_imageDir(imageDir)
 {
 }
 
-DefaultNormalViewFormatter::DefaultNormalViewFormatter(const KUrl& imageDir) : ArticleFormatter(), m_imageDir(imageDir)
+DefaultNormalViewFormatter::DefaultNormalViewFormatter(const KUrl& imageDir, QPaintDevice* device ) 
+    : ArticleFormatter( device ), 
+    m_imageDir( imageDir ), 
+    m_summaryVisitor( new SummaryVisitor( this ) )
 {
-    m_summaryVisitor = new SummaryVisitor(this);
-}
-
-DefaultNormalViewFormatter::DefaultNormalViewFormatter() : ArticleFormatter()    
-{
-    m_summaryVisitor = new SummaryVisitor(this);
 }
 
 DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
 {
     delete m_summaryVisitor;
-}
-
-DefaultCombinedViewFormatter::DefaultCombinedViewFormatter() : ArticleFormatter()
-{
 }
 
 QString DefaultCombinedViewFormatter::formatArticle(const Article& article, IconOption icon) const

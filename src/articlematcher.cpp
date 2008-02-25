@@ -41,6 +41,10 @@
 namespace Akregator {
 namespace Filters {
 
+AbstractMatcher::AbstractMatcher() {}
+
+AbstractMatcher::~AbstractMatcher() {}
+
 QString Criterion::subjectToString(Subject subj)
 {
     switch (subj)
@@ -222,27 +226,10 @@ ArticleMatcher::~ArticleMatcher()
 {
 }
 
-ArticleMatcher* ArticleMatcher::clone() const
-{
-    return new ArticleMatcher(*this);
-}
-
 ArticleMatcher::ArticleMatcher( const QList<Criterion> &criteria, Association assoc)
     : m_criteria( criteria )
     , m_association( assoc )
 {
-}
-
-ArticleMatcher& ArticleMatcher::operator=(const ArticleMatcher& other)
-{
-    m_association = other.m_association;
-    m_criteria = other.m_criteria;
-    return *this;
-}
-
-ArticleMatcher::ArticleMatcher(const ArticleMatcher& other) : AbstractMatcher(other)
-{
-    *this = other;
 }
 
 bool ArticleMatcher::matches( const Article &a ) const

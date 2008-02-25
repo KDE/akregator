@@ -44,12 +44,9 @@ class ArticleFormatter
             ShowIcon
         };
         
-        ArticleFormatter();
-        ArticleFormatter(const ArticleFormatter& other);
+        explicit ArticleFormatter( QPaintDevice* device = 0 );
         
         virtual ~ArticleFormatter();
-        
-        ArticleFormatter& operator=(const ArticleFormatter& other);
         
         void setPaintDevice(QPaintDevice* device);
          
@@ -64,16 +61,16 @@ class ArticleFormatter
         int pointsToPixel(int pointSize) const;
         
     private:
-
         class Private;
-        Private* d;
+        Private* const d;
+        Q_DISABLE_COPY( ArticleFormatter )
 };
 
 class DefaultNormalViewFormatter : public ArticleFormatter
 {
     public:
         
-        DefaultNormalViewFormatter(const KUrl& imageDir);
+        explicit DefaultNormalViewFormatter( const KUrl& imageDir, QPaintDevice* device = 0 );
         ~DefaultNormalViewFormatter();
         
         QString formatArticle(const Article& article, IconOption option) const;
@@ -95,7 +92,7 @@ class DefaultCombinedViewFormatter : public ArticleFormatter
             
     public:
         
-        explicit DefaultCombinedViewFormatter(const KUrl& m_imageDir);
+        explicit DefaultCombinedViewFormatter( const KUrl& imageDir, QPaintDevice* device = 0 );
         
         QString formatArticle(const Article& article, IconOption option) const;
         

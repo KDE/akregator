@@ -23,6 +23,20 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "akregatorconfig.h"
+#include "articleviewer.h"
+#include "aboutdata.h"
+#include "article.h"
+#include "articleformatter.h"
+#include "articlematcher.h"
+#include "feed.h"
+#include "folder.h"
+#include "treenode.h"
+#include "utils.h"
+#include "openurlrequest.h"
+
+#include <kpimutils/kfileio.h>
+
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <kapplication.h>
@@ -47,28 +61,29 @@
 #include <QKeySequence>
 #include <QGridLayout>
 
-#include <kpimutils/kfileio.h>
+#include <boost/bind.hpp>
 
-#include "akregatorconfig.h"
-#include "openurlrequest.h"
+#include <memory>
+#include <cassert>
 
-// TODO: remove unneeded includes
-#include "aboutdata.h"
-#include "article.h"
-#include "articleformatter.h"
-#include "articleviewer.h"
-#include "feed.h"
-#include "folder.h"
-#include "treenode.h"
-#include "utils.h"
+using namespace boost;
+using namespace Akregator;
+using namespace Akregator::Filters;
 
 namespace Akregator {
 
 ArticleViewer::ArticleViewer(QWidget *parent)
-    : QWidget(parent), m_url(0), m_htmlFooter(), m_currentText(), m_node(0),
-      m_viewMode(NormalView)
+    : QWidget(parent), 
+      m_url(0),
+      m_htmlFooter(),
+      m_currentText(),
+      m_imageDir( KUrl::fromPath( KGlobal::dirs()->saveLocation("cache", "akregator/Media/" ) ) ),
+      m_node(0),
+      m_viewMode(NormalView),
+      m_part( new ArticleViewerPart( this ) ), 
+      m_normalViewFormatter( new DefaultNormalViewFormatter( m_imageDir, m_part->view() ) ), 
+      m_combinedViewFormatter( new DefaultCombinedViewFormatter( m_imageDir, m_part->view() ) )
 {
-    m_part = new ArticleViewerPart(this);
     QGridLayout* layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(m_part->widget(), 0, 0);
@@ -145,11 +160,6 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     action->setText(i18n("&Scroll Down"));
     connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollDown()));
     action->setShortcuts(KShortcut( "Down" ));
-
-    m_imageDir.setPath(KGlobal::dirs()->saveLocation("cache", "akregator/Media/"));
-
-    setNormalViewFormatter(ArticleFormatterPtr(new DefaultNormalViewFormatter(m_imageDir)));
-    setCombinedViewFormatter(ArticleFormatterPtr(new DefaultCombinedViewFormatter(m_imageDir)));
 
     updateCss();
 
@@ -511,13 +521,12 @@ bool ArticleViewer::openUrl(const KUrl& url)
     }
 }
 
-void ArticleViewer::slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter)
+void ArticleViewer::setFilters(const std::vector< shared_ptr<const AbstractMatcher> >& filters )
 {
-    if (m_statusFilter == statusFilter && m_textFilter == textFilter)
+    if ( filters == m_filters )
         return;
 
-    m_textFilter = textFilter;
-    m_statusFilter = statusFilter;
+    m_filters = filters;
 
     slotUpdateCombinedView();
 }
@@ -532,8 +541,6 @@ void ArticleViewer::slotUpdateCombinedView()
 
     QList<Article> articles = m_node->articles();
     qSort(articles);
-    QList<Article>::ConstIterator end = articles.end();
-    QList<Article>::ConstIterator it = articles.begin();
 
     QString text;
 
@@ -541,14 +548,20 @@ void ArticleViewer::slotUpdateCombinedView()
     QTime spent;
     spent.start();
 
-    for ( ; it != end; ++it)
+    const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
+    
+    Q_FOREACH( const Article& i, articles )
     {
-        if ( !(*it).isDeleted() && m_textFilter.matches(*it) && m_statusFilter.matches(*it) )
-        {
-            text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatArticle(*it, ArticleFormatter::NoIcon)+"</div><p>";
-            ++num;
-        }
+        if ( i.isDeleted() )
+            continue;
+        
+        if ( std::find_if( m_filters.begin(), m_filters.end(), !bind( &AbstractMatcher::matches, _1, i ) ) != filterEnd )
+            continue;
+
+        text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatArticle( i, ArticleFormatter::NoIcon)+"</div><p>";
+        ++num;
     }
+    
     kDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
     renderContent(text);
     kDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
@@ -648,7 +661,7 @@ void ArticleViewer::displayAboutPage()
     QString infocss = KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" );
     QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) : QString();
 
-    m_part->write(content.arg(infocss).arg(rtl).arg(fontSize).arg(appTitle).arg(catchPhrase).arg(quickDescription).arg(info));
+    m_part->write( content.arg( infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info ) );
     m_part->end();
 }
 
@@ -736,14 +749,16 @@ void ArticleViewer::updateCss()
     m_combinedModeCSS = m_combinedViewFormatter->getCss();
 }
 
-void ArticleViewer::setNormalViewFormatter(ArticleFormatterPtr formatter)
+void ArticleViewer::setNormalViewFormatter( const shared_ptr<ArticleFormatter>& formatter )
 {
+    assert( formatter );
     m_normalViewFormatter = formatter;
     m_normalViewFormatter->setPaintDevice(m_part->view());
 }
 
-void ArticleViewer::setCombinedViewFormatter(ArticleFormatterPtr formatter)
+void ArticleViewer::setCombinedViewFormatter( const shared_ptr<ArticleFormatter>& formatter )
 {
+    assert( formatter );
     m_combinedViewFormatter = formatter;
     m_combinedViewFormatter->setPaintDevice(m_part->view());
 }

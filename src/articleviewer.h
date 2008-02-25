@@ -26,20 +26,23 @@
 #define AKREGATOR_ARTICLEVIEWER_H
 
 #include "article.h"
-#include "articlematcher.h"
 
 #include <khtml_part.h>
 
 #include <QWidget>
 
 #include <boost/shared_ptr.hpp>
+#include <vector>
 
 class KUrl;
 
 namespace Akregator {
 
+namespace Filters {
+    class AbstractMatcher;
+}
+
 class ArticleFormatter;
-typedef boost::shared_ptr<ArticleFormatter> ArticleFormatterPtr;
 class OpenUrlRequest;
 class TreeNode;
 
@@ -60,11 +63,11 @@ class ArticleViewer : public QWidget
     
         KParts::ReadOnlyPart* part() const;
         
-        void setNormalViewFormatter(ArticleFormatterPtr formatter);
+        void setNormalViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
         
-        void setCombinedViewFormatter(ArticleFormatterPtr formatter);
+        void setCombinedViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
 
-        void showArticle( const Akregator::Article& article );
+        void showArticle( const Article& article );
 
         /** Shows the articles of the tree node @c node (combined view).
          * Changes in the node will update the view automatically.
@@ -81,14 +84,10 @@ class ArticleViewer : public QWidget
         void slotSetZoomFactor(int percent);
         void slotPrint();
 
-        /** Set filters @c textFilter and @c statusFilter which will be used
-         * if the viewer is in combined view mode
-         * 
-         * @param textFilter text filter
-         * @param statusFilter status filter 
+        /** Set filters which will be used if the viewer is in combined view mode
          */    
-        void slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter);
-    
+        void setFilters( const std::vector< boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& filters );
+        
         /** Update view if combined view mode is set. Has to be called when
          * the displayed node gets modified.
          */ 
@@ -164,11 +163,9 @@ class ArticleViewer : public QWidget
         void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
         void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
     
-    protected: // attributes
-        KUrl m_url;
     
     // from ArticleViewer  
-    protected:
+    private:
     
         virtual void keyPressEvent(QKeyEvent* e);
     
@@ -187,7 +184,9 @@ class ArticleViewer : public QWidget
         
         void connectToNode(TreeNode* node);
         void disconnectFromNode(TreeNode* node);
-                            
+
+    private:
+        KUrl m_url;
         QString m_normalModeCSS;
         QString m_combinedModeCSS;
         QString m_htmlFooter;
@@ -196,13 +195,12 @@ class ArticleViewer : public QWidget
         TreeNode* m_node;
         Article m_article;
         KUrl m_link;
-        Akregator::Filters::ArticleMatcher m_textFilter; 
-        Akregator::Filters::ArticleMatcher m_statusFilter;
+        std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters; 
         enum ViewMode { NormalView, CombinedView, SummaryView };
         ViewMode m_viewMode;        
         ArticleViewerPart* m_part;
-        ArticleFormatterPtr m_normalViewFormatter;
-        ArticleFormatterPtr m_combinedViewFormatter;
+        boost::shared_ptr<ArticleFormatter> m_normalViewFormatter;
+        boost::shared_ptr<ArticleFormatter> m_combinedViewFormatter;
 };
 
 class ArticleViewerPart : public KHTMLPart

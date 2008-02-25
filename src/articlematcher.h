@@ -50,10 +50,7 @@ class Criterion;
 class AKREGATORPART_EXPORT AbstractMatcher
 {
     public:
-
-        virtual ~AbstractMatcher() {}
-        /** returns a copy of the matcher */
-        virtual AbstractMatcher* clone() const = 0;
+        virtual ~AbstractMatcher();
 
         virtual bool matches(const Article& article) const = 0;
 
@@ -62,6 +59,13 @@ class AKREGATORPART_EXPORT AbstractMatcher
 
         virtual bool operator==(const AbstractMatcher&) const = 0;
         virtual bool operator!=(const AbstractMatcher &other) const = 0;
+        
+    protected:
+        AbstractMatcher();
+        
+    private:
+        Q_DISABLE_COPY( AbstractMatcher )
+        
 };
 
 
@@ -77,20 +81,16 @@ class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
         };
 
         ArticleMatcher();
-        ArticleMatcher( const QList<Criterion> &criteria, Association assoc);
+        ArticleMatcher( const QList<Criterion> &criteria, Association assoc );
         
-        ArticleMatcher(const ArticleMatcher& other);
-        virtual ~ArticleMatcher();
+        ~ArticleMatcher();
 
-        ArticleMatcher& operator=(const ArticleMatcher& other);
-        virtual ArticleMatcher* clone() const;
-        virtual bool matches(const Article &article) const;
-        virtual bool operator==(const AbstractMatcher &other) const;
-        virtual bool operator!=(const AbstractMatcher &other) const;
+        bool matches(const Article &article) const;
+        bool operator==(const AbstractMatcher &other) const;
+        bool operator!=(const AbstractMatcher &other) const;
         
-        
-        virtual void writeConfig(KConfigGroup* config) const;
-        virtual void readConfig(KConfigGroup* config);
+        void writeConfig(KConfigGroup* config) const;
+        void readConfig(KConfigGroup* config);
 
     private:
 

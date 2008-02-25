@@ -265,7 +265,8 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController->setArticleLister( m_articleListView );
     m_selectionController->setFeedSelector( m_feedListView );
 
-    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ), m_selectionController, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
+    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ), 
+            m_selectionController, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
 
     FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
     connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) );
@@ -298,7 +299,10 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo( KFileItem )),
              this, SLOT(slotMouseOverInfo( KFileItem )) );
     connect( m_part, SIGNAL(signalSettingsChanged()),
-             m_articleViewer, SLOT(slotPaletteOrFontChanged()));   
+             m_articleViewer, SLOT(slotPaletteOrFontChanged()));
+    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ), 
+            m_articleViewer, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
+
     m_articleViewer->part()->widget()->setWhatsThis( i18n("Browsing area."));
     
     mainTabLayout->addWidget( m_articleSplitter );
