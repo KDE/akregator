@@ -4,7 +4,7 @@
 #include <KDialog>
  
 // include the automatically generated header file for the ui-file
-#include "ui_configurationframe.h"
+#include "ui_configurationdialog.h"
 
 class ConfigurationDialog : public KDialog
 {
@@ -17,7 +17,7 @@ class ConfigurationDialog : public KDialog
         void slotButtonClicked();
 
     private:
-        Ui::ConfigurationFrame ui;
+        Ui::ConfigurationDialog ui;
 };
  
 #endif
