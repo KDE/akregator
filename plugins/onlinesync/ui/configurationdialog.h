@@ -1,10 +1,19 @@
+#ifndef UI_CONFIGURATIONDIALOG_H
+#define UI_CONFIGURATIONDIALOG_H
+namespace Ui 
+{
+    class ConfigurationDialog {};
+}
+#endif
+
 #ifndef CONFIGURATIONFRAME_H
 #define CONFIGURATIONFRAME_H
  
 #include <KDialog>
- 
-// include the automatically generated header file for the ui-file
-#include "ui_configurationdialog.h"
+
+
+namespace feedsync
+{
 
 class ConfigurationDialog : public KDialog
 {
@@ -20,4 +29,6 @@ class ConfigurationDialog : public KDialog
         Ui::ConfigurationDialog ui;
 };
  
+}
+
 #endif

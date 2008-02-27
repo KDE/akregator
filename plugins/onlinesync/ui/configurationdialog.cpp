@@ -1,4 +1,8 @@
+#include "ui_configurationdialog.h"
 #include "configurationdialog.h"
+
+namespace feedsync
+{
 
 ConfigurationDialog::ConfigurationDialog( QWidget *parent)
 {
@@ -33,8 +37,6 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
         line2.append("http://website.com/feeds.opml");
     items.append(new QTreeWidgetItem((QTreeWidget*)0, line2));
     ui.list_readerList->insertTopLevelItems(0, items);
-
-
 }
 
 ConfigurationDialog::~ConfigurationDialog()
@@ -47,4 +49,6 @@ void ConfigurationDialog::slotButtonClicked()
 /*    KMessageBox::information( this, 
                               i18n("You pressed the button!" ),
                               i18n( "Hooray!" ) );*/
+}
+
 }
