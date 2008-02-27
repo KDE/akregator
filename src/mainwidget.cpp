@@ -868,6 +868,8 @@ void Akregator::MainWidget::slotSetTotalUnread()
 
 void Akregator::MainWidget::slotDoIntervalFetches()
 {
+    if ( !m_feedList )
+        return;
     const Networking::Status status = Solid::Networking::status();
     if ( status != Networking::Connected && status != Networking::Unknown )
         return;
