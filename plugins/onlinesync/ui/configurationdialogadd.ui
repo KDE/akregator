@@ -1,38 +1,26 @@
 <ui version="4.0" >
- <class>Form</class>
- <widget class="QFrame" name="Form" >
+ <class>ConfigurationDialogAdd</class>
+ <widget class="QWidget" name="ConfigurationDialogAdd" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>278</height>
+    <width>341</width>
+    <height>272</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <property name="frameShape" >
-   <enum>QFrame::StyledPanel</enum>
-  </property>
-  <property name="frameShadow" >
-   <enum>QFrame::Raised</enum>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2" >
+  <layout class="QVBoxLayout" name="verticalLayout_3" >
    <item>
     <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
       <string>Type of reader</string>
      </property>
-     <property name="flat" >
-      <bool>false</bool>
-     </property>
-     <property name="checkable" >
-      <bool>false</bool>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout" >
+     <layout class="QVBoxLayout" name="verticalLayout_2" >
       <item>
-       <widget class="QComboBox" name="comboBox" />
+       <widget class="QComboBox" name="cb_readerType" />
       </item>
      </layout>
     </widget>
@@ -42,16 +30,16 @@
      <property name="title" >
       <string>Parameters (Google Reader)</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3" >
+     <layout class="QVBoxLayout" name="verticalLayout" >
       <item>
        <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Email</string>
+         <string>Account</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit" />
+       <widget class="QLineEdit" name="le_account" />
       </item>
       <item>
        <widget class="QLabel" name="label_2" >
@@ -61,20 +49,20 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_2" >
+       <widget class="QLineEdit" name="le_passwd" >
         <property name="echoMode" >
          <enum>QLineEdit::Password</enum>
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox" >
-        <property name="text" >
-         <string>Remember</string>
-        </property>
-       </widget>
-      </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="checkBox" >
+     <property name="text" >
+      <string>Remember</string>
+     </property>
     </widget>
    </item>
   </layout>

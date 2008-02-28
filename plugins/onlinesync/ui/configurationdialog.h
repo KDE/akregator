@@ -22,11 +22,11 @@ class ConfigurationDialog : public KDialog
         ConfigurationDialog( QWidget *parent=0 );
         ~ConfigurationDialog();
 
-    private slots:
-        void slotButtonClicked();
-
     private:
         Ui::ConfigurationDialog ui;
+
+    private slots:
+        void slotButtonAddClicked();
 };
  
 }
