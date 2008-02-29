@@ -153,7 +153,7 @@ bool SpeechClient::isTextToSpeechInstalled() const
 void SpeechClient::setupSpeechSystem()
 {
     KService::List offers = KServiceTypeTrader::self()->query("DBUS/Text-to-Speech", "Name == 'KTTSD'");
-    if (offers.count() == 0)
+    if (offers.isEmpty())
     {
         kDebug() <<"KTTSD not installed, disable support";
         d->isTextSpeechInstalled = false;

@@ -212,7 +212,7 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     for ( ; it != end; ++it)
     {
         d->taggedArticles[*it].removeAll(guid);
-        if (d->taggedArticles[*it].count() == 0)
+        if (d->taggedArticles[*it].isEmpty())
             d->tags.removeAll(*it);
     }
 
@@ -223,7 +223,7 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     for ( ; it2 != end2; ++it2)
     {
         d->categorizedArticles[*it2].removeAll(guid);
-        if (d->categorizedArticles[*it2].count() == 0)
+        if (d->categorizedArticles[*it2].isEmpty())
             d->categories.removeAll(*it2);
     }
 
@@ -351,7 +351,7 @@ void FeedStorageDummyImpl::addCategory(const QString& guid, const Category& cat)
 
     d->entries[guid].categories.append(cat);
 
-    if (d->categorizedArticles[cat].count() == 0)
+    if (d->categorizedArticles[cat].isEmpty())
         d->categories.append(cat);
     d->categorizedArticles[cat].append(guid);
 }
@@ -371,7 +371,7 @@ void FeedStorageDummyImpl::removeTag(const QString& guid, const QString& tag)
     {
         d->entries[guid].tags.removeAll(tag);
         d->taggedArticles[tag].removeAll(guid);
-        if (d->taggedArticles[tag].count() == 0)
+        if (d->taggedArticles[tag].isEmpty())
             d->tags.removeAll(tag);
     }
 }
