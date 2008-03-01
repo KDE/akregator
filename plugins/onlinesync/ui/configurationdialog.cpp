@@ -40,8 +40,8 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
             KConfigGroup generalGroup( &config, groupname );
             QList<QTreeWidgetItem *> items;
             QStringList line;
-                line.append("Google Reader");
-                line.append( generalGroup.readEntry( "Account", QString() ) );
+                line.append( generalGroup.readEntry( "AggregatorType", QString() ) );
+                line.append( generalGroup.readEntry( "Identifier", QString() ) );
             items.append(new QTreeWidgetItem((QTreeWidget*)0,line));
             ui.list_readerList->insertTopLevelItems(0, items);
         }
