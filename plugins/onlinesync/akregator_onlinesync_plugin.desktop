@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Service
+X-KDE-Library=akregator_onlinesync_plugin
+Name=Akregator Online Feed Reader Support
+Name[x-test]=xxMAkregator Online Feed Reader Supportxx
+Comment=Plugin for Akregator
+Comment[x-test]=xxPlugin for Akregatorxx
+X-KDE-ServiceTypes=Akregator/Plugin
+X-KDE-InterfaceVersion=2
+X-KDE-PluginInfo-EnabledByDefault=true

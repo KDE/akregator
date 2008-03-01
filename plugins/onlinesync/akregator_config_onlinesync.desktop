@@ -1,0 +1,15 @@
+[Desktop Entry]
+Icon=akregator
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-DocPath=akregator/preferences.html#general-lookup
+
+X-KDE-Library=akregator_config_onlinesync
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregator
+X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Keywords=akregator, configure, settings, online readers
+
+Name=Online Readers
+Name[x-test]=xxOnline Readersxx
+Comment=Configure Online Readers
