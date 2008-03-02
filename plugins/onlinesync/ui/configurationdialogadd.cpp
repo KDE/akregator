@@ -43,7 +43,7 @@ void ConfigurationDialogAdd::check()
 
         if (ui.le_login->text()=="") {
             return;
-        } else if (ui.le_login->text()=="") {
+        } else if (ui.le_passwd->text()=="") {
             return;
         } else {
             KConfig config("akregator_feedsyncrc");
@@ -56,7 +56,23 @@ void ConfigurationDialogAdd::check()
             // Valid
             accept();
         }
+
     } else if (ui.cb_AggregatorType->itemText( ui.cb_AggregatorType->currentIndex() ) == "Opml") {
+
+        if (ui.le_filename->text()=="") {
+            return;
+        } else {
+            KConfig config("akregator_feedsyncrc");
+            KConfigGroup generalGroup( &config, "FeedSyncSource_Opml" + ui.le_filename->text() );
+            generalGroup.writeEntry( "AggregatorType", ui.cb_AggregatorType->itemText( ui.cb_AggregatorType->currentIndex() ) );
+            generalGroup.writeEntry( "Filename", ui.le_filename->text() );
+            generalGroup.writeEntry( "Identifier", ui.le_filename->text() );
+            generalGroup.config()->sync();
+            // Valid
+            accept();
+        }
+
+    } else {
     }
 }
 
