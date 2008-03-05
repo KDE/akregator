@@ -142,13 +142,11 @@ void FetchQueue::disconnectFromFeed(Feed* feed)
 
 void FetchQueue::slotNodeDestroyed(TreeNode* node)
 {
-    Feed* feed = dynamic_cast<Feed*> (node);
-
-    if (feed)
-    {
-        d->fetchingFeeds.removeAll(feed);
-        d->queuedFeeds.removeAll(feed);
-    }
+    Feed* const feed = qobject_cast<Feed*>( node );
+    assert( feed );
+    
+    d->fetchingFeeds.removeAll(feed);
+    d->queuedFeeds.removeAll(feed);
 }
 
 #include "fetchqueue.moc"
