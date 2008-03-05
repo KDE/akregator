@@ -201,7 +201,7 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         void connectToNode(TreeNode* child);
         void disconnectFromNode(TreeNode* child);
         
-        void updateUnreadCount();
+        void updateUnreadCount() const;
         
         class FolderPrivate;
         FolderPrivate* d;

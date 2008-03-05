@@ -163,6 +163,19 @@ FeedList::FeedList(Akregator::Backend::Storage* storage, QObject *parent)
     addNode(rootNode, true);
 }
 
+QVector<const Feed*> FeedList::feeds() const
+{
+    QVector<const Feed*> constList;
+    Q_FOREACH( const Feed* const i, d->rootNode->feeds() )
+        constList.append( i );
+    return constList;
+}
+
+QVector<Feed*> FeedList::feeds()
+{
+    return d->rootNode->feeds();
+}
+
 void FeedList::addNode(TreeNode* node, bool preserveID)
 {
     d->addNodeVisitor->visit(node, preserveID);
@@ -364,11 +377,6 @@ const Folder* FeedList::rootNode() const
 Folder* FeedList::rootNode()
 {
     return d->rootNode;
-}
-
-QList<TreeNode*> FeedList::asFlatList()
-{
-    return d->flatList;
 }
 
 bool FeedList::isEmpty() const

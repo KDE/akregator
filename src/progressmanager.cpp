@@ -85,7 +85,7 @@ void ProgressManager::setFeedList(FeedList* feedList)
     
     if ( d->feedList )
     {
-        QList<TreeNode*> list = feedList->asFlatList();
+        QVector<Feed*> list = feedList->feeds();
     
         foreach( TreeNode* i, list )
             slotNodeAdded( i );

@@ -32,7 +32,7 @@
 #include <QList>
 
 #include <KIcon>
-#include <kdebug.h>
+#include <kdebug.h> 
 
 #include <cassert>
 
@@ -40,11 +40,15 @@ using namespace Akregator;
 
 class Folder::FolderPrivate
 {
+        Folder* const q;
     public:
+        explicit FolderPrivate( Folder* qq );
+        ~FolderPrivate();
+        
         /** List of children */
         QList<TreeNode*> children;
         /** caching unread count of children */
-        int unread;
+        mutable int unread;
         /** whether or not the folder is expanded */
         bool open;
 
@@ -53,7 +57,17 @@ class Folder::FolderPrivate
         /** caches guids for notifying removed articles */
         QList<Article> removedArticlesNotify;
 };
-           
+  
+Folder::FolderPrivate::FolderPrivate( Folder* qq ) : q( qq ), unread( 0 ), open( false )
+{
+}
+
+Folder::FolderPrivate::~FolderPrivate()
+{
+    qDeleteAll( children );
+    emit q->emitSignalDestroyed();
+}
+
 bool Folder::accept(TreeNodeVisitor* visitor)
 {
     if (visitor->visitFolder(this))
@@ -70,24 +84,13 @@ Folder* Folder::fromOPML(const QDomElement& e)
     return fg;
 }
 
-Folder::Folder(const QString& title) : TreeNode(), d(new FolderPrivate)
+Folder::Folder( const QString& title ) : TreeNode(), d( new FolderPrivate( this ) )
 {
-    d->unread = 0;
-    setTitle(title);
+    setTitle( title );
 } 
 
 Folder::~Folder()
 {
-    TreeNode* tmp = 0;
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != d->children.end(); ++it)
-    {
-        delete tmp;
-        tmp = *it;
-    }
-    delete tmp;
-    
-    emitSignalDestroyed();
-
     delete d;
     d = 0;
 }
@@ -95,10 +98,8 @@ Folder::~Folder()
 QList<Article> Folder::articles()
 {
     QList<Article> seq;
-    QList<TreeNode*>::ConstIterator en = d->children.end();
-    for (QList<TreeNode*>::ConstIterator it = d->children.begin(); it != en; ++it)
-        seq += (*it)->articles();
-     
+    Q_FOREACH( Feed* const i, feeds() )
+        seq += i->articles();
     return seq;
 }
 
@@ -276,16 +277,16 @@ int Folder::unread() const
 
 int Folder::totalCount() const
 {
-    int totalCount = 0;
-    Q_FOREACH ( const Akregator::TreeNode* i, d->children )
-        totalCount += i->totalCount();
-    return totalCount;
+    int total = 0;
+    Q_FOREACH( const Feed* const i, feeds() )
+        total += i->totalCount();
+    return total;
 }
 
-void Folder::updateUnreadCount()
+void Folder::updateUnreadCount() const
 {
     int unread = 0;
-    Q_FOREACH ( const Akregator::TreeNode* i, d->children )
+    Q_FOREACH ( const Feed* const i, feeds() )
         unread += i->unread();
     d->unread = unread;
 }
@@ -293,7 +294,7 @@ void Folder::updateUnreadCount()
 void Folder::slotMarkAllArticlesAsRead() 
 {
     setNotificationMode(false);
-    Q_FOREACH ( Akregator::TreeNode* i, d->children )
+    Q_FOREACH( Feed* const i, feeds() )
         i->slotMarkAllArticlesAsRead();
     setNotificationMode(true);
 }
@@ -314,7 +315,7 @@ void Folder::slotChildDestroyed(TreeNode* node)
 void Folder::deleteExpiredArticles( Akregator::ArticleDeleteJob* job )
 {
     setNotificationMode(false);
-    Q_FOREACH ( Akregator::TreeNode* i, d->children )
+    Q_FOREACH( Feed* const i, feeds() )
         i->deleteExpiredArticles( job );
     setNotificationMode(true);
 }
@@ -336,10 +337,8 @@ bool Folder::subtreeContains( const TreeNode* node ) const
 
 void Folder::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
-    Q_FOREACH ( Akregator::TreeNode* i, d->children )
-    {
-        i->slotAddToFetchQueue(queue, intervalFetchOnly);
-    }
+    Q_FOREACH( Feed* const i, feeds() )
+        i->slotAddToFetchQueue( queue, intervalFetchOnly );
 }
 
 void Folder::doArticleNotification()

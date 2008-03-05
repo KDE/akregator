@@ -72,9 +72,12 @@ public:
     /** sets the title of the feed list */
     void setTitle(const QString& name);
 
-    /** returns a flat list containing all nodes in the tree */
-    QList<TreeNode*> asFlatList();
-
+    /**
+     * returns all feeds in this list 
+     */
+    QVector<const Feed*> feeds() const;
+    QVector<Feed*> feeds();
+    
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
     
     void append(FeedList* list, Folder* parent=0, TreeNode* after=0);
