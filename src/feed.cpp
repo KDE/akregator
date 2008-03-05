@@ -176,6 +176,21 @@ bool Feed::accept(TreeNodeVisitor* visitor)
         return visitor->visitTreeNode(this);
 }
 
+
+QVector<const Feed*> Feed::feeds() const
+{
+    QVector<const Feed*> list;
+    list.append( this );
+    return list;
+}
+
+QVector<Feed*> Feed::feeds()
+{
+    QVector<Feed*> list;
+    list.append( this );
+    return list;
+}
+
 Article Feed::findArticle(const QString& guid) const
 {
     return d->articles[guid];

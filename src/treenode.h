@@ -27,6 +27,7 @@
 
 #include "akregator_export.h"
 #include <QObject>
+#include <QVector>
 
 class QDomDocument;
 class QDomElement;
@@ -41,6 +42,7 @@ namespace Akregator
 class ArticleDeleteJob;
 class TreeNodeVisitor;
 class Article;
+class Feed;
 class Folder;
 class FetchQueue;
 
@@ -116,6 +118,9 @@ public:
     virtual QList<const TreeNode*> children() const;
     virtual QList<TreeNode*> children();
 
+    virtual QVector<const Feed*> feeds() const = 0;
+    virtual QVector<Feed*> feeds() = 0;
+    
     virtual TreeNode* childAt( int pos );
     virtual const TreeNode* childAt( int pos ) const;
 

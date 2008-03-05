@@ -185,18 +185,18 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
 {
     if (part)
     {
-        connect(part, SIGNAL(setWindowCaption (const QString &)), 
-                q, SLOT(slotSetCaption (const QString &)));
-        connect(part, SIGNAL(setStatusBarText (const QString &)), 
-                q, SLOT(slotSetStatusText (const QString &)));
-        connect(part, SIGNAL(started(KIO::Job*)), q, SLOT(slotSetStarted()));
-        connect(part, SIGNAL(completed()), q, SLOT(slotSetCompleted()));
-        connect(part, SIGNAL(canceled(const QString &)),
-                q, SLOT(slotSetCanceled(const QString&)));
-        connect(part, SIGNAL(completed(bool)),
-                q, SLOT(slotSetCompleted()));
-        connect(part, SIGNAL(setWindowCaption(const QString &)),
-                q, SLOT(slotSetTitle(const QString &)));
+        connect( part, SIGNAL( setWindowCaption( QString ) ), 
+                 q, SLOT( slotSetCaption( QString ) ) );
+        connect( part, SIGNAL(setStatusBarText( QString ) ), 
+                 q, SLOT( slotSetStatusText( QString ) ) );
+        connect( part, SIGNAL(started(KIO::Job*)), q, SLOT(slotSetStarted()));
+        connect( part, SIGNAL(completed()), q, SLOT(slotSetCompleted()));
+        connect( part, SIGNAL( canceled( QString ) ),
+                 q, SLOT( slotSetCanceled( QString ) ) );
+        connect( part, SIGNAL( completed( bool ) ),
+                 q, SLOT( slotSetCompleted() ) );
+        connect( part, SIGNAL( setWindowCaption( QString ) ),
+                 q, SLOT( slotSetTitle( QString ) ) );
         
         KParts::BrowserExtension* ext = extension;
 
@@ -206,33 +206,33 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
                      q, SLOT(slotSpeedProgress(int)) );
             connect( ext, SIGNAL(speedProgress(int)), 
                      q, SLOT(slotSetProgress(int)) );
-            connect( ext, SIGNAL(openUrlRequestDelayed(const KUrl&, 
-                     const KParts::OpenUrlArguments&,
-                     const KParts::BrowserArguments&) ),
-                     q, SLOT(slotOpenUrlRequestDelayed(const KUrl&, 
-                                  const KParts::OpenUrlArguments&,
-                                  const KParts::BrowserArguments&)) );
-            connect(ext, SIGNAL(setLocationBarUrl(const QString&)),
-                    q, SLOT(slotSetLocationBarUrl(const QString&)) );
-            connect(ext, SIGNAL(setIconUrl(const KUrl&)),
-                    q, SLOT(slotSetIconUrl(const KUrl&)) );
-            connect(ext, SIGNAL(createNewWindow(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
-                    q, SLOT(slotCreateNewWindow(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)));
-            connect(ext, SIGNAL(createNewWindow(const KUrl&,
-                    const KParts::OpenUrlArguments&,
-                    const KParts::BrowserArguments&,
-                    const KParts::WindowArgs&,
+            connect( ext, SIGNAL(openUrlRequestDelayed(KUrl, 
+                     KParts::OpenUrlArguments,
+                     KParts::BrowserArguments ) ),
+                     q, SLOT(slotOpenUrlRequestDelayed(KUrl, 
+                                  KParts::OpenUrlArguments,
+                                  KParts::BrowserArguments)) );
+            connect(ext, SIGNAL(setLocationBarUrl(QString)),
+                    q, SLOT(slotSetLocationBarUrl(QString)) );
+            connect(ext, SIGNAL(setIconUrl(KUrl)),
+                    q, SLOT(slotSetIconUrl(KUrl)) );
+            connect(ext, SIGNAL(createNewWindow( KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments ) ),
+                    q, SLOT(slotCreateNewWindow( KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments ) ) );
+            connect(ext, SIGNAL( createNewWindow( KUrl,
+                    KParts::OpenUrlArguments,
+                    KParts::BrowserArguments,
+                    KParts::WindowArgs,
                     KParts::ReadOnlyPart**)),
-                    q, SLOT(slotCreateNewWindow(const KUrl&, 
-                                 const KParts::OpenUrlArguments&,
-                                 const KParts::BrowserArguments&,
-                                 const KParts::WindowArgs&,
+                    q, SLOT(slotCreateNewWindow( KUrl, 
+                                 KParts::OpenUrlArguments,
+                                 KParts::BrowserArguments,
+                                 KParts::WindowArgs,
                                  KParts::ReadOnlyPart**)));
             connect(ext, SIGNAL(popupMenu(QPoint,KUrl,mode_t,
-                    const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, 
+                    KParts::OpenUrlArguments, KParts::BrowserArguments, 
                     KParts::BrowserExtension::PopupFlags, KParts::BrowserExtension::ActionGroupMap)), 
                     q, SLOT(slotPopupMenu(QPoint,KUrl,mode_t,
-                    const KParts::OpenUrlArguments&, const KParts::BrowserArguments&,
+                    KParts::OpenUrlArguments, KParts::BrowserArguments,
                     KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument not used by slot
         }
     }

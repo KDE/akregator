@@ -22,8 +22,9 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#include "article.h"
 #include "folder.h"
+#include "article.h"
+#include "feed.h"
 #include "fetchqueue.h"
 #include "treenodevisitor.h"
 
@@ -126,6 +127,25 @@ QList<const TreeNode*> Folder::children() const
 QList<TreeNode*> Folder::children()
 {
     return d->children;
+}
+
+
+QVector<const Feed*> Folder::feeds() const
+{
+    QHash<int, const Feed*> feedsById;
+    Q_FOREACH( const TreeNode* i, d->children )
+        Q_FOREACH ( const Feed* j, i->feeds() )
+            feedsById.insert( j->id(), j );
+    return feedsById.values().toVector();
+}
+
+QVector<Feed*> Folder::feeds()
+{
+    QHash<int, Feed*> feedsById;
+    Q_FOREACH( TreeNode* i, d->children )
+        Q_FOREACH ( Feed* j, i->feeds() )
+            feedsById.insert( j->id(), j );
+    return feedsById.values().toVector();    
 }
 
 int Folder::indexOf( const TreeNode* node ) const

@@ -211,6 +211,9 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
 
         bool isFetching() const;
         
+        QVector<const Feed*> feeds() const;
+        QVector<Feed*> feeds();
+
     public slots:
         /** starts fetching */
         void fetch(bool followDiscovery=false);
