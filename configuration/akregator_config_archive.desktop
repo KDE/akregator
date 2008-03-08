@@ -11,6 +11,7 @@ X-KDE-CfgDlgHierarchy=Akregator
 
 Name=Archive
 Name[ca]=Arxiu
+Name[el]=Αρχειοθήκη
 Name[ga]=Cartlann
 Name[ja]=アーカイブ
 Name[km]=ប័ណ្ណសារ
@@ -20,6 +21,7 @@ Name[pt_BR]=Arquivo
 Name[zh_TW]=歸檔
 Comment=Configure Feed Archive
 Comment[ca]=Configura l'arxiu de fonts
+Comment[el]=Ρύθμιση αρχειοθήκης ροών ειδήσεων
 Comment[ga]=Cumraigh Cartlann na bhFothaí
 Comment[ja]=フィードのアーカイブを設定
 Comment[km]=កំណត់​រចនាសម្ព័ន្ធ​ប័ណ្ណសារ​មតិព័ត៌មាន

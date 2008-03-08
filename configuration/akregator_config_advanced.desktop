@@ -11,6 +11,7 @@ X-KDE-CfgDlgHierarchy=Akregator
 
 Name=Advanced
 Name[ca]=Avançat
+Name[el]=Προχωρημένα
 Name[ja]=詳細
 Name[km]=កម្រិត​ខ្ពស់
 Name[nds]=Verwiedert
@@ -19,6 +20,7 @@ Name[pt_BR]=Avançado
 Name[zh_TW]=進階
 Comment=Advanced Feed Reader Settings
 Comment[ca]=Arranjaments avançat del lector de fonts
+Comment[el]=Προχωρημένες ρυθμίσεις αναγνώστη ροών ειδήσεων
 Comment[ja]=フィードリーダーの詳細設定
 Comment[km]=ការ​កំណត់​កម្មវិធី​អាន​មតិព័ត៌មានកម្រិត​ខ្ពស់
 Comment[nds]=Verwiedert Stroomkieker-Instellen
