@@ -17,6 +17,9 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
     setMainWidget( widget );
     setCaption( i18n("Online reader") );
 
+    // Read config file
+    refresh();
+
     // Init
     ui.list_readerList->setColumnCount(2);
     QStringList deleteTags;
@@ -31,21 +34,8 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
 
     // Slots
     connect( ui.b_add, SIGNAL( clicked() ), this, SLOT( slotButtonAddClicked() ) );
-
-    // Read configuration
-    KConfig config("akregator_feedsyncrc");
-    foreach ( const QString& groupname, config.groupList() ) {
-        if (groupname.left(15)=="FeedSyncSource_") {
-            kDebug() << groupname;
-            KConfigGroup generalGroup( &config, groupname );
-            QList<QTreeWidgetItem *> items;
-            QStringList line;
-                line.append( generalGroup.readEntry( "AggregatorType", QString() ) );
-                line.append( generalGroup.readEntry( "Identifier", QString() ) );
-            items.append(new QTreeWidgetItem((QTreeWidget*)0,line));
-            ui.list_readerList->insertTopLevelItems(0, items);
-        }
-    }
+    connect( ui.b_update, SIGNAL( clicked() ), this, SLOT( slotButtonUpdateClicked() ) );
+    connect( ui.b_remove, SIGNAL( clicked() ), this, SLOT( slotButtonRemoveClicked() ) );
 }
 
 ConfigurationDialog::~ConfigurationDialog()
@@ -58,6 +48,55 @@ void ConfigurationDialog::slotButtonAddClicked()
     kDebug();
     ConfigurationDialogAdd * addDlg = new ConfigurationDialogAdd();
     addDlg->show();
+    connect( addDlg, SIGNAL( finished() ), this, SLOT( refresh() ) );
+}
+
+void ConfigurationDialog::slotButtonUpdateClicked()
+{
+    kDebug();
+    ConfigurationDialogAdd * updateDlg = new ConfigurationDialogAdd();
+    updateDlg->show();
+    connect( updateDlg, SIGNAL( finished() ), this, SLOT( refresh() ) );
+}
+
+void ConfigurationDialog::slotButtonRemoveClicked()
+{
+    // kDebug();
+
+    QList<QTreeWidgetItem *> m_items = ui.list_readerList->selectedItems();
+    if (m_items.count()>0) {
+        kDebug() << m_items.at(0)->text(2);
+        KConfig config("akregator_feedsyncrc");
+        config.deleteGroup(m_items.at(0)->text(2));
+    }
+
+    refresh();
+}
+
+void ConfigurationDialog::refresh()
+{
+    kDebug();
+
+    // Clear
+    ui.list_readerList->clear();
+
+    // Read configuration
+    KConfig config("akregator_feedsyncrc");
+    QList<QTreeWidgetItem *> items;
+    foreach ( const QString& groupname, config.groupList() ) {
+        if (groupname.left(15)=="FeedSyncSource_") {
+            kDebug() << groupname;
+            KConfigGroup generalGroup( &config, groupname );
+            QStringList line;
+            line.append( generalGroup.readEntry( "AggregatorType", QString() ) );
+            line.append( generalGroup.readEntry( "Identifier", QString() ) );
+            line.append( groupname );
+            items.append( new QTreeWidgetItem((QTreeWidget*)0,line) );
+        }
+        ui.list_readerList->insertTopLevelItems(0, items);
+    }
 }
 
 }
+
+

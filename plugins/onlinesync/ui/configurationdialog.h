@@ -26,7 +26,10 @@ class ConfigurationDialog : public KDialog
         Ui::ConfigurationDialog ui;
 
     private slots:
+        void refresh();
         void slotButtonAddClicked();
+        void slotButtonUpdateClicked();
+        void slotButtonRemoveClicked();
 };
  
 }
