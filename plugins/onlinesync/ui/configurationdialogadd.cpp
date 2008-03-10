@@ -21,9 +21,6 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent)
         m_AggregatorType.append( i18n("GoogleReader") );
         m_AggregatorType.append( i18n("Opml") );
     ui.cb_AggregatorType->addItems(m_AggregatorType);
-
-    // Signal
-    // connect( this, SIGNAL( okClicked() ), this, SLOT( slotButtonOkClicked() ) );
 }
 
 ConfigurationDialogAdd::~ConfigurationDialogAdd()
