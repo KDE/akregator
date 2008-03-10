@@ -104,7 +104,7 @@ bool MainWindow::loadPart()
     {
         // now that the Part is loaded, we cast it to a Part to get
         // our hands on it
-        m_part = dynamic_cast<Akregator::Part*>( factory->create<KParts::ReadOnlyPart>(this) );
+        m_part = static_cast<Akregator::Part*>( factory->create<KParts::ReadOnlyPart>(this) );
 
         if (m_part)
         {
