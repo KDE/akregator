@@ -76,7 +76,7 @@ class Part : public MyBasePart
         typedef MyBasePart inherited;
 
         /** Default constructor.*/
-        Part(QWidget *parentWidget, QObject *parent, const QStringList&);
+        Part(QWidget *parentWidget, QObject *parent, const QVariantList&);
 
 	   /** Destructor. */
         ~Part();

@@ -70,8 +70,8 @@
 
 namespace Akregator {
 
-typedef KParts::GenericFactory<Part> AkregatorFactory;
-K_EXPORT_COMPONENT_FACTORY( akregatorpart, AkregatorFactory )
+K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();) 
+K_EXPORT_PLUGIN(AkregatorFactory( "akregatorpart" ))
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
 	    : KParts::BrowserExtension( p)
@@ -85,7 +85,7 @@ void BrowserExtension::saveSettings()
     m_part->saveSettings();
 }
 
-Part::Part( QWidget *parentWidget, QObject *parent, const QStringList& )
+Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     : MyBasePart(parent)
        , m_standardListLoaded(false)
        , m_shuttingDown(false)

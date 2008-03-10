@@ -61,17 +61,17 @@ bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimet
         }
 
         KService::Ptr ptr = offers.first();
-        KLibFactory* factory = KLibLoader::self()->factory( ptr->library().toLatin1() );
-        if (factory)
-        {
-            part = static_cast<KParts::ReadOnlyPart *>(factory->create(q, "KParts::ReadOnlyPart"));
-            part->setObjectName(ptr->name());
-            extension = KParts::BrowserExtension::childObject(part);
+        KPluginFactory* factory = KPluginLoader(*ptr).factory();
+        if (!factory)
+          return false;
+        part = factory->create<KParts::ReadOnlyPart>(q);
+        if (!part)
+          return false;
+        part->setObjectName(ptr->name());
+        extension = KParts::BrowserExtension::childObject(part);
             
-            layout->addWidget(part->widget());
-            connectPart();
-        }
-
+        layout->addWidget(part->widget());
+        connectPart();
         return true;
     }
     else
