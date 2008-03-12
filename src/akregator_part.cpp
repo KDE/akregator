@@ -71,7 +71,7 @@
 namespace Akregator {
 
 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();) 
-K_EXPORT_PLUGIN(AkregatorFactory( "akregatorpart" ))
+K_EXPORT_PLUGIN(AkregatorFactory( "akregator" ))
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
 	    : KParts::BrowserExtension( p)
