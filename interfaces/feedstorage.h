@@ -115,6 +115,8 @@ class FeedStorage : public QObject
         virtual void setTitle(const QString& guid, const QString& title) = 0;
         virtual QString description(const QString& guid) const = 0;
         virtual void setDescription(const QString& guid, const QString& description) = 0;
+        virtual QString content(const QString& guid) const = 0;
+        virtual void setContent(const QString& guid, const QString& content) = 0;
 
         virtual void addTag(const QString& guid, const QString& tag) = 0;
         virtual void removeTag(const QString& guid, const QString& tag) = 0;

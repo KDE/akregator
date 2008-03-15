@@ -187,10 +187,11 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
-    if (!article.description().isEmpty())
+    const QString content = article.content( Article::DescriptionAsFallback );
+    if (!content.isEmpty())
     {
-        text += QString("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(article.description())) );
-        text += "<span class=\"content\">"+article.description()+"</span>";
+        text += QString("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(content)) );
+        text += "<span class=\"content\">"+content+"</span>";
         text += "</div>";
     }
 
@@ -377,10 +378,12 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
     }
 
-    if (!article.description().isEmpty())
+
+    const QString content = article.content( Article::DescriptionAsFallback );
+    if (!content.isEmpty())
     {
-        text += QString("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(article.description())) );
-        text += "<span class=\"content\">"+article.description()+"</span>";
+        text += QString("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(content)) );
+        text += "<span class=\"content\">"+content+"</span>";
         text += "</div>";
     }
 

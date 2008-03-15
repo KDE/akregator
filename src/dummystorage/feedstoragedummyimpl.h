@@ -75,6 +75,8 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void setTitle(const QString& guid, const QString& title);
         virtual QString description(const QString& guid) const;
         virtual void setDescription(const QString& guid, const QString& description);
+        virtual QString content(const QString& guid) const;
+        virtual void setContent(const QString& guid, const QString& content);
         virtual void addTag(const QString& guid, const QString& tag);
         virtual void removeTag(const QString& guid, const QString& tag);
         virtual QStringList tags(const QString& guid=QString()) const;

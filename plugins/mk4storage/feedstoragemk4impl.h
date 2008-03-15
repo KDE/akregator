@@ -74,6 +74,9 @@ class FeedStorageMK4Impl : public FeedStorage
         void setTitle(const QString& guid, const QString& title);
         QString description(const QString& guid) const;
         void setDescription(const QString& guid, const QString& description);
+        QString content(const QString& guid) const;
+        void setContent(const QString& guid, const QString& content);
+
         void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
         void removeEnclosure(const QString& guid);
         void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) const;

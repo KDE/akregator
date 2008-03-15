@@ -114,7 +114,7 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
         }
     }
 
-    d->hash = Utils::calcHash(article->title() + article->description() + article->link() + author);
+    d->hash = Utils::calcHash(article->title() + article->description() + article->content() + article->link() + author);
 
     d->guid = article->id();
 
@@ -127,6 +127,7 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
         if (title.isEmpty())
             title = buildTitle(article->description());
         d->archive->setTitle(d->guid, title);
+        d->archive->setContent(d->guid, article->content());
         d->archive->setDescription(d->guid, article->description());
         d->archive->setLink(d->guid, article->link());
         //d->archive->setComments(d->guid, article.comments());
@@ -154,6 +155,7 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
                 title = buildTitle(article->description());
             d->archive->setTitle(d->guid, title);
             d->archive->setDescription(d->guid, article->description());
+            d->archive->setContent(d->guid, article->content());
             d->archive->setLink(d->guid, article->link());
             d->archive->setAuthor(d->guid, author);
             //d->archive->setCommentsLink(d->guid, article.commentsLink());
@@ -312,6 +314,12 @@ KUrl Article::link() const
 QString Article::description() const
 {
     return d->archive->description(d->guid);
+}
+
+QString Article::content( ContentOption opt ) const
+{
+    const QString cnt = d->archive->content( d->guid );
+    return opt == ContentAndOnlyContent ? cnt : ( !cnt.isEmpty() ? cnt : description() );
 }
 
 QString Article::guid() const

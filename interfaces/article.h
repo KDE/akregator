@@ -59,8 +59,13 @@ class AKREGATORPART_EXPORT Article
     friend class ArticleDeleteJob;
     friend class ArticleModifyJob;
     friend class Feed;
-    public:
 
+public:
+        enum ContentOption {
+            ContentAndOnlyContent, /*< returns the content field even if empty */ 
+            DescriptionAsFallback /*< uses the description field as fallback if the content field is empty */
+        };
+        
         Article();
         /** creates am article object for an existing article.
             The constructor accesses the archive to load it's data
@@ -91,6 +96,9 @@ class AKREGATORPART_EXPORT Article
         QString title() const;
         KUrl link() const;
         QString description() const;
+        
+        QString content( ContentOption opt = ContentAndOnlyContent ) const;
+        
         QString guid() const;
         /** if true, the article should be kept even when expired **/
         bool keep() const;

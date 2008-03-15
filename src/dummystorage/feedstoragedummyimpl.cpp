@@ -48,6 +48,7 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             QList<Category> categories;
             QString title;
             QString description;
+            QString content;
             QString link;
             QString author;
             QString commentsLink;
@@ -228,6 +229,7 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     }
 
     entry.description = "";
+    entry.content = "";
     entry.title = "";
     entry.link = "";
     entry.commentsLink = "";
@@ -262,6 +264,11 @@ QString FeedStorageDummyImpl::title(const QString& guid) const
 QString FeedStorageDummyImpl::description(const QString& guid) const
 {
     return contains(guid) ? d->entries[guid].description : "";
+}
+
+QString FeedStorageDummyImpl::content(const QString& guid) const
+{
+    return contains(guid) ? d->entries[guid].content : "";
 }
 
 QString FeedStorageDummyImpl::author(const QString& guid) const
@@ -310,6 +317,13 @@ void FeedStorageDummyImpl::setCommentsLink(const QString& guid, const QString& c
 {
     if (contains(guid))
         d->entries[guid].commentsLink = commentsLink;
+}
+
+
+void FeedStorageDummyImpl::setContent(const QString& guid, const QString& content)
+{
+    if (contains(guid))
+        d->entries[guid].content = content;
 }
 
 void FeedStorageDummyImpl::setAuthor(const QString& guid, const QString& author)
@@ -404,6 +418,7 @@ void FeedStorageDummyImpl::copyArticle(const QString& guid, FeedStorage* source)
     setComments(guid, source->comments(guid));
     setCommentsLink(guid, source->commentsLink(guid));
     setDescription(guid, source->description(guid));
+    setContent(guid, source->content(guid));
     setGuidIsHash(guid, source->guidIsHash(guid));
     setGuidIsPermaLink(guid, source->guidIsPermaLink(guid));
     setHash(guid, source->hash(guid));
