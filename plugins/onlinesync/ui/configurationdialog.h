@@ -30,6 +30,7 @@ class ConfigurationDialog : public KDialog
         void slotButtonAddClicked();
         void slotButtonUpdateClicked();
         void slotButtonRemoveClicked();
+        void slotInitUI();
 };
  
 }

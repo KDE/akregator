@@ -3,6 +3,7 @@
 #include "configurationdialogadd.h"
 
 #include <kdebug.h>
+#include <QTimer>
 
 namespace feedsync
 {
@@ -11,10 +12,23 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
 {
     kDebug();
 
+    QTimer::singleShot( 0, this, SLOT(slotInitUI()) );
+}
+
+ConfigurationDialog::~ConfigurationDialog()
+{
+    kDebug();
+}
+
+void ConfigurationDialog::slotInitUI()
+{
+    kDebug();
+
     // UI setup
     QWidget *widget = new QWidget( this );
     ui.setupUi(widget);
     setMainWidget( widget );
+
     setCaption( i18n("Online reader") );
 
     // Read config file
@@ -38,17 +52,12 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
     connect( ui.b_remove, SIGNAL( clicked() ), this, SLOT( slotButtonRemoveClicked() ) );
 }
 
-ConfigurationDialog::~ConfigurationDialog()
-{
-    kDebug();
-}
-
 void ConfigurationDialog::slotButtonAddClicked()
 {
     kDebug();
-    ConfigurationDialogAdd * addDlg = new ConfigurationDialogAdd();
-    addDlg->show();
-    connect( addDlg, SIGNAL( finished() ), this, SLOT( refresh() ) );
+    ConfigurationDialogAdd addDlg;
+    addDlg.show();
+    // connect( addDlg, SIGNAL( finished() ), this, SLOT( refresh() ) );
 }
 
 void ConfigurationDialog::slotButtonUpdateClicked()

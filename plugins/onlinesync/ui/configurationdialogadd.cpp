@@ -3,6 +3,8 @@
 
 #include <kdebug.h>
 #include <QErrorMessage>
+#include <QTimer>
+
 
 namespace feedsync
 {
@@ -11,21 +13,29 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent)
 {
     kDebug();
 
+    QTimer::singleShot( 0, this, SLOT(slotInitUI()) );
+}
+
+ConfigurationDialogAdd::~ConfigurationDialogAdd()
+{
+    kDebug();
+}
+
+void ConfigurationDialogAdd::slotInitUI()
+{
+    kDebug();
+
     // UI setup
     QWidget *widget = new QWidget( this );
     ui.setupUi(widget);
     setMainWidget( widget );
+
     setCaption( i18n("Online reader Add") );
 
     QStringList m_AggregatorType;
         m_AggregatorType.append( i18n("GoogleReader") );
         m_AggregatorType.append( i18n("Opml") );
     ui.cb_AggregatorType->addItems(m_AggregatorType);
-}
-
-ConfigurationDialogAdd::~ConfigurationDialogAdd()
-{
-    kDebug();
 }
 
 void ConfigurationDialogAdd::check()

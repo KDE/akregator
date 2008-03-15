@@ -28,7 +28,7 @@ class ConfigurationDialogAdd : public KDialog
 
     protected Q_SLOTS:
         virtual void slotButtonClicked(int button);
-
+        void slotInitUI();
 };
  
 }
