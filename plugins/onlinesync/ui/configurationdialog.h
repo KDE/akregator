@@ -23,7 +23,6 @@ class ConfigurationDialog : public KDialog
 
     private:
         Ui::ConfigurationDialog * ui;
-        void refresh();
 
     private Q_SLOTS:
         void slotButtonAddClicked();
@@ -31,7 +30,7 @@ class ConfigurationDialog : public KDialog
         void slotButtonRemoveClicked();
         void slotDelayedInit();
         void slotFinished();
-        void slotChildEnd();
+        void refresh();
 };
  
 }

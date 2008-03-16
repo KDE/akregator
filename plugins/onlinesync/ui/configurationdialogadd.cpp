@@ -13,6 +13,21 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent)
 {
     kDebug();
 
+   // UI setup
+    QWidget *widget = new QWidget( this );
+    ui = new Ui::ConfigurationDialogAdd();
+    ui->setupUi(widget);
+    setMainWidget( widget );
+
+    setCaption( i18n("Online reader Add") );
+
+    QStringList m_AggregatorType;
+        m_AggregatorType.append( i18n("GoogleReader") );
+        m_AggregatorType.append( i18n("Opml") );
+    ui->cb_AggregatorType->addItems(m_AggregatorType);
+
+    connect( this, SIGNAL( finished() ), this, SLOT( slotFinished() ) );
+
     QTimer::singleShot( 0, this, SLOT(slotDelayedInit()) );
 }
 
@@ -37,6 +52,12 @@ void ConfigurationDialogAdd::check()
         } else if (ui->le_passwd->text()=="") {
             return;
         } else {
+            // Remove old
+            if (_baseconfigname != "") {
+                KConfig config("akregator_feedsyncrc");
+                config.deleteGroup(_baseconfigname);
+            }
+            // Insert new
             KConfig config("akregator_feedsyncrc");
             KConfigGroup generalGroup( &config, "FeedSyncSource_GoogleReader" + ui->le_login->text() );
             generalGroup.writeEntry( "AggregatorType", ui->cb_AggregatorType->itemText( ui->cb_AggregatorType->currentIndex() ) );
@@ -67,27 +88,23 @@ void ConfigurationDialogAdd::check()
     }
 }
 
+void ConfigurationDialogAdd::load( const KConfigGroup group )
+{
+    kDebug();
+    _baseconfigname = group.name();
+    if ( group.readEntry( "AggregatorType", QString() ) == "GoogleReader") {
+        ui->le_login->setText( group.readEntry( "Login", QString() ) );
+        ui->le_passwd->setText( group.readEntry( "Password", QString() ) );
+    } else {
+    }
+}
+
 // SLOT
 
 void ConfigurationDialogAdd::slotDelayedInit()
 {
     kDebug();
-
-    // UI setup
-    QWidget *widget = new QWidget( this );
-    ui = new Ui::ConfigurationDialogAdd();
-    ui->setupUi(widget);
-    setMainWidget( widget );
-
-    setCaption( i18n("Online reader Add") );
-
-    QStringList m_AggregatorType;
-        m_AggregatorType.append( i18n("GoogleReader") );
-        m_AggregatorType.append( i18n("Opml") );
-    ui->cb_AggregatorType->addItems(m_AggregatorType);
-
-    connect( this, SIGNAL( finished() ), this, SLOT( slotFinished() ) );
-}
+ }
 
 void ConfigurationDialogAdd::slotButtonClicked(int button) {
     if (button == KDialog::Ok) {
