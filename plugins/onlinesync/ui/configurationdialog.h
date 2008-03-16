@@ -11,7 +11,6 @@ namespace Ui
  
 #include <KDialog>
 
-
 namespace feedsync
 {
 
@@ -23,14 +22,16 @@ class ConfigurationDialog : public KDialog
         ~ConfigurationDialog();
 
     private:
-        Ui::ConfigurationDialog ui;
-
-    private slots:
+        Ui::ConfigurationDialog * ui;
         void refresh();
+
+    private Q_SLOTS:
         void slotButtonAddClicked();
         void slotButtonUpdateClicked();
         void slotButtonRemoveClicked();
-        void slotInitUI();
+        void slotDelayedInit();
+        void slotFinished();
+        void slotChildEnd();
 };
  
 }

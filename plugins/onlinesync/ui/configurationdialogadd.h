@@ -23,12 +23,13 @@ class ConfigurationDialogAdd : public KDialog
         ~ConfigurationDialogAdd();
 
     private:
-        Ui::ConfigurationDialogAdd ui;
+        Ui::ConfigurationDialogAdd * ui;
         void check();
 
     protected Q_SLOTS:
         virtual void slotButtonClicked(int button);
-        void slotInitUI();
+        void slotDelayedInit();
+        void slotFinished();
 };
  
 }
