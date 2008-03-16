@@ -144,11 +144,10 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
 {
     //const QByteArray headerState = header()->saveState();
     QList<int> columnsSize;
-    for (int i = 0; i != header()->count(); i++)
-    {
-        kDebug() << i;
+    for (int i = 0; i < header()->count(); ++i)
         columnsSize.append( columnWidth( i ) );
-    }//FIXME: HACK: Change back to saveState() when it's working again
+    
+    //FIXME: HACK: Change back to saveState() when it's working again
 
     slotClear();
     if ( !model )
@@ -167,15 +166,11 @@ void Akregator::ArticleListView::setArticleModel( Akregator::ArticleModel* model
 
     setModel( columnsProxy );
     //header()->restoreState( headerState );
-    for (int i = 0; i != columnsSize.count(); i++)
-    {
-        kDebug() << i << " " << columnsSize.at( i );
+    for (int i = 0; i < columnsSize.count(); ++i)
         setColumnWidth( i, columnsSize.at( i ) );
-    }
     
     if ( !m_headerSetUp )
     {
-        kDebug() << "Load header settings";
         loadHeaderSettings();
         m_headerSetUp = true;
     }
@@ -221,11 +216,10 @@ void Akregator::ArticleListView::saveHeaderSettings()
 {
     //Settings::setArticlelistHeaderStates( header()->saveState().toBase64() );
     QList<int> columnsSize;
-    for (int i = 0; i != header()->count(); i++)
-    {
-        kDebug() << i;
+    for (int i = 0; i < header()->count(); i++)
         columnsSize.append( columnWidth( i ) );
-    }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
+    
+    //FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
     Settings::setArticlelistHeaderStates(columnsSize);
     Settings::setArticlelistSortColumn( header()->sortIndicatorSection() );
     Settings::setArticlelistSortOrder( header()->sortIndicatorOrder() == Qt::AscendingOrder ? 1 : 0 );
@@ -238,11 +232,10 @@ void Akregator::ArticleListView::loadHeaderSettings()
         header()->restoreState( s );*/
     QList<int> columnsSize = Settings::articlelistHeaderStates();
     if ( !columnsSize.isEmpty() ) {
-        for (int i = 0; i != columnsSize.count(); i++)
-        {
-            kDebug() << i << " " << columnsSize.at( i );
+        for (int i = 0; i < columnsSize.count(); i++)
             setColumnWidth( i, columnsSize.at( i ) );
-        }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
+        
+        //FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
     }
     header()->setSortIndicator( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
     sortByColumn( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
