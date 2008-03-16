@@ -74,9 +74,9 @@ public:
         /** creates an article object from a parsed librss Article
             the article is added to the archive if not yet stored, or updated if stored but modified
         */
-        Article(Syndication::ItemPtr article, Feed* feed);
+        Article(const Syndication::ItemPtr& article, Feed* feed);
         
-        Article(Syndication::ItemPtr article, Backend::FeedStorage* archive);
+        Article(const Syndication::ItemPtr& article, Backend::FeedStorage* archive);
         Article(const Article &other);
         ~Article();
 
@@ -136,10 +136,6 @@ public:
         void setStatus(int s);
         void setDeleted();
         void setKeep(bool keep);
-
-    private:
-        void initialize(Syndication::ItemPtr item, Backend::FeedStorage* archive);
-        static QString buildTitle(const QString& description);
 
     private:
         struct Private;

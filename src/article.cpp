@@ -39,12 +39,52 @@
 #include <kdebug.h>
 #include <kurl.h>
 
+#include <cassert>
+
 using namespace Syndication;
+
+namespace {
+
+QString buildTitle(const QString& description)
+{
+    QString s = description;
+    if (description.trimmed().isEmpty())
+        return "";
+
+    int i = s.indexOf('>',500); /*avoid processing too much */
+    if (i != -1)
+        s = s.left(i+1);
+    QRegExp rx("(<([^\\s>]*)(?:[^>]*)>)[^<]*", Qt::CaseInsensitive);
+    QString tagName, toReplace, replaceWith;
+    while (rx.indexIn(s) != -1 )
+    {
+        tagName=rx.cap(2);
+        if (tagName=="SCRIPT"||tagName=="script")
+            toReplace=rx.cap(0); // strip tag AND tag contents
+        else if (tagName.startsWith("br") || tagName.startsWith("BR"))
+        {
+            toReplace=rx.cap(1);
+            replaceWith=" ";
+        }
+        else
+            toReplace=rx.cap(1);  // strip just tag
+        s=s.replace(s.indexOf(toReplace),toReplace.length(),replaceWith); // do the deed
+    }
+    if (s.length()> 90)
+        s=s.left(90)+"...";
+    return s.simplified();
+}
+
+}
 
 namespace Akregator {
 
 struct Article::Private : public Shared
 {
+    Private();
+    Private( const QString& guid, Feed* feed );
+    Private( const ItemPtr& article, Feed* feed, Backend::FeedStorage* archive );
+
     /** The status of the article is stored in an int, the bits having the
         following meaning:
 
@@ -54,43 +94,50 @@ struct Article::Private : public Shared
         0000 1000 Read
         0001 0000 Keep
      */
+    enum Status
+    {
+        Deleted=0x01,
+        Trash=0x02,
+        New=0x04,
+        Read=0x08,
+        Keep=0x10
+    };
 
-    enum Status {Deleted=0x01, Trash=0x02, New=0x04, Read=0x08, Keep=0x10};
-
-    int status;
-    QString guid;
-    uint hash;
-    Backend::FeedStorage* archive;
-    QDateTime pubDate;
     Feed* feed;
+    QString guid;
+    Backend::FeedStorage* archive;
+    int status;
+    uint hash;
+    QDateTime pubDate;
 };
 
-Article::Article() : d(new Private)
+Article::Private::Private()
+  : feed( 0 ), 
+    archive( 0 ),
+    status( 0 ),
+    hash( 0 ),
+    pubDate( QDateTime::fromTime_t( 1 ) )
 {
-    d->hash = 0;
-    d->status = 0;
-    d->feed = 0;
-    d->archive = 0;
-    d->pubDate.setTime_t(1);
-
 }
 
-Article::Article(const QString& guid, Feed* feed) : d(new Private)
+Article::Private::Private( const QString& guid_, Feed* feed_ )
+  : feed( feed_ ),
+    guid( guid_ ),
+    archive( feed->storage()->archiveFor( feed->xmlUrl() ) ),
+    status( archive->status( guid ) ),
+    hash( archive->hash( guid ) ),
+    pubDate( QDateTime::fromTime_t( archive->pubDate( guid ) ) )
 {
-    d->feed = feed;
-    d->guid = guid;
-    d->archive = feed->storage()->archiveFor(feed->xmlUrl());
-    d->status = d->archive->status(d->guid);
-    d->pubDate.setTime_t(d->archive->pubDate(d->guid));
-    d->hash = d->archive->hash(d->guid);
 }
 
-void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
+Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedStorage* archive_ ) 
+  : feed( feed_ ),
+    archive( archive_ ),
+    status ( New ),
+    hash( 0 )
 {
-    d->archive = archive;
-    d->status = Private::New;
-
-    QList<PersonPtr> authorList = article->authors();
+    assert( archive );
+    const QList<PersonPtr> authorList = article->authors();
 
     QString author;
 
@@ -114,66 +161,71 @@ void Article::initialize(ItemPtr article, Backend::FeedStorage* archive)
         }
     }
 
-    d->hash = Utils::calcHash(article->title() + article->description() + article->content() + article->link() + author);
+    hash = Utils::calcHash(article->title() + article->description() + article->content() + article->link() + author);
 
-    d->guid = article->id();
+    guid = article->id();
 
-    if (!d->archive->contains(d->guid))
+    if (!archive->contains(guid))
     {
-        d->archive->addEntry(d->guid);
+        archive->addEntry(guid);
 
-        d->archive->setHash(d->guid, d->hash);
+        archive->setHash(guid, hash);
         QString title = article->title();
         if (title.isEmpty())
             title = buildTitle(article->description());
-        d->archive->setTitle(d->guid, title);
-        d->archive->setContent(d->guid, article->content());
-        d->archive->setDescription(d->guid, article->description());
-        d->archive->setLink(d->guid, article->link());
-        //d->archive->setComments(d->guid, article.comments());
-        //d->archive->setCommentsLink(d->guid, article.commentsLink().url());
-        d->archive->setGuidIsPermaLink(d->guid, false);
-        d->archive->setGuidIsHash(d->guid, d->guid.startsWith("hash:"));
+        archive->setTitle(guid, title);
+        archive->setContent(guid, article->content());
+        archive->setDescription(guid, article->description());
+        archive->setLink(guid, article->link());
+        //archive->setComments(guid, article.comments());
+        //archive->setCommentsLink(guid, article.commentsLink().url());
+        archive->setGuidIsPermaLink(guid, false);
+        archive->setGuidIsHash(guid, guid.startsWith("hash:"));
         const time_t datePublished = article->datePublished();
         if ( datePublished > 0 )
-            d->pubDate.setTime_t( datePublished );
+            pubDate.setTime_t( datePublished );
         else
-            d->pubDate = QDateTime::currentDateTime();
-        d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
-        d->archive->setAuthor(d->guid, author);
+            pubDate = QDateTime::currentDateTime();
+        archive->setPubDate(guid, pubDate.toTime_t());
+        archive->setAuthor(guid, author);
     }
     else
     {
         // always update comments count, as it's not used for hash calculation
-        //d->archive->setComments(d->guid, article.comments());
-        if (d->hash != d->archive->hash(d->guid)) //article is in archive, was it modified?
+        //archive->setComments(guid, article.comments());
+        if (hash != archive->hash(guid)) //article is in archive, was it modified?
         { // if yes, update
-            d->pubDate.setTime_t(d->archive->pubDate(d->guid));
-            d->archive->setHash(d->guid, d->hash);
+            pubDate.setTime_t(archive->pubDate(guid));
+            archive->setHash(guid, hash);
             QString title = article->title();
             if (title.isEmpty())
                 title = buildTitle(article->description());
-            d->archive->setTitle(d->guid, title);
-            d->archive->setDescription(d->guid, article->description());
-            d->archive->setContent(d->guid, article->content());
-            d->archive->setLink(d->guid, article->link());
-            d->archive->setAuthor(d->guid, author);
-            //d->archive->setCommentsLink(d->guid, article.commentsLink());
+            archive->setTitle(guid, title);
+            archive->setDescription(guid, article->description());
+            archive->setContent(guid, article->content());
+            archive->setLink(guid, article->link());
+            archive->setAuthor(guid, author);
+            //archive->setCommentsLink(guid, article.commentsLink());
         }
     }
+
 }
 
-Article::Article(ItemPtr article, Feed* feed) : d(new Private)
+
+Article::Article() : d( new Private )
 {
-    Q_ASSERT( feed );
-    d->feed = feed;
-    initialize(article, feed->storage()->archiveFor(feed->xmlUrl()));
 }
 
-Article::Article(ItemPtr article, Backend::FeedStorage* archive) : d(new Private)
+Article::Article( const QString& guid, Feed* feed ) : d( new Private( guid, feed ) )
 {
-    d->feed = 0;
-    initialize(article, archive);
+}
+
+Article::Article( const ItemPtr& article, Feed* feed ) : d( new Private( article, feed, feed->storage()->archiveFor( feed->xmlUrl() ) ) )
+{
+}
+
+Article::Article( const ItemPtr& article, Backend::FeedStorage* archive ) : d( new Private( article, 0, archive ) )
+{
 }
 
 bool Article::isNull() const
@@ -335,7 +387,6 @@ KUrl Article::commentsLink() const
 
 int Article::comments() const
 {
-
     return d->archive->comments(d->guid);
 }
 
@@ -376,33 +427,4 @@ const QDateTime& Article::pubDate() const
     return d->pubDate;
 }
 
-QString Article::buildTitle(const QString& description)
-{
-    QString s = description;
-    if (description.trimmed().isEmpty())
-        return "";
-
-    int i = s.indexOf('>',500); /*avoid processing too much */
-    if (i != -1)
-        s = s.left(i+1);
-    QRegExp rx("(<([^\\s>]*)(?:[^>]*)>)[^<]*", Qt::CaseInsensitive);
-    QString tagName, toReplace, replaceWith;
-    while (rx.indexIn(s) != -1 )
-    {
-        tagName=rx.cap(2);
-        if (tagName=="SCRIPT"||tagName=="script")
-            toReplace=rx.cap(0); // strip tag AND tag contents
-        else if (tagName.startsWith("br") || tagName.startsWith("BR"))
-        {
-            toReplace=rx.cap(1);
-            replaceWith=" ";
-        }
-        else
-            toReplace=rx.cap(1);  // strip just tag
-        s=s.replace(s.indexOf(toReplace),toReplace.length(),replaceWith); // do the deed
-    }
-    if (s.length()> 90)
-        s=s.left(90)+"...";
-    return s.simplified();
-}
 } // namespace Akregator
