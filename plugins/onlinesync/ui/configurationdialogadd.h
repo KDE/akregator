@@ -32,6 +32,7 @@ class ConfigurationDialogAdd : public KDialog
         virtual void slotButtonClicked(int button);
         void slotDelayedInit();
         void slotFinished();
+        void slotUpdateUI();
 };
  
 }
