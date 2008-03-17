@@ -82,7 +82,7 @@ namespace Akregator {
 struct Article::Private : public Shared
 {
     Private();
-    Private( const QString& guid, Feed* feed );
+    Private( const QString& guid, Feed* feed, Backend::FeedStorage* archive );
     Private( const ItemPtr& article, Feed* feed, Backend::FeedStorage* archive );
 
     /** The status of the article is stored in an int, the bits having the
@@ -120,10 +120,10 @@ Article::Private::Private()
 {
 }
 
-Article::Private::Private( const QString& guid_, Feed* feed_ )
+Article::Private::Private( const QString& guid_, Feed* feed_, Backend::FeedStorage* archive_ )
   : feed( feed_ ),
     guid( guid_ ),
-    archive( feed->storage()->archiveFor( feed->xmlUrl() ) ),
+    archive( archive_ ),
     status( archive->status( guid ) ),
     hash( archive->hash( guid ) ),
     pubDate( QDateTime::fromTime_t( archive->pubDate( guid ) ) )
@@ -216,7 +216,7 @@ Article::Article() : d( new Private )
 {
 }
 
-Article::Article( const QString& guid, Feed* feed ) : d( new Private( guid, feed ) )
+Article::Article( const QString& guid, Feed* feed ) : d( new Private( guid, feed, feed->storage()->archiveFor( feed->xmlUrl() ) ) )
 {
 }
 
