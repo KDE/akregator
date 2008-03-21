@@ -23,7 +23,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "feed.h"
 #include "feediconmanager.h"
 
 #include <kapplication.h>
@@ -32,119 +31,132 @@
 #include <k3staticdeleter.h>
 #include <kurl.h>
 
+#include <QIcon>
 #include <QList>
 #include <QMultiHash>
 #include <QPixmap>
 #include <QtDBus/QtDBus>
+
+#include <cassert>
+
 #define FAVICONINTERFACE "org.kde.FavIcon"
 
 
-namespace Akregator {
+using namespace Akregator;
 
-class FeedIconManager::FeedIconManagerPrivate
+FaviconListener::~FaviconListener() {}
+
+class FeedIconManager::Private
 {
-    public:
-    QList<Feed*> registeredFeeds;
-    QMultiHash<QString, Feed*> urlDict;
-  QDBusInterface *m_favIconsModule;
+    FeedIconManager* const q;
+public:
+    
+    static FeedIconManager* m_instance;
+
+    explicit Private( FeedIconManager* qq );
+    ~Private();
+    
+
+    void loadIcon( const QString& url );
+    QString iconLocation( const KUrl& ) const;
+    
+    QHash<FaviconListener*,QString> m_listeners;
+    QMultiHash<QString, FaviconListener*> urlDict;
+    QDBusInterface *m_favIconsModule;
 };
 
-FeedIconManager *FeedIconManager::m_instance = 0;
+namespace {
+
+QString getIconUrl( const KUrl& url )
+{
+    return "http://" + url.host() + '/';
+}
+
+}
+
+FeedIconManager::Private::Private( FeedIconManager* qq ) : q( qq )
+{
+    QDBusConnection::sessionBus().registerObject("/FeedIconManager", q, QDBusConnection::ExportScriptableSlots);
+    m_favIconsModule = new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
+    Q_ASSERT( m_favIconsModule );
+    q->connect( m_favIconsModule, SIGNAL( iconChanged( bool, QString, QString ) ),
+                q, SLOT( slotIconChanged( bool, QString, QString ) ) );
+}
+
+FeedIconManager::Private::~Private()
+{
+    delete m_favIconsModule;
+}
+
+FeedIconManager *FeedIconManager::Private::m_instance = 0;
+
+
+QString FeedIconManager::Private::iconLocation(const KUrl & url) const
+{
+    QDBusReply<QString> reply = m_favIconsModule->call( "iconForUrl", url.url() );
+    return reply.isValid() ? reply.value() : QString();
+}
+
+
+void FeedIconManager::Private::loadIcon( const QString & url_ )
+{
+    const KUrl url(url_);
+
+    QString iconFile = iconLocation( url );
+
+    if (iconFile.isNull())
+        m_favIconsModule->call( "downloadHostIcon", url.url() );
+    else
+        q->slotIconChanged( false, url.url(), iconFile );
+}
 
 static K3StaticDeleter<FeedIconManager> feediconmanagersd;
 
 FeedIconManager* FeedIconManager::self()
 {
-    if (!m_instance)
-        m_instance = feediconmanagersd.setObject(m_instance, new FeedIconManager);
-    return m_instance;
+    if (!Private::m_instance)
+        Private::m_instance = feediconmanagersd.setObject(Private::m_instance, new FeedIconManager);
+    return Private::m_instance;
 }
 
-void FeedIconManager::fetchIcon(Feed* feed)
+void FeedIconManager::addListener( const KUrl& url, FaviconListener* listener )
 {
-    if (!d->registeredFeeds.contains(feed))
-    {
-        d->registeredFeeds.append(feed);
-        connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotFeedDestroyed(Akregator::TreeNode*)));
-    }
-    const QString iconUrl = getIconUrl(KUrl(feed->xmlUrl()));
-    d->urlDict.insert(iconUrl, feed);
-    loadIcon(iconUrl);
+    assert( listener );
+    removeListener( listener );
+    const QString iconUrl = getIconUrl( url );
+    d->m_listeners.insert( listener, iconUrl );
+    d->urlDict.insert( iconUrl, listener );
+    QMetaObject::invokeMethod( this, SLOT( loadIcon( QString ) ), Q_ARG( QString, iconUrl ) );
+}
+
+void FeedIconManager::removeListener( FaviconListener* listener )
+{
+    assert( listener );
+    if ( !d->m_listeners.contains( listener ) )
+        return;
+    const QString url = d->m_listeners.value( listener );
+    d->urlDict.remove( url, listener );
+    d->m_listeners.remove( listener );
 }
 
 FeedIconManager::FeedIconManager()
-:  QObject(), d(new FeedIconManagerPrivate)
+:  QObject(), d( new Private( this ) )
 {
-   QDBusConnection::sessionBus().registerObject("/FeedIconManager", this, QDBusConnection::ExportScriptableSlots);
-   d->m_favIconsModule =
-     new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
-   Q_ASSERT( d->m_favIconsModule );
-   connect( d->m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
-           this, SLOT(slotIconChanged(bool,QString,QString)));
 }
-
 
 FeedIconManager::~FeedIconManager()
 {
-    delete d->m_favIconsModule;
     delete d;
-    d = 0;
 }
 
-void FeedIconManager::loadIcon(const QString & url)
+void FeedIconManager::slotIconChanged( bool isHost,
+                                       const QString& hostOrUrl,
+                                       const QString& iconName )
 {
-    KUrl u(url);
-
-    QString iconFile = iconLocation(u);
-
-    if (iconFile.isNull())
-    {
-        d->m_favIconsModule->call( "downloadHostIcon", u.url() );
-    }
-    else
-        slotIconChanged(false, url, iconFile);
-
+    Q_UNUSED( isHost );
+    const QIcon icon( KGlobal::dirs()->findResource( "cache", iconName+".png" ) );
+    Q_FOREACH( FaviconListener* l, d->urlDict.values( hostOrUrl ) )
+        l->setFavicon( icon );
 }
-
-QString FeedIconManager::getIconUrl(const KUrl& url)
-{
-    return "http://" + url.host() + '/';
-}
-
-QString FeedIconManager::iconLocation(const KUrl & url) const
-{
-    QDBusReply<QString> reply = d->m_favIconsModule->call( "iconForUrl", url.url() );
-
-    if (reply.isValid()) {
-      QString result = reply;
-      return result;
-    }
-    return QString();
-}
-
-void FeedIconManager::slotFeedDestroyed(TreeNode* node)
-{
-    Feed* feed = dynamic_cast<Feed*>(node);
-    if (feed)
-        d->registeredFeeds.removeAll(feed);
-}
-
-void FeedIconManager::slotIconChanged(bool /*isHost*/, const QString& hostOrURL,
-                                  const QString& iconName)
-{
-    QString iconFile = KGlobal::dirs()->findResource("cache",
-                                 iconName+".png");
-    Feed* f;
-    QPixmap p = QPixmap(iconFile);
-    if (!p.isNull()) // we don't set null pixmaps, as feed checks pixmap.isNull() to find out whether the icon was already loaded or not. It would request the icon another time, resulting an infinite loop (until stack overflow that is
-    {
-        while (( f = d->urlDict.take(hostOrURL) ))
-            if (d->registeredFeeds.contains(f))
-                f->setFavicon(p);
-    }
-    emit signalIconChanged(hostOrURL, iconFile);
-}
-
-} // namespace Akregator
 
 #include "feediconmanager.moc"

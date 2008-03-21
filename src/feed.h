@@ -27,6 +27,7 @@
 #define AKREGATOR_FEED_H
 
 #include "akregator_export.h"
+#include "feediconmanager.h"
 #include "treenode.h"
 
 #include <syndication/syndication.h>
@@ -48,7 +49,7 @@ namespace Backend {
 }
 
 /** represents a feed */
-class AKREGATORPART_EXPORT Feed : public TreeNode
+class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
 {
     friend class Article;
 
@@ -148,7 +149,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
         void setImage(const QPixmap &p);
 
         /** sets the favicon (used in the tree view) */
-        void setFavicon(const QIcon& icon);
+        void setFavicon( const QIcon& icon );
 
         /** returns the url of the actual feed source (rss/rdf/atom file) */
         QString xmlUrl() const;
@@ -252,9 +253,6 @@ class AKREGATORPART_EXPORT Feed : public TreeNode
 
         /** sets the unread count for this feed */
         void setUnread(int unread);
-
-        /** downloads the favicon */
-        void loadFavicon() const;
 
         /** notifies that article @c mya was set to "deleted".
             To be called by @ref Article

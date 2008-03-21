@@ -49,6 +49,7 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QHash>
+#include <QIcon>
 #include <QList>
 #include <QPixmap>
 
@@ -296,6 +297,7 @@ Feed::Feed( Akregator::Backend::Storage* storage ) : TreeNode(), d( new Private(
 
 Feed::~Feed()
 {
+    FeedIconManager::self()->removeListener( this );
     slotAbortFetch();
     emitSignalDestroyed();
     delete d;
@@ -353,7 +355,10 @@ QPixmap Feed::image() const { return d->imagePixmap; }
 
 QString Feed::xmlUrl() const { return d->xmlUrl; }
 
-void Feed::setXmlUrl(const QString& s) { d->xmlUrl = s; }
+void Feed::setXmlUrl(const QString& s)
+{
+    d->xmlUrl = s;
+}
 
 QString Feed::htmlUrl() const { return d->htmlUrl; }
 
@@ -617,10 +622,8 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 
     loadArticles(); // TODO: make me fly: make this delayed
 
-    // Restore favicon.
-    if (d->favicon.isNull())
-        loadFavicon();
-
+    FeedIconManager::self()->addListener( KUrl( xmlUrl() ), this );
+    
     d->fetchErrorCode = Syndication::Success;
 
     if (d->imagePixmap.isNull())
@@ -652,18 +655,10 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     emit fetched(this);
 }
 
-void Feed::loadFavicon() const
-{
-    FeedIconManager::self()->fetchIcon( const_cast<Feed*>(this) );
-}
-
 QIcon Feed::icon() const
 {
     if ( fetchErrorOccurred() )
         return KIcon("dialog-error");
-
-    if ( d->favicon.isNull() )
-        loadFavicon();
 
     return !d->favicon.isNull() ? d->favicon : KIcon("text-html");
 }

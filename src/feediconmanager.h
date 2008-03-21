@@ -31,51 +31,45 @@
 
 class KUrl;
 
+class QIcon;
 class QPixmap;
 class QString;
 
 namespace Akregator {
 
-class Feed;
-class TreeNode;
 
-class AKREGATORPART_EXPORT FeedIconManager:public QObject
+class AKREGATORPART_EXPORT FaviconListener
+{
+public:
+    virtual ~FaviconListener();
+    
+    virtual void setFavicon( const QIcon& icon ) = 0; 
+};
+
+class AKREGATORPART_EXPORT FeedIconManager : public QObject
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.kde.akregator.feediconmanager")
     
-    public:
-
+    public:        
+        static FeedIconManager* self();
 
         ~FeedIconManager();
-        
-        static FeedIconManager *self();
 
-        void fetchIcon(Feed* feed);
-        
-        QString iconLocation(const KUrl &) const;
-        
-    public Q_SLOTS:
+        void addListener( const KUrl& url, FaviconListener* listener );
+        void removeListener( FaviconListener* listener );
+
+    private Q_SLOTS:
         Q_SCRIPTABLE void slotIconChanged(bool, const QString&, const QString&);
-        void slotFeedDestroyed(Akregator::TreeNode* node);
-
-    signals:
-        void signalIconChanged(const QString &, const QPixmap &);
 
     private:
-
-        /** returns the url used to access the icon, e.g.
-            http://dot.kde.org/ for "dot.kde.org/1113317400/" */
-        QString getIconUrl(const KUrl& url);
-
-        void loadIcon(const QString &);
-
-        static FeedIconManager *m_instance;
-
         FeedIconManager();
-
-        class FeedIconManagerPrivate;
-        FeedIconManagerPrivate* d;
+        
+        class Private;
+        friend class ::Akregator::FeedIconManager::Private;
+        Private* const d;
+        
+        Q_PRIVATE_SLOT( d, void loadIcon( QString ) )
 };
 
 } // namespace Akregator
