@@ -35,13 +35,8 @@ QString Utils::stripTags(const QString& str)
 
 uint Utils::calcHash(const QString& str)
 {
-    if (str.isNull()) // handle null string as "", prevents crash
-        return calcHash("");
-    const char* s = str.toAscii();
-    uint hash = 5381;
-    int c;
-    while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
-    return hash;
+    const QByteArray array = str.toAscii();
+    return qChecksum( array.constData(), array.size() );
 }
 
 QString Utils::fileNameForUrl(const QString& url_p)
