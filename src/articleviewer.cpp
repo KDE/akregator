@@ -115,12 +115,12 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     connect(ext, SIGNAL(createNewWindow(KUrl,
             KParts::OpenUrlArguments,
-            KParts::BrowserArguments
+            KParts::BrowserArguments,
             KParts::WindowArgs,
             KParts::ReadOnlyPart**)),
             this, SLOT(slotCreateNewWindow(KUrl,
                          KParts::OpenUrlArguments,
-                         KParts::BrowserArguments
+                         KParts::BrowserArguments,
                          KParts::WindowArgs,
                          KParts::ReadOnlyPart**)));
 
