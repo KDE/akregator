@@ -197,7 +197,8 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url,
     req.setOptions(OpenUrlRequest::NewTab);
     
     emit signalOpenUrlRequest(req);
-    *part = req.part();
+    if ( part )
+        *part = req.part();
 }
 
 bool BrowserFrame::openUrl(const OpenUrlRequest& request)
