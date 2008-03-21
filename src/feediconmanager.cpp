@@ -105,7 +105,11 @@ void FeedIconManager::Private::loadIcon( const QString & url_ )
     QString iconFile = iconLocation( url );
 
     if (iconFile.isNull())
-        m_favIconsModule->call( "downloadHostIcon", url.url() );
+    {
+        const QDBusReply<void> reply = m_favIconsModule->call( "downloadHostIcon", url.url() );
+        if ( !reply.isValid() )
+            kWarning() << "Couldn't reach favicon service. Request favicon for " << url << " failed";
+    }
     else
         q->slotIconChanged( false, url.url(), iconFile );
 }
@@ -126,7 +130,7 @@ void FeedIconManager::addListener( const KUrl& url, FaviconListener* listener )
     const QString iconUrl = getIconUrl( url );
     d->m_listeners.insert( listener, iconUrl );
     d->urlDict.insert( iconUrl, listener );
-    QMetaObject::invokeMethod( this, SLOT( loadIcon( QString ) ), Q_ARG( QString, iconUrl ) );
+    QMetaObject::invokeMethod( this, "loadIcon", Qt::QueuedConnection, Q_ARG( QString, iconUrl ) );
 }
 
 void FeedIconManager::removeListener( FaviconListener* listener )
