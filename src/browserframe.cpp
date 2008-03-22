@@ -23,6 +23,7 @@
 */
 
 #include "actionmanager.h"
+#include "actions.h"
 #include "browserframe.h"
 #include "browserframe_p.h"
 #include "openurlrequest.h"
@@ -31,13 +32,14 @@
 #include <QGridLayout>
 #include <QList>
 #include <QPoint>
+#include <QPointer>
 #include <QString>
 #include <QWidget>
 
 #include <kaction.h>
 #include <kdebug.h>
 #include <klibloader.h>
-#include <kmenu.h>
+#include <KMenu>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
 #include <kurl.h>
@@ -45,30 +47,18 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
+#include <cassert>
 
-namespace Akregator {
+using namespace KParts;
+using namespace Akregator;
 
-BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent)
+BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent), d( new Private( this ) )
 {
-    d = new BrowserFramePrivate(this);
-
-    d->part = 0;
-    d->extension = 0;
-    d->lockHistory = false;
-    d->isLoading = false;
-    setRemovable(true);
-    d->current = d->history.end();
-
-    d->layout = new QGridLayout( this );
-    d->layout->setMargin( 0 );
 }
 
 BrowserFrame::~BrowserFrame()
 {
-    if (d->part)
-        d->part->deleteLater();
     delete d;
-    d = 0;
 }
 
 KUrl BrowserFrame::url() const
@@ -104,62 +94,106 @@ void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
 }
 
+namespace {
+
+OpenUrlRequest requestFromSender( QObject* sender, int id )
+{
+    QAction* const action = qobject_cast<QAction*>( sender );
+    assert( action );
+    const KUrl url = action->data().value<KUrl>();
+    OpenUrlRequest req;
+    req.setFrameId( id );
+    req.setUrl( url );
+    return req;
+}
+
+}
+
+void BrowserFrame::slotOpenLinkInBrowser()
+{
+    OpenUrlRequest req = requestFromSender( sender(), id() );
+    req.setOptions( OpenUrlRequest::ExternalBrowser );
+    emit signalOpenUrlRequest( req );
+}
+
+void BrowserFrame::slotOpenLinkInNewTab()
+{
+    OpenUrlRequest req = requestFromSender( sender(), id() );
+    req.setOptions( OpenUrlRequest::NewTab );
+    emit signalOpenUrlRequest( req );
+}
+
+namespace {
+
+enum SeparatorOption {
+    ShowSeparatorIfNotEmpty,
+    NoSeparator
+};
+
+void addActionsToMenu( QMenu* menu, const QList<QAction*> actions, SeparatorOption option )
+{
+    if ( !actions.isEmpty() && option != NoSeparator )
+        menu->addSeparator();
+    Q_FOREACH( QAction* const i, actions )
+            menu->addAction( i );
+}
+
+}
+
 void BrowserFrame::slotPopupMenu(
                    const QPoint& global, 
                    const KUrl& url,
                    mode_t mode,
-                   const KParts::OpenUrlArguments& args,
-                   const KParts::BrowserArguments& browserArgs,
-                   KParts::BrowserExtension::PopupFlags flags)
+                   const OpenUrlArguments& args,
+                   const BrowserArguments& browserArgs,
+                   BrowserExtension::PopupFlags flags,
+                   const KParts::BrowserExtension::ActionGroupMap& actionGroups )
 {
-    const bool showReload = (flags & KParts::BrowserExtension::ShowReload) != 0;
-    const bool showNavigationItems = (flags & KParts::BrowserExtension::ShowNavigationItems) != 0;
-    const bool isLink = (flags & KParts::BrowserExtension:: IsLink) != 0;
-    const bool isSelection = (flags & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
+    const bool showReload = (flags & BrowserExtension::ShowReload) != 0;
+    const bool showNavigationItems = (flags & BrowserExtension::ShowNavigationItems) != 0;
+    const bool isLink = (flags & BrowserExtension:: IsLink) != 0;
+    const bool isSelection = (flags & BrowserExtension::ShowTextSelectionItems) != 0;
         
     bool isFirst = true;
     
-    KMenu popup(d->part->widget());
+    QPointer<KMenu> popup( new KMenu( d->part->widget() ) );
     
-    /*    
     if (showNavigationItems)
     {
-        popup.addAction(ActionManager::getInstance()->action("browser_back"));
-        popup.addAction(ActionManager::getInstance()->action("browser_forward"));
+        popup->addAction( ActionManager::getInstance()->action( "browser_back" ) );
+        popup->addAction( ActionManager::getInstance()->action( "browser_forward" ) );
         isFirst = false;
     }
     if (showReload)
     {
-        popup.addAction(ActionManager::getInstance()->action("browser_reload"));
+        popup->addAction( ActionManager::getInstance()->action( "browser_reload" ) );
         isFirst = false;
     }
+
+#define addSeparatorIfNotFirst() if ( !isFirst ) popup->addSeparator(); isFirst = false;
     
     if (isLink)
     {
-        if (!isFirst)
-            popup.addSeparator();
-        // open link in new tab
-        // ext browser
-        popup.addSeparator();
-        popup.addAction(d->part->action("savelinkas"));
-        // save link as
-        // copy link address
-        isFirst = false;
+        addSeparatorIfNotFirst();
+        popup->addAction( createOpenLinkInNewTabAction( url, this, SLOT( slotOpenLinkInNewTab() ), popup ) );
+        popup->addAction( createOpenLinkInExternalBrowserAction( url, this, SLOT( slotOpenLinkInBrowser() ), popup ) );
+        addActionsToMenu( popup, actionGroups.value( "linkactions" ), ShowSeparatorIfNotEmpty );
     }
     
     if (isSelection)
     {
-        if (!isFirst)
-            popup.addSeparator();
-    
-        popup.addAction(d->part->action("copy"));
-        isFirst = false;
+        addSeparatorIfNotFirst();
+        addActionsToMenu( popup, actionGroups.value( "editactions" ), NoSeparator );
     }
-    */
-    popup.exec(global);
+
+    addSeparatorIfNotFirst();
+    addActionsToMenu( popup, actionGroups.value( "part" ), NoSeparator );
+
+    popup->exec( global );
+    delete popup;
 }
                    
-void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
+void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const OpenUrlArguments& args, const BrowserArguments& browserArgs)
 {
     OpenUrlRequest req;
     
@@ -171,7 +205,7 @@ void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::Open
     emit signalOpenUrlRequest(req);
 }
 
-void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
+void BrowserFrame::slotCreateNewWindow(const KUrl& url, const OpenUrlArguments& args, const BrowserArguments& browserArgs)
 {
     OpenUrlRequest req;
     req.setFrameId(id());
@@ -184,10 +218,10 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArg
 }
 
 void BrowserFrame::slotCreateNewWindow(const KUrl& url, 
-                                       const KParts::OpenUrlArguments& args,
-                                       const KParts::BrowserArguments& browserArgs,
-                                       const KParts::WindowArgs& /*windowArgs*/, 
-                                       KParts::ReadOnlyPart** part)
+                                       const OpenUrlArguments& args,
+                                       const BrowserArguments& browserArgs,
+                                       const WindowArgs& /*windowArgs*/, 
+                                       ReadOnlyPart** part)
 {
     OpenUrlRequest req;
     req.setFrameId(id());
@@ -203,7 +237,7 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url,
 
 bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 {
-    QString serviceType = request.args().mimeType();
+    const QString serviceType = request.args().mimeType();
     
     if (serviceType.isEmpty())
         return false;
@@ -213,15 +247,14 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
     if (d->loadPartForMimetype(serviceType))
     {
         if (d->part)
-        {
             d->part->setArguments(request.args());
-        }
-        bool res = false;
+
+        if ( !request.url().isValid() )
+            return false;
         
-        if (request.url().isValid())
-            res = d->part->openUrl(request.url());
+        const bool res = d->part->openUrl( request.url() );
         
-        if (res)
+        if ( res )
         {
             d->appendHistoryEntry(request.url());
             d->updateHistoryEntry();
@@ -232,14 +265,12 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
     else
     {
             // TODO: show open|save|cancel dialog
-    
-    
     }
     
     return false; // TODO: is this correct?
 }
 
-KParts::ReadOnlyPart* BrowserFrame::part() const
+ReadOnlyPart* BrowserFrame::part() const
 {
     return d->part;
 }
@@ -254,18 +285,18 @@ void BrowserFrame::slotHistoryBackAboutToShow()
         return;
     
     
-    QList<BrowserFramePrivate::HistoryEntry>::Iterator it = d->current-1;
+    QList<Private::HistoryEntry>::Iterator it = d->current-1;
     
     int i = 0;
     while( i < 10)
     {
         if ( it == d->history.begin() )
         {
-            popup->addAction(new BrowserFramePrivate::HistoryAction(it, popup, d));
+            popup->addAction(new Private::HistoryAction(it, popup, d));
             return;
         }
         
-        popup->addAction(new BrowserFramePrivate::HistoryAction(it, popup, d));
+        popup->addAction(new Private::HistoryAction(it, popup, d));
         ++i;
         --it;
     }
@@ -274,24 +305,24 @@ void BrowserFrame::slotHistoryBackAboutToShow()
 void BrowserFrame::slotHistoryForwardAboutToShow()
 {
     QAction* fw = ActionManager::getInstance()->action("browser_forward");
-    QMenu* popup = static_cast<KToolBarPopupAction*>(fw)->menu(); 
+    QMenu* popup = qobject_cast<KToolBarPopupAction*>(fw)->menu(); 
     popup->clear();
     
     if (!canGoForward())
         return;
 
-    QList<BrowserFramePrivate::HistoryEntry>::Iterator it = d->current+1;
+    QList<Private::HistoryEntry>::Iterator it = d->current+1;
         
     int i = 0;
     while( i < 10)
     {
         if ( it == d->history.end()-1 )
         {
-            popup->addAction( new BrowserFramePrivate::HistoryAction(it, popup, d));
+            popup->addAction( new Private::HistoryAction(it, popup, d));
             return;
         }
         
-        popup->addAction(new BrowserFramePrivate::HistoryAction(it, popup, d));
+        popup->addAction(new Private::HistoryAction(it, popup, d));
         ++i;
         ++it;
     }
@@ -322,7 +353,6 @@ void BrowserFrame::slotStop()
     if (d->part)
         d->part->closeUrl();
     Frame::slotStop();
-    
 }
 
 void BrowserFrame::slotPaletteOrFontChanged()
@@ -338,7 +368,5 @@ bool BrowserFrame::isLoading() const
 {
     return d->isLoading;
 }
-
-} // namespace Akregator
 
 #include "browserframe.moc"

@@ -50,15 +50,19 @@
 
 namespace Akregator {
 
-class BrowserFrame::BrowserFramePrivate : public QObject
+class BrowserFrame::Private : public QObject
 {
     Q_OBJECT
 
-    public:
-        BrowserFramePrivate(BrowserFrame* p) : QObject(), q(p) {}
+        BrowserFrame* const q;
 
+    public:
+        explicit Private(BrowserFrame* qq);
+        ~Private();
+        
         class HistoryEntry;
         class HistoryAction;
+        class UrlAction;
         
         QList<HistoryEntry> history;
         QList<HistoryEntry>::Iterator current;
@@ -67,7 +71,6 @@ class BrowserFrame::BrowserFramePrivate : public QObject
         QGridLayout* layout;
         bool lockHistory;
         bool isLoading;
-        BrowserFrame* q;
 
         QString mimetype;
         KService::Ptr service;
@@ -75,19 +78,19 @@ class BrowserFrame::BrowserFramePrivate : public QObject
         void connectPart();
         void updateHistoryEntry();
         void appendHistoryEntry(const KUrl& url);
-        void restoreHistoryEntry(QList<HistoryEntry>::Iterator entry);
+        void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
         bool loadPartForMimetype(const QString& mimetype);
     
         QString debugInfo() const;
         
     public slots:
-        void slotHistoryEntrySelected(QList<BrowserFrame::BrowserFramePrivate::HistoryEntry>::Iterator entry)
+        void slotHistoryEntrySelected( const QList<BrowserFrame::Private::HistoryEntry>::Iterator& entry)
         {
             restoreHistoryEntry(entry);
         }
 };
 
-class BrowserFrame::BrowserFramePrivate::HistoryEntry
+class BrowserFrame::Private::HistoryEntry
 {
     public:
 
@@ -116,14 +119,15 @@ class BrowserFrame::BrowserFramePrivate::HistoryEntry
 
         static int idCounter;
 };
-class BrowserFrame::BrowserFramePrivate::HistoryAction : public QAction
+
+class BrowserFrame::Private::HistoryAction : public QAction
 {
     
     Q_OBJECT            
     public:
         HistoryAction(QList<HistoryEntry>::Iterator entry, 
                       QObject* q,
-                      BrowserFramePrivate* priv);
+                      Private* priv);
         
         QList<HistoryEntry>::Iterator m_entry;
     
@@ -133,7 +137,7 @@ class BrowserFrame::BrowserFramePrivate::HistoryAction : public QAction
             
     signals:
         
-        void triggered(QList<BrowserFrame::BrowserFramePrivate::HistoryEntry>::Iterator);
+        void triggered(const QList<BrowserFrame::Private::HistoryEntry>::Iterator&);
 };
 
 } // namespace Akregator

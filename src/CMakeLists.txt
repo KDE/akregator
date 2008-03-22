@@ -66,6 +66,7 @@ set(akregatorpart_PART_SRCS
    browserrun.cpp 
    articlelistview.cpp 
    actionmanager.cpp 
+   actions.cpp
    actionmanagerimpl.cpp 
    frame.cpp 
    framemanager.cpp 

@@ -23,9 +23,10 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "articleviewer.h"
+#include "akregatorconfig.h"
 #include "aboutdata.h"
+#include "actions.h"
 #include "article.h"
 #include "articleformatter.h"
 #include "articlematcher.h"
@@ -263,8 +264,8 @@ void ArticleViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, con
 
     if (isLink && !isSelection)
     {
-        popup.addAction(KIcon("tab-new"), i18n("Open Link in New &Tab"), this, SLOT(slotOpenLinkInForegroundTab()));
-        popup.addAction(KIcon("window-new"), i18n("Open Link in External &Browser"), this, SLOT(slotOpenLinkInBrowser()));
+        popup.addAction( createOpenLinkInNewTabAction( kurl, this, SLOT( slotOpenLinkInForegroundTab() ), &popup ) );
+        popup.addAction( createOpenLinkInExternalBrowserAction( kurl, this, SLOT( slotOpenLinkInBrowser() ), &popup ) );
         popup.addSeparator();
         popup.addAction( m_part->action("savelinkas") );
         popup.addAction( m_part->action("copylinkaddress") );

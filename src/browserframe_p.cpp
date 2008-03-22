@@ -26,23 +26,44 @@
 
 namespace Akregator {
 
-void BrowserFrame::BrowserFramePrivate::HistoryAction::slotTriggered(bool)
+BrowserFrame::Private::Private( BrowserFrame* qq )
+  : QObject( qq ),
+    q( qq ),
+    history(),
+    current( history.end() ),
+    part( 0 ),
+    extension( 0 ),
+    layout( new QGridLayout( q ) ),
+    lockHistory( false ),
+    isLoading( false )
+{
+    layout->setMargin( 0 );
+    q->setRemovable( true );
+}
+
+BrowserFrame::Private::~Private()
+{
+    if ( part )
+        part->deleteLater();
+}
+
+void BrowserFrame::Private::HistoryAction::slotTriggered(bool)
 {
     emit triggered(m_entry);
 }
 
-BrowserFrame::BrowserFramePrivate::HistoryAction::HistoryAction(QList<HistoryEntry>::Iterator entry,
+BrowserFrame::Private::HistoryAction::HistoryAction(QList<HistoryEntry>::Iterator entry,
          QObject* q,
-         BrowserFramePrivate* priv) : QAction((*entry).title, q), m_entry(entry)
+         Private* priv) : QAction((*entry).title, q), m_entry(entry)
 {
     connect(this, SIGNAL(triggered(bool)), this, SLOT(slotTriggered(bool)));
-    connect(this, SIGNAL(triggered(QList<BrowserFrame::BrowserFramePrivate::HistoryEntry>::Iterator)), priv, SLOT(slotHistoryEntrySelected(QList<BrowserFrame::BrowserFramePrivate::HistoryEntry>::Iterator)));
+    connect(this, SIGNAL(triggered(QList<BrowserFrame::Private::HistoryEntry>::Iterator)), priv, SLOT(slotHistoryEntrySelected(QList<BrowserFrame::Private::HistoryEntry>::Iterator)));
 }
     
-int BrowserFrame::BrowserFramePrivate::HistoryEntry::idCounter = 0;
+int BrowserFrame::Private::HistoryEntry::idCounter = 0;
 
 
-bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimetype)
+bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
 {
     KService::List offers = KMimeTypeTrader::self()->query( mimetype, "KParts/ReadOnlyPart" );
 
@@ -78,7 +99,7 @@ bool BrowserFrame::BrowserFramePrivate::loadPartForMimetype(const QString& mimet
         return false;
 }
 
-QString BrowserFrame::BrowserFramePrivate::debugInfo() const
+QString BrowserFrame::Private::debugInfo() const
 {
     QString res = "HISTORY: ";
     
@@ -93,7 +114,7 @@ QString BrowserFrame::BrowserFramePrivate::debugInfo() const
     return res;
 }
 
-void BrowserFrame::BrowserFramePrivate::appendHistoryEntry(const KUrl& url)
+void BrowserFrame::Private::appendHistoryEntry(const KUrl& url)
 {
     if (lockHistory)
         return;
@@ -122,7 +143,7 @@ void BrowserFrame::BrowserFramePrivate::appendHistoryEntry(const KUrl& url)
         emit q->signalCanGoForwardToggled(q, !canForward);
 }
 
-void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( QList<HistoryEntry>::Iterator entry)
+void BrowserFrame::Private::restoreHistoryEntry( const QList<HistoryEntry>::Iterator& entry)
 {
     bool canBack = q->canGoBack();
     bool canForward = q->canGoForward();
@@ -160,7 +181,7 @@ void BrowserFrame::BrowserFramePrivate::restoreHistoryEntry( QList<HistoryEntry>
 }
 
 
-void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
+void BrowserFrame::Private::updateHistoryEntry()
 {
     if (lockHistory || !part || current == history.end() || !part->url().isValid())
         return;
@@ -181,7 +202,7 @@ void BrowserFrame::BrowserFramePrivate::updateHistoryEntry()
     }
 }
 
-void BrowserFrame::BrowserFramePrivate::connectPart()
+void BrowserFrame::Private::connectPart()
 {
     if (part)
     {
@@ -233,7 +254,8 @@ void BrowserFrame::BrowserFramePrivate::connectPart()
                     KParts::BrowserExtension::PopupFlags, KParts::BrowserExtension::ActionGroupMap)), 
                     q, SLOT(slotPopupMenu(QPoint,KUrl,mode_t,
                     KParts::OpenUrlArguments, KParts::BrowserArguments,
-                    KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument not used by slot
+                    KParts::BrowserExtension::PopupFlags,
+                    KParts::BrowserExtension::ActionGroupMap )));
         }
     }
 }

@@ -27,8 +27,6 @@
 
 #include "frame.h"
 
-#include <kparts/browserextension.h>
-
 class QPoint;
 class QString;
 class QWidget;
@@ -73,6 +71,8 @@ class BrowserFrame : public Frame
         void slotHistoryForwardAboutToShow();
         
         void slotPaletteOrFontChanged();
+        void slotOpenLinkInBrowser();
+        void slotOpenLinkInNewTab();
 
     private slots:
 
@@ -93,11 +93,12 @@ class BrowserFrame : public Frame
                            mode_t mode,
                            const KParts::OpenUrlArguments& args,
                            const KParts::BrowserArguments& browserArgs,
-                           KParts::BrowserExtension::PopupFlags flags);
+                           KParts::BrowserExtension::PopupFlags flags,
+                           const KParts::BrowserExtension::ActionGroupMap& actionGroups );
         
     private:
-        class BrowserFramePrivate;
-        BrowserFramePrivate* d;
+        class Private;
+        Private* const d;
 };
 
 } // namespace Akregator
