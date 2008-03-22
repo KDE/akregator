@@ -247,7 +247,8 @@ void ArticleViewer::slotCreateNewWindow(const KUrl& url,
     req.setOptions(OpenUrlRequest::NewTab);
 
     emit signalOpenUrlRequest(req);
-    *part = req.part();
+    if ( part )
+        *part = req.part();
 }
 
 void ArticleViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags kpf)
