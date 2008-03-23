@@ -222,7 +222,7 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
     }
 }
 
-bool FeedList::readFromXML(const QDomDocument& doc)
+bool FeedList::readFromOpml(const QDomDocument& doc)
 {
     QDomElement root = doc.documentElement();
 
@@ -322,7 +322,7 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
     }
 }
 
-QDomDocument FeedList::toXML() const
+QDomDocument FeedList::toOpml() const
 {
     QDomDocument doc;
     doc.appendChild( doc.createProcessingInstruction( "xml", "version=\"1.0\" encoding=\"UTF-8\"" ) );

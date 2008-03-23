@@ -266,9 +266,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         friend class EditNodePropertiesVisitor;
         class EditNodePropertiesVisitor;
         EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
-        friend class DeleteNodeVisitor;
-        class DeleteNodeVisitor;
-        DeleteNodeVisitor* m_deleteNodeVisitor;
 };
 
 } // namespace Akregator

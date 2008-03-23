@@ -33,6 +33,7 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "browserframe.h"
+#include "deletesubscriptioncommand.h"
 #include "feed.h"
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
@@ -108,62 +109,6 @@ class Akregator::MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
         MainWidget* m_mainWidget;
 };
 
-class Akregator::MainWidget::DeleteNodeVisitor : public TreeNodeVisitor
-{
-    public:
-        DeleteNodeVisitor(MainWidget* view) : m_mainWidget(view) {}
-
-        virtual bool visitFolder(Folder* node)
-        {
-            QString msg;
-            if (node->title().isEmpty())
-                msg = i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>");
-            else
-                msg = i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
-
-            if ( KMessageBox::warningContinueCancel( m_mainWidget, 
-                                                     msg,
-                                                     i18n( "Delete Folder" ),
-                                                     KStandardGuiItem::del(),
-                                                     KStandardGuiItem::cancel(),
-                                                     "Disable delete folder confirmation" ) == KMessageBox::Continue )
-            {
-                DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
-                job->setSubscriptionId( node->id() );
-                job->start();
-                m_mainWidget->m_feedListView->setFocus();
-            }
-            return true;
-        }
-
-        virtual bool visitFeed(Feed* node)
-        {
-            QString msg;
-            if (node->title().isEmpty())
-                msg = i18n("<qt>Are you sure you want to delete this feed?</qt>");
-            else
-                msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
-
-            if ( KMessageBox::warningContinueCancel( m_mainWidget, 
-                                                     msg,
-                                                     i18n( "Delete Feed" ),
-                                                     KStandardGuiItem::del(),
-                                                     KStandardGuiItem::cancel(),
-                                                     "Disable delete feed confirmation" ) == KMessageBox::Continue )
-            {
-                DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
-                job->setSubscriptionId( node->id() );
-                job->start();
-                m_mainWidget->m_feedListView->setFocus();
-            }
-            return true;
-        }
-    private:
-
-        MainWidget* m_mainWidget;
-};
-
-
 Akregator::MainWidget::~MainWidget()
 {
     // if m_shuttingDown is false, slotOnShutdown was not called. That
@@ -178,7 +123,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 {
     setObjectName(name);
     m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
-    m_deleteNodeVisitor = new DeleteNodeVisitor(this);
 
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
@@ -380,7 +324,6 @@ void Akregator::MainWidget::slotOnShutdown()
     delete m_mainTab;
     delete m_mainFrame;
     delete m_editNodePropertiesVisitor;
-    delete m_deleteNodeVisitor;
 
     Settings::self()->writeConfig();
 }
@@ -457,7 +400,7 @@ void Akregator::MainWidget::sendArticle(bool attach)
 bool Akregator::MainWidget::importFeeds(const QDomDocument& doc)
 {
     std::auto_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
-    const bool parsed = feedList->readFromXML(doc);
+    const bool parsed = feedList->readFromOpml(doc);
 
     // FIXME: parsing error, print some message
     if (!parsed)
@@ -511,7 +454,7 @@ bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
     assert( m_feedList );
     std::auto_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
 
-    if ( !feedList->readFromXML( doc ) )
+    if ( !feedList->readFromOpml( doc ) )
         return false;
     
     m_feedListView->setUpdatesEnabled( false );
@@ -536,7 +479,7 @@ void Akregator::MainWidget::slotDeleteExpiredArticles()
 
 QDomDocument Akregator::MainWidget::feedListToOPML()
 {
-    return m_feedList->toXML();
+    return m_feedList->toOpml();
 }
 
 void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& groupName)
@@ -814,7 +757,10 @@ void Akregator::MainWidget::slotFeedRemove()
     if (!selectedNode || selectedNode == m_feedList->rootNode())
         return;
 
-    m_deleteNodeVisitor->visit(selectedNode);
+    DeleteSubscriptionCommand* cmd = new DeleteSubscriptionCommand( this );
+    cmd->setParentWidget( this );
+    cmd->setSubscription( m_feedList, selectedNode->id() );
+    cmd->start();
 }
 
 void Akregator::MainWidget::slotFeedModify()

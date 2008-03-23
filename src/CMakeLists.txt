@@ -50,6 +50,7 @@ set(akregatorpart_PART_SRCS
    articlejobs.cpp
    articlematcher.cpp
    articlemodel.cpp
+   deletesubscriptioncommand.cpp
    feed.cpp 
    treenode.cpp 
    treenodevisitor.cpp 
@@ -98,7 +99,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorprivate)
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorprivate )
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
