@@ -1,6 +1,6 @@
 // mwcw.h --
 // $Id$
-// This is part of Metakit, see http://www.equi4.com/metakit/
+// This is part of Metakit, see http://www.equi4.com/metakit.html
 
 /** @file
  * Configuration header for Metrowerks CodeWarrior
@@ -13,16 +13,16 @@
 #if q4_68K
 #if !__option(IEEEdoubles)
 #error Cannot build Metakit with 10-byte doubles
-#endif
-#endif
+#endif 
+#endif 
 
 #if __option(bool)
 #define q4_BOOL 1
-  // undo previous defaults, because q4_BOOL is not set early enough
+// undo previous defaults, because q4_BOOL is not set early enough
 #undef false
 #undef true
 #undef bool
-#endif
+#endif 
 
 #undef _MSC_VER
 

@@ -1,6 +1,6 @@
 // header.h --
 // $Id$
-// This is part of Metakit, the homepage is http://www.equi4.com/metakit/
+// This is part of Metakit, the homepage is http://www.equi4.com/metakit.html
 
 /** @file
  * The internal header included in all source files
@@ -11,10 +11,9 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-// necessary for SIZEOF_LONG
-#include <config-akregator.h>
+#include "config.h"
 
-////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 // A number of preprocessor options are used in the source code
 //
 //  q4_DOS      MS-DOS real-mode OS
@@ -45,10 +44,10 @@
 
 #define __K4CONF_H__    // skip section in "mk4.h", since we use "header.h"
 
-    // if neither MFC nor STD are specified, default to Universal version
-#if !defined(q4_MFC) && !defined(q4_STD) && !defined (q4_UNIV)
+// if neither MFC nor STD are specified, default to Universal version
+#if !q4_MFC && !q4_STD && !defined (q4_UNIV)
 #define q4_UNIV 1
-#endif
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // You can either use '#define q4_xxx 1' to flag the choice of an OS, or
@@ -59,7 +58,7 @@
 #elif defined (MSDOS) && defined (__GNUC__)
 #define q4_DOS 1
 #elif defined(unix) || defined(__unix__) || defined(__GNUC__) || \
-	defined(_AIX) || defined(__hpux)
+defined(_AIX) || defined(__hpux)
 #define q4_UNIX 1
 #elif defined (__VMS)
 #define q4_VMS 1
@@ -67,7 +66,7 @@
 #define q4_MAC 1
 #elif !defined (d4_OS_H)
 #define d4_OS_H "win.h"
-#endif
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // Use '#define q4_xxx 1' to flag the choice of a CPU.
@@ -76,7 +75,7 @@
 #define q4_I86 1
 #if defined (_M_I86SM)
 #define q4_TINY 1
-#endif
+#endif 
 #elif defined (__powerc)
 #define q4_PPC 1
 #elif defined (__alpha)
@@ -84,9 +83,9 @@
 #define q4_LONG64 1
 #elif defined (__VMS)
 #define q4_VAX 1
-#else
+#else 
 #define q4_M68K 1
-#endif
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // Use '#define q4_xxx 1' to flag the choice of an IDE, and optionally also
@@ -106,117 +105,117 @@
 #define q4_SYMC 1
 #elif defined (__WATCOMC__)                 // Watcom C++
 #define q4_WATC 1
-#endif
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // Some of the options take precedence over others
 
-#if !defined(q4_BOOL) && !defined(q4_STD)        // define a bool datatype
+#if !q4_BOOL && !q4_STD         // define a bool datatype
 #define false 0
 #define true 1
 #define bool int
-#endif
+#endif 
 
-#if !defined(q4_CHECK)                  // disable assertions
+#if !q4_CHECK                   // disable assertions
 #undef d4_assert
 #define d4_dbgdef(x)
 #define d4_assert(x)
-#endif
+#endif 
 
-#if defined(q4_NO_NS)                    // don't use namespaces
+#if q4_NO_NS                    // don't use namespaces
 #define d4_std
-#else
+#else 
 #define d4_std std
-#endif
+#endif 
 
-#if defined(HAVE_MEMMOVE)
+#if HAVE_MEMMOVE
 #define d4_memmove(d,s,n)   memmove(d,s,n)
-#elif defined(HAVE_BCOPY)
+#elif HAVE_BCOPY
 #define d4_memmove(d,s,n)   bcopy(s,d,n)
-#else
+#else 
 #define d4_memmove f4_memmove
-extern void f4_memmove(void* d, const void* s, int n);
-#endif
+extern void f4_memmove(void *d, const void *s, int n);
+#endif 
 
-typedef unsigned char t4_byte;  // create typedefs for t4_byte, etc.
+typedef unsigned char t4_byte; // create typedefs for t4_byte, etc.
 
-#if defined(SIZEOF_LONG) && (SIZEOF_LONG == 8)
-typedef int t4_i32;             // longs are 64b, so int must be 32b
-#else
-typedef long t4_i32;            // longs aren't 64b, so they are 32b
-#endif
+#if SIZEOF_LONG == 8
+typedef int t4_i32; // longs are 64b, so int must be 32b
+#else 
+typedef long t4_i32; // longs aren't 64b, so they are 32b
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // Include header files which contain additional os/cpu/ide/fw specifics
 
-#if defined(d4_OS_H)                  // operating system dependencies
+#ifdef d4_OS_H                  // operating system dependencies
 #include d4_OS_H
-#endif
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // Several defines should always be set
 
-#if !defined(d4_assert)              // assertion macro
+#ifndef d4_assert               // assertion macro
 #include <assert.h>
 #define d4_assert assert
-#endif
+#endif 
 
-#if !defined(d4_dbgdef)               // conditionally compiled
+#ifndef d4_dbgdef               // conditionally compiled
 #ifdef NDEBUG
 #define d4_dbgdef(x)
-#else
+#else 
 #define d4_dbgdef(x) x
-#endif
-#endif
+#endif 
+#endif 
 
-#if !defined(d4_new)                  // heap allocator
+#ifndef d4_new                  // heap allocator
 #define d4_new new
-#endif
+#endif 
 
-#if !defined(d4_reentrant)            // thread-local storage
+#ifndef d4_reentrant            // thread-local storage
 #define d4_reentrant
-#endif
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // Debug logging option, called internally where properties are modified
 
-#if defined(q4_LOGPROPMODS)
-void f4_DoLogProp(const c4_Handler*, int, const char*, int);
-#else
+#if q4_LOGPROPMODS
+void f4_DoLogProp(const c4_Handler *, int, const char *, int);
+#else 
 #define f4_LogPropMods(a,b) 0
-#endif
+#endif 
 
 /////////////////////////////////////////////////////////////////////////////
 // Public definitions, plus a few more framework-specific ones
 
 #include "mk4.h"
 
-#if defined(q4_MFC)
+#if q4_MFC
 #include "mfc.h"
-#elif defined(q4_STD)
+#elif q4_STD
 #include "std.h"
-#elif defined(q4_UNIV)
+#elif q4_UNIV
 #include "univ.h"
-#endif
+#endif 
 
-#if defined(_MSC_VER)
+#ifdef _MSC_VER
 #pragma warning(disable: 4100 4127 4135 4244 4511 4512 4514)
-#endif
+#endif 
 
 #include <string.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // Report unexpected combinations of settings
-#if 0
-#if !defined(q4_FIX)
+
+#if !q4_FIX
 #if (q4_DOS+q4_MAC+q4_UNIX+q4_VMS+q4_WIN) != 1
 #error Exactly one operating system should have been defined
-#endif
+#endif 
 #if (q4_MFC+q4_STD+q4_UNIV) != 1
 #error Exactly one container library should have been defined
-#endif
-#endif
-#endif
+#endif 
+#endif 
+
 /////////////////////////////////////////////////////////////////////////////
 
 #endif
