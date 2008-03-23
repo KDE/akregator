@@ -43,7 +43,7 @@ namespace {
 class DeleteNodeVisitor : public TreeNodeVisitor
 {
     public:
-        DeleteNodeVisitor() : m_widget( 0 ), m_job( 0 ) {}
+        explicit DeleteNodeVisitor( QWidget* parent ) : m_widget( parent ), m_job( 0 ) {}
 
         
         bool visitFolder( Folder* node )
@@ -87,8 +87,6 @@ class DeleteNodeVisitor : public TreeNodeVisitor
         }
         
 
-        void setWidget( QWidget* widget ) { m_widget = widget; }
-        
         DeleteSubscriptionJob* createJob( TreeNode* node )
         {
             m_job = 0;
@@ -124,20 +122,17 @@ public:
     
     FeedList* m_list;
     int m_subscriptionId;
-    DeleteNodeVisitor* m_visitor;
 };
 
 DeleteSubscriptionCommand::Private::Private( DeleteSubscriptionCommand* qq ) : q( qq ),
                                                                                m_list( 0 ),
-                                                                               m_subscriptionId( -1 ),
-                                                                               m_visitor( new DeleteNodeVisitor )
+                                                                               m_subscriptionId( -1 )
 {
     
 }
 
 DeleteSubscriptionCommand::Private::~Private()
 {
-    delete m_visitor;
 }
 
 DeleteSubscriptionCommand::DeleteSubscriptionCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
@@ -177,9 +172,9 @@ void DeleteSubscriptionCommand::Private::jobFinished()
 
 void DeleteSubscriptionCommand::Private::startDelete()
 {
-    m_visitor->setWidget( q->parentWidget() );
     TreeNode* const node = m_list->findByID( m_subscriptionId );
-    DeleteSubscriptionJob* job = m_visitor->createJob( node );
+    DeleteNodeVisitor visitor( q->parentWidget() );
+    DeleteSubscriptionJob* job = visitor.createJob( node );
     if ( !job )
     {
         q->done();

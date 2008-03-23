@@ -34,6 +34,7 @@
 #include "akregator_part.h"
 #include "browserframe.h"
 #include "deletesubscriptioncommand.h"
+#include "editsubscriptioncommand.h"
 #include "feed.h"
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
@@ -85,30 +86,6 @@
 using namespace Akregator;
 using namespace Solid;
 
-class Akregator::MainWidget::EditNodePropertiesVisitor : public TreeNodeVisitor
-{
-    public:
-        EditNodePropertiesVisitor(MainWidget* mainWidget) : m_mainWidget(mainWidget) {}
-
-        virtual bool visitFolder(Folder* node)
-        {
-            m_mainWidget->m_feedListView->startNodeRenaming(node);
-            return true;
-        }
-
-        virtual bool visitFeed(Feed* node)
-        {
-            QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( m_mainWidget, "edit_feed" );
-            dlg->setFeed(node);
-            dlg->exec();
-            delete dlg;
-            return true;
-        }
-    private:
-
-        MainWidget* m_mainWidget;
-};
-
 Akregator::MainWidget::~MainWidget()
 {
     // if m_shuttingDown is false, slotOnShutdown was not called. That
@@ -122,7 +99,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
  : QWidget(parent), m_feedList( 0 ), m_viewMode(NormalView), m_actionManager(actionManager)
 {
     setObjectName(name);
-    m_editNodePropertiesVisitor = new EditNodePropertiesVisitor(this);
 
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
@@ -323,7 +299,6 @@ void Akregator::MainWidget::slotOnShutdown()
 
     delete m_mainTab;
     delete m_mainFrame;
-    delete m_editNodePropertiesVisitor;
 
     Settings::self()->writeConfig();
 }
@@ -765,10 +740,14 @@ void Akregator::MainWidget::slotFeedRemove()
 
 void Akregator::MainWidget::slotFeedModify()
 {
-    TreeNode* node = m_selectionController->selectedSubscription();
-    if (node)
-        m_editNodePropertiesVisitor->visit(node);
-
+    TreeNode* const node = m_selectionController->selectedSubscription();
+    if ( !node )
+        return;    
+    EditSubscriptionCommand* cmd = new EditSubscriptionCommand( this );
+    cmd->setParentWidget( this );
+    cmd->setSubscription( m_feedList, node->id() );
+    cmd->setSubscriptionListView( m_feedListView );
+    cmd->start();
 }
 
 void Akregator::MainWidget::slotNextUnreadArticle()

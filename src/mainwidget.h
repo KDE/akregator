@@ -262,10 +262,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         bool m_displayingAboutPage;
 
         ActionManagerImpl* m_actionManager;
-
-        friend class EditNodePropertiesVisitor;
-        class EditNodePropertiesVisitor;
-        EditNodePropertiesVisitor* m_editNodePropertiesVisitor;
 };
 
 } // namespace Akregator
