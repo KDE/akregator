@@ -174,10 +174,6 @@ public:
     /** sets the ID */
     virtual void setId(uint id);
 
-    /** Deletes all expired articles in the node (depending on the expiry settings).
-        Works recursively for feed groups. */
-    virtual void deleteExpiredArticles( Akregator::ArticleDeleteJob* job ) = 0;
-
 public slots:
         
     /** Marks all articles in this node as read.

@@ -151,9 +151,6 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         
         QIcon icon() const;
 
-        /** Delete expired articles recursively. */
-        void deleteExpiredArticles( Akregator::ArticleDeleteJob* job );
-
         /* returns whether @p node is among the direct or indirect children of this
          * folder
          */

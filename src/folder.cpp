@@ -312,14 +312,6 @@ void Folder::slotChildDestroyed(TreeNode* node)
     nodeModified();
 }
 
-void Folder::deleteExpiredArticles( Akregator::ArticleDeleteJob* job )
-{
-    setNotificationMode(false);
-    Q_FOREACH( Feed* const i, feeds() )
-        i->deleteExpiredArticles( job );
-    setNotificationMode(true);
-}
-
 bool Folder::subtreeContains( const TreeNode* node ) const
 {
     if ( node == this )
