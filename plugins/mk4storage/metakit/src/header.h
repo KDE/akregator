@@ -139,12 +139,6 @@ extern void f4_memmove(void *d, const void *s, int n);
 
 typedef unsigned char t4_byte; // create typedefs for t4_byte, etc.
 
-#if SIZEOF_LONG == 8
-typedef int t4_i32; // longs are 64b, so int must be 32b
-#else 
-typedef long t4_i32; // longs aren't 64b, so they are 32b
-#endif 
-
 /////////////////////////////////////////////////////////////////////////////
 // Include header files which contain additional os/cpu/ide/fw specifics
 
