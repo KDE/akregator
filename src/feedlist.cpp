@@ -163,6 +163,14 @@ FeedList::FeedList(Akregator::Backend::Storage* storage, QObject *parent)
     addNode(rootNode, true);
 }
 
+QVector<int> FeedList::feedIds() const
+{
+    QVector<int> ids;
+    Q_FOREACH ( const Feed* const i, feeds() )
+        ids += i->id();
+    return ids;
+}
+
 QVector<const Feed*> FeedList::feeds() const
 {
     QVector<const Feed*> constList;

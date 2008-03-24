@@ -78,6 +78,8 @@ public:
     QVector<const Feed*> feeds() const;
     QVector<Feed*> feeds();
     
+    QVector<int> feedIds() const;
+
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
     
     void append(FeedList* list, Folder* parent=0, TreeNode* after=0);

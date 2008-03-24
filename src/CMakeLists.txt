@@ -69,6 +69,9 @@ set(akregatorpart_PART_SRCS
    actionmanager.cpp 
    actions.cpp
    actionmanagerimpl.cpp 
+   createfeedcommand.cpp
+   createfoldercommand.cpp
+   expireitemscommand.cpp
    frame.cpp 
    framemanager.cpp 
    browserframe.cpp

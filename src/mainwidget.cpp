@@ -33,8 +33,11 @@
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "browserframe.h"
+#include "createfeedcommand.h"
+#include "createfoldercommand.h"
 #include "deletesubscriptioncommand.h"
 #include "editsubscriptioncommand.h"
+#include "expireitemscommand.h"
 #include "feed.h"
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
@@ -445,11 +448,13 @@ bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
 
 void Akregator::MainWidget::slotDeleteExpiredArticles()
 {
-    TreeNode* rootNode = m_feedList->rootNode();
-    Akregator::ArticleDeleteJob* job = new Akregator::ArticleDeleteJob;
-    if (rootNode)
-        rootNode->deleteExpiredArticles( job );
-    job->start();
+    if ( !m_feedList )
+        return;
+    ExpireItemsCommand* cmd = new ExpireItemsCommand( this );
+    cmd->setParentWidget( this );
+    cmd->setFeedList( m_feedList );
+    cmd->setFeeds( m_feedList->feedIds() );
+    cmd->start();
 }
 
 QDomDocument Akregator::MainWidget::feedListToOPML()
@@ -658,70 +663,24 @@ void Akregator::MainWidget::slotFeedAdd()
 
 void Akregator::MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
 {
-
-    QPointer<AddFeedDialog> afd = new AddFeedDialog( this, "add_feed" );
-
-    afd->setUrl(KUrl::fromPercentEncoding( url.toLatin1() ));
-
-    QPointer<QObject> thisPointer( this );
-
-    if ( autoExec )
-        afd->accept();
-    else
-        afd->exec();
-
-    if ( !thisPointer ) // "this" might have been deleted while exec()!
-        return;
-
-    Feed* const feed = afd->feed();
-    delete afd;
-
-    if ( !feed )
-        return;
-
-    QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( this, "edit_feed" );
-    dlg->setFeed(feed);
-    dlg->selectFeedName();
-
-    if ( !autoExec && ( dlg->exec() != QDialog::Accepted || !thisPointer ) )
-    {
-        delete feed;
-    }
-    else
-    {
-        parent = parent ? parent : m_feedList->rootNode();
-        parent->insertChild(feed, after);
-        m_feedListView->ensureNodeVisible(feed);
-    }
-
-    delete dlg;
+    CreateFeedCommand* cmd( new CreateFeedCommand( this ) );
+    cmd->setParentWidget( this );
+    cmd->setPosition( parent, after );
+    cmd->setRootFolder( m_feedList->rootNode() );
+    cmd->setAutoExecute( autoExec );
+    cmd->setUrl( url );
+    cmd->setSubscriptionListView( m_feedListView );
+    cmd->start();
 }
 
 void Akregator::MainWidget::slotFeedAddGroup()
 {
-    bool ok;
-    QString text = KInputDialog::getText( i18n( "Add Folder" ), 
-                                          i18n( "Folder name:" ), 
-                                           "", 
-                                           &ok,
-                                           this );
-    if ( !ok )
-        return;
-
-    TreeNode* node = m_selectionController->selectedSubscription();
-
-    if (!node)
-        node = m_feedList->rootNode();
-    
-    TreeNode* const after = !node->isGroup() ? node : 0;
-
-    Folder* const parentFolder = node->isGroup() ? qobject_cast<Folder*>( node ) : node->parent();
-    assert( parentFolder );
-
-    Folder* const newFolder = new Folder( text );
-    parentFolder->insertChild( newFolder, after );
-
-    m_feedListView->ensureNodeVisible( newFolder );
+    CreateFolderCommand* cmd = new CreateFolderCommand( this );
+    cmd->setParentWidget( this );
+    cmd->setSelectedSubscription( m_selectionController->selectedSubscription() );
+    cmd->setRootFolder( m_feedList->rootNode() );
+    cmd->setSubscriptionListView( m_feedListView );
+    cmd->start();
 }
 
 void Akregator::MainWidget::slotFeedRemove()
@@ -981,11 +940,8 @@ void Akregator::MainWidget::slotCopyLinkAddress()
 
 void Akregator::MainWidget::slotFeedUrlDropped(KUrl::List &urls, TreeNode* after, Folder* parent)
 {
-    KUrl::List::iterator it;
-    for ( it = urls.begin(); it != urls.end(); ++it )
-    {
-        addFeed((*it).prettyUrl(), after, parent, false);
-    }
+    Q_FOREACH ( const KUrl& i, urls )
+        addFeed( i.prettyUrl(), after, parent, false );
 }
 
 void Akregator::MainWidget::slotToggleShowQuickFilter()
