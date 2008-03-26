@@ -27,7 +27,7 @@
 
 #include "akregator_export.h"
 
-#include <QObject>
+#include <QtCore/QObject>
 
 class QWidget;
 
