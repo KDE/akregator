@@ -26,14 +26,24 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
     // Init
     ui->list_readerList->setColumnCount(2);
     QStringList deleteTags;
-        deleteTags.append( i18n("Never") );
-        deleteTags.append( i18n("Always") );
+        deleteTags.append( i18n("Nothing") );
+        deleteTags.append( i18n("Category") );
+        deleteTags.append( i18n("Feed") );
         deleteTags.append( i18n("Ask") );
     ui->cb_deleteFeeds->addItems(deleteTags);
     QStringList title;
         title.append( i18n("Type") );
         title.append( i18n("Description") );
     ui->list_readerList->setHeaderLabels(title);
+
+    // Read config
+    KConfig config("akregator_feedsyncrc");
+    KConfigGroup generalGroup( &config, "FeedSyncConfig" );
+    if (ui->cb_deleteFeeds->findText( generalGroup.readEntry( "RemovalPolicy", QString() ) ) < 0) {
+        ui->cb_deleteFeeds->setCurrentIndex( 0 );
+    } else {
+        ui->cb_deleteFeeds->setCurrentIndex( ui->cb_deleteFeeds->findText( generalGroup.readEntry( "RemovalPolicy", QString() ) ) );
+    }
 
     // Slots
     connect( ui->b_add, SIGNAL( clicked() ), this, SLOT( slotButtonAddClicked() ) );
@@ -122,6 +132,21 @@ void ConfigurationDialog::slotButtonRemoveClicked()
 void ConfigurationDialog::slotDelayedInit()
 {
     kDebug();
+}
+
+void ConfigurationDialog::slotButtonClicked(int button) {
+    if (button == KDialog::Ok) {
+        kDebug();
+        // Save the removal policy
+        KConfig config("akregator_feedsyncrc");
+        KConfigGroup generalGroup( &config, "FeedSyncConfig" );
+        generalGroup.writeEntry( "RemovalPolicy", ui->cb_deleteFeeds->itemText( ui->cb_deleteFeeds->currentIndex() ) );
+        generalGroup.config()->sync();
+        accept();
+
+    } else {
+        KDialog::slotButtonClicked(button);
+    }
 }
 
 }

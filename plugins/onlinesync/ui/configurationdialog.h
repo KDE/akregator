@@ -25,6 +25,7 @@ class ConfigurationDialog : public KDialog
         Ui::ConfigurationDialog * ui;
 
     private Q_SLOTS:
+        virtual void slotButtonClicked(int button);
         void slotButtonAddClicked();
         void slotButtonUpdateClicked();
         void slotButtonRemoveClicked();
