@@ -11,6 +11,7 @@ X-KDE-CfgDlgHierarchy=Akregator
 
 Name=Advanced
 Name[ca]=Avançat
+Name[de]=Erweitert
 Name[el]=Προχωρημένα
 Name[ga]=Ardsocruithe
 Name[ja]=詳細
@@ -24,6 +25,7 @@ Name[x-test]=xxAdvancedxx
 Name[zh_TW]=進階
 Comment=Advanced Feed Reader Settings
 Comment[ca]=Arranjaments avançats del lector de fonts
+Comment[de]=Erweiterte Einstellungen für den Nachrichtenbetrachter
 Comment[el]=Προχωρημένες ρυθμίσεις αναγνώστη ροών ειδήσεων
 Comment[ja]=フィードリーダーの詳細設定
 Comment[km]=ការ​កំណត់​កម្មវិធី​អាន​មតិព័ត៌មានកម្រិត​ខ្ពស់
