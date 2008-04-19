@@ -3,8 +3,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 add_subdirectory( about ) 
 add_subdirectory( icons ) 
 
-add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
-
 include_directories (
     ${Boost_INCLUDE_DIR} 
     ${CMAKE_SOURCE_DIR}/akregator/interfaces 
