@@ -660,8 +660,8 @@ void ArticleViewer::displayAboutPage()
 
     QString content = KPIMUtils::kFileToByteArray(location);
 
-    QString infocss = KStandardDirs::locate( "data", "libkdepim/about/kde_infopage.css" );
-    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "libkdepim/about/kde_infopage_rtl.css" )) : QString();
+    QString infocss = KStandardDirs::locate( "data", "kdeui/about/kde_infopage.css" );
+    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "kdeui/about/kde_infopage_rtl.css" )) : QString();
 
     m_part->write( content.arg( infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info ) );
     m_part->end();
