@@ -42,8 +42,6 @@ public:
     ~SubscriptionListView();
 // the following is all transitional, for easier porting from the item-based views
 
-    Akregator::TreeNode* findNodeByTitle( const QString& title ) const;
-
     void startNodeRenaming( Akregator::TreeNode* node );
 
     void ensureNodeVisible( Akregator::TreeNode* node );

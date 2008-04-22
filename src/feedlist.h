@@ -63,6 +63,7 @@ public:
     bool isEmpty() const;
 
     const TreeNode* findByID(int id) const;
+    QList<const TreeNode*> findByTitle(const QString &title) const;
 
     TreeNode* findByID(int id);
 

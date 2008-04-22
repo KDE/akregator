@@ -91,7 +91,9 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         
         //reimpl
         QList<const TreeNode*> children() const;
-       
+
+        QList<const TreeNode*> namedChildren( const QString& title ) const;
+
         //reimpl
         QList<TreeNode*> children();
 

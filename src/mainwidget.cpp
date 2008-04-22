@@ -464,23 +464,26 @@ QDomDocument Akregator::MainWidget::feedListToOPML()
 
 void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& groupName)
 {
-
     // Locate the group.
-    TreeNode* node = m_feedListView->findNodeByTitle(groupName);
-
+    QList<const TreeNode *> namedGroups = m_feedList->findByTitle( groupName );
     Folder* group = 0;
-    if (!node || !node->isGroup())
+    foreach( const TreeNode * candidate, namedGroups ) {
+        if ( candidate->isGroup() ) {
+            group = const_cast<Folder*>( static_cast<const Folder*>( candidate ) );  
+             
+            break;
+        }
+    }
+
+    if (!group)
     {
         Folder* g = new Folder( groupName );
         m_feedList->rootNode()->appendChild(g);
         group = g;
     }
-    else
-        group = static_cast<Folder*>(node);
 
     // Invoke the Add Feed dialog with url filled in.
-    if (group)
-        addFeed(url, 0, group, true);
+    addFeed(url, 0, group, true);
 }
 
 void Akregator::MainWidget::slotNormalView()

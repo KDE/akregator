@@ -405,4 +405,19 @@ const TreeNode* Folder::next() const
     return 0;
 }
 
+QList<const TreeNode*> Folder::namedChildren( const QString& title ) const
+{
+    QList<const TreeNode*> nodeList;
+    foreach( const TreeNode * child, children() ) {
+        if ( child->title() == title ) {
+            nodeList.append( child );
+        }
+        const Folder * fld = dynamic_cast<const Folder*>( child );
+        if ( fld ) {
+            nodeList += fld->namedChildren( title );
+        }
+    }
+    return nodeList;
+}
+
 #include "folder.moc"

@@ -372,6 +372,11 @@ TreeNode* FeedList::findByID(int id)
     return d->idMap[id];
 }
 
+QList<const TreeNode*> FeedList::findByTitle(const QString& title ) const
+{
+    return rootNode()->namedChildren( title );
+}
+
 void FeedList::setTitle(const QString& title)
 {
     d->title = title;

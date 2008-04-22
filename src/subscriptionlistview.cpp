@@ -314,11 +314,6 @@ void Akregator::SubscriptionListView::ensureNodeVisible( Akregator::TreeNode* )
 {
 }
 
-Akregator::TreeNode* Akregator::SubscriptionListView::findNodeByTitle( const QString& ) const
-{
-    return 0L;
-}
-
 void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* node )
 {
     Q_UNUSED( node );
