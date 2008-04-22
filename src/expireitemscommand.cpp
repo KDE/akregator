@@ -59,7 +59,7 @@ void ExpireItemsCommand::Private::addDeleteJobForFeed( Feed* feed )
 {
     assert( feed );
     ArticleDeleteJob* job = new ArticleDeleteJob( q );
-    connect( job, SIGNAL( finished( KJob* ) ), q, SLOT( jobDone() ) );
+    connect( job, SIGNAL( finished( KJob* ) ), q, SLOT( jobFinished( KJob* ) ) );
     m_jobs.insert( job );
     feed->deleteExpiredArticles( job );
     job->start();
