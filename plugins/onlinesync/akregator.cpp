@@ -1,8 +1,8 @@
-#include "../treenode.h"
-#include "../folder.h"
-#include "../feed.h"
-#include "../feedlist.h"
-#include "../kernel.h"
+#include "treenode.h"
+#include "folder.h"
+#include "feed.h"
+#include "feedlist.h"
+#include "kernel.h"
 
 #include "akregator.h"
 #include "subscriptionlist.h"

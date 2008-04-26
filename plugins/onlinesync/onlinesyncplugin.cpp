@@ -25,7 +25,7 @@
 #include <KConfigGroup>
 
 
-#include "../../src/feedsync/feedsync.h"
+#include "feedsync.h"
 
 #include "onlinesyncplugin.h"
 
@@ -123,6 +123,24 @@ void OnlineSyncPlugin::doSynchronize()
 
 
 
+
+// TMP
+
+// void Akregator::MainWidget::slotFeedSyncManage()
+// {
+//     using namespace feedsync;
+//     kDebug();
+//     ConfigurationDialog * dlg = new ConfigurationDialog();
+//     dlg->show();
+//     connect( dlg, SIGNAL( finished() ), this, SLOT( slotFeedSyncManageDone() ) );
+// }
+// 
+// void Akregator::MainWidget::slotFeedSyncManageDone()
+// {
+//     kDebug();
+//     emit feedSyncUpdated();
+// }
+// 
 
 
 

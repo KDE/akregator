@@ -9,9 +9,9 @@
 #include <kdebug.h>
 #include <kconfiggroup.h>
 
-#include "../treenode.h"
-#include "../feedlist.h"
-#include "../kernel.h"
+#include "treenode.h"
+#include "feedlist.h"
+#include "kernel.h"
 #include "aggregator.h"
 #include "feedsync.h"
 #include "googlereader.h"

@@ -4,6 +4,7 @@ include_directories( ${KDE4_INCLUDE_DIR} )
 include_directories( ${QT_INCLUDES} )
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR} )
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
+include_directories( ${CMAKE_SOURCE_DIR}/akregator/src )
 
 
 ########### next target ###############
@@ -24,20 +25,18 @@ install(TARGETS akregator_config_onlinesync  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 
 set(akregator_onlinesync_plugin_SRCS 
-
-                   ../../src/feedsync/feedsync.cpp
-                   ../../src/feedsync/subscriptionlist.cpp 
-                   ../../src/feedsync/akregator.cpp 
-                   ../../src/feedsync/googlereader.cpp 
-                   ../../src/feedsync/opml.cpp 
-                   ../../src/feedsync/ui/configurationdialog.cpp 
-                   ../../src/feedsync/ui/configurationdialogadd.cpp 
-
+    feedsync.cpp
+    subscriptionlist.cpp 
+    akregator.cpp 
+    googlereader.cpp 
+    opml.cpp 
+    ui/configurationdialog.cpp 
+    ui/configurationdialogadd.cpp 
     onlinesyncplugin.cpp )
 
 
-kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ../../src/feedsync/ui/configurationdialog.ui)
-kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ../../src/feedsync/ui/configurationdialogadd.ui)
+kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ui/configurationdialog.ui)
+kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ui/configurationdialogadd.ui)
 
 kde4_add_library(akregator_onlinesync_plugin ${akregator_onlinesync_plugin_SRCS})
 
