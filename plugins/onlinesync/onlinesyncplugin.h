@@ -25,6 +25,9 @@
 #ifndef AKREGATOR_ONLINESYNC_PLUGIN_H
 #define AKREGATOR_ONLINESYNC_PLUGIN_H
 
+class KActionMenu;
+#include <kactionmenu.h>
+
 #include "plugin.h"
 #include <kparts/plugin.h>
 
@@ -40,7 +43,9 @@ public:
 
 private:
     void doInitialize();
-    
+    KActionMenu* feedSyncMenu;
+    QList<QAction*> feedSyncAction;
+
 private Q_SLOTS:
     void doSynchronize();
 };

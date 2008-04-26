@@ -24,14 +24,33 @@ install(TARGETS akregator_config_onlinesync  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 
 set(akregator_onlinesync_plugin_SRCS 
+
+                   ../../src/feedsync/feedsync.cpp
+                   ../../src/feedsync/subscriptionlist.cpp 
+                   ../../src/feedsync/akregator.cpp 
+                   ../../src/feedsync/googlereader.cpp 
+                   ../../src/feedsync/opml.cpp 
+                   ../../src/feedsync/ui/configurationdialog.cpp 
+                   ../../src/feedsync/ui/configurationdialogadd.cpp 
+
     onlinesyncplugin.cpp )
+
+
+kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ../../src/feedsync/ui/configurationdialog.ui)
+kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ../../src/feedsync/ui/configurationdialogadd.ui)
+
+kde4_add_library(akregator_onlinesync_plugin ${akregator_onlinesync_plugin_SRCS})
 
 kde4_add_kcfg_files(akregator_onlinesync_plugin_SRCS onlinesyncsettings.kcfgc)
 
 kde4_add_plugin(akregator_onlinesync_plugin ${akregator_onlinesync_plugin_SRCS})
 
+target_link_libraries(akregator_onlinesync_plugin ${KDE4_KDE3SUPPORT_LIBS})
+target_link_libraries(akregator_onlinesync_plugin ${KDE4_KDEUI_LIBS})
 target_link_libraries( akregator_onlinesync_plugin akregatorinterfaces ${KDE4_KIO_LIBS} )
 
 install( FILES akregator_onlinesync_plugin.desktop  DESTINATION ${DATA_INSTALL_DIR}/akregator/kpartplugins)
 install(TARGETS akregator_onlinesync_plugin DESTINATION ${PLUGIN_INSTALL_DIR})
 install( FILES akregator_onlinesync_plugin.rc DESTINATION ${DATA_INSTALL_DIR}/akregator/kpartplugins)
+
+
