@@ -1,0 +1,6 @@
+File=onlinesyncplugin.kcfg
+ClassName=OnlineSync
+Singleton=true
+NameSpace=Akregator
+Mutators=true
+MemberVariables=private
