@@ -9,12 +9,12 @@
 namespace feedsync
 {
 
-ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent)
+ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(parent)
 {
     kDebug();
 
    // UI setup
-    QWidget *widget = new QWidget( this );
+    QWidget *widget = new QWidget( parent );
     ui = new Ui::ConfigurationDialogAdd();
     ui->setupUi(widget);
     setMainWidget( widget );

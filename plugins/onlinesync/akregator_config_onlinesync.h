@@ -25,12 +25,13 @@
 #define KCMAKRONLINESYNCCONFIG_H
 
 #include <KCModule>
-
 #include <QVariant>
 
 class QWidget;
-
 class KComponentData;
+namespace feedsync {
+    class ConfigurationDialog;
+}
 
 class KCMAkregatorOnlineSyncConfig : public KCModule
 {
@@ -38,9 +39,12 @@ class KCMAkregatorOnlineSyncConfig : public KCModule
 
   public:
     KCMAkregatorOnlineSyncConfig( QWidget* parent, const QVariantList &args );
+    ~KCMAkregatorOnlineSyncConfig();
 
   private:
-      QWidget* m_widget;
+    QWidget* m_widget;
+    feedsync::ConfigurationDialog * dialog;
+
 };
 
 #endif

@@ -23,12 +23,15 @@
 */
 
 #include "onlinesyncplugin.h"
+#include "feedsync.h"
 
 #include <KActionCollection>
 #include <KGenericFactory>
 #include <KLocalizedString>
-
+#include <KConfigGroup>
 #include <QAction>
+#include <kactionmenu.h>
+
 
 AKREGATOR_EXPORT_PLUGIN( Akregator::OnlineSyncPlugin )
 
@@ -43,13 +46,17 @@ OnlineSyncPlugin::OnlineSyncPlugin( )
 
 OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QVariantList& list ) : KParts::Plugin( parent )
 { 
-    Q_UNUSED( list )
-    QAction* const action = actionCollection()->addAction( "file_onlinesync_sync" );
-    action->setText( i18n( "Synchronize Feeds" ) );
-    connect( action, SIGNAL( triggered( bool ) ), 
-             this, SLOT( doSynchronize() ) );
+    kDebug();
 
+    // Init
     setXMLFile( "akregator_onlinesync_plugin.rc" , /*merge=*/true );
+    KActionCollection* coll = actionCollection();
+    feedSyncMenu = coll->add<KActionMenu>("file_onlinesync_sync");
+    feedSyncMenu->setText(i18n("Synchronize Feeds"));
+
+    // Fill when triggered
+    connect( feedSyncMenu, SIGNAL( hovered() ), this, SLOT( doSynchronize() ) );
+    doSynchronize();
 }
 
 OnlineSyncPlugin::~OnlineSyncPlugin()
@@ -60,11 +67,74 @@ OnlineSyncPlugin::~OnlineSyncPlugin()
 void OnlineSyncPlugin::doInitialize()
 {
     kDebug();
+
+//     // Q_UNUSED( list )
+//     QAction* const action = actionCollection()->addAction( "file_onlinesync_sync" );
+//     action->setText( i18n( "Synchronize Feeds" ) );
+//     connect( action, SIGNAL( triggered( bool ) ), 
+//              this, SLOT( doSynchronize() ) );
+//  
+//     setXMLFile( "akregator_onlinesync_plugin.rc" , /*merge=*/true );
+// 
+//     // TODO Move all the code that is related to FeedSync
+//     KActionCollection* coll = actionCollection();
+//     feedSyncMenu = coll->add<KActionMenu>("feedsync_menu");
+//     feedSyncMenu->setText(i18n("&Feed synchronization"));
+//     // connect(d->mainWidget, SIGNAL(feedSyncUpdated()), this, SLOT(loadFeedSyncMenu()));
+// 
+//     // Refresh the menu
+//     doSynchronize();
 }
 
 void OnlineSyncPlugin::doSynchronize()
 {
     kDebug();
+
+    // The object that will do the Sync
+    feedsync::FeedSync * syncTool = new feedsync::FeedSync();
+
+    // Clear the menubar
+    for (int i=0;i<feedSyncAction.count();i++) {
+        feedSyncMenu->removeAction(feedSyncAction.at(i));
+    }
+    feedSyncAction.clear();
+
+    // Fill the menubar
+    KActionCollection* coll = actionCollection();
+    QAction* action;
+    // Read configuration
+    KConfig config("akregator_feedsyncrc");
+    foreach ( const QString& groupname, config.groupList() ) {
+        if (groupname.left(15)=="FeedSyncSource_") {
+            kDebug() << groupname;
+            KConfigGroup generalGroup( &config, groupname );
+
+            action = coll->addAction(groupname);
+            action->setProperty("ConfigGroup",groupname);
+            action->setProperty("SyncType",syncTool->Get);
+            action->setIcon(KIcon("mail-receive"));
+            action->setText(i18n(QString ("Get from "+generalGroup.readEntry( "Identifier", QString() )).toUtf8()));
+            feedSyncMenu->addAction(action);
+            feedSyncAction.append(action);
+            connect( action, SIGNAL(triggered(bool)), syncTool, SLOT(sync()) );
+
+            action = coll->addAction(groupname);
+            action->setProperty("ConfigGroup",groupname);
+            action->setProperty("SyncType",syncTool->Send);
+            action->setIcon(KIcon("mail-send"));
+            action->setText(i18n(QString ("Send to "+generalGroup.readEntry( "Identifier", QString() )).toUtf8()));
+            feedSyncMenu->addAction(action);
+            feedSyncAction.append(action);
+            connect( action, SIGNAL(triggered(bool)), syncTool, SLOT(sync()) );
+        }
+    }
+
+    action = coll->addAction("feedsync_manage");
+    action->setIcon(KIcon("application-rss+xml"));
+    action->setText(i18n("Manage..."));
+    feedSyncMenu->addAction(action);
+    feedSyncAction.append(action);
+    // connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedSyncManage()));
 }
 
 #include "onlinesyncplugin.moc"

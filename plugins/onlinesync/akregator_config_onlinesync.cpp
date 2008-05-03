@@ -24,7 +24,8 @@
 #include "akregator_config_onlinesync.h"
 #include "onlinesyncsettings.h"
 
-#include "ui_settings_onlinesync.h"
+#include "ui_configurationdialog.h"
+#include "ui/configurationdialog.h"
 
 #include <KAboutData>
 #include <KConfigDialogManager>
@@ -41,13 +42,17 @@ K_EXPORT_PLUGIN( KCMAkregatorOnlineSyncConfigFactory( "kcmakronlinesyncconfig" )
 
 KCMAkregatorOnlineSyncConfig::KCMAkregatorOnlineSyncConfig( QWidget* parent, const QVariantList& args )
     : KCModule( KCMAkregatorOnlineSyncConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
-{  
-    Ui::SettingsOnlineSync ui;
-    ui.setupUi( m_widget );
+{
+    Ui::ConfigurationDialog * ui = new Ui::ConfigurationDialog();
+    ui->setupUi( m_widget );
+
+    dialog = new feedsync::ConfigurationDialog(ui, this);
+
+    // Ui::SettingsOnlineSync ui;
 
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-    
+
     KAboutData* about = new KAboutData( I18N_NOOP( "kcmakronlinesyncconfig" ), 0,
                                         ki18n( "Configure Online Readers" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -58,5 +63,11 @@ KCMAkregatorOnlineSyncConfig::KCMAkregatorOnlineSyncConfig( QWidget* parent, con
 
     addConfig( OnlineSyncSettings::self(), m_widget );
 }
+
+KCMAkregatorOnlineSyncConfig::~KCMAkregatorOnlineSyncConfig()
+{
+    delete dialog;
+}
+
 
 #include "akregator_config_onlinesync.moc"

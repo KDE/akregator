@@ -18,11 +18,15 @@ class ConfigurationDialog : public KDialog
 {
     Q_OBJECT
     public:
+        // Constructor if the dialog must be created
         ConfigurationDialog( QWidget *parent=0 );
+        // Constructor if the dialog must not be created
+        ConfigurationDialog( Ui::ConfigurationDialog * configUi , QWidget * parent );
         ~ConfigurationDialog();
 
     private:
         Ui::ConfigurationDialog * ui;
+        QWidget * widget;
 
     private Q_SLOTS:
         virtual void slotButtonClicked(int button);

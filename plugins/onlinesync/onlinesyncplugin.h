@@ -28,6 +28,8 @@
 #include "plugin.h"
 #include <kparts/plugin.h>
 
+class KActionMenu;
+
 namespace Akregator {
 
 class OnlineSyncPlugin : public KParts::Plugin, public Akregator::Plugin
@@ -41,6 +43,9 @@ public:
 
 private:
     void doInitialize();
+
+    KActionMenu* feedSyncMenu;
+    QList<QAction*> feedSyncAction;
 
 private Q_SLOTS:
     void doSynchronize();
