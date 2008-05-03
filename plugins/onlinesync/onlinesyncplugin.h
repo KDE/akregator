@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2005 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,28 +22,30 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_BACKEND_MK4PLUGIN_H
-#define AKREGATOR_BACKEND_MK4PLUGIN_H
+#ifndef AKREGATOR_ONLINESYNC_PLUGIN_H
+#define AKREGATOR_ONLINESYNC_PLUGIN_H
 
 #include "plugin.h"
-
+#include <kparts/plugin.h>
 
 namespace Akregator {
 
-class StorageFactory;
-
-class OnlineSync : public Akregator::Plugin 
+class OnlineSyncPlugin : public KParts::Plugin, public Akregator::Plugin
 {
-   public: 
-      ~OnlineSync();	
+    Q_OBJECT
 
-   private:
-      void doInitialize();
+public:
+    OnlineSyncPlugin( );
+    OnlineSyncPlugin( QObject* parent, const QVariantList& list );
+    ~OnlineSyncPlugin(); 
 
-   private:
-      StorageFactory* m_factory;
+private:
+    void doInitialize();
+
+private Q_SLOTS:
+    void doSynchronize();
 };
 
 } // namespace Akregator
 
-#endif // AKREGATOR_BACKEND_MK4PLUGIN_H
+#endif // AKREGATOR_ONLINESYNC_PLUGIN_H

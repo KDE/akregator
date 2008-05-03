@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2005 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,20 +21,50 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#include <kdebug.h>
+
 #include "onlinesyncplugin.h"
 
-AKREGATOR_EXPORT_PLUGIN( Akregator::OnlineSync )
+#include <KActionCollection>
+#include <KGenericFactory>
+#include <KLocalizedString>
 
-namespace Akregator {
+#include <QAction>
 
-void OnlineSync::doInitialize()
-{
-   kDebug();
+AKREGATOR_EXPORT_PLUGIN( Akregator::OnlineSyncPlugin )
+
+using namespace Akregator;
+
+K_PLUGIN_FACTORY(OnlineSyncPluginFactory, registerPlugin<Akregator::OnlineSyncPlugin>();)
+K_EXPORT_PLUGIN(OnlineSyncPluginFactory( "akregator_onlinesync_plugin" ) )
+
+OnlineSyncPlugin::OnlineSyncPlugin( )
+{ 
 }
 
-OnlineSync::~OnlineSync()
-{
+OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QVariantList& list ) : KParts::Plugin( parent )
+{ 
+    Q_UNUSED( list )
+    QAction* const action = actionCollection()->addAction( "file_onlinesync_sync" );
+    action->setText( i18n( "Synchronize Feeds" ) );
+    connect( action, SIGNAL( triggered( bool ) ), 
+             this, SLOT( doSynchronize() ) );
+
+    setXMLFile( "akregator_onlinesync_plugin.rc" , /*merge=*/true );
 }
 
-} // namespace Akregator
+OnlineSyncPlugin::~OnlineSyncPlugin()
+{
+    kDebug();
+}
+
+void OnlineSyncPlugin::doInitialize()
+{
+    kDebug();
+}
+
+void OnlineSyncPlugin::doSynchronize()
+{
+    kDebug();
+}
+
+#include "onlinesyncplugin.moc"
