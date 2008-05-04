@@ -32,23 +32,28 @@ class KActionMenu;
 
 namespace Akregator {
 
-class OnlineSyncPlugin : public KParts::Plugin, public Akregator::Plugin
+class OnlineSyncPlugin : public KParts::Plugin
 {
     Q_OBJECT
 
-public:
+  public:
     OnlineSyncPlugin( );
     OnlineSyncPlugin( QObject* parent, const QVariantList& list );
     ~OnlineSyncPlugin(); 
 
-private:
+  private:
     void doInitialize();
 
     KActionMenu* feedSyncMenu;
     QList<QAction*> feedSyncAction;
 
-private Q_SLOTS:
+  private Q_SLOTS:
     void doSynchronize();
+
+  public slots:
+    /** open the feed synchronization management */
+    void slotFeedSyncManage();
+    void slotFeedSyncManageDone();
 };
 
 } // namespace Akregator

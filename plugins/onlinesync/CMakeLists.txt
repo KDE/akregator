@@ -29,11 +29,11 @@ install(TARGETS akregator_config_onlinesync  DESTINATION ${PLUGIN_INSTALL_DIR})
 ########### next target ###############
 
 set(akregator_onlinesync_plugin_SRCS 
-    feedsync.cpp
-    subscriptionlist.cpp 
-    akregator.cpp 
-    googlereader.cpp 
-    opml.cpp 
+    sync/feedsync.cpp
+    sync/subscriptionlist.cpp 
+    sync/akregator.cpp 
+    sync/googlereader.cpp 
+    sync/opml.cpp 
     ui/configurationdialog.cpp 
     ui/configurationdialogadd.cpp 
     onlinesyncplugin.cpp )

@@ -23,7 +23,8 @@
 */
 
 #include "onlinesyncplugin.h"
-#include "feedsync.h"
+#include "ui/configurationdialog.h"
+#include "sync/feedsync.h"
 
 #include <KActionCollection>
 #include <KGenericFactory>
@@ -31,9 +32,6 @@
 #include <KConfigGroup>
 #include <QAction>
 #include <kactionmenu.h>
-
-
-AKREGATOR_EXPORT_PLUGIN( Akregator::OnlineSyncPlugin )
 
 using namespace Akregator;
 
@@ -54,8 +52,7 @@ OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QVariantList& list ) 
     feedSyncMenu = coll->add<KActionMenu>("file_onlinesync_sync");
     feedSyncMenu->setText(i18n("Synchronize Feeds"));
 
-    // Fill when triggered
-    connect( feedSyncMenu, SIGNAL( hovered() ), this, SLOT( doSynchronize() ) );
+    // Fill
     doSynchronize();
 }
 
@@ -134,7 +131,23 @@ void OnlineSyncPlugin::doSynchronize()
     action->setText(i18n("Manage..."));
     feedSyncMenu->addAction(action);
     feedSyncAction.append(action);
-    // connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedSyncManage()));
+    connect(action, SIGNAL(triggered(bool)), this, SLOT(slotFeedSyncManage()));
+}
+
+void OnlineSyncPlugin::slotFeedSyncManage()
+{
+    kDebug();
+    using namespace feedsync;
+    kDebug();
+    ConfigurationDialog * dlg = new ConfigurationDialog();
+    dlg->show();
+    connect( dlg, SIGNAL( finished() ), this, SLOT( slotFeedSyncManageDone() ) );
+}
+
+void OnlineSyncPlugin::slotFeedSyncManageDone()
+{
+    kDebug();
+    doSynchronize();
 }
 
 #include "onlinesyncplugin.moc"
