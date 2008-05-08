@@ -70,8 +70,14 @@
 
 namespace Akregator {
 
-K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();) 
-K_EXPORT_PLUGIN(AkregatorFactory( "akregator" ))
+static const KAboutData &createAboutData()
+{
+  static Akregator::AboutData about;
+  return about;
+}
+
+K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
+K_EXPORT_PLUGIN(AkregatorFactory(createAboutData()))
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
 	    : KParts::BrowserExtension( p)
@@ -174,10 +180,10 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     initFonts();
 
     QString useragent = QString( "Akregator/%1; syndication" ).arg( AKREGATOR_VERSION );
-    
+
     if( !Settings::customUserAgent().isEmpty() )
         useragent = Settings::customUserAgent();
-        
+
     Syndication::FileRetriever::setUserAgent( useragent );
 }
 
@@ -614,11 +620,6 @@ void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
 void Part::addFeed()
 {
     m_mainWidget->slotFeedAdd();
-}
-
-KAboutData *Part::createAboutData()
-{
-    return new Akregator::AboutData;
 }
 
 void Part::showKNotifyOptions()

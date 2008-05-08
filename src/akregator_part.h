@@ -30,7 +30,6 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
-class KAboutData;
 class KConfigGroup;
 class KUrl;
 class KParts::BrowserExtension;
@@ -81,9 +80,6 @@ class Part : public MyBasePart
 	   /** Destructor. */
         ~Part();
 
-        /** Create KAboutData for this KPart. */
-        static KAboutData *createAboutData();
-
         /**
             Opens feedlist
             @param url URL to feedlist
@@ -97,7 +93,7 @@ class Part : public MyBasePart
 
         /** Fetch all feeds in the feed tree */
         void fetchAllFeeds();
-        
+
         /**
             Add a feed to a group.
             @param url The URL of the feed to add.
@@ -106,9 +102,9 @@ class Part : public MyBasePart
             of the group.
             */
         void addFeedsToGroup(const QStringList& urls, const QString& group);
-        
+
         void addFeed();
-        
+
         /**
             This method is called when this app is restored.  The KConfig
             object points to the session management config file that was saved
@@ -116,7 +112,7 @@ class Part : public MyBasePart
             Calls Akregator MainWidget's saveProperties.
             */
         virtual void readProperties(const KConfigGroup & config);
-        
+
         /** This method is called when it is time for the app to save its
             properties for session management purposes.
             Calls Akregator MainWidget's readProperties. */
@@ -137,24 +133,24 @@ class Part : public MyBasePart
 
         void fileImport();
         void fileExport();
-        
+
         /** Shows configuration dialog */
         void showOptions();
         void showKNotifyOptions();
-        
+
     signals:
         void showPart();
         void signalSettingsChanged();
-        
+
 
     private:
 
     /** @return Whether the tray icon is enabled or not */
         bool isTrayIconEnabled() const;
-        
+
         /** loads all Akregator plugins */
         void loadPlugins();
-        
+
         /** This must be implemented by each part */
         bool openFile();
 
@@ -165,7 +161,7 @@ class Part : public MyBasePart
 
         KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
-        /** reimplemented to load/unload the merged parts on selection/deselection */ 
+        /** reimplemented to load/unload the merged parts on selection/deselection */
         void partActivateEvent(KParts::PartActivateEvent* event);
 
     private slots:
@@ -177,10 +173,10 @@ class Part : public MyBasePart
     private: // methods
 
         bool copyFile(const QString& backup);
-        
+
         /** fills the font settings with system fonts, if fonts are not set */
         void initFonts();
-        
+
         /** creates an OPML file containing the initial feeds (KDE feeds) */
         static QDomDocument createDefaultFeedList();
 
@@ -194,7 +190,7 @@ class Part : public MyBasePart
 
         KParts::BrowserExtension *m_extension;
         KParts::Part* m_mergedPart;
-                    
+
         QTimer* m_autosaveTimer;
         /** did we backup the feed list already? */
         bool m_backedUpList;
