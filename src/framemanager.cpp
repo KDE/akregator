@@ -36,7 +36,7 @@
 
 namespace Akregator {
 
-FrameManager::FrameManager(QWidget* mainWin, QObject* parent) : QObject(parent), m_mainWin(mainWin)
+FrameManager::FrameManager(QWidget* mainWin, QObject* parent) : QObject(parent), m_mainWin(mainWin), m_currentFrame(0)
 {    
 }
 
