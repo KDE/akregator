@@ -46,6 +46,7 @@ Command::Command( QObject* parent ) : QObject( parent ), d( new Private )
 
 Command::~Command()
 {
+    delete d;
 }
 
 QWidget* Command::parentWidget() const
