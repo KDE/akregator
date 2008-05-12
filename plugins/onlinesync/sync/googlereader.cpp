@@ -52,15 +52,18 @@ void GoogleReader::add(SubscriptionList * list)
     _cursorList = list;
 
     QByteArray data;
-    // Add new
-    if ( (getSubscriptionList()->indexOf(list->getRss(_cursor))<0) && (list->indexOf(list->getRss(_cursor))>_cursor) ) {
+
+    // Add new: if not in the know list of feed and if not added before
+    if ( (getSubscriptionList()->indexOf(list->getRss(_cursor))<0) && (list->indexOf(list->getRss(_cursor))>=_cursor) ) {
         kDebug() << "New";
         data.append(QString(    QString("s=feed/")+list->getRss(_cursor)
                                 +QString("&ac=subscribe")
-                                +QString("&a=user/-/label/")+list->getCat(_cursor,SubscriptionList::Simple)
                                 +QString("&T=")+getToken()
                                 +QString("&client=contact:")+getUser()
                     ).toUtf8());
+        if (!list->getCat(_cursor).isEmpty()) {
+            data.append(QString(QString("&a=user/-/label/")+list->getCat(_cursor,SubscriptionList::Simple)).toUtf8());
+        }
 
     // Add tag
     } else {
@@ -72,6 +75,9 @@ void GoogleReader::add(SubscriptionList * list)
                                 +QString("&client=contact:")+getUser()
                     ).toUtf8());
     }
+
+    // keep the list of feeds synchronized
+    getSubscriptionList()->add(list->getRss(_cursor), list->getName(_cursor), list->getCat(_cursor));
 
     QHttpRequestHeader header("POST","http://www.google.com/reader/api/0/subscription/edit");
     header.setValue("Host", "http://www.google.com");
@@ -105,7 +111,8 @@ void GoogleReader::remove(SubscriptionList * list)
     _cursorList = list;
 
     QByteArray data;
-    // Revove
+
+    // Revove: if all as to be removed and if this is the first occurence
     if ( (getSubscriptionList()->countRss(list->getRss(_cursor))==list->countRss(list->getRss(_cursor))) && (list->indexOf(list->getRss(_cursor))==_cursor) ) {
         kDebug() << "Remove";
         data.append(QString(    QString("s=feed/")+list->getRss(_cursor)
@@ -153,7 +160,8 @@ void GoogleReader::slotAddDone(bool error)
 {
     QByteArray m_data = http->readAll();
     QString text(m_data.data());
-    kDebug() << text.left(20);
+    // kDebug() << text.left(20);
+    kDebug() << text;
     add(_cursorList);
 }
 
@@ -209,11 +217,19 @@ void GoogleReader::slotListDone(bool error)
 
         // 
         QDomNode nodeCat = nodeSub.firstChild();
+        bool hasCat = false;
         while(!nodeCat.isNull()) {
             QString m_cat = nodeCat.firstChild().nextSibling().firstChild().toText().data();
             // add to sub list
             _subscriptionList->add(m_rss,m_name,m_cat);
             nodeCat = nodeCat.nextSibling();
+            hasCat = true;
+        }
+
+        // If there is no categories
+        if (hasCat == false) {
+            // add to sub list
+            _subscriptionList->add(m_rss,m_name,"");
         }
 
         // next sub

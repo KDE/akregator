@@ -18,11 +18,15 @@ SubscriptionList::~SubscriptionList()
 
 void SubscriptionList::add(const QString& iRss, const QString& iName, const QString& iCat) 
 {
-    // kDebug() << iRss.left(20) << iName.left(10) << iCat.left(10);
+    // kDebug() << iRss.left(20) << iName.left(10) << iCat.left(20);
     _rssList.append(iRss);
     _nameList.append(iName);
     _catListFull.append(iCat);
-    _catListSimple.append(iCat.split("/",QString::SkipEmptyParts).last());
+    if (!iCat.isEmpty()) {
+        _catListSimple.append(iCat.split("/",QString::SkipEmptyParts).last());
+    } else {
+        _catListSimple.append(iCat);
+    }
 }
 
 void SubscriptionList::remove(const QString& iRss, const QString& iName, const QString& iCat) 
