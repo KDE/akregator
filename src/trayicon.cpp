@@ -63,8 +63,6 @@ TrayIcon::TrayIcon(QWidget *parent)
         : KSystemTrayIcon(parent), m_unread(0)
 {
     m_defaultIcon = KIcon("akregator").pixmap(22);
-    m_lightIconImage = m_defaultIcon.toImage();
-    KIconEffect::deSaturate(m_lightIconImage, 0.60f);
     setIcon(m_defaultIcon);
     this->setToolTip( i18n("Akregator - Feed Reader"));
     connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
@@ -145,7 +143,7 @@ void TrayIcon::slotSetUnread(int unread)
     else
     {
         // adapted from KMSystemTray::updateCount()
-        int oldWidth = m_lightIconImage.size().width();
+        int oldWidth = m_defaultIcon.size().width();
 
         if ( oldWidth == 0 )
             return;
@@ -157,18 +155,32 @@ void TrayIcon::slotSetUnread(int unread)
         float pointSize = f.pointSizeF();
         QFontMetrics fm(f);
         int w = fm.width(countStr);
-        if( w > (oldWidth) )
+        if( w > (oldWidth - 2) )
         {
-            pointSize *= float(oldWidth) / float(w);
+            pointSize *= float(oldWidth - 2) / float(w);
             f.setPointSizeF(pointSize);
         }
 
         // overlay
-        QImage overlayImg = m_lightIconImage.copy();
+        QImage overlayImg = m_defaultIcon.toImage().copy();
         QPainter p(&overlayImg);
         p.setFont(f);
-        KColorScheme scheme(QPalette::Active, KColorScheme::Window);
+        KColorScheme scheme(QPalette::Active, KColorScheme::View);
+
+        fm = QFontMetrics(f);
+        QRect boundingRect = fm.tightBoundingRect(countStr);
+        boundingRect.adjust(0, 0, 0, 2);
+        boundingRect.setHeight(qMin(boundingRect.height(), oldWidth));
+        boundingRect.moveTo((oldWidth - boundingRect.width()) / 2,
+                            ((oldWidth - boundingRect.height()) / 2) - 1);
+        p.setOpacity(0.7);
+        p.setBrush(scheme.background(KColorScheme::LinkBackground));
+        p.setPen(scheme.background(KColorScheme::LinkBackground).color());
+        p.drawRoundedRect(boundingRect, 2.0, 2.0);
+
+        p.setBrush(Qt::NoBrush);
         p.setPen(scheme.foreground(KColorScheme::LinkText).color());
+        p.setOpacity(1.0);
         p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
 
         setIcon(QPixmap::fromImage(overlayImg));
