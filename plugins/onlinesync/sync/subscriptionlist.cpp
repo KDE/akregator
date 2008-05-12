@@ -1,6 +1,7 @@
-#include "subscriptionlist.h"
-
 #include <kdebug.h>
+#include <QStringList>
+
+#include "subscriptionlist.h"
 
 namespace feedsync
 {
@@ -21,7 +22,7 @@ void SubscriptionList::add(const QString& iRss, const QString& iName, const QStr
     _rssList.append(iRss);
     _nameList.append(iName);
     _catListFull.append(iCat);
-    _catListSimple.append(iCat.right(iCat.length()-iCat.lastIndexOf("/")-1));
+    _catListSimple.append(iCat.split("/",QString::SkipEmptyParts).last());
 }
 
 void SubscriptionList::remove(const QString& iRss, const QString& iName, const QString& iCat) 

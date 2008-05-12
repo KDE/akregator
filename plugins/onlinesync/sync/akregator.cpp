@@ -1,8 +1,4 @@
-#include "treenode.h"
-#include "folder.h"
-#include "feed.h"
-#include "feedlist.h"
-#include "kernel.h"
+#include "feedlistmanagementinterface.h"
 
 #include "akregator.h"
 #include "subscriptionlist.h"
@@ -35,33 +31,20 @@ SubscriptionList * Akregator::getSubscriptionList() const
 
 void Akregator::load() 
 {
-//     using namespace Akregator;
-// 
-//     kDebug() << Kernel::self()->feedList()->toXML().toString().left(20);
-// 
-//     _xmlDoc = new QDomDocument("AkregatorOpml");
-//     _xmlDoc->setContent(Kernel::self()->feedList()->toXML().toString());
-// 
-//     QDomNodeList nodeList = _xmlDoc->elementsByTagName("outline");
-//     bool firstCat = true;
-//     QString m_cat;
-//     for (int i=0;i<nodeList.count();i++) {
-//         QDomNode node = nodeList.at(i);
-//         if (!node.attributes().namedItem("xmlUrl").isNull()) {
-//             _subscriptionList->add(node.attributes().namedItem("xmlUrl").nodeValue(),
-//                                    node.attributes().namedItem("title").nodeValue(),
-//                                    m_cat);
-//             firstCat = true;
-//         } else {
-//             if (firstCat) {
-//               m_cat = "";
-//               firstCat = false;
-//             } else {
-//               m_cat = m_cat + "/";
-//             }
-//             m_cat = m_cat + node.attributes().namedItem("text").nodeValue();
-//         }
-//     }
+    kDebug();
+
+    using namespace Akregator;
+
+    FeedListManagementInterface * ak_feedlist = FeedListManagementInterface::instance();
+    QStringList catlist = ak_feedlist->categories();
+    for (int idcat=0;idcat<catlist.size();idcat++) {
+        QStringList feedlist = ak_feedlist->feeds(catlist.at(idcat));
+        for (int idfeed=0;idfeed<feedlist.size();idfeed++) {
+            _subscriptionList->add( feedlist.at(idfeed),
+                                    feedlist.at(idfeed),
+                                    ak_feedlist->getCategoryName(catlist.at(idcat)) );
+        }
+    }
 
     // Send the signal
     QTimer::singleShot( 0, this, SLOT(sendSignalLoadDone()) );
@@ -76,48 +59,35 @@ void Akregator::add(SubscriptionList * list)
 {
     kDebug();
 
-//     // Get the feed list
-//     // using namespace Akregator;
-//     for (int i=0; i<list->count(); i++) {
-//         kDebug() << list->getRss(i).left(20);
-// 
-//         FeedList * m_feedlist = Kernel::self()->feedList();
-//         std::auto_ptr<FeedList> new_feedlist( new FeedList( Kernel::self()->storage() ) );
-//         QList<TreeNode*> m_treenodelist = m_feedlist->asFlatList();
-// 
-//         // Find folder
-//         Folder * m_folder = 0;
-//         QString m_foldername = list->getCat(i,SubscriptionList::Simple);
-//         if (m_foldername=="") {
-//             m_folder = m_feedlist->rootNode();
-//         } else {
-//             for (int j=0;j<m_treenodelist.count();j++) {
-//                 if (m_treenodelist.at(j)->parent()!=0) {
-//                     if ( m_treenodelist.at(j)->parent()->title() == m_foldername ) {
-//                         kDebug() << m_treenodelist.at(j)->parent()->title();
-//                         m_folder = m_treenodelist.at(j)->parent();
-//                         j=m_treenodelist.count();
-//                     }
-//                 }
-//             }
-//             if (m_folder==0) {
-//                 m_folder = new Folder(m_foldername);
-//                 m_feedlist->rootNode()->appendChild(m_folder);
-//             }
-//         }
-// 
-//         // Get latest from in folder
-//         TreeNode* m_last = m_folder->childAt( m_folder->totalCount() );
-// 
-//         // Create new feed
-//         Feed * new_feed = new Feed( Kernel::self()->storage() );
-//         new_feed->setXmlUrl(list->getRss(i));
-//         new_feed->setTitle(list->getName(i));
-//         new_feedlist->rootNode()->appendChild(new_feed);
-// 
-//         // Add the feed
-//         m_feedlist->append(new_feedlist.get(), m_folder, m_last);
-//     }
+    using namespace Akregator;
+
+    for (int i=0; i<list->count(); i++) {
+        kDebug() << list->getRss(i).left(20);
+
+        FeedListManagementInterface * ak_feedlist = FeedListManagementInterface::instance();
+
+        // Look for the category id
+        QString foundCatId;
+        QStringList catlist = ak_feedlist->categories();
+        int idcat = 0;
+        while (idcat<catlist.size() && foundCatId.isEmpty()) {
+            QString ak_catId = catlist.at(idcat).split("/",QString::SkipEmptyParts).last();
+            QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split("/",QString::SkipEmptyParts).last();
+            if (ak_cat.compare(list->getCat(i),Qt::CaseInsensitive)==0) {
+                foundCatId = ak_catId;
+            }
+            idcat++;
+        }
+
+        // Cat not found --> Create
+        if (foundCatId.isEmpty()) {
+            foundCatId = ak_feedlist->addCategory( list->getCat(i), "1" );
+        }
+
+        // Add
+        kDebug() << "Cat:" << foundCatId;
+        ak_feedlist->addFeed(list->getRss(i),foundCatId);
+    }
 
     // Emit signal
     emit addDone();
@@ -134,6 +104,30 @@ void Akregator::update(SubscriptionList * list)
 void Akregator::remove(SubscriptionList * list) 
 {
     kDebug();
+
+    for (int i=0; i<list->count(); i++) {
+        kDebug() << list->getRss(i).left(20);
+
+        using namespace Akregator;
+
+        FeedListManagementInterface * ak_feedlist = FeedListManagementInterface::instance();
+
+        // Look for the category id
+        QString foundCatId;
+        QStringList catlist = ak_feedlist->categories();
+        int idcat = 0;
+        while (idcat<catlist.size() && foundCatId.isEmpty()) {
+            QString ak_catId = catlist.at(idcat).split("/",QString::SkipEmptyParts).last();
+            QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split("/",QString::SkipEmptyParts).last();
+            if (ak_cat.compare(list->getCat(i),Qt::CaseInsensitive)==0) {
+                foundCatId = ak_catId;
+            }
+            idcat++;
+        }
+
+        // Remove
+        ak_feedlist->removeFeed(list->getRss(i),foundCatId);
+    }
 
     // Emit signal
     emit removeDone();
