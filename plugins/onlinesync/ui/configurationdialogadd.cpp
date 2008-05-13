@@ -13,18 +13,22 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(paren
 {
     kDebug();
 
-   // UI setup
+    // UI setup
     QWidget *widget = new QWidget( parent );
     ui = new Ui::ConfigurationDialogAdd();
     ui->setupUi(widget);
     setMainWidget( widget );
 
-    setCaption( i18n("Online reader Add") );
+    setCaption( i18n("Online Reader: Add") );
+    ui->groupReaderType->setTitle( i18n("Type of Reader") );
+    ui->groupGoogleReader->setTitle( i18n("Parameters") );
+    ui->lAccountGoogleReader->setText( i18n("Account") );
+    ui->lPasswordGoogleReader->setText( i18n("Password") );
 
-    QStringList m_AggregatorType;
-        m_AggregatorType.append( i18n("GoogleReader") );
-        m_AggregatorType.append( i18n("Opml") );
-    ui->cb_AggregatorType->addItems(m_AggregatorType);
+    ui->cb_AggregatorType->addItem( i18n("Google Reader") , QVariant("GoogleReader") );
+    /* TODO OPML not available for the first version
+    ui->cb_AggregatorType->addItem( i18n("OPML file") , QVariant("Opml") ); */
+
 
     slotUpdateUI();
 
@@ -44,7 +48,7 @@ void ConfigurationDialogAdd::check()
 {
     kDebug();
 
-    if (ui->cb_AggregatorType->itemText( ui->cb_AggregatorType->currentIndex() ) == "GoogleReader") {
+    if (ui->cb_AggregatorType->itemData( ui->cb_AggregatorType->currentIndex() ) == "GoogleReader") {
 
         if (ui->le_loginGoogleReader->text()=="") {
             return;
@@ -59,7 +63,7 @@ void ConfigurationDialogAdd::check()
             // Insert new
             KConfig config("akregator_feedsyncrc");
             KConfigGroup generalGroup( &config, "FeedSyncSource_GoogleReader" + ui->le_loginGoogleReader->text() );
-            generalGroup.writeEntry( "AggregatorType", ui->cb_AggregatorType->itemText( ui->cb_AggregatorType->currentIndex() ) );
+            generalGroup.writeEntry( "AggregatorType", ui->cb_AggregatorType->itemData( ui->cb_AggregatorType->currentIndex() ) );
             generalGroup.writeEntry( "Login", ui->le_loginGoogleReader->text() );
             generalGroup.writeEntry( "Password", ui->le_passwdGoogleReader->text() );
             generalGroup.writeEntry( "Identifier", ui->le_loginGoogleReader->text() );
@@ -68,7 +72,7 @@ void ConfigurationDialogAdd::check()
             accept();
         }
 
-    } else if (ui->cb_AggregatorType->itemText( ui->cb_AggregatorType->currentIndex() ) == "Opml") {
+    } else if (ui->cb_AggregatorType->itemData( ui->cb_AggregatorType->currentIndex() ) == "Opml") {
 
         if (ui->le_filenameOpml->text()=="") {
             return;
@@ -81,7 +85,7 @@ void ConfigurationDialogAdd::check()
             // Insert new
             KConfig config("akregator_feedsyncrc");
             KConfigGroup generalGroup( &config, "FeedSyncSource_Opml" + ui->le_filenameOpml->text() );
-            generalGroup.writeEntry( "AggregatorType", ui->cb_AggregatorType->itemText( ui->cb_AggregatorType->currentIndex() ) );
+            generalGroup.writeEntry( "AggregatorType", ui->cb_AggregatorType->itemData( ui->cb_AggregatorType->currentIndex() ) );
             generalGroup.writeEntry( "Filename", ui->le_filenameOpml->text() );
             generalGroup.writeEntry( "Identifier", ui->le_filenameOpml->text() );
             generalGroup.config()->sync();
@@ -98,7 +102,7 @@ void ConfigurationDialogAdd::load( const KConfigGroup group )
     kDebug();
     _baseconfigname = group.name();
 
-    ui->cb_AggregatorType->setCurrentIndex( ui->cb_AggregatorType->findText( group.readEntry( "AggregatorType", QString() ) ) );
+    ui->cb_AggregatorType->setCurrentIndex( ui->cb_AggregatorType->findData( group.readEntry( "AggregatorType", QString() ) ) );
 
     if ( group.readEntry( "AggregatorType", QString() ) == "GoogleReader") {
 
@@ -140,11 +144,11 @@ void ConfigurationDialogAdd::slotUpdateUI()
 {
     kDebug();
 
-    if (ui->cb_AggregatorType->itemText( ui->cb_AggregatorType->currentIndex() ) == "GoogleReader") {
+    if (ui->cb_AggregatorType->itemData( ui->cb_AggregatorType->currentIndex() ) == "GoogleReader") {
         ui->groupOpml->hide();
         ui->groupGoogleReader->show();
 
-    } else if (ui->cb_AggregatorType->itemText( ui->cb_AggregatorType->currentIndex() ) == "Opml") {
+    } else if (ui->cb_AggregatorType->itemData( ui->cb_AggregatorType->currentIndex() ) == "Opml") {
         ui->groupGoogleReader->hide();
         ui->groupOpml->show();
 

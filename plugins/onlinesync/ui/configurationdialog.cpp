@@ -118,24 +118,30 @@ void ConfigurationDialog::slotDelayedInit()
 
     // Init
     ui->list_readerList->setColumnCount(2);
-    QStringList deleteTags;
-        deleteTags.append( i18n("Nothing") );
-        deleteTags.append( i18n("Category") );
-        deleteTags.append( i18n("Feed") );
-        deleteTags.append( i18n("Ask") );
-    ui->cb_deleteFeeds->addItems(deleteTags);
+    ui->cb_deleteFeeds->addItem( i18n("Nothing") , QVariant("Nothing") );
+    ui->cb_deleteFeeds->addItem( i18n("Categories") , QVariant("Category") );
+    ui->cb_deleteFeeds->addItem( i18n("Feeds") , QVariant("Feed") );
+    ui->cb_deleteFeeds->addItem( i18n("Ask") , QVariant("Ask") );
     QStringList title;
         title.append( i18n("Type") );
         title.append( i18n("Description") );
     ui->list_readerList->setHeaderLabels(title);
 
+    setCaption( i18n("Online Reader") );
+    ui->b_add->setText( i18n("Add...") );
+    ui->b_update->setText( i18n("Update...") );
+    ui->b_remove->setText( i18n("Remove") );
+    ui->lDeletePolicy->setText( i18n("Delete policy") );
+    ui->lConfigName->setText( i18n("Reader list") );
+
+
     // Read config
     KConfig config("akregator_feedsyncrc");
     KConfigGroup generalGroup( &config, "FeedSyncConfig" );
-    if (ui->cb_deleteFeeds->findText( generalGroup.readEntry( "RemovalPolicy", QString() ) ) < 0) {
+    if (ui->cb_deleteFeeds->findData( QVariant( generalGroup.readEntry( "RemovalPolicy", QString() ) ) ) < 0) {
         ui->cb_deleteFeeds->setCurrentIndex( 0 );
     } else {
-        ui->cb_deleteFeeds->setCurrentIndex( ui->cb_deleteFeeds->findText( generalGroup.readEntry( "RemovalPolicy", QString() ) ) );
+        ui->cb_deleteFeeds->setCurrentIndex( ui->cb_deleteFeeds->findData( QVariant(generalGroup.readEntry( "RemovalPolicy", QString() ) ) ) );
     }
 
     // Slots
@@ -151,7 +157,7 @@ void ConfigurationDialog::slotButtonClicked(int button) {
         // Save the removal policy
         KConfig config("akregator_feedsyncrc");
         KConfigGroup generalGroup( &config, "FeedSyncConfig" );
-        generalGroup.writeEntry( "RemovalPolicy", ui->cb_deleteFeeds->itemText( ui->cb_deleteFeeds->currentIndex() ) );
+        generalGroup.writeEntry( "RemovalPolicy", ui->cb_deleteFeeds->itemData( ui->cb_deleteFeeds->currentIndex() ) );
         generalGroup.config()->sync();
         accept();
 

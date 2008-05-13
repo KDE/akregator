@@ -16,7 +16,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3" >
      <item>
-      <widget class="QLabel" name="l_configName" >
+      <widget class="QLabel" name="lConfigName" >
        <property name="text" >
         <string>Reader list</string>
        </property>
@@ -31,9 +31,17 @@
        <property name="rootIsDecorated" >
         <bool>false</bool>
        </property>
+       <property name="columnCount" >
+        <number>2</number>
+       </property>
        <column>
         <property name="text" >
          <string>1</string>
+        </property>
+       </column>
+       <column>
+        <property name="text" >
+         <string>2</string>
         </property>
        </column>
       </widget>
@@ -84,7 +92,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout" >
      <item>
-      <widget class="QLabel" name="label" >
+      <widget class="QLabel" name="lDeletePolicy" >
        <property name="text" >
         <string>Delete feeds</string>
        </property>

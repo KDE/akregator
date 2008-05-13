@@ -9,7 +9,7 @@
     <x>0</x>
     <y>0</y>
     <width>411</width>
-    <height>390</height>
+    <height>444</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -23,7 +23,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3" >
    <item>
-    <widget class="QGroupBox" name="groupBox" >
+    <widget class="QGroupBox" name="groupReaderType" >
      <property name="title" >
       <string>Type of reader</string>
      </property>
@@ -41,7 +41,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout" >
       <item>
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="lAccountGoogleReader" >
         <property name="text" >
          <string>Account</string>
         </property>
@@ -51,7 +51,7 @@
        <widget class="QLineEdit" name="le_loginGoogleReader" />
       </item>
       <item>
-       <widget class="QLabel" name="label_2" >
+       <widget class="QLabel" name="lPasswordGoogleReader" >
         <property name="text" >
          <string>Password</string>
         </property>
@@ -61,13 +61,6 @@
        <widget class="QLineEdit" name="le_passwdGoogleReader" >
         <property name="echoMode" >
          <enum>QLineEdit::Password</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkBox" >
-        <property name="text" >
-         <string>Remember</string>
         </property>
        </widget>
       </item>

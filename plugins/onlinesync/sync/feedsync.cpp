@@ -114,41 +114,41 @@ void FeedSync::slotLoadDone() {
             KConfigGroup generalGroup( &config, "FeedSyncConfig" );
             // Feed
             if ( generalGroup.readEntry( "RemovalPolicy", QString() ) == "Feed" ) {
-                kDebug() << "Remove feeds";
+                kDebug() << "Policy: Remove feeds";
                 m_removepolicy = SubscriptionList::Feed;
             // Category
             } else if (generalGroup.readEntry( "RemovalPolicy", QString() ) == "Category") {
-                kDebug() << "Remove categories";
+                kDebug() << "Policy: Remove categories";
                 m_removepolicy = SubscriptionList::Category;
             // Nothing
             } else if (generalGroup.readEntry( "RemovalPolicy", QString() ) == "Nothing") {
-                kDebug() << "Remove nothing";
+                kDebug() << "Policy: Remove nothing";
                 m_removepolicy = SubscriptionList::Nothing;
             // Ask
             } else if (generalGroup.readEntry( "RemovalPolicy", QString() ) == "Ask") {
                 QMessageBox msgBox;
-                msgBox.setText(QString("Some categories and feeds have been marked for removal. Do you want to delete them?"));
+                msgBox.setText(i18n("Some categories and feeds have been marked for removal. Do you want to delete them?"));
                 msgBox.setIcon(QMessageBox::Information);
-                QPushButton *noRemove  = msgBox.addButton(QString("Remove nothing"), QMessageBox::ActionRole);
-                QPushButton *catRemove = msgBox.addButton(QString("Remove only categories"), QMessageBox::ActionRole);
-                QPushButton *feedRemove  = msgBox.addButton(QString("Remove feeds"), QMessageBox::ActionRole);
+                QPushButton *noRemove  = msgBox.addButton(i18n("Remove nothing"), QMessageBox::ActionRole);
+                QPushButton *catRemove = msgBox.addButton(i18n("Remove only categories"), QMessageBox::ActionRole);
+                QPushButton *feedRemove  = msgBox.addButton(i18n("Remove feeds"), QMessageBox::ActionRole);
                 msgBox.exec();
                 // Remove feed
                 if (msgBox.clickedButton() == (QAbstractButton*) feedRemove) {
-                    kDebug() << "Remove feeds";
+                    kDebug() << "Policy: Remove feeds";
                     m_removepolicy = SubscriptionList::Feed;
                 // Remove only categories
                 } else if (msgBox.clickedButton() == (QAbstractButton*) catRemove) {
-                    kDebug() << "Remove categories";
+                    kDebug() << "Policy: Remove categories";
                     m_removepolicy = SubscriptionList::Category;
                 // Remove nothing
                 } else {
-                    kDebug() << "Remove nothing";
+                    kDebug() << "Policy: Remove nothing";
                     m_removepolicy = SubscriptionList::Nothing;
                 }
             // Remove nothing
             } else {
-                kDebug() << "Remove nothing";
+                kDebug() << "Policy: Remove nothing";
                 m_removepolicy = SubscriptionList::Nothing;
             }
         }

@@ -53,7 +53,7 @@ OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QVariantList& list ) 
     feedSyncMenu->setText(i18n("Synchronize Feeds"));
 
     // Fill
-    doSynchronize();
+    doInitialize();
 }
 
 OnlineSyncPlugin::~OnlineSyncPlugin()
@@ -62,28 +62,6 @@ OnlineSyncPlugin::~OnlineSyncPlugin()
 }
 
 void OnlineSyncPlugin::doInitialize()
-{
-    kDebug();
-
-//     // Q_UNUSED( list )
-//     QAction* const action = actionCollection()->addAction( "file_onlinesync_sync" );
-//     action->setText( i18n( "Synchronize Feeds" ) );
-//     connect( action, SIGNAL( triggered( bool ) ), 
-//              this, SLOT( doSynchronize() ) );
-//  
-//     setXMLFile( "akregator_onlinesync_plugin.rc" , /*merge=*/true );
-// 
-//     // TODO Move all the code that is related to FeedSync
-//     KActionCollection* coll = actionCollection();
-//     feedSyncMenu = coll->add<KActionMenu>("feedsync_menu");
-//     feedSyncMenu->setText(i18n("&Feed synchronization"));
-//     // connect(d->mainWidget, SIGNAL(feedSyncUpdated()), this, SLOT(loadFeedSyncMenu()));
-// 
-//     // Refresh the menu
-//     doSynchronize();
-}
-
-void OnlineSyncPlugin::doSynchronize()
 {
     kDebug();
 
@@ -110,7 +88,7 @@ void OnlineSyncPlugin::doSynchronize()
             action->setProperty("ConfigGroup",groupname);
             action->setProperty("SyncType",syncTool->Get);
             action->setIcon(KIcon("mail-receive"));
-            action->setText(i18n(QString ("Get from "+generalGroup.readEntry( "Identifier", QString() )).toUtf8()));
+            action->setText(i18n("Get from %1",generalGroup.readEntry( "Identifier", QString() )).toUtf8());
             feedSyncMenu->addAction(action);
             feedSyncAction.append(action);
             connect( action, SIGNAL(triggered(bool)), syncTool, SLOT(sync()) );
@@ -119,7 +97,7 @@ void OnlineSyncPlugin::doSynchronize()
             action->setProperty("ConfigGroup",groupname);
             action->setProperty("SyncType",syncTool->Send);
             action->setIcon(KIcon("mail-send"));
-            action->setText(i18n(QString ("Send to "+generalGroup.readEntry( "Identifier", QString() )).toUtf8()));
+            action->setText(i18n("Send to %1",generalGroup.readEntry( "Identifier", QString() )).toUtf8());
             feedSyncMenu->addAction(action);
             feedSyncAction.append(action);
             connect( action, SIGNAL(triggered(bool)), syncTool, SLOT(sync()) );
@@ -132,6 +110,11 @@ void OnlineSyncPlugin::doSynchronize()
     feedSyncMenu->addAction(action);
     feedSyncAction.append(action);
     connect(action, SIGNAL(triggered(bool)), this, SLOT(slotFeedSyncManage()));
+}
+
+void OnlineSyncPlugin::doSynchronize()
+{
+    kDebug();
 }
 
 void OnlineSyncPlugin::slotFeedSyncManage()
@@ -147,7 +130,7 @@ void OnlineSyncPlugin::slotFeedSyncManage()
 void OnlineSyncPlugin::slotFeedSyncManageDone()
 {
     kDebug();
-    doSynchronize();
+    doInitialize();
 }
 
 #include "onlinesyncplugin.moc"
