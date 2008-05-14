@@ -2,6 +2,7 @@
 
 #include <kdebug.h>
 #include <QDomDocument>
+#include <KLocalizedString>
 
 namespace feedsync
 {
@@ -145,13 +146,13 @@ void GoogleReader::remove(SubscriptionList * list)
     kDebug();
 }
 
-void GoogleReader::error() 
+void GoogleReader::genError(const QString& msg) 
 {
     kDebug();
 
     _cursor=0;
     // Emit signal
-    emit error();
+    emit error(msg);
 }
 
 // SLOTS
@@ -255,6 +256,12 @@ void GoogleReader::slotAuthenticationDone(bool error)
 
     QByteArray m_data = http->readAll();
     QString text(m_data.data());
+    // Check wrong account
+    if (text.indexOf("SID=")<0) {
+        this->genError(i18n("Authentication failed, synchronization aborted."));
+        return;
+    }
+    // Extract SID
     text = text.right(text.length()-text.indexOf("SID=")-4);
     _sid = text.left(text.indexOf("\n"));
     kDebug() << "SID:" << _sid.left(10)+QString("...");

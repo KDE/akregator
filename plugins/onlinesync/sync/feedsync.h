@@ -20,6 +20,7 @@ class FeedSync : public QObject
     enum SyncType { Get, Send };
 
  protected Q_SLOTS:
+    void error(const QString& msg);
     void sync();
     void slotLoadDone();
     void slotAddDone();
@@ -29,11 +30,11 @@ class FeedSync : public QObject
     Aggregator * _aggrSend;
     Aggregator * _aggrGet;
     Aggregator * createAggregatorFactory(KConfigGroup configgroup);
-    void error();
     int _syncstep;
     int _loadedAggrCount;
     SubscriptionList * tmp_removelist;
     SubscriptionList * tmp_addlist;
+    void log();
 };
 
 }

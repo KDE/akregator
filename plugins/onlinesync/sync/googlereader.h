@@ -48,13 +48,14 @@ class GoogleReader: public Aggregator
     QString _password;
     int _cursor;
     SubscriptionList * _cursorList;
-    void error();
+    void genError(const QString& msg);
 
  signals:
     void loadDone();
     void addDone();
     void updateDone();
     void removeDone();
+    void error(const QString& msg);
 };
 
 }

@@ -23,7 +23,7 @@ class Aggregator: public QObject
     void addDone();
     void updateDone();
     void removeDone();
-    void error();
+    void error(const QString& msg);
 };
 
 }

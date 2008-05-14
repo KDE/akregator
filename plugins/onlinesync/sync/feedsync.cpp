@@ -8,6 +8,9 @@
 #include <QDomDocument>
 #include <kdebug.h>
 #include <kconfiggroup.h>
+#include <kglobalsettings.h>
+#include <kstandarddirs.h>
+#include <QDate>
 
 #include "treenode.h"
 #include "feedlist.h"
@@ -22,6 +25,10 @@ namespace feedsync {
 
 FeedSync::FeedSync() {
     kDebug();
+    _aggrSend = 0;
+    _aggrGet = 0;
+    tmp_removelist = 0;
+    tmp_addlist = 0;
 }
 
 FeedSync::~FeedSync() {
@@ -85,7 +92,8 @@ void FeedSync::sync() {
 
     // TODO Handle failures
     _loadedAggrCount=0;
-    connect(_aggrGet, SIGNAL(error()), this, SLOT(error()));
+    connect(_aggrGet, SIGNAL(error(QString)), this, SLOT(error(QString)));
+    connect(_aggrSend, SIGNAL(error(QString)), this, SLOT(error(QString)));
     connect(_aggrSend, SIGNAL(loadDone()), this, SLOT(slotLoadDone()));
     connect(_aggrGet, SIGNAL(loadDone()), this, SLOT(slotLoadDone()));
     connect(_aggrGet, SIGNAL(addDone()), this, SLOT(slotAddDone()));
@@ -159,6 +167,8 @@ void FeedSync::slotLoadDone() {
             tmp_removelist = _aggrGet->getSubscriptionList()->compare( _aggrSend->getSubscriptionList() ,SubscriptionList::Removed, m_removepolicy );
         }
 
+        // Before: log
+        log();
 
         // Now: Add
         _aggrGet->add(tmp_addlist);
@@ -174,14 +184,70 @@ void FeedSync::slotAddDone() {
 
 void FeedSync::slotRemoveDone() {
     kDebug();
-    delete _aggrSend;
-    delete _aggrGet;
-    delete tmp_removelist;
-    delete tmp_addlist;
+    if (_aggrSend!=0) {
+        delete _aggrSend;
+    }
+    if (_aggrGet!=0) {
+        delete _aggrGet;
+    }
+    if (tmp_removelist!=0) {
+        delete tmp_removelist;
+    }
+    if (tmp_addlist!=0) {
+        delete tmp_addlist;
+    }
 }
 
-void FeedSync::error() {
+void FeedSync::error(const QString& msg) {
     kDebug();
+
+    QMessageBox msgBox;
+    if (msg.isEmpty()) {
+        msgBox.setText(i18n("An error occurred, synchronization aborted."));
+    } else {
+        msgBox.setText(msg);
+    }
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.exec();
+
+    if (_aggrSend!=0) {
+        delete _aggrSend;
+    }
+    if (_aggrGet!=0) {
+        delete _aggrGet;
+    }
+    if (tmp_removelist!=0) {
+        delete tmp_removelist;
+    }
+    if (tmp_addlist!=0) {
+        delete tmp_addlist;
+    }
+}
+
+// Create a log
+
+void FeedSync::log() {
+    kDebug();
+
+    QString logPath = KGlobal::dirs()->saveLocation("data", "akregator") + "/onlinesync.log";
+
+    QFile file(logPath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
+        return;
+
+    QTextStream out(&file);
+    out << QDate::currentDate().toString(Qt::ISODate) << " " 
+        << QTime::currentTime().toString(Qt::ISODate) << "\n";
+
+    out << "To be added:" << "\n";
+    for (int i=0; i<tmp_addlist->count(); i++) {
+        out << "(+) xml:" << tmp_addlist->getRss(i) << " category:" << tmp_addlist->getCat(i) << "\n";
+    }
+
+    out << "To be removed:" << "\n";
+    for (int i=0; i<tmp_removelist->count(); i++) {
+        out << "(-) xml:" << tmp_removelist->getRss(i) << " category:" << tmp_removelist->getCat(i) << "\n";
+    }
 }
 
 }
