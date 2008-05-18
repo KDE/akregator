@@ -26,16 +26,16 @@ class SubscriptionList: public QObject
         Simple, Full
     };
 
-    SubscriptionList * compare(SubscriptionList * iOther, ComparisonType diffType, RemovePolicy removePolicy=Nothing);
-    bool rssExist(const QString& iRss,const QString& iName,const QString& iCat);
+    SubscriptionList * compare(SubscriptionList * iOther, ComparisonType diffType, RemovePolicy removePolicy=Nothing) const;
+    bool rssExist(const QString& iRss,const QString& iName,const QString& iCat) const;
     QString getRss(int index) const;
     QString getName(int index) const;
     QString getCat(int index, CategoryFormat format=Simple) const;
 
-    int count();
-    int countRss(const QString& iRss);
-    int indexOf(const QString& iRss, const QString& iName, const QString& iCat);
-    int indexOf(const QString& iRss);
+    int count() const;
+    int countRss(const QString& iRss) const;
+    int indexOf(const QString& iRss, const QString& iName, const QString& iCat) const;
+    int indexOf(const QString& iRss) const;
 
 
 

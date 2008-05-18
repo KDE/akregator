@@ -18,7 +18,7 @@ ConfigurationDialog::ConfigurationDialog( QWidget *parent)
     ui->setupUi(widget);
     setMainWidget( widget );
 
-    setCaption( i18n("Online reader") );
+    setCaption( i18n("Online Reader") );
 
     QTimer::singleShot( 0, this, SLOT(slotDelayedInit()) );
 }

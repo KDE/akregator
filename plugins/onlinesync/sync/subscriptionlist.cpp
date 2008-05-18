@@ -39,7 +39,7 @@ void SubscriptionList::remove(const QString& iRss, const QString& iName, const Q
     _catListFull.removeAt(index);
 }
 
-SubscriptionList * SubscriptionList::compare(SubscriptionList * iOther, ComparisonType diffType, RemovePolicy removePolicy)
+SubscriptionList * SubscriptionList::compare(SubscriptionList * iOther, ComparisonType diffType, RemovePolicy removePolicy) const
 {
     kDebug();
 
@@ -92,7 +92,7 @@ SubscriptionList * SubscriptionList::compare(SubscriptionList * iOther, Comparis
     return diffList;
 }
 
-int SubscriptionList::indexOf(const QString& iRss, const QString& iName, const QString& iCat)
+int SubscriptionList::indexOf(const QString& iRss, const QString& iName, const QString& iCat) const
 {
     for (int i=0; i<this->count(); i++) {
         QString m_rss = this->getRss(i);
@@ -104,7 +104,7 @@ int SubscriptionList::indexOf(const QString& iRss, const QString& iName, const Q
     return -1;
 }
 
-int SubscriptionList::indexOf(const QString& iRss) 
+int SubscriptionList::indexOf(const QString& iRss) const
 {
     for (int i=0; i<this->count(); i++) {
         QString m_rss = this->getRss(i);
@@ -116,12 +116,12 @@ int SubscriptionList::indexOf(const QString& iRss)
     return -1;
 }
 
-int SubscriptionList::count() 
+int SubscriptionList::count() const
 {
     return _rssList.size();
 }
 
-int SubscriptionList::countRss(const QString& iRss) 
+int SubscriptionList::countRss(const QString& iRss) const
 {
     return _rssList.count(iRss);
 }

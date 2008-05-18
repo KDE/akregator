@@ -97,7 +97,7 @@ void ConfigurationDialogAdd::check()
     }
 }
 
-void ConfigurationDialogAdd::load( const KConfigGroup group )
+void ConfigurationDialogAdd::load( const KConfigGroup& group )
 {
     kDebug();
     _baseconfigname = group.name();

@@ -19,9 +19,9 @@ class ConfigurationDialogAdd : public KDialog
 {
     Q_OBJECT
     public:
-        ConfigurationDialogAdd( QWidget *parent=0 );
+        explicit ConfigurationDialogAdd( QWidget *parent=0 );
         ~ConfigurationDialogAdd();
-        void load( const KConfigGroup group );
+        void load( const KConfigGroup &group );
 
     private:
         Ui::ConfigurationDialogAdd * ui;

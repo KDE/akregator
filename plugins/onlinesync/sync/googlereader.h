@@ -16,7 +16,7 @@ class GoogleReader: public Aggregator
     Q_OBJECT
 
  public:
-    GoogleReader(const KConfigGroup& configgroup);
+    explicit GoogleReader(const KConfigGroup& configgroup);
     ~GoogleReader();
     SubscriptionList * getSubscriptionList() const;
     void load();
