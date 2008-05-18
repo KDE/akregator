@@ -17,7 +17,7 @@ set(kcm_akronlinesyncconfig_SRCS
 
 kde4_add_kcfg_files(kcm_akronlinesyncconfig_SRCS onlinesyncsettings.kcfgc)
 
-kde4_add_ui_files(kcm_akronlinesyncconfig_SRCS ui/configurationdialog.ui)
+kde4_add_ui_files(kcm_akronlinesyncconfig_SRCS ui/configurationwidget.ui)
 kde4_add_ui_files(kcm_akronlinesyncconfig_SRCS ui/configurationdialogadd.ui)
 
 kde4_add_plugin(akregator_config_onlinesync ${kcm_akronlinesyncconfig_SRCS})
@@ -41,7 +41,7 @@ set(akregator_onlinesync_plugin_SRCS
     onlinesyncplugin.cpp )
 
 kde4_add_ui_files(akregator_onlinesync_plugin_SRCS 
-    ui/configurationdialog.ui
+    ui/configurationwidget.ui
     ui/configurationdialogadd.ui)
 
 kde4_add_kcfg_files(akregator_onlinesync_plugin_SRCS onlinesyncsettings.kcfgc)
