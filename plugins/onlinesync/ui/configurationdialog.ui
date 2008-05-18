@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>ConfigurationDialog</class>
- <widget class="QWidget" name="ConfigurationDialog" >
+ <class>ConfigurationWidget</class>
+ <widget class="QWidget" name="ConfigurationWidget" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -18,7 +18,7 @@
      <item>
       <widget class="QLabel" name="lConfigName" >
        <property name="text" >
-        <string>Reader list</string>
+        <string>Online reader accounts:</string>
        </property>
       </widget>
      </item>
@@ -36,12 +36,12 @@
        </property>
        <column>
         <property name="text" >
-         <string>1</string>
+         <string>Type</string>
         </property>
        </column>
        <column>
         <property name="text" >
-         <string>2</string>
+         <string>Description</string>
         </property>
        </column>
       </widget>
@@ -56,16 +56,16 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="b_remove" >
+        <widget class="QPushButton" name="b_update" >
          <property name="text" >
-          <string>Remove...</string>
+          <string>Modify...</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="b_update" >
+        <widget class="QPushButton" name="b_remove" >
          <property name="text" >
-          <string>Update...</string>
+          <string>Remove</string>
          </property>
         </widget>
        </item>

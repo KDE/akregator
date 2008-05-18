@@ -30,7 +30,7 @@
 class QWidget;
 class KComponentData;
 namespace feedsync {
-    class ConfigurationDialog;
+    class ConfigurationWidget;
 }
 
 class KCMAkregatorOnlineSyncConfig : public KCModule
@@ -42,8 +42,7 @@ class KCMAkregatorOnlineSyncConfig : public KCModule
     ~KCMAkregatorOnlineSyncConfig();
 
   private:
-    QWidget* m_widget;
-    feedsync::ConfigurationDialog * dialog;
+    feedsync::ConfigurationWidget* m_widget;
 
 };
 

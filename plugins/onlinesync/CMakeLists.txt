@@ -12,6 +12,7 @@ include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 set(kcm_akronlinesyncconfig_SRCS 
     akregator_config_onlinesync.cpp
     ui/configurationdialog.cpp
+    ui/configurationwidget.cpp
     ui/configurationdialogadd.cpp )
 
 kde4_add_kcfg_files(kcm_akronlinesyncconfig_SRCS onlinesyncsettings.kcfgc)
@@ -35,11 +36,13 @@ set(akregator_onlinesync_plugin_SRCS
     sync/googlereader.cpp 
     sync/opml.cpp 
     ui/configurationdialog.cpp 
+    ui/configurationwidget.cpp 
     ui/configurationdialogadd.cpp 
     onlinesyncplugin.cpp )
 
-kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ui/configurationdialog.ui)
-kde4_add_ui_files(akregator_onlinesync_plugin_SRCS ui/configurationdialogadd.ui)
+kde4_add_ui_files(akregator_onlinesync_plugin_SRCS 
+    ui/configurationdialog.ui
+    ui/configurationdialogadd.ui)
 
 kde4_add_kcfg_files(akregator_onlinesync_plugin_SRCS onlinesyncsettings.kcfgc)
 

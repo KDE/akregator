@@ -120,11 +120,10 @@ void OnlineSyncPlugin::doSynchronize()
 void OnlineSyncPlugin::slotFeedSyncManage()
 {
     kDebug();
-    using namespace feedsync;
-    kDebug();
-    ConfigurationDialog * dlg = new ConfigurationDialog();
-    dlg->show();
+    feedsync::ConfigurationDialog* dlg = new feedsync::ConfigurationDialog();
+    dlg->setAttribute( Qt::WA_DeleteOnClose );
     connect( dlg, SIGNAL( finished() ), this, SLOT( slotFeedSyncManageDone() ) );
+    dlg->show();
 }
 
 void OnlineSyncPlugin::slotFeedSyncManageDone()

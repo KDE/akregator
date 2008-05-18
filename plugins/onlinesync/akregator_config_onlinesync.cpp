@@ -24,8 +24,7 @@
 #include "akregator_config_onlinesync.h"
 #include "onlinesyncsettings.h"
 
-#include "ui_configurationdialog.h"
-#include "ui/configurationdialog.h"
+#include "ui/configurationwidget.h"
 
 #include <KAboutData>
 #include <KConfigDialogManager>
@@ -36,29 +35,23 @@
 #include <QVBoxLayout>
 
 using namespace Akregator;
+using namespace feedsync;
 
 K_PLUGIN_FACTORY( KCMAkregatorOnlineSyncConfigFactory, registerPlugin<KCMAkregatorOnlineSyncConfig>(); )
 K_EXPORT_PLUGIN( KCMAkregatorOnlineSyncConfigFactory( "kcmakronlinesyncconfig" ) )
 
 KCMAkregatorOnlineSyncConfig::KCMAkregatorOnlineSyncConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorOnlineSyncConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
+    : KCModule( KCMAkregatorOnlineSyncConfigFactory::componentData(), parent, args ), m_widget( new ConfigurationWidget )
 {
-    Ui::ConfigurationDialog * ui = new Ui::ConfigurationDialog();
-    ui->setupUi( m_widget );
-
-    dialog = new feedsync::ConfigurationDialog(ui, this);
-
-    // Ui::SettingsOnlineSync ui;
-
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
 
     KAboutData* about = new KAboutData( I18N_NOOP( "kcmakronlinesyncconfig" ), 0,
                                         ki18n( "Configure Online Readers" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
-                                        ki18n( "(c), 2008 Frank Osterfeld" ) );
+                                        ki18n( "(c), 2008 Didier Hoarau" ) );
 
-    about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
+    about->addAuthor( ki18n( "Didier Hoarau" ), KLocalizedString(), "did.hoarau@gmail.com" );
     setAboutData( about );
 
     addConfig( OnlineSyncSettings::self(), m_widget );
@@ -66,7 +59,6 @@ KCMAkregatorOnlineSyncConfig::KCMAkregatorOnlineSyncConfig( QWidget* parent, con
 
 KCMAkregatorOnlineSyncConfig::~KCMAkregatorOnlineSyncConfig()
 {
-    delete dialog;
 }
 
 
