@@ -1,15 +1,9 @@
-#ifndef UI_CONFIGURATIONDIALOGADD_H
-#define UI_CONFIGURATIONDIALOGADD_H
-namespace Ui 
-{
-    class ConfigurationDialogAdd {};
-}
-#endif
-
 #ifndef CONFIGURATIONFRAMEADD_H
 #define CONFIGURATIONFRAMEADD_H
- 
+
 #include <KDialog>
+
+#include "ui_configurationdialogadd.h"
 
 
 namespace feedsync
@@ -23,15 +17,14 @@ class ConfigurationDialogAdd : public KDialog
         ~ConfigurationDialogAdd();
         void load( const KConfigGroup &group );
 
+    public Q_SLOTS:
+        /* reimp */ void accept();
+
     private:
-        Ui::ConfigurationDialogAdd * ui;
-        void check();
+        Ui::ConfigurationDialogAdd ui;
         QString _baseconfigname;
 
     protected Q_SLOTS:
-        virtual void slotButtonClicked(int button);
-        void slotDelayedInit();
-        void slotFinished();
         void slotUpdateUI();
 };
  
