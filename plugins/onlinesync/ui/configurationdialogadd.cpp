@@ -17,11 +17,6 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(paren
     setMainWidget( widget );
 
     setWindowTitle( i18n("Modify Online Reader Account") );
-    ui.groupReaderType->setTitle( i18n("Type of Reader") );
-    ui.groupGoogleReader->setTitle( i18n("Parameters") );
-    ui.lAccountGoogleReader->setText( i18n("Account") );
-    ui.lPasswordGoogleReader->setText( i18n("Password") );
-
     ui.cb_AggregatorType->addItem( i18n("Google Reader") , QVariant("GoogleReader") );
     /* TODO OPML not available for the first version
     ui.cb_AggregatorType->addItem( i18n("OPML file") , QVariant("Opml") ); */
@@ -62,7 +57,7 @@ void ConfigurationDialogAdd::accept()
         generalGroup.config()->sync();
     } else if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "Opml") {
 
-        if (ui.le_filenameOpml->text()=="")
+        if (ui.filerequester->url().isEmpty() )
             return;
         // Remove old
         if (_baseconfigname != "") {
@@ -71,10 +66,11 @@ void ConfigurationDialogAdd::accept()
         }
         // Insert new
         KConfig config("akregator_feedsyncrc");
-        KConfigGroup generalGroup( &config, "FeedSyncSource_Opml" + ui.le_filenameOpml->text() );
+        const KUrl url = ui.filerequester->url();
+        KConfigGroup generalGroup( &config, "FeedSyncSource_Opml" + url.url() );
         generalGroup.writeEntry( "AggregatorType", ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) );
-        generalGroup.writeEntry( "Filename", ui.le_filenameOpml->text() );
-        generalGroup.writeEntry( "Identifier", ui.le_filenameOpml->text() );
+        generalGroup.writeEntry( "Filename", url.url() );
+        generalGroup.writeEntry( "Identifier", url.url() );
         generalGroup.config()->sync();
     }
 }
@@ -93,7 +89,7 @@ void ConfigurationDialogAdd::load( const KConfigGroup& group )
 
     } else if ( group.readEntry( "AggregatorType", QString() ) == "Opml") {
 
-        ui.le_filenameOpml->setText( group.readEntry( "Filename", QString() ) );
+        ui.filerequester->setUrl( group.readEntry( "Filename", QString() ) );
 
     } else {
 

@@ -8,8 +8,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>444</height>
+    <width>390</width>
+    <height>161</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -21,126 +21,91 @@
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3" >
-   <item>
-    <widget class="QGroupBox" name="groupReaderType" >
-     <property name="title" >
-      <string>Type of reader</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" >
-      <item>
-       <widget class="QComboBox" name="cb_AggregatorType" />
-      </item>
-     </layout>
-    </widget>
+  <layout class="QGridLayout" name="gridLayout" >
+   <item row="0" column="0" >
+    <layout class="QGridLayout" name="gridLayout_3" >
+     <item row="0" column="0" >
+      <widget class="QLabel" name="label" >
+       <property name="text" >
+        <string>Type:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" >
+      <widget class="QComboBox" name="cb_AggregatorType" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item>
-    <widget class="QGroupBox" name="groupGoogleReader" >
-     <property name="title" >
-      <string>Parameters</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout" >
-      <item>
+   <item row="1" column="0" >
+    <widget class="QWidget" native="1" name="groupGoogleReader" >
+     <layout class="QFormLayout" name="formLayout" >
+      <property name="fieldGrowthPolicy" >
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="0" column="0" >
        <widget class="QLabel" name="lAccountGoogleReader" >
         <property name="text" >
-         <string>Account</string>
+         <string>Login:</string>
         </property>
        </widget>
       </item>
-      <item>
+      <item row="0" column="1" >
        <widget class="QLineEdit" name="le_loginGoogleReader" />
       </item>
-      <item>
-       <widget class="QLabel" name="lPasswordGoogleReader" >
-        <property name="text" >
-         <string>Password</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+      <item row="1" column="1" >
        <widget class="QLineEdit" name="le_passwdGoogleReader" >
         <property name="echoMode" >
          <enum>QLineEdit::Password</enum>
         </property>
        </widget>
       </item>
-      <item>
-       <spacer name="verticalSpacer" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0" >
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupOpml" >
-     <property name="title" >
-      <string>Parameters</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4" >
-      <item>
-       <widget class="QLabel" name="label_3" >
+      <item row="1" column="0" >
+       <widget class="QLabel" name="lPasswordGoogleReader" >
         <property name="text" >
-         <string>File</string>
+         <string>Password:</string>
         </property>
        </widget>
       </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2" >
-        <item>
-         <widget class="QLineEdit" name="le_filenameOpml" />
-        </item>
-        <item>
-         <widget class="QPushButton" name="b_filechoosed_2" >
-          <property name="text" >
-           <string>...</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+     </layout>
+     <zorder>lAccountGoogleReader</zorder>
+     <zorder>le_loginGoogleReader</zorder>
+     <zorder>verticalSpacer</zorder>
+     <zorder>le_passwdGoogleReader</zorder>
+     <zorder>lPasswordGoogleReader</zorder>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QWidget" native="1" name="groupOpml" >
+     <layout class="QGridLayout" name="gridLayout_2" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>File:</string>
+        </property>
+       </widget>
       </item>
-      <item>
-       <spacer name="verticalSpacer_2" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0" >
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
+      <item row="0" column="1" >
+       <widget class="KUrlRequester" name="filerequester" />
       </item>
      </layout>
     </widget>
    </item>
-   <item>
-    <spacer name="horizontalSpacer" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Minimum</enum>
-     </property>
-     <property name="sizeHint" stdset="0" >
-      <size>
-       <width>400</width>
-       <height>0</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KUrlRequester</class>
+   <extends>QFrame</extends>
+   <header>kurlrequester.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
