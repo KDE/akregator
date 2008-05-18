@@ -1,5 +1,7 @@
 #include "opml.h"
 
+#include <KConfigGroup>
+
 #include <kdebug.h>
 #include <QFile>
 #include <QTimer>
@@ -8,7 +10,7 @@
 namespace feedsync
 {
 
-Opml::Opml(const KConfigGroup& configgroup) 
+Opml::Opml(const KConfigGroup& configgroup, QObject* parent) : Aggregator( parent ) 
 {
     kDebug();
     _subscriptionList = new SubscriptionList();

@@ -16,7 +16,7 @@ class Opml: public Aggregator
     Q_OBJECT
 
  public:
-    explicit Opml(const KConfigGroup& configgroup);
+    explicit Opml(const KConfigGroup& configgroup, QObject* parent=0);
     ~Opml();
     SubscriptionList * getSubscriptionList() const;
     void load();

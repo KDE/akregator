@@ -6,7 +6,7 @@
 namespace feedsync
 {
 
-SubscriptionList::SubscriptionList()
+SubscriptionList::SubscriptionList( QObject* p ) : QObject( p )
 {
     kDebug();
 }

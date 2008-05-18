@@ -1,13 +1,16 @@
 #include "googlereader.h"
 
+#include <KConfigGroup>
 #include <kdebug.h>
-#include <QDomDocument>
 #include <KLocalizedString>
+
+#include <QDomDocument>
+
 
 namespace feedsync
 {
 
-GoogleReader::GoogleReader(const KConfigGroup& configgroup) 
+GoogleReader::GoogleReader(const KConfigGroup& configgroup, QObject* parent) : Aggregator( parent )
 {
     kDebug();
     setUser(configgroup.readEntry("Login"));

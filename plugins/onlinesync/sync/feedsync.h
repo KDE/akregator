@@ -15,7 +15,7 @@ class FeedSync : public QObject
     Q_OBJECT
 
  public:
-    FeedSync();
+    explicit FeedSync( QObject* parent=0 );
     ~FeedSync();
     enum SyncType { Get, Send };
 

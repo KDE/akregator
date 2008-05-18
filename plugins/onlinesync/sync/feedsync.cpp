@@ -23,7 +23,7 @@
 
 namespace feedsync {
 
-FeedSync::FeedSync() {
+FeedSync::FeedSync( QObject* p ) : QObject( p ) {
     kDebug();
     _aggrSend = 0;
     _aggrGet = 0;
@@ -184,18 +184,10 @@ void FeedSync::slotAddDone() {
 
 void FeedSync::slotRemoveDone() {
     kDebug();
-    if (_aggrSend!=0) {
-        delete _aggrSend;
-    }
-    if (_aggrGet!=0) {
-        delete _aggrGet;
-    }
-    if (tmp_removelist!=0) {
-        delete tmp_removelist;
-    }
-    if (tmp_addlist!=0) {
-        delete tmp_addlist;
-    }
+    delete _aggrSend;
+    delete _aggrGet;
+    delete tmp_removelist;
+    delete tmp_addlist;
 }
 
 void FeedSync::error(const QString& msg) {
@@ -209,19 +201,10 @@ void FeedSync::error(const QString& msg) {
     }
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.exec();
-
-    if (_aggrSend!=0) {
-        delete _aggrSend;
-    }
-    if (_aggrGet!=0) {
-        delete _aggrGet;
-    }
-    if (tmp_removelist!=0) {
-        delete tmp_removelist;
-    }
-    if (tmp_addlist!=0) {
-        delete tmp_addlist;
-    }
+    delete _aggrSend;
+    delete _aggrGet;
+    delete tmp_removelist;
+    delete tmp_addlist;
 }
 
 // Create a log

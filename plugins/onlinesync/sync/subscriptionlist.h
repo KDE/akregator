@@ -11,7 +11,7 @@ class SubscriptionList: public QObject
     Q_OBJECT
 
  public:
-    SubscriptionList();
+    explicit SubscriptionList( QObject* parent=0 );
     ~SubscriptionList();
     void add(const QString& iRss, const QString& iName, const QString& iCat);
     void remove(const QString& iRss, const QString& iName, const QString& iCat);

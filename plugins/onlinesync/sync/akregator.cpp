@@ -4,23 +4,22 @@
 #include "subscriptionlist.h"
 
 #include <kdebug.h>
-#include <QDomDocument>
+#include <QStringList>
 #include <QTimer>
 
 
 namespace feedsync
 {
 
-Akregator::Akregator() 
+Akregator::Akregator( QObject* p ) : Aggregator( p ) 
 {
     kDebug();
-    _subscriptionList = new SubscriptionList();
+    _subscriptionList = new SubscriptionList( this );
 }
 
 Akregator::~Akregator() 
 {
     kDebug();
-    delete _subscriptionList;
 }
 
 SubscriptionList * Akregator::getSubscriptionList() const 

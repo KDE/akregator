@@ -8,6 +8,8 @@
 #include "aggregator.h"
 #include "subscriptionlist.h"
 
+class KConfigGroup;
+
 namespace feedsync
 {
 
@@ -16,7 +18,7 @@ class GoogleReader: public Aggregator
     Q_OBJECT
 
  public:
-    explicit GoogleReader(const KConfigGroup& configgroup);
+    explicit GoogleReader(const KConfigGroup& configgroup, QObject* parent=0);
     ~GoogleReader();
     SubscriptionList * getSubscriptionList() const;
     void load();

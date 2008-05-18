@@ -16,7 +16,7 @@ class Akregator: public Aggregator
 
  public:
 
-    Akregator();
+    explicit Akregator( QObject* parent=0 );
     ~Akregator();
     SubscriptionList * getSubscriptionList() const;
     void load();
