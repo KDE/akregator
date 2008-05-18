@@ -5,7 +5,6 @@
 
 #include "aggregator.h"
 
-class QDomDocument;
 class SubscriptionList;
 
 namespace feedsync
@@ -27,7 +26,6 @@ class Akregator: public Aggregator
 
  private:
     SubscriptionList * _subscriptionList;
-    QDomDocument * _xmlDoc;
 
  protected Q_SLOTS:
     void sendSignalLoadDone();

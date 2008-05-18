@@ -82,7 +82,7 @@ void FeedSync::sync() {
         _aggrSend = m_akr;
     }
 
-    if (_aggrSend==0 or _aggrGet==0) {
+    if (_aggrSend==0 || _aggrGet==0) {
         // TODO Notification
         kDebug() << "Error loading configuration";
     }
