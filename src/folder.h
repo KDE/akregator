@@ -99,6 +99,8 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
 
         QVector<const Feed*> feeds() const;
         QVector<Feed*> feeds();
+        QVector<const Folder*> folders() const;
+        QVector<Folder*> folders();
 
         int indexOf( const TreeNode* node ) const;
         

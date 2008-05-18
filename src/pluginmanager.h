@@ -30,8 +30,6 @@ class Plugin;
 class AKREGATORPART_EXPORT PluginManager
 {
     public:
-        /** Bump this number whenever the plugin framework gets incompatible with older versions */
-        static const int FrameworkVersion = 1;
 
         /**
          * It will return a list of services that match your

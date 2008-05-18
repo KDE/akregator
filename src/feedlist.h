@@ -26,7 +26,11 @@
 #define AKREGATOR_FEEDLIST_H
 
 #include "akregator_export.h"
+
+#include "feedlistmanagementinterface.h"
+
 #include <QObject>
+#include <QPointer>
 
 class QDomDocument;
 class QDomNode;
@@ -38,6 +42,7 @@ namespace Akregator {
 
 class Article;
 class Feed;
+class FeedList;
 class Folder;
 class TreeNode;
 
@@ -45,11 +50,28 @@ namespace Backend {
     class Storage;
 }
 
+
+class AKREGATORPART_EXPORT FeedListManagementImpl : public FeedListManagementInterface {
+public:
+    explicit FeedListManagementImpl( FeedList* list=0 );
+    void setFeedList( FeedList* list );
+    
+    /* reimp */ QStringList categories() const;
+    /* reimp */ QStringList feeds( const QString& catId ) const;
+    /* reimp */ void addFeed( const QString& url, const QString& catId );
+    /* reimp */ void removeFeed( const QString& url, const QString& catId );
+    /* reimp */ QString addCategory( const QString& name, const QString& parentId ) const;
+    /* reimp */ QString getCategoryName( const QString& catId ) const;
+
+private:
+    QPointer<FeedList> m_feedList;
+};
+
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
 class AKREGATORPART_EXPORT FeedList : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
 
     explicit FeedList(Akregator::Backend::Storage* storage, QObject *parent = 0);
@@ -80,6 +102,12 @@ public:
     QVector<Feed*> feeds();
     
     QVector<int> feedIds() const;
+
+    /**
+     * returns all folders in this list 
+     */
+    QVector<const Folder*> folders() const;
+    QVector<Folder*> folders();
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
     

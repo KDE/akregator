@@ -130,7 +130,6 @@ QList<TreeNode*> Folder::children()
     return d->children;
 }
 
-
 QVector<const Feed*> Folder::feeds() const
 {
     QHash<int, const Feed*> feedsById;
@@ -147,6 +146,26 @@ QVector<Feed*> Folder::feeds()
         Q_FOREACH ( Feed* j, i->feeds() )
             feedsById.insert( j->id(), j );
     return feedsById.values().toVector();    
+}
+
+QVector<const Folder*> Folder::folders() const
+{
+    QHash<int, const Folder*> foldersById;
+    foldersById.insert( id(), this );
+    Q_FOREACH( const TreeNode* i, d->children )
+        Q_FOREACH ( const Folder* j, i->folders() )
+            foldersById.insert( j->id(), j );
+    return foldersById.values().toVector();
+}
+
+QVector<Folder*> Folder::folders()
+{
+    QHash<int, Folder*> foldersById;
+    foldersById.insert( id(), this );
+    Q_FOREACH( TreeNode* i, d->children )
+        Q_FOREACH ( Folder* j, i->folders() )
+            foldersById.insert( j->id(), j );
+    return foldersById.values().toVector();    
 }
 
 int Folder::indexOf( const TreeNode* node ) const

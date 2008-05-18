@@ -29,13 +29,19 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 
+#include "kernel.h"
+#include "subscriptionlistjobs.h"
+
 #include <kdebug.h>
 #include <klocale.h>
 #include <krandom.h>
 
 #include <qdom.h>
 #include <QHash>
+#include <QSet>
 #include <QTime>
+
+#include <cassert>
 
 namespace Akregator {
 
@@ -182,6 +188,19 @@ QVector<const Feed*> FeedList::feeds() const
 QVector<Feed*> FeedList::feeds()
 {
     return d->rootNode->feeds();
+}
+
+QVector<const Folder*> FeedList::folders() const
+{
+    QVector<const Folder*> constList;
+    Q_FOREACH( const Folder* const i, d->rootNode->folders() )
+        constList.append( i );
+    return constList;
+}
+
+QVector<Folder*> FeedList::folders()
+{
+    return d->rootNode->folders();
 }
 
 void FeedList::addNode(TreeNode* node, bool preserveID)
@@ -451,6 +470,131 @@ void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
         return;
     removeNode(node);
     emit signalNodeRemoved( node );
+}
+
+FeedListManagementImpl::FeedListManagementImpl( FeedList* list ) : m_feedList( list )
+{
+    
+}
+
+void FeedListManagementImpl::setFeedList( FeedList* list )
+{
+    m_feedList = list;
+}
+
+static QString path_of_folder( const Folder* fol )
+{
+    assert( fol );
+    QString path;
+    const Folder* i = fol;
+    while ( i ) {
+        path = QString::number( i->id() ) + '/' + path;
+        i = i->parent();
+    }
+    return path;
+}
+
+QStringList FeedListManagementImpl::categories() const
+{
+    if ( !m_feedList )
+        return QStringList();
+    QStringList cats;
+    Q_FOREACH ( const Folder* const i, m_feedList->folders() )
+        cats.append( path_of_folder( i ) );
+    return cats;
+}
+
+QStringList FeedListManagementImpl::feeds( const QString& catId ) const
+{
+    if ( !m_feedList )
+        return QStringList();
+
+    uint lastcatid = catId.split("/",QString::SkipEmptyParts).last().toInt();
+
+    QSet<QString> urls;
+    Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
+        if ( lastcatid == i->parent()->id() ) {
+            urls.insert( i->xmlUrl() );
+        }
+    }
+    return urls.toList();
+}
+
+void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
+{
+    if ( !m_feedList )
+        return;
+
+    kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
+    uint folder_id = catId.split("/",QString::SkipEmptyParts).last().toUInt();
+
+    // Get the folder
+    Folder * m_folder = 0;
+    QVector<Folder*> vector = m_feedList->folders();
+    for (int i = 0; i < vector.size(); ++i) {
+        if (vector.at(i)->id() == folder_id) {
+            m_folder = vector.at(i);
+            i = vector.size();
+        }
+    }
+
+    // Create new feed
+    std::auto_ptr<FeedList> new_feedlist( new FeedList( Kernel::self()->storage() ) );
+    Feed * new_feed = new Feed( Kernel::self()->storage() );
+    new_feed->setXmlUrl(url);
+    // new_feed->setTitle(url);
+    new_feedlist->rootNode()->appendChild(new_feed);
+
+    // Get last in the folder
+    TreeNode* m_last = m_folder->childAt( m_folder->totalCount() );
+
+    // Add the feed
+    m_feedList->append(new_feedlist.get(), m_folder, m_last);
+}
+
+void FeedListManagementImpl::removeFeed( const QString& url, const QString& catId )
+{
+    kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
+
+    uint lastcatid = catId.split("/",QString::SkipEmptyParts).last().toInt();
+
+    Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
+        if ( lastcatid == i->parent()->id() ) {
+            if (i->xmlUrl().compare(url)==0) {
+                kDebug() << "id:" << i->id();
+                DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
+                job->setSubscriptionId( i->id() );
+                job->start();
+            }
+        }
+    }
+}
+
+QString FeedListManagementImpl::addCategory( const QString& name, const QString& parentId ) const
+{
+    if ( !m_feedList )
+        return "";
+
+    Folder * m_folder = new Folder(name);
+    m_feedList->rootNode()->appendChild(m_folder);
+
+    return QString::number(m_folder->id());
+}
+
+QString FeedListManagementImpl::getCategoryName( const QString& catId ) const
+{
+    QString catname;
+
+    if ( !m_feedList )
+        return catname;
+
+    QStringList list = catId.split("/",QString::SkipEmptyParts);
+    for (int i=0;i<list.size();i++) {
+        int index = list.at(i).toInt();
+        catname += m_feedList->findByID(index)->title() + "/";
+    }
+
+    return catname;
 }
 
 } // namespace Akregator

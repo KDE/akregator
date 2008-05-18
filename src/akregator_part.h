@@ -32,7 +32,6 @@
 
 class KConfigGroup;
 class KUrl;
-class KParts::BrowserExtension;
 
 class QDomDocument;
 class QTimer;
@@ -148,8 +147,8 @@ class Part : public MyBasePart
     /** @return Whether the tray icon is enabled or not */
         bool isTrayIconEnabled() const;
 
-        /** loads all Akregator plugins */
-        void loadPlugins();
+        /** loads all Akregator storage plugins */
+        void loadStoragePlugins();
 
         /** This must be implemented by each part */
         bool openFile();

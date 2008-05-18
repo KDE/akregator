@@ -44,7 +44,7 @@ PluginManager::query( const QString& constraint )
     // Add versioning constraint
     QString
     str  = "[X-KDE-akregator-framework-version] == ";
-    str += QString::number( FrameworkVersion );
+    str += QString::number( AKREGATOR_PLUGIN_INTERFACE_VERSION );
     str += " and ";
     if (!constraint.trimmed().isEmpty())
         str += constraint + " and ";

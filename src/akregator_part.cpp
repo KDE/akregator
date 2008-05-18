@@ -50,14 +50,14 @@
 #include <kfiledialog.h>
 #include <kglobalsettings.h>
 #include <kmessagebox.h>
-#include <KCMultiDialog>
-
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
 #include <kservice.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
-#include <kparts/genericfactory.h>
+#include <KParts/GenericFactory>
+#include <KParts/Plugin>
+#include <KSettings/Dialog>
 
 #include <QFile>
 #include <QObject>
@@ -101,7 +101,9 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
        , m_storage(0)
 
 {
-    // we need an instance
+    setPluginLoadingMode( LoadPluginsIfEnabled );
+    setPluginInterfaceVersion( AKREGATOR_PLUGIN_INTERFACE_VERSION );
+    
     setComponentData( AkregatorFactory::componentData() );
 
     new PartAdaptor( this );
@@ -114,12 +116,12 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
 
     Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
     Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
-    loadPlugins(); // FIXME: also unload them!
+    loadStoragePlugins(); // FIXME: also unload them!
 
     m_storage = 0;
-    Backend::StorageFactory* factory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
-    if (factory != 0)
-        m_storage = factory->createStorage(QStringList());
+    Backend::StorageFactory* storageFactory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
+    if (storageFactory != 0)
+        m_storage = storageFactory->createStorage(QStringList());
 
     if (!m_storage) // Houston, we have a problem
     {
@@ -171,7 +173,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
 
     connect(kapp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 
-    m_autosaveTimer = new QTimer(this);
+    m_autosaveTimer = new QTimer(this); 
     connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
     m_autosaveTimer->start(5*60*1000); // 5 minutes
 
@@ -187,12 +189,10 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     Syndication::FileRetriever::setUserAgent( useragent );
 }
 
-void Part::loadPlugins()
+void Part::loadStoragePlugins()
 {
-    // "[X-KDE-akregator-plugintype] == 'storage'"
-    KService::List offers = PluginManager::query();
-
-    for( KService::List::ConstIterator it = offers.begin(), end = offers.end(); it != end; ++it )
+    KService::List offers = PluginManager::query( "[X-KDE-akregator-plugintype] == 'storage'" );
+    for ( KService::List::ConstIterator it = offers.begin(), end = offers.end(); it != end; ++it )
     {
         Akregator::Plugin* plugin = PluginManager::createFromService(*it);
         if (plugin)
@@ -633,20 +633,14 @@ void Part::showOptions()
 {
     saveSettings();
 
-    QPointer<KCMultiDialog> dlg( new KCMultiDialog( m_mainWidget ) );
+    QStringList parts;
+    parts.append( componentData().componentName() );
+    QPointer<KSettings::Dialog> dlg( new KSettings::Dialog( parts, m_mainWidget ) );
     dlg->setModal( true );
     connect( dlg, SIGNAL( configCommitted() ),
              this, SLOT( slotSettingsChanged() ) );
-
     connect( dlg, SIGNAL( configCommitted() ),
              TrayIcon::getInstance(), SLOT( settingsChanged() ) );
-
-    dlg->addModule( "akregator_config_general.desktop" );
-    dlg->addModule( "akregator_config_appearance.desktop" );
-    dlg->addModule( "akregator_config_archive.desktop" );
-    dlg->addModule( "akregator_config_browser.desktop" );
-    dlg->addModule( "akregator_config_advanced.desktop" );
-
     dlg->exec();
     delete dlg;
 }

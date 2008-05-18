@@ -1,7 +1,7 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 
 add_subdirectory( about ) 
-add_subdirectory( icons ) 
+add_subdirectory( icons )
 
 include_directories (
     ${Boost_INCLUDE_DIR} 
@@ -102,7 +102,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorprivate )
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate )
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 

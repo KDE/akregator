@@ -214,6 +214,8 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
         
         QVector<const Feed*> feeds() const;
         QVector<Feed*> feeds();
+        QVector<const Folder*> folders() const;
+        QVector<Folder*> folders();
         
     public slots:
         /** starts fetching */

@@ -177,6 +177,15 @@ bool Feed::accept(TreeNodeVisitor* visitor)
         return visitor->visitTreeNode(this);
 }
 
+QVector<const Folder*> Feed::folders() const
+{
+    return QVector<const Folder*>();
+}
+
+QVector<Folder*> Feed::folders()
+{
+    return QVector<Folder*>();
+}
 
 QVector<const Feed*> Feed::feeds() const
 {

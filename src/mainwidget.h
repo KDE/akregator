@@ -35,7 +35,6 @@
 #include <QPixmap>
 #include <QWidget>
 
-
 class KConfig;
 class KFileItem;
 class K3ListView;
@@ -52,6 +51,7 @@ class ArticleListView;
 class ArticleViewer;
 class Folder;
 class FeedList;
+class FeedListManagementImpl;
 class Frame;
 class Part;
 class SearchBar;
@@ -262,6 +262,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         bool m_displayingAboutPage;
 
         ActionManagerImpl* m_actionManager;
+        FeedListManagementImpl* const m_feedListManagementInterface;
 };
 
 } // namespace Akregator

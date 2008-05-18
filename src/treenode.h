@@ -120,7 +120,10 @@ public:
 
     virtual QVector<const Feed*> feeds() const = 0;
     virtual QVector<Feed*> feeds() = 0;
-    
+
+    virtual QVector<const Folder*> folders() const = 0;
+    virtual QVector<Folder*> folders() = 0;
+
     virtual TreeNode* childAt( int pos );
     virtual const TreeNode* childAt( int pos ) const;
 

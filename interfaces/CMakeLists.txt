@@ -4,6 +4,7 @@ include_directories( ${Boost_INCLUDE_DIR} )
 
 set(akregatorinterfaces_LIB_SRCS
    command.cpp
+   feedlistmanagementinterface.cpp
    plugin.cpp 
    storagefactoryregistry.cpp 
 )
@@ -21,6 +22,7 @@ install(TARGETS akregatorinterfaces DESTINATION ${LIB_INSTALL_DIR})
 install( FILES akregator_export.h
                article.h
                command.h
+               feedlistmanagementinterface.h
                types.h
                storage.h
                feedstorage.h

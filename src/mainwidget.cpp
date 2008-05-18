@@ -58,7 +58,6 @@
 #include "treenode.h"
 #include "treenodevisitor.h"
 #include "types.h"
-
 #include <solid/networking.h>
 
 #include <kaction.h>
@@ -99,9 +98,15 @@ Akregator::MainWidget::~MainWidget()
 }
 
 Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
- : QWidget(parent), m_feedList( 0 ), m_viewMode(NormalView), m_actionManager(actionManager)
+     : QWidget(parent),
+     m_feedList( 0 ),
+     m_viewMode(NormalView),
+     m_actionManager(actionManager),
+     m_feedListManagementInterface( new FeedListManagementImpl )
 {
     setObjectName(name);
+
+    FeedListManagementInterface::setInstance( m_feedListManagementInterface );
 
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
@@ -291,6 +296,7 @@ void Akregator::MainWidget::slotOnShutdown()
 
     setFeedList( 0 );
     
+    delete m_feedListManagementInterface;
     delete m_feedListView; // call delete here, so that the header settings will get saved
     delete m_articleListView; // same for this one
 
@@ -417,6 +423,7 @@ void Akregator::MainWidget::setFeedList( FeedList* list )
         slotSetTotalUnread();
     }
 
+    m_feedListManagementInterface->setFeedList( m_feedList );
     Kernel::self()->setFeedList( m_feedList);
     ProgressManager::self()->setFeedList( m_feedList );
     m_selectionController->setFeedList( m_feedList );
@@ -1130,5 +1137,6 @@ void Akregator::MainWidget::saveProperties(KConfigGroup & config)
     config.writeEntry("searchLine", m_searchBar->text());
     config.writeEntry("searchCombo", m_searchBar->status());
 }
+
 
 #include "mainwidget.moc"

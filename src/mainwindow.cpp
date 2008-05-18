@@ -68,6 +68,8 @@ BrowserInterface::BrowserInterface( MainWindow *shell, const char *name )
 MainWindow::MainWindow()
     : KParts::MainWindow()
 {
+    setPluginLoadingMode( DoNotLoadPlugins );
+
     // set the shell's ui resource file
     setObjectName("akregator_mainwindow");
     setXMLFile("akregator_shell.rc");
