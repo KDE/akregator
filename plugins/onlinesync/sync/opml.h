@@ -4,7 +4,8 @@
 #include "subscriptionlist.h"
 #include "aggregator.h"
 
-class QFile;
+#include <QFile>
+
 class QApplication;
 class QDomDocument;
 
@@ -26,7 +27,7 @@ class Opml: public Aggregator
 
  private:
     SubscriptionList * _subscriptionList;
-    QFile * _xmlFile;
+    QFile _xmlFile;
     QDomDocument * _xmlDoc;
     bool _loaded;
 

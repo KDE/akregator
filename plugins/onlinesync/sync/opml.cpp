@@ -3,26 +3,27 @@
 #include <KConfigGroup>
 
 #include <kdebug.h>
-#include <QFile>
+
 #include <QTimer>
 #include <QDomDocument>
 
 namespace feedsync
 {
 
-Opml::Opml(const KConfigGroup& configgroup, QObject* parent) : Aggregator( parent ) 
+Opml::Opml(const KConfigGroup& configgroup, QObject* parent)
+    : Aggregator( parent ),
+    _subscriptionList( new SubscriptionList( this ) ),
+    _xmlDoc( 0 ),
+    _xmlFile( configgroup.readEntry("Filename") ),
+    _loaded( false )
 {
     kDebug();
-    _subscriptionList = new SubscriptionList();
-    _xmlFile = new QFile(configgroup.readEntry("Filename"));
-
 }
 
 Opml::~Opml() 
 {
     kDebug();
-    delete _subscriptionList;
-    delete _xmlFile;
+    delete _xmlDoc;
 }
 
 SubscriptionList * Opml::getSubscriptionList() const 
@@ -36,40 +37,40 @@ void Opml::load()
     kDebug();
 
     // If not already done load the file
-    if (_loaded != true) {
+    if ( !_loaded ) {
 
     }
 
     // Read the XML
     _xmlDoc = new QDomDocument("opml");
-    if (!_xmlFile->open(QIODevice::ReadOnly)) {
+    if (!_xmlFile.open(QIODevice::ReadOnly)) {
         kDebug() << "File Error";
         return;
     }
-    if (!_xmlDoc->setContent(_xmlFile)) {
+    if (!_xmlDoc->setContent(&_xmlFile)) {
         kDebug() << "File Error";
-        _xmlFile->close();
+        _xmlFile.close();
         return;
     }
-    _xmlFile->close();
+    _xmlFile.close();
     QDomNodeList nodeList = _xmlDoc->elementsByTagName("outline");
     bool firstCat = true;
-    QString m_cat;
+    QString cat;
     for (int i=0;i<nodeList.count();i++) {
         QDomNode node = nodeList.at(i);
         if (!node.attributes().namedItem("xmlUrl").isNull()) {
             _subscriptionList->add(node.attributes().namedItem("xmlUrl").nodeValue(),
                                    node.attributes().namedItem("title").nodeValue(),
-                                   m_cat);
+                                   cat);
             firstCat = true;
         } else {
             if (firstCat) {
-              m_cat = "";
+              cat = "";
               firstCat = false;
             } else {
-              m_cat = m_cat + "/";
+              cat += '/';
             }
-            m_cat = m_cat + node.attributes().namedItem("text").nodeValue();
+            cat += node.attributes().namedItem("text").nodeValue();
         }
     }
 
