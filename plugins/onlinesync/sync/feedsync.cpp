@@ -27,15 +27,13 @@ FeedSync::FeedSync( QObject* p ) : QObject( p ) {
     kDebug();
     _aggrSend = 0;
     _aggrGet = 0;
-    tmp_removelist = 0;
-    tmp_addlist = 0;
 }
 
 FeedSync::~FeedSync() {
     kDebug();
 }
 
-feedsync::Aggregator * FeedSync::createAggregatorFactory(KConfigGroup configgroup) {
+feedsync::Aggregator * FeedSync::createAggregatorFactory(const KConfigGroup& configgroup) {
     kDebug() << configgroup.readEntry("Identifier");
 
     Aggregator * m_agg;
@@ -68,6 +66,7 @@ void FeedSync::sync() {
     KConfigGroup generalGroup( &config, m_account );
 
     // Init akregator
+    // ### FIXME: this leaks
     Akregator * m_akr = new Akregator();
     m_akr->load();
 
@@ -110,13 +109,13 @@ void FeedSync::slotLoadDone() {
     if (_loadedAggrCount==2) {
 
         // Calculate the add list
-        tmp_addlist = _aggrGet->getSubscriptionList()->compare( _aggrSend->getSubscriptionList(), SubscriptionList::Added );
+        tmp_addlist = _aggrGet->getSubscriptionList().compare( _aggrSend->getSubscriptionList(), SubscriptionList::Added );
 
         // Calculate the remove list
         SubscriptionList::RemovePolicy m_removepolicy = SubscriptionList::Nothing;
         // Calculate the Complete list
-        SubscriptionList * m_checkremove = _aggrGet->getSubscriptionList()->compare(_aggrSend->getSubscriptionList(),SubscriptionList::Removed,SubscriptionList::Feed);
-        if (m_checkremove->count()>0) {
+        SubscriptionList m_checkremove = _aggrGet->getSubscriptionList().compare(_aggrSend->getSubscriptionList(),SubscriptionList::Removed,SubscriptionList::Feed);
+        if (!m_checkremove.isEmpty()) {
             // Check removal policy in the config
             KConfig config("akregator_feedsyncrc");
             KConfigGroup generalGroup( &config, "FeedSyncConfig" );
@@ -160,12 +159,10 @@ void FeedSync::slotLoadDone() {
                 m_removepolicy = SubscriptionList::Nothing;
             }
         }
-        if (m_removepolicy == SubscriptionList::Feed) {
+        if (m_removepolicy == SubscriptionList::Feed)
             tmp_removelist = m_checkremove;
-        } else {
-            delete m_checkremove;
-            tmp_removelist = _aggrGet->getSubscriptionList()->compare( _aggrSend->getSubscriptionList() ,SubscriptionList::Removed, m_removepolicy );
-        }
+        else
+            tmp_removelist = _aggrGet->getSubscriptionList().compare( _aggrSend->getSubscriptionList() ,SubscriptionList::Removed, m_removepolicy );
 
         // Before: log
         log();
@@ -186,8 +183,6 @@ void FeedSync::slotRemoveDone() {
     kDebug();
     delete _aggrSend;
     delete _aggrGet;
-    delete tmp_removelist;
-    delete tmp_addlist;
 }
 
 void FeedSync::error(const QString& msg) {
@@ -203,8 +198,6 @@ void FeedSync::error(const QString& msg) {
     msgBox.exec();
     delete _aggrSend;
     delete _aggrGet;
-    delete tmp_removelist;
-    delete tmp_addlist;
 }
 
 // Create a log
@@ -223,13 +216,13 @@ void FeedSync::log() {
         << QTime::currentTime().toString(Qt::ISODate) << "\n";
 
     out << "To be added:" << "\n";
-    for (int i=0; i<tmp_addlist->count(); i++) {
-        out << "(+) xml:" << tmp_addlist->getRss(i) << " category:" << tmp_addlist->getCat(i) << "\n";
+    for (int i=0; i<tmp_addlist.count(); i++) {
+        out << "(+) xml:" << tmp_addlist.getRss(i) << " category:" << tmp_addlist.getCat(i) << "\n";
     }
 
     out << "To be removed:" << "\n";
-    for (int i=0; i<tmp_removelist->count(); i++) {
-        out << "(-) xml:" << tmp_removelist->getRss(i) << " category:" << tmp_removelist->getCat(i) << "\n";
+    for (int i=0; i<tmp_removelist.count(); i++) {
+        out << "(-) xml:" << tmp_removelist.getRss(i) << " category:" << tmp_removelist.getCat(i) << "\n";
     }
 }
 

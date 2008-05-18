@@ -20,11 +20,11 @@ class GoogleReader: public Aggregator
  public:
     explicit GoogleReader(const KConfigGroup& configgroup, QObject* parent=0);
     ~GoogleReader();
-    SubscriptionList * getSubscriptionList() const;
+    SubscriptionList getSubscriptionList() const;
     void load();
-    void add(SubscriptionList * list);
-    void update(SubscriptionList * list);
-    void remove(SubscriptionList * list);
+    void add(const SubscriptionList & list);
+    void update(const SubscriptionList & list);
+    void remove(const SubscriptionList & list);
 
  protected Q_SLOTS:
     void slotAuthenticationDone(bool error);
@@ -45,11 +45,11 @@ class GoogleReader: public Aggregator
     void setUser(const QString& user);
     void setPassword(const QString& password);
     void setToken(const QString& token);
-    SubscriptionList * _subscriptionList;
+    SubscriptionList _subscriptionList;
     QString _user;
     QString _password;
     int _cursor;
-    SubscriptionList * _cursorList;
+    SubscriptionList _cursorList;
     void genError(const QString& msg);
 
  signals:

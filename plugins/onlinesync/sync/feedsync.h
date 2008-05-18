@@ -3,7 +3,8 @@
 
 #include <QObject>
 
-class SubscriptionList;
+#include "subscriptionlist.h"
+
 class KConfigGroup;
 
 namespace feedsync {
@@ -29,11 +30,11 @@ class FeedSync : public QObject
  private:
     Aggregator * _aggrSend;
     Aggregator * _aggrGet;
-    Aggregator * createAggregatorFactory(KConfigGroup configgroup);
+    Aggregator * createAggregatorFactory(const KConfigGroup & configgroup);
     int _syncstep;
     int _loadedAggrCount;
-    SubscriptionList * tmp_removelist;
-    SubscriptionList * tmp_addlist;
+    SubscriptionList tmp_removelist;
+    SubscriptionList tmp_addlist;
     void log();
 };
 

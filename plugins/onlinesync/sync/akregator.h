@@ -4,8 +4,7 @@
 #include <KApplication>
 
 #include "aggregator.h"
-
-class SubscriptionList;
+#include "subscriptionlist.h"
 
 namespace feedsync
 {
@@ -18,14 +17,14 @@ class Akregator: public Aggregator
 
     explicit Akregator( QObject* parent=0 );
     ~Akregator();
-    SubscriptionList * getSubscriptionList() const;
+    SubscriptionList getSubscriptionList() const;
     void load();
-    void add(SubscriptionList * list);
-    void update(SubscriptionList * list);
-    void remove(SubscriptionList * list);
+    void add(const SubscriptionList & list);
+    void update(const SubscriptionList & list);
+    void remove(const SubscriptionList & list);
 
  private:
-    SubscriptionList * _subscriptionList;
+    SubscriptionList _subscriptionList;
 
  protected Q_SLOTS:
     void sendSignalLoadDone();

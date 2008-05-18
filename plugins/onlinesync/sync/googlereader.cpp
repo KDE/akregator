@@ -15,14 +15,12 @@ GoogleReader::GoogleReader(const KConfigGroup& configgroup, QObject* parent) : A
     kDebug();
     setUser(configgroup.readEntry("Login"));
     setPassword(configgroup.readEntry("Password"));
-    _subscriptionList = new SubscriptionList();
     _cursor=0;
 }
 
 GoogleReader::~GoogleReader() 
 {
     kDebug();
-    delete _subscriptionList;
 }
 
 void GoogleReader::load() 
@@ -44,10 +42,10 @@ void GoogleReader::load()
     connect(http, SIGNAL(done(bool)), this, SLOT(slotAuthenticationDone(bool)));
 }
 
-void GoogleReader::add(SubscriptionList * list) 
+void GoogleReader::add(const SubscriptionList & list) 
 {
     // End
-    if (_cursor==list->count()) {
+    if (_cursor==list.count()) {
         _cursor=0;
         // Emit signal
         emit addDone();
@@ -58,36 +56,37 @@ void GoogleReader::add(SubscriptionList * list)
     QByteArray data;
 
     // Add new: if not in the know list of feed and if not added before
-    if ( (getSubscriptionList()->indexOf(list->getRss(_cursor))<0) && (list->indexOf(list->getRss(_cursor))>=_cursor) ) {
+    if ( (getSubscriptionList().indexOf(list.getRss(_cursor))<0) && (list.indexOf(list.getRss(_cursor))>=_cursor) ) {
         kDebug() << "New";
-        data.append(QString(    QString("s=feed/")+list->getRss(_cursor)
+        data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=subscribe")
                                 +QString("&T=")+getToken()
                                 +QString("&client=contact:")+getUser()
                     ).toUtf8());
-        if (!list->getCat(_cursor).isEmpty()) {
-            data.append(QString(QString("&a=user/-/label/")+list->getCat(_cursor,SubscriptionList::Simple)).toUtf8());
+        if (!list.getCat(_cursor).isEmpty()) {
+            data.append(QString(QString("&a=user/-/label/")+list.getCat(_cursor,SubscriptionList::Simple)).toUtf8());
         }
 
     // Add tag
     } else {
         kDebug() << "Add Tag";
-        data.append(QString(    QString("s=feed/")+list->getRss(_cursor)
+        data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=edit")
-                                +QString("&a=user/-/label/")+list->getCat(_cursor,SubscriptionList::Simple)
+                                +QString("&a=user/-/label/")+list.getCat(_cursor,SubscriptionList::Simple)
                                 +QString("&T=")+getToken()
                                 +QString("&client=contact:")+getUser()
                     ).toUtf8());
     }
 
     // keep the list of feeds synchronized
-    getSubscriptionList()->add(list->getRss(_cursor), list->getName(_cursor), list->getCat(_cursor));
+    getSubscriptionList().add(list.getRss(_cursor), list.getName(_cursor), list.getCat(_cursor));
 
     QHttpRequestHeader header("POST","http://www.google.com/reader/api/0/subscription/edit");
     header.setValue("Host", "http://www.google.com");
     header.setValue("Cookie", "SID="+getSID());
     header.setContentType("application/x-www-form-urlencoded");
     header.setContentLength(data.length());
+    // FIXME: this is leaking
     http = new QHttp();
     http->setHost("www.google.com",QHttp::ConnectionModeHttp);
     http->request(header,data);
@@ -95,7 +94,7 @@ void GoogleReader::add(SubscriptionList * list)
     _cursor++;
 }
 
-void GoogleReader::update(SubscriptionList * list) 
+void GoogleReader::update(const SubscriptionList & list) 
 {
     kDebug();
 
@@ -103,10 +102,10 @@ void GoogleReader::update(SubscriptionList * list)
     emit updateDone();
 }
 
-void GoogleReader::remove(SubscriptionList * list) 
+void GoogleReader::remove(const SubscriptionList & list) 
 {
     // End
-    if (_cursor==list->count()) {
+    if (_cursor==list.count()) {
         _cursor=0;
         // Emit signal
         emit removeDone();
@@ -117,9 +116,9 @@ void GoogleReader::remove(SubscriptionList * list)
     QByteArray data;
 
     // Revove: if all as to be removed and if this is the first occurence
-    if ( (getSubscriptionList()->countRss(list->getRss(_cursor))==list->countRss(list->getRss(_cursor))) && (list->indexOf(list->getRss(_cursor))==_cursor) ) {
+    if ( (getSubscriptionList().countRss(list.getRss(_cursor))==list.countRss(list.getRss(_cursor))) && (list.indexOf(list.getRss(_cursor))==_cursor) ) {
         kDebug() << "Remove";
-        data.append(QString(    QString("s=feed/")+list->getRss(_cursor)
+        data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=unsubscribe")
                                 +QString("&T=")+getToken()
                                 +QString("&client=contact:")+getUser()
@@ -128,9 +127,9 @@ void GoogleReader::remove(SubscriptionList * list)
     // Remove tag
     } else {
         kDebug() << "Remove Tag";
-        data.append(QString(    QString("s=feed/")+list->getRss(_cursor)
+        data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=edit")
-                                +QString("&r=user/-/label/")+list->getCat(_cursor,SubscriptionList::Simple)
+                                +QString("&r=user/-/label/")+list.getCat(_cursor,SubscriptionList::Simple)
                                 +QString("&T=")+getToken()
                                 +QString("&client=contact:")+getUser()
                     ).toUtf8());
@@ -141,6 +140,7 @@ void GoogleReader::remove(SubscriptionList * list)
     header.setValue("Cookie", "SID="+getSID());
     header.setContentType("application/x-www-form-urlencoded");
     header.setContentLength(data.length());
+    // FIXME: this is leaking
     http = new QHttp();
     http->setHost("www.google.com",QHttp::ConnectionModeHttp);
     http->request(header,data);
@@ -225,7 +225,7 @@ void GoogleReader::slotListDone(bool error)
         while(!nodeCat.isNull()) {
             QString m_cat = nodeCat.firstChild().nextSibling().firstChild().toText().data();
             // add to sub list
-            _subscriptionList->add(m_rss,m_name,m_cat);
+            _subscriptionList.add(m_rss,m_name,m_cat);
             nodeCat = nodeCat.nextSibling();
             hasCat = true;
         }
@@ -233,7 +233,7 @@ void GoogleReader::slotListDone(bool error)
         // If there is no categories
         if (hasCat == false) {
             // add to sub list
-            _subscriptionList->add(m_rss,m_name,"");
+            _subscriptionList.add(m_rss,m_name,"");
         }
 
         // next sub
@@ -245,6 +245,7 @@ void GoogleReader::slotListDone(bool error)
     QHttpRequestHeader header("GET", QString("http://www.google.com/reader/api/0/token?client=contact:")+getUser());
     header.setValue("Host", "http://www.google.com");
     header.setValue("Cookie", "SID="+getSID());
+    // FIXME: this is leaking
     http = new QHttp();
     http->setHost("www.google.com");
     http->request(header);
@@ -274,6 +275,7 @@ void GoogleReader::slotAuthenticationDone(bool error)
     QHttpRequestHeader header("GET", "http://www.google.com/reader/api/0/subscription/list");
     header.setValue("Host", "http://www.google.com");
     header.setValue("Cookie", "SID="+getSID());
+    // FIXME: this is leaking
     http = new QHttp();
     http->setHost("www.google.com");
     http->request(header);
@@ -292,7 +294,7 @@ QString GoogleReader::getPassword() const
     return _password;
 }
 
-SubscriptionList * GoogleReader::getSubscriptionList() const 
+SubscriptionList GoogleReader::getSubscriptionList() const 
 {
     return _subscriptionList;
 }

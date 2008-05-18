@@ -19,14 +19,14 @@ class Opml: public Aggregator
  public:
     explicit Opml(const KConfigGroup& configgroup, QObject* parent=0);
     ~Opml();
-    SubscriptionList * getSubscriptionList() const;
+    SubscriptionList getSubscriptionList() const;
     void load();
-    void add(SubscriptionList * list);
-    void update(SubscriptionList * list);
-    void remove(SubscriptionList * list);
+    void add(const SubscriptionList & list);
+    void update(const SubscriptionList & list);
+    void remove(const SubscriptionList & list);
 
  private:
-    SubscriptionList * _subscriptionList;
+    SubscriptionList _subscriptionList;
     QFile _xmlFile;
     QDomDocument * _xmlDoc;
     bool _loaded;

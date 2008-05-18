@@ -12,7 +12,6 @@ namespace feedsync
 
 Opml::Opml(const KConfigGroup& configgroup, QObject* parent)
     : Aggregator( parent ),
-    _subscriptionList( new SubscriptionList( this ) ),
     _xmlDoc( 0 ),
     _xmlFile( configgroup.readEntry("Filename") ),
     _loaded( false )
@@ -26,7 +25,7 @@ Opml::~Opml()
     delete _xmlDoc;
 }
 
-SubscriptionList * Opml::getSubscriptionList() const 
+SubscriptionList Opml::getSubscriptionList() const 
 {
     kDebug();
     return _subscriptionList;
@@ -59,9 +58,9 @@ void Opml::load()
     for (int i=0;i<nodeList.count();i++) {
         QDomNode node = nodeList.at(i);
         if (!node.attributes().namedItem("xmlUrl").isNull()) {
-            _subscriptionList->add(node.attributes().namedItem("xmlUrl").nodeValue(),
-                                   node.attributes().namedItem("title").nodeValue(),
-                                   cat);
+            _subscriptionList.add(node.attributes().namedItem("xmlUrl").nodeValue(),
+                                  node.attributes().namedItem("title").nodeValue(),
+                                  cat);
             firstCat = true;
         } else {
             if (firstCat) {
@@ -83,20 +82,20 @@ void Opml::sendSignalLoadDone()
     emit loadDone();
 }
 
-void Opml::add(SubscriptionList * list) 
+void Opml::add(const SubscriptionList & list) 
 {
     kDebug();
     QDomNode nodeList = _xmlDoc->documentElement().firstChild().nextSibling();
 
     QString m_rss;
-    for (int i=0;i<list->count();i++) {
-        m_rss = list->getRss(i);
+    for (int i=0;i<list.count();i++) {
+        m_rss = list.getRss(i);
 
         // Create element
         QDomElement m_element = _xmlDoc->createElement("outline");
-        m_element.setAttribute(QString("title"),list->getName(i));
+        m_element.setAttribute(QString("title"),list.getName(i));
         m_element.setAttribute(QString("type"),QString("rss"));
-        m_element.setAttribute(QString("text"),list->getName(i));
+        m_element.setAttribute(QString("text"),list.getName(i));
         m_element.setAttribute(QString("xmlUrl"),m_rss);
 
         // append
@@ -117,7 +116,7 @@ void Opml::add(SubscriptionList * list)
     emit addDone();
 }
 
-void Opml::update(SubscriptionList * list) 
+void Opml::update(const SubscriptionList & list) 
 {
     kDebug();
 
@@ -125,7 +124,7 @@ void Opml::update(SubscriptionList * list)
     emit updateDone();
 }
 
-void Opml::remove(SubscriptionList * list) 
+void Opml::remove(const SubscriptionList & list) 
 {
     kDebug();
 
