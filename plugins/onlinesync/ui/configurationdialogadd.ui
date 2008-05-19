@@ -18,9 +18,6 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="windowTitle" >
-   <string>Form</string>
-  </property>
   <layout class="QGridLayout" name="gridLayout" >
    <item row="0" column="0" >
     <layout class="QGridLayout" name="gridLayout_3" >
