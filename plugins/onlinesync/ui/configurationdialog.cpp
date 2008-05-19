@@ -8,14 +8,14 @@ using namespace feedsync;
 ConfigurationDialog::ConfigurationDialog( QWidget *parent) : KDialog( parent )
 {
     kDebug();
-    m_widget = new ConfigurationWidget( this );
-    setMainWidget( m_widget );
+    m_widget = new Ui::ConfigurationWidget( /*this*/ );
+    //setMainWidget( m_widget );
     setWindowTitle( i18n("Online Reader Configuration") );
 }
 
 void ConfigurationDialog::accept() {
     kDebug();
-    m_widget->save();
+    //m_widget->save();
     KDialog::accept();
 }
 

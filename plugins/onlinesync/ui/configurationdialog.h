@@ -1,15 +1,12 @@
 #ifndef CONFIGURATIONWIDGET_H
 #define CONFIGURATIONWIDGET_H
 
-#include "ui_configurationdialog.h"
+#include "ui_configurationwidget.h"
 
 #include <KDialog>
 
 namespace feedsync
 {
-
-class ConfigurationWidget;
-
 class ConfigurationDialog : public KDialog
 {
     Q_OBJECT
@@ -20,7 +17,7 @@ class ConfigurationDialog : public KDialog
         /* reimp */ void accept();
         
     private:
-        ConfigurationWidget* m_widget;
+        Ui::ConfigurationWidget* m_widget;
 };
  
 }
