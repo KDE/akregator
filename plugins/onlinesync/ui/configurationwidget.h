@@ -1,7 +1,7 @@
 #ifndef CONFIGURATIONWIDGET_H_
 #define CONFIGURATIONWIDGET_H_
 
-#include "ui_configurationdialog.h"
+#include "ui_configurationwidget.h"
 
 #include <QWidget>
 
