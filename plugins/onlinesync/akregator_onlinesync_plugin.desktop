@@ -1,6 +1,11 @@
 [Desktop Entry]
 Type=Service
 Name=Akregator Online Feed Reader Support
+Name[ga]=Tacaíocht Akregator do Léitheoirí Fothaí Ar Líne
+Name[pt]=Suporte de Leitura de Fontes de Notícias do Akregator
+Name[pt_BR]=Suporte para leitor de notícias on-line do Akregator
+Name[uk]=Підтримка читання мережевих розсилок у Akregator
+Name[zh_TW]=Akregator 線上閱讀器支援
 Comment=Plugin for Akregator
 Comment[af]=Inprop module vir Akregator
 Comment[be]=Утулка для Akregator
