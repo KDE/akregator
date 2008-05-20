@@ -11,7 +11,7 @@ include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 
 set(kcm_akronlinesyncconfig_SRCS 
     akregator_config_onlinesync.cpp
-    #    ui/configurationdialog.cpp
+    ui/configurationdialog.cpp
     ui/configurationwidget.cpp
     ui/configurationdialogadd.cpp )
 
@@ -35,7 +35,7 @@ set(akregator_onlinesync_plugin_SRCS
     sync/akregator.cpp 
     sync/googlereader.cpp 
     sync/opml.cpp 
-    # ui/configurationdialog.cpp 
+    ui/configurationdialog.cpp 
     ui/configurationwidget.cpp 
     ui/configurationdialogadd.cpp 
     onlinesyncplugin.cpp )
