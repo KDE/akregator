@@ -23,7 +23,7 @@
 */
 
 #include "onlinesyncplugin.h"
-#include "ui/configurationdialog.h"
+//##include "ui/configurationdialog.h"
 #include "sync/feedsync.h"
 
 #include <KActionCollection>
