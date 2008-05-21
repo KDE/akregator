@@ -670,9 +670,6 @@ void ArticleViewer::displayAboutPage()
 ArticleViewerPart::ArticleViewerPart(QWidget* parent) : KHTMLPart(parent),
      m_button(-1)
 {
-    // work-around for a scrolling bug
-    // see http://bugs.kde.org/show_bug.cgi?id=161148
-    view()->setSmoothScrollingMode(KHTMLView::SSMDisabled);
     setXMLFile(KStandardDirs::locate("data", "akregator/articleviewer.rc"), true);
 }
 
