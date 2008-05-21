@@ -12,12 +12,14 @@ X-KDE-Keywords=akregator, configure, settings, online readers
 
 Name=Online Readers
 Name[ga]=Léitheoirí Ar Líne
+Name[km]=កម្មវិធី​អាន​លើ​បណ្ដាញ
 Name[pt]=Leitores 'Online'
 Name[pt_BR]=Leitores on-line
 Name[uk]=Програми для читання розсилок
 Name[zh_TW]=線上閱讀器
 Comment=Configure Online Readers
 Comment[ga]=Cumraigh Léitheoirí Ar Líne
+Comment[km]=កំណត់​រចនាសម្ព័ន្ធ​កម្មវិធី​អាន​លើ​បណ្ដាញ
 Comment[pt]=Configurar os Leitores 'Online'
 Comment[pt_BR]=Configurar os leitores on-line
 Comment[uk]=Налаштування мережевих розсилок
