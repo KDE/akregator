@@ -28,15 +28,15 @@
 
 #include <kcmdlineargs.h>
 #include <klocale.h>
-#include <kuniqueapplication.h>
+#include <libkdepim/pimapplication.h>
 #include <QtDBus/QtDBus>
 #include <QStringList>
 
 namespace Akregator {
 
-class Application : public KUniqueApplication {
+class Application : public KPIM::PimApplication {
   public:
-    Application() : mMainWindow( ) {}
+    Application() : mMainWindow(0) {}
     ~Application() {}
 
     int newInstance();
@@ -62,8 +62,8 @@ int Application::newInstance()
       akr.call( "openStandardFeedList");
     }
 
-    QString addFeedGroup = !args->getOption("group").isEmpty() ? 
-         args->getOption("group") 
+    QString addFeedGroup = !args->getOption("group").isEmpty() ?
+         args->getOption("group")
          : i18n("Imported Folder");
 
     QStringList feeds = args->getOptionList("addfeed");
