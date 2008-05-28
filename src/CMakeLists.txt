@@ -19,7 +19,7 @@ kde4_add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator ${KDE4_KPARTS_LIBS} akregatorprivate )
 
-install(TARGETS akregator  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS akregator  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 
 ########### next target ###############

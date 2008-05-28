@@ -6,8 +6,9 @@ X-DocPath=akregator/preferences.html#general-lookup
 
 X-KDE-Library=akregator_config_general
 X-KDE-ParentApp=akregator
-X-KDE-ParentComponents=akregator,kontact_akregator
+X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Weight=100
 
 Name=General
 Name[de]=Allgemein

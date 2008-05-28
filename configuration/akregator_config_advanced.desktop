@@ -6,8 +6,9 @@ X-DocPath=akregator/preferences.html#general-lookup
 
 X-KDE-Library=akregator_config_advanced
 X-KDE-ParentApp=akregator
-X-KDE-ParentComponents=akregator,kontact_akregator
+X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Weight=500
 
 Name=Advanced
 Name[de]=Erweitert
