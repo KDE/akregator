@@ -11,6 +11,7 @@ X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Keywords=akregator, configure, settings, online readers
 
 Name=Online Readers
+Name[de]=Online-Leser
 Name[ga]=Léitheoirí Ar Líne
 Name[km]=កម្មវិធី​អាន​លើ​បណ្ដាញ
 Name[nds]=Internetkiekers
@@ -21,6 +22,7 @@ Name[sv]=Kanalläsare
 Name[uk]=Програми для читання розсилок
 Name[zh_TW]=線上閱讀器
 Comment=Configure Online Readers
+Comment[de]=Online-Leser einrichten
 Comment[ga]=Cumraigh Léitheoirí Ar Líne
 Comment[km]=កំណត់​រចនាសម្ព័ន្ធ​កម្មវិធី​អាន​លើ​បណ្ដាញ
 Comment[nds]=Internetkiekers instellen
