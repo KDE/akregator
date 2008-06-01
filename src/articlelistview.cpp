@@ -342,11 +342,6 @@ namespace {
 }
 #endif
 
-void Akregator::ArticleListView::keyPressEvent(QKeyEvent* e)
-{
-    e->ignore();
-}
-
 void Akregator::ArticleListView::contextMenuEvent( QContextMenuEvent* event )
 {
     QWidget* w = ActionManager::getInstance()->container( "article_popup" );

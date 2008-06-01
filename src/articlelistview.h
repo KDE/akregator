@@ -137,9 +137,6 @@ private:
     void paintEvent( QPaintEvent* e );
 
     //reimpl
-    void keyPressEvent( QKeyEvent* e );
-
-    //reimpl
     void contextMenuEvent( QContextMenuEvent* event );
 
     void selectIndex( const QModelIndex& index );

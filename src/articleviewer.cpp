@@ -89,6 +89,8 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     layout->setMargin(0);
     layout->addWidget(m_part->widget(), 0, 0);
 
+    setFocusProxy( m_part->widget() );
+
     m_part->setZoomFactor(100);
     m_part->setJScriptEnabled(false);
     m_part->setJavaEnabled(false);
