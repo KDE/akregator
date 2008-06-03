@@ -355,16 +355,16 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QFontComboBox" name="kcfg_StandardFont" />
+         <widget class="KFontComboBox" name="kcfg_StandardFont" />
         </item>
         <item>
-         <widget class="QFontComboBox" name="kcfg_FixedFont" />
+         <widget class="KFontComboBox" name="kcfg_FixedFont" />
         </item>
         <item>
-         <widget class="QFontComboBox" name="kcfg_SerifFont" />
+         <widget class="KFontComboBox" name="kcfg_SerifFont" />
         </item>
         <item>
-         <widget class="QFontComboBox" name="kcfg_SansSerifFont" />
+         <widget class="KFontComboBox" name="kcfg_SansSerifFont" />
         </item>
        </layout>
       </item>
