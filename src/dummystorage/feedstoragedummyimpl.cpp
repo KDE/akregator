@@ -50,7 +50,9 @@ class FeedStorageDummyImpl::FeedStorageDummyImplPrivate
             QString description;
             QString content;
             QString link;
-            QString author;
+            QString authorName;
+            QString authorUri;
+            QString authorEMail;
             QString commentsLink;
             bool guidIsHash;
             bool guidIsPermaLink;
@@ -271,9 +273,19 @@ QString FeedStorageDummyImpl::content(const QString& guid) const
     return contains(guid) ? d->entries[guid].content : "";
 }
 
-QString FeedStorageDummyImpl::author(const QString& guid) const
+QString FeedStorageDummyImpl::authorName(const QString& guid) const
 {
-    return contains(guid) ? d->entries[guid].author : QString();
+    return contains(guid) ? d->entries[guid].authorName : QString();
+}
+
+QString FeedStorageDummyImpl::authorUri(const QString& guid) const
+{
+    return contains(guid) ? d->entries[guid].authorUri : QString();
+}
+
+QString FeedStorageDummyImpl::authorEMail(const QString& guid) const
+{
+    return contains(guid) ? d->entries[guid].authorEMail : QString();
 }
 
 
@@ -326,10 +338,22 @@ void FeedStorageDummyImpl::setContent(const QString& guid, const QString& conten
         d->entries[guid].content = content;
 }
 
-void FeedStorageDummyImpl::setAuthor(const QString& guid, const QString& author)
+void FeedStorageDummyImpl::setAuthorName(const QString& guid, const QString& author)
 {
     if (contains(guid))
-        d->entries[guid].author = author;
+        d->entries[guid].authorName = author;
+}
+
+void FeedStorageDummyImpl::setAuthorUri(const QString& guid, const QString& author)
+{
+    if (contains(guid))
+        d->entries[guid].authorUri = author;
+}
+
+void FeedStorageDummyImpl::setAuthorEMail(const QString& guid, const QString& author)
+{
+    if (contains(guid))
+        d->entries[guid].authorEMail = author;
 }
 
 void FeedStorageDummyImpl::setComments(const QString& guid, int comments)

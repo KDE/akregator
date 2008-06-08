@@ -112,7 +112,7 @@ struct Article::Private : public Shared
 };
 
 Article::Private::Private()
-  : feed( 0 ), 
+  : feed( 0 ),
     archive( 0 ),
     status( 0 ),
     hash( 0 ),
@@ -130,7 +130,7 @@ Article::Private::Private( const QString& guid_, Feed* feed_, Backend::FeedStora
 {
 }
 
-Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedStorage* archive_ ) 
+Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedStorage* archive_ )
   : feed( feed_ ),
     archive( archive_ ),
     status ( New ),
@@ -141,25 +141,7 @@ Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedSto
 
     QString author;
 
-    if (!authorList.isEmpty())
-    {
-        PersonPtr person = *(authorList.begin());
-
-        if (!person->email().isNull())
-        {
-            if (!person->name().isNull())
-                author = QString("<a href=\"mailto:%1\">%2</a>").arg(person->email()).arg(person->name());
-            else
-                author = QString("<a href=\"mailto:%1\">%2</a>").arg(person->email()).arg(person->email());
-        }
-        else if (!person->name().isNull())
-        {
-            if (!person->uri().isNull())
-                author = QString("<a href=\"%1\">%2</a>").arg(person->uri()).arg(person->name());
-            else
-                author = person->name();
-        }
-    }
+    const PersonPtr firstAuthor = !authorList.isEmpty() ? authorList.first() : PersonPtr();
 
     hash = Utils::calcHash(article->title() + article->description() + article->content() + article->link() + author);
 
@@ -187,7 +169,11 @@ Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedSto
         else
             pubDate = QDateTime::currentDateTime();
         archive->setPubDate(guid, pubDate.toTime_t());
-        archive->setAuthor(guid, author);
+        if ( firstAuthor ) {
+            archive->setAuthorName(guid, firstAuthor->name() );
+            archive->setAuthorUri(guid, firstAuthor->uri() );
+            archive->setAuthorEMail(guid, firstAuthor->email() );
+        }
     }
     else
     {
@@ -204,7 +190,11 @@ Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedSto
             archive->setDescription(guid, article->description());
             archive->setContent(guid, article->content());
             archive->setLink(guid, article->link());
-            archive->setAuthor(guid, author);
+            if ( firstAuthor ) {
+                archive->setAuthorName(guid, firstAuthor->name() );
+                archive->setAuthorUri(guid, firstAuthor->uri() );
+                archive->setAuthorEMail(guid, firstAuthor->email() );
+            }
             //archive->setCommentsLink(guid, article.commentsLink());
         }
     }
@@ -353,9 +343,52 @@ QString Article::title() const
     return d->archive->title(d->guid);
 }
 
-QString Article::author() const
+QString Article::authorName() const
 {
-    return d->archive->author(d->guid);
+    return d->archive->authorName(d->guid);
+}
+
+QString Article::authorEMail() const
+{
+    return d->archive->authorEMail(d->guid);
+}
+
+QString Article::authorUri() const
+{
+    return d->archive->authorUri(d->guid);
+}
+QString Article::authorShort() const {
+    const QString name = authorName();
+    if ( !name.isEmpty() )
+        return name;
+    const QString email = authorEMail();
+    if ( !email.isEmpty() )
+        return email;
+    const QString uri = authorUri();
+    if ( !uri.isEmpty() )
+        return uri;
+    return QString();
+}
+
+QString Article::authorAsHtml() const {
+    const QString name = authorName();
+    const QString email = authorEMail();
+
+    if (!email.isEmpty())
+        if (!name.isEmpty())
+            return QString("<a href=\"mailto:%1\">%2</a>").arg( email, name );
+        else
+            return QString("<a href=\"mailto:%1\">%1</a>").arg( email );
+
+    const QString uri = authorUri();
+    if (!name.isEmpty())
+        if (!uri.isEmpty())
+                return QString("<a href=\"%1\">%2</a>").arg( uri, name );
+            else
+                return name;
+    if ( !uri.isEmpty() )
+        return QString( "<a href=\"%1\">%1</a>" ).arg( uri );
+    return QString();
 }
 
 KUrl Article::link() const

@@ -35,17 +35,17 @@ class FeedStorageDummyImpl : public FeedStorage
     public:
         FeedStorageDummyImpl(const QString& url, StorageDummyImpl* main);
         virtual ~FeedStorageDummyImpl();
-        
+
         virtual void add(FeedStorage* source);
         virtual void copyArticle(const QString& guid, FeedStorage* source);
-        
+
         virtual void clear();
         virtual int unread() const;
         virtual void setUnread(int unread);
         virtual int totalCount() const;
         virtual int lastFetch() const;
         virtual void setLastFetch(int lastFetch);
-      
+
         virtual QStringList articles(const QString& tag=QString()) const;
 
         virtual QStringList articles(const Category& cat) const;
@@ -66,7 +66,7 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void setHash(const QString& guid, uint hash);
         virtual void setDeleted(const QString& guid);
         virtual QString link(const QString& guid) const;
-        virtual void setLink(const QString& guid, const QString& link); 
+        virtual void setLink(const QString& guid, const QString& link);
         virtual uint pubDate(const QString& guid) const;
         virtual void setPubDate(const QString& guid, uint pubdate);
         virtual int status(const QString& guid) const;
@@ -88,8 +88,13 @@ class FeedStorageDummyImpl : public FeedStorage
         virtual void addCategory(const QString& guid, const Category& category);
         virtual QList<Category> categories(const QString& guid=QString()) const;
 
-        virtual void setAuthor(const QString& guid, const QString& author);
-        virtual QString author(const QString& guid) const;
+        void setAuthorName(const QString& guid, const QString& authorName);
+        void setAuthorUri(const QString& guid, const QString& authorUri);
+        void setAuthorEMail(const QString& guid, const QString& authorEMail);
+
+        virtual QString authorName(const QString& guid) const;
+        virtual QString authorUri(const QString& guid) const;
+        virtual QString authorEMail(const QString& guid) const;
 
         virtual void close();
         virtual void commit();

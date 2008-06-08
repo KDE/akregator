@@ -50,7 +50,7 @@ class ArticleFormatter::Private
 };
 
 ArticleFormatter::Private::Private( QPaintDevice* device_ ) : device( device_ )
-{    
+{
 }
 
 ArticleFormatter::ArticleFormatter( QPaintDevice* device ) : d( new Private( device ) )
@@ -130,17 +130,17 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
                 text += i18np(" (1 unread article)", " (%1 unread articles)", node->unread());
             text += QString("</div>\n");
             text += "</div>\n"; // /headerbox
-            
+
             return true;
         }
-        
+
         QString formatSummary(TreeNode* node)
         {
             text = QString();
             visit(node);
             return text;
         }
-        
+
         QString text;
         DefaultNormalViewFormatter* parent;
 };
@@ -167,7 +167,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         text += "</span><span class=\"headertext\">";
         text += KGlobal::locale()->formatDateTime(article.pubDate(), KLocale::LongDate, false)+"</span>\n"; // TODO: might need RTL?
     }
-    QString author = article.author();
+    const QString author = article.authorAsHtml();
     if (!author.isEmpty())
     {
         text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
@@ -297,7 +297,7 @@ QString DefaultNormalViewFormatter::getCss() const
             "  float: right;\n"
             "  margin-left: 5px;\n"
             "}\n\n").arg(
-                    pal.color( QPalette::Highlight ).name(), 
+                    pal.color( QPalette::Highlight ).name(),
                     pal.color( QPalette::HighlightedText ).name() );
 
     css += QString(
@@ -323,9 +323,9 @@ DefaultCombinedViewFormatter::DefaultCombinedViewFormatter(const KUrl& imageDir,
 {
 }
 
-DefaultNormalViewFormatter::DefaultNormalViewFormatter(const KUrl& imageDir, QPaintDevice* device ) 
-    : ArticleFormatter( device ), 
-    m_imageDir( imageDir ), 
+DefaultNormalViewFormatter::DefaultNormalViewFormatter(const KUrl& imageDir, QPaintDevice* device )
+    : ArticleFormatter( device ),
+    m_imageDir( imageDir ),
     m_summaryVisitor( new SummaryVisitor( this ) )
 {
 }
@@ -358,7 +358,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += KGlobal::locale()->formatDateTime(article.pubDate(), KLocale::LongDate, false)+"</span>\n"; // TODO: might need RTL?
     }
 
-    QString author = article.author();
+    const QString author = article.authorAsHtml();
     if (!author.isEmpty())
     {
         text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Author")));
@@ -449,7 +449,7 @@ QString DefaultCombinedViewFormatter::getCss() const
             +"  margin-bottom: 10pt;\n"
 //    +"  width: 99%;\n"
             +        "}\n\n")
-            .arg( pal.color( QPalette::Link ).name(), 
+            .arg( pal.color( QPalette::Link ).name(),
                   pal.color( QPalette::Background ).name(),
                   pal.color( QPalette::Text ).name() );
 

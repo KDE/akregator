@@ -147,7 +147,7 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                 case ItemTitleColumn:
                     return d->titleCache[row];
                 case AuthorColumn:
-                    return article.author();
+                    return article.authorShort();
                 case DescriptionColumn:
                 case ContentColumn:
                     return article.description();

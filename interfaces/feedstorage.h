@@ -35,7 +35,7 @@ namespace Akregator {
 namespace Backend {
 
 /** a convenience class to handle categories in the backend */
-class Category 
+class Category
 {
     public:
 
@@ -50,9 +50,9 @@ class Category
         return term == other.term && scheme == other.scheme;
     }
 
-    bool operator!=(const Category& other) const 
-    { 
-        return !operator==(other); 
+    bool operator!=(const Category& other) const
+    {
+        return !operator==(other);
     }
     /** we need this for QMaps */
     bool operator<(const Category& other) const
@@ -66,13 +66,13 @@ class Storage;
 class FeedStorage : public QObject
 {
     public:
-    
+
         virtual int unread() const = 0;
         virtual void setUnread(int unread) = 0;
         virtual int totalCount() const = 0;
         virtual int lastFetch() const  = 0;
         virtual void setLastFetch(int lastFetch) = 0;
-        
+
         /** returns the guids of all articles in this storage. If a tagID is given, only articles with this tag are returned */
         virtual QStringList articles(const QString& tagID=QString()) const = 0;
 
@@ -90,7 +90,7 @@ class FeedStorage : public QObject
         /** deletes all articles from the archive */
         virtual void clear() = 0;
 
-        
+
         virtual bool contains(const QString& guid) const = 0;
         virtual void addEntry(const QString& guid) = 0;
         virtual void deleteArticle(const QString& guid) = 0;
@@ -129,15 +129,20 @@ class FeedStorage : public QObject
 
         virtual void setEnclosure(const QString& guid, const QString& url, const QString& type, int length) = 0;
         virtual void removeEnclosure(const QString& guid) = 0;
-        
-        virtual void setAuthor(const QString& /*guid*/, const QString& /*author*/) {}
-        virtual QString author(const QString& /*guid*/) const { return QString(); }
-        
+
+        virtual void setAuthorName(const QString& /*guid*/, const QString& name) = 0;
+        virtual void setAuthorUri(const QString& /*guid*/, const QString& uri) = 0;
+        virtual void setAuthorEMail(const QString& /*guid*/, const QString& email) = 0;
+
+        virtual QString authorName(const QString& guid) const = 0;
+        virtual QString authorUri(const QString& guid) const = 0;
+        virtual QString authorEMail(const QString& guid) const = 0;
+
         virtual void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) const  = 0;
         virtual void close() = 0;
         virtual void commit() = 0;
         virtual void rollback() = 0;
-    
+
         virtual void convertOldArchive() = 0;
 };
 
