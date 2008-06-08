@@ -230,7 +230,7 @@ void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article
     {
         const int row = articles.indexOf( i );
         assert( row != -1 );
-        titleCache[row] = articles[row].title();
+        titleCache[row] = Syndication::htmlToPlainText( articles[row].title() );
         rmin = std::min( row, rmin );
         rmax = std::max( row, rmax );
     }
