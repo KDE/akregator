@@ -47,17 +47,18 @@ class AKREGATORPART_EXPORT ArticleModel : public QAbstractTableModel
 public:
 
     enum Column {
-        ItemTitleColumn=0, 
+        ItemTitleColumn=0,
         FeedTitleColumn,
         AuthorColumn,
         DateColumn,
         DescriptionColumn,
         ContentColumn,
-        ColumnCount 
+        ColumnCount
     };
 
     enum Role {
-        LinkRole=Qt::UserRole,
+        SortRole=Qt::UserRole,
+        LinkRole,
         GuidRole,
         ItemIdRole,
         FeedIdRole,
@@ -82,7 +83,7 @@ public:
     bool rowMatches( int row, const boost::shared_ptr<const Akregator::Filters::AbstractMatcher>& matcher ) const;
 
     Article article( int row ) const;
-    
+
 private:
     ArticleModel( const ArticleModel& );
     ArticleModel& operator=( const ArticleModel& );
