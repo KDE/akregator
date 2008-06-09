@@ -39,7 +39,7 @@ class FeedStorageMK4Impl : public FeedStorage
         void add(FeedStorage* source);
         void copyArticle(const QString& guid, FeedStorage* source);
         void clear();
-        
+
         int unread() const;
         void setUnread(int unread);
         int totalCount() const;
@@ -65,7 +65,7 @@ class FeedStorageMK4Impl : public FeedStorage
         void setHash(const QString& guid, uint hash);
         void setDeleted(const QString& guid);
         QString link(const QString& guid) const;
-        void setLink(const QString& guid, const QString& link); 
+        void setLink(const QString& guid, const QString& link);
         uint pubDate(const QString& guid) const;
         void setPubDate(const QString& guid, uint pubdate);
         int status(const QString& guid) const;
@@ -80,7 +80,7 @@ class FeedStorageMK4Impl : public FeedStorage
         void setEnclosure(const QString& guid, const QString& url, const QString& type, int length);
         void removeEnclosure(const QString& guid);
         void enclosure(const QString& guid, bool& hasEnclosure, QString& url, QString& type, int& length) const;
-        
+
         void addTag(const QString& guid, const QString& tag);
         void removeTag(const QString& guid, const QString& tag);
         QStringList tags(const QString& guid=QString()) const;
@@ -88,13 +88,18 @@ class FeedStorageMK4Impl : public FeedStorage
         void addCategory(const QString& guid, const Category& category);
         QList<Category> categories(const QString& guid=QString()) const;
 
-        void setAuthor(const QString& guid, const QString& author);
-        QString author(const QString& guid) const;
-        
+        void setAuthorName(const QString& guid, const QString& name);
+        void setAuthorUri(const QString& guid, const QString& uri);
+        void setAuthorEMail(const QString& guid, const QString& email);
+
+        QString authorName(const QString& guid) const;
+        QString authorUri(const QString& guid) const;
+        QString authorEMail(const QString& guid) const;
+
         void close();
         void commit();
         void rollback();
-        
+
         void convertOldArchive();
    private:
         /** finds article by guid, returns -1 if not in archive **/

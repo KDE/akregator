@@ -846,7 +846,7 @@ void Feed::enforceLimitArticleNumber()
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
     ArticleDeleteJob* job = new ArticleDeleteJob;
-    Q_FOREACH ( Akregator::Article i, articles )
+    Q_FOREACH ( const Akregator::Article i, articles )
     {
         if (c < limit)
         {

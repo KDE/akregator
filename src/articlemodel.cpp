@@ -35,6 +35,7 @@
 #include <QVector>
 
 #include <KLocale>
+#include <KGlobal>
 
 #include <cassert>
 #include <cmath>
@@ -49,7 +50,7 @@ public:
     Akregator::TreeNode* node;
     QList<Akregator::Article> articles;
     QVector<QString> titleCache;
-    
+
     void nodeDestroyed();
     void articlesAdded( TreeNode*, const QList<Article>& );
     void articlesRemoved( TreeNode*, const QList<Article>& );
@@ -66,9 +67,9 @@ ArticleModel::Private::Private( TreeNode* node_, ArticleModel* qq )
     for ( int i = 0; i < articles.count(); ++i )
         titleCache[i] = Syndication::htmlToPlainText( articles[i].title() );
     connect( node, SIGNAL( destroyed() ) , q, SLOT( nodeDestroyed() ) );
-    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ), 
+    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ),
                           q, SLOT( articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ), 
+    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ),
                            q, SLOT( articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
     connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
                            q, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
@@ -130,6 +131,10 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
 
     switch ( role )
     {
+        case SortRole:
+            if ( index.column() == DateColumn )
+                return article.pubDate();
+            // no break
         case Qt::DisplayRole:
         {
             switch ( index.column() )
@@ -137,11 +142,12 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                 case FeedTitleColumn:
                     return article.feed() ? article.feed()->title() : QVariant();
                 case DateColumn:
-                    return article.pubDate();
+                    return KGlobal::locale()->formatDateTime(article.pubDate(),
+                                                             KLocale::FancyShortDate );
                 case ItemTitleColumn:
                     return d->titleCache[row];
                 case AuthorColumn:
-                    return article.author();
+                    return article.authorShort();
                 case DescriptionColumn:
                 case ContentColumn:
                     return article.description();
@@ -191,7 +197,7 @@ void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>&
         return;
     const int first = static_cast<int>( articles.count() );
     q->beginInsertRows( QModelIndex(), first, first + list.size() - 1 );
-    
+
     const int oldSize = articles.size();
     articles << list;
     titleCache.resize( articles.count() );
@@ -206,7 +212,7 @@ void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article
     //might want to avoid indexOf() in case of performance problems
     Q_FOREACH ( const Article& i, list )
     {
-        const int row = articles.indexOf( i ); 
+        const int row = articles.indexOf( i );
         assert( row != -1 );
         q->removeRow( row, QModelIndex() );
     }
@@ -222,9 +228,9 @@ void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article
     //might want to avoid indexOf() in case of performance problems
     Q_FOREACH ( const Article& i, list )
     {
-        const int row = articles.indexOf( i ); 
+        const int row = articles.indexOf( i );
         assert( row != -1 );
-        titleCache[row] = articles[row].title();
+        titleCache[row] = Syndication::htmlToPlainText( articles[row].title() );
         rmin = std::min( row, rmin );
         rmax = std::max( row, rmax );
     }
@@ -242,7 +248,7 @@ Article ArticleModel::article( int row ) const
 {
     if ( row < 0 || row >= d->articles.count() )
         return Article();
-    return d->articles[row];      
+    return d->articles[row];
 }
 
 #include "articlemodel.moc"

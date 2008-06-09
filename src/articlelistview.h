@@ -55,9 +55,9 @@ namespace Filters
 class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyModel {
     Q_OBJECT
 public:
-    
+
     explicit FilterDeletedProxyModel( QObject* parent = 0 );
-    
+
 private:
     //reimpl
     bool filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const;
@@ -89,7 +89,7 @@ class AKREGATORPART_EXPORT ArticleListView : public QTreeView, public ArticleLis
     Q_OBJECT
 
 public:
-    
+
     explicit ArticleListView( QWidget* parent = 0 );
     ~ArticleListView();
 
@@ -110,7 +110,7 @@ public:
     void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
 
     void setIsAggregation( bool isAggregation );
-        
+
 protected:
     void mousePressEvent( QMouseEvent *ev );
 
@@ -128,7 +128,7 @@ public Q_SLOTS:
     void slotPreviousUnreadArticle();
 
     void slotNextUnreadArticle();
-    
+
 private:
     void saveHeaderSettings();
     void loadHeaderSettings();
@@ -157,99 +157,6 @@ private:
     QPointer<SortColorizeProxyModel> m_proxy;
     bool m_headerSetUp;
 };
-
-#if 0
-class AKREGATORPART_EXPORT ArticleListViewOld : public K3ListView
-{
-    Q_OBJECT
-    public:
-        explicit ArticleListViewOld(QWidget *parent = 0, const char *name = 0);
-        ~ArticleListViewOld();
-        
-        /** returns the current article, or a null article if there is none */
-        Article currentArticle() const;
-        
-        /** returns a list of currently selected articles */
-        QList<Article> selectedArticles() const;
-        
-        enum Columns { itemTitle, feedTitle, pubDate };
-
-    public slots:
-
-        /** show article list of tree node @c node (also connects to the notification signals of the node) */
-        void slotShowNode(Akregator::TreeNode* node);
-        
-        /** clears the list and disconnects from the observed node (if any) */
-        void slotClear();
-        
-        /** sets text filter and status filter
-        @param textFilter filters text
-        @param statusFilter filters status (read, unread, new) */
-        void slotSetFilter(const Akregator::Filters::ArticleMatcher& textFilter, const Akregator::Filters::ArticleMatcher& statusFilter);
-
-        /** selects previous article in list view, first article if no article was selected */
-        void slotPreviousArticle();
-
-        /** selects next article in list view, first article if no article was selected */
-        void slotNextArticle();
-
-        /** selects previous unread article in list view, first unread article if no article was selected */
-        void slotPreviousUnreadArticle();
-
-        /** selects next unread article in list view, first unread article if no article was selected */
-        void slotNextUnreadArticle();
-
-        void slotPaletteOrFontChanged();
-        
-    signals:
-        void signalArticleChosen(const Akregator::Article& article);
-        void signalDoubleClicked(const Akregator::Article&, const QPoint&, int);
-        //void signalContextMenu(K3ListView*, ArticleItem*, const QPoint&);
-        void signalMouseButtonPressed(int, const Akregator::Article&, const QPoint &, int);
-            
-    protected:
-        /** reimplemented for kmail-like behaviour */            
-        void keyPressEvent(QKeyEvent* e);
-        
-        /** applies text filter and status filter by setting visibility
-        of items accordingly */
-        void applyFilters();
-        
-        /**
-        * @return count of visible articles, used for info boxes
-        */
-        int visibleArticles();
-        
-        void viewportPaintEvent(QPaintEvent *e);
-        
-        void connectToNode(TreeNode* node);
-        void disconnectFromNode(TreeNode* node);
-        
-        Q3DragObject *dragObject();
-
-    protected slots:
-
-        void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-        void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-
-        void slotCurrentChanged(Q3ListViewItem* item);
-        void slotSelectionChanged();
-        void slotDoubleClicked(Q3ListViewItem* item, const QPoint& p, int i);
-        void slotContextMenu(K3ListView* list, Q3ListViewItem* item, const QPoint& p);
-        void slotMouseButtonPressed(int, Q3ListViewItem *, const QPoint &, int);
-        
-    private:
-        class ArticleListViewOldPrivate;
-        ArticleListViewOldPrivate* d;
-        
-        friend class ColumnLayoutVisitor;
-        class ColumnLayoutVisitor;
-        
-        class ArticleItem;
-};
-
-#endif // if 0
 
 } // namespace Akregator
 

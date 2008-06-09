@@ -127,7 +127,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
 {
     if ( !index.isValid() )
         return QVariant();
-    
+
     const Akregator::TreeNode* const node = nodeForIndex( index, m_feedList );
 
     if ( !node )
@@ -135,6 +135,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
 
     switch ( role )
     {
+        case Qt::EditRole:
         case Qt::DisplayRole:
         {
             switch ( index.column() )
@@ -170,7 +171,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
             if ( index.column() != TitleColumn )
                 return QVariant();
             const Feed* const feed = qobject_cast<const Feed* const>( node );
-            return feed && feed->isFetching() ? node->icon().pixmap( KIconLoader::SizeSmall, QIcon::Active ) : node->icon(); 
+            return feed && feed->isFetching() ? node->icon().pixmap( KIconLoader::SizeSmall, QIcon::Active ) : node->icon();
         }
         case SubscriptionIdRole:
         {
@@ -188,7 +189,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         {
             return node->isAggregation();
         }
-        case LinkRole: 
+        case LinkRole:
         {
         	const Feed* const feed = qobject_cast<const Feed* const>( node );
         	return feed ? feed->xmlUrl() : QVariant();
@@ -437,10 +438,10 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
 {
     if ( action == Qt::IgnoreAction )
         return true;
-    
+
     //if ( column != TitleColumn )
     //    return false;
-    
+
     if ( data->hasFormat( AKREGATOR_TREENODE_MIMETYPE ) )
     {
         const TreeNode* const droppedOnNode = qobject_cast<const TreeNode*>( nodeForIndex( parent, m_feedList ) );
@@ -448,7 +449,7 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
         const Folder* const destFolder = droppedOnNode->isGroup() ? qobject_cast<const Folder*>( droppedOnNode ) : droppedOnNode->parent();
         if ( !destFolder )
             return false;
-        
+
         QByteArray idData = data->data( AKREGATOR_TREENODE_MIMETYPE );
         QList<int> ids;
         QDataStream stream( &idData, QIODevice::ReadOnly );
@@ -458,7 +459,7 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
             stream >> id;
             ids << id;
         }
-        
+
         //don't drop nodes into their own subtree
         Q_FOREACH ( const int id, ids )
         {
@@ -466,9 +467,9 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
             if ( asFolder && asFolder->subtreeContains( destFolder ) )
                 return false;
         }
-        
+
         const TreeNode* const after = droppedOnNode->isGroup() ? destFolder->childAt( row ) : droppedOnNode;
-       
+
         Q_FOREACH ( const int id, ids )
         {
             const TreeNode* const node = m_feedList->findByID( id );
