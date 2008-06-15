@@ -103,7 +103,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
 {
     setPluginLoadingMode( LoadPluginsIfEnabled );
     setPluginInterfaceVersion( AKREGATOR_PLUGIN_INTERFACE_VERSION );
-    
+
     setComponentData( AkregatorFactory::componentData() );
 
     new PartAdaptor( this );
@@ -173,7 +173,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
 
     connect(kapp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 
-    m_autosaveTimer = new QTimer(this); 
+    m_autosaveTimer = new QTimer(this);
     connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
     m_autosaveTimer->start(5*60*1000); // 5 minutes
 
@@ -624,9 +624,9 @@ void Part::addFeed()
 
 void Part::showKNotifyOptions()
 {
-    //KAboutData* about = new Akregator::AboutData;
-    KNotifyConfigWidget::configure(m_mainWidget/*, "akregator_knotify_config", about*/);
-    //delete about;
+    KAboutData* about = new Akregator::AboutData;
+    KNotifyConfigWidget::configure(m_mainWidget, about->appName() );
+    delete about;
 }
 
 void Part::showOptions()
