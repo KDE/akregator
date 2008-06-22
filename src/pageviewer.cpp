@@ -98,7 +98,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
 
     setXMLFile(KStandardDirs::locate("data", "akregator/pageviewer.rc"), true);
 
-    d->backAction = new KToolBarPopupAction(i18n("Back"), "go-previous", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
+    d->backAction = new KToolBarPopupAction(i18nc("Go back in browser history", "Back"), "go-previous", "Alt+Left", this, SLOT(slotBack()), actionCollection(), "pageviewer_back");
 
     connect(d->backAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotBackAboutToShow()));
@@ -106,7 +106,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
             this, SLOT(slotPopupActivated(int)));
 
 
-    d->forwardAction = new KToolBarPopupAction(i18n("Forward"), "go-next", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
+    d->forwardAction = new KToolBarPopupAction(i18nc("Go forward in browser history", "Forward"), "go-next", "Alt+Right", this, SLOT(slotForward()), actionCollection(), "pageviewer_forward");
 
     connect(d->forwardAction->popupMenu(), SIGNAL(aboutToShow()),
             this, SLOT(slotForwardAboutToShow()));

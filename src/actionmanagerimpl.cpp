@@ -525,14 +525,14 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     d->frameManager = frameManager;
 
-    KToolBarPopupAction* forward = new KToolBarPopupAction(KIcon("go-next"), i18n( "Forward"), this);
+    KToolBarPopupAction* forward = new KToolBarPopupAction(KIcon("go-next"), i18nc("Go forward in browser history", "Forward"), this);
     d->actionCollection->addAction("browser_forward", forward);
     forward->setShortcuts(KShortcut("Alt+Right"));
     connect(forward, SIGNAL(triggered()), frameManager, SLOT(slotBrowserForward()));
 
     connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
 
-    KToolBarPopupAction* back = new KToolBarPopupAction(KIcon("go-previous"), i18n( "Back"), this);
+    KToolBarPopupAction* back = new KToolBarPopupAction(KIcon("go-previous"), i18nc("Go back in browser history", "Back"), this);
     d->actionCollection->addAction("browser_back", back);
     back->setShortcuts(KShortcut("Alt+Left"));
     connect(back, SIGNAL(triggered()), frameManager, SLOT(slotBrowserBack()));
