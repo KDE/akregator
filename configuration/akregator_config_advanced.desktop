@@ -12,6 +12,7 @@ X-KDE-Weight=500
 
 Name=Advanced
 Name[ca]=Avançat
+Name[da]=Avanceret
 Name[de]=Erweitert
 Name[el]=Προχωρημένα
 Name[et]=Muu
@@ -33,6 +34,7 @@ Name[zh_CN]=高级
 Name[zh_TW]=進階
 Comment=Advanced Feed Reader Settings
 Comment[ca]=Arranjaments avançats del lector de fonts
+Comment[da]=Avanceret opsætning af feed-læser
 Comment[de]=Erweiterte Einstellungen für den Nachrichtenbetrachter
 Comment[el]=Προχωρημένες ρυθμίσεις αναγνώστη ροών ειδήσεων
 Comment[et]=Uudistevoogude lugeja muud seadistused

@@ -1,7 +1,6 @@
 [Global]
 IconName=akregator
 Comment=Akregator
-Comment[da]=Akregator Plugin
 Comment[nds]=Tosamensteller
 Comment[x-test]=xxAkregatorxx
 
@@ -10,7 +9,7 @@ Name=Feed added
 Name[af]=Stroom bygevoeg
 Name[ca]=Font afegida
 Name[cs]=Přidán kanál
-Name[da]=Kilde tilføjet
+Name[da]=Feed tilføjet
 Name[de]=Nachrichtenquelle hinzugefügt
 Name[el]=Προστέθηκε ροή
 Name[eo]=Fluo aldonita
@@ -55,7 +54,7 @@ Comment=A new feed was remotely added to Akregator
 Comment[af]='n Nuwe stroom was vanaf 'n afgeleë ligging by Akregator bygevoeg.
 Comment[ca]=S'ha afegir remotament un font nova a l'Akregator
 Comment[cs]=Byl přidán nový kanál do Akregatoru
-Comment[da]=En ny kilde blev tilføjet eksternt til Akregator
+Comment[da]=En ny feed blev tilføjet eksternt til Akregator
 Comment[de]=Eine neue Nachrichtenquelle wurde von außerhalb zu Akregator hinzugefügt
 Comment[el]=Μια νέα ροή προστέθηκε εξωτερικά στον Akregator
 Comment[es]=Se ha añadido remotamente una nueva fuente a Akregator
