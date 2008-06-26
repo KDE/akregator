@@ -45,7 +45,7 @@
 
 namespace Akregator {
 
-class FeedList::FeedListPrivate
+class FeedList::Private
 {
 public:
     Akregator::Backend::Storage* storage;
@@ -79,8 +79,8 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
                      m_list, SIGNAL( fetchError( Akregator::Feed* ) ) );
             connect( node, SIGNAL( fetchDiscovery( Akregator::Feed* ) ),
                      m_list, SIGNAL( fetchDiscovery( Akregator::Feed* ) ) );
-            
-                    
+
+
             visitTreeNode(node);
             return true;
         }
@@ -97,7 +97,7 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
             	node->setId(m_list->generateID());
             m_list->d->idMap[node->id()] = node;
             m_list->d->flatList.append(node);
-            
+
             connect(node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), m_list, SLOT(slotNodeDestroyed(Akregator::TreeNode*) ));
             connect( node, SIGNAL( signalChanged( Akregator::TreeNode* ) ), m_list, SIGNAL( signalNodeChanged(Akregator::TreeNode* ) ) );
             emit m_list->signalNodeAdded(node);
@@ -147,7 +147,7 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
         bool visitFolder(Folder* node)
         {
             visitTreeNode(node);
-          
+
             return true;
         }
 
@@ -156,7 +156,7 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
 };
 
 FeedList::FeedList(Akregator::Backend::Storage* storage, QObject *parent)
-    : QObject(parent), d(new FeedListPrivate)
+    : QObject(parent), d(new Private)
 {
     Q_ASSERT( storage );
     d->storage = storage;
@@ -305,23 +305,22 @@ FeedList::~FeedList()
     delete d->addNodeVisitor;
     delete d->removeNodeVisitor;
     delete d;
-    d = 0;
 }
 
 const Feed* FeedList::findByURL(const QString& feedURL) const
 {
-    if (d->urlMap[feedURL].isEmpty())
+    if ( !d->urlMap.contains( feedURL ) )
         return 0;
-    else
-        return *(d->urlMap[feedURL].begin());
+    const QList<Feed*>& v = d->urlMap[feedURL];
+    return !v.isEmpty() ? v.front() : 0;
 }
 
 Feed* FeedList::findByURL(const QString& feedURL)
 {
-    if (d->urlMap[feedURL].isEmpty())
+    if ( !d->urlMap.contains( feedURL ) )
         return 0;
-    else
-        return *(d->urlMap[feedURL].begin());
+    const QList<Feed*>& v = d->urlMap[feedURL];
+    return !v.isEmpty() ? v.front() : 0;
 }
 
 const Article FeedList::findArticle(const QString& feedURL, const QString& guid) const
@@ -474,7 +473,7 @@ void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
 
 FeedListManagementImpl::FeedListManagementImpl( FeedList* list ) : m_feedList( list )
 {
-    
+
 }
 
 void FeedListManagementImpl::setFeedList( FeedList* list )

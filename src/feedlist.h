@@ -55,7 +55,7 @@ class AKREGATORPART_EXPORT FeedListManagementImpl : public FeedListManagementInt
 public:
     explicit FeedListManagementImpl( FeedList* list=0 );
     void setFeedList( FeedList* list );
-    
+
     /* reimp */ QStringList categories() const;
     /* reimp */ QStringList feeds( const QString& catId ) const;
     /* reimp */ void addFeed( const QString& url, const QString& catId );
@@ -96,21 +96,21 @@ public:
     void setTitle(const QString& name);
 
     /**
-     * returns all feeds in this list 
+     * returns all feeds in this list
      */
     QVector<const Feed*> feeds() const;
     QVector<Feed*> feeds();
-    
+
     QVector<int> feedIds() const;
 
     /**
-     * returns all folders in this list 
+     * returns all folders in this list
      */
     QVector<const Folder*> folders() const;
     QVector<Folder*> folders();
 
     /** appends another feed list as sub tree. The root node of @c list is ignored. NOTE: nodes are _moved_ from @c list to this feed list, not copied */
-    
+
     void append(FeedList* list, Folder* parent=0, TreeNode* after=0);
 
     /** reads an OPML document and appends the items to this list
@@ -146,7 +146,7 @@ signals:
     void signalNodeRemoved(Akregator::TreeNode*);
 
     void signalAboutToRemoveNode( Akregator::TreeNode* );
-    
+
     void signalNodeChanged( Akregator::TreeNode* );
 
     /** emitted when fetching started */
@@ -159,7 +159,7 @@ signals:
     void fetchError(Akregator::Feed *);
     /** emitted when a feed URL was found by auto discovery */
     void fetchDiscovery(Akregator::Feed *);
-    
+
     /** emitted when a fetch is aborted */
     void fetchAborted(Akregator::Feed *);
 
@@ -178,16 +178,16 @@ private slots:
     void slotNodeDestroyed(Akregator::TreeNode* node);
     void slotNodeAdded(Akregator::TreeNode* node);
     void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
-    
+
 private:
     friend class AddNodeVisitor;
     class AddNodeVisitor;
 
     friend class RemoveNodeVisitor;
     class RemoveNodeVisitor;
-    
-    class FeedListPrivate;
-    FeedListPrivate* d;
+
+    class Private;
+    Private* const d;
 };
 
 } // namespace Akregator
