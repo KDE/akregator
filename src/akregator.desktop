@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=Akregator
 Name[ne]=एक्रिगेटर
 Exec=akregator %i %m -caption "%c"
