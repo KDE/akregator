@@ -50,7 +50,7 @@ kde4_add_plugin(akregator_onlinesync_plugin ${akregator_onlinesync_plugin_SRCS})
 
 target_link_libraries(akregator_onlinesync_plugin akregatorinterfaces ${KDE4_KIO_LIBS})
 
-install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${DATA_INSTALL_DIR}/akregator/kpartplugins)
+install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 install(TARGETS akregator_onlinesync_plugin DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES akregator_onlinesync_plugin.rc DESTINATION ${DATA_INSTALL_DIR}/akregator/kpartplugins)
+install(FILES akregator_onlinesync_plugin.rc DESTINATION ${DATA_INSTALL_DIR}/akregator)
