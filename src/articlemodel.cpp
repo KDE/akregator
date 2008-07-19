@@ -222,17 +222,25 @@ void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article
 void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article>& list )
 {
     Q_UNUSED( node );
-    int rmin = articles.count() - 1;
+    int rmin = 0;
     int rmax = 0;
 
-    //might want to avoid indexOf() in case of performance problems
-    Q_FOREACH ( const Article& i, list )
+    if ( articles.count() > 0 )
     {
-        const int row = articles.indexOf( i );
-        assert( row != -1 );
-        titleCache[row] = Syndication::htmlToPlainText( articles[row].title() );
-        rmin = std::min( row, rmin );
-        rmax = std::max( row, rmax );
+         rmin = articles.count() - 1;
+        //might want to avoid indexOf() in case of performance problems
+        Q_FOREACH ( const Article& i, list )
+        {
+            const int row = articles.indexOf( i );
+            //TODO: figure out how why the Article might not be found in
+            //TODO: the articles list because we should need this conditional.
+            if ( row >= 0 )
+            {
+                titleCache[row] = Syndication::htmlToPlainText( articles[row].title() );
+                rmin = std::min( row, rmin );
+                rmax = std::max( row, rmax );
+            }
+        }
     }
     emit q->dataChanged( q->index( rmin, 0 ), q->index( rmax, ColumnCount-1 ) );
 }
