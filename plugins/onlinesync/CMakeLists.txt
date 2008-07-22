@@ -22,7 +22,7 @@ kde4_add_ui_files(kcm_akronlinesyncconfig_SRCS ui/configurationdialogadd.ui)
 
 kde4_add_plugin(akregator_config_onlinesync ${kcm_akronlinesyncconfig_SRCS})
 
-target_link_libraries( akregator_config_onlinesync akregatorinterfaces ${KDE4_KIO_LIBS} )
+target_link_libraries( akregator_config_onlinesync akregatorinterfaces ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS})
 
 install( FILES akregator_config_onlinesync.desktop  DESTINATION ${SERVICES_INSTALL_DIR})
 install(TARGETS akregator_config_onlinesync  DESTINATION ${PLUGIN_INSTALL_DIR})
@@ -48,7 +48,7 @@ kde4_add_kcfg_files(akregator_onlinesync_plugin_SRCS onlinesyncsettings.kcfgc)
 
 kde4_add_plugin(akregator_onlinesync_plugin ${akregator_onlinesync_plugin_SRCS})
 
-target_link_libraries(akregator_onlinesync_plugin akregatorinterfaces ${KDE4_KIO_LIBS})
+target_link_libraries(akregator_onlinesync_plugin akregatorinterfaces ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS})
 
 install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install(FILES akregator_onlinesync_plugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
