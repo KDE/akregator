@@ -32,6 +32,7 @@
 
 class KConfigGroup;
 class KUrl;
+class KCMultiDialog;
 
 class QDomDocument;
 class QTimer;
@@ -196,6 +197,7 @@ class Part : public MyBasePart
         MainWidget* m_mainWidget;
         Backend::Storage* m_storage;
         ActionManagerImpl* m_actionManager;
+        KCMultiDialog* m_dialog;
 };
 
 } // namespace Akregator
