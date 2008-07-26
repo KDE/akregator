@@ -57,7 +57,7 @@
 #include <kio/netaccess.h>
 #include <KParts/GenericFactory>
 #include <KParts/Plugin>
-#include <KSettings/Dialog>
+#include <KCMultiDialog>
 
 #include <QFile>
 #include <QObject>
@@ -99,6 +99,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
        , m_backedUpList(false)
        , m_mainWidget(0)
        , m_storage(0)
+       , m_dialog(0)
 
 {
     setPluginLoadingMode( LoadPluginsIfEnabled );
@@ -255,6 +256,7 @@ Part::~Part()
     kDebug() <<"Part::~Part() enter";
     if (!m_shuttingDown)
         slotOnShutdown();
+    delete m_dialog;
     kDebug() <<"Part::~Part(): leaving";
 }
 
@@ -633,16 +635,31 @@ void Part::showOptions()
 {
     saveSettings();
 
-    QStringList parts;
-    parts.append( componentData().componentName() );
-    QPointer<KSettings::Dialog> dlg( new KSettings::Dialog( parts, m_mainWidget ) );
-    dlg->setModal( true );
-    connect( dlg, SIGNAL( configCommitted() ),
-             this, SLOT( slotSettingsChanged() ) );
-    connect( dlg, SIGNAL( configCommitted() ),
-             TrayIcon::getInstance(), SLOT( settingsChanged() ) );
-    dlg->exec();
-    delete dlg;
+    if ( !m_dialog ) {
+        m_dialog = new KCMultiDialog( m_mainWidget );
+        connect( m_dialog, SIGNAL(configCommitted()),
+                 this, SLOT(slotSettingsChanged()) );
+        connect( m_dialog, SIGNAL(configCommitted()),
+                 TrayIcon::getInstance(), SLOT(settingsChanged()) );
+
+        QStringList modules;
+
+        modules.append( "akregator_config_general.desktop" );
+        modules.append( "akregator_config_onlinesync.desktop" );
+        modules.append( "akregator_config_archive.desktop" );
+        modules.append( "akregator_config_appearance.desktop" );
+        modules.append( "akregator_config_browser.desktop" );
+        modules.append( "akregator_config_advanced.desktop" );
+
+        // add them all
+        QStringList::iterator mit;
+        for ( mit = modules.begin(); mit != modules.end(); ++mit ) {
+            m_dialog->addModule( *mit );
+        }
+    }
+
+    m_dialog->show();
+    m_dialog->raise();
 }
 
 void Part::partActivateEvent(KParts::PartActivateEvent* event)
