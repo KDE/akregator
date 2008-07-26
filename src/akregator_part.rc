@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="391">
+<kpartgui name="akregator_part" version="411">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -79,7 +79,7 @@
   </Menu>
 </MenuBar>
 
-<ToolBar noMerge="1" name="mainToolBar" fullWidth="true">
+<ToolBar noMerge="1" name="mainToolBar" fullWidth="true"><text>Main Toolbar</text>
   <Action name="feed_fetch"/>
   <Action name="feed_fetch_all"/>
   <Action name="feed_stop"/>
@@ -89,7 +89,7 @@
   <Merge/>
 </ToolBar>
 
-<ToolBar name="browserToolBar">
+<ToolBar name="browserToolBar"><text>Browser Toolbar</text>
 	<Action name="browser_back"/>
 	<Action name="browser_forward"/>
 	<Action name="browser_reload"/>
@@ -97,7 +97,7 @@
 	<Merge/>
 </ToolBar>
 
-<ToolBar hidden="true" name="textToSpeechToolBar">
+<ToolBar hidden="true" name="textToSpeechToolBar"><text>Speech Toolbar</text>
 	<Action name="akr_texttospeech"/>
 	<Action name="akr_aborttexttospeech"/>
 	<Merge/>
