@@ -41,14 +41,19 @@ void Opml::load()
     }
 
     // Read the XML
+    delete _xmlDoc;
     _xmlDoc = new QDomDocument("opml");
     if (!_xmlFile.open(QIODevice::ReadOnly)) {
         kDebug() << "File Error";
+        delete _xmlDoc;
+        _xmlDoc = 0;
         return;
     }
     if (!_xmlDoc->setContent(&_xmlFile)) {
         kDebug() << "File Error";
         _xmlFile.close();
+        delete _xmlDoc;
+        _xmlDoc = 0;
         return;
     }
     _xmlFile.close();
@@ -84,6 +89,8 @@ void Opml::sendSignalLoadDone()
 
 void Opml::add(const SubscriptionList & list) 
 {
+    if(!_xmlDoc)
+       return;
     kDebug();
     QDomNode nodeList = _xmlDoc->documentElement().firstChild().nextSibling();
 
