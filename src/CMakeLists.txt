@@ -33,7 +33,11 @@ kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
 
 target_link_libraries(akregatorprivate kdepim  ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} akregatorinterfaces )
 
-set_target_properties(akregatorprivate PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
+set_target_properties(akregatorprivate
+   PROPERTIES VERSION ${GENERIC_LIB_VERSION}
+   SOVERSION ${GENERIC_LIB_SOVERSION}
+   ${KDE4_DISABLE_PROPERTY_}LINK_INTERFACE_LIBRARIES "khtml;kde3support;solid"
+)
 install(TARGETS akregatorprivate DESTINATION ${LIB_INSTALL_DIR})
 
 ########### next target ###############
@@ -102,7 +106,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate )
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate kdepim ${KDE4_SYNDICATION_LIBS} ${KDE4_KPIMUTILS_LIBS})
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
