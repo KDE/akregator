@@ -162,6 +162,7 @@ void TabWidget::slotAddFrame(Frame* frame)
     addTab(frame, frame->title());
     connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*, const QString& )), 
             this, SLOT(slotSetTitle(Akregator::Frame*, const QString& )));
+    connect(frame, SIGNAL(signalPartDestroyed(int)), this, SLOT(slotRemoveFrame(int)));
     slotSetTitle(frame, frame->title());
 }
 
