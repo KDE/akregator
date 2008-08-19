@@ -89,6 +89,7 @@ private:
     Akregator::SingleArticleDisplay* m_singleDisplay;
     Akregator::SubscriptionListModel* m_subscriptionModel;
     Akregator::FolderExpansionHandler* m_folderExpansionHandler;
+    Akregator::ArticleModel* m_articleModel;
     TreeNode* m_selectedSubscription;
     QTimer* m_articleFetchTimer;
 };
