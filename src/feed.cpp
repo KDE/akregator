@@ -367,6 +367,8 @@ QString Feed::xmlUrl() const { return d->xmlUrl; }
 void Feed::setXmlUrl(const QString& s)
 {
     d->xmlUrl = s;
+    if( ! Settings::fetchOnStartup() ) // TODO: perhaps this should have a randomized timer also not to block the ui on startup? another option could be a favicon cache, which may not be a bad idea..
+        FeedIconManager::self()->addListener( KUrl( d->xmlUrl ), this );
 }
 
 QString Feed::htmlUrl() const { return d->htmlUrl; }
@@ -632,7 +634,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     loadArticles(); // TODO: make me fly: make this delayed
 
     FeedIconManager::self()->addListener( KUrl( xmlUrl() ), this );
-    
+
     d->fetchErrorCode = Syndication::Success;
 
     if (d->imagePixmap.isNull())
