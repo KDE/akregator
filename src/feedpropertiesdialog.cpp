@@ -77,7 +77,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     widget=new FeedPropertiesWidget(this);
     setWindowTitle(i18n("Feed Properties"));
     setButtons(KDialog::Ok|KDialog::Cancel);
-    setDefaultButton(KDialog::Cancel);
+    setDefaultButton(KDialog::Ok);
     setModal(true);
     
     setMainWidget(widget);
