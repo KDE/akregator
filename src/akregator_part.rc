@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="411">
+<kpartgui name="akregator_part" version="412">
 <MenuBar>
   <Menu name="file">
     <Action name="file_import"/>
@@ -68,13 +68,18 @@
   <Action name="file_sendfile"/>
 
   </Menu>
-  
-  <Menu name="settings">
-    <Action name="show_quick_filter"/>
-    <Separator/>
-    <Action name="options_configure_notifications" group="settings_configure"/>
-    <Action name="akregator_configure_akregator" group="settings_configure"/>
+
+  <Menu noMerge="1" name="settings" >
+   <text>&amp;Settings</text>
+   <Merge name="StandardToolBarMenuHandler" />
+   <Action name="show_quick_filter" />
+   <Separator/>
+   <Action group="settings_configure" name="options_configure_keybinding" />
+   <Action group="settings_configure" name="options_configure_notifications" />
+   <Action group="settings_configure" name="options_configure_toolbars" />
+   <Action group="settings_configure" name="options_configure" />
   </Menu>
+
   <Menu name="help">
   </Menu>
 </MenuBar>

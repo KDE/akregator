@@ -161,8 +161,8 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
 
     if (actionCollection()->action("feed_fetch_all"))
         traypop->addAction(actionCollection()->action("feed_fetch_all"));
-    if (actionCollection()->action("akregator_configure_akregator"))
-        traypop->addAction(actionCollection()->action("akregator_configure_akregator"));
+    if (actionCollection()->action("options_configure"))
+        traypop->addAction(actionCollection()->action("options_configure"));
 }
 
 void ActionManagerImpl::initPart()
@@ -177,10 +177,17 @@ void ActionManagerImpl::initPart()
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
 
     KStandardAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
-    action = d->actionCollection->addAction("akregator_configure_akregator");
+
+    KStandardAction::keyBindings(d->part->parent(), SLOT(optionsConfigureKeys()), d->actionCollection); // options_configure_keybinding
+
+    KStandardAction::configureToolbars(d->part->parent(), SLOT(optionsConfigureToolbars()), d->actionCollection); // options_configure_toolbars
+
+    KStandardAction::preferences(d->part, SLOT(showOptions()), d->actionCollection); // options_configure
+
+    /*action = d->actionCollection->addAction("akregator_configure_akregator");
     action->setIcon(KIcon("configure"));
     action->setText(i18n("Configure &Akregator..."));
-    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(showOptions()));
+    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(showOptions()));*/
 }
 
 void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)

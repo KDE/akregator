@@ -158,9 +158,6 @@ void MainWindow::setupActions()
 
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
-
-    KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection());
-    KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection());
 }
 
 void MainWindow::saveProperties(KConfigGroup &config)
@@ -186,6 +183,7 @@ void MainWindow::readProperties(const KConfigGroup & config)
         show();
 }
 
+// TODO: move to part?
 void MainWindow::optionsConfigureKeys()
 {
     KShortcutsDialog dlg( KShortcutsEditor::AllActions,
@@ -198,6 +196,7 @@ void MainWindow::optionsConfigureKeys()
     dlg.configure();
 }
 
+// TODO: move to part?
 void MainWindow::optionsConfigureToolbars()
 {
     saveMainWindowSettings(KGlobal::config().data()->group( autoSaveGroup()) );
@@ -209,13 +208,11 @@ void MainWindow::optionsConfigureToolbars()
     dlg.exec();
 }
 
-
-
+// TODO: move to part?
 void MainWindow::applyNewToolbarConfig()
 {
     applyMainWindowSettings(KGlobal::config()->group( autoSaveGroup()) );
 }
-
 
 KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 {
