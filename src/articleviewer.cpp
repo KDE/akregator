@@ -692,59 +692,20 @@ bool ArticleViewerPart::urlSelected(const QString &url, int button, int state, c
                                     const KParts::BrowserArguments& browserArgs)
 {
     m_button = button;
-    return KHTMLPart::urlSelected(url,button,state,_target,args,browserArgs);
-#ifdef __GNUC__
-#warning port disable_introduction
-#endif
-    /*
-    if (url == "config:/disable_introduction")
+    if(url == "config:/disable_introduction")
     {
-        if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), i18n("Disable"), i18n("Keep Enabled") ) == KMessageBox::Yes)
+        if ( KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), KGuiItem(i18n("Disable") ), KGuiItem( i18n ( "Keep Enabled" ) ) ) ) == KMessageBox::No)
         {
-            KConfig* conf = Settings::self()->config();
-            conf->setGroup("General");
-            conf->writeEntry("Disable Introduction", "true");
+            KConfigGroup conf(Settings::self()->config(), "General");
+            conf.writeEntry("Disable Introduction", "true");
+            conf.sync();
+            return true;
         }
+
+        return false;
     }
     else
-    {
-        m_url = completeURL(url);
-        browserExtension()->setURLArgs(args);
-        if (button == Qt::LeftButton)
-        {
-            switch (Settings::lMBBehaviour())
-            {
-                case Settings::EnumLMBBehaviour::OpenInExternalBrowser:
-                    slotOpenLinkInBrowser();
-                    break;
-                case Settings::EnumLMBBehaviour::OpenInBackground:
-                    slotOpenLinkInBackgroundTab();
-                    break;
-                default:
-                    slotOpenLinkInForegroundTab();
-                    break;
-            }
-            return;
-        }
-        else if (button == Qt::MidButton)
-        {
-            switch (Settings::mMBBehaviour())
-            {
-                case Settings::EnumMMBBehaviour::OpenInExternalBrowser:
-                    slotOpenLinkInBrowser();
-                    break;
-                case Settings::EnumMMBBehaviour::OpenInBackground:
-                    slotOpenLinkInBackgroundTab();
-                    break;
-                default:
-                    slotOpenLinkInForegroundTab();
-                    break;
-            }
-            return;
-        }
-        KHTMLPart::urlSelected(url,button,state,_target,args);
-    }
-    */
+        return KHTMLPart::urlSelected(url,button,state,_target,args,browserArgs);
 }
 
 void ArticleViewer::updateCss()
