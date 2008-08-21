@@ -95,7 +95,11 @@ class BrowserFrame : public Frame
                            const KParts::BrowserArguments& browserArgs,
                            KParts::BrowserExtension::PopupFlags flags,
                            const KParts::BrowserExtension::ActionGroupMap& actionGroups );
+
+        void slotPartDestroyed(QObject *obj);
         
+    signals:
+        void signalPartDestroyed(int id);
     private:
         class Private;
         Private* const d;

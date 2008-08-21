@@ -54,6 +54,7 @@ using namespace Akregator;
 
 BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent), d( new Private( this ) )
 {
+    connect(d, SIGNAL(destroyed(QObject *)), this, SLOT(slotPartDestroyed(QObject *)));
 }
 
 BrowserFrame::~BrowserFrame()
@@ -92,6 +93,11 @@ void BrowserFrame::slotSetIconUrl(const KUrl& /*url*/)
 
 void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
+}
+
+void BrowserFrame::slotPartDestroyed(QObject *obj)
+{
+    emit signalPartDestroyed(id());
 }
 
 namespace {
@@ -201,7 +207,7 @@ void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const OpenUrlArgum
     req.setUrl(url);
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
-    
+
     emit signalOpenUrlRequest(req);
 }
 
@@ -213,7 +219,7 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url, const OpenUrlArguments& 
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
-    
+
     emit signalOpenUrlRequest(req);
 }
 
@@ -229,7 +235,7 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url,
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
     req.setOptions(OpenUrlRequest::NewTab);
-    
+
     emit signalOpenUrlRequest(req);
     if ( part )
         *part = req.part();
