@@ -54,7 +54,6 @@ using namespace Akregator;
 
 BrowserFrame::BrowserFrame(QWidget* parent) : Frame(parent), d( new Private( this ) )
 {
-    connect(d, SIGNAL(destroyed(QObject *)), this, SLOT(slotPartDestroyed(QObject *)));
 }
 
 BrowserFrame::~BrowserFrame()
@@ -93,11 +92,6 @@ void BrowserFrame::slotSetIconUrl(const KUrl& /*url*/)
 
 void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 {
-}
-
-void BrowserFrame::slotPartDestroyed(QObject *obj)
-{
-    emit signalPartDestroyed(id());
 }
 
 namespace {
@@ -147,7 +141,7 @@ void addActionsToMenu( QMenu* menu, const QList<QAction*> actions, SeparatorOpti
 }
 
 void BrowserFrame::slotPopupMenu(
-                   const QPoint& global, 
+                   const QPoint& global,
                    const KUrl& url,
                    mode_t mode,
                    const OpenUrlArguments& args,
@@ -159,11 +153,11 @@ void BrowserFrame::slotPopupMenu(
     const bool showNavigationItems = (flags & BrowserExtension::ShowNavigationItems) != 0;
     const bool isLink = (flags & BrowserExtension:: IsLink) != 0;
     const bool isSelection = (flags & BrowserExtension::ShowTextSelectionItems) != 0;
-        
+
     bool isFirst = true;
-    
+
     QPointer<KMenu> popup( new KMenu( d->part->widget() ) );
-    
+
     if (showNavigationItems)
     {
         popup->addAction( ActionManager::getInstance()->action( "browser_back" ) );
@@ -177,7 +171,7 @@ void BrowserFrame::slotPopupMenu(
     }
 
 #define addSeparatorIfNotFirst() if ( !isFirst ) popup->addSeparator(); isFirst = false;
-    
+
     if (isLink)
     {
         addSeparatorIfNotFirst();
@@ -185,7 +179,7 @@ void BrowserFrame::slotPopupMenu(
         popup->addAction( createOpenLinkInExternalBrowserAction( url, this, SLOT( slotOpenLinkInBrowser() ), popup ) );
         addActionsToMenu( popup, actionGroups.value( "linkactions" ), ShowSeparatorIfNotEmpty );
     }
-    
+
     if (isSelection)
     {
         addSeparatorIfNotFirst();
@@ -198,11 +192,11 @@ void BrowserFrame::slotPopupMenu(
     popup->exec( global );
     delete popup;
 }
-                   
+
 void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const OpenUrlArguments& args, const BrowserArguments& browserArgs)
 {
     OpenUrlRequest req;
-    
+
     req.setFrameId(id());
     req.setUrl(url);
     req.setArgs(args);
@@ -223,10 +217,10 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url, const OpenUrlArguments& 
     emit signalOpenUrlRequest(req);
 }
 
-void BrowserFrame::slotCreateNewWindow(const KUrl& url, 
+void BrowserFrame::slotCreateNewWindow(const KUrl& url,
                                        const OpenUrlArguments& args,
                                        const BrowserArguments& browserArgs,
-                                       const WindowArgs& /*windowArgs*/, 
+                                       const WindowArgs& /*windowArgs*/,
                                        ReadOnlyPart** part)
 {
     OpenUrlRequest req;
@@ -244,7 +238,7 @@ void BrowserFrame::slotCreateNewWindow(const KUrl& url,
 bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 {
     const QString serviceType = request.args().mimeType();
-    
+
     if (serviceType.isEmpty())
         return false;
 
@@ -252,14 +246,14 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 
     if (d->loadPartForMimetype(serviceType))
     {
-        if (d->part)
-            d->part->setArguments(request.args());
+        assert( d->part );
+        d->part->setArguments(request.args());
 
         if ( !request.url().isValid() )
             return false;
-        
+
         const bool res = d->part->openUrl( request.url() );
-        
+
         if ( res )
         {
             d->appendHistoryEntry(request.url());
@@ -272,7 +266,7 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
     {
             // TODO: show open|save|cancel dialog
     }
-    
+
     return false; // TODO: is this correct?
 }
 
@@ -289,10 +283,10 @@ void BrowserFrame::slotHistoryBackAboutToShow()
 
     if (!canGoBack())
         return;
-    
-    
+
+
     QList<Private::HistoryEntry>::Iterator it = d->current-1;
-    
+
     int i = 0;
     while( i < 10)
     {
@@ -301,7 +295,7 @@ void BrowserFrame::slotHistoryBackAboutToShow()
             popup->addAction(new Private::HistoryAction(it, popup, d));
             return;
         }
-        
+
         popup->addAction(new Private::HistoryAction(it, popup, d));
         ++i;
         --it;
@@ -311,14 +305,14 @@ void BrowserFrame::slotHistoryBackAboutToShow()
 void BrowserFrame::slotHistoryForwardAboutToShow()
 {
     QAction* fw = ActionManager::getInstance()->action("browser_forward");
-    QMenu* popup = qobject_cast<KToolBarPopupAction*>(fw)->menu(); 
+    QMenu* popup = qobject_cast<KToolBarPopupAction*>(fw)->menu();
     popup->clear();
-    
+
     if (!canGoForward())
         return;
 
     QList<Private::HistoryEntry>::Iterator it = d->current+1;
-        
+
     int i = 0;
     while( i < 10)
     {
@@ -327,7 +321,7 @@ void BrowserFrame::slotHistoryForwardAboutToShow()
             popup->addAction( new Private::HistoryAction(it, popup, d));
             return;
         }
-        
+
         popup->addAction(new Private::HistoryAction(it, popup, d));
         ++i;
         ++it;

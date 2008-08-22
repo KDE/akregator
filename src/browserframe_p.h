@@ -35,6 +35,7 @@
 #include <QAction>
 #include <QGridLayout>
 #include <QList>
+#include <QPointer>
 #include <QString>
 
 #include <kaction.h>
@@ -59,16 +60,16 @@ class BrowserFrame::Private : public QObject
     public:
         explicit Private(BrowserFrame* qq);
         ~Private();
-        
+
         class HistoryEntry;
         class HistoryAction;
         class UrlAction;
-        
+
         QList<HistoryEntry> history;
         QList<HistoryEntry>::Iterator current;
-        KParts::ReadOnlyPart* part;
-        KParts::BrowserExtension* extension;
-        QGridLayout* layout;
+        QPointer<KParts::ReadOnlyPart> part;
+        QPointer<KParts::BrowserExtension> extension;
+        QPointer<QGridLayout> layout;
         bool lockHistory;
         bool isLoading;
 
@@ -80,14 +81,15 @@ class BrowserFrame::Private : public QObject
         void appendHistoryEntry(const KUrl& url);
         void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
         bool loadPartForMimetype(const QString& mimetype);
-    
+
         QString debugInfo() const;
-        
+
     public slots:
         void slotHistoryEntrySelected( const QList<BrowserFrame::Private::HistoryEntry>::Iterator& entry)
         {
             restoreHistoryEntry(entry);
         }
+        void partDestroyed( QObject* obj );
 };
 
 class BrowserFrame::Private::HistoryEntry
@@ -122,21 +124,21 @@ class BrowserFrame::Private::HistoryEntry
 
 class BrowserFrame::Private::HistoryAction : public QAction
 {
-    
-    Q_OBJECT            
+
+    Q_OBJECT
     public:
-        HistoryAction(QList<HistoryEntry>::Iterator entry, 
+        HistoryAction(QList<HistoryEntry>::Iterator entry,
                       QObject* q,
                       Private* priv);
-        
+
         QList<HistoryEntry>::Iterator m_entry;
-    
+
     public slots:
-        
+
         void slotTriggered(bool);
-            
+
     signals:
-        
+
         void triggered(const QList<BrowserFrame::Private::HistoryEntry>::Iterator&);
 };
 

@@ -33,7 +33,7 @@ class QWidget;
 
 class KUrl;
 
-namespace KParts 
+namespace KParts
 {
     class OpenUrlArguments;
     class ReadOnlyPart;
@@ -69,7 +69,7 @@ class BrowserFrame : public Frame
         void slotStop();
         void slotHistoryBackAboutToShow();
         void slotHistoryForwardAboutToShow();
-        
+
         void slotPaletteOrFontChanged();
         void slotOpenLinkInBrowser();
         void slotOpenLinkInNewTab();
@@ -78,16 +78,16 @@ class BrowserFrame : public Frame
 
         void slotOpenUrlRequestDelayed(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
         void slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs);
-        void slotCreateNewWindow(const KUrl& url, 
+        void slotCreateNewWindow(const KUrl& url,
                                  const KParts::OpenUrlArguments& args,
                                  const KParts::BrowserArguments& browserArgs,
-                                 const KParts::WindowArgs& windowArgs, 
+                                 const KParts::WindowArgs& windowArgs,
                                  KParts::ReadOnlyPart** part);
         void slotOpenUrlNotify();
         void slotSetLocationBarUrl(const QString& url);
         void slotSetIconUrl(const KUrl& url);
         void slotSpeedProgress(int);
-        
+
         void slotPopupMenu(const QPoint& global,
                            const KUrl& url,
                            mode_t mode,
@@ -96,10 +96,9 @@ class BrowserFrame : public Frame
                            KParts::BrowserExtension::PopupFlags flags,
                            const KParts::BrowserExtension::ActionGroupMap& actionGroups );
 
-        void slotPartDestroyed(QObject *obj);
-        
     signals:
         void signalPartDestroyed(int id);
+
     private:
         class Private;
         Private* const d;
