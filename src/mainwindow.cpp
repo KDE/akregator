@@ -48,6 +48,8 @@
 #include <ktoolbar.h>
 #include <kurl.h>
 
+#include <KMenuBar>
+
 #include "progressdialog.h"
 #include "statusbarprogresswidget.h"
 #include "trayicon.h"
@@ -155,6 +157,7 @@ void MainWindow::setCaption(const QString &a)
 void MainWindow::setupActions()
 {
     KStandardAction::quit(kapp, SLOT(quit()), actionCollection());
+    KStandardAction::showMenubar(this, SLOT(toggleMenuBar()), actionCollection()); // options_show_menubar
 
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
@@ -214,6 +217,12 @@ void MainWindow::applyNewToolbarConfig()
     applyMainWindowSettings(KGlobal::config()->group( autoSaveGroup()) );
 }
 
+void MainWindow::toggleMenuBar()
+{
+    QAction *act = actionCollection()->action("options_show_menubar");
+    if(act)
+        menuBar()->setVisible(act->isChecked());
+}
 KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 {
     return KParts::BrowserExtension::childObject( p );

@@ -127,6 +127,7 @@ private slots:
     void optionsConfigureToolbars();
     
     void applyNewToolbarConfig();
+    void toggleMenuBar();
 
 private:
     BrowserInterface *m_browserIface;
