@@ -42,6 +42,7 @@
 #include <KIcon>
 #include <kstandarddirs.h>
 #include <kurl.h>
+#include <KRandom>
 
 //#include <qtl.h>
 
@@ -52,6 +53,7 @@
 #include <QIcon>
 #include <QList>
 #include <QPixmap>
+#include <QTimer>
 
 #include <boost/bind.hpp>
 
@@ -447,6 +449,10 @@ void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
     }
 }
 
+void Feed::slotAddFeedIconListener()
+{
+    FeedIconManager::self()->addListener( KUrl( d->xmlUrl ), this );
+}
 
 void Feed::appendArticles(const Syndication::FeedPtr feed)
 {
