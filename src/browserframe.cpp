@@ -96,7 +96,7 @@ void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)
 
 namespace {
 
-OpenUrlRequest requestFromSender( QObject* sender, int id )
+static OpenUrlRequest requestFromSender( QObject* sender, int id )
 {
     QAction* const action = qobject_cast<QAction*>( sender );
     assert( action );
@@ -201,18 +201,6 @@ void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const OpenUrlArgum
     req.setUrl(url);
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
-
-    emit signalOpenUrlRequest(req);
-}
-
-void BrowserFrame::slotCreateNewWindow(const KUrl& url, const OpenUrlArguments& args, const BrowserArguments& browserArgs)
-{
-    OpenUrlRequest req;
-    req.setFrameId(id());
-    req.setUrl(url);
-    req.setArgs(args);
-    req.setBrowserArgs(browserArgs);
-    req.setOptions(OpenUrlRequest::NewTab);
 
     emit signalOpenUrlRequest(req);
 }
