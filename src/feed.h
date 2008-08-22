@@ -228,6 +228,8 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
 
         /** add this feed to the fetch queue @c queue */
         void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchOnly=false);
+        
+        void slotAddFeedIconListener();
 
     signals:
         /** emitted when fetching started */

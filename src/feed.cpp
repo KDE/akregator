@@ -42,6 +42,7 @@
 #include <KIcon>
 #include <kstandarddirs.h>
 #include <kurl.h>
+#include <KRandom>
 
 //#include <qtl.h>
 
@@ -52,6 +53,7 @@
 #include <QIcon>
 #include <QList>
 #include <QPixmap>
+#include <QTimer>
 
 #include <boost/bind.hpp>
 
@@ -367,8 +369,8 @@ QString Feed::xmlUrl() const { return d->xmlUrl; }
 void Feed::setXmlUrl(const QString& s)
 {
     d->xmlUrl = s;
-    if( ! Settings::fetchOnStartup() ) // TODO: perhaps this should have a randomized timer also not to block the ui on startup? another option could be a favicon cache, which may not be a bad idea..
-        FeedIconManager::self()->addListener( KUrl( d->xmlUrl ), this );
+    if( ! Settings::fetchOnStartup() )
+        QTimer::singleShot(KRandom::random() % 4000, this, SLOT(slotAddFeedIconListener())); // TODO: let's give a gui some time to show up before starting the fetch when no fetch on startup is used. replace this with something proper later...
 }
 
 QString Feed::htmlUrl() const { return d->htmlUrl; }
@@ -449,6 +451,10 @@ void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
     }
 }
 
+void Feed::slotAddFeedIconListener()
+{
+    FeedIconManager::self()->addListener( KUrl( d->xmlUrl ), this );
+}
 
 void Feed::appendArticles(const Syndication::FeedPtr feed)
 {
