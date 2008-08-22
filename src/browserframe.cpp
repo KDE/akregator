@@ -331,9 +331,8 @@ void BrowserFrame::slotHistoryBack()
 void BrowserFrame::slotReload()
 {
     // TODO
-    //d->lockHistory = true;
+    //TemporaryValue lock( d->lockHistory, true );
     //openUrl(d->url, d->mimetype); // this s
-    //d->lockHistory = false;
 }
 
 void BrowserFrame::slotStop()

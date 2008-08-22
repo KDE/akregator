@@ -23,19 +23,9 @@
 */
 
 #include "browserframe_p.h"
+#include "utils/temporaryvalue.h"
 
-namespace {
-    template <typename T>
-    class TemporaryValue {
-    public:
-        TemporaryValue( T& v_, const T& tempVal ) : v( v_ ), prev( v ) { v = tempVal; }
-        ~TemporaryValue() { v = prev; }
-    private:
-        T& v;
-        const T prev;
-    };
-}
-namespace Akregator {
+using namespace Akregator;
 
 BrowserFrame::Private::Private( BrowserFrame* qq )
   : QObject( qq ),
@@ -271,8 +261,6 @@ void BrowserFrame::Private::connectPart()
         }
     }
 }
-
-} // namespace Akregator
 
 #include "browserframe_p.moc"
 
