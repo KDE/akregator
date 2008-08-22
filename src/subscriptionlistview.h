@@ -83,8 +83,7 @@ private Q_SLOTS:
     void headerMenuItemTriggered( QAction* action );
 
 private:
-    QMap<QAction*,int> m_columnMap;
-    KMenu *m_headerMenu;
+    bool m_headerSetup;
 };
 
 }

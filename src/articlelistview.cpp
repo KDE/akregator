@@ -142,13 +142,6 @@ namespace {
 
 void ArticleListView::setArticleModel( ArticleModel* model )
 {
-    //const QByteArray headerState = header()->saveState();
-    QList<int> columnsSize;
-    for (int i = 0; i < header()->count(); ++i)
-        columnsSize.append( columnWidth( i ) );
-
-    //FIXME: HACK: Change back to saveState() when it's working again
-
     slotClear();
     if ( !model )
         return;
@@ -168,9 +161,6 @@ void ArticleListView::setArticleModel( ArticleModel* model )
     columnsProxy->setColumnEnabled( ArticleModel::AuthorColumn );
 
     setModel( columnsProxy );
-    //header()->restoreState( headerState );
-    for (int i = 0; i < columnsSize.count(); ++i)
-        setColumnWidth( i, columnsSize.at( i ) );
 
     if ( !m_headerSetUp )
     {
@@ -178,8 +168,6 @@ void ArticleListView::setArticleModel( ArticleModel* model )
         m_headerSetUp = true;
     }
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
-    connect( header(), SIGNAL( customContextMenuRequested( QPoint ) ),
-             this, SLOT( showHeaderMenu( QPoint ) ) );
 }
 
 void ArticleListView::showHeaderMenu(const QPoint& pos)
@@ -217,31 +205,24 @@ void ArticleListView::headerMenuItemTriggered( QAction* act )
 
 void ArticleListView::saveHeaderSettings()
 {
-    //Settings::setArticlelistHeaderStates( header()->saveState().toBase64() );
-    QList<int> columnsSize;
-    for (int i = 0; i < header()->count(); i++)
-        columnsSize.append( columnWidth( i ) );
-
     //FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
-    Settings::setArticlelistHeaderStates(columnsSize);
-    Settings::setArticlelistSortColumn( header()->sortIndicatorSection() );
-    Settings::setArticlelistSortOrder( header()->sortIndicatorOrder() == Qt::AscendingOrder ? 1 : 0 );
+    // is it qt-bug, really? at least saveState is working, but calling the next line causes app to hang.. -Teemu
+    //Settings::setArticlelistHeaderStates( header()->saveState().toBase64() );
+    
+    QByteArray s = header()->saveState();
+    KConfigGroup conf( Settings::self()->config(), "General" );
+    conf.writeEntry( "ArticleListHeaders", s.toBase64() );
 }
 
 void ArticleListView::loadHeaderSettings()
 {
-    /*const QByteArray s = QByteArray::fromBase64( Settings::articlelistHeaderStates().toAscii() );
-    if ( !s.isNull() )
-        header()->restoreState( s );*/
-    QList<int> columnsSize = Settings::articlelistHeaderStates();
-    if ( !columnsSize.isEmpty() ) {
-        for (int i = 0; i < columnsSize.count(); i++)
-            setColumnWidth( i, columnsSize.at( i ) );
-
-        //FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
-    }
-    header()->setSortIndicator( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
-    sortByColumn( Settings::articlelistSortColumn(), ( Settings::articlelistSortOrder() == 1 ? Qt::AscendingOrder : Qt::DescendingOrder ) );
+    //FIXME: HACK: change back to loadState+Settings class instead of using KConfigGroup directly..
+    //QByteArray s = QByteArray::fromBase64( Settings::feedlistHeaderStates().toAscii() ); // this fails currently, I think -Teemu
+    
+    KConfigGroup conf( Settings::self()->config(), "General" );
+    QByteArray s = QByteArray::fromBase64( conf.readEntry( "ArticleListHeaders" ).toAscii() );
+    if( !s.isNull() )
+        header()->restoreState( s );
 }
 
 QItemSelectionModel* ArticleListView::articleSelectionModel() const
@@ -309,6 +290,8 @@ ArticleListView::ArticleListView( QWidget* parent )
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
+        
+    connect( header(), SIGNAL( customContextMenuRequested( QPoint ) ), this, SLOT( showHeaderMenu( QPoint ) ) );
 }
 
 void ArticleListView::mousePressEvent( QMouseEvent *ev )

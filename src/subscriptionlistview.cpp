@@ -28,6 +28,7 @@
 
 #include <QHeaderView>
 #include <QStack>
+#include <QPointer>
 
 #include <KMenu>
 #include <KLocale>
@@ -134,6 +135,8 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setDragDropMode( QAbstractItemView::DragDrop );
     setDropIndicatorShown( true );
     setAcceptDrops( true );
+    m_headerSetup = false;
+    connect( header(), SIGNAL( customContextMenuRequested( const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
 }
 
 Akregator::SubscriptionListView::~SubscriptionListView()
@@ -160,73 +163,65 @@ void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
         setExpanded( i, i.data( Akregator::SubscriptionListModel::IsOpenRole ).toBool() );
     }
 
-    // To show/hide specific columns, borrowed from KTorrent
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
-    connect( header(), SIGNAL( customContextMenuRequested( const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
-    m_headerMenu = new KMenu( this );
-    m_headerMenu->addTitle( i18n( "Columns" ) );
 
-    for (int i = 0; i < model->columnCount(); i++)
-    {
-        QString col = model->headerData( i, Qt::Horizontal, Qt::DisplayRole ).toString();
-        QAction* act = m_headerMenu->addAction( col );
-        act->setCheckable( true );
-        act->setChecked( true );
-        m_columnMap[act] = i;
+    if( ! m_headerSetup ) {
+        loadHeaderSettings();
+        m_headerSetup = true;
     }
-    
-    connect(m_headerMenu, SIGNAL( triggered( QAction* ) ), this, SLOT( headerMenuItemTriggered( QAction* ) ) );
-
-    loadHeaderSettings();
 }
 
 void Akregator::SubscriptionListView::showHeaderMenu( const QPoint& pos )
 {
-    m_headerMenu->popup( header()->mapToGlobal( pos ) );
+    if( ! model() )
+        return;
+
+    QPointer<KMenu> menu = new KMenu( this );
+    menu->addTitle( i18n( "Columns" ) );
+    menu->setAttribute( Qt::WA_DeleteOnClose );
+    connect(menu, SIGNAL( triggered( QAction* ) ), this, SLOT( headerMenuItemTriggered( QAction* ) ) );
+    
+    for (int i = 0; i < model()->columnCount(); i++)
+    {
+        QString col = model()->headerData( i, Qt::Horizontal, Qt::DisplayRole ).toString();
+        QAction* act = menu->addAction( col );
+        act->setCheckable( true );
+        act->setChecked( !header()->isSectionHidden( i ) );
+        act->setData( i );
+    }
+    
+    menu->popup( header()->mapToGlobal( pos ) );
 }
 
 void Akregator::SubscriptionListView::headerMenuItemTriggered( QAction* act )
 {
-    int idx = m_columnMap[act];
+    assert( act );
+    const int col = act->data().toInt();
     if ( act->isChecked() )
-        header()->showSection( idx );
+        header()->showSection( col );
     else
-        header()->hideSection( idx );
+        header()->hideSection( col );
 }
 
 void Akregator::SubscriptionListView::saveHeaderSettings()
-{
-    //QByteArray s = header()->saveState();
-    //Settings::setFeedlistHeaderStates( s.toBase64() );
-    QList<int> columnsSize;
-    for (int i = 0; i != header()->count(); i++)
-    {
-        kDebug() << i;
-        columnsSize.append( columnWidth( i ) );
-    }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
-    Settings::setFeedlistHeaderStates( columnsSize );
+{ 
+    QByteArray s = header()->saveState();
+    KConfigGroup conf( Settings::self()->config(), "General" );
+    conf.writeEntry( "SubscriptionListHeaders", s.toBase64() );
+
+    //FIXME: HACK: Change back to Settings, when it starts to work again..
+    // Settings::setFeedlistHeaderStates( s.toBase64() );
 }
 
 void Akregator::SubscriptionListView::loadHeaderSettings()
 {
+    // FIXME: HACK: Change back to Settings when it's working
     //QByteArray s = QByteArray::fromBase64( Settings::feedlistHeaderStates().toAscii() );
-    //if ( !s.isNull() )
-    //    header()->restoreState( s );
-    QList<int> columnsSize = Settings::feedlistHeaderStates();
-    if ( !columnsSize.isEmpty() ) {
-        for (int i = 0; i != columnsSize.count(); i++)
-        {
-            kDebug() << i << " " << columnsSize.at( i );
-            setColumnWidth( i, columnsSize.at( i ) );
-        }//FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
-    }
-    QMap<QAction*,int>::iterator i = m_columnMap.begin();
-    while ( i != m_columnMap.end() )
-    {
-        QAction* act = i.key();
-        act->setChecked( !header()->isSectionHidden( i.value() ) );
-        i++;
-    }  
+    
+    KConfigGroup conf( Settings::self()->config(), "General" );
+    QByteArray s = QByteArray::fromBase64( conf.readEntry( "SubscriptionListHeaders" ).toAscii() );
+    if( !s.isNull() )
+        header()->restoreState( s );
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
