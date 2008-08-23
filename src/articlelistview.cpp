@@ -155,11 +155,11 @@ void ArticleListView::setArticleModel( ArticleModel* model )
     m_proxy = new SortColorizeProxyModel( model );
     m_proxy->setSourceModel( model );
     m_proxy->setSortRole( ArticleModel::SortRole );
-    FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( m_proxy );
+    FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( model );
     proxy2->setSortRole( ArticleModel::SortRole );
     proxy2->setSourceModel( m_proxy );
 
-    FilterColumnsProxyModel* const columnsProxy = new FilterColumnsProxyModel( this );
+    FilterColumnsProxyModel* const columnsProxy = new FilterColumnsProxyModel( model );
     columnsProxy->setSortRole( ArticleModel::SortRole );
     columnsProxy->setSourceModel( proxy2 );
     columnsProxy->setColumnEnabled( ArticleModel::ItemTitleColumn );

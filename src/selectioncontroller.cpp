@@ -32,6 +32,7 @@
 #include "treenode.h"
 
 #include <KRandom>
+#include <KDebug>
 
 #include <QAbstractItemView>
 #include <QMenu>
@@ -70,7 +71,7 @@ namespace {
     }
 } // anon namespace 
 
-Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_subscriptionModel ( 0 ), m_folderExpansionHandler( 0 ), m_selectedSubscription( 0 )
+Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_subscriptionModel ( 0 ), m_folderExpansionHandler( 0 ), m_selectedSubscription( 0 ), m_articleModel( 0 )
 {
     m_articleFetchTimer = new QTimer( this );
     connect( m_articleFetchTimer, SIGNAL( timeout() ),
@@ -137,6 +138,7 @@ void Akregator::SelectionController::setFolderExpansionHandler( Akregator::Folde
 
 void Akregator::SelectionController::setUp()
 {
+    kDebug();
     if ( !m_feedList || !m_feedSelector || !m_articleLister )
         return;
 
@@ -171,7 +173,11 @@ void Akregator::SelectionController::setUp()
 
 void Akregator::SelectionController::articleHeadersAvailable()
 {
-    m_articleLister->setArticleModel( new Akregator::ArticleModel( m_selectedSubscription ) );
+    if(m_articleModel)
+        delete m_articleModel;
+
+    m_articleModel = new Akregator::ArticleModel( m_selectedSubscription );
+    m_articleLister->setArticleModel( m_articleModel );
 
     m_articleLister->setIsAggregation( m_selectedSubscription->isAggregation() );
 
