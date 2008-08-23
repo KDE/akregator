@@ -76,6 +76,7 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
         if (part)
         {
             layout->removeWidget(part->widget());
+            disconnect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)));
             delete part;
             part = 0;
             extension = 0;
@@ -88,6 +89,8 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
         part = factory->create<KParts::ReadOnlyPart>(q);
         if (!part)
           return false;
+        connect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)));
+
         part->setObjectName(ptr->name());
         extension = KParts::BrowserExtension::childObject(part);
             
