@@ -162,7 +162,8 @@ void TabWidget::slotAddFrame(Frame* frame)
     addTab(frame, frame->title());
     connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*, const QString& )), 
             this, SLOT(slotSetTitle(Akregator::Frame*, const QString& )));
-    connect(frame, SIGNAL(signalPartDestroyed(int)), this, SLOT(slotRemoveFrame(int)));
+    if(frame->id() > 0) // MainFrame doesn't emit signalPartDestroyed signals, neither should it
+        connect(frame, SIGNAL(signalPartDestroyed(int)), this, SLOT(slotRemoveFrame(int)));
     slotSetTitle(frame, frame->title());
 }
 
@@ -206,6 +207,7 @@ void TabWidget::slotRemoveFrame(int frameId)
     d->frames.remove(f);
     d->framesById.remove(frameId);
     removeTab(indexOf(f));
+    f->deleteLater(); // removeTab doesn't remove the widget, so let's do it ourselves
     if (d->currentFrame())
       d->setTitle( d->currentFrame()->title(), currentWidget() );
 }
