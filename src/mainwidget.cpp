@@ -344,19 +344,25 @@ void Akregator::MainWidget::setTabIcon(const QPixmap& icon)
 
 void Akregator::MainWidget::sendArticle(bool attach)
 {
-    // FIXME: you have to open article to tab to be able to send...
+    QByteArray text;
+    QString title;
 
     Frame* frame = Kernel::self()->frameManager()->currentFrame();
 
-    if (!frame)
-        return;
-
-    QByteArray text = frame->url().prettyUrl().toLatin1();
+    if (frame && frame->id() > 0) { // are we in some other tab than the articlelist?
+        text = frame->url().prettyUrl().toLatin1();
+        title = frame->title();
+    }
+    else { // nah, we're in articlelist..
+         const Article article =  m_selectionController->currentArticle();
+         if(!article.isNull()) {
+             text = article.link().prettyUrl().toLatin1();
+             title = article.title();
+         }
+    }
 
     if(text.isEmpty() || text.isNull())
         return;
-
-    QString title = frame->title();
 
     if(attach)
     {
@@ -364,9 +370,9 @@ void Akregator::MainWidget::sendArticle(bool attach)
                            QString(),
                            QString(),
                            title,
-                           text,
                            QString(),
-                           QStringList(),
+                           QString(),
+                           QStringList(text),
                            text);
     }
     else
@@ -374,8 +380,8 @@ void Akregator::MainWidget::sendArticle(bool attach)
         KToolInvocation::invokeMailer(QString(),
                            QString(),
                            QString(),
-                           QString(),
                            title,
+                           text,
                            QString(),
                            QStringList(),
                            text);
