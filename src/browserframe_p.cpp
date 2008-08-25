@@ -166,8 +166,6 @@ void BrowserFrame::Private::restoreHistoryEntry( const QList<HistoryEntry>::Iter
     {
         TemporaryValue<bool> lock( lockHistory, true );
         QDataStream stream(&((*entry).buffer), QIODevice::ReadOnly);
-        stream.setVersion(QDataStream::Qt_3_1);
-
         if (extension)
             extension->restoreState(stream);
         else
