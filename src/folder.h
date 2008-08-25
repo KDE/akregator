@@ -3,7 +3,7 @@
 
     Copyright (C) 2004 Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
                   2004-2005 Frank Osterfeld <osterfeld@kde.org>
-                  
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -38,7 +38,7 @@ namespace Akregator {
 class Article;
 class FetchQueue;
 class TreeNodeVisitor;
-    
+
 /** Represents a folder (containing feeds and/or other folders)
     */
 class AKREGATORPART_EXPORT Folder : public TreeNode
@@ -46,32 +46,32 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
     Q_OBJECT
     public:
         /** creates a feed group parsed from a XML dom element.
-        Child nodes are not inserted or parsed. 
+        Child nodes are not inserted or parsed.
         @param e the element representing the feed group
         @return a freshly created feed group */
         static Folder* fromOPML(const QDomElement& e);
-        
+
         /** Creates a new folder with a given title
         @param title The title of the feed group
-            */          
+            */
         explicit Folder(const QString& title = QString());
-        
+
         ~Folder();
 
         bool accept(TreeNodeVisitor* visitor);
-        
-        /** returns recursively concatenated articles of children  
+
+        /** returns recursively concatenated articles of children
         @return an article sequence containing articles of children */
         QList<Article> articles();
 
-        /** returns the number of unread articles in all children    
+        /** returns the number of unread articles in all children
         @return number of unread articles */
         int unread() const;
 
         /** returns the number of articles in all children
         @return number of articles */
         int totalCount() const;
-        
+
         /** Helps the rest of the app to decide if node should be handled as group or not. */
         bool isGroup() const { return true; }
 
@@ -80,19 +80,20 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
 
         /** converts the feed group into OPML format for save and export and appends it to node @c parent in document @document.
         Children are processed and appended recursively.
-        @param parent The parent element 
-        @param document The DOM document 
+        @param parent The parent element
+        @param document The DOM document
         @return The newly created element representing this feed group */
         QDomElement toOPML( QDomElement parent, QDomDocument document ) const;
-        
+
         /** returns the (direct) children of this node.
         @return a list of pointers to the child nodes
             */
-        
+
         //reimpl
         QList<const TreeNode*> children() const;
 
         QList<const TreeNode*> namedChildren( const QString& title ) const;
+        QList<TreeNode*> namedChildren( const QString& title );
 
         //reimpl
         QList<TreeNode*> children();
@@ -103,21 +104,21 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         QVector<Folder*> folders();
 
         int indexOf( const TreeNode* node ) const;
-        
+
         //reimpl
         TreeNode* childAt( int pos );
-        
+
         //reimpl
         const TreeNode* childAt( int pos ) const;
 
-        
-        
+
+
         /** inserts @c node as child after child node @c after.
         if @c after is not a child of this group, @c node will be inserted as first child
         @param node the tree node to insert
         @param after the node after which @c node will be inserted */
         void insertChild(TreeNode* node, TreeNode* after);
-        
+
         /** inserts @c node as first child
         @param node the tree node to insert */
         void prependChild(TreeNode* node);
@@ -134,16 +135,16 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         TreeNode* firstChild();
         const TreeNode* firstChild() const;
 
-        
+
         /** returns the last child of the group, 0 if none exist */
         TreeNode* lastChild();
         const TreeNode* lastChild() const;
 
-        
+
         /** returns whether the feed group is opened or not..
         Use only in \ref FolderItem. */
         bool isOpen() const;
-        
+
         /** open/close the feed group (display it as expanded/collapsed in the tree view). Use only in \ref FolderItem. */
         void setOpen(bool open);
 
@@ -152,34 +153,34 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
             */
         TreeNode* next();
         const TreeNode* next() const;
-        
+
         QIcon icon() const;
 
         /* returns whether @p node is among the direct or indirect children of this
          * folder
          */
         bool subtreeContains( const Akregator::TreeNode* node ) const;
-        
+
     signals:
         /** emitted when a child was added */
         void signalChildAdded(Akregator::TreeNode*);
 
         /** emitted when a child was removed */
         void signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*);
-        
+
         void signalAboutToRemoveChild( Akregator::TreeNode* );
-        
+
     public slots:
 
         /** Mark articles of children recursively as read. */
         void slotMarkAllArticlesAsRead();
 
-        /** Called when a child was modified. 
+        /** Called when a child was modified.
         @param node the child that was changed
             */
         void slotChildChanged(Akregator::TreeNode* node);
-        
-        /** Called when a child was destroyed. 
+
+        /** Called when a child was destroyed.
         @param node the child that was destroyed
         */
         void slotChildDestroyed(Akregator::TreeNode* node);
@@ -189,7 +190,7 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchesOnly=false);
 
     protected:
-    
+
         /** inserts @c node as child on position @c index
         @param index the position where to insert
         @param node the tree node to insert */
@@ -201,9 +202,9 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
 
         void connectToNode(TreeNode* child);
         void disconnectFromNode(TreeNode* child);
-        
+
         void updateUnreadCount() const;
-        
+
         class FolderPrivate;
         FolderPrivate* d;
 };

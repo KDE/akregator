@@ -85,9 +85,11 @@ public:
     bool isEmpty() const;
 
     const TreeNode* findByID(int id) const;
-    QList<const TreeNode*> findByTitle(const QString &title) const;
-
     TreeNode* findByID(int id);
+
+    QList<const TreeNode*> findByTitle(const QString &title) const;
+    QList<TreeNode*> findByTitle(const QString &title);
+
 
     /** returns the title of the feed list (as used in the OPML document) */
     QString title() const;
