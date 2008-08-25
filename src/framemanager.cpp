@@ -37,7 +37,7 @@
 namespace Akregator {
 
 FrameManager::FrameManager(QWidget* mainWin, QObject* parent) : QObject(parent), m_mainWin(mainWin), m_currentFrame(0)
-{    
+{
 }
 
 FrameManager::~FrameManager()
@@ -64,39 +64,39 @@ void FrameManager::slotAddFrame(Frame* frame)
     connect(frame, SIGNAL(signalLoadingProgress(Akregator::Frame*, int)), this, SLOT(slotSetProgress(Akregator::Frame*, int)));
     connect(frame, SIGNAL(signalCompleted(Akregator::Frame*)), this, SLOT(slotSetCompleted(Akregator::Frame*)));
     connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*, const QString&)), this, SLOT(slotSetTitle(Akregator::Frame*, const QString&)) );
-    connect(frame, SIGNAL(signalStatusText(Akregator::Frame*, const QString&)), this, SLOT(slotSetStatusText(Akregator::Frame*, const QString&)) 
+    connect(frame, SIGNAL(signalStatusText(Akregator::Frame*, const QString&)), this, SLOT(slotSetStatusText(Akregator::Frame*, const QString&))
 );
-    
+
     connect(frame, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)), this, SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
 
     connect(frame, SIGNAL( signalCanGoBackToggled(Akregator::Frame*, bool)), this, SLOT(slotCanGoBackToggled(Akregator::Frame*, bool)) );
     connect(frame, SIGNAL( signalCanGoForwardToggled(Akregator::Frame*, bool)), this, SLOT(slotCanGoForwardToggled(Akregator::Frame*, bool)) );
-    connect(frame, SIGNAL( signalIsReloadableToggled(Akregator::Frame*, bool)), this, SLOT(slotIsReloadableToggled(Akregator::Frame*, bool)) 
+    connect(frame, SIGNAL( signalIsReloadableToggled(Akregator::Frame*, bool)), this, SLOT(slotIsReloadableToggled(Akregator::Frame*, bool))
 );
 
     connect(frame, SIGNAL( signalIsLoadingToggled(Akregator::Frame*, bool)), this, SLOT(slotIsLoadingToggled(Akregator::Frame*, bool)) );
-    
+
     emit signalFrameAdded(frame);
 
     if (m_frames.count() == 1)
         slotChangeFrame(frame->id());
-    
+
 }
 
 void FrameManager::slotRemoveFrame(int id)
 {
     Frame* frame = m_frames[id];
-    
+
     if (!frame)
         return;
 
     frame->disconnect( this );
-    
+
     if (m_currentFrame == frame)
     {
         slotChangeFrame(-1);
     }
-    
+
     m_frames.remove(frame->id());
     emit signalFrameRemoved(frame->id());
 }
@@ -111,19 +111,19 @@ void FrameManager::slotChangeFrame(int frameId)
     Frame* frame = m_frames[frameId];
     if (frame == m_currentFrame)
         return;
-    
+
     Frame* oldFrame = m_currentFrame;
     m_currentFrame = frame;
-    
+
     if (frame)
     {
         slotCanGoBackToggled(frame, frame->canGoBack());
         slotCanGoForwardToggled(frame, frame->canGoForward());
         slotIsReloadableToggled(frame, frame->isReloadable());
         slotIsLoadingToggled(frame, frame->isLoading());
-        
+
         // TODO: handle removable flag
-        
+
         switch (frame->state())
         {
             case Frame::Started:
@@ -179,6 +179,13 @@ void FrameManager::slotSetProgress(Frame* frame, int progress)
         emit signalLoadingProgress(progress);
 }
 
+void FrameManager::slotSetIconChanged(Frame* frame, const QIcon& icon)
+{
+    if (frame != m_currentFrame)
+        return;
+    emit signalIconChanged(icon);
+}
+
 void FrameManager::slotSetCaption(Frame* frame, const QString& caption)
 {
     if (frame == m_currentFrame)
@@ -229,7 +236,7 @@ void FrameManager::openUrl(OpenUrlRequest& request)
         emit signalRequestNewFrame(newFrameId);
         request.setFrameId(newFrameId);
     }
-    
+
     if (m_frames.contains(request.frameId()))
     {
         Frame* frame = m_frames.value(request.frameId());
@@ -237,19 +244,19 @@ void FrameManager::openUrl(OpenUrlRequest& request)
         if (frame->part())
             request.setPart(frame->part());
     }
-    
+
     if (!request.openInBackground())
         emit signalSelectFrame(request.frameId());
 }
 void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
 {
-    KUrl url = request.url(); 
+    KUrl url = request.url();
     if (!url.isValid())
         return;
-   
+
     if (Settings::externalBrowserUseKdeDefault())
     {
-        if (request.args().mimeType().isEmpty()) 
+        if (request.args().mimeType().isEmpty())
             KToolInvocation::self()->invokeBrowser(url.url(), "0");
         else
             KRun::runUrl(url, request.args().mimeType(), 0 /*window*/, false, false);
@@ -272,7 +279,7 @@ void FrameManager::slotFoundMimeType(const OpenUrlRequest& request)
 void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
 {
     kDebug() <<"FrameManager::slotOpenUrlRequest():" << request.debugInfo();
-    
+
     if (request.options() == OpenUrlRequest::ExternalBrowser)
     {
         openInExternalBrowser(request);
@@ -288,7 +295,7 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
     {
         openUrl(request);
     }
-    
+
 }
 
 void FrameManager::slotBrowserBackAboutToShow()
@@ -327,6 +334,6 @@ void FrameManager::slotBrowserStop()
         m_currentFrame->slotStop();
 }
 
-} // namespace Akregator 
+} // namespace Akregator
 
 #include "framemanager.moc"

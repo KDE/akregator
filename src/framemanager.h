@@ -28,15 +28,14 @@
 #include <QHash>
 #include <QObject>
 
+class QIcon;
 class QString;
-
-
 
 namespace Akregator {
 
 class Frame;
 class OpenUrlRequest;
-    
+
 class FrameManager : public QObject
 {
     Q_OBJECT
@@ -47,16 +46,16 @@ class FrameManager : public QObject
         ~FrameManager();
 
         Frame* currentFrame() const;
-        
+
         Frame* findFrameById(int id) const;
-        
+
         void setMainWindow(QWidget* mainWin);
 
     public slots:
 
         void slotAddFrame(Frame* frame);
         void slotRemoveFrame(int frameId);
-               
+
         void slotChangeFrame(int frameId);
         void slotOpenUrlRequest(Akregator::OpenUrlRequest& request);
 
@@ -66,16 +65,16 @@ class FrameManager : public QObject
         void slotBrowserStop();
         void slotBrowserBackAboutToShow();
         void slotBrowserForwardAboutToShow();
-        
+
     signals:
 
         void signalFrameAdded(Akregator::Frame*);
         void signalFrameRemoved(int id);
 
         void signalRequestNewFrame(int& id);
-        
+
         void signalSelectFrame(int id);
-        /** 
+        /**
          * emitted when the active frame is switched
          * @param deactivated the the deactivated frame
          * @param activated the activated frame
@@ -87,15 +86,16 @@ class FrameManager : public QObject
         void signalCompleted();
         void signalCaptionChanged(const QString&);
         void signalTitleChanged(const QString&);
+        void signalIconChanged(const QIcon&);
         void signalLoadingProgress(int);
         void signalStatusText(const QString&);
 
     private:
-        
+
         void openUrl(OpenUrlRequest& request);
-        
+
         void openInExternalBrowser(const OpenUrlRequest& request);
-        
+
     private slots:
 
         void slotSetStarted(Akregator::Frame* frame);
@@ -105,7 +105,7 @@ class FrameManager : public QObject
         void slotSetCaption(Akregator::Frame* frame, const QString& caption);
         void slotSetTitle(Akregator::Frame* frame, const QString& title);
         void slotSetStatusText(Akregator::Frame* frame, const QString& statusText);
-
+        void slotSetIconChanged( Akregator::Frame* frame, const QIcon& icon);
         void slotCanGoBackToggled(Akregator::Frame*, bool);
         void slotCanGoForwardToggled(Akregator::Frame*, bool);
         void slotIsReloadableToggled(Akregator::Frame*, bool);

@@ -26,6 +26,7 @@
 #define AKREGATOR_BROWSERFRAME_H
 
 #include "frame.h"
+#include "feediconmanager.h"
 
 class QPoint;
 class QString;
@@ -41,7 +42,7 @@ namespace KParts
 
 namespace Akregator {
 
-class BrowserFrame : public Frame
+class BrowserFrame : public Frame, public virtual FaviconListener
 {
     Q_OBJECT
 
@@ -60,6 +61,8 @@ class BrowserFrame : public Frame
         bool isLoading() const;
 
         bool openUrl(const OpenUrlRequest& request);
+
+        /* reimp */ void setFavicon( const QIcon& icon );
 
     public slots:
 

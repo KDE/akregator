@@ -42,10 +42,11 @@ class TabWidget : public KTabWidget
     public:
         explicit TabWidget(QWidget * parent = 0);
         ~TabWidget();
-       
+
     public slots:
 
         void slotSetTitle(Akregator::Frame* frame, const QString& title);
+        void slotSetIcon(Akregator::Frame* frame, const QIcon& icon);
         void slotSettingsChanged();
         void slotNextTab();
         void slotPreviousTab();
@@ -54,15 +55,13 @@ class TabWidget : public KTabWidget
         void slotRemoveFrame(int frameId);
         void slotSelectFrame(int frameId);
 
-
     Q_SIGNALS:
-        
         void signalCurrentFrameChanged(int);
         void signalRemoveFrameRequest(int);
         void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
 
     private:
-        /*reimpl*/ void tabInserted( int );        
+        /*reimpl*/ void tabInserted( int );
         /*reimpl*/ void tabRemoved( int );
 
     private Q_SLOTS:
@@ -73,7 +72,7 @@ class TabWidget : public KTabWidget
         void slotCloseRequest(QWidget* widget);
         void contextMenu (int item, const QPoint &p);
         void slotTabChanged(QWidget *w);
-        
+
    private:
 
        class Private;

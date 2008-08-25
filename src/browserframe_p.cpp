@@ -44,7 +44,7 @@ BrowserFrame::Private::Private( BrowserFrame* qq )
 
 BrowserFrame::Private::~Private()
 {
-
+    FeedIconManager::self()->removeListener( q );
     if ( part )
         part->disconnect( this );
     delete part;

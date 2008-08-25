@@ -75,7 +75,7 @@ public:
     int currentMaxLength;
     QWidget* currentItem;
     QToolButton* tabsClose;
-    
+
     uint tabBarWidthForMaxChars(int maxLength);
     void setTitle(const QString &title , QWidget* sender);
     void updateTabBarVisibility();
@@ -96,7 +96,7 @@ TabWidget::TabWidget(QWidget * parent)
     setTabReorderingEnabled(false);
     connect( this, SIGNAL( currentChanged(QWidget *) ),
              this, SLOT( slotTabChanged(QWidget *) ) );
-    connect(this, SIGNAL(closeRequest(QWidget*)), 
+    connect(this, SIGNAL(closeRequest(QWidget*)),
             this, SLOT(slotCloseRequest(QWidget*)));
     setHoverCloseButton(Settings::closeButtonOnTabs());
 
@@ -160,8 +160,11 @@ void TabWidget::slotAddFrame(Frame* frame)
     d->frames.insert(frame, frame);
     d->framesById[frame->id()] = frame;
     addTab(frame, frame->title());
-    connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*, const QString& )), 
-            this, SLOT(slotSetTitle(Akregator::Frame*, const QString& )));
+    connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*,QString)),
+            this, SLOT(slotSetTitle(Akregator::Frame*,QString)));
+    connect(frame, SIGNAL(signalIconChanged(Akregator::Frame*,QIcon)),
+            this, SLOT(slotSetIcon(Akregator::Frame*,QIcon)));
+
     if(frame->id() > 0) // MainFrame doesn't emit signalPartDestroyed signals, neither should it
         connect(frame, SIGNAL(signalPartDestroyed(int)), this, SLOT(slotRemoveFrame(int)));
     slotSetTitle(frame, frame->title());
@@ -203,7 +206,7 @@ void TabWidget::slotRemoveFrame(int frameId)
 {
     if (!d->framesById.contains(frameId))
         return;
-    Frame* f = d->framesById[frameId]; 
+    Frame* f = d->framesById[frameId];
     d->frames.remove(f);
     d->framesById.remove(frameId);
     removeTab(indexOf(f));
@@ -222,7 +225,7 @@ uint TabWidget::Private::tabBarWidthForMaxChars( int maxLength )
 
     QFontMetrics fm = parent->tabBar()->fontMetrics();
     int x = 0;
-    for (int i = 0; i < parent->count(); ++i) 
+    for (int i = 0; i < parent->count(); ++i)
     {
         Frame* f = frames[parent->widget(i)];
         QString newTitle = f->title();
@@ -231,7 +234,7 @@ uint TabWidget::Private::tabBarWidthForMaxChars( int maxLength )
 
         int lw = fm.width( newTitle );
         int iw = parent->tabBar()->tabIcon( i ).pixmap( parent->tabBar()->style()->pixelMetric(
-QStyle::PM_SmallIconSize ), QIcon::Normal 
+QStyle::PM_SmallIconSize ), QIcon::Normal
 ).width() + 4;
 
         x += ( parent->tabBar()->style()->sizeFromContents( QStyle::CT_TabBarTab, &o,
@@ -245,34 +248,42 @@ void TabWidget::slotSetTitle(Frame* frame, const QString& title)
     d->setTitle(title, frame);
 }
 
+void TabWidget::slotSetIcon(Akregator::Frame* frame, const QIcon& icon)
+{
+    const int idx = indexOf( frame );
+    if ( idx < 0 )
+        return;
+    setTabIcon( idx, icon );
+}
+
 void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
 {
     int senderIndex = parent->indexOf(sender);
-    
+
     parent->setTabToolTip( senderIndex, QString() );
 
     uint lcw=0, rcw=0;
     int tabBarHeight = parent->tabBar()->sizeHint().height();
-    
+
     QWidget* leftCorner = parent->cornerWidget( Qt::TopLeftCorner );
-    
+
     if ( leftCorner  && leftCorner->isVisible() )
         lcw = qMax( leftCorner->width(), tabBarHeight );
-    
+
     QWidget* rightCorner = parent->cornerWidget( Qt::TopRightCorner );
-    
+
     if ( rightCorner && rightCorner->isVisible() )
         rcw = qMax( rightCorner->width(), tabBarHeight );
     uint maxTabBarWidth = parent->width() - lcw - rcw;
 
     int newMaxLength = 30;
-    
+
     for ( ; newMaxLength > 3; newMaxLength-- )
     {
         if ( tabBarWidthForMaxChars( newMaxLength ) < maxTabBarWidth )
             break;
     }
-    
+
     QString newTitle = title;
     if ( newTitle.length() > newMaxLength )
     {
@@ -281,7 +292,7 @@ void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
     }
 
     newTitle.replace( '&', "&&" );
-    
+
     if ( parent->tabText(senderIndex) != newTitle )
         parent->setTabText( senderIndex, newTitle );
 
@@ -293,7 +304,7 @@ void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
             newTitle = f->title();
             int index = parent->indexOf(parent->widget( i ));
             parent->setTabToolTip( index, QString() );
-            
+
             if ( newTitle.length() > newMaxLength )
             {
                 parent->setTabToolTip( index, newTitle );
@@ -357,7 +368,7 @@ void TabWidget::slotCloseTab()
         d->currentItem = currentWidget();
     if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() )
         return;
-    
+
     emit signalRemoveFrameRequest(d->frames[d->currentItem]->id());
 }
 

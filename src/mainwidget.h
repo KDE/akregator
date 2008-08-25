@@ -221,8 +221,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** opens the link of an article in the external browser */
         void slotOpenArticleInBrowser(const Akregator::Article& article);
 
-        void setTabIcon(const QPixmap&);
-
         void slotDoIntervalFetches();
         void slotDeleteExpiredArticles();
 
@@ -230,7 +228,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotFetchingStopped();
 
     private:
-        
+
         enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
         void setFeedList( FeedList* feedList );

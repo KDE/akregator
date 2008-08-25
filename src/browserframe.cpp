@@ -86,8 +86,15 @@ void BrowserFrame::slotSetLocationBarUrl(const QString& /*url*/)
     // TODO: use this to update URLs for dragging (like tab drag etc.)
 }
 
-void BrowserFrame::slotSetIconUrl(const KUrl& /*url*/)
+void BrowserFrame::slotSetIconUrl(const KUrl& url )
 {
+    FeedIconManager::self()->removeListener( this );
+    FeedIconManager::self()->addListener( url, this );
+}
+
+void BrowserFrame::setFavicon( const QIcon& icon )
+{
+    emit signalIconChanged( this, icon );
 }
 
 void BrowserFrame::slotSpeedProgress(int /*bytesPerSecond*/)

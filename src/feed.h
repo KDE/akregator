@@ -49,7 +49,7 @@ namespace Backend {
 }
 
 /** represents a feed */
-class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
+class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListener
 {
     friend class Article;
 
@@ -64,7 +64,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
             limitArticleNumber, /**< Save maxArticleNumber() articles, plus the ones with keep flag set */
             limitArticleAge /**< Save articles not older than maxArticleAge() (or keep flag set) */
         };
-        
+
         // class methods
         /** converts strings to ArchiveMode value
             if parsing fails, it returns ArchiveMode::globalDefault
@@ -180,7 +180,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
         bool fetchErrorOccurred() const;
 
         Syndication::ErrorCode fetchErrorCode() const;
-        
+
         /** returns the unread count for this feed */
         int unread() const;
 
@@ -211,12 +211,12 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
         void deleteExpiredArticles( Akregator::ArticleDeleteJob* job );
 
         bool isFetching() const;
-        
+
         QVector<const Feed*> feeds() const;
         QVector<Feed*> feeds();
         QVector<const Folder*> folders() const;
         QVector<Folder*> folders();
-        
+
     public slots:
         /** starts fetching */
         void fetch(bool followDiscovery=false);
@@ -228,7 +228,7 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public FaviconListener
 
         /** add this feed to the fetch queue @c queue */
         void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchOnly=false);
-        
+
         void slotAddFeedIconListener();
 
     signals:

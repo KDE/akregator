@@ -333,15 +333,6 @@ void Akregator::MainWidget::slotRequestNewFrame(int& frameId)
     frameId = frame->id();
 }
 
-void Akregator::MainWidget::setTabIcon(const QPixmap& icon)
-{
-    ArticleViewer* s = dynamic_cast<ArticleViewer*>(sender());
-    if (s)
-    {
-        m_tabWidget->setTabIcon(m_tabWidget->indexOf(s->part()->widget()), icon);
-    }
-}
-
 void Akregator::MainWidget::sendArticle(bool attach)
 {
     QByteArray text;

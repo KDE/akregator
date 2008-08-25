@@ -77,9 +77,9 @@ class Frame : public QWidget
         State state() const;
         int progress() const;
         QString statusText() const;
-        
+
         int id() const;
-	
+
         /**
          * returns whether it is possible to go forward in the history
          */
@@ -110,7 +110,7 @@ class Frame : public QWidget
 
         virtual void slotHistoryBackAboutToShow() {}
         virtual void slotHistoryForwardAboutToShow() {}
-        
+
         /** reloads the current content, if possible. See also isReloadable(). */
         virtual void slotReload() {}
 
@@ -133,6 +133,7 @@ class Frame : public QWidget
         void signalCompleted(Akregator::Frame*);
         void signalLoadingProgress(Akregator::Frame*, int);
         void signalStatusText(Akregator::Frame*, const QString&);
+        void signalIconChanged(Akregator::Frame*, const QIcon& icon );
 
         void signalOpenUrlRequest(Akregator::OpenUrlRequest& request);
 
@@ -140,7 +141,6 @@ class Frame : public QWidget
         void signalCanGoForwardToggled(Akregator::Frame*, bool);
         void signalIsReloadableToggled(Akregator::Frame*, bool);
         void signalIsLoadingToggled(Akregator::Frame*, bool);
-
 
     protected:
         void setRemovable(bool removable);
