@@ -118,10 +118,6 @@ class Part : public MyBasePart
             Calls Akregator MainWidget's readProperties. */
         virtual void saveProperties(KConfigGroup & config);
 
-        /** merges a nested part's GUI into the gui of this part
-        @return true iff merging was successful, i.e. the GUI factory was not NULL */
-        bool mergePart(KParts::Part*);
-
         void exportFile(const KUrl& url);
 
     public slots:
@@ -161,9 +157,6 @@ class Part : public MyBasePart
 
         KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
-        /** reimplemented to load/unload the merged parts on selection/deselection */
-        void partActivateEvent(KParts::PartActivateEvent* event);
-
     private slots:
         void slotStarted();
 
@@ -189,7 +182,6 @@ class Part : public MyBasePart
         bool m_shuttingDown;
 
         KParts::BrowserExtension *m_extension;
-        KParts::Part* m_mergedPart;
 
         QTimer* m_autosaveTimer;
         /** did we backup the feed list already? */

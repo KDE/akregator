@@ -93,13 +93,12 @@ void BrowserExtension::saveSettings()
 
 Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     : MyBasePart(parent)
-       , m_standardListLoaded(false)
-       , m_shuttingDown(false)
-       , m_mergedPart(0)
-       , m_backedUpList(false)
-       , m_mainWidget(0)
-       , m_storage(0)
-       , m_dialog(0)
+    , m_standardListLoaded(false)
+    , m_shuttingDown(false)
+    , m_backedUpList(false)
+    , m_mainWidget(0)
+    , m_storage(0)
+    , m_dialog(0)
 
 {
     setPluginLoadingMode( LoadPluginsIfEnabled );
@@ -459,25 +458,6 @@ bool Part::isTrayIconEnabled() const
     return Settings::showTrayIcon();
 }
 
-bool Part::mergePart(KParts::Part* part)
-{
-    if (part != m_mergedPart)
-    {
-        if (!factory())
-        {
-            kDebug() <<"Akregator::Part::mergePart(): factory() returns NULL";
-            return false;
-        }
-        if (m_mergedPart)
-            factory()->removeClient(m_mergedPart);
-        if (part)
-            factory()->addClient(part);
-
-        m_mergedPart = part;
-    }
-    return true;
-}
-
 QWidget* Part::getMainWindow()
 {
     // this is a dirty fix to get the main window used for the tray icon
@@ -660,19 +640,6 @@ void Part::showOptions()
 
     m_dialog->show();
     m_dialog->raise();
-}
-
-void Part::partActivateEvent(KParts::PartActivateEvent* event)
-{
-    if (factory() && m_mergedPart)
-    {
-        if (event->activated())
-            factory()->addClient(m_mergedPart);
-        else
-            factory()->removeClient(m_mergedPart);
-    }
-
-    MyBasePart::partActivateEvent(event);
 }
 
 KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
