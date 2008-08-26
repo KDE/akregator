@@ -208,7 +208,7 @@ void ArticleListView::saveHeaderSettings()
     //FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
     // is it qt-bug, really? at least saveState is working, but calling the next line causes app to hang.. -Teemu
     //Settings::setArticlelistHeaderStates( header()->saveState().toBase64() );
-    
+
     QByteArray s = header()->saveState();
     KConfigGroup conf( Settings::self()->config(), "General" );
     conf.writeEntry( "ArticleListHeaders", s.toBase64() );
@@ -218,7 +218,7 @@ void ArticleListView::loadHeaderSettings()
 {
     //FIXME: HACK: change back to loadState+Settings class instead of using KConfigGroup directly..
     //QByteArray s = QByteArray::fromBase64( Settings::feedlistHeaderStates().toAscii() ); // this fails currently, I think -Teemu
-    
+
     KConfigGroup conf( Settings::self()->config(), "General" );
     QByteArray s = QByteArray::fromBase64( conf.readEntry( "ArticleListHeaders" ).toAscii() );
     if( !s.isNull() )
@@ -290,7 +290,7 @@ ArticleListView::ArticleListView( QWidget* parent )
         "Here you can browse articles from the currently selected feed. "
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
-        
+
     connect( header(), SIGNAL( customContextMenuRequested( QPoint ) ), this, SLOT( showHeaderMenu( QPoint ) ) );
 }
 
@@ -435,13 +435,11 @@ void ArticleListView::selectIndex( const QModelIndex& idx )
 {
     if ( !idx.isValid() )
         return;
-    {
-        setCurrentIndex( idx );
-        clearSelection();
-        Q_ASSERT( selectionModel() );
-        selectionModel()->select( idx, QItemSelectionModel::Select | QItemSelectionModel::Rows );
-        scrollTo( idx );
-    }
+    setCurrentIndex( idx );
+    clearSelection();
+    Q_ASSERT( selectionModel() );
+    selectionModel()->select( idx, QItemSelectionModel::Select | QItemSelectionModel::Rows );
+    scrollTo( idx, PositionAtCenter );
 }
 
 void ArticleListView::slotPreviousUnreadArticle()
