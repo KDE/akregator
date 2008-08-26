@@ -912,19 +912,19 @@ void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article& a
 void Akregator::MainWidget::slotOpenCurrentArticle()
 {
     Article article =  m_selectionController->currentArticle();
-
-    if (article.isNull())
+    if ( article.isNull() )
         return;
 
-    KUrl url = article.link();
+    const KUrl url = article.link();
+    if ( !url.isValid() )
+        return;
 
-    if (url.isValid())
-    {
-        OpenUrlRequest req(url);
-        // TODO: (re-)add a setting for foreground/background
-        // and use it here
-        Kernel::self()->frameManager()->slotOpenUrlRequest(req);
-    }
+    OpenUrlRequest req( url );
+    req.setOptions( OpenUrlRequest::NewTab );
+    // TODO: (re-)add a setting for foreground/background
+    // and use it here
+    //req.setOpenInBackground( true );
+    Kernel::self()->frameManager()->slotOpenUrlRequest( req );
 }
 
 void Akregator::MainWidget::slotCopyLinkAddress()
