@@ -457,7 +457,7 @@ void ArticleListView::selectIndex( const QModelIndex& idx )
         clearSelection();
         Q_ASSERT( selectionModel() );
         selectionModel()->select( idx, QItemSelectionModel::Select | QItemSelectionModel::Rows );
-        scrollTo( idx );
+        scrollTo( idx, PositionAtCenter );
     }
 }
 
