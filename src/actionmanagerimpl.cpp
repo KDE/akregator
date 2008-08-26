@@ -319,7 +319,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action = coll->addAction("go_next_unread_article");
     action->setText(i18n("Ne&xt Unread Article"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNextUnreadArticle()));
-    action->setShortcut(QKeySequence(Qt::Key_Plus));
+    action->setShortcuts(KShortcut(Qt::Key_Equal, Qt::Key_Plus));
 
     action = coll->addAction("article_delete");
     action->setIcon(KIcon("edit-delete"));
