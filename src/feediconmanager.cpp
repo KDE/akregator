@@ -50,16 +50,16 @@ class FeedIconManager::Private
 {
     FeedIconManager* const q;
 public:
-    
+
     static FeedIconManager* m_instance;
 
     explicit Private( FeedIconManager* qq );
     ~Private();
-    
+
 
     void loadIcon( const QString& url );
     QString iconLocation( const KUrl& ) const;
-    
+
     QHash<FaviconListener*,QString> m_listeners;
     QMultiHash<QString, FaviconListener*> urlDict;
     QDBusInterface *m_favIconsModule;
@@ -130,6 +130,7 @@ void FeedIconManager::addListener( const KUrl& url, FaviconListener* listener )
     removeListener( listener );
     const QString iconUrl = getIconUrl( url );
     d->m_listeners.insert( listener, iconUrl );
+    d->urlDict.insert( iconUrl, listener );
     d->urlDict.insert( url.host(), listener );
     QMetaObject::invokeMethod( this, "loadIcon", Qt::QueuedConnection, Q_ARG( QString, iconUrl ) );
 }
@@ -140,12 +141,14 @@ void FeedIconManager::removeListener( FaviconListener* listener )
     if ( !d->m_listeners.contains( listener ) )
         return;
     const QString url = d->m_listeners.value( listener );
+    d->urlDict.remove( KUrl( url ).host(), listener );
     d->urlDict.remove( url, listener );
     d->m_listeners.remove( listener );
 }
 
 FeedIconManager::FeedIconManager()
-:  QObject(), d( new Private( this ) )
+    : QObject()
+    , d( new Private( this ) )
 {
 }
 
@@ -160,7 +163,7 @@ void FeedIconManager::slotIconChanged( bool isHost,
 {
     Q_UNUSED( isHost );
     const QIcon icon( KGlobal::dirs()->findResource( "cache", iconName+".png" ) );
-    Q_FOREACH( FaviconListener* l, d->urlDict.values( hostOrUrl ) )
+    Q_FOREACH( FaviconListener* const l, d->urlDict.values( hostOrUrl ) )
         l->setFavicon( icon );
 }
 
