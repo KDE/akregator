@@ -171,7 +171,7 @@
       <item row="0" column="0" colspan="2" >
        <widget class="QRadioButton" name="kcfg_ExternalBrowserUseKdeDefault" >
         <property name="text" >
-         <string>Use default KDE web browser</string>
+         <string>Use default web browser</string>
         </property>
         <property name="checked" >
          <bool>true</bool>
