@@ -528,27 +528,20 @@ void Part::exportFile(const KUrl& url)
 {
     if (url.isLocalFile())
     {
-        QFile file(url.path());
+        const QString fname = url.path();
 
-        if ( file.exists() &&
+        if ( QFile::exists( fname ) &&
                 KMessageBox::questionYesNo(m_mainWidget,
-            i18n("The file %1 already exists; do you want to overwrite it?", file.fileName()),
+            i18n("The file %1 already exists; do you want to overwrite it?", fname ),
             i18n("Export"),
-            KGuiItem(i18n("Overwrite")),
+            KStandardGuiItem::overwrite(),
             KStandardGuiItem::cancel()) == KMessageBox::No )
             return;
 
-        if ( !file.open(QIODevice::WriteOnly) )
-        {
-            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1", file.fileName()), i18n("Write Error") );
-            return;
-        }
+        if ( !writeToTextFile( m_mainWidget->feedListToOPML().toString(), fname ) )
+            KMessageBox::error(m_mainWidget, i18n("Access denied: cannot write to file %1. Please check your permissions.", fname), i18n("Write Error") );
 
-        QTextStream stream(&file);
-        stream.setCodec("UTF-8");
-
-        stream << m_mainWidget->feedListToOPML().toString() << "\n";
-        file.close();
+        return;
     }
     else
     {
