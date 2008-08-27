@@ -44,8 +44,6 @@ namespace Backend
     class Storage;
 }
 
-typedef KParts::ReadOnlyPart MyBasePart;
-
 class ActionManagerImpl;
 class Feed;
 class MainWidget;
@@ -68,11 +66,11 @@ class BrowserExtension : public KParts::BrowserExtension
     This is a RSS Aggregator "Part". It does all the real work.
     It is also embeddable into other applications (e.g. for use in Kontact).
     */
-class Part : public MyBasePart
+class Part : public KParts::ReadOnlyPart
 {
     Q_OBJECT
     public:
-        typedef MyBasePart inherited;
+        typedef KParts::ReadOnlyPart inherited;
 
         /** Default constructor.*/
         Part(QWidget *parentWidget, QObject *parent, const QVariantList&);
@@ -157,6 +155,9 @@ class Part : public MyBasePart
 
         KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
+    protected:
+        /* reimp */ void partActivateEvent( KParts::PartActivateEvent* ev );
+
     private slots:
         void slotStarted();
 
@@ -165,10 +166,10 @@ class Part : public MyBasePart
 
     private: // methods
 
-        bool copyFile(const QString& backup);
-
         /** fills the font settings with system fonts, if fonts are not set */
         void initFonts();
+
+        bool writeToTextFile( const QString& data, const QString& fname ) const;
 
         /** creates an OPML file containing the initial feeds (KDE feeds) */
         static QDomDocument createDefaultFeedList();

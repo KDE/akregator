@@ -52,6 +52,7 @@
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
+#include <KSaveFile>
 #include <kservice.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
@@ -92,7 +93,7 @@ void BrowserExtension::saveSettings()
 }
 
 Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
-    : MyBasePart(parent)
+    : inherited(parent)
     , m_standardListLoaded(false)
     , m_shuttingDown(false)
     , m_backedUpList(false)
@@ -187,6 +188,14 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
         useragent = Settings::customUserAgent();
 
     Syndication::FileRetriever::setUserAgent( useragent );
+}
+
+void Part::partActivateEvent( KParts::PartActivateEvent* ev ) {
+    if ( ev->activated() )
+        insertChildClient( ev->part() );
+    else
+        removeChildClient( ev->part() );
+    inherited::partActivateEvent( ev );
 }
 
 void Part::loadStoragePlugins()
@@ -381,9 +390,10 @@ bool Part::openFile()
                 + QLatin1String("-backup.")
                 + QString::number(QDateTime::currentDateTime().toTime_t());
 
-            copyFile(backup);
-
-            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backup), i18n("XML Parsing Error") );
+            if ( QFile::copy( localFilePath(), backup ) )
+                KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backup), i18n("XML Parsing Error") );
+            else
+                KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). Could not create a backup!</p></qt>" ), i18n("XML Parsing Error") );
 
             if (!doc.setContent(listBackup))
                 doc = createDefaultFeedList();
@@ -396,10 +406,10 @@ bool Part::openFile()
             + QLatin1String("-backup.")
             + QString::number(QDateTime::currentDateTime().toTime_t());
 
-        copyFile(backup);
-
-        KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup was created:<p><b>%1</b></p></qt>", backup), i18n("OPML Parsing Error") );
-
+        if ( QFile::copy( localFilePath(), backup ) )
+            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup of the previous list was created:<p><b>%1</b></p></qt>", backup), i18n("OPML Parsing Error") );
+        else
+            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). Could not create a backup!></p></qt>" ), i18n("OPML Parsing Error") );
         m_mainWidget->loadFeeds(createDefaultFeedList());
     }
 
@@ -415,42 +425,39 @@ bool Part::openFile()
     return true;
 }
 
+bool Part::writeToTextFile( const QString& data, const QString& filename ) const {
+    KSaveFile file( filename );
+    if ( !file.open( QIODevice::WriteOnly ) )
+        return false;
+    QTextStream stream( &file );
+    stream.setCodec( "UTF-8" );
+    stream << data << endl;
+    return file.finalize();
+}
+
+
 void Part::slotSaveFeedList()
 {
     // don't save to the standard feed list, when it wasn't completely loaded before
-    if (!m_standardListLoaded)
+    if ( !m_standardListLoaded )
         return;
 
     // the first time we overwrite the feed list, we create a backup
-    if (!m_backedUpList)
+    if ( !m_backedUpList )
     {
-        QString backup = localFilePath() + QLatin1String("~");
-
-        if (copyFile(backup))
+        const QString backup = localFilePath() + QLatin1String( "~" );
+        if ( QFile::copy( localFilePath(), backup ) )
             m_backedUpList = true;
     }
 
-    QString xmlStr = m_mainWidget->feedListToOPML().toString();
-    m_storage->storeFeedList(xmlStr);
-
-    QFile file(localFilePath());
-    if (file.open(QIODevice::WriteOnly) == false)
-    {
-        //FIXME: allow to save the feedlist into different location -tpr 20041118
-        KMessageBox::error(m_mainWidget, i18n("Access denied: cannot save feed list (%1)", localFilePath()), i18n("Write error") );
+    const QString xml = m_mainWidget->feedListToOPML().toString();
+    m_storage->storeFeedList( xml );
+    if ( writeToTextFile( xml, localFilePath() ) )
         return;
-    }
 
-    // use QTextStream to dump the text to the file
-    QTextStream stream(&file);
-    stream.setCodec("UTF-8");
-
-    // Write OPML data file.
-    // Archive data files are saved elsewhere.
-
-    stream << xmlStr << endl;
-
-    file.close();
+    KMessageBox::error( m_mainWidget,
+                        i18n( "Access denied: Cannot save feed list to <b>%1</b>. Please check your permissions.", localFilePath() ),
+                        i18n( "Write error" ) );
 }
 
 bool Part::isTrayIconEnabled() const
@@ -665,7 +672,7 @@ KParts::Part* Part::hitTest(QWidget *widget, const QPoint &globalPos)
     }
     else
     {*/
-        return MyBasePart::hitTest(widget, globalPos);
+        return inherited::hitTest(widget, globalPos);
 /*    }*/
 }
 
@@ -727,32 +734,6 @@ void Part::initFonts()
         Settings::setUnderlineLinks(underline);
     }
 
-}
-
-bool Part::copyFile(const QString& backup)
-{
-    QFile file(localFilePath());
-
-    if (file.open(QIODevice::ReadOnly))
-    {
-        QFile backupFile(backup);
-        if (backupFile.open(QIODevice::WriteOnly))
-        {
-            QTextStream in(&file);
-            QTextStream out(&backupFile);
-            while (!in.atEnd())
-                out << in.readLine();
-            backupFile.close();
-            file.close();
-            return true;
-        }
-        else
-        {
-            file.close();
-            return false;
-        }
-    }
-    return false;
 }
 
 } // namespace Akregator
