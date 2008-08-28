@@ -31,6 +31,8 @@
 #include <kparts/browserextension.h>
 #include <kio/job.h>
 
+#include <QPointer>
+
 class KSqueezedTextLabel;
 class KParts::BrowserExtension;
 
@@ -48,7 +50,7 @@ class MainWindow;
 class BrowserInterface : public KParts::BrowserInterface
 {
     Q_OBJECT
-    
+
 public:
     BrowserInterface(Akregator::MainWindow *shell, const char *name );
 
@@ -67,24 +69,22 @@ class MainWindow : public KParts::MainWindow
 {
     Q_OBJECT
 public:
+    explicit MainWindow( QWidget* parent=0, Qt::WindowFlags f=KDE_DEFAULT_WINDOWFLAGS );
+    ~MainWindow();
 
-    MainWindow();
-    virtual ~MainWindow();
-    
     /**
      * Creates the progress widget in the status bar and the ProgressDialog
-     * and connects them. 
+     * and connects them.
      */
     void setupProgressWidgets();
 
-    virtual void setCaption(const QString &);
 
-   /**
-    Loads the part
-    @return Whether the part has been successfully created or not.
-    */
-    bool loadPart();
-    
+    /**
+     Loads the part
+     @return Whether the part has been successfully created or not.
+     */
+     bool loadPart();
+
 public slots:
     void slotClearStatusText();
     void slotSetStatusBarText(const QString &c);
@@ -102,37 +102,34 @@ protected:
      * with @ref saveProperties
      */
     void readProperties(const KConfigGroup &);
-    /** 
+    /**
      *  Reimplemented to save settings
      */
-    virtual bool queryExit();
-      
+    bool queryExit();
+
     /**
      * Reimplemented to say if app will be running in system tray if necessary
      */
-    virtual bool queryClose(); 
+    bool queryClose();
+
 
 protected slots:
-
     void slotQuit();
-    
+
 private:
 
-    void setupActions();
     KParts::BrowserExtension *browserExtension(KParts::ReadOnlyPart *p);
 
 private slots:
-  
+
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
-    
     void applyNewToolbarConfig();
-    void toggleMenuBar();
 
 private:
     BrowserInterface *m_browserIface;
-  
-    Akregator::Part *m_part;
+
+    QPointer<Akregator::Part> m_part;
     KPIM::StatusbarProgressWidget *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
 };
