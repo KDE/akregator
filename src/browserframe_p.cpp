@@ -106,21 +106,6 @@ void BrowserFrame::Private::partDestroyed( QObject* )
     emit q->signalPartDestroyed( q->id() );
 }
 
-QString BrowserFrame::Private::debugInfo() const
-{
-    QString res = "HISTORY: ";
-
-    QList<HistoryEntry>::ConstIterator it = history.begin();
-    while(it != history.end())
-    {
-        res += (*it).id + ' ';
-        ++it;
-    }
-
-    res += " current=" + (current == history.end() ? -1 : (*current).id);
-    return res;
-}
-
 void BrowserFrame::Private::appendHistoryEntry(const KUrl& url)
 {
     if (lockHistory)

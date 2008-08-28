@@ -82,8 +82,6 @@ class BrowserFrame::Private : public QObject
         void restoreHistoryEntry(const QList<HistoryEntry>::Iterator& entry);
         bool loadPartForMimetype(const QString& mimetype);
 
-        QString debugInfo() const;
-
     public slots:
         void slotHistoryEntrySelected( const QList<BrowserFrame::Private::HistoryEntry>::Iterator& entry)
         {
