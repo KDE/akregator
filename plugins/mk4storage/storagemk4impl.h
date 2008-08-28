@@ -114,6 +114,8 @@ class StorageMK4Impl : public Storage
         /** deletes all feed storages in this archive */
         void clear();
         
+        void markDirty();
+
     protected slots:
         void slotCommit();
         
