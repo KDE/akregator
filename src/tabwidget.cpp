@@ -92,6 +92,7 @@ TabWidget::TabWidget(QWidget * parent)
 {
     d->parent = this;
     d->currentMaxLength = 30;
+    d->currentItem = 0;
     setMinimumSize(250,150);
     setTabReorderingEnabled(false);
     connect( this, SIGNAL( currentChanged(QWidget *) ),

@@ -1,6 +1,120 @@
 Akregator ChangeLog
 ===================
-(c) 2004, 2005 the Akregator authors.
+(c) 2004-2007 the Akregator authors.
+
+Changes after 1.2.7:
+-----------------------------
+
+Bug fixes:
+
+ 2007/10/05 Fix storage backend waking up CPU every 3 seconds (#150389) -ew
+            Original patch by Alan Jenkins
+
+Changes after 1.2.6:
+-----------------------------
+
+Bug fixes:
+
+ 2007/02/24 fix crash when using "Load the full website when reading articles" and an error (e.g. 404) 
+            is returned (2nd try) (#126812) -fo 
+
+Changes after 1.2.5:
+-----------------------------
+
+Bug fixes:
+ 2006/11/30 Use "firefox %u" as default for the alternative browser command (#115777)
+ 2006/11/24 Add session management for browser tabs (#100964) Patch by Carsten Pfeiffer <pfeiffer at kde.org> -fo
+ 2006/11/10 Fix crash in Konqueror icon plugin sometimes happening when switching parts (#134929) -fo
+ 2006/10/31 Fix group name encoding bug when adding feeds from commandline (e.g., using the Konq plugin) (#136559)
+            Patch by Andrey Cherepanov.
+
+Changes after 1.2.4:
+-----------------------------
+
+Bug fixes:
+
+ 2006/09/18 Set default font sizes, prevents use of font size 1 in article viewer on first startup -fo
+ 2006/08/28 Do not create multiple items in the feed lists when dragging feeds to a folder
+            that was moved before (#124303) -fo
+ 2006/08/26 Fix a possible crash in the internal browser when going forward -fo
+ 2006/08/26 show error messages while browsing as HTML, not as annoying popups (#107740) -fo
+ 2006/08/25 Show title of selected feed in window caption (#111471) -fo
+ 2006/08/25 Konqueror plugins: correctly enable/disable icon when enabling/disabling the plugin (#132823) -fo
+ 2006/08/21 Don't crash on very long URLs (>255 chars) used for feed logos (#130849) -fo
+ 2006/08/20 Konqueror plugins: Fix crash when using the Akregator plugin in file manager mode (#124891) -fo
+ 2006/08/20 Feed detection: Fix detection when relative URLs are used in the link tags (#132687) -fo
+ 2006/08/17 Speak selected text in internal browser when using the "Speak Text" button (#132505) -fo
+
+Changes after 1.2.3:
+-----------------------------
+
+Bug fixes:
+
+ 2006/07/07 Remove tray icon when disabling Akregator part in Kontact (#130127) -fo
+ 2006/07/07 Fix a crash on shutdown occurring in ProgressManager (#130377) -fo
+ 2006/06/25 Fix context menus in browser tab, show appriopriate entries when
+            text is selected (copy action) or the cursor is over a link 
+            (#121957) -fo
+ 
+Changes after 1.2.2:
+-----------------------------
+
+New features:
+
+ 2006/05/01 add author information to article header (in the article pane only) -fo
+
+Bug fixes:
+
+ 2006/05/20 Select oldest item instead of newest when jumping to the next feed using previous [unread] 
+            article actions (#126316) -fo
+ 2006/05/20 Disable Apply-Button in config dialog correctly if no changes were made (#103820) -fo
+ 2006/05/20 Don't reset article status to New when the article changed (#101907) -fo
+ 2006/05/10 Always show feed logos; load them on startup, not on first fetch -fo
+ 2006/05/10 fix crash when using "Load the full website when reading articles" and an error (e.g. 404) 
+            is returned (#126812) -fo 
+ 2006/04/29 Do not crash on startup when Combined View mode is activated (Happened only when experimental tagging is 
+            activated) -fo
+ 2006/03/22 Prevent "Akregator is running" messages on startup (reset PID to -1 when closing akregator) -fo
+
+Changes after 1.2.1:
+-----------------------------
+
+Bug fixes:
+
+ 2006/03/09 Read more feed metadata for Atom feeds (title, link) (#123140) -fo
+ 2006/03/09 Use "refresh" cache mode as default, ignoring konq settings. 
+            ("refresh" == Use cache after verifying with server) 
+            This should make disabling the "Use browser cache" option unnecessary. -fo
+ 2006/02/21 Set "rel" attribute default to "alternate", as requested by Atom specification (#122409) -ew
+ 2006/02/21 Disable category and tag support (unless experimental GUI is enabled) in the metakit backend, 
+            so it supports about 1000 feeds (500 with tags enabled) instead of 340
+            now with the default 1024 open files limit on most systems. -fo
+ 2006/02/15 Combined View: Do not crash on "Next/Prev Unread Article" (#121999) -fo
+ 2006/01/31 RSS parser: ignore unknown or invalid version attribute value in the <rss> tag and
+            just assume RSS 2.0. The older formats are compatible to 2.0, so this should work.
+            (at least better than refusing to parse the feeds) (#118793) -fo
+
+Changes after 1.2:
+-----------------------------
+
+Bug fixes:
+
+ 2006/01/17 Do not open binary files in the HTML viewer but externally. 
+            Fix Save Link As for binary files (regression introduced after 1.2) 
+            (#120087 (partially)) -fo
+ 2006/01/16 Fix article order in Combined View: sort by date (reversed) (#118055) -fo
+ 2006/01/15 Fix parsing of Atom 1.0 feeds with escaped HTML in it: Don't show tags
+            as text (#112491, #117938) -fo
+ 2006/01/10 Select next item in article list when deleting the selected article
+            (single selection mode only) (#119724) -fo
+ 2006/01/10 Fix item handling in the feed list, avoid crashes as happening 
+            after moving a folder and deleting a subitem afterwards 
+            (#118659) -fo
+ 2006/01/08 Fix problems with keyboard navigation getting stuck on duplicated
+            articles and prevent creation of new items when selecting an unread
+            dupe (#114997) -fo
+ 2005/12/05 Wait 30 minutes before retrying fetching when fetching failed (host
+            down, parsing error) (#113358) -fo
 
 Changes after 1.0:
 -----------------------------
