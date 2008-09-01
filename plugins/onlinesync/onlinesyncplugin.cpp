@@ -39,11 +39,14 @@ K_PLUGIN_FACTORY(OnlineSyncPluginFactory, registerPlugin<Akregator::OnlineSyncPl
 K_EXPORT_PLUGIN(OnlineSyncPluginFactory( "akregator_onlinesync_plugin" ) )
 
 OnlineSyncPlugin::OnlineSyncPlugin( )
-{ 
+{
+    setComponentData( OnlineSyncPluginFactory::componentData() );
 }
 
 OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QVariantList& list ) : KParts::Plugin( parent )
 { 
+    setComponentData( OnlineSyncPluginFactory::componentData() );
+
     kDebug();
 
     // Init
