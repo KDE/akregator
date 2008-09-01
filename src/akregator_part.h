@@ -155,9 +155,6 @@ class Part : public KParts::ReadOnlyPart
 
         KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
-    protected:
-        /* reimp */ void partActivateEvent( KParts::PartActivateEvent* ev );
-
     private slots:
         void slotStarted();
 

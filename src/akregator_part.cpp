@@ -190,13 +190,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     Syndication::FileRetriever::setUserAgent( useragent );
 }
 
-void Part::partActivateEvent( KParts::PartActivateEvent* ev ) {
-    if ( ev->activated() )
-        insertChildClient( ev->part() );
-    else
-        removeChildClient( ev->part() );
-    inherited::partActivateEvent( ev );
-}
 
 void Part::loadStoragePlugins()
 {
