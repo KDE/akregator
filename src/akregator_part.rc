@@ -71,10 +71,8 @@
 
   <Menu noMerge="1" name="settings" >
    <text>&amp;Settings</text>
-   <Action name="show_quick_filter" />
-   <Merge/>
+   <Action name="show_quick_filter" group="top_merge" />
    <Action name="options_configure" group="settings_configure" />
-   <Merge/>
   </Menu>
 
   <Menu name="help">
