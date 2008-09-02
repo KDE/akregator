@@ -59,7 +59,6 @@
 #include <KParts/GenericFactory>
 #include <KParts/Plugin>
 #include <KCMultiDialog>
-#include <kstandardaction.h>
 
 #include <QFile>
 #include <QObject>
@@ -107,7 +106,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     setPluginInterfaceVersion( AKREGATOR_PLUGIN_INTERFACE_VERSION );
 
     setComponentData( AkregatorFactory::componentData() );
-    setXMLFile("akregator_part.rc", true);
 
     new PartAdaptor( this );
     QDBusConnection::sessionBus().registerObject("/Akregator", this);
@@ -179,6 +177,8 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     m_autosaveTimer = new QTimer(this);
     connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
     m_autosaveTimer->start(5*60*1000); // 5 minutes
+
+    setXMLFile("akregator_part.rc", true);
 
     initFonts();
 
