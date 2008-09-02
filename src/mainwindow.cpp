@@ -65,6 +65,10 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
     // set the shell's ui resource file
     setXMLFile("akregator_shell.rc");
 
+    KStandardAction::configureNotifications(m_part, SLOT(showKNotifyOptions()), actionCollection()); // options_configure_notifications
+    KStandardAction::keyBindings(this, SLOT(optionsConfigureKeys()), actionCollection()); // options_configure_keybinding
+    KStandardAction::configureToolbars(this, SLOT(optionsConfigureToolbars()), actionCollection()); // options_configure_toolbars
+
     toolBar()->show();
     statusBar()->show();
 
@@ -79,8 +83,6 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
     KStandardAction::showMenubar( menuBar(), SLOT(setVisible(bool)), actionCollection());
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
-
-    createGUI(0L);
 }
 
 bool MainWindow::loadPart()

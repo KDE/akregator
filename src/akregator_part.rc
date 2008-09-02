@@ -73,10 +73,7 @@
    <text>&amp;Settings</text>
    <Merge name="StandardToolBarMenuHandler" />
    <Action name="show_quick_filter" />
-   <Separator/>
-   <Action group="settings_configure" name="options_configure_keybinding" />
-   <Action group="settings_configure" name="options_configure_notifications" />
-   <Action group="settings_configure" name="options_configure_toolbars" />
+   <Merge/>
    <Action group="settings_configure" name="options_configure" />
   </Menu>
 
