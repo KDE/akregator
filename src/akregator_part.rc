@@ -71,13 +71,10 @@
 
   <Menu noMerge="1" name="settings" >
    <text>&amp;Settings</text>
-   <Merge name="StandardToolBarMenuHandler" />
    <Action name="show_quick_filter" />
-   <Separator/>
-   <Action group="settings_configure" name="options_configure_keybinding" />
-   <Action group="settings_configure" name="options_configure_notifications" />
-   <Action group="settings_configure" name="options_configure_toolbars" />
-   <Action group="settings_configure" name="options_configure" />
+   <Merge/>
+   <Action name="options_configure" group="settings_configure" />
+   <Merge/>
   </Menu>
 
   <Menu name="help">

@@ -35,13 +35,13 @@
   <Menu noMerge="1" name="settings" >
    <text>&amp;Settings</text>
    <Merge name="StandardToolBarMenuHandler" />
-   <Action group="settings_configure" name="options_show_menubar" />
-   <Action name="show_quick_filter" />
    <Separator/>
-   <Action group="settings_configure" name="options_configure_keybinding" />
-   <Action group="settings_configure" name="options_configure_notifications" />
-   <Action group="settings_configure" name="options_configure_toolbars" />
-   <Action group="settings_configure" name="options_configure" />
+   <Merge/>
+   <Separator/>
+   <Action name="options_configure_keybinding" group="settings_configure" />
+   <Action name="options_configure_notifications" group="settings_configure" />
+   <Action name="options_configure_toolbars" group="settings_configure" />
+   <Merge/>
   </Menu>
 </MenuBar>
 

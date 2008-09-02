@@ -176,13 +176,10 @@ void ActionManagerImpl::initPart()
     action->setIcon(KIcon("document-export"));
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
 
-    KStandardAction::configureNotifications(d->part, SLOT(showKNotifyOptions()), d->actionCollection); // options_configure_notifications
-
-    KStandardAction::keyBindings(d->part->parent(), SLOT(optionsConfigureKeys()), d->actionCollection); // options_configure_keybinding
-
-    KStandardAction::configureToolbars(d->part->parent(), SLOT(optionsConfigureToolbars()), d->actionCollection); // options_configure_toolbars
-
-    KStandardAction::preferences(d->part, SLOT(showOptions()), d->actionCollection); // options_configure
+    KAction *configure = d->actionCollection->addAction("options_configure");
+    configure->setText(i18n("&Configure Akregator..."));
+    configure->setIcon(KIcon("configure"));
+    connect(configure, SIGNAL(triggered()), d->part, SLOT(showOptions()));
 
     /*action = d->actionCollection->addAction("akregator_configure_akregator");
     action->setIcon(KIcon("configure"));
