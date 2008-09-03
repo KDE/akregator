@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2008 Didier Hoarau <did.hoarau@gmail.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
