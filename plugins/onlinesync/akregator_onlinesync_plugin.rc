@@ -1,8 +1,8 @@
 <!DOCTYPE kpartgui>
-<kpartplugin name="akregator_onlinesync_plugin" library="akregator_onlinesync_plugin" version="1">
+<gui name="akregator_onlinesync_plugin" library="akregator_onlinesync_plugin" version="1">
   <MenuBar>
     <Menu name="file"><text>&amp;File</text>
       <Action name="file_onlinesync_sync"/>
     </Menu>
   </MenuBar>
-</kpartplugin>
+</gui>
