@@ -288,7 +288,9 @@ ArticleListView::ArticleListView( QWidget* parent )
         "You can also manage articles, as marking them as persistent (\"Keep Article\") or delete them, using the right mouse button menu."
         "To view the web page of the article, you can open the article internally in a tab or in an external browser window."));
 
-    connect( header(), SIGNAL( customContextMenuRequested( QPoint ) ), this, SLOT( showHeaderMenu( QPoint ) ) );
+    //connect exactly once
+    disconnect( header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)) );
+    connect( header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)) );
 }
 
 void ArticleListView::mousePressEvent( QMouseEvent *ev )

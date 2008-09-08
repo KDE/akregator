@@ -352,7 +352,7 @@ void Akregator::MainWidget::sendArticle(bool attach)
          }
     }
 
-    if(text.isEmpty() || text.isNull())
+    if(text.isEmpty())
         return;
 
     if(attach)
