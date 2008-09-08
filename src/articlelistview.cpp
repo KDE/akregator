@@ -178,9 +178,13 @@ void ArticleListView::setArticleModel( ArticleModel* model )
         m_headerSetUp = true;
     }
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
-    connect( header(), SIGNAL( customContextMenuRequested( QPoint ) ),
-             this, SLOT( showHeaderMenu( QPoint ) ) );
+    //connect exactly once:
+    disconnect( header(), SIGNAL(customContextMenuRequested(QPoint)),
+                this, SLOT(showHeaderMenu(QPoint)) );
+    connect( header(), SIGNAL(customContextMenuRequested(QPoint)),
+             this, SLOT(showHeaderMenu(QPoint)) );
 }
+
 
 void ArticleListView::showHeaderMenu(const QPoint& pos)
 {
