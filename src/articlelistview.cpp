@@ -176,8 +176,6 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
         return;
 
     QPointer<KMenu> menu = new KMenu( this );
-    connect( menu, SIGNAL( triggered( QAction* ) ),
-            this, SLOT( headerMenuItemTriggered( QAction* ) ) );
     menu->addTitle( i18n( "Columns" ) );
     menu->setAttribute( Qt::WA_DeleteOnClose );
 
@@ -190,17 +188,16 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
         act->setChecked( !header()->isSectionHidden( i ) );
     }
 
-    menu->popup( header()->mapToGlobal( pos ) );
-}
-
-void ArticleListView::headerMenuItemTriggered( QAction* act )
-{
-    assert( act );
-    const int col = act->data().toInt();
-    if ( act->isChecked() )
-        header()->showSection( col );
-    else
-        header()->hideSection( col );
+    QPointer<QObject> that( this );
+    QAction * const action = menu->exec( header()->mapToGlobal( pos ) );
+    if ( that && action ) {
+        const int col = action->data().toInt();
+        if ( action->isChecked() )
+            header()->showSection( col );
+        else
+            header()->hideSection( col );
+    }
+    delete menu;
 }
 
 void ArticleListView::saveHeaderSettings()
