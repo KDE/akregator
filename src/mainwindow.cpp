@@ -108,6 +108,7 @@ bool MainWindow::loadPart()
 
     connect(m_part, SIGNAL(setWindowCaption(QString)), this, SLOT(setCaption(QString)) );
     connect(TrayIcon::getInstance(), SIGNAL(quitSelected()), this, SLOT(slotQuit()));
+    connect(m_part, SIGNAL(showPart()), this, SLOT(show()) );
 
     createGUI(m_part);
     browserExtension(m_part)->setBrowserInterface(m_browserIface);
