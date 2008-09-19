@@ -27,6 +27,7 @@
 #include <KConfigGroup>
 #include <kdebug.h>
 #include <KLocalizedString>
+#include <kio/job.h>
 
 #include <QDomDocument>
 
@@ -56,14 +57,11 @@ void GoogleReader::load()
     // Data
     QByteArray data;
     data.append(QString(QString("Email=")+getUser()+QString("&Passwd=")+getPassword()).toUtf8());
-    QHttpRequestHeader header("POST", "/accounts/ClientLogin");
-    header.setValue("Host", "https://www.google.com");
-    header.setContentType("application/x-www-form-urlencoded");
-    header.setContentLength(data.length());
-    http = new QHttp();
-    http->setHost("www.google.com",QHttp::ConnectionModeHttps);
-    http->request(header,data);
-    connect(http, SIGNAL(done(bool)), this, SLOT(slotAuthenticationDone(bool)));
+
+    KIO::StoredTransferJob *job = KIO::storedHttpPost(data, KUrl("https://www.google.com/accounts/ClientLogin"));
+    job->addMetaData("content-type", "application/x-www-form-urlencoded");
+    job->addMetaData("cookies", "manual");
+    connect(job, SIGNAL(result(KJob*)), SLOT(slotAuthenticationDone(KJob*)));
 }
 
 void GoogleReader::add(const SubscriptionList & list) 
@@ -105,16 +103,12 @@ void GoogleReader::add(const SubscriptionList & list)
     // keep the list of feeds synchronized
     getSubscriptionList().add(list.getRss(_cursor), list.getName(_cursor), list.getCat(_cursor));
 
-    QHttpRequestHeader header("POST","http://www.google.com/reader/api/0/subscription/edit");
-    header.setValue("Host", "http://www.google.com");
-    header.setValue("Cookie", "SID="+getSID());
-    header.setContentType("application/x-www-form-urlencoded");
-    header.setContentLength(data.length());
-    // FIXME: this is leaking
-    http = new QHttp();
-    http->setHost("www.google.com",QHttp::ConnectionModeHttp);
-    http->request(header,data);
-    connect(http, SIGNAL(done(bool)), this, SLOT(slotAddDone(bool)));
+    KIO::StoredTransferJob *job =
+        KIO::storedHttpPost(data, KUrl("http://www.google.com/reader/api/0/subscription/edit"));
+    job->addMetaData("cookies", "manual");
+    job->addMetaData("setcookies", "SID="+getSID());
+    job->addMetaData("content-type", "application/x-www-form-urlencoded");
+    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotAddDone(KJob*)));
     _cursor++;
 }
 
@@ -159,16 +153,12 @@ void GoogleReader::remove(const SubscriptionList & list)
                     ).toUtf8());
     }
 
-    QHttpRequestHeader header("POST","http://www.google.com/reader/api/0/subscription/edit");
-    header.setValue("Host", "http://www.google.com");
-    header.setValue("Cookie", "SID="+getSID());
-    header.setContentType("application/x-www-form-urlencoded");
-    header.setContentLength(data.length());
-    // FIXME: this is leaking
-    http = new QHttp();
-    http->setHost("www.google.com",QHttp::ConnectionModeHttp);
-    http->request(header,data);
-    connect(http, SIGNAL(done(bool)), this, SLOT(slotRemoveDone(bool)));
+    KIO::StoredTransferJob *job =
+        KIO::storedHttpPost(data, KUrl("http://www.google.com/reader/api/0/subscription/edit"));
+    job->addMetaData("cookies", "manual");
+    job->addMetaData("setcookies", "SID="+getSID());
+    job->addMetaData("content-type", "application/x-www-form-urlencoded");
+    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotRemoveDone(KJob*)));
     _cursor++;
     kDebug();
 }
@@ -184,36 +174,34 @@ void GoogleReader::genError(const QString& msg)
 
 // SLOTS
 
-void GoogleReader::slotAddDone(bool error) 
+void GoogleReader::slotAddDone(KJob *job_)
 {
-    QByteArray m_data = http->readAll();
-    QString text(m_data.data());
+    KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
+    QByteArray m_data = job->data();
+    QString text = QString::fromLatin1(m_data.data());
     // kDebug() << text.left(20);
     kDebug() << text;
     add(_cursorList);
 }
 
-void GoogleReader::slotRemoveDone(bool error) 
+void GoogleReader::slotRemoveDone(KJob *job_)
 {
-    QByteArray m_data = http->readAll();
-    QString text(m_data.data());
+    KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
+    QByteArray m_data = job->data();
+    QString text = QString::fromLatin1(m_data.data());
     kDebug() << text.left(20);
     remove(_cursorList);
 }
 
-void GoogleReader::slotUpdateDone(bool error) 
+void GoogleReader::slotTokenDone(KJob *job_)
 {
     kDebug();
-}
-
-void GoogleReader::slotTokenDone(bool error) 
-{
-    kDebug();
+    KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
 
     // Now: read token
 
-    QByteArray m_data = http->readAll();
-    QString text(m_data.data());
+    QByteArray m_data = job->data();
+    QString text = QString::fromLatin1(m_data.data());
     kDebug() << "Token:" << text.left(20);
     setToken(text);
 
@@ -222,14 +210,15 @@ void GoogleReader::slotTokenDone(bool error)
     emit loadDone();
 }
 
-void GoogleReader::slotListDone(bool error) 
+void GoogleReader::slotListDone(KJob *job_)
 {
     kDebug();
+    KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
 
     // Now: read the subscription list
 
-    QByteArray m_data = http->readAll();
-    QString text(m_data.data());
+    QByteArray m_data = job->data();
+    QString text = QString::fromLatin1(m_data.data());
     QDomDocument doc("googlereader");
     doc.setContent(text);
     QDomNode nodeList = doc.documentElement().firstChild().firstChild();
@@ -265,25 +254,22 @@ void GoogleReader::slotListDone(bool error)
     }
 
     // Next: get the token
-
-    QHttpRequestHeader header("GET", QString("http://www.google.com/reader/api/0/token?client=contact:")+getUser());
-    header.setValue("Host", "http://www.google.com");
-    header.setValue("Cookie", "SID="+getSID());
-    // FIXME: this is leaking
-    http = new QHttp();
-    http->setHost("www.google.com");
-    http->request(header);
-    connect(http, SIGNAL(done(bool)), this, SLOT(slotTokenDone(bool)));
+    KIO::StoredTransferJob *getjob =
+        KIO::storedGet("http://www.google.com/reader/api/0/token?client=contact:"+getUser());
+    getjob->addMetaData("cookies", "manual");
+    getjob->addMetaData("setcookies", "SID="+getSID());
+    connect(getjob, SIGNAL(result(KJob*)), SLOT(slotTokenDone(KJob*)));
 }
 
-void GoogleReader::slotAuthenticationDone(bool error) 
+void GoogleReader::slotAuthenticationDone(KJob *job_)
 {
     kDebug();
+    KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob *>(job_);
 
     // Now: read authentication SID
 
-    QByteArray m_data = http->readAll();
-    QString text(m_data.data());
+    QByteArray m_data = job->data();
+    QString text = QString::fromLatin1(m_data.data());
     // Check wrong account
     if (text.indexOf("SID=")<0) {
         this->genError(i18n("Authentication failed, synchronization aborted."));
@@ -295,15 +281,10 @@ void GoogleReader::slotAuthenticationDone(bool error)
     kDebug() << "SID:" << _sid.left(10)+QString("...");
 
     // Next: get the list
-
-    QHttpRequestHeader header("GET", "http://www.google.com/reader/api/0/subscription/list");
-    header.setValue("Host", "http://www.google.com");
-    header.setValue("Cookie", "SID="+getSID());
-    // FIXME: this is leaking
-    http = new QHttp();
-    http->setHost("www.google.com");
-    http->request(header);
-    connect(http, SIGNAL(done(bool)), this, SLOT(slotListDone(bool)));
+    KIO::StoredTransferJob *getjob = KIO::storedGet(KUrl("http://www.google.com/reader/api/0/subscription/list"));
+    getjob->addMetaData("cookies", "manual");
+    getjob->addMetaData("setcookies", "SID="+getSID());
+    connect(getjob, SIGNAL(result(KJob*)), SLOT(slotListDone(KJob*)));
 }
 
 // Getters/Setters

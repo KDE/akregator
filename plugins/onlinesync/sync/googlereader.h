@@ -26,13 +26,13 @@
 #define GOOGLEREADER_H
 
 #include <KApplication>
-#include <QHttp>
 #include <QMutex>
 
 #include "aggregator.h"
 #include "subscriptionlist.h"
 
 class KConfigGroup;
+class KJob;
 
 namespace feedsync
 {
@@ -51,15 +51,13 @@ class GoogleReader: public Aggregator
     void remove(const SubscriptionList & list);
 
  protected Q_SLOTS:
-    void slotAuthenticationDone(bool error);
-    void slotListDone(bool error);
-    void slotTokenDone(bool error);
-    void slotAddDone(bool error);
-    void slotUpdateDone(bool error);
-    void slotRemoveDone(bool error);
+    void slotAuthenticationDone(KJob*);
+    void slotListDone(KJob*);
+    void slotTokenDone(KJob*);
+    void slotAddDone(KJob*);
+    void slotRemoveDone(KJob*);
 
  private:
-    QHttp *http;
     QString _sid;
     QString _token;
     QString getSID() const;
