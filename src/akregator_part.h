@@ -107,13 +107,13 @@ class Part : public KParts::ReadOnlyPart
             This method is called when this app is restored.  The KConfig
             object points to the session management config file that was saved
             with @ref saveProperties
-            Calls Akregator MainWidget's saveProperties.
+            Calls Akregator MainWidget's readProperties.
             */
         virtual void readProperties(const KConfigGroup & config);
 
         /** This method is called when it is time for the app to save its
             properties for session management purposes.
-            Calls Akregator MainWidget's readProperties. */
+            Calls Akregator MainWidget's saveProperties. */
         virtual void saveProperties(KConfigGroup & config);
 
         void exportFile(const KUrl& url);
