@@ -71,7 +71,7 @@ class TabWidget : public KTabWidget
         void slotCloseTab();
         void slotCloseRequest(QWidget* widget);
         void contextMenu (int item, const QPoint &p);
-        void slotTabChanged(QWidget *w);
+        void slotTabChanged(int index);
 
    private:
 

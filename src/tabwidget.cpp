@@ -95,8 +95,8 @@ TabWidget::TabWidget(QWidget * parent)
     d->currentItem = 0;
     setMinimumSize(250,150);
     setTabReorderingEnabled(false);
-    connect( this, SIGNAL( currentChanged(QWidget *) ),
-             this, SLOT( slotTabChanged(QWidget *) ) );
+    connect( this, SIGNAL( currentChanged(int) ),
+             this, SLOT( slotTabChanged(int) ) );
     connect(this, SIGNAL(closeRequest(QWidget*)),
             this, SLOT(slotCloseRequest(QWidget*)));
     setHoverCloseButton(Settings::closeButtonOnTabs());
@@ -178,9 +178,10 @@ Frame * TabWidget::Private::currentFrame()
     return w ? frames[w] : 0;
 }
 
-void TabWidget::slotTabChanged(QWidget *w)
+void TabWidget::slotTabChanged(int index)
 {
-    Frame* frame = d->frames[w];
+    
+    Frame* frame = d->frames[widget(index)];
     d->tabsClose->setEnabled(frame && frame->isRemovable());
     emit signalCurrentFrameChanged(frame ? frame->id() : -1);
 }
