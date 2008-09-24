@@ -131,9 +131,9 @@ void ConfigurationWidget::slotButtonRemoveClicked()
         kDebug() << m_items.at(0)->text(2);
         KConfig config("akregator_feedsyncrc");
         config.deleteGroup(m_items.at(0)->text(2));
+        refresh();
     }
 
-    refresh();
 }
 
 void ConfigurationWidget::save() {
