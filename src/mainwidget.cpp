@@ -216,8 +216,10 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, KUrl )),
              this, SLOT(slotMouseButtonPressed(int, KUrl )));
 
+/*
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleListView, SLOT(slotPaletteOrFontChanged()));
+*/
 
     m_articleViewer = new ArticleViewer(m_articleSplitter);
     m_actionManager->initArticleViewer(m_articleViewer);
