@@ -28,8 +28,10 @@
 #include <QHash>
 #include <QObject>
 
+
 class QIcon;
 class QString;
+class KConfigGroup;
 
 namespace Akregator {
 
@@ -50,6 +52,9 @@ class FrameManager : public QObject
         Frame* findFrameById(int id) const;
 
         void setMainWindow(QWidget* mainWin);
+
+        /** session management **/
+        void saveProperties(KConfigGroup & config);
 
     public slots:
 

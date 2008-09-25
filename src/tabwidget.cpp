@@ -212,7 +212,7 @@ void TabWidget::slotRemoveFrame(int frameId)
     d->frames.remove(f);
     d->framesById.remove(frameId);
     removeTab(indexOf(f));
-    f->deleteLater(); // removeTab doesn't remove the widget, so let's do it ourselves
+    emit signalRemoveFrameRequest(f->id());
     if (d->currentFrame())
       d->setTitle( d->currentFrame()->title(), currentWidget() );
 }

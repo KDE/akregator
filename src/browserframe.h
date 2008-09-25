@@ -25,6 +25,8 @@
 #ifndef AKREGATOR_BROWSERFRAME_H
 #define AKREGATOR_BROWSERFRAME_H
 
+#include <kconfiggroup.h>
+
 #include "frame.h"
 #include "feediconmanager.h"
 
@@ -64,6 +66,8 @@ class BrowserFrame : public Frame, public virtual FaviconListener
 
         /* reimp */ void setFavicon( const QIcon& icon );
 
+        void loadConfig( const KConfigGroup& config, const QString& prefix);
+        void saveConfig( KConfigGroup& config, const QString& prefix);
     public slots:
 
         void slotHistoryForward();

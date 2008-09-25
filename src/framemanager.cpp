@@ -25,6 +25,7 @@
 #include "actionmanager.h"
 #include "akregatorconfig.h"
 #include "browserrun.h"
+#include "browserframe.h"
 #include "frame.h"
 #include "framemanager.h"
 #include "openurlrequest.h"
@@ -32,7 +33,9 @@
 #include <kaction.h>
 #include <kprocess.h>
 #include <kshell.h>
+#include <kconfiggroup.h>
 #include <ktoolinvocation.h>
+#include <QtCore/QStringList>
 
 namespace Akregator {
 
@@ -97,8 +100,10 @@ void FrameManager::slotRemoveFrame(int id)
         slotChangeFrame(-1);
     }
 
-    m_frames.remove(frame->id());
-    emit signalFrameRemoved(frame->id());
+    m_frames[id] = 0;
+    m_frames.remove(id);
+    emit signalFrameRemoved(id);
+    frame->deleteLater();
 }
 
 Frame* FrameManager::findFrameById(int id) const
@@ -334,6 +339,31 @@ void FrameManager::slotBrowserStop()
         m_currentFrame->slotStop();
 }
 
+void FrameManager::saveProperties(KConfigGroup & config)
+{
+    //write children
+    QStringList strlst;
+    QString newPrefix;
+    QHash<int, Frame*>::const_iterator i;
+    for (i = m_frames.constBegin(); i != m_frames.constEnd(); ++i)
+    {
+        // No need to save the main frame
+        if(i.value() && qobject_cast<BrowserFrame *>(i.value()))
+        {
+            
+            newPrefix = 'T' + QString::number(i.key());
+            strlst.append( newPrefix );
+            newPrefix.append( QLatin1Char( '_' ) );
+            i.value()->saveConfig( config, newPrefix );
+        }
+    }
+
+    config.writeEntry( QString::fromLatin1( "Children" ), strlst );
+    config.writeEntry( QString::fromLatin1( "activeChildIndex" ),
+        m_frames.key(m_currentFrame) );
+}
+
 } // namespace Akregator
 
 #include "framemanager.moc"
+

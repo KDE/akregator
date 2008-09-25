@@ -239,6 +239,7 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 
     d->updateHistoryEntry();
 
+    kDebug() << "serviceType: " << serviceType;
     if (d->loadPartForMimetype(serviceType))
     {
         assert( d->part );
@@ -361,6 +362,24 @@ bool BrowserFrame::isReloadable() const
 bool BrowserFrame::isLoading() const
 {
     return d->isLoading;
+}
+
+
+void BrowserFrame::loadConfig( const KConfigGroup& config, const QString& prefix)
+{
+    QString url = config.readEntry( QString::fromLatin1( "url" ).prepend( prefix ), QString() );
+    QString mimetype = config.readEntry( QString::fromLatin1( "mimetype" ).prepend( prefix ), QString() );
+    OpenUrlRequest req(url);
+    KParts::OpenUrlArguments args;
+    args.setMimeType(mimetype);
+    req.setArgs(args);
+    openUrl(req);
+}
+
+void BrowserFrame::saveConfig( KConfigGroup& config, const QString& prefix)
+{
+    config.writeEntry( QString::fromLatin1( "url" ).prepend( prefix ), url().url() );
+    config.writeEntry( QString::fromLatin1( "mimetype" ).prepend( prefix ), d->mimetype );
 }
 
 #include "browserframe.moc"

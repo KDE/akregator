@@ -98,6 +98,7 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
 
     layout->addWidget(part->widget());
     connectPart();
+    this->mimetype = mimetype;
     return true;
 }
 

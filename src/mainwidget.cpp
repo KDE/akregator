@@ -1128,6 +1128,21 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
     // read filter settings
     m_searchBar->slotSetText(config.readEntry("searchLine"));
     m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
+
+    // Reopen tabs
+    QStringList childList = config.readEntry( QString::fromLatin1( "Children" ),
+        QStringList() );
+    foreach(QString framePrefix, childList)
+    {
+        BrowserFrame* frame = new BrowserFrame(m_tabWidget);
+        framePrefix.append( QLatin1Char( '_' ) );
+        frame->loadConfig( config, framePrefix );
+
+        connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
+
+        Kernel::self()->frameManager()->slotAddFrame(frame);
+        
+    }
 }
 
 void Akregator::MainWidget::saveProperties(KConfigGroup & config)
@@ -1135,6 +1150,8 @@ void Akregator::MainWidget::saveProperties(KConfigGroup & config)
     // save filter settings
     config.writeEntry("searchLine", m_searchBar->text());
     config.writeEntry("searchCombo", m_searchBar->status());
+
+    Kernel::self()->frameManager()->saveProperties(config);
 }
 
 

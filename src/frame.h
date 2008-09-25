@@ -29,6 +29,7 @@
 #include <QWidget>
 
 #include <kparts/browserextension.h>
+#include <kconfiggroup.h>
 
 class KUrl;
 
@@ -100,6 +101,15 @@ class Frame : public QWidget
 
         virtual bool openUrl(const OpenUrlRequest& request) = 0;
 
+        /**
+         * Load a frame from a config file for session management.
+         */
+        virtual void loadConfig( const KConfigGroup& /*config*/, const QString& /*prefix*/) {}
+
+        /**
+         * Save a frame to a config file for session management.
+         */
+        virtual void saveConfig( KConfigGroup& /*config*/, const QString& /*prefix*/) {}
     public slots:
 
         /** goes a step forward in the history, if possible. See also canGoForward(). */
