@@ -811,7 +811,7 @@ int c4_View::RestrictSearch(const c4_RowRef &c_, int &pos_, int &count_) {
   return _seq->RestrictSearch(&c_, pos_, count_) ? 0 : ~0;
 }
 
-/** Find index of the the next entry matching the specified key.
+/** Find index of the next entry matching the specified key.
  *
  * Defaults to linear search, but hash- and ordered-views will use a better
  * algorithm if possible.  Only the properties present in the search key

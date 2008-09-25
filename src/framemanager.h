@@ -76,7 +76,7 @@ class FrameManager : public QObject
         void signalSelectFrame(int id);
         /**
          * emitted when the active frame is switched
-         * @param deactivated the the deactivated frame
+         * @param deactivated the deactivated frame
          * @param activated the activated frame
          */
         void signalCurrentFrameChanged(Akregator::Frame* deactivated, Akregator::Frame* activated);
