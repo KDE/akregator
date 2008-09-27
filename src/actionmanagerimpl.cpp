@@ -167,7 +167,7 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
 
 void ActionManagerImpl::initPart()
 {
-    QAction *action = d->actionCollection->addAction("file_import");
+    KAction *action = d->actionCollection->addAction("file_import");
     action->setText(i18n("&Import Feeds..."));
     action->setIcon(KIcon("document-import"));
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileImport()));
@@ -197,7 +197,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KActionCollection* coll = actionCollection();
 
     // Feed/Feed Group popup menu
-    QAction* action = coll->addAction("feed_homepage");
+    KAction* action = coll->addAction("feed_homepage");
     action->setText(i18n("&Open Homepage"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenHomepage()));
     action->setShortcuts(KShortcut( "Ctrl+H" ));
@@ -267,7 +267,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFetchAllFeeds()));
     action->setShortcuts(KShortcut( "Ctrl+L" ));
 
-    QAction *stopAction = coll->addAction("feed_stop");
+    KAction *stopAction = coll->addAction("feed_stop");
     stopAction->setIcon(KIcon("process-stop"));
     stopAction->setText(i18n("&Abort Fetches"));
     connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
@@ -416,7 +416,7 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     else
         d->articleList = articleList;
 
-    QAction *action = actionCollection()->addAction("go_previous_article");
+    KAction *action = actionCollection()->addAction("go_previous_article");
     action->setText(i18n("&Previous Article"));
     connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotPreviousArticle()));
     action->setShortcuts(KShortcut( "Left" ));
@@ -435,7 +435,7 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
 
     KActionCollection *coll = actionCollection();
 
-    QAction *action = coll->addAction("go_prev_feed");
+    KAction *action = coll->addAction("go_prev_feed");
     action->setText(i18n("&Previous Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevFeed()));
     action->setShortcuts(KShortcut( "P" ));
@@ -495,7 +495,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
 
     KActionCollection *coll = actionCollection();
 
-    QAction *action = coll->addAction("select_next_tab");
+    KAction *action = coll->addAction("select_next_tab");
     action->setText(i18n("Select Next Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotNextTab()));
     action->setShortcuts(KShortcut( "Ctrl+Period" ));
@@ -543,7 +543,7 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
 
-    QAction *action = d->actionCollection->addAction("browser_reload");
+    KAction *action = d->actionCollection->addAction("browser_reload");
     action->setIcon(KIcon("view-refresh"));
     action->setText(i18n("Reload"));
     connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserReload()));
