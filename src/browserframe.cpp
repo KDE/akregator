@@ -27,6 +27,7 @@
 #include "browserframe.h"
 #include "browserframe_p.h"
 #include "openurlrequest.h"
+#include "utils/temporaryvalue.h"
 
 #include <QAction>
 #include <QGridLayout>
@@ -338,9 +339,13 @@ void BrowserFrame::slotHistoryBack()
 
 void BrowserFrame::slotReload()
 {
-    // TODO
-    //TemporaryValue lock( d->lockHistory, true );
-    //openUrl(d->url, d->mimetype); // this s
+    TemporaryValue<bool> lock( d->lockHistory, true );
+    
+    OpenUrlRequest req(url());
+    KParts::OpenUrlArguments args;
+    args.setMimeType(d->mimetype);
+    req.setArgs(args);
+    openUrl(req);
 }
 
 void BrowserFrame::slotStop()
@@ -356,7 +361,7 @@ void BrowserFrame::slotPaletteOrFontChanged()
 
 bool BrowserFrame::isReloadable() const
 {
-    return false; // TODO
+    return true;
 }
 
 bool BrowserFrame::isLoading() const
