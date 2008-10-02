@@ -97,8 +97,10 @@ void FrameManager::slotRemoveFrame(int id)
         slotChangeFrame(-1);
     }
     
+    m_frames[id] = 0;
     m_frames.remove(frame->id());
     emit signalFrameRemoved(frame->id());
+    frame->deleteLater();
 }
 
 Frame* FrameManager::findFrameById(int id) const
