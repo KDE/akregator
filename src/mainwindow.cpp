@@ -117,6 +117,8 @@ bool MainWindow::loadPart()
             connect(m_part, SIGNAL(setWindowCaption (const QString &)), this, SLOT(setCaption (const QString &)));
 
             connect(TrayIcon::getInstance(), SIGNAL(quitSelected()), this, SLOT(slotQuit()));
+            connect(m_part, SIGNAL(showPart()), this, SLOT(show()));
+
             // and integrate the part's GUI with the shell's
             createGUI(m_part);
             browserExtension(m_part)->setBrowserInterface(m_browserIface);
