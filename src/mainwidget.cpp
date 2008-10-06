@@ -288,6 +288,12 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
             slotNormalView();
     }
 
+    if ( !Settings::resetQuickFilterOnNodeChange() )
+    {
+        m_searchBar->slotSetStatus( Settings::statusFilter() );
+        m_searchBar->slotSetText( Settings::textFilter() );
+    }
+
     QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
 }
 
@@ -632,8 +638,8 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
     }
 
     m_tabWidget->setCurrentWidget( m_mainFrame );
-
-    m_searchBar->slotClearSearch();
+    if ( Settings::resetQuickFilterOnNodeChange() )
+        m_searchBar->slotClearSearch();
 
     if (m_viewMode == CombinedView)
     {
@@ -1125,10 +1131,12 @@ void Akregator::MainWidget::slotMouseOverInfo(const KFileItem& kifi)
 
 void Akregator::MainWidget::readProperties(const KConfigGroup &config)
 {
-    // read filter settings
-    m_searchBar->slotSetText(config.readEntry("searchLine"));
-    m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
-
+    if ( !Settings::resetQuickFilterOnNodeChange() )
+    {
+        // read filter settings
+        m_searchBar->slotSetText(config.readEntry("searchLine"));
+        m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
+    }
     // Reopen tabs
     QStringList childList = config.readEntry( QString::fromLatin1( "Children" ),
         QStringList() );

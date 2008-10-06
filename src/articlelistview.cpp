@@ -48,6 +48,7 @@
 
 #include <cassert>
 
+using namespace boost;
 using namespace Akregator;
 
 
@@ -79,7 +80,7 @@ bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelInde
     return true;
 }
 
-void SortColorizeProxyModel::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >&  matchers )
+void SortColorizeProxyModel::setFilters( const std::vector<shared_ptr<const Filters::AbstractMatcher> >&  matchers )
 {
     if ( m_matchers == matchers )
         return;
@@ -148,6 +149,7 @@ void ArticleListView::setArticleModel( ArticleModel* model )
     m_proxy = new SortColorizeProxyModel( model );
     m_proxy->setSourceModel( model );
     m_proxy->setSortRole( ArticleModel::SortRole );
+    m_proxy->setFilters( m_matchers );
     FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( model );
     proxy2->setSortRole( ArticleModel::SortRole );
     proxy2->setSourceModel( m_proxy );
@@ -468,8 +470,11 @@ void ArticleListView::slotPreviousUnreadArticle()
 }
 
 
-void ArticleListView::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& matchers )
+void ArticleListView::setFilters( const std::vector<shared_ptr<const Filters::AbstractMatcher> >& matchers )
 {
+    if ( m_matchers == matchers )
+        return;
+    m_matchers = matchers;
     if ( m_proxy )
         m_proxy->setFilters( matchers );
 }
