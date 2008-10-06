@@ -35,7 +35,7 @@ class QString;
 namespace Akregator
 {
 
-namespace Filters 
+namespace Filters
 {
     class AbstractMatcher;
 }
@@ -54,6 +54,8 @@ class SearchBar : public KHBox
 
         void setDelay(int ms);
         int delay() const;
+
+        std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > matchers() const;
 
     signals:
         /** emitted when the text and status filters were updated. Params are textfilter, statusfilter */
