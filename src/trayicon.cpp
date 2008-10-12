@@ -75,7 +75,7 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::slotActivated(QSystemTrayIcon::ActivationReason reason) {
   if (reason == QSystemTrayIcon::Trigger )
-    emit showPart();
+    emit toggleShowPart();
 }
 
 
@@ -150,7 +150,7 @@ void TrayIcon::slotSetUnread(int unread)
         QString countStr = QString::number( unread );
         QFont f = KGlobalSettings::generalFont();
         f.setBold(true);
-	
+
         float pointSize = f.pointSizeF();
         QFontMetrics fm(f);
         int w = fm.width(countStr);

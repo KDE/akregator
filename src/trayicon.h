@@ -53,7 +53,7 @@ class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
         void slotActivated(QSystemTrayIcon::ActivationReason reason);
 
     signals:
-        void showPart();
+        void toggleShowPart();
 
     private:
         static TrayIcon* m_instance;

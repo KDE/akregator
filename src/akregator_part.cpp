@@ -156,7 +156,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     TrayIcon::setInstance(trayIcon);
     m_actionManager->initTrayIcon(trayIcon);
 
-    connect(trayIcon, SIGNAL(showPart()), this, SIGNAL(showPart()));
+    connect(trayIcon, SIGNAL(toggleShowPart()), this, SIGNAL(toggleShowPart()));
 
     if ( isTrayIconEnabled() )
     {

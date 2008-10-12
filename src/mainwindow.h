@@ -88,6 +88,7 @@ public:
 public slots:
     void slotClearStatusText();
     void slotSetStatusBarText(const QString &c);
+    void slotToggleVisibility();
 
 protected:
     /**

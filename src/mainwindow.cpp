@@ -110,7 +110,7 @@ bool MainWindow::loadPart()
 
     connect(m_part, SIGNAL(setWindowCaption(QString)), this, SLOT(setCaption(QString)) );
     connect(TrayIcon::getInstance(), SIGNAL(quitSelected()), this, SLOT(slotQuit()));
-    connect(m_part, SIGNAL(showPart()), this, SLOT(show()) );
+    connect(m_part, SIGNAL(toggleShowPart()), this, SLOT(slotToggleVisibility()) );
 
     createGUI(m_part);
     browserExtension(m_part)->setBrowserInterface(m_browserIface);
@@ -236,7 +236,12 @@ void MainWindow::slotSetStatusBarText( const QString & text )
     m_statusLabel->setText(text);
 }
 
- void MainWindow::autoSaveProperties()
+void MainWindow::slotToggleVisibility()
+{
+  setVisible(!isVisible());
+}
+
+void MainWindow::autoSaveProperties()
 {
     KConfig config("autosaved", KConfig::SimpleConfig,
         "appdata");

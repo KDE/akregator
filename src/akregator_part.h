@@ -133,7 +133,7 @@ class Part : public KParts::ReadOnlyPart
         void showKNotifyOptions();
 
     signals:
-        void showPart();
+        void toggleShowPart();
         void signalSettingsChanged();
 
 
