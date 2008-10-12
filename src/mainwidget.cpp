@@ -131,7 +131,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
              this, SLOT(slotFetchingStopped()));
 
     m_feedListView = new SubscriptionListView( m_horizontalSplitter );
-    m_feedListView->setObjectName( "feedtree" );    
+    m_feedListView->setObjectName( "feedtree" );
     m_actionManager->initSubscriptionListView( m_feedListView );
 
     connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)),
@@ -141,7 +141,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
             Akregator::Folder*)),
             this, SLOT(slotFeedUrlDropped (KUrl::List &,
             Akregator::TreeNode*, Akregator::Folder*)));
-    
+
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
 
@@ -193,7 +193,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController->setArticleLister( m_articleListView );
     m_selectionController->setFeedSelector( m_feedListView );
 
-    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ), 
+    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ),
             m_selectionController, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
 
     FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
@@ -229,11 +229,11 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
              this, SLOT(slotMouseOverInfo( KFileItem )) );
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleViewer, SLOT(slotPaletteOrFontChanged()));
-    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ), 
+    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ),
             m_articleViewer, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
 
     m_articleViewer->part()->widget()->setWhatsThis( i18n("Browsing area."));
-    
+
     mainTabLayout->addWidget( m_articleSplitter );
 
     m_mainFrame = new MainFrame(this, m_part, m_mainTab, i18n("Articles"));
@@ -286,6 +286,12 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
             slotNormalView();
     }
 
+    if ( !Settings::resetQuickFilterOnNodeChange() )
+    {
+        m_searchBar->slotSetStatus( Settings::statusFilter() );
+        m_searchBar->slotSetText( Settings::textFilter() );
+    }
+
     QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
 }
 
@@ -296,7 +302,7 @@ void Akregator::MainWidget::slotOnShutdown()
     Kernel::self()->fetchQueue()->slotAbort();
 
     setFeedList( 0 );
-    
+
     delete m_feedListManagementInterface;
     delete m_feedListView; // call delete here, so that the header settings will get saved
     delete m_articleListView; // same for this one
@@ -424,7 +430,7 @@ void Akregator::MainWidget::setFeedList( FeedList* list )
 
     m_feedList = list;
     if ( m_feedList )
-    {    
+    {
         connect( m_feedList->rootNode(), SIGNAL( signalChanged( Akregator::TreeNode* ) ),
                  this, SLOT( slotSetTotalUnread() ) );
         slotSetTotalUnread();
@@ -448,7 +454,7 @@ bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
 
     if ( !feedList->readFromOpml( doc ) )
         return false;
-    
+
     m_feedListView->setUpdatesEnabled( false );
     if ( !parent )
         setFeedList( feedList.release() );
@@ -483,8 +489,8 @@ void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& gr
     Folder* group = 0;
     foreach( const TreeNode * candidate, namedGroups ) {
         if ( candidate->isGroup() ) {
-            group = const_cast<Folder*>( static_cast<const Folder*>( candidate ) );  
-             
+            group = const_cast<Folder*>( static_cast<const Folder*>( candidate ) );
+
             break;
         }
     }
@@ -640,8 +646,8 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
     }
 
     m_tabWidget->setCurrentWidget( m_mainFrame );
-
-    m_searchBar->slotClearSearch();
+    if ( Settings::resetQuickFilterOnNodeChange() )
+        m_searchBar->slotClearSearch();
 
     if (m_viewMode == CombinedView)
     {
@@ -718,7 +724,7 @@ void Akregator::MainWidget::slotFeedModify()
 {
     TreeNode* const node = m_selectionController->selectedSubscription();
     if ( !node )
-        return;    
+        return;
     EditSubscriptionCommand* cmd = new EditSubscriptionCommand( this );
     cmd->setParentWidget( this );
     cmd->setSubscription( m_feedList, node->id() );
@@ -831,7 +837,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
     m_markReadTimer->stop();
 
     assert( article.isNull() || article.feed() );
-   
+
     KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
     assert( maai );
     maai->setChecked( article.keep() );
@@ -843,7 +849,7 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
 
     if ( !Settings::useMarkReadDelay() )
         return;
-    
+
     const int delay = Settings::markReadDelay();
 
     if ( delay > 0 )
@@ -998,13 +1004,13 @@ void Akregator::MainWidget::slotArticleDelete()
             msg = i18n("<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
     }
 
-    if ( KMessageBox::warningContinueCancel( this, 
+    if ( KMessageBox::warningContinueCancel( this,
                                              msg, i18n( "Delete Article" ),
                                              KStandardGuiItem::del(),
                                              KStandardGuiItem::cancel(),
                                              "Disable delete article confirmation" ) != KMessageBox::Continue )
         return;
-    
+
     TreeNode* const selected = m_selectionController->selectedSubscription();
 
     if ( selected )
@@ -1133,9 +1139,12 @@ void Akregator::MainWidget::slotMouseOverInfo(const KFileItem& kifi)
 
 void Akregator::MainWidget::readProperties(const KConfigGroup &config)
 {
-    // read filter settings
-    m_searchBar->slotSetText(config.readEntry("searchLine"));
-    m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
+    if ( !Settings::resetQuickFilterOnNodeChange() )
+    {
+        // read filter settings
+        m_searchBar->slotSetText(config.readEntry("searchLine"));
+        m_searchBar->slotSetStatus(config.readEntry("searchCombo").toInt());
+    }
 }
 
 void Akregator::MainWidget::saveProperties(KConfigGroup & config)
