@@ -62,6 +62,7 @@
 
 #include <kaction.h>
 #include <kdialog.h>
+#include <KDebug>
 #include <kfiledialog.h>
 #include <kfileitem.h>
 #include <kiconloader.h>
@@ -293,8 +294,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
         m_searchBar->slotSetStatus( Settings::statusFilter() );
         m_searchBar->slotSetText( Settings::textFilter() );
     }
-
-    QTimer::singleShot(1000, this, SLOT(slotDeleteExpiredArticles()) );
 }
 
 void Akregator::MainWidget::slotOnShutdown()
@@ -433,11 +432,15 @@ void Akregator::MainWidget::setFeedList( FeedList* list )
     Kernel::self()->setFeedList( m_feedList);
     ProgressManager::self()->setFeedList( m_feedList );
     m_selectionController->setFeedList( m_feedList );
-    oldList->disconnect( this );
 
-    if ( oldList )
+    kDebug() << "new feed list is %p old one: %p" << m_feedList.data() << oldList;
+
+    if ( oldList ) {
+        oldList->disconnect( this );
         oldList->rootNode()->disconnect( this );
+    }
     delete oldList;
+    slotDeleteExpiredArticles();
 }
 
 bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
@@ -459,15 +462,21 @@ bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
     return true;
 }
 
-void Akregator::MainWidget::slotDeleteExpiredArticles()
+
+void Akregator::MainWidget::deleteExpiredArticles( FeedList* list )
 {
-    if ( !m_feedList )
+    if ( !list )
         return;
     ExpireItemsCommand* cmd = new ExpireItemsCommand( this );
     cmd->setParentWidget( this );
-    cmd->setFeedList( m_feedList );
-    cmd->setFeeds( m_feedList->feedIds() );
+    cmd->setFeedList( list );
+    cmd->setFeeds( list->feedIds() );
     cmd->start();
+}
+
+void Akregator::MainWidget::slotDeleteExpiredArticles()
+{
+    deleteExpiredArticles( m_feedList );
 }
 
 QDomDocument Akregator::MainWidget::feedListToOPML()

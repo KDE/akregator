@@ -29,6 +29,8 @@
 #include "fetchqueue.h"
 #include "framemanager.h"
 
+#include <QPointer>
+
 namespace Akregator
 {
 
@@ -48,7 +50,7 @@ class Kernel::KernelPrivate
     public:
 
     Backend::Storage* storage;
-    FeedList* feedList;
+    QPointer<FeedList> feedList;
     FetchQueue* fetchQueue;
     FrameManager* frameManager;
 };
@@ -58,7 +60,6 @@ Kernel::Kernel() : d(new KernelPrivate)
     d->fetchQueue = new FetchQueue();
     d->frameManager = new FrameManager();
     d->storage = 0;
-    d->feedList = 0;
 }
 
 Kernel::~Kernel()
@@ -69,29 +70,29 @@ Kernel::~Kernel()
     d = 0;
 }
 
-Backend::Storage* Kernel::storage() 
-{ 
-    return d->storage; 
+Backend::Storage* Kernel::storage()
+{
+    return d->storage;
 }
 
-void Kernel::setStorage(Backend::Storage* storage) 
-{ 
+void Kernel::setStorage(Backend::Storage* storage)
+{
     d->storage = storage;
 }
 
-FeedList* Kernel::feedList() 
-{ 
+FeedList* Kernel::feedList()
+{
     return d->feedList;
 }
 
-void Kernel::setFeedList(FeedList* feedList) 
+void Kernel::setFeedList(FeedList* feedList)
 {
     d->feedList = feedList;
 }
 
 FetchQueue* Kernel::fetchQueue()
 {
-    return d->fetchQueue; 
+    return d->fetchQueue;
 }
 
 FrameManager* Kernel::frameManager()

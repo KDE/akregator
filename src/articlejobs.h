@@ -29,6 +29,7 @@
 
 #include <QList>
 #include <QMap>
+#include <QPointer>
 #include <QString>
 
 //transitional job classes
@@ -58,12 +59,12 @@ public:
     void appendArticleId( const Akregator::ArticleId& id );
 
     void start();
-    
+
 private Q_SLOTS:
     void doStart();
-    
+
 private:
-    Akregator::FeedList* m_feedList;
+    QPointer<Akregator::FeedList> m_feedList;
     ArticleIdList m_ids;
 };
 
@@ -83,7 +84,7 @@ private Q_SLOTS:
     void doStart();
 
 private:
-    Akregator::FeedList* m_feedList;
+    QPointer<Akregator::FeedList> m_feedList;
     QMap<ArticleId, bool> m_keepFlags;
     QMap<ArticleId, int> m_status;
 };

@@ -28,15 +28,19 @@
 #include "feedlist.h"
 #include "kernel.h"
 
+#include <KDebug>
+
 #include <QTimer>
 
 #include <vector>
+
+#include <cassert>
 
 using namespace Akregator;
 
 Akregator::ArticleDeleteJob::ArticleDeleteJob( QObject* parent ) : KJob( parent ), m_feedList( Kernel::self()->feedList() )
 {
-    Q_ASSERT( m_feedList );
+    assert( m_feedList );
 }
 
 void Akregator::ArticleDeleteJob::appendArticleIds( const QList<Akregator::ArticleId>& ids )
@@ -57,9 +61,15 @@ void Akregator::ArticleDeleteJob::start()
 
 void Akregator::ArticleDeleteJob::doStart()
 {
+    if ( !m_feedList )
+    {
+        kWarning() << "Feedlist object was deleted, items not deleted";
+        emitResult();
+        return;
+    }
     std::vector<Akregator::Feed*> feeds;
 
-    Q_FOREACH ( const Akregator::ArticleId id, m_ids )
+    Q_FOREACH ( const Akregator::ArticleId& id, m_ids )
     {
         Akregator::Article article = m_feedList->findArticle( id.feedUrl, id.guid );
         if ( article.isNull() )
@@ -71,10 +81,10 @@ void Akregator::ArticleDeleteJob::doStart()
             feed->setNotificationMode( false );
         }
         article.setDeleted();
-    } 
+    }
 
     Q_FOREACH ( Akregator::Feed* const i, feeds )
-        i->setNotificationMode( true ); 
+        i->setNotificationMode( true );
 
     emitResult();
 }
@@ -101,9 +111,16 @@ void Akregator::ArticleModifyJob::start()
 
 void Akregator::ArticleModifyJob::doStart()
 {
+
+    if ( !m_feedList )
+    {
+        kWarning() << "Feedlist object was deleted, items not modified";
+        emitResult();
+        return;
+    }
     std::vector<Akregator::Feed*> feeds;
 
-    Q_FOREACH ( const Akregator::ArticleId id, m_keepFlags.keys() )
+    Q_FOREACH ( const Akregator::ArticleId& id, m_keepFlags.keys() )
     {
         Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
         if ( !feed )
@@ -115,7 +132,7 @@ void Akregator::ArticleModifyJob::doStart()
             article.setKeep( m_keepFlags[id] );
     }
 
-    Q_FOREACH ( const Akregator::ArticleId id, m_status.keys() )
+    Q_FOREACH ( const Akregator::ArticleId& id, m_status.keys() )
     {
         Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
         if ( !feed )
@@ -128,7 +145,7 @@ void Akregator::ArticleModifyJob::doStart()
     }
 
     Q_FOREACH ( Akregator::Feed* const i, feeds )
-        i->setNotificationMode( true ); 
+        i->setNotificationMode( true );
     emitResult();
 }
 
