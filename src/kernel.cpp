@@ -26,6 +26,7 @@
 
 #include <k3staticdeleter.h>
 
+#include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
 
