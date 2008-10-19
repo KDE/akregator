@@ -28,7 +28,9 @@
 
 #include <QVariant>
 
-class QWidget;
+#include "akregatorconfig.h"
+
+class QButtonGroup;
 
 class KCMAkregatorArchiveConfig : public KCModule
 {
@@ -37,8 +39,15 @@ class KCMAkregatorArchiveConfig : public KCModule
   public:
     KCMAkregatorArchiveConfig( QWidget *parent, const QVariantList &args );
 
+    void setArchiveMode( int mode );
+    int archiveMode() const;
+
+    /*reimp*/ void load();
+    /*reimp*/ void save();
+
   private:
       QWidget* m_widget;
+      QButtonGroup* m_archiveModeGroup;
 };
 
 #endif

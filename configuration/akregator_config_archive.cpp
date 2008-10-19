@@ -23,15 +23,15 @@
 
 #include "akregator_config_archive.h"
 #include "akregatorconfig.h"
-
 #include "ui_settings_archive.h"
-
 #include <KAboutData>
 #include <KConfigDialogManager>
+#include <KDebug>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>
 
+#include <QButtonGroup>
 #include <QVBoxLayout>
 
 using namespace Akregator;
@@ -41,18 +41,23 @@ K_EXPORT_PLUGIN(KCMAkregatorArchiveConfigFactory( "kcmakrarchiveconfig" ))
 
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVariantList& args )
     : KCModule( KCMAkregatorArchiveConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
-{  
-    Ui::SettingsArchive ui;
-    ui.setupUi( m_widget );
-
+{
+    Ui::SettingsArchive m_ui;
+    m_ui.setupUi( m_widget );
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-   
-    connect( ui.rb_LimitArticleNumber, SIGNAL( toggled( bool ) ),
-             ui.kcfg_MaxArticleNumber, SLOT( setEnabled( bool ) ) );
-    connect( ui.rb_LimitArticleAge, SIGNAL( toggled( bool ) ),
-             ui.kcfg_MaxArticleAge, SLOT( setEnabled( bool ) ) );
 
+    connect( m_ui.rb_LimitArticleNumber, SIGNAL(toggled(bool)),
+             m_ui.kcfg_MaxArticleNumber, SLOT(setEnabled( bool)) );
+    connect( m_ui.rb_LimitArticleAge, SIGNAL(toggled(bool)),
+             m_ui.kcfg_MaxArticleAge, SLOT(setEnabled(bool)) );
+
+    m_archiveModeGroup = new QButtonGroup( this );
+    m_archiveModeGroup->addButton( m_ui.rb_KeepAllArticles, Settings::EnumArchiveMode::keepAllArticles );
+    m_archiveModeGroup->addButton( m_ui.rb_LimitArticleNumber, Settings::EnumArchiveMode::limitArticleNumber );
+    m_archiveModeGroup->addButton( m_ui.rb_LimitArticleAge, Settings::EnumArchiveMode::limitArticleAge );
+    m_archiveModeGroup->addButton( m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving );
+    connect( m_archiveModeGroup, SIGNAL(buttonClicked(int)), this, SLOT(changed()) );
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrarchiveconfig" ), 0,
                                         ki18n( "Configure Feed Reader Archive" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -62,6 +67,35 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVa
     setAboutData( about );
 
     addConfig( Settings::self(), m_widget );
+}
+
+void KCMAkregatorArchiveConfig::load()
+{
+    setArchiveMode( Settings::archiveMode() );
+    KCModule::load();
+}
+
+void KCMAkregatorArchiveConfig::save()
+{
+    Settings::setArchiveMode( archiveMode() );
+    KCModule::save();
+}
+
+
+void KCMAkregatorArchiveConfig::setArchiveMode( int mode )
+{
+    QAbstractButton* const b = m_archiveModeGroup->button( mode );
+    if ( b )
+        b->setChecked( true );
+    else
+        kWarning( "No button for %d registered, ignoring call", mode );
+}
+
+int KCMAkregatorArchiveConfig::archiveMode() const {
+    const int id = m_archiveModeGroup->checkedId();
+    if ( id < 0 || id >= Settings::EnumArchiveMode::COUNT )
+        return Settings::EnumArchiveMode::keepAllArticles;
+    return id;
 }
 
 #include "akregator_config_archive.moc"
