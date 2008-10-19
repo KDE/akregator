@@ -29,6 +29,7 @@
 
 #include <khtml_part.h>
 
+#include <QPointer>
 #include <QWidget>
 
 #include <boost/shared_ptr.hpp>
@@ -55,29 +56,29 @@ class ArticleViewer : public QWidget
         explicit ArticleViewer(QWidget* parent);
         ~ArticleViewer();
 
-                
+
         /** Repaints the view. */
         void reload();
-    
+
         void displayAboutPage();
-    
+
         KParts::ReadOnlyPart* part() const;
-        
+
         void setNormalViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
-        
+
         void setCombinedViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
 
         void showArticle( const Article& article );
 
         /** Shows the articles of the tree node @c node (combined view).
          * Changes in the node will update the view automatically.
-         * 
+         *
          *  @param node The node to observe */
         void showNode(Akregator::TreeNode* node);
-    
+
     public slots:
-    
-        void slotScrollUp(); 
+
+        void slotScrollUp();
         void slotScrollDown();
         void slotZoomIn();
         void slotZoomOut();
@@ -85,50 +86,50 @@ class ArticleViewer : public QWidget
         void slotPrint();
 
         /** Set filters which will be used if the viewer is in combined view mode
-         */    
+         */
         void setFilters( const std::vector< boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& filters );
-        
+
         /** Update view if combined view mode is set. Has to be called when
          * the displayed node gets modified.
-         */ 
+         */
         void slotUpdateCombinedView();
-    
-        /** 
+
+        /**
          * Clears the canvas and disconnects from the currently observed node
-         * (if in combined view mode). 
+         * (if in combined view mode).
          */
         void slotClear();
 
         void slotShowSummary(Akregator::TreeNode *node);
 
         void slotPaletteOrFontChanged();
-    
+
     signals:
-    
+
         /** This gets emitted when url gets clicked */
-        void signalOpenUrlRequest(Akregator::OpenUrlRequest&); 
+        void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
 
         void started(KIO::Job*);
         void selectionChanged();
         void completed();
-        
+
     protected: // methods
         int pointsToPixel(int points) const;
 
         bool openUrl(const KUrl &url);
-        
+
     protected slots:
 
         void slotOpenUrlRequestDelayed(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
-        
+
         void slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs);
-        
-        void slotCreateNewWindow(const KUrl& url, 
+
+        void slotCreateNewWindow(const KUrl& url,
                                     const KParts::OpenUrlArguments& args,
                                     const KParts::BrowserArguments& browserArgs,
-                                    const KParts::WindowArgs& windowArgs, 
+                                    const KParts::WindowArgs& windowArgs,
                                     KParts::ReadOnlyPart** part);
-        
+
         void slotPopupMenu(const QPoint&, const KUrl&, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags);
 
         /** Copies current link to clipboard. */
@@ -162,26 +163,26 @@ class ArticleViewer : public QWidget
         void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
         void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
         void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-    
-    
-    // from ArticleViewer  
+
+
+    // from ArticleViewer
     private:
-    
+
         virtual void keyPressEvent(QKeyEvent* e);
-    
+
         /** renders @c body. Use this method whereever possible.
          *  @param body html to render, without header and footer */
         void renderContent(const QString& body);
-    
+
         /** Resets the canvas and adds writes the HTML header to it.
             */
         void beginWriting();
 
         /** Finishes writing to the canvas and completes the HTML (by adding closing tags) */
         void endWriting();
-    
+
         void updateCss();
-        
+
         void connectToNode(TreeNode* node);
         void disconnectFromNode(TreeNode* node);
 
@@ -192,12 +193,12 @@ class ArticleViewer : public QWidget
         QString m_htmlFooter;
         QString m_currentText;
         KUrl m_imageDir;
-        TreeNode* m_node;
+        QPointer<TreeNode> m_node;
         Article m_article;
         KUrl m_link;
-        std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters; 
+        std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters;
         enum ViewMode { NormalView, CombinedView, SummaryView };
-        ViewMode m_viewMode;        
+        ViewMode m_viewMode;
         ArticleViewerPart* m_part;
         boost::shared_ptr<ArticleFormatter> m_normalViewFormatter;
         boost::shared_ptr<ArticleFormatter> m_combinedViewFormatter;
@@ -209,23 +210,23 @@ class ArticleViewerPart : public KHTMLPart
 
     public:
         explicit ArticleViewerPart(QWidget* parent);
-        
+
         bool closeUrl();
-        
+
         int button() const;
-        
+
     protected:
-        
+
         /** reimplemented to get the mouse button */
         bool urlSelected(const QString &url, int button, int state, const QString &_target,
                          const KParts::OpenUrlArguments& args = KParts::OpenUrlArguments(),
                          const KParts::BrowserArguments& browserArgs = KParts::BrowserArguments());
-        
+
     private:
-        
+
         int m_button;
 };
-    
+
 } // namespace Akregator
 
 #endif // AKREGATOR_ARTICLEVIEWER_H
