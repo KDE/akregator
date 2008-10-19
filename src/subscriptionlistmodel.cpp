@@ -464,7 +464,7 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
         Q_FOREACH ( const int id, ids )
         {
             const Folder* const asFolder = qobject_cast<const Folder*>( m_feedList->findByID( id ) );
-            if ( asFolder && asFolder->subtreeContains( destFolder ) )
+            if ( asFolder && ( asFolder == destFolder || asFolder->subtreeContains( destFolder ) ) )
                 return false;
         }
 
