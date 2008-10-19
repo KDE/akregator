@@ -89,7 +89,8 @@ void FrameManager::slotRemoveFrame(int id)
 
     if (!frame)
         return;
-
+    if (!frame->isRemovable())
+        return;
     frame->disconnect( this );
 
     if (m_currentFrame == frame)
