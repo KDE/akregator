@@ -31,6 +31,7 @@
 #include "openurlrequest.h"
 
 #include <kaction.h>
+#include <KCharMacroExpander>
 #include <kprocess.h>
 #include <kshell.h>
 #include <kconfiggroup.h>
@@ -259,22 +260,25 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
     if (!url.isValid())
         return;
 
-    if (Settings::externalBrowserUseKdeDefault())
+    if (!Settings::externalBrowserUseKdeDefault())
     {
-        if (request.args().mimeType().isEmpty())
-            KToolInvocation::self()->invokeBrowser(url.url(), "0");
-        else
-            KRun::runUrl(url, request.args().mimeType(), 0 /*window*/, false, false);
+        QHash<QChar,QString> map;
+        map.insert('u', url.url());
+        const QString cmd = KMacroExpander::expandMacrosShellQuote(Settings::externalBrowserCustomCommand(), map);
+        const QStringList args = KShell::splitArgs(cmd);
+        if (!args.isEmpty())
+        {
+            KProcess::startDetached(args);
+            return;
+        }
     }
+
+    if (request.args().mimeType().isEmpty())
+        KToolInvocation::self()->invokeBrowser(url.url(), "0");
     else
-    {
-        QString cmd = Settings::externalBrowserCustomCommand();
-        // XXX Use KMacroExpander
-        QString urlStr = url.url();
-        cmd.replace(QRegExp("%u"), urlStr);
-        KProcess::startDetached(KShell::splitArgs(cmd));
-    }
+        KRun::runUrl(url, request.args().mimeType(), 0 /*window*/, false, false);
 }
+
 void FrameManager::slotFoundMimeType(const OpenUrlRequest& request)
 {
     OpenUrlRequest req2 = request;
@@ -350,7 +354,7 @@ void FrameManager::saveProperties(KConfigGroup & config)
         // No need to save the main frame
         if(i.value() && qobject_cast<BrowserFrame *>(i.value()))
         {
-            
+
             newPrefix = 'T' + QString::number(i.key());
             strlst.append( newPrefix );
             newPrefix.append( QLatin1Char( '_' ) );
