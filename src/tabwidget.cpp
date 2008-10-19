@@ -99,8 +99,8 @@ TabWidget::TabWidget(QWidget * parent)
              this, SLOT( slotTabChanged(int) ) );
     connect(this, SIGNAL(closeRequest(QWidget*)),
             this, SLOT(slotCloseRequest(QWidget*)));
-    setHoverCloseButton(Settings::closeButtonOnTabs());
-
+    setCloseButtonEnabled(Settings::closeButtonOnTabs());
+    
     d->tabsClose = new QToolButton(this);
     d->tabsClose->setShortcut(QKeySequence("Ctrl+W"));
     connect( d->tabsClose, SIGNAL( clicked() ), this,
