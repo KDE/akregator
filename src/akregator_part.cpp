@@ -2,7 +2,7 @@
     This file is part of Akregator.
 
     Copyright (C) 2004 Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
-                  2005 Frank Osterfeld <osterfeld@kde.org>
+                 K 2005 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -58,6 +58,7 @@
 #include <KParts/GenericFactory>
 #include <KParts/Plugin>
 #include <KCMultiDialog>
+#include <KSaveFile>
 
 #include <QFile>
 #include <QObject>
@@ -434,7 +435,7 @@ void Part::slotSaveFeedList()
     QString xmlStr = m_mainWidget->feedListToOPML().toString();
     m_storage->storeFeedList(xmlStr);
 
-    QFile file(localFilePath());
+    KSaveFile file(localFilePath());
     if (file.open(QIODevice::WriteOnly) == false)
     {
         //FIXME: allow to save the feedlist into different location -tpr 20041118
@@ -451,7 +452,7 @@ void Part::slotSaveFeedList()
 
     stream << xmlStr << endl;
 
-    file.close();
+    file.finalize();
 }
 
 bool Part::isTrayIconEnabled() const
@@ -541,7 +542,7 @@ void Part::exportFile(const KUrl& url)
 {
     if (url.isLocalFile())
     {
-        QFile file(url.path());
+        KSaveFile file(url.path());
 
         if ( file.exists() &&
                 KMessageBox::questionYesNo(m_mainWidget,
@@ -561,7 +562,7 @@ void Part::exportFile(const KUrl& url)
         stream.setCodec("UTF-8");
 
         stream << m_mainWidget->feedListToOPML().toString() << "\n";
-        file.close();
+        file.finalize();
     }
     else
     {
@@ -768,14 +769,14 @@ bool Part::copyFile(const QString& backup)
 
     if (file.open(QIODevice::ReadOnly))
     {
-        QFile backupFile(backup);
+        KSaveFile backupFile(backup);
         if (backupFile.open(QIODevice::WriteOnly))
         {
             QTextStream in(&file);
             QTextStream out(&backupFile);
             while (!in.atEnd())
                 out << in.readLine();
-            backupFile.close();
+            backupFile.finalize();
             file.close();
             return true;
         }
