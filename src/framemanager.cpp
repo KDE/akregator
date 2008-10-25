@@ -250,12 +250,13 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
     if (!url.isValid())
         return;
 
-    if (Settings::externalBrowserUseKdeDefault())
+    if (!Settings::externalBrowserUseKdeDefault())
     {
         QString cmd = Settings::externalBrowserCustomCommand();
         // XXX Use KMacroExpander
         QString urlStr = KShell::quoteArg(url.url());
         cmd.replace(QRegExp("%u"), urlStr);
+
         const QStringList args = KShell::splitArgs(cmd);
         if (!args.isEmpty())
         {
