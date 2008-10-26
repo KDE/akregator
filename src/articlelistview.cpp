@@ -45,6 +45,7 @@
 #include <QMenu>
 #include <QPaintEvent>
 #include <QPalette>
+#include <QScrollBar>
 
 #include <cassert>
 
@@ -238,6 +239,18 @@ QAbstractItemView* ArticleListView::itemView()
 {
     return this;
 }
+
+QPoint ArticleListView::scrollBarPositions() const
+{
+    return QPoint( horizontalScrollBar()->value(), verticalScrollBar()->value() );
+}
+
+void ArticleListView::setScrollBarPositions( const QPoint& p )
+{
+    horizontalScrollBar()->setValue( p.x() );
+    verticalScrollBar()->setValue( p.y() );
+}
+
 
 void ArticleListView::setGroupMode()
 {

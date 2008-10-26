@@ -105,6 +105,11 @@ public:
     //impl ArticleLister
     QAbstractItemView* itemView();
 
+    //impl ArticleLister
+    QPoint scrollBarPositions() const;
+
+    //impl ArticleLister
+    void setScrollBarPositions( const QPoint& p );
 
     //impl ArticleLister
     void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );

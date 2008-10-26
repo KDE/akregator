@@ -193,12 +193,18 @@ void Akregator::SelectionController::articleHeadersAvailable()
     connect( m_articleLister->articleSelectionModel(), SIGNAL( selectionChanged( QItemSelection, QItemSelection ) ),
              this, SLOT( articleSelectionChanged() ) );
 
+    if ( m_selectedSubscription )
+        m_articleLister->setScrollBarPositions( m_selectedSubscription->listViewScrollBarPositions() );
 }
+
 
 void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIndex& index )
 {
     if ( !index.isValid() )
         return;
+
+    if ( m_selectedSubscription && m_articleLister )
+        m_selectedSubscription->setListViewScrollBarPositions( m_articleLister->scrollBarPositions() );
 
     m_selectedSubscription = selectedSubscription();
     emit currentSubscriptionChanged( m_selectedSubscription );

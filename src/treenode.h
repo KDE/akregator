@@ -32,11 +32,12 @@
 class QDomDocument;
 class QDomElement;
 class QIcon;
+class QPoint;
 class QString;
 class QStringList;
 template <class T> class QList;
 
-namespace Akregator 
+namespace Akregator
 {
 
 class ArticleDeleteJob;
@@ -49,7 +50,7 @@ class FetchQueue;
 
 /**
     \brief Abstract base class for all kind of elements in the feed tree, like feeds and feed groups (and search folders later).
-                   
+
     TODO: detailed description goes here
 */
 class AKREGATORPART_EXPORT TreeNode : public QObject
@@ -57,7 +58,7 @@ class AKREGATORPART_EXPORT TreeNode : public QObject
 Q_OBJECT
 
 public:
-        
+
     /** Standard constructor */
     TreeNode();
 
@@ -65,53 +66,53 @@ public:
     virtual ~TreeNode();
 
     virtual bool accept(TreeNodeVisitor* visitor) = 0;
-    
+
     /** The unread count, returns the number of new/unread articles in the node (for groups: the accumulated count of the subtree)
     @return number of new/unread articles */
 
     virtual int unread() const = 0;
-    
+
 
     /** returns the number of total articles in the node (for groups: the accumulated count of the subtree)
     @return number of articles */
-    
+
     virtual int totalCount() const = 0;
 
-    
+
     /** Get title of node.
     @return the title of the node */
-    
+
     QString title() const;
-    
-    
+
+
     /** Sets the title of the node.
     @c title should not contain entities.
     @param title the title string */
-    
+
     void setTitle(const QString& title);
-    
-    
+
+
     /** Get the next sibling.
     @return the next sibling, 0 if there is none */
-    
+
     virtual const TreeNode* nextSibling() const;
     virtual TreeNode* nextSibling();
-    
+
     /** Get the previous sibling.
     @return the previous sibling, 0 if there is none */
-    
+
     virtual const TreeNode* prevSibling() const;
     virtual TreeNode* prevSibling();
 
-    
-    
+
+
     /** Returns the parent node.
     @return the parent feed group, 0 if there is none */
-    
+
     virtual const Folder* parent() const;
     virtual Folder* parent();
 
-    
+
     /** returns the (direct) children of this node.
         @return a list of pointers to the child nodes
      */
@@ -127,48 +128,48 @@ public:
     virtual TreeNode* childAt( int pos );
     virtual const TreeNode* childAt( int pos ) const;
 
-    /** Sets parent node; Don't call this directly, is done automatically by 
+    /** Sets parent node; Don't call this directly, is done automatically by
     insertChild-methods in @ref Folder. */
-    
+
     virtual void setParent(Folder* parent);
-    
+
     virtual QIcon icon() const = 0;
 
     /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
     If @c tag is not null, only articles tagged with @c tag are returned
     @return sequence of articles */
-    
+
     virtual QList<Article> articles() = 0;
-    
+
     /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.
     @return whether the node is a feed group or not */
-    
+
     virtual bool isGroup() const = 0;
 
-    /** returns if the node represents an aggregation, i.e. containing 
-     * items from more than once source feed. Folders and virtual folders 
+    /** returns if the node represents an aggregation, i.e. containing
+     * items from more than once source feed. Folders and virtual folders
      * are aggregations, feeds are not.
-     */ 
+     */
     virtual bool isAggregation() const = 0;
 
     /** exports node and child nodes to OPML (with akregator settings)
         @param parent the dom element the child node will be attached to
         @param document the opml document */
-    
+
     virtual QDomElement toOPML( QDomElement parent, QDomDocument document ) const = 0;
-    
-    /** 
+
+    /**
     @param doNotify notification on changes on/off flag
     @param notifyOccurredChanges notify changes occurred while turn off when set to true again */
-    
+
     virtual void setNotificationMode(bool doNotify);
 
     /** returns the next node in the tree.
         Calling next() unless it returns 0 iterates through the tree in pre-order
-     */ 
+     */
     virtual const TreeNode* next() const = 0;
     virtual TreeNode* next() = 0;
-    
+
     /** returns the ID of this node. IDs are managed by @ref FeedList objects and must be unique within the list. Some IDs have a special meaning:
     @c 0 is the default value and indicates that no ID was set
     @c 1 is reserved for the "All Feeds" root node */
@@ -177,23 +178,26 @@ public:
     /** sets the ID */
     virtual void setId(uint id);
 
+    QPoint listViewScrollBarPositions() const;
+    void setListViewScrollBarPositions( const QPoint& pos );
+
 public slots:
-        
+
     /** Marks all articles in this node as read.
     Works recursively for feed groups. */
-    
+
     virtual void slotMarkAllArticlesAsRead() = 0;
 
     /** adds node to a fetch queue
         @param intervalFetchesOnly */
 
     virtual void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchesOnly=false) = 0;
-      
+
 signals:
-    
+
      /** Emitted when this object is deleted. */
      void signalDestroyed(Akregator::TreeNode*);
- 
+
     /** Notification mechanism: emitted, when the node was modified and notification is enabled. A node change is renamed title, icon, unread count. Added, updated or removed articles are not notified via this signal */
     void signalChanged(Akregator::TreeNode*);
 
@@ -202,10 +206,10 @@ signals:
         @param QStringList the guids of the articles added
     */
     void signalArticlesAdded(Akregator::TreeNode*, const QList<Akregator::Article>& guids);
-    
+
     /** emitted when articles were updated */
     void signalArticlesUpdated(Akregator::TreeNode*, const QList<Akregator::Article>& guids);
-    
+
     /** emitted when articles were removed from this subtree. Note that this has nothing to do with actual article deletion! The article might have moved somewhere else in the tree, e.g. if the user moved the feed */
     void signalArticlesRemoved(Akregator::TreeNode*, const QList<Akregator::Article>& guids);
 
@@ -215,7 +219,7 @@ protected:
      Call this only when the _actual_ _node_ has changed, i.e. title, unread count. Don't use for article changes!
      Will do notification immediately or cache it, depending on @c m_doNotify. */
     virtual void nodeModified();
-    
+
     /** call this if the articles in the node were changed. Sends signalArticlesAdded/Updated/Removed signals
      Will do notification immediately or cache it, depending on @c m_doNotify. */
     virtual void articlesModified();
@@ -226,7 +230,7 @@ protected:
     virtual void doArticleNotification();
 
     void emitSignalDestroyed();
-    
+
 private:
     class TreeNodePrivate;
     TreeNodePrivate* d;
