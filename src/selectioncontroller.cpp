@@ -257,4 +257,10 @@ void SelectionController::setFilters( const std::vector<boost::shared_ptr<const 
     m_articleLister->setFilters( matchers );
 }
 
+void SelectionController::forceFilterUpdate()
+{
+    Q_ASSERT( m_articleLister );
+    m_articleLister->forceFilterUpdate();
+}
+
 #include "selectioncontroller.moc"

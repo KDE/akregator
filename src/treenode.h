@@ -29,6 +29,8 @@
 #include <QObject>
 #include <QVector>
 
+class KJob;
+
 class QDomDocument;
 class QDomElement;
 class QIcon;
@@ -181,12 +183,9 @@ public:
     QPoint listViewScrollBarPositions() const;
     void setListViewScrollBarPositions( const QPoint& pos );
 
+    virtual KJob* createMarkAsReadJob() = 0;
+
 public slots:
-
-    /** Marks all articles in this node as read.
-    Works recursively for feed groups. */
-
-    virtual void slotMarkAllArticlesAsRead() = 0;
 
     /** adds node to a fetch queue
         @param intervalFetchesOnly */

@@ -217,14 +217,13 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListene
         QVector<const Folder*> folders() const;
         QVector<Folder*> folders();
 
+        /* reimp */ KJob* createMarkAsReadJob();
+
     public slots:
         /** starts fetching */
         void fetch(bool followDiscovery=false);
 
         void slotAbortFetch();
-
-        /** mark all articles in this feed as read */
-        void slotMarkAllArticlesAsRead();
 
         /** add this feed to the fetch queue @c queue */
         void slotAddToFetchQueue(Akregator::FetchQueue* queue, bool intervalFetchOnly=false);

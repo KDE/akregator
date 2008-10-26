@@ -57,6 +57,8 @@
 
 #include <boost/bind.hpp>
 
+#include <memory>
+
 using Syndication::ItemPtr;
 using namespace Akregator;
 using namespace boost;
@@ -342,7 +344,7 @@ void Feed::setMarkImmediatelyAsRead(bool enabled)
 {
     d->markImmediatelyAsRead = enabled;
     if (enabled)
-        slotMarkAllArticlesAsRead();
+        createMarkAsReadJob()->start();
 }
 
 void Feed::setUseNotification(bool enabled)
@@ -417,19 +419,17 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     return el;
 }
 
-void Feed::slotMarkAllArticlesAsRead()
+KJob* Feed::createMarkAsReadJob()
 {
-    if (unread() > 0)
+    std::auto_ptr<ArticleModifyJob> job( new ArticleModifyJob );
+    Q_FOREACH ( const Article& i, articles() )
     {
-        ArticleModifyJob* job = new ArticleModifyJob;
-        Q_FOREACH ( const Article& i, articles() )
-        {
-            const ArticleId aid = { xmlUrl(), i.guid() };
-            job->setStatus( aid, Read );
-        }
-        job->start();
+        const ArticleId aid = { xmlUrl(), i.guid() };
+        job->setStatus( aid, Read );
     }
+    return job.release();
 }
+
 void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
     if (!intervalFetchOnly)

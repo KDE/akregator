@@ -161,6 +161,8 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
          */
         bool subtreeContains( const Akregator::TreeNode* node ) const;
 
+        /* reimp */ KJob* createMarkAsReadJob();
+
     signals:
         /** emitted when a child was added */
         void signalChildAdded(Akregator::TreeNode*);
@@ -171,9 +173,6 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         void signalAboutToRemoveChild( Akregator::TreeNode* );
 
     public slots:
-
-        /** Mark articles of children recursively as read. */
-        void slotMarkAllArticlesAsRead();
 
         /** Called when a child was modified.
         @param node the child that was changed

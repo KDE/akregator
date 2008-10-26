@@ -24,6 +24,7 @@
 */
 #include "folder.h"
 #include "article.h"
+#include "articlejobs.h"
 #include "feed.h"
 #include "fetchqueue.h"
 #include "treenodevisitor.h"
@@ -310,12 +311,12 @@ void Folder::updateUnreadCount() const
     d->unread = unread;
 }
 
-void Folder::slotMarkAllArticlesAsRead()
+KJob* Folder::createMarkAsReadJob()
 {
-    setNotificationMode(false);
+    std::auto_ptr<CompositeJob> job( new CompositeJob );
     Q_FOREACH( Feed* const i, feeds() )
-        i->slotMarkAllArticlesAsRead();
-    setNotificationMode(true);
+        job->addSubjob( i->createMarkAsReadJob() );
+    return job.release();
 }
 
 void Folder::slotChildChanged(TreeNode* /*node*/)

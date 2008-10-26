@@ -295,7 +295,7 @@ ArticleListView::ArticleListView( QWidget* parent )
     setSelectionMode( QAbstractItemView::ExtendedSelection );
     setUniformRowHeights( true );
     setRootIsDecorated( false );
-    setAllColumnsShowFocus(true);
+    setAllColumnsShowFocus( true );
 
     setMinimumSize( 250, 150 );
     setWhatsThis( i18n("<h2>Article list</h2>"
@@ -482,6 +482,12 @@ void ArticleListView::slotPreviousUnreadArticle()
     }
 }
 
+
+void ArticleListView::forceFilterUpdate()
+{
+    if ( m_proxy )
+        m_proxy->invalidate();
+}
 
 void ArticleListView::setFilters( const std::vector<shared_ptr<const Filters::AbstractMatcher> >& matchers )
 {

@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ARTICLE_JOBS_H
 #define AKREGATOR_ARTICLE_JOBS_H
 
-#include <KJob>
+#include <KCompositeJob>
 
 #include <QList>
 #include <QMap>
@@ -48,6 +48,15 @@ struct ArticleId
 };
 
 typedef QList<Akregator::ArticleId> ArticleIdList;
+
+class CompositeJob : public KCompositeJob
+{
+    Q_OBJECT
+public:
+    explicit CompositeJob( QObject* parent = 0 );
+    /* reimp */ bool addSubjob( KJob* job );
+    /* reimp */ void start();
+};
 
 class ArticleDeleteJob : public KJob
 {
