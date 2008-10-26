@@ -69,7 +69,7 @@ namespace {
 
          return feedList->findByID( index.data( Akregator::SubscriptionListModel::SubscriptionIdRole ).toInt() );
     }
-} // anon namespace 
+} // anon namespace
 
 Akregator::SelectionController::SelectionController( QObject* parent ) : AbstractSelectionController( parent ), m_feedList( 0 ), m_feedSelector( 0 ), m_articleLister( 0 ), m_singleDisplay( 0 ), m_subscriptionModel ( 0 ), m_folderExpansionHandler( 0 ), m_selectedSubscription( 0 ), m_articleModel( 0 )
 {
@@ -85,7 +85,7 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
     if ( m_feedSelector )
     {
         m_feedSelector->disconnect( this );
-        
+
         if ( m_feedSelector->selectionModel() )
             m_feedSelector->selectionModel()->disconnect( this );
     }
@@ -149,7 +149,7 @@ void Akregator::SelectionController::setUp()
         m_folderExpansionHandler->setModel( m_subscriptionModel );
     }
     m_feedSelector->setModel( m_subscriptionModel );
-    
+
     // setUp might be called more than once, so disconnect first
     //connect exactly once:
     disconnect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
@@ -158,9 +158,9 @@ void Akregator::SelectionController::setUp()
              this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
 
     //connect exactly once:
-    disconnect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
+    disconnect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ),
              this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
-    connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ), 
+    connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ),
              this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
 
     if ( m_articleLister->itemView() )
@@ -184,20 +184,24 @@ void Akregator::SelectionController::articleHeadersAvailable()
     connect( m_articleLister->articleSelectionModel(), SIGNAL( selectionChanged( QItemSelection, QItemSelection ) ),
              this, SLOT( articleSelectionChanged() ) );
 
+    if ( m_selectedSubscription )
+        m_articleLister->setScrollBarPositions( m_selectedSubscription->listViewScrollBarPositions() );
 }
 
 void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIndex& index )
 {
     if ( !index.isValid() )
         return;
+    if ( m_selectedSubscription && m_articleLister )
+        m_selectedSubscription->setListViewScrollBarPositions( m_articleLister->scrollBarPositions() );
 
     m_selectedSubscription = selectedSubscription();
     emit currentSubscriptionChanged( m_selectedSubscription );
 
-    // using a timer here internally to simulate async data fetching (which is still synchronous), 
+    // using a timer here internally to simulate async data fetching (which is still synchronous),
     // to ensure the UI copes with async behavior later on
 
-    if ( m_articleFetchTimer->isActive() ) 
+    if ( m_articleFetchTimer->isActive() )
         m_articleFetchTimer->stop(); // to come: kill running list job
 
     m_articleFetchTimer->setInterval( KRandom::random() % 400 );
