@@ -74,7 +74,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
 
     QLabel* searchLabel = new QLabel(this);
-    searchLabel->setText( i18n("S&earch:") );
+    searchLabel->setText( i18nc("Title of article searchbar", "S&earch:") );
 
     d->searchLine = new KLineEdit(this);
     d->searchLine->setClearButtonShown(true);
@@ -95,9 +95,9 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     const KIcon iconKeep( "mail-mark-important" );
 
     d->searchCombo->addItem(iconAll, i18n("All Articles"));
-    d->searchCombo->addItem(iconUnread, i18n("Unread"));
-    d->searchCombo->addItem(iconNew, i18n("New"));
-    d->searchCombo->addItem(iconKeep, i18n("Important"));
+    d->searchCombo->addItem(iconUnread, i18nc("Unread articles filter", "Unread"));
+    d->searchCombo->addItem(iconNew, i18nc("New articles filter", "New"));
+    d->searchCombo->addItem(iconKeep, i18nc("Important articles filter", "Important"));
 
     d->searchLine->setToolTip( i18n( "Enter space-separated terms to filter article list" ) );
     d->searchCombo->setToolTip( i18n( "Choose what kind of articles to show in article list" ) );

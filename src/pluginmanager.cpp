@@ -168,12 +168,12 @@ PluginManager::showAbout( const QString &constraint )
 
     QString str  = "<html><body><table width=\"100%\" border=\"1\">";
 
-    str += body.arg( i18n( "Name" ),                s->name() );
-    str += body.arg( i18n( "Library" ),             s->library() );
-    str += body.arg( i18n( "Authors" ),             s->property( "X-KDE-akregator-authors" ).toStringList().join( "\n" ) );
-    str += body.arg( i18n( "Email" ),               s->property( "X-KDE-akregator-email" ).toStringList().join( "\n" ) );
-    str += body.arg( i18n( "Version" ),             s->property( "X-KDE-akregator-version" ).toString() );
-    str += body.arg( i18n( "Framework Version" ),   s->property( "X-KDE-akregator-framework-version" ).toString() );
+    str += body.arg( i18nc( "Name of the plugin", "Name" ),                             s->name() );
+    str += body.arg( i18nc( "Library name", "Library" ),                                s->library() );
+    str += body.arg( i18nc( "Plugin authors", "Authors" ),                              s->property( "X-KDE-akregator-authors" ).toStringList().join( "\n" ) );
+    str += body.arg( i18nc( "Plugin authors' emaila addresses", "Email" ),              s->property( "X-KDE-akregator-email" ).toStringList().join( "\n" ) );
+    str += body.arg( i18nc( "Plugin version", "Version" ),                              s->property( "X-KDE-akregator-version" ).toString() );
+    str += body.arg( i18nc( "Framework version plugin requires", "Framework Version" ), s->property( "X-KDE-akregator-framework-version" ).toString() );
 
     str += "</table></body></html>";
 

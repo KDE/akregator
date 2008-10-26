@@ -158,7 +158,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
 
         QString formatSummary(TreeNode* node)
         {
-            text = QString();
+            text.clear();
             visit(node);
             return text;
         }
@@ -178,7 +178,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(Utils::stripTags(article.title())));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
-        text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
+        text += article.title().replace('<', "&lt;").replace('>', "&gt;"); // TODO: better leave things escaped in the parser
         if (article.link().isValid())
             text += "</a>";
         text += "</div>\n";
@@ -371,7 +371,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(Utils::stripTags(article.title())));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
-        text += article.title().replace("<", "&lt;").replace(">", "&gt;"); // TODO: better leave things escaped in the parser
+        text += article.title().replace('<', "&lt;").replace('>', "&gt;"); // TODO: better leave things escaped in the parser
         if (article.link().isValid())
             text += "</a>";
         text += "</div>\n";

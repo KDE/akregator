@@ -513,7 +513,7 @@ QStringList FeedListManagementImpl::feeds( const QString& catId ) const
     if ( !m_feedList )
         return QStringList();
 
-    uint lastcatid = catId.split("/",QString::SkipEmptyParts).last().toInt();
+    uint lastcatid = catId.split('/',QString::SkipEmptyParts).last().toUInt();
 
     QSet<QString> urls;
     Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
@@ -530,7 +530,7 @@ void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
         return;
 
     kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
-    uint folder_id = catId.split("/",QString::SkipEmptyParts).last().toUInt();
+    uint folder_id = catId.split('/',QString::SkipEmptyParts).last().toUInt();
 
     // Get the folder
     Folder * m_folder = 0;
@@ -560,7 +560,7 @@ void FeedListManagementImpl::removeFeed( const QString& url, const QString& catI
 {
     kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
 
-    uint lastcatid = catId.split("/",QString::SkipEmptyParts).last().toInt();
+    uint lastcatid = catId.split('/',QString::SkipEmptyParts).last().toUInt();
 
     Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
         if ( lastcatid == i->parent()->id() ) {
@@ -592,10 +592,10 @@ QString FeedListManagementImpl::getCategoryName( const QString& catId ) const
     if ( !m_feedList )
         return catname;
 
-    QStringList list = catId.split("/",QString::SkipEmptyParts);
+    QStringList list = catId.split('/',QString::SkipEmptyParts);
     for (int i=0;i<list.size();i++) {
         int index = list.at(i).toInt();
-        catname += m_feedList->findByID(index)->title() + "/";
+        catname += m_feedList->findByID(index)->title() + '/';
     }
 
     return catname;

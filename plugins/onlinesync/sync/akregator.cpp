@@ -99,9 +99,10 @@ void Akregator::add( const SubscriptionList & list)
         } else {
             QStringList catlist = ak_feedlist->categories();
             int idcat = 0;
+            QChar slash('/');
             while (idcat<catlist.size() && foundCatId.isEmpty()) {
-                QString ak_catId = catlist.at(idcat).split("/",QString::SkipEmptyParts).last();
-                QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split("/",QString::SkipEmptyParts).last();
+                QString ak_catId = catlist.at(idcat).split(slash,QString::SkipEmptyParts).last();
+                QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split(slash,QString::SkipEmptyParts).last();
                 if (ak_cat.compare(list.getCat(i),Qt::CaseInsensitive)==0) {
                     foundCatId = ak_catId;
                 }
@@ -146,9 +147,10 @@ void Akregator::remove(const SubscriptionList & list)
         QString foundCatId;
         QStringList catlist = ak_feedlist->categories();
         int idcat = 0;
+        QChar slash('/');
         while (idcat<catlist.size() && foundCatId.isEmpty()) {
-            QString ak_catId = catlist.at(idcat).split("/",QString::SkipEmptyParts).last();
-            QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split("/",QString::SkipEmptyParts).last();
+            QString ak_catId = catlist.at(idcat).split(slash,QString::SkipEmptyParts).last();
+            QString ak_cat = ak_feedlist->getCategoryName(ak_catId).split(slash,QString::SkipEmptyParts).last();
             if (ak_cat.compare(list.getCat(i),Qt::CaseInsensitive)==0) {
                 foundCatId = ak_catId;
             }

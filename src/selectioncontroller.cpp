@@ -54,7 +54,7 @@ namespace {
     static QList<Akregator::Article> articlesForIndexes( const QModelIndexList& indexes, Akregator::FeedList* feedList )
     {
         QList<Akregator::Article> articles;
-        Q_FOREACH ( const QModelIndex i, indexes )
+        Q_FOREACH ( const QModelIndex& i, indexes )
         {
             articles.append( articleForIndex( i, feedList ) );
         }
@@ -147,7 +147,6 @@ void Akregator::SelectionController::setFolderExpansionHandler( Akregator::Folde
 
 void Akregator::SelectionController::setUp()
 {
-    kDebug();
     if ( !m_feedList || !m_feedSelector || !m_articleLister )
         return;
 

@@ -41,6 +41,8 @@ namespace Akregator {
  */
 class ActionManager : public QObject
 {
+    Q_OBJECT
+
     public:
 
         static ActionManager* getInstance();

@@ -215,11 +215,11 @@ QVariant Akregator::SubscriptionListModel::headerData( int section, Qt::Orientat
     switch (section)
     {
         case TitleColumn:
-            return i18n("Feeds");
+            return i18nc("Feedlist's column header", "Feeds");
         case UnreadCountColumn:
-            return i18n("Unread");
+            return i18nc("Feedlist's column header", "Unread");
         case TotalCountColumn:
-            return i18n("Total");
+            return i18nc("Feedlist's column header", "Total");
     }
 
     return QVariant();

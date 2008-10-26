@@ -351,7 +351,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     statusMenu->addAction(action);
 
     action = coll->addAction("article_set_status_new");
-    action->setText(i18n("&New"));
+    action->setText(i18nc("as in: mark as new", "&New"));
     action->setIcon(KIcon("mail-mark-unread-new"));
     action->setShortcuts(KShortcut( "Ctrl+N" ));
     action->setToolTip(i18n("Mark selected article as new"));
@@ -360,7 +360,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
 
     action = coll->addAction("article_set_status_unread");
-    action->setText(i18n("&Unread"));
+    action->setText(i18nc("as in: mark as unread", "&Unread"));
     action->setIcon(KIcon("mail-mark-unread"));
     action->setToolTip(i18n("Mark selected article as unread"));
     action->setShortcuts(KShortcut( "Ctrl+U" ));
@@ -549,7 +549,7 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     KAction *action = d->actionCollection->addAction("browser_reload");
     action->setIcon(KIcon("view-refresh"));
-    action->setText(i18n("Reload"));
+    action->setText(i18nc("Reload current page", "Reload"));
     connect(action, SIGNAL(triggered(bool) ), frameManager, SLOT(slotBrowserReload()));
 
     action = d->actionCollection->addAction("browser_stop");

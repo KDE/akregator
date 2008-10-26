@@ -47,7 +47,7 @@ void SubscriptionList::add(const QString& iRss, const QString& iName, const QStr
     _nameList.append(iName);
     _catListFull.append(iCat);
     if (!iCat.isEmpty()) {
-        _catListSimple.append(iCat.split("/",QString::SkipEmptyParts).last());
+        _catListSimple.append(iCat.split('/',QString::SkipEmptyParts).last());
     } else {
         _catListSimple.append(iCat);
     }

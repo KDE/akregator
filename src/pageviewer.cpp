@@ -113,7 +113,7 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     connect(d->forwardAction->popupMenu(), SIGNAL(activated(int)),
             this, SLOT(slotPopupActivated(int)));
 
-    d->reloadAction = new KAction(i18n("Reload"), "view-refresh", 0,
+    d->reloadAction = new KAction(i18nc("Reload current page", "Reload"), "view-refresh", 0,
                             this, SLOT(slotReload()),
                             actionCollection(), "pageviewer_reload");
     d->stopAction = new KAction(i18n("Stop"), "process-stop", 0,
@@ -243,7 +243,7 @@ void PageViewer::openPage(const KUrl& url)
     if (!favicon.isEmpty())
         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
     else
-        emit setTabIcon(SmallIcon("html"));
+        emit setTabIcon(SmallIcon("text-html"));
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)

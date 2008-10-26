@@ -485,7 +485,7 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
     }
 
     QString summary = m_normalViewFormatter->formatSummary(node);
-    m_link = QString();
+    m_link.clear();
     renderContent(summary);
 }
 

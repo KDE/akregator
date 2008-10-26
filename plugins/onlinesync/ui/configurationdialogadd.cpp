@@ -62,12 +62,12 @@ void ConfigurationDialogAdd::accept()
 
     if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "GoogleReader") {
 
-        if (ui.le_loginGoogleReader->text()=="")
+        if (ui.le_loginGoogleReader->text().isEmpty())
             return;
-        if (ui.le_passwdGoogleReader->text()=="")
+        if (ui.le_passwdGoogleReader->text().isEmpty())
             return;
         // Remove old
-        if (_baseconfigname != "") {
+        if (!_baseconfigname.isEmpty()) {
             KConfig config("akregator_feedsyncrc");
             config.deleteGroup(_baseconfigname);
         }
@@ -84,7 +84,7 @@ void ConfigurationDialogAdd::accept()
         if (ui.filerequester->url().isEmpty() )
             return;
         // Remove old
-        if (_baseconfigname != "") {
+        if (!_baseconfigname.isEmpty()) {
             KConfig config("akregator_feedsyncrc");
             config.deleteGroup(_baseconfigname);
         }

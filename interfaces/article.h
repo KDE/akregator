@@ -123,7 +123,7 @@ public:
 
         bool guidIsPermaLink() const;
 
-        const QDateTime& pubDate() const;
+        QDateTime pubDate() const;
 
         KUrl commentsLink() const;
 

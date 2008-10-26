@@ -1032,7 +1032,7 @@ void Akregator::MainWidget::slotArticleDelete()
         selected->setNotificationMode( false );
 
     Akregator::ArticleDeleteJob* job = new Akregator::ArticleDeleteJob;
-    Q_FOREACH( const Akregator::Article i, articles )
+    Q_FOREACH( const Akregator::Article& i, articles )
     {
         Feed* const feed = i.feed();
         assert( feed );
@@ -1055,7 +1055,7 @@ void Akregator::MainWidget::slotArticleToggleKeepFlag( bool )
         return;
 
     bool allFlagsSet = true;
-    Q_FOREACH ( const Akregator::Article i, articles )
+    Q_FOREACH ( const Akregator::Article& i, articles )
     {
         allFlagsSet = allFlagsSet && i.keep();
         if ( !allFlagsSet )
@@ -1063,7 +1063,7 @@ void Akregator::MainWidget::slotArticleToggleKeepFlag( bool )
     }
 
     Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-    Q_FOREACH ( const Akregator::Article i, articles )
+    Q_FOREACH ( const Akregator::Article& i, articles )
     {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
         job->setKeep( aid, !allFlagsSet );
@@ -1081,7 +1081,7 @@ void setSelectedArticleStatus( const Akregator::AbstractSelectionController* con
         return;
 
     Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-    Q_FOREACH ( const Akregator::Article i, articles )
+    Q_FOREACH ( const Akregator::Article& i, articles )
     {
         const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
         job->setStatus( aid, status );

@@ -487,7 +487,7 @@ void Article::setKeep(bool keep)
 Feed* Article::feed() const
 { return d->feed; }
 
-const QDateTime& Article::pubDate() const
+QDateTime Article::pubDate() const
 {
     return d->pubDate;
 }
