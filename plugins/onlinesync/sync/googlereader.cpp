@@ -133,7 +133,7 @@ void GoogleReader::remove(const SubscriptionList & list)
 
     QByteArray data;
 
-    // Revove: if all as to be removed and if this is the first occurence
+    // Revove: if all as to be removed and if this is the first occurrence
     if ( (getSubscriptionList().countRss(list.getRss(_cursor))==list.countRss(list.getRss(_cursor))) && (list.indexOf(list.getRss(_cursor))==_cursor) ) {
         kDebug() << "Remove";
         data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
