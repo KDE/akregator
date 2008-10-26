@@ -24,6 +24,7 @@
 */
 #include "folder.h"
 #include "article.h"
+#include "articlejobs.h"
 #include "feed.h"
 #include "fetchqueue.h"
 #include "treenodevisitor.h"
@@ -31,9 +32,11 @@
 #include <qdom.h>
 #include <QList>
 
+#include <KCompositeJob>
 #include <KIcon>
-#include <kdebug.h> 
+#include <kdebug.h>
 
+#include <memory>
 #include <cassert>
 
 using namespace Akregator;
@@ -44,7 +47,7 @@ class Folder::FolderPrivate
     public:
         explicit FolderPrivate( Folder* qq );
         ~FolderPrivate();
-        
+
         /** List of children */
         QList<TreeNode*> children;
         /** caching unread count of children */
@@ -57,7 +60,7 @@ class Folder::FolderPrivate
         /** caches guids for notifying removed articles */
         QList<Article> removedArticlesNotify;
 };
-  
+
 Folder::FolderPrivate::FolderPrivate( Folder* qq ) : q( qq ), unread( 0 ), open( false )
 {
 }
@@ -87,7 +90,7 @@ Folder* Folder::fromOPML(const QDomElement& e)
 Folder::Folder( const QString& title ) : TreeNode(), d( new FolderPrivate( this ) )
 {
     setTitle( title );
-} 
+}
 
 Folder::~Folder()
 {
@@ -116,7 +119,7 @@ QDomElement Folder::toOPML( QDomElement parent, QDomDocument document ) const
     return el;
 }
 
-        
+
 QList<const TreeNode*> Folder::children() const
 {
     QList<const TreeNode*> children;
@@ -124,7 +127,7 @@ QList<const TreeNode*> Folder::children() const
         children.append( i );
     return children;
 }
-        
+
 QList<TreeNode*> Folder::children()
 {
     return d->children;
@@ -145,7 +148,7 @@ QVector<Feed*> Folder::feeds()
     Q_FOREACH( TreeNode* i, d->children )
         Q_FOREACH ( Feed* j, i->feeds() )
             feedsById.insert( j->id(), j );
-    return feedsById.values().toVector();    
+    return feedsById.values().toVector();
 }
 
 QVector<const Folder*> Folder::folders() const
@@ -165,7 +168,7 @@ QVector<Folder*> Folder::folders()
     Q_FOREACH( TreeNode* i, d->children )
         Q_FOREACH ( Folder* j, i->folders() )
             foldersById.insert( j->id(), j );
-    return foldersById.values().toVector();    
+    return foldersById.values().toVector();
 }
 
 int Folder::indexOf( const TreeNode* node ) const
@@ -176,10 +179,10 @@ int Folder::indexOf( const TreeNode* node ) const
 void Folder::insertChild(TreeNode* node, TreeNode* after)
 {
     int pos = d->children.indexOf(after);
-    
+
     if (pos < 0)
         prependChild(node);
-    else 
+    else
         insertChild(pos+1, node);
 }
 
@@ -203,9 +206,9 @@ void Folder::insertChild(int index, TreeNode* node)
         emit signalChildAdded(node);
         d->addedArticlesNotify += node->articles();
         articlesModified();
-        nodeModified(); 
-    }   
-//    kDebug() <<"leave Folder::insertChild(int, node)" << node->title(); 
+        nodeModified();
+    }
+//    kDebug() <<"leave Folder::insertChild(int, node)" << node->title();
 }
 
 void Folder::appendChild(TreeNode* node)
@@ -221,7 +224,7 @@ void Folder::appendChild(TreeNode* node)
         d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
-    }    
+    }
 //    kDebug() <<"leave Folder::appendChild()" << node->title();
 }
 
@@ -238,7 +241,7 @@ void Folder::prependChild(TreeNode* node)
         d->addedArticlesNotify += node->articles();
         articlesModified();
         nodeModified();
-    }    
+    }
 //    kDebug() <<"leave Folder::prependChild()" << node->title();
 }
 
@@ -246,12 +249,12 @@ void Folder::removeChild(TreeNode* node)
 {
     if (!node || !d->children.contains(node))
         return;
-     
+
     emit signalAboutToRemoveChild( node );
     node->setParent(0);
     d->children.removeAll(node);
     disconnectFromNode(node);
-    updateUnreadCount();    
+    updateUnreadCount();
     emit signalChildRemoved(this, node);
     d->removedArticlesNotify += node->articles();
     articlesModified(); // articles were removed, TODO: add guids to a list
@@ -262,12 +265,12 @@ void Folder::removeChild(TreeNode* node)
 TreeNode* Folder::firstChild()
 {
     return d->children.isEmpty() ? 0 : children().first();
-}            
+}
 
 const TreeNode* Folder::firstChild() const
 {
     return d->children.isEmpty() ? 0 : children().first();
-}            
+}
 
 TreeNode* Folder::lastChild()
 {
@@ -288,7 +291,7 @@ void Folder::setOpen(bool open)
 {
     d->open = open;
 }
-            
+
 int Folder::unread() const
 {
     return d->unread;
@@ -310,14 +313,14 @@ void Folder::updateUnreadCount() const
     d->unread = unread;
 }
 
-void Folder::slotMarkAllArticlesAsRead() 
+KJob* Folder::createMarkAsReadJob()
 {
-    setNotificationMode(false);
+    std::auto_ptr<CompositeJob> job( new CompositeJob );
     Q_FOREACH( Feed* const i, feeds() )
-        i->slotMarkAllArticlesAsRead();
-    setNotificationMode(true);
+        job->addSubjob( i->createMarkAsReadJob() );
+    return job.release();
 }
-    
+
 void Folder::slotChildChanged(TreeNode* /*node*/)
 {
     updateUnreadCount();
@@ -327,7 +330,7 @@ void Folder::slotChildChanged(TreeNode* /*node*/)
 void Folder::slotChildDestroyed(TreeNode* node)
 {
     d->children.removeAll(node);
-    updateUnreadCount();    
+    updateUnreadCount();
     nodeModified();
 }
 
@@ -342,7 +345,7 @@ bool Folder::subtreeContains( const TreeNode* node ) const
             return true;
         parent = parent->parent();
     }
-    
+
     return false;
 }
 
@@ -393,7 +396,7 @@ TreeNode* Folder::next()
 
     if ( nextSibling() )
         return nextSibling();
-    
+
     Folder* p = parent();
     while (p)
     {
@@ -412,7 +415,7 @@ const TreeNode* Folder::next() const
 
     if ( nextSibling() )
         return nextSibling();
-    
+
     const Folder* p = parent();
     while (p)
     {

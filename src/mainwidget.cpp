@@ -777,14 +777,18 @@ void Akregator::MainWidget::slotPrevUnreadArticle()
 
 void Akregator::MainWidget::slotMarkAllFeedsRead()
 {
-    m_feedList->rootNode()->slotMarkAllArticlesAsRead();
+    KJob* job = m_feedList->rootNode()->createMarkAsReadJob();
+    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()) );
+    job->start();
 }
 
 void Akregator::MainWidget::slotMarkAllRead()
 {
     if(!m_selectionController->selectedSubscription())
         return;
-    m_selectionController->selectedSubscription()->slotMarkAllArticlesAsRead();
+    KJob* job = m_selectionController->selectedSubscription()->createMarkAsReadJob();
+    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()) );
+    job->start();
 }
 
 void Akregator::MainWidget::slotSetTotalUnread()

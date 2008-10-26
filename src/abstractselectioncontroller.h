@@ -60,6 +60,8 @@ public:
 
     virtual void setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& ) = 0;
 
+    virtual void forceFilterUpdate() = 0;
+
     virtual QPoint scrollBarPositions() const = 0;
 
     virtual void setScrollBarPositions( const QPoint& p ) = 0;
@@ -113,6 +115,8 @@ public:
 public Q_SLOTS:
 
     virtual void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& ) = 0;
+
+    virtual void forceFilterUpdate() = 0;
 
 Q_SIGNALS:
     void currentSubscriptionChanged( Akregator::TreeNode* node );
