@@ -44,6 +44,7 @@ class KUrl;
 
 namespace Syndication
 {
+    class Enclosure;
     class Item;
     typedef boost::shared_ptr<Item> ItemPtr;
 }
@@ -54,6 +55,7 @@ namespace Backend
 {
     class FeedStorage;
 }
+
 class Feed;
 /** A proxy class for Syndication::ItemPtr with some additional methods to assist sorting. */
 class AKREGATORPART_EXPORT Article
@@ -132,6 +134,8 @@ public:
         QString authorEMail() const;
         QString authorAsHtml() const;
         QString authorShort() const;
+
+        boost::shared_ptr<const Syndication::Enclosure> enclosure() const;
 
         bool operator<(const Article &other) const;
         bool operator<=(const Article &other) const;

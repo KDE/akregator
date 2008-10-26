@@ -39,8 +39,30 @@
 #include <QPalette>
 #include <QString>
 
-namespace Akregator {
+using namespace boost;
+using namespace Syndication;
+using namespace Akregator;
 
+namespace {
+    QString formatEnclosure( const Enclosure& enclosure )
+    {
+        if ( enclosure.isNull() )
+            return QString();
+
+        const QString title = !enclosure.title().isEmpty() ? enclosure.url() : enclosure.url();
+        const uint length = enclosure.length();
+        const QString type = enclosure.type();
+        QString inf;
+        if ( !type.isEmpty() && length > 0 )
+            inf = i18n( "(%1, %2)", type, KGlobal::locale()->formatByteSize( length ) );
+        else if ( !type.isNull() )
+            inf = type;
+        else if ( length > 0 )
+            inf = KGlobal::locale()->formatByteSize( length );
+        QString str = i18n( "<a href=\"%1\">%2</a> %3", enclosure.url(), title, inf );
+        return str;
+    }
+}
 class ArticleFormatter::Private
 {
     public:
@@ -149,6 +171,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
 {
     QString text;
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
+    const QString enc = formatEnclosure( *article.enclosure() );
 
     if (!article.title().isEmpty())
     {
@@ -175,6 +198,15 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         text += "</span><span class=\"headertext\">";
         text += author+"</span>\n"; // TODO: might need RTL?
     }
+
+    if (!enc.isEmpty())
+    {
+        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
+        text += QString ("%1:").arg(i18n("Enclosure"));
+        text += "</span><span class=\"headertext\">";
+        text += enc+"</span>\n"; // TODO: might need RTL?
+    }
+
     text += "</div>\n"; // end headerbox
 
 
@@ -209,6 +241,9 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         text += "</a>";
     }
 
+    if (!enc.isEmpty())
+        text += QString("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
+
     if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
     {
         text += "<p><a class=\"contentlink\" href=\"";
@@ -223,19 +258,9 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         }
         text += "\">" + i18n( "Complete Story" ) + "</a></p>";
     }
+
     text += "</div>";
 
-
-//    if (!article.enclosure().isNull())
-  //  {
-        //QString url = article.enclosure().url();
-        //QString type = article.enclosure().type();
-        //int length = article.enclosure().length();
-        //QString lengthStr = KIO::convertSize(length);
-
-        //text += QString("<hr><div><a href=\"%1\">%2</a> (%3, %4)</div>").arg(url).arg(url).arg(lengthStr).arg(type);
-   // }
-    //kDebug() << text;
     return text;
 }
 
@@ -338,6 +363,7 @@ DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
 QString DefaultCombinedViewFormatter::formatArticle(const Article& article, IconOption icon) const
 {
     QString text;
+    const QString enc = formatEnclosure( *article.enclosure() );
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
 
     if (!article.title().isEmpty())
@@ -365,6 +391,14 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += QString ("%1:").arg(i18n("Author"));
         text += "</span><span class=\"headertext\">";
         text += author+"</span>\n"; // TODO: might need RTL?
+    }
+
+    if (!enc.isEmpty())
+    {
+        text += QString("<br/><span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Enclosure")));
+        text += QString ("%1:").arg(i18n("Enclosure"));
+        text += "</span><span class=\"headertext\">";
+        text += enc+"</span>\n"; // TODO: might need RTL?
     }
 
     text += "</div>\n"; // end headerbox
@@ -401,6 +435,10 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += "</a>";
     }
 
+
+    if (!enc.isEmpty())
+        text += QString("<p><em>%1</em> %2</p>").arg(i18n("Enclosure:")).arg(enc);
+
     if (article.link().isValid() || (article.guidIsPermaLink() && KUrl(article.guid()).isValid()))
     {
         text += "<p><a class=\"contentlink\" href=\"";
@@ -415,6 +453,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         }
         text += "\">" + i18n( "Complete Story" ) + "</a></p>";
     }
+
     text += "</div>";
     //kDebug() << text;
     return text;
@@ -509,5 +548,3 @@ QString DefaultCombinedViewFormatter::formatSummary(TreeNode*) const
 {
     return QString();
 }
-
-} // namespace Akregator

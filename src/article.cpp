@@ -41,6 +41,7 @@
 
 #include <cassert>
 
+using namespace boost;
 using namespace Syndication;
 
 namespace {
@@ -109,7 +110,27 @@ struct Article::Private : public Shared
     int status;
     uint hash;
     QDateTime pubDate;
+    mutable shared_ptr<const Enclosure> enclosure;
 };
+
+namespace {
+    class EnclosureImpl : public Enclosure
+    {
+    public:
+        EnclosureImpl( const QString& url, const QString& type, uint length ) : m_url( url ), m_type( type ), m_length( length ) {}
+        /* reimp */ QString url() const { return m_url; }
+        /* reimp */ QString type() const { return m_type; }
+        /* reimp */ QString title() const { return m_title; }
+        /* reimp */ uint length() const { return m_length; }
+        /* reimp */ uint duration() const { return 0; }
+        /* reimp */ bool isNull() const { return m_url.isNull(); }
+    private:
+        QString m_url;
+        QString m_type;
+        QString m_title;
+        uint m_length;
+    };
+}
 
 Article::Private::Private()
   : feed( 0 ),
@@ -174,6 +195,11 @@ Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedSto
             archive->setAuthorUri(guid, firstAuthor->uri() );
             archive->setAuthorEMail(guid, firstAuthor->email() );
         }
+        const QList<EnclosurePtr> encs = article->enclosures();
+        if ( !encs.isEmpty() )
+        {
+            archive->setEnclosure(guid, encs[0]->url(), encs[0]->type(), encs[0]->length());
+        }
     }
     else
     {
@@ -197,6 +223,12 @@ Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedSto
             }
             //archive->setCommentsLink(guid, article.commentsLink());
         }
+    }
+
+    const QList<EnclosurePtr> encs = article->enclosures();
+    if (!encs.isEmpty())
+    {
+        archive->setEnclosure(guid, encs[0]->url(), encs[0]->type(), encs[0]->length());
     }
 
 }
@@ -458,6 +490,23 @@ Feed* Article::feed() const
 const QDateTime& Article::pubDate() const
 {
     return d->pubDate;
+}
+
+shared_ptr<const Enclosure> Article::enclosure() const
+{
+    if ( !d->enclosure )
+    {
+        QString url;
+        QString type;
+        int length;
+        bool hasEnc;
+        d->archive->enclosure( d->guid, hasEnc, url, type, length );
+        if ( hasEnc )
+            d->enclosure.reset( new EnclosureImpl( url, type, static_cast<uint>( length ) ) );
+        else
+            d->enclosure.reset( new EnclosureImpl( QString(), QString(), 0 ) );
+    }
+    return d->enclosure;
 }
 
 } // namespace Akregator
