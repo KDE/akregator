@@ -109,6 +109,13 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void readProperties(const KConfigGroup & config);
         void saveProperties(KConfigGroup & config);
 
+
+        enum ViewMode { NormalView=0,
+                        WidescreenView,
+                        CombinedView };
+
+        ViewMode viewMode() const { return m_viewMode; }
+
     signals:
         /** emitted when the unread count of "All Feeds" was changed */
         void signalUnreadCountChanged(int);
@@ -230,8 +237,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
     private:
         void deleteExpiredArticles( FeedList* feedList );
-
-        enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
         void setFeedList( FeedList* feedList );
         AbstractSelectionController* m_selectionController;

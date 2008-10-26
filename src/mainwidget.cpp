@@ -83,6 +83,7 @@
 #include <QDomDocument>
 #include <QTimer>
 
+#include <algorithm>
 #include <memory>
 #include <cassert>
 
@@ -320,10 +321,15 @@ void Akregator::MainWidget::slotOnShutdown()
     Settings::self()->writeConfig();
 }
 
+
 void Akregator::MainWidget::saveSettings()
 {
-    Settings::setSplitter1Sizes( m_horizontalSplitter->sizes() );
-    Settings::setSplitter2Sizes( m_articleSplitter->sizes() );
+    const QList<int> spl1 = m_horizontalSplitter->sizes();
+    if ( std::count( spl1.begin(), spl1.end(), 0 ) == 0 )
+        Settings::setSplitter1Sizes( spl1 );
+    const QList<int> spl2 = m_articleSplitter->sizes();
+    if ( std::count( spl2.begin(), spl2.end(), 0 ) == 0 )
+        Settings::setSplitter2Sizes( spl2 );
     Settings::setViewMode( m_viewMode );
     Settings::self()->writeConfig();
 }
@@ -510,7 +516,7 @@ void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& gr
 void Akregator::MainWidget::slotNormalView()
 {
     if (m_viewMode == NormalView)
-    return;
+        return;
 
     if (m_viewMode == CombinedView)
     {
@@ -533,7 +539,7 @@ void Akregator::MainWidget::slotNormalView()
 void Akregator::MainWidget::slotWidescreenView()
 {
     if (m_viewMode == WidescreenView)
-    return;
+        return;
 
     if (m_viewMode == CombinedView)
     {
