@@ -742,8 +742,10 @@ void Akregator::MainWidget::slotFeedModify()
 void Akregator::MainWidget::slotNextUnreadArticle()
 {
     if (m_viewMode == CombinedView)
+    {
         m_feedListView->slotNextUnreadFeed();
-
+        return;
+    }
     TreeNode* sel = m_selectionController->selectedSubscription();
     if (sel && sel->unread() > 0)
         m_articleListView->slotNextUnreadArticle();
@@ -754,8 +756,10 @@ void Akregator::MainWidget::slotNextUnreadArticle()
 void Akregator::MainWidget::slotPrevUnreadArticle()
 {
     if (m_viewMode == CombinedView)
+    {
         m_feedListView->slotPrevUnreadFeed();
-
+        return;
+    }
     TreeNode* sel = m_selectionController->selectedSubscription();
     if (sel && sel->unread() > 0)
         m_articleListView->slotPreviousUnreadArticle();
