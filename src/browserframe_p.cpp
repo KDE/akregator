@@ -159,6 +159,7 @@ void BrowserFrame::Private::restoreHistoryEntry( const QList<HistoryEntry>::Iter
             kDebug() <<"BrowserFrame::restoreHistoryEntry(): no BrowserExtension found, reloading page!";
             part->openUrl((*entry).url);
         }
+        mimetype = entry->mimetype;
         current = entry;
     }
 
