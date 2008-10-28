@@ -38,8 +38,6 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
     public:
         explicit FeedPropertiesWidget(QWidget *parent = 0, const char *name = 0);
         ~FeedPropertiesWidget();
-        virtual void slotUpdateComboBoxActivated(int index);
-        virtual void slotUpdateCheckBoxToggled(bool enabled);
 
         enum IntervalStep 
         { 
@@ -47,6 +45,10 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
             Hours,
             Days,
             Never };
+
+    public Q_SLOTS:
+        void slotUpdateComboBoxActivated(int index);
+        void slotUpdateCheckBoxToggled(bool enabled);
 };
 
 class FeedPropertiesDialog : public KDialog

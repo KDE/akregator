@@ -47,7 +47,8 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
              updateComboBox, SLOT( setEnabled( bool ) ) );
     connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
              updateLabel, SLOT( setEnabled( bool ) ) );
-
+    connect( updateComboBox, SIGNAL(activated(int)),
+             this, SLOT(slotUpdateComboBoxActivated(int)) );
     connect( rb_limitArticleAge, SIGNAL( toggled( bool ) ),
              sb_maxArticleAge, SLOT( setEnabled( bool ) ) );
     connect( rb_limitArticleNumber, SIGNAL( toggled( bool ) ),
