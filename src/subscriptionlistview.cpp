@@ -315,7 +315,7 @@ void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* no
     const QModelIndex current = currentIndex();
     if ( !current.isValid() )
         return;
-    openPersistentEditor( current );
+    edit( current );
 }
 
 #include "subscriptionlistview.moc"
