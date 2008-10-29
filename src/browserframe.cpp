@@ -250,6 +250,7 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 
         if ( res )
         {
+            d->mimetype = serviceType;
             d->appendHistoryEntry(request.url());
             d->updateHistoryEntry();
         }

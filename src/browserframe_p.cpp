@@ -31,8 +31,8 @@ BrowserFrame::Private::Private( BrowserFrame* qq )
     q( qq ),
     history(),
     current( history.end() ),
-    part( 0 ),
-    extension( 0 ),
+    part(),
+    extension(),
     layout( new QGridLayout( q ) ),
     lockHistory( false ),
     isLoading( false )
@@ -69,37 +69,34 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
 
     kDebug() <<"BrowserFrame::loadPartForMimetype("<< mimetype <<"):" << offers.size() <<" offers";
 
-    if (!offers.isEmpty())
-    {
-        // delete old part
-        // FIXME: do this only if part can't be reused for the new mimetype
-        if (part)
-        {
-            layout->removeWidget(part->widget());
-            disconnect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)));
-            delete part;
-            part = 0;
-            extension = 0;
-        }
-
-        KService::Ptr ptr = offers.first();
-        KPluginFactory* factory = KPluginLoader(*ptr).factory();
-        if (!factory)
-          return false;
-        part = factory->create<KParts::ReadOnlyPart>(q);
-        if (!part)
-          return false;
-        connect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)));
-
-        part->setObjectName(ptr->name());
-        extension = KParts::BrowserExtension::childObject(part);
-
-        layout->addWidget(part->widget());
-        connectPart();
-        return true;
-    }
-    else
+    if (offers.isEmpty())
         return false;
+
+    // delete old part
+    // FIXME: do this only if part can't be reused for the new mimetype
+    if (part)
+    {
+        layout->removeWidget(part->widget());
+        disconnect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)));
+        delete part;
+        extension = 0;
+    }
+
+    KService::Ptr ptr = offers.first();
+    KPluginFactory* factory = KPluginLoader(*ptr).factory();
+    if (!factory)
+      return false;
+    part = factory->create<KParts::ReadOnlyPart>(q);
+    if (!part)
+      return false;
+    connect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)));
+
+    part->setObjectName(ptr->name());
+    extension = KParts::BrowserExtension::childObject(part);
+
+    layout->addWidget(part->widget());
+    connectPart();
+    return true;
 }
 
 QString BrowserFrame::Private::debugInfo() const
@@ -160,6 +157,7 @@ void BrowserFrame::Private::restoreHistoryEntry( const QList<HistoryEntry>::Iter
     if (!part)
         return; // FIXME: do something better
 
+    mimetype = (*entry).mimetype;
     lockHistory = true;
 
     QDataStream stream(&((*entry).buffer), QIODevice::ReadOnly);
