@@ -74,15 +74,15 @@ using namespace Akregator::Filters;
 namespace Akregator {
 
 ArticleViewer::ArticleViewer(QWidget *parent)
-    : QWidget(parent), 
+    : QWidget(parent),
       m_url(0),
       m_htmlFooter(),
       m_currentText(),
       m_imageDir( KUrl::fromPath( KGlobal::dirs()->saveLocation("cache", "akregator/Media/" ) ) ),
       m_node(0),
       m_viewMode(NormalView),
-      m_part( new ArticleViewerPart( this ) ), 
-      m_normalViewFormatter( new DefaultNormalViewFormatter( m_imageDir, m_part->view() ) ), 
+      m_part( new ArticleViewerPart( this ) ),
+      m_normalViewFormatter( new DefaultNormalViewFormatter( m_imageDir, m_part->view() ) ),
       m_combinedViewFormatter( new DefaultCombinedViewFormatter( m_imageDir, m_part->view() ) )
 {
     QGridLayout* layout = new QGridLayout(this);
@@ -491,12 +491,12 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
 
 void ArticleViewer::showArticle( const Akregator::Article& article )
 {
-    if ( article.isNull() )
+    if ( article.isNull() || article.isDeleted() )
     {
         slotClear();
         return;
     }
-        
+
     m_viewMode = NormalView;
     disconnectFromNode(m_node);
     m_article = article;
@@ -553,19 +553,19 @@ void ArticleViewer::slotUpdateCombinedView()
     spent.start();
 
     const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
-    
+
     Q_FOREACH( const Article& i, articles )
     {
         if ( i.isDeleted() )
             continue;
-        
+
         if ( std::find_if( m_filters.begin(), m_filters.end(), !bind( &AbstractMatcher::matches, _1, i ) ) != filterEnd )
             continue;
 
         text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatArticle( i, ArticleFormatter::NoIcon)+"</div><p>";
         ++num;
     }
-    
+
     kDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
     renderContent(text);
     kDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
