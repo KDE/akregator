@@ -33,6 +33,7 @@
 #include <kurl.h>
 
 #include <QPixmap>
+#include <QPointer>
 #include <QWidget>
 
 class KConfig;
@@ -230,12 +231,14 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotFetchingStopped();
 
     private:
-        
+
+        void deleteExpiredArticles( FeedList* list );
+
         enum ViewMode { NormalView=0, WidescreenView, CombinedView };
 
         void setFeedList( FeedList* feedList );
         AbstractSelectionController* m_selectionController;
-        FeedList* m_feedList;
+        QPointer<FeedList> m_feedList;
 
         SubscriptionListView* m_feedListView;
         ArticleListView* m_articleListView;

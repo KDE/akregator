@@ -28,6 +28,7 @@
 #include "feed.h"
 #include "feedlist.h"
 
+#include <QPointer>
 #include <QSet>
 #include <QTimer>
 
@@ -40,19 +41,19 @@ class ExpireItemsCommand::Private
     ExpireItemsCommand* const q;
 public:
     explicit Private( ExpireItemsCommand* qq );
- 
+
     void createDeleteJobs();
     void addDeleteJobForFeed( Feed* feed );
     void jobFinished( KJob* );
-    
-    FeedList* m_feedList;
+
+    QPointer<FeedList> m_feedList;
     QVector<int> m_feeds;
     QSet<KJob*> m_jobs;
 };
 
-ExpireItemsCommand::Private::Private( ExpireItemsCommand* qq ) : q( qq ), m_feedList( 0 )
+ExpireItemsCommand::Private::Private( ExpireItemsCommand* qq ) : q( qq ), m_feedList()
 {
-   
+
 }
 
 void ExpireItemsCommand::Private::addDeleteJobForFeed( Feed* feed )
@@ -82,7 +83,7 @@ void ExpireItemsCommand::Private::createDeleteJobs()
         q->done();
         return;
     }
-    
+
     Q_FOREACH ( const int i, m_feeds )
     {
         Feed* const feed = qobject_cast<Feed*>( m_feedList->findByID( i ) );
