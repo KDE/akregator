@@ -167,7 +167,7 @@
   </entry>
   <entry key="External Browser Custom Command" type="String" >
    <whatsthis>Command to launch external browser.  URL will substitute for %u.</whatsthis>
-   <default>firefox -remote 'openURL(%u,new-tab)'</default>
+   <default>firefox %u</default>
   </entry>
   <entry key="LMB Behaviour" type="Enum" >
    <whatsthis>What the click with left mouse button should do.</whatsthis>
