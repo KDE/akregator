@@ -226,28 +226,32 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     vm->setText(i18n("&View Mode"));
 
     QActionGroup* agViewMode = new QActionGroup(this);
+    agViewMode->setExclusive(true);
     KToggleAction *ra = coll->add<KToggleAction>("normal_view");
     ra->setIcon(KIcon("view-split-top-bottom"));
     ra->setText(i18n("&Normal View"));
-    connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotNormalView()));
+    connect(ra, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNormalView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+1" ));
     ra->setActionGroup(agViewMode);
+    ra->setChecked(mainWidget->viewMode() == MainWidget::NormalView);
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("widescreen_view");
     ra->setIcon(KIcon("view-split-left-right"));
     ra->setText(i18n("&Widescreen View"));
-    connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotWidescreenView()));
+    connect(ra, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotWidescreenView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+2" ));
     ra->setActionGroup(agViewMode);
+    ra->setChecked(mainWidget->viewMode() == MainWidget::WidescreenView);
     vm->addAction(ra);
 
     ra = coll->add<KToggleAction>("combined_view");
     ra->setIcon(KIcon("view-list-text"));
     ra->setText(i18n("C&ombined View"));
-    connect(ra, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotCombinedView()));
+    connect(ra, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCombinedView()));
     ra->setShortcuts(KShortcut( "Ctrl+Shift+3" ));
     ra->setActionGroup(agViewMode);
+    ra->setChecked(mainWidget->viewMode() == MainWidget::CombinedView);
     vm->addAction(ra);
 
     // toolbar / feed menu
