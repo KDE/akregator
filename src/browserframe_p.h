@@ -35,6 +35,7 @@
 #include <QAction>
 #include <QGridLayout>
 #include <QList>
+#include <QPointer>
 #include <QString>
 
 #include <kaction.h>
@@ -66,7 +67,7 @@ class BrowserFrame::Private : public QObject
         
         QList<HistoryEntry> history;
         QList<HistoryEntry>::Iterator current;
-        KParts::ReadOnlyPart* part;
+        QPointer<KParts::ReadOnlyPart> part;
         KParts::BrowserExtension* extension;
         QGridLayout* layout;
         bool lockHistory;
