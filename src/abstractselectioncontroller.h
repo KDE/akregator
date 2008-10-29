@@ -31,6 +31,7 @@
 
 class QAbstractItemView;
 class QItemSelectionModel;
+class QPoint;
 
 namespace Akregator {
 
@@ -58,6 +59,10 @@ public:
     virtual void setIsAggregation( bool isAggregation ) = 0;
 
     virtual void setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& ) = 0;
+
+    virtual QPoint scrollBarPositions() const = 0;
+
+    virtual void setScrollBarPositions( const QPoint& p ) = 0;
 
     virtual const QAbstractItemView* itemView() const = 0;
 

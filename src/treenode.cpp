@@ -25,6 +25,7 @@
 #include "folder.h"
 #include "treenode.h"
 
+#include <QPoint>
 #include <QString>
 #include <QList>
 
@@ -45,12 +46,13 @@ class TreeNode::TreeNodePrivate
     Folder* parent;
     uint id;
     bool signalDestroyedEmitted;
+    QPoint scrollBarPositions;
 };
 
-TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify( true ), 
-                                               nodeChangeOccurred( false ), 
-                                               articleChangeOccurred( false ), 
-                                               title(), 
+TreeNode::TreeNodePrivate::TreeNodePrivate() : doNotify( true ),
+                                               nodeChangeOccurred( false ),
+                                               articleChangeOccurred( false ),
+                                               title(),
                                                parent( 0 ),
                                                id ( 0 ),
                                                signalDestroyedEmitted( false )
@@ -70,7 +72,7 @@ void TreeNode::emitSignalDestroyed()
             parent()->removeChild( this );
         emit signalDestroyed(this);
         d->signalDestroyedEmitted = true;
-    } 
+    }
 }
 
 TreeNode::~TreeNode()
@@ -101,7 +103,7 @@ TreeNode* TreeNode::nextSibling()
         return 0;
     const QList<TreeNode*> children = parent()->children();
     const int idx = children.indexOf( this );
-    
+
     return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
 }
 
@@ -111,7 +113,7 @@ const TreeNode* TreeNode::nextSibling() const
         return 0;
     const QList<const TreeNode*> children = parent()->children();
     const int idx = children.indexOf( this );
-    
+
     return (idx+1 < children.size()) ? children.at(idx+1) : 0L;
 }
 
@@ -120,7 +122,7 @@ TreeNode* TreeNode::prevSibling()
     if (!d->parent)
         return 0;
     const QList<TreeNode*> children = parent()->children();
-    
+
     const int idx = children.indexOf( this );
     return (idx > 0) ? children.at(idx-1) : 0L;
 }
@@ -217,6 +219,16 @@ void TreeNode::articlesModified()
 
 void TreeNode::doArticleNotification()
 {
+}
+
+QPoint TreeNode::listViewScrollBarPositions() const
+{
+    return d->scrollBarPositions;
+}
+
+void TreeNode::setListViewScrollBarPositions( const QPoint& pos )
+{
+    d->scrollBarPositions = pos;
 }
 
 } // namespace Akregator
