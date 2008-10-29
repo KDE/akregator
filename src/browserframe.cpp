@@ -337,10 +337,15 @@ void BrowserFrame::slotHistoryBack()
 
 void BrowserFrame::slotReload()
 {
-    // TODO
-    //d->lockHistory = true;
-    //openUrl(d->url, d->mimetype); // this s
-    //d->lockHistory = false;
+    d->lockHistory = true;
+
+    OpenUrlRequest req(url());
+    KParts::OpenUrlArguments args;
+    args.setMimeType(d->mimetype);
+    req.setArgs(args);
+    openUrl(req);
+
+    d->lockHistory = false;
 }
 
 void BrowserFrame::slotStop()
@@ -356,7 +361,7 @@ void BrowserFrame::slotPaletteOrFontChanged()
 
 bool BrowserFrame::isReloadable() const
 {
-    return false; // TODO
+    return true;
 }
 
 bool BrowserFrame::isLoading() const
