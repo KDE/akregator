@@ -26,6 +26,8 @@
 
 #include "abstractselectioncontroller.h"
 
+#include <QPointer>
+
 class QModelIndex;
 class QPoint;
 class QTimer;
@@ -93,7 +95,7 @@ private:
     Akregator::SubscriptionListModel* m_subscriptionModel;
     Akregator::FolderExpansionHandler* m_folderExpansionHandler;
     Akregator::ArticleModel* m_articleModel;
-    TreeNode* m_selectedSubscription;
+    QPointer<TreeNode> m_selectedSubscription;
     QTimer* m_articleFetchTimer;
 };
 
