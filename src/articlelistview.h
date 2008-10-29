@@ -114,6 +114,9 @@ public:
     //impl ArticleLister
     void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
 
+    //impl ArticleLister
+    void forceFilterUpdate();
+
     void setIsAggregation( bool isAggregation );
 
 protected:

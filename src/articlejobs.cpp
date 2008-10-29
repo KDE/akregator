@@ -149,4 +149,28 @@ void Akregator::ArticleModifyJob::doStart()
     emitResult();
 }
 
+CompositeJob::CompositeJob( QObject* parent ) : KCompositeJob( parent )
+{
+
+}
+
+bool CompositeJob::addSubjob( KJob* job )
+{
+    return KCompositeJob::addSubjob( job );
+}
+
+
+void CompositeJob::start()
+{
+    if ( subjobs().isEmpty() )
+    {
+        emitResult();
+        return;
+    }
+    Q_FOREACH( KJob* const i, subjobs() )
+    {
+        i->start();
+    }
+}
+
 #include "articlejobs.moc"
