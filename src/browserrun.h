@@ -22,7 +22,7 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_BROWSERRUN_H 
+#ifndef AKREGATOR_BROWSERRUN_H
 #define AKREGATOR_BROWSERRUN_H
 
 #include <kparts/browserrun.h>
@@ -31,7 +31,7 @@
 
 namespace Akregator
 {
-    
+
 class BrowserRun : public KParts::BrowserRun
 {
 	Q_OBJECT
@@ -41,10 +41,10 @@ class BrowserRun : public KParts::BrowserRun
 
     signals:
 
-        void signalFoundMimeType(const Akregator::OpenUrlRequest& request);
+        void signalFoundMimeType(Akregator::OpenUrlRequest& request);
 
     private:
-        void foundMimeType(const QString& type);
+        /* reimp */ void foundMimeType(const QString& type);
 
     private:
         OpenUrlRequest m_request;

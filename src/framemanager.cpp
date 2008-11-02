@@ -247,9 +247,9 @@ void FrameManager::openUrl(OpenUrlRequest& request)
     if (m_frames.contains(request.frameId()))
     {
         Frame* frame = m_frames.value(request.frameId());
-        frame->openUrl(request);
-        if (frame->part())
-            request.setPart(frame->part());
+        if (frame->openUrl(request))
+            request.setWasHandled(true);
+        request.setPart(frame->part());
     }
 
     if (!request.openInBackground())
@@ -280,12 +280,6 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
         KRun::runUrl(url, request.args().mimeType(), 0 /*window*/, false, false);
 }
 
-void FrameManager::slotFoundMimeType(const OpenUrlRequest& request)
-{
-    OpenUrlRequest req2 = request;
-    openUrl(req2);
-}
-
 void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
 {
     kDebug() <<"FrameManager::slotOpenUrlRequest():" << request.debugInfo();
@@ -299,7 +293,8 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
     if (request.args().mimeType().isEmpty())
     {
         BrowserRun* run = new BrowserRun(request, m_mainWin);
-        connect(run, SIGNAL( signalFoundMimeType( Akregator::OpenUrlRequest ) ), this, SLOT(slotFoundMimeType( Akregator::OpenUrlRequest )));
+        connect(run, SIGNAL(signalFoundMimeType(Akregator::OpenUrlRequest&)),
+                this, SLOT(openUrl(Akregator::OpenUrlRequest&)) );
     }
     else // serviceType is already set, so we open the page synchronously.
     {

@@ -2,7 +2,7 @@
     This file is part of Akregator.
 
     Copyright (C) 2006 Frank Osterfeld <osterfeld@kde.org>
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -28,7 +28,7 @@
 namespace Akregator {
 
 OpenUrlRequest::OpenUrlRequest(const KUrl& url) : m_frameId(-1), m_url(url),
-     m_options(None), m_part(0L), m_inBackground(false)
+     m_options(None), m_part(), m_inBackground(false), m_wasHandled(false)
 {
 }
 
@@ -60,7 +60,7 @@ void OpenUrlRequest::setOpenInBackground(bool background)
 {
     m_inBackground = background;
 }
-          
+
 KParts::OpenUrlArguments OpenUrlRequest::args() const
 {
     return m_args;
@@ -104,11 +104,21 @@ KParts::ReadOnlyPart* OpenUrlRequest::part() const
 
 QString OpenUrlRequest::debugInfo() const
 {
-    return  "url=" + m_url.url() 
-            + " mimeType=" + m_args.mimeType()  
-            + " newTab=" + m_browserArgs.newTab() 
+    return  "url=" + m_url.url()
+            + " mimeType=" + m_args.mimeType()
+            + " newTab=" + m_browserArgs.newTab()
             + " forcesNewWindow=" + m_browserArgs.forcesNewWindow()
-            + " options="+ m_options; 
+            + " options="+ m_options;
+}
+
+bool OpenUrlRequest::wasHandled() const
+{
+    return m_wasHandled;
+}
+
+void OpenUrlRequest::setWasHandled( bool handled )
+{
+    m_wasHandled = handled;
 }
 
 } // namespace Akregator

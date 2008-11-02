@@ -31,7 +31,7 @@
 namespace Akregator {
 
 BrowserRun::BrowserRun(const OpenUrlRequest& request, QWidget* parent)
-    : KParts::BrowserRun(request.url(), request.args(), request.browserArgs(), 0L, parent, false, false, true), m_request(request)
+    : KParts::BrowserRun(request.url(), request.args(), request.browserArgs(), 0L, parent, /*removeReferrer=*/false, /*trustedSource=*/false, /*hideErrorDialog=*/true), m_request(request)
 {
     setEnableExternalBrowser(false);
 }
@@ -42,17 +42,17 @@ BrowserRun::~BrowserRun()
 void BrowserRun::foundMimeType(const QString& type)
 {
     KParts::OpenUrlArguments args = m_request.args();
-    args.setMimeType(type);
-    m_request.setArgs(args);
-    
-    emit signalFoundMimeType(m_request);
-/*
-    if (type=="text/html" ||type=="application/xml" || type=="application/xhtml+xml")
-        m_viewer->openPage(url());
-    else
-        if ( handleNonEmbeddable(type) == KParts::BrowserRun::NotHandled )
-            KRun::foundMimeType( type );
-*/
+    args.setMimeType( type );
+    m_request.setArgs( args );
+    m_request.setWasHandled( false );
+
+    emit signalFoundMimeType( m_request );
+
+    if ( m_request.wasHandled() )
+        return;
+
+    if ( handleNonEmbeddable(type) == KParts::BrowserRun::NotHandled )
+        KRun::foundMimeType( type );
 }
 
 } // namespace Akregator

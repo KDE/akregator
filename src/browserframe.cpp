@@ -235,36 +235,27 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 {
     const QString serviceType = request.args().mimeType();
 
-    if (serviceType.isEmpty())
+    if ( serviceType.isEmpty() )
         return false;
 
     d->updateHistoryEntry();
 
     kDebug() << "serviceType: " << serviceType;
-    if (d->loadPartForMimetype(serviceType))
-    {
-        assert( d->part );
-        d->part->setArguments(request.args());
+    if ( !d->loadPartForMimetype( serviceType ) )
+        return false;
 
-        if ( !request.url().isValid() )
-            return false;
+    assert( d->part );
+    d->part->setArguments( request.args() );
 
-        const bool res = d->part->openUrl( request.url() );
+    if ( !request.url().isValid() )
+        return false;
 
-        if ( res )
-        {
-            d->appendHistoryEntry(request.url());
-            d->updateHistoryEntry();
-        }
+    if ( !d->part->openUrl( request.url() ) )
+        return false;
 
-        return res;
-    }
-    else
-    {
-            // TODO: show open|save|cancel dialog
-    }
-
-    return false; // TODO: is this correct?
+    d->appendHistoryEntry( request.url() );
+    d->updateHistoryEntry();
+    return true;
 }
 
 ReadOnlyPart* BrowserFrame::part() const
@@ -340,7 +331,7 @@ void BrowserFrame::slotHistoryBack()
 void BrowserFrame::slotReload()
 {
     TemporaryValue<bool> lock( d->lockHistory, true );
-    
+
     OpenUrlRequest req(url());
     KParts::OpenUrlArguments args;
     args.setMimeType(d->mimetype);

@@ -97,12 +97,11 @@ class FrameManager : public QObject
 
     private:
 
-        void openUrl(OpenUrlRequest& request);
 
         void openInExternalBrowser(const OpenUrlRequest& request);
 
     private slots:
-
+        void openUrl(Akregator::OpenUrlRequest& request);
         void slotSetStarted(Akregator::Frame* frame);
         void slotSetCanceled(Akregator::Frame* frame, const QString& reason);
         void slotSetCompleted(Akregator::Frame* frame);
@@ -115,8 +114,6 @@ class FrameManager : public QObject
         void slotCanGoForwardToggled(Akregator::Frame*, bool);
         void slotIsReloadableToggled(Akregator::Frame*, bool);
         void slotIsLoadingToggled(Akregator::Frame*, bool);
-
-        void slotFoundMimeType(const Akregator::OpenUrlRequest& request);
 
     private:
 
