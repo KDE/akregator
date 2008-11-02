@@ -17,7 +17,7 @@ target_link_libraries(akregatorinterfaces kdepim ${KDE4_KHTML_LIBS} ${KDE4_SYNDI
 
 set_target_properties(akregatorinterfaces PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 
-install(TARGETS akregatorinterfaces DESTINATION ${LIB_INSTALL_DIR})
+install(TARGETS akregatorinterfaces ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 install( FILES akregator_export.h
                article.h
