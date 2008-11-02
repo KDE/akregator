@@ -449,7 +449,7 @@ void Akregator::MainWidget::setFeedList( FeedList* list )
     slotDeleteExpiredArticles();
 }
 
-bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
+bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc)
 {
     assert( m_feedList );
     std::auto_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
@@ -458,11 +458,7 @@ bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc, Folder* parent)
         return false;
 
     m_feedListView->setUpdatesEnabled( false );
-    if ( !parent )
-        setFeedList( feedList.release() );
-    else
-        m_feedList->append( feedList.release(), parent );
-
+    setFeedList( feedList.release() );
     m_feedListView->setUpdatesEnabled( true );
     m_feedListView->triggerUpdate();
     return true;

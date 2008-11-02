@@ -85,11 +85,12 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         @param doc the DOM tree (OPML) of the feeds to import */
         bool importFeeds(const QDomDocument& doc);
 
-        /** Parse OPML presentation of feeds and read in articles archive, if present. If @c parent is @c NULL, the current
-        feed list is replaced by the parsed one
-            @param doc QDomDocument generated from OPML
-            @param parent The parent group the new nodes */
-        bool loadFeeds(const QDomDocument& doc, Folder* parent = 0);
+        /** Parse OPML presentation of feeds and read in articles archive, if present.
+         * The current feed list is replaced by the parsed one
+         *
+         * @param doc QDomDocument generated from OPML
+         **/
+        bool loadFeeds(const QDomDocument& doc);
 
         /**
          * @return the displayed Feed List in OPML format
