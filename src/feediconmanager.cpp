@@ -128,10 +128,10 @@ void FeedIconManager::addListener( const KUrl& url, FaviconListener* listener )
 {
     assert( listener );
     removeListener( listener );
-    const QString iconUrl = getIconUrl( url );
-    d->m_listeners.insert( listener, iconUrl );
-    d->urlDict.insert( url.host(), listener );
-    QMetaObject::invokeMethod( this, "loadIcon", Qt::QueuedConnection, Q_ARG( QString, iconUrl ) );
+    const QString host = url.host();
+    d->m_listeners.insert( listener, host );
+    d->urlDict.insert( host, listener );
+    QMetaObject::invokeMethod( this, "loadIcon", Qt::QueuedConnection, Q_ARG( QString, getIconUrl( url ) ) );
 }
 
 void FeedIconManager::removeListener( FaviconListener* listener )
