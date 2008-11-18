@@ -92,8 +92,8 @@ void NotificationManager::doNotify()
 {
     QString message = "<html><body>";
     QString feedTitle;
-    QList<Article>::ConstIterator it = m_articles.begin();
-    QList<Article>::ConstIterator en = m_articles.end();
+    QList<Article>::ConstIterator it = m_articles.constBegin();
+    QList<Article>::ConstIterator en = m_articles.constEnd();
     for (; it != en; ++it)
     {
         if (feedTitle != (*it).feed()->title())

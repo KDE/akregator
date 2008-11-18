@@ -827,8 +827,8 @@ void Akregator::MainWidget::slotFeedFetched(Feed *feed)
     {
         QList<Article> articles = feed->articles();
         QList<Article>::ConstIterator it;
-        QList<Article>::ConstIterator end = articles.end();
-        for (it = articles.begin(); it != end; ++it)
+        QList<Article>::ConstIterator end = articles.constEnd();
+        for (it = articles.constBegin(); it != end; ++it)
         {
             if ((*it).status()==Akregator::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
             {

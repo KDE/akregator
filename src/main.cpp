@@ -68,8 +68,8 @@ int Application::newInstance()
 
     QStringList feeds = args->getOptionList("addfeed");
     QStringList feedsToAdd;
-    QStringList::ConstIterator end( feeds.end() );
-    for (QStringList::ConstIterator it = feeds.begin(); it != end; ++it)
+    QStringList::ConstIterator end( feeds.constEnd() );
+    for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it)
         feedsToAdd.append(*it);
 
     if (feedsToAdd.isEmpty() && args->count() > 0) {

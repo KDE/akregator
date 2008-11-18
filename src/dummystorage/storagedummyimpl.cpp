@@ -80,7 +80,7 @@ bool StorageDummyImpl::autoCommit() const
 
 bool StorageDummyImpl::close()
 {
-    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.begin(); it != d->feeds.end(); ++it)
+    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it)
     {
         (*it).feedStorage->close();
         delete (*it).feedStorage;
@@ -165,7 +165,7 @@ QStringList StorageDummyImpl::feeds() const
 void StorageDummyImpl::add(Storage* source)
 {
     QStringList feeds = source->feeds();
-    for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
+    for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it)
     {
         FeedStorage* fa = archiveFor(*it);
         fa->add(source->archiveFor(*it));
@@ -174,7 +174,7 @@ void StorageDummyImpl::add(Storage* source)
 
 void StorageDummyImpl::clear()
 {
-    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.begin(); it != d->feeds.end(); ++it)
+    for (QHash<QString, StorageDummyImplPrivate::Entry>::ConstIterator it = d->feeds.constBegin(); it != d->feeds.constEnd(); ++it)
     {
         delete (*it).feedStorage;
     }

@@ -209,8 +209,8 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     FeedStorageDummyImplPrivate::Entry entry = d->entries[guid];
 
     // remove article from tag->article index
-    QStringList::ConstIterator it = entry.tags.begin();
-    QStringList::ConstIterator end = entry.tags.end();
+    QStringList::ConstIterator it = entry.tags.constBegin();
+    QStringList::ConstIterator end = entry.tags.constEnd();
 
     for ( ; it != end; ++it)
     {
@@ -220,8 +220,8 @@ void FeedStorageDummyImpl::setDeleted(const QString& guid)
     }
 
     // remove article from tag->category index
-    QList<Category>::ConstIterator it2 = entry.categories.begin();
-    QList<Category>::ConstIterator end2 = entry.categories.end();
+    QList<Category>::ConstIterator it2 = entry.categories.constBegin();
+    QList<Category>::ConstIterator end2 = entry.categories.constEnd();
 
     for ( ; it2 != end2; ++it2)
     {
@@ -427,7 +427,7 @@ QStringList FeedStorageDummyImpl::tags(const QString& guid) const
 void FeedStorageDummyImpl::add(FeedStorage* source)
 {
     QStringList articles = source->articles();
-    for (QStringList::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+    for (QStringList::ConstIterator it = articles.constBegin(); it != articles.constEnd(); ++it)
         copyArticle(*it, source);
     setUnread(source->unread());
     setLastFetch(source->lastFetch());
@@ -452,7 +452,7 @@ void FeedStorageDummyImpl::copyArticle(const QString& guid, FeedStorage* source)
     setTitle(guid, source->title(guid));
     QStringList tags = source->tags(guid);
 
-    for (QStringList::ConstIterator it = tags.begin(); it != tags.end(); ++it)
+    for (QStringList::ConstIterator it = tags.constBegin(); it != tags.constEnd(); ++it)
         addTag(guid, *it);
 }
 

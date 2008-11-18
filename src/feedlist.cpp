@@ -339,8 +339,8 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
 
     QList<TreeNode*> children = list->rootNode()->children();
 
-    QList<TreeNode*>::ConstIterator end(  children.end() );
-    for (QList<TreeNode*>::ConstIterator it = children.begin(); it != end; ++it)
+    QList<TreeNode*>::ConstIterator end(  children.constEnd() );
+    for (QList<TreeNode*>::ConstIterator it = children.constBegin(); it != end; ++it)
     {
         list->rootNode()->removeChild(*it);
         parent->insertChild(*it, after);
@@ -426,7 +426,7 @@ void FeedList::clear()
 
     QList<TreeNode*> children = rootNode()->children();
 
-    for (QList<TreeNode*>::ConstIterator it = children.begin(); it != children.end(); ++it)
+    for (QList<TreeNode*>::ConstIterator it = children.constBegin(); it != children.constEnd(); ++it)
         delete *it; // emits signal "emitSignalDestroyed"
 }
 

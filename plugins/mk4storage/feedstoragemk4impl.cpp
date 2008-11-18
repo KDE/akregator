@@ -126,8 +126,8 @@ void FeedStorageMK4Impl::convertOldArchive()
     if (feed)
     {
         QList<Syndication::ItemPtr> items = feed->items();
-        QList<Syndication::ItemPtr>::ConstIterator it = items.begin();
-        QList<Syndication::ItemPtr>::ConstIterator en = items.end();
+        QList<Syndication::ItemPtr>::ConstIterator it = items.constBegin();
+        QList<Syndication::ItemPtr>::ConstIterator en = items.constEnd();
         markDirty();
         commit();
     }
@@ -320,7 +320,7 @@ void FeedStorageMK4Impl::deleteArticle(const QString& guid)
     if (findidx != -1)
     {
         QStringList list = tags(guid);
-        for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it)
+        for (QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it)
             removeTag(guid, *it);
         setTotalCount(totalCount()-1);
         d->archiveView.RemoveAt(findidx);
@@ -368,7 +368,7 @@ void FeedStorageMK4Impl::setDeleted(const QString& guid)
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
     QStringList list = tags(guid);
-        for (QStringList::ConstIterator it = list.begin(); it != list.end(); ++it)
+        for (QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it)
             removeTag(guid, *it);
     d->pdescription(row) = "";
     d->pcontent(row) = "";
@@ -822,7 +822,7 @@ QStringList FeedStorageMK4Impl::tags(const QString& guid) const
 void FeedStorageMK4Impl::add(FeedStorage* source)
 {
     QStringList articles = source->articles();
-    for (QStringList::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+    for (QStringList::ConstIterator it = articles.constBegin(); it != articles.constEnd(); ++it)
         copyArticle(*it, source);
     setUnread(source->unread());
     setLastFetch(source->lastFetch());
@@ -848,7 +848,7 @@ void FeedStorageMK4Impl::copyArticle(const QString& guid, FeedStorage* source)
     setAuthorEMail(guid, source->authorEMail(guid));
 
     QStringList tags = source->tags(guid);
-    for (QStringList::ConstIterator it = tags.begin(); it != tags.end(); ++it)
+    for (QStringList::ConstIterator it = tags.constBegin(); it != tags.constEnd(); ++it)
         addTag(guid, *it);
 }
 

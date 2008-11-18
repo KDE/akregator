@@ -233,7 +233,7 @@ void Feed::loadArticles()
         d->archive = d->storage->archiveFor(xmlUrl());
 
     QStringList list = d->archive->articles();
-    for ( QStringList::ConstIterator it = list.begin(); it != list.end(); ++it)
+    for ( QStringList::ConstIterator it = list.constBegin(); it != list.constEnd(); ++it)
     {
         Article mya(*it, this);
         d->articles[mya.guid()] = mya;
@@ -249,14 +249,14 @@ void Feed::loadArticles()
 void Feed::recalcUnreadCount()
 {
     QList<Article> tarticles = articles();
-    QList<Article>::Iterator it;
-    QList<Article>::Iterator en = tarticles.end();
+    QList<Article>::ConstIterator it;
+    QList<Article>::ConstIterator en = tarticles.constEnd();
 
     int oldUnread = d->archive->unread();
 
     int unread = 0;
 
-    for (it = tarticles.begin(); it != en; ++it)
+    for (it = tarticles.constBegin(); it != en; ++it)
         if (!(*it).isDeleted() && (*it).status() != Read)
             ++unread;
 
@@ -464,8 +464,8 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
     bool changed = false;
 
     QList<ItemPtr> items = feed->items();
-    QList<ItemPtr>::ConstIterator it = items.begin();
-    QList<ItemPtr>::ConstIterator en = items.end();
+    QList<ItemPtr>::ConstIterator it = items.constBegin();
+    QList<ItemPtr>::ConstIterator en = items.constEnd();
 
 
     int nudge=0;
@@ -513,9 +513,9 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
         }
     }
 
-    QList<Article>::ConstIterator dit = deletedArticles.begin();
+    QList<Article>::ConstIterator dit = deletedArticles.constBegin();
     QList<Article>::ConstIterator dtmp;
-    QList<Article>::ConstIterator den = deletedArticles.end();
+    QList<Article>::ConstIterator den = deletedArticles.constEnd();
 
     // delete articles with delete flag set completely from archive, which aren't in the current feed source anymore
     while (dit != den)
@@ -775,7 +775,7 @@ void Feed::setArticleChanged(Article& a, int oldStatus)
 int Feed::totalCount() const
 {
     if ( d->totalCount == -1 )
-        d->totalCount = std::count_if( d->articles.begin(), d->articles.end(), !bind( &Article::isDeleted, _1 ) );
+        d->totalCount = std::count_if( d->articles.constBegin(), d->articles.constEnd(), !bind( &Article::isDeleted, _1 ) );
     return d->totalCount;
 }
 

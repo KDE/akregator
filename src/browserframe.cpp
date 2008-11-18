@@ -69,12 +69,12 @@ KUrl BrowserFrame::url() const
 
 bool BrowserFrame::canGoForward() const
 {
-    return !d->history.isEmpty() && d->current != d->history.constEnd()-1 && d->current != d->history.constEnd();
+    return !d->history.isEmpty() && d->current != d->history.end()-1 && d->current != d->history.end();
 }
 
 bool BrowserFrame::canGoBack() const
 {
-    return !d->history.isEmpty() && d->current != d->history.constBegin();
+    return !d->history.isEmpty() && d->current != d->history.begin();
 }
 
 void BrowserFrame::slotOpenUrlNotify()
@@ -278,7 +278,7 @@ void BrowserFrame::slotHistoryBackAboutToShow()
     int i = 0;
     while( i < 10)
     {
-        if ( it == d->history.constBegin() )
+        if ( it == d->history.begin() )
         {
             popup->addAction(new Private::HistoryAction(it, popup, d));
             return;
@@ -304,7 +304,7 @@ void BrowserFrame::slotHistoryForwardAboutToShow()
     int i = 0;
     while( i < 10)
     {
-        if ( it == d->history.constEnd()-1 )
+        if ( it == d->history.end()-1 )
         {
             popup->addAction( new Private::HistoryAction(it, popup, d));
             return;

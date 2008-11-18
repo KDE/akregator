@@ -194,7 +194,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
 void Part::loadStoragePlugins()
 {
     KService::List offers = PluginManager::query( "[X-KDE-akregator-plugintype] == 'storage'" );
-    for ( KService::List::ConstIterator it = offers.begin(), end = offers.end(); it != end; ++it )
+    for ( KService::List::ConstIterator it = offers.constBegin(), end = offers.constEnd(); it != end; ++it )
     {
         Akregator::Plugin* plugin = PluginManager::createFromService(*it);
         if (plugin)

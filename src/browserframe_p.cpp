@@ -116,7 +116,7 @@ void BrowserFrame::Private::appendHistoryEntry(const KUrl& url)
     bool canForward = q->canGoForward();
 
 
-    if (current != history.constEnd())
+    if (current != history.end())
     {
         // if the new URL is equal to the previous one,
         // we do not create a new entry and exit here
@@ -172,7 +172,7 @@ void BrowserFrame::Private::restoreHistoryEntry( const QList<HistoryEntry>::Iter
 
 void BrowserFrame::Private::updateHistoryEntry()
 {
-    if (lockHistory || !part || current == history.constEnd() || !part->url().isValid())
+    if (lockHistory || !part || current == history.end() || !part->url().isValid())
         return;
 
     kDebug() <<"BrowserFrame::updateHistoryEntry(): updating id=" << (*current).id <<" url=" << part->url().url();

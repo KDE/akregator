@@ -299,9 +299,9 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
 void Akregator::Backend::StorageMK4Impl::add(Storage* source)
 {
     QStringList feeds = source->feeds();
-    QStringList::ConstIterator end(feeds.end() ) ;
+    QStringList::ConstIterator end(feeds.constEnd() ) ;
 
-    for (QStringList::ConstIterator it = feeds.begin(); it != end; ++it)
+    for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it)
     {
         FeedStorage* fa = archiveFor(*it);
         fa->add(source->archiveFor(*it));
@@ -315,9 +315,9 @@ void Akregator::Backend::StorageMK4Impl::clear()
     int size = d->archiveView.GetSize();
     for (int i = 0; i < size; i++)
         feeds += QString(d->purl(d->archiveView.GetAt(i)));
-    QStringList::ConstIterator end(feeds.end() ) ;
+    QStringList::ConstIterator end(feeds.constEnd() ) ;
 
-    for (QStringList::ConstIterator it = feeds.begin(); it != end; ++it)
+    for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it)
     {
         FeedStorage* fa = archiveFor(*it);
         fa->clear();
