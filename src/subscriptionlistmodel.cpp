@@ -159,12 +159,13 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         case Qt::ToolTipRole:
         {
             if ( node->isGroup() || node->isAggregation() )
-                return QString();
+                return node->title();
             const Feed* const feed = qobject_cast<const Feed* const>( node );
-            if ( feed && feed->fetchErrorOccurred() )
-                return i18n( "Could not fetch feed: %1", errorCodeToString( feed->fetchErrorCode() ) );
-            else
+            if ( !feed )
                 return QString();
+            if ( feed->fetchErrorOccurred() )
+                return i18n( "Could not fetch feed: %1", errorCodeToString( feed->fetchErrorCode() ) );
+            return feed->title();
         }
         case Qt::DecorationRole:
         {
