@@ -119,6 +119,8 @@ public:
 
     void setIsAggregation( bool isAggregation );
 
+    void saveHeaderSettings();
+
 protected:
     void mousePressEvent( QMouseEvent *ev );
 
@@ -138,7 +140,6 @@ public Q_SLOTS:
     void slotNextUnreadArticle();
 
 private:
-    void saveHeaderSettings();
     void loadHeaderSettings();
 
     //reimpl

@@ -293,7 +293,6 @@ void ArticleListView::setFeedMode()
 
 ArticleListView::~ArticleListView()
 {
-    saveHeaderSettings();
 }
 
 void ArticleListView::setIsAggregation( bool aggregation )
