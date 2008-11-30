@@ -437,12 +437,15 @@ void ArticleListView::slotNextArticle()
     selectIndex( newIdx );
 }
 
-void ArticleListView::slotNextUnreadArticle()
+bool ArticleListView::selectNextUnreadArticle()
 {
     if (!model())
-        return;
+        return false;
 
     const int rowCount = model()->rowCount();
+    if ( rowCount == 0 )
+        return false;
+
     const int startRow = qMin( rowCount - 1, ( currentIndex().isValid() ? currentIndex().row() + 1 : 0 ) );
 
     int i = startRow;
@@ -461,6 +464,7 @@ void ArticleListView::slotNextUnreadArticle()
     {
         selectIndex( model()->index( i, 0 ) );
     }
+    return foundUnread;
 }
 
 void ArticleListView::selectIndex( const QModelIndex& idx )
@@ -476,12 +480,15 @@ void ArticleListView::selectIndex( const QModelIndex& idx )
     }
 }
 
-void ArticleListView::slotPreviousUnreadArticle()
+bool ArticleListView::selectPreviousUnreadArticle()
 {
     if ( !model() )
-        return;
+        return false;
 
     const int rowCount = model()->rowCount();
+    if ( rowCount == 0 )
+        return false;
+
     const int startRow = qMax( 0, ( currentIndex().isValid() ? currentIndex().row() : rowCount ) - 1 );
 
     int i = startRow;
@@ -500,6 +507,7 @@ void ArticleListView::slotPreviousUnreadArticle()
     {
         selectIndex( model()->index( i, 0 ) );
     }
+    return foundUnread;
 }
 
 

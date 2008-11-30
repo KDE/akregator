@@ -121,6 +121,10 @@ public:
 
     void saveHeaderSettings();
 
+    bool selectPreviousUnreadArticle();
+
+    bool selectNextUnreadArticle();
+
 protected:
     void mousePressEvent( QMouseEvent *ev );
 
@@ -135,9 +139,6 @@ public Q_SLOTS:
 
     void slotNextArticle();
 
-    void slotPreviousUnreadArticle();
-
-    void slotNextUnreadArticle();
 
 private:
     void loadHeaderSettings();

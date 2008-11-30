@@ -756,10 +756,8 @@ void Akregator::MainWidget::slotNextUnreadArticle()
         m_feedListView->slotNextUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
-        m_articleListView->slotNextUnreadArticle();
-    else
+
+    if (!m_articleListView->selectNextUnreadArticle())
         m_feedListView->slotNextUnreadFeed();
 }
 
@@ -770,10 +768,7 @@ void Akregator::MainWidget::slotPrevUnreadArticle()
         m_feedListView->slotPrevUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
-        m_articleListView->slotPreviousUnreadArticle();
-    else
+    if (!m_articleListView->selectPreviousUnreadArticle())
         m_feedListView->slotPrevUnreadFeed();
 }
 
