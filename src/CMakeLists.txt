@@ -39,7 +39,7 @@ set_target_properties(akregatorprivate
    PROPERTIES VERSION ${GENERIC_LIB_VERSION}
    SOVERSION ${GENERIC_LIB_SOVERSION}
 )
-install(TARGETS akregatorprivate ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS akregatorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
 ########### next target ###############
 
