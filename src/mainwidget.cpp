@@ -322,6 +322,8 @@ void Akregator::MainWidget::slotOnShutdown()
 
 void Akregator::MainWidget::saveSettings()
 {
+    if ( m_articleListView )
+        m_articleListView->saveHeaderSettings();
     const QList<int> spl1 = m_horizontalSplitter->sizes();
     if ( std::count( spl1.begin(), spl1.end(), 0 ) == 0 )
         Settings::setSplitter1Sizes( spl1 );
