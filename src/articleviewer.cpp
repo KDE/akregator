@@ -292,7 +292,9 @@ void ArticleViewer::slotCopy()
 {
     QString text = m_part->selectedText();
     text.replace( QChar( 0xa0 ), ' ' );
-    QApplication::clipboard()->disconnect( this );
+    QClipboard* const cb = QApplication::clipboard();
+    assert( cb );
+    cb->setText( text, QClipboard::Clipboard );
 }
 
 void ArticleViewer::slotCopyLinkAddress()
