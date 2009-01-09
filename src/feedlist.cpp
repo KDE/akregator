@@ -53,7 +53,6 @@ public:
     Akregator::Backend::Storage* storage;
     QList<TreeNode*> flatList;
     Folder* rootNode;
-    QString title;
     QHash<int, TreeNode*> idMap;
     AddNodeVisitor* addNodeVisitor;
     RemoveNodeVisitor* removeNodeVisitor;
@@ -365,9 +364,6 @@ QDomDocument FeedList::toOpml() const
     QDomElement ti = doc.createElement( "text" );
     head.appendChild( ti );
 
-    QDomText t = doc.createTextNode( title() );
-    ti.appendChild( t );
-
     QDomElement body = doc.createElement( "body" );
     root.appendChild( body );
 
@@ -375,11 +371,6 @@ QDomDocument FeedList::toOpml() const
         body.appendChild( i->toOPML(body, doc) );
 
     return doc;
-}
-
-QString FeedList::title() const
-{
-    return d->title;
 }
 
 const TreeNode* FeedList::findByID(int id) const
@@ -400,11 +391,6 @@ QList<const TreeNode*> FeedList::findByTitle(const QString& title ) const
 QList<TreeNode*> FeedList::findByTitle(const QString& title )
 {
     return rootNode()->namedChildren( title );
-}
-
-void FeedList::setTitle(const QString& title)
-{
-    d->title = title;
 }
 
 const Folder* FeedList::rootNode() const

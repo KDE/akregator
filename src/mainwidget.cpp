@@ -402,7 +402,7 @@ bool Akregator::MainWidget::importFeeds(const QDomDocument& doc)
     if (!parsed)
         return false;
 
-    QString title = !feedList->title().isEmpty() ? feedList->title() : i18n("Imported Folder");
+    QString title = i18n("Imported Folder");
 
     bool ok;
     title = KInputDialog::getText( i18n("Add Imported Folder"),
