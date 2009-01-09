@@ -27,6 +27,8 @@
 
 #include <KJob>
 
+#include <boost/weak_ptr.hpp>
+
 namespace Akregator {
 
 class FeedList;
@@ -38,20 +40,20 @@ class MoveSubscriptionJob : public KJob
     Q_OBJECT
 public:
     explicit MoveSubscriptionJob( QObject* parent = 0 );
-    
+
     void setSubscriptionId( int id );
     void setDestination( int folder, int afterChild );
-    
+
     void start();
-    
+
 private Q_SLOTS:
     void doMove();
-    
+
 private:
     int m_id;
     int m_destFolderId;
     int m_afterId;
-    FeedList* const m_feedList;
+    boost::weak_ptr<FeedList> m_feedList;
 };
 
 class RenameSubscriptionJob : public KJob
@@ -59,19 +61,19 @@ class RenameSubscriptionJob : public KJob
     Q_OBJECT
 public:
     explicit RenameSubscriptionJob( QObject* parent = 0 );
-    
+
     void setSubscriptionId( int id );
     void setName( const QString& name );
-    
+
     void start();
-    
+
 private Q_SLOTS:
     void doRename();
-    
+
 private:
     int m_id;
     QString m_name;
-    FeedList* const m_feedList;
+    boost::shared_ptr<FeedList> m_feedList;
 };
 
 class DeleteSubscriptionJob : public KJob
@@ -79,17 +81,17 @@ class DeleteSubscriptionJob : public KJob
     Q_OBJECT
 public:
     explicit DeleteSubscriptionJob( QObject* parent = 0 );
-    
+
     void setSubscriptionId( int id );
-    
+
     void start();
-    
+
 private Q_SLOTS:
     void doDelete();
-    
+
 private:
     int m_id;
-    FeedList* const m_feedList;
+    boost::weak_ptr<FeedList> m_feedList;
 };
 
 }

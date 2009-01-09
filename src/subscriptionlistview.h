@@ -42,9 +42,9 @@ public:
     ~SubscriptionListView();
 // the following is all transitional, for easier porting from the item-based views
 
-    void startNodeRenaming( Akregator::TreeNode* node );
+    void startNodeRenaming( TreeNode* node );
 
-    void ensureNodeVisible( Akregator::TreeNode* node );
+    void ensureNodeVisible( TreeNode* node );
 
     //override
     void setModel( QAbstractItemModel* model );
@@ -57,7 +57,7 @@ public:
         TotalColumn=2
     };
 
-    
+
 public Q_SLOTS:
 
     void slotPrevFeed();
@@ -72,12 +72,12 @@ public Q_SLOTS:
     void slotItemRight();
     void slotItemUp();
     void slotItemDown();
-    
+
 private:
     void saveHeaderSettings();
     void loadHeaderSettings();
 
-    
+
 private Q_SLOTS:
     void showHeaderMenu( const QPoint& pos );
     void headerMenuItemTriggered( QAction* action );

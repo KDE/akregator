@@ -32,6 +32,7 @@
 
 #include <QTimer>
 
+using namespace boost;
 using namespace Akregator;
 
 MoveSubscriptionJob::MoveSubscriptionJob( QObject* parent ) : KJob( parent ), m_id( 0 ), m_destFolderId( 0 ), m_afterId( -1 ), m_feedList( Kernel::self()->feedList() )
@@ -57,10 +58,18 @@ void MoveSubscriptionJob::start()
 
 void MoveSubscriptionJob::doMove()
 {
-    TreeNode* const node = m_feedList->findByID( m_id );
-    Folder* const destFolder = qobject_cast<Folder*>( m_feedList->findByID( m_destFolderId ) );
-    TreeNode* const after = m_feedList->findByID( m_afterId );
-    
+    const shared_ptr<FeedList> feedList = m_feedList.lock();
+
+    if ( !feedList ) {
+        setErrorText( i18n( "Feed list was deleted" ) );
+        emitResult();
+        return;
+    }
+
+    TreeNode* const node = feedList->findByID( m_id );
+    Folder* const destFolder = qobject_cast<Folder*>( feedList->findByID( m_destFolderId ) );
+    TreeNode* const after = feedList->findByID( m_afterId );
+
     if ( !node || !destFolder )
     {
         setErrorText( i18n( "Node or destination folder not found" ) );
@@ -130,8 +139,9 @@ void DeleteSubscriptionJob::start()
 
 void DeleteSubscriptionJob::doDelete()
 {
-    if ( m_id > 0 )
-        delete m_feedList->findByID( m_id );
+    const shared_ptr<FeedList> feedList = m_feedList.lock();
+    if ( m_id > 0 && feedList )
+        delete feedList->findByID( m_id );
     emitResult();
 }
 

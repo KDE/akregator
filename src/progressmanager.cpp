@@ -36,17 +36,17 @@
 
 #include "progressmanager.h"
 
-//#include <kdebug.h>
+using namespace boost;
 
 namespace Akregator {
 
 class ProgressManager::ProgressManagerPrivate
 {
     public:
-        ProgressManagerPrivate() : feedList( 0 ) {}
-        FeedList* feedList;
+        ProgressManagerPrivate() : feedList() {}
+        shared_ptr<FeedList> feedList;
         QHash<Feed*, ProgressItemHandler*> handlers;
-    
+
 };
 
 static K3StaticDeleter<ProgressManager> progressmanagersd;
@@ -65,11 +65,11 @@ ProgressManager::ProgressManager() : d(new ProgressManagerPrivate)
 
 ProgressManager::~ProgressManager()
 {
-    delete d; 
+    delete d;
     d = 0;
 }
 
-void ProgressManager::setFeedList(FeedList* feedList)
+void ProgressManager::setFeedList(const shared_ptr<FeedList>& feedList)
 {
     if ( feedList == d->feedList )
         return;
@@ -82,27 +82,27 @@ void ProgressManager::setFeedList(FeedList* feedList)
     }
 
     d->feedList = feedList;
-    
+
     if ( d->feedList )
     {
         QVector<Feed*> list = feedList->feeds();
-    
+
         foreach( TreeNode* i, list )
             slotNodeAdded( i );
-        connect(feedList, SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
-        connect(feedList, SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
+        connect(feedList.get(), SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
+        connect(feedList.get(), SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
     }
 }
-     
+
 void ProgressManager::slotNodeAdded(TreeNode* node)
 {
     Feed* const feed = qobject_cast<Feed*>(node);
     if (!feed)
         return;
-    
+
     if ( d->handlers.contains( feed ) )
         return;
-    
+
     d->handlers[feed] = new ProgressItemHandler(feed);
     connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
 }
@@ -140,7 +140,7 @@ ProgressItemHandler::ProgressItemHandler(Feed* feed) : d(new ProgressItemHandler
 {
     d->feed = feed;
     d->progressItem = 0;
-    
+
     connect(feed, SIGNAL(fetchStarted(Akregator::Feed*)), this, SLOT(slotFetchStarted()));
     connect(feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFetchCompleted()));
     connect(feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError()));
@@ -155,7 +155,7 @@ ProgressItemHandler::~ProgressItemHandler()
         d->progressItem = 0;
     }
 
-    delete d; 
+    delete d;
     d = 0;
 }
 
@@ -166,7 +166,7 @@ void ProgressItemHandler::slotFetchStarted()
         d->progressItem->setComplete();
         d->progressItem = 0;
     }
-    
+
     d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString(), true);
 
     connect(d->progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), d->feed, SLOT(slotAbortFetch()));

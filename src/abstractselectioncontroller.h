@@ -96,7 +96,7 @@ public:
     explicit AbstractSelectionController( QObject* parent = 0 );
     virtual ~AbstractSelectionController();
 
-    virtual void setFeedList( Akregator::FeedList* list ) = 0;
+    virtual void setFeedList( const boost::shared_ptr<FeedList>& list ) = 0;
 
     virtual void setFeedSelector( QAbstractItemView* feedSelector ) = 0;
 

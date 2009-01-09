@@ -36,6 +36,8 @@
 #include <QPointer>
 #include <QWidget>
 
+#include <boost/shared_ptr.hpp>
+
 class KConfig;
 class KFileItem;
 class K3ListView;
@@ -237,11 +239,11 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotFetchingStopped();
 
     private:
-        void deleteExpiredArticles( FeedList* feedList );
+        void deleteExpiredArticles( const boost::shared_ptr<FeedList>& feedList );
 
-        void setFeedList( FeedList* feedList );
+        void setFeedList( const boost::shared_ptr<FeedList>& feedList );
         AbstractSelectionController* m_selectionController;
-        QPointer<FeedList> m_feedList;
+        boost::shared_ptr<FeedList> m_feedList;
 
         SubscriptionListView* m_feedListView;
         ArticleListView* m_articleListView;

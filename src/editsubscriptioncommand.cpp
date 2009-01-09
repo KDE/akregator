@@ -36,6 +36,7 @@
 #include <cassert>
 
 using namespace Akregator;
+using namespace boost;
 
 namespace {
 
@@ -43,7 +44,7 @@ class EditNodePropertiesVisitor : public TreeNodeVisitor
 {
 public:
     EditNodePropertiesVisitor( SubscriptionListView* subcriptionListView, QWidget* parent );
-    
+
     bool visitFolder(Folder* node)
     {
         m_subscriptionListView->startNodeRenaming( node );
@@ -78,21 +79,21 @@ class EditSubscriptionCommand::Private
 public:
     explicit Private( EditSubscriptionCommand* qq );
     ~Private();
-    
+
     void startEdit();
     void jobFinished();
-    
-    FeedList* m_list;
+
+    shared_ptr<FeedList> m_list;
     int m_subscriptionId;
     SubscriptionListView* m_subscriptionListView;
 };
 
 EditSubscriptionCommand::Private::Private( EditSubscriptionCommand* qq ) : q( qq ),
-                                                                               m_list( 0 ),
+                                                                               m_list(),
                                                                                m_subscriptionId( -1 ),
                                                                                m_subscriptionListView( 0 )
 {
-    
+
 }
 
 EditSubscriptionCommand::Private::~Private()
@@ -108,7 +109,7 @@ EditSubscriptionCommand::~EditSubscriptionCommand()
     delete d;
 }
 
-void EditSubscriptionCommand::setSubscription( FeedList* feedList, int subId )
+void EditSubscriptionCommand::setSubscription( const shared_ptr<FeedList>& feedList, int subId )
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
@@ -119,7 +120,7 @@ int EditSubscriptionCommand::subscriptionId() const
     return d->m_subscriptionId;
 }
 
-FeedList* EditSubscriptionCommand::feedList() const
+shared_ptr<FeedList> EditSubscriptionCommand::feedList() const
 {
     return d->m_list;
 }
@@ -145,15 +146,15 @@ void EditSubscriptionCommand::Private::startEdit()
     TreeNode* const node = m_list->findByID( m_subscriptionId );
     if ( !node )
         return;
-    
-    EditNodePropertiesVisitor visitor( m_subscriptionListView, q->parentWidget() );  
+
+    EditNodePropertiesVisitor visitor( m_subscriptionListView, q->parentWidget() );
     visitor.visit( node );
     q->done();
 }
 
 void EditSubscriptionCommand::doAbort()
 {
-    
+
 }
 
 #include "editsubscriptioncommand.moc"

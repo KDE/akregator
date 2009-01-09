@@ -32,6 +32,8 @@
 #include <QPointer>
 #include <QString>
 
+#include <boost/shared_ptr.hpp>
+
 //transitional job classes
 namespace Akregator {
 
@@ -73,7 +75,7 @@ private Q_SLOTS:
     void doStart();
 
 private:
-    QPointer<Akregator::FeedList> m_feedList;
+    boost::shared_ptr<FeedList> m_feedList;
     ArticleIdList m_ids;
 };
 
@@ -93,7 +95,7 @@ private Q_SLOTS:
     void doStart();
 
 private:
-    QPointer<Akregator::FeedList> m_feedList;
+    boost::shared_ptr<FeedList> m_feedList;
     QMap<ArticleId, bool> m_keepFlags;
     QMap<ArticleId, int> m_status;
 };

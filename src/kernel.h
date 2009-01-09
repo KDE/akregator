@@ -25,9 +25,11 @@
 #ifndef AKREGATOR_KERNEL_H
 #define AKREGATOR_KERNEL_H
 
+#include <boost/shared_ptr.hpp>
+
 namespace Akregator {
 
-namespace Backend 
+namespace Backend
 {
     class Storage;
 }
@@ -43,12 +45,12 @@ class Kernel
         static Kernel* self();
 
         ~Kernel();
-         
+
         Backend::Storage* storage();
         void setStorage(Backend::Storage* storage);
 
-        FeedList* feedList();
-        void setFeedList(FeedList* feedList);
+        boost::shared_ptr<FeedList> feedList() const;
+        void setFeedList(const boost::shared_ptr<FeedList>& feedList);
 
         FetchQueue* fetchQueue();
 

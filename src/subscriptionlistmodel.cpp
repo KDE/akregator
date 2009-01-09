@@ -44,6 +44,7 @@
 
 #include <cassert>
 
+using namespace boost;
 using namespace Akregator;
 using namespace Syndication;
 
@@ -75,33 +76,30 @@ namespace {
         }
     }
 
-    static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const Akregator::FeedList* feedList )
+    static const Akregator::TreeNode* nodeForIndex( const QModelIndex& index, const FeedList* feedList )
     {
         return ( !index.isValid() || !feedList ) ? 0 : feedList->findByID( index.internalId() );
     }
 }
 
-Akregator::SubscriptionListModel::SubscriptionListModel( const Akregator::FeedList* feedList, QObject* parent ) : QAbstractItemModel( parent ), m_feedList( feedList ), m_beganRemoval( false )
+Akregator::SubscriptionListModel::SubscriptionListModel( const shared_ptr<const FeedList>& feedList, QObject* parent ) : QAbstractItemModel( parent ), m_feedList( feedList ), m_beganRemoval( false )
 {
-    if ( feedList )
-    {
-        connect( feedList, SIGNAL( signalDestroyed( Akregator::FeedList* ) ),
-                 this, SLOT( feedListDestroyed( Akregator::FeedList* ) ) );
-        connect( feedList, SIGNAL( signalNodeAdded( Akregator::TreeNode* ) ),
-                 this, SLOT( subscriptionAdded( Akregator::TreeNode* ) ) );
-        connect( feedList, SIGNAL( signalAboutToRemoveNode( Akregator::TreeNode* ) ),
-                 this, SLOT( aboutToRemoveSubscription( Akregator::TreeNode* ) ) );
-        connect( feedList, SIGNAL( signalNodeRemoved( Akregator::TreeNode* ) ),
-                   this, SLOT( subscriptionRemoved( Akregator::TreeNode* ) ) );
-        connect( feedList, SIGNAL( signalNodeChanged( Akregator::TreeNode* ) ),
-                 this, SLOT( subscriptionChanged( Akregator::TreeNode* ) ) );
-        connect( feedList, SIGNAL( fetchStarted( Akregator::Feed* ) ),
-                 this, SLOT( fetchStarted( Akregator::Feed* ) ) );
-        connect( feedList, SIGNAL( fetched( Akregator::Feed* ) ),
-                 this, SLOT( fetched( Akregator::Feed* ) ) );
-        connect( feedList, SIGNAL( fetchAborted( Akregator::Feed* ) ),
-                 this, SLOT( fetchAborted( Akregator::Feed* ) ) );
-    }
+    if ( !m_feedList )
+        return;
+    connect( m_feedList.get(), SIGNAL( signalNodeAdded( Akregator::TreeNode* ) ),
+             this, SLOT( subscriptionAdded( Akregator::TreeNode* ) ) );
+    connect( m_feedList.get(), SIGNAL( signalAboutToRemoveNode( Akregator::TreeNode* ) ),
+             this, SLOT( aboutToRemoveSubscription( Akregator::TreeNode* ) ) );
+    connect( m_feedList.get(), SIGNAL( signalNodeRemoved( Akregator::TreeNode* ) ),
+               this, SLOT( subscriptionRemoved( Akregator::TreeNode* ) ) );
+    connect( m_feedList.get(), SIGNAL( signalNodeChanged( Akregator::TreeNode* ) ),
+             this, SLOT( subscriptionChanged( Akregator::TreeNode* ) ) );
+    connect( m_feedList.get(), SIGNAL( fetchStarted( Akregator::Feed* ) ),
+             this, SLOT( fetchStarted( Akregator::Feed* ) ) );
+    connect( m_feedList.get(), SIGNAL( fetched( Akregator::Feed* ) ),
+             this, SLOT( fetched( Akregator::Feed* ) ) );
+    connect( m_feedList.get(), SIGNAL( fetchAborted( Akregator::Feed* ) ),
+             this, SLOT( fetchAborted( Akregator::Feed* ) ) );
 }
 
 int Akregator::SubscriptionListModel::columnCount( const QModelIndex& ) const
@@ -114,7 +112,7 @@ int Akregator::SubscriptionListModel::rowCount( const QModelIndex& parent ) cons
     if ( !parent.isValid() )
         return 1;
 
-    const Akregator::TreeNode* const node = nodeForIndex( parent, m_feedList );
+    const Akregator::TreeNode* const node = nodeForIndex( parent, m_feedList.get() );
     return node ? node->children().count() : 0;
 }
 
@@ -128,7 +126,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
     if ( !index.isValid() )
         return QVariant();
 
-    const Akregator::TreeNode* const node = nodeForIndex( index, m_feedList );
+    const Akregator::TreeNode* const node = nodeForIndex( index, m_feedList.get() );
 
     if ( !node )
         return QVariant();
@@ -228,7 +226,7 @@ QVariant Akregator::SubscriptionListModel::headerData( int section, Qt::Orientat
 
 QModelIndex Akregator::SubscriptionListModel::parent( const QModelIndex& index ) const
 {
-    const Akregator::TreeNode* const node = nodeForIndex( index, m_feedList );
+    const Akregator::TreeNode* const node = nodeForIndex( index, m_feedList.get() );
 
     if ( !node || !node->parent() )
         return QModelIndex();
@@ -252,7 +250,7 @@ QModelIndex Akregator::SubscriptionListModel::index( int row, int column, const 
     if ( !parent.isValid() )
         return ( row == 0 && m_feedList ) ? createIndex( row, column , m_feedList->rootNode()->id() ) : QModelIndex();
 
-    const Akregator::TreeNode* const parentNode = nodeForIndex( parent, m_feedList );
+    const Akregator::TreeNode* const parentNode = nodeForIndex( parent, m_feedList.get() );
     const Akregator::TreeNode* const childNode = parentNode->childAt( row );
     return  childNode ? createIndex( row, column, childNode->id() ) : QModelIndex();
 }
@@ -270,11 +268,6 @@ QModelIndex SubscriptionListModel::indexForNode( const TreeNode* node ) const
     const QModelIndex idx = index( row, 0, indexForNode( parent ) );
     Q_ASSERT( idx.internalId() == node->id() );
     return idx;
-}
-
-void Akregator::SubscriptionListModel::feedListDestroyed( Akregator::FeedList* )
-{
-    m_feedList = 0;
 }
 
 void Akregator::SubscriptionListModel::subscriptionAdded( Akregator::TreeNode* subscription )
@@ -360,16 +353,16 @@ void Akregator::FolderExpansionHandler::setExpanded( const QModelIndex& idx, boo
     folder->setOpen( expanded );
 }
 
-Akregator::FolderExpansionHandler::FolderExpansionHandler( QObject* parent ) : QObject( parent ), m_feedList( 0 ), m_model( 0 )
+FolderExpansionHandler::FolderExpansionHandler( QObject* parent ) : QObject( parent ), m_feedList(), m_model( 0 )
 {
 }
 
-void Akregator::FolderExpansionHandler::setModel( Akregator::SubscriptionListModel* model )
+void FolderExpansionHandler::setModel( Akregator::SubscriptionListModel* model )
 {
     m_model = model;
 }
 
-void Akregator::FolderExpansionHandler::setFeedList( Akregator::FeedList* feedList )
+void FolderExpansionHandler::setFeedList( const shared_ptr<FeedList>& feedList )
 {
     m_feedList = feedList;
 }
@@ -421,7 +414,7 @@ bool SubscriptionListModel::setData( const QModelIndex& idx, const QVariant& val
 {
     if ( !idx.isValid() || idx.column() != TitleColumn || role != Qt::EditRole )
         return false;
-    const TreeNode* const node = nodeForIndex( idx, m_feedList );
+    const TreeNode* const node = nodeForIndex( idx, m_feedList.get() );
     if ( !node )
         return false;
     RenameSubscriptionJob* job = new RenameSubscriptionJob( this );
@@ -445,7 +438,7 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
 
     if ( data->hasFormat( AKREGATOR_TREENODE_MIMETYPE ) )
     {
-        const TreeNode* const droppedOnNode = qobject_cast<const TreeNode*>( nodeForIndex( parent, m_feedList ) );
+        const TreeNode* const droppedOnNode = qobject_cast<const TreeNode*>( nodeForIndex( parent, m_feedList.get() ) );
 
         const Folder* const destFolder = droppedOnNode->isGroup() ? qobject_cast<const Folder*>( droppedOnNode ) : droppedOnNode->parent();
         if ( !destFolder )

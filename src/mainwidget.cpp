@@ -87,6 +87,7 @@
 #include <memory>
 #include <cassert>
 
+using namespace boost;
 using namespace Akregator;
 using namespace Solid;
 
@@ -101,7 +102,7 @@ Akregator::MainWidget::~MainWidget()
 
 Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
      : QWidget(parent),
-     m_feedList( 0 ),
+     m_feedList(),
      m_viewMode(NormalView),
      m_actionManager(actionManager),
      m_feedListManagementInterface( new FeedListManagementImpl )
@@ -276,7 +277,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_markReadTimer->setSingleShot(true);
     connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
 
-    setFeedList( new FeedList( Kernel::self()->storage() ) );
+    setFeedList( shared_ptr<FeedList>( new FeedList( Kernel::self()->storage() ) ) );
 
     switch (Settings::viewMode())
     {
@@ -303,7 +304,7 @@ void Akregator::MainWidget::slotOnShutdown()
 
     Kernel::self()->fetchQueue()->slotAbort();
 
-    setFeedList( 0 );
+    setFeedList( shared_ptr<FeedList>() );
 
     delete m_feedListManagementInterface;
     delete m_feedListView; // call delete here, so that the header settings will get saved
@@ -420,11 +421,11 @@ bool Akregator::MainWidget::importFeeds(const QDomDocument& doc)
     return true;
 }
 
-void Akregator::MainWidget::setFeedList( FeedList* list )
+void Akregator::MainWidget::setFeedList( const shared_ptr<FeedList>& list )
 {
     if ( list == m_feedList )
         return;
-    FeedList* const oldList = m_feedList;
+    const shared_ptr<FeedList> oldList = m_feedList;
 
     m_feedList = list;
     if ( m_feedList )
@@ -435,37 +436,34 @@ void Akregator::MainWidget::setFeedList( FeedList* list )
     }
 
     m_feedListManagementInterface->setFeedList( m_feedList );
-    Kernel::self()->setFeedList( m_feedList);
+    Kernel::self()->setFeedList( m_feedList );
     ProgressManager::self()->setFeedList( m_feedList );
     m_selectionController->setFeedList( m_feedList );
-
-    kDebug() << "new feed list is %p old one: %p" << m_feedList.data() << oldList;
 
     if ( oldList ) {
         oldList->disconnect( this );
         oldList->rootNode()->disconnect( this );
     }
-    delete oldList;
     slotDeleteExpiredArticles();
 }
 
 bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc)
 {
     assert( m_feedList );
-    std::auto_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
+    shared_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
 
     if ( !feedList->readFromOpml( doc ) )
         return false;
 
     m_feedListView->setUpdatesEnabled( false );
-    setFeedList( feedList.release() );
+    setFeedList( feedList );
     m_feedListView->setUpdatesEnabled( true );
     m_feedListView->triggerUpdate();
     return true;
 }
 
 
-void Akregator::MainWidget::deleteExpiredArticles( FeedList* list )
+void Akregator::MainWidget::deleteExpiredArticles( const shared_ptr<FeedList>& list )
 {
     if ( !list )
         return;
@@ -1168,7 +1166,7 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
         connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
 
         Kernel::self()->frameManager()->slotAddFrame(frame);
-        
+
     }
 }
 

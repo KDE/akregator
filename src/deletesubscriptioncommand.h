@@ -29,6 +29,8 @@
 
 #include <QVector>
 
+#include <boost/weak_ptr.hpp>
+
 namespace Akregator {
 
 class FeedList;
@@ -39,16 +41,16 @@ class DeleteSubscriptionCommand : public Command
 public:
     explicit DeleteSubscriptionCommand( QObject* parent = 0 );
     ~DeleteSubscriptionCommand();
-    
-    void setSubscription( FeedList* feedList, int subId );
-    
+
+    void setSubscription( const boost::weak_ptr<FeedList>& feedList, int subId );
+
     int subscriptionId() const;
-    FeedList* feedList() const;
-    
+    boost::weak_ptr<FeedList> feedList() const;
+
 private:
     void doStart();
     void doAbort();
-    
+
 private:
     class Private;
     Private* const d;

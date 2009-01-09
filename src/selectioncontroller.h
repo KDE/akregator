@@ -61,7 +61,7 @@ public:
     Akregator::TreeNode* selectedSubscription() const;
 
     //impl
-    void setFeedList( Akregator::FeedList* list );
+    void setFeedList( const boost::shared_ptr<FeedList>& list );
 
     //impl
     void setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler );
@@ -74,10 +74,6 @@ public Q_SLOTS:
     //impl
     void forceFilterUpdate();
 
-private:
-
-    void setUp();
-
 private Q_SLOTS:
 
     void selectedSubscriptionChanged( const QModelIndex& index );
@@ -88,8 +84,8 @@ private Q_SLOTS:
 
 private:
 
-    Akregator::FeedList* m_feedList;
-    QAbstractItemView* m_feedSelector;
+    boost::shared_ptr<FeedList> m_feedList;
+    QPointer<QAbstractItemView> m_feedSelector;
     Akregator::ArticleLister* m_articleLister;
     Akregator::SingleArticleDisplay* m_singleDisplay;
     Akregator::SubscriptionListModel* m_subscriptionModel;

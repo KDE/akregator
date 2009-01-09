@@ -25,6 +25,8 @@
 #ifndef AKREGATOR_PROGRESSMANAGER_H
 #define AKREGATOR_PROGRESSMANAGER_H
 
+#include <boost/shared_ptr.hpp>
+
 namespace Akregator
 {
 
@@ -38,14 +40,14 @@ class ProgressManager : public QObject
 {
     Q_OBJECT
     public:
-        
+
         static ProgressManager* self();
 
         ProgressManager();
         ~ProgressManager();
 
         /** sets the feed list to be managed */
-        void setFeedList(FeedList* feedList);
+        void setFeedList( const boost::shared_ptr<FeedList>& feedList);
 
     protected slots:
 
@@ -57,7 +59,7 @@ class ProgressManager : public QObject
 
         static ProgressManager* m_self;
 
-        class ProgressManagerPrivate; 
+        class ProgressManagerPrivate;
         ProgressManagerPrivate* d;
 };
 
@@ -77,7 +79,7 @@ class ProgressItemHandler : public QObject
         void slotFetchCompleted();
         void slotFetchAborted();
         void slotFetchError();
-        
+
     private:
         class ProgressItemHandlerPrivate;
         ProgressItemHandlerPrivate* d;

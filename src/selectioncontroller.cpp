@@ -38,20 +38,21 @@
 #include <QMenu>
 #include <QTimer>
 
+using namespace boost;
 using namespace Akregator;
 
 namespace {
-    static Akregator::Article articleForIndex( const QModelIndex& index, Akregator::FeedList* feedList )
+    static Akregator::Article articleForIndex( const QModelIndex& index, FeedList* feedList )
     {
         if ( !index.isValid() )
             return Akregator::Article();
 
-        const QString guid = index.data( Akregator::ArticleModel::GuidRole ).toString();
-        const QString feedId = index.data( Akregator::ArticleModel::FeedIdRole ).toString();
+        const QString guid = index.data( ArticleModel::GuidRole ).toString();
+        const QString feedId = index.data( ArticleModel::FeedIdRole ).toString();
         return feedList->findArticle( feedId, guid );
     }
 
-    static QList<Akregator::Article> articlesForIndexes( const QModelIndexList& indexes, Akregator::FeedList* feedList )
+    static QList<Akregator::Article> articlesForIndexes( const QModelIndexList& indexes, FeedList* feedList )
     {
         QList<Akregator::Article> articles;
         Q_FOREACH ( const QModelIndex& i, indexes )
@@ -73,14 +74,14 @@ namespace {
 
 Akregator::SelectionController::SelectionController( QObject* parent )
     : AbstractSelectionController( parent ),
-    m_feedList( 0 ),
-    m_feedSelector( 0 ),
+    m_feedList(),
+    m_feedSelector(),
     m_articleLister( 0 ),
     m_singleDisplay( 0 ),
-    m_subscriptionModel ( 0 ),
+    m_subscriptionModel ( new SubscriptionListModel( shared_ptr<FeedList>(), this ) ),
     m_folderExpansionHandler( 0 ),
     m_articleModel( 0 ),
-    m_selectedSubscription( 0 )
+    m_selectedSubscription()
 {
     m_articleFetchTimer = new QTimer( this );
     connect( m_articleFetchTimer, SIGNAL( timeout() ),
@@ -91,23 +92,43 @@ Akregator::SelectionController::SelectionController( QObject* parent )
 
 void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSelector )
 {
-    if ( m_feedSelector )
-    {
-        m_feedSelector->disconnect( this );
+    if ( m_feedSelector == feedSelector )
+        return;
 
-        if ( m_feedSelector->selectionModel() )
-            m_feedSelector->selectionModel()->disconnect( this );
+    if ( m_feedSelector ) {
+        m_feedSelector->disconnect( this );
+        m_feedSelector->selectionModel()->disconnect( this );
     }
+
     m_feedSelector = feedSelector;
-    setUp();
+
+    if ( !m_feedSelector )
+        return;
+
+    m_feedSelector->setModel( m_subscriptionModel );
+
+    connect( m_feedSelector, SIGNAL(customContextMenuRequested(QPoint)),
+             this, SLOT(subscriptionContextMenuRequested(QPoint)) );
+    connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+             this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+
 }
 
 void Akregator::SelectionController::setArticleLister( Akregator::ArticleLister* lister )
 {
+    if ( m_articleLister == lister )
+        return;
+
     if ( m_articleLister )
         m_articleLister->articleSelectionModel()->disconnect( this );
+    if ( m_articleLister && m_articleLister->itemView() )
+        m_articleLister->itemView()->disconnect( this );
+
     m_articleLister = lister;
-    setUp();
+
+    if ( m_articleLister && m_articleLister->itemView() )
+        connect( m_articleLister->itemView(), SIGNAL(doubleClicked(QModelIndex)),
+                 this, SLOT(articleIndexDoubleClicked(QModelIndex))  );
 }
 
 void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleArticleDisplay* display )
@@ -117,66 +138,51 @@ void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleA
 
 Akregator::Article Akregator::SelectionController::currentArticle() const
 {
-    return ::articleForIndex( m_articleLister->articleSelectionModel()->currentIndex(), m_feedList );
+    return ::articleForIndex( m_articleLister->articleSelectionModel()->currentIndex(), m_feedList.get() );
 }
 
 QList<Akregator::Article> Akregator::SelectionController::selectedArticles() const
 {
-    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedRows(), m_feedList );
+    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedRows(), m_feedList.get() );
 }
 
 Akregator::TreeNode* Akregator::SelectionController::selectedSubscription() const
 {
-    return ::subscriptionForIndex( m_feedSelector->selectionModel()->currentIndex(), m_feedList );
+    return ::subscriptionForIndex( m_feedSelector->selectionModel()->currentIndex(), m_feedList.get() );
 }
 
-void Akregator::SelectionController::setFeedList( Akregator::FeedList* list )
+void Akregator::SelectionController::setFeedList( const shared_ptr<FeedList>& list )
 {
+    if ( m_feedList == list )
+        return;
+
     m_feedList = list;
-    setUp();
+    std::auto_ptr<SubscriptionListModel> oldModel( m_subscriptionModel );
+    m_subscriptionModel = new SubscriptionListModel( m_feedList, this );
+
+    if ( m_folderExpansionHandler ) {
+        m_folderExpansionHandler->setFeedList( m_feedList );
+        m_folderExpansionHandler->setModel( m_subscriptionModel );
+    }
+
+    if ( m_feedSelector ) {
+        m_feedSelector->setModel( m_subscriptionModel );
+        disconnect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                    this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+        connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                 this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+    }
 }
 
 void Akregator::SelectionController::setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler )
 {
+    if ( handler == m_folderExpansionHandler )
+        return;
     m_folderExpansionHandler = handler;
-    if ( !handler )
+    if ( !m_folderExpansionHandler )
         return;
     handler->setFeedList( m_feedList );
     handler->setModel( m_subscriptionModel );
-}
-
-void Akregator::SelectionController::setUp()
-{
-    if ( !m_feedList || !m_feedSelector || !m_articleLister )
-        return;
-
-    m_subscriptionModel = new SubscriptionListModel( m_feedList, this );
-    if ( m_folderExpansionHandler )
-    {
-        m_folderExpansionHandler->setFeedList( m_feedList );
-        m_folderExpansionHandler->setModel( m_subscriptionModel );
-    }
-    m_feedSelector->setModel( m_subscriptionModel );
-
-    // setUp might be called more than once, so disconnect first
-    //connect exactly once:
-    disconnect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
-             this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
-    connect( m_feedSelector->selectionModel(), SIGNAL( currentChanged( QModelIndex, QModelIndex ) ),
-             this, SLOT( selectedSubscriptionChanged( QModelIndex ) ) );
-
-    //connect exactly once:
-    disconnect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ),
-             this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
-    connect( m_feedSelector, SIGNAL( customContextMenuRequested( QPoint ) ),
-             this, SLOT( subscriptionContextMenuRequested( QPoint ) ) );
-
-    if ( m_articleLister->itemView() )
-    {
-        //connect exactly once:
-        disconnect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
-        connect( m_articleLister->itemView(), SIGNAL( doubleClicked( QModelIndex ) ), this, SLOT( articleIndexDoubleClicked( QModelIndex ) )  );
-    }
 }
 
 void Akregator::SelectionController::articleHeadersAvailable()
@@ -189,8 +195,10 @@ void Akregator::SelectionController::articleHeadersAvailable()
 
     m_articleLister->setIsAggregation( m_selectedSubscription->isAggregation() );
 
-    connect( m_articleLister->articleSelectionModel(), SIGNAL( selectionChanged( QItemSelection, QItemSelection ) ),
-             this, SLOT( articleSelectionChanged() ) );
+    disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
+                this, SLOT(articleSelectionChanged()) );
+    connect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
+             this, SLOT(articleSelectionChanged()) );
 
     if ( m_selectedSubscription )
         m_articleLister->setScrollBarPositions( m_selectedSubscription->listViewScrollBarPositions() );
@@ -223,7 +231,7 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
 void Akregator::SelectionController::subscriptionContextMenuRequested( const QPoint& point )
 {
     Q_ASSERT( m_feedSelector );
-    const TreeNode* const node = ::subscriptionForIndex( m_feedSelector->indexAt( point ), m_feedList );
+    const TreeNode* const node = ::subscriptionForIndex( m_feedSelector->indexAt( point ), m_feedList.get() );
     if ( !node )
         return;
 
@@ -246,7 +254,7 @@ void Akregator::SelectionController::articleSelectionChanged()
 
 void Akregator::SelectionController::articleIndexDoubleClicked( const QModelIndex& index )
 {
-    const Akregator::Article article = ::articleForIndex( index, m_feedList );
+    const Akregator::Article article = ::articleForIndex( index, m_feedList.get() );
     emit articleDoubleClicked( article );
 }
 

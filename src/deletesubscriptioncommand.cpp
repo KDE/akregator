@@ -37,6 +37,7 @@
 #include <QTimer>
 
 using namespace Akregator;
+using namespace boost;
 
 namespace {
 
@@ -45,14 +46,14 @@ class DeleteNodeVisitor : public TreeNodeVisitor
     public:
         explicit DeleteNodeVisitor( QWidget* parent ) : m_widget( parent ), m_job( 0 ) {}
 
-        
+
         bool visitFolder( Folder* node )
         {
             const QString msg = node->title().isEmpty()
-                                ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>") 
+                                ? i18n("<qt>Are you sure you want to delete this folder and its feeds and subfolders?</qt>")
                                 : i18n("<qt>Are you sure you want to delete folder <b>%1</b> and its feeds and subfolders?</qt>", node->title());
 
-            if ( KMessageBox::warningContinueCancel( m_widget, 
+            if ( KMessageBox::warningContinueCancel( m_widget,
                                                      msg,
                                                      i18n( "Delete Folder" ),
                                                      KStandardGuiItem::del(),
@@ -73,7 +74,7 @@ class DeleteNodeVisitor : public TreeNodeVisitor
             else
                 msg = i18n("<qt>Are you sure you want to delete feed <b>%1</b>?</qt>", node->title());
 
-            if ( KMessageBox::warningContinueCancel( m_widget, 
+            if ( KMessageBox::warningContinueCancel( m_widget,
                                                      msg,
                                                      i18n( "Delete Feed" ),
                                                      KStandardGuiItem::del(),
@@ -85,7 +86,7 @@ class DeleteNodeVisitor : public TreeNodeVisitor
             // m_widget->m_feedListView->setFocus();
             return true;
         }
-        
+
 
         DeleteSubscriptionJob* createJob( TreeNode* node )
         {
@@ -102,7 +103,7 @@ class DeleteNodeVisitor : public TreeNodeVisitor
             job->setSubscriptionId( node->id() );
             return job;
         }
-        
+
     private:
         QPointer<QWidget> m_widget;
         QPointer<DeleteSubscriptionJob> m_job;
@@ -116,19 +117,19 @@ class DeleteSubscriptionCommand::Private
 public:
     explicit Private( DeleteSubscriptionCommand* qq );
     ~Private();
-    
+
     void startDelete();
     void jobFinished();
-    
-    FeedList* m_list;
+
+    weak_ptr<FeedList> m_list;
     int m_subscriptionId;
 };
 
 DeleteSubscriptionCommand::Private::Private( DeleteSubscriptionCommand* qq ) : q( qq ),
-                                                                               m_list( 0 ),
+                                                                               m_list(),
                                                                                m_subscriptionId( -1 )
 {
-    
+
 }
 
 DeleteSubscriptionCommand::Private::~Private()
@@ -144,7 +145,7 @@ DeleteSubscriptionCommand::~DeleteSubscriptionCommand()
     delete d;
 }
 
-void DeleteSubscriptionCommand::setSubscription( FeedList* feedList, int subId )
+void DeleteSubscriptionCommand::setSubscription( const weak_ptr<FeedList>& feedList, int subId )
 {
     d->m_list = feedList;
     d->m_subscriptionId = subId;
@@ -155,11 +156,11 @@ int DeleteSubscriptionCommand::subscriptionId() const
     return d->m_subscriptionId;
 }
 
-FeedList* DeleteSubscriptionCommand::feedList() const
+weak_ptr<FeedList> DeleteSubscriptionCommand::feedList() const
 {
     return d->m_list;
 }
-    
+
 void DeleteSubscriptionCommand::doStart()
 {
     QTimer::singleShot( 0, this, SLOT( startDelete() ) );
@@ -172,7 +173,12 @@ void DeleteSubscriptionCommand::Private::jobFinished()
 
 void DeleteSubscriptionCommand::Private::startDelete()
 {
-    TreeNode* const node = m_list->findByID( m_subscriptionId );
+    const shared_ptr<FeedList> list = m_list.lock();
+    if ( !list ) {
+        q->done();
+        return;
+    }
+    TreeNode* const node = list->findByID( m_subscriptionId );
     DeleteNodeVisitor visitor( q->parentWidget() );
     DeleteSubscriptionJob* job = visitor.createJob( node );
     if ( !job )
@@ -180,14 +186,14 @@ void DeleteSubscriptionCommand::Private::startDelete()
         q->done();
         return;
     }
-    
+
     QObject::connect( job, SIGNAL( finished( KJob* ) ), q, SLOT( jobFinished() ) );
     job->start();
 }
 
 void DeleteSubscriptionCommand::doAbort()
 {
-    
+
 }
 
 #include "deletesubscriptioncommand.moc"

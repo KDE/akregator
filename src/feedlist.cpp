@@ -43,6 +43,8 @@
 
 #include <cassert>
 
+using namespace boost;
+
 namespace Akregator {
 
 class FeedList::Private
@@ -155,8 +157,8 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
         FeedList* m_list;
 };
 
-FeedList::FeedList(Akregator::Backend::Storage* storage, QObject *parent)
-    : QObject(parent), d(new Private)
+FeedList::FeedList(Akregator::Backend::Storage* storage)
+    : QObject(0), d(new Private)
 {
     Q_ASSERT( storage );
     d->storage = storage;
@@ -476,12 +478,12 @@ void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
     emit signalNodeRemoved( node );
 }
 
-FeedListManagementImpl::FeedListManagementImpl( FeedList* list ) : m_feedList( list )
+FeedListManagementImpl::FeedListManagementImpl( const shared_ptr<FeedList>& list ) : m_feedList( list )
 {
 
 }
 
-void FeedListManagementImpl::setFeedList( FeedList* list )
+void FeedListManagementImpl::setFeedList( const shared_ptr<FeedList>& list )
 {
     m_feedList = list;
 }

@@ -32,6 +32,8 @@
 
 #include <QPointer>
 
+using namespace boost;
+
 namespace Akregator
 {
 
@@ -51,7 +53,7 @@ class Kernel::KernelPrivate
     public:
 
     Backend::Storage* storage;
-    QPointer<FeedList> feedList;
+    shared_ptr<FeedList> feedList;
     FetchQueue* fetchQueue;
     FrameManager* frameManager;
 };
@@ -81,12 +83,12 @@ void Kernel::setStorage(Backend::Storage* storage)
     d->storage = storage;
 }
 
-FeedList* Kernel::feedList()
+shared_ptr<FeedList> Kernel::feedList() const
 {
     return d->feedList;
 }
 
-void Kernel::setFeedList(FeedList* feedList)
+void Kernel::setFeedList(const shared_ptr<FeedList>& feedList)
 {
     d->feedList = feedList;
 }

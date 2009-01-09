@@ -34,8 +34,11 @@
 #include <QSet>
 #include <QTimer>
 
+#include <boost/shared_ptr.hpp>
+
 #include <cassert>
 
+using namespace boost;
 using namespace Akregator;
 
 class ExpireItemsCommand::Private
@@ -48,7 +51,7 @@ public:
     void addDeleteJobForFeed( Feed* feed );
     void jobFinished( KJob* );
 
-    QPointer<FeedList> m_feedList;
+    weak_ptr<FeedList> m_feedList;
     QVector<int> m_feeds;
     QSet<KJob*> m_jobs;
 };
@@ -80,9 +83,11 @@ void ExpireItemsCommand::Private::jobFinished( KJob* job )
 void ExpireItemsCommand::Private::createDeleteJobs()
 {
     assert( m_jobs.isEmpty() );
-    if ( m_feeds.isEmpty() || !m_feedList )
+    const shared_ptr<FeedList> feedList = m_feedList.lock();
+
+    if ( m_feeds.isEmpty() || !feedList )
     {
-        if ( !m_feedList )
+        if ( !feedList )
             kWarning() << "Associated feed list was deleted, could not expire items";
         q->done();
         return;
@@ -90,7 +95,7 @@ void ExpireItemsCommand::Private::createDeleteJobs()
 
     Q_FOREACH ( const int i, m_feeds )
     {
-        Feed* const feed = qobject_cast<Feed*>( m_feedList->findByID( i ) );
+        Feed* const feed = qobject_cast<Feed*>( feedList->findByID( i ) );
         if ( feed )
             addDeleteJobForFeed( feed );
     }
@@ -105,12 +110,12 @@ ExpireItemsCommand::~ExpireItemsCommand()
     delete d;
 }
 
-void ExpireItemsCommand::setFeedList( FeedList* feedList )
+void ExpireItemsCommand::setFeedList( const weak_ptr<FeedList>& feedList )
 {
     d->m_feedList = feedList;
 }
 
-FeedList* ExpireItemsCommand::feedList() const
+weak_ptr<FeedList> ExpireItemsCommand::feedList() const
 {
     return d->m_feedList;
 }

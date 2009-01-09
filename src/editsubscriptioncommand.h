@@ -27,6 +27,8 @@
 
 #include "command.h"
 
+#include <boost/shared_ptr.hpp>
+
 namespace Akregator {
 
 class FeedList;
@@ -38,19 +40,19 @@ class EditSubscriptionCommand : public Command
 public:
     explicit EditSubscriptionCommand( QObject* parent = 0 );
     ~EditSubscriptionCommand();
-    
-    void setSubscription( FeedList* feedList, int subId );    
+
+    void setSubscription( const boost::shared_ptr<FeedList>& feedList, int subId );
     int subscriptionId() const;
-    FeedList* feedList() const;
+    boost::shared_ptr<FeedList> feedList() const;
 
     SubscriptionListView* subscriptionListView() const;
     void setSubscriptionListView( SubscriptionListView* view );
 
-    
+
 private:
     void doStart();
     void doAbort();
-    
+
 private:
     class Private;
     Private* const d;
