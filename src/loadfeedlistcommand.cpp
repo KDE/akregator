@@ -69,8 +69,8 @@ void LoadFeedListCommand::Private::handleDocument( const QDomDocument& doc ) {
         bool backupCreated;
         const QString backupFile = createBackup( fileName, &backupCreated );
         const QString msg = backupCreated
-            ? i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backupFile )
-            : i18n("<qt>The standard feed list is corrupted (invalid XML). Could not create a backup!</p></qt>" );
+            ? i18n("<qt>The standard feed list is corrupted (invalid OPML). A backup was created:<p><b>%1</b></p></qt>", backupFile )
+            : i18n("<qt>The standard feed list is corrupted (invalid OPML). Could not create a backup!</p></qt>" );
 
         QPointer<QObject> that( q );
         KMessageBox::error( q->parentWidget(), msg, i18n("OPML Parsing Error") );
@@ -151,12 +151,19 @@ void LoadFeedListCommand::Private::doLoad() {
     if ( !doc.setContent( &file, true, &errMsg, &errLine, &errCol ) ) {
         bool backupCreated = false;
         const QString backupFile = createBackup( fileName, &backupCreated );
+        const QString title = i18nc( "error message window caption", "XML Parsing Error" );
+        const QString details = i18n( "<qt><p>XML parsing error in line %1, column %2 of %3:</p><p>%4</p></qt>",
+                                      QString::number( errLine ),
+                                      QString::number( errCol ),
+                                      fileName,
+                                      errMsg );
+        const QString msg = backupCreated
+            ? i18n( "<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backupFile )
+            : i18n( "<qt>The standard feed list is corrupted (invalid XML). Could not create a backup!</p></qt>" );
 
         QPointer<QObject> that( q );
-        if ( backupCreated )
-            KMessageBox::error( q->parentWidget(), i18n( "<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backupFile ), i18n( "XML Parsing Error" ) );
-        else
-            KMessageBox::error( q->parentWidget(), i18n( "<qt>The standard feed list is corrupted (invalid XML). Could not create a backup!</p></qt>" ), i18n( "XML Parsing Error" ) );
+
+        KMessageBox::detailedError( q->parentWidget(), msg, details, title );
 
         if ( that )
             emitResult( shared_ptr<FeedList>() );
