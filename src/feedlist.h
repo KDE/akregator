@@ -132,13 +132,6 @@ public:
 
     const Article findArticle(const QString& feedURL, const QString& guid) const;
 
-public slots:
-
-    /**
-     * Clears the list without touching the root node.
-     */
-    void clear();
-
 signals:
 
     void signalDestroyed(Akregator::FeedList*);

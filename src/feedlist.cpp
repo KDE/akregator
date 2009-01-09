@@ -422,16 +422,6 @@ bool FeedList::isEmpty() const
     return d->rootNode->firstChild() == 0;
 }
 
-void FeedList::clear()
-{
-    Q_ASSERT(rootNode());
-
-    QList<TreeNode*> children = rootNode()->children();
-
-    for (QList<TreeNode*>::ConstIterator it = children.constBegin(); it != children.constEnd(); ++it)
-        delete *it; // emits signal "emitSignalDestroyed"
-}
-
 void FeedList::setRootNode(Folder* folder)
 {
     delete d->rootNode;
