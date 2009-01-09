@@ -84,6 +84,7 @@ set(akregatorpart_PART_SRCS
    articleviewer.cpp 
    articleformatter.cpp
    addfeeddialog.cpp 
+   loadfeedlistcommand.cpp
    editsubscriptioncommand.cpp
    feedpropertiesdialog.cpp 
    tabwidget.cpp 

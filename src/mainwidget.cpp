@@ -447,22 +447,6 @@ void Akregator::MainWidget::setFeedList( const shared_ptr<FeedList>& list )
     slotDeleteExpiredArticles();
 }
 
-bool Akregator::MainWidget::loadFeeds(const QDomDocument& doc)
-{
-    assert( m_feedList );
-    shared_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
-
-    if ( !feedList->readFromOpml( doc ) )
-        return false;
-
-    m_feedListView->setUpdatesEnabled( false );
-    setFeedList( feedList );
-    m_feedListView->setUpdatesEnabled( true );
-    m_feedListView->triggerUpdate();
-    return true;
-}
-
-
 void Akregator::MainWidget::deleteExpiredArticles( const shared_ptr<FeedList>& list )
 {
     if ( !list )

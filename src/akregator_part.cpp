@@ -32,6 +32,7 @@
 #include "feediconmanager.h"
 #include "framemanager.h"
 #include "kernel.h"
+#include "loadfeedlistcommand.h"
 #include "mainwidget.h"
 #include "notificationmanager.h"
 #include "plugin.h"
@@ -69,6 +70,69 @@
 #include <QWidget>
 #include <QDomDocument>
 #include "partadaptor.h"
+
+#include <memory>
+
+using namespace boost;
+
+namespace {
+
+    static QDomDocument createDefaultFeedList() {
+        QDomDocument doc;
+        QDomProcessingInstruction z = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
+        doc.appendChild( z );
+
+        QDomElement root = doc.createElement( "opml" );
+        root.setAttribute("version","1.0");
+        doc.appendChild( root );
+
+        QDomElement head = doc.createElement( "head" );
+        root.appendChild(head);
+
+        QDomElement text = doc.createElement( "text" );
+        text.appendChild(doc.createTextNode(i18n("Feeds")));
+        head.appendChild(text);
+
+        QDomElement body = doc.createElement( "body" );
+        root.appendChild(body);
+
+        QDomElement mainFolder = doc.createElement( "outline" );
+        mainFolder.setAttribute("text","KDE");
+        body.appendChild(mainFolder);
+
+        QDomElement ak = doc.createElement( "outline" );
+        ak.setAttribute("text",i18n("Akregator News"));
+        ak.setAttribute("xmlUrl","http://akregator.sf.net/rss2.php");
+        mainFolder.appendChild(ak);
+
+        QDomElement akb = doc.createElement( "outline" );
+        akb.setAttribute("text",i18n("Akregator Blog"));
+        akb.setAttribute("xmlUrl","http://akregator.pwsp.net/blog/?feed=rss2");
+        mainFolder.appendChild(akb);
+
+        QDomElement dot = doc.createElement( "outline" );
+        dot.setAttribute("text",i18n("KDE Dot News"));
+        dot.setAttribute("xmlUrl","http://www.kde.org/dotkdeorg.rdf");
+        mainFolder.appendChild(dot);
+
+        QDomElement plan = doc.createElement( "outline" );
+        plan.setAttribute("text",i18n("Planet KDE"));
+        plan.setAttribute("xmlUrl","http://planetkde.org/rss20.xml");
+        mainFolder.appendChild(plan);
+
+        QDomElement apps = doc.createElement( "outline" );
+        apps.setAttribute("text",i18n("KDE Apps"));
+        apps.setAttribute("xmlUrl","http://www.kde.org/dot/kde-apps-content.rdf");
+        mainFolder.appendChild(apps);
+
+        QDomElement look = doc.createElement( "outline" );
+        look.setAttribute("text",i18n("KDE Look"));
+        look.setAttribute("xmlUrl","http://www.kde.org/kde-look-content.rdf");
+        mainFolder.appendChild(look);
+
+        return doc;
+    }
+}
 
 namespace Akregator {
 
@@ -287,134 +351,19 @@ bool Part::openUrl(const KUrl& url)
 
 void Part::openStandardFeedList()
 {
-    if ( !m_standardFeedList.isEmpty() && openUrl(KUrl::fromPath(m_standardFeedList)) )
-        m_standardListLoaded = true;
+    if ( !m_standardFeedList.isEmpty() )
+        openUrl( KUrl::fromPath( m_standardFeedList ) );
 }
 
-QDomDocument Part::createDefaultFeedList()
-{
-    QDomDocument doc;
-    QDomProcessingInstruction z = doc.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
-    doc.appendChild( z );
-
-    QDomElement root = doc.createElement( "opml" );
-    root.setAttribute("version","1.0");
-    doc.appendChild( root );
-
-    QDomElement head = doc.createElement( "head" );
-    root.appendChild(head);
-
-    QDomElement text = doc.createElement( "text" );
-    text.appendChild(doc.createTextNode(i18n("Feeds")));
-    head.appendChild(text);
-
-    QDomElement body = doc.createElement( "body" );
-    root.appendChild(body);
-
-    QDomElement mainFolder = doc.createElement( "outline" );
-    mainFolder.setAttribute("text","KDE");
-    body.appendChild(mainFolder);
-
-    QDomElement ak = doc.createElement( "outline" );
-    ak.setAttribute("text",i18n("Akregator News"));
-    ak.setAttribute("xmlUrl","http://akregator.sf.net/rss2.php");
-    mainFolder.appendChild(ak);
-
-    QDomElement akb = doc.createElement( "outline" );
-    akb.setAttribute("text",i18n("Akregator Blog"));
-    akb.setAttribute("xmlUrl","http://akregator.pwsp.net/blog/?feed=rss2");
-    mainFolder.appendChild(akb);
-
-    QDomElement dot = doc.createElement( "outline" );
-    dot.setAttribute("text",i18n("KDE Dot News"));
-    dot.setAttribute("xmlUrl","http://www.kde.org/dotkdeorg.rdf");
-    mainFolder.appendChild(dot);
-
-    QDomElement plan = doc.createElement( "outline" );
-    plan.setAttribute("text",i18n("Planet KDE"));
-    plan.setAttribute("xmlUrl","http://planetkde.org/rss20.xml");
-    mainFolder.appendChild(plan);
-
-    QDomElement apps = doc.createElement( "outline" );
-    apps.setAttribute("text",i18n("KDE Apps"));
-    apps.setAttribute("xmlUrl","http://www.kde.org/dot/kde-apps-content.rdf");
-    mainFolder.appendChild(apps);
-
-    QDomElement look = doc.createElement( "outline" );
-    look.setAttribute("text",i18n("KDE Look"));
-    look.setAttribute("xmlUrl","http://www.kde.org/kde-look-content.rdf");
-    mainFolder.appendChild(look);
-
-    return doc;
-}
-
-bool Part::openFile()
-{
-    emit setStatusBarText(i18n("Opening Feed List...") );
-
-    QString str;
-    // m_file is always local so we can use QFile on it
-    QFile file(localFilePath());
-
-    bool fileExists = file.exists();
-    QString listBackup = m_storage->restoreFeedList();
-
-    QDomDocument doc;
-
-    if (!fileExists)
-    {
-        doc = createDefaultFeedList();
-    }
-    else
-    {
-        if (file.open(QIODevice::ReadOnly))
-        {
-            // Read OPML feeds list and build QDom tree.
-            QTextStream stream(&file);
-            stream.setCodec("UTF-8"); // FIXME not all opmls are in utf8
-            str = stream.readAll();
-            file.close();
-        }
-
-        if (!doc.setContent(str))
-        {
-
-            QString backup = localFilePath()
-                + QLatin1String("-backup.")
-                + QString::number(QDateTime::currentDateTime().toTime_t());
-
-            if ( QFile::copy( localFilePath(), backup ) )
-                KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backup), i18n("XML Parsing Error") );
-            else
-                KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (invalid XML). Could not create a backup!</p></qt>" ), i18n("XML Parsing Error") );
-
-            if (!doc.setContent(listBackup))
-                doc = createDefaultFeedList();
-        }
-    }
-
-    if (!m_mainWidget->loadFeeds(doc))
-    {
-        QString backup = localFilePath()
-            + QLatin1String("-backup.")
-            + QString::number(QDateTime::currentDateTime().toTime_t());
-
-        if ( QFile::copy( localFilePath(), backup ) )
-            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). A backup of the previous list was created:<p><b>%1</b></p></qt>", backup), i18n("OPML Parsing Error") );
-        else
-            KMessageBox::error(m_mainWidget, i18n("<qt>The standard feed list is corrupted (no valid OPML). Could not create a backup!></p></qt>" ), i18n("OPML Parsing Error") );
-        m_mainWidget->loadFeeds(createDefaultFeedList());
-    }
-
-    emit setStatusBarText(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
-
-
-    if( Settings::markAllFeedsReadOnStartup() )
-        m_mainWidget->slotMarkAllFeedsRead();
-
-    if (Settings::fetchOnStartup())
-            m_mainWidget->slotFetchAllFeeds();
-
+bool Part::openFile() {
+    std::auto_ptr<LoadFeedListCommand> cmd( new LoadFeedListCommand( m_mainWidget ) );
+    cmd->setParentWidget( m_mainWidget );
+    cmd->setStorage( Kernel::self()->storage() );
+    cmd->setFileName( localFilePath() );
+    cmd->setDefaultFeedList( createDefaultFeedList() );
+    connect( cmd.get(), SIGNAL(result(boost::shared_ptr<Akregator::FeedList>)),
+             this, SLOT(feedListLoaded(boost::shared_ptr<Akregator::FeedList>)) );
+    cmd.release()->start();
     return true;
 }
 
@@ -428,6 +377,18 @@ bool Part::writeToTextFile( const QString& data, const QString& filename ) const
     return file.finalize();
 }
 
+void Part::feedListLoaded( const shared_ptr<FeedList>& list ) {
+    m_standardListLoaded = list != 0;
+
+    m_mainWidget->setFeedList( list );
+
+    if( Settings::markAllFeedsReadOnStartup() )
+        m_mainWidget->slotMarkAllFeedsRead();
+
+    if (Settings::fetchOnStartup())
+        m_mainWidget->slotFetchAllFeeds();
+
+}
 
 void Part::slotSaveFeedList()
 {

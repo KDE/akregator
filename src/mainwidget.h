@@ -87,17 +87,12 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         @param doc the DOM tree (OPML) of the feeds to import */
         bool importFeeds(const QDomDocument& doc);
 
-        /** Parse OPML presentation of feeds and read in articles archive, if present.
-         * The current feed list is replaced by the parsed one
-         *
-         * @param doc QDomDocument generated from OPML
-         **/
-        bool loadFeeds(const QDomDocument& doc);
-
         /**
          * @return the displayed Feed List in OPML format
          */
         QDomDocument feedListToOPML();
+
+        void setFeedList( const boost::shared_ptr<FeedList>& feedList );
 
         /**
          * Add a feed to a group.
@@ -118,6 +113,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
                         CombinedView };
 
         ViewMode viewMode() const { return m_viewMode; }
+
 
     signals:
         /** emitted when the unread count of "All Feeds" was changed */
@@ -241,7 +237,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
     private:
         void deleteExpiredArticles( const boost::shared_ptr<FeedList>& feedList );
 
-        void setFeedList( const boost::shared_ptr<FeedList>& feedList );
         AbstractSelectionController* m_selectionController;
         boost::shared_ptr<FeedList> m_feedList;
 

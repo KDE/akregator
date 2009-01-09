@@ -30,6 +30,8 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
+#include <boost/shared_ptr.hpp>
+
 class KConfigGroup;
 class KUrl;
 class KCMultiDialog;
@@ -39,13 +41,13 @@ class QTimer;
 
 namespace Akregator {
 
-namespace Backend
-{
+namespace Backend {
     class Storage;
 }
 
 class ActionManagerImpl;
 class Feed;
+class FeedList;
 class MainWidget;
 class Part;
 class TrayIcon;
@@ -161,15 +163,14 @@ class Part : public KParts::ReadOnlyPart
         void slotOnShutdown();
         void slotSettingsChanged();
 
+        void feedListLoaded( const boost::shared_ptr<Akregator::FeedList>& list );
+
     private: // methods
 
         /** fills the font settings with system fonts, if fonts are not set */
         void initFonts();
 
         bool writeToTextFile( const QString& data, const QString& fname ) const;
-
-        /** creates an OPML file containing the initial feeds (KDE feeds) */
-        static QDomDocument createDefaultFeedList();
 
     private: // attributes
 
