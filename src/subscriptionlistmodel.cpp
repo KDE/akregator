@@ -53,7 +53,7 @@ using namespace Syndication;
 
 namespace {
 
-    QString errorCodeToString( Syndication::ErrorCode err )
+    static QString errorCodeToString( Syndication::ErrorCode err )
     {
         switch ( err )
         {
