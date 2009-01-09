@@ -378,16 +378,14 @@ bool Part::writeToTextFile( const QString& data, const QString& filename ) const
 }
 
 void Part::feedListLoaded( const shared_ptr<FeedList>& list ) {
-    m_standardListLoaded = list != 0;
-
     m_mainWidget->setFeedList( list );
+    m_standardListLoaded = list != 0;
 
     if( Settings::markAllFeedsReadOnStartup() )
         m_mainWidget->slotMarkAllFeedsRead();
 
     if (Settings::fetchOnStartup())
         m_mainWidget->slotFetchAllFeeds();
-
 }
 
 void Part::slotSaveFeedList()
