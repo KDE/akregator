@@ -84,8 +84,8 @@ public:
     /** Destructor. Contained nodes are deleted! */
     ~FeedList();
 
-    const Folder* rootNode() const;
-    Folder* rootNode();
+    const Folder* allFeedsFolder() const;
+    Folder* allFeedsFolder();
 
     bool isEmpty() const;
 

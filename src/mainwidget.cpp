@@ -415,7 +415,7 @@ bool Akregator::MainWidget::importFeeds(const QDomDocument& doc)
         return false;
 
     Folder* fg = new Folder(title);
-    m_feedList->rootNode()->appendChild(fg);
+    m_feedList->allFeedsFolder()->appendChild(fg);
     m_feedList->append(feedList.get(), fg);
 
     return true;
@@ -482,7 +482,7 @@ void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& gr
     if (!group)
     {
         Folder* g = new Folder( groupName );
-        m_feedList->rootNode()->appendChild(g);
+        m_feedList->allFeedsFolder()->appendChild(g);
         group = g;
     }
 
@@ -653,7 +653,7 @@ void Akregator::MainWidget::slotFeedAdd()
 {
     Folder* group = 0;
     if ( !m_selectionController->selectedSubscription() )
-        group = m_feedList->rootNode(); // all feeds
+        group = m_feedList->allFeedsFolder();
     else
     {
         if ( m_selectionController->selectedSubscription()->isGroup())
@@ -673,7 +673,7 @@ void Akregator::MainWidget::addFeed(const QString& url, TreeNode *after, Folder*
     CreateFeedCommand* cmd( new CreateFeedCommand( this ) );
     cmd->setParentWidget( this );
     cmd->setPosition( parent, after );
-    cmd->setRootFolder( m_feedList->rootNode() );
+    cmd->setRootFolder( m_feedList->allFeedsFolder() );
     cmd->setAutoExecute( autoExec );
     cmd->setUrl( url );
     cmd->setSubscriptionListView( m_feedListView );
@@ -685,7 +685,7 @@ void Akregator::MainWidget::slotFeedAddGroup()
     CreateFolderCommand* cmd = new CreateFolderCommand( this );
     cmd->setParentWidget( this );
     cmd->setSelectedSubscription( m_selectionController->selectedSubscription() );
-    cmd->setRootFolder( m_feedList->rootNode() );
+    cmd->setRootFolder( m_feedList->allFeedsFolder() );
     cmd->setSubscriptionListView( m_feedListView );
     cmd->start();
 }
@@ -695,7 +695,7 @@ void Akregator::MainWidget::slotFeedRemove()
     TreeNode* selectedNode = m_selectionController->selectedSubscription();
 
     // don't delete root element! (safety valve)
-    if (!selectedNode || selectedNode == m_feedList->rootNode())
+    if (!selectedNode || selectedNode == m_feedList->allFeedsFolder())
         return;
 
     DeleteSubscriptionCommand* cmd = new DeleteSubscriptionCommand( this );

@@ -248,7 +248,7 @@ QModelIndex Akregator::SubscriptionListModel::parent( const QModelIndex& index )
 QModelIndex Akregator::SubscriptionListModel::index( int row, int column, const QModelIndex& parent ) const
 {
     if ( !parent.isValid() )
-        return ( row == 0 && m_feedList ) ? createIndex( row, column , m_feedList->rootNode()->id() ) : QModelIndex();
+        return ( row == 0 && m_feedList ) ? createIndex( row, column , m_feedList->allFeedsFolder()->id() ) : QModelIndex();
 
     const Akregator::TreeNode* const parentNode = nodeForIndex( parent, m_feedList.get() );
     const Akregator::TreeNode* const childNode = parentNode->childAt( row );

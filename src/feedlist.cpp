@@ -291,11 +291,11 @@ bool FeedList::readFromOpml(const QDomDocument& doc)
 
     while( !i.isNull() )
     {
-        parseChildNodes(i, rootNode());
+        parseChildNodes(i, allFeedsFolder());
         i = i.nextSibling();
     }
 
-    for (TreeNode* i = rootNode()->firstChild(); i && i != rootNode(); i = i->next() )
+    for (TreeNode* i = allFeedsFolder()->firstChild(); i && i != allFeedsFolder(); i = i->next() )
         if (i->id() == 0)
     {
             uint id = generateID();
@@ -304,7 +304,7 @@ bool FeedList::readFromOpml(const QDomDocument& doc)
     }
 
     kDebug() <<"measuring startup time: STOP," << spent.elapsed() <<"ms";
-    kDebug() <<"Number of articles loaded:" << rootNode()->totalCount();
+    kDebug() <<"Number of articles loaded:" << allFeedsFolder()->totalCount();
     return true;
 }
 
@@ -345,14 +345,14 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
         return;
 
     if ( !d->flatList.contains(parent) )
-        parent = rootNode();
+        parent = allFeedsFolder();
 
-    QList<TreeNode*> children = list->rootNode()->children();
+    QList<TreeNode*> children = list->allFeedsFolder()->children();
 
     QList<TreeNode*>::ConstIterator end(  children.constEnd() );
     for (QList<TreeNode*>::ConstIterator it = children.constBegin(); it != end; ++it)
     {
-        list->rootNode()->removeChild(*it);
+        list->allFeedsFolder()->removeChild(*it);
         parent->insertChild(*it, after);
         after = *it;
     }
@@ -376,7 +376,7 @@ QDomDocument FeedList::toOpml() const
     QDomElement body = doc.createElement( "body" );
     root.appendChild( body );
 
-    foreach( const TreeNode* const i, rootNode()->children() )
+    foreach( const TreeNode* const i, allFeedsFolder()->children() )
         body.appendChild( i->toOPML(body, doc) );
 
     return doc;
@@ -394,20 +394,20 @@ TreeNode* FeedList::findByID(int id)
 
 QList<const TreeNode*> FeedList::findByTitle(const QString& title ) const
 {
-    return rootNode()->namedChildren( title );
+    return allFeedsFolder()->namedChildren( title );
 }
 
 QList<TreeNode*> FeedList::findByTitle(const QString& title )
 {
-    return rootNode()->namedChildren( title );
+    return allFeedsFolder()->namedChildren( title );
 }
 
-const Folder* FeedList::rootNode() const
+const Folder* FeedList::allFeedsFolder() const
 {
     return d->rootNode;
 }
 
-Folder* FeedList::rootNode()
+Folder* FeedList::allFeedsFolder()
 {
     return d->rootNode;
 }
@@ -562,7 +562,7 @@ void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
     Feed * new_feed = new Feed( Kernel::self()->storage() );
     new_feed->setXmlUrl(url);
     // new_feed->setTitle(url);
-    new_feedlist->rootNode()->appendChild(new_feed);
+    new_feedlist->allFeedsFolder()->appendChild(new_feed);
 
     // Get last in the folder
     TreeNode* m_last = m_folder->childAt( m_folder->totalCount() );
@@ -595,7 +595,7 @@ QString FeedListManagementImpl::addCategory( const QString& name, const QString&
         return "";
 
     Folder * m_folder = new Folder(name);
-    m_feedList->rootNode()->appendChild(m_folder);
+    m_feedList->allFeedsFolder()->appendChild(m_folder);
 
     return QString::number(m_folder->id());
 }
