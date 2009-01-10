@@ -1141,11 +1141,10 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
     // Reopen tabs
     QStringList childList = config.readEntry( QString::fromLatin1( "Children" ),
         QStringList() );
-    foreach(QString framePrefix, childList)
+    Q_FOREACH( const QString& framePrefix, childList )
     {
-        BrowserFrame* frame = new BrowserFrame(m_tabWidget);
-        framePrefix.append( QLatin1Char( '_' ) );
-        frame->loadConfig( config, framePrefix );
+        BrowserFrame* const frame = new BrowserFrame(m_tabWidget);
+        frame->loadConfig( config, framePrefix + QLatin1Char( '_' ) );
 
         connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
 
