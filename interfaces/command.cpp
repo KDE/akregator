@@ -25,23 +25,25 @@
 #include "command.h"
 
 #include <QEventLoop>
+#include <QPointer>
+#include <QWidget>
 
 using namespace Akregator;
 
 class Command::Private
 {
 public:
-    Private();    
-    QWidget* m_parentWidget;
+    Private();
+    QPointer<QWidget> parentWidget;
 };
 
-Command::Private::Private() : m_parentWidget( 0 )
+Command::Private::Private() : parentWidget()
 {
 }
 
 Command::Command( QObject* parent ) : QObject( parent ), d( new Private )
 {
-    
+
 }
 
 Command::~Command()
@@ -51,12 +53,12 @@ Command::~Command()
 
 QWidget* Command::parentWidget() const
 {
-    return d->m_parentWidget;
+    return d->parentWidget;
 }
 
 void Command::setParentWidget( QWidget* parentWidget )
 {
-    d->m_parentWidget = parentWidget;
+    d->parentWidget = parentWidget;
 }
 
 void Command::start()
@@ -80,7 +82,7 @@ void Command::waitForFinished()
 {
     QEventLoop loop;
     connect( this, SIGNAL( finished() ), &loop, SLOT( quit() ) );
-    loop.exec();    
+    loop.exec();
 }
 
 #include "command.moc"
