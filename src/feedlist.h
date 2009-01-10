@@ -40,11 +40,14 @@ template <class T> class QList;
 template <class K,class T> class QHash;
 class QString;
 
+class KJob;
+
 namespace Akregator {
 
 class Article;
 class Feed;
 class FeedList;
+class FetchQueue;
 class Folder;
 class TreeNode;
 
@@ -132,6 +135,11 @@ public:
 
     const Article findArticle(const QString& feedURL, const QString& guid) const;
 
+    int unread() const;
+
+    void addToFetchQueue( FetchQueue* queue, bool intervalOnly=false );
+    KJob* createMarkAsReadJob();
+
 signals:
 
     void signalDestroyed(Akregator::FeedList*);
@@ -160,6 +168,8 @@ signals:
     /** emitted when a fetch is aborted */
     void fetchAborted(Akregator::Feed *);
 
+    void unreadCountChanged( int unread );
+
 private:
 
     void addNode(TreeNode* node, bool preserveID);
@@ -175,6 +185,7 @@ private slots:
     void slotNodeDestroyed(Akregator::TreeNode* node);
     void slotNodeAdded(Akregator::TreeNode* node);
     void slotNodeRemoved(Akregator::Folder* parent, Akregator::TreeNode* node);
+    void rootNodeChanged();
 
 private:
     friend class AddNodeVisitor;

@@ -49,7 +49,11 @@ namespace Akregator {
 
 class FeedList::Private
 {
+    FeedList* const q;
+
 public:
+    Private( Backend::Storage* st, FeedList* qq );
+
     Akregator::Backend::Storage* storage;
     QList<TreeNode*> flatList;
     Folder* rootNode;
@@ -57,6 +61,7 @@ public:
     AddNodeVisitor* addNodeVisitor;
     RemoveNodeVisitor* removeNodeVisitor;
     QHash<QString, QList<Feed*> > urlMap;
+    mutable int unreadCache;
 };
 
 class FeedList::AddNodeVisitor : public TreeNodeVisitor
@@ -156,18 +161,22 @@ class FeedList::RemoveNodeVisitor : public TreeNodeVisitor
         FeedList* m_list;
 };
 
-FeedList::FeedList(Akregator::Backend::Storage* storage)
-    : QObject(0), d(new Private)
-{
+FeedList::Private::Private( Backend::Storage* st, FeedList* qq )
+    : q( qq )
+    , storage( st )
+    , rootNode( 0 )
+    , addNodeVisitor( new AddNodeVisitor( q ) )
+    , removeNodeVisitor( new RemoveNodeVisitor( q ) )
+    , unreadCache( -1 ) {
     Q_ASSERT( storage );
-    d->storage = storage;
-    d->rootNode = 0;
-    d->addNodeVisitor = new AddNodeVisitor(this);
-    d->removeNodeVisitor = new RemoveNodeVisitor(this);
-    Folder* rootNode = new Folder(i18n("All Feeds"));
-    rootNode->setId(1);
-    setRootNode(rootNode);
-    addNode(rootNode, true);
+}
+
+FeedList::FeedList( Backend::Storage* storage )
+    : QObject( 0 ), d( new Private( storage, this ) ) {
+    Folder* rootNode = new Folder( i18n("All Feeds") );
+    rootNode->setId( 1 );
+    setRootNode( rootNode );
+    addNode( rootNode, true );
 }
 
 QVector<int> FeedList::feedIds() const
@@ -408,18 +417,31 @@ bool FeedList::isEmpty() const
     return d->rootNode->firstChild() == 0;
 }
 
+void FeedList::rootNodeChanged() {
+    assert( d->rootNode );
+    const int newUnread = d->rootNode->unread();
+    if ( newUnread == d->unreadCache )
+        return;
+    d->unreadCache = newUnread;
+    emit unreadCountChanged( newUnread );
+}
+
 void FeedList::setRootNode(Folder* folder)
 {
+    if ( folder == d->rootNode )
+        return;
+
     delete d->rootNode;
     d->rootNode = folder;
+    d->unreadCache = -1;
 
-    if (d->rootNode)
-    {
+    if ( d->rootNode ) {
         d->rootNode->setOpen(true);
         connect(d->rootNode, SIGNAL(signalChildAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
         connect(d->rootNode, SIGNAL(signalAboutToRemoveChild(Akregator::TreeNode*)), this, SIGNAL(signalAboutToRemoveNode(Akregator::TreeNode*)));
         connect(d->rootNode, SIGNAL(signalChildRemoved(Akregator::Folder*, Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::Folder*, Akregator::TreeNode*)));
         connect( d->rootNode, SIGNAL( signalChanged(Akregator::TreeNode* ) ), this, SIGNAL( signalNodeChanged(Akregator::TreeNode* ) ) );
+        connect( d->rootNode, SIGNAL( signalChanged(Akregator::TreeNode* ) ), this, SLOT(rootNodeChanged()) );
     }
 }
 
@@ -452,6 +474,21 @@ void FeedList::slotNodeRemoved(Folder* /*parent*/, TreeNode* node)
         return;
     removeNode(node);
     emit signalNodeRemoved( node );
+}
+
+int FeedList::unread() const {
+    if ( d->unreadCache == -1 )
+        d->unreadCache = d->rootNode ? d->rootNode->unread() : 0;
+    return d->unreadCache;
+}
+
+void FeedList::addToFetchQueue( FetchQueue* qu, bool intervalOnly ) {
+    if ( d->rootNode )
+        d->rootNode->slotAddToFetchQueue( qu, intervalOnly );
+}
+
+KJob* FeedList::createMarkAsReadJob() {
+    return d->rootNode ? d->rootNode->createMarkAsReadJob() : 0;
 }
 
 FeedListManagementImpl::FeedListManagementImpl( const shared_ptr<FeedList>& list ) : m_feedList( list )

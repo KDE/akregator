@@ -428,22 +428,21 @@ void Akregator::MainWidget::setFeedList( const shared_ptr<FeedList>& list )
     const shared_ptr<FeedList> oldList = m_feedList;
 
     m_feedList = list;
-    if ( m_feedList )
-    {
-        connect( m_feedList->rootNode(), SIGNAL( signalChanged( Akregator::TreeNode* ) ),
-                 this, SLOT( slotSetTotalUnread() ) );
-        slotSetTotalUnread();
+    if ( m_feedList ) {
+        connect( m_feedList.get(), SIGNAL(unreadCountChanged(int) ),
+                 this, SLOT(slotSetTotalUnread()) );
     }
+
+    slotSetTotalUnread();
 
     m_feedListManagementInterface->setFeedList( m_feedList );
     Kernel::self()->setFeedList( m_feedList );
     ProgressManager::self()->setFeedList( m_feedList );
     m_selectionController->setFeedList( m_feedList );
 
-    if ( oldList ) {
+    if ( oldList )
         oldList->disconnect( this );
-        oldList->rootNode()->disconnect( this );
-    }
+
     slotDeleteExpiredArticles();
 }
 
@@ -747,7 +746,7 @@ void Akregator::MainWidget::slotPrevUnreadArticle()
 
 void Akregator::MainWidget::slotMarkAllFeedsRead()
 {
-    KJob* job = m_feedList->rootNode()->createMarkAsReadJob();
+    KJob* job = m_feedList->createMarkAsReadJob();
     connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()) );
     job->start();
 }
@@ -763,7 +762,7 @@ void Akregator::MainWidget::slotMarkAllRead()
 
 void Akregator::MainWidget::slotSetTotalUnread()
 {
-    emit signalUnreadCountChanged( m_feedList ? m_feedList->rootNode()->unread() : 0 );
+    emit signalUnreadCountChanged( m_feedList ? m_feedList->unread() : 0 );
 }
 
 void Akregator::MainWidget::slotDoIntervalFetches()
@@ -773,7 +772,7 @@ void Akregator::MainWidget::slotDoIntervalFetches()
     const Networking::Status status = Solid::Networking::status();
     if ( status != Networking::Connected && status != Networking::Unknown )
         return;
-    m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue(), true);
+    m_feedList->addToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
 
 void Akregator::MainWidget::slotFetchCurrentFeed()
@@ -785,7 +784,8 @@ void Akregator::MainWidget::slotFetchCurrentFeed()
 
 void Akregator::MainWidget::slotFetchAllFeeds()
 {
-    m_feedList->rootNode()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
+    if ( m_feedList )
+        m_feedList->addToFetchQueue( Kernel::self()->fetchQueue() );
 }
 
 void Akregator::MainWidget::slotFetchingStarted()
