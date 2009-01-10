@@ -38,6 +38,7 @@
 #include "deletesubscriptioncommand.h"
 #include "editsubscriptioncommand.h"
 #include "expireitemscommand.h"
+#include "importfeedlistcommand.h"
 #include "feed.h"
 #include "feedlist.h"
 #include "feedpropertiesdialog.h"
@@ -393,32 +394,13 @@ void Akregator::MainWidget::sendArticle(bool attach)
     }
 }
 
-bool Akregator::MainWidget::importFeeds(const QDomDocument& doc)
+void MainWidget::importFeedList( const QDomDocument& doc )
 {
-    std::auto_ptr<FeedList> feedList( new FeedList( Kernel::self()->storage() ) );
-    const bool parsed = feedList->readFromOpml(doc);
-
-    // FIXME: parsing error, print some message
-    if (!parsed)
-        return false;
-
-    QString title = i18n("Imported Folder");
-
-    bool ok;
-    title = KInputDialog::getText( i18n("Add Imported Folder"),
-                                   i18n("Imported folder name:"),
-                                   title,
-                                   &ok,
-                                   this );
-
-    if (!ok)
-        return false;
-
-    Folder* fg = new Folder(title);
-    m_feedList->allFeedsFolder()->appendChild(fg);
-    m_feedList->append(feedList.get(), fg);
-
-    return true;
+    std::auto_ptr<ImportFeedListCommand> cmd( new ImportFeedListCommand );
+    cmd->setParentWidget( this );
+    cmd->setFeedListDocument( doc );
+    cmd->setTargetList( m_feedList );
+    cmd.release()->start();
 }
 
 void Akregator::MainWidget::setFeedList( const shared_ptr<FeedList>& list )

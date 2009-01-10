@@ -465,7 +465,7 @@ void Part::importFile(const KUrl& url)
         // Read OPML feeds list and build QDom tree.
         QDomDocument doc;
         if (doc.setContent(file.readAll()))
-            m_mainWidget->importFeeds(doc);
+            m_mainWidget->importFeedList( doc );
         else
             KMessageBox::error(m_mainWidget, i18n("Could not import the file %1 (no valid OPML)", filename), i18n("OPML Parsing Error") );
     }

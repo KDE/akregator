@@ -86,6 +86,7 @@ set(akregatorpart_PART_SRCS
    addfeeddialog.cpp 
    loadfeedlistcommand.cpp
    editsubscriptioncommand.cpp
+   importfeedlistcommand.cpp
    feedpropertiesdialog.cpp 
    tabwidget.cpp 
    progressmanager.cpp 

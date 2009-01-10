@@ -85,7 +85,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         /** Adds the feeds in @c doc to the "Imported Folder"
         @param doc the DOM tree (OPML) of the feeds to import */
-        bool importFeeds(const QDomDocument& doc);
+        void importFeedList( const QDomDocument& doc );
 
         /**
          * @return the displayed Feed List in OPML format
