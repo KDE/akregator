@@ -46,18 +46,18 @@ class CreateFeedCommand::Private
     CreateFeedCommand* const q;
 public:
     explicit Private( CreateFeedCommand* qq );
-    
+
     void doCreate();
-    
-    Folder* m_rootFolder;
-    SubscriptionListView* m_subscriptionListView;
+
+    QPointer<Folder> m_rootFolder;
+    QPointer<SubscriptionListView> m_subscriptionListView;
     QString m_url;
-    Folder* m_parentFolder;
-    TreeNode* m_after;
+    QPointer<Folder> m_parentFolder;
+    QPointer<TreeNode> m_after;
     bool m_autoexec;
 };
 
-CreateFeedCommand::Private::Private( CreateFeedCommand* qq ) 
+CreateFeedCommand::Private::Private( CreateFeedCommand* qq )
   : q( qq ),
     m_rootFolder( 0 ),
     m_subscriptionListView( 0 ),
@@ -65,7 +65,7 @@ CreateFeedCommand::Private::Private( CreateFeedCommand* qq )
     m_after( 0 ),
     m_autoexec( false )
 {
-    
+
 }
 
 void CreateFeedCommand::Private::doCreate()
@@ -95,7 +95,7 @@ void CreateFeedCommand::Private::doCreate()
         q->done();
         return;
     }
-    
+
     QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( q->parentWidget(), "edit_feed" );
     dlg->setFeed( feed );
     dlg->selectFeedName();
@@ -117,7 +117,7 @@ void CreateFeedCommand::Private::doCreate()
 
 CreateFeedCommand::CreateFeedCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
 {
-    
+
 }
 
 CreateFeedCommand::~CreateFeedCommand()
@@ -137,7 +137,7 @@ void CreateFeedCommand::setRootFolder( Folder* rootFolder )
 
 void CreateFeedCommand::setUrl( const QString& url )
 {
-    d->m_url = url; 
+    d->m_url = url;
 }
 
 void CreateFeedCommand::setPosition( Folder* parent, TreeNode* after )
@@ -158,7 +158,7 @@ void CreateFeedCommand::doStart()
 
 void CreateFeedCommand::doAbort()
 {
-    
+
 }
 
 #include "createfeedcommand.moc"
