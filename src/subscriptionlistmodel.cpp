@@ -149,11 +149,10 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         }
         case Qt::FontRole:
         {
-            if(node->unread() > 0) {
-                QFont font = KGlobalSettings::generalFont();
+            QFont font = KGlobalSettings::generalFont();
+            if( node->unread() > 0 )
                 font.setBold( true );
-                return font;
-            }
+            return font;
         }
         case Qt::ToolTipRole:
         {
