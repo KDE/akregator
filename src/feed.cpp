@@ -653,7 +653,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
                                 + Utils::fileNameForUrl(d->xmlUrl) + ".png";
         d->imagePixmap=QPixmap(imageFileName, "PNG");
 
-        // if we aint got teh image and the feed provides one, get it....
+        // if we ain't got the image and the feed provides one, get it....
         // TODO: reenable image fetching!
         if (false) // d->imagePixmap.isNull() && doc.image())
         {
