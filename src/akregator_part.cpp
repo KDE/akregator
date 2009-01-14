@@ -692,10 +692,9 @@ void Part::initFonts()
     {
         int minfs;
         if (konq.hasKey("MinimumFontSize"))
-            minfs = konq.readEntry("MinimumFontSize", 0);
+            minfs = konq.readEntry("MinimumFontSize", 8);
         else
-            minfs = KGlobalSettings::generalFont().pointSize();
-        kDebug() <<"Part::initFonts(): set MinimumFontSize to" << minfs;
+            minfs = std::max( KGlobalSettings::generalFont().pointSize() - 2, 4 );
         Settings::setMinimumFontSize(minfs);
     }
 
@@ -703,10 +702,9 @@ void Part::initFonts()
     {
         int medfs;
         if (konq.hasKey("MediumFontSize"))
-            medfs = konq.readEntry("MediumFontSize", 0);
+            medfs = konq.readEntry("MediumFontSize", 12);
         else
             medfs = KGlobalSettings::generalFont().pointSize();
-        kDebug() <<"Part::initFonts(): set MediumFontSize to" << medfs;
         Settings::setMediumFontSize(medfs);
     }
 
@@ -715,8 +713,6 @@ void Part::initFonts()
         bool underline = true;
         if (konq.hasKey("UnderlineLinks"))
             underline = konq.readEntry("UnderlineLinks", false);
-
-        kDebug() <<"Part::initFonts(): set UnderlineLinks to" << underline;
         Settings::setUnderlineLinks(underline);
     }
 
