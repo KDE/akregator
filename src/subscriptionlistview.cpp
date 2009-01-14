@@ -130,7 +130,6 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setSelectionMode( QAbstractItemView::SingleSelection );
     setRootIsDecorated( false );
     setAlternatingRowColors( true );
-    setUniformRowHeights( true );
     setContextMenuPolicy( Qt::CustomContextMenu );
     setDragDropMode( QAbstractItemView::DragDrop );
     setDropIndicatorShown( true );
