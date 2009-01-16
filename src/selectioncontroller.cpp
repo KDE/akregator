@@ -26,6 +26,7 @@
 
 #include "actionmanager.h"
 #include "article.h"
+#include "articlejobs.h"
 #include "articlemodel.h"
 #include "feedlist.h"
 #include "subscriptionlistmodel.h"
@@ -83,10 +84,6 @@ Akregator::SelectionController::SelectionController( QObject* parent )
     m_articleModel( 0 ),
     m_selectedSubscription()
 {
-    m_articleFetchTimer = new QTimer( this );
-    connect( m_articleFetchTimer, SIGNAL( timeout() ),
-             this, SLOT( articleHeadersAvailable() ) );
-
 }
 
 
@@ -185,23 +182,45 @@ void Akregator::SelectionController::setFolderExpansionHandler( Akregator::Folde
     handler->setModel( m_subscriptionModel );
 }
 
-void Akregator::SelectionController::articleHeadersAvailable()
+void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
 {
+    assert( job );
+    assert( job == m_listJob );
+
     if(m_articleModel)
         delete m_articleModel;
 
-    m_articleModel = new Akregator::ArticleModel( m_selectedSubscription );
-    m_articleLister->setArticleModel( m_articleModel );
 
-    m_articleLister->setIsAggregation( m_selectedSubscription->isAggregation() );
+    m_articleModel = new Akregator::ArticleModel( m_listJob->articles() );
+
+    if ( job->error() ) {
+        kWarning() << job->errorText();
+        return;
+    }
+    TreeNode* const node = m_listJob->node();
+
+    assert( node ); // if there was no error, the node must still exist
+    assert( node == m_selectedSubscription ); //...and equal the previously selected node
+
+    connect( node, SIGNAL( destroyed() ),
+             m_articleModel, SLOT( clear() ) );
+    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ),
+            m_articleModel, SLOT( articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ),
+             m_articleModel, SLOT( articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+    connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
+             m_articleModel, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+
+    m_articleLister->setArticleModel( m_articleModel );
+    m_articleLister->setIsAggregation( node->isAggregation() );
 
     disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
                 this, SLOT(articleSelectionChanged()) );
     connect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
              this, SLOT(articleSelectionChanged()) );
 
-    if ( m_selectedSubscription )
-        m_articleLister->setScrollBarPositions( m_selectedSubscription->listViewScrollBarPositions() );
+    if ( node )
+        m_articleLister->setScrollBarPositions( node->listViewScrollBarPositions() );
 }
 
 
@@ -219,12 +238,16 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     // using a timer here internally to simulate async data fetching (which is still synchronous),
     // to ensure the UI copes with async behavior later on
 
-    if ( m_articleFetchTimer->isActive() )
-        m_articleFetchTimer->stop(); // to come: kill running list job
+    delete m_listJob;
 
-    m_articleFetchTimer->setInterval( KRandom::random() % 400 );
-    m_articleFetchTimer->setSingleShot( true );
-    m_articleFetchTimer->start();
+    if ( !m_selectedSubscription )
+        return;
+
+    ArticleListJob* const job( new ArticleListJob( m_selectedSubscription ) );
+    connect( job, SIGNAL(finished(KJob*)),
+             this, SLOT(articleHeadersAvailable(KJob*)) );
+    m_listJob = job;
+    m_listJob->start();
 
 }
 

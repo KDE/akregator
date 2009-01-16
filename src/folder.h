@@ -60,10 +60,6 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
 
         bool accept(TreeNodeVisitor* visitor);
 
-        /** returns recursively concatenated articles of children
-        @return an article sequence containing articles of children */
-        QList<Article> articles();
-
         /** returns the number of unread articles in all children
         @return number of unread articles */
         int unread() const;
@@ -198,6 +194,7 @@ class AKREGATORPART_EXPORT Folder : public TreeNode
         void doArticleNotification();
 
     private:
+        QList<Article> articles();
 
         void connectToNode(TreeNode* child);
         void disconnectFromNode(TreeNode* child);

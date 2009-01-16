@@ -37,7 +37,9 @@
 //transitional job classes
 namespace Akregator {
 
+class Article;
 class FeedList;
+class TreeNode;
 
 struct ArticleId
 {
@@ -98,6 +100,30 @@ private:
     boost::shared_ptr<FeedList> m_feedList;
     QMap<ArticleId, bool> m_keepFlags;
     QMap<ArticleId, int> m_status;
+};
+
+
+class ArticleListJob : public KJob
+{
+    Q_OBJECT
+public:
+    explicit ArticleListJob( TreeNode* parent = 0 );
+
+    QList<Article> articles() const;
+    TreeNode* node() const;
+
+    /* reimp */ void start();
+
+    enum Error {
+        ListingFailed = KJob::UserDefinedError
+    };
+
+private Q_SLOTS:
+    void doList();
+
+private:
+    const QPointer<TreeNode> m_node;
+    QList<Article> m_articles;
 };
 
 } // namespace akregator

@@ -32,7 +32,11 @@ class QModelIndex;
 class QPoint;
 class QTimer;
 
+class KJob;
+
 namespace Akregator {
+
+class ArticleListJob;
 
 class SelectionController : public AbstractSelectionController
 {
@@ -80,7 +84,7 @@ private Q_SLOTS:
     void articleSelectionChanged();
     void articleIndexDoubleClicked( const QModelIndex& index );
     void subscriptionContextMenuRequested( const QPoint& point );
-    void articleHeadersAvailable();
+    void articleHeadersAvailable(KJob*);
 
 private:
 
@@ -92,7 +96,7 @@ private:
     Akregator::FolderExpansionHandler* m_folderExpansionHandler;
     Akregator::ArticleModel* m_articleModel;
     QPointer<TreeNode> m_selectedSubscription;
-    QTimer* m_articleFetchTimer;
+    QPointer<ArticleListJob> m_listJob;
 };
 
 } // namespace Akregator

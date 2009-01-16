@@ -43,6 +43,7 @@ namespace Akregator
 {
 
 class ArticleDeleteJob;
+class ArticleListJob;
 class TreeNodeVisitor;
 class Article;
 class Feed;
@@ -57,6 +58,9 @@ class FetchQueue;
 */
 class AKREGATORPART_EXPORT TreeNode : public QObject
 {
+    friend class ::Akregator::ArticleListJob;
+    friend class ::Akregator::Folder;
+
 Q_OBJECT
 
 public:
@@ -137,11 +141,7 @@ public:
 
     virtual QIcon icon() const = 0;
 
-    /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
-    If @c tag is not null, only articles tagged with @c tag are returned
-    @return sequence of articles */
-
-    virtual QList<Article> articles() = 0;
+    ArticleListJob* createListJob();
 
     /** Helps the rest of the app to decide if node should be handled as group or not. Only use where necessary, use polymorphism where possible.
     @return whether the node is a feed group or not */
@@ -229,6 +229,12 @@ protected:
     virtual void doArticleNotification();
 
     void emitSignalDestroyed();
+
+private:
+    /** Returns a sequence of the articles this node contains. For feed groups, this returns a concatenated list of all articles in the sub tree.
+    @return sequence of articles */
+
+    virtual QList<Article> articles() = 0;
 
 private:
     class TreeNodePrivate;

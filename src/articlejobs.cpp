@@ -29,6 +29,7 @@
 #include "kernel.h"
 
 #include <KDebug>
+#include <KLocalizedString>
 
 #include <QTimer>
 
@@ -171,6 +172,30 @@ void CompositeJob::start()
     {
         i->start();
     }
+}
+
+ArticleListJob::ArticleListJob( TreeNode* p ) : KJob( p ), m_node( p ) {}
+
+void ArticleListJob::start() {
+    QTimer::singleShot( 20, this, SLOT( doList() ) );
+}
+
+void ArticleListJob::doList() {
+    if ( m_node )
+        m_articles = m_node->articles();
+    else {
+        setError( ListingFailed );
+        setErrorText( i18n("The feed to be listed was already removed.") );
+    }
+    emitResult();
+}
+
+TreeNode* ArticleListJob::node() const {
+    return m_node;
+}
+
+QList<Article> ArticleListJob::articles() const {
+    return m_articles;
 }
 
 #include "articlejobs.moc"

@@ -26,7 +26,6 @@
 #include "article.h"
 #include "articlematcher.h"
 #include "akregatorconfig.h"
-#include "treenode.h"
 #include "feed.h"
 
 #include <syndication/tools.h>
@@ -46,37 +45,25 @@ class ArticleModel::Private {
 private:
     ArticleModel* const q;
 public:
-    Private( TreeNode* node_, ArticleModel* qq );
-    Akregator::TreeNode* node;
-    QList<Akregator::Article> articles;
+    Private( const QList<Article>& articles, ArticleModel* qq );
+    QList<Article> articles;
     QVector<QString> titleCache;
 
-    void nodeDestroyed();
-    void articlesAdded( TreeNode*, const QList<Article>& );
-    void articlesRemoved( TreeNode*, const QList<Article>& );
-    void articlesUpdated( TreeNode*, const QList<Article>& );
+    void articlesAdded( const QList<Article>& );
+    void articlesRemoved( const QList<Article>& );
+    void articlesUpdated( const QList<Article>& );
 
 };
 
-ArticleModel::Private::Private( TreeNode* node_, ArticleModel* qq )
- : q( qq ), node( node_ )
+ArticleModel::Private::Private( const QList<Article>& articles_, ArticleModel* qq )
+ : q( qq ), articles( articles_ )
 {
-    Q_ASSERT( node );
-    articles = node->articles();
     titleCache.resize( articles.count() );
     for ( int i = 0; i < articles.count(); ++i )
         titleCache[i] = Syndication::htmlToPlainText( articles[i].title() );
-    connect( node, SIGNAL( destroyed() ) , q, SLOT( nodeDestroyed() ) );
-    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-                          q, SLOT( articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-                           q, SLOT( articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-    connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-                           q, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-
 }
 
-Akregator::ArticleModel::ArticleModel(TreeNode* node, QObject* parent) : QAbstractTableModel( parent ), d( new Private( node, this ) )
+Akregator::ArticleModel::ArticleModel(const QList<Article>& articles, QObject* parent) : QAbstractTableModel( parent ), d( new Private( articles, this ) )
 {
 }
 
@@ -183,16 +170,26 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
     return QVariant();
 }
 
-void Akregator::ArticleModel::Private::nodeDestroyed()
+void ArticleModel::clear()
 {
-    node = 0;
-    articles.clear();
-    q->reset();
+    d->articles.clear();
+    d->titleCache.clear();
+    reset();
 }
 
-void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>& list )
+void ArticleModel::articlesAdded( TreeNode*, const QList<Article>& l ) {
+    d->articlesAdded( l );
+}
+
+void ArticleModel::articlesRemoved( TreeNode*, const QList<Article>& l ) {
+    d->articlesRemoved( l );
+}
+void ArticleModel::articlesUpdated( TreeNode*, const QList<Article>& l ) {
+    d->articlesUpdated( l );
+}
+
+void ArticleModel::Private::articlesAdded( const QList<Article>& list )
 {
-    Q_UNUSED( node );
     if ( list.isEmpty() ) //assert?
         return;
     const int first = static_cast<int>( articles.count() );
@@ -206,9 +203,8 @@ void ArticleModel::Private::articlesAdded( TreeNode* node, const QList<Article>&
     q->endInsertRows();
 }
 
-void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article>& list )
+void ArticleModel::Private::articlesRemoved( const QList<Article>& list )
 {
-    Q_UNUSED( node );
     //might want to avoid indexOf() in case of performance problems
     Q_FOREACH ( const Article& i, list )
     {
@@ -219,9 +215,8 @@ void ArticleModel::Private::articlesRemoved( TreeNode* node, const QList<Article
 }
 
 
-void ArticleModel::Private::articlesUpdated( TreeNode* node, const QList<Article>& list )
+void ArticleModel::Private::articlesUpdated( const QList<Article>& list )
 {
-    Q_UNUSED( node );
     int rmin = 0;
     int rmax = 0;
 

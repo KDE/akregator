@@ -51,8 +51,8 @@ namespace Backend {
 /** represents a feed */
 class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListener
 {
-    friend class Article;
-
+    friend class ::Akregator::Article;
+    friend class ::Akregator::Folder;
     Q_OBJECT
     public:
         /** the archiving modes */
@@ -167,8 +167,6 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListene
         /** sets the description of this feed */
         void setDescription(const QString& s);
 
-        QList<Article> articles();
-
         /** returns article by guid
             * @param guid the guid of the article to be returned
             * @return the article object with the given guid, or a
@@ -246,6 +244,8 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListene
         Akregator::Backend::Storage* storage();
 
     private:
+        QList<Article> articles();
+
         /** loads articles from archive **/
         void loadArticles();
         void enforceLimitArticleNumber();

@@ -25,6 +25,7 @@
 #define AKREGATOR_ARTICLEMODEL_H
 
 #include <QAbstractTableModel>
+#include <QList>
 
 #include "akregator_export.h"
 
@@ -67,7 +68,7 @@ public:
         IsDeletedRole
     };
 
-    explicit ArticleModel( Akregator::TreeNode* node, QObject* parent = 0 );
+    explicit ArticleModel( const QList<Article>& articles, QObject* parent = 0 );
     ~ArticleModel();
 
     //reimpl
@@ -84,16 +85,19 @@ public:
 
     Article article( int row ) const;
 
+public Q_SLOTS:
+
+    void articlesAdded( Akregator::TreeNode*, const QList<Akregator::Article>& );
+    void articlesUpdated( Akregator::TreeNode*, const QList<Akregator::Article>& );
+    void articlesRemoved( Akregator::TreeNode*, const QList<Akregator::Article>& );
+    void clear();
+
 private:
     ArticleModel( const ArticleModel& );
     ArticleModel& operator=( const ArticleModel& );
 
     class Private;
     Private* const d;
-    Q_PRIVATE_SLOT( d, void nodeDestroyed() )
-    Q_PRIVATE_SLOT( d, void articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) )
-    Q_PRIVATE_SLOT( d, void articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) )
-    Q_PRIVATE_SLOT( d, void articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) )
 };
 
 } //namespace Akregator

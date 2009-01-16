@@ -24,6 +24,7 @@
 
 #include "folder.h"
 #include "treenode.h"
+#include "articlejobs.h"
 
 #include <QPoint>
 #include <QString>
@@ -229,6 +230,10 @@ QPoint TreeNode::listViewScrollBarPositions() const
 void TreeNode::setListViewScrollBarPositions( const QPoint& pos )
 {
     d->scrollBarPositions = pos;
+}
+
+ArticleListJob* TreeNode::createListJob() {
+    return new ArticleListJob( this );
 }
 
 } // namespace Akregator

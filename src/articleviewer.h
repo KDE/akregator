@@ -35,6 +35,7 @@
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
+class KJob;
 class KUrl;
 
 namespace Akregator {
@@ -44,6 +45,7 @@ namespace Filters {
 }
 
 class ArticleFormatter;
+class ArticleListJob;
 class OpenUrlRequest;
 class TreeNode;
 
@@ -160,6 +162,8 @@ class ArticleViewer : public QWidget
 
         void slotSelectionChanged();
 
+        void slotArticlesListed(KJob* job);
+
         void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
         void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
         void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
@@ -194,7 +198,9 @@ class ArticleViewer : public QWidget
         QString m_currentText;
         KUrl m_imageDir;
         QPointer<TreeNode> m_node;
+        QPointer<ArticleListJob> m_listJob;
         Article m_article;
+        QList<Article> m_articles;
         KUrl m_link;
         std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters;
         enum ViewMode { NormalView, CombinedView, SummaryView };

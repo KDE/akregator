@@ -29,6 +29,7 @@
 #include "actions.h"
 #include "article.h"
 #include "articleformatter.h"
+#include "articlejobs.h"
 #include "articlematcher.h"
 #include "feed.h"
 #include "folder.h"
@@ -545,46 +546,56 @@ void ArticleViewer::slotUpdateCombinedView()
     if (!m_node)
         return slotClear();
 
-    QList<Article> articles = m_node->articles();
-    qSort(articles);
 
-    QString text;
+   QString text;
 
-    int num = 0;
-    QTime spent;
-    spent.start();
+   int num = 0;
+   QTime spent;
+   spent.start();
 
-    const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
+   const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
 
-    Q_FOREACH( const Article& i, articles )
-    {
-        if ( i.isDeleted() )
-            continue;
+   Q_FOREACH( const Article& i, m_articles )
+   {
+       if ( i.isDeleted() )
+           continue;
 
-        if ( std::find_if( m_filters.begin(), m_filters.end(), !bind( &AbstractMatcher::matches, _1, i ) ) != filterEnd )
-            continue;
+       if ( std::find_if( m_filters.begin(), m_filters.end(), !bind( &AbstractMatcher::matches, _1, i ) ) != filterEnd )
+           continue;
 
-        text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatArticle( i, ArticleFormatter::NoIcon)+"</div><p>";
-        ++num;
-    }
+       text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatArticle( i, ArticleFormatter::NoIcon)+"</div><p>";
+       ++num;
+   }
 
-    kDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
-    renderContent(text);
-    kDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
+   kDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
+   renderContent(text);
+   kDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
 }
 
 void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& /*list*/)
 {
-    if (m_viewMode == CombinedView)
+    if (m_viewMode == CombinedView) {
+        //TODO
         slotUpdateCombinedView();
+    }
 }
 
-void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& /*list*/)
+void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& list)
 {
+    if (m_viewMode == CombinedView) {
+        //TODO sort list, then merge
+        m_articles << list;
+        std::sort( m_articles.begin(), m_articles.end() );
+        slotUpdateCombinedView();
+    }
 }
 
-void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& /*list*/)
+void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& list )
 {
+    if (m_viewMode == CombinedView) {
+        //TODO
+        slotUpdateCombinedView();
+    }
 }
 
 void ArticleViewer::slotClear()
@@ -592,6 +603,7 @@ void ArticleViewer::slotClear()
     disconnectFromNode(m_node);
     m_node = 0;
     m_article = Article();
+    m_articles.clear();
 
     renderContent(QString());
 }
@@ -605,11 +617,41 @@ void ArticleViewer::showNode(TreeNode* node)
 
     connectToNode(node);
 
+    m_articles.clear();
     m_article = Article();
     m_node = node;
 
-    if (node && !node->articles().isEmpty())
-        m_link = node->articles().first().link();
+    delete m_listJob;
+
+    m_listJob = node->createListJob();
+    connect( m_listJob, SIGNAL(finished(KJob*)), this, SLOT(slotArticlesListed(KJob*)));
+    m_listJob->start();
+
+
+
+    slotUpdateCombinedView();
+}
+
+void ArticleViewer::slotArticlesListed( KJob* job ) {
+    assert( job );
+    assert( job == m_listJob );
+
+    TreeNode* node = m_listJob->node();
+
+    if ( job->error() || !node ) {
+        if ( !node )
+            kWarning() << "Node to be listed is already deleted";
+        else
+            kWarning() << job->errorText();
+        slotUpdateCombinedView();
+        return;
+    }
+
+    m_articles = m_listJob->articles();
+    std::sort( m_articles.begin(), m_articles.end() );
+
+    if (node && m_articles.isEmpty())
+        m_link = m_articles.first().link();
     else
         m_link = KUrl();
 

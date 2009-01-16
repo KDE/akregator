@@ -786,6 +786,7 @@ void Akregator::MainWidget::slotFetchingStopped()
 
 void Akregator::MainWidget::slotFeedFetched(Feed *feed)
 {
+#ifdef AKONADI_PORT_TEMPORARILY_REMOVED
     // iterate through the articles (once again) to do notifications properly
     if (feed->articles().count() > 0)
     {
@@ -800,6 +801,7 @@ void Akregator::MainWidget::slotFeedFetched(Feed *feed)
             }
         }
     }
+#endif
 }
 
 
