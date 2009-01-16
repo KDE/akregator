@@ -12,6 +12,7 @@ X-KDE-Keywords=akregator, configure, settings, online readers
 
 Name=Online Readers
 Name[ca]=Lectors en línia
+Name[cs]=Online čtečky
 Name[da]=Onlinelæsere
 Name[de]=Online-Leser
 Name[el]=Αναγνώστης διαδικτύου
@@ -42,6 +43,7 @@ Name[zh_CN]=在线阅读器
 Name[zh_TW]=線上閱讀器
 Comment=Configure Online Readers
 Comment[ca]=Configura els lectors en línia
+Comment[cs]=Nastavit online čtečky
 Comment[da]=Indstil onlinelæsere
 Comment[de]=Online-Leser einrichten
 Comment[el]=Ρύθμιση αναγνωστών διαδικτύου
