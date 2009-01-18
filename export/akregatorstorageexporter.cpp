@@ -191,6 +191,17 @@ namespace {
         writer.writeAttribute( element, text );
     }
 
+    void writeEnclosure( const QString& url, const QString& type, int length, QXmlStreamWriter& writer )
+    {
+        Elements::instance.link.writeStartElement( writer );
+        writer.writeAttribute( "rel", "enclosure" );
+        writeAttributeIfNotEmpty( "href", url, writer );
+        writeAttributeIfNotEmpty( "type", type, writer );
+        if ( length > 0 )
+            writer.writeAttribute( "length", QString::number( length ) );
+        writer.writeEndElement();
+    }
+
     void writeLink( const QString& url, QXmlStreamWriter& writer )
     {
         if ( url.isEmpty() )
@@ -265,8 +276,8 @@ namespace {
         QString encUrl, encType;
         int encLength = 0;
         storage->enclosure( guid, hasEnc, encUrl, encType, encLength );
-        if ( hasEnc ) {
-        }
+        if ( hasEnc )
+            writeEnclosure( encUrl, encType, encLength, writer );
         writer.writeEndElement(); // </item>
     }
 
