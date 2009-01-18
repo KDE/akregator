@@ -59,6 +59,15 @@ namespace {
         Html
     };
 
+    enum Status
+    {
+        Deleted=0x01,
+        Trash=0x02,
+        New=0x04,
+        Read=0x08,
+        Keep=0x10
+    };
+
     class Element
     {
     public:
@@ -80,6 +89,12 @@ namespace {
 
         void write( const QVariant& value , QXmlStreamWriter& writer, TextMode mode = PlainText ) const
         {
+            const QVariant qv( value );
+            Q_ASSERT( qv.canConvert( QVariant::String ) );
+            const QString str = qv.toString();
+            if ( str.isEmpty() )
+                return;
+
             if ( ns.isEmpty() )
                 writer.writeStartElement( name );
             else
@@ -88,9 +103,7 @@ namespace {
             {
                 writer.writeAttribute( "type", "html" );
             }
-            const QVariant qv( value );
-            Q_ASSERT( qv.canConvert( QVariant::String ) );
-            writer.writeCharacters( qv.toString() );
+            writer.writeCharacters( str );
             writer.writeEndElement();
         }
     };
@@ -121,10 +134,12 @@ namespace {
                      email( atomNS, "email" ),
                      author( atomNS, "author" ),
                      category( atomNS, "category" ),
-                     customProperty( akregatorNS, "customProperty" ),
-                     key( akregatorNS, "key" ),
-                     value( akregatorNS, "value" ),
-                     entry( atomNS, "entry" )
+                     entry( atomNS, "entry" ),
+                     itemProperties( akregatorNS, "itemProperties" ),
+                     readStatus( akregatorNS, "readStatus" ),
+                     deleted( akregatorNS, "deleted" ),
+                     important( akregatorNS, "important" )
+
     {}
         const QString atomNS;
         const QString akregatorNS;
@@ -150,10 +165,11 @@ namespace {
         const Element email;
         const Element author;
         const Element category;
-        const Element customProperty;
-        const Element key;
-        const Element value;
         const Element entry;
+        const Element itemProperties;
+        const Element readStatus;
+        const Element deleted;
+        const Element important;
         static const Elements instance;
     };
 
@@ -185,19 +201,73 @@ namespace {
         writer.writeEndElement();
     }
 
+    void writeAuthor( const QString& name, const QString& uri, const QString& email, QXmlStreamWriter& writer )
+    {
+        if ( name.isEmpty() && uri.isEmpty() && email.isEmpty() )
+            return;
+
+        const QString atomNS = Syndication::Atom::atom1Namespace();
+        Elements::instance.author.writeStartElement( writer );
+        Elements::instance.name.write( name, writer );
+        Elements::instance.uri.write( uri, writer );
+        Elements::instance.email.write( email, writer );
+        writer.writeEndElement(); // </author>
+    }
+
     static void writeItem( FeedStorage* storage, const QString& guid, QXmlStreamWriter& writer ) {
         Elements::instance.entry.writeStartElement( writer );
         Elements::instance.guid.write( guid, writer );
-        Elements::instance.title.write( storage->title( guid ), writer, Html );
-        //Elements::instance.summary.write( storage->description( guid ), writer, Html );
-        //Elements::instance.content.write( storage->content( guid ), writer, Html );
-        writeLink( storage->link( guid ), writer );
+
         const uint published = storage->pubDate( guid );
         if ( published > 0 ) {
             const QString pdStr = QDateTime::fromTime_t( published ).toString( Qt::ISODate );
             Elements::instance.published.write( pdStr, writer );
         }
-        writer.writeEndElement();
+
+        const int status = storage->status( guid );
+
+        Elements::instance.itemProperties.writeStartElement( writer );
+
+        if ( status & Deleted ) {
+            Elements::instance.deleted.write( QString::fromLatin1("true"), writer );
+            writer.writeEndElement(); // </itemProperties>
+            writer.writeEndElement(); // </item>
+            return;
+        }
+
+        Elements::instance.hash.write( QString::number( storage->hash( guid ) ), writer );
+        if ( storage->guidIsHash( guid ) )
+            Elements::instance.guidIsHash.write( QString::fromLatin1("true"), writer );
+        if ( status & New )
+            Elements::instance.readStatus.write( QString::fromLatin1("new"), writer );
+        else if ( ( status & Read) == 0 )
+            Elements::instance.readStatus.write( QString::fromLatin1("unread"), writer );
+        if ( status & Keep )
+            Elements::instance.important.write( QString::fromLatin1("true"), writer );
+        writer.writeEndElement(); // </itemProperties>
+
+        Elements::instance.title.write( storage->title( guid ), writer, Html );
+        writeLink( storage->guidIsPermaLink( guid ) ? guid :  storage->link( guid ), writer );
+
+        Elements::instance.summary.write( storage->description( guid ), writer, Html );
+        Elements::instance.content.write( storage->content( guid ), writer, Html );
+        writeAuthor( storage->authorName( guid ),
+                     storage->authorUri( guid ),
+                     storage->authorEMail( guid ),
+                     writer );
+
+        if ( const int commentsCount = storage->comments( guid ) )
+            Elements::instance.commentsCount.write( QString::number( commentsCount ), writer );
+
+        Elements::instance.commentsLink.write( storage->commentsLink( guid ), writer );
+
+        bool hasEnc = false;
+        QString encUrl, encType;
+        int encLength = 0;
+        storage->enclosure( guid, hasEnc, encUrl, encType, encLength );
+        if ( hasEnc ) {
+        }
+        writer.writeEndElement(); // </item>
     }
 
     static void serialize( FeedStorage* storage, QIODevice* device ) {
