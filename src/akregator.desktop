@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Akregator
 Name[ne]=एक्रिगेटर
+Name[pa]=ਅਕਰੀਗੇਟਰ
 Name[x-test]=xxAkregatorxx
 Exec=akregator %i -caption "%c"
 Icon=akregator
