@@ -107,7 +107,7 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate kdepim ${KDE4_SYNDICATION_LIBS} ${KDE4_KPIMUTILS_LIBS} ${KDE4_SOLID_LIBS})
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} akregatorinterfaces akregatorprivate kdepim ${KDE4_SYNDICATION_LIBS} ${KDE4_KPIMUTILS_LIBS} ${KDE4_SOLID_LIBS})
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
