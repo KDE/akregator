@@ -8,5 +8,5 @@ kde4_add_executable(akregatorstorageexporter ${akregatorstorageexporter_SRCS})
 
 target_link_libraries(akregatorstorageexporter ${KDE4_KDECORE_LIBS} ${KDE4_SYNDICATION_LIBS} akregatorinterfaces)
 
-install(TARGETS akregatorstorageexporter DESTINATION ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS akregatorstorageexporter ${INSTALL_TARGETS_DEFAULT_ARGS})
 
