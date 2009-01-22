@@ -30,6 +30,7 @@
 #include "treenode.h"
 
 #include <KDebug>
+#include <KGlobalSettings>
 #include <KIconLoader>
 #include <KLocalizedString>
 
@@ -150,11 +151,10 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         }
         case Qt::FontRole:
         {
-            if(node->unread() > 0) {
-                QFont font;
-                font.setBold(true);
-                return font;
-            }
+            QFont font = KGlobalSettings::generalFont();
+            if( node->unread() > 0 )
+                font.setBold( true );
+            return font;
         }
         case Qt::ToolTipRole:
         {
