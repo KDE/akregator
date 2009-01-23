@@ -119,6 +119,8 @@ public:
 
     void setIsAggregation( bool isAggregation );
 
+    /* reimp */ void setModel( QAbstractItemModel* model );
+
 protected:
     void mousePressEvent( QMouseEvent *ev );
 
@@ -162,8 +164,8 @@ private:
     ColumnMode m_columnMode;
     bool m_isAggregation;
     QPointer<SortColorizeProxyModel> m_proxy;
-    bool m_headerSetUp;
     std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_matchers;
+    QByteArray m_headerState;
 };
 
 } // namespace Akregator

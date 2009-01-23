@@ -187,11 +187,6 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
     assert( job );
     assert( job == m_listJob );
 
-    if(m_articleModel)
-        delete m_articleModel;
-
-
-    m_articleModel = new Akregator::ArticleModel( m_listJob->articles() );
 
     if ( job->error() ) {
         kWarning() << job->errorText();
@@ -202,16 +197,20 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
     assert( node ); // if there was no error, the node must still exist
     assert( node == m_selectedSubscription ); //...and equal the previously selected node
 
-    connect( node, SIGNAL( destroyed() ),
-             m_articleModel, SLOT( clear() ) );
-    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-            m_articleModel, SLOT( articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-             m_articleModel, SLOT( articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-    connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-             m_articleModel, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+    ArticleModel* const newModel = new ArticleModel( m_listJob->articles() );
 
-    m_articleLister->setArticleModel( m_articleModel );
+    connect( node, SIGNAL( destroyed() ),
+             newModel, SLOT( clear() ) );
+    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ),
+            newModel, SLOT( articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ),
+             newModel, SLOT( articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+    connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
+             newModel, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
+
+    m_articleLister->setArticleModel( newModel );
+    delete m_articleModel; //order is important: do not delete the old model before the new model is set in the view
+    m_articleModel = newModel;
     m_articleLister->setIsAggregation( node->isAggregation() );
 
     disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),

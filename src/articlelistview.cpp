@@ -144,9 +144,11 @@ namespace {
 
 void ArticleListView::setArticleModel( ArticleModel* model )
 {
-    slotClear();
-    if ( !model )
+    if ( !model ) {
+        setModel( model );
         return;
+    }
+
     m_proxy = new SortColorizeProxyModel( model );
     m_proxy->setSourceModel( model );
     m_proxy->setSortRole( ArticleModel::SortRole );
@@ -164,12 +166,6 @@ void ArticleListView::setArticleModel( ArticleModel* model )
     columnsProxy->setColumnEnabled( ArticleModel::AuthorColumn );
 
     setModel( columnsProxy );
-
-    if ( !m_headerSetUp )
-    {
-        loadHeaderSettings();
-        m_headerSetUp = true;
-    }
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
 }
 
@@ -205,24 +201,14 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
 
 void ArticleListView::saveHeaderSettings()
 {
-    //FIXME: HACK: Change back to saveState() when the Qt-bug is fixed
-    // is it qt-bug, really? at least saveState is working, but calling the next line causes app to hang.. -Teemu
-    //Settings::setArticlelistHeaderStates( header()->saveState().toBase64() );
-
-    QByteArray s = header()->saveState();
     KConfigGroup conf( Settings::self()->config(), "General" );
-    conf.writeEntry( "ArticleListHeaders", s.toBase64() );
+    conf.writeEntry( "ArticleListHeaders", m_headerState.toBase64() );
 }
 
 void ArticleListView::loadHeaderSettings()
 {
-    //FIXME: HACK: change back to loadState+Settings class instead of using KConfigGroup directly..
-    //QByteArray s = QByteArray::fromBase64( Settings::feedlistHeaderStates().toAscii() ); // this fails currently, I think -Teemu
-
     KConfigGroup conf( Settings::self()->config(), "General" );
-    QByteArray s = QByteArray::fromBase64( conf.readEntry( "ArticleListHeaders" ).toAscii() );
-    if( !s.isNull() )
-        header()->restoreState( s );
+    m_headerState = QByteArray::fromBase64( conf.readEntry( "ArticleListHeaders" ).toAscii() );
 }
 
 QItemSelectionModel* ArticleListView::articleSelectionModel() const
@@ -287,8 +273,7 @@ void ArticleListView::setIsAggregation( bool aggregation )
 ArticleListView::ArticleListView( QWidget* parent )
     : QTreeView(parent),
     m_columnMode( Unspecified ),
-    m_isAggregation( false ),
-    m_headerSetUp( false )
+    m_isAggregation( false )
 {
     setSortingEnabled( true );
     setAlternatingRowColors( true );
@@ -296,7 +281,6 @@ ArticleListView::ArticleListView( QWidget* parent )
     setUniformRowHeights( true );
     setRootIsDecorated( false );
     setAllColumnsShowFocus( true );
-
     setMinimumSize( 250, 150 );
     setWhatsThis( i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "
@@ -306,6 +290,7 @@ ArticleListView::ArticleListView( QWidget* parent )
     //connect exactly once
     disconnect( header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)) );
     connect( header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)) );
+    loadHeaderSettings();
 }
 
 void ArticleListView::mousePressEvent( QMouseEvent *ev )
@@ -390,11 +375,18 @@ void ArticleListView::paintEvent( QPaintEvent* e )
 }
 
 
+void ArticleListView::setModel( QAbstractItemModel* m ) {
+    QAbstractItemModel* const oldModel = model();
+    if ( oldModel )
+        m_headerState = header()->saveState();
+    QTreeView::setModel( m );
+    if ( m )
+        header()->restoreState( m_headerState );
+}
+
 void ArticleListView::slotClear()
 {
-    QAbstractItemModel* const oldModel = model();
     setModel( 0L );
-    delete oldModel;
 }
 
 void ArticleListView::slotPreviousArticle()
