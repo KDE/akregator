@@ -201,6 +201,8 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
 
 void ArticleListView::saveHeaderSettings()
 {
+    if ( model() )
+        m_headerState = header()->saveState();
     KConfigGroup conf( Settings::self()->config(), "General" );
     conf.writeEntry( "ArticleListHeaders", m_headerState.toBase64() );
 }

@@ -206,6 +206,8 @@ void Akregator::SubscriptionListView::headerMenuItemTriggered( QAction* act )
 
 void Akregator::SubscriptionListView::saveHeaderSettings()
 {
+    if ( model() )
+        m_headerState = header()->saveState();
     KConfigGroup conf( Settings::self()->config(), "General" );
     conf.writeEntry( "SubscriptionListHeaders", m_headerState.toBase64() );
 }
