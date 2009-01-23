@@ -55,7 +55,7 @@ QModelIndex prevIndex( const QModelIndex& idx )
             i = i.child( model->rowCount( i ) - 1, i.column() );
         return i;
     }
-    else 
+    else
         return idx.parent();
 }
 
@@ -104,7 +104,7 @@ QModelIndex nextIndex( const QModelIndex& idx )
         if ( i.row() + 1 < siblings )
             return i.sibling( i.row() + 1, i.column() );
         i = i.parent();
-    }   
+    }
 }
 
 QModelIndex nextFeedIndex( const QModelIndex& idx )
@@ -134,8 +134,9 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setDragDropMode( QAbstractItemView::DragDrop );
     setDropIndicatorShown( true );
     setAcceptDrops( true );
-    m_headerSetup = false;
     connect( header(), SIGNAL( customContextMenuRequested( const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
+
+    loadHeaderSettings();
 }
 
 Akregator::SubscriptionListView::~SubscriptionListView()
@@ -143,19 +144,25 @@ Akregator::SubscriptionListView::~SubscriptionListView()
     saveHeaderSettings();
 }
 
-void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
+void Akregator::SubscriptionListView::setModel( QAbstractItemModel* m )
 {
-    QTreeView::setModel( model );
-    
+    if ( model() )
+        m_headerState = header()->saveState();
+
+    QTreeView::setModel( m );
+
+    if ( m )
+        header()->restoreState( m_headerState );
+
     QStack<QModelIndex> stack;
     stack.push( rootIndex() );
     while ( !stack.isEmpty() )
     {
         const QModelIndex i = stack.pop();
-        const int childCount = model->rowCount( i );
+        const int childCount = m->rowCount( i );
         for ( int j = 0; j < childCount; ++j )
         {
-            const QModelIndex child = model->index( j, 0, i );
+            const QModelIndex child = m->index( j, 0, i );
             if ( child.isValid() )
                 stack.push( child );
         }
@@ -163,11 +170,6 @@ void Akregator::SubscriptionListView::setModel( QAbstractItemModel* model )
     }
 
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
-
-    if( ! m_headerSetup ) {
-        loadHeaderSettings();
-        m_headerSetup = true;
-    }
 }
 
 void Akregator::SubscriptionListView::showHeaderMenu( const QPoint& pos )
@@ -179,7 +181,7 @@ void Akregator::SubscriptionListView::showHeaderMenu( const QPoint& pos )
     menu->addTitle( i18n( "Columns" ) );
     menu->setAttribute( Qt::WA_DeleteOnClose );
     connect(menu, SIGNAL( triggered( QAction* ) ), this, SLOT( headerMenuItemTriggered( QAction* ) ) );
-    
+
     for (int i = 0; i < model()->columnCount(); i++)
     {
         QString col = model()->headerData( i, Qt::Horizontal, Qt::DisplayRole ).toString();
@@ -188,7 +190,7 @@ void Akregator::SubscriptionListView::showHeaderMenu( const QPoint& pos )
         act->setChecked( !header()->isSectionHidden( i ) );
         act->setData( i );
     }
-    
+
     menu->popup( header()->mapToGlobal( pos ) );
 }
 
@@ -203,24 +205,15 @@ void Akregator::SubscriptionListView::headerMenuItemTriggered( QAction* act )
 }
 
 void Akregator::SubscriptionListView::saveHeaderSettings()
-{ 
-    QByteArray s = header()->saveState();
+{
     KConfigGroup conf( Settings::self()->config(), "General" );
-    conf.writeEntry( "SubscriptionListHeaders", s.toBase64() );
-
-    //FIXME: HACK: Change back to Settings, when it starts to work again..
-    // Settings::setFeedlistHeaderStates( s.toBase64() );
+    conf.writeEntry( "SubscriptionListHeaders", m_headerState.toBase64() );
 }
 
 void Akregator::SubscriptionListView::loadHeaderSettings()
 {
-    // FIXME: HACK: Change back to Settings when it's working
-    //QByteArray s = QByteArray::fromBase64( Settings::feedlistHeaderStates().toAscii() );
-    
-    KConfigGroup conf( Settings::self()->config(), "General" );
-    QByteArray s = QByteArray::fromBase64( conf.readEntry( "SubscriptionListHeaders" ).toAscii() );
-    if( !s.isNull() )
-        header()->restoreState( s );
+    const KConfigGroup conf( Settings::self()->config(), "General" );
+    m_headerState = conf.readEntry( "SubscriptionListHeaders" ).toAscii();
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
@@ -235,7 +228,7 @@ void Akregator::SubscriptionListView::slotPrevFeed()
     }
     if ( prev.isValid() )
         setCurrentIndex( prev );
-    
+
 }
 
 void Akregator::SubscriptionListView::slotNextFeed()
@@ -276,7 +269,7 @@ void Akregator::SubscriptionListView::slotNextUnreadFeed()
 
 void SubscriptionListView::slotItemBegin()
 {
-    
+
 }
 
 void SubscriptionListView::slotItemEnd()
@@ -285,22 +278,22 @@ void SubscriptionListView::slotItemEnd()
 
 void SubscriptionListView::slotItemLeft()
 {
-    
+
 }
 
 void SubscriptionListView::slotItemRight()
 {
-    
+
 }
 
 void SubscriptionListView::slotItemUp()
 {
-    
+
 }
 
 void SubscriptionListView::slotItemDown()
 {
-    
+
 }
 
 
