@@ -28,6 +28,7 @@
 #include <QTreeView>
 #include <QMap>
 #include <QAction>
+#include <QByteArray>
 
 class KMenu;
 
@@ -83,7 +84,7 @@ private Q_SLOTS:
     void headerMenuItemTriggered( QAction* action );
 
 private:
-    bool m_headerSetup;
+    QByteArray m_headerState;
 };
 
 }
