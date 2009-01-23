@@ -181,11 +181,10 @@ void Akregator::SelectionController::setUp()
 
 void Akregator::SelectionController::articleHeadersAvailable()
 {
-    if(m_articleModel)
-        delete m_articleModel;
-
-    m_articleModel = new Akregator::ArticleModel( m_selectedSubscription );
-    m_articleLister->setArticleModel( m_articleModel );
+    ArticleModel* const newModel = new ArticleModel( m_selectedSubscription );
+    m_articleLister->setArticleModel( newModel );
+    delete m_articleModel;
+    m_articleModel = newModel;
 
     m_articleLister->setIsAggregation( m_selectedSubscription->isAggregation() );
 
