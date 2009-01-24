@@ -215,7 +215,7 @@ void Akregator::SubscriptionListView::saveHeaderSettings()
 void Akregator::SubscriptionListView::loadHeaderSettings()
 {
     const KConfigGroup conf( Settings::self()->config(), "General" );
-    m_headerState = conf.readEntry( "SubscriptionListHeaders" ).toAscii();
+    m_headerState = QByteArray::fromBase64( conf.readEntry( "SubscriptionListHeaders" ).toAscii() );
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
