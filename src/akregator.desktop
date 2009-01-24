@@ -71,5 +71,5 @@ Comment[x-test]=xxA Feed Reader for KDExx
 Comment[zh_CN]=KDE 的RSS 种子阅读器
 Comment[zh_TW]=KDE 的 RSS Feed 閱讀器
 Terminal=false
-Categories=Qt;KDE;Network;
+Categories=Qt;KDE;Network;News;
 X-DBUS-StartupType=Unique
