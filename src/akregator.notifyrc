@@ -2,6 +2,7 @@
 IconName=akregator
 Comment=Akregator
 Comment[nds]=Tosamensteller
+Comment[pa]=ਅਕਰੀਗੇਟਰ
 Comment[x-test]=xxAkregatorxx
 
 [Event/feed_added]
@@ -83,6 +84,7 @@ Comment[nb]=En ny kilde ble lagt til Akregator utenfra
 Comment[nds]=En nieg Stroom wöör Akregator vun feern toföögt
 Comment[nl]=Er was een nieuwe feed op afstand toegevoegd aan Akregator
 Comment[nn]=Det vart lagt til ei ny kjelde i Akregator
+Comment[pa]=ਇੱਕ ਨਵੀਂ ਫੀਡ ਰਿਮੋਟ ਤੋਂ ਅਕਰੀਗੇਟਰ 'ਚ ਸ਼ਾਮਲ ਕੀਤੀ
 Comment[pl]=Nowy kanał został zdalnie dodany do Akregatora
 Comment[pt]=Foi adicionada uma nova fonte ao Akregator
 Comment[pt_BR]=Uma nova fonte de notícias foi adicionada remotamente ao Akregator
@@ -135,7 +137,7 @@ Name[nb]=Nye artikler
 Name[nds]=Nieg Narichten
 Name[nl]=Nieuwe artikelen
 Name[nn]=Nye artiklar
-Name[pa]=ਨਵੇਂ ਆਰਟੀਕਲ
+Name[pa]=ਨਵੇਂ ਲੇਖ
 Name[pl]=Nowe artykuły
 Name[pt]=Artigos Novos
 Name[pt_BR]=Novos artigos
@@ -185,7 +187,7 @@ Comment[nb]=Nye artikler ble hentet
 Comment[nds]=Nieg Narichten haalt
 Comment[nl]=Nieuwe artikelen zijn opgehaald
 Comment[nn]=Det vart henta nye artiklar
-Comment[pa]=ਨਵੇਂ ਆਰਟੀਕਲ ਲਏ ਗਏ
+Comment[pa]=ਨਵੇਂ ਲੇਖ ਲਏ ਗਏ
 Comment[pl]=Pobrano nowe artykuły
 Comment[pt]=Foram obtidos artigos novos
 Comment[pt_BR]=Foram obtidos novos artigos
