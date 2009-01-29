@@ -457,7 +457,15 @@ void ArticleViewer::beginWriting()
 
     head += "</style></head><body>";
     m_part->view()->setContentsPos(0,0);
-    m_part->begin(m_link);
+
+    //pass link to the KHTMLPart to make relative links work
+    //add a bogus query item to distinguish from m_link
+    //fixes the Complete Story link if the url has an anchor (e.g. #reqRSS) in it
+    //See bug 177754
+
+    KUrl url(m_link);
+    url.addQueryItem("akregatorPreviewMode", "true");
+    m_part->begin(url);
     m_part->write(head);
 }
 
