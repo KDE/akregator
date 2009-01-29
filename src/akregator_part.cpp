@@ -103,6 +103,8 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
        , m_dialog(0)
 
 {
+    initFonts();
+
     setPluginLoadingMode( LoadPluginsIfEnabled );
     setPluginInterfaceVersion( AKREGATOR_PLUGIN_INTERFACE_VERSION );
 
@@ -180,8 +182,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     m_autosaveTimer->start(5*60*1000); // 5 minutes
 
     setXMLFile("akregator_part.rc", true);
-
-    initFonts();
 
     QString useragent = QString( "Akregator/%1; syndication" ).arg( AKREGATOR_VERSION );
 
