@@ -202,15 +202,23 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
 void ArticleListView::saveHeaderSettings()
 {
     if ( model() )
-        m_headerState = header()->saveState();
+    {
+        if ( m_columnMode == FeedMode )
+            m_feedHeaderState = header()->saveState();
+        if ( m_columnMode == GroupMode )
+            m_groupHeaderState = header()->saveState();
+    }
+
     KConfigGroup conf( Settings::self()->config(), "General" );
-    conf.writeEntry( "ArticleListHeaders", m_headerState.toBase64() );
+    conf.writeEntry( "ArticleListFeedHeaders", m_feedHeaderState.toBase64() );
+    conf.writeEntry( "ArticleListGroupHeaders", m_groupHeaderState.toBase64() );
 }
 
 void ArticleListView::loadHeaderSettings()
 {
     KConfigGroup conf( Settings::self()->config(), "General" );
-    m_headerState = QByteArray::fromBase64( conf.readEntry( "ArticleListHeaders" ).toAscii() );
+    m_feedHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListFeedHeaders" ).toAscii() );
+    m_groupHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListGroupHeaders" ).toAscii() );
 }
 
 QItemSelectionModel* ArticleListView::articleSelectionModel() const
@@ -244,7 +252,8 @@ void ArticleListView::setGroupMode()
 {
     if ( m_columnMode == GroupMode )
         return;
-    setColumnHidden( ArticleListView::FeedTitleColumn, false );
+
+    header()->restoreState( m_groupHeaderState );
     m_columnMode = GroupMode;
 }
 
@@ -252,7 +261,8 @@ void ArticleListView::setFeedMode()
 {
     if ( m_columnMode == FeedMode )
         return;
-    setColumnHidden( ArticleListView::FeedTitleColumn, true );
+
+    header()->restoreState( m_feedHeaderState );
     m_columnMode = FeedMode;
 }
 
@@ -377,13 +387,20 @@ void ArticleListView::paintEvent( QPaintEvent* e )
 }
 
 
-void ArticleListView::setModel( QAbstractItemModel* m ) {
+void ArticleListView::setModel( QAbstractItemModel* m )
+{
+    bool groupMode = ( m_columnMode == GroupMode );
+
     QAbstractItemModel* const oldModel = model();
     if ( oldModel )
-        m_headerState = header()->saveState();
+    {
+        if ( groupMode ) m_groupHeaderState = header()->saveState();
+        else m_feedHeaderState = header()->saveState();
+    }
+
     QTreeView::setModel( m );
     if ( m )
-        header()->restoreState( m_headerState );
+        header()->restoreState( groupMode ? m_groupHeaderState : m_feedHeaderState );
 }
 
 void ArticleListView::slotClear()
