@@ -253,6 +253,14 @@ void ArticleListView::setGroupMode()
     if ( m_columnMode == GroupMode )
         return;
 
+    // The next line (used three times in this file) is a workaround for a
+    // possible Qt 4.4.3 bug that causes the last column to expand beyond
+    // the viewport width.  QHeaderViewPrivate::lastSectionSize may not be
+    // initialised when QHeaderViewPrivate::resizeSections() is called,
+    // doing the resizeSection() here ensures that it has a sensible value.
+    // This may not be necessary with Qt 4.5.
+    header()->resizeSection( header()->count() - 1, 1 );
+
     header()->restoreState( m_groupHeaderState );
     m_columnMode = GroupMode;
 }
@@ -262,6 +270,7 @@ void ArticleListView::setFeedMode()
     if ( m_columnMode == FeedMode )
         return;
 
+    header()->resizeSection( header()->count() - 1, 1 );
     header()->restoreState( m_feedHeaderState );
     m_columnMode = FeedMode;
 }
@@ -400,7 +409,10 @@ void ArticleListView::setModel( QAbstractItemModel* m )
 
     QTreeView::setModel( m );
     if ( m )
+    {
+        header()->resizeSection( header()->count() - 1, 1 );
         header()->restoreState( groupMode ? m_groupHeaderState : m_feedHeaderState );
+    }
 }
 
 void ArticleListView::slotClear()
