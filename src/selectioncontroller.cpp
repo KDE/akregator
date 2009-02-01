@@ -208,10 +208,10 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
     connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
              newModel, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
 
+    m_articleLister->setIsAggregation( node->isAggregation() );
     m_articleLister->setArticleModel( newModel );
     delete m_articleModel; //order is important: do not delete the old model before the new model is set in the view
     m_articleModel = newModel;
-    m_articleLister->setIsAggregation( node->isAggregation() );
 
     disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
                 this, SLOT(articleSelectionChanged()) );

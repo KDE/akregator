@@ -201,12 +201,12 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
 
 void ArticleListView::saveHeaderSettings()
 {
-    if ( model() )
-    {
+    if ( model() ) {
+        const QByteArray state = header()->saveState();
         if ( m_columnMode == FeedMode )
-            m_feedHeaderState = header()->saveState();
-        if ( m_columnMode == GroupMode )
-            m_groupHeaderState = header()->saveState();
+            m_feedHeaderState = state;
+        else
+            m_groupHeaderState = state;
     }
 
     KConfigGroup conf( Settings::self()->config(), "General" );
@@ -261,6 +261,9 @@ void ArticleListView::setGroupMode()
     // This may not be necessary with Qt 4.5.
     header()->resizeSection( header()->count() - 1, 1 );
 
+    if ( model() )
+        m_feedHeaderState = header()->saveState();
+
     header()->restoreState( m_groupHeaderState );
     m_columnMode = GroupMode;
 }
@@ -271,6 +274,8 @@ void ArticleListView::setFeedMode()
         return;
 
     header()->resizeSection( header()->count() - 1, 1 );
+    if ( model() )
+        m_groupHeaderState = header()->saveState();
     header()->restoreState( m_feedHeaderState );
     m_columnMode = FeedMode;
 }
@@ -282,9 +287,6 @@ ArticleListView::~ArticleListView()
 
 void ArticleListView::setIsAggregation( bool aggregation )
 {
-    if ( aggregation == m_isAggregation )
-        return;
-    m_isAggregation = aggregation;
     if ( aggregation )
         setGroupMode();
     else
@@ -293,8 +295,7 @@ void ArticleListView::setIsAggregation( bool aggregation )
 
 ArticleListView::ArticleListView( QWidget* parent )
     : QTreeView(parent),
-    m_columnMode( Unspecified ),
-    m_isAggregation( false )
+    m_columnMode( FeedMode )
 {
     setSortingEnabled( true );
     setAlternatingRowColors( true );
@@ -398,16 +399,19 @@ void ArticleListView::paintEvent( QPaintEvent* e )
 
 void ArticleListView::setModel( QAbstractItemModel* m )
 {
-    bool groupMode = ( m_columnMode == GroupMode );
+    const bool groupMode = m_columnMode == GroupMode;
 
     QAbstractItemModel* const oldModel = model();
-    if ( oldModel )
-    {
-        if ( groupMode ) m_groupHeaderState = header()->saveState();
-        else m_feedHeaderState = header()->saveState();
+    if ( oldModel ) {
+        const QByteArray state = header()->saveState();
+        if ( groupMode )
+            m_groupHeaderState = state;
+        else
+            m_feedHeaderState = state;
     }
 
     QTreeView::setModel( m );
+
     if ( m )
     {
         header()->resizeSection( header()->count() - 1, 1 );
