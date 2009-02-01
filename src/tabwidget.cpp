@@ -100,7 +100,7 @@ TabWidget::TabWidget(QWidget * parent)
     connect(this, SIGNAL(closeRequest(QWidget*)),
             this, SLOT(slotCloseRequest(QWidget*)));
     setCloseButtonEnabled(Settings::closeButtonOnTabs());
-    
+
     d->tabsClose = new QToolButton(this);
     d->tabsClose->setShortcut(QKeySequence("Ctrl+W"));
     connect( d->tabsClose, SIGNAL( clicked() ), this,
@@ -139,7 +139,7 @@ void TabWidget::slotPreviousTab()
 }
 void TabWidget::slotSelectFrame(int frameId)
 {
-    Frame* frame = d->framesById[frameId];
+    Frame* frame = d->framesById.value(frameId);
     if (frame && frame != d->currentFrame())
     {
         setCurrentWidget(frame);
@@ -159,7 +159,7 @@ void TabWidget::slotAddFrame(Frame* frame)
     if (!frame)
         return;
     d->frames.insert(frame, frame);
-    d->framesById[frame->id()] = frame;
+    d->framesById.insert( frame->id(), frame );
     addTab(frame, frame->title());
     connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*,QString)),
             this, SLOT(slotSetTitle(Akregator::Frame*,QString)));
@@ -175,13 +175,13 @@ Frame * TabWidget::Private::currentFrame()
 {
     QWidget* w = q->currentWidget();
     assert( frames.value( w ) );
-    return w ? frames[w] : 0;
+    return w ? frames.value(w) : 0;
 }
 
 void TabWidget::slotTabChanged(int index)
 {
-    
-    Frame* frame = d->frames[widget(index)];
+
+    Frame* frame = d->frames.value(widget(index));
     d->tabsClose->setEnabled(frame && frame->isRemovable());
     emit signalCurrentFrameChanged(frame ? frame->id() : -1);
 }
@@ -208,7 +208,7 @@ void TabWidget::slotRemoveFrame(int frameId)
 {
     if (!d->framesById.contains(frameId))
         return;
-    Frame* f = d->framesById[frameId];
+    Frame* f = d->framesById.value(frameId);
     d->frames.remove(f);
     d->framesById.remove(frameId);
     removeTab(indexOf(f));
@@ -229,7 +229,7 @@ uint TabWidget::Private::tabBarWidthForMaxChars( int maxLength )
     int x = 0;
     for (int i = 0; i < parent->count(); ++i)
     {
-        Frame* f = frames[parent->widget(i)];
+        Frame* f = frames.value(parent->widget(i));
         QString newTitle = f->title();
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
@@ -302,7 +302,7 @@ void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
     {
         for( int i = 0; i < parent->count(); ++i)
         {
-            Frame* f = frames[parent->widget(i)];
+            Frame* f = frames.value(parent->widget(i));
             newTitle = f->title();
             int index = parent->indexOf(parent->widget( i ));
             parent->setTabToolTip( index, QString() );
@@ -337,7 +337,7 @@ void TabWidget::slotDetachTab()
     if (!d->currentItem || indexOf(d->currentItem) == -1)
         d->currentItem = currentWidget();
 
-    Frame* frame = d->frames[d->currentItem];
+    Frame* frame = d->frames.value(d->currentItem);
 
     if (frame && frame->url().isValid() && frame->isRemovable())
     {
@@ -353,7 +353,7 @@ void TabWidget::slotCopyLinkAddress()
 {
     if(!d->currentItem || indexOf(d->currentItem) == -1)
         d->currentItem = currentWidget();
-    Frame* frame = d->frames[d->currentItem];
+    Frame* frame = d->frames.value(d->currentItem);
 
     if (frame && frame->url().isValid())
     {
@@ -368,15 +368,15 @@ void TabWidget::slotCloseTab()
 {
     if (!d->currentItem || indexOf(d->currentItem) == -1)
         d->currentItem = currentWidget();
-    if (d->frames[d->currentItem] == 0 || !d->frames[d->currentItem]->isRemovable() )
+    if (d->frames.value(d->currentItem) == 0 || !d->frames.value(d->currentItem)->isRemovable() )
         return;
 
-    emit signalRemoveFrameRequest(d->frames[d->currentItem]->id());
+    emit signalRemoveFrameRequest(d->frames.value(d->currentItem)->id());
 }
 
 void TabWidget::initiateDrag(int tab)
 {
-    Frame* frame = d->frames[widget(tab)];
+    Frame* frame = d->frames.value(widget(tab));
 
     if (frame && frame->url().isValid())
     {
@@ -393,8 +393,8 @@ void TabWidget::initiateDrag(int tab)
 
 void TabWidget::slotCloseRequest(QWidget* widget)
 {
-    if (d->frames[widget])
-        emit signalRemoveFrameRequest(d->frames[widget]->id());
+    if (d->frames.value(widget))
+        emit signalRemoveFrameRequest(d->frames.value(widget)->id());
 }
 
 } // namespace Akregator

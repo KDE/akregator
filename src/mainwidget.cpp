@@ -303,19 +303,19 @@ void Akregator::MainWidget::slotOnShutdown()
 {
     m_shuttingDown = true;
 
-    Kernel::self()->fetchQueue()->slotAbort();
+    // close all pageviewers in a controlled way
+    // fixes bug 91660, at least when no part loading data
+    while ( m_tabWidget->count() > 1 ) { // remove frames until only the main frame remains
+        m_tabWidget->setCurrentIndex( m_tabWidget->count() - 1 ); // select last page
+        m_tabWidget->slotRemoveCurrentFrame();
+    }
 
+    Kernel::self()->fetchQueue()->slotAbort();
     setFeedList( shared_ptr<FeedList>() );
 
     delete m_feedListManagementInterface;
     delete m_feedListView; // call delete here, so that the header settings will get saved
     delete m_articleListView; // same for this one
-
-    // close all pageviewers in a controlled way
-    // fixes bug 91660, at least when no part loading data
-    m_tabWidget->setCurrentIndex(m_tabWidget->count()-1); // select last page
-    while (m_tabWidget->count() > 1) // remove frames until only the main frame remains
-        m_tabWidget->slotRemoveCurrentFrame();
 
     delete m_mainTab;
     delete m_mainFrame;

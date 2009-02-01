@@ -89,7 +89,7 @@ void FrameManager::slotAddFrame(Frame* frame)
 
 void FrameManager::slotRemoveFrame(int id)
 {
-    Frame* frame = m_frames[id];
+    Frame* frame = m_frames.value(id);
 
     if (!frame)
         return;
@@ -102,20 +102,20 @@ void FrameManager::slotRemoveFrame(int id)
         slotChangeFrame(-1);
     }
 
-    m_frames[id] = 0;
+    m_frames.insert(id, 0);
     m_frames.remove(id);
     emit signalFrameRemoved(id);
-    frame->deleteLater();
+    delete frame;
 }
 
 Frame* FrameManager::findFrameById(int id) const
 {
-    return m_frames[id];
+    return m_frames.value(id);
 }
 
 void FrameManager::slotChangeFrame(int frameId)
 {
-    Frame* frame = m_frames[frameId];
+    Frame* frame = m_frames.value(frameId);
     if (frame == m_currentFrame)
         return;
 
@@ -255,6 +255,7 @@ void FrameManager::openUrl(OpenUrlRequest& request)
     if (!request.openInBackground())
         emit signalSelectFrame(request.frameId());
 }
+
 void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
 {
     KUrl url = request.url();
@@ -360,7 +361,7 @@ void FrameManager::saveProperties(KConfigGroup & config)
 
     config.writeEntry( QString::fromLatin1( "Children" ), strlst );
     config.writeEntry( QString::fromLatin1( "activeChildIndex" ),
-        m_frames.key(m_currentFrame) );
+                       m_frames.key(m_currentFrame) );
 }
 
 } // namespace Akregator
