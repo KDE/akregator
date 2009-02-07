@@ -413,7 +413,7 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
     if (d->loadLinkedWebsite)
         el.setAttribute( "loadLinkedWebsite", "true" );
     el.setAttribute( "maxArticleNumber", d->maxArticleNumber );
-    el.setAttribute( "type", "rss" ); // despite some additional fields, its still "rss" OPML
+    el.setAttribute( "type", "rss" ); // despite some additional fields, it is still "rss" OPML
     el.setAttribute( "version", "RSS" );
     parent.appendChild( el );
     return el;
