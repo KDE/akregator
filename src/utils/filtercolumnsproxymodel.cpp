@@ -67,4 +67,3 @@ void FilterColumnsProxyModel::setMode( Mode mode )
     m_mode = mode;
 }
 
-#include "filtercolumnsproxymodel.moc"
