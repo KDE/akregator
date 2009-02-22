@@ -4,7 +4,7 @@ set(akregatorstorageexporter_SRCS
     akregatorstorageexporter.cpp
 )
 
-kde4_add_executable(akregatorstorageexporter ${akregatorstorageexporter_SRCS})
+kde4_add_executable(akregatorstorageexporter NOGUI ${akregatorstorageexporter_SRCS})
 
 target_link_libraries(akregatorstorageexporter ${KDE4_KDECORE_LIBS} ${KDE4_SYNDICATION_LIBS} akregatorinterfaces)
 
