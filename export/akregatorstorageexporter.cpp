@@ -340,7 +340,7 @@ int main( int argc, char** argv ) {
         printUsage();
         return 1;
     }
-    const QString url = QUrl::fromEncoded( argv[1] ).toString();
+    const QString url = QUrl::fromEncoded( QByteArray::fromBase64( argv[1] ) ).toString();
 
     Q_FOREACH( const KService::Ptr& i, queryStoragePlugins() )
         if ( Plugin* const plugin = createFromService( i ) )
