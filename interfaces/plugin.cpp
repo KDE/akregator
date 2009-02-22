@@ -28,7 +28,7 @@
 namespace Akregator {
 
 
-Plugin::Plugin()
+Plugin::Plugin( QObject* parent, const QVariantList& ) : QObject( parent )
 {}
 
 

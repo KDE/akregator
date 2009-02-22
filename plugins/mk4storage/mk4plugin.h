@@ -27,16 +27,19 @@
 
 #include "plugin.h"
 
+#include <KPluginFactory>
 
 namespace Akregator {
 namespace Backend {
 
 class StorageFactory;
 
-class MK4Plugin : public Akregator::Plugin 
+class MK4Plugin : public Akregator::Plugin
 {
-   public: 
-      ~MK4Plugin();	
+      Q_OBJECT
+   public:
+      MK4Plugin( QObject* parent, const QVariantList& params );
+      ~MK4Plugin();
 
    private:
       void doInitialize();

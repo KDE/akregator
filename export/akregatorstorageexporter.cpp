@@ -40,7 +40,7 @@
 
 #include <KComponentData>
 #include <KGlobal>
-#include <KLibLoader>
+#include <KPluginLoader>
 #include <KService>
 #include <KServiceTypeTrader>
 
@@ -314,24 +314,16 @@ namespace {
             QString::fromLatin1( "[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0" ).arg( QString::number( AKREGATOR_PLUGIN_INTERFACE_VERSION ) ) );
     }
 
-    static Plugin*
-    createFromService( const KService::Ptr& service )
+    static Plugin* createFromService( const KService::Ptr& service )
     {
-        KLibLoader *loader = KLibLoader::self();
-        KLibrary *lib = loader->library( QFile::encodeName( service->library() ), QLibrary::ExportExternalSymbolsHint );
-
-        if ( !lib ) {
-            qCritical() << QString( " KLibLoader could not load the plugin: %1\n"
-                                    " Error message: %2" ).arg( service->library(), loader->lastErrorMessage() );
+        KPluginLoader loader( *service );
+        KPluginFactory* factory = loader.factory();
+        if ( !factory ) {
+            qCritical() << QString( " Could not create plugin factory for: %1\n"
+                                    " Error message: %2" ).arg( service->library(), loader.errorString() );
             return 0;
         }
-        //look up address of init function and cast it to pointer-to-function
-        Plugin* (*create_plugin)() = ( Plugin* (*)() ) lib->resolveFunction( "create_plugin" );
-
-        if ( !create_plugin )
-            return 0;
-
-        return create_plugin();
+        return factory->create<Akregator::Plugin>();
     }
 
     static void printUsage() {
@@ -354,7 +346,7 @@ int main( int argc, char** argv ) {
         if ( Plugin* const plugin = createFromService( i ) )
             plugin->initialize();
 
-    StorageFactory* const storageFactory = StorageFactoryRegistry::self()->getFactory( backend );
+    const StorageFactory* const storageFactory = StorageFactoryRegistry::self()->getFactory( backend );
     if ( !storageFactory ) {
         qCritical( "Could not create storage factory for %s.", qPrintable( backend ) );
         return 1;

@@ -100,7 +100,6 @@ class AKREGATORPART_EXPORT PluginManager
     private:
         struct StoreItem {
             Akregator::Plugin* plugin;
-            KLibrary* library;
             KService::Ptr service;
         };
 

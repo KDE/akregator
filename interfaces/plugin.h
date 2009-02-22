@@ -27,24 +27,21 @@
 
 #include "akregator_export.h"
 
-#define AKREGATOR_PLUGIN_INTERFACE_VERSION 2
-
-#define AKREGATOR_EXPORT_PLUGIN( classname ) \
-    extern "C" { \
-         KDE_EXPORT Akregator::Plugin* create_plugin() { return new classname; } \
-    }
-
+#include <QtCore/QObject>
 #include <QtCore/QHash>
 #include <QtCore/QString>
+#include <QtCore/QVariant>
 
+#define AKREGATOR_PLUGIN_INTERFACE_VERSION 3
 
 namespace Akregator {
 
-//    class PluginConfig;
-
-class AKREGATORINTERFACES_EXPORT Plugin
+class AKREGATORINTERFACES_EXPORT Plugin : public QObject
 {
+    Q_OBJECT
     public:
+        explicit Plugin( QObject* parent=0, const QVariantList& opts=QVariantList() );
+
         virtual ~Plugin();
 
         void initialize();
@@ -60,7 +57,6 @@ class AKREGATORINTERFACES_EXPORT Plugin
         bool hasPluginProperty( const QString& key ) const;
 
     protected:
-        Plugin();
         virtual void doInitialize() = 0;
 
     private:

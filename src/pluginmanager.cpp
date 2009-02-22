@@ -83,32 +83,18 @@ PluginManager::createFromService( const KService::Ptr service )
 {
     kDebug() <<"Trying to load:" << service->library();
 
-    //get the library loader instance
-    KLibLoader *loader = KLibLoader::self();
-    //try to load the specified library
-    KLibrary *lib = loader->library( QFile::encodeName( service->library() ), QLibrary::ExportExternalSymbolsHint );
-
-    if ( !lib ) {
-        KMessageBox::error( 0, i18n( "<p>KLibLoader could not load the plugin:<br/><i>%1</i></p>"
-                                     "<p>Error message:<br/><i>%2</i></p>" ,
-                                 service->library() ,
-                                 loader->lastErrorMessage() ) );
+    KPluginLoader loader( *service );
+    KPluginFactory* factory = loader.factory();
+    if ( !factory ) {
+        kWarning() << QString( " Could not create plugin factory for: %1\n"
+                                " Error message: %2" ).arg( service->library(), loader.errorString() );
         return 0;
     }
-    //look up address of init function and cast it to pointer-to-function
-    Plugin* (*create_plugin)() = ( Plugin* (*)() ) lib->resolveFunction( "create_plugin" );
-
-    if ( !create_plugin ) {
-        kWarning() <<"create_plugin == NULL";
-        return 0;
-    }
-    //create plugin on the heap
-    Plugin* plugin = create_plugin();
+    Plugin* const plugin = factory->create<Plugin>();
 
     //put plugin into store
     StoreItem item;
     item.plugin = plugin;
-    item.library = lib;
     item.service = service;
     m_store.push_back( item );
 
@@ -120,17 +106,24 @@ PluginManager::createFromService( const KService::Ptr service )
 void
 PluginManager::unload( Plugin* plugin )
 {
+#ifdef TEMPORARILY_REMOVED
     vector<StoreItem>::iterator iter = lookupPlugin( plugin );
 
     if ( iter != m_store.end() ) {
         delete (*iter).plugin;
         kDebug() <<"Unloading library:"<< (*iter).service->library();
+        //PENDING(kdab,frank) Review
         (*iter).library->unload();
+
 
         m_store.erase( iter );
     }
     else
         kWarning() <<"Could not unload plugin (not found in store).";
+#else //TEMPORARILY_REMOVED
+    kWarning() <<"PluginManager::unload temporarily disabled";
+#endif //TEMPORARILY_REMOVED
+
 }
 
 

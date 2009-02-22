@@ -27,15 +27,22 @@
 #include "storagefactorymk4impl.h"
 #include "storagefactoryregistry.h"
 
-AKREGATOR_EXPORT_PLUGIN( Akregator::Backend::MK4Plugin )
-
 namespace Akregator {
 namespace Backend {
+
+K_PLUGIN_FACTORY(MK4PluginFactory,
+                 registerPlugin<MK4Plugin>();
+)
+
+K_EXPORT_PLUGIN(MK4PluginFactory("akregator_mk4storage"))
 
 void MK4Plugin::doInitialize()
 {
    m_factory = new StorageFactoryMK4Impl();
    StorageFactoryRegistry::self()->registerFactory(m_factory, "metakit");
+}
+
+MK4Plugin::MK4Plugin( QObject* parent, const QVariantList& params ) : Plugin( parent, params ), m_factory( 0 ) {
 }
 
 MK4Plugin::~MK4Plugin()
