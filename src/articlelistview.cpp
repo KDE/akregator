@@ -201,16 +201,24 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
 
 void ArticleListView::saveHeaderSettings()
 {
-    if ( model() )
-        m_headerState = header()->saveState();
+    if ( model() ) {
+        const QByteArray state = header()->saveState();
+        if ( m_columnMode == FeedMode )
+            m_feedHeaderState = state;
+        else
+            m_groupHeaderState = state;
+    }
+
     KConfigGroup conf( Settings::self()->config(), "General" );
-    conf.writeEntry( "ArticleListHeaders", m_headerState.toBase64() );
+    conf.writeEntry( "ArticleListFeedHeaders", m_feedHeaderState.toBase64() );
+    conf.writeEntry( "ArticleListGroupHeaders", m_groupHeaderState.toBase64() );
 }
 
 void ArticleListView::loadHeaderSettings()
 {
     KConfigGroup conf( Settings::self()->config(), "General" );
-    m_headerState = QByteArray::fromBase64( conf.readEntry( "ArticleListHeaders" ).toAscii() );
+    m_feedHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListFeedHeaders" ).toAscii() );
+    m_groupHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListGroupHeaders" ).toAscii() );
 }
 
 QItemSelectionModel* ArticleListView::articleSelectionModel() const
@@ -244,7 +252,19 @@ void ArticleListView::setGroupMode()
 {
     if ( m_columnMode == GroupMode )
         return;
-    setColumnHidden( ArticleListView::FeedTitleColumn, false );
+
+    // The next line (used three times in this file) is a workaround for a
+    // possible Qt 4.4.3 bug that causes the last column to expand beyond
+    // the viewport width.  QHeaderViewPrivate::lastSectionSize may not be
+    // initialised when QHeaderViewPrivate::resizeSections() is called,
+    // doing the resizeSection() here ensures that it has a sensible value.
+    // This may not be necessary with Qt 4.5.
+    header()->resizeSection( header()->count() - 1, 1 );
+
+    if ( model() )
+        m_feedHeaderState = header()->saveState();
+
+    header()->restoreState( m_groupHeaderState );
     m_columnMode = GroupMode;
 }
 
@@ -252,7 +272,11 @@ void ArticleListView::setFeedMode()
 {
     if ( m_columnMode == FeedMode )
         return;
-    setColumnHidden( ArticleListView::FeedTitleColumn, true );
+
+    header()->resizeSection( header()->count() - 1, 1 );
+    if ( model() )
+        m_groupHeaderState = header()->saveState();
+    header()->restoreState( m_feedHeaderState );
     m_columnMode = FeedMode;
 }
 
@@ -263,9 +287,6 @@ ArticleListView::~ArticleListView()
 
 void ArticleListView::setIsAggregation( bool aggregation )
 {
-    if ( aggregation == m_isAggregation )
-        return;
-    m_isAggregation = aggregation;
     if ( aggregation )
         setGroupMode();
     else
@@ -274,8 +295,7 @@ void ArticleListView::setIsAggregation( bool aggregation )
 
 ArticleListView::ArticleListView( QWidget* parent )
     : QTreeView(parent),
-    m_columnMode( Unspecified ),
-    m_isAggregation( false )
+    m_columnMode( FeedMode )
 {
     setSortingEnabled( true );
     setAlternatingRowColors( true );
@@ -377,13 +397,26 @@ void ArticleListView::paintEvent( QPaintEvent* e )
 }
 
 
-void ArticleListView::setModel( QAbstractItemModel* m ) {
+void ArticleListView::setModel( QAbstractItemModel* m )
+{
+    const bool groupMode = m_columnMode == GroupMode;
+
     QAbstractItemModel* const oldModel = model();
-    if ( oldModel )
-        m_headerState = header()->saveState();
+    if ( oldModel ) {
+        const QByteArray state = header()->saveState();
+        if ( groupMode )
+            m_groupHeaderState = state;
+        else
+            m_feedHeaderState = state;
+    }
+
     QTreeView::setModel( m );
+
     if ( m )
-        header()->restoreState( m_headerState );
+    {
+        header()->resizeSection( header()->count() - 1, 1 );
+        header()->restoreState( groupMode ? m_groupHeaderState : m_feedHeaderState );
+    }
 }
 
 void ArticleListView::slotClear()

@@ -159,13 +159,12 @@ private Q_SLOTS:
 
 private:
 
-    enum Column { ItemTitleColumn=0, FeedTitleColumn, DateColumn, ColumnCount };
-    enum ColumnMode { Unspecified, GroupMode, FeedMode };
+    enum ColumnMode { GroupMode, FeedMode };
     ColumnMode m_columnMode;
-    bool m_isAggregation;
     QPointer<SortColorizeProxyModel> m_proxy;
     std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_matchers;
-    QByteArray m_headerState;
+    QByteArray m_feedHeaderState;
+    QByteArray m_groupHeaderState;
 };
 
 } // namespace Akregator
