@@ -182,11 +182,10 @@ void Akregator::SelectionController::setUp()
 void Akregator::SelectionController::articleHeadersAvailable()
 {
     ArticleModel* const newModel = new ArticleModel( m_selectedSubscription );
+    m_articleLister->setIsAggregation( m_selectedSubscription->isAggregation() );
     m_articleLister->setArticleModel( newModel );
     delete m_articleModel;
     m_articleModel = newModel;
-
-    m_articleLister->setIsAggregation( m_selectedSubscription->isAggregation() );
 
     connect( m_articleLister->articleSelectionModel(), SIGNAL( selectionChanged( QItemSelection, QItemSelection ) ),
              this, SLOT( articleSelectionChanged() ) );
