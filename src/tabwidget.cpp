@@ -121,8 +121,8 @@ TabWidget::~TabWidget()
 
 void TabWidget::slotSettingsChanged()
 {
-    if (hoverCloseButton() != Settings::closeButtonOnTabs())
-        setHoverCloseButton(Settings::closeButtonOnTabs());
+    if (tabsClosable() != Settings::closeButtonOnTabs())
+        setTabsClosable(Settings::closeButtonOnTabs());
 }
 
 void TabWidget::slotNextTab()
