@@ -25,7 +25,7 @@
    <item row="2" column="0" >
     <widget class="QCheckBox" name="kcfg_CloseButtonOnTabs" >
      <property name="text" >
-      <string>Show tab close button on hover</string>
+      <string>Show close button on each tab</string>
      </property>
     </widget>
    </item>
