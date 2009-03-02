@@ -70,7 +70,7 @@ void LoadFeedListCommand::Private::handleDocument( const QDomDocument& doc ) {
         const QString backupFile = createBackup( fileName, &backupCreated );
         const QString msg = backupCreated
             ? i18n("<qt>The standard feed list is corrupted (invalid OPML). A backup was created:<p><b>%1</b></p></qt>", backupFile )
-            : i18n("<qt>The standard feed list is corrupted (invalid OPML). Could not create a backup!</p></qt>" );
+            : i18n("<qt>The standard feed list is corrupted (invalid OPML). Could not create a backup.</p></qt>" );
 
         QPointer<QObject> that( q );
         KMessageBox::error( q->parentWidget(), msg, i18n("OPML Parsing Error") );
@@ -159,7 +159,7 @@ void LoadFeedListCommand::Private::doLoad() {
                                       errMsg );
         const QString msg = backupCreated
             ? i18n( "<qt>The standard feed list is corrupted (invalid XML). A backup was created:<p><b>%1</b></p></qt>", backupFile )
-            : i18n( "<qt>The standard feed list is corrupted (invalid XML). Could not create a backup!</p></qt>" );
+            : i18n( "<qt>The standard feed list is corrupted (invalid XML). Could not create a backup.</p></qt>" );
 
         QPointer<QObject> that( q );
 
