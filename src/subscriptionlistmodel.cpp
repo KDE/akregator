@@ -447,6 +447,9 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
     {
         const TreeNode* const droppedOnNode = qobject_cast<const TreeNode*>( nodeForIndex( parent, m_feedList ) );
 
+        if ( !droppedOnNode )
+            return false;
+
         const Folder* const destFolder = droppedOnNode->isGroup() ? qobject_cast<const Folder*>( droppedOnNode ) : droppedOnNode->parent();
         if ( !destFolder )
             return false;
