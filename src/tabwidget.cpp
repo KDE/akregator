@@ -69,7 +69,6 @@ private:
 public:
     explicit Private( TabWidget * qq ) : q( qq ) {}
 
-    TabWidget* parent;
     QHash<QWidget*, Frame*> frames;
     QHash<int, Frame*> framesById;
     int currentMaxLength;
@@ -90,7 +89,6 @@ void TabWidget::Private::updateTabBarVisibility()
 TabWidget::TabWidget(QWidget * parent)
     :KTabWidget(parent), d(new Private( this ) )
 {
-    d->parent = this;
     d->currentMaxLength = 30;
     d->currentItem = 0;
     setMinimumSize(250,150);
@@ -222,25 +220,25 @@ uint TabWidget::Private::tabBarWidthForMaxChars( int maxLength )
 {
     int hframe, overlap;
     QStyleOption o;
-    hframe = parent->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabHSpace, &o, parent );
-    overlap = parent->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabOverlap, &o, parent );
+    hframe = q->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabHSpace, &o, q );
+    overlap = q->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabOverlap, &o, q );
 
-    QFontMetrics fm = parent->tabBar()->fontMetrics();
+    QFontMetrics fm = q->tabBar()->fontMetrics();
     int x = 0;
-    for (int i = 0; i < parent->count(); ++i)
+    for (int i = 0; i < q->count(); ++i)
     {
-        Frame* f = frames.value(parent->widget(i));
+        Frame* f = frames.value(q->widget(i));
         QString newTitle = f->title();
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
 
         int lw = fm.width( newTitle );
-        int iw = parent->tabBar()->tabIcon( i ).pixmap( parent->tabBar()->style()->pixelMetric(
+        int iw = q->tabBar()->tabIcon( i ).pixmap( q->tabBar()->style()->pixelMetric(
 QStyle::PM_SmallIconSize ), QIcon::Normal
 ).width() + 4;
 
-        x += ( parent->tabBar()->style()->sizeFromContents( QStyle::CT_TabBarTab, &o,
-               QSize( qMax( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), parent ) ).width();
+        x += ( q->tabBar()->style()->sizeFromContents( QStyle::CT_TabBarTab, &o,
+               QSize( qMax( lw + hframe + iw, QApplication::globalStrut().width() ), 0 ), q ) ).width();
     }
     return x;
 }
@@ -260,23 +258,23 @@ void TabWidget::slotSetIcon(Akregator::Frame* frame, const QIcon& icon)
 
 void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
 {
-    int senderIndex = parent->indexOf(sender);
+    int senderIndex = q->indexOf(sender);
 
-    parent->setTabToolTip( senderIndex, QString() );
+    q->setTabToolTip( senderIndex, QString() );
 
     uint lcw=0, rcw=0;
-    int tabBarHeight = parent->tabBar()->sizeHint().height();
+    int tabBarHeight = q->tabBar()->sizeHint().height();
 
-    QWidget* leftCorner = parent->cornerWidget( Qt::TopLeftCorner );
+    QWidget* leftCorner = q->cornerWidget( Qt::TopLeftCorner );
 
     if ( leftCorner  && leftCorner->isVisible() )
         lcw = qMax( leftCorner->width(), tabBarHeight );
 
-    QWidget* rightCorner = parent->cornerWidget( Qt::TopRightCorner );
+    QWidget* rightCorner = q->cornerWidget( Qt::TopRightCorner );
 
     if ( rightCorner && rightCorner->isVisible() )
         rcw = qMax( rightCorner->width(), tabBarHeight );
-    uint maxTabBarWidth = parent->width() - lcw - rcw;
+    uint maxTabBarWidth = q->width() - lcw - rcw;
 
     int newMaxLength = 30;
 
@@ -289,33 +287,33 @@ void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
     QString newTitle = title;
     if ( newTitle.length() > newMaxLength )
     {
-        parent->setTabToolTip( senderIndex, newTitle );
+        q->setTabToolTip( senderIndex, newTitle );
         newTitle = newTitle.left( newMaxLength-3 ) + "...";
     }
 
     newTitle.replace( '&', "&&" );
 
-    if ( parent->tabText(senderIndex) != newTitle )
-        parent->setTabText( senderIndex, newTitle );
+    if ( q->tabText(senderIndex) != newTitle )
+        q->setTabText( senderIndex, newTitle );
 
     if( newMaxLength != currentMaxLength )
     {
-        for( int i = 0; i < parent->count(); ++i)
+        for( int i = 0; i < q->count(); ++i)
         {
-            Frame* f = frames.value(parent->widget(i));
+            Frame* f = frames.value(q->widget(i));
             newTitle = f->title();
-            int index = parent->indexOf(parent->widget( i ));
-            parent->setTabToolTip( index, QString() );
+            int index = q->indexOf(q->widget( i ));
+            q->setTabToolTip( index, QString() );
 
             if ( newTitle.length() > newMaxLength )
             {
-                parent->setTabToolTip( index, newTitle );
+                q->setTabToolTip( index, newTitle );
                 newTitle = newTitle.left( newMaxLength-3 ) + "...";
             }
 
             newTitle.replace( '&', "&&" );
-            if ( newTitle != parent->tabText( index ) )
-                parent->setTabText( index, newTitle );
+            if ( newTitle != q->tabText( index ) )
+                q->setTabText( index, newTitle );
         }
         currentMaxLength = newMaxLength;
     }
