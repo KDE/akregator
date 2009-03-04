@@ -209,6 +209,7 @@ void TabWidget::slotRemoveFrame(int frameId)
     Frame* f = d->framesById.value(frameId);
     d->frames.remove(f);
     d->framesById.remove(frameId);
+    f->disconnect( this );
     removeTab(indexOf(f));
     emit signalRemoveFrameRequest(f->id());
     if (d->currentFrame())
