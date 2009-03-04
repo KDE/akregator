@@ -436,48 +436,50 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
     //if ( column != TitleColumn )
     //    return false;
 
-    if ( data->hasFormat( AKREGATOR_TREENODE_MIMETYPE ) )
+    if ( !data->hasFormat( AKREGATOR_TREENODE_MIMETYPE ) )
+        return false;
+
+    const TreeNode* const droppedOnNode = qobject_cast<const TreeNode*>( nodeForIndex( parent, m_feedList.get() ) );
+
+    if ( !droppedOnNode )
+        return false;
+
+    const Folder* const destFolder = droppedOnNode->isGroup() ? qobject_cast<const Folder*>( droppedOnNode ) : droppedOnNode->parent();
+    if ( !destFolder )
+        return false;
+
+    QByteArray idData = data->data( AKREGATOR_TREENODE_MIMETYPE );
+    QList<int> ids;
+    QDataStream stream( &idData, QIODevice::ReadOnly );
+    while ( !stream.atEnd() )
     {
-        const TreeNode* const droppedOnNode = qobject_cast<const TreeNode*>( nodeForIndex( parent, m_feedList.get() ) );
-
-        const Folder* const destFolder = droppedOnNode->isGroup() ? qobject_cast<const Folder*>( droppedOnNode ) : droppedOnNode->parent();
-        if ( !destFolder )
-            return false;
-
-        QByteArray idData = data->data( AKREGATOR_TREENODE_MIMETYPE );
-        QList<int> ids;
-        QDataStream stream( &idData, QIODevice::ReadOnly );
-        while ( !stream.atEnd() )
-        {
-            int id;
-            stream >> id;
-            ids << id;
-        }
-
-        //don't drop nodes into their own subtree
-        Q_FOREACH ( const int id, ids )
-        {
-            const Folder* const asFolder = qobject_cast<const Folder*>( m_feedList->findByID( id ) );
-            if ( asFolder && ( asFolder == destFolder || asFolder->subtreeContains( destFolder ) ) )
-                return false;
-        }
-
-        const TreeNode* const after = droppedOnNode->isGroup() ? destFolder->childAt( row ) : droppedOnNode;
-
-        Q_FOREACH ( const int id, ids )
-        {
-            const TreeNode* const node = m_feedList->findByID( id );
-            if ( !node )
-                continue;
-            MoveSubscriptionJob* job = new MoveSubscriptionJob( this );
-            job->setSubscriptionId( node->id() );
-            job->setDestination( destFolder->id(), after ? after->id() : -1 );
-            job->start();
-        }
-        return true;
+        int id;
+        stream >> id;
+        ids << id;
     }
 
-    return false;
+    //don't drop nodes into their own subtree
+    Q_FOREACH ( const int id, ids )
+    {
+        const Folder* const asFolder = qobject_cast<const Folder*>( m_feedList->findByID( id ) );
+        if ( asFolder && ( asFolder == destFolder || asFolder->subtreeContains( destFolder ) ) )
+            return false;
+    }
+
+    const TreeNode* const after = droppedOnNode->isGroup() ? destFolder->childAt( row ) : droppedOnNode;
+
+    Q_FOREACH ( const int id, ids )
+    {
+        const TreeNode* const node = m_feedList->findByID( id );
+        if ( !node )
+            continue;
+        MoveSubscriptionJob* job = new MoveSubscriptionJob( this );
+        job->setSubscriptionId( node->id() );
+        job->setDestination( destFolder->id(), after ? after->id() : -1 );
+        job->start();
+    }
+
+    return true;
 }
 
 #include "subscriptionlistmodel.moc"
