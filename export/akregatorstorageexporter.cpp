@@ -283,7 +283,7 @@ namespace {
         writer.writeEndElement(); // </item>
     }
 
-    static void serialize( FeedStorage* storage, QIODevice* device ) {
+    static void serialize( FeedStorage* storage, const QString& url, QIODevice* device ) {
         assert( storage );
         assert( device );
         QXmlStreamWriter writer( device );
@@ -298,7 +298,7 @@ namespace {
         writer.writeNamespace( akregatorNamespace(), "akregator" );
         writer.writeNamespace( Syndication::itunesNamespace(), "itunes" );
 
-        Elements::instance.title.write( QString::fromLatin1("Akregator Export"), writer, Html );
+        Elements::instance.title.write( QString::fromLatin1("Akregator Export for %1").arg( url ), writer, Html );
 
 
         Q_FOREACH( const QString& i, storage->articles() )
@@ -308,7 +308,7 @@ namespace {
     }
 
     static void serialize( Storage* storage, const QString& url, QIODevice* device ) {
-        serialize( storage->archiveFor( url ), device );
+        serialize( storage->archiveFor( url ), url, device );
     }
 
     static KService::List queryStoragePlugins() {
@@ -350,7 +350,8 @@ int main( int argc, char** argv ) {
         return 1;
     }
 
-    const QString url = QUrl::fromEncoded( base64 ? QByteArray::fromBase64( argv[1] ) : QByteArray( argv[1] ) ).toString();
+    const int pos = base64 ? 2 : 1;
+    const QString url = QUrl::fromEncoded( base64 ? QByteArray::fromBase64( argv[pos] ) : QByteArray( argv[pos] ) ).toString();
 
     Q_FOREACH( const KService::Ptr& i, queryStoragePlugins() )
         if ( Plugin* const plugin = createFromService( i ) )
@@ -375,5 +376,6 @@ int main( int argc, char** argv ) {
     }
 
     serialize( storage, url, &out );
+
     return 0;
 }
