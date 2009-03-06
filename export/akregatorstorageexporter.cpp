@@ -44,6 +44,8 @@
 #include <KService>
 #include <KServiceTypeTrader>
 
+#include <iostream>
+
 #include <cassert>
 
 using namespace Akregator;
@@ -327,7 +329,7 @@ namespace {
     }
 
     static void printUsage() {
-
+        std::cout << "akregatorstorageexporter [--base64] url" << std::endl;
     }
 }
 
@@ -341,13 +343,13 @@ int main( int argc, char** argv ) {
         return 1;
     }
 
-    const bool base64 = qstrcmp( argv[1], "--base64" );
+    const bool base64 = qstrcmp( argv[1], "--base64" ) == 0;
 
     if ( base64 && argc < 3 ) {
         printUsage();
         return 1;
     }
- 
+
     const QString url = QUrl::fromEncoded( base64 ? QByteArray::fromBase64( argv[1] ) : QByteArray( argv[1] ) ).toString();
 
     Q_FOREACH( const KService::Ptr& i, queryStoragePlugins() )
