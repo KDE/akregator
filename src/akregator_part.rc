@@ -40,7 +40,7 @@
   
   
   <Menu name="feed">
-    <text>F&amp;eed</text>
+    <text>Fee&amp;d</text>
     <Action name="feed_add"/>
     <Action name="feed_add_group"/>
     <Separator/>
@@ -49,7 +49,7 @@
     <Separator/>
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
-    <Action name="feed_stop"/> 
+    <Action name="feed_stop"/>
   </Menu>
   
   <Menu name ="article">
