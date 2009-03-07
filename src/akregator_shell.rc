@@ -23,7 +23,7 @@
   </Menu>
   
   <Menu noMerge="1" name="feed">
-    <text>&amp;Feed</text>
+    <text>Fee&amp;d</text>
     <Merge/>
   </Menu>
 
