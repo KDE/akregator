@@ -1,141 +1,136 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="412">
-<MenuBar>
-  <Menu name="file">
-    <Action name="file_import"/>
-    <Action name="file_export"/>
-    <Action name="file_getfromweb"/>
-    <Separator/> 
-    <Action name="file_print"/>
-    <Separator/> 
-  </Menu>
+<kpartgui name="akregator_part" version="413">
+  <MenuBar>
+    <Menu name="file">
+      <Action name="file_import"/>
+      <Action name="file_export"/>
+      <Action name="file_getfromweb"/>
+      <Separator/>
+      <Action name="file_print"/>
+      <Separator/>
+    </Menu>
 
-    
-
-   <Menu name="edit">
+    <Menu name="edit">
       <text>&amp;Edit</text>
       <Action name="feed_modify"/>
       <Action name="feed_remove"/>
       <Separator/>
-   </Menu>
+    </Menu>
 
-  
-  <Menu name="view">
-    <text>&amp;View</text>
-    <Action name="view_mode"/>
-  </Menu>
-  
-  <Menu name="go">
-    <text>&amp;Go</text>
-    <Action name="go_previous_article"/>
-    <Action name="go_prev_unread_article"/>
-    <Action name="go_next_article"/>
-    <Action name="go_next_unread_article"/>
-    <Separator/>
-    <Action name="go_prev_feed"/>
-    <Action name="go_prev_unread_feed"/>
-    <Action name="go_next_feed"/>
-    <Action name="go_next_unread_feed"/>
-  </Menu>
-  
-  
-  <Menu name="feed">
-    <text>Fee&amp;d</text>
-    <Action name="feed_add"/>
-    <Action name="feed_add_group"/>
-    <Separator/>
-    <Action name="feed_mark_all_as_read"/>
-    <Action name="feed_mark_all_feeds_as_read"/>
-    <Separator/>
+    <Menu name="view">
+      <text>&amp;View</text>
+      <Action name="view_mode"/>
+    </Menu>
+
+    <Menu name="go">
+      <text>&amp;Go</text>
+      <Action name="go_previous_article"/>
+      <Action name="go_prev_unread_article"/>
+      <Action name="go_next_article"/>
+      <Action name="go_next_unread_article"/>
+      <Separator/>
+      <Action name="go_prev_feed"/>
+      <Action name="go_prev_unread_feed"/>
+      <Action name="go_next_feed"/>
+      <Action name="go_next_unread_feed"/>
+    </Menu>
+
+    <Menu name="feed">
+      <text>Fee&amp;d</text>
+      <Action name="feed_add"/>
+      <Action name="feed_add_group"/>
+      <Separator/>
+      <Action name="feed_mark_all_as_read"/>
+      <Action name="feed_mark_all_feeds_as_read"/>
+      <Separator/>
+      <Action name="feed_fetch"/>
+      <Action name="feed_fetch_all"/>
+      <Action name="feed_stop"/>
+    </Menu>
+
+    <Menu name ="article">
+      <text>&amp;Article</text>
+      <Action name="article_open"/>
+      <Action name="article_open_external" />
+      <Separator/>
+      <Action name="article_set_status_important"/>
+      <Action name="article_set_status"/>
+      <Action name="article_delete"/>
+      <Separator/>
+      <Action name="article_assign_tag_menu"/>
+      <Action name="article_remove_tag_menu"/>
+      <Separator/>
+      <Action name="file_sendlink"/>
+      <Action name="file_sendfile"/>
+    </Menu>
+
+    <Menu noMerge="1" name="settings">
+      <text>&amp;Settings</text>
+      <DefineGroup append="top_merge" name="top_merge" />
+      <Action name="show_quick_filter" group="top_merge" />
+      <Action name="options_configure" group="settings_configure" />
+    </Menu>
+
+    <Menu name="help">
+    </Menu>
+  </MenuBar>
+
+  <ToolBar noMerge="1" name="mainToolBar" fullWidth="true"><text>Main Toolbar</text>
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
     <Action name="feed_stop"/>
+    <Action name="feed_mark_all_as_read"/>
+    <Action name="article_tagmenu"/>
+    <DefineGroup name="pageviewer_operations" />
+    <Merge/>
+  </ToolBar>
+
+  <ToolBar name="browserToolBar"><text>Browser Toolbar</text>
+    <Action name="browser_back"/>
+    <Action name="browser_forward"/>
+    <Action name="browser_reload"/>
+    <Action name="browser_stop"/>
+    <Merge/>
+  </ToolBar>
+
+  <ToolBar hidden="true" name="textToSpeechToolBar"><text>Speech Toolbar</text>
+    <Action name="akr_texttospeech"/>
+    <Action name="akr_aborttexttospeech"/>
+    <Merge/>
+  </ToolBar>
+
+  <!-- this menu doesn't show up in the app, just groups the actions -->
+  <Menu name="various">
+    <Action name="go_previous_article"/>
+    <Action name="go_next_article"/>
+    <Action name="feedstree_up"/>
+    <Action name="feedstree_down"/>
+    <Action name="feedstree_left"/>
+    <Action name="feedstree_right"/>
+    <Action name="feedstree_home"/>
+    <Action name="feedstree_end"/>
+    <Action name="feedstree_move_up"/>
+    <Action name="feedstree_move_down"/>
+    <Action name="feedstree_move_left"/>
+    <Action name="feedstree_move_right"/>
+    <Action name="article_open_in_tab"/>
+    <Action name="article_open"/>
+    <Action name="select_previous_tab"/>
+    <Action name="select_next_tab"/>
   </Menu>
-  
-  <Menu name ="article">
-  <text>&amp;Article</text>
-  <Action name="article_open"/>
-  <Action name="article_open_external" />
-  <Separator/>
-  <Action name="article_set_status_important"/>
-  <Action name="article_set_status"/>
-  <Action name="article_delete"/>
-  <Separator/>
-  <Action name="article_assign_tag_menu"/>
-  <Action name="article_remove_tag_menu"/>
-  <Separator/>
-  <Action name="file_sendlink"/>
-  <Action name="file_sendfile"/>
 
+  <Menu name="feeds_popup">
+    <Action name="feed_mark_all_as_read"/>
+    <Separator/>
+    <Action name="feed_fetch"/>
+    <Separator/>
+    <Action name="feed_homepage"/>
+    <Separator/>
+    <Action name="feed_modify"/>
+    <Action name="feed_remove"/>
   </Menu>
 
-  <Menu noMerge="1" name="settings" >
-   <text>&amp;Settings</text>
-   <DefineGroup append="top_merge" name="top_merge" />
-   <Action name="show_quick_filter" group="top_merge" />
-   <Action name="options_configure" group="settings_configure" />
-  </Menu>
-
-  <Menu name="help">
-  </Menu>
-</MenuBar>
-
-<ToolBar noMerge="1" name="mainToolBar" fullWidth="true"><text>Main Toolbar</text>
-  <Action name="feed_fetch"/>
-  <Action name="feed_fetch_all"/>
-  <Action name="feed_stop"/>
-  <Action name="feed_mark_all_as_read"/>
-  <Action name="article_tagmenu"/>
-  <DefineGroup name="pageviewer_operations" />
-  <Merge/>
-</ToolBar>
-
-<ToolBar name="browserToolBar"><text>Browser Toolbar</text>
-	<Action name="browser_back"/>
-	<Action name="browser_forward"/>
-	<Action name="browser_reload"/>
-	<Action name="browser_stop"/>
-	<Merge/>
-</ToolBar>
-
-<ToolBar hidden="true" name="textToSpeechToolBar"><text>Speech Toolbar</text>
-	<Action name="akr_texttospeech"/>
-	<Action name="akr_aborttexttospeech"/>
-	<Merge/>
-</ToolBar>
-
-<!-- this menu doesn't show up in the app, just groups the actions -->
-<Menu name="various">
-<Action name="go_previous_article"/>
-<Action name="go_next_article"/>
-<Action name="feedstree_up"/>
-<Action name="feedstree_down"/>
-<Action name="feedstree_left"/>
-<Action name="feedstree_right"/>
-<Action name="feedstree_home"/>
-<Action name="feedstree_end"/>
-<Action name="feedstree_move_up"/>
-<Action name="feedstree_move_down"/>
-<Action name="feedstree_move_left"/>
-<Action name="feedstree_move_right"/>
-<Action name="article_open_in_tab"/>
-<Action name="article_open"/>
-<Action name="select_previous_tab"/>
-<Action name="select_next_tab"/>
-</Menu>
-
-<Menu name="feeds_popup">
-  <Action name="feed_mark_all_as_read"/>
-  <Separator/>
-  <Action name="feed_fetch"/>
-  <Separator/>
-  <Action name="feed_homepage"/>
-  <Separator/>
-  <Action name="feed_modify"/>
-  <Action name="feed_remove"/>
-</Menu>
-
-<Menu name="feedgroup_popup">
+  <Menu name="feedgroup_popup">
     <Action name="feed_mark_all_as_read"/>
     <Separator/>
     <Action name="feed_fetch"/>
@@ -144,41 +139,39 @@
     <Action name="feed_add_group"/>
     <Action name="feed_modify"/>
     <Action name="feed_remove"/>
-</Menu>
+  </Menu>
 
-<Menu name="tagfolder_popup">
-	<Action name="feed_mark_all_as_read"/>
-	<Separator/>
-	<Action name="tag_new"/>
-<!--	<Action name="feed_add_group"/> -->
-	<Action name="feed_modify"/>
-	<Action name="feed_remove"/>
-</Menu>
+  <Menu name="tagfolder_popup">
+    <Action name="feed_mark_all_as_read"/>
+    <Separator/>
+    <Action name="tag_new"/>
+    <!--<Action name="feed_add_group"/> -->
+    <Action name="feed_modify"/>
+    <Action name="feed_remove"/>
+  </Menu>
 
+  <Menu name="tagnode_popup">
+    <Action name="feed_mark_all_as_read"/>
+    <Action name="feed_modify"/>
+    <Action name="feed_remove"/>
+  </Menu>
 
-<Menu name="tagnode_popup">
-	<Action name="feed_mark_all_as_read"/>
-	<Action name="feed_modify"/>
-	<Action name="feed_remove"/>
-</Menu>
+  <Menu name="article_popup">
+    <Action name="article_open"/>
+    <Action name="article_open_external" />
+    <Action name="article_copy_link_address" />
+    <Separator/>
+    <Action name="article_set_status_important"/>
+    <Action name="article_set_status"/>
+    <Action name="article_toggle_keep"/>
+    <Action name="article_delete"/>
+    <Separator/>
+    <Action name="article_tagmenu"/>
+  </Menu>
 
-<Menu name="article_popup">
-  <Action name="article_open"/>
-  <Action name="article_open_external" />
-  <Action name="article_copy_link_address" />
-  <Separator/>
-  <Action name="article_set_status_important"/>
-  <Action name="article_set_status"/>
-  <Action name="article_toggle_keep"/>
-  <Action name="article_delete"/>
-  <Separator/>
-  <Action name="article_tagmenu"/>
-</Menu>
-
-<Menu name="tab_popup">
-  <Action name="tab_detach"/>
-  <Action name="tab_copylinkaddress"/>
-  <Action name="tab_remove"/>
-</Menu>
-
+  <Menu name="tab_popup">
+    <Action name="tab_detach"/>
+    <Action name="tab_copylinkaddress"/>
+    <Action name="tab_remove"/>
+  </Menu>
 </kpartgui>
