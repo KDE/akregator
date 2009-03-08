@@ -226,37 +226,24 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedModify()));
     action->setShortcuts(KShortcut( "F2" ));
 
-    KActionMenu* vm = coll->add<KActionMenu>("view_mode");
-    vm->setText(i18n("&View Mode"));
+    // toolbar / View
+    action = coll->addAction("normal_view");
+    action->setIcon(KIcon("view-split-top-bottom"));
+    action->setText(i18n("&Normal View"));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNormalView()));
+    action->setShortcuts(KShortcut( "Ctrl+Shift+1" ));
 
-    QActionGroup* agViewMode = new QActionGroup(this);
-    agViewMode->setExclusive(true);
-    KToggleAction *ra = coll->add<KToggleAction>("normal_view");
-    ra->setIcon(KIcon("view-split-top-bottom"));
-    ra->setText(i18n("&Normal View"));
-    connect(ra, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNormalView()));
-    ra->setShortcuts(KShortcut( "Ctrl+Shift+1" ));
-    ra->setActionGroup(agViewMode);
-    ra->setChecked(mainWidget->viewMode() == MainWidget::NormalView);
-    vm->addAction(ra);
+    action = coll->addAction("widescreen_view");
+    action->setIcon(KIcon("view-split-left-right"));
+    action->setText(i18n("&Widescreen View"));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotWidescreenView()));
+    action->setShortcuts(KShortcut( "Ctrl+Shift+2" ));
 
-    ra = coll->add<KToggleAction>("widescreen_view");
-    ra->setIcon(KIcon("view-split-left-right"));
-    ra->setText(i18n("&Widescreen View"));
-    connect(ra, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotWidescreenView()));
-    ra->setShortcuts(KShortcut( "Ctrl+Shift+2" ));
-    ra->setActionGroup(agViewMode);
-    ra->setChecked(mainWidget->viewMode() == MainWidget::WidescreenView);
-    vm->addAction(ra);
-
-    ra = coll->add<KToggleAction>("combined_view");
-    ra->setIcon(KIcon("view-list-text"));
-    ra->setText(i18n("C&ombined View"));
-    connect(ra, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCombinedView()));
-    ra->setShortcuts(KShortcut( "Ctrl+Shift+3" ));
-    ra->setActionGroup(agViewMode);
-    ra->setChecked(mainWidget->viewMode() == MainWidget::CombinedView);
-    vm->addAction(ra);
+    action = coll->addAction("combined_view");
+    action->setIcon(KIcon("view-list-text"));
+    action->setText(i18n("C&ombined View"));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCombinedView()));
+    action->setShortcuts(KShortcut( "Ctrl+Shift+3" ));
 
     // toolbar / feed menu
     action = coll->addAction("feed_fetch");
