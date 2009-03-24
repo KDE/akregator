@@ -886,9 +886,12 @@ void Akregator::MainWidget::slotOpenHomepage()
     }
 }
 
-void Akregator::MainWidget::slotOpenCurrentArticleInBrowser()
+void Akregator::MainWidget::slotOpenSelectedArticlesInBrowser()
 {
-    slotOpenArticleInBrowser( m_selectionController->currentArticle() );
+    const QList<Article> articles = m_selectionController->selectedArticles();
+
+    Q_FOREACH( const Akregator::Article& article, articles )
+        slotOpenArticleInBrowser( article );
 }
 
 void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article& article)
@@ -902,22 +905,24 @@ void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article& a
 }
 
 
-void Akregator::MainWidget::slotOpenCurrentArticle()
+void Akregator::MainWidget::slotOpenSelectedArticles()
 {
-    Article article =  m_selectionController->currentArticle();
-    if ( article.isNull() )
-        return;
+    const QList<Article> articles = m_selectionController->selectedArticles();
 
-    const KUrl url = article.link();
-    if ( !url.isValid() )
-        return;
+    Q_FOREACH( const Akregator::Article& article, articles )
+    {
+        const KUrl url = article.link();
+        if ( !url.isValid() )
+          continue;
 
-    OpenUrlRequest req( url );
-    req.setOptions( OpenUrlRequest::NewTab );
-    // TODO: (re-)add a setting for foreground/background
-    // and use it here
-    //req.setOpenInBackground( true );
-    Kernel::self()->frameManager()->slotOpenUrlRequest( req );
+        OpenUrlRequest req( url );
+        req.setOptions( OpenUrlRequest::NewTab );
+        // TODO: (re-)add a setting for foreground/background
+        // and use it here
+        //req.setOpenInBackground( true );
+        Kernel::self()->frameManager()->slotOpenUrlRequest( req );
+    }
+
 }
 
 void Akregator::MainWidget::slotCopyLinkAddress()
