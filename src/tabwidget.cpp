@@ -56,6 +56,7 @@
 #include "framemanager.h"
 #include "kernel.h"
 #include "openurlrequest.h"
+#include "utils/temporaryvalue.h"
 
 #include <cassert>
 
@@ -67,13 +68,17 @@ private:
     TabWidget* const q;
 
 public:
-    explicit Private( TabWidget * qq ) : q( qq ) {}
+    explicit Private( TabWidget * qq ) : q( qq ), currentMaxLength( 30 ), currentItem( 0 ) {}
 
     QHash<QWidget*, Frame*> frames;
     QHash<int, Frame*> framesById;
     int currentMaxLength;
     QWidget* currentItem;
     QToolButton* tabsClose;
+
+    QWidget* selectedWidget() const {
+        return ( currentItem && q->indexOf(currentItem) != -1 ) ? currentItem : q->currentWidget();
+    }
 
     uint tabBarWidthForMaxChars(int maxLength);
     void setTitle(const QString &title , QWidget* sender);
@@ -89,8 +94,6 @@ void TabWidget::Private::updateTabBarVisibility()
 TabWidget::TabWidget(QWidget * parent)
     :KTabWidget(parent), d(new Private( this ) )
 {
-    d->currentMaxLength = 30;
-    d->currentItem = 0;
     setMinimumSize(250,150);
     setTabReorderingEnabled(false);
     connect( this, SIGNAL( currentChanged(int) ),
@@ -100,7 +103,6 @@ TabWidget::TabWidget(QWidget * parent)
     setCloseButtonEnabled(Settings::closeButtonOnTabs());
 
     d->tabsClose = new QToolButton(this);
-    d->tabsClose->setShortcut(QKeySequence("Ctrl+W"));
     connect( d->tabsClose, SIGNAL( clicked() ), this,
             SLOT( slotRemoveCurrentFrame() ) );
 
@@ -323,20 +325,16 @@ void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
 void TabWidget::contextMenu(int i, const QPoint &p)
 {
     QWidget* w = ActionManager::getInstance()->container("tab_popup");
-    d->currentItem = widget(i);
+    TemporaryValue<QWidget*> tmp( d->currentItem, widget( i ) );
     //kDebug() << indexOf(d->currentItem);
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0)
         static_cast<QMenu *>(w)->exec(p);
-    d->currentItem = 0;
 }
 
 void TabWidget::slotDetachTab()
 {
-    if (!d->currentItem || indexOf(d->currentItem) == -1)
-        d->currentItem = currentWidget();
-
-    Frame* frame = d->frames.value(d->currentItem);
+    Frame* frame = d->frames.value( d->selectedWidget() );
 
     if (frame && frame->url().isValid() && frame->isRemovable())
     {
@@ -350,9 +348,7 @@ void TabWidget::slotDetachTab()
 
 void TabWidget::slotCopyLinkAddress()
 {
-    if(!d->currentItem || indexOf(d->currentItem) == -1)
-        d->currentItem = currentWidget();
-    Frame* frame = d->frames.value(d->currentItem);
+    Frame* frame = d->frames.value( d->selectedWidget() );
 
     if (frame && frame->url().isValid())
     {
@@ -365,12 +361,13 @@ void TabWidget::slotCopyLinkAddress()
 
 void TabWidget::slotCloseTab()
 {
-    if (!d->currentItem || indexOf(d->currentItem) == -1)
-        d->currentItem = currentWidget();
-    if (d->frames.value(d->currentItem) == 0 || !d->frames.value(d->currentItem)->isRemovable() )
+    QWidget* widget =  d->selectedWidget();
+    Frame* frame = d->frames.value( widget );
+
+    if (d->frames.value(widget) == 0 || !d->frames.value(widget)->isRemovable() )
         return;
 
-    emit signalRemoveFrameRequest(d->frames.value(d->currentItem)->id());
+    emit signalRemoveFrameRequest(d->frames.value(widget)->id());
 }
 
 void TabWidget::initiateDrag(int tab)
