@@ -128,7 +128,6 @@ namespace {
                      commentsFeed( commentNS, "commentRss" ),
                      commentPostUri( commentNS, "comment" ),
                      commentsLink( akregatorNS, "commentsLink" ),
-                     status( akregatorNS, "status" ),
                      hash( akregatorNS, "hash" ),
                      guidIsHash( akregatorNS, "idIsHash" ),
                      name( atomNS, "name" ),
@@ -159,7 +158,6 @@ namespace {
         const Element commentsFeed;
         const Element commentPostUri;
         const Element commentsLink;
-        const Element status;
         const Element hash;
         const Element guidIsHash;
         const Element name;
@@ -253,7 +251,7 @@ namespace {
             Elements::instance.guidIsHash.write( QString::fromLatin1("true"), writer );
         if ( status & New )
             Elements::instance.readStatus.write( QString::fromLatin1("new"), writer );
-        else if ( ( status & Read) == 0 )
+        else if ( ( status & Read ) == 0 )
             Elements::instance.readStatus.write( QString::fromLatin1("unread"), writer );
         if ( status & Keep )
             Elements::instance.important.write( QString::fromLatin1("true"), writer );
