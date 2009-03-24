@@ -364,10 +364,10 @@ void TabWidget::slotCloseTab()
     QWidget* widget =  d->selectedWidget();
     Frame* frame = d->frames.value( widget );
 
-    if (d->frames.value(widget) == 0 || !d->frames.value(widget)->isRemovable() )
+    if (frame == 0 || !frame->isRemovable() )
         return;
 
-    emit signalRemoveFrameRequest(d->frames.value(widget)->id());
+    emit signalRemoveFrameRequest(frame->id());
 }
 
 void TabWidget::initiateDrag(int tab)
