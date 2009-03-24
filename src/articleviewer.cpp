@@ -26,6 +26,7 @@
 #include "articleviewer.h"
 #include "akregatorconfig.h"
 #include "aboutdata.h"
+#include "actionmanager.h"
 #include "actions.h"
 #include "article.h"
 #include "articleformatter.h"
@@ -498,6 +499,8 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
     QString summary = m_normalViewFormatter->formatSummary(node);
     m_link.clear();
     renderContent(summary);
+
+    setArticleActionsEnabled(false);
 }
 
 void ArticleViewer::showArticle( const Akregator::Article& article )
@@ -521,6 +524,8 @@ void ArticleViewer::showArticle( const Akregator::Article& article )
     {
         renderContent( m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon) );
     }
+
+    setArticleActionsEnabled(true);
 }
 
 bool ArticleViewer::openUrl(const KUrl& url)
@@ -782,6 +787,11 @@ void ArticleViewer::setCombinedViewFormatter( const shared_ptr<ArticleFormatter>
     assert( formatter );
     m_combinedViewFormatter = formatter;
     m_combinedViewFormatter->setPaintDevice(m_part->view());
+}
+
+void ArticleViewer::setArticleActionsEnabled(bool enabled)
+{
+    ActionManager::getInstance()->setArticleActionsEnabled(enabled);
 }
 
 } // namespace Akregator

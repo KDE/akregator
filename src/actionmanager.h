@@ -54,6 +54,8 @@ class ActionManager : public QObject
         virtual QAction* action(const char* name) = 0;
         virtual QWidget* container(const char* name) = 0;
 
+        virtual void setArticleActionsEnabled( bool enabled ) = 0;
+
     private:
 
         static ActionManager* m_self;
