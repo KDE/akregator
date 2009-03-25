@@ -73,6 +73,7 @@ void ConfigurationDialogAdd::accept()
         generalGroup.writeEntry( "Identifier", url.url() );
         generalGroup.config()->sync();
     }
+    done( KDialog::Ok );
 }
 
 void ConfigurationDialogAdd::load( const KConfigGroup& group )

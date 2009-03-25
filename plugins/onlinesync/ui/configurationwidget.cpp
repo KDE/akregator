@@ -105,10 +105,11 @@ void ConfigurationWidget::slotButtonRemoveClicked()
     QList<QTreeWidgetItem *> m_items = ui.list_readerList->selectedItems();
     if ( !m_items.isEmpty() ) {
         kDebug() << m_items.at(0)->text(2);
-        KConfig config("akregator_feedsyncrc");
-        config.deleteGroup(m_items.at(0)->text(2));
+        {
+            KConfig config("akregator_feedsyncrc");
+            config.deleteGroup(m_items.at(0)->text(2));
+        }
     }
-
     refresh();
 }
 
