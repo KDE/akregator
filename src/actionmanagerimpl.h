@@ -44,7 +44,7 @@ class TabWidget;
 class TreeNode;
 class TrayIcon;
 
-/** 
+/**
  * Akregator-specific implementation of the ActionManager interface
  */
 class ActionManagerImpl : public ActionManager
@@ -66,21 +66,23 @@ class ActionManagerImpl : public ActionManager
         void initTabWidget(TabWidget* tabWidget);
         void initFrameManager(FrameManager* frameManager);
 
+        void setArticleActionsEnabled( bool enabled );
+
     public slots:
 
         void slotNodeSelected(Akregator::TreeNode* node);
-        
+
     protected:
-    
+
         KActionCollection* actionCollection();
-        
+
     private:
 
         void initPart();
 
         friend class NodeSelectVisitor;
         class NodeSelectVisitor;
-        
+
         class ActionManagerImplPrivate;
         ActionManagerImplPrivate* d;
 };

@@ -330,6 +330,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     KActionMenu* statusMenu = coll->add<KActionMenu>("article_set_status");
     statusMenu->setText(i18n("&Mark As"));
+    statusMenu->setEnabled( false );
 
     //d->speakSelectedArticlesAction = new KAction(KIcon("media-playback-start"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
     //connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotTextToSpeechRequest()));
@@ -403,6 +404,8 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setIcon(KIcon("mail-message-new"));
     action->setText(i18n("Send &File..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendFile()));
+
+    setArticleActionsEnabled( false );
 }
 
 void ActionManagerImpl::initArticleViewer(ArticleViewer* articleViewer)
@@ -572,6 +575,19 @@ KActionCollection* ActionManagerImpl::actionCollection()
 QAction* ActionManagerImpl::action(const char* name)
 {
     return d->actionCollection != 0 ? d->actionCollection->action(name) : 0;
+}
+
+void ActionManagerImpl::setArticleActionsEnabled( bool enabled ) {
+#undef setActionEnabled
+#define setActionEnabled(name) { QAction* const a = action( name ); if ( a ) a->setEnabled( enabled ); }
+    setActionEnabled("article_open")
+    setActionEnabled("article_open_external")
+    setActionEnabled("article_set_status_important")
+    setActionEnabled("article_set_status")
+    setActionEnabled("article_delete")
+    setActionEnabled("file_sendlink")
+    setActionEnabled("file_sendfile")
+#undef setActionEnabled
 }
 
 } // namespace Akregator
