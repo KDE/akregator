@@ -295,13 +295,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action = coll->addAction("article_open" );
     action->setIcon(KIcon("tab-new"));
     action->setText(i18n("Open in Tab"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticle()));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenSelectedArticles()));
     action->setShortcuts(KShortcut( "Shift+Return" ));
 
     action = coll->addAction("article_open_external" );
     action->setIcon(KIcon("window-new"));
     action->setText(i18n("Open in External Browser"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenCurrentArticleInBrowser()));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenSelectedArticlesInBrowser()));
     action->setShortcuts(KShortcut( "Ctrl+Shift+Return" ));
 
     action = coll->addAction("article_copy_link_address" );
