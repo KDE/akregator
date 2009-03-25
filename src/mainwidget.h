@@ -125,10 +125,10 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         /** opens the current article (currentItem) in external browser
         TODO: use selected instead of current? */
-        void slotOpenCurrentArticleInBrowser();
+        void slotOpenSelectedArticlesInBrowser();
 
         /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
-        void slotOpenCurrentArticle();
+        void slotOpenSelectedArticles();
 
         void slotOnShutdown();
 
