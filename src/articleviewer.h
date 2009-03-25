@@ -185,6 +185,8 @@ class ArticleViewer : public QWidget
         void connectToNode(TreeNode* node);
         void disconnectFromNode(TreeNode* node);
 
+        void setArticleActionsEnabled(bool enabled);
+
     private:
         KUrl m_url;
         QString m_normalModeCSS;
