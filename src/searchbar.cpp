@@ -23,9 +23,9 @@
 */
 
 #include "akregatorconfig.h"
+#include "searchbar.h"
 #include "articlematcher.h"
 #include "article.h"
-#include "searchbar.h"
 
 #include <kcombobox.h>
 #include <kiconloader.h>

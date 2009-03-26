@@ -126,6 +126,7 @@ void Akregator::add( const SubscriptionList & list)
 
 void Akregator::update(const SubscriptionList & list) 
 {
+    Q_UNUSED(list)
     kDebug();
 
     // Emit signal

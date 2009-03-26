@@ -430,6 +430,8 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
                                           int column,
                                           const QModelIndex& parent )
 {
+    Q_UNUSED( column )
+
     if ( action == Qt::IgnoreAction )
         return true;
 

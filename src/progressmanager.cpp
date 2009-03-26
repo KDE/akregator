@@ -22,6 +22,10 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "progressmanager.h"
+#include "feed.h"
+#include "treenode.h"
+
 #include <QHash>
 #include <QList>
 
@@ -29,12 +33,6 @@
 #include <k3staticdeleter.h>
 
 #include <libkdepim/progressmanager.h>
-
-#include "feedlist.h"
-#include "feed.h"
-#include "treenode.h"
-
-#include "progressmanager.h"
 
 using namespace boost;
 

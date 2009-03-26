@@ -25,6 +25,8 @@
 #ifndef AKREGATOR_PROGRESSMANAGER_H
 #define AKREGATOR_PROGRESSMANAGER_H
 
+#include "feedlist.h"
+#include <QObject>
 #include <boost/shared_ptr.hpp>
 
 namespace Akregator

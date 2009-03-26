@@ -24,9 +24,9 @@
 */
 
 #include "akregatorconfig.h"
+#include "feed.h"
 #include "article.h"
 #include "articlejobs.h"
-#include "feed.h"
 #include "feediconmanager.h"
 #include "feedstorage.h"
 #include "fetchqueue.h"

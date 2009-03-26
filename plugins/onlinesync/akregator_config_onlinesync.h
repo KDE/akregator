@@ -21,8 +21,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef KCMAKRONLINESYNCCONFIG_H
-#define KCMAKRONLINESYNCCONFIG_H
+#ifndef AKREGATOR_CONFIG_ONLINESYNC_H
+#define AKREGATOR_CONFIG_ONLINESYNC_H
 
 #include <KCModule>
 #include <QVariant>
@@ -46,4 +46,4 @@ class KCMAkregatorOnlineSyncConfig : public KCModule
 
 };
 
-#endif
+#endif // AKREGATOR_CONFIG_ONLINESYNC_H

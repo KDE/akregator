@@ -21,8 +21,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef KCMAKRAPPEARANCECONFIG_H
-#define KCMAKRAPPEARANCECONFIG_H
+#ifndef AKREGATOR_CONFIG_APPEARANCE_H
+#define AKREGATOR_CONFIG_APPEARANCE_H
 
 #include "ui_settings_appearance.h"
 
@@ -46,4 +46,4 @@ private:
 
 };
 
-#endif
+#endif // AKREGATOR_CONFIG_APPEARANCE_H

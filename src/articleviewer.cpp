@@ -605,6 +605,8 @@ void ArticleViewer::slotArticlesAdded(TreeNode* /*node*/, const QList<Article>& 
 
 void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>& list )
 {
+    Q_UNUSED(list)
+
     if (m_viewMode == CombinedView) {
         //TODO
         slotUpdateCombinedView();

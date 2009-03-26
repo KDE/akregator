@@ -22,10 +22,10 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "subscriptionlist.h"
+
 #include <kdebug.h>
 #include <QStringList>
-
-#include "subscriptionlist.h"
 
 namespace feedsync
 {
@@ -118,6 +118,8 @@ SubscriptionList SubscriptionList::compare( const SubscriptionList & iOther, Com
 
 int SubscriptionList::indexOf(const QString& iRss, const QString& iName, const QString& iCat) const
 {
+    Q_UNUSED(iName)
+
     for (int i=0; i<this->count(); i++) {
         QString m_rss = this->getRss(i);
         QString m_cat = this->getCat(i);

@@ -21,8 +21,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef KCMAKRARCHIVECONFIG_H
-#define KCMAKRARCHIVECONFIG_H
+#ifndef AKREGATOR_CONFIG_ARCHIVE_H
+#define AKREGATOR_CONFIG_ARCHIVE_H
 
 #include <KCModule>
 
@@ -50,4 +50,4 @@ class KCMAkregatorArchiveConfig : public KCModule
       QButtonGroup* m_archiveModeGroup;
 };
 
-#endif
+#endif // AKREGATOR_CONFIG_ARCHIVE_H

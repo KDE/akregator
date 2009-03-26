@@ -22,6 +22,9 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "notificationmanager.h"
+#include "feed.h"
+
 #include <klocale.h>
 #include <knotification.h>
 #include <k3staticdeleter.h>
@@ -31,8 +34,6 @@
 #include <QTimer>
 #include <QList>
 
-#include "feed.h"
-#include "notificationmanager.h"
 
 namespace Akregator {
 

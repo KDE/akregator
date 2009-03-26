@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "article.h"
 #include "speechclient.h"
+#include "article.h"
 #include "utils.h"
 
 #include <dcopclient.h>

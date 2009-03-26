@@ -62,7 +62,7 @@ QString buildTitle(const QString& description)
         tagName=rx.cap(2);
         if (tagName=="SCRIPT"||tagName=="script")
             toReplace=rx.cap(0); // strip tag AND tag contents
-        else if (tagName.startsWith("br") || tagName.startsWith("BR"))
+        else if (tagName.startsWith(QLatin1String("br")) || tagName.startsWith(QLatin1String("BR")))
         {
             toReplace=rx.cap(1);
             replaceWith=" ";
@@ -183,7 +183,7 @@ Article::Private::Private( const ItemPtr& article, Feed* feed_, Backend::FeedSto
         //archive->setComments(guid, article.comments());
         //archive->setCommentsLink(guid, article.commentsLink().url());
         archive->setGuidIsPermaLink(guid, false);
-        archive->setGuidIsHash(guid, guid.startsWith("hash:"));
+        archive->setGuidIsHash(guid, guid.startsWith(QLatin1String("hash:")));
         const time_t datePublished = article->datePublished();
         if ( datePublished > 0 )
             pubDate.setTime_t( datePublished );
@@ -389,6 +389,7 @@ QString Article::authorUri() const
 {
     return d->archive->authorUri(d->guid);
 }
+
 QString Article::authorShort() const {
     const QString name = authorName();
     if ( !name.isEmpty() )
@@ -406,18 +407,21 @@ QString Article::authorAsHtml() const {
     const QString name = authorName();
     const QString email = authorEMail();
 
-    if (!email.isEmpty())
+    if (!email.isEmpty()) {
         if (!name.isEmpty())
             return QString("<a href=\"mailto:%1\">%2</a>").arg( email, name );
         else
             return QString("<a href=\"mailto:%1\">%1</a>").arg( email );
+    }
 
     const QString uri = authorUri();
-    if (!name.isEmpty())
+    if (!name.isEmpty()) {
         if (!uri.isEmpty())
-                return QString("<a href=\"%1\">%2</a>").arg( uri, name );
-            else
-                return name;
+            return QString("<a href=\"%1\">%2</a>").arg( uri, name );
+        else
+            return name;
+    }
+
     if ( !uri.isEmpty() )
         return QString( "<a href=\"%1\">%1</a>" ).arg( uri );
     return QString();

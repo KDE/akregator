@@ -23,10 +23,10 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "aboutdata.h"
-#include "actionmanagerimpl.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
+#include "aboutdata.h"
+#include "actionmanagerimpl.h"
 #include "article.h"
 #include "fetchqueue.h"
 #include "feediconmanager.h"
@@ -433,7 +433,7 @@ QWidget* Part::getMainWindow()
     // if not, check if there is an kontact main window
     foreach (wid, QApplication::topLevelWidgets())
     {
-        if (wid->objectName().startsWith("kontact-mainwindow"))
+        if (wid->objectName().startsWith(QLatin1String("kontact-mainwindow")))
             return wid;
     }
 

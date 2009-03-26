@@ -21,8 +21,9 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#include "storage.h"
+
 #include "feedlist.h"
+#include "storage.h"
 #include "article.h"
 #include "feed.h"
 #include "folder.h"
@@ -591,6 +592,8 @@ void FeedListManagementImpl::removeFeed( const QString& url, const QString& catI
 
 QString FeedListManagementImpl::addCategory( const QString& name, const QString& parentId ) const
 {
+    Q_UNUSED( parentId )
+
     if ( !m_feedList )
         return "";
 

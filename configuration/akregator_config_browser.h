@@ -21,8 +21,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef KCMAKRBROWSERCONFIG_H
-#define KCMAKRBROWSERCONFIG_H
+#ifndef AKREGATOR_CONFIG_BROWSER_H
+#define AKREGATOR_CONFIG_BROWSER_H
 
 #include <KCModule>
 
@@ -41,4 +41,4 @@ class KCMAkregatorBrowserConfig : public KCModule
       QWidget* m_widget;
 };
 
-#endif
+#endif // AKREGATOR_CONFIG_BROWSER_H

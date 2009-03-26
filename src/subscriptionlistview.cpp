@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
+#include "subscriptionlistmodel.h"
 #include "akregatorconfig.h"
 
 #include <QHeaderView>

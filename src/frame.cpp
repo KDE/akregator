@@ -22,6 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "frame.h"
+
 #include <QGridLayout>
 #include <QRegExp>
 
@@ -32,10 +34,7 @@
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
 
-
 #include <libkdepim/progressmanager.h>
-
-#include "frame.h"
 
 namespace Akregator {
 

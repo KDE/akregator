@@ -21,8 +21,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef KCMAKRGENERALCONFIG_H
-#define KCMAKRGENERALCONFIG_H
+#ifndef AKREGATOR_CONFIG_GENERAL_H
+#define AKREGATOR_CONFIG_GENERAL_H
 
 #include <KCModule>
 
@@ -43,4 +43,4 @@ class KCMAkregatorGeneralConfig : public KCModule
       QWidget* m_widget;
 };
 
-#endif
+#endif // AKREGATOR_CONFIG_GENERAL_H 

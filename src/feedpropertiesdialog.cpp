@@ -23,7 +23,6 @@
 */
 
 #include "akregatorconfig.h"
-#include "feed.h"
 #include "feedpropertiesdialog.h"
 
 #include <kcombobox.h>

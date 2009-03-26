@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef CONFIGURATIONWIDGET_H_
-#define CONFIGURATIONWIDGET_H_
+#ifndef CONFIGURATIONWIDGET_H
+#define CONFIGURATIONWIDGET_H
 
 #include "ui_configurationwidget.h"
 
@@ -55,4 +55,4 @@ class ConfigurationWidget : public QWidget
  
 }
 
-#endif /*CONFIGURATIONWIDGET_H_*/
+#endif // CONFIGURATIONWIDGET_H

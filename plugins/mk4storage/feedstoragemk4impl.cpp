@@ -912,3 +912,4 @@ void FeedStorageMK4Impl::clear()
 
 } // namespace Backend
 } // namespace Akregator
+

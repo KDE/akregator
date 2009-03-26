@@ -149,6 +149,7 @@ void Opml::add(const SubscriptionList & list)
 
 void Opml::update(const SubscriptionList & list) 
 {
+    Q_UNUSED(list)
     kDebug();
 
     // Send signal
@@ -157,6 +158,7 @@ void Opml::update(const SubscriptionList & list)
 
 void Opml::remove(const SubscriptionList & list) 
 {
+    Q_UNUSED(list)
     kDebug();
 
     // Send signal

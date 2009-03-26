@@ -22,12 +22,12 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "actionmanager.h"
 #include "akregatorconfig.h"
+#include "framemanager.h"
+#include "frame.h"
+#include "actionmanager.h"
 #include "browserrun.h"
 #include "browserframe.h"
-#include "frame.h"
-#include "framemanager.h"
 #include "openurlrequest.h"
 
 #include <kaction.h>

@@ -21,9 +21,11 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#ifndef AKREGATOR_PROPERTIESDIALOG_H
-#define AKREGATOR_PROPERTIESDIALOG_H
 
+#ifndef AKREGATOR_FEEDPROPERTIESDIALOG_H
+#define AKREGATOR_FEEDPROPERTIESDIALOG_H
+
+#include "feed.h"
 #include "ui_feedpropertieswidgetbase.h"
 
 #include <kdialog.h>
@@ -31,6 +33,7 @@
 #include <QWidget>
 
 namespace Akregator {
+
 
 class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 {
@@ -100,4 +103,5 @@ class FeedPropertiesDialog : public KDialog
 
 } // namespace Akregator
 
-#endif // AKREGATOR_PROPERTIESDIALOG_H
+#endif // AKREGATOR_FEEDPROPERTIESDIALOG_H
+

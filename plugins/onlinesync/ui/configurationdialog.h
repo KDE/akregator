@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef CONFIGURATIONWIDGET_H
-#define CONFIGURATIONWIDGET_H
+#ifndef CONFIGURATIONDIALOG_H
+#define CONFIGURATIONDIALOG_H
 
 #include "ui_configurationwidget.h"
 
@@ -46,4 +46,4 @@ class ConfigurationDialog : public KDialog
  
 }
 
-#endif
+#endif // CONFIGURATIONDIALOG_H

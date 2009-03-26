@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "storagefactory.h"
 #include "storagefactoryregistry.h"
+#include "storagefactory.h"
 
 #include <k3staticdeleter.h>
 

@@ -114,6 +114,7 @@ void GoogleReader::add(const SubscriptionList & list)
 
 void GoogleReader::update(const SubscriptionList & list) 
 {
+    Q_UNUSED(list)
     kDebug();
 
     // Emit signal

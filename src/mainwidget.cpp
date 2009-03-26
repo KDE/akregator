@@ -801,6 +801,8 @@ void Akregator::MainWidget::slotFeedFetched(Feed *feed)
             }
         }
     }
+#else // AKONADI_PORT_TEMPORARILY_REMOVED
+    Q_UNUSED(feed)
 #endif
 }
 

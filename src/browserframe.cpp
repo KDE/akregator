@@ -22,10 +22,10 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "actionmanager.h"
-#include "actions.h"
 #include "browserframe.h"
 #include "browserframe_p.h"
+#include "actionmanager.h"
+#include "actions.h"
 #include "openurlrequest.h"
 #include "utils/temporaryvalue.h"
 
@@ -157,6 +157,10 @@ void BrowserFrame::slotPopupMenu(
                    BrowserExtension::PopupFlags flags,
                    const KParts::BrowserExtension::ActionGroupMap& actionGroups )
 {
+    Q_UNUSED( mode )
+    Q_UNUSED( args )
+    Q_UNUSED( browserArgs )
+
     const bool showReload = (flags & BrowserExtension::ShowReload) != 0;
     const bool showNavigationItems = (flags & BrowserExtension::ShowNavigationItems) != 0;
     const bool isLink = (flags & BrowserExtension:: IsLink) != 0;

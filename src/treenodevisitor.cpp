@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "treenode.h"
 #include "treenodevisitor.h"
+#include "treenode.h"
 
 namespace Akregator {
 

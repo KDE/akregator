@@ -45,6 +45,8 @@ OnlineSyncPlugin::OnlineSyncPlugin( )
 
 OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QVariantList& list ) : KParts::Plugin( parent )
 { 
+    Q_UNUSED( list )
+
     setComponentData( OnlineSyncPluginFactory::componentData() );
 
     kDebug();

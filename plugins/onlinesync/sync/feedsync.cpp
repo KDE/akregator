@@ -22,6 +22,15 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "feedsync.h"
+#include "treenode.h"
+#include "feedlist.h"
+#include "kernel.h"
+#include "aggregator.h"
+#include "googlereader.h"
+#include "akregator.h"
+#include "opml.h"
+
 #include <KAboutData>
 #include <KCmdLineArgs>
 #include <QTimer>
@@ -35,15 +44,6 @@
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
 #include <QDate>
-
-#include "treenode.h"
-#include "feedlist.h"
-#include "kernel.h"
-#include "aggregator.h"
-#include "feedsync.h"
-#include "googlereader.h"
-#include "akregator.h"
-#include "opml.h"
 
 namespace feedsync {
 
@@ -160,7 +160,7 @@ void FeedSync::slotLoadDone() {
                 QMessageBox msgBox;
                 msgBox.setText(i18n("Some categories and feeds have been marked for removal. Do you want to delete them?"));
                 msgBox.setIcon(QMessageBox::Information);
-                QPushButton *noRemove  = msgBox.addButton(i18n("Remove nothing"), QMessageBox::ActionRole);
+                /*QPushButton *noRemove  =*/ msgBox.addButton(i18n("Remove nothing"), QMessageBox::ActionRole);
                 QPushButton *catRemove = msgBox.addButton(i18n("Remove only categories"), QMessageBox::ActionRole);
                 QPushButton *feedRemove  = msgBox.addButton(i18n("Remove feeds"), QMessageBox::ActionRole);
                 msgBox.exec();

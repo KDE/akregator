@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "folder.h"
 #include "treenode.h"
+#include "folder.h"
 #include "articlejobs.h"
 
 #include <QPoint>
@@ -159,11 +159,13 @@ QList<TreeNode*> TreeNode::children()
 
 const TreeNode* TreeNode::childAt( int pos ) const
 {
+    Q_UNUSED( pos )
     return 0;
 }
 
 TreeNode* TreeNode::childAt( int pos )
 {
+    Q_UNUSED( pos )
     return 0;
 }
 

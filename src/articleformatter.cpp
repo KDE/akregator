@@ -23,8 +23,8 @@
 */
 
 #include "akregatorconfig.h"
-#include "article.h"
 #include "articleformatter.h"
+#include "article.h"
 #include "feed.h"
 #include "folder.h"
 #include "treenode.h"

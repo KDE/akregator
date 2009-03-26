@@ -13,8 +13,8 @@ email                : markey@web.de
  *                                                                         *
  ***************************************************************************/
 
-#include "plugin.h"
 #include "pluginmanager.h"
+#include "plugin.h"
 
 #include <vector>
 #include <QFile>
@@ -121,6 +121,7 @@ PluginManager::unload( Plugin* plugin )
     else
         kWarning() <<"Could not unload plugin (not found in store).";
 #else //TEMPORARILY_REMOVED
+    Q_UNUSED( plugin )
     kWarning() <<"PluginManager::unload temporarily disabled";
 #endif //TEMPORARILY_REMOVED
 

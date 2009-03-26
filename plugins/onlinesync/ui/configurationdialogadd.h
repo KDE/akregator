@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef CONFIGURATIONFRAMEADD_H
-#define CONFIGURATIONFRAMEADD_H
+#ifndef CONFIGURATIONDIALOGADD_H
+#define CONFIGURATIONDIALOGADD_H
 
 #include <KDialog>
 
@@ -54,4 +54,4 @@ class ConfigurationDialogAdd : public KDialog
  
 }
 
-#endif
+#endif // CONFIGURATIONDIALOGADD_H
