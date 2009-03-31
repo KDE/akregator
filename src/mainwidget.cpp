@@ -51,7 +51,7 @@
 #include "progressmanager.h"
 #include "searchbar.h"
 #include "selectioncontroller.h"
-//#include "speechclient.h"
+#include "speechclient.h"
 #include "subscriptionlistjobs.h"
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
@@ -1073,10 +1073,7 @@ void Akregator::MainWidget::slotTextToSpeechRequest()
         if (m_viewMode != CombinedView)
         {
             // in non-combined view, read selected articles
-#ifdef __GNUC__
-#warning "kde4:readd speechclient";
-#endif
-            //SpeechClient::self()->slotSpeak(m_selectionController->selectedArticles());
+            SpeechClient::self()->slotSpeak(m_selectionController->selectedArticles());
             // TODO: if article viewer has a selection, read only the selected text?
         }
         else
