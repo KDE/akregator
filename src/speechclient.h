@@ -54,7 +54,10 @@ class SpeechClient : public QObject
         void slotSpeak(const QList<Akregator::Article>& articles);
         void slotAbortJobs();
         void textRemoved(const QString &appId, int jobNum, int state);
-    signals:
+  private slots:
+        void slotServiceUnregistered( const QString & );
+        void slotServiceOwnerChanged( const QString &, const QString &, const QString & );
+  signals:
 
         /** emitted when the job queue was empty before and the first job was just queued */
         void signalJobsStarted();
@@ -68,9 +71,9 @@ class SpeechClient : public QObject
 
         SpeechClient();
         void setupSpeechSystem();
-
+        void removeSpeech();
     private:
-  org::kde::KSpeech *m_kspeech;
+        org::kde::KSpeech *m_kspeech;
         class SpeechClientPrivate;
         SpeechClientPrivate* d;
 

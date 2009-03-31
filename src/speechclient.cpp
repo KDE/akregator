@@ -75,9 +75,10 @@ SpeechClient::~SpeechClient()
 
 void SpeechClient::slotSpeak(const QString& text, const QString& language)
 {
-    qDebug()<<" SpeechClient::slotSpeak :"<<text;
-    if (!isTextToSpeechInstalled() || text.isEmpty())
-        return;
+  if ( !d->isTextSpeechInstalled )
+    setupSpeechSystem();
+  if ( text.isEmpty())
+    return;
     uint jobNum = m_kspeech->say(text,0);
     d->pendingJobs.append(jobNum);
     if (d->pendingJobs.count() == 1)
@@ -101,6 +102,8 @@ void SpeechClient::slotSpeak(const Article& article)
 
 void SpeechClient::slotSpeak(const QList<Article>& articles)
 {
+  qDebug()<<" SpeechClient::slotSpeak(const Articlessssssssssss& article) :"<<articles.isEmpty()<<" isTextToSpeechInstalled :"<<isTextToSpeechInstalled();
+
     if (!isTextToSpeechInstalled() || articles.isEmpty())
         return;
 
@@ -136,7 +139,6 @@ void SpeechClient::slotAbortJobs()
 void SpeechClient::textRemoved(const QString &appId, int jobNum, int state )
 {
   if ( state == KSpeech::jsFinished || state == KSpeech::jsDeleted )
-    kDebug() <<"SpeechClient::textRemoved() called";
     if (d->pendingJobs.contains(jobNum))
     {
         d->pendingJobs.removeAll(jobNum);
@@ -189,9 +191,39 @@ void SpeechClient::setupSpeechSystem()
         m_kspeech->setApplicationName("Akregator Speech Text");
         connect(m_kspeech, SIGNAL(jobStateChanged(const QString&, int, int)),
                     this, SLOT(textRemoved(const QString&, int, int)));
+        connect( QDBusConnection::sessionBus().interface(), SIGNAL( serviceUnregistered( const QString & ) ), this, SLOT( slotServiceUnregistered( const QString & ) ) );
+        connect( QDBusConnection::sessionBus().interface(), SIGNAL( serviceOwnerChanged( const QString &, const QString &, const QString & ) ), this, SLOT( slotServiceOwnerChanged( const QString &, const QString &, const QString & ) ) );
+
       }
     }
   }
+}
+
+void SpeechClient::slotServiceUnregistered( const QString &service )
+{
+  if ( service == QLatin1String( "org.kde.kttsd" ) )
+  {
+    removeSpeech();
+  }
+
+}
+
+void SpeechClient::slotServiceOwnerChanged( const QString &service, const QString &, const QString &newOwner )
+{
+  if ( service == QLatin1String( "org.kde.kttsd" ) && newOwner.isEmpty() )
+  {
+    removeSpeech();
+  }
+}
+
+void SpeechClient::removeSpeech()
+{
+  d->isTextSpeechInstalled = false;
+  disconnect( QDBusConnection::sessionBus().interface(), 0, this, 0 );
+
+  delete m_kspeech;
+  m_kspeech = 0;
+
 }
 
 } // namespace Akregator
