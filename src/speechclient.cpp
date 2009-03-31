@@ -2,6 +2,7 @@
     This file is part of Akregator.
 
     Copyright (C) 2005 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2009 Laurent Montel <montel@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,10 +24,10 @@
 */
 
 #include "speechclient.h"
+#include <kstandarddirs.h>
 #include "article.h"
 #include "utils.h"
 
-#include <dcopclient.h>
 #include <kcharsets.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -34,9 +35,10 @@
 #include <ktoolinvocation.h>
 #include <kservicetypetrader.h>
 
+#include "kspeechinterface.h"
 #include <QString>
-
-namespace Akregator 
+#include <kspeech.h>
+namespace Akregator
 {
 
 class SpeechClient::SpeechClientPrivate
@@ -59,7 +61,7 @@ SpeechClient* SpeechClient::self()
 }
 
 
-SpeechClient::SpeechClient() : DCOPStub("kttsd", "KSpeech"), DCOPObject("akregatorpart_kspeechsink"), QObject(), d(new SpeechClientPrivate)
+SpeechClient::SpeechClient() : QObject(), m_kspeech( 0 ), d(new SpeechClientPrivate)
 {
     d->isTextSpeechInstalled = false;
     setupSpeechSystem();
@@ -75,8 +77,7 @@ void SpeechClient::slotSpeak(const QString& text, const QString& language)
 {
     if (!isTextToSpeechInstalled() || text.isEmpty())
         return;
-    uint jobNum = setText(text, language);
-    startText(jobNum);
+    uint jobNum = m_kspeech->say(text,0);
     d->pendingJobs.append(jobNum);
     if (d->pendingJobs.count() == 1)
     {
@@ -89,10 +90,10 @@ void SpeechClient::slotSpeak(const Article& article)
 {
     if (!isTextToSpeechInstalled() || article.isNull())
         return;
-    
+
     QString speakMe;
-    speakMe += KCharsets::resolveEntities(Utils::stripTags((article).title())) 
-    + ". . . . " 
+    speakMe += KCharsets::resolveEntities(Utils::stripTags((article).title()))
+    + ". . . . "
     + KCharsets::resolveEntities(Utils::stripTags((article).description()));
     slotSpeak(speakMe, "en");
 }
@@ -108,8 +109,8 @@ void SpeechClient::slotSpeak(const QList<Article>& articles)
     {
         if (!speakMe.isEmpty())
             speakMe += ". . . . . . " + i18n("Next Article: ");
-        speakMe += KCharsets::resolveEntities(Utils::stripTags((*it).title())) 
-        + ". . . . " 
+        speakMe += KCharsets::resolveEntities(Utils::stripTags((*it).title()))
+        + ". . . . "
         + KCharsets::resolveEntities(Utils::stripTags((*it).description()));
     }
 
@@ -120,9 +121,9 @@ void SpeechClient::slotAbortJobs()
 {
     if (!d->pendingJobs.isEmpty())
     {
-        for (QList<uint>::ConstIterator it = d->pendingJobs.begin(); it != d->pendingJobs.end(); ++it)
+      for (QList<uint>::ConstIterator it = d->pendingJobs.constBegin(); it != d->pendingJobs.constEnd(); ++it)
         {
-            removeText(*it);
+          //removeText(*it);
         }
 
         d->pendingJobs.clear();
@@ -131,8 +132,9 @@ void SpeechClient::slotAbortJobs()
     }
 }
 
-ASYNC SpeechClient::textRemoved(const DCOPCString& /*appId*/, uint jobNum)
+void SpeechClient::textRemoved(const QString &appId, int jobNum, int state )
 {
+  if ( state == KSpeech::jsFinished || state == KSpeech::jsDeleted )
     kDebug() <<"SpeechClient::textRemoved() called";
     if (d->pendingJobs.contains(jobNum))
     {
@@ -152,50 +154,44 @@ bool SpeechClient::isTextToSpeechInstalled() const
 
 void SpeechClient::setupSpeechSystem()
 {
-    KService::List offers = KServiceTypeTrader::self()->query("DBUS/Text-to-Speech", "Name == 'KTTSD'");
-    if (offers.isEmpty())
+  if ( KStandardDirs::findExe( "kttsd" ).isEmpty() )
+  {
+    kDebug() <<"KTTSD not installed, disable support";
+    d->isTextSpeechInstalled = false;
+  }
+  else
+  {
+    if ( QDBusConnection::sessionBus().interface()->isServiceRegistered("org.kde.kttsd") )
     {
-        kDebug() <<"KTTSD not installed, disable support";
-        d->isTextSpeechInstalled = false;
+      d->isTextSpeechInstalled = true;
     }
     else
     {
-        DCOPClient* client = dcopClient();
-        //client->attach();
-        if (client->isApplicationRegistered("kttsd")) 
-        {
-            d->isTextSpeechInstalled = true;
-        }
-        else
-        {
-            QString error;
-            if (KToolInvocation::startServiceByDesktopName("kttsd", QStringList(), &error))
-            {
-                kDebug() <<"Starting KTTSD failed with message" << error;
-                d->isTextSpeechInstalled = false;
-            }
-            else
-            {
-                d->isTextSpeechInstalled = true;
-            }
-        }
+      QString error;
+
+      if (KToolInvocation::startServiceByDesktopName("kttsd", QString(), &error) != 0)
+      {
+        kDebug() <<"Starting KTTSD failed with message" << error;
+        d->isTextSpeechInstalled = false;
+      }
+      else
+      {
+        d->isTextSpeechInstalled = true;
+      }
     }
     if (d->isTextSpeechInstalled)
     {
-
-        bool c = connectDCOPSignal("kttsd", "KSpeech",
-                "textRemoved(QCString, uint)",
-                "textRemoved(QCString, uint)",
-                false);
-        if (!c)
-            kDebug() <<"SpeechClient::setupSpeechSystem(): connecting signals failed";
-        c = connectDCOPSignal("kttsd", "KSpeech",
-                "textFinished(QCString, uint)",
-                "textRemoved(QCString, uint)",
-                false);
+      if ( !m_kspeech )
+      {
+        m_kspeech = new org::kde::KSpeech("org.kde.kttsd", "/KSpeech", QDBusConnection::sessionBus());
+        m_kspeech->setParent(this);
+        m_kspeech->setApplicationName("Akregator Speech Text");
+        connect(m_kspeech, SIGNAL(jobStateChanged(const QString&, int, int)),
+                    this, SLOT(jobStateChanged(const QString&, int, int)));
+      }
     }
+  }
 }
-
 
 } // namespace Akregator
 

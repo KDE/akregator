@@ -25,9 +25,7 @@
 #ifndef AKREGATOR_SPEECHCLIENT_H
 #define AKREGATOR_SPEECHCLIENT_H
 
-#include <kspeechsink.h>
-#include "kspeech_stub.h"
-
+#include "kspeechinterface.h"
 #include <QObject>
 
 class QString;
@@ -38,7 +36,7 @@ namespace Akregator
 
 class Article;
 
-class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeechSink
+class SpeechClient : public QObject
 {
 
     Q_OBJECT
@@ -57,7 +55,7 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
         void slotAbortJobs();
 
     signals:
-      
+
         /** emitted when the job queue was empty before and the first job was just queued */
         void signalJobsStarted();
 
@@ -71,13 +69,13 @@ class SpeechClient : public QObject, public KSpeech_stub, virtual public KSpeech
         SpeechClient();
         void setupSpeechSystem();
 
-        ASYNC textRemoved(const DCOPCString& appId, uint jobNum);
+        void textRemoved(const QString &appId, int jobNum, int state);
 
     private:
-     
+  org::kde::KSpeech *m_kspeech;
         class SpeechClientPrivate;
         SpeechClientPrivate* d;
-        
+
         static SpeechClient* m_self;
 };
 

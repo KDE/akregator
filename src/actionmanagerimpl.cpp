@@ -33,7 +33,7 @@
 #include "framemanager.h"
 #include "kernel.h"
 #include "mainwidget.h"
-//#include "speechclient.h"
+#include "speechclient.h"
 #include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "trayicon.h"
@@ -319,16 +319,20 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     statusMenu->setText(i18n("&Mark As"));
     statusMenu->setEnabled( false );
 
-    //d->speakSelectedArticlesAction = new KAction(KIcon("media-playback-start"), i18n("&Speak Selected Articles"), actionCollection(), "akr_texttospeech");
-    //connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool) ), d->mainWidget, SLOT(slotTextToSpeechRequest()));
+    d->speakSelectedArticlesAction = coll->addAction("akr_texttospeech");
+    d->speakSelectedArticlesAction->setIcon(KIcon("media-playback-start"));
+    d->speakSelectedArticlesAction->setText(i18n("&Speak Selected Articles"));
+    connect(d->speakSelectedArticlesAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotTextToSpeechRequest()));
 
-    //KAction *abortTTS = new KAction(KIcon("media-playback-stop"), i18n( "&Stop Speaking" ), actionCollection(), "akr_aborttexttospeech");
-    //connect(abortTTS, SIGNAL(triggered(bool)), SpeechClient::self(), SLOT(slotAbortJobs()));
-    //abortTTS->setShortcut(QKeySequence(Qt::Key_Escape));
-    //abortTTS->setEnabled(false);
 
-    //connect(SpeechClient::self(), SIGNAL(signalActivated(bool)),
-    //abortTTS, SLOT(setEnabled(bool)));
+    action = coll->addAction("akr_aborttexttospeech");
+    action->setText(i18n( "&Stop Speaking" ));
+    action->setIcon(KIcon("media-playback-stop"));
+    connect(action, SIGNAL(triggered(bool)),SpeechClient::self(), SLOT(slotAbortJobs()));
+    //action->setShortcuts(Qt::Key_Escape);
+    action->setEnabled(false);
+
+    connect(SpeechClient::self(), SIGNAL(signalActivated(bool)), action, SLOT(setEnabled(bool)));
 
     action = coll->addAction("article_set_status_read");
     action->setText(i18nc("as in: mark as read","&Read"));
