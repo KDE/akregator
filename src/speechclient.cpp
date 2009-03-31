@@ -75,6 +75,7 @@ SpeechClient::~SpeechClient()
 
 void SpeechClient::slotSpeak(const QString& text, const QString& language)
 {
+    qDebug()<<" SpeechClient::slotSpeak :"<<text;
     if (!isTextToSpeechInstalled() || text.isEmpty())
         return;
     uint jobNum = m_kspeech->say(text,0);
@@ -187,7 +188,7 @@ void SpeechClient::setupSpeechSystem()
         m_kspeech->setParent(this);
         m_kspeech->setApplicationName("Akregator Speech Text");
         connect(m_kspeech, SIGNAL(jobStateChanged(const QString&, int, int)),
-                    this, SLOT(jobStateChanged(const QString&, int, int)));
+                    this, SLOT(textRemoved(const QString&, int, int)));
       }
     }
   }
