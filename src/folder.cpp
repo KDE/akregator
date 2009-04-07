@@ -181,7 +181,7 @@ void Folder::insertChild(TreeNode* node, TreeNode* after)
     if (pos < 0)
         prependChild(node);
     else
-        insertChild(pos+1, node);
+        insertChild(pos, node);
 }
 
 QIcon Folder::icon() const
