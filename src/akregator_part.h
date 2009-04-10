@@ -135,7 +135,6 @@ class Part : public KParts::ReadOnlyPart
         void showKNotifyOptions();
 
     signals:
-        void toggleShowPart();
         void signalSettingsChanged();
 
 
@@ -151,9 +150,6 @@ class Part : public KParts::ReadOnlyPart
         bool openFile();
 
         void importFile(const KUrl& url);
-
-        /** FIXME: hack to get the tray icon working */
-        QWidget* getMainWindow();
 
         KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 

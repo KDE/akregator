@@ -218,16 +218,14 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     // notify the part that this is our internal widget
     setWidget(m_mainWidget);
 
-    TrayIcon* trayIcon = new TrayIcon( getMainWindow() );
+    TrayIcon* trayIcon = new TrayIcon( m_mainWidget->window() );
     TrayIcon::setInstance(trayIcon);
     m_actionManager->initTrayIcon(trayIcon);
-
-    connect(trayIcon, SIGNAL(toggleShowPart()), this, SIGNAL(toggleShowPart()));
 
     if ( isTrayIconEnabled() )
         trayIcon->show();
 
-    QWidget* const notificationParent = isTrayIconEnabled() ? getMainWindow() : 0;
+    QWidget* const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
     NotificationManager::self()->setWidget(notificationParent, componentData());
 
     connect( trayIcon, SIGNAL(quitSelected()),
@@ -283,11 +281,7 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-#ifdef __GNUC__
-#warning Tray icons are no longer widgets
-#endif
-//    NotificationManager::self()->setWidget(isTrayIconEnabled() ? TrayIcon::getInstance() : getMainWindow(), instance());
-    NotificationManager::self()->setWidget( getMainWindow(), componentData());
+    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : 0, componentData());
 
     Syndication::FileRetriever::setUseCache(Settings::useHTMLCache());
 
@@ -410,29 +404,6 @@ void Part::slotSaveFeedList()
 bool Part::isTrayIconEnabled() const
 {
     return Settings::showTrayIcon();
-}
-
-QWidget* Part::getMainWindow()
-{
-    // this is a dirty fix to get the main window used for the tray icon
-    QWidgetList l = QApplication::topLevelWidgets();
-    QWidget* wid = 0L;
-
-    // check if there is an akregator main window
-    foreach (wid, QApplication::topLevelWidgets())
-    {
-        if (wid->objectName() == "akregator_mainwindow")
-            return wid;
-    }
-
-    // if not, check if there is an kontact main window
-    foreach (wid, QApplication::topLevelWidgets())
-    {
-        if (wid->objectName().startsWith(QLatin1String("kontact-mainwindow")))
-            return wid;
-    }
-
-    return 0;
 }
 
 void Part::importFile(const KUrl& url)
