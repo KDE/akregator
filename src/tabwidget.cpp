@@ -88,7 +88,7 @@ public:
 
 void TabWidget::Private::updateTabBarVisibility()
 {
-    q->setTabBarHidden( q->count() <= 1 );
+    q->setTabBarHidden( ( q->count() <= 1 ) && !Settings::alwaysShowTabBar() );
 }
 
 TabWidget::TabWidget(QWidget * parent)
@@ -111,7 +111,7 @@ TabWidget::TabWidget(QWidget * parent)
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip( i18n("Close the current tab"));
     setCornerWidget( d->tabsClose, Qt::TopRightCorner );
-    setTabBarHidden( true );
+    d->updateTabBarVisibility();
 }
 
 TabWidget::~TabWidget()
@@ -123,6 +123,7 @@ void TabWidget::slotSettingsChanged()
 {
     if (tabsClosable() != Settings::closeButtonOnTabs())
         setTabsClosable(Settings::closeButtonOnTabs());
+    d->updateTabBarVisibility();
 }
 
 void TabWidget::slotNextTab()

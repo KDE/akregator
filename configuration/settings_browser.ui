@@ -1,137 +1,99 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>Gary Cramblitt</author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>Akregator::SettingsBrowser</class>
- <widget class="QWidget" name="Akregator::SettingsBrowser" >
-  <property name="geometry" >
+ <widget class="QWidget" name="Akregator::SettingsBrowser">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>326</width>
-    <height>401</height>
+    <width>349</width>
+    <height>446</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>ExternalBrowser</string>
   </property>
-  <layout class="QGridLayout" >
-   <property name="margin" >
-    <number>8</number>
-   </property>
-   <property name="spacing" >
-    <number>6</number>
-   </property>
-   <item row="2" column="0" >
-    <widget class="QCheckBox" name="kcfg_CloseButtonOnTabs" >
-     <property name="text" >
-      <string>Show close button on each tab</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>31</width>
-       <height>16</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="0" >
-    <layout class="QGridLayout" >
-     <property name="margin" >
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="mouseButtonsLayout">
+     <property name="margin">
       <number>0</number>
      </property>
-     <property name="spacing" >
+     <property name="spacing">
       <number>6</number>
      </property>
-     <item row="0" column="1" >
-      <widget class="QComboBox" name="kcfg_LMBBehaviour" >
-       <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>7</hsizetype>
-         <vsizetype>0</vsizetype>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="kcfg_LMBBehaviour">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <item>
-        <property name="text" >
+        <property name="text">
          <string>Open in Tab</string>
         </property>
        </item>
        <item>
-        <property name="text" >
+        <property name="text">
          <string>Open in Background Tab</string>
         </property>
        </item>
        <item>
-        <property name="text" >
+        <property name="text">
          <string>Open in External Browser</string>
         </property>
        </item>
       </widget>
      </item>
-     <item row="1" column="0" >
-      <widget class="QLabel" name="textLabel1" >
-       <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>1</hsizetype>
-         <vsizetype>0</vsizetype>
+     <item row="1" column="0">
+      <widget class="QLabel" name="MMBlabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>Middle mouse click:</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="0" >
-      <widget class="QLabel" name="textLabel1_3" >
-       <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>1</hsizetype>
-         <vsizetype>0</vsizetype>
+     <item row="0" column="0">
+      <widget class="QLabel" name="LMBlabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>Left mouse click:</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1" >
-      <widget class="QComboBox" name="kcfg_MMBBehaviour" >
-       <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>7</hsizetype>
-         <vsizetype>0</vsizetype>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="kcfg_MMBBehaviour">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <item>
-        <property name="text" >
+        <property name="text">
          <string>Open in Tab</string>
         </property>
        </item>
        <item>
-        <property name="text" >
+        <property name="text">
          <string>Open in Background Tab</string>
         </property>
        </item>
        <item>
-        <property name="text" >
+        <property name="text">
          <string>Open in External Browser</string>
         </property>
        </item>
@@ -139,41 +101,41 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0" >
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
-      <string>For External Browsing</string>
+   <item>
+    <widget class="QGroupBox" name="externalBrowserGroupBox">
+     <property name="title">
+      <string>External Browsing</string>
      </property>
-     <layout class="QGridLayout" >
-      <property name="margin" >
+     <layout class="QGridLayout">
+      <property name="margin">
        <number>8</number>
       </property>
-      <property name="spacing" >
+      <property name="spacing">
        <number>6</number>
       </property>
-      <item row="1" column="1" >
-       <widget class="QLineEdit" name="kcfg_ExternalBrowserCustomCommand" >
-        <property name="enabled" >
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="kcfg_ExternalBrowserCustomCommand">
+        <property name="enabled">
          <bool>false</bool>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>firefox %u</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseCustomCommand" >
-        <property name="text" >
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseCustomCommand">
+        <property name="text">
          <string>Use this command:</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="2" >
-       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseKdeDefault" >
-        <property name="text" >
+      <item row="0" column="0" colspan="2">
+       <widget class="QRadioButton" name="kcfg_ExternalBrowserUseKdeDefault">
+        <property name="text">
          <string>Use default web browser</string>
         </property>
-        <property name="checked" >
+        <property name="checked">
          <bool>true</bool>
         </property>
        </widget>
@@ -181,9 +143,54 @@
      </layout>
     </widget>
    </item>
+   <item>
+    <widget class="QGroupBox" name="tabsGroupBox">
+     <property name="title">
+      <string>Tabs</string>
+     </property>
+     <layout class="QGridLayout" name="_2">
+      <property name="margin">
+       <number>8</number>
+      </property>
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="kcfg_CloseButtonOnTabs">
+        <property name="text">
+         <string>Show close button on each tab</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="kcfg_AlwaysShowTabBar">
+        <property name="text">
+         <string>Always show the tab bar</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>31</width>
+       <height>16</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11" />
+ <layoutdefault spacing="6" margin="11"/>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <resources/>
  <connections/>
