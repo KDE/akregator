@@ -225,15 +225,10 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     connect(trayIcon, SIGNAL(toggleShowPart()), this, SIGNAL(toggleShowPart()));
 
     if ( isTrayIconEnabled() )
-    {
         trayIcon->show();
-#ifdef __GNUC__
-#warning this needs a way to get the position of the systray
-#endif
-        NotificationManager::self()->setWidget(0, componentData());
-    }
-    else
-        NotificationManager::self()->setWidget(getMainWindow(), componentData());
+
+    QWidget* const notificationParent = isTrayIconEnabled() ? getMainWindow() : 0;
+    NotificationManager::self()->setWidget(notificationParent, componentData());
 
     connect( trayIcon, SIGNAL(quitSelected()),
             kapp, SLOT(quit())) ;

@@ -31,6 +31,7 @@
 #include "feedstorage.h"
 #include "fetchqueue.h"
 #include "folder.h"
+#include "notificationmanager.h"
 #include "storage.h"
 #include "treenodevisitor.h"
 #include "types.h"
@@ -462,6 +463,7 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
 {
     d->setTotalCountDirty();
     bool changed = false;
+    const bool notify = useNotification() || Settings::useNotifications();
 
     QList<ItemPtr> items = feed->items();
     QList<ItemPtr>::ConstIterator it = items.constBegin();
@@ -486,7 +488,8 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
                 mya.setStatus(New);
             else
                 mya.setStatus(Read);
-
+            if ( notify )
+                NotificationManager::self()->slotNotifyArticle( mya );
             changed = true;
         }
         else // article is in list
@@ -512,6 +515,7 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
                 deletedArticles.removeAll(mya);
         }
     }
+
 
     QList<Article>::ConstIterator dit = deletedArticles.constBegin();
     QList<Article>::ConstIterator dtmp;

@@ -5,7 +5,7 @@ Comment[nds]=Tosamensteller
 Comment[pa]=ਅਕਰੀਗੇਟਰ
 Comment[x-test]=xxAkregatorxx
 
-[Event/feed_added]
+[Event/FeedAdded]
 Name=Feed added
 Name[af]=Stroom bygevoeg
 Name[ca]=Font afegida
@@ -101,9 +101,9 @@ Comment[uz@cyrillic]=Akregator дастурига янги янгиликлар 
 Comment[x-test]=xxA new feed was remotely added to Akregatorxx
 Comment[zh_CN]=远程添加新种子进了 Akregator
 Comment[zh_TW]=已從遠端新增 Feed 到 Akregator
-Action=Logfile
+Action=Popup
 
-[Event/new_articles]
+[Event/NewArticles]
 Name=New Articles
 Name[af]=Nuwe Artikels
 Name[br]=Pennadoù nevez
@@ -202,5 +202,5 @@ Comment[uk]=Отримано нові статті
 Comment[x-test]=xxNew articles were fetchedxx
 Comment[zh_CN]=获取了新文章
 Comment[zh_TW]=有新文章進來
-Action=Logfile
+Action=Popup
 

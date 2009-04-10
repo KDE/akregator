@@ -77,7 +77,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
     if (feeds.count() == 1)
     {
         //KNotifyClient::Instance inst(m_instance);
-        KNotification::event("feed_added", i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget);
+        KNotification::event("FeedAdded", i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
     else if (feeds.count() > 1)
     {
@@ -85,7 +85,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
         for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
             message += *it + '\n';
         //KNotifyClient::Instance inst(m_instance);
-        KNotification::event("feed_added", i18n("Feeds added:\n %1", message), QPixmap() ,m_widget);
+        KNotification::event("FeedAdded", i18n("Feeds added:\n %1", message), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
 }
 
@@ -93,20 +93,18 @@ void NotificationManager::doNotify()
 {
     QString message = "<html><body>";
     QString feedTitle;
-    QList<Article>::ConstIterator it = m_articles.constBegin();
-    QList<Article>::ConstIterator en = m_articles.constEnd();
-    for (; it != en; ++it)
+
+    Q_FOREACH( const Article& i, m_articles )
     {
-        if (feedTitle != (*it).feed()->title())
+        if (feedTitle != i.feed()->title())
         {
-            feedTitle = (*it).feed()->title();
+            feedTitle = i.feed()->title();
             message += QString("<p><b>%1:</b></p>").arg(feedTitle);
         }
-        message += (*it).title() + "<br>";
+        message += i.title() + "<br>";
     }
     message += "</body></html>";
-    //KNotifyClient::Instance inst(m_instance);
-    KNotification::event("new_articles", message,QPixmap() ,m_widget);
+    KNotification::event("NewArticles", message, QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
 
     m_articles.clear();
     m_running = false;
@@ -126,7 +124,7 @@ void NotificationManager::slotIntervalCheck()
         m_addedInLastInterval = false;
         QTimer::singleShot(m_checkInterval, this, SLOT(slotIntervalCheck()));
     }
-    
+
 }
 
 NotificationManager* NotificationManager::m_self;
