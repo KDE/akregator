@@ -303,6 +303,8 @@ ArticleListView::ArticleListView( QWidget* parent )
     setUniformRowHeights( true );
     setRootIsDecorated( false );
     setAllColumnsShowFocus( true );
+    setDragDropMode( QAbstractItemView::DragOnly );
+
     setMinimumSize( 250, 150 );
     setWhatsThis( i18n("<h2>Article list</h2>"
         "Here you can browse articles from the currently selected feed. "

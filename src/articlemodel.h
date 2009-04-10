@@ -85,6 +85,12 @@ public:
 
     Article article( int row ) const;
 
+    /* reimp */ QStringList mimeTypes() const;
+
+    /* reimp */ QMimeData* mimeData( const QModelIndexList& indexes ) const;
+
+    /* reimp */ Qt::ItemFlags flags( const QModelIndex& idx ) const;
+
 public Q_SLOTS:
 
     void articlesAdded( Akregator::TreeNode*, const QList<Akregator::Article>& );

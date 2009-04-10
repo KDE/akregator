@@ -30,11 +30,14 @@
 
 #include <syndication/tools.h>
 
+#include <QMimeData>
 #include <QString>
 #include <QVector>
 
 #include <KLocale>
 #include <KGlobal>
+
+#include <memory>
 
 #include <cassert>
 #include <cmath>
@@ -252,6 +255,37 @@ Article ArticleModel::article( int row ) const
     if ( row < 0 || row >= d->articles.count() )
         return Article();
     return d->articles[row];
+}
+
+QStringList ArticleModel::mimeTypes() const
+{
+    return QStringList() << QString::fromLatin1( "text/uri-list" );
+}
+
+QMimeData* ArticleModel::mimeData( const QModelIndexList& indexes ) const
+{
+    std::auto_ptr<QMimeData> md( new QMimeData );
+    QList<QUrl> urls;
+    Q_FOREACH( const QModelIndex& i, indexes ) {
+        const QUrl url = i.data( ArticleModel::LinkRole ).value<KUrl>();
+        if ( url.isValid() )
+            urls.push_back( url );
+        else {
+            const QUrl guid( i.data( ArticleModel::GuidRole ).toString() );
+            if ( guid.isValid() )
+                urls.push_back( guid );
+        }
+    }
+    md->setUrls( urls );
+    return md.release();
+}
+
+Qt::ItemFlags ArticleModel::flags( const QModelIndex& idx ) const
+{
+    const Qt::ItemFlags f = QAbstractTableModel::flags( idx );
+    if ( !idx.isValid() )
+        return f;
+    return f | Qt::ItemIsDragEnabled;
 }
 
 #include "articlemodel.moc"
