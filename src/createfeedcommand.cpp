@@ -36,6 +36,7 @@
 
 #include <QPointer>
 #include <QTimer>
+#include <QClipboard>
 
 #include <cassert>
 
@@ -75,7 +76,19 @@ void CreateFeedCommand::Private::doCreate()
 
     QPointer<AddFeedDialog> afd = new AddFeedDialog( q->parentWidget(), "add_feed" );
 
-    afd->setUrl( KUrl::fromPercentEncoding( m_url.toLatin1() ) );
+    QString url = m_url;
+
+    if( url.isEmpty() )
+    {
+        const QClipboard* const clipboard = QApplication::clipboard();
+        assert( clipboard );
+        const QString clipboardText = clipboard->text();
+        // Check for the hostname, since the isValid method is not strict enough
+        if( !KUrl( clipboardText ).isEmpty() )
+            url = clipboardText;
+    }
+
+    afd->setUrl( KUrl::fromPercentEncoding( url.toLatin1() ) );
 
     QPointer<QObject> thisPointer( q );
 
