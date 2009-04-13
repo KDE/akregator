@@ -44,6 +44,7 @@
 #include <KStandardAction>
 #include <KToolBar>
 #include <KStandardDirs>
+#include <KTemporaryFile>
 
 using namespace Akregator;
 
@@ -210,17 +211,13 @@ bool MainWindow::queryClose()
         return true;
     }
 
-#ifdef __GNUC__
-#warning takeScreenShot has to be reimplemented or removed
-#endif
-#if 0
-    QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
-
-    // Associate source to image and show the dialog:
-    Q3MimeSourceFactory::defaultFactory()->setPixmap("systray_shot", shot);
-    KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"systray_shot\" /></center></p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
-#endif
-    KMessageBox::information( this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p></qt>" ), i18n( "Docking in System Tray" ), "hideOnCloseInfo" );
+    const QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
+    KTemporaryFile tmp;
+    if ( tmp.open() ) {
+        shot.save( &tmp, "PNG" );
+        tmp.close();
+    }
+    KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"%1\" /></center></p></qt>", tmp.fileName() ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
     hide();
     return false;
 }

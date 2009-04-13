@@ -37,10 +37,7 @@
 
 #include <QPainter>
 #include <QBitmap>
-
-#ifdef Q_WS_X11
-#include <QX11Info>
-#endif
+#include <QDesktopWidget>
 
 
 namespace Akregator {
@@ -70,14 +67,14 @@ TrayIcon::TrayIcon(QWidget *parent)
 TrayIcon::~TrayIcon()
 {}
 
-#if 0
 QPixmap TrayIcon::takeScreenshot() const
 {
-    QPoint g = mapToGlobal(pos());
+    const QRect rect = geometry();
+    const QPoint g = rect.topLeft();
     int desktopWidth  = kapp->desktop()->width();
     int desktopHeight = kapp->desktop()->height();
-    int tw = width();
-    int th = height();
+    int tw = rect.width();
+    int th = rect.height();
     int w = desktopWidth / 4;
     int h = desktopHeight / 9;
     int x = g.x() + tw/2 - w/2; // Center the rectange in the systray icon
@@ -92,8 +89,7 @@ QPixmap TrayIcon::takeScreenshot() const
         y = desktopHeight - h;
 
         // Grab the desktop and draw a circle around the icon:
-#ifdef Q_WS_X11
-    QPixmap shot = QPixmap::grabWindow(QX11Info::appRootWindow(), x, y, w, h);
+    QPixmap shot = QPixmap::grabWindow(QApplication::desktop()->winId(), x, y, w, h);
     QPainter painter(&shot);
     const int MARGINS = 6;
     const int WIDTH   = 3;
@@ -111,11 +107,7 @@ QPixmap TrayIcon::takeScreenshot() const
     painter.drawPixmap(BORDER, BORDER, shot);
     painter.end();
     return shot; // not finalShot?? -fo
-#else
-    return QPixmap();
-#endif
 }
-#endif
 
 void TrayIcon::slotSetUnread(int unread)
 {
