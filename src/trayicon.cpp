@@ -91,6 +91,7 @@ QPixmap TrayIcon::takeScreenshot() const
         // Grab the desktop and draw a circle around the icon:
     QPixmap shot = QPixmap::grabWindow(QApplication::desktop()->winId(), x, y, w, h);
     QPainter painter(&shot);
+    painter.setRenderHint( QPainter::Antialiasing );
     const int MARGINS = 6;
     const int WIDTH   = 3;
     int ax = g.x() - x - MARGINS -1;

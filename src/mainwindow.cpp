@@ -213,12 +213,17 @@ bool MainWindow::queryClose()
 
     const QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
     KTemporaryFile tmp;
+    QString tmpFileName;
     if ( tmp.open() ) {
+        tmpFileName = tmp.fileName();
         shot.save( &tmp, "PNG" );
         tmp.close();
     }
+
+    const QString imgTag = !tmpFileName.isEmpty() ? QString::fromLatin1( "<img src=\"%1\"/>" ).arg( tmpFileName ) : QString();
+
     QPointer<QObject> that( this );
-    KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"%1\" /></center></p></qt>", tmp.fileName() ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
+    KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center>%1</center></p></qt>", imgTag ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
     if ( that )
         hide();
     return false;
