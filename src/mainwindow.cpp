@@ -217,8 +217,10 @@ bool MainWindow::queryClose()
         shot.save( &tmp, "PNG" );
         tmp.close();
     }
+    QPointer<QObject> that( this );
     KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center><img source=\"%1\" /></center></p></qt>", tmp.fileName() ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
-    hide();
+    if ( that )
+        hide();
     return false;
 }
 
