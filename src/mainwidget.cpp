@@ -136,9 +136,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_feedListView->setObjectName( "feedtree" );
     m_actionManager->initSubscriptionListView( m_feedListView );
 
-    connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)),
-            this, SLOT(slotFeedTreeContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)));
-
     connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
             Akregator::Folder*)),
             this, SLOT(slotFeedUrlDropped (KUrl::List &,
@@ -526,11 +523,6 @@ void Akregator::MainWidget::slotCombinedView()
     m_viewMode = CombinedView;
 
     Settings::setViewMode( m_viewMode );
-}
-
-void Akregator::MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const QPoint& /*p*/)
-{
-    m_tabWidget->setCurrentWidget( m_mainFrame );
 }
 
 void Akregator::MainWidget::slotMoveCurrentNodeUp()

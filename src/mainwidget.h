@@ -136,9 +136,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** the article selection has changed */
         void slotArticleSelected(const Akregator::Article&);
 
-        /** Shows requested popup menu for feed tree */
-        void slotFeedTreeContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&);
-
         /** emits @ref signalUnreadCountChanged(int) */
         void slotSetTotalUnread();
 
