@@ -95,7 +95,8 @@ bool MainWindow::loadPart()
     // this routine will find and load our Part.  it finds the Part by
     // name which is a bad idea usually.. but it's alright in this
     // case since our Part is made for this Shell
-    KPluginFactory *factory = KPluginLoader("akregatorpart").factory();
+    KPluginLoader loader("akregatorpart");
+    KPluginFactory* const factory = loader.factory();
     if (!factory) {
         KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation."));
         return false;
