@@ -125,8 +125,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_horizontalSplitter->setOpaqueResize(true);
     lt->addWidget(m_horizontalSplitter);
 
-    connect(Kernel::self()->fetchQueue(), SIGNAL(fetched(Akregator::Feed*)),
-             this, SLOT(slotFeedFetched(Akregator::Feed*)));
     connect(Kernel::self()->fetchQueue(), SIGNAL(signalStarted()),
              this, SLOT(slotFetchingStarted()));
     connect(Kernel::self()->fetchQueue(), SIGNAL(signalStopped()),
@@ -819,26 +817,6 @@ void Akregator::MainWidget::slotFetchingStopped()
     m_actionManager->action("feed_stop")->setEnabled(false);
     m_mainFrame->slotSetStatusText(QString());
 }
-
-void Akregator::MainWidget::slotFeedFetched(Feed *feed)
-{
-    // iterate through the articles (once again) to do notifications properly
-    if (feed->articles().count() > 0)
-    {
-        QList<Article> articles = feed->articles();
-        QList<Article>::ConstIterator it;
-        QList<Article>::ConstIterator end = articles.constEnd();
-        for (it = articles.constBegin(); it != end; ++it)
-        {
-            if ((*it).status()==Akregator::New && ((*it).feed()->useNotification() || Settings::useNotifications()))
-            {
-                NotificationManager::self()->slotNotifyArticle(*it);
-            }
-        }
-    }
-}
-
-
 
 void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& article)
 {

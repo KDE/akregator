@@ -156,9 +156,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** displays a URL in the status bar when the user moves the mouse over a link */
         void slotMouseOverInfo(const KFileItem& kifi);
 
-        /** Feed has been fetched, populate article view if needed and update counters. */
-        void slotFeedFetched(Akregator::Feed *);
-
         /** adds a new feed to the feed tree */
         void slotFeedAdd();
         /** adds a feed group to the feed tree */
