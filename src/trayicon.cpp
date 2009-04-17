@@ -64,20 +64,11 @@ TrayIcon::TrayIcon(QWidget *parent)
     m_defaultIcon = KIcon("akregator").pixmap(22);
     setIcon(m_defaultIcon);
     this->setToolTip( i18n("Akregator - Feed Reader"));
-    connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
-             SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
 }
 
 
 TrayIcon::~TrayIcon()
 {}
-
-
-void TrayIcon::slotActivated(QSystemTrayIcon::ActivationReason reason) {
-  if (reason == QSystemTrayIcon::Trigger )
-    emit toggleShowPart();
-}
-
 
 #if 0
 QPixmap TrayIcon::takeScreenshot() const
