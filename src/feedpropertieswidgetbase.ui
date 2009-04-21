@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>Akregator::FeedPropertiesWidgetBase</class>
  <widget class="QWidget" name="Akregator::FeedPropertiesWidgetBase" >
   <property name="geometry" >
@@ -407,8 +404,6 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11" />
- <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
    <class>KLineEdit</class>
