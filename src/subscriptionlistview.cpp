@@ -216,6 +216,7 @@ void Akregator::SubscriptionListView::loadHeaderSettings()
 {
     const KConfigGroup conf( Settings::self()->config(), "General" );
     m_headerState = QByteArray::fromBase64( conf.readEntry( "SubscriptionListHeaders" ).toAscii() );
+    header()->restoreState( m_headerState );		// needed, even with Qt 4.5
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()
