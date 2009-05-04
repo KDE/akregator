@@ -91,7 +91,7 @@
      <item>
       <widget class="QLabel" name="lDeletePolicy" >
        <property name="text" >
-        <string>Delete feeds</string>
+        <string>Delete feeds:</string>
        </property>
       </widget>
      </item>
