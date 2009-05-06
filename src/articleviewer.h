@@ -124,8 +124,6 @@ class ArticleViewer : public QWidget
 
         void slotOpenUrlRequestDelayed(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
 
-        void slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs);
-
         void slotCreateNewWindow(const KUrl& url,
                                     const KParts::OpenUrlArguments& args,
                                     const KParts::BrowserArguments& browserArgs,

@@ -115,9 +115,6 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     connect( ext, SIGNAL(openUrlRequestDelayed(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)),
              this, SLOT(slotOpenUrlRequestDelayed(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)) );
 
-    connect( ext, SIGNAL(createNewWindow(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)),
-             this, SLOT(slotCreateNewWindow(KUrl, KParts::OpenUrlArguments, KParts::BrowserArguments)) );
-
     connect(ext, SIGNAL(createNewWindow(KUrl,
             KParts::OpenUrlArguments,
             KParts::BrowserArguments,
@@ -225,16 +222,6 @@ void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::Ope
                 break;
         }
     }
-
-    emit signalOpenUrlRequest(req);
-}
-
-void ArticleViewer::slotCreateNewWindow(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
-{
-    OpenUrlRequest req(url);
-    req.setArgs(args);
-    req.setBrowserArgs(browserArgs);
-    req.setOptions(OpenUrlRequest::NewTab);
 
     emit signalOpenUrlRequest(req);
 }
