@@ -24,6 +24,7 @@
 
 #include "subscriptionlistview.h"
 #include "subscriptionlistmodel.h"
+#include "subscriptionlistdelegate.h"
 #include "akregatorconfig.h"
 
 #include <QHeaderView>
@@ -134,6 +135,8 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setDragDropMode( QAbstractItemView::DragDrop );
     setDropIndicatorShown( true );
     setAcceptDrops( true );
+    setUniformRowHeights( true );
+    setItemDelegate( new SubscriptionListDelegate( this ) );
     connect( header(), SIGNAL( customContextMenuRequested( const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
 
     loadHeaderSettings();

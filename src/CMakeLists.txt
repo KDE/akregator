@@ -95,6 +95,7 @@ set(akregatorpart_PART_SRCS
    mainwidget.cpp 
    notificationmanager.cpp 
    subscriptionlistview.cpp
+   subscriptionlistdelegate.cpp
    dummystorage/storagedummyimpl.cpp 
    dummystorage/storagefactorydummyimpl.cpp 
    dummystorage/feedstoragedummyimpl.cpp 

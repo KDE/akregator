@@ -30,7 +30,6 @@
 #include "treenode.h"
 
 #include <KDebug>
-#include <KGlobalSettings>
 #include <KIconLoader>
 #include <KLocalizedString>
 
@@ -147,13 +146,6 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
                     return node->totalCount();
             }
         }
-        case Qt::FontRole:
-        {
-            QFont font = KGlobalSettings::generalFont();
-            if( node->unread() > 0 )
-                font.setBold( true );
-            return font;
-        }
         case Qt::ToolTipRole:
         {
             if ( node->isGroup() || node->isAggregation() )
@@ -200,6 +192,10 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
             const Akregator::Folder* const folder = qobject_cast<const Akregator::Folder* const>( node );
             Q_ASSERT( folder );
             return folder->isOpen();
+        }
+        case HasUnreadRole:
+        {
+            return node->unread()>0;
         }
     }
 

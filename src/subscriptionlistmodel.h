@@ -49,7 +49,8 @@ public:
         IsAggregationRole,
         LinkRole,
         IdRole,
-        IsOpenRole
+        IsOpenRole,
+        HasUnreadRole
     };
 
     enum Column {
