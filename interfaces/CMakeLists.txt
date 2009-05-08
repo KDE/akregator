@@ -13,7 +13,7 @@ kde4_add_kcfg_files(akregatorinterfaces_LIB_SRCS akregatorconfig.kcfgc)
 
 kde4_add_library(akregatorinterfaces SHARED ${akregatorinterfaces_LIB_SRCS})
 
-target_link_libraries(akregatorinterfaces kdepim ${KDE4_KHTML_LIBS} ${KDE4_SYNDICATION_LIBS} ${KDE4_KDE3SUPPORT_LIBRARY})
+target_link_libraries(akregatorinterfaces kdepim ${KDE4_KHTML_LIBS} ${KDEPIMLIBS_SYNDICATION_LIBS} ${KDE4_KDE3SUPPORT_LIBRARY})
 
 set_target_properties(akregatorinterfaces PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 
