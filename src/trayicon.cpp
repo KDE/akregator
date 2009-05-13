@@ -161,7 +161,7 @@ void TrayIcon::slotSetUnread(int unread)
         }
 
         // overlay
-        QImage overlayImg = m_defaultIcon.toImage().copy();
+        QPixmap overlayImg = m_defaultIcon;
         QPainter p(&overlayImg);
         p.setFont(f);
         KColorScheme scheme(QPalette::Active, KColorScheme::View);
@@ -182,7 +182,7 @@ void TrayIcon::slotSetUnread(int unread)
         p.setOpacity(1.0);
         p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
 
-        setIcon(QPixmap::fromImage(overlayImg));
+        setIcon(overlayImg);
     }
 }
 
