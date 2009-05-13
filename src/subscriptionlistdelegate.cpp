@@ -34,7 +34,7 @@ using namespace Akregator;
 
 
 Akregator::SubscriptionListDelegate::SubscriptionListDelegate( QWidget *parent )
-    : QItemDelegate( parent )
+    : QStyledItemDelegate( parent )
 {
     connect( KGlobalSettings::self(), SIGNAL( appearanceChanged() ),
              SLOT( recalculateRowHeight() ) );
@@ -50,7 +50,7 @@ Akregator::SubscriptionListDelegate::~SubscriptionListDelegate()
 QSize Akregator::SubscriptionListDelegate::sizeHint( const QStyleOptionViewItem &option,
                                                      const QModelIndex &index ) const
 {
-    QSize size = QItemDelegate::sizeHint( option, index );
+    QSize size = QStyledItemDelegate::sizeHint( option, index );
     size.setHeight( qMax( size.height(), ( m_viewIconHeight + 2 ) ) );
 							// +2 for row top/bottom margin
     return ( size );
@@ -69,7 +69,7 @@ void Akregator::SubscriptionListDelegate::paint( QPainter *painter,
 
     // No need to translate the painter here - the item is vertically centered
     // within its sizeHint rectangle.
-    QItemDelegate::paint( painter, newOption, index );
+    QStyledItemDelegate::paint( painter, newOption, index );
 }
 
 

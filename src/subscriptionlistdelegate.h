@@ -26,12 +26,12 @@
 #ifndef AKREGATOR_SUBSCRIPTIONLISTDELEGATE_H
 #define AKREGATOR_SUBSCRIPTIONLISTDELEGATE_H
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 namespace Akregator {
 
 
-class SubscriptionListDelegate : public QItemDelegate
+class SubscriptionListDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 
