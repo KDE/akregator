@@ -27,11 +27,13 @@
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 
+#include <KComboBox>
+
 #include <QPushButton>
 #include <QStringList>
 #include <QWidget>
 
-#include <kcombobox.h>
+#include <cassert>
 
 namespace Akregator {
 
@@ -40,20 +42,17 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
     setObjectName(name);
     setupUi(this);
     
-    QStringList backends = Backend::StorageFactoryRegistry::self()->list();
-    QString tname;
-    int i = 0;
-    QStringList::Iterator end( backends.end() );
-    for (QStringList::Iterator it = backends.begin(); it != end; ++it)
+    const QStringList backends = Backend::StorageFactoryRegistry::self()->list();
+    Q_FOREACH( const QString& i, backends)
     {
-        m_factories[i] = Backend::StorageFactoryRegistry::self()->getFactory(*it);
-	if(m_factories[i])
-	{
-          m_keyPos[m_factories[i]->key()] = i;
-          cbBackend->addItem(m_factories[i]->name());
-	}
-        i++;
+        Backend::StorageFactory* const factory = Backend::StorageFactoryRegistry::self()->getFactory( i );
+        if ( !factory )
+            continue;
+       
+        m_factories.insert( factory->key(), factory );
+        cbBackend->addItem( factory->name(), factory->key() );
     }
+    
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
     connect(cbBackend, SIGNAL(activated(int)), this, SLOT(slotFactorySelected(int)));
     connect( kcfg_UseMarkReadDelay, SIGNAL( toggled( bool ) ),
@@ -62,34 +61,34 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
 
 QString SettingsAdvanced::selectedFactory() const
 {
-    const int idx = cbBackend->currentIndex();
-    if ( idx < 0 || idx >= m_factories.count() )
-        return QString();
-    return m_factories[idx]->key();
+    return cbBackend->itemData( cbBackend->currentIndex() ).toString();
 }
 
-void SettingsAdvanced::selectFactory(const QString& key)
+void SettingsAdvanced::selectFactory( const QString& key )
 {
-    const int pos = m_keyPos[key];
-    if ( pos < 0 || pos >= m_factories.count() )
+    const int idx = cbBackend->findData( key );
+    if ( idx < 0 )
         return;
-    cbBackend->setCurrentIndex( pos );
-    pbBackendConfigure->setEnabled( m_factories[pos]->isConfigurable() );
+    cbBackend->setCurrentIndex( idx );
+    const Backend::StorageFactory* const factory = m_factories.value( key );
+    assert( factory );
+    pbBackendConfigure->setEnabled( factory->isConfigurable() );
 }
 
 void SettingsAdvanced::slotConfigureStorage()
 {
-    const int idx = cbBackend->currentIndex();
-     if ( idx < 0 || idx >= m_factories.count() )
-         return;
-    m_factories[idx]->configure();
+    const QString key = cbBackend->itemData( cbBackend->currentIndex() ).toString();
+    Backend::StorageFactory* const factory = m_factories.value( key );
+    assert( factory );
+    factory->configure();
 }
 
-void SettingsAdvanced::slotFactorySelected(int pos)
+void SettingsAdvanced::slotFactorySelected( int pos )
 {
-    if ( pos < 0 || pos >= m_factories.count() )
-        return;
-    pbBackendConfigure->setEnabled(m_factories[pos]->isConfigurable());
+    const QString key = cbBackend->itemData( pos ).toString();
+    const Backend::StorageFactory* const factory = m_factories.value( key );
+    assert( factory );
+    pbBackendConfigure->setEnabled( factory->isConfigurable() );
 }
 
 } //namespace Akregator

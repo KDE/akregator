@@ -57,8 +57,7 @@ class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
         void slotFactorySelected(int);
         
     private:
-        QHash<int,Backend::StorageFactory*> m_factories;
-        QHash<QString, int> m_keyPos;
+        QHash<QString,Backend::StorageFactory*> m_factories;
 };
 
 } // namespace Akregator
