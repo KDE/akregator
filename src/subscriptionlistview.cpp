@@ -237,6 +237,7 @@ void Akregator::SubscriptionListView::slotNextFeed()
 {
     if ( !model() )
         return;
+    emit userActionTakingPlace();
     const QModelIndex current = currentIndex();
     QModelIndex next = nextFeedIndex( current );
     if ( !next.isValid() )
@@ -249,6 +250,7 @@ void Akregator::SubscriptionListView::slotPrevUnreadFeed()
 {
     if ( !model() )
         return;
+    emit userActionTakingPlace();
     const QModelIndex current = currentIndex();
     QModelIndex prev = prevUnreadFeedIndex( current );
     if ( !prev.isValid() )
@@ -261,6 +263,7 @@ void Akregator::SubscriptionListView::slotNextUnreadFeed()
 {
     if ( !model() )
         return;
+    emit userActionTakingPlace();
     const QModelIndex current = currentIndex();
     QModelIndex next = nextUnreadFeedIndex( current );
     if ( !next.isValid() )

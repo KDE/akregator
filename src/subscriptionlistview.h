@@ -73,6 +73,9 @@ public Q_SLOTS:
     void slotItemRight();
     void slotItemUp();
     void slotItemDown();
+
+Q_SIGNALS:
+    void userActionTakingPlace();
     
 private:
     void saveHeaderSettings();

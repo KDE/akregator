@@ -139,6 +139,10 @@ public Q_SLOTS:
 
     void slotNextUnreadArticle();
 
+Q_SIGNALS:
+
+    void userActionTakingPlace();
+
 private:
     void saveHeaderSettings();
     void loadHeaderSettings();
