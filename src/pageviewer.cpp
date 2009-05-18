@@ -243,7 +243,7 @@ void PageViewer::openPage(const KUrl& url)
     if (!favicon.isEmpty())
         emit setTabIcon(QPixmap(KGlobal::dirs()->findResource("cache", favicon+".png")));
     else
-        emit setTabIcon(SmallIcon("html"));
+        emit setTabIcon(SmallIcon("text-html"));
 }
 
 // Taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)

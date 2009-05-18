@@ -61,9 +61,9 @@ FeedItem::~FeedItem()
 {
 }
 
-Feed* FeedItem::node() 
-{ 
-    return static_cast<Feed*> (m_node); 
+Feed* FeedItem::node()
+{
+    return static_cast<Feed*> (m_node);
 }
 
 void FeedItem::nodeChanged()
@@ -79,7 +79,7 @@ QPixmap FeedItem::errorPixmap()
 
 QPixmap FeedItem::defaultPixmap()
 {
-    return KIconLoader::global()->loadIcon("txt", KIconLoader::Small);
+    return KIconLoader::global()->loadIcon("feed-subscribe", KIconLoader::Small);
 }
 
 void FeedItem::initialize(Feed* node)
