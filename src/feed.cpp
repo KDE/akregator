@@ -662,7 +662,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
     }
 
     if (title().isEmpty())
-        setTitle( doc->title() );
+        setTitle( Syndication::htmlToPlainText( doc->title() ) );
 
     d->description = doc->description();
     d->htmlUrl = doc->link();
