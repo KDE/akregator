@@ -95,10 +95,6 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
         StorageMK4Impl* mainStorage;
         c4_View archiveView;
 
-        c4_Storage* catStorage;
-        c4_View catView;
-        c4_Storage* tagStorage;
-        c4_View tagView;
         bool autoCommit;
 	    bool modified;
         bool convert;
@@ -159,23 +155,12 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
 
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on guid
-
-
-    d->tagStorage = new c4_Storage((filePath + ".mk4___TAGS").toLocal8Bit(), true);
-    d->tagView = d->tagStorage->GetAs("tagIndex[tag:S,taggedArticles[guid:S]]");
-    hash = d->tagStorage->GetAs("archiveHash[_H:I,_R:I]");
-    d->tagView = d->tagView.Hash(hash, 1); // hash on tag
-
-    d->catStorage = new c4_Storage((filePath + ".mk4___CATEGORIES").toLocal8Bit(), true);
-    d->catView = d->catStorage->GetAs("catIndex[catTerm:S,catScheme:S,catName:S,categorizedArticles[guid:S]]");
 }
 
 
 FeedStorageMK4Impl::~FeedStorageMK4Impl()
 {
     delete d->storage;
-    delete d->tagStorage;
-    delete d->catStorage;
     delete d; d = 0;
 }
 
@@ -194,8 +179,6 @@ void FeedStorageMK4Impl::commit()
     if (d->modified)
     {
         d->storage->Commit();
-        d->tagStorage->Commit();
-        d->catStorage->Commit();
     }
     d->modified = false;
 }
@@ -203,8 +186,6 @@ void FeedStorageMK4Impl::commit()
 void FeedStorageMK4Impl::rollback()
 {
     d->storage->Rollback();
-    d->tagStorage->Rollback();
-    d->catStorage->Rollback();
 }
 
 void FeedStorageMK4Impl::close()
@@ -244,11 +225,14 @@ void FeedStorageMK4Impl::setLastFetch(int lastFetch)
 QStringList FeedStorageMK4Impl::articles(const QString& tag) const
 {
     QStringList list;
+#if 0 //category and tag support disabled
     if (tag.isNull()) // return all articles
     {
+#endif
         int size = d->archiveView.GetSize();
         for (int i = 0; i < size; i++) // fill with guids
             list += QString(d->pguid(d->archiveView.GetAt(i)));
+#if 0 //category and tag support disabled
     }
     else
     {
@@ -265,13 +249,14 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag) const
         }
 
     }
+#endif
     return list;
 }
 
 QStringList FeedStorageMK4Impl::articles(const Category& cat) const
 {
     QStringList list;
-
+#if 0 //category and tag support disabled
     c4_Row catrow;
     d->pcatTerm(catrow) = cat.term.toUtf8().data();
     d->pcatScheme(catrow) = cat.scheme.toUtf8().data();
@@ -285,7 +270,7 @@ QStringList FeedStorageMK4Impl::articles(const Category& cat) const
         for (int i = 0; i < size; i++)
             list += QString(d->pguid(catView.GetAt(i)));
     }
-
+#endif
     return list;
 }
 
@@ -636,7 +621,7 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
         d->pcatTerm(catrow) = cat.term.toUtf8().data();
         d->pcatScheme(catrow) = cat.scheme.toUtf8().data();
         d->pcatName(catrow) = cat.name.toUtf8().data();
-
+#if 0 //category and tag support disabled
         int catidx2 = d->catView.Find(catrow);
 
         if (catidx2 == -1)
@@ -657,7 +642,7 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
             d->pcategorizedArticles(catrow2) = catView2;
             d->catView.SetAt(catidx2, catrow2);
         }
-
+#endif
         markDirty();
     }
 }
@@ -691,6 +676,7 @@ QList<Category> FeedStorageMK4Impl::categories(const QString& guid) const
     }
     else // return all categories in the feed
     {
+#if 0 //category and tag support disabled
         int size = d->catView.GetSize();
         for (int i = 0; i < size; i++)
         {
@@ -703,6 +689,8 @@ QList<Category> FeedStorageMK4Impl::categories(const QString& guid) const
 
             list += cat;
         }
+#endif
+
     }
 
     return list;
@@ -710,6 +698,7 @@ QList<Category> FeedStorageMK4Impl::categories(const QString& guid) const
 
 void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
 {
+#if 0 //category and tag support disabled
     int findidx = findArticle(guid);
     if (findidx == -1)
         return;
@@ -747,10 +736,12 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
         }
         markDirty();
     }
+#endif
 }
 
 void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
 {
+#if 0 //category and tag support disabled
     int findidx = findArticle(guid);
     if (findidx == -1)
         return;
@@ -789,12 +780,13 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
 
         markDirty();
     }
+#endif
 }
 
 QStringList FeedStorageMK4Impl::tags(const QString& guid) const
 {
     QStringList list;
-
+#if 0 //category and tag support disabled
     if (!guid.isNull()) // return tags for an articles
     {
         int findidx = findArticle(guid);
@@ -815,7 +807,7 @@ QStringList FeedStorageMK4Impl::tags(const QString& guid) const
         for (int i = 0; i < size; i++)
              list += QString(d->ptag(d->tagView.GetAt(i)));
     }
-
+#endif
     return list;
 }
 
@@ -905,7 +897,7 @@ void FeedStorageMK4Impl::enclosure(const QString& guid, bool& hasEnclosure, QStr
 void FeedStorageMK4Impl::clear()
 {
     d->storage->RemoveAll();
-    d->tagStorage->RemoveAll();
+
     setUnread(0);
     markDirty();
 }
