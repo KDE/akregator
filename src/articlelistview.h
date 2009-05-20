@@ -140,6 +140,10 @@ public Q_SLOTS:
     void slotNextArticle();
 
 
+Q_SIGNALS:
+
+    void userActionTakingPlace();
+
 private:
     void loadHeaderSettings();
 

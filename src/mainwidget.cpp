@@ -136,9 +136,10 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_feedListView->setObjectName( "feedtree" );
     m_actionManager->initSubscriptionListView( m_feedListView );
 
-    connect(m_feedListView, SIGNAL(signalContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)),
-            this, SLOT(slotFeedTreeContextMenu(K3ListView*, Akregator::TreeNode*, const QPoint&)));
-
+    
+    connect( m_feedListView, SIGNAL(userActionTakingPlace()),
+             this, SLOT(ensureArticleTabVisible()) );
+    
     connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
             Akregator::Folder*)),
             this, SLOT(slotFeedUrlDropped (KUrl::List &,
@@ -190,7 +191,9 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_articleSplitter->setObjectName("panner2");
 
     m_articleListView = new ArticleListView( m_articleSplitter );
-
+    connect( m_articleListView, SIGNAL(UserActionTakingPlace()),
+             this, SLOT(ensureArticleTabVisible()) );
+    
     m_selectionController = new SelectionController( this );
     m_selectionController->setArticleLister( m_articleListView );
     m_selectionController->setFeedSelector( m_feedListView );
@@ -581,7 +584,7 @@ void Akregator::MainWidget::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
-void Akregator::MainWidget::slotFeedTreeContextMenu(K3ListView*, TreeNode* /*node*/, const QPoint& /*p*/)
+void Akregator::MainWidget::ensureArticleTabVisible()
 {
     m_tabWidget->setCurrentWidget( m_mainFrame );
 }
@@ -751,6 +754,7 @@ void Akregator::MainWidget::slotFeedModify()
 
 void Akregator::MainWidget::slotNextUnreadArticle()
 {
+    ensureArticleTabVisible();
     if (m_viewMode == CombinedView)
     {
         m_feedListView->slotNextUnreadFeed();
@@ -763,6 +767,7 @@ void Akregator::MainWidget::slotNextUnreadArticle()
 
 void Akregator::MainWidget::slotPrevUnreadArticle()
 {
+    ensureArticleTabVisible();
     if (m_viewMode == CombinedView)
     {
         m_feedListView->slotPrevUnreadFeed();
