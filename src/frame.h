@@ -175,7 +175,7 @@ class MainFrame : public Frame
 
     public:
 
-        MainFrame(QWidget* /*parent*/, KParts::ReadOnlyPart* /*part*/, QWidget* /*widget*/, const QString& /*title*/);
+        MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* widget);
         virtual ~MainFrame();
 
         virtual KUrl url() const;

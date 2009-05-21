@@ -207,7 +207,7 @@ int Frame::progress() const
     return m_progress;
 }
 
-MainFrame::MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* visibleWidget, const QString& /*title*/) : Frame(parent), m_part(part)
+MainFrame::MainFrame(QWidget* parent, KParts::ReadOnlyPart* part, QWidget* visibleWidget) : Frame(parent), m_part(part)
 {
     setRemovable(false);
     QGridLayout* layout = new QGridLayout(this);

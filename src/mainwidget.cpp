@@ -237,8 +237,8 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 
     mainTabLayout->addWidget( m_articleSplitter );
 
-    m_mainFrame = new MainFrame(this, m_part, m_mainTab, i18n("Articles"));
-
+    m_mainFrame = new MainFrame( this, m_part, m_mainTab );
+    m_mainFrame->slotSetTitle( i18n("Articles") );
     Kernel::self()->frameManager()->slotAddFrame(m_mainFrame);
 
     const QList<int> sp1sizes = Settings::splitter1Sizes();
