@@ -743,9 +743,9 @@ bool ArticleViewerPart::urlSelected(const QString &url, int button, int state, c
     if(url == "config:/disable_introduction")
     {
         KGuiItem yesButton(KStandardGuiItem::yes());
-        yesButton.setText(i18n("Keep Enabled"));
+        yesButton.setText(i18n("Disable"));
         KGuiItem noButton(KStandardGuiItem::no());
-        noButton.setText(i18n("Disable"));
+        noButton.setText(i18n("Keep Enabled"));
         if(KMessageBox::questionYesNo( widget(), i18n("Are you sure you want to disable this introduction page?"), i18n("Disable Introduction Page"), yesButton, noButton) == KMessageBox::Yes)
         {
             KConfigGroup conf(Settings::self()->config(), "General");
