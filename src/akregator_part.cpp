@@ -522,11 +522,10 @@ void Part::addFeed()
     m_mainWidget->slotFeedAdd();
 }
 
-void Part::showKNotifyOptions()
+void Part::showNotificationOptions()
 {
-    KAboutData* about = new Akregator::AboutData;
-    KNotifyConfigWidget::configure(m_mainWidget, about->appName() );
-    delete about;
+    const Akregator::AboutData about;
+    KNotifyConfigWidget::configure(m_mainWidget, about.appName() );
 }
 
 void Part::showOptions()

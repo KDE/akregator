@@ -181,6 +181,8 @@ void ActionManagerImpl::initPart()
     configure->setIcon(KIcon("configure"));
     connect(configure, SIGNAL(triggered()), d->part, SLOT(showOptions()));
 
+    KStandardAction::configureNotifications(d->part, SLOT(showNotificationOptions()), d->actionCollection); // options_configure_notifications
+
     /*action = d->actionCollection->addAction("akregator_configure_akregator");
     action->setIcon(KIcon("configure"));
     action->setText(i18n("Configure &Akregator..."));

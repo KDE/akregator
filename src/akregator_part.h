@@ -132,7 +132,7 @@ class Part : public KParts::ReadOnlyPart
 
         /** Shows configuration dialog */
         void showOptions();
-        void showKNotifyOptions();
+        void showNotificationOptions();
 
     signals:
         void signalSettingsChanged();

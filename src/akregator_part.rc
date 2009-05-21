@@ -70,6 +70,7 @@
       <text>&amp;Settings</text>
       <DefineGroup append="top_merge" name="top_merge" />
       <Action name="show_quick_filter" group="top_merge" />
+      <Action name="options_configure_notifications" group="settings_configure"/>
       <Action name="options_configure" group="settings_configure" />
     </Menu>
 
