@@ -292,7 +292,9 @@ void ArticleViewer::slotCopyLinkAddress()
     QClipboard *cb = QApplication::clipboard();
     cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
     // don't set url to selection as it's a no-no according to a fd.o spec
-    //cb->setText(m_url.prettyUrl(), QClipboard::Selection);
+    // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives 
+    // a good reason to remove it again (bug 183022) --Frank
+    cb->setText(m_url.prettyUrl(), QClipboard::Selection);
 }
 
 void ArticleViewer::slotSelectionChanged()
