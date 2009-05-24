@@ -26,34 +26,56 @@
 #define AKREGATOR_ONLINESYNC_PLUGIN_H
 
 #include "plugin.h"
+
 #include <kparts/plugin.h>
+
+#include <QPointer>
 
 class KActionMenu;
 
+namespace feedsync {
+    class FeedSync;
+}
+
 namespace Akregator {
 
+class OnlineSyncPlugin;
+
+class OnlineSyncPluginIface : public Plugin {
+    Q_OBJECT
+public:
+    explicit OnlineSyncPluginIface( QObject* parent=0, const QList<QVariant>& args=QList<QVariant>() );    
+    ~OnlineSyncPluginIface();
+
+    /* reimp */ void insertGuiClients( KXMLGUIClient* parent );
+    /* reimp */ void removeGuiClients( KXMLGUIClient* parent );
+
+    /* reimp */ void doInitialize() {}
+private:
+    QPointer<OnlineSyncPlugin> m_impl;
+};
+        
 class OnlineSyncPlugin : public KParts::Plugin
 {
     Q_OBJECT
 
   public:
-    OnlineSyncPlugin( );
-    OnlineSyncPlugin( QObject* parent, const QVariantList& list );
+    explicit OnlineSyncPlugin( QObject* parent=0, const QList<QVariant>& args=QList<QVariant>() );
     ~OnlineSyncPlugin(); 
 
   private:
-    void doInitialize();
-
-    KActionMenu* feedSyncMenu;
-    QList<QAction*> feedSyncAction;
+    void updateActions();
 
   private Q_SLOTS:
     void doSynchronize();
-
-  public slots:
     /** open the feed synchronization management */
     void slotFeedSyncManage();
     void slotFeedSyncManageDone();
+
+private:
+    feedsync::FeedSync* m_syncTool;
+    KActionMenu* m_feedSyncMenu;
+    QList<KAction*> m_feedSyncActions;
 };
 
 } // namespace Akregator

@@ -32,7 +32,9 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
-#define AKREGATOR_PLUGIN_INTERFACE_VERSION 3
+class KXMLGUIClient;
+
+#define AKREGATOR_PLUGIN_INTERFACE_VERSION 4
 
 namespace Akregator {
 
@@ -55,6 +57,9 @@ class AKREGATORINTERFACES_EXPORT Plugin : public QObject
         void addPluginProperty( const QString& key, const QString& value );
         QString pluginProperty( const QString& key ) const;
         bool hasPluginProperty( const QString& key ) const;
+
+        virtual void insertGuiClients( KXMLGUIClient* parent );
+        virtual void removeGuiClients( KXMLGUIClient* parent );
 
     protected:
         virtual void doInitialize() = 0;

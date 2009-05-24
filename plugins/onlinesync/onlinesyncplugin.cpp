@@ -26,39 +26,42 @@
 #include "ui/configurationdialog.h"
 #include "sync/feedsync.h"
 
+#include <KAction>
+#include <KActionMenu>
 #include <KActionCollection>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <KConfigGroup>
-#include <QAction>
-#include <kactionmenu.h>
 
 using namespace Akregator;
+using namespace feedsync;
 
-K_PLUGIN_FACTORY(OnlineSyncPluginFactory, registerPlugin<Akregator::OnlineSyncPlugin>();)
+K_PLUGIN_FACTORY(OnlineSyncPluginFactory,
+                 registerPlugin<Akregator::OnlineSyncPluginIface>();
+)
 K_EXPORT_PLUGIN(OnlineSyncPluginFactory( "akregator_onlinesync_plugin" ) )
 
-OnlineSyncPlugin::OnlineSyncPlugin( )
+
+OnlineSyncPluginIface::OnlineSyncPluginIface( QObject* parent, const QList<QVariant>& args ) : Plugin( parent ), m_impl( new OnlineSyncPlugin( parent, args ) )
 {
-    setComponentData( OnlineSyncPluginFactory::componentData() );
 }
 
-OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QVariantList& list ) : KParts::Plugin( parent )
-{ 
-    Q_UNUSED( list )
+OnlineSyncPluginIface::~OnlineSyncPluginIface() {
+    delete m_impl;
+}
 
+OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QList<QVariant>& args ) : KParts::Plugin( parent ), m_syncTool( new FeedSync( this ) )
+{ 
+    Q_UNUSED( args )
     setComponentData( OnlineSyncPluginFactory::componentData() );
 
-    kDebug();
-
-    // Init
     setXMLFile( "akregator_onlinesync_plugin.rc" , /*merge=*/true );
     KActionCollection* coll = actionCollection();
-    feedSyncMenu = coll->add<KActionMenu>("file_onlinesync_sync");
-    feedSyncMenu->setText(i18n("Synchronize Feeds"));
+    m_feedSyncMenu = coll->add<KActionMenu>("file_onlinesync_sync");
+    m_feedSyncMenu->setText(i18n("Synchronize Feeds"));
 
     // Fill
-    doInitialize();
+    updateActions();
 }
 
 OnlineSyncPlugin::~OnlineSyncPlugin()
@@ -66,54 +69,51 @@ OnlineSyncPlugin::~OnlineSyncPlugin()
     kDebug();
 }
 
-void OnlineSyncPlugin::doInitialize()
+void OnlineSyncPlugin::updateActions()
 {
     kDebug();
 
-    // The object that will do the Sync
-    feedsync::FeedSync * syncTool = new feedsync::FeedSync();
-
     // Clear the menubar
-    for (int i=0;i<feedSyncAction.count();i++) {
-        feedSyncMenu->removeAction(feedSyncAction.at(i));
-    }
-    feedSyncAction.clear();
+    Q_FOREACH( KAction* const i, m_feedSyncActions )
+        m_feedSyncMenu->removeAction( i );
+    qDeleteAll( m_feedSyncActions );
+    m_feedSyncActions.clear();
 
     // Fill the menubar
     KActionCollection* coll = actionCollection();
-    QAction* action;
+    KAction* action;
     // Read configuration
-    KConfig config("akregator_feedsyncrc");
-    foreach ( const QString& groupname, config.groupList() ) {
-        if (groupname.left(15)=="FeedSyncSource_") {
+    const KConfig config("akregator_feedsyncrc");
+    Q_FOREACH ( const QString& groupname, config.groupList() ) {
+        if ( groupname.startsWith( QLatin1String("FeedSyncSource_") ) ) {
             kDebug() << groupname;
             KConfigGroup generalGroup( &config, groupname );
 
             action = coll->addAction(groupname);
             action->setProperty("ConfigGroup",groupname);
-            action->setProperty("SyncType",syncTool->Get);
+            action->setProperty("SyncType", m_syncTool->Get);
             action->setIcon(KIcon("mail-receive"));
-            action->setText(i18n("Get from %1",generalGroup.readEntry( "Identifier", QString() )).toUtf8());
-            feedSyncMenu->addAction(action);
-            feedSyncAction.append(action);
-            connect( action, SIGNAL(triggered(bool)), syncTool, SLOT(sync()) );
+            action->setText(i18n("Get from %1",generalGroup.readEntry( "Identifier", QString() )));
+            m_feedSyncMenu->addAction(action);
+            m_feedSyncActions.append(action);
+            connect( action, SIGNAL(triggered(bool)), m_syncTool, SLOT(sync()) );
 
             action = coll->addAction(groupname);
             action->setProperty("ConfigGroup",groupname);
-            action->setProperty("SyncType",syncTool->Send);
+            action->setProperty("SyncType", m_syncTool->Send);
             action->setIcon(KIcon("mail-send"));
-            action->setText(i18n("Send to %1",generalGroup.readEntry( "Identifier", QString() )).toUtf8());
-            feedSyncMenu->addAction(action);
-            feedSyncAction.append(action);
-            connect( action, SIGNAL(triggered(bool)), syncTool, SLOT(sync()) );
+            action->setText(i18n("Send to %1",generalGroup.readEntry( "Identifier", QString() )));
+            m_feedSyncMenu->addAction(action);
+            m_feedSyncActions.append(action);
+            connect( action, SIGNAL(triggered(bool)), m_syncTool, SLOT(sync()) );
         }
     }
 
     action = coll->addAction("feedsync_manage");
     action->setIcon(KIcon("application-rss+xml"));
     action->setText(i18n("Manage..."));
-    feedSyncMenu->addAction(action);
-    feedSyncAction.append(action);
+    m_feedSyncMenu->addAction(action);
+    m_feedSyncActions.append(action);
     connect(action, SIGNAL(triggered(bool)), this, SLOT(slotFeedSyncManage()));
 }
 
@@ -134,7 +134,15 @@ void OnlineSyncPlugin::slotFeedSyncManage()
 void OnlineSyncPlugin::slotFeedSyncManageDone()
 {
     kDebug();
-    doInitialize();
+    updateActions();
+}
+
+void OnlineSyncPluginIface::insertGuiClients( KXMLGUIClient* parent ) {
+    parent->insertChildClient( m_impl );
+}
+
+void OnlineSyncPluginIface::removeGuiClients( KXMLGUIClient* parent ) {
+    parent->removeChildClient( m_impl );
 }
 
 #include "onlinesyncplugin.moc"

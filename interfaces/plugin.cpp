@@ -64,4 +64,8 @@ Plugin::hasPluginProperty( const QString& key ) const
     return m_properties.find( key.toLower() ) != m_properties.end();
 }
 
+
+void Plugin::insertGuiClients( KXMLGUIClient* ) {}
+void Plugin::removeGuiClients( KXMLGUIClient* ) {}
+
 }

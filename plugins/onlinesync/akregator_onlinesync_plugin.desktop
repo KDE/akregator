@@ -89,13 +89,10 @@ Comment[zh_TW]=Akregator 外掛程式
 
 X-KDE-Library=akregator_onlinesync_plugin
 X-KDE-ServiceTypes=Akregator/Plugin
-X-KDE-InterfaceVersion=2
+X-KDE-InterfaceVersion=4
 X-KDE-PluginInfo-EnabledByDefault=true
-
-X-KDE-akregator-plugintype=sync
-X-KDE-akregator-name=sync
-X-KDE-akregator-authors=Frank Osterfeld
-X-KDE-akregator-email=osterfeld@kde.org
+X-KDE-akregator-plugintype=extension  
+X-KDE-akregator-name=onlinesync
 X-KDE-akregator-rank=255
 X-KDE-akregator-version=1
-X-KDE-akregator-framework-version=3
+X-KDE-akregator-framework-version=4

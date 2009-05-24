@@ -185,7 +185,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
 
     Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
     Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
-    loadStoragePlugins(); // FIXME: also unload them!
+    loadPlugins( QLatin1String("storage") ); // FIXME: also unload them!
 
     m_storage = 0;
     Backend::StorageFactory* storageFactory = Backend::StorageFactoryRegistry::self()->getFactory(Settings::archiveBackend());
@@ -245,17 +245,20 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
         useragent = Settings::customUserAgent();
 
     Syndication::FileRetriever::setUserAgent( useragent );
+
+    loadPlugins( QLatin1String("extension") ); // FIXME: also unload them!
 }
 
-
-void Part::loadStoragePlugins()
+void Part::loadPlugins( const QString& type )
 {
-    KService::List offers = PluginManager::query( "[X-KDE-akregator-plugintype] == 'storage'" );
-    for ( KService::List::ConstIterator it = offers.constBegin(), end = offers.constEnd(); it != end; ++it )
-    {
-        Akregator::Plugin* plugin = PluginManager::createFromService(*it);
-        if (plugin)
-            plugin->initialize();
+    const KService::List offers = PluginManager::query( QString::fromLatin1("[X-KDE-akregator-plugintype] == '%1'").arg( type ) );
+
+    Q_FOREACH ( const KService::Ptr& i, offers ) {
+        Akregator::Plugin* plugin = PluginManager::createFromService( i );
+        if ( !plugin )
+            continue;
+        plugin->initialize();
+        plugin->insertGuiClients( this );
     }
 }
 

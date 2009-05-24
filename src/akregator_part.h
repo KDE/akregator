@@ -143,8 +143,10 @@ class Part : public KParts::ReadOnlyPart
     /** @return Whether the tray icon is enabled or not */
         bool isTrayIconEnabled() const;
 
-        /** loads all Akregator storage plugins */
-        void loadStoragePlugins();
+        /** loads all plugins of a given type
+         * @param type The category of plugins to load, currently one of "storage" and "extension"
+         */
+        void loadPlugins( const QString& type );
 
         /** This must be implemented by each part */
         bool openFile();
