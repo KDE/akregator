@@ -302,14 +302,16 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCopyLinkAddress()));
 
     action = coll->addAction("go_prev_unread_article");
+    action->setIcon(KIcon("go-previous"));
     action->setText(i18n("Pre&vious Unread Article"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotPrevUnreadArticle()));
     action->setShortcut(QKeySequence(Qt::Key_Minus));
 
     action = coll->addAction("go_next_unread_article");
+    action->setIcon(KIcon("go-next"));
     action->setText(i18n("Ne&xt Unread Article"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNextUnreadArticle()));
-    action->setShortcuts(KShortcut(Qt::Key_Equal, Qt::Key_Plus));
+    action->setShortcuts(KShortcut(Qt::Key_Plus, Qt::Key_Equal));
 
     action = coll->addAction("article_delete");
     action->setIcon(KIcon("edit-delete"));
@@ -446,11 +448,13 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
     action->setShortcuts(KShortcut( "N" ));
 
     action = coll->addAction("go_next_unread_feed");
+    action->setIcon(KIcon("go-down"));
     action->setText(i18n("N&ext Unread Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextUnreadFeed()));
     action->setShortcut(  QKeySequence(Qt::ALT+Qt::Key_Plus) );
 
     action = coll->addAction("go_prev_unread_feed");
+    action->setIcon(KIcon("go-up"));
     action->setText(i18n("Prev&ious Unread Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevUnreadFeed()));
     action->setShortcut( QKeySequence(Qt::ALT+Qt::Key_Minus) );
