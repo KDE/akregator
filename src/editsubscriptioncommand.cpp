@@ -144,8 +144,10 @@ void EditSubscriptionCommand::doStart()
 void EditSubscriptionCommand::Private::startEdit()
 {
     TreeNode* const node = m_list->findByID( m_subscriptionId );
-    if ( !node )
+    if ( !node ) {
+        q->done();
         return;
+    }
 
     EditNodePropertiesVisitor visitor( m_subscriptionListView, q->parentWidget() );
     visitor.visit( node );
