@@ -1,9 +1,10 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="415">
+<kpartgui name="akregator_part" version="416">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
       <Action name="file_export"/>
+      <Action name="file_data_migration"/>
       <Action name="file_getfromweb"/>
       <Separator/>
       <Action name="file_print"/>
@@ -40,9 +41,9 @@
     <Menu name="feed">
       <text>Fee&amp;d</text>
       <Action name="feed_add"/>
-      <Action name="feed_add_group"/>
+      <Action name="tag_add"/>
       <Separator/>
-      <Action name="feed_mark_all_as_read"/>
+      <Action name="feed_mark_feed_as_read"/>
       <Action name="feed_mark_all_feeds_as_read"/>
       <Separator/>
       <Action name="feed_fetch"/>
@@ -82,7 +83,7 @@
     <Action name="feed_fetch"/>
     <Action name="feed_fetch_all"/>
     <Action name="feed_stop"/>
-    <Action name="feed_mark_all_as_read"/>
+    <Action name="feed_mark_feed_as_read"/>
     <Action name="article_tagmenu"/>
     <DefineGroup name="pageviewer_operations" />
     <Merge/>
@@ -123,7 +124,7 @@
   </Menu>
 
   <Menu name="feeds_popup">
-    <Action name="feed_mark_all_as_read"/>
+    <Action name="feed_mark_feed_as_read"/>
     <Separator/>
     <Action name="feed_fetch"/>
     <Separator/>
@@ -134,27 +135,27 @@
   </Menu>
 
   <Menu name="feedgroup_popup">
-    <Action name="feed_mark_all_as_read"/>
+    <Action name="feed_mark_feed_as_read"/>
     <Separator/>
     <Action name="feed_fetch"/>
     <Separator/>
     <Action name="feed_add"/>
-    <Action name="feed_add_group"/>
+    <Action name="tag_add"/>
     <Action name="feed_modify"/>
     <Action name="feed_remove"/>
   </Menu>
 
   <Menu name="tagfolder_popup">
-    <Action name="feed_mark_all_as_read"/>
+    <Action name="feed_mark_feed_as_read"/>
     <Separator/>
     <Action name="tag_new"/>
-    <!--<Action name="feed_add_group"/> -->
+    <!--<Action name="tag_add"/> -->
     <Action name="feed_modify"/>
     <Action name="feed_remove"/>
   </Menu>
 
   <Menu name="tagnode_popup">
-    <Action name="feed_mark_all_as_read"/>
+    <Action name="feed_mark_feed_as_read"/>
     <Action name="feed_modify"/>
     <Action name="feed_remove"/>
   </Menu>

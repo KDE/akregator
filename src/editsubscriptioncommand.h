@@ -29,10 +29,14 @@
 
 #include <boost/shared_ptr.hpp>
 
-namespace Akregator {
+namespace KRss {
+    class FeedList;
+    class FeedListView;
+    class TreeNode;
+    class TagProvider;
+}
 
-class FeedList;
-class SubscriptionListView;
+namespace Akregator {
 
 class EditSubscriptionCommand : public Command
 {
@@ -41,22 +45,27 @@ public:
     explicit EditSubscriptionCommand( QObject* parent = 0 );
     ~EditSubscriptionCommand();
 
-    void setSubscription( const boost::shared_ptr<FeedList>& feedList, int subId );
-    int subscriptionId() const;
-    boost::shared_ptr<FeedList> feedList() const;
+    boost::shared_ptr<KRss::FeedList> feedList() const;
+    void setFeedList( const boost::shared_ptr<KRss::FeedList>& fl );
 
-    SubscriptionListView* subscriptionListView() const;
-    void setSubscriptionListView( SubscriptionListView* view );
+    void setNode( const boost::shared_ptr<KRss::TreeNode>& node );
+    boost::shared_ptr<KRss::TreeNode> node() const;
 
+    KRss::FeedListView* feedListView() const;
+    void setFeedListView( KRss::FeedListView* view );
+
+    boost::shared_ptr<const KRss::TagProvider> tagProvider() const;
+    void setTagProvider( const boost::shared_ptr<const KRss::TagProvider>& tp );
 
 private:
     void doStart();
-    void doAbort();
 
 private:
     class Private;
     Private* const d;
     Q_PRIVATE_SLOT( d, void startEdit() )
+    Q_PRIVATE_SLOT( d, void feedModifyDone( KJob* ) );
+    Q_PRIVATE_SLOT( d, void tagModifyDone( KJob* ) );
 };
 
 }

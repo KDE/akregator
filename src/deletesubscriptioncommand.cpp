@@ -168,14 +168,14 @@ void DeleteSubscriptionCommand::doStart()
 
 void DeleteSubscriptionCommand::Private::jobFinished()
 {
-    q->done();
+    q->emitResult();
 }
 
 void DeleteSubscriptionCommand::Private::startDelete()
 {
     const shared_ptr<FeedList> list = m_list.lock();
     if ( !list ) {
-        q->done();
+        q->emitResult();
         return;
     }
     TreeNode* const node = list->findByID( m_subscriptionId );
@@ -183,17 +183,12 @@ void DeleteSubscriptionCommand::Private::startDelete()
     DeleteSubscriptionJob* job = visitor.createJob( node );
     if ( !job )
     {
-        q->done();
+        q->emitResult();
         return;
     }
 
     QObject::connect( job, SIGNAL( finished( KJob* ) ), q, SLOT( jobFinished() ) );
     job->start();
-}
-
-void DeleteSubscriptionCommand::doAbort()
-{
-
 }
 
 #include "deletesubscriptioncommand.moc"

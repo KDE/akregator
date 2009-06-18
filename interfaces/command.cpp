@@ -35,13 +35,14 @@ class Command::Private
 public:
     Private();
     QPointer<QWidget> parentWidget;
+    bool userVisible;
 };
 
-Command::Private::Private() : parentWidget()
+Command::Private::Private() : parentWidget(), userVisible( true )
 {
 }
 
-Command::Command( QObject* parent ) : QObject( parent ), d( new Private )
+Command::Command( QObject* parent ) : KJob( parent ), d( new Private )
 {
 
 }
@@ -67,21 +68,18 @@ void Command::start()
     emit started();
 }
 
-void Command::abort()
-{
-    doAbort();
+bool Command::isUserVisible() const {
+    return d->userVisible;
 }
 
-void Command::done()
-{
-    emit finished();
-    deleteLater();
+void Command::setUserVisible( bool visible ) {
+    d->userVisible = visible;
 }
 
 void Command::waitForFinished()
 {
     QEventLoop loop;
-    connect( this, SIGNAL( finished() ), &loop, SLOT( quit() ) );
+    connect( this, SIGNAL( finished(KJob*) ), &loop, SLOT( quit() ) );
     loop.exec();
 }
 

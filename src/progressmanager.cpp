@@ -23,132 +23,117 @@
 */
 
 #include "progressmanager.h"
-#include "feed.h"
-#include "treenode.h"
+
+#include <krss/feedlist.h>
 
 #include <QHash>
 #include <QList>
 
-#include <klocale.h>
-#include <k3staticdeleter.h>
-
+#include <KLocale>
+#include <KGlobal>
 #include <libkdepim/progressmanager.h>
+
+#include <boost/shared_ptr.hpp>
 
 using namespace boost;
 
 namespace Akregator {
 
-class ProgressManager::ProgressManagerPrivate
+class ProgressManagerPrivate
 {
     public:
-        ProgressManagerPrivate() : feedList() {}
-        shared_ptr<FeedList> feedList;
-        QHash<Feed*, ProgressItemHandler*> handlers;
-
+        shared_ptr<KRss::FeedList> feedList;
+        QHash<KRss::Feed::Id, FetchProgressItemHandler*> handlers;
+        ProgressManager instance;
 };
 
-static K3StaticDeleter<ProgressManager> progressmanagersd;
-ProgressManager* ProgressManager::m_self = 0;
+K_GLOBAL_STATIC( ProgressManagerPrivate, d )
 
 ProgressManager* ProgressManager::self()
 {
-    if (!m_self)
-        m_self = progressmanagersd.setObject(m_self, new ProgressManager);
-    return m_self;
+    return &d->instance;
 }
 
-ProgressManager::ProgressManager() : d(new ProgressManagerPrivate)
+ProgressManager::ProgressManager()
 {
 }
 
 ProgressManager::~ProgressManager()
 {
-    delete d;
-    d = 0;
 }
 
-void ProgressManager::setFeedList(const shared_ptr<FeedList>& feedList)
+void ProgressManager::setFeedList( const shared_ptr<KRss::FeedList>& feedList )
 {
     if ( feedList == d->feedList )
         return;
 
-    if ( d->feedList )
-    {
+    if ( d->feedList ) {
         qDeleteAll( d->handlers );
         d->handlers.clear();
-        d->feedList->disconnect( this );
+        d->feedList.get()->disconnect( this );
     }
 
     d->feedList = feedList;
 
-    if ( d->feedList )
-    {
-        QVector<Feed*> list = feedList->feeds();
+    if ( d->feedList ) {
+        Q_FOREACH( const KRss::Feed::Id& id, d->feedList->feedIds() )
+            slotFeedAdded( id );
 
-        foreach( TreeNode* i, list )
-            slotNodeAdded( i );
-        connect(feedList.get(), SIGNAL(signalNodeAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
-        connect(feedList.get(), SIGNAL(signalNodeRemoved(Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::TreeNode*)));
-    }
+        connect( feedList.get(), SIGNAL( feedAdded( const KRss::Feed::Id&) ),
+                 this, SLOT( slotFeedAdded( const KRss::Feed::Id& ) ) );
+        connect( feedList.get(), SIGNAL( feedRemoved( const KRss::Feed::Id&) ),
+                 this, SLOT( slotFeedRemoved( const KRss::Feed::Id& ) ) );    }
 }
 
-void ProgressManager::slotNodeAdded(TreeNode* node)
+void ProgressManager::addJob( KJob *job )
 {
-    Feed* const feed = qobject_cast<Feed*>(node);
-    if (!feed)
+    // deletes itself
+    new JobProgressItemHandler( job );
+}
+
+void ProgressManager::slotFeedAdded( const KRss::Feed::Id& id )
+{
+    if ( d->handlers.contains( id ) )
         return;
 
-    if ( d->handlers.contains( feed ) )
-        return;
+    const shared_ptr<const KRss::Feed> feed = d->feedList->constFeedById( id );
+    assert( feed );
 
-    d->handlers[feed] = new ProgressItemHandler(feed);
-    connect(feed, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotNodeDestroyed(Akregator::TreeNode*)));
+    d->handlers.insert( id, new FetchProgressItemHandler( feed ) );
 }
 
-void ProgressManager::slotNodeRemoved(TreeNode* node)
+void ProgressManager::slotFeedRemoved( const KRss::Feed::Id& id )
 {
-    Feed* feed = qobject_cast<Feed*>(node);
-    if (feed)
-    {
-        feed->disconnect( this );
-        delete d->handlers[feed];
-        d->handlers.remove(feed);
-    }
+    delete d->handlers.take( id );
 }
 
-void ProgressManager::slotNodeDestroyed(TreeNode* node)
-{
-    Feed* feed = qobject_cast<Feed*>(node);
-    if (feed)
-    {
-        delete d->handlers[feed];
-        d->handlers.remove(feed);
-    }
-}
-
-class ProgressItemHandler::ProgressItemHandlerPrivate
+class FetchProgressItemHandler::FetchProgressItemHandlerPrivate
 {
     public:
-
-        Feed* feed;
+        explicit FetchProgressItemHandlerPrivate( const shared_ptr<const KRss::Feed>& feed_ )
+            : feed( feed_ ), progressItem( 0 ) {}
+        const shared_ptr<const KRss::Feed> feed;
         KPIM::ProgressItem* progressItem;
 };
 
-ProgressItemHandler::ProgressItemHandler(Feed* feed) : d(new ProgressItemHandlerPrivate)
+FetchProgressItemHandler::FetchProgressItemHandler( const shared_ptr<const KRss::Feed>& feed )
+    : d( new FetchProgressItemHandlerPrivate( feed ) )
 {
-    d->feed = feed;
-    d->progressItem = 0;
-
-    connect(feed, SIGNAL(fetchStarted(Akregator::Feed*)), this, SLOT(slotFetchStarted()));
-    connect(feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFetchCompleted()));
-    connect(feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError()));
-    connect(feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted()));
+    connect( feed.get(), SIGNAL( fetchStarted( const KRss::Feed::Id& ) ),
+             this, SLOT( slotFetchStarted( const KRss::Feed::Id& ) ) );
+    connect( feed.get(), SIGNAL( fetchPercent( const KRss::Feed::Id&, uint ) ),
+             this, SLOT( slotFetchPercent( const KRss::Feed::Id&, uint ) ) );
+    connect( feed.get(), SIGNAL( fetchFinished( const KRss::Feed::Id& ) ),
+             this, SLOT( slotFetchFinished( const KRss::Feed::Id& ) ) );
+    connect( feed.get(), SIGNAL( fetchFailed( const KRss::Feed::Id&, const QString& ) ),
+             this, SLOT( slotFetchFailed( const KRss::Feed::Id&, const QString& ) ) );
+    connect( feed.get(), SIGNAL( fetchAborted( const KRss::Feed::Id& ) ),
+             this, SLOT( slotFetchAborted( const KRss::Feed::Id& ) ) );
 }
 
-ProgressItemHandler::~ProgressItemHandler()
+FetchProgressItemHandler::~FetchProgressItemHandler()
 {
-    if (d->progressItem)
-    {
+    if ( d->progressItem ) {
         d->progressItem->setComplete();
         d->progressItem = 0;
     }
@@ -157,48 +142,118 @@ ProgressItemHandler::~ProgressItemHandler()
     d = 0;
 }
 
-void ProgressItemHandler::slotFetchStarted()
+void FetchProgressItemHandler::slotFetchStarted( const KRss::Feed::Id& id )
 {
-    if (d->progressItem)
-    {
+    Q_UNUSED( id )
+    if ( d->progressItem ) {
+        d->progressItem->setStatus( i18n( "Fetching" ) );
         d->progressItem->setComplete();
         d->progressItem = 0;
     }
 
-    d->progressItem = KPIM::ProgressManager::createProgressItem(KPIM::ProgressManager::getUniqueID(), d->feed->title(), QString(), true);
+    d->progressItem = KPIM::ProgressManager::createProgressItem( KPIM::ProgressManager::getUniqueID(),
+                                                                 d->feed->title() );
 
-    connect(d->progressItem, SIGNAL(progressItemCanceled(KPIM::ProgressItem*)), d->feed, SLOT(slotAbortFetch()));
+    connect( d->progressItem, SIGNAL( progressItemCanceled( KPIM::ProgressItem* ) ),
+             d->feed.get(), SLOT( abortFetch() ) );
 }
 
-
-void ProgressItemHandler::slotFetchCompleted()
+void FetchProgressItemHandler::slotFetchPercent( const KRss::Feed::Id& id, uint percentage )
 {
-    if (d->progressItem)
-    {
+    Q_UNUSED( id )
+    if ( d->progressItem ) {
+        d->progressItem->setStatus( i18n( "Fetching" ) );
+        d->progressItem->setProgress( percentage );
+    }
+}
+
+void FetchProgressItemHandler::slotFetchFinished( const KRss::Feed::Id& id )
+{
+    Q_UNUSED( id )
+    if ( d->progressItem ) {
         d->progressItem->setStatus(i18n("Fetch completed"));
         d->progressItem->setComplete();
         d->progressItem = 0;
     }
 }
 
-void ProgressItemHandler::slotFetchError()
+void FetchProgressItemHandler::slotFetchFailed( const KRss::Feed::Id& id, const QString& errorMessage )
 {
-    if (d->progressItem)
-    {
-        d->progressItem->setStatus(i18n("Fetch error"));
+    Q_UNUSED( id )
+    if ( d->progressItem ) {
+        d->progressItem->setStatus( i18n( "Fetch error. %1", errorMessage ) );
         d->progressItem->setComplete();
         d->progressItem = 0;
     }
 }
 
-void ProgressItemHandler::slotFetchAborted()
+void FetchProgressItemHandler::slotFetchAborted( const KRss::Feed::Id& id )
 {
-    if (d->progressItem)
-    {
+    Q_UNUSED( id )
+    if ( d->progressItem ) {
         d->progressItem->setStatus(i18n("Fetch aborted"));
         d->progressItem->setComplete();
         d->progressItem = 0;
     }
+}
+
+class JobProgressItemHandler::JobProgressItemHandlerPrivate
+{
+    public:
+        explicit JobProgressItemHandlerPrivate( const KJob *job_ )
+            : job( job_ ), progressItem( 0 ) {}
+        const KJob * const job;
+        KPIM::ProgressItem* progressItem;
+};
+
+JobProgressItemHandler::JobProgressItemHandler( const KJob *job )
+    : d( new JobProgressItemHandlerPrivate( job ) )
+{
+    connect( d->job, SIGNAL( result( KJob* ) ),
+             this, SLOT( slotJobResult( KJob* ) ) );
+    connect( d->job, SIGNAL( percent( KJob*, unsigned long ) ),
+             this, SLOT( slotJobPercent( KJob*, unsigned long ) ) );
+
+    d->progressItem = KPIM::ProgressManager::createProgressItem( KPIM::ProgressManager::getUniqueID(),
+                                                                 i18n( "Item Loading" ), QString(),
+                                                                 false );
+    d->progressItem->setStatus( i18n( "Loading" ) );
+    d->progressItem->setProgress( 0 );
+}
+
+JobProgressItemHandler::~JobProgressItemHandler()
+{
+    if ( d->progressItem ) {
+        d->progressItem->setComplete();
+        d->progressItem = 0;
+    }
+
+    delete d;
+    d = 0;
+}
+
+void JobProgressItemHandler::slotJobPercent( KJob *job, unsigned long percentage )
+{
+    Q_UNUSED( job )
+    if ( d->progressItem ) {
+        d->progressItem->setStatus( i18n( "Loading" ) );
+        d->progressItem->setProgress( percentage );
+    }
+}
+
+void JobProgressItemHandler::slotJobResult( KJob *job )
+{
+    Q_UNUSED( job )
+    if ( d->progressItem ) {
+        if ( job->error() )
+            d->progressItem->setStatus( i18n( "Load error. %1", job->errorString() ) );
+        else
+            d->progressItem->setStatus( i18n( "Load completed" ) );
+        d->progressItem->setComplete();
+        d->progressItem = 0;
+    }
+
+    deleteLater();
 }
 
 } // namespace Akregator

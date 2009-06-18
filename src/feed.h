@@ -172,7 +172,9 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListene
             * @return the article object with the given guid, or a
             * null article if non-existent
             */
+#ifdef KRSS_PORT_DISABLED
         Article findArticle(const QString& guid) const;
+#endif //KRSS_PORT_DISABLED
 
         /** returns whether a fetch error has occurred */
         bool fetchErrorOccurred() const;
@@ -244,7 +246,9 @@ class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListene
         Akregator::Backend::Storage* storage();
 
     private:
+#ifdef KRSS_PORT_DISABLED
         QList<Article> articles();
+#endif //KRSS_PORT_DISABLED
 
         /** loads articles from archive **/
         void loadArticles();

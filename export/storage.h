@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_BACKEND_STORAGE_H
 #define AKREGATOR_BACKEND_STORAGE_H
 
-#include "akregator_export.h"
 #include <QtCore/QObject>
 
 class QString;

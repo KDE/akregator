@@ -22,9 +22,9 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "importfeedlistcommand.h"
+#include "exportfeedlistcommand.h"
 
-#include <krss/importopmljob.h>
+#include <krss/exportopmljob.h>
 #include <krss/resource.h>
 #include <krss/resourcemanager.h>
 
@@ -43,40 +43,40 @@
 using namespace Akregator;
 using namespace KRss;
 
-class ImportFeedListCommand::Private
+class ExportFeedListCommand::Private
 {
-    QPointer<ImportFeedListCommand> q;
+    QPointer<ExportFeedListCommand> q;
 public:
-    explicit Private( ImportFeedListCommand* qq );
+    explicit Private( ExportFeedListCommand* qq );
 
-    void doImport();
-    void importFinished( KJob* );
+    void doExport();
+    void exportFinished( KJob* );
 
     KUrl url;
     QString resourceIdentifier;
 };
 
-ImportFeedListCommand::Private::Private( ImportFeedListCommand* qq )
+ExportFeedListCommand::Private::Private( ExportFeedListCommand* qq )
     : q( qq )
 {
 
 }
 
-void ImportFeedListCommand::Private::doImport()
+void ExportFeedListCommand::Private::doExport()
 {
     const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
     if ( !resource ) {
-        KMessageBox::error( q->parentWidget(), i18n("Could not import feed list: Target resource %1 not found.", resourceIdentifier ), i18n("Import Error" ) );
+        KMessageBox::error( q->parentWidget(), i18n("Could not export feed list: Target resource %1 not found.", resourceIdentifier ), i18n("Export Error" ) );
         q->emitResult();
     }
+
     if ( !url.isValid() ) {
-        url = KFileDialog::getOpenUrl( KUrl(),
-                                       QLatin1String("*.opml *.xml|")
-                                       + i18n("OPML Outlines (*.opml, *.xml)")
-                                       + QLatin1String("\n*|") + i18n("All Files"),
-                                       q->parentWidget(), i18n("Feed List Import") );
-        if ( !q )
-            return;
+        url = KFileDialog::getSaveUrl( KUrl(),
+                            QLatin1String("*.opml *.xml|") + i18n("OPML Outlines (*.opml, *.xml)")
+                            + QLatin1String("\n*|") + i18n("All Files") );
+
+       if ( !q )
+           return;
     }
 
     if ( !url.isValid() ) {
@@ -84,42 +84,42 @@ void ImportFeedListCommand::Private::doImport()
         return;
     }
 
-    KRss::ImportOpmlJob* job = resource->createImportOpmlJob( url );
-    connect( job, SIGNAL(finished(KJob*)), q, SLOT(importFinished(KJob*)) );
+    KRss::ExportOpmlJob* job = resource->createExportOpmlJob( url );
+    connect( job, SIGNAL(finished(KJob*)), q, SLOT(exportFinished(KJob*)) );
     job->start();
 }
 
-void ImportFeedListCommand::Private::importFinished( KJob* job ) {
+void ExportFeedListCommand::Private::exportFinished( KJob* job ) {
     if ( job->error() )
-        KMessageBox::error( q->parentWidget(), i18n("Could not import feed list: %1", job->errorString() ), i18n("Import Error" ) );
+        KMessageBox::error( q->parentWidget(), i18n("Could not export feed list: %1", job->errorString() ), i18n("Export Error" ) );
     else
-        KMessageBox::information( q->parentWidget(), i18n("The feed list was successfully imported." ), i18n("Import Finished") );
+        KMessageBox::information( q->parentWidget(), i18n("The feed list was successfully exported." ), i18n("Export Finished") );
     q->emitResult();
 }
 
-ImportFeedListCommand::ImportFeedListCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
+ExportFeedListCommand::ExportFeedListCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
 {
 }
 
-ImportFeedListCommand::~ImportFeedListCommand()
+ExportFeedListCommand::~ExportFeedListCommand()
 {
     delete d;
 }
 
 
-void ImportFeedListCommand::setSourceUrl( const KUrl& url )
+void ExportFeedListCommand::setTargetUrl( const KUrl& url )
 {
     d->url = url;
 }
 
-void ImportFeedListCommand::setResourceIdentifier( const QString& identifier )
+void ExportFeedListCommand::setResourceIdentifier( const QString& identifier )
 {
     d->resourceIdentifier = identifier;
 }
 
-void ImportFeedListCommand::doStart()
+void ExportFeedListCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT(doImport()) );
+    QTimer::singleShot( 0, this, SLOT(doExport()) );
 }
 
-#include "importfeedlistcommand.moc"
+#include "exportfeedlistcommand.moc"

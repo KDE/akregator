@@ -28,7 +28,10 @@
 #define AKREGATOR_MAINWIDGET_H
 
 #include "akregator_export.h"
-#include "feed.h"
+
+#include <krss/feedlist.h>
+#include <krss/tagprovider.h>
+#include <krss/ui/feedlistview.h>
 
 #include <kurl.h>
 
@@ -46,6 +49,10 @@ class KConfigGroup;
 class QDomDocument;
 class QSplitter;
 
+namespace KRss {
+    class Item;
+}
+
 namespace Akregator {
 
 class AbstractSelectionController;
@@ -54,12 +61,12 @@ class ArticleListView;
 class ArticleViewer;
 class Folder;
 class FeedList;
-class FeedListManagementImpl;
 class Frame;
 class Part;
 class SearchBar;
 class SubscriptionListView;
 class TabWidget;
+class TreeNode;
 
 /**
     * This is the main widget of the view, containing tree view, article list, viewer etc.
@@ -83,16 +90,8 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** saves settings. Make sure that the Settings singleton is not destroyed yet when saveSettings is called */
         void saveSettings();
 
-        /** Adds the feeds in @c doc to the "Imported Folder"
-        @param doc the DOM tree (OPML) of the feeds to import */
-        void importFeedList( const QDomDocument& doc );
-
-        /**
-         * @return the displayed Feed List in OPML format
-         */
-        QDomDocument feedListToOPML();
-
-        void setFeedList( const boost::shared_ptr<FeedList>& feedList );
+        void setFeedList( const boost::shared_ptr<KRss::FeedList>& feedList );
+        void setTagProvider( const boost::shared_ptr<const KRss::TagProvider>& tagProvider );
 
         /**
          * Add a feed to a group.
@@ -121,6 +120,11 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
     public slots:
 
+        void slotImportFeedList();
+        void slotExportFeedList();
+
+        void slotMetakitImport();
+
         /** opens the current article (currentItem) in external browser
         TODO: use selected instead of current? */
         void slotOpenSelectedArticlesInBrowser();
@@ -131,10 +135,10 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotOnShutdown();
 
         /** selected tree node has changed */
-        void slotNodeSelected(Akregator::TreeNode* node);
+        void slotNodeSelected( const boost::shared_ptr<KRss::TreeNode>& node );
 
-        /** the article selection has changed */
-        void slotArticleSelected(const Akregator::Article&);
+        /** the item selection has changed */
+        void slotItemSelected( const KRss::Item& item );
 
         /** emits @ref signalUnreadCountChanged(int) */
         void slotSetTotalUnread();
@@ -153,8 +157,8 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         /** adds a new feed to the feed tree */
         void slotFeedAdd();
-        /** adds a feed group to the feed tree */
-        void slotFeedAddGroup();
+        /** adds a new tag to the feed tree */
+        void slotTagAdd();
         /** removes the currently selected feed (ask for confirmation)*/
         void slotFeedRemove();
         /** calls the properties dialog for feeds, starts renaming for feed groups */
@@ -164,7 +168,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** starts fetching of all feeds in the tree */
         void slotFetchAllFeeds();
         /** marks all articles in the currently selected feed as read */
-        void slotMarkAllRead();
+        void slotMarkFeedRead();
         /** marks all articles in all feeds in the tree as read */
         void slotMarkAllFeedsRead();
         /** opens the homepage of the currently selected feed */
@@ -212,29 +216,29 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         void sendArticle(bool attach=false);
 
-        void addFeed(const QString& url, TreeNode* after, Folder* parent, bool autoExec = true);
-
     protected slots:
 
         /** special behaviour in article list view (TODO: move code there?) */
         void slotMouseButtonPressed(int button, const KUrl&);
 
-        /** opens the link of an article in the external browser */
-        void slotOpenArticleInBrowser(const Akregator::Article& article);
+        /** opens the link of an item in the external browser */
+        void slotOpenItemInBrowser( const KRss::Item& item );
 
-        void slotDoIntervalFetches();
-        void slotDeleteExpiredArticles();
-
-        void slotFetchingStarted();
-        void slotFetchingStopped();
+        void slotFetchQueueStarted();
+        void slotFetchQueueFinished();
+        void slotJobFinished( KJob *job );
 
     private:
-        void deleteExpiredArticles( const boost::shared_ptr<FeedList>& feedList );
+        class Private;
+        Private* const d;
+
+        void addFeed(const QString& url, bool autoExec );
 
         AbstractSelectionController* m_selectionController;
-        boost::shared_ptr<FeedList> m_feedList;
+        boost::shared_ptr<KRss::FeedList> m_feedList;
+        boost::shared_ptr<const KRss::TagProvider> m_tagProvider;
 
-        SubscriptionListView* m_feedListView;
+        KRss::FeedListView* m_feedListView;
         ArticleListView* m_articleListView;
 
         ArticleViewer *m_articleViewer;
@@ -251,15 +255,12 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         Akregator::Part *m_part;
         ViewMode m_viewMode;
 
-        QTimer *m_fetchTimer;
-        QTimer* m_expiryTimer;
         QTimer *m_markReadTimer;
 
         bool m_shuttingDown;
         bool m_displayingAboutPage;
 
         ActionManagerImpl* m_actionManager;
-        FeedListManagementImpl* const m_feedListManagementInterface;
 };
 
 } // namespace Akregator

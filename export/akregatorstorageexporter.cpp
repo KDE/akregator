@@ -19,11 +19,8 @@
  * Boston, MA 02110-1301, USA.
  *
  */
-#include "feedstorage.h"
-#include "storage.h"
-#include "storagefactory.h"
-#include "storagefactoryregistry.h"
-#include "plugin.h"
+#include "feedstoragemk4impl.h"
+#include "storagemk4impl.h"
 
 #include <syndication/atom/constants.h>
 #include <syndication/constants.h>
@@ -40,9 +37,6 @@
 
 #include <KComponentData>
 #include <KGlobal>
-#include <KPluginLoader>
-#include <KService>
-#include <KServiceTypeTrader>
 
 #include <iostream>
 
@@ -309,23 +303,6 @@ namespace {
         serialize( storage->archiveFor( url ), url, device );
     }
 
-    static KService::List queryStoragePlugins() {
-        return KServiceTypeTrader::self()->query( "Akregator/Plugin",
-            QString::fromLatin1( "[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0" ).arg( QString::number( AKREGATOR_PLUGIN_INTERFACE_VERSION ) ) );
-    }
-
-    static Plugin* createFromService( const KService::Ptr& service )
-    {
-        KPluginLoader loader( *service );
-        KPluginFactory* factory = loader.factory();
-        if ( !factory ) {
-            qCritical() << QString( " Could not create plugin factory for: %1\n"
-                                    " Error message: %2" ).arg( service->library(), loader.errorString() );
-            return 0;
-        }
-        return factory->create<Akregator::Plugin>();
-    }
-
     static void printUsage() {
         std::cout << "akregatorstorageexporter [--base64] url" << std::endl;
     }
@@ -334,7 +311,6 @@ namespace {
 
 int main( int argc, char** argv ) {
     KGlobal::setActiveComponent( KComponentData( "akregatorstorageexporter" ) );
-    const QString backend = QString::fromLatin1( "metakit" );
 
     if ( argc < 2 ) {
         printUsage();
@@ -351,21 +327,8 @@ int main( int argc, char** argv ) {
     const int pos = base64 ? 2 : 1;
     const QString url = QUrl::fromEncoded( base64 ? QByteArray::fromBase64( argv[pos] ) : QByteArray( argv[pos] ) ).toString();
 
-    Q_FOREACH( const KService::Ptr& i, queryStoragePlugins() )
-        if ( Plugin* const plugin = createFromService( i ) )
-            plugin->initialize();
-
-    const StorageFactory* const storageFactory = StorageFactoryRegistry::self()->getFactory( backend );
-    if ( !storageFactory ) {
-        qCritical( "Could not create storage factory for %s.", qPrintable( backend ) );
-        return 1;
-    }
-
-    Storage* const storage = storageFactory->createStorage( QStringList() );
-    if ( !storage ) {
-        qCritical( "Could not create storage object for %s.", qPrintable( backend ) );
-        return 1;
-    }
+    StorageMK4Impl* storage = new StorageMK4Impl;
+    storage->initialize( QStringList() );
 
     QFile out;
     if ( !out.open( stdout, QIODevice::WriteOnly ) ) {

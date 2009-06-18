@@ -44,7 +44,6 @@ template <class T> class QList;
 
 namespace Akregator {
 
-class Article;
 class FilterColumnsProxyModel;
 
 namespace Filters
@@ -94,7 +93,7 @@ public:
     ~ArticleListView();
 
     //impl ArticleLister
-    void setArticleModel( Akregator::ArticleModel* model );
+    void setItemModel( KRss::ItemModel* model );
 
     //impl ArticleLister
     QItemSelectionModel* articleSelectionModel() const;

@@ -41,10 +41,6 @@ class QTimer;
 
 namespace Akregator {
 
-namespace Backend {
-    class Storage;
-}
-
 class ActionManagerImpl;
 class Feed;
 class FeedList;
@@ -118,17 +114,9 @@ class Part : public KParts::ReadOnlyPart
             Calls Akregator MainWidget's saveProperties. */
         virtual void saveProperties(KConfigGroup & config);
 
-        void exportFile(const KUrl& url);
-
     public slots:
         /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
         void saveSettings();
-
-        /** Saves the standard feed list to it's default location */
-        void slotSaveFeedList();
-
-        void fileImport();
-        void fileExport();
 
         /** Shows configuration dialog */
         void showOptions();
@@ -151,8 +139,6 @@ class Part : public KParts::ReadOnlyPart
         /** This must be implemented by each part */
         bool openFile();
 
-        void importFile(const KUrl& url);
-
         KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
     private slots:
@@ -161,30 +147,22 @@ class Part : public KParts::ReadOnlyPart
         void slotOnShutdown();
         void slotSettingsChanged();
 
-        void feedListLoaded( const boost::shared_ptr<Akregator::FeedList>& list );
+        void slotTagProviderRetrieved( KJob *job );
+        void slotFeedListRetrieved( KJob *job );
 
     private: // methods
 
         /** fills the font settings with system fonts, if fonts are not set */
         void initFonts();
 
-        bool writeToTextFile( const QString& data, const QString& fname ) const;
-
     private: // attributes
 
-        class ApplyFiltersInterceptor;
-        ApplyFiltersInterceptor* m_applyFiltersInterceptor;
-        QString m_standardFeedList;
-        bool m_standardListLoaded;
         bool m_shuttingDown;
 
         KParts::BrowserExtension *m_extension;
 
-        QTimer* m_autosaveTimer;
         /** did we backup the feed list already? */
-        bool m_backedUpList;
         MainWidget* m_mainWidget;
-        Backend::Storage* m_storage;
         ActionManagerImpl* m_actionManager;
         KCMultiDialog* m_dialog;
 };

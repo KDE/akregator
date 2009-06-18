@@ -27,8 +27,6 @@
 
 #include "akregator_export.h"
 
-#include "feedlistmanagementinterface.h"
-
 #include <QObject>
 #include <QPointer>
 
@@ -54,23 +52,6 @@ class TreeNode;
 namespace Backend {
     class Storage;
 }
-
-
-class AKREGATORPART_EXPORT FeedListManagementImpl : public FeedListManagementInterface {
-public:
-    explicit FeedListManagementImpl( const boost::shared_ptr<FeedList>& list=boost::shared_ptr<FeedList>() );
-    void setFeedList( const boost::shared_ptr<FeedList>& list );
-
-    /* reimp */ QStringList categories() const;
-    /* reimp */ QStringList feeds( const QString& catId ) const;
-    /* reimp */ void addFeed( const QString& url, const QString& catId );
-    /* reimp */ void removeFeed( const QString& url, const QString& catId );
-    /* reimp */ QString addCategory( const QString& name, const QString& parentId ) const;
-    /* reimp */ QString getCategoryName( const QString& catId ) const;
-
-private:
-    boost::shared_ptr<FeedList> m_feedList;
-};
 
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 

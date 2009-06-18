@@ -25,13 +25,15 @@
 #include "createfeedcommand.h"
 
 #include "addfeeddialog.h"
-#include "feed.h"
-#include "feedpropertiesdialog.h"
-#include "folder.h"
-#include "subscriptionlistview.h"
 
+#include <krss/netfeed.h>
+#include <krss/netfeedcreatejob.h>
+#include <krss/ui/feedlistview.h>
+
+#include <KDebug>
 #include <KInputDialog>
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KUrl>
 
 #include <QPointer>
@@ -41,6 +43,7 @@
 #include <cassert>
 
 using namespace Akregator;
+using namespace KRss;
 
 class CreateFeedCommand::Private
 {
@@ -49,21 +52,18 @@ public:
     explicit Private( CreateFeedCommand* qq );
 
     void doCreate();
+    void creationDone( KJob* );
+    void modificationDone( KJob* );
 
-    QPointer<Folder> m_rootFolder;
-    QPointer<SubscriptionListView> m_subscriptionListView;
+    QPointer<FeedListView> m_feedListView;
     QString m_url;
-    QPointer<Folder> m_parentFolder;
-    QPointer<TreeNode> m_after;
+    QString m_resourceIdentifier;
     bool m_autoexec;
 };
 
 CreateFeedCommand::Private::Private( CreateFeedCommand* qq )
   : q( qq ),
-    m_rootFolder( 0 ),
-    m_subscriptionListView( 0 ),
-    m_parentFolder( 0 ),
-    m_after( 0 ),
+    m_feedListView(),
     m_autoexec( false )
 {
 
@@ -71,41 +71,51 @@ CreateFeedCommand::Private::Private( CreateFeedCommand* qq )
 
 void CreateFeedCommand::Private::doCreate()
 {
-    assert( m_rootFolder );
-    assert( m_subscriptionListView );
-
-    QPointer<AddFeedDialog> afd = new AddFeedDialog( q->parentWidget(), "add_feed" );
-
     QString url = m_url;
 
-    if( url.isEmpty() )
-    {
-        const QClipboard* const clipboard = QApplication::clipboard();
-        assert( clipboard );
-        const QString clipboardText = clipboard->text();
-        // Check for the hostname, since the isValid method is not strict enough
-        if( !KUrl( clipboardText ).isEmpty() )
-            url = clipboardText;
+    if ( !m_autoexec ) {
+        QPointer<AddFeedDialog> afd = new AddFeedDialog( q->parentWidget() );
+
+        if( url.isEmpty() )
+        {
+            const QClipboard* const clipboard = QApplication::clipboard();
+            assert( clipboard );
+            const QString clipboardText = clipboard->text();
+            // Check for the hostname, since the isValid method is not strict enough
+            if( !KUrl( clipboardText ).isEmpty() )
+                url = clipboardText;
+        }
+
+        afd->setUrl( KUrl::fromPercentEncoding( url.toLatin1() ) );
+
+        QPointer<QObject> thisPointer( q );
+
+        if ( afd->exec() != QDialog::Accepted || !thisPointer ) {
+            delete afd;
+            if ( !thisPointer )
+                q->emitResult();
+            return;
+        }
+
+        url = afd->url();
+
+        delete afd;
     }
 
-    afd->setUrl( KUrl::fromPercentEncoding( url.toLatin1() ) );
 
-    QPointer<QObject> thisPointer( q );
+    NetFeedCreateJob *job = new NetFeedCreateJob( url, QString(), m_resourceIdentifier, q );
+    q->connect( job, SIGNAL(finished(KJob*)), q, SLOT(creationDone(KJob*)) );
+    job->start();
 
-    if ( m_autoexec )
-        afd->accept();
-    else
-        afd->exec();
-
-    if ( !thisPointer ) // "this" might have been deleted while exec()!
-        return;
+    //PENDING(frank): the following should go to a FeedModifyCommand
+#ifdef KRSS_PORT_DISABLED
 
     Feed* const feed = afd->feed();
     delete afd;
 
     if ( !feed )
     {
-        q->done();
+        q->emitResult();
         return;
     }
 
@@ -121,11 +131,31 @@ void CreateFeedCommand::Private::doCreate()
     {
         m_parentFolder = m_parentFolder ? m_parentFolder : m_rootFolder;
         m_parentFolder->insertChild( feed, m_after );
-        m_subscriptionListView->ensureNodeVisible( feed );
+        if ( m_feedListView )
+            m_feedListView->ensureNodeVisible( feed );
     }
 
     delete dlg;
-    q->done();
+    q->emitResult();
+#endif //KRSS_PORT_DISABLED
+
+}
+
+void CreateFeedCommand::Private::creationDone( KJob* j )
+{
+    if ( j->error() ) {
+        q->emitResult();
+        return;
+    }
+    //PENDING(frank) fire off a FeedModifyCommand
+    q->emitResult();
+}
+
+void CreateFeedCommand::Private::modificationDone( KJob* j )
+{
+    if ( j->error() )
+        KMessageBox::error( q->parentWidget(), i18n("Could not edit the feed: %1", j->errorString() ), i18n("Editing Feed Failed") );
+    q->emitResult();
 }
 
 CreateFeedCommand::CreateFeedCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
@@ -138,25 +168,19 @@ CreateFeedCommand::~CreateFeedCommand()
     delete d;
 }
 
-void CreateFeedCommand::setSubscriptionListView( SubscriptionListView* view )
+void CreateFeedCommand::setFeedListView( FeedListView* view )
 {
-    d->m_subscriptionListView = view;
+    d->m_feedListView = view;
 }
 
-void CreateFeedCommand::setRootFolder( Folder* rootFolder )
+void CreateFeedCommand::setResourceIdentifier( const QString& identifier )
 {
-    d->m_rootFolder = rootFolder;
+    d->m_resourceIdentifier = identifier;
 }
 
 void CreateFeedCommand::setUrl( const QString& url )
 {
     d->m_url = url;
-}
-
-void CreateFeedCommand::setPosition( Folder* parent, TreeNode* after )
-{
-    d->m_parentFolder = parent;
-    d->m_after = after;
 }
 
 void CreateFeedCommand::setAutoExecute( bool autoexec )
@@ -166,12 +190,7 @@ void CreateFeedCommand::setAutoExecute( bool autoexec )
 
 void CreateFeedCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT( doCreate() ) );
-}
-
-void CreateFeedCommand::doAbort()
-{
-
+    QTimer::singleShot( 0, this, SLOT(doCreate()) );
 }
 
 #include "createfeedcommand.moc"

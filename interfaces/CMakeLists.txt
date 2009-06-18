@@ -4,9 +4,7 @@ include_directories( ${Boost_INCLUDE_DIR} )
 
 set(akregatorinterfaces_LIB_SRCS
    command.cpp
-   feedlistmanagementinterface.cpp
-   plugin.cpp 
-   storagefactoryregistry.cpp 
+   plugin.cpp
 )
 
 kde4_add_kcfg_files(akregatorinterfaces_LIB_SRCS akregatorconfig.kcfgc)
@@ -20,15 +18,9 @@ set_target_properties(akregatorinterfaces PROPERTIES VERSION ${GENERIC_LIB_VERSI
 install(TARGETS akregatorinterfaces ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 install( FILES akregator_export.h
-               article.h
                command.h
-               feedlistmanagementinterface.h
                types.h
-               storage.h
-               feedstorage.h
-               storagefactory.h
-               storagefactoryregistry.h
-               plugin.h 
+               plugin.h
                DESTINATION ${INCLUDE_INSTALL_DIR}/akregator )
-               
+
 install( FILES akregator.kcfg DESTINATION ${KCFG_INSTALL_DIR})

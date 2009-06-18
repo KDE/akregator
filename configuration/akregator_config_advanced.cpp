@@ -41,10 +41,10 @@ K_EXPORT_PLUGIN(KCMAkregatorAdvancedConfigFactory( "kcmakradvancedconfig" ))
 
 KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const QVariantList& args )
     : KCModule( KCMAkregatorAdvancedConfigFactory::componentData(), parent, args ), m_widget( new SettingsAdvanced )
-{  
+{
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-   
+
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakradvancedconfig" ), 0,
                                         ki18n( "Advanced Feed Reader Settings" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -60,12 +60,20 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const Q
 void KCMAkregatorAdvancedConfig::load()
 {
     KCModule::load();
+#ifdef KRSS_PORT_DISABLED
     m_widget->selectFactory(Settings::archiveBackend());
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void KCMAkregatorAdvancedConfig::save()
 {
+#ifdef KRSS_PORT_DISABLED
     Settings::setArchiveBackend( m_widget->selectedFactory() );
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
     KCModule::save();
 }
 

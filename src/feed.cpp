@@ -92,6 +92,7 @@ class Feed::Private
         QString htmlUrl;
         QString description;
 
+#ifdef KRSS_PORT_DISABLED
         /** list of feed articles */
         QHash<QString, Article> articles;
 
@@ -103,6 +104,7 @@ class Feed::Private
         QList<Article> addedArticlesNotify;
         QList<Article> removedArticlesNotify;
         QList<Article> updatedArticlesNotify;
+#endif //KRSS_PORT_DISABLED
 
         QPixmap imagePixmap;
         Syndication::ImagePtr image;
@@ -134,7 +136,7 @@ QString Feed::archiveModeToString(ArchiveMode mode)
 
 Feed* Feed::fromOPML(QDomElement e, Backend::Storage* storage )
 {
-
+#ifdef KRSS_PORT_DISABLED
     if( !e.hasAttribute("xmlUrl") && !e.hasAttribute("xmlurl") && !e.hasAttribute("xmlURL") )
         return 0;
 
@@ -174,6 +176,10 @@ Feed* Feed::fromOPML(QDomElement e, Backend::Storage* storage )
     feed->loadArticles(); // TODO: make me fly: make this delayed
 
     return feed;
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+    return 0;
+#endif //KRSS_PORT_DISABLED
 }
 
 bool Feed::accept(TreeNodeVisitor* visitor)
@@ -208,6 +214,7 @@ QVector<Feed*> Feed::feeds()
     return list;
 }
 
+#ifdef KRSS_PORT_DISABLED
 Article Feed::findArticle(const QString& guid) const
 {
     return d->articles[guid];
@@ -219,6 +226,8 @@ QList<Article> Feed::articles()
         loadArticles();
     return d->articles.values();
 }
+#endif //KRSS_PORT_DISABLED
+
 
 Backend::Storage* Feed::storage()
 {
@@ -227,6 +236,7 @@ Backend::Storage* Feed::storage()
 
 void Feed::loadArticles()
 {
+#ifdef KRSS_PORT_DISABLED
     if (d->articlesLoaded)
         return;
 
@@ -245,10 +255,12 @@ void Feed::loadArticles()
     d->articlesLoaded = true;
     enforceLimitArticleNumber();
     recalcUnreadCount();
+#endif
 }
 
 void Feed::recalcUnreadCount()
 {
+#ifdef KRSS_PORT_DISABLED
     QList<Article> tarticles = articles();
     QList<Article>::ConstIterator it;
     QList<Article>::ConstIterator en = tarticles.constEnd();
@@ -266,6 +278,9 @@ void Feed::recalcUnreadCount()
         d->archive->setUnread(unread);
         nodeModified();
     }
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 Feed::ArchiveMode Feed::stringToArchiveMode(const QString& str)
@@ -422,6 +437,7 @@ QDomElement Feed::toOPML( QDomElement parent, QDomDocument document ) const
 
 KJob* Feed::createMarkAsReadJob()
 {
+#ifdef KRSS_PORT_DISABLED
     std::auto_ptr<ArticleModifyJob> job( new ArticleModifyJob );
     Q_FOREACH ( const Article& i, articles() )
     {
@@ -429,10 +445,15 @@ KJob* Feed::createMarkAsReadJob()
         job->setStatus( aid, Read );
     }
     return job.release();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+    return 0;
+#endif //KRSS_PORT_DISABLED
 }
 
 void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
 {
+#ifdef KRSS_PORT_DISABLED
     if (!intervalFetchOnly)
         queue->addFeed(this);
     else
@@ -452,6 +473,9 @@ void Feed::slotAddToFetchQueue(FetchQueue* queue, bool intervalFetchOnly)
         if ( interval > 0 && now - lastFetch >= (uint)interval )
             queue->addFeed(this);
     }
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void Feed::slotAddFeedIconListener()
@@ -461,6 +485,7 @@ void Feed::slotAddFeedIconListener()
 
 void Feed::appendArticles(const Syndication::FeedPtr feed)
 {
+#ifdef KRSS_PORT_DISABLED
     d->setTotalCountDirty();
     bool changed = false;
     const bool notify = useNotification() || Settings::useNotifications();
@@ -535,6 +560,9 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
 
     if (changed)
         articlesModified();
+#else
+                kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 bool Feed::usesExpiryByAge() const
@@ -544,9 +572,10 @@ bool Feed::usesExpiryByAge() const
 
 bool Feed::isExpired(const Article& a) const
 {
+#ifdef KRSS_PORT_DISABLED
     QDateTime now = QDateTime::currentDateTime();
     int expiryAge = -1;
-// check whether the feed uses the global default and the default is limitArticleAge
+    // check whether the feed uses the global default and the default is limitArticleAge
     if ( d->archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleAge)
         expiryAge = Settings::maxArticleAge() *24*3600;
     else // otherwise check if this feed has limitArticleAge set
@@ -554,10 +583,15 @@ bool Feed::isExpired(const Article& a) const
             expiryAge = d->maxArticleAge *24*3600;
 
     return ( expiryAge != -1 && a.pubDate().secsTo(now) > expiryAge);
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+    return false;
+#endif //KRSS_PORT_DISABLED
 }
 
 void Feed::appendArticle(const Article& a)
 {
+#ifdef KRSS_PORT_DISABLED
     if ( (a.keep() && Settings::doNotExpireImportantArticles()) || ( !usesExpiryByAge() || !isExpired(a) ) ) // if not expired
     {
         if (!d->articles.contains(a.guid()))
@@ -567,11 +601,15 @@ void Feed::appendArticle(const Article& a)
                 setUnread(unread()+1);
         }
     }
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 
 void Feed::fetch(bool followDiscovery)
 {
+#ifdef KRSS_PORT_DISABLED
     d->followDiscovery = followDiscovery;
     d->fetchTries = 0;
 
@@ -590,6 +628,9 @@ void Feed::fetch(bool followDiscovery)
     emit fetchStarted(this);
 
     tryFetch();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void Feed::slotAbortFetch()
@@ -689,6 +730,7 @@ QIcon Feed::icon() const
 
 void Feed::deleteExpiredArticles( ArticleDeleteJob* deleteJob )
 {
+#ifdef KRSS_PORT_DISABLED
     if ( !usesExpiryByAge() )
         return;
 
@@ -710,6 +752,9 @@ void Feed::deleteExpiredArticles( ArticleDeleteJob* deleteJob )
 
     deleteJob->appendArticleIds( toDelete );
     setNotificationMode(true);
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void Feed::setFavicon( const QIcon& icon )
@@ -754,16 +799,21 @@ void Feed::setUnread(int unread)
 
 void Feed::setArticleDeleted(Article& a)
 {
+#ifdef KRSS_PORT_DISABLED
     d->setTotalCountDirty();
     if (!d->deletedArticles.contains(a))
         d->deletedArticles.append(a);
 
     d->updatedArticlesNotify.append(a);
     articlesModified();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void Feed::setArticleChanged(Article& a, int oldStatus)
 {
+#ifdef KRSS_PORT_DISABLED
     if (oldStatus != -1)
     {
         int newStatus = a.status();
@@ -774,13 +824,21 @@ void Feed::setArticleChanged(Article& a, int oldStatus)
     }
     d->updatedArticlesNotify.append(a);
     articlesModified();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 int Feed::totalCount() const
 {
+#ifdef KRSS_PORT_DISABLED
     if ( d->totalCount == -1 )
         d->totalCount = std::count_if( d->articles.constBegin(), d->articles.constEnd(), !bind( &Article::isDeleted, _1 ) );
     return d->totalCount;
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+    return 0;
+#endif //KRSS_PORT_DISABLED
 }
 
 TreeNode* Feed::next()
@@ -818,6 +876,7 @@ const TreeNode* Feed::next() const
 
 void Feed::doArticleNotification()
 {
+#ifdef KRSS_PORT_DISABLED
     if (!d->addedArticlesNotify.isEmpty())
     {
         // copy list, otherwise the refcounting in Article::Private breaks for
@@ -843,10 +902,14 @@ void Feed::doArticleNotification()
         d->removedArticlesNotify.clear();
     }
     TreeNode::doArticleNotification();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void Feed::enforceLimitArticleNumber()
 {
+#ifdef KRSS_PORT_DISABLED
     int limit = -1;
     if (d->archiveMode == globalDefault && Settings::archiveMode() == Settings::EnumArchiveMode::limitArticleNumber)
         limit = Settings::maxArticleNumber();
@@ -877,6 +940,9 @@ void Feed::enforceLimitArticleNumber()
         }
     }
     job->start();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 #include "feed.moc"

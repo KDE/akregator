@@ -12,9 +12,6 @@
       <arg name="lst" type="as" direction="in"/>
       <arg name="feedname" type="s" direction="in"/>
     </method>
-    <method name="exportFile">
-      <arg name="url" type="s" direction="in"/>
-    </method>
     <method name="addFeed" />
   </interface>
 </node>

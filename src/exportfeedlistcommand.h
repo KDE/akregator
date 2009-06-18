@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2005 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2009 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,37 +21,37 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-#include "storagefactorymk4impl.h"
-#include "storagemk4impl.h"
 
-#include <klocale.h>
-#include <QString>
-#include <QStringList>
+#ifndef AKREGATOR_EXPORTFEEDLISTCOMMAND_H
+#define AKREGATOR_EXPORTFEEDLISTCOMMAND_H
+
+#include "command.h"
+
+class KUrl;
 
 namespace Akregator {
-namespace Backend {
 
-Storage* StorageFactoryMK4Impl::createStorage(const QStringList& params) const
+class ExportFeedListCommand : public Command
 {
- 	Storage* storage = new StorageMK4Impl;
-	storage->initialize(params);
-	return storage;
+    Q_OBJECT
+public:
+    explicit ExportFeedListCommand( QObject* parent = 0 );
+    ~ExportFeedListCommand();
+
+    void setResourceIdentifier( const QString& identifier );
+
+    void setTargetUrl( const KUrl& url );
+
+private:
+    void doStart();
+
+private:
+    class Private;
+    Private* const d;
+    Q_PRIVATE_SLOT( d, void doExport() )
+    Q_PRIVATE_SLOT( d, void exportFinished( KJob* ) )
+};
+
 }
 
-QString StorageFactoryMK4Impl::key() const
-{
-    return "metakit";
-}
-
-QString StorageFactoryMK4Impl::name() const
-{
-   return i18n("Metakit");
-}
-
-
-void StorageFactoryMK4Impl::configure()
-{
-}
-
-} // namespace Backend
-} // namespace Akregator
+#endif // AKREGATOR_EXPORTFEEDLISTCOMMAND_H

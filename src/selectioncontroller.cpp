@@ -23,53 +23,49 @@
 */
 
 #include "selectioncontroller.h"
-
 #include "actionmanager.h"
-#include "article.h"
-#include "articlejobs.h"
-#include "articlemodel.h"
-#include "feedlist.h"
-#include "subscriptionlistmodel.h"
-#include "treenode.h"
+#include "progressmanager.h"
 
-#include <KRandom>
+#include <krss/feedlistmodel.h>
+#include <krss/feedlist.h>
+#include <krss/itemjobs.h>
+#include <krss/itemlisting.h>
+#include <krss/itemlistjob.h>
+#include <krss/itemmodel.h>
+#include <krss/tagprovider.h>
+#include <krss/treenode.h>
+#include <krss/treenodevisitor.h>
+
+#include <Akonadi/ItemFetchScope>
 #include <KDebug>
 
 #include <QAbstractItemView>
 #include <QMenu>
-#include <QTimer>
+
+#include <cassert>
 
 using namespace boost;
 using namespace Akregator;
+using KRss::FeedListModel;
 
 namespace {
-    static Akregator::Article articleForIndex( const QModelIndex& index, FeedList* feedList )
+    static KRss::Item itemForIndex( const QModelIndex& index )
     {
-        if ( !index.isValid() )
-            return Akregator::Article();
-
-        const QString guid = index.data( ArticleModel::GuidRole ).toString();
-        const QString feedId = index.data( ArticleModel::FeedIdRole ).toString();
-        return feedList->findArticle( feedId, guid );
+        return index.data( KRss::ItemModel::ItemRole ).value<KRss::Item>();
     }
 
-    static QList<Akregator::Article> articlesForIndexes( const QModelIndexList& indexes, FeedList* feedList )
+    static QList<KRss::Item> itemsForIndexes( const QModelIndexList& indexes )
     {
-        QList<Akregator::Article> articles;
+        QList<KRss::Item> items;
         Q_FOREACH ( const QModelIndex& i, indexes )
-        {
-            articles.append( articleForIndex( i, feedList ) );
-        }
+            items.append( itemForIndex( i ) );
 
-        return articles;
+        return items;
     }
 
-    static Akregator::TreeNode* subscriptionForIndex( const QModelIndex& index, Akregator::FeedList* feedList )
+    static shared_ptr<KRss::TreeNode> subscriptionForIndex( const QModelIndex& index )
     {
-        if ( !index.isValid() )
-            return 0L;
-
-         return feedList->findByID( index.data( Akregator::SubscriptionListModel::SubscriptionIdRole ).toInt() );
+        return index.data( FeedListModel::TreeNodeRole ).value<shared_ptr<KRss::TreeNode> >();
     }
 } // anon namespace
 
@@ -79,9 +75,9 @@ Akregator::SelectionController::SelectionController( QObject* parent )
     m_feedSelector(),
     m_articleLister( 0 ),
     m_singleDisplay( 0 ),
-    m_subscriptionModel ( new SubscriptionListModel( shared_ptr<FeedList>(), this ) ),
+    m_feedListModel ( 0 ),
     m_folderExpansionHandler( 0 ),
-    m_articleModel( 0 ),
+    m_itemModel( 0 ),
     m_selectedSubscription()
 {
 }
@@ -102,7 +98,7 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
     if ( !m_feedSelector )
         return;
 
-    m_feedSelector->setModel( m_subscriptionModel );
+    m_feedSelector->setModel( m_feedListModel );
 
     connect( m_feedSelector, SIGNAL(customContextMenuRequested(QPoint)),
              this, SLOT(subscriptionContextMenuRequested(QPoint)) );
@@ -125,7 +121,7 @@ void Akregator::SelectionController::setArticleLister( Akregator::ArticleLister*
 
     if ( m_articleLister && m_articleLister->itemView() )
         connect( m_articleLister->itemView(), SIGNAL(doubleClicked(QModelIndex)),
-                 this, SLOT(articleIndexDoubleClicked(QModelIndex))  );
+                 this, SLOT(itemIndexDoubleClicked(QModelIndex))  );
 }
 
 void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleArticleDisplay* display )
@@ -133,37 +129,72 @@ void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleA
     m_singleDisplay = display;
 }
 
-Akregator::Article Akregator::SelectionController::currentArticle() const
+KRss::Item Akregator::SelectionController::currentItem() const
 {
-    return ::articleForIndex( m_articleLister->articleSelectionModel()->currentIndex(), m_feedList.get() );
+    return ::itemForIndex( m_articleLister->articleSelectionModel()->currentIndex() );
 }
 
-QList<Akregator::Article> Akregator::SelectionController::selectedArticles() const
+QList<KRss::Item> Akregator::SelectionController::selectedItems() const
 {
-    return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedRows(), m_feedList.get() );
+    return ::itemsForIndexes( m_articleLister->articleSelectionModel()->selectedRows() );
 }
 
-Akregator::TreeNode* Akregator::SelectionController::selectedSubscription() const
+shared_ptr<KRss::TreeNode> Akregator::SelectionController::selectedSubscription() const
 {
-    return ::subscriptionForIndex( m_feedSelector->selectionModel()->currentIndex(), m_feedList.get() );
+    return ::subscriptionForIndex( m_feedSelector->selectionModel()->currentIndex() );
 }
 
-void Akregator::SelectionController::setFeedList( const shared_ptr<FeedList>& list )
+void Akregator::SelectionController::setFeedList( const shared_ptr<KRss::FeedList>& feedList )
 {
-    if ( m_feedList == list )
+    if ( m_feedList == feedList )
         return;
 
-    m_feedList = list;
-    std::auto_ptr<SubscriptionListModel> oldModel( m_subscriptionModel );
-    m_subscriptionModel = new SubscriptionListModel( m_feedList, this );
+    m_feedList = feedList;
 
+    if ( !m_tagProvider )
+        return;
+
+    std::auto_ptr<KRss::FeedListModel> oldModel( m_feedListModel );
+    m_feedListModel = new KRss::FeedListModel( m_feedList, m_tagProvider, this );
+
+#ifdef KRSS_PORT_DISABLED
     if ( m_folderExpansionHandler ) {
         m_folderExpansionHandler->setFeedList( m_feedList );
         m_folderExpansionHandler->setModel( m_subscriptionModel );
     }
+#endif
 
     if ( m_feedSelector ) {
-        m_feedSelector->setModel( m_subscriptionModel );
+        m_feedSelector->setModel( m_feedListModel );
+        disconnect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                    this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+        connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                 this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+    }
+}
+
+void Akregator::SelectionController::setTagProvider( const shared_ptr<const KRss::TagProvider>& tagProvider )
+{
+    if ( m_tagProvider == tagProvider )
+        return;
+
+    m_tagProvider = tagProvider;
+
+    if ( !m_feedList )
+        return;
+
+    std::auto_ptr<KRss::FeedListModel> oldModel( m_feedListModel );
+    m_feedListModel = new KRss::FeedListModel( m_feedList, m_tagProvider, this );
+
+#ifdef KRSS_PORT_DISABLED
+    if ( m_folderExpansionHandler ) {
+        m_folderExpansionHandler->setFeedList( m_feedList );
+        m_folderExpansionHandler->setModel( m_subscriptionModel );
+    }
+#endif
+
+    if ( m_feedSelector ) {
+        m_feedSelector->setModel( m_feedListModel );
         disconnect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
                     this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
         connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
@@ -173,6 +204,7 @@ void Akregator::SelectionController::setFeedList( const shared_ptr<FeedList>& li
 
 void Akregator::SelectionController::setFolderExpansionHandler( Akregator::FolderExpansionHandler* handler )
 {
+#ifdef KRSS_PORT_DISABLED
     if ( handler == m_folderExpansionHandler )
         return;
     m_folderExpansionHandler = handler;
@@ -180,6 +212,7 @@ void Akregator::SelectionController::setFolderExpansionHandler( Akregator::Folde
         return;
     handler->setFeedList( m_feedList );
     handler->setModel( m_subscriptionModel );
+#endif
 }
 
 void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
@@ -192,34 +225,26 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
         kWarning() << job->errorText();
         return;
     }
-    TreeNode* const node = m_listJob->node();
 
-    assert( node ); // if there was no error, the node must still exist
-    assert( node == m_selectedSubscription ); //...and equal the previously selected node
+    m_itemListing.reset( new KRss::ItemListing( m_listJob->items(), m_listJob->fetchScope() ) );
+    KRss::ConnectToItemListingVisitor visitor ( m_feedList, m_itemListing );
+    selectedSubscription()->accept( &visitor );
+    KRss::ItemModel* const newModel = new KRss::ItemModel( m_itemListing, this );
 
-    ArticleModel* const newModel = new ArticleModel( m_listJob->articles() );
-
-    connect( node, SIGNAL( destroyed() ),
-             newModel, SLOT( clear() ) );
-    connect( node, SIGNAL( signalArticlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-            newModel, SLOT( articlesAdded( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-    connect( node, SIGNAL( signalArticlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-             newModel, SLOT( articlesRemoved( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-    connect( node, SIGNAL( signalArticlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ),
-             newModel, SLOT( articlesUpdated( Akregator::TreeNode*, QList<Akregator::Article> ) ) );
-
-    m_articleLister->setIsAggregation( node->isAggregation() );
-    m_articleLister->setArticleModel( newModel );
-    delete m_articleModel; //order is important: do not delete the old model before the new model is set in the view
-    m_articleModel = newModel;
+    m_articleLister->setIsAggregation( selectedSubscription()->tier() == KRss::TreeNode::TagTier );
+    m_articleLister->setItemModel( newModel );
+    delete m_itemModel; //order is important: do not delete the old model before the new model is set in the view
+    m_itemModel = newModel;
 
     disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
-                this, SLOT(articleSelectionChanged()) );
+                this, SLOT(itemSelectionChanged()) );
     connect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
-             this, SLOT(articleSelectionChanged()) );
+             this, SLOT(itemSelectionChanged()) );
 
+#ifdef KRSS_PORT_DISABLED
     if ( node )
         m_articleLister->setScrollBarPositions( node->listViewScrollBarPositions() );
+#endif
 }
 
 
@@ -228,56 +253,82 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     if ( !index.isValid() )
         return;
 
+#ifdef KRSS_PORT_DISABLED
     if ( m_selectedSubscription && m_articleLister )
         m_selectedSubscription->setListViewScrollBarPositions( m_articleLister->scrollBarPositions() );
+#endif
 
     m_selectedSubscription = selectedSubscription();
     emit currentSubscriptionChanged( m_selectedSubscription );
-
-    // using a timer here internally to simulate async data fetching (which is still synchronous),
-    // to ensure the UI copes with async behavior later on
 
     delete m_listJob;
 
     if ( !m_selectedSubscription )
         return;
 
-    ArticleListJob* const job( new ArticleListJob( m_selectedSubscription ) );
+    Akonadi::ItemFetchScope scope;
+    scope.fetchPayloadPart( KRss::Item::HeadersPart );
+    scope.fetchAllAttributes();
+    KRss::CreateItemListJobVisitor visitor( m_feedList, scope );
+    m_selectedSubscription->accept( &visitor );
+    KRss::ItemListJob* const job = visitor.compositeItemListJob();
+    assert( job );
     connect( job, SIGNAL(finished(KJob*)),
              this, SLOT(articleHeadersAvailable(KJob*)) );
     m_listJob = job;
+    ProgressManager::self()->addJob( job );
     m_listJob->start();
-
 }
 
 void Akregator::SelectionController::subscriptionContextMenuRequested( const QPoint& point )
 {
     Q_ASSERT( m_feedSelector );
-    const TreeNode* const node = ::subscriptionForIndex( m_feedSelector->indexAt( point ), m_feedList.get() );
-    if ( !node )
+    const shared_ptr<const KRss::TreeNode> treeNode = ::subscriptionForIndex( m_feedSelector->indexAt( point ) );
+    if ( !treeNode )
         return;
 
-    QWidget* w = ActionManager::getInstance()->container( node->isGroup() ? "feedgroup_popup" : "feeds_popup" );
+    QWidget* w = ActionManager::getInstance()->container( treeNode->tier() == KRss::TreeNode::TagTier ?
+                                                          "feedgroup_popup" : "feeds_popup" );
     QMenu* popup = qobject_cast<QMenu*>( w );
-    if ( popup )
-    {
+    if ( popup ) {
         const QPoint globalPos = m_feedSelector->viewport()->mapToGlobal( point );
         popup->exec( globalPos );
     }
 }
 
-void Akregator::SelectionController::articleSelectionChanged()
+void Akregator::SelectionController::itemSelectionChanged()
 {
-    const Akregator::Article article = currentArticle();
-    if ( m_singleDisplay )
-        m_singleDisplay->showArticle( article );
-    emit currentArticleChanged( article );
+    const KRss::Item item = currentItem();
+    Akonadi::ItemFetchScope scope;
+    scope.fetchPayloadPart( KRss::Item::HeadersPart );
+    scope.fetchPayloadPart( KRss::Item::ContentPart );
+    KRss::ItemFetchJob* job = new KRss::ItemFetchJob( this );
+    job->setFetchScope( scope );
+    job->setItem( item );
+    connect( job, SIGNAL(finished(KJob*)), this, SLOT(fullItemFetched(KJob*)) );
+    job->start();
 }
 
-void Akregator::SelectionController::articleIndexDoubleClicked( const QModelIndex& index )
+void Akregator::SelectionController::fullItemFetched( KJob* j )
 {
-    const Akregator::Article article = ::articleForIndex( index, m_feedList.get() );
-    emit articleDoubleClicked( article );
+    KRss::ItemFetchJob* job = qobject_cast<KRss::ItemFetchJob*>( j );
+    assert( job );
+    if ( job->error() ) {
+        //PENDING(frank) TODO handle error
+    }
+
+    const KRss::Item item = job->item();
+
+    if ( m_singleDisplay )
+        m_singleDisplay->showItem( item );
+
+    emit currentItemChanged( item );
+}
+
+void Akregator::SelectionController::itemIndexDoubleClicked( const QModelIndex& index )
+{
+    const KRss::Item item = ::itemForIndex( index );
+    emit itemDoubleClicked( item );
 }
 
 void SelectionController::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& matchers )

@@ -23,16 +23,16 @@
 */
 
 #include "kernel.h"
+#include "framemanager.h"
+
+#include <krss/feedlist.h>
 
 #include <k3staticdeleter.h>
-
-#include "feedlist.h"
-#include "fetchqueue.h"
-#include "framemanager.h"
 
 #include <QPointer>
 
 using namespace boost;
+using namespace KRss;
 
 namespace Akregator
 {
@@ -52,36 +52,22 @@ class Kernel::KernelPrivate
 {
     public:
 
-    Backend::Storage* storage;
-    shared_ptr<FeedList> feedList;
-    FetchQueue* fetchQueue;
+    shared_ptr<KRss::FeedList> feedList;
     FrameManager* frameManager;
 };
 
 Kernel::Kernel() : d(new KernelPrivate)
 {
-    d->fetchQueue = new FetchQueue();
     d->frameManager = new FrameManager();
-    d->storage = 0;
 }
 
 Kernel::~Kernel()
 {
-    delete d->fetchQueue;
     delete d->frameManager;
     delete d;
     d = 0;
 }
 
-Backend::Storage* Kernel::storage()
-{
-    return d->storage;
-}
-
-void Kernel::setStorage(Backend::Storage* storage)
-{
-    d->storage = storage;
-}
 
 shared_ptr<FeedList> Kernel::feedList() const
 {
@@ -91,11 +77,6 @@ shared_ptr<FeedList> Kernel::feedList() const
 void Kernel::setFeedList(const shared_ptr<FeedList>& feedList)
 {
     d->feedList = feedList;
-}
-
-FetchQueue* Kernel::fetchQueue()
-{
-    return d->fetchQueue;
 }
 
 FrameManager* Kernel::frameManager()

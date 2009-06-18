@@ -33,6 +33,14 @@ class QAbstractItemView;
 class QItemSelectionModel;
 class QPoint;
 
+namespace KRss {
+    class TagProvider;
+    class FeedList;
+    class Item;
+    class ItemModel;
+    class TreeNode;
+}
+
 namespace Akregator {
 
 class Article;
@@ -52,7 +60,7 @@ public:
 
     virtual ~ArticleLister() {}
 
-    virtual void setArticleModel( Akregator::ArticleModel* model ) = 0;
+    virtual void setItemModel( KRss::ItemModel* model ) = 0;
 
     virtual QItemSelectionModel* articleSelectionModel() const = 0;
 
@@ -76,7 +84,7 @@ class SingleArticleDisplay
 public:
     virtual ~SingleArticleDisplay() {}
 
-    virtual void showArticle( const Akregator::Article & article ) = 0;
+    virtual void showItem( const KRss::Item& article ) = 0;
 };
 
 class SubscriptionLister
@@ -96,7 +104,9 @@ public:
     explicit AbstractSelectionController( QObject* parent = 0 );
     virtual ~AbstractSelectionController();
 
-    virtual void setFeedList( const boost::shared_ptr<FeedList>& list ) = 0;
+    virtual void setFeedList( const boost::shared_ptr<KRss::FeedList>& list ) = 0;
+
+    virtual void setTagProvider( const boost::shared_ptr<const KRss::TagProvider>& tagProvider ) = 0;
 
     virtual void setFeedSelector( QAbstractItemView* feedSelector ) = 0;
 
@@ -106,11 +116,11 @@ public:
 
     virtual void setSingleArticleDisplay( Akregator::SingleArticleDisplay* display ) = 0;
 
-    virtual Akregator::Article currentArticle() const = 0;
+    virtual KRss::Item currentItem() const = 0;
 
-    virtual QList<Akregator::Article> selectedArticles() const = 0;
+    virtual QList<KRss::Item> selectedItems() const = 0;
 
-    virtual Akregator::TreeNode* selectedSubscription() const = 0;
+    virtual boost::shared_ptr<KRss::TreeNode> selectedSubscription() const = 0;
 
 public Q_SLOTS:
 
@@ -119,11 +129,11 @@ public Q_SLOTS:
     virtual void forceFilterUpdate() = 0;
 
 Q_SIGNALS:
-    void currentSubscriptionChanged( Akregator::TreeNode* node );
+    void currentSubscriptionChanged( const boost::shared_ptr<KRss::TreeNode>& node );
 
-    void currentArticleChanged( const Akregator::Article& );
+    void currentItemChanged( const KRss::Item& );
 
-    void articleDoubleClicked( const Akregator::Article& );
+    void itemDoubleClicked( const KRss::Item& );
 };
 
 } // namespace Akregator

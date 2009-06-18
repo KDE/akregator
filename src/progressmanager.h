@@ -25,16 +25,21 @@
 #ifndef AKREGATOR_PROGRESSMANAGER_H
 #define AKREGATOR_PROGRESSMANAGER_H
 
-#include "feedlist.h"
+#include <krss/feed.h>
 #include <QObject>
-#include <boost/shared_ptr.hpp>
+
+namespace boost {
+template <typename T> class shared_ptr;
+}
+
+namespace KRss {
+class FeedList;
+}
 
 namespace Akregator
 {
 
-class Feed;
 class ProgressItemHandler;
-class TreeNode;
 
 /** This class manages the progress items for all feeds */
 
@@ -42,49 +47,63 @@ class ProgressManager : public QObject
 {
     Q_OBJECT
     public:
-
         static ProgressManager* self();
 
-        ProgressManager();
-        ~ProgressManager();
-
         /** sets the feed list to be managed */
-        void setFeedList( const boost::shared_ptr<FeedList>& feedList);
+        void setFeedList( const boost::shared_ptr<KRss::FeedList>& feedList );
+        /** adds a job to track the progress of */
+        void addJob( KJob *job );
 
     protected slots:
-
-        void slotNodeAdded(Akregator::TreeNode* node);
-        void slotNodeRemoved(Akregator::TreeNode* node);
-        void slotNodeDestroyed(Akregator::TreeNode* node);
+        void slotFeedAdded( const KRss::Feed::Id& id );
+        void slotFeedRemoved( const KRss::Feed::Id& id );
 
     private:
-
+        friend class ProgressManagerPrivate;
+        ProgressManager();
+        ~ProgressManager();
         static ProgressManager* m_self;
-
-        class ProgressManagerPrivate;
-        ProgressManagerPrivate* d;
 };
 
 /** this class handles the creation and deletion of progress items for one feed.
     This is an internal class intended to be used in ProgressManager only */
 
-class ProgressItemHandler : public QObject
+class FetchProgressItemHandler : public QObject
 {
     Q_OBJECT
     public:
-        explicit ProgressItemHandler(Feed* feed);
-        ~ProgressItemHandler();
+        explicit FetchProgressItemHandler( const boost::shared_ptr<const KRss::Feed>& feed );
+        ~FetchProgressItemHandler();
 
     public slots:
-
-        void slotFetchStarted();
-        void slotFetchCompleted();
-        void slotFetchAborted();
-        void slotFetchError();
+        void slotFetchStarted( const KRss::Feed::Id& id );
+        void slotFetchPercent( const KRss::Feed::Id& id, uint percentage );
+        void slotFetchFinished( const KRss::Feed::Id& id );
+        void slotFetchFailed( const KRss::Feed::Id& id, const QString& errorMessage );
+        void slotFetchAborted( const KRss::Feed::Id& id );
 
     private:
-        class ProgressItemHandlerPrivate;
-        ProgressItemHandlerPrivate* d;
+        class FetchProgressItemHandlerPrivate;
+        FetchProgressItemHandlerPrivate* d;
+};
+
+/** this class handles the creation and deletion of progress items for one item listing job.
+    This is an internal class intended to be used in ProgressManager only
+    note: deletes itself once the job is finished */
+class JobProgressItemHandler : public QObject
+{
+    Q_OBJECT
+    public:
+        explicit JobProgressItemHandler( const KJob *job );
+        ~JobProgressItemHandler();
+
+    public slots:
+        void slotJobPercent( KJob *job, unsigned long percentage );
+        void slotJobResult( KJob *job );
+
+    private:
+        class JobProgressItemHandlerPrivate;
+        JobProgressItemHandlerPrivate* d;
 };
 
 } // namespace Akregator

@@ -69,8 +69,12 @@ void TreeNode::emitSignalDestroyed()
 {
     if (!d->signalDestroyedEmitted)
     {
+#ifdef KRSS_PORT_DISABLED
         if ( parent() )
             parent()->removeChild( this );
+#else
+        kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
         emit signalDestroyed(this);
         d->signalDestroyedEmitted = true;
     }
@@ -235,7 +239,11 @@ void TreeNode::setListViewScrollBarPositions( const QPoint& pos )
 }
 
 ArticleListJob* TreeNode::createListJob() {
+#ifdef KRSS_PORT_DISABLED
     return new ArticleListJob( this );
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 } // namespace Akregator

@@ -313,10 +313,15 @@ void Folder::updateUnreadCount() const
 
 KJob* Folder::createMarkAsReadJob()
 {
+#ifdef KRSS_PORT_DISABLED
     std::auto_ptr<CompositeJob> job( new CompositeJob );
     Q_FOREACH( Feed* const i, feeds() )
         job->addSubjob( i->createMarkAsReadJob() );
     return job.release();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+    return 0;
+#endif //KRSS_PORT_DISABLED
 }
 
 void Folder::slotChildChanged(TreeNode* /*node*/)

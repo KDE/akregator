@@ -25,41 +25,46 @@
 #ifndef AKREGATOR_ARTICLEFORMATTER_H
 #define AKREGATOR_ARTICLEFORMATTER_H
 
-#include <kurl.h>
-    
+#include <KUrl>
+
+#include <boost/shared_ptr.hpp>
+
 class QPaintDevice;
 class QString;
 
-namespace Akregator {
+namespace KRss {
+    class FeedList;
+    class Item;
+    class TreeNode;
+}
 
-class Article;
-class TreeNode;
+namespace Akregator {
 
 class ArticleFormatter
 {
     public:
-        
+
         enum IconOption {
             NoIcon,
             ShowIcon
         };
-        
+
         explicit ArticleFormatter( QPaintDevice* device = 0 );
-        
+
         virtual ~ArticleFormatter();
-        
+
         void setPaintDevice(QPaintDevice* device);
-         
-        virtual QString formatArticle(const Article& article, IconOption icon) const = 0;
-        
-        virtual QString formatSummary(TreeNode* node) const = 0;
-        
+
+        virtual QString formatItem( const KRss::Item& item, IconOption icon ) const = 0;
+
+        virtual QString formatSummary( const boost::shared_ptr<const KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node ) const = 0;
+
         virtual QString getCss() const = 0;
-        
+
     protected:
-        
+
         int pointsToPixel(int pointSize) const;
-        
+
     private:
         class Private;
         Private* const d;
@@ -69,40 +74,40 @@ class ArticleFormatter
 class DefaultNormalViewFormatter : public ArticleFormatter
 {
     public:
-        
+
         explicit DefaultNormalViewFormatter( const KUrl& imageDir, QPaintDevice* device = 0 );
         ~DefaultNormalViewFormatter();
-        
-        QString formatArticle(const Article& article, IconOption option) const;
-        
-        QString formatSummary(TreeNode* node) const;
-        
+
+        QString formatItem( const KRss::Item& item, IconOption option ) const;
+
+        /* reimp */ QString formatSummary( const boost::shared_ptr<const KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node ) const;;
+
         QString getCss() const;
-        
+
     private:
         DefaultNormalViewFormatter();
-        
+
         KUrl m_imageDir;
         class SummaryVisitor;
-        SummaryVisitor* m_summaryVisitor;
+        class SummaryFeedVisitor;
 };
 
 class DefaultCombinedViewFormatter : public ArticleFormatter
 {
-            
+
     public:
-        
+
         explicit DefaultCombinedViewFormatter( const KUrl& imageDir, QPaintDevice* device = 0 );
-        
-        QString formatArticle(const Article& article, IconOption option) const;
-        
-        QString formatSummary(TreeNode* node) const;
-        
+
+        QString formatItem( const KRss::Item& item, IconOption option ) const;
+
+        /* reimp */ QString formatSummary( const boost::shared_ptr<const KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node ) const;;
+
         QString getCss() const;
-        
+
     private:
         DefaultCombinedViewFormatter();
-        
+
         KUrl m_imageDir;
 };
 

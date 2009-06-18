@@ -27,38 +27,41 @@
 
 #include "akregator_export.h"
 
+#include <KJob>
+
 #include <QtCore/QObject>
 
 class QWidget;
 
 namespace Akregator {
 
-class AKREGATORINTERFACES_EXPORT Command : public QObject
+class AKREGATORINTERFACES_EXPORT Command : public KJob
 {
     Q_OBJECT
 public:
     explicit Command( QObject* parent = 0 );
     virtual ~Command();
-    
+
     QWidget* parentWidget() const;
     void setParentWidget( QWidget* parentWidget );
-    
-    void start();
-    void abort();
+
+    /* reimp */ void start();
 
     void waitForFinished();
 
+    /**
+     * whether the UI should display the job e.g. via progress items
+     * defaults to @p true
+     */
+    bool isUserVisible() const;
+    void setUserVisible( bool visible );
+
 Q_SIGNALS:
     void started();
-    void finished();
-    void progress( int percent, const QString& msg );
-    
+
 protected:
     virtual void doStart() = 0;
-    virtual void doAbort() = 0;
 
-    void done();
-    
 private:
     class Private;
     Private* const d;

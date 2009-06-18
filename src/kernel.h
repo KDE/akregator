@@ -27,15 +27,11 @@
 
 #include <boost/shared_ptr.hpp>
 
+namespace KRss {
+    class FeedList;
+}
 namespace Akregator {
 
-namespace Backend
-{
-    class Storage;
-}
-
-class FeedList;
-class FetchQueue;
 class FrameManager;
 
 class Kernel
@@ -46,13 +42,8 @@ class Kernel
 
         ~Kernel();
 
-        Backend::Storage* storage();
-        void setStorage(Backend::Storage* storage);
-
-        boost::shared_ptr<FeedList> feedList() const;
-        void setFeedList(const boost::shared_ptr<FeedList>& feedList);
-
-        FetchQueue* fetchQueue();
+        boost::shared_ptr<KRss::FeedList> feedList() const;
+        void setFeedList(const boost::shared_ptr<KRss::FeedList>& feedList);
 
         FrameManager* frameManager();
 

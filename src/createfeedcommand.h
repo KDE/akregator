@@ -27,6 +27,10 @@
 
 #include "command.h"
 
+namespace KRss {
+    class FeedListView;
+}
+
 namespace Akregator {
 
 class Folder;
@@ -40,20 +44,21 @@ public:
     explicit CreateFeedCommand( QObject* parent = 0 );
     ~CreateFeedCommand();
 
-    void setSubscriptionListView( SubscriptionListView* view );
-    void setRootFolder( Folder* rootFolder );
+    void setResourceIdentifier( const QString& identifier );
+    void setFeedListView( KRss::FeedListView* view );
     void setUrl( const QString& url );
-    void setPosition( Folder* parent, TreeNode* after );
     void setAutoExecute( bool autoexec );
-    
+
 private:
     void doStart();
-    void doAbort();
-    
+
 private:
     class Private;
     Private* const d;
     Q_PRIVATE_SLOT( d, void doCreate() )
+    Q_PRIVATE_SLOT( d, void creationDone( KJob* ) )
+    Q_PRIVATE_SLOT( d, void modificationDone( KJob* ) )
+
 };
 
 }
