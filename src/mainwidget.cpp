@@ -736,34 +736,31 @@ void Akregator::MainWidget::slotFeedModify()
 
 void Akregator::MainWidget::slotNextUnreadArticle()
 {
-#ifdef KRSS_PORT_DISABLED
     if (m_viewMode == CombinedView)
     {
         m_feedListView->slotNextUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
+    const shared_ptr<KRss::TreeNode> sel = m_selectionController->selectedSubscription();
+    if (sel && sel->unreadCount( m_feedList ) > 0)
         m_articleListView->slotNextUnreadArticle();
     else
         m_feedListView->slotNextUnreadFeed();
-#endif
 }
 
 void Akregator::MainWidget::slotPrevUnreadArticle()
 {
-#ifdef KRSS_PORT_DISABLED
     if (m_viewMode == CombinedView)
     {
         m_feedListView->slotPrevUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
+    const shared_ptr<KRss::TreeNode> sel = m_selectionController->selectedSubscription();
+
+    if (sel && sel->unreadCount( m_feedList ) > 0)
         m_articleListView->slotPreviousUnreadArticle();
     else
         m_feedListView->slotPrevUnreadFeed();
-#endif
 }
 
 void Akregator::MainWidget::slotMarkAllFeedsRead()
