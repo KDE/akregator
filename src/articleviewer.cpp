@@ -648,7 +648,7 @@ void ArticleViewer::slotClear()
     renderContent(QString());
 }
 
-void ArticleViewer::showNode( const shared_ptr<const KRss::FeedList>& feedList, const shared_ptr<KRss::TreeNode>& node )
+void ArticleViewer::showNode( const shared_ptr<KRss::FeedList>& feedList, const shared_ptr<const KRss::TreeNode>& node )
 {
     m_viewMode = CombinedView;
 
@@ -670,10 +670,9 @@ void ArticleViewer::showNode( const shared_ptr<const KRss::FeedList>& feedList, 
     Akonadi::ItemFetchScope scope;
     scope.fetchPayloadPart( KRss::Item::HeadersPart );
     scope.fetchAllAttributes();
-    KRss::CreateItemListJobVisitor visitor( feedList, scope );
-    node->accept( &visitor );
-    KRss::ItemListJob* const job = visitor.compositeItemListJob();
+    KRss::ItemListJob* const job = node->createItemListJob( feedList );
     assert( job );
+    job->setFetchScope( scope );
     connect( job, SIGNAL(finished(KJob*)), this, SLOT(slotArticlesListed(KJob*)));
     m_listJob = job;
     ProgressManager::self()->addJob( job );

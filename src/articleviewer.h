@@ -81,7 +81,7 @@ class ArticleViewer : public QWidget
          * Changes in the node will update the view automatically.
          *
          *  @param node The node to observe */
-        void showNode(const boost::shared_ptr<const KRss::FeedList>& feedList, const boost::shared_ptr<KRss::TreeNode>& node);
+        void showNode(const boost::shared_ptr<KRss::FeedList>& feedList, const boost::shared_ptr<const KRss::TreeNode>& node);
 
     public slots:
 
@@ -203,7 +203,7 @@ class ArticleViewer : public QWidget
         QString m_htmlFooter;
         QString m_currentText;
         KUrl m_imageDir;
-        boost::shared_ptr<KRss::TreeNode> m_node;
+        boost::shared_ptr<const KRss::TreeNode> m_node;
         QPointer<KRss::ItemListJob> m_listJob;
         KRss::Item m_item;
         QList<KRss::Item> m_items;

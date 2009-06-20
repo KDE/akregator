@@ -269,10 +269,10 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     Akonadi::ItemFetchScope scope;
     scope.fetchPayloadPart( KRss::Item::HeadersPart );
     scope.fetchAllAttributes();
-    KRss::CreateItemListJobVisitor visitor( m_feedList, scope );
-    m_selectedSubscription->accept( &visitor );
-    KRss::ItemListJob* const job = visitor.compositeItemListJob();
-    assert( job );
+    KRss::ItemListJob* const job = m_selectedSubscription->createItemListJob( m_feedList );
+    if ( !job )
+        return;
+    job->setFetchScope( scope );
     connect( job, SIGNAL(finished(KJob*)),
              this, SLOT(articleHeadersAvailable(KJob*)) );
     m_listJob = job;
