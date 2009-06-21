@@ -206,8 +206,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         void slotMoveCurrentNodeUp();
         void slotMoveCurrentNodeDown();
-        void slotMoveCurrentNodeLeft();
-        void slotMoveCurrentNodeRight();
 
         void slotSendLink() { sendArticle(); }
         void slotSendFile() { sendArticle(true); }

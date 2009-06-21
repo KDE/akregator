@@ -584,40 +584,6 @@ void Akregator::MainWidget::slotMoveCurrentNodeDown()
 #endif
 }
 
-void Akregator::MainWidget::slotMoveCurrentNodeLeft()
-{
-#ifdef KRSS_PORT_DISABLED
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current || !current->parent() || !current->parent()->parent())
-        return;
-
-    Folder* parent = current->parent();
-    Folder* grandparent = current->parent()->parent();
-
-    parent->removeChild(current);
-    grandparent->insertChild(current, parent);
-    m_feedListView->ensureNodeVisible(current);
-#endif
-}
-
-void Akregator::MainWidget::slotMoveCurrentNodeRight()
-{
-#ifdef KRSS_PORT_DISABLED
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current || !current->parent())
-        return;
-    TreeNode* prev = current->prevSibling();
-
-    if ( prev && prev->isGroup() )
-    {
-        Folder* fg = static_cast<Folder*>(prev);
-        current->parent()->removeChild(current);
-        fg->appendChild(current);
-        m_feedListView->ensureNodeVisible(current);
-    }
-#endif
-}
-
 void Akregator::MainWidget::slotNodeSelected(const boost::shared_ptr<KRss::TreeNode>& node)
 {
     m_markReadTimer->stop();

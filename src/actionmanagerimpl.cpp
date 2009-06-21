@@ -375,16 +375,6 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeDown()));
     action->setShortcuts(KShortcut( "Shift+Alt+Down" ));
 
-    action = coll->addAction(i18n("Move Node Left"));
-    action->setText(i18n("Move Node Left"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeLeft()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Left" ));
-
-    action = coll->addAction("feedstree_move_right");
-    action->setText(i18n("Move Node Right"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeRight()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Right" ));
-
     action = coll->addAction("file_sendlink");
     action->setIcon(KIcon("mail-message-new"));
     action->setText(i18n("Send &Link Address..."));

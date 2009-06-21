@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<kpartgui name="akregator_part" version="416">
+<kpartgui name="akregator_part" version="417">
   <MenuBar>
     <Menu name="file">
       <Action name="file_import"/>
@@ -115,8 +115,6 @@
     <Action name="feedstree_end"/>
     <Action name="feedstree_move_up"/>
     <Action name="feedstree_move_down"/>
-    <Action name="feedstree_move_left"/>
-    <Action name="feedstree_move_right"/>
     <Action name="article_open_in_tab"/>
     <Action name="article_open"/>
     <Action name="select_previous_tab"/>
