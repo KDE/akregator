@@ -141,10 +141,13 @@ void CreateFeedCommand::Private::doCreate()
 
 }
 
-void CreateFeedCommand::Private::creationDone( KJob* j )
+void CreateFeedCommand::Private::creationDone( KJob* job )
 {
-    if ( j->error() ) {
-        q->emitResult();
+    if ( job->error() ) {
+        QPointer<QObject> that( q );
+        KMessageBox::error( q->parentWidget(), i18n("Could not add feed: %1", job->errorString()), i18n("Feed Creation Failed") );
+        if ( that )
+            q->emitResult();
         return;
     }
     //PENDING(frank) fire off a FeedModifyCommand
