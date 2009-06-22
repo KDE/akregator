@@ -260,7 +260,8 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
 #else
     kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED    stopAction->setShortcut(QKeySequence(Qt::Key_Escape));
+#endif //KRSS_PORT_DISABLED
+    stopAction->setShortcut(QKeySequence(Qt::Key_Escape));
     stopAction->setEnabled(false);
 
     action = coll->addAction("feed_mark_feed_as_read");
