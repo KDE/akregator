@@ -51,6 +51,7 @@ public:
 
     void doImport();
     void importFinished( KJob* );
+    bool checkResource( const Resource* r );
 
     KUrl url;
     QString resourceIdentifier;
@@ -62,13 +63,21 @@ ImportFeedListCommand::Private::Private( ImportFeedListCommand* qq )
 
 }
 
+bool ImportFeedListCommand::Private::checkResource( const Resource* r ) {
+    if ( r )
+        return true;
+    KMessageBox::error( q->parentWidget(), i18n("Could not import feed list: Target resource %1 not found.", resourceIdentifier ), i18n("Import Error" ) );
+    if ( q )
+        q->emitResult();
+    return false;
+}
+
 void ImportFeedListCommand::Private::doImport()
 {
-    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
-    if ( !resource ) {
-        KMessageBox::error( q->parentWidget(), i18n("Could not import feed list: Target resource %1 not found.", resourceIdentifier ), i18n("Import Error" ) );
-        q->emitResult();
-    }
+    //initial check for the resource
+    if ( !checkResource( ResourceManager::self()->resource( resourceIdentifier ) ) )
+        return;
+
     if ( !url.isValid() ) {
         url = KFileDialog::getOpenUrl( KUrl(),
                                        QLatin1String("*.opml *.xml|")
@@ -84,6 +93,11 @@ void ImportFeedListCommand::Private::doImport()
         return;
     }
 
+    //the resource might be gone while the dialog was open, so re-get it
+    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
+    if ( !checkResource( resource ) )
+        return;
+
     KRss::ImportOpmlJob* job = resource->createImportOpmlJob( url );
     connect( job, SIGNAL(finished(KJob*)), q, SLOT(importFinished(KJob*)) );
     job->start();
@@ -94,7 +108,8 @@ void ImportFeedListCommand::Private::importFinished( KJob* job ) {
         KMessageBox::error( q->parentWidget(), i18n("Could not import feed list: %1", job->errorString() ), i18n("Import Error" ) );
     else
         KMessageBox::information( q->parentWidget(), i18n("The feed list was successfully imported." ), i18n("Import Finished") );
-    q->emitResult();
+    if ( q )
+        q->emitResult();
 }
 
 ImportFeedListCommand::ImportFeedListCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )

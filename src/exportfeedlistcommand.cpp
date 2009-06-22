@@ -51,6 +51,7 @@ public:
 
     void doExport();
     void exportFinished( KJob* );
+    bool checkResource( const Resource* r );
 
     KUrl url;
     QString resourceIdentifier;
@@ -62,13 +63,19 @@ ExportFeedListCommand::Private::Private( ExportFeedListCommand* qq )
 
 }
 
+bool ExportFeedListCommand::Private::checkResource( const Resource* r ) {
+    if ( r )
+        return true;
+    KMessageBox::error( q->parentWidget(), i18n("Could not export feed list: Resource %1 not found.", resourceIdentifier ), i18n("Import Error" ) );
+    if ( q )
+        q->emitResult();
+    return false;
+}
+
 void ExportFeedListCommand::Private::doExport()
 {
-    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
-    if ( !resource ) {
-        KMessageBox::error( q->parentWidget(), i18n("Could not export feed list: Target resource %1 not found.", resourceIdentifier ), i18n("Export Error" ) );
-        q->emitResult();
-    }
+    if ( !checkResource( ResourceManager::self()->resource( resourceIdentifier ) ) )
+        return;
 
     if ( !url.isValid() ) {
         url = KFileDialog::getSaveUrl( KUrl(),
@@ -84,6 +91,9 @@ void ExportFeedListCommand::Private::doExport()
         return;
     }
 
+    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
+    if ( !checkResource( resource ) )
+        return;
     KRss::ExportOpmlJob* job = resource->createExportOpmlJob( url );
     connect( job, SIGNAL(finished(KJob*)), q, SLOT(exportFinished(KJob*)) );
     job->start();
@@ -94,7 +104,8 @@ void ExportFeedListCommand::Private::exportFinished( KJob* job ) {
         KMessageBox::error( q->parentWidget(), i18n("Could not export feed list: %1", job->errorString() ), i18n("Export Error" ) );
     else
         KMessageBox::information( q->parentWidget(), i18n("The feed list was successfully exported." ), i18n("Export Finished") );
-    q->emitResult();
+    if ( q )
+        q->emitResult();
 }
 
 ExportFeedListCommand::ExportFeedListCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
