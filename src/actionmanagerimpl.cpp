@@ -256,11 +256,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KAction *stopAction = coll->addAction("feed_stop");
     stopAction->setIcon(KIcon("process-stop"));
     stopAction->setText(i18n("&Abort Fetches"));
-#ifdef KRSS_PORT_DISABLED
-    connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
-#else
-    kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED
+    connect(stopAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotAbortFetches()));
     stopAction->setShortcut(QKeySequence(Qt::Key_Escape));
     stopAction->setEnabled(false);
 

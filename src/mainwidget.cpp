@@ -783,6 +783,13 @@ void Akregator::MainWidget::slotFetchAllFeeds()
     }
 }
 
+void Akregator::MainWidget::slotAbortFetches() {
+    if ( !m_feedList )
+        return;
+    Q_FOREACH( const shared_ptr<const KRss::Feed>& feed, m_feedList->constFeeds() )
+        feed->abortFetch();
+}
+
 void Akregator::MainWidget::slotFetchQueueStarted()
 {
     m_mainFrame->slotSetState(Frame::Started);
@@ -805,10 +812,6 @@ void Akregator::MainWidget::slotItemSelected( const KRss::Item& item )
         return;
 
     m_markReadTimer->stop();
-
-#ifdef KRSS_PORT_DISABLED
-    assert( item.isNull() || item.feed() );
-#endif //KRSS_PORT_DISABLED
 
     KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
     assert( maai );

@@ -167,6 +167,8 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotFetchCurrentFeed();
         /** starts fetching of all feeds in the tree */
         void slotFetchAllFeeds();
+        /** aborts all running fetch operations */
+        void slotAbortFetches();
         /** marks all articles in the currently selected feed as read */
         void slotMarkFeedRead();
         /** marks all articles in all feeds in the tree as read */
