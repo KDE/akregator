@@ -290,9 +290,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_markReadTimer->setSingleShot(true);
     connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
 
-#ifdef KRSS_PORT_DISABLED
-    setFeedList( shared_ptr<FeedList>( new FeedList( Kernel::self()->storage() ) ) );
-#endif
     switch (Settings::viewMode())
     {
         case CombinedView:
@@ -496,10 +493,8 @@ void Akregator::MainWidget::slotNormalView()
 
         if ( !item.isNull() )
             m_articleViewer->showItem( item );
-#ifdef KRSS_PORT_DISABLED
         else
-            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
-#endif //KRSS_PORT_DISABLED
+            m_articleViewer->slotShowSummary( m_feedList, m_selectionController->selectedSubscription() );
     }
 
     m_articleSplitter->setOrientation(Qt::Vertical);
@@ -521,12 +516,8 @@ void Akregator::MainWidget::slotWidescreenView()
 
         if ( !item.isNull() )
             m_articleViewer->showItem( item );
-#ifdef KRSS_PORT_DISABLED
         else
-            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
-#else
-        kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED
+            m_articleViewer->slotShowSummary( m_feedList, m_selectionController->selectedSubscription() );
     }
     m_articleSplitter->setOrientation(Qt::Horizontal);
     m_viewMode = WidescreenView;
@@ -604,19 +595,15 @@ void Akregator::MainWidget::slotNodeSelected(const boost::shared_ptr<KRss::TreeN
 
     if (m_viewMode == CombinedView)
     {
-        m_articleViewer->showNode(m_feedList, node);
+        m_articleViewer->showNode( m_feedList, node );
     }
     else
     {
-        m_articleViewer->slotShowSummary(m_feedList, node);
+        m_articleViewer->slotShowSummary( m_feedList, node );
     }
 
-#ifdef KRSS_PORT_DISABLED
     if (node)
-       m_mainFrame->setWindowTitle(node->title());
-#else
-    kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED
+       m_mainFrame->setWindowTitle( node->title( m_feedList ) );
 
     m_actionManager->slotNodeSelected(node);
 }
@@ -1098,12 +1085,9 @@ void Akregator::MainWidget::slotTextToSpeechRequest()
     {
         if (m_viewMode != CombinedView)
         {
-#ifdef KRSS_PORT_DISABLED
             // in non-combined view, read selected articles
-            SpeechClient::self()->slotSpeak(m_selectionController->selectedArticles());
-#else
-            kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED            // TODO: if article viewer has a selection, read only the selected text?
+            SpeechClient::self()->slotSpeak(m_selectionController->selectedItems());
+            // TODO: if article viewer has a selection, read only the selected text?
         }
         else
         {
