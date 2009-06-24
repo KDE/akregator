@@ -687,6 +687,36 @@ void Akregator::MainWidget::slotFeedModify()
     d->setUpAndStart( cmd.release() );
 }
 
+namespace {
+    class RemoveTagFromFeedVisitor : public KRss::TreeNodeVisitor {
+    public:
+        explicit RemoveTagFromFeedVisitor( const shared_ptr<KRss::FeedList>& fl ) : feedList( fl ) {}
+
+        void visit( const shared_ptr<KRss::FeedNode>& fn ) {
+            if ( !feedList )
+                return;
+            const shared_ptr<KRss::Feed> f = feedList->feedById( fn->feedId() );
+            if ( !f )
+                return;
+            const KRss::TagId id = fn->parent()->tag().id();
+            f->removeTag( id );
+            KRss::FeedModifyJob* job = new KRss::FeedModifyJob( f );
+            job->start();
+        }
+        void visit( const shared_ptr<KRss::RootNode>& ) {}
+        void visit( const shared_ptr<KRss::TagNode>& ) {}
+
+        const shared_ptr<KRss::FeedList> feedList;
+    };
+}
+
+void Akregator::MainWidget::slotFeedRemoveTag()
+{
+    const shared_ptr<KRss::TreeNode> treeNode = m_selectionController->selectedSubscription();
+    RemoveTagFromFeedVisitor v( m_feedList );
+    treeNode->accept( &v );
+}
+
 void Akregator::MainWidget::slotNextUnreadArticle()
 {
     if (m_viewMode == CombinedView)

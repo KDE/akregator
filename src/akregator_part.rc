@@ -128,6 +128,7 @@
     <Separator/>
     <Action name="feed_homepage"/>
     <Separator/>
+    <Action name="feed_remove_tag"/>
     <Action name="feed_modify"/>
     <Action name="feed_remove"/>
   </Menu>

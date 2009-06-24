@@ -57,10 +57,9 @@
 
 #include <boost/shared_ptr.hpp>
 
-using boost::shared_ptr;
-
-namespace Akregator
-{
+using namespace boost;
+using namespace KRss;
+using namespace Akregator;
 
 class ActionManagerImpl::NodeSelectVisitor : public KRss::TreeNodeVisitor
 {
@@ -81,8 +80,16 @@ class ActionManagerImpl::NodeSelectVisitor : public KRss::TreeNodeVisitor
             hp->setEnabled(false);
 
         m_manager->action("feed_fetch")->setText(i18n("&Fetch Feeds"));
-        m_manager->action("feed_remove")->setText(i18n("&Delete Tag"));
+        if ( QAction* const a = m_manager->action("feed_remove") ) {
+            a->setText( i18n("&Delete Tag") );
+            a->setEnabled( tagNode->isDeletable() );
+        }
         m_manager->action("feed_modify")->setText(i18n("&Modify Tag"));
+
+        if ( QAction* const a = m_manager->action("feed_remove_tag") ) {
+            a->setVisible( false );
+            a->setEnabled( false );
+        }
         m_manager->action("feed_mark_feed_as_read")->setText(i18n("&Mark Feeds as Read"));
     }
 
@@ -91,10 +98,19 @@ class ActionManagerImpl::NodeSelectVisitor : public KRss::TreeNodeVisitor
         QAction* remove = m_manager->action("feed_remove");
         if (remove)
             remove->setEnabled(true);
-        QAction* hp = m_manager->action("feed_homepage");
-        if (hp) {
-            //hp->setEnabled(!node->htmlUrl().isEmpty());
+#ifdef KRSS_PORT_DISABLED
+        if ( QAction* const a = m_manager->action("feed_homepage") ) {
+            a->setEnabled(!feed->htmlUrl().isEmpty());
         }
+#endif //KRSS_PORT_DISABLED
+
+        if ( QAction* a = m_manager->action("feed_remove_tag") ) {
+            const shared_ptr<const TagNode> tag = feedNode->parent();
+            a->setText( i18n("&Remove Tag \"%1\"", tag->tag().label()) );
+            a->setVisible( true );
+            a->setEnabled( tag->taggedFeedsUserEditable() );
+        }
+
         m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
         m_manager->action("feed_remove")->setText(i18n("&Delete Feed"));
         m_manager->action("feed_modify")->setText(i18n("&Edit Feed..."));
@@ -214,6 +230,10 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setText(i18n("&Delete Feed"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedRemove()));
     action->setShortcuts(KShortcut( "Alt+Delete" ));
+
+    action = coll->addAction("feed_remove_tag");
+    action->setText(i18n("&Remove Tag..."));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedRemoveTag()));
 
     action = coll->addAction("feed_modify");
     action->setIcon(KIcon("document-properties"));
@@ -585,7 +605,5 @@ void ActionManagerImpl::setArticleActionsEnabled( bool enabled ) {
     setActionEnabled("file_sendfile")
 #undef setActionEnabled
 }
-
-} // namespace Akregator
 
 #include "actionmanagerimpl.moc"
