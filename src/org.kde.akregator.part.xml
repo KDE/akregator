@@ -3,8 +3,6 @@
 <node>
   <interface name="org.kde.akregator.part">
     <method name="openStandardFeedList"/>
-      <arg name="url" type="s" direction="in"/>
-    </method>
     <method name="addFeed" />
     <method name="saveSettings" />
   </interface>
