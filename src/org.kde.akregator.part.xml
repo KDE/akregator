@@ -5,7 +5,7 @@
     <method name="openStandardFeedList"/>
       <arg name="url" type="s" direction="in"/>
     </method>
-    <method name="saveSettings" />
     <method name="addFeed" />
+    <method name="saveSettings" />
   </interface>
 </node>

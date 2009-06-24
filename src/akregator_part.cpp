@@ -201,6 +201,9 @@ void Part::slotOnShutdown()
     //delete m_actionManager;
 }
 
+void Part::addFeed() {
+}
+
 void Part::slotSettingsChanged()
 {
     NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : 0, componentData());
