@@ -435,7 +435,9 @@ void Akregator::MainWidget::setFeedList( const shared_ptr<KRss::FeedList>& list 
     slotSetTotalUnread();
 #endif
 
+    m_articleViewer->setFeedList( m_feedList );
     Kernel::self()->setFeedList( m_feedList );
+    NotificationManager::self()->setFeedList( m_feedList );
     ProgressManager::self()->setFeedList( m_feedList );
     m_selectionController->setFeedList( m_feedList );
 

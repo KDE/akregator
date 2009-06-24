@@ -36,8 +36,11 @@
 
 #include <kpimutils/kfileio.h>
 
+#include <krss/feedlist.h>
+#include <krss/feedvisitor.h>
 #include <krss/item.h>
 #include <krss/itemlistjob.h>
+#include <krss/netfeed.h>
 #include <krss/treenode.h>
 #include <krss/treenodevisitor.h>
 
@@ -76,6 +79,7 @@
 using namespace boost;
 using namespace Akregator;
 using namespace Akregator::Filters;
+using namespace KRss;
 
 namespace Akregator {
 
@@ -508,6 +512,32 @@ void ArticleViewer::slotShowSummary(  const shared_ptr<KRss::FeedList>& fl, cons
     setArticleActionsEnabled(false);
 }
 
+void ArticleViewer::setFeedList( const weak_ptr<const FeedList>& feedList ) {
+    m_feedList = feedList;
+}
+
+namespace {
+    class PreferredLinkVisitor : public ConstFeedVisitor {
+    public:
+
+        void visitNetFeed( const shared_ptr<const NetFeed>& f ) {
+            link = f->preferItemLinkForDisplay() ? KUrl( item.link() ) : KUrl();
+        }
+
+        KUrl getPreferredLink( const shared_ptr<const Feed>& f, const Item& i ) {
+            item = i;
+            link.clear();
+            if ( !f )
+                return link;
+            f->accept( this );
+            return link;
+        }
+
+        Item item;
+        KUrl link;
+    };
+}
+
 void ArticleViewer::showItem( const KRss::Item& item )
 {
     if ( item.isNull() || item.isDeleted() )
@@ -524,38 +554,31 @@ void ArticleViewer::showItem( const KRss::Item& item )
     m_item = item;
     m_node.reset();
     m_link = KUrl( item.link() );
-#ifdef KRSS_PORT_DISABLED
 
-    if (article.feed()->loadLinkedWebsite())
-    {
-        openUrl(article.link());
-    }
+    const shared_ptr<const FeedList> fl = m_feedList.lock();
+    const shared_ptr<const Feed> f = fl ? fl->constFeedById( item.sourceFeedId() ) : shared_ptr<const Feed>();
+    PreferredLinkVisitor visitor;
+    const KUrl url = visitor.getPreferredLink( f, item );
+    if ( url.isValid() )
+        openUrl( url );
     else
-    {
-        renderContent( m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon) );
-    }
-#else
-    renderContent( m_normalViewFormatter->formatItem( item, ArticleFormatter::ShowIcon ) );
-#endif // KRSS_PORT_DISABLED
+        renderContent( m_normalViewFormatter->formatItem( fl, item, ArticleFormatter::ShowIcon ) );
 
     setArticleActionsEnabled(true);
 }
 
 bool ArticleViewer::openUrl(const KUrl& url)
 {
-#ifdef KRSS_PORT_DISABLED
-    if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
-    {
+    const shared_ptr<const FeedList> fl = m_feedList.lock();
+    const shared_ptr<const Feed> f = fl ? fl->constFeedById( m_item.sourceFeedId() ) : shared_ptr<const Feed>();
+    PreferredLinkVisitor visitor;
+    const KUrl url2 = visitor.getPreferredLink( f, m_item );
+
+    if ( url2.isValid() )
         return m_part->openUrl(url);
-    }
-    else
-    {
-        reload();
-        return true;
-    }
-#else
-    return false;
-#endif // KRSS_PORT_DISABLED
+
+    reload();
+    return true;
 }
 
 void ArticleViewer::setFilters(const std::vector< shared_ptr<const AbstractMatcher> >& filters )
@@ -583,21 +606,24 @@ void ArticleViewer::slotUpdateCombinedView()
    QTime spent;
    spent.start();
 
-   const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
-
 #ifdef KRSS_PORT_DISABLED
-   Q_FOREACH( const Article& i, m_articles )
+   const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
+#endif //KRSS_PORT_DISABLED
+
+   const shared_ptr<const FeedList> fl = m_feedList.lock();
+   Q_FOREACH( const Item& i, m_items )
    {
        if ( i.isDeleted() )
            continue;
 
+#ifdef KRSS_PORT_DISABLED
        if ( std::find_if( m_filters.begin(), m_filters.end(), !bind( &AbstractMatcher::matches, _1, i ) ) != filterEnd )
            continue;
+#endif // KRSS_PORT_DISABLED
 
-       text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatItem( i, ArticleFormatter::NoIcon)+"</div><p>";
+       text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatItem( fl, i, ArticleFormatter::NoIcon)+"</div><p>";
        ++num;
    }
-#endif // KRSS_PORT_DISABLED
 
    kDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
    renderContent(text);
@@ -669,6 +695,7 @@ void ArticleViewer::showNode( const shared_ptr<KRss::FeedList>& feedList, const 
 
     Akonadi::ItemFetchScope scope;
     scope.fetchPayloadPart( KRss::Item::HeadersPart );
+    scope.fetchPayloadPart( KRss::Item::ContentPart );
     scope.fetchAllAttributes();
     KRss::ItemListJob* const job = node->createItemListJob( feedList );
     assert( job );
@@ -698,7 +725,7 @@ void ArticleViewer::slotArticlesListed( KJob* job ) {
     }
 
     m_items = m_listJob->items();
-    std::sort( m_items.begin(), m_items.end(), lessByDate );
+    std::sort( m_items.begin(), m_items.end(), !bind( lessByDate, _1, _2 ) );
 
     if (!m_items.isEmpty())
         m_link = m_items.first().link();

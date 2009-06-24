@@ -33,6 +33,8 @@
 #include <QWidget>
 
 #include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
+
 #include <vector>
 
 class KJob;
@@ -76,6 +78,8 @@ class ArticleViewer : public QWidget
         void setCombinedViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
 
         void showItem( const KRss::Item& item );
+
+        void setFeedList( const boost::weak_ptr<const KRss::FeedList>& feedList );
 
         /** Shows the articles of the tree node @c node (combined view).
          * Changes in the node will update the view automatically.
@@ -207,6 +211,7 @@ class ArticleViewer : public QWidget
         QPointer<KRss::ItemListJob> m_listJob;
         KRss::Item m_item;
         QList<KRss::Item> m_items;
+        boost::weak_ptr<const KRss::FeedList> m_feedList;
         KUrl m_link;
         std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters;
         enum ViewMode { NormalView, CombinedView, SummaryView };

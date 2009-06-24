@@ -46,7 +46,7 @@
 
 using namespace boost;
 using namespace Akregator;
-using KRss::NetFeed;
+using namespace KRss;
 
 namespace {
     static QString formatEnclosure( const KRss::Enclosure& enclosure )
@@ -74,6 +74,28 @@ namespace {
             list.append( formatEnclosure( i ) );
         return list.join( QLatin1String("<br/>") );
     }
+
+    class ImageLinkVisitor : public ConstFeedVisitor {
+    public:
+        explicit ImageLinkVisitor( const KUrl& imgDir ) : imageDir( imgDir ) {}
+
+        void visitNetFeed( const shared_ptr<const NetFeed>& f ) {
+            const QString file = Utils::fileNameForUrl( f->xmlUrl() );
+            KUrl u( imageDir );
+            u.setFileName(file);
+            link = QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(f->htmlUrl(), u.url());
+        }
+
+        QString getImageLink( const shared_ptr<const Feed>& f ) {
+            link.clear();
+            if ( f )
+                f->accept( this );
+            return link;
+        }
+
+        QString link;
+        const KUrl imageDir;
+    };
 }
 class ArticleFormatter::Private
 {
@@ -206,7 +228,7 @@ class DefaultNormalViewFormatter::SummaryVisitor : public KRss::TreeNodeVisitor
         shared_ptr<const KRss::FeedList> feedList;
 };
 
-QString DefaultNormalViewFormatter::formatItem( const KRss::Item& item, IconOption icon) const
+QString DefaultNormalViewFormatter::formatItem( const boost::shared_ptr<const KRss::FeedList>& fl, const KRss::Item& item, IconOption icon) const
 {
     QString text;
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
@@ -254,20 +276,14 @@ QString DefaultNormalViewFormatter::formatItem( const KRss::Item& item, IconOpti
 
     text += "</div>\n"; // end headerbox
 
-
-#ifdef KRSS_PORT_DISABLED
-    if (icon == ShowIcon && item.feed() && !item.feed()->image().isNull())
+    if (icon == ShowIcon && fl )
     {
-        const Feed* feed = item.feed();
-        QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        KUrl u(m_imageDir);
-        u.setFileName(file);
-        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+        const shared_ptr<const Feed> f = fl->constFeedById( item.sourceFeedId() );
+        text += ImageLinkVisitor( m_imageDir ).getImageLink( f );
     }
-#else
-    kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED
+
     const QString content = item.content();
+
     if (!content.isEmpty())
     {
         text += QString("<div dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(content)) );
@@ -392,7 +408,7 @@ DefaultNormalViewFormatter::~DefaultNormalViewFormatter()
 {
 }
 
-QString DefaultCombinedViewFormatter::formatItem( const KRss::Item& item, IconOption icon ) const
+QString DefaultCombinedViewFormatter::formatItem( const shared_ptr<const KRss::FeedList>& fl, const KRss::Item& item, IconOption icon ) const
 {
     QString text;
     const QString enc = formatEnclosures( item.enclosures() );
@@ -439,18 +455,11 @@ QString DefaultCombinedViewFormatter::formatItem( const KRss::Item& item, IconOp
 
     text += "</div>\n"; // end headerbox
 
-#ifdef KRSS_PORT_DISABLED
-    if (icon == ShowIcon && item.feed() && !item.feed()->image().isNull())
+    if (icon == ShowIcon && fl )
     {
-        const Feed* feed = item.feed();
-        QString file = Utils::fileNameForUrl(feed->xmlUrl());
-        KUrl u(m_imageDir);
-        u.setFileName(file);
-        text += QString("<a href=\"%1\"><img class=\"headimage\" src=\"%2.png\"></a>\n").arg(feed->htmlUrl(), u.url());
+        const shared_ptr<const Feed> f = fl->constFeedById( item.sourceFeedId() );
+        text += ImageLinkVisitor( m_imageDir ).getImageLink( f );
     }
-#else
-    kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED
 
     const QString content = item.content();
     if (!content.isEmpty())

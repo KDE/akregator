@@ -24,6 +24,9 @@
 
 #include "notificationmanager.h"
 
+#include <krss/feed.h>
+#include <krss/feedlist.h>
+
 #include <klocale.h>
 #include <knotification.h>
 #include <k3staticdeleter.h>
@@ -34,8 +37,9 @@
 #include <QTimer>
 #include <QList>
 
-
-namespace Akregator {
+using namespace Akregator;
+using namespace KRss;
+using namespace boost;
 
 NotificationManager::NotificationManager() : QObject()
 {
@@ -45,7 +49,7 @@ NotificationManager::NotificationManager() : QObject()
     m_running = false;
     m_addedInLastInterval = false;
     m_maxArticles = 20;
-    m_widget = NULL;
+    m_widget = 0;
 }
 
 NotificationManager::~NotificationManager()
@@ -89,30 +93,49 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
     }
 }
 
+namespace {
+    static bool lessThanByFeedId( const Item& lhs, const Item& rhs ) {
+        return lhs.sourceFeedId() < rhs.sourceFeedId();
+    }
+}
+
 void NotificationManager::doNotify()
 {
-#ifdef KRSS_PORT_DISABLED
-    QString message = "<html><body>";
-    QString feedTitle;
+    const shared_ptr<const FeedList> fl = m_feedList.lock();
+    if ( fl && !m_items.isEmpty() ) {
+        std::sort( m_items.begin(), m_items.end(), lessThanByFeedId );
 
-    Q_FOREACH( const Article& i, m_articles )
-    {
-        if (feedTitle != i.feed()->title())
+        QString message = "<html><body>";
+        QString currentFeedTitle;
+
+        QHash<Feed::Id, QString> titles;
+        Q_FOREACH( const Item& i, m_items )
         {
-            feedTitle = i.feed()->title();
-            message += QString("<p><b>%1:</b></p>").arg(feedTitle);
+            const Feed::Id id = i.sourceFeedId();
+            if ( !titles.contains( id ) ) {
+                const shared_ptr<const Feed> feed = fl->constFeedById( id );
+                if ( feed )
+                    titles.insert( id, feed->title() );
+            }
+            const QString title = titles.value( id );
+            if ( title != currentFeedTitle ) {
+                currentFeedTitle = title;
+                if ( title.isEmpty() )
+                    message += QString("<p><b>%1:</b></p>").arg( !title.isEmpty() ? title : i18n("Unknown") );
+            }
+            message += i.title() + "<br>";
         }
-        message += i.title() + "<br>";
+        message += "</body></html>";
+        KNotification::event("NewArticles", message, QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
-    message += "</body></html>";
-    KNotification::event("NewArticles", message, QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
-#else
-    kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED
     m_items.clear();
     m_running = false;
     m_intervalsLapsed = 0;
     m_addedInLastInterval = false;
+}
+
+void NotificationManager::setFeedList( const weak_ptr<const FeedList>& fl ) {
+    m_feedList = fl;
 }
 
 void NotificationManager::slotIntervalCheck()
@@ -139,7 +162,5 @@ NotificationManager* NotificationManager::self()
         m_self = notificationmanagersd.setObject(m_self, new NotificationManager);
     return m_self;
 }
-
-} // namespace Akregator
 
 #include "notificationmanager.moc"
