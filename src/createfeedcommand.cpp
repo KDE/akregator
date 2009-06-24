@@ -25,6 +25,7 @@
 #include "createfeedcommand.h"
 
 #include "addfeeddialog.h"
+#include "command_p.h"
 
 #include <krss/netfeed.h>
 #include <krss/netfeedcreatejob.h>
@@ -76,8 +77,7 @@ void CreateFeedCommand::Private::doCreate()
     if ( !m_autoexec ) {
         QPointer<AddFeedDialog> afd = new AddFeedDialog( q->parentWidget() );
 
-        if( url.isEmpty() )
-        {
+        if( url.isEmpty() ) {
             const QClipboard* const clipboard = QApplication::clipboard();
             assert( clipboard );
             const QString clipboardText = clipboard->text();
@@ -88,12 +88,11 @@ void CreateFeedCommand::Private::doCreate()
 
         afd->setUrl( KUrl::fromPercentEncoding( url.toLatin1() ) );
 
-        QPointer<QObject> thisPointer( q );
+        EmitResultGuard guard( q );
 
-        if ( afd->exec() != QDialog::Accepted || !thisPointer ) {
+        if ( afd->exec() != QDialog::Accepted || !guard.exists() ) {
             delete afd;
-            if ( !thisPointer )
-                q->emitResult();
+            guard.emitResult();
             return;
         }
 
@@ -143,22 +142,19 @@ void CreateFeedCommand::Private::doCreate()
 
 void CreateFeedCommand::Private::creationDone( KJob* job )
 {
-    if ( job->error() ) {
-        QPointer<QObject> that( q );
+    EmitResultGuard guard( q );
+    if ( job->error() )
         KMessageBox::error( q->parentWidget(), i18n("Could not add feed: %1", job->errorString()), i18n("Feed Creation Failed") );
-        if ( that )
-            q->emitResult();
-        return;
-    }
     //PENDING(frank) fire off a FeedModifyCommand
-    q->emitResult();
+    guard.emitResult();
 }
 
 void CreateFeedCommand::Private::modificationDone( KJob* j )
 {
+    EmitResultGuard guard( q );
     if ( j->error() )
         KMessageBox::error( q->parentWidget(), i18n("Could not edit the feed: %1", j->errorString() ), i18n("Editing Feed Failed") );
-    q->emitResult();
+    guard.emitResult();
 }
 
 CreateFeedCommand::CreateFeedCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )

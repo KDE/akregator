@@ -55,6 +55,7 @@ set(akregatorpart_PART_SRCS
    ${akregator_utils_SRCS}
    abstractselectioncontroller.cpp
    articlematcher.cpp #PENDING(frank) remove/port/move to krss
+   command_p.cpp
 #   deletesubscriptioncommand.cpp
    feediconmanager.cpp
    pluginmanager.cpp

@@ -23,6 +23,7 @@
 */
 
 #include "editsubscriptioncommand.h"
+#include "command_p.h"
 
 #include <krss/feedjobs.h>
 #include <krss/feedlist.h>
@@ -59,13 +60,14 @@ public:
 
     void visit( const shared_ptr<RootNode>& node )
     {
-        q->emitResult();
+        nodeHandled = false;
     }
 
     void visit( const shared_ptr<TagNode>& node )
     {
+        nodeHandled = true;
         Tag tag = node->tag();
-        QPointer<QObject> that( q );
+        EmitResultGuard guard( q );
         QPointer<TagPropertiesDialog> dialog( new TagPropertiesDialog( q->parentWidget() ) );
         dialog->setLabel( tag.label() );
         dialog->setDescription( tag.description() );
@@ -77,24 +79,27 @@ public:
             connect( job, SIGNAL(finished(KJob*)), q, SLOT(tagModifyDone(KJob*)) );
             job->start();
         } else {
-            if ( that )
-                q->emitResult();
+            guard.emitResult();
         }
         delete dialog;
     }
 
     void visit( const shared_ptr<FeedNode>& node )
     {
+        EmitResultGuard guard( q );
         const shared_ptr<Feed> feed = feedList->feedById( node->feedId() );
         if ( !feed ) {
-            q->emitResult();
+            guard.emitResult();
             return;
         }
         feed->accept( this );
+        if ( !feedHandled )
+            guard.emitResult();
     }
 
     void visitNetFeed( const shared_ptr<NetFeed>& nf ) {
-        QPointer<QObject> that( q );
+        feedHandled = true;
+        EmitResultGuard guard( q );
         QPointer<FeedPropertiesDialog> dlg( new FeedPropertiesDialog( q->parentWidget() ) );
         dlg->setFeedTitle( nf->title() );
         dlg->setUrl( nf->xmlUrl() );
@@ -103,42 +108,49 @@ public:
 
         if ( dlg->exec() != QDialog::Accepted ) {
             delete dlg;
-            if ( that )
-                q->emitResult();
+            guard.emitResult();
             return;
         }
         nf->setTitle( dlg->feedTitle() );
         nf->setXmlUrl( dlg->url() );
         nf->setFetchInterval( dlg->hasCustomFetchInterval() ? dlg->fetchInterval() : 0 );
+        delete dlg;
         FeedModifyJob* job = new FeedModifyJob( nf );
         connect( job, SIGNAL(finished(KJob*)), q, SLOT(feedModifyDone(KJob*)) );
         job->start();
     }
 
     void feedModifyDone( KJob* job ) {
+        EmitResultGuard guard( q );
         if ( job->error() )
             KMessageBox::error( q->parentWidget(), i18n("Could not save feed settings: %1", job->errorString() ) );
-        q->emitResult();
+        guard.emitResult();
     }
 
     void tagModifyDone( KJob* job ) {
+        EmitResultGuard guard( q );
         if ( job->error() )
             KMessageBox::error( q->parentWidget(), i18n("Could not save tag settings: %1", job->errorString() ) );
-        q->emitResult();
+        guard.emitResult();
     }
 
     void startEdit();
     void jobFinished();
 
+    bool nodeHandled;
+    bool feedHandled;
     shared_ptr<const TagProvider> tagProvider;
     shared_ptr<TreeNode> node;
     shared_ptr<FeedList> feedList;
     QPointer<FeedListView> feedListView;
 };
 
-EditSubscriptionCommand::Private::Private( EditSubscriptionCommand* qq ) : q( qq ),
-                                                                               node(),
-                                                                               feedListView()
+EditSubscriptionCommand::Private::Private( EditSubscriptionCommand* qq )
+  : q( qq )
+  , nodeHandled( false )
+  , feedHandled( false )
+  , node()
+  , feedListView()
 {
 
 }
@@ -183,12 +195,14 @@ void EditSubscriptionCommand::doStart()
 
 void EditSubscriptionCommand::Private::startEdit()
 {
+    EmitResultGuard guard( q );
     if ( !node ) {
-        q->emitResult();
+        guard.emitResult();
         return;
     }
-    QPointer<QObject> that( q );
     node->accept( this );
+    if ( !nodeHandled )
+        guard.emitResult();
 }
 
 shared_ptr<FeedList> EditSubscriptionCommand::feedList() const {

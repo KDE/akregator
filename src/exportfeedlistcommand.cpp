@@ -23,6 +23,7 @@
 */
 
 #include "exportfeedlistcommand.h"
+#include "command_p.h"
 
 #include <krss/exportopmljob.h>
 #include <krss/resource.h>
@@ -33,7 +34,6 @@
 #include <KMessageBox>
 #include <KUrl>
 
-#include <QPointer>
 #include <QTimer>
 
 #include <boost/shared_ptr.hpp>
@@ -45,7 +45,7 @@ using namespace KRss;
 
 class ExportFeedListCommand::Private
 {
-    QPointer<ExportFeedListCommand> q;
+    ExportFeedListCommand* const q;
 public:
     explicit Private( ExportFeedListCommand* qq );
 
@@ -66,9 +66,9 @@ ExportFeedListCommand::Private::Private( ExportFeedListCommand* qq )
 bool ExportFeedListCommand::Private::checkResource( const Resource* r ) {
     if ( r )
         return true;
+    EmitResultGuard guard( q );
     KMessageBox::error( q->parentWidget(), i18n("Could not export feed list: Resource %1 not found.", resourceIdentifier ), i18n("Import Error" ) );
-    if ( q )
-        q->emitResult();
+    guard.emitResult();
     return false;
 }
 
@@ -76,18 +76,18 @@ void ExportFeedListCommand::Private::doExport()
 {
     if ( !checkResource( ResourceManager::self()->resource( resourceIdentifier ) ) )
         return;
+    EmitResultGuard guard( q );
 
     if ( !url.isValid() ) {
         url = KFileDialog::getSaveUrl( KUrl(),
                             QLatin1String("*.opml *.xml|") + i18n("OPML Outlines (*.opml, *.xml)")
                             + QLatin1String("\n*|") + i18n("All Files") );
-
-       if ( !q )
+        if ( !guard.exists() )
            return;
     }
 
     if ( !url.isValid() ) {
-        q->emitResult();
+        guard.emitResult();
         return;
     }
 
@@ -100,12 +100,12 @@ void ExportFeedListCommand::Private::doExport()
 }
 
 void ExportFeedListCommand::Private::exportFinished( KJob* job ) {
+    EmitResultGuard guard( q );
     if ( job->error() )
         KMessageBox::error( q->parentWidget(), i18n("Could not export feed list: %1", job->errorString() ), i18n("Export Error" ) );
     else
         KMessageBox::information( q->parentWidget(), i18n("The feed list was successfully exported." ), i18n("Export Finished") );
-    if ( q )
-        q->emitResult();
+    guard.emitResult();
 }
 
 ExportFeedListCommand::ExportFeedListCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )

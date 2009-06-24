@@ -23,6 +23,7 @@
 */
 
 #include "createtagcommand.h"
+#include "command_p.h"
 
 #include <krss/tag.h>
 #include <krss/tagjobs.h>
@@ -67,11 +68,10 @@ CreateTagCommand::Private::Private( const shared_ptr<const TagProvider>& tp, Cre
 
 void CreateTagCommand::Private::doCreate()
 {
+    EmitResultGuard guard( q );
     QPointer<KRss::TagPropertiesDialog> dialog( new KRss::TagPropertiesDialog( q->parentWidget() ) );
-    QPointer<QObject> thisPointer( q );
-    if ( dialog->exec() != KDialog::Accepted || !thisPointer ) {
-        if ( thisPointer )
-            q->emitResult();
+    if ( dialog->exec() != KDialog::Accepted || !guard.exists() ) {
+        guard.emitResult();
         return;
     }
 
@@ -89,17 +89,17 @@ void CreateTagCommand::Private::doCreate()
 
 void CreateTagCommand::Private::tagCreateJobFinished( KJob* j )
 {
-    if ( j->error() ) {
+    EmitResultGuard guard( q );
+    if ( j->error() )
         KMessageBox::error( q->parentWidget(), i18n("Could not create the tag: %1", j->errorString() ), i18n("Tag Creation Error") );
-        q->emitResult();
-    }
+
 #ifdef KRSS_PORT_DISABLED
     if ( feedListView )
         feedListView->ensureNodeVisible( newFolder );
 #else
     kWarning() << "Code temporarily disabled (Akonadi port)";
 #endif //KRSS_PORT_DISABLED 
-    q->emitResult();
+    guard.emitResult();
 }
 
 CreateTagCommand::CreateTagCommand( const shared_ptr<const TagProvider>& tagProvider, QObject* parent ) : Command( parent ), d( new Private( tagProvider, this ) )

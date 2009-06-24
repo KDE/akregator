@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2009 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,56 +22,29 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_COMMAND_H
-#define AKREGATOR_COMMAND_H
+#include "command_p.h"
+#include "command.h"
 
-#include "akregator_export.h"
+#include <QPointer>
+#include <QSharedData>
 
-#include <KJob>
+using namespace Akregator;
 
-#include <QtCore/QObject>
-
-class QWidget;
-
-namespace Akregator {
-
-class EmitResultGuard;
-
-class AKREGATORINTERFACES_EXPORT Command : public KJob
-{
-    Q_OBJECT
-
-    friend class ::Akregator::EmitResultGuard;
-
+class EmitResultGuard::Private : public QSharedData {
 public:
-    explicit Command( QObject* parent = 0 );
-    virtual ~Command();
-
-    QWidget* parentWidget() const;
-    void setParentWidget( QWidget* parentWidget );
-
-    /* reimp */ void start();
-
-    void waitForFinished();
-
-    /**
-     * whether the UI should display the job e.g. via progress items
-     * defaults to @p true
-     */
-    bool isUserVisible() const;
-    void setUserVisible( bool visible );
-
-Q_SIGNALS:
-    void started();
-
-protected:
-    virtual void doStart() = 0;
-
-private:
-    class Private;
-    Private* const d;
+    explicit Private( Command* cmd ) : command( cmd ) {}
+    QPointer<Command> command;
 };
 
+EmitResultGuard::EmitResultGuard( Command* cmd ) : d( new Private( cmd ) ) {}
+EmitResultGuard::~EmitResultGuard() {}
+
+bool EmitResultGuard::exists() const {
+    return d->command != 0;
 }
 
-#endif // AKREGATOR_COMMAND_H
+void EmitResultGuard::emitResult() {
+    if ( d->command )
+        d->command->emitResult();
+}
+

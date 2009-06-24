@@ -22,56 +22,27 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_COMMAND_H
-#define AKREGATOR_COMMAND_H
+#ifndef AKREGATOR_COMMAND_P_H
+#define AKREGATOR_COMMAND_P_H
 
-#include "akregator_export.h"
-
-#include <KJob>
-
-#include <QtCore/QObject>
-
-class QWidget;
+#include <QSharedDataPointer>
 
 namespace Akregator {
 
-class EmitResultGuard;
+    class Command;
 
-class AKREGATORINTERFACES_EXPORT Command : public KJob
-{
-    Q_OBJECT
+    class EmitResultGuard {
+    public:
+        explicit EmitResultGuard( Command* p );
+        ~EmitResultGuard();
 
-    friend class ::Akregator::EmitResultGuard;
+        void emitResult();
+        bool exists() const;
 
-public:
-    explicit Command( QObject* parent = 0 );
-    virtual ~Command();
-
-    QWidget* parentWidget() const;
-    void setParentWidget( QWidget* parentWidget );
-
-    /* reimp */ void start();
-
-    void waitForFinished();
-
-    /**
-     * whether the UI should display the job e.g. via progress items
-     * defaults to @p true
-     */
-    bool isUserVisible() const;
-    void setUserVisible( bool visible );
-
-Q_SIGNALS:
-    void started();
-
-protected:
-    virtual void doStart() = 0;
-
-private:
-    class Private;
-    Private* const d;
-};
-
+    private:
+        class Private;
+        QSharedDataPointer<Private> d;
+    }; 
 }
 
-#endif // AKREGATOR_COMMAND_H
+#endif // AKREGATOR_COMMAND_P_H

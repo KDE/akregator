@@ -23,6 +23,7 @@
 */
 
 #include "importfeedlistcommand.h"
+#include "command_p.h"
 
 #include <krss/importopmljob.h>
 #include <krss/resource.h>
@@ -33,7 +34,6 @@
 #include <KMessageBox>
 #include <KUrl>
 
-#include <QPointer>
 #include <QTimer>
 
 #include <boost/shared_ptr.hpp>
@@ -45,7 +45,7 @@ using namespace KRss;
 
 class ImportFeedListCommand::Private
 {
-    QPointer<ImportFeedListCommand> q;
+    ImportFeedListCommand* const q;
 public:
     explicit Private( ImportFeedListCommand* qq );
 
@@ -66,9 +66,9 @@ ImportFeedListCommand::Private::Private( ImportFeedListCommand* qq )
 bool ImportFeedListCommand::Private::checkResource( const Resource* r ) {
     if ( r )
         return true;
+    EmitResultGuard guard( q );
     KMessageBox::error( q->parentWidget(), i18n("Could not import feed list: Target resource %1 not found.", resourceIdentifier ), i18n("Import Error" ) );
-    if ( q )
-        q->emitResult();
+    guard.emitResult();
     return false;
 }
 
@@ -78,18 +78,19 @@ void ImportFeedListCommand::Private::doImport()
     if ( !checkResource( ResourceManager::self()->resource( resourceIdentifier ) ) )
         return;
 
+    EmitResultGuard guard( q );
     if ( !url.isValid() ) {
         url = KFileDialog::getOpenUrl( KUrl(),
                                        QLatin1String("*.opml *.xml|")
                                        + i18n("OPML Outlines (*.opml, *.xml)")
                                        + QLatin1String("\n*|") + i18n("All Files"),
                                        q->parentWidget(), i18n("Feed List Import") );
-        if ( !q )
+        if ( !guard.exists() )
             return;
     }
 
     if ( !url.isValid() ) {
-        q->emitResult();
+        guard.emitResult();
         return;
     }
 
@@ -104,12 +105,12 @@ void ImportFeedListCommand::Private::doImport()
 }
 
 void ImportFeedListCommand::Private::importFinished( KJob* job ) {
+    EmitResultGuard guard( q );
     if ( job->error() )
         KMessageBox::error( q->parentWidget(), i18n("Could not import feed list: %1", job->errorString() ), i18n("Import Error" ) );
     else
         KMessageBox::information( q->parentWidget(), i18n("The feed list was successfully imported." ), i18n("Import Finished") );
-    if ( q )
-        q->emitResult();
+    guard.emitResult();
 }
 
 ImportFeedListCommand::ImportFeedListCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
