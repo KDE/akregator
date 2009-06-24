@@ -3,15 +3,8 @@
 <node>
   <interface name="org.kde.akregator.part">
     <method name="openStandardFeedList"/>
-    <method name="fetchFeedUrl">
       <arg name="url" type="s" direction="in"/>
     </method>
-    <method name="fetchAllFeeds" />
     <method name="saveSettings" />
-    <method name="addFeedsToGroup">
-      <arg name="lst" type="as" direction="in"/>
-      <arg name="feedname" type="s" direction="in"/>
-    </method>
-    <method name="addFeed" />
   </interface>
 </node>

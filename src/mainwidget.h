@@ -81,7 +81,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         @param parent parent widget
         @param name the name of the widget (@ref QWidget )
         */
-        MainWidget(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char* name);
+        MainWidget(Akregator::Part *part, QWidget *parent, ActionManagerImpl* actionManager);
 
         /** destructor.  Note that cleanups should be done in
         slotOnShutdown(), so we don't risk accessing self-deleting objects after deletion. */

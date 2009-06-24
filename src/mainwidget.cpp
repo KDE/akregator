@@ -124,15 +124,13 @@ Akregator::MainWidget::~MainWidget()
     delete d;
 }
 
-Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
+Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager)
      : QWidget(parent),
      d( new Private( this ) ),
      m_feedList(),
      m_viewMode(NormalView),
      m_actionManager(actionManager)
 {
-    setObjectName(name);
-
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
     m_part = part;

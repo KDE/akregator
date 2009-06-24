@@ -22,39 +22,33 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "command_p.h"
+#ifndef AKREGATOR_SETUPAKONADICOMMAND_H
+#define AKREGATOR_SETUPAKONADICOMMAND_H
+
 #include "command.h"
 
-#include <QPointer>
-#include <QSharedData>
+namespace Akregator {
 
-using namespace Akregator;
-
-class EmitResultGuard::Private : public QSharedData {
+class SetUpAkonadiCommand : public Command {
+    Q_OBJECT
 public:
-    explicit Private( Command* cmd ) : command( cmd ) {}
-    QPointer<Command> command;
+    explicit SetUpAkonadiCommand( QObject* parent=0 );
+
+    enum Error {
+        AkonadiSetupFailed=UserDefinedError
+    };
+
+private:
+    void doStart();
+
+private:
+    class Private;
+    Private* const d;
+
+    Q_PRIVATE_SLOT( d, void startSetup() )
 };
 
-EmitResultGuard::EmitResultGuard( Command* cmd ) : d( new Private( cmd ) ) {}
-EmitResultGuard::~EmitResultGuard() {}
-
-bool EmitResultGuard::exists() const {
-    return d->command != 0;
 }
 
-void EmitResultGuard::emitResult() {
-    if ( d->command )
-        d->command->emitResult();
-}
-
-void EmitResultGuard::setError( int code ) {
-    if ( d->command )
-        d->command->setError( code );
-}
-
-void EmitResultGuard::setErrorText( const QString& txt ) {
-    if ( d->command )
-        d->command->setErrorText( txt );
-}
+#endif //AKREGATOR_SETUPAKONADICOMMAND_H
 

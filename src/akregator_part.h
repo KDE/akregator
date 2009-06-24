@@ -53,7 +53,7 @@ class BrowserExtension : public KParts::BrowserExtension
     Q_OBJECT
 
     public:
-        explicit BrowserExtension(Part *p, const char *name=0);
+        explicit BrowserExtension( Part *p );
     public slots:
         void saveSettings();
     private:
@@ -84,20 +84,6 @@ class Part : public KParts::ReadOnlyPart
 
         /** Opens standard feedlist */
         void openStandardFeedList();
-
-        void fetchFeedUrl(const QString&);
-
-        /** Fetch all feeds in the feed tree */
-        void fetchAllFeeds();
-
-        /**
-            Add a feed to a group.
-            @param url The URL of the feed to add.
-            @param group The name of the folder into which the feed is added.
-            If the group does not exist, it is created.  The feed is added as the last member
-            of the group.
-            */
-        void addFeedsToGroup(const QStringList& urls, const QString& group);
 
         void addFeed();
 
@@ -149,6 +135,7 @@ class Part : public KParts::ReadOnlyPart
 
         void slotTagProviderRetrieved( KJob *job );
         void slotFeedListRetrieved( KJob *job );
+        void slotAkonadiSetUp( KJob* job );
 
     private: // methods
 
@@ -159,12 +146,11 @@ class Part : public KParts::ReadOnlyPart
 
         bool m_shuttingDown;
 
-        KParts::BrowserExtension *m_extension;
-
-        /** did we backup the feed list already? */
-        MainWidget* m_mainWidget;
-        ActionManagerImpl* m_actionManager;
-        KCMultiDialog* m_dialog;
+        QPointer<KParts::BrowserExtension> m_extension;
+        QPointer<QWidget> m_parentWidget;
+        QPointer<ActionManagerImpl> m_actionManager;
+        QPointer<MainWidget> m_mainWidget;
+        QPointer<KCMultiDialog> m_dialog;
 };
 
 } // namespace Akregator

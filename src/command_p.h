@@ -36,6 +36,9 @@ namespace Akregator {
         explicit EmitResultGuard( Command* p );
         ~EmitResultGuard();
 
+        void setError( int code );
+        void setErrorText( const QString& text );
+
         void emitResult();
         bool exists() const;
 

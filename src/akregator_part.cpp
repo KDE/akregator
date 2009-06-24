@@ -34,6 +34,7 @@
 #include "notificationmanager.h"
 #include "plugin.h"
 #include "pluginmanager.h"
+#include "setupakonadicommand.h"
 #include "trayicon.h"
 
 #include <krss/feedlist.h>
@@ -85,11 +86,10 @@ static const KAboutData &createAboutData()
 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 K_EXPORT_PLUGIN(AkregatorFactory(createAboutData()))
 
-BrowserExtension::BrowserExtension(Part *p, const char *name)
-	    : KParts::BrowserExtension( p)
+BrowserExtension::BrowserExtension( Part *p )
+  : KParts::BrowserExtension( p )
+  , m_part( p )
 {
-    setObjectName(name);
-    m_part=p;
 }
 
 void BrowserExtension::saveSettings()
@@ -100,8 +100,11 @@ void BrowserExtension::saveSettings()
 Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     : inherited(parent)
     , m_shuttingDown(false)
-    , m_mainWidget(0)
-    , m_dialog(0)
+    , m_extension( new BrowserExtension( this ) )
+    , m_parentWidget(parentWidget)
+    , m_actionManager( new ActionManagerImpl( this ) )
+    , m_mainWidget()
+    , m_dialog()
 
 {
     KRss::ResourceManager::registerAttributes();
@@ -119,18 +122,9 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     FeedIconManager::self(); // FIXME: registering the icon manager dbus iface here,
                                // because otherwise we get a deadlock later
 
-    m_actionManager = new ActionManagerImpl(this);
-    ActionManager::setInstance(m_actionManager);
+    ActionManager::setInstance( m_actionManager );
 
-    //PENDING(frank) implement resource selection and creation
-    const QStringList resources = KRss::ResourceManager::self()->identifiers();
-    if ( resources.isEmpty() )
-        KMessageBox::error( parentWidget, i18n("FIXME Resource creation from within Akregator not yet supported. Please create a resource manually.") );
-    else
-        Settings::setActiveAkonadiResource( resources.first() );
-
-    m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
-    m_extension = new BrowserExtension(this, "ak_extension");
+    m_mainWidget = new MainWidget( this, m_parentWidget, m_actionManager );
 
     connect(Kernel::self()->frameManager(), SIGNAL(signalCaptionChanged(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
     connect(Kernel::self()->frameManager(), SIGNAL(signalStatusText(const QString&)), this, SIGNAL(setStatusBarText(const QString&)));
@@ -145,6 +139,11 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     TrayIcon* trayIcon = new TrayIcon( m_mainWidget->window() );
     TrayIcon::setInstance(trayIcon);
     m_actionManager->initTrayIcon(trayIcon);
+    connect( trayIcon, SIGNAL(quitSelected()),
+             kapp, SLOT(quit()) );
+
+    connect( m_mainWidget, SIGNAL(signalUnreadCountChanged(int)),
+             trayIcon, SLOT(slotSetUnread(int)) );
 
     if ( isTrayIconEnabled() )
         trayIcon->show();
@@ -152,19 +151,8 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     QWidget* const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
     NotificationManager::self()->setWidget(notificationParent, componentData());
 
-    connect( trayIcon, SIGNAL(quitSelected()),
-            kapp, SLOT(quit())) ;
-
-    connect( m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
 
     connect(kapp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
-
-    QString useragent = QString( "Akregator/%1; syndication" ).arg( AKREGATOR_VERSION );
-
-    if( !Settings::customUserAgent().isEmpty() )
-        useragent = Settings::customUserAgent();
-
-    Syndication::FileRetriever::setUserAgent( useragent );
 
     loadPlugins( QLatin1String("extension") ); // FIXME: also unload them!
 }
@@ -182,6 +170,20 @@ void Part::loadPlugins( const QString& type )
     }
 }
 
+void Part::slotAkonadiSetUp( KJob* job ) {
+    if ( job->error() )
+        return;
+
+    KRss::RetrieveFeedListJob * const fjob = new KRss::RetrieveFeedListJob( m_mainWidget );
+    fjob->setResourceIdentifiers( KRss::ResourceManager::self()->identifiers() );
+    connect( fjob, SIGNAL( result( KJob* ) ), this, SLOT( slotFeedListRetrieved( KJob* ) ) );
+    fjob->start();
+
+    KRss::TagProviderRetrieveJob * const tjob = new KRss::TagProviderRetrieveJob( m_mainWidget );
+    connect( tjob, SIGNAL( result( KJob* ) ), this, SLOT( slotTagProviderRetrieved( KJob* ) ) );
+    tjob->start();
+}
+
 void Part::slotStarted()
 {
     emit started(0L);
@@ -191,7 +193,8 @@ void Part::slotOnShutdown()
 {
     m_shuttingDown = true;
     saveSettings();
-    m_mainWidget->slotOnShutdown();
+    if ( m_mainWidget )
+        m_mainWidget->slotOnShutdown();
     //delete m_mainWidget;
     delete TrayIcon::getInstance();
     TrayIcon::setInstance(0L);
@@ -219,9 +222,11 @@ void Part::slotSettingsChanged()
     saveSettings();
     emit signalSettingsChanged();
 }
+
 void Part::saveSettings()
 {
-    m_mainWidget->saveSettings();
+    if ( m_mainWidget )
+        m_mainWidget->saveSettings();
 }
 
 Part::~Part()
@@ -253,14 +258,10 @@ bool Part::openUrl(const KUrl& url)
 
 void Part::openStandardFeedList()
 {
-    KRss::RetrieveFeedListJob * const fjob = new KRss::RetrieveFeedListJob( m_mainWidget );
-    fjob->setResourceIdentifiers( KRss::ResourceManager::self()->identifiers() );
-    connect( fjob, SIGNAL( result( KJob* ) ), this, SLOT( slotFeedListRetrieved( KJob* ) ) );
-    fjob->start();
-
-    KRss::TagProviderRetrieveJob * const tjob = new KRss::TagProviderRetrieveJob( m_mainWidget );
-    connect( tjob, SIGNAL( result( KJob* ) ), this, SLOT( slotTagProviderRetrieved( KJob* ) ) );
-    tjob->start();
+    SetUpAkonadiCommand* cmd = new SetUpAkonadiCommand;
+    cmd->setParentWidget( m_mainWidget );
+    connect( cmd, SIGNAL(finished(KJob*)), this , SLOT(slotAkonadiSetUp(KJob*)) );
+    cmd->start();
 }
 
 bool Part::openFile() {
@@ -293,31 +294,6 @@ void Part::feedListLoaded( const shared_ptr<Akregator::FeedList>& list ) {
 bool Part::isTrayIconEnabled() const
 {
     return Settings::showTrayIcon();
-}
-
-void Part::fetchAllFeeds()
-{
-    m_mainWidget->slotFetchAllFeeds();
-}
-
-void Part::fetchFeedUrl(const QString&s)
-{
-    kDebug() <<"fetchFeedURL==" << s;
-}
-
-void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
-{
-    for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
-    {
-        kDebug() <<"Akregator::Part::addFeedToGroup adding feed with URL" << *it <<" to group" << group;
-        m_mainWidget->addFeedToGroup(*it, group);
-    }
-    NotificationManager::self()->slotNotifyFeeds(urls);
-}
-
-void Part::addFeed()
-{
-    m_mainWidget->slotFeedAdd();
 }
 
 void Part::showNotificationOptions()
