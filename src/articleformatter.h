@@ -80,7 +80,7 @@ class DefaultNormalViewFormatter : public ArticleFormatter
 
         QString formatItem( const boost::shared_ptr<const KRss::FeedList>& fl, const KRss::Item& item, IconOption option ) const;
 
-        /* reimp */ QString formatSummary( const boost::shared_ptr<const KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node ) const;;
+        /* reimp */ QString formatSummary( const boost::shared_ptr<const KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node ) const;
 
         QString getCss() const;
 
@@ -101,7 +101,7 @@ class DefaultCombinedViewFormatter : public ArticleFormatter
 
         QString formatItem( const boost::shared_ptr<const KRss::FeedList>& fl, const KRss::Item& item, IconOption option ) const;
 
-        /* reimp */ QString formatSummary( const boost::shared_ptr<const KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node ) const;;
+        /* reimp */ QString formatSummary( const boost::shared_ptr<const KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node ) const;
 
         QString getCss() const;
 

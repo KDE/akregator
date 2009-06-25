@@ -64,8 +64,8 @@ private:
     class Private;
     Private* const d;
     Q_PRIVATE_SLOT( d, void startEdit() )
-    Q_PRIVATE_SLOT( d, void feedModifyDone( KJob* ) );
-    Q_PRIVATE_SLOT( d, void tagModifyDone( KJob* ) );
+    Q_PRIVATE_SLOT( d, void feedModifyDone( KJob* ) )
+    Q_PRIVATE_SLOT( d, void tagModifyDone( KJob* ) )
 };
 
 }
