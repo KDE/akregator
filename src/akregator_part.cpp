@@ -348,6 +348,8 @@ void Part::openStandardFeedList()
 }
 
 bool Part::openFile() {
+    if ( m_loadFeedListCommand || m_standardListLoaded )
+        return true;
     std::auto_ptr<LoadFeedListCommand> cmd( new LoadFeedListCommand( m_mainWidget ) );
     cmd->setParentWidget( m_mainWidget );
     cmd->setStorage( Kernel::self()->storage() );
@@ -355,7 +357,8 @@ bool Part::openFile() {
     cmd->setDefaultFeedList( createDefaultFeedList() );
     connect( cmd.get(), SIGNAL(result(boost::shared_ptr<Akregator::FeedList>)),
              this, SLOT(feedListLoaded(boost::shared_ptr<Akregator::FeedList>)) );
-    cmd.release()->start();
+    m_loadFeedListCommand = cmd.release();
+    m_loadFeedListCommand->start();
     return true;
 }
 
@@ -370,14 +373,27 @@ bool Part::writeToTextFile( const QString& data, const QString& filename ) const
 }
 
 void Part::feedListLoaded( const shared_ptr<FeedList>& list ) {
+    assert( !m_standardListLoaded );
     m_mainWidget->setFeedList( list );
     m_standardListLoaded = list != 0;
 
     if( Settings::markAllFeedsReadOnStartup() )
         m_mainWidget->slotMarkAllFeedsRead();
 
+    if ( m_standardListLoaded )
+        QTimer::singleShot( 0, this, SLOT(flushAddFeedRequests()) );
+
     if (Settings::fetchOnStartup())
         m_mainWidget->slotFetchAllFeeds();
+}
+
+void Part::flushAddFeedRequests() {
+    Q_FOREACH( const AddFeedRequest& i, m_requests ) {
+        Q_FOREACH ( const QString& j, i.urls )
+            m_mainWidget->addFeedToGroup( j, i.group );
+        NotificationManager::self()->slotNotifyFeeds( i.urls );
+    }
+    m_requests.clear();
 }
 
 void Part::slotSaveFeedList()
@@ -512,12 +528,12 @@ void Part::fetchFeedUrl(const QString&s)
 
 void Part::addFeedsToGroup(const QStringList& urls, const QString& group)
 {
-    for (QStringList::ConstIterator it = urls.begin(); it != urls.end(); ++it)
-    {
-        kDebug() <<"Akregator::Part::addFeedToGroup adding feed with URL" << *it <<" to group" << group;
-        m_mainWidget->addFeedToGroup(*it, group);
-    }
-    NotificationManager::self()->slotNotifyFeeds(urls);
+    AddFeedRequest req;
+    req.group = group;
+    req.urls = urls;
+    m_requests.append( req );
+    if ( m_standardListLoaded )
+        flushAddFeedRequests();
 }
 
 void Part::addFeed()
