@@ -52,7 +52,9 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
         m_factories.insert( factory->key(), factory );
         cbBackend->addItem( factory->name(), factory->key() );
     }
-    
+
+    pbBackendConfigure->setEnabled( false );
+
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
     connect(cbBackend, SIGNAL(activated(int)), this, SLOT(slotFactorySelected(int)));
     connect( kcfg_UseMarkReadDelay, SIGNAL( toggled( bool ) ),
