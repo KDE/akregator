@@ -337,7 +337,7 @@ void Part::saveProperties(KConfigGroup & config)
 
 bool Part::openUrl(const KUrl& url)
 {
-    setLocalFilePath(url.path());
+    setLocalFilePath(url.toLocalFile());
     return openFile();
 }
 
@@ -432,7 +432,7 @@ void Part::importFile(const KUrl& url)
     bool isRemote = false;
 
     if (url.isLocalFile())
-        filename = url.path();
+        filename = url.toLocalFile();
     else
     {
         isRemote = true;
@@ -465,7 +465,7 @@ void Part::exportFile(const KUrl& url)
 {
     if (url.isLocalFile())
     {
-        const QString fname = url.path();
+        const QString fname = url.toLocalFile();
 
         if ( QFile::exists( fname ) &&
                 KMessageBox::questionYesNo(m_mainWidget,
