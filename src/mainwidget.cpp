@@ -96,11 +96,13 @@
 #include <algorithm>
 #include <memory>
 #include <cassert>
+#include <boost/shared_ptr.hpp>
 
 using namespace boost;
 using namespace Akregator;
 using namespace Solid;
 using std::auto_ptr;
+using boost::weak_ptr;
 
 class MainWidget::Private {
     MainWidget* const q;
@@ -637,6 +639,7 @@ void Akregator::MainWidget::addFeed(const QString& url, bool autoExec)
     cmd->setUrl( url );
     cmd->setResourceIdentifier( Settings::activeAkonadiResource() );
     cmd->setFeedListView( m_feedListView );
+    cmd->setFeedList( weak_ptr<KRss::FeedList>( m_feedList ) );
     d->setUpAndStart( cmd.release() );
 }
 

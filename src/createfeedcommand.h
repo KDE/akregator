@@ -27,8 +27,13 @@
 
 #include "command.h"
 
+namespace boost {
+    template <typename T> class weak_ptr;
+}
+
 namespace KRss {
     class FeedListView;
+    class FeedList;
 }
 
 namespace Akregator {
@@ -47,6 +52,7 @@ public:
     void setResourceIdentifier( const QString& identifier );
     void setFeedListView( KRss::FeedListView* view );
     void setUrl( const QString& url );
+    void setFeedList( const boost::weak_ptr<KRss::FeedList>& feedList );
     void setAutoExecute( bool autoexec );
 
 private:

@@ -25,11 +25,13 @@
 #include "createfeedcommand.h"
 
 #include "addfeeddialog.h"
+#include "editfeedcommand.h"
 #include "command_p.h"
 
 #include <krss/netfeed.h>
 #include <krss/netfeedcreatejob.h>
 #include <krss/ui/feedlistview.h>
+#include <krss/feedlist.h>
 
 #include <KDebug>
 #include <KInputDialog>
@@ -42,9 +44,13 @@
 #include <QClipboard>
 
 #include <cassert>
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 using namespace Akregator;
 using namespace KRss;
+using boost::weak_ptr;
+using boost::shared_ptr;
 
 class CreateFeedCommand::Private
 {
@@ -59,6 +65,7 @@ public:
     QPointer<FeedListView> m_feedListView;
     QString m_url;
     QString m_resourceIdentifier;
+    weak_ptr<FeedList> m_feedList;
     bool m_autoexec;
 };
 
@@ -103,6 +110,7 @@ void CreateFeedCommand::Private::doCreate()
 
 
     NetFeedCreateJob *job = new NetFeedCreateJob( url, QString(), m_resourceIdentifier, q );
+    job->setFeedList( m_feedList );
     q->connect( job, SIGNAL(finished(KJob*)), q, SLOT(creationDone(KJob*)) );
     job->start();
 
@@ -144,9 +152,30 @@ void CreateFeedCommand::Private::creationDone( KJob* job )
 {
     EmitResultGuard guard( q );
     if ( job->error() )
-        KMessageBox::error( q->parentWidget(), i18n("Could not add feed: %1", job->errorString()), i18n("Feed Creation Failed") );
-    //PENDING(frank) fire off a FeedModifyCommand
-    guard.emitResult();
+        KMessageBox::error( q->parentWidget(), i18n("Could not add feed: %1", job->errorString()),
+                            i18n("Feed Creation Failed") );
+
+    if ( m_feedList.expired() ) {
+        guard.emitResult();
+        return;
+    }
+
+    const shared_ptr<const FeedList> sharedFeedList = m_feedList.lock();
+    const NetFeedCreateJob* const cjob = qobject_cast<const NetFeedCreateJob*>( job );
+    Q_ASSERT( cjob );
+    const Feed::Id feedId = cjob->feedId();
+    const shared_ptr<Feed> feed = sharedFeedList->feedById( feedId );
+    if ( !feed ) {
+        guard.emitResult();
+        return;
+    }
+
+    EditFeedCommand* const ecmd = new EditFeedCommand( q );
+    ecmd->setParentWidget( q->parentWidget() );
+    ecmd->setFeed( feed );
+    ecmd->setFeedList( sharedFeedList );
+    connect( ecmd, SIGNAL(finished(KJob*)), q, SLOT(modificationDone(KJob*)) );
+    ecmd->start();
 }
 
 void CreateFeedCommand::Private::modificationDone( KJob* j )
@@ -180,6 +209,11 @@ void CreateFeedCommand::setResourceIdentifier( const QString& identifier )
 void CreateFeedCommand::setUrl( const QString& url )
 {
     d->m_url = url;
+}
+
+void CreateFeedCommand::setFeedList( const weak_ptr<FeedList>& feedList )
+{
+    d->m_feedList = feedList;
 }
 
 void CreateFeedCommand::setAutoExecute( bool autoexec )
