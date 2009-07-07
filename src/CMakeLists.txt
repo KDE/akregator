@@ -69,6 +69,7 @@ set(akregatorpart_PART_SRCS
    actionmanagerimpl.cpp
    createfeedcommand.cpp
    createtagcommand.cpp
+   editfeedcommand.cpp
    frame.cpp
    framemanager.cpp
    browserframe.cpp
@@ -89,7 +90,7 @@ set(akregatorpart_PART_SRCS
    mainwidget.cpp
    notificationmanager.cpp
    setupakonadicommand.cpp
-   speechclient.cpp 
+   speechclient.cpp
 )
 
 qt4_add_dbus_interfaces(akregatorpart_PART_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.KSpeech.xml)

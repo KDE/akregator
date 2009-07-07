@@ -24,18 +24,15 @@
 
 #include "editsubscriptioncommand.h"
 #include "command_p.h"
+#include "editfeedcommand.h"
 
-#include <krss/feedjobs.h>
 #include <krss/feedlist.h>
-#include <krss/feedvisitor.h>
-#include <krss/netfeed.h>
 #include <krss/tag.h>
 #include <krss/tagjobs.h>
 #include <krss/tagprovider.h>
 #include <krss/treenode.h>
 #include <krss/treenodevisitor.h>
 #include <krss/ui/feedlistview.h>
-#include <krss/ui/feedpropertiesdialog.h>
 #include <krss/ui/tagpropertiesdialog.h>
 
 #include <KDebug>
@@ -51,7 +48,7 @@ using namespace Akregator;
 using namespace boost;
 using namespace KRss;
 
-class EditSubscriptionCommand::Private : public TreeNodeVisitor, public FeedVisitor
+class EditSubscriptionCommand::Private : public TreeNodeVisitor
 {
     EditSubscriptionCommand* const q;
 public:
@@ -92,30 +89,11 @@ public:
             guard.emitResult();
             return;
         }
-        feed->accept( this );
-        if ( !feedHandled )
-            guard.emitResult();
-    }
 
-    void visitNetFeed( const shared_ptr<NetFeed>& nf ) {
-        feedHandled = true;
-        EmitResultGuard guard( q );
-        QPointer<FeedPropertiesDialog> dlg( new FeedPropertiesDialog( q->parentWidget() ) );
-        dlg->setFeedTitle( nf->title() );
-        dlg->setUrl( nf->xmlUrl() );
-        dlg->setCustomFetchInterval( nf->fetchInterval() > 0 ); //PENDING(frank) correct?
-        dlg->setFetchInterval( nf->fetchInterval() );
-
-        if ( dlg->exec() != QDialog::Accepted ) {
-            delete dlg;
-            guard.emitResult();
-            return;
-        }
-        nf->setTitle( dlg->feedTitle() );
-        nf->setXmlUrl( dlg->url() );
-        nf->setFetchInterval( dlg->hasCustomFetchInterval() ? dlg->fetchInterval() : 0 );
-        delete dlg;
-        FeedModifyJob* job = new FeedModifyJob( nf );
+        EditFeedCommand* const job = new EditFeedCommand( q );
+        job->setParentWidget( q->parentWidget() );
+        job->setFeed( feed );
+        job->setFeedList( feedList );
         connect( job, SIGNAL(finished(KJob*)), q, SLOT(feedModifyDone(KJob*)) );
         job->start();
     }
@@ -138,7 +116,6 @@ public:
     void jobFinished();
 
     bool nodeHandled;
-    bool feedHandled;
     shared_ptr<const TagProvider> tagProvider;
     shared_ptr<TreeNode> node;
     shared_ptr<FeedList> feedList;
@@ -148,7 +125,6 @@ public:
 EditSubscriptionCommand::Private::Private( EditSubscriptionCommand* qq )
   : q( qq )
   , nodeHandled( false )
-  , feedHandled( false )
   , node()
   , feedListView()
 {
