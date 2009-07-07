@@ -34,8 +34,6 @@
 namespace Akregator
 {
 
-class Feed;
-
 class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
 {
     Q_OBJECT
