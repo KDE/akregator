@@ -255,7 +255,7 @@ void Part::saveProperties(KConfigGroup & config)
 
 bool Part::openUrl(const KUrl& url)
 {
-    setLocalFilePath(url.path());
+    setLocalFilePath(url.toLocalFile());
     return openFile();
 }
 

@@ -170,13 +170,26 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
     menu->setAttribute( Qt::WA_DeleteOnClose );
 
     const int colCount = model()->columnCount();
+    int visibleColumns = 0; // number of column currently shown
+    QAction *visibleColumnsAction = 0;
     for ( int i = 0; i < colCount; ++i )
     {
         QAction* act = menu->addAction( model()->headerData( i, Qt::Horizontal ).toString() );
         act->setCheckable( true );
         act->setData( i );
-        act->setChecked( !header()->isSectionHidden( i ) );
+        bool sectionVisible = !header()->isSectionHidden( i );
+        act->setChecked( sectionVisible );
+        if ( sectionVisible ) {
+            ++visibleColumns;
+            visibleColumnsAction = act;
+        }
     }
+
+    // Avoid that the last shown column is also hidden
+    if ( visibleColumns == 1 ) {
+        visibleColumnsAction->setEnabled( false );
+    }
+
 
     QPointer<QObject> that( this );
     QAction * const action = menu->exec( header()->mapToGlobal( pos ) );
@@ -409,6 +422,11 @@ void ArticleListView::setModel( QAbstractItemModel* m )
     {
         header()->resizeSection( header()->count() - 1, 1 );
         header()->restoreState( groupMode ? m_groupHeaderState : m_feedHeaderState );
+
+        // Ensure at least one column is visible
+        if ( header()->hiddenSectionCount() == header()->count() ) {
+            header()->showSection( ItemModel::ItemTitleColumn );
+        }
     }
 }
 
