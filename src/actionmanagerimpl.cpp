@@ -409,6 +409,27 @@ void ActionManagerImpl::initArticleViewer(ArticleViewer* articleViewer)
         return;
     else
         d->articleViewer = articleViewer;
+
+    KActionCollection* coll = actionCollection();
+    KAction* action = 0;
+
+    action = KStandardAction::print(articleViewer, SLOT(slotPrint()), actionCollection());
+    coll->addAction("viewer_print", action);
+
+    action = KStandardAction::copy(articleViewer, SLOT(slotCopy()), coll);
+    coll->addAction("viewer_copy", action);
+
+    action = coll->addAction("inc_font_sizes");
+    action->setIcon(KIcon("zoom-in"));
+    action->setText(i18n("&Increase Font Sizes"));
+    connect(action, SIGNAL(triggered(bool)), articleViewer, SLOT(slotZoomIn()));
+    action->setShortcut( QKeySequence::ZoomIn );
+
+    action = coll->addAction("dec_font_sizes");
+    action->setIcon(KIcon("zoom-out"));
+    action->setText(i18n("&Decrease Font Sizes"));
+    connect(action, SIGNAL(triggered(bool)), articleViewer, SLOT(slotZoomOut()));
+    action->setShortcut( QKeySequence::ZoomOut );
 }
 
 void ActionManagerImpl::initArticleListView(ArticleListView* articleList)

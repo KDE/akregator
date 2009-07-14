@@ -25,8 +25,8 @@
   <Separator/>
   <Action name="pageviewer_reload"/>
   <Action name="pageviewer_stop"/>
-  <Action name="incFontSizes"/>
-  <Action name="decFontSizes"/>
+  <Action name="inc_font_sizes"/>
+  <Action name="dec_font_sizes"/>
   <Action name="setEncoding"/>
   <Merge/>
 </Menu>

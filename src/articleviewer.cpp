@@ -93,6 +93,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     setFocusProxy( m_part->widget() );
 
+    m_part->setFontScaleFactor(100);
     m_part->setZoomFactor(100);
     m_part->setJScriptEnabled(false);
     m_part->setJavaEnabled(false);
@@ -126,24 +127,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
                          KParts::WindowArgs,
                          KParts::ReadOnlyPart**)));
 
-    QAction* action = 0;
-    action = KStandardAction::print(this, SLOT(slotPrint()), m_part->actionCollection());
-    m_part->actionCollection()->addAction("viewer_print", action);
-
-    action = KStandardAction::copy(this, SLOT(slotCopy()), m_part->actionCollection());
-    m_part->actionCollection()->addAction("viewer_copy", action);
-
-    action = m_part->actionCollection()->addAction("incFontSizes");
-    action->setIcon(KIcon("zoom-in"));
-    action->setText(i18n("&Increase Font Sizes"));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomIn()));
-    action->setShortcut( QKeySequence( Qt::CTRL+Qt::Key_Plus ) );
-
-    action = m_part->actionCollection()->addAction("decFontSizes");
-    action->setIcon(KIcon("zoom-out"));
-    action->setText(i18n("&Decrease Font Sizes"));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotZoomOut()));
-    action->setShortcut( QKeySequence(  Qt::CTRL + Qt::Key_Minus ) );
+    KAction* action = 0;
 
     action = m_part->actionCollection()->addAction("copylinkaddress");
     action->setText(i18n("Copy &Link Address"));
@@ -265,13 +249,16 @@ void ArticleViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, con
     {
         if (isSelection)
         {
-            popup.addAction( m_part->action("viewer_copy") );
+            popup.addAction( ActionManager::getInstance()->action("viewer_copy") );
             popup.addSeparator();
         }
-        popup.addAction( m_part->action("viewer_print") );
+        popup.addAction( ActionManager::getInstance()->action("viewer_print") );
        //KAction *ac = action("setEncoding");
        //if (ac)
        //     ac->plug(&popup);
+        popup.addSeparator();
+        popup.addAction( ActionManager::getInstance()->action("inc_font_sizes") );
+        popup.addAction( ActionManager::getInstance()->action("dec_font_sizes") );
     }
     popup.exec(p);
 }
@@ -299,7 +286,7 @@ void ArticleViewer::slotCopyLinkAddress()
 
 void ArticleViewer::slotSelectionChanged()
 {
-    m_part->action("viewer_copy")->setEnabled(!m_part->selectedText().isEmpty());
+    ActionManager::getInstance()->action("viewer_copy")->setEnabled(!m_part->selectedText().isEmpty());
 }
 
 void ArticleViewer::slotOpenLinkInternal()
@@ -362,37 +349,37 @@ void ArticleViewer::slotScrollDown()
 
 void ArticleViewer::slotZoomIn()
 {
-    int zf = m_part->zoomFactor();
+    int zf = m_part->fontScaleFactor();
     if (zf < 100)
     {
         zf = zf - (zf % 20) + 20;
-        m_part->setZoomFactor(zf);
+        m_part->setFontScaleFactor(zf);
     }
     else
     {
         zf = zf - (zf % 50) + 50;
-        m_part->setZoomFactor(zf < 300 ? zf : 300);
+        m_part->setFontScaleFactor(zf < 300 ? zf : 300);
     }
 }
 
 void ArticleViewer::slotZoomOut()
 {
-    int zf = m_part->zoomFactor();
+    int zf = m_part->fontScaleFactor();
     if (zf <= 100)
     {
         zf = zf - (zf % 20) - 20;
-        m_part->setZoomFactor(zf > 20 ? zf : 20);
+        m_part->setFontScaleFactor(zf > 20 ? zf : 20);
     }
     else
     {
         zf = zf - (zf % 50) - 50;
-        m_part->setZoomFactor(zf);
+        m_part->setFontScaleFactor(zf);
     }
 }
 
 void ArticleViewer::slotSetZoomFactor(int percent)
 {
-    m_part->setZoomFactor(percent);
+    m_part->setFontScaleFactor(percent);
 }
 
 // some code taken from KDevelop (lib/widgets/kdevhtmlpart.cpp)
