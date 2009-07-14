@@ -136,6 +136,8 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** the article selection has changed */
         void slotArticleSelected(const Akregator::Article&);
 
+        void ensureArticleTabVisible();
+
         /** emits @ref signalUnreadCountChanged(int) */
         void slotSetTotalUnread();
 
