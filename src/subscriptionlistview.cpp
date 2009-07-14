@@ -128,6 +128,7 @@ QModelIndex nextUnreadFeedIndex( const QModelIndex& idx )
 
 Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
 {
+    setFocusPolicy( Qt::NoFocus );
     setSelectionMode( QAbstractItemView::SingleSelection );
     setRootIsDecorated( false );
     setAlternatingRowColors( true );
