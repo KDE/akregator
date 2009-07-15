@@ -227,6 +227,9 @@ uint TabWidget::Private::tabBarWidthForMaxChars( int maxLength )
     for (int i = 0; i < parent->count(); ++i) 
     {
         Frame* f = frames[parent->widget(i)];
+        if (!f) {
+            continue; // frames is out of sync, e.g. because tabInserted wasn't called yet - #185597
+        }
         QString newTitle = f->title();
         if ( newTitle.length() > maxLength )
             newTitle = newTitle.left( maxLength-3 ) + "...";
