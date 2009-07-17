@@ -84,7 +84,7 @@ void CreateFeedCommand::Private::doCreate()
         assert( clipboard );
         const QString clipboardText = clipboard->text();
         // Check for the hostname, since the isValid method is not strict enough
-        if( !KUrl( clipboardText ).isEmpty() )
+        if( !KUrl( clipboardText ).host().isEmpty() )
             url = clipboardText;
     }
 
