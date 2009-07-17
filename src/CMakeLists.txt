@@ -3,14 +3,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 add_subdirectory( about )
 add_subdirectory( icons )
 
-find_package(LibKRSS REQUIRED)
+# re-enable when moving libkrss into kdepimlibs
+#find_package(LibKRSS REQUIRED)
 find_package(Akonadi REQUIRED)
 
 include_directories (
     ${Boost_INCLUDE_DIR}
     ${CMAKE_SOURCE_DIR}/akregator/interfaces
     ${CMAKE_BINARY_DIR}/akregator/interfaces
-    ${LIBKRSS_INCLUDE_DIR}
+    # re-enable when moving libkrss into kdepimlibs
+    #${LIBKRSS_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/krss/
+    ${CMAKE_BINARY_DIR}/krss/ # remove after killing krss/config-nepomuk.h
 )
 
 ########### next target ###############
@@ -103,7 +107,8 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} ${KDE4_SOLID_LIBRARY} akregatorinterfaces akregatorprivate kdepim ${KDEPIMLIBS_SYNDICATION_LIBS} ${KDEPIMLIBS_KPIMUTILS_LIBS}  ${KDE4_KDE3SUPPORT_LIBS} ${LIBKRSS_LIBRARIES} ${KDE4_AKONADI_LIBS})
+# add ${LIBKRSS_LIBRARIES} when moving libkrss into kdepimlibs
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} ${KDE4_SOLID_LIBRARY} akregatorinterfaces akregatorprivate kdepim ${KDEPIMLIBS_SYNDICATION_LIBS} ${KDEPIMLIBS_KPIMUTILS_LIBS}  ${KDE4_KDE3SUPPORT_LIBS} krss ${KDE4_AKONADI_LIBS})
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
