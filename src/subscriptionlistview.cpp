@@ -40,9 +40,7 @@
 
 using namespace Akregator;
 
-namespace {
-
-QModelIndex prevIndex( const QModelIndex& idx )
+static QModelIndex prevIndex( const QModelIndex& idx )
 {
     if ( !idx.isValid() )
         return QModelIndex();
@@ -61,7 +59,7 @@ QModelIndex prevIndex( const QModelIndex& idx )
 }
 
 
-QModelIndex prevFeedIndex( const QModelIndex& idx, bool allowPassed = false )
+static QModelIndex prevFeedIndex( const QModelIndex& idx, bool allowPassed = false )
 {
     QModelIndex prev = allowPassed ? idx : prevIndex( idx );
     while ( prev.isValid() && prev.data( SubscriptionListModel::IsAggregationRole ).toBool() )
@@ -69,7 +67,7 @@ QModelIndex prevFeedIndex( const QModelIndex& idx, bool allowPassed = false )
     return prev;
 }
 
-QModelIndex prevUnreadFeedIndex( const QModelIndex& idx, bool allowPassed = false )
+static QModelIndex prevUnreadFeedIndex( const QModelIndex& idx, bool allowPassed = false )
 {
     QModelIndex prev = allowPassed ? idx : prevIndex( idx );
     while ( prev.isValid() && ( prev.data( SubscriptionListModel::IsAggregationRole ).toBool() || prev.sibling( prev.row(), SubscriptionListModel::UnreadCountColumn ).data().toInt() == 0 ) )
@@ -77,7 +75,7 @@ QModelIndex prevUnreadFeedIndex( const QModelIndex& idx, bool allowPassed = fals
     return prev;
 }
 
-QModelIndex lastLeaveChild( const QAbstractItemModel* const model )
+static QModelIndex lastLeaveChild( const QAbstractItemModel* const model )
 {
     assert( model );
     if ( model->rowCount() == 0 )
@@ -88,7 +86,7 @@ QModelIndex lastLeaveChild( const QAbstractItemModel* const model )
     return idx;
 }
 
-QModelIndex nextIndex( const QModelIndex& idx )
+static QModelIndex nextIndex( const QModelIndex& idx )
 {
     if ( !idx.isValid() )
         return QModelIndex();
@@ -108,7 +106,7 @@ QModelIndex nextIndex( const QModelIndex& idx )
     }
 }
 
-QModelIndex nextFeedIndex( const QModelIndex& idx )
+static QModelIndex nextFeedIndex( const QModelIndex& idx )
 {
     QModelIndex next = nextIndex( idx );
     while ( next.isValid() && next.data( SubscriptionListModel::IsAggregationRole ).toBool() )
@@ -116,14 +114,12 @@ QModelIndex nextFeedIndex( const QModelIndex& idx )
     return next;
 }
 
-QModelIndex nextUnreadFeedIndex( const QModelIndex& idx )
+static QModelIndex nextUnreadFeedIndex( const QModelIndex& idx )
 {
     QModelIndex next = nextIndex( idx );
     while ( next.isValid() && ( next.data( SubscriptionListModel::IsAggregationRole ).toBool() || next.sibling( next.row(), SubscriptionListModel::UnreadCountColumn ).data().toInt() == 0 ) )
         next = nextIndex( next );
     return next;
-}
-
 }
 
 Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTreeView( parent )
@@ -279,31 +275,70 @@ void Akregator::SubscriptionListView::slotNextUnreadFeed()
 
 void SubscriptionListView::slotItemBegin()
 {
-
+    if ( !model() )
+        return;
+    emit userActionTakingPlace();
+    setCurrentIndex( nextFeedIndex( model()->index( 0, 0 ) ) );
 }
 
 void SubscriptionListView::slotItemEnd()
 {
+    if ( !model() )
+        return;
+    emit userActionTakingPlace();
+    setCurrentIndex( lastLeaveChild( model() ) );
 }
 
 void SubscriptionListView::slotItemLeft()
 {
-
+    if ( !model() )
+        return;
+    emit userActionTakingPlace();
+    const QModelIndex current = currentIndex();
+    if ( !current.isValid() ) {
+        setCurrentIndex( nextFeedIndex( model()->index( 0, 0 ) ) );
+        return;
+    }
+    if ( current.parent().isValid() )
+        setCurrentIndex( current.parent() );
 }
 
 void SubscriptionListView::slotItemRight()
 {
-
+    if ( !model() )
+        return;
+    emit userActionTakingPlace();
+    const QModelIndex current = currentIndex();
+    if ( !current.isValid() ) {
+        setCurrentIndex( nextFeedIndex( model()->index( 0, 0 ) ) );
+        return;
+    }
+    if ( model()->rowCount( current ) > 0 )
+        setCurrentIndex( current.child( 0, 0 ) );
 }
 
 void SubscriptionListView::slotItemUp()
 {
-
+    if ( !model() )
+        return;
+    emit userActionTakingPlace();
+    const QModelIndex current = currentIndex();
+    QModelIndex prev = current.row() > 0 ? current.sibling( current.row() - 1, current.column() ) : current.parent();
+    if ( !prev.isValid() )
+        prev = lastLeaveChild( model() );
+    if ( prev.isValid() )
+        setCurrentIndex( prev );
 }
 
 void SubscriptionListView::slotItemDown()
 {
-
+    if ( !model() )
+        return;
+    emit userActionTakingPlace();
+    const QModelIndex current = currentIndex();
+    if ( current.row() >= model()->rowCount( current.parent() ) )
+        return;
+    setCurrentIndex( current.sibling( current.row() + 1, current.column() ) );
 }
 
 
