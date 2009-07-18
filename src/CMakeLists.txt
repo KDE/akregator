@@ -14,7 +14,6 @@ include_directories (
     # re-enable when moving libkrss into kdepimlibs
     #${LIBKRSS_INCLUDE_DIR}
     ${CMAKE_SOURCE_DIR}/krss/
-    ${CMAKE_BINARY_DIR}/krss/ # remove after killing krss/config-nepomuk.h
 )
 
 ########### next target ###############
