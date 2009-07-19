@@ -54,7 +54,7 @@
 #include <krss/feedlistmodel.h>
 #include <krss/item.h>
 #include <krss/itemjobs.h>
-#include <krss/resource.h>
+#include <krss/netresource.h>
 #include <krss/resourcemanager.h>
 #include <krss/tagprovider.h>
 #include <krss/resourcemanager.h>
@@ -149,10 +149,10 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     lt->addWidget(m_horizontalSplitter);
 
     const QString defaultResourceId = Settings::activeAkonadiResource();
-    const KRss::Resource * const resource = KRss::ResourceManager::self()->resource( defaultResourceId );
-    connect( resource, SIGNAL( fetchQueueStarted() ),
+    const shared_ptr<const KRss::NetResource> resource = KRss::ResourceManager::self()->resource( defaultResourceId );
+    connect( resource.get(), SIGNAL( fetchQueueStarted() ),
              this, SLOT( slotFetchQueueStarted() ) );
-    connect( resource, SIGNAL( fetchQueueFinished() ),
+    connect( resource.get(), SIGNAL( fetchQueueFinished() ),
              this, SLOT( slotFetchQueueFinished() ) );
 
     m_feedListView = new KRss::FeedListView( m_horizontalSplitter );
@@ -637,7 +637,10 @@ void Akregator::MainWidget::addFeed(const QString& url, bool autoExec)
     std::auto_ptr<CreateFeedCommand> cmd( new CreateFeedCommand( this ) );
     cmd->setAutoExecute( autoExec );
     cmd->setUrl( url );
-    cmd->setResourceIdentifier( Settings::activeAkonadiResource() );
+    // FIXME: keep a shared pointer to the default resource in MainWidget
+    const shared_ptr<KRss::NetResource> resource = KRss::ResourceManager::self()->resource(
+                                                                Settings::activeAkonadiResource() );
+    cmd->setResource( weak_ptr<KRss::NetResource>( resource ) );
     cmd->setFeedListView( m_feedListView );
     cmd->setFeedList( weak_ptr<KRss::FeedList>( m_feedList ) );
     d->setUpAndStart( cmd.release() );

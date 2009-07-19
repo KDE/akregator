@@ -34,6 +34,7 @@ namespace boost {
 namespace KRss {
     class FeedListView;
     class FeedList;
+    class NetResource;
 }
 
 namespace Akregator {
@@ -49,7 +50,7 @@ public:
     explicit CreateFeedCommand( QObject* parent = 0 );
     ~CreateFeedCommand();
 
-    void setResourceIdentifier( const QString& identifier );
+    void setResource( const boost::weak_ptr<KRss::NetResource>& resource );
     void setFeedListView( KRss::FeedListView* view );
     void setUrl( const QString& url );
     void setFeedList( const boost::weak_ptr<KRss::FeedList>& feedList );

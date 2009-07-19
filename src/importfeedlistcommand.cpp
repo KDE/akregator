@@ -26,7 +26,7 @@
 #include "command_p.h"
 
 #include <krss/importopmljob.h>
-#include <krss/resource.h>
+#include <krss/netresource.h>
 #include <krss/resourcemanager.h>
 
 #include <KFileDialog>
@@ -51,7 +51,7 @@ public:
 
     void doImport();
     void importFinished( KJob* );
-    bool checkResource( const Resource* r );
+    bool checkResource( const boost::shared_ptr<const NetResource>& r );
 
     KUrl url;
     QString resourceIdentifier;
@@ -63,7 +63,7 @@ ImportFeedListCommand::Private::Private( ImportFeedListCommand* qq )
 
 }
 
-bool ImportFeedListCommand::Private::checkResource( const Resource* r ) {
+bool ImportFeedListCommand::Private::checkResource( const boost::shared_ptr<const NetResource>& r ) {
     if ( r )
         return true;
     EmitResultGuard guard( q );
@@ -95,7 +95,7 @@ void ImportFeedListCommand::Private::doImport()
     }
 
     //the resource might be gone while the dialog was open, so re-get it
-    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
+    const boost::shared_ptr<const NetResource> resource = ResourceManager::self()->resource( resourceIdentifier );
     if ( !checkResource( resource ) )
         return;
 

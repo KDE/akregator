@@ -32,6 +32,7 @@
 #include <krss/netfeedcreatejob.h>
 #include <krss/ui/feedlistview.h>
 #include <krss/feedlist.h>
+#include <krss/netresource.h>
 
 #include <KDebug>
 #include <KInputDialog>
@@ -64,7 +65,7 @@ public:
 
     QPointer<FeedListView> m_feedListView;
     QString m_url;
-    QString m_resourceIdentifier;
+    weak_ptr<NetResource> m_resource;
     weak_ptr<FeedList> m_feedList;
     bool m_autoexec;
 };
@@ -108,8 +109,13 @@ void CreateFeedCommand::Private::doCreate()
         delete afd;
     }
 
+    const shared_ptr<NetResource> resource = m_resource.lock();
+    if ( !resource ) {
+        q->emitResult();
+        return;
+    }
 
-    NetFeedCreateJob *job = new NetFeedCreateJob( url, QString(), m_resourceIdentifier, q );
+    NetFeedCreateJob *job = resource->netFeedCreateJob( url );
     job->setFeedList( m_feedList );
     q->connect( job, SIGNAL(finished(KJob*)), q, SLOT(creationDone(KJob*)) );
     job->start();
@@ -201,9 +207,9 @@ void CreateFeedCommand::setFeedListView( FeedListView* view )
     d->m_feedListView = view;
 }
 
-void CreateFeedCommand::setResourceIdentifier( const QString& identifier )
+void CreateFeedCommand::setResource( const weak_ptr<NetResource>& resource )
 {
-    d->m_resourceIdentifier = identifier;
+    d->m_resource = resource;
 }
 
 void CreateFeedCommand::setUrl( const QString& url )

@@ -24,9 +24,10 @@
 #define AKREGATOR_IMPORTITEMSJOB_H
 
 #include <KJob>
+#include <boost/weak_ptr.hpp>
 
 namespace KRss {
-    class Resource;
+    class NetResource;
 }
 
 namespace Akregator {
@@ -40,7 +41,7 @@ public:
         ImportFailedError
     };
 
-    explicit ImportItemsJob( const KRss::Resource* res, QObject* parent=0 );
+    explicit ImportItemsJob( const boost::weak_ptr<const KRss::NetResource>& res, QObject* parent=0 );
     ~ImportItemsJob();
 
     QString xmlUrl() const;
@@ -56,8 +57,6 @@ private:
     Q_PRIVATE_SLOT( d, void exporterFinished(int, QProcess::ExitStatus))
     Q_PRIVATE_SLOT( d, void exporterError(QProcess::ProcessError))
     Q_PRIVATE_SLOT( d, void importFinished(KJob*) )
-    Q_PRIVATE_SLOT( d, void resourceDestroyed(QObject*) )
-
 };
 
 }

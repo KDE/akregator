@@ -23,7 +23,7 @@
 #include "importitemsjob.h"
 
 #include <krss/importitemsjob.h>
-#include <krss/resource.h>
+#include <krss/netresource.h>
 
 #include <KDebug>
 #include <KLocalizedString>
@@ -39,6 +39,8 @@
 #include <cassert>
 
 using namespace Akregator;
+using boost::shared_ptr;
+using boost::weak_ptr;
 
 namespace {
     static QString exporterBinaryName() {
@@ -48,10 +50,7 @@ namespace {
 class ImportItemsJob::Private {
     ImportItemsJob* const q;
 public:
-    explicit Private( const KRss::Resource* res, ImportItemsJob* qq ) : q( qq ), resource( res ) {
-        assert( res );
-        //not using QPointer because of const
-        connect( res, SIGNAL(destroyed(QObject*)), q, SLOT(resourceDestroyed(QObject*)) );
+    explicit Private( const weak_ptr<const KRss::NetResource>& res, ImportItemsJob* qq ) : q( qq ), resource( res ) {
     }
 
     ~Private() {
@@ -62,11 +61,6 @@ public:
     void exporterFinished( int exitCode, QProcess::ExitStatus status );
     void exporterError( QProcess::ProcessError error );
     void importFinished( KJob* job );
-
-    void resourceDestroyed( QObject*o ) {
-        assert( o == resource );
-        resource = 0;
-    }
 
     static QString generateTmpFileName() {
         KTemporaryFile file;
@@ -89,12 +83,12 @@ public:
     }
 
     QString url;
-    const KRss::Resource* resource;
+    weak_ptr<const KRss::NetResource> resource;
     QPointer<QProcess> exporter;
     QString exportFileName;
 };
 
-ImportItemsJob::ImportItemsJob( const KRss::Resource* res, QObject* parent ) : KJob( parent ), d( new ImportItemsJob::Private( res, this ) ) {
+ImportItemsJob::ImportItemsJob( const weak_ptr<const KRss::NetResource>& res, QObject* parent ) : KJob( parent ), d( new ImportItemsJob::Private( res, this ) ) {
 }
 
 ImportItemsJob::~ImportItemsJob() {
@@ -180,14 +174,15 @@ void ImportItemsJob::Private::exporterFinished( int exitCode, QProcess::ExitStat
         return;
     }
 
-    if ( !resource ) {
+    const shared_ptr<const KRss::NetResource>& sharedResource = resource.lock();
+    if ( !sharedResource ) {
         q->setError( ImportItemsJob::ImportFailedError );
         q->setErrorText( i18n("Item import failed, target resource was already deleted." ) );
         cleanupAndEmitResult();
         return;
     }
 
-    KRss::ImportItemsJob* job = resource->createImportItemsJob( url, exportFileName );
+    KRss::ImportItemsJob* job = sharedResource->createImportItemsJob( url, exportFileName );
     assert( job );
     connect( job, SIGNAL(finished(KJob*)), q, SLOT(importFinished(KJob*)) );
     job->start();

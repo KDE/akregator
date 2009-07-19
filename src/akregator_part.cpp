@@ -175,7 +175,7 @@ void Part::slotAkonadiSetUp( KJob* job ) {
         return;
 
     KRss::RetrieveFeedListJob * const fjob = new KRss::RetrieveFeedListJob( m_mainWidget );
-    fjob->setResourceIdentifiers( KRss::ResourceManager::self()->identifiers() );
+    fjob->setResources( KRss::ResourceManager::self()->resources() );
     connect( fjob, SIGNAL( result( KJob* ) ), this, SLOT( slotFeedListRetrieved( KJob* ) ) );
     fjob->start();
 

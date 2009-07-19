@@ -26,7 +26,7 @@
 #include "command_p.h"
 
 #include <krss/exportopmljob.h>
-#include <krss/resource.h>
+#include <krss/netresource.h>
 #include <krss/resourcemanager.h>
 
 #include <KFileDialog>
@@ -51,7 +51,7 @@ public:
 
     void doExport();
     void exportFinished( KJob* );
-    bool checkResource( const Resource* r );
+    bool checkResource( const boost::shared_ptr<const NetResource>& r );
 
     KUrl url;
     QString resourceIdentifier;
@@ -63,7 +63,7 @@ ExportFeedListCommand::Private::Private( ExportFeedListCommand* qq )
 
 }
 
-bool ExportFeedListCommand::Private::checkResource( const Resource* r ) {
+bool ExportFeedListCommand::Private::checkResource( const boost::shared_ptr<const NetResource>& r ) {
     if ( r )
         return true;
     EmitResultGuard guard( q );
@@ -91,7 +91,7 @@ void ExportFeedListCommand::Private::doExport()
         return;
     }
 
-    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
+    const boost::shared_ptr<const NetResource> resource = ResourceManager::self()->resource( resourceIdentifier );
     if ( !checkResource( resource ) )
         return;
     KRss::ExportOpmlJob* job = resource->createExportOpmlJob( url );

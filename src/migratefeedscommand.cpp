@@ -25,7 +25,7 @@
 #include "importitemsjob.h"
 
 #include <krss/importopmljob.h>
-#include <krss/resource.h>
+#include <krss/netresource.h>
 #include <krss/feedlist.h>
 #include <krss/netfeed.h>
 #include <krss/resourcemanager.h>
@@ -58,6 +58,7 @@
 #include <KUrl>
 
 #include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 #include <cassert>
 
@@ -257,7 +258,8 @@ void MigrateFeedsCommand::Private::resourceCreated( const QString& id ) {
     resourceIdentifier = id;
     assert( !resourceIdentifier.isEmpty() );
     RetrieveFeedListJob* job = new RetrieveFeedListJob( q );
-    job->setResourceIdentifiers( QStringList() << resourceIdentifier );
+    const shared_ptr<KRss::NetResource> resource = ResourceManager::self()->resource( id );
+    job->setResources( QList<shared_ptr<Resource> >() << resource );
     connect( job, SIGNAL(finished(KJob*)),
              q, SLOT(feedListRetrievalFinished(KJob*)) );
     job->start();
@@ -321,7 +323,7 @@ void MigrateFeedsCommand::Private::opmlImportFinished( KJob* j ) {
 }
 
 void MigrateFeedsCommand::Private::startOpmlImport() {
-    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
+    const shared_ptr<const NetResource> resource = ResourceManager::self()->resource( resourceIdentifier );
     assert( resource ); //TODO: remove assertion, handl error
     ImportOpmlJob* job = resource->createImportOpmlJob( KUrl::fromPath( opmlPath ) );
     connect( job, SIGNAL(finished(KJob*)), q, SLOT(opmlImportFinished(KJob*)) );
@@ -338,11 +340,11 @@ void MigrateFeedsCommand::Private::startNextItemImport() {
         return;
     }
 
-    const Resource* const resource = ResourceManager::self()->resource( resourceIdentifier );
+    const shared_ptr<const NetResource> resource = ResourceManager::self()->resource( resourceIdentifier );
     assert( resource ); //TODO: remove assertion, handl error
 
     const ImportOpmlJob::FeedInfo fi = feedsLeftToImport.take( feedsLeftToImport.keys().first() );
-    Akregator::ImportItemsJob* job = new Akregator::ImportItemsJob( resource, q );
+    Akregator::ImportItemsJob* job = new Akregator::ImportItemsJob( weak_ptr<const NetResource>( resource ), q );
     q->connect( job, SIGNAL(finished(KJob*)), q, SLOT(itemImportFinished(KJob*)) );
     job->setXmlUrl( fi.xmlUrl );
     job->start();
