@@ -35,7 +35,8 @@ public:
     explicit SetUpAkonadiCommand( QObject* parent=0 );
 
     enum Error {
-        AkonadiSetupFailed=UserDefinedError
+        SetupCanceled=UserDefinedError,
+        SetupFailed
     };
 
 private:
@@ -46,6 +47,9 @@ private:
     Private* const d;
 
     Q_PRIVATE_SLOT( d, void startSetup() )
+    Q_PRIVATE_SLOT( d, void dialogAccepted() )
+    Q_PRIVATE_SLOT( d, void dialogRejected() )
+    Q_PRIVATE_SLOT( d, void resourceCreated(KJob*) )
 };
 
 }

@@ -171,9 +171,10 @@ void Part::loadPlugins( const QString& type )
 }
 
 void Part::slotAkonadiSetUp( KJob* job ) {
-    if ( job->error() )
+    if ( job->error() ) {
+        QApplication::quit();
         return;
-
+    }
     KRss::RetrieveFeedListJob * const fjob = new KRss::RetrieveFeedListJob( m_mainWidget );
     fjob->setResources( KRss::ResourceManager::self()->resources() );
     connect( fjob, SIGNAL( result( KJob* ) ), this, SLOT( slotFeedListRetrieved( KJob* ) ) );
