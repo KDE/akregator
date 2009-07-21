@@ -80,7 +80,7 @@ void SetUpAkonadiCommand::Private::resourceCreated( KJob* j ) {
     const AgentInstanceCreateJob* const job = qobject_cast<const AgentInstanceCreateJob*>( j );
         assert( job );
     if ( job->error() ) {
-        KMessageBox::error( q->parentWidget(), i18n( "Could not create a news feed resource. Please check your installation or contact your system administrator." ) );
+        KMessageBox::error( q->parentWidget(), i18n( "Could not create a news feed resource: %1. Please check your installation or contact your system administrator.", job->errorString() ) );
         q->setError( SetUpAkonadiCommand::SetupFailed );
         q->setErrorText( job->errorText() );
     } else {
