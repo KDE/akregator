@@ -34,10 +34,11 @@ namespace Akregator {
         explicit MigrateFeedsCommand( QObject* parent=0 );
         ~MigrateFeedsCommand();
 
+        void setResource( const QString& id );
         void setOpmlFile( const QString& path );
 
         enum Error {
-            ResourceCreationFailed=KJob::UserDefinedError
+            ResourceNotFound=KJob::UserDefinedError
         };
 
     private:
@@ -52,7 +53,6 @@ namespace Akregator {
         Q_PRIVATE_SLOT( d, void currentIdChanged( int ) )
         Q_PRIVATE_SLOT( d, void wizardClosed() )
         Q_PRIVATE_SLOT( d, void feedListRetrievalFinished( KJob* ) )
-        Q_PRIVATE_SLOT( d, void resourceCreationFinished( KJob* ) )
     };
 }
 

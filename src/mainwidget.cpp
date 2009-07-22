@@ -418,6 +418,7 @@ void MainWidget::slotMetakitImport()
 {
     std::auto_ptr<MigrateFeedsCommand> cmd( new MigrateFeedsCommand );
     cmd->setOpmlFile( KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml" );
+    cmd->setResource( Settings::activeAkonadiResource() );
     d->setUpAndStart( cmd.release() );
 }
 

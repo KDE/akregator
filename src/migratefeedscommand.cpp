@@ -23,6 +23,7 @@
 #include "migratefeedscommand.h"
 #include "migratefeedswizard_p.h"
 #include "importitemsjob.h"
+#include "command_p.h"
 
 #include <krss/importopmljob.h>
 #include <krss/netresource.h>
@@ -53,6 +54,7 @@
 #include <KDebug>
 #include <KGlobal>
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <KIcon>
 #include <KStandardDirs>
 #include <KUrl>
@@ -160,12 +162,10 @@ public:
     void ensureWizardCreated();
     void ensureWizardShown();
 
-    void determineResource();
     void startOpmlImport();
     void startNextItemImport();
     void itemImportFinished( KJob* );
-    void resourceCreated( const QString& id );
-    void resourceCreationFinished( KJob* );
+    void startFeedListImport();
     void wizardClosed();
     void feedListRetrievalFinished( KJob* );
 
@@ -240,25 +240,18 @@ void MigrateFeedsCommand::Private::doDoStart() {
     ensureWizardShown();
 }
 
-void MigrateFeedsCommand::Private::resourceCreationFinished( KJob* j ) {
-    const AgentInstanceCreateJob* const job = qobject_cast<const AgentInstanceCreateJob*>( j );
-    assert( job );
 
-    if ( job->error() ) {
-        q->setError( MigrateFeedsCommand::ResourceCreationFailed );
-        q->setErrorText( job->errorText() );
+void MigrateFeedsCommand::Private::startFeedListImport() {
+    const shared_ptr<KRss::NetResource> resource = ResourceManager::self()->resource( resourceIdentifier );
+
+    EmitResultGuard guard( q );
+    if ( !resource ) {
+        KMessageBox::error( wizard, i18n( "Could not use resource %1 for import: Resource apparently deleted.", resourceIdentifier ) );
+        guard.setError( MigrateFeedsCommand::ResourceNotFound );
+        return;
     }
 
-    const AgentInstance instance = job->instance();
-
-    resourceCreated( instance.identifier() );
-}
-
-void MigrateFeedsCommand::Private::resourceCreated( const QString& id ) {
-    resourceIdentifier = id;
-    assert( !resourceIdentifier.isEmpty() );
     RetrieveFeedListJob* job = new RetrieveFeedListJob( q );
-    const shared_ptr<KRss::NetResource> resource = ResourceManager::self()->resource( id );
     job->setResources( QList<shared_ptr<Resource> >() << resource );
     connect( job, SIGNAL(finished(KJob*)),
              q, SLOT(feedListRetrievalFinished(KJob*)) );
@@ -278,23 +271,8 @@ void MigrateFeedsCommand::Private::feedListRetrievalFinished( KJob* j ) {
     startOpmlImport();
 }
 
-void MigrateFeedsCommand::Private::determineResource() {
-    const QStringList ids = ResourceManager::self()->identifiers();
-
-    if ( ids.size() == 1 )
-        resourceIdentifier = ids.first();
-    else if ( startPage->m_resourceBox )
-        resourceIdentifier = startPage->m_resourceBox->itemData( startPage->m_resourceBox->currentIndex() ).toString();
-
-    if ( !resourceIdentifier.isEmpty() ) {
-        resourceCreated( resourceIdentifier );
-        return;
-    }
-
-    const AgentType type = AgentManager::self()->type( "akonadi_opml_rss_resource" );
-    AgentInstanceCreateJob* job = new AgentInstanceCreateJob( type );
-    q->connect( job, SIGNAL(finished(KJob*)), q, SLOT(resourceCreationFinished(KJob*)) );
-    job->start();
+void MigrateFeedsCommand::setResource( const QString& id ) {
+    d->resourceIdentifier = id;
 }
 
 void MigrateFeedsCommand::Private::opmlImportFinished( KJob* j ) {
@@ -362,7 +340,7 @@ void MigrateFeedsCommand::Private::itemImportFinished( KJob* j ) {
 
 void MigrateFeedsCommand::Private::currentIdChanged( int id ) {
     if ( id == opmlImportResultPageId ) {
-        determineResource();
+        startFeedListImport();
         return;
     }
     if ( id == itemImportResultPageId ) {
