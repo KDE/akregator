@@ -89,7 +89,12 @@ bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
     part = factory->create<KParts::ReadOnlyPart>(q);
     if (!part)
       return false;
-    connect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)));
+
+    // Parts can be destroyed from within the part itself, thus we must listen to destroyed()
+    // partDestroyed() requests deletion of this BrowserFrame, which deletes the part, which crashes as
+    // the part is already half-destructed (destroyed() is emitted from the dtor) but the QPointer is not yet reset to 0.
+    // Thus queue the signal to avoid he double deletion.
+    connect(part, SIGNAL(destroyed(QObject*)), this, SIGNAL(destroyed(QObject*)),Qt::QueuedConnection);
 
     part->setObjectName(ptr->name());
     extension = KParts::BrowserExtension::childObject(part);
