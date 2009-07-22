@@ -74,7 +74,7 @@ void Akregator::ArticleDeleteJob::doStart()
         Akregator::Article article = m_feedList->findArticle( id.feedUrl, id.guid );
         if ( article.isNull() )
             continue;
-        ;
+
         if ( Feed* const feed = m_feedList->findByURL( id.feedUrl ) )
         {
             feeds.push_back( feed );

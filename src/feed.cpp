@@ -856,8 +856,7 @@ void Feed::enforceLimitArticleNumber()
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    ArticleDeleteJob* job = new ArticleDeleteJob;
-    Q_FOREACH ( const Article& i, articles )
+    Q_FOREACH ( Article i, articles )
     {
         if (c < limit)
         {
@@ -866,11 +865,9 @@ void Feed::enforceLimitArticleNumber()
         }
         else if ( !useKeep || !i.keep() )
         {
-            const ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
-            job->appendArticleId( aid );
+            i.setDeleted();
         }
     }
-    job->start();
 }
 
 #include "feed.moc"
