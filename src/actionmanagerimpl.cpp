@@ -262,7 +262,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     KAction *stopAction = coll->addAction("feed_stop");
     stopAction->setIcon(KIcon("process-stop"));
-    stopAction->setText(i18n("&Abort Fetches"));
+    stopAction->setText(i18n("C&ancel Feed Fetches"));
     connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
     stopAction->setShortcut(QKeySequence(Qt::Key_Escape));
     stopAction->setEnabled(false);
