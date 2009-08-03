@@ -107,7 +107,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     , m_dialog()
 
 {
-    KRss::ResourceManager::registerAttributes();
     initFonts();
 
     setPluginLoadingMode( LoadPluginsIfEnabled );
@@ -264,6 +263,7 @@ void Part::openStandardFeedList()
 {
     SetUpAkonadiCommand* cmd = new SetUpAkonadiCommand;
     cmd->setParentWidget( m_mainWidget );
+    cmd->setMainWidget( m_mainWidget );
     connect( cmd, SIGNAL(finished(KJob*)), this , SLOT(slotAkonadiSetUp(KJob*)) );
     cmd->start();
 }

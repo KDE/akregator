@@ -39,6 +39,9 @@ public:
         SetupFailed
     };
 
+    QWidget* mainWidget() const;
+    void setMainWidget( QWidget* widget );
+
 private:
     void doStart();
 

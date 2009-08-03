@@ -33,6 +33,7 @@
 #include <Akonadi/AgentInstanceWidget>
 #include <Akonadi/AgentManager>
 #include <Akonadi/AgentType>
+#include <Akonadi/Control>
 #include <Akonadi/AgentFilterProxyModel>
 
 #include <KDialog>
@@ -40,12 +41,14 @@
 #include <KMessageBox>
 
 #include <QLabel>
+#include <QPointer>
 #include <QVBoxLayout>
 
 #include <cassert>
 
 using namespace Akregator;
 using namespace Akonadi;
+using namespace KRss;
 
 class SetUpAkonadiCommand::Private {
     SetUpAkonadiCommand* const q;
@@ -57,12 +60,21 @@ public:
     void resourceCreated( KJob* );
 
     AgentInstanceWidget* agentWidget;
+    QPointer<QWidget> mainWidget;
 };
 
 SetUpAkonadiCommand::SetUpAkonadiCommand( QObject* parent ) : d( new Private( this ) ) {}
 
 void SetUpAkonadiCommand::doStart() {
     QMetaObject::invokeMethod( this, "startSetup", Qt::QueuedConnection );
+}
+
+QWidget* SetUpAkonadiCommand::mainWidget() const {
+    return d->mainWidget;
+}
+
+void SetUpAkonadiCommand::setMainWidget( QWidget* widget ) {
+    d->mainWidget = widget;
 }
 
 void SetUpAkonadiCommand::Private::dialogAccepted() {
@@ -81,8 +93,8 @@ void SetUpAkonadiCommand::Private::resourceCreated( KJob* j ) {
         assert( job );
     if ( job->error() ) {
         KMessageBox::error( q->parentWidget(), i18n( "Could not create a news feed resource: %1. Please check your installation or contact your system administrator.", job->errorString() ) );
-        q->setError( SetUpAkonadiCommand::SetupFailed );
-        q->setErrorText( job->errorText() );
+        guard.setError( SetUpAkonadiCommand::SetupFailed );
+        guard.setErrorText( job->errorText() );
     } else {
         assert( job->instance().isValid() );
         Settings::setActiveAkonadiResource( job->instance().identifier() );
@@ -93,7 +105,17 @@ void SetUpAkonadiCommand::Private::resourceCreated( KJob* j ) {
 void SetUpAkonadiCommand::Private::startSetup() {
     EmitResultGuard guard( q );
 
-    //TODO: ensure that akonadi is actually running
+   ResourceManager::registerAttributes();
+
+    Control::widgetNeedsAkonadi( mainWidget );
+
+    if ( !Control::start( q->parentWidget() ) || !guard.exists() ) {
+        guard.setError( SetUpAkonadiCommand::SetupFailed );
+        guard.emitResult();
+        return;
+    }
+
+    ResourceManager::self()->forceUpdate();
 
     const QStringList resources = KRss::ResourceManager::self()->identifiers();
 
