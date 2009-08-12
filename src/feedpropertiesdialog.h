@@ -51,6 +51,7 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
 
     public Q_SLOTS:
         void slotUpdateComboBoxActivated(int index);
+        void slotUpdateComboBoxLabels(int value);
         void slotUpdateCheckBoxToggled(bool enabled);
 };
 

@@ -97,9 +97,6 @@
            <property name="enabled" >
             <bool>false</bool>
            </property>
-           <property name="suffix" >
-            <string/>
-           </property>
           </widget>
          </item>
          <item>
@@ -107,26 +104,6 @@
            <property name="enabled" >
             <bool>false</bool>
            </property>
-           <item>
-            <property name="text" >
-             <string>Minutes</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Hours</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Days</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Never</string>
-            </property>
-           </item>
           </widget>
          </item>
         </layout>
@@ -265,12 +242,6 @@
                <property name="enabled" >
                 <bool>false</bool>
                </property>
-               <property name="specialValueText" >
-                <string>1 article</string>
-               </property>
-               <property name="suffix" >
-                <string> articles</string>
-               </property>
               </widget>
              </item>
             </layout>
@@ -294,12 +265,6 @@
               <widget class="KIntSpinBox" name="sb_maxArticleAge" >
                <property name="enabled" >
                 <bool>false</bool>
-               </property>
-               <property name="specialValueText" >
-                <string>1 day</string>
-               </property>
-               <property name="suffix" >
-                <string> days</string>
                </property>
                <property name="value" >
                 <number>1</number>

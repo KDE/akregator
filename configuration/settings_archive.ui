@@ -41,12 +41,6 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
-          <property name="specialValueText">
-           <string>1 article</string>
-          </property>
-          <property name="suffix">
-           <string> articles</string>
-          </property>
           <property name="maximum">
            <number>999999999</number>
           </property>
@@ -73,12 +67,6 @@
          <widget class="KIntSpinBox" name="kcfg_MaxArticleAge">
           <property name="enabled">
            <bool>false</bool>
-          </property>
-          <property name="specialValueText">
-           <string>1 day</string>
-          </property>
-          <property name="suffix">
-           <string> days</string>
           </property>
           <property name="maximum">
            <number>999999999</number>

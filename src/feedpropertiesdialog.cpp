@@ -46,8 +46,10 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
              updateComboBox, SLOT( setEnabled( bool ) ) );
     connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
              updateLabel, SLOT( setEnabled( bool ) ) );
-    connect( updateComboBox, SIGNAL(activated(int)),
-             this, SLOT(slotUpdateComboBoxActivated(int)) );
+    connect( updateComboBox, SIGNAL( activated( int ) ),
+             this, SLOT(slotUpdateComboBoxActivated( int ) ) );
+    connect( updateSpinBox, SIGNAL( valueChanged( int ) ),
+             this, SLOT( slotUpdateComboBoxLabels( int ) ) );
     connect( rb_limitArticleAge, SIGNAL( toggled( bool ) ),
              sb_maxArticleAge, SLOT( setEnabled( bool ) ) );
     connect( rb_limitArticleNumber, SIGNAL( toggled( bool ) ),
@@ -61,6 +63,14 @@ FeedPropertiesWidget::~FeedPropertiesWidget()
 void FeedPropertiesWidget::slotUpdateComboBoxActivated( int index )
 {
     updateSpinBox->setEnabled( index != Never );
+}
+
+
+void FeedPropertiesWidget::slotUpdateComboBoxLabels( int value )
+{
+    updateComboBox->setItemText(FeedPropertiesWidget::Minutes, i18np("Minute", "Minutes", value));
+    updateComboBox->setItemText(FeedPropertiesWidget::Hours, i18np("Hour", "Hours", value));
+    updateComboBox->setItemText(FeedPropertiesWidget::Days, i18np("Day", "Days", value));
 }
 
 
@@ -82,6 +92,13 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     
     setMainWidget(widget);
     widget->feedNameEdit->setFocus();
+
+    widget->updateComboBox->insertItem(FeedPropertiesWidget::Minutes, i18np("Minute", "Minutes", 0));
+    widget->updateComboBox->insertItem(FeedPropertiesWidget::Hours, i18np("Hour", "Hours", 0));
+    widget->updateComboBox->insertItem(FeedPropertiesWidget::Days, i18np("Day", "Days", 0));
+    widget->updateComboBox->insertItem(FeedPropertiesWidget::Never, i18n("Never"));
+    widget->sb_maxArticleAge->setSuffix(ki18np(" day", " days"));
+    widget->sb_maxArticleNumber->setSuffix(ki18np(" article", " articles"));
 
     connect(widget->feedNameEdit, SIGNAL(textChanged(const QString&)), this, SLOT(slotSetWindowTitle(const QString&)));
 }
