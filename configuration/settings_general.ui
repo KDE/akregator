@@ -66,15 +66,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="kcfg_AutoFetchInterval">
+         <widget class="KIntSpinBox" name="kcfg_AutoFetchInterval">
           <property name="enabled">
            <bool>false</bool>
-          </property>
-          <property name="specialValueText">
-           <string>1 minute</string>
-          </property>
-          <property name="suffix">
-           <string> minutes</string>
           </property>
           <property name="minimum">
            <number>1</number>
@@ -156,6 +150,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

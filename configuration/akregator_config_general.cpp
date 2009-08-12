@@ -47,6 +47,8 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
 
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
+
+    ui.kcfg_AutoFetchInterval->setSuffix(ki18np(" minute", "minutes"));
     
     connect( ui.kcfg_UseIntervalFetch, SIGNAL( toggled( bool ) ),
              ui.kcfg_AutoFetchInterval, SLOT( setEnabled( bool ) ) );
