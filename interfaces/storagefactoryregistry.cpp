@@ -84,6 +84,7 @@ StorageFactoryRegistry::StorageFactoryRegistry() : d(new StorageFactoryRegistryP
 
 StorageFactoryRegistry::~StorageFactoryRegistry()
 {
+    qDeleteAll(d->map);
     delete d; 
     d = 0;
 }
