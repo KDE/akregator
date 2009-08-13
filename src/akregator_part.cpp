@@ -184,7 +184,10 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     m_standardFeedList = KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml";
 
     Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
-    Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key());
+    if (!Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key())) {
+        // There was already a dummy factory registered.
+        delete dummyFactory;
+    }
     loadPlugins( QLatin1String("storage") ); // FIXME: also unload them!
 
     m_storage = 0;
