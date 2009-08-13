@@ -45,6 +45,7 @@ class SelectionController : public AbstractSelectionController
 public:
 
     explicit SelectionController( QObject* parent = 0 );
+    ~SelectionController();
 
     //impl
     void setFeedSelector( QAbstractItemView* feedSelector ) ;
