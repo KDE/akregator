@@ -25,15 +25,21 @@
 #ifndef AKREGATOR_NOTIFICATIONMANAGER_H
 #define AKREGATOR_NOTIFICATIONMANAGER_H
 
-#include <qobject.h>
-#include <QList>
+#include <krss/item.h>
 
-#include "article.h"
 #include <kcomponentdata.h>
 
-namespace Akregator 
-{
+#include <QList>
+#include <QObject>
 
+#include <boost/weak_ptr.hpp>
+
+namespace KRss {
+    class FeedList;
+}
+
+namespace Akregator
+{
 /** this class collects notification requests (new articles etc.) and processes them using KNotify.  */
 class NotificationManager : public QObject
 {
@@ -41,33 +47,33 @@ class NotificationManager : public QObject
     public:
         /** singleton instance of notification manager */
         static NotificationManager* self();
-        
+
         ~NotificationManager();
 
         /** the widget used for notification, normally either the mainwindow or the tray icon */
         void setWidget(QWidget* widget, const KComponentData &inst = KComponentData());
-        
+        void setFeedList( const boost::weak_ptr<const KRss::FeedList>& feedList );
+
     public slots:
 
         /** notifies an article. Note that articles are not notified separately, but
         "collected" and notified all together */
-        void slotNotifyArticle(const Akregator::Article& article);
+        void slotNotifyArticle(const KRss::Item& i);
 
         /** notifies the addition of feeds (used when added via DCOP or command line) */
         void slotNotifyFeeds(const QStringList& feeds);
-        
+
     protected:
-        
+
         void doNotify();
-        
+
     protected slots:
 
         void slotIntervalCheck();
-        
+
     private:
         NotificationManager();
-        NotificationManager(const NotificationManager&) : QObject(){}
-        
+
         int m_checkInterval;
         int m_intervalsLapsed;
         int m_maxIntervals;
@@ -76,8 +82,8 @@ class NotificationManager : public QObject
         bool m_addedInLastInterval;
         QWidget* m_widget;
         KComponentData m_instance;
-
-        QList<Article> m_articles;
+        boost::weak_ptr<const KRss::FeedList> m_feedList;
+        QList<KRss::Item> m_items;
 
         static NotificationManager* m_self;
 };

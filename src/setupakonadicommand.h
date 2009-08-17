@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2009 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,65 +22,40 @@
     without including the source code for Qt in the source distribution.
 */
 
+#ifndef AKREGATOR_SETUPAKONADICOMMAND_H
+#define AKREGATOR_SETUPAKONADICOMMAND_H
+
 #include "command.h"
 
-#include <QEventLoop>
-#include <QPointer>
-#include <QWidget>
+namespace Akregator {
 
-using namespace Akregator;
-
-class Command::Private
-{
+class SetUpAkonadiCommand : public Command {
+    Q_OBJECT
 public:
-    Private();
-    QPointer<QWidget> parentWidget;
-    bool userVisible;
+    explicit SetUpAkonadiCommand( QObject* parent=0 );
+
+    enum Error {
+        SetupCanceled=UserDefinedError,
+        SetupFailed
+    };
+
+    QWidget* mainWidget() const;
+    void setMainWidget( QWidget* widget );
+
+private:
+    void doStart();
+
+private:
+    class Private;
+    Private* const d;
+
+    Q_PRIVATE_SLOT( d, void startSetup() )
+    Q_PRIVATE_SLOT( d, void dialogAccepted() )
+    Q_PRIVATE_SLOT( d, void dialogRejected() )
+    Q_PRIVATE_SLOT( d, void resourceCreated(KJob*) )
 };
 
-Command::Private::Private() : parentWidget(), userVisible( true )
-{
 }
 
-Command::Command( QObject* parent ) : KJob( parent ), d( new Private )
-{
+#endif //AKREGATOR_SETUPAKONADICOMMAND_H
 
-}
-
-Command::~Command()
-{
-    delete d;
-}
-
-QWidget* Command::parentWidget() const
-{
-    return d->parentWidget;
-}
-
-void Command::setParentWidget( QWidget* parentWidget )
-{
-    d->parentWidget = parentWidget;
-}
-
-void Command::start()
-{
-    doStart();
-    emit started();
-}
-
-bool Command::isUserVisible() const {
-    return d->userVisible;
-}
-
-void Command::setUserVisible( bool visible ) {
-    d->userVisible = visible;
-}
-
-void Command::waitForFinished()
-{
-    QEventLoop loop;
-    connect( this, SIGNAL( finished(KJob*) ), &loop, SLOT( quit() ) );
-    loop.exec();
-}
-
-#include "command.moc"

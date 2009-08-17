@@ -32,6 +32,15 @@ class KActionCollection;
 
 class QWidget;
 
+namespace boost {
+template <typename T> class shared_ptr;
+}
+
+namespace KRss {
+class TreeNode;
+class FeedListView;
+}
+
 namespace Akregator {
 
 class ArticleListView;
@@ -62,7 +71,7 @@ class ActionManagerImpl : public ActionManager
         void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
-        void initSubscriptionListView(SubscriptionListView* subscriptionListView);
+        void initFeedListView( KRss::FeedListView* feedListView );
         void initTabWidget(TabWidget* tabWidget);
         void initFrameManager(FrameManager* frameManager);
 
@@ -70,7 +79,7 @@ class ActionManagerImpl : public ActionManager
 
     public slots:
 
-        void slotNodeSelected(Akregator::TreeNode* node);
+        void slotNodeSelected( const boost::shared_ptr<KRss::TreeNode>& treeNode);
 
     protected:
 

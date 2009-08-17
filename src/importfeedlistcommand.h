@@ -27,9 +27,9 @@
 
 #include "command.h"
 
-#include <boost/weak_ptr.hpp>
+class QString;
 
-class QDomDocument;
+class KUrl;
 
 namespace Akregator {
 
@@ -42,28 +42,18 @@ public:
     explicit ImportFeedListCommand( QObject* parent = 0 );
     ~ImportFeedListCommand();
 
+    void setResourceIdentifier( const QString& identifier );
 
-    void setTargetList( const boost::weak_ptr<FeedList>& feedList );
-
-    enum RootFolderOption {
-        None,
-        Auto,
-        Ask
-    };
-
-    void setImportedRootFolderOption( RootFolderOption opt );
-    void setImportedRootFolderName( const QString& defaultName );
-
-    void setFeedListDocument( const QDomDocument& doc );
+    void setSourceUrl( const KUrl& url );
 
 private:
     void doStart();
-    void doAbort();
 
 private:
     class Private;
     Private* const d;
     Q_PRIVATE_SLOT( d, void doImport() )
+    Q_PRIVATE_SLOT( d, void importFinished( KJob* ) )
 };
 
 }

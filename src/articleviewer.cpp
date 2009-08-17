@@ -28,17 +28,23 @@
 #include "aboutdata.h"
 #include "actionmanager.h"
 #include "actions.h"
-#include "article.h"
 #include "articleformatter.h"
-#include "articlejobs.h"
 #include "articlematcher.h"
-#include "feed.h"
-#include "folder.h"
-#include "treenode.h"
 #include "utils.h"
 #include "openurlrequest.h"
+#include "progressmanager.h"
 
 #include <kpimutils/kfileio.h>
+
+#include <krss/feedlist.h>
+#include <krss/feedvisitor.h>
+#include <krss/item.h>
+#include <krss/itemlistjob.h>
+#include <krss/netfeed.h>
+#include <krss/treenode.h>
+#include <krss/treenodevisitor.h>
+
+#include <Akonadi/ItemFetchScope>
 
 #include <kaction.h>
 #include <kactioncollection.h>
@@ -59,6 +65,7 @@
 #include <kglobalsettings.h>
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>
+#include <KDateTime>
 
 #include <QClipboard>
 #include <QKeySequence>
@@ -72,6 +79,7 @@
 using namespace boost;
 using namespace Akregator;
 using namespace Akregator::Filters;
+using namespace KRss;
 
 namespace Akregator {
 
@@ -81,7 +89,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
       m_htmlFooter(),
       m_currentText(),
       m_imageDir( KUrl::fromPath( KGlobal::dirs()->saveLocation("cache", "akregator/Media/" ) ) ),
-      m_node(0),
+      m_node(),
       m_viewMode(NormalView),
       m_part( new ArticleViewerPart( this ) ),
       m_normalViewFormatter( new DefaultNormalViewFormatter( m_imageDir, m_part->view() ) ),
@@ -292,7 +300,7 @@ void ArticleViewer::slotCopyLinkAddress()
     QClipboard *cb = QApplication::clipboard();
     cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
     // don't set url to selection as it's a no-no according to a fd.o spec
-    // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives 
+    // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
     // a good reason to remove it again (bug 183022) --Frank
     cb->setText(m_url.prettyUrl(), QClipboard::Selection);
 }
@@ -405,6 +413,7 @@ void ArticleViewer::slotPrint( )
 
 void ArticleViewer::connectToNode(TreeNode* node)
 {
+#ifdef KRSS_PORT_DISABLED
     if (node)
     {
         if (m_viewMode == CombinedView)
@@ -419,12 +428,19 @@ void ArticleViewer::connectToNode(TreeNode* node)
 
         connect( node, SIGNAL(signalDestroyed(Akregator::TreeNode*)), this, SLOT(slotClear() ) );
     }
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void ArticleViewer::disconnectFromNode(TreeNode* node)
 {
+#ifdef KRSS_PORT_DISABLED
     if (node)
         node->disconnect( this );
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void ArticleViewer::renderContent(const QString& text)
@@ -468,7 +484,7 @@ void ArticleViewer::endWriting()
 }
 
 
-void ArticleViewer::slotShowSummary(TreeNode* node)
+void ArticleViewer::slotShowSummary(  const shared_ptr<KRss::FeedList>& fl, const shared_ptr<KRss::TreeNode>& node )
 {
     m_viewMode = SummaryView;
 
@@ -480,54 +496,89 @@ void ArticleViewer::slotShowSummary(TreeNode* node)
 
     if (node != m_node)
     {
+    #ifdef KRSS_PORT_DISABLED
         disconnectFromNode(m_node);
         connectToNode(node);
+    #else
+        kWarning() << "Code temporarily disabled (Akonadi port)";
+    #endif //KRSS_PORT_DISABLED
         m_node = node;
     }
 
-    QString summary = m_normalViewFormatter->formatSummary(node);
+    QString summary = m_normalViewFormatter->formatSummary( fl, node );
     m_link.clear();
     renderContent(summary);
 
     setArticleActionsEnabled(false);
 }
 
-void ArticleViewer::showArticle( const Akregator::Article& article )
+void ArticleViewer::setFeedList( const weak_ptr<const FeedList>& feedList ) {
+    m_feedList = feedList;
+}
+
+namespace {
+    class PreferredLinkVisitor : public ConstFeedVisitor {
+    public:
+
+        void visitNetFeed( const shared_ptr<const NetFeed>& f ) {
+            link = f->preferItemLinkForDisplay() ? KUrl( item.link() ) : KUrl();
+        }
+
+        KUrl getPreferredLink( const shared_ptr<const Feed>& f, const Item& i ) {
+            item = i;
+            link.clear();
+            if ( !f )
+                return link;
+            f->accept( this );
+            return link;
+        }
+
+        Item item;
+        KUrl link;
+    };
+}
+
+void ArticleViewer::showItem( const KRss::Item& item )
 {
-    if ( article.isNull() || article.isDeleted() )
+    if ( item.isNull() || item.isDeleted() )
     {
         slotClear();
         return;
     }
 
     m_viewMode = NormalView;
+#ifdef KRSS_PORT_DISABLED
     disconnectFromNode(m_node);
-    m_article = article;
-    m_node = 0;
-    m_link = article.link();
-    if (article.feed()->loadLinkedWebsite())
-    {
-        openUrl(article.link());
-    }
+#endif // KRSS_PORT_DISABLED
+
+    m_item = item;
+    m_node.reset();
+    m_link = KUrl( item.link() );
+
+    const shared_ptr<const FeedList> fl = m_feedList.lock();
+    const shared_ptr<const Feed> f = fl ? fl->constFeedById( item.sourceFeedId() ) : shared_ptr<const Feed>();
+    PreferredLinkVisitor visitor;
+    const KUrl url = visitor.getPreferredLink( f, item );
+    if ( url.isValid() )
+        openUrl( url );
     else
-    {
-        renderContent( m_normalViewFormatter->formatArticle(article, ArticleFormatter::ShowIcon) );
-    }
+        renderContent( m_normalViewFormatter->formatItem( fl, item, ArticleFormatter::ShowIcon ) );
 
     setArticleActionsEnabled(true);
 }
 
 bool ArticleViewer::openUrl(const KUrl& url)
 {
-    if (!m_article.isNull() && m_article.feed()->loadLinkedWebsite())
-    {
+    const shared_ptr<const FeedList> fl = m_feedList.lock();
+    const shared_ptr<const Feed> f = fl ? fl->constFeedById( m_item.sourceFeedId() ) : shared_ptr<const Feed>();
+    PreferredLinkVisitor visitor;
+    const KUrl url2 = visitor.getPreferredLink( f, m_item );
+
+    if ( url2.isValid() )
         return m_part->openUrl(url);
-    }
-    else
-    {
-        reload();
-        return true;
-    }
+
+    reload();
+    return true;
 }
 
 void ArticleViewer::setFilters(const std::vector< shared_ptr<const AbstractMatcher> >& filters )
@@ -555,17 +606,22 @@ void ArticleViewer::slotUpdateCombinedView()
    QTime spent;
    spent.start();
 
+#ifdef KRSS_PORT_DISABLED
    const std::vector< shared_ptr<const AbstractMatcher> >::const_iterator filterEnd = m_filters.end();
+#endif //KRSS_PORT_DISABLED
 
-   Q_FOREACH( const Article& i, m_articles )
+   const shared_ptr<const FeedList> fl = m_feedList.lock();
+   Q_FOREACH( const Item& i, m_items )
    {
        if ( i.isDeleted() )
            continue;
 
+#ifdef KRSS_PORT_DISABLED
        if ( std::find_if( m_filters.begin(), m_filters.end(), !bind( &AbstractMatcher::matches, _1, i ) ) != filterEnd )
            continue;
+#endif // KRSS_PORT_DISABLED
 
-       text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatArticle( i, ArticleFormatter::NoIcon)+"</div><p>";
+       text += "<p><div class=\"article\">"+m_combinedViewFormatter->formatItem( fl, i, ArticleFormatter::NoIcon)+"</div><p>";
        ++num;
    }
 
@@ -574,6 +630,7 @@ void ArticleViewer::slotUpdateCombinedView()
    kDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
 }
 
+#ifdef KRSS_PORT_DISABLED
 void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& /*list*/)
 {
     if (m_viewMode == CombinedView) {
@@ -601,64 +658,79 @@ void ArticleViewer::slotArticlesRemoved(TreeNode* /*node*/, const QList<Article>
         slotUpdateCombinedView();
     }
 }
+#endif //KRSS_PORT_DISABLED
 
 void ArticleViewer::slotClear()
 {
+#ifdef KRSS_PORT_DISABLED
     disconnectFromNode(m_node);
-    m_node = 0;
-    m_article = Article();
-    m_articles.clear();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
+    m_node.reset();
+    m_item = KRss::Item();
+    m_items.clear();
 
     renderContent(QString());
 }
 
-void ArticleViewer::showNode(TreeNode* node)
+void ArticleViewer::showNode( const shared_ptr<KRss::FeedList>& feedList, const shared_ptr<const KRss::TreeNode>& node )
 {
     m_viewMode = CombinedView;
 
+#ifdef KRSS_PORT_DISABLED
     if (node != m_node)
         disconnectFromNode(m_node);
 
     connectToNode(node);
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 
-    m_articles.clear();
-    m_article = Article();
+    m_items.clear();
+    m_item = KRss::Item();
     m_node = node;
 
     delete m_listJob;
 
-    m_listJob = node->createListJob();
-    connect( m_listJob, SIGNAL(finished(KJob*)), this, SLOT(slotArticlesListed(KJob*)));
-    m_listJob->start();
-
-
+    Akonadi::ItemFetchScope scope;
+    scope.fetchPayloadPart( KRss::Item::HeadersPart );
+    scope.fetchPayloadPart( KRss::Item::ContentPart );
+    scope.fetchAllAttributes();
+    KRss::ItemListJob* const job = node->createItemListJob( feedList );
+    assert( job );
+    job->setFetchScope( scope );
+    connect( job, SIGNAL(finished(KJob*)), this, SLOT(slotArticlesListed(KJob*)));
+    m_listJob = job;
+    ProgressManager::self()->addJob( job );
+    job->start();
 
     slotUpdateCombinedView();
+}
+
+
+static bool lessByDate( const KRss::Item& lhs, const KRss::Item& rhs ) {
+    return lhs.dateUpdated() < rhs.dateUpdated();
 }
 
 void ArticleViewer::slotArticlesListed( KJob* job ) {
     assert( job );
     assert( job == m_listJob );
 
-    TreeNode* node = m_listJob->node();
 
-    if ( job->error() || !node ) {
-        if ( !node )
-            kWarning() << "Node to be listed is already deleted";
-        else
-            kWarning() << job->errorText();
+    if ( job->error() ) {
+        kWarning() << job->errorText();
         slotUpdateCombinedView();
         return;
     }
 
-    m_articles = m_listJob->articles();
-    std::sort( m_articles.begin(), m_articles.end() );
+    m_items = m_listJob->items();
+    std::sort( m_items.begin(), m_items.end(), !bind( lessByDate, _1, _2 ) );
 
-    if (node && m_articles.isEmpty())
-        m_link = m_articles.first().link();
+    if (!m_items.isEmpty())
+        m_link = m_items.first().link();
     else
         m_link = KUrl();
-
     slotUpdateCombinedView();
 }
 

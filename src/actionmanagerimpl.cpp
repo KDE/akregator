@@ -27,18 +27,16 @@
 #include "akregator_part.h"
 #include "articlelistview.h"
 #include "articleviewer.h"
-#include "feed.h"
-#include "fetchqueue.h"
-#include "folder.h"
 #include "framemanager.h"
 #include "kernel.h"
 #include "mainwidget.h"
 #include "speechclient.h"
-#include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "trayicon.h"
-#include "treenode.h"
-#include "treenodevisitor.h"
+
+#include <krss/ui/feedlistview.h>
+#include <krss/treenode.h>
+#include <krss/treenodevisitor.h>
 
 #include <kactionmenu.h>
 #include <ktoolbarpopupaction.h>
@@ -57,45 +55,66 @@
 #include <QHash>
 #include <QWidget>
 
-namespace Akregator
-{
+#include <boost/shared_ptr.hpp>
 
-class ActionManagerImpl::NodeSelectVisitor : public TreeNodeVisitor
+using namespace boost;
+using namespace KRss;
+using namespace Akregator;
+
+class ActionManagerImpl::NodeSelectVisitor : public KRss::TreeNodeVisitor
 {
     public:
     NodeSelectVisitor(ActionManagerImpl* manager) : m_manager(manager) {}
 
-    virtual bool visitFeed(Feed* node)
+    void visit( const shared_ptr<KRss::RootNode>& rootNode )
     {
-        QAction* remove = m_manager->action("feed_remove");
-        if (remove)
-            remove->setEnabled(true);
-        QAction* hp = m_manager->action("feed_homepage");
-        if (hp)
-            hp->setEnabled(!node->htmlUrl().isEmpty());
-        m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
-        m_manager->action("feed_remove")->setText(i18n("&Delete Feed"));
-        m_manager->action("feed_modify")->setText(i18n("&Edit Feed..."));
-        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Feed as Read"));
-
-        return true;
     }
 
-    virtual bool visitFolder(Folder* node)
+    void visit( const shared_ptr<KRss::TagNode>& tagNode )
     {
         QAction* remove = m_manager->action("feed_remove");
         if (remove)
-            remove->setEnabled(node->parent()); // root nodes must not be deleted
+            remove->setEnabled( !tagNode->tag().isNull() );
         QAction* hp = m_manager->action("feed_homepage");
         if (hp)
             hp->setEnabled(false);
 
         m_manager->action("feed_fetch")->setText(i18n("&Fetch Feeds"));
-        m_manager->action("feed_remove")->setText(i18n("&Delete Folder"));
-        m_manager->action("feed_modify")->setText(i18n("&Rename Folder"));
-        m_manager->action("feed_mark_all_as_read")->setText(i18n("&Mark Feeds as Read"));
+        if ( QAction* const a = m_manager->action("feed_remove") ) {
+            a->setText( i18n("&Delete Tag") );
+            a->setEnabled( tagNode->isDeletable() );
+        }
+        m_manager->action("feed_modify")->setText(i18n("&Modify Tag"));
 
-        return true;
+        if ( QAction* const a = m_manager->action("feed_remove_tag") ) {
+            a->setVisible( false );
+            a->setEnabled( false );
+        }
+        m_manager->action("feed_mark_feed_as_read")->setText(i18n("&Mark Feeds as Read"));
+    }
+
+    void visit( const shared_ptr<KRss::FeedNode>& feedNode )
+    {
+        QAction* remove = m_manager->action("feed_remove");
+        if (remove)
+            remove->setEnabled(true);
+#ifdef KRSS_PORT_DISABLED
+        if ( QAction* const a = m_manager->action("feed_homepage") ) {
+            a->setEnabled(!feed->htmlUrl().isEmpty());
+        }
+#endif //KRSS_PORT_DISABLED
+
+        if ( QAction* a = m_manager->action("feed_remove_tag") ) {
+            const shared_ptr<const TagNode> tag = feedNode->parent();
+            a->setText( i18n("&Remove Tag \"%1\"", tag->tag().label()) );
+            a->setVisible( true );
+            a->setEnabled( tag->taggedFeedsUserEditable() );
+        }
+
+        m_manager->action("feed_fetch")->setText(i18n("&Fetch Feed"));
+        m_manager->action("feed_remove")->setText(i18n("&Delete Feed"));
+        m_manager->action("feed_modify")->setText(i18n("&Edit Feed..."));
+        m_manager->action("feed_mark_feed_as_read")->setText(i18n("&Mark Feed as Read"));
     }
 
     private:
@@ -108,7 +127,7 @@ public:
 
     NodeSelectVisitor* nodeSelectVisitor;
     ArticleListView* articleList;
-    SubscriptionListView* subscriptionListView;
+    KRss::FeedListView* feedListView;
     MainWidget* mainWidget;
     ArticleViewer* articleViewer;
     Part* part;
@@ -121,17 +140,17 @@ public:
 };
 
 
-void ActionManagerImpl::slotNodeSelected(TreeNode* node)
+void ActionManagerImpl::slotNodeSelected( const shared_ptr<KRss::TreeNode>& treeNode )
 {
-    if (node != 0)
-        d->nodeSelectVisitor->visit(node);
+    if ( treeNode )
+        treeNode->accept( d->nodeSelectVisitor );
 }
 
 ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent ) : ActionManager(parent), d(new ActionManagerImplPrivate)
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
     d->part = part;
-    d->subscriptionListView = 0;
+    d->feedListView = 0;
     d->articleList = 0;
     d->trayIcon = 0;
     d->articleViewer = 0;
@@ -167,15 +186,6 @@ void ActionManagerImpl::initTrayIcon(TrayIcon* trayIcon)
 
 void ActionManagerImpl::initPart()
 {
-    KAction *action = d->actionCollection->addAction("file_import");
-    action->setText(i18n("&Import Feeds..."));
-    action->setIcon(KIcon("document-import"));
-    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileImport()));
-    action = d->actionCollection->addAction("file_export");
-    action->setText(i18n("&Export Feeds..." ));
-    action->setIcon(KIcon("document-export"));
-    connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
-
     KAction *configure = d->actionCollection->addAction("options_configure");
     configure->setText(i18n("&Configure Akregator..."));
     configure->setIcon(KIcon("configure"));
@@ -210,10 +220,9 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
     action->setShortcuts(KShortcut( "Insert" ));
 
-    action = coll->addAction("feed_add_group");
-    action->setIcon(KIcon("folder-new"));
-    action->setText(i18n("Ne&w Folder..."));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAddGroup()));
+    action = coll->addAction("tag_add");
+    action->setText(i18n("Ne&w Tag..."));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotTagAdd()));
     action->setShortcuts(KShortcut( "Shift+Insert" ));
 
     action = coll->addAction("feed_remove");
@@ -221,6 +230,10 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setText(i18n("&Delete Feed"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedRemove()));
     action->setShortcuts(KShortcut( "Alt+Delete" ));
+
+    action = coll->addAction("feed_remove_tag");
+    action->setText(i18n("&Remove Tag..."));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedRemoveTag()));
 
     action = coll->addAction("feed_modify");
     action->setIcon(KIcon("document-properties"));
@@ -263,14 +276,14 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KAction *stopAction = coll->addAction("feed_stop");
     stopAction->setIcon(KIcon("process-stop"));
     stopAction->setText(i18n("C&ancel Feed Fetches"));
-    connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
+    connect(stopAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotAbortFetches()));
     stopAction->setShortcut(QKeySequence(Qt::Key_Escape));
     stopAction->setEnabled(false);
 
-    action = coll->addAction("feed_mark_all_as_read");
+    action = coll->addAction("feed_mark_feed_as_read");
     action->setIcon(KIcon("mail-mark-read"));
     action->setText(i18n("&Mark Feed as Read"));
-    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllRead()));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkFeedRead()));
     action->setShortcuts(KShortcut( "Ctrl+R" ));
 
     action = coll->addAction("feed_mark_all_feeds_as_read");
@@ -354,7 +367,6 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
     statusMenu->addAction(action);
 
-
     action = coll->addAction("article_set_status_unread");
     action->setText(i18nc("as in: mark as unread", "&Unread"));
     action->setIcon(KIcon("mail-mark-unread"));
@@ -380,16 +392,6 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeDown()));
     action->setShortcuts(KShortcut( "Shift+Alt+Down" ));
 
-    action = coll->addAction(i18n("Move Node Left"));
-    action->setText(i18n("Move Node Left"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeLeft()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Left" ));
-
-    action = coll->addAction("feedstree_move_right");
-    action->setText(i18n("Move Node Right"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeRight()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Right" ));
-
     action = coll->addAction("file_sendlink");
     action->setIcon(KIcon("mail-message-new"));
     action->setText(i18n("Send &Link Address..."));
@@ -399,6 +401,21 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setIcon(KIcon("mail-message-new"));
     action->setText(i18n("Send &File..."));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendFile()));
+
+    action = coll->addAction("file_import");
+    action->setText(i18n("&Import Feeds..."));
+    action->setIcon(KIcon("document-import"));
+    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotImportFeedList()));
+
+    action = coll->addAction("file_export");
+    action->setText(i18n("&Export Feeds..." ));
+    action->setIcon(KIcon("document-export"));
+    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotExportFeedList()));
+
+    action = coll->addAction("file_data_migration");
+    action->setText(i18n("&Import from Previous Version..."));
+    action->setIcon(KIcon("document-import"));
+    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMetakitImport()));
 
     setArticleActionsEnabled( false );
 }
@@ -428,66 +445,68 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     action->setShortcuts(KShortcut( "Right" ));
 }
 
-void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscriptionListView)
+void ActionManagerImpl::initFeedListView( KRss::FeedListView* feedListView )
 {
-    if (d->subscriptionListView)
+    if ( d->feedListView )
         return;
     else
-        d->subscriptionListView = subscriptionListView;
+        d->feedListView = feedListView;
 
     KActionCollection *coll = actionCollection();
 
     KAction *action = coll->addAction("go_prev_feed");
     action->setText(i18n("&Previous Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevFeed()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotPrevFeed()));
     action->setShortcuts(KShortcut( "P" ));
 
     action = coll->addAction("go_next_feed");
     action->setText(i18n("&Next Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextFeed()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotNextFeed()));
     action->setShortcuts(KShortcut( "N" ));
 
     action = coll->addAction("go_next_unread_feed");
     action->setIcon(KIcon("go-down"));
     action->setText(i18n("N&ext Unread Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextUnreadFeed()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotNextUnreadFeed()));
     action->setShortcut(  QKeySequence(Qt::ALT+Qt::Key_Plus) );
 
     action = coll->addAction("go_prev_unread_feed");
     action->setIcon(KIcon("go-up"));
     action->setText(i18n("Prev&ious Unread Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevUnreadFeed()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotPrevUnreadFeed()));
     action->setShortcut( QKeySequence(Qt::ALT+Qt::Key_Minus) );
 
+#ifdef KRSS_PORT_DISABLED // those slots have never been implemented in Akregator
     action = coll->addAction("feedstree_home");
     action->setText(i18n("Go to Top of Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemBegin()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotItemBegin()));
     action->setShortcuts(KShortcut( "Ctrl+Home" ));
 
     action = coll->addAction("feedstree_end");
     action->setText(i18n("Go to Bottom of Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemEnd()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotItemEnd()));
     action->setShortcuts(KShortcut( "Ctrl+End" ));
 
     action = coll->addAction("feedstree_left");
     action->setText(i18n("Go Left in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemLeft()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotItemLeft()));
     action->setShortcuts(KShortcut( "Ctrl+Left" ));
 
     action = coll->addAction("feedstree_right");
     action->setText(i18n("Go Right in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemRight()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotItemRight()));
     action->setShortcuts(KShortcut( "Ctrl+Right" ));
 
     action = coll->addAction("feedstree_up");
     action->setText(i18n("Go Up in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemUp()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotItemUp()));
     action->setShortcuts(KShortcut( "Ctrl+Up" ));
 
     action = coll->addAction("feedstree_down" );
     action->setText(i18n("Go Down in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemDown()));
+    connect(action, SIGNAL(triggered(bool)), feedListView, SLOT(slotItemDown()));
     action->setShortcuts(KShortcut( "Ctrl+Down" ));
+#endif
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
@@ -586,7 +605,5 @@ void ActionManagerImpl::setArticleActionsEnabled( bool enabled ) {
     setActionEnabled("file_sendfile")
 #undef setActionEnabled
 }
-
-} // namespace Akregator
 
 #include "actionmanagerimpl.moc"

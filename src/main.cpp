@@ -59,7 +59,9 @@ int Application::newInstance()
       mMainWindow->setupProgressWidgets();
       if (!args->isSet("hide-mainwindow"))
         mMainWindow->show();
+#ifdef KRSS_PORT_DISABLED // figure out why it is called
       akr.call( "openStandardFeedList");
+#endif
     }
 
     QString addFeedGroup = !args->getOption("group").isEmpty() ?

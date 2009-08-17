@@ -25,8 +25,9 @@
 
 #include "speechclient.h"
 #include <kstandarddirs.h>
-#include "article.h"
 #include "utils.h"
+
+#include <krss/item.h>
 
 #include <kcharsets.h>
 #include <klocale.h>
@@ -36,8 +37,10 @@
 #include <kservicetypetrader.h>
 
 #include "kspeechinterface.h"
-#include <QString>
 #include <kspeech.h>
+
+#include <QString>
+
 namespace Akregator
 {
 
@@ -88,34 +91,32 @@ void SpeechClient::slotSpeak(const QString& text, const QString& language)
     }
 }
 
-void SpeechClient::slotSpeak(const Article& article)
+void SpeechClient::slotSpeak(const KRss::Item& item)
 {
-    if (!isTextToSpeechInstalled() || article.isNull())
+    if (!isTextToSpeechInstalled() || item.isNull())
         return;
 
     QString speakMe;
-    speakMe += KCharsets::resolveEntities(Utils::stripTags((article).title()))
+    speakMe += KCharsets::resolveEntities(Utils::stripTags(item.title()))
     + ". . . . "
-    + KCharsets::resolveEntities(Utils::stripTags((article).description()));
+    + KCharsets::resolveEntities(Utils::stripTags(item.content()));
     slotSpeak(speakMe, "en");
 }
 
-void SpeechClient::slotSpeak(const QList<Article>& articles)
+void SpeechClient::slotSpeak(const QList<KRss::Item>& items)
 {
-  qDebug()<<" SpeechClient::slotSpeak(const Articlessssssssssss& article) :"<<articles.isEmpty()<<" isTextToSpeechInstalled :"<<isTextToSpeechInstalled();
-
-    if (!isTextToSpeechInstalled() || articles.isEmpty())
+    if (!isTextToSpeechInstalled() || items.isEmpty())
         return;
 
     QString speakMe;
 
-    for (QList<Article>::ConstIterator it = articles.begin(); it != articles.end(); ++it)
+    Q_FOREACH( const KRss::Item& i, items)
     {
         if (!speakMe.isEmpty())
             speakMe += ". . . . . . " + i18n("Next Article: ");
-        speakMe += KCharsets::resolveEntities(Utils::stripTags((*it).title()))
+        speakMe += KCharsets::resolveEntities(Utils::stripTags(i.title()))
         + ". . . . "
-        + KCharsets::resolveEntities(Utils::stripTags((*it).description()));
+        + KCharsets::resolveEntities(Utils::stripTags(i.content()));
     }
 
     SpeechClient::self()->slotSpeak(speakMe, "en");

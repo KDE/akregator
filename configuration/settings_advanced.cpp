@@ -24,8 +24,6 @@
 
 #include "akregatorconfig.h"
 #include "settings_advanced.h"
-#include "storagefactory.h"
-#include "storagefactoryregistry.h"
 
 #include <KComboBox>
 
@@ -41,18 +39,22 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
 {
     setObjectName(name);
     setupUi(this);
-    
+
+#ifdef KRSS_PORT_DISABLED
     const QStringList backends = Backend::StorageFactoryRegistry::self()->list();
     Q_FOREACH( const QString& i, backends)
     {
         Backend::StorageFactory* const factory = Backend::StorageFactoryRegistry::self()->getFactory( i );
         if ( !factory )
             continue;
-       
+
         m_factories.insert( factory->key(), factory );
         cbBackend->addItem( factory->name(), factory->key() );
     }
-    
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
+
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
     connect(cbBackend, SIGNAL(activated(int)), this, SLOT(slotFactorySelected(int)));
     connect( kcfg_UseMarkReadDelay, SIGNAL( toggled( bool ) ),
@@ -66,6 +68,7 @@ QString SettingsAdvanced::selectedFactory() const
 
 void SettingsAdvanced::selectFactory( const QString& key )
 {
+#ifdef KRSS_PORT_DISABLED
     const int idx = cbBackend->findData( key );
     if ( idx < 0 )
         return;
@@ -73,22 +76,33 @@ void SettingsAdvanced::selectFactory( const QString& key )
     const Backend::StorageFactory* const factory = m_factories.value( key );
     assert( factory );
     pbBackendConfigure->setEnabled( factory->isConfigurable() );
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void SettingsAdvanced::slotConfigureStorage()
 {
+#ifdef KRSS_PORT_DISABLED
     const QString key = cbBackend->itemData( cbBackend->currentIndex() ).toString();
     Backend::StorageFactory* const factory = m_factories.value( key );
     assert( factory );
     factory->configure();
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 void SettingsAdvanced::slotFactorySelected( int pos )
 {
+#ifdef KRSS_PORT_DISABLED
     const QString key = cbBackend->itemData( pos ).toString();
     const Backend::StorageFactory* const factory = m_factories.value( key );
     assert( factory );
     pbBackendConfigure->setEnabled( factory->isConfigurable() );
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 }
 
 } //namespace Akregator

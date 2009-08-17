@@ -34,13 +34,11 @@
 namespace Akregator
 {
 
-class Feed;
-
 class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
 {
     Q_OBJECT
     public:
-        AddFeedWidget(QWidget *parent = 0, const char *name = 0);
+        AddFeedWidget(QWidget *parent = 0);
         ~AddFeedWidget();
 };
 
@@ -48,19 +46,18 @@ class AddFeedDialog : public KDialog
 {
     Q_OBJECT
     public:
-        explicit AddFeedDialog(QWidget *parent = 0, const char *name = 0);
+        explicit AddFeedDialog(QWidget *parent = 0);
         ~AddFeedDialog();
 
-        void setUrl(const QString& t);
-        Feed* feed();
+        void setUrl( const QString& url );
+        QString url() const;
 
+#ifdef KRSS_PORT_DISABLED
     public slots:
-        
-        void accept();
-        
         void fetchCompleted(Akregator::Feed *);
         void fetchDiscovery(Akregator::Feed *);
         void fetchError(Akregator::Feed *);
+#endif // KRSS_PORT_DISABLED
 
     private slots:
         void textChanged(const QString&);
@@ -68,7 +65,6 @@ class AddFeedDialog : public KDialog
     private:
         AddFeedWidget *widget;
         QString feedUrl;
-        Feed* m_feed;
 };
 
 } // namespace Akregator

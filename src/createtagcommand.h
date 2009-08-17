@@ -22,65 +22,44 @@
     without including the source code for Qt in the source distribution.
 */
 
+#ifndef AKREGATOR_CREATETAGCOMMAND_H
+#define AKREGATOR_CREATETAGCOMMAND_H
+
 #include "command.h"
 
-#include <QEventLoop>
-#include <QPointer>
-#include <QWidget>
+#include <boost/shared_ptr.hpp>
 
-using namespace Akregator;
+namespace KRss {
+    class FeedListView;
+    class TagProvider;
+}
 
-class Command::Private
+namespace Akregator {
+
+class Folder;
+class SubscriptionListView;
+class TreeNode;
+
+class CreateTagCommand : public Command
 {
+    Q_OBJECT
 public:
-    Private();
-    QPointer<QWidget> parentWidget;
-    bool userVisible;
+    explicit CreateTagCommand( const boost::shared_ptr<const KRss::TagProvider>& tagProvider, QObject* parent = 0 );
+    ~CreateTagCommand();
+
+    void setFeedListView( KRss::FeedListView* view );
+
+private:
+    void doStart();
+    void doAbort();
+
+private:
+    class Private;
+    Private* const d;
+    Q_PRIVATE_SLOT( d, void doCreate() )
+    Q_PRIVATE_SLOT( d, void tagCreateJobFinished( KJob* ) )
 };
 
-Command::Private::Private() : parentWidget(), userVisible( true )
-{
 }
 
-Command::Command( QObject* parent ) : KJob( parent ), d( new Private )
-{
-
-}
-
-Command::~Command()
-{
-    delete d;
-}
-
-QWidget* Command::parentWidget() const
-{
-    return d->parentWidget;
-}
-
-void Command::setParentWidget( QWidget* parentWidget )
-{
-    d->parentWidget = parentWidget;
-}
-
-void Command::start()
-{
-    doStart();
-    emit started();
-}
-
-bool Command::isUserVisible() const {
-    return d->userVisible;
-}
-
-void Command::setUserVisible( bool visible ) {
-    d->userVisible = visible;
-}
-
-void Command::waitForFinished()
-{
-    QEventLoop loop;
-    connect( this, SIGNAL( finished(KJob*) ), &loop, SLOT( quit() ) );
-    loop.exec();
-}
-
-#include "command.moc"
+#endif // AKREGATOR_CREATETAGCOMMAND_H

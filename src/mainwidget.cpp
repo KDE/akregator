@@ -29,36 +29,45 @@
 #include "addfeeddialog.h"
 #include "articlelistview.h"
 #include "articleviewer.h"
-#include "articlejobs.h"
 #include "akregatorconfig.h"
 #include "akregator_part.h"
 #include "browserframe.h"
 #include "createfeedcommand.h"
-#include "createfoldercommand.h"
+#include "createtagcommand.h"
 #include "deletesubscriptioncommand.h"
 #include "editsubscriptioncommand.h"
-#include "expireitemscommand.h"
 #include "importfeedlistcommand.h"
-#include "feed.h"
-#include "feedlist.h"
-#include "feedpropertiesdialog.h"
-#include "fetchqueue.h"
-#include "folder.h"
+#include "exportfeedlistcommand.h"
 #include "framemanager.h"
 #include "kernel.h"
+#include "migratefeedscommand.h"
 #include "notificationmanager.h"
 #include "openurlrequest.h"
 #include "progressmanager.h"
 #include "searchbar.h"
 #include "selectioncontroller.h"
 #include "speechclient.h"
-#include "subscriptionlistjobs.h"
-#include "subscriptionlistmodel.h"
-#include "subscriptionlistview.h"
 #include "tabwidget.h"
-#include "treenode.h"
-#include "treenodevisitor.h"
 #include "types.h"
+
+#include <krss/feedlist.h>
+#include <krss/feedlistmodel.h>
+#include <krss/item.h>
+#include <krss/itemjobs.h>
+#include <krss/netresource.h>
+#include <krss/resourcemanager.h>
+#include <krss/tagprovider.h>
+#include <krss/resourcemanager.h>
+#include <krss/treenode.h>
+#include <krss/treenodevisitor.h>
+#include <krss/netfeed.h>
+#include <krss/tagjobs.h>
+#include <krss/feedjobs.h>
+
+#include <krss/ui/feedlistview.h>
+#include <krss/ui/tagpropertiesdialog.h>
+#include <krss/statusmodifyjob.h>
+
 #include <solid/networking.h>
 
 #include <kaction.h>
@@ -87,10 +96,25 @@
 #include <algorithm>
 #include <memory>
 #include <cassert>
+#include <boost/shared_ptr.hpp>
 
 using namespace boost;
 using namespace Akregator;
 using namespace Solid;
+using std::auto_ptr;
+using boost::weak_ptr;
+
+class MainWidget::Private {
+    MainWidget* const q;
+public:
+    explicit Private( MainWidget* qq ) : q( qq ) {}
+    void setUpAndStart( Command* cmd ) {
+        cmd->setParentWidget( q );
+        if ( cmd->isUserVisible() )
+            ProgressManager::self()->addJob( cmd );
+        cmd->start();
+    }
+};
 
 Akregator::MainWidget::~MainWidget()
 {
@@ -99,19 +123,16 @@ Akregator::MainWidget::~MainWidget()
     // should be no risk to do the cleanups now
     if (!m_shuttingDown)
         slotOnShutdown();
+    delete d;
 }
 
-Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const char *name)
+Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImpl* actionManager)
      : QWidget(parent),
+     d( new Private( this ) ),
      m_feedList(),
      m_viewMode(NormalView),
-     m_actionManager(actionManager),
-     m_feedListManagementInterface( new FeedListManagementImpl )
+     m_actionManager(actionManager)
 {
-    setObjectName(name);
-
-    FeedListManagementInterface::setInstance( m_feedListManagementInterface );
-
     m_actionManager->initMainWidget(this);
     m_actionManager->initFrameManager(Kernel::self()->frameManager());
     m_part = part;
@@ -127,14 +148,17 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_horizontalSplitter->setOpaqueResize(true);
     lt->addWidget(m_horizontalSplitter);
 
-    connect(Kernel::self()->fetchQueue(), SIGNAL(signalStarted()),
-             this, SLOT(slotFetchingStarted()));
-    connect(Kernel::self()->fetchQueue(), SIGNAL(signalStopped()),
-             this, SLOT(slotFetchingStopped()));
+    const QString defaultResourceId = Settings::activeAkonadiResource();
+    const shared_ptr<const KRss::NetResource> resource = KRss::ResourceManager::self()->resource( defaultResourceId );
+    connect( resource.get(), SIGNAL( fetchQueueStarted() ),
+             this, SLOT( slotFetchQueueStarted() ) );
+    connect( resource.get(), SIGNAL( fetchQueueFinished() ),
+             this, SLOT( slotFetchQueueFinished() ) );
 
-    m_feedListView = new SubscriptionListView( m_horizontalSplitter );
-    m_feedListView->setObjectName( "feedtree" );
-    m_actionManager->initSubscriptionListView( m_feedListView );
+    m_feedListView = new KRss::FeedListView( m_horizontalSplitter );
+    const KConfigGroup group( Settings::self()->config(), "General" );
+    m_feedListView->setConfigGroup( group );
+    m_actionManager->initFeedListView( m_feedListView );
 
     connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
             Akregator::Folder*)),
@@ -195,20 +219,24 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ),
             m_selectionController, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
 
+#ifdef KRSS_PORT_DISABLED
     FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
     connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) );
     connect( m_feedListView, SIGNAL( collapsed( QModelIndex ) ), expansionHandler, SLOT( itemCollapsed( QModelIndex ) ) );
 
     m_selectionController->setFolderExpansionHandler( expansionHandler );
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+#endif //KRSS_PORT_DISABLED
 
-    connect( m_selectionController, SIGNAL( currentSubscriptionChanged( Akregator::TreeNode* ) ),
-             this, SLOT( slotNodeSelected( Akregator::TreeNode* ) ) );
+    connect( m_selectionController, SIGNAL( currentSubscriptionChanged(boost::shared_ptr<KRss::TreeNode>) ),
+             this, SLOT( slotNodeSelected(boost::shared_ptr<KRss::TreeNode>) ) );
 
-    connect( m_selectionController, SIGNAL( currentArticleChanged( Akregator::Article ) ),
-             this, SLOT( slotArticleSelected( Akregator::Article ) ) );
+    connect( m_selectionController, SIGNAL(currentItemChanged(KRss::Item)),
+             this, SLOT(slotItemSelected(KRss::Item)) );
 
-    connect( m_selectionController, SIGNAL( articleDoubleClicked( Akregator::Article ) ),
-             this, SLOT( slotOpenArticleInBrowser( Akregator::Article )) );
+    connect( m_selectionController, SIGNAL(itemDoubleClicked(KRss::Item)),
+             this, SLOT(slotOpenItemInBrowser(KRss::Item)) );
 
     m_actionManager->initArticleListView(m_articleListView);
 
@@ -258,22 +286,9 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
         m_displayingAboutPage = true;
     }
 
-    m_fetchTimer = new QTimer(this);
-    connect( m_fetchTimer, SIGNAL(timeout()),
-             this, SLOT(slotDoIntervalFetches()) );
-    m_fetchTimer->start(1000*60);
-
-    // delete expired articles once per hour
-    m_expiryTimer = new QTimer(this);
-    connect(m_expiryTimer, SIGNAL(timeout()),
-            this, SLOT(slotDeleteExpiredArticles()) );
-    m_expiryTimer->start(3600*1000);
-
     m_markReadTimer = new QTimer(this);
     m_markReadTimer->setSingleShot(true);
     connect(m_markReadTimer, SIGNAL(timeout()), this, SLOT(slotSetCurrentArticleReadDelayed()) );
-
-    setFeedList( shared_ptr<FeedList>( new FeedList( Kernel::self()->storage() ) ) );
 
     switch (Settings::viewMode())
     {
@@ -305,10 +320,6 @@ void Akregator::MainWidget::slotOnShutdown()
         m_tabWidget->slotRemoveCurrentFrame();
     }
 
-    Kernel::self()->fetchQueue()->slotAbort();
-    setFeedList( shared_ptr<FeedList>() );
-
-    delete m_feedListManagementInterface;
     delete m_feedListView; // call delete here, so that the header settings will get saved
     delete m_articleListView; // same for this one
 
@@ -355,10 +366,10 @@ void Akregator::MainWidget::sendArticle(bool attach)
         title = frame->title();
     }
     else { // nah, we're in articlelist..
-         const Article article =  m_selectionController->currentArticle();
-         if(!article.isNull()) {
-             text = article.link().prettyUrl().toLatin1();
-             title = article.title();
+         const KRss::Item item = m_selectionController->currentItem();
+         if(!item.isNull()) {
+             text = KUrl( item.link() ).prettyUrl().toLatin1();
+             title = item.title();
          }
     }
 
@@ -389,63 +400,66 @@ void Akregator::MainWidget::sendArticle(bool attach)
     }
 }
 
-void MainWidget::importFeedList( const QDomDocument& doc )
+void MainWidget::slotImportFeedList()
 {
     std::auto_ptr<ImportFeedListCommand> cmd( new ImportFeedListCommand );
-    cmd->setParentWidget( this );
-    cmd->setFeedListDocument( doc );
-    cmd->setTargetList( m_feedList );
-    cmd.release()->start();
+    cmd->setResourceIdentifier( Settings::activeAkonadiResource() );
+    d->setUpAndStart( cmd.release() );
 }
 
-void Akregator::MainWidget::setFeedList( const shared_ptr<FeedList>& list )
+void MainWidget::slotExportFeedList()
+{
+    std::auto_ptr<ExportFeedListCommand> cmd( new ExportFeedListCommand );
+    cmd->setResourceIdentifier( Settings::activeAkonadiResource() );
+    d->setUpAndStart( cmd.release() );
+}
+
+void MainWidget::slotMetakitImport()
+{
+    std::auto_ptr<MigrateFeedsCommand> cmd( new MigrateFeedsCommand );
+    cmd->setOpmlFile( KGlobal::dirs()->saveLocation("data", "akregator/data") + "/feeds.opml" );
+    cmd->setResource( Settings::activeAkonadiResource() );
+    d->setUpAndStart( cmd.release() );
+}
+
+void Akregator::MainWidget::setFeedList( const shared_ptr<KRss::FeedList>& list )
 {
     if ( list == m_feedList )
         return;
-    const shared_ptr<FeedList> oldList = m_feedList;
+    const shared_ptr<KRss::FeedList> oldList = m_feedList;
 
     m_feedList = list;
+#ifdef KRSS_PORT_DISABLED
     if ( m_feedList ) {
         connect( m_feedList.get(), SIGNAL(unreadCountChanged(int) ),
                  this, SLOT(slotSetTotalUnread()) );
     }
 
     slotSetTotalUnread();
+#endif
 
-    m_feedListManagementInterface->setFeedList( m_feedList );
+    m_articleViewer->setFeedList( m_feedList );
     Kernel::self()->setFeedList( m_feedList );
+    NotificationManager::self()->setFeedList( m_feedList );
     ProgressManager::self()->setFeedList( m_feedList );
     m_selectionController->setFeedList( m_feedList );
 
     if ( oldList )
         oldList->disconnect( this );
-
-    slotDeleteExpiredArticles();
 }
 
-void Akregator::MainWidget::deleteExpiredArticles( const shared_ptr<FeedList>& list )
+void Akregator::MainWidget::setTagProvider( const boost::shared_ptr<const KRss::TagProvider>& tagProvider )
 {
-    if ( !list )
+    if ( tagProvider == m_tagProvider )
         return;
-    ExpireItemsCommand* cmd = new ExpireItemsCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setFeedList( list );
-    cmd->setFeeds( list->feedIds() );
-    cmd->start();
-}
 
-void Akregator::MainWidget::slotDeleteExpiredArticles()
-{
-    deleteExpiredArticles( m_feedList );
-}
-
-QDomDocument Akregator::MainWidget::feedListToOPML()
-{
-    return m_feedList->toOpml();
+    m_tagProvider = tagProvider;
+    m_selectionController->setTagProvider( m_tagProvider );
 }
 
 void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& groupName)
 {
+#ifdef KRSS_PORT_DISABLED
     // Locate the group.
     QList<TreeNode *> namedGroups = m_feedList->findByTitle( groupName );
     Folder* group = 0;
@@ -463,8 +477,10 @@ void Akregator::MainWidget::addFeedToGroup(const QString& url, const QString& gr
         group = g;
     }
 
+#endif
+
     // Invoke the Add Feed dialog with url filled in.
-    addFeed(url, 0, group, true);
+    addFeed(url, true);
 }
 
 void Akregator::MainWidget::slotNormalView()
@@ -476,12 +492,12 @@ void Akregator::MainWidget::slotNormalView()
     {
         m_articleListView->show();
 
-        const Article article =  m_selectionController->currentArticle();
+        const KRss::Item item = m_selectionController->currentItem();
 
-        if (!article.isNull())
-            m_articleViewer->showArticle(article);
+        if ( !item.isNull() )
+            m_articleViewer->showItem( item );
         else
-            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
+            m_articleViewer->slotShowSummary( m_feedList, m_selectionController->selectedSubscription() );
     }
 
     m_articleSplitter->setOrientation(Qt::Vertical);
@@ -499,14 +515,13 @@ void Akregator::MainWidget::slotWidescreenView()
     {
         m_articleListView->show();
 
-        Article article =  m_selectionController->currentArticle();
+        const KRss::Item item = m_selectionController->currentItem();
 
-        if (!article.isNull())
-            m_articleViewer->showArticle(article);
+        if ( !item.isNull() )
+            m_articleViewer->showItem( item );
         else
-            m_articleViewer->slotShowSummary( m_selectionController->selectedSubscription() );
+            m_articleViewer->slotShowSummary( m_feedList, m_selectionController->selectedSubscription() );
     }
-
     m_articleSplitter->setOrientation(Qt::Horizontal);
     m_viewMode = WidescreenView;
 
@@ -527,6 +542,7 @@ void Akregator::MainWidget::slotCombinedView()
 
 void Akregator::MainWidget::slotMoveCurrentNodeUp()
 {
+#ifdef KRSS_PORT_DISABLED
     TreeNode* current = m_selectionController->selectedSubscription();
     if (!current)
         return;
@@ -538,11 +554,15 @@ void Akregator::MainWidget::slotMoveCurrentNodeUp()
 
     parent->removeChild(prev);
     parent->insertChild(prev, current);
+
     m_feedListView->ensureNodeVisible(current);
+#endif
 }
 
 void Akregator::MainWidget::slotMoveCurrentNodeDown()
 {
+    #ifdef KRSS_PORT_DISABLED
+
     TreeNode* current = m_selectionController->selectedSubscription();
     if (!current)
         return;
@@ -555,39 +575,10 @@ void Akregator::MainWidget::slotMoveCurrentNodeDown()
     parent->removeChild(current);
     parent->insertChild(current, next);
     m_feedListView->ensureNodeVisible(current);
+#endif
 }
 
-void Akregator::MainWidget::slotMoveCurrentNodeLeft()
-{
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current || !current->parent() || !current->parent()->parent())
-        return;
-
-    Folder* parent = current->parent();
-    Folder* grandparent = current->parent()->parent();
-
-    parent->removeChild(current);
-    grandparent->insertChild(current, parent);
-    m_feedListView->ensureNodeVisible(current);
-}
-
-void Akregator::MainWidget::slotMoveCurrentNodeRight()
-{
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current || !current->parent())
-        return;
-    TreeNode* prev = current->prevSibling();
-
-    if ( prev && prev->isGroup() )
-    {
-        Folder* fg = static_cast<Folder*>(prev);
-        current->parent()->removeChild(current);
-        fg->appendChild(current);
-        m_feedListView->ensureNodeVisible(current);
-    }
-}
-
-void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
+void Akregator::MainWidget::slotNodeSelected(const boost::shared_ptr<KRss::TreeNode>& node)
 {
     m_markReadTimer->stop();
 
@@ -607,15 +598,15 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
 
     if (m_viewMode == CombinedView)
     {
-        m_articleViewer->showNode(node);
+        m_articleViewer->showNode( m_feedList, node );
     }
     else
     {
-        m_articleViewer->slotShowSummary(node);
+        m_articleViewer->slotShowSummary( m_feedList, node );
     }
 
     if (node)
-       m_mainFrame->setWindowTitle(node->title());
+       m_mainFrame->setWindowTitle( node->title( m_feedList ) );
 
     m_actionManager->slotNodeSelected(node);
 }
@@ -623,6 +614,7 @@ void Akregator::MainWidget::slotNodeSelected(TreeNode* node)
 
 void Akregator::MainWidget::slotFeedAdd()
 {
+#ifdef KRSS_PORT_DISABLED
     Folder* group = 0;
     if ( !m_selectionController->selectedSubscription() )
         group = m_feedList->allFeedsFolder();
@@ -636,56 +628,100 @@ void Akregator::MainWidget::slotFeedAdd()
     }
 
     TreeNode* const lastChild = !group->children().isEmpty() ? group->children().last() : 0;
+#endif
 
-    addFeed(QString::null, lastChild, group, false);	//krazy:exclude=nullstrassign for old broken gcc
+    addFeed(QString::null, false);	//krazy:exclude=nullstrassign for old broken gcc
 }
 
-void Akregator::MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)
+void Akregator::MainWidget::addFeed(const QString& url, bool autoExec)
 {
-    CreateFeedCommand* cmd( new CreateFeedCommand( this ) );
-    cmd->setParentWidget( this );
-    cmd->setPosition( parent, after );
-    cmd->setRootFolder( m_feedList->allFeedsFolder() );
+    std::auto_ptr<CreateFeedCommand> cmd( new CreateFeedCommand( this ) );
     cmd->setAutoExecute( autoExec );
     cmd->setUrl( url );
-    cmd->setSubscriptionListView( m_feedListView );
-    cmd->start();
+    // FIXME: keep a shared pointer to the default resource in MainWidget
+    const shared_ptr<KRss::NetResource> resource = KRss::ResourceManager::self()->resource(
+                                                                Settings::activeAkonadiResource() );
+    cmd->setResource( weak_ptr<KRss::NetResource>( resource ) );
+    cmd->setFeedListView( m_feedListView );
+    cmd->setFeedList( weak_ptr<KRss::FeedList>( m_feedList ) );
+    d->setUpAndStart( cmd.release() );
 }
 
-void Akregator::MainWidget::slotFeedAddGroup()
+void Akregator::MainWidget::slotTagAdd()
 {
-    CreateFolderCommand* cmd = new CreateFolderCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setSelectedSubscription( m_selectionController->selectedSubscription() );
-    cmd->setRootFolder( m_feedList->allFeedsFolder() );
-    cmd->setSubscriptionListView( m_feedListView );
-    cmd->start();
+    std::auto_ptr<CreateTagCommand> cmd( new CreateTagCommand( m_tagProvider, this ) );
+    cmd->setFeedListView( m_feedListView );
+    d->setUpAndStart( cmd.release() );
 }
 
 void Akregator::MainWidget::slotFeedRemove()
 {
-    TreeNode* selectedNode = m_selectionController->selectedSubscription();
-
-    // don't delete root element! (safety valve)
-    if (!selectedNode || selectedNode == m_feedList->allFeedsFolder())
+    const shared_ptr<const KRss::TreeNode> treeNode = m_selectionController->selectedSubscription();
+    if ( !treeNode )
         return;
 
-    DeleteSubscriptionCommand* cmd = new DeleteSubscriptionCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setSubscription( m_feedList, selectedNode->id() );
-    cmd->start();
+    if ( treeNode->tier() == KRss::TreeNode::TagTier ) {
+        const shared_ptr<const KRss::TagNode> tagNode = dynamic_pointer_cast<const KRss::TagNode,
+                                                                             const KRss::TreeNode>( treeNode );
+        assert( tagNode );
+        KRss::TagDeleteJob * const job = m_tagProvider->tagDeleteJob();
+        job->setTag( tagNode->tag() );
+        connect( job, SIGNAL( result( KJob* ) ), this, SLOT( slotJobFinished( KJob* ) ) );
+        job->start();
+    }
+    else { // FeedTier
+        const shared_ptr<const KRss::FeedNode> feedNode = dynamic_pointer_cast<const KRss::FeedNode,
+                                                                             const KRss::TreeNode>( treeNode );
+        assert( feedNode );
+        const shared_ptr<const KRss::Feed> feed = m_feedList->constFeedById( feedNode->feedId() );
+        KRss::FeedDeleteJob * const job = new KRss::FeedDeleteJob( feed , this );
+        connect( job, SIGNAL( result( KJob* ) ), this, SLOT( slotJobFinished( KJob* ) ) );
+        job->start();
+    }
 }
 
 void Akregator::MainWidget::slotFeedModify()
 {
-    TreeNode* const node = m_selectionController->selectedSubscription();
-    if ( !node )
+    const shared_ptr<KRss::TreeNode> treeNode = m_selectionController->selectedSubscription();
+    if ( !treeNode )
         return;
-    EditSubscriptionCommand* cmd = new EditSubscriptionCommand( this );
-    cmd->setParentWidget( this );
-    cmd->setSubscription( m_feedList, node->id() );
-    cmd->setSubscriptionListView( m_feedListView );
-    cmd->start();
+
+    std::auto_ptr<EditSubscriptionCommand> cmd( new EditSubscriptionCommand );
+    cmd->setTagProvider( m_tagProvider );
+    cmd->setFeedList( m_feedList );
+    cmd->setFeedListView( m_feedListView );
+    cmd->setNode( treeNode );
+    d->setUpAndStart( cmd.release() );
+}
+
+namespace {
+    class RemoveTagFromFeedVisitor : public KRss::TreeNodeVisitor {
+    public:
+        explicit RemoveTagFromFeedVisitor( const shared_ptr<KRss::FeedList>& fl ) : feedList( fl ) {}
+
+        void visit( const shared_ptr<KRss::FeedNode>& fn ) {
+            if ( !feedList )
+                return;
+            const shared_ptr<KRss::Feed> f = feedList->feedById( fn->feedId() );
+            if ( !f )
+                return;
+            const KRss::TagId id = fn->parent()->tag().id();
+            f->removeTag( id );
+            KRss::FeedModifyJob* job = new KRss::FeedModifyJob( f );
+            job->start();
+        }
+        void visit( const shared_ptr<KRss::RootNode>& ) {}
+        void visit( const shared_ptr<KRss::TagNode>& ) {}
+
+        const shared_ptr<KRss::FeedList> feedList;
+    };
+}
+
+void Akregator::MainWidget::slotFeedRemoveTag()
+{
+    const shared_ptr<KRss::TreeNode> treeNode = m_selectionController->selectedSubscription();
+    RemoveTagFromFeedVisitor v( m_feedList );
+    treeNode->accept( &v );
 }
 
 void Akregator::MainWidget::slotNextUnreadArticle()
@@ -695,8 +731,8 @@ void Akregator::MainWidget::slotNextUnreadArticle()
         m_feedListView->slotNextUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
+    const shared_ptr<KRss::TreeNode> sel = m_selectionController->selectedSubscription();
+    if (sel && sel->unreadCount( m_feedList ) > 0)
         m_articleListView->slotNextUnreadArticle();
     else
         m_feedListView->slotNextUnreadFeed();
@@ -709,8 +745,9 @@ void Akregator::MainWidget::slotPrevUnreadArticle()
         m_feedListView->slotPrevUnreadFeed();
         return;
     }
-    TreeNode* sel = m_selectionController->selectedSubscription();
-    if (sel && sel->unread() > 0)
+    const shared_ptr<KRss::TreeNode> sel = m_selectionController->selectedSubscription();
+
+    if (sel && sel->unreadCount( m_feedList ) > 0)
         m_articleListView->slotPreviousUnreadArticle();
     else
         m_feedListView->slotPrevUnreadFeed();
@@ -718,78 +755,95 @@ void Akregator::MainWidget::slotPrevUnreadArticle()
 
 void Akregator::MainWidget::slotMarkAllFeedsRead()
 {
-    KJob* job = m_feedList->createMarkAsReadJob();
-    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()) );
+    KRss::CompositeStatusModifyJob * const job = new KRss::CompositeStatusModifyJob( this );
+    Q_FOREACH( const shared_ptr<KRss::Feed>& feed, m_feedList->feeds() ) {
+        job->addSubJob( feed->statusModifyJob() );
+    }
+
+    job->clearFlags( QList<KRss::Item::StatusFlag>() << KRss::Item::Unread << KRss::Item::New );
+    connect( job, SIGNAL( result( KJob* ) ), this, SLOT( slotJobFinished( KJob* ) ) );
+    ProgressManager::self()->addJob( job );
     job->start();
 }
 
-void Akregator::MainWidget::slotMarkAllRead()
+void Akregator::MainWidget::slotMarkFeedRead()
 {
-    if(!m_selectionController->selectedSubscription())
+    const shared_ptr<KRss::TreeNode> treeNode = m_selectionController->selectedSubscription();
+    if ( !treeNode )
         return;
-    KJob* job = m_selectionController->selectedSubscription()->createMarkAsReadJob();
-    connect(job, SIGNAL(finished(KJob*)), m_selectionController, SLOT(forceFilterUpdate()) );
+
+    KRss::CreateStatusModifyJobVisitor visitor( m_feedList );
+    treeNode->accept( &visitor );
+    KRss::StatusModifyJob * const job = visitor.statusModifyJob();
+    job->clearFlags( QList<KRss::Item::StatusFlag>() << KRss::Item::Unread << KRss::Item::New );
+    connect( job, SIGNAL( result( KJob* ) ), this, SLOT( slotJobFinished( KJob* ) ) );
+    ProgressManager::self()->addJob( job );
     job->start();
 }
 
 void Akregator::MainWidget::slotSetTotalUnread()
 {
+#ifdef KRSS_PORT_DISABLED
     emit signalUnreadCountChanged( m_feedList ? m_feedList->unread() : 0 );
-}
-
-void Akregator::MainWidget::slotDoIntervalFetches()
-{
-    if ( !m_feedList )
-        return;
-    const Networking::Status status = Solid::Networking::status();
-    if ( status != Networking::Connected && status != Networking::Unknown )
-        return;
-    m_feedList->addToFetchQueue(Kernel::self()->fetchQueue(), true);
+#endif
 }
 
 void Akregator::MainWidget::slotFetchCurrentFeed()
 {
-    if ( !m_selectionController->selectedSubscription() )
+    const shared_ptr<KRss::TreeNode> treeNode = m_selectionController->selectedSubscription();
+    if ( !treeNode )
         return;
-    m_selectionController->selectedSubscription()->slotAddToFetchQueue(Kernel::self()->fetchQueue());
+
+    KRss::FetchVisitor visitor( m_feedList );
+    treeNode->accept( &visitor );
 }
 
 void Akregator::MainWidget::slotFetchAllFeeds()
 {
-    if ( m_feedList )
-        m_feedList->addToFetchQueue( Kernel::self()->fetchQueue() );
+    if ( !m_feedList )
+        return;
+    Q_FOREACH( const shared_ptr<const KRss::Feed>& feed, m_feedList->constFeeds() ) {
+        feed->fetch();
+    }
 }
 
-void Akregator::MainWidget::slotFetchingStarted()
+void Akregator::MainWidget::slotAbortFetches() {
+    if ( !m_feedList )
+        return;
+    Q_FOREACH( const shared_ptr<const KRss::Feed>& feed, m_feedList->constFeeds() )
+        feed->abortFetch();
+}
+
+void Akregator::MainWidget::slotFetchQueueStarted()
 {
     m_mainFrame->slotSetState(Frame::Started);
     m_actionManager->action("feed_stop")->setEnabled(true);
     m_mainFrame->slotSetStatusText(i18n("Fetching Feeds..."));
+    m_actionManager->action( "feed_fetch_all" )->setEnabled( false );
 }
 
-void Akregator::MainWidget::slotFetchingStopped()
+void Akregator::MainWidget::slotFetchQueueFinished()
 {
     m_mainFrame->slotSetState(Frame::Completed);
     m_actionManager->action("feed_stop")->setEnabled(false);
     m_mainFrame->slotSetStatusText(QString());
+    m_actionManager->action( "feed_fetch_all" )->setEnabled( true );
 }
 
-void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& article)
+void Akregator::MainWidget::slotItemSelected( const KRss::Item& item )
 {
     if (m_viewMode == CombinedView)
         return;
 
     m_markReadTimer->stop();
 
-    assert( article.isNull() || article.feed() );
-
     KToggleAction* const maai = qobject_cast<KToggleAction*>( m_actionManager->action( "article_set_status_important" ) );
     assert( maai );
-    maai->setChecked( article.keep() );
+    maai->setChecked( item.isImportant() );
 
-    m_articleViewer->showArticle( article );
+    m_articleViewer->showItem( item );
 
-    if ( article.isNull() || article.status() == Akregator::Read )
+    if ( item.isNull() || item.isRead() )
         return;
 
     if ( !Settings::useMarkReadDelay() )
@@ -803,9 +857,13 @@ void Akregator::MainWidget::slotArticleSelected(const Akregator::Article& articl
     }
     else
     {
-        Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-        const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
-        job->setStatus( aid, Akregator::Read );
+        KRss::Item modifiedItem = item;
+        modifiedItem.setStatus( item.status() & ~( KRss::Item::New | KRss::Item::Unread ) );
+        KRss::ItemModifyJob * const job = new KRss::ItemModifyJob();
+        job->setItem( modifiedItem );
+        job->setIgnorePayload( true );
+        //PENDING(frank) connect to finished signal and report errors
+
         job->start();
     }
 }
@@ -839,16 +897,29 @@ void Akregator::MainWidget::slotMouseButtonPressed(int button, const KUrl& url)
 
 void Akregator::MainWidget::slotOpenHomepage()
 {
-    Feed* feed = dynamic_cast<Feed *>( m_selectionController->selectedSubscription() );
-
-    if (!feed)
+    const shared_ptr<const KRss::TreeNode> treeNode = m_selectionController->selectedSubscription();
+    if ( !treeNode )
+        return;
+    else if ( treeNode->tier() == KRss::TreeNode::TagTier )
         return;
 
-    KUrl url(feed->htmlUrl());
+    const shared_ptr<const KRss::FeedNode> feedNode = dynamic_pointer_cast<const KRss::FeedNode,
+                                                                           const KRss::TreeNode>( treeNode );
+    assert( feedNode );
+    const shared_ptr<const KRss::Feed> feed = m_feedList->constFeedById( feedNode->feedId() );
+    assert( feed );
 
-    if (url.isValid())
-    {
-        OpenUrlRequest req(feed->htmlUrl());
+    // check whether it's a virtual search feed
+    if ( feed->isVirtual() )
+        return;
+
+    const shared_ptr<const KRss::NetFeed> netFeed = dynamic_pointer_cast<const KRss::NetFeed,
+                                                                         const KRss::Feed>( feed );
+    assert( netFeed );
+
+    KUrl url( netFeed->htmlUrl() );
+    if (url.isValid()) {
+        OpenUrlRequest req( url );
         req.setOptions(OpenUrlRequest::ExternalBrowser);
         Kernel::self()->frameManager()->slotOpenUrlRequest(req);
     }
@@ -856,30 +927,31 @@ void Akregator::MainWidget::slotOpenHomepage()
 
 void Akregator::MainWidget::slotOpenSelectedArticlesInBrowser()
 {
-    const QList<Article> articles = m_selectionController->selectedArticles();
+    const QList<KRss::Item> items = m_selectionController->selectedItems();
 
-    Q_FOREACH( const Akregator::Article& article, articles )
-        slotOpenArticleInBrowser( article );
+    Q_FOREACH( const KRss::Item& i, items )
+        slotOpenItemInBrowser( i );
 }
 
-void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article& article)
+void Akregator::MainWidget::slotOpenItemInBrowser( const KRss::Item& item )
 {
-    if (!article.isNull() && article.link().isValid())
-    {
-        OpenUrlRequest req(article.link());
-        req.setOptions(OpenUrlRequest::ExternalBrowser);
-        Kernel::self()->frameManager()->slotOpenUrlRequest(req);
-    }
+    const KUrl link( item.link() );
+    if ( !link.isValid() )
+        return;
+
+    OpenUrlRequest req( link );
+    req.setOptions( OpenUrlRequest::ExternalBrowser );
+    Kernel::self()->frameManager()->slotOpenUrlRequest( req );
 }
 
 
 void Akregator::MainWidget::slotOpenSelectedArticles()
 {
-    const QList<Article> articles = m_selectionController->selectedArticles();
+    const QList<KRss::Item> items = m_selectionController->selectedItems();
 
-    Q_FOREACH( const Akregator::Article& article, articles )
+    Q_FOREACH( const KRss::Item& item, items )
     {
-        const KUrl url = article.link();
+        const KUrl url( item.link() );
         if ( !url.isValid() )
           continue;
 
@@ -895,15 +967,14 @@ void Akregator::MainWidget::slotOpenSelectedArticles()
 
 void Akregator::MainWidget::slotCopyLinkAddress()
 {
-    const Article article =  m_selectionController->currentArticle();
+    const KRss::Item item =  m_selectionController->currentItem();
 
-    if(article.isNull())
+    if(item.isNull())
        return;
 
-    QString link;
-    if (article.link().isValid())
+    if ( KUrl( item.link() ).isValid() )
     {
-        link = article.link().url();
+        const QString link = KUrl( item.link() ).url();
         QClipboard *cb = QApplication::clipboard();
         cb->setText(link, QClipboard::Clipboard);
         // don't set url to selection as it's a no-no according to a fd.o spec
@@ -914,7 +985,7 @@ void Akregator::MainWidget::slotCopyLinkAddress()
 void Akregator::MainWidget::slotFeedUrlDropped(KUrl::List &urls, TreeNode* after, Folder* parent)
 {
     Q_FOREACH ( const KUrl& i, urls )
-        addFeed( i.prettyUrl(), after, parent, false );
+        addFeed( i.prettyUrl(), false );
 }
 
 void Akregator::MainWidget::slotToggleShowQuickFilter()
@@ -940,18 +1011,18 @@ void Akregator::MainWidget::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QList<Article> articles = m_selectionController->selectedArticles();
+    const QList<KRss::Item> items = m_selectionController->selectedItems();
 
     QString msg;
-    switch (articles.count())
+    switch (items.count())
     {
         case 0:
             return;
         case 1:
-            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", Qt::escape(articles.first().title()));
+            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", Qt::escape(items.first().title()));
             break;
         default:
-            msg = i18np("<qt>Are you sure you want to delete the selected article?</qt>", "<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
+            msg = i18np("<qt>Are you sure you want to delete the selected article?</qt>", "<qt>Are you sure you want to delete the %1 selected articles?</qt>", items.count());
     }
 
     if ( KMessageBox::warningContinueCancel( this,
@@ -961,67 +1032,80 @@ void Akregator::MainWidget::slotArticleDelete()
                                              "Disable delete article confirmation" ) != KMessageBox::Continue )
         return;
 
-    TreeNode* const selected = m_selectionController->selectedSubscription();
-
-    if ( selected )
-        selected->setNotificationMode( false );
-
-    Akregator::ArticleDeleteJob* job = new Akregator::ArticleDeleteJob;
-    Q_FOREACH( const Akregator::Article& i, articles )
+    Q_FOREACH( const KRss::Item& i, items )
     {
-        Feed* const feed = i.feed();
-        assert( feed );
-        const Akregator::ArticleId aid = { feed->xmlUrl(), i.guid() };
-        job->appendArticleId( aid );
+        KRss::Item modifiedItem = i;
+        modifiedItem.setStatus( i.status() | KRss::Item::Deleted );
+        KRss::ItemModifyJob * const job = new KRss::ItemModifyJob();
+        job->setItem( modifiedItem );
+        job->setIgnorePayload( true );
+
+        job->start();
     }
 
-    job->start();
-
-    if ( selected )
-        selected->setNotificationMode( true );
 }
 
 
 void Akregator::MainWidget::slotArticleToggleKeepFlag( bool )
 {
-    const QList<Article> articles = m_selectionController->selectedArticles();
+    const QList<KRss::Item> items = m_selectionController->selectedItems();
 
-    if (articles.isEmpty())
+    if (items.isEmpty())
         return;
 
     bool allFlagsSet = true;
-    Q_FOREACH ( const Akregator::Article& i, articles )
+    Q_FOREACH ( const KRss::Item& i, items )
     {
-        allFlagsSet = allFlagsSet && i.keep();
+        allFlagsSet = allFlagsSet && i.isImportant();
         if ( !allFlagsSet )
             break;
     }
 
-    Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-    Q_FOREACH ( const Akregator::Article& i, articles )
+    Q_FOREACH ( const KRss::Item& i, items )
     {
-        const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
-        job->setKeep( aid, !allFlagsSet );
+        KRss::Item modifiedItem = i;
+        if ( allFlagsSet )
+            modifiedItem.setStatus( i.status() & ~KRss::Item::Important );
+        else
+            modifiedItem.setStatus( i.status() | KRss::Item::Important );
+
+        KRss::ItemModifyJob * const job = new KRss::ItemModifyJob();
+        job->setItem( modifiedItem );
+        job->setIgnorePayload( true );
+        //PENDING(frank) connect to finished signal and report errors
+        job->start();
     }
-    job->start();
 }
 
 namespace {
 
-void setSelectedArticleStatus( const Akregator::AbstractSelectionController* controller, int status )
+static void setSelectedArticleStatus( const Akregator::AbstractSelectionController* controller, Akregator::ArticleStatus status )
 {
-    const QList<Akregator::Article> articles = controller->selectedArticles();
+    const QList<KRss::Item> items = controller->selectedItems();
 
-    if (articles.isEmpty())
+    if (items.isEmpty())
         return;
 
-    Akregator::ArticleModifyJob* job = new Akregator::ArticleModifyJob;
-    Q_FOREACH ( const Akregator::Article& i, articles )
+    Q_FOREACH ( const KRss::Item& i, items )
     {
-        const Akregator::ArticleId aid = { i.feed()->xmlUrl(), i.guid() };
-        job->setStatus( aid, status );
+        KRss::Item modifiedItem = i;
+        switch ( status ) {
+        case Akregator::Read:
+            modifiedItem.setStatus( i.status() & ~( KRss::Item::New | KRss::Item::Unread ) );
+            break;
+        case Akregator::Unread:
+            modifiedItem.setStatus( ( i.status() | KRss::Item::Unread ) & ~KRss::Item::New );
+            break;
+        case Akregator::New:
+            modifiedItem.setStatus( i.status() | KRss::Item::New | KRss::Item::Unread );
+            break;
+        }
+        KRss::ItemModifyJob * const job = new KRss::ItemModifyJob();
+        job->setItem( modifiedItem );
+        job->setIgnorePayload( true );
+        //PENDING(frank) connect to finished signal and report errors
+        job->start();
     }
-    job->start();
 }
 
 }
@@ -1039,7 +1123,7 @@ void Akregator::MainWidget::slotTextToSpeechRequest()
         if (m_viewMode != CombinedView)
         {
             // in non-combined view, read selected articles
-            SpeechClient::self()->slotSpeak(m_selectionController->selectedArticles());
+            SpeechClient::self()->slotSpeak(m_selectionController->selectedItems());
             // TODO: if article viewer has a selection, read only the selected text?
         }
         else
@@ -1068,14 +1152,16 @@ void Akregator::MainWidget::slotSetSelectedArticleNew()
 
 void Akregator::MainWidget::slotSetCurrentArticleReadDelayed()
 {
-    const Article article =  m_selectionController->currentArticle();
+    KRss::Item item =  m_selectionController->currentItem();
 
-    if (article.isNull())
+    if ( item.isNull() )
         return;
 
-    Akregator::ArticleModifyJob* const job = new Akregator::ArticleModifyJob;
-    const Akregator::ArticleId aid = { article.feed()->xmlUrl(), article.guid() };
-    job->setStatus( aid, Akregator::Read );
+    item.setStatus( item.status() & ~( KRss::Item::New | KRss::Item::Unread ) );
+
+    KRss::ItemModifyJob * const job = new KRss::ItemModifyJob();
+    job->setItem( item );
+    job->setIgnorePayload( true );
     job->start();
 }
 
@@ -1116,5 +1202,12 @@ void Akregator::MainWidget::saveProperties(KConfigGroup & config)
     Kernel::self()->frameManager()->saveProperties(config);
 }
 
+void Akregator::MainWidget::slotJobFinished( KJob *job )
+{
+    if ( job->error() ) {
+        kWarning() << job->errorString();
+        KMessageBox::error( this, job->errorString() );
+    }
+}
 
 #include "mainwidget.moc"

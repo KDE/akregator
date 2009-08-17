@@ -23,75 +23,110 @@
 */
 
 #include "editsubscriptioncommand.h"
+#include "command_p.h"
+#include "editfeedcommand.h"
 
-#include "feed.h"
-#include "feedlist.h"
-#include "folder.h"
-#include "feedpropertiesdialog.h"
-#include "subscriptionlistview.h"
-#include "treenodevisitor.h"
+#include <krss/feedlist.h>
+#include <krss/tag.h>
+#include <krss/tagjobs.h>
+#include <krss/tagprovider.h>
+#include <krss/treenode.h>
+#include <krss/treenodevisitor.h>
+#include <krss/ui/feedlistview.h>
+#include <krss/ui/tagpropertiesdialog.h>
 
+#include <KDebug>
+#include <KLocalizedString>
+#include <KMessageBox>
+
+#include <QPointer>
 #include <QTimer>
 
 #include <cassert>
 
 using namespace Akregator;
 using namespace boost;
+using namespace KRss;
 
-namespace {
-
-class EditNodePropertiesVisitor : public TreeNodeVisitor
-{
-public:
-    EditNodePropertiesVisitor( SubscriptionListView* subcriptionListView, QWidget* parent );
-
-    bool visitFolder(Folder* node)
-    {
-        m_subscriptionListView->startNodeRenaming( node );
-        return true;
-    }
-
-    bool visitFeed(Feed* node)
-    {
-        QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( m_widget );
-        dlg->setFeed(node);
-        dlg->exec();
-        delete dlg;
-        return true;
-    }
-private:
-
-    SubscriptionListView* m_subscriptionListView;
-    QWidget* m_widget;
-};
-
-}
-
-EditNodePropertiesVisitor::EditNodePropertiesVisitor( SubscriptionListView* subscriptionListView, QWidget* parent ) : m_subscriptionListView( subscriptionListView ), m_widget( parent )
-{
-    assert( m_subscriptionListView );
-    assert( m_widget );
-}
-
-class EditSubscriptionCommand::Private
+class EditSubscriptionCommand::Private : public TreeNodeVisitor
 {
     EditSubscriptionCommand* const q;
 public:
     explicit Private( EditSubscriptionCommand* qq );
     ~Private();
 
+    void visit( const shared_ptr<RootNode>& node )
+    {
+        nodeHandled = false;
+    }
+
+    void visit( const shared_ptr<TagNode>& node )
+    {
+        nodeHandled = true;
+        Tag tag = node->tag();
+        EmitResultGuard guard( q );
+        QPointer<TagPropertiesDialog> dialog( new TagPropertiesDialog( q->parentWidget() ) );
+        dialog->setLabel( tag.label() );
+        dialog->setDescription( tag.description() );
+        if ( dialog->exec() == KDialog::Accepted  ) {
+            tag.setLabel( dialog->label() );
+            tag.setDescription( dialog->description() );
+            TagModifyJob * const job = tagProvider->tagModifyJob();
+            job->setTag( tag );
+            connect( job, SIGNAL(finished(KJob*)), q, SLOT(tagModifyDone(KJob*)) );
+            job->start();
+        } else {
+            guard.emitResult();
+        }
+        delete dialog;
+    }
+
+    void visit( const shared_ptr<FeedNode>& node )
+    {
+        EmitResultGuard guard( q );
+        const shared_ptr<Feed> feed = feedList->feedById( node->feedId() );
+        if ( !feed ) {
+            guard.emitResult();
+            return;
+        }
+
+        EditFeedCommand* const job = new EditFeedCommand( q );
+        job->setParentWidget( q->parentWidget() );
+        job->setFeed( feed );
+        job->setFeedList( feedList );
+        connect( job, SIGNAL(finished(KJob*)), q, SLOT(feedModifyDone(KJob*)) );
+        job->start();
+    }
+
+    void feedModifyDone( KJob* job ) {
+        EmitResultGuard guard( q );
+        if ( job->error() )
+            KMessageBox::error( q->parentWidget(), i18n("Could not save feed settings: %1", job->errorString() ) );
+        guard.emitResult();
+    }
+
+    void tagModifyDone( KJob* job ) {
+        EmitResultGuard guard( q );
+        if ( job->error() )
+            KMessageBox::error( q->parentWidget(), i18n("Could not save tag settings: %1", job->errorString() ) );
+        guard.emitResult();
+    }
+
     void startEdit();
     void jobFinished();
 
-    shared_ptr<FeedList> m_list;
-    int m_subscriptionId;
-    SubscriptionListView* m_subscriptionListView;
+    bool nodeHandled;
+    shared_ptr<const TagProvider> tagProvider;
+    shared_ptr<TreeNode> node;
+    shared_ptr<FeedList> feedList;
+    QPointer<FeedListView> feedListView;
 };
 
-EditSubscriptionCommand::Private::Private( EditSubscriptionCommand* qq ) : q( qq ),
-                                                                               m_list(),
-                                                                               m_subscriptionId( -1 ),
-                                                                               m_subscriptionListView( 0 )
+EditSubscriptionCommand::Private::Private( EditSubscriptionCommand* qq )
+  : q( qq )
+  , nodeHandled( false )
+  , node()
+  , feedListView()
 {
 
 }
@@ -109,54 +144,59 @@ EditSubscriptionCommand::~EditSubscriptionCommand()
     delete d;
 }
 
-void EditSubscriptionCommand::setSubscription( const shared_ptr<FeedList>& feedList, int subId )
+void EditSubscriptionCommand::setNode( const shared_ptr<TreeNode>& node )
 {
-    d->m_list = feedList;
-    d->m_subscriptionId = subId;
+    d->node = node;
 }
 
-int EditSubscriptionCommand::subscriptionId() const
+shared_ptr<TreeNode> EditSubscriptionCommand::node() const
 {
-    return d->m_subscriptionId;
+    return d->node;
 }
 
-shared_ptr<FeedList> EditSubscriptionCommand::feedList() const
+FeedListView* EditSubscriptionCommand::feedListView() const
 {
-    return d->m_list;
+    return d->feedListView;
 }
 
-SubscriptionListView* EditSubscriptionCommand::subscriptionListView() const
+void EditSubscriptionCommand::setFeedListView( FeedListView* view )
 {
-    return d->m_subscriptionListView;
+    d->feedListView = view;
 }
-
-void EditSubscriptionCommand::setSubscriptionListView( SubscriptionListView* view )
-{
-    d->m_subscriptionListView = view;
-}
-
 
 void EditSubscriptionCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT( startEdit() ) );
+    QTimer::singleShot( 0, this, SLOT(startEdit()) );
 }
 
 void EditSubscriptionCommand::Private::startEdit()
 {
-    TreeNode* const node = m_list->findByID( m_subscriptionId );
+    EmitResultGuard guard( q );
     if ( !node ) {
-        q->done();
+        guard.emitResult();
         return;
     }
-
-    EditNodePropertiesVisitor visitor( m_subscriptionListView, q->parentWidget() );
-    visitor.visit( node );
-    q->done();
+    node->accept( this );
+    if ( !nodeHandled )
+        guard.emitResult();
 }
 
-void EditSubscriptionCommand::doAbort()
-{
+shared_ptr<FeedList> EditSubscriptionCommand::feedList() const {
+    return d->feedList;
+}
 
+void EditSubscriptionCommand::setFeedList( const shared_ptr<FeedList>& fl ) {
+    d->feedList = fl;
+}
+
+shared_ptr<const TagProvider> EditSubscriptionCommand::tagProvider() const
+{
+    return d->tagProvider;
+}
+
+void EditSubscriptionCommand::setTagProvider( const shared_ptr<const TagProvider>& tp )
+{
+    d->tagProvider = tp;
 }
 
 #include "editsubscriptioncommand.moc"

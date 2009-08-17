@@ -31,10 +31,12 @@
 class QString;
 template <class T> class QList;
 
+namespace KRss {
+    class Item;
+}
+
 namespace Akregator
 {
-
-class Article;
 
 class SpeechClient : public QObject
 {
@@ -50,8 +52,8 @@ class SpeechClient : public QObject
     public slots:
 
         void slotSpeak(const QString& text, const QString& language);
-        void slotSpeak(const Akregator::Article& article);
-        void slotSpeak(const QList<Akregator::Article>& articles);
+        void slotSpeak(const KRss::Item& item);
+        void slotSpeak(const QList<KRss::Item>& items);
         void slotAbortJobs();
         void textRemoved(const QString &appId, int jobNum, int state);
   private slots:

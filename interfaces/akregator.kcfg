@@ -205,9 +205,9 @@
   </entry>
 </group>
 <group name="Advanced" >
-  <entry key="Archive Backend" type="String" >
-   <label>Archive Backend</label>
-   <default>metakit</default>
+  <entry key="Active Akonadi Resource" type="String" >
+   <label>Active Akonadi Resource</label>
+   <whatsthis>The Akonadi resource currently used by the application</whatsthis>
   </entry>
   <entry key="Delay Mark Read" name="UseMarkReadDelay" type="Bool" >
    <whatsthis>Whether to delay before marking an article as read upon selecting it.</whatsthis>

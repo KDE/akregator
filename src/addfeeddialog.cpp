@@ -23,7 +23,6 @@
 */
 
 #include "addfeeddialog.h"
-#include "feed.h"
 #include "kernel.h"
 
 #include <kdebug.h>
@@ -39,10 +38,9 @@
 
 namespace Akregator {
 
-AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
+AddFeedWidget::AddFeedWidget(QWidget *parent)
    : QWidget(parent)
 {
-    setObjectName(name);
     setupUi(this);
     pixmapLabel1->setPixmap(KIconLoader::global()->loadIcon( "applications-internet",KIconLoader::Desktop,KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), 0, true));
     statusLabel->setText(QString());
@@ -51,16 +49,10 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
 AddFeedWidget::~AddFeedWidget()
 {}
 
-Feed* AddFeedDialog::feed()
-{
-    return m_feed;
-}
-
-AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
+AddFeedDialog::AddFeedDialog(QWidget *parent)
    : KDialog(parent
-     /*Qt::WStyle_DialogBorder*/), m_feed( 0 )
+     /*Qt::WStyle_DialogBorder*/)
 {
-    setObjectName(name);
     widget = new AddFeedWidget(this);
     setCaption(i18n("Add Feed"));
     setButtons(KDialog::Ok|KDialog::Cancel);
@@ -77,6 +69,18 @@ void AddFeedDialog::setUrl(const QString& t)
 {
     widget->urlEdit->setText(t);
 }
+
+QString AddFeedDialog::url() const
+{
+    return widget->urlEdit->text();
+}
+
+void AddFeedDialog::textChanged(const QString& text)
+{
+    enableButtonOk(!text.isEmpty());
+}
+
+#ifdef KRSS_PORT_DISABLED
 
 void AddFeedDialog::accept()
 {
@@ -123,10 +127,7 @@ void AddFeedDialog::fetchDiscovery(Feed *f)
     feedUrl=f->xmlUrl();
 }
 
-void AddFeedDialog::textChanged(const QString& text)
-{
-    enableButtonOk(!text.isEmpty());
-}
+#endif // KRSS_PORT_DISABLED
 
 } // namespace Akregator
 

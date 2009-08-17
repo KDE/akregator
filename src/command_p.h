@@ -22,65 +22,30 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "command.h"
+#ifndef AKREGATOR_COMMAND_P_H
+#define AKREGATOR_COMMAND_P_H
 
-#include <QEventLoop>
-#include <QPointer>
-#include <QWidget>
+#include <QSharedDataPointer>
 
-using namespace Akregator;
+namespace Akregator {
 
-class Command::Private
-{
-public:
-    Private();
-    QPointer<QWidget> parentWidget;
-    bool userVisible;
-};
+    class Command;
 
-Command::Private::Private() : parentWidget(), userVisible( true )
-{
+    class EmitResultGuard {
+    public:
+        explicit EmitResultGuard( Command* p );
+        ~EmitResultGuard();
+
+        void setError( int code );
+        void setErrorText( const QString& text );
+
+        void emitResult();
+        bool exists() const;
+
+    private:
+        class Private;
+        QSharedDataPointer<Private> d;
+    }; 
 }
 
-Command::Command( QObject* parent ) : KJob( parent ), d( new Private )
-{
-
-}
-
-Command::~Command()
-{
-    delete d;
-}
-
-QWidget* Command::parentWidget() const
-{
-    return d->parentWidget;
-}
-
-void Command::setParentWidget( QWidget* parentWidget )
-{
-    d->parentWidget = parentWidget;
-}
-
-void Command::start()
-{
-    doStart();
-    emit started();
-}
-
-bool Command::isUserVisible() const {
-    return d->userVisible;
-}
-
-void Command::setUserVisible( bool visible ) {
-    d->userVisible = visible;
-}
-
-void Command::waitForFinished()
-{
-    QEventLoop loop;
-    connect( this, SIGNAL( finished(KJob*) ), &loop, SLOT( quit() ) );
-    loop.exec();
-}
-
-#include "command.moc"
+#endif // AKREGATOR_COMMAND_P_H

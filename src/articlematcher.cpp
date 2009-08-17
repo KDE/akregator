@@ -25,7 +25,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "articlematcher.h"
-#include "article.h"
 #include "types.h"
 
 #include <kapplication.h>
@@ -108,7 +107,7 @@ Criterion::Predicate Criterion::stringToPredicate(const QString& predStr)
         return Matches;
     else if (predStr == QString::fromLatin1("Negation"))
         return Negation;
-    
+
     // hopefully never reached
     return Contains;
 }
@@ -150,6 +149,7 @@ void Criterion::readConfig(KConfigGroup* config)
 
 bool Criterion::satisfiedBy( const Article &article ) const
 {
+#ifdef KRSS_PORT_DISABLED
     QVariant concreteSubject;
 
     switch ( m_subject ) {
@@ -167,7 +167,7 @@ bool Criterion::satisfiedBy( const Article &article ) const
             concreteSubject = QVariant(article.status());
             break;
         case KeepFlag:
-            concreteSubject = QVariant(article.keep());   
+            concreteSubject = QVariant(article.keep());
         default:
             break;
     }
@@ -175,7 +175,7 @@ bool Criterion::satisfiedBy( const Article &article ) const
     bool satisfied = false;
 
     const Predicate predicateType = static_cast<Predicate>( m_predicate & ~Negation );
-	QString subjectType=concreteSubject.typeName();
+    QString subjectType=concreteSubject.typeName();
 
     switch ( predicateType ) {
         case Contains:
@@ -200,6 +200,10 @@ bool Criterion::satisfiedBy( const Article &article ) const
     }
 
     return satisfied;
+#else
+    kWarning() << "Code temporarily disabled (Akonadi port)";
+    return false;
+#endif //KRSS_PORT_DISABLED
 }
 
 Criterion::Subject Criterion::subject() const
@@ -248,7 +252,7 @@ bool ArticleMatcher::matches( const Article &a ) const
 void ArticleMatcher::writeConfig(KConfigGroup* config) const
 {
     config->writeEntry(QString::fromLatin1("matcherAssociation"), associationToString(m_association));
-    
+
     config->writeEntry(QString::fromLatin1("matcherCriteriaCount"), m_criteria.count());
 
     int index = 0;

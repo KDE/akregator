@@ -41,10 +41,6 @@ class QTimer;
 
 namespace Akregator {
 
-namespace Backend {
-    class Storage;
-}
-
 class ActionManagerImpl;
 class Feed;
 class FeedList;
@@ -57,7 +53,7 @@ class BrowserExtension : public KParts::BrowserExtension
     Q_OBJECT
 
     public:
-        explicit BrowserExtension(Part *p, const char *name=0);
+        explicit BrowserExtension( Part *p );
     public slots:
         void saveSettings();
     private:
@@ -89,20 +85,6 @@ class Part : public KParts::ReadOnlyPart
         /** Opens standard feedlist */
         void openStandardFeedList();
 
-        void fetchFeedUrl(const QString&);
-
-        /** Fetch all feeds in the feed tree */
-        void fetchAllFeeds();
-
-        /**
-            Add a feed to a group.
-            @param url The URL of the feed to add.
-            @param group The name of the folder into which the feed is added.
-            If the group does not exist, it is created.  The feed is added as the last member
-            of the group.
-            */
-        void addFeedsToGroup(const QStringList& urls, const QString& group);
-
         void addFeed();
 
         /**
@@ -118,17 +100,9 @@ class Part : public KParts::ReadOnlyPart
             Calls Akregator MainWidget's saveProperties. */
         virtual void saveProperties(KConfigGroup & config);
 
-        void exportFile(const KUrl& url);
-
     public slots:
         /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
         void saveSettings();
-
-        /** Saves the standard feed list to it's default location */
-        void slotSaveFeedList();
-
-        void fileImport();
-        void fileExport();
 
         /** Shows configuration dialog */
         void showOptions();
@@ -151,8 +125,6 @@ class Part : public KParts::ReadOnlyPart
         /** This must be implemented by each part */
         bool openFile();
 
-        void importFile(const KUrl& url);
-
         KParts::Part *hitTest(QWidget *widget, const QPoint &globalPos);
 
     private slots:
@@ -161,32 +133,24 @@ class Part : public KParts::ReadOnlyPart
         void slotOnShutdown();
         void slotSettingsChanged();
 
-        void feedListLoaded( const boost::shared_ptr<Akregator::FeedList>& list );
+        void slotTagProviderRetrieved( KJob *job );
+        void slotFeedListRetrieved( KJob *job );
+        void slotAkonadiSetUp( KJob* job );
 
     private: // methods
 
         /** fills the font settings with system fonts, if fonts are not set */
         void initFonts();
 
-        bool writeToTextFile( const QString& data, const QString& fname ) const;
-
     private: // attributes
 
-        class ApplyFiltersInterceptor;
-        ApplyFiltersInterceptor* m_applyFiltersInterceptor;
-        QString m_standardFeedList;
-        bool m_standardListLoaded;
         bool m_shuttingDown;
 
-        KParts::BrowserExtension *m_extension;
-
-        QTimer* m_autosaveTimer;
-        /** did we backup the feed list already? */
-        bool m_backedUpList;
-        MainWidget* m_mainWidget;
-        Backend::Storage* m_storage;
-        ActionManagerImpl* m_actionManager;
-        KCMultiDialog* m_dialog;
+        QPointer<KParts::BrowserExtension> m_extension;
+        QPointer<QWidget> m_parentWidget;
+        QPointer<ActionManagerImpl> m_actionManager;
+        QPointer<MainWidget> m_mainWidget;
+        QPointer<KCMultiDialog> m_dialog;
 };
 
 } // namespace Akregator

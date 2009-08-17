@@ -25,12 +25,10 @@
 #include "articlelistview.h"
 #include "actionmanager.h"
 #include "akregatorconfig.h"
-#include "article.h"
-#include "articlemodel.h"
-#include "kernel.h"
-#include "types.h"
 
 #include <utils/filtercolumnsproxymodel.h>
+
+#include <krss/itemmodel.h>
 
 #include <KIcon>
 #include <KLocale>
@@ -51,7 +49,7 @@
 
 using namespace boost;
 using namespace Akregator;
-
+using KRss::ItemModel;
 
 FilterDeletedProxyModel::FilterDeletedProxyModel( QObject* parent ) : QSortFilterProxyModel( parent )
 {
@@ -60,7 +58,7 @@ FilterDeletedProxyModel::FilterDeletedProxyModel( QObject* parent ) : QSortFilte
 
 bool FilterDeletedProxyModel::filterAcceptsRow( int source_row, const QModelIndex& source_parent ) const
 {
-    return !sourceModel()->index( source_row, 0, source_parent ).data( ArticleModel::IsDeletedRole ).toBool();
+    return !sourceModel()->index( source_row, 0, source_parent ).data( ItemModel::IsDeletedRole ).toBool();
 }
 
 SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( KIcon( "mail-mark-important" ) )
@@ -72,12 +70,13 @@ bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelInde
     if ( source_parent.isValid() )
         return false;
 
+#ifdef KRSS_PORT_DISABLED
     for ( uint i = 0; i < m_matchers.size(); ++i )
     {
-        if ( !static_cast<ArticleModel*>( sourceModel() )->rowMatches( source_row, m_matchers[i] ) )
+        if ( !static_cast<ItemModel*>( sourceModel() )->rowMatches( source_row, m_matchers[i] ) )
             return false;
     }
-
+#endif //KRSS_PORT_DISABLED
     return true;
 }
 
@@ -100,30 +99,22 @@ QVariant SortColorizeProxyModel::data( const QModelIndex& idx, int role ) const
     {
         case Qt::ForegroundRole:
         {
-            switch ( static_cast<ArticleStatus>( sourceIdx.data( ArticleModel::StatusRole ).toInt() ) )
-            {
-                case Unread:
-                {
-                    return Settings::useCustomColors() ?
-                        Settings::colorUnreadArticles() : Qt::blue;
-                }
-                case New:
-                {
-                    return Settings::useCustomColors() ?
-                        Settings::colorNewArticles() : Qt::red;
-                }
-                case Read:
-                {
-                    return QApplication::palette().color( QPalette::WindowText );
-                }
-            }
+            if ( sourceIdx.data( ItemModel::IsNewRole ).toBool() )
+                return Settings::useCustomColors() ?
+                    Settings::colorNewArticles() : Qt::red;
+            if ( sourceIdx.data( ItemModel::IsUnreadRole ).toBool() )
+                return Settings::useCustomColors() ?
+                    Settings::colorUnreadArticles() : Qt::blue;
+
+            //read
+            return QApplication::palette().color( QPalette::WindowText );
         }
         break;
         case Qt::DecorationRole:
         {
-            if ( sourceIdx.column() == ArticleModel::ItemTitleColumn )
+            if ( sourceIdx.column() == ItemModel::ItemTitleColumn )
             {
-                return sourceIdx.data( ArticleModel::IsImportantRole ).toBool() ? m_keepFlagIcon : QVariant();
+                return sourceIdx.data( ItemModel::IsImportantRole ).toBool() ? m_keepFlagIcon : QVariant();
             }
         }
         break;
@@ -137,12 +128,11 @@ namespace {
     {
         if ( !idx.isValid() )
             return false;
-
-        return static_cast<ArticleStatus>( idx.data( ArticleModel::StatusRole ).toInt() ) == Read;
+        return idx.data( ItemModel::IsReadRole ).toBool();
     }
 }
 
-void ArticleListView::setArticleModel( ArticleModel* model )
+void ArticleListView::setItemModel( KRss::ItemModel* model )
 {
     if ( !model ) {
         setModel( model );
@@ -151,19 +141,20 @@ void ArticleListView::setArticleModel( ArticleModel* model )
 
     m_proxy = new SortColorizeProxyModel( model );
     m_proxy->setSourceModel( model );
-    m_proxy->setSortRole( ArticleModel::SortRole );
+    m_proxy->setSortRole( ItemModel::SortRole );
     m_proxy->setFilters( m_matchers );
     FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( model );
-    proxy2->setSortRole( ArticleModel::SortRole );
+    proxy2->setSortRole( ItemModel::SortRole );
     proxy2->setSourceModel( m_proxy );
 
     FilterColumnsProxyModel* const columnsProxy = new FilterColumnsProxyModel( model );
-    columnsProxy->setSortRole( ArticleModel::SortRole );
+    columnsProxy->setSortRole( ItemModel::SortRole );
     columnsProxy->setSourceModel( proxy2 );
-    columnsProxy->setColumnEnabled( ArticleModel::ItemTitleColumn );
-    columnsProxy->setColumnEnabled( ArticleModel::FeedTitleColumn );
-    columnsProxy->setColumnEnabled( ArticleModel::DateColumn );
-    columnsProxy->setColumnEnabled( ArticleModel::AuthorColumn );
+
+    columnsProxy->setColumnEnabled( ItemModel::ItemTitleColumn );
+    columnsProxy->setColumnEnabled( ItemModel::FeedTitleColumn );
+    columnsProxy->setColumnEnabled( ItemModel::DateColumn );
+    columnsProxy->setColumnEnabled( ItemModel::AuthorsColumn );
 
     setModel( columnsProxy );
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
@@ -337,7 +328,7 @@ void ArticleListView::mousePressEvent( QMouseEvent *ev )
 
     if( ev->button() == Qt::MidButton ) {
         QModelIndex idx( currentIndex() );
-        const KUrl url = currentIndex().data( ArticleModel::LinkRole ).value<KUrl>();
+        const KUrl url = currentIndex().data( ItemModel::LinkRole ).value<KUrl>();
 
         emit signalMouseButtonPressed( ev->button(), url );
     }
@@ -434,7 +425,7 @@ void ArticleListView::setModel( QAbstractItemModel* m )
 
         // Ensure at least one column is visible
         if ( header()->hiddenSectionCount() == header()->count() ) {
-            header()->showSection( ArticleModel::ItemTitleColumn );
+            header()->showSection( ItemModel::ItemTitleColumn );
         }
     }
 }

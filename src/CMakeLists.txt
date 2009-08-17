@@ -1,12 +1,19 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 
-add_subdirectory( about ) 
+add_subdirectory( about )
 add_subdirectory( icons )
 
+# re-enable when moving libkrss into kdepimlibs
+#find_package(LibKRSS REQUIRED)
+find_package(Akonadi REQUIRED)
+
 include_directories (
-    ${Boost_INCLUDE_DIR} 
-    ${CMAKE_SOURCE_DIR}/akregator/interfaces 
-    ${CMAKE_BINARY_DIR}/akregator/interfaces 
+    ${Boost_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/akregator/interfaces
+    ${CMAKE_BINARY_DIR}/akregator/interfaces
+    # re-enable when moving libkrss into kdepimlibs
+    #${LIBKRSS_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/krss/
 )
 
 ########### next target ###############
@@ -18,7 +25,7 @@ kde4_add_app_icon(akregator_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/akregator.png")
 kde4_add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator ${KDE4_KPARTS_LIBS} kdepim akregatorprivate
-                      akregatorinterfaces)
+                      akregatorinterfaces )
 
 install(TARGETS akregator  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
@@ -26,8 +33,8 @@ install(TARGETS akregator  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 ########### next target ###############
 
 set(akregatorprivate_LIB_SRCS
-   aboutdata.cpp 
-   trayicon.cpp 
+   aboutdata.cpp
+   trayicon.cpp
 )
 
 kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
@@ -43,75 +50,64 @@ install(TARGETS akregatorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELIN
 
 ########### next target ###############
 
-set( akregator_utils_SRCS 
+set( akregator_utils_SRCS
      utils/filtercolumnsproxymodel.cpp
 )
 
-set(akregatorpart_PART_SRCS 
+set(akregatorpart_PART_SRCS
    ${akregator_utils_SRCS}
    abstractselectioncontroller.cpp
-   article.cpp
-   articlejobs.cpp
-   articlematcher.cpp
-   articlemodel.cpp
-   deletesubscriptioncommand.cpp
-   feed.cpp 
-   treenode.cpp 
-   treenodevisitor.cpp 
-   folder.cpp 
-   feedlist.cpp 
-   fetchqueue.cpp 
-   feediconmanager.cpp 
+   articlematcher.cpp #PENDING(frank) remove/port/move to krss
+   command_p.cpp
+#   deletesubscriptioncommand.cpp
+   feediconmanager.cpp
    pluginmanager.cpp
    selectioncontroller.cpp
-   subscriptionlistmodel.cpp
-   subscriptionlistjobs.cpp
    utils.cpp
-   searchbar.cpp 
-   browserrun.cpp 
-   articlelistview.cpp 
-   actionmanager.cpp 
+   searchbar.cpp
+   browserrun.cpp
+   articlelistview.cpp #PENDING(frank) move to krss
+   actionmanager.cpp
    actions.cpp
-   actionmanagerimpl.cpp 
+   actionmanagerimpl.cpp
    createfeedcommand.cpp
-   createfoldercommand.cpp
-   expireitemscommand.cpp
-   frame.cpp 
-   framemanager.cpp 
+   createtagcommand.cpp
+   editfeedcommand.cpp
+   frame.cpp
+   framemanager.cpp
    browserframe.cpp
    browserframe_p.cpp
    openurlrequest.cpp
-   articleviewer.cpp 
+   articleviewer.cpp
    articleformatter.cpp
-   addfeeddialog.cpp 
-   loadfeedlistcommand.cpp
+   addfeeddialog.cpp
    editsubscriptioncommand.cpp
+   exportfeedlistcommand.cpp
    importfeedlistcommand.cpp
-   feedpropertiesdialog.cpp 
-   tabwidget.cpp 
-   progressmanager.cpp 
-   kernel.cpp 
-   akregator_part.cpp 
-   mainwidget.cpp 
-   notificationmanager.cpp 
-   subscriptionlistview.cpp
-   subscriptionlistdelegate.cpp
-   dummystorage/storagedummyimpl.cpp 
-   dummystorage/storagefactorydummyimpl.cpp 
-   dummystorage/feedstoragedummyimpl.cpp 
-   speechclient.cpp )
+   importitemsjob.cpp
+   migratefeedscommand.cpp
+   tabwidget.cpp
+   progressmanager.cpp
+   kernel.cpp
+   akregator_part.cpp
+   mainwidget.cpp
+   notificationmanager.cpp
+   setupakonadicommand.cpp
+   speechclient.cpp
+)
+
 qt4_add_dbus_interfaces(akregatorpart_PART_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.KSpeech.xml)
 qt4_add_dbus_adaptor( akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part )
 
 
-kde4_add_ui_files(akregatorpart_PART_SRCS 
-   addfeedwidgetbase.ui 
-   feedpropertieswidgetbase.ui 
+kde4_add_ui_files(akregatorpart_PART_SRCS
+   addfeedwidgetbase.ui
 )
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} ${KDE4_SOLID_LIBRARY} akregatorinterfaces akregatorprivate kdepim ${KDEPIMLIBS_SYNDICATION_LIBS} ${KDEPIMLIBS_KPIMUTILS_LIBS}  ${KDE4_KDE3SUPPORT_LIBS} )
+# add ${LIBKRSS_LIBRARIES} when moving libkrss into kdepimlibs
+target_link_libraries(akregatorpart  ${KDE4_KUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} ${KDE4_SOLID_LIBRARY} akregatorinterfaces akregatorprivate kdepim ${KDEPIMLIBS_SYNDICATION_LIBS} ${KDEPIMLIBS_KPIMUTILS_LIBS}  ${KDE4_KDE3SUPPORT_LIBS} krss ${KDE4_AKONADI_LIBS})
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -120,7 +116,7 @@ install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 install( FILES akregator.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
 install( FILES akregator_part.desktop  DESTINATION ${SERVICES_INSTALL_DIR})
-install( FILES articleviewer.rc pageviewer.rc akregator_part.rc akregator.notifyrc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
+install( FILES articleviewer.rc akregator_part.rc akregator.notifyrc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES akregator_plugin.desktop  DESTINATION ${SERVICETYPES_INSTALL_DIR})
 install( FILES akregator_shell.rc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES feed.protocol  DESTINATION ${SERVICES_INSTALL_DIR})

@@ -49,7 +49,6 @@ public:
 
 private:
     void doStart();
-    void doAbort();
 
 private:
     class Private;

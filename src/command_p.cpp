@@ -1,7 +1,7 @@
 /*
     This file is part of Akregator.
 
-    Copyright (C) 2008 Frank Osterfeld <osterfeld@kde.org>
+    Copyright (C) 2009 Frank Osterfeld <osterfeld@kde.org>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,65 +22,39 @@
     without including the source code for Qt in the source distribution.
 */
 
+#include "command_p.h"
 #include "command.h"
 
-#include <QEventLoop>
 #include <QPointer>
-#include <QWidget>
+#include <QSharedData>
 
 using namespace Akregator;
 
-class Command::Private
-{
+class EmitResultGuard::Private : public QSharedData {
 public:
-    Private();
-    QPointer<QWidget> parentWidget;
-    bool userVisible;
+    explicit Private( Command* cmd ) : command( cmd ) {}
+    QPointer<Command> command;
 };
 
-Command::Private::Private() : parentWidget(), userVisible( true )
-{
+EmitResultGuard::EmitResultGuard( Command* cmd ) : d( new Private( cmd ) ) {}
+EmitResultGuard::~EmitResultGuard() {}
+
+bool EmitResultGuard::exists() const {
+    return d->command != 0;
 }
 
-Command::Command( QObject* parent ) : KJob( parent ), d( new Private )
-{
-
+void EmitResultGuard::emitResult() {
+    if ( d->command )
+        d->command->emitResult();
 }
 
-Command::~Command()
-{
-    delete d;
+void EmitResultGuard::setError( int code ) {
+    if ( d->command )
+        d->command->setError( code );
 }
 
-QWidget* Command::parentWidget() const
-{
-    return d->parentWidget;
+void EmitResultGuard::setErrorText( const QString& txt ) {
+    if ( d->command )
+        d->command->setErrorText( txt );
 }
 
-void Command::setParentWidget( QWidget* parentWidget )
-{
-    d->parentWidget = parentWidget;
-}
-
-void Command::start()
-{
-    doStart();
-    emit started();
-}
-
-bool Command::isUserVisible() const {
-    return d->userVisible;
-}
-
-void Command::setUserVisible( bool visible ) {
-    d->userVisible = visible;
-}
-
-void Command::waitForFinished()
-{
-    QEventLoop loop;
-    connect( this, SIGNAL( finished(KJob*) ), &loop, SLOT( quit() ) );
-    loop.exec();
-}
-
-#include "command.moc"

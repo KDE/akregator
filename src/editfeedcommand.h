@@ -22,65 +22,45 @@
     without including the source code for Qt in the source distribution.
 */
 
+#ifndef AKREGATOR_EDITFEEDCOMMAND_H
+#define AKREGATOR_EDITFEEDCOMMAND_H
+
 #include "command.h"
 
-#include <QEventLoop>
-#include <QPointer>
-#include <QWidget>
+namespace boost {
+    template <typename T> class shared_ptr;
+}
 
-using namespace Akregator;
+namespace KRss {
+    class FeedList;
+    class Feed;
+}
 
-class Command::Private
+namespace Akregator {
+
+class EditFeedCommand : public Command
 {
+    Q_OBJECT
 public:
-    Private();
-    QPointer<QWidget> parentWidget;
-    bool userVisible;
+    explicit EditFeedCommand( QObject* parent = 0 );
+    ~EditFeedCommand();
+
+    boost::shared_ptr<const KRss::FeedList> feedList() const;
+    void setFeedList( const boost::shared_ptr<const KRss::FeedList>& fl );
+
+    void setFeed( const boost::shared_ptr<KRss::Feed>& feed );
+    boost::shared_ptr<KRss::Feed> feed() const;
+
+private:
+    void doStart();
+
+private:
+    class Private;
+    Private* const d;
+    Q_PRIVATE_SLOT( d, void startEdit() )
+    Q_PRIVATE_SLOT( d, void feedModifyDone( KJob* ) )
 };
 
-Command::Private::Private() : parentWidget(), userVisible( true )
-{
-}
+} // namespace Akregator
 
-Command::Command( QObject* parent ) : KJob( parent ), d( new Private )
-{
-
-}
-
-Command::~Command()
-{
-    delete d;
-}
-
-QWidget* Command::parentWidget() const
-{
-    return d->parentWidget;
-}
-
-void Command::setParentWidget( QWidget* parentWidget )
-{
-    d->parentWidget = parentWidget;
-}
-
-void Command::start()
-{
-    doStart();
-    emit started();
-}
-
-bool Command::isUserVisible() const {
-    return d->userVisible;
-}
-
-void Command::setUserVisible( bool visible ) {
-    d->userVisible = visible;
-}
-
-void Command::waitForFinished()
-{
-    QEventLoop loop;
-    connect( this, SIGNAL( finished(KJob*) ), &loop, SLOT( quit() ) );
-    loop.exec();
-}
-
-#include "command.moc"
+#endif // AKREGATOR_EDITFEEDCOMMAND_H

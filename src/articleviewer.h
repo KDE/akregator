@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ARTICLEVIEWER_H
 #define AKREGATOR_ARTICLEVIEWER_H
 
-#include "article.h"
+#include <krss/item.h>
 
 #include <khtml_part.h>
 
@@ -33,10 +33,18 @@
 #include <QWidget>
 
 #include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
+
 #include <vector>
 
 class KJob;
 class KUrl;
+
+namespace KRss {
+    class FeedList;
+    class ItemListJob;
+    class TreeNode;
+}
 
 namespace Akregator {
 
@@ -45,7 +53,6 @@ namespace Filters {
 }
 
 class ArticleFormatter;
-class ArticleListJob;
 class OpenUrlRequest;
 class TreeNode;
 
@@ -70,13 +77,15 @@ class ArticleViewer : public QWidget
 
         void setCombinedViewFormatter(const boost::shared_ptr<ArticleFormatter>& formatter);
 
-        void showArticle( const Article& article );
+        void showItem( const KRss::Item& item );
+
+        void setFeedList( const boost::weak_ptr<const KRss::FeedList>& feedList );
 
         /** Shows the articles of the tree node @c node (combined view).
          * Changes in the node will update the view automatically.
          *
          *  @param node The node to observe */
-        void showNode(Akregator::TreeNode* node);
+        void showNode(const boost::shared_ptr<KRss::FeedList>& feedList, const boost::shared_ptr<const KRss::TreeNode>& node);
 
     public slots:
 
@@ -102,7 +111,7 @@ class ArticleViewer : public QWidget
          */
         void slotClear();
 
-        void slotShowSummary(Akregator::TreeNode *node);
+        void slotShowSummary( const boost::shared_ptr<KRss::FeedList>& fl, const boost::shared_ptr<KRss::TreeNode>& node );
 
         void slotPaletteOrFontChanged();
 
@@ -162,10 +171,11 @@ class ArticleViewer : public QWidget
 
         void slotArticlesListed(KJob* job);
 
+#ifdef KRSS_PORT_DISABLED
         void slotArticlesUpdated(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
         void slotArticlesAdded(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
         void slotArticlesRemoved(Akregator::TreeNode* node, const QList<Akregator::Article>& list);
-
+#endif //KRSS_PORT_DISABLED
 
     // from ArticleViewer
     private:
@@ -197,10 +207,11 @@ class ArticleViewer : public QWidget
         QString m_htmlFooter;
         QString m_currentText;
         KUrl m_imageDir;
-        QPointer<TreeNode> m_node;
-        QPointer<ArticleListJob> m_listJob;
-        Article m_article;
-        QList<Article> m_articles;
+        boost::shared_ptr<const KRss::TreeNode> m_node;
+        QPointer<KRss::ItemListJob> m_listJob;
+        KRss::Item m_item;
+        QList<KRss::Item> m_items;
+        boost::weak_ptr<const KRss::FeedList> m_feedList;
         KUrl m_link;
         std::vector<boost::shared_ptr<const Filters::AbstractMatcher> > m_filters;
         enum ViewMode { NormalView, CombinedView, SummaryView };
