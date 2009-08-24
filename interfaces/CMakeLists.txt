@@ -17,10 +17,5 @@ set_target_properties(akregatorinterfaces PROPERTIES VERSION ${GENERIC_LIB_VERSI
 
 install(TARGETS akregatorinterfaces ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-install( FILES akregator_export.h
-               command.h
-               types.h
-               plugin.h
-               DESTINATION ${INCLUDE_INSTALL_DIR}/akregator )
-
 install( FILES akregator.kcfg DESTINATION ${KCFG_INSTALL_DIR})
+
