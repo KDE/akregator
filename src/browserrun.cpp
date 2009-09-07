@@ -48,11 +48,16 @@ void BrowserRun::foundMimeType(const QString& type)
 
     emit signalFoundMimeType( m_request );
 
-    if ( m_request.wasHandled() )
+    if ( m_request.wasHandled() ) {
+        setFinished(true);
+        timer().start();
         return;
+    }
 
     if ( handleNonEmbeddable(type) == KParts::BrowserRun::NotHandled )
         KRun::foundMimeType( type );
+
+
 }
 
 } // namespace Akregator
