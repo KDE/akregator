@@ -43,6 +43,8 @@
 
 #include <syndication/dataretriever.h>
 
+#include <libkdepim/broadcaststatus.h>
+
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>
 #include <kapplication.h>
@@ -126,7 +128,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     m_mainWidget = new MainWidget( this, m_parentWidget, m_actionManager );
 
     connect(Kernel::self()->frameManager(), SIGNAL(signalCaptionChanged(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
-    connect(Kernel::self()->frameManager(), SIGNAL(signalStatusText(const QString&)), this, SIGNAL(setStatusBarText(const QString&)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalStatusText(const QString&)), this, SLOT(slotSetStatusText(const QString&)));
     connect(Kernel::self()->frameManager(), SIGNAL(signalLoadingProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
     connect(Kernel::self()->frameManager(), SIGNAL(signalCanceled(const QString&)), this, SIGNAL(canceled(const QString&)));
     connect(Kernel::self()->frameManager(), SIGNAL(signalStarted()), this, SLOT(slotStarted()));
@@ -224,6 +226,11 @@ void Part::slotSettingsChanged()
         Settings::setMediumFontSize(Settings::minimumFontSize());
     saveSettings();
     emit signalSettingsChanged();
+}
+
+void Part::slotSetStatusText( const QString& statusText )
+{
+  KPIM::BroadcastStatus::instance()->setStatusMsg( statusText );
 }
 
 void Part::saveSettings()

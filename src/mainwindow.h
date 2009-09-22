@@ -34,7 +34,6 @@
 #include <QPointer>
 
 class KSqueezedTextLabel;
-class KParts::BrowserExtension;
 
 namespace KPIM
 {

@@ -132,6 +132,7 @@ class Part : public KParts::ReadOnlyPart
 
         void slotOnShutdown();
         void slotSettingsChanged();
+        void slotSetStatusText( const QString &statusText );
 
         void slotTagProviderRetrieved( KJob *job );
         void slotFeedListRetrieved( KJob *job );
