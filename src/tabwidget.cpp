@@ -295,6 +295,9 @@ void TabWidget::Private::setTitle( const QString &title, QWidget* sender)
         for( int i = 0; i < parent->count(); ++i)
         {
             Frame* f = frames[parent->widget(i)];
+            if ( !f ) {
+                continue; // frames is out of sync, e.g. because tabInserted wasn't called yet - #185597
+            }
             newTitle = f->title();
             int index = parent->indexOf(parent->widget( i ));
             parent->setTabToolTip( index, QString() );
