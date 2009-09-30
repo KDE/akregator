@@ -169,6 +169,7 @@ class Part : public MyBasePart
 
         void slotOnShutdown();
         void slotSettingsChanged();
+        void slotSetStatusText( const QString &statusText );
 
     private: // methods
 

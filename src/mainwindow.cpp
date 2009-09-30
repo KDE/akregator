@@ -52,8 +52,9 @@
 #include "statusbarprogresswidget.h"
 #include "trayicon.h"
 
-#include <QPixmap>
+#include <libkdepim/broadcaststatus.h>
 
+#include <QPixmap>
 #include <Q3MimeSourceFactory>
 
 namespace Akregator {
@@ -94,6 +95,9 @@ MainWindow::MainWindow()
 
     setupActions();
     createGUI(0L);
+
+    connect( KPIM::BroadcastStatus::instance(), SIGNAL( statusMsg( const QString& ) ),
+             this, SLOT( slotSetStatusBarText(const QString&) ) );
 }
 
 bool MainWindow::loadPart()
