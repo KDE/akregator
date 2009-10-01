@@ -17,7 +17,7 @@ kde4_add_app_icon(akregator_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/akregator.png")
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
-target_link_libraries(akregator ${KDE4_KPARTS_LIBS} kdepim akregatorprivate
+target_link_libraries(akregator ${KDE4_KPARTS_LIBS} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS} akregatorprivate
                       akregatorinterfaces)
 
 install(TARGETS akregator  ${INSTALL_TARGETS_DEFAULT_ARGS} )
