@@ -28,13 +28,13 @@
 
 #include <kcmdlineargs.h>
 #include <klocale.h>
-#include <libkdepim/pimapplication.h>
+#include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
 #include <QStringList>
 
 namespace Akregator {
 
-class Application : public KPIM::PimApplication {
+class Application : public KontactInterface::PimUniqueApplication {
   public:
     Application() : mMainWindow(0) {}
     ~Application() {}
