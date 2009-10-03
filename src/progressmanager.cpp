@@ -211,6 +211,8 @@ JobProgressItemHandler::JobProgressItemHandler( const KJob *job )
 {
     connect( d->job, SIGNAL( result( KJob* ) ),
              this, SLOT( slotJobResult( KJob* ) ) );
+    connect( d->job, SIGNAL(destroyed(QObject*)),
+             this, SLOT(slotJobDestroyed()) );
     connect( d->job, SIGNAL( percent( KJob*, unsigned long ) ),
              this, SLOT( slotJobPercent( KJob*, unsigned long ) ) );
 
@@ -244,11 +246,23 @@ void JobProgressItemHandler::slotJobPercent( KJob *job, unsigned long percentage
 void JobProgressItemHandler::slotJobResult( KJob *job )
 {
     Q_UNUSED( job )
+    job->disconnect( this );
     if ( d->progressItem ) {
         if ( job->error() )
             d->progressItem->setStatus( i18n( "Load error. %1", job->errorString() ) );
         else
             d->progressItem->setStatus( i18n( "Load completed" ) );
+        d->progressItem->setComplete();
+        d->progressItem = 0;
+    }
+
+    deleteLater();
+}
+
+void JobProgressItemHandler::slotJobDestroyed()
+{
+    if ( d->progressItem ) {
+        d->progressItem->setStatus( i18n( "Canceled" ) );
         d->progressItem->setComplete();
         d->progressItem = 0;
     }

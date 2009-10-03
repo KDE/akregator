@@ -100,6 +100,7 @@ class JobProgressItemHandler : public QObject
     public slots:
         void slotJobPercent( KJob *job, unsigned long percentage );
         void slotJobResult( KJob *job );
+        void slotJobDestroyed();
 
     private:
         class JobProgressItemHandlerPrivate;
