@@ -429,14 +429,12 @@ void Akregator::MainWidget::setFeedList( const shared_ptr<KRss::FeedList>& list 
     const shared_ptr<KRss::FeedList> oldList = m_feedList;
 
     m_feedList = list;
-#ifdef KRSS_PORT_DISABLED
     if ( m_feedList ) {
         connect( m_feedList.get(), SIGNAL(unreadCountChanged(int) ),
                  this, SLOT(slotSetTotalUnread()) );
     }
 
     slotSetTotalUnread();
-#endif
 
     m_articleViewer->setFeedList( m_feedList );
     Kernel::self()->setFeedList( m_feedList );
@@ -783,9 +781,7 @@ void Akregator::MainWidget::slotMarkFeedRead()
 
 void Akregator::MainWidget::slotSetTotalUnread()
 {
-#ifdef KRSS_PORT_DISABLED
-    emit signalUnreadCountChanged( m_feedList ? m_feedList->unread() : 0 );
-#endif
+    emit signalUnreadCountChanged( m_feedList ? m_feedList->unreadCount() : 0 );
 }
 
 void Akregator::MainWidget::slotFetchCurrentFeed()
