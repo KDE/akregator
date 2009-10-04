@@ -27,6 +27,8 @@
 #include "articlematcher.h"
 #include "types.h"
 
+#include <krss/item.h>
+
 #include <kapplication.h>
 #include <kconfiggroup.h>
 #include <kdebug.h>
@@ -36,6 +38,8 @@
 #include <QList>
 #include <QRegExp>
 
+
+using namespace KRss;
 
 namespace Akregator {
 namespace Filters {
@@ -147,27 +151,26 @@ void Criterion::readConfig(KConfigGroup* config)
     }
 }
 
-bool Criterion::satisfiedBy( const Article &article ) const
+bool Criterion::satisfiedBy( const Item& item ) const
 {
-#ifdef KRSS_PORT_DISABLED
     QVariant concreteSubject;
 
     switch ( m_subject ) {
         case Title:
-            concreteSubject = QVariant(article.title());
+            concreteSubject = QVariant(item.title());
             break;
         case Description:
-            concreteSubject = QVariant(article.description());
+            concreteSubject = QVariant(item.description());
             break;
         case Link:
             // ### Maybe use prettyUrl here?
-            concreteSubject = QVariant(article.link().url());
+            concreteSubject = QVariant(item.link());
             break;
         case Status:
-            concreteSubject = QVariant(article.status());
+            concreteSubject = QVariant(item.status());
             break;
         case KeepFlag:
-            concreteSubject = QVariant(article.keep());
+            concreteSubject = QVariant(item.isImportant());
         default:
             break;
     }
@@ -200,10 +203,6 @@ bool Criterion::satisfiedBy( const Article &article ) const
     }
 
     return satisfied;
-#else
-    kWarning() << "Code temporarily disabled (Akonadi port)";
-    return false;
-#endif //KRSS_PORT_DISABLED
 }
 
 Criterion::Subject Criterion::subject() const
@@ -236,13 +235,13 @@ ArticleMatcher::ArticleMatcher( const QList<Criterion> &criteria, Association as
 {
 }
 
-bool ArticleMatcher::matches( const Article &a ) const
+bool ArticleMatcher::matches( const Item& item ) const
 {
     switch ( m_association ) {
         case LogicalOr:
-            return anyCriterionMatches( a );
+            return anyCriterionMatches( item );
         case LogicalAnd:
-            return allCriteriaMatch( a );
+            return allCriteriaMatch( item );
         default:
             break;
     }
@@ -299,28 +298,28 @@ bool ArticleMatcher::operator!=(const AbstractMatcher& other) const
     return !(*this == other);
 }
 
-bool ArticleMatcher::anyCriterionMatches( const Article &a ) const
+bool ArticleMatcher::anyCriterionMatches( const Item& item ) const
 {
     if (m_criteria.count()==0)
         return true;
-    QList<Criterion>::ConstIterator it = m_criteria.begin();
-    QList<Criterion>::ConstIterator end = m_criteria.end();
+    QList<Criterion>::ConstIterator it = m_criteria.constBegin();
+    QList<Criterion>::ConstIterator end = m_criteria.constEnd();
     for ( ; it != end; ++it ) {
-        if ( ( *it ).satisfiedBy( a ) ) {
+        if ( ( *it ).satisfiedBy( item ) ) {
             return true;
         }
     }
     return false;
 }
 
-bool ArticleMatcher::allCriteriaMatch( const Article &a ) const
+bool ArticleMatcher::allCriteriaMatch( const Item& item ) const
 {
     if (m_criteria.count()==0)
         return true;
-    QList<Criterion>::ConstIterator it = m_criteria.begin();
-    QList<Criterion>::ConstIterator end = m_criteria.end();
+    QList<Criterion>::ConstIterator it = m_criteria.constBegin();
+    QList<Criterion>::ConstIterator end = m_criteria.constEnd();
     for ( ; it != end; ++it ) {
-        if ( !( *it ).satisfiedBy( a ) ) {
+        if ( !( *it ).satisfiedBy( item ) ) {
             return false;
         }
     }

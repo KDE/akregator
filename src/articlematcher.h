@@ -35,9 +35,12 @@
 
 class KConfigGroup;
 
+namespace KRss {
+    class Item;
+}
+
 namespace Akregator {
 
-class Article;
 
 namespace Filters {
 
@@ -52,7 +55,7 @@ class AKREGATORPART_EXPORT AbstractMatcher
     public:
         virtual ~AbstractMatcher();
 
-        virtual bool matches(const Article& article) const = 0;
+        virtual bool matches(const KRss::Item& item) const = 0;
 
         virtual void writeConfig(KConfigGroup* config) const = 0;
         virtual void readConfig(KConfigGroup* config) = 0;
@@ -85,7 +88,7 @@ class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
         
         ~ArticleMatcher();
 
-        bool matches(const Article &article) const;
+        bool matches(const KRss::Item &article) const;
         bool operator==(const AbstractMatcher &other) const;
         bool operator!=(const AbstractMatcher &other) const;
         
@@ -97,8 +100,8 @@ class AKREGATORPART_EXPORT ArticleMatcher : public AbstractMatcher
         static Association stringToAssociation(const QString& assocStr);
         static QString associationToString(Association association);
 
-        bool anyCriterionMatches( const Article &a ) const;
-        bool allCriteriaMatch( const Article &a ) const;
+        bool anyCriterionMatches( const KRss::Item &a ) const;
+        bool allCriteriaMatch( const KRss::Item &a ) const;
 
         QList<Criterion> m_criteria;
         Association m_association;
@@ -131,7 +134,7 @@ class AKREGATORPART_EXPORT Criterion
         Criterion();
         Criterion( Subject subject, Predicate predicate, const QVariant &object );
         virtual ~Criterion(){} 
-        bool satisfiedBy( const Article &article ) const;
+        bool satisfiedBy( const KRss::Item &item ) const;
 
         virtual void writeConfig(KConfigGroup* config) const;
         virtual void readConfig(KConfigGroup* config);
