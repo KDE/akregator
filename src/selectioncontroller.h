@@ -26,16 +26,15 @@
 
 #include "abstractselectioncontroller.h"
 
-#include <QPointer>
+#include <QtCore/QMap>
+#include <QtCore/QPointer>
+
+#include <boost/weak_ptr.hpp>
 
 class QModelIndex;
 class QPoint;
 
 class KJob;
-
-namespace boost {
-    template <typename T> class shared_ptr;
-}
 
 namespace KRss {
     class FeedList;
@@ -112,6 +111,7 @@ private:
     Akregator::FolderExpansionHandler* m_folderExpansionHandler;
     KRss::ItemModel* m_itemModel;
     boost::shared_ptr<KRss::TreeNode> m_selectedSubscription;
+    QMap<boost::weak_ptr<const KRss::TreeNode>, QPoint> m_scrollBarPositions;
     QPointer<KRss::ItemListJob> m_listJob;
 };
 

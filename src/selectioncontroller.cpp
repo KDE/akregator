@@ -241,10 +241,7 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
     connect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
              this, SLOT(itemSelectionChanged()) );
 
-#ifdef KRSS_PORT_DISABLED
-    if ( node )
-        m_articleLister->setScrollBarPositions( node->listViewScrollBarPositions() );
-#endif
+    m_articleLister->setScrollBarPositions( m_scrollBarPositions.value( m_selectedSubscription ) );
 }
 
 
@@ -253,10 +250,8 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     if ( !index.isValid() )
         return;
 
-#ifdef KRSS_PORT_DISABLED
     if ( m_selectedSubscription && m_articleLister )
-        m_selectedSubscription->setListViewScrollBarPositions( m_articleLister->scrollBarPositions() );
-#endif
+        m_scrollBarPositions.insert( m_selectedSubscription, m_articleLister->scrollBarPositions() );
 
     m_selectedSubscription = selectedSubscription();
     emit currentSubscriptionChanged( m_selectedSubscription );
