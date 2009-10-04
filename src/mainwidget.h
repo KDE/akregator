@@ -208,9 +208,6 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** selects the next unread article in the article list */
         void slotNextUnreadArticle();
 
-        void slotMoveCurrentNodeUp();
-        void slotMoveCurrentNodeDown();
-
         void slotSendLink() { sendArticle(); }
         void slotSendFile() { sendArticle(true); }
 

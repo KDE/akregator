@@ -382,16 +382,6 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
     connect(importantAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
-    action = coll->addAction("feedstree_move_up");
-    action->setText(i18n("Move Node Up"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeUp()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Up" ));
-
-    action = coll->addAction("feedstree_move_down");
-    action->setText(i18n("Move Node Down"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeDown()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Down" ));
-
     action = coll->addAction("file_sendlink");
     action->setIcon(KIcon("mail-message-new"));
     action->setText(i18n("Send &Link Address..."));

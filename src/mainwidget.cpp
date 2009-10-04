@@ -538,43 +538,6 @@ void Akregator::MainWidget::slotCombinedView()
     Settings::setViewMode( m_viewMode );
 }
 
-void Akregator::MainWidget::slotMoveCurrentNodeUp()
-{
-#ifdef KRSS_PORT_DISABLED
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current)
-        return;
-    TreeNode* prev = current->prevSibling();
-    Folder* parent = current->parent();
-
-    if (!prev || !parent)
-        return;
-
-    parent->removeChild(prev);
-    parent->insertChild(prev, current);
-
-    m_feedListView->ensureNodeVisible(current);
-#endif
-}
-
-void Akregator::MainWidget::slotMoveCurrentNodeDown()
-{
-    #ifdef KRSS_PORT_DISABLED
-
-    TreeNode* current = m_selectionController->selectedSubscription();
-    if (!current)
-        return;
-    TreeNode* next = current->nextSibling();
-    Folder* parent = current->parent();
-
-    if (!next || !parent)
-        return;
-
-    parent->removeChild(current);
-    parent->insertChild(current, next);
-    m_feedListView->ensureNodeVisible(current);
-#endif
-}
 
 void Akregator::MainWidget::slotNodeSelected(const boost::shared_ptr<KRss::TreeNode>& node)
 {
@@ -612,23 +575,7 @@ void Akregator::MainWidget::slotNodeSelected(const boost::shared_ptr<KRss::TreeN
 
 void Akregator::MainWidget::slotFeedAdd()
 {
-#ifdef KRSS_PORT_DISABLED
-    Folder* group = 0;
-    if ( !m_selectionController->selectedSubscription() )
-        group = m_feedList->allFeedsFolder();
-    else
-    {
-        if ( m_selectionController->selectedSubscription()->isGroup())
-            group = static_cast<Folder*>( m_selectionController->selectedSubscription() );
-        else
-            group= m_selectionController->selectedSubscription()->parent();
-
-    }
-
-    TreeNode* const lastChild = !group->children().isEmpty() ? group->children().last() : 0;
-#endif
-
-    addFeed(QString::null, false);	//krazy:exclude=nullstrassign for old broken gcc
+    addFeed(QString(), false);
 }
 
 void Akregator::MainWidget::addFeed(const QString& url, bool autoExec)

@@ -92,13 +92,10 @@ void CreateTagCommand::Private::tagCreateJobFinished( KJob* j )
     EmitResultGuard guard( q );
     if ( j->error() )
         KMessageBox::error( q->parentWidget(), i18n("Could not create the tag: %1", j->errorString() ), i18n("Tag Creation Error") );
-
-#ifdef KRSS_PORT_DISABLED
+    const KRss::TagCreateJob* const job = qobject_cast<const KRss::TagCreateJob*>( j );
+    assert( job );
     if ( feedListView )
-        feedListView->ensureNodeVisible( newFolder );
-#else
-    kWarning() << "Code temporarily disabled (Akonadi port)";
-#endif //KRSS_PORT_DISABLED 
+        feedListView->scrollToTag( job->tag() );
     guard.emitResult();
 }
 
