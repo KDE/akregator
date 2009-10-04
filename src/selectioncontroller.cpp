@@ -261,7 +261,11 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     m_selectedSubscription = selectedSubscription();
     emit currentSubscriptionChanged( m_selectedSubscription );
 
-    delete m_listJob;
+    if ( m_listJob ) {
+        m_listJob->disconnect( this );
+        m_listJob->kill();
+        m_listJob = 0;
+    }
 
     if ( !m_selectedSubscription )
         return;
@@ -272,6 +276,7 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     KRss::ItemListJob* const job = m_selectedSubscription->createItemListJob( m_feedList );
     if ( !job )
         return;
+    assert( job->capabilities().testFlag( KJob::Killable ) );
     job->setFetchScope( scope );
     connect( job, SIGNAL(finished(KJob*)),
              this, SLOT(articleHeadersAvailable(KJob*)) );
