@@ -44,20 +44,7 @@ class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
     Q_OBJECT	
 
     public:
-        explicit SettingsAdvanced(QWidget* parent=0, const char* name=0);
-
-        /** returns the key of the currently selected factory */
-        QString selectedFactory() const;
-        
-        void selectFactory(const QString& key);
-        
-    public slots:
-        
-        void slotConfigureStorage();
-        void slotFactorySelected(int);
-        
-    private:
-        QHash<QString,Backend::StorageFactory*> m_factories;
+        explicit SettingsAdvanced(QWidget* parent=0, const char* name=0);        
 };
 
 } // namespace Akregator
