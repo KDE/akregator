@@ -276,31 +276,8 @@ void Part::openStandardFeedList()
 }
 
 bool Part::openFile() {
-#ifdef KRSS_PORT_DISABLED
-    std::auto_ptr<LoadFeedListCommand> cmd( new LoadFeedListCommand( m_mainWidget ) );
-    cmd->setParentWidget( m_mainWidget );
-    cmd->setStorage( Kernel::self()->storage() );
-    cmd->setFileName( localFilePath() );
-    cmd->setDefaultFeedList( createDefaultFeedList() );
-    connect( cmd.get(), SIGNAL(result(boost::shared_ptr<Akregator::FeedList>)),
-             this, SLOT(feedListLoaded(boost::shared_ptr<Akregator::FeedList>)) );
-    cmd.release()->start();
-#endif
     return true;
 }
-
-#ifdef KRSS_PORT_DISABLED
-void Part::feedListLoaded( const shared_ptr<Akregator::FeedList>& list ) {
-    m_mainWidget->setFeedList( list );
-    m_standardListLoaded = list != 0;
-
-    if( Settings::markAllFeedsReadOnStartup() )
-        m_mainWidget->slotMarkAllFeedsRead();
-
-    if (Settings::fetchOnStartup())
-        m_mainWidget->slotFetchAllFeeds();
-}
-#endif
 
 bool Part::isTrayIconEnabled() const
 {
@@ -452,6 +429,12 @@ void Part::slotFeedListRetrieved( KJob *job )
     }
 
     m_mainWidget->setFeedList( rjob->feedList() );
+
+    if( Settings::markAllFeedsReadOnStartup() )
+        m_mainWidget->slotMarkAllFeedsRead();
+
+    if (Settings::fetchOnStartup())
+        m_mainWidget->slotFetchAllFeeds();
 }
 
 } // namespace Akregator
