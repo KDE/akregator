@@ -150,9 +150,9 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 
     const QString defaultResourceId = Settings::activeAkonadiResource();
     const shared_ptr<const KRss::NetResource> resource = KRss::ResourceManager::self()->resource( defaultResourceId );
-    connect( resource.get(), SIGNAL( fetchQueueStarted() ),
+    connect( resource.get(), SIGNAL( fetchQueueStarted(QString) ),
              this, SLOT( slotFetchQueueStarted() ) );
-    connect( resource.get(), SIGNAL( fetchQueueFinished() ),
+    connect( resource.get(), SIGNAL( fetchQueueFinished(QString) ),
              this, SLOT( slotFetchQueueFinished() ) );
 
     m_feedListView = new KRss::FeedListView( m_horizontalSplitter );
