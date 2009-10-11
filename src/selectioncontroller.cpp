@@ -226,6 +226,8 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
         return;
     }
 
+    kDebug() << "article listing took (ms):" << m_time.elapsed() << " for items:" << m_listJob->items().count();
+
     m_itemListing.reset( new KRss::ItemListing( m_listJob->items(), m_listJob->fetchScope() ) );
     KRss::ConnectToItemListingVisitor visitor ( m_feedList, m_itemListing );
     selectedSubscription()->accept( &visitor );
@@ -278,6 +280,7 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     m_listJob = job;
     ProgressManager::self()->addJob( job );
     m_listJob->start();
+    m_time.start();
 }
 
 void Akregator::SelectionController::subscriptionContextMenuRequested( const QPoint& point )

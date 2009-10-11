@@ -28,6 +28,7 @@
 
 #include <QtCore/QMap>
 #include <QtCore/QPointer>
+#include <QtCore/QTime>
 
 #include <boost/weak_ptr.hpp>
 
@@ -113,6 +114,7 @@ private:
     boost::shared_ptr<KRss::TreeNode> m_selectedSubscription;
     QMap<boost::weak_ptr<const KRss::TreeNode>, QPoint> m_scrollBarPositions;
     QPointer<KRss::ItemListJob> m_listJob;
+    QTime m_time;
 };
 
 } // namespace Akregator
