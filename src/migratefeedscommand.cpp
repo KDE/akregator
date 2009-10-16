@@ -193,7 +193,7 @@ void MigrateFeedsCommand::Private::wizardClosed() {
 }
 
 void MigrateFeedsCommand::doStart() {
-    QMetaObject::invokeMethod( this, "doDoStart" );
+    QMetaObject::invokeMethod( this, "doDoStart", Qt::QueuedConnection );
 }
 
 void MigrateFeedsCommand::Private::ensureWizardCreated() {
