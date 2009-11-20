@@ -785,6 +785,9 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
 
 QStringList FeedStorageMK4Impl::tags(const QString& guid) const
 {
+    Q_UNUSED( guid );
+#warnig: what is the need of the unused parameter(s)?
+//TODO what is the need of the unused parameter(s)?
     QStringList list;
 #if 0 //category and tag support disabled
     if (!guid.isNull()) // return tags for an articles
