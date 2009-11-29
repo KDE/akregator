@@ -284,7 +284,7 @@ d4_inline bool operator!= (c4_Cursor a_, c4_Cursor b_)
 d4_inline bool operator< (c4_Cursor a_, c4_Cursor b_)
 {
   return a_._seq < b_._seq ||
-	  a_._seq == b_._seq && a_._index < b_._index;
+	( a_._seq == b_._seq && a_._index < b_._index );
 }
 
 d4_inline bool operator> (c4_Cursor a_, c4_Cursor b_)
