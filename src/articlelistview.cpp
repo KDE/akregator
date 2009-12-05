@@ -272,7 +272,7 @@ void ArticleListView::setGroupMode()
     // initialised when QHeaderViewPrivate::resizeSections() is called,
     // doing the resizeSection() here ensures that it has a sensible value.
     // This may not be necessary with Qt 4.5.
-    header()->resizeSection( header()->count() - 1, 1 );
+    header()->resizeSection( header()->logicalIndex( header()->count() - 1 ), 1 );
 
     if ( model() )
         m_feedHeaderState = header()->saveState();
@@ -286,7 +286,7 @@ void ArticleListView::setFeedMode()
     if ( m_columnMode == FeedMode )
         return;
 
-    header()->resizeSection( header()->count() - 1, 1 );
+    header()->resizeSection( header()->logicalIndex( header()->count() - 1 ), 1 );
     if ( model() )
         m_groupHeaderState = header()->saveState();
     header()->restoreState( m_feedHeaderState );
@@ -429,7 +429,7 @@ void ArticleListView::setModel( QAbstractItemModel* m )
 
     if ( m )
     {
-        header()->resizeSection( header()->count() - 1, 1 );
+        header()->resizeSection( header()->logicalIndex( header()->count() - 1 ), 1 );
         header()->restoreState( groupMode ? m_groupHeaderState : m_feedHeaderState );
 
         // Ensure at least one column is visible
