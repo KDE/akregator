@@ -114,7 +114,7 @@ QVariant SortColorizeProxyModel::data( const QModelIndex& idx, int role ) const
                 }
                 case Read:
                 {
-                    return QApplication::palette().color( QPalette::WindowText );
+                    return QApplication::palette().color( QPalette::Text );
                 }
             }
         }
