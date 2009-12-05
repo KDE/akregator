@@ -948,7 +948,7 @@ void Akregator::MainWidget::slotArticleDelete()
     if ( m_viewMode == CombinedView )
         return;
 
-    QList<Article> articles = m_selectionController->selectedArticles();
+    const QList<Article> articles = m_selectionController->selectedArticles();
 
     QString msg;
     switch (articles.count())
@@ -978,7 +978,8 @@ void Akregator::MainWidget::slotArticleDelete()
     Q_FOREACH( const Akregator::Article& i, articles )
     {
         Feed* const feed = i.feed();
-        assert( feed );
+        if ( !feed )
+            continue;
         const Akregator::ArticleId aid = { feed->xmlUrl(), i.guid() };
         job->appendArticleId( aid );
     }

@@ -58,6 +58,9 @@ namespace {
         QList<Akregator::Article> articles;
         Q_FOREACH ( const QModelIndex& i, indexes )
         {
+            const Article a = articleForIndex( i, feedList );
+            if ( a.isNull() )
+                continue;
             articles.append( articleForIndex( i, feedList ) );
         }
 
