@@ -433,8 +433,8 @@ void PageViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, const 
         action("viewer_copy")->plug(&popup);
         popup.addSeparator();
 
-        KAction* incFontAction = this->action("incFontSizes");
-        KAction* decFontAction = this->action("decFontSizes");
+        KAction* incFontAction = this->action("inc_font_sizes");
+        KAction* decFontAction = this->action("dec_font_sizes");
         if ( incFontAction && decFontAction )
         {
             incFontAction->plug( &popup );

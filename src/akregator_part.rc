@@ -22,6 +22,9 @@
       <Action name="normal_view"/>
       <Action name="widescreen_view"/>
       <Action name="combined_view"/>
+      <Separator/>
+      <Action name="inc_font_sizes"/>
+      <Action name="dec_font_sizes"/>
     </Menu>
 
     <Menu name="go">
