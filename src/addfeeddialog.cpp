@@ -87,11 +87,17 @@ void AddFeedDialog::accept()
     m_feed = new Feed( Kernel::self()->storage() );
 
     // HACK: make weird wordpress links ("feed:http://foobar/rss") work
-    if (feedUrl.startsWith(QLatin1String("feed:")))
+    if (feedUrl.startsWith(QLatin1String("feed:http")))
         feedUrl = feedUrl.right( feedUrl.length() - 5 );
 
     if (feedUrl.indexOf(":/") == -1)
         feedUrl.prepend("http://");
+
+    KUrl asUrl( feedUrl );
+    if ( asUrl.scheme() == QLatin1String("feed") ) {
+        asUrl.setScheme( "http" );
+        feedUrl = asUrl.url();
+    }
     m_feed->setXmlUrl(feedUrl);
 
     widget->statusLabel->setText( i18n("Downloading %1", feedUrl) );
