@@ -343,6 +343,8 @@ void Akregator::MainWidget::slotRequestNewFrame(int& frameId)
     BrowserFrame* frame = new BrowserFrame(m_tabWidget);
 
     connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
+    connect( m_tabWidget, SIGNAL(signalZoomInFrame(int)), frame, SLOT(slotZoomIn(int)));
+    connect( m_tabWidget, SIGNAL(signalZoomOutFrame(int)), frame, SLOT(slotZoomOut(int)));
 
     Kernel::self()->frameManager()->slotAddFrame(frame);
 
@@ -1114,6 +1116,8 @@ void Akregator::MainWidget::readProperties(const KConfigGroup &config)
         frame->loadConfig( config, framePrefix + QLatin1Char( '_' ) );
 
         connect( m_part, SIGNAL(signalSettingsChanged()), frame, SLOT(slotPaletteOrFontChanged()));
+        connect( m_tabWidget, SIGNAL(signalZoomInFrame(int)), frame, SLOT(slotZoomIn(int)));
+        connect( m_tabWidget, SIGNAL(signalZoomOutFrame(int)), frame, SLOT(slotZoomOut(int)));
 
         Kernel::self()->frameManager()->slotAddFrame(frame);
 

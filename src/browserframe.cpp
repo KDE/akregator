@@ -47,6 +47,7 @@
 #include <kxmlguiclient.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
+#include <khtml_part.h>
 
 #include <cassert>
 
@@ -131,6 +132,65 @@ void BrowserFrame::slotOpenLinkInNewTab()
     emit signalOpenUrlRequest( req );
 }
 
+bool BrowserFrame::hasZoom() const
+{
+    return qobject_cast<KHTMLPart *>( d->part ) != 0;
+}
+
+void BrowserFrame::slotZoomIn(int zoomid)
+{
+    if ( zoomid != id() )
+        return;
+
+    if ( !d->part )
+        return;
+
+    if ( KHTMLPart * const khtml_part = qobject_cast<KHTMLPart *>( d->part ) ) {
+        int zf = khtml_part->fontScaleFactor();
+        if (zf < 100) {
+            zf = zf - (zf % 20) + 20;
+            khtml_part->setFontScaleFactor(zf);
+        } else {
+            zf = zf - (zf % 50) + 50;
+            khtml_part->setFontScaleFactor(zf < 300 ? zf : 300);
+        }
+    }
+}
+
+void BrowserFrame::slotZoomOut(int zoomid)
+{
+    if ( zoomid != id() )
+        return;
+
+    if ( !d->part )
+        return;
+
+    if (  KHTMLPart * const khtml_part = qobject_cast<KHTMLPart *>( d->part ) ) {
+        int zf = khtml_part->fontScaleFactor();
+        if (zf <= 100) {
+            zf = zf - (zf % 20) - 20;
+            khtml_part->setFontScaleFactor(zf > 20 ? zf : 20);
+        } else {
+            zf = zf - (zf % 50) - 50;
+            khtml_part->setFontScaleFactor(zf);
+        }
+    }
+}
+
+int BrowserFrame::getZoomFactor() const
+{
+    if ( KHTMLPart * const khtml_part = qobject_cast<KHTMLPart *>( d->part ) )
+        return khtml_part->fontScaleFactor();
+
+    return -1;
+}
+
+void BrowserFrame::setZoomFactor( int zf )
+{
+    if (KHTMLPart* const khtml_part = qobject_cast<KHTMLPart *>( d->part ) )
+        khtml_part->setFontScaleFactor( zf );
+}
+
 namespace {
 
 enum SeparatorOption {
@@ -196,6 +256,13 @@ void BrowserFrame::slotPopupMenu(
     {
         addSeparatorIfNotFirst();
         addActionsToMenu( popup, actionGroups.value( "editactions" ), NoSeparator );
+    }
+
+    if (hasZoom())
+    {
+        addSeparatorIfNotFirst();
+        popup->addAction( ActionManager::getInstance()->action("inc_font_sizes") );
+        popup->addAction( ActionManager::getInstance()->action("dec_font_sizes") );
     }
 
     addSeparatorIfNotFirst();
@@ -367,19 +434,22 @@ bool BrowserFrame::isLoading() const
 
 void BrowserFrame::loadConfig( const KConfigGroup& config, const QString& prefix)
 {
-    QString url = config.readEntry( QString::fromLatin1( "url" ).prepend( prefix ), QString() );
-    QString mimetype = config.readEntry( QString::fromLatin1( "mimetype" ).prepend( prefix ), QString() );
+    const QString url = config.readEntry( QString::fromLatin1( "url" ).prepend( prefix ), QString() );
+    const QString mimetype = config.readEntry( QString::fromLatin1( "mimetype" ).prepend( prefix ), QString() );
+    const int zf = config.readEntry( QString::fromLatin1( "zoom" ).prepend( prefix ), 100 );
     OpenUrlRequest req(url);
     KParts::OpenUrlArguments args;
     args.setMimeType(mimetype);
     req.setArgs(args);
     openUrl(req);
+    setZoomFactor( zf );
 }
 
 void BrowserFrame::saveConfig( KConfigGroup& config, const QString& prefix)
 {
     config.writeEntry( QString::fromLatin1( "url" ).prepend( prefix ), url().url() );
     config.writeEntry( QString::fromLatin1( "mimetype" ).prepend( prefix ), d->mimetype );
+    config.writeEntry( QString::fromLatin1( "zoom" ).prepend( prefix ), getZoomFactor() );
 }
 
 #include "browserframe.moc"

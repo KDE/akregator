@@ -179,6 +179,21 @@ Frame * TabWidget::Private::currentFrame()
     return w ? frames.value(w) : 0;
 }
 
+void TabWidget::slotFrameZoomIn()
+{
+    if ( !d->currentFrame() )
+        return;
+    emit signalZoomInFrame( d->currentFrame()->id() );
+}
+
+void TabWidget::slotFrameZoomOut()
+{
+    if ( !d->currentFrame() )
+        return;
+    emit signalZoomOutFrame( d->currentFrame()->id() );
+}
+
+
 void TabWidget::slotTabChanged(int index)
 {
 

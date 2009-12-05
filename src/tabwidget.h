@@ -54,11 +54,15 @@ class TabWidget : public KTabWidget
         void slotAddFrame(Akregator::Frame* f);
         void slotRemoveFrame(int frameId);
         void slotSelectFrame(int frameId);
+        void slotFrameZoomIn();
+        void slotFrameZoomOut();
 
     Q_SIGNALS:
         void signalCurrentFrameChanged(int);
         void signalRemoveFrameRequest(int);
         void signalOpenUrlRequest(Akregator::OpenUrlRequest&);
+        void signalZoomInFrame(int);
+        void signalZoomOutFrame(int);
 
     private:
         /*reimpl*/ void tabInserted( int );

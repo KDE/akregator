@@ -137,16 +137,6 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     action->setText(i18n("&Save Link As..."));
     connect(action, SIGNAL(triggered(bool) ), SLOT(slotSaveLinkAs()));
 
-    action = m_part->actionCollection()->addAction("articleviewer_scroll_up");
-    action->setText(i18n("&Scroll Up"));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollUp()));
-    action->setShortcuts(KShortcut( "Up" ));
-
-    action = m_part->actionCollection()->addAction("articleviewer_scroll_down");
-    action->setText(i18n("&Scroll Down"));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotScrollDown()));
-    action->setShortcuts(KShortcut( "Down" ));
-
     updateCss();
 
     connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
@@ -337,18 +327,11 @@ void ArticleViewer::slotCompleted()
     emit completed();
 }
 
-void ArticleViewer::slotScrollUp()
+void ArticleViewer::slotZoomIn(int id)
 {
-    m_part->view()->scrollBy(0,-10);
-}
+    if (id != 0)
+        return;
 
-void ArticleViewer::slotScrollDown()
-{
-    m_part->view()->scrollBy(0,10);
-}
-
-void ArticleViewer::slotZoomIn()
-{
     int zf = m_part->fontScaleFactor();
     if (zf < 100)
     {
@@ -362,8 +345,11 @@ void ArticleViewer::slotZoomIn()
     }
 }
 
-void ArticleViewer::slotZoomOut()
+void ArticleViewer::slotZoomOut(int id)
 {
+    if (id != 0)
+        return;
+
     int zf = m_part->fontScaleFactor();
     if (zf <= 100)
     {

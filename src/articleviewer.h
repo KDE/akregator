@@ -80,10 +80,8 @@ class ArticleViewer : public QWidget
 
     public slots:
 
-        void slotScrollUp();
-        void slotScrollDown();
-        void slotZoomIn();
-        void slotZoomOut();
+        void slotZoomIn(int);
+        void slotZoomOut(int);
         void slotSetZoomFactor(int percent);
         void slotPrint();
 
