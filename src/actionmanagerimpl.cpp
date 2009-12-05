@@ -366,7 +366,9 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KToggleAction* importantAction = coll->add<KToggleAction>("article_set_status_important");
     importantAction->setText(i18n("&Mark as Important"));
     importantAction->setIcon(KIcon("mail-mark-important"));
-    importantAction->setShortcuts(KShortcut("Ctrl+I"));
+    KShortcut importantSC( "Ctrl+I" );
+    importantSC.setAlternate( Qt::Key_I );
+    importantAction->setShortcuts( importantSC );
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
     connect(importantAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
 
