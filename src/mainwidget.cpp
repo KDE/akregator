@@ -749,9 +749,13 @@ void Akregator::MainWidget::slotDoIntervalFetches()
 {
     if ( !m_feedList )
         return;
+#if 0
+    // the following solid check apparently doesn't work reliably and causes
+    // interval fetching not working although the user is actually online (but solid reports he's not
     const Networking::Status status = Solid::Networking::status();
     if ( status != Networking::Connected && status != Networking::Unknown )
         return;
+#endif
     m_feedList->addToFetchQueue(Kernel::self()->fetchQueue(), true);
 }
 
