@@ -448,7 +448,7 @@ void ArticleListView::slotPreviousArticle()
 {
     if ( !model() )
         return;
-
+    emit userActionTakingPlace();
     const QModelIndex idx = currentIndex();
     const int newRow = qMax( 0, ( idx.isValid() ? idx.row() : model()->rowCount() ) - 1 );
     const QModelIndex newIdx = idx.isValid() ? idx.sibling( newRow, 0 ) : model()->index( newRow, 0 );
@@ -460,6 +460,7 @@ void ArticleListView::slotNextArticle()
     if ( !model() )
         return;
 
+    emit userActionTakingPlace();
     const QModelIndex idx = currentIndex();
     const int newRow = idx.isValid() ? ( idx.row() + 1 ) : 0;
     const QModelIndex newIdx = model()->index( qMin( newRow, model()->rowCount() - 1 ), 0 );
