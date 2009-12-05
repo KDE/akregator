@@ -124,6 +124,8 @@ class Part : public KParts::ReadOnlyPart
 
         void exportFile(const KUrl& url);
 
+        bool handleCommandLine();
+
     public slots:
         /** Used to save settings after changing them from configuration dialog. Calls AkregatorPart's saveSettings. */
         void saveSettings();

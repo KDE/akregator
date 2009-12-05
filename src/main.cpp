@@ -63,25 +63,7 @@ int Application::newInstance()
       akr.call( "openStandardFeedList");
     }
 
-    QString addFeedGroup = !args->getOption("group").isEmpty() ?
-         args->getOption("group")
-         : i18n("Imported Folder");
-
-    QStringList feeds = args->getOptionList("addfeed");
-    QStringList feedsToAdd;
-    QStringList::ConstIterator end( feeds.constEnd() );
-    for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it)
-        feedsToAdd.append(*it);
-
-    if (feedsToAdd.isEmpty() && args->count() > 0) {
-        QString url = args->url(0).url();
-        if(!url.isEmpty())
-            feedsToAdd.append(url);
-    }
-
-    if (!feedsToAdd.isEmpty())
-        akr.call("addFeedsToGroup", feedsToAdd, addFeedGroup );
-
+    akr.call( "handleCommandLine" );
     args->clear();
   }
   return KUniqueApplication::newInstance();

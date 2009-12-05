@@ -16,5 +16,8 @@
       <arg name="url" type="s" direction="in"/>
     </method>
     <method name="addFeed" />
+    <method name="handleCommandLine">
+      <arg name="result" type="b" direction="out"/>
+    </method>
   </interface>
 </node>
