@@ -27,6 +27,7 @@
 #include "akregator_options.h"
 
 #include <kcmdlineargs.h>
+#include <KDebug>
 #include <klocale.h>
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
@@ -94,6 +95,11 @@ int main(int argc, char **argv)
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( Akregator::akregator_options() );
     KUniqueApplication::addCmdLineOptions();
+
+    if ( !Akregator::Application::start() ) {
+        kWarning() << "akregator is already running, exiting.";
+        exit( 0 );
+    }
 
     Akregator::Application app;
 
