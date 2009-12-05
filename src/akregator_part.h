@@ -26,6 +26,9 @@
 #ifndef AKREGATOR_PART_H
 #define AKREGATOR_PART_H
 
+#include <QPointer>
+#include <QVector>
+
 #include <kurl.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>
@@ -48,6 +51,7 @@ namespace Backend {
 class ActionManagerImpl;
 class Feed;
 class FeedList;
+class LoadFeedListCommand;
 class MainWidget;
 class Part;
 class TrayIcon;
@@ -164,12 +168,15 @@ class Part : public KParts::ReadOnlyPart
 
         void feedListLoaded( const boost::shared_ptr<Akregator::FeedList>& list );
 
+        void flushAddFeedRequests();
+
     private: // methods
 
         /** fills the font settings with system fonts, if fonts are not set */
         void initFonts();
 
         bool writeToTextFile( const QString& data, const QString& fname ) const;
+
 
     private: // attributes
 
@@ -188,6 +195,12 @@ class Part : public KParts::ReadOnlyPart
         Backend::Storage* m_storage;
         ActionManagerImpl* m_actionManager;
         KCMultiDialog* m_dialog;
+        struct AddFeedRequest {
+            QStringList urls;
+            QString group;
+        };
+        QPointer<LoadFeedListCommand> m_loadFeedListCommand;
+        QVector<AddFeedRequest> m_requests;
 };
 
 } // namespace Akregator
