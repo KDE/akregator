@@ -76,7 +76,7 @@ using namespace Akregator::Filters;
 namespace Akregator {
 
 ArticleViewer::ArticleViewer(QWidget *parent)
-    : QWidget(parent),
+    : QFrame(parent),
       m_url(0),
       m_htmlFooter(),
       m_currentText(),
@@ -87,6 +87,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
       m_normalViewFormatter( new DefaultNormalViewFormatter( m_imageDir, m_part->view() ) ),
       m_combinedViewFormatter( new DefaultCombinedViewFormatter( m_imageDir, m_part->view() ) )
 {
+    setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
     QGridLayout* layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(m_part->widget(), 0, 0);

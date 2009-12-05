@@ -29,8 +29,8 @@
 
 #include <khtml_part.h>
 
+#include <QFrame>
 #include <QPointer>
-#include <QWidget>
 
 #include <boost/shared_ptr.hpp>
 #include <vector>
@@ -51,7 +51,7 @@ class TreeNode;
 
 class ArticleViewerPart;
 
-class ArticleViewer : public QWidget
+class ArticleViewer : public QFrame
 {
     Q_OBJECT
     public:
