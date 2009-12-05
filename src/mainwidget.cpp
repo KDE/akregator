@@ -190,7 +190,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_articleSplitter->setObjectName("panner2");
 
     m_articleListView = new ArticleListView( m_articleSplitter );
-    connect( m_articleListView, SIGNAL(UserActionTakingPlace()),
+    connect( m_articleListView, SIGNAL(userActionTakingPlace()),
              this, SLOT(ensureArticleTabVisible()) );
     
     m_selectionController = new SelectionController( this );
