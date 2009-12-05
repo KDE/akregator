@@ -29,7 +29,7 @@
 using namespace Akregator;
 
 FilterColumnsProxyModel::FilterColumnsProxyModel( QObject* parent )
-    : QSortFilterProxyModel( parent ), m_mode( Whitelist ), m_vecSize( 0 )
+    : QSortFilterProxyModel( parent ), m_vecSize( 0 ), m_mode( Whitelist )
 {
     
 }
