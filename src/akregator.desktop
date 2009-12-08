@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Akregator
 Name[af]=Akregator
+Name[ar]=اكريغاتور
 Name[be]=Akregator
 Name[bg]=Akregator
 Name[br]=Akregator
@@ -60,6 +61,7 @@ Icon=akregator
 Type=Application
 X-DocPath=akregator/index.html
 GenericName=Feed Reader
+GenericName[ar]=قارئ التلقيمات
 GenericName[ca]=Lector de fonts
 GenericName[cs]=Čtečka kanálů
 GenericName[da]=Feed-læser
@@ -98,6 +100,7 @@ GenericName[x-test]=xxFeed Readerxx
 GenericName[zh_CN]=RSS 种子阅读器
 GenericName[zh_TW]=RSS Feed 閱讀器
 Comment=A Feed Reader for KDE
+Comment[ar]=قارئ التلقيم الخاص بـكدي
 Comment[ca]=Un lector de fonts per al KDE
 Comment[cs]=Čtečka kanálů pro KDE
 Comment[da]=En feed-læser for KDE
