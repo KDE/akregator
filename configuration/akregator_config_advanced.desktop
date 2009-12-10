@@ -11,6 +11,7 @@ X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Weight=500
 
 Name=Advanced
+Name[ar]=متقدِم
 Name[ca]=Avançat
 Name[cs]=Pokročilé
 Name[da]=Avanceret
@@ -50,7 +51,8 @@ Name[x-test]=xxAdvancedxx
 Name[zh_CN]=高级
 Name[zh_TW]=進階
 Comment=Advanced Feed Reader Settings
-Comment[ca]=Arranjaments avançats del lector de fonts
+Comment[ar]=إعدادات قارئ التلقيمات المتقدمة
+Comment[ca]=Arranjament avançat del lector de fonts
 Comment[cs]=Pokročilá nastavení čtečky novinek
 Comment[da]=Avanceret indstilling af feed-læser
 Comment[de]=Erweiterte Einstellungen für den Nachrichtenbetrachter

@@ -12,6 +12,7 @@ X-KDE-Weight=100
 
 Name=General
 Name[af]=Algemeen
+Name[ar]=عام
 Name[be]=Агульныя
 Name[bg]=Общи
 Name[br]=Pennañ
@@ -71,6 +72,7 @@ Name[x-test]=xxGeneralxx
 Name[zh_CN]=常规
 Name[zh_TW]=General
 Comment=Configure Feeds
+Comment[ar]=اضبط التلقيمات
 Comment[ca]=Configura les fonts
 Comment[cs]=Nastavit kanály
 Comment[da]=Indstil feeds

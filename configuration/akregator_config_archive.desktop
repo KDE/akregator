@@ -11,6 +11,7 @@ X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Weight=200
 
 Name=Archive
+Name[ar]=الأرشيف
 Name[ca]=Arxiu
 Name[cs]=Archív
 Name[da]=Arkiv
@@ -48,6 +49,7 @@ Name[x-test]=xxArchivexx
 Name[zh_CN]=存档
 Name[zh_TW]=歸檔
 Comment=Configure Feed Archive
+Comment[ar]=اضبط أرشيف التلقيمات
 Comment[ca]=Configura l'arxiu de fonts
 Comment[cs]=Nastavit archív novinek
 Comment[da]=Indstil feed-arkiv

@@ -12,6 +12,7 @@ X-KDE-Weight=300
 
 Name=Appearance
 Name[af]=Appearance
+Name[ar]=المظهر
 Name[be]=Вонкавы выгляд
 Name[bg]=Външен вид
 Name[br]=Neuziadur
@@ -73,6 +74,7 @@ Name[x-test]=xxAppearancexx
 Name[zh_CN]=外观
 Name[zh_TW]=外觀
 Comment=Configure the Feed Reader Appearance
+Comment[ar]=اضبط مظهر قارئ التلقيمات
 Comment[ca]=Configura l'aparença del lector de fonts
 Comment[cs]=Nastavit vzhled čtečky novinek
 Comment[da]=Indstil udseendet af feed-læser
