@@ -100,7 +100,7 @@ TabWidget::TabWidget(QWidget * parent)
              this, SLOT( slotTabChanged(int) ) );
     connect(this, SIGNAL(closeRequest(QWidget*)),
             this, SLOT(slotCloseRequest(QWidget*)));
-    setCloseButtonEnabled(Settings::closeButtonOnTabs());
+    setTabsClosable(Settings::closeButtonOnTabs());
 
     d->tabsClose = new QToolButton(this);
     connect( d->tabsClose, SIGNAL( clicked() ), this,
