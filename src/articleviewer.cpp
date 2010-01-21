@@ -103,6 +103,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     m_part->setDNDEnabled(true);
     m_part->setAutoloadImages(true);
     m_part->setStatusMessagesEnabled(false);
+    m_part->view()->setAttribute(Qt::WA_InputMethodEnabled, true); //workaround to fix 216878
 
     // change the cursor when loading stuff...
     connect( m_part, SIGNAL(started(KIO::Job *)),
