@@ -334,7 +334,8 @@ QString DefaultNormalViewFormatter::getCss() const
     // these rules make sure that there is no leading space between the header and the first of the text
             ".content > P:first-child {\n margin-top: 1px; }\n"
             ".content > DIV:first-child {\n margin-top: 1px; }\n"
-            ".content > BR:first-child {\n display: none;  }\n"
+    // Do we really need that? See bug #144420
+//            ".content > BR:first-child {\n display: none;  }\n"
     //".contentlink {\n display: block; }\n"
             "}\n\n" // @media screen, print
     // Why did we need that, bug #108187?
