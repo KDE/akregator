@@ -143,11 +143,15 @@ void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleA
 
 Akregator::Article Akregator::SelectionController::currentArticle() const
 {
+    if ( !m_articleLister || !m_articleLister->articleSelectionModel() )
+        return Article();
     return ::articleForIndex( m_articleLister->articleSelectionModel()->currentIndex(), m_feedList.get() );
 }
 
 QList<Akregator::Article> Akregator::SelectionController::selectedArticles() const
 {
+    if ( !m_articleLister || !m_articleLister->articleSelectionModel() )
+        return QList<Akregator::Article>();
     return ::articlesForIndexes( m_articleLister->articleSelectionModel()->selectedRows(), m_feedList.get() );
 }
 
