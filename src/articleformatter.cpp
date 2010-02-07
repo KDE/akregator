@@ -101,9 +101,9 @@ class DefaultNormalViewFormatter::SummaryVisitor : public TreeNodeVisitor
         virtual bool visitFeed(Feed* node)
         {
             text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
-
-            text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(Utils::stripTags(node->title())));
-            text += node->title();
+            const QString strippedTitle = Utils::stripTags(node->title());
+            text += QString("<div class=\"headertitle\" dir=\"%1\">").arg(Utils::directionOf(strippedTitle));
+            text += strippedTitle;
             if(node->unread() == 0)
                 text += i18n(" (no unread articles)");
             else
@@ -173,12 +173,13 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
     const QString enc = formatEnclosure( *article.enclosure() );
 
-    if (!article.title().isEmpty())
+    const QString strippedTitle = Utils::stripTags( article.title() );
+    if (!strippedTitle.isEmpty())
     {
-        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(Utils::stripTags(article.title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(strippedTitle));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
-        text += article.title().replace('<', "&lt;").replace('>', "&gt;"); // TODO: better leave things escaped in the parser
+        text += strippedTitle;
         if (article.link().isValid())
             text += "</a>";
         text += "</div>\n";
@@ -367,12 +368,14 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
     const QString enc = formatEnclosure( *article.enclosure() );
     text = QString("<div class=\"headerbox\" dir=\"%1\">\n").arg(QApplication::isRightToLeft() ? "rtl" : "ltr");
 
-    if (!article.title().isEmpty())
+    const QString strippedTitle = Utils::stripTags( article.title() );
+
+    if (!strippedTitle.isEmpty())
     {
-        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(Utils::stripTags(article.title())));
+        text += QString("<div class=\"headertitle\" dir=\"%1\">\n").arg(Utils::directionOf(strippedTitle));
         if (article.link().isValid())
             text += "<a href=\""+article.link().url()+"\">";
-        text += article.title().replace('<', "&lt;").replace('>', "&gt;"); // TODO: better leave things escaped in the parser
+        text += strippedTitle;
         if (article.link().isValid())
             text += "</a>";
         text += "</div>\n";
