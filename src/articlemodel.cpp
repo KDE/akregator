@@ -58,12 +58,22 @@ public:
 
 };
 
+//like Syndication::htmlToPlainText, but without linebreaks
+
+static QString stripHtml( const QString& html ) {
+    QString str(html);
+    //TODO: preserve some formatting, such as line breaks
+    str.remove(QRegExp("<[^>]*>")); // remove tags
+    str = Syndication::resolveEntities(str);
+    return str.simplified();
+}
+
 ArticleModel::Private::Private( const QList<Article>& articles_, ArticleModel* qq )
  : q( qq ), articles( articles_ )
 {
     titleCache.resize( articles.count() );
     for ( int i = 0; i < articles.count(); ++i )
-        titleCache[i] = Syndication::htmlToPlainText( articles[i].title() );
+        titleCache[i] = stripHtml( articles[i].title() );
 }
 
 Akregator::ArticleModel::ArticleModel(const QList<Article>& articles, QObject* parent) : QAbstractTableModel( parent ), d( new Private( articles, this ) )
