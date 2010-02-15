@@ -535,19 +535,19 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
 
     action = coll->addAction("tab_remove");
     action->setIcon(KIcon("tab-close"));
-    action->setText(i18n("&Close Tab"));
+    action->setText(i18n("Close Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
     action->setShortcuts(KStandardShortcut::close());
 
     action = coll->addAction("inc_font_sizes");
-    action->setIcon(KIcon("zoom-in"));
-    action->setText(i18n("&Increase Font Sizes"));
+    action->setIcon(KIcon("format-font-size-more"));
+    action->setText(i18n("Enlarge Font"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotFrameZoomIn()));
     action->setShortcut( QKeySequence::ZoomIn );
 
     action = coll->addAction("dec_font_sizes");
-    action->setIcon(KIcon("zoom-out"));
-    action->setText(i18n("&Decrease Font Sizes"));
+    action->setIcon(KIcon("format-font-size-less"));
+    action->setText(i18n("Shrink Font"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotFrameZoomOut()));
     action->setShortcut( QKeySequence::ZoomOut );
 }
