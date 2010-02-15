@@ -155,7 +155,7 @@ Comment[uk]=Нову подачу було віддалено додано до 
 Comment[uz]=Akregator dasturiga yangi yangiliklar tasmasi qoʻshildi
 Comment[uz@cyrillic]=Akregator дастурига янги янгиликлар тасмаси қўшилди
 Comment[x-test]=xxA new feed was remotely added to Akregatorxx
-Comment[zh_CN]=远程添加新种子进了 Akregator
+Comment[zh_CN]=一个新种子已通过远程添加进 Akregator
 Comment[zh_TW]=已從遠端新增 Feed 到 Akregator
 Action=Popup
 
