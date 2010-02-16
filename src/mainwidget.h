@@ -230,6 +230,8 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         void slotFetchingStarted();
         void slotFetchingStopped();
 
+        void slotFramesChanged();
+
     private:
         void deleteExpiredArticles( const boost::shared_ptr<FeedList>& feedList );
 

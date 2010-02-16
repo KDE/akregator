@@ -103,17 +103,6 @@ protected:
     void readProperties(const KConfigGroup &);
 
     /**
-     * This is called when exiting akregator in order to be able to restore
-     * its state next time it starts.
-     */
-    void autoSaveProperties();
-
-    /**
-     * This function is called when starting akregator and it will restore
-     * the state akregator the last time it was closed if possible.
-     */
-    void autoReadProperties();
-    /**
      *  Reimplemented to save settings
      */
     bool queryExit();

@@ -164,6 +164,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     : inherited(parent)
     , m_standardListLoaded(false)
     , m_shuttingDown(false)
+    , m_doCrashSave(true)
     , m_backedUpList(false)
     , m_mainWidget(0)
     , m_storage(0)
@@ -253,6 +254,9 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     Syndication::FileRetriever::setUserAgent( useragent );
 
     loadPlugins( QLatin1String("extension") ); // FIXME: also unload them!
+
+    if (!readCrashProperties())
+            autoReadProperties();
 }
 
 void Part::loadPlugins( const QString& type )
@@ -275,6 +279,7 @@ void Part::slotStarted()
 
 void Part::slotOnShutdown()
 {
+    autoSaveProperties();
     m_shuttingDown = true;
     m_autosaveTimer->stop();
     saveSettings();
@@ -689,6 +694,88 @@ bool Part::handleCommandLine() {
     if (!feedsToAdd.isEmpty())
         addFeedsToGroup( feedsToAdd, addFeedGroup );
     return true;
+}
+
+void Part::clearCrashProperties()
+{
+    if (!m_doCrashSave)
+        return;
+    KConfig config("crashed", KConfig::SimpleConfig,
+        "appdata");
+    KConfigGroup configGroup(&config, "Part");
+    configGroup.writeEntry("crashed", false);
+}
+
+
+void Part::saveCrashProperties()
+{
+    if (!m_doCrashSave)
+        return;
+    KConfig config("crashed", KConfig::SimpleConfig,
+        "appdata");
+    KConfigGroup configGroup(&config, "Part");
+    configGroup.deleteGroup();
+
+    configGroup.writeEntry("crashed", true);
+
+    saveProperties(configGroup);
+}
+
+bool Part::readCrashProperties()
+{
+    KConfig config("crashed", KConfig::SimpleConfig,
+        "appdata");
+    KConfigGroup configGroup(&config, "Part");
+
+    if (!configGroup.readEntry("crashed", false))
+        return false;
+
+    const int choice = KMessageBox::questionYesNoCancel( m_mainWidget,
+            i18n("Akregator did not close correctly. Would you like to restore the previous session?"),
+            i18n("Restore Session?"),
+            KGuiItem(i18n("Restore Session"), "window-new"),
+            KGuiItem(i18n("Do Not Restore"), "dialog-close"),
+            KGuiItem(i18n("Ask Me Later"), "chronometer"),
+            "Restore session when akregator didn't close correctly" );
+    switch ( choice ) { 
+    case KMessageBox::Yes:
+        readProperties(configGroup);
+        return true;
+    case KMessageBox::No:
+        clearCrashProperties();
+        return false;
+    default:
+        break;
+    }
+    m_doCrashSave = false;
+    return false;
+}
+
+void Part::slotAutoSave()
+{
+    saveCrashProperties();
+}
+
+void Part::autoSaveProperties()
+{
+    KConfig config("autosaved", KConfig::SimpleConfig, "appdata");
+    KConfigGroup configGroup(&config, "Part");
+    configGroup.deleteGroup();
+
+    saveProperties(configGroup);
+
+    clearCrashProperties();
+}
+
+void Part::autoReadProperties()
+{
+    if(kapp->isSessionRestored())
+        return;
+
+    KConfig config("autosaved", KConfig::SimpleConfig, "appdata");
+    KConfigGroup configGroup(&config, "Part");
+
+    readProperties(configGroup);
 }
 
 } // namespace Akregator

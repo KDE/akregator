@@ -171,6 +171,11 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect( Kernel::self()->frameManager(), SIGNAL(signalRequestNewFrame(int&)),
              this, SLOT( slotRequestNewFrame(int&) ) );
 
+    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Akregator::Frame*)),
+             this, SLOT(slotFramesChanged()));
+    connect( Kernel::self()->frameManager(), SIGNAL(signalFrameRemoved(int)),
+             this, SLOT(slotFramesChanged()));
+
     m_tabWidget->setWhatsThis( i18n("You can view multiple articles in several open tabs."));
 
     m_mainTab = new QWidget(this);
@@ -996,6 +1001,11 @@ void Akregator::MainWidget::slotArticleDelete()
         selected->setNotificationMode( true );
 }
 
+void Akregator::MainWidget::slotFramesChanged()
+{
+    // We need to wait till the frame is fully loaded
+    QMetaObject::invokeMethod( m_part, "slotAutoSave", Qt::QueuedConnection );
+}
 
 void Akregator::MainWidget::slotArticleToggleKeepFlag( bool )
 {

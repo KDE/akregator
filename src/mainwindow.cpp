@@ -86,7 +86,6 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
     KStandardAction::showMenubar( menuBar(), SLOT(setVisible(bool)), actionCollection());
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
-    autoReadProperties();
 
     connect( KPIM::BroadcastStatus::instance(), SIGNAL( statusMsg( const QString& ) ),
              this, SLOT( slotSetStatusBarText(const QString&) ) );
@@ -192,7 +191,6 @@ bool MainWindow::queryExit()
 {
     if ( !kapp->sessionSaving() )
     {
-        autoSaveProperties();
         delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
     }
     return KMainWindow::queryExit();
@@ -202,7 +200,6 @@ void MainWindow::slotQuit()
 {
     if (TrayIcon::getInstance())
         TrayIcon::getInstance()->hide();
-    autoSaveProperties();
     kapp->quit();
 }
 
@@ -211,10 +208,7 @@ bool MainWindow::queryClose()
     if (kapp->sessionSaving())
         return true;
     else if (TrayIcon::getInstance() == 0 || !TrayIcon::getInstance()->isVisible() )
-    {
-        autoSaveProperties();
         return true;
-    }
 
     const QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
     KTemporaryFile tmp;
@@ -242,28 +236,6 @@ void MainWindow::slotClearStatusText()
 void MainWindow::slotSetStatusBarText( const QString & text )
 {
     m_statusLabel->setText(text);
-}
-
-void MainWindow::autoSaveProperties()
-{
-    KConfig config("autosaved", KConfig::SimpleConfig,
-        "appdata");
-    KConfigGroup configGroup(&config, "MainWindow");
-    configGroup.deleteGroup();
-
-    saveProperties(configGroup);
-}
-
-void MainWindow::autoReadProperties()
-{
-    if(kapp->isSessionRestored())
-        return;
-
-    KConfig config("autosaved", KConfig::SimpleConfig,
-        "appdata");
-    KConfigGroup configGroup(&config, "MainWindow");
-
-    readProperties(configGroup);
 }
 
 #include "mainwindow.moc"

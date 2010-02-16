@@ -140,6 +140,9 @@ class Part : public KParts::ReadOnlyPart
         void showOptions();
         void showNotificationOptions();
 
+        /** Call to auto save */
+        void slotAutoSave();
+
     signals:
         void signalSettingsChanged();
 
@@ -180,6 +183,34 @@ class Part : public KParts::ReadOnlyPart
         bool writeToTextFile( const QString& data, const QString& fname ) const;
 
 
+        /**
+         * This function ist called by the MainWindow upon restore
+         */
+        void autoReadProperties();
+
+        /**
+         * This is called when exiting akregator in order to be able to restore
+         * its state next time it starts.
+         */
+        void autoSaveProperties();
+
+        /**
+         * Saves the session in a special file, so akregator can restore the session in
+         * case of a crash.
+         */
+        void saveCrashProperties();
+
+        /**
+         * Tries to restore the session, if akregator crashed.
+         */
+        bool readCrashProperties();
+
+        /**
+         * Clears the crash data.
+         */
+        void clearCrashProperties();
+
+
     private: // attributes
 
         class ApplyFiltersInterceptor;
@@ -187,6 +218,7 @@ class Part : public KParts::ReadOnlyPart
         QString m_standardFeedList;
         bool m_standardListLoaded;
         bool m_shuttingDown;
+        bool m_doCrashSave;
 
         KParts::BrowserExtension *m_extension;
 
