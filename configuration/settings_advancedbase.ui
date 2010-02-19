@@ -66,9 +66,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="kcfg_MarkReadDelay">
-          <property name="suffix">
-           <string> sec</string>
+         <widget class="KIntSpinBox" name="kcfg_MarkReadDelay">
+          <property name="minimumSize">
+           <size>
+            <width>130</width>
+            <height>0</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -113,6 +116,11 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
   <customwidget>
    <class>KComboBox</class>
    <extends>QComboBox</extends>
