@@ -116,6 +116,13 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="kcfg_NewWindowInTab">
+        <property name="text">
+         <string>Open links in new tab instead of in new window</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>

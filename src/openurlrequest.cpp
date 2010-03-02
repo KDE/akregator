@@ -23,6 +23,7 @@
 */
 
 #include "openurlrequest.h"
+#include "akregatorconfig.h"
 
 
 namespace Akregator {
@@ -84,6 +85,14 @@ void OpenUrlRequest::setBrowserArgs(const KParts::BrowserArguments& args)
 
 OpenUrlRequest::Options OpenUrlRequest::options() const
 {
+    if (m_options == None && m_browserArgs.frameName == "_blank")
+    {
+        if (Settings::newWindowInTab())
+            return (NewTab);
+        else
+            return (ExternalBrowser);
+    }
+
     return m_options;
 }
 
@@ -104,11 +113,12 @@ KParts::ReadOnlyPart* OpenUrlRequest::part() const
 
 QString OpenUrlRequest::debugInfo() const
 {
-    return  "url=" + m_url.url()
-            + " mimeType=" + m_args.mimeType()
-            + " newTab=" + m_browserArgs.newTab()
-            + " forcesNewWindow=" + m_browserArgs.forcesNewWindow()
-            + " options="+ m_options;
+    return QString("url=%1 mimeType=%2 newTab=%3 forcesNewWindow=%4 options=%5")
+        .arg(m_url.url())
+        .arg(m_args.mimeType())
+        .arg(m_browserArgs.newTab())
+        .arg(m_browserArgs.forcesNewWindow())
+        .arg(m_options);
 }
 
 bool OpenUrlRequest::wasHandled() const

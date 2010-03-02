@@ -157,6 +157,11 @@
     <whatsthis>Show close buttons on tabs instead of icons</whatsthis>
     <default>false</default>   
   </entry>
+  <entry key="New Window In Tab" type="Bool">
+    <label>Open links in new tab instead of in new window</label>
+    <whatsthis>Open a link which would normally open in a new window (external browser) in a new tab instead</whatsthis>
+    <default>false</default>   
+  </entry>
   <entry key="External Browser Use Kde Default" type="Bool" >
    <label>Use default KDE web browser</label>
    <whatsthis>Use KDE web browser when opening in external browser.</whatsthis>

@@ -290,6 +290,15 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request)
         openInExternalBrowser(request);
         return;
     }
+
+    // Honour user's preference for foreground/background tabs
+    if (request.options() == OpenUrlRequest::NewTab ||
+        request.browserArgs().newTab())
+    {
+        request.setOpenInBackground(Settings::lMBBehaviour() ==
+                                    Settings::EnumLMBBehaviour::OpenInBackground);
+    }
+
     // if no service type is set, determine it using BrowserRun.
     if (request.args().mimeType().isEmpty())
     {
