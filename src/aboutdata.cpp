@@ -33,10 +33,10 @@ namespace Akregator {
 
 AboutData::AboutData()
     : KAboutData("akregator", 0, ki18n("Akregator"), AKREGATOR_VERSION, ki18n("A KDE Feed Reader"),
-                 License_GPL, ki18n("(C) 2004-2008 Akregator developers"), KLocalizedString(),
+                 License_GPL, ki18n("Copyright © 2004–2010 Akregator authors"), KLocalizedString(),
                      "http://akregator.kde.org/")
 {
-    setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS 
+    setOrganizationDomain("kde.org"); // needed to get org.kde.akregator used for DBUS
     addAuthor( ki18n("Frank Osterfeld"), ki18n("Maintainer"), "osterfeld@kde.org" );
     addAuthor( ki18n("Teemu Rytilahti"), ki18n("Developer"), "tpr@d5k.net" );
     addAuthor( ki18n("Sashmit Bhaduri"), ki18n("Developer"), "sashmit@vfemail.net" );
