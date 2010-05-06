@@ -51,7 +51,7 @@ class TreeNode;
 
 class ArticleViewerPart;
 
-class ArticleViewer : public QFrame
+class ArticleViewer : public QWidget
 {
     Q_OBJECT
     public:

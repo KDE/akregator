@@ -76,7 +76,7 @@ using namespace Akregator::Filters;
 namespace Akregator {
 
 ArticleViewer::ArticleViewer(QWidget *parent)
-    : QFrame(parent),
+    : QWidget(parent),
       m_url(0),
       m_htmlFooter(),
       m_currentText(),
@@ -87,7 +87,6 @@ ArticleViewer::ArticleViewer(QWidget *parent)
       m_normalViewFormatter( new DefaultNormalViewFormatter( m_imageDir, m_part->view() ) ),
       m_combinedViewFormatter( new DefaultCombinedViewFormatter( m_imageDir, m_part->view() ) )
 {
-    setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
     QGridLayout* layout = new QGridLayout(this);
     layout->setMargin(0);
     layout->addWidget(m_part->widget(), 0, 0);
@@ -104,6 +103,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
     m_part->setAutoloadImages(true);
     m_part->setStatusMessagesEnabled(false);
     m_part->view()->setAttribute(Qt::WA_InputMethodEnabled, true); //workaround to fix 216878
+    m_part->view()->setFrameStyle( QFrame::StyledPanel|QFrame::Sunken );
 
     // change the cursor when loading stuff...
     connect( m_part, SIGNAL(started(KIO::Job *)),
