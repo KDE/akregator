@@ -321,8 +321,12 @@ View::View( Part *part, QWidget *parent, ActionManagerImpl* actionManager, const
     connectFrame(m_mainFrame);
     m_tabs->addFrame(m_mainFrame);
 
-    m_horizontalSplitter->setSizes( Settings::splitter1Sizes() );
-    m_articleSplitter->setSizes( Settings::splitter2Sizes() );
+    const QValueList<int> sp1sizes = Settings::splitter1Sizes();
+    if ( sp1sizes.count() >= m_horizontalSplitter->sizes().count() )
+        m_horizontalSplitter->setSizes( sp1sizes );
+    const QValueList<int> sp2sizes = Settings::splitter2Sizes();
+    if ( sp2sizes.count() >= m_articleSplitter->sizes().count() )
+        m_articleSplitter->setSizes( sp2sizes );
 
     KConfig *conf = Settings::self()->config();
     conf->setGroup("General");
@@ -407,10 +411,10 @@ void View::slotOnShutdown()
 void View::saveSettings()
 {
     const QValueList<int> spl1 = m_horizontalSplitter->sizes();
-    if ( spl1.count() == 2 )
+    if ( spl1.contains( 0 ) == 0 )
         Settings::setSplitter1Sizes( spl1 );
     const QValueList<int> spl2 = m_articleSplitter->sizes();
-    if ( spl2.count() == 2 )
+    if ( spl2.contains( 0 ) == 0 )
         Settings::setSplitter2Sizes( spl2 );
     Settings::setViewMode( m_viewMode );
     Settings::writeConfig();
