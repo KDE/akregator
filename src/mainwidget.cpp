@@ -139,10 +139,11 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     connect( m_feedListView, SIGNAL(userActionTakingPlace()),
              this, SLOT(ensureArticleTabVisible()) );
 
-    connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
-            Akregator::Folder*)),
-            this, SLOT(slotFeedUrlDropped (KUrl::List &,
-            Akregator::TreeNode*, Akregator::Folder*)));
+    // FIXME:
+    // connect(m_feedListView, SIGNAL(signalDropped (KUrl::List &, Akregator::TreeNode*,
+    //         Akregator::Folder*)),
+    //         this, SLOT(slotFeedUrlDropped (KUrl::List &,
+    //         Akregator::TreeNode*, Akregator::Folder*)));
 
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
