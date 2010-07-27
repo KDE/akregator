@@ -30,7 +30,7 @@ set(akregatorprivate_LIB_SRCS
    trayicon.cpp 
 )
 
-kde4_add_library(akregatorprivate SHARED ${akregatorprivate_LIB_SRCS})
+kde4_add_library(akregatorprivate ${LIBRARY_TYPE} ${akregatorprivate_LIB_SRCS})
 
 target_link_libraries(akregatorprivate kdepim  ${KDE4_KHTML_LIBS} ${KDEPIMLIBS_SYNDICATION_LIBS} akregatorinterfaces)
 target_link_libraries(akregatorprivate LINK_INTERFACE_LIBRARIES ${KDE4_KHTML_LIBS} )
