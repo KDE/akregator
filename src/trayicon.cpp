@@ -112,14 +112,11 @@ QPixmap TrayIcon::takeScreenshot() const
 
 void TrayIcon::slotSetUnread(int unread)
 {
-    if (unread == m_unread)
-        return;
-
     m_unread=unread;
 
     this->setToolTip( i18np("Akregator - 1 unread article", "Akregator - %1 unread articles", unread > 0 ? unread : 0));
 
-    if (unread <= 0)
+    if (unread <= 0 || !Settings::enableTrayIconUnreadArticleCount())
     {
         setIcon(m_defaultIcon);
     }
@@ -182,6 +179,7 @@ void TrayIcon::settingsChanged()
         show();
     else
         hide();
+    slotSetUnread(m_unread);
 }
 
 } // namespace Akregator
