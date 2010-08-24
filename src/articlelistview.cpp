@@ -85,8 +85,10 @@ void SortColorizeProxyModel::setFilters( const std::vector<shared_ptr<const Filt
 {
     if ( m_matchers == matchers )
         return;
+    layoutAboutToBeChanged();
     m_matchers = matchers;
     invalidateFilter();
+    layoutChanged();
 }
 
 QVariant SortColorizeProxyModel::data( const QModelIndex& idx, int role ) const
