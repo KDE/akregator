@@ -272,7 +272,7 @@ void ArticleViewer::slotCopyLinkAddress()
     QClipboard *cb = QApplication::clipboard();
     cb->setText(m_url.prettyUrl(), QClipboard::Clipboard);
     // don't set url to selection as it's a no-no according to a fd.o spec
-    // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives 
+    // which spec? Nobody seems to care (tested Firefox (3.5.10) Konqueror,and KMail (4.2.3)), so I re-enable the following line unless someone gives
     // a good reason to remove it again (bug 183022) --Frank
     cb->setText(m_url.prettyUrl(), QClipboard::Selection);
 }
@@ -665,7 +665,7 @@ void ArticleViewer::displayAboutPage()
             i18nc("%1: Akregator version; %2: homepage URL; "
             "--- end of comment ---",
     "<h2 style='margin-top: 0px;'>Welcome to Akregator %1</h2>"
-            "<p>Akregator is a feed reader for the K Desktop Environment. "
+            "<p>Akregator is a KDE news feed reader. "
             "Feed readers provide a convenient way to browse different kinds of "
             "content, including news, blogs, and other content from online sites. "
             "Instead of checking all your favorite web sites manually for updates, "
@@ -682,7 +682,7 @@ void ArticleViewer::displayAboutPage()
     QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
     QString appTitle = i18n("Akregator");
     QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
-    QString quickDescription = i18n("An RSS feed reader for the K Desktop Environment.");
+    QString quickDescription = i18n("A KDE news feed reader.");
 
     QString content = KPIMUtils::kFileToByteArray(location);
 
