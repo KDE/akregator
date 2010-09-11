@@ -40,7 +40,6 @@ class QTimer;
 class KAboutData;
 class KConfig;
 class KURL;
-class KParts::BrowserExtension;
 
 namespace Akregator
 {
