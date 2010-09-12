@@ -48,6 +48,7 @@ namespace Backend {
     class Storage;
 }
 
+class Article;
 class ActionManagerImpl;
 class Feed;
 class FeedList;
@@ -145,7 +146,7 @@ class Part : public KParts::ReadOnlyPart
 
     signals:
         void signalSettingsChanged();
-
+        void signalArticlesSelected( const QList<Akregator::Article>& );
 
     private:
 

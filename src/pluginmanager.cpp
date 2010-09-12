@@ -79,7 +79,7 @@ PluginManager::createFromQuery( const QString &constraint )
 
 
 Plugin*
-PluginManager::createFromService( const KService::Ptr service )
+PluginManager::createFromService( const KService::Ptr service, QObject *parent )
 {
     kDebug() <<"Trying to load:" << service->library();
 
@@ -90,7 +90,7 @@ PluginManager::createFromService( const KService::Ptr service )
                                 " Error message: %2" ).arg( service->library(), loader.errorString() );
         return 0;
     }
-    Plugin* const plugin = factory->create<Plugin>();
+    Plugin* const plugin = factory->create<Plugin>( parent );
 
     //put plugin into store
     StoreItem item;

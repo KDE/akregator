@@ -70,7 +70,7 @@ class AKREGATORPART_EXPORT PluginManager
          * @param service     Pointer to KService
          * @return            Pointer to Plugin, or NULL if error
          */
-        static Akregator::Plugin* createFromService( const KService::Ptr service );
+        static Akregator::Plugin* createFromService( const KService::Ptr service, QObject *parent = 0 );
 
         /**
          * Remove library and delete plugin

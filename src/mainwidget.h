@@ -119,6 +119,9 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** emitted when the unread count of "All Feeds" was changed */
         void signalUnreadCountChanged(int);
 
+        /** emitted when the articles selected changed */
+        void signalArticlesSelected(const QList<Akregator::Article>&);
+
     public slots:
 
         /** opens the current article (currentItem) in external browser

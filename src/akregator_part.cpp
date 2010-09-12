@@ -245,6 +245,8 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
             kapp, SLOT(quit())) ;
 
     connect( m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
+    connect( m_mainWidget, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),
+             this, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)) );
 
     connect(kapp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 
@@ -270,7 +272,7 @@ void Part::loadPlugins( const QString& type )
     const KService::List offers = PluginManager::query( QString::fromLatin1("[X-KDE-akregator-plugintype] == '%1'").arg( type ) );
 
     Q_FOREACH ( const KService::Ptr& i, offers ) {
-        Akregator::Plugin* plugin = PluginManager::createFromService( i );
+        Akregator::Plugin* plugin = PluginManager::createFromService( i, this );
         if ( !plugin )
             continue;
         plugin->initialize();
@@ -581,19 +583,11 @@ void Part::showOptions()
         connect( m_dialog, SIGNAL(configCommitted()),
                  TrayIcon::getInstance(), SLOT(settingsChanged()) );
 
-        QStringList modules;
-
-        modules.append( "akregator_config_general.desktop" );
-        modules.append( "akregator_config_onlinesync.desktop" );
-        modules.append( "akregator_config_archive.desktop" );
-        modules.append( "akregator_config_appearance.desktop" );
-        modules.append( "akregator_config_browser.desktop" );
-        modules.append( "akregator_config_advanced.desktop" );
-
-        // add them all
-        QStringList::iterator mit;
-        for ( mit = modules.begin(); mit != modules.end(); ++mit ) {
-            m_dialog->addModule( *mit );
+        // query for akregator's kcm modules
+        const QString constraint = "[X-KDE-ParentApp] == 'akregator'";
+        const KService::List offers = KServiceTypeTrader::self()->query( "KCModule", constraint );
+        foreach( const KService::Ptr &service, offers ) {
+            m_dialog->addModule( service->storageId() );
         }
     }
 
