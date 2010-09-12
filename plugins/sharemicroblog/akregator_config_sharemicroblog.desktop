@@ -1,0 +1,15 @@
+[Desktop Entry]
+Icon=akregator
+Type=Service
+X-KDE-ServiceTypes=KCModule
+X-DocPath=akregator/preferences.html#general-lookup
+
+X-KDE-Library=akregator_config_sharemicroblog
+X-KDE-ParentApp=akregator
+X-KDE-ParentComponents=akregator,kontact_akregatorplugin
+X-KDE-CfgDlgHierarchy=Akregator
+X-KDE-Keywords=akregator, configure, settings, online readers
+X-KDE-Weight=150
+
+Name=Share Services
+Comment=Configure Share Services

@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Service
+Name=Akregator Online Article Share
+Comment=Plugin for Akregator
+
+X-KDE-Library=akregator_sharemicroblog_plugin
+X-KDE-ServiceTypes=Akregator/Plugin
+X-KDE-InterfaceVersion=4
+X-KDE-PluginInfo-EnabledByDefault=true
+X-KDE-akregator-plugintype=extension
+X-KDE-akregator-name=sharemicroblog
+X-KDE-akregator-rank=255
+X-KDE-akregator-version=1
+X-KDE-akregator-framework-version=4
+X-KDE-akregator-authors=Artur de Souza
