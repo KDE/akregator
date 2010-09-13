@@ -12,4 +12,6 @@ X-KDE-Keywords=akregator, configure, settings, online readers
 X-KDE-Weight=150
 
 Name=Share Services
+Name[x-test]=xxShare Servicesxx
 Comment=Configure Share Services
+Comment[x-test]=xxConfigure Share Servicesxx
