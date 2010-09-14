@@ -12,6 +12,14 @@ X-KDE-Keywords=akregator, configure, settings, online readers
 X-KDE-Weight=150
 
 Name=Share Services
+Name[pt]=Serviços de Partilha
+Name[pt_BR]=Serviços de compartilhamento
+Name[sv]=Delningstjänster
+Name[uk]=Служби оприлюднення
 Name[x-test]=xxShare Servicesxx
 Comment=Configure Share Services
+Comment[pt]=Configurar os Serviços de Partilha
+Comment[pt_BR]=Configurar os serviços de compartilhamento
+Comment[sv]=Anpassa delningstjänster
+Comment[uk]=Налаштування служб оприлюднення
 Comment[x-test]=xxConfigure Share Servicesxx
