@@ -28,6 +28,7 @@
 #include <QHash>
 #include <QObject>
 
+#include "akregator_export.h"
 
 class QIcon;
 class QString;
@@ -38,7 +39,7 @@ namespace Akregator {
 class Frame;
 class OpenUrlRequest;
 
-class FrameManager : public QObject
+class AKREGATOR_EXPORT FrameManager : public QObject
 {
     Q_OBJECT
 

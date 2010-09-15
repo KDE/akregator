@@ -30,6 +30,8 @@
 #include "frame.h"
 #include "feediconmanager.h"
 
+#include "akregator_export.h"
+
 class QPoint;
 class QString;
 class QWidget;
@@ -44,7 +46,7 @@ namespace KParts
 
 namespace Akregator {
 
-class BrowserFrame : public Frame, public virtual FaviconListener
+class AKREGATOR_EXPORT BrowserFrame : public Frame, public virtual FaviconListener
 {
     Q_OBJECT
 

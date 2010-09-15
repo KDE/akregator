@@ -32,12 +32,14 @@
 
 #include <QPointer>
 
+#include "akregator_export.h"
+
 namespace Akregator
 {
 
 class Frame;
 
-class OpenUrlRequest
+class AKREGATOR_EXPORT OpenUrlRequest
 {
     public:
 

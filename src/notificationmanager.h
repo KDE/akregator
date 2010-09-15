@@ -30,12 +30,13 @@
 
 #include "article.h"
 #include <kcomponentdata.h>
+#include "akregator_export.h"
 
 namespace Akregator 
 {
 
 /** this class collects notification requests (new articles etc.) and processes them using KNotify.  */
-class NotificationManager : public QObject
+class AKREGATOR_EXPORT NotificationManager : public QObject
 {
     Q_OBJECT
     public:

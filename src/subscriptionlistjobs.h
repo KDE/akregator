@@ -29,13 +29,15 @@
 
 #include <boost/weak_ptr.hpp>
 
+#include "akregator_export.h"
+
 namespace Akregator {
 
 class FeedList;
 
 //transitional job classes
 
-class MoveSubscriptionJob : public KJob
+class AKREGATOR_EXPORT  MoveSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
@@ -56,7 +58,7 @@ private:
     boost::weak_ptr<FeedList> m_feedList;
 };
 
-class RenameSubscriptionJob : public KJob
+class AKREGATOR_EXPORT RenameSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:
@@ -76,7 +78,7 @@ private:
     boost::shared_ptr<FeedList> m_feedList;
 };
 
-class DeleteSubscriptionJob : public KJob
+class AKREGATOR_EXPORT DeleteSubscriptionJob : public KJob
 {
     Q_OBJECT
 public:

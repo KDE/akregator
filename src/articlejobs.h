@@ -34,6 +34,8 @@
 
 #include <boost/shared_ptr.hpp>
 
+#include "akregator_export.h"
+
 //transitional job classes
 namespace Akregator {
 
@@ -53,7 +55,7 @@ struct ArticleId
 
 typedef QList<Akregator::ArticleId> ArticleIdList;
 
-class CompositeJob : public KCompositeJob
+class AKREGATOR_EXPORT CompositeJob : public KCompositeJob
 {
     Q_OBJECT
 public:
@@ -62,7 +64,7 @@ public:
     /* reimp */ void start();
 };
 
-class ArticleDeleteJob : public KJob
+class AKREGATOR_EXPORT ArticleDeleteJob : public KJob
 {
     Q_OBJECT
 public:
@@ -81,7 +83,7 @@ private:
     ArticleIdList m_ids;
 };
 
-class ArticleModifyJob : public KJob
+class AKREGATOR_EXPORT ArticleModifyJob : public KJob
 {
     Q_OBJECT
 public:
@@ -103,7 +105,7 @@ private:
 };
 
 
-class ArticleListJob : public KJob
+class AKREGATOR_EXPORT ArticleListJob : public KJob
 {
     Q_OBJECT
 public:

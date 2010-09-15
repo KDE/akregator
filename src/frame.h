@@ -31,6 +31,8 @@
 #include <kparts/browserextension.h>
 #include <kconfiggroup.h>
 
+#include "akregator_export.h"
+
 class KUrl;
 
 namespace KParts
@@ -48,7 +50,7 @@ namespace Akregator
 
 class OpenUrlRequest;
 
-class Frame : public QWidget
+class AKREGATOR_EXPORT Frame : public QWidget
 {
     Q_OBJECT
 
@@ -169,7 +171,7 @@ class Frame : public QWidget
         static int m_idCounter;
 };
 
-class MainFrame : public Frame
+class AKREGATOR_EXPORT MainFrame : public Frame
 {
     Q_OBJECT
 

@@ -11,7 +11,7 @@ set(akregator_sharemicroblog_plugin_SRCS
     sharemicroblogplugin.cpp )
 
 kde4_add_plugin(akregator_sharemicroblog_plugin ${akregator_sharemicroblog_plugin_SRCS})
-target_link_libraries(akregator_sharemicroblog_plugin akregatorpart akregatorinterfaces ${KDE4_PLASMA_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS})
+target_link_libraries(akregator_sharemicroblog_plugin akregatorprivate akregatorinterfaces ${KDE4_PLASMA_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KPARTS_LIBS})
 
 install(FILES akregator_sharemicroblog_plugin.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 install(TARGETS akregator_sharemicroblog_plugin DESTINATION ${PLUGIN_INSTALL_DIR})

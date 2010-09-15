@@ -28,6 +28,27 @@ install(TARGETS akregator  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 set(akregatorprivate_LIB_SRCS
    aboutdata.cpp 
    trayicon.cpp 
+   article.cpp
+   feed.cpp 
+   feedlist.cpp 
+   treenode.cpp 
+   treenodevisitor.cpp 
+   utils.cpp
+   feediconmanager.cpp 
+   notificationmanager.cpp 
+   articlejobs.cpp
+   folder.cpp 
+   kernel.cpp 
+   subscriptionlistjobs.cpp
+   fetchqueue.cpp 
+   frame.cpp 
+   framemanager.cpp 
+   browserrun.cpp 
+   openurlrequest.cpp
+   actionmanager.cpp 
+   browserframe.cpp
+   browserframe_p.cpp
+   actions.cpp
 )
 
 kde4_add_library(akregatorprivate ${LIBRARY_TYPE} ${akregatorprivate_LIB_SRCS})
@@ -49,38 +70,19 @@ set( akregator_utils_SRCS
 
 set(akregatorpart_PART_SRCS 
    ${akregator_utils_SRCS}
+   deletesubscriptioncommand.cpp
    abstractselectioncontroller.cpp
-   article.cpp
-   articlejobs.cpp
    articlematcher.cpp
    articlemodel.cpp
-   deletesubscriptioncommand.cpp
-   feed.cpp 
-   treenode.cpp 
-   treenodevisitor.cpp 
-   folder.cpp 
-   feedlist.cpp 
-   fetchqueue.cpp 
-   feediconmanager.cpp 
    pluginmanager.cpp
    selectioncontroller.cpp
    subscriptionlistmodel.cpp
-   subscriptionlistjobs.cpp
-   utils.cpp
    searchbar.cpp 
-   browserrun.cpp 
    articlelistview.cpp 
-   actionmanager.cpp 
-   actions.cpp
    actionmanagerimpl.cpp 
    createfeedcommand.cpp
    createfoldercommand.cpp
    expireitemscommand.cpp
-   frame.cpp 
-   framemanager.cpp 
-   browserframe.cpp
-   browserframe_p.cpp
-   openurlrequest.cpp
    articleviewer.cpp 
    articleformatter.cpp
    addfeeddialog.cpp 
@@ -90,10 +92,8 @@ set(akregatorpart_PART_SRCS
    feedpropertiesdialog.cpp 
    tabwidget.cpp 
    progressmanager.cpp 
-   kernel.cpp 
    akregator_part.cpp 
    mainwidget.cpp 
-   notificationmanager.cpp 
    subscriptionlistview.cpp
    subscriptionlistdelegate.cpp
    dummystorage/storagedummyimpl.cpp 
@@ -111,7 +111,16 @@ kde4_add_ui_files(akregatorpart_PART_SRCS
 
 kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
 
-target_link_libraries(akregatorpart  ${KDE4_KCMUTILS_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} ${KDE4_SOLID_LIBRARY} akregatorinterfaces akregatorprivate kdepim ${KDEPIMLIBS_SYNDICATION_LIBS} ${KDEPIMLIBS_KPIMUTILS_LIBS}  ${KDE4_KDE3SUPPORT_LIBS} )
+target_link_libraries(akregatorpart 
+    akregatorinterfaces
+    akregatorprivate
+    ${KDE4_KCMUTILS_LIBS}
+    ${KDE4_KNOTIFYCONFIG_LIBS}
+    ${KDE4_SOLID_LIBRARY}
+    kdepim
+    ${KDEPIMLIBS_SYNDICATION_LIBS}
+    ${KDEPIMLIBS_KPIMUTILS_LIBS}
+    ${KDE4_KDE3SUPPORT_LIBS} )
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 

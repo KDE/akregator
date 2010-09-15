@@ -27,6 +27,8 @@
 
 #include <boost/shared_ptr.hpp>
 
+#include "akregator_export.h"
+
 namespace Akregator {
 
 namespace Backend
@@ -38,7 +40,7 @@ class FeedList;
 class FetchQueue;
 class FrameManager;
 
-class Kernel
+class AKREGATOR_EXPORT Kernel
 {
     public:
 
