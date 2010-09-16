@@ -38,7 +38,7 @@ class QString;
 namespace Akregator {
 
 
-class AKREGATORPART_EXPORT FaviconListener
+class AKREGATOR_EXPORT FaviconListener
 {
 public:
     virtual ~FaviconListener();
@@ -46,7 +46,7 @@ public:
     virtual void setFavicon( const QIcon& icon ) = 0; 
 };
 
-class AKREGATORPART_EXPORT FeedIconManager : public QObject
+class AKREGATOR_EXPORT FeedIconManager : public QObject
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.kde.akregator.feediconmanager")

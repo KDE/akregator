@@ -56,7 +56,7 @@ namespace Backend {
 }
 
 
-class AKREGATORPART_EXPORT FeedListManagementImpl : public FeedListManagementInterface {
+class AKREGATOR_EXPORT FeedListManagementImpl : public FeedListManagementInterface {
 public:
     explicit FeedListManagementImpl( const boost::shared_ptr<FeedList>& list=boost::shared_ptr<FeedList>() );
     void setFeedList( const boost::shared_ptr<FeedList>& list );
@@ -74,7 +74,7 @@ private:
 
 /** The model of a feed tree, represents an OPML document. Contains an additional root node "All Feeds" which isn't stored. Note that a node instance must not be in more than one FeedList at a time! When deleting the feed list, all contained nodes are deleted! */
 
-class AKREGATORPART_EXPORT FeedList : public QObject
+class AKREGATOR_EXPORT FeedList : public QObject
 {
     Q_OBJECT
 public:

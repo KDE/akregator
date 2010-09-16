@@ -41,7 +41,7 @@ class TreeNodeVisitor;
 
 /** Represents a folder (containing feeds and/or other folders)
     */
-class AKREGATORPART_EXPORT Folder : public TreeNode
+class AKREGATOR_EXPORT Folder : public TreeNode
 {
     Q_OBJECT
     public:

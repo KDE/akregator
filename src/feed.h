@@ -49,7 +49,7 @@ namespace Backend {
 }
 
 /** represents a feed */
-class AKREGATORPART_EXPORT Feed : public TreeNode, public virtual FaviconListener
+class AKREGATOR_EXPORT Feed : public TreeNode, public virtual FaviconListener
 {
     friend class ::Akregator::Article;
     friend class ::Akregator::Folder;

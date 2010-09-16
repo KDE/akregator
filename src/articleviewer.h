@@ -52,7 +52,7 @@ class TreeNode;
 
 class ArticleViewerPart;
 
-class AKREGATOR_EXPORT ArticleViewer : public QWidget
+class AKREGATORPART_EXPORT ArticleViewer : public QWidget
 {
     Q_OBJECT
     public:

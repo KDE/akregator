@@ -32,7 +32,7 @@ class TreeNode;
 class Folder;
 class Feed;
 
-class AKREGATORPART_EXPORT TreeNodeVisitor
+class AKREGATOR_EXPORT TreeNodeVisitor
 {
     public:
         virtual ~TreeNodeVisitor(){}

@@ -56,7 +56,7 @@ class FetchQueue;
 
     TODO: detailed description goes here
 */
-class AKREGATORPART_EXPORT TreeNode : public QObject
+class AKREGATOR_EXPORT TreeNode : public QObject
 {
     friend class ::Akregator::ArticleListJob;
     friend class ::Akregator::Folder;

@@ -25,6 +25,7 @@
 #include "treenode.h"
 #include "folder.h"
 #include "articlejobs.h"
+#include "article.h"
 
 #include <QPoint>
 #include <QString>
