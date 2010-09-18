@@ -6,7 +6,7 @@
  <kcfgfile name="akregator_sharerc" />
  <group name="ShareService" >
   <entry key="ServiceUrl" type="String" >
-    <label>Service Url</label>
+    <label>Service URL</label>
   </entry>
   <entry key="Username" type="String" >
     <label>Username</label>
