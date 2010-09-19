@@ -65,15 +65,18 @@ void SharePluginIface::removeGuiClients( KXMLGUIClient* parent )
 }
 
 SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
-    : KParts::Plugin( parent ), m_username(QString()), m_service(0)
+    : KParts::Plugin( parent ), m_username(QString()), m_service(0),
+      m_shareMenu(0), m_sharePopupMenu(0)
 {
     Q_UNUSED(args);
     setComponentData( SharePluginFactory::componentData() );
 
     // Share feature provided by Plasma
     m_engine = Plasma::DataEngineManager::self()->loadEngine("microblog");
-    if (!m_engine->isValid())
+    if (!m_engine->isValid()) {
+        kDebug() << "could not load microblog data engine";
         return;
+    }
 
     refreshConfig();
 
@@ -127,8 +130,8 @@ void SharePlugin::refreshConfig()
 void SharePlugin::articlesSelected(const QList<Akregator::Article> &articles)
 {
     m_articles = articles;
-    m_shareMenu->setEnabled(true);
-    m_sharePopupMenu->setEnabled(true);
+    if (m_shareMenu) m_shareMenu->setEnabled(true);
+    if (m_sharePopupMenu) m_sharePopupMenu->setEnabled(true);
 }
 
 void SharePlugin::shareArticles()
