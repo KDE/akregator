@@ -36,6 +36,7 @@
 #include <KLocale>
 #include <KUrl>
 #include <KMenu>
+#include <KColorScheme>
 
 #include <QApplication>
 #include <QContextMenuEvent>
@@ -65,6 +66,8 @@ bool FilterDeletedProxyModel::filterAcceptsRow( int source_row, const QModelInde
 
 SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( KIcon( "mail-mark-important" ) )
 {
+    m_unreadColor = KColorScheme( QPalette::Normal, KColorScheme::View ).foreground( KColorScheme::PositiveText ).color();
+    m_newColor = KColorScheme( QPalette::Normal, KColorScheme::View ).foreground( KColorScheme::NegativeText ).color();
 }
 
 bool SortColorizeProxyModel::filterAcceptsRow ( int source_row, const QModelIndex& source_parent ) const
@@ -105,12 +108,12 @@ QVariant SortColorizeProxyModel::data( const QModelIndex& idx, int role ) const
                 case Unread:
                 {
                     return Settings::useCustomColors() ?
-                        Settings::colorUnreadArticles() : Qt::blue;
+                        Settings::colorUnreadArticles() : m_unreadColor;
                 }
                 case New:
                 {
                     return Settings::useCustomColors() ?
-                        Settings::colorNewArticles() : Qt::red;
+                        Settings::colorNewArticles() : m_newColor;
                 }
                 case Read:
                 {

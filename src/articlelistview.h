@@ -81,6 +81,9 @@ private:
 
     QIcon m_keepFlagIcon;
     std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > m_matchers;
+
+    QColor m_unreadColor;
+    QColor m_newColor;
 };
 
 
