@@ -641,6 +641,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
             d->fetchErrorCode = status;
             emit fetchError(this);
         }
+        markAsFetchedNow();
         return;
     }
 
@@ -675,8 +676,13 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 
     appendArticles(doc);
 
-    d->archive->setLastFetch( QDateTime::currentDateTime().toTime_t());
+    markAsFetchedNow();
     emit fetched(this);
+}
+
+void Feed::markAsFetchedNow()
+{
+    d->archive->setLastFetch( QDateTime::currentDateTime().toTime_t());
 }
 
 QIcon Feed::icon() const
