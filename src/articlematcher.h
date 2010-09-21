@@ -112,7 +112,7 @@ class AKREGATORPART_EXPORT Criterion
     public:
 
         enum Subject {
-            Title, Description, Link, Status, KeepFlag
+            Title, Description, Link, Status, KeepFlag, Author
         };
 
         static QString subjectToString(Subject subj);

@@ -59,6 +59,8 @@ QString Criterion::subjectToString(Subject subj)
             return QString::fromLatin1("Status");
         case KeepFlag:
             return QString::fromLatin1("KeepFlag");
+        case Author:
+            return QString::fromLatin1("Author");
         default: // should never happen (TM)
             return QString::fromLatin1("Description");
     }
@@ -76,6 +78,8 @@ Criterion::Subject Criterion::stringToSubject(const QString& subjStr)
         return Status;
     else if (subjStr == QString::fromLatin1("KeepFlag"))
         return KeepFlag;
+    else if (subjStr == QString::fromLatin1("Author"))
+        return Author;
 
     // hopefully never reached
     return Description;
@@ -167,7 +171,10 @@ bool Criterion::satisfiedBy( const Article &article ) const
             concreteSubject = QVariant(article.status());
             break;
         case KeepFlag:
-            concreteSubject = QVariant(article.keep());   
+            concreteSubject = QVariant(article.keep());
+            break;
+        case Author:
+            concreteSubject = QVariant(article.authorName());
         default:
             break;
     }

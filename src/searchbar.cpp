@@ -185,6 +185,8 @@ void SearchBar::slotActivateSearch()
         textCriteria << subjCrit;
         Criterion crit1( Criterion::Description, Criterion::Contains, d->searchText);
         textCriteria << crit1;
+        Criterion authCrit( Criterion::Author, Criterion::Contains, d->searchText);
+        textCriteria << authCrit;
     }
 
     if (d->searchCombo->currentIndex())
