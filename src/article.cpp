@@ -61,13 +61,13 @@ struct Article::Private : public Shared
     Backend::FeedStorage* archive;
     Feed* feed;
 
-    // the variables below are initialized to null values in the Article constructor 
+    // the variables below are initialized to null values in the Article constructor
     // and then loaded on demand instead.
     //
     // to read their values, you should therefore use the accessor methods of the Article
     // hash(), pubDate(), statusBits() rather than accessing them directly.
     uint hash;
-    QDateTime pubDate;  
+    QDateTime pubDate;
     int status;
 };
 
@@ -81,7 +81,7 @@ Article::Article() : d(new Private)
 
 Article::Article(const QString& guid, Feed* feed) : d(new Private)
 {
-    // this constructor should be as cheap as possible, so avoid calls to 
+    // this constructor should be as cheap as possible, so avoid calls to
     // read information from the archive in here if possible
     //
     // d->hash, d->pubDate and d->status are loaded on-demand by
@@ -98,23 +98,23 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
 {
     d->archive = archive;
     d->status = Private::New;
-    d->hash = Utils::calcHash(article.title() + article.description() + article.author() + article.link().url() 
+    d->hash = Utils::calcHash(article.title() + article.description() + article.author() + article.link().url()
                               + article.commentsLink().url() );
 
     d->guid = article.guid();
-    
+
     if (!d->archive->contains(d->guid))
     {
         d->archive->addEntry(d->guid);
 
-        if (article.meta("deleted") == "true") 
+        if (article.meta("deleted") == "true")
         { // if article is in deleted state, we just add the status and omit the rest
             d->status = Private::Read | Private::Deleted;
             d->archive->setStatus(d->guid, d->status);
         }
         else
         { // article is not deleted, let's add it to the archive
-        
+
             d->archive->setHash(d->guid, hash() );
             QString title = article.title().isEmpty() ? buildTitle(article.description()) :  article.title();
             d->archive->setTitle(d->guid, title);
@@ -127,7 +127,7 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             d->pubDate = article.pubDate().isValid() ? article.pubDate() : QDateTime::currentDateTime();
             d->archive->setPubDate(d->guid, d->pubDate.toTime_t());
             d->archive->setAuthor(d->guid, article.author());
-                        
+
             QValueList<RSS::Category> cats = article.categories();
             QValueList<RSS::Category>::ConstIterator end = cats.end();
 
@@ -152,7 +152,7 @@ void Article::initialize(RSS::Article article, Backend::FeedStorage* archive)
             }
 
             QString status = article.meta("status");
-            
+
             if (!status.isEmpty())
             {
                 int statusInt = status.toInt();
@@ -210,7 +210,7 @@ void Article::setDeleted()
 {
     if (isDeleted())
         return;
-  
+
     setStatus(Read);
     d->status = Private::Deleted | Private::Read;
     d->archive->setStatus(d->guid, d->status);
@@ -253,7 +253,7 @@ Article &Article::operator=(const Article &other)
 
 bool Article::operator<(const Article &other) const
 {
-    return pubDate() > other.pubDate() || 
+    return pubDate() > other.pubDate() ||
             (pubDate() == other.pubDate() && guid() < other.guid() );
 }
 
@@ -264,7 +264,7 @@ bool Article::operator<=(const Article &other) const
 
 bool Article::operator>(const Article &other) const
 {
-    return pubDate() < other.pubDate() || 
+    return pubDate() < other.pubDate() ||
             (pubDate() == other.pubDate() && guid() > other.guid() );
 }
 
@@ -281,7 +281,7 @@ bool Article::operator==(const Article &other) const
 int Article::statusBits() const
 {
     // delayed loading of status information from archive
-    if ( d->status == 0 ) 
+    if ( d->status == 0 )
     {
         d->status = d->archive->status(d->guid);
     }
@@ -359,7 +359,7 @@ KURL Article::commentsLink() const
 
 int Article::comments() const
 {
-    
+
     return d->archive->comments(d->guid);
 }
 
@@ -398,7 +398,7 @@ RSS::Enclosure Article::enclosure() const
     d->archive->enclosure(d->guid, hasEnc, url, type, length);
     return hasEnc ? RSS::Enclosure(url, length, type) : RSS::Enclosure();
 
-    
+
 }
 
 
@@ -433,7 +433,7 @@ QStringList Article::tags() const
 {
     return d->archive->tags(d->guid);
 }
-            
+
 Feed* Article::feed() const
 { return d->feed; }
 
@@ -453,7 +453,7 @@ QString Article::buildTitle(const QString& description)
     QString s = description;
     if (description.stripWhiteSpace().isEmpty())
         return "";
-        
+
     int i = s.find('>',500); /*avoid processing too much */
     if (i != -1)
         s = s.left(i+1);
