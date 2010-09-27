@@ -90,6 +90,7 @@ Article::Article(const QString& guid, Feed* feed) : d(new Private)
     d->feed = feed;
     d->guid = guid;
     d->archive = Backend::Storage::getInstance()->archiveFor(feed->xmlUrl());
+    d->hash = 0;
     d->status = 0;
 }
 
