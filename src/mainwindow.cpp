@@ -101,7 +101,7 @@ bool MainWindow::loadPart()
     KPluginLoader loader("akregatorpart");
     KPluginFactory* const factory = loader.factory();
     if (!factory) {
-        KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation."));
+        KMessageBox::error(this, i18n("Could not find the Akregator part; please check your installation.\n%1", loader.errorString()) );
         return false;
     }
 
