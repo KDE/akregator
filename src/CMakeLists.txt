@@ -127,7 +127,7 @@ install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### install files ###############
 
-install( FILES akregator.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
+install( PROGRAMS akregator.desktop  DESTINATION ${XDG_APPS_INSTALL_DIR})
 install( FILES akregator_part.desktop  DESTINATION ${SERVICES_INSTALL_DIR})
 install( FILES articleviewer.rc pageviewer.rc akregator_part.rc akregator.notifyrc  DESTINATION ${DATA_INSTALL_DIR}/akregator)
 install( FILES akregator_plugin.desktop  DESTINATION ${SERVICETYPES_INSTALL_DIR})
