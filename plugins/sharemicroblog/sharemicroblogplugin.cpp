@@ -65,8 +65,8 @@ void SharePluginIface::removeGuiClients( KXMLGUIClient* parent )
 }
 
 SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
-    : KParts::Plugin( parent ), m_username(QString()), m_service(0),
-      m_shareMenu(0), m_sharePopupMenu(0)
+    : KParts::Plugin( parent ), m_shareMenu(0), m_sharePopupMenu(0),
+      m_username(QString()), m_service(0)
 {
     Q_UNUSED(args);
     setComponentData( SharePluginFactory::componentData() );
