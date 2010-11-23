@@ -60,7 +60,7 @@
 #include <kservice.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
-#include <KParts/GenericFactory>
+#include <KPluginFactory>
 #include <KParts/Plugin>
 #include <KCMultiDialog>
 #include <kstandardaction.h>
