@@ -50,7 +50,6 @@ void BrowserRun::foundMimeType(const QString& type)
 
     if ( m_request.wasHandled() ) {
         setFinished(true);
-        timer().start();
         return;
     }
 
