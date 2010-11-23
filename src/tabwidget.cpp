@@ -95,7 +95,7 @@ TabWidget::TabWidget(QWidget * parent)
     :KTabWidget(parent), d(new Private( this ) )
 {
     setMinimumSize(250,150);
-    setTabReorderingEnabled(false);
+    setMovable(false);
     connect( this, SIGNAL( currentChanged(int) ),
              this, SLOT( slotTabChanged(int) ) );
     connect(this, SIGNAL(closeRequest(QWidget*)),
