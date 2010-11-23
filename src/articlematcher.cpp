@@ -264,7 +264,7 @@ void ArticleMatcher::writeConfig(KConfigGroup* config) const
 
     for (QList<Criterion>::ConstIterator it = m_criteria.begin(); it != m_criteria.end(); ++it)
     {
-        config->changeGroup(criterionGroupPrefix + QString::number(index));
+        *config = KConfigGroup( config->config(), criterionGroupPrefix + QString::number(index));
         (*it).writeConfig(config);
         ++index;
     }
@@ -282,7 +282,7 @@ void ArticleMatcher::readConfig(KConfigGroup* config)
     for (int i = 0; i < count; ++i)
     {
         Criterion c;
-        config->changeGroup(criterionGroupPrefix + QString::number(i));
+        *config = KConfigGroup( config->config(), criterionGroupPrefix + QString::number(i));
         c.readConfig(config);
         m_criteria.append(c);
     }
