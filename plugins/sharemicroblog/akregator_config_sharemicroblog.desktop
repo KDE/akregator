@@ -12,6 +12,7 @@ X-KDE-Keywords=akregator, configure, settings, online readers
 X-KDE-Weight=150
 
 Name=Share Services
+Name[ca]=Serveix de compartició
 Name[en_GB]=Share Services
 Name[es]=Servicios de compartición
 Name[et]=Jagamisteenused
@@ -31,6 +32,7 @@ Name[uk]=Служби оприлюднення
 Name[x-test]=xxShare Servicesxx
 Name[zh_TW]=分享服務
 Comment=Configure Share Services
+Comment[ca]=Configura els serveis de compartició
 Comment[en_GB]=Configure Share Services
 Comment[es]=Configurar servicios de compartición
 Comment[et]=Jagamisteenuste seadistamine
