@@ -656,6 +656,14 @@ void ArticleViewer::reload()
     endWriting();
 }
 
+QSize ArticleViewer::sizeHint() const
+{
+    // Increase height a bit so that we can (roughly) read 25 lines of text
+    QSize sh = QWidget::sizeHint();
+    sh.setHeight(qMax(sh.height(), 25 * fontMetrics().height()));
+    return sh;
+}
+
 void ArticleViewer::displayAboutPage()
 {
     QString location = KStandardDirs::locate("data", "akregator/about/main.html");

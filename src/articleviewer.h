@@ -79,6 +79,8 @@ class AKREGATORPART_EXPORT ArticleViewer : public QWidget
          *  @param node The node to observe */
         void showNode(Akregator::TreeNode* node);
 
+        QSize sizeHint() const;
+
     public slots:
 
         void slotZoomIn(int);
