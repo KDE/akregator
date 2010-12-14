@@ -96,6 +96,7 @@ TabWidget::TabWidget(QWidget * parent)
 {
     setMinimumSize(250,150);
     setMovable(false);
+    setDocumentMode(true);
     connect( this, SIGNAL( currentChanged(int) ),
              this, SLOT( slotTabChanged(int) ) );
     connect(this, SIGNAL(closeRequest(QWidget*)),
