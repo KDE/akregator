@@ -30,6 +30,9 @@
 #include <KGlobalSettings>
 #include <KIconTheme>
 
+#include <QHeaderView>
+#include <QTreeView>
+
 using namespace Akregator;
 
 
@@ -78,6 +81,42 @@ void Akregator::SubscriptionListDelegate::recalculateRowHeight()
     KIconTheme *iconTheme = KIconLoader::global()->theme();
     m_viewIconHeight = ( iconTheme != NULL ) ? iconTheme->defaultSize( KIconLoader::Small ) : 0;
     kDebug() << "icon height" << m_viewIconHeight;
+}
+
+
+void Akregator::SubscriptionListDelegate::initStyleOption( QStyleOptionViewItem *option,
+                                                           const QModelIndex &index ) const
+{
+    QStyledItemDelegate::initStyleOption( option, index );
+
+    if ( index.column() != 0 )
+    {
+        // Append unread count to the title column only (it is always the first
+        // one)
+        return;
+    }
+
+    QTreeView *view = static_cast< QTreeView * >( parent() );
+    if ( !view->header()->isSectionHidden( SubscriptionListModel::UnreadCountColumn ) )
+    {
+        // Do not append unread count to the title if the unread count column
+        // is visible
+        return;
+    }
+
+    QStyleOptionViewItemV4 *optionV4 = qstyleoption_cast< QStyleOptionViewItemV4 * >( option );
+    if ( !optionV4 )
+    {
+        // Should never happen, but play it safe
+        return;
+    }
+
+    QModelIndex unreadIndex = index.sibling( index.row(), SubscriptionListModel::UnreadCountColumn );
+    int unread = unreadIndex.data().toInt();
+    if ( unread > 0 )
+    {
+        optionV4->text += QString( " (%1)" ).arg( unread );
+    }
 }
 
 

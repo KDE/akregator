@@ -151,11 +151,8 @@ void Akregator::SubscriptionListView::setModel( QAbstractItemModel* m )
 
     QTreeView::setModel( m );
 
-    if ( m ) {
-        header()->restoreState( m_headerState );
-        // Always shows title column
-        header()->showSection( SubscriptionListModel::TitleColumn );
-    }
+    if ( m )
+        restoreHeaderState();
 
     QStack<QModelIndex> stack;
     stack.push( rootIndex() );
@@ -222,9 +219,20 @@ void Akregator::SubscriptionListView::loadHeaderSettings()
 {
     const KConfigGroup conf( Settings::self()->config(), "General" );
     m_headerState = QByteArray::fromBase64( conf.readEntry( "SubscriptionListHeaders" ).toAscii() );
+    restoreHeaderState();
+}
+
+void Akregator::SubscriptionListView::restoreHeaderState()
+{
     header()->restoreState( m_headerState );		// needed, even with Qt 4.5
     // Always shows the title column
     header()->showSection( SubscriptionListModel::TitleColumn );
+    if ( m_headerState.isEmpty() )
+    {
+        // Default configuration: only show the title column
+        header()->hideSection( SubscriptionListModel::UnreadCountColumn );
+        header()->hideSection( SubscriptionListModel::TotalCountColumn );
+    }
 }
 
 void Akregator::SubscriptionListView::slotPrevFeed()

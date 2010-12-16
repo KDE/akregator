@@ -47,6 +47,9 @@ protected:
                 const QStyleOptionViewItem &option,
                 const QModelIndex &index ) const;
 
+    void initStyleOption( QStyleOptionViewItem *option,
+                          const QModelIndex &index ) const;
+
 private slots:
     void recalculateRowHeight();
 

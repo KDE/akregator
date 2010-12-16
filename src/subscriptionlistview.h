@@ -81,6 +81,7 @@ Q_SIGNALS:
 private:
     void saveHeaderSettings();
     void loadHeaderSettings();
+    void restoreHeaderState();
 
 
 private Q_SLOTS:
