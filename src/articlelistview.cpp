@@ -32,6 +32,8 @@
 
 #include <utils/filtercolumnsproxymodel.h>
 
+#include <KDateTime>
+#include <KGlobal>
 #include <KIcon>
 #include <KLocale>
 #include <KUrl>
@@ -170,6 +172,7 @@ void ArticleListView::setArticleModel( ArticleModel* model )
 
     setModel( columnsProxy );
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
+    resizeColumnToContents( ArticleModel::ItemTitleColumn );
 }
 
 void ArticleListView::showHeaderMenu(const QPoint& pos)
@@ -279,9 +282,8 @@ void ArticleListView::setGroupMode()
 
     if ( model() )
         m_feedHeaderState = header()->saveState();
-
-    header()->restoreState( m_groupHeaderState );
     m_columnMode = GroupMode;
+    restoreHeaderState();
 }
 
 void ArticleListView::setFeedMode()
@@ -292,8 +294,64 @@ void ArticleListView::setFeedMode()
     header()->resizeSection( header()->logicalIndex( header()->count() - 1 ), 1 );
     if ( model() )
         m_groupHeaderState = header()->saveState();
-    header()->restoreState( m_feedHeaderState );
     m_columnMode = FeedMode;
+    restoreHeaderState();
+}
+
+static int maxDateColumnWidth( const QFontMetrics &fm )
+{
+    int width = 0;
+    KDateTime date( KDateTime::currentLocalDate(), QTime(23, 59) );
+    for (int x=0; x<10; x++, date = date.addDays( -1 ) ) {
+        QString txt = ' ' + KGlobal::locale()->formatDateTime(date, KLocale::FancyShortDate ) + ' ';
+        width = qMax( width, fm.width( txt ) );
+    }
+    return width;
+}
+
+void ArticleListView::restoreHeaderState()
+{
+    QByteArray state = m_columnMode == GroupMode ? m_groupHeaderState : m_feedHeaderState;
+    header()->restoreState( state );
+    if ( state.isEmpty() )
+    {
+        // No state, set a default config:
+        // - hide the feed column in feed mode (no need to see the same feed title over and over)
+        // - set the date column wide enough to fit all possible dates
+        header()->setSectionHidden( ArticleModel::FeedTitleColumn, m_columnMode == FeedMode );
+        header()->resizeSection( ArticleModel::DateColumn, maxDateColumnWidth(fontMetrics()) );
+    }
+
+    header()->setStretchLastSection( false );
+    startResizingTitleColumn();
+}
+
+void ArticleListView::startResizingTitleColumn()
+{
+    // set the title column to Stretch resize mode so that it adapts to the
+    // content. finishResizingTitleColumn() will turn the resize mode back to
+    // Interactive so that the user can still resize the column himself if he
+    // wants to
+    header()->setResizeMode( ArticleModel::ItemTitleColumn, QHeaderView::Stretch );
+    QMetaObject::invokeMethod( this, "finishResizingTitleColumn", Qt::QueuedConnection );
+}
+
+void ArticleListView::finishResizingTitleColumn()
+{
+    if ( QApplication::mouseButtons() != Qt::NoButton )
+    {
+        // Come back later: user is still resizing the widget
+        QMetaObject::invokeMethod( this, "finishResizingTitleColumn", Qt::QueuedConnection );
+        return;
+    }
+    header()->setResizeMode( QHeaderView::Interactive );
+}
+
+void ArticleListView::resizeEvent(QResizeEvent *event)
+{
+    QTreeView::resizeEvent( event );
+    if ( header() && model() && header()->resizeMode( ArticleModel::ItemTitleColumn ) != QHeaderView::Stretch )
+        startResizingTitleColumn();
 }
 
 ArticleListView::~ArticleListView()
@@ -432,8 +490,8 @@ void ArticleListView::setModel( QAbstractItemModel* m )
 
     if ( m )
     {
-        header()->resizeSection( header()->logicalIndex( header()->count() - 1 ), 1 );
-        header()->restoreState( groupMode ? m_groupHeaderState : m_feedHeaderState );
+        sortByColumn( ArticleModel::DateColumn, Qt::DescendingOrder );
+        restoreHeaderState();
 
         // Ensure at least one column is visible
         if ( header()->hiddenSectionCount() == header()->count() ) {

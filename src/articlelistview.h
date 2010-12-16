@@ -126,6 +126,7 @@ public:
 
 protected:
     void mousePressEvent( QMouseEvent *ev );
+    void resizeEvent( QResizeEvent *ev );
 
 signals:
     void signalMouseButtonPressed( int, const KUrl );
@@ -147,6 +148,7 @@ Q_SIGNALS:
     void userActionTakingPlace();
 
 private:
+    void restoreHeaderState();
     void saveHeaderSettings();
     void loadHeaderSettings();
 
@@ -163,6 +165,8 @@ private:
 
 private Q_SLOTS:
     void showHeaderMenu( const QPoint& pos );
+    void startResizingTitleColumn();
+    void finishResizingTitleColumn();
 
 private:
 
