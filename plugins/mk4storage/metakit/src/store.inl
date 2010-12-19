@@ -1,5 +1,4 @@
 // store.inl --
-// $Id$
 // This is part of Metakit, the homepage is http://www.equi4.com/metakit.html
 
 /** @file

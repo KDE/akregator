@@ -1,5 +1,4 @@
 // handler.cpp --
-// $Id$
 // This is part of Metakit, see http://www.equi4.com/metakit.html
 
 /** @file

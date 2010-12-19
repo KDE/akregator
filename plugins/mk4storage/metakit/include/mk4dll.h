@@ -1,5 +1,4 @@
 // mk4dll.h --
-// $Id$
 // This is part of Metakit, see http://www.equi4.com/metakit/
 //
 //  Import declarations for DLLs
