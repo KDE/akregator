@@ -682,6 +682,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
 
 void Feed::markAsFetchedNow()
 {
+    if ( d->archive )
     d->archive->setLastFetch( QDateTime::currentDateTime().toTime_t());
 }
 
