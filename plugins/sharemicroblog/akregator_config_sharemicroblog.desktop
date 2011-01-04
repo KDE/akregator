@@ -13,6 +13,7 @@ X-KDE-Weight=150
 
 Name=Share Services
 Name[ca]=Serveix de compartició
+Name[ca@valencia]=Serveix de compartició
 Name[de]=Veröffentlichungsdienste
 Name[el]=Υπηρεσίες κοινής χρήσης
 Name[en_GB]=Share Services
@@ -35,6 +36,7 @@ Name[x-test]=xxShare Servicesxx
 Name[zh_TW]=分享服務
 Comment=Configure Share Services
 Comment[ca]=Configura els serveis de compartició
+Comment[ca@valencia]=Configura els serveis de compartició
 Comment[de]=Veröffentlichungsdienste einrichten
 Comment[en_GB]=Configure Share Services
 Comment[es]=Configurar servicios de compartición

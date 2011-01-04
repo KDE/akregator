@@ -2,6 +2,7 @@
 Type=Service
 Name=Akregator Online Article Share
 Name[ca]=Compartidor d'article en línia de l'Akregator
+Name[ca@valencia]=Compartidor d'article en línia de l'Akregator
 Name[en_GB]=Akregator Online Article Share
 Name[es]=Compartición de artículos de Akregator en línea
 Name[et]=Akregatori artiklite jagamine
