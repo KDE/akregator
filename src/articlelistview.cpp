@@ -388,6 +388,10 @@ ArticleListView::ArticleListView( QWidget* parent )
     //connect exactly once
     disconnect( header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)) );
     connect( header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)) );
+
+    connect( Settings::self(), SIGNAL( configChanged() ), this, SLOT( slotConfigChanged() ) );
+
+    slotConfigChanged();
     loadHeaderSettings();
 }
 
@@ -605,6 +609,11 @@ void ArticleListView::setFilters( const std::vector<shared_ptr<const Filters::Ab
     m_matchers = matchers;
     if ( m_proxy )
         m_proxy->setFilters( matchers );
+}
+
+void ArticleListView::slotConfigChanged()
+{
+    header()->setClickable( Settings::articleViewAllowSorting() );
 }
 
 #include "articlelistview.moc"

@@ -167,6 +167,7 @@ private Q_SLOTS:
     void showHeaderMenu( const QPoint& pos );
     void startResizingTitleColumn();
     void finishResizingTitleColumn();
+    void slotConfigChanged();
 
 private:
 
