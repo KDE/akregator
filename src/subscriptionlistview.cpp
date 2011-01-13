@@ -129,14 +129,16 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setRootIsDecorated( false );
     setAlternatingRowColors( true );
     setContextMenuPolicy( Qt::CustomContextMenu );
-    setDragDropMode( QAbstractItemView::DragDrop );
     setDropIndicatorShown( true );
     setAcceptDrops( true );
     setUniformRowHeights( true );
     setItemDelegate( new SubscriptionListDelegate( this ) );
     connect( header(), SIGNAL( customContextMenuRequested( const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
 
+    connect( Settings::self(), SIGNAL( configChanged() ), this, SLOT( slotConfigChanged() ) );
+
     loadHeaderSettings();
+    slotConfigChanged();
 }
 
 Akregator::SubscriptionListView::~SubscriptionListView()
@@ -369,6 +371,16 @@ void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* no
     if ( !current.isValid() )
         return;
     edit( current );
+}
+
+void Akregator::SubscriptionListView::slotConfigChanged()
+{
+    setDragDropMode( Settings::feedViewAllowDragAndDrop() ?
+                     QAbstractItemView::DragDrop :
+                     QAbstractItemView::DropOnly );
+
+    setSortingEnabled( Settings::feedViewAllowSorting() );
+    header()->setClickable( Settings::feedViewAllowSorting() );
 }
 
 #include "subscriptionlistview.moc"
