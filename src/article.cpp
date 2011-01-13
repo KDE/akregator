@@ -22,6 +22,10 @@
     without including the source code for Qt in the source distribution.
 */
 
+
+#define CRASH_CHECKS
+
+
 #include "article.h"
 #include "feed.h"
 #include "feedstorage.h"
@@ -38,6 +42,9 @@
 
 #include <kdebug.h>
 #include <kurl.h>
+#ifdef CRASH_CHECKS
+#include <kmessagebox.h>
+#endif // CRASH_CHECKS
 
 #include <cassert>
 
@@ -364,6 +371,10 @@ void Article::setStatus(int stat)
                 d->status = (d->status | Private::New) & ~Private::Read;
                 break;
         }
+#ifdef CRASH_CHECKS
+    if (!d->archive) KMessageBox::error(NULL, QString("Article::setStatus - article with GUID '%1' archive is NULL!").arg(d->guid));
+    else
+#endif // CRASH_CHECKS
         d->archive->setStatus(d->guid, d->status);
         if (d->feed)
             d->feed->setArticleChanged(*this, oldStatus);
@@ -372,6 +383,13 @@ void Article::setStatus(int stat)
 
 QString Article::title() const
 {
+#ifdef CRASH_CHECKS
+    if (!d->archive)
+    {
+//        KMessageBox::error(NULL, QString("Article::title - article with GUID '%1' archive is NULL!").arg(d->guid));
+        return ("(null)");
+    }
+#endif // CRASH_CHECKS
     return d->archive->title(d->guid);
 }
 
