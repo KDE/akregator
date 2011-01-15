@@ -80,9 +80,11 @@ void SettingsAdvanced::selectFactory( const QString& key )
 void SettingsAdvanced::slotConfigureStorage()
 {
     const QString key = cbBackend->itemData( cbBackend->currentIndex() ).toString();
-    Backend::StorageFactory* const factory = m_factories.value( key );
-    assert( factory );
-    factory->configure();
+    if( !key.isEmpty() ) {
+        Backend::StorageFactory* const factory = m_factories.value( key );
+        assert( factory );
+        factory->configure();
+    }
 }
 
 void SettingsAdvanced::slotFactorySelected( int pos )
