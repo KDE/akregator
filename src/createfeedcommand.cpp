@@ -97,8 +97,10 @@ void CreateFeedCommand::Private::doCreate()
     else
         afd->exec();
 
-    if ( !thisPointer ) // "this" might have been deleted while exec()!
+    if ( !thisPointer ) { // "this" might have been deleted while exec()!
+        delete afd;
         return;
+    }
 
     Feed* const feed = afd->feed();
     delete afd;
