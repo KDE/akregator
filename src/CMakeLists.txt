@@ -13,7 +13,7 @@ include_directories (
 
 set(akregator_SRCS main.cpp mainwindow.cpp )
 
-kde4_add_app_icon(akregator_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/akregator.png")
+kde4_add_app_icon(akregator_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-akregator.png")
 
 kde4_add_executable(akregator ${akregator_SRCS})
 
