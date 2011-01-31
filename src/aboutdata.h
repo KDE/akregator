@@ -28,7 +28,7 @@
 #include "akregator_export.h"
 #include <kaboutdata.h>
 
-#define AKREGATOR_VERSION "1.6.0"
+#define AKREGATOR_VERSION "1.7.0"
 
 namespace Akregator {
 /**
