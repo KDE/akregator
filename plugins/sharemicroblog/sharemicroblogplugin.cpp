@@ -84,13 +84,13 @@ SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
     setXMLFile( "akregator_sharemicroblog_plugin.rc", /*merge=*/ true );
     KActionCollection* coll = actionCollection();
     m_shareMenu = coll->add<KActionMenu>("article_share");
-    m_shareMenu->setText("Share Article");
+    m_shareMenu->setText( i18n( "Share Article" ) );
     m_shareMenu->setShortcuts(KShortcut("Ctrl+S"));
     m_shareMenu->setEnabled(false);
     connect(m_shareMenu, SIGNAL(triggered(bool)), this, SLOT(shareArticles()));
 
     m_sharePopupMenu = coll->add<KActionMenu>("article_share_popup");
-    m_sharePopupMenu->setText("Share Article");
+    m_sharePopupMenu->setText( i18n( "Share Article" ) );
     m_sharePopupMenu->setEnabled(false);
     connect(m_sharePopupMenu, SIGNAL(triggered(bool)), this, SLOT(shareArticles()));
 }
