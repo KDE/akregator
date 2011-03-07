@@ -67,49 +67,6 @@ TrayIcon::TrayIcon(QWidget *parent)
 TrayIcon::~TrayIcon()
 {}
 
-QPixmap TrayIcon::takeScreenshot() const
-{
-    const QRect rect = geometry();
-    const QPoint g = rect.topLeft();
-    int desktopWidth  = kapp->desktop()->width();
-    int desktopHeight = kapp->desktop()->height();
-    int tw = rect.width();
-    int th = rect.height();
-    int w = desktopWidth / 4;
-    int h = desktopHeight / 9;
-    int x = g.x() + tw/2 - w/2; // Center the rectange in the systray icon
-    int y = g.y() + th/2 - h/2;
-    if (x < 0)
-        x = 0; // Move the rectangle to stay in the desktop limits
-    if (y < 0)
-        y = 0;
-    if (x + w > desktopWidth)
-        x = desktopWidth - w;
-    if (y + h > desktopHeight)
-        y = desktopHeight - h;
-
-        // Grab the desktop and draw a circle around the icon:
-    QPixmap shot = QPixmap::grabWindow(QApplication::desktop()->winId(), x, y, w, h);
-    QPainter painter(&shot);
-    painter.setRenderHint( QPainter::Antialiasing );
-    const int MARGINS = 6;
-    const int WIDTH   = 3;
-    int ax = g.x() - x - MARGINS -1;
-    int ay = g.y() - y - MARGINS -1;
-    painter.setPen( QPen(Qt::red/*KApplication::palette().active().highlight()*/, WIDTH) );
-    painter.drawArc(ax, ay, tw + 2*MARGINS, th + 2*MARGINS, 0, 16*360);
-    painter.end();
-
-    // Paint the border
-    const int BORDER = 1;
-    QPixmap finalShot(w + 2*BORDER, h + 2*BORDER);
-    finalShot.fill( KApplication::palette().color( QPalette::Foreground ));
-    painter.begin(&finalShot);
-    painter.drawPixmap(BORDER, BORDER, shot);
-    painter.end();
-    return shot; // not finalShot?? -fo
-}
-
 void TrayIcon::slotSetUnread(int unread)
 {
     m_unread=unread;

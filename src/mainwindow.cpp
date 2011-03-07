@@ -205,26 +205,9 @@ void MainWindow::slotQuit()
 
 bool MainWindow::queryClose()
 {
-    if (kapp->sessionSaving())
+    if (kapp->sessionSaving() || TrayIcon::getInstance() == 0 || !TrayIcon::getInstance()->isVisible() )
         return true;
-    else if (TrayIcon::getInstance() == 0 || !TrayIcon::getInstance()->isVisible() )
-        return true;
-
-    const QPixmap shot = TrayIcon::getInstance()->takeScreenshot();
-    KTemporaryFile tmp;
-    QString tmpFileName;
-    if ( tmp.open() ) {
-        tmpFileName = tmp.fileName();
-        shot.save( &tmp, "PNG" );
-        tmp.close();
-    }
-
-    const QString imgTag = !tmpFileName.isEmpty() ? QString::fromLatin1( "<img src=\"%1\"/>" ).arg( tmpFileName ) : QString();
-
-    QPointer<QObject> that( this );
-    KMessageBox::information(this, i18n( "<qt><p>Closing the main window will keep Akregator running in the system tray. Use 'Quit' from the 'File' menu to quit the application.</p><p><center>%1</center></p></qt>", imgTag ), i18n( "Docking in System Tray" ), "hideOnCloseInfo");
-    if ( that )
-        hide();
+    hide();
     return false;
 }
 

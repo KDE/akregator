@@ -44,8 +44,6 @@ class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
         explicit TrayIcon(QWidget *parent = 0);
         ~TrayIcon();
 
-        QPixmap takeScreenshot() const;
-
     public slots:
         void settingsChanged();
         void slotSetUnread(int unread);
