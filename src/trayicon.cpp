@@ -55,12 +55,13 @@ void TrayIcon::setInstance(TrayIcon* trayIcon)
 }
 
 
-TrayIcon::TrayIcon(QWidget *parent)
-        : KSystemTrayIcon(parent), m_unread(0)
+TrayIcon::TrayIcon(QObject* parent)
+        : KStatusNotifierItem(parent), m_unread(0)
 {
-    m_defaultIcon = KIcon("akregator").pixmap(22);
-    setIcon(m_defaultIcon);
-    this->setToolTip( i18n("Akregator - Feed Reader"));
+    setToolTipTitle( i18n("Akregator") );
+    setToolTipIconByName( i18n("Akregator") );
+    setIconByName( "akregator" );
+    m_defaultIcon = KIcon( "akregator" );
 }
 
 
@@ -69,21 +70,18 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::slotSetUnread(int unread)
 {
-    m_unread=unread;
+    m_unread = unread;
 
-    this->setToolTip( i18np("Akregator - 1 unread article", "Akregator - %1 unread articles", unread > 0 ? unread : 0));
+    this->setToolTip( m_defaultIcon.name(), i18n("Akregator"), i18np( "1 unread article", "%1 unread articles", unread ) );
 
     if (unread <= 0 || !Settings::enableTrayIconUnreadArticleCount())
     {
-        setIcon(m_defaultIcon);
+        setIconByName( m_defaultIcon.name() );
     }
     else
     {
         // adapted from KMSystemTray::updateCount()
-        int oldWidth = m_defaultIcon.size().width();
-
-        if ( oldWidth == 0 )
-            return;
+        int oldWidth = KIconLoader::SizeSmallMedium;
 
         QString countStr = QString::number( unread );
         QFont f = KGlobalSettings::generalFont();
@@ -99,7 +97,9 @@ void TrayIcon::slotSetUnread(int unread)
         }
 
         // overlay
-        QPixmap overlayImg = m_defaultIcon;
+        QPixmap overlayImg( oldWidth, oldWidth );
+        overlayImg.fill( Qt::transparent );
+
         QPainter p(&overlayImg);
         p.setFont(f);
         KColorScheme scheme(QPalette::Active, KColorScheme::View);
@@ -119,23 +119,26 @@ void TrayIcon::slotSetUnread(int unread)
         p.setPen(scheme.foreground(KColorScheme::LinkText).color());
         p.setOpacity(1.0);
         p.drawText(overlayImg.rect(), Qt::AlignCenter, countStr);
+        p.end();
 
-        setIcon(overlayImg);
+        QPixmap iconPixmap = m_defaultIcon.pixmap( oldWidth, oldWidth );
+
+        QPainter pp( &iconPixmap );
+        pp.drawPixmap( 0, 0, overlayImg );
+        pp.end();
+
+        setIconByPixmap( iconPixmap );
     }
 }
 
 void TrayIcon::viewButtonClicked()
 {
-	QWidget* p = static_cast<QWidget*>(parent());
-	KWindowSystem::activateWindow(p->winId());
+    QWidget* p = static_cast<QWidget*>(parent());
+    KWindowSystem::activateWindow(p->winId());
 }
 
 void TrayIcon::settingsChanged()
 {
-    if ( Settings::showTrayIcon() )
-        show();
-    else
-        hide();
     slotSetUnread(m_unread);
 }
 

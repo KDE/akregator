@@ -114,7 +114,12 @@ bool MainWindow::loadPart()
     setCentralWidget(m_part->widget());
 
     connect(m_part, SIGNAL(setWindowCaption(QString)), this, SLOT(setCaption(QString)) );
-    connect(TrayIcon::getInstance(), SIGNAL(quitSelected()), this, SLOT(slotQuit()));
+
+    if ( TrayIcon::getInstance() )
+    {
+        QAction* action = TrayIcon::getInstance()->actionCollection()->action(KStandardAction::name(KStandardAction::Quit));
+        connect(action, SIGNAL(triggered(bool)), this, SLOT(slotQuit()));
+    }
 
     createGUI(m_part);
     browserExtension(m_part)->setBrowserInterface(m_browserIface);
@@ -198,14 +203,12 @@ bool MainWindow::queryExit()
 
 void MainWindow::slotQuit()
 {
-    if (TrayIcon::getInstance())
-        TrayIcon::getInstance()->hide();
     kapp->quit();
 }
 
 bool MainWindow::queryClose()
 {
-    if (kapp->sessionSaving() || TrayIcon::getInstance() == 0 || !TrayIcon::getInstance()->isVisible() )
+    if ( kapp->sessionSaving() || !TrayIcon::getInstance() )
         return true;
     hide();
     return false;

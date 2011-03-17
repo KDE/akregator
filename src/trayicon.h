@@ -26,7 +26,9 @@
 #define AKREGATOR_TRAYICON_H
 
 #include "akregator_export.h"
-#include <ksystemtrayicon.h>
+
+#include <KIcon>
+#include <KStatusNotifierItem>
 
 #include <QImage>
 #include <QPixmap>
@@ -34,14 +36,14 @@
 
 namespace Akregator {
 
-class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
+class AKREGATOR_EXPORT TrayIcon : public KStatusNotifierItem
 {
     Q_OBJECT
     public:
         static TrayIcon* getInstance();
         static void setInstance(TrayIcon* trayIcon);
 
-        explicit TrayIcon(QWidget *parent = 0);
+        explicit TrayIcon(QObject* parent = 0);
         ~TrayIcon();
 
     public slots:
@@ -52,7 +54,7 @@ class AKREGATOR_EXPORT TrayIcon : public KSystemTrayIcon
     private:
         static TrayIcon* m_instance;
 
-        QPixmap m_defaultIcon;
+        KIcon m_defaultIcon;
         int m_unread;
 };
 

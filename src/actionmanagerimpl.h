@@ -52,6 +52,7 @@ class ActionManagerImpl : public ActionManager
     Q_OBJECT
 
     public:
+
         explicit ActionManagerImpl(Part* part, QObject* parent=0);
         virtual ~ActionManagerImpl();
 
@@ -59,7 +60,6 @@ class ActionManagerImpl : public ActionManager
         virtual QWidget* container(const char* name);
 
         void initMainWidget(MainWidget* mainWidget);
-        void initTrayIcon(TrayIcon* trayIcon);
         void initArticleViewer(ArticleViewer* articleViewer);
         void initArticleListView(ArticleListView* articleList);
         void initSubscriptionListView(SubscriptionListView* subscriptionListView);
@@ -67,6 +67,7 @@ class ActionManagerImpl : public ActionManager
         void initFrameManager(FrameManager* frameManager);
 
         void setArticleActionsEnabled( bool enabled );
+        void setTrayIcon(TrayIcon* trayIcon);
 
     public slots:
 
