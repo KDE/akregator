@@ -125,10 +125,15 @@ namespace {
         dot.setAttribute("xmlUrl","http://www.kde.org/dotkdeorg.rdf");
         mainFolder.appendChild(dot);
 
-        QDomElement plan = doc.createElement( "outline" );
-        plan.setAttribute("text",i18n("Planet KDE"));
-        plan.setAttribute("xmlUrl","http://planetkde.org/rss20.xml");
-        mainFolder.appendChild(plan);
+        QDomElement planetkde = doc.createElement( "outline" );
+        planetkde.setAttribute("text",i18n("Planet KDE"));
+        planetkde.setAttribute("xmlUrl","http://planetkde.org/rss20.xml");
+        mainFolder.appendChild(planetkde);
+
+        QDomElement planetkdepim = doc.createElement( "outline" );
+        planetkdepim.setAttribute("text",i18n("Planet KDE PIM"));
+        planetkdepim.setAttribute("xmlUrl","http://pim.planetkde.org/rss20.xml");
+        mainFolder.appendChild(planetkdepim);
 
         QDomElement apps = doc.createElement( "outline" );
         apps.setAttribute("text",i18n("KDE Apps"));
