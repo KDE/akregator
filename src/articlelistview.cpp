@@ -158,11 +158,9 @@ void ArticleListView::setArticleModel( ArticleModel* model )
     m_proxy->setSourceModel( model );
     m_proxy->setSortRole( ArticleModel::SortRole );
     m_proxy->setFilters( m_matchers );
-    m_proxy->setDynamicSortFilter( true );
     FilterDeletedProxyModel* const proxy2 = new FilterDeletedProxyModel( model );
     proxy2->setSortRole( ArticleModel::SortRole );
     proxy2->setSourceModel( m_proxy );
-    proxy2->setDynamicSortFilter( true );
 
     FilterColumnsProxyModel* const columnsProxy = new FilterColumnsProxyModel( model );
     columnsProxy->setSortRole( ArticleModel::SortRole );
@@ -171,7 +169,6 @@ void ArticleListView::setArticleModel( ArticleModel* model )
     columnsProxy->setColumnEnabled( ArticleModel::FeedTitleColumn );
     columnsProxy->setColumnEnabled( ArticleModel::DateColumn );
     columnsProxy->setColumnEnabled( ArticleModel::AuthorColumn );
-    columnsProxy->setDynamicSortFilter( true );
 
     setModel( columnsProxy );
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
