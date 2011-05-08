@@ -12,6 +12,7 @@ X-KDE-Weight=400
 
 Name=Browser
 Name[ar]=المتصفح
+Name[bs]=Pregledač
 Name[ca]=Navegador
 Name[ca@valencia]=Navegador
 Name[cs]=Prohlížeč
@@ -58,6 +59,7 @@ Name[zh_CN]=浏览器
 Name[zh_TW]=瀏覽器
 Comment=Configure Internal Browser Component
 Comment[ar]=اضبط عنصر المتصفح الداخلي
+Comment[bs]=Podešavanje komponente internog regledača
 Comment[ca]=Configura el component navegador intern
 Comment[ca@valencia]=Configura el component navegador intern
 Comment[cs]=Nastavení komponenty interního prohlížeče

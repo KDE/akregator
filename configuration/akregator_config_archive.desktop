@@ -12,6 +12,7 @@ X-KDE-Weight=200
 
 Name=Archive
 Name[ar]=الأرشيف
+Name[bs]=Arhiva
 Name[ca]=Arxiu
 Name[ca@valencia]=Arxiu
 Name[cs]=Archiv
@@ -57,6 +58,7 @@ Name[zh_CN]=存档
 Name[zh_TW]=歸檔
 Comment=Configure Feed Archive
 Comment[ar]=اضبط أرشيف التلقيمات
+Comment[bs]=Podešavanje arhive dovoda
 Comment[ca]=Configura l'arxiu de fonts
 Comment[ca@valencia]=Configura l'arxiu de fonts
 Comment[cs]=Nastavit archiv novinek
