@@ -24,6 +24,8 @@
 
 #include "aboutdata.h"
 
+#include "kdepim-version.h"
+
 #include <klocale.h>
 
 
@@ -32,7 +34,7 @@
 namespace Akregator {
 
 AboutData::AboutData()
-    : KAboutData("akregator", 0, ki18n("Akregator"), AKREGATOR_VERSION, ki18n("A KDE Feed Reader"),
+    : KAboutData("akregator", 0, ki18n("Akregator"), KDEPIM_VERSION, ki18n("A KDE Feed Reader"),
                  License_GPL, ki18n("Copyright © 2004–2010 Akregator authors"), KLocalizedString(),
                      "http://akregator.kde.org/")
 {

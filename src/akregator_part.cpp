@@ -44,6 +44,7 @@
 #include "dummystorage/storagefactorydummyimpl.h"
 
 #include <libkdepim/broadcaststatus.h>
+#include "kdepim-version.h"
 
 #include <KActionCollection>
 #include <knotifyconfigwidget.h>
@@ -263,7 +264,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
     m_autosaveTimer->start(5*60*1000); // 5 minutes
 
-    QString useragent = QString( "Akregator/%1; syndication" ).arg( AKREGATOR_VERSION );
+    QString useragent = QString( "Akregator/%1; syndication" ).arg( KDEPIM_VERSION );
 
     if( !Settings::customUserAgent().isEmpty() )
         useragent = Settings::customUserAgent();
