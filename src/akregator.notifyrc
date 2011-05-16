@@ -48,6 +48,7 @@ Comment[ro]=Akregator
 Comment[ru]=Akregator
 Comment[sk]=Akregator
 Comment[sl]=Akregator
+Comment[sq]=Akregator
 Comment[sv]=Akregator
 Comment[ta]=Akregator
 Comment[tr]=Akregator
@@ -56,7 +57,7 @@ Comment[uz]=Akregator
 Comment[uz@cyrillic]=Akregator
 Comment[x-test]=xxAkregatorxx
 Comment[zh_CN]=Akregator
-Comment[zh_TW]=Akregator
+Comment[zh_TW]=RSS 閱讀器 Akregator
 
 [Event/FeedAdded]
 Name=Feed added

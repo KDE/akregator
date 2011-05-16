@@ -38,6 +38,8 @@
 #include "utils.h"
 #include "openurlrequest.h"
 
+#include "kdepim-version.h"
+
 #include <kpimutils/kfileio.h>
 
 #include <kaction.h>
@@ -684,7 +686,7 @@ void ArticleViewer::displayAboutPage()
             "<p>We hope that you will enjoy Akregator.</p>\n"
             "<p>Thank you,</p>\n"
             "<p style='margin-bottom: 0px'>&nbsp; &nbsp; The Akregator Team</p>\n",
-    AKREGATOR_VERSION, // Akregator version
+    KDEPIM_VERSION,
     "http://akregator.kde.org/"); // Akregator homepage URL
 
     QString fontSize = QString::number( pointsToPixel( Settings::mediumFontSize() ));
