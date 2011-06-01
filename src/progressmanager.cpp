@@ -47,13 +47,13 @@ class ProgressManager::ProgressManagerPrivate
 
 };
 
-static K3StaticDeleter<ProgressManager> progressmanagersd;
 ProgressManager* ProgressManager::m_self = 0;
 
 ProgressManager* ProgressManager::self()
 {
+    static ProgressManager sself;
     if (!m_self)
-        m_self = progressmanagersd.setObject(m_self, new ProgressManager);
+        m_self = &sself;
     return m_self;
 }
 

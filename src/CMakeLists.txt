@@ -53,7 +53,7 @@ set(akregatorprivate_LIB_SRCS
 
 kde4_add_library(akregatorprivate ${LIBRARY_TYPE} ${akregatorprivate_LIB_SRCS})
 
-target_link_libraries(akregatorprivate kdepim  ${KDE4_KDE3SUPPORT_LIBS} ${KDE4_KHTML_LIBS} ${KDEPIMLIBS_SYNDICATION_LIBS} akregatorinterfaces)
+target_link_libraries(akregatorprivate kdepim ${KDE4_KHTML_LIBS} ${KDEPIMLIBS_SYNDICATION_LIBS} akregatorinterfaces)
 target_link_libraries(akregatorprivate LINK_INTERFACE_LIBRARIES ${KDE4_KHTML_LIBS} )
 
 set_target_properties(akregatorprivate
@@ -120,7 +120,7 @@ target_link_libraries(akregatorpart
     kdepim
     ${KDEPIMLIBS_SYNDICATION_LIBS}
     ${KDEPIMLIBS_KPIMUTILS_LIBS}
-    ${KDE4_KDE3SUPPORT_LIBS} )
+     )
 
 install(TARGETS akregatorpart  DESTINATION ${PLUGIN_INSTALL_DIR})
 

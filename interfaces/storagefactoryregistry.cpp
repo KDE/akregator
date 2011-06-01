@@ -25,8 +25,6 @@
 #include "storagefactoryregistry.h"
 #include "storagefactory.h"
 
-#include <k3staticdeleter.h>
-
 #include <QHash>
 #include <QString>
 #include <QStringList>
@@ -41,12 +39,12 @@ class StorageFactoryRegistry::StorageFactoryRegistryPrivate
 };
 
 StorageFactoryRegistry* StorageFactoryRegistry::m_instance = 0;
-static K3StaticDeleter<StorageFactoryRegistry> storagefactoryregistrysd;
 
 StorageFactoryRegistry* StorageFactoryRegistry::self()
 {
+    static StorageFactoryRegistry instance;
     if (!m_instance)
-        m_instance = storagefactoryregistrysd.setObject(m_instance, new StorageFactoryRegistry);
+        m_instance = &instance;
     return m_instance;
 }
 	

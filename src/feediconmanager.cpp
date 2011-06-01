@@ -28,7 +28,6 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kstandarddirs.h>
-#include <k3staticdeleter.h>
 #include <kurl.h>
 
 #include <QIcon>
@@ -115,12 +114,11 @@ void FeedIconManager::Private::loadIcon( const QString & url_ )
     }
 }
 
-static K3StaticDeleter<FeedIconManager> feediconmanagersd;
-
 FeedIconManager* FeedIconManager::self()
 {
+    static FeedIconManager instance;
     if (!Private::m_instance)
-        Private::m_instance = feediconmanagersd.setObject(Private::m_instance, new FeedIconManager);
+        Private::m_instance = &instance;
     return Private::m_instance;
 }
 

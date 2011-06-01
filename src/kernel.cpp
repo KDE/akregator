@@ -24,8 +24,6 @@
 
 #include "kernel.h"
 
-#include <k3staticdeleter.h>
-
 #include "feedlist.h"
 #include "fetchqueue.h"
 #include "framemanager.h"
@@ -39,12 +37,11 @@ namespace Akregator
 
 Kernel* Kernel::m_self = 0;
 
-static K3StaticDeleter<Kernel> kernelsd;
-
 Kernel* Kernel::self()
 {
+    static Kernel self;
     if (!m_self)
-        m_self = kernelsd.setObject(m_self, new Kernel);
+        m_self = &self;
     return m_self;
 }
 
