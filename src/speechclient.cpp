@@ -71,7 +71,7 @@ SpeechClient::~SpeechClient()
     d = 0;
 }
 
-void SpeechClient::slotSpeak(const QString& text, const QString& language)
+void SpeechClient::slotSpeak(const QString& text, const QString& /*language*/)
 {
   if ( !d->isTextSpeechInstalled )
     setupSpeechSystem();
@@ -134,7 +134,7 @@ void SpeechClient::slotAbortJobs()
     }
 }
 
-void SpeechClient::textRemoved(const QString &appId, int jobNum, int state )
+void SpeechClient::textRemoved(const QString &/*appId*/, int jobNum, int state )
 {
   if ( state == KSpeech::jsFinished || state == KSpeech::jsDeleted )
     if (d->pendingJobs.contains(jobNum))
