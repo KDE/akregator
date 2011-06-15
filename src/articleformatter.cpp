@@ -283,7 +283,7 @@ QString DefaultNormalViewFormatter::getCss() const
                   QString::number(pointsToPixel(Settings::mediumFontSize()))+"px",
                   pal.color( QPalette::Text ).name(),
                   pal.color( QPalette::Base ).name() );
-    css += (
+    css += QString(
             "a {\n"
             + QString("  color: %1 ! important;\n")
             + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")
@@ -480,7 +480,7 @@ QString DefaultCombinedViewFormatter::getCss() const
                          QString::number(pointsToPixel(Settings::mediumFontSize()))+"px",
                          pal.color( QPalette::Text ).name(),
                          pal.color( QPalette::Base ).name() );
-    css += (
+    css += QString(
             "a {\n"
             + QString("  color: %1 ! important;\n")
             + QString(!Settings::underlineLinks() ? " text-decoration: none ! important;\n" : "")

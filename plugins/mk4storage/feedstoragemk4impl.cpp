@@ -149,7 +149,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     QString filePath = main->archivePath() + '/' + t.replace('/', '_').replace(':', '_');
     d->oldArchivePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t2.replace('/', '_').replace(':', '_') + ".xml";
     d->convert = !QFile::exists(filePath + ".mk4") && QFile::exists(d->oldArchivePath);
-    d->storage = new c4_Storage((filePath + ".mk4").toLocal8Bit(), true);
+    d->storage = new c4_Storage(QString(filePath + ".mk4").toLocal8Bit(), true);
 
     d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],authorName:S,content:S,authorUri:S,authorEMail:S]");
 
