@@ -30,7 +30,6 @@
 #include <QList>
 
 #include <klocale.h>
-#include <k3staticdeleter.h>
 
 #include <libkdepim/progressmanager.h>
 
