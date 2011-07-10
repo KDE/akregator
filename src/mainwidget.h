@@ -40,7 +40,6 @@
 
 class KConfig;
 class KFileItem;
-class K3ListView;
 class KConfigGroup;
 
 class QDomDocument;

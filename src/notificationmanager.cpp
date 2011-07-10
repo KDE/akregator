@@ -27,7 +27,6 @@
 
 #include <klocale.h>
 #include <knotification.h>
-#include <k3staticdeleter.h>
 #include <kurl.h>
 #include <kglobal.h>
 
@@ -127,13 +126,13 @@ void NotificationManager::slotIntervalCheck()
 
 }
 
-NotificationManager* NotificationManager::m_self;
-static K3StaticDeleter<NotificationManager> notificationmanagersd;
+NotificationManager* NotificationManager::m_self = 0;
 
 NotificationManager* NotificationManager::self()
 {
+    static NotificationManager self;
     if (!m_self)
-        m_self = notificationmanagersd.setObject(m_self, new NotificationManager);
+        m_self = &self;
     return m_self;
 }
 
