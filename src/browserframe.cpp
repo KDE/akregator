@@ -247,8 +247,8 @@ void BrowserFrame::slotPopupMenu(
     if (isLink)
     {
         addSeparatorIfNotFirst();
-        popup->addAction( createOpenLinkInNewTabAction( url, this, SLOT( slotOpenLinkInNewTab() ), popup ) );
-        popup->addAction( createOpenLinkInExternalBrowserAction( url, this, SLOT( slotOpenLinkInBrowser() ), popup ) );
+        popup->addAction( createOpenLinkInNewTabAction( url, this, SLOT(slotOpenLinkInNewTab()), popup ) );
+        popup->addAction( createOpenLinkInExternalBrowserAction( url, this, SLOT(slotOpenLinkInBrowser()), popup ) );
         addActionsToMenu( popup, actionGroups.value( "linkactions" ), ShowSeparatorIfNotEmpty );
     }
 

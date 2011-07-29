@@ -86,20 +86,20 @@ Akregator::SubscriptionListModel::SubscriptionListModel( const shared_ptr<const 
 {
     if ( !m_feedList )
         return;
-    connect( m_feedList.get(), SIGNAL( signalNodeAdded( Akregator::TreeNode* ) ),
-             this, SLOT( subscriptionAdded( Akregator::TreeNode* ) ) );
-    connect( m_feedList.get(), SIGNAL( signalAboutToRemoveNode( Akregator::TreeNode* ) ),
-             this, SLOT( aboutToRemoveSubscription( Akregator::TreeNode* ) ) );
-    connect( m_feedList.get(), SIGNAL( signalNodeRemoved( Akregator::TreeNode* ) ),
-               this, SLOT( subscriptionRemoved( Akregator::TreeNode* ) ) );
-    connect( m_feedList.get(), SIGNAL( signalNodeChanged( Akregator::TreeNode* ) ),
-             this, SLOT( subscriptionChanged( Akregator::TreeNode* ) ) );
-    connect( m_feedList.get(), SIGNAL( fetchStarted( Akregator::Feed* ) ),
-             this, SLOT( fetchStarted( Akregator::Feed* ) ) );
-    connect( m_feedList.get(), SIGNAL( fetched( Akregator::Feed* ) ),
-             this, SLOT( fetched( Akregator::Feed* ) ) );
-    connect( m_feedList.get(), SIGNAL( fetchAborted( Akregator::Feed* ) ),
-             this, SLOT( fetchAborted( Akregator::Feed* ) ) );
+    connect( m_feedList.get(), SIGNAL(signalNodeAdded(Akregator::TreeNode*)),
+             this, SLOT(subscriptionAdded(Akregator::TreeNode*)) );
+    connect( m_feedList.get(), SIGNAL(signalAboutToRemoveNode(Akregator::TreeNode*)),
+             this, SLOT(aboutToRemoveSubscription(Akregator::TreeNode*)) );
+    connect( m_feedList.get(), SIGNAL(signalNodeRemoved(Akregator::TreeNode*)),
+               this, SLOT(subscriptionRemoved(Akregator::TreeNode*)) );
+    connect( m_feedList.get(), SIGNAL(signalNodeChanged(Akregator::TreeNode*)),
+             this, SLOT(subscriptionChanged(Akregator::TreeNode*)) );
+    connect( m_feedList.get(), SIGNAL(fetchStarted(Akregator::Feed*)),
+             this, SLOT(fetchStarted(Akregator::Feed*)) );
+    connect( m_feedList.get(), SIGNAL(fetched(Akregator::Feed*)),
+             this, SLOT(fetched(Akregator::Feed*)) );
+    connect( m_feedList.get(), SIGNAL(fetchAborted(Akregator::Feed*)),
+             this, SLOT(fetchAborted(Akregator::Feed*)) );
 }
 
 int Akregator::SubscriptionListModel::columnCount( const QModelIndex& ) const

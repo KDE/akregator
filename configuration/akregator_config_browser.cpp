@@ -48,8 +48,8 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVa
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
     
-    connect( ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL( toggled( bool ) ), 
-             ui.kcfg_ExternalBrowserCustomCommand, SLOT( setEnabled( bool ) ) );
+    connect( ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)), 
+             ui.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)) );
 
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrbrowserconfig" ), 0,
                                         ki18n( "Configure Feed Reader Browser" ),

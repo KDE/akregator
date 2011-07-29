@@ -48,7 +48,7 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(paren
 
     slotUpdateUI();
 
-    connect( ui.cb_AggregatorType, SIGNAL( currentIndexChanged(int) ), this, SLOT( slotUpdateUI() ) );
+    connect( ui.cb_AggregatorType, SIGNAL(currentIndexChanged(int)), this, SLOT(slotUpdateUI()) );
 }
 
 ConfigurationDialogAdd::~ConfigurationDialogAdd()

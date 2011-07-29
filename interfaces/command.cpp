@@ -81,7 +81,7 @@ void Command::done()
 void Command::waitForFinished()
 {
     QEventLoop loop;
-    connect( this, SIGNAL( finished() ), &loop, SLOT( quit() ) );
+    connect( this, SIGNAL(finished()), &loop, SLOT(quit()) );
     loop.exec();
 }
 

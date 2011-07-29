@@ -65,7 +65,7 @@ void ExpireItemsCommand::Private::addDeleteJobForFeed( Feed* feed )
 {
     assert( feed );
     ArticleDeleteJob* job = new ArticleDeleteJob( q );
-    connect( job, SIGNAL( finished( KJob* ) ), q, SLOT( jobFinished( KJob* ) ) );
+    connect( job, SIGNAL(finished(KJob*)), q, SLOT(jobFinished(KJob*)) );
     m_jobs.insert( job );
     feed->deleteExpiredArticles( job );
     job->start();
@@ -138,7 +138,7 @@ void ExpireItemsCommand::doAbort()
 
 void ExpireItemsCommand::doStart()
 {
-    QTimer::singleShot( 0, this, SLOT( createDeleteJobs() ) );
+    QTimer::singleShot( 0, this, SLOT(createDeleteJobs()) );
 }
 
 #include "expireitemscommand.moc"

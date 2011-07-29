@@ -78,8 +78,8 @@ FeedIconManager::Private::Private( FeedIconManager* qq ) : q( qq )
     QDBusConnection::sessionBus().registerObject("/FeedIconManager", q, QDBusConnection::ExportScriptableSlots);
     m_favIconsModule = new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
     Q_ASSERT( m_favIconsModule );
-    q->connect( m_favIconsModule, SIGNAL( iconChanged( bool, QString, QString ) ),
-                q, SLOT( slotIconChanged( bool, QString, QString ) ) );
+    q->connect( m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
+                q, SLOT(slotIconChanged(bool,QString,QString)) );
 }
 
 FeedIconManager::Private::~Private()

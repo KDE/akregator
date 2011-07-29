@@ -134,7 +134,7 @@ Akregator::SubscriptionListView::SubscriptionListView( QWidget* parent ) : QTree
     setAcceptDrops( true );
     setUniformRowHeights( true );
     setItemDelegate( new SubscriptionListDelegate( this ) );
-    connect( header(), SIGNAL( customContextMenuRequested( const QPoint & ) ), this, SLOT( showHeaderMenu( const QPoint& ) ) );
+    connect( header(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showHeaderMenu(QPoint)) );
 
     loadHeaderSettings();
 }
@@ -180,7 +180,7 @@ void Akregator::SubscriptionListView::showHeaderMenu( const QPoint& pos )
     QPointer<KMenu> menu = new KMenu( this );
     menu->addTitle( i18n( "Columns" ) );
     menu->setAttribute( Qt::WA_DeleteOnClose );
-    connect(menu, SIGNAL( triggered( QAction* ) ), this, SLOT( headerMenuItemTriggered( QAction* ) ) );
+    connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(headerMenuItemTriggered(QAction*)) );
 
     for (int i = 0; i < model()->columnCount(); i++)
     {

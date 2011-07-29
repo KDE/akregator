@@ -200,18 +200,18 @@ void BrowserFrame::Private::connectPart()
 {
     if (part)
     {
-        connect( part, SIGNAL( setWindowCaption( QString ) ),
-                 q, SLOT( slotSetCaption( QString ) ) );
-        connect( part, SIGNAL(setStatusBarText( QString ) ),
-                 q, SLOT( slotSetStatusText( QString ) ) );
+        connect( part, SIGNAL(setWindowCaption(QString)),
+                 q, SLOT(slotSetCaption(QString)) );
+        connect( part, SIGNAL(setStatusBarText(QString)),
+                 q, SLOT(slotSetStatusText(QString)) );
         connect( part, SIGNAL(started(KIO::Job*)), q, SLOT(slotSetStarted()));
         connect( part, SIGNAL(completed()), q, SLOT(slotSetCompleted()));
-        connect( part, SIGNAL( canceled( QString ) ),
-                 q, SLOT( slotSetCanceled( QString ) ) );
-        connect( part, SIGNAL( completed( bool ) ),
-                 q, SLOT( slotSetCompleted() ) );
-        connect( part, SIGNAL( setWindowCaption( QString ) ),
-                 q, SLOT( slotSetTitle( QString ) ) );
+        connect( part, SIGNAL(canceled(QString)),
+                 q, SLOT(slotSetCanceled(QString)) );
+        connect( part, SIGNAL(completed(bool)),
+                 q, SLOT(slotSetCompleted()) );
+        connect( part, SIGNAL(setWindowCaption(QString)),
+                 q, SLOT(slotSetTitle(QString)) );
 
         KParts::BrowserExtension* ext = extension;
 

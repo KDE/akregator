@@ -48,7 +48,7 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVa
     layout->addWidget( m_widget );
 
     connect( m_ui.rb_LimitArticleNumber, SIGNAL(toggled(bool)),
-             m_ui.kcfg_MaxArticleNumber, SLOT(setEnabled( bool)) );
+             m_ui.kcfg_MaxArticleNumber, SLOT(setEnabled(bool)) );
     connect( m_ui.rb_LimitArticleAge, SIGNAL(toggled(bool)),
              m_ui.kcfg_MaxArticleAge, SLOT(setEnabled(bool)) );
 

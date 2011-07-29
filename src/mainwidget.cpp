@@ -170,7 +170,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
              m_tabWidget, SLOT(slotRemoveFrame(int)));
 
     connect( Kernel::self()->frameManager(), SIGNAL(signalRequestNewFrame(int&)),
-             this, SLOT( slotRequestNewFrame(int&) ) );
+             this, SLOT(slotRequestNewFrame(int&)) );
 
     connect( Kernel::self()->frameManager(), SIGNAL(signalFrameAdded(Akregator::Frame*)),
              this, SLOT(slotFramesChanged()));
@@ -203,28 +203,28 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController->setArticleLister( m_articleListView );
     m_selectionController->setFeedSelector( m_feedListView );
 
-    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ),
-            m_selectionController, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
+    connect(m_searchBar, SIGNAL(signalSearch(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)),
+            m_selectionController, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)) );
 
     FolderExpansionHandler* expansionHandler = new FolderExpansionHandler( this );
-    connect( m_feedListView, SIGNAL( expanded( QModelIndex ) ), expansionHandler, SLOT( itemExpanded( QModelIndex ) ) );
-    connect( m_feedListView, SIGNAL( collapsed( QModelIndex ) ), expansionHandler, SLOT( itemCollapsed( QModelIndex ) ) );
+    connect( m_feedListView, SIGNAL(expanded(QModelIndex)), expansionHandler, SLOT(itemExpanded(QModelIndex)) );
+    connect( m_feedListView, SIGNAL(collapsed(QModelIndex)), expansionHandler, SLOT(itemCollapsed(QModelIndex)) );
 
     m_selectionController->setFolderExpansionHandler( expansionHandler );
 
-    connect( m_selectionController, SIGNAL( currentSubscriptionChanged( Akregator::TreeNode* ) ),
-             this, SLOT( slotNodeSelected( Akregator::TreeNode* ) ) );
+    connect( m_selectionController, SIGNAL(currentSubscriptionChanged(Akregator::TreeNode*)),
+             this, SLOT(slotNodeSelected(Akregator::TreeNode*)) );
 
-    connect( m_selectionController, SIGNAL( currentArticleChanged( Akregator::Article ) ),
-             this, SLOT( slotArticleSelected( Akregator::Article ) ) );
+    connect( m_selectionController, SIGNAL(currentArticleChanged(Akregator::Article)),
+             this, SLOT(slotArticleSelected(Akregator::Article)) );
 
-    connect( m_selectionController, SIGNAL( articleDoubleClicked( Akregator::Article ) ),
-             this, SLOT( slotOpenArticleInBrowser( Akregator::Article )) );
+    connect( m_selectionController, SIGNAL(articleDoubleClicked(Akregator::Article)),
+             this, SLOT(slotOpenArticleInBrowser(Akregator::Article)) );
 
     m_actionManager->initArticleListView(m_articleListView);
 
-    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int, KUrl )),
-             this, SLOT(slotMouseButtonPressed(int, KUrl )));
+    connect( m_articleListView, SIGNAL(signalMouseButtonPressed(int,KUrl)),
+             this, SLOT(slotMouseButtonPressed(int,KUrl)));
 
 /*
     connect( m_part, SIGNAL(signalSettingsChanged()),
@@ -236,14 +236,14 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy( m_articleViewer );
 
-    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest& )),
-             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest( Akregator::OpenUrlRequest& )) );
-    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo( KFileItem )),
-             this, SLOT(slotMouseOverInfo( KFileItem )) );
+    connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
+             Kernel::self()->frameManager(), SLOT(slotOpenUrlRequest(Akregator::OpenUrlRequest&)) );
+    connect( m_articleViewer->part()->browserExtension(), SIGNAL(mouseOverInfo(KFileItem)),
+             this, SLOT(slotMouseOverInfo(KFileItem)) );
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_articleViewer, SLOT(slotPaletteOrFontChanged()));
-    connect(m_searchBar, SIGNAL( signalSearch( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ),
-            m_articleViewer, SLOT( setFilters( std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> > ) ) );
+    connect(m_searchBar, SIGNAL(signalSearch(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)),
+            m_articleViewer, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)) );
 
     m_articleViewer->part()->widget()->setWhatsThis( i18n("Browsing area."));
 
@@ -420,7 +420,7 @@ void Akregator::MainWidget::setFeedList( const shared_ptr<FeedList>& list )
 
     m_feedList = list;
     if ( m_feedList ) {
-        connect( m_feedList.get(), SIGNAL(unreadCountChanged(int) ),
+        connect( m_feedList.get(), SIGNAL(unreadCountChanged(int)),
                  this, SLOT(slotSetTotalUnread()) );
     }
 

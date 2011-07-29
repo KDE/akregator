@@ -97,15 +97,15 @@ TabWidget::TabWidget(QWidget * parent)
     setMinimumSize(250,150);
     setMovable(false);
     setDocumentMode(true);
-    connect( this, SIGNAL( currentChanged(int) ),
-             this, SLOT( slotTabChanged(int) ) );
+    connect( this, SIGNAL(currentChanged(int)),
+             this, SLOT(slotTabChanged(int)) );
     connect(this, SIGNAL(closeRequest(QWidget*)),
             this, SLOT(slotCloseRequest(QWidget*)));
     setTabsClosable(Settings::closeButtonOnTabs());
 
     d->tabsClose = new QToolButton(this);
-    connect( d->tabsClose, SIGNAL( clicked() ), this,
-            SLOT( slotRemoveCurrentFrame() ) );
+    connect( d->tabsClose, SIGNAL(clicked()), this,
+            SLOT(slotRemoveCurrentFrame()) );
 
     d->tabsClose->setIcon( KIcon( "tab-close" ) );
     d->tabsClose->setEnabled( false );

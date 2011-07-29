@@ -187,10 +187,10 @@ void SpeechClient::setupSpeechSystem()
         m_kspeech = new org::kde::KSpeech("org.kde.kttsd", "/KSpeech", QDBusConnection::sessionBus());
         m_kspeech->setParent(this);
         m_kspeech->setApplicationName("Akregator Speech Text");
-        connect(m_kspeech, SIGNAL(jobStateChanged(const QString&, int, int)),
-                    this, SLOT(textRemoved(const QString&, int, int)));
-        connect( QDBusConnection::sessionBus().interface(), SIGNAL( serviceUnregistered( const QString & ) ), this, SLOT( slotServiceUnregistered( const QString & ) ) );
-        connect( QDBusConnection::sessionBus().interface(), SIGNAL( serviceOwnerChanged( const QString &, const QString &, const QString & ) ), this, SLOT( slotServiceOwnerChanged( const QString &, const QString &, const QString & ) ) );
+        connect(m_kspeech, SIGNAL(jobStateChanged(QString,int,int)),
+                    this, SLOT(textRemoved(QString,int,int)));
+        connect( QDBusConnection::sessionBus().interface(), SIGNAL(serviceUnregistered(QString)), this, SLOT(slotServiceUnregistered(QString)) );
+        connect( QDBusConnection::sessionBus().interface(), SIGNAL(serviceOwnerChanged(QString,QString,QString)), this, SLOT(slotServiceOwnerChanged(QString,QString,QString)) );
 
       }
     }

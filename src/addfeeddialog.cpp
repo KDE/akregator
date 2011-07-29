@@ -66,7 +66,7 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
     setButtons(KDialog::Ok|KDialog::Cancel);
     setDefaultButton(KDialog::Ok);
     widget->urlEdit->setFocus();
-    connect(widget->urlEdit, SIGNAL(textChanged(const QString&)), this, SLOT(textChanged(const QString&)));
+    connect(widget->urlEdit, SIGNAL(textChanged(QString)), this, SLOT(textChanged(QString)));
     enableButtonOk(false);
     setMainWidget(widget);
 }
@@ -103,12 +103,12 @@ void AddFeedDialog::accept()
 
     widget->statusLabel->setText( i18n("Downloading %1", feedUrl) );
 
-    connect( m_feed, SIGNAL(fetched(Akregator::Feed* )),
-             this, SLOT(fetchCompleted(Akregator::Feed *)) );
-    connect( m_feed, SIGNAL(fetchError(Akregator::Feed* )),
-             this, SLOT(fetchError(Akregator::Feed *)) );
-    connect( m_feed, SIGNAL(fetchDiscovery(Akregator::Feed* )),
-             this, SLOT(fetchDiscovery(Akregator::Feed *)) );
+    connect( m_feed, SIGNAL(fetched(Akregator::Feed*)),
+             this, SLOT(fetchCompleted(Akregator::Feed*)) );
+    connect( m_feed, SIGNAL(fetchError(Akregator::Feed*)),
+             this, SLOT(fetchError(Akregator::Feed*)) );
+    connect( m_feed, SIGNAL(fetchDiscovery(Akregator::Feed*)),
+             this, SLOT(fetchDiscovery(Akregator::Feed*)) );
 
     m_feed->fetch(true);
 }

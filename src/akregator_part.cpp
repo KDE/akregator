@@ -228,10 +228,10 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     m_mainWidget = new Akregator::MainWidget(this, parentWidget, m_actionManager, "akregator_view");
     m_extension = new BrowserExtension(this, "ak_extension");
 
-    connect(Kernel::self()->frameManager(), SIGNAL(signalCaptionChanged(const QString&)), this, SIGNAL(setWindowCaption(const QString&)));
-    connect(Kernel::self()->frameManager(), SIGNAL(signalStatusText(const QString&)), this, SLOT(slotSetStatusText(const QString&)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalCaptionChanged(QString)), this, SIGNAL(setWindowCaption(QString)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalStatusText(QString)), this, SLOT(slotSetStatusText(QString)));
     connect(Kernel::self()->frameManager(), SIGNAL(signalLoadingProgress(int)), m_extension, SIGNAL(loadingProgress(int)));
-    connect(Kernel::self()->frameManager(), SIGNAL(signalCanceled(const QString&)), this, SIGNAL(canceled(const QString&)));
+    connect(Kernel::self()->frameManager(), SIGNAL(signalCanceled(QString)), this, SIGNAL(canceled(QString)));
     connect(Kernel::self()->frameManager(), SIGNAL(signalStarted()), this, SLOT(slotStarted()));
     connect(Kernel::self()->frameManager(), SIGNAL(signalCompleted()), this, SIGNAL(completed()));
 
