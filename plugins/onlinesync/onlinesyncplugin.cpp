@@ -127,7 +127,7 @@ void OnlineSyncPlugin::slotFeedSyncManage()
     kDebug();
     feedsync::ConfigurationDialog* dlg = new feedsync::ConfigurationDialog();
     dlg->setAttribute( Qt::WA_DeleteOnClose );
-    connect( dlg, SIGNAL( finished() ), this, SLOT( slotFeedSyncManageDone() ) );
+    connect( dlg, SIGNAL(finished()), this, SLOT(slotFeedSyncManageDone()) );
     dlg->show();
 }
 

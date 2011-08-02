@@ -124,12 +124,12 @@ PageViewer::PageViewer(QWidget *parent, const char *name)
     d->forwardAction->setEnabled(false);
     d->stopAction->setEnabled(false);
 
-    connect( this, SIGNAL(setWindowCaption (const QString &)),
-            this, SLOT(slotSetCaption (const QString &)) );
+    connect( this, SIGNAL(setWindowCaption(QString)),
+            this, SLOT(slotSetCaption(QString)) );
 
-    connect(this, SIGNAL(started(KIO::Job *)), this, SLOT(slotStarted(KIO::Job* )));
+    connect(this, SIGNAL(started(KIO::Job*)), this, SLOT(slotStarted(KIO::Job*)));
     connect(this, SIGNAL(completed()), this, SLOT(slotCompleted()));
-    connect(this, SIGNAL(canceled(const QString &)), this, SLOT(slotCancelled(const QString &)));
+    connect(this, SIGNAL(canceled(QString)), this, SLOT(slotCancelled(QString)));
 
     d->current = d->history.end();
 

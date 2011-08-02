@@ -55,9 +55,9 @@ ConfigurationWidget::ConfigurationWidget( QWidget *parent ) : QWidget( parent )
     }
 
     // Slots
-    connect( ui.b_add, SIGNAL( clicked() ), this, SLOT( slotButtonAddClicked() ) );
-    connect( ui.b_update, SIGNAL( clicked() ), this, SLOT( slotButtonUpdateClicked() ) );
-    connect( ui.b_remove, SIGNAL( clicked() ), this, SLOT( slotButtonRemoveClicked() ) );
+    connect( ui.b_add, SIGNAL(clicked()), this, SLOT(slotButtonAddClicked()) );
+    connect( ui.b_update, SIGNAL(clicked()), this, SLOT(slotButtonUpdateClicked()) );
+    connect( ui.b_remove, SIGNAL(clicked()), this, SLOT(slotButtonRemoveClicked()) );
 }
 
 

@@ -79,8 +79,8 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     d->searchLine = new KLineEdit(this);
     d->searchLine->setClearButtonShown(true);
 
-    connect(d->searchLine, SIGNAL(textChanged(const QString &)),
-                        this, SLOT(slotSearchStringChanged(const QString &)));
+    connect(d->searchLine, SIGNAL(textChanged(QString)),
+                        this, SLOT(slotSearchStringChanged(QString)));
 
     searchLabel->setBuddy(d->searchLine);
 

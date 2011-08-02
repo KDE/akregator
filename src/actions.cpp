@@ -35,7 +35,7 @@ QAction* Akregator::createOpenLinkInNewTabAction( const KUrl& url, QObject* rece
     QAction* action = new QAction( KIcon( "tab-new" ), i18n( "Open Link in New &Tab" ), parent );
     action->setData( url );
     if ( receiver && slot )
-        QObject::connect( action, SIGNAL( triggered( bool ) ), receiver, slot );
+        QObject::connect( action, SIGNAL(triggered(bool)), receiver, slot );
     return action;
 }
 
@@ -44,7 +44,7 @@ QAction* Akregator::createOpenLinkInExternalBrowserAction( const KUrl& url, QObj
     QAction* action = new QAction( KIcon( "window-new" ), i18n( "Open Link in External &Browser" ), parent );
     action->setData( url );
     if ( receiver && slot )
-        QObject::connect( action, SIGNAL( triggered( bool ) ), receiver, slot );
+        QObject::connect( action, SIGNAL(triggered(bool)), receiver, slot );
     return action;
 }
 

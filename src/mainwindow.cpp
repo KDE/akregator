@@ -87,8 +87,8 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
     setStandardToolBarMenuEnabled(true);
     createStandardStatusBarAction();
 
-    connect( KPIM::BroadcastStatus::instance(), SIGNAL( statusMsg( const QString& ) ),
-             this, SLOT( slotSetStatusBarText(const QString&) ) );
+    connect( KPIM::BroadcastStatus::instance(), SIGNAL(statusMsg(QString)),
+             this, SLOT(slotSetStatusBarText(QString)) );
 }
 
 bool MainWindow::loadPart()

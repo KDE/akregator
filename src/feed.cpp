@@ -644,7 +644,7 @@ void Feed::tryFetch()
     d->loader = Syndication::Loader::create( this, SLOT(fetchCompleted(Syndication::Loader*,
                                                                        Syndication::FeedPtr,
                                                                        Syndication::ErrorCode)) );
-    //connect(d->loader, SIGNAL(progress(unsigned long)), this, SLOT(slotSetProgress(unsigned long)));
+    //connect(d->loader, SIGNAL(progress(ulong)), this, SLOT(slotSetProgress(ulong)));
     d->loader->loadFrom( d->xmlUrl);
 }
 
@@ -700,7 +700,7 @@ void Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPtr doc, Synd
         if (false) // d->imagePixmap.isNull() && doc.image())
         {
             //d->image = *doc.image();
-            //connect(&d->image, SIGNAL(gotPixmap(const QPixmap&)), this, SLOT(slotImageFetched(const QPixmap&)));
+            //connect(&d->image, SIGNAL(gotPixmap(QPixmap)), this, SLOT(slotImageFetched(QPixmap)));
             //d->image.getPixmap();
         }
     }

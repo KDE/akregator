@@ -40,20 +40,20 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
 {
     setObjectName(name);
     setupUi(this);
-    connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
-             updateSpinBox, SLOT( setEnabled( bool ) ) );
-    connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
-             updateComboBox, SLOT( setEnabled( bool ) ) );
-    connect( cb_updateInterval, SIGNAL( toggled( bool ) ),
-             updateLabel, SLOT( setEnabled( bool ) ) );
-    connect( updateComboBox, SIGNAL( activated( int ) ),
-             this, SLOT(slotUpdateComboBoxActivated( int ) ) );
-    connect( updateSpinBox, SIGNAL( valueChanged( int ) ),
-             this, SLOT( slotUpdateComboBoxLabels( int ) ) );
-    connect( rb_limitArticleAge, SIGNAL( toggled( bool ) ),
-             sb_maxArticleAge, SLOT( setEnabled( bool ) ) );
-    connect( rb_limitArticleNumber, SIGNAL( toggled( bool ) ),
-             sb_maxArticleNumber, SLOT( setEnabled( bool ) ) );
+    connect( cb_updateInterval, SIGNAL(toggled(bool)),
+             updateSpinBox, SLOT(setEnabled(bool)) );
+    connect( cb_updateInterval, SIGNAL(toggled(bool)),
+             updateComboBox, SLOT(setEnabled(bool)) );
+    connect( cb_updateInterval, SIGNAL(toggled(bool)),
+             updateLabel, SLOT(setEnabled(bool)) );
+    connect( updateComboBox, SIGNAL(activated(int)),
+             this, SLOT(slotUpdateComboBoxActivated(int)) );
+    connect( updateSpinBox, SIGNAL(valueChanged(int)),
+             this, SLOT(slotUpdateComboBoxLabels(int)) );
+    connect( rb_limitArticleAge, SIGNAL(toggled(bool)),
+             sb_maxArticleAge, SLOT(setEnabled(bool)) );
+    connect( rb_limitArticleNumber, SIGNAL(toggled(bool)),
+             sb_maxArticleNumber, SLOT(setEnabled(bool)) );
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
@@ -100,7 +100,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     widget->sb_maxArticleAge->setSuffix(ki18np(" day", " days"));
     widget->sb_maxArticleNumber->setSuffix(ki18np(" article", " articles"));
 
-    connect(widget->feedNameEdit, SIGNAL(textChanged(const QString&)), this, SLOT(slotSetWindowTitle(const QString&)));
+    connect(widget->feedNameEdit, SIGNAL(textChanged(QString)), this, SLOT(slotSetWindowTitle(QString)));
 }
 
 FeedPropertiesDialog::~FeedPropertiesDialog()

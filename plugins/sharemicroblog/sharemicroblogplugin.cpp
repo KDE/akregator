@@ -50,8 +50,8 @@ SharePluginIface::~SharePluginIface()
 
 void SharePluginIface::doInitialize()
 {
-    connect(parent(), SIGNAL(signalArticlesSelected( QList<Akregator::Article> )),
-            m_impl, SLOT( articlesSelected( QList<Akregator::Article> )));
+    connect(parent(), SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),
+            m_impl, SLOT(articlesSelected(QList<Akregator::Article>)));
 }
 
 void SharePluginIface::insertGuiClients( KXMLGUIClient* parent )
