@@ -231,19 +231,5 @@
    <whatsthis>Resets the quick filter when changing feeds.</whatsthis>
    <default>false</default>
   </entry>
-
-  <entry key="Feed View Allow Drag And Drop" name="FeedViewAllowDragAndDrop" type="Bool" >
-   <whatsthis>Allow dragging and dropping within the feed list.</whatsthis>
-   <default>true</default>
-  </entry>
-  <entry key="Feed View Allow Sorting" name="FeedViewAllowSorting" type="Bool" >
-   <whatsthis>Allow sorting by columns in the feed list.</whatsthis>
-   <default>false</default>
-  </entry>
-  <entry key="Article View Allow Sorting" name="ArticleViewAllowSorting" type="Bool" >
-   <whatsthis>Allow sorting by columns in the article list.</whatsthis>
-   <default>false</default>
-  </entry>
-
 </group>
 </kcfg>
