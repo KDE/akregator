@@ -87,7 +87,6 @@ private:
 private Q_SLOTS:
     void showHeaderMenu( const QPoint& pos );
     void headerMenuItemTriggered( QAction* action );
-    void slotConfigChanged();
 
 private:
     QByteArray m_headerState;
