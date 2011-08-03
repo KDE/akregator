@@ -21,11 +21,6 @@
     with any edition of Qt, and distribute the resulting executable,
     without including the source code for Qt in the source distribution.
 */
-
-
-#define CRASH_CHECKS
-
-
 #include "articlemodel.h"
 
 #include "article.h"
@@ -46,11 +41,6 @@
 
 #include <cassert>
 #include <cmath>
-
-#ifdef CRASH_CHECKS
-#include <KMessageBox>
-#endif // CRASH_CHECKS
-
 
 using namespace Akregator;
 
@@ -155,13 +145,6 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                     return KGlobal::locale()->formatDateTime(article.pubDate(),
                                                              KLocale::FancyShortDate );
                 case ItemTitleColumn:
-#ifdef CRASH_CHECKS
-                    if (row>=d->titleCache.count())
-                    {
-                        KMessageBox::error(NULL, QString("ArticleModel::data - row %1 count %2").arg(row).arg(d->titleCache.count()));
-                        return ("(toobig)");
-                    }
-#endif // CRASH_CHECKS
                     return d->titleCache[row];
                 case AuthorColumn:
                     return article.authorShort();
@@ -225,34 +208,11 @@ void ArticleModel::Private::articlesAdded( const QList<Article>& list )
     const int first = static_cast<int>( articles.count() );
     q->beginInsertRows( QModelIndex(), first, first + list.size() - 1 );
 
-#ifdef CRASH_CHECKS
-    int i = 0;
-    for (QList<Article>::const_iterator it = list.constBegin(); it!=list.constEnd(); ++it, ++i)
-    {
-        if ((*it).isNull())
-        {
-            KMessageBox::error(NULL, QString("ArticleModel::Private::articlesAdded - input %1 of %2 is NULL").arg(i).arg(list.count()));
-        }
-    }
-#endif // CRASH_CHECKS
-
     const int oldSize = articles.size();
     articles << list;
     titleCache.resize( articles.count() );
     for ( int i = oldSize; i < articles.count(); ++i )
-#ifdef CRASH_CHECKS
-    {
-        if (articles[i].isNull())
-        {
-            KMessageBox::error(NULL, QString("ArticleModel::Private::articlesAdded - article %1 is NULL").arg(i));
-            titleCache[i] = "(null)";
-        }
-        else
-#endif // CRASH_CHECKS
         titleCache[i] = Syndication::htmlToPlainText( articles[i].title() );
-#ifdef CRASH_CHECKS
-    }
-#endif // CRASH_CHECKS
     q->endInsertRows();
 }
 
@@ -273,17 +233,6 @@ void ArticleModel::Private::articlesUpdated( const QList<Article>& list )
     int rmin = 0;
     int rmax = 0;
 
-#ifdef CRASH_CHECKS
-    int i = 0;
-    for (QList<Article>::const_iterator it = list.constBegin(); it!=list.constEnd(); ++it, ++i)
-    {
-        if ((*it).isNull())
-        {
-            KMessageBox::error(NULL, QString("ArticleModel::Private::articlesUpdated - input %1 of %2 is NULL").arg(i).arg(list.count()));
-        }
-    }
-#endif // CRASH_CHECKS
-
     if ( articles.count() > 0 )
     {
          rmin = articles.count() - 1;
@@ -295,14 +244,6 @@ void ArticleModel::Private::articlesUpdated( const QList<Article>& list )
             //TODO: the articles list because we should need this conditional.
             if ( row >= 0 )
             {
-#ifdef CRASH_CHECKS
-                if (articles[row].isNull())
-                {
-                    KMessageBox::error(NULL, QString("ArticleModel::Private::articlesUpdated - article row %1 is NULL").arg(row));
-                    titleCache[row] = "(null)";
-                }
-                else
-#endif // CRASH_CHECKS
                 titleCache[row] = Syndication::htmlToPlainText( articles[row].title() );
                 rmin = std::min( row, rmin );
                 rmax = std::max( row, rmax );

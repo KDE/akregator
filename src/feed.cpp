@@ -23,10 +23,6 @@
     without including the source code for Qt in the source distribution.
 */
 
-
-#define CRASH_CHECKS
-
-
 #include "akregatorconfig.h"
 #include "feed.h"
 #include "article.h"
@@ -48,8 +44,6 @@
 #include <kstandarddirs.h>
 #include <kurl.h>
 #include <KRandom>
-
-#include <KMessageBox>
 
 //#include <qtl.h>
 
@@ -485,15 +479,6 @@ void Feed::appendArticles(const Syndication::FeedPtr feed)
         if ( !d->articles.contains((*it)->id()) ) // article not in list
         {
             Article mya(*it, this);
-#ifdef CRASH_CHECKS
-            if (mya.isNull())
-            {
-                KMessageBox::error(0,
-QString("Feed::appendArticles (nondup) - created a NULL article from ID [%1]").arg((*it)->id()));
-                continue;
-            }
-#endif // CRASH_CHECKS
-
             mya.offsetPubDate(nudge);
             nudge--;
             appendArticle(mya);
@@ -511,30 +496,8 @@ QString("Feed::appendArticles (nondup) - created a NULL article from ID [%1]").a
         {
             // if the article's guid is no hash but an ID, we have to check if the article was updated. That's done by comparing the hash values.
             Article old = d->articles[(*it)->id()];
-#ifdef CRASH_CHECKS
-            if (old.isNull())
-            {
-                KMessageBox::error(0,
-                                   QString("Feed::appendArticles - old with ID [%1] is NULL").arg((*it)->id()));
-                d->articles.remove((*it)->id());
-            }
-#endif // CRASH_CHECKS
             Article mya(*it, this);
-#ifdef CRASH_CHECKS
-            if (mya.isNull())
-            {
-                KMessageBox::error(0,
-QString("Feed::appendArticles (dup) - created a NULL article from ID [%1]").arg((*it)->id()));
-                continue;
-            }
-
-            if (!mya.guidIsHash() &&
-!old.isNull() &&
-mya.hash() != old.hash() &&
-!old.isDeleted())
-#else // CRASH_CHECKS
             if (!mya.guidIsHash() && mya.hash() != old.hash() && !old.isDeleted())
-#endif // CRASH_CHECKS
             {
                 mya.setKeep(old.keep());
                 int oldstatus = old.status();
