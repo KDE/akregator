@@ -275,9 +275,6 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
         QWidget* const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
         NotificationManager::self()->setWidget(notificationParent, componentData());
 
-        QAction* action = TrayIcon::getInstance()->actionCollection()->action(KStandardAction::name(KStandardAction::Quit));
-        connect(action, SIGNAL(triggered(bool)), kapp, SLOT(quit()));
-
         connect( m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
         connect( m_mainWidget, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),
                 this, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)) );
@@ -348,10 +345,6 @@ void Part::slotSettingsChanged()
 
         if ( isTrayIconEnabled() )
             trayIcon->setStatus( KStatusNotifierItem::Active );
-
-        QAction *action;
-        action = TrayIcon::getInstance()->actionCollection()->action(KStandardAction::name(KStandardAction::Quit));
-        connect(action, SIGNAL(triggered(bool)), kapp, SLOT(quit()));
 
         connect( m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
         connect( m_mainWidget, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),

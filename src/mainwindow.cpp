@@ -115,12 +115,6 @@ bool MainWindow::loadPart()
 
     connect(m_part, SIGNAL(setWindowCaption(QString)), this, SLOT(setCaption(QString)) );
 
-    if ( TrayIcon::getInstance() )
-    {
-        QAction* action = TrayIcon::getInstance()->actionCollection()->action(KStandardAction::name(KStandardAction::Quit));
-        connect(action, SIGNAL(triggered(bool)), this, SLOT(slotQuit()));
-    }
-
     createGUI(m_part);
     browserExtension(m_part)->setBrowserInterface(m_browserIface);
     setAutoSaveSettings();
