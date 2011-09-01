@@ -166,7 +166,7 @@ void LoadFeedListCommand::Private::doLoad() {
         KMessageBox::detailedError( q->parentWidget(), msg, details, title );
 
         if ( that )
-            emitResult( shared_ptr<FeedList>() );
+            handleDocument( defaultFeedList );
         return;
     }
 
