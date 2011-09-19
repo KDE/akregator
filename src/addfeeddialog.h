@@ -51,11 +51,12 @@ class AddFeedDialog : public KDialog
         explicit AddFeedDialog(QWidget *parent = 0, const char *name = 0);
         ~AddFeedDialog();
 
+        QSize sizeHint() const;
+
         void setUrl(const QString& t);
         Feed* feed();
 
-    public slots:
-        
+    public slots:        
         void accept();
         
         void fetchCompleted(Akregator::Feed *);

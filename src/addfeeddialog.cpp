@@ -51,6 +51,14 @@ AddFeedWidget::AddFeedWidget(QWidget *parent, const char* name)
 AddFeedWidget::~AddFeedWidget()
 {}
 
+QSize AddFeedDialog::sizeHint() const
+{
+    QSize sh = KDialog::sizeHint();
+    sh.setHeight(minimumSize().height());
+    sh.setWidth(sh.width() * 1.2);
+    return sh;
+}
+
 Feed* AddFeedDialog::feed()
 {
     return m_feed;
