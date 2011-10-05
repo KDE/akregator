@@ -25,11 +25,11 @@
 #include "mainwindow.h"
 #include "akregator_part.h"
 #include "akregatorconfig.h"
-#include "progressdialog.h"
-#include "statusbarprogresswidget.h"
 #include "trayicon.h"
 
-#include <libkdepim/broadcaststatus.h>
+#include "libkdepim/broadcaststatus.h"
+#include "libkdepim/progressdialog.h"
+#include "libkdepim/statusbarprogresswidget.h"
 
 #include <KAction>
 #include <KActionCollection>
