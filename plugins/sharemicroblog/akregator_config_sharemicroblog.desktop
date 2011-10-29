@@ -12,8 +12,9 @@ X-KDE-Keywords=akregator, configure, settings, online readers
 X-KDE-Weight=150
 
 Name=Share Services
-Name[ca]=Serveix de compartició
+Name[ca]=Serveis de compartició
 Name[ca@valencia]=Serveix de compartició
+Name[cs]=Sdílené služby
 Name[da]=Delingstjenester
 Name[de]=Veröffentlichungsdienste
 Name[el]=Υπηρεσίες κοινής χρήσης
