@@ -65,7 +65,10 @@ Folder::FolderPrivate::FolderPrivate( Folder* qq ) : q( qq ), unread( 0 ), open(
 
 Folder::FolderPrivate::~FolderPrivate()
 {
-    qDeleteAll( children );
+    while (!children.isEmpty()) {
+        // child removes itself from list in its destructor
+        delete children.first();
+    }
     emit q->emitSignalDestroyed();
 }
 
