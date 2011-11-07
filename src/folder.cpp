@@ -253,7 +253,7 @@ void Folder::removeChild(TreeNode* node)
 
     emit signalAboutToRemoveChild( node );
     node->setParent(0);
-    d->children.removeAll(node);
+    d->children.removeOne(node);
     disconnectFromNode(node);
     updateUnreadCount();
     emit signalChildRemoved(this, node);
