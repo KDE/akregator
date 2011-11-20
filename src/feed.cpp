@@ -210,7 +210,11 @@ QVector<Feed*> Feed::feeds()
 
 Article Feed::findArticle(const QString& guid) const
 {
-    return d->articles[guid];
+  Article a;
+  if ( !d->articles.isEmpty() ) {
+    a = d->articles[guid];
+  }
+  return a;
 }
 
 QList<Article> Feed::articles()
