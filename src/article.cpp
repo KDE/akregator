@@ -372,22 +372,38 @@ void Article::setStatus(int stat)
 
 QString Article::title() const
 {
-    return d->archive->title(d->guid);
+    QString str;
+    if ( d->archive ) {
+        str = d->archive->title(d->guid);
+    }
+    return str;
 }
 
 QString Article::authorName() const
 {
-    return d->archive->authorName(d->guid);
+    QString str;
+    if ( d->archive ) {
+        str = d->archive->authorName(d->guid);
+    }
+    return str;
 }
 
 QString Article::authorEMail() const
 {
-    return d->archive->authorEMail(d->guid);
+    QString str;
+    if ( d->archive ) {
+        str = d->archive->authorEMail(d->guid);
+    }
+    return str;
 }
 
 QString Article::authorUri() const
 {
-    return d->archive->authorUri(d->guid);
+    QString str;
+    if ( d->archive ){
+        str = d->archive->authorUri(d->guid);
+    }
+    return str;
 }
 
 QString Article::authorShort() const {
