@@ -364,7 +364,8 @@ void Article::setStatus(int stat)
                 d->status = (d->status | Private::New) & ~Private::Read;
                 break;
         }
-        d->archive->setStatus(d->guid, d->status);
+        if ( d->archive )
+            d->archive->setStatus(d->guid, d->status);
         if (d->feed)
             d->feed->setArticleChanged(*this, oldStatus);
      }
