@@ -234,7 +234,7 @@ void Feed::loadArticles()
     if (d->articlesLoaded)
         return;
 
-    if (!d->archive)
+    if (!d->archive && d->storage)
         d->archive = d->storage->archiveFor(xmlUrl());
 
     QStringList list = d->archive->articles();
