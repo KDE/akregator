@@ -9,6 +9,7 @@ X-KDE-ParentApp=akregator
 X-KDE-ParentComponents=akregator,kontact_akregatorplugin
 X-KDE-CfgDlgHierarchy=Akregator
 X-KDE-Keywords=akregator, configure, settings, online readers
+X-KDE-Keywords[de]=Akregator,einstellen,konfigurieren,Konfiguration,Einrichtung,Einstellungen,online Reader
 X-KDE-Keywords[es]=akregator, configurar, preferencias lectores en línea
 X-KDE-Keywords[hu]=akregator, beállítás, beállítások, online olvasók
 X-KDE-Keywords[ia]=akregator, configura, preferentias, lectores in linea

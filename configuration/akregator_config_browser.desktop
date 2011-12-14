@@ -110,6 +110,7 @@ Comment[x-test]=xxConfigure Internal Browser Componentxx
 Comment[zh_CN]=配置内部浏览器组件
 Comment[zh_TW]=設定內部瀏覽器組件
 X-KDE-Keywords=akregator, configure, settings, Browser, Web, Internal
+X-KDE-Keywords[de]=Akregator,einstellen,konfigurieren,Konfiguration,Einrichtung,Einstellungen,Browser,Web,intern
 X-KDE-Keywords[es]=akregator, configurar, preferencias, navegador, web, interno
 X-KDE-Keywords[hu]=akregator, beállítás, beállítások, Böngésző, Web, Belső
 X-KDE-Keywords[ia]=afregator, configura, preferentias, Navigator, Web, Interne

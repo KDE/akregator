@@ -130,6 +130,7 @@ Comment[x-test]=xxConfigure the Feed Reader Appearancexx
 Comment[zh_CN]=配置信息源阅读器外观
 Comment[zh_TW]=設定 Feed 閱讀器外觀
 X-KDE-Keywords=akregator, configure, settings, appearance, look, feel
+X-KDE-Keywords[de]=Akregator,einstellen,konfigurieren,Konfiguration,Einrichtung,Einstellungen,Erscheinungsbild,Aussehen,Handhabung
 X-KDE-Keywords[es]=akregator, configurar, apariencia, aspecto, sensación
 X-KDE-Keywords[hu]=akregator, beállítás, beállítások, megjelenés, kinézet
 X-KDE-Keywords[ia]=akregator, configura, preferentias, apparentia, aspecto, semblantia 
