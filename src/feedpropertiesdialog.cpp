@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "feedpropertiesdialog.h"
+#include "akregatorconfig.h"
 
 #include <kcombobox.h>
 #include <klineedit.h>
@@ -89,7 +89,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     setButtons(KDialog::Ok|KDialog::Cancel);
     setDefaultButton(KDialog::Ok);
     setModal(true);
-    
+
     setMainWidget(widget);
     widget->feedNameEdit->setFocus();
 
@@ -127,7 +127,7 @@ void FeedPropertiesDialog::accept()
 
 void FeedPropertiesDialog::slotSetWindowTitle(const QString& title)
 {
-    setWindowTitle(title.isEmpty() ? i18n("Feed Properties") 
+    setWindowTitle(title.isEmpty() ? i18n("Feed Properties")
                                    : i18n("Properties of %1", title));
 }
 

@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "searchbar.h"
+#include "akregatorconfig.h"
 #include "articlematcher.h"
 #include "article.h"
 

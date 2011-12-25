@@ -23,8 +23,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "pageviewer.h"
+#include "akregatorconfig.h"
 #include "browserrun.h"
 #include "feediconmanager.h"
 #include "viewer.h"

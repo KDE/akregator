@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "settings_advanced.h"
+#include "akregatorconfig.h"
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 
@@ -41,18 +41,18 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
 {
     setObjectName(name);
     setupUi(this);
-    
+
     const QStringList backends = Backend::StorageFactoryRegistry::self()->list();
     Q_FOREACH( const QString& i, backends)
     {
         Backend::StorageFactory* const factory = Backend::StorageFactoryRegistry::self()->getFactory( i );
         if ( !factory )
             continue;
-       
+
         m_factories.insert( factory->key(), factory );
         cbBackend->addItem( factory->name(), factory->key() );
     }
-    
+
     connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
     connect(cbBackend, SIGNAL(activated(int)), this, SLOT(slotFactorySelected(int)));
     connect( kcfg_UseMarkReadDelay, SIGNAL(toggled(bool)),

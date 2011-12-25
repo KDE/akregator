@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "trayicon.h"
+#include "akregatorconfig.h"
 
 #include <kapplication.h>
 #include <kwindowsystem.h>

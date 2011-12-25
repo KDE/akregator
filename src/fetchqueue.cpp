@@ -23,20 +23,19 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include <QList>
-
-#include "akregatorconfig.h"
 #include "fetchqueue.h"
+#include "akregatorconfig.h"
 #include "feed.h"
 #include "treenode.h"
 
+#include <QList>
 
 using namespace Akregator;
 
 class FetchQueue::FetchQueuePrivate
 {
     public:
-    
+
         QList<Feed*> queuedFeeds;
         QList<Feed*> fetchingFeeds;
 };
@@ -65,7 +64,7 @@ void FetchQueue::slotAbort()
     foreach ( Feed* const i, d->queuedFeeds )
         disconnectFromFeed( i );
     d->queuedFeeds.clear();
-    
+
     emit signalStopped();
 }
 
@@ -89,7 +88,7 @@ void FetchQueue::fetchNextFeed()
         d->queuedFeeds.pop_front();
         d->fetchingFeeds.append(f);
         f->fetch(false);
-        
+
     }
 }
 
@@ -122,7 +121,7 @@ void FetchQueue::feedDone(Feed *f)
     d->fetchingFeeds.removeAll(f);
     if (isEmpty())
         emit signalStopped();
-    else    
+    else
         fetchNextFeed();
 }
 
@@ -144,7 +143,7 @@ void FetchQueue::slotNodeDestroyed(TreeNode* node)
 {
     Feed* const feed = qobject_cast<Feed*>( node );
     assert( feed );
-    
+
     d->fetchingFeeds.removeAll(feed);
     d->queuedFeeds.removeAll(feed);
 }

@@ -23,8 +23,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "akregator_part.h"
+#include "akregatorconfig.h"
 #include "aboutdata.h"
 #include "actionmanagerimpl.h"
 #include "article.h"
@@ -105,7 +105,7 @@ namespace {
         mainFolder.setAttribute("text","KDE");
         body.appendChild(mainFolder);
 
-        /* 
+        /*
         // NOTE: If these feeds ever get updated again, reenable them.
         //       For now I (Bertjan, July 2010) just disable them to
         //       make the default feeds non-embarassing (these are
@@ -774,7 +774,7 @@ bool Part::readCrashProperties()
             KGuiItem(i18n("Do Not Restore"), "dialog-close"),
             KGuiItem(i18n("Ask Me Later"), "chronometer"),
             "Restore session when akregator didn't close correctly" );
-    switch ( choice ) { 
+    switch ( choice ) {
     case KMessageBox::Yes:
         readProperties(configGroup);
         return true;

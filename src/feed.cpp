@@ -23,8 +23,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#include "akregatorconfig.h"
 #include "feed.h"
+#include "akregatorconfig.h"
 #include "article.h"
 #include "articlejobs.h"
 #include "feediconmanager.h"
