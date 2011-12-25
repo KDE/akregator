@@ -63,7 +63,7 @@ class Category
 
 class Storage;
 
-class FeedStorage : public QObject
+class FeedStorage : public QObject //krazy:exclude=qobject
 {
     public:
 

@@ -37,19 +37,19 @@ namespace Backend {
 class FeedStorage;
 
 /** \brief Storage is the main interface to the article archive. It creates and manages FeedStorage objects handling the article list for a feed.
-    
+
     An archive implementation must implement Storage, FeedStorage and StorageFactory. See mk4storage for an example.
 */
-class Storage : public QObject
+class Storage : public QObject //krazy:exclude=qobject
 {
     public:
 
         virtual ~Storage() {}
 
         /** initializes the storage object with given parameters */
-        
+
         virtual void initialize(const QStringList& params) = 0;
-        
+
         /**
          * Open storage and prepare it for work.
          * @return true on success.
@@ -87,8 +87,8 @@ class Storage : public QObject
         virtual int lastFetchFor(const QString& url) const = 0;
         virtual void setLastFetchFor(const QString& url, int lastFetch) = 0;
 
-        /** stores the feed list in the storage backend. This is a fallback for the case that the 
-            feeds.opml file gets corrupted 
+        /** stores the feed list in the storage backend. This is a fallback for the case that the
+            feeds.opml file gets corrupted
             @param opmlStr the feed list in OPML format
          */
         virtual void storeFeedList(const QString& opmlStr) = 0;
@@ -98,14 +98,14 @@ class Storage : public QObject
         virtual QString restoreTagSet() const = 0;
 
         /** returns a list of all feeds (URLs) stored in this archive */
-        
+
         virtual QStringList feeds() const = 0;
 
         /** adds all feed storages from a source to this storage
             existing articles are replaced
         */
         virtual void add(Storage* source) = 0;
-        
+
         /** deletes all feed storages in this archive */
         virtual void clear() = 0;
 };
