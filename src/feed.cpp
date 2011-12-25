@@ -873,7 +873,7 @@ void Feed::enforceLimitArticleNumber()
     int c = 0;
     const bool useKeep = Settings::doNotExpireImportantArticles();
 
-    Q_FOREACH ( Article i, articles )
+    Q_FOREACH ( Article i, articles ) //krazy:exclude=foreach
     {
         if (c < limit)
         {

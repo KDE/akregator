@@ -121,7 +121,7 @@ void Akregator::ArticleModifyJob::doStart()
     }
     std::vector<Akregator::Feed*> feeds;
 
-    Q_FOREACH ( const Akregator::ArticleId& id, m_keepFlags.keys() )
+    Q_FOREACH ( const Akregator::ArticleId& id, m_keepFlags.keys() ) //krazy:exclude=foreach
     {
         Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
         if ( !feed )
@@ -133,7 +133,7 @@ void Akregator::ArticleModifyJob::doStart()
             article.setKeep( m_keepFlags[id] );
     }
 
-    Q_FOREACH ( const Akregator::ArticleId& id, m_status.keys() )
+    Q_FOREACH ( const Akregator::ArticleId& id, m_status.keys() ) //krazy:exclude=foreach
     {
         Akregator::Feed* feed = m_feedList->findByURL( id.feedUrl );
         if ( !feed )
