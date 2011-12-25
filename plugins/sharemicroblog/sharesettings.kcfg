@@ -9,7 +9,7 @@
     <label>Service URL</label>
   </entry>
   <entry key="Username" type="String" >
-    <label>Username</label>
+    <label context="login identify for blog account">Username</label>
   </entry>
  </group>
 </kcfg>

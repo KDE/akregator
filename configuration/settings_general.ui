@@ -7,7 +7,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>Global</string>
+      <string comment="global settings">Global</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
