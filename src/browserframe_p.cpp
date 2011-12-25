@@ -231,12 +231,12 @@ void BrowserFrame::Private::connectPart()
                     q, SLOT(slotSetLocationBarUrl(QString)) );
             connect(ext, SIGNAL(setIconUrl(KUrl)),
                     q, SLOT(slotSetIconUrl(KUrl)) );
-            connect(ext, SIGNAL( createNewWindow( KUrl,
+            connect(ext, SIGNAL(createNewWindow(KUrl,
                     KParts::OpenUrlArguments,
                     KParts::BrowserArguments,
                     KParts::WindowArgs,
                     KParts::ReadOnlyPart**)),
-                    q, SLOT(slotCreateNewWindow( KUrl,
+                    q, SLOT(slotCreateNewWindow(KUrl,
                                  KParts::OpenUrlArguments,
                                  KParts::BrowserArguments,
                                  KParts::WindowArgs,
