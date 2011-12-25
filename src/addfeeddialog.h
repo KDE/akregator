@@ -40,7 +40,7 @@ class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
 {
     Q_OBJECT
     public:
-        AddFeedWidget(QWidget *parent = 0, const char *name = 0);
+        explicit AddFeedWidget(QWidget *parent = 0, const char *name = 0);
         ~AddFeedWidget();
 };
 
@@ -56,9 +56,9 @@ class AddFeedDialog : public KDialog
         void setUrl(const QString& t);
         Feed* feed();
 
-    public slots:        
+    public slots:
         void accept();
-        
+
         void fetchCompleted(Akregator::Feed *);
         void fetchDiscovery(Akregator::Feed *);
         void fetchError(Akregator::Feed *);
