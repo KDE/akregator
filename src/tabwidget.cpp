@@ -238,10 +238,9 @@ void TabWidget::slotRemoveFrame(int frameId)
 // copied wholesale from KonqFrameTabs
 uint TabWidget::Private::tabBarWidthForMaxChars( int maxLength )
 {
-    int hframe, overlap;
+    int hframe;
     QStyleOption o;
     hframe = q->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabHSpace, &o, q );
-    overlap = q->tabBar()->style()->pixelMetric( QStyle::PM_TabBarTabOverlap, &o, q );
 
     QFontMetrics fm = q->tabBar()->fontMetrics();
     int x = 0;
