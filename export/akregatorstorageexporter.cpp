@@ -34,7 +34,6 @@
 #include <QFile>
 #include <QIODevice>
 #include <QStringList>
-#include <QUrl>
 #include <QXmlStreamWriter>
 #include <QVariant>
 
@@ -43,6 +42,7 @@
 #include <KPluginLoader>
 #include <KService>
 #include <KServiceTypeTrader>
+#include <KUrl>
 
 #include <iostream>
 
@@ -349,7 +349,7 @@ int main( int argc, char** argv ) {
     }
 
     const int pos = base64 ? 2 : 1;
-    const QString url = QUrl::fromEncoded( base64 ? QByteArray::fromBase64( argv[pos] ) : QByteArray( argv[pos] ) ).toString();
+    const QString url = KUrl::fromEncoded( base64 ? QByteArray::fromBase64( argv[pos] ) : QByteArray( argv[pos] ) ).toString();
 
     Q_FOREACH( const KService::Ptr& i, queryStoragePlugins() )
         if ( Plugin* const plugin = createFromService( i ) )
