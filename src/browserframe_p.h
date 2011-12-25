@@ -107,12 +107,12 @@ class BrowserFrame::Private::HistoryEntry
 
         HistoryEntry() : id(idCounter++) {}
 
-        bool operator==(const HistoryEntry& other)
+        bool operator==(const HistoryEntry& other) const
         {
             return id == other.id;
         }
 
-        bool operator!=(const HistoryEntry& other)
+        bool operator!=(const HistoryEntry& other) const
         {
             return id != other.id;
         }
