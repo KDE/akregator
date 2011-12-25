@@ -1,2 +1,2 @@
 #metakit is 3rd party code
-SKIP /plugins/mk4storage/metakit/
+SKIP /plugins/mk4storage/metakit/\|/plugins/onlinesync/
