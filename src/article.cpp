@@ -65,7 +65,7 @@ QString buildTitle(const QString& description)
         else if (tagName.startsWith(QLatin1String("br")) || tagName.startsWith(QLatin1String("BR")))
         {
             toReplace=rx.cap(1);
-            replaceWith=" ";
+            replaceWith=' ';
         }
         else
             toReplace=rx.cap(1);  // strip just tag

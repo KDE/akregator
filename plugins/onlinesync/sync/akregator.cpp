@@ -33,23 +33,23 @@
 
 namespace feedsync {
 
-Akregator::Akregator( QObject* p ) : Aggregator( p ) 
+Akregator::Akregator( QObject* p ) : Aggregator( p )
 {
     kDebug();
 }
 
-Akregator::~Akregator() 
+Akregator::~Akregator()
 {
     kDebug();
 }
 
-SubscriptionList Akregator::getSubscriptionList() const 
+SubscriptionList Akregator::getSubscriptionList() const
 {
     kDebug();
     return _subscriptionList;
 }
 
-void Akregator::load() 
+void Akregator::load()
 {
     kDebug();
 
@@ -76,12 +76,12 @@ void Akregator::load()
     QTimer::singleShot( 0, this, SLOT(sendSignalLoadDone()) );
 }
 
-void Akregator::sendSignalLoadDone() 
+void Akregator::sendSignalLoadDone()
 {
     emit loadDone();
 }
 
-void Akregator::add( const SubscriptionList & list) 
+void Akregator::add( const SubscriptionList & list)
 {
     kDebug();
 
@@ -95,7 +95,7 @@ void Akregator::add( const SubscriptionList & list)
         // Look for the category id
         QString foundCatId;
         if (list.getCat(i).isEmpty()) {
-            foundCatId = "1";
+            foundCatId = '1';
         } else {
             QStringList catlist = ak_feedlist->categories();
             int idcat = 0;
@@ -124,7 +124,7 @@ void Akregator::add( const SubscriptionList & list)
     emit addDone();
 }
 
-void Akregator::update(const SubscriptionList & list) 
+void Akregator::update(const SubscriptionList & list)
 {
     Q_UNUSED(list)
     kDebug();
@@ -133,7 +133,7 @@ void Akregator::update(const SubscriptionList & list)
     emit updateDone();
 }
 
-void Akregator::remove(const SubscriptionList & list) 
+void Akregator::remove(const SubscriptionList & list)
 {
     kDebug();
 
