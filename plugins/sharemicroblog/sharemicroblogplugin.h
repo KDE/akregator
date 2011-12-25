@@ -22,8 +22,8 @@
     without including the source code for Qt in the source distribution.
 */
 
-#ifndef AKREGATOR_SHAREPLUGIN_H
-#define AKREGATOR_SHAREPLUGIN_H
+#ifndef AKREGATOR_SHAREMICROBLOGPLUGIN_H
+#define AKREGATOR_SHAREMICROBLOGPLUGIN_H
 
 #include "plugin.h"
 #include "article.h"
