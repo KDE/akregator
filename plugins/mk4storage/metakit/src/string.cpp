@@ -25,11 +25,11 @@
 
 #ifdef _AIX
 #include <strings.h>
-#endif 
+#endif
 
 #if !q4_INLINE
 #include "mk4str.inl"
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -46,7 +46,7 @@ static int strcasecmp(const char *p1, const char *p2) {
     c1 = tolower(*p1++);
     c2 = tolower(*p2++);
   } while (c1 != 0 && c1 == c2);
-#else 
+#else
   do {
     c1 =  *p1++;
     c2 =  *p2++;
@@ -54,7 +54,7 @@ static int strcasecmp(const char *p1, const char *p2) {
 
   c1 = tolower(c1);
   c2 = tolower(c2);
-#endif 
+#endif
 
   return c1 - c2;
 }
@@ -69,15 +69,15 @@ const char *strrchr(const char *p, char ch) {
 
 #elif q4_MSVC || q4_WATC || q4_BORC || (q4_MWCW && __MWERKS__ < 0x3000)
 #define strcasecmp stricmp
-#endif 
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 //
 //  This string class implement functionality which is very similar to that
 //  provided by the CString class of the Microsoft Framework Classes (MFC).
-//  
+//
 //  There are also several major differences:
-//  
+//
 //    1) This class uses reference counting to avoid massive copying.
 //       Consequently, function return as well as assignment is very fast.
 //    2) Strings of up to 255 bytes can contain any data, even null bytes.
@@ -86,7 +86,7 @@ const char *strrchr(const char *p, char ch) {
 //       can also cast to the byte-counted "const unsigned char*" used
 //       everywhere in Macintosh applications (as StringPtr, Str255, etc).
 //    4) This source code is not derived from Microsoft's code in any way.
-//    
+//
 //  A good way to use this class, is to always use c4_String for function
 //  return values and "const [unsigned] char*" for all parameters. Together,
 //  these two choices will remove the need for nearly any messy casts.
@@ -119,7 +119,9 @@ c4_String::c4_String(char ch, int n /* =1 */) {
   _value = new unsigned char[n + 3];
 
   _value[0] = 1; // see Init() member
-  memset(_value + 2, ch, n);
+  if ( n > 0 ) {
+    memset(_value + 2, ch, n);
+  }
   _value[1] = (unsigned char)(n <= 255 ? n : 255);
   _value[n + 2] = 0;
 }
@@ -165,12 +167,12 @@ void c4_String::Init(const void *p, int n) {
   if (p == NULL || n <= 0) {
     //  Optimization to significantly speed-up init of empty strings:
     //  share a common entry, which avoids *LOTS* of tiny mem allocs.
-    //  
+    //
     //  Especially "new [...] c4_String" will benefit a lot, as well as:
-    //  
+    //
     //    c4_String s;    // this would have caused a new allocation
     //    s = ...     // then immediately drops the count back
-    //  
+    //
     //  2001/11/27: changed to never release this empty vector, for MT use
     //  		the new logic is to completely ignore its ref count
 
