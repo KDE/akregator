@@ -162,6 +162,9 @@ void ArticleListView::setArticleModel( ArticleModel* model )
     proxy2->setSortRole( ArticleModel::SortRole );
     proxy2->setSourceModel( m_proxy );
 
+    connect( model, SIGNAL( rowsInserted( const QModelIndex&, int, int ) ),
+             m_proxy, SLOT( invalidate() ) );
+
     FilterColumnsProxyModel* const columnsProxy = new FilterColumnsProxyModel( model );
     columnsProxy->setSortRole( ArticleModel::SortRole );
     columnsProxy->setSourceModel( proxy2 );
