@@ -112,7 +112,7 @@ Criterion::Predicate Criterion::stringToPredicate(const QString& predStr)
         return Matches;
     else if (predStr == QString::fromLatin1("Negation"))
         return Negation;
-    
+
     // hopefully never reached
     return Contains;
 }
@@ -154,6 +154,10 @@ void Criterion::readConfig(KConfigGroup* config)
 
 bool Criterion::satisfiedBy( const Article &article ) const
 {
+    if ( article.isNull() ) {
+        return false;
+    }
+
     QVariant concreteSubject;
 
     switch ( m_subject ) {
@@ -255,7 +259,7 @@ bool ArticleMatcher::matches( const Article &a ) const
 void ArticleMatcher::writeConfig(KConfigGroup* config) const
 {
     config->writeEntry(QString::fromLatin1("matcherAssociation"), associationToString(m_association));
-    
+
     config->writeEntry(QString::fromLatin1("matcherCriteriaCount"), m_criteria.count());
 
     int index = 0;
