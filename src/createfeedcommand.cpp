@@ -26,8 +26,10 @@
 
 #include "addfeeddialog.h"
 #include "feed.h"
+#include "feedlist.h"
 #include "feedpropertiesdialog.h"
 #include "folder.h"
+#include "mainwidget.h"
 #include "subscriptionlistview.h"
 
 #include <KInputDialog>
@@ -50,6 +52,7 @@ public:
 
     void doCreate();
 
+    QPointer<MainWidget> m_parent;
     QPointer<Folder> m_rootFolder;
     QPointer<SubscriptionListView> m_subscriptionListView;
     QString m_url;
@@ -121,18 +124,28 @@ void CreateFeedCommand::Private::doCreate()
     }
     else
     {
-        m_parentFolder = m_parentFolder ? m_parentFolder : m_rootFolder;
-        m_parentFolder->insertChild( feed, m_after );
-        m_subscriptionListView->ensureNodeVisible( feed );
+        if ( !m_parentFolder ) {
+          if ( !m_rootFolder ) {
+            if ( m_parent->allFeedsList() ) {
+              q->setRootFolder( m_parent->allFeedsList()->allFeedsFolder() );
+            }
+          }
+          m_parentFolder = m_rootFolder;
+        }
+
+        if ( m_parentFolder ) {
+          m_parentFolder->insertChild( feed, m_after );
+          m_subscriptionListView->ensureNodeVisible( feed );
+        }
     }
 
     delete dlg;
     q->done();
 }
 
-CreateFeedCommand::CreateFeedCommand( QObject* parent ) : Command( parent ), d( new Private( this ) )
+CreateFeedCommand::CreateFeedCommand( MainWidget* parent ) : Command( parent ), d( new Private( this ) )
 {
-
+    d->m_parent = parent;
 }
 
 CreateFeedCommand::~CreateFeedCommand()

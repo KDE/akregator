@@ -30,6 +30,7 @@
 namespace Akregator {
 
 class Folder;
+class MainWidget;
 class SubscriptionListView;
 class TreeNode;
 
@@ -37,7 +38,7 @@ class CreateFeedCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit CreateFeedCommand( QObject* parent = 0 );
+    explicit CreateFeedCommand( MainWidget* parent = 0 );
     ~CreateFeedCommand();
 
     void setSubscriptionListView( SubscriptionListView* view );
@@ -45,11 +46,11 @@ public:
     void setUrl( const QString& url );
     void setPosition( Folder* parent, TreeNode* after );
     void setAutoExecute( bool autoexec );
-    
+
 private:
     void doStart();
     void doAbort();
-    
+
 private:
     class Private;
     Private* const d;

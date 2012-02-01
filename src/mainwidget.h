@@ -102,6 +102,11 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
          */
         void addFeedToGroup(const QString& url, const QString& group);
 
+        boost::shared_ptr<FeedList> allFeedsList()
+        {
+            return m_feedList;
+        }
+
         /** session management **/
         void readProperties(const KConfigGroup & config);
         void saveProperties(KConfigGroup & config);
