@@ -81,7 +81,7 @@ const char *strrchr(const char *p, char ch) {
 //    1) This class uses reference counting to avoid massive copying.
 //       Consequently, function return as well as assignment is very fast.
 //    2) Strings of up to 255 bytes can contain any data, even null bytes.
-//       Longer strings can not contain any null bytes past position 255.
+//       Longer strings cannot contain any null bytes past position 255.
 //    3) This class can produce a "const char*" without overhead, but it
 //       can also cast to the byte-counted "const unsigned char*" used
 //       everywhere in Macintosh applications (as StringPtr, Str255, etc).

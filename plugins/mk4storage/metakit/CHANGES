@@ -1324,7 +1324,7 @@
     Bug in on-the-fly conversion of bytes properties ('B') in pre-2.0
     datafiles (i.e. 1.8.6 and earlier) resolved.
 
-    Unfortunately, this bug can not be 100% unambiguously fixed.  The
+    Unfortunately, this bug cannot be 100% unambiguously fixed.  The
     new code *will* properly detect most cases, and convert both 1.8.6
     and 2.0 datafiles on the fly, but especially for views with only a
     few rows and at most a few bytes of data per row - the conversion
