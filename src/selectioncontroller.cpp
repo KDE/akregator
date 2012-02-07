@@ -116,6 +116,8 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
              this, SLOT(subscriptionContextMenuRequested(QPoint)) );
     connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
              this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+    connect( m_feedSelector, SIGNAL(activated(QModelIndex)),
+             this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
 
 }
 
