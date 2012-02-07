@@ -179,6 +179,9 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
         /** opens the homepage of the currently selected feed */
         void slotOpenHomepage();
 
+        /** reloads all open tabs */
+        void slotReloadAllTabs();
+        
         /** toggles the keep flag of the currently selected article */
         void slotArticleToggleKeepFlag(bool enabled);
         /** deletes the currently selected article */

@@ -409,6 +409,15 @@ void TabWidget::initiateDrag(int tab)
     }
 }
 
+void TabWidget::slotReloadAllTabs()
+{
+  Q_FOREACH(Frame* frame,d->frames.values())
+  {
+    frame->slotReload();
+  }
+}
+
+
 void TabWidget::slotCloseRequest(QWidget* widget)
 {
     if (d->frames.value(widget))

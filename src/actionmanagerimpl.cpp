@@ -210,6 +210,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenHomepage()));
     action->setShortcuts(KShortcut( "Ctrl+H" ));
 
+    action = coll->addAction("reload_all_tabs");
+    action->setIcon(KIcon("view-refresh"));
+    action->setText(i18n("Reload All Tabs"));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotReloadAllTabs()));
+    action->setShortcuts(KShortcut( "Shift+F5" ));
+
+
     action = coll->addAction("feed_add");
     action->setIcon(KIcon("feed-subscribe"));
     action->setText(i18n("&Add Feed..."));

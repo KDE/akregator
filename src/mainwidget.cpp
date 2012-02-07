@@ -1152,4 +1152,10 @@ void Akregator::MainWidget::ensureArticleTabVisible()
     m_tabWidget->setCurrentWidget( m_mainFrame );
 }
 
+void MainWidget::slotReloadAllTabs()
+{
+  this->m_tabWidget->slotReloadAllTabs();
+}
+
+
 #include "mainwidget.moc"
