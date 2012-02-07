@@ -126,6 +126,11 @@ namespace {
         dot.setAttribute("xmlUrl","http://www.kde.org/dotkdeorg.rdf");
         mainFolder.appendChild(dot);
 
+        QDomElement linux = doc.createElement( "outline" );
+        linux.setAttribute("text",i18n("Linux.com"));
+        linux.setAttribute("xmlUrl","https://www.linux.com/rss/feeds.php");
+        mainFolder.appendChild(linux);
+
         QDomElement planetkde = doc.createElement( "outline" );
         planetkde.setAttribute("text",i18n("Planet KDE"));
         planetkde.setAttribute("xmlUrl","http://planetkde.org/rss20.xml");
@@ -145,6 +150,26 @@ namespace {
         look.setAttribute("text",i18n("KDE Look"));
         look.setAttribute("xmlUrl","http://www.kde.org/kde-look-content.rdf");
         mainFolder.appendChild(look);
+
+        // hungarian feed(s)
+        QDomElement hungarianFolder = doc.createElement( "outline" );
+        hungarianFolder.setAttribute("text",i18n("Hungarian feeds"));
+        mainFolder.appendChild(hungarianFolder);
+
+        QDomElement hungarianKde = doc.createElement( "outline" );
+        hungarianKde.setAttribute("text",i18n("KDE.HU"));
+        hungarianKde.setAttribute("xmlUrl","http://kde.hu/rss.xml");
+        hungarianFolder.appendChild(hungarianKde);
+
+        // spanish feed(s)
+        QDomElement spanishFolder = doc.createElement( "outline" );
+        spanishFolder.setAttribute("text",i18n("Spanish feeds"));
+        mainFolder.appendChild(spanishFolder);
+
+        QDomElement spanishKde = doc.createElement( "outline" );
+        spanishKde.setAttribute("text",i18n("Planet KDE España"));
+        spanishKde.setAttribute("xmlUrl","http://planet.kde-espana.es/");
+        spanishFolder.appendChild(spanishKde);
 
         return doc;
     }
