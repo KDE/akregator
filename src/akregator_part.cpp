@@ -126,10 +126,10 @@ namespace {
         dot.setAttribute("xmlUrl","http://www.kde.org/dotkdeorg.rdf");
         mainFolder.appendChild(dot);
 
-        QDomElement linux = doc.createElement( "outline" );
-        linux.setAttribute("text",i18n("Linux.com"));
-        linux.setAttribute("xmlUrl","https://www.linux.com/rss/feeds.php");
-        mainFolder.appendChild(linux);
+        QDomElement linuxFeeds = doc.createElement( "outline" );
+        linuxFeeds.setAttribute("text",i18n("Linux.com"));
+        linuxFeeds.setAttribute("xmlUrl","https://www.linux.com/rss/feeds.php");
+        mainFolder.appendChild(linuxFeeds);
 
         QDomElement planetkde = doc.createElement( "outline" );
         planetkde.setAttribute("text",i18n("Planet KDE"));
