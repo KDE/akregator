@@ -2,7 +2,7 @@
 Icon=video-display
 Type=Service
 X-KDE-ServiceTypes=KCModule
-X-DocPath=akregator/preferences.html#general-lookup
+X-DocPath=akregator/index.html#appearance-tab
 
 X-KDE-Library=akregator_config_appearance
 X-KDE-ParentApp=akregator

@@ -2,7 +2,7 @@
 Icon=utilities-file-archiver
 Type=Service
 X-KDE-ServiceTypes=KCModule
-X-DocPath=akregator/preferences.html#general-lookup
+X-DocPath=akregator/index.html#advanced-tab
 
 X-KDE-Library=akregator_config_advanced
 X-KDE-ParentApp=akregator
