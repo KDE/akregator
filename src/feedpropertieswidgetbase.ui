@@ -1,77 +1,77 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>Akregator::FeedPropertiesWidgetBase</class>
- <widget class="QWidget" name="Akregator::FeedPropertiesWidgetBase" >
-  <property name="geometry" >
+ <widget class="QWidget" name="Akregator::FeedPropertiesWidgetBase">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>429</width>
+    <width>450</width>
     <height>304</height>
    </rect>
   </property>
-  <property name="sizePolicy" >
-   <sizepolicy>
-    <hsizetype>5</hsizetype>
-    <vsizetype>5</vsizetype>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Feed Properties</string>
   </property>
-  <layout class="QGridLayout" >
-   <property name="margin" >
+  <layout class="QGridLayout">
+   <property name="margin">
     <number>8</number>
    </property>
-   <property name="spacing" >
+   <property name="spacing">
     <number>6</number>
    </property>
-   <item row="0" column="0" >
-    <widget class="KTabWidget" name="tabWidget2" >
-     <property name="sizePolicy" >
-      <sizepolicy>
-       <hsizetype>5</hsizetype>
-       <vsizetype>5</vsizetype>
+   <item row="0" column="0">
+    <widget class="KTabWidget" name="tabWidget2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <widget class="QWidget" name="tab1" >
-      <attribute name="title" >
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab1">
+      <attribute name="title">
        <string>&amp;General</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <property name="margin" >
+      <layout class="QGridLayout">
+       <property name="margin">
         <number>8</number>
        </property>
-       <property name="spacing" >
+       <property name="spacing">
         <number>6</number>
        </property>
-       <item row="1" column="0" >
-        <widget class="QCheckBox" name="cb_updateInterval" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="cb_updateInterval">
+         <property name="text">
           <string>U&amp;se a custom update interval</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
+       <item row="2" column="0">
+        <layout class="QHBoxLayout">
+         <property name="spacing">
           <number>6</number>
+         </property>
+         <property name="margin">
+          <number>0</number>
          </property>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType" >
+           <property name="sizeType">
             <enum>QSizePolicy::Fixed</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>31</width>
              <height>20</height>
@@ -80,95 +80,93 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="updateLabel" >
-           <property name="enabled" >
+          <widget class="QLabel" name="updateLabel">
+           <property name="enabled">
             <bool>false</bool>
            </property>
-           <property name="text" >
+           <property name="text">
             <string>Update &amp;every:</string>
            </property>
-           <property name="buddy" >
+           <property name="buddy">
             <cstring>updateSpinBox</cstring>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="KIntSpinBox" name="updateSpinBox" >
-           <property name="enabled" >
+          <widget class="KIntSpinBox" name="updateSpinBox">
+           <property name="enabled">
             <bool>false</bool>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="KComboBox" name="updateComboBox" >
-           <property name="enabled" >
+          <widget class="KComboBox" name="updateComboBox">
+           <property name="enabled">
             <bool>false</bool>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="3" column="0" >
-        <widget class="QCheckBox" name="checkBox_useNotification" >
-         <property name="text" >
+       <item row="3" column="0">
+        <widget class="QCheckBox" name="checkBox_useNotification">
+         <property name="text">
           <string>Notify when new articles arri&amp;ve</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0" >
-        <layout class="QGridLayout" >
-         <property name="margin" >
+       <item row="0" column="0">
+        <layout class="QGridLayout">
+         <property name="margin">
           <number>0</number>
          </property>
-         <property name="spacing" >
+         <property name="spacing">
           <number>6</number>
          </property>
-         <item row="1" column="0" >
-          <widget class="QLabel" name="textLabel3" >
-           <property name="text" >
+         <item row="1" column="0">
+          <widget class="QLabel" name="textLabel3">
+           <property name="text">
             <string>&amp;URL:</string>
            </property>
-           <property name="buddy" >
+           <property name="buddy">
             <cstring>urlEdit</cstring>
            </property>
           </widget>
          </item>
-         <item row="0" column="0" >
-          <widget class="QLabel" name="textLabel2" >
-           <property name="text" >
+         <item row="0" column="0">
+          <widget class="QLabel" name="textLabel2">
+           <property name="text">
             <string>&amp;Name:</string>
            </property>
-           <property name="buddy" >
+           <property name="buddy">
             <cstring>feedNameEdit</cstring>
            </property>
           </widget>
          </item>
-         <item row="0" column="1" >
-          <widget class="KLineEdit" name="feedNameEdit" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>0</vsizetype>
+         <item row="0" column="1">
+          <widget class="KLineEdit" name="feedNameEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>1</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="toolTip" >
+           <property name="toolTip">
             <string>Display name of RSS column</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1" >
-          <widget class="KLineEdit" name="urlEdit" />
+         <item row="1" column="1">
+          <widget class="KLineEdit" name="urlEdit"/>
          </item>
         </layout>
        </item>
-       <item row="4" column="0" >
+       <item row="4" column="0">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -178,96 +176,105 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab2" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab2">
+      <attribute name="title">
        <string>Ar&amp;chive</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <property name="margin" >
+      <layout class="QGridLayout">
+       <property name="margin">
         <number>8</number>
        </property>
-       <property name="spacing" >
+       <property name="spacing">
         <number>6</number>
        </property>
-       <item row="0" column="0" >
-        <widget class="QRadioButton" name="rb_globalDefault" >
-         <property name="text" >
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="rb_globalDefault">
+         <property name="text">
           <string>&amp;Use default settings</string>
          </property>
-         <property name="checked" >
+         <property name="checked">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <widget class="QRadioButton" name="rb_disableArchiving" >
-         <property name="text" >
+       <item row="3" column="0">
+        <widget class="QRadioButton" name="rb_disableArchiving">
+         <property name="text">
           <string>Di&amp;sable archiving</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
+       <item row="2" column="0">
+        <layout class="QHBoxLayout">
+         <property name="spacing">
           <number>6</number>
          </property>
+         <property name="margin">
+          <number>0</number>
+         </property>
          <item>
-          <layout class="QVBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
+          <layout class="QVBoxLayout">
+           <property name="spacing">
             <number>6</number>
            </property>
+           <property name="margin">
+            <number>0</number>
+           </property>
            <item>
-            <layout class="QHBoxLayout" >
-             <property name="margin" >
-              <number>0</number>
-             </property>
-             <property name="spacing" >
+            <layout class="QHBoxLayout">
+             <property name="spacing">
               <number>6</number>
              </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
              <item>
-              <widget class="QRadioButton" name="rb_limitArticleNumber" >
-               <property name="text" >
+              <widget class="QRadioButton" name="rb_limitArticleNumber">
+               <property name="text">
                 <string>Limit archi&amp;ve to:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="KIntSpinBox" name="sb_maxArticleNumber" >
-               <property name="enabled" >
+              <widget class="KIntSpinBox" name="sb_maxArticleNumber">
+               <property name="enabled">
                 <bool>false</bool>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+               <property name="value">
+                <number>1000</number>
                </property>
               </widget>
              </item>
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" >
-             <property name="margin" >
-              <number>0</number>
-             </property>
-             <property name="spacing" >
+            <layout class="QHBoxLayout">
+             <property name="spacing">
               <number>6</number>
              </property>
+             <property name="margin">
+              <number>0</number>
+             </property>
              <item>
-              <widget class="QRadioButton" name="rb_limitArticleAge" >
-               <property name="text" >
+              <widget class="QRadioButton" name="rb_limitArticleAge">
+               <property name="text">
                 <string>&amp;Delete articles older than:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="KIntSpinBox" name="sb_maxArticleAge" >
-               <property name="enabled" >
+              <widget class="KIntSpinBox" name="sb_maxArticleAge">
+               <property name="enabled">
                 <bool>false</bool>
                </property>
-               <property name="value" >
-                <number>1</number>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+               <property name="value">
+                <number>30</number>
                </property>
               </widget>
              </item>
@@ -277,13 +284,13 @@
          </item>
          <item>
           <spacer>
-           <property name="orientation" >
+           <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType" >
+           <property name="sizeType">
             <enum>QSizePolicy::Expanding</enum>
            </property>
-           <property name="sizeHint" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>99</width>
              <height>20</height>
@@ -293,12 +300,12 @@
          </item>
         </layout>
        </item>
-       <item row="4" column="0" >
+       <item row="4" column="0">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -306,32 +313,32 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QRadioButton" name="rb_keepAllArticles" >
-         <property name="text" >
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="rb_keepAllArticles">
+         <property name="text">
           <string>&amp;Keep all articles</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab3" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tab3">
+      <attribute name="title">
        <string>Adva&amp;nced</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <property name="margin" >
+      <layout class="QGridLayout">
+       <property name="margin">
         <number>8</number>
        </property>
-       <property name="spacing" >
+       <property name="spacing">
         <number>6</number>
        </property>
-       <item row="1" column="0" >
+       <item row="1" column="0">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>414</width>
            <height>141</height>
@@ -339,24 +346,24 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="0" >
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
+       <item row="0" column="0">
+        <layout class="QVBoxLayout">
+         <property name="spacing">
           <number>6</number>
          </property>
+         <property name="margin">
+          <number>0</number>
+         </property>
          <item>
-          <widget class="QCheckBox" name="checkBox_loadWebsite" >
-           <property name="text" >
+          <widget class="QCheckBox" name="checkBox_loadWebsite">
+           <property name="text">
             <string>Load the &amp;full website when reading articles</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_markRead" >
-           <property name="text" >
+          <widget class="QCheckBox" name="checkBox_markRead">
+           <property name="text">
             <string>Mar&amp;k articles as read when they arrive</string>
            </property>
           </widget>
@@ -371,28 +378,25 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KLineEdit</class>
-   <extends></extends>
-   <header>klineedit.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends></extends>
-   <header>knuminput.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
-  </customwidget>
-  <customwidget>
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
+  <customwidget>
    <class>KTabWidget</class>
    <extends>QTabWidget</extends>
    <header>ktabwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
