@@ -275,14 +275,6 @@ void ArticleListView::setGroupMode()
     if ( m_columnMode == GroupMode )
         return;
 
-    // The next line (used three times in this file) is a workaround for a
-    // possible Qt 4.4.3 bug that causes the last column to expand beyond
-    // the viewport width.  QHeaderViewPrivate::lastSectionSize may not be
-    // initialised when QHeaderViewPrivate::resizeSections() is called,
-    // doing the resizeSection() here ensures that it has a sensible value.
-    // This may not be necessary with Qt 4.5.
-    header()->resizeSection( header()->logicalIndex( header()->count() - 1 ), 1 );
-
     if ( model() )
         m_feedHeaderState = header()->saveState();
     m_columnMode = GroupMode;
@@ -294,7 +286,6 @@ void ArticleListView::setFeedMode()
     if ( m_columnMode == FeedMode )
         return;
 
-    header()->resizeSection( header()->logicalIndex( header()->count() - 1 ), 1 );
     if ( model() )
         m_groupHeaderState = header()->saveState();
     m_columnMode = FeedMode;
@@ -322,10 +313,12 @@ void ArticleListView::restoreHeaderState()
         // - hide the feed column in feed mode (no need to see the same feed title over and over)
         // - set the date column wide enough to fit all possible dates
         header()->setSectionHidden( ArticleModel::FeedTitleColumn, m_columnMode == FeedMode );
+        header()->setStretchLastSection( false );
         header()->resizeSection( ArticleModel::DateColumn, maxDateColumnWidth(fontMetrics()) );
     }
 
-    header()->setStretchLastSection( false );
+    if ( header()->sectionSize( ArticleModel::DateColumn ) == 1 )
+        header()->resizeSection( ArticleModel::DateColumn, maxDateColumnWidth(fontMetrics()) );
     startResizingTitleColumn();
 }
 
