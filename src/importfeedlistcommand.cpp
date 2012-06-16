@@ -90,7 +90,7 @@ void ImportFeedListCommand::Private::doImport()
 
     QPointer<QObject> that( q );
 
-    bool ok;
+    bool ok=false;
 
     if ( rootFolderOption == ImportFeedListCommand::Ask )
         importedRootFolderName = KInputDialog::getText( i18n("Add Imported Folder"),
