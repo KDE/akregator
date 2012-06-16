@@ -146,13 +146,14 @@ Akregator::SubscriptionListView::~SubscriptionListView()
 
 void Akregator::SubscriptionListView::setModel( QAbstractItemModel* m )
 {
+    Q_ASSERT( m );
+
     if ( model() )
         m_headerState = header()->saveState();
 
     QTreeView::setModel( m );
 
-    if ( m )
-        restoreHeaderState();
+    restoreHeaderState();
 
     QStack<QModelIndex> stack;
     stack.push( rootIndex() );
