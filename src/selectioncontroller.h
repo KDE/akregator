@@ -57,6 +57,9 @@ public:
     Akregator::Article currentArticle() const;
 
     //impl
+    QModelIndex currentArticleIndex() const;
+
+    //impl
     QList<Akregator::Article> selectedArticles() const;
 
     //impl
