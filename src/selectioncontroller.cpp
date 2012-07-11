@@ -150,6 +150,11 @@ Akregator::Article Akregator::SelectionController::currentArticle() const
     return ::articleForIndex( m_articleLister->articleSelectionModel()->currentIndex(), m_feedList.get() );
 }
 
+QModelIndex SelectionController::currentArticleIndex() const
+{
+    return m_articleLister->articleSelectionModel()->currentIndex();
+}
+
 QList<Akregator::Article> Akregator::SelectionController::selectedArticles() const
 {
     if ( !m_articleLister || !m_articleLister->articleSelectionModel() )

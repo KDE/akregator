@@ -32,6 +32,7 @@
 class QAbstractItemView;
 class QItemSelectionModel;
 class QPoint;
+class QModelIndex;
 
 namespace Akregator {
 
@@ -107,6 +108,8 @@ public:
     virtual void setSingleArticleDisplay( Akregator::SingleArticleDisplay* display ) = 0;
 
     virtual Akregator::Article currentArticle() const = 0;
+
+    virtual QModelIndex currentArticleIndex() const = 0;
 
     virtual QList<Akregator::Article> selectedArticles() const = 0;
 
