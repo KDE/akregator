@@ -235,7 +235,7 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 
     m_articleViewer = new ArticleViewer(m_articleSplitter);
     m_actionManager->initArticleViewer(m_articleViewer);
-//    m_articleListView->setFocusProxy(m_articleViewer);
+    m_articleListView->setFocusProxy(m_articleViewer);
     setFocusProxy( m_articleViewer );
 
     connect( m_articleViewer, SIGNAL(signalOpenUrlRequest(Akregator::OpenUrlRequest&)),
