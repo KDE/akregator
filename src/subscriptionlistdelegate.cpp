@@ -70,6 +70,13 @@ void Akregator::SubscriptionListDelegate::paint( QPainter *painter,
         newOption.font.setBold(true);
     }
 
+     //fix [Bug 190052] numeric columns aligned to the left
+     if ( index.column() == SubscriptionListModel::UnreadCountColumn ||
+         index.column() == SubscriptionListModel::TotalCountColumn )
+     {
+         newOption.displayAlignment = Qt::AlignRight;
+     }
+
     // No need to translate the painter here - the item is vertically centered
     // within its sizeHint rectangle.
     QStyledItemDelegate::paint( painter, newOption, index );
@@ -102,6 +109,12 @@ void Akregator::SubscriptionListDelegate::initStyleOption( QStyleOptionViewItem 
         // Do not append unread count to the title if the unread count column
         // is visible
         return;
+    } else {
+        view->header()->resizeSection( SubscriptionListModel::UnreadCountColumn, QHeaderView::ResizeToContents );
+    }
+
+    if ( !view->header()->isSectionHidden( SubscriptionListModel::TotalCountColumn ) ) {
+        view->header()->resizeSection( SubscriptionListModel::TotalCountColumn, QHeaderView::ResizeToContents );
     }
 
     QStyleOptionViewItemV4 *optionV4 = qstyleoption_cast< QStyleOptionViewItemV4 * >( option );
