@@ -319,7 +319,10 @@ void ArticleListView::restoreHeaderState()
 
     if ( header()->sectionSize( ArticleModel::DateColumn ) == 1 )
         header()->resizeSection( ArticleModel::DateColumn, maxDateColumnWidth(fontMetrics()) );
-    startResizingTitleColumn();
+
+    if ( model() ) {
+        startResizingTitleColumn();
+    }
 }
 
 void ArticleListView::startResizingTitleColumn()
