@@ -212,7 +212,7 @@ void ArticleModel::Private::articlesAdded( const QList<Article>& list )
     articles << list;
     titleCache.resize( articles.count() );
     for ( int i = oldSize; i < articles.count(); ++i )
-        titleCache[i] = Syndication::htmlToPlainText( articles[i].title() );
+        titleCache[i] = stripHtml( articles[i].title() );
     q->endInsertRows();
 }
 
@@ -244,7 +244,7 @@ void ArticleModel::Private::articlesUpdated( const QList<Article>& list )
             //TODO: the articles list because we should need this conditional.
             if ( row >= 0 )
             {
-                titleCache[row] = Syndication::htmlToPlainText( articles[row].title() );
+                titleCache[row] = stripHtml( articles[row].title() );
                 rmin = std::min( row, rmin );
                 rmax = std::max( row, rmax );
             }
