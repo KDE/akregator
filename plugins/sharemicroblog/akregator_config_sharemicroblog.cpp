@@ -70,6 +70,7 @@ void KCMAkregatorShareConfig::load()
     QStringList services;
     services << "https://identi.ca/api/";
     services << "https://twitter.com";
+    ui.kcfg_ServiceUrl->clear();
     ui.kcfg_ServiceUrl->addItems(services);
 
     const QString serviceUrl = ShareSettings::serviceUrl();
