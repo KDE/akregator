@@ -563,6 +563,17 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     action->setText(i18n("Shrink Font"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotFrameZoomOut()));
     action->setShortcut( QKeySequence::ZoomOut );
+
+    QString actionname;
+    for (int i=1;i<10;i++) {
+      actionname.sprintf("activate_tab_%02d", i);
+      action = new KAction( i18n("Activate Tab %1", i),this );
+      action->setShortcut( QKeySequence( QString::fromLatin1( "Alt+%1" ).arg( i ) ) );
+      coll->addAction( actionname, action );
+      connect( action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotActivateTab()) );
+    }
+
+
 }
 
 void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
