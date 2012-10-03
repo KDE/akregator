@@ -304,6 +304,12 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenSelectedArticles()));
     action->setShortcuts(KShortcut( "Shift+Return" ));
 
+    action = coll->addAction("article_open_in_background" );
+    action->setIcon(KIcon("tab-new"));
+    action->setText(i18n("Open in Background Tab"));
+    connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenSelectedArticlesInBackground()));
+    action->setShortcuts(KShortcut( "Return" ));
+
     action = coll->addAction("article_open_external" );
     action->setIcon(KIcon("window-new"));
     action->setText(i18n("Open in External Browser"));
@@ -636,6 +642,7 @@ void ActionManagerImpl::setArticleActionsEnabled( bool enabled ) {
     setActionEnabled("article_delete")
     setActionEnabled("file_sendlink")
     setActionEnabled("file_sendfile")
+    setActionEnabled("article_open_in_background")
 #undef setActionEnabled
 }
 

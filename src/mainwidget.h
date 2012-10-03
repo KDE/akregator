@@ -138,6 +138,7 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
         /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
         void slotOpenSelectedArticles();
+        void slotOpenSelectedArticlesInBackground();
 
         void slotOnShutdown();
 
@@ -251,6 +252,9 @@ class AKREGATORPART_EXPORT MainWidget : public QWidget
 
     private:
         void deleteExpiredArticles( const boost::shared_ptr<FeedList>& feedList );
+
+        /** opens current article in new tab, background/foreground depends on settings TODO: use selected instead of current? */
+        void openSelectedArticles(bool openInBackground);
 
         AbstractSelectionController* m_selectionController;
         boost::shared_ptr<FeedList> m_feedList;

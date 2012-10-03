@@ -916,7 +916,7 @@ void Akregator::MainWidget::slotOpenArticleInBrowser(const Akregator::Article& a
 }
 
 
-void Akregator::MainWidget::slotOpenSelectedArticles()
+void Akregator::MainWidget::openSelectedArticles( bool openInBackground )
 {
     const QList<Article> articles = m_selectionController->selectedArticles();
 
@@ -928,10 +928,12 @@ void Akregator::MainWidget::slotOpenSelectedArticles()
 
         OpenUrlRequest req( url );
         req.setOptions( OpenUrlRequest::NewTab );
-        // TODO: (re-)add a setting for foreground/background
-        // and use it here
-        //req.setOpenInBackground( true );
-        Kernel::self()->frameManager()->slotOpenUrlRequest( req );
+        if( openInBackground ) {
+            req.setOpenInBackground( true );
+            Kernel::self()->frameManager()->slotOpenUrlRequest( req, false /*don't use settings for open in background*/ );
+        } else {
+            Kernel::self()->frameManager()->slotOpenUrlRequest( req );
+        }
     }
 
 }
@@ -1197,5 +1199,17 @@ void MainWidget::slotNetworkStatusChanged(Solid::Networking::Status status)
     m_mainFrame->slotSetStatusText(i18n("Networking is not available."));
   }
 }
+
+void Akregator::MainWidget::slotOpenSelectedArticles()
+{
+    openSelectedArticles( false );
+}
+
+
+void Akregator::MainWidget::slotOpenSelectedArticlesInBackground()
+{
+    openSelectedArticles( true );
+}
+
 
 #include "mainwidget.moc"

@@ -63,7 +63,7 @@ class AKREGATOR_EXPORT FrameManager : public QObject
         void slotRemoveFrame(int frameId);
 
         void slotChangeFrame(int frameId);
-        void slotOpenUrlRequest(Akregator::OpenUrlRequest& request);
+        void slotOpenUrlRequest(Akregator::OpenUrlRequest& request,bool useOpenInBackgroundSetting = true );
 
         void slotBrowserBack();
         void slotBrowserForward();
