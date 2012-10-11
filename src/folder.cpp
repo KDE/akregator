@@ -134,20 +134,20 @@ QList<TreeNode*> Folder::children()
     return d->children;
 }
 
-QVector<const Feed*> Folder::feeds() const
+QVector<const Akregator::Feed*> Folder::feeds() const
 {
-    QHash<int, const Feed*> feedsById;
+    QHash<int, const Akregator::Feed*> feedsById;
     Q_FOREACH( const TreeNode* i, d->children )
-        Q_FOREACH ( const Feed* j, i->feeds() )
+        Q_FOREACH ( const Akregator::Feed* j, i->feeds() )
             feedsById.insert( j->id(), j );
     return feedsById.values().toVector();
 }
 
-QVector<Feed*> Folder::feeds()
+QVector<Akregator::Feed*> Folder::feeds()
 {
-    QHash<int, Feed*> feedsById;
+    QHash<int, Akregator::Feed*> feedsById;
     Q_FOREACH( TreeNode* i, d->children )
-        Q_FOREACH ( Feed* j, i->feeds() )
+        Q_FOREACH ( Akregator::Feed* j, i->feeds() )
             feedsById.insert( j->id(), j );
     return feedsById.values().toVector();
 }

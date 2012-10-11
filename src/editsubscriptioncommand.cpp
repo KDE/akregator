@@ -51,7 +51,7 @@ public:
         return true;
     }
 
-    bool visitFeed(Feed* node)
+    bool visitFeed(Akregator::Feed* node)
     {
         QPointer<FeedPropertiesDialog> dlg = new FeedPropertiesDialog( m_widget );
         dlg->setFeed(node);
