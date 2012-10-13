@@ -256,6 +256,7 @@ void Akregator::SelectionController::selectedSubscriptionChanged( const QModelIn
     // using a timer here internally to simulate async data fetching (which is still synchronous),
     // to ensure the UI copes with async behavior later on
 
+    m_listJob->disconnect( this ); //Ignore if ~KJob() emits finished()
     delete m_listJob;
 
     if ( !m_selectedSubscription )
