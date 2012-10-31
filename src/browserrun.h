@@ -48,6 +48,7 @@ class BrowserRun : public KParts::BrowserRun
 
     private:
         OpenUrlRequest m_request;
+        QWidget* m_window;
 };
 
 } // namespace Akregator
