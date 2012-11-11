@@ -5,11 +5,6 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
  <kcfgfile name="akregatorrc" />
  <group name="View" >
-  <entry key="Hide Read Feeds" type="Bool">
-      <label>Hide feeds with no unread</label>
-      <whatsthis>Hides feeds with no unread articles</whatsthis>
-      <default>false</default>
-  </entry>
   <entry key="Show Quick Filter" type="Bool" >
     <label>Show Quick Filter</label>
     <whatsthis>Show Quick Filter Bar</whatsthis>
@@ -39,7 +34,7 @@
    <whatsthis>Second (usually horizontal) splitter widget sizes.</whatsthis>
    <default>50,350</default>
   </entry>
- </group>
+ </group> 
  <group name="Appearance">
    <entry key="Standard Font" type="String" />
    <entry key="Fixed Font" type="String" />
@@ -61,7 +56,7 @@
   </entry>
   <entry key="MinimumFontSize" type="Int">
   </entry>
-  <entry key="UnderlineLinks" type="Bool">
+  <entry key="UnderlineLinks" type="Bool"> 
   </entry>
  </group>
   <group name="Archive">
@@ -81,7 +76,7 @@
          <label>Delete Expired Articles</label>
          <whatsthis>Delete expired articles</whatsthis>
        </choice>
-       <choice name="disableArchiving">
+       <choice name="disableArchiving"> 
          <label>Disable Archiving</label>
          <whatsthis>Do not save any articles</whatsthis>
        </choice>
@@ -160,17 +155,17 @@
   <entry key="Always Show Tab Bar" type="Bool">
     <label>Always show the tab bar</label>
     <whatsthis>Always show the tab bar, even when only one tab is open</whatsthis>
-    <default>false</default>
+    <default>false</default>   
   </entry>
   <entry key="Close Button On Tabs" type="Bool">
     <label>Show close buttons on tabs</label>
     <whatsthis>Show close buttons on tabs instead of icons</whatsthis>
-    <default>false</default>
+    <default>false</default>   
   </entry>
   <entry key="New Window In Tab" type="Bool">
     <label>Open links in new tab instead of in new window</label>
     <whatsthis>Open a link which would normally open in a new window (external browser) in a new tab instead</whatsthis>
-    <default>false</default>
+    <default>false</default>   
   </entry>
   <entry key="External Browser Use Kde Default" type="Bool" >
    <label>Use default KDE web browser</label>

@@ -72,7 +72,6 @@ class ActionManagerImpl : public ActionManager
     public slots:
 
         void slotNodeSelected(Akregator::TreeNode* node);
-        void slotSettingsChanged();
 
     protected:
 

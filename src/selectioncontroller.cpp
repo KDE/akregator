@@ -24,7 +24,6 @@
 
 #include "selectioncontroller.h"
 
-#include "akregatorconfig.h"
 #include "actionmanager.h"
 #include "article.h"
 #include "articlejobs.h"
@@ -83,13 +82,11 @@ Akregator::SelectionController::SelectionController( QObject* parent )
     m_feedSelector(),
     m_articleLister( 0 ),
     m_singleDisplay( 0 ),
-    m_subscriptionModel ( new FilterUnreadProxyModel(this) ),
+    m_subscriptionModel ( new SubscriptionListModel( shared_ptr<FeedList>(), this ) ),
     m_folderExpansionHandler( 0 ),
     m_articleModel( 0 ),
     m_selectedSubscription()
 {
-    m_subscriptionModel->setDoFilter( Settings::hideReadFeeds() );
-    m_subscriptionModel->setSourceModel( new SubscriptionListModel( shared_ptr<FeedList>(), this ) );
 }
 
 Akregator::SelectionController::~SelectionController()
@@ -106,9 +103,6 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
     if ( m_feedSelector ) {
         m_feedSelector->disconnect( this );
         m_feedSelector->selectionModel()->disconnect( this );
-        if ( m_subscriptionModel ) {
-          m_feedSelector->selectionModel()->disconnect( m_subscriptionModel );
-        }
     }
 
     m_feedSelector = feedSelector;
@@ -117,14 +111,11 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
         return;
 
     m_feedSelector->setModel( m_subscriptionModel );
-    m_subscriptionModel->clearCache();
 
     connect( m_feedSelector, SIGNAL(customContextMenuRequested(QPoint)),
              this, SLOT(subscriptionContextMenuRequested(QPoint)) );
     connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
              this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
-    connect( m_feedSelector->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&,const QItemSelection&)),
-             m_subscriptionModel, SLOT(selectionChanged(const QItemSelection&,const QItemSelection&)) );
     connect( m_feedSelector, SIGNAL(activated(QModelIndex)),
              this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
 
@@ -182,9 +173,8 @@ void Akregator::SelectionController::setFeedList( const shared_ptr<FeedList>& li
         return;
 
     m_feedList = list;
-    SubscriptionListModel *m = qobject_cast<SubscriptionListModel*>( m_subscriptionModel->sourceModel() );
-    std::auto_ptr<SubscriptionListModel> oldModel( m );
-    m_subscriptionModel->setSourceModel( new SubscriptionListModel( m_feedList, this ) );
+    std::auto_ptr<SubscriptionListModel> oldModel( m_subscriptionModel );
+    m_subscriptionModel = new SubscriptionListModel( m_feedList, this );
 
     if ( m_folderExpansionHandler ) {
         m_folderExpansionHandler->setFeedList( m_feedList );
@@ -193,13 +183,10 @@ void Akregator::SelectionController::setFeedList( const shared_ptr<FeedList>& li
 
     if ( m_feedSelector ) {
         m_feedSelector->setModel( m_subscriptionModel );
-        const QItemSelectionModel *sm = m_feedSelector->selectionModel();
-        if ( sm ) {
-          disconnect( sm, SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                      this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
-          connect( sm, SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                   this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
-        }
+        disconnect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                    this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+        connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                 this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
     }
 }
 
@@ -245,13 +232,10 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
     delete m_articleModel; //order is important: do not delete the old model before the new model is set in the view
     m_articleModel = newModel;
 
-    const QItemSelectionModel *sm = m_articleLister->articleSelectionModel();
-    if ( sm ) {
-      disconnect( sm, SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                  this, SLOT(articleSelectionChanged()) );
-      connect( sm, SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-               this, SLOT(articleSelectionChanged()) );
-    }
+    disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+                this, SLOT(articleSelectionChanged()) );
+    connect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+             this, SLOT(articleSelectionChanged()) );
 
     if ( node )
         m_articleLister->setScrollBarPositions( node->listViewScrollBarPositions() );
@@ -314,14 +298,6 @@ void Akregator::SelectionController::articleIndexDoubleClicked( const QModelInde
 {
     const Akregator::Article article = ::articleForIndex( index, m_feedList.get() );
     emit articleDoubleClicked( article );
-}
-
-/**
- * Called when the applications settings are changed; sets whether we apply a the filter or not
- */
-void Akregator::SelectionController::settingsChanged()
-{
-    m_subscriptionModel->setDoFilter( Settings::hideReadFeeds() );
 }
 
 void SelectionController::setFilters( const std::vector<boost::shared_ptr<const Filters::AbstractMatcher> >& matchers )

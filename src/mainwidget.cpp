@@ -147,8 +147,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
 
     m_tabWidget = new TabWidget(m_horizontalSplitter);
     m_actionManager->initTabWidget(m_tabWidget);
-    connect( m_part, SIGNAL(signalSettingsChanged()),
-             m_actionManager, SLOT(slotSettingsChanged()));
 
     connect( m_part, SIGNAL(signalSettingsChanged()),
              m_tabWidget, SLOT(slotSettingsChanged()));
@@ -206,8 +204,6 @@ Akregator::MainWidget::MainWidget( Part *part, QWidget *parent, ActionManagerImp
     m_selectionController = new SelectionController( this );
     m_selectionController->setArticleLister( m_articleListView );
     m_selectionController->setFeedSelector( m_feedListView );
-    connect(m_part, SIGNAL(signalSettingsChanged()),
-            m_selectionController, SLOT(settingsChanged()));
 
     connect(m_searchBar, SIGNAL(signalSearch(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)),
             m_selectionController, SLOT(setFilters(std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >)) );
