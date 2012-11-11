@@ -74,6 +74,8 @@ public Q_SLOTS:
     void slotItemUp();
     void slotItemDown();
 
+    void slotSetHideReadFeeds(bool setting);
+
 Q_SIGNALS:
     void userActionTakingPlace();
 

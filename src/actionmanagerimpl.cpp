@@ -128,6 +128,15 @@ void ActionManagerImpl::slotNodeSelected(TreeNode* node)
         d->nodeSelectVisitor->visit(node);
 }
 
+void ActionManagerImpl::slotSettingsChanged() {
+    QAction *a = action("feed_hide_read");
+    if (!a) {
+        kError() << "Action not found";
+        return;
+    }
+    a->setChecked(Settings::hideReadFeeds());
+}
+
 ActionManagerImpl::ActionManagerImpl(Part* part, QObject* parent ) : ActionManager(parent), d(new ActionManagerImplPrivate)
 {
     d->nodeSelectVisitor = new NodeSelectVisitor(this);
@@ -521,6 +530,13 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
     action->setText(i18n("Go Down in Tree"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemDown()));
     action->setShortcuts(KShortcut( "Ctrl+Down" ));
+
+    action = coll->addAction("feed_hide_read");
+    action->setCheckable(true);
+    action->setText(i18n("Hide Read Feeds"));
+    action->setChecked(Settings::hideReadFeeds());
+    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotSetHideReadFeeds(bool)));
+
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
@@ -588,7 +604,7 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
         return;
 
     d->frameManager = frameManager;
-    
+
     bool isRTL = QApplication::isRightToLeft();
 
     KToolBarPopupAction* forward = new KToolBarPopupAction(KIcon(isRTL ? "go-previous" : "go-next"), i18nc("Go forward in browser history", "Forward"), this);

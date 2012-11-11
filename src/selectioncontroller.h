@@ -27,6 +27,7 @@
 #include "abstractselectioncontroller.h"
 
 #include <QPointer>
+#include <QAbstractItemModel>
 
 class QModelIndex;
 class QPoint;
@@ -37,6 +38,7 @@ class KJob;
 namespace Akregator {
 
 class ArticleListJob;
+class FilterUnreadProxyModel;
 
 class SelectionController : public AbstractSelectionController
 {
@@ -76,6 +78,8 @@ public:
 
 public Q_SLOTS:
 
+    void settingsChanged();
+
     //impl
     void setFilters( const std::vector<boost::shared_ptr<const Akregator::Filters::AbstractMatcher> >& );
 
@@ -96,11 +100,14 @@ private:
     QPointer<QAbstractItemView> m_feedSelector;
     Akregator::ArticleLister* m_articleLister;
     Akregator::SingleArticleDisplay* m_singleDisplay;
-    Akregator::SubscriptionListModel* m_subscriptionModel;
+    Akregator::FilterUnreadProxyModel* m_subscriptionModel;
+    QAbstractItemModel *m_currentModel;
     Akregator::FolderExpansionHandler* m_folderExpansionHandler;
     Akregator::ArticleModel* m_articleModel;
     QPointer<TreeNode> m_selectedSubscription;
     QPointer<ArticleListJob> m_listJob;
+
+    void setCurrentSubscriptionModel();
 };
 
 } // namespace Akregator
