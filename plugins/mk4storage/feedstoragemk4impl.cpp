@@ -44,7 +44,7 @@ static uint calcHash(const QString& str)
 {
     if (str.isNull()) // handle null string as "", prevents crash
         return calcHash("");
-    const char* s = str.toAscii();
+    const char* s = str.toLatin1();
     uint hash = 5381;
     int c;
     while ( ( c = *s++ ) ) hash = ((hash << 5) + hash) + c; // hash*33 + c
@@ -277,7 +277,7 @@ QStringList FeedStorageMK4Impl::articles(const Category& cat) const
 void FeedStorageMK4Impl::addEntry(const QString& guid)
 {
     c4_Row row;
-    d->pguid(row) = guid.toAscii();
+    d->pguid(row) = guid.toLatin1();
     if (!contains(guid))
     {
         d->archiveView.Add(row);
@@ -294,7 +294,7 @@ bool FeedStorageMK4Impl::contains(const QString& guid) const
 int FeedStorageMK4Impl::findArticle(const QString& guid) const
 {
     c4_Row findrow;
-    d->pguid(findrow) = guid.toAscii();
+    d->pguid(findrow) = guid.toLatin1();
     return d->archiveView.Find(findrow);
 }
 
@@ -447,7 +447,7 @@ void FeedStorageMK4Impl::setLink(const QString& guid, const QString& link)
         return;
     c4_Row row;
     row = d->archiveView.GetAt(findidx);
-    d->plink(row) = !link.isEmpty() ? link.toAscii() : "";
+    d->plink(row) = !link.isEmpty() ? link.toLatin1() : "";
     d->archiveView.SetAt(findidx, row);
     markDirty();
 }
@@ -633,7 +633,7 @@ void FeedStorageMK4Impl::addCategory(const QString& guid, const Category& cat)
         c4_View catView2 = d->pcategorizedArticles(catrow2);
 
         c4_Row row3;
-        d->pguid(row3) = guid.toAscii();
+        d->pguid(row3) = guid.toLatin1();
         int guididx = catView2.Find(row3);
         if (guididx == -1)
         {
@@ -725,7 +725,7 @@ void FeedStorageMK4Impl::addTag(const QString& guid, const QString& tag)
         c4_View tagView2 = d->ptaggedArticles(tagrow);
 
         c4_Row row3;
-        d->pguid(row3) = guid.toAscii();
+        d->pguid(row3) = guid.toLatin1();
         int guididx = tagView2.Find(row3);
         if (guididx == -1)
         {
@@ -768,7 +768,7 @@ void FeedStorageMK4Impl::removeTag(const QString& guid, const QString& tag)
             c4_View tagView2 = d->ptaggedArticles(tagrow);
 
             c4_Row row3;
-            d->pguid(row3) = guid.toAscii();
+            d->pguid(row3) = guid.toLatin1();
             int guididx = tagView2.Find(row3);
             if (guididx != -1)
             {

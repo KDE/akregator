@@ -144,7 +144,7 @@ void Criterion::readConfig(KConfigGroup* config)
 {
     m_subject = stringToSubject(config->readEntry(QString::fromLatin1("subject"), QString()));
     m_predicate = stringToPredicate(config->readEntry(QString::fromLatin1("predicate"), QString()));
-    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType"), QString()).toAscii());
+    QVariant::Type type = QVariant::nameToType(config->readEntry(QString::fromLatin1("objType"), QString()).toLatin1());
 
     if (type != QVariant::Invalid)
     {

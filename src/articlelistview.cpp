@@ -239,8 +239,8 @@ void ArticleListView::saveHeaderSettings()
 void ArticleListView::loadHeaderSettings()
 {
     KConfigGroup conf( Settings::self()->config(), "General" );
-    m_feedHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListFeedHeaders" ).toAscii() );
-    m_groupHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListGroupHeaders" ).toAscii() );
+    m_feedHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListFeedHeaders" ).toLatin1() );
+    m_groupHeaderState = QByteArray::fromBase64( conf.readEntry( "ArticleListGroupHeaders" ).toLatin1() );
 }
 
 QItemSelectionModel* ArticleListView::articleSelectionModel() const

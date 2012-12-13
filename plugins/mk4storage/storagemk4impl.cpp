@@ -77,7 +77,7 @@ Akregator::Backend::FeedStorageMK4Impl* Akregator::Backend::StorageMK4Impl::Stor
         Akregator::Backend::FeedStorageMK4Impl* fs = new Akregator::Backend::FeedStorageMK4Impl(url, q);
         feeds[url] = fs;
         c4_Row findrow;
-        purl(findrow) = url.toAscii();
+        purl(findrow) = url.toLatin1();
         int findidx = archiveView.Find(findrow);
         if (findidx == -1)
         {
@@ -204,7 +204,7 @@ bool Akregator::Backend::StorageMK4Impl::rollback()
 int Akregator::Backend::StorageMK4Impl::unreadFor(const QString &url) const
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toAscii();
+    d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
 
     return findidx != -1 ? d->punread(d->archiveView.GetAt(findidx)) : 0;
@@ -213,7 +213,7 @@ int Akregator::Backend::StorageMK4Impl::unreadFor(const QString &url) const
 void Akregator::Backend::StorageMK4Impl::setUnreadFor(const QString &url, int unread)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toAscii();
+    d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
@@ -226,7 +226,7 @@ void Akregator::Backend::StorageMK4Impl::setUnreadFor(const QString &url, int un
 int Akregator::Backend::StorageMK4Impl::totalCountFor(const QString &url) const
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toAscii();
+    d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
 
     return findidx != -1 ? d->ptotalCount(d->archiveView.GetAt(findidx)) : 0;
@@ -235,7 +235,7 @@ int Akregator::Backend::StorageMK4Impl::totalCountFor(const QString &url) const
 void Akregator::Backend::StorageMK4Impl::setTotalCountFor(const QString &url, int total)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toAscii();
+    d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;
@@ -248,7 +248,7 @@ void Akregator::Backend::StorageMK4Impl::setTotalCountFor(const QString &url, in
 int Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString& url) const
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toAscii();
+    d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
 
     return (findidx != -1 ? d->plastFetch(d->archiveView.GetAt(findidx)) : 0);
@@ -257,7 +257,7 @@ int Akregator::Backend::StorageMK4Impl::lastFetchFor(const QString& url) const
 void Akregator::Backend::StorageMK4Impl::setLastFetchFor(const QString& url, int lastFetch)
 {
     c4_Row findrow;
-    d->purl(findrow) = url.toAscii();
+    d->purl(findrow) = url.toLatin1();
     int findidx = d->archiveView.Find(findrow);
     if (findidx == -1)
         return;

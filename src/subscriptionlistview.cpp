@@ -219,7 +219,7 @@ void Akregator::SubscriptionListView::saveHeaderSettings()
 void Akregator::SubscriptionListView::loadHeaderSettings()
 {
     const KConfigGroup conf( Settings::self()->config(), "General" );
-    m_headerState = QByteArray::fromBase64( conf.readEntry( "SubscriptionListHeaders" ).toAscii() );
+    m_headerState = QByteArray::fromBase64( conf.readEntry( "SubscriptionListHeaders" ).toLatin1() );
     restoreHeaderState();
 }
 
