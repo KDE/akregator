@@ -121,6 +121,7 @@ GenericName[x-test]=xxFeed Readerxx
 GenericName[zh_CN]=RSS 种子阅读器
 GenericName[zh_TW]=RSS Feed 閱讀器
 Comment=A KDE News Feed Reader
+Comment[bs]=Dovod KDE vijesti
 Comment[ca]=Un lector de fonts d'informació del KDE
 Comment[ca@valencia]=Un lector de fonts d'informació del KDE
 Comment[da]=En KDE nyhedsfeed-læser
