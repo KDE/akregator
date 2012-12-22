@@ -110,6 +110,7 @@ Comment[x-test]=xxConfigure Feed Archivexx
 Comment[zh_CN]=配置信息源存档
 Comment[zh_TW]=設定 Feed 歸檔
 X-KDE-Keywords=akregator, configure, settings, archive
+X-KDE-Keywords[bs]=akregator, konfigurirati, postavke, arhiva
 X-KDE-Keywords[ca]=akregator, configura, arranjament, arxiu
 X-KDE-Keywords[da]=akregator, indstil, indstillinger, arkiv
 X-KDE-Keywords[de]=Akregator,einstellen,konfigurieren,Konfiguration,Einrichtung,Einstellungen,Archiv
