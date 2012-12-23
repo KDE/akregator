@@ -129,6 +129,7 @@ Comment[x-test]=xxConfigure Feedsxx
 Comment[zh_CN]=配置信息源
 Comment[zh_TW]=設定 Feed
 X-KDE-Keywords=akregator, configure, settings, General
+X-KDE-Keywords[bs]=akregator, konfigurirati, postavke, opšti
 X-KDE-Keywords[ca]=akregator, configura, arranjament, General
 X-KDE-Keywords[da]=akregator, indstil, indstillinger, generelt
 X-KDE-Keywords[de]=Akregator,einstellen,konfigurieren,Konfiguration,Einrichtung,Einstellungen,allgemein
