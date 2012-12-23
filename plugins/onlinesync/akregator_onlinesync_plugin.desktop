@@ -2,7 +2,6 @@
 Type=Service
 Name=Akregator Online Feed Reader Support
 Name[ar]=دعم قارئ التلقيمات الذي على الخط
-Name[bs]=Akregator  mrežna podrska čitacu dovoda
 Name[ca]=Implementació de lectors de fonts en línia per a l'Akregator
 Name[ca@valencia]=Implementació de lectors de fonts en línia per a l'Akregator
 Name[cs]=Podpora pro online čtečky kanálů
@@ -53,7 +52,6 @@ Comment[ar]=ملحق لاكريغاتور
 Comment[be]=Утулка для Akregator
 Comment[bg]=Приставка за Akregator
 Comment[br]=Lugent evit Akregator
-Comment[bs]=Dodaci Akregator
 Comment[ca]=Connector per a l'Akregator
 Comment[ca@valencia]=Connector per a l'Akregator
 Comment[cs]=Modul pro Akregator
