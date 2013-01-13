@@ -588,7 +588,7 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
         return;
 
     d->frameManager = frameManager;
-    
+
     bool isRTL = QApplication::isRightToLeft();
 
     KToolBarPopupAction* forward = new KToolBarPopupAction(KIcon(isRTL ? "go-previous" : "go-next"), i18nc("Go forward in browser history", "Forward"), this);
@@ -618,7 +618,11 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
 QWidget* ActionManagerImpl::container(const char* name)
 {
-    return d->part->factory()->container(name, d->part);
+    if ( d->part->factory() ) {
+        return d->part->factory()->container(name, d->part);
+    } else {
+        return 0;
+    }
 }
 
 
