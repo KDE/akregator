@@ -164,6 +164,7 @@ Comment[ug]=ك د ئې(KDE) خەۋەر Feed ئوقۇغۇچ
 Comment[uk]=Програма для читання подач KDE
 Comment[wa]=On lijheu d' floûs di noveles di KDE
 Comment[x-test]=xxA KDE News Feed Readerxx
+Comment[zh_CN]=一个 KDE 种子阅读器
 Comment[zh_TW]=KDE 新聞 Feed 閱讀器
 Terminal=false
 Categories=Qt;KDE;Network;News;
