@@ -175,7 +175,7 @@ void ArticleListView::setArticleModel( ArticleModel* model )
 
     setModel( columnsProxy );
     header()->setContextMenuPolicy( Qt::CustomContextMenu );
-    resizeColumnToContents( ArticleModel::ItemTitleColumn );
+    header()->setResizeMode( QHeaderView::Interactive );
 }
 
 void ArticleListView::showHeaderMenu(const QPoint& pos)
@@ -315,14 +315,13 @@ void ArticleListView::restoreHeaderState()
         header()->setSectionHidden( ArticleModel::FeedTitleColumn, m_columnMode == FeedMode );
         header()->setStretchLastSection( false );
         header()->resizeSection( ArticleModel::DateColumn, maxDateColumnWidth(fontMetrics()) );
+        if ( model() ) {
+            startResizingTitleColumn();
+        }
     }
 
     if ( header()->sectionSize( ArticleModel::DateColumn ) == 1 )
         header()->resizeSection( ArticleModel::DateColumn, maxDateColumnWidth(fontMetrics()) );
-
-    if ( model() ) {
-        startResizingTitleColumn();
-    }
 }
 
 void ArticleListView::startResizingTitleColumn()
@@ -344,13 +343,6 @@ void ArticleListView::finishResizingTitleColumn()
         return;
     }
     header()->setResizeMode( QHeaderView::Interactive );
-}
-
-void ArticleListView::resizeEvent(QResizeEvent *event)
-{
-    QTreeView::resizeEvent( event );
-    if ( header() && model() && header()->resizeMode( ArticleModel::ItemTitleColumn ) != QHeaderView::Stretch )
-        startResizingTitleColumn();
 }
 
 ArticleListView::~ArticleListView()

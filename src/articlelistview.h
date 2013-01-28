@@ -126,7 +126,6 @@ public:
 
 protected:
     void mousePressEvent( QMouseEvent *ev );
-    void resizeEvent( QResizeEvent *ev );
 
 signals:
     void signalMouseButtonPressed( int, const KUrl );
