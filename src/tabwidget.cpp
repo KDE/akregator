@@ -68,7 +68,7 @@ private:
     TabWidget* const q;
 
 public:
-    explicit Private( TabWidget * qq ) : q( qq ), currentMaxLength( 30 ), currentItem( 0 ) {}
+    explicit Private( TabWidget * qq ) : q( qq ), currentMaxLength( 30 ), currentItem( 0 ), tabsClose( 0 ) {}
 
     QHash<QWidget*, Frame*> frames;
     QHash<int, Frame*> framesById;
