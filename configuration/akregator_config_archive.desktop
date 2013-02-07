@@ -37,7 +37,7 @@ Name[ko]=저장소
 Name[lt]=Archyvas
 Name[lv]=Arhīvs
 Name[mai]=अभिलेख
-Name[mr]=आर्काइव
+Name[mr]=संग्रह
 Name[nb]=Arkiv
 Name[nds]=Archiev
 Name[nl]=Archief
@@ -89,7 +89,7 @@ Comment[km]=កំណត់​រចនាសម្ព័ន្ធ​ប័ណ�
 Comment[ko]=피드 저장소 설정
 Comment[lt]=Konfigūruoti kanalų archyvą
 Comment[lv]=Konfigurēt barotņu arhīvu
-Comment[mr]=फीड आर्काइव संयोजीत करा
+Comment[mr]=फीड संग्रह संयोजीत करा
 Comment[nb]=Oppsett for kildearkiv
 Comment[nds]=Stroomarchiev instellen
 Comment[nl]=Feedarchief instellen
@@ -131,7 +131,7 @@ X-KDE-Keywords[ia]=akregator, configura, preferentia, archivo
 X-KDE-Keywords[it]=akregator, configurazione, impostazioni, archivio
 X-KDE-Keywords[kk]=akregator, configure, settings, archive
 X-KDE-Keywords[km]=akregator កំណត់​រចនាសម្ព័ន្ធ កំណត់ ​ប័ណ្ណសារ
-X-KDE-Keywords[mr]=एक्रीगेटर, संयोजना, संयोजना, आर्काइव
+X-KDE-Keywords[mr]=एक्रीगेटर, संयोजना, संयोजना, संग्रह
 X-KDE-Keywords[nb]=akregator, sett opp, innstillinger, arkiv
 X-KDE-Keywords[nds]=Akregator, fastleggen, Instellen, Archiev
 X-KDE-Keywords[nl]=akregator, instellen, instellingen, archief
