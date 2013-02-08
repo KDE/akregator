@@ -42,8 +42,7 @@
 #include <kmenu.h>
 #include <krun.h>
 #include <klocale.h>
-#include <khtmlview.h>
-#include <khtml_part.h>
+#include <KIcon>
 #include <kiconloader.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
