@@ -795,6 +795,7 @@ bool Part::readCrashProperties()
     switch ( choice ) {
     case KMessageBox::Yes:
         readProperties(configGroup);
+        clearCrashProperties();
         return true;
     case KMessageBox::No:
         clearCrashProperties();
