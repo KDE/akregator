@@ -31,7 +31,7 @@
 
 #include <klocale.h>
 
-#include <libkdepim/progressmanager.h>
+#include <libkdepim/progresswidget/progressmanager.h>
 
 using namespace boost;
 
