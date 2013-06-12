@@ -43,7 +43,7 @@
 #include "trayicon.h"
 #include "dummystorage/storagefactorydummyimpl.h"
 
-#include <libkdepim/broadcaststatus.h>
+#include <libkdepim/misc/broadcaststatus.h>
 #include "kdepim-version.h"
 
 #include <KActionCollection>
