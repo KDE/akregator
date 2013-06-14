@@ -183,7 +183,7 @@ void Akregator::SubscriptionListView::showHeaderMenu( const QPoint& pos )
     menu->setAttribute( Qt::WA_DeleteOnClose );
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(headerMenuItemTriggered(QAction*)) );
 
-    for (int i = 0; i < model()->columnCount(); i++)
+    for (int i = 0; i < model()->columnCount(); ++i)
     {
         if ( SubscriptionListModel::TitleColumn == i ) {
             continue;

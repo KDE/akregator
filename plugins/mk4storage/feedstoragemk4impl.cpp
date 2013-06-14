@@ -230,7 +230,7 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag) const
     {
 #endif
         int size = d->archiveView.GetSize();
-        for (int i = 0; i < size; i++) // fill with guids
+        for (int i = 0; i < size; ++i) // fill with guids
             list += QString(d->pguid(d->archiveView.GetAt(i)));
 #if 0 //category and tag support disabled
     }
@@ -244,7 +244,7 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag) const
             tagrow = d->tagView.GetAt(tagidx);
             c4_View tagView = d->ptaggedArticles(tagrow);
             int size = tagView.GetSize();
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < size; ++i)
                 list += QString(d->pguid(tagView.GetAt(i)));
         }
 
@@ -267,7 +267,7 @@ QStringList FeedStorageMK4Impl::articles(const Category& cat) const
         catrow = d->catView.GetAt(catidx);
         c4_View catView = d->pcategorizedArticles(catrow);
         int size = catView.GetSize();
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; ++i)
             list += QString(d->pguid(catView.GetAt(i)));
     }
 #endif
@@ -678,7 +678,7 @@ QList<Category> FeedStorageMK4Impl::categories(const QString& guid) const
     {
 #if 0 //category and tag support disabled
         int size = d->catView.GetSize();
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; ++i)
         {
             c4_Row row = d->catView.GetAt(i);
 
@@ -806,7 +806,7 @@ QStringList FeedStorageMK4Impl::tags(const QString& guid) const
     else // return all tags in the feed
     {
         int size = d->tagView.GetSize();
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; ++i)
              list += QString(d->ptag(d->tagView.GetAt(i)));
     }
 #endif

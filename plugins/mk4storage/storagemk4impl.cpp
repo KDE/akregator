@@ -289,7 +289,7 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
     // TODO: cache list
     QStringList list;
     int size = d->archiveView.GetSize();
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size; ++i)
         list += QString(d->purl(d->archiveView.GetAt(i)));
     // fill with urls
     return list;
@@ -313,7 +313,7 @@ void Akregator::Backend::StorageMK4Impl::clear()
 {
    QStringList feeds;
     int size = d->archiveView.GetSize();
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size; ++i)
         feeds += QString(d->purl(d->archiveView.GetAt(i)));
     QStringList::ConstIterator end(feeds.constEnd() ) ;
 

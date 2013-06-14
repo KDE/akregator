@@ -611,7 +611,7 @@ QString FeedListManagementImpl::getCategoryName( const QString& catId ) const
         return catname;
 
     QStringList list = catId.split('/',QString::SkipEmptyParts);
-    for (int i=0;i<list.size();i++) {
+    for (int i=0;i<list.size();++i) {
         int index = list.at(i).toInt();
         catname += m_feedList->findByID(index)->title() + '/';
     }
