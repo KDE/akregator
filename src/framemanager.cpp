@@ -36,9 +36,22 @@
 #include <kshell.h>
 #include <kconfiggroup.h>
 #include <ktoolinvocation.h>
+#include <kparts/event.h>
+
 #include <QtCore/QStringList>
+#include <QtGui/QApplication>
 
 namespace Akregator {
+
+static void setPartGuiActive(KParts::ReadOnlyPart* part, bool active)
+{
+    if (!part)
+        return;
+    // When this event is sent to a KPart, the KPart StatusBarExtension shows or
+    // hides its items
+    KParts::GUIActivateEvent ev(active);
+    QApplication::sendEvent(part, &ev);
+}
 
 FrameManager::FrameManager(QWidget* mainWin, QObject* parent) : QObject(parent), m_mainWin(mainWin), m_currentFrame(0)
 {
@@ -79,6 +92,8 @@ void FrameManager::slotAddFrame(Frame* frame)
 );
 
     connect(frame, SIGNAL(signalIsLoadingToggled(Akregator::Frame*,bool)), this, SLOT(slotIsLoadingToggled(Akregator::Frame*,bool)) );
+
+    setPartGuiActive(frame->part(), false);
 
     emit signalFrameAdded(frame);
 
@@ -122,8 +137,12 @@ void FrameManager::slotChangeFrame(int frameId)
     Frame* oldFrame = m_currentFrame;
     m_currentFrame = frame;
 
+    if (oldFrame)
+        setPartGuiActive(oldFrame->part(), false);
+
     if (frame)
     {
+        setPartGuiActive(frame->part(), true);
         slotCanGoBackToggled(frame, frame->canGoBack());
         slotCanGoForwardToggled(frame, frame->canGoForward());
         slotIsReloadableToggled(frame, frame->isReloadable());
