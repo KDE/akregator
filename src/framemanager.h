@@ -27,6 +27,7 @@
 
 #include <QHash>
 #include <QObject>
+#include <QPointer>
 
 #include "akregator_export.h"
 
@@ -119,7 +120,7 @@ class AKREGATOR_EXPORT FrameManager : public QObject
     private:
 
         QWidget* m_mainWin;
-        Frame* m_currentFrame;
+        QPointer<Frame> m_currentFrame;
         QHash<int, Frame*> m_frames;
 };
 
