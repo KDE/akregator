@@ -34,7 +34,7 @@ namespace Akregator
 
 class BrowserRun : public KParts::BrowserRun
 {
-	Q_OBJECT
+        Q_OBJECT
     public:
         BrowserRun(const OpenUrlRequest& request, QWidget* parent);
         ~BrowserRun();

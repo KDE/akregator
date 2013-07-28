@@ -41,7 +41,7 @@ namespace Backend
 
 class SettingsAdvanced : public QWidget, public Ui::SettingsAdvancedBase
 {
-    Q_OBJECT	
+    Q_OBJECT
 
     public:
         explicit SettingsAdvanced(QWidget* parent=0, const char* name=0);

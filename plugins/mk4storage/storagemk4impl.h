@@ -88,7 +88,7 @@ class StorageMK4Impl : public Storage
          * @return Article archive for feed at given url.
          */
         FeedStorage* archiveFor(const QString &url);
- 	const FeedStorage* archiveFor(const QString &url) const;
+        const FeedStorage* archiveFor(const QString &url) const;
 
         bool autoCommit() const;
         int unreadFor(const QString &url) const;

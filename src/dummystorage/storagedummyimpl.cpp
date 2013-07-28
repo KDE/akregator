@@ -40,7 +40,7 @@ class StorageDummyImpl::StorageDummyImplPrivate
         int unread;
         int totalCount;
         int lastFetch;
-	FeedStorage* feedStorage;
+        FeedStorage* feedStorage;
     };
 
     void addEntry(const QString& url, int unread, int totalCount, int lastFetch)
@@ -51,8 +51,8 @@ class StorageDummyImpl::StorageDummyImplPrivate
         entry.lastFetch = lastFetch;
         entry.feedStorage = 0;
         feeds[url] = entry;
-	
     }
+
     QString tagSet;
     QString feedList;
     QHash<QString, Entry> feeds;

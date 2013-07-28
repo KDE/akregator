@@ -48,7 +48,7 @@ class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
             plastFetch("lastFetch") {}
 
         c4_Storage* storage;
-	Akregator::Backend::StorageMK4Impl* q;
+        Akregator::Backend::StorageMK4Impl* q;
         c4_View archiveView;
         bool autoCommit;
         bool modified;
@@ -67,7 +67,7 @@ class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 Akregator::Backend::StorageMK4Impl::StorageMK4Impl() : d(new StorageMK4ImplPrivate)
 {
     d->q = this;
-    setArchivePath(QString::null); // set path to default	//krazy:exclude=nullstrassign for old broken gcc
+    setArchivePath(QString::null); // set path to default        //krazy:exclude=nullstrassign for old broken gcc
 }
 
 Akregator::Backend::FeedStorageMK4Impl* Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate::createFeedStorage( const QString& url )

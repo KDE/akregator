@@ -33,9 +33,9 @@ namespace Backend {
 
 Storage* StorageFactoryDummyImpl::createStorage(const QStringList& params) const
 {
- 	Storage* storage = new StorageDummyImpl;
-	storage->initialize(params);
-	return storage;
+        Storage* storage = new StorageDummyImpl;
+        storage->initialize(params);
+        return storage;
 }
 
 QString StorageFactoryDummyImpl::key() const

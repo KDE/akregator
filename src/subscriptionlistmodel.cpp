@@ -182,8 +182,8 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
         }
         case LinkRole:
         {
-        	const Feed* const feed = qobject_cast<const Feed* const>( node );
-        	return feed ? feed->xmlUrl() : QVariant();
+                const Feed* const feed = qobject_cast<const Feed* const>( node );
+                return feed ? feed->xmlUrl() : QVariant();
         }
         case IsOpenRole:
         {

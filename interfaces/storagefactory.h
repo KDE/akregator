@@ -37,7 +37,7 @@ class Storage;
 class AKREGATORINTERFACES_EXPORT StorageFactory
 {
     public:
-	virtual ~StorageFactory(){}    
+    virtual ~StorageFactory(){}
     /** identifier of the storage type, like "metakit", "postgres" etc. For use in
         configuration files. Must not contain spaces or special characters.
      */
@@ -55,7 +55,7 @@ class AKREGATORINTERFACES_EXPORT StorageFactory
     /** creates a storage object with given parameters
         @param params list of implementation-specific parameters
      */
-	virtual Storage* createStorage(const QStringList& params) const = 0;
+    virtual Storage* createStorage(const QStringList& params) const = 0;
 };
 
 } // namespace Backend

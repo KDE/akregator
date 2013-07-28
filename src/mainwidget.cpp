@@ -663,7 +663,7 @@ void Akregator::MainWidget::slotFeedAdd()
 
     TreeNode* const lastChild = !group->children().isEmpty() ? group->children().last() : 0;
 
-    addFeed(QString::null, lastChild, group, false);	//krazy:exclude=nullstrassign for old broken gcc
+    addFeed(QString::null, lastChild, group, false);        //krazy:exclude=nullstrassign for old broken gcc
 }
 
 void Akregator::MainWidget::addFeed(const QString& url, TreeNode *after, Folder* parent, bool autoExec)

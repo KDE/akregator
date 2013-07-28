@@ -170,8 +170,8 @@ void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::Ope
     OpenUrlRequest req(url);
     req.setArgs(args);
     req.setBrowserArgs(browserArgs);
-    if (req.options() == OpenUrlRequest::None)		// no explicit new window,
-        req.setOptions(OpenUrlRequest::NewTab);		// so must open new tab
+    if (req.options() == OpenUrlRequest::None)                // no explicit new window,
+        req.setOptions(OpenUrlRequest::NewTab);               // so must open new tab
 
     if (m_part->button() == Qt::LeftButton)
     {

@@ -96,7 +96,7 @@ class FeedStorageMK4Impl::FeedStorageMK4ImplPrivate
         c4_View archiveView;
 
         bool autoCommit;
-	    bool modified;
+        bool modified;
         bool convert;
         QString oldArchivePath;
         c4_StringProp pguid, ptitle, pdescription, pcontent, plink, pcommentsLink, ptag, pEnclosureType, pEnclosureUrl, pcatTerm, pcatScheme, pcatName, pauthorName, pauthorUri, pauthorEMail;

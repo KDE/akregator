@@ -186,7 +186,7 @@ bool Criterion::satisfiedBy( const Article &article ) const
     bool satisfied = false;
 
     const Predicate predicateType = static_cast<Predicate>( m_predicate & ~Negation );
-	QString subjectType=concreteSubject.typeName();
+        QString subjectType=concreteSubject.typeName();
 
     switch ( predicateType ) {
         case Contains:

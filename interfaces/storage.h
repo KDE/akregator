@@ -78,7 +78,7 @@ class Storage : public QObject //krazy:exclude=qobject
          * @return Article archive for feed at given url.
          */
         virtual FeedStorage* archiveFor(const QString &url) = 0;
-	virtual const FeedStorage* archiveFor(const QString &url) const = 0;
+        virtual const FeedStorage* archiveFor(const QString &url) const = 0;
         virtual bool autoCommit() const  = 0;
         virtual int unreadFor(const QString &url) const = 0;
         virtual void setUnreadFor(const QString &url, int unread) = 0;

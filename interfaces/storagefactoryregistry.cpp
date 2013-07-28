@@ -47,7 +47,7 @@ StorageFactoryRegistry* StorageFactoryRegistry::self()
         m_instance = &instance;
     return m_instance;
 }
-	
+
 bool StorageFactoryRegistry::registerFactory(StorageFactory* factory, const QString& typestr)
 {
     if (containsFactory(typestr))

@@ -55,7 +55,7 @@ QSize Akregator::SubscriptionListDelegate::sizeHint( const QStyleOptionViewItem 
 {
     QSize size = QStyledItemDelegate::sizeHint( option, index );
     size.setHeight( qMax( size.height(), ( m_viewIconHeight + 2 ) ) );
-							// +2 for row top/bottom margin
+                                                        // +2 for row top/bottom margin
     return ( size );
 }
 
@@ -66,7 +66,7 @@ void Akregator::SubscriptionListDelegate::paint( QPainter *painter,
 {
     QStyleOptionViewItem newOption = option;
     if ( index.data( SubscriptionListModel::HasUnreadRole ).toBool() )
-    {							// feed has unread articles
+    {                                                  // feed has unread articles
         newOption.font.setBold(true);
     }
 

@@ -101,7 +101,7 @@ class FeedList::AddNodeVisitor : public TreeNodeVisitor
         bool visitTreeNode(TreeNode* node)
         {
             if (!m_preserveID)
-            	node->setId(m_list->generateID());
+                node->setId(m_list->generateID());
             m_list->d->idMap[node->id()] = node;
             m_list->d->flatList.append(node);
 

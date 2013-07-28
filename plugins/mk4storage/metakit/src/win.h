@@ -17,7 +17,7 @@
 #define q4_WIN32 1
 #endif 
 
-#if defined (_WIN32_WCE)	// check for Win CE
+#if defined (_WIN32_WCE)        // check for Win CE
 #define q4_WINCE 1
 #define q4_WIN32 1
 #endif 

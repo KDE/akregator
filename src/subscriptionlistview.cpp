@@ -225,7 +225,7 @@ void Akregator::SubscriptionListView::loadHeaderSettings()
 
 void Akregator::SubscriptionListView::restoreHeaderState()
 {
-    header()->restoreState( m_headerState );		// needed, even with Qt 4.5
+    header()->restoreState( m_headerState );                // needed, even with Qt 4.5
     // Always shows the title column
     header()->showSection( SubscriptionListModel::TitleColumn );
     if ( m_headerState.isEmpty() )

@@ -124,7 +124,7 @@ QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
         case limitArticleAge:
             return "limitArticleAge";
         default:
-	    break;
+            break;
    }
    return "globalDefault";
 }

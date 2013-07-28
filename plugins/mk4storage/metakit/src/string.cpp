@@ -174,7 +174,7 @@ void c4_String::Init(const void *p, int n) {
     //    s = ...     // then immediately drops the count back
     //
     //  2001/11/27: changed to never release this empty vector, for MT use
-    //  		the new logic is to completely ignore its ref count
+    //                  the new logic is to completely ignore its ref count
 
     if (!nullVec) {
       // obtain a valid new empty string buffer to keep around
