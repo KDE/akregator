@@ -39,7 +39,7 @@ K_EXPORT_PLUGIN(MK4PluginFactory("akregator_mk4storage"))
 void MK4Plugin::doInitialize()
 {
    m_factory = new StorageFactoryMK4Impl();
-   StorageFactoryRegistry::self()->registerFactory(m_factory, "metakit");
+   StorageFactoryRegistry::self()->registerFactory(m_factory, QLatin1String("metakit"));
 }
 
 MK4Plugin::MK4Plugin( QObject* parent, const QVariantList& params ) : Plugin( parent, params ), m_factory( 0 ) {
@@ -47,7 +47,7 @@ MK4Plugin::MK4Plugin( QObject* parent, const QVariantList& params ) : Plugin( pa
 
 MK4Plugin::~MK4Plugin()
 {
-    StorageFactoryRegistry::self()->unregisterFactory("metakit");
+    StorageFactoryRegistry::self()->unregisterFactory(QLatin1String("metakit"));
     delete m_factory;
 }
 

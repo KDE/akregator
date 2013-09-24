@@ -68,8 +68,8 @@ void KCMAkregatorShareConfig::load()
 
     KConfigGroup group( ShareSettings::self()->config(), "ShareService" );
     QStringList services;
-    services << "https://identi.ca/api/";
-    services << "https://twitter.com";
+    services << QLatin1String("https://identi.ca/api/");
+    services << QLatin1String("https://twitter.com");
     ui.kcfg_ServiceUrl->clear();
     ui.kcfg_ServiceUrl->addItems(services);
 

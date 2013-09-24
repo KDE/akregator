@@ -50,29 +50,29 @@ QString buildTitle(const QString& description)
 {
     QString s = description;
     if (description.trimmed().isEmpty())
-        return "";
+        return QString();
 
-    int i = s.indexOf('>',500); /*avoid processing too much */
+    int i = s.indexOf(QLatin1Char('>'),500); /*avoid processing too much */
     if (i != -1)
         s = s.left(i+1);
-    QRegExp rx("(<([^\\s>]*)(?:[^>]*)>)[^<]*", Qt::CaseInsensitive);
+    QRegExp rx(QLatin1String("(<([^\\s>]*)(?:[^>]*)>)[^<]*"), Qt::CaseInsensitive);
     QString tagName, toReplace, replaceWith;
     while (rx.indexIn(s) != -1 )
     {
         tagName=rx.cap(2);
-        if (tagName=="SCRIPT"||tagName=="script")
+        if (tagName==QLatin1String("SCRIPT")||tagName==QLatin1String("script"))
             toReplace=rx.cap(0); // strip tag AND tag contents
         else if (tagName.startsWith(QLatin1String("br")) || tagName.startsWith(QLatin1String("BR")))
         {
             toReplace=rx.cap(1);
-            replaceWith=' ';
+            replaceWith=QLatin1Char(' ');
         }
         else
             toReplace=rx.cap(1);  // strip just tag
         s=s.replace(s.indexOf(toReplace),toReplace.length(),replaceWith); // do the deed
     }
     if (s.length()> 90)
-        s=s.left(90)+"...";
+        s=s.left(90)+QLatin1String("...");
     return s.simplified();
 }
 
@@ -426,21 +426,21 @@ QString Article::authorAsHtml() const {
 
     if (!email.isEmpty()) {
         if (!name.isEmpty())
-            return QString("<a href=\"mailto:%1\">%2</a>").arg( email, name );
+            return QString::fromLatin1("<a href=\"mailto:%1\">%2</a>").arg( email, name );
         else
-            return QString("<a href=\"mailto:%1\">%1</a>").arg( email );
+            return QString::fromLatin1("<a href=\"mailto:%1\">%1</a>").arg( email );
     }
 
     const QString uri = authorUri();
     if (!name.isEmpty()) {
         if (!uri.isEmpty())
-            return QString("<a href=\"%1\">%2</a>").arg( uri, name );
+            return QString::fromLatin1("<a href=\"%1\">%2</a>").arg( uri, name );
         else
             return name;
     }
 
     if ( !uri.isEmpty() )
-        return QString( "<a href=\"%1\">%1</a>" ).arg( uri );
+        return QString::fromLatin1( "<a href=\"%1\">%1</a>" ).arg( uri );
     return QString();
 }
 

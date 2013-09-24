@@ -73,7 +73,7 @@ namespace {
     class Element
     {
     public:
-        Element( const QString& ns_, const QString& name_ ) : ns( ns_ ), name( name_ ), qualifiedName( ns + ':' + name )
+        Element( const QString& ns_, const QString& name_ ) : ns( ns_ ), name( name_ ), qualifiedName( ns + QLatin1Char(':') + name )
         {
         }
 
@@ -103,7 +103,7 @@ namespace {
                 writer.writeStartElement( ns, name );
             if ( mode == Html )
             {
-                writer.writeAttribute( "type", "html" );
+                writer.writeAttribute( QLatin1String("type"), QLatin1String("html") );
             }
             writer.writeCharacters( str );
             writer.writeEndElement();
@@ -115,31 +115,31 @@ namespace {
         Elements() : atomNS( Syndication::Atom::atom1Namespace() ),
                      akregatorNS(akregatorNamespace() ),
                      commentNS( Syndication::commentApiNamespace() ),
-                     title( atomNS, "title" ),
-                     summary( atomNS, "summary" ),
-                     content( atomNS, "content" ),
-                     link( atomNS, "link" ),
-                     language( atomNS, "language" ),
-                     feed( atomNS, "feed" ),
-                     guid( atomNS, "id" ),
-                     published( atomNS, "published" ),
-                     updated( atomNS, "updated" ),
-                     commentsCount( Syndication::slashNamespace(), "comments" ),
-                     commentsFeed( commentNS, "commentRss" ),
-                     commentPostUri( commentNS, "comment" ),
-                     commentsLink( akregatorNS, "commentsLink" ),
-                     hash( akregatorNS, "hash" ),
-                     guidIsHash( akregatorNS, "idIsHash" ),
-                     name( atomNS, "name" ),
-                     uri( atomNS, "uri" ),
-                     email( atomNS, "email" ),
-                     author( atomNS, "author" ),
-                     category( atomNS, "category" ),
-                     entry( atomNS, "entry" ),
-                     itemProperties( akregatorNS, "itemProperties" ),
-                     readStatus( akregatorNS, "readStatus" ),
-                     deleted( akregatorNS, "deleted" ),
-                     important( akregatorNS, "important" )
+                     title( atomNS, QLatin1String("title") ),
+                     summary( atomNS, QLatin1String("summary") ),
+                     content( atomNS, QLatin1String("content") ),
+                     link( atomNS, QLatin1String("link") ),
+                     language( atomNS, QLatin1String("language") ),
+                     feed( atomNS, QLatin1String("feed") ),
+                     guid( atomNS, QLatin1String("id") ),
+                     published( atomNS, QLatin1String("published") ),
+                     updated( atomNS, QLatin1String("updated") ),
+                     commentsCount( Syndication::slashNamespace(), QLatin1String("comments") ),
+                     commentsFeed( commentNS, QLatin1String("commentRss") ),
+                     commentPostUri( commentNS, QLatin1String("comment") ),
+                     commentsLink( akregatorNS, QLatin1String("commentsLink") ),
+                     hash( akregatorNS, QLatin1String("hash") ),
+                     guidIsHash( akregatorNS, QLatin1String("idIsHash") ),
+                     name( atomNS, QLatin1String("name") ),
+                     uri( atomNS, QLatin1String("uri") ),
+                     email( atomNS, QLatin1String("email") ),
+                     author( atomNS, QLatin1String("author") ),
+                     category( atomNS, QLatin1String("category") ),
+                     entry( atomNS, QLatin1String("entry") ),
+                     itemProperties( akregatorNS, QLatin1String("itemProperties") ),
+                     readStatus( akregatorNS, QLatin1String("readStatus") ),
+                     deleted( akregatorNS, QLatin1String("deleted") ),
+                     important( akregatorNS, QLatin1String("important") )
 
     {}
         const QString atomNS;
@@ -194,11 +194,11 @@ namespace {
     void writeEnclosure( const QString& url, const QString& type, int length, QXmlStreamWriter& writer )
     {
         Elements::instance.link.writeStartElement( writer );
-        writer.writeAttribute( "rel", "enclosure" );
-        writeAttributeIfNotEmpty( "href", url, writer );
-        writeAttributeIfNotEmpty( "type", type, writer );
+        writer.writeAttribute( QLatin1String("rel"), QLatin1String("enclosure") );
+        writeAttributeIfNotEmpty( QLatin1String("href"), url, writer );
+        writeAttributeIfNotEmpty( QLatin1String("type"), type, writer );
         if ( length > 0 )
-            writer.writeAttribute( "length", QString::number( length ) );
+            writer.writeAttribute( QLatin1String("length"), QString::number( length ) );
         writer.writeEndElement();
     }
 
@@ -207,8 +207,8 @@ namespace {
         if ( url.isEmpty() )
             return;
         Elements::instance.link.writeStartElement( writer );
-        writer.writeAttribute( "rel", "alternate" );
-        writeAttributeIfNotEmpty( "href", url, writer );
+        writer.writeAttribute( QLatin1String("rel"), QLatin1String("alternate") );
+        writeAttributeIfNotEmpty( QLatin1String("href"), url, writer );
         writer.writeEndElement();
     }
 
@@ -292,9 +292,9 @@ namespace {
         Elements::instance.feed.writeStartElement( writer );
 
         writer.writeDefaultNamespace( Syndication::Atom::atom1Namespace() );
-        writer.writeNamespace( Syndication::commentApiNamespace(), "comment" );
-        writer.writeNamespace( akregatorNamespace(), "akregator" );
-        writer.writeNamespace( Syndication::itunesNamespace(), "itunes" );
+        writer.writeNamespace( Syndication::commentApiNamespace(), QLatin1String("comment"));
+        writer.writeNamespace( akregatorNamespace(), QLatin1String("akregator") );
+        writer.writeNamespace( Syndication::itunesNamespace(), QLatin1String("itunes") );
 
         Elements::instance.title.write( QString::fromLatin1("Akregator Export for %1").arg( url ), writer, Html );
 
@@ -310,7 +310,7 @@ namespace {
     }
 
     static KService::List queryStoragePlugins() {
-        return KServiceTypeTrader::self()->query( "Akregator/Plugin",
+        return KServiceTypeTrader::self()->query( QLatin1String("Akregator/Plugin"),
             QString::fromLatin1( "[X-KDE-akregator-framework-version] == %1 and [X-KDE-akregator-plugintype] == 'storage' and [X-KDE-akregator-rank] > 0" ).arg( QString::number( AKREGATOR_PLUGIN_INTERFACE_VERSION ) ) );
     }
 
@@ -319,7 +319,7 @@ namespace {
         KPluginLoader loader( *service );
         KPluginFactory* factory = loader.factory();
         if ( !factory ) {
-            qCritical() << QString( " Could not create plugin factory for: %1\n"
+            qCritical() << QString::fromLatin1( " Could not create plugin factory for: %1\n"
                                     " Error message: %2" ).arg( service->library(), loader.errorString() );
             return 0;
         }

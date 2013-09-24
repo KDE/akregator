@@ -60,8 +60,8 @@ TrayIcon::TrayIcon(QObject* parent)
 {
     setToolTipTitle( i18n("Akregator") );
     setToolTipIconByName( i18n("Akregator") );
-    setIconByName( "akregator" );
-    m_defaultIcon = KIcon( "akregator" );
+    setIconByName( QLatin1String("akregator") );
+    m_defaultIcon = KIcon( QLatin1String("akregator") );
 }
 
 

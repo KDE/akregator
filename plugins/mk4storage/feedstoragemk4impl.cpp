@@ -43,7 +43,7 @@ namespace {
 static uint calcHash(const QString& str)
 {
     if (str.isNull()) // handle null string as "", prevents crash
-        return calcHash("");
+        return calcHash(QLatin1String(""));
     const char* s = str.toLatin1();
     uint hash = 5381;
     int c;
@@ -115,15 +115,15 @@ void FeedStorageMK4Impl::convertOldArchive()
     if ( !file.open(QIODevice::ReadOnly) )
         return;
 
-    Syndication::DocumentSource src(file.readAll(), "http://foo");
+    Syndication::DocumentSource src(file.readAll(), QLatin1String("http://foo"));
     file.close();
     Syndication::FeedPtr feed = Syndication::parse(src);
 
     if (feed)
     {
-        QList<Syndication::ItemPtr> items = feed->items();
-        QList<Syndication::ItemPtr>::ConstIterator it = items.constBegin();
-        QList<Syndication::ItemPtr>::ConstIterator en = items.constEnd();
+        //QList<Syndication::ItemPtr> items = feed->items();
+        //QList<Syndication::ItemPtr>::ConstIterator it = items.constBegin();
+        //QList<Syndication::ItemPtr>::ConstIterator en = items.constEnd();
         markDirty();
         commit();
     }
@@ -146,10 +146,10 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
     kDebug() << url2;
     QString t = url2;
     QString t2 = url2;
-    QString filePath = main->archivePath() + '/' + t.replace('/', '_').replace(':', '_');
-    d->oldArchivePath = KGlobal::dirs()->saveLocation("data", "akregator/Archive/") + t2.replace('/', '_').replace(':', '_') + ".xml";
-    d->convert = !QFile::exists(filePath + ".mk4") && QFile::exists(d->oldArchivePath);
-    d->storage = new c4_Storage(QString(filePath + ".mk4").toLocal8Bit(), true);
+    QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
+    d->oldArchivePath = KGlobal::dirs()->saveLocation("data", QLatin1String("akregator/Archive/")) + t2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_')) + QLatin1String(".xml");
+    d->convert = !QFile::exists(filePath + QLatin1String(".mk4")) && QFile::exists(d->oldArchivePath);
+    d->storage = new c4_Storage(QString(filePath + QLatin1String(".mk4")).toLocal8Bit(), true);
 
     d->archiveView = d->storage->GetAs("articles[guid:S,title:S,hash:I,guidIsHash:I,guidIsPermaLink:I,description:S,link:S,comments:I,commentsLink:S,status:I,pubDate:I,tags[tag:S],hasEnclosure:I,enclosureUrl:S,enclosureType:S,enclosureLength:I,categories[catTerm:S,catScheme:S,catName:S],authorName:S,content:S,authorUri:S,authorEMail:S]");
 
@@ -231,7 +231,7 @@ QStringList FeedStorageMK4Impl::articles(const QString& tag) const
 #endif
         int size = d->archiveView.GetSize();
         for (int i = 0; i < size; ++i) // fill with guids
-            list += QString(d->pguid(d->archiveView.GetAt(i)));
+            list += QString::fromLatin1(d->pguid(d->archiveView.GetAt(i)));
 #if 0 //category and tag support disabled
     }
     else
@@ -322,7 +322,7 @@ int FeedStorageMK4Impl::comments(const QString& guid) const
 QString FeedStorageMK4Impl::commentsLink(const QString& guid) const
 {
    int findidx = findArticle(guid);
-   return findidx != -1 ? QString(d->pcommentsLink(d->archiveView.GetAt(findidx))) : "";
+   return findidx != -1 ? QString::fromLatin1(d->pcommentsLink(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 bool FeedStorageMK4Impl::guidIsHash(const QString& guid) const
@@ -370,7 +370,7 @@ void FeedStorageMK4Impl::setDeleted(const QString& guid)
 QString FeedStorageMK4Impl::link(const QString& guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString(d->plink(d->archiveView.GetAt(findidx))) : "";
+    return findidx != -1 ? QString::fromLatin1(d->plink(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 uint FeedStorageMK4Impl::pubDate(const QString& guid) const
@@ -400,19 +400,19 @@ void FeedStorageMK4Impl::setStatus(const QString& guid, int status)
 QString FeedStorageMK4Impl::title(const QString& guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->ptitle(d->archiveView.GetAt(findidx))) : "";
+    return findidx != -1 ? QString::fromUtf8(d->ptitle(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 QString FeedStorageMK4Impl::description(const QString& guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pdescription(d->archiveView.GetAt(findidx))) : "";
+    return findidx != -1 ? QString::fromUtf8(d->pdescription(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 QString FeedStorageMK4Impl::content(const QString& guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pcontent(d->archiveView.GetAt(findidx))) : "";
+    return findidx != -1 ? QString::fromUtf8(d->pcontent(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 
@@ -541,19 +541,19 @@ void FeedStorageMK4Impl::setAuthorEMail(const QString& guid, const QString& auth
 QString FeedStorageMK4Impl::authorName(const QString& guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorName(d->archiveView.GetAt(findidx))) : "";
+    return findidx != -1 ? QString::fromUtf8(d->pauthorName(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 QString FeedStorageMK4Impl::authorUri(const QString& guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorUri(d->archiveView.GetAt(findidx))) : "";
+    return findidx != -1 ? QString::fromUtf8(d->pauthorUri(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 QString FeedStorageMK4Impl::authorEMail(const QString& guid) const
 {
     int findidx = findArticle(guid);
-    return findidx != -1 ? QString::fromUtf8(d->pauthorEMail(d->archiveView.GetAt(findidx))) : "";
+    return findidx != -1 ? QString::fromUtf8(d->pauthorEMail(d->archiveView.GetAt(findidx))) : QLatin1String("");
 }
 
 
@@ -891,8 +891,8 @@ void FeedStorageMK4Impl::enclosure(const QString& guid, bool& hasEnclosure, QStr
     }
     c4_Row row = d->archiveView.GetAt(findidx);
     hasEnclosure = d->pHasEnclosure(row);
-    url = d->pEnclosureUrl(row);
-    type = d->pEnclosureType(row);
+    url = QLatin1String(d->pEnclosureUrl(row));
+    type = QLatin1String(d->pEnclosureType(row));
     length = d->pEnclosureLength(row);
 }
 

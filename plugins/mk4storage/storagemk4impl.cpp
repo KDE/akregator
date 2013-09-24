@@ -117,7 +117,7 @@ QString Akregator::Backend::StorageMK4Impl::archivePath() const
 
 QString Akregator::Backend::StorageMK4Impl::defaultArchivePath()
 {
-    return KGlobal::dirs()->saveLocation("data", "akregator")+"Archive";
+    return KGlobal::dirs()->saveLocation("data", QLatin1String("akregator"))+QLatin1String("Archive");
 }
 
 Akregator::Backend::StorageMK4Impl::~StorageMK4Impl()
@@ -130,14 +130,14 @@ void Akregator::Backend::StorageMK4Impl::initialize(const QStringList&) {}
 
 bool Akregator::Backend::StorageMK4Impl::open(bool autoCommit)
 {
-    QString filePath = d->archivePath +"/archiveindex.mk4";
+    QString filePath = d->archivePath +QLatin1String("/archiveindex.mk4");
     d->storage = new c4_Storage(filePath.toLocal8Bit(), true);
     d->archiveView = d->storage->GetAs("archive[url:S,unread:I,totalCount:I,lastFetch:I]");
     c4_View hash = d->storage->GetAs("archiveHash[_H:I,_R:I]");
     d->archiveView = d->archiveView.Hash(hash, 1); // hash on url
     d->autoCommit = autoCommit;
 
-    filePath = d->archivePath +"/feedlistbackup.mk4";
+    filePath = d->archivePath +QLatin1String("/feedlistbackup.mk4");
     d->feedListStorage = new c4_Storage(filePath.toLocal8Bit(), true);
     d->feedListView = d->feedListStorage->GetAs("archive[feedList:S,tagSet:S]");
     return true;
@@ -290,7 +290,7 @@ QStringList Akregator::Backend::StorageMK4Impl::feeds() const
     QStringList list;
     int size = d->archiveView.GetSize();
     for (int i = 0; i < size; ++i)
-        list += QString(d->purl(d->archiveView.GetAt(i)));
+        list += QString::fromLatin1(d->purl(d->archiveView.GetAt(i)));
     // fill with urls
     return list;
 
@@ -314,7 +314,7 @@ void Akregator::Backend::StorageMK4Impl::clear()
    QStringList feeds;
     int size = d->archiveView.GetSize();
     for (int i = 0; i < size; ++i)
-        feeds += QString(d->purl(d->archiveView.GetAt(i)));
+        feeds += QString::fromLatin1(d->purl(d->archiveView.GetAt(i)));
     QStringList::ConstIterator end(feeds.constEnd() ) ;
 
     for (QStringList::ConstIterator it = feeds.constBegin(); it != end; ++it)
@@ -350,7 +350,7 @@ void Akregator::Backend::StorageMK4Impl::storeFeedList(const QString& opmlStr)
 QString Akregator::Backend::StorageMK4Impl::restoreFeedList() const
 {
     if  (d->feedListView.GetSize() == 0)
-        return "";
+        return QString();
 
     c4_Row row = d->feedListView.GetAt(0);
     return QString::fromUtf8(d->pFeedList(row));
@@ -378,7 +378,7 @@ void Akregator::Backend::StorageMK4Impl::storeTagSet(const QString& xmlStr)
 QString Akregator::Backend::StorageMK4Impl::restoreTagSet() const
 {
     if  (d->feedListView.GetSize() == 0)
-        return "";
+        return QString();
 
     c4_Row row = d->feedListView.GetAt(0);
     return QString::fromUtf8(d->pTagSet(row));

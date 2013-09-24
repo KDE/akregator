@@ -52,7 +52,7 @@ QString
 Plugin::pluginProperty( const QString& key ) const
 {
     if ( m_properties.find( key.toLower() ) == m_properties.end() )
-        return "false";
+        return QLatin1String("false");
 
     return m_properties[key.toLower()];
 }

@@ -40,7 +40,7 @@ Storage* StorageFactoryMK4Impl::createStorage(const QStringList& params) const
 
 QString StorageFactoryMK4Impl::key() const
 {
-    return "metakit";
+    return QLatin1String("metakit");
 }
 
 QString StorageFactoryMK4Impl::name() const
