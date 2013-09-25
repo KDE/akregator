@@ -284,7 +284,7 @@ void FrameManager::openInExternalBrowser(const OpenUrlRequest& request)
     if (!Settings::externalBrowserUseKdeDefault())
     {
         QHash<QChar,QString> map;
-        map.insert('u', url.url());
+        map.insert(QLatin1Char('u'), url.url());
         const QString cmd = KMacroExpander::expandMacrosShellQuote(Settings::externalBrowserCustomCommand(), map);
         const QStringList args = KShell::splitArgs(cmd);
         if (!args.isEmpty())
@@ -382,7 +382,7 @@ void FrameManager::saveProperties(KConfigGroup & config)
         if(i.value() && qobject_cast<BrowserFrame *>(i.value()))
         {
 
-            newPrefix = 'T' + QString::number(i.key());
+            newPrefix = QLatin1Char('T') + QString::number(i.key());
             strlst.append( newPrefix );
             newPrefix.append( QLatin1Char( '_' ) );
             i.value()->saveConfig( config, newPrefix );

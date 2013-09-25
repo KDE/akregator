@@ -39,7 +39,7 @@ namespace Akregator {
 
 SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(parent)
 {
-    setObjectName(name);
+    setObjectName(QLatin1String(name));
     setupUi(this);
 
     const QStringList backends = Backend::StorageFactoryRegistry::self()->list();

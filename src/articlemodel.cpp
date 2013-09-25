@@ -63,7 +63,7 @@ public:
 static QString stripHtml( const QString& html ) {
     QString str(html);
     //TODO: preserve some formatting, such as line breaks
-    str.remove(QRegExp("<[^>]*>")); // remove tags
+    str.remove(QRegExp(QLatin1String("<[^>]*>"))); // remove tags
     str = Syndication::resolveEntities(str);
     return str.simplified();
 }

@@ -76,21 +76,21 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
     if (feeds.count() == 1)
     {
         //KNotifyClient::Instance inst(m_instance);
-        KNotification::event("FeedAdded", i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
+        KNotification::event(QLatin1String("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
     else if (feeds.count() > 1)
     {
         QString message;
-        for (QStringList::ConstIterator it = feeds.begin(); it != feeds.end(); ++it)
-            message += *it + '\n';
+        for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it)
+            message += *it + QLatin1Char('\n');
         //KNotifyClient::Instance inst(m_instance);
-        KNotification::event("FeedAdded", i18n("Feeds added:\n %1", message), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
+        KNotification::event(QLatin1String("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
 }
 
 void NotificationManager::doNotify()
 {
-    QString message = "<html><body>";
+    QString message = QLatin1String("<html><body>");
     QString feedTitle;
 
     Q_FOREACH( const Article& i, m_articles )
@@ -98,12 +98,12 @@ void NotificationManager::doNotify()
         if (feedTitle != i.feed()->title())
         {
             feedTitle = i.feed()->title();
-            message += QString("<p><b>%1:</b></p>").arg(feedTitle);
+            message += QString::fromLatin1("<p><b>%1:</b></p>").arg(feedTitle);
         }
-        message += i.title() + "<br>";
+        message += i.title() + QLatin1String("<br>");
     }
-    message += "</body></html>";
-    KNotification::event("NewArticles", message, QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
+    message += QLatin1String("</body></html>");
+    KNotification::event(QLatin1String("NewArticles"), message, QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
 
     m_articles.clear();
     m_running = false;

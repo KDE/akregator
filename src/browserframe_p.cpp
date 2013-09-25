@@ -68,7 +68,7 @@ int BrowserFrame::Private::HistoryEntry::idCounter = 0;
 
 bool BrowserFrame::Private::loadPartForMimetype(const QString& mimetype)
 {
-    KService::List offers = KMimeTypeTrader::self()->query( mimetype, "KParts/ReadOnlyPart" );
+    KService::List offers = KMimeTypeTrader::self()->query( mimetype, QLatin1String("KParts/ReadOnlyPart") );
 
     kDebug() <<"BrowserFrame::loadPartForMimetype("<< mimetype <<"):" << offers.size() <<" offers";
 

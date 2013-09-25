@@ -72,7 +72,7 @@ SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
     setComponentData( SharePluginFactory::componentData() );
 
     // Share feature provided by Plasma
-    m_engine = Plasma::DataEngineManager::self()->loadEngine("microblog");
+    m_engine = Plasma::DataEngineManager::self()->loadEngine(QLatin1String("microblog"));
     if (!m_engine->isValid()) {
         kDebug() << "could not load microblog data engine";
         return;
@@ -81,15 +81,15 @@ SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
     refreshConfig();
 
     // configure the ui with the actions
-    setXMLFile( "akregator_sharemicroblog_plugin.rc", /*merge=*/ true );
+    setXMLFile( QLatin1String("akregator_sharemicroblog_plugin.rc"), /*merge=*/ true );
     KActionCollection* coll = actionCollection();
-    m_shareMenu = coll->add<KActionMenu>("article_share");
+    m_shareMenu = coll->add<KActionMenu>(QLatin1String("article_share"));
     m_shareMenu->setText( i18n( "Share Article" ) );
-    m_shareMenu->setShortcuts(KShortcut("Ctrl+S"));
+    m_shareMenu->setShortcuts(KShortcut(QLatin1String("Ctrl+S")));
     m_shareMenu->setEnabled(false);
     connect(m_shareMenu, SIGNAL(triggered(bool)), this, SLOT(shareArticles()));
 
-    m_sharePopupMenu = coll->add<KActionMenu>("article_share_popup");
+    m_sharePopupMenu = coll->add<KActionMenu>(QLatin1String("article_share_popup"));
     m_sharePopupMenu->setText( i18n( "Share Article" ) );
     m_sharePopupMenu->setEnabled(false);
     connect(m_sharePopupMenu, SIGNAL(triggered(bool)), this, SLOT(shareArticles()));
@@ -99,20 +99,20 @@ SharePlugin::~SharePlugin()
 {
     if (m_service) {
         delete m_service;
-        Plasma::DataEngineManager::self()->unloadEngine("microblog");
+        Plasma::DataEngineManager::self()->unloadEngine(QLatin1String("microblog"));
     }
 }
 
 void SharePlugin::refreshConfig()
 {
-    const QString timeline = QString("TimelineWithFriends:%1@%2");
+    const QString timeline = QLatin1String("TimelineWithFriends:%1@%2");
 
     // remove current stuff
     delete m_service;
     m_engine->disconnectSource(timeline.arg(m_username, m_serviceUrl), this);
 
     // read config files and refresh
-    const KConfig config("akregator_sharerc");
+    const KConfig config(QLatin1String("akregator_sharerc"));
     const KConfigGroup group(&config, "ShareService");
 
     m_username = group.readEntry("Username", "");
@@ -149,9 +149,9 @@ void SharePlugin::shareArticles()
     }
 
     // setup the service and create the status message
-    KConfigGroup cg = m_service->operationDescription("update");
+    KConfigGroup cg = m_service->operationDescription(QLatin1String("update"));
     foreach(const Akregator::Article& article, m_articles) {
-        QString status = QString("%1 - %2 #share").arg(article.title(),
+        QString status = QString::fromLatin1("%1 - %2 #share").arg(article.title(),
                                                        article.link().prettyUrl());
         cg.writeEntry("status", status);
         m_service->startOperationCall(cg);

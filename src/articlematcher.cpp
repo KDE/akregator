@@ -135,7 +135,7 @@ void Criterion::writeConfig(KConfigGroup* config) const
 
     config->writeEntry(QString::fromLatin1("predicate"), predicateToString(m_predicate));
 
-    config->writeEntry(QString::fromLatin1("objectType"), QString(m_object.typeName()));
+    config->writeEntry(QString::fromLatin1("objectType"), QString::fromLatin1(m_object.typeName()));
 
     config->writeEntry(QString::fromLatin1("objectValue"), m_object);
 }
@@ -186,14 +186,14 @@ bool Criterion::satisfiedBy( const Article &article ) const
     bool satisfied = false;
 
     const Predicate predicateType = static_cast<Predicate>( m_predicate & ~Negation );
-        QString subjectType=concreteSubject.typeName();
+    QString subjectType=QLatin1String(concreteSubject.typeName());
 
     switch ( predicateType ) {
         case Contains:
             satisfied = concreteSubject.toString().indexOf( m_object.toString(), 0, Qt::CaseInsensitive ) != -1;
             break;
         case Equals:
-            if (subjectType=="int")
+            if (subjectType==QLatin1String("int"))
                 satisfied = concreteSubject.toInt() == m_object.toInt();
             else
                 satisfied = concreteSubject.toString() == m_object.toString();

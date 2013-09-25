@@ -58,7 +58,7 @@ class DeleteNodeVisitor : public TreeNodeVisitor
                                                      i18n( "Delete Folder" ),
                                                      KStandardGuiItem::del(),
                                                      KStandardGuiItem::cancel(),
-                                                     "Disable delete folder confirmation" ) != KMessageBox::Continue )
+                                                     QLatin1String("Disable delete folder confirmation") ) != KMessageBox::Continue )
                 return true;
             m_job = reallyCreateJob( node );
             //TODO: port focus
@@ -79,7 +79,7 @@ class DeleteNodeVisitor : public TreeNodeVisitor
                                                      i18n( "Delete Feed" ),
                                                      KStandardGuiItem::del(),
                                                      KStandardGuiItem::cancel(),
-                                                     "Disable delete feed confirmation" ) != KMessageBox::Continue )
+                                                     QLatin1String("Disable delete feed confirmation") ) != KMessageBox::Continue )
                 return true;
             m_job = reallyCreateJob( node );
             //TODO: port focus

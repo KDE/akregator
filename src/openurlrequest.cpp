@@ -85,7 +85,7 @@ void OpenUrlRequest::setBrowserArgs(const KParts::BrowserArguments& args)
 
 OpenUrlRequest::Options OpenUrlRequest::options() const
 {
-    if (m_options == None && m_browserArgs.frameName == "_blank")
+    if (m_options == None && m_browserArgs.frameName == QLatin1String("_blank"))
     {
         if (Settings::newWindowInTab())
             return (NewTab);
@@ -113,7 +113,7 @@ KParts::ReadOnlyPart* OpenUrlRequest::part() const
 
 QString OpenUrlRequest::debugInfo() const
 {
-    return QString("url=%1 mimeType=%2 newTab=%3 forcesNewWindow=%4 options=%5")
+    return QString::fromLatin1("url=%1 mimeType=%2 newTab=%3 forcesNewWindow=%4 options=%5")
         .arg(m_url.url())
         .arg(m_args.mimeType())
         .arg(m_browserArgs.newTab())
