@@ -116,43 +116,43 @@ QString Akregator::Feed::archiveModeToString(ArchiveMode mode)
     switch (mode)
     {
         case keepAllArticles:
-            return "keepAllArticles";
+            return QLatin1String("keepAllArticles");
         case disableArchiving:
-            return "disableArchiving";
+            return QLatin1String("disableArchiving");
         case limitArticleNumber:
-            return "limitArticleNumber";
+            return QLatin1String("limitArticleNumber");
         case limitArticleAge:
-            return "limitArticleAge";
+            return QLatin1String("limitArticleAge");
         default:
             break;
    }
-   return "globalDefault";
+   return QLatin1String("globalDefault");
 }
 
 Akregator::Feed* Akregator::Feed::fromOPML(QDomElement e, Backend::Storage* storage )
 {
 
-    if( !e.hasAttribute("xmlUrl") && !e.hasAttribute("xmlurl") && !e.hasAttribute("xmlURL") )
+    if( !e.hasAttribute(QLatin1String("xmlUrl")) && !e.hasAttribute(QLatin1String("xmlurl")) && !e.hasAttribute(QLatin1String("xmlURL")) )
         return 0;
 
-    QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
+    QString title = e.hasAttribute(QLatin1String("text")) ? e.attribute(QLatin1String("text")) : e.attribute(QLatin1String("title"));
 
-    QString xmlUrl = e.hasAttribute("xmlUrl") ? e.attribute("xmlUrl") : e.attribute("xmlurl");
+    QString xmlUrl = e.hasAttribute(QLatin1String("xmlUrl")) ? e.attribute(QLatin1String("xmlUrl")) : e.attribute(QLatin1String("xmlurl"));
     if (xmlUrl.isEmpty())
-        xmlUrl = e.attribute("xmlURL");
+        xmlUrl = e.attribute(QLatin1String("xmlURL"));
 
-    bool useCustomFetchInterval = e.attribute("useCustomFetchInterval") == "true";
+    bool useCustomFetchInterval = e.attribute(QLatin1String("useCustomFetchInterval")) == QLatin1String("true");
 
-    QString htmlUrl = e.attribute("htmlUrl");
-    QString description = e.attribute("description");
-    int fetchInterval = e.attribute("fetchInterval").toInt();
-    ArchiveMode archiveMode = stringToArchiveMode(e.attribute("archiveMode"));
-    int maxArticleAge = e.attribute("maxArticleAge").toUInt();
-    int maxArticleNumber = e.attribute("maxArticleNumber").toUInt();
-    bool markImmediatelyAsRead = e.attribute("markImmediatelyAsRead") == "true";
-    bool useNotification = e.attribute("useNotification") == "true";
-    bool loadLinkedWebsite = e.attribute("loadLinkedWebsite") == "true";
-    uint id = e.attribute("id").toUInt();
+    QString htmlUrl = e.attribute(QLatin1String("htmlUrl"));
+    QString description = e.attribute(QLatin1String("description"));
+    int fetchInterval = e.attribute(QLatin1String("fetchInterval")).toInt();
+    ArchiveMode archiveMode = stringToArchiveMode(e.attribute(QLatin1String("archiveMode")));
+    int maxArticleAge = e.attribute(QLatin1String("maxArticleAge")).toUInt();
+    int maxArticleNumber = e.attribute(QLatin1String("maxArticleNumber")).toUInt();
+    bool markImmediatelyAsRead = e.attribute(QLatin1String("markImmediatelyAsRead")) == QLatin1String("true");
+    bool useNotification = e.attribute(QLatin1String("useNotification")) == QLatin1String("true");
+    bool loadLinkedWebsite = e.attribute(QLatin1String("loadLinkedWebsite")) == QLatin1String("true");
+    uint id = e.attribute(QLatin1String("id")).toUInt();
 
     Feed* const feed = new Feed( storage );
     feed->setTitle(title);
@@ -271,15 +271,15 @@ void Akregator::Feed::recalcUnreadCount()
 
 Akregator::Feed::ArchiveMode Akregator::Feed::stringToArchiveMode(const QString& str)
 {
-    if (str == "globalDefault")
+    if (str == QLatin1String("globalDefault"))
         return globalDefault;
-    if (str == "keepAllArticles")
+    if (str == QLatin1String("keepAllArticles"))
         return keepAllArticles;
-    if (str == "disableArchiving")
+    if (str == QLatin1String("disableArchiving"))
         return disableArchiving;
-    if (str == "limitArticleNumber")
+    if (str == QLatin1String("limitArticleNumber"))
         return limitArticleNumber;
-    if (str == "limitArticleAge")
+    if (str == QLatin1String("limitArticleAge"))
         return limitArticleAge;
 
     return globalDefault;
@@ -396,27 +396,27 @@ bool Akregator::Feed::isArticlesLoaded() const { return d->articlesLoaded; }
 
 QDomElement Akregator::Feed::toOPML( QDomElement parent, QDomDocument document ) const
 {
-    QDomElement el = document.createElement( "outline" );
-    el.setAttribute( "text", title() );
-    el.setAttribute( "title", title() );
-    el.setAttribute( "xmlUrl", d->xmlUrl );
-    el.setAttribute( "htmlUrl", d->htmlUrl );
-    el.setAttribute( "id", QString::number(id()) );
-    el.setAttribute( "description", d->description );
-    el.setAttribute( "useCustomFetchInterval", (useCustomFetchInterval() ? "true" : "false") );
-    el.setAttribute( "fetchInterval", QString::number(fetchInterval()) );
-    el.setAttribute( "archiveMode", archiveModeToString(d->archiveMode) );
-    el.setAttribute( "maxArticleAge", d->maxArticleAge );
-    el.setAttribute( "maxArticleNumber", d->maxArticleNumber );
+    QDomElement el = document.createElement( QLatin1String("outline") );
+    el.setAttribute( QLatin1String("text"), title() );
+    el.setAttribute( QLatin1String("title"), title() );
+    el.setAttribute( QLatin1String("xmlUrl"), d->xmlUrl );
+    el.setAttribute( QLatin1String("htmlUrl"), d->htmlUrl );
+    el.setAttribute( QLatin1String("id"), QString::number(id()) );
+    el.setAttribute( QLatin1String("description"), d->description );
+    el.setAttribute( QLatin1String("useCustomFetchInterval"), (useCustomFetchInterval() ? QLatin1String("true") : QLatin1String("false")) );
+    el.setAttribute( QLatin1String("fetchInterval"), QString::number(fetchInterval()) );
+    el.setAttribute( QLatin1String("archiveMode"), archiveModeToString(d->archiveMode) );
+    el.setAttribute( QLatin1String("maxArticleAge"), d->maxArticleAge );
+    el.setAttribute( QLatin1String("maxArticleNumber"), d->maxArticleNumber );
     if (d->markImmediatelyAsRead)
-        el.setAttribute( "markImmediatelyAsRead", "true" );
+        el.setAttribute( QLatin1String("markImmediatelyAsRead"), QLatin1String("true") );
     if (d->useNotification)
-        el.setAttribute( "useNotification", "true" );
+        el.setAttribute( QLatin1String("useNotification"), QLatin1String("true") );
     if (d->loadLinkedWebsite)
-        el.setAttribute( "loadLinkedWebsite", "true" );
-    el.setAttribute( "maxArticleNumber", d->maxArticleNumber );
-    el.setAttribute( "type", "rss" ); // despite some additional fields, it is still "rss" OPML
-    el.setAttribute( "version", "RSS" );
+        el.setAttribute( QLatin1String("loadLinkedWebsite"), QLatin1String("true") );
+    el.setAttribute( QLatin1String("maxArticleNumber"), d->maxArticleNumber );
+    el.setAttribute( QLatin1String("type"), QLatin1String("rss") ); // despite some additional fields, it is still "rss" OPML
+    el.setAttribute( QLatin1String("version"), QLatin1String("RSS") );
     parent.appendChild( el );
     return el;
 }
@@ -654,9 +654,9 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
 
     if (d->imagePixmap.isNull())
     {
-        QString u = d->xmlUrl;
-        QString imageFileName = KGlobal::dirs()->saveLocation("cache", "akregator/Media/")
-                                + Utils::fileNameForUrl(d->xmlUrl) + ".png";
+        //QString u = d->xmlUrl;
+        QString imageFileName = KGlobal::dirs()->saveLocation("cache", QLatin1String("akregator/Media/"))
+                                + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
         d->imagePixmap=QPixmap(imageFileName, "PNG");
 
         // if we ain't got the image and the feed provides one, get it....
@@ -690,9 +690,9 @@ void Akregator::Feed::markAsFetchedNow()
 QIcon Akregator::Feed::icon() const
 {
     if ( fetchErrorOccurred() )
-        return KIcon("dialog-error");
+        return KIcon(QLatin1String("dialog-error"));
 
-    return !d->favicon.isNull() ? d->favicon : KIcon("text-html");
+    return !d->favicon.isNull() ? d->favicon : KIcon(QLatin1String("text-html"));
 }
 
 void Akregator::Feed::deleteExpiredArticles( ArticleDeleteJob* deleteJob )
@@ -731,7 +731,7 @@ void Akregator::Feed::setImage(const QPixmap &p)
     if (p.isNull())
         return;
     d->imagePixmap=p;
-    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", "akregator/Media/")+ Utils::fileNameForUrl(d->xmlUrl) + ".png","PNG");
+    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", QString(QLatin1String("akregator/Media/"))+ Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png")),"PNG");
     nodeModified();
 }
 

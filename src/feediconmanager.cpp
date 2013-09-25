@@ -68,15 +68,15 @@ namespace {
 
 QString getIconUrl( const KUrl& url )
 {
-    return "http://" + url.host() + '/';
+    return QLatin1String("http://") + url.host() + QLatin1Char('/');
 }
 
 }
 
 FeedIconManager::Private::Private( FeedIconManager* qq ) : q( qq )
 {
-    QDBusConnection::sessionBus().registerObject("/FeedIconManager", q, QDBusConnection::ExportScriptableSlots);
-    m_favIconsModule = new QDBusInterface("org.kde.kded", "/modules/favicons", FAVICONINTERFACE);
+    QDBusConnection::sessionBus().registerObject(QLatin1String("/FeedIconManager"), q, QDBusConnection::ExportScriptableSlots);
+    m_favIconsModule = new QDBusInterface(QLatin1String("org.kde.kded"), QLatin1String("/modules/favicons"), QLatin1String(FAVICONINTERFACE));
     Q_ASSERT( m_favIconsModule );
     q->connect( m_favIconsModule, SIGNAL(iconChanged(bool,QString,QString)),
                 q, SLOT(slotIconChanged(bool,QString,QString)) );
@@ -92,7 +92,7 @@ FeedIconManager *FeedIconManager::Private::m_instance = 0;
 
 QString FeedIconManager::Private::iconLocation(const KUrl & url) const
 {
-    QDBusReply<QString> reply = m_favIconsModule->call( "iconForUrl", url.url() );
+    QDBusReply<QString> reply = m_favIconsModule->call( QLatin1String("iconForUrl"), url.url() );
     return reply.isValid() ? reply.value() : QString();
 }
 
@@ -105,7 +105,7 @@ void FeedIconManager::Private::loadIcon( const QString & url_ )
 
     if ( iconFile.isEmpty() ) // cache miss
     {
-        const QDBusReply<void> reply = m_favIconsModule->call( "downloadHostIcon", url.url() );
+        const QDBusReply<void> reply = m_favIconsModule->call( QLatin1String("downloadHostIcon"), url.url() );
         if ( !reply.isValid() )
             kWarning() << "Couldn't reach favicon service. Request favicon for " << url << " failed";
     }
@@ -160,7 +160,7 @@ void FeedIconManager::slotIconChanged( bool isHost,
                                        const QString& iconName )
 {
     Q_UNUSED( isHost );
-    const QIcon icon( KGlobal::dirs()->findResource( "cache", iconName+".png" ) );
+    const QIcon icon( KGlobal::dirs()->findResource( "cache", iconName+QLatin1String(".png") ) );
     Q_FOREACH( FaviconListener* const l, d->urlDict.values( hostOrUrl ) )
         l->setFavicon( icon );
 }

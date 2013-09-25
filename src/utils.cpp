@@ -30,7 +30,7 @@ namespace Akregator {
 
 QString Utils::stripTags(const QString& str)
 {
-    return QString(str).remove(QRegExp("<[^>]*>"));
+    return QString(str).remove(QRegExp(QLatin1String("<[^>]*>")));
 }
 
 uint Utils::calcHash(const QString& str)
@@ -43,7 +43,7 @@ QString Utils::fileNameForUrl(const QString& url_p)
 {
     QString url2(url_p);
     
-    url2 = url2.replace('/', '_').replace(':', '_');
+    url2 = url2.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));
     
     if (url2.length() > 255)
         url2 = url2.left(200) + QString::number(Akregator::Utils::calcHash(url2), 16);
@@ -54,7 +54,7 @@ QString Utils::fileNameForUrl(const QString& url_p)
 // from kmail::headerstyle.cpp
 QString Utils::directionOf(const QString &str)
 {
-    return str.isRightToLeft() ? "rtl" : "ltr" ;
+    return str.isRightToLeft() ? QLatin1String("rtl") : QLatin1String("ltr" );
 }
 
 }

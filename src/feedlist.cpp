@@ -230,9 +230,9 @@ void FeedList::parseChildNodes(QDomNode &node, Folder* parent)
 
     if( !e.isNull() )
     {
-        QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
+        //QString title = e.hasAttribute("text") ? e.attribute("text") : e.attribute("title");
 
-        if (e.hasAttribute("xmlUrl") || e.hasAttribute("xmlurl") || e.hasAttribute("xmlURL") )
+        if (e.hasAttribute(QLatin1String("xmlUrl")) || e.hasAttribute(QLatin1String("xmlurl")) || e.hasAttribute(QLatin1String("xmlURL")) )
         {
             Feed* feed = Feed::fromOPML(e, d->storage);
             if (feed)
@@ -270,13 +270,13 @@ bool FeedList::readFromOpml(const QDomDocument& doc)
     QTime spent;
     spent.start();
 
-    if (root.tagName().toLower() != "opml")
+    if (root.tagName().toLower() != QLatin1String("opml"))
     {
         return false;
     }
     QDomNode bodyNode = root.firstChild();
 
-    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != "body")
+    while (!bodyNode.isNull() && bodyNode.toElement().tagName().toLower() != QLatin1String("body"))
         bodyNode = bodyNode.nextSibling();
 
 
@@ -362,19 +362,19 @@ void FeedList::append(FeedList* list, Folder* parent, TreeNode* after)
 QDomDocument FeedList::toOpml() const
 {
     QDomDocument doc;
-    doc.appendChild( doc.createProcessingInstruction( "xml", "version=\"1.0\" encoding=\"UTF-8\"" ) );
+    doc.appendChild( doc.createProcessingInstruction( QLatin1String("xml"), QLatin1String("version=\"1.0\" encoding=\"UTF-8\"") ) );
 
-    QDomElement root = doc.createElement( "opml" );
-    root.setAttribute( "version", "1.0" );
+    QDomElement root = doc.createElement( QLatin1String("opml") );
+    root.setAttribute( QLatin1String("version"), QLatin1String("1.0") );
     doc.appendChild( root );
 
-    QDomElement head = doc.createElement( "head" );
+    QDomElement head = doc.createElement( QLatin1String("head") );
     root.appendChild( head );
 
-    QDomElement ti = doc.createElement( "text" );
+    QDomElement ti = doc.createElement( QLatin1String("text") );
     head.appendChild( ti );
 
-    QDomElement body = doc.createElement( "body" );
+    QDomElement body = doc.createElement( QLatin1String("body") );
     root.appendChild( body );
 
     foreach( const TreeNode* const i, allFeedsFolder()->children() )
@@ -508,7 +508,7 @@ static QString path_of_folder( const Folder* fol )
     QString path;
     const Folder* i = fol;
     while ( i ) {
-        path = QString::number( i->id() ) + '/' + path;
+        path = QString::number( i->id() ) + QLatin1Char('/') + path;
         i = i->parent();
     }
     return path;
@@ -529,7 +529,7 @@ QStringList FeedListManagementImpl::feeds( const QString& catId ) const
     if ( !m_feedList )
         return QStringList();
 
-    uint lastcatid = catId.split('/',QString::SkipEmptyParts).last().toUInt();
+    uint lastcatid = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
 
     QSet<QString> urls;
     Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
@@ -546,7 +546,7 @@ void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
         return;
 
     kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
-    uint folder_id = catId.split('/',QString::SkipEmptyParts).last().toUInt();
+    uint folder_id = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
 
     // Get the folder
     Folder * m_folder = 0;
@@ -576,7 +576,7 @@ void FeedListManagementImpl::removeFeed( const QString& url, const QString& catI
 {
     kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
 
-    uint lastcatid = catId.split('/',QString::SkipEmptyParts).last().toUInt();
+    uint lastcatid = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
 
     Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
         if ( lastcatid == i->parent()->id() ) {
@@ -595,7 +595,7 @@ QString FeedListManagementImpl::addCategory( const QString& name, const QString&
     Q_UNUSED( parentId )
 
     if ( !m_feedList )
-        return "";
+        return QLatin1String("");
 
     Folder * m_folder = new Folder(name);
     m_feedList->allFeedsFolder()->appendChild(m_folder);
@@ -610,10 +610,10 @@ QString FeedListManagementImpl::getCategoryName( const QString& catId ) const
     if ( !m_feedList )
         return catname;
 
-    QStringList list = catId.split('/',QString::SkipEmptyParts);
+    QStringList list = catId.split(QLatin1Char('/'),QString::SkipEmptyParts);
     for (int i=0;i<list.size();++i) {
         int index = list.at(i).toInt();
-        catname += m_feedList->findByID(index)->title() + '/';
+        catname += m_feedList->findByID(index)->title() + QLatin1Char('/');
     }
 
     return catname;
