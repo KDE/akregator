@@ -218,4 +218,3 @@ void MainWindow::slotSetStatusBarText( const QString & text )
     m_statusLabel->setText(text);
 }
 
-#include "mainwindow.moc"

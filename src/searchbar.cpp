@@ -230,4 +230,3 @@ void SearchBar::slotActivateSearch()
 
 }
 
-#include "searchbar.moc"

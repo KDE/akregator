@@ -452,4 +452,3 @@ void BrowserFrame::saveConfig( KConfigGroup& config, const QString& prefix)
     config.writeEntry( QString::fromLatin1( "zoom" ).prepend( prefix ), getZoomFactor() );
 }
 
-#include "browserframe.moc"

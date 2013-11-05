@@ -202,4 +202,3 @@ void ProgressItemHandler::slotFetchAborted()
 
 } // namespace Akregator
 
-#include "progressmanager.moc"

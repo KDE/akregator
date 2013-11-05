@@ -145,4 +145,3 @@ void OnlineSyncPluginIface::removeGuiClients( KXMLGUIClient* parent ) {
     parent->removeChildClient( m_impl );
 }
 
-#include "onlinesyncplugin.moc"

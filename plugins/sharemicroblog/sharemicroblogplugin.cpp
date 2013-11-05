@@ -175,4 +175,3 @@ void SharePlugin::dataUpdated(const QString &source, const Plasma::DataEngine::D
 }
 
 
-#include "sharemicroblogplugin.moc"

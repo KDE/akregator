@@ -79,4 +79,3 @@ void KCMAkregatorShareConfig::load()
 }
 
 
-#include "akregator_config_sharemicroblog.moc"

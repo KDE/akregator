@@ -154,4 +154,4 @@ void ImportFeedListCommand::doStart()
     QTimer::singleShot( 0, this, SLOT(doImport()) );
 }
 
-#include "importfeedlistcommand.moc"
+#include "moc_importfeedlistcommand.cpp"

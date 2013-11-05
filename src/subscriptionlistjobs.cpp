@@ -145,4 +145,3 @@ void DeleteSubscriptionJob::doDelete()
     emitResult();
 }
 
-#include "subscriptionlistjobs.moc"

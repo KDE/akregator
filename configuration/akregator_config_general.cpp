@@ -66,4 +66,3 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
     addConfig( Settings::self(), m_widget );
 }
 
-#include "akregator_config_general.moc"

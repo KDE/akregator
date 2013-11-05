@@ -62,4 +62,3 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVa
     addConfig( Settings::self(), m_widget );
 }
 
-#include "akregator_config_browser.moc"

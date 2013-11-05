@@ -86,4 +86,3 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
 }
 
 
-#include "akregator_config_appearance.moc"

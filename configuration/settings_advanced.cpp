@@ -96,4 +96,3 @@ void SettingsAdvanced::slotFactorySelected( int pos )
 }
 
 } //namespace Akregator
-#include "settings_advanced.moc"

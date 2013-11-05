@@ -141,4 +141,4 @@ void ExpireItemsCommand::doStart()
     QTimer::singleShot( 0, this, SLOT(createDeleteJobs()) );
 }
 
-#include "expireitemscommand.moc"
+#include "moc_expireitemscommand.cpp"

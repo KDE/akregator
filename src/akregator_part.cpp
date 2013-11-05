@@ -836,4 +836,3 @@ void Part::autoReadProperties()
 
 } // namespace Akregator
 
-#include "akregator_part.moc"

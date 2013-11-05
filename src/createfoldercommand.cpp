@@ -122,4 +122,4 @@ void CreateFolderCommand::doAbort()
 {
     
 }
-#include "createfoldercommand.moc"
+#include "moc_createfoldercommand.cpp"

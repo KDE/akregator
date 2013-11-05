@@ -159,4 +159,4 @@ void EditSubscriptionCommand::doAbort()
 
 }
 
-#include "editsubscriptioncommand.moc"
+#include "moc_editsubscriptioncommand.cpp"

@@ -598,4 +598,3 @@ void ArticleListView::setFilters( const std::vector<shared_ptr<const Filters::Ab
         m_proxy->setFilters( matchers );
 }
 
-#include "articlelistview.moc"

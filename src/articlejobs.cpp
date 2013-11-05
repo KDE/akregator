@@ -198,4 +198,3 @@ QList<Article> ArticleListJob::articles() const {
     return m_articles;
 }
 
-#include "articlejobs.moc"

@@ -347,4 +347,3 @@ void FeedPropertiesDialog::selectFeedName()
 
 } // namespace Akregator
 
-#include "feedpropertiesdialog.moc"

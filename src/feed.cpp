@@ -884,5 +884,4 @@ void Akregator::Feed::enforceLimitArticleNumber()
     }
 }
 
-#include "feed.moc"
 

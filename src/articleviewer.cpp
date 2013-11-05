@@ -773,5 +773,4 @@ void ArticleViewer::setArticleActionsEnabled(bool enabled)
 
 } // namespace Akregator
 
-#include "articleviewer.moc"
 

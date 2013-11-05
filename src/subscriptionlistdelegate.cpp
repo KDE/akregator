@@ -133,4 +133,3 @@ void Akregator::SubscriptionListDelegate::initStyleOption( QStyleOptionViewItem 
 }
 
 
-#include "subscriptionlistdelegate.moc"

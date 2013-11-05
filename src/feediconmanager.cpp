@@ -165,4 +165,4 @@ void FeedIconManager::slotIconChanged( bool isHost,
         l->setFavicon( icon );
 }
 
-#include "feediconmanager.moc"
+#include "moc_feediconmanager.cpp"

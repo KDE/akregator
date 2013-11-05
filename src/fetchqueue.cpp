@@ -148,4 +148,3 @@ void FetchQueue::slotNodeDestroyed(TreeNode* node)
     d->queuedFeeds.removeAll(feed);
 }
 
-#include "fetchqueue.moc"

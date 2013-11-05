@@ -241,4 +241,3 @@ ArticleListJob* TreeNode::createListJob() {
 
 } // namespace Akregator
 
-#include "treenode.moc"

@@ -227,4 +227,3 @@ KUrl MainFrame::url() const
 
 } // namespace Akregator
 
-#include "frame.moc"

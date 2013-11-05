@@ -62,4 +62,3 @@ KCMAkregatorOnlineSyncConfig::~KCMAkregatorOnlineSyncConfig()
 }
 
 
-#include "akregator_config_onlinesync.moc"

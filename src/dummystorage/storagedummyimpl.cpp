@@ -205,4 +205,3 @@ QString StorageDummyImpl::restoreTagSet() const
 } // namespace Backend
 } // namespace Akregator
 
-#include "storagedummyimpl.moc"

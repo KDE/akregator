@@ -44,4 +44,3 @@ void ConfigurationDialog::accept() {
 }
 
 
-#include "configurationdialog.moc"

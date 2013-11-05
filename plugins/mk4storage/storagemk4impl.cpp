@@ -385,4 +385,3 @@ QString Akregator::Backend::StorageMK4Impl::restoreTagSet() const
 }
 
 
-#include "storagemk4impl.moc"

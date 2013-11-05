@@ -68,4 +68,3 @@ void BrowserRun::foundMimeType(const QString& type)
 
 } // namespace Akregator
 
-#include "browserrun.moc"

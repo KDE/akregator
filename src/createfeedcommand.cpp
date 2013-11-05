@@ -189,4 +189,4 @@ void CreateFeedCommand::doAbort()
 
 }
 
-#include "createfeedcommand.moc"
+#include "moc_createfeedcommand.cpp"

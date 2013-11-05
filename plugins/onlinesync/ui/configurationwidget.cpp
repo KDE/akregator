@@ -147,4 +147,3 @@ void ConfigurationWidget::save() {
 }
 
 
-#include "configurationwidget.moc"

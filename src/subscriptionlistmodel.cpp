@@ -480,4 +480,3 @@ bool SubscriptionListModel::dropMimeData( const QMimeData* data,
     return true;
 }
 
-#include "subscriptionlistmodel.moc"

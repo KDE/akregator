@@ -145,4 +145,3 @@ void TrayIcon::settingsChanged()
 
 } // namespace Akregator
 
-#include "trayicon.moc"

@@ -298,4 +298,3 @@ Qt::ItemFlags ArticleModel::flags( const QModelIndex& idx ) const
     return f | Qt::ItemIsDragEnabled;
 }
 
-#include "articlemodel.moc"

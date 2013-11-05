@@ -139,4 +139,3 @@ void ConfigurationDialogAdd::slotUpdateUI()
     }
 }
 
-#include "configurationdialogadd.moc"

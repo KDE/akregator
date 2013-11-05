@@ -312,4 +312,3 @@ void SelectionController::forceFilterUpdate()
     m_articleLister->forceFilterUpdate();
 }
 
-#include "selectioncontroller.moc"

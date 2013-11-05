@@ -226,4 +226,3 @@ void SpeechClient::removeSpeech()
 
 } // namespace Akregator
 
-#include "speechclient.moc"

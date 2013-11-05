@@ -138,4 +138,3 @@ NotificationManager* NotificationManager::self()
 
 } // namespace Akregator
 
-#include "notificationmanager.moc"

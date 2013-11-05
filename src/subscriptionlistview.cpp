@@ -372,4 +372,3 @@ void Akregator::SubscriptionListView::startNodeRenaming( Akregator::TreeNode* no
     edit( current );
 }
 
-#include "subscriptionlistview.moc"

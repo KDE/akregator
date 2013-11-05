@@ -652,4 +652,3 @@ void ActionManagerImpl::setArticleActionsEnabled( bool enabled ) {
 
 } // namespace Akregator
 
-#include "actionmanagerimpl.moc"

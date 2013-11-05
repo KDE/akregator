@@ -184,4 +184,4 @@ void LoadFeedListCommand::Private::doLoad() {
     handleDocument( doc );
 }
 
-#include "loadfeedlistcommand.moc"
+#include "moc_loadfeedlistcommand.cpp"

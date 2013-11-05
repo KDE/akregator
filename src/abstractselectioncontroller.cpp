@@ -32,4 +32,3 @@ Akregator::AbstractSelectionController::~AbstractSelectionController()
 {
 }
 
-#include "abstractselectioncontroller.moc"

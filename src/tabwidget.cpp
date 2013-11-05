@@ -438,4 +438,3 @@ void TabWidget::slotActivateTab()
 
 } // namespace Akregator
 
-#include "tabwidget.moc"

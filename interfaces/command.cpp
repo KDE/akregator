@@ -85,4 +85,3 @@ void Command::waitForFinished()
     loop.exec();
 }
 
-#include "command.moc"

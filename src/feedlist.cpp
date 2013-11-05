@@ -621,4 +621,3 @@ QString FeedListManagementImpl::getCategoryName( const QString& catId ) const
 
 } // namespace Akregator
 
-#include "feedlist.moc"

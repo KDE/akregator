@@ -100,4 +100,3 @@ int KCMAkregatorArchiveConfig::archiveMode() const {
     return id;
 }
 
-#include "akregator_config_archive.moc"

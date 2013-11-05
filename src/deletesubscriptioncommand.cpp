@@ -196,4 +196,4 @@ void DeleteSubscriptionCommand::doAbort()
 
 }
 
-#include "deletesubscriptioncommand.moc"
+#include "moc_deletesubscriptioncommand.cpp"

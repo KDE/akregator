@@ -145,4 +145,3 @@ void AddFeedDialog::textChanged(const QString& text)
 
 } // namespace Akregator
 
-#include "addfeeddialog.moc"
