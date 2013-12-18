@@ -35,21 +35,17 @@
 #include <boost/shared_ptr.hpp>
 
 class KUrl;
-class KMenu;
 
 class QContextMenuEvent;
 class QPaintEvent;
-class QKeyEvent;
 template <class T> class QList;
 
 namespace Akregator {
 
 class Article;
-class FilterColumnsProxyModel;
 
 namespace Filters
 {
-    class ArticleMatcher;
 }
 
 class AKREGATORPART_EXPORT FilterDeletedProxyModel : public QSortFilterProxyModel {

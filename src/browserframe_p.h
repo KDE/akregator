@@ -63,7 +63,6 @@ class BrowserFrame::Private : public QObject
 
         class HistoryEntry;
         class HistoryAction;
-        class UrlAction;
 
         QList<HistoryEntry> history;
         QList<HistoryEntry>::Iterator current;

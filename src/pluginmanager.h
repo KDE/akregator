@@ -23,7 +23,6 @@ email                : markey@web.de
 
 #include <vector>
 
-class KLibrary;
 namespace Akregator {
 
 class Plugin;

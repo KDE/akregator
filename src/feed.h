@@ -43,6 +43,7 @@ namespace Akregator {
 class Article;
 class FetchQueue;
 class TreeNodeVisitor;
+class ArticleDeleteJob;
 
 namespace Backend {
     class Storage;

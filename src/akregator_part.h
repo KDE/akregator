@@ -39,7 +39,6 @@ class KConfigGroup;
 class KUrl;
 class KCMultiDialog;
 
-class QDomDocument;
 class QTimer;
 
 namespace Akregator {

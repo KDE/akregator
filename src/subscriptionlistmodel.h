@@ -127,7 +127,6 @@ private:
 
 }
 
-class QTreeView;
 
 namespace Akregator {
 

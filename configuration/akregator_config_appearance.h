@@ -32,7 +32,6 @@
 
 class QWidget;
 
-class KComponentData;
 
 class KCMAkregatorAppearanceConfig : public KCModule
 {

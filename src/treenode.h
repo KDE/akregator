@@ -42,7 +42,6 @@ template <class T> class QList;
 namespace Akregator
 {
 
-class ArticleDeleteJob;
 class ArticleListJob;
 class TreeNodeVisitor;
 class Article;

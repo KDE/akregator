@@ -30,7 +30,6 @@
 
 class QWidget;
 
-class KComponentData;
 
 class KCMAkregatorGeneralConfig : public KCModule
 {

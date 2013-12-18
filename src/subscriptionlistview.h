@@ -30,7 +30,6 @@
 #include <QAction>
 #include <QByteArray>
 
-class KMenu;
 
 namespace Akregator {
 

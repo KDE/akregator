@@ -30,7 +30,6 @@
 
 class QModelIndex;
 class QPoint;
-class QTimer;
 
 class KJob;
 

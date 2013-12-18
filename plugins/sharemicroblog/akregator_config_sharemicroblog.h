@@ -31,8 +31,6 @@
 #include <QVariant>
 
 class QWidget;
-class KComponentData;
-class KConfigDialog;
 
 
 class KCMAkregatorShareConfig : public KCModule

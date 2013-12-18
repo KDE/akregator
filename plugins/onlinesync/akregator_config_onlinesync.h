@@ -28,7 +28,6 @@
 #include <QVariant>
 
 class QWidget;
-class KComponentData;
 namespace feedsync {
     class ConfigurationWidget;
 }

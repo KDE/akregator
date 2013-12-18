@@ -32,7 +32,6 @@
 class KUrl;
 
 class QIcon;
-class QPixmap;
 class QString;
 
 namespace Akregator {
