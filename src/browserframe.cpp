@@ -30,7 +30,6 @@
 #include "utils/temporaryvalue.h"
 
 #include <QAction>
-#include <QGridLayout>
 #include <QList>
 #include <QPoint>
 #include <QPointer>

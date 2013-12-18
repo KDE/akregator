@@ -34,8 +34,6 @@
 
 #include <solid/networking.h>
 
-#include <QPixmap>
-#include <QPointer>
 #include <QWidget>
 
 #include <boost/shared_ptr.hpp>

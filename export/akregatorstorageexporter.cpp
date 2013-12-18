@@ -28,14 +28,13 @@
 #include <syndication/atom/constants.h>
 #include <syndication/constants.h>
 
-#include <QCoreApplication>
 #include <QDateTime>
-#include <QDebug>
 #include <QFile>
 #include <QIODevice>
 #include <QStringList>
 #include <QXmlStreamWriter>
 #include <QVariant>
+#include <QDebug>
 
 #include <KComponentData>
 #include <KGlobal>

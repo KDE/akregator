@@ -36,8 +36,6 @@
 #include <KColorScheme>
 
 #include <QPainter>
-#include <QBitmap>
-#include <QDesktopWidget>
 
 
 namespace Akregator {

@@ -25,7 +25,6 @@
 #include "subscriptionlist.h"
 
 #include <kdebug.h>
-#include <QStringList>
 
 namespace feedsync
 {

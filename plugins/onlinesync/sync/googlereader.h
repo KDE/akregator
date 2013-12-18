@@ -25,8 +25,6 @@
 #ifndef GOOGLEREADER_H
 #define GOOGLEREADER_H
 
-#include <KApplication>
-#include <QMutex>
 
 #include "aggregator.h"
 #include "subscriptionlist.h"

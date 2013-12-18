@@ -31,7 +31,6 @@
 #include <klocale.h>
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
-#include <QStringList>
 
 namespace Akregator {
 

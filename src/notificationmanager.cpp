@@ -31,7 +31,6 @@
 #include <kglobal.h>
 
 #include <QTimer>
-#include <QList>
 
 
 namespace Akregator {

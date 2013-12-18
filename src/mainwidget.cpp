@@ -78,7 +78,6 @@
 #include <kurl.h>
 
 #include <QClipboard>
-#include <QPixmap>
 #include <QSplitter>
 #include <QTextDocument>
 #include <QDomDocument>

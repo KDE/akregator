@@ -26,7 +26,6 @@
 #define AKREGATOR_SUBSCRIPTIONLISTVIEW_H
 
 #include <QTreeView>
-#include <QMap>
 #include <QAction>
 #include <QByteArray>
 

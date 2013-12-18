@@ -30,7 +30,6 @@
 #include "feedlistmanagementinterface.h"
 
 #include <QObject>
-#include <QPointer>
 
 #include <boost/shared_ptr.hpp>
 

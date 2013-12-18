@@ -36,17 +36,17 @@
 #include <KApplication>
 #include <KConfig>
 #include <KEditToolBar>
-#include <KLibLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KMenuBar>
 #include <KSqueezedTextLabel>
-#include <KStatusBar>
 #include <KShortcutsDialog>
 #include <KStandardAction>
+#include <KStatusBar>
+#include <KPluginLoader>
+#include <KMenuBar>
+#include <KXMLGUIFactory>
 #include <KToolBar>
-#include <KStandardDirs>
-#include <KTemporaryFile>
+#include <KPluginFactory>
 
 using namespace Akregator;
 

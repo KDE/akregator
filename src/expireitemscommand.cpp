@@ -30,7 +30,6 @@
 
 #include <KDebug>
 
-#include <QPointer>
 #include <QSet>
 #include <QTimer>
 

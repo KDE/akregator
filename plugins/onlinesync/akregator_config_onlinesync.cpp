@@ -27,8 +27,6 @@
 #include "ui/configurationwidget.h"
 
 #include <KAboutData>
-#include <KConfigDialogManager>
-#include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>
 

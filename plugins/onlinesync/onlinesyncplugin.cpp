@@ -29,7 +29,6 @@
 #include <KAction>
 #include <KActionMenu>
 #include <KActionCollection>
-#include <KGenericFactory>
 #include <KLocalizedString>
 #include <KConfigGroup>
 

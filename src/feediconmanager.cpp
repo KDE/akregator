@@ -31,9 +31,7 @@
 #include <kurl.h>
 
 #include <QIcon>
-#include <QList>
 #include <QMultiHash>
-#include <QPixmap>
 #include <QtDBus/QtDBus>
 
 #include <cassert>

@@ -30,7 +30,6 @@
 
 #include <khtml_part.h>
 
-#include <QFrame>
 #include <QPointer>
 
 #include <boost/shared_ptr.hpp>

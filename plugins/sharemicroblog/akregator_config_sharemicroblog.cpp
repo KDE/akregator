@@ -26,9 +26,7 @@
 #include "sharesettings.h"
 
 #include <KAboutData>
-#include <KConfigDialogManager>
 #include <KPluginFactory>
-#include <KConfigDialog>
 #include <KLocalizedString>
 #include <kdemacros.h>
 

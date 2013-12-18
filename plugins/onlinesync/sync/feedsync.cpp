@@ -31,14 +31,9 @@
 #include "akregator.h"
 #include "opml.h"
 
-#include <KAboutData>
-#include <KCmdLineArgs>
-#include <QTimer>
 #include <QFile>
 #include <QThread>
 #include <QMessageBox>
-#include <QDomElement>
-#include <QDomDocument>
 #include <kdebug.h>
 #include <kconfiggroup.h>
 #include <kglobalsettings.h>

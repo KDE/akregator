@@ -30,8 +30,6 @@
 #include <KIcon>
 #include <KStatusNotifierItem>
 
-#include <QImage>
-#include <QPixmap>
 
 
 namespace Akregator {

@@ -17,7 +17,6 @@ email                : markey@web.de
 #include "plugin.h"
 
 #include <vector>
-#include <QFile>
 #include <QString>
 
 #include <klibloader.h>

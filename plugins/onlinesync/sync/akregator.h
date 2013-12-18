@@ -25,7 +25,6 @@
 #ifndef AKREGATOR_H
 #define AKREGATOR_H
 
-#include <KApplication>
 
 #include "aggregator.h"
 #include "subscriptionlist.h"

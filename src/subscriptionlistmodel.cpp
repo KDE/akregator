@@ -35,7 +35,6 @@
 
 #include <QByteArray>
 #include <QDataStream>
-#include <QFont>
 #include <QIcon>
 #include <QList>
 #include <QMimeData>

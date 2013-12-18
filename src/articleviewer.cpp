@@ -63,7 +63,6 @@
 #include <kparts/browserrun.h>
 
 #include <QClipboard>
-#include <QKeySequence>
 #include <QGridLayout>
 
 #include <boost/bind.hpp>

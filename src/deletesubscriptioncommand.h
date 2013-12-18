@@ -27,7 +27,6 @@
 
 #include "command.h"
 
-#include <QVector>
 
 #include <boost/weak_ptr.hpp>
 

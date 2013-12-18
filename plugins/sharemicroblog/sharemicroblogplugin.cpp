@@ -24,7 +24,6 @@
 
 #include "sharemicroblogplugin.h"
 
-#include <KUrl>
 #include <KAction>
 #include <KActionMenu>
 #include <KActionCollection>

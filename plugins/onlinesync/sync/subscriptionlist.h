@@ -26,7 +26,6 @@
 #define SUBSCRIPTIONLIST_H
 
 #include <QStringList>
-#include <KApplication>
 
 namespace feedsync
 {

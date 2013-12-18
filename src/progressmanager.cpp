@@ -27,7 +27,6 @@
 #include "treenode.h"
 
 #include <QHash>
-#include <QList>
 
 #include <klocale.h>
 

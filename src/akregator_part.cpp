@@ -46,7 +46,6 @@
 #include <libkdepim/misc/broadcaststatus.h>
 #include "kdepim-version.h"
 
-#include <KActionCollection>
 #include <knotifyconfigwidget.h>
 #include <kaboutdata.h>
 #include <kapplication.h>
