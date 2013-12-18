@@ -32,7 +32,7 @@
 #include <QPointer>
 
 #include <KMenu>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KDebug>
 #include <KConfigGroup>
 

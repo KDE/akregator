@@ -35,10 +35,11 @@
 #include <KDateTime>
 #include <KGlobal>
 #include <KIcon>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KUrl>
 #include <KMenu>
 #include <KColorScheme>
+#include <KLocale>
 
 #include <QApplication>
 #include <QContextMenuEvent>

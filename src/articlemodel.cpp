@@ -34,8 +34,9 @@
 #include <QString>
 #include <QVector>
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KGlobal>
+#include <KLocale>
 
 #include <memory>
 

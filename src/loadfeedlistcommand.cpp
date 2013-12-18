@@ -27,7 +27,7 @@
 #include "feedlist.h"
 #include "storage.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KRandom>
 
