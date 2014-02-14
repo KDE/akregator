@@ -144,6 +144,7 @@ QVariant Akregator::SubscriptionListModel::data( const QModelIndex& index, int r
                 case TotalCountColumn:
                     return node->totalCount();
             }
+	    break;
         }
         case Qt::ToolTipRole:
         {
