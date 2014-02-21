@@ -35,11 +35,6 @@
 
 class KSqueezedTextLabel;
 
-namespace KPIM
-{
-    class StatusbarProgressWidget;
-}
-
 namespace Akregator
 {
 
@@ -130,7 +125,6 @@ private:
     BrowserInterface *m_browserIface;
 
     QPointer<Akregator::Part> m_part;
-    KPIM::StatusbarProgressWidget *m_progressBar;
     KSqueezedTextLabel *m_statusLabel;
 };
 

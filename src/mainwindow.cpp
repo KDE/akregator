@@ -28,7 +28,7 @@
 #include "trayicon.h"
 
 #include "libkdepim/misc/broadcaststatus.h"
-#include "libkdepim/progresswidget/progressdialog.h"
+#include "libkdepim/progresswidget/progressstatusbarwidget.h"
 #include "libkdepim/progresswidget/statusbarprogresswidget.h"
 
 #include <KAction>
@@ -61,7 +61,6 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
     : KParts::MainWindow( parent, f )
     , m_browserIface( new BrowserInterface( this, "browser_interface" ) )
     , m_part()
-    , m_progressBar( 0 )
     , m_statusLabel( new KSqueezedTextLabel( this ) )
 {
     setPluginLoadingMode( DoNotLoadPlugins );
@@ -123,12 +122,8 @@ bool MainWindow::loadPart()
 
 void MainWindow::setupProgressWidgets()
 {
-    KPIM::ProgressDialog *progressDialog = new KPIM::ProgressDialog( statusBar(), this );
-    progressDialog->raise();
-    progressDialog->hide();
-    m_progressBar = new KPIM::StatusbarProgressWidget( progressDialog, statusBar() );
-    m_progressBar->show();
-    statusBar()->addPermanentWidget( m_progressBar, 0 );
+    KPIM::ProgressStatusBarWidget * progressStatusBarWidget = new KPIM::ProgressStatusBarWidget(statusBar(), this);
+    statusBar()->addPermanentWidget( progressStatusBarWidget->littleProgress(), 0 );
 }
 
 MainWindow::~MainWindow()
