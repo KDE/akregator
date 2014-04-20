@@ -12,7 +12,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-c4_Sequence::c4_Sequence(): _refCount(0), _dependencies(0), _propertyLimit(0),
+c4_Sequence::c4_Sequence(): _refCount(0), _dependencies(0), _propertyLimit(0), _propertyMap(0),
   _tempBuf(0){}
 
 c4_Sequence::~c4_Sequence() {
