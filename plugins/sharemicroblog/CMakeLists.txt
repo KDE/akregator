@@ -11,13 +11,13 @@ include_directories(
 
 set(akregator_sharemicroblog_plugin_SRCS sharemicroblogplugin.cpp)
 
-kde4_add_plugin(akregator_sharemicroblog_plugin ${akregator_sharemicroblog_plugin_SRCS})
+add_library(akregator_sharemicroblog_plugin MODULE ${akregator_sharemicroblog_plugin_SRCS})
 
 target_link_libraries(akregator_sharemicroblog_plugin
   akregatorprivate
   akregatorinterfaces
   ${KDE4_PLASMA_LIBS}
-  ${KDE4_KIO_LIBS}
+  KF5::KIOCore
   ${KDE4_KPARTS_LIBS}
 )
 
@@ -31,13 +31,13 @@ set(kcm_akrshareconfig_SRCS
   akregator_config_sharemicroblog.cpp
 )
 
-kde4_add_kcfg_files(kcm_akrshareconfig_SRCS sharesettings.kcfgc)
-kde4_add_ui_files(kcm_akrshareconfig_SRCS configurationwidget.ui)
-kde4_add_plugin(akregator_config_sharemicroblog ${kcm_akrshareconfig_SRCS})
+kconfig_add_kcfg_files(kcm_akrshareconfig_SRCS sharesettings.kcfgc)
+qt5_wrap_ui(kcm_akrshareconfig_SRCS configurationwidget.ui)
+add_library(akregator_config_sharemicroblog MODULE ${kcm_akrshareconfig_SRCS})
 
 target_link_libraries(akregator_config_sharemicroblog
   akregatorinterfaces
-  ${KDE4_KIO_LIBS}
+  KF5::KIOCore
   ${KDE4_KPARTS_LIBS}
 )
 

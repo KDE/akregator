@@ -39,11 +39,11 @@ set(akregator_mk4storage_plugin_PART_SRCS
   mk4plugin.cpp
 )
 
-kde4_add_plugin(akregator_mk4storage_plugin ${akregator_mk4storage_plugin_PART_SRCS})
+add_library(akregator_mk4storage_plugin MODULE ${akregator_mk4storage_plugin_PART_SRCS})
 
 target_link_libraries(akregator_mk4storage_plugin
-  ${KDE4_KDECORE_LIBS}
-  ${KDEPIMLIBS_SYNDICATION_LIBS}
+  
+  KF5::Syndication
   akregatorinterfaces
 )
 

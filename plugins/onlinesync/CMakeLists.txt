@@ -18,16 +18,16 @@ set(kcm_akronlinesyncconfig_SRCS
   ui/configurationdialogadd.cpp
 )
 
-kde4_add_kcfg_files(kcm_akronlinesyncconfig_SRCS onlinesyncsettings.kcfgc)
+kconfig_add_kcfg_files(kcm_akronlinesyncconfig_SRCS onlinesyncsettings.kcfgc)
 
-kde4_add_ui_files(kcm_akronlinesyncconfig_SRCS ui/configurationwidget.ui)
-kde4_add_ui_files(kcm_akronlinesyncconfig_SRCS ui/configurationdialogadd.ui)
+qt5_wrap_ui(kcm_akronlinesyncconfig_SRCS ui/configurationwidget.ui)
+qt5_wrap_ui(kcm_akronlinesyncconfig_SRCS ui/configurationdialogadd.ui)
 
-kde4_add_plugin(akregator_config_onlinesync ${kcm_akronlinesyncconfig_SRCS})
+add_library(akregator_config_onlinesync MODULE ${kcm_akronlinesyncconfig_SRCS})
 
 target_link_libraries(akregator_config_onlinesync
   akregatorinterfaces
-  ${KDE4_KIO_LIBS}
+  KF5::KIOCore
   ${KDE4_KPARTS_LIBS}
 )
 
@@ -48,18 +48,18 @@ set(akregator_onlinesync_plugin_SRCS
   onlinesyncplugin.cpp
 )
 
-kde4_add_ui_files(akregator_onlinesync_plugin_SRCS
+qt5_wrap_ui(akregator_onlinesync_plugin_SRCS
   ui/configurationwidget.ui
   ui/configurationdialogadd.ui
 )
 
-kde4_add_kcfg_files(akregator_onlinesync_plugin_SRCS onlinesyncsettings.kcfgc)
+kconfig_add_kcfg_files(akregator_onlinesync_plugin_SRCS onlinesyncsettings.kcfgc)
 
-kde4_add_plugin(akregator_onlinesync_plugin ${akregator_onlinesync_plugin_SRCS})
+add_library(akregator_onlinesync_plugin MODULE ${akregator_onlinesync_plugin_SRCS})
 
 target_link_libraries(akregator_onlinesync_plugin
   akregatorinterfaces
-  ${KDE4_KIO_LIBS}
+  KF5::KIOCore
   ${KDE4_KPARTS_LIBS}
 )
 

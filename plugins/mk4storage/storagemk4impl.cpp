@@ -34,7 +34,7 @@
 
 #include <kdebug.h>
 #include <kstandarddirs.h>
-
+#include <KGlobal>
 
 class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 {

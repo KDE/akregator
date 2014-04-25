@@ -26,13 +26,13 @@
 #define AKREGATOR_ABOUTDATA_H
 
 #include "akregator_export.h"
-#include <kaboutdata.h>
+#include <k4aboutdata.h>
 
 namespace Akregator {
 /**
 @author Teemu Rytilahti
 */
-class AKREGATOR_EXPORT AboutData : public KAboutData
+class AKREGATOR_EXPORT AboutData : public K4AboutData
 {
 public:
     AboutData();

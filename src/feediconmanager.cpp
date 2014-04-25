@@ -29,6 +29,7 @@
 #include <kdebug.h>
 #include <kstandarddirs.h>
 #include <kurl.h>
+#include <KGlobal>
 
 #include <QIcon>
 #include <QMultiHash>

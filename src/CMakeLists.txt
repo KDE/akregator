@@ -1,4 +1,4 @@
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
+kde_enable_exceptions()
 
 add_subdirectory(about)
 add_subdirectory(icons)
@@ -16,7 +16,7 @@ set(akregator_SRCS main.cpp mainwindow.cpp)
 
 kde4_add_app_icon(akregator_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-akregator.png")
 
-kde4_add_executable(akregator ${akregator_SRCS})
+add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
   ${KDE4_KPARTS_LIBS}
@@ -56,15 +56,15 @@ set(akregatorprivate_LIB_SRCS
   actions.cpp
 )
 
-kde4_add_library(akregatorprivate ${LIBRARY_TYPE} ${akregatorprivate_LIB_SRCS})
+add_library(akregatorprivate ${LIBRARY_TYPE} ${akregatorprivate_LIB_SRCS})
 
 target_link_libraries(akregatorprivate
   kdepim
-  ${KDE4_KHTML_LIBS}
-  ${KDEPIMLIBS_SYNDICATION_LIBS}
+  KF5::KHtml
+  KF5::Syndication
   akregatorinterfaces
 )
-target_link_libraries(akregatorprivate LINK_INTERFACE_LIBRARIES ${KDE4_KHTML_LIBS})
+target_link_libraries(akregatorprivate LINK_INTERFACE_LIBRARIES KF5::KHtml)
 
 set_target_properties(akregatorprivate
   PROPERTIES VERSION ${GENERIC_LIB_VERSION}
@@ -113,24 +113,24 @@ set(akregatorpart_PART_SRCS
 )
 
 qt4_add_dbus_interfaces(akregatorpart_PART_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.KSpeech.xml)
-qt4_add_dbus_adaptor(akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
+qt5_add_dbus_adaptor(akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
 
-kde4_add_ui_files(akregatorpart_PART_SRCS
+qt5_wrap_ui(akregatorpart_PART_SRCS
   addfeedwidgetbase.ui
   feedpropertieswidgetbase.ui
 )
 
-kde4_add_plugin(akregatorpart ${akregatorpart_PART_SRCS})
+add_library(akregatorpart MODULE ${akregatorpart_PART_SRCS})
 
 target_link_libraries(akregatorpart
   akregatorinterfaces
   akregatorprivate
-  ${KDE4_KCMUTILS_LIBS}
-  ${KDE4_KNOTIFYCONFIG_LIBS}
+  KF5::KCMUtils
+  KF5::NotifyConfig
   ${KDE4_SOLID_LIBRARY}
   kdepim
-  ${KDEPIMLIBS_SYNDICATION_LIBS}
-  ${KDEPIMLIBS_KPIMUTILS_LIBS}
+  KF5::Syndication
+  KF5::PimUtils
 )
 
 install(TARGETS akregatorpart DESTINATION ${PLUGIN_INSTALL_DIR})
