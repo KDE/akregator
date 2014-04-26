@@ -181,15 +181,6 @@ KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
     return KParts::BrowserExtension::childObject( p );
 }
 
-bool MainWindow::queryExit()
-{
-    if ( !kapp->sessionSaving() )
-    {
-        delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
-    }
-    return KMainWindow::queryExit();
-}
-
 void MainWindow::slotQuit()
 {
     kapp->quit();
@@ -197,8 +188,14 @@ void MainWindow::slotQuit()
 
 bool MainWindow::queryClose()
 {
-    if ( kapp->sessionSaving() || !TrayIcon::getInstance() )
+    if ( kapp->sessionSaving() ) {
         return true;
+    }
+    if ( !TrayIcon::getInstance() ) {
+        delete m_part; // delete that here instead of dtor to ensure nested khtmlparts are deleted before singleton objects like KHTMLPageCache
+        return true;
+    }
+
     hide();
     return false;
 }
