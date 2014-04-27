@@ -98,11 +98,6 @@ protected:
     void readProperties(const KConfigGroup &);
 
     /**
-     *  Reimplemented to save settings
-     */
-    bool queryExit();
-
-    /**
      * Reimplemented to say if app will be running in system tray if necessary
      */
     bool queryClose();
