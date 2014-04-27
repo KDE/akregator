@@ -67,8 +67,8 @@ target_link_libraries(akregatorprivate
 target_link_libraries(akregatorprivate LINK_INTERFACE_LIBRARIES KF5::KHtml)
 
 set_target_properties(akregatorprivate
-  PROPERTIES VERSION ${GENERIC_LIB_VERSION}
-  SOVERSION ${GENERIC_LIB_SOVERSION}
+  PROPERTIES VERSION ${KDEPIM_LIB_VERSION}
+  SOVERSION ${KDEPIM_LIB_SOVERSION}
 )
 install(TARGETS akregatorprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)
 
