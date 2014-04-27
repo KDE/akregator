@@ -34,6 +34,7 @@
 #include <kparts/part.h>
 
 #include <boost/shared_ptr.hpp>
+#include <kparts/readonlypart.h>
 
 class KConfigGroup;
 class KUrl;
