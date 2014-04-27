@@ -37,6 +37,8 @@
 #include <kconfiggroup.h>
 #include <ktoolinvocation.h>
 #include <kparts/event.h>
+#include <kparts/guiactivateevent.h>
+#include <KDebug>
 
 #include <QtCore/QStringList>
 #include <QtGui/QApplication>

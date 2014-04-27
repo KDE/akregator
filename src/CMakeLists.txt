@@ -19,8 +19,8 @@ kde4_add_app_icon(akregator_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-akre
 add_executable(akregator ${akregator_SRCS})
 
 target_link_libraries(akregator
-  ${KDE4_KPARTS_LIBS}
-  ${KDEPIMLIBS_KONTACTINTERFACE_LIBS}
+  KF5::KontactInterface
+  KF5::KontactInterface
   kdepim
   akregatorprivate
   akregatorinterfaces
@@ -127,7 +127,6 @@ target_link_libraries(akregatorpart
   akregatorprivate
   KF5::KCMUtils
   KF5::NotifyConfig
-  ${KDE4_SOLID_LIBRARY}
   kdepim
   KF5::Syndication
   KF5::PimUtils

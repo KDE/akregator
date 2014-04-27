@@ -36,11 +36,11 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
+//QT5 K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorGeneralConfigFactory( "kcmakrgeneralconfig" ))
 
 KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorGeneralConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
+    : KCModule( /*KCMAkregatorGeneralConfigFactory::componentData(),*/ parent, args ), m_widget( new QWidget )
 {  
     Ui::SettingsGeneral ui;
     ui.setupUi( m_widget );
@@ -54,7 +54,7 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
              ui.kcfg_AutoFetchInterval, SLOT(setEnabled(bool)) );
     connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),
              ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)) );
-
+#if 0 //QT5
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrgeneralconfig" ), 0,
                                         ki18n( "Configure Feeds" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -62,7 +62,7 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
     setAboutData( about );
-
+#endif
     addConfig( Settings::self(), m_widget );
 }
 

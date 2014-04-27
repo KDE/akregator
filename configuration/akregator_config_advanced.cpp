@@ -36,15 +36,15 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorAdvancedConfigFactory, registerPlugin<KCMAkregatorAdvancedConfig>();)
+//QT5 K_PLUGIN_FACTORY(KCMAkregatorAdvancedConfigFactory, registerPlugin<KCMAkregatorAdvancedConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorAdvancedConfigFactory( "kcmakradvancedconfig" ))
 
 KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorAdvancedConfigFactory::componentData(), parent, args ), m_widget( new SettingsAdvanced )
+    : KCModule( /*KCMAkregatorAdvancedConfigFactory::componentData(),*/ parent, args ), m_widget( new SettingsAdvanced )
 {  
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-   
+  #if 0 //QT5 
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakradvancedconfig" ), 0,
                                         ki18n( "Advanced Feed Reader Settings" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -52,7 +52,7 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const Q
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
     setAboutData( about );
-
+#endif
     addConfig( Settings::self(), m_widget );
 }
 

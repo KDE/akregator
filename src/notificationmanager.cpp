@@ -75,7 +75,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
     if (feeds.count() == 1)
     {
         //KNotifyClient::Instance inst(m_instance);
-        KNotification::event(QLatin1String("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
+        //QT5 KNotification::event(QLatin1String("FeedAdded"), i18n("Feed added:\n %1", feeds[0]), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
     else if (feeds.count() > 1)
     {
@@ -83,7 +83,7 @@ void NotificationManager::slotNotifyFeeds(const QStringList& feeds)
         for (QStringList::ConstIterator it = feeds.constBegin(); it != feeds.constEnd(); ++it)
             message += *it + QLatin1Char('\n');
         //KNotifyClient::Instance inst(m_instance);
-        KNotification::event(QLatin1String("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
+        //QT5 KNotification::event(QLatin1String("FeedAdded"), i18n("Feeds added:\n %1", message), QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
     }
 }
 
@@ -102,7 +102,7 @@ void NotificationManager::doNotify()
         message += i.title() + QLatin1String("<br>");
     }
     message += QLatin1String("</body></html>");
-    KNotification::event(QLatin1String("NewArticles"), message, QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
+    //QT5 KNotification::event(QLatin1String("NewArticles"), message, QPixmap() ,m_widget, KNotification::CloseOnTimeout, m_instance);
 
     m_articles.clear();
     m_running = false;

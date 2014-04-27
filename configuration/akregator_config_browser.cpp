@@ -36,11 +36,11 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorBrowserConfigFactory, registerPlugin<KCMAkregatorBrowserConfig>();)
+//QT5 K_PLUGIN_FACTORY(KCMAkregatorBrowserConfigFactory, registerPlugin<KCMAkregatorBrowserConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorBrowserConfigFactory( "kcmakrbrowserconfig" ))
 
 KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorBrowserConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
+    : KCModule( /*KCMAkregatorBrowserConfigFactory::componentData(),*/ parent, args ), m_widget( new QWidget )
 {  
     Ui::SettingsBrowser ui;
     ui.setupUi( m_widget );
@@ -50,7 +50,7 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVa
     
     connect( ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)), 
              ui.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)) );
-
+#if 0 //QT5
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrbrowserconfig" ), 0,
                                         ki18n( "Configure Feed Reader Browser" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -58,7 +58,7 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVa
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
     setAboutData( about );
-
+#endif
     addConfig( Settings::self(), m_widget );
 }
 

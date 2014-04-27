@@ -34,11 +34,11 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorAppearanceConfigFactory, registerPlugin<KCMAkregatorAppearanceConfig>();)
+//QT5 K_PLUGIN_FACTORY(KCMAkregatorAppearanceConfigFactory, registerPlugin<KCMAkregatorAppearanceConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorAppearanceConfigFactory( "kcmakrappearanceconfig" ))
 
 KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorAppearanceConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
+    : KCModule( /*KCMAkregatorAppearanceConfigFactory::componentData(),*/ parent, args ), m_widget( new QWidget )
 {  
     m_ui.setupUi( m_widget );
 
@@ -68,7 +68,7 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
              m_ui.slider_minimumFontSize, SLOT(setValue(int)) );
     connect( m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)),
              m_ui.slider_mediumFontSize, SLOT(setValue(int)) );
-
+#if 0 //QT5
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrappearanceconfig" ), 0,
                                         ki18n( "Configure Feed Reader Appearance" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -76,7 +76,7 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
     setAboutData( about );
-
+#endif
     m_ui.slider_minimumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MinimumFontSize")) );
     m_ui.slider_mediumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MediumFontSize")) );
     m_ui.lbl_MinimumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MinimumFontSize")) );

@@ -60,7 +60,7 @@ void BrowserRun::foundMimeType(const QString& type)
             KRun::setPreferredService( selectedService->desktopEntryName() );
             KRun::foundMimeType( type );
         } else {
-            KRun::displayOpenWithDialog( url(), m_window, false, suggestedFileName() );
+            //QT5 KRun::displayOpenWithDialog( url(), m_window, false, suggestedFileName() );
             setFinished(true);
         }
     }

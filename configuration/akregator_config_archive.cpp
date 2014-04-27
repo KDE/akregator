@@ -36,11 +36,11 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
+//QT5 K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorArchiveConfigFactory( "kcmakrarchiveconfig" ))
 
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( KCMAkregatorArchiveConfigFactory::componentData(), parent, args ), m_widget( new QWidget )
+    : KCModule( /*KCMAkregatorArchiveConfigFactory::componentData(),*/ parent, args ), m_widget( new QWidget )
 {
     Ui::SettingsArchive m_ui;
     m_ui.setupUi( m_widget );
@@ -60,6 +60,7 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVa
     m_archiveModeGroup->addButton( m_ui.rb_LimitArticleAge, Settings::EnumArchiveMode::limitArticleAge );
     m_archiveModeGroup->addButton( m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving );
     connect( m_archiveModeGroup, SIGNAL(buttonClicked(int)), this, SLOT(changed()) );
+#if 0 //QT5
     KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrarchiveconfig" ), 0,
                                         ki18n( "Configure Feed Reader Archive" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -67,7 +68,7 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVa
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
     setAboutData( about );
-
+#endif
     addConfig( Settings::self(), m_widget );
 }
 

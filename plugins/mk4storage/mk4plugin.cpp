@@ -30,9 +30,9 @@
 namespace Akregator {
 namespace Backend {
 
-K_PLUGIN_FACTORY(MK4PluginFactory,
-                 registerPlugin<MK4Plugin>();
-)
+//QT5 K_PLUGIN_FACTORY(MK4PluginFactory,
+//                 registerPlugin<MK4Plugin>();
+//)
 
 K_EXPORT_PLUGIN(MK4PluginFactory("akregator_mk4storage"))
 

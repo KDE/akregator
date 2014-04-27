@@ -47,6 +47,7 @@
 #include <KXMLGUIFactory>
 #include <KToolBar>
 #include <KPluginFactory>
+#include <KGlobal>
 
 using namespace Akregator;
 
@@ -163,7 +164,8 @@ void MainWindow::optionsConfigureKeys()
 // TODO: move to part?
 void MainWindow::optionsConfigureToolbars()
 {
-    saveMainWindowSettings(KGlobal::config().data()->group( autoSaveGroup()) );
+    KConfigGroup grp(KGlobal::config().data()->group( autoSaveGroup()));
+    saveMainWindowSettings(grp );
     KEditToolBar dlg(factory());
     connect(&dlg, SIGNAL(newToolBarConfig()),
             this, SLOT(applyNewToolbarConfig()));

@@ -34,17 +34,17 @@
 
 using namespace Akregator;
 
-K_PLUGIN_FACTORY( KCMAkregatorShareConfigFactory, registerPlugin<KCMAkregatorShareConfig>(); )
+//QT5 K_PLUGIN_FACTORY( KCMAkregatorShareConfigFactory, registerPlugin<KCMAkregatorShareConfig>(); )
 K_EXPORT_PLUGIN( KCMAkregatorShareConfigFactory( "kcmakrshareconfig" ) )
 
 KCMAkregatorShareConfig::KCMAkregatorShareConfig( QWidget* parent, const QVariantList& args )
-: KCModule( KCMAkregatorShareConfigFactory::componentData(), parent, args ),
+: KCModule( /*KCMAkregatorShareConfigFactory::componentData(),*/ parent, args ),
     m_widget( new QWidget )
 {
     ui.setupUi( m_widget );
     QVBoxLayout *layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-
+#if 0 //QT5
     KAboutData* about = new KAboutData( I18N_NOOP( "kcmakrshareconfig" ), 0,
                                         ki18n( "Configure Share Services" ),
                                         0, KLocalizedString(), KAboutData::License_GPL,
@@ -52,7 +52,7 @@ KCMAkregatorShareConfig::KCMAkregatorShareConfig( QWidget* parent, const QVarian
 
     about->addAuthor( ki18n( "Artur Duque de Souza" ), KLocalizedString(), "asouza@kde.org" );
     setAboutData( about );
-
+#endif
     addConfig( ShareSettings::self(), m_widget );
 }
 
