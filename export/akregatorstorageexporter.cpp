@@ -25,8 +25,8 @@
 #include "storagefactoryregistry.h"
 #include "plugin.h"
 
-#include <syndication/atom/constants.h>
-#include <syndication/constants.h>
+#include <Syndication/atom/constants.h>
+#include <Syndication/constants.h>
 
 #include <QDateTime>
 #include <QFile>

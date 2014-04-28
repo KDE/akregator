@@ -29,7 +29,7 @@
 #include "akregator_export.h"
 #include "types.h"
 
-#include <syndication/person.h>
+#include <Syndication/person.h>
 
 #include <boost/shared_ptr.hpp>
 

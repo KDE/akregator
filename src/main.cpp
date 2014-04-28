@@ -29,7 +29,7 @@
 #include <kcmdlineargs.h>
 #include <KDebug>
 #include <klocale.h>
-#include <kontactinterface/pimuniqueapplication.h>
+#include <KontactInterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
 
 namespace Akregator {
