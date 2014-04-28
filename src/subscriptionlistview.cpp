@@ -33,7 +33,7 @@
 
 #include <KMenu>
 #include <KLocalizedString>
-#include <KDebug>
+#include <QDebug>
 #include <KConfigGroup>
 
 #include <cassert>

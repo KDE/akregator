@@ -73,7 +73,7 @@ SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
     // Share feature provided by Plasma
     m_engine = Plasma::DataEngineManager::self()->loadEngine(QLatin1String("microblog"));
     if (!m_engine->isValid()) {
-        kDebug() << "could not load microblog data engine";
+        qDebug() << "could not load microblog data engine";
         return;
     }
 

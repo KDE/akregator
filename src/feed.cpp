@@ -38,7 +38,7 @@
 #include "utils.h"
 #include <Syndication/syndication.h>
 
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kglobal.h>
 #include <KIcon>
 #include <kstandarddirs.h>

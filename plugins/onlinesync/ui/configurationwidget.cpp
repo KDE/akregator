@@ -25,14 +25,14 @@
 #include "configurationwidget.h"
 #include "configurationdialogadd.h"
 
-#include <kdebug.h>
+#include <qdebug.h>
 #include <QPointer>
 
 using namespace feedsync;
 
 ConfigurationWidget::ConfigurationWidget( QWidget *parent ) : QWidget( parent )
 {
-    kDebug();
+    qDebug();
 
     ui.setupUi( this );
 
@@ -62,7 +62,7 @@ ConfigurationWidget::ConfigurationWidget( QWidget *parent ) : QWidget( parent )
 
 ConfigurationWidget::~ConfigurationWidget()
 {
-    kDebug();
+    qDebug();
 }
 
 void ConfigurationWidget::refresh()
@@ -72,7 +72,7 @@ void ConfigurationWidget::refresh()
 
 void ConfigurationWidget::load()
 {
-    kDebug();
+    qDebug();
 
     // Clear
     ui.list_readerList->clear();
@@ -82,7 +82,7 @@ void ConfigurationWidget::load()
     QList<QTreeWidgetItem *> items;
     foreach ( const QString& groupname, config.groupList() ) {
         if (groupname.left(15)=="FeedSyncSource_") {
-            kDebug() << groupname;
+            qDebug() << groupname;
             KConfigGroup generalGroup( &config, groupname );
             QStringList line;
             line.append( generalGroup.readEntry( "AggregatorType", QString() ) );
@@ -98,11 +98,11 @@ void ConfigurationWidget::load()
 
 void ConfigurationWidget::slotButtonUpdateClicked()
 {
-    kDebug();
+    qDebug();
     const QList<QTreeWidgetItem *> m_items = ui.list_readerList->selectedItems();
     if (m_items.isEmpty() )
         return;
-    kDebug() << m_items.at(0)->text(2);
+    qDebug() << m_items.at(0)->text(2);
     KConfig config("akregator_feedsyncrc");
     KConfigGroup configgroup( &config, m_items.at(0)->text(2) );
     QPointer<ConfigurationDialogAdd> dlg = new ConfigurationDialogAdd( this );
@@ -114,7 +114,7 @@ void ConfigurationWidget::slotButtonUpdateClicked()
 
 void ConfigurationWidget::slotButtonAddClicked()
 {
-    kDebug();
+    qDebug();
     QPointer<ConfigurationDialogAdd> addDlg = new ConfigurationDialogAdd( this );
     if ( addDlg->exec() == KDialog::Ok )
         refresh();
@@ -123,11 +123,11 @@ void ConfigurationWidget::slotButtonAddClicked()
 
 void ConfigurationWidget::slotButtonRemoveClicked()
 {
-    // kDebug();
+    // qDebug();
 
     QList<QTreeWidgetItem *> m_items = ui.list_readerList->selectedItems();
     if ( !m_items.isEmpty() ) {
-        kDebug() << m_items.at(0)->text(2);
+        qDebug() << m_items.at(0)->text(2);
         {
             KConfig config("akregator_feedsyncrc");
             config.deleteGroup(m_items.at(0)->text(2));
@@ -137,7 +137,7 @@ void ConfigurationWidget::slotButtonRemoveClicked()
 }
 
 void ConfigurationWidget::save() {
-    kDebug();
+    qDebug();
     // Save the removal policy
     KConfig config("akregator_feedsyncrc");
     KConfigGroup generalGroup( &config, "FeedSyncConfig" );

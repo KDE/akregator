@@ -28,7 +28,7 @@
 #include <QRegExp>
 
 #include <kactioncollection.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <klocale.h>
 #include <kurl.h>
 #include <kparts/browserextension.h>

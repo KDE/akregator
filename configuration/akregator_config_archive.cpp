@@ -26,7 +26,7 @@
 #include "ui_settings_archive.h"
 #include <KAboutData>
 #include <KConfigDialogManager>
-#include <KDebug>
+#include <QDebug>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>

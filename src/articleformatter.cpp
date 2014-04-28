@@ -459,7 +459,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
     }
 
     text += "</div>";
-    //kDebug() << text;
+    //qDebug() << text;
     return text;
 }
 

@@ -45,7 +45,7 @@
 #include <kaction.h>
 #include <KToggleAction>
 #include <kactioncollection.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <klocale.h>
 #include <kmenu.h>
 #include <kshortcut.h>

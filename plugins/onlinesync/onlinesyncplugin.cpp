@@ -65,12 +65,12 @@ OnlineSyncPlugin::OnlineSyncPlugin( QObject* parent, const QList<QVariant>& args
 
 OnlineSyncPlugin::~OnlineSyncPlugin()
 {
-    kDebug();
+    qDebug();
 }
 
 void OnlineSyncPlugin::updateActions()
 {
-    kDebug();
+    qDebug();
 
     // Clear the menubar
     Q_FOREACH( KAction* const i, m_feedSyncActions )
@@ -85,7 +85,7 @@ void OnlineSyncPlugin::updateActions()
     const KConfig config("akregator_feedsyncrc");
     Q_FOREACH ( const QString& groupname, config.groupList() ) {
         if ( groupname.startsWith( QLatin1String("FeedSyncSource_") ) ) {
-            kDebug() << groupname;
+            qDebug() << groupname;
             KConfigGroup generalGroup( &config, groupname );
 
             action = coll->addAction(groupname);
@@ -118,12 +118,12 @@ void OnlineSyncPlugin::updateActions()
 
 void OnlineSyncPlugin::doSynchronize()
 {
-    kDebug();
+    qDebug();
 }
 
 void OnlineSyncPlugin::slotFeedSyncManage()
 {
-    kDebug();
+    qDebug();
     feedsync::ConfigurationDialog* dlg = new feedsync::ConfigurationDialog();
     dlg->setAttribute( Qt::WA_DeleteOnClose );
     connect( dlg, SIGNAL(finished()), this, SLOT(slotFeedSyncManageDone()) );
@@ -132,7 +132,7 @@ void OnlineSyncPlugin::slotFeedSyncManage()
 
 void OnlineSyncPlugin::slotFeedSyncManageDone()
 {
-    kDebug();
+    qDebug();
     updateActions();
 }
 

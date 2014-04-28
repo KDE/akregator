@@ -33,7 +33,7 @@
 #include "kernel.h"
 #include "subscriptionlistjobs.h"
 
-#include <kdebug.h>
+#include <qdebug.h>
 #include <klocale.h>
 #include <krandom.h>
 
@@ -264,9 +264,9 @@ bool FeedList::readFromOpml(const QDomDocument& doc)
 {
     QDomElement root = doc.documentElement();
 
-    kDebug() <<"loading OPML feed" << root.tagName().toLower();
+    qDebug() <<"loading OPML feed" << root.tagName().toLower();
 
-    kDebug() <<"measuring startup time: START";
+    qDebug() <<"measuring startup time: START";
     QTime spent;
     spent.start();
 
@@ -282,7 +282,7 @@ bool FeedList::readFromOpml(const QDomDocument& doc)
 
     if (bodyNode.isNull())
     {
-        kDebug() <<"Failed to acquire body node, markup broken?";
+        qDebug() <<"Failed to acquire body node, markup broken?";
         return false;
     }
 
@@ -304,8 +304,8 @@ bool FeedList::readFromOpml(const QDomDocument& doc)
             d->idMap.insert(id, i);
     }
 
-    kDebug() <<"measuring startup time: STOP," << spent.elapsed() <<"ms";
-    kDebug() <<"Number of articles loaded:" << allFeedsFolder()->totalCount();
+    qDebug() <<"measuring startup time: STOP," << spent.elapsed() <<"ms";
+    qDebug() <<"Number of articles loaded:" << allFeedsFolder()->totalCount();
     return true;
 }
 
@@ -545,7 +545,7 @@ void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
     if ( !m_feedList )
         return;
 
-    kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
+    qDebug() << "Name:" << url.left(20) << "Cat:" << catId;
     uint folder_id = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
 
     // Get the folder
@@ -574,14 +574,14 @@ void FeedListManagementImpl::addFeed( const QString& url, const QString& catId )
 
 void FeedListManagementImpl::removeFeed( const QString& url, const QString& catId )
 {
-    kDebug() << "Name:" << url.left(20) << "Cat:" << catId;
+    qDebug() << "Name:" << url.left(20) << "Cat:" << catId;
 
     uint lastcatid = catId.split(QLatin1Char('/'),QString::SkipEmptyParts).last().toUInt();
 
     Q_FOREACH ( const Feed* const i, m_feedList->feeds() ) {
         if ( lastcatid == i->parent()->id() ) {
             if (i->xmlUrl().compare(url)==0) {
-                kDebug() << "id:" << i->id();
+                qDebug() << "id:" << i->id();
                 DeleteSubscriptionJob* job = new DeleteSubscriptionJob;
                 job->setSubscriptionId( i->id() );
                 job->start();

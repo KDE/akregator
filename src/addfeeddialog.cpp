@@ -26,7 +26,7 @@
 #include "feed.h"
 #include "kernel.h"
 
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kiconloader.h>
 #include <kicontheme.h>
 #include <klineedit.h>

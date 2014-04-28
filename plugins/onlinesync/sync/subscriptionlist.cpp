@@ -24,24 +24,24 @@
 
 #include "subscriptionlist.h"
 
-#include <kdebug.h>
+#include <qdebug.h>
 
 namespace feedsync
 {
 
 SubscriptionList::SubscriptionList()
 {
-    kDebug();
+    qDebug();
 }
 
 SubscriptionList::~SubscriptionList()
 {
-    kDebug();
+    qDebug();
 }
 
 void SubscriptionList::add(const QString& iRss, const QString& iName, const QString& iCat) 
 {
-    // kDebug() << iRss.left(20) << iName.left(10) << iCat.left(20);
+    // qDebug() << iRss.left(20) << iName.left(10) << iCat.left(20);
     _rssList.append(iRss);
     _nameList.append(iName);
     _catListFull.append(iCat);
@@ -54,7 +54,7 @@ void SubscriptionList::add(const QString& iRss, const QString& iName, const QStr
 
 void SubscriptionList::remove(const QString& iRss, const QString& iName, const QString& iCat) 
 {
-    // kDebug() << iRss.left(20) << iName.left(10) << iCat.left(10);
+    // qDebug() << iRss.left(20) << iName.left(10) << iCat.left(10);
     int index = indexOf(iRss,iName,iCat);
     _rssList.removeAt(index);
     _nameList.removeAt(index);
@@ -64,7 +64,7 @@ void SubscriptionList::remove(const QString& iRss, const QString& iName, const Q
 
 SubscriptionList SubscriptionList::compare( const SubscriptionList & iOther, ComparisonType diffType, RemovePolicy removePolicy) const
 {
-    kDebug();
+    qDebug();
 
     SubscriptionList diffList;
 
@@ -76,7 +76,7 @@ SubscriptionList SubscriptionList::compare( const SubscriptionList & iOther, Com
             QString m_cat = iOther.getCat(i);
             if ( this->indexOf(m_rss,m_name,m_cat) < 0 ) {
                 diffList.add(m_rss,m_name,m_cat);
-                kDebug() << "(+)"
+                qDebug() << "(+)"
                         << "RSS:" << m_rss.left(10)
                         << "Name:" << m_name.left(10)
                         << "Cat:" << m_cat.left(10);
@@ -95,7 +95,7 @@ SubscriptionList SubscriptionList::compare( const SubscriptionList & iOther, Com
                 // If the feed is not here at all
                 if ( ( iOther.indexOf(m_rss) < 0 ) && (removePolicy==Feed) ) {
                     diffList.add(m_rss,m_name,m_cat);
-                    kDebug() << "(-)"
+                    qDebug() << "(-)"
                             << "RSS:" << m_rss.left(10)
                             << "Name:" << m_name.left(10)
                             << "Cat:" << m_cat.left(10);
@@ -103,7 +103,7 @@ SubscriptionList SubscriptionList::compare( const SubscriptionList & iOther, Com
                 // If this is only a new category for the feed
                 } else if ( iOther.indexOf(m_rss) > -1 ) {
                     diffList.add(m_rss,m_name,m_cat);
-                    kDebug() << "(-)"
+                    qDebug() << "(-)"
                             << "RSS:" << m_rss.left(10)
                             << "Name:" << m_name.left(10)
                             << "Cat:" << m_cat.left(10);

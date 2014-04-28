@@ -30,7 +30,7 @@
 
 #include <kcharsets.h>
 #include <klocale.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <ktoolinvocation.h>
 #include <kservicetypetrader.h>
 
@@ -157,7 +157,7 @@ void SpeechClient::setupSpeechSystem()
 {
   if ( KStandardDirs::findExe( "kttsd" ).isEmpty() )
   {
-    kDebug() <<"KTTSD not installed, disable support";
+    qDebug() <<"KTTSD not installed, disable support";
     d->isTextSpeechInstalled = false;
   }
   else
@@ -172,7 +172,7 @@ void SpeechClient::setupSpeechSystem()
 
       if (KToolInvocation::startServiceByDesktopName("kttsd", QString(), &error) != 0)
       {
-        kDebug() <<"Starting KTTSD failed with message" << error;
+        qDebug() <<"Starting KTTSD failed with message" << error;
         d->isTextSpeechInstalled = false;
       }
       else

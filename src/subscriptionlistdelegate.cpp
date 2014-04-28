@@ -26,7 +26,7 @@
 #include "subscriptionlistdelegate.h"
 #include "subscriptionlistmodel.h"
 
-#include <KDebug>
+#include <QDebug>
 #include <KGlobalSettings>
 #include <KIconTheme>
 
@@ -87,7 +87,7 @@ void Akregator::SubscriptionListDelegate::recalculateRowHeight()
 {
     KIconTheme *iconTheme = KIconLoader::global()->theme();
     m_viewIconHeight = ( iconTheme != NULL ) ? iconTheme->defaultSize( KIconLoader::Small ) : 0;
-    kDebug() << "icon height" << m_viewIconHeight;
+    qDebug() << "icon height" << m_viewIconHeight;
 }
 
 

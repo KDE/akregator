@@ -26,7 +26,7 @@
 
 #include <KConfigGroup>
 
-#include <kdebug.h>
+#include <qdebug.h>
 
 #include <QTimer>
 #include <QDomDocument>
@@ -40,24 +40,24 @@ Opml::Opml(const KConfigGroup& configgroup, QObject* parent)
     _xmlFile( configgroup.readEntry("Filename") ),
     _loaded( false )
 {
-    kDebug();
+    qDebug();
 }
 
 Opml::~Opml() 
 {
-    kDebug();
+    qDebug();
     delete _xmlDoc;
 }
 
 SubscriptionList Opml::getSubscriptionList() const 
 {
-    kDebug();
+    qDebug();
     return _subscriptionList;
 }
 
 void Opml::load() 
 {
-    kDebug();
+    qDebug();
 
     // If not already done load the file
     if ( !_loaded ) {
@@ -68,13 +68,13 @@ void Opml::load()
     delete _xmlDoc;
     _xmlDoc = new QDomDocument("opml");
     if (!_xmlFile.open(QIODevice::ReadOnly)) {
-        kDebug() << "File Error";
+        qDebug() << "File Error";
         delete _xmlDoc;
         _xmlDoc = 0;
         return;
     }
     if (!_xmlDoc->setContent(&_xmlFile)) {
-        kDebug() << "File Error";
+        qDebug() << "File Error";
         _xmlFile.close();
         delete _xmlDoc;
         _xmlDoc = 0;
@@ -115,7 +115,7 @@ void Opml::add(const SubscriptionList & list)
 {
     if(!_xmlDoc)
        return;
-    kDebug();
+    qDebug();
     QDomNode nodeList = _xmlDoc->documentElement().firstChild().nextSibling();
 
     QString m_rss;
@@ -150,7 +150,7 @@ void Opml::add(const SubscriptionList & list)
 void Opml::update(const SubscriptionList & list) 
 {
     Q_UNUSED(list)
-    kDebug();
+    qDebug();
 
     // Send signal
     emit updateDone();
@@ -159,7 +159,7 @@ void Opml::update(const SubscriptionList & list)
 void Opml::remove(const SubscriptionList & list) 
 {
     Q_UNUSED(list)
-    kDebug();
+    qDebug();
 
     // Send signal
     emit removeDone();

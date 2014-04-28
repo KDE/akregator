@@ -28,7 +28,7 @@
 #include "feed.h"
 #include "feedlist.h"
 
-#include <KDebug>
+#include <QDebug>
 
 #include <QSet>
 #include <QTimer>
@@ -87,7 +87,7 @@ void ExpireItemsCommand::Private::createDeleteJobs()
     if ( m_feeds.isEmpty() || !feedList )
     {
         if ( !feedList )
-            kWarning() << "Associated feed list was deleted, could not expire items";
+            qWarning() << "Associated feed list was deleted, could not expire items";
         q->done();
         return;
     }

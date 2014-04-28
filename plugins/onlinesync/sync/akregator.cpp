@@ -27,7 +27,7 @@
 
 #include "feedlistmanagementinterface.h"
 
-#include <kdebug.h>
+#include <qdebug.h>
 #include <QStringList>
 #include <QTimer>
 
@@ -35,23 +35,23 @@ namespace feedsync {
 
 Akregator::Akregator( QObject* p ) : Aggregator( p )
 {
-    kDebug();
+    qDebug();
 }
 
 Akregator::~Akregator()
 {
-    kDebug();
+    qDebug();
 }
 
 SubscriptionList Akregator::getSubscriptionList() const
 {
-    kDebug();
+    qDebug();
     return _subscriptionList;
 }
 
 void Akregator::load()
 {
-    kDebug();
+    qDebug();
 
     using namespace Akregator;
 
@@ -83,12 +83,12 @@ void Akregator::sendSignalLoadDone()
 
 void Akregator::add( const SubscriptionList & list)
 {
-    kDebug();
+    qDebug();
 
     using namespace Akregator;
 
     for (int i=0; i<list.count(); i++) {
-        kDebug() << list.getRss(i).left(20);
+        qDebug() << list.getRss(i).left(20);
 
         FeedListManagementInterface * ak_feedlist = FeedListManagementInterface::instance();
 
@@ -116,7 +116,7 @@ void Akregator::add( const SubscriptionList & list)
         }
 
         // Add
-        kDebug() << "Cat:" << foundCatId;
+        qDebug() << "Cat:" << foundCatId;
         ak_feedlist->addFeed(list.getRss(i),foundCatId);
     }
 
@@ -127,7 +127,7 @@ void Akregator::add( const SubscriptionList & list)
 void Akregator::update(const SubscriptionList & list)
 {
     Q_UNUSED(list)
-    kDebug();
+    qDebug();
 
     // Emit signal
     emit updateDone();
@@ -135,10 +135,10 @@ void Akregator::update(const SubscriptionList & list)
 
 void Akregator::remove(const SubscriptionList & list)
 {
-    kDebug();
+    qDebug();
 
     for (int i=0; i<list.count(); i++) {
-        kDebug() << list.getRss(i).left(20);
+        qDebug() << list.getRss(i).left(20);
 
         using namespace Akregator;
 

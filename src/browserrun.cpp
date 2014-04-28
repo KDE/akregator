@@ -26,7 +26,7 @@
 #include "openurlrequest.h"
 #include "frame.h"
 
-#include <kdebug.h>
+#include <qdebug.h>
 
 namespace Akregator {
 

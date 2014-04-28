@@ -25,20 +25,20 @@
 #include "configurationdialog.h"
 #include "configurationwidget.h"
 
-#include <KDebug>
+#include <QDebug>
 
 using namespace feedsync;
 
 ConfigurationDialog::ConfigurationDialog( QWidget *parent) : KDialog( parent )
 {
-    kDebug();
+    qDebug();
     m_widget = new Ui::ConfigurationWidget( /*this*/ );
     //setMainWidget( m_widget );
     setWindowTitle( i18n("Online Reader Configuration") );
 }
 
 void ConfigurationDialog::accept() {
-    kDebug();
+    qDebug();
     //m_widget->save();
     KDialog::accept();
 }

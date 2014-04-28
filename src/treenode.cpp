@@ -31,7 +31,7 @@
 #include <QString>
 #include <QList>
 
-#include <kdebug.h>
+#include <qdebug.h>
 
 #include <cassert>
 

@@ -20,7 +20,7 @@ email                : markey@web.de
 #include <QString>
 
 #include <klibloader.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
@@ -49,7 +49,7 @@ PluginManager::query( const QString& constraint )
         str += constraint + " and ";
     str += "[X-KDE-akregator-rank] > 0";
 
-    kDebug() <<"Plugin trader constraint:" << str;
+    qDebug() <<"Plugin trader constraint:" << str;
 
     return KServiceTypeTrader::self()->query( "Akregator/Plugin", str );
 }
@@ -61,7 +61,7 @@ PluginManager::createFromQuery( const QString &constraint )
     KService::List offers = query( constraint );
 
     if ( offers.isEmpty() ) {
-        kWarning() <<"No matching plugin found.";
+        qWarning() <<"No matching plugin found.";
         return 0;
     }
 
@@ -80,12 +80,12 @@ PluginManager::createFromQuery( const QString &constraint )
 Plugin*
 PluginManager::createFromService( const KService::Ptr service, QObject *parent )
 {
-    kDebug() <<"Trying to load:" << service->library();
+    qDebug() <<"Trying to load:" << service->library();
 
     KPluginLoader loader( *service );
     KPluginFactory* factory = loader.factory();
     if ( !factory ) {
-        kWarning() << QString( " Could not create plugin factory for: %1\n"
+        qWarning() << QString( " Could not create plugin factory for: %1\n"
                                 " Error message: %2" ).arg( service->library(), loader.errorString() );
         return 0;
     }
@@ -110,7 +110,7 @@ PluginManager::unload( Plugin* plugin )
 
     if ( iter != m_store.end() ) {
         delete (*iter).plugin;
-        kDebug() <<"Unloading library:"<< (*iter).service->library();
+        qDebug() <<"Unloading library:"<< (*iter).service->library();
         //PENDING(kdab,frank) Review
         (*iter).library->unload();
 
@@ -118,10 +118,10 @@ PluginManager::unload( Plugin* plugin )
         m_store.erase( iter );
     }
     else
-        kWarning() <<"Could not unload plugin (not found in store).";
+        qWarning() <<"Could not unload plugin (not found in store).";
 #else //TEMPORARILY_REMOVED
     Q_UNUSED( plugin )
-    kWarning() <<"PluginManager::unload temporarily disabled";
+    qWarning() <<"PluginManager::unload temporarily disabled";
 #endif //TEMPORARILY_REMOVED
 
 }
@@ -131,7 +131,7 @@ KService::Ptr
 PluginManager::getService( const Plugin* plugin )
 {
     if ( !plugin ) {
-        kWarning() <<"pointer == NULL";
+        qWarning() <<"pointer == NULL";
         return KService::Ptr( 0 );
     }
 
@@ -139,7 +139,7 @@ PluginManager::getService( const Plugin* plugin )
     vector<StoreItem>::const_iterator iter = lookupPlugin( plugin );
 
     if ( iter == m_store.end() ) {
-        kWarning() <<"Plugin not found in store.";
+        qWarning() <<"Plugin not found in store.";
         return KService::Ptr( 0 );
     }
 
@@ -177,7 +177,7 @@ PluginManager::showAbout( const QString &constraint )
 void
 PluginManager::dump( const KService::Ptr service )
 {
-    kDebug()
+    qDebug()
       << "PluginManager Service Info:" << endl
       << "---------------------------" << endl
       << "name                          : " << service->name() << endl

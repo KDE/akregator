@@ -34,7 +34,7 @@
 #include <QFile>
 #include <QThread>
 #include <QMessageBox>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kconfiggroup.h>
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
@@ -43,17 +43,17 @@
 namespace feedsync {
 
 FeedSync::FeedSync( QObject* p ) : QObject( p ) {
-    kDebug();
+    qDebug();
     _aggrSend = 0;
     _aggrGet = 0;
 }
 
 FeedSync::~FeedSync() {
-    kDebug();
+    qDebug();
 }
 
 feedsync::Aggregator * FeedSync::createAggregatorFactory(const KConfigGroup& configgroup) {
-    kDebug() << configgroup.readEntry("Identifier");
+    qDebug() << configgroup.readEntry("Identifier");
 
     Aggregator * m_agg;
 
@@ -75,12 +75,12 @@ feedsync::Aggregator * FeedSync::createAggregatorFactory(const KConfigGroup& con
 
 void FeedSync::sync() {
 
-    kDebug();
+    qDebug();
 
     // Sender
     QString m_account = QObject::sender()->property("ConfigGroup").toString();
     int m_synctype = QObject::sender()->property("SyncType").toInt();
-    kDebug() << QObject::sender()->objectName() << m_account << m_synctype;
+    qDebug() << QObject::sender()->objectName() << m_account << m_synctype;
     KConfig config("akregator_feedsyncrc");
     KConfigGroup generalGroup( &config, m_account );
 
@@ -91,18 +91,18 @@ void FeedSync::sync() {
 
     // Init 3rd party aggregator
     if (m_synctype==Get) {
-        kDebug() << "Get feeds";
+        qDebug() << "Get feeds";
         _aggrGet = m_akr;
         _aggrSend = createAggregatorFactory(generalGroup);
     } else {
-        kDebug() << "Send feeds";
+        qDebug() << "Send feeds";
         _aggrGet = createAggregatorFactory(generalGroup);
         _aggrSend = m_akr;
     }
 
     if (_aggrSend==0 || _aggrGet==0) {
         // TODO Notification
-        kDebug() << "Error loading configuration";
+        qDebug() << "Error loading configuration";
     }
 
 
@@ -121,7 +121,7 @@ void FeedSync::sync() {
 // Slots
 
 void FeedSync::slotLoadDone() {
-    kDebug();
+    qDebug();
     _loadedAggrCount++;
 
     // All is loaded
@@ -140,15 +140,15 @@ void FeedSync::slotLoadDone() {
             KConfigGroup generalGroup( &config, "FeedSyncConfig" );
             // Feed
             if ( generalGroup.readEntry( "RemovalPolicy", QString() ) == "Feed" ) {
-                kDebug() << "Policy: Remove feeds";
+                qDebug() << "Policy: Remove feeds";
                 m_removepolicy = SubscriptionList::Feed;
             // Category
             } else if (generalGroup.readEntry( "RemovalPolicy", QString() ) == "Category") {
-                kDebug() << "Policy: Remove categories";
+                qDebug() << "Policy: Remove categories";
                 m_removepolicy = SubscriptionList::Category;
             // Nothing
             } else if (generalGroup.readEntry( "RemovalPolicy", QString() ) == "Nothing") {
-                kDebug() << "Policy: Remove nothing";
+                qDebug() << "Policy: Remove nothing";
                 m_removepolicy = SubscriptionList::Nothing;
             // Ask
             } else if (generalGroup.readEntry( "RemovalPolicy", QString() ) == "Ask") {
@@ -161,20 +161,20 @@ void FeedSync::slotLoadDone() {
                 msgBox.exec();
                 // Remove feed
                 if (msgBox.clickedButton() == (QAbstractButton*) feedRemove) {
-                    kDebug() << "Policy: Remove feeds";
+                    qDebug() << "Policy: Remove feeds";
                     m_removepolicy = SubscriptionList::Feed;
                 // Remove only categories
                 } else if (msgBox.clickedButton() == (QAbstractButton*) catRemove) {
-                    kDebug() << "Policy: Remove categories";
+                    qDebug() << "Policy: Remove categories";
                     m_removepolicy = SubscriptionList::Category;
                 // Remove nothing
                 } else {
-                    kDebug() << "Policy: Remove nothing";
+                    qDebug() << "Policy: Remove nothing";
                     m_removepolicy = SubscriptionList::Nothing;
                 }
             // Remove nothing
             } else {
-                kDebug() << "Policy: Remove nothing";
+                qDebug() << "Policy: Remove nothing";
                 m_removepolicy = SubscriptionList::Nothing;
             }
         }
@@ -192,20 +192,20 @@ void FeedSync::slotLoadDone() {
 }
 
 void FeedSync::slotAddDone() {
-    kDebug();
+    qDebug();
 
     // Now: delete
    _aggrGet->remove(tmp_removelist);
 }
 
 void FeedSync::slotRemoveDone() {
-    kDebug();
+    qDebug();
     delete _aggrSend;
     delete _aggrGet;
 }
 
 void FeedSync::error(const QString& msg) {
-    kDebug();
+    qDebug();
 
     QMessageBox msgBox;
     if (msg.isEmpty()) {
@@ -222,7 +222,7 @@ void FeedSync::error(const QString& msg) {
 // Create a log
 
 void FeedSync::log() {
-    kDebug();
+    qDebug();
 
     QString logPath = KGlobal::dirs()->saveLocation("data", "akregator") + "/onlinesync.log";
 

@@ -36,7 +36,7 @@
 #include <QStyleOption>
 
 #include <kapplication.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <ktabwidget.h>
 #include <ktabbar.h>
 #include <kmenu.h>
@@ -354,7 +354,7 @@ void TabWidget::contextMenu(int i, const QPoint &p)
 {
     QWidget* w = ActionManager::getInstance()->container("tab_popup");
     TemporaryValue<QWidget*> tmp( d->currentItem, widget( i ) );
-    //kDebug() << indexOf(d->currentItem);
+    //qDebug() << indexOf(d->currentItem);
     // FIXME: do not hardcode index of maintab
     if (w && indexOf(d->currentItem) != 0)
         static_cast<QMenu *>(w)->exec(p);

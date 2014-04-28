@@ -32,7 +32,7 @@
 #include "subscriptionlistmodel.h"
 #include "treenode.h"
 
-#include <KDebug>
+#include <QDebug>
 
 #include <QAbstractItemView>
 #include <QMenu>
@@ -206,7 +206,7 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
 
 
     if ( job->error() ) {
-        kWarning() << job->errorText();
+        qWarning() << job->errorText();
         return;
     }
     TreeNode* const node = m_listJob->node();

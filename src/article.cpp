@@ -36,7 +36,7 @@
 #include <QRegExp>
 #include <QList>
 
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kurl.h>
 
 #include <cassert>

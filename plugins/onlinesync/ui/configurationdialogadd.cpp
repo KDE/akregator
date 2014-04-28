@@ -24,14 +24,14 @@
 
 #include "configurationdialogadd.h"
 
-#include <kdebug.h>
+#include <qdebug.h>
 
 
 using namespace feedsync;
 
 ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(parent)
 {
-    kDebug();
+    qDebug();
 
     // UI setup
     QWidget *widget = new QWidget( parent );
@@ -51,12 +51,12 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(paren
 
 ConfigurationDialogAdd::~ConfigurationDialogAdd()
 {
-    kDebug();
+    qDebug();
 }
 
 void ConfigurationDialogAdd::accept()
 {
-    kDebug();
+    qDebug();
 
     if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "GoogleReader") {
 
@@ -100,7 +100,7 @@ void ConfigurationDialogAdd::accept()
 
 void ConfigurationDialogAdd::load( const KConfigGroup& group )
 {
-    kDebug();
+    qDebug();
     _baseconfigname = group.name();
 
     ui.cb_AggregatorType->setCurrentIndex( ui.cb_AggregatorType->findData( group.readEntry( "AggregatorType", QString() ) ) );
@@ -123,7 +123,7 @@ void ConfigurationDialogAdd::load( const KConfigGroup& group )
 
 void ConfigurationDialogAdd::slotUpdateUI()
 {
-    kDebug();
+    qDebug();
 
     if (ui.cb_AggregatorType->itemData( ui.cb_AggregatorType->currentIndex() ) == "GoogleReader") {
         ui.groupOpml->hide();

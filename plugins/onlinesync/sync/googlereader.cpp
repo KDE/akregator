@@ -25,7 +25,7 @@
 #include "googlereader.h"
 
 #include <KConfigGroup>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <KLocalizedString>
 #include <kio/job.h>
 
@@ -37,7 +37,7 @@ namespace feedsync
 
 GoogleReader::GoogleReader(const KConfigGroup& configgroup, QObject* parent) : Aggregator( parent )
 {
-    kDebug();
+    qDebug();
     setUser(configgroup.readEntry("Login"));
     setPassword(configgroup.readEntry("Password"));
     _cursor=0;
@@ -45,12 +45,12 @@ GoogleReader::GoogleReader(const KConfigGroup& configgroup, QObject* parent) : A
 
 GoogleReader::~GoogleReader() 
 {
-    kDebug();
+    qDebug();
 }
 
 void GoogleReader::load() 
 {
-    kDebug();
+    qDebug();
 
     // Now: Authentication
 
@@ -79,7 +79,7 @@ void GoogleReader::add(const SubscriptionList & list)
 
     // Add new: if not in the know list of feed and if not added before
     if ( (getSubscriptionList().indexOf(list.getRss(_cursor))<0) && (list.indexOf(list.getRss(_cursor))>=_cursor) ) {
-        kDebug() << "New";
+        qDebug() << "New";
         data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=subscribe")
                                 +QString("&T=")+getToken()
@@ -91,7 +91,7 @@ void GoogleReader::add(const SubscriptionList & list)
 
     // Add tag
     } else {
-        kDebug() << "Add Tag";
+        qDebug() << "Add Tag";
         data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=edit")
                                 +QString("&a=user/-/label/")+list.getCat(_cursor,SubscriptionList::Simple)
@@ -115,7 +115,7 @@ void GoogleReader::add(const SubscriptionList & list)
 void GoogleReader::update(const SubscriptionList & list) 
 {
     Q_UNUSED(list)
-    kDebug();
+    qDebug();
 
     // Emit signal
     emit updateDone();
@@ -136,7 +136,7 @@ void GoogleReader::remove(const SubscriptionList & list)
 
     // Revove: if all as to be removed and if this is the first occurrence
     if ( (getSubscriptionList().countRss(list.getRss(_cursor))==list.countRss(list.getRss(_cursor))) && (list.indexOf(list.getRss(_cursor))==_cursor) ) {
-        kDebug() << "Remove";
+        qDebug() << "Remove";
         data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=unsubscribe")
                                 +QString("&T=")+getToken()
@@ -145,7 +145,7 @@ void GoogleReader::remove(const SubscriptionList & list)
 
     // Remove tag
     } else {
-        kDebug() << "Remove Tag";
+        qDebug() << "Remove Tag";
         data.append(QString(    QString("s=feed/")+list.getRss(_cursor)
                                 +QString("&ac=edit")
                                 +QString("&r=user/-/label/")+list.getCat(_cursor,SubscriptionList::Simple)
@@ -161,12 +161,12 @@ void GoogleReader::remove(const SubscriptionList & list)
     job->addMetaData("content-type", "application/x-www-form-urlencoded");
     connect(job, SIGNAL(result(KJob*)), this, SLOT(slotRemoveDone(KJob*)));
     _cursor++;
-    kDebug();
+    qDebug();
 }
 
 void GoogleReader::genError(const QString& msg) 
 {
-    kDebug();
+    qDebug();
 
     _cursor=0;
     // Emit signal
@@ -180,8 +180,8 @@ void GoogleReader::slotAddDone(KJob *job_)
     KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
     QByteArray m_data = job->data();
     QString text = QString::fromLatin1(m_data.data());
-    // kDebug() << text.left(20);
-    kDebug() << text;
+    // qDebug() << text.left(20);
+    qDebug() << text;
     add(_cursorList);
 }
 
@@ -190,20 +190,20 @@ void GoogleReader::slotRemoveDone(KJob *job_)
     KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
     QByteArray m_data = job->data();
     QString text = QString::fromLatin1(m_data.data());
-    kDebug() << text.left(20);
+    qDebug() << text.left(20);
     remove(_cursorList);
 }
 
 void GoogleReader::slotTokenDone(KJob *job_)
 {
-    kDebug();
+    qDebug();
     KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
 
     // Now: read token
 
     QByteArray m_data = job->data();
     QString text = QString::fromLatin1(m_data.data());
-    kDebug() << "Token:" << text.left(20);
+    qDebug() << "Token:" << text.left(20);
     setToken(text);
 
     // Load finished
@@ -213,7 +213,7 @@ void GoogleReader::slotTokenDone(KJob *job_)
 
 void GoogleReader::slotListDone(KJob *job_)
 {
-    kDebug();
+    qDebug();
     KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob*>(job_);
 
     // Now: read the subscription list
@@ -264,7 +264,7 @@ void GoogleReader::slotListDone(KJob *job_)
 
 void GoogleReader::slotAuthenticationDone(KJob *job_)
 {
-    kDebug();
+    qDebug();
     KIO::StoredTransferJob *job = static_cast<KIO::StoredTransferJob *>(job_);
 
     // Now: read authentication SID
@@ -279,7 +279,7 @@ void GoogleReader::slotAuthenticationDone(KJob *job_)
     // Extract SID
     text = text.right(text.length()-text.indexOf("SID=")-4);
     _sid = text.left(text.indexOf("\n"));
-    kDebug() << "SID:" << _sid.left(10)+QString("...");
+    qDebug() << "SID:" << _sid.left(10)+QString("...");
 
     // Next: get the list
     KIO::StoredTransferJob *getjob = KIO::storedGet(KUrl("http://www.google.com/reader/api/0/subscription/list"));

@@ -28,7 +28,7 @@
 #include "feedlist.h"
 #include "kernel.h"
 
-#include <KDebug>
+#include <QDebug>
 #include <KLocalizedString>
 
 #include <QTimer>
@@ -64,7 +64,7 @@ void Akregator::ArticleDeleteJob::doStart()
 {
     if ( !m_feedList )
     {
-        kWarning() << "Feedlist object was deleted, items not deleted";
+        qWarning() << "Feedlist object was deleted, items not deleted";
         emitResult();
         return;
     }
@@ -115,7 +115,7 @@ void Akregator::ArticleModifyJob::doStart()
 
     if ( !m_feedList )
     {
-        kWarning() << "Feedlist object was deleted, items not modified";
+        qWarning() << "Feedlist object was deleted, items not modified";
         emitResult();
         return;
     }

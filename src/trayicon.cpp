@@ -27,7 +27,7 @@
 
 #include <kapplication.h>
 #include <kwindowsystem.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <kmenu.h>

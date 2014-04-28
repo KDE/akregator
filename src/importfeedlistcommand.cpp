@@ -28,7 +28,7 @@
 #include "folder.h"
 #include "kernel.h"
 
-#include <KDebug>
+#include <QDebug>
 #include <KInputDialog>
 #include <KLocalizedString>
 
@@ -73,7 +73,7 @@ void ImportFeedListCommand::Private::doImport()
     if ( !target )
     {
         if ( !target )
-            kWarning() << "Target list was deleted, could not import feed list";
+            qWarning() << "Target list was deleted, could not import feed list";
         q->done();
         return;
     }

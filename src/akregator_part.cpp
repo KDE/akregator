@@ -389,11 +389,11 @@ void Part::saveSettings()
 
 Part::~Part()
 {
-    kDebug() <<"Part::~Part() enter";
+    qDebug() <<"Part::~Part() enter";
     if (!m_shuttingDown)
         slotOnShutdown();
     delete m_dialog;
-    kDebug() <<"Part::~Part(): leaving";
+    qDebug() <<"Part::~Part(): leaving";
 }
 
 void Part::readProperties(const KConfigGroup & config)
@@ -602,7 +602,7 @@ void Part::fetchAllFeeds()
 
 void Part::fetchFeedUrl(const QString&s)
 {
-    kDebug() <<"fetchFeedURL==" << s;
+    qDebug() <<"fetchFeedURL==" << s;
 }
 
 void Part::addFeedsToGroup(const QStringList& urls, const QString& group)

@@ -26,7 +26,7 @@
 #include "feediconmanager.h"
 
 #include <kapplication.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kstandarddirs.h>
 #include <kurl.h>
 #include <KGlobal>
@@ -106,7 +106,7 @@ void FeedIconManager::Private::loadIcon( const QString & url_ )
     {
         const QDBusReply<void> reply = m_favIconsModule->call( QLatin1String("downloadHostIcon"), url.url() );
         if ( !reply.isValid() )
-            kWarning() << "Couldn't reach favicon service. Request favicon for " << url << " failed";
+            qWarning() << "Couldn't reach favicon service. Request favicon for " << url << " failed";
     }
     else {
         q->slotIconChanged( false, url.host(), iconFile );

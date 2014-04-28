@@ -35,7 +35,7 @@
 #include <qdom.h>
 #include <QFile>
 
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kglobal.h>
 #include <kstandarddirs.h>
 
@@ -143,7 +143,7 @@ FeedStorageMK4Impl::FeedStorageMK4Impl(const QString& url, StorageMK4Impl* main)
         url2 = url.left(200) + QString::number(::calcHash(url), 16);
     }
 
-    kDebug() << url2;
+    qDebug() << url2;
     QString t = url2;
     QString t2 = url2;
     QString filePath = main->archivePath() + QLatin1Char('/') + t.replace(QLatin1Char('/'), QLatin1Char('_')).replace(QLatin1Char(':'), QLatin1Char('_'));

@@ -409,7 +409,7 @@ void ArticleViewer::renderContent(const QString& text)
     m_part->closeUrl();
     m_currentText = text;
     beginWriting();
-    //kDebug() << text;
+    //qDebug() << text;
     m_part->write(text);
     endWriting();
 }
@@ -440,7 +440,7 @@ void ArticleViewer::beginWriting()
 void ArticleViewer::endWriting()
 {
     m_part->write(m_htmlFooter);
-    //kDebug() << m_htmlFooter;
+    //qDebug() << m_htmlFooter;
     m_part->end();
 }
 
@@ -546,9 +546,9 @@ void ArticleViewer::slotUpdateCombinedView()
        ++num;
    }
 
-   kDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
+   qDebug() <<"Combined view rendering: (" << num <<" articles):" <<"generating HTML:" << spent.elapsed() <<"ms";
    renderContent(text);
-   kDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
+   qDebug() <<"HTML rendering:" << spent.elapsed() <<"ms";
 }
 
 void ArticleViewer::slotArticlesUpdated(TreeNode* /*node*/, const QList<Article>& /*list*/)
@@ -621,9 +621,9 @@ void ArticleViewer::slotArticlesListed( KJob* job ) {
 
     if ( job->error() || !node ) {
         if ( !node )
-            kWarning() << "Node to be listed is already deleted";
+            qWarning() << "Node to be listed is already deleted";
         else
-            kWarning() << job->errorText();
+            qWarning() << job->errorText();
         slotUpdateCombinedView();
         return;
     }

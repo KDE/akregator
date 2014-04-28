@@ -37,7 +37,7 @@
 #include <QWidget>
 
 #include <kaction.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <klibloader.h>
 #include <KMenu>
 #include <kmimetypetrader.h>
@@ -310,7 +310,7 @@ bool BrowserFrame::openUrl(const OpenUrlRequest& request)
 
     d->updateHistoryEntry();
 
-    kDebug() << "serviceType: " << serviceType;
+    qDebug() << "serviceType: " << serviceType;
     if ( !d->loadPartForMimetype( serviceType ) )
         return false;
 
