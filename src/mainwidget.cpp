@@ -51,7 +51,7 @@
 #include "progressmanager.h"
 #include "searchbar.h"
 #include "selectioncontroller.h"
-#include "speechclient.h"
+//QT5 #include "speechclient.h"
 #include "subscriptionlistjobs.h"
 #include "subscriptionlistmodel.h"
 #include "subscriptionlistview.h"
@@ -1083,6 +1083,7 @@ void Akregator::MainWidget::slotSetSelectedArticleRead()
 
 void Akregator::MainWidget::slotTextToSpeechRequest()
 {
+#if 0 //QT5
 
     if (Kernel::self()->frameManager()->currentFrame() == m_mainFrame)
     {
@@ -1104,6 +1105,7 @@ void Akregator::MainWidget::slotTextToSpeechRequest()
     {
         // TODO: read selected page viewer
     }
+#endif
 }
 
 void Akregator::MainWidget::slotSetSelectedArticleUnread()

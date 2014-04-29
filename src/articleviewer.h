@@ -34,9 +34,9 @@
 
 #include <boost/shared_ptr.hpp>
 #include <vector>
+#include <KUrl>
 
 class KJob;
-class KUrl;
 
 namespace Akregator {
 

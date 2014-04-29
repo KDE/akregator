@@ -61,10 +61,12 @@
 #include <kglobalsettings.h>
 #include <kparts/browserextension.h>
 #include <kparts/browserrun.h>
+#include <KGlobal>
+#include <KUrl>
 
 #include <QClipboard>
 #include <QGridLayout>
-
+#include <QKeyEvent>
 #include <boost/bind.hpp>
 
 #include <memory>
@@ -130,7 +132,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
                          KParts::WindowArgs,
                          KParts::ReadOnlyPart**)));
 
-    KAction* action = 0;
+    QAction * action = 0;
 
     action = m_part->actionCollection()->addAction("copylinkaddress");
     action->setText(i18n("Copy &Link Address"));
@@ -247,7 +249,7 @@ void ArticleViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, con
             popup.addSeparator();
         }
         popup.addAction( ActionManager::getInstance()->action("viewer_print") );
-       //KAction *ac = action("setEncoding");
+       //QAction *ac = action("setEncoding");
        //if (ac)
        //     ac->plug(&popup);
         popup.addSeparator();

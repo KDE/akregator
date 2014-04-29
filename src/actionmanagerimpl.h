@@ -27,7 +27,7 @@
 
 #include "actionmanager.h"
 
-class KAction;
+class QAction;
 class KActionCollection;
 
 class QWidget;

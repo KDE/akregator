@@ -34,6 +34,8 @@
 
 #include <QMenu>
 #include <QStyleOption>
+#include <QDrag>
+#include <QMimeData>
 
 #include <kapplication.h>
 #include <qdebug.h>
@@ -410,7 +412,7 @@ void TabWidget::initiateDrag(int tab)
         QMimeData *md = new QMimeData;
         drag->setMimeData( md );
         lst.populateMimeData( md );
-        drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, KIconLoader::Small ) );
+        //QT5 drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, KIconLoader::Small ) );
         drag->start();
     }
 }

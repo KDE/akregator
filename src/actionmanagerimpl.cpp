@@ -33,7 +33,7 @@
 #include "framemanager.h"
 #include "kernel.h"
 #include "mainwidget.h"
-#include "speechclient.h"
+//QT5 #include "speechclient.h"
 #include "subscriptionlistview.h"
 #include "tabwidget.h"
 #include "trayicon.h"
@@ -53,6 +53,8 @@
 #include <kstandardaction.h>
 #include <kxmlguifactory.h>
 #include <kicon.h>
+#include <KShortcut>
+#include <KGuiItem>
 
 #include <QApplication>
 #include <QHash>
@@ -117,7 +119,7 @@ public:
     KActionMenu* tagMenu;
     KActionCollection* actionCollection;
     TabWidget* tabWidget;
-    KAction* speakSelectedArticlesAction;
+    QAction * speakSelectedArticlesAction;
     FrameManager* frameManager;
 };
 
@@ -173,7 +175,7 @@ void ActionManagerImpl::setTrayIcon(TrayIcon* trayIcon)
 
 void ActionManagerImpl::initPart()
 {
-    KAction *action = d->actionCollection->addAction("file_import");
+    QAction *action = d->actionCollection->addAction("file_import");
     action->setText(i18n("&Import Feeds..."));
     action->setIcon(KIcon("document-import"));
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileImport()));
@@ -182,7 +184,7 @@ void ActionManagerImpl::initPart()
     action->setIcon(KIcon("document-export"));
     connect(action, SIGNAL(triggered(bool)), d->part, SLOT(fileExport()));
 
-    KAction *configure = d->actionCollection->addAction("options_configure");
+    QAction *configure = d->actionCollection->addAction("options_configure");
     configure->setText(i18n("&Configure Akregator..."));
     configure->setIcon(KIcon("configure"));
     connect(configure, SIGNAL(triggered()), d->part, SLOT(showOptions()));
@@ -205,7 +207,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     KActionCollection* coll = actionCollection();
 
     // Feed/Feed Group popup menu
-    KAction* action = coll->addAction("feed_homepage");
+    QAction * action = coll->addAction("feed_homepage");
     action->setText(i18n("&Open Homepage"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenHomepage()));
     action->setShortcuts(KShortcut( "Ctrl+H" ));
@@ -273,7 +275,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFetchAllFeeds()));
     action->setShortcuts(KShortcut( "Ctrl+L" ));
 
-    KAction *stopAction = coll->addAction("feed_stop");
+    QAction *stopAction = coll->addAction("feed_stop");
     stopAction->setIcon(KIcon("process-stop"));
     stopAction->setText(i18n("C&ancel Feed Fetches"));
     connect(stopAction, SIGNAL(triggered(bool)), Kernel::self()->fetchQueue(), SLOT(slotAbort()));
@@ -351,11 +353,11 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action = coll->addAction("akr_aborttexttospeech");
     action->setText(i18n( "&Stop Speaking" ));
     action->setIcon(KIcon("media-playback-stop"));
-    connect(action, SIGNAL(triggered(bool)),SpeechClient::self(), SLOT(slotAbortJobs()));
+    //QT5 connect(action, SIGNAL(triggered(bool)),SpeechClient::self(), SLOT(slotAbortJobs()));
     //action->setShortcuts(Qt::Key_Escape);
     action->setEnabled(false);
 
-    connect(SpeechClient::self(), SIGNAL(signalActivated(bool)), action, SLOT(setEnabled(bool)));
+    //QT5 connect(SpeechClient::self(), SIGNAL(signalActivated(bool)), action, SLOT(setEnabled(bool)));
 
     action = coll->addAction("article_set_status_read");
     action->setText(i18nc("as in: mark as read","&Read"));
@@ -432,7 +434,7 @@ void ActionManagerImpl::initArticleViewer(ArticleViewer* articleViewer)
         d->articleViewer = articleViewer;
 
     KActionCollection* coll = actionCollection();
-    KAction* action = 0;
+    QAction * action = 0;
 
     action = KStandardAction::print(articleViewer, SLOT(slotPrint()), actionCollection());
     coll->addAction("viewer_print", action);
@@ -451,7 +453,7 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     else
         d->articleList = articleList;
 
-    KAction *action = actionCollection()->addAction("go_previous_article");
+    QAction *action = actionCollection()->addAction("go_previous_article");
     action->setText(i18n("&Previous Article"));
     connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotPreviousArticle()));
     action->setShortcuts(KShortcut( "Left" ));
@@ -470,7 +472,7 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
 
     KActionCollection *coll = actionCollection();
 
-    KAction *action = coll->addAction("go_prev_feed");
+    QAction *action = coll->addAction("go_prev_feed");
     action->setText(i18n("&Previous Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevFeed()));
     action->setShortcuts(KShortcut( "P" ));
@@ -532,7 +534,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
 
     KActionCollection *coll = actionCollection();
 
-    KAction *action = coll->addAction("select_next_tab");
+    QAction *action = coll->addAction("select_next_tab");
     action->setText(i18n("Select Next Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotNextTab()));
     action->setShortcuts(KShortcut( "Ctrl+Period" ));
@@ -573,7 +575,7 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     QString actionname;
     for (int i=1;i<10;++i) {
       actionname.sprintf("activate_tab_%02d", i);
-      action = new KAction( i18n("Activate Tab %1", i),this );
+      action = new QAction( i18n("Activate Tab %1", i),this );
       action->setShortcut( QKeySequence( QString::fromLatin1( "Alt+%1" ).arg( i ) ) );
       coll->addAction( actionname, action );
       connect( action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotActivateTab()) );
@@ -605,7 +607,7 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
 
-    KAction *action = d->actionCollection->addAction("browser_reload");
+    QAction *action = d->actionCollection->addAction("browser_reload");
     action->setIcon(KIcon("view-refresh"));
     action->setText(i18nc("Reload current page", "Reload"));
     connect(action, SIGNAL(triggered(bool)), frameManager, SLOT(slotBrowserReload()));

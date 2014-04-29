@@ -31,7 +31,7 @@
 #include "libkdepim/progresswidget/progressstatusbarwidget.h"
 #include "libkdepim/progresswidget/statusbarprogresswidget.h"
 
-#include <KAction>
+#include <QAction>
 #include <KActionCollection>
 #include <KApplication>
 #include <KConfig>
