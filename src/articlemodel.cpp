@@ -28,7 +28,7 @@
 #include "akregatorconfig.h"
 #include "feed.h"
 
-#include <Syndication/tools.h>
+#include <Syndication/Tools>
 
 #include <QMimeData>
 #include <QString>

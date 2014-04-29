@@ -29,7 +29,7 @@
 #include "storage.h"
 #include "utils.h"
 
-#include <Syndication/syndication.h>
+#include <Syndication/Syndication>
 
 #include <QDateTime>
 #include <qdom.h>

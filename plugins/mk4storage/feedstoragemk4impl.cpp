@@ -25,10 +25,10 @@
 #include "feedstoragemk4impl.h"
 #include "storagemk4impl.h"
 
-#include <Syndication/documentsource.h>
-#include <Syndication/global.h>
-#include <Syndication/feed.h>
-#include <Syndication/item.h>
+#include <Syndication/DocumentSource>
+#include <Syndication/Global>
+#include <Syndication/Feed>
+#include <Syndication/Item>
 
 #include <mk4.h>
 

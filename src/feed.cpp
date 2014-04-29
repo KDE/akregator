@@ -36,7 +36,8 @@
 #include "treenodevisitor.h"
 #include "types.h"
 #include "utils.h"
-#include <Syndication/syndication.h>
+
+#include <Syndication/Syndication>
 
 #include <qdebug.h>
 #include <kglobal.h>
