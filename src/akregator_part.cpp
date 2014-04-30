@@ -182,7 +182,7 @@ static const KAboutData &createAboutData()
   return about;
 }
 
-K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
+//QT5 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 K_EXPORT_PLUGIN(AkregatorFactory(createAboutData()))
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
@@ -213,7 +213,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     setPluginLoadingMode( LoadPluginsIfEnabled );
     setPluginInterfaceVersion( AKREGATOR_PLUGIN_INTERFACE_VERSION );
 
-    setComponentData( AkregatorFactory::componentData() );
+    //QT5 setComponentData( AkregatorFactory::componentData() );
     setXMLFile("akregator_part.rc", true);
 
     new PartAdaptor( this );
@@ -272,7 +272,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
             trayIcon->setStatus( KStatusNotifierItem::Active );
 
         QWidget* const notificationParent = isTrayIconEnabled() ? m_mainWidget->window() : 0;
-        NotificationManager::self()->setWidget(notificationParent, componentData());
+        //QT5 NotificationManager::self()->setWidget(notificationParent, componentData());
 
         connect( m_mainWidget, SIGNAL(signalUnreadCountChanged(int)), trayIcon, SLOT(slotSetUnread(int)) );
         connect( m_mainWidget, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)),
@@ -334,7 +334,7 @@ void Part::slotOnShutdown()
 
 void Part::slotSettingsChanged()
 {
-    NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : 0, componentData());
+    //QT5 NotificationManager::self()->setWidget(isTrayIconEnabled() ? m_mainWidget->window() : 0, componentData());
 
     if ( Settings::showTrayIcon() && !TrayIcon::getInstance() )
     {
@@ -754,10 +754,12 @@ void Part::clearCrashProperties()
 {
     if (!m_doCrashSave)
         return;
+#if 0 //QT5
     KConfig config("crashed", KConfig::SimpleConfig,
         "appdata");
     KConfigGroup configGroup(&config, "Part");
     configGroup.writeEntry("crashed", false);
+#endif
 }
 
 
@@ -765,6 +767,7 @@ void Part::saveCrashProperties()
 {
     if (!m_doCrashSave)
         return;
+#if 0 //QT5
     KConfig config("crashed", KConfig::SimpleConfig,
         "appdata");
     KConfigGroup configGroup(&config, "Part");
@@ -773,10 +776,12 @@ void Part::saveCrashProperties()
     configGroup.writeEntry("crashed", true);
 
     saveProperties(configGroup);
+#endif
 }
 
 bool Part::readCrashProperties()
 {
+#if 0 //QT5
     KConfig config("crashed", KConfig::SimpleConfig,
         "appdata");
     KConfigGroup configGroup(&config, "Part");
@@ -802,6 +807,7 @@ bool Part::readCrashProperties()
     default:
         break;
     }
+#endif
     m_doCrashSave = false;
     return false;
 }
@@ -813,6 +819,7 @@ void Part::slotAutoSave()
 
 void Part::autoSaveProperties()
 {
+#if 0 //QT5
     KConfig config("autosaved", KConfig::SimpleConfig, "appdata");
     KConfigGroup configGroup(&config, "Part");
     configGroup.deleteGroup();
@@ -820,17 +827,19 @@ void Part::autoSaveProperties()
     saveProperties(configGroup);
 
     clearCrashProperties();
+#endif
 }
 
 void Part::autoReadProperties()
 {
     if(kapp->isSessionRestored())
         return;
-
+#if 0 //QT5
     KConfig config("autosaved", KConfig::SimpleConfig, "appdata");
     KConfigGroup configGroup(&config, "Part");
 
     readProperties(configGroup);
+#endif
 }
 
 } // namespace Akregator

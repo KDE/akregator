@@ -1133,7 +1133,7 @@ void Akregator::MainWidget::slotSetCurrentArticleReadDelayed()
 
 void Akregator::MainWidget::slotMouseOverInfo(const KFileItem& kifi)
 {
-    m_mainFrame->slotSetStatusText( kifi.isNull() ? QString() : kifi.url().prettyUrl() );
+    m_mainFrame->slotSetStatusText( kifi.isNull() ? QString() : kifi.url().toDisplayString() );
 }
 
 void Akregator::MainWidget::readProperties(const KConfigGroup &config)
