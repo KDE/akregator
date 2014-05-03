@@ -29,6 +29,7 @@
 #include <knotification.h>
 #include <kurl.h>
 #include <kglobal.h>
+#include <KComponentData>
 
 #include <QTimer>
 
