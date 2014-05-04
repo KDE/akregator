@@ -754,12 +754,10 @@ void Part::clearCrashProperties()
 {
     if (!m_doCrashSave)
         return;
-#if 0 //QT5
     KConfig config("crashed", KConfig::SimpleConfig,
-        "appdata");
+        QStandardPaths::ApplicationsLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.writeEntry("crashed", false);
-#endif
 }
 
 
@@ -767,23 +765,20 @@ void Part::saveCrashProperties()
 {
     if (!m_doCrashSave)
         return;
-#if 0 //QT5
     KConfig config("crashed", KConfig::SimpleConfig,
-        "appdata");
+        QStandardPaths::ApplicationsLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.deleteGroup();
 
     configGroup.writeEntry("crashed", true);
 
     saveProperties(configGroup);
-#endif
 }
 
 bool Part::readCrashProperties()
 {
-#if 0 //QT5
     KConfig config("crashed", KConfig::SimpleConfig,
-        "appdata");
+        QStandardPaths::ApplicationsLocation);
     KConfigGroup configGroup(&config, "Part");
 
     if (!configGroup.readEntry("crashed", false))
@@ -807,7 +802,6 @@ bool Part::readCrashProperties()
     default:
         break;
     }
-#endif
     m_doCrashSave = false;
     return false;
 }
@@ -819,27 +813,23 @@ void Part::slotAutoSave()
 
 void Part::autoSaveProperties()
 {
-#if 0 //QT5
-    KConfig config("autosaved", KConfig::SimpleConfig, "appdata");
+    KConfig config("autosaved", KConfig::SimpleConfig, QStandardPaths::ApplicationsLocation);
     KConfigGroup configGroup(&config, "Part");
     configGroup.deleteGroup();
 
     saveProperties(configGroup);
 
     clearCrashProperties();
-#endif
 }
 
 void Part::autoReadProperties()
 {
     if(kapp->isSessionRestored())
         return;
-#if 0 //QT5
-    KConfig config("autosaved", KConfig::SimpleConfig, "appdata");
+    KConfig config("autosaved", KConfig::SimpleConfig, QStandardPaths::ApplicationsLocation);
     KConfigGroup configGroup(&config, "Part");
 
     readProperties(configGroup);
-#endif
 }
 
 } // namespace Akregator
