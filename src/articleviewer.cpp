@@ -40,7 +40,7 @@
 
 #include "kdepim-version.h"
 
-#include <KPIMUtils/kfileio.h>
+#include <KPIMUtils/kpimutils/kfileio.h>
 
 #include <kaction.h>
 #include <kactioncollection.h>
