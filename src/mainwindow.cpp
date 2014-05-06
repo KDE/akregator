@@ -48,6 +48,7 @@
 #include <KToolBar>
 #include <KPluginFactory>
 #include <KGlobal>
+#include <KSharedConfig>
 
 using namespace Akregator;
 
@@ -164,7 +165,7 @@ void MainWindow::optionsConfigureKeys()
 // TODO: move to part?
 void MainWindow::optionsConfigureToolbars()
 {
-    KConfigGroup grp(KGlobal::config().data()->group( autoSaveGroup()));
+    KConfigGroup grp(KSharedConfig::openConfig().data()->group( autoSaveGroup()));
     saveMainWindowSettings(grp );
     KEditToolBar dlg(factory());
     connect(&dlg, SIGNAL(newToolBarConfig()),
@@ -175,7 +176,7 @@ void MainWindow::optionsConfigureToolbars()
 // TODO: move to part?
 void MainWindow::applyNewToolbarConfig()
 {
-    applyMainWindowSettings(KGlobal::config()->group( autoSaveGroup()) );
+    applyMainWindowSettings(KSharedConfig::openConfig()->group( autoSaveGroup()) );
 }
 
 KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
