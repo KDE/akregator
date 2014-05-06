@@ -334,7 +334,7 @@ void Akregator::MainWidget::slotOnShutdown()
     delete m_mainTab;
     delete m_mainFrame;
 
-    Settings::self()->writeConfig();
+    Settings::self()->save();
 }
 
 
@@ -347,7 +347,7 @@ void Akregator::MainWidget::saveSettings()
     if ( std::count( spl2.begin(), spl2.end(), 0 ) == 0 )
         Settings::setSplitter2Sizes( spl2 );
     Settings::setViewMode( m_viewMode );
-    Settings::self()->writeConfig();
+    Settings::self()->save();
 }
 
 
