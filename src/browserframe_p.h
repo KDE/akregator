@@ -41,7 +41,7 @@
 #include <kaction.h>
 #include <kdebug.h>
 #include <klibloader.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
 #include <kurl.h>

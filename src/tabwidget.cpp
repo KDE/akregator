@@ -41,7 +41,7 @@
 #include <qdebug.h>
 #include <ktabwidget.h>
 #include <ktabbar.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <krun.h>
 #include <klocale.h>
 #include <KIcon>

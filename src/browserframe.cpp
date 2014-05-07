@@ -39,7 +39,7 @@
 #include <kaction.h>
 #include <qdebug.h>
 #include <klibloader.h>
-#include <KMenu>
+#include <QMenu>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
 #include <kurl.h>
@@ -227,7 +227,7 @@ void BrowserFrame::slotPopupMenu(
 
     bool isFirst = true;
 
-    QPointer<KMenu> popup( new KMenu() );
+    QPointer<QMenu> popup( new QMenu() );
 
     if (showNavigationItems)
     {

@@ -50,7 +50,7 @@
 #include <kicon.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <kmessagebox.h>
 #include <krun.h>
 #include <kshell.h>
@@ -231,7 +231,7 @@ void ArticleViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, con
     QString url = kurl.url();
 
     m_url = url;
-    KMenu popup;
+    QMenu popup;
 
     if (isLink && !isSelection)
     {

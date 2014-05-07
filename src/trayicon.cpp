@@ -30,7 +30,7 @@
 #include <qdebug.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <kicon.h>
 #include <kiconloader.h>
 #include <KColorScheme>

@@ -47,7 +47,7 @@
 #include <kactioncollection.h>
 #include <qdebug.h>
 #include <klocale.h>
-#include <kmenu.h>
+#include <QMenu>
 #include <kshortcut.h>
 #include <kstandardshortcut.h>
 #include <kstandardaction.h>
