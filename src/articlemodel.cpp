@@ -144,7 +144,7 @@ QVariant Akregator::ArticleModel::data( const QModelIndex& index, int role ) con
                 case FeedTitleColumn:
                     return article.feed() ? article.feed()->title() : QVariant();
                 case DateColumn:
-                    return KGlobal::locale()->formatDateTime(article.pubDate(),
+                    return KLocale::global()->formatDateTime(article.pubDate(),
                                                              KLocale::FancyShortDate );
                 case ItemTitleColumn:
                     return d->titleCache[row];

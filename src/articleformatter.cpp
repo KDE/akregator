@@ -38,6 +38,7 @@
 #include <QPaintDevice>
 #include <QPalette>
 #include <QString>
+#include <KLocale>
 
 using namespace boost;
 using namespace Syndication;
@@ -54,11 +55,11 @@ namespace {
         const QString type = enclosure.type();
         QString inf;
         if ( !type.isEmpty() && length > 0 )
-            inf = i18n( "(%1, %2)", type, KGlobal::locale()->formatByteSize( length ) );
+            inf = i18n( "(%1, %2)", type, KLocale::global()->formatByteSize( length ) );
         else if ( !type.isNull() )
             inf = type;
         else if ( length > 0 )
-            inf = KGlobal::locale()->formatByteSize( length );
+            inf = KLocale::global()->formatByteSize( length );
         QString str = i18n( "<a href=\"%1\">%2</a> %3", enclosure.url(), title, inf );
         return str;
     }
@@ -189,7 +190,7 @@ QString DefaultNormalViewFormatter::formatArticle(const Article& article, IconOp
         text += QString("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span class=\"headertext\">";
-        text += KGlobal::locale()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) +"</span>\n"; // TODO: might need RTL?
+        text += KLocale::global()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) +"</span>\n"; // TODO: might need RTL?
     }
     const QString author = article.authorAsHtml();
     if (!author.isEmpty())
@@ -385,7 +386,7 @@ QString DefaultCombinedViewFormatter::formatArticle(const Article& article, Icon
         text += QString("<span class=\"header\" dir=\"%1\">").arg(Utils::directionOf(i18n("Date")));
         text += QString ("%1:").arg(i18n("Date"));
         text += "</span><span class=\"headertext\">";
-        text += KGlobal::locale()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) + "</span>\n"; // TODO: might need RTL?
+        text += KLocale::global()->formatDateTime(article.pubDate(), KLocale::FancyLongDate) + "</span>\n"; // TODO: might need RTL?
     }
 
     const QString author = article.authorAsHtml();

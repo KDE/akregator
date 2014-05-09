@@ -296,7 +296,7 @@ static int maxDateColumnWidth( const QFontMetrics &fm )
     int width = 0;
     KDateTime date( KDateTime::currentLocalDate(), QTime(23, 59) );
     for (int x=0; x<10; x++, date = date.addDays( -1 ) ) {
-        QString txt = ' ' + KGlobal::locale()->formatDateTime(date, KLocale::FancyShortDate ) + ' ';
+        QString txt = ' ' + KLocale::global()->formatDateTime(date, KLocale::FancyShortDate ) + ' ';
         width = qMax( width, fm.width( txt ) );
     }
     return width;
