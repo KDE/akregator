@@ -26,7 +26,7 @@
 
 #include "ui/configurationwidget.h"
 
-#include <KAboutData>
+#include <K4AboutData>
 #include <KLocalizedString>
 #include <kdemacros.h>
 
@@ -44,9 +44,9 @@ KCMAkregatorOnlineSyncConfig::KCMAkregatorOnlineSyncConfig( QWidget* parent, con
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
 
-    KAboutData* about = new KAboutData( I18N_NOOP( "kcmakronlinesyncconfig" ), 0,
+    K4AboutData* about = new K4AboutData( I18N_NOOP( "kcmakronlinesyncconfig" ), 0,
                                         ki18n( "Configure Online Readers" ),
-                                        0, KLocalizedString(), KAboutData::License_GPL,
+                                        0, KLocalizedString(), K4AboutData::License_GPL,
                                         ki18n( "(c), 2008 Didier Hoarau" ) );
 
     about->addAuthor( ki18n( "Didier Hoarau" ), KLocalizedString(), "did.hoarau@gmail.com" );

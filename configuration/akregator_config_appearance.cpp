@@ -24,7 +24,7 @@
 #include "akregator_config_appearance.h"
 #include "akregatorconfig.h"
 
-#include <KAboutData>
+#include <K4AboutData>
 #include <KConfigDialogManager>
 #include <KGenericFactory>
 #include <KLocalizedString>
@@ -69,9 +69,9 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
     connect( m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)),
              m_ui.slider_mediumFontSize, SLOT(setValue(int)) );
 #if 0 //QT5
-    KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrappearanceconfig" ), 0,
+    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakrappearanceconfig" ), 0,
                                         ki18n( "Configure Feed Reader Appearance" ),
-                                        0, KLocalizedString(), KAboutData::License_GPL,
+                                        0, KLocalizedString(), K4AboutData::License_GPL,
                                         ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );

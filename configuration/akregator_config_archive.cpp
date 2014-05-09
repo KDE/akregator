@@ -24,7 +24,7 @@
 #include "akregator_config_archive.h"
 #include "akregatorconfig.h"
 #include "ui_settings_archive.h"
-#include <KAboutData>
+#include <K4AboutData>
 #include <KConfigDialogManager>
 #include <QDebug>
 #include <KGenericFactory>
@@ -61,9 +61,9 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVa
     m_archiveModeGroup->addButton( m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving );
     connect( m_archiveModeGroup, SIGNAL(buttonClicked(int)), this, SLOT(changed()) );
 #if 0 //QT5
-    KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrarchiveconfig" ), 0,
+    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakrarchiveconfig" ), 0,
                                         ki18n( "Configure Feed Reader Archive" ),
-                                        0, KLocalizedString(), KAboutData::License_GPL,
+                                        0, KLocalizedString(), K4AboutData::License_GPL,
                                         ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );

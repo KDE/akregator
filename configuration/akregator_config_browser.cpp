@@ -26,7 +26,7 @@
 
 #include "ui_settings_browser.h"
 
-#include <KAboutData>
+#include <K4AboutData>
 #include <KConfigDialogManager>
 #include <KGenericFactory>
 #include <KLocalizedString>
@@ -51,9 +51,9 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVa
     connect( ui.kcfg_ExternalBrowserUseCustomCommand, SIGNAL(toggled(bool)), 
              ui.kcfg_ExternalBrowserCustomCommand, SLOT(setEnabled(bool)) );
 #if 0 //QT5
-    KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrbrowserconfig" ), 0,
+    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakrbrowserconfig" ), 0,
                                         ki18n( "Configure Feed Reader Browser" ),
-                                        0, KLocalizedString(), KAboutData::License_GPL,
+                                        0, KLocalizedString(), K4AboutData::License_GPL,
                                         ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );

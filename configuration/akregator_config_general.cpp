@@ -26,7 +26,7 @@
 
 #include "ui_settings_general.h"
 
-#include <KAboutData>
+#include <K4AboutData>
 #include <KConfigDialogManager>
 #include <KGenericFactory>
 #include <KLocalizedString>
@@ -55,9 +55,9 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
     connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),
              ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)) );
 #if 0 //QT5
-    KAboutData *about = new KAboutData( I18N_NOOP( "kcmakrgeneralconfig" ), 0,
+    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakrgeneralconfig" ), 0,
                                         ki18n( "Configure Feeds" ),
-                                        0, KLocalizedString(), KAboutData::License_GPL,
+                                        0, KLocalizedString(), K4AboutData::License_GPL,
                                         ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
     about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
