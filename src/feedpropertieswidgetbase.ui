@@ -27,7 +27,7 @@
     <number>6</number>
    </property>
    <item row="0" column="0">
-    <widget class="KTabWidget" name="tabWidget2">
+    <widget class="QTabWidget" name="tabWidget2">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
@@ -391,12 +391,6 @@
    <class>KIntSpinBox</class>
    <extends>QSpinBox</extends>
    <header>knuminput.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KTabWidget</class>
-   <extends>QTabWidget</extends>
-   <header>ktabwidget.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
