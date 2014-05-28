@@ -39,7 +39,7 @@
 
 #include <kapplication.h>
 #include <qdebug.h>
-#include <ktabwidget.h>
+#include <QTabWidget>
 #include <ktabbar.h>
 #include <QMenu>
 #include <krun.h>
@@ -89,13 +89,17 @@ public:
 
 void TabWidget::Private::updateTabBarVisibility()
 {
-    q->setTabBarHidden( ( q->count() <= 1 ) && !Settings::alwaysShowTabBar() );
+    const bool tabBarIsHidden = ( ( q->count() <= 1 ) && !Settings::alwaysShowTabBar() );
+    if (tabBarIsHidden)
+       q->tabBar()->hide();
+    else
+       q->tabBar()->show();
     if (q->count() >= 1 && Settings::closeButtonOnTabs())
         q->tabBar()->tabButton(0, QTabBar::RightSide)->hide();
 }
 
 TabWidget::TabWidget(QWidget * parent)
-    :KTabWidget(parent), d(new Private( this ) )
+    :QTabWidget(parent), d(new Private( this ) )
 {
     setMinimumSize(250,150);
     setMovable(false);

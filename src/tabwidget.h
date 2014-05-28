@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_TABWIDGET_H
 #define AKREGATOR_TABWIDGET_H
 
-#include <ktabwidget.h>
+#include <QTabWidget>
 
 class QString;
 
@@ -35,7 +35,7 @@ namespace Akregator
 class Frame;
 class OpenUrlRequest;
 
-class TabWidget : public KTabWidget
+class TabWidget : public QTabWidget
 {
     Q_OBJECT
 
