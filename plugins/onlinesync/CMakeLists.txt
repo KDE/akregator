@@ -20,8 +20,8 @@ set(kcm_akronlinesyncconfig_SRCS
 
 kconfig_add_kcfg_files(kcm_akronlinesyncconfig_SRCS onlinesyncsettings.kcfgc)
 
-qt5_wrap_ui(kcm_akronlinesyncconfig_SRCS ui/configurationwidget.ui)
-qt5_wrap_ui(kcm_akronlinesyncconfig_SRCS ui/configurationdialogadd.ui)
+ki18n_wrap_ui(kcm_akronlinesyncconfig_SRCS ui/configurationwidget.ui)
+ki18n_wrap_ui(kcm_akronlinesyncconfig_SRCS ui/configurationdialogadd.ui)
 
 add_library(akregator_config_onlinesync MODULE ${kcm_akronlinesyncconfig_SRCS})
 
@@ -48,7 +48,7 @@ set(akregator_onlinesync_plugin_SRCS
   onlinesyncplugin.cpp
 )
 
-qt5_wrap_ui(akregator_onlinesync_plugin_SRCS
+ki18n_wrap_ui(akregator_onlinesync_plugin_SRCS
   ui/configurationwidget.ui
   ui/configurationdialogadd.ui
 )

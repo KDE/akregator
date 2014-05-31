@@ -30,7 +30,7 @@ set(kcm_akrshareconfig_SRCS
 )
 
 kconfig_add_kcfg_files(kcm_akrshareconfig_SRCS sharesettings.kcfgc)
-qt5_wrap_ui(kcm_akrshareconfig_SRCS configurationwidget.ui)
+ki18n_wrap_ui(kcm_akrshareconfig_SRCS configurationwidget.ui)
 add_library(akregator_config_sharemicroblog MODULE ${kcm_akrshareconfig_SRCS})
 
 target_link_libraries(akregator_config_sharemicroblog
