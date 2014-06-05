@@ -39,7 +39,6 @@
 #include <QString>
 
 #include <kaction.h>
-#include <kdebug.h>
 #include <klibloader.h>
 #include <QMenu>
 #include <kmimetypetrader.h>
