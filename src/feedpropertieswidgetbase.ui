@@ -93,7 +93,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KIntSpinBox" name="updateSpinBox">
+          <widget class="QSpinBox" name="updateSpinBox">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -236,7 +236,7 @@
               </widget>
              </item>
              <item>
-              <widget class="KIntSpinBox" name="sb_maxArticleNumber">
+              <widget class="KPluralHandlingSpinBox" name="sb_maxArticleNumber">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -266,7 +266,7 @@
               </widget>
              </item>
              <item>
-              <widget class="KIntSpinBox" name="sb_maxArticleAge">
+              <widget class="KPluralHandlingSpinBox" name="sb_maxArticleAge">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -388,9 +388,9 @@
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>KIntSpinBox</class>
+   <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
+   <header>KPluralHandlingSpinBox</header>
   </customwidget>
  </customwidgets>
  <resources/>

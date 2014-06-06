@@ -99,7 +99,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_AutoFetchInterval">
+         <widget class="KPluralHandlingSpinBox" name="kcfg_AutoFetchInterval">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -185,9 +185,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KIntSpinBox</class>
+   <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
+   <header>KPluralHandlingSpinBox</header>
   </customwidget>
  </customwidgets>
  <resources/>

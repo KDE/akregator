@@ -66,7 +66,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_MarkReadDelay">
+         <widget class="KPluralHandlingSpinBox" name="kcfg_MarkReadDelay">
           <property name="minimumSize">
            <size>
             <width>130</width>
@@ -117,9 +117,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KIntSpinBox</class>
+   <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
+   <header>KPluralHandlingSpinBox</header>
   </customwidget>
   <customwidget>
    <class>KComboBox</class>

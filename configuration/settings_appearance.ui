@@ -112,7 +112,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_MinimumFontSize">
+         <widget class="KPluralHandlingSpinBox" name="kcfg_MinimumFontSize">
           <property name="value">
            <number>8</number>
           </property>
@@ -152,7 +152,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_MediumFontSize">
+         <widget class="KPluralHandlingSpinBox" name="kcfg_MediumFontSize">
           <property name="value">
            <number>12</number>
           </property>
@@ -233,9 +233,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KIntSpinBox</class>
+   <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
+   <header>KPluralHandlingSpinBox</header>
   </customwidget>
   <customwidget>
    <class>KFontComboBox</class>
