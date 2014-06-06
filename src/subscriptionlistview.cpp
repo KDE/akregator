@@ -31,7 +31,7 @@
 #include <QStack>
 #include <QPointer>
 
-#include <KMenu>
+#include <QMenu>
 #include <KLocalizedString>
 #include <QDebug>
 #include <KConfigGroup>
@@ -178,8 +178,8 @@ void Akregator::SubscriptionListView::showHeaderMenu( const QPoint& pos )
     if( ! model() )
         return;
 
-    QPointer<KMenu> menu = new KMenu( this );
-    menu->addTitle( i18n( "Columns" ) );
+    QPointer<QMenu> menu = new QMenu( this );
+    menu->setTitle( i18n( "Columns" ) );
     menu->setAttribute( Qt::WA_DeleteOnClose );
     connect(menu, SIGNAL(triggered(QAction*)), this, SLOT(headerMenuItemTriggered(QAction*)) );
 

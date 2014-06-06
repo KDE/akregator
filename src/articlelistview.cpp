@@ -37,7 +37,7 @@
 #include <KIcon>
 #include <KLocalizedString>
 #include <KUrl>
-#include <KMenu>
+#include <QMenu>
 #include <KColorScheme>
 #include <KLocale>
 
@@ -182,8 +182,8 @@ void ArticleListView::showHeaderMenu(const QPoint& pos)
     if ( !model() )
         return;
 
-    QPointer<KMenu> menu = new KMenu( this );
-    menu->addTitle( i18n( "Columns" ) );
+    QPointer<QMenu> menu = new QMenu( this );
+    menu->setTitle( i18n( "Columns" ) );
     menu->setAttribute( Qt::WA_DeleteOnClose );
 
     const int colCount = model()->columnCount();
