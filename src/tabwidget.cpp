@@ -44,7 +44,7 @@
 #include <QMenu>
 #include <krun.h>
 #include <klocale.h>
-#include <KIcon>
+#include <QIcon>
 #include <kiconloader.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
@@ -114,7 +114,7 @@ TabWidget::TabWidget(QWidget * parent)
     connect( d->tabsClose, SIGNAL(clicked()), this,
             SLOT(slotRemoveCurrentFrame()) );
 
-    d->tabsClose->setIcon( KIcon( "tab-close" ) );
+    d->tabsClose->setIcon( QIcon::fromTheme( "tab-close" ) );
     d->tabsClose->setEnabled( false );
     d->tabsClose->adjustSize();
     d->tabsClose->setToolTip( i18n("Close the current tab"));

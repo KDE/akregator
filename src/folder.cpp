@@ -32,7 +32,7 @@
 #include <qdom.h>
 #include <QList>
 
-#include <KIcon>
+#include <QIcon>
 #include <qdebug.h>
 
 #include <cassert>
@@ -189,7 +189,7 @@ void Folder::insertChild(TreeNode* node, TreeNode* after)
 
 QIcon Folder::icon() const
 {
-    return KIcon(QLatin1String("folder"));
+    return QIcon::fromTheme(QLatin1String("folder"));
 }
 
 void Folder::insertChild(int index, TreeNode* node)

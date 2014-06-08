@@ -34,7 +34,7 @@
 #include <kstandarddirs.h>
 
 #include <khbox.h>
-#include <KIcon>
+#include <QIcon>
 
 #include <QLabel>
 #include <QList>
@@ -92,7 +92,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     QIcon iconAll = KIconLoader::global()->loadIcon("system-run", KIconLoader::Small);
     QIcon iconNew(KStandardDirs::locate("data", "akregator/pics/kmmsgnew.png"));
     QIcon iconUnread(KStandardDirs::locate("data", "akregator/pics/kmmsgunseen.png"));
-    const KIcon iconKeep( "mail-mark-important" );
+    const QIcon iconKeep = QIcon::fromTheme( "mail-mark-important" );
 
     d->searchCombo->addItem(iconAll, i18n("All Articles"));
     d->searchCombo->addItem(iconUnread, i18nc("Unread articles filter", "Unread"));

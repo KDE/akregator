@@ -27,7 +27,7 @@
 
 #include "akregator_export.h"
 
-#include <KIcon>
+#include <QIcon>
 #include <KStatusNotifierItem>
 
 
@@ -52,7 +52,7 @@ class AKREGATOR_EXPORT TrayIcon : public KStatusNotifierItem
     private:
         static TrayIcon* m_instance;
 
-        KIcon m_defaultIcon;
+        QIcon m_defaultIcon;
         int m_unread;
 };
 

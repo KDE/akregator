@@ -91,7 +91,7 @@ void OnlineSyncPlugin::updateActions()
             action = coll->addAction(groupname);
             action->setProperty("ConfigGroup",groupname);
             action->setProperty("SyncType", m_syncTool->Get);
-            action->setIcon(KIcon("mail-receive"));
+            action->setIcon(QIcon::fromTheme("mail-receive"));
             action->setText(i18n("Get from %1",generalGroup.readEntry( "Identifier", QString() )));
             m_feedSyncMenu->addAction(action);
             m_feedSyncActions.append(action);
@@ -100,7 +100,7 @@ void OnlineSyncPlugin::updateActions()
             action = coll->addAction(groupname);
             action->setProperty("ConfigGroup",groupname);
             action->setProperty("SyncType", m_syncTool->Send);
-            action->setIcon(KIcon("mail-send"));
+            action->setIcon(QIcon::fromTheme("mail-send"));
             action->setText(i18n("Send to %1",generalGroup.readEntry( "Identifier", QString() )));
             m_feedSyncMenu->addAction(action);
             m_feedSyncActions.append(action);
@@ -109,7 +109,7 @@ void OnlineSyncPlugin::updateActions()
     }
 
     action = coll->addAction("feedsync_manage");
-    action->setIcon(KIcon("application-rss+xml"));
+    action->setIcon(QIcon::fromTheme("application-rss+xml"));
     action->setText(i18n("Manage..."));
     m_feedSyncMenu->addAction(action);
     m_feedSyncActions.append(action);

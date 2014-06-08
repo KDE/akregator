@@ -34,7 +34,7 @@
 
 #include <KDateTime>
 #include <KGlobal>
-#include <KIcon>
+#include <QIcon>
 #include <KLocalizedString>
 #include <KUrl>
 #include <QMenu>
@@ -65,7 +65,7 @@ bool FilterDeletedProxyModel::filterAcceptsRow( int source_row, const QModelInde
     return !sourceModel()->index( source_row, 0, source_parent ).data( ArticleModel::IsDeletedRole ).toBool();
 }
 
-SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( KIcon( "mail-mark-important" ) )
+SortColorizeProxyModel::SortColorizeProxyModel( QObject* parent ) : QSortFilterProxyModel( parent ), m_keepFlagIcon( QIcon::fromTheme( "mail-mark-important" ) )
 {
     m_unreadColor = KColorScheme( QPalette::Normal, KColorScheme::View ).foreground( KColorScheme::PositiveText ).color();
     m_newColor = KColorScheme( QPalette::Normal, KColorScheme::View ).foreground( KColorScheme::NegativeText ).color();
