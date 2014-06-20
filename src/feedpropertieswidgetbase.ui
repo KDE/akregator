@@ -144,7 +144,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="KLineEdit" name="feedNameEdit">
+          <widget class="QLineEdit" name="feedNameEdit">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>1</horstretch>
@@ -157,7 +157,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="KLineEdit" name="urlEdit"/>
+          <widget class="QLineEdit" name="urlEdit"/>
          </item>
         </layout>
        </item>
@@ -381,11 +381,6 @@
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
   </customwidget>
   <customwidget>
    <class>KPluralHandlingSpinBox</class>
