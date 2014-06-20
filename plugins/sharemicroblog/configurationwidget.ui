@@ -80,7 +80,7 @@
     </widget>
    </item>
    <item row="4" column="2">
-    <widget class="KLineEdit" name="kcfg_Username"/>
+    <widget class="QLineEdit" name="kcfg_Username"/>
    </item>
    <item row="1" column="1">
     <widget class="QLabel" name="label_9">
@@ -121,11 +121,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
   <customwidget>
    <class>KComboBox</class>
    <extends>QComboBox</extends>
