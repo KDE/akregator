@@ -36,6 +36,7 @@
 #include <KColorScheme>
 
 #include <QPainter>
+#include <QFontDatabase>
 
 
 namespace Akregator {
@@ -82,7 +83,7 @@ void TrayIcon::slotSetUnread(int unread)
         int oldWidth = KIconLoader::SizeSmallMedium;
 
         QString countStr = QString::number( unread );
-        QFont f = KGlobalSettings::generalFont();
+        QFont f = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
         f.setBold(true);
 
         float pointSize = f.pointSizeF();
