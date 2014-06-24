@@ -39,6 +39,7 @@
 #include <QPalette>
 #include <QString>
 #include <KLocale>
+#include <KFormat>
 
 using namespace boost;
 using namespace Syndication;
@@ -55,11 +56,11 @@ namespace {
         const QString type = enclosure.type();
         QString inf;
         if ( !type.isEmpty() && length > 0 )
-            inf = i18n( "(%1, %2)", type, KLocale::global()->formatByteSize( length ) );
+            inf = i18n( "(%1, %2)", type, KFormat().formatByteSize( length ) );
         else if ( !type.isNull() )
             inf = type;
         else if ( length > 0 )
-            inf = KLocale::global()->formatByteSize( length );
+            inf = KFormat().formatByteSize( length );
         QString str = i18n( "<a href=\"%1\">%2</a> %3", enclosure.url(), title, inf );
         return str;
     }
