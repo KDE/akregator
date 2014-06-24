@@ -40,7 +40,6 @@
 
 #include <kaction.h>
 #include <klibloader.h>
-#include <QMenu>
 #include <kmimetypetrader.h>
 #include <ktoolbarpopupaction.h>
 #include <kurl.h>

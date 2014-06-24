@@ -27,7 +27,6 @@
 #include "settings_advanced.h"
 
 #include <K4AboutData>
-#include <KConfigDialogManager>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>

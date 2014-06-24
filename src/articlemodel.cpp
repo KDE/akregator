@@ -35,7 +35,6 @@
 #include <QVector>
 
 #include <KLocalizedString>
-#include <KGlobal>
 #include <KLocale>
 #include <KUrl>
 

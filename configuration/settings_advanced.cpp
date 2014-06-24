@@ -27,7 +27,6 @@
 #include "storagefactory.h"
 #include "storagefactoryregistry.h"
 
-#include <KComboBox>
 #include <KLocalizedString>
 
 #include <QPushButton>

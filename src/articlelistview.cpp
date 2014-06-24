@@ -33,7 +33,6 @@
 #include <utils/filtercolumnsproxymodel.h>
 
 #include <KDateTime>
-#include <KGlobal>
 #include <QIcon>
 #include <KLocalizedString>
 #include <KUrl>

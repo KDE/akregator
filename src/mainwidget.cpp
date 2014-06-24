@@ -63,7 +63,6 @@
 
 #include <kaction.h>
 #include <kdialog.h>
-#include <QDebug>
 #include <kfiledialog.h>
 #include <kfileitem.h>
 #include <kiconloader.h>

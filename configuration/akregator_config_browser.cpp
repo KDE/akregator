@@ -27,7 +27,6 @@
 #include "ui_settings_browser.h"
 
 #include <K4AboutData>
-#include <KConfigDialogManager>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>

@@ -25,8 +25,6 @@
 #include "akregatorconfig.h"
 #include "ui_settings_archive.h"
 #include <K4AboutData>
-#include <KConfigDialogManager>
-#include <QDebug>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>

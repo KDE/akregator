@@ -31,7 +31,6 @@
 #include "libkdepim/progresswidget/progressstatusbarwidget.h"
 #include "libkdepim/progresswidget/statusbarprogresswidget.h"
 
-#include <QAction>
 #include <KActionCollection>
 #include <KApplication>
 #include <KConfig>
@@ -43,12 +42,11 @@
 #include <KStandardAction>
 #include <KStatusBar>
 #include <KPluginLoader>
-#include <KMenuBar>
 #include <KXMLGUIFactory>
-#include <KToolBar>
 #include <KPluginFactory>
-#include <KGlobal>
 #include <KSharedConfig>
+#include <KToolBar>
+#include <QMenuBar>
 
 using namespace Akregator;
 

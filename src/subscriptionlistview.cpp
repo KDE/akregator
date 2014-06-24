@@ -33,7 +33,6 @@
 
 #include <QMenu>
 #include <KLocalizedString>
-#include <QDebug>
 #include <KConfigGroup>
 
 #include <cassert>
