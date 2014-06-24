@@ -76,6 +76,7 @@
 #include "partadaptor.h"
 
 #include <memory>
+#include <QFontDatabase>
 
 using namespace boost;
 
@@ -681,10 +682,10 @@ void Part::initFonts()
     QStringList fonts = Settings::fonts();
     if (fonts.isEmpty())
     {
-        fonts.append(KGlobalSettings::generalFont().family());
-        fonts.append(KGlobalSettings::fixedFont().family());
-        fonts.append(KGlobalSettings::generalFont().family());
-        fonts.append(KGlobalSettings::generalFont().family());
+        fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
+        fonts.append(QFontDatabase::systemFont(QFontDatabase::FixedFont).family());
+        fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
+        fonts.append(QFontDatabase::systemFont(QFontDatabase::GeneralFont).family());
         fonts.append("0");
     }
     Settings::setFonts(fonts);
@@ -708,7 +709,7 @@ void Part::initFonts()
         if (konq.hasKey("MinimumFontSize"))
             minfs = konq.readEntry("MinimumFontSize", 8);
         else
-            minfs = std::max( KGlobalSettings::generalFont().pointSize() - 2, 4 );
+            minfs = std::max( QFontDatabase::systemFont(QFontDatabase::GeneralFont).pointSize() - 2, 4 );
         Settings::setMinimumFontSize(minfs);
     }
 
@@ -718,7 +719,7 @@ void Part::initFonts()
         if (konq.hasKey("MediumFontSize"))
             medfs = konq.readEntry("MediumFontSize", 12);
         else
-            medfs = KGlobalSettings::generalFont().pointSize();
+            medfs = QFontDatabase::systemFont(QFontDatabase::GeneralFont).pointSize();
         Settings::setMediumFontSize(medfs);
     }
 
