@@ -66,7 +66,6 @@
 #include <kfiledialog.h>
 #include <kfileitem.h>
 #include <kiconloader.h>
-#include <kinputdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <krandom.h>

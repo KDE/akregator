@@ -29,7 +29,7 @@
 #include "kernel.h"
 
 #include <QDebug>
-#include <KInputDialog>
+#include <QInputDialog>
 #include <KLocalizedString>
 
 #include <QDomDocument>
@@ -93,11 +93,10 @@ void ImportFeedListCommand::Private::doImport()
     bool ok=false;
 
     if ( rootFolderOption == ImportFeedListCommand::Ask )
-        importedRootFolderName = KInputDialog::getText( i18n("Add Imported Folder"),
-                i18n("Imported folder name:"),
+        importedRootFolderName = QInputDialog::getText( q->parentWidget(), i18n("Add Imported Folder"),
+                i18n("Imported folder name:"), QLineEdit::Normal,
                 importedRootFolderName,
-                &ok,
-                q->parentWidget() );
+                &ok);
 
 
     if ( !ok || !that ) {

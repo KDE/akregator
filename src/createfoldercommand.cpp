@@ -27,7 +27,7 @@
 #include "folder.h"
 #include "subscriptionlistview.h"
 
-#include <KInputDialog>
+#include <QInputDialog>
 #include <KLocalizedString>
 
 #include <QTimer>
@@ -63,11 +63,10 @@ void CreateFolderCommand::Private::doCreate()
     assert( m_rootFolder );
     assert( m_subscriptionListView );
     bool ok;
-    const QString name = KInputDialog::getText( i18n( "Add Folder" ), 
-                                                i18n( "Folder name:" ), 
+    const QString name = QInputDialog::getText( q->parentWidget(), i18n( "Add Folder" ), 
+                                                i18n( "Folder name:" ), QLineEdit::Normal, 
                                                 QString(), 
-                                                &ok,
-                                                q->parentWidget() );
+                                                &ok);
     if ( !ok )
     {
         q->done();
