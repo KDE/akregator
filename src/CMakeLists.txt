@@ -1,4 +1,4 @@
-kde_enable_exceptions()
+
 
 add_subdirectory(about)
 add_subdirectory(icons)
