@@ -31,7 +31,6 @@
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <QMenu>
-#include <kicon.h>
 #include <kiconloader.h>
 #include <KColorScheme>
 

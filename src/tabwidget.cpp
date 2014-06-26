@@ -40,7 +40,7 @@
 #include <kapplication.h>
 #include <qdebug.h>
 #include <QTabWidget>
-#include <ktabbar.h>
+#include <qtabbar.h>
 #include <QMenu>
 #include <krun.h>
 #include <klocale.h>
