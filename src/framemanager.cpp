@@ -41,7 +41,7 @@
 #include <QDebug>
 
 #include <QtCore/QStringList>
-#include <QtGui/QApplication>
+#include <QApplication>
 
 namespace Akregator {
 
