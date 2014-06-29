@@ -177,7 +177,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="KFontComboBox" name="kcfg_StandardFont"/>
+       <widget class="QFontComboBox" name="kcfg_StandardFont"/>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="textLabel2_2">
@@ -187,7 +187,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="KFontComboBox" name="kcfg_FixedFont"/>
+       <widget class="QFontComboBox" name="kcfg_FixedFont"/>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="textLabel3">
@@ -197,7 +197,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="KFontComboBox" name="kcfg_SerifFont"/>
+       <widget class="QFontComboBox" name="kcfg_SerifFont"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="textLabel4">
@@ -207,7 +207,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="KFontComboBox" name="kcfg_SansSerifFont"/>
+       <widget class="QFontComboBox" name="kcfg_SansSerifFont"/>
       </item>
      </layout>
     </widget>
@@ -236,11 +236,6 @@
    <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
    <header>KPluralHandlingSpinBox</header>
-  </customwidget>
-  <customwidget>
-   <class>KFontComboBox</class>
-   <extends>KComboBox</extends>
-   <header>kfontcombobox.h</header>
   </customwidget>
   <customwidget>
    <class>KComboBox</class>
