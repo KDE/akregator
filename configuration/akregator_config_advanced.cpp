@@ -35,7 +35,7 @@
 
 using namespace Akregator;
 
-//QT5 K_PLUGIN_FACTORY(KCMAkregatorAdvancedConfigFactory, registerPlugin<KCMAkregatorAdvancedConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorAdvancedConfigFactory, registerPlugin<KCMAkregatorAdvancedConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorAdvancedConfigFactory( "kcmakradvancedconfig" ))
 
 KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const QVariantList& args )
