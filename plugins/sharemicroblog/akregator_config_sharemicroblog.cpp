@@ -34,7 +34,7 @@
 
 using namespace Akregator;
 
-//QT5 K_PLUGIN_FACTORY( KCMAkregatorShareConfigFactory, registerPlugin<KCMAkregatorShareConfig>(); )
+K_PLUGIN_FACTORY( KCMAkregatorShareConfigFactory, registerPlugin<KCMAkregatorShareConfig>(); )
 K_EXPORT_PLUGIN( KCMAkregatorShareConfigFactory( "kcmakrshareconfig" ) )
 
 KCMAkregatorShareConfig::KCMAkregatorShareConfig( QWidget* parent, const QVariantList& args )
@@ -75,5 +75,5 @@ void KCMAkregatorShareConfig::load()
     if ( !serviceUrl.isEmpty() )
         ui.kcfg_ServiceUrl->setEditText(serviceUrl);
 }
-
+#include "akregator_config_sharemicroblog.moc"
 

@@ -35,7 +35,7 @@
 
 using namespace Akregator;
 
-//QT5 K_PLUGIN_FACTORY(KCMAkregatorBrowserConfigFactory, registerPlugin<KCMAkregatorBrowserConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorBrowserConfigFactory, registerPlugin<KCMAkregatorBrowserConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorBrowserConfigFactory( "kcmakrbrowserconfig" ))
 
 KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVariantList& args )
@@ -60,4 +60,5 @@ KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVa
 #endif
     addConfig( Settings::self(), m_widget );
 }
+#include "akregator_config_browser.moc"
 

@@ -68,3 +68,4 @@ void KCMAkregatorAdvancedConfig::save()
     KCModule::save();
 }
 
+#include "akregator_config_advanced.moc"

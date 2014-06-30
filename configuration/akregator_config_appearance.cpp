@@ -33,7 +33,7 @@
 
 using namespace Akregator;
 
-//QT5 K_PLUGIN_FACTORY(KCMAkregatorAppearanceConfigFactory, registerPlugin<KCMAkregatorAppearanceConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorAppearanceConfigFactory, registerPlugin<KCMAkregatorAppearanceConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorAppearanceConfigFactory( "kcmakrappearanceconfig" ))
 
 KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, const QVariantList& args )
@@ -84,4 +84,5 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
     addConfig( Settings::self(), m_widget );
 }
 
+#include "akregator_config_appearance.moc"
 

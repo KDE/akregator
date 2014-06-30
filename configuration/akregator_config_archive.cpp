@@ -34,7 +34,7 @@
 
 using namespace Akregator;
 
-//QT5 K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorArchiveConfigFactory( "kcmakrarchiveconfig" ))
 
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVariantList& args )
@@ -98,4 +98,4 @@ int KCMAkregatorArchiveConfig::archiveMode() const {
         return Settings::EnumArchiveMode::keepAllArticles;
     return id;
 }
-
+#include "akregator_config_archive.moc"

@@ -183,7 +183,7 @@ static const KAboutData &createAboutData()
   return about;
 }
 
-//QT5 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
+K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
 K_EXPORT_PLUGIN(AkregatorFactory(createAboutData()))
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
@@ -834,4 +834,4 @@ void Part::autoReadProperties()
 }
 
 } // namespace Akregator
-
+#include "akregator_part.moc" 

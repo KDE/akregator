@@ -35,7 +35,7 @@
 
 using namespace Akregator;
 
-//QT5 K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
+K_PLUGIN_FACTORY(KCMAkregatorGeneralConfigFactory, registerPlugin<KCMAkregatorGeneralConfig>();)
 K_EXPORT_PLUGIN(KCMAkregatorGeneralConfigFactory( "kcmakrgeneralconfig" ))
 
 KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVariantList& args )
@@ -64,4 +64,4 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
 #endif
     addConfig( Settings::self(), m_widget );
 }
-
+#include "akregator_config_general.moc"
