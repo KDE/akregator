@@ -57,7 +57,7 @@
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <ktemporaryfile.h>
-#include <KSaveFile>
+#include <QSaveFile>
 #include <kservice.h>
 #include <kxmlguifactory.h>
 #include <kio/netaccess.h>
@@ -443,13 +443,13 @@ bool Part::openFile() {
 }
 
 bool Part::writeToTextFile( const QString& data, const QString& filename ) const {
-    KSaveFile file( filename );
+    QSaveFile file( filename );
     if ( !file.open( QIODevice::WriteOnly ) )
         return false;
     QTextStream stream( &file );
     stream.setCodec( "UTF-8" );
     stream << data << endl;
-    return file.finalize();
+    return file.commit();
 }
 
 void Part::feedListLoaded( const shared_ptr<FeedList>& list ) {
