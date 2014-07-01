@@ -26,7 +26,7 @@
 #include "ui/configurationdialog.h"
 #include "sync/feedsync.h"
 
-#include <KAction>
+#include <QAction>
 #include <KActionMenu>
 #include <KActionCollection>
 #include <KLocalizedString>
@@ -73,14 +73,14 @@ void OnlineSyncPlugin::updateActions()
     qDebug();
 
     // Clear the menubar
-    Q_FOREACH( KAction* const i, m_feedSyncActions )
+    Q_FOREACH( QAction * const i, m_feedSyncActions )
         m_feedSyncMenu->removeAction( i );
     qDeleteAll( m_feedSyncActions );
     m_feedSyncActions.clear();
 
     // Fill the menubar
     KActionCollection* coll = actionCollection();
-    KAction* action;
+    QAction * action;
     // Read configuration
     const KConfig config("akregator_feedsyncrc");
     Q_FOREACH ( const QString& groupname, config.groupList() ) {
