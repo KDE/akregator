@@ -24,7 +24,7 @@
 #include "akregator_config_archive.h"
 #include "akregatorconfig.h"
 #include "ui_settings_archive.h"
-#include <K4AboutData>
+#include <KAboutData>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>
@@ -58,15 +58,15 @@ KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVa
     m_archiveModeGroup->addButton( m_ui.rb_LimitArticleAge, Settings::EnumArchiveMode::limitArticleAge );
     m_archiveModeGroup->addButton( m_ui.rb_DisableArchiving, Settings::EnumArchiveMode::disableArchiving );
     connect( m_archiveModeGroup, SIGNAL(buttonClicked(int)), this, SLOT(changed()) );
-#if 0 //QT5
-    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakrarchiveconfig" ), 0,
-                                        ki18n( "Configure Feed Reader Archive" ),
-                                        0, KLocalizedString(), K4AboutData::License_GPL,
-                                        ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
-    about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
-    setAboutData( about );
-#endif
+    KAboutData *about = new KAboutData( QLatin1String( "kcmakrarchiveconfig" ),
+                                        i18n( "Configure Feed Reader Archive" ),
+                                        QString(), QString(), KAboutLicense::GPL,
+                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
+
+    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+    setAboutData(about);
+
     addConfig( Settings::self(), m_widget );
 }
 

@@ -26,7 +26,7 @@
 
 #include "settings_advanced.h"
 
-#include <K4AboutData>
+#include <KAboutData>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>
@@ -43,15 +43,14 @@ KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const Q
 {  
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-  #if 0 //QT5 
-    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakradvancedconfig" ), 0,
-                                        ki18n( "Advanced Feed Reader Settings" ),
-                                        0, KLocalizedString(), K4AboutData::License_GPL,
-                                        ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
+    KAboutData *about = new KAboutData( QLatin1String( "kcmakradvancedconfig" ),
+                                        i18n( "Advanced Feed Reader Settings" ),
+                                        QString(), QString(), KAboutLicense::GPL,
+                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
-    about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
+    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+
     setAboutData( about );
-#endif
     addConfig( Settings::self(), m_widget );
 }
 
