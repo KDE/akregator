@@ -25,7 +25,7 @@
 #include "akregator_config_sharemicroblog.h"
 #include "sharesettings.h"
 
-#include <K4AboutData>
+#include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>
@@ -44,15 +44,14 @@ KCMAkregatorShareConfig::KCMAkregatorShareConfig( QWidget* parent, const QVarian
     ui.setupUi( m_widget );
     QVBoxLayout *layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
-#if 0 //QT5
-    K4AboutData* about = new K4AboutData( I18N_NOOP( "kcmakrshareconfig" ), 0,
-                                        ki18n( "Configure Share Services" ),
-                                        0, KLocalizedString(), K4AboutData::License_GPL,
-                                        ki18n( "(c), 2010 Artur Duque de Souza" ) );
+    KAboutData *about = new KAboutData( QLatin1String( "kcmakrshareconfig" ),
+                                        i18n( "Configure Share Services" ),
+                                        QString(), QString(), KAboutLicense::GPL,
+                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
-    about->addAuthor( ki18n( "Artur Duque de Souza" ), KLocalizedString(), "asouza@kde.org" );
+    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+
     setAboutData( about );
-#endif
     addConfig( ShareSettings::self(), m_widget );
 }
 

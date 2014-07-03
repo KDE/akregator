@@ -24,7 +24,7 @@
 #include "akregator_config_appearance.h"
 #include "akregatorconfig.h"
 
-#include <K4AboutData>
+#include <KAboutData>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>
@@ -67,15 +67,15 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
              m_ui.slider_minimumFontSize, SLOT(setValue(int)) );
     connect( m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)),
              m_ui.slider_mediumFontSize, SLOT(setValue(int)) );
-#if 0 //QT5
-    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakrappearanceconfig" ), 0,
-                                        ki18n( "Configure Feed Reader Appearance" ),
-                                        0, KLocalizedString(), K4AboutData::License_GPL,
-                                        ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
+    KAboutData *about = new KAboutData( QLatin1String( "kcmakrappearanceconfig" ),
+                                        i18n( "Configure Feed Reader Appearance" ),
+                                        QString(), QString(), KAboutLicense::GPL,
+                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
-    about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
+    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+
     setAboutData( about );
-#endif
+
     m_ui.slider_minimumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MinimumFontSize")) );
     m_ui.slider_mediumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MediumFontSize")) );
     m_ui.lbl_MinimumFontSize->setDisabled( Settings::self()->isImmutable(QLatin1String("MinimumFontSize")) );

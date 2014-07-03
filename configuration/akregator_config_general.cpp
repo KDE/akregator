@@ -26,7 +26,7 @@
 
 #include "ui_settings_general.h"
 
-#include <K4AboutData>
+#include <KAboutData>
 #include <KGenericFactory>
 #include <KLocalizedString>
 #include <kdemacros.h>
@@ -53,15 +53,14 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
              ui.kcfg_AutoFetchInterval, SLOT(setEnabled(bool)) );
     connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),
              ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)) );
-#if 0 //QT5
-    K4AboutData *about = new K4AboutData( I18N_NOOP( "kcmakrgeneralconfig" ), 0,
-                                        ki18n( "Configure Feeds" ),
-                                        0, KLocalizedString(), K4AboutData::License_GPL,
-                                        ki18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
+    KAboutData *about = new KAboutData( QLatin1String( "kcmakrgeneralconfig" ),
+                                        i18n( "Configure Feeds" ),
+                                        QString(), QString(), KAboutLicense::GPL,
+                                        i18n( "(c), 2004 - 2008 Frank Osterfeld" ) );
 
-    about->addAuthor( ki18n( "Frank Osterfeld" ), KLocalizedString(), "osterfeld@kde.org" );
+    about->addAuthor( i18n( "Frank Osterfeld" ), QString(), QStringLiteral("osterfeld@kde.org") );
+
     setAboutData( about );
-#endif
     addConfig( Settings::self(), m_widget );
 }
 #include "akregator_config_general.moc"
