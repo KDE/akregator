@@ -50,6 +50,7 @@
 #include <kurl.h>
 #include <kmimetype.h>
 #include <kio/global.h>
+#include <kio/pixmaploader.h>
 
 #include "actionmanager.h"
 #include "akregatorconfig.h"
@@ -416,7 +417,7 @@ void TabWidget::initiateDrag(int tab)
         QMimeData *md = new QMimeData;
         drag->setMimeData( md );
         lst.populateMimeData( md );
-        //QT5 drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, KIconLoader::Small ) );
+        drag->setPixmap( KIO::pixmapForUrl( lst.first(), 0, KIconLoader::Small ) );
         drag->start();
     }
 }
