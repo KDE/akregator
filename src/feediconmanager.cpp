@@ -27,7 +27,7 @@
 
 #include <kapplication.h>
 #include <qdebug.h>
-#include <kstandarddirs.h>
+
 #include <kurl.h>
 #include <KGlobal>
 
@@ -36,6 +36,7 @@
 #include <QtDBus/QtDBus>
 
 #include <cassert>
+#include <QStandardPaths>
 
 #define FAVICONINTERFACE "org.kde.FavIcon"
 
@@ -159,7 +160,7 @@ void FeedIconManager::slotIconChanged( bool isHost,
                                        const QString& iconName )
 {
     Q_UNUSED( isHost );
-    const QIcon icon( KGlobal::dirs()->findResource( "cache", iconName+QLatin1String(".png") ) );
+    const QIcon icon( QStandardPaths::locate(QStandardPaths::CacheLocation, iconName+QLatin1String(".png") ) );
     Q_FOREACH( FaviconListener* const l, d->urlDict.values( hostOrUrl ) )
         l->setFavicon( icon );
 }

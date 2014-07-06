@@ -70,7 +70,7 @@
 #include <kmessagebox.h>
 #include <krandom.h>
 #include <kshell.h>
-#include <kstandarddirs.h>
+
 #include <ktoggleaction.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>

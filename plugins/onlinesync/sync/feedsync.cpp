@@ -37,8 +37,9 @@
 #include <qdebug.h>
 #include <kconfiggroup.h>
 #include <kglobalsettings.h>
-#include <kstandarddirs.h>
+
 #include <QDate>
+#include <QStandardPaths>
 
 namespace feedsync {
 
@@ -224,7 +225,7 @@ void FeedSync::error(const QString& msg) {
 void FeedSync::log() {
     qDebug();
 
-    QString logPath = KGlobal::dirs()->saveLocation("data", "akregator") + "/onlinesync.log";
+    QString logPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "akregator" + "/onlinesync.log";
 
     QFile file(logPath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
