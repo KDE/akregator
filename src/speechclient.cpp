@@ -155,7 +155,7 @@ bool SpeechClient::isTextToSpeechInstalled() const
 
 void SpeechClient::setupSpeechSystem()
 {
-  if ( KStandardDirs::findExe( "kttsd" ).isEmpty() )
+  if ( QStandardPaths::findExecutable( "kttsd" ).isEmpty() )
   {
     qDebug() <<"KTTSD not installed, disable support";
     d->isTextSpeechInstalled = false;
