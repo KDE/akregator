@@ -24,7 +24,7 @@
 */
 
 #include "speechclient.h"
-#include <kstandarddirs.h>
+
 #include "article.h"
 #include "utils.h"
 
@@ -37,6 +37,7 @@
 #include "kspeechinterface.h"
 #include <QString>
 #include <kspeech.h>
+#include <QStandardPaths>
 namespace Akregator
 {
 

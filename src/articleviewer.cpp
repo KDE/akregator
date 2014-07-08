@@ -53,7 +53,7 @@
 #include <kmessagebox.h>
 #include <krun.h>
 #include <kshell.h>
-#include <kstandarddirs.h>
+
 #include <kstandardaction.h>
 #include <ktoolinvocation.h>
 #include <kurl.h>
@@ -70,6 +70,7 @@
 
 #include <memory>
 #include <cassert>
+#include <QStandardPaths>
 
 using namespace boost;
 using namespace Akregator;
@@ -82,7 +83,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
       m_url(0),
       m_htmlFooter(),
       m_currentText(),
-      m_imageDir( KUrl::fromPath( KGlobal::dirs()->saveLocation("cache", "akregator/Media/" ) ) ),
+      m_imageDir( KUrl::fromPath( QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + "akregator/Media/" )),
       m_node(0),
       m_viewMode(NormalView),
       m_part( new ArticleViewerPart( this ) ),
@@ -668,7 +669,7 @@ QSize ArticleViewer::sizeHint() const
 
 void ArticleViewer::displayAboutPage()
 {
-    QString location = KStandardDirs::locate("data", "akregator/about/main.html");
+    QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/about/main.html");
 
     m_part->begin(KUrl::fromPath( location ));
     QString info =
@@ -696,8 +697,8 @@ void ArticleViewer::displayAboutPage()
 
     QString content = KPIMUtils::kFileToByteArray(location);
 
-    QString infocss = KStandardDirs::locate( "data", "kdeui/about/kde_infopage.css" );
-    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( KStandardDirs::locate( "data", "kdeui/about/kde_infopage_rtl.css" )) : QString();
+    QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage.css" );
+    QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage_rtl.css" )) : QString();
 
     m_part->write( content.arg( infocss, rtl, fontSize, appTitle, catchPhrase, quickDescription, info ) );
     m_part->end();
@@ -706,7 +707,7 @@ void ArticleViewer::displayAboutPage()
 ArticleViewerPart::ArticleViewerPart(QWidget* parent) : KHTMLPart(parent),
      m_button(-1)
 {
-    setXMLFile(KStandardDirs::locate("data", "akregator/articleviewer.rc"), true);
+    setXMLFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/articleviewer.rc"), true);
 }
 
 int ArticleViewerPart::button() const
