@@ -48,11 +48,11 @@
 #include <qdebug.h>
 #include <klocale.h>
 #include <QMenu>
-#include <kshortcut.h>
+#include <QKeySequence>
 #include <kstandardshortcut.h>
 #include <kstandardaction.h>
 #include <kxmlguifactory.h>
-#include <KShortcut>
+#include <QKeySequence>
 #include <KGuiItem>
 
 #include <QApplication>
@@ -209,57 +209,57 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     QAction * action = coll->addAction("feed_homepage");
     action->setText(i18n("&Open Homepage"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenHomepage()));
-    action->setShortcuts(KShortcut( "Ctrl+H" ));
+    action->setShortcut(QKeySequence( "Ctrl+H" ));
 
     action = coll->addAction("reload_all_tabs");
     action->setIcon(QIcon::fromTheme("view-refresh"));
     action->setText(i18n("Reload All Tabs"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotReloadAllTabs()));
-    action->setShortcuts(KShortcut( "Shift+F5" ));
+    action->setShortcut(QKeySequence( "Shift+F5" ));
 
 
     action = coll->addAction("feed_add");
     action->setIcon(QIcon::fromTheme("feed-subscribe"));
     action->setText(i18n("&Add Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAdd()));
-    action->setShortcuts(KShortcut( "Insert" ));
+    action->setShortcut(QKeySequence( "Insert" ));
 
     action = coll->addAction("feed_add_group");
     action->setIcon(QIcon::fromTheme("folder-new"));
     action->setText(i18n("Ne&w Folder..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedAddGroup()));
-    action->setShortcuts(KShortcut( "Shift+Insert" ));
+    action->setShortcut(QKeySequence( "Shift+Insert" ));
 
     action = coll->addAction("feed_remove");
     action->setIcon(QIcon::fromTheme("edit-delete"));
     action->setText(i18n("&Delete Feed"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedRemove()));
-    action->setShortcuts(KShortcut( "Alt+Delete" ));
+    action->setShortcut(QKeySequence( "Alt+Delete" ));
 
     action = coll->addAction("feed_modify");
     action->setIcon(QIcon::fromTheme("document-properties"));
     action->setText(i18n("&Edit Feed..."));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFeedModify()));
-    action->setShortcuts(KShortcut( "F2" ));
+    action->setShortcut(QKeySequence( "F2" ));
 
     // toolbar / View
     action = coll->addAction("normal_view");
     action->setIcon(QIcon::fromTheme("view-split-top-bottom"));
     action->setText(i18n("&Normal View"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNormalView()));
-    action->setShortcuts(KShortcut( "Ctrl+Shift+1" ));
+    action->setShortcut(QKeySequence( "Ctrl+Shift+1" ));
 
     action = coll->addAction("widescreen_view");
     action->setIcon(QIcon::fromTheme("view-split-left-right"));
     action->setText(i18n("&Widescreen View"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotWidescreenView()));
-    action->setShortcuts(KShortcut( "Ctrl+Shift+2" ));
+    action->setShortcut(QKeySequence( "Ctrl+Shift+2" ));
 
     action = coll->addAction("combined_view");
     action->setIcon(QIcon::fromTheme("view-list-text"));
     action->setText(i18n("C&ombined View"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotCombinedView()));
-    action->setShortcuts(KShortcut( "Ctrl+Shift+3" ));
+    action->setShortcut(QKeySequence( "Ctrl+Shift+3" ));
 
     // toolbar / feed menu
     action = coll->addAction("feed_fetch");
@@ -272,7 +272,7 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setIcon(QIcon::fromTheme("go-bottom"));
     action->setText(i18n("Fe&tch All Feeds"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotFetchAllFeeds()));
-    action->setShortcuts(KShortcut( "Ctrl+L" ));
+    action->setShortcut(QKeySequence( "Ctrl+L" ));
 
     QAction *stopAction = coll->addAction("feed_stop");
     stopAction->setIcon(QIcon::fromTheme("process-stop"));
@@ -285,13 +285,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setIcon(QIcon::fromTheme("mail-mark-read"));
     action->setText(i18n("&Mark Feed as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllRead()));
-    action->setShortcuts(KShortcut( "Ctrl+R" ));
+    action->setShortcut(QKeySequence( "Ctrl+R" ));
 
     action = coll->addAction("feed_mark_all_feeds_as_read");
     action->setIcon(QIcon::fromTheme("mail-mark-read"));
     action->setText(i18n("Ma&rk All Feeds as Read"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotMarkAllFeedsRead()));
-    action->setShortcuts(KShortcut( "Ctrl+Shift+R" ));
+    action->setShortcut(QKeySequence( "Ctrl+Shift+R" ));
 
     // Settings menu
     KToggleAction *sqf = coll->add<KToggleAction>("show_quick_filter");
@@ -303,19 +303,19 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setIcon(QIcon::fromTheme("tab-new"));
     action->setText(i18n("Open in Tab"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenSelectedArticles()));
-    action->setShortcuts(KShortcut( "Shift+Return" ));
+    action->setShortcut(QKeySequence( "Shift+Return" ));
 
     action = coll->addAction("article_open_in_background" );
     action->setIcon(QIcon::fromTheme("tab-new"));
     action->setText(i18n("Open in Background Tab"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenSelectedArticlesInBackground()));
-    action->setShortcuts(KShortcut( "Return" ));
+    action->setShortcut(QKeySequence( "Return" ));
 
     action = coll->addAction("article_open_external" );
     action->setIcon(QIcon::fromTheme("window-new"));
     action->setText(i18n("Open in External Browser"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotOpenSelectedArticlesInBrowser()));
-    action->setShortcuts(KShortcut( "Ctrl+Shift+Return" ));
+    action->setShortcut(QKeySequence( "Ctrl+Shift+Return" ));
 
     action = coll->addAction("article_copy_link_address" );
     action->setText(i18n("Copy Link Address"));
@@ -331,13 +331,13 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setIcon(QIcon::fromTheme("go-next"));
     action->setText(i18n("Ne&xt Unread Article"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotNextUnreadArticle()));
-    action->setShortcuts(KShortcut(Qt::Key_Plus, Qt::Key_Equal));
+    action->setShortcut(QKeySequence(Qt::Key_Plus, Qt::Key_Equal));
 
     action = coll->addAction("article_delete");
     action->setIcon(QIcon::fromTheme("edit-delete"));
     action->setText(i18n("&Delete"));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleDelete()));
-    action->setShortcuts(KShortcut( "Delete" ));
+    action->setShortcut(QKeySequence( "Delete" ));
 
     KActionMenu* statusMenu = coll->add<KActionMenu>("article_set_status");
     statusMenu->setText(i18n("&Mark As"));
@@ -362,14 +362,14 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setText(i18nc("as in: mark as read","&Read"));
     action->setIcon(QIcon::fromTheme("mail-mark-read"));
     action->setToolTip(i18n("Mark selected article as read"));
-    action->setShortcuts(KShortcut( "Ctrl+E" ));
+    action->setShortcut(QKeySequence( "Ctrl+E" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleRead()));
     statusMenu->addAction(action);
 
     action = coll->addAction("article_set_status_new");
     action->setText(i18nc("as in: mark as new", "&New"));
     action->setIcon(QIcon::fromTheme("mail-mark-unread-new"));
-    action->setShortcuts(KShortcut( "Ctrl+N" ));
+    action->setShortcut(QKeySequence( "Ctrl+N" ));
     action->setToolTip(i18n("Mark selected article as new"));
     connect(action, SIGNAL(triggered(bool)),  d->mainWidget, SLOT(slotSetSelectedArticleNew()));
     statusMenu->addAction(action);
@@ -379,15 +379,16 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action->setText(i18nc("as in: mark as unread", "&Unread"));
     action->setIcon(QIcon::fromTheme("mail-mark-unread"));
     action->setToolTip(i18n("Mark selected article as unread"));
-    action->setShortcuts(KShortcut( "Ctrl+U" ));
+    action->setShortcut(QKeySequence( "Ctrl+U" ));
     connect(action, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotSetSelectedArticleUnread()));
     statusMenu->addAction(action);
 
     KToggleAction* importantAction = coll->add<KToggleAction>("article_set_status_important");
     importantAction->setText(i18n("&Mark as Important"));
     importantAction->setIcon(QIcon::fromTheme("mail-mark-important"));
-    KShortcut importantSC( "Ctrl+I" );
-    importantSC.setAlternate( Qt::Key_I );
+    QList<QKeySequence> importantSC;
+    importantSC << QKeySequence( "Ctrl+I" );
+    importantSC << QKeySequence( Qt::Key_I );
     importantAction->setShortcuts( importantSC );
     importantAction->setCheckedState(KGuiItem(i18n("Remove &Important Mark")));
     connect(importantAction, SIGNAL(triggered(bool)), d->mainWidget, SLOT(slotArticleToggleKeepFlag(bool)));
@@ -395,22 +396,22 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
     action = coll->addAction("feedstree_move_up");
     action->setText(i18n("Move Node Up"));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeUp()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Up" ));
+    action->setShortcut(QKeySequence( "Shift+Alt+Up" ));
 
     action = coll->addAction("feedstree_move_down");
     action->setText(i18n("Move Node Down"));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeDown()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Down" ));
+    action->setShortcut(QKeySequence( "Shift+Alt+Down" ));
 
     action = coll->addAction(i18n("Move Node Left"));
     action->setText(i18n("Move Node Left"));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeLeft()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Left" ));
+    action->setShortcut(QKeySequence( "Shift+Alt+Left" ));
 
     action = coll->addAction("feedstree_move_right");
     action->setText(i18n("Move Node Right"));
     connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeRight()));
-    action->setShortcuts(KShortcut( "Shift+Alt+Right" ));
+    action->setShortcut(QKeySequence( "Shift+Alt+Right" ));
 
     action = coll->addAction("file_sendlink");
     action->setIcon(QIcon::fromTheme("mail-message-new"));
@@ -455,11 +456,11 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
     QAction *action = actionCollection()->addAction("go_previous_article");
     action->setText(i18n("&Previous Article"));
     connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotPreviousArticle()));
-    action->setShortcuts(KShortcut( "Left" ));
+    action->setShortcut(QKeySequence( "Left" ));
     action = actionCollection()->addAction("go_next_article");
     action->setText(i18n("&Next Article"));
     connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotNextArticle()));
-    action->setShortcuts(KShortcut( "Right" ));
+    action->setShortcut(QKeySequence( "Right" ));
 }
 
 void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscriptionListView)
@@ -474,12 +475,12 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
     QAction *action = coll->addAction("go_prev_feed");
     action->setText(i18n("&Previous Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevFeed()));
-    action->setShortcuts(KShortcut( "P" ));
+    action->setShortcut(QKeySequence( "P" ));
 
     action = coll->addAction("go_next_feed");
     action->setText(i18n("&Next Feed"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextFeed()));
-    action->setShortcuts(KShortcut( "N" ));
+    action->setShortcut(QKeySequence( "N" ));
 
     action = coll->addAction("go_next_unread_feed");
     action->setIcon(QIcon::fromTheme("go-down"));
@@ -496,32 +497,32 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
     action = coll->addAction("feedstree_home");
     action->setText(i18n("Go to Top of Tree"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemBegin()));
-    action->setShortcuts(KShortcut( "Ctrl+Home" ));
+    action->setShortcut(QKeySequence( "Ctrl+Home" ));
 
     action = coll->addAction("feedstree_end");
     action->setText(i18n("Go to Bottom of Tree"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemEnd()));
-    action->setShortcuts(KShortcut( "Ctrl+End" ));
+    action->setShortcut(QKeySequence( "Ctrl+End" ));
 
     action = coll->addAction("feedstree_left");
     action->setText(i18n("Go Left in Tree"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemLeft()));
-    action->setShortcuts(KShortcut( "Ctrl+Left" ));
+    action->setShortcut(QKeySequence( "Ctrl+Left" ));
 
     action = coll->addAction("feedstree_right");
     action->setText(i18n("Go Right in Tree"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemRight()));
-    action->setShortcuts(KShortcut( "Ctrl+Right" ));
+    action->setShortcut(QKeySequence( "Ctrl+Right" ));
 
     action = coll->addAction("feedstree_up");
     action->setText(i18n("Go Up in Tree"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemUp()));
-    action->setShortcuts(KShortcut( "Ctrl+Up" ));
+    action->setShortcut(QKeySequence( "Ctrl+Up" ));
 
     action = coll->addAction("feedstree_down" );
     action->setText(i18n("Go Down in Tree"));
     connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemDown()));
-    action->setShortcuts(KShortcut( "Ctrl+Down" ));
+    action->setShortcut(QKeySequence( "Ctrl+Down" ));
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
@@ -536,12 +537,12 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     QAction *action = coll->addAction("select_next_tab");
     action->setText(i18n("Select Next Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotNextTab()));
-    action->setShortcuts(KShortcut( "Ctrl+Period" ));
+    action->setShortcut(QKeySequence( "Ctrl+Period" ));
 
     action = coll->addAction("select_previous_tab");
     action->setText(i18n("Select Previous Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotPreviousTab()));
-    action->setShortcuts(KShortcut( "Ctrl+Comma" ));
+    action->setShortcut(QKeySequence( "Ctrl+Comma" ));
 
     action = coll->addAction("tab_detach");
     action->setIcon(QIcon::fromTheme("tab-detach"));
@@ -594,14 +595,14 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
 
     KToolBarPopupAction* forward = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? "go-previous" : "go-next"), i18nc("Go forward in browser history", "Forward"), this);
     d->actionCollection->addAction("browser_forward", forward);
-    forward->setShortcuts(KShortcut(isRTL ? "Alt+Left" : "Alt+Right"));
+    forward->setShortcut(QKeySequence(isRTL ? "Alt+Left" : "Alt+Right"));
     connect(forward, SIGNAL(triggered()), frameManager, SLOT(slotBrowserForward()));
 
     connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
 
     KToolBarPopupAction* back = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? "go-next" : "go-previous"), i18nc("Go back in browser history", "Back"), this);
     d->actionCollection->addAction("browser_back", back);
-    back->setShortcuts(KShortcut(isRTL ?  "Alt+Right" : "Alt+Left"));
+    back->setShortcut(QKeySequence(isRTL ?  "Alt+Right" : "Alt+Left"));
     connect(back, SIGNAL(triggered()), frameManager, SLOT(slotBrowserBack()));
 
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
