@@ -159,10 +159,10 @@ void LoadFeedListCommand::Private::doLoad() {
         const QString backupFile = createBackup( fileName, &backupCreated );
         const QString title = i18nc( "error message window caption", "XML Parsing Error" );
         const QString details =
-          xi18n( "<qt><p>XML parsing error in line <numid>%1</numid>, "
-                "column <numid>%2</numid> of %3:</p><p>%4</p></qt>",
-                errLine,
-                errCol,
+          xi18n( "<qt><p>XML parsing error in line %1, "
+                "column %2 of %3:</p><p>%4</p></qt>",
+                QString::number(errLine),
+                QString::number(errCol),
                 fileName,
                 errMsg );
         const QString msg =
