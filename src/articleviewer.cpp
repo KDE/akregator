@@ -83,7 +83,7 @@ ArticleViewer::ArticleViewer(QWidget *parent)
       m_url(0),
       m_htmlFooter(),
       m_currentText(),
-      m_imageDir( KUrl::fromPath( QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + "akregator/Media/" )),
+      m_imageDir( QUrl::fromLocalFile( QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + "akregator/Media/" )),
       m_node(0),
       m_viewMode(NormalView),
       m_part( new ArticleViewerPart( this ) ),
@@ -671,7 +671,7 @@ void ArticleViewer::displayAboutPage()
 {
     QString location = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/about/main.html");
 
-    m_part->begin(KUrl::fromPath( location ));
+    m_part->begin(QUrl::fromLocalFile( location ));
     QString info =
             i18nc("%1: Akregator version; %2: homepage URL; "
             "--- end of comment ---",

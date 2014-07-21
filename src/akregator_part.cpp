@@ -425,7 +425,7 @@ bool Part::openUrl(const KUrl& url)
 void Part::openStandardFeedList()
 {
     if ( !m_standardFeedList.isEmpty() )
-        openUrl( KUrl::fromPath( m_standardFeedList ) );
+        openUrl( QUrl::fromLocalFile( m_standardFeedList ) );
 }
 
 bool Part::openFile() {
