@@ -28,7 +28,6 @@
 
 #include <K4AboutData>
 #include <KLocalizedString>
-#include <kdemacros.h>
 
 #include <QVBoxLayout>
 

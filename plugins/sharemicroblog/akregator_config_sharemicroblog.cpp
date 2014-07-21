@@ -28,7 +28,6 @@
 #include <KAboutData>
 #include <KPluginFactory>
 #include <KLocalizedString>
-#include <kdemacros.h>
 
 #include <QVBoxLayout>
 

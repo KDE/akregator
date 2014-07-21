@@ -29,7 +29,6 @@
 #include <KAboutData>
 #include <KGenericFactory>
 #include <KLocalizedString>
-#include <kdemacros.h>
 
 #include <QVBoxLayout>
 
