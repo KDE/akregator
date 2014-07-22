@@ -28,7 +28,7 @@
 #ifndef AKREGATOR_ARTICLEMATCHER_H
 #define AKREGATOR_ARTICLEMATCHER_H
 
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 #include <QList>
 #include <QString>
 #include <QVariant>

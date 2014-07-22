@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_BACKEND_STORAGEFACTORYREGISTRY_H
 #define AKREGATOR_BACKEND_STORAGEFACTORYREGISTRY_H
 
-#include "akregator_export.h"
+#include "akregatorinterfaces_export.h"
 
 class QString;
 class QStringList;

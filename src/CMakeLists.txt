@@ -57,6 +57,7 @@ set(akregatorprivate_LIB_SRCS
 )
 
 add_library(akregatorprivate ${LIBRARY_TYPE} ${akregatorprivate_LIB_SRCS})
+generate_export_header(akregatorprivate BASE_NAME akregator)
 
 target_link_libraries(akregatorprivate
   kdepim
@@ -123,7 +124,7 @@ ki18n_wrap_ui(akregatorpart_PART_SRCS
 )
 
 add_library(akregatorpart MODULE ${akregatorpart_PART_SRCS})
-
+generate_export_header(akregatorpart BASE_NAME akregatorpart)
 target_link_libraries(akregatorpart
   akregatorinterfaces
   akregatorprivate

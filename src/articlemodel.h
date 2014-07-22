@@ -27,7 +27,7 @@
 #include <QAbstractTableModel>
 #include <QList>
 
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 
 #include <boost/shared_ptr.hpp>
 #include <vector>

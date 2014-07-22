@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_FEEDLISTMANAGEMENTINTERFACE_H
 #define AKREGATOR_FEEDLISTMANAGEMENTINTERFACE_H
 
-#include "akregator_export.h"
+#include "akregatorinterfaces_export.h"
 
 class QString;
 class QStringList;

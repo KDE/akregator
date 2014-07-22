@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_ARTICLELISTVIEW_H
 #define AKREGATOR_ARTICLELISTVIEW_H
 
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 #include "abstractselectioncontroller.h"
 
 #include <QPointer>

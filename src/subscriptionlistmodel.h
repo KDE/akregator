@@ -24,7 +24,7 @@
 #ifndef AKREGATOR_SUBSCRIPTIONLISTMODEL_H
 #define AKREGATOR_SUBSCRIPTIONLISTMODEL_H
 
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 
 #include <QAbstractItemModel>
 

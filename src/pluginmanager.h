@@ -16,7 +16,7 @@ email                : markey@web.de
 #ifndef AKREGATOR_PLUGINMANAGER_H
 #define AKREGATOR_PLUGINMANAGER_H
 
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 
 #include <kservice.h>
 #include <kservicetypetrader.h>

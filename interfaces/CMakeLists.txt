@@ -12,6 +12,7 @@ set(akregatorinterfaces_LIB_SRCS
 kconfig_add_kcfg_files(akregatorinterfaces_LIB_SRCS akregatorconfig.kcfgc)
 
 add_library(akregatorinterfaces ${LIBRARY_TYPE} ${akregatorinterfaces_LIB_SRCS})
+generate_export_header(akregatorinterfaces BASE_NAME akregatorinterfaces)
 
 target_link_libraries(akregatorinterfaces
   kdepim

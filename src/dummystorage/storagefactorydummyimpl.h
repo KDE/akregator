@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_STORAGEFACTORYDUMMYIMPL_H
 #define AKREGATOR_STORAGEFACTORYDUMMYIMPL_H
 
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 #include "storagefactory.h"
 
 class QString;

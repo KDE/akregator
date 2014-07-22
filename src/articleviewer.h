@@ -26,7 +26,7 @@
 #define AKREGATOR_ARTICLEVIEWER_H
 
 #include "article.h"
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 
 #include <khtml_part.h>
 

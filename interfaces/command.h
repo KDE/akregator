@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_COMMAND_H
 #define AKREGATOR_COMMAND_H
 
-#include "akregator_export.h"
+#include "akregatorinterfaces_export.h"
 
 #include <QtCore/QObject>
 

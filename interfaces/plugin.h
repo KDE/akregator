@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_PLUGIN_H
 #define AKREGATOR_PLUGIN_H
 
-#include "akregator_export.h"
+#include "akregatorinterfaces_export.h"
 
 #include <QtCore/QObject>
 #include <QtCore/QHash>

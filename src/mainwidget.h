@@ -27,7 +27,7 @@
 #ifndef AKREGATOR_MAINWIDGET_H
 #define AKREGATOR_MAINWIDGET_H
 
-#include "akregator_export.h"
+#include "akregatorpart_export.h"
 #include "feed.h"
 
 #include <kurl.h>
