@@ -55,7 +55,7 @@ NotificationManager::~NotificationManager()
 void NotificationManager::setWidget(QWidget* widget, const KComponentData &inst)
 {
     m_widget = widget;
-    m_instance = inst.isValid() ? inst : KGlobal::mainComponent();
+    m_instance = inst.isValid() ? inst : KComponentData::mainComponent();
 }
 
 void NotificationManager::slotNotifyArticle(const Article& article)
