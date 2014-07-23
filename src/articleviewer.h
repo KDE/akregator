@@ -122,15 +122,15 @@ class AKREGATORPART_EXPORT ArticleViewer : public QWidget
 
     protected slots:
 
-        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
+        void slotOpenUrlRequestDelayed(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
 
-        void slotCreateNewWindow(const KUrl& url,
+        void slotCreateNewWindow(const QUrl& url,
                                     const KParts::OpenUrlArguments& args,
                                     const KParts::BrowserArguments& browserArgs,
                                     const KParts::WindowArgs& windowArgs,
                                     KParts::ReadOnlyPart** part);
 
-        void slotPopupMenu(const QPoint&, const KUrl&, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags);
+        void slotPopupMenu(const QPoint&, const QUrl&, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags);
 
         /** Copies current link to clipboard. */
         void slotCopyLinkAddress();

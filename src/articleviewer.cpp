@@ -115,18 +115,18 @@ ArticleViewer::ArticleViewer(QWidget *parent)
              this, SLOT(slotCompleted()));
 
     KParts::BrowserExtension* ext = m_part->browserExtension();
-    connect(ext, SIGNAL(popupMenu(QPoint,KUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags,KParts::BrowserExtension::ActionGroupMap)),
-             this, SLOT(slotPopupMenu(QPoint,KUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
+    connect(ext, SIGNAL(popupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags,KParts::BrowserExtension::ActionGroupMap)),
+             this, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,KParts::OpenUrlArguments,KParts::BrowserArguments,KParts::BrowserExtension::PopupFlags))); // ActionGroupMap argument removed, unused by slot
 
-    connect( ext, SIGNAL(openUrlRequestDelayed(KUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
-             this, SLOT(slotOpenUrlRequestDelayed(KUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)) );
+    connect( ext, SIGNAL(openUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
+             this, SLOT(slotOpenUrlRequestDelayed(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)) );
 
-    connect(ext, SIGNAL(createNewWindow(KUrl,
+    connect(ext, SIGNAL(createNewWindow(QUrl,
             KParts::OpenUrlArguments,
             KParts::BrowserArguments,
             KParts::WindowArgs,
             KParts::ReadOnlyPart**)),
-            this, SLOT(slotCreateNewWindow(KUrl,
+            this, SLOT(slotCreateNewWindow(QUrl,
                          KParts::OpenUrlArguments,
                          KParts::BrowserArguments,
                          KParts::WindowArgs,
@@ -166,7 +166,7 @@ int ArticleViewer::pointsToPixel(int pointSize) const
     return ( pointSize * m_part->view()->logicalDpiY() + 36 ) / 72 ;
 }
 
-void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
+void ArticleViewer::slotOpenUrlRequestDelayed(const QUrl& url, const KParts::OpenUrlArguments& args, const KParts::BrowserArguments& browserArgs)
 {
     OpenUrlRequest req(url);
     req.setArgs(args);
@@ -206,7 +206,7 @@ void ArticleViewer::slotOpenUrlRequestDelayed(const KUrl& url, const KParts::Ope
     emit signalOpenUrlRequest(req);
 }
 
-void ArticleViewer::slotCreateNewWindow(const KUrl& url,
+void ArticleViewer::slotCreateNewWindow(const QUrl& url,
                                        const KParts::OpenUrlArguments& args,
                                        const KParts::BrowserArguments& browserArgs,
                                        const KParts::WindowArgs& /*windowArgs*/,
@@ -223,7 +223,7 @@ void ArticleViewer::slotCreateNewWindow(const KUrl& url,
         *part = req.part();
 }
 
-void ArticleViewer::slotPopupMenu(const QPoint& p, const KUrl& kurl, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags kpf)
+void ArticleViewer::slotPopupMenu(const QPoint& p, const QUrl& kurl, mode_t, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&, KParts::BrowserExtension::PopupFlags kpf)
 {
     const bool isLink = (kpf & KParts::BrowserExtension::ShowNavigationItems) == 0; // ## why not use kpf & IsLink ?
     const bool isSelection = (kpf & KParts::BrowserExtension::ShowTextSelectionItems) != 0;
