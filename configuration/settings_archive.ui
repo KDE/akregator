@@ -37,7 +37,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_MaxArticleNumber">
+         <widget class="KPluralHandlingSpinBox" name="kcfg_MaxArticleNumber">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -64,7 +64,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KIntSpinBox" name="kcfg_MaxArticleAge">
+         <widget class="KPluralHandlingSpinBox" name="kcfg_MaxArticleAge">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -115,9 +115,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KIntSpinBox</class>
+   <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
+   <header>KPluralHandlingSpinBox</header>
   </customwidget>
  </customwidgets>
  <resources/>
