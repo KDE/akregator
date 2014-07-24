@@ -89,7 +89,7 @@ void CreateFeedCommand::Private::doCreate()
             url = clipboardText;
     }
 
-    afd->setUrl( KUrl::fromPercentEncoding( url.toLatin1() ) );
+    afd->setUrl( QUrl::fromPercentEncoding( url.toLatin1() ) );
 
     QPointer<QObject> thisPointer( q );
 
