@@ -563,7 +563,7 @@ void Part::exportFile(const KUrl& url)
     }
     else
     {
-        KTemporaryFile tmpfile;
+        QTemporaryFile tmpfile;
         tmpfile.open();
 
         QTextStream stream(&tmpfile);
