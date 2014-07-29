@@ -33,10 +33,9 @@
 using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorAppearanceConfigFactory, registerPlugin<KCMAkregatorAppearanceConfig>();)
-K_EXPORT_PLUGIN(KCMAkregatorAppearanceConfigFactory( "kcmakrappearanceconfig" ))
 
 KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( /*KCMAkregatorAppearanceConfigFactory::componentData(),*/ parent, args ), m_widget( new QWidget )
+    : KCModule( parent, args ), m_widget( new QWidget )
 {  
     m_ui.setupUi( m_widget );
 

@@ -35,10 +35,9 @@
 using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorBrowserConfigFactory, registerPlugin<KCMAkregatorBrowserConfig>();)
-K_EXPORT_PLUGIN(KCMAkregatorBrowserConfigFactory( "kcmakrbrowserconfig" ))
 
 KCMAkregatorBrowserConfig::KCMAkregatorBrowserConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( /*KCMAkregatorBrowserConfigFactory::componentData(),*/ parent, args ), m_widget( new QWidget )
+    : KCModule( parent, args ), m_widget( new QWidget )
 {  
     Ui::SettingsBrowser ui;
     ui.setupUi( m_widget );

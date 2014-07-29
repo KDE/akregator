@@ -34,10 +34,9 @@
 using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorArchiveConfigFactory, registerPlugin<KCMAkregatorArchiveConfig>();)
-K_EXPORT_PLUGIN(KCMAkregatorArchiveConfigFactory( "kcmakrarchiveconfig" ))
 
 KCMAkregatorArchiveConfig::KCMAkregatorArchiveConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( /*KCMAkregatorArchiveConfigFactory::componentData(),*/ parent, args ), m_widget( new QWidget )
+    : KCModule( parent, args ), m_widget( new QWidget )
 {
     Ui::SettingsArchive m_ui;
     m_ui.setupUi( m_widget );

@@ -35,10 +35,9 @@
 using namespace Akregator;
 
 K_PLUGIN_FACTORY(KCMAkregatorAdvancedConfigFactory, registerPlugin<KCMAkregatorAdvancedConfig>();)
-K_EXPORT_PLUGIN(KCMAkregatorAdvancedConfigFactory( "kcmakradvancedconfig" ))
 
 KCMAkregatorAdvancedConfig::KCMAkregatorAdvancedConfig( QWidget* parent, const QVariantList& args )
-    : KCModule( /*KCMAkregatorAdvancedConfigFactory::componentData(),*/ parent, args ), m_widget( new SettingsAdvanced )
+    : KCModule( parent, args ), m_widget( new SettingsAdvanced )
 {  
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
