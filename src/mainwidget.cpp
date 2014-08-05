@@ -990,7 +990,7 @@ void Akregator::MainWidget::slotArticleDelete()
         case 0:
             return;
         case 1:
-            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", Qt::escape(articles.first().title()));
+            msg = i18n("<qt>Are you sure you want to delete article <b>%1</b>?</qt>", articles.first().title().toHtmlEscaped());
             break;
         default:
             msg = i18np("<qt>Are you sure you want to delete the selected article?</qt>", "<qt>Are you sure you want to delete the %1 selected articles?</qt>", articles.count());
