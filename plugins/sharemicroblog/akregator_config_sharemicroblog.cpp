@@ -34,10 +34,9 @@
 using namespace Akregator;
 
 K_PLUGIN_FACTORY( KCMAkregatorShareConfigFactory, registerPlugin<KCMAkregatorShareConfig>(); )
-K_EXPORT_PLUGIN( KCMAkregatorShareConfigFactory( "kcmakrshareconfig" ) )
 
 KCMAkregatorShareConfig::KCMAkregatorShareConfig( QWidget* parent, const QVariantList& args )
-: KCModule( /*KCMAkregatorShareConfigFactory::componentData(),*/ parent, args ),
+: KCModule( parent, args ),
     m_widget( new QWidget )
 {
     ui.setupUi( m_widget );
