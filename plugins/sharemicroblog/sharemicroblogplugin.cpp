@@ -35,7 +35,6 @@
 
 
 K_PLUGIN_FACTORY(SharePluginFactory, registerPlugin<SharePluginIface>();)
-K_EXPORT_PLUGIN(SharePluginFactory("akregator_sharemicroblog_plugin"))
 
 SharePluginIface::SharePluginIface( QObject* parent, const QVariantList& args )
 : Plugin( parent, args ), m_impl( new SharePlugin( parent, args ) )

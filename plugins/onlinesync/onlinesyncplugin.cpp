@@ -38,8 +38,6 @@ using namespace feedsync;
 K_PLUGIN_FACTORY(OnlineSyncPluginFactory,
                  registerPlugin<Akregator::OnlineSyncPluginIface>();
 )
-K_EXPORT_PLUGIN(OnlineSyncPluginFactory( "akregator_onlinesync_plugin" ) )
-
 
 OnlineSyncPluginIface::OnlineSyncPluginIface( QObject* parent, const QList<QVariant>& args ) : Plugin( parent ), m_impl( new OnlineSyncPlugin( parent, args ) )
 {

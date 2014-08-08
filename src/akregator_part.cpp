@@ -185,7 +185,6 @@ static const KAboutData &createAboutData()
 }
 
 K_PLUGIN_FACTORY(AkregatorFactory, registerPlugin<Part>();)
-K_EXPORT_PLUGIN(AkregatorFactory(createAboutData()))
 
 BrowserExtension::BrowserExtension(Part *p, const char *name)
             : KParts::BrowserExtension( p)

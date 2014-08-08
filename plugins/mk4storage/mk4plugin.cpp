@@ -34,8 +34,6 @@ K_PLUGIN_FACTORY(MK4PluginFactory,
                  registerPlugin<MK4Plugin>();
 )
 
-K_EXPORT_PLUGIN(MK4PluginFactory("akregator_mk4storage"))
-
 void MK4Plugin::doInitialize()
 {
    m_factory = new StorageFactoryMK4Impl();
