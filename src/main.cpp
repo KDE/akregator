@@ -28,7 +28,7 @@
 
 #include <kcmdlineargs.h>
 #include <QDebug>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kontactinterface/pimuniqueapplication.h>
 #include <QtDBus/QtDBus>
 

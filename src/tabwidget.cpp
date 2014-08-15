@@ -43,7 +43,7 @@
 #include <qtabbar.h>
 #include <QMenu>
 #include <krun.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <QIcon>
 #include <kiconloader.h>
 #include <ktoolinvocation.h>

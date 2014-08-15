@@ -32,13 +32,13 @@
 #include "utils.h"
 
 #include <kglobal.h>
-#include <klocale.h>
+#include <KLocalizedString>
 
 #include <QApplication>
 #include <QPaintDevice>
 #include <QPalette>
 #include <QString>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KFormat>
 
 using namespace boost;

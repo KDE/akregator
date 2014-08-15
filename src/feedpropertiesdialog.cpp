@@ -27,7 +27,7 @@
 
 #include <kcombobox.h>
 #include <klineedit.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <knuminput.h>
 #include <kpassworddialog.h>
 

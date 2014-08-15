@@ -28,7 +28,7 @@
 
 #include <QHash>
 
-#include <klocale.h>
+#include <KLocalizedString>
 
 #include <libkdepim/progresswidget/progressmanager.h>
 

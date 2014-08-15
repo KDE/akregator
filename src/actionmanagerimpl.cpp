@@ -46,7 +46,7 @@
 #include <KToggleAction>
 #include <kactioncollection.h>
 #include <qdebug.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <QMenu>
 #include <QKeySequence>
 #include <kstandardshortcut.h>

@@ -29,7 +29,7 @@
 #include "utils.h"
 
 #include <kcharsets.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <qdebug.h>
 #include <ktoolinvocation.h>
 #include <kservicetypetrader.h>

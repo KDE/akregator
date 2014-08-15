@@ -24,7 +24,7 @@
 #include "storagefactorymk4impl.h"
 #include "storagemk4impl.h"
 
-#include <klocale.h>
+#include <KLocalizedString>
 #include <QString>
 #include <QStringList>
 

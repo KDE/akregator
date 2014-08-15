@@ -29,7 +29,7 @@
 
 #include <kactioncollection.h>
 #include <qdebug.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kurl.h>
 #include <kparts/browserextension.h>
 #include <kparts/part.h>

@@ -30,7 +30,7 @@
 #include <kiconloader.h>
 #include <kicontheme.h>
 #include <klineedit.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kmessagebox.h>
 #include <ksqueezedtextlabel.h>
 #include <kurl.h>

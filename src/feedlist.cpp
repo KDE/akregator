@@ -34,7 +34,7 @@
 #include "subscriptionlistjobs.h"
 
 #include <qdebug.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <krandom.h>
 
 #include <qdom.h>

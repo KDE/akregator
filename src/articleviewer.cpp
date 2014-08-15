@@ -48,7 +48,7 @@
 #include <kfiledialog.h>
 #include <khtmlview.h>
 #include <kiconloader.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <QMenu>
 #include <kmessagebox.h>
 #include <krun.h>

@@ -21,7 +21,7 @@ email                : markey@web.de
 
 #include <klibloader.h>
 #include <qdebug.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kmessagebox.h>
 
 using std::vector;
