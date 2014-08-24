@@ -56,7 +56,7 @@
 #include <kglobalsettings.h>
 #include <kmessagebox.h>
 
-#include <ktemporaryfile.h>
+#include <QTemporaryFile>
 #include <QSaveFile>
 #include <kservice.h>
 #include <kxmlguifactory.h>
