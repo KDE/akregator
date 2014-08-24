@@ -30,7 +30,7 @@
 #include "browserframe.h"
 #include "openurlrequest.h"
 
-#include <kaction.h>
+#include <QAction>
 #include <KCharMacroExpander>
 #include <kprocess.h>
 #include <kshell.h>

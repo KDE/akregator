@@ -61,7 +61,7 @@
 #include "types.h"
 #include <solid/networking.h>
 
-#include <kaction.h>
+#include <QAction>
 #include <kdialog.h>
 #include <kfiledialog.h>
 #include <kfileitem.h>

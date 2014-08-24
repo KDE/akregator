@@ -42,7 +42,7 @@
 
 #include <kactionmenu.h>
 #include <ktoolbarpopupaction.h>
-#include <kaction.h>
+#include <QAction>
 #include <KToggleAction>
 #include <kactioncollection.h>
 #include <qdebug.h>

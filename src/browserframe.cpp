@@ -36,7 +36,7 @@
 #include <QString>
 #include <QWidget>
 
-#include <kaction.h>
+#include <QAction>
 #include <qdebug.h>
 #include <klibloader.h>
 #include <QMenu>

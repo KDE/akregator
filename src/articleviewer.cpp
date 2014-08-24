@@ -42,7 +42,7 @@
 
 #include <KPIMUtils/kpimutils/kfileio.h>
 
-#include <kaction.h>
+#include <QAction>
 #include <kactioncollection.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
