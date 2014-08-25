@@ -36,7 +36,6 @@
 #include <QMessageBox>
 #include <qdebug.h>
 #include <kconfiggroup.h>
-#include <kglobalsettings.h>
 
 #include <QDate>
 #include <QStandardPaths>

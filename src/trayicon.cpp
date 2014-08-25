@@ -29,7 +29,6 @@
 #include <kwindowsystem.h>
 #include <qdebug.h>
 #include <KLocalizedString>
-#include <kglobalsettings.h>
 #include <QMenu>
 #include <kiconloader.h>
 #include <KColorScheme>
