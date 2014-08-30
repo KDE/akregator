@@ -25,11 +25,12 @@
 #include "akregatorconfig.h"
 #include "ui_settings_archive.h"
 #include <KAboutData>
-#include <KGenericFactory>
+#include <KPluginFactory>
 #include <KLocalizedString>
 
 #include <QButtonGroup>
 #include <QVBoxLayout>
+#include <KDebug>
 
 using namespace Akregator;
 

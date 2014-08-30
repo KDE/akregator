@@ -27,7 +27,7 @@
 #include "ui_settings_browser.h"
 
 #include <KAboutData>
-#include <KGenericFactory>
+#include <KPluginFactory>
 #include <KLocalizedString>
 
 #include <QVBoxLayout>
