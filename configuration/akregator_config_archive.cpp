@@ -30,7 +30,6 @@
 
 #include <QButtonGroup>
 #include <QVBoxLayout>
-#include <KDebug>
 
 using namespace Akregator;
 
@@ -88,7 +87,7 @@ void KCMAkregatorArchiveConfig::setArchiveMode( int mode )
     if ( b )
         b->setChecked( true );
     else
-        kWarning( "No button for %d registered, ignoring call", mode );
+        qWarning() <<QString::fromLatin1("No button for %1 registered, ignoring call").arg( mode );
 }
 
 int KCMAkregatorArchiveConfig::archiveMode() const {
