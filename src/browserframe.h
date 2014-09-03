@@ -91,19 +91,19 @@ class AKREGATOR_EXPORT BrowserFrame : public Frame, public virtual FaviconListen
 
     private slots:
 
-        void slotOpenUrlRequestDelayed(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
-        void slotCreateNewWindow(const KUrl& url,
+        void slotOpenUrlRequestDelayed(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&);
+        void slotCreateNewWindow(const QUrl& url,
                                  const KParts::OpenUrlArguments& args,
                                  const KParts::BrowserArguments& browserArgs,
                                  const KParts::WindowArgs& windowArgs,
                                  KParts::ReadOnlyPart** part);
         void slotOpenUrlNotify();
         void slotSetLocationBarUrl(const QString& url);
-        void slotSetIconUrl(const KUrl& url);
+        void slotSetIconUrl(const QUrl& url);
         void slotSpeedProgress(int);
 
         void slotPopupMenu(const QPoint& global,
-                           const KUrl& url,
+                           const QUrl& url,
                            mode_t mode,
                            const KParts::OpenUrlArguments& args,
                            const KParts::BrowserArguments& browserArgs,

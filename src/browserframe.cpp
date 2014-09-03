@@ -87,7 +87,7 @@ void BrowserFrame::slotSetLocationBarUrl(const QString& /*url*/)
     // TODO: use this to update URLs for dragging (like tab drag etc.)
 }
 
-void BrowserFrame::slotSetIconUrl(const KUrl& url )
+void BrowserFrame::slotSetIconUrl(const QUrl& url )
 {
     FeedIconManager::self()->removeListener( this );
     FeedIconManager::self()->addListener( url, this );
@@ -209,7 +209,7 @@ void addActionsToMenu( QMenu* menu, const QList<QAction*> actions, SeparatorOpti
 
 void BrowserFrame::slotPopupMenu(
                    const QPoint& global,
-                   const KUrl& url,
+                   const QUrl& url,
                    mode_t mode,
                    const OpenUrlArguments& args,
                    const BrowserArguments& browserArgs,
@@ -271,7 +271,7 @@ void BrowserFrame::slotPopupMenu(
     delete popup;
 }
 
-void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const OpenUrlArguments& args, const BrowserArguments& browserArgs)
+void BrowserFrame::slotOpenUrlRequestDelayed(const QUrl& url, const OpenUrlArguments& args, const BrowserArguments& browserArgs)
 {
     OpenUrlRequest req;
 
@@ -283,7 +283,7 @@ void BrowserFrame::slotOpenUrlRequestDelayed(const KUrl& url, const OpenUrlArgum
     emit signalOpenUrlRequest(req);
 }
 
-void BrowserFrame::slotCreateNewWindow(const KUrl& url,
+void BrowserFrame::slotCreateNewWindow(const QUrl& url,
                                        const OpenUrlArguments& args,
                                        const BrowserArguments& browserArgs,
                                        const WindowArgs& /*windowArgs*/,

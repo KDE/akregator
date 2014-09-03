@@ -221,30 +221,30 @@ void BrowserFrame::Private::connectPart()
                      q, SLOT(slotSpeedProgress(int)) );
             connect( ext, SIGNAL(speedProgress(int)),
                      q, SLOT(slotSetProgress(int)) );
-            connect( ext, SIGNAL(openUrlRequestDelayed(KUrl,
+            connect( ext, SIGNAL(openUrlRequestDelayed(QUrl,
                      KParts::OpenUrlArguments,
                      KParts::BrowserArguments ) ),
-                     q, SLOT(slotOpenUrlRequestDelayed(KUrl,
+                     q, SLOT(slotOpenUrlRequestDelayed(QUrl,
                                   KParts::OpenUrlArguments,
                                   KParts::BrowserArguments)) );
             connect(ext, SIGNAL(setLocationBarUrl(QString)),
                     q, SLOT(slotSetLocationBarUrl(QString)) );
-            connect(ext, SIGNAL(setIconUrl(KUrl)),
-                    q, SLOT(slotSetIconUrl(KUrl)) );
-            connect(ext, SIGNAL(createNewWindow(KUrl,
+            connect(ext, SIGNAL(setIconUrl(QUrl)),
+                    q, SLOT(slotSetIconUrl(QUrl)) );
+            connect(ext, SIGNAL(createNewWindow(QUrl,
                     KParts::OpenUrlArguments,
                     KParts::BrowserArguments,
                     KParts::WindowArgs,
                     KParts::ReadOnlyPart**)),
-                    q, SLOT(slotCreateNewWindow(KUrl,
+                    q, SLOT(slotCreateNewWindow(QUrl,
                                  KParts::OpenUrlArguments,
                                  KParts::BrowserArguments,
                                  KParts::WindowArgs,
                                  KParts::ReadOnlyPart**)));
-            connect(ext, SIGNAL(popupMenu(QPoint,KUrl,mode_t,
+            connect(ext, SIGNAL(popupMenu(QPoint,QUrl,mode_t,
                     KParts::OpenUrlArguments, KParts::BrowserArguments,
                     KParts::BrowserExtension::PopupFlags, KParts::BrowserExtension::ActionGroupMap)),
-                    q, SLOT(slotPopupMenu(QPoint,KUrl,mode_t,
+                    q, SLOT(slotPopupMenu(QPoint,QUrl,mode_t,
                     KParts::OpenUrlArguments, KParts::BrowserArguments,
                     KParts::BrowserExtension::PopupFlags,
                     KParts::BrowserExtension::ActionGroupMap )));
