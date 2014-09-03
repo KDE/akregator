@@ -222,7 +222,9 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
     FeedIconManager::self(); // FIXME: registering the icon manager dbus iface here,
                                // because otherwise we get a deadlock later
 
-    m_standardFeedList = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "akregator/data" + "/feeds.opml";
+    m_standardFeedList = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/akregator/data/feeds.opml");
+    QFileInfo fileInfo(m_standardFeedList);
+    QDir().mkpath(fileInfo.absolutePath());
 
     Backend::StorageFactoryDummyImpl* dummyFactory = new Backend::StorageFactoryDummyImpl();
     if (!Backend::StorageFactoryRegistry::self()->registerFactory(dummyFactory, dummyFactory->key())) {
