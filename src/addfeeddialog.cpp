@@ -36,6 +36,10 @@
 #include <kurl.h>
 
 #include <QCheckBox>
+#include <KConfigGroup>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 namespace Akregator {
 
@@ -53,7 +57,7 @@ AddFeedWidget::~AddFeedWidget()
 
 QSize AddFeedDialog::sizeHint() const
 {
-    QSize sh = KDialog::sizeHint();
+    QSize sh = QDialog::sizeHint();
     sh.setHeight(minimumSize().height());
     sh.setWidth(sh.width() * 1.2);
     return sh;
@@ -65,18 +69,27 @@ Feed* AddFeedDialog::feed()
 }
 
 AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
-   : KDialog(parent
+   : QDialog(parent
      /*Qt::WStyle_DialogBorder*/), m_feed( 0 )
 {
     setObjectName(name);
     widget = new AddFeedWidget(this);
-    setCaption(i18n("Add Feed"));
-    setButtons(KDialog::Ok|KDialog::Cancel);
-    setDefaultButton(KDialog::Ok);
+    setWindowTitle(i18n("Add Feed"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(widget);
+    mOkButton = buttonBox->button(QDialogButtonBox::Ok);
+    mOkButton->setDefault(true);
+    mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    //PORTING SCRIPT: WARNING mainLayout->addWidget(buttonBox) must be last item in layout. Please move it.
+    mainLayout->addWidget(buttonBox);
     widget->urlEdit->setFocus();
     connect(widget->urlEdit, SIGNAL(textChanged(QString)), this, SLOT(textChanged(QString)));
-    enableButtonOk(false);
-    setMainWidget(widget);
+    mOkButton->setEnabled(false);
+    mainLayout->addWidget(widget);
 }
 
 AddFeedDialog::~AddFeedDialog()
@@ -89,7 +102,7 @@ void AddFeedDialog::setUrl(const QString& t)
 
 void AddFeedDialog::accept()
 {
-    enableButtonOk(false);
+    mOkButton->setEnabled(false);
     feedUrl = widget->urlEdit->text().trimmed();
 
     delete m_feed;
@@ -123,13 +136,13 @@ void AddFeedDialog::accept()
 
 void AddFeedDialog::fetchCompleted(Feed * /*f*/)
 {
-    KDialog::accept();
+    QDialog::accept();
 }
 
 void AddFeedDialog::fetchError(Feed *)
 {
     KMessageBox::error(this, i18n("Feed not found from %1.", feedUrl));
-    KDialog::reject();
+    QDialog::reject();
 }
 
 void AddFeedDialog::fetchDiscovery(Feed *f)
@@ -140,7 +153,7 @@ void AddFeedDialog::fetchDiscovery(Feed *f)
 
 void AddFeedDialog::textChanged(const QString& text)
 {
-    enableButtonOk(!text.isEmpty());
+    mOkButton->setEnabled(!text.isEmpty());
 }
 
 } // namespace Akregator

@@ -27,10 +27,10 @@
 
 #include "ui_addfeedwidgetbase.h"
 
-#include <kdialog.h>
+#include <qdialog.h>
 
 #include <QWidget>
-
+class QPushButton;
 namespace Akregator
 {
 
@@ -44,7 +44,7 @@ class AddFeedWidget : public QWidget, public Ui::AddFeedWidgetBase
         ~AddFeedWidget();
 };
 
-class AddFeedDialog : public KDialog
+class AddFeedDialog : public QDialog
 {
     Q_OBJECT
     public:
@@ -70,6 +70,7 @@ class AddFeedDialog : public KDialog
         AddFeedWidget *widget;
         QString feedUrl;
         Feed* m_feed;
+        QPushButton *mOkButton;
 };
 
 } // namespace Akregator
