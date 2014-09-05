@@ -40,7 +40,7 @@
 #include <KSqueezedTextLabel>
 #include <KShortcutsDialog>
 #include <KStandardAction>
-#include <KStatusBar>
+#include <QStatusBar>
 #include <KPluginLoader>
 #include <KXMLGUIFactory>
 #include <KPluginFactory>

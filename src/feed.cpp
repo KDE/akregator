@@ -42,7 +42,9 @@
 #include <qdebug.h>
 #include <kglobal.h>
 #include <QIcon>
-#include <kstandarddirs.h>
+#include <QFileInfo>
+#include <QDir>
+
 #include <kurl.h>
 #include <KRandom>
 
@@ -60,6 +62,7 @@
 #include <boost/bind.hpp>
 
 #include <memory>
+#include <QStandardPaths>
 
 using Syndication::ItemPtr;
 using namespace Akregator;
@@ -656,8 +659,7 @@ void Akregator::Feed::fetchCompleted(Syndication::Loader *l, Syndication::FeedPt
     if (d->imagePixmap.isNull())
     {
         //QString u = d->xmlUrl;
-        QString imageFileName = KGlobal::dirs()->saveLocation("cache", QLatin1String("akregator/Media/"))
-                                + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
+        QString imageFileName = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + QLatin1String("akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png");
         d->imagePixmap=QPixmap(imageFileName, "PNG");
 
         // if we ain't got the image and the feed provides one, get it....
@@ -732,7 +734,10 @@ void Akregator::Feed::setImage(const QPixmap &p)
     if (p.isNull())
         return;
     d->imagePixmap=p;
-    d->imagePixmap.save(KGlobal::dirs()->saveLocation("cache", QString(QLatin1String("akregator/Media/"))+ Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png")),"PNG");
+    const QString filename = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') + QString(QLatin1String("akregator/Media/") + Utils::fileNameForUrl(d->xmlUrl) + QLatin1String(".png"));
+    QFileInfo fileInfo(filename);
+    QDir().mkpath(fileInfo.absolutePath());
+    d->imagePixmap.save(filename ,"PNG");
     nodeModified();
 }
 
