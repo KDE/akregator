@@ -28,7 +28,7 @@
 #include "feed.h"
 #include "ui_feedpropertieswidgetbase.h"
 
-#include <kdialog.h>
+#include <QDialog>
 
 #include <QWidget>
 
@@ -55,7 +55,7 @@ class FeedPropertiesWidget : public QWidget, public Ui::FeedPropertiesWidgetBase
         void slotUpdateCheckBoxToggled(bool enabled);
 };
 
-class FeedPropertiesDialog : public KDialog
+class FeedPropertiesDialog : public QDialog
 {
     Q_OBJECT
     public:

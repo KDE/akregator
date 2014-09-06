@@ -62,7 +62,6 @@
 #include <solid/networking.h>
 
 #include <QAction>
-#include <kdialog.h>
 #include <kfiledialog.h>
 #include <kfileitem.h>
 #include <kiconloader.h>
