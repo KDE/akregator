@@ -7,7 +7,7 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
 )
 
-MESSAGE(STATUS "Akreagator plasma plugin disabled")
+MESSAGE(STATUS "Akregator plasma plugin disabled")
 #REACTIVATE plasma plugins
 #set(akregator_sharemicroblog_plugin_SRCS sharemicroblogplugin.cpp)
 
