@@ -33,8 +33,9 @@
 #include <QTimer>
 
 #include <qdebug.h>
-#include <kstandarddirs.h>
-#include <KGlobal>
+#include <QFileInfo>
+#include <QDir>
+#include <QStandardPaths>
 
 class Akregator::Backend::StorageMK4Impl::StorageMK4ImplPrivate
 {
@@ -117,7 +118,10 @@ QString Akregator::Backend::StorageMK4Impl::archivePath() const
 
 QString Akregator::Backend::StorageMK4Impl::defaultArchivePath()
 {
-    return KGlobal::dirs()->saveLocation("data", QLatin1String("akregator"))+QLatin1String("Archive");
+    QString ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1Char('/') + QLatin1String("akregator");
+    QFileInfo fileInfo(ret);
+    QDir().mkpath(fileInfo.absolutePath());
+    return ret;
 }
 
 Akregator::Backend::StorageMK4Impl::~StorageMK4Impl()
