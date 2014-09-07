@@ -395,33 +395,33 @@ void ActionManagerImpl::initMainWidget(MainWidget* mainWidget)
 
     action = coll->addAction("feedstree_move_up");
     action->setText(i18n("Move Node Up"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeUp()));
+    connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeUp);
     coll->setDefaultShortcut(action, QKeySequence( "Shift+Alt+Up" ));
 
     action = coll->addAction("feedstree_move_down");
     action->setText(i18n("Move Node Down"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeDown()));
+    connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeDown);
     coll->setDefaultShortcut(action, QKeySequence( "Shift+Alt+Down" ));
 
     action = coll->addAction(i18n("Move Node Left"));
     action->setText(i18n("Move Node Left"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeLeft()));
+    connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeLeft);
     coll->setDefaultShortcut(action, QKeySequence( "Shift+Alt+Left" ));
 
     action = coll->addAction("feedstree_move_right");
     action->setText(i18n("Move Node Right"));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotMoveCurrentNodeRight()));
+    connect(action, &QAction::triggered, mainWidget, &MainWidget::slotMoveCurrentNodeRight);
     coll->setDefaultShortcut(action, QKeySequence( "Shift+Alt+Right" ));
 
     action = coll->addAction("file_sendlink");
     action->setIcon(QIcon::fromTheme("mail-message-new"));
     action->setText(i18n("Send &Link Address..."));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendLink()));
+    connect(action, &QAction::triggered, mainWidget, &MainWidget::slotSendLink);
 
     action = coll->addAction("file_sendfile");
     action->setIcon(QIcon::fromTheme("mail-message-new"));
     action->setText(i18n("Send &File..."));
-    connect(action, SIGNAL(triggered(bool)), mainWidget, SLOT(slotSendFile()));
+    connect(action, &QAction::triggered, mainWidget, &MainWidget::slotSendFile);
 
     setArticleActionsEnabled( false );
 }
@@ -455,11 +455,11 @@ void ActionManagerImpl::initArticleListView(ArticleListView* articleList)
 
     QAction *action = actionCollection()->addAction("go_previous_article");
     action->setText(i18n("&Previous Article"));
-    connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotPreviousArticle()));
+    connect(action, &QAction::triggered, articleList, &ArticleListView::slotPreviousArticle);
     action->setShortcut(QKeySequence( "Left" ));
     action = actionCollection()->addAction("go_next_article");
     action->setText(i18n("&Next Article"));
-    connect(action, SIGNAL(triggered(bool)), articleList, SLOT(slotNextArticle()));
+    connect(action, &QAction::triggered, articleList, &ArticleListView::slotNextArticle);
     action->setShortcut(QKeySequence( "Right" ));
 }
 
@@ -474,54 +474,54 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
 
     QAction *action = coll->addAction("go_prev_feed");
     action->setText(i18n("&Previous Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevFeed()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotPrevFeed);
     action->setShortcut(QKeySequence( "P" ));
 
     action = coll->addAction("go_next_feed");
     action->setText(i18n("&Next Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextFeed()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotNextFeed);
     action->setShortcut(QKeySequence( "N" ));
 
     action = coll->addAction("go_next_unread_feed");
     action->setIcon(QIcon::fromTheme("go-down"));
     action->setText(i18n("N&ext Unread Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotNextUnreadFeed()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotNextUnreadFeed);
     action->setShortcut(  QKeySequence(Qt::ALT+Qt::Key_Plus) );
 
     action = coll->addAction("go_prev_unread_feed");
     action->setIcon(QIcon::fromTheme("go-up"));
     action->setText(i18n("Prev&ious Unread Feed"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotPrevUnreadFeed()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotPrevUnreadFeed);
     action->setShortcut( QKeySequence(Qt::ALT+Qt::Key_Minus) );
 
     action = coll->addAction("feedstree_home");
     action->setText(i18n("Go to Top of Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemBegin()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemBegin);
     action->setShortcut(QKeySequence( "Ctrl+Home" ));
 
     action = coll->addAction("feedstree_end");
     action->setText(i18n("Go to Bottom of Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemEnd()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemEnd);
     action->setShortcut(QKeySequence( "Ctrl+End" ));
 
     action = coll->addAction("feedstree_left");
     action->setText(i18n("Go Left in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemLeft()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemLeft);
     action->setShortcut(QKeySequence( "Ctrl+Left" ));
 
     action = coll->addAction("feedstree_right");
     action->setText(i18n("Go Right in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemRight()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemRight);
     action->setShortcut(QKeySequence( "Ctrl+Right" ));
 
     action = coll->addAction("feedstree_up");
     action->setText(i18n("Go Up in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemUp()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemUp);
     action->setShortcut(QKeySequence( "Ctrl+Up" ));
 
     action = coll->addAction("feedstree_down" );
     action->setText(i18n("Go Down in Tree"));
-    connect(action, SIGNAL(triggered(bool)), subscriptionListView, SLOT(slotItemDown()));
+    connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemDown);
     action->setShortcut(QKeySequence( "Ctrl+Down" ));
 }
 
@@ -596,26 +596,26 @@ void ActionManagerImpl::initFrameManager(FrameManager* frameManager)
     KToolBarPopupAction* forward = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? "go-previous" : "go-next"), i18nc("Go forward in browser history", "Forward"), this);
     d->actionCollection->addAction("browser_forward", forward);
     forward->setShortcut(QKeySequence(isRTL ? "Alt+Left" : "Alt+Right"));
-    connect(forward, SIGNAL(triggered()), frameManager, SLOT(slotBrowserForward()));
+    connect(forward, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserForward);
 
     connect(forward->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserForwardAboutToShow()));
 
     KToolBarPopupAction* back = new KToolBarPopupAction(QIcon::fromTheme(isRTL ? "go-next" : "go-previous"), i18nc("Go back in browser history", "Back"), this);
     d->actionCollection->addAction("browser_back", back);
     back->setShortcut(QKeySequence(isRTL ?  "Alt+Right" : "Alt+Left"));
-    connect(back, SIGNAL(triggered()), frameManager, SLOT(slotBrowserBack()));
+    connect(back, &KToolBarPopupAction::triggered, frameManager, &FrameManager::slotBrowserBack);
 
     connect(back->menu(), SIGNAL(aboutToShow()), frameManager, SLOT(slotBrowserBackAboutToShow()));
 
     QAction *action = d->actionCollection->addAction("browser_reload");
     action->setIcon(QIcon::fromTheme("view-refresh"));
     action->setText(i18nc("Reload current page", "Reload"));
-    connect(action, SIGNAL(triggered(bool)), frameManager, SLOT(slotBrowserReload()));
+    connect(action, &QAction::triggered, frameManager, &FrameManager::slotBrowserReload);
 
     action = d->actionCollection->addAction("browser_stop");
     action->setIcon(QIcon::fromTheme("process-stop"));
     action->setText(i18n("Stop"));
-    connect(action, SIGNAL(triggered(bool)), frameManager, SLOT(slotBrowserStop()));
+    connect(action, &QAction::triggered, frameManager, &FrameManager::slotBrowserStop);
 }
 
 QWidget* ActionManagerImpl::container(const char* name)

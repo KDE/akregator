@@ -96,8 +96,8 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &FeedPropertiesDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &FeedPropertiesDialog::reject);
     mainLayout->addWidget(buttonBox);
     buttonBox->button(QDialogButtonBox::Ok)->setDefault(true);
     setModal(true);
@@ -113,7 +113,7 @@ FeedPropertiesDialog::FeedPropertiesDialog(QWidget *parent, const char *name)
     widget->sb_maxArticleAge->setSuffix(ki18np(" day", " days"));
     widget->sb_maxArticleNumber->setSuffix(ki18np(" article", " articles"));
 
-    connect(widget->feedNameEdit, SIGNAL(textChanged(QString)), this, SLOT(slotSetWindowTitle(QString)));
+    connect(widget->feedNameEdit, &QLineEdit::textChanged, this, &FeedPropertiesDialog::slotSetWindowTitle);
 }
 
 FeedPropertiesDialog::~FeedPropertiesDialog()
