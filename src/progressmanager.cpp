@@ -137,10 +137,10 @@ ProgressItemHandler::ProgressItemHandler(Feed* feed) : d(new ProgressItemHandler
     d->feed = feed;
     d->progressItem = 0;
 
-    connect(feed, SIGNAL(fetchStarted(Akregator::Feed*)), this, SLOT(slotFetchStarted()));
-    connect(feed, SIGNAL(fetched(Akregator::Feed*)), this, SLOT(slotFetchCompleted()));
-    connect(feed, SIGNAL(fetchError(Akregator::Feed*)), this, SLOT(slotFetchError()));
-    connect(feed, SIGNAL(fetchAborted(Akregator::Feed*)), this, SLOT(slotFetchAborted()));
+    connect(feed, &Feed::fetchStarted, this, &ProgressItemHandler::slotFetchStarted);
+    connect(feed, &Feed::fetched, this, &ProgressItemHandler::slotFetchCompleted);
+    connect(feed, &Feed::fetchError, this, &ProgressItemHandler::slotFetchError);
+    connect(feed, &Feed::fetchAborted, this, &ProgressItemHandler::slotFetchAborted);
 }
 
 ProgressItemHandler::~ProgressItemHandler()

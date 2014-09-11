@@ -80,8 +80,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     d->searchLine = new KLineEdit(this);
     d->searchLine->setClearButtonShown(true);
 
-    connect(d->searchLine, SIGNAL(textChanged(QString)),
-                        this, SLOT(slotSearchStringChanged(QString)));
+    connect(d->searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
 
     searchLabel->setBuddy(d->searchLine);
 
@@ -103,8 +102,7 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
     d->searchLine->setToolTip( i18n( "Enter space-separated terms to filter article list" ) );
     d->searchCombo->setToolTip( i18n( "Choose what kind of articles to show in article list" ) );
 
-    connect(d->searchCombo, SIGNAL(activated(int)),
-                        this, SLOT(slotSearchComboChanged(int)));
+    connect(d->searchCombo, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &SearchBar::slotSearchComboChanged);
 
     connect(&(d->timer), SIGNAL(timeout()), this, SLOT(slotActivateSearch()));
     d->timer.setSingleShot(true);

@@ -53,8 +53,8 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
         cbBackend->addItem( factory->name(), factory->key() );
     }
 
-    connect(pbBackendConfigure, SIGNAL(clicked()), this, SLOT(slotConfigureStorage()));
-    connect(cbBackend, SIGNAL(activated(int)), this, SLOT(slotFactorySelected(int)));
+    connect(pbBackendConfigure, &QPushButton::clicked, this, &SettingsAdvanced::slotConfigureStorage);
+    connect(cbBackend, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &SettingsAdvanced::slotFactorySelected);
     connect( kcfg_UseMarkReadDelay, SIGNAL(toggled(bool)),
              kcfg_MarkReadDelay, SLOT(setEnabled(bool)) );
 

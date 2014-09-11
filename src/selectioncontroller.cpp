@@ -110,12 +110,9 @@ void Akregator::SelectionController::setFeedSelector( QAbstractItemView* feedSel
 
     m_feedSelector->setModel( m_subscriptionModel );
 
-    connect( m_feedSelector, SIGNAL(customContextMenuRequested(QPoint)),
-             this, SLOT(subscriptionContextMenuRequested(QPoint)) );
-    connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-             this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
-    connect( m_feedSelector, SIGNAL(activated(QModelIndex)),
-             this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+    connect(m_feedSelector.data(), &QAbstractItemView::customContextMenuRequested, this, &SelectionController::subscriptionContextMenuRequested);
+    connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),  this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+    connect(m_feedSelector.data(), &QAbstractItemView::activated, this, &SelectionController::selectedSubscriptionChanged);
 
 }
 
@@ -132,8 +129,7 @@ void Akregator::SelectionController::setArticleLister( Akregator::ArticleLister*
     m_articleLister = lister;
 
     if ( m_articleLister && m_articleLister->itemView() )
-        connect( m_articleLister->itemView(), SIGNAL(doubleClicked(QModelIndex)),
-                 this, SLOT(articleIndexDoubleClicked(QModelIndex))  );
+        connect( m_articleLister->itemView(), SIGNAL(doubleClicked(QModelIndex)), this, SLOT(articleIndexDoubleClicked(QModelIndex))  );
 }
 
 void Akregator::SelectionController::setSingleArticleDisplay( Akregator::SingleArticleDisplay* display )
@@ -181,10 +177,8 @@ void Akregator::SelectionController::setFeedList( const shared_ptr<FeedList>& li
 
     if ( m_feedSelector ) {
         m_feedSelector->setModel( m_subscriptionModel );
-        disconnect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                    this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
-        connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                 this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+        disconnect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
+        connect( m_feedSelector->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(selectedSubscriptionChanged(QModelIndex)) );
     }
 }
 
@@ -216,24 +210,18 @@ void Akregator::SelectionController::articleHeadersAvailable( KJob* job )
 
     ArticleModel* const newModel = new ArticleModel( m_listJob->articles() );
 
-    connect( node, SIGNAL(destroyed()),
-             newModel, SLOT(clear()) );
-    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)),
-            newModel, SLOT(articlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)) );
-    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)),
-             newModel, SLOT(articlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)) );
-    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)),
-             newModel, SLOT(articlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)) );
+    connect( node, SIGNAL(destroyed()), newModel, SLOT(clear()) );
+    connect( node, SIGNAL(signalArticlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)), newModel, SLOT(articlesAdded(Akregator::TreeNode*,QList<Akregator::Article>)) );
+    connect( node, SIGNAL(signalArticlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)), newModel, SLOT(articlesRemoved(Akregator::TreeNode*,QList<Akregator::Article>)) );
+    connect( node, SIGNAL(signalArticlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)), newModel, SLOT(articlesUpdated(Akregator::TreeNode*,QList<Akregator::Article>)) );
 
     m_articleLister->setIsAggregation( node->isAggregation() );
     m_articleLister->setArticleModel( newModel );
     delete m_articleModel; //order is important: do not delete the old model before the new model is set in the view
     m_articleModel = newModel;
 
-    disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                this, SLOT(articleSelectionChanged()) );
-    connect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-             this, SLOT(articleSelectionChanged()) );
+    disconnect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(articleSelectionChanged()) );
+    connect( m_articleLister->articleSelectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(articleSelectionChanged()) );
 
     if ( node )
         m_articleLister->setScrollBarPositions( node->listViewScrollBarPositions() );

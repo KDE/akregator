@@ -42,29 +42,19 @@ KCMAkregatorAppearanceConfig::KCMAkregatorAppearanceConfig( QWidget* parent, con
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->addWidget( m_widget );
    
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)),
-             m_ui.kcfg_ColorUnreadArticles, SLOT(setEnabled(bool)) );
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)),
-             m_ui.kcfg_ColorNewArticles, SLOT(setEnabled(bool)) );
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)),
-             m_ui.lbl_newArticles, SLOT(setEnabled(bool)) );
-    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)),
-             m_ui.lbl_unreadArticles, SLOT(setEnabled(bool)) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)),m_ui.kcfg_ColorUnreadArticles, SLOT(setEnabled(bool)) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.kcfg_ColorNewArticles, SLOT(setEnabled(bool)) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_newArticles, SLOT(setEnabled(bool)) );
+    connect( m_ui.kcfg_UseCustomColors, SIGNAL(toggled(bool)), m_ui.lbl_unreadArticles, SLOT(setEnabled(bool)) );
 
-    connect( m_ui.slider_minimumFontSize, SIGNAL(valueChanged(int)),
-             m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)) );
-    connect( m_ui.slider_mediumFontSize, SIGNAL(valueChanged(int)),
-             m_ui.kcfg_MediumFontSize , SLOT(setValue(int)) );
+    connect( m_ui.slider_minimumFontSize, SIGNAL(valueChanged(int)),m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)) );
+    connect( m_ui.slider_mediumFontSize, SIGNAL(valueChanged(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)) );
 
-    connect( m_ui.slider_minimumFontSize, SIGNAL(sliderMoved(int)),
-             m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)) );
-    connect( m_ui.slider_mediumFontSize, SIGNAL(sliderMoved(int)),
-             m_ui.kcfg_MediumFontSize , SLOT(setValue(int)) );
+    connect( m_ui.slider_minimumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MinimumFontSize , SLOT(setValue(int)) );
+    connect( m_ui.slider_mediumFontSize, SIGNAL(sliderMoved(int)), m_ui.kcfg_MediumFontSize , SLOT(setValue(int)) );
 
-    connect( m_ui.kcfg_MinimumFontSize, SIGNAL(valueChanged(int)),
-             m_ui.slider_minimumFontSize, SLOT(setValue(int)) );
-    connect( m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)),
-             m_ui.slider_mediumFontSize, SLOT(setValue(int)) );
+    connect( m_ui.kcfg_MinimumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_minimumFontSize, SLOT(setValue(int)) );
+    connect( m_ui.kcfg_MediumFontSize, SIGNAL(valueChanged(int)), m_ui.slider_mediumFontSize, SLOT(setValue(int)) );
     KAboutData *about = new KAboutData( QLatin1String( "kcmakrappearanceconfig" ),
                                         i18n( "Configure Feed Reader Appearance" ),
                                         QString(), QString(), KAboutLicense::GPL,

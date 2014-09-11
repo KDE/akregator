@@ -85,12 +85,12 @@ SharePlugin::SharePlugin( QObject* parent, const QVariantList& args )
     m_shareMenu->setText( i18n( "Share Article" ) );
     m_shareMenu->setShortcut(QKeySequence(QLatin1String("Ctrl+S")));
     m_shareMenu->setEnabled(false);
-    connect(m_shareMenu, SIGNAL(triggered(bool)), this, SLOT(shareArticles()));
+    connect(m_shareMenu, &KActionMenu::triggered, this, &SharePlugin::shareArticles);
 
     m_sharePopupMenu = coll->add<KActionMenu>(QLatin1String("article_share_popup"));
     m_sharePopupMenu->setText( i18n( "Share Article" ) );
     m_sharePopupMenu->setEnabled(false);
-    connect(m_sharePopupMenu, SIGNAL(triggered(bool)), this, SLOT(shareArticles()));
+    connect(m_sharePopupMenu, &KActionMenu::triggered, this, &SharePlugin::shareArticles);
 }
 
 SharePlugin::~SharePlugin()

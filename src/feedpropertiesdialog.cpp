@@ -28,7 +28,6 @@
 #include <kcombobox.h>
 #include <klineedit.h>
 #include <KLocalizedString>
-#include <knuminput.h>
 #include <kpassworddialog.h>
 
 #include <QCheckBox>
@@ -44,20 +43,13 @@ FeedPropertiesWidget::FeedPropertiesWidget(QWidget *parent, const char *name)
 {
     setObjectName(name);
     setupUi(this);
-    connect( cb_updateInterval, SIGNAL(toggled(bool)),
-             updateSpinBox, SLOT(setEnabled(bool)) );
-    connect( cb_updateInterval, SIGNAL(toggled(bool)),
-             updateComboBox, SLOT(setEnabled(bool)) );
-    connect( cb_updateInterval, SIGNAL(toggled(bool)),
-             updateLabel, SLOT(setEnabled(bool)) );
-    connect( updateComboBox, SIGNAL(activated(int)),
-             this, SLOT(slotUpdateComboBoxActivated(int)) );
-    connect( updateSpinBox, SIGNAL(valueChanged(int)),
-             this, SLOT(slotUpdateComboBoxLabels(int)) );
-    connect( rb_limitArticleAge, SIGNAL(toggled(bool)),
-             sb_maxArticleAge, SLOT(setEnabled(bool)) );
-    connect( rb_limitArticleNumber, SIGNAL(toggled(bool)),
-             sb_maxArticleNumber, SLOT(setEnabled(bool)) );
+    connect(cb_updateInterval, &QCheckBox::toggled, updateSpinBox, &QSpinBox::setEnabled);
+    connect(cb_updateInterval, &QCheckBox::toggled, updateComboBox, &KComboBox::setEnabled);
+    connect(cb_updateInterval, &QCheckBox::toggled, updateLabel, &QLabel::setEnabled);
+    connect(updateComboBox, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &FeedPropertiesWidget::slotUpdateComboBoxActivated);
+    connect(updateSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &FeedPropertiesWidget::slotUpdateComboBoxLabels);
+    connect(rb_limitArticleAge, &QRadioButton::toggled, sb_maxArticleAge, &KPluralHandlingSpinBox::setEnabled);
+    connect(rb_limitArticleNumber, &QRadioButton::toggled, sb_maxArticleNumber, &KPluralHandlingSpinBox::setEnabled);
 }
 
 FeedPropertiesWidget::~FeedPropertiesWidget()
