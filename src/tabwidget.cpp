@@ -105,15 +105,13 @@ TabWidget::TabWidget(QWidget * parent)
     setMinimumSize(250,150);
     setMovable(false);
     setDocumentMode(true);
-    connect( this, SIGNAL(currentChanged(int)),
-             this, SLOT(slotTabChanged(int)) );
-    connect(this, SIGNAL(closeRequest(QWidget*)),
-            this, SLOT(slotCloseRequest(QWidget*)));
+    connect(this, &TabWidget::currentChanged, this, &TabWidget::slotTabChanged);
+    connect(this, SIGNAL(closeRequest(QWidget*)), this, SLOT(slotCloseRequest(QWidget*)));
+
     setTabsClosable(Settings::closeButtonOnTabs());
 
     d->tabsClose = new QToolButton(this);
-    connect( d->tabsClose, SIGNAL(clicked()), this,
-            SLOT(slotRemoveCurrentFrame()) );
+    connect(d->tabsClose, &QToolButton::clicked, this, &TabWidget::slotRemoveCurrentFrame);
 
     d->tabsClose->setIcon( QIcon::fromTheme( "tab-close" ) );
     d->tabsClose->setEnabled( false );
@@ -176,10 +174,8 @@ void TabWidget::slotAddFrame(Frame* frame)
     d->frames.insert(frame, frame);
     d->framesById.insert( frame->id(), frame );
     addTab(frame, frame->title());
-    connect(frame, SIGNAL(signalTitleChanged(Akregator::Frame*,QString)),
-            this, SLOT(slotSetTitle(Akregator::Frame*,QString)));
-    connect(frame, SIGNAL(signalIconChanged(Akregator::Frame*,QIcon)),
-            this, SLOT(slotSetIcon(Akregator::Frame*,QIcon)));
+    connect(frame, &Frame::signalTitleChanged, this, &TabWidget::slotSetTitle);
+    connect(frame, &Frame::signalIconChanged, this, &TabWidget::slotSetIcon);
 
     if(frame->id() > 0) // MainFrame doesn't emit signalPartDestroyed signals, neither should it
         connect(frame, SIGNAL(signalPartDestroyed(int)), this, SLOT(slotRemoveFrame(int)));

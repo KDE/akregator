@@ -497,32 +497,32 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
     action = coll->addAction("feedstree_home");
     action->setText(i18n("Go to Top of Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemBegin);
-    action->setShortcut(QKeySequence( "Ctrl+Home" ));
+    coll->setDefaultShortcut(action, QKeySequence( "Ctrl+Home" ));
 
     action = coll->addAction("feedstree_end");
     action->setText(i18n("Go to Bottom of Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemEnd);
-    action->setShortcut(QKeySequence( "Ctrl+End" ));
+    coll->setDefaultShortcut(action, QKeySequence( "Ctrl+End" ));
 
     action = coll->addAction("feedstree_left");
     action->setText(i18n("Go Left in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemLeft);
-    action->setShortcut(QKeySequence( "Ctrl+Left" ));
+    coll->setDefaultShortcut(action, QKeySequence( "Ctrl+Left" ));
 
     action = coll->addAction("feedstree_right");
     action->setText(i18n("Go Right in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemRight);
-    action->setShortcut(QKeySequence( "Ctrl+Right" ));
+    coll->setDefaultShortcut(action, QKeySequence( "Ctrl+Right" ));
 
     action = coll->addAction("feedstree_up");
     action->setText(i18n("Go Up in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemUp);
-    action->setShortcut(QKeySequence( "Ctrl+Up" ));
+    coll->setDefaultShortcut(action,QKeySequence( "Ctrl+Up" ));
 
     action = coll->addAction("feedstree_down" );
     action->setText(i18n("Go Down in Tree"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotItemDown);
-    action->setShortcut(QKeySequence( "Ctrl+Down" ));
+    coll->setDefaultShortcut(action,QKeySequence( "Ctrl+Down" ));
 }
 
 void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)

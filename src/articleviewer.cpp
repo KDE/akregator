@@ -136,18 +136,18 @@ ArticleViewer::ArticleViewer(QWidget *parent)
 
     action = m_part->actionCollection()->addAction("copylinkaddress");
     action->setText(i18n("Copy &Link Address"));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotCopyLinkAddress()));
+    connect(action, &QAction::triggered, this, &ArticleViewer::slotCopyLinkAddress);
 
     action = m_part->actionCollection()->addAction("savelinkas");
     action->setText(i18n("&Save Link As..."));
-    connect(action, SIGNAL(triggered(bool)), SLOT(slotSaveLinkAs()));
+    connect(action, &QAction::triggered, this, &ArticleViewer::slotSaveLinkAs);
 
     updateCss();
 
-    connect(this, SIGNAL(selectionChanged()), this, SLOT(slotSelectionChanged()));
+    connect(this, &ArticleViewer::selectionChanged, this, &ArticleViewer::slotSelectionChanged);
 
-    connect(KGlobalSettings::self(), SIGNAL(kdisplayPaletteChanged()), this, SLOT(slotPaletteOrFontChanged()) );
-    connect(KGlobalSettings::self(), SIGNAL(kdisplayFontChanged()), this, SLOT(slotPaletteOrFontChanged()) );
+    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayPaletteChanged, this, &ArticleViewer::slotPaletteOrFontChanged);
+    connect(KGlobalSettings::self(), &KGlobalSettings::kdisplayFontChanged, this, &ArticleViewer::slotPaletteOrFontChanged);
 
     m_htmlFooter = "</body></html>";
 }
@@ -607,7 +607,7 @@ void ArticleViewer::showNode(TreeNode* node)
     delete m_listJob;
 
     m_listJob = node->createListJob();
-    connect( m_listJob, SIGNAL(finished(KJob*)), this, SLOT(slotArticlesListed(KJob*)));
+    connect(m_listJob.data(), &ArticleListJob::finished, this, &ArticleViewer::slotArticlesListed);
     m_listJob->start();
 
 
