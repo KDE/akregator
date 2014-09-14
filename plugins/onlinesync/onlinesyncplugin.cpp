@@ -93,7 +93,7 @@ void OnlineSyncPlugin::updateActions()
             action->setText(i18n("Get from %1",generalGroup.readEntry( "Identifier", QString() )));
             m_feedSyncMenu->addAction(action);
             m_feedSyncActions.append(action);
-            connect( action, SIGNAL(triggered(bool)), m_syncTool, SLOT(sync()) );
+            connect(action, &QAction::triggered, m_syncTool, &feedsync::FeedSync::sync);
 
             action = coll->addAction(groupname);
             action->setProperty("ConfigGroup",groupname);
@@ -102,7 +102,7 @@ void OnlineSyncPlugin::updateActions()
             action->setText(i18n("Send to %1",generalGroup.readEntry( "Identifier", QString() )));
             m_feedSyncMenu->addAction(action);
             m_feedSyncActions.append(action);
-            connect( action, SIGNAL(triggered(bool)), m_syncTool, SLOT(sync()) );
+            connect(action, &QAction::triggered, m_syncTool, &feedsync::FeedSync::sync);
         }
     }
 
@@ -111,7 +111,7 @@ void OnlineSyncPlugin::updateActions()
     action->setText(i18n("Manage..."));
     m_feedSyncMenu->addAction(action);
     m_feedSyncActions.append(action);
-    connect(action, SIGNAL(triggered(bool)), this, SLOT(slotFeedSyncManage()));
+    connect(action, &QAction::triggered, this, &OnlineSyncPlugin::slotFeedSyncManage);
 }
 
 void OnlineSyncPlugin::doSynchronize()
@@ -124,7 +124,7 @@ void OnlineSyncPlugin::slotFeedSyncManage()
     qDebug();
     feedsync::ConfigurationDialog* dlg = new feedsync::ConfigurationDialog();
     dlg->setAttribute( Qt::WA_DeleteOnClose );
-    connect( dlg, SIGNAL(finished()), this, SLOT(slotFeedSyncManageDone()) );
+    connect(dlg, &feedsync::ConfigurationDialog::finished, this, &OnlineSyncPlugin::slotFeedSyncManageDone);
     dlg->show();
 }
 

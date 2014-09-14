@@ -61,7 +61,7 @@ void GoogleReader::load()
     KIO::StoredTransferJob *job = KIO::storedHttpPost(data, KUrl("https://www.google.com/accounts/ClientLogin"));
     job->addMetaData("content-type", "application/x-www-form-urlencoded");
     job->addMetaData("cookies", "manual");
-    connect(job, SIGNAL(result(KJob*)), SLOT(slotAuthenticationDone(KJob*)));
+    connect(job, &KIO::StoredTransferJob::result, this, &GoogleReader::slotAuthenticationDone);
 }
 
 void GoogleReader::add(const SubscriptionList & list) 
@@ -108,7 +108,7 @@ void GoogleReader::add(const SubscriptionList & list)
     job->addMetaData("cookies", "manual");
     job->addMetaData("setcookies", "SID="+getSID());
     job->addMetaData("content-type", "application/x-www-form-urlencoded");
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotAddDone(KJob*)));
+    connect(job, &KIO::StoredTransferJob::result, this, &GoogleReader::slotAddDone);
     _cursor++;
 }
 
@@ -159,7 +159,7 @@ void GoogleReader::remove(const SubscriptionList & list)
     job->addMetaData("cookies", "manual");
     job->addMetaData("setcookies", "SID="+getSID());
     job->addMetaData("content-type", "application/x-www-form-urlencoded");
-    connect(job, SIGNAL(result(KJob*)), this, SLOT(slotRemoveDone(KJob*)));
+    connect(job, &KIO::StoredTransferJob::result, this, &GoogleReader::slotRemoveDone);
     _cursor++;
     qDebug();
 }
@@ -259,7 +259,7 @@ void GoogleReader::slotListDone(KJob *job_)
         KIO::storedGet("http://www.google.com/reader/api/0/token?client=contact:"+getUser());
     getjob->addMetaData("cookies", "manual");
     getjob->addMetaData("setcookies", "SID="+getSID());
-    connect(getjob, SIGNAL(result(KJob*)), SLOT(slotTokenDone(KJob*)));
+    connect(getjob, &KIO::StoredTransferJob::result, this, &GoogleReader::slotTokenDone);
 }
 
 void GoogleReader::slotAuthenticationDone(KJob *job_)
@@ -285,7 +285,7 @@ void GoogleReader::slotAuthenticationDone(KJob *job_)
     KIO::StoredTransferJob *getjob = KIO::storedGet(KUrl("http://www.google.com/reader/api/0/subscription/list"));
     getjob->addMetaData("cookies", "manual");
     getjob->addMetaData("setcookies", "SID="+getSID());
-    connect(getjob, SIGNAL(result(KJob*)), SLOT(slotListDone(KJob*)));
+    connect(getjob, &KIO::StoredTransferJob::result, this, &GoogleReader::slotListDone);
 }
 
 // Getters/Setters

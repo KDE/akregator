@@ -119,7 +119,7 @@ void SharePlugin::refreshConfig()
         const QString m_curTimeline(timeline.arg(m_username, m_serviceUrl));
         m_engine->connectSource(m_curTimeline, this);
         m_service = m_engine->serviceForSource(m_curTimeline);
-        connect(m_service, SIGNAL(finished(Plasma::ServiceJob*)),  this, SLOT(slotServiceFinished(Plasma::ServiceJob*)));
+        connect(m_service, &Plasma::Service::finished, this, &SharePlugin::slotServiceFinished);
     }
 }
 

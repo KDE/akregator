@@ -110,12 +110,12 @@ void FeedSync::sync() {
 
     // TODO Handle failures
     _loadedAggrCount=0;
-    connect(_aggrGet, SIGNAL(error(QString)), this, SLOT(error(QString)));
-    connect(_aggrSend, SIGNAL(error(QString)), this, SLOT(error(QString)));
-    connect(_aggrSend, SIGNAL(loadDone()), this, SLOT(slotLoadDone()));
-    connect(_aggrGet, SIGNAL(loadDone()), this, SLOT(slotLoadDone()));
-    connect(_aggrGet, SIGNAL(addDone()), this, SLOT(slotAddDone()));
-    connect(_aggrGet, SIGNAL(removeDone()), this, SLOT(slotRemoveDone()));
+    connect(_aggrGet, &Aggregator::error, this, &FeedSync::error);
+    connect(_aggrSend, &Aggregator::error, this, &FeedSync::error);
+    connect(_aggrSend, &Aggregator::loadDone, this, &FeedSync::slotLoadDone);
+    connect(_aggrGet, &Aggregator::loadDone, this, &FeedSync::slotLoadDone);
+    connect(_aggrGet, &Aggregator::addDone, this, &FeedSync::slotAddDone);
+    connect(_aggrGet, &Aggregator::removeDone, this, &FeedSync::slotRemoveDone);
 }
 
 // Slots

@@ -46,7 +46,7 @@ ConfigurationDialogAdd::ConfigurationDialogAdd( QWidget *parent) : KDialog(paren
 
     slotUpdateUI();
 
-    connect( ui.cb_AggregatorType, SIGNAL(currentIndexChanged(int)), this, SLOT(slotUpdateUI()) );
+    connect(ui.cb_AggregatorType, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &ConfigurationDialogAdd::slotUpdateUI);
 }
 
 ConfigurationDialogAdd::~ConfigurationDialogAdd()

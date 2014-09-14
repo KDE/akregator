@@ -438,11 +438,11 @@ void FeedList::setRootNode(Folder* folder)
 
     if ( d->rootNode ) {
         d->rootNode->setOpen(true);
-        connect(d->rootNode, SIGNAL(signalChildAdded(Akregator::TreeNode*)), this, SLOT(slotNodeAdded(Akregator::TreeNode*)));
-        connect(d->rootNode, SIGNAL(signalAboutToRemoveChild(Akregator::TreeNode*)), this, SIGNAL(signalAboutToRemoveNode(Akregator::TreeNode*)));
-        connect(d->rootNode, SIGNAL(signalChildRemoved(Akregator::Folder*,Akregator::TreeNode*)), this, SLOT(slotNodeRemoved(Akregator::Folder*,Akregator::TreeNode*)));
-        connect( d->rootNode, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SIGNAL(signalNodeChanged(Akregator::TreeNode*)) );
-        connect( d->rootNode, SIGNAL(signalChanged(Akregator::TreeNode*)), this, SLOT(rootNodeChanged()) );
+        connect(d->rootNode, &Folder::signalChildAdded, this, &FeedList::slotNodeAdded);
+        connect(d->rootNode, &Folder::signalAboutToRemoveChild, this, &FeedList::signalAboutToRemoveNode);
+        connect(d->rootNode, &Folder::signalChildRemoved, this, &FeedList::slotNodeRemoved);
+        connect(d->rootNode, &Folder::signalChanged, this, &FeedList::signalNodeChanged);
+        connect(d->rootNode, &Folder::signalChanged, this, &FeedList::rootNodeChanged);
     }
 }
 

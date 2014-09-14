@@ -82,12 +82,12 @@ AddFeedDialog::AddFeedDialog(QWidget *parent, const char *name)
     mOkButton = buttonBox->button(QDialogButtonBox::Ok);
     mOkButton->setDefault(true);
     mOkButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &AddFeedDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &AddFeedDialog::reject);
     //PORTING SCRIPT: WARNING mainLayout->addWidget(buttonBox) must be last item in layout. Please move it.
     mainLayout->addWidget(buttonBox);
     widget->urlEdit->setFocus();
-    connect(widget->urlEdit, SIGNAL(textChanged(QString)), this, SLOT(textChanged(QString)));
+    connect(widget->urlEdit, &QLineEdit::textChanged, this, &AddFeedDialog::textChanged);
     mOkButton->setEnabled(false);
     mainLayout->addWidget(widget);
 }
