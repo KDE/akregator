@@ -475,24 +475,24 @@ void ActionManagerImpl::initSubscriptionListView(SubscriptionListView* subscript
     QAction *action = coll->addAction("go_prev_feed");
     action->setText(i18n("&Previous Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotPrevFeed);
-    action->setShortcut(QKeySequence( "P" ));
+    coll->setDefaultShortcut(action, QKeySequence( "P" ));
 
     action = coll->addAction("go_next_feed");
     action->setText(i18n("&Next Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotNextFeed);
-    action->setShortcut(QKeySequence( "N" ));
+    coll->setDefaultShortcut(action,QKeySequence( "N" ));
 
     action = coll->addAction("go_next_unread_feed");
     action->setIcon(QIcon::fromTheme("go-down"));
     action->setText(i18n("N&ext Unread Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotNextUnreadFeed);
-    action->setShortcut(  QKeySequence(Qt::ALT+Qt::Key_Plus) );
+    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT+Qt::Key_Plus) );
 
     action = coll->addAction("go_prev_unread_feed");
     action->setIcon(QIcon::fromTheme("go-up"));
     action->setText(i18n("Prev&ious Unread Feed"));
     connect(action, &QAction::triggered, subscriptionListView, &SubscriptionListView::slotPrevUnreadFeed);
-    action->setShortcut( QKeySequence(Qt::ALT+Qt::Key_Minus) );
+    coll->setDefaultShortcut(action, QKeySequence(Qt::ALT+Qt::Key_Minus) );
 
     action = coll->addAction("feedstree_home");
     action->setText(i18n("Go to Top of Tree"));
@@ -537,18 +537,18 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     QAction *action = coll->addAction("select_next_tab");
     action->setText(i18n("Select Next Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotNextTab()));
-    action->setShortcut(QKeySequence( "Ctrl+Period" ));
+    coll->setDefaultShortcut(action, QKeySequence( "Ctrl+Period" ));
 
     action = coll->addAction("select_previous_tab");
     action->setText(i18n("Select Previous Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotPreviousTab()));
-    action->setShortcut(QKeySequence( "Ctrl+Comma" ));
+    coll->setDefaultShortcut(action, QKeySequence( "Ctrl+Comma" ));
 
     action = coll->addAction("tab_detach");
     action->setIcon(QIcon::fromTheme("tab-detach"));
     action->setText(i18n("Detach Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotDetachTab()));
-    action->setShortcut(QKeySequence(Qt::CTRL+Qt::SHIFT+Qt::Key_B));
+    coll->setDefaultShortcut(action, QKeySequence(Qt::CTRL+Qt::SHIFT+Qt::Key_B));
 
     action = coll->addAction("tab_copylinkaddress");
     action->setText(i18n("Copy Link Address"));
@@ -558,26 +558,26 @@ void ActionManagerImpl::initTabWidget(TabWidget* tabWidget)
     action->setIcon(QIcon::fromTheme("tab-close"));
     action->setText(i18n("Close Tab"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotCloseTab()));
-    action->setShortcuts(KStandardShortcut::close());
+    coll->setDefaultShortcuts(action, KStandardShortcut::close());
 
     action = coll->addAction("inc_font_sizes");
     action->setIcon(QIcon::fromTheme("format-font-size-more"));
     action->setText(i18n("Enlarge Font"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotFrameZoomIn()));
-    action->setShortcut( QKeySequence::ZoomIn );
+    coll->setDefaultShortcut(action, QKeySequence::ZoomIn );
 
     action = coll->addAction("dec_font_sizes");
     action->setIcon(QIcon::fromTheme("format-font-size-less"));
     action->setText(i18n("Shrink Font"));
     connect(action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotFrameZoomOut()));
-    action->setShortcut( QKeySequence::ZoomOut );
+    coll->setDefaultShortcut(action, QKeySequence::ZoomOut );
 
     QString actionname;
     for (int i=1;i<10;++i) {
       actionname.sprintf("activate_tab_%02d", i);
       action = new QAction( i18n("Activate Tab %1", i),this );
-      action->setShortcut( QKeySequence( QString::fromLatin1( "Alt+%1" ).arg( i ) ) );
       coll->addAction( actionname, action );
+      coll->setDefaultShortcut( action, QKeySequence( QString::fromLatin1( "Alt+%1" ).arg( i ) ));
       connect( action, SIGNAL(triggered(bool)), d->tabWidget, SLOT(slotActivateTab()) );
     }
 
