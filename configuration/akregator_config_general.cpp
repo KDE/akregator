@@ -47,10 +47,8 @@ KCMAkregatorGeneralConfig::KCMAkregatorGeneralConfig( QWidget* parent, const QVa
 
     ui.kcfg_AutoFetchInterval->setSuffix(ki18np(" minute", " minutes"));
     
-    connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),
-             ui.kcfg_AutoFetchInterval, SLOT(setEnabled(bool)) );
-    connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),
-             ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)) );
+    connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),ui.kcfg_AutoFetchInterval, SLOT(setEnabled(bool)) );
+    connect( ui.kcfg_UseIntervalFetch, SIGNAL(toggled(bool)),ui.autoFetchIntervalLabel, SLOT(setEnabled(bool)) );
     KAboutData *about = new KAboutData( QLatin1String( "kcmakrgeneralconfig" ),
                                         i18n( "Configure Feeds" ),
                                         QString(), QString(), KAboutLicense::GPL,
