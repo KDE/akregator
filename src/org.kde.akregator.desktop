@@ -171,3 +171,4 @@ Comment[zh_TW]=KDE 新聞 Feed 閱讀器
 Terminal=false
 Categories=Qt;KDE;Network;News;
 X-DBUS-StartupType=Unique
+X-DBUS-ServiceName=org.kde.akregator
