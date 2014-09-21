@@ -110,12 +110,8 @@ set(akregatorpart_PART_SRCS
   dummystorage/storagedummyimpl.cpp
   dummystorage/storagefactorydummyimpl.cpp
   dummystorage/feedstoragedummyimpl.cpp
-  #REACTIVATE
-  #speechclient.cpp
 )
 
-#REACTIVATE
-#qt5_add_dbus_interfaces(akregatorpart_PART_SRCS ${KDE4_DBUS_INTERFACES_DIR}/org.kde.KSpeech.xml)
 qt5_add_dbus_adaptor(akregatorpart_PART_SRCS org.kde.akregator.part.xml akregator_part.h Akregator::Part)
 
 ki18n_wrap_ui(akregatorpart_PART_SRCS
