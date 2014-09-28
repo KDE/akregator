@@ -41,6 +41,7 @@
 #include <QString>
 #include <QTimer>
 #include <QStandardPaths>
+#include <QHBoxLayout>
 
 
 using namespace boost;
@@ -67,18 +68,22 @@ public:
     }
 };
 
-SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBarPrivate)
+SearchBar::SearchBar(QWidget* parent) : QWidget(parent), d(new SearchBar::SearchBarPrivate)
 {
     d->delay = 400;
-    setMargin(2);
-    setSpacing(5);
+    QHBoxLayout *layout = new QHBoxLayout;
+
+    layout->setMargin(2);
+    layout->setSpacing(5);
     setSizePolicy( QSizePolicy( QSizePolicy::Minimum, QSizePolicy::Fixed ) );
 
     QLabel* searchLabel = new QLabel(this);
+    layout->addWidget(searchLabel);
     searchLabel->setText( i18nc("Title of article searchbar", "S&earch:") );
 
     d->searchLine = new KLineEdit(this);
     d->searchLine->setClearButtonShown(true);
+    layout->addWidget(d->searchLine);
 
     connect(d->searchLine, &KLineEdit::textChanged, this, &SearchBar::slotSearchStringChanged);
 
@@ -86,8 +91,10 @@ SearchBar::SearchBar(QWidget* parent) : KHBox(parent), d(new SearchBar::SearchBa
 
     QLabel* statusLabel = new QLabel(this);
     statusLabel->setText( i18n("Status:") );
+    layout->addWidget(statusLabel);
 
     d->searchCombo = new KComboBox(this);
+    layout->addWidget(d->searchCombo);
 
     QIcon iconAll = KIconLoader::global()->loadIcon("system-run", KIconLoader::Small);
     QIcon iconNew(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "akregator/pics/kmmsgnew.png"));

@@ -25,7 +25,7 @@
 #ifndef AKREGATOR_SEARCHBAR_H
 #define AKREGATOR_SEARCHBAR_H
 
-#include <khbox.h>
+#include <QWidget>
 
 #include <boost/shared_ptr.hpp>
 #include <vector>
@@ -40,7 +40,7 @@ namespace Filters
     class AbstractMatcher;
 }
 
-class SearchBar : public KHBox
+class SearchBar : public QWidget
 {
     Q_OBJECT
 
