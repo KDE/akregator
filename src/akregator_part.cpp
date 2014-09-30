@@ -281,7 +281,7 @@ Part::Part( QWidget *parentWidget, QObject *parent, const QVariantList& )
                 this, SIGNAL(signalArticlesSelected(QList<Akregator::Article>)) );
     }
 
-    connect(kapp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
+    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 
     m_autosaveTimer = new QTimer(this);
     connect(m_autosaveTimer, SIGNAL(timeout()), this, SLOT(slotSaveFeedList()));
