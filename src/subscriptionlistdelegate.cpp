@@ -39,8 +39,7 @@ using namespace Akregator;
 Akregator::SubscriptionListDelegate::SubscriptionListDelegate( QWidget *parent )
     : QStyledItemDelegate( parent )
 {
-    connect( KGlobalSettings::self(), SIGNAL(appearanceChanged()),
-             SLOT(recalculateRowHeight()) );
+    connect(KGlobalSettings::self(), &KGlobalSettings::appearanceChanged, this, &SubscriptionListDelegate::recalculateRowHeight);
     recalculateRowHeight();
 }
 
