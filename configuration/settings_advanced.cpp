@@ -55,8 +55,7 @@ SettingsAdvanced::SettingsAdvanced(QWidget* parent, const char* name) : QWidget(
 
     connect(pbBackendConfigure, &QPushButton::clicked, this, &SettingsAdvanced::slotConfigureStorage);
     connect(cbBackend, static_cast<void (KComboBox::*)(int)>(&KComboBox::activated), this, &SettingsAdvanced::slotFactorySelected);
-    connect( kcfg_UseMarkReadDelay, SIGNAL(toggled(bool)),
-             kcfg_MarkReadDelay, SLOT(setEnabled(bool)) );
+    connect(kcfg_UseMarkReadDelay, &QCheckBox::toggled, kcfg_MarkReadDelay, &KPluralHandlingSpinBox::setEnabled);
 
     kcfg_MarkReadDelay->setSuffix(ki18ncp("Mark selected article read after", " second", " seconds"));
 }

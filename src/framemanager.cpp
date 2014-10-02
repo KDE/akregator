@@ -326,8 +326,7 @@ void FrameManager::slotOpenUrlRequest(OpenUrlRequest& request, bool useOpenInBac
     if (request.args().mimeType().isEmpty())
     {
         BrowserRun* run = new BrowserRun(request, m_mainWin);
-        connect(run, SIGNAL(signalFoundMimeType(Akregator::OpenUrlRequest&)),
-                this, SLOT(openUrl(Akregator::OpenUrlRequest&)) );
+        connect(run, &BrowserRun::signalFoundMimeType, this, &FrameManager::openUrl);
     }
     else // serviceType is already set, so we open the page synchronously.
     {
