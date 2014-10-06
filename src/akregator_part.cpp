@@ -579,7 +579,7 @@ void Part::exportFile(const KUrl& url)
 
 void Part::fileImport()
 {
-    KUrl url = KFileDialog::getOpenUrl( KUrl(),
+    QUrl url = KFileDialog::getOpenUrl( QUrl(),
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
@@ -587,9 +587,9 @@ void Part::fileImport()
         importFile(url);
 }
 
-    void Part::fileExport()
+void Part::fileExport()
 {
-    KUrl url= KFileDialog::getSaveUrl( KUrl(),
+    QUrl url= KFileDialog::getSaveUrl( QUrl(),
                         "*.opml *.xml|" + i18n("OPML Outlines (*.opml, *.xml)")
                         +"\n*|" + i18n("All Files") );
 
