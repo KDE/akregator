@@ -45,7 +45,6 @@
 #include <QAction>
 #include <kactioncollection.h>
 #include <kapplication.h>
-#include <kfiledialog.h>
 #include <khtmlview.h>
 #include <kiconloader.h>
 #include <KLocalizedString>
