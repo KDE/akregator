@@ -315,8 +315,6 @@ void Akregator::MainWidget::slotOnShutdown()
 {
     m_shuttingDown = true;
 
-    delete m_part;
-
     // close all pageviewers in a controlled way
     // fixes bug 91660, at least when no part loading data
     while ( m_tabWidget->count() > 1 ) { // remove frames until only the main frame remains

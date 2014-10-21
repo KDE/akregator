@@ -88,6 +88,8 @@ MainWindow::MainWindow( QWidget* parent, Qt::WindowFlags f )
 
     connect( KPIM::BroadcastStatus::instance(), SIGNAL(statusMsg(QString)),
              this, SLOT(slotSetStatusBarText(QString)) );
+
+    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(slotOnShutdown()));
 }
 
 bool MainWindow::loadPart()
@@ -184,6 +186,11 @@ KParts::BrowserExtension *MainWindow::browserExtension(KParts::ReadOnlyPart *p)
 void MainWindow::slotQuit()
 {
     kapp->quit();
+}
+
+void MainWindow::slotOnShutdown()
+{
+    delete m_part;
 }
 
 bool MainWindow::queryClose()
