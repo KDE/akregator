@@ -115,6 +115,7 @@ private slots:
     void optionsConfigureKeys();
     void optionsConfigureToolbars();
     void applyNewToolbarConfig();
+    void slotOnShutdown();
 
 private:
     BrowserInterface *m_browserIface;
