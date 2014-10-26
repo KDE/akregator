@@ -30,6 +30,8 @@
 
 #include <QList>
 
+#include <cassert>
+
 using namespace Akregator;
 
 class FetchQueue::FetchQueuePrivate
