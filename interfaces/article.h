@@ -30,7 +30,7 @@
 #include "types.h"
 
 #include <Syndication/Person>
-
+#include <QSharedPointer>
 #include <boost/shared_ptr.hpp>
 
 class QDateTime;
@@ -46,7 +46,7 @@ namespace Syndication
 {
     class Enclosure;
     class Item;
-    typedef boost::shared_ptr<Item> ItemPtr;
+    typedef QSharedPointer<Item> ItemPtr;
 }
 
 namespace Akregator {
