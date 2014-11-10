@@ -89,7 +89,7 @@ class Part : public KParts::ReadOnlyPart
             Opens feedlist
             @param url URL to feedlist
             */
-        bool openUrl(const KUrl& url);
+        bool openUrl(const QUrl& url);
 
         /** Opens standard feedlist */
         void openStandardFeedList();

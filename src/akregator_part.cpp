@@ -416,7 +416,7 @@ void Part::saveProperties(KConfigGroup & config)
     }
 }
 
-bool Part::openUrl(const KUrl& url)
+bool Part::openUrl(const QUrl& url)
 {
     setLocalFilePath(url.toLocalFile());
     return openFile();
