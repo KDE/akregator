@@ -128,7 +128,6 @@ target_link_libraries(akregatorpart
   KF5::NotifyConfig
   kdepim
   KF5::Syndication
-  KF5::PimUtils
 )
 
 install(TARGETS akregatorpart DESTINATION ${PLUGIN_INSTALL_DIR})

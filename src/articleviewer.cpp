@@ -40,8 +40,6 @@
 
 #include "kdepim-version.h"
 
-#include <KPIMUtils/kpimutils/kfileio.h>
-
 #include <QAction>
 #include <kactioncollection.h>
 #include <kapplication.h>
@@ -694,7 +692,14 @@ void ArticleViewer::displayAboutPage()
     QString catchPhrase = ""; //not enough space for a catch phrase at default window size i18n("Part of the Kontact Suite");
     QString quickDescription = i18n("A KDE news feed reader.");
 
-    QString content = KPIMUtils::kFileToByteArray(location);
+    QFile f(location);
+    if (!f.open(QIODevice::ReadOnly)) {
+        qWarning() << "Cannot load about page: " << f.errorString();
+        m_part->end();
+        return;
+    }
+    QString content = QString::fromLocal8Bit(f.readAll());
+    f.close();
 
     QString infocss = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage.css" );
     QString rtl = kapp->isRightToLeft() ? QString("@import \"%1\";" ).arg( QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kdeui/about/kde_infopage_rtl.css" )) : QString();
